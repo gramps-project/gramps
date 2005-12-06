@@ -40,64 +40,88 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import Utils
 import RelLib
+import Tool
 from QuestionDialog import WarningDialog
 
 _findint = re.compile('^[^\d]*(\d+)[^\d]*')
-
-def runTool(db,active_person,callback,parent):
-    """Changed person, family, object, source, and place ids"""
-    #FIXME -- Remove when the tool is back from the dead
-    #WarningDialog(_('Tool currently unavailable'),
-    #            _('This tool has not yet been brought up to date '
-    #            'after transition to the database, sorry.'),parent.topWindow)
-    #return
-    
-    #FIXME
-    try:
-        ReorderIds(db)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
 
 #-------------------------------------------------------------------------
 #
 # Actual tool
 #
 #-------------------------------------------------------------------------
-class ReorderIds:
+class ReorderIds(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
 
-    def __init__(self,db):
-
-        self.db = db
-
-        self.progress = Utils.ProgressMeter(_('Reordering GRAMPS IDs'),'')
+        self.parent = parent
+        if parent:
+            self.progress = Utils.ProgressMeter(_('Reordering GRAMPS IDs'),'')
+        else:
+            print "Reordering GRAMPS IDs..."
                                             
         self.trans = db.transaction_begin()
 
-        self.progress.set_pass(_('Reordering People IDs'),db.get_number_of_people())
-        self.reorder(RelLib.Person, db.get_person_from_gramps_id, db.get_person_from_handle,
-                     db.find_next_person_gramps_id, db.get_person_cursor, db.commit_person,
+        if parent:
+            self.progress.set_pass(_('Reordering People IDs'),
+                                   db.get_number_of_people())
+        self.reorder(RelLib.Person,
+                     db.get_person_from_gramps_id,
+                     db.get_person_from_handle,
+                     db.find_next_person_gramps_id,
+                     db.get_person_cursor,
+                     db.commit_person,
                      db.iprefix)
-        self.progress.set_pass(_('Reordering Family IDs'),db.get_number_of_families())
-        self.reorder(RelLib.Family,db.get_family_from_gramps_id, db.get_family_from_handle,
-                     db.find_next_family_gramps_id, db.get_family_cursor, db.commit_family,
+
+        if parent:
+            self.progress.set_pass(_('Reordering Family IDs'),
+                                   db.get_number_of_families())
+        self.reorder(RelLib.Family,
+                     db.get_family_from_gramps_id,
+                     db.get_family_from_handle,
+                     db.find_next_family_gramps_id,
+                     db.get_family_cursor,
+                     db.commit_family,
                      db.fprefix)
-        self.progress.set_pass(_('Reordering Media Object IDs'),db.get_number_of_media_objects())
-        self.reorder(RelLib.MediaObject, db.get_object_from_gramps_id, db.get_object_from_handle,
-                     db.find_next_object_gramps_id, db.get_media_cursor, db.commit_media_object,
+        if parent:
+            self.progress.set_pass(_('Reordering Media Object IDs'),
+                                   db.get_number_of_media_objects())
+        self.reorder(RelLib.MediaObject,
+                     db.get_object_from_gramps_id,
+                     db.get_object_from_handle,
+                     db.find_next_object_gramps_id,
+                     db.get_media_cursor,
+                     db.commit_media_object,
                      db.oprefix)
-        self.progress.set_pass(_('Reordering Source IDs'),db.get_number_of_sources())
-        self.reorder(RelLib.Source, db.get_source_from_gramps_id, db.get_source_from_handle,
-                     db.find_next_source_gramps_id, db.get_source_cursor, db.commit_source,
+        if parent:
+            self.progress.set_pass(_('Reordering Source IDs'),
+                                   db.get_number_of_sources())
+        self.reorder(RelLib.Source,
+                     db.get_source_from_gramps_id,
+                     db.get_source_from_handle,
+                     db.find_next_source_gramps_id,
+                     db.get_source_cursor,
+                     db.commit_source,
                      db.sprefix)
-        self.progress.set_pass(_('Reordering Place IDs'),db.get_number_of_places())
-        self.reorder(RelLib.Place, db.get_place_from_gramps_id, db.get_place_from_handle,
-                     db.find_next_place_gramps_id, db.get_place_cursor, db.commit_place,
+        if parent:
+            self.progress.set_pass(_('Reordering Place IDs'),
+                                   db.get_number_of_places())
+        self.reorder(RelLib.Place,
+                     db.get_place_from_gramps_id,
+                     db.get_place_from_handle,
+                     db.find_next_place_gramps_id,
+                     db.get_place_cursor,
+                     db.commit_place,
                      db.pprefix)
-        self.progress.close()
+        if parent:
+            self.progress.close()
+        else:
+            print "Done."
+
         db.transaction_commit(self.trans,_("Reorder GRAMPS IDs"))
         
-    def reorder(self, class_type, find_from_id, find_from_handle, find_next_id, get_cursor, commit, prefix):
+    def reorder(self, class_type, find_from_id, find_from_handle,
+                find_next_id, get_cursor, commit, prefix):
         dups = []
         newids = {}
         key_list = []
@@ -107,7 +131,8 @@ class ReorderIds:
         cursor = get_cursor()
         data = cursor.first()
         while data:
-            self.progress.step()
+            if self.parent:
+                self.progress.step()
             (handle,sdata) = data
 
             obj = class_type()
@@ -130,7 +155,7 @@ class ReorderIds:
                     elif find_from_id(newgramps_id) != None:
                         dups.append(obj.get_handle())
                     else:
-                        data.set_gramps_id(newgramps_id)
+                        obj.set_gramps_id(newgramps_id)
                         commit(obj,self.trans)
                         newids[newgramps_id] = gramps_id
                 except:
@@ -144,13 +169,29 @@ class ReorderIds:
         # go through the duplicates, looking for the first availble
         # handle that matches the new scheme.
     
-        self.progress.set_pass(_('Finding and assigning unused IDs'),len(dups))
+        if self.parent:
+            self.progress.set_pass(_('Finding and assigning unused IDs'),
+                                   len(dups))
         for handle in dups:
-            self.progress.step()
+            if self.parent:
+                self.progress.step()
             obj = find_from_handle(handle)
             obj.set_gramps_id(find_next_id())
             commit(obj,self.trans)
     
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class ReorderIdsOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
 #-------------------------------------------------------------------------
 #
 #
@@ -159,8 +200,15 @@ class ReorderIds:
 from PluginMgr import register_tool
 
 register_tool(
-    runTool,
-    _("Reorder GRAMPS IDs"),
-    category=_("Database Processing"),
-    description=_("Reorders the gramps IDs according to gramps' default rules.")
+    name = 'reorder_ids',
+    category = Tool.TOOL_DBPROC,
+    tool_class = ReorderIds,
+    options_class = ReorderIdsOptions,
+    modes = Tool.MODE_GUI | Tool.MODE_CLI,
+    translated_name = _("Reorder GRAMPS IDs"),
+    status=(_("Stable")),
+    author_name = "Donald N. Allingham",
+    author_email = "don@gramps-project.org",
+    description=_("Reorders the gramps IDs "
+                  "according to gramps' default rules.")
     )

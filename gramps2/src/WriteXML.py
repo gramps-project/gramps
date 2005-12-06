@@ -65,6 +65,9 @@ try:
 except:
     _gzip_ok = 0
 
+
+_xml_version = "1.0.0"
+
 #-------------------------------------------------------------------------
 #
 #
@@ -194,7 +197,7 @@ class XmlWriter:
             
     def write_xml_data(self):
 
-        date = time.ctime(time.time()).split()
+        date = time.localtime(time.time())
         owner = self.db.get_researcher()
         person_len = self.db.get_number_of_people()
         family_len = len(self.db.get_family_handles())
@@ -205,16 +208,17 @@ class XmlWriter:
         total = person_len + family_len + place_len + source_len
 
         self.g.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-        self.g.write('<!DOCTYPE database SYSTEM "gramps.dtd" []>\n')
-        self.g.write("<database xmlns=\"http://gramps.sourceforge.net/database\">\n")
+        self.g.write('<!DOCTYPE database '
+                     'PUBLIC "-//GRAMPS//DTD GRAMPS XML %s//EN"\n'
+                     '"http://gramps-project.org/xml/%s/grampsxml.dtd">\n'
+                     % (_xml_version,_xml_version))
+        self.g.write('<database xmlns="http://gramps-project.org/xml/%s/">\n'
+                     % _xml_version)
         self.g.write("  <header>\n")
-        self.g.write("    <created date=\"%s %s %s\"" % \
-                     (date[2],date[1].upper(),date[4]))
+        self.g.write('    <created date="%04d-%02d-%02d\"' %
+                     (date[0],date[1],date[2]) )
         self.g.write(" version=\"" + const.version + "\"")
-        self.g.write(" people=\"%d\"" % person_len)
-        self.g.write(" families=\"%d\"" % family_len)
-        self.g.write(" sources=\"%d\"" % source_len)
-        self.g.write(" places=\"%d\"/>\n" % place_len)
+        self.g.write("/>\n")
         self.g.write("    <researcher>\n")
         self.write_line("resname",owner.get_name(),3)
         self.write_line("resaddr",owner.get_address(),3)
@@ -236,7 +240,7 @@ class XmlWriter:
             if person:
                 self.g.write(' default="%s" home="%s"' %
                              (person.get_gramps_id (),
-                              person.get_handle()))
+                              "_"+person.get_handle()))
             self.g.write(">\n")
 
             keys = self.db.get_person_handles(sort_handles=False)
@@ -259,9 +263,9 @@ class XmlWriter:
                     self.write_line("gender","F",3)
                 else:
                     self.write_line("gender","U",3)
-                self.dump_name("name",person.get_primary_name(),3)
+                self.dump_name(person.get_primary_name(),False,3)
                 for name in person.get_alternate_names():
-                    self.dump_name("aka",name,3)
+                    self.dump_name(name,True,3)
             
                 self.write_line("nick",person.get_nick_name(),3)
                 birth = self.db.get_event_from_handle(person.get_birth_handle())
@@ -307,7 +311,7 @@ class XmlWriter:
                     else:
                         frel=''
                     self.g.write("      <childof hlink=\"%s\"%s%s/>\n" % \
-                            (alt[0], mrel, frel))
+                            ("_"+alt[0], mrel, frel))
 
                 for family_handle in person.get_family_handle_list():
                     self.write_ref("parentin",family_handle,3)
@@ -369,7 +373,7 @@ class XmlWriter:
                     self.callback(float(count)/float(total))
                 count = count + 1
                 self.g.write("    <source id=\"%s\" handle=\"%s\" change=\"%d\">\n" %
-                             (source.get_gramps_id(), source.get_handle(),
+                             (source.get_gramps_id(), "_"+source.get_handle(),
                               source.get_change_time()))
                 self.write_force_line("stitle",source.get_title(),3)
                 self.write_line("sauthor",source.get_author(),3)
@@ -415,7 +419,7 @@ class XmlWriter:
         if len(self.db.get_bookmarks()) > 0:
             self.g.write("  <bookmarks>\n")
             for person_handle in self.db.get_bookmarks():
-                self.g.write('    <bookmark hlink="%s"/>\n' % person_handle)
+                self.g.write('    <bookmark hlink="%s"/>\n' % ("_"+person_handle))
             self.g.write("  </bookmarks>\n")
 
         if len(self.db.name_group) > 0:
@@ -472,7 +476,7 @@ class XmlWriter:
             sp = "  "*index
             com = self.fix(w.get_comment())
             if w.get_type() == RelLib.Event.ID:
-                self.g.write('%s<witness hlink="%s">\n' % (sp,w.get_value()))
+                self.g.write('%s<witness hlink="%s">\n' % (sp,"_"+w.get_value()))
                 if com:
                     self.g.write('  %s<comment>%s</comment>\n' % (sp,com))
                 self.g.write('%s</witness>\n' % sp)
@@ -521,7 +525,7 @@ class XmlWriter:
             self.g.write('%s<status val="%d"/>\n' % (sp2,ord.get_status()))
         if ord.get_family_handle():
             self.g.write('%s<sealed_to hlink="%s"/>\n' % 
-                         (sp2,self.fix(ord.get_family_handle())))
+                         (sp2,"_"+self.fix(ord.get_family_handle())))
         if ord.get_note() != "":
             self.write_note("note",ord.get_note_object(),index+1)
         for s in ord.get_source_references():
@@ -538,12 +542,12 @@ class XmlWriter:
             q = source_ref.get_confidence_level()
             self.g.write("  " * index)
             if p == "" and c == "" and t == "" and d.is_empty() and q == 2:
-                self.g.write('<sourceref hlink="%s"/>\n' % source.get_handle())
+                self.g.write('<sourceref hlink="%s"/>\n' % ("_"+source.get_handle()))
             else:
                 if q == 2:
-                    self.g.write('<sourceref hlink="%s">\n' % source.get_handle())
+                    self.g.write('<sourceref hlink="%s">\n' % ("_"+source.get_handle()))
                 else:
-                    self.g.write('<sourceref hlink="%s" conf="%d">\n' % (source.get_handle(),q))
+                    self.g.write('<sourceref hlink="%s" conf="%d">\n' % ("_"+source.get_handle(),q))
                 self.write_line("spage",p,index+1)
                 self.write_text("scomments",c,index+1)
                 self.write_text("stext",t,index+1)
@@ -552,12 +556,12 @@ class XmlWriter:
 
     def write_ref(self,label,gid,index=1):
         if gid:
-            self.g.write('%s<%s hlink="%s"/>\n' % ("  "*index,label,gid))
+            self.g.write('%s<%s hlink="%s"/>\n' % ("  "*index,label,"_"+gid))
 
     def write_id(self,label,person,index=1):
         if person:
             self.g.write('%s<%s id="%s" handle="%s" change="%d"' %
-                         ("  "*index,label,person.get_gramps_id(),person.get_handle(),
+                         ("  "*index,label,person.get_gramps_id(),"_"+person.get_handle(),
                           person.get_change_time()))
             comp = person.get_complete_flag()
             if comp:
@@ -570,7 +574,7 @@ class XmlWriter:
             comp = family.get_complete_flag()
             sp = "  " * index
             self.g.write('%s<family id="%s" handle="%s" change="%d"' %
-                         (sp,family.get_gramps_id(),family.get_handle(),family.get_change_time()))
+                         (sp,family.get_gramps_id(),"_"+family.get_handle(),family.get_change_time()))
             if comp:
                 self.g.write(' complete="1"')
             if rel != "":
@@ -610,7 +614,12 @@ class XmlWriter:
             d = ''
         else:
             d = "-%02d" % date[0]
-        return "%s%s%s" % (y,m,d)
+        ret = "%s%s%s" % (y,m,d)
+        # If the result does not contain anything beyond dashes
+        # and question marks then it's as good as empty
+        if ret.replace('-','').replace('?','') == '':
+            ret = ''
+        return ret
 
     def write_date(self,date,indent=1):
         sp = '  '*indent
@@ -621,36 +630,52 @@ class XmlWriter:
         else:
             calstr = ''
 
+        qual = date.get_quality()
+        if qual == Date.QUAL_ESTIMATED:
+            qual_str = ' quality="estimated"'
+        elif qual == Date.QUAL_CALCULATED:
+            qual_str = ' quality="calculated"'
+        else:
+            qual_str = ""
+            
         mode = date.get_modifier()
         
         if date.is_compound():
             d1 = self.get_iso_date(date.get_start_date())
             d2 = self.get_iso_date(date.get_stop_date())
-            self.g.write('%s<daterange start="%s" stop="%s"%s/>\n' % (sp,d1,d2,calstr))
+            if d1 != "" or d2 != "":
+                self.g.write('%s<daterange start="%s" stop="%s"%s%s/>\n'
+                             % (sp,d1,d2,qual_str,calstr))
         elif mode != Date.MOD_TEXTONLY:
-            dstr = self.get_iso_date(date.get_start_date())
+            date_str = self.get_iso_date(date.get_start_date())
+            if date_str == "":
+                return
             
             if mode == Date.MOD_BEFORE:
-                pref = ' type="before"'
+                mode_str = ' type="before"'
             elif mode == Date.MOD_AFTER:
-                pref = ' type="after"'
+                mode_str = ' type="after"'
             elif mode == Date.MOD_ABOUT:
-                pref = ' type="about"'
+                mode_str = ' type="about"'
             else:
-                pref = ""
-            
-            self.g.write('%s<dateval val="%s"%s%s/>\n' % (sp,dstr,pref,calstr))
+                mode_str = ""
+
+            self.g.write('%s<dateval val="%s"%s%s%s/>\n'
+                         % (sp,date_str,mode_str,qual_str,calstr))
         else:
-            self.g.write('%s<datestr val="%s"/>\n' %(sp,self.fix(date.get_text())))
+            self.g.write('%s<datestr val="%s"/>\n'
+                         %(sp,self.fix(date.get_text())))
 
     def write_force_line(self,label,value,indent=1):
         if value != None:
             self.g.write('%s<%s>%s</%s>\n' % ('  '*indent,label,self.fix(value),label))
 
-    def dump_name(self,label,name,index=1):
+    def dump_name(self,name,alternative=False,index=1):
         sp = "  "*index
         name_type = name.get_type()
-        self.g.write('%s<%s' % (sp,label))
+        self.g.write('%s<name' % sp)
+        if alternative:
+            self.g.write(' alt="1"')
         if name_type:
             self.g.write(' type="%s"' % name_type)
         if name.get_privacy() != 0:
@@ -672,7 +697,7 @@ class XmlWriter:
         for s in name.get_source_references():
             self.dump_source_ref(s,index+1)
     
-        self.g.write('%s</%s>\n' % (sp,label))
+        self.g.write('%s</name>\n' % sp)
 
     def append_value(self,orig,val):
         if orig:
@@ -750,7 +775,7 @@ class XmlWriter:
         sp = '  '*indent
         for photo in list:
             mobj_id = photo.get_reference_handle()
-            self.g.write('%s<objref hlink="%s"' % (sp,mobj_id))
+            self.g.write('%s<objref hlink="%s"' % (sp,"_"+mobj_id))
             if photo.get_privacy():
                 self.g.write(' priv="1"')
             proplist = photo.get_attribute_list()
@@ -799,7 +824,7 @@ class XmlWriter:
             title = self.fix(self.build_place_title(place.get_main_location()))
     
         self.g.write('    <placeobj id="%s" handle="%s" change="%d" title="%s"' %
-                     (handle,place.get_handle(),place.get_change_time(),title))
+                     (handle,"_"+place.get_handle(),place.get_change_time(),title))
 
         if longitude or lat or not ml_empty or llen > 0 or note:
             self.g.write('>\n')
@@ -828,7 +853,7 @@ class XmlWriter:
         if self.strip_photos:
             path = os.path.basename(path)
         self.g.write('    <object id="%s" handle="%s" change="%d" src="%s" mime="%s"' %
-                     (handle,obj.get_handle(),obj.get_change_time(),path,mime_type))
+                     (handle,"_"+obj.get_handle(),obj.get_change_time(),path,mime_type))
         self.g.write(' description="%s"' % self.fix(obj.get_description()))
         alist = obj.get_attribute_list()
         note = obj.get_note()

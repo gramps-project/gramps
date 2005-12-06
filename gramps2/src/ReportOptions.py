@@ -30,7 +30,6 @@ Report option handling, including saving and parsing.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-import os
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -52,70 +51,26 @@ import const
 import GrampsKeys
 import Utils
 import BaseDoc
+import Options
 
 #-------------------------------------------------------------------------
 #
 # List of options for a single report
 #
 #-------------------------------------------------------------------------
-class OptionList:
+class OptionList(Options.OptionList):
     """
     Implements a set of options to parse and store for a given report.
     """
 
     def __init__(self):
-        self.options = {}
+        Options.OptionList.__init__(self)
         self.style_name = None
         self.paper_name = None
         self.orientation = None
         self.template_name = None
         self.format_name = None
     
-    def set_options(self,options):
-        """
-        Sets the whole bunch of options for the OptionList.
-        @param options: list of options to set.
-        @type options: list
-        """
-        self.options = options
-
-    def get_options(self):
-        """
-        Returns the whole bunch of  options for the OptionList.
-        @returns: list of options
-        @rtype: list
-        """
-        return self.options
-
-    def set_option(self,name,value):
-        """
-        Sets a particular option in the OptionList.
-        @param name: name of the option to set.
-        @type name: str
-        @param value: value of the option to set.
-        @type str
-        """
-        self.options[name] = value
-
-    def remove_option(self,name):
-        """
-        Removes a particular option from the OptionList.
-        @param name: name of the option to remove.
-        @type name: str
-        """
-        if self.options.has_key(name):
-            del self.options[name]
-
-    def get_option(self,name):
-        """
-        Returns the value of a particular option in the OptionList.
-        @param name: name of the option to retrieve
-        @type name: str
-        @returns: value associated with the passed option
-        @rtype: str
-        """
-        return self.options.get(name,None)
-
     def set_style_name(self,style_name):
         """
         Sets the style name for the OptionList.
@@ -203,71 +158,26 @@ class OptionList:
 # Collection of option lists
 #
 #-------------------------------------------------------------------------
-class OptionListCollection:
+class OptionListCollection(Options.OptionListCollection):
+    """
+    Implements a collection of option lists.
+    """
+    def __init__(self,filename):
+        Options.OptionListCollection.__init__(self,filename)
 
-    # Default values for common options
-    default_style_name = "default"
-    default_paper_name = GrampsKeys.get_paper_preference()
-    default_template_name = ""
-    default_orientation = BaseDoc.PAPER_PORTRAIT
-    default_format_name = 'print'
-    
-    def __init__(self,filename=None):
-        """
-        Creates an OptionListCollection instance from the list defined
-        in the specified file.
-        @param filename: XML file that contains option definitions
-        @type filename: str
-        """
-
-        if not filename or not os.path.isfile(filename):
-            filename = const.report_options
-        self.filename = os.path.expanduser(filename)
+    def init_common(self):
+        # Default values for common options
+        self.default_style_name = "default"
+        self.default_paper_name = GrampsKeys.get_paper_preference()
+        self.default_template_name = ""
+        self.default_orientation = BaseDoc.PAPER_PORTRAIT
+        self.default_format_name = 'print'
 
         self.last_paper_name = self.default_paper_name
         self.last_orientation = self.default_orientation
         self.last_template_name = self.default_template_name
         self.last_format_name = self.default_format_name
         self.option_list_map = {}
-
-        self.parse()
-    
-    def get_option_list_map(self):
-        """
-        Returns the map of reports names to option lists.
-        @returns: Returns the map of reports names to option lists.
-        @rtype: dictionary
-        """
-        return self.option_list_map
-
-    def get_option_list(self,name):
-        """
-        Returns the option_list associated with the report name
-        @param name: name associated with the desired report.
-        @type name: str
-        @returns: returns the option list associated with the name,
-            or None of no such option exists
-        @rtype: str
-        """
-        return self.option_list_map.get(name,None)
-
-    def get_report_names(self):
-        """
-        Returns a list of all the report names in the OptionListCollection
-        @returns: returns the list of report names
-        @rtype: list
-        """
-        return self.option_list_map.keys()
-
-    def set_option_list(self,name,option_list):
-        """
-        Adds or replaces an option_list in the OptionListCollection. 
-        @param name: name assocated with the report to add or replace.
-        @type name: str
-        @param option_list: list of options
-        @type option_list: str
-        """
-        self.option_list_map[name] = option_list
 
     def set_last_paper_name(self,paper_name):
         """
@@ -330,14 +240,7 @@ class OptionListCollection:
         """
         return self.last_format_name
 
-    def save(self):
-        """
-        Saves the current OptionListCollection to the associated file.
-        """
-        f = open(self.filename,"w")
-        f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
-        f.write('<reportoptions>\n')
-
+    def write_common(self,f):
         f.write('<last-common>\n')
         if self.get_last_paper_name() != self.default_paper_name:
             f.write('  <paper name="%s"/>\n' % self.get_last_paper_name() )
@@ -348,42 +251,24 @@ class OptionListCollection:
         if self.get_last_orientation() != self.default_orientation:
             f.write('  <orientation value="%d"/>\n' % self.get_last_orientation() )
         f.write('</last-common>\n')
-        
-        for report_name in self.get_report_names():
-            option_list = self.get_option_list(report_name)
-            f.write('<report name="%s">\n' % report_name)
-            options = option_list.get_options()
-            for option_name in options.keys():
-                if type(options[option_name]) in (type(list()),type(tuple())):
-                    f.write('  <option name="%s" value="" length="%d">\n' % (
-                                option_name, len(options[option_name]) ) )
-                    for list_index in range(len(options[option_name])):
-                        f.write('    <listitem number="%d" value="%s"/>\n' % (
-                                list_index, options[option_name][list_index]) )
-                    f.write('  </option>\n')
-                else:
-                    f.write('  <option name="%s" value="%s"/>\n' % (
-                            option_name,options[option_name]) )
-            if option_list.get_style_name() \
-                    and option_list.get_style_name() != self.default_style_name:
-                f.write('  <style name="%s"/>\n' % option_list.get_style_name() )
-            if option_list.get_paper_name() \
-                    and option_list.get_paper_name() != self.default_paper_name:
-                f.write('  <paper name="%s"/>\n' % option_list.get_paper_name() )
-            if option_list.get_template_name() \
-                    and option_list.get_template_name() != self.default_template_name:
-                f.write('  <template name="%s"/>\n' % option_list.get_template_name() )
-            if option_list.get_format_name() \
-                    and option_list.get_format_name() != self.default_format_name:
-                f.write('  <format name="%s"/>\n' % option_list.get_format_name() )
-            if option_list.get_orientation() \
-                    and option_list.get_orientation() != self.default_orientation:
-                f.write('  <orientation value="%d"/>\n' % option_list.get_orientation() )
-            f.write('</report>\n')
 
-        f.write('</reportoptions>\n')
-        f.close()
-    
+    def write_module_common(self,f,option_list):
+        if option_list.get_style_name() \
+               and option_list.get_style_name() != self.default_style_name:
+            f.write('  <style name="%s"/>\n' % option_list.get_style_name() )
+        if option_list.get_paper_name() \
+               and option_list.get_paper_name() != self.default_paper_name:
+            f.write('  <paper name="%s"/>\n' % option_list.get_paper_name() )
+        if option_list.get_template_name() \
+               and option_list.get_template_name() != self.default_template_name:
+            f.write('  <template name="%s"/>\n' % option_list.get_template_name() )
+        if option_list.get_format_name() \
+               and option_list.get_format_name() != self.default_format_name:
+            f.write('  <format name="%s"/>\n' % option_list.get_format_name() )
+        if option_list.get_orientation() \
+               and option_list.get_orientation() != self.default_orientation:
+            f.write('  <orientation value="%d"/>\n' % option_list.get_orientation() )
+
     def parse(self):
         """
         Loads the OptionList from the associated file, if it exists.
@@ -400,7 +285,7 @@ class OptionListCollection:
 # OptionParser
 #
 #-------------------------------------------------------------------------
-class OptionParser(handler.ContentHandler):
+class OptionParser(Options.OptionParser):
     """
     SAX parsing class for the OptionListCollection XML file.
     """
@@ -411,34 +296,17 @@ class OptionParser(handler.ContentHandler):
 
         collection:   BookList to be loaded from the file.
         """
-        handler.ContentHandler.__init__(self)
-        self.collection = collection
-    
-        self.rname = None
-        self.option_list = None
-        self.oname = None
-        self.o = None
-        self.an_o = None
+        Options.OptionParser.__init__(self,collection)
         self.common = False
+        self.list_class = OptionList
 
     def startElement(self,tag,attrs):
         """
         Overridden class that handles the start of a XML element
         """
-        if tag == "report":
-            self.rname = attrs['name']
-            self.option_list = OptionList()
-            self.o = {}
-        elif tag == "last-common":
+        # First we try report-specific tags
+        if tag == "last-common":
             self.common = True
-        elif tag == "option":
-            self.oname = attrs['name']
-            if attrs.has_key('length'):
-                self.an_o = []
-            else:
-                self.an_o = attrs['value']
-        elif tag == "listitem":
-            self.an_o.append(attrs['value'])
         elif tag == "style":
             self.option_list.set_style_name(attrs['name'])
         elif tag == "paper":
@@ -461,32 +329,40 @@ class OptionParser(handler.ContentHandler):
                 self.collection.set_last_orientation(int(attrs['value']))
             else:
                 self.option_list.set_orientation(int(attrs['value']))
+        else:
+            # Tag is not report-specific, so we let the base class handle it.
+            Options.OptionParser.startElement(self,tag,attrs)
 
     def endElement(self,tag):
         "Overridden class that handles the end of a XML element"
-        if tag == "option":
-            self.o[self.oname] = self.an_o
-        elif tag == "report":
-            self.option_list.set_options(self.o)
-            self.collection.set_option_list(self.rname,self.option_list)
-        elif tag == "last-common":
+        # First we try report-specific tags
+        if tag == "last-common":
             self.common = False
+        else:
+            # Tag is not report-specific, so we let the base class handle it.
+            Options.OptionParser.endElement(self,tag)
 
 #-------------------------------------------------------------------------
 #
 # Class handling options for plugins 
 #
 #-------------------------------------------------------------------------
-class OptionHandler:
+class OptionHandler(Options.OptionHandler):
     """
     Implements handling of the options for the plugins.
     """
+    def __init__(self,module_name,options_dict,person_id=None):
+        Options.OptionHandler.__init__(self,module_name,options_dict,person_id)
 
-    def __init__(self,report_name,options_dict,person_id=None):
-        self.report_name = report_name
-        self.default_options_dict = options_dict.copy()
-        self.options_dict = options_dict
+    def init_subclass(self):
+        self.collection_class = OptionListCollection
+        self.list_class = OptionList
+        self.filename = const.report_options
 
+    def init_common(self):
+        """
+        Specific initialization for reports.
+        """
         # These are needed for running reports.
         # We will not need to save/retreive them, just keep around.
         self.doc = None
@@ -494,50 +370,13 @@ class OptionHandler:
         self.newpage = False
 
         # Retrieve our options from whole collection
-        self.option_list_collection = OptionListCollection()
         self.style_name = self.option_list_collection.default_style_name
         self.paper_name = self.option_list_collection.get_last_paper_name()
         self.orientation = self.option_list_collection.get_last_orientation()
         self.template_name = self.option_list_collection.get_last_template_name()
         self.format_name = self.option_list_collection.get_last_format_name()
-        self.saved_option_list = self.option_list_collection.get_option_list(report_name)
-        self.person_id = person_id
 
-        # Whatever was found should override the defaults
-        if self.saved_option_list:
-            self.set_options()
-        else:
-            # If nothing was found, set up the option list 
-            self.saved_option_list = OptionList()
-            self.option_list_collection.set_option_list(report_name,self.saved_option_list)
-
-    def set_options(self):
-        """
-        Sets options to be used in this plugin according to the passed
-        options dictionary.
-        
-        Dictionary values are all strings, since they were read from XML.
-        Here we need to convert them to the needed types. We use default
-        values to determine the type.
-        """
-        # First we set options_dict values based on the saved options
-        options = self.saved_option_list.get_options()
-        bad_opts = []
-        for option_name in options.keys():
-            if not self.options_dict.has_key(option_name):
-                print "Option %s is present in the ~/.gramps/report_options.xml but is not known to the report." % option_name
-                print "Ignoring..."
-                bad_opts.append(option_name)
-                continue
-            try:
-                converter = Utils.get_type_converter(self.options_dict[option_name])
-                self.options_dict[option_name] = converter(options[option_name])
-            except ValueError:
-                pass
-        for option_name in bad_opts:
-            options.pop(option_name)
-
-        # Then we set common options from whatever was found
+    def set_common_options(self):
         if self.saved_option_list.get_style_name():
             self.style_name = self.saved_option_list.get_style_name()
         if self.saved_option_list.get_orientation():
@@ -549,38 +388,21 @@ class OptionHandler:
         if self.saved_option_list.get_format_name():
             self.format_name = self.saved_option_list.get_format_name()
 
-    def save_options(self):
-        """
-        Saves options to file.
-        
-        We need to only store non-default options. Therefore, we remove all
-        options whose values are the defaults prior to saving. Also, we save
-        the present common options as the last-common for this collection.
-        """
-
-        # First we save options from options_dict
-        for option_name in self.options_dict.keys():
-            if self.options_dict[option_name] == self.default_options_dict[option_name]:
-                self.saved_option_list.remove_option(option_name)
-            else:
-                self.saved_option_list.set_option(option_name,self.options_dict[option_name])
-
-        # Then we save common options
+    def save_common_options(self):
+        # First we save common options
         self.saved_option_list.set_style_name(self.style_name)
         self.saved_option_list.set_orientation(self.orientation)
         self.saved_option_list.set_template_name(self.template_name)
         self.saved_option_list.set_paper_name(self.paper_name)
         self.saved_option_list.set_format_name(self.format_name)
-        self.option_list_collection.set_option_list(self.report_name,self.saved_option_list)
+        self.option_list_collection.set_option_list(self.module_name,
+                                                    self.saved_option_list)
 
         # Then save last-common options from the current selection
         self.option_list_collection.set_last_orientation(self.orientation)
         self.option_list_collection.set_last_template_name(self.template_name)
         self.option_list_collection.set_last_paper_name(self.paper_name)
         self.option_list_collection.set_last_format_name(self.format_name)
-
-        # Finally, save the whole collection into file
-        self.option_list_collection.save()
 
     def get_report_generations(self):
         if self.default_options_dict.has_key('gen'):
@@ -598,23 +420,13 @@ class OptionHandler:
 
     def get_stylesheet_savefile(self):
         """Where to save user defined styles for this report."""
-        return "%s.xml" % self.report_name
+        return "%s.xml" % self.module_name
 
     def get_default_stylesheet_name(self):
         return self.style_name
 
     def set_default_stylesheet_name(self,style_name):
         self.style_name = style_name
-
-    def get_filter_number(self):
-        if self.default_options_dict.has_key('filter'):
-            return self.options_dict.get('filter',
-                    self.default_options_dict['filter'])
-        else:
-            return None
-
-    def set_filter_number(self,val):
-        self.options_dict['filter'] = val
 
     def get_display_format(self):
         if self.default_options_dict.has_key('dispf'):
@@ -664,18 +476,12 @@ class OptionHandler:
     def set_orientation(self,orientation):
         self.orientation = orientation
 
-    def get_person_id(self):
-        return self.person_id
-
-    def set_person_id(self,val):
-        self.person_id = val
-
 #------------------------------------------------------------------------
 #
 # Base Options class
 #
 #------------------------------------------------------------------------
-class ReportOptions:
+class ReportOptions(Options.Options):
 
     """
     Defines options and provides handling interface.
@@ -689,69 +495,13 @@ class ReportOptions:
         Initializes the class, performing usual house-keeping tasks.
         Subclasses MUST call this in their __init__() method.
         """
+
         self.set_new_options()
         self.enable_options()
 
         if self.enable_dict:
             self.options_dict.update(self.enable_dict)
         self.handler = OptionHandler(name,self.options_dict,person_id)
-
-    def set_new_options(self):
-        """
-        Sets options specific for this report. 
-        
-        Reports that need custom options need to override this method.
-        Two dictionaries MUST be defined here: 
-
-            self.options_dict
-                This is a dictionary whose keys are option names
-                and values are the default option values.
-
-            self.options_help
-                This is a dictionary whose keys are option names
-                and values are 3- or 4- lists or tuples:
-                    ('=example",'Short description',VALUES,DO_PREPEND)
-                The VALUES is either a single string (in that case
-                the DO_PREPEND does not matter) or a list/tuple of
-                strings to list. In that case, if DO_PREPEND evaluates
-                as True then each string will be preneded with the ordinal
-                number when help is printed on the command line.
-
-        NOTE:   Both dictionaries must have identical keys.
-
-        NOTE:   If a particular report does not use custom options,
-                then it should not override this method. 
-        """
-        self.options_dict = {}
-        self.options_help = {}
-
-    def enable_options(self):
-        """
-        Enables semi-common options for this report.
-        
-        The semi-common option is the option which GRAMPS is aware of,
-        but not common enough to be present in all reports. Here's the list
-        of possible keys for semi-commons:
-        
-            'filter'    - Filter number, selected among filters
-                          available for this report. If defined,
-                          get_report_filters() method must be defined
-                          which returns the list of available filters.
-
-            'gen'       - Maximum number of generations to consider.
-            'pagebbg'   - Whether or not make page breaks between generations.
-            
-            'dispf'     - Display format for the option box -- graphic reports.
-        
-
-        A self.enable_dict dictionary MUST be defined here, whose keys
-        are the valid semi-common keys above, and whose values are the
-        desired default values for semi-commons.
-
-        NOTE:   If a particular report does not use semi-common options,
-                then it should not override this method. 
-        """
-        self.enable_dict = {}
 
     def make_default_style(self,default_style):
         """
@@ -785,41 +535,6 @@ class ReportOptions:
         """
         pass
 
-    def add_user_options(self,dialog):
-        """
-        Sets up UI controls (widgets) for the options specific for this report.
-
-        This method MUST be overridden by reports that define new options.
-        The single argument 'dialog' is the Report.BareReportDialog instance.
-        Any attribute of the dialog is available.
-        
-        After the widgets are defined, they MUST be added to the dialog
-        using the following call:
-                dialog.add_options(LABEL,widget)
-        
-        NOTE:   To really have any effect besides looking pretty, each widget
-                set up here must be also parsed in the parse_user_options()
-                method below.
-        """
-        pass
-
-    def parse_user_options(self,dialog):
-        """
-        Parses UI controls (widgets) for the options specific for this report.
-
-        This method MUST be overridden by reports that define new options.
-        The single argument 'dialog' is the Report.BareReportDialog instance.
-        Any attribute of the dialog is available.
-        
-        After obtaining values from the widgets, they MUST be used to set the
-        appropriate options_dict values. Otherwise the values will not have
-        any user-visible effect.
-        
-        NOTE:   Any widget parsed here MUST be defined and added to the dialog
-                in the add_user_options() method above.
-        """
-        pass
-    
     def get_document(self):
         """
         Return document instance.
@@ -875,14 +590,6 @@ class ReportOptions:
         This method MUST NOT be overridden by subclasses.
         """
         return self.handler.get_report_generations()
-
-    def get_filter_number(self):
-        """
-        Return number of a filter to use.
-        
-        This method MUST NOT be overridden by subclasses.
-        """
-        return self.handler.get_filter_number()
 
     def get_display_format(self):
         """

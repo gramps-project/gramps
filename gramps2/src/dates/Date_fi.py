@@ -58,14 +58,17 @@ class DateParserFI(DateParser):
     modifier_to_int = {
         # examples:
 	# - ennen 1.1.2005
-	# - 1.1.2005 jälkeen
 	# - noin 1.1.2005
         u'ennen'   : Date.MOD_BEFORE,
         u'e.'      : Date.MOD_BEFORE,
-        u'jälkeen' : Date.MOD_AFTER,
-        u'j.'      : Date.MOD_AFTER,
         u'noin'    : Date.MOD_ABOUT,
         u'n.'      : Date.MOD_ABOUT,
+        }
+    modifier_after_to_int = {
+        # examples:
+	# - 1.1.2005 jälkeen
+        u'jälkeen' : Date.MOD_AFTER,
+        u'j.'      : Date.MOD_AFTER,
         }
 
     bce = ["ekr", "ekr\."]
@@ -97,7 +100,7 @@ class DateParserFI(DateParser):
 	# date, whitespace
         self._span = re.compile("(?P<start>.+)\s+(-)\s+(?P<stop>.+)",
                            re.IGNORECASE)
-        self._range = re.compile("(vuosien\s*)?(?P<start>.+)\s+ja\s+(?P<stop>.+)\s+väliltä",
+        self._range = re.compile("(vuosien\s*)?(?P<start>.+)\s+ja\s+(?P<stop>.+)\s+välillä",
                            re.IGNORECASE)
 
 #-------------------------------------------------------------------------
@@ -115,6 +118,8 @@ class DateDisplayFI(DateDisplay):
 	u"(Islamilainen)")
 
     _qual_str = ("", "arviolta", "laskettuna")
+    
+    _bce_str = "%s ekr."
 
     formats = (
         "VVVV-KK-PP (ISO)",
@@ -138,7 +143,7 @@ class DateDisplayFI(DateDisplay):
 	# select numerical date format
 	self.format = 1
 	
-	if mod == Date.MOD_SPAN:
+        if mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             text = "%s - %s" % (d1, d2)
@@ -147,20 +152,19 @@ class DateDisplayFI(DateDisplay):
             if start[0] == 0 and start[1] == 0 and stop[0] == 0 and stop[1] == 0:
                 d1 = self.display_cal[cal](start)
                 d2 = self.display_cal[cal](stop)
-                text = "vuosien %s ja %s väliltä" % (d1, d2)
+                text = "vuosien %s ja %s välillä" % (d1, d2)
             else:
                 d1 = self.display_cal[cal](start)
                 d2 = self.display_cal[cal](stop)
-                text = "%s ja %s väliltä" % (d1, d2)
+                text = "%s ja %s välillä" % (d1, d2)
         else:
             text = self.display_cal[date.get_calendar()](start)
-	    if mod == Date.MOD_BEFORE:
-		text = "ennen " + text
-	    elif mod == Date.MOD_AFTER:
-		# kludge: should be actually after the date
-		text = "jälkeen " + text
+	    if mod == Date.MOD_AFTER:
+		text = text + " jälkeen"
 	    elif mod == Date.MOD_ABOUT:
 		text = "noin " + text
+	    elif mod == Date.MOD_BEFORE:
+		text = "ennen " + text
 	
 	if qual:
 	    # prepend quality

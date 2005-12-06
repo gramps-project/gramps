@@ -27,6 +27,7 @@
 import os
 import time
 from gettext import gettext as _
+from TransUtils import strip_context as __
 
 #------------------------------------------------------------------------
 #
@@ -44,7 +45,6 @@ import Report
 import BaseDoc
 import SelectObject
 import AddMedia
-import const
 import ReportOptions
 import ImgManip
 
@@ -166,7 +166,7 @@ class SimpleBookTitleOptions(ReportOptions.ReportOptions):
         self.footer_entry = gtk.Entry()
         self.footer_entry.set_text(footer_string)
 
-        dialog.add_frame_option(_('Text'),_('Title'),self.title_entry)
+        dialog.add_frame_option(_('Text'),__('book|Title'),self.title_entry)
         dialog.add_frame_option(_('Text'),_('Subtitle'),self.subtitle_entry)
         dialog.add_frame_option(_('Text'),_('Footer'),self.footer_entry)
         
@@ -248,7 +248,8 @@ class SimpleBookTitleOptions(ReportOptions.ReportOptions):
             return
         self.options_dict['imgid'] = the_object.get_gramps_id()
         self.obj_title.set_text(the_object.get_description())
-        icon_image = ImgManip.get_thumbnail_image(the_object.get_path())
+        icon_image = ImgManip.get_thumbnail_image(the_object.get_path(),
+                                                  the_object.get_mime_type())
         self.preview.set_from_pixbuf(icon_image)
         self.remove_obj_button.set_sensitive(True)
         self.size.set_sensitive(True)
@@ -293,7 +294,7 @@ class SimpleBookTitleOptions(ReportOptions.ReportOptions):
 from PluginMgr import register_report
 register_report(
     name = 'simple_book_title',
-    category = const.CATEGORY_TEXT,
+    category = Report.CATEGORY_TEXT,
     report_class = SimpleBookTitle,
     options_class = SimpleBookTitleOptions,
     modes = Report.MODE_BKI,

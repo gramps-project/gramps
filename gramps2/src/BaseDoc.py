@@ -499,8 +499,8 @@ class ParagraphStyle:
     """
     Defines the characteristics of a paragraph. The characteristics are:
     font (a FontStyle instance), right margin, left margin, first indent,
-    alignment, level, top border, bottom border, right border, left
-    border, padding, and background color.
+    top margin, bottom margin, alignment, level, top border, bottom border,
+    right border, left border, padding, and background color.
 
     """
     def __init__(self,source=None):
@@ -513,6 +513,8 @@ class ParagraphStyle:
             self.rmargin = source.rmargin
             self.lmargin = source.lmargin
             self.first_indent = source.first_indent
+            self.tmargin = source.tmargin
+            self.bmargin = source.bmargin
             self.align   = source.align
             self.level   = source.level
             self.top_border = source.top_border
@@ -526,6 +528,8 @@ class ParagraphStyle:
             self.font    = FontStyle()
             self.rmargin = 0
             self.lmargin = 0
+            self.tmargin = 0
+            self.bmargin = 0
             self.first_indent = 0
             self.align   = PARA_ALIGN_LEFT
             self.level   = 0
@@ -543,17 +547,19 @@ class ParagraphStyle:
     def get_description(self):
         return self.description
 
-    def set(self,rmargin=None,lmargin=None,first_indent=None,align=None,
+    def set(self,rmargin=None,lmargin=None,first_indent=None,
+            tmargin=None,bmargin=None,align=None,
             tborder=None,bborder=None,rborder=None,lborder=None,pad=None,
             bgcolor=None,font=None):
         """
         Allows the values of the object to be set.
 
-        @param rmargin: right margin in centimeters
-        @param lmargin: left margin in centimeters
+        @param rmargin: right indent in centimeters
+        @param lmargin: left indent in centimeters
         @param first_indent: first line indent in centimeters
-            align - alignment type (PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT,
-            PARA_ALIGN_CENTER, or PARA_ALIGN_JUSTIFY)
+        @param tmargin: space above paragraph in centimeters
+        @param bmargin: space below paragraph in centimeters
+        @param align: alignment type (PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, or PARA_ALIGN_JUSTIFY)
         @param tborder: non zero indicates that a top border should be used
         @param bborder: non zero indicates that a bottom border should be used
         @param rborder: non zero indicates that a right border should be used
@@ -584,6 +590,10 @@ class ParagraphStyle:
             self.set_left_margin(lmargin)
         if first_indent != None:
             self.set_first_indent(first_indent)
+        if tmargin != None:
+            self.set_top_margin(tmargin)
+        if bmargin != None:
+            self.set_bottom_margin(bmargin)
             
     def set_header_level(self,level):
         """
@@ -719,28 +729,44 @@ class ParagraphStyle:
         return "unknown"
 
     def set_left_margin(self,value):
-        "sets the left paragraph margin in centimeters"
+        "sets the left indent in centimeters"
         self.lmargin = value
 
     def set_right_margin(self,value):
-        "sets the right paragraph margin in centimeters"
+        "sets the right indent in centimeters"
         self.rmargin = value
 
     def set_first_indent(self,value):
-        "sets the first indent margin in centimeters"
+        "sets the first line indent in centimeters"
         self.first_indent = value
 
+    def set_top_margin(self,value):
+        "sets the space above paragraph in centimeters"
+        self.tmargin = value
+
+    def set_bottom_margin(self,value):
+        "sets the space below paragraph in centimeters"
+        self.bmargin = value
+
     def get_left_margin(self):
-        "returns the left margin in centimeters"
+        "returns the left indent in centimeters"
         return self.lmargin
 
     def get_right_margin(self):
-        "returns the right margin in centimeters"
+        "returns the right indent in centimeters"
         return self.rmargin
 
     def get_first_indent(self):
-        "returns the first indent margin in centimeters"
+        "returns the first line indent in centimeters"
         return self.first_indent
+
+    def get_top_margin(self):
+        "returns the space above paragraph in centimeters"
+        return self.tmargin
+
+    def get_bottom_margin(self):
+        "returns the space below paragraph in centimeters"
+        return self.bmargin
 
 #------------------------------------------------------------------------
 #
@@ -832,10 +858,14 @@ class StyleSheetList:
                 rm = float(p.get_right_margin())
                 lm = float(p.get_left_margin())
                 fi = float(p.get_first_indent())
+                tm = float(p.get_top_margin())
+                bm = float(p.get_bottom_margin())
                 pa = float(p.get_padding())
                 f.write('rmargin="%s" ' % Utils.gformat(rm))
                 f.write('lmargin="%s" ' % Utils.gformat(lm))
                 f.write('first="%s" ' % Utils.gformat(fi))
+                f.write('tmargin="%s" ' % Utils.gformat(tm))
+                f.write('bmargin="%s" ' % Utils.gformat(bm))
                 f.write('pad="%s" ' % Utils.gformat(pa))
                 f.write('bgcolor="#%02x%02x%02x" ' % p.get_background_color())
                 f.write('level="%d" ' % p.get_header_level())
@@ -963,6 +993,13 @@ class SheetParser(handler.ContentHandler):
             self.p.set_right_margin(Utils.gfloat(attrs['rmargin']))
             self.p.set_left_margin(Utils.gfloat(attrs['lmargin']))
             self.p.set_first_indent(Utils.gfloat(attrs['first']))
+            try:
+                # This is needed to read older style files
+                # lacking tmargin and bmargin
+                self.p.set_top_margin(Utils.gfloat(attrs['tmargin']))
+                self.p.set_bottom_margin(Utils.gfloat(attrs['bmargin']))
+            except KeyError:
+                pass
             self.p.set_padding(Utils.gfloat(attrs['pad']))
             self.p.set_alignment(int(attrs['align']))
             self.p.set_right_border(int(attrs['rborder']))

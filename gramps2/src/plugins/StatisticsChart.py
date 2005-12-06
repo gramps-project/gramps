@@ -52,13 +52,14 @@ import gtk
 # Person and relation types
 from RelLib import Person, Family
 # gender and report type names
-import const
 import BaseDoc
 import Report
 import ReportUtils
 import ReportOptions
 import GenericFilter
 import DateHandler
+from Utils import ProgressMeter
+from TransUtils import strip_context as __
 
 #------------------------------------------------------------------------
 #
@@ -93,45 +94,45 @@ class Extract:
         """Methods for extracting statistical data from the database"""
         # key, non-localized name, localized name, type method, data method
         self.extractors = {
-            'data_title':  ("Titles", _("Titles"),
+            'data_title':  ("Title", __("person|Title"),
                             self.get_person, self.get_title),
-            'data_sname':  ("Surnames", _("Surnames"),
+            'data_sname':  ("Surname", _("Surname"),
                             self.get_person, self.get_surname),
-            'data_fname':  ("Forenames", _("Forenames"),
+            'data_fname':  ("Forename", _("Forename"),
                             self.get_person, self.get_forename),
-            'data_gender': ("Genders", _("Genders"),
+            'data_gender': ("Gender", _("Gender"),
                             self.get_person, self.get_gender),
-            'data_byear':  ("Birth years", _("Birth years"),
+            'data_byear':  ("Birth year", _("Birth year"),
                              self.get_birth, self.get_year),
-            'data_dyear':  ("Death years", _("Death years"),
+            'data_dyear':  ("Death year", _("Death year"),
                              self.get_death, self.get_year),
-            'data_bmonth': ("Birth months", _("Birth months"),
+            'data_bmonth': ("Birth month", _("Birth month"),
                             self.get_birth, self.get_month),
-            'data_dmonth': ("Death months", _("Death months"),
+            'data_dmonth': ("Death month", _("Death month"),
                             self.get_death, self.get_month),
-            'data_dcause': ("Causes of death", _("Causes of death"),
+            'data_dcause': ("Cause of death", _("Cause of death"),
                              self.get_death, self.get_cause),
-            'data_bplace': ("Birth places", _("Birth places"),
+            'data_bplace': ("Birth place", _("Birth place"),
                             self.get_birth, self.get_place),
-            'data_dplace': ("Death places", _("Death places"),
+            'data_dplace': ("Death place", _("Death place"),
                              self.get_death, self.get_place),
-            'data_mplace': ("Marriage places", _("Marriage places"),
+            'data_mplace': ("Marriage place", _("Marriage place"),
                              self.get_marriage_handles, self.get_places),
             'data_mcount': ("Number of relationships", _("Number of relationships"),
                              self.get_family_handles, self.get_handle_count),
-            'data_fchild': ("Ages when first child born", _("Ages when first child born"),
+            'data_fchild': ("Age when first child born", _("Age when first child born"),
                              self.get_child_handles, self.get_first_child_age),
-            'data_lchild': ("Ages when last child born", _("Ages when last child born"),
+            'data_lchild': ("Age when last child born", _("Age when last child born"),
                              self.get_child_handles, self.get_last_child_age),
             'data_ccount': ("Number of children", _("Number of children"),
                              self.get_child_handles, self.get_handle_count),
-            'data_mage':   ("Marriage ages", _("Marriage ages"),
+            'data_mage':   ("Age at marriage", _("Age at marriage"),
                              self.get_marriage_handles, self.get_event_ages),
-            'data_dage':   ("Ages at death", _("Ages at death"),
+            'data_dage':   ("Age at death", _("Age at death"),
                              self.get_person, self.get_death_age),
-            'data_age':    ("Ages", _("Ages"),
+            'data_age':    ("Age", _("Age"),
                              self.get_person, self.get_person_age),
-            'data_etypes': ("Event types", _("Event types"),
+            'data_etypes': ("Event type", _("Event type"),
                              self.get_event_handles, self.get_event_type)
         }
 
@@ -510,11 +511,15 @@ class StatisticsChart(Report.Report):
             'year_from': year_from,
             'year_to': year_to
         }
+	self.progress = ProgressMeter(_('Statistics Charts'))
 
         # extract requested items from the database and count them
+	self.progress.set_pass(_('Collecting data...'), 1)
         tables = _Extract.collect_data(database, filterfun, options,
                         gender, year_from, year_to, options['no_years'])
+	self.progress.step()
 
+	self.progress.set_pass(_('Sorting data...'), len(tables))
         self.data = []
         sortby = options['sortby']
         reverse = options['reverse']
@@ -527,8 +532,9 @@ class StatisticsChart(Report.Report):
                 heading = _("%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s") % mapping
             else:
                 heading = _("Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s") % mapping
-            self.data.append((heading, table[1], lookup))
-        #DEBUG
+            self.data.append((heading, table[0], table[1], lookup))
+	    self.progress.step()
+	#DEBUG
         #print heading
         #print table[1]
 
@@ -647,16 +653,19 @@ class StatisticsChart(Report.Report):
     def write_report(self):
         "output the selected statistics..."
 
+	self.progress.set_pass(_('Saving charts...'), len(self.data))
         for data in self.data:
             self.doc.start_page()
             if len(data[2]) < self.bar_items:
-                self.output_piechart(data[0], data[1], data[2])
+                self.output_piechart(data[0], data[1], data[2], data[3])
             else:
-                self.output_barchart(data[0], data[1], data[2])
-            self.doc.end_page()    
+                self.output_barchart(data[0], data[1], data[2], data[3])
+            self.doc.end_page()
+	    self.progress.step()
+	self.progress.close()
 
 
-    def output_piechart(self, title, data, lookup):
+    def output_piechart(self, title, typename, data, lookup):
 
         # set layout variables
         middle = self.doc.get_usable_width() / 2
@@ -670,19 +679,25 @@ class StatisticsChart(Report.Report):
         chart_data = []
         for key in lookup:
             style = "SC-color-%d" % color
+	    text = "%s (%d)" % (key, data[key])
             # graphics style, value, and it's label
-            chart_data.append((style, data[key], key))
+            chart_data.append((style, data[key], text))
             color = (color+1) % self.colors
         
+	margin = 1.0
+	legendx = 2.0
+	
         # output data...
-        radius = middle - 2
-        yoffset = yoffset + 1 + radius
+        radius = middle - 2*margin
+        yoffset = yoffset + margin + radius
         ReportUtils.draw_pie_chart(self.doc, middle, yoffset, radius, chart_data, -90)
-        yoffset = yoffset + radius + 1
-        ReportUtils.draw_legend(self.doc, 2, yoffset, chart_data)
+        yoffset = yoffset + radius + margin
+	
+	text = _("%s (persons):") % typename
+	ReportUtils.draw_legend(self.doc, legendx, yoffset, chart_data, text)
 
 
-    def output_barchart(self, title, data, lookup):
+    def output_barchart(self, title, typename, data, lookup):
 
         pt2cm = ReportUtils.pt2cm
         font = self.doc.style_list['SC-Text'].get_font()
@@ -693,21 +708,27 @@ class StatisticsChart(Report.Report):
         max_y = self.doc.get_usable_height() - row_h
         pad =  row_h * 0.5
         
-        # calculate maximum key string size
-        max_size = 0
+        # check maximum value
         max_value = 0
         for key in lookup:
-            max_size = max(self.doc.string_width(font, key), max_size)
             max_value = max(data[key], max_value)
         # horizontal area for the gfx bars
-        start = pt2cm(max_size) + 1.0
-        size = width - 1.5 - start
+	margin = 1.0
+	middle = width/2.0
+	textx = middle + margin/2.0
+	stopx = middle - margin/2.0
+        maxsize = stopx - margin
 
         # start output
-        self.doc.center_text('SC-title', title, width/2, 0)
+        self.doc.center_text('SC-title', title, middle, 0)
+        yoffset = pt2cm(self.doc.style_list['SC-Title'].get_font().get_size())
         #print title
 
-        yoffset = pt2cm(self.doc.style_list['SC-Title'].get_font().get_size())
+	# header
+	yoffset += (row_h + pad)
+	text = _("%s (persons):") % typename
+	self.doc.draw_text('SC-text', text, textx, yoffset)
+
         for key in lookup:
             yoffset += (row_h + pad)
             if yoffset > max_y:
@@ -716,21 +737,19 @@ class StatisticsChart(Report.Report):
                 self.doc.start_page()
                 yoffset = 0
 
-            # right align the text to the value
-            x = start - pt2cm(self.doc.string_width(font, key)) - 1.0
-            self.doc.draw_text('SC-text', key, x, yoffset)
+            # right align bar to the text
+            value = data[key]
+            startx = stopx - (maxsize * value / max_value)
+            path = ((startx, yoffset),
+                    (stopx, yoffset),
+                    (stopx, yoffset + row_h),
+                    (startx, yoffset + row_h))
+            self.doc.draw_path('SC-bar', path)
+	    # text after bar
+	    text = "%s (%d)" % (key, data[key])
+            self.doc.draw_text('SC-text', text, textx, yoffset)
             #print key + ":",
         
-            value = data[key]
-            stop = start + (size * value / max_value)
-            path = ((start, yoffset),
-                    (stop, yoffset),
-                    (stop, yoffset + row_h),
-                    (start, yoffset + row_h))
-            self.doc.draw_path('SC-bar', path)
-            self.doc.draw_text('SC-text', str(value), stop + 0.5, yoffset)
-            #print "%d/%d" % (value, max_value)
-
         return
 
 #------------------------------------------------------------------------
@@ -781,7 +800,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         }
         for key in _Extract.extractors:
             self.options_help[key] = ("=0/1", _Extract.extractors[key][0],
-                                ["Leave char with this data out", "Include chart with this data"],
+                                ["Leave chart with this data out", "Include chart with this data"],
                                 True)
 
                                 
@@ -924,12 +943,12 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
                 vbox = gtk.VBox()
         hbox.add(vbox)
         tip = _("Mark checkboxes to add charts with indicated data")
-        dialog.add_frame_option(_("Chart Selection"), "", hbox, tip)
+        dialog.add_frame_option(_("Charts"), "", hbox, tip)
         hbox.show_all()
 
         # Note about children
         label = gtk.Label(_("Note that both biological and adopted children are taken into account."))
-        dialog.add_frame_option(_("Chart Selection"), "", label)
+        dialog.add_frame_option(_("Charts"), "", label)
 
         
     def parse_user_options(self, dialog):
@@ -955,12 +974,12 @@ from PluginMgr import register_report
 
 register_report(
     name = 'statistics_chart',
-    category = const.CATEGORY_DRAW,
+    category = Report.CATEGORY_DRAW,
     report_class = StatisticsChart,
     options_class = StatisticsChartOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
     translated_name = _("Statistics Chart"),
-    status = (_("Alpha")),
+    status = (_("Stable")),
     author_name="Eero Tamminen",
     author_email="",
     description= _("Generates statistical bar and pie charts of the people in the database.")

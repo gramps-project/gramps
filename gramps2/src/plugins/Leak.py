@@ -47,15 +47,17 @@ import gc
 #
 #------------------------------------------------------------------------
 import Utils
+import Tool
 
 #-------------------------------------------------------------------------
 #
 # Actual tool
 #
 #-------------------------------------------------------------------------
-class Leak:
+class Leak(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
 
-    def __init__(self,parent):
         self.parent = parent
         if self.parent.child_windows.has_key(self.__class__):
             self.parent.child_windows[self.__class__].present(None)
@@ -125,14 +127,32 @@ class Leak:
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_tool
+class LeakOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
 
-def runtool(database,person,callback,parent=None):
-    Leak(parent)
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
 
-register_tool(
-    runtool,
-    _("Show uncollected objects"),
-    category=_("Debug"),
-    description=_("Provide a window listing all uncollected objects"),
-    )
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+
+if __debug__:
+    from PluginMgr import register_tool
+
+    register_tool(
+        name = 'eval',
+        category = Tool.TOOL_DEBUG,
+        tool_class = Leak,
+        options_class = LeakOptions,
+        modes = Tool.MODE_GUI,
+        translated_name = _("Show uncollected objects"),
+        status = _("Stable"),
+        author_name = "Donald N. Allingham",
+        author_email = "don@gramps-project.org",
+        description=_("Provide a window listing all uncollected objects"),
+        )

@@ -30,6 +30,7 @@ Timeline report
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
+from TransUtils import strip_context as __
 
 #------------------------------------------------------------------------
 #
@@ -50,7 +51,6 @@ import GenericFilter
 import Sort
 import ReportOptions
 from QuestionDialog import ErrorDialog
-import const
 
 #------------------------------------------------------------------------
 #
@@ -453,7 +453,7 @@ class TimeLineOptions(ReportOptions.ReportOptions):
         else:
             self.title_box.set_text(dialog.get_header(dialog.person.get_primary_name().get_name()))
         self.title_box.show()
-        dialog.add_option(_('Title'),self.title_box)
+        dialog.add_option(__('report|Title'),self.title_box)
 
     def parse_user_options(self,dialog):
         """
@@ -471,13 +471,13 @@ from PluginMgr import register_report
 
 register_report(
     name = 'timeline',
-    category = const.CATEGORY_DRAW,
+    category = Report.CATEGORY_DRAW,
     report_class = TimeLine,
     options_class = TimeLineOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
     translated_name = _("Timeline Graph"),
-    status = _("Beta"),
+    status = _("Stable"),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
+    author_email = "don@gramps-project.org",
     description = _("Generates a timeline graph.")
     )

@@ -541,13 +541,14 @@ class FamilyGroupOptions(ReportOptions.ReportOptions):
 from PluginMgr import register_report
 register_report(
     name = 'family_group',
-    category = const.CATEGORY_TEXT,
+    category = Report.CATEGORY_TEXT,
     report_class = FamilyGroup,
     options_class = FamilyGroupOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
     translated_name = _("Family Group Report"),
-    status = _("Beta"),
+    status = _("Stable"),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
-    description=_("Creates a family group report, showing information on a set of parents and their children."),
+    author_email = "don@gramps-project.org",
+    description=_("Creates a family group report, showing information "
+                  "on a set of parents and their children."),
     )

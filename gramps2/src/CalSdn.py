@@ -205,12 +205,12 @@ def hebrew_sdn(year, month, day):
         else:
             length_of_adarI_andII = 59
             
-            if month == 4:
-                sdn = tishri1_after + day - length_of_adarI_andII - 237
-            elif month == 5:
-                sdn = tishri1_after + day - length_of_adarI_andII - 208
-            else:
-                sdn = tishri1_after + day - length_of_adarI_andII - 178
+        if month == 4:
+            sdn = tishri1_after + day - length_of_adarI_andII - 237
+        elif month == 5:
+            sdn = tishri1_after + day - length_of_adarI_andII - 208
+        else:
+            sdn = tishri1_after + day - length_of_adarI_andII - 178
     else:
         # It is Adar II or later - don't need the year length.
         (metonic_cycle,metonic_year,molad_day,molad_halakim,tishri1_after) = _start_of_year(year+1)

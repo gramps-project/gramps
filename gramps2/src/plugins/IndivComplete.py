@@ -44,6 +44,7 @@ import RelLib
 import const
 import BaseDoc
 import Report
+import ReportUtils
 import GenericFilter
 import ReportOptions
 import DateHandler
@@ -117,7 +118,8 @@ class IndivCompleteReport(Report.Report):
         date = DateHandler.get_date(event)
         place_handle = event.get_place_handle()
         if place_handle:
-            place = self.database.get_place_from_handle(place_handle).get_title()
+            place = self.database.get_place_from_handle(
+                place_handle).get_title()
         else:
             place = ""
         description = event.get_description()
@@ -194,8 +196,10 @@ class IndivCompleteReport(Report.Report):
         self.doc.end_cell()
         self.doc.end_row()
         
-        for (family_handle,mrel,frel) in self.start_person.get_parent_family_handle_list():
-            if family_handle == self.start_person.get_main_parents_family_handle():
+        for (family_handle,mrel,frel) \
+                in self.start_person.get_parent_family_handle_list():
+            if family_handle == \
+                   self.start_person.get_main_parents_family_handle():
                 continue
             
             family = self.database.get_family_from_handle(family_handle)
@@ -305,7 +309,8 @@ class IndivCompleteReport(Report.Report):
                     else:
                         self.doc.write_text('\n')
                     child = self.database.get_person_from_handle(child_handle)
-                    self.doc.write_text(child.get_primary_name().get_regular_name())
+                    self.doc.write_text(
+                        child.get_primary_name().get_regular_name())
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 self.doc.end_row()
@@ -346,8 +351,10 @@ class IndivCompleteReport(Report.Report):
         self.doc.end_cell()
         self.doc.end_row()
 
-        event_handle_list = [ self.start_person.get_birth_handle(), self.start_person.get_death_handle() ]
-        event_handle_list = event_handle_list + self.start_person.get_event_list()
+        event_handle_list = [ self.start_person.get_birth_handle(),
+                              self.start_person.get_death_handle() ]
+        event_handle_list = event_handle_list \
+                            + self.start_person.get_event_list()
         for event_handle in event_handle_list:
             if event_handle:
                 event = self.database.get_event_from_handle(event_handle)
@@ -372,7 +379,8 @@ class IndivCompleteReport(Report.Report):
             
         count = 0
         for person_handle in ind_list:
-            self.start_person = self.database.get_person_from_handle(person_handle)
+            self.start_person = self.database.get_person_from_handle(
+                person_handle)
             self.write_person(count)
             count = count + 1
 
@@ -428,13 +436,15 @@ class IndivCompleteReport(Report.Report):
             family = self.database.get_family_from_handle(family_handle)
             father_inst_id = family.get_father_handle()
             if father_inst_id:
-                father_inst = self.database.get_person_from_handle(father_inst_id)
+                father_inst = self.database.get_person_from_handle(
+                    father_inst_id)
                 father = father_inst.get_primary_name().get_regular_name()
             else:
                 father = ""
             mother_inst_id = family.get_mother_handle()
             if mother_inst_id:
-                mother_inst = self.database.get_person_from_handle(mother_inst_id) 
+                mother_inst = self.database.get_person_from_handle(
+                    mother_inst_id) 
                 mother = mother_inst.get_primary_name().get_regular_name()
             else:
                 mother = ""
@@ -549,6 +559,8 @@ class IndivCompleteOptions(ReportOptions.ReportOptions):
         font.set_size(16)
         p = BaseDoc.ParagraphStyle()
         p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_top_margin(ReportUtils.pt2cm(8))
+        p.set_bottom_margin(ReportUtils.pt2cm(8))
         p.set_font(font)
         p.set_description(_("The style used for the title of the page."))
         default_style.add_style("IDS-Title",p)
@@ -560,6 +572,8 @@ class IndivCompleteOptions(ReportOptions.ReportOptions):
         font.set_italic(1)
         p = BaseDoc.ParagraphStyle()
         p.set_font(font)
+        p.set_top_margin(ReportUtils.pt2cm(3))
+        p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_("The style used for category labels."))
         default_style.add_style("IDS-TableTitle",p)
 
@@ -569,6 +583,8 @@ class IndivCompleteOptions(ReportOptions.ReportOptions):
         font.set_size(12)
         p = BaseDoc.ParagraphStyle()
         p.set_font(font)
+        p.set_top_margin(ReportUtils.pt2cm(3))
+        p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_("The style used for the spouse's name."))
         default_style.add_style("IDS-Spouse",p)
 
@@ -576,6 +592,8 @@ class IndivCompleteOptions(ReportOptions.ReportOptions):
         font.set_size(12)
         p = BaseDoc.ParagraphStyle()
         p.set_font(font)
+        p.set_top_margin(ReportUtils.pt2cm(3))
+        p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_('The basic style used for the text display.'))
         default_style.add_style("IDS-Normal",p)
 
@@ -588,11 +606,13 @@ from PluginMgr import register_report
 
 register_report(
     name = 'indiv_complete',
-    category = const.CATEGORY_TEXT,
+    category = Report.CATEGORY_TEXT,
     report_class = IndivCompleteReport,
     options_class = IndivCompleteOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
     translated_name = _("Complete Individual Report"),
-    status=(_("Beta")),
+    status=(_("Stable")),
+    author_name="Donald N. Allingham",
+    author_email="don@gramps-project.org",
     description=_("Produces a complete report on the selected people."),
     )

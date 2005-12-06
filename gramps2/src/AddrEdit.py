@@ -31,6 +31,7 @@ mechanism for the user to edit address information.
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -38,13 +39,13 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import GrampsDisplay
 import const
 import Utils
 import Date
@@ -53,6 +54,8 @@ import Sources
 import DateEdit
 import DateHandler
 import Spell
+
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -87,23 +90,36 @@ class AddressEditor:
 
         # Get the important widgets from the glade description
         self.top = gtk.glade.XML(const.dialogFile, "addr_edit","gramps")
+        self.gladeif = GladeIf(self.top)
+        
         self.window = self.top.get_widget("addr_edit")
         self.addr_start = self.top.get_widget("address_start")
+        self.addr_start.set_editable(not self.db.readonly)
         self.street = self.top.get_widget("street")
+        self.street.set_editable(not self.db.readonly)
         self.city = self.top.get_widget("city")
+        self.city.set_editable(not self.db.readonly)
         self.state = self.top.get_widget("state")
+        self.state.set_editable(not self.db.readonly)
         self.country = self.top.get_widget("country")
+        self.country.set_editable(not self.db.readonly)
         self.postal = self.top.get_widget("postal")
+        self.postal.set_editable(not self.db.readonly)
         self.phone = self.top.get_widget("phone")
+        self.phone.set_editable(not self.db.readonly)
         self.note_field = self.top.get_widget("addr_note")
+        self.note_field.set_editable(not self.db.readonly)
         self.spell = Spell.Spell(self.note_field)
         self.priv = self.top.get_widget("priv")
+        self.priv.set_sensitive(not self.db.readonly)
         self.slist = self.top.get_widget("slist")
         self.sources_label = self.top.get_widget("sources_tab")
         self.notes_label = self.top.get_widget("note_tab")
         self.general_label = self.top.get_widget("general_tab")
         self.flowed = self.top.get_widget("addr_flowed")
+        self.flowed.set_sensitive(not self.db.readonly)
         self.preform = self.top.get_widget("addr_preform")
+        self.preform.set_sensitive(not self.db.readonly)
 
         title_label = self.top.get_widget("title")
 
@@ -123,9 +139,9 @@ class AddressEditor:
             if self.addr.get_note():
                 self.note_field.get_buffer().set_text(self.addr.get_note())
                 Utils.bold_label(self.notes_label)
-            	if addr.get_note_format() == 1:
+                if addr.get_note_format() == 1:
                     self.preform.set_active(1)
-            	else:
+                else:
                     self.flowed.set_active(1)
                 Utils.bold_label(self.general_label)
             else:
@@ -143,16 +159,17 @@ class AddressEditor:
             self.top.get_widget('del_src'), self.db.readonly)
 
         date_stat = self.top.get_widget("date_stat")
+        date_stat.set_sensitive(not self.db.readonly)
         self.date_check = DateEdit.DateEdit(
             self.addr_date_obj, self.addr_start, date_stat, self.window)
 
-        self.top.signal_autoconnect({
-            "on_switch_page" : self.on_switch_page,
-            "on_help_addr_clicked" : self.on_help_clicked,
-            "on_ok_addr_clicked" : self.ok_clicked,
-            "on_cancel_addr_clicked" : self.close,
-            "on_addr_edit_delete_event" : self.on_delete_event,
-            })
+        self.gladeif.connect('addr_edit','delete_event',self.on_delete_event)
+        self.gladeif.connect('button122','clicked',self.close)
+        self.gladeif.connect('button121','clicked',self.ok_clicked)
+        okbtn = self.top.get_widget('button121')
+        okbtn.set_sensitive(not self.db.readonly)
+        self.gladeif.connect('button129','clicked',self.on_help_clicked)
+        self.gladeif.connect('notebook2','switch_page',self.on_switch_page)
 
         if parent_window:
             self.window.set_transient_for(parent_window)
@@ -162,11 +179,15 @@ class AddressEditor:
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
+        gc.collect()
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
         self.window.destroy()
+        gc.collect()
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():
@@ -197,7 +218,7 @@ class AddressEditor:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-ad')
+        GrampsDisplay.help('adv-ad')
 
     def ok_clicked(self,obj):
         """

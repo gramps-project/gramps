@@ -36,6 +36,7 @@ import locale
 import shutil
 import codecs
 import sets
+import tarfile
 from gettext import gettext as _
 from cStringIO import StringIO
 
@@ -60,7 +61,6 @@ import Report
 import Errors
 import Utils
 import ReportOptions
-import BaseDoc
 import ReportUtils
 import ImgManip
 from QuestionDialog import ErrorDialog, WarningDialog
@@ -75,12 +75,20 @@ from DateHandler import displayer as _dd
 _NARRATIVE = "narrative.css"
 _NAME_COL  = 3
 
+WIDTH=160
+HEIGHT=50
+VGAP=10
+HGAP=30
+SHADOW=5
+XOFFSET=5
+
 _css_files = [
     [_("Modern"),         'main1.css'],
     [_("Business"),       'main2.css'],
     [_("Certificate"),    'main3.css'],
     [_("Antique"),        'main4.css'],
     [_("Tranquil"),       'main5.css'],
+    [_("Sharp"),          'main6.css'],
     [_("No style sheet"), ''],
     ]
 
@@ -103,17 +111,17 @@ _character_sets = [
     ]
 
 _cc = [
-    '<a rel="license" href="http://creativecommons.org/licenses/by/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
     ]
 
 
 class BasePage:
-    def __init__(self, title, options, archive, photo_list, levels, gid):
+    def __init__(self, title, options, archive, photo_list, gid):
         self.title_str = title
         self.gid = gid
         self.inc_download = options.handler.options_dict['NWEBdownload']
@@ -127,19 +135,23 @@ class BasePage:
         self.noid = options.handler.options_dict['NWEBnoid']
         self.use_intro = options.handler.options_dict['NWEBintronote'] != u""
         self.use_contact = options.handler.options_dict['NWEBcontact'] != u""
+        self.use_gallery = options.handler.options_dict['NWEBgallery']
         self.header = options.handler.options_dict['NWEBheader']
         self.footer = options.handler.options_dict['NWEBfooter']
         self.photo_list = photo_list
         self.exclude_private = not options.handler.options_dict['NWEBincpriv']
-        self.levels = levels
-        
+        self.usegraph = options.handler.options_dict['NWEBgraph']
+        self.use_home = self.options.handler.options_dict['NWEBhomenote'] != ""
+
     def store_file(self,archive,html_dir,from_path,to_path):
         if archive:
-            imagefile = open(from_path,"r")
-            archive.add_file(to_path,time.time(),imagefile)
-            imagefile.close()
+            archive.add(from_path,to_path)
         else:
-            shutil.copyfile(from_path,os.path.join(html_dir,to_path))
+            dest = os.path.join(html_dir,to_path)
+            dirname = os.path.dirname(dest)
+            if not os.path.isdir(dirname):
+                os.makedirs(dirname)
+            shutil.copyfile(from_path,dest)
 
     def copy_media(self,photo,store_ref=True):
 
@@ -152,48 +164,51 @@ class BasePage:
             else:
                 self.photo_list[handle] = [lnk]
 
-        newpath = photo.gramps_id + os.path.splitext(photo.get_path())[1]
-        real_path = os.path.join('images',newpath)
-        thumb_path = os.path.join('thumb',newpath)
+        ext = os.path.splitext(photo.get_path())[1]
+        real_path = "%s/%s" % (self.build_path(handle,'images'),handle+ext)
+        thumb_path = "%s/%s.png" % (self.build_path(handle,'thumb'),handle)
         return (real_path,thumb_path)
 
     def create_file(self,name):
         self.cur_name = self.build_name("",name)
         if self.archive:
             self.string_io = StringIO()
-            of = codecs.EncodedFile(self.string_io,'utf-8',self.encoding)
+            of = codecs.EncodedFile(self.string_io,'utf-8',self.encoding,
+                                    'xmlcharrefreplace')
         else:
             page_name = os.path.join(self.html_dir,self.cur_name)
-            of = codecs.EncodedFile(open(page_name, "w"),'utf-8',self.encoding)
+            of = codecs.EncodedFile(open(page_name, "w"),'utf-8',
+                                    self.encoding,'xmlcharrefreplace')
         return of
 
     def link_path(self,name,path):
         base = self.build_name("",name)
-        if self.levels == 2:
-            dirpath = os.path.join(path,name[0],name[1],base)
-        else:
-            dirpath = os.path.join(path,name[0],base)
-        return dirpath
+        return os.path.join(path,name[0],name[1],base)
 
     def create_link_file(self,name,path):
         self.cur_name = self.link_path(name,path)
         if self.archive:
             self.string_io = StringIO()
-            of = codecs.EncodedFile(self.string_io,'utf-8',self.encoding)
+            of = codecs.EncodedFile(self.string_io,'utf-8',
+                                    self.encoding,'xmlcharrefreplace')
         else:
-            if self.levels == 1:
-                dirname = os.path.join(self.html_dir,path,name[0])
-            else:
-                dirname = os.path.join(self.html_dir,path,name[0],name[1])
+            dirname = os.path.join(self.html_dir,path,name[0],name[1])
             if not os.path.isdir(dirname):
                 os.makedirs(dirname)
             page_name = self.build_name(dirname,name)
-            of = codecs.EncodedFile(open(page_name, "w"),'utf-8',self.encoding)
+            of = codecs.EncodedFile(open(page_name, "w"),'utf-8',
+                                    self.encoding,'xmlcharrefreplace')
         return of
 
     def close_file(self,of):
         if self.archive:
-            self.archive.add_file(self.cur_name,time.time(),self.string_io)
+            tarinfo = tarfile.TarInfo(self.cur_name)
+            tarinfo.size = len(self.string_io.getvalue())
+            tarinfo.mtime = time.time()
+            tarinfo.uid = os.getuid()
+            tarinfo.gid = os.getgid()
+            self.string_io.seek(0)
+            self.archive.addfile(tarinfo,self.string_io)
             of.close()
         else:
             of.close()
@@ -204,7 +219,7 @@ class BasePage:
     def display_footer(self,of,db):
 
         of.write('</div>\n')
-        of.write('<div class="footer">\n')
+        of.write('<div id="footer">\n')
         if self.copyright == 0:
             if self.author:
                 self.author = self.author.replace(',,,','')
@@ -212,53 +227,50 @@ class BasePage:
                 cright = _('&copy; %(year)d %(person)s') % {
                     'person' : self.author,
                     'year' : year }
-                of.write('<br>%s\n' % cright)
+                of.write('<br />%s\n' % cright)
         elif self.copyright <=6:
-            of.write('<div align="center">')
+            of.write('<div id="copyright">')
             text = _cc[self.copyright-1]
             if self.up:
-                if self.levels == 1:
-                    text = text.replace('#PATH#','../../')
-                else:
-                    text = text.replace('#PATH#','../../../')
+                text = text.replace('#PATH#','../../../')
             else:
                 text = text.replace('#PATH#','')
             of.write(text)
-            of.write('</div>')
-        of.write('</div><br><br><br><hr>\n')
+            of.write('</div>\n')
+        of.write('<div class="fullclear"></div>\n')
+        of.write('</div>\n')
         if self.footer:
             obj = db.get_object_from_handle(self.footer)
             if obj:
                 of.write('<div class="user_footer">\n')
                 of.write(obj.get_note())
-                of.write('  </div>\n')
+                of.write('</div>\n')
         of.write('</body>\n')
         of.write('</html>\n')
     
     def display_header(self,of,db,title,author="",up=False):
         self.up = up
         if up:
-            if self.levels == 1:
-                path = "../.."
-            else:
-                path = "../../.."
+            path = "../../.."
         else:
             path = ""
             
         self.author = author
-        of.write('<!DOCTYPE HTML PUBLIC ')
-        of.write('"-//W3C//DTD HTML 4.01 Transitional//EN">\n')
-        of.write('<html>\n<head>\n')
+        of.write('<!DOCTYPE html PUBLIC ')
+        of.write('"-//W3C//DTD XHTML 1.0 Strict//EN" ')
+        of.write('"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
+        of.write('<html xmlns="http://www.w3.org/1999/xhtml" ')
+        of.write('xml:lang="en" lang="en">\n<head>\n')
         of.write('<title>%s - %s</title>\n' % (self.title_str, title))
         of.write('<meta http-equiv="Content-Type" content="text/html; ')
-        of.write('charset=%s">\n' % self.encoding)
+        of.write('charset=%s" />\n' % self.encoding)
         if path:
             of.write('<link href="%s/%s" ' % (path,_NARRATIVE))
         else:
             of.write('<link href="%s" ' % _NARRATIVE)
-        of.write('rel="stylesheet" type="text/css">\n')
-        of.write('<link href="favicon.png" rel="Shortcut Icon">\n')
-        of.write('<!-- %sId%s -->' % ('$','$'))
+        of.write('rel="stylesheet" type="text/css" />\n')
+        of.write('<link href="/favicon.ico" rel="Shortcut Icon" />\n')
+        of.write('<!-- %sId%s -->\n' % ('$','$'))
         of.write('</head>\n')
         of.write('<body>\n')
         if self.header:
@@ -267,7 +279,7 @@ class BasePage:
                 of.write('  <div class="user_header">\n')
                 of.write(obj.get_note())
                 of.write('  </div>\n')
-        of.write('<div class="navheader">\n')
+        of.write('<div id="navheader">\n')
 
         format = locale.nl_langinfo(locale.D_FMT)
         value = time.strftime(format,time.localtime(time.time()))
@@ -277,37 +289,54 @@ class BasePage:
 
         of.write('<div class="navbyline">%s</div>\n' % msg)
         of.write('<h1 class="navtitle">%s</h1>\n' % self.title_str)
-        of.write('<hr>\n')
         of.write('<div class="nav">\n')
-        self.show_link(of,'index',_('Home'),path)
+
+        if self.use_home:
+            index_page = "index"
+            surname_page = "surnames"
+            intro_page = "introduction"
+        elif self.use_intro:
+            index_page = ""
+            surname_page = "surnames"
+            intro_page = "index"
+        else:
+            index_page = ""
+            surname_page = "index"
+            intro_page = ""
+
+        if self.use_home:
+            self.show_link(of,index_page,_('Home'),path)
         if self.use_intro:
-            self.show_link(of,'introduction',_('Introduction'),path)
-        self.show_link(of,'surnames',_('Surnames'),path)
+            self.show_link(of,intro_page,_('Introduction'),path)
+        self.show_link(of,surname_page,_('Surnames'),path)
         self.show_link(of,'individuals',_('Individuals'),path)
         self.show_link(of,'sources',_('Sources'),path)
         self.show_link(of,'places',_('Places'),path)
-        self.show_link(of,'gallery',_('Gallery'),path)
+        if self.use_gallery:
+            self.show_link(of,'gallery',_('Gallery'),path)
         if self.inc_download:
             self.show_link(of,'download',_('Download'),path)
         if self.use_contact:
             self.show_link(of,'contact',_('Contact'),path)
         of.write('</div>\n</div>\n')
-        of.write('  <div class="content">\n')
+        of.write('<div id="content">\n')
 
     def show_link(self,of,lpath,title,path):
         if path:
-            of.write('<a href="%s/%s.%s">%s</a> &nbsp;' % (path,lpath,self.ext,title))
+            of.write('   <a href="%s/%s.%s">%s</a>\n' % (path,lpath,self.ext,title))
         else:
-            of.write('<a href="%s.%s">%s</a> &nbsp;' % (lpath,self.ext,title))
+            of.write('   <a href="%s.%s">%s</a>\n' % (lpath,self.ext,title))
 
     def display_first_image_as_thumbnail( self, of, db, photolist=None):
-        if not photolist:
+
+        if not photolist or not self.use_gallery:
             return
-            
+        
         photo_handle = photolist[0].get_reference_handle()
         photo = db.get_object_from_handle(photo_handle)
-        
-        if photo.get_mime_type():
+        mime_type = photo.get_mime_type()
+
+        if mime_type:
             try:
                 (real_path,newpath) = self.copy_media(photo)
                 of.write('<div class="snapshot">\n')
@@ -315,27 +344,51 @@ class BasePage:
                 of.write('</div>\n')
             except (IOError,OSError),msg:
                 WarningDialog(_("Could not add photo to page"),str(msg))
+        else:
+            of.write('<div class="snapshot">\n')
+            self.doc_link(of,photo_handle,
+                          photo.get_description(),up=True)
+            of.write('</div>\n')
+            lnk = (self.cur_name,self.page_title,self.gid)
+            if self.photo_list.has_key(photo_handle):
+                if lnk not in self.photo_list[photo_handle]:
+                    self.photo_list[photo_handle].append(lnk)
+            else:
+                self.photo_list[photo_handle] = [lnk]
 
     def display_additional_images_as_gallery( self, of, db, photolist=None):
 
-        if not photolist and len(photolist) == 0:
+        if not photolist or not self.use_gallery:
             return
             
+        of.write('<div id="gallery">\n')
         of.write('<h4>%s</h4>\n' % _('Gallery'))
-        of.write('<hr>\n')
-        of.write('<blockquote>')
         for mediaref in photolist:
             photo_handle = mediaref.get_reference_handle()
             photo = db.get_object_from_handle(photo_handle)
-            
-            if photo.get_mime_type():
+            mime_type = photo.get_mime_type()
+            if mime_type:
                 try:
                     (real_path,newpath) = self.copy_media(photo)
                     self.media_link(of,photo_handle,newpath,
                                     photo.get_description(),up=True)
                 except (IOError,OSError),msg:
                     WarningDialog(_("Could not add photo to page"),str(msg))
-        of.write('</blockquote>')
+            else:
+                try:
+                    self.doc_link(of,photo_handle,
+                                  photo.get_description(),up=True)
+                    lnk = (self.cur_name,self.page_title,self.gid)
+                    if self.photo_list.has_key(photo_handle):
+                        if lnk not in self.photo_list[photo_handle]:
+                            self.photo_list[photo_handle].append(lnk)
+                    else:
+                        self.photo_list[photo_handle] = [lnk]
+                except (IOError,OSError),msg:
+                    WarningDialog(_("Could not add photo to page"),str(msg))
+                
+        of.write('<br clear="all" />\n')
+        of.write('</div>\n')
 
     def display_note_object(self,of,noteobj=None):
         if not noteobj:
@@ -343,21 +396,21 @@ class BasePage:
         format = noteobj.get_format()
         text = noteobj.get()
         if text:
+            of.write('<div id="narrative">\n')
             of.write('<h4>%s</h4>\n' % _('Narrative'))
-            of.write('<hr>\n')
             if format:
-                text = u"<pre>" + u"<br>".join(text.split("\n"))+u"</pre>"
+                text = u"<pre>" + u"<br />".join(text.split("\n"))+u"</pre>"
             else:
                 text = u"</p><p>".join(text.split("\n"))
             of.write('<p>%s</p>\n' % text)
+            of.write('</div>\n')
 
     def display_url_list(self,of,urllist=None):
         if not urllist:
             return
+        of.write('<div id="weblinks">\n')
         of.write('<h4>%s</h4>\n' % _('Weblinks'))
-        of.write('<hr>\n')
-        of.write('<table class="infolist" cellpadding="0" ')
-        of.write('cellspacing="0" border="0">\n')
+        of.write('<table class="infolist">\n')
 
         index = 1
         for url in urllist:
@@ -368,29 +421,27 @@ class BasePage:
             of.write('</td></tr>\n')
             index = index + 1
         of.write('</table>\n')
+        of.write('</div>\n')
 
     def display_attr_list(self,of,attrlist=None):
         if not attrlist:
             return
+        of.write('<div id="attributes">\n')
         of.write('<h4>%s</h4>\n' % _('Attributes'))
-        of.write('<hr>\n')
-        of.write('<table class="infolist" cellpadding="0" ')
-        of.write('cellspacing="0" border="0">\n')
+        of.write('<table class="infolist">\n')
 
         for attr in attrlist:
-            type = attr.get_type()
-            value = attr.get_value()
-            of.write('<tr><td class="field">%s</td>' % _(type))
-            of.write('<td class="data">%s</td></tr>\n' % value)
+            of.write('<tr><td class="field">%s</td>' % _(attr.get_type()))
+            of.write('<td class="data">%s</td></tr>\n' % attr.get_value())
         of.write('</table>\n')
+        of.write('</div>\n')
 
     def display_references(self,of,db,handlelist):
         if not handlelist:
             return
+        of.write('<div id="references">\n')
         of.write('<h4>%s</h4>\n' % _('References'))
-        of.write('<hr>\n')
-        of.write('<table class="infolist" cellpadding="0" ')
-        of.write('cellspacing="0" border="0">\n')
+        of.write('<table class="infolist">\n')
 
         index = 1
         for (path,name,gid) in handlelist:
@@ -399,20 +450,13 @@ class BasePage:
             of.write('</td></tr>\n')
             index = index + 1
         of.write('</table>\n')
+        of.write('</div>\n')
 
-    def build_path(self,handle,dirroot,up):
+    def build_path(self,handle,dirroot,up=False):
         if up:
-            if self.levels == 1:
-                return '../../%s/%s' % (dirroot,handle[0])
-            elif self.levels == 2:
-                return '../../../%s/%s/%s' % (dirroot,handle[0],handle[1])
-            else:
-                return '%s/%s' % (dirroot,handle[0])
+            return '../../../%s/%s/%s' % (dirroot,handle[0],handle[1])
         else:
-            if self.levels == 2:
-                return "%s/%s/%s" % (dirroot,handle[0],handle[1])
-            else:
-                return "%s/%s" % (dirroot,handle[0])
+            return "%s/%s/%s" % (dirroot,handle[0],handle[1])
             
     def build_name(self,path,base):
         if path:
@@ -422,10 +466,7 @@ class BasePage:
 
     def person_link(self,of,path,name,gid="",up=True):
         if up:
-            if self.levels == 1:
-                path = "../../" + path
-            elif self.levels == 2:
-                path = "../../../" + path
+            path = "../../../" + path
 
         of.write('<a href="%s">%s' % (path,name))
         if not self.noid and gid != "":
@@ -448,17 +489,25 @@ class BasePage:
 
     def media_link(self,of,handle,path,name,up,usedescr=True):
         dirpath = self.build_path(handle,'img',up)
-        of.write('<a href="%s/%s.%s">' % (
-            dirpath,handle,self.ext))
-        of.write('<img class="thumbnail" border="0" ')
-        if self.levels == 1:
-            of.write('src="../../%s" ' % path)
-        else:
-            of.write('src="../../../%s" ' % path)
-        of.write('height="%d", alt="%s"></a>' % (const.thumbScale,name))
+        of.write('<div class="thumbnail">\n')
+        of.write('<p><a href="%s/%s.%s">' % (dirpath,handle,self.ext))
+        of.write('<img src="../../../%s" ' % path)
+        of.write('alt="%s" /></a></p>\n' % name)
         if usedescr:
-            of.write('<div class="thumbname">%s</div>' % name)
-        of.write('</a>')
+            of.write('<p>%s</p>\n' % name)
+        of.write('</div>\n')
+
+    def doc_link(self,of,handle,name,up,usedescr=True):
+        path = os.path.join('images','document.png')
+        dirpath = self.build_path(handle,'img',up)
+        of.write('<div class="thumbnail">\n')
+        of.write('<p><a href="%s/%s.%s">' % (dirpath,handle,self.ext))
+        of.write('<img src="../../../%s" ' % path)
+        of.write('alt="%s" /></a>' % name)
+        of.write('</p>\n')
+        if usedescr:
+            of.write('<p>%s</p>\n' % name)
+        of.write('</div>\n')
 
     def source_link(self,of,handle,name,gid="",up=False):
         dirpath = self.build_path(handle,'src',up)
@@ -491,9 +540,9 @@ class BasePage:
 #------------------------------------------------------------------------
 class IndividualListPage(BasePage):
 
-    def __init__(self, db, title, person_handle_list, options, archive,
-                 media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels, "")
+    def __init__(self, db, title, person_handle_list, restrict_list,
+                 options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list, "")
 
         of = self.create_file("individuals")
         self.display_header(of,db,_('Individuals'),
@@ -505,13 +554,11 @@ class IndividualListPage(BasePage):
 
         of.write('<h3>%s</h3>\n' % _('Individuals'))
         of.write('<p>%s</p>\n' % msg)
-        of.write('<blockquote>\n')
-        of.write('<table class="infolist" cellspacing="0" ')
-        of.write('cellpadding="0" border="0">\n')
-        of.write('<tr><td class="field"><u><b>%s</b></u></td>\n' % _('Surname'))
-        of.write('<td class="field"><u><b>%s</b></u></td>\n' % _('Name'))
-        of.write('<td class="field"><u><b>%s</b></u></td>\n' % _('Birth date'))
-        of.write('</tr>\n')
+        of.write('<table class="infolist">\n<thead><tr>\n')
+        of.write('<th>%s</th>\n' % _('Surname'))
+        of.write('<th>%s</th>\n' % _('Name'))
+        of.write('<th>%s</th>\n' % _('Birth date'))
+        of.write('</tr></thead>\n<tbody>\n')
 
         person_handle_list = sort_people(db,person_handle_list)
 
@@ -520,6 +567,8 @@ class IndividualListPage(BasePage):
             of.write('<tr><td colspan="2">&nbsp;</td></tr>\n')
             for person_handle in handle_list:
                 person = db.get_person_from_handle(person_handle)
+                if self.exclude_private:
+                    person = ReportUtils.sanitize_person(db,person)
                 of.write('<tr><td class="category">')
                 if first:
                     of.write('<a name="%s">%s</a>' % (self.lnkfmt(surname),surname))
@@ -528,17 +577,20 @@ class IndividualListPage(BasePage):
                 of.write('</td><td class="data">')
                 path = self.build_path(person.handle,"ppl",False)
                 self.person_link(of, self.build_name(path,person.handle),
-                                 person.get_primary_name().get_first_name(),
-                                 person.gramps_id,False)
+                                 _nd.display_given(person), person.gramps_id,False)
                 of.write('</td><td class="field">')
-                birth_handle = person.get_birth_handle()
-                if birth_handle:
-                    birth = db.get_event_from_handle(birth_handle)
-                    of.write(birth.get_date())
+
+                if person.handle in restrict_list:
+                    of.write(_('restricted'))
+                else:
+                    birth_handle = person.get_birth_handle()
+                    if birth_handle:
+                        birth = db.get_event_from_handle(birth_handle)
+                        of.write(birth.get_date())
                 of.write('</td></tr>\n')
                 first = False
             
-        of.write('</table>\n</blockquote>\n')
+        of.write('</tbody>\n</table>\n')
         self.display_footer(of,db)
         self.close_file(of)
 
@@ -549,9 +601,10 @@ class IndividualListPage(BasePage):
 #------------------------------------------------------------------------
 class SurnamePage(BasePage):
 
-    def __init__(self, db, title, person_handle_list, options, archive,
-                 media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels, "")
+    def __init__(self, db, title, person_handle_list, restrict_list,
+                 options, archive, media_list):
+        
+        BasePage.__init__(self, title, options, archive, media_list, "")
 
         of = self.create_link_file(md5.new(title).hexdigest(),'srn')
         self.display_header(of,db,title,get_researcher().get_name(),True)
@@ -562,27 +615,30 @@ class SurnamePage(BasePage):
 
         of.write('<h3>%s</h3>\n' % title)
         of.write('<p>%s</p>\n' % msg)
-        of.write('<blockquote>\n')
-        of.write('<table class="infolist" cellspacing="0" ')
-        of.write('cellpadding="0" border="0">\n')
-        of.write('<tr><td class="field"><u><b>%s</b></u></td>\n' % _('Name'))
-        of.write('<td class="field"><u><b>%s</b></u></td>\n' % _('Birth date'))
-        of.write('</tr>\n')
+        of.write('<table class="infolist">\n<thead><tr>\n')
+        of.write('<th>%s</b></th>\n' % _('Name'))
+        of.write('<th>%s</b></th>\n' % _('Birth date'))
+        of.write('</tr></thead>\n<tbody>\n')
 
         for person_handle in person_handle_list:
             person = db.get_person_from_handle(person_handle)
+            if self.exclude_private:
+                person = ReportUtils.sanitize_person(db,person)
             of.write('<tr><td class="category">')
-            path = self.build_path(person.handle,"ppl",False)
+            path = self.build_path(person.handle,"ppl",True)
             self.person_link(of, self.build_name(path,person.handle),
                              person.get_primary_name().get_first_name(),
                              person.gramps_id,False)
             of.write('</td><td class="field">')
-            birth_handle = person.get_birth_handle()
-            if birth_handle:
-                birth = db.get_event_from_handle(birth_handle)
-                of.write(birth.get_date())
+            if person.handle in restrict_list:
+                of.write(_('restricted'))
+            else:
+                birth_handle = person.get_birth_handle()
+                if birth_handle:
+                    birth = db.get_event_from_handle(birth_handle)
+                    of.write(birth.get_date())
             of.write('</td></tr>\n')
-        of.write('</table>\n</blockquote>\n')
+        of.write('<tbody>\n</table>\n')
         self.display_footer(of,db)
         self.close_file(of)
 
@@ -594,8 +650,8 @@ class SurnamePage(BasePage):
 class PlaceListPage(BasePage):
 
     def __init__(self, db, title, place_handles, src_list, options, archive,
-                 media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels, "")
+                 media_list):
+        BasePage.__init__(self, title, options, archive, media_list, "")
         of = self.create_file("places")
         self.display_header(of,db,_('Places'),
                             get_researcher().get_name())
@@ -607,19 +663,14 @@ class PlaceListPage(BasePage):
         of.write('<h3>%s</h3>\n' % _('Places'))
         of.write('<p>%s</p>\n' % msg )
 
-        of.write('<blockquote>\n')
-        of.write('<table class="infolist" cellspacing="0" ')
-        of.write('cellpadding="0" border="0">\n')
-        of.write('<tr><td class="field"><u>')
-        of.write('<b>%s</b></u></td>\n' % _('Letter'))
-        of.write('<td class="field"><u>')
-        of.write('<b>%s</b></u></td>\n' % _('Place'))
-        of.write('</tr>\n')
+        of.write('<table class="infolist">\n<thead><tr>\n')
+        of.write('<th>%s</th>\n' % _('Letter'))
+        of.write('<th>%s</th>\n' % _('Place'))
+        of.write('</tr></thead>\n<tbody>\n')
 
         self.sort = Sort.Sort(db)
         handle_list = place_handles.keys()
         handle_list.sort(self.sort.by_place_title)
-        last_name = ""
         last_letter = ''
         
         for handle in handle_list:
@@ -644,7 +695,7 @@ class PlaceListPage(BasePage):
                 of.write('</td></tr>')
                 last_surname = n
             
-        of.write('</table>\n</blockquote>\n')
+        of.write('</tbody>\n</table>\n')
         self.display_footer(of,db)
         self.close_file(of)
 
@@ -656,21 +707,22 @@ class PlaceListPage(BasePage):
 class PlacePage(BasePage):
 
     def __init__(self, db, title, place_handle, src_list, place_list, options,
-                 archive, media_list, levels):
+                 archive, media_list):
         place = db.get_place_from_handle( place_handle)
-        BasePage.__init__(self, title, options, archive, media_list, levels,
+        BasePage.__init__(self, title, options, archive, media_list,
                           place.gramps_id)
         of = self.create_link_file(place.get_handle(),"plc")
         self.page_title = ReportUtils.place_name(db,place_handle)
         self.display_header(of,db,"%s - %s" % (_('Places'), self.page_title),
                             get_researcher().get_name(),up=True)
 
-        self.display_first_image_as_thumbnail(of, db, place.get_media_list())
+        media_list = place.get_media_list()
+        media_list = ReportUtils.sanitize_list( media_list, self.exclude_private)
+        self.display_first_image_as_thumbnail(of, db, media_list)
 
-        of.write('<div class="summaryarea">\n')
+        of.write('<div id="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % self.page_title)
-        of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
-        of.write('border="0">\n')
+        of.write('<table class="infolist">\n')
 
         if not self.noid:
             of.write('<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
@@ -700,9 +752,10 @@ class PlacePage(BasePage):
         of.write('</table>\n')
         of.write('</div>\n')
 
-        self.display_additional_images_as_gallery(of, db, place.get_media_list())
+        if self.use_gallery:
+            self.display_additional_images_as_gallery(of, db, media_list)
         self.display_note_object(of, place.get_note_object())
-        self.display_url_list(of, place.get_url_list())
+        self.display_url_list(of, ReportUtils.sanitize_list( place.get_url_list(), self.exclude_private))
         self.display_references(of,db,place_list[place.handle])
         self.display_footer(of,db)
         self.close_file(of)
@@ -715,40 +768,30 @@ class PlacePage(BasePage):
 class MediaPage(BasePage):
 
     def __init__(self, db, title, handle, src_list, options, archive, media_list,
-                 info, levels):
+                 info):
 
         (prev, next, page_number, total_pages) = info
         photo = db.get_object_from_handle(handle)
-        BasePage.__init__(self, title, options, archive, media_list, levels,
+        BasePage.__init__(self, title, options, archive, media_list,
                           photo.gramps_id)
         of = self.create_link_file(handle,"img")
-
-        newpath = photo.gramps_id + os.path.splitext(photo.get_path())[1]
-        newpath = os.path.join('images',newpath)
-        if self.archive:
-            imagefile = open(photo.get_path(),"r")
-            self.archive.add_file(newpath,time.time(),imagefile)
-            imagefile.close()
+            
+        mime_type = photo.get_mime_type()
+        note_only = mime_type == None
+        
+        if not note_only:
+            newpath = self.copy_source_file(handle, photo)
+            target_exists = newpath != None
         else:
-            shutil.copyfile(photo.get_path(),
-                            os.path.join(self.html_dir,newpath))
+            target_exists = False
 
-
-        to_path = photo.gramps_id + os.path.splitext(photo.get_path())[1]
-        to_path = os.path.join('thumb',to_path)
-        from_path = ImgManip.get_thumbnail_path(photo.get_path())
-        if self.archive:
-            imagefile = open(from_path,"r")
-            self.archive.add_file(to_path,time.time(),imagefile)
-            imagefile.close()
-        else:
-            shutil.copyfile(from_path,os.path.join(self.html_dir,to_path))
-
+        self.copy_thumbnail(handle, photo)
+            
         self.page_title = photo.get_description()
         self.display_header(of,db, "%s - %s" % (_('Gallery'), title),
                             get_researcher().get_name(),up=True)
         
-        of.write('<div class="summaryarea">\n')
+        of.write('<div id="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % self.page_title)
 
         # gallery navigation
@@ -761,37 +804,121 @@ class MediaPage(BasePage):
         if next:
             self.media_ref_link(of,next,_('Next'),True)
 
-        of.write('</div><br>\n')
+        of.write('</div>\n')
 
-        mime_type = photo.get_mime_type()
-        if mime_type and mime_type.startswith("image"):
-            try:
-                of.write('<div align="center">\n')
-                of.write('<img border="0" ')
-                of.write('src="../../%s" alt="%s"/>' % (newpath, self.page_title))
+        if mime_type:
+            if mime_type.startswith("image/"):
+                of.write('<div class="centered">\n')
+                if target_exists:
+                    of.write('<img ')
+                    of.write('src="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
+                else:
+                    of.write('<br /><span>(%s)</span>' % _("The file has been moved or deleted"))
                 of.write('</div>\n')
-            except (IOError,OSError),msg:
-                WarningDialog(_("Could not add photo to page"),str(msg))
+            else:
+                import tempfile
 
-        of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
-        of.write('border="0">\n')
+                dirname = tempfile.mkdtemp()
+                thmb_path = os.path.join(dirname,"temp.png")
+                if ImgManip.run_thumbnailer(mime_type, photo.get_path(), thmb_path, 320):
+                    try:
+                        path = "%s/%s.png" % (self.build_path(photo.handle,"preview"),photo.handle)
+                        self.store_file(archive, self.html_dir, thmb_path, path)
+                        os.unlink(thmb_path)
+                    except IOError:
+                        path = os.path.join('images','document.png')
+                else:
+                    path = os.path.join('images','document.png')
+                os.rmdir(dirname)
+                    
+                of.write('<div class="centered">\n')
+                if target_exists:
+                    of.write('<a href="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
+                of.write('<img ')
+                of.write('src="../../../%s" alt="%s" />\n' % (path, self.page_title))
+                if target_exists:
+                    of.write('</a>\n')
+                else:
+                    of.write('<br /><span>(%s)</span>' % _("The file has been moved or deleted"))
+                of.write('</div>\n')
+        else:
+            path = os.path.join('images','document.png')
+            of.write('<div class="centered">\n')
+            of.write('<img ')
+            of.write('src="../../../%s" alt="%s" />\n' % (path, self.page_title))
+            of.write('</div>\n')
+
+        of.write('<table class="infolist">\n')
 
         if not self.noid:
             of.write('<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
             of.write('<td class="data">%s</td>\n' % photo.gramps_id)
             of.write('</tr>\n')
-        of.write('<tr><td class="field">%s</td>\n' % _('MIME type'))
-        of.write('<td class="data">%s</td>\n' % photo.mime)
+        if not note_only:
+            of.write('<tr><td class="field">%s</td>\n' % _('MIME type'))
+            of.write('<td class="data">%s</td>\n' % photo.mime)
         of.write('</tr>\n')
         of.write('</table>\n')
         of.write('</div>\n')
 
         self.display_note_object(of, photo.get_note_object())
-        self.display_attr_list(of, photo.get_attribute_list())
+        self.display_attr_list(of, ReportUtils.sanitize_list( photo.get_attribute_list(), self.exclude_private))
         self.display_references(of,db,media_list)
         self.display_footer(of,db)
         self.close_file(of)
 
+    def copy_source_file(self,handle,photo):
+        ext = os.path.splitext(photo.get_path())[1]
+        to_dir = self.build_path(handle,'images')
+        newpath = os.path.join(to_dir,handle+ext)
+
+        try:
+            if self.archive:
+                self.archive.add(photo.get_path(),newpath)
+            else:
+                to_dir = os.path.join(self.html_dir,to_dir)
+                if not os.path.isdir(to_dir):
+                    os.makedirs(to_dir)
+                shutil.copyfile(photo.get_path(),
+                                os.path.join(self.html_dir,newpath))
+            return newpath
+        except (IOError,OSError),msg:
+            WarningDialog(_("Missing media object"),str(msg))            
+            return None
+
+    def copy_thumbnail(self,handle,photo):
+        ext = os.path.splitext(photo.get_path())[1]
+        to_dir = self.build_path(handle,'thumb')
+        to_path = os.path.join(to_dir,handle+".png")
+        if photo.get_mime_type():
+            from_path = ImgManip.get_thumbnail_path(photo.get_path(),photo.get_mime_type())
+            if not os.path.isfile(from_path):
+                from_path = os.path.join(const.dataDir,"document.png")
+        else:
+            from_path = os.path.join(const.dataDir,"document.png")
+            
+        if self.archive:
+            self.archive.add(from_path,to_path)
+        else:
+            to_dir = os.path.join(self.html_dir,to_dir)
+            dest = os.path.join(self.html_dir,to_path)
+            if not os.path.isdir(to_dir):
+                os.makedirs(to_dir)
+            try:
+                shutil.copyfile(from_path,dest)
+            except IOError:
+                print "Could not copy file"
+
+    def copy_preview_image(handle,photo):
+        base = '/desktop/gnome/thumbnailers/%s' % mtype.replace('/','@')
+        thumbnailer = GrampsKeys.client.get_string(base + '/command')
+        enable = GrampsKeys.client.get_bool(base + '/enable')
+        if thumbnailer and enable:
+            run_thumbnailer(thumbnailer,path,_build_thumb_path(path),320)
+            return path
+        else:
+            return None
+        
 #------------------------------------------------------------------------
 #
 # 
@@ -801,10 +928,11 @@ class SurnameListPage(BasePage):
     ORDER_BY_NAME = 0
     ORDER_BY_COUNT = 1
     def __init__(self, db, title, person_handle_list, options, archive,
-                 media_list, levels, order_by=ORDER_BY_NAME):
-        BasePage.__init__(self, title, options, archive, media_list, levels, "")
+                 media_list, order_by=ORDER_BY_NAME,filename="surnames"):
+        
+        BasePage.__init__(self, title, options, archive, media_list, "")
         if order_by == self.ORDER_BY_NAME:
-            of = self.create_file("surnames")
+            of = self.create_file(filename)
             self.display_header(of,db,_('Surnames'),get_researcher().get_name())
             of.write('<h3>%s</h3>\n' % _('Surnames'))
         else:
@@ -819,22 +947,23 @@ class SurnameListPage(BasePage):
             'will lead to a list of individuals in the '
             'database with this same surname.'))
 
-        of.write('<blockquote>\n')
-        of.write('<table class="infolist" cellspacing="0" ')
-        of.write('cellpadding="0" border="0">\n')
-        of.write('<tr><td class="field"><u>')
-        of.write('<b>%s</b></u></td>\n' % _('Letter'))
-        of.write('<td class="field"><u>')
-        of.write('<b><a href="%s.%s">%s</a></b></u></td>\n' % ("surnames", self.ext, _('Surname')))
-        of.write('<td class="field"><u>')
-        of.write('<b><a href="%s.%s">%s</a></b></u></td>\n' % ("surnames_count", self.ext, _('Number of people')))
-        of.write('</tr>\n')
+        of.write('<table class="infolist">\n<thead><tr>\n')
+        of.write('<th>%s</th>\n' % _('Letter'))
+
+        if not self.use_home and not self.use_intro:
+            of.write('<th><a href="%s.%s">%s</a></th>\n' % ("index", self.ext, _('Surname')))
+        else:
+            of.write('<th><a href="%s.%s">%s</a></th>\n' % ("surnames", self.ext, _('Surname')))
+
+        of.write('<th><a href="%s.%s">%s</a></th>\n' % ("surnames_count", self.ext, _('Number of people')))
+        of.write('</tr></thead>\n<tbody>\n')
 
         person_handle_list = sort_people(db,person_handle_list)
         if order_by == self.ORDER_BY_COUNT:
             temp_list = {}
             for (surname,data_list) in person_handle_list:
-                temp_list["%90d_%s" % (999999999-len(data_list),surname)] = (surname,data_list)
+                index_val = "%90d_%s" % (999999999-len(data_list),surname)
+                temp_list[index_val] = (surname,data_list)
             temp_keys = temp_list.keys()
             temp_keys.sort()
             person_handle_list = []
@@ -862,7 +991,7 @@ class SurnameListPage(BasePage):
                 last_surname = surname
             of.write('<td class="field">%d</td></tr>' % len(data_list))
             
-        of.write('</table>\n</blockquote>\n')
+        of.write('</tbody>\n</table>\n')
         self.display_footer(of,db)
         self.close_file(of)
         return
@@ -874,11 +1003,15 @@ class SurnameListPage(BasePage):
 #------------------------------------------------------------------------
 class IntroductionPage(BasePage):
 
-    def __init__(self, db, title, options, archive, media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels, "")
+    def __init__(self, db, title, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list, "")
         note_id = options.handler.options_dict['NWEBintronote']
 
-        of = self.create_file("introduction")
+        if self.use_home:
+            of = self.create_file("introduction")
+        else:
+            of = self.create_file("index")
+            
         author = get_researcher().get_name()
         self.display_header(of, db, _('Introduction'), author)
 
@@ -893,8 +1026,8 @@ class IntroductionPage(BasePage):
                     (newpath,thumb_path) = self.copy_media(obj,False)
                     self.store_file(archive,self.html_dir,obj.get_path(),
                                     newpath)
-                    of.write('<div align="center">\n')
-                    of.write('<img border="0" ')
+                    of.write('<div class="centered">\n')
+                    of.write('<img ')
                     of.write('src="%s" ' % newpath)
                     of.write('alt="%s" />' % obj.get_description())
                     of.write('</div>\n')
@@ -921,8 +1054,8 @@ class IntroductionPage(BasePage):
 #------------------------------------------------------------------------
 class HomePage(BasePage):
 
-    def __init__(self, db, title, options, archive, media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels, "")
+    def __init__(self, db, title, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list, "")
 
         note_id = options.handler.options_dict['NWEBhomenote']
         of = self.create_file("index")
@@ -940,8 +1073,8 @@ class HomePage(BasePage):
                     (newpath,thumb_path) = self.copy_media(obj,False)
                     self.store_file(archive,self.html_dir,obj.get_path(),
                                     newpath)
-                    of.write('<div align="center">\n')
-                    of.write('<img border="0" ')
+                    of.write('<div class="centered">\n')
+                    of.write('<img ')
                     of.write('src="%s" ' % newpath)
                     of.write('alt="%s" />' % obj.get_description())
                     of.write('</div>\n')
@@ -968,9 +1101,8 @@ class HomePage(BasePage):
 #------------------------------------------------------------------------
 class SourcesPage(BasePage):
 
-    def __init__(self, db, title, handle_set, options, archive, media_list,
-                 levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels, "")
+    def __init__(self, db, title, handle_set, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list, "")
 
         of = self.create_file("sources")
         author = get_researcher().get_name()
@@ -984,7 +1116,7 @@ class SourcesPage(BasePage):
 
         of.write('<h3>%s</h3>\n<p>' % _('Sources'))
         of.write(msg)
-        of.write('</p>\n<blockquote>\n<table class="infolist">\n')
+        of.write('</p>\n<table class="infolist">\n')
 
         index = 1
         for handle in handle_list:
@@ -995,7 +1127,7 @@ class SourcesPage(BasePage):
             of.write('</td></tr>\n')
             index += 1
             
-        of.write('</table>\n</blockquote>\n')
+        of.write('</table>\n')
 
         self.display_footer(of,db)
         self.close_file(of)
@@ -1008,21 +1140,22 @@ class SourcesPage(BasePage):
 class SourcePage(BasePage):
 
     def __init__(self, db, title, handle, src_list, options, archive,
-                 media_list, levels):
+                 media_list):
         source = db.get_source_from_handle( handle)
-        BasePage.__init__(self, title, options, archive, media_list, levels,
+        BasePage.__init__(self, title, options, archive, media_list,
                           source.gramps_id)
         of = self.create_link_file(source.get_handle(),"src")
         self.page_title = source.get_title()
         self.display_header(of,db,"%s - %s" % (_('Sources'), self.page_title),
                             get_researcher().get_name(),up=True)
 
-        self.display_first_image_as_thumbnail(of, db, source.get_media_list())
+        media_list = source.get_media_list()
+        media_list = ReportUtils.sanitize_list( media_list, self.exclude_private)
+        self.display_first_image_as_thumbnail(of, db, media_list)
 
-        of.write('<div class="summaryarea">\n')
+        of.write('<div id="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % self.page_title)
-        of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
-        of.write('border="0">\n')
+        of.write('<table class="infolist">\n')
 
         for (label,val) in [(_('GRAMPS ID'),source.gramps_id),
                             (_('Author'),source.author),
@@ -1036,8 +1169,7 @@ class SourcePage(BasePage):
         of.write('</table>\n')
         of.write('</div>\n')
 
-        source_media = source.get_media_list()
-        self.display_additional_images_as_gallery(of, db, source_media)
+        self.display_additional_images_as_gallery(of, db, media_list)
         self.display_note_object(of, source.get_note_object())
         self.display_references(of,db,src_list[source.handle])
         self.display_footer(of,db)
@@ -1050,8 +1182,8 @@ class SourcePage(BasePage):
 #------------------------------------------------------------------------
 class GalleryPage(BasePage):
 
-    def __init__(self, db, title, handle_set, options, archive, media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels, "")
+    def __init__(self, db, title, handle_set, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list, "")
 
         of = self.create_file("gallery")
         self.display_header(of,db, _('Gallery'), get_researcher().get_name())
@@ -1060,8 +1192,8 @@ class GalleryPage(BasePage):
 
         of.write(_("This page contains an index of all the media objects "
                    "in the database, sorted by their title. Clicking on "
-                   "the title will take you to that media object's page"))
-        of.write('</p>\n<blockquote>\n<table class="infolist">\n')
+                   "the title will take you to that media object's page."))
+        of.write('</p>\n<table class="infolist">\n')
 
         self.db = db
 
@@ -1076,7 +1208,7 @@ class GalleryPage(BasePage):
             of.write('</td></tr>\n')
             index += 1
             
-        of.write('</table>\n</blockquote>\n')
+        of.write('</table>\n')
 
         self.display_footer(of,db)
         self.close_file(of)
@@ -1097,8 +1229,8 @@ class GalleryPage(BasePage):
 #------------------------------------------------------------------------
 class DownloadPage(BasePage):
 
-    def __init__(self, db, title, options, archive, media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels, "")
+    def __init__(self, db, title, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list, "")
 
         of = self.create_file("download")
         self.display_header(of,db,_('Download'),
@@ -1116,14 +1248,14 @@ class DownloadPage(BasePage):
 #------------------------------------------------------------------------
 class ContactPage(BasePage):
 
-    def __init__(self, db, title, options, archive, media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels, "")
+    def __init__(self, db, title, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list, "")
 
         of = self.create_file("contact")
         self.display_header(of,db,_('Contact'),
                             get_researcher().get_name())
 
-        of.write('<div class="summaryarea">\n')
+        of.write('<div id="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % _('Contact'))
 
         note_id = options.handler.options_dict['NWEBcontact']
@@ -1137,12 +1269,14 @@ class ContactPage(BasePage):
                     (newpath,thumb_path) = self.copy_media(obj,False)
                     self.store_file(archive,self.html_dir,obj.get_path(),
                                     newpath)
+
+                    dirpath = self.build_path(note_id,'img')
+
                     of.write('<div class="rightwrap">\n')
-                    of.write('<table cellspacing="0" cellpadding="0" ')
-                    of.write('border="0"><tr>')
+                    of.write('<table><tr>')
                     of.write('<td height="205">')
-                    of.write('<img border="0" height="200" ')
-                    of.write('src="%s.%s" ' % (note_id,self.ext))
+                    of.write('<img height="200" ')
+                    of.write('src="%s" ' % thumb_path)
                     of.write('alt="%s" />' % obj.get_description())
                     of.write('</td></tr></table>\n')
                     of.write('</div>\n')
@@ -1151,13 +1285,21 @@ class ContactPage(BasePage):
 
         r = get_researcher()
 
-        of.write('<blockquote>\n')
-        of.write('%s<br>\n' % r.name)
-        of.write('%s<br>\n' % r.addr)
-        of.write('%s, %s, %s<br>\n' % (r.city,r.state,r.postal))
-        of.write('%s<br>\n' % r.country)
-        of.write('%s<br>\n' % r.email)
-        of.write('</blockquote>\n')
+        of.write('<div id="researcher">\n')
+        if r.name:
+            of.write('%s<br />\n' % r.name.replace(',,,',''))
+        if r.addr:
+            of.write('%s<br />\n' % r.addr)
+
+        text = "".join([r.city,r.state,r.postal])
+        if text:
+            of.write('%s<br />\n' % text)
+        if r.country:
+            of.write('%s<br />\n' % r.country)
+        if r.email:
+            of.write('%s<br />\n' % r.email)
+        of.write('</div>\n')
+        of.write('<div class="fullclear"></div>\n')
 
         if obj:
             nobj = obj.get_note_object()
@@ -1166,14 +1308,11 @@ class ContactPage(BasePage):
                 text = nobj.get()
     
                 if format:
-                    text = u"<pre>" + u"<br>".join(text.split("\n"))+u"</pre>"
+                    text = u"<pre>" + u"<br />".join(text.split("\n"))+u"</pre>"
                 else:
                     text = u"</p><p>".join(text.split("\n"))
                 of.write('<p>%s</p>\n' % text)
-            else:
-                of.write('<br><br><br><br>\n')
-        else:
-            of.write('<br><br><br><br>\n')
+
         of.write('</div>\n')
 
         self.display_footer(of,db)
@@ -1192,11 +1331,12 @@ class IndividualPage(BasePage):
         RelLib.Person.UNKNOWN : const.unknown,
         }
     
-    def __init__(self, db, person, title, ind_list, place_list, src_list,
-                 options, archive, media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels,
+    def __init__(self, db, person, title, ind_list, restrict_list,
+                 place_list, src_list, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list,
                           person.gramps_id)
         self.person = person
+        self.restrict = person.handle in restrict_list
         self.db = db
         self.ind_list = ind_list
         self.src_list = src_list
@@ -1213,37 +1353,202 @@ class IndividualPage(BasePage):
         self.display_attr_list(of, self.person.get_attribute_list())
         self.display_ind_parents(of)
         self.display_ind_relationships(of)
-        
-        media_list = []
-        photolist = self.person.get_media_list()
-        if len(photolist) > 1:
-            media_list = photolist[1:]
-        for handle in self.person.get_family_handle_list():
-            family = self.db.get_family_from_handle(handle)
-            media_list = media_list + family.get_media_list()
 
-        self.display_additional_images_as_gallery(of, db, media_list)
+        if not self.restrict:
+            media_list = []
+            photolist = ReportUtils.sanitize_list(self.person.get_media_list(),
+                                              self.exclude_private)
+            if len(photolist) > 1:
+                media_list = photolist[1:]
+            for handle in self.person.get_family_handle_list():
+                family = self.db.get_family_from_handle(handle)
+                media_list += ReportUtils.sanitize_list(family.get_media_list(),
+                                                    self.exclude_private)
+            for handle in self.person.get_event_list():
+                event = self.db.get_event_from_handle(handle)
+                media_list += ReportUtils.sanitize_list(event.get_media_list(),
+                                                        self.exclude_private)
+
+            self.display_additional_images_as_gallery(of, db, media_list)
+            
         self.display_note_object(of, self.person.get_note_object())
         self.display_url_list(of, self.person.get_url_list())
         self.display_ind_sources(of)
         self.display_ind_pedigree(of)
+        if self.usegraph:
+            self.display_tree(of)
         self.display_footer(of,db)
         self.close_file(of)
 
+    def draw_box(self,of,center,col,person):
+        top = center - HEIGHT/2
+        xoff = XOFFSET+col*(WIDTH+HGAP)
+        
+        of.write('<div class="boxbg" style="top: %dpx; left: %dpx;">\n' % (top,xoff+1))
+        of.write('<table><tr><td class="box">')
+        person_link = person.handle in self.ind_list
+        if person_link:
+            person_name = nameof(person,self.exclude_private)
+            path = self.build_path(person.handle,"ppl",False)
+            fname = self.build_name(path,person.handle)
+            self.person_link(of, fname, person_name)
+        else:
+            of.write(nameof(person,self.exclude_private))
+        of.write('</td></tr></table>\n')
+        of.write('</div>\n')
+        of.write('<div class="shadow" style="top: %dpx; left: %dpx;"></div>\n' % (top+SHADOW,xoff+SHADOW))
+        of.write('<div class="border" style="top: %dpx; left: %dpx;"></div>\n' % (top-1, xoff))
+
+    def extend_line(self,of,y0,x0):
+        of.write('<div class="bvline" style="top: %dpx; left: %dpx; width: %dpx;"></div>\n' %
+                 (y0,x0,HGAP/2))
+        of.write('<div class="gvline" style="top: %dpx; left: %dpx; width: %dpx;"></div>\n' % 
+                 (y0+SHADOW,x0,HGAP/2+SHADOW))
+
+    def connect_line(self,of,y0,y1,col):
+        if y0 < y1:
+            y = y0
+        else:
+            y = y1
+            
+        x0 = XOFFSET + col * WIDTH + (col-1)*HGAP + HGAP/2
+        of.write('<div class="bvline" style="top: %dpx; left: %dpx; width: %dpx;"></div>\n' %
+                 (y1,x0,HGAP/2))
+        of.write('<div class="gvline" style="top: %dpx; left: %dpx; width: %dpx;"></div>\n' %
+                 (y1+SHADOW,x0+SHADOW,HGAP/2+SHADOW))
+        of.write('<div class="bhline" style="top: %dpx; left: %dpx; height: %dpx;"></div>\n' %
+                 (y,x0,abs(y0-y1)))
+        of.write('<div class="ghline" style="top: %dpx; left: %dpx; height: %dpx;"></div>\n' %
+                 (y+SHADOW,x0+SHADOW,abs(y0-y1)))
+
+    def draw_connected_box(self,of,center1,center2,col,handle):
+        if not handle:
+            return None
+        person = self.db.get_person_from_handle(handle)
+        if self.exclude_private:
+            person = ReportUtils.sanitize_person( self.db, person)
+        self.draw_box(of,center2,col,person)
+        self.connect_line(of,center1,center2,col)
+        return person
+    
+    def display_tree(self,of):
+        family_handle = self.person.get_main_parents_family_handle()
+        if not family_handle:
+            return
+        family = self.db.get_family_from_handle(family_handle)
+        
+        of.write('<div id="tree">\n')
+        of.write('<h4>%s</h4>\n' % _('Ancestors'))
+        of.write('<div style="position: relative;" align="left">\n')
+
+        # self - first box, centered, flush left
+
+        GENERATIONS = 4
+
+        max_in_col = 1 <<(GENERATIONS-1)
+        max_size = HEIGHT*max_in_col + VGAP*(max_in_col+1)
+
+        center0 = max_size / 2
+        self.draw_box(of,center0,0,self.person)
+        self.extend_line(of,center0,XOFFSET+WIDTH)
+
+        father_handle = family.get_father_handle()
+        if father_handle:
+            center1 = int(max_size/4)
+            father = self.draw_connected_box(of,center0,center1,1,father_handle)
+
+            f_family_handle = father.get_main_parents_family_handle()
+            if f_family_handle:
+                self.extend_line(of,center1,XOFFSET+2*WIDTH+HGAP)
+                f_family = self.db.get_family_from_handle(f_family_handle)
+
+                center2 = int(max_size/8)
+                f_father = self.draw_connected_box(of,center1,center2,2,f_family.get_father_handle())
+
+                if f_father:
+                    ff_family_handle = f_father.get_main_parents_family_handle()
+                    if ff_family_handle:
+                        self.extend_line(of,center2,XOFFSET+3*WIDTH+2*HGAP)
+                        ff_family = self.db.get_family_from_handle(ff_family_handle)
+
+                        center3 = int(max_size)/16
+                        self.draw_connected_box(of,center2,center3,3,ff_family.get_father_handle())
+
+                        center3 = int(max_size)/16*3
+                        self.draw_connected_box(of,center2,center3,3,ff_family.get_mother_handle())
+
+                center2 = int(max_size/8)*3
+                f_mother = self.draw_connected_box(of,center1,center2,2,f_family.get_mother_handle())
+
+                if f_mother:
+                    ff_family_handle = f_mother.get_main_parents_family_handle()
+                    if ff_family_handle:
+                        self.extend_line(of,center2,XOFFSET+3*WIDTH+2*HGAP)
+                        ff_family = self.db.get_family_from_handle(ff_family_handle)
+
+                        center3 = int(max_size)/16*5
+                        self.draw_connected_box(of,center2,center3,3,ff_family.get_father_handle())
+
+                        center3 = int(max_size)/16*7
+                        self.draw_connected_box(of,center2,center3,3,ff_family.get_mother_handle())
+
+        mother_handle = family.get_mother_handle()
+        if mother_handle:
+            center1 = int(max_size/4)*3
+            mother = self.draw_connected_box(of,center0,center1,1,mother_handle)
+
+            m_family_handle = mother.get_main_parents_family_handle()
+            if m_family_handle:
+                self.extend_line(of,center1,XOFFSET+2*WIDTH+HGAP)
+                m_family = self.db.get_family_from_handle(m_family_handle)
+
+                center2 = int(max_size/8)*5
+                f_father = self.draw_connected_box(of,center1,center2,2,m_family.get_father_handle())
+
+                if f_father:
+                    ff_family_handle = f_father.get_main_parents_family_handle()
+                    if ff_family_handle:
+                        self.extend_line(of,center2,XOFFSET+3*WIDTH+2*HGAP)
+                        ff_family = self.db.get_family_from_handle(ff_family_handle)
+
+                        center3 = int(max_size)/16*9
+                        self.draw_connected_box(of,center2,center3,3,ff_family.get_father_handle())
+
+                        center3 = int(max_size)/16*11
+                        self.draw_connected_box(of,center2,center3,3,ff_family.get_mother_handle())
+
+                center2 = int(max_size/8)*7
+                f_mother = self.draw_connected_box(of,center1,center2,2,m_family.get_mother_handle())
+
+                if f_mother:
+                    ff_family_handle = f_mother.get_main_parents_family_handle()
+                    if ff_family_handle:
+                        self.extend_line(of,center2,XOFFSET+3*WIDTH+2*HGAP)
+                        ff_family = self.db.get_family_from_handle(ff_family_handle)
+
+                        center3 = int(max_size)/16*13
+                        self.draw_connected_box(of,center2,center3,3,ff_family.get_father_handle())
+
+                        center3 = int(max_size)/16*15
+                        self.draw_connected_box(of,center2,center3,3,ff_family.get_mother_handle())
+
+        of.write('</div>\n')
+        of.write('<table style="height: %dpx; width: %dx;"><tr><td></td></tr></table>\n' %
+                 (max_size,3*WIDTH+2*HGAP+2*XOFFSET))
+
     def display_ind_sources(self,of):
         sreflist = self.src_refs + self.person.get_source_references()
-        if not sreflist:
+        if not sreflist or self.restrict:
             return
+        of.write('<div id="sourcerefs">\n')
         of.write('<h4>%s</h4>\n' % _('Source References'))
-        of.write('<hr>\n')
-        of.write('<table class="infolist" cellpadding="0" ')
-        of.write('cellspacing="0" border="0">\n')
+        of.write('<table class="infolist">\n')
 
         index = 1
         for sref in sreflist:
             lnk = (self.cur_name, self.page_title, self.gid)
             shandle = sref.get_base_handle()
-            if self.src_list.has_key(lnk):
+            if self.src_list.has_key(shandle):
                 if lnk not in self.src_list[shandle]:
                     self.src_list[shandle].append(lnk)
             else:
@@ -1255,7 +1560,6 @@ class IndividualPage(BasePage):
             of.write('<a name="sref%d">%d.</a></td>' % (index,index))
             of.write('<td class="field">')
             self.source_link(of,source.handle,title,source.gramps_id,True)
-            of.write('</a>')
             tmp = []
             for (label,data) in [(_('Page'),sref.page),
                                  (_('Confidence'),const.confidence[sref.confidence]),
@@ -1263,10 +1567,11 @@ class IndividualPage(BasePage):
                 if data:
                     tmp.append("%s: %s" % (label,data))
             if len(tmp) > 0:
-                of.write('<br>' + '<br>'.join(tmp))
+                of.write('<br />' + '<br />'.join(tmp))
             of.write('</td></tr>\n')
             index += 1
         of.write('</table>\n')
+        of.write('</div>\n')
 
     def display_ind_pedigree(self,of):
 
@@ -1277,50 +1582,54 @@ class IndividualPage(BasePage):
             father_id = family.get_father_handle()
             mother_id = family.get_mother_handle()
             mother = self.db.get_person_from_handle(mother_id)
+            if mother and self.exclude_private:
+                mother = ReportUtils.sanitize_person( self.db, mother)
             father = self.db.get_person_from_handle(father_id)
+            if father and self.exclude_private:
+                father = ReportUtils.sanitize_person( self.db, father)
         else:
             family = None
             father = None
             mother = None
         
+        of.write('<div id="pedigree">\n')
         of.write('<h4>%s</h4>\n' % _('Pedigree'))
-        of.write('<hr>\n<br>\n')
-        of.write('<table class="pedigree">\n')
-        of.write('<tr><td>\n')
+        of.write('<div class="pedigreebox">\n')
         if father or mother:
-            of.write('<blockquote class="pedigreeind">\n')
+            of.write('<div class="pedigreegen">\n')
             if father:
                 self.pedigree_person(of,father)
             if mother:
-                self.pedigree_person(of,mother)
-        of.write('<blockquote class="pedigreeind">\n')
+                self.pedigree_person(of,mother,True)
+        of.write('<div class="pedigreegen">\n')
         if family:
             for child_handle in family.get_child_handle_list():
                 if child_handle == self.person.handle:
-                    of.write('| <strong>%s</strong><br>\n' % self.name)
+                    of.write('<span class="thisperson">%s</span><br />\n' % self.name)
                     self.pedigree_family(of)
                 else:
                     child = self.db.get_person_from_handle(child_handle)
+                    if child and self.exclude_private:
+                        child = ReportUtils.sanitize_person( self.db, child)
                     self.pedigree_person(of,child)
         else:
-            of.write('| <strong>%s</strong><br>\n' % self.name)
+            of.write('<span class="thisperson">%s</span><br />\n' % self.name)
             self.pedigree_family(of)
 
-        of.write('</blockquote>\n')
+        of.write('</div>\n')
         if father or mother:
-            of.write('</blockquote>\n')
-        of.write('</td>\n</tr>\n</table>\n')
+            of.write('</div>\n')
+        of.write('</div>\n</div>\n')
 
     def display_ind_general(self,of):
         self.page_title = self.sort_name
         self.display_first_image_as_thumbnail(of, self.db,
                                               self.person.get_media_list())
 
-        of.write('<div class="summaryarea">\n')
+        of.write('<div id="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % self.sort_name)
             
-        of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
-        of.write('border="0">\n')
+        of.write('<table class="infolist">\n')
 
         # GRAMPS ID
         if not self.noid:
@@ -1333,22 +1642,24 @@ class IndividualPage(BasePage):
             pname = name_nameof(name,self.exclude_private)
             of.write('<tr><td class="field">%s</td>\n' % _(name.get_type()))
             of.write('<td class="data">%s' % pname)
-            nshl = []
-            for nsref in name.get_source_references():
-                self.src_refs.append(nsref)
-                nsh = nsref.get_base_handle()
-                if self.src_list.has_key(nsh):
-                    if self.person.handle not in self.src_list[nsh]:
-                        self.src_list[nsh].append(self.person.handle)
-                else:
-                    self.src_list[nsh] = [self.person.handle]
-                nshl.append(nsref)
-            if nshl:
-                of.write( " <sup>")
-                for nsh in nshl:
-                    index = self.src_refs.index(nsh)+1
-                    of.write(' <a href="#sref%d">%d</a>' % (index,index))
-                of.write( " </sup>")
+            if not self.restrict:
+                nshl = []
+                for nsref in name.get_source_references():
+                    self.src_refs.append(nsref)
+                    nsh = nsref.get_base_handle()
+                    lnk = (self.cur_name, self.page_title, self.gid)
+                    if self.src_list.has_key(nsh):
+                        if self.person.handle not in self.src_list[nsh]:
+                            self.src_list[nsh].append(lnk)
+                    else:
+                        self.src_list[nsh] = [lnk]
+                    nshl.append(nsref)
+                if nshl:
+                    of.write( " <sup>")
+                    for nsh in nshl:
+                        index = self.src_refs.index(nsh)+1
+                        of.write(' <a href="#sref%d">%d</a>' % (index,index))
+                    of.write( " </sup>")
 
             of.write('</td>\n</tr>\n')
 
@@ -1362,15 +1673,12 @@ class IndividualPage(BasePage):
         all_events = [handle for handle in [self.person.get_birth_handle(),
                                             self.person.get_death_handle()]
                       if handle] + self.person.get_event_list()
-        print all_events
-
-        if not all_events:
+        if not all_events or self.restrict:
             return
         
+        of.write('<div id="events">\n')
         of.write('<h4>%s</h4>\n' % _('Events'))
-        of.write('<hr>\n')
-        of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
-        of.write('border="0">\n')
+        of.write('<table class="infolist">\n')
 
         # Birth
         handle = self.person.get_birth_handle()
@@ -1397,10 +1705,13 @@ class IndividualPage(BasePage):
             of.write('</td>\n')
             of.write('</tr>\n')
         of.write('</table>\n')
+        of.write('</div>\n')
 
     def display_child_link(self, of, child_handle):
         use_link = child_handle in self.ind_list
         child = self.db.get_person_from_handle(child_handle)
+        if self.exclude_private:
+            child = ReportUtils.sanitize_person( self.db, child)
         gid = child.get_gramps_id()
         if use_link:
             child_name = nameof(child, self.exclude_private)
@@ -1409,11 +1720,13 @@ class IndividualPage(BasePage):
                              child_name, gid)
         else:
             of.write(nameof(child,self.exclude_private))
-        of.write(u"<br>\n")
+        of.write(u"<br />\n")
 
     def display_parent(self, of, handle, title, rel):
         use_link = handle in self.ind_list 
         person = self.db.get_person_from_handle(handle)
+        if self.exclude_private:
+            person = ReportUtils.sanitize_person( self.db, person)
         of.write('<td class="field">%s</td>\n' % title)
         of.write('<td class="data">')
         val = person.gramps_id
@@ -1434,10 +1747,9 @@ class IndividualPage(BasePage):
         if not parent_list:
             return
         
+        of.write('<div id="parents">\n')
         of.write('<h4>%s</h4>\n' % _("Parents"))
-        of.write('<hr>\n')
-        of.write('<table class="infolist" cellpadding="0" ')
-        of.write('cellspacing="0" border="0">\n')
+        of.write('<table class="infolist">\n')
 
         first = True
         if parent_list:
@@ -1451,12 +1763,14 @@ class IndividualPage(BasePage):
 
                 father_handle = family.get_father_handle()
                 if father_handle:
+                    of.write('<tr>\n')
                     self.display_parent(of,father_handle,_('Father'),frel)
-                of.write('<tr>\n')
+                    of.write('</tr>\n')
                 mother_handle = family.get_mother_handle()
                 if mother_handle:
+                    of.write('<tr>\n')
                     self.display_parent(of,mother_handle,_('Mother'),mrel)
-                of.write('</tr>\n')
+                    of.write('</tr>\n')
                 first = False
                 childlist = family.get_child_handle_list()
                 if len(childlist) > 1:
@@ -1469,16 +1783,16 @@ class IndividualPage(BasePage):
                     of.write('</td>\n</tr>\n')
             of.write('<tr><td colspan="3">&nbsp;</td></tr>\n')
         of.write('</table>\n')
+        of.write('</div>\n')
 
     def display_ind_relationships(self,of):
         family_list = self.person.get_family_handle_list()
         if not family_list:
             return
         
+        of.write('<div id="families">\n')
         of.write('<h4>%s</h4>\n' % _("Families"))
-        of.write('<hr>\n')
-        of.write('<table class="infolist" cellpadding="0" ')
-        of.write('cellspacing="0" border="0">\n')
+        of.write('<table class="infolist">\n')
 
         first = True
         for family_handle in family_list:
@@ -1494,6 +1808,7 @@ class IndividualPage(BasePage):
                     self.display_child_link(of,child_handle)
                 of.write('</td>\n</tr>\n')
         of.write('</table>\n')
+        of.write('</div>\n')
 
     def display_spouse(self,of,family,first=True):
         gender = self.person.get_gender()
@@ -1512,6 +1827,8 @@ class IndividualPage(BasePage):
         spouse_id = ReportUtils.find_spouse(self.person,family)
         if spouse_id:
             spouse = self.db.get_person_from_handle(spouse_id)
+            if self.exclude_private:
+                spouse = ReportUtils.sanitize_person( self.db, spouse)
             name = nameof(spouse,self.exclude_private)
         else:
             name = _("unknown")
@@ -1533,8 +1850,13 @@ class IndividualPage(BasePage):
                 of.write(name)
         of.write('</td>\n</tr>\n')
 
+        if self.restrict:
+            return
+        
         for event_id in family.get_event_list():
             event = self.db.get_event_from_handle(event_id)
+            if self.exclude_private and event.private:
+                continue
 
             of.write('<tr><td>&nbsp;</td>\n')
             of.write('<td class="field">%s</td>\n' % _(event.get_name()))
@@ -1542,11 +1864,11 @@ class IndividualPage(BasePage):
             of.write(self.format_event(event))
             of.write('</td>\n</tr>\n')
         for attr in family.get_attribute_list():
-            type = attr.get_type()
-            value = attr.get_value()
+            if self.exclude_private and attr.private:
+                continue
             of.write('<tr><td>&nbsp;</td>\n')
-            of.write('<td class="field">%s</td>' % _(type))
-            of.write('<td class="data">%s</td>\n</tr>\n' % value)
+            of.write('<td class="field">%s</td>' % _(attr.get_type()))
+            of.write('<td class="data">%s</td>\n</tr>\n' % attr.get_value())
         nobj = family.get_note_object()
         if nobj:
             of.write('<tr><td>&nbsp;</td>\n')
@@ -1555,15 +1877,14 @@ class IndividualPage(BasePage):
             format = nobj.get_format()
             text = nobj.get()
             if format:
-                of.write( u"<pre>" + u"<br>".join(text.split("\n"))+u"</pre>")
-            else:
-                of.write( u"</p><p>".join(text.split("\n")))
+                of.write( u"<pre>" + u"<br />".join(text.split("\n"))+u"</pre>")
+            else:                of.write( u"</p><p>".join(text.split("\n")))
             of.write('</td>\n</tr>\n')
             
-
-    def pedigree_person(self,of,person,bullet='|'):
+    def pedigree_person(self,of,person,is_spouse=False):
         person_link = person.handle in self.ind_list
-        of.write('%s ' % bullet)
+        if is_spouse:
+            of.write('<span class="spouse">')
         if person_link:
             person_name = nameof(person,self.exclude_private)
             path = self.build_path(person.handle,"ppl",False)
@@ -1571,7 +1892,9 @@ class IndividualPage(BasePage):
             self.person_link(of, fname, person_name)
         else:
             of.write(nameof(person,self.exclude_private))
-        of.write('<br>\n')
+        if is_spouse:
+            of.write('</span>')
+        of.write('<br />\n')
 
     def pedigree_family(self,of):
         for family_handle in self.person.get_family_handle_list():
@@ -1579,20 +1902,26 @@ class IndividualPage(BasePage):
             spouse_handle = ReportUtils.find_spouse(self.person,rel_family)
             if spouse_handle:
                 spouse = self.db.get_person_from_handle(spouse_handle)
-                self.pedigree_person(of,spouse,'&bull;')
+                if self.exclude_private:
+                    spouse = ReportUtils.sanitize_person( self.db, spouse)
+                self.pedigree_person(of,spouse,True)
             childlist = rel_family.get_child_handle_list()
             if childlist:
-                of.write('<blockquote class="pedigreeind">\n')
+                of.write('<div class="pedigreegen">\n')
                 for child_handle in childlist:
                     child = self.db.get_person_from_handle(child_handle)
+                    if self.exclude_private:
+                        child = ReportUtils.sanitize_person( self.db, child)
                     self.pedigree_person(of,child)
-                of.write('</blockquote>\n')
+                of.write('</div>\n')
 
     def format_event(self,event):
         gid_list = []
         lnk = (self.cur_name, self.page_title, self.gid)
 
         for sref in event.get_source_references():
+            if self.exclude_private and sref.private:
+                continue
             handle = sref.get_base_handle()
             gid_list.append(sref)
 
@@ -1696,12 +2025,14 @@ class WebReport(Report.Report):
         self.noid = options.handler.options_dict['NWEBnoid']
         self.title = options.handler.options_dict['NWEBtitle']
         self.sort = Sort.Sort(self.database)
+        self.inc_gallery = bool(options.handler.options_dict['NWEBgallery'])
         self.inc_contact = options.handler.options_dict['NWEBcontact'] != u""
         self.inc_download = options.handler.options_dict['NWEBdownload']
         self.user_header = options.handler.options_dict['NWEBheader']
         self.user_footer = options.handler.options_dict['NWEBfooter']
         self.use_archive = options.handler.options_dict['NWEBarchive']
         self.use_intro = options.handler.options_dict['NWEBintronote'] != u""
+        self.use_home = options.handler.options_dict['NWEBhomenote'] != u""
         
     def write_report(self):
         if not self.use_archive:
@@ -1742,166 +2073,251 @@ class WebReport(Report.Report):
                 ErrorDialog(_("Could not create the directory: %s") % \
                             image_dir_name)
                 return
-
-        progress = Utils.ProgressMeter(_("Generate HTML reports"),'')
-
-        ind_list = self.database.get_person_handles(sort_handles=False)
-        progress.set_pass(_('Filtering'),1)
-        ind_list = self.filter.apply(self.database,ind_list)
-
-        if not self.exclude_private:
-            new_list = []
-
-            progress.set_pass(_('Applying privacy filter'),len(ind_list))
-            for key in ind_list:
-                progress.step()
-                if not self.database.get_person_from_handle(key).private :
-                    new_list.append(key)
-            ind_list = new_list
-
-        years = time.localtime(time.time())[0] - self.restrict_years
-
-        if self.restrict:
-            new_list = []
-            progress.set_pass(_('Filtering living people'),len(ind_list))
-            for key in ind_list:
-                progress.step()
-                p = self.database.get_person_from_handle(key)
-                if not Utils.probably_alive(p,self.database,years):
-                    new_list.append(key)
-            ind_list = new_list
-
-        if self.use_archive:
-            import TarFile
-            archive = TarFile.TarFile(self.target_path)
-        else:
             archive = None
+        else:
+            if os.path.isdir(self.target_path):
+                ErrorDialog(_('Invalid file name'),
+                            _('The archive file must be a file, not a directory'))
+                return
+            try:
+                archive = tarfile.open(self.target_path,"w:gz")
+            except (OSError,IOError),value:
+                ErrorDialog(_("Could not create %s") % self.target_path,
+                            value)
+                return
 
+        self.progress = Utils.ProgressMeter(_("Generate HTML reports"),'')
+
+        # Build the person list
+        ind_list,restrict_list = self.build_person_list()
+
+        # Generate the CSS file if requested
         if self.css != '':
             self.write_css(archive,self.target_path,self.css)
-            
+
+        # Copy the Creative Commons icon if the a Creative Commons
+        # license is requested
         if 1 < self.copyright < 7:
             from_path = os.path.join(const.dataDir,"somerights20.gif")
             to_path = os.path.join("images","somerights20.gif")
             self.store_file(archive,self.target_path,from_path,to_path)
 
-        if len(ind_list) > 9000:
-            levels = 2
-        else:
-            levels = 1
-        
+        from_path = os.path.join(const.dataDir,"document.png")
+        to_path = os.path.join("images","document.png")
+        self.store_file(archive,self.target_path,from_path,to_path)
+
         place_list = {}
         source_list = {}
-        photo_list = {}
+        self.photo_list = {}
 
-        HomePage(self.database, self.title, self.options, archive,
-                 photo_list, levels)
-        if self.inc_contact:
-            ContactPage(self.database, self.title, self.options,
-                        archive, photo_list, levels)
-        if self.inc_download:
-            DownloadPage(self.database, self.title, self.options,
-                         archive, photo_list, levels)
+        self.base_pages(self.photo_list, archive)
+        self.person_pages(ind_list, restrict_list, place_list, source_list, archive)
+        self.surname_pages(ind_list, restrict_list, archive)
+        self.place_pages(place_list, source_list, archive)
+        self.source_pages(source_list, self.photo_list, archive)
+        if self.inc_gallery:
+            self.gallery_pages(self.photo_list, source_list, archive)
         
-        if self.use_intro:
-            IntroductionPage(self.database, self.title, self.options,
-                             archive, photo_list, levels)
+        if archive:
+            archive.close()
+        self.progress.close()
+
+    def build_person_list(self):
+        """
+        Builds the person list. Gets all the handles from the database
+        and then:
+
+          1) Applies the chosen filter.
+          2) Applies the privacy filter if requested.
+          3) Applies the living person filter if requested
+        """
+
+        # gets the person list and applies the requested filter
         
-        progress.set_pass(_('Creating individual pages'),len(ind_list))
+        ind_list = self.database.get_person_handles(sort_handles=False)
+        self.progress.set_pass(_('Filtering'),1)
+        ind_list = self.filter.apply(self.database,ind_list)
+        restrict_list = sets.Set()
+
+        # if private records need to be filtered out, strip out any person
+        # that has the private flag set.
+        if not self.exclude_private:
+            self.progress.set_pass(_('Applying privacy filter'),len(ind_list))
+            ind_list = filter(self.filter_private,ind_list)
+
+        years = time.localtime(time.time())[0]
+
+        # Filter out people who are restricted due to the living
+        # people rule
+        if self.restrict:
+            self.progress.set_pass(_('Filtering living people'),len(ind_list))
+            new_list = []
+            for key in ind_list:
+                self.progress.step()
+                p = self.database.get_person_from_handle(key)
+                if Utils.probably_alive(p,self.database,years,self.restrict_years):
+                    restrict_list.add(key)
+
+        return (ind_list,restrict_list)
+
+    def filter_private(self,key):
+        """
+        Return True if the person is not marked private.
+        """
+        self.progress.step()
+        return not self.database.get_person_from_handle(key).private
+
+    def write_css(self,archive,html_dir,css_file):
+        """
+        Copy the CSS file to the destination.
+        """
+        if archive:
+            fname = os.path.join(const.dataDir,css_file)
+            archive.add(fname,_NARRATIVE)
+        else:
+            shutil.copyfile(os.path.join(const.dataDir,css_file),
+                            os.path.join(html_dir,_NARRATIVE))
+
+    def person_pages(self, ind_list, restrict_list, place_list, source_list, archive):
+
+        self.progress.set_pass(_('Creating individual pages'),len(ind_list))
+
+        IndividualListPage(
+            self.database, self.title, ind_list, restrict_list, 
+            self.options, archive, self.photo_list)
+
         for person_handle in ind_list:
-            progress.step()
+            self.progress.step()
             person = self.database.get_person_from_handle(person_handle)
             
             if not self.exclude_private:
                 person = ReportUtils.sanitize_person(self.database,person)
 
-            idoc = IndividualPage(self.database, person, self.title,
-                                  ind_list, place_list, source_list,
-                                  self.options, archive, photo_list, levels)
+            IndividualPage(
+                self.database, person, self.title, ind_list, restrict_list,
+                place_list, source_list, self.options, archive, self.photo_list)
             
-        if len(ind_list) > 0:
-            IndividualListPage(self.database, self.title, ind_list,
-                               self.options, archive, photo_list, levels)
-            SurnameListPage(self.database, self.title, ind_list,
-                            self.options, archive, photo_list,
-                            levels, SurnameListPage.ORDER_BY_NAME)
-            SurnameListPage(self.database, self.title, ind_list,
-                            self.options, archive, photo_list,
-                            levels, SurnameListPage.ORDER_BY_COUNT)
-
+    def surname_pages(self, ind_list, restrict_list, archive):
+        """
+        Generates the surname related pages from list of individual
+        people.
+        """
+        
         local_list = sort_people(self.database,ind_list)
+        self.progress.set_pass(_("Creating surname pages"),len(local_list))
 
-        progress.set_pass(_("Creating surname pages"),len(local_list))
+        if self.use_home or self.use_intro:
+            defname="surnames"
+        else:
+            defname="index"
+
+        SurnameListPage(
+            self.database, self.title, ind_list, self.options, archive,
+            self.photo_list, SurnameListPage.ORDER_BY_NAME,defname)
+        
+        SurnameListPage(
+            self.database, self.title, ind_list, self.options, archive,
+            self.photo_list, SurnameListPage.ORDER_BY_COUNT,"surnames_count")
 
         for (surname,handle_list) in local_list:
-            SurnamePage(self.database, surname, handle_list,
-                        self.options, archive, photo_list, levels)
-            progress.step()
-
-        PlaceListPage(self.database, self.title, place_list,
-                      source_list,self.options, archive,
-                      photo_list, levels)
+            SurnamePage(self.database, surname, handle_list, restrict_list,
+                        self.options, archive, self.photo_list)
+            self.progress.step()
         
-        progress.set_pass(_("Creating place pages"),len(place_list))
+    def source_pages(self, source_list, photo_list, archive):
+        
+        self.progress.set_pass(_("Creating source pages"),len(source_list))
+
+        SourcesPage(self.database,self.title, source_list.keys(),
+                    self.options, archive, photo_list)
+
+        for key in list(source_list):
+            SourcePage(self.database, self.title, key, source_list,
+                       self.options, archive, photo_list)
+            self.progress.step()
+        
+
+    def place_pages(self, place_list, source_list, archive):
+
+        self.progress.set_pass(_("Creating place pages"),len(place_list))
+
+        PlaceListPage(
+            self.database, self.title, place_list, source_list, self.options,
+            archive, self.photo_list)
 
         for place in place_list.keys():
-            PlacePage(self.database, self.title, place, source_list,
-                      place_list, self.options, archive, photo_list,
-                      levels)
-            progress.step()
-            
-        SourcesPage(self.database,self.title, source_list.keys(),
-                    self.options, archive, photo_list, levels)
+            PlacePage(
+                self.database, self.title, place, source_list, place_list,
+                self.options, archive, self.photo_list)
+            self.progress.step()
 
-        progress.set_pass(_("Creating source pages"),len(source_list))
-        for key in list(source_list):
-            SourcePage(self.database,self.title, key, source_list,
-                       self.options, archive, photo_list, levels)
-            progress.step()
+    def gallery_pages(self, photo_list, source_list, archive):
+        
+        self.progress.set_pass(_("Creating media pages"),len(photo_list))
 
         GalleryPage(self.database, self.title, source_list,
-                    self.options, archive, photo_list, levels)
+                    self.options, archive, self.photo_list)
 
         prev = None
-        total = len(photo_list)
+        total = len(self.photo_list)
         index = 1
-        photo_keys = photo_list.keys()
-
-        progress.set_pass(_("Creating media pages"),len(photo_keys))
+        photo_keys = self.photo_list.keys()
+        photo_keys.sort(self.by_media_title)
         
         for photo_handle in photo_keys:
             if index == total:
                 next = None
             else:
                 next = photo_keys[index]
-            try:
-                MediaPage(self.database, self.title, photo_handle, source_list,
-                          self.options, archive, photo_list[photo_handle],
-                          (prev, next, index, total), levels)
-            except (IOError,OSError),msg:
-                WarningDialog(_("Missing media object"),str(msg))
-            progress.step()
+            MediaPage(self.database, self.title, photo_handle, source_list,
+                      self.options, archive, self.photo_list[photo_handle],
+                      (prev, next, index, total))
+            self.progress.step()
             prev = photo_handle
             index += 1
-        
-        if archive:
-            archive.close()
-        progress.close()
 
-    def write_css(self,archive,html_dir,css_file):
-        if archive:
-            f = open(os.path.join(const.dataDir,css_file),"r")
-            archive.add_file(_NARRATIVE,time.time(),f)
-            f.close()
+    def by_media_title(self,a_id,b_id):
+        """Sort routine for comparing two events by their dates. """
+        if not (a_id and b_id):
+            return False
+        a = self.database.get_object_from_handle(a_id)
+        b = self.database.get_object_from_handle(b_id)
+        return cmp(a.desc,b.desc)
+
+    def base_pages(self, photo_list, archive):
+
+        if self.use_home:
+            index_page = "index"
+            surname_page = "surnames"
+            intro_page = "introduction"
+        elif self.use_intro:
+            index_page = ""
+            surname_page = "surnames"
+            intro_page = "index"
         else:
-            shutil.copyfile(os.path.join(const.dataDir,css_file),
-                            os.path.join(html_dir,_NARRATIVE))
+            index_page = ""
+            surname_page = "index"
+            intro_page = ""
+
+        if self.use_home:
+            HomePage(self.database, self.title, self.options, archive, photo_list)
+
+        if self.inc_contact:
+            ContactPage(self.database, self.title, self.options, archive, photo_list)
+            
+        if self.inc_download:
+            DownloadPage(self.database, self.title, self.options, archive, photo_list)
+        
+        if self.use_intro:
+            IntroductionPage(self.database, self.title, self.options,
+                             archive, photo_list)
 
     def store_file(self,archive,html_dir,from_path,to_path):
+        """
+        Store the file in the destination.
+        """
         if archive:
-            imagefile = open(from_path,"r")
-            archive.add_file(to_path,time.time(),imagefile)
-            imagefile.close()
+            archive.add(from_path,to_path)
         else:
             shutil.copyfile(from_path,os.path.join(html_dir,to_path))
 
@@ -1927,6 +2343,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         # Options specific for this report
         self.options_dict = {
             'NWEBarchive'       : 0,
+            'NWEBgraph'         : 1,
             'NWEBod'            : './',
             'NWEBcopyright'     : 0,
             'NWEBrestrictinfo'  : 0,
@@ -1935,6 +2352,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
             'NWEBnonames'       : 0,
             'NWEBnoid'          : 0,
             'NWEBcontact'       : '', 
+            'NWEBgallery'       : 1, 
             'NWEBheader'        : '', 
             'NWEBfooter'        : '', 
             'NWEBdownload'      : 0, 
@@ -1963,7 +2381,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
             gramps_id = person.get_gramps_id()
         else:
             name = 'PERSON'
-            gramps_is = ''
+            gramps_id = ''
 
         all = GenericFilter.GenericFilter()
         all.set_name(_("Entire Database"))
@@ -1991,22 +2409,27 @@ class WebReportOptions(ReportOptions.ReportOptions):
         priv_msg = _("Do not include records marked private")
         restrict_msg = _("Restrict information on living people")
         restrict_years = _("Years to restrict from person's death")
-        imgdir_msg = _("Image subdirectory")
         title_msg = _("Web site title")
         ext_msg = _("File extension")
-        sep_alpha_msg = _("Split alphabetical sections to separate pages")
-        tree_msg = _("Include short ancestor tree")
         contact_msg = _("Publisher contact/Note ID")
+        gallery_msg = _("Include images and media objects")
         download_msg = _("Include download page")
+        graph_msg = _("Include ancestor graph")
 
         self.no_private = gtk.CheckButton(priv_msg)
         self.no_private.set_active(not self.options_dict['NWEBincpriv'])
+
+        self.inc_graph = gtk.CheckButton(graph_msg)
+        self.inc_graph.set_active(self.options_dict['NWEBgraph'])
 
         self.noid = gtk.CheckButton(_('Suppress GRAMPS ID'))
         self.noid.set_active(self.options_dict['NWEBnoid'])
 
         self.restrict_living = gtk.CheckButton(restrict_msg)
         self.restrict_living.connect('toggled',self.restrict_toggled)
+
+        self.include_gallery = gtk.CheckButton(gallery_msg)
+        self.include_gallery.set_active(self.options_dict['NWEBgallery'])
 
         self.restrict_years = gtk.Entry()
         self.restrict_years.set_text(str(self.options_dict['NWEBrestrictyears']))
@@ -2046,7 +2469,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
             _('Creative Commons - By attribution, Share-alike'),
             _('Creative Commons - By attribution, Non-commercial'),
             _('Creative Commons - By attribution, Non-commercial, No derivations'),
-            _('Creative Commons - By attribution, Non-commerical, Share-alike'),
+            _('Creative Commons - By attribution, Non-commercial, Share-alike'),
             _('No copyright notice'),
             ]
         for text in self.copy_options:
@@ -2084,6 +2507,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         dialog.add_option(_('Character set encoding'),self.encoding)
         dialog.add_option(_('Stylesheet'),self.css)
         dialog.add_option(_('Copyright'),self.copy)
+        dialog.add_option(None,self.inc_graph)
 
         title = _("Page Generation")
 
@@ -2102,11 +2526,11 @@ class WebReportOptions(ReportOptions.ReportOptions):
         media_list.sort()
         html_list.sort()
 
-        self.home_note = build_combo_box(media_list,self.options_dict['NWEBhomenote'])
-        self.intro_note = build_combo_box(media_list,self.options_dict['NWEBintronote'])
-        self.contact = build_combo_box(media_list,self.options_dict['NWEBcontact'])
-        self.header = build_combo_box(html_list,self.options_dict['NWEBheader'])
-        self.footer = build_combo_box(html_list,self.options_dict['NWEBfooter'])
+        self.home_note = mk_combobox(media_list,self.options_dict['NWEBhomenote'])
+        self.intro_note = mk_combobox(media_list,self.options_dict['NWEBintronote'])
+        self.contact = mk_combobox(media_list,self.options_dict['NWEBcontact'])
+        self.header = mk_combobox(html_list,self.options_dict['NWEBheader'])
+        self.footer = mk_combobox(html_list,self.options_dict['NWEBfooter'])
 
         dialog.add_frame_option(title,_('Home Media/Note ID'),
                                 self.home_note)
@@ -2115,6 +2539,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         dialog.add_frame_option(title,contact_msg,self.contact)
         dialog.add_frame_option(title,_('HTML user header'),self.header)
         dialog.add_frame_option(title,_('HTML user footer'),self.footer)
+        dialog.add_frame_option(title,'',self.include_gallery)
         dialog.add_frame_option(title,None,self.inc_download)
         dialog.add_frame_option(title,None,self.noid)
 
@@ -2135,12 +2560,14 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.options_dict['NWEBincpriv'] = int(not self.no_private.get_active())
         self.options_dict['NWEBnoid'] = int(self.noid.get_active())
         self.options_dict['NWEBcontact'] = unicode(self.contact.get_handle())
+        self.options_dict['NWEBgallery'] = self.include_gallery.get_active()
         self.options_dict['NWEBheader'] = unicode(self.header.get_handle())
         self.options_dict['NWEBfooter'] = unicode(self.footer.get_handle())
         self.options_dict['NWEBdownload'] = int(self.inc_download.get_active())
         self.options_dict['NWEBtitle'] = unicode(self.title.get_text())
         self.options_dict['NWEBintronote'] = unicode(self.intro_note.get_handle())
         self.options_dict['NWEBhomenote'] = unicode(self.home_note.get_handle())
+        self.options_dict['NWEBgraph'] = int(self.inc_graph.get_active())
 
         index = self.ext.get_active()
         if index >= 0:
@@ -2178,7 +2605,7 @@ class WebReportDialog(Report.ReportDialog):
         name = "navwebpage"
         translated_name = _("Generate Web Site")
         self.options = WebReportOptions(name,database)
-        self.category = const.CATEGORY_WEB
+        self.category = Report.CATEGORY_WEB
         Report.ReportDialog.__init__(self,database,person,self.options,
                                     name,translated_name)
         self.style_name = None
@@ -2211,9 +2638,6 @@ class WebReportDialog(Report.ReportDialog):
         html_label.set_alignment(0.0,0.5)
         html_label.set_use_markup(True)
         self.html_table.attach(html_label, 0, 3, 0, 1, gtk.FILL)
-
-        label = gtk.Label(_("HTML Options"))
-        self.output_notebook.append_page(self.html_table,label)
 
         self.archive = gtk.CheckButton(_('Store web pages in .tar.gz archive'))
         self.archive.set_alignment(0.0,0.5)
@@ -2263,7 +2687,7 @@ class WebReportDialog(Report.ReportDialog):
         """The format frame is not used in this dialog.  Hide it, and
         set the output notebook to always display the html template
         page."""
-        self.output_notebook.set_current_page(1)
+        pass
 
     def parse_format_frame(self):
         """The format frame is not used in this dialog."""
@@ -2281,8 +2705,6 @@ class WebReportDialog(Report.ReportDialog):
             ErrorDialog(m1,m2)
 
 def sort_people(db,handle_list):
-    import sets
-
     flist = sets.Set(handle_list)
 
     sname_sub = {}
@@ -2292,11 +2714,15 @@ def sort_people(db,handle_list):
     while node:
         if node[0] in flist:
             primary_name = node[1][_NAME_COL]
-            if primary_name.group_as:
-                surname = primary_name.group_as
+            if primary_name.private:
+                surname = _('Private')
+                sortnames[node[0]] = _('Private')
             else:
-                surname = db.get_name_group_mapping(primary_name.surname)
-            sortnames[node[0]] = primary_name.sname
+                if primary_name.group_as:
+                    surname = primary_name.group_as
+                else:
+                    surname = db.get_name_group_mapping(primary_name.surname)
+                sortnames[node[0]] = primary_name.sname
             if sname_sub.has_key(surname):
                 sname_sub[surname].append(node[0])
             else:
@@ -2384,7 +2810,7 @@ class GrampsNoteComboBox(gtk.ComboBox):
             handle = self.local_store.get_value(active,1)
         return handle
 
-def build_combo_box(media_list,select_value):
+def mk_combobox(media_list,select_value):
     store = gtk.ListStore(str,str)
     node = None
     
@@ -2424,13 +2850,13 @@ def sort_nameof(person, private):
 from PluginMgr import register_report
 register_report(
     name = 'navwebpage',
-    category = const.CATEGORY_WEB,
+    category = Report.CATEGORY_WEB,
     report_class = WebReportDialog,
     options_class = cl_report,
     modes = Report.MODE_GUI,
     translated_name = _("Narrative Web Site"),
+    status = _("Stable"),
     author_name="Donald N. Allingham",
     author_email="don@gramps-project.org",
-    status=(_("Beta")),
     description=_("Generates web (HTML) pages for individuals, or a set of individuals."),
     )

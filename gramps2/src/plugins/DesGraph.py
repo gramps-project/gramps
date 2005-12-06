@@ -41,12 +41,10 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import GraphLayout
 import Report
 import BaseDoc
 from SubstKeywords import SubstKeywords
 from ReportUtils import pt2cm
-import const
 import ReportOptions
 
 #------------------------------------------------------------------------
@@ -57,6 +55,71 @@ import ReportOptions
 _BORN = _('b.')
 _DIED = _('d.')
 _sep = 0.5
+
+class GraphLayout:
+
+    def __init__(self,database,plist,person_handle):
+        self.database = database
+        self.plist = plist
+        self.person_handle = person_handle
+        self.v = []
+        self.e = []
+        self.maxx = 0
+        self.maxy = 0
+
+    def max_size(self):
+        return (self.maxx,self.maxy)
+    
+    def layout(self):
+        return ([],[])
+
+class DescendLine(GraphLayout):
+
+    def layout(self):
+        self.elist = [(0,0)]
+        try:
+            self.space_for(self.person_handle)
+        except RuntimeError,msg:
+            person = self.database.get_person_from_handle(self.person_handle)
+            raise Errors.DatabaseError(
+                _("Database error: %s is defined as his or her own ancestor") %
+                NameDisplay.displayer.display(person))
+        
+        return (self.v,self.e[1:])
+    
+    def space_for(self,person_handle,level=1.0,pos=1.0):
+
+        person = self.database.get_person_from_handle(person_handle)
+            
+        last = self.elist[-1]
+        self.elist.append((level,pos))
+        self.e.append((last[0],last[1],level,pos))
+        self.v.append((person_handle,level,pos))
+        if level > self.maxx:
+            self.maxx = level
+        if pos > self.maxy:
+            self.maxy = pos
+            
+        for family_handle in person.get_family_handle_list():
+            family = self.database.get_family_from_handle(family_handle)
+            for child_handle in family.get_child_handle_list():
+                self.space_for(child_handle,level+1.0,pos)
+                pos = pos + max(self.depth(child_handle),1)
+                if pos > self.maxy:
+                    self.maxy = pos
+        self.elist.pop()
+        
+    def depth(self,person_handle,val=0):
+        person = self.database.get_person_from_handle(person_handle)
+        for family_handle in person.get_family_handle_list():
+            family = self.database.get_family_from_handle(family_handle)
+            clist = family.get_child_handle_list()
+            val = val + len(clist)
+            for child_handle in clist:
+                d = self.depth(child_handle)
+                if d > 0:
+                   val = val + d - 1 #first child is always on the same
+        return val                   #row as the parent, so subtract 1
 
 #------------------------------------------------------------------------
 #
@@ -92,7 +155,7 @@ class DescendantGraph(Report.Report):
         self.lines = 0
 
         plist = self.database.get_person_handles(sort_handles=False)
-        self.layout = GraphLayout.DescendLine(self.database,plist,person.get_handle())
+        self.layout = DescendLine(self.database,plist,person.get_handle())
         (self.v,self.e) = self.layout.layout()
         
         self.text = {}
@@ -270,7 +333,6 @@ class DescendantGraph(Report.Report):
                     ny2 = (y2-1)*(self.height+_sep) + top + self.height/2.0
                 if y1 < 0 and y2 < 0:
                     half = (nx1+nx2)/2.0
-                    print x1,x2,y1,y2,nx1,nx2,half
                     self.doc.draw_line("line",half,ny1,half,ny2)
                 elif ny1 != ny2:
                     if x1 == -x2:
@@ -341,13 +403,14 @@ class DescendantGraphOptions(ReportOptions.ReportOptions):
 from PluginMgr import register_report
 register_report(
     name = 'descendant_graph',
-    category = const.CATEGORY_DRAW,
+    category = Report.CATEGORY_DRAW,
     report_class = DescendantGraph,
     options_class = DescendantGraphOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
     translated_name = _("Descendant Graph"),
-    status = _("Alpha"),
+    status = _("Stable"),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
+    author_email = "don@gramps-project.org",
     description = _("Generates a graph of descendants of the active person"),
+    unsupported = True,
     )

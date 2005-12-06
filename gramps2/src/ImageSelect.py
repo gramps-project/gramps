@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import gc
 import urlparse
 from gettext import gettext as _
 
@@ -59,8 +60,11 @@ import DateHandler
 import Date
 import ImgManip
 import Spell
+import GrampsDisplay
+
 from QuestionDialog import ErrorDialog
 from DdTargets import DdTargets
+from WindowUtils import GladeIf
 
 _IMAGEX = 140
 _IMAGEY = 150
@@ -68,6 +72,12 @@ _PAD = 5
 
 _last_path = ""
 _iconlist_refs = []
+
+_drag_targets = [
+    ('STRING', 0, 0),
+    ('text/plain',0,0),
+    ('text/uri-list',0,2),
+    ('application/x-rootwin-drop',0,1)]
 
 #-------------------------------------------------------------------------
 #
@@ -95,28 +105,32 @@ class ImageSelect:
         "should be overrridden"
         pass
 
+    def internal_toggled(self, obj):
+        self.fname.set_sensitive(not obj.get_active())
+
     def create_add_dialog(self):
         """Create the gnome dialog for selecting a new photo and entering
         its description.""" 
 
         if self.path == '':
             return
-            
+
         self.glade       = gtk.glade.XML(const.imageselFile,"imageSelect","gramps")
         self.window      = self.glade.get_widget("imageSelect")
 
         self.fname       = self.glade.get_widget("fname")
         self.image       = self.glade.get_widget("image")
+        self.internal    = self.glade.get_widget("internal")
+        self.internal.connect('toggled',self.internal_toggled)
         self.description = self.glade.get_widget("photoDescription")
         self.temp_name   = ""
 
         Utils.set_titles(self.window,self.glade.get_widget('title'),
                          _('Select a media object'))
         
-        self.glade.signal_autoconnect({
-            "on_fname_update_preview" : self.on_name_changed,
-            "on_help_imagesel_clicked" : self.on_help_imagesel_clicked,
-            })
+
+        self.gladeif = GladeIf(self.glade)
+        self.gladeif.connect('fname', 'update_preview', self.on_name_changed)
 
         if os.path.isdir(_last_path):
             self.fname.set_current_folder(_last_path)
@@ -128,10 +142,11 @@ class ImageSelect:
         if self.val == gtk.RESPONSE_OK:
             self.on_savephoto_clicked()
         self.window.destroy()
+        gc.collect()
 
     def on_help_imagesel_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-quick')
+        GrampsDisplay.help('gramps-edit-quick')
         self.val = self.window.run()
 
     def on_name_changed(self, obj):
@@ -146,7 +161,8 @@ class ImageSelect:
             self.description.set_text(root)
         self.temp_name = root
         
-        if os.path.isfile(filename):
+        filename = Utils.find_file( filename)
+        if filename:
             mtype = GrampsMime.get_type(filename)
             if mtype and mtype.startswith("image"):
                 image = RelImage.scale_image(filename,const.thumbScale)
@@ -164,37 +180,45 @@ class ImageSelect:
         
         description = unicode(self.description.get_text())
 
-        if os.path.exists(filename) == 0:
-            msgstr = _("Cannot import %s")
-            msgstr2 = _("The filename supplied could not be found.")
-            ErrorDialog(msgstr % filename, msgstr2)
-            return
+        internal = self.internal.get_active()
 
-        already_imported = None
+        if not internal:
+            if os.path.exists(filename) == 0:
+                msgstr = _("Cannot import %s")
+                msgstr2 = _("The filename supplied could not be found.")
+                ErrorDialog(msgstr % filename, msgstr2)
+                return
 
-        trans = self.db.transaction_begin()
-        for o_id in self.db.get_media_object_handles():
-            o = self.db.get_object_from_handle(o_id)
-            if o.get_path() == filename:
-                already_imported = o
-                break
+            already_imported = None
 
-        if (already_imported):
-            oref = RelLib.MediaRef()
-            oref.set_reference_handle(already_imported.get_handle())
-            self.dataobj.add_media_reference(oref)
-            self.add_thumbnail(oref)
+            for o_id in self.db.get_media_object_handles():
+                o = self.db.get_object_from_handle(o_id)
+                if o.get_path() == filename:
+                    already_imported = o
+                    break
+
+            if already_imported:
+                oref = RelLib.MediaRef()
+                oref.set_reference_handle(already_imported.get_handle())
+                self.dataobj.add_media_reference(oref)
+                self.add_thumbnail(oref)
+            else:
+                mtype = GrampsMime.get_type(filename)
+                mobj = RelLib.MediaObject()
+                if description == "":
+                    description = os.path.basename(filename)
+                mobj.set_description(description)
+                mobj.set_mime_type(mtype)
+                mobj.set_path(filename)
         else:
-            mtype = GrampsMime.get_type(filename)
             mobj = RelLib.MediaObject()
-            if description == "":
-                description = os.path.basename(filename)
             mobj.set_description(description)
-            mobj.set_mime_type(mtype)
-            mobj.set_path(filename)
-            self.savephoto(mobj,trans)
+            mobj.set_mime_type(None)
 
-        self.db.transaction_commit(trans,'Edit Media Objects')
+        if not already_imported:
+            trans = self.db.transaction_begin()
+            self.savephoto(mobj,trans)
+            self.db.transaction_commit(trans,'Edit Media Objects')
             
         self.parent.lists_changed = 1
         self.load_images()
@@ -202,12 +226,6 @@ class ImageSelect:
     def savephoto(self, photo, transaction):
         """Save the photo in the dataobj object - must be overridden"""
         pass
-
-_drag_targets = [
-    ('STRING', 0, 0),
-    ('text/plain',0,0),
-    ('text/uri-list',0,2),
-    ('application/x-rootwin-drop',0,1)]
 
 #-------------------------------------------------------------------------
 #
@@ -226,7 +244,8 @@ class Gallery(ImageSelect):
                                     [DdTargets.MEDIAOBJ.target()]+_drag_targets,
                                     gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
             icon_list.connect('event',self.item_event)
-            icon_list.connect("drag_data_received",
+            if not db.readonly:
+                icon_list.connect("drag_data_received",
                               self.on_photolist_drag_data_received)
             icon_list.connect("drag_data_get",
                               self.on_photolist_drag_data_get)
@@ -271,13 +290,15 @@ class Gallery(ImageSelect):
         if const.dnd_images:
             handle = self.sel_obj.get_reference_handle()
             media_obj = self.db.get_object_from_handle(handle)
-            pix = ImgManip.get_thumbnail_image(media_obj.get_path())
+            pix = ImgManip.get_thumbnail_image(media_obj.get_path(),
+                                               media_obj.get_mime_type())
             context.set_icon_pixbuf(pix,0,0)
 
     def item_event(self, widget, event=None):
 
         if self.in_event:
-            return
+            return False
+        
         self.in_event = 1
         if self.button and event.type == gtk.gdk.MOTION_NOTIFY :
             if widget.drag_check_threshold(int(self.remember_x),int(self.remember_y),
@@ -290,8 +311,12 @@ class Gallery(ImageSelect):
                 for i in self.dataobj.get_media_list():
                     handle = i.get_reference_handle()
                     m = self.db.get_object_from_handle(handle)
-                
-                self.sel_obj = self.dataobj.get_media_list()[icon_index]
+
+                media_list = self.dataobj.get_media_list()
+
+                if icon_index >= len(media_list):
+                    return False
+                self.sel_obj = media_list[icon_index]
 
                 handle = self.sel_obj.get_reference_handle()
                 media_obj = self.db.get_object_from_handle(handle)
@@ -377,12 +402,7 @@ class Gallery(ImageSelect):
 
             try:
                 mtype = media_obj.get_mime_type()
-                if mtype and mtype.startswith("image"):
-                    image = ImgManip.get_thumbnail_image(media_obj.get_path())
-                else:
-                    image = Utils.find_mime_type_pixbuf(mtype)
-                if not image:
-                    image = gtk.gdk.pixbuf_new_from_file(const.icon)
+                image = ImgManip.get_thumbnail_image(media_obj.get_path(),mtype)
             except gobject.GError,msg:
                 ErrorDialog(str(msg))
                 image = gtk.gdk.pixbuf_new_from_file(const.icon)
@@ -463,10 +483,10 @@ class Gallery(ImageSelect):
     def on_photolist_drag_data_received(self,w, context, x, y, data, info, time):
         if data and data.format == 8:
             icon_index = self.get_index(w,x,y)
-            d = data.data.replace('\0',' ').strip()
+            d = Utils.fix_encoding(data.data.replace('\0',' ').strip())
             protocol,site,mfile,j,k,l = urlparse.urlparse(d)
             if protocol == "file":
-                name = mfile
+                name = Utils.fix_encoding(mfile)
                 mime = GrampsMime.get_type(name)
                 photo = RelLib.MediaObject()
                 photo.set_path(name)
@@ -492,6 +512,7 @@ class Gallery(ImageSelect):
                     t = _("Could not import %s") % d
                     ErrorDialog(t,str(msg))
                     return
+                tfile = Utils.fix_encoding(tfile)
                 mime = GrampsMime.get_type(tfile)
                 photo = RelLib.MediaObject()
                 photo.set_mime_type(mime)
@@ -595,8 +616,20 @@ class Gallery(ImageSelect):
 
         if self.sel:
             (i,t,b,photo,oid) = self.p_map[self.sel]
-            LocalMediaProperties(photo,self.path,self,self.parent_window)
+            base_obj = self.db.get_object_from_handle(photo.get_reference_handle())
+            
+            if base_obj.get_mime_type():
+                LocalMediaProperties(photo,self.path,self,self.parent_window)
+            else:
+                import NoteEdit
+                NoteEdit.NoteEditor(base_obj,self.parent,self.parent_window,
+                                    self.note_callback)
         
+    def note_callback(self,data):
+        trans = self.db.transaction_begin()
+        self.db.commit_media_object(data,trans)
+        self.db.transaction_commit(trans,_("Edit Media Object"))
+
     def show_popup(self, photo, event):
         """Look for right-clicks on a picture and create a popup
         menu of the available actions."""
@@ -661,7 +694,8 @@ class LocalMediaProperties:
         self.lists_changed = 0
         
         fname = self.obj.get_path()
-        self.change_dialog = gtk.glade.XML(const.imageselFile,"change_description","gramps")
+        self.change_dialog = gtk.glade.XML(const.imageselFile,
+                                           "change_description","gramps")
 
         title = _('Media Reference Editor')
         self.window = self.change_dialog.get_widget('change_description')
@@ -689,7 +723,8 @@ class LocalMediaProperties:
         self.slist  = self.change_dialog.get_widget("src_list")
         self.sources_label = self.change_dialog.get_widget("source_label")
         if self.obj:
-            self.srcreflist = [RelLib.SourceRef(ref) for ref in self.photo.get_source_references()]
+            self.srcreflist = [RelLib.SourceRef(ref)
+                               for ref in self.photo.get_source_references()]
         else:
             self.srcreflist = []
     
@@ -703,16 +738,26 @@ class LocalMediaProperties:
         descr_window.set_text(self.obj.get_description())
         mtype = self.obj.get_mime_type()
 
-        self.pix = ImgManip.get_thumbnail_image(self.obj.get_path())
+        self.pix = ImgManip.get_thumbnail_image(self.obj.get_path(),mtype)
         self.pixmap.set_from_pixbuf(self.pix)
 
         self.change_dialog.get_widget("private").set_active(photo.get_privacy())
+        coord = photo.get_rectangle()
+        if coord and type(coord) == tuple:
+            self.change_dialog.get_widget("upperx").set_value(coord[0])
+            self.change_dialog.get_widget("uppery").set_value(coord[1])
+            self.change_dialog.get_widget("lowerx").set_value(coord[2])
+            self.change_dialog.get_widget("lowery").set_value(coord[3])
+        
         self.change_dialog.get_widget("gid").set_text(self.obj.get_gramps_id())
 
         self.change_dialog.get_widget("path").set_text(fname)
 
         mt = Utils.get_mime_description(mtype)
-        self.change_dialog.get_widget("type").set_text(mt)
+        if mt:
+            self.change_dialog.get_widget("type").set_text(mt)
+        else:
+            self.change_dialog.get_widget("type").set_text("")
         self.notes = self.change_dialog.get_widget("notes")
         self.spell = Spell.Spell(self.notes)
         if self.photo.get_note():
@@ -723,17 +768,16 @@ class LocalMediaProperties:
             else:
                 self.flowed.set_active(1)
 
-        self.change_dialog.signal_autoconnect({
-            "on_add_attr_clicked": self.on_add_attr_clicked,
-            "on_notebook_switch_page": self.on_notebook_switch_page,
-            "on_update_attr_clicked": self.on_update_attr_clicked,
-            "on_delete_attr_clicked" : self.on_delete_attr_clicked,
-            "on_help_clicked" : self.on_help_clicked,
-            "on_ok_clicked" : self.on_ok_clicked,
-            "on_cancel_clicked" : self.close,
-            "on_local_delete_event" : self.on_delete_event,
-            })
-
+        self.gladeif = GladeIf(self.change_dialog)
+        self.gladeif.connect('change_description','delete_event',self.on_delete_event)
+        self.gladeif.connect('button84','clicked',self.close)
+        self.gladeif.connect('button82','clicked',self.on_ok_clicked)
+        self.gladeif.connect('button104','clicked',self.on_help_clicked)
+        self.gladeif.connect('notebook1','switch_page',self.on_notebook_switch_page)
+        self.gladeif.connect('button86','clicked',self.on_add_attr_clicked)
+        self.gladeif.connect('button100','clicked',self.on_update_attr_clicked)
+        self.gladeif.connect('button88','clicked',self.on_delete_attr_clicked)
+            
         media_obj = self.db.get_object_from_handle(self.photo.get_reference_handle())
         gnote = self.change_dialog.get_widget('global_notes')
         spell = Spell.Spell(gnote)
@@ -747,13 +791,17 @@ class LocalMediaProperties:
         self.window.show()
 
     def on_delete_event(self,obj,b):
+        self.gladeif.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
+        gc.collect()
 
     def close(self,obj):
+        self.gladeif.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.window.destroy()
+        gc.collect()
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():
@@ -805,17 +853,29 @@ class LocalMediaProperties:
     def on_apply_clicked(self):
         priv = self.change_dialog.get_widget("private").get_active()
 
+        coord = (
+            self.change_dialog.get_widget("upperx").get_value_as_int(),
+            self.change_dialog.get_widget("uppery").get_value_as_int(),
+            self.change_dialog.get_widget("lowerx").get_value_as_int(),
+            self.change_dialog.get_widget("lowery").get_value_as_int(),
+            )
+        if (coord[0] == None and coord[1] == None
+            and coord[2] == None and coord[3] == None):
+            coord = None
+
         t = self.notes.get_buffer()
         text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),False))
         note = self.photo.get_note()
         format = self.preform.get_active()
-        if text != note or priv != self.photo.get_privacy():
+        if text != note or priv != self.photo.get_privacy() \
+               or coord != self.photo.get_rectangle() \
+               or format != self.photo.get_note_format():
+            self.photo.set_rectangle(coord)
             self.photo.set_note(text)
             self.photo.set_privacy(priv)
+            self.photo.set_note_format(format)
             self.parent.lists_changed = 1
             self.parent.parent.lists_changed = 1
-        if format != self.photo.get_note_format():
-            self.photo.set_note_format(format)
         if self.lists_changed:
             self.photo.set_attribute_list(self.alist)
             self.photo.set_source_reference_list(self.srcreflist)
@@ -828,7 +888,7 @@ class LocalMediaProperties:
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-complete')
+        GrampsDisplay.help('gramps-edit-complete')
         
     def on_ok_clicked(self,obj):
         self.on_apply_clicked()
@@ -889,10 +949,12 @@ class GlobalMediaProperties:
                 self.win_key = obj.get_handle()
         else:
             self.win_key = self
+        self.pdmap = {}
         self.child_windows = {}
         self.obj = obj
         self.lists_changed = 0
         self.db = db
+        self.idle = None
         if obj:
             self.date_object = Date.Date(self.obj.get_date_object())
             self.alist = self.obj.get_attribute_list()[:]
@@ -905,6 +967,7 @@ class GlobalMediaProperties:
         self.path = self.db.get_save_path()
         self.change_dialog = gtk.glade.XML(const.imageselFile,
                                            "change_global","gramps")
+        self.gladeif = GladeIf(self.change_dialog)
 
         mode = not self.db.readonly
         
@@ -958,7 +1021,8 @@ class GlobalMediaProperties:
         self.slist  = self.change_dialog.get_widget("src_list")
         self.sources_label = self.change_dialog.get_widget("sourcesGlobal")
         if self.obj:
-            self.srcreflist = [RelLib.SourceRef(ref) for ref in self.obj.get_source_references()]
+            self.srcreflist = [RelLib.SourceRef(ref)
+                               for ref in self.obj.get_source_references()]
         else:
             self.srcreflist = []
     
@@ -973,10 +1037,11 @@ class GlobalMediaProperties:
         self.descr_window.set_text(self.obj.get_description())
         mtype = self.obj.get_mime_type()
         if mtype:
-            pb = ImgManip.get_thumbnail_image(self.obj.get_path())
+            pb = ImgManip.get_thumbnail_image(self.obj.get_path(),mtype)
             self.pixmap.set_from_pixbuf(pb)
             descr = Utils.get_mime_description(mtype)
-            self.change_dialog.get_widget("type").set_text(descr)
+            if descr:
+                self.change_dialog.get_widget("type").set_text(descr)
         else:
             self.change_dialog.get_widget("type").set_text(_('Note'))
             self.pixmap.hide()
@@ -993,20 +1058,16 @@ class GlobalMediaProperties:
             else:
                 self.flowed.set_active(1)
 
-        self.change_dialog.signal_autoconnect({
-            "on_cancel_clicked"      : self.close,
-            "on_up_clicked"          : self.on_up_clicked,
-            "on_down_clicked"        : self.on_down_clicked,
-            "on_ok_clicked"          : self.on_ok_clicked,
-            "on_apply_clicked"       : self.on_apply_clicked,
-            "on_add_attr_clicked"    : self.on_add_attr_clicked,
-            "on_notebook_switch_page": self.on_notebook_switch_page,
-            "on_delete_attr_clicked" : self.on_delete_attr_clicked,
-            "on_update_attr_clicked" : self.on_update_attr_clicked,
-            "on_help_clicked"        : self.on_help_clicked,
-            "on_global_delete_event" : self.on_delete_event,
-            })
-
+        self.gladeif.connect('change_global','delete_event',
+                             self.on_delete_event)
+        self.gladeif.connect('button91','clicked',self.close)
+        self.gladeif.connect('ok','clicked',self.on_ok_clicked)
+        self.gladeif.connect('button102','clicked',self.on_help_clicked)
+        self.gladeif.connect('notebook2','switch_page',
+                             self.on_notebook_switch_page)
+        self.gladeif.connect('add_attr','clicked',self.on_add_attr_clicked)
+        self.gladeif.connect('button101','clicked',self.on_update_attr_clicked)
+        self.gladeif.connect('del_attr','clicked',self.on_delete_attr_clicked)
 
         for name in ['gl_del_src','gl_add_src','add_attr','del_attr','ok']:
             self.change_dialog.get_widget(name).set_sensitive(mode)
@@ -1018,16 +1079,21 @@ class GlobalMediaProperties:
         self.window.show()
         if not self.refs:
             Utils.temp_label(self.refs_label,self.window)
-            gobject.idle_add(self.display_refs)
+            self.cursor_type = None
+            self.idle = gobject.idle_add(self.display_refs)
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        gc.collect()
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.window.destroy()
+        if self.idle != None:
+            gobject.source_remove(self.idle)
+        gc.collect()
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():
@@ -1087,62 +1153,167 @@ class GlobalMediaProperties:
             Utils.unbold_label(self.attr_label)
 
     def button_press(self,obj):
-        store,node = self.refmodel.selection.get_selected()
-        if not node:
+        data = self.refmodel.get_selected_objects()
+        if not data:
             return
+        (data_type,handle) = data[0]
+        if data_type == 0:
+            import EditPerson
+            person = self.db.get_person_from_handle(handle)
+            EditPerson.EditPerson(self.parent.parent,person,self.db)
+        elif data_type == 1:
+            import Marriage
+            family = self.db.get_family_from_handle(handle)
+            Marriage.Marriage(self.parent.parent,family,self.db)
+        elif data_type == 2:
+            import EventEdit
+            event = self.db.get_event_from_handle(handle)
+            event_name = event.get_name()
+            if const.family_events.has_key(event_name):
+                EventEdit.FamilyEventEditor(
+                    self,", ", event, None, 0, None, None, self.db.readonly)
+            elif const.personal_events.has_key(event_name):
+                EventEdit.PersonEventEditor(
+                    self,", ", event, None, 0, None, None, self.db.readonly)
+            elif event_name in ["Birth","Death"]:
+                EventEdit.PersonEventEditor(
+                    self,", ", event, None, 1, None, None, self.db.readonly)
+        elif data_type == 3:
+            import EditPlace
+            place = self.db.get_place_from_handle(handle)
+            EditPlace.EditPlace(self.parent.parent,place)
+        elif data_type == 4:
+            source = self.db.get_source_from_handle(handle)
+            import EditSource
+            EditSource.EditSource(source,self.db,self.parent.parent,
+                                  None,self.db.readonly)
             
     def display_refs(self):
+        media_handle = self.obj.get_handle()
         self.refs = 1
 
-        (person_list,family_list,event_list,place_list,source_list
-            ) = Utils.get_media_referents(self.obj.get_handle(),self.db)
+        # Initialize things if we're entering this functioin
+        # for the first time
+        if not self.cursor_type:
+            self.cursor_type = 'Person'
+            self.cursor = self.db.get_person_cursor()
+            self.data = self.cursor.first()
 
-        any = person_list or family_list or event_list or place_list or source_list
+            self.any_refs = False
+            titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Name'),2,150)]
+            self.refmodel = ListModel.ListModel(
+                self.change_dialog.get_widget("refinfo"),
+                titles,
+                event_func=self.button_press)
 
-        titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Name'),2,150)]
-        self.refmodel = ListModel.ListModel(
-                                self.change_dialog.get_widget("refinfo"),
-                                titles,event_func=self.button_press)
+        if self.cursor_type == 'Person':
+            while self.data:
+                handle,val = self.data
+                person = RelLib.Person()
+                person.unserialize(val)
+                if person.has_media_reference(media_handle):
+                    name = NameDisplay.displayer.display(person)
+                    gramps_id = person.get_gramps_id()
+                    self.refmodel.add([_("Person"),gramps_id,name],
+                                      (0,handle))
+                    self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Family'
+            self.cursor = self.db.get_family_cursor()
+            self.data = self.cursor.first()
 
-        for handle in person_list:
-            person = self.db.get_person_from_handle(handle)
-            name = NameDisplay.displayer.display(person)
-            gramps_id = person.get_gramps_id()
-            self.refmodel.add([_("Person"),gramps_id,name])
+        if self.cursor_type == 'Family':
+            while self.data:
+                handle,val = self.data
+                family = RelLib.Family()
+                family.unserialize(val)
+                if family.has_media_reference(media_handle):
+                    name = Utils.family_name(family,self.db)
+                    gramps_id = family.get_gramps_id()
+                    self.refmodel.add([_("Family"),gramps_id,name],
+                                      (1,handle))
+                    self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Event'
+            self.cursor = self.db.get_event_cursor()
+            self.data = self.cursor.first()
 
-        for handle in family_list:
-            family = self.db.get_family_from_handle(handle)
-            name = Utils.family_name(family,self.db)
-            gramps_id = family.get_gramps_id()
-            self.refmodel.add([_("Family"),gramps_id,name])
+        if self.cursor_type == 'Event':
+            while self.data:
+                handle,val = self.data
+                event = RelLib.Event()
+                event.unserialize(val)
+                if event.has_media_reference(media_handle):
+                    name = event.get_name()
+                    gramps_id = event.get_gramps_id()
+                    self.refmodel.add([_("Event"),gramps_id,name],
+                                      (2,handle))
+                    self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Place'
+            self.cursor = self.db.get_place_cursor()
+            self.data = self.cursor.first()
 
-        for handle in event_list:
-            event = self.db.get_event_from_handle(handle)
-            name = event.get_name()
-            gramps_id = event.get_gramps_id()
-            self.refmodel.add([_("Event"),gramps_id,name])
+        if self.cursor_type == 'Place':
+            while self.data:
+                handle,val = self.data
+                place = RelLib.Place()
+                place.unserialize(val)
+                if place.has_media_reference(media_handle):
+                    name = place.get_title()
+                    gramps_id = place.get_gramps_id()
+                    self.refmodel.add([_("Place"),gramps_id,name],
+                                      (3,handle))
+                    self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Source'
+            self.cursor = self.db.get_source_cursor()
+            self.data = self.cursor.first()
 
-        for handle in place_list:
-            place = self.db.get_place_from_handle(handle)
-            name = place.get_title()
-            gramps_id = place.get_gramps_id()
-            self.refmodel.add([_("Place"),gramps_id,name])
+        if self.cursor_type == 'Source':
+            while self.data:
+                handle,val = self.data
+                source = RelLib.Source()
+                source.unserialize(val)
+                if source.has_media_reference(media_handle):
+                    name = source.get_title()
+                    gramps_id = source.get_gramps_id()
+                    self.refmodel.add([_("Source"),gramps_id,name],
+                                      (4,handle))
+                    self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
 
-        for handle in source_list:
-            source = self.db.get_source_from_handle(handle)
-            name = source.get_title()
-            gramps_id = source.get_gramps_id()
-            self.refmodel.add([_("Source"),gramps_id,name])
-
-        if any:
+        if self.any_refs:
             Utils.bold_label(self.refs_label,self.window)
         else:
             Utils.unbold_label(self.refs_label,self.window)
+
+        self.cursor_type = None
+        return False
         
     def on_notebook_switch_page(self,obj,junk,page):
         if page == 3 and not self.refs:
             Utils.temp_label(self.refs_label,self.window)
-            gobject.idle_add(self.display_refs)
+            self.idle = gobject.idle_add(self.display_refs)
         t = self.notes.get_buffer()
         text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),False))
         if text:
@@ -1162,7 +1333,6 @@ class GlobalMediaProperties:
                 self.db.add_place(place,trans)
                 self.db.transaction_commit(trans,_('Add Place (%s)' % text))
                 self.pdmap[text] = place.get_handle()
-                self.add_places.append(place)
                 return place.get_handle()
             else:
                 return None
@@ -1175,6 +1345,9 @@ class GlobalMediaProperties:
         desc = unicode(self.descr_window.get_text())
         note = self.obj.get_note()
         path = self.change_dialog.get_widget('path').get_text()
+        if path != self.obj.get_path():
+            mime = GrampsMime.get_type(path)
+            self.obj.set_mime_type(mime)
         self.obj.set_path(path)
 
         if not self.date_object.is_equal(self.obj.get_date_object()):
@@ -1195,7 +1368,7 @@ class GlobalMediaProperties:
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-media')
+        GrampsDisplay.help('adv-media')
         
     def on_ok_clicked(self, obj):
         self.on_apply_clicked(obj)

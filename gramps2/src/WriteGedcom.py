@@ -106,6 +106,11 @@ _get_int = re.compile('([0-9]+)')
 #-------------------------------------------------------------------------
 def add_familys_sources(db,family_handle,slist,private):
     family = db.get_family_from_handle(family_handle)
+    for source_ref in family.get_source_references():
+        sbase = source_ref.get_base_handle()
+        if sbase != None and not slist.has_key(sbase):
+            slist[sbase] = 1
+        
     for event_handle in family.get_event_list():
         if event_handle:
             event = db.get_event_from_handle(event_handle)
@@ -438,28 +443,6 @@ class GedcomWriterOptionBox:
 
         self.nl = self.cnvtxt(self.target_ged.get_endl())
 
-#        glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
-#
-#        self.exprogress = gtk.glade.XML(glade_file,"exportprogress","gramps")
-#        self.exprogress.signal_autoconnect({
-#            "on_close_clicked" : Utils.destroy_passed_object
-#            })
-#
-#        Utils.set_titles(self.exprogress.get_widget('exportprogress'),
-#                         self.exprogress.get_widget('title'),
-#                         _('GEDCOM export'))
-#
-#        self.fbar = self.exprogress.get_widget("fbar")
-#        self.pbar = self.exprogress.get_widget("pbar")
-#        self.sbar = self.exprogress.get_widget("sbar")
-#        self.progress = self.exprogress.get_widget('exportprogress')
-#
-#        closebtn = self.exprogress.get_widget("close")
-#        closebtn.connect("clicked",Utils.destroy_passed_object)
-#        closebtn.set_sensitive(0)
-#
-#        self.export_data(name)
-#        closebtn.set_sensitive(1)
 
 class GedcomWriter:
     def __init__(self,database,person,cl=0,filename="",option_box=None):
@@ -570,11 +553,9 @@ class GedcomWriter:
         except IOError,msg:
             msg2 = _("Could not create %s") % filename
             ErrorDialog(msg2,str(msg))
-#            self.progress.destroy()
             return 0
         except:
             ErrorDialog(_("Could not create %s") % filename)
-#            self.progress.destroy()
             return 0
 
         date = time.ctime(time.time()).split()
@@ -687,7 +668,7 @@ class GedcomWriter:
         for (gramps_id, family_handle, family) in sorted:
             father_alive = mother_alive = 0
             self.writeln("0 @%s@ FAM" % gramps_id)
-            self.frefn(family_handle)
+            self.frefn(family)
             person_handle = family.get_father_handle()
             if person_handle != None and self.plist.has_key(person_handle):
                 person = self.db.get_person_from_handle(person_handle)
@@ -717,11 +698,16 @@ class GedcomWriter:
                         val = self.target_ged.gramps2tag(name)
 
                     if val:
-                        self.writeln("1 %s %s" % (self.cnvtxt(val),
-                                                  self.cnvtxt(event.get_description())))
+                        if not event.get_date_object().is_empty() or event.get_place_handle():
+                            self.writeln("1 %s" % self.cnvtxt(val))
+                        else:
+                            self.writeln("1 %s Y" % self.cnvtxt(val))
+                        if event.get_description() != "":
+                            self.writeln("2 TYPE %s" % event.get_description())
                     else:
-                        self.writeln("1 EVEN %s" % self.cnvtxt(event.get_description()))
-                        self.writeln("2 TYPE %s" % self.cnvtxt(name))
+                        self.writeln("1 EVEN")
+                        self.writeln("2 TYPE %s" % ' '.join([self.cnvtxt(name),
+                                                             event.get_description()]))
 
                     self.dump_event_stats(event)
 
@@ -751,6 +737,13 @@ class GedcomWriter:
             for srcref in family.get_source_references():
                 self.write_source_ref(1,srcref)
 
+            if self.images:
+                photos = family.get_media_list ()
+                for photo in photos:
+                    if self.private and photo.get_privacy():
+                        continue
+                    self.write_photo(photo,1)
+
             self.write_change(1,family.get_change_time())
             
     def write_sources(self):
@@ -773,6 +766,13 @@ class GedcomWriter:
                 self.writeln("1 PUBL %s" % self.cnvtxt(source.get_publication_info()))
             if source.get_abbreviation():
                 self.writeln("1 ABBR %s" % self.cnvtxt(source.get_abbreviation()))
+            if self.images:
+                photos = source.get_media_list ()
+                for photo in photos:
+                    if self.private and photo.get_privacy():
+                        continue
+                    self.write_photo(photo,1)
+
             if source.get_note():
                 self.write_long_text("NOTE",1,self.cnvtxt(source.get_note()))
             index = index + 1
@@ -816,21 +816,23 @@ class GedcomWriter:
             birth = self.db.get_event_from_handle(birth_handle)
             if birth_handle and birth and not (self.private and birth.get_privacy()):
                 if not birth.get_date_object().is_empty() or birth.get_place_handle():
-                    if birth.get_description() != "":
-                        self.writeln("1 BIRT %s" % birth.get_description())
-                    else:
-                        self.writeln("1 BIRT")
-                    self.dump_event_stats(birth)
+                    self.writeln("1 BIRT")
+                else:
+                    self.writeln("1 BIRT Y")
+                if birth.get_description() != "":
+                    self.writeln("2 TYPE %s" % birth.get_description())
+                self.dump_event_stats(birth)
 
             death_handle = person.get_death_handle()
             death = self.db.get_event_from_handle(death_handle)
             if death_handle and death and not (self.private and death.get_privacy()):
                 if not death.get_date_object().is_empty() or death.get_place_handle():
-                    if death.get_description() != "":
-                        self.writeln("1 DEAT %s" % death.get_description())
-                    else:
-                        self.writeln("1 DEAT")
-                    self.dump_event_stats(death)
+                    self.writeln("1 DEAT")
+                else:
+                    self.writeln("1 DEAT Y")
+                if death.get_description() != "":
+                    self.writeln("2 TYPE %s" % death.get_description())
+                self.dump_event_stats(death)
 
             ad = 0
 
@@ -873,12 +875,29 @@ class GedcomWriter:
                         else:
                             self.writeln('3 ADOP HUSB')
                 elif val :
-                    self.writeln("1 %s %s" % (self.cnvtxt(val),\
-                                              self.cnvtxt(event.get_description())))
+                    if const.personalGedcomAttributeTakesParam.has_key(val):
+                        if event.get_description():
+                            self.writeln("1 %s %s" % (self.cnvtxt(val),\
+                                                      self.cnvtxt(event.get_description())))
+                        else:
+                            self.writeln("1 %s" % self.cnvtxt(val))
+                    else:
+                        if not event.get_date_object().is_empty() or event.get_place_handle():
+                            self.writeln("1 %s" % self.cnvtxt(val))
+                        else:
+                            self.writeln("1 %s Y" % self.cnvtxt(val))
+                        if event.get_description():
+                            self.writeln("2 TYPE %s" % self.cnvtxt(event.get_description()))
                 else:
-                    self.writeln("1 EVEN %s" % self.cnvtxt(event.get_description()))
-                    self.writeln("2 TYPE %s" % self.cnvtxt(event.get_name()))
- 
+                    # Actually, it is against the spec to put anything
+                    # after EVEN on the same line, possibly an option is
+                    # needed on how to handle this
+                    if event.get_description() != "":
+                        self.writeln("1 EVEN %s" % event.get_description())
+                    else:
+                        self.writeln("1 EVEN")
+                    self.writeln("2 TYPE %s" % self.cnvtxt(name))
+
                 self.dump_event_stats(event)
 
             if self.adopt == GedcomInfo.ADOPT_EVENT and ad == 0 and len(person.get_parent_family_handle_list()) != 0:
@@ -963,41 +982,10 @@ class GedcomWriter:
 
             if self.images:
                 photos = person.get_media_list ()
-            else:
-                photos = []
-
-            for photo in photos:
-                if self.private and photo.get_privacy():
-                    continue
-                photo_obj_id = photo.get_reference_handle()
-                photo_obj = self.db.get_object_from_handle(photo_obj_id)
-                print photo_obj, photo_obj.get_mime_type()
-                if photo_obj and photo_obj.get_mime_type() == "image/jpeg":
-                    path = photo_obj.get_path ()
-                    imgdir = os.path.join(self.dirname,self.images_path)
-                    if not os.path.isfile(path):
+                for photo in photos:
+                    if self.private and photo.get_privacy():
                         continue
-                    try:
-                        if not os.path.isdir(imgdir):
-                            os.makedirs(imgdir)
-                    except:
-                        continue
-                    basename = os.path.basename(path)
-                    dest = os.path.join (imgdir, basename)
-                    try:
-                        shutil.copyfile(path, dest)
-                    except (IOError,OSError),msg:
-                        msg2 = _("Could not create %s") % dest
-                        WarningDialog(msg2,str(msg))
-                        continue
-                        
-                    self.writeln('1 OBJE')
-                    self.writeln('2 FORM jpeg')
-                    dirname = os.path.join (self.dirname, self.images_path)
-                    basename = os.path.basename (path)
-                    self.writeln('2 FILE %s' % os.path.join(self.images_path,
-                                                           basename))
-
+                    self.write_photo(photo,1)
 
         for family in person.get_parent_family_handle_list():
             if self.flist.has_key(family[0]):
@@ -1108,15 +1096,28 @@ class GedcomWriter:
     def dump_event_stats(self,event):
         dateobj = event.get_date_object()
         self.print_date("2 DATE",dateobj)
+        place = None
         if event.get_place_handle():
-            place_name = self.db.get_place_from_handle(event.get_place_handle()).get_title()
-            self.writeln("2 PLAC %s" % self.cnvtxt(place_name).replace('\r',' '))
+            place = self.db.get_place_from_handle(event.get_place_handle())
+            self.write_place(place,2)
         if event.get_cause():
             self.writeln("2 CAUS %s" % self.cnvtxt(event.get_cause()))
         if event.get_note():
             self.write_long_text("NOTE",2,self.cnvtxt(event.get_note()))
         for srcref in event.get_source_references():
             self.write_source_ref(2,srcref)
+
+        if self.images:
+            photos = event.get_media_list()
+            for photo in photos:
+                if self.private and photo.get_privacy():
+                    continue
+                self.write_photo(photo,2)
+            if place:
+                for photo in place.get_media_list():
+                    if self.private and photo.get_privacy():
+                        continue
+                    self.write_photo(photo,2)
 
     def write_ord(self,name,ord,index,statlist):
         if ord == None:
@@ -1125,12 +1126,13 @@ class GedcomWriter:
         self.print_date("%d DATE" % (index + 1), ord.get_date_object())
         if ord.get_family_handle():
             family_id = ord.get_family_handle()
-            self.writeln('%d FAMC @%s@' % (index+1,self.fid(family_id)))
+            f = self.db.get_family_from_handle(family_id)
+            if f:
+                self.writeln('%d FAMC @%s@' % (index+1,self.fid(family_id)))
         if ord.get_temple():
             self.writeln('%d TEMP %s' % (index+1,ord.get_temple()))
         if ord.get_place_handle():
-            place_name = self.db.get_place_from_handle(ord.get_place_handle()).get_title()
-            self.writeln("2 PLAC %s" % self.cnvtxt(place_name).replace('\r',' '))
+            self.write_place(self.db.get_place_from_handle(ord.get_place_handle()),2)
         if ord.get_status() != 0:
             self.writeln("2 STAT %s" % self.cnvtxt(statlist[ord.get_status()]))
         if ord.get_note():
@@ -1156,7 +1158,7 @@ class GedcomWriter:
             self.writeln("%s %s" % (prefix,self.cnvtxt(date.get_text())))
 
     def write_person_name(self,name,nick):
-        firstName = self.cnvtxt(name.get_first_name())
+        firstName = self.cnvtxt("%s %s" % (name.get_first_name(),name.get_patronymic())).strip()
         surName = self.cnvtxt(name.get_surname())
         surName = surName.replace('/','?')
         surPref = self.cnvtxt(name.get_surname_prefix())
@@ -1165,16 +1167,16 @@ class GedcomWriter:
         title = self.cnvtxt(name.get_title())
         if suffix == "":
             if surPref == "":
-                self.writeln("1 NAME %s/%s/" % (firstName,surName))
+                self.writeln("1 NAME %s /%s/" % (firstName,surName))
             else:
-                self.writeln("1 NAME %s/%s %s/" % (firstName,surPref,surName))
+                self.writeln("1 NAME %s /%s %s/" % (firstName,surPref,surName))
         else:
             if surPref == "":
-                self.writeln("1 NAME %s/%s/%s" % (firstName,surName,suffix))
+                self.writeln("1 NAME %s /%s/ %s" % (firstName,surName,suffix))
             else:
-                self.writeln("1 NAME %s/%s %s/%s" % (firstName,surPref,surName,suffix))
+                self.writeln("1 NAME %s /%s %s/ %s" % (firstName,surPref,surName,suffix))
 
-        if name.get_first_name():
+        if firstName:
             self.writeln("2 GIVN %s" % firstName)
         if self.prefix:
             if surPref:
@@ -1239,7 +1241,61 @@ class GedcomWriter:
  
         if ref.get_note():
             self.write_long_text("NOTE",level+1,self.cnvtxt(ref.get_note()))
-        
+
+    mime2ged = {
+        "image/bmp"   : "bmp",
+        "image/gif"   : "gif",
+        "image/jpeg"  : "jpeg",
+        "image/x-pcx" : "pcx",
+        "image/tiff"  : "tiff",
+        "audio/x-wav" : "wav"
+        }
+
+    def write_photo(self,photo,level):
+        photo_obj_id = photo.get_reference_handle()
+        photo_obj = self.db.get_object_from_handle(photo_obj_id)
+        print photo_obj, photo_obj.get_mime_type()
+        if photo_obj:
+            mime = photo_obj.get_mime_type()
+            if self.mime2ged.has_key(mime):
+                form = self.mime2ged[mime]
+            else:
+                form = mime
+            path = photo_obj.get_path ()
+            imgdir = os.path.join(self.dirname,self.images_path)
+            if not os.path.isfile(path):
+                return
+            try:
+                if not os.path.isdir(imgdir):
+                    os.makedirs(imgdir)
+            except:
+                return
+            basename = os.path.basename(path)
+            dest = os.path.join (imgdir, basename)
+            if dest != path:
+                try:
+                    shutil.copyfile(path, dest)
+                    shutil.copystat(path, dest)
+                except (IOError,OSError),msg:
+                    msg2 = _("Could not create %s") % dest
+                    WarningDialog(msg2,str(msg))
+                    return
+
+            self.writeln('%d OBJE' % level)
+            if form:
+                self.writeln('%d FORM %s' % (level+1, form) )
+            self.writeln('%d TITL %s' % (level+1, photo_obj.get_description()))
+            dirname = os.path.join (self.dirname, self.images_path)
+            basename = os.path.basename (path)
+            self.writeln('%d FILE %s' % (level+1,os.path.join(self.images_path,
+                                                              basename)))
+            if photo_obj.get_note():
+                self.write_long_text("NOTE",level+1,self.cnvtxt(photo_obj.get_note()))
+
+    def write_place(self,place,level):
+        place_name = place.get_title()
+        self.writeln("%d PLAC %s" % (level,self.cnvtxt(place_name).replace('\r',' ')))
+
     def fid(self,id):
         family = self.db.get_family_from_handle (id)
         return family.get_gramps_id ()
@@ -1249,8 +1305,8 @@ class GedcomWriter:
         if match:
             self.writeln('1 REFN %d' % int(match.groups()[0]))
 
-    def frefn(self,family_handle):
-        match = _get_int.search(family_handle)
+    def frefn(self,family):
+        match = _get_int.search(family.get_gramps_id())
         if match:
             self.writeln('1 REFN %d' % int(match.groups()[0]))
     
@@ -1268,6 +1324,8 @@ def exportData(database,filename,person,option_box):
     try:
         gw = GedcomWriter(database,person,0,filename,option_box)
         ret = gw.export_data(filename)
+    except Errors.DatabaseError,msg:
+        ErrorDialog(_("Export failed"),str(msg))
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()

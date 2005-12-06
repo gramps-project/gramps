@@ -38,13 +38,13 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-import gnome 
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import GrampsDisplay
 import NameDisplay
 import ListModel
 
@@ -168,7 +168,7 @@ class Bookmarks :
             if person:
                 name = NameDisplay.displayer.display(person)
                 gramps_id = person.get_gramps_id()
-                new_iter = self.namemodel.add([name,gramps_id,person_handle])
+                self.namemodel.add([name,gramps_id,person_handle])
         self.namemodel.connect_model()
 
         self.response = self.top.run()
@@ -211,5 +211,5 @@ class Bookmarks :
 
     def help_clicked(self):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-nav')
+        GrampsDisplay.help('gramps-nav')
         self.response = self.top.run()

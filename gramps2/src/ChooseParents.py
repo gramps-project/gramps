@@ -34,6 +34,7 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -43,13 +44,13 @@ from gettext import gettext as _
 import gtk.glade
 import gtk.gdk
 import gobject
-import gnome
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import GrampsDisplay
 import RelLib
 import const
 import Utils
@@ -58,8 +59,9 @@ import Date
 import NameDisplay
 import DateHandler
 import GenericFilter
-from QuestionDialog import ErrorDialog, WarningDialog
 import AutoComp
+from QuestionDialog import ErrorDialog, WarningDialog
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -108,10 +110,11 @@ class ChooseParents:
         self.parent_selected = 0
         self.renderer = gtk.CellRendererText()
 
-        db.connect('person-add', self.person_added)
-        db.connect('person-update', self.redraw)
-        db.connect('person-delete', self.redraw)
-        db.connect('person-rebuild', self.redraw_all)
+        self.sig_keys = [
+            db.connect('person-add', self.person_added),
+            db.connect('person-update', self.redraw),
+            db.connect('person-delete', self.redraw),
+            db.connect('person-rebuild', self.redraw_all)]
 
         # set default filters
         self.all_males_filter = GenericFilter.GenericFilter()
@@ -139,6 +142,7 @@ class ChooseParents:
             self.father = None
 
         self.glade = gtk.glade.XML(const.gladeFile,"familyDialog","gramps")
+        self.gladeif = GladeIf(self.glade)
         self.window = self.glade.get_widget("familyDialog")
         self.flabel = self.glade.get_widget("flabel")
         self.mlabel = self.glade.get_widget("mlabel")
@@ -186,18 +190,15 @@ class ChooseParents:
             RelLib.Family.CUSTOM,RelLib.Family.MARRIED)
         self.prel_selector.set_values(self.type)
         self.redrawm()
-        
-        self.glade.signal_autoconnect({
-            "on_add_parent_clicked"        : self.add_parent_clicked,
-            "on_prel_changed"              : self.parent_relation_changed,
-            "destroy_passed_object"        : self.close,
-            "on_showallf_toggled"          : self.showallf_toggled,
-            "on_showallm_toggled"          : self.showallm_toggled,
-            "on_save_parents_clicked"      : self.save_parents_clicked,
-            "on_help_familyDialog_clicked" : self.on_help_clicked,
-            "on_familyDialog_delete_event" : self.on_delete_event,
-            })
 
+        self.gladeif.connect('familyDialog','delete_event', self.on_delete_event)
+        self.gladeif.connect('button44','clicked', self.close)
+        self.gladeif.connect('button42','clicked', self.save_parents_clicked)
+        self.gladeif.connect('button167','clicked', self.on_help_clicked)
+        self.gladeif.connect('button123','clicked', self.add_parent_clicked)
+        self.gladeif.connect('showallf','toggled', self.showallf_toggled)
+        self.gladeif.connect('prel_combo','changed', self.parent_relation_changed)
+        
         self.frel_selector = AutoComp.StandardCustomSelector(
             Utils.child_relations,self.fcombo,
             RelLib.Person.CHILD_CUSTOM,RelLib.Person.CHILD_BIRTH)
@@ -207,6 +208,10 @@ class ChooseParents:
 
         self.frel_selector.set_values(frel)
         self.mrel_selector.set_values(mrel)
+
+#        self.keys = const.child_rel_list
+#        self.build_list(self.mcombo,mrel)
+#        self.build_list(self.fcombo,frel)
         
         self.window.show()
 
@@ -293,13 +298,17 @@ class ChooseParents:
         tree.append_column(column)
 
     def on_delete_event(self,obj,b):
+        self.gladeif.close()
         self.remove_itself_from_menu()
         self.close_child_windows()
+        gc.collect()
 
     def close(self,obj):
+        self.gladeif.close()
         self.remove_itself_from_menu()
         self.close_child_windows()
         self.window.destroy()
+        gc.collect()
         
     def close_child_windows(self):
         for child_window in self.child_windows.values():
@@ -329,7 +338,7 @@ class ChooseParents:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-quick')
+        GrampsDisplay.help('gramps-edit-quick')
 
     def person_added(self,handle_list):
         update_father = False
@@ -416,7 +425,7 @@ class ChooseParents:
             self.mother_filter = self.likely_females_filter
         self.redrawm()
         
-    def find_family(self,father_handle,mother_handle,trans):
+    def find_family(self,father_handle,mother_handle):
         """
         Finds the family associated with the father and mother.
         If one does not exist, it is created.
@@ -429,30 +438,25 @@ class ChooseParents:
             if (family.get_father_handle() == father_handle and
                 family.get_mother_handle() == mother_handle):
                 family.add_child_handle(self.person.get_handle())
-                self.db.commit_family(family,trans)
                 return family
             elif (family.get_father_handle() == mother_handle and
                   family.get_mother_handle() == father_handle):
                 family.add_child_handle(self.person.get_handle())
-                self.db.commit_family(family,trans)
                 return family
 
         family = RelLib.Family()
         family.set_father_handle(father_handle)
         family.set_mother_handle(mother_handle)
         family.add_child_handle(self.person.get_handle())
-        self.db.add_family(family,trans)
+        family.set_handle(self.db.create_id())
+        family.set_gramps_id(self.db.find_next_family_gramps_id())
 
         if father_handle:
             self.father = self.db.get_person_from_handle(father_handle)
             self.father.add_family_handle(family.get_handle())
-            self.db.commit_person(self.father,trans)
         if mother_handle:
             self.mother = self.db.get_person_from_handle(mother_handle)
             self.mother.add_family_handle(family.get_handle())
-            self.db.commit_person(self.mother,trans)
-
-        self.db.commit_family(family,trans)
         return family
 
     def father_select_function(self,store,path,iter,id_list):
@@ -530,6 +534,10 @@ class ChooseParents:
         Called with the OK button is pressed. Saves the selected people
         as parents of the main person.
         """
+
+        for key in self.sig_keys:
+            self.db.disconnect(key)
+
         try:
             mother_rel = self.mrel_selector.get_values()
         except KeyError:
@@ -541,25 +549,23 @@ class ChooseParents:
             father_rel = BIRTH_REL
 
         trans = self.db.transaction_begin()
+        father_handle = None
+        mother_handle = None
         if self.father or self.mother:
             if self.mother and not self.father:
                 if self.mother.get_gender() == RelLib.Person.MALE:
                     self.father = self.mother
                     father_handle = self.father.get_handle()
                     self.mother = None
-                    mother_handle = None
                 else:
                     mother_handle = self.mother.get_handle()
-                    father_handle = None
             elif self.father and not self.mother: 
                 if self.father.get_gender() == RelLib.Person.FEMALE:
                     self.mother = self.father
                     self.father = None
                     mother_handle = self.mother.get_handle()
-                    father_handle = None
                 else:
                     father_handle = self.father.get_handle()
-                    mother_handle = None
             elif self.mother.get_gender() != self.father.get_gender():
                 if self.type[0] == RelLib.Family.CIVIL_UNION:
                     self.type = FAM_UNKNOWN_REL
@@ -579,10 +585,15 @@ class ChooseParents:
             return
 
         if father_handle or mother_handle:
-            self.family = self.find_family(father_handle,mother_handle,trans)
+            self.family = self.find_family(father_handle,mother_handle)
             self.family.add_child_handle(self.person.get_handle())
             self.family.set_relationship(self.type)
-            self.change_family_type(self.family,mother_rel,father_rel)
+            self.change_family_type(self.family,mother_rel,father_rel,trans)
+            self.db.commit_person(self.person,trans)
+            if self.father:
+                self.db.commit_person(self.father,trans)
+            if self.mother:
+                self.db.commit_person(self.mother,trans)
             self.db.commit_family(self.family,trans)
         else:    
             self.family = None
@@ -636,7 +647,7 @@ class ChooseParents:
         class to create a new person."""
         
         person = RelLib.Person()
-        person.set_gender(RelLib.Person.MALE)
+        person.set_gender(RelLib.Person.UNKNOWN)
         
         try:
             import EditPerson
@@ -645,7 +656,7 @@ class ChooseParents:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
 
-    def change_family_type(self,family,mother_rel,father_rel):
+    def change_family_type(self,family,mother_rel,father_rel,trans):
         """
         Changes the family type of the specified family. If the family
         is None, the the relationship type shoud be deleted.
@@ -665,15 +676,6 @@ class ChooseParents:
         else:
             self.person.add_parent_family_handle(family_handle,
                                                  mother_rel,father_rel)
-
-        trans = self.db.transaction_begin()
-        self.db.commit_person(self.person,trans)
-        self.db.commit_family(family,trans)
-        if self.father:
-            self.db.commit_person(self.father,trans)
-        if self.mother:
-            self.db.commit_person(self.mother,trans)
-        self.db.transaction_commit(trans,_("Choose Parents"))
 
 #-------------------------------------------------------------------------
 #
@@ -699,6 +701,7 @@ class ModifyParents:
         self.mother = self.db.get_person_from_handle(mid)
 
         self.glade = gtk.glade.XML(const.gladeFile,"modparents","gramps")
+        self.gladeif = GladeIf(self.glade)
         self.window = self.glade.get_widget("modparents")
         self.title = self.glade.get_widget("title")
 
@@ -720,9 +723,7 @@ class ModifyParents:
                 self.orig_mrel = mr
                 self.orig_frel = fr
 
-        self.glade.signal_autoconnect({
-            "on_parents_help_clicked"  : self.on_help_clicked,
-            })
+        self.gladeif.connect('button165','clicked', self.on_help_clicked)
 
         self.title.set_use_markup(True)
 
@@ -775,11 +776,13 @@ class ModifyParents:
         self.val = self.window.run()
         if self.val == gtk.RESPONSE_OK:
             self.save_parents_clicked()
+        self.gladeif.close()
         self.window.destroy()
+        gc.collect()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-spec-par')
+        GrampsDisplay.help('gramps-spec-par')
         self.val = self.window.run()
 
     def save_parents_clicked(self):
@@ -826,6 +829,10 @@ class LikelyFilter(GenericFilter.Rule):
     labels   = [ 'Person handle' ] 
     category = _('General filters')
 
+    def __init__(self,data_list,gender):
+        GenericFilter.Rule.__init__(self,data_list)
+        self.gender = gender
+
     def prepare(self,db):
         person = db.get_person_from_handle(self.list[0])
         birth = db.get_event_from_handle(person.birth_handle)
@@ -848,12 +855,10 @@ class LikelyFilter(GenericFilter.Rule):
 class LikelyFather(LikelyFilter):
 
     name        = _('Likely Father')
-    description = _('Matches likely fathers')
+    description = _('Matches likely fathersn')
 
     def __init__(self,data_list):
-        GenericFilter.Rule.__init__(self,data_list)
-        self.gender = RelLib.Person.MALE
-
+        LikelyFilter.__init__(self,data_list,RelLib.Person.MALE)
 
 class LikelyMother(LikelyFilter):
 
@@ -861,6 +866,5 @@ class LikelyMother(LikelyFilter):
     description = _('Matches likely mothers')
 
     def __init__(self,data_list):
-        GenericFilter.Rule.__init__(self,data_list)
-        self.gender = RelLib.Person.FEMALE
+        LikelyFilter.__init__(self,data_list,RelLib.Person.FEMALE)
 

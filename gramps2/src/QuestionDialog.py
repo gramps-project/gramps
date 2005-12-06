@@ -44,7 +44,10 @@ from gtk.gdk import pixbuf_new_from_file
 import const
 import GrampsKeys
 
-ICON = pixbuf_new_from_file(const.icon)
+try:
+    ICON = pixbuf_new_from_file(const.icon)
+except:
+    pass
 
 class SaveDialog:
     def __init__(self,msg1,msg2,task1,task2,parent=None):

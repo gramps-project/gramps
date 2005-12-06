@@ -22,6 +22,13 @@
 
 #------------------------------------------------------------------------
 #
+# Python modules
+#
+#------------------------------------------------------------------------
+from gettext import gettext as _
+
+#------------------------------------------------------------------------
+#
 # gramps modules
 #
 #------------------------------------------------------------------------
@@ -30,10 +37,10 @@ import PluginMgr
 import Errors
 import ImgManip
 import GrampsMime
-from gettext import gettext as _
 
 _H   = 'Helvetica'
 _HB  = 'Helvetica-Bold'
+_HO  = 'Helvetica-Oblique'
 _HBO = 'Helvetica-BoldOblique'
 _T   = 'Times-Roman'
 _TB  = 'Times-Bold'
@@ -45,7 +52,6 @@ _TBI = 'Times-BoldItalic'
 # ReportLab python/PDF modules
 #
 #------------------------------------------------------------------------
-
 try:
     import reportlab.platypus.tables
     from reportlab.platypus import *
@@ -57,8 +63,8 @@ try:
     from reportlab.pdfbase.pdfmetrics import *
 
     for faceName in reportlab.pdfbase.pdfmetrics.standardFonts:
-        reportlab.pdfbase.pdfmetrics.registerTypeFace(reportlab.pdfbase.pdfmetrics.TypeFace(faceName))
-    
+        reportlab.pdfbase.pdfmetrics.registerTypeFace(
+            reportlab.pdfbase.pdfmetrics.TypeFace(faceName))
 except ImportError:
     raise Errors.PluginError( _("The ReportLab modules are not installed"))
 
@@ -122,6 +128,7 @@ class PdfDoc(BaseDoc.BaseDoc):
             pdf_style = reportlab.lib.styles.ParagraphStyle(name=style_name)
             pdf_style.fontSize = font.get_size()
             pdf_style.bulletFontSize = font.get_size()
+            pdf_style.leading = font.get_size()*1.2
             
             if font.get_type_face() == BaseDoc.FONT_SERIF:
                 if font.get_bold():
@@ -142,20 +149,17 @@ class PdfDoc(BaseDoc.BaseDoc):
                         pdf_style.fontName = _HB
                 else:
                     if font.get_italic():
-                        pdf_style.fontName = _TBI
+                        pdf_style.fontName = _HO
                     else:
                         pdf_style.fontName = _H
             pdf_style.bulletFontName = pdf_style.fontName
 
-            right = style.get_right_margin()*cm
-            left = style.get_left_margin()*cm
-            first = left + style.get_first_indent()*cm
-
-            pdf_style.rightIndent = right
-            pdf_style.leftIndent = left
-            pdf_style.firstLineIndent = first
-            pdf_style.bulletIndent = first
-
+            pdf_style.rightIndent = style.get_right_margin()*cm
+            pdf_style.leftIndent = style.get_left_margin()*cm
+            pdf_style.firstLineIndent = style.get_first_indent()*cm
+            pdf_style.bulletIndent = pdf_style.firstLineIndent + \
+                                     pdf_style.leftIndent
+            
             align = style.get_alignment()
             if align == BaseDoc.PARA_ALIGN_RIGHT:
                 pdf_style.alignment = TA_RIGHT
@@ -165,8 +169,8 @@ class PdfDoc(BaseDoc.BaseDoc):
                 pdf_style.alignment = TA_CENTER
             else:
                 pdf_style.alignment = TA_JUSTIFY
-            pdf_style.spaceBefore = style.get_padding()*cm
-            pdf_style.spaceAfter = style.get_padding()*cm
+            pdf_style.spaceBefore = style.get_top_margin()*cm
+            pdf_style.spaceAfter = style.get_bottom_margin()*cm
             pdf_style.textColor = make_color(font.get_color())
             self.pdfstyles[style_name] = pdf_style
 
@@ -195,10 +199,12 @@ class PdfDoc(BaseDoc.BaseDoc):
     def start_paragraph(self,style_name,leader=None):
         self.current_para = self.pdfstyles[style_name]
         self.my_para = self.style_list[style_name]
-        self.super = "<font size=%d><super>" % (self.my_para.get_font().get_size()-2)
+        self.super = "<font size=%d><super>" \
+                     % (self.my_para.get_font().get_size()-2)
         if leader==None:
             self.text = ''
         else:
+            self.current_para.firstLineIndent = 0
             self.text = '<bullet>%s</bullet>' % leader
 
     def end_paragraph(self):
@@ -345,7 +351,8 @@ class PdfDoc(BaseDoc.BaseDoc):
         text = enc(text)
         current_para = self.pdfstyles[style_name]
         self.my_para = self.style_list[style_name]
-        self.super = "<font size=%d><super>" % (self.my_para.get_font().get_size()-2)
+        self.super = "<font size=%d><super>" \
+                     % (self.my_para.get_font().get_size()-2)
 
         text = text.replace('&','&amp;')       # Must be first
         text = text.replace('<','&lt;')
@@ -354,7 +361,8 @@ class PdfDoc(BaseDoc.BaseDoc):
         text = text.replace('&lt;/super&gt;','</super></font>')
 
         if format == 1:
-            text = '<para firstLineIndent="0" fontname="Courier">%s</para>' % text.replace('\t',' '*8)
+            text = '<para firstLineIndent="0" fontname="Courier">%s</para>' \
+                   % text.replace('\t',' '*8)
             if self.in_table:
                 self.cur_cell.append(XPreformatted(text,current_para))
             else:
@@ -619,7 +627,6 @@ def make_color(c):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
-
 print_label = None
 try:
     import Utils
@@ -633,8 +640,12 @@ try:
         print_label=None
     PluginMgr.register_text_doc(mtype, PdfDoc, 1, 1, 1, ".pdf", print_label)
     PluginMgr.register_draw_doc(mtype, PdfDoc, 1, 1,    ".pdf", print_label)
-    PluginMgr.register_book_doc(mtype,classref=PdfDoc,table=1,paper=1,style=1,ext=".pdf")
+    PluginMgr.register_book_doc(mtype,classref=PdfDoc,
+                                table=1,paper=1,style=1,ext=".pdf")
 except:
-    PluginMgr.register_text_doc(_('PDF document'), PdfDoc, 1, 1, 1,".pdf", None)
-    PluginMgr.register_draw_doc(_('PDF document'), PdfDoc, 1, 1,   ".pdf", None)
-    PluginMgr.register_book_doc(name=_("PDF document"),classref=PdfDoc,table=1,paper=1,style=1,ext=".pdf")
+    PluginMgr.register_text_doc(_('PDF document'), PdfDoc,
+                                1, 1, 1,".pdf", None)
+    PluginMgr.register_draw_doc(_('PDF document'), PdfDoc,
+                                1, 1,   ".pdf", None)
+    PluginMgr.register_book_doc(name=_("PDF document"),classref=PdfDoc,
+                                table=1,paper=1,style=1,ext=".pdf")

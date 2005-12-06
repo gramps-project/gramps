@@ -24,7 +24,7 @@
 
     <title>About GRAMPS</title> 
     <para> &app; was written by Donald N. Allingham
-      (<email>dallingham@users.sourceforge.net</email>).</para>
+      (<email>don@gramps-project.org</email>).</para>
       
       <para>
       The somewhat incomplete list of contributors includes (in alphabetical order):
@@ -50,6 +50,7 @@
 <listitem><para>Steve Hall</para></listitem>
 <listitem><para>David R. Hampton</para></listitem>
 <listitem><para>Martin Hawlisch</para></listitem>
+<listitem><para>Anton Huber</para></listitem>
 <listitem><para>Frode Jemtland</para></listitem>
 <listitem><para>Greg Kuperberg</para></listitem>
 <listitem><para>Arkadiusz Lipiec</para></listitem>
@@ -63,6 +64,7 @@
 <listitem><para>Guillaume Pratte</para></listitem>
 <listitem><para>Laurent Protois</para></listitem>
 <listitem><para>Matthieu Pupat</para></listitem>
+<listitem><para>Trevor Rhodes</para></listitem>
 <listitem><para>Alexander Roitman</para></listitem>
 <listitem><para>Jason Salaz</para></listitem>
 <listitem><para>Julio Sanchez</para></listitem>

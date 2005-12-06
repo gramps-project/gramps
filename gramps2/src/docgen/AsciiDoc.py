@@ -38,6 +38,11 @@ import PluginMgr
 import Errors
 import GrampsMime
 
+#------------------------------------------------------------------------
+#
+# Constants
+#
+#------------------------------------------------------------------------
 LEFT,RIGHT,CENTER = 'LEFT','RIGHT','CENTER'
 _WIDTH_IN_CHARS = 72
 
@@ -48,9 +53,11 @@ _WIDTH_IN_CHARS = 72
 #
 # Modified by Alex Roitman: right-pad with spaces, if right_pad==1;
 #                           return empty string if no text was given
+# Another argument: "first" is the first line indent in characters
+#                   _relative_ to the "left" margin. It can be negative!
 #
 #------------------------------------------------------------------------
-def reformat_para(para='',left=0,right=72,just=LEFT,right_pad=0):
+def reformat_para(para='',left=0,right=72,just=LEFT,right_pad=0,first=0):
     if not para.strip():
         return "\n"
     words = para.split()
@@ -58,26 +65,37 @@ def reformat_para(para='',left=0,right=72,just=LEFT,right_pad=0):
     line  = ''
     word = 0
     end_words = 0
+    real_left = left+first
     while not end_words:
-        if len(words[word]) > right-left: # Handle very long words
+        if len(words[word]) > right-real_left: # Handle very long words
             line = words[word]
             word +=1
             if word >= len(words):
                 end_words = 1
         else:                             # Compose line of words
-            while len(line)+len(words[word]) <= right-left:
+            while len(line)+len(words[word]) <= right-real_left:
                 line += words[word]+' '
                 word += 1
                 if word >= len(words):
                     end_words = 1
                     break
         lines.append(line)
+        real_left = left
         line = ''
     if just==CENTER:
         if right_pad:
-            return '\n'.join([' '*left+ln.center(right-left) for ln in lines])
+            return '\n'.join(
+                [' '*(left+first) + ln.center(right-left-first)
+                 for ln in lines[0:1] ] +
+                [ ' '*left + ln.center(right-left) for ln in lines[1:] ]
+                )
         else:
-            return '\n'.join([' '*left+ln.center(right-left).rstrip() for ln in lines])
+            return '\n'.join(
+                [' '*(left+first) + ln.center(right-left-first).rstrip()
+                 for ln in lines[0:1] ] +
+                [' '*left + ln.center(right-left).rstrip()
+                 for ln in lines[1:] ]
+                )
     elif just==RIGHT:
         if right_pad:
             return '\n'.join([line.rjust(right) for line in lines])
@@ -85,9 +103,16 @@ def reformat_para(para='',left=0,right=72,just=LEFT,right_pad=0):
             return '\n'.join([line.rjust(right).rstrip() for line in lines])
     else: # left justify 
         if right_pad:
-            return '\n'.join([' '*left+line.ljust(right-left) for line in lines])
+            return '\n'.join(
+                [' '*(left+first) + line.ljust(right-left-first)
+                 for line in lines[0:1] ] +
+                [' '*left + line.ljust(right-left) for line in lines[1:] ]
+                )
         else:
-            return '\n'.join([' '*left+line for line in lines])
+            return '\n'.join(
+                [' '*(left+first) + line for line in lines[0:1] ] +
+                [' '*left + line for line in lines[1:] ]
+                )
 
 #------------------------------------------------------------------------
 #
@@ -173,26 +198,7 @@ class AsciiDoc(BaseDoc.BaseDoc):
     #--------------------------------------------------------------------
     def start_paragraph(self,style_name,leader=None):
         self.p = self.style_list[style_name]
-
-        i = int(abs(self.p.get_first_indent())*4)
         self.leader = leader
-        
-        this_text = ''
-
-        if leader:
-            if i:
-                ln = max(i,len(leader))
-                t = leader + ' '*ln
-                this_text = t[0:ln]
-            else:
-                this_text = leader
-        elif i:
-            this_text = ' '*i
-        
-        if self.in_cell:
-            self.cellpars[self.cellnum] = self.cellpars[self.cellnum] + this_text
-        else:
-            self.f.write(this_text)
 
     #--------------------------------------------------------------------
     #
@@ -214,11 +220,13 @@ class AsciiDoc(BaseDoc.BaseDoc):
         else:
             right = self.get_usable_width()
 
-        margin = 0
+        # Compute indents in characters. Keep first_indent relative!
+        regular_indent = 0
+        first_indent = 0
         if self.p.get_left_margin():
-            margin = int(4*self.p.get_left_margin())
-
-        i = int(abs(self.p.get_first_indent())*4)
+            regular_indent = int(4*self.p.get_left_margin())
+        if self.p.get_first_indent():
+            first_indent = int(4*self.p.get_first_indent())
 
         if self.in_cell and self.cellnum < self.ncols - 1:
             right_pad = 1
@@ -226,17 +234,28 @@ class AsciiDoc(BaseDoc.BaseDoc):
         else:
             right_pad = 0
             the_pad = ''
-        t = reformat_para(self.text,margin,right,fmt,right_pad)
 
-        if i and self.leader:
-            this_text = t[i:]
+        # Depending on the leader's presence, treat the first line differently
+        if self.leader:
+            # If we have a leader then we need to reformat the text
+            # as if there's no special treatment for the first line.
+            # Then add leader and eat up the beginning of the first line pad.
+            start_at = regular_indent + min(len(self.leader)+first_indent,0)
+            this_text = reformat_para(self.text,regular_indent,right,fmt,
+                                      right_pad)
+            this_text = ' '*(regular_indent+first_indent) + \
+                        self.leader + this_text[start_at:]
         else:
-            this_text = t
+            # If no leader then reformat the text according to the first
+            # line indent, as specified by style.
+            this_text = reformat_para(self.text,regular_indent,right,fmt,
+                                      right_pad,first_indent)
         
-        this_text = this_text + '\n' + the_pad + '\n' 
+        this_text += '\n' + the_pad + '\n' 
         
         if self.in_cell:
-            self.cellpars[self.cellnum] = self.cellpars[self.cellnum] + this_text
+            self.cellpars[self.cellnum] = self.cellpars[self.cellnum] + \
+                                          this_text
         else:
             self.f.write(this_text)
             

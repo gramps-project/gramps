@@ -34,6 +34,8 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
+from cgi import escape
 
 #-------------------------------------------------------------------------
 #
@@ -41,7 +43,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -54,8 +55,10 @@ import Sources
 import AutoComp
 import RelLib
 import Spell
+import GrampsDisplay
 
 from QuestionDialog import WarningDialog
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -125,7 +128,7 @@ class AttributeEditor:
         if title == ", ":
             title = _("Attribute Editor")
         else:
-            title = _("Attribute Editor for %s") % title
+            title = _("Attribute Editor for %s") % escape(title)
         l = self.top.get_widget("title")
         Utils.set_titles(self.window,l,title,_('Attribute Editor'))
 
@@ -144,14 +147,23 @@ class AttributeEditor:
             else:
                 Utils.unbold_label(self.notes_label)
 
-        self.top.signal_autoconnect({
-            "on_help_attr_clicked" : self.on_help_clicked,
-            "on_ok_attr_clicked" : self.on_ok_clicked,
-            "on_cancel_attr_clicked" : self.close,
-            "on_attr_edit_delete_event" : self.on_delete_event,
-            "on_switch_page" : self.on_switch_page
-            })
+        self.gladeif = GladeIf(self.top)
+        self.gladeif.connect('attr_edit','delete_event', self.on_delete_event)
+        self.gladeif.connect('button116', 'clicked', self.close)
+        self.gladeif.connect('button115', 'clicked', self.on_ok_clicked)
+        self.gladeif.connect('button127', 'clicked', self.on_help_clicked)
+        self.gladeif.connect('notebook', 'switch_page', self.on_switch_page)
 
+        if self.db.readonly:
+            w = self.top.get_widget("button115")
+            w.set_sensitive(False)
+            self.value_field.set_editable(False)
+            self.note_field.set_editable(False)
+            self.attrib_menu.set_sensitive(False)
+            self.priv.set_sensitive(False)
+            self.flowed.set_sensitive(False)
+            self.preform.set_sensitive(False)
+            
         if parent_window:
             self.window.set_transient_for(parent_window)
         self.add_itself_to_menu()
@@ -161,11 +173,15 @@ class AttributeEditor:
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
+        gc.collect()
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
         self.window.destroy()
+        gc.collect()
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():
@@ -202,7 +218,7 @@ class AttributeEditor:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-at')
+        GrampsDisplay.help('adv-at')
 
     def on_ok_clicked(self,obj):
         """

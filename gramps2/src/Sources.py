@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -34,7 +35,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gnome
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_file
 from gobject import TYPE_PYOBJECT
 import cPickle as pickle
@@ -50,10 +50,11 @@ import RelLib
 import Date
 import DateEdit
 import DateHandler
-import GrampsDBCallback
+import GrampsDisplay
 import Spell
 
 from DdTargets import DdTargets
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -80,21 +81,21 @@ class SourceSelector:
             self.list.append(RelLib.SourceRef(s))
         self.update=update
         self.top = gtk.glade.XML(const.srcselFile,"sourcesel","gramps")
+        self.gladeif = GladeIf(self.top)
+        
         self.window = self.top.get_widget("sourcesel")
 
         Utils.set_titles(self.window, self.top.get_widget('title'),
                          _('Source Reference Selection'))
-        
-        self.top.signal_autoconnect({
-            "on_add_src_clicked" : self.add_src_clicked,
-            "on_del_src_clicked" : self.del_src_clicked,
-            "on_edit_src_clicked" : self.edit_src_clicked,
-            "on_help_srcsel_clicked" : self.on_help_clicked,
-            "on_cancel_srcsel_clicked" : self.close,
-            "on_ok_srcsel_clicked" : self.src_ok_clicked,
-            "on_srcsel_delete_event" : self.on_delete_event,
-            })
 
+        self.gladeif.connect('sourcesel', 'delete_event', self.on_delete_event)
+        self.gladeif.connect('button138','clicked', self.close)
+        self.gladeif.connect('ok', 'clicked', self.src_ok_clicked)
+        self.gladeif.connect('button145', 'clicked', self.on_help_clicked)
+        self.gladeif.connect('add', 'clicked', self.add_src_clicked)
+        self.gladeif.connect('edit', 'clicked', self.edit_src_clicked)
+        self.gladeif.connect('delete', 'clicked', self.del_src_clicked)
+        
         self.slist = self.top.get_widget("slist")
         self.edit = self.top.get_widget('edit')
         self.delete = self.top.get_widget('delete')
@@ -128,13 +129,17 @@ class SourceSelector:
         self.window.show()
 
     def on_delete_event(self,obj,b):
+        self.gladeif.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
+        gc.collect()
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
         self.window.destroy()
+        gc.collect()
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():
@@ -165,7 +170,7 @@ class SourceSelector:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-complete')
+        GrampsDisplay.help('gramps-edit-complete')
 
     def selection_changed(self,obj):
         (store,node) = self.selection.get_selected()
@@ -235,6 +240,7 @@ class SourceTab:
         self.slist = clist
         self.selection = clist.get_selection()
         self.model = gtk.ListStore(str,str,TYPE_PYOBJECT)
+        self.readonly = readonly
 
         add_btn.set_sensitive(not readonly)
         del_btn.set_sensitive(not readonly)
@@ -268,9 +274,13 @@ class SourceTab:
                                    ACTION_COPY)
         self.slist.connect('drag_data_get', self.drag_data_get)
         self.slist.connect('drag_begin', self.drag_begin)
-        self.slist.connect('drag_data_received',self.drag_data_received)
+        if not self.readonly:
+            self.slist.connect('drag_data_received',self.drag_data_received)
 
     def drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        if self.db.readonly or self.readonly:  # no DnD on readonly database
+            return
+
         if sel_data and sel_data.data:
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
@@ -377,14 +387,16 @@ class SourceEditor:
         Utils.set_titles(self.sourceDisplay,
                          self.showSource.get_widget('title'),
                          _('Source Information'))
+
+        self.gladeif = GladeIf(self.showSource)
+        self.gladeif.connect('sourceDisplay','delete_event', self.on_delete_event)
+        self.gladeif.connect('button95','clicked',self.close)
+        self.gladeif.connect('ok','clicked',self.on_sourceok_clicked)
+        self.gladeif.connect('button144','clicked', self.on_help_clicked)
+        self.gladeif.connect('button143','clicked',self.add_src_clicked)
+        addbtn = self.get_widget('button143')
+        addbtn.set_sensitive(not self.db.readonly)
         
-        self.showSource.signal_autoconnect({
-            "on_add_src_clicked"            : self.add_src_clicked,
-            "on_help_srcDisplay_clicked"    : self.on_help_clicked,
-            "on_ok_srcDisplay_clicked"      : self.on_sourceok_clicked,
-            "on_cancel_srcDisplay_clicked"  : self.close,
-            "on_sourceDisplay_delete_event" : self.on_delete_event,
-            })
         self.source_field = self.get_widget("sourceList")
 
         # setup menu
@@ -394,7 +406,9 @@ class SourceEditor:
         self.title_menu.add_attribute(cell,'text',0)
         self.title_menu.connect('changed',self.on_source_changed)
         self.conf_menu = self.get_widget("conf")
+        self.conf_menu.set_sensitive(not self.db.readonly)
         self.private = self.get_widget("priv")
+        self.private.set_sensitive(not self.db.readonly)
         self.ok = self.get_widget("ok")
         self.conf_menu.set_active(srcref.get_confidence_level())
 
@@ -402,6 +416,7 @@ class SourceEditor:
         self.pub_field = self.get_widget("spubinfo")
 
         self.date_entry_field = self.get_widget("sdate")
+        self.date_entry_field.set_editable(not self.db.readonly)
 
         if self.source_ref:
             handle = self.source_ref.get_base_handle()
@@ -415,14 +430,18 @@ class SourceEditor:
             self.active_source = None
 
         date_stat = self.get_widget("date_stat")
+        date_stat.set_sensitive(not self.db.readonly)
         self.date_check = DateEdit.DateEdit(
             self.date_obj, self.date_entry_field,
             date_stat, self.sourceDisplay)
 
         self.spage = self.get_widget("spage")
+        self.spage.set_editable(not self.db.readonly)
         self.scom = self.get_widget("scomment")
+        self.scom.set_editable(not self.db.readonly)
         self.spell1 = Spell.Spell(self.scom)
         self.stext = self.get_widget("stext")
+        self.stext.set_editable(not self.db.readonly)
         self.spell2 = Spell.Spell(self.stext)
 
         self.draw(self.active_source,fresh=True)
@@ -439,11 +458,15 @@ class SourceEditor:
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
+        gc.collect()
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
         self.sourceDisplay.destroy()
+        gc.collect()
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():
@@ -480,11 +503,11 @@ class SourceEditor:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-si')
+        GrampsDisplay.help('adv-si')
 
     def set_button(self):
         if self.active_source:
-            self.ok.set_sensitive(True)
+            self.ok.set_sensitive(not self.db.readonly)
         else:
             self.ok.set_sensitive(False)
 
@@ -527,6 +550,10 @@ class SourceEditor:
             src = self.db.get_source_from_handle(src_id)
             title = src.get_title()
             gid = src.get_gramps_id()
+
+            if len(title) > 40:
+                title = title[0:37] + "..."
+            
             store.append(row=["%s [%s]" % (title,gid)])
             self.handle_list.append(src_id)
             if selected_handle == src_id:
@@ -535,7 +562,7 @@ class SourceEditor:
         self.title_menu.set_model(store)
 
         if index > 0:
-            self.title_menu.set_sensitive(1)
+            self.title_menu.set_sensitive(not self.db.readonly)
             self.title_menu.set_active(sel_index)
         else:
             self.title_menu.set_sensitive(0)
@@ -583,4 +610,3 @@ class SourceEditor:
     def add_src_clicked(self,obj):
         import EditSource
         EditSource.EditSource(RelLib.Source(),self.db, self)
-

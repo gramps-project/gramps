@@ -38,7 +38,6 @@ from gettext import gettext as _
 import BaseDoc
 from SpreadSheetDoc import *
 
-from latin_utf8 import latin_to_utf8
 import const
 
 import Errors
@@ -393,7 +392,7 @@ class OpenSpreadSheet(SpreadSheetDoc):
         text = text.replace('>','&gt;')
         text = text.replace('\t','<text:tab-stop/>')
         text = text.replace('\n','<text:line-break/>')
-	self.f.write(latin_to_utf8(text))
+	self.f.write(unicode(text))
 
     def _write_manifest(self):
         self.manifest_xml = tempfile.mktemp()
@@ -439,7 +438,6 @@ class OpenSpreadSheet(SpreadSheetDoc):
             pass
             raise Errors.ReportError(_("Could not create %s") % self.meta_xml)
 
-        name = latin_to_utf8(self.name)
 	self.f = open(self.meta_xml,"w")
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<office:document-meta ')

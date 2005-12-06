@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,11 +20,21 @@
 
 # $Id$
 
+#------------------------------------------------------------------------
+#
+# python modules 
+#
+#------------------------------------------------------------------------
 import os
-import string
 import re
 import time
+from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# GRAMPS modules 
+#
+#------------------------------------------------------------------------
 import PluginMgr
 import ImgManip
 import TarFile
@@ -34,12 +44,17 @@ import BaseDoc
 import QuestionDialog
 import GrampsMime
 
-from gettext import gettext as _
-
-t_header_line_re = re.compile(r"(.*)<TITLE>(.*)</TITLE>(.*)",
-                              re.DOTALL|re.IGNORECASE|re.MULTILINE)
-t_keyword_line_re = re.compile(r'(.*name="keywords"\s+content=")([^\"]*)(".*)$',
-                              re.DOTALL|re.IGNORECASE|re.MULTILINE)
+#------------------------------------------------------------------------
+#
+# Constant regular expressions
+#
+#------------------------------------------------------------------------
+t_header_line_re = re.compile(
+    r"(.*)<TITLE>(.*)</TITLE>(.*)",
+    re.DOTALL|re.IGNORECASE|re.MULTILINE)
+t_keyword_line_re = re.compile(
+    r'(.*name="keywords"\s+content=")([^\"]*)(".*)$',
+    re.DOTALL|re.IGNORECASE|re.MULTILINE)
 
 #------------------------------------------------------------------------
 #
@@ -126,7 +141,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
         self.image_dir = dirname
 
     def set_keywords(self,keywords):
-        self.meta = string.join(keywords,",")
+        self.meta = ",".join(keywords)
         
     def load_tpkg(self):
         start = re.compile(r"<!--\s*START\s*-->")
@@ -207,8 +222,8 @@ class HtmlDoc(BaseDoc.BaseDoc):
             self.top = _top
 
     def process_line(self,line):
-        l = string.replace(line,'$VERSION',const.version)
-        return string.replace(l,'$COPYRIGHT',self.copyright)
+        l = line.replace('$VERSION',const.version)
+        return l.replace('$COPYRIGHT',self.copyright)
         
     def open(self,filename):
         (r,e) = os.path.splitext(filename)
@@ -242,7 +257,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
         self.f.write(self.style_declaration)
 
     def build_header(self):
-        self.fix_title(string.join(self.top, ""))
+        self.fix_title("".join(self.top))
 
     def fix_title(self,msg=None):
         if msg == None:
@@ -290,6 +305,8 @@ class HtmlDoc(BaseDoc.BaseDoc):
             text_indent = "%.2f" % style.get_first_indent()
             right_margin = "%.2f" % style.get_right_margin()
             left_margin = "%.2f" % style.get_left_margin()
+            top_margin = "%.2f" % style.get_top_margin()
+            bottom_margin = "%.2f" % style.get_bottom_margin()
 
             top = bottom = left = right = 'none'
             if style.get_top_border():
@@ -315,17 +332,19 @@ class HtmlDoc(BaseDoc.BaseDoc):
                         '\tfont-size: %dpt; color: %s;\n' 
                         '\ttext-align: %s; text-indent: %scm;\n' 
                         '\tmargin-right: %scm; margin-left: %scm;\n' 
+                        '\tmargin-top: %scm; margin-bottom: %scm;\n' 
                         '\tborder-top:%s; border-bottom:%s;\n' 
                         '\tborder-left:%s; border-right:%s;\n' 
                         '\t%s%sfont-family:%s;\n}' 
                         % (key, font_size, font_color,
                            align, text_indent,
                            right_margin, left_margin,
+                           top_margin, bottom_margin,
                            top, bottom, left, right,
                            italic, bold, family))
 
         text.append('-->\n</style>')
-        self.style_declaration = string.join(text,'\n')
+        self.style_declaration = '\n'.join(text)
 
     def close(self):
         for line in self.bottom:
@@ -460,10 +479,10 @@ class HtmlDoc(BaseDoc.BaseDoc):
                 self.end_paragraph()
 
     def write_text(self,text):
-        text = string.replace(text,'&','&amp;');       # Must be first
-        text = string.replace(text,'<','&lt;');
-        text = string.replace(text,'>','&gt;');
-        text = string.replace(text,'\n','<br>')
+        text = text.replace('&','&amp;');       # Must be first
+        text = text.replace('<','&lt;');
+        text = text.replace('>','&gt;');
+        text = text.replace('\n','<br>')
         text = text.replace('&lt;super&gt;','<sup>')
         text = text.replace('&lt;/super&gt;','</sup>')
         if text != "":
@@ -475,7 +494,6 @@ class HtmlDoc(BaseDoc.BaseDoc):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
-
 try:
     import Utils
 

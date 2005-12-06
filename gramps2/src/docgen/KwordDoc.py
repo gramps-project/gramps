@@ -21,7 +21,6 @@
 # $Id$
 
 import BaseDoc
-from latin_utf8 import latin_to_utf8
 
 import time
 import cStringIO
@@ -177,8 +176,9 @@ class KwordDoc(BaseDoc.BaseDoc):
 
             p = self.style_list[name]
 
-            pad = points(p.get_padding())/2
-            self.f.write('<OFFSETS before="%d" after="%d"/>\n' % (pad,pad))
+            tpad = points(p.get_top_margin())
+            bpad = points(p.get_bottom_margin())
+            self.f.write('<OFFSETS before="%.4f" after="%.4f"/>\n' % (tpad,bpad))
             if p.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
                 self.f.write('<FLOW value="center"/>\n')
             elif p.get_alignment() == BaseDoc.PARA_ALIGN_JUSTIFY:
@@ -197,9 +197,9 @@ class KwordDoc(BaseDoc.BaseDoc):
             font = p.get_font()
             self.f.write('<FORMAT>\n')
             if font.get_type_face==BaseDoc.FONT_SANS_SERIF:
-                self.f.write('<FONT name="helvetica"/>\n')
+                self.f.write('<FONT name="Bitstream Vera Serif"/>\n')
             else:
-                self.f.write('<FONT name="times"/>\n')
+                self.f.write('<FONT name="Bitstream Vera Sans"/>\n')
             self.f.write('<SIZE value="%d"/>\n' % font.get_size())
             self.f.write('<COLOR red="%d" green="%d" blue="%d"/>\n' % font.get_color())
             if font.get_bold():
@@ -275,9 +275,9 @@ class KwordDoc(BaseDoc.BaseDoc):
         self.p = self.style_list[self.style_name]
         self.font = self.p.get_font()
         if self.font.get_type_face() == BaseDoc.FONT_SERIF:
-            self.font_face = "Arial"
+            self.font_face = "Bitstream Vera Serif"
         else:
-            self.font_face = "Times New Roman"
+            self.font_face = "Bitstream Vera Sans"
 
         if leader != None:
             self.text = leader + '\t'
@@ -298,7 +298,7 @@ class KwordDoc(BaseDoc.BaseDoc):
 
         self.f.write('<PARAGRAPH>\n')
         self.f.write('<TEXT>')
-        self.f.write(latin_to_utf8(self.text))
+        self.f.write(unicode(self.text))
         self.f.write('</TEXT>\n')
         self.f.write('<FORMATS>\n')
         for format in self.format_list:
@@ -307,8 +307,9 @@ class KwordDoc(BaseDoc.BaseDoc):
         self.f.write('<LAYOUT>\n')
         self.f.write('<NAME value="%s"/>\n' % self.style_name)
 
-        pad = points(self.p.get_padding())/2
-        self.f.write('<OFFSETS before="%d" after="%d"/>\n' % (pad,pad))
+        tpad = points(self.p.get_top_margin())
+        bpad = points(self.p.get_bottom_margin())
+        self.f.write('<OFFSETS before="%.4f" after="%.4f"/>\n' % (tpad,bpad))
 
         if self.p.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
             self.f.write('<FLOW value="center"/>\n')

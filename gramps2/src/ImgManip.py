@@ -25,12 +25,18 @@ import md5
 import gtk
 import gobject
 
+import GrampsKeys
+import Utils
+
 class ImgManip:
     def __init__(self,source):
         self.src = source
 
     def size(self):
-        img = gtk.gdk.pixbuf_new_from_file(self.src)
+        try:
+            img = gtk.gdk.pixbuf_new_from_file(self.src)
+        except gobject.GError:
+            return (0,0)
         return (img.get_width(),img.get_height())
     
     def fmt_thumbnail(self,dest,width,height,cnv):
@@ -95,34 +101,63 @@ class ImgManip:
 def _build_thumb_path(path):
     base = os.path.expanduser('~/.gramps/thumb')
     m = md5.md5(path)
-    return os.path.join(base,m.hexdigest()+'.jpg')
+    return os.path.join(base,m.hexdigest()+'.png')
 
-def set_thumbnail_image(path):
-    try:
-        pixbuf = gtk.gdk.pixbuf_new_from_file(path)
-        w = pixbuf.get_width()
-        h = pixbuf.get_height()
-        scale = const.thumbScale / (float(max(w,h)))
-        
-        pw = int(w*scale)
-        ph = int(h*scale)
-        
-        pixbuf = pixbuf.scale_simple(pw,ph,gtk.gdk.INTERP_BILINEAR)
-        pixbuf.save(_build_thumb_path(path),"jpeg")
-    except:
-        print "Could not create thumbnail for",path
+def run_thumbnailer(mtype, frm, to, size=const.thumbScale):
+    sublist = {
+        '%s' : "%dx%d" % (int(size),int(size)),
+        '%u' : frm,
+        '%o' : to,
+        }
 
-def get_thumbnail_image(path):
+    base = '/desktop/gnome/thumbnailers/%s' % mtype.replace('/','@')
+    cmd = GrampsKeys.client.get_string(base + '/command')
+    enable = GrampsKeys.client.get_bool(base + '/enable')
+
+    if cmd and enable:
+        cmdlist = map(lambda x: sublist.get(x,x),cmd.split())
+        if os.fork() == 0:
+            os.execvp(cmdlist[0],cmdlist)
+        os.wait()
+        return True
+    return False
+
+def set_thumbnail_image(path,mtype=None):
+    if mtype and not mtype.startswith('image/'):
+        run_thumbnailer(mtype,path,_build_thumb_path(path))
+    else:
+        try:
+            pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+            w = pixbuf.get_width()
+            h = pixbuf.get_height()
+            scale = const.thumbScale / (float(max(w,h)))
+            
+            pw = int(w*scale)
+            ph = int(h*scale)
+            
+            pixbuf = pixbuf.scale_simple(pw,ph,gtk.gdk.INTERP_BILINEAR)
+            pixbuf.save(_build_thumb_path(path),"png")
+        except:
+            pass
+
+def get_thumbnail_image(path,mtype=None):
     filename = _build_thumb_path(path)
-    if not os.path.isfile(filename):
-        set_thumbnail_image(path)
+
     try:
+        path = Utils.find_file( path)
+        if not os.path.isfile(filename):
+            set_thumbnail_image(path,mtype)
+        elif os.path.getmtime(path) > os.path.getmtime(filename):
+            set_thumbnail_image(path,mtype)
         return gtk.gdk.pixbuf_new_from_file(filename)
-    except gobject.GError:
-        return None
+    except (gobject.GError, OSError):
+        if mtype:
+            return Utils.find_mime_type_pixbuf(mtype)
+        else:
+            return gtk.gdk.pixbuf_new_from_file(os.path.join(const.dataDir,"document.png"))
 
-def get_thumbnail_path(path):
+def get_thumbnail_path(path,mtype=None):
     filename = _build_thumb_path(path)
     if not os.path.isfile(filename):
-        set_thumbnail_image(path)
+        set_thumbnail_image(path,mtype)
     return filename

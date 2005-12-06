@@ -47,6 +47,7 @@ from gnome import help_display
 #
 #-------------------------------------------------------------------------
 import Utils
+import Tool
 from QuestionDialog import OkDialog
 
 #-------------------------------------------------------------------------
@@ -75,21 +76,16 @@ _sn_prefix_re = re.compile("^\s*(%s)\s+(.*)" % '|'.join(prefix_list),re.IGNORECA
 # to "Name" and add "Nickname" into the nickname field.
 #
 #-------------------------------------------------------------------------
-def runTool(database,active_person,callback,parent=None):
-    try:
-        PatchNames(database,callback,parent)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
 
 #-------------------------------------------------------------------------
 #
 # PatchNames
 #
 #-------------------------------------------------------------------------
-class PatchNames:
+class PatchNames(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
 
-    def __init__(self,db,callback,parent):
         self.cb = callback
         self.db = db
         self.parent = parent
@@ -336,12 +332,31 @@ class PatchNames:
 # 
 #
 #------------------------------------------------------------------------
+class PatchNamesOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 from PluginMgr import register_tool
 
 register_tool(
-    runTool,
-    _("Extract information from names"),
-    category=_("Database Processing"),
+    name = 'patchnames',
+    category = Tool.TOOL_DBPROC,
+    tool_class = PatchNames,
+    options_class = PatchNamesOptions,
+    modes = Tool.MODE_GUI,
+    translated_name = _("Extract information from names"),
+    status=(_("Stable")),
+    author_name = "Donald N. Allingham",
+    author_email = "don@gramps-project.org",
     description=_("Searches the entire database and attempts to "
                   "extract titles, nicknames and surname prefixes "
                   "that may be embedded in a person's given name field.")

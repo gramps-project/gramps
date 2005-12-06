@@ -80,7 +80,7 @@ _SUPER_ELEVATION_FRACTION = 0.3
 _SUPER_SIZE_REDUCTION = 2
 
 # Factor which multiplies the font size to get line spacing for the font
-_EXTRA_SPACING_FACTOR = 1.1
+_EXTRA_SPACING_FACTOR = 1.2
 
 # Grey color to use for box shadows
 _SHADOW_COLOR = (192,192,192)
@@ -141,6 +141,7 @@ _LINE_BREAK = "Break"
 _BOLD       = "Bold"
 _SUPER      = "Super"
 _MONO       = "Mono"
+_POSTLEADER = "Postleader"
 
 #------------------------------------------------------------------------
 #
@@ -383,8 +384,10 @@ class GnomePrintParagraph:
                     end_word = len(textlist)
 
         self.lines.append((start_piece,start_word,end_piece,end_word,avail_width))
-        self.height = nlines * self.fontstyle.get_size() * _EXTRA_SPACING_FACTOR \
-                    + 2 * cm2u(self.style.get_padding())
+        self.height = nlines * self.fontstyle.get_size() \
+                      * _EXTRA_SPACING_FACTOR \
+                      + cm2u(self.style.get_top_margin()
+                             +self.style.get_bottom_margin())
     
     def get_lines(self):
         """
@@ -416,8 +419,10 @@ class GnomePrintPhoto:
         self.height = self.pixbuf.get_height()
         self.width = self.pixbuf.get_width()
         max_size = cm2u(max(x_size,y_size))
-        self.scale_x = int( max_size * float(self.width)/max(self.height,self.width) )
-        self.scale_y = int( max_size * float(self.height)/max(self.height,self.width) )
+        self.scale_x = int(max_size * float(self.width)/max(self.height,
+                                                             self.width))
+        self.scale_y = int(max_size * float(self.height)/max(self.height,
+                                                              self.width))
 
     def get_image(self):
         """
@@ -503,7 +508,8 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.gpc = self.job.get_context()
 
         #find out what the width and height of the page is
-        width, height = gnomeprint.job_get_page_size_from_config(self.job.get_config())
+        width, height = gnomeprint.job_get_page_size_from_config(
+            self.job.get_config())
 
         self.left_margin = cm2u(self.get_left_margin()) 
         self.right_margin = width - cm2u(self.get_right_margin()) 
@@ -553,7 +559,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         if not self.brand_new_page:
             self.end_page()
             self.start_page()
-                                                                                
+
     #------------------------------------------------------------------------
     #
     # Text methods
@@ -569,7 +575,8 @@ class LPRDoc(BaseDoc.BaseDoc):
         # Add previously held text to the paragraph, 
         # then add line break directive, 
         # then start accumulating further text 
-        append_to_paragraph(self.paragraph,self.paragraph_directive,self.paragraph_text)
+        append_to_paragraph(self.paragraph,self.paragraph_directive,
+                            self.paragraph_text)
         self.paragraph.add_piece(_LINE_BREAK,"")
         self.paragraph_text = ""
         self.brand_new_page = 0
@@ -580,10 +587,12 @@ class LPRDoc(BaseDoc.BaseDoc):
         We assume a linebreak at the end of each paragraph."""
         # Instantiate paragraph object and initialize buffers
         self.paragraph = GnomePrintParagraph(self.style_list[style_name])
-        self.paragraph_directive = ""
-        self.paragraph_text = ""
         if leader:
-            self.paragraph_text += leader + " "
+            append_to_paragraph(self.paragraph,"",leader)
+            self.paragraph_directive = _POSTLEADER
+        else:
+            self.paragraph_directive = ""
+        self.paragraph_text = ""
         self.brand_new_page = 0
     
     def end_paragraph(self):
@@ -591,7 +600,8 @@ class LPRDoc(BaseDoc.BaseDoc):
         # Add current text/directive to paragraoh,
         # then either add paragrah to the list of cell's paragraphs
         # or print it right away if not in cell
-        append_to_paragraph(self.paragraph,self.paragraph_directive,self.paragraph_text)
+        append_to_paragraph(self.paragraph,self.paragraph_directive,
+                            self.paragraph_text)
         if self.in_cell:
             # We're inside cell. Add paragrah to celldata
             self.cell_data.append(self.paragraph)
@@ -605,30 +615,34 @@ class LPRDoc(BaseDoc.BaseDoc):
             
     def start_bold(self):
         """Bold face."""
-        append_to_paragraph(self.paragraph,self.paragraph_directive,self.paragraph_text)
+        append_to_paragraph(self.paragraph,self.paragraph_directive,
+                            self.paragraph_text)
         self.paragraph_directive = _BOLD
         self.paragraph_text = ""
         self.brand_new_page = 0
         
     def end_bold(self):
         """End bold face."""
-        append_to_paragraph(self.paragraph,self.paragraph_directive,self.paragraph_text)
+        append_to_paragraph(self.paragraph,self.paragraph_directive,
+                            self.paragraph_text)
         self.paragraph_directive = ""
         self.paragraph_text = ""
         self.brand_new_page = 0
 
     def start_superscript(self):
-        append_to_paragraph(self.paragraph,self.paragraph_directive,self.paragraph_text)
+        append_to_paragraph(self.paragraph,self.paragraph_directive,
+                            self.paragraph_text)
         self.paragraph_directive = _SUPER
         self.paragraph_text = ""
         self.brand_new_page = 0
-                                                                                
+
     def end_superscript(self):
-        append_to_paragraph(self.paragraph,self.paragraph_directive,self.paragraph_text)
+        append_to_paragraph(self.paragraph,self.paragraph_directive,
+                            self.paragraph_text)
         self.paragraph_directive = ""
         self.paragraph_text = ""
         self.brand_new_page = 0
-                                                                                
+
     def start_table(self,name,style_name):
         """Begin new table."""
         # initialize table, compute its width, find number of columns
@@ -831,20 +845,27 @@ class LPRDoc(BaseDoc.BaseDoc):
 
         left_margin = x
         no_space = 0
+        next_no_space = 0
         first = 1
 
-        if y - paragraph.fontstyle.get_size() * _EXTRA_SPACING_FACTOR < self.bottom_margin:
+        if y - paragraph.fontstyle.get_size() * _EXTRA_SPACING_FACTOR \
+               < self.bottom_margin:
             self.end_page()
             self.start_page()
             x = left_margin
             y = self.y
 
         if y != self.top_margin:
-            y = y - cm2u(paragraph.style.get_padding())
+            y = y - cm2u(paragraph.style.get_top_margin())
 
+        line_number = 0
+        total_lines = len(paragraph.get_lines())
+        
         # Loop over lines which were assembled by paragraph.format()
         for (start_piece,start_word,end_piece,end_word,avail_width) \
-                                                    in paragraph.get_lines():
+                in paragraph.get_lines():
+
+            line_number += 1
 
             if paragraph.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
                 x = x + 0.5 * avail_width
@@ -873,7 +894,10 @@ class LPRDoc(BaseDoc.BaseDoc):
                     y = y + _SUPER_ELEVATION_FRACTION * fontstyle.get_size()
                 elif directive == _MONO:
                     fontstyle.set_type_face(BaseDoc.FONT_MONOSPACE)
-
+                elif directive == _POSTLEADER:
+                    x = left_margin
+                    if text == '':
+                        next_no_space = 1
                 textlist = text.split()
                 if start_piece == end_piece:
                     the_textlist = textlist[start_word:end_word]
@@ -887,6 +911,8 @@ class LPRDoc(BaseDoc.BaseDoc):
                 the_text = ' '.join(the_textlist)
                 if piece_num == start_piece \
                                 or directive == _SUPER \
+                                or directive == _POSTLEADER \
+                                or next_no_space \
                                 or no_space \
                                 or (the_text and the_text[0] in punctuation):
                     spacer = ""
@@ -900,6 +926,8 @@ class LPRDoc(BaseDoc.BaseDoc):
                 x = x + get_text_width(the_text,fontstyle)
                 if directive == _SUPER:
                     y = y - _SUPER_ELEVATION_FRACTION * fontstyle.get_size()
+                if directive != _POSTLEADER and next_no_space:
+                    next_no_space = 0
 
             # If this was the linebreak, no space on the next line's start
             if end_word:
@@ -907,11 +935,12 @@ class LPRDoc(BaseDoc.BaseDoc):
             else:
                 no_space = 1
 
-            y = self.advance_line(y,paragraph)
+            if line_number < total_lines:
+                y = self.advance_line(y,paragraph)
             x = left_margin
 
         x = x - cm2u(paragraph.style.get_left_margin())
-        y = y - cm2u(paragraph.style.get_padding())
+        y = y - cm2u(paragraph.style.get_bottom_margin())
         return (x,y)
 
     def output_table(self):

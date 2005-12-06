@@ -4,79 +4,11 @@
 /* Standard Tags {{{1
  */
 BODY {
-	font-family: "Arial", "Helvetica", sans-serif;
+	font-family: "Verdana", "Bitstream Vera Sans", "Arial", "Helvetica", sans-serif;
 	background-color: #ffffff;
-
 }
-
-P,BLOCKQUOTE {
-	font-size: 14px;
-}
-
-DIV {
-	margin: 2px;
-	padding: 2px;
-}
-
-TD {
-	vertical-align: top;
-}
-
-H1 {
-	font-family: "Verdana", "Bistream Vera Sans", "Arial", "Helvetica", sans-serif;
-	font-weight: bolder;
-	font-size:	160%;
-	margin: 2px;
-}
-H2 {
-	font-family: "Verdana", "Bistream Vera Sans", "Arial", "Helvetica", sans-serif;
-	font-weight: bolder;
-	font-style: italic;
-	font-size:	150%;
-}
-H3 {
-	font-weight: bold;
-	margin: 0;
-	padding-top: 10px;
-	padding-bottom: 10px;
-
-}
-H4 {
-	margin-top: 1em;
-	margin-bottom: 0.3em;
-	padding-left: 4px;
-
-
-}
-H5 {
-	margin-bottom: 0.5em;
-}
-H6 {
-	font-weight: normal;
-	font-style: italic;
-	font-size:	100%;
-	margin-left: 1em;
-	margin-top: 1.3em;
-	margin-bottom: 0.8em;
-}
-
-HR {
-	height: 1px;
-	width: 100%;
-	margin: 0;
-	margin-top: 1px;
-	margin-bottom: 0;
-	padding: 0;
-	border-top: 0;	/* Hack: Mozilla work-around to eliminate "groove" */
-	border-color: #000;
-}
-
 A:link {
 	color: #000;
-	text-decoration: underline;
-}
-A:visited {
-	color: #333;
 	text-decoration: underline;
 }
 A:hover {
@@ -89,150 +21,234 @@ A:active {
 	color: #000;
 	text-decoration: none;
 }
-SUP {
-    line-height: 0;
+A:visited {
+	color: #333;
+	text-decoration: underline;
 }
+DIV {
+	margin: 2px;
+	padding: 2px;
+}
+P {
+	font-size: 14px;
+}
+H1 {
+	/*font-family: "Verdana", "Bitstream Vera Sans", "Arial", "Helvetica", sans-serif;*/
+	font-weight: bolder;
+	font-size:	160%;
+	margin: 2px;
+}
+H2 {
+	/*font-family: "Verdana", "Bitstream Vera Sans", "Arial", "Helvetica", sans-serif;*/
+	font-weight: bolder;
+	font-style: italic;
+	font-size:	150%;
+}
+H3 {
+	font-weight: bold;
+	margin: 0;
+	padding: 10px 0px 10px 0px;
 
+}
+H4 {
+	margin: 1em 0em 0.3em 0em;
+	padding-left: 4px;
+	border-bottom: 1px solid #999;
+}
+H5 {
+	margin-bottom: 0.5em;
+}
+H6 {
+	font-style: italic;
+        font-size: 100%;
+	margin: 1.3em 0em 1em 0.8em;
+}
+IMG {
+	border: none;
+}
+SUP {
+    line-height: 0%;
+}
+TABLE {
+	border: none;
+	border-collapse: collapse;
+}
+TH {
+	padding: 1px 3em 1px 1px;
+	font-weight: bold;
+	text-align: left;
+}
+TD {
+	vertical-align: top;
+	padding: 0;
+}
 
 /* Custom {{{1
  */
-
-.navheader {
+/* main data table */
+TABLE.infolist {
+	border: 0;
+	/*width: 100%;*/
+	font-size: 14px;
+	margin: 0em 2em 0em 2em;
+}
+TABLE.infolist TH {
+	border-bottom: 1px solid #999;
+}
+TABLE.infolist TH A {
+	text-decoration: none;
+}
+TABLE.infolist TR > TD:first-child {
+	min-width: 6em;
+}
+TD.category {
+	padding: 1px 3em 1px 1px;	/* Defines spacing between rows */
+	/*width: 10%;*/
+	font-weight: bold;
+}
+TD.data {
+	padding: 1px 3em 1px 1px;	/* Defines spacing between rows */
+	font-weight: bold;
+}
+TD.field {
+	padding: 1px 3em 1px 1px;	/* Defines spacing between rows */
+	/*width: 15%;*/
+}
+/* float left and right */
+.leftwrap {
+	float: left;
+	margin: 2px 10px 2px 2px;
+}
+.rightwrap {
+	float: right;
+	margin: 2px 2px 10px 2px;
+}
+.centered {
+	text-align: center;
+}
+/* navigation links */
+#navheader {
 	padding: 2px;
-
 	margin: 2px;
+	border-bottom: 1px solid #999;
 }
 .navtitle {
 	font-size:	130%;
 	color: #999;
 	margin: 3px;
-
-
-
 }
 .navbyline {
 	float: right;
 	font-size: 14px;
 	margin: 2px;
-	padding: 2px;
-	padding-right: 10px;
-
+	padding: 2px 10px 2px 2px;
 }
 .nav {
-	margin: 0;
-	margin-bottom: 4px;
+	margin: 0px 0px 4px 0px;
 	padding: 1px;
 	font-size: 12px;
 	font-weight: bold;
-
-
-
+	word-spacing: 0.5em;
 }
-
-
-.summaryarea {
-    min-height: 100px;
-    /* Hack: IE Dynamic Expression to set the width */
-    height: expression(document.body.clientHeight < 1 ? "100px" : "100px" );
+/* image display */
+.img_navbar {
+	margin: 0px 0px 4px 0px;
+  	padding: 10px;
+  	font-size: 14px;
+  	font-weight: bold;
+	text-align: center;
 }
-
 .portrait {
-	justify: center;
-	margin: 5px;
-	margin-right: 20px;
+	text-align: center;
+	margin: 5px 20px 5px 5px;
 	padding: 3px;
 	border-color: #000;
 	border-width: 1px;
 }
 .snapshot {
 	float: right;
-	margin: 5px;
-	margin-right: 20px;
+	margin: 5px 20px 5px 5px;
 	padding: 3px;
 }
 .thumbnail {
-	height: 100px;
-	border-color: #000;
-	border-width: 1px;
+	margin: 0em 2em 0em 2em;
 }
-
-.leftwrap {
-	float: left;
-	margin: 2px;
-	margin-right: 10px;
+#gallery .thumbnail {
+	margin: 1em;
+    float:left;
+    width:150px;
+    height:150px;
+    text-align:center;
 }
-.rightwrap {
-	float: right;
-	margin: 2px;
-	margin-left: 10px;
-}
-
-TABLE.infolist {
-	border: 0;
-	/*width: 100%;*/
-	font-size: 14px;
-
-
-}
-
-.img_navbar {
-  	margin: 0;
-  	margin-bottom: 4px;
-  	padding: 10px;
-  	font-size: 14px;
-  	font-weight: bold;
-	text-align: center;
-}
-
-TD.category {
-
-	padding: 1px;	/* Defines spacing between rows */
-	padding-right: 3em;
-
-	/*width: 10%;*/
-	font-weight: bold;
-}
-TD.field {
-
-	padding: 1px;	/* Defines spacing between rows */
-	padding-right: 3em;
-	/*width: 15%;*/
-
-}
-TD.data {
-
-	padding: 1px;	/* Defines spacing between rows */
-	padding-right: 3em;
-
-
-	font-weight: bold;
-
-}
-
-
-.pedigree {
+.thumbnail p {
 	margin: 0;
-	margin-left: 2em;
+	padding: 0;
+	font-size: smaller;
+}
+/* pedigree display */
+#pedigree { }
+.pedigreebox {
+	margin: 0.5em 0em 0em 2em;
 	padding: 0;
 	background-color: #eeeeee;
 	border: 1px;
 }
-.pedigreeind {
+.pedigreegen {
 	font-size: 14px;
 	margin: 0;
-	padding: 2em;
-	padding-top: 0.25em;
-	padding-bottom: 0.5em;
+	padding: 0.25em 2em 0.5em 2em;
 }
-
-
-.footer {
-	margin: 1em;
+.spouse {
+	font-style: italic;
+}
+.spouse:before {
+	content: "+ ";
+}
+.thisperson {
+	font-weight: bold;
+}
+/* other section ids */
+#content { }
+#summaryarea {
+    min-height: 100px;
+    /* Hack: IE Dynamic Expression to set the width */
+    height: expression(document.body.clientHeight < 1 ? "100px" : "100px" );
+}
+#footer {
+ 	border-top: 1px solid #999;
+ 	border-bottom: 1px solid #999;
+ 	padding: 0;
+ 	margin: 1em 0 0 0;
+ 	clear: both;
+}
+.fullclear {
+	clear: both;
+}
+#copyright {
+	margin: 0.5em 1em 0 0;
 	font-size: 12px;
 	float: right;
 }
+#attributes { }
+#events { }
+#families { }
+#gallery { }
+#narrative { }
+#parents { }
+#references { }
+#researcher { }
+#sourcerefs { }
+#weblinks { }
 
+.box    { font-size: 10pt; height: 48px; padding: 5px; vertical-align: middle;}
+.bvline { position: absolute; background-color: #000000; font-size: 0pt; z-index: 3; height: 1px;}
+.bhline { position: absolute; background-color: #000000; font-size: 0pt; z-index: 3; width: 1px;}
+.border { position: absolute; background-color: #000000; font-size: 0pt; z-index: 4; width: 160px; height: 50px; }
+.boxbg  { position: absolute; background-color: #eeeeee; z-index: 5; width: 158px; height: 48px;}
+.shadow { position: absolute; background-color: #999999; z-index: 1; width: 158px; height: 48px; }
+.ghline { position: absolute; background-color: #999999; font-size: 0pt; z-index: 1; width: 1px;}
+.gvline { position: absolute; background-color: #999999; font-size: 0pt; z-index: 1; height: 1px;}
 
 /* 1}}}
  vim:foldmethod=marker
-/*
+*/

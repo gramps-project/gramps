@@ -218,8 +218,9 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
                 self.cntnt.write('style:font-name="Arial" ')
             else:
                 self.cntnt.write('style:font-name="Times New Roman" ')
-            self.cntnt.write('fo:font-size="%dpt" ' % font.get_size())
-            self.cntnt.write('style:font-size-asian="%dpt" ' % font.get_size())
+            self.cntnt.write('fo:font-size="%.3fpt" ' % font.get_size())
+            self.cntnt.write('style:font-size-asian="%.3fpt" '
+                             % font.get_size())
             color = font.get_color()
             self.cntnt.write('fo:color="#%02x%02x%02x" ' % color)
             if font.get_bold():
@@ -229,11 +230,16 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             if font.get_underline():
                 self.cntnt.write('style:text-underline="single" ')
                 self.cntnt.write('style:text-underline-color="font-color" ')
-            self.cntnt.write('fo:text-indent="%.2fcm" ' % style.get_first_indent())
-            self.cntnt.write('fo:margin-right="%.2fcm" ' % style.get_right_margin())
-            self.cntnt.write('fo:margin-left="%.2fcm" ' % style.get_left_margin())
-            self.cntnt.write('fo:margin-top="0cm" ')
-            self.cntnt.write('fo:margin-bottom="0.212cm"')
+            self.cntnt.write('fo:text-indent="%.2fcm" '
+                             % style.get_first_indent())
+            self.cntnt.write('fo:margin-right="%.2fcm" '
+                             % style.get_right_margin())
+            self.cntnt.write('fo:margin-left="%.2fcm" '
+                             % style.get_left_margin())
+            self.cntnt.write('fo:margin-top="%.2fcm" '
+                             % style.get_top_margin())
+            self.cntnt.write('fo:margin-bottom="%.2fcm"'
+                             % style.get_bottom_margin())
             self.cntnt.write('/>\n')
             self.cntnt.write('</style:style>\n')
 
@@ -258,8 +264,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
                 self.cntnt.write('fo:font-weight="bold" ')
             if font.get_italic():
                 self.cntnt.write('fo:font-style="italic" ')
-            self.cntnt.write('fo:font-size="%dpt" ' % font.get_size())
-            self.cntnt.write('style:font-size-asian="%dpt"/> ' % font.get_size())
+            self.cntnt.write('fo:font-size="%.3fpt" ' % font.get_size())
+            self.cntnt.write('style:font-size-asian="%.3fpt"/> ' % font.get_size())
             self.cntnt.write('</style:style>\n')
 
         for style_name in self.table_styles.keys():
@@ -559,6 +565,14 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 
             if style.get_padding() != 0.0:
                self.sfile.write('fo:padding="%.3fcm" ' % style.get_padding())
+            if style.get_top_border():
+               self.sfile.write('fo:border-top="0.002cm solid #000000" ')
+            if style.get_bottom_border():
+               self.sfile.write('fo:border-bottom="0.002cm solid #000000" ')
+            if style.get_right_border():
+               self.sfile.write('fo:border-right="0.002cm solid #000000" ')
+            if style.get_left_border():
+               self.sfile.write('fo:border-left="0.002cm solid #000000" ')
             if style.get_header_level() > 0:
                 self.sfile.write('fo:keep-with-next="true" ')
 
@@ -578,7 +592,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
                 self.sfile.write('style:font-name="Arial" ')
             else:
                 self.sfile.write('style:font-name="Times New Roman" ')
-            self.sfile.write('fo:font-size="' + str(font.get_size()) + 'pt" ')
+            self.sfile.write('fo:font-size="%.3fpt" ' % font.get_size())
             color = font.get_color()
             self.sfile.write('fo:color="#%02x%02x%02x" ' % color)
             if font.get_bold():
@@ -588,11 +602,16 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             if font.get_underline():
                 self.sfile.write('style:text-underline="single" ')
                 self.sfile.write('style:text-underline-color="font-color" ')
-            self.sfile.write('fo:text-indent="%.2fcm" ' % style.get_first_indent())
-            self.sfile.write('fo:margin-right="%.2fcm" ' % style.get_right_margin())
-            self.sfile.write('fo:margin-left="%.2fcm" ' % style.get_left_margin())
-            self.sfile.write('fo:margin-top="0cm" ')
-            self.sfile.write('fo:margin-bottom="0.212cm"')
+            self.sfile.write('fo:text-indent="%.2fcm" '
+                             % style.get_first_indent())
+            self.sfile.write('fo:margin-right="%.2fcm" '
+                             % style.get_right_margin())
+            self.sfile.write('fo:margin-left="%.2fcm" '
+                             % style.get_left_margin())
+            self.sfile.write('fo:margin-top="%.2fcm" '
+                             % style.get_top_margin())
+            self.sfile.write('fo:margin-bottom="%.2fcm"'
+                             % style.get_bottom_margin())
             self.sfile.write('/>\n')
             self.sfile.write('</style:style>\n')
 
@@ -671,10 +690,10 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         else:
             self.cntnt.write('<text:h text:style-name="')
             self.cntnt.write(name)
-            self.cntnt.write('" text:level="' + str(self.level) + '">\n')
+            self.cntnt.write('" text:level="%d">' % self.level)
         if leader != None:
             self.cntnt.write(leader)
-            self.cntnt.write('<text:tab-stop/>\n')
+            self.cntnt.write('<text:tab-stop/>')
         self.new_cell = 0
 
     def end_paragraph(self):
@@ -941,7 +960,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('draw:style-name="%s" ' % style)
         self.cntnt.write('draw:z-index="0" ')
         self.cntnt.write('svg:width="%.3fcm" ' % size)
-        self.cntnt.write('svg:height="%dpt" ' % (font.get_size()*1.1))
+        self.cntnt.write('svg:height="%.3fpt" ' % (font.get_size()*1.1))
 
         self.cntnt.write('svg:x="%.3fcm" ' % (x-(size/2.0)))
         self.cntnt.write('svg:y="%.3fcm">\n' % float(y))
@@ -961,7 +980,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('<draw:text-box text:anchor-type="paragraph" ')
         self.cntnt.write('draw:z-index="0" ')
         self.cntnt.write('svg:width="%.3fcm" ' % size)
-        self.cntnt.write('svg:height="%dpt" ' % font.get_size())
+        self.cntnt.write('svg:height="%.3fpt" ' % font.get_size())
 
         self.cntnt.write('svg:x="%.3fcm" ' % x)
         self.cntnt.write('svg:y="%.3fcm">\n' % float(y))

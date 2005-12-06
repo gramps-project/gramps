@@ -36,6 +36,10 @@ import gnome
 import ViewManager
 import PersonView
 import RepositoryView
+import GrampsDisplay
+import RelLib
+import GrampsDbBase
+import GrampsBSDDB
 import PedView
 import MapView
 import FamilyView
@@ -51,7 +55,6 @@ import const
 import Errors
 import PluginMgr
 import TipOfDay
-import GrampsDbBase
 
 from GrampsMime import mime_type_is_defined
 from QuestionDialog import ErrorDialog
@@ -116,6 +119,7 @@ class Gramps:
                                               args, const.popt_table)
         except:
             self.program = gnome.program_init('gramps',const.version)
+
         self.program.set_property('app-libdir','%s/lib' % const.prefixdir)
         self.program.set_property('app-datadir','%s/share/gramps' % const.prefixdir)
         self.program.set_property('app-sysconfdir','%s/etc' % const.prefixdir)

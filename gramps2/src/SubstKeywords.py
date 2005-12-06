@@ -138,3 +138,28 @@ class SubstKeywords:
         line = line.replace("$m",self.m)
         line = line.replace("$M",self.M)
         return line.replace("$$",'$')
+
+    def replace_and_clean(self, lines):
+        array = [ ("%n",self.n), ("%N",self.N), ("%b",self.b),
+                  ("%B",self.B), ("%d",self.d), ("%D",self.D),
+                  ("%i",self.i), ("%S",self.S), ("%s",self.s),
+                  ("%m",self.m), ("%M",self.M)]
+
+        new = []
+        for line in lines:
+            remove = False
+            for (key,value) in array:
+                if line.find(key) != -1:
+                    if value:
+                        line = line.replace(key,value)
+                    else:
+                        remove = True
+            if not remove:
+                new.append(self.replace(line))
+        if len(new) == 0:
+            return [ u"" ]
+        else:
+            return new
+            
+        
+        

@@ -170,7 +170,7 @@ class BaseModel(gtk.GenericTreeModel):
 
     def on_iter_children(self,node):
         """Return the first child of the node"""
-        if node == None:
+        if node == None and self.datalist:
             return self.datalist[0]
         return None
 
@@ -481,10 +481,16 @@ class MediaModel(BaseModel):
         return len(self.fmap)+1
 
     def column_description(self,data):
-        return unicode(data[4])
+        try:
+            return unicode(data[4])
+        except:
+            return unicode(data[4],'latin1')
 
     def column_path(self,data):
-        return unicode(data[2])
+        try:
+            return unicode(data[2])
+        except:
+            return unicode(data[2].encode('iso-8859-1'))
 
     def column_mime(self,data):
         if data[3]:

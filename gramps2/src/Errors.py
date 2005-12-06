@@ -42,6 +42,15 @@ class DateError(Exception):
     def __str__(self):
         return self.value
 
+class DatabaseError(Exception):
+    """Error used to report Date errors"""
+    def __init__(self,value=""):
+        Exception.__init__(self)
+        self.value = value
+
+    def __str__(self):
+        return self.value
+
 class ReportError(Exception):
     """Error used to report Report errors"""
     def __init__(self,value,value2=""):

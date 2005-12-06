@@ -39,6 +39,7 @@ from xml.sax import make_parser,handler,SAXParseException
 import os
 import sets
 from gettext import gettext as _
+from TransUtils import strip_context as __
 
 #-------------------------------------------------------------------------
 #
@@ -416,7 +417,7 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
     """Rule that checks for a person that is a descendant
     of someone matched by a filter"""
 
-    labels      = [ _('Filter name:'), _('Inclusive:') ]
+    labels      = [ _('Filter name:') ]
     name        = _('Descendants of <filter> match')
     category    = _('Descendant filters')
     description = _("Matches people that are descendants of anybody matched by a filter")
@@ -435,8 +436,8 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
                 first = 1
         except IndexError:
             first = 1
-            
-        filt = MatchesFilter(self.list)
+
+        filt = MatchesFilter(self.list[0:1])
         filt.prepare(db)
         for person_handle in db.get_person_handles(sort_handles=False):
             person = db.get_person_from_handle( person_handle)
@@ -611,7 +612,7 @@ class IsSiblingOfFilterMatch(Rule):
         fam = self.db.get_family_from_handle(fam_id)
         if fam:
             for child_handle in fam.get_child_handle_list():
-                if child_handle != handle:
+                if child_handle != person.handle:
                     self.map[child_handle] = 1
 
 #-------------------------------------------------------------------------
@@ -724,7 +725,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
     """Rule that checks for a person that is an ancestor of
     someone matched by a filter"""
 
-    labels      = [ _('Filter name:'), _('Inclusive:') ]
+    labels      = [ _('Filter name:') ]
     name        = _('Ancestors of <filter> match')
     category    =  _("Ancestral filters")
     description = _("Matches people that are ancestors "
@@ -745,7 +746,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         except IndexError:
             first = 1
             
-        filt = MatchesFilter(self.list)
+        filt = MatchesFilter(self.list[0:1])
         filt.prepare(db)
         for person_handle in db.get_person_handles(sort_handles=False):
             person = db.get_person_from_handle( person_handle)
@@ -926,10 +927,13 @@ class HasCommonAncestorWith(Rule):
 
     def init_ancestor_cache(self,db):
         # list[0] is an Id, but we need to pass a Person to for_each_ancestor.
-        handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-        if handle:
-            def init(self,handle): self.ancestor_cache[handle] = 1
-            for_each_ancestor(db,[handle],init,self)
+        try:
+            handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+            if handle:
+                def init(self,handle): self.ancestor_cache[handle] = 1
+                for_each_ancestor(db,[handle],init,self)
+        except:
+            pass
 
     def apply(self,db,person):
         # On the first call, we build the ancestor cache for the
@@ -1287,7 +1291,7 @@ class HasNameOf(Rule):
     labels      = [ _('Given name:'),
                     _('Family name:'),
                     _('Suffix:'),
-                    _('Title:')]
+                    __('person|Title:')]
     name        = _('People with the <name>')
     description = _("Matches people with a specified (partial) name")
     category    = _('General filters')
@@ -1385,7 +1389,7 @@ class MatchesFilter(Rule):
     def apply(self,db,person):
         for filt in SystemFilters.get_filters():
             if filt.get_name() == self.list[0]:
-                return filt.check(person.handle)
+                return filt.check(db,person.handle)
         for filt in CustomFilters.get_filters():
             if filt.get_name() == self.list[0]:
                 return filt.check(db,person.handle)
@@ -1405,8 +1409,11 @@ class IsSpouseOfFilterMatch(Rule):
     description = _("Matches people married to anybody matching a filter")
     category    = _('Family filters')
 
+    def prepare(self,db):
+        self.filt = MatchesFilter (self.list)
+        self.filt.prepare(db)
+        
     def apply(self,db,person):
-        filt = MatchesFilter (self.list)
         for family_handle in person.get_family_handle_list ():
             family = db.get_family_from_handle(family_handle)
             for spouse_id in [family.get_father_handle (), family.get_mother_handle ()]:
@@ -1414,7 +1421,7 @@ class IsSpouseOfFilterMatch(Rule):
                     continue
                 if spouse_id == person.handle:
                     continue
-                if filt.apply (db, db.get_person_from_handle( spouse_id)):
+                if self.filt.apply (db, db.get_person_from_handle( spouse_id)):
                     return True
         return False
 
@@ -1994,7 +2001,7 @@ class GenericFilter:
     def xor_test(self,db,person):
         test = False
         for rule in self.flist:
-            test = test ^ rule.apply(db,handle)
+            test = test ^ rule.apply(db,person)
         return test
 
     def one_test(self,db,person):
@@ -2004,7 +2011,7 @@ class GenericFilter:
                 if count:
                     return False
                 count += 1
-        return count != 1
+        return count == 1
 
     def or_test(self,db,person):
         for rule in self.flist:
@@ -2030,6 +2037,121 @@ class GenericFilter:
         for rule in self.flist:
             rule.reset()
         return res
+
+#-------------------------------------------------------------------------
+#
+# IsLessThanNthGenerationAncestorOfBookmarked
+#
+#-------------------------------------------------------------------------
+class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
+    # Submitted by Wayne Bergeron
+    """Rule that checks for a person that is an ancestor of bookmarked persons
+    not more than N generations away"""
+
+    labels      = [ _('Number of generations:') ]
+    name        = _('Ancestors of bookmarked people not more '
+                    'than <N> generations away')
+    category    = _('Ancestral filters')
+    description = _("Matches ancestors of the people on the bookmark list"
+                    "not more than N generations away")
+
+    def prepare(self,db):
+	self.db = db
+        bookmarks = self.db.get_bookmarks()
+        if len(bookmarks) == 0:
+            self.apply = lambda db,p : False
+        else:
+            self.map = {}
+            self.bookmarks = sets.Set(bookmarks)
+            self.apply = self.apply_real
+            for self.bookmarkhandle in self.bookmarks:
+		self.init_ancestor_list(self.bookmarkhandle, 1)
+
+
+    def init_ancestor_list(self,handle,gen):
+#        if self.map.has_key(p.get_handle()) == 1:
+#            loop_error(self.orig,p)
+        if not handle:
+            return
+        if gen:
+            self.map[handle] = 1
+            if gen >= int(self.list[0]):
+                return
+        
+        p = self.db.get_person_from_handle(handle)
+        fam_id = p.get_main_parents_family_handle()
+        fam = self.db.get_family_from_handle(fam_id)
+        if fam:
+            f_id = fam.get_father_handle()
+            m_id = fam.get_mother_handle()
+        
+            if f_id:
+                self.init_ancestor_list(f_id,gen+1)
+            if m_id:
+                self.init_ancestor_list(m_id,gen+1)
+
+    def apply_real(self,db,person):
+        return person.handle in self.map
+
+    def reset(self):
+        self.map = {}
+
+#-------------------------------------------------------------------------
+#
+# IsLessThanNthGenerationAncestorOfDefaultPerson
+#
+#-------------------------------------------------------------------------
+class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
+    # Submitted by Wayne Bergeron
+    """Rule that checks for a person that is an ancestor of the default person
+    not more than N generations away"""
+
+    labels      = [ _('Number of generations:') ]
+    name        = _('Ancestors of the default person '
+                    'not more than <N> generations away')
+    category    = _('Ancestral filters')
+    description = _("Matches ancestors of the default person "
+                    "not more than N generations away")
+
+    def prepare(self,db):
+	self.db = db
+	p = db.get_default_person()
+        if p == 0:
+            self.apply = lambda db,p: False
+        else:
+            self.def_handle = p.get_handle()
+            self.apply = self.apply_real
+            self.map = {}
+            self.init_ancestor_list(self.def_handle, 1)
+
+
+    def init_ancestor_list(self,handle,gen):
+#        if self.map.has_key(p.get_handle()) == 1:
+#            loop_error(self.orig,p)
+        if not handle:
+            return
+        if gen:
+            self.map[handle] = 1
+            if gen >= int(self.list[0]):
+                return
+        
+        p = self.db.get_person_from_handle(handle)
+        fam_id = p.get_main_parents_family_handle()
+        fam = self.db.get_family_from_handle(fam_id)
+        if fam:
+            f_id = fam.get_father_handle()
+            m_id = fam.get_mother_handle()
+        
+            if f_id:
+                self.init_ancestor_list(f_id,gen+1)
+            if m_id:
+                self.init_ancestor_list(m_id,gen+1)
+
+    def apply_real(self,db,person):
+        return person.handle in self.map
+
+    def reset(self):
+        self.map = {}
 
 #-------------------------------------------------------------------------
 #
@@ -2125,12 +2247,14 @@ editor_rule_list = [
     IsWitness,
     IsDescendantOf,
     IsDescendantFamilyOf,
+    IsLessThanNthGenerationAncestorOfDefaultPerson,
     IsDescendantOfFilterMatch,
     IsLessThanNthGenerationDescendantOf,
     IsMoreThanNthGenerationDescendantOf,
     IsAncestorOf,
     IsAncestorOfFilterMatch,
     IsLessThanNthGenerationAncestorOf,
+    IsLessThanNthGenerationAncestorOfBookmarked,
     IsMoreThanNthGenerationAncestorOf,
     HasCommonAncestorWith,
     HasCommonAncestorWithFilterMatch,
@@ -2281,8 +2405,14 @@ class FilterParser(handler.ContentHandler):
 
     def endElement(self,tag):
         if tag == "rule" and self.r != None:
-            if len(self.r.labels) != len(self.a):
-                    print "ERROR: Invalid number of arguments in filter '%s'!" %\
+            if len(self.r.labels) < len(self.a):
+                print "WARNING: Invalid number of arguments in filter '%s'!" %\
+                      self.f.get_name()
+                nargs = len(self.r.labels)
+                rule = self.r(self.a[0:nargs])
+                self.f.add_rule(rule)
+            elif len(self.r.labels) > len(self.a):
+                print "ERROR: Invalid number of arguments in filter '%s'!" %\
                             self.f.get_name()
             else:
                 rule = self.r(self.a)
@@ -2393,7 +2523,7 @@ class GrampsFilterComboBox(gtk.ComboBox):
         active = self.get_active()
         if active < 0:
             return None
-        key = self.store[active][0]
+        key = unicode(self.store[active][0])
         return self.map[key]
 
 

@@ -28,8 +28,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-import time
-import re
 
 #-------------------------------------------------------------------------
 #
@@ -38,23 +36,18 @@ import re
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import RelLib
 import GenericFilter
 import const
-import Utils
 import Date
 import Errors
 from gettext import gettext as _
 from QuestionDialog import ErrorDialog
-
-_title_string = _("Export to vCard")
 
 #-------------------------------------------------------------------------
 #
@@ -204,7 +197,7 @@ class CardWriter:
                 state = address.get_state()
                 zip = address.get_postal_code()
                 country = address.get_country()
-                if street or city or state or zip or coutry:
+                if street or city or state or zip or country:
                     self.writeln("ADR:%s;%s;%s;%s;%s;%s;%s" % (postbox,ext,street,city,state,zip,country))
                 
                 phone = address.get_phone()

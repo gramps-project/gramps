@@ -40,7 +40,64 @@ from types import ClassType, InstanceType
 #
 #-------------------------------------------------------------------------
 import gtk
-from gnome.ui import FileEntry
+
+
+class FileEntry(gtk.HBox):
+    def __init__(self,defname,title):
+        gtk.HBox.__init__(self)
+
+        self.title = title
+        self.dir = False
+        self.entry = gtk.Entry()
+        self.entry.set_text(defname)
+        self.set_filename(defname)
+        self.set_spacing(6)
+        self.set_homogeneous(False)
+        self.button = gtk.Button()
+        im = gtk.Image()
+        im.set_from_stock(gtk.STOCK_OPEN,gtk.ICON_SIZE_BUTTON)
+        self.button.add(im)
+        self.button.connect('clicked',self.select_file)
+        self.pack_start(self.entry,True,True)
+        self.pack_end(self.button,False,False)
+
+    def select_file(self,obj):
+        f = gtk.FileChooserDialog(self.title,
+                                  action=gtk.FILE_CHOOSER_ACTION_SAVE,
+                                  buttons=(gtk.STOCK_CANCEL,
+                                           gtk.RESPONSE_CANCEL,
+                                           gtk.STOCK_OPEN,
+                                           gtk.RESPONSE_OK))
+
+        f.set_current_name(os.path.basename(self.entry.get_text()))
+        f.set_current_folder(self.spath)
+        status = f.run()
+        if status == gtk.RESPONSE_OK:
+            self.set_filename(f.get_filename())
+        f.destroy()
+
+    def set_filename(self,path):
+        if os.path.dirname(path):
+            self.spath = os.path.dirname(path)
+            self.defname = os.path.basename(path)
+
+        else:
+            self.spath = os.getcwd()
+            self.defname = path
+        self.entry.set_text(os.path.join(self.spath,self.defname))
+
+    def gtk_entry(self):
+        return self.entry
+
+    def get_full_path(self,val):
+        return self.entry.get_text()
+
+    def set_directory_entry(self,opt):
+        self.dir = False
+
+    
+        
+#from gnome.ui import FileEntry
 
 #-------------------------------------------------------------------------
 #
@@ -86,6 +143,28 @@ _template_map = {
 MODE_GUI = 1    # Standalone report using GUI
 MODE_BKI = 2    # Book Item interface using GUI
 MODE_CLI = 4    # Command line interface (CLI)
+
+# Report categories
+CATEGORY_TEXT = 0
+CATEGORY_DRAW = 1
+CATEGORY_CODE = 2
+CATEGORY_WEB  = 3
+CATEGORY_VIEW = 4
+CATEGORY_BOOK = 5
+
+standalone_categories = {
+    CATEGORY_TEXT : _("Text Reports"),
+    CATEGORY_DRAW : _("Graphical Reports"),
+    CATEGORY_CODE : _("Code Generators"),
+    CATEGORY_WEB  : _("Web Page"),
+    CATEGORY_VIEW : _("View"),
+    CATEGORY_BOOK : _("Books"),
+}
+
+book_categories = {
+    CATEGORY_TEXT : _("Text"),
+    CATEGORY_DRAW : _("Graphics"),
+}
 
 #-------------------------------------------------------------------------
 #
@@ -184,25 +263,6 @@ class Report:
     customized reports.  It cannot be used as is, but it can be easily
     sub-classed to create a functional report generator.
     """
-
-    # Ordinal generation names.  Used by multiple reports.
-    gen = {
-        1 : _("First Generation"),          2 : _("Second Generation"),
-        3 : _("Third Generation"),          4 : _("Fourth Generation"),
-        5 : _("Fifth Generation"),          6 : _("Sixth Generation"),
-        7 : _("Seventh Generation"),        8 : _("Eighth Generation"),
-        9 : _("Ninth Generation"),          10: _("Tenth Generation"),
-        11: _("Eleventh Generation"),       12: _("Twelfth Generation"),
-        13: _("Thirteenth Generation"),     14: _("Fourteenth Generation"),
-        15: _("Fifteenth Generation"),      16: _("Sixteenth Generation"),
-        17: _("Seventeenth Generation"),    18: _("Eighteenth Generation"),
-        19: _("Nineteenth Generation"),     20: _("Twentieth Generation"),
-        21: _("Twenty-first Generation"),   22: _("Twenty-second Generation"),
-        23: _("Twenty-third Generation"),   24: _("Twenty-fourth Generation"),
-        25: _("Twenty-fifth Generation"),   26: _("Twenty-sixth Generation"),
-        27: _("Twenty-seventh Generation"), 28: _("Twenty-eighth Generation"),
-        29: _("Twenty-ninth Generation")
-        }
 
     def __init__(self, database, person, options_class):
         self.database = database
@@ -337,8 +397,8 @@ class BareReportDialog:
         self.init_interface()
 
     def init_interface(self):
-        self.output_notebook = None
-        self.notebook_page = 1
+        #self.output_notebook = None
+        #self.notebook_page = 1
         self.pagecount_menu = None
         self.filter_combo = None
         self.extra_menu = None
@@ -366,7 +426,7 @@ class BareReportDialog:
         self.ok.connect('clicked',self.on_ok_clicked)
         self.cancel.connect('clicked',self.on_cancel)
 
-        self.window.set_resize_mode(0)
+        self.window.set_default_size(600,-1)
 
         # Set up and run the dialog.  These calls are not in top down
         # order when looking at the dialog box as there is some
@@ -389,11 +449,17 @@ class BareReportDialog:
         self.setup_target_frame()
         self.setup_format_frame()
         self.setup_style_frame()
-        self.setup_output_notebook()
+        #self.setup_output_notebook()
+        
+        self.notebook = gtk.Notebook()
+        self.notebook.set_border_width(6)
+        self.window.vbox.add(self.notebook)
+
         self.setup_paper_frame()
         self.setup_html_frame()
         self.setup_report_options_frame()
         self.setup_other_frames()
+        self.notebook.set_current_page(0)
         self.window.show_all()
 
     def get_title(self):
@@ -601,8 +667,10 @@ class BareReportDialog:
         self.style_button.connect('clicked',self.on_style_edit_clicked)
 
         self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.tbl.attach(self.style_menu,2,3,self.col,self.col+1)
-        self.tbl.attach(self.style_button,3,4,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.style_menu,2,3,self.col,self.col+1,
+                        yoptions=gtk.SHRINK)
+        self.tbl.attach(self.style_button,3,4,self.col,self.col+1,
+                        xoptions=gtk.SHRINK|gtk.FILL,yoptions=gtk.SHRINK)
         self.col += 1
         
         # Build the default style set for this report.
@@ -657,16 +725,8 @@ class BareReportDialog:
         label.set_alignment(0.0,0.5)
         label.set_use_markup(True)
         
-        if len(self.frame_names) == 0:
-            table.attach(label,0,3,0,1)
-            table.set_border_width(12)
-            self.window.vbox.add(table)
-        else:
-            table.set_border_width(6)
-            self.notebook = gtk.Notebook()
-            self.notebook.set_border_width(6)
-            self.window.vbox.add(self.notebook)
-            self.notebook.append_page(table,label)
+        table.set_border_width(6)
+        self.notebook.append_page(table,label)
         row += 1
 
         if len(self.local_filters):
@@ -686,7 +746,7 @@ class BareReportDialog:
         if self.max_gen:
             self.generations_spinbox = gtk.SpinButton(digits=0)
             self.generations_spinbox.set_numeric(1)
-            adjustment = gtk.Adjustment(self.max_gen,1,31,1,0)
+            adjustment = gtk.Adjustment(self.max_gen,1,999,1,0)
             self.generations_spinbox.set_adjustment(adjustment)
             adjustment.value_changed()
             label = gtk.Label("%s:" % _("Generations"))
@@ -701,7 +761,8 @@ class BareReportDialog:
             msg = _("Page break between generations")
             self.pagebreak_checkbox = gtk.CheckButton(msg)
             self.pagebreak_checkbox.set_active(self.page_breaks)
-            table.attach(self.pagebreak_checkbox,2,3,row,row+1)
+            table.attach(self.pagebreak_checkbox,2,3,row,row+1,
+                         yoptions=gtk.SHRINK)
             row += 1
 
         # Now the "extra" option menu
@@ -836,7 +897,7 @@ class BareReportDialog:
         if self.filter_combo:
             try:
                 self.filter = self.filter_combo.get_value()
-                active = self.filter_combo.get_active()
+                active = max(0,self.filter_combo.get_active())
                 self.options.handler.set_filter_number(active)
             except:
                 print "Error setting filter. Proceeding with 'Everyone'"
@@ -889,7 +950,8 @@ class BareReportDialog:
         style sheet editor object and let them play.  When they are
         done, the previous routine will be called to update the dialog
         menu for selecting a style."""
-        StyleEditor.StyleListDisplay(self.style_sheet_list,self.build_style_menu,self.window)
+        StyleEditor.StyleListDisplay(self.style_sheet_list,self.build_style_menu,
+                                     self.window)
 
     def on_center_person_change_clicked(self,*obj):
         import SelectPerson
@@ -942,6 +1004,7 @@ class ReportDialog(BareReportDialog):
         for a basic *stand-alone* report."""
         
         self.style_name = "default"
+        self.page_html_added = False
         BareReportDialog.__init__(self,database,person,option_class,
                                   name,translated_name)
 
@@ -963,7 +1026,7 @@ class ReportDialog(BareReportDialog):
     def get_title(self):
         """The window title for this dialog"""
         name = self.report_name
-        category = const.standalone_categories[self.category]
+        category = standalone_categories[self.category]
         return "%s - %s - GRAMPS" % (name,category)
 
     def get_header(self, name):
@@ -1063,15 +1126,18 @@ class ReportDialog(BareReportDialog):
         # Is this to be a printed report or an electronic report
         # (i.e. a set of web pages)
 
+        if self.page_html_added:
+            self.notebook.remove_page(0)
         if obj.get_paper() == 1:
-            self.notebook_page = 0
+            self.paper_label = gtk.Label('<b>%s</b>'%_("Paper Options"))
+            self.paper_label.set_use_markup(True)
+            self.notebook.insert_page(self.paper_table,self.paper_label,0)
+            self.paper_table.show_all()
         else:
-            self.notebook_page = 1
-            
-        if self.output_notebook == None:
-            return
-        
-        self.output_notebook.set_current_page(self.notebook_page)
+            self.html_label = gtk.Label('<b>%s</b>' % _("HTML Options"))
+            self.html_label.set_use_markup(True)
+            self.notebook.insert_page(self.html_table,self.html_label,0)
+            self.html_table.show_all()
 
         if not self.get_target_is_directory():
             fname = self.target_fileentry.get_full_path(0)
@@ -1088,6 +1154,7 @@ class ReportDialog(BareReportDialog):
         if self.style_button:
             self.style_button.set_sensitive(obj.get_styles())
             self.style_menu.set_sensitive(obj.get_styles())
+        self.page_html_added = True
 
     #------------------------------------------------------------------------
     #
@@ -1114,7 +1181,6 @@ class ReportDialog(BareReportDialog):
         if hid[-4:]==".xml":
             hid = hid[0:-4]
         self.target_fileentry = FileEntry(hid,_("Save As"))
-        self.target_fileentry.set_modal(True)
 
         if self.get_target_is_directory():
             self.target_fileentry.set_directory_entry(1)
@@ -1124,14 +1190,13 @@ class ReportDialog(BareReportDialog):
         self.doc_label.set_alignment(0.0,0.5)
 
         self.tbl.attach(self.doc_label, 1, 2, self.col, self.col+1,
-                        gtk.SHRINK|gtk.FILL)
+                        xoptions=gtk.SHRINK|gtk.FILL,yoptions=gtk.SHRINK)
         self.tbl.attach(self.target_fileentry, 2, 4, self.col, self.col+1,
-                        gtk.EXPAND|gtk.FILL)
+                        xoptions=gtk.EXPAND|gtk.FILL,yoptions=gtk.SHRINK)
         self.col += 1
         
         spath = self.get_default_directory()
 
-        self.target_fileentry.set_default_path(spath)
         self.target_fileentry.set_filename(spath)
         self.target_fileentry.gtk_entry().set_position(len(spath))
 
@@ -1141,7 +1206,8 @@ class ReportDialog(BareReportDialog):
         work."""
 
         self.print_report = gtk.CheckButton (_("Print a copy"))
-        self.tbl.attach(self.print_report,2,4,self.col,self.col+1)
+        self.tbl.attach(self.print_report,2,4,self.col,self.col+1,
+                        yoptions=gtk.SHRINK)
         self.col += 1
 
         self.make_doc_menu(self.options.handler.get_format_name())
@@ -1149,7 +1215,8 @@ class ReportDialog(BareReportDialog):
         label = gtk.Label("%s:" % _("Output Format"))
         label.set_alignment(0.0,0.5)
         self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.tbl.attach(self.format_menu,2,4,self.col,self.col+1)
+        self.tbl.attach(self.format_menu,2,4,self.col,self.col+1,
+                        yoptions=gtk.SHRINK)
         self.col += 1
 
         ext = self.format_menu.get_ext()
@@ -1168,13 +1235,7 @@ class ReportDialog(BareReportDialog):
         """Set up the output notebook of the dialog.  This sole
         purpose of this function is to grab a pointer for later use in
         the callback from when the file format is changed."""
-
-        self.output_notebook = gtk.Notebook()
-        self.output_notebook.set_show_tabs(0)
-        self.output_notebook.set_show_border(0)
-        self.output_notebook.set_border_width(12)
-        self.output_notebook.set_current_page(self.notebook_page)
-        self.window.vbox.add(self.output_notebook)
+        pass
 
     def size_changed(self,obj):
         (paper,name) = self.papersize_menu.get_value()
@@ -1196,19 +1257,13 @@ class ReportDialog(BareReportDialog):
         (pagecount_map, start_text) = self.get_print_pagecount_map()
 
         if pagecount_map:
-            self.paper_table = gtk.Table(3,6)
+            self.paper_table = gtk.Table(2,6)
         else:
-            self.paper_table = gtk.Table(4,6)
+            self.paper_table = gtk.Table(3,6)
         self.paper_table.set_col_spacings(12)
         self.paper_table.set_row_spacings(6)
-        self.paper_table.set_border_width(0)
-        self.output_notebook.append_page(self.paper_table,gtk.Label(_("Paper Options")))
+        self.paper_table.set_border_width(6)
             
-        paper_label = gtk.Label("<b>%s</b>" % _("Paper Options"))
-        paper_label.set_use_markup(True)
-        paper_label.set_alignment(0.0,0.5)
-        self.paper_table.attach(paper_label,0,6,0,1,gtk.SHRINK|gtk.FILL)
-
         self.papersize_menu = PaperMenu.GrampsPaperComboBox()
         self.papersize_menu.connect('changed',self.size_changed)
         
@@ -1216,35 +1271,37 @@ class ReportDialog(BareReportDialog):
         l = gtk.Label("%s:" % _("Size"))
         l.set_alignment(0.0,0.5)
         
-        self.paper_table.attach(l,1,2,1,2,gtk.SHRINK|gtk.FILL)
-        self.paper_table.attach(self.papersize_menu,2,3,1,2)
+        self.paper_table.attach(l,1,2,0,1,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(self.papersize_menu,2,3,0,1,
+                                yoptions=gtk.SHRINK)
         l = gtk.Label("%s:" % _("Height"))
         l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,3,4,1,2,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(l,3,4,0,1,gtk.SHRINK|gtk.FILL)
 
         self.pheight = gtk.Entry()
         self.pheight.set_sensitive(0)
-        self.paper_table.attach(self.pheight,4,5,1,2)
+        self.paper_table.attach(self.pheight,4,5,0,1)
         
         l = gtk.Label(_("cm"))
         l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,5,6,1,2,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(l,5,6,0,1,gtk.SHRINK|gtk.FILL)
 
         l = gtk.Label("%s:" % _("Orientation"))
         l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
-        self.paper_table.attach(self.orientation_menu,2,3,2,3)
+        self.paper_table.attach(l,1,2,1,2,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(self.orientation_menu,2,3,1,2,
+                                yoptions=gtk.SHRINK)
         l = gtk.Label("%s:" % _("Width"))
         l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,3,4,2,3,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(l,3,4,1,2,gtk.SHRINK|gtk.FILL)
 
         self.pwidth = gtk.Entry()
         self.pwidth.set_sensitive(0)
-        self.paper_table.attach(self.pwidth,4,5,2,3)
+        self.paper_table.attach(self.pwidth,4,5,1,2)
 
         l = gtk.Label(_("cm"))
         l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,5,6,2,3,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(l,5,6,1,2,gtk.SHRINK|gtk.FILL)
 
         self.papersize_menu.set(PaperMenu.paper_sizes,
                                 self.options.handler.get_paper_name())
@@ -1257,8 +1314,8 @@ class ReportDialog(BareReportDialog):
             self.pagecount_menu.set_menu(myMenu)
             l = gtk.Label("%s:" % _("Page Count"))
             l.set_alignment(0.0,0.5)
-            self.paper_table.attach(l,1,2,3,4,gtk.SHRINK|gtk.FILL)
-            self.paper_table.attach(self.pagecount_menu,2,3,3,4)
+            self.paper_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
+            self.paper_table.attach(self.pagecount_menu,2,3,2,3)
 
     def html_file_enable(self,obj):
         active = obj.get_active()
@@ -1281,13 +1338,6 @@ class ReportDialog(BareReportDialog):
         self.html_table.set_col_spacings(12)
         self.html_table.set_row_spacings(6)
         self.html_table.set_border_width(0)
-        html_label = gtk.Label("<b>%s</b>" % _("HTML Options"))
-        html_label.set_alignment(0.0,0.5)
-        html_label.set_use_markup(True)
-        self.html_table.attach(html_label,0,3,0,1)
-
-        label = gtk.Label(_("HTML Options"))
-        self.output_notebook.append_page(self.html_table,label)
 
         label = gtk.Label("%s:" % _("Template"))
         label.set_alignment(0.0,0.5)
@@ -1318,7 +1368,6 @@ class ReportDialog(BareReportDialog):
         self.html_table.attach(label, 1, 2, 2, 3, gtk.SHRINK|gtk.FILL)
         self.html_fileentry = FileEntry("HTML_Template",
                                         _("Choose File"))
-        self.html_fileentry.set_modal(True)
         if template_name and not active_index:
             active_index = template_index
             user_template = template_name
@@ -1465,7 +1514,7 @@ class TextReportDialog(ReportDialog):
         """Initialize a dialog to request that the user select options
         for a basic text report.  See the ReportDialog class for more
         information."""
-        self.category = const.CATEGORY_TEXT
+        self.category = CATEGORY_TEXT
         ReportDialog.__init__(self,database,person,options,name,translated_name)
 
     #------------------------------------------------------------------------
@@ -1503,7 +1552,7 @@ class DrawReportDialog(ReportDialog):
         """Initialize a dialog to request that the user select options
         for a basic drawing report.  See the ReportDialog class for
         more information."""
-        self.category = const.CATEGORY_DRAW
+        self.category = CATEGORY_DRAW
         ReportDialog.__init__(self,database,person,opt,name,translated_name)
 
     #------------------------------------------------------------------------
@@ -1580,19 +1629,20 @@ class CommandLineReport:
     
     """
 
-    def __init__(self,database,name,category,option_class,options_str_dict):
+    def __init__(self,database,name,category,option_class,options_str_dict,
+                 noopt=False):
         self.database = database
         self.category = category
         self.option_class = option_class(name)
         self.show = options_str_dict.pop('show',None)
         self.options_str_dict = options_str_dict
-        self.init_options()
+        self.init_options(noopt)
         self.parse_option_str()
         self.show_options()
 
-    def init_options(self):
+    def init_options(self,noopt):
         self.options_dict = {
-            'of'        : self.option_class.handler.report_name,
+            'of'        : self.option_class.handler.module_name,
             'off'       : self.option_class.handler.get_format_name(),
             'style'     : self.option_class.handler.get_default_stylesheet_name(),
             'papers'    : self.option_class.handler.get_paper_name(),
@@ -1614,6 +1664,9 @@ class CommandLineReport:
             'pagebbg'   : ["=0/1","Page break between generations."],
             'dispf'     : ["=str","Display format for the outputbox."],
             }
+
+        if noopt:
+            return
 
         # Add report-specific options
         for key in self.option_class.handler.options_dict.keys():
@@ -1677,7 +1730,7 @@ class CommandLineReport:
         self.option_class.handler.output = self.options_dict['of']
         self.options_help['of'].append(os.path.expanduser("~/whatever_name"))
                 
-        if self.category == const.CATEGORY_TEXT:
+        if self.category == CATEGORY_TEXT:
             for item in PluginMgr.textdoc_list:
                 if item[7] == self.options_dict['off']:
                     self.format = item[1]
@@ -1685,7 +1738,7 @@ class CommandLineReport:
                 [ item[7] for item in PluginMgr.textdoc_list ]
             )
             self.options_help['off'].append(False)
-        elif self.category == const.CATEGORY_DRAW:
+        elif self.category == CATEGORY_DRAW:
             for item in PluginMgr.drawdoc_list:
                 if item[6] == self.options_dict['off']:
                     self.format = item[1]
@@ -1693,7 +1746,7 @@ class CommandLineReport:
                 [ item[6] for item in PluginMgr.drawdoc_list ]
             )
             self.options_help['off'].append(False)
-        elif self.category == const.CATEGORY_BOOK:
+        elif self.category == CATEGORY_BOOK:
             for item in PluginMgr.bookdoc_list:
                 if item[6] == self.options_dict['off']:
                     self.format = item[1]
@@ -1722,7 +1775,7 @@ class CommandLineReport:
         self.template_name = self.options_dict['template']
         self.options_help['template'].append(os.path.expanduser("~/whatever_name"))
 
-        if self.category in (const.CATEGORY_TEXT,const.CATEGORY_DRAW):
+        if self.category in (CATEGORY_TEXT,CATEGORY_DRAW):
             default_style = BaseDoc.StyleSheet()
             self.option_class.make_default_style(default_style)
 
@@ -1778,12 +1831,12 @@ def report(database,person,report_class,options_class,translated_name,name,categ
     its arguments.
     """
 
-    if category == const.CATEGORY_TEXT:
+    if category == CATEGORY_TEXT:
         dialog_class = TextReportDialog
-    elif category == const.CATEGORY_DRAW:
+    elif category == CATEGORY_DRAW:
         dialog_class = DrawReportDialog
-    elif category in (const.CATEGORY_BOOK,const.CATEGORY_VIEW,
-                        const.CATEGORY_CODE,const.CATEGORY_WEB):
+    elif category in (CATEGORY_BOOK,CATEGORY_VIEW,
+                        CATEGORY_CODE,CATEGORY_WEB):
         report_class(database,person)
         return
     else:
@@ -1804,6 +1857,8 @@ def report(database,person,report_class,options_class,translated_name,name,categ
         except Errors.ReportError, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)
+        except Errors.DatabaseError,msg:
+            ErrorDialog(_("Report could not be created"),str(msg))
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()

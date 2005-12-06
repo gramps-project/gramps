@@ -12,6 +12,7 @@ entities = legal.xml\
 	keybind.xml\
 	filtref.xml\
 	cmdline.xml\
+	cmdplug.xml\
 	bugs.xml\
 	authors.xml
 include $(top_srcdir)/doc/xmldocs.make

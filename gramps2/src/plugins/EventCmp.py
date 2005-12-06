@@ -53,6 +53,7 @@ import OpenSpreadSheet
 import const
 import DateHandler
 from QuestionDialog import WarningDialog
+import Tool
 
 #------------------------------------------------------------------------
 #
@@ -123,10 +124,10 @@ class TableReport:
 # 
 #
 #------------------------------------------------------------------------
-class EventComparison:
+class EventComparison(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
 
-    def __init__(self,database,parent):
-        self.db = database
         self.parent = parent
         if self.parent.child_windows.has_key(self.__class__):
             self.parent.child_windows[self.__class__].present(None)
@@ -141,7 +142,7 @@ class EventComparison:
         self.filterDialog.signal_autoconnect({
             "on_apply_clicked"       : self.on_apply_clicked,
             "on_editor_clicked"      : self.filter_editor_clicked,
-            "on_filter_list_enter"   : self.filter_list_enter,
+##             "on_filter_list_enter"   : self.filter_list_enter,
             "on_filters_delete_event": self.on_delete_event,
             "on_help_clicked"        : self.on_help_clicked,
             "destroy_passed_object"  : self.close
@@ -160,6 +161,9 @@ class EventComparison:
         self.all.add_rule(GenericFilter.Everyone([]))
 
         self.filter_menu = GenericFilter.build_filter_menu([self.all])
+        filter_num = self.options.handler.get_filter_number()
+        self.filter_menu.set_active(filter_num)
+        self.filter_menu.show()
         self.filters.set_menu(self.filter_menu)
 
         self.add_itself_to_menu()
@@ -194,9 +198,9 @@ class EventComparison:
         import FilterEditor
         FilterEditor.FilterEditor(const.custom_filters,self.db,self.parent)
 
-    def filter_list_enter(self,obj):
-        self.filter_menu = GenericFilter.build_filter_menu([self.all])
-        self.filters.set_menu(self.filter_menu)
+##     def filter_list_enter(self,obj):
+##         self.filter_menu = GenericFilter.build_filter_menu([self.all])
+##         self.filters.set_menu(self.filter_menu)
         
     def on_apply_clicked(self,obj):
         cfilter = self.filter_menu.get_active().get_data("filter")
@@ -208,20 +212,15 @@ class EventComparison:
                               self.db.get_person_handles(sort_handles=False))
         progress_bar.step()
         progress_bar.close()
+        self.options.handler.set_filter_number(self.filters.get_history())
+        # Save options
+        self.options.handler.save_options()
 
         if len(plist) == 0:
             WarningDialog(_("No matches were found"))
         else:
             DisplayChart(self.db,plist,self.parent)
 
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def runTool(database,person,callback,parent=None):
-    EventComparison(database,parent)
-    
 #-------------------------------------------------------------------------
 #
 #
@@ -451,6 +450,25 @@ class DisplayChart:
         spreadsheet.finalize()
         Utils.destroy_passed_object(obj)
 
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class EventComparisonOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
+    def enable_options(self):
+        # Semi-common options that should be enabled for this report
+        self.enable_dict = {
+            'filter'    : 0,
+        }
+
 #-------------------------------------------------------------------------
 #
 #
@@ -459,9 +477,15 @@ class DisplayChart:
 from PluginMgr import register_tool
 
 register_tool(
-    runTool,
-    _("Compare individual events"),
-    category=_("Analysis and Exploration"),
+    name = 'eventcmp',
+    category = Tool.TOOL_ANAL,
+    tool_class = EventComparison,
+    options_class = EventComparisonOptions,
+    modes = Tool.MODE_GUI,
+    translated_name = _("Compare individual events"),
+    status = _("Stable"),
+    author_name = "Donald N. Allingham",
+    author_email = "don@gramps-project.org",
     description=_("Aids in the analysis of data by allowing the "
                   "development of custom filters that can be applied "
                   "to the database to find similar events")

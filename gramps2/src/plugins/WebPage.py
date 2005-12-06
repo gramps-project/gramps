@@ -1770,7 +1770,7 @@ class WebReportDialog(Report.ReportDialog):
         name = "webpage"
         translated_name = _("Generate Web Site")
         self.options_class = WebReportOptions(name)
-        self.category = const.CATEGORY_WEB
+        self.category = Report.CATEGORY_WEB
         Report.ReportDialog.__init__(self,database,person,self.options_class,
                                     name,translated_name)
 
@@ -1947,7 +1947,8 @@ class MiniTree:
 #------------------------------------------------------------------------
 def cl_report(database,name,category,options_str_dict):
 
-    clr = Report.CommandLineReport(database,name,category,WebReportOptions,options_str_dict)
+    clr = Report.CommandLineReport(database,name,category,
+                                   WebReportOptions,options_str_dict)
 
     # Exit here if show option was given
     if clr.show:
@@ -1968,16 +1969,17 @@ def cl_report(database,name,category,options_str_dict):
 from PluginMgr import register_report
 register_report(
     name = 'webpage',
-    category = const.CATEGORY_WEB,
+    category = Report.CATEGORY_WEB,
     report_class = WebReportDialog,
     options_class = cl_report,
     modes = Report.MODE_GUI | Report.MODE_CLI,
-    translated_name = _("Generate Web Site (deprecated)"),
+    translated_name = _("Generate Web Site"),
     author_name="Donald N. Allingham",
     author_email="don@gramps-project.org",
-    status=(_("Deprecated")),
+    status=(_("Unsupported")),
     description=_("Generates web (HTML) pages for individuals, "
                   "or a set of individuals. This report is considered "
                   "to be deprecated. Please migrate to the new "
                   "Narrative Web Page generator."),
+    unsupported=True
     )

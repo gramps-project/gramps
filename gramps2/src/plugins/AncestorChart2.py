@@ -46,7 +46,6 @@ import BaseDoc
 import Report
 from SubstKeywords import SubstKeywords
 from ReportUtils import pt2cm, cm2pt
-import const
 import ReportOptions
 
 #------------------------------------------------------------------------
@@ -226,13 +225,13 @@ class AncestorChart(Report.Report):
 
         self.text[index] = []
 
+        em = self.doc.string_width(self.font,"m")
+
         subst = SubstKeywords(self.database,person_handle)
-        
-        for line in self.display:
-            self.text[index].append(subst.replace(line))
+        self.text[index] = subst.replace_and_clean(self.display)
 
         for line in self.text[index]:
-            this_box_width = self.doc.string_width(self.font,line)
+            this_box_width = self.doc.string_width(self.font,line) + 2*em
             self.box_width = max(self.box_width,this_box_width)
 
         self.lines = max(self.lines,len(self.text[index]))    
@@ -516,13 +515,13 @@ class AncestorChartOptions(ReportOptions.ReportOptions):
 from PluginMgr import register_report
 register_report(
     name = 'ancestor_chart2',
-    category = const.CATEGORY_DRAW,
+    category = Report.CATEGORY_DRAW,
     report_class = AncestorChart,
     options_class = AncestorChartOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
-    translated_name = _("Ancestor Chart (Wall Chart)"),
-    status = _("Beta"),
+    translated_name = _("Ancestor Graph"),
+    status = _("Stable"),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
+    author_email = "don@gramps-project.org",
     description = _("Produces a graphical ancestral tree graph"),
     )

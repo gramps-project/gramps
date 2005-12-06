@@ -176,6 +176,8 @@ class FtmAncestorReport(Report.Report):
             self.doc.end_paragraph()
 
     def endnotes(self,obj):
+        if not obj:
+            return ""
         msg = cStringIO.StringIO()
         slist = obj.get_source_references()
         if slist:
@@ -198,9 +200,9 @@ class FtmAncestorReport(Report.Report):
                     self.sref_map[self.sref_index] = ref
                     msg.write("%d" % self.sref_index)
             msg.write('</super>')
-        str = msg.getvalue()
+        value = msg.getvalue()
         msg.close()
-        return str
+        return value
 
     def print_notes(self,person):
         note = person.get_note()
@@ -415,7 +417,7 @@ from PluginMgr import register_report
 
 register_report(
     name = 'ftm_ancestor_report',
-    category = const.CATEGORY_TEXT,
+    category = Report.CATEGORY_TEXT,
     report_class = FtmAncestorReport,
     options_class = FtmAncestorOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
@@ -423,5 +425,6 @@ register_report(
     status=(_("Beta")),
     description= _("Produces a textual ancestral report similar to Family Tree Maker."),
     author_name="Donald N. Allingham",
-    author_email="dallingham@users.sourceforge.net"
+    author_email="dallingham@users.sourceforge.net",
+    unsupported=True
     )
