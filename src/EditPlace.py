@@ -64,7 +64,6 @@ from WindowUtils import GladeIf
 #-------------------------------------------------------------------------
 class EditPlace(DisplayState.ManagedWindow):
 
-<<<<<<< EditPlace.py
     def __init__(self,place,dbstate,uistate):
         self.dbstate = dbstate
         self.uistate = uistate
