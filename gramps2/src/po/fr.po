@@ -1,19 +1,18 @@
-# translation of fr_uft8.po to
-# translation of fr.po to
 # translation of template.po to French
 # Copyright (C) 2001-2005 Free Software Foundation, Inc.
 # Laurent Protois <laurent.protois@free.fr>, 2001-2004.
 # Matthieu Pupat <tieum.tieum@free.fr>, 2004, 2005.
 # Guillaume Pratte <guillaumep@soireevideo.org>, 2005.
+# Jérôme Rapinat <romjerome@yahoo.fr>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps 2.0.9\n"
+"Project-Id-Version: GRAMPS 2.0.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Sun Nov 27 16:06:29 2005\n"
-"PO-Revision-Date: 2005-12-05 23:17+0100\n"
-"Last-Translator: nonome\n"
-"Language-Team: French <fr@li.org>\n"
+"PO-Revision-Date: 2005-12-06 20:10+0100\n"
+"Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
+"Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,7 +20,7 @@ msgstr ""
 
 #: AddMedia.py:93 ImageSelect.py:134
 msgid "Select a media object"
-msgstr "Choisir un media"
+msgstr "Choisir un média"
 
 #: AddMedia.py:123 ImageSelect.py:192
 msgid "Cannot import %s"
@@ -33,7 +32,7 @@ msgstr "Le fichier indiqué est introuvable."
 
 #: AddMedia.py:142 MediaView.py:415 MediaView.py:439
 msgid "Add Media Object"
-msgstr "Ajouter un media"
+msgstr "Ajouter un média"
 
 #: AddSpouse.py:116
 msgid "Choose Spouse/Partner of %s"
@@ -216,7 +215,7 @@ msgstr "Par_ent"
 
 #: ChooseParents.py:373
 msgid "Fath_er"
-msgstr "Pè_re"
+msgstr "Pèr_e"
 
 #: ChooseParents.py:381 ChooseParents.py:711
 msgid "Pa_rent"
@@ -516,7 +515,7 @@ msgstr "Chemin"
 #: EditPerson.py:551 ImageSelect.py:643 ImageSelect.py:1109 MediaView.py:279
 #: plugins/ScratchPad.py:426 plugins/ScratchPad.py:435
 msgid "Media Object"
-msgstr "Objects media"
+msgstr "Objects média"
 
 #: EditPerson.py:557 ImageSelect.py:649 docgen/AbiWord2Doc.py:334
 #: docgen/AsciiDoc.py:390 docgen/HtmlDoc.py:504 docgen/KwordDoc.py:495
@@ -638,12 +637,10 @@ msgid "Edit Place (%s)"
 msgstr "Editer le lieu (%s)"
 
 #: EditPlace.py:571
-
 msgid "Event Name"
 msgstr "Type d'événement"
 
 #: EditPlace.py:590
-
 msgid "Personal Event"
 msgstr "Evénement individuel :"
 
@@ -686,7 +683,7 @@ msgstr "Famille"
 
 #: EditSource.py:431
 msgid "Media"
-msgstr "Media"
+msgstr "Média"
 
 #: EditSource.py:494
 msgid "Edit Source (%s)"
@@ -976,7 +973,7 @@ msgstr "Détruire un époux(se) revient à détruire son lien avec la personne s
 
 #: FamilyView.py:872
 msgid "_Remove Spouse"
-msgstr "_Enlever un(e) époux(se)"
+msgstr "Enleve_r un(e) époux(se)"
 
 #: FamilyView.py:911
 msgid "Remove Spouse (%s)"
@@ -1036,7 +1033,7 @@ msgstr "Détruire les parents d'un individu revient à détruire son lien avec s
 
 #: FamilyView.py:1309 FamilyView.py:1324
 msgid "_Remove Parents"
-msgstr "_Supprimer les Parents"
+msgstr "Supp_rimer les Parents"
 
 #: FamilyView.py:1417
 msgid "Remove Parents (%s)"
@@ -1072,7 +1069,7 @@ msgstr "Tout le monde"
 
 #: GenericFilter.py:137
 msgid "Matches everyone in the database"
-msgstr "Assortir tout un chacun dans la base"
+msgstr "Sortir tout les individus de la base"
 
 #: GenericFilter.py:150
 msgid "Disconnected people"
@@ -1080,7 +1077,7 @@ msgstr "Individus déconnectés"
 
 #: GenericFilter.py:152
 msgid "Matches people that have no family relationships to any other person in the database"
-msgstr "Assortir les individus n'ayant de relation avec aucun individu de la base"
+msgstr "Sortir les individus n'ayant de relation avec aucun individu de la base"
 
 #: GenericFilter.py:168 GenericFilter.py:264 GenericFilter.py:372
 #: GenericFilter.py:463 GenericFilter.py:506 GenericFilter.py:627
@@ -1100,7 +1097,7 @@ msgstr "Filtres relationnels"
 
 #: GenericFilter.py:171
 msgid "Matches the ancestors of two persons back to a common ancestor, producing the relationship path between two persons."
-msgstr "Assortir les ancêtres de deux individus à un ancêtre commun, de façon à relier ces deux personnes."
+msgstr "Sortir les ancêtres de deux individus à un ancêtre commun, de façon à relier ces deux personnes."
 
 #: GenericFilter.py:265
 msgid "People with <Id>"
@@ -1108,7 +1105,7 @@ msgstr "Individus avec <id>"
 
 #: GenericFilter.py:266
 msgid "Matches people with a specified GRAMPS ID"
-msgstr "Assortir les individus avec l'identifiant GRAMPS"
+msgstr "Sortir les individus avec l'identifiant GRAMPS"
 
 #: GenericFilter.py:280
 msgid "Default person"
@@ -1165,7 +1162,7 @@ msgstr "Filtres des descendants"
 
 #: GenericFilter.py:375
 msgid "Matches all descendants for the specified person"
-msgstr "Assortir selon les descendants de la personne spécifiée"
+msgstr "Sortir selon les descendants de la personne spécifiée"
 
 #: GenericFilter.py:420 GenericFilter.py:548 GenericFilter.py:586
 #: GenericFilter.py:728 GenericFilter.py:874 GenericFilter.py:958
@@ -1193,7 +1190,7 @@ msgstr "Est le descendant de <person> sur moins de <N> générations"
 
 #: GenericFilter.py:466
 msgid "Matches people that are descendants of a specified person not more than N generations away"
-msgstr "Assortir les descendants d'un individu sur moins de N générations"
+msgstr "Sortir les descendants d'un individu sur moins de N générations"
 
 #: GenericFilter.py:507
 msgid "Descendants of <person> at least <N> generations away"
@@ -1201,7 +1198,7 @@ msgstr "Est le descendant de <person> sur au moins <N> générations"
 
 #: GenericFilter.py:509
 msgid "Matches people that are descendants of a specified person at least N generations away"
-msgstr "Assortir les descendants d'un individu sur au moins N générations"
+msgstr "Sortir les descendants d'un individu sur au moins N générations"
 
 #: GenericFilter.py:549
 msgid "Children of <filter> match"
@@ -1231,7 +1228,7 @@ msgstr "Est un membre de la famille descendant de <person>"
 
 #: GenericFilter.py:630
 msgid "Matches people that are descendants or the spouse of a descendant of a specified person"
-msgstr "Assortir les descendants ou leurs époux(se) à un individu"
+msgstr "Sortir les descendants ou leurs époux(se) à un individu"
 
 #: GenericFilter.py:675
 msgid "Ancestors of <person>"
@@ -1245,7 +1242,7 @@ msgstr "Filtres des ascendants"
 
 #: GenericFilter.py:677
 msgid "Matches people that are ancestors of a specified person"
-msgstr "Assortir les ascendants à un individu"
+msgstr "Sortir les ascendants à un individu"
 
 #: GenericFilter.py:729
 msgid "Ancestors of <filter> match"
@@ -1253,7 +1250,7 @@ msgstr "Est l'ascendant du filtre <filter>"
 
 #: GenericFilter.py:731
 msgid "Matches people that are ancestors of anybody matched by a filter"
-msgstr "Assortir les individus étant ascendants de personne trouvé par un filtre"
+msgstr "Sortir les individus étant ascendants de personne trouvé par un filtre"
 
 #: GenericFilter.py:773
 msgid "Ancestors of <person> not more than <N> generations away"
@@ -1261,7 +1258,7 @@ msgstr "Ancêtre de <person> sur moins de <N> générations"
 
 #: GenericFilter.py:775
 msgid "Matches people that are ancestors of a specified person not more than N generations away"
-msgstr "Assortir les ascendants d'un individu sur moins de N générations"
+msgstr "Sortir les ascendants d'un individu sur moins de N générations"
 
 #: GenericFilter.py:825
 msgid "Ancestors of <person> at least <N> generations away"
@@ -1269,33 +1266,29 @@ msgstr "Ancêtre de <person> sur minimum <N> générations"
 
 #: GenericFilter.py:827
 msgid "Matches people that are ancestors of a specified person at least N generations away"
-msgstr "Assortir les ascendants d'un individu sur au moins N générations"
+msgstr "Sortir les ascendants d'un individu sur au moins N générations"
 
 #: GenericFilter.py:875
 msgid "Parents of <filter> match"
 msgstr "Est le parent du filtrage <filter> "
 
 #: GenericFilter.py:877
-
 msgid "Matches parents of anybody matched by a filter"
 msgstr "Sortir les ascendants d'un individu aux résultats du filtrage"
 
 #: GenericFilter.py:912
-
 msgid "People with a common ancestor with <person>"
 msgstr "Personnes dont l'ancêtre commun est <person>"
 
 #: GenericFilter.py:914
 msgid "Matches people that have a common ancestor with a specified person"
-msgstr "Assortir les individus ayant des ascendants commun à un individu"
+msgstr "Sortir les individus ayant des ascendants commun à un individu"
 
 #: GenericFilter.py:959
-
 msgid "People with a common ancestor with <filter> match"
 msgstr "Individu ayant un ancêtre commun avec le filtrage <filter> "
 
 #: GenericFilter.py:960
-
 msgid "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr "Sortir les individus ayant des ascendants commun aux résultats du filtrage"
 
@@ -1330,12 +1323,10 @@ msgid "Description:"
 msgstr "Description :"
 
 #: GenericFilter.py:1005
-
 msgid "People with the personal <event>"
 msgstr "Individu avec l'<event> personnel"
 
 #: GenericFilter.py:1006
-
 msgid "Matches people with a personal event of a particular value"
 msgstr "Sortir les individus ayant un événement individuel de même valeur"
 
@@ -1350,12 +1341,10 @@ msgid "Family event:"
 msgstr "Evénement familial :"
 
 #: GenericFilter.py:1054
-
 msgid "People with the family <event>"
 msgstr "A l'<event> familial"
 
 #: GenericFilter.py:1055
-
 msgid "Matches people with a family event of a particular value"
 msgstr "Sortir les individu ayant un événement familial de même valeur"
 
@@ -1372,17 +1361,14 @@ msgid "Number of children:"
 msgstr "Nombre d'enfants :"
 
 #: GenericFilter.py:1107
-
 msgid "People with the <relationships>"
 msgstr "Individus avec une <relationships>"
 
 #: GenericFilter.py:1108
-
 msgid "Matches people with a particular relationship"
 msgstr "Sortir les individus ayant une relation identique"
 
 #: GenericFilter.py:1156
-
 msgid "People with the <birth data>"
 msgstr "Individus avec <birth>"
 
@@ -1395,7 +1381,6 @@ msgid "People with the <death data>"
 msgstr "Individus avec <death>"
 
 #: GenericFilter.py:1200
-
 msgid "Matches people with death data of a particular value"
 msgstr "Sortir les individus ayant une même date de décès"
 
@@ -1489,17 +1474,14 @@ msgid "Adopted people"
 msgstr "Individu adopté"
 
 #: GenericFilter.py:1435
-
 msgid "Matches people who were adopted"
 msgstr "Individus ayant été adoptés"
 
 #: GenericFilter.py:1451 gramps_main.py:997
-
 msgid "People with images"
 msgstr "Individus ayant des images"
 
 #: GenericFilter.py:1452
-
 msgid "Matches people with images in the gallery"
 msgstr "Trouver les personnes ayant des images dans la galerie"
 
@@ -1508,7 +1490,6 @@ msgid "People with children"
 msgstr "Individus ayant des enfants"
 
 #: GenericFilter.py:1465
-
 msgid "Matches people who have children"
 msgstr "Trouver les personnes ayant des enfants"
 
@@ -1517,7 +1498,6 @@ msgid "People with no marriage records"
 msgstr "Individus sans aucun mariage"
 
 #: GenericFilter.py:1480
-
 msgid "Matches people who have no spouse"
 msgstr "Trouver les personnes sans conjoints"
 
@@ -1526,17 +1506,14 @@ msgid "People with multiple marriage records"
 msgstr "Individus ayant contracté plusieurs mariages"
 
 #: GenericFilter.py:1493
-
 msgid "Matches people who have more than one spouse"
 msgstr "Trouver les personnes ayant plus d'un conjoint"
 
 #: GenericFilter.py:1505 gramps_main.py:1022
-
 msgid "People without a known birth date"
 msgstr "Individus sans date de naissance"
 
 #: GenericFilter.py:1506
-
 msgid "Matches people without a known birthdate"
 msgstr "Individus sans date de naissance connue"
 
@@ -1545,7 +1522,6 @@ msgid "People with incomplete events"
 msgstr "Individus ayant des évènements incomplets"
 
 #: GenericFilter.py:1525
-
 msgid "Matches people with missing date or place in an event"
 msgstr "Individus sans dates ou lieu dans un événement"
 
@@ -1574,7 +1550,6 @@ msgid "People marked private"
 msgstr "Individus marqués comme privés"
 
 #: GenericFilter.py:1587
-
 msgid "Matches people that are indicated as private"
 msgstr "Individus marqués comme privés"
 
@@ -1583,13 +1558,12 @@ msgid "Witnesses"
 msgstr "Témoins"
 
 #: GenericFilter.py:1601
-
 msgid "Matches people who are witnesses in any event"
 msgstr "Témoins d'un événement"
 
 #: GenericFilter.py:1650 plugins/FilterEditor.py:700
 msgid "Case sensitive:"
-msgstr "Sensible à la casse :"
+msgstr "Sensible à la case (Maj/Min) :"
 
 #: GenericFilter.py:1651 plugins/FilterEditor.py:702
 msgid "Regular-Expression matching:"
@@ -1600,7 +1574,6 @@ msgid "People with records containing <substring>"
 msgstr "Individus dont un enregistrement contient une <substring>"
 
 #: GenericFilter.py:1653
-
 msgid "Matches people whose records contain text matching a substring"
 msgstr "Individus dont un enregistrement contient une sous-chaine"
 
@@ -1617,7 +1590,6 @@ msgid "Matches people who have a particular source"
 msgstr "Individus avec une source particulière"
 
 #: GenericFilter.py:1841
-
 msgid "People having notes"
 msgstr "Individus ayant des notes"
 
@@ -1630,7 +1602,6 @@ msgid "People having notes containing <subtring>"
 msgstr "Individus dont un enregistrement contient une <subtring>"
 
 #: GenericFilter.py:1856
-
 msgid "Matches people whose notes contain text matching a substring"
 msgstr "Individus dont un enregistrement contient une sous-chaine"
 
@@ -1722,11 +1693,11 @@ msgstr "Le préfixe ID de GRAMPS est incomplet car il ne peut être distingué e
 
 #: GrampsDbBase.py:1009 GrampsDbBase.py:1047
 msgid "_Undo %s"
-msgstr "_Annuler %s"
+msgstr "Ann_uler %s"
 
 #: ImageSelect.py:506 ImageSelect.py:528
 msgid "Drag Media Object"
-msgstr "Glisser un objet media"
+msgstr "Glisser un objet média"
 
 #: ImageSelect.py:517 RelImage.py:51
 msgid "Could not import %s"
@@ -1738,15 +1709,15 @@ msgstr "Sélectionner un objet"
 
 #: ImageSelect.py:636 ImageSelect.py:891 ImageSelect.py:1371 MediaView.py:349
 msgid "Edit Media Object"
-msgstr "Editer l'objet media"
+msgstr "Editer l'objet média"
 
 #: ImageSelect.py:704
 msgid "Media Reference Editor"
-msgstr "Editeur de référence de media"
+msgstr "Editeur de référence de média"
 
 #: ImageSelect.py:817
 msgid "Media Reference"
-msgstr "Référence de media"
+msgstr "Référence de média"
 
 #: ImageSelect.py:823
 msgid "Reference Editor"
@@ -1754,7 +1725,7 @@ msgstr "Editeur de référence"
 
 #: ImageSelect.py:978
 msgid "Media Properties Editor"
-msgstr "Editeur de propriétés de media"
+msgstr "Editeur de propriétés de média"
 
 #: ImageSelect.py:1115
 msgid "Properties Editor"
@@ -1762,7 +1733,7 @@ msgstr "Editeur de propriétés"
 
 #: ImageSelect.py:1468
 msgid "Remove Media Object"
-msgstr "Supprimer un objet media"
+msgstr "Supprimer un objet média"
 
 #: LocEdit.py:75 LocEdit.py:109
 msgid "Location Editor"
@@ -1819,7 +1790,7 @@ msgstr "Modifier les propriétés"
 
 #: MediaView.py:361
 msgid "This media object is currently being used. If you delete this object, it will be removed from the database and from all records that reference it."
-msgstr "Ce media est actuellement utilisé, si vous le supprimez, il sera détruit dans la base ainsi que toute référence au sein des enregistrements."
+msgstr "Ce média est actuellement utilisé, si vous le supprimez, il sera détruit dans la base ainsi que toute référence au sein des enregistrements."
 
 #: MediaView.py:365
 msgid "Deleting media object will remove it from the database."
@@ -1827,11 +1798,11 @@ msgstr "Supprimer l'objet le supprimera de la base de données."
 
 #: MediaView.py:368
 msgid "Delete Media Object?"
-msgstr "Supprimer un media ?"
+msgstr "Supprimer un média ?"
 
 #: MediaView.py:369
 msgid "_Delete Media Object"
-msgstr "_Supprimer un media"
+msgstr "_Supprimer un média"
 
 #: MediaView.py:426
 msgid "Image import failed"
@@ -2068,7 +2039,7 @@ msgstr "Ce lieu est actuellement utilisé par au moins un enregistrement dans la
 
 #: PlaceView.py:259
 msgid "_Delete Place"
-msgstr "_Supprimer un lieu"
+msgstr "Suppression _d'un lieu"
 
 #: PlaceView.py:290
 msgid "Cannot merge places."
@@ -2093,9 +2064,8 @@ msgid "Unknown"
 msgstr "Inconnu"
 
 #: Plugins.py:72 plugins/WebPage.py:1979
-
 msgid "Unsupported"
-msgstr "Commandité(e)"
+msgstr "Plus supportés"
 
 #: Plugins.py:137 gramps.glade:1430
 msgid "_Apply"
@@ -2127,7 +2097,7 @@ msgstr "Choisir un outil parmi ceux disponibles à gauche."
 
 #: Plugins.py:315 plugins/verify.glade:68
 msgid "_Run"
-msgstr "_Exécuter"
+msgstr "Exécute_r"
 
 #: Plugins.py:316
 msgid "Run selected tool"
@@ -2298,15 +2268,15 @@ msgstr "sexe inconnu|conjoint"
 
 #: Relationship.py:275
 msgid "unmarried|husband"
-msgstr "divorcée|mari"
+msgstr "célibataire|mari"
 
 #: Relationship.py:277
 msgid "unmarried|wife"
-msgstr "divorcé|femme"
+msgstr "célibataire|femme"
 
 #: Relationship.py:279
 msgid "gender unknown,unmarried|spouse"
-msgstr "genre inconnu,non marrié|épouse"
+msgstr "sexe inconnu,célibataire|conjoint"
 
 #: Relationship.py:282
 msgid "male,civil union|partner"
@@ -2318,19 +2288,19 @@ msgstr "féminin,civil union|conjoint"
 
 #: Relationship.py:286
 msgid "gender unknown,civil union|partner"
-msgstr "genre inconnu,civil union|conjoint"
+msgstr "sexe inconnu,civil union|conjoint"
 
 #: Relationship.py:289
 msgid "male,unknown relation|partner"
-msgstr "masculin,inconnu relation|conjoint"
+msgstr "masculin,relation inconnue|conjoint"
 
 #: Relationship.py:291
 msgid "female,unknown relation|partner"
-msgstr "féminin,inconnu relation|conjoint"
+msgstr "féminin,relation inconnue|conjoint"
 
 #: Relationship.py:293
 msgid "gender unknown,unknown relation|partner"
-msgstr "genre inconnu,inconnu relation|conjoint"
+msgstr "sexe inconnu,relation inconnue|conjoint"
 
 #: Relationship.py:325
 msgid "Relationship loop detected"
@@ -2538,7 +2508,7 @@ msgstr "Le rapport n'a pas pu être créé"
 
 #: ReportUtils.py:50
 msgid "This person was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(male_name)s est né(e) le %(birth_date)s à %(birth_place)s."
+msgstr "Cette personne est née le %(birth_date)s à %(birth_place)s."
 
 #: ReportUtils.py:51
 msgid "He was born on %(birth_date)s in %(birth_place)s."
@@ -2562,29 +2532,27 @@ msgstr "%(female_name)s est née le %(birth_date)s à %(birth_place)s."
 
 #: ReportUtils.py:63
 msgid "This person was born %(modified_date)s in %(birth_place)s."
-msgstr "Cette personne était née le %(modified_date)s à %(birth_place)s."
+msgstr "Cette personne était née %(modified_date)s à %(birth_place)s."
 
 #: ReportUtils.py:64
 msgid "He was born %(modified_date)s in %(birth_place)s."
-msgstr "Il était né le %(modified_date)s à %(birth_place)s."
+msgstr "Il était né %(modified_date)s à %(birth_place)s."
 
 #: ReportUtils.py:65
 msgid "She was born %(modified_date)s in %(birth_place)s."
-msgstr "Elle était née le %(modified_date)s à %(birth_place)s."
+msgstr "Elle était née %(modified_date)s à %(birth_place)s."
 
 #: ReportUtils.py:68
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(unknown_gender_name)s était né le %(modified_date)s à %(birth_place)s."
+msgstr "%(unknown_gender_name)s était né %(modified_date)s à %(birth_place)s."
 
 #: ReportUtils.py:69
-
 msgid "%(male_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(male_name)s est né le %(birth_date)s à %(birth_place)s."
+msgstr "%(male_name)s est né %(modified_date)s à %(birth_place)s."
 
 #: ReportUtils.py:70
-
 msgid "%(female_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(female_name)s est née le %(birth_date)s à %(birth_place)s."
+msgstr "%(female_name)s est née %(modified_date)s à %(birth_place)s."
 
 #: ReportUtils.py:76
 msgid "This person was born on %(birth_date)s."
@@ -2616,25 +2584,23 @@ msgstr "Cette personne est née %(modified_date)s."
 
 #: ReportUtils.py:90
 msgid "He was born %(modified_date)s."
-msgstr "Il était né le %(modified_date)s."
+msgstr "Il était né %(modified_date)s."
 
 #: ReportUtils.py:91
 msgid "She was born %(modified_date)s."
-msgstr "Elle était née le %(modified_date)s."
+msgstr "Elle était née %(modified_date)s."
 
 #: ReportUtils.py:94
 msgid "%(unknown_gender_name)s was born on %(modified_date)s."
-msgstr "%(unknown_gender_name)s était né le %(modified_date)s."
+msgstr "%(unknown_gender_name)s était né %(modified_date)s."
 
 #: ReportUtils.py:95
-
 msgid "%(male_name)s was born on %(modified_date)s."
-msgstr "%(male_name)s est né le %(birth_date)s."
+msgstr "%(male_name)s était né %(modified_date)s."
 
 #: ReportUtils.py:96
-
 msgid "%(female_name)s was born on %(modified_date)s."
-msgstr "%(female_name)s est née le %(birth_date)s."
+msgstr "%(female_name)s était née %(modified_date)s."
 
 #: ReportUtils.py:102
 msgid "This person was born in %(month_year)s in %(birth_place)s."
@@ -2713,79 +2679,64 @@ msgid "This person died on %(death_date)s in %(death_place)s."
 msgstr "Cette personne est décédée le %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:148
-#, fuzzy
 msgid "This person died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Cette personne est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:149
-#, fuzzy
 msgid "This person died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "Cette personne est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:150
-#, fuzzy
 msgid "This person died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "Cette personne est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:153
-#, fuzzy
 msgid "He died on %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s."
+msgstr "Il est décédé le %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:154
-#, fuzzy
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Il est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:155
-#, fuzzy
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "Il est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:156
-#, fuzzy
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "Il est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:159
-#, fuzzy
 msgid "She died on %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s."
+msgstr "Elle est décédée le %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:160
-#, fuzzy
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Elle est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:161
-#, fuzzy
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "Elle est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:162
-#, fuzzy
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "Elle est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:166
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."
-msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s."
+msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:167
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:168
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:169
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:172
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s."
@@ -2820,204 +2771,164 @@ msgid "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %
 msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:188
-#, fuzzy
 msgid "This person died %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s."
+msgstr "Cette personne est décédée le %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:189
-#, fuzzy
 msgid "This person died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Cette personne est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:190
-#, fuzzy
 msgid "This person died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "Cette personne est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:191
-#, fuzzy
 msgid "This person died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "Cette personne est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:194
-#, fuzzy
 msgid "He died %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s."
+msgstr "Il est décédé le %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:195
-#, fuzzy
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Il est décédé le%(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:196
-#, fuzzy
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "Il est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:197
-#, fuzzy
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "Il est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:200
-#, fuzzy
 msgid "She died %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s."
+msgstr "Elle est décédée le %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:201
-#, fuzzy
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Elle est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:202
-#, fuzzy
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "Elle est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:203
-#, fuzzy
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "Elle est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:207
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s."
-msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s."
+msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:208
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:209
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:210
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:213
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s."
+msgstr "%(male_name)s est décédé le %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:214
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "%(male_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:215
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "%(male_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:216
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "%(male_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:219
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s in %(death_place)s."
 msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:220
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:221
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:222
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:229
-#, fuzzy
 msgid "This person died on %(death_date)s."
-msgstr "%(male_name)s est mort le %(death_date)s."
+msgstr "Cette personne est décédée le %(death_date)s."
 
 #: ReportUtils.py:230
-#, fuzzy
 msgid "This person died on %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d ans."
+msgstr "Cette personne est décédée le %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:231
-#, fuzzy
 msgid "This person died on %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d mois."
+msgstr "Cette personne est décédée le %(death_date)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:232
-#, fuzzy
 msgid "This person died on %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s est décédé le %(death_date)s à l'âge de %(age)d jours."
+msgstr "Cette personne est décédée le %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:235
-#, fuzzy
 msgid "He died on %(death_date)s."
-msgstr "%(male_name)s est mort le %(death_date)s."
+msgstr "Il est décédé le %(death_date)s."
 
 #: ReportUtils.py:236
-#, fuzzy
 msgid "He died on %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d ans."
+msgstr "Il est décédé le %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:237
-#, fuzzy
 msgid "He died on %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d mois."
+msgstr "Il est décédé le %(death_date)s à l'âge de%(age)d mois."
 
 #: ReportUtils.py:238
-#, fuzzy
 msgid "He died on %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s est décédé le %(death_date)s à l'âge de %(age)d jours."
+msgstr "Il est décédé le %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:241
-#, fuzzy
 msgid "She died on %(death_date)s."
-msgstr "%(male_name)s est mort le %(death_date)s."
+msgstr "Elle est décédée le %(death_date)s."
 
 #: ReportUtils.py:242
-#, fuzzy
 msgid "She died on %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d ans."
+msgstr "Elle est décédée le %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:243
-#, fuzzy
 msgid "She died on %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d mois."
+msgstr "Elle est décédée le %(death_date)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:244
-#, fuzzy
 msgid "She died on %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s est décédé le %(death_date)s à l'âge de %(age)d jours."
+msgstr "Elle est décédée le %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:248
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s."
-msgstr "%(female_name)s est décédée le %(death_date)s."
+msgstr "%(unknown_gender_name)s est décédé le %(death_date)s."
 
 #: ReportUtils.py:249
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr "%(female_name)s décédée le %(death_date)s à l'âge de %(age)d ans."
+msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:250
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr "%(female_name)s décédée le %(death_date)s à l'âge de %(age)d mois."
+msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:251
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr "%(female_name)s est décédée le %(death_date)s à l'âge de %(age)d jours."
+msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:254
 msgid "%(male_name)s died on %(death_date)s."
@@ -3025,11 +2936,11 @@ msgstr "%(male_name)s est mort le %(death_date)s."
 
 #: ReportUtils.py:255
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d ans."
+msgstr "%(male_name)s est décédé le %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:256
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d mois."
+msgstr "%(male_name)s est décédé le %(death_date)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:257
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d days."
@@ -3041,11 +2952,11 @@ msgstr "%(female_name)s est décédée le %(death_date)s."
 
 #: ReportUtils.py:261
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr "%(female_name)s décédée le %(death_date)s à l'âge de %(age)d ans."
+msgstr "%(female_name)s est décédée le %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:262
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr "%(female_name)s décédée le %(death_date)s à l'âge de %(age)d mois."
+msgstr "%(female_name)s est décédée le %(death_date)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:263
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d days."
@@ -3056,197 +2967,160 @@ msgid "This person died %(death_date)s."
 msgstr "Cette personne est décédée %(death_date)s"
 
 #: ReportUtils.py:271
-#, fuzzy
 msgid "This person died %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d ans."
+msgstr "Cette personne est décédée le %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:272
-#, fuzzy
 msgid "This person died %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d mois."
+msgstr "Cette personne est décédée le %(death_date)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:273
-#, fuzzy
 msgid "This person died %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s est décédé le %(death_date)s à l'âge de %(age)d jours."
+msgstr "Cette personne est décédée le %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:276
 msgid "He died %(death_date)s."
 msgstr "Il décéda %(death_date)s"
 
 #: ReportUtils.py:277
-#, fuzzy
 msgid "He died %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d ans."
+msgstr "Il est décédé le %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:278
-#, fuzzy
 msgid "He died %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d mois."
+msgstr "Il est décédé le %(death_date)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:279
-#, fuzzy
 msgid "He died %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s est décédé le %(death_date)s à l'âge de %(age)d jours."
+msgstr "Il est décédé le %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:282
 msgid "She died %(death_date)s."
 msgstr "Elle décéda %(death_date)s"
 
 #: ReportUtils.py:283
-#, fuzzy
 msgid "She died %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d ans."
+msgstr "Elle est décédée le %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:284
-#, fuzzy
 msgid "She died %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d mois."
+msgstr "Elle est décédée le %(death_date)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:285
-#, fuzzy
 msgid "She died %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s est décédé le %(death_date)s à l'âge de %(age)d jours."
+msgstr "Elle est décédée le %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:289
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s."
-msgstr "%(female_name)s est décédée le %(death_date)s."
+msgstr "%(unknown_gender_name)s est décédé le %(death_date)s."
 
 #: ReportUtils.py:290
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
-msgstr "%(female_name)s décédée le %(death_date)s à l'âge de %(age)d ans."
+msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:291
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
-msgstr "%(female_name)s décédée le %(death_date)s à l'âge de %(age)d mois."
+msgstr "%(unknown_gender_name)s est décédé le %(death_date)sà l'âge de %(age)d mois."
 
 #: ReportUtils.py:292
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d days."
-msgstr "%(female_name)s est décédée le %(death_date)s à l'âge de %(age)d jours."
+msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:295
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s."
-msgstr "%(male_name)s est mort le %(death_date)s."
+msgstr "%(male_name)s est décédé le %(death_date)s."
 
 #: ReportUtils.py:296
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d ans."
+msgstr "%(male_name)s est décédé le %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:297
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d mois."
+msgstr "%(male_name)s est décédé le %(death_date)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:298
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d days."
 msgstr "%(male_name)s est décédé le %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:301
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s."
 msgstr "%(female_name)s est décédée le %(death_date)s."
 
 #: ReportUtils.py:302
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d years."
-msgstr "%(female_name)s décédée le %(death_date)s à l'âge de %(age)d ans."
+msgstr "%(female_name)s est décédée le %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:303
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d months."
-msgstr "%(female_name)s décédée le %(death_date)s à l'âge de %(age)d mois."
+msgstr "%(female_name)s est décédée le %(death_date)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:304
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d days."
 msgstr "%(female_name)s est décédée le %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:311
-#, fuzzy
 msgid "This person died in %(month_year)s in %(death_place)s."
-msgstr "%(male_name)s est décédé en %(month_year)s à %(death_place)s."
+msgstr "Cette personne est décédée en %(month_year)s à %(death_place)s."
 
 #: ReportUtils.py:312
-#, fuzzy
 msgid "This person died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Cette personne est décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:313
-#, fuzzy
 msgid "This person died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "Cette personne est décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:314
-#, fuzzy
 msgid "This person died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "Cette personne est décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:317
-#, fuzzy
 msgid "He died in %(month_year)s in %(death_place)s."
-msgstr "%(male_name)s est décédé en %(month_year)s à %(death_place)s."
+msgstr "Il est décédé en %(month_year)s à %(death_place)s."
 
 #: ReportUtils.py:318
-#, fuzzy
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Il est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:319
-#, fuzzy
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "Il est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:320
-#, fuzzy
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "Il est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:323
-#, fuzzy
 msgid "She died in %(month_year)s in %(death_place)s."
-msgstr "%(male_name)s est décédé en %(month_year)s à %(death_place)s."
+msgstr "Elle est décédée en %(month_year)s à %(death_place)s."
 
 #: ReportUtils.py:324
-#, fuzzy
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Elle est décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:325
-#, fuzzy
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "Elle est décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:326
-#, fuzzy
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "Elle est décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:330
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."
-msgstr "%(female_name)s est décédée en %(month_year)s à %(death_place)s."
+msgstr "%(unknown_gender_name)s est décédé en %(month_year)s à %(death_place)s."
 
 #: ReportUtils.py:331
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(female_name)s décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "%(unknown_gender_name)s est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:332
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(female_name)s décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "%(unknown_gender_name)s est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:333
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(female_name)s est décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "%(unknown_gender_name)s est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:336
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
@@ -3254,11 +3128,11 @@ msgstr "%(male_name)s est décédé en %(month_year)s à %(death_place)s."
 
 #: ReportUtils.py:337
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "%(male_name)s est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:338
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "%(male_name)s est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:339
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."
@@ -3270,95 +3144,79 @@ msgstr "%(female_name)s est décédée en %(month_year)s à %(death_place)s."
 
 #: ReportUtils.py:343
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(female_name)s décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "%(female_name)s est décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:344
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(female_name)s décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "%(female_name)s est décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:345
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr "%(female_name)s est décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:352
-#, fuzzy
 msgid "This person died in %(month_year)s."
-msgstr "%(male_name)s est décédé en %(month_year)s."
+msgstr "Cette personne est décédée en %(month_year)s."
 
 #: ReportUtils.py:353
-#, fuzzy
 msgid "This person died in %(month_year)s at the age of %(age)d years."
-msgstr "%(male_name)s décédé en %(month_year)s à l'âge de %(age)d ans."
+msgstr "Cette personne est décédée en %(month_year)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:354
-#, fuzzy
 msgid "This person died in %(month_year)s at the age of %(age)d months."
-msgstr "%(male_name)s décédé en %(month_year)s à l'âge de %(age)d mois."
+msgstr "Cette personne est décédée en %(month_year)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:355
-#, fuzzy
 msgid "This person died in %(month_year)s at the age of %(age)d days."
-msgstr "%(male_name)s décédé en %(month_year)s à l'âge de %(age)d jours."
+msgstr "Cette personne est décédée en %(month_year)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:358
-#, fuzzy
 msgid "He died in %(month_year)s."
-msgstr "%(male_name)s est décédé en %(month_year)s."
+msgstr "Il est décédé en %(month_year)s."
 
 #: ReportUtils.py:359
-#, fuzzy
 msgid "He died in %(month_year)s at the age of %(age)d years."
-msgstr "%(male_name)s décédé en %(month_year)s à l'âge de %(age)d ans."
+msgstr "Il est décédé en %(month_year)s à l'âge def %(age)d ans."
 
 #: ReportUtils.py:360
-#, fuzzy
 msgid "He died in %(month_year)s at the age of %(age)d months."
-msgstr "%(male_name)s décédé en %(month_year)s à l'âge de %(age)d mois."
+msgstr "Il est décédé en %(month_year)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:361
-#, fuzzy
 msgid "He died in %(month_year)s at the age of %(age)d days."
-msgstr "%(male_name)s décédé en %(month_year)s à l'âge de %(age)d jours."
+msgstr "Il est décédé en %(month_year)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:364
-#, fuzzy
 msgid "She died in %(month_year)s."
-msgstr "%(male_name)s est décédé en %(month_year)s."
+msgstr "Elle est décédée en %(month_year)s."
 
 #: ReportUtils.py:365
-#, fuzzy
 msgid "She died in %(month_year)s at the age of %(age)d years."
-msgstr "%(male_name)s décédé en %(month_year)s à l'âge de %(age)d ans."
+msgstr "Elle est décédée en %(month_year)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:366
-#, fuzzy
 msgid "She died in %(month_year)s at the age of %(age)d months."
-msgstr "%(male_name)s décédé en %(month_year)s à l'âge de %(age)d mois."
+msgstr "Elle est décédée en %(month_year)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:367
-#, fuzzy
 msgid "She died in %(month_year)s at the age of %(age)d days."
-msgstr "%(male_name)s décédé en %(month_year)s à l'âge de %(age)d jours."
+msgstr "Elle est décédée en %(month_year)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:371
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s."
-msgstr "%(female_name)s est décédée en %(month_year)s."
+msgstr "%(unknown_gender_name)s est décédé en %(month_year)s."
 
 #: ReportUtils.py:372
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr "%(female_name)s décédée en %(month_year)s à l'âge de %(age)d ans."
+msgstr "%(unknown_gender_name)s est décédé en %(month_year)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:373
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr "%(female_name)s décédée en %(month_year)s à l'âge de %(age)d mois."
+msgstr "%(unknown_gender_name)s est décédé en %(month_year)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:374
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr "%(female_name)s décédée en %(month_year)s à l'âge de %(age)d jours."
+msgstr "%(unknown_gender_name)s est décédé en %(month_year)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:377
 msgid "%(male_name)s died in %(month_year)s."
@@ -3366,15 +3224,15 @@ msgstr "%(male_name)s est décédé en %(month_year)s."
 
 #: ReportUtils.py:378
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr "%(male_name)s décédé en %(month_year)s à l'âge de %(age)d ans."
+msgstr "%(male_name)s est décédé en %(month_year)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:379
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr "%(male_name)s décédé en %(month_year)s à l'âge de %(age)d mois."
+msgstr "%(male_name)s est décédé en %(month_year)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:380
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr "%(male_name)s décédé en %(month_year)s à l'âge de %(age)d jours."
+msgstr "%(male_name)s est décédé en %(month_year)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:383
 msgid "%(female_name)s died in %(month_year)s."
@@ -3382,95 +3240,79 @@ msgstr "%(female_name)s est décédée en %(month_year)s."
 
 #: ReportUtils.py:384
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr "%(female_name)s décédée en %(month_year)s à l'âge de %(age)d ans."
+msgstr "%(female_name)s est décédée en %(month_year)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:385
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr "%(female_name)s décédée en %(month_year)s à l'âge de %(age)d mois."
+msgstr "%(female_name)s est décédée en %(month_year)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:386
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr "%(female_name)s décédée en %(month_year)s à l'âge de %(age)d jours."
+msgstr "%(female_name)s est décédée en %(month_year)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:394
-#, fuzzy
 msgid "This person died in %(death_place)s."
-msgstr "%(male_name)s à %(death_place)s."
+msgstr "Cette personne est décédée à %(death_place)s."
 
 #: ReportUtils.py:395
-#, fuzzy
 msgid "This person died in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s est décédé à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Cette personne est décédée à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:396
-#, fuzzy
 msgid "This person died in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s est décédé à %(death_place)s à l'âge de %(age)d mois."
+msgstr "Cette personne est décédée à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:397
-#, fuzzy
 msgid "This person died in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s est décédé à %(death_place)s à l'âge de %(age)d jours."
+msgstr "Cette personne est décédée à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:400
-#, fuzzy
 msgid "He died in %(death_place)s."
-msgstr "%(male_name)s à %(death_place)s."
+msgstr "Il est décédé à %(death_place)s."
 
 #: ReportUtils.py:401
-#, fuzzy
 msgid "He died in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s est décédé à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Il est décédé à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:402
-#, fuzzy
 msgid "He died in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s est décédé à %(death_place)s à l'âge de %(age)d mois."
+msgstr "Il est décédé à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:403
-#, fuzzy
 msgid "He died in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s est décédé à %(death_place)s à l'âge de %(age)d jours."
+msgstr "Il est décédé à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:406
-#, fuzzy
 msgid "She died in %(death_place)s."
-msgstr "%(male_name)s à %(death_place)s."
+msgstr "Elle est décédée à %(death_place)s."
 
 #: ReportUtils.py:407
-#, fuzzy
 msgid "She died in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s est décédé à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Elle est décédée à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:408
-#, fuzzy
 msgid "She died in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s est décédé à %(death_place)s à l'âge de %(age)d mois."
+msgstr "Elle est décédée à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:409
-#, fuzzy
 msgid "She died in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s est décédé à %(death_place)s à l'âge de %(age)d jours."
+msgstr "Elle est décédée à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:413
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(death_place)s."
-msgstr "%(female_name)s est décédée à %(death_place)s."
+msgstr "%(unknown_gender_name)s est décédé à %(death_place)s."
 
 #: ReportUtils.py:414
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr "%(female_name)s est décédée à %(death_place)s à l'âge de %(age)d ans."
+msgstr "%(unknown_gender_name)s est décédé à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:415
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr "%(female_name)s est décédée à %(death_place)s à l'âge de %(age)d mois."
+msgstr "%(unknown_gender_name)s est décédé à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:416
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr "%(female_name)s est décédée à %(death_place)s à l'âge de %(age)d jours."
+msgstr "%(unknown_gender_name)s est décédé à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:419
 msgid "%(male_name)s died in %(death_place)s."
@@ -3505,483 +3347,416 @@ msgid "%(female_name)s died in %(death_place)s at the age of %(age)d days."
 msgstr "%(female_name)s est décédée à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:436
-#, fuzzy
 msgid "This person died at the age of %(age)d years."
-msgstr "%(male_name)s décédé à l'âge de %(age)d ans."
+msgstr "Cette personne est décédée à l'âge de %(age)d ans."
 
 #: ReportUtils.py:437
-#, fuzzy
 msgid "This person died at the age of %(age)d months."
-msgstr "%(male_name)s décédé à l'âge de %(age)d mois."
+msgstr "Cette personne est décédée à l'âge de %(age)d mois."
 
 #: ReportUtils.py:438
-#, fuzzy
 msgid "This person died at the age of %(age)d days."
-msgstr "%(male_name)s décédé à l'âge de %(age)d jours."
+msgstr "Cette personne est décédée à l'âge de %(age)d jours."
 
 #: ReportUtils.py:442
-#, fuzzy
 msgid "He died at the age of %(age)d years."
-msgstr "%(male_name)s décédé à l'âge de %(age)d ans."
+msgstr "Il est décédé à l'âge de %(age)d ans."
 
 #: ReportUtils.py:443
-#, fuzzy
 msgid "He died at the age of %(age)d months."
-msgstr "%(male_name)s décédé à l'âge de %(age)d mois."
+msgstr "Il est décédé à l'âge de %(age)d mois."
 
 #: ReportUtils.py:444
-#, fuzzy
 msgid "He died at the age of %(age)d days."
-msgstr "%(male_name)s décédé à l'âge de %(age)d jours."
+msgstr "Il est décédé à l'âge de %(age)d jours."
 
 #: ReportUtils.py:448
-#, fuzzy
 msgid "She died at the age of %(age)d years."
-msgstr "%(male_name)s décédé à l'âge de %(age)d ans."
+msgstr "Elle est décédée à l'âge de %(age)d ans."
 
 #: ReportUtils.py:449
-#, fuzzy
 msgid "She died at the age of %(age)d months."
-msgstr "%(male_name)s décédé à l'âge de %(age)d mois."
+msgstr "Elle est décédée à l'âge de %(age)d mois."
 
 #: ReportUtils.py:450
-#, fuzzy
 msgid "She died at the age of %(age)d days."
-msgstr "%(male_name)s décédé à l'âge de %(age)d jours."
+msgstr "Elle est décédée à l'âge de %(age)d jours."
 
 #: ReportUtils.py:455
-#, fuzzy
 msgid "%(unknown_gender_name)s died at the age of %(age)d years."
-msgstr "%(female_name)s décédée à l'âge de %(age)d ans."
+msgstr "%(unknown_gender_name)s est décédé à l'âge de %(age)d ans."
 
 #: ReportUtils.py:456
 msgid "%(unknown_gender_name)s died at the age of %(age)d months."
-msgstr "%(female_name)s décédé à l'âge de %(age)d mois."
+msgstr "%(female_name)s est décédée à l'âge de %(age)d mois."
 
 #: ReportUtils.py:457
 msgid "%(unknown_gender_name)s died at the age of %(age)d days."
-msgstr "%(female_name)s décédé à l'âge de %(age)d jours."
+msgstr "%(female_name)s est décédée à l'âge de %(age)d jours."
 
 #: ReportUtils.py:461
 msgid "%(male_name)s died at the age of %(age)d years."
-msgstr "%(male_name)s décédé à l'âge de %(age)d ans."
+msgstr "%(male_name)s est décédé à l'âge de %(age)d ans."
 
 #: ReportUtils.py:462
 msgid "%(male_name)s died at the age of %(age)d months."
-msgstr "%(male_name)s décédé à l'âge de %(age)d mois."
+msgstr "%(male_name)s est décédé à l'âge de %(age)d mois."
 
 #: ReportUtils.py:463
 msgid "%(male_name)s died at the age of %(age)d days."
-msgstr "%(male_name)s décédé à l'âge de %(age)d jours."
+msgstr "%(male_name)s est décédé à l'âge de %(age)d jours."
 
 #: ReportUtils.py:467
 msgid "%(female_name)s died at the age of %(age)d years."
-msgstr "%(female_name)s décédée à l'âge de %(age)d ans."
+msgstr "%(female_name)s est décédée à l'âge de %(age)d ans."
 
 #: ReportUtils.py:468
 msgid "%(female_name)s died at the age of %(age)d months."
-msgstr "%(female_name)s décédée à l'âge de %(age)d mois."
+msgstr "%(female_name)s est décédée à l'âge de %(age)d mois."
 
 #: ReportUtils.py:469
 msgid "%(female_name)s died at the age of %(age)d days."
-msgstr "%(female_name)s décédée à l'âge de %(age)d jours."
+msgstr "%(female_name)s est décédée à l'âge de %(age)d jours."
 
 #: ReportUtils.py:482
 msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(male_name)s a été enterré le %(burial_date)s à %(burial_place)s."
+msgstr "%(male_name)s a été inhumé le %(burial_date)s à %(burial_place)s."
 
 #: ReportUtils.py:483
-#, fuzzy
 msgid "He was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(male_name)s a été enterré le %(burial_date)s à %(burial_place)s."
+msgstr "Il a été inhumé le %(burial_date)s à %(burial_place)s."
 
 #: ReportUtils.py:486
 msgid "%(female_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(female_name)s a été enterrée le %(burial_date)s à %(burial_place)s."
+msgstr "%(female_name)s a été inhumé le %(burial_date)s à %(burial_place)s."
 
 #: ReportUtils.py:487
-#, fuzzy
 msgid "She was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(male_name)s a été enterré le %(burial_date)s à %(burial_place)s."
+msgstr "Elle a été inhumé le %(burial_date)s à %(burial_place)s."
 
 #: ReportUtils.py:490
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(female_name)s a été enterré le %(burial_date)s à %(burial_place)s."
+msgstr "%(unknown_gender_name)s a été inhumé le %(burial_date)s à %(burial_place)s."
 
 #: ReportUtils.py:491
-#, fuzzy
 msgid "This person was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(male_name)s a été enterré le %(burial_date)s à %(burial_place)s."
+msgstr "Cette personne a été inhumé le %(burial_date)s à %(burial_place)s."
 
 #: ReportUtils.py:497
 msgid "%(male_name)s was buried on %(burial_date)s."
-msgstr "%(male_name)s a été enterré le %(burial_date)s."
+msgstr "%(male_name)s a été inhumé le %(burial_date)s."
 
 #: ReportUtils.py:498
-#, fuzzy
 msgid "He was buried on %(burial_date)s."
-msgstr "%(male_name)s a été enterré le %(burial_date)s."
+msgstr "Il a été inhumé le %(burial_date)s."
 
 #: ReportUtils.py:501
 msgid "%(female_name)s was buried on %(burial_date)s."
-msgstr "%(female_name)s a été enterrée le %(burial_date)s."
+msgstr "%(female_name)s a été inhumé le %(burial_date)s."
 
 #: ReportUtils.py:502
-#, fuzzy
 msgid "She was buried on %(burial_date)s."
-msgstr "%(male_name)s a été enterré le %(burial_date)s."
+msgstr "Elle a été inhumé le %(burial_date)s."
 
 #: ReportUtils.py:505
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s."
-msgstr "%(female_name)s a été enterré le %(burial_date)s."
+msgstr "%(unknown_gender_name)s a été inhumé le %(burial_date)s."
 
 #: ReportUtils.py:506
-#, fuzzy
 msgid "This person was buried on %(burial_date)s."
-msgstr "%(male_name)s a été enterré le %(burial_date)s."
+msgstr "Cette personne a été inhumé le %(burial_date)s."
 
 #: ReportUtils.py:512
 msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(male_name)s a été enterré en %(month_year)s à %(burial_place)s."
+msgstr "%(male_name)s a été inhumé en %(month_year)s à %(burial_place)s."
 
 #: ReportUtils.py:513
-#, fuzzy
 msgid "He was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(male_name)s a été enterré en %(month_year)s à %(burial_place)s."
+msgstr "Il a été inhumé en %(month_year)s à %(burial_place)s."
 
 #: ReportUtils.py:516
 msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(female_name)s a été enterrée en %(month_year)s à %(burial_place)s."
+msgstr "%(female_name)s a été inhumé en %(month_year)s à %(burial_place)s."
 
 #: ReportUtils.py:517
-#, fuzzy
 msgid "She was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(male_name)s a été enterré en %(month_year)s à %(burial_place)s."
+msgstr "Elle a été inhumé en %(month_year)s à %(burial_place)s."
 
 #: ReportUtils.py:520
 msgid "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(female_name)s a été enterré en %(month_year)s à %(burial_place)s."
+msgstr "%(unknown_gender_name)s a été inhumé en %(month_year)s à %(burial_place)s."
 
 #: ReportUtils.py:521
 msgid "This person was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(male_name)s a été enterré(e) en %(month_year)s à %(burial_place)s."
+msgstr "Cette personne a été inhumé en %(month_year)s à %(burial_place)s."
 
 #: ReportUtils.py:527
 msgid "%(male_name)s was buried in %(month_year)s."
 msgstr "%(male_name)s a été inhumé en %(month_year)s."
 
 #: ReportUtils.py:528
-#, fuzzy
 msgid "He was buried on %(month_year)s."
-msgstr "%(male_name)s a été inhumé en %(month_year)s."
+msgstr "Il a été inhumé en %(month_year)s."
 
 #: ReportUtils.py:531
 msgid "%(female_name)s was buried in %(month_year)s."
-msgstr "%(female_name)s a été enterrée en %(month_year)s."
+msgstr "%(female_name)s a été inhumé en %(month_year)s."
 
 #: ReportUtils.py:532
-#, fuzzy
 msgid "She was buried in %(month_year)s."
-msgstr "%(male_name)s a été inhumé en %(month_year)s."
+msgstr "Elle a été inhumé en %(month_year)s."
 
 #: ReportUtils.py:535
 msgid "%(unknown_gender_name)s was buried in %(month_year)s."
-msgstr "%(female_name)s a été enterré en %(month_year)s."
+msgstr "%(unknown_gender_name)s a été inhumé en %(month_year)s."
 
 #: ReportUtils.py:536
 msgid "This person was buried in %(month_year)s."
-msgstr "%(male_name)s a été inhumé(e) en %(month_year)s."
+msgstr "Cette personne a été inhumé en %(month_year)s."
 
 #: ReportUtils.py:542
-#, fuzzy
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s a été enterré le %(burial_date)s à %(burial_place)s."
+msgstr "%(male_name)s a été inhumé %(modified_date)s à %(burial_place)s."
 
 #: ReportUtils.py:543
-#, fuzzy
 msgid "He was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s a été enterré le %(burial_date)s à %(burial_place)s."
+msgstr "Il a été inhumé %(modified_date)s à %(burial_place)s."
 
 #: ReportUtils.py:546
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(female_name)s a été enterré le %(burial_date)s à %(burial_place)s."
+msgstr "%(female_name)s a été inhumé %(modified_date)s à %(burial_place)s."
 
 #: ReportUtils.py:547
-#, fuzzy
 msgid "She was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s a été enterré le %(burial_date)s à %(burial_place)s."
+msgstr "Elle a été inhumé %(modified_date)s à %(burial_place)s."
 
 #: ReportUtils.py:550
 msgid "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(female_name)s a été enterré le %(burial_date)s à %(burial_place)s."
+msgstr "%(unknown_gender_name)s a été inhumé %(modified_date)s à %(burial_place)s."
 
 #: ReportUtils.py:551
-#, fuzzy
 msgid "This person was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s a été enterré le %(burial_date)s à %(burial_place)s."
+msgstr "Cette personne a été inhumé %(modified_date)s à %(burial_place)s."
 
 #: ReportUtils.py:557
-#, fuzzy
 msgid "%(male_name)s was buried %(modified_date)s."
-msgstr "%(male_name)s a été enterré le %(burial_date)s."
+msgstr "%(male_name)s a été inhumé %(modified_date)s."
 
 #: ReportUtils.py:558
-#, fuzzy
 msgid "He was buried %(modified_date)s."
-msgstr "%(male_name)s a été enterré le %(burial_date)s."
+msgstr "Il a été inhumé %(modified_date)s."
 
 #: ReportUtils.py:561
 msgid "%(female_name)s was buried %(modified_date)s."
-msgstr "%(female_name)s a été enterré le %(burial_date)s."
+msgstr "%(female_name)s a été inhumé %(modified_date)s."
 
 #: ReportUtils.py:562
-#, fuzzy
 msgid "She was buried %(modified_date)s."
-msgstr "%(male_name)s a été enterré le %(burial_date)s."
+msgstr "Elle a été inhumé %(modified_date)s."
 
 #: ReportUtils.py:565
 msgid "%(unknown_gender_name)s was buried %(modified_date)s."
-msgstr "%(female_name)s a été enterré le %(burial_date)s."
+msgstr "%(unknown_gender_name)s a été inhumé %(modified_date)s."
 
 #: ReportUtils.py:566
 msgid "This person was buried %(modified_date)s."
-msgstr "Cette personne est décédée %(modified_date)s."
+msgstr "Cette personne a été inhumé %(modified_date)s."
 
 #: ReportUtils.py:572
 msgid "%(male_name)s was buried in %(burial_place)s."
-msgstr "%(male_name)s a été enterré à %(burial_place)s."
+msgstr "%(male_name)s a été inhumé à %(burial_place)s."
 
 #: ReportUtils.py:573
 msgid "He was buried in %(burial_place)s."
-msgstr "%(male_name)s a été enterré(e) à %(burial_place)s."
+msgstr "Il a été inhumé à %(burial_place)s."
 
 #: ReportUtils.py:576
 msgid "%(female_name)s was buried in %(burial_place)s."
-msgstr "%(female_name)s a été enterrée à %(burial_place)s."
+msgstr "%(female_name)s a été inhumé à %(burial_place)s."
 
 #: ReportUtils.py:577
 msgid "She was buried in %(burial_place)s."
-msgstr "%(male_name)s a été enterré(e) à %(burial_place)s."
+msgstr "Elle a été inhumé à %(burial_place)s."
 
 #: ReportUtils.py:580
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s."
-msgstr "%(female_name)s a été enterré à %(burial_place)s."
+msgstr "%(unknown_gender_name)s a été inhumé à %(burial_place)s."
 
 #: ReportUtils.py:581
 msgid "This person was buried in %(burial_place)s."
-msgstr "%(male_name)s a été enterré(e) à %(burial_place)s."
+msgstr "Cette personne a été inhumé à %(burial_place)s."
 
 #: ReportUtils.py:587
 msgid "%(male_name)s was buried."
-msgstr "%(male_name)s a été enterré."
+msgstr "%(male_name)s a été inhumé."
 
 #: ReportUtils.py:588
-#, fuzzy
 msgid "He was buried."
-msgstr ", et fût inhumé le %s."
+msgstr "Il a été inhumé."
 
 #: ReportUtils.py:591
 msgid "%(female_name)s was buried."
 msgstr "%(female_name)s a été inhumée."
 
 #: ReportUtils.py:592
-#, fuzzy
 msgid "She was buried."
-msgstr "%(male_name)s a été enterré."
+msgstr "Elle a été inhumé."
 
 #: ReportUtils.py:595
-#, fuzzy
 msgid "%(unknown_gender_name)s was buried."
-msgstr "%(female_name)s a été inhumée."
+msgstr "%(unknown_gender_name)s a été inhumé."
 
 #: ReportUtils.py:596
 msgid "This person was buried."
-msgstr ", et fût inhumé(e) le %s."
+msgstr "Cette personne a été inhumé."
 
 #: ReportUtils.py:608
-#, fuzzy
 msgid "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "elle épousa %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Cette personne épousa %(spouse)s le %(partial_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:609
-#, fuzzy
 msgid "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "elle épousa %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Cette personne épousa %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:610
-#, fuzzy
 msgid "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "elle épousa %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Cette personne épousa %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:613
-#, fuzzy
 msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "il épousa %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Il épousa %(spouse)s le %(partial_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:614
-#, fuzzy
 msgid "He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "il épousa %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Il épousa %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:615
-#, fuzzy
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "il épousa %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Il épousa %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:618
-#, fuzzy
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "elle épousa %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Elle épousa %(spouse)s le %(partial_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:619
-#, fuzzy
 msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "elle épousa %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Elle épousa %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:620
-#, fuzzy
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "elle épousa %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Elle épousa %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:626
-#, fuzzy
 msgid "This person also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Elle épousa également %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Cette personne épousa également %(spouse)s le %(partial_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:627
-#, fuzzy
 msgid "This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Elle épousa également %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Cette personne épousa également %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:628
-#, fuzzy
 msgid "This person also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Elle épousa également %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Cette personne épousa également %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:631
-#, fuzzy
 msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Il épousa également %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Il épousa également %(spouse)s le %(partial_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:632
-#, fuzzy
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Il épousa également %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Il épousa également %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:633
-#, fuzzy
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Il épousa également %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Il épousa également %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:636
-#, fuzzy
 msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Elle épousa également %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Elle épousa également %(spouse)s le %(partial_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:637
-#, fuzzy
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Elle épousa également %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Elle épousa également %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:638
-#, fuzzy
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Elle épousa également %(spouse)s %(date)s à %(place)s%(endnotes)s."
+msgstr "Elle épousa également %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:644
-#, fuzzy
 msgid "This person married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "elle épousa %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Cette personne épousa %(spouse)s le %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:645
-#, fuzzy
 msgid "This person married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "il épousa %(spouse)s %(date)s%(endnotes)s."
+msgstr "Cette personne épousa %(spouse)s le %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:646
-#, fuzzy
 msgid "This person married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "il épousa %(spouse)s %(date)s%(endnotes)s."
+msgstr "Cette personne épousa %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:649
-#, fuzzy
 msgid "He married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "il épousa %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Il épousa %(spouse)s le %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:650
-#, fuzzy
 msgid "He married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "il épousa %(spouse)s %(date)s%(endnotes)s."
+msgstr "Il épousa %(spouse)s le %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:651
-#, fuzzy
 msgid "He married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "il épousa %(spouse)s %(date)s%(endnotes)s."
+msgstr "Il épousa %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:654
-#, fuzzy
 msgid "She married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "elle épousa %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Elle épousa %(spouse)s le %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:655
-#, fuzzy
 msgid "She married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "elle épousa %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Elle épousa %(spouse)s le %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:656
-#, fuzzy
 msgid "She married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "il épousa %(spouse)s %(date)s%(endnotes)s."
+msgstr "Elle épousa %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:662
-#, fuzzy
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Elle épousa également %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Cette personne épousa également %(spouse)s le %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:663
-#, fuzzy
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Il épousa également %(spouse)s %(date)s%(endnotes)s."
+msgstr "Cette personne épousa également %(spouse)s le %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:664
-#, fuzzy
 msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Il épousa également %(spouse)s %(date)s%(endnotes)s."
+msgstr "Cette personne épousa également %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:667
-#, fuzzy
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Il épousa également %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Il épousa également %(spouse)s le %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:668
-#, fuzzy
 msgid "He also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Il épousa également %(spouse)s %(date)s%(endnotes)s."
+msgstr "Il épousa également %(spouse)s le %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:669
-#, fuzzy
 msgid "He also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Il épousa également %(spouse)s %(date)s%(endnotes)s."
+msgstr "Il épousa également %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:672
-#, fuzzy
 msgid "She also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Elle épousa également %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Elle épousa également %(spouse)s le %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:673
-#, fuzzy
 msgid "She also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Elle épousa également %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Elle épousa également %(spouse)s le %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:674
-#, fuzzy
 msgid "She also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Il épousa également %(spouse)s %(date)s%(endnotes)s."
+msgstr "Elle épousa également %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:679
-#, fuzzy
 msgid "This person married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "elle épousa %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Cette personne épousa également %(spouse)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:680
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
@@ -3992,9 +3767,8 @@ msgid "She married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "elle épousa %(spouse)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:685
-#, fuzzy
 msgid "This person also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Elle épousa également %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Cette personne épousa également %(spouse)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:686
 msgid "He also married %(spouse)s in %(place)s%(endnotes)s."
@@ -4005,9 +3779,8 @@ msgid "She also married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Elle épousa également %(spouse)s à %(place)s%(endnotes)s."
 
 #: ReportUtils.py:691
-#, fuzzy
 msgid "This person married %(spouse)s%(endnotes)s."
-msgstr "Elle épousa %(spouse)s%(endnotes)s."
+msgstr "Cette personne épousa %(spouse)s%(endnotes)s."
 
 #: ReportUtils.py:692
 msgid "He married %(spouse)s%(endnotes)s."
@@ -4018,9 +3791,8 @@ msgid "She married %(spouse)s%(endnotes)s."
 msgstr "Elle épousa %(spouse)s%(endnotes)s."
 
 #: ReportUtils.py:697
-#, fuzzy
 msgid "This person also married %(spouse)s%(endnotes)s."
-msgstr "Elle épousa également %(spouse)s%(endnotes)s."
+msgstr "Cette personne épousa également %(spouse)s%(endnotes)s."
 
 #: ReportUtils.py:698
 msgid "He also married %(spouse)s%(endnotes)s."
@@ -4031,24 +3803,20 @@ msgid "She also married %(spouse)s%(endnotes)s."
 msgstr "Elle épousa également %(spouse)s%(endnotes)s."
 
 #: ReportUtils.py:711
-#, fuzzy
 msgid "This person is the child of %(father)s and %(mother)s."
-msgstr "Il est le fils de %(father)s et %(mother)s."
+msgstr "Cette personne est l'enfant de %(father)s et %(mother)s."
 
 #: ReportUtils.py:712
-#, fuzzy
 msgid "This person was the child of %(father)s and %(mother)s."
-msgstr "Il était le fils de %(father)s et %(mother)s."
+msgstr "Cette personne était l'enfant de %(father)s et %(mother)s."
 
 #: ReportUtils.py:715 ReportUtils.py:725
-#, fuzzy
 msgid "%(male_name)s is the child of %(father)s and %(mother)s."
-msgstr "Il est le fils de %(father)s et %(mother)s."
+msgstr "%(male_name)s est le fils de %(father)s et %(mother)s."
 
 #: ReportUtils.py:716 ReportUtils.py:726
-#, fuzzy
 msgid "%(male_name)s was the child of %(father)s and %(mother)s."
-msgstr "Il était le fils de %(father)s et %(mother)s."
+msgstr "%(male_name)s était le fils de %(father)s et %(mother)s."
 
 #: ReportUtils.py:721
 msgid "He is the son of %(father)s and %(mother)s."
@@ -4060,41 +3828,35 @@ msgstr "Il était le fils de %(father)s et %(mother)s."
 
 #: ReportUtils.py:731
 msgid "She is the daughter of %(father)s and %(mother)s."
-msgstr "elle est la fille de %(father)s et %(mother)s."
+msgstr "Elle est la fille de %(father)s et %(mother)s."
 
 #: ReportUtils.py:732
 msgid "She was the daughter of %(father)s and %(mother)s."
 msgstr "elle était la fille de %(father)s et %(mother)s."
 
 #: ReportUtils.py:735
-#, fuzzy
 msgid "%(female_name)s is the child of %(father)s and %(mother)s."
-msgstr "Il est le fils de %(father)s et %(mother)s."
+msgstr "%(female_name)s est la fille de %(father)s et %(mother)s."
 
 #: ReportUtils.py:736
-#, fuzzy
 msgid "%(female_name)s was the child of %(father)s and %(mother)s."
-msgstr "Il était le fils de %(father)s et %(mother)s."
+msgstr "%(female_name)s était la fille de %(father)s et %(mother)s."
 
 #: ReportUtils.py:744
-#, fuzzy
 msgid "This person is the child of %(father)s."
-msgstr "il est le fils de %(father)s."
+msgstr "Cette personne est l'enfant de %(father)s."
 
 #: ReportUtils.py:745
-#, fuzzy
 msgid "This person was the child of %(father)s."
-msgstr "il était le fils de %(father)s."
+msgstr "Cette personne était l'enfant de %(father)s."
 
 #: ReportUtils.py:748 ReportUtils.py:758
-#, fuzzy
 msgid "%(male_name)s is the child of %(father)s."
-msgstr "%(male_name)s est mort le %(death_date)s."
+msgstr "%(male_name)s est le fils de %(father)s."
 
 #: ReportUtils.py:749 ReportUtils.py:759
-#, fuzzy
 msgid "%(male_name)s was the child of %(father)s."
-msgstr "%(male_name)s a été inhumé en %(month_year)s."
+msgstr "%(male_name)s était le fils de %(father)s."
 
 #: ReportUtils.py:754
 msgid "He is the son of %(father)s."
@@ -4106,41 +3868,35 @@ msgstr "il était le fils de %(father)s."
 
 #: ReportUtils.py:764
 msgid "She is the daughter of %(father)s."
-msgstr "elle est la fille de %(father)s."
+msgstr "Elle est la fille de %(father)s."
 
 #: ReportUtils.py:765
 msgid "She was the daughter of %(father)s."
 msgstr "elle était la fille de %(father)s."
 
 #: ReportUtils.py:768
-#, fuzzy
 msgid "%(female_name)s is the child of %(father)s."
-msgstr "%(female_name)s est décédée le %(death_date)s."
+msgstr "%(female_name)s est la fille de %(father)s."
 
 #: ReportUtils.py:769
-#, fuzzy
 msgid "%(female_name)s was the child of %(father)s."
-msgstr "%(female_name)s a été enterrée en %(month_year)s."
+msgstr "%(female_name)s était la fille de %(father)s."
 
 #: ReportUtils.py:777
-#, fuzzy
 msgid "This person is the child of %(mother)s."
-msgstr "il est le fils de %(mother)s."
+msgstr "Cette personne est l'enfant de %(mother)s."
 
 #: ReportUtils.py:778
-#, fuzzy
 msgid "This person was the child of %(mother)s."
-msgstr "il était le fils de %(mother)s."
+msgstr "Cette personne était l'enfant de %(mother)s."
 
 #: ReportUtils.py:781 ReportUtils.py:791
-#, fuzzy
 msgid "%(male_name)s is the child of %(mother)s."
-msgstr "%(male_name)s est décédé en %(month_year)s."
+msgstr "%(male_name)s est le fils de %(mother)s."
 
 #: ReportUtils.py:782 ReportUtils.py:792
-#, fuzzy
 msgid "%(male_name)s was the child of %(mother)s."
-msgstr "%(male_name)s a été inhumé en %(month_year)s."
+msgstr "%(male_name)s était le fils de %(mother)s."
 
 #: ReportUtils.py:787
 msgid "He is the son of %(mother)s."
@@ -4152,29 +3908,25 @@ msgstr "il était le fils de %(mother)s."
 
 #: ReportUtils.py:797
 msgid "She is the daughter of %(mother)s."
-msgstr "elle est la fille de %(mother)s."
+msgstr "Elle est la fille de %(mother)s."
 
 #: ReportUtils.py:798
 msgid "She was the daughter of %(mother)s."
 msgstr "elle était la file de %(mother)s."
 
 #: ReportUtils.py:801
-#, fuzzy
 msgid "%(female_name)s is the child of %(mother)s."
-msgstr "%(female_name)s est décédée en %(month_year)s."
+msgstr "%(female_name)s est la fille de %(mother)s."
 
 #: ReportUtils.py:802
-#, fuzzy
 msgid "%(female_name)s was the child of %(mother)s."
-msgstr "%(female_name)s a été enterrée en %(month_year)s."
+msgstr "%(female_name)s était la fille de %(mother)s."
 
 #: ReportUtils.py:813
-#, fuzzy
 msgid "unmarried"
-msgstr "N'est plus marié(e)"
+msgstr "célibataire"
 
 #: ReportUtils.py:814
-#, fuzzy
 msgid "civil union"
 msgstr "Union civile"
 
@@ -4193,9 +3945,8 @@ msgstr "Privé(e)"
 #: ReportUtils.py:1284 plugins/NavWebPage.py:346 plugins/NavWebPage.py:376
 #: plugins/NavWebPage.py:388 plugins/NavWebPage.py:1035
 #: plugins/NavWebPage.py:1082 plugins/NavWebPage.py:1284
-#, fuzzy
 msgid "Could not add photo to page"
-msgstr "Accès à un individu impossible"
+msgstr "Impossible d'ajouter une photo à cette page"
 
 #: ReportUtils.py:1285 gramps_main.py:528
 msgid "File does not exist"
@@ -4211,15 +3962,15 @@ msgstr "Elle"
 
 #: ReportUtils.py:1395
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s à %(birth_place)s%(birth_endnotes)s, et décédé le %(death_date)s à %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s était né le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédé le %(death_date)s à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1399
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s à %(birth_place)s%(birth_endnotes)s, et décédé le %(death_date)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s était né le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédé le %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:1404
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s à %(birth_place)s%(birth_endnotes)s, et décédé à %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s était né le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédé à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1408
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s."
@@ -4227,15 +3978,15 @@ msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s à %(birth_place)s%(
 
 #: ReportUtils.py:1413
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s%(birth_endnotes)s, et décédé le %(death_date)s à %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s était né le %(birth_date)s%(birth_endnotes)s et est décédé le %(death_date)s à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1417
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s%(birth_endnotes)s, et décédé le %(death_date)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s était né le %(birth_date)s%(birth_endnotes)s et est décédé le %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:1422
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s%(birth_endnotes)s, et décédé à %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s était né le %(birth_date)s%(birth_endnotes)s et est décédé à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1426
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
@@ -4243,15 +3994,15 @@ msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s%(birth_endnotes)s."
 
 #: ReportUtils.py:1432
 msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s est né à %(birth_place)s%(birth_endnotes)s, et décédé le %(death_date)s à %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s était né à %(birth_place)s%(birth_endnotes)s et est décédé le %(death_date)s à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1436
 msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s est né à %(birth_place)s%(birth_endnotes)s, et décédé le %(death_date)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s était né à %(birth_place)s%(birth_endnotes)s et est décédé le %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:1441
 msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s est né le %(birth_place)s%(birth_endnotes)s, et décédé à %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s étaitt né le %(birth_place)s%(birth_endnotes)s et est décédé à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1445
 msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
@@ -4275,15 +4026,15 @@ msgstr "%(male_name)s%(endnotes)s."
 
 #: ReportUtils.py:1466
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s à %(birth_place)s%(birth_endnotes)s, et décédé %(death_date)s à %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s était née le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédée le %(death_date)s à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1470
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s à %(birth_place)s%(birth_endnotes)s, et décédé %(death_date)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s était née le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédée le %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:1475
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s à %(birth_place)s%(birth_endnotes)s, et décédé à %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s était née le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédée à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1479
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s."
@@ -4295,7 +4046,7 @@ msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s
 
 #: ReportUtils.py:1488
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s, and décédée %(death_date)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s était née le %(birth_date)s%(birth_endnotes)s et est décédée le %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:1493
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
@@ -4307,15 +4058,15 @@ msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s
 
 #: ReportUtils.py:1503
 msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)s, et décédé %(death_date)s à %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s était née à %(birth_place)s%(birth_endnotes)s et est décédée le %(death_date)s à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1507
 msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)s, et décédé %(death_date)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s était née à %(birth_place)s%(birth_endnotes)s et est décédée le %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:1512
 msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)s, et décédé à %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s était née à %(birth_place)s%(birth_endnotes)s et est décédée à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1516
 msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
@@ -4323,15 +4074,15 @@ msgstr "%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)
 
 #: ReportUtils.py:1521
 msgid "%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s décédée %(death_date)s à %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s est décédée le %(death_date)s à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1524
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s décédée %(death_date)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s est décédée le %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:1528
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s décédée à %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s est décédée à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1531
 msgid "%(female_name)s%(endnotes)s."
@@ -4346,9 +4097,8 @@ msgid "She married %(spouse)s."
 msgstr "Elle épousa %(spouse)s."
 
 #: ReportUtils.py:1664
-#, fuzzy
 msgid "This person married %(spouse)s."
-msgstr "Elle épousa %(spouse)s."
+msgstr "Cette personne épousa %(spouse)s."
 
 #: ReportUtils.py:1667 ReportUtils.py:1689
 msgid "He had an unmarried relationship with %(spouse)s."
@@ -4837,6 +4587,7 @@ msgstr "GRAMPS (Genealogical Research et Analysis Management Programming System)
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 "Michel Guitel       (Documentation)\n"
+"Jérôme Rapinat   (Documentation et Logiciel)\n"
 "Laurent Protois   (Logiciel)\n"
 "Matthieu Pupat    (Logiciel)\n"
 "Guillaume Pratte  (Logiciel)"
@@ -4851,7 +4602,7 @@ msgstr "Enfant du conjoint"
 
 #: const.py:235 const.py:245
 msgid "Sponsored"
-msgstr "Commandité(e)"
+msgstr "Aidé(e)"
 
 #: const.py:235 const.py:246
 msgid "Foster"
@@ -5214,7 +4965,6 @@ msgid "GRAMPS comes with a rich set of tools. These allows you to undertake oper
 msgstr "GRAMPS possède des outils puissants. Ils permettent d'entreprendre des opérations comme la recherche d'erreurs et d'inconstance de la base de données, aussi bien que la recherche et l'analyse via la comparaison d'événements, de trouver des doublons d'individus, d'utiliser un navigateur de descendants, et d'autres encore. Ces outils sont accessibles par le menu <b>Outils</b>."
 
 #: data/tips.xml:102
-
 msgid "<b>Calculating Relationships</b>: This tool, under <b>Tools > Utilities > Relationship calculator</b> allows you to check if someone else in the family is related (by blood, not marriage) to you. Precise relationships as well as the common ancestors are reported."
 msgstr "<b>Calculateur de relation</b>: cet outil, sous <b>Outils > Utilitaires > Calcul Relationnel</b> vous permet de vérifier si personne d'autre dans la famille est relié (par le sang, non marié) à vous. Précision les relations sont rapportées comme des ancêtres."
 
@@ -5251,7 +5001,6 @@ msgid "The 'merge' function allows you to combine separately listed people into 
 msgstr "La fonction fusionner vous permet de combiner séparément les personnes listés en une seule. C'est très utile pour fusionner deux bases de données dont les individus se chevauchent, ou réparer une entrée de différents noms en un seul."
 
 #: data/tips.xml:165
-
 msgid "To easily merge two people, select them both (a second person can be selected by holding the Control key while clicking) and clicking on <b>Edit > Fast Merge</b>."
 msgstr "Exactement deux individus doivent être sélectionnés pour accomplir une fusion. Le deuxième individu peut être sélectionné en maintenant la touche Contrôle (Ctrl) et cliquer sur <b>Edition > Fusion Rapide</b>"
 
@@ -5273,7 +5022,7 @@ msgstr "<b>Ajouter des Enfants</b>: pour ajouter des enfants dans GRAMPS vous re
 
 #: data/tips.xml:203
 msgid "<b>Editing The Relationship of a Child</b>: Not all children are the related by birth to their parents. You can edit the relationship of a child to each parent by selecting the child, right-clicking, and choosing \"Edit the child parent relationship\". Relationships can be any of Birth, Adopted, Stepchild, Sponsored, Foster, or Unknown."
-msgstr "<b>Editer le lien relationnel avec un enfant</b> : Tous les enfants ne sont pas listés comme enfant naturel. Vous pouvez editer la relation entre un enfant et chacun de ses parents en sélectionnant les parents, clic de droit, choisissez \"Modifier les relations parentales\". Les relations peuvent être naissance, adoption, enfant du conjoint, commandité(e) ou inconnu."
+msgstr "<b>Editer le lien relationnel avec un enfant</b> : Tous les enfants ne sont pas listés comme enfant naturel. Vous pouvez éditer la relation entre un enfant et chacun de ses parents en sélectionnant les parents, clic de droit, choisissez \"Modifier les relations parentales\". Les relations peuvent être naissance, adoption, enfant du conjoint, aidé(e) ou inconnu."
 
 #: data/tips.xml:211
 msgid "<b>Show All Checkbutton</b>: When adding a spouse or child, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case GRAMPS is wrong in making this choice, you can override that filter by checking the \"Show All\" checkbutton."
@@ -5376,7 +5125,6 @@ msgid "GRAMPS helps you to keep personal information secure by allowing you to m
 msgstr "GRAMPS vous aide pour garder vos informations personnelles en sécurité par la possibilité de marquer des informations comme privées. Les données marquées peuvent être exclues des rapports et des exportations."
 
 #: data/tips.xml:397
-
 msgid "Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
 msgstr "Soyez précis quand vous enregistrez vos informations généalogiques. Evitez les hypothèses quand vous éditez les informations primaires; écrivez exactement ce que vous voyez. Utilisez des parenthèses pour vos ajouts, suppressions ou commentaires. Utiliser le latin est recommandé pour confirmer ce qui pourrait être une erreur dans les sources."
 
@@ -5405,7 +5153,6 @@ msgid "<b>Good genealogy tip</b>: Information collected about your family is onl
 msgstr "<b>Bons trucs de généalogie</b>: les informations collectées sur votre famille reste la seule véritable source. Prenez le temps pour enregistrer tous les détails de vos informations. Par la suite il est plus difficile d'obtenir une copie du document original."
 
 #: data/tips.xml:444
-
 msgid "Go from what you know to what you do not. Always record everything that is known before making conjecture. Often the facts at hand suggest plenty of direction for more research. Don't waste time looking through thousands of records hoping for a trail when you have other unexplored leads."
 msgstr "Allez de ce que vous savez vers ce que vous ne savez pas. Les enregistrements se souviennent toujours. D'abord les faits puis les hypothèses."
 
@@ -5624,7 +5371,7 @@ msgstr "_Référencer les images par leur chemin :  "
 
 #: gedcomexport.glade:548 plugins/genewebexport.glade:348
 msgid "media"
-msgstr "media"
+msgstr "média"
 
 #: gedcomexport.glade:676
 msgid "Sources:"
@@ -5950,7 +5697,7 @@ msgstr "<b>Lieux</b>"
 
 #: gramps.glade:1292 gramps.glade:3742
 msgid "<b>Media</b>"
-msgstr "<b>Media</b>"
+msgstr "<b>Média</b>"
 
 #: gramps.glade:1410
 msgid "Invert"
@@ -6205,7 +5952,7 @@ msgstr "_Préformatté"
 #: gramps.glade:5553 gramps.glade:5692 gramps.glade:11261 gramps.glade:14492
 #: gramps.glade:16756 gramps.glade:28094
 msgid "Add a new media object to the database and place it in this gallery"
-msgstr "Ajouter un nouveau media à la base et le placer dans la galerie"
+msgstr "Ajouter un nouveau média à la base et le placer dans la galerie"
 
 #: gramps.glade:5580 gramps.glade:5773 gramps.glade:14572 gramps.glade:16836
 #: gramps.glade:28174
@@ -6219,7 +5966,7 @@ msgstr "Données"
 #: gramps.glade:5719 gramps.glade:11288 gramps.glade:14519 gramps.glade:16783
 #: gramps.glade:28121
 msgid "Select an existing media object from the database and place it in this gallery"
-msgstr "Choisir un media déjà existant dans la base et le placer dans la galerie"
+msgstr "Choisir un média déjà existant dans la base et le placer dans la galerie"
 
 #: gramps.glade:5746 gramps.glade:11315 gramps.glade:16810 gramps.glade:28148
 msgid "Edit the properties of the selected object"
@@ -6238,7 +5985,6 @@ msgid "References"
 msgstr "Références"
 
 #: gramps.glade:6048
-
 msgid "Open recent file: "
 msgstr "Fichiers récemments ouverts"
 
@@ -6668,7 +6414,6 @@ msgid "_State:"
 msgstr "_Région :"
 
 #: gramps.glade:15189
-
 msgid "Co_unty:"
 msgstr "Pa_ys :"
 
@@ -6872,7 +6617,7 @@ msgstr "_Source :"
 
 #: gramps.glade:18987
 msgid "_Media object:"
-msgstr "_Media :"
+msgstr "_Média :"
 
 #: gramps.glade:19020
 msgid "I"
@@ -7035,7 +6780,6 @@ msgid "<b>Alignment</b>"
 msgstr "<b>Alignement</b>"
 
 #: gramps.glade:21903
-
 msgid "<b>Background color</b>"
 msgstr "<b>Couleur de fond</b>"
 
@@ -7056,12 +6800,10 @@ msgid "<b>Spacing</b>"
 msgstr "<b>Espace</b>"
 
 #: gramps.glade:22149
-
 msgid "Abo_ve:"
 msgstr "Au_dessus:"
 
 #: gramps.glade:22178
-
 msgid "Belo_w:"
 msgstr "Au_dessous:"
 
@@ -7175,11 +6917,11 @@ msgstr "_Choisir un fichier"
 
 #: gramps.glade:27010
 msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing medial files."
-msgstr "Si vous valider cette option, tous les media seront automatiquement traiter selon les options actuellement retenues, aucun message ne vous avertira lors de fichier media manquant."
+msgstr "Si vous valider cette option, tous les médias seront automatiquement traiter selon les options actuellement retenues, aucun message ne vous avertira lors de fichier media manquant."
 
 #: gramps.glade:27012
 msgid "_Use this selection for all missing media files"
-msgstr "_Utiliser cette option pour toute absence de fichier media"
+msgstr "_Utiliser cette option pour toute absence de fichier média"
 
 #: gramps.glade:27074
 msgid "Close window without changes"
@@ -7437,7 +7179,7 @@ msgstr ""
 "1. Cette version est basée sur la base de données Berkeley.\n"
 "   Les changements sont désormais écrits directement sur le disque.\n"
 "   Le menu Sauver a donc disparu !\n"
-"2. Les fichiers media ne sont pas gérés par GRAMPS.\n"
+"2. Les fichiers média ne sont pas gérés par GRAMPS.\n"
 "   Il n'y a pas de concept d'objet local, tous les objets\n"
 "   sont externes. Vous êtes responsables de vos fichiers.\n"
 "   Si vous effacez un fichier image du disque,\n"
@@ -7547,12 +7289,12 @@ msgstr "%s ne peut être ouvert."
 
 #: gramps_main.py:1395
 msgid "Save Media Object"
-msgstr "Sauver l'objet media"
+msgstr "Sauver l'objet média"
 
 #: gramps_main.py:1441 plugins/Check.py:349 plugins/WriteCD.py:258
 #: plugins/WritePkg.py:171
 msgid "Media object could not be found"
-msgstr "Le media est introuvable"
+msgstr "Le média est introuvable"
 
 #: gramps_main.py:1442 plugins/WriteCD.py:259 plugins/WritePkg.py:172
 msgid "%(file_name)s is referenced in the database, but no longer exists. The file may have been deleted or moved to a different location. You may choose to either remove the reference from the database, keep the reference to the missing file, or select a new file."
@@ -7640,7 +7382,6 @@ msgstr "L'exportation nécessite qu'un individu soit sélectionné au préalable
 
 #: gramps_main.py:2002 gramps_main.py:2006 gramps_main.py:2010
 #: gramps_main.py:2024 gramps_main.py:2026
-
 msgid "Could not create example database"
 msgstr "N'a pas pu créer la base de données d'exemple"
 
@@ -7858,7 +7599,7 @@ msgstr "né(e) le"
 
 #: plugins/Ancestors.py:560
 msgid "died"
-msgstr "décédé le"
+msgstr "décédé(e) le"
 
 #: plugins/Ancestors.py:606
 msgid "Mrs."
@@ -8056,11 +7797,11 @@ msgstr "Aucune modification réalisée"
 
 #: plugins/ChangeNames.py:85
 msgid "No capitalization changes were detected."
-msgstr "Aucune modification de la casse n'a été détectée."
+msgstr "Aucun changement de majuscule n'a été détecté."
 
 #: plugins/ChangeNames.py:102 plugins/ChangeNames.py:183
 msgid "Capitalization changes"
-msgstr "Changement de casse"
+msgstr "Changement de majuscules"
 
 #: plugins/ChangeNames.py:112
 msgid "Original Name"
@@ -8068,20 +7809,19 @@ msgstr "Nom d'origine"
 
 #: plugins/ChangeNames.py:116
 msgid "Capitalization Change"
-msgstr "Changement de la casse"
+msgstr "Changement de Majuscules"
 
 #: plugins/ChangeNames.py:123 plugins/EventCmp.py:320
-
 msgid "Building display"
 msgstr "Chargement en cours ..."
 
 #: plugins/ChangeNames.py:216
 msgid "Fix capitalization of family names"
-msgstr "Réparer la casse pour les noms de famille"
+msgstr "Réparer les Majuscules pour les noms de famille"
 
 #: plugins/ChangeNames.py:220
 msgid "Searches the entire database and attempts to fix capitalization of the names."
-msgstr "Recherche dans toute la base pour tenter de réparer la casse des noms."
+msgstr "Recherche dans toute la base pour tenter de réparer les Majuscules des noms."
 
 #: plugins/ChangeTypes.py:88
 msgid "Change Event Types"
@@ -8100,12 +7840,10 @@ msgid "No event record was modified."
 msgstr "Aucun événement n'a été modifié"
 
 #: plugins/ChangeTypes.py:135
-
 msgid "1 event record was modified."
 msgstr "1 événement a été modifié"
 
 #: plugins/ChangeTypes.py:137
-
 msgid "%d event records were modified."
 msgstr "%d événements ont été modifié"
 
@@ -8122,7 +7860,6 @@ msgid "Check Integrity"
 msgstr "Contrôle d'intégrité"
 
 #: plugins/Check.py:130
-
 msgid "Checking database"
 msgstr "Recherche de la base de données"
 
@@ -8217,7 +7954,6 @@ msgid "%s was restored to the family of %s\n"
 msgstr "%s a été réinséré dans la famille de %s\n"
 
 #: plugins/Check.py:753
-
 msgid "1 duplicate spouse/family link was found\n"
 msgstr "1 lien époux/famille a été réparé\n"
 
@@ -8243,35 +7979,35 @@ msgstr "%d relations familiales ont été corrompues\n"
 
 #: plugins/Check.py:779
 msgid "1 media object was referenced, but not found\n"
-msgstr "1 media a été référencé, mais non trouvé\n"
+msgstr "1 média a été référencé, mais non trouvé\n"
 
 #: plugins/Check.py:781
 msgid "%d media objects were referenced, but not found\n"
-msgstr "%d media ont été référencés, mais non trouvés\n"
+msgstr "%d média ont été référencés, mais non trouvés\n"
 
 #: plugins/Check.py:783
 msgid "Reference to 1 missing media object was kept\n"
-msgstr "Une référence à 1 media manquant a été conservée\n"
+msgstr "Une référence à 1 média manquant a été conservée\n"
 
 #: plugins/Check.py:785
 msgid "References to %d media objects were kept\n"
-msgstr "La référence à %d media a été conservée\n"
+msgstr "La référence à %d média a été conservée\n"
 
 #: plugins/Check.py:787
 msgid "1 missing media object was replaced\n"
-msgstr "1 media manquant a été remplacé\n"
+msgstr "1 média manquant a été remplacé\n"
 
 #: plugins/Check.py:789
 msgid "%d missing media objects were replaced\n"
-msgstr "%d media manquants ont été remplacés\n"
+msgstr "%d média manquants ont été remplacés\n"
 
 #: plugins/Check.py:791
 msgid "1 missing media object was removed\n"
-msgstr "1 media manquant a été détruit\n"
+msgstr "1 média manquant a été détruit\n"
 
 #: plugins/Check.py:793
 msgid "%d missing media objects were removed\n"
-msgstr "%d media manquants on été détruits\n"
+msgstr "%d média manquants on été détruits\n"
 
 #: plugins/Check.py:795
 msgid "1 invalid event reference was removed\n"
@@ -8299,11 +8035,11 @@ msgstr "%d noms d'événement de décès invalides ont été réparés\n"
 
 #: plugins/Check.py:807
 msgid "1 place was referenced but not found\n"
-msgstr "1 media a été référencé, mais non trouvé\n"
+msgstr "1 média a été référencé, mais non trouvé\n"
 
 #: plugins/Check.py:809
 msgid "%d places were referenced, but not found\n"
-msgstr "%d media ont été référencés, mais non trouvés\n"
+msgstr "%d média ont été référencés, mais non trouvés\n"
 
 #: plugins/Check.py:811
 msgid "1 source was referenced but not found\n"
@@ -8404,7 +8140,6 @@ msgid "Checkpoint the database"
 msgstr "Contrôle de la base de données"
 
 #: plugins/Checkpoint.py:446
-
 msgid "Store a snapshot of the current database into a revision control system"
 msgstr "Conserve en mémoire la base de données actuelle à travers le système de contrôle de révision"
 
@@ -8489,7 +8224,6 @@ msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Permet une navigation hiérarchique sur la personne sélectionnée"
 
 #: plugins/DescendChart.py:477
-
 msgid "Produces a graphical descendant tree graph"
 msgstr "Produire un arbre des ascendants"
 
@@ -8530,7 +8264,6 @@ msgid "Generates a list of descendants of the active person"
 msgstr "Produit une liste des descendants de la personne choisie"
 
 #: plugins/DetAncestralReport.py:151
-
 msgid "Ancestral Report for %s"
 msgstr "Liste Ahnentafel (Sosa-Stradonitz) pour %s"
 
@@ -8543,7 +8276,6 @@ msgid "Notes for %s"
 msgstr "Notes pour %s"
 
 #: plugins/DetAncestralReport.py:280 plugins/DetDescendantReport.py:306
-
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
 msgstr "%(name_kind)s : %(name)s%(endnotes)s"
 
@@ -8566,7 +8298,6 @@ msgid "%(event_name)s: %(place)s%(endnotes)s. "
 msgstr "%(event_name)s : %(place)s%(endnotes)s"
 
 #: plugins/DetAncestralReport.py:326 plugins/DetDescendantReport.py:349
-
 msgid "%(event_name)s: "
 msgstr "%(event_name)s: "
 
@@ -8602,7 +8333,6 @@ msgid "The style used for the first personal entry."
 msgstr "Style pour la première entrée personnelle."
 
 #: plugins/DetAncestralReport.py:710 plugins/DetDescendantReport.py:735
-
 msgid "The style used for the More About header."
 msgstr "Le style utilisé pour l'en-tête A propos"
 
@@ -8697,7 +8427,6 @@ msgid "Produces a detailed ancestral report"
 msgstr "Produit une liste détaillée des ascendants"
 
 #: plugins/DetDescendantReport.py:180
-
 msgid "Descendant Report for %(person_name)s"
 msgstr "Liste détaillée des descendants de %(person_name)s"
 
@@ -8724,7 +8453,6 @@ msgid "Guess"
 msgstr "Deviner"
 
 #: plugins/DumpGenderStats.py:102
-
 msgid "Dumps gender statistics"
 msgstr "Mémorise le genre de statistiques"
 
@@ -8910,7 +8638,7 @@ msgstr "Inclure la personne d'origine"
 
 #: plugins/FilterEditor.py:701
 msgid "Use exact case of letters"
-msgstr "Utiliser la casse exacte"
+msgstr "Utiliser la case exacte (Majuscule/Mininuscule)"
 
 #: plugins/FilterEditor.py:703
 msgid "Use regular expression"
@@ -9313,12 +9041,10 @@ msgid "No potential duplicate people were found"
 msgstr "Aucun doublon potentiel n'a été trouvé"
 
 #: plugins/Merge.py:201
-
 msgid "Find duplicates"
 msgstr "Trouver d'éventuels doublons"
 
 #: plugins/Merge.py:202
-
 msgid "Looking for duplicate people"
 msgstr "Trouver d'éventuels doublons"
 
@@ -9375,7 +9101,6 @@ msgid "Tranquil"
 msgstr "Tranquille"
 
 #: plugins/NavWebPage.py:91
-
 msgid "Sharp"
 msgstr "Tranchant"
 
@@ -9393,7 +9118,7 @@ msgstr "&copy; %(year)d %(person)s"
 
 #: plugins/NavWebPage.py:287
 msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
-msgstr "Génèrer par <a href=\"http://gramps-project.org\">GRAMPS</a> à %(date)s"
+msgstr "Générer par <a href=\"http://gramps-project.org\">GRAMPS</a> le %(date)s"
 
 #: plugins/NavWebPage.py:310 plugins/NavWebPage.py:1016
 #: plugins/NavWebPage.py:1018
@@ -9426,7 +9151,6 @@ msgid "Contact"
 msgstr "Contact"
 
 #: plugins/NavWebPage.py:400 plugins/NavWebPage.py:1875
-
 msgid "Narrative"
 msgstr "Narrative"
 
@@ -9440,7 +9164,6 @@ msgstr "Cette page contient un index de tous les individus de la base de donnée
 
 #: plugins/NavWebPage.py:558 plugins/NavWebPage.py:954
 #: plugins/NavWebPage.py:956 plugins/StatisticsChart.py:99
-
 msgid "Surname"
 msgstr "Noms de famille"
 
@@ -9467,15 +9190,13 @@ msgstr "Identifiant GRAMPS :"
 
 #: plugins/NavWebPage.py:735
 msgid "State/Province"
-msgstr "Etat/province :"
+msgstr "Région"
 
 #: plugins/NavWebPage.py:736
-
 msgid "Postal Code"
 msgstr "Code postal"
 
 #: plugins/NavWebPage.py:800
-
 msgid "Previous"
 msgstr "Aperçu"
 
@@ -9492,12 +9213,10 @@ msgid "MIME type"
 msgstr "type MINE"
 
 #: plugins/NavWebPage.py:886
-
 msgid "Missing media object"
 msgstr "Média manquant"
 
 #: plugins/NavWebPage.py:940 plugins/NavWebPage.py:942
-
 msgid "Surnames by person count"
 msgstr "Patronymes par compte individuel"
 
@@ -9514,13 +9233,12 @@ msgid "This page contains an index of all the sources in the database, sorted by
 msgstr "Cette page contient un index de toutes les sources de la base de données, classées par leur titre. Cliquer sur une source vous conduit à la page de cette dernière."
 
 #: plugins/NavWebPage.py:1162
-
 msgid "Publication information"
 msgstr "Information de publication :"
 
 #: plugins/NavWebPage.py:1193
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object's page."
-msgstr "Cette page contient un index pour tous les médias de la base de données, classés par leur titre. Cliquer sur un média vous conduit vers la page de ce média."
+msgstr "Cette page contient un index pour tous les médias de la base de données, classés par leur titre. Cliquer sur un média vous conduira vers la page de ce média."
 
 #: plugins/NavWebPage.py:1441
 msgid "Ancestors"
@@ -9535,7 +9253,6 @@ msgid "Page"
 msgstr "Page"
 
 #: plugins/NavWebPage.py:1565
-
 msgid "Confidence"
 msgstr "Niveau de confiance :"
 
@@ -9663,7 +9380,6 @@ msgid "Suppress GRAMPS ID"
 msgstr "Suppression des Identifiants GRAMPS"
 
 #: plugins/NavWebPage.py:2466
-
 msgid "Standard copyright"
 msgstr "Copyright Standard"
 
@@ -9692,7 +9408,6 @@ msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
 msgstr "Creative Commons - Par attribution, Non-commercial, Partage semblabe"
 
 #: plugins/NavWebPage.py:2473
-
 msgid "No copyright notice"
 msgstr "Pas de note Copyright"
 
@@ -9714,11 +9429,11 @@ msgstr "Génération de Page"
 
 #: plugins/NavWebPage.py:2535
 msgid "Home Media/Note ID"
-msgstr "Home Media/Note ID"
+msgstr "Home Média/Note ID"
 
 #: plugins/NavWebPage.py:2537
 msgid "Introduction Media/Note ID"
-msgstr "Introduction Media/Note ID"
+msgstr "Introduction Média/Note ID"
 
 #: plugins/NavWebPage.py:2540
 msgid "HTML user header"
@@ -9746,7 +9461,6 @@ msgid "Target Directory"
 msgstr "Répertoire cible"
 
 #: plugins/NavWebPage.py:2857
-
 msgid "Narrative Web Site"
 msgstr "Génération de site internet narratif"
 
@@ -9755,7 +9469,6 @@ msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr "Génération de pages internet (HTML) pour tous les indivdus ou une partie des individus."
 
 #: plugins/PatchNames.py:103
-
 msgid "Extracting information from names"
 msgstr "Extraction de données à partir du nom"
 
@@ -9772,7 +9485,6 @@ msgid "Name and title extraction tool"
 msgstr "Outil d'extraction du nom et du titre"
 
 #: plugins/PatchNames.py:204
-
 msgid "Bulding display"
 msgstr "Chargement en cours ..."
 
@@ -9887,14 +9599,13 @@ msgstr "Réordonner les identifiants familiaux GRAMPS"
 
 #: plugins/ReorderIds.py:87
 msgid "Reordering Media Object IDs"
-msgstr "Réordonner les identifiants objet media"
+msgstr "Réordonner les identifiants objet média"
 
 #: plugins/ReorderIds.py:97
 msgid "Reordering Source IDs"
 msgstr "Réordonner les identifiants de sources GRAMPS"
 
 #: plugins/ReorderIds.py:107
-
 msgid "Reordering Place IDs"
 msgstr "Réordonner les identifiants de lieux GRAMPS"
 
@@ -10044,7 +9755,6 @@ msgid "person|Title"
 msgstr "personne|Titre"
 
 #: plugins/StatisticsChart.py:101
-
 msgid "Forename"
 msgstr "Prénoms"
 
@@ -10057,12 +9767,10 @@ msgid "Death year"
 msgstr "Année du décès"
 
 #: plugins/StatisticsChart.py:109
-
 msgid "Birth month"
 msgstr "Mois de naissance"
 
 #: plugins/StatisticsChart.py:111
-
 msgid "Death month"
 msgstr "Mois du décès"
 
@@ -10071,12 +9779,10 @@ msgid "Birth place"
 msgstr "Lieux de naissance"
 
 #: plugins/StatisticsChart.py:117
-
 msgid "Death place"
 msgstr "Lieux du décès"
 
 #: plugins/StatisticsChart.py:119
-
 msgid "Marriage place"
 msgstr "Lieux du mariage"
 
@@ -10085,12 +9791,10 @@ msgid "Number of relationships"
 msgstr "Nombre de relations"
 
 #: plugins/StatisticsChart.py:123
-
 msgid "Age when first child born"
 msgstr "Age à la naissance du premier enfant"
 
 #: plugins/StatisticsChart.py:125
-
 msgid "Age when last child born"
 msgstr "Age à la naissance du dernier enfant"
 
@@ -10103,17 +9807,14 @@ msgid "Age at marriage"
 msgstr "Age au mariage"
 
 #: plugins/StatisticsChart.py:131
-
 msgid "Age at death"
 msgstr "Age au décès"
 
 #: plugins/StatisticsChart.py:133
-
 msgid "Age"
 msgstr "Ages"
 
 #: plugins/StatisticsChart.py:135
-
 msgid "Event type"
 msgstr "Type d'événement"
 
@@ -10171,19 +9872,16 @@ msgid "Personal information missing"
 msgstr "Informations personnelles manquantes"
 
 #: plugins/StatisticsChart.py:514
-
 msgid "Statistics Charts"
 msgstr "Diagrammes statistiques"
 
 #: plugins/StatisticsChart.py:517
-
 msgid "Collecting data..."
 msgstr "Ouverture de la base de données ..."
 
 #: plugins/StatisticsChart.py:522
-
 msgid "Sorting data..."
-msgstr "Mise à jour de la base de données ..."
+msgstr "Tri des données ..."
 
 #: plugins/StatisticsChart.py:532
 msgid "%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s"
@@ -10230,7 +9928,6 @@ msgid "People born between"
 msgstr "Personnes nées entre"
 
 #: plugins/StatisticsChart.py:905
-
 msgid "Check this if you want people who have no known birth date or year to be accounted also in the statistics."
 msgstr "Inclure les personnes sans date ni année de naissance dans les statistiques."
 
@@ -10259,7 +9956,6 @@ msgid "Mark checkboxes to add charts with indicated data"
 msgstr "Cocher pour ajouter le diagramme avec les données indiquées"
 
 #: plugins/StatisticsChart.py:946 plugins/StatisticsChart.py:951
-
 msgid "Charts"
 msgstr "Roue des ascendants"
 
@@ -10301,23 +9997,23 @@ msgstr "Noms uniques"
 
 #: plugins/Summary.py:120
 msgid "Media Objects"
-msgstr "Medias"
+msgstr "Médias"
 
 #: plugins/Summary.py:122
 msgid "Individuals with media objects"
-msgstr "Individus avec media"
+msgstr "Individus avec média"
 
 #: plugins/Summary.py:123
 msgid "Total number of media object references"
-msgstr "Nombre total de media référencés"
+msgstr "Nombre total de médias référencés"
 
 #: plugins/Summary.py:124
 msgid "Number of unique media objects"
-msgstr "Nombre de media isolés"
+msgstr "Nombre de médias isolés"
 
 #: plugins/Summary.py:125
 msgid "Total size of media objects"
-msgstr "Taille totale des media"
+msgstr "Taille totale des médias"
 
 #: plugins/Summary.py:126
 msgid "bytes"
@@ -10325,7 +10021,7 @@ msgstr "octets"
 
 #: plugins/Summary.py:129
 msgid "Missing Media Objects"
-msgstr "Media manquants"
+msgstr "Médias manquants"
 
 #: plugins/Summary.py:155
 msgid "Database summary"
@@ -10369,7 +10065,6 @@ msgid "Add special characters"
 msgstr "Ajouter des caractères spéciaux"
 
 #: plugins/TestcaseGenerator.py:164
-
 msgid "Add serial number"
 msgstr "Ajouter un numéro de série"
 
@@ -10382,7 +10077,6 @@ msgstr ""
 "S'il vous plaît, patientez."
 
 #: plugins/TestcaseGenerator.py:360
-
 msgid "Testcase generator"
 msgstr "Testcase générateur"
 
@@ -10869,7 +10563,7 @@ msgstr "Exporter sur un CD (XML p_ortable)"
 
 #: plugins/WriteCD.py:310
 msgid "Exporting to CD copies all your data and media object files to the CD Creator. You may later burn the CD with this data, and that copy will be completely portable across different machines and binary architectures."
-msgstr "Exporter vers un CD copie toutes vos données et media vers le créateur de CD. Vous pourrez graver le CD plus tard, cette copie étant totalement compatible entre différents ordinateurs et différentes architectures."
+msgstr "Exporter vers un CD copie toutes vos données et médias vers le créateur de CD. Vous pourrez graver le CD plus tard, cette copie étant totalement compatible entre différents ordinateurs et différentes architectures."
 
 #: plugins/WriteFtree.py:281
 msgid "_Web Family Tree"
@@ -10905,7 +10599,7 @@ msgstr "Paquet GRAM_PS (XML portable)"
 
 #: plugins/WritePkg.py:203
 msgid "GRAMPS package is an archived XML database together with the media object files."
-msgstr "Le paquet GRAMPS est une base de donnée XML avec les media."
+msgstr "Le paquet GRAMPS est une base de donnée XML avec les médias."
 
 #: plugins/book.glade:11
 msgid "Book"
@@ -11178,7 +10872,6 @@ msgid "<b>Men</b>"
 msgstr "<b>Hommes</b>"
 
 #: plugins/verify.glade:1068
-
 msgid "<b>Warnings:</b>"
 msgstr "<b>Attention:</b>"
 
