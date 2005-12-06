@@ -28,6 +28,7 @@
 import cPickle as pickle
 from gettext import gettext as _
 import sets
+from cgi import escape
 
 #-------------------------------------------------------------------------
 #
@@ -37,7 +38,6 @@ import sets
 import gtk
 import gtk.gdk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -60,9 +60,11 @@ import Date
 import DateEdit
 import DateHandler
 import Spell
+import GrampsDisplay
 
 from QuestionDialog import QuestionDialog, WarningDialog, SaveDialog
 from DdTargets import DdTargets
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -110,6 +112,8 @@ class Marriage:
             self.pmap[p[0]] = key
 
         self.top = gtk.glade.XML(const.marriageFile,"marriageEditor","gramps")
+        self.gladeif = GladeIf(self.top)
+        
         self.window = self.get_widget("marriageEditor")
 
         Utils.set_titles(self.window, self.top.get_widget('title'),
@@ -119,22 +123,23 @@ class Marriage:
         self.gallery = ImageSelect.Gallery(family, self.db.commit_family,
                                            self.path, self.icon_list, db, self)
 
-        self.top.signal_autoconnect({
-            "destroy_passed_object" : self.on_cancel_edit,
-            "on_help_marriage_editor" : self.on_help_clicked,
-            "on_up_clicked" : self.on_up_clicked,
-            "on_down_clicked" : self.on_down_clicked,
-            "on_addphoto_clicked" : self.gallery.on_add_media_clicked,
-            "on_selectphoto_clicked" : self.gallery.on_select_media_clicked,
-            "on_close_marriage_editor" : self.on_close_marriage_editor,
-            "on_lds_src_clicked" : self.lds_src_clicked,
-            "on_lds_note_clicked" : self.lds_note_clicked,
-            "on_deletephoto_clicked" : self.gallery.on_delete_media_clicked,
-            "on_edit_photo_clicked" : self.gallery.on_edit_media_clicked,
-            "on_edit_properties_clicked": self.gallery.popup_change_description,
-            "on_switch_page" : self.on_switch_page
-            })
-
+        self.gladeif.connect('marriageEditor','delete_event',self.on_delete_event)
+        self.gladeif.connect('button108','clicked',self.on_cancel_edit)
+        self.gladeif.connect('ok','clicked',self.on_close)
+        self.gladeif.connect('button119','clicked',self.on_help_clicked)
+        self.gladeif.connect('notebook4','switch_page',self.on_switch_page)
+        self.gladeif.connect('marriage_add','clicked',self.on_add_clicked)
+        self.gladeif.connect('button116','clicked',self.on_event_update_clicked)
+        self.gladeif.connect('marriage_del','clicked',self.on_delete_clicked)
+        self.gladeif.connect('attr_add','clicked',self.on_add_attr_clicked)
+        self.gladeif.connect('button118','clicked',self.on_update_attr_clicked)
+        self.gladeif.connect('attr_del','clicked',self.on_delete_attr_clicked)
+        self.gladeif.connect('media_add','clicked',self.gallery.on_add_media_clicked)
+        self.gladeif.connect('media_sel','clicked',self.gallery.on_select_media_clicked)
+        self.gladeif.connect('button117','clicked',self.gallery.on_edit_media_clicked)
+        self.gladeif.connect('media_del','clicked',self.gallery.on_delete_media_clicked)
+        self.gladeif.connect('button114','clicked',self.lds_src_clicked)
+        self.gladeif.connect('button115','clicked',self.lds_note_clicked)
 
         mode = not self.db.readonly
 
@@ -144,8 +149,8 @@ class Marriage:
         father = self.db.get_person_from_handle(fid)
         mother = self.db.get_person_from_handle(mid)
         
-        self.title = _("%s and %s") % (NameDisplay.displayer.display(father),
-                                       NameDisplay.displayer.display(mother))
+        self.title = _("%s and %s") % (escape(NameDisplay.displayer.display(father)),
+                                       escape(NameDisplay.displayer.display(mother)))
 
         Utils.set_title_label(self.top,self.title)
         
@@ -233,19 +238,26 @@ class Marriage:
         AutoComp.fill_combo(self.lds_place, place_list)
 
         lds_ord = self.family.get_lds_sealing()
-        if lds_ord:
-            place_handle = lds_ord.get_place_handle()
-            if place_handle:
-                place = self.db.get_place_from_handle( place_handle)
-                if place:
-                    self.lds_place.child.set_text( place.get_title())
-            self.lds_date.set_text(DateHandler.get_date(lds_ord))
-            self.seal_stat = lds_ord.get_status()
-            self.lds_date_object = lds_ord.get_date_object()
+        self.seal_stat = 0
+        
+        self.lds_date_object = Date.Date()
+        if GrampsKeys.get_uselds() or lds_ord:
+            if lds_ord:
+                place_handle = lds_ord.get_place_handle()
+                if place_handle:
+                    place = self.db.get_place_from_handle( place_handle)
+                    if place:
+                        self.lds_place.child.set_text( place.get_title())
+                self.lds_date.set_text(lds_ord.get_date())
+                self.seal_stat = lds_ord.get_status()
+                self.lds_date_object = lds_ord.get_date_object()
+            else:
+                self.lds_place.child.set_text("")
+            self.lds_label.show()
+            self.get_widget('lds_page').show()
         else:
-            self.lds_place.child.set_text("")
-            self.seal_stat = 0
-            self.lds_date_object = Date.Date()
+            self.lds_label.hide()
+            self.get_widget('lds_page').hide()
 
         self.lds_date_check = DateEdit.DateEdit(
             self.lds_date_object, self.lds_date,
@@ -263,29 +275,31 @@ class Marriage:
         else:
             Utils.unbold_label(self.lds_label)
         
-        #self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-        #                              [DdTargets.FAMILY_EVENT.target()],
-        #                              gtk.gdk.ACTION_COPY)
-        #self.event_list.drag_source_set(gtk.gdk.BUTTON1_MASK,
-        #                                [DdTargets.FAMILY_EVENT.target()],
-        #                                gtk.gdk.ACTION_COPY)
-        #self.event_list.connect('drag_data_get',
-        #                        self.ev_source_drag_data_get)
-        #self.event_list.connect('drag_data_received',
-        #                        self.ev_dest_drag_data_received)
-        #self.event_list.connect('drag_begin', self.ev_drag_begin)
+        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                      [DdTargets.FAMILY_EVENT.target()],
+                                      gtk.gdk.ACTION_COPY)
+        self.event_list.drag_source_set(gtk.gdk.BUTTON1_MASK,
+                                        [DdTargets.FAMILY_EVENT.target()],
+                                        gtk.gdk.ACTION_COPY)
+        self.event_list.connect('drag_data_get',
+                                self.ev_source_drag_data_get)
+        if not self.db.readonly:
+            self.event_list.connect('drag_data_received',
+                                self.ev_dest_drag_data_received)
+        self.event_list.connect('drag_begin', self.ev_drag_begin)
 
-        #self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-        #                             [DdTargets.FAMILY_ATTRIBUTE.target()],
-        #                             gtk.gdk.ACTION_COPY)
-        #self.attr_list.drag_source_set(gtk.gdk.BUTTON1_MASK,
-        #                               [DdTargets.FAMILY_ATTRIBUTE.target()],
-        #                               gtk.gdk.ACTION_COPY)
-        #self.attr_list.connect('drag_data_get',
-        #                       self.at_source_drag_data_get)
-        #self.attr_list.connect('drag_data_received',
-        #                       self.at_dest_drag_data_received)
-        #self.attr_list.connect('drag_begin', self.at_drag_begin)
+        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                     [DdTargets.FAMILY_ATTRIBUTE.target()],
+                                     gtk.gdk.ACTION_COPY)
+        self.attr_list.drag_source_set(gtk.gdk.BUTTON1_MASK,
+                                       [DdTargets.FAMILY_ATTRIBUTE.target()],
+                                       gtk.gdk.ACTION_COPY)
+        self.attr_list.connect('drag_data_get',
+                               self.at_source_drag_data_get)
+        if not self.db.readonly:
+            self.attr_list.connect('drag_data_received',
+                               self.at_dest_drag_data_received)
+        self.attr_list.connect('drag_begin', self.at_drag_begin)
 
         # set notes data
         self.notes_buffer = self.notes_field.get_buffer()
@@ -338,6 +352,7 @@ class Marriage:
         self.child_windows = {}
 
     def close(self):
+        self.gladeif.close()
         self.gallery.close()
         self.close_child_windows()
         self.remove_itself_from_winsmenu()
@@ -369,7 +384,7 @@ class Marriage:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-rel')
+        GrampsDisplay.help('adv-rel')
 
     def ev_drag_begin(self, context, a):
         return
@@ -397,7 +412,7 @@ class Marriage:
         if lds_ord == None:
             lds_ord = RelLib.LdsOrd()
             self.family.set_lds_sealing(lds_ord)
-        Sources.SourceSelector(lds_ord.get_source_references(),self,self.window)
+        Sources.SourceSelector(lds_ord.get_source_references(),self)
 
     def lds_note_clicked(self,obj):
         import NoteEdit
@@ -407,41 +422,9 @@ class Marriage:
             self.family.set_lds_sealing(lds_ord)
         NoteEdit.NoteEditor(lds_ord,self,self.window,readonly=self.db.readonly)
 
-    def on_up_clicked(self,obj):
-        model,node = self.etree.get_selected()
-        if not node:
-            return
-        
-        row = self.etree.get_row(node)
-        if row != 0:
-            self.etree.select_row(row-1)
-
-    def on_down_clicked(self,obj):
-        model,node = self.etree.get_selected()
-        if not node:
-            return
-
-        row = self.etree.get_row(node)
-        self.etree.select_row(row+1)
-
-    def on_attr_up_clicked(self,obj):
-        model,node = self.atree.get_selected()
-        if not node:
-            return
-        
-        row = self.atree.get_row(node)
-        if row != 0:
-            self.atree.select_row(row-1)
-
-    def on_attr_down_clicked(self,obj):
-        model,node = self.atree.get_selected()
-        if not node:
-            return
-
-        row = self.atree.get_row(node)
-        self.atree.select_row(row+1)
-
     def ev_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+        if self.db.readonly:  # no DnD on readonly database
+            return
         row = self.etree.get_row_at(x,y)
         if selection_data and selection_data.data:
             exec 'data = %s' % selection_data.data
@@ -478,6 +461,8 @@ class Marriage:
 
     def ev_source_drag_data_get(self,widget, context, selection_data, info, time):
         ev = self.etree.get_selected_objects()
+        if not ev:
+            return
         
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev[0]);
@@ -486,6 +471,8 @@ class Marriage:
         selection_data.set(selection_data.target, bits_per, data)
 
     def at_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+        if self.db.readonly:  # no DnD on readonly database
+            return
         row = self.atree.get_row_at(x,y)
         if selection_data and selection_data.data:
             exec 'data = %s' % selection_data.data
@@ -513,6 +500,8 @@ class Marriage:
 
     def at_source_drag_data_get(self,widget, context, selection_data, info, time):
         ev = self.atree.get_selected_objects()
+        if not ev:
+            return
 
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev[0]);
@@ -629,10 +618,10 @@ class Marriage:
             self.close()
 
     def save(self):
-        self.on_close_marriage_editor(None)
+        self.on_close(None)
 
     def on_delete_event(self,obj,b):
-        if self.did_data_change() and not GrampsKeys.get_dont_ask():
+        if not self.db.readonly and self.did_data_change() and not GrampsKeys.get_dont_ask():
             SaveDialog(_('Save Changes?'),
                        _('If you close without saving, the changes you '
                          'have made will be lost'),
@@ -643,7 +632,7 @@ class Marriage:
             self.close()
             return False
 
-    def on_close_marriage_editor(self,*obj):
+    def on_close(self,*obj):
 
         trans = self.db.transaction_begin()
 
