@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -34,7 +35,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gobject
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -49,6 +49,8 @@ import RelLib
 import NameDisplay
 import RepositoryRefEdit
 import Spell
+import GrampsDisplay
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -176,6 +178,7 @@ class EditSource:
         else:
             self.ref_not_loaded = 0
         self.db = dbstate.db
+        self.idle = None
         self.name_display = NameDisplay.displayer.display
 #         if source:
 #             if parent and self.parent.child_windows.has_key(source.get_handle()):
@@ -194,6 +197,7 @@ class EditSource:
 
         self.top_window = gtk.glade.XML(const.gladeFile,"sourceEditor","gramps")
         self.top = self.top_window.get_widget("sourceEditor")
+        self.gladeif = GladeIf(self.top_window)
 
         Utils.set_titles(self.top,self.top_window.get_widget('title'),
                          _('Source Editor'))
@@ -261,26 +265,17 @@ class EditSource:
         else:
             Utils.unbold_label(self.gallery_label)
 
-        self.top_window.signal_autoconnect({
-            "on_switch_page" : self.on_switch_page,
-            "on_addphoto_clicked" : self.gallery.on_add_media_clicked,
-            "on_selectphoto_clicked"    : self.gallery.on_select_media_clicked,
-            "on_deletephoto_clicked" : self.gallery.on_delete_media_clicked,
-            "on_editphoto_clicked"     : self.gallery.on_edit_media_clicked,
-            
-            "on_add_repos_ref_clicked"    : self.on_add_repos_ref_clicked,
-            "on_delete_repos_ref_clicked" : self.on_delete_repos_ref_clicked,
-            "on_edit_repos_ref_clicked"   : self.on_edit_repos_ref_clicked,
-            "on_edit_repos_ref_row_activated" : self.on_edit_repos_ref_clicked,
-            
-            "on_edit_properties_clicked": self.gallery.popup_change_description,
-            "on_sourceEditor_help_clicked" : self.on_help_clicked,
-            "on_sourceEditor_ok_clicked" : self.on_source_apply_clicked,
-            "on_sourceEditor_cancel_clicked" : self.close,
-            "on_sourceEditor_delete_event" : self.on_delete_event,
-            "on_delete_data_clicked" : self.on_delete_data_clicked,
-            "on_add_data_clicked" : self.on_add_data_clicked,
-            })
+        self.gladeif.connect('sourceEditor','delete_event',self.on_delete_event)
+        self.gladeif.connect('button90','clicked',self.close)
+        self.gladeif.connect('ok','clicked',self.on_source_apply_clicked)
+        self.gladeif.connect('button166','clicked',self.on_help_clicked)
+        self.gladeif.connect('notebook2','switch_page',self.on_switch_page)
+        self.gladeif.connect('add_data','clicked',self.on_add_data_clicked)
+        self.gladeif.connect('del_data','clicked',self.on_delete_data_clicked)
+        self.gladeif.connect('add_photo','clicked',self.gallery.on_add_media_clicked)
+        self.gladeif.connect('sel_photo','clicked',self.gallery.on_select_media_clicked)
+        self.gladeif.connect('edit_photo','clicked',self.gallery.on_edit_media_clicked)
+        self.gladeif.connect('delete_photo','clicked',self.gallery.on_delete_media_clicked)
 
         if self.source.get_handle() == None or self.db.readonly:
             self.top_window.get_widget("edit_photo").set_sensitive(False)
@@ -328,8 +323,8 @@ class EditSource:
         if self.ref_not_loaded:
             self.ref_not_loaded = 0
             Utils.temp_label(self.refs_label,self.top)
-            gobject.idle_add(self.display_references)
-
+            self.cursor_type = None
+            self.idle = gobject.idle_add(self.display_references)
         self.data_sel = self.datalist.get_selection()
 
     def on_add_data_clicked(self,widget):
@@ -377,16 +372,22 @@ class EditSource:
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
+        gc.collect()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-src')
+        GrampsDisplay.help('adv-src')
 
     def close(self,obj):
         self.gallery.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
         self.top.destroy()
+        if self.idle != None:
+            gobject.source_remove(self.idle)
+        gc.collect()
         
     def close_child_windows(self):
         return
@@ -458,68 +459,148 @@ class EditSource:
             import EditPlace
             place = self.db.get_place_from_handle(handle)
             EditPlace.EditPlace(self.parent,place)
+        elif data_type == 4:
+            source = self.db.get_source_from_handle(handle)
+            EditSource(source,self.db,self.parent,None,self.db.readonly)
         elif data_type == 5:
-            import ImageSelect
             media = self.db.get_object_from_handle(handle)
             ImageSelect.GlobalMediaProperties(self.db,media,self)
 
     def display_references(self):
-        
-        (person_list,family_list,event_list,
-            place_list,source_list,media_list
-            ) = Utils.get_source_referents(self.source.get_handle(),self.db)
+        source_handle = self.source.get_handle()
 
-        any = person_list or family_list or event_list \
-                or place_list or source_list or media_list
+        # Initialize things if we're entering this functioin
+        # for the first time
+        if not self.cursor_type:
+            self.cursor_type = 'Person'
+            self.cursor = self.db.get_person_cursor()
+            self.data = self.cursor.first()
 
-        slist = self.top_window.get_widget('slist')
+            self.any_refs = False
+            slist = self.top_window.get_widget('slist')
+            titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Name'),2,150)]
+            self.model = ListModel.ListModel(slist,
+                                             titles,
+                                             event_func=self.button_press)
 
-        titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Name'),2,150)]
-        
-        self.model = ListModel.ListModel(slist,titles,event_func=self.button_press)
+        if self.cursor_type == 'Person':
+            while self.data:
+                handle,val = self.data
+                person = RelLib.Person()
+                person.unserialize(val)
+                if person.has_source_reference(source_handle):
+                    name = self.name_display(person)
+                    gramps_id = person.get_gramps_id()
+                    self.model.add([_("Person"),gramps_id,name],(0,handle))
+                    self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Family'
+            self.cursor = self.db.get_family_cursor()
+            self.data = self.cursor.first()
 
-        for handle in person_list:
-            person = self.db.get_person_from_handle(handle)
-            name = self.name_display(person)
-            gramps_id = person.get_gramps_id()
-            self.model.add([_("Person"),gramps_id,name],(0,handle))
+        if self.cursor_type == 'Family':
+            while self.data:
+                handle,val = self.data
+                family = RelLib.Family()
+                family.unserialize(val)
+                if family.has_source_reference(source_handle):
+                    name = Utils.family_name(family,self.db)
+                    gramps_id = family.get_gramps_id()
+                    self.model.add([_("Family"),gramps_id,name],(1,handle))
+                    self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Event'
+            self.cursor = self.db.get_event_cursor()
+            self.data = self.cursor.first()
 
-        for handle in family_list:
-            family = self.db.get_family_from_handle(handle)
-            name = Utils.family_name(family,self.db)
-            gramps_id = family.get_gramps_id()
-            self.model.add([_("Family"),gramps_id,name],(1,handle))
+        if self.cursor_type == 'Event':
+            while self.data:
+                handle,val = self.data
+                event = RelLib.Event()
+                event.unserialize(val)
+                if event.has_source_reference(source_handle):
+                    name = event.get_name()
+                    gramps_id = event.get_gramps_id()
+                    self.model.add([_("Event"),gramps_id,name],(2,handle))
+                    self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Place'
+            self.cursor = self.db.get_place_cursor()
+            self.data = self.cursor.first()
 
-        for handle in event_list:
-            event = self.db.get_event_from_handle(handle)
-            name = event.get_name()
-            gramps_id = event.get_gramps_id()
-            self.model.add([_("Event"),gramps_id,name],(2,handle))
+        if self.cursor_type == 'Place':
+            while self.data:
+                handle,val = self.data
+                place = RelLib.Place()
+                place.unserialize(val)
+                if place.has_source_reference(source_handle):
+                    name = place.get_title()
+                    gramps_id = place.get_gramps_id()
+                    self.model.add([_("Place"),gramps_id,name],(3,handle))
+                    self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Source'
+            self.cursor = self.db.get_source_cursor()
+            self.data = self.cursor.first()
 
-        for handle in place_list:
-            place = self.db.get_place_from_handle(handle)
-            name = place.get_title()
-            gramps_id = place.get_gramps_id()
-            self.model.add([_("Place"),gramps_id,name],(3,handle))
+        if self.cursor_type == 'Source':
+            while self.data:
+                handle,val = self.data
+                source = RelLib.Source()
+                source.unserialize(val)
+                if source.has_source_reference(source_handle):
+                    name = source.get_title()
+                    gramps_id = source.get_gramps_id()
+                    self.model.add([_("Source"),gramps_id,name],(4,handle))
+                    self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Media'
+            self.cursor = self.db.get_media_cursor()
+            self.data = self.cursor.first()
 
-        for handle in source_list:
-            source = self.db.get_source_from_handle(handle)
-            name = source.get_title()
-            gramps_id = source.get_gramps_id()
-            self.model.add([_("Source"),gramps_id,name],(4,handle))
+        if self.cursor_type == 'Media':
+            while self.data:
+                handle,val = self.data
+                obj = RelLib.MediaObject()
+                obj.unserialize(val)
+                if obj.has_source_reference(source_handle):
+                    name = obj.get_description()
+                    gramps_id = obj.get_gramps_id()
+                    self.model.add([_("Media"),gramps_id,name],(5,handle))
+                    self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
 
-        for handle in media_list:
-            media = self.db.get_object_from_handle(handle)
-            name = media.get_description()
-            gramps_id = media.get_gramps_id()
-            self.model.add([_("Media"),gramps_id,name],(5,handle))
-
-        if any:
+        if self.any_refs:
             Utils.bold_label(self.refs_label,self.top)
         else:
             Utils.unbold_label(self.refs_label,self.top)
             
         self.ref_not_loaded = 0
+        self.cursor_type = None
+        return False
 
     def on_source_apply_clicked(self,obj):
 
@@ -527,8 +608,10 @@ class EditSource:
         author = unicode(self.author.get_text())
         pubinfo = unicode(self.pubinfo.get_text())
         abbrev = unicode(self.abbrev.get_text())
-        note = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                  self.notes_buffer.get_end_iter(),False))
+        note = unicode(
+            self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
+                                       self.notes_buffer.get_end_iter(),
+                                       False))
         format = self.preform.get_active()
 
         if author != self.source.get_author():
@@ -584,9 +667,12 @@ class EditSource:
         elif page == 3 and self.ref_not_loaded:
             self.ref_not_loaded = 0
             Utils.temp_label(self.refs_label,self.top)
-            gobject.idle_add(self.display_references)
-        text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                self.notes_buffer.get_end_iter(),False))
+            self.idle = gobject.idle_add(self.display_references)
+        text = unicode(
+            self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
+                                       self.notes_buffer.get_end_iter(),
+                                       False)
+            )
         if text:
             Utils.bold_label(self.notes_label,self.top)
         else:

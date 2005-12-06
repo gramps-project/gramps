@@ -27,6 +27,8 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import sets
+import gc
+from cgi import escape
 
 #-------------------------------------------------------------------------
 #
@@ -35,7 +37,6 @@ import sets
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -53,8 +54,10 @@ from DateHandler import parser as _dp, displayer as _dd
 import ImageSelect
 import DateEdit
 import Spell
+import GrampsDisplay
 
 from QuestionDialog import WarningDialog, ErrorDialog
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -133,6 +136,7 @@ class EventEditor:
             self.date = Date.Date(None)
 
         self.top = gtk.glade.XML(const.dialogFile, "event_edit","gramps")
+        self.gladeif = GladeIf(self.top)
 
         self.window = self.top.get_widget("event_edit")
         title_label = self.top.get_widget('title')
@@ -230,10 +234,11 @@ class EventEditor:
                 Utils.bold_label(self.gallery_label)
         else:
             event = RelLib.Event()
-
+        date_stat = self.top.get_widget("date_stat")
+        date_stat.set_sensitive(not self.db.readonly)
         self.date_check = DateEdit.DateEdit(self.date,
                                         self.date_field,
-                                        self.top.get_widget("date_stat"),
+                                        date_stat,
                                         self.window)
 
         self.icon_list = self.top.get_widget("iconlist")
@@ -241,18 +246,15 @@ class EventEditor:
                                            self.path, self.icon_list,
                                            self.db,self,self.window)
 
-        self.top.signal_autoconnect({
-            "on_switch_page"            : self.on_switch_page,
-            "on_help_event_clicked"     : self.on_help_clicked,
-            "on_ok_event_clicked"       : self.on_event_edit_ok_clicked,
-            "on_cancel_event_clicked"   : self.close,
-            "on_event_edit_delete_event": self.on_delete_event,
-            "on_addphoto_clicked"       : self.gallery.on_add_media_clicked,
-            "on_selectphoto_clicked"    : self.gallery.on_select_media_clicked,
-            "on_deletephoto_clicked"    : self.gallery.on_delete_media_clicked,
-            "on_edit_properties_clicked": self.gallery.popup_change_description,
-            "on_editphoto_clicked"      : self.gallery.on_edit_media_clicked,
-            })
+        self.gladeif.connect('event_edit','delete_event',self.on_delete_event)
+        self.gladeif.connect('button111','clicked',self.close)
+        self.gladeif.connect('ok','clicked',self.on_event_edit_ok_clicked)
+        self.gladeif.connect('button126','clicked',self.on_help_clicked)
+        self.gladeif.connect('notebook','switch_page',self.on_switch_page)
+        self.gladeif.connect('add_obj','clicked',self.gallery.on_add_media_clicked)
+        self.gladeif.connect('sel_obj','clicked',self.gallery.on_select_media_clicked)
+        self.gladeif.connect('button172','clicked',self.gallery.on_edit_media_clicked)
+        self.gladeif.connect('del_obj','clicked',self.gallery.on_delete_media_clicked)
 
         self.top.get_widget('del_obj').set_sensitive(not noedit)
         self.top.get_widget('sel_obj').set_sensitive(not noedit)
@@ -268,15 +270,19 @@ class EventEditor:
         self.window.show()
 
     def on_delete_event(self,obj,b):
+        self.gladeif.close()
         self.gallery.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
+        gc.collect()
 
     def close(self,obj):
+        self.gladeif.close()
         self.gallery.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.window.destroy()
+        gc.collect()
 
     def close_child_windows(self):
         return
@@ -322,7 +328,7 @@ class EventEditor:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-ev')
+        GrampsDisplay.help('adv-ev')
 
     def on_event_edit_ok_clicked(self,obj):
 

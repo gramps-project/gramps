@@ -48,30 +48,38 @@ import NameDisplay
 import ListModel
 import PluginMgr
 import DateHandler
+import PeopleModel
+import Tool
+
+column_names = [
+    _('Name'),
+    _('ID') ,
+    _('Gender'),
+    _('Birth Date'),
+    _('Birth Place'),
+    _('Death Date'),
+    _('Death Place'),
+    _('Spouse'),
+    _('Last Change'),
+    _('Cause of Death'),
+    ]
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-def runTool(database,person,callback,parent=None):
-    RelCalc(database,person,parent)
+class RelCalc(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-class RelCalc:
-    """
-    Relationship calculator class.
-    """
+        """
+        Relationship calculator class.
+        """
 
-    def __init__(self,database,person,parent):
         self.person = person
-        self.db = database
         self.RelClass = PluginMgr.relationship_class
-        self.relationship = self.RelClass(database)
+        self.relationship = self.RelClass(self.db)
         self.parent = parent
         self.win_key = self
 
@@ -90,40 +98,34 @@ class RelCalc:
                                         'person_name' : name },
                          self.title)
     
-        self.people = self.glade.get_widget("peopleList")
+        self.tree = self.glade.get_widget("peopleList")
+        
+        self.model = PeopleModel.PeopleModel(self.db)
+        self.tree.set_model(self.model)
 
-        self.clist = ListModel.ListModel(self.people,
-                                         [(_('Name'),3,150),(_('Gender'),1,50),
-                                          (_('Birth Date'),4,150),
-                                          ('',-1,0),('',-1,0)],
-                                         self.on_apply_clicked)
-        self.clist.new_model()
-        for key in self.db.get_person_handles(sort_handles=False):
-            p = self.db.get_person_from_handle(key)
-            if p == self.person:
+        column = gtk.TreeViewColumn(_('Name'), gtk.CellRendererText(),text=0)
+        column.set_resizable(True)
+        column.set_min_width(225)
+        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        self.tree.append_column(column)
+
+        index = 1
+        for pair in self.db.get_person_column_order():
+            if not pair[0]:
                 continue
-            bh = p.get_birth_handle()
-            if bh:
-                bdate = DateHandler.get_date(self.db.get_event_from_handle(bh))
-            else:
-                bdate = ""
-            name = p.get_primary_name()
-            if p.get_gender() == RelLib.Person.MALE:
-                gender = _("male")
-            elif p.get_gender() == RelLib.Person.FEMALE:
-                gender = _("female")
-            else:
-                gender = _("unknown")
-            self.clist.add([name.get_name(), gender, bdate,
-                            name.get_sort_name(), bdate],
-                           p.get_handle())
+            name = column_names[pair[1]]
+            column = gtk.TreeViewColumn(name, gtk.CellRendererText(), markup=pair[1])
+            column.set_resizable(True)
+            column.set_min_width(60)
+            column.set_sizing(gtk.TREE_VIEW_COLUMN_GROW_ONLY)
+            self.tree.append_column(column)
+            index += 1
 
-        self.clist.connect_model()
+        self.tree.get_selection().connect('changed',self.on_apply_clicked)
             
         self.glade.signal_autoconnect({
             "on_close_clicked" : self.close,
             "on_delete_event"  : self.on_delete_event,
-            "on_apply_clicked" : self.on_apply_clicked
             })
 
         self.add_itself_to_menu()
@@ -151,17 +153,22 @@ class RelCalc:
         self.window.present()
 
     def on_apply_clicked(self,obj):
-        model,node = self.clist.get_selected()
+        model,node = self.tree.get_selection().get_selected()
         if not node:
             return
         
-        handle = self.clist.get_object(node)
+        handle = model.get_value(node,len(PeopleModel.COLUMN_DEFS)-1)
         other_person = self.db.get_person_from_handle(handle)
 
-        (rel_string,common) = self.relationship.get_relationship(self.person,other_person)
-        length = len(common)
+        if other_person != None:
+            (rel_string,common) = self.relationship.get_relationship(self.person,other_person)
+            length = len(common)
+        else:
+            length = 0
 
-        if length == 1:
+        if other_person == None:
+            commontext = ""
+        elif length == 1:
             person = self.db.get_person_from_handle(common[0])
             name = person.get_primary_name().get_regular_name()
             commontext = " " + _("Their common ancestor is %s.") % name
@@ -185,10 +192,16 @@ class RelCalc:
             commontext = ""
 
         text1 = self.glade.get_widget("text1").get_buffer()
-        p1 = NameDisplay.displayer.display(self.person)
-        p2 = NameDisplay.displayer.display(other_person)
 
-        if rel_string == "":
+        if other_person:
+            p1 = NameDisplay.displayer.display(self.person)
+            p2 = NameDisplay.displayer.display(other_person)
+
+        if other_person == None:
+            rstr = ""
+        elif self.person.handle == other_person.handle:
+            rstr = _("%s and %s are the same person.") % (p1,p2)
+        elif rel_string == "":
             rstr = _("%(person)s and %(active_person)s are not related.") % {
                 'person' : p2, 'active_person' : p1 }
         else:
@@ -197,15 +210,33 @@ class RelCalc:
 
         text1.set_text("%s %s" % (rstr, commontext))
     
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
+# 
 #
-#
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
+class RelCalcOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
 
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 PluginMgr.register_tool(
-    runTool,
-    _("Relationship calculator"),
-    category=_("Utilities"),
+    name = 'relcalc',
+    category = Tool.TOOL_UTILS,
+    tool_class = RelCalc,
+    options_class = RelCalcOptions,
+    modes = Tool.MODE_GUI,
+    translated_name = _("Relationship calculator"),
+    status=(_("Stable")),
+    author_name = "Donald N. Allingham",
+    author_email = "don@gramps-project.org",
     description=_("Calculates the relationship between two people")
     )
