@@ -59,14 +59,15 @@ H5 {
 	margin-bottom: 0.5em;
 }
 H6 {
-	font: italic normal 100%;
+	font-style: italic;
+        font-size: 100%;
 	margin: 1.3em 0em 1em 0.8em;
 }
 IMG {
 	border: none;
 }
 SUP {
-    line-height: 0;
+    line-height: 0%;
 }
 TABLE {
 	border: none;
