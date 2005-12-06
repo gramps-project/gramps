@@ -34,6 +34,7 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -41,7 +42,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk.glade
-import gnome
 import gobject
 
 #-------------------------------------------------------------------------
@@ -49,17 +49,18 @@ import gobject
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import GrampsDisplay
 import RelLib
 import const
 import Utils
 import PeopleModel
 import Date
-import DateHandler
 import Marriage
 import NameDisplay
 import GenericFilter
 from QuestionDialog import ErrorDialog, QuestionDialog2
 import AutoComp
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -94,6 +95,7 @@ class AddSpouse:
         # the same gender as the current person.
 
         self.glade = gtk.glade.XML(const.gladeFile, "spouseDialog","gramps")
+        self.gladeif = GladeIf(self.glade)
 
         self.rel_combo = self.glade.get_widget("rel_combo")
         self.spouse_list = self.glade.get_widget("spouse_list")
@@ -115,15 +117,14 @@ class AddSpouse:
         Utils.set_titles(self.window,
                          self.glade.get_widget('title'),title,
                          _('Choose Spouse/Partner'))
-            
-        self.glade.signal_autoconnect({
-            "on_select_spouse_clicked" : self.select_spouse_clicked,
-            "on_spouse_help_clicked"   : self.on_spouse_help_clicked,
-            "on_show_toggled"          : self.on_show_toggled,
-            "on_new_spouse_clicked"    : self.new_spouse_clicked,
-            "destroy_passed_object"    : Utils.destroy_passed_object
-            })
 
+        self.gladeif.connect('button117','clicked',self.close)
+        self.gladeif.connect('spouseDialog','delete_event',self.delete_event)
+        self.gladeif.connect('spouse_ok','clicked',self.select_spouse_clicked)
+        self.gladeif.connect('spouse_help','clicked',self.on_spouse_help_clicked)
+        self.gladeif.connect('spouseNewPerson','clicked',self.new_spouse_clicked)
+        self.gladeif.connect('showall','clicked',self.on_show_toggled)
+            
         self.rel_selector = AutoComp.StandardCustomSelector(
             Utils.family_relations,self.rel_combo,
             RelLib.Family.CUSTOM,RelLib.Family.MARRIED)
@@ -131,6 +132,13 @@ class AddSpouse:
         self.set_gender()
         self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         gobject.idle_add(self.update_data)
+
+    def delete_event(self,obj):
+        self.gladeif.close()
+
+    def close(self,obj):
+        self.gladeif.close()
+        self.window.destroy()
 
     def build_all(self):
         return None
@@ -169,7 +177,7 @@ class AddSpouse:
 
     def on_spouse_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-quick')
+        GrampsDisplay.help('gramps-edit-quick')
 
     def get_selected_ids(self):
         mlist = []
@@ -289,7 +297,9 @@ class AddSpouse:
 
         if not self.active_family:
             self.active_family = RelLib.Family()
-            self.db.add_family(self.active_family,trans)
+            gid = self.db.find_next_family_gramps_id()
+            self.active_family.set_gramps_id(gid)
+            self.active_family.set_handle(self.db.create_id())
             self.person.add_family_handle(self.active_family.get_handle())
             self.db.commit_person(self.person,trans)
 
@@ -309,62 +319,12 @@ class AddSpouse:
         self.db.transaction_commit(trans,_("Add Spouse"))
 
         Utils.destroy_passed_object(obj)
+        gc.collect()
         m = Marriage.Marriage(self.parent, self.active_family, self.parent.db)
         m.on_add_clicked()
 
     def relation_type_changed(self,obj):
         gobject.idle_add(self.update_data)
-
-    def all_filter(self, person):
-        return person.get_gender() != self.sgender
-
-    def likely_filter(self, person):
-        if person.get_gender() == self.sgender:
-            return False
-
-        pd_id = person.get_death_handle()
-        pb_id = person.get_birth_handle()
-                
-        if pd_id:
-            pdday = self.db.get_event_from_handle(pd_id).get_date_object()
-        else:
-            pdday = Date.Date()
-
-        if pb_id:
-            pbday = self.db.get_event_from_handle(pb_id).get_date_object()
-        else:
-            pbday = Date.Date()
-                    
-        if self.bday.get_year_valid():
-            if pbday.get_year_valid():
-                # reject if person birthdate differs more than
-                # 100 years from spouse birthdate 
-                if abs(pbday.get_year() - self.bday.get_year()) > 100:
-                    return 0
-
-            if pdday.get_year_valid():
-                # reject if person birthdate is after the spouse deathdate 
-                if self.bday.get_year() + 10 > pdday.get_high_year():
-                    return 0
-                
-                # reject if person birthdate is more than 100 years 
-                # before the spouse deathdate
-                if self.bday.get_high_year() + 100 < pdday.get_year():
-                    return 0
-
-        if self.dday.get_year_valid():
-            if pbday.get_year_valid():
-                # reject if person deathdate was prior to 
-                # the spouse birthdate 
-                if self.dday.get_high_year() < pbday.get_year() + 10:
-                    return 0
-
-            if pdday.get_year_valid():
-                # reject if person deathdate differs more than
-                # 100 years from spouse deathdate 
-                if abs(pdday.get_year() - self.dday.get_year()) > 100:
-                    return 0
-        return 1
 
     def set_gender(self):
         rel_i,rel_s = self.rel_selector.get_values()

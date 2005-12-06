@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import sets
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -36,7 +37,6 @@ from gettext import gettext as _
 import gobject
 import gtk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -48,6 +48,9 @@ import RelLib
 import const
 import Utils
 import DateHandler
+import GrampsDisplay
+import QuestionDialog
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -143,13 +146,13 @@ class GrampsPreferences:
         self.built = 0
         self.db = db
         self.top = gtk.glade.XML(const.prefsFile,"preferences","gramps")
-        self.top.signal_autoconnect({
-            "on_close_clicked" : self.on_close_clicked,
-            "on_help_clicked" : self.on_propertybox_help,
-            "on_tree_select_row" : self.select
-            })
+        self.gladeif = GladeIf(self.top)
 
+        self.gladeif.connect('button6','clicked',self.on_close_clicked)
+        self.gladeif.connect('button7','clicked',self.on_propertybox_help)
+        
         self.window = self.top.get_widget("preferences")
+        self.window.connect('delete_event',self.on_close_clicked)
         self.tree = self.top.get_widget("tree")
         self.store = gtk.TreeStore(gobject.TYPE_STRING)
         self.selection = self.tree.get_selection()
@@ -187,31 +190,26 @@ class GrampsPreferences:
         auto.connect('toggled',
                 lambda obj: GrampsKeys.save_autoload(obj.get_active()))
 
+        spell = self.top.get_widget("spellcheck")
+        spell.set_active(GrampsKeys.get_spellcheck())
+        spell.connect('toggled',
+                lambda obj: GrampsKeys.save_spellcheck(obj.get_active()))
+
         lds = self.top.get_widget("uselds")
         lds.set_active(GrampsKeys.get_uselds())
         lds.connect('toggled',
                 lambda obj: GrampsKeys.save_uselds(obj.get_active()))
 
-        ipr = self.top.get_widget("iprefix")
-        ipr.set_text(GrampsKeys.get_person_id_prefix())
-        ipr.connect('changed',
-                lambda obj: GrampsKeys.save_iprefix(obj.get_text()))
-        opr = self.top.get_widget("oprefix")
-        opr.set_text(GrampsKeys.get_object_id_prefix())
-        opr.connect('changed',
-                lambda obj: GrampsKeys.save_oprefix(obj.get_text()))
-        fpr = self.top.get_widget("fprefix")
-        fpr.set_text(GrampsKeys.get_family_id_prefix())
-        fpr.connect('changed',
-                lambda obj: GrampsKeys.save_fprefix(obj.get_text()))
-        spr = self.top.get_widget("sprefix")
-        spr.set_text(GrampsKeys.get_source_id_prefix())
-        spr.connect('changed',
-                lambda obj: GrampsKeys.save_sprefix(obj.get_text()))
-        ppr = self.top.get_widget("pprefix")
-        ppr.set_text(GrampsKeys.get_place_id_prefix())
-        ppr.connect('changed',
-                lambda obj: GrampsKeys.save_pprefix(obj.get_text()))
+        self.ipr = self.top.get_widget("iprefix")
+        self.ipr.set_text(GrampsKeys.get_person_id_prefix())
+        self.opr = self.top.get_widget("oprefix")
+        self.opr.set_text(GrampsKeys.get_object_id_prefix())
+        self.fpr = self.top.get_widget("fprefix")
+        self.fpr.set_text(GrampsKeys.get_family_id_prefix())
+        self.spr = self.top.get_widget("sprefix")
+        self.spr.set_text(GrampsKeys.get_source_id_prefix())
+        self.ppr = self.top.get_widget("pprefix")
+        self.ppr.set_text(GrampsKeys.get_place_id_prefix())
 
         sb2 = self.top.get_widget("stat2")
         sb3 = self.top.get_widget("stat3")
@@ -319,7 +317,61 @@ class GrampsPreferences:
         resemail.set_text(GrampsKeys.get_researcher_email())
         resemail.connect('changed',
                     lambda obj: GrampsKeys.save_researcher_email(obj.get_text()))
+                    
+    def save_prefix(self):
+        """ Validate the GRAMPS ID definitions to be usable"""
+        ip = self.ipr.get_text()
+        op = self.opr.get_text()
+        fp = self.fpr.get_text()
+        sp = self.spr.get_text()
+        pp = self.ppr.get_text()
+        
+        # Do validation to the GRAMPS-ID format strings
+        invalid_chars = sets.Set("# \t\n\r")
+        prefixes = [ip,op,fp,sp,pp]
+        testnums = [1,234,567890]
+        testresult = {} # used to test that IDs for different objects will be different
+        formaterror = False # true if formatstring is invalid
+        incompatible = False    # true if ID string is possibly not GEDCOM compatible
+        for p in prefixes:
+            if invalid_chars & sets.Set(p):
+                incompatible = True
+            for n in testnums:
+                try:
+                    testresult[p % n] = 1
+                except:
+                    formaterror = True
+        
+        idexampletext = _('Example for valid IDs are:\n'+
+                        'I%d which will be displayed as I123 or\n'+
+                        'S%06d which will be displayed as S000123.')
+        if formaterror:
+            QuestionDialog.ErrorDialog( _("Invalid GRAMPS ID prefix"),
+                _("The GRAMPS ID prefix is invalid.\n")+
+                idexampletext,
+                self.window)
+            return False
+        elif incompatible:
+            QuestionDialog.OkDialog( _("Incompatible GRAMPS ID prefix"),
+                _("The GRAMPS ID prefix is in an unusual format and may"+
+                " cause problems when exporting the database to GEDCOM format.\n")+
+                idexampletext,
+                self.window)
+        elif len(testresult) != len(prefixes)*len(testnums):
+            QuestionDialog.ErrorDialog( _("Unsuited GRAMPS ID prefix"),
+                _("The GRAMPS ID prefix is unsuited because it does not"+
+                " distinguish between different objects.\n")+
+                idexampletext,
+                self.window)
+            return False
 
+        GrampsKeys.save_iprefix(ip)
+        GrampsKeys.save_oprefix(op)
+        GrampsKeys.save_fprefix(fp)
+        GrampsKeys.save_sprefix(sp)
+        GrampsKeys.save_pprefix(pp)
+        return True
+        
     def select(self,obj):
         store,node = self.selection.get_selected()
         if node:
@@ -328,10 +380,13 @@ class GrampsPreferences:
             self.panel.set_current_page(self.imap[path])
         
     def on_propertybox_help(self,obj):
-        gnome.help_display('gramps-manual','gramps-prefs')
+        GrampsDisplay.help('gramps-prefs')
 
-    def on_close_clicked(self,obj):
-        Utils.destroy_passed_object(self.window)
+    def on_close_clicked(self,obj=None,dummy=None):
+        if not self.save_prefix():
+            return False
+        self.gladeif.close()
+        self.window.destroy()
     
 #-------------------------------------------------------------------------
 #

@@ -54,11 +54,26 @@ import Date
 import DateParser
 import DisplayTrace
 from ansel_utf8 import ansel_to_utf8
-import latin_utf8 
 import Utils
 import GrampsMime
+from bsddb import db
 from GedcomInfo import *
-from QuestionDialog import ErrorDialog
+from QuestionDialog import ErrorDialog, WarningDialog
+
+#-------------------------------------------------------------------------
+#
+# latin/utf8 conversions
+#
+#-------------------------------------------------------------------------
+
+def utf8_to_latin(s):
+    return s.encode('iso-8859-1','replace')
+
+def latin_to_utf8(s):
+    if type(s) == type(u''):
+        return s
+    else:
+        return unicode(s,'iso-8859-1')
 
 #-------------------------------------------------------------------------
 #
@@ -70,8 +85,6 @@ UNICODE = 2
 UPDATE = 25
 
 callback = None
-
-_title_string = _("GEDCOM")
 
 def nocnv(s):
     return unicode(s)
@@ -125,6 +138,7 @@ snameRegexp= re.compile(r"/([^/]*)/([^/]*)")
 calRegexp = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
 rangeRegexp = re.compile(r"\s*BET\s+@#D([^@]+)@\s*(.*)\s+AND\s+@#D([^@]+)@\s*(.*)$")
 spanRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
+whitespaceRegexp = re.compile(r"\s+")
 
 #-------------------------------------------------------------------------
 #
@@ -171,24 +185,25 @@ def import2(database, filename, cb, codeset, use_trans):
         glade_file = "plugins/gedcomimport.glade"
 
     statusTop = gtk.glade.XML(glade_file,"status","gramps")
-    statusWindow = statusTop.get_widget("status")
+    status_window = statusTop.get_widget("status")
 
-    Utils.set_titles(statusWindow,statusTop.get_widget('title'),
+    Utils.set_titles(status_window,statusTop.get_widget('title'),
                      _('GEDCOM import status'))
-    
-    statusTop.get_widget("close").set_sensitive(0)
-    statusTop.signal_autoconnect({
-        "destroy_passed_object" : Utils.destroy_passed_object
-        })
 
+    closebtn = statusTop.get_widget("close")
+    closebtn.set_sensitive(0)
+    closebtn.connect('clicked',lambda x: Utils.destroy_passed_object(status_window))
+    
     try:
-        g = GedcomParser(database,filename,statusTop, codeset)
+        np = NoteParser(filename, False)
+        g = GedcomParser(database,filename,statusTop, codeset, np.get_map(),
+                         np.get_lines())
     except IOError,msg:
-        Utils.destroy_passed_object(statusWindow)
+        status_window.destroy()
         ErrorDialog(_("%s could not be opened\n") % filename,str(msg))
         return
     except:
-        Utils.destroy_passed_object(statusWindow)
+        status_window.destroy()
         DisplayTrace.DisplayTrace()
         return
 
@@ -198,30 +213,38 @@ def import2(database, filename, cb, codeset, use_trans):
     try:
         close = g.parse_gedcom_file(use_trans)
     except IOError,msg:
-        Utils.destroy_passed_object(statusWindow)
+        status_window.destroy()
         errmsg = _("%s could not be opened\n") % filename
         ErrorDialog(errmsg,str(msg))
         return
     except Errors.GedcomError, val:
         (m1,m2) = val.messages()
-        Utils.destroy_passed_object(statusWindow)
+        status_window.destroy()
         ErrorDialog(m1,m2)
         return
+    except db.DBSecondaryBadError, msg:
+        status_window.destroy()
+        WarningDialog(_('Database corruption detected'),
+                      _('A problem was detected with the database. Please '
+                        'run the Check and Repair Database tool to fix the '
+                        'problem.'))
+        return
     except:
-        Utils.destroy_passed_object(statusWindow)
+        Utils.destroy_passed_object(status_window)
         DisplayTrace.DisplayTrace()
         return
-    
-    statusTop.get_widget("close").set_sensitive(True)
-    statusWindow.set_modal(False)
-    if close:
-        statusWindow.destroy()
 
-    if cb:
-        statusWindow.destroy()
+    statusTop.get_widget("close").set_sensitive(True)
+    status_window.set_modal(False)
+    if close:
+        status_window.destroy()
+    elif cb:
+        status_window.destroy()
         cb(1)
     elif callback:
         callback()
+
+    
 
 #-------------------------------------------------------------------------
 #
@@ -246,12 +269,65 @@ class GedcomDateParser(DateParser.DateParser):
 #
 #
 #-------------------------------------------------------------------------
+
+noteRE = re.compile(r"\s*\d+\s+\@(\S+)\@\s+NOTE(.*)$")
+contRE = re.compile(r"\s*\d+\s+CONT\s(.*)$")
+concRE = re.compile(r"\s*\d+\s+CONC\s(.*)$")
+
+
+class NoteParser:
+    def __init__(self, filename,broken):
+        self.name_map = {}
+
+        self.count = 0
+        f = open(filename,"rU")
+        innote = False
+        
+        for line in f.xreadlines():
+
+            self.count += 1
+            if innote:
+                match = contRE.match(line)
+                if match:
+                    noteobj.append("\n" + match.groups()[0])
+                    continue
+
+                match = concRE.match(line)
+                if match:
+                    if broken:
+                        noteobj.append(" " + match.groups()[0])
+                    else:
+                        noteobj.append(match.groups()[0])
+                    continue
+                innote = False
+            else:
+                match = noteRE.match(line)
+                if match:
+                    data = match.groups()[0]
+                    noteobj = RelLib.Note()
+                    self.name_map["@%s@" % data] = noteobj
+                    noteobj.append(match.groups()[1])
+                    innote = True
+        f.close()
+
+    def get_map(self):
+        return self.name_map
+
+    def get_lines(self):
+        return self.count
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 class GedcomParser:
 
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
 
-    def __init__(self, dbase, filename, window, codeset):
+    def __init__(self, dbase, filename, window, codeset, note_map, lines):
+        self.maxlines = float(lines)
         self.dp = GedcomDateParser()
         self.db = dbase
         self.person = None
@@ -259,8 +335,7 @@ class GedcomParser:
         self.media_map = {}
         self.fmap = {}
         self.smap = {}
-        self.nmap = {}
-        self.share_note = []
+        self.note_map = note_map
         self.refn = {}
         self.added = {}
         self.gedmap = GedcomInfoDB()
@@ -304,7 +379,7 @@ class GedcomParser:
             if self.override == 1:
                 self.cnv = ansel_to_utf8
             elif self.override == 2:
-                self.cnv = latin_utf8.latin_to_utf8
+                self.cnv = latin_to_utf8
             else:
                 self.cnv = nocnv
         else:
@@ -328,10 +403,13 @@ class GedcomParser:
             self.close_done = window.get_widget('close_done')
             self.error_text_obj = window.get_widget("error_text")
             self.info_text_obj = window.get_widget("info_text")
+            self.progressbar = window.get_widget('progressbar')
             
         self.error_count = 0
-
         amap = Utils.personalConstantAttributes
+        self.current = 0.0
+        self.oldval = 0.0
+        
         self.attrs = amap.values()
         self.gedattr = {}
         for val in amap.keys():
@@ -421,6 +499,15 @@ class GedcomParser:
     def get_next(self):
         if self.backoff == 0:
             next_line = self.f.readline()
+            self.current += 1.0
+
+            newval = self.current/self.maxlines
+            if newval != self.oldval:
+                self.progressbar.set_fraction(min(newval,1.0))
+                self.progressbar.set_text("%d%%" % int(newval*100))
+                self.oldval = newval
+                while gtk.events_pending():
+                    gtk.main_iteration()
             
             # EOF ?
             if next_line == "":
@@ -444,7 +531,7 @@ class GedcomParser:
                 self.text = string.translate(self.text,self.transtable2)
             
             self.index += 1
-            l = self.text.split(' ', 2)
+            l = whitespaceRegexp.split(self.text, 2)
             ln = len(l)
             try:
                 if ln == 2:
@@ -512,10 +599,11 @@ class GedcomParser:
                 src.set_note(note)
             self.db.add_source(src,self.trans)
             
-        self.break_note_links()
         t = time.time() - t
         msg = _('Import Complete: %d seconds') % t
 
+        self.progressbar.set_fraction(1.0)
+        self.progressbar.set_text(_("Complete"))
         if use_trans:
             self.db.transaction_commit(self.trans,_("GEDCOM import"))
         self.db.enable_signals()
@@ -529,10 +617,6 @@ class GedcomParser:
             print "Individuals: %d" % self.indi_count
             return None
 
-    def break_note_links(self):
-        for o in self.share_note:
-            o.unique_note()
-            
     def parse_trailer(self):
         matches = self.get_next()
         if matches[0] >= 0 and matches[1] != "TRLR":
@@ -564,13 +648,10 @@ class GedcomParser:
 
     def parse_source(self,name,level):
         self.source = self.find_or_create_source(name[1:-1])
-
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
             if int(matches[0]) < level:
-                if note:
-                    self.source.set_note(note)
                 if not self.source.get_title():
                     self.source.set_title("No title - ID %s" % self.source.get_gramps_id())
                 self.db.commit_source(self.source, self.trans)
@@ -589,25 +670,28 @@ class GedcomParser:
                 self.source.set_author(matches[2] + self.parse_continue_data(level+1))
             elif matches[1] == "PUBL":
                 self.source.set_publication_info(matches[2] + self.parse_continue_data(level+1))
-            elif matches[1] == "OBJE":
-                self.ignore_sub_junk(2)
             elif matches[1] == "NOTE":
                 note = self.parse_note(matches,self.source,level+1,note)
+                self.source.set_note(note)
             elif matches[1] == "TEXT":
                 note = self.source.get_note()
                 d = self.parse_continue_data(level+1)
                 if note:
-                    note = "%s\n%s %s%s" % (note,matches[1],matches[2],d)
+                    note = "%s\n%s %s" % (note,matches[2],d)
                 else:
-                    note = "%s %s%s" % (matches[1],matches[2],d)
+                    note = "%s %s" % (matches[2],d)
+                self.source.set_note(note.strip())
             elif matches[1] == "ABBR":
                 self.source.set_abbreviation(matches[2] + self.parse_continue_data(level+1))
+            elif matches[1] in ["OBJE","CHAN","_CAT"]:
+                self.ignore_sub_junk(2)
             else:
                 note = self.source.get_note()
                 if note:
                     note = "%s\n%s %s" % (note,matches[1],matches[2])
                 else:
                     note = "%s %s" % (matches[1],matches[2])
+                self.source.set_note(note.strip())
 
     def parse_record(self):
         while True:
@@ -668,15 +752,7 @@ class GedcomParser:
                 source.set_title( matches[2][5:])
                 self.db.commit_source(source, self.trans)
             elif matches[2][0:4] == "NOTE":
-                if self.nmap.has_key(matches[1]):
-                    noteobj = self.nmap[matches[1]]
-                else:
-                    noteobj = RelLib.Note()
-                    self.nmap[matches[1]] = noteobj
-                text =  matches[2][4:]
-#                noteobj.append(text + self.parse_continue_data(1))
-                noteobj.append(text + self.parse_note_continue(1))
-                self.parse_note_data(1)
+                self.ignore_sub_junk(1)
             elif matches[2] == "_LOC":
                 # TODO: Add support for extended Locations.
                 # See: http://en.wiki.genealogy.net/index.php/Gedcom_5.5EL
@@ -919,15 +995,12 @@ class GedcomParser:
 
     def parse_note_base(self,matches,obj,level,old_note,task):
         note = old_note
-        if matches[2] and matches[2][0] == "@":
-            if self.nmap.has_key(matches[2]):
-                self.share_note.append(obj)
-                obj.set_note_object(self.nmap[matches[2]])
+        if matches[2] and matches[2][0] == "@":  # reference to a named note defined elsewhere
+            note_obj = self.note_map.get(matches[2])
+            if note_obj:
+                return note_obj.get()
             else:
-                noteobj = RelLib.Note()
-                self.nmap[matches[2]] = noteobj
-                self.share_note.append(obj)
-                obj.set_note_object(noteobj)
+                return u""
         else:
             if old_note:
                 note = "%s\n%s%s" % (old_note,matches[2],self.parse_continue_data(level))
@@ -951,6 +1024,8 @@ class GedcomParser:
             
             if int(matches[0]) < 1:
                 self.backup()
+                if note:
+                    self.person.set_note(note)
                 return
             elif matches[1] == "NAME":
                 name = RelLib.Name()
@@ -1121,7 +1196,7 @@ class GedcomParser:
                 elif self.gedattr.has_key(n):
                     attr = RelLib.Attribute()
                     attr.set_type(self.gedattr[n])
-                    attr.set_value(event.get_description())
+                    attr.set_value(event.get_description() + matches[2])
                     self.person.add_attribute(attr)
                     self.parse_person_attr(attr,2)
                     continue
@@ -1628,6 +1703,7 @@ class GedcomParser:
             matches = self.get_next()
 
             if int(matches[0]) < level:
+                source.set_note(note)
                 self.backup()
                 return
             elif matches[1] == "PAGE":
@@ -1640,15 +1716,18 @@ class GedcomParser:
                     d = self.dp.parse(date)
                     source.set_date_object(d)
                 source.set_text(text)
-            elif matches[1] in ["OBJE","REFN","TEXT"]:
+            elif matches[1] in ["OBJE","REFN"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "QUAY":
-                val = int(matches[2])
+                try:
+                    val = int(matches[2])
+                except ValueError:
+                    return
                 if val > 1:
                     source.set_confidence_level(val+1)
                 else:
                     source.set_confidence_level(val)
-            elif matches[1] == "NOTE":
+            elif matches[1] in ["NOTE","TEXT"]:
                 note = self.parse_comment(matches,source,level+1,note)
             else:
                 self.barf(level+1)
@@ -1781,12 +1860,12 @@ class GedcomParser:
                     self.gedsource = self.gedmap.get_from_source_tag(matches[2])
                     self.broken_conc = self.gedsource.get_conc()
             elif matches[1] == "CHAR" and not self.override:
-                if matches[2] == "UNICODE" or matches[2] == "UTF-8" or matches[2] == "UTF8":
+                if matches[2] in ["UNICODE","UTF-8","UTF8"]:
                     self.cnv = nocnv
                 elif matches[2] == "ANSEL":
                     self.cnv = ansel_to_utf8
                 else:
-                    self.cnv = latin_utf8.latin_to_utf8
+                    self.cnv = latin_to_utf8
                 self.ignore_sub_junk(2)
                 if self.window:
                     self.update(self.encoding_obj,matches[2])
@@ -2071,3 +2150,9 @@ def extract_temple(matches):
 
 def create_id():
     return Utils.create_id()
+
+
+if __name__ == "__main__":
+    import sys
+
+    a = NoteParser(sys.argv[1],False)

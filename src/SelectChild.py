@@ -27,6 +27,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -34,7 +35,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk.glade
-import gnome
 import gobject
 
 #-------------------------------------------------------------------------
@@ -48,9 +48,11 @@ import Utils
 import PeopleModel
 import NameDisplay
 import AutoComp
-from QuestionDialog import ErrorDialog
 import GenericFilter
 import Date
+import GrampsDisplay
+from QuestionDialog import ErrorDialog
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -75,19 +77,18 @@ class SelectChild:
         self.family = family
         self.renderer = gtk.CellRendererText()
         self.xml = gtk.glade.XML(const.gladeFile,"select_child","gramps")
+        self.gladeif = GladeIf(self.xml)
     
         if person:
             self.default_name = person.get_primary_name().get_surname().upper()
         else:
             self.default_name = ""
 
-        self.xml.signal_autoconnect({
-            "on_save_child_clicked"    : self.on_save_child_clicked,
-            "on_child_help_clicked"    : self.on_child_help_clicked,
-            "on_show_toggled"          : self.on_show_toggled,
-            "destroy_passed_object"    : self.close,
-            "on_select_child_delete_event" : self.on_delete_event,
-            })
+        self.gladeif.connect('select_child','delete_event', self.on_delete_event)
+        self.gladeif.connect('button49','clicked', self.close)
+        self.gladeif.connect('button48','clicked', self.on_save_child_clicked)
+        self.gladeif.connect('button163','clicked',self.on_child_help_clicked)
+        self.gladeif.connect('checkbutton1','toggled',self.on_show_toggled)
 
         self.select_child_list = {}
         self.top = self.xml.get_widget("select_child")
@@ -157,11 +158,15 @@ class SelectChild:
         tree.append_column(column)
 
     def on_delete_event(self,obj,b):
+        self.gladeif.close()
         self.remove_itself_from_menu()
+        gc.collect()
 
     def close(self,obj):
+        self.gladeif.close()
         self.remove_itself_from_menu()
         self.top.destroy()
+        gc.collect()
 
     def add_itself_to_menu(self):
         self.parent.child_windows[self] = self
@@ -179,7 +184,7 @@ class SelectChild:
 
     def on_child_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-quick')
+        GrampsDisplay.help('gramps-edit-quick')
 
     def redraw_child_list(self):
         self.refmodel = PeopleModel.PeopleModel(self.db,self.active_filter)
@@ -221,7 +226,15 @@ class SelectChild:
             else:	
                 self.family.set_mother_handle(self.person.get_handle())
             self.db.commit_family(self.family,trans)
-                
+
+        # check that selected child is not already a child in family
+        if handle in self.family.get_child_handle_list():
+            ErrorDialog(_("Error selecting a child"),
+                        _("The person is already linked as child"),
+                        self.top)
+            return
+        
+        # check that selected child is not already a spouse in family
         if handle in (self.family.get_father_handle(),self.family.get_mother_handle()):
             ErrorDialog(_("Error selecting a child"),
                         _("A person cannot be linked as his/her own child"),

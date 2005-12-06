@@ -135,11 +135,11 @@ class _DdTargets(object):
 
         # List of all the test types. These are types
         # that can be interpreted as text.
-        self._all_text_types = (self.TEXT,
+        self._all_text_types = (self.UTF8_STRING,
+                                self.TEXT,
                                 self.TEXT_MIME,
                                 self.STRING,
-                                self.COMPOUND_TEXT,
-                                self.UTF8_STRING)
+                                self.COMPOUND_TEXT)
 
     def insert(self,dd_type):
         """Add a target to the lookup lists. These lists are

@@ -25,6 +25,9 @@
 #-------------------------------------------------------------------------
 import gobject
 import gtk.glade
+
+import gc
+
 import const
 from gettext import gettext as _
 
@@ -72,9 +75,11 @@ class ColumnOrder:
                             self.model.get_value(node,2)))
         self.callback(newlist)
         self.top.destroy()
+        gc.collect()
 
     def cancel_clicked(self,obj):
         self.top.destroy()
+        gc.collect()
 
     def toggled(self, cell, path, model):
         node = model.get_iter((int(path),))

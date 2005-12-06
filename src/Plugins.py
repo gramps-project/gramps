@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,7 +36,6 @@ importers, exporters, and document generators.
 import gobject
 import gtk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -59,7 +58,18 @@ import Utils
 import GrampsKeys
 import Errors
 import Report
+import Tool
 import PluginMgr
+import GrampsDisplay
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+REPORTS = 0
+TOOLS   = 1
+UNSUPPORTED = _("Unsupported")
 
 #-------------------------------------------------------------------------
 #
@@ -71,8 +81,8 @@ class PluginDialog:
     """Displays the dialog box that allows the user to select the
     report that is desired."""
 
-    def __init__(self,parent,db,active,item_list,msg,label=None,
-                 button_label=None,tool_tip=None):
+    def __init__(self,parent,db,active,item_list,categories,msg,label=None,
+                 button_label=None,tool_tip=None,content=REPORTS):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
@@ -86,6 +96,7 @@ class PluginDialog:
         self.update = None
         self.imap = {}
         self.msg = msg
+        self.content = content
         
         self.dialog = gtk.glade.XML(const.pluginsFile,"report","gramps")
         self.dialog.signal_autoconnect({
@@ -116,6 +127,7 @@ class PluginDialog:
         
         self.author_name = self.dialog.get_widget("author_name")
         self.author_email = self.dialog.get_widget("author_email")
+        
         self.statbox = self.dialog.get_widget("statbox")
         
         self.apply_button = self.dialog.get_widget("apply")
@@ -132,12 +144,8 @@ class PluginDialog:
             except AttributeError:
                 pass
 
-        self.run_tool = None
-        self.report_vs_tool = len(item_list[0]) == 9
-        if self.report_vs_tool:
-            self.build_report_tree(item_list)
-        else:
-            self.build_tool_tree(item_list)
+        self.item = None
+        self.build_plugin_tree(item_list,categories)
         self.add_itself_to_menu()
         self.top.show()
 
@@ -165,15 +173,14 @@ class PluginDialog:
     def on_apply_clicked(self,obj):
         """Execute the selected report"""
 
-        if self.report_vs_tool:
-            (report_class,options_class,title,category,name) = self.run_tool
+        (item_class,options_class,title,category,name) = self.item
+        if self.content == REPORTS:
             Report.report(self.db,self.active,
-                        report_class,options_class,title,name,category)
-        elif self.run_tool:
-            if self.update:
-                self.run_tool(self.db,self.active,self.update,self.parent)
-            else:
-                self.run_tool(self.db,self.active)
+                          item_class,options_class,title,name,category)
+        else:
+            Tool.gui_tool(self.db,self.active,
+                          item_class,options_class,title,name,category,
+                          self.update,self.parent)
 
     def on_node_selected(self,obj):
         """Updates the informational display on the right hand side of
@@ -188,98 +195,62 @@ class PluginDialog:
         self.statbox.show()
         data = self.imap[path]
 
-        if self.report_vs_tool:
-            (report_class,options_class,title,
-                category,name,doc,status,author,email) = data
-        else:
-            title = data[0]
-            task = data[1]
-            doc = data[2]
-            status = data[3]
-            author = data[4]
-            email = data[5]
-
+        (report_class,options_class,title,category,name,
+         doc,status,author,email,unsupported) = data
         self.description.set_text(doc)
+        if unsupported:
+            status = UNSUPPORTED
         self.status.set_text(status)
         self.title.set_text('<span weight="bold" size="larger">%s</span>' % title)
         self.title.set_use_markup(1)
         self.author_name.set_text(author)
         self.author_email.set_text(email)
-        if self.report_vs_tool:
-            self.run_tool = (report_class,options_class,title,category,name)
-        else:
-            self.run_tool = task
+        self.item = (report_class,options_class,title,category,name)
 
-    def build_tool_tree(self,item_list):
+    def build_plugin_tree(self,item_list,categories):
         """Populates a GtkTree with each menu item assocated with a entry
         in the lists. The list must consist of a tuples with the following
         format:
         
-        (task_to_call, category, report name, description, image, status, author_name, author_email)
-        
-        Items in the same category are grouped under the same submen. The
-        task_to_call is bound to the 'select' callback of the menu entry."""
+        (item_class,options_class,title,category,name,
+         doc,status,author,email)
+
+        Items in the same category are grouped under the same submenu.
+        The categories must be dicts from integer to string.
+        """
 
         ilist = []
 
         # build the tree items and group together based on the category name
         item_hash = {}
-        for report in item_list:
-            t = (report[2],report[0],report[3],report[4],report[5],report[6])
-            if item_hash.has_key(report[1]):
-                item_hash[report[1]].append(t)
+        for plugin in item_list:
+            if plugin[9]:
+                category = UNSUPPORTED
             else:
-                item_hash[report[1]] = [t]
+                category = categories[plugin[3]]
+            if item_hash.has_key(category):
+                item_hash[category].append(plugin)
+            else:
+                item_hash[category] = [plugin]
 
         # add a submenu for each category, and populate it with the
         # GtkTreeItems that are associated with it.
-        key_list = item_hash.keys()
+        key_list = [ item for item in item_hash.keys() if item != UNSUPPORTED]
         key_list.sort()
         key_list.reverse()
         
         prev = None
-        for key in key_list:
+        if item_hash.has_key(UNSUPPORTED):
+            key = UNSUPPORTED
             data = item_hash[key]
             node = self.store.insert_after(None,prev)
             self.store.set(node,0,key)
             next = None
-            data.sort()
+            data.sort(lambda x,y: cmp(x[2],y[2]))
             for item in data:
                 next = self.store.insert_after(node,next)
                 ilist.append((next,item))
-                self.store.set(next,0,item[0])
-        for next,tab in ilist:
-            path = self.store.get_path(next)
-            self.imap[path] = tab
-
-    def build_report_tree(self,item_list):
-        """Populates a GtkTree with each menu item assocated with a entry
-        in the lists. The list must consist of a tuples with the following
-        format:
-        
-        (task_to_call, category, report name, description, image, status, author_name, author_email)
-        
-        Items in the same category are grouped under the same submen. The
-        task_to_call is bound to the 'select' callback of the menu entry."""
-
-        ilist = []
-
-        # build the tree items and group together based on the category name
-        item_hash = {}
-        for report in item_list:
-            category = const.standalone_categories[report[3]]
-            if item_hash.has_key(category):
-                item_hash[category].append(report)
-            else:
-                item_hash[category] = [report]
-
-        # add a submenu for each category, and populate it with the
-        # GtkTreeItems that are associated with it.
-        key_list = item_hash.keys()
-        key_list.sort()
-        key_list.reverse()
-        
-        prev = None
+                self.store.set(next,0,item[2])
         for key in key_list:
             data = item_hash[key]
             node = self.store.insert_after(None,prev)
@@ -311,9 +282,12 @@ class ReportPlugins(PluginDialog):
             self,parent,
             db,
             active,
-            PluginMgr.report_list,_("Report Selection"),
+            PluginMgr.report_list,
+            Report.standalone_categories,
+            _("Report Selection"),
             _("Select a report from those available on the left."),
-            _("_Generate"), _("Generate selected report"))
+            _("_Generate"), _("Generate selected report"),
+            REPORTS)
 
 #-------------------------------------------------------------------------
 #
@@ -335,10 +309,12 @@ class ToolPlugins(PluginDialog):
             db,
             active,
             PluginMgr.tool_list,
+            Tool.tool_categories,
             _("Tool Selection"),
             _("Select a tool from those available on the left."),
             _("_Run"),
-            _("Run selected tool"))
+            _("Run selected tool"),
+            TOOLS)
         self.update = update
 
 #-------------------------------------------------------------------------
@@ -411,7 +387,7 @@ class PluginStatus:
 
     def help(self,obj):
         """Display the GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-getting-started')
+        GrampsDisplay.help('gramps-getting-started')
 
     def pop_button_update(self, client,cnxn_id,entry,data):
         self.pop_button.set_active(GrampsKeys.get_pop_plugin_status())
@@ -421,85 +397,80 @@ class PluginStatus:
 # Building pulldown menus
 #
 #-------------------------------------------------------------------------
-def build_menu(top_menu,list,callback):
-    report_menu = gtk.Menu()
-    report_menu.show()
+def build_tools_menu(top_menu,callback):
+    build_plugin_menu(PluginMgr.tool_list,
+                      Tool.tool_categories,
+                      Tool.gui_tool,
+                      top_menu,callback)
     
-    hash_data = {}
-    for report in list:
-        if hash_data.has_key(report[1]):
-            hash_data[report[1]].append((report[2],report[0]))
-        else:
-            hash_data[report[1]] = [(report[2],report[0])]
-
-    catlist = hash_data.keys()
-    catlist.sort()
-    for key in catlist:
-        entry = gtk.MenuItem(key)
-        entry.show()
-        report_menu.append(entry)
-        submenu = gtk.Menu()
-        submenu.show()
-        entry.set_submenu(submenu)
-        lst = hash_data[key]
-        lst.sort()
-        for name in lst:
-            subentry = gtk.MenuItem("%s..." % name[0])
-            subentry.show()
-            subentry.connect("activate",callback,name[1])
-            submenu.append(subentry)
-    top_menu.set_submenu(report_menu)
-
-#-------------------------------------------------------------------------
-#
-# build_report_menu
-#
-#-------------------------------------------------------------------------
 def build_report_menu(top_menu,callback):
-#    build_menu(top_menu,_reports,callback)
-#def build_menu(top_menu,list,callback):
-    report_menu = gtk.Menu()
-    report_menu.show()
+    build_plugin_menu(PluginMgr.report_list,
+                      Report.standalone_categories,
+                      Report.report,
+                      top_menu,callback)
+
+def build_plugin_menu(item_list,categories,func,top_menu,callback):
+    menu = gtk.Menu()
+    menu.show()
     
     hash_data = {}
-    for report in PluginMgr.report_list:
-        standalone_category = const.standalone_categories[report[3]]
-        if hash_data.has_key(standalone_category):
-            hash_data[standalone_category].append(
-                    (report[0],report[1],report[2],report[4],report[3]))
+    for item in item_list:
+        if item[9]:
+            category = UNSUPPORTED
         else:
-            hash_data[standalone_category] = [
-                    (report[0],report[1],report[2],report[4],report[3])]
+            category = categories[item[3]]
+        if hash_data.has_key(category):
+            hash_data[category].append(
+                    (item[0],item[1],item[2],item[4],item[3]))
+        else:
+            hash_data[category] = [
+                    (item[0],item[1],item[2],item[4],item[3])]
 
-#   0               1               2           3       4
-#report_class, options_class, translated_name, name, category,
-
-    catlist = hash_data.keys()
+    # Sort categories, skipping the unsupported
+    catlist = [item for item in hash_data.keys() if item != UNSUPPORTED]
     catlist.sort()
     for key in catlist:
         entry = gtk.MenuItem(key)
         entry.show()
-        report_menu.append(entry)
+        menu.append(entry)
         submenu = gtk.Menu()
         submenu.show()
         entry.set_submenu(submenu)
         lst = hash_data[key]
-        lst.sort()
+        lst.sort(by_menu_name)
         for name in lst:
             subentry = gtk.MenuItem("%s..." % name[2])
             subentry.show()
-            subentry.connect("activate",callback,Report.report,name[0],name[1],name[2],name[3],name[4])
+            subentry.connect("activate",callback,func,
+                             name[0],name[1],name[2],name[3],name[4])
             submenu.append(subentry)
-    top_menu.set_submenu(report_menu)
 
+    # If there are any unsupported items we add separator
+    # and the unsupported category at the end of the menu
+    if hash_data.has_key(UNSUPPORTED):
+        entry = gtk.MenuItem(None)
+        entry.show()
+        menu.append(entry)
+        key = UNSUPPORTED
+        entry = gtk.MenuItem(key)
+        entry.show()
+        menu.append(entry)
+        submenu = gtk.Menu()
+        submenu.show()
+        entry.set_submenu(submenu)
+        lst = hash_data[key]
+        lst.sort(by_menu_name)
+        for name in lst:
+            subentry = gtk.MenuItem("%s..." % name[2])
+            subentry.show()
+            subentry.connect("activate",callback,func,
+                             name[0],name[1],name[2],name[3],name[4])
+            submenu.append(subentry)
 
-#-------------------------------------------------------------------------
-#
-# build_tools_menu
-#
-#-------------------------------------------------------------------------
-def build_tools_menu(top_menu,callback):
-    build_menu(top_menu,PluginMgr.tool_list,callback)
+    top_menu.set_submenu(menu)
+
+def by_menu_name(a,b):
+    return cmp(a[2],b[2])
 
 #-------------------------------------------------------------------------
 #
@@ -649,81 +620,126 @@ class GrampsBookFormatComboBox(gtk.ComboBox):
 
 #-------------------------------------------------------------------------
 #
-# reload_plugins
+# Reload plugins
 #
 #-------------------------------------------------------------------------
-def reload_plugins(obj=None,junk1=None,junk2=None,junk3=None):
-    """Treated as a callback, causes all plugins to get reloaded. This is
-    useful when writing and debugging a plugin"""
+class Reload(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
+
+        """
+        Treated as a callback, causes all plugins to get reloaded.
+        This is useful when writing and debugging a plugin.
+        """
     
-    pymod = re.compile(r"^(.*)\.py$")
+        pymod = re.compile(r"^(.*)\.py$")
 
-    oldfailmsg = PluginMgr.failmsg_list[:]
-    PluginMgr.failmsg_list = []
+        oldfailmsg = PluginMgr.failmsg_list[:]
+        PluginMgr.failmsg_list = []
 
-    # attempt to reload all plugins that have succeeded in the past
-    for plugin in PluginMgr._success_list:
-        filename = os.path.basename(plugin.__file__)
-        filename = filename.replace('pyc','py')
-        filename = filename.replace('pyo','py')
-        try: 
-            reload(plugin)
-        except:
-            PluginMgr.failmsg_list.append((filename,sys.exc_info()))
+        # attempt to reload all plugins that have succeeded in the past
+        for plugin in PluginMgr._success_list:
+            filename = os.path.basename(plugin.__file__)
+            filename = filename.replace('pyc','py')
+            filename = filename.replace('pyo','py')
+            try: 
+                reload(plugin)
+            except:
+                PluginMgr.failmsg_list.append((filename,sys.exc_info()))
             
-    # attempt to load the plugins that have failed in the past
-    
-    for (filename,message) in oldfailmsg:
-        name = os.path.split(filename)
-        match = pymod.match(name[1])
-        if not match:
-            continue
-        PluginMgr.attempt_list.append(filename)
-        plugin = match.groups()[0]
-        try: 
-            # For some strange reason second importing of a failed plugin
-            # results in success. Then reload reveals the actual error.
-            # Looks like a bug in Python.
-            a = __import__(plugin)
-            reload(a)
-            PluginMgr._success_list.append(a)
-        except:
-            PluginMgr.failmsg_list.append((filename,sys.exc_info()))
+        # Remove previously good plugins that are now bad
+        # from the registered lists
+        (PluginMgr.export_list,
+         PluginMgr.import_list,
+         PluginMgr.tool_list,
+         PluginMgr.cli_tool_list,
+         PluginMgr.report_list,
+         PluginMgr.bkitems_list,
+         PluginMgr.cl_list,
+         PluginMgr.textdoc_list,
+         PluginMgr.bookdoc_list,
+         PluginMgr.drawdoc_list) = PluginMgr.purge_failed(
+            PluginMgr.failmsg_list,
+            PluginMgr.export_list,
+            PluginMgr.import_list,
+            PluginMgr.tool_list,
+            PluginMgr.cli_tool_list,
+            PluginMgr.report_list,
+            PluginMgr.bkitems_list,
+            PluginMgr.cl_list,
+            PluginMgr.textdoc_list,
+            PluginMgr.bookdoc_list,
+            PluginMgr.drawdoc_list)
 
-    # attempt to load any new files found
-    for directory in PluginMgr.loaddir_list:
-        for filename in os.listdir(directory):
+        # attempt to load the plugins that have failed in the past
+        for (filename,message) in oldfailmsg:
             name = os.path.split(filename)
             match = pymod.match(name[1])
             if not match:
                 continue
-            if filename in PluginMgr.attempt_list:
-                continue
             PluginMgr.attempt_list.append(filename)
             plugin = match.groups()[0]
             try: 
+                # For some strange reason second importing of a failed plugin
+                # results in success. Then reload reveals the actual error.
+                # Looks like a bug in Python.
                 a = __import__(plugin)
-                if a not in PluginMgr._success_list:
-                    PluginMgr._success_list.append(a)
+                reload(a)
+                PluginMgr._success_list.append(a)
             except:
                 PluginMgr.failmsg_list.append((filename,sys.exc_info()))
 
-    if GrampsKeys.get_pop_plugin_status() and len(PluginMgr.failmsg_list):
-        PluginStatus()
-    else:
-        global status_up
-        if status_up:
-        	status_up.close(None)
-        status_up = None
+        # attempt to load any new files found
+        for directory in PluginMgr.loaddir_list:
+            for filename in os.listdir(directory):
+                name = os.path.split(filename)
+                match = pymod.match(name[1])
+                if not match:
+                    continue
+                if filename in PluginMgr.attempt_list:
+                    continue
+                PluginMgr.attempt_list.append(filename)
+                plugin = match.groups()[0]
+                try: 
+                    a = __import__(plugin)
+                    if a not in PluginMgr._success_list:
+                        PluginMgr._success_list.append(a)
+                except:
+                    PluginMgr.failmsg_list.append((filename,sys.exc_info()))
+
+        if GrampsKeys.get_pop_plugin_status() and len(PluginMgr.failmsg_list):
+            PluginStatus()
+        else:
+            global status_up
+            if status_up:
+                status_up.close(None)
+            status_up = None
+
+        # Re-generate tool and report menus
+        parent.build_plugin_menus(rebuild=True)
+
+class ReloadOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
 
 #-------------------------------------------------------------------------
 #
 # Register the plugin reloading tool
 #
 #-------------------------------------------------------------------------
-PluginMgr.register_tool(
-    reload_plugins,
-    _("Reload plugins"),
-    category=_("Debug"),
-    description=_("Attempt to reload plugins. Note: This tool itself is not reloaded!"),
-    )
+
+if __debug__:
+    PluginMgr.register_tool(
+        name = 'reload',
+        category = Tool.TOOL_DEBUG,
+        tool_class = Reload,
+        options_class = ReloadOptions,
+        modes = Tool.MODE_GUI,
+        translated_name = _("Reload plugins"),
+        description=_("Attempt to reload plugins. "
+                      "Note: This tool itself is not reloaded!"),
+        )

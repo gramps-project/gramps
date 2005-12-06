@@ -48,6 +48,7 @@ import gtk.glade
 import RelLib
 import Utils
 import const
+import Tool
 from QuestionDialog import OkDialog, MissingMediaDialog
 
 #-------------------------------------------------------------------------
@@ -55,46 +56,52 @@ from QuestionDialog import OkDialog, MissingMediaDialog
 # runTool
 #
 #-------------------------------------------------------------------------
-def runTool(database,active_person,callback,parent=None):
+class Check(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
 
-    try:
-        if database.readonly:
-            # TODO: split plugin in a check and repair part to support
-            # checking of a read only database
-            return
-        
-        trans = database.transaction_begin()
-        trans.set_batch(True)
-        database.disable_signals()
-        checker = CheckIntegrity(database,parent,trans)
-        checker.cleanup_missing_photos(0)
+        # def runTool(database,active_person,callback,parent=None):
+        cli = int(parent == None)
 
-        prev_total = -1
-        total = 0
+        try:
+            if db.readonly:
+                # TODO: split plugin in a check and repair part to support
+                # checking of a read only database
+                return
         
-        while prev_total != total:
-            prev_total = total
+            trans = db.transaction_begin()
+            trans.set_batch(True)
+            db.disable_signals()
+            checker = CheckIntegrity(db,parent,trans)
+            checker.fix_encoding()
+            checker.cleanup_missing_photos(cli)
             
-            checker.check_for_broken_family_links()
-            checker.check_parent_relationships()
-            checker.cleanup_empty_families(0)
-            checker.cleanup_duplicate_spouses()
+            prev_total = -1
+            total = 0
+        
+            while prev_total != total:
+                prev_total = total
+            
+                checker.check_for_broken_family_links()
+                checker.check_parent_relationships()
+                checker.cleanup_empty_families(cli)
+                checker.cleanup_duplicate_spouses()
 
-            total = checker.family_errors()
+                total = checker.family_errors()
 
-        checker.check_events()
-        checker.check_place_references()
-        checker.check_source_references()
-        database.transaction_commit(trans, _("Check Integrity"))
-        database.enable_signals()
-        database.request_rebuild()
+            checker.check_events()
+            checker.check_place_references()
+            checker.check_source_references()
+            db.transaction_commit(trans, _("Check Integrity"))
+            db.enable_signals()
+            db.request_rebuild()
 
-        errs = checker.build_report(0)
-        if errs:
-            Report(checker.text.getvalue(),parent)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+            errs = checker.build_report(cli)
+            if errs:
+                Report(checker.text.getvalue(),parent)
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
 
 #-------------------------------------------------------------------------
 #
@@ -146,6 +153,24 @@ class CheckIntegrity:
                 self.db.commit_person(p,self.trans)
             data = cursor.next()
             self.progress.step()
+        cursor.close()
+
+
+    def fix_encoding(self):
+        self.progress.set_pass(_('Looking for character encoding errors'),
+                               self.db.get_number_of_media_objects())
+
+        cursor = self.db.get_media_cursor()
+        value = cursor.first()
+        while value:
+            (handle,data) = value
+            if type(data[2]) != unicode or type(data[4]) != unicode:
+                obj = self.db.get_object_from_handle(handle)
+                obj.path = Utils.fix_encoding( obj.path)
+                obj.desc = Utils.fix_encoding( obj.desc)
+                self.db.commit_media_object(obj,self.trans)
+            self.progress.step()
+            value = cursor.next()
         cursor.close()
 
     def check_for_broken_family_links(self):
@@ -314,7 +339,7 @@ class CheckIntegrity:
         for ObjectId in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(ObjectId)
             photo_name = obj.get_path()
-            if not os.path.isfile(photo_name):
+            if photo_name is not None and photo_name != "" and not Utils.find_file(photo_name):
                 if cl:
                     print "Warning: media file %s was not found." \
                         % os.path.basename(photo_name)
@@ -383,6 +408,7 @@ class CheckIntegrity:
                                len(fhandle_list))
         
         for family_handle in fhandle_list:
+            self.progress.step()
             family = self.db.get_family_from_handle(family_handle)
             mother_handle = family.get_mother_handle()
             father_handle = family.get_father_handle()
@@ -737,12 +763,13 @@ class CheckIntegrity:
                 if family:
                     pn = Utils.family_name(family,self.db)
                 else:
-                    pn = family.gramps_id
+                    pn = _("None")
                 self.text.write('\t')
                 self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
 
         if efam == 1:
             self.text.write(_("1 empty family was found\n"))
+            self.text.write("\t%s\n" % self.empty_family[0])
         elif efam > 1:
             self.text.write(_("%d empty families were found\n") % efam)
         if rel == 1:
@@ -848,11 +875,30 @@ class Report:
 # 
 #
 #------------------------------------------------------------------------
+class CheckOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 from PluginMgr import register_tool
 
 register_tool(
-    runTool,
-    _("Check and repair database"),
-    category=_("Database Repair"),
+    name = 'check',
+    category = Tool.TOOL_DBFIX,
+    tool_class = Check,
+    options_class = CheckOptions,
+    modes = Tool.MODE_GUI | Tool.MODE_CLI,
+    translated_name = _("Check and repair database"),
+    status = _("Stable"),
+    author_name = "Donald N. Allingham",
+    author_email = "don@gramps-project.org",
     description=_("Checks the database for integrity problems, fixing the problems that it can")
     )

@@ -44,6 +44,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import GrampsKeys
+import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -56,6 +57,10 @@ class TipOfDay:
         top = xml.get_widget("tod")
         tip = xml.get_widget("tip")
         use = xml.get_widget('usetips')
+
+        alt_title = xml.get_widget("title")
+        tmsg = _("GRAMPS' Tip of the Day")
+        Utils.set_titles(top, alt_title, tmsg, _("Tip of the Day"))
         
         tp = TipParser()
         tip_list = tp.get()

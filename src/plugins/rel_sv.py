@@ -60,10 +60,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         Relationship.RelationshipCalculator.__init__(self,db)
 
     def get_parents(self,level):
-        if level == 0:
+        if level == 1:
             return "föräldrar"
         else:
-            return "anor i %d-te generationen" % (level+1)
+            return "anor i generation %d" % (level)
 
     def get_cousin(self,level):
         if level>len(_cousin_level)-1:

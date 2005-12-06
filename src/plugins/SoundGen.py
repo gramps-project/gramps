@@ -47,21 +47,16 @@ from gnome import help_display
 import soundex
 import Utils
 import AutoComp
+import Tool
 
 #-------------------------------------------------------------------------
 #
 #
 #-------------------------------------------------------------------------
-def runTool(database,active_person,callback,parent=None):
-    SoundGen(database,active_person,parent)
+class SoundGen(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
 
-#-------------------------------------------------------------------------
-#
-#
-#-------------------------------------------------------------------------
-class SoundGen:
-    def __init__(self,database,active_person,parent):
-        self.db = database
         self.parent = parent
         if self.parent.child_windows.has_key(self.__class__):
             self.parent.child_windows[self.__class__].present(None)
@@ -101,8 +96,8 @@ class SoundGen:
 
         AutoComp.fill_combo(self.autocomp, names)
 
-        if active_person:
-            n = active_person.get_primary_name().get_surname()
+        if person:
+            n = person.get_primary_name().get_surname()
             self.name.set_text(n)
             try:
                 se_text = soundex.soundex(n)
@@ -147,6 +142,19 @@ class SoundGen:
             se_text = soundex.soundex('')
         self.value.set_text(se_text)
 
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class SoundGenOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
 #-------------------------------------------------------------------------
 #
 #
@@ -155,8 +163,14 @@ class SoundGen:
 from PluginMgr import register_tool
 
 register_tool(
-    runTool,
-    _("Generate SoundEx codes"),
-    category=_("Utilities"),
+    name = 'soundgen',
+    category = Tool.TOOL_UTILS,
+    tool_class = SoundGen,
+    options_class = SoundGenOptions,
+    modes = Tool.MODE_GUI,
+    translated_name = _("Generate SoundEx codes"),
+    status=(_("Stable")),
+    author_name = "Donald N. Allingham",
+    author_email = "don@gramps-project.org",
     description=_("Generates SoundEx codes for names")
     )

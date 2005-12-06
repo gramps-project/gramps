@@ -258,7 +258,6 @@ class GrampsBSDDB(GrampsDbBase):
             if callback:
                 callback()
             self.person_map[key] = self.person_map[key]
-
         self.person_map.sync()
 
         # Repair secondary indices related to family_map
@@ -481,7 +480,7 @@ class GrampsBSDDB(GrampsDbBase):
     def remove_place(self,handle,transaction):
         if not self.readonly and handle and str(handle) in self.place_map:
             if transaction != None:
-                old_data = self.place_map.get(handle)
+                old_data = self.place_map.get(str(handle))
                 transaction.add(PLACE_KEY,handle,old_data)
                 self.emit('place-delete',([handle],))
             self.place_map.delete(str(handle))
@@ -489,7 +488,7 @@ class GrampsBSDDB(GrampsDbBase):
     def remove_object(self,handle,transaction):
         if not self.readonly and handle and str(handle) in self.media_map:
             if transaction != None:
-                old_data = self.media_map.get(handle)
+                old_data = self.media_map.get(str(handle))
                 transaction.add(MEDIA_KEY,handle,old_data)
                 self.emit('media-delete',([handle],))
             self.media_map.delete(str(handle))
@@ -1015,3 +1014,21 @@ class GrampsBSDDB(GrampsDbBase):
             data = cursor.next()
         cursor.close()
         self.transaction_commit(trans,"Upgrade to DB version 9")
+
+
+if __name__ == "__main__":
+
+    import sys
+    
+    d = GrampsBSDDB()
+    d.load(sys.argv[1],lambda x: x)
+
+    c = d.get_person_cursor()
+    data = c.first()
+    while data:
+        person = Person(data[1])
+        print data[0], person.get_primary_name().get_name(),
+        data = c.next()
+    c.close()
+
+    print d.surnames.keys()

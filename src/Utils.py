@@ -26,7 +26,9 @@
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 import locale
+import sets
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -36,13 +38,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk
 import gtk.gdk
-import gnome
 
-try:
-    from gnomevfs import get_mime_type, mime_get_description
-except:
-    from gnome.vfs import get_mime_type, mime_get_description
-    
 #-------------------------------------------------------------------------
 #
 # Gramps modules
@@ -53,6 +49,7 @@ import GrampsMime
 import NameDisplay
 import Date
 import RelLib
+import Errors
 
 #-------------------------------------------------------------------------
 #
@@ -324,6 +321,19 @@ def history_broken():
 data_recover_msg = _('The data can only be recovered by Undo operation '
             'or by quitting with abandoning changes.')
 
+def fix_encoding(value):
+    import locale
+    if type(value) != unicode:
+        try:
+            return unicode(value)
+        except:
+            codeset = locale.getpreferredencoding()
+            if codeset == 'UTF-8':
+                codeset = 'latin1'
+            return unicode(value,codeset)
+    else:
+        return value
+
 #-------------------------------------------------------------------------
 #
 # force_unicode
@@ -506,13 +516,55 @@ def find_mime_type_pixbuf(mime_type):
     
 def get_mime_description(mime_type):
     try:
-        value = mime_get_description(mime_type)
-        if value:
-            return value
-        else:
-            return ''
+        return GrampsMime.get_description(mime_type)
     except:
         return ''
+
+def find_file( filename):
+    # try the filename we got
+    try:
+        fname = filename
+        if os.path.isfile( filename):
+            return( filename)
+    except:
+        pass
+    
+    # Build list of elternate encodings
+    encodings = [sys.getfilesystemencoding(), locale.getpreferredencoding(), 'UTF-8', 'ISO-8859-1']
+    encodings = list(sets.Set(encodings))
+    for enc in encodings:
+        try:
+            fname = filename.encode(enc)
+            if os.path.isfile( fname):
+                return fname
+        except:
+            pass
+
+    # not found
+    return ''
+
+def find_folder( filename):
+    # try the filename we got
+    try:
+        fname = filename
+        if os.path.isdir( filename):
+            return( filename)
+    except:
+        pass
+    
+    # Build list of elternate encodings
+    encodings = [sys.getfilesystemencoding(), locale.getpreferredencoding(), 'UTF-8', 'ISO-8859-1']
+    encodings = list(sets.Set(encodings))
+    for enc in encodings:
+        try:
+            fname = filename.encode(enc)
+            if os.path.isdir( fname):
+                return fname
+        except:
+            pass
+
+    # not found
+    return ''
 
 #-------------------------------------------------------------------------
 #
@@ -632,7 +684,7 @@ def gfloat(val):
     return 0.0
 
 def gformat(val):
-    """Performs ("%.3f" % val) formatting with the resulting string always 
+    """Performs ('%.3f' % val) formatting with the resulting string always 
     using dot ('.') as a decimal point.
     
     Useful for writing float values into XML when under non-English locale.
@@ -643,6 +695,7 @@ def gformat(val):
     return return_val.replace(decimal_point,'.')
 
 def search_for(name):
+    name = name.split()[0]
     for i in os.environ['PATH'].split(':'):
         fname = os.path.join(i,name)
         if os.access(fname,os.X_OK) and not os.path.isdir(fname):
@@ -703,7 +756,7 @@ def create_id():
     return "%08x%08x" % ( int(time.time()*10000),
                           rand.randint(0,maxint))
 
-def probably_alive(person,db,current_year=None):
+def probably_alive(person,db,current_year=None,limit=0):
     """Returns true if the person may be alive.
 
     This works by a process of emlimination. If we can't find a good
@@ -723,9 +776,9 @@ def probably_alive(person,db,current_year=None):
         death = db.get_event_from_handle(person.death_ref.ref)
         if death.get_date_object().get_start_date() != Date.EMPTY:
             death_year = death.get_date_object().get_year()
-            if death_year < current_year:
+            if death_year - limit < current_year:
                 return False
-    
+
     # Look for Cause Of Death, Burial or Cremation events.
     # These are fairly good indications that someone's not alive.
     for ev_ref in person.event_ref_list:
@@ -735,7 +788,7 @@ def probably_alive(person,db,current_year=None):
             if not death_year:
                 death_year = ev.get_date_object().get_year()
             if ev.get_date_object().get_start_date() != Date.EMPTY:
-                if ev.get_date_object().get_year() < current_year:
+                if ev.get_date_object().get_year() - limit < current_year:
                     return False
 
     birth_year = None
@@ -746,32 +799,23 @@ def probably_alive(person,db,current_year=None):
         if birth.get_date_object().get_start_date() != Date.EMPTY:
             if not birth_year:
                 birth_year = birth.get_date_object().get_year()
-            if birth.get_date_object().get_year() > current_year:
-                # person is not yet born
-                return False
             r = not_too_old(birth.get_date_object(),current_year)
             if r:
-                #print person.get_primary_name().get_name(), " is alive because they were born late enough."
                 return True
-    
     
     if not birth_year and death_year:
         if death_year > current_year + 110:
             # person died more tha 110 after current year
             return False
             
-
     # Neither birth nor death events are available.  Try looking
     # for descendants that were born more than a lifespan ago.
 
     min_generation = 13
-    max_generation = 60
-    max_age_difference = 60
 
     def descendants_too_old (person, years):
         for family_handle in person.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
-            family_list = family.get_child_handle_list()
             
             for child_handle in family.get_child_handle_list():
                 child = db.get_person_from_handle(child_handle)
@@ -800,10 +844,14 @@ def probably_alive(person,db,current_year=None):
 
     # If there are descendants that are too old for the person to have
     # been alive in the current year then they must be dead.
-    if descendants_too_old (person, min_generation):
-        #print person.get_primary_name().get_name(), " is dead because descendants are too old."
-        return False
 
+    try:
+        if descendants_too_old (person, min_generation):
+            return False
+    except RuntimeError:
+        raise Errors.DatabaseError(
+            _("Database error: %s is defined as his or her own ancestor") %
+            NameDisplay.displayer.display(person))
 
     average_generation_gap = 20
 
@@ -863,7 +911,6 @@ def probably_alive(person,db,current_year=None):
                     return True
 
         return False
-
 
     # If there are ancestors that would be too old in the current year
     # then assume our person must be dead too.
@@ -1036,29 +1083,6 @@ def get_type_converter_by_name(val_str):
     elif val_str in ('str','unicode'):
         return unicode
     return unicode
-
-def strip_context(msgid,sep='|'):
-    """
-    Strip the context used for resolving translation ambiguities.
-    
-    The translation of msgid is returned unless the translation is
-    not available and the msgid contains the separator. In that case,
-    the returned value is the portion of msgid following the last
-    separator. Default separator is '|'.
-
-    @param msgid: The string to translated.
-    @type msgid: unicode
-    @param sep: The separator marking the context.
-    @type sep: unicode
-    @return: Translation or the original with context stripped.
-    @rtype: unicode
-
-    """
-    msgval = _(msgid)
-    sep_idx = msgid.rfind(sep)
-    if msgval == msgid and sep_idx != -1:
-        msgval = msgid[sep_idx+1:]
-    return msgval
 
 class ProgressMeter:
     """

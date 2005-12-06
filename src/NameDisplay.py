@@ -26,14 +26,6 @@ Class handling language-specific displaying of names.
 
 #-------------------------------------------------------------------------
 #
-# Standard python modules
-#
-#-------------------------------------------------------------------------
-import os
-import locale
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -112,6 +104,13 @@ class NameDisplay:
         else:
             return self._lnfn(name)
 
+    def display_given(self,person):
+        name = person.get_primary_name()
+        if name.patronymic:
+            return "%s %s" % (name.first_name, name.patronymic)
+        else:
+            return name.first_name
+
     def display(self,person):
         """
         Returns a text string representing the L{RelLib.Person} instance's
@@ -126,9 +125,27 @@ class NameDisplay:
         """
         name = person.get_primary_name()
         if name.display_as == RelLib.Name.LNFN:
-            return self._lnfn(name)
+            return self._lnfn(name,"")
         else:
-            return self._fnln(name)
+            return self._fnln(name,"")
+
+    def display_formal(self,person):
+        """
+        Returns a text string representing the L{RelLib.Person} instance's
+        L{RelLib.Name} in a manner that should be used for normal displaying.
+
+        @param person: L{RelLib.Person} instance that contains the
+        L{RelLib.Name} that is to be displayed. The primary name is used for
+        the display.
+        @type person: L{RelLib.Person}
+        @returns: Returns the L{RelLib.Person} instance's name
+        @rtype: str
+        """
+        name = person.get_primary_name()
+        if name.display_as == RelLib.Name.LNFN:
+            return self._lnfn(name,'')
+        else:
+            return self._fnln(name,'')
 
     def display_name(self,name):
         """
@@ -175,17 +192,21 @@ class NameDisplay:
             else:
                 return "%s %s, %s" % (last, name.suffix, first)
         
-    def _fnln(self,name):
+    def _fnln(self,name,nickname=""):
         """
         Prints the Western style first name, last name style.
         Typically this is::
 
            FirstName Patronymic SurnamePrefix Surname SurnameSuffix
         """
+
+        first = name.first_name
+
+        if nickname:
+            first = '%s "%s"' % (first,nickname)
+            
         if name.patronymic:
-            first = "%s %s" % (name.first_name, name.patronymic)
-        else:
-            first = name.first_name
+            first = "%s %s" % (first, name.patronymic)
 
         if self.force_upper:
             last = name.surname.upper()
@@ -218,33 +239,40 @@ class NameDisplay:
             val = pn.first_name
         return db.get_name_group_mapping(val)
         
-    def _lnfn(self,name):
+    def _lnfn(self,name,nickname=u""):
         """
         Prints the Western style last name, first name style.
         Typically this is::
 
             SurnamePrefix Surname, FirstName Patronymic SurnameSuffix
         """
+
+        first = name.first_name
+
+        if nickname:
+            first = '%s "%s"' % (first,nickname)
+            
         if name.patronymic:
-            first = "%s %s" % (name.first_name, name.patronymic)
-        else:
-            first = name.first_name
+            first = "%s %s" % (first, name.patronymic)
 
         if self.force_upper:
             last = name.surname.upper()
         else:
             last = name.surname
 
+        if last:
+            last += ","
+
         if name.suffix:
             if name.prefix:
-                return "%s %s, %s %s" % (name.prefix, last, first, name.suffix)
+                return "%s %s %s %s" % (name.prefix, last, first, name.suffix)
             else:
-                return "%s, %s %s" % (last, first, name.suffix)
+                return "%s %s %s" % (last, first, name.suffix)
         else:
             if name.prefix:
-                return "%s %s, %s" % (name.prefix, last, first)
+                return "%s %s %s" % (name.prefix, last, first)
             else:
-                return "%s, %s" % (last, first)
+                return "%s %s" % (last, first)
 
     
 displayer = NameDisplay()

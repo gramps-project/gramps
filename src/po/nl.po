@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 0.9 CVS\n"
 "POT-Creation-Date: Thu Jun 23 14:11:42 2005\n"
-"PO-Revision-Date: 2005-08-12 17:17+0200\n"
+"PO-Revision-Date: 2005-11-10 12:04-0800\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -3159,7 +3159,7 @@ msgstr "%(male_name)s overleed op %(death_date)s in %(death_place)s."
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d years."
-msgstr "%(male_name)s overleed op %(death_date)s in %(death_place)s% op een leeftijd van %(age)d jaar."
+msgstr "%(male_name)s overleed op %(death_date)s in %(death_place)s op een leeftijd van %(age)d jaar."
 
 #: ReportUtils.py:1181
 msgid ""
@@ -9530,7 +9530,7 @@ msgstr "Meervoudig ouderschap voor %s.\n"
 
 #: plugins/Verify.py:277
 msgid "Married often: %(male_name)s married %(nfam)d times.\n"
-msgstr "Vaak getrouwd: %s(male_name)s is %(nfam)d keer getrouwd.\n"
+msgstr "Vaak getrouwd: %(male_name)s is %(nfam)d keer getrouwd.\n"
 
 #: plugins/Verify.py:280
 msgid "Married often: %(female_name)s married %(nfam)d times.\n"

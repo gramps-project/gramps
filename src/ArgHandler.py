@@ -33,7 +33,6 @@ Module responsible for handling the command line arguments for GRAMPS.
 #-------------------------------------------------------------------------
 import os
 import getopt
-import time
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -50,6 +49,7 @@ import GrampsKeys
 import RecentFiles
 import PluginMgr
 import Report
+import Tool
 
 #-------------------------------------------------------------------------
 #
@@ -203,8 +203,8 @@ class ArgHandler:
                     outformat = 'geneweb'
                 elif outfname[-6:].upper() == "GRAMPS":
                     outformat = 'gramps-xml'
-                elif fname[-3:].upper() == "GRDB":
-                    format = 'grdb'
+                elif outfname[-4:].upper() == "GRDB":
+                    outformat = 'grdb'
                 else:
                     print "Unrecognized format for output file %s" % outfname
                     print "Ignoring output file:  %s" % outfname
@@ -212,7 +212,7 @@ class ArgHandler:
                 self.exports.append((outfname,outformat))
             elif o in ( '-a', '--action' ):
                 action = v
-                if action not in ( 'check', 'summary', 'report' ):
+                if action not in ( 'check', 'summary', 'report', 'tool' ):
                     print "Unknown action: %s. Ignoring." % action
                     continue
                 options_str = ""
@@ -372,24 +372,24 @@ class ArgHandler:
                 "supply at least one input file to process."
             print "Launching interactive session..."
 
-#         if self.parent.cl:
-#             for expt in self.exports:
-#                 print "Exporting: file %s, format %s." % expt
-#                 self.cl_export(expt[0],expt[1])
+        if self.parent.cl:
+            for (action,options_str) in self.actions:
+                print "Performing action: %s." % action
+                if options_str:
+                    print "Using options string: %s" % options_str
+                self.cl_action(action,options_str)
 
-#             for (action,options_str) in self.actions:
-#                 print "Performing action: %s." % action
-#                 if options_str:
-#                     print "Using options string: %s" % options_str
-#                 self.cl_action(action,options_str)
-            
-#             print "Cleaning up."
-#             # remove import db after use
-#             self.parent.db.close()
-#             if self.imports:
-#                 os.remove(self.imp_db_path)
-#             print "Exiting."
-#             os._exit(0)
+            for expt in self.exports:
+                print "Exporting: file %s, format %s." % expt
+                self.cl_export(expt[0],expt[1])
+
+            print "Cleaning up."
+            # remove import db after use
+            self.parent.db.close()
+            if self.imports:
+                os.remove(self.imp_db_path)
+            print "Exiting."
+            os._exit(0)
 
         if self.imports:
             self.parent.import_tool_callback()
@@ -495,7 +495,14 @@ class ArgHandler:
         Try to write into filename using the format.
         Any errors will cause the os._exit(1) call.
         """
-        if format == 'gedcom':
+        if format == 'grdb':
+            import WriteGrdb
+            try:
+                WriteGrdb.exportData(self.parent.db,filename)
+            except:
+                print "Error exporting %s" % filename
+                os._exit(1)
+        elif format == 'gedcom':
             import WriteGedcom
             try:
                 gw = WriteGedcom.GedcomWriter(self.parent.db,None,1,filename)
@@ -592,17 +599,43 @@ class ArgHandler:
                     category = item[1]
                     report_class = item[2]
                     options_class = item[3]
-                    if category in (const.CATEGORY_BOOK,const.CATEGORY_CODE,
-                                    const.CATEGORY_WEB):
+                    if category in (Report.CATEGORY_BOOK,Report.CATEGORY_CODE,
+                                    Report.CATEGORY_WEB):
                         options_class(self.parent.db,name,
                                       category,options_str_dict)
                     else:
                         Report.cl_report(self.parent.db,name,category,
-                                report_class,options_class,options_str_dict)
+                                         report_class,options_class,
+                                         options_str_dict)
                     return
 
             print "Unknown report name. Available names are:"
             for item in PluginMgr.cl_list:
+                print "   %s" % item[0]
+        elif action == "tool":
+            try:
+                options_str_dict = dict( [ tuple(chunk.split('=')) for
+                                           chunk in options_str.split(',') ] )
+            except:
+                options_str_dict = {}
+                print "Ignoring invalid options string."
+
+            name = options_str_dict.pop('name',None)
+            if not name:
+                print "Tool name not given. Please use name=toolname"
+                os._exit(1)
+
+            for item in PluginMgr.cli_tool_list:
+                if name == item[0]:
+                    category = item[1]
+                    tool_class = item[2]
+                    options_class = item[3]
+                    Tool.cli_tool(self.parent.db,name,category,
+                                  tool_class,options_class,options_str_dict)
+                    return
+
+            print "Unknown tool name. Available names are:"
+            for item in PluginMgr.cli_tool_list:
                 print "   %s" % item[0]
         else:
             print "Unknown action: %s." % action

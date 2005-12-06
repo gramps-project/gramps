@@ -58,13 +58,13 @@ gdir_PYTHON = \
 	GrampsBSDDB.py\
 	GrampsDbBase.py\
 	GrampsDBCallback.py\
+	GrampsDisplay.py\
 	GrampsInMemDB.py\
 	GrampsXMLDB.py\
 	GrampsGEDDB.py\
 	GrampsMime.py\
 	gramps_main.py\
 	gramps.py\
-	GraphLayout.py\
 	ImageSelect.py\
 	ImgManip.py\
 	latin_ansel.py\
@@ -126,7 +126,11 @@ gdir_PYTHON = \
 	WriteGrdb.py\
 	EventView.py\
 	SelectEvent.py\
-	Spell.py
+	Spell.py\
+	Options.py\
+	Tool.py\
+	TransUtils.py\
+	WindowUtils.py
 
 # Could use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all files individually
@@ -179,3 +183,6 @@ pycheck:
 docs:
 	epydoc -o doc --url http://gramps.sourceforge.net --name GRAMPS --html $(docfiles)
 	epydoc --pdf $(docfiles)
+
+cmdplug:
+	./build_cmdplug

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004  Donald N. Allingham
+# Copyright (C) 2004-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -119,6 +119,7 @@ class DateParser:
         unicode(locale.nl_langinfo(locale.ABMON_12),_codeset).lower(): 12,
        }
 
+    # modifiers before the date
     modifier_to_int = {
         'before' : Date.MOD_BEFORE, 'bef'    : Date.MOD_BEFORE,
         'bef.'   : Date.MOD_BEFORE, 'after'  : Date.MOD_AFTER,
@@ -127,6 +128,9 @@ class DateParser:
         'abt'    : Date.MOD_ABOUT,  'circa'  : Date.MOD_ABOUT,
         'c.'     : Date.MOD_ABOUT,  'around' : Date.MOD_ABOUT,
         }
+    # in some languages some of above listed modifiers are after the date,
+    # in that case the subclass should put them into this dictionary instead
+    modifier_after_to_int = {}
 
     hebrew_to_int = {
         "tishri"  : 1,   "heshvan" : 2,   "kislev"  : 3,
@@ -205,6 +209,7 @@ class DateParser:
         self.parser = {
             Date.CAL_GREGORIAN : self._parse_greg_julian,
             Date.CAL_JULIAN    : self._parse_greg_julian,
+            Date.CAL_FRENCH    : self._parse_french,
             Date.CAL_PERSIAN   : self._parse_persian,
             Date.CAL_HEBREW    : self._parse_hebrew,
             Date.CAL_ISLAMIC   : self._parse_islamic,
@@ -236,8 +241,13 @@ class DateParser:
         self._qual_str = '(' + '|'.join(
             [ key.replace('.','\.') for key in self.quality_to_int.keys() ]
             ) + ')'
+        keys = self.modifier_to_int.keys()
+        keys.sort(lambda x, y: cmp(len(y), len(x)))
         self._mod_str  = '(' + '|'.join(
-            [ key.replace('.','\.') for key in self.modifier_to_int.keys() ]
+            [ key.replace('.','\.') for key in keys ]
+            ) + ')'
+        self._mod_after_str  = '(' + '|'.join(
+            [ key.replace('.','\.') for key in self.modifier_after_to_int.keys() ]
             ) + ')'
 
         # Need to reverse-sort the keys, so that April matches before Apr does.
@@ -264,29 +274,31 @@ class DateParser:
                            re.IGNORECASE)
         self._modifier = re.compile('%s\s+(.*)' % self._mod_str,
                            re.IGNORECASE)
+        self._modifier_after = re.compile('(.*)\s+%s' % self._mod_after_str,
+                           re.IGNORECASE)
         self._abt2     = re.compile('<(.*)>',re.IGNORECASE)
-        self._text     = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._mon_str,
+        self._text     = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._mon_str,
                            re.IGNORECASE)
-        self._text2    = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
+        self._text2    = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._mon_str,
                            re.IGNORECASE)
-        self._jtext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._jmon_str,
+        self._jtext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._jmon_str,
                            re.IGNORECASE)
-        self._jtext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str,
+        self._jtext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._jmon_str,
                            re.IGNORECASE)
-        self._ftext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._fmon_str,
+        self._ftext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._fmon_str,
                            re.IGNORECASE)
-        self._ftext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._fmon_str,
+        self._ftext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._fmon_str,
                            re.IGNORECASE)
-        self._ptext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._pmon_str,
+        self._ptext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._pmon_str,
                            re.IGNORECASE)
-        self._ptext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._pmon_str,
+        self._ptext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._pmon_str,
                            re.IGNORECASE)
-        self._itext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._imon_str,
+        self._itext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._imon_str,
                            re.IGNORECASE)
-        self._itext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._imon_str,
+        self._itext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._imon_str,
                            re.IGNORECASE)
-        self._numeric  = re.compile("((\d+)[/\.])?((\d+)[/\.])?(\d+)")
-        self._iso      = re.compile("(\d+)-(\d+)-(\d+)")
+        self._numeric  = re.compile("((\d+)[/\.])?((\d+)[/\.])?(\d+)\s*$")
+        self._iso      = re.compile("(\d+)-(\d+)-(\d+)\s*$")
         self._rfc      = re.compile("(%s,)?\s+(\d|\d\d)\s+%s\s+(\d+)\s+\d\d:\d\d(:\d\d)?\s+(\+|-)\d\d\d\d" 
                         % (self._rfc_day_str,self._rfc_mon_str))
 
@@ -371,6 +383,8 @@ class DateParser:
         """
         if subparser == None:
             subparser = self._parse_greg_julian
+
+        if subparser == self._parse_greg_julian:
             check = gregorian_valid
         else:
             check = None
@@ -493,6 +507,7 @@ class DateParser:
         
         On success, set the date and return 1. On failure return 0.
         """
+        # modifiers before the date
         match = self._modifier.match(text)
         if match:
             grps = match.groups()
@@ -503,6 +518,18 @@ class DateParser:
             else:
                 date.set(qual,mod,cal,start)
             return True
+        # modifiers after the date
+        if self.modifier_after_to_int:
+            match = self._modifier_after.match(text)
+            if match:
+                grps = match.groups()
+                start = self._parse_subdate(grps[0])
+                mod = self.modifier_after_to_int.get(grps[1].lower(),Date.MOD_NONE)
+                if bc:
+                    date.set(qual,mod,cal,self.invert_year(start))
+                else:
+                    date.set(qual,mod,cal,start)
+                return True
         match = self._abt2.match(text)
         if match:
             grps = match.groups()
@@ -519,12 +546,15 @@ class DateParser:
         """
         Parses the text and sets the date according to the parsing.
         """
+
+        
         date.set_text_value(text)
         qual = Date.QUAL_NONE
         cal  = Date.CAL_GREGORIAN
         
         (text,cal) = self.match_calendar(text,cal)
         (text,qual) = self.match_quality(text,qual)
+
         if self.match_span(text,cal,qual,date):
             return
         if self.match_range(text,cal,qual,date):
@@ -533,27 +563,15 @@ class DateParser:
         (text,bc) = self.match_bce(text)
         if self.match_modifier(text,cal,qual,bc,date):
             return
-    
-        subdate = self._parse_subdate(text)
-        if subdate == Date.EMPTY:
-            subdate = self._parse_hebrew(text)
-            if subdate == Date.EMPTY:
-                subdate = self._parse_persian(text)
-                if subdate == Date.EMPTY:
-                    subdate = self._parse_islamic(text)
-                    if subdate == Date.EMPTY:
-                        subdate = self._parse_french(text)
-                        if subdate == Date.EMPTY:
-                            date.set_as_text(text)
-                            return
-                        else:
-                            cal = Date.CAL_FRENCH
-                    else:
-                        cal = Date.CAL_ISLAMIC
-                else:
-                    cal = Date.CAL_PERSIAN
-            else:
-                cal = Date.CAL_HEBREW
+
+        try:
+            subdate = self._parse_subdate(text,self.parser[cal])
+            if subdate == Date.EMPTY and text != "":
+                date.set_as_text(text)
+                return
+        except:
+            date.set_as_text(text)
+            return
 
         if bc:
             date.set(qual,Date.MOD_NONE,cal,self.invert_year(subdate))

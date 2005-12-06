@@ -122,7 +122,7 @@ class Date:
             self.sortval  = source.sortval
         else:
             self.calendar = CAL_GREGORIAN
-            self.modifier = MOD_TEXTONLY
+            self.modifier = MOD_NONE
             self.quality  = QUAL_NONE
             self.dateval  = EMPTY
             self.text     = u""
@@ -157,12 +157,13 @@ class Date:
         at the sorting value, and ignores the modifiers/comments.
         """
         if self.modifier == other.modifier and self.modifier == MOD_TEXTONLY:
-            return self.text == other.text
-        return (self.calendar == other.calendar and 
-                self.modifier == other.modifier and 
-                self.quality == other.quality and 
-                self.dateval == other.dateval and 
-                self.sortval == other.sortval)
+            value = self.text == other.text
+        else:
+            value = (self.calendar == other.calendar and 
+                     self.modifier == other.modifier and 
+                     self.quality == other.quality and 
+                     self.dateval == other.dateval)
+        return value
             
     def __str__(self):
         """
@@ -455,7 +456,10 @@ class Date:
         year = max(value[_POS_YR],1)
         month = max(value[_POS_MON],1)
         day = max(value[_POS_DAY],1)
-        self.sortval = _calendar_convert[calendar](year,month,day)
+        if year == 0 and month == 0 and day == 0:
+            self.sortval = 0
+        else:
+            self.sortval = _calendar_convert[calendar](year,month,day)
         if text:
             self.text = text
 
@@ -463,7 +467,10 @@ class Date:
         year = max(self.dateval[_POS_YR],1)
         month = max(self.dateval[_POS_MON],1)
         day = max(self.dateval[_POS_DAY],1)
-        self.sortval = _calendar_convert[self.calendar](year,month,day)
+        if year == 0 and month == 0 and day == 0:
+            self.sortval = 0
+        else:
+            self.sortval = _calendar_convert[self.calendar](year,month,day)
 
     def convert_calendar(self,calendar):
         """
@@ -504,7 +511,8 @@ class Date:
         """
         Returns True if the date contains no information (empty text).
         """
-        return self.modifier == MOD_TEXTONLY and not self.text
+        return (self.modifier == MOD_TEXTONLY and not self.text) or \
+               (self.get_start_date()==EMPTY and self.get_stop_date()==EMPTY)
         
     def is_compound(self):
         """

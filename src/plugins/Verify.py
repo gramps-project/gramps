@@ -48,18 +48,26 @@ from gnome import help_display
 import RelLib
 import Utils
 import Date
-
-def runTool(database,active_person,callback,parent=None):
-    Verify(database,active_person,parent)
+import Tool
 
 #-------------------------------------------------------------------------
 #
 # Actual tool
 #
 #-------------------------------------------------------------------------
-class Verify:
-    def __init__(self,database,active_person,parent):
-        self.db = database
+class Verify(Tool.Tool):
+
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
+
+        if parent:
+            self.init_gui(parent)
+        else:
+            err_text,warn_text = self.run_tool(cli=True)
+            self.print_results(err_text,warn_text)
+
+    def init_gui(self,parent):
+        # Draw dialog and make it handle everything
         self.parent = parent
         if self.parent.child_windows.has_key(self.__class__):
             self.parent.child_windows[self.__class__].present(None)
@@ -80,9 +88,40 @@ class Verify:
         self.window = self.top.get_widget('verify_settings')
         self.window.set_icon(self.parent.topWindow.get_icon())
         Utils.set_titles(self.window,
-                     self.top.get_widget('title'),
-                     _('Database Verify'))
+                         self.top.get_widget('title'),
+                         _('Database Verify'))
 
+        self.top.get_widget("oldage").set_value(
+            self.options.handler.options_dict['oldage'])
+        self.top.get_widget("hwdif").set_value(
+            self.options.handler.options_dict['hwdif'])
+        self.top.get_widget("cspace").set_value(
+            self.options.handler.options_dict['cspace'])
+        self.top.get_widget("cbspan").set_value(
+            self.options.handler.options_dict['cbspan'])
+        self.top.get_widget("yngmar").set_value(
+            self.options.handler.options_dict['yngmar'])
+        self.top.get_widget("oldmar").set_value(
+            self.options.handler.options_dict['oldmar'])
+        self.top.get_widget("oldmom").set_value(
+            self.options.handler.options_dict['oldmom'])
+        self.top.get_widget("yngmom").set_value(
+            self.options.handler.options_dict['yngmom'])
+        self.top.get_widget("olddad").set_value(
+            self.options.handler.options_dict['olddad'])
+        self.top.get_widget("yngdad").set_value(
+            self.options.handler.options_dict['yngdad'])
+        self.top.get_widget("wedder").set_value(
+            self.options.handler.options_dict['wedder'])
+        self.top.get_widget("mxchildmom").set_value(
+            self.options.handler.options_dict['mxchildmom'])
+        self.top.get_widget("mxchilddad").set_value(
+            self.options.handler.options_dict['mxchilddad'])
+        self.top.get_widget("lngwdw").set_value(
+            self.options.handler.options_dict['lngwdw'])
+        self.top.get_widget("estimate").set_active(
+            self.options.handler.options_dict['estimate_age'])
+                                                          
         self.add_itself_to_menu()
         self.window.show()
 
@@ -127,38 +166,76 @@ class Verify:
         return year
 
     def on_apply_clicked(self,obj):
+        self.options.handler.options_dict['oldage'] = self.top.get_widget(
+            "oldage").get_value_as_int()
+        self.options.handler.options_dict['hwdif']  = self.top.get_widget(
+            "hwdif").get_value_as_int()
+        self.options.handler.options_dict['cspace'] = self.top.get_widget(
+            "cspace").get_value_as_int()
+        self.options.handler.options_dict['cbspan'] = self.top.get_widget(
+            "cbspan").get_value_as_int()
+        self.options.handler.options_dict['yngmar'] = self.top.get_widget(
+            "yngmar").get_value_as_int()
+        self.options.handler.options_dict['oldmar'] = self.top.get_widget(
+            "oldmar").get_value_as_int()
+        self.options.handler.options_dict['oldmom'] = self.top.get_widget(
+            "oldmom").get_value_as_int()
+        self.options.handler.options_dict['yngmom'] = self.top.get_widget(
+            "yngmom").get_value_as_int()
+        self.options.handler.options_dict['olddad'] = self.top.get_widget(
+            "olddad").get_value_as_int()
+        self.options.handler.options_dict['yngdad'] = self.top.get_widget(
+            "yngdad").get_value_as_int()
+        self.options.handler.options_dict['wedder'] = self.top.get_widget(
+            "wedder").get_value_as_int()
+        self.options.handler.options_dict['mxchildmom'] = self.top.get_widget(
+            "mxchildmom").get_value_as_int()
+        self.options.handler.options_dict['mxchilddad'] = self.top.get_widget(
+            "mxchilddad").get_value_as_int()
+        self.options.handler.options_dict['lngwdw'] = self.top.get_widget(
+            "lngwdw").get_value_as_int()
+
+        self.options.handler.options_dict['estimate_age'] = \
+                                                          self.top.get_widget(
+            "estimate").get_active()
+
+        err_text,warn_text = self.run_tool(cli=False)
+        # Save options
+        self.options.handler.save_options()
+        VerifyResults(err_text,warn_text,self.parent)
+
+    def run_tool(self,cli=False):
 
         personList = self.db.get_person_handles(sort_handles=False)
+        oldage = self.options.handler.options_dict['oldage']
+        hwdif = self.options.handler.options_dict['hwdif']
+        cspace = self.options.handler.options_dict['cspace']
+        cbspan = self.options.handler.options_dict['cbspan']
+        yngmar = self.options.handler.options_dict['yngmar']
+        oldmar = self.options.handler.options_dict['oldmar']
+        oldmom = self.options.handler.options_dict['oldmom']
+        yngmom = self.options.handler.options_dict['yngmom']
+        olddad = self.options.handler.options_dict['olddad']
+        yngdad = self.options.handler.options_dict['yngdad']
+        wedder = self.options.handler.options_dict['wedder']
+        mxchildmom = self.options.handler.options_dict['mxchildmom']
+        mxchilddad = self.options.handler.options_dict['mxchilddad']
+        lngwdw = self.options.handler.options_dict['lngwdw']
+        estimate_age = self.options.handler.options_dict['estimate_age']
 
-        oldage = self.top.get_widget("oldage").get_value_as_int()
-        hwdif  = self.top.get_widget("hwdif").get_value_as_int()
-        cspace = self.top.get_widget("cspace").get_value_as_int()
-        cbspan = self.top.get_widget("cbspan").get_value_as_int()
-        yngmar = self.top.get_widget("yngmar").get_value_as_int()
-        oldmar = self.top.get_widget("oldmar").get_value_as_int()
-        oldmom = self.top.get_widget("oldmom").get_value_as_int()
-        yngmom = self.top.get_widget("yngmom").get_value_as_int()
-        olddad = self.top.get_widget("olddad").get_value_as_int()
-        yngdad = self.top.get_widget("yngdad").get_value_as_int()
-        wedder = self.top.get_widget("wedder").get_value_as_int()
-        lngwdw = self.top.get_widget("lngwdw").get_value_as_int()
-        mxchildmom = self.top.get_widget("mxchildmom").get_value_as_int()
-        mxchilddad = self.top.get_widget("mxchilddad").get_value_as_int()
-        lngwdw = self.top.get_widget("lngwdw").get_value_as_int()
-
-        estimate_age = self.top.get_widget("estimate").get_active()
-
+        # FIXME: This has to become an option as well!
+        # OR should be removed. What's the reason behind it?
         oldunm = 99  # maximum age at death for unmarried person 
 
         error = cStringIO.StringIO()
         warn = cStringIO.StringIO()
 
-        progress = Utils.ProgressMeter(_('Verify the database'),'')
-
-        progress.set_pass(_('Checking data'),self.db.get_number_of_people())
+        if not cli:
+            progress = Utils.ProgressMeter(_('Verify the database'),'')
+            progress.set_pass(_('Checking data'),
+                              self.db.get_number_of_people())
         
         for person_handle in personList:
-            progress.step()
             person = self.db.get_person_from_handle(person_handle)
             idstr = "%s (%s)" % (person.get_primary_name().get_name(),person.get_gramps_id())
 
@@ -324,7 +401,7 @@ class Verify:
                             idstr,family.get_gramps_id(), spouse.get_primary_name().get_name() ) )
                     sdyear = self.get_year( spouse.get_death_handle() )
                     sbyear = self.get_year( spouse.get_birth_handle() )
-                    if abs(sbyear-byear) > hwdif:
+                    if sbyear != 0 and byear != 0 and abs(sbyear-byear) > hwdif:
                         warn.write( _("Large age difference between husband and wife: %s in family %s, and %s.\n") % (
                             idstr,family.get_gramps_id(), spouse.get_primary_name().get_name() ) )
                         
@@ -478,19 +555,28 @@ class Verify:
                                 and total_children > mxchildmom):
                 warn.write(_("Too many children (%(num_children)d) for %(person_name)s.\n") % {
                     'num_children' : total_children, 'person_name' : idstr })
+            if not cli:
+                progress.step()
 
-        progress.close()
-        text = ""
+        if not cli:
+            progress.close()
+
         err_text = error.getvalue()
         warn_text = warn.getvalue()
-        if err_text.strip():
-            text = _("ERRORS:\n") + err_text + "\n" 
-        if warn_text.strip():
-            text = text + _("WARNINGS:\n") + warn_text
-            
         error.close()
         warn.close()
-        VerifyResults(text,self.parent)
+        
+        return err_text.strip(),warn_text.strip()
+
+    def print_results(self,err_text,warn_text):
+        if warn_text:
+            print "\nWARNINGS:"
+            print warn_text
+        if err_text:
+            print "\nERRORS:"
+            print err_text
+        if not (warn_text or err_text):
+            print "No warnings or errors during verification!"
     
 #-------------------------------------------------------------------------
 #
@@ -498,9 +584,10 @@ class Verify:
 #
 #-------------------------------------------------------------------------
 class VerifyResults:
-    def __init__(self,text,parent):
+    def __init__(self,err_text,warn_text,parent):
         self.parent = parent
-        self.text = text
+        self.err_text = err_text
+        self.warn_text = warn_text
 
         self.win_key = self
 
@@ -520,8 +607,10 @@ class VerifyResults:
     
         self.window = self.top.get_widget("verify_result")
         self.window.set_icon(self.parent.topWindow.get_icon())
-        textwindow = self.top.get_widget("textwindow")
-        textwindow.get_buffer().set_text(self.text)
+        err_window = self.top.get_widget("err_window")
+        warn_window = self.top.get_widget("warn_window")
+        err_window.get_buffer().set_text(self.err_text)
+        warn_window.get_buffer().set_text(self.warn_text)
         
         self.add_result_to_menu()
         self.window.show()
@@ -547,6 +636,71 @@ class VerifyResults:
     def present_result(self,obj):
         self.window.present()
 
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class VerifyOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
+    def set_new_options(self):
+        # Options specific for this report
+        self.options_dict = {
+            'oldage'       : 90,
+            'hwdif'       : 30,
+            'cspace'       : 8,
+            'cbspan'       : 25,
+            'yngmar'       : 17,
+            'oldmar'       : 50,
+            'oldmom'       : 48,
+            'yngmom'       : 17,
+            'yngdad'       : 18,
+            'olddad'       : 65,
+            'wedder'       : 3,
+            'mxchildmom'   : 12,
+            'mxchilddad'   : 15,
+            'lngwdw'       : 30,
+            'estimate_age' : 0,
+        }
+        self.options_help = {
+            'oldage'       : ("=num","Maximum age","Age in years"),
+            'hwdif'       : ("=num","Maximum husband-wife age difference",
+                              "Age difference in years"),
+            'cspace'       : ("=num",
+                              "Maximum number of years between children",
+                              "Number of years"),
+            'cbspan'       : ("=num",
+                              "Maximum span of years for all children",
+                              "Span in years"),
+            'yngmar'       : ("=num","Minimum age to marry","Age in years"),
+            'oldmar'       : ("=num","Maximum age to marry","Age in years"),
+            'oldmom'       : ("=num","Maximum age to bear a child",
+                              "Age in years"),
+            'yngmom'       : ("=num","Minimum age to bear a child",
+                              "Age in years"),
+            'yngdad'       : ("=num","Minimum age to father a child",
+                              "Age in years"),
+            'olddad'       : ("=num","Maximum age to father a child",
+                              "Age in years"),
+            'wedder'       : ("=num","Maximum number of spouses for a person",
+                              "Number of spouses"),
+            'mxchildmom'   : ("=num","Maximum number of children for a woman",
+                              "Number of children"),
+            'mxchilddad'   : ("=num","Maximum  number of children for a man",
+                              "Number of chidlren"),
+            'lngwdw'       : ("=num","Maximum number of consecutive years "
+                              "of widowhood","Number of years"),
+            'estimate_age' : ("=0/1","Whether to estimate missing dates",
+                              ["Do not estimate","Estimate dates"],
+                              True),
+        }
+
 #-------------------------------------------------------------------------
 #
 #
@@ -555,8 +709,12 @@ class VerifyResults:
 from PluginMgr import register_tool
 
 register_tool(
-    runTool,
-    _("Verify the database"),
-    category=_("Utilities"),
-    description=_("Lists exceptions to assertions or checks about the database")
+    name = 'verify',
+    category = Tool.TOOL_UTILS,
+    tool_class = Verify,
+    options_class = VerifyOptions,
+    modes = Tool.MODE_GUI | Tool.MODE_CLI,
+    translated_name = _("Verify the database"),
+    description = _("Lists exceptions to assertions or checks "
+                    "about the database")
     )

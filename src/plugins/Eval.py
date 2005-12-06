@@ -47,15 +47,17 @@ import gtk.glade
 #
 #------------------------------------------------------------------------
 import Utils
+import Tool
 
 #-------------------------------------------------------------------------
 #
 # Actual tool
 #
 #-------------------------------------------------------------------------
-class EvalWindow:
+class Eval(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
 
-    def __init__(self,parent):
         self.parent = parent
         if self.parent.child_windows.has_key(self.__class__):
             self.parent.child_windows[self.__class__].present(None)
@@ -79,7 +81,7 @@ class EvalWindow:
             })
 
         Utils.set_titles(self.top,self.glade.get_widget('title'),
-                         _("Python Evaluation Window"))
+                         _("Python evaluation window"))
 
         self.add_itself_to_menu()
         self.top.show()
@@ -93,7 +95,7 @@ class EvalWindow:
 
     def add_itself_to_menu(self):
         self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(_('Python Evaluation Window'))
+        self.parent_menu_item = gtk.MenuItem(_('Python evaluation window'))
         self.parent_menu_item.connect("activate",self.present)
         self.parent_menu_item.show()
         self.parent.winsmenu.append(self.parent_menu_item)
@@ -129,14 +131,32 @@ class EvalWindow:
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_tool
+class EvalOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
 
-def runtool(database,person,callback,parent):
-    EvalWindow(parent)
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
 
-register_tool(
-    runtool,
-    _("Python evaluation window"),
-    category=_("Debug"),
-    description=_("Provides a window that can evaluate python code")
-    )
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+
+if __debug__:
+    from PluginMgr import register_tool
+
+    register_tool(
+        name = 'eval',
+        category = Tool.TOOL_DEBUG,
+        tool_class = Eval,
+        options_class = EvalOptions,
+        modes = Tool.MODE_GUI,
+        translated_name = _("Python evaluation window"),
+        status = _("Stable"),
+        author_name = "Donald N. Allingham",
+        author_email = "don@gramps-project.org",
+        description=_("Provides a window that can evaluate python code")
+        )

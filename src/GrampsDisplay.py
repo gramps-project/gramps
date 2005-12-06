@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2002-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,12 +18,15 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-def utf8_to_latin(s):
-    return s.encode('iso-8859-1','replace')
+import gnome
+import gobject
+from QuestionDialog import ErrorDialog
 
-def latin_to_utf8(s):
-    if type(s) == type(u''):
-        return s
-    else:
-        return unicode(s,'iso-8859-1')
-    
+def help(target):
+    try:
+        gnome.help_display('gramps-manual',target)
+    except gobject.GError, msg:
+        gnome.url_show('http://gramps-project.org/gramps-manual/gramps-manual-en/index.html')
+        
+def url(target):
+    gnome.url_show(target)

@@ -34,6 +34,8 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
+
 import const
 import Utils
 import Spell
@@ -96,10 +98,12 @@ class NoteEditor:
         
     def on_delete_event(self,*obj):
         self.remove_itself_from_menu()
+        gc.collect()
 
     def close(self,*obj):
         self.remove_itself_from_menu()
         self.top.destroy()
+        gc.collect()
 
     def add_itself_to_menu(self):
         self.parent.child_windows[self.win_key] = self

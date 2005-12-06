@@ -22,163 +22,237 @@
 
 <!-- $Id$ -->
 
-
-    <title>Getting Started</title> 
+  <title>Getting Started</title> 
     
-    <para>This chapter provides the most basic information on starting &app;
-    and obtaining help. Please procede to the following chapters for more
-    information.</para>
+  <para>
+    This chapter provides the most basic information on starting
+    &app; and obtaining help. Please proceed to the following
+    chapters for more information.
+  </para>
 
-    <!-- ================ Getting Started Subsection ====== -->
-    <sect1 id="gramps-start">
+<!-- ================ Getting Started Subsection ====== -->
+
+  <sect1 id="gramps-start">
     <title>To Start GRAMPS</title>
-    <para>You can start &app; in the following ways:</para> 
+    <para>
+      You can start &app; in the following ways:
+    </para> 
     <variablelist>
-    <varlistentry>
+      <varlistentry>
 	<term><guimenu>Applications</guimenu> menu</term>
-	<listitem><para>The method of starting &app; from the menus may vary from
-   distribution to distribution. On default GNOME desktop,
-   choose <menuchoice><guisubmenu>Other</guisubmenu>
-	<guimenuitem>Gramps</guimenuitem></menuchoice>. </para></listitem>
-    </varlistentry>
-    <varlistentry>
+	<listitem>
+          <para>
+            The method of starting &app; from the menus may vary
+	    from distribution to distribution. On default GNOME
+	    desktop, choose
+	    <menuchoice><guisubmenu>Other</guisubmenu>
+	    <guimenuitem>Gramps</guimenuitem></menuchoice>.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
 	<term>Command line</term>
-    	<listitem><para>To start &app; from a command line, type 
-        <command>gramps</command>, then press <keycap>Enter</keycap>.</para>
-	
-	<para>If you would like &app; to open a specific database or to 
-        import a specific file on startup, you can supply the filename 
-        as a command line argument:</para>
-
-	<para>
-	<command>gramps</command> <filename>filename.grdb</filename>
-    	</para> 
-
-    	<para>where <filename>filename.grdb</filename> is the name 
-	of the file you want to open. The command line provides many more ways
-	to start &app; and perform different tasks. The detailed reference to the 
-        command line options is found in the <xref linkend="append-cmdline"/>. 
-        </para></listitem>
-    </varlistentry>
+    	<listitem>
+          <para>
+            To start &app; from a command line, type
+            <command>gramps</command>, then press
+            <keycap>Enter</keycap>.
+          </para>
+	  <para>
+            If you would like &app; to open a specific database or to
+            import a specific file on startup, you can use the
+            filename as a command line argument:
+          </para>
+	  <para>
+	    <filename>gramps filename.grdb</filename>
+    	  </para> 
+    	  <para>
+            where <filename>filename.grdb</filename> is the name of
+  	    the file you want to open. The command line provides many
+   	    more ways to start &app; and perform different tasks. The
+  	    detailed reference to the command line options is found
+  	    in <xref linkend="append-cmdline"/>.
+          </para>
+        </listitem>
+      </varlistentry>
     </variablelist>
-    </sect1>
+  </sect1>
 
-    <!-- ================ Getting Started Subsection ==== -->
-    <sect1 id="run-1st-time">
-      <title>Running GRAMPS for the first time</title>
+<!-- ================ Getting Started Subsection ==== -->
+
+  <sect1 id="run-1st-time">
+    <title>Running GRAMPS for the first time</title>
     <para> 
-    The first time you run the program, GRAMPS will display its 
-    Getting Started dialogs. Follow the directions guiding you through
-    <guilabel>Researcher information</guilabel>, <guilabel>Numerical date 
-    formats</guilabel>, <guilabel>Alternate calendar support</guilabel>,
-    and <guilabel>LDS extensions</guilabel> sections. Most of the dialogs
-    are self-explanatory and will not be covered here.
+      The first time you run the program, GRAMPS will display the 
+      Getting Started dialogs. Follow the directions that guide you through
+      <guilabel>Researcher information</guilabel>, <guilabel>Numerical date 
+      formats</guilabel>, <guilabel>Alternate calendar support</guilabel>,
+      and <guilabel>the LDS extensions</guilabel> sections. Most of the dialogs
+      are self-explanatory and will not be covered here.
     </para>
     
-	<!-- ==== Figure: Getting Started Druid Window ==== -->
-	<figure id="druid-fig"> 
-	<title>GRAMPS Getting Started Window: Researcher Information</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/researcher.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Researcher Information Window. </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+<!-- ==== Figure: Getting Started Druid Window ==== -->
 
-	<para>Enter your personal information in the corresponding
-	text entry fields. Although &app; requests information about you, 
-	this information is used only so that &app; can create valid GEDCOM 
-	output files. A valid GEDCOM file requires information about the file's 
-	creator. If you choose, you may leave the information empty, however
-	all the GEDCOM files you export will not be valid. 
-	</para>
+    <figure id="druid-fig"> 
+      <title>GRAMPS Getting Started Window: Researcher Information</title> 
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/researcher.png" format="PNG" 
+	               width="510" depth="369" scale="75"/>
+          </imageobject>
+	  <textobject> 
+	    <phrase>Shows Researcher Information Window. </phrase>
+	  </textobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+<!-- ==== End of Figure ==== -->
+
+    <para>
+      Enter your personal information in the corresponding text entry
+      fields. Although &app; requests information about you, this
+      information is used only so that &app; can create valid GEDCOM
+      output files. A valid GEDCOM file requires information about the
+      file's creator. If you choose, you may leave the information
+      empty, however all the GEDCOM files you export will be invalid.
+    </para>
+    <para>
+      This information can be entered at any time in the
+      <guilabel>Preferences</guilabel> dialog, under the
+      <guilabel>Database/Researcher Information</guilabel> category.
+    </para>
+  </sect1>
+
+<!-- ================ Getting Started Subsection  -->
+
+  <sect1 id="choose-db-start">
+    <title>Choosing a database on startup</title> 
+    <para>
+      If &app; is started without a database selected, the following
+      window will appear prompting you to choose one to open.
+    </para>
+      
+<!-- ==== Figure: Open existing/new database window ==== -->
 	
-	<para>This information can be entered at any time in the 
-	<guilabel>Preferences</guilabel> dialog, under the 
-	<guilabel>Database/Researcher Information</guilabel> category. 
-	</para>
-
-    </sect1>
-
-    <!-- ================ Getting Started Subsection  -->
-      <sect1 id="choose-db-start">
-      <title>Choosing a database on startup</title> 
-      <para>If &app; is started without any
-      database  to open, the following window will appear prompting you to 
-      choose what database to open. </para>
+    <figure id="first-open"> 
+      <title>Open Database Window</title> 
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/first-open.png" format="PNG" 
+	               width="311" depth="199" scale="80"/>
+          </imageobject>
+	  <textobject> 
+	    <phrase>Shows Open Database Window.</phrase>
+	  </textobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+ 
+<!-- ==== End of Figure ==== -->
       
-	<!-- ==== Figure: Open existing/new database window ==== -->
-	<figure id="first-open"> 
-	<title>Open Database Window</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/first-open.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Open Database Window.  </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+    <para>
+      If you would like to open an existing database, check the top
+      radio button and click the <guibutton>OK</guibutton>
+      button. You will then be asked to specify the name of your
+      existing database. If you would like to immediately create a
+      brand new database from scratch right away, choose new
+      database.
+    </para> 
+
+    <note id="file-notdir-note">
+      <title>Selecting file</title>
+      <para>
+        This version of &app; does not require selecting a directory
+	for the database. Please select filename, as you would in any
+	other application.
+      </para>
+    </note>
+
+  </sect1>
       
-      <para>If you would like to open an existing database, check the top radio
-      button and click the <guibutton>OK</guibutton> button. You will then be asked to 
-      specify the name of your existing database. If you would like to start
-      creating your brand new database from scratch right away, choose new
-      database. </para> 
+<!-- ================ Getting Started Subsection ==== -->
 
-          <note id="file-notdir-note">
-               <title>Selecting file</title>
-	      <para>
-	      Unlike the version 1.0.X of &app;, this version does not require selecting directory
-	      for the database. Please select filename, as you would in any other application.
-	      </para>
-           </note>
+  <sect1 id="get-help">
+    <title>Obtaining Help</title>
+    <para> 
+       The following items are available from the
+       <menuchoice><guimenu>Help</guimenu></menuchoice> to provide
+       immediate assistance:
+    </para>
+    <variablelist>
 
-      </sect1>
-      
+      <varlistentry>
+        <term>User manual</term>
+	<listitem> 
+          <para>
+            Select this item to access this manual in the help browser.  
+          </para>
+        </listitem>
+      </varlistentry>
 
-    <!-- ================ Getting Started Subsection ==== -->
-    <sect1 id="get-help">
-      <title>Obtaining Help</title>
-    <para> At any time, the following items are available for immediate aid
-    from the <menuchoice><guimenu>Help</guimenu></menuchoice> menu: </para>
-    
-	<variablelist>
+      <varlistentry>
+        <term>FAQ</term>
+	<listitem>
+          <para> 
+            Select this item to read the Frequently Asked Questions about
+            &app; in the browser.
+          </para>
+        </listitem>
+      </varlistentry>
 
-	<varlistentry><term>User manual</term>
-	<listitem><para> Choose this item to read the text of this manual 
-	in the help browser.  </para></listitem>
-	</varlistentry>
+      <varlistentry>
+        <term>GRAMPS home page</term>
+   	<listitem>
+          <para> 
+            Select this item to open the home page of &app; in your
+	    default web browser. 
+          </para>
+        </listitem>
+      </varlistentry> 
 
-	<varlistentry><term>FAQ</term>
-	<listitem><para> Use this item to read Frequently Asked Questions
-	about &app; in the browser. </para></listitem>
-	</varlistentry>
+      <varlistentry>
+        <term>GRAMPS mailing lists</term>
+	<listitem>
+          <para>
+            Select this item to direct your web browser 
+ 	    to the &app; mailing list archives. 
+          </para>
+        </listitem>
+      </varlistentry>
     
-	<varlistentry><term>GRAMPS home page</term>
-	<listitem><para> Select this item to open home page of &app; in your
-	default web browser. </para></listitem>
-	</varlistentry>
+      <varlistentry>
+        <term>Report a bug</term>
+	<listitem>
+          <para> 
+            Select this item to file a bug report regarding &app; 
+	    with the bug tracking system.  
+          </para>
+        </listitem>
+      </varlistentry>
     
-	<varlistentry><term>GRAMPS mailing lists</term>
-	<listitem><para> Choose this item to direct your web browser 
-	to the &app; mailing list archives. </para></listitem>
-	</varlistentry>
+      <varlistentry>
+        <term>Show plugin status</term>
+	<listitem>
+          <para> 
+            Select this item to display the status of loaded plugins. 
+          </para>
+        </listitem>
+      </varlistentry>
     
-	<varlistentry><term>Report a bug</term>
-	<listitem><para> Use this item to file a bug report against &app; 
-	with the bug tracking system.  </para></listitem>
-	</varlistentry>
-    
-	<varlistentry><term>Show plugin status</term>
-	<listitem><para> Use this item to display the status of loaded 
-	plugins. </para></listitem>
-	</varlistentry>
-    
-	<varlistentry><term>Open example database</term>
-	<listitem><para> Select this item to load the example database shipped
-	with &app;. This database is composed of fictitious people and serves as
-	a useful example for learning how to work with &app;. </para></listitem>
-	</varlistentry>
-    
-	</variablelist>
-    </sect1>
-
-  </chapter>
+      <varlistentry>
+        <term>Open example database</term>
+	<listitem>
+          <para> 
+            Select this item to load the example database shipped
+	    with &app;. This database is composed of fictitious
+	    people and serves as a useful example for learning how
+	    to work with &app;.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+</chapter>

@@ -27,7 +27,6 @@
 # standard python modules
 #
 #-------------------------------------------------------------------------
-import os
 import re
 import time
 from gettext import gettext as _
@@ -47,11 +46,8 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import Errors
 import RelLib
-import latin_utf8 
-import Utils
 import const
 from QuestionDialog import ErrorDialog
-from DateHandler import parser as _dp
 
 #-------------------------------------------------------------------------
 #

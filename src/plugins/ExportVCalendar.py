@@ -28,6 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+from time import localtime
 
 #-------------------------------------------------------------------------
 #
@@ -36,14 +37,12 @@ import os
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import RelLib
 import GenericFilter
 import const
 import Utils
@@ -51,8 +50,6 @@ import Date
 import Errors
 from gettext import gettext as _
 from QuestionDialog import ErrorDialog
-
-_title_string = _("Export to vCalendar")
 
 #-------------------------------------------------------------------------
 #
@@ -184,7 +181,7 @@ class CalendarWriter:
 
         self.writeln("BEGIN:VCALENDAR");
         self.writeln("PRODID:-//GNU//Gramps//EN");
-        self.writeln("Version:1.0");
+        self.writeln("VERSION:1.0");
         for key in self.plist:
             self.write_person(key)
 
@@ -206,7 +203,7 @@ class CalendarWriter:
                 if event.get_name() == "Marriage":
                     m_date = event.get_date_object()
                     place_handle = event.get_place_handle()
-                    text = _("Marriage of %s") % Utlis.family_name(family)
+                    text = _("Marriage of %s") % Utils.family_name(family,self.db)
                     if place_handle:
                         place = self.db.get_place_from_handle(place_handle)
                         self.write_vevent( text, m_date, place.get_title())

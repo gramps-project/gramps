@@ -103,8 +103,9 @@ class PackageWriter:
                                        "1 %s " % str(msg))
             return
         except:
+            uri_name = "burn:///" + base
             QuestionDialog.ErrorDialog("CD export preparation failed",
-                                       'Could not create burn:///%s' % base)
+                                       'Could not create %s' % uri_name)
             return
 
         try:
@@ -148,8 +149,9 @@ class PackageWriter:
                                        "File already exists")
             return
         except:
+            uri_name = "burn:///" + base
             QuestionDialog.ErrorDialog(_("CD export preparation failed"),
-                                       _('Could not create burn:///%s') % base)
+                                       _('Could not create %s') % uri_name)
             return
 
         try:
@@ -160,8 +162,9 @@ class PackageWriter:
                                        "4 %s " % str(msg))
             return
         except:
+            uri_name = "burn:///" + base + "/.thumb"
             QuestionDialog.ErrorDialog(_("CD export preparation failed"),
-                                       _('Could not create burn:///%s/.thumb') % base)
+                                       _('Could not create %s') % uri_name)
             return
 
         #--------------------------------------------------------

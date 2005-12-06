@@ -28,8 +28,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-import time
-import re
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -39,7 +37,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -190,7 +187,20 @@ class GeneWebWriter:
                 p = self.db.get_person_from_handle(key)
                 for family_handle in p.get_family_handle_list():
                     self.flist[family_handle] = 1
- 
+
+        # remove families that dont contain father AND mother
+        # because GeneWeb requires both to be present
+        templist = self.flist
+        self.flist = {}
+        for family_handle in templist:
+            family = self.db.get_family_from_handle(family_handle)
+            if family:
+                father_handle = family.get_father_handle()
+                mother_handle = family.get_mother_handle()
+                if father_handle and mother_handle:
+                    self.flist[family_handle] = 1
+
+
     def cl_setup(self):
         self.restrict = 0
         self.private = 0
@@ -226,7 +236,7 @@ class GeneWebWriter:
         if len(self.flist) < 1:
             ErrorDialog(_("No families matched by selected filter"))
             return 0
-            
+        
         for key in self.flist:
             self.write_family(key)
             self.writeln("")
@@ -561,7 +571,7 @@ class GeneWebWriter:
         return retval
 
     def iso8859(self,s):
-        return s.encode('iso-8859-1')
+        return s.encode('iso-8859-1','xmlcharrefreplace')
 
 #-------------------------------------------------------------------------
 #

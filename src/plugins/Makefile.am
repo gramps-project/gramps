@@ -17,6 +17,7 @@ pkgdata_PYTHON = \
 	CountAncestors.py\
 	Desbrowser.py\
 	DescendReport.py\
+	DescendChart.py\
 	DesGraph.py\
 	DetAncestralReport.py\
 	DetDescendantReport.py\
@@ -63,7 +64,8 @@ pkgdata_PYTHON = \
 	rel_sv.py\
 	ImportGeneWeb.py\
 	WriteGeneWeb.py\
-	rel_es.py
+	rel_es.py\
+	Checkpoint.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
@@ -85,8 +87,9 @@ GLADEFILES = \
 	book.glade\
 	writeftree.glade\
 	genewebexport.glade\
-    vcardexport.glade\
-    vcalendarexport.glade
+	vcardexport.glade\
+	vcalendarexport.glade\
+	checkpoint.glade
 
 GRAPHICS = \
 	stock_link.png

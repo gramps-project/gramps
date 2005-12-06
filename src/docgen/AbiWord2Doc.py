@@ -38,7 +38,6 @@ import PluginMgr
 import ImgManip
 import GrampsMime
 
-from latin_utf8 import latin_to_utf8
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -120,8 +119,8 @@ class AbiWordDoc(BaseDoc.BaseDoc):
             style = self.style_list[style_name]
             self.current_style = style
             self.f.write('<s type="P" name="%s" basedon="" followedby="" props="' % style_name)
-            self.f.write('margin-top:%.4fin; ' % (float(style.get_padding())/2.54))
-            self.f.write('margin-bottom:%.4fin; ' % (float(style.get_padding())/2.54))
+            self.f.write('margin-top:%.4fin; ' % (float(style.get_top_margin())/2.54))
+            self.f.write('margin-bottom:%.4fin; ' % (float(style.get_bottom_margin())/2.54))
             if style.get_alignment() == BaseDoc.PARA_ALIGN_RIGHT:
                 self.f.write('text-align:right;')
             elif style.get_alignment() == BaseDoc.PARA_ALIGN_LEFT:
@@ -222,10 +221,10 @@ class AbiWordDoc(BaseDoc.BaseDoc):
                      % (start_p,tag_number,act_height,act_width,end_p))
 
     def start_superscript(self):
-        self.text = self.text + '<c props="text-position:superscript">'
+        self.f.write('<c props="text-position:superscript">')
 
     def end_superscript(self):
-        self.text = self.text + '</c>'
+        self.f.write('</c>')
 
     def start_paragraph(self,style_name,leader=None):
         self.in_paragraph = 1

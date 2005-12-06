@@ -1,10 +1,869 @@
 2005-12-05  Don Allingham  <don@gramps-project.org>
+	* src/data/main*.css: fix H6 and SUP
+
+2005-12-05  Alex Roitman  <shura@gramps-project.org>
+	* doc/gramps-manual/Makefile.am: Change symlink creation.
+	* src/po/fr.po: Partial translation update.
+
+2005-12-05  Don Allingham  <don@gramps-project.org>
 	* src/FamilyView.py: add more ui stuff
 	* src/ReadGedcom.py: set batch properly
 
 2005-12-04  Don Allingham  <don@gramps-project.org>
 	* src/FamilyView.py: start of a new family view.
 	* src/gramps_main.py: register FamilyView
+
+2005-12-04  Alex Roitman  <shura@gramps-project.org>
+	* src/po/ru.po: Partial translation update.
+
+2005-12-03  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/MergePeople.py: Avoid creating duplicate spouse-to-family links
+	* src/po/es.po: Partial translation update.
+
+2005-12-02  Alex Roitman  <shura@gramps-project.org>
+	* src/po/ru.po: Partial translation update.
+
+2005-12-02  Don Allingham  <don@gramps-project.org>
+	* src/ReportOptions.py: fix inheritence
+
+2005-12-01  Don Allingham  <don@gramps-project.org>
+	* various: pychecker fixes
+	* src/DateParser.py: properly call the date checking routine
+
+2005-12-01  Alex Roitman  <shura@gramps-project.org>
+	* src/ReportUtils.py (child_str): Initialize text.
+	* src/docgen/LaTeXDoc.py: support "____"; support roman numerals
+	in paragraph leaders.
+	* src/plugins/BookReport.py (BookReportDialog.__init__):
+	Initialize page_html_added before instantiating dialog class.
+
+2005-12-01  Benny Malengier  <bm@cage.UGent.be>
+	* src/dates/Date_nl.py: Add to CVS (bmcage).
+	* src/dates/Makefile.am: Ship new file.
+
+2005-11-30  Don Allingham  <don@gramps-project.org>
+	* src/ReadGedcom.py: fix mixing note assignment
+	* src/PeopleModel.py: streamline display
+
+2005-11-29  Don Allingham  <don@gramps-project.org>
+	* src/Relationship.py: limit search depth to 15 generations.
+
+2005-11-29  Alex Roitman  <shura@gramps-project.org>
+	* doc/xmldocs.make: Revert help path to keep under gramps dir.
+	* doc/gramps-manual/Makefile.am: Add symlink to keep all gnome
+	versions happy with the help path.
+	* src/po/de.po: Typos: missing "\n".
+	* src/plugins/Checkpoint.py: Replace combos with text entries.
+	* src/plugins/checkpoint.glade: Replace combos with text entries.
+
+2005-11-29  Don Allingham  <don@gramps-project.org>
+	* src/GrampsBSDDB.py: change rebuilding of secondary indices
+	to use keys instead of cursors.
+
+2005-11-29  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* NEWS: Better support for media objects in GEDCOM output
+
+2005-11-28  Alex Roitman  <shura@gramps-project.org>
+	* src/GenericFilter.py (MatchesFilter.apply): Typo.
+
+2005-11-28  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* NEWS: Better support for unicode filenames
+	* src/FamilyView.py (change_families): Avoid exception if family
+	 does not contain parents
+
+2005-11-28  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/DateParser.py: match modifiers in reverse length order so that
+	multiword modifiers work even if other modifier matches the first
+	words of the longer modifier
+	* src/ReadGedcom.py: be more tolerant w.r.t. whitespace in input,
+	to parse the output from tools that try (incorrectly) to make
+	the GEDCOM easier to read.  Gedcom.pm is one example.
+	* src/WriteGedcom.py: make sure referenced family sources are output
+
+2005-11-27  Don Allingham  <don@gramps-project.org>
+	* src/MergeData.py: fix dangling family after a merge.
+
+2005-11-27  Alex Roitman  <shura@gramps-project.org>
+	* src/po/template.po: Update.
+
+2005-11-26  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: properly handled added name types for the
+	preferred name
+
+2005-11-25  Wayne Bergeron  <wb@vallnet.com>
+	* src/GenericFilter.py
+	(IsLessThanNthGenerationAncestorOfDefaultPerson): Add new filter rule.
+
+2005-11-25  Don Allingham  <don@gramps-project.org>
+	* src/gramps.glade: enable word wrap on publication information
+	on the source display
+
+2005-11-25  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GenericFilter.py (HasCommonAncestorWith): Catch no longer
+	existing person; (IsSpouseOfFilterMatch) Call prepare for recursive
+	filter
+
+2005-11-24  Don Allingham  <don@gramps-project.org>
+	* src/po/template.po: updated translation file
+
+2005-11-24  Alex Roitman  <shura@gramps-project.org>
+	* NEWS: Update.
+	* src/docgen/HtmlDoc.py (build_style_declaration): Use top- and
+	bottom- margins for paragraph styles.
+
+2005-11-23  Don Allingham  <don@gramps-project.org>
+	* src/docgen/KwordDoc.py: fix margins and fonts.
+
+2005-11-23  Wayne Bergeron  <wb@vallnet.com>
+	* src/GenericFilter.py (IsLessThanNthGenerationAncestorOfBookmarked):
+	Add new filter rule.
+
+2005-11-23  Alex Roitman  <shura@gramps-project.org>
+	* src/ArgHandler.py (cl_export): Add grdb export from the CLI.
+	* src/plugins/Check.py (check_parent_relationships): Step through
+	the progress bar.
+	* test/runtest.sh: Add txt format and family_group report.
+	* test/impex.sh: Add import/export test set.
+	* example/gramps/example.gramps: Correct errors.
+	* src/BaseDoc.py (SheetParser.startElement): Tolerate missing
+	tmargin and bmargin (when reading older style files).
+	* src/docgen/PSDrawDoc.py (encode): Add tolerant encoder;
+	(patch_text): Remove unused method.
+	* src/docgen/AsciiDoc.py (reformat_para): Add optional argument
+	for the first line indent; (start_paragraph): remove leader
+	handling; (end_paragraph): Handle all formatting, including leader
+	and first line indent.
+	* src/plugins/Checkpoint.py (rcs): Do not write comment on
+	initialization.
+	* test/tools.sh: Add test set for tools.
+
+2005-11-22  Don Allingham  <don@gramps-project.org>
+	* src/docgen/AbiWord2Doc.py: fix spacing for top and bottom margin
+	* src/ArgHandler.py: fix typo
+	* src/docgen/PSDrawDoc.py: removed print statements
+	* src/plugins/DetDescendantReport.py: fixed insert_image
+	* src/ReadGedcom.py: Fix handling of CONT
+
+2005-11-22  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/DetDescendantReport.py (write_write_children):
+	Properly check for henry number; (write_mate): omit children list.
+	* src/Report.py: Better packing in vertical direction.
+	* test/runtest.sh: Switch to doing many reports in one call.
+
+2005-11-22  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: Fix output_notebook remains.
+
+2005-11-22  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/AddrEdit.py,
+	* src/AttrEdit.py,
+	* src/EditPerson.py,
+	* src/EditPlace.py,
+	* src/EventEdit.py,
+	* src/FamilyView.py,
+	* src/MediaView.py,
+	* src/NameEdit.py,
+	* src/Sources.py: Better support for readonly DB;
+	* src/ImageSelect.py: Better support for readonly DB;
+	  dont crash if mimetype could not get retrieved
+	* src/Marriage.py: Better support for readonly DB;
+	  Avoid Traceback on DnD in empty list
+
+2005-11-21  Don Allingham  <don@gramps-project.org>
+	* src/ReadGedcom.py: Properly handle TEXT field in SOUR instances when
+	undefined or unhandled fields are present
+
+2005-11-21  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/MediaView.py (media_update): Redisplay the media object at the top
+	* src/FamilyView.py (drag_data_get): Avoid Traceback when dragging from empty list
+	* src/gramps_main.py (read_file): More changes to unicode filename support
+
+2005-11-20  Don Allingham  <don@gramps-project.org>
+	* src/Report.py: shortened report dialog by making the Paper
+	Options a tab of the rest of the options
+	* src/plugins/AncestorReport.py: fix paragraph spacing
+	* src/plugins/Check.py: handle None for family
+	* src/plugins/DescendReport.py: fix paragraph spacing
+	* src/plugins/IndivComplete.py: fix paragraph spacing
+
+2005-11-20  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/FilterEditor.py: Corrected plugin registration
+	* src/GrampsCfg.py: Add validation for GRAMPS ID prefixes
+
+2005-11-19  Don Allingham  <don@gramps-project.org>
+	* src/WriteGedcom.py: add space between given and surname in output.
+	* src/ReadGedcom.py: encoding list change
+	* src/DateParser.py: match end of string for regex matching
+
+2005-11-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/Utils.py (find_file): new method that tries to check the
+	  existance of a file by trying out multiple encoding variants for
+	  the filename.
+	* src/ImgManip.py (get_thumbnail_image): Use Utils.find_file to fix
+	  encoding problems, additionally catch OSError
+	* src/ImageSelect.py (on_name_changed): Use Utils.find_file
+	* src/AddMedia.py (on_name_changed): Use Utils.find_file
+	* src/plugins/Check.py (encoding) dont encode a utf-8 string as again,
+	  (cleanup_missing_photos) Use Utils.find_file to fix encoding problems
+	* src/Utils.py (find_folder): new method
+	* src/gramps_main.py: Use Utils.find_file and Utils.find_folder to
+	  enable using unicode names for gramps databases
+
+2005-11-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/gramps.glade,
+	  src/TipOfDay.py: Add window title
+
+2005-11-16  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels.py: try to handle encoding errors
+	* src/ImageSelect.py: call fix_encoding to handle path names
+	* src/Utils.py: provide a routine to attempt to fix encoding of
+	str values
+	* src/plugins/Check.py: repair bad filenames
+
+2005-11-16  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Translation update to latest template,
+	  finetune keyboard shortcuts.
+
+2005-11-13  Alex Roitman  <shura@gramps-project.org>
+	* src/docgen/PdfDoc.py: Proper indentation for the first line with
+	and without bullets.
+
+2005-11-12  Don Allingham  <don@gramps-project.org>
+	* src/plugins/DetDescendantReport.py: add support for Henry
+	numbers for descendants
+
+2005-11-12  Alex Roitman  <shura@gramps-project.org>
+	* src/docgen/PdfDoc.py: Minor fixes.
+
+2005-11-10  Don Allingham  <don@gramps-project.org>
+	* src/GraphLayout.py: removed, incorporated into DesGraph
+	* src/Makefile.am: removed GraphLayout.py
+	* src/Plugins.py: don't enter into menus if not in debug mode
+	* src/plugins/CmdRef.py: don't enter into menus if not in debug mode
+	* src/plugins/Eval.py: don't enter into menus if not in debug mode
+	* src/plugins/Leak.py: don't enter into menus if not in debug mode
+	* src/plugins/TestcaseGenerator.py: don't enter into menus if not 
+	in debug mode
+	* src/plugins/DumpGenderStats.py: don't enter into menus if not 
+	* src/AncestorChart.py: Move to unsupported
+	* src/DesGraph.py: Move to unsupported
+	* src/AncestorChart2.py: More consistent name
+	* src/DescendChart.py: More consistent name
+
+2005-11-10  Alex Roitman  <shura@gramps-project.org>
+	* src/po/nl.po: Typo.
+	* src/plugins/IndivSummary.py: Move to Unsupported (duplicates
+	a subset of the IndivComplete report functionality).
+	* src/plugins/IndivComplete.py: Add author.
+
+2005-11-10  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels.py: fix datalist[0] problem running with accessbility enabled
+	* doc/xmldocs.make: fix for GNOME 2.12 help path
+	* doc/gramps-manual/C/gramps-manual-C.omf: fix for GNOME 2.12 help path.
+
+2005-11-10  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/plugins/rel_es.py: More detail for some relationships
+	* src/ImageSelect.py: Recompute mime type in case of path change
+	* src/ReadGedcom.py: fix window object name
+
+2005-11-09  Don Allingham  <don@gramps-project.org>
+	* src/plugins/DetAncestralReport.py: fix spacing
+	* src/Report.py: use filechooser for report dialog
+	* src/ReportUtils.py: use a single photo for image display
+
+2005-11-09  Alex Roitman  <shura@gramps-project.org>
+	* src/docgen/LPRDoc.py: Use paragraph padding correctly.
+	* src/BaseDoc.py: Support space above/below paragraph.
+	* src/StyleEditor.py: Support space above/below paragraph.
+	* src/gramps.glade: Support space above/below paragraph.
+	* src/Report.py: Minor tweaks for file selection.
+	* src/docgen//OpenOfficeDoc.py: Correct output for spacing.
+	* src/docgen/LPRDoc.py: Properly use space above/below.
+	* src/docgen/LPRDoc.py: Support post-leader directive.
+	* src/docgen/LPRDoc.py: Remove extra line after the paragraph.
+	* NEWS: Update.
+	* example/gramps/*: Add new example data.
+
+2005-11-09  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DbPrompter.py (DbPrompter): Use Combo to list multiple rcecent files
+	* src/gramps.glade: Use Combo to list multiple rcecent files
+	
+2005-11-08  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DbPrompter.py (DbPrompter): Give possibility to open
+	the recent file
+	* src/gramps.glade: Add recent file to DbPrompter
+	
+2005-11-08  Alex Roitman  <shura@gramps-project.org>
+	* src/EditPlace.py: Fix idle for new objects.
+	* src/EditSource.py: Fix idle for new objects.
+	* src/ImageSelect.py: Fix idle for new objects.
+	* src/Report.py (parse_report_options_frame): Do not allow
+	negative-numbered selection in the filter menu.
+	* NEWS: Update.
+
+2005-11-07  Alex Roitman  <shura@gramps-project.org>
+	* src/EditPlace.py: Convert References to the list view.
+	* src/gramps.glade: Replace TextView with TreeView.
+	* src/EditSource.py: Support editing Source from References tab.
+	* src/ImageSelect.py: Support editing objects through References.
+
+2005-11-07  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/gramps_main.py: Fix improper active person handling
+
+2005-11-06  Alex Roitman  <shura@gramps-project.org>
+	* src/EditSource.py (display_references): Return control if the
+	events are pending, not every 0.1 sec; Draw references as they
+	are found instead of deferring.
+	* src/EditPlace.py (display_references): Make nice.
+	* src/ImageSelect.py (GlobalMediaProperties.display_refs): Make nice.
+
+	* src/EditSource.py (display_references): Check for elapsed time
+	and return control to the main loop after 0.1 sec from the idle
+	callback; convert callback to being able to store its state and
+	continue from the middle.
+
+2005-11-05  Alex Roitman  <shura@gramps-project.org>
+	* src/PluginMgr.py: Add the optional argument indicating the
+	unsupported status to all registrations.
+	* src/Plugins.py: Reflect unsupported status in menus and trees.
+	* src/plugins/BookReport.py: Reflect unsupported status.
+	* src/plugins/WebPage.py, src/plugins/FtmStyleAncestors.py,
+	src/plugins/FtmStyleDescendants.py: Declare unsupported status.
+
+2005-11-05  Don Allingham  <don@gramps-project.org>
+	* src/plugins/*.py: updated email addresses and status
+
+2005-11-04  Alex Roitman  <shura@gramps-project.org>
+	* src/Witness.py (WitnessEditor.__init__): Typo.
+	* src/PluginMgr.py: Update all lists properly on any registration;
+	(purge_failed): Add function.
+	* src/Plugins.py (Reload.__init__): Purge plugins newly failed on
+	reload; Regenerate all menus after reload.
+	* src/gramps_main.py (build_plugin_menus): Add optional argument
+	indicating rebuild, do not load plugins on rebuild; (load_plugins)
+	factor out plugin loading routine. 
+
+2005-11-04  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/ReportUtils.py (sanitize_person): Restrict Media reference list
+	* src/plugins/NavWebPage.py: Add many more filtering of private data
+
+2005-11-02  Alex Roitman  <shura@gramps-project.org>
+	* src/DbPrompter.py: Close database in all cases; close dialogs
+	prior to that.
+
+2005-11-02  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: fix surnames/surnames_count problem,
+	fix intro/home page naming issue
+
+2005-11-01  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: fix private family records
+
+2005-10-31  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: use builtin python tarfile module
+
+2005-10-29  Don Allingham  <don@gramps-project.org>
+	* src/Sources.py: fix callback (caught by Martin)
+
+2005-10-28  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/TimeLine.py: Import strip_context correctly.
+	* src/plugins/SimpleBookText.py: Import strip_context correctly.
+	* src/plugins/StatisticsChart.py: Import strip_context correctly.
+
+2005-10-27  Don Allingham  <don@gramps-project.org>
+	* src/AddSpouse.py: glade fixes caught by Martin
+	* src/AttrEdit.py: glade fixes caught by Martin
+	* src/EditPerson.py: glade fixes caught by Martin
+	* src/EditPlace.py: glade fixes caught by Martin
+	* src/Marriage.py: glade fixes caught by Martin
+	* src/SelectChild.py: glade fixes caught by Martin
+
+2005-10-26  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/CmdRef.py (write_ref): Only write itemizedlist if
+	there is any contents for it.
+	* doc/gramps-manual/C/cmdplug.xml: Update to a valid docbook.
+	* doc/gramps-manual/C/usage.xml: Add manual on the Narrative web
+	page generator.	
+
+2005-10-25  Don Allingham  <don@gramps-project.org>
+	* src/latin_utf8.py: removed
+	* src/Makefile.am: remove latin_utf8.py
+
+2005-10-25  Alex Roitman  <shura@gramps-project.org>
+	* src/ReadGedcom.py (parse_source_reference): Ignore empty QUAY.
+
+2005-10-24  Don Allingham  <don@gramps-project.org>
+	* src/GrampsCfg.py: signal_autoconnect changes
+	* src/ImageSelect.py: signal_autoconnect changes
+	* src/ReadGedcom.py: signal_autoconnect changes
+	* src/WriteGedcom.py: signal_autoconnect changes
+	* src/gedcomimport.glade: signal_autoconnect changes
+	* src/gramps.glade: signal_autoconnect changes
+
+2005-10-24  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/WriteGedcom.py: export more objects, better conformance with
+	the spec, preserve timestamps on objects
+	* src/const.py.in: add table of GEDCOM tags that take a value on the
+	* src/ImageSelect.py: signal fix
+
+2005-10-23  Don Allingham  <don@gramps-project.org>
+	* src/ReadGedcom.py: handle progress bar
+	* src/gedcomimport.glade: add progress bar and expanders
+
+2005-10-24  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/AddSpouse.py: signal fix
+	* src/EventEdit.py: signal fix
+
+2005-10-22  Don Allingham  <don@gramps-project.org>
+	* src/AddMedia.py: signal_autoconnect changes
+	* src/AddSpouse.py: signal_autoconnect changes
+	* src/AttrEdit.py: signal_autoconnect changes
+	* src/Bookmarks.py: signal_autoconnect changes
+	* src/ChooseParents.py: signal_autoconnect changes
+	* src/DateEdit.py: signal_autoconnect changes
+	* src/EventEdit.py: signal_autoconnect changes
+	* src/Exporter.py: signal_autoconnect changes
+	* src/GenericFilter.py: signal_autoconnect changes
+	* src/ImageSelect.py: signal_autoconnect changes
+	* src/LocEdit.py: signal_autoconnect changes
+	* src/Marriage.py: signal_autoconnect changes
+	* src/MediaView.py: signal_autoconnect changes
+	* src/NameEdit.py: signal_autoconnect changes
+	* src/SelectChild.py: signal_autoconnect changes
+	* src/Sources.py: signal_autoconnect changes
+	* src/TransUtils.py: signal_autoconnect changes
+	* src/UrlEdit.py: signal_autoconnect changes
+	* src/Utils.py: signal_autoconnect changes
+	* src/Witness.py: signal_autoconnect changes
+	* src/gramps.glade: signal_autoconnect changes
+
+2005-10-22  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/WriteGedcom.py: Media objects for families, preparation for 
+	media objects for other entities
+
+2005-10-20  Don Allingham  <don@gramps-project.org>
+	* src/plugins/DetDescendantReport.py: bring in line with 
+	DetAncestralReport
+	* src/plugins/DetAncestralReport.py: remove firstname option
+
+2005-10-19  Don Allingham  <don@gramps-project.org>
+	* src/plugins/DetAncestralReport.py: fix child strings
+	* src/GrampsBSDDB.py: use cursors to rebuild secondary indices.
+	* src/Sources.py: fix typo on gladeif call
+
+2005-10-19  Stefan Bjork  <skalman@acc.umu.se>
+	* src/po/sv.po: Updates.
+
+2005-10-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/TestcaseGenerator.py: More randomisation; new test options
+	* src/RelLib.py (Source.get_text_data_list): Add missing fields
+	* src/AttrEdit.py: escape xml-specialchars because of use_markup
+	* src/EditPerson.py: escape xml-specialchars because of use_markup
+	* src/EventEdit.py: escape xml-specialchars because of use_markup
+	* src/Marriage.py: escape xml-specialchars because of use_markup
+	* src/NameEdit.py: escape xml-specialchars because of use_markup
+	* src/PedView.py: escape xml-specialchars because of use_markup
+	* src/UrlEdit.py: escape xml-specialchars because of use_markup
+
+2005-10-18  Don Allingham  <don@gramps-project.org>
+	* src/Report.py: bumped the maximum generations to 999 from 31
+
+2005-10-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/NavWebPage.py: Support side-by-side gallery images
+	* src/data/main*.css: Support side-by-side gallery images
+	
+2005-10-18  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/CmdRef.py: Use <para> withing the <listitem>.
+	* doc/graps-manual/C/cmdplug.xml: Update.
+
+2005-10-17  Don Allingham  <don@gramps-project.org>
+	* src/gedcomimport.glade: use expanders for information and
+	warning windows.
+	* src/AddSpouse.py: remove signal_autoconnect
+	* src/DisplayTrace.py: remove signal_autoconnect
+	* src/EditSource.py: remove signal_autoconnect
+	* src/ReadGedcom.py: two pass approach for handling forward
+	refererencing notes, less obscure names
+	* src/gramps.glade: remove signal mappings
+	* src/plugins.glade: remove signal mappings
+
+2005-10-18  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/WriteGedcom.py: Add description and notes for media objects
+
+2005-10-17  Stefan Bjork  <skalman@acc.umu.se>
+	* src/po/template.po: Broken and recreated.
+
+2005-10-16  Alex Roitman  <shura@gramps-project.org>
+	* doc/gramps-manual/*/gramps-manual-*.omf: Update.
+
+2005-10-14  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: remove signal_autoconnect to fix glade 
+	memory leak
+	* src/EditPlace.py: remove signal_autoconnect to fix glade 
+	memory leak
+	* src/GenericFilter.py: use TransUtils.py
+	* src/Makefile.am: add TransUtils.py and WindowUtils.py
+	* src/Marriage.py: remove signal_autoconnect to fix glade 
+	memory leak
+	* src/Sources.py: remove signal_autoconnect to fix glade 
+	memory leak
+	* src/Spell.py: import gettext
+	* src/Relationship.py: use TransUtils.py
+	* src/TransUtils.py: added to remove cyclic import
+	* src/WindowUtils.py: glade/signal interface class
+	
+2005-10-14  Alex Roitman  <shura@gramps-project.org>
+	* src/Date.py (is_empty): Consider non-text-only date with
+	empty numerical fields an empty date.
+	* src/gramps.glade: Use spinbuttons for selection coords in the
+	media reference dialog.
+	* src/ImageSelect.py (LocalMediaProperties): Support selection.
+
+2005-10-14  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/TestcaseGenerator.py: Randomize SourceRefs;
+	Add unicode test
+
+2005-10-14  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/ChooseParents.py: give unknown sex to the new parent, so that
+	guessing works
+
+2005-10-13  Don Allingham  <don@gramps-project.org>
+	* various: add explict calls to garbage collection
+
+2005-10-13  Alex Roitman  <shura@gramps-project.org>
+	* example/gramps/data.gramps: Update example data to conform with
+	the format changes and the DTD.
+	* doc/grampsxml.dtd, doc/grampsxml.rng: Update.
+	* src/WriteXML.py (write_xml_data): Use ISO date in the created
+	attribute; (get_iso_date): Return empty string on empty date;
+	(write_date): Write quality attributes, if any.
+	* src/ReadXML.py (start_daterange,start_dateval): Parse quality
+	attributes.
+
+2005-10-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/TestcaseGenerator.py: Randomize more; Add LDS events
+
+2005-10-12  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: option for choosing the ancestor graph
+
+2005-10-12  Alex Roitman  <shura@gramps-project.org>
+	* doc/grampsxml.rng: Add to CVS.
+	* doc/grampsxml.dtd: Typo.
+
+2005-10-12  Don Allingham  <don@gramps-project.org>
+	* src/data/main*.css: improved css styles for ancestor graphs
+	* src/plugins/NavWebPage.py: 4 generation ancestor graph
+	* src/ReportUtils.py: handle "unknown_gender_name" in parameter arrays
+
+2005-10-11  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: first pass at ancestor map
+	* src/data/main*.css: ancestor css styles
+	* src/EditPerson.py: handle adding death/birth record correctly
+
+2005-10-11  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/GraphViz.py: Typos.
+
+2005-10-11  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/TestcaseGenerator.py: Add some date events
+
+2005-10-10  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDBCallback.py: doc changes
+	* src/NameDisplay.py: remove nickname support
+	* src/QuestionDialog.py: handle missing icons for pychecker
+	* src/Report.py: set a default size for the window (600)
+	* src/ReportUtils.py: doc changes, add common_name
+	* src/plugins/DetAncestralReport.py:
+	* src/Date.py: set default modifier properly, fix compare and sortval
+	assignment
+	* src/RelLib.py: fix source reference date comparison
+	
+2005-10-09  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/WriteGedcom.py: fixed error caused by incomplete migration to
+	handle-based storage API
+
+2005-10-09  Don Allingham  <don@gramps-project.org>
+	* src/Spell.py: give more intelligent error message if spelling
+	checker is not found.
+	* src/plugins/DescendChart.py: fixed type detection to handle both
+	unicode and str.
+	* src/plugins/NavWebPage.py: fixed typo in Creative Commons messages
+
+2005-10-08  Don Allingham  <don@gramps-project.org>
+	* src/Bookmarks.py: use GrampsDisplay for help
+	* src/MergeData.py: use GrampsDisplay for help
+	* src/MergePeople.py: use GrampsDisplay for help
+
+2005-10-07  Alex Roitman  <shura@gramps-project.org>
+	* doc/grampsxml.dtd: Fix order, add missing contents.
+
+2005-10-07  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/TestcaseGenerator.py: Feed in more data
+	
+2005-10-07  Alex Roitman  <shura@gramps-project.org>
+	* doc/gramps-manual/C/cmdplug.xml: Add new section documenting
+	plugin options (Reports and Tools).
+	* src/build_cmdplug: Add script to refresh the new doc section.
+	* doc/gramps-manual/C/Makefile.am: Ship new file.
+	* doc/gramps-manual/C/gramps-manual.xml: Define new entity.
+	* doc/gramps-manual/C/cmdline.xml: Include new section.
+	* src/Makefile.am: Define new make target (cmdplug).
+	* src/PluginMgr.py: Include human-readable names in CLI plugins
+	registration.
+	* src/Report.py: Allow instantiation of command-line report
+	without adding item-specific options.
+	* src/Tool.py: Allow instantiation of command-line tool
+	without adding item-specific options.
+	* src/plugins/CmdRef.py: Add options for inclusion into the manual
+	and the target filename; Use human-readable names for titles; Add
+	section with common options; Add name option.
+
+2005-10-06  Don Allingham  <don@gramps-project.org>
+	* src/plugins/DetAncestralReport.py: fix margin on note paragraph
+	* src/DateEdit.py: try using standard icons
+
+2005-10-06  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/CmdRef.py: Work out Report docs.
+	* src/Report.py: Typo.
+
+	* src/WriteXML.py: Switch from preferred to alt name attribute.
+	* doc/grampsxml.dtd: Update.
+	* src/ReadXML.py: Bring in sync with format changes.
+
+2005-10-06  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/CmdRef.py: New file.
+
+2005-10-06  Don Allingham  <don@gramps-project.org>
+	* src/docgen/AbiWord2Doc.py: handle superscript properly
+	* src/ReportUtils.py: remove name generation from list_person_str
+	* src/plugins/DetAncestralReport.py: fix child list, use roman numerals
+
+2005-10-06  Alex Roitman  <shura@gramps-project.org>
+	* src/TreeTips.py: Typo.
+	* src/plugins/ScratchPad.py: Convert to new API.
+	* src/plugins/DumpGenderStats.py: Convert to new API.
+	* src/ArgHandler.py: Do actions prior to exports.
+	* doc/gramps.1.in: Document new execution order.
+
+2005-10-06  Stefan Bjork  <skalman@acc.umu.se>
+	* src/plugins/rel_sv.py: Obviosly, level=1 to get_parents means
+	parents, not level=0.
+	* src/po/sv.po: Updates and changes.
+
+2005-10-05  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDisplay.py: move gnome help and url control into this
+	module
+	* various: switch from direct gnome calls to GrampsDisplay calls
+	* src/TreeTips.py: don't register type if pygtk > 2.8.0
+
+2005-10-05  Alex Roitman  <shura@gramps-project.org>
+	* doc/grampsxml.dtd: Add to CVS (replaces gramps.dtd).
+	* src/WriteXML.py: Bring in sync with the DTD: 
+	  + add PUBLIC declaration of the DTD file
+	  + remove db stats as attributes of the database element
+	  + prepend all handles and hlinks with "_" (conform to XML ID)
+	  + replace "aka" with "name", "name" with "name preferred=1"
+	* src/Plugins.py: Factor out common code for plugins; fix tool
+	dialog; Convert plugin reloading tool to new API.
+
+2005-10-05  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/plugins/ReorderIds.py: handle more cases correctly
+
+2005-10-04  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/PatchNames.py: Convert to new API.
+	* src/plugins/RelCalc.py: Convert to new API.
+	* src/plugins/ReorderIds.py: Convert to new API.
+	* src/plugins/SoundGen.py: Convert to new API.
+	* src/plugins/Rebuild.py: Convert to new API.
+
+2005-10-04  Don Allingham  <don@gramps-project.org>
+	* src/DateParser.py: handle non-matching dates as strings properly
+
+2005-10-04  Stefan Bjork  <skalman@acc.umu.se>
+	* src/dates/Date_sv.py: Fixes. No differences from english version
+	on test data.
+
+2005-10-03  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/EventCmp.py: Convert to new API.
+	* src/plugins/Merge.py: Convert to new API.
+
+2005-10-03  Don Allingham  <don@gramps-project.org>
+	* src/Utils.py: grab the first word of a command line string
+	* src/plugins/DetAncestralReport.py: work on spouse information
+
+2005-10-02  Don Allingham  <don@gramps-project.org>
+	* src/ReportUtils.py: add pronoun/name support to child strings
+	* src/plugin/DetAncestralReport.py: Add support for ReportUtils
+	* src/plugin/DetDescendantReport.py: Add support for ReportUtils
+	* src/plugins/ImportGenweb.py: fix date handling to support
+	date ranges and date modifiers.
+
+2005-10-02  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/TestcaseGenerator.py: corrected options help dict
+
+2005-10-01  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Verify.py: Convert to new API.
+	* src/plugins/verify.glade: Use separate windows for errors and
+	warnings.
+	* src/plugins/Check.py: Convert to new API.
+	* src/plugins/DesGraph.py: Use correct constant.
+	* src/plugins/Eval.py: Convert to new API.
+	* src/plugins/Leak.py: Convert to new API.
+
+2005-09-30  Alex Roitman  <shura@gramps-project.org>
+	* src/docgen/KwordDoc.py: Remove unused latin_utf8 import.
+	* src/plugins/FilterEditor.py: Convert to new API.
+	* src/plugins/DesBrowse.py: Convert to new API.
+
+2005-09-29  Don Allingham  <don@gramps-project.org>
+	* src/docgen/AbiWord2Doc.py: fix latin encoding issues
+	* src/docgen/KwordDoc.py: fix latin encoding issues
+	* src/docgen/OpenSpreadSheet.py: fix latin encoding issues
+	* src/plugins/GraphViz.py: fix latin encoding issues
+	* src/plugins/DetAncestralReport.py: Fixed generation string
+	* src/plugins/DetDescendantReport.py: Fixed generation string
+
+2005-09-29  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/ExportVCalendar.py: Removed unused code
+	* src/plugins/ExportVCard.py: Removed unused code
+	* src/plugins/ImportGeneWeb.py: Removed unused code
+	* src/plugins/ImportvCard.py: Removed unused code
+	* src/plugins/TestcaseGenerator.py: Removed unused code
+	* src/plugins/WriteGeneWeb.py: Removed unused code
+	
+2005-09-29  Don Allingham  <don@gramps-project.org>
+	* src/WriteGedcom.py: handle broken family
+	* src/ReportUtils.py: fix born_str to not depend on death date
+	* example/gedcom/sample.ged: remove broken refererence (I01)
+
+2005-09-29  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/ImportGeneWeb.py: convert witout using latin_utf8.py
+	* src/plugins/ImportvCard.py: remove unused latin_utf8.py include
+	* src/plugins/TestcaseGenerator.py: remove unused latin_utf8.py include
+
+2005-09-28  Don Allingham  <don@gramps-project.org>
+	* src/NameDisplay.py: Add display_formal
+	* src/Report.py: remove generation strings
+	* src/docgen/OpenOfficeDoc.py: Fix leading space after tab.
+	* src/plugins/AncestorReport.py: Use ReportUtils strings
+	instead of local strings
+
+2005-09-28  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Translation update for 2.0.9.
+
+2005-09-28  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/TestcaseGenerator.py: Use new tool/option api 
+
+2005-09-27  Don Allingham  <don@gramps-project.org>
+	* src/ReadXML.py: store then restore read only flag on load
+
+2005-09-26  Alex Roitman  <shura@gramps-project.org>
+	* all reports: switch categories from const to Report module.
+	* src/const.py.in: Remove report and tool categories.
+	* src/Plugins.py: Switch report and tool category constants.
+	* src/PluginMgr.py: Switch report and tool category constants.
+	* src/Report.py, src/Tool.py: Move constants.
+	* src/plugins/ChangeNames.py, src/plugins/ChangeTypes.py,
+	src/plugins/Checkpoint.py: switch category constants.	
+
+2005-09-26  Don Allingham  <don@gramps-project.org>
+	* src/docgen/PSDrawDoc.py: locale independent floating point 
+	* src/DateDisplay.py: Better french republican date handling
+	* src/DateParser.py: Better french republican date handling
+	
+2005-09-26  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/ChangeNames.py: Convert to the new scheme.
+	* src/plugins/Checkpoint.py: Convert to new scheme, improve.
+	* src/plugins/checkpoint.glade: Add to CVS.
+	* src/plugins/Makefile.am: Ship new glade file.
+
+2005-09-25  Stefan Bjork  <skalman@acc.umu.se>
+	* src/po/sv.po: up to date with 2.0.9
+	* src/date/Date_sv.py: date parser/displayer for swedish locale
+	* src/date/Makefile.am: include Date_sv.py
+
+2005-09-24  Don Allingham  <don@gramps-project.org>
+	* src/data/tips.xml: removed the tip mentioning column sorting
+	in people view.
+	* src/latin_utf8.py: removed
+	* src/ReadGedcom.py: added latin_utf8 functions
+	* src/Spell.py: better error checking on import
+
+2005-09-23  Don Allingham  <don@gramps-project.org>
+	* doc/gramps-manual/C/faq.xml: more updates
+	* doc/gramps-manual/C/getstart.xml: more updates
+	* doc/gramps-manual/C/gramps-manual.xml: more updates
+	* doc/gramps-manual/C/mainwin.xml: more updates
+	* doc/gramps-manual/C/usage.xml: more updates
+
+2005-09-24  Don Allingham  <dona@gramps-project.org>
+	* src/WriteGedcom.py: handle patronymics
+
+2005-09-24  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GrampsDbBase.py: Properly validate ID prefix strings
+	
+2005-09-23  Alex Roitman  <shura@gramps-project.org>
+	Merge changes done in the TOOL_OPT branch as follows:
+	* src/Tool.py: Add to CVS: Generic tool interface.
+	* src/ArgHandler.py: Support command line mode for tools.
+	* src/PluginMgr.py: New tool registration scheme.
+	* src/Plugins.py: Convert to tool registration scheme.
+	* src/const.py.in: Add tool categories. 
+	* src/plugins/ChangeTypes.py: Convert to new scheme.
+	* src/Options.py: Add to CVS: generic options interface.
+	* src/ReportOptions.py: Keep only report-specific option
+	handling.
+	* src/Makefile.am: Ship new files.
+
+2005-09-23  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Checkpoint.py: Minor improvements for the RCS.
+	* src/plugins/Makefile.am: Ship Checkpoint.py.
+
+2005-09-22  Don Allingham  <don@gramps-project.org>
+	* doc/gramps-manual/C/*.xml
+
+2005-09-21  Don Allingham  <don@gramps-project.org>
+	* src/ReportUtils.py: More UNKNOWN gender handling, and more 
+	complete burial strings
+	* src/plugins/DetAncestralReport.py: defer pronoun handling to
+	ReportUtils
+	* src/plugins/DetDescendantReport.py: defer pronoun handling to
+	ReportUtils
+
+2005-09-21  Alex Roitman  <shura@gramps-project.org>
+	* src/ReportUtils.py: Add UNKNOWN gender case throughout.
+
+2005-09-21  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/dates/Date_de.py: Fix month name
+
+2005-09-21  Don Allingham  <don@gramps-project.org>
+	* src/ChooseParents.py: fix unbound variable when neither parents
+	exist.
+	* src/plugins/DetAncestralReport.py: fix endnotes for null sources
+	* src/plugins/DetDescendantReport.py: fix endnotes for null sources
+	* src/plugins/FtmStyleAncestors.py: fix endnotes for null sources
+	* src/ReportUtils.py: fix typo
+	* src/plugins/NavWebPage.py: handle contact page issues, including
+	random commas and missing image.
+
+2005-09-20  Don Allingham  <don@gramps-project.org>
+	* src/ImgManip.py: update thumbnail if out of date
+
+2005-09-20  Alex Roitman  <shura@gramps-project.org>
+	* INSTALL: Provide correct examples for the local install.
+	* gramps.sh.in: Revert escaping the arguments, as this lumps all
+	the args into a single word. If filenames contain spaces then they
+	should be escaped by the user.
+	* src/plugins/DetAncestralReport.py (write_person,write_children):
+	Remove boldface, since it should be handled by the style;
+	(make_default_style): handle boldface heading by the style.
+	* src/plugins/DetDescendantReport.py (write_person,
+	write_children): Remove boldface, since it should be handled by
+	the style; (make_default_style): handle boldface heading by the
+	style.
+
+2005-09-19  Don Allingham  <don@gramps-project.org>
+	* src/ReportUtils.py: better string handling
+	* doc/gramps-manual/C/getstart.xml: updates from editors
+	* doc/gramps-manual/C/mainwin.xml: updates from editors
+	* doc/gramps-manual/C/usage.xml: updates from editors
 
 2005-09-16  Don Allingham  <don@gramps-project.org>
 	* src/DisplayState.py: remove relationship display stuff for the time
@@ -26,13 +885,232 @@
 	* src/edit_person.glade: Change complete flag into marker combo
 
 2005-09-15  Don Allingham  <don@gramps-project.org>
+	* src/DescendReport.py: fix indentation
+
+2005-09-15  Don Allingham  <don@gramps-project.org>
 	* src/EditPlace.py: fix windowing history
+
+2005-09-14  Don Allingham  <don@gramps-project.org>
+	* src/CalSdn.py: fix Hebrew date parsing
+	* src/DescendReport.py: enhanced to add spouses and places
+	* src/ReadGedcom.py: fix forward referencing named notes
+
+2005-09-12  Don Allingham  <don@gramps-project.org>
+	* src/NameEdit.py: preserve custom name types
+	* src/plugins/ScratchPad.py: handle unicode better
+	* src/DdTargets.py: handle unicode better
+
+2005-09-11  Don Allingham  <don@gramps-project.org>
+	* src/NameDisplay: include nickname if available
+	* src/plugins/ScratchPad.py: Handle null handle
+
+2005-09-10  Don Allingham  <don@gramps-project.org>
+	* src/ImageSelect.py: fix adding a new image that is actually
+	already in the database.
+
+2005-09-06  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: suppress dates on list pages for restricted
+	people
+	* doc/gramps-manual/C/getstart.xml: text and graphics improvements
+	* doc/gramps-manual/C/mainwin.xml: text and graphics improvements
+	* doc/gramps-manual/C/usage.xml: text and graphics improvements
+
+2005-09-05  Eero Tamminen  <eerot@sf>
+	* src/plugins/StatisticsChart.py: string changes
+	  "Number of relationship" -> "Number of relationships" (fix)
+	  "Marriage age" -> "Age at marriage" (consistency)
+
+2005-09-05  Don Allingham  <don@gramps-project.org>
+	* NEWS: update for 2.0.8
+	* src/data/Makefile.am: install main6.css
+	* src/plugins/NavWebPage.py: Catch exception if thumbnailer fails.
+
+2005-09-05  Eero Tamminen  <eerot@sf>
+	* src/DateParser.py: Fixed what I broke
+
+2005-09-04  Don Allingham  <don@gramps-project.org>
+	* NEWS: update for 2.0.7 release
+	* src/DateDisplay.py: handle BCE better
+	* src/ReadXML.py: read the patronymic portion of a name properly.
+
+2005-09-04  Eero Tamminen  <eerot@sf>
+	* src/DateParser.py: Added support for modifiers being both
+	  before and after a date
+	* src/dates/Date_fi.py: Completed first version of Finnish
+	  date handling
+	* src/dates/Makefile.am: Install Date_fi.py
+
+2005-09-03  Don Allingham  <don@gramps-project.org>
+	* src/GraphLayout.py: use recursion limit to detect db loops
+	* src/Utils.py: use recursion limit to detect db loops
+
+2005-09-03  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/po/es.po: Translation update
+
+2005-09-02  Don Allingham  <don@gramps-project.org>
+	* src/GrampsBSDDB.py: fixed unicode/str problem
+	* doc/gramps-manual/C/preface.xml: wording fixes.
+	* doc/gramps-manual/C/mainwin.xml: wording fixes.
+
+2005-09-01  Don Allingham  <don@gramps-project.org>
+	* src/docgen/OpenOfficeDoc.py: fix font point size handling
+	* src/Plugins.py: sort submenu entries properly
+	* src/PeopleView.py: replace unique string with one already translated
+	* src/gramps_main.py: replace unique string with one already translated
+	* src/plugins/Ancestors.py: replace unique string with one already translated
+	* src/plugins/Eval.py: replace unique string with one already translated
+	* src/plugins/WriteCD.py: replace unique string with one already translated
+	* src/po/check_po: produce a sorted list of used text strings,
+	split strings better
+	* src/ImageSelect.py: Local edit of a media Note type now 
+	brings up the Note editor instead of the media editor.
+	* src/plugins/Verify.py: don't complain about difference in
+	ages between spouses if birth year is unknown.
+
+2005-09-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/po/check_po: Support for multiple files as command line
+	arguments; untranslated strings dont need mismatch tests
+
+2005-08-31  Don Allingham  <don@gramps-project.org>
+	* src/plugins/RelCalc.py: use PeopleModel instead of ListModel,
+	check to the person being compared to him/herself
+	* src/plugins/relcalc.glade: increase the width of the window.
+	* src/Report.py: Catch thrown Database error
+	* src/GraphLayout.py: catch database loops
+	* src/po/de.po: fix %()s mismatches
+	* src/po/ru.po: fix %()s mismatches
+	* src/po/check_po: utility to look for problems in .po files
+
+2005-08-31  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Translation update for 2.0.7.
+
+2005-08-31  Don Allingham  <don@gramps-project.org>
+	* src/PedView.py: force an update of the cached person
+	* src/gramps_main.py: force an update of the cached person
+	* src/ReadGedcom.py: handle attributes if value is on the same line as the
+	keyword
+
+2005-08-31  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/ReportUtils.py (insert_images): Warn about non existing files
+
+2005-08-30  Alex Roitman  <shura@gramps-project.org>
+	* src/po/ru.po: Translation update for 2.0.7.
+
+2005-08-30  Don Allingham  <don@gramps-project.org>
+	* src/po/de.po: fixed parameter arguments
+	* doc/gramps-manual/C/getstart.xml: fixed spelling
+	* doc/gramps-manual/C/mainwin.xml: fixed spelling
+	* src/Errors.py: Add a DatabaseError type
+	* src/Utils.py: detect database loops in descendants_too_old
+	* src/WriteGedcom.py: report error message when database loop is detected
+	* src/po/template.po: added new error message. May be too late for some
+	translations to get this message.
+	* src/ImageSelect.py: specify mime type to get_thumbnail_image
+	* src/ImgManip.py: make thumbnailing routine more generic
+	* src/SelectObject.py: specify mime type to get_thumbnail_image
+	* src/plugins/NavWebpage.py: produce larger preview images for media
+	pages if a thumbnailer exists
+	* src/plugins/SimpleBookTitle.py: specify mime type to get_thumbnail_image
+
+2005-08-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/NavWebPage.py: Encode using 'xmlcharrefreplace'
+	* src/plugins/WriteGeneWeb.py: Remove empty families before running
+	the export. this gives now an error instead of writing an empty file;
+	Encode using 'xmlcharrefreplace'
+
+2005-08-29  Don Allingham  <don@gramps-project.org>
+	* src/GenericFilter.py: fixed "only one" filter rule, and matching
+	the descendents of a filter
+	* src/SelectObject.py: Fix sorting order for title
+	* src/plugins/WriteGeneWeb.py: use 'replace' for 'iso-8859-1' encoding
+	* src/po/fr.po: fix named parameter
+	* src/ImageSelect.py: fix note media object added from a gallery
+	* src/po/template.po: updated translation template
+	* src/Utils.py: fix probably_alive to handle year offset properly
+	* src/plugins/NavWebPage.py: handle new probably_alive function
+
+2005-08-29  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/NavWebPage.py: Correct link to Surname list page;
+	Better handling for not existing media object files and note-only
+	objects; thxumbnails are always png images
+	* src/plugins/Check.py: Files of note-only objects are no longer
+	reported as missing
+
+2005-08-28  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: handle resticted living people
+	better, producing name and relationships instead of just Private.
+	* src/plugins/AncestorChart2.py: add support for %n style
+	of keyword substitution
+
+2005-08-27  Don Allingham  <don@gramps-project.org>
+	* src/data/Makefile.am: install document.png
+	* src/plugins/Makefile.am: install DescendChart.py
+
+2005-08-26  Don Allingham  <don@gramps-project.org>
+	* src/data/document.png: added
+
+2005-08-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/TestcaseGenerator.py: Changed param handling;
+	add more tests; make names shorter and configurable
+	* src/GrampsDbBase.py: Print transaction if GRAMPS_SIGNAL=1
+
+2005-08-26  Don Allingham  <don@gramps-project.org>
+	* src/plugins/DescendChart.py: Fix spacing and line drawing,
+	added maximum number of generations, fixed shadow scaling
 
 2005-08-25  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps_main.py: pass DisplayState to TipOfDay
 	* src/TipOfDay.py: Use DisplayState
 	* src/const.py.in: add GRAMPS websites
 	* src/ViewManager.py: Add TipOfDay; Make GRAMPS websites work again
+
+2005-08-25  Don Allingham  <don@gramps-project.org>
+	* src/SubstKeywords: Add new % options
+	* src/plugins/DescendChart.py: New descendant wall chart report
+
+2005-08-25  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/SelectChild.py (on_save_child_clicke): Dont add the same person
+	multiple times as child
+	* src/gramps_main.py (delete_person_response): Purge empty family
+	after the last child of a single-spouse family was deleted.
+
+2005-08-24  Don Allingham  <don@gramps-project.org>
+	* src/ImgManip.py: convert to png instead of jpeg
+	* src/ReadGedcom.py: try to catch bad secondary index error.
+	* src/ReportUtils.py: provide privacy sanitation on a list
+	* src/NavWebPage.py: better handling of thumbnails, allow gallery
+	page to be disabled
+
+2005-08-24  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/ImgManip.py: import Utils (required by get_thumbnail_image)
+
+2005-08-18  Mark Knoop  <mark@markknoop.com>
+	* src/data/main6.css: new "Sharp" style sheet
+
+2005-08-23  Don Allingham  <don@gramps-project.org>
+	* gramps.sh.in: escape the arguments to prevent spaces in
+	filenames to be parsed as to seperate arguments
+	* src/ImageSelect.py: pass the mime_type to the thumbnail generator
+	* src/ImgManip.py: query the gconf database to find appropriate
+	thumbnail generators
+	* src/NameDisplay.py: don't force a comma if the last name does 
+	not exist
+	* src/WriteGedcom.py: don't copy a file on top of itself
+	* src/plugins/Ancestors.py: verify the existance of a file
+	* src/plugins/NavWebPage.py: don't use HOME page if it would be 
+	empty
+
+2005-08-23  Tim Allen  <tim@proximity.com.au>
+	* src/plugins/Ancestors.py: fix pagebreak and borders around image
+
+2005-08-22  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/ExportVCard.py (write_person): Fix typo
+
+2005-08-21  Don Allingham  <don@gramps-project.org>
+	* src/ImgManip.py: add support for PDF thumbnailing
+	* src/plugins/NavWebPage.py: Always use two levels instead of
+	one level of subdirectories, use subdirectories for thumbnails
+	and media objects
 
 2005-08-19  Don Allingham  <don@gramps-project.org>
 	* src/DisplayState.py: fixe some window management syntax errros
@@ -59,6 +1137,46 @@
 	* src/PageView.py: added basic tooltip support
 	* src/PeopleModel.py: added basic tooltip support
 	
+2005-08-19  Don Allingham  <don@gramps-project.org>
+	* src/NameDisplay.py: handle patronymic names in given name
+	* src/plugins/NavWebPage.py: handle patronymic names in given name
+	* src/GenericFilter.py: fix unicode problem with menu store
+
+2005-08-18  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: code clean up
+	* src/AddSpouse.py: remove unnecessary commit via add_family
+
+2005-08-18  Mark Knoop  <mark@markknoop.com>
+	* src/NavWebPage.py: move more HTML commands to CSS
+	* src/data/main*.css: add support for HTML control from NavWebPage
+
+2005-08-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* doc/gramps-manual/C/custom.xml: Match against DTD
+	* doc/gramps-manual/C/usage.xml: Match against DTD
+	* doc/gramps-manual/C/preface.xml: Match against DTD
+	
+2005-08-17  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: fix source reference links on the 
+	source page, check for bad file name if archive is used.
+	* src/FamilyView.py: commit person when removed from family
+
+2005-08-18  Eero Tamminen  <eerot@sf>
+	* src/GenericFilter.py, src/Marriage.py, src/plugins/TimeLine.py,
+	  src/plugins/SimpleBookTitle.py: add localization context for
+	  "Title" string (needed in Finnish)
+	* src/ReportUtils.py: Add header option for draw_legend()
+	* src/plugins/StatisticsChart.py: add headers to legends and
+	  barcharts, change chart type names to singular form, add
+	  support for ProgressMeter, swap bar&text position as text
+	  rightaligning in Gramps is broken (it can't know font metrics)
+
+2005-08-17  Don Allingham  <don@gramps-project.org>
+	* src/Marriage.py: fix lds_data_object problem
+	* src/GrampsDBCallback.py: look for GRAMPS_SIGNAL environment
+	variable equal to 1 to enable signal debugging
+	* src/ChooseParents.py: disconnect signals on close, do fewer
+	commits
+
 2005-08-17  Alex Roitman  <shura@gramps-project.org>
 	* various: merge changes made in gramps20 branch with main trunk.
 
@@ -76,6 +1194,12 @@
 	* src/plugins/scratchpad.glade: removed
 
 2005-08-17  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/plugins/ExportVCalendar.py: fixed import for localtime,
+	corrected type of Utils and params to Until.family_name
+	made "Version" upper case as demanded by Korganiser and
+	the spec (I think).
+	
+2005-08-17  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/EditRepository.py: fixes for lack of parent window handles 
 	use of dbstate. Commented out code to bold labels for now as
 	Utils.bold_label does not work. Renamed DelReposQuery.
@@ -85,6 +1209,30 @@
 	* src/RepositoryView.py: fixes for dbstate, commented out remove repos
 	code for now as it does not work. Fixes edit repository call.
 	
+2005-08-17  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Fix/improve Finnish translations
+
+2005-08-16  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: fix paths in surname page
+	* src/Sources.py: Limit the source title to 40 characters
+	* src/MergePeople.py: correctly handle selection of first person
+	* src/MediaView.py: add mediaobj to DND types
+	* src/plugins/ScratchPad.py: fill out rest of media details (type,value)
+	* src/EditPerson.py: hide LDS if not requested
+	* src/Marriage.py: hide LDS if not requested
+	* src/Spell.py: re-enable
+	* src/GrampsCfg.py: add support for spell checker
+	* src/GrampsGconfKeys.py: add support for spell checker
+	* src/GrampsIniKeys.py: add support for spell checker
+	* src/gramps.glade: add support for spell checker
+	* src/data/gramps.schemas: add support for spell checker
+
+2005-08-15  Alex Roitman  <shura@gramps-project.org>
+	* NEWS: Update.
+
+2005-08-14  Eero Tamminen  <eerot@sf>
+	* src/ReadXML.py (start_event): Correctly set event type.
+
 2005-08-14  Alex Roitman  <shura@gramps-project.org>
 	* src/PedView.py (__init__): Define database variable.
 	* src/ViewManager.py (__init__): Define empty pages list.
@@ -203,6 +1351,355 @@
 	* various: remove set_date/get_date removal to be replaced by
 	DateHandler calls
 
+2005-08-08  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Updated translated to latest template
+
+2005-08-05  Alex Roitman  <shura@gramps-project.org>
+	* src/Spell.py: Make more robust to failure.
+	* src/Makefile.am: Ship new file.
+	
+	* src/EditPerson.py (did_data_change,on_apply_person_clicked):
+	Convert date text to unicode before parsing.
+	* src/Spell.py: Comment out to disable spell-checking for 2.0.6.
+
+2005-08-05  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/Checkpoint.py (rcs): define variable comment before using it. 
+
+2005-08-04  Don Allingham  <don@gramps-project.org>
+	* src/Spell.py: Interface to gtkspell
+        * src/AddrEdit.py: add spell checker to notes
+	* src/AttrEdit.py: add spell checker to notes
+	* src/EditPerson.py: add spell checker to notes
+	* src/EditPlace.py: add spell checker to notes
+	* src/EditSource.py: add spell checker to notes
+	* src/EventEdit.py: add spell checker to notes
+	* src/ImageSelect.py: add spell checker to notes
+	* src/Marriage.py: add spell checker to notes
+	* src/NameEdit.py: add spell checker to notes
+	* src/NoteEdit.py: add spell checker to notes
+	* src/Sources.py: add spell checker to notes
+	* src/ImageSelect.py: fixed thumbnail dnd selection
+	* src/AttrEdit.py: don't used reserved word "list"
+	* src/EditPerson.py: Pass correct attribute list to editor
+	* src/GrampsBSDDB.py: persistently load/save attribute lists
+	* src/GrampsDbBase.py: update attributes on commit
+	* src/Marriage.py: Pass correct attribute list to editor
+
+2005-08-04  Alex Roitman  <shura@gramps-project.org>
+	* NEWS: Update.
+	* src/MergePeople.py: Typos.
+	* src/plugins/NavWebPage.py: Typos.
+	* src/po/template.po: Update for upcoming 2.0.6.
+	* src/Report.py (parse_report_options_frame): Fallback to trivial
+	filter on filter failure.
+	* src/ArgHandler.py (parse_args): Use mime type to identify gramps
+	XML data.
+	* doc/gramps.1.in: Update man page.
+	* doc/gramps-manual/C/cmdline.xml: Update manual.
+	* src/po/ru.po: Partial update.
+	
+2005-08-04  Don Allingham  <don@gramps-project.org>
+	* src/PeopleModel.py: provide a work around for the python 2.3 bug
+	unicode sorting problem with locale.strcoll. For a nul termination
+	during sorting, strip it off after sorting. Only used for
+	python2.3, since this bug was fixed in python 2.4.
+
+2005-08-03  Don Allingham  <don@gramps-project.org>
+	* src/NavWebPage.py: use new ProgressMeter, add ability to
+	not generate a CSS style sheet.
+	* src/WebPage.py: add deprecation notice
+	
+2005-08-03  Alex Roitman  <shura@gramps-project.org>
+	* src/gramps_main.py (undo): Rebuild bookmarks menu on undo.
+	* src/plugins/ChangeNames.py: Add ProgressMeter.
+	* src/plugins/ChangeTypes.;y: Add ProgressMeter.
+	* src/plugins/Check.py: Mark translatable string.
+	* src/plugins/EventCmp.py: Add ProgressMeter.
+	* src/plugins/PatchNames.py: Add ProgressMeter.
+
+2005-08-03  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbBase.py: provide functions for indicating the number
+	of items in each table
+	* src/Check.py: Add ProgressMeter calls
+	* src/Utils.py: Define new ProgressMeter class
+	* src/GrampsBSDDB.py: call callback for rebuilding secondary indices
+	* src/plugins/Merge.py: use ProgressMeter
+	* src/plugins/Rebuild.py: use ProgressMeter
+	* src/plugins/ReorderIds.py: use ProgressMeter
+	* src/plugins/Verify.py: use ProgressMeter
+
+2005-08-02  Alex Roitman  <shura@gramps-project.org>
+	* src/Bookmarks.py: Convert from CList to ListModel and TreeView;
+	Remove Cancel and OK buttons, Add Close button; make all changes
+	immediate conforming to the HIG; (remove_people): Add method for
+	removing people outside bookmark editor (useful for connecting to
+	signals).
+	* src/gramps_main.py (on_remove_bookmark): Add handler for
+	removing deleted people; (__init__): Connect new handler to the
+	'person-delete' signal.
+
+2005-08-02  Don Allingham  <don@gramps-project.org>
+	* src/NameEdit.py: convert names to unicode
+	* src/PeopleModel.py: convert names to uncode
+	* src/DateHandler.py: handle <> for about
+	* src/plugins/NavWebPage.py: cleanup
+	* src/EditPerson.py: call new PersonEventEditor
+	* src/Marriage.py: call new FamilyEventEditor
+	* src/EditSource.py: call the correct EventEditor
+	* src/EventEdit.py: Add PersonEventEditor and FamilyEventEditor to
+	correctly manage event types
+	* src/GrampsBSDDB.py: use commit_event to handle personal vs. family
+	event types
+	* src/GrampsInMem.py: use commit_event to handle personal vs. family
+	event types
+	* src/GrampsDbBase.py: use commit_event to handle personal vs. family
+	event types
+	* src/ReadXML: use commit_event to handle personal vs. family
+	event types
+	* src/ReadGedcom: use commit_event to handle personal vs. family
+	event types
+	
+2005-08-02  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/Bookmarks.py (edit): Dont crash if bookmark list contains
+	nonexisting person.
+	* src/gramps_main.py: Disable "add bookmark" menu entry on readonly
+	database and only enable it in person/family/pedigree view.
+
+2005-08-01  Don Allingham  <don@gramps-project.org>
+	* src/NavWebPage.py: fix references to places
+	* src/WriteGedcom.py: Fix media handling, issue error message
+	on write failure
+
+2005-08-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/gramps_main.py: Use gobject.timeout_add instead of gtk.
+
+2005-07-31  Alex Roitman  <shura@gramps-project.org>
+	* src/docgen/OpenOfficeDoc.py: Typo.
+
+2005-07-30  Don Allingham  <don@gramps-project.org>
+	* src/docgen/OpenOfficeDoc.org: remove ^L and ^Z from output, use
+	xml.sax.saxutils.escape to handle XML entities
+
+2005-07-29  Don Allingham  <don@gramps-project.org>
+	* src/GrampsBSDDB.py: issue complete redraw on name grouping change
+	* src/Utils.py: use intermediate variable
+	* src/MergePeople.py: Fix wording of the message.
+	* src/Report.py: Don't force expansion of widgets
+	* src/ReportUtils.py: allow restriction of information
+	* src/plugins/NavWebPage.py: enable living restriction
+
+2005-07-29  Alex Roitman  <shura@gramps-project.org>
+	* src/GenericFilter.py (GrampsFilterComboBox.get_value): Do not
+	convert key to unicode.
+	* src/po/no.po, src/po/nb.po: Typos.
+
+2005-07-28  Don Allingham  <don@gramps-project.org>
+	* src/MergePeople.py: prevent attempts to merge a person and his/her
+	spouse, prevent merging of child and parent.
+
+2005-07-28  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/WebPage.py (WebReportOptions.set_new_options):
+	Define help dictionary to document options.
+	* src/Report.py (CommandLineReport.init_options): Typo.
+	* src/Report.py (ReportDialog.on_ok_clicked): Properly return on
+	correct/change filename choice.
+
+2005-07-27  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: add user html header and footer
+	* src/FamilyView.py: try to prevent adding a spouse that has 
+	already been added
+	* src/ReadXML.py: prevent adding a spouse that has already been
+	added
+	* src/plugins/Check.py: remove identical families in family list
+
+2005-07-26  Alex Roitman  <shura@gramps-project.org>
+	* src/ChooseParents.py (save_parents_clicked): Do not create
+	family if parent is self.
+
+2005-07-26  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: NameDisplay enhancements
+	* src/FamilyView.py: NameDisplay enhancements
+	* src/NameDisplay.py: NameDisplay enhancements
+	* src/NameEdit.py: NameDisplay enhancements
+	* src/PedView.py: NameDisplay enhancements
+	* src/PeopleModel.py: NameDisplay enhancements
+	* src/PeopleView.py: NameDisplay enhancements
+	* src/RelLib.py: NameDisplay enhancements
+	* src/Report.py: NameDisplay enhancements
+	* src/SelectChild.py: NameDisplay enhancements
+	* src/Witness.py: NameDisplay enhancements
+	* src/gramps.glade: NameDisplay enhancements
+	* src/gramps_main.py: NameDisplay enhancements
+
+2005-07-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/NavWebPage.py: Catch missing header/footer notes; Add Surname
+	page that is sorted by the number of persons.
+
+2005-07-25  Alex Roitman  <shura@gramps-project.org>
+	* src/gramps.glade (editPerson,marriageEditor): Use Title for the
+	source titles.
+
+2005-07-24  Don Allingham  <don@gramps-project.org>
+	* src/MediaView.py: don't indicate missing path for Notes, which
+	aren't supposed to have a path
+	* src/ReadGedcom.py: Handle PAF's non-GEDCOM compliant method of
+	indicating unknown gender.
+
+2005-07-24  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/RelCalc.py (__init__): Correctly name column header.
+
+2005-07-23  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/plugins/GraphViz.py: Fix computation of landscape dimensions,
+	especially when generating multiple sheets
+
+2005-07-22  Don Allingham  <don@gramps-project.org>
+        * src/ImgManip.py: provide path of a thumbnail
+	* src/NavWebPage.py: add user defined header/footer, add thumbnails
+	
+	* src/dates/Date_es.py: fix translation table for date qualifiers
+	* src/dates/Date_fr.py: fix translation table for date qualifiers
+	* src/plugins/DetAncestralReport.py: show events even if they have
+	neither date nor place
+	* src/plugins/DetDescendantReport.py: show events even if they have
+	neither date nor place
+
+2005-07-22  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/NavWebPage.py: fix typos 
+
+2005-07-21  Don Allingham  <don@gramps-project.org>
+	* src/data/somerights20.gif: make a local copy of the Create Commons
+	image
+	* src/data/Makefile.am: add somerights20.gif
+	* src/plugins/NavWebPage.py: add birth dates to people, use local
+	create commons image, add surname pages
+
+2005-07-20  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: Add support for multiple directory levels to
+	try to keep the number of files per directory under 254 for optimal ext3
+	file performance, add support for copyright.
+
+2005-07-20  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/plugins/DetDescendantReport.py: Names, events and sources.
+	* src/plugins/DetAncestralReport.py (add_user_options): Names, events and sources.
+
+2005-07-20  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Put release number back to CVS+date.
+	* src/po/de.po: Typo.
+	* src/plugins/Ancestors.py (person): correctly compare handles.
+
+2005-07-18  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: add media gallery navigation, clean up
+	* src/data/main*.css: add support for media gallery navigation
+
+2005-07-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/NavWebPage.py: Optimize separation of multiple families;
+	Print out attributes; Print out family note
+
+2005-07-17  Don Allingham  <don@gramps-project.org>
+	* src/ReportUtils.py: fix private name generation
+	* src/plugins/NavWebPage.py: Add family photos to the gallery,
+	handle privacy better and filter out private people from the
+	internal lists
+
+2005-07-17  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/Sort.py: Make sure sorting by birthdate handles correctly
+	missing dates
+	* src/WriteGedcom.py: Export source references at the global person
+	level
+
+2005-07-16  Steve Hall  <digitect@mindspring.org>
+	* src/data/main*.css: fix <sup> spacing in CSS files
+
+2005-07-16  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: split parents and families
+	* src/ReportUtils.py: save note information
+
+2005-07-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/Makefile.am: Install NavWebPage.py plugin
+	* src/data/Makefile.am: Install stylesheets for NavWebPage
+	
+2005-07-15  Don Allingham  <don@gramps-project.org>
+	* src/Reportutils.py: copy source information while sanitizing data
+	* src/plugins/NavWebPage.py: add source references instead of direct
+	links to sources
+
+2005-07-15  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/NavWebPage.py: Use researcher info from Gramps
+	session, not from the database.
+	* src/data/main4.css: Typos.
+
+2005-07-15  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/NavWebPage.py: Avoid some segfaults; HTML validation fixes;
+	Show all names of a person; Show all images of person/source and
+	place; Add plugin version to header; Optimize page titles
+	* src/Utils.py (find_mime_type_pixbuf): Dont segfault with note only object
+	* src/SelectObject.py (on_select_row): Dont segfault with note only object
+	* src/GenericFilter.py: Only load rules that provide the required
+	number of arguments.
+
+2005-07-14  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: gallery/media object enhancements, div/span fixes
+	in HTML, source and place references, individual source pges.
+
+2005-07-14  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/NavWebPage.py: Added display_note_object and
+	display_first_image_as_thumbnail to BasePage; PlacePage and
+	IndividualPage use this now.
+	Display URL list of Individuals and Places
+
+2005-07-14  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: wrap content with div, fix encoding problems
+
+2005-07-13  Don Allingham  <don@gramps-project.org>
+	* src/Sort.py: don't use upper case, let locale.strcoll figure this
+	out (correctly) for us
+	* src/plugins/NavWebPage.py: fix sorting.
+	* src/data/main*.css: added stylesheets for web page generator
+	* src/data/Makefile.am: add stylesheets
+	
+2005-07-13  Alex Roitman  <shura@gramps-project.org>
+	* src/GenericFilter.py: Proper test for place in event-based
+	filters; (Rule.set_list): Add assertion to have the correct number
+	of arguments; (various): stop testing for number of arguments.
+	* src/AddSpouse.py (LikelyFilter): Add labels to the filter.
+	* src/ChooseParents.py (LikelyFilter): Add labels to the filter.
+	* src/SelectiChild.py (LikelyFilter): Add labesl to the filter.
+	* src/gramps_main.py (init_filters): Instantiate filters with
+	correct number of arguments.
+
+2005-07-13  Don Allingham  <don@gramps-project.org>
+	* src/GrampsInMemDB.py: add get_event_cursor
+	* src/GrampsDbBase.py: add get_event_cursor
+
+2005-07-12  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: handle links properly
+	* src/plugins/Makefile.am: export Rebuild.py
+
+2005-07-11  Don Allingham  <don@gramps-project.org>
+	* src/GrampsBSDDB.py: add repair_secondary task to rebuild 
+	secondary indices
+	* src/GrampsDbBase.py: add repair_secondary task
+	* src/plugins/Check.py: move to "Repair Database" category
+	* src/plugins/Rebuild.py: new plugin to repair secondary indices
+
+2005-07-11  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/GraphViz.py (GraphViz.__init__): Define nominal and
+	reduced margins; (write_report): Use nominal margin to compute
+	virtual size and reduced margin to write the margin size;
+	(write_header): Write reduced margin into header.
+
+2005-07-10  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: enhancements, almost usable
+	* src/Report.py: fixed spacing
+
+2005-07-09  Alex Roitman  <shura@gramps-project.org>
+	* src/ReadXML.py (stop_ref): Properly read id-based witness
+	reference created by old gramps.
+
+2005-07-09  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/docgen/OpenOfficeDoc.py: Make the output conform to the DTDs
+	for OpenOffice.org XML
+
 2005-07-08  Alex Roitman  <shura@gramps-project.org>
 	* various: merge changes made in gramps20 branch with main trunk.
 
@@ -217,6 +1714,21 @@
 2005-06-20  Don Allingham  <don@gramps-project.org>
 	* src/GenericFilter.py: optimize looping and reducing fetches
 	* src/Utils.py: fix event handle accesses
+
+2005-07-03  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/GraphViz.py (dump_person): Correctly test for birth
+	relations.
+
+2005-07-03  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Updated translated to latest template
+
+2005-07-02  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib.py (Family.get_handle_referents): Typo;
+	(Event.get_handle_referents): Work around possible None for
+	witness. 
+	* src/plugins/Check.py (check_source_references): Add checking
+	routine to detect and remove dangling source references.
+	* configure.in: Bump up the version number.
 
 2005-06-16  Alex Roitman  <shura@gramps-project.org>
 	* src/EventEdit.py: Remove unused variable.
@@ -233,6 +1745,53 @@
 	import, add missing event descriptions
 	* src/RelLib.py: type checking for set_role relationship types
 
+2005-06-24  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/PeopleView.py (build_people_context_menu): Workaround to get a
+	proper german translation.
+	* srx/po/de.po: Updated
+
+2005-06-24  Alex Roitman  <shura@gramps-project.org>
+	* src/po/fr.po: Add missing format line parameters.
+
+2005-06-23  Don Allingham  <don@gramps-project.org>
+	* src/WriteGedcom.py: Fix GEDCOM date exporting.
+
+2005-06-23  Alex Roitman  <shura@gramps-project.org>
+	* src/Relationship.py (is_spouse): Use context.
+	* src/get_strings: Add "__" to default keywords.
+	* src/po/template.po: Update for 2.0.4.
+	* src/RelLib.py (SourceNote.replace_source_references,
+	MediaBase.replace_media_references,): Fix problem with replacing
+	multiple occurrences.
+	* src/po/ru.po: Update for 2.0.4.
+
+2005-06-23  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/WriteGedcom.py: Fix family source references, fix spurious
+	PLAC subrecords, respect more privacy settings
+	* src/po/es.po: Translation fixes
+
+2005-06-22  Don Allingham  <don@gramps-project.org>
+	* src/FamilyView.py: fix deleting of spouse and children
+	* src/PlaceView.py: fix sorting
+	* src/SourceView.py: fix sorting
+
+2005-06-22  Alex Roitman  <shura@gramps-project.org>
+	* src/GenericFilter.py (IsDescendantOfFilterMatch.__init__):
+	Remove unneeded method.
+	* src/FamilyView.py (remove_child_clicked): Prevent signal race.
+	* NEWS: Update.
+	* src/TarFile.py (extract_files): insert missing 'replace' call.
+	* src/Relationship.py (is_spouse): return translated spouse name,
+	based on gender and family relation.
+	* src/plugins/rel_*.py (get_relationship): use new spouse scheme.
+
+2005-06-21  Don Allingham  <don@gramps-project.org>
+	* src/GenericFilter.py: optimize a few filters
+
+2005-06-21  Alex Roitman  <shura@gramps-project.org>
+	* src/po/fr.po: Remove extra "%" signs.
+	* src/Report.py (CommandLineReport.parse_option_str): Fix indentation.
+
 2005-06-15  Alex Roitman  <shura@gramps-project.org>
 	* src/ListBox.py (EventListBox.set_place): Fix place setting.
 
@@ -243,6 +1802,65 @@
 	* src/gramps.glade: Use new icons for the Event View and
 	Repository View side bar buttons. Add small icons to the main
 	notebook tabs.
+
+2005-06-20  Don Allingham  <don@gramps-project.org>
+	* src/AddSpouse.py: accept Person instead of handle
+	* src/ChooseParents.py: accept Person instead of handle
+	* src/GenericFilter.py: use single pass through database, filters
+	accept Person objects instead of handles
+	* src/PeopleModel.py: don't precalculate handle list
+	* src/RelLib.py: allow person object to be initialized with
+	serialized data
+	* src/SelectChild.py: accept Person instead of handle
+
+2005-06-20  Alex Roitman  <shura@gramps-project.org>
+	* src/SelectChild.py (LikelyFilter.prepare,LikelyFilter.apply):
+	Handle absent birth of a parent.
+	* src/AddSpouse.py (LikelyFilter.prepare,LikelyFilter.apply):
+	Handle absent birth of a parent; correctly use gender.
+
+2005-06-19  Don Allingham  <don@gramps-project.org>
+	* src/AddSpouse.py: display idle cursor, build better likely filter
+	* src/SelectChild.py: display idle cursor
+	* src/ChooseParents.y: display "Loading..." while loading lists
+
+2005-06-18  Don Allingham  <don@gramps-project.org>
+	* src/ChooseParents.py: build custom filter rules to speed up
+	loading the data, provide watch cursor to provide feedback to 
+	the user.
+	* src/Date.py: provide sort data recalculation function
+
+2005-06-19  Eero Tamminen  <eerot@sf>
+	* src/plugins/StatisticsChart.py: Changed the entry fields to
+	  SpinButtons as suggested by Alex
+
+2005-06-17  Don Allingham  <don@gramps-project.org>
+	* src/ChooseParents.py: optimize the add of a person to the models
+	* src/EditPlace.py: check to make sure a duplicate title is not
+	entered
+
+2005-06-17  Alex Roitman  <shura@gramps-project.org>
+	* src/WriteGedcom.py (write_sources): Pass handle to the id
+	creator; (write_person): write person sources; (sid): return
+	gramps_id; (write_families): write family sources.
+
+	* src/WriteGedcom.py: Pass gramps_id to filter rules.
+	* src/plugins/ExportVCalendar.py: Pass gramps_id to filter rules.
+	* src/plugins/ExportVCard.py: Pass gramps_id to filter rules.
+	* src/plugins/GraphViz.py: Pass gramps_id to filter rules.
+	* src/plugins/IndivComplete.py: Pass gramps_id to filter rules.
+	* src/plugins/NavWebPage.py: Pass gramps_id to filter rules.
+	* src/plugins/StatisticsChart.py: Pass gramps_id to filter rules.
+	* src/plugins/TimeLine.py: Pass gramps_id to filter rules.
+	* src/plugins/WebPage.py: Pass gramps_id to filter rules.
+	* src/plugins/WriteFtree.py: Pass gramps_id to filter rules.
+	* src/plugins/WriteGeneWeb.py: Pass gramps_id to filter rules.
+
+	* src/plugins/WebPage.py (write_report): Test for empty dir_name.
+
+2005-06-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/gramps_main.py (on_merge_activate,on_fast_merge_activate):
+	only merge if exactly two persons have been selected
 
 2005-06-08  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EditPerson.py: Make gender guessing work again
@@ -376,6 +1994,33 @@
 	* src/DisplayModels.py (RepositoryModel): Display repository type as text
 	* src/RelLib.py (Repository): Serialize type as tuple not unicode
 	* src/EditSource.py (ReposRefListView): Display repository type as text
+	* src/EditPerson.py: Don't add empty strings to pdmap
+	* src/AutoComp.py: don't add empty strings to completion
+
+2005-06-03  Alex Roitman  <shura@gramps-project.org>
+	* src/Utils.py (bold_label,unbold_label,temp_label): optionally
+	set cursor.
+	* src/EditSource.py (__init__,on_switch_page): Call
+	display_references using idle_add; (display_references): set
+	cursor when done.
+	* src/EditPlace (__init__,on_switch_page): Call
+	display_references using idle_add; (display_references): set
+	cursor when done.
+	* src/ImageSelect (__init__,on_switch_page): Call
+	display_references using idle_add; (display_references): set
+	cursor when done.
+
+	* src/EditPlace.py, src/EditSource.py: Detect new objects by
+	handle.
+	* src/const.py.in (save_frel): Return English strings.
+	* src/plugins/FamilyGroup.py (parse_user_options): Only select
+	spouse if there is any.
+
+2005-06-03  Jens Arvidsson <jya@sverige.nu>
+	* src/po/sv.po: Minor fixes found via pochkpyvar.pl.
+
+2005-06-03  Jens Arvidsson <jya@sverige.nu>
+	* src/po/sv.po: Translation update for version 2.0.2.
 
 2005-06-02  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels.py: Handle EventRefs properly
@@ -1206,7 +2851,6 @@
 2005-04-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: Removed navigation buttons in flavour of a menu;
 
-<<<<<<< ChangeLog
 2005-04-23  Don Allingham  <don@gramps-project.org>
 	* src/ListModel.py: keep track of data index
 	* src/EventEdit.py: use new label scheme for tabs that uses an
@@ -1235,7 +2879,7 @@
 2005-04-23  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GrampsDbBase.py (_find_from_handle,find_object_from_handle,
 	find_place_from_handle): Fix typo
-=======
+
 2005-04-24  Don Allingham  <don@gramps-project.org>
 	* src/gramps.glade: remove REDO menu item
 
@@ -1305,7 +2949,6 @@
 	* src/Relationship.py: handle race condition where the screen 
 	wants to update with a stale family handle after the database
 	has been closed and the internal data has not be rebuilt.
->>>>>>> 1.1547.2.407
 
 2005-04-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: Replaced gnome canvas by an implementation

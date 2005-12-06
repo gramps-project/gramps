@@ -35,7 +35,6 @@ import sets
 #-------------------------------------------------------------------------
 import gtk
 import pango
-from gnome import help_display
 
 #-------------------------------------------------------------------------
 #
@@ -49,6 +48,7 @@ import NameDisplay
 import const
 import DateHandler
 import QuestionDialog
+import GrampsDisplay
 
 sex = ( _("female"), _("male"), _("unknown"))
 
@@ -79,7 +79,7 @@ class Compare:
 
     def help(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','adv-merge-people')
+        GrampsDisplay.help('adv-merge-people')
 
     def merge(self,obj):
 
@@ -99,9 +99,9 @@ class Compare:
                 merge = MergePeople(self.db,self.p1,self.p2)
             else:
                 merge = MergePeople(self.db,self.p2,self.p1)
-                self.top.destroy()
-                merge.merge()
-                self.update()
+            self.top.destroy()
+            merge.merge()
+            self.update()
 
     def add(self, tobj, tag, text):
         text += "\n"
@@ -157,9 +157,9 @@ class Compare:
         slist = person.get_family_handle_list()
         if len(slist) > 0:
             for fid in slist:
-                (fn,mn,id) = self.get_parent_info(fid)
+                (fn,mn,pid) = self.get_parent_info(fid)
                 family = self.db.get_family_from_handle(fid)
-                self.add(tobj,normal,"%s:\t%s" % (_('Family ID'),id))
+                self.add(tobj,normal,"%s:\t%s" % (_('Family ID'),pid))
                 spouse_id = ReportUtils.find_spouse(person,family)
                 if spouse_id:
                     spouse = self.db.get_person_from_handle(spouse_id)
@@ -168,8 +168,8 @@ class Compare:
                 self.add(tobj,indent,"%s:\t%s" % (_('Type'),relstr))
                 event = ReportUtils.find_marriage(self.db,family)
                 if event:
-                    self.add(tobj,indent,"%s:\t%s" % (_('Marriage'),
-                                                      self.get_event_info(event.get_handle())))
+                    self.add(tobj,indent,"%s:\t%s" % (
+                        _('Marriage'), self.get_event_info(event.get_handle())))
                 for child_id in family.get_child_handle_list():
                     child = self.db.get_person_from_handle(child_id)
                     self.add(tobj,indent,"%s:\t%s" % (_('Child'),name_of(child)))
@@ -294,7 +294,7 @@ class MergePeopleUI:
 
     def help(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','adv-merge-people')
+        GrampsDisplay.help('adv-merge-people')
 
 
 def name_of(p):
@@ -355,7 +355,11 @@ class MergePeople:
         trans = self.db.transaction_begin()
 
         self.merge_person_information(new,trans)
+        self.debug_person(new, "NEW")
+
         self.merge_family_information(new,trans)
+        self.debug_person(new, "NEW")
+
         self.db.commit_person(new,trans)
         self.debug_person(new, "NEW")
         self.db.remove_person(self.old_handle,trans)
@@ -538,6 +542,7 @@ class MergePeople:
         """
         self.merge_parents(new, trans)
         self.merge_relationships(new, trans)
+        self.debug_person(new, "NEW")
         
     def merge_parents(self, new, trans):
         """
@@ -558,6 +563,8 @@ class MergePeople:
         for fid in self.p2.get_parent_family_handle_list():
             if fid not in parent_list:
                 parent_list.append(fid)
+                if __debug__:
+                    print "Adding family to parent list", fid
 
         # loop through the combined list, converting the child handles
         # of the families, and adding the families to the merged
@@ -600,6 +607,7 @@ class MergePeople:
         
         family_num = 0
         family_list = self.p1.get_family_handle_list()
+        new.set_family_handle_list(family_list)
         
         for src_handle in self.p2.get_family_handle_list():
 
@@ -636,6 +644,8 @@ class MergePeople:
                 for fid in self.p1.get_family_handle_list():
                     if fid not in new.get_family_handle_list():
                         new.add_family_handle(fid)
+                        if __debug__:
+                            print "Adding family %s" % fid
 
             if src_handle in new.get_family_handle_list():
                 continue
@@ -750,6 +760,8 @@ class MergePeople:
             if child_handle != self.new_handle:
                 child = self.db.get_person_from_handle(child_handle)
             if child.remove_parent_family_handle(src_family_handle):
+                if __debug__:
+                    print "Remove parent family %s from %s" % (src_family_handle,child_handle)
                 self.db.commit_person(child,trans)
 
         # delete the old source family
@@ -757,7 +769,8 @@ class MergePeople:
         if __debug__:
             print "Deleted src_family %s" % src_family_handle
         self.db.commit_family(tgt_family,trans)
-        new.add_family_handle(tgt_family.get_handle())
+        if tgt_family.get_handle() not in new.get_family_handle_list():
+            new.add_family_handle(tgt_family.get_handle())
 
     def merge_family_pair(self,tgt_family,src_family,trans):
 

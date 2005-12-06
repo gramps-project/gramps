@@ -100,6 +100,7 @@ caution_xpm    = "%s/caution.png" % rootDir
 system_filters = "%s/system_filters.xml" % rootDir
 custom_filters = "~/.gramps/custom_filters.xml"
 report_options = "~/.gramps/report_options.xml"
+tool_options   = "~/.gramps/tool_options.xml"
 icon           = "%s/gramps.png" % rootDir
 logo           = "%s/logo.png" % rootDir
 splash         = "%s/splash.jpg" % rootDir
@@ -221,6 +222,27 @@ longopts = [
 ]
 
 shortopts = "O:i:o:f:a:p:?"
+
+#-------------------------------------------------------------------------
+#
+# GEDCOM tags representing attributes that may take a parameter, value or
+# description on the same line as the tag
+#
+#-------------------------------------------------------------------------
+personalGedcomAttributeTakesParam = {
+    "CAST" : 1,
+    "DSCR" : 1,
+    "EDUC" : 1,
+    "IDNO" : 1,
+    "NATI" : 1,
+    "NCHI" : 1,
+    "NMR"  : 1,
+    "OCCU" : 1,
+    "PROP" : 1,
+    "RELI" : 1,
+    "SSN"  : 1,
+    "TITL" : 1
+    }
 
 #-------------------------------------------------------------------------
 #
@@ -411,25 +433,3 @@ notes_formats = [
     _("Flowed"), 
     _("Preformatted"),
 ]
-
-
-CATEGORY_TEXT = 0
-CATEGORY_DRAW = 1
-CATEGORY_CODE = 2
-CATEGORY_WEB  = 3
-CATEGORY_VIEW = 4
-CATEGORY_BOOK = 5
-
-standalone_categories = {
-    CATEGORY_TEXT : _("Text Reports"),
-    CATEGORY_DRAW : _("Graphical Reports"),
-    CATEGORY_CODE : _("Code Generators"),
-    CATEGORY_WEB  : _("Web Page"),
-    CATEGORY_VIEW : _("View"),
-    CATEGORY_BOOK : _("Books"),
-}
-
-book_categories = {
-    CATEGORY_TEXT : _("Text"),
-    CATEGORY_DRAW : _("Graphics"),
-}

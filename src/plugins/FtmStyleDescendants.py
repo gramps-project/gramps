@@ -565,7 +565,7 @@ class FtmDescendantOptions(ReportOptions.ReportOptions):
 from PluginMgr import register_report
 register_report(
     name = 'ftm_descendant_report',
-    category = const.CATEGORY_TEXT,
+    category = Report.CATEGORY_TEXT,
     report_class = FtmDescendantReport,
     options_class = FtmDescendantOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
@@ -573,5 +573,6 @@ register_report(
     status = _("Beta"),
     description= _("Produces a textual descendant report similar to Family Tree Maker."),
     author_name="Alex Roitman",
-    author_email="shura@alex.neuro.umn.edu"
+    author_email="shura@alex.neuro.umn.edu",
+    unsupported=True
     )

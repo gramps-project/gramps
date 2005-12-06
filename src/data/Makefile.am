@@ -13,7 +13,9 @@ dist_pkgdata_DATA = \
 	main2.css\
 	main3.css\
 	main4.css\
-	main5.css
+	main5.css\
+	main6.css\
+	document.png
 
 EXTRA_DIST = \
 	gramps.desktop \

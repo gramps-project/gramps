@@ -36,6 +36,7 @@
     or the UI code.
 """
 import sys
+import os
 import types
 import traceback
 import inspect
@@ -58,9 +59,8 @@ class GrampsDBCallback(object):
     Classes that want to emit signals need to inherit from the
     GrampsDBCallback class and ensure that its __init__ method
     is called. They then need to declare the signals that they
-    can emit and the types of each callbacks arguments.
-
-    e.g.
+    can emit and the types of each callbacks arguments. For
+    example::
 
         class TestSignals(GrampsDBCallback):
 
@@ -87,27 +87,23 @@ class GrampsDBCallback(object):
     Emitting signals
     ================
 
-    Signals are emitted using the emit method.
+    Signals are emitted using the emit method. e.g.::
 
-    e.g.
-    
             def emit_signal(self):
                 self.emit('test-signal',(1,))
 
     The parameters are passed as a tuple so a single parameter
     must be passed as a 1 element tuple.
     
-
-
     Connecting callbacks to signals
-    ==============================
+    ===============================
     
     Attaching a callback to the signals is similar to the gtk
-    connect methods. e.g.
+    connect methods. e.g.::
 
         # connect to a function.
         def fn(i):
-            print "got signal value = ", i
+            print 'got signal value = ', i
 
         t = TestSignals()
         t.connect('test-signal', fn)
@@ -116,7 +112,7 @@ class GrampsDBCallback(object):
         class C(object):
 
             def cb_func(self, i):
-                print "got class signal = ", 1
+                print 'got class signal = ', 1
 
         r = R()
         t.connect('test-signal', r.cb_func)
@@ -129,7 +125,7 @@ class GrampsDBCallback(object):
     key returned from the connect call. This key can be passed to the disconnect
     method to remove the callback from the signals callback list.
 
-    e.g.
+    e.g.::
 
         t = TestSignals()
 
@@ -137,7 +133,7 @@ class GrampsDBCallback(object):
         class C(object):
 
             def cb_func(self, i):
-                print "got class signal = ", 1
+                print 'got class signal = ', 1
 
         r = R()
         key = t.connect('test-signal', r.cb_func)
@@ -155,7 +151,7 @@ class GrampsDBCallback(object):
     be used to block the signals for a single instance and disable_all_signals()
     can be used to block signals for the class:
 
-    e.g.
+    e.g.::
 
 
            class TestSignals(GrampsDBCallback):
@@ -213,7 +209,10 @@ class GrampsDBCallback(object):
 
     # If this is True logging will be turned on for all instances
     # whether or not instance based logging is enabled.
-    __LOG_ALL = False
+    try:
+        __LOG_ALL = int(os.environ.get('GRAMPS_SIGNAL',"0")) == 1
+    except:
+        __LOG_ALL = False
     
     def __init__(self):
         self.__enable_logging = False # controls whether lots of debug

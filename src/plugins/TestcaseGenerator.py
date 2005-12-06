@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -27,9 +28,6 @@
 # standard python modules
 #
 #-------------------------------------------------------------------------
-import os
-import re
-import time
 import traceback
 import sys
 from random import randint,choice
@@ -51,8 +49,7 @@ import gtk.glade
 import Errors
 import Date
 import RelLib
-import latin_utf8 
-import Utils
+import Tool
 import const
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
@@ -63,14 +60,83 @@ from DateHandler import displayer as _dd
 #
 #
 #-------------------------------------------------------------------------
-class TestcaseGenerator:
-    def __init__(self,database,active_person,callback,parent):
-        self.db = database
+class TestcaseGenerator(Tool.Tool):
+    NUMERIC = 0
+    FIRSTNAME = 1
+    FIRSTNAME_FEMALE = 2
+    FIRSTNAME_MALE = 3
+    LASTNAME = 4
+    NOTE = 5
+    SHORT = 6
+    LONG = 7
+
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        if db.readonly:
+            return
+        
+        Tool.Tool.__init__(self,db,person,options_class,name)
+
         self.person_count = 0
         self.persons_todo = []
         self.parents_todo = []
+        self.person_dates = {}
+        self.generated_sources = []
+        self.generated_media = []
+        self.generated_places = []
+        self.text_serial_number = 1
         
-    def run(self):
+        self.random_marrtype_list = (
+            (RelLib.Family.UNMARRIED,''),
+            (RelLib.Family.CIVIL_UNION,''),
+            (RelLib.Family.UNKNOWN,''),
+            (RelLib.Family.OTHER,'')
+            )
+        self.random_childrel_list = (
+            (RelLib.Person.CHILD_REL_NONE,''),
+            (RelLib.Person.CHILD_REL_ADOPT,''),
+            (RelLib.Person.CHILD_REL_STEP,''),
+            (RelLib.Person.CHILD_REL_SPONS,''),
+            (RelLib.Person.CHILD_REL_FOST,''),
+            (RelLib.Person.CHILD_REL_UNKWN,''),
+            (RelLib.Person.CHILD_REL_OTHER,''),
+            )
+        self.random_confidence_list = (RelLib.CONF_VERY_LOW, RelLib.CONF_LOW,
+                                     RelLib.CONF_NORMAL, RelLib.CONF_HIGH, RelLib.CONF_VERY_HIGH)
+        
+        # If an active persons exists the generated tree is connected to that person
+        if person:
+            # try to get birth and death year
+            try:
+                bh = person.get_birth_handle()
+                b = self.db.get_event_from_handle( bh)
+                do = b.get_date_object()
+                birth = do.get_year()
+            except AttributeError:
+                birth = None
+            try:
+                dh = person.get_death_handle()
+                b = self.db.get_event_from_handle( dh)
+                do = b.get_date_object()
+                death = do.get_year()
+            except AttributeError:
+                death = None
+            if not birth and not death:
+                birth = randint(1700,1900)
+            if birth and not death:
+                death = birth + randint(20,90)
+            if death and not birth:
+                birth = death - randint(20,90)
+            self.person_dates[person.get_handle()] = (birth,death)
+            
+            self.persons_todo.append(person.get_handle())
+            self.parents_todo.append(person.get_handle())
+
+        if parent:
+            self.init_gui(parent)
+        else:
+            self.run_tool(cli=True)
+
+    def init_gui(self,parent):
         title = "%s - GRAMPS" % _("Generate testcases")
         self.top = gtk.Dialog(title)
         self.top.set_default_size(400,150)
@@ -81,23 +147,35 @@ class TestcaseGenerator:
         self.top.vbox.pack_start(label,0,0,5)
 
         self.check_bugs = gtk.CheckButton( _("Generate Database errors"))
-        self.check_bugs.set_active(True)
+        self.check_bugs.set_active( self.options.handler.options_dict['bugs'])
         self.top.vbox.pack_start(self.check_bugs,0,0,5)
 
         self.check_dates = gtk.CheckButton( _("Generate date tests"))
-        self.check_dates.set_active(True)
+        self.check_dates.set_active( self.options.handler.options_dict['dates'])
         self.top.vbox.pack_start(self.check_dates,0,0,5)
 
         self.check_persons = gtk.CheckButton( _("Generate dummy families"))
-        self.check_persons.set_active(True)
+        self.check_persons.set_active( self.options.handler.options_dict['persons'])
         self.top.vbox.pack_start(self.check_persons,0,0,5)
 
         self.check_trans = gtk.CheckButton( _("Don't block transactions"))
-        self.check_trans.set_active(False)
+        self.check_trans.set_active( self.options.handler.options_dict['no_trans'])
         self.top.vbox.pack_start(self.check_trans,0,0,5)
 
+        self.check_longnames = gtk.CheckButton( _("Generate long names"))
+        self.check_longnames.set_active( self.options.handler.options_dict['long_names'])
+        self.top.vbox.pack_start(self.check_longnames,0,0,5)
+
+        self.check_specialchars = gtk.CheckButton( _("Add special characters"))
+        self.check_specialchars.set_active( self.options.handler.options_dict['specialchars'])
+        self.top.vbox.pack_start(self.check_specialchars,0,0,5)
+
+        self.check_serial = gtk.CheckButton( _("Add serial number"))
+        self.check_serial.set_active( self.options.handler.options_dict['add_serial'])
+        self.top.vbox.pack_start(self.check_serial,0,0,5)
+
         self.entry_count = gtk.Entry()
-        self.entry_count.set_text("2000")
+        self.entry_count.set_text( unicode( self.options.handler.options_dict['person_count']))
         self.top.vbox.pack_start(self.entry_count,0,0,5)
 
         self.top.add_button(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL)
@@ -106,46 +184,57 @@ class TestcaseGenerator:
         self.top.show_all()
 
         response = self.top.run()
-        bugs = self.check_bugs.get_active()
-        dates = self.check_dates.get_active()
-        persons = self.check_persons.get_active()
-        multiple_trans = self.check_trans.get_active()
-        person_count = int(self.entry_count.get_text())
+        self.options.handler.options_dict['bugs']  = int(
+            self.check_bugs.get_active())
+        self.options.handler.options_dict['dates']  = int(
+            self.check_dates.get_active())
+        self.options.handler.options_dict['persons']  = int(
+            self.check_persons.get_active())
+        self.options.handler.options_dict['no_trans']  = int(
+            self.check_trans.get_active())
+        self.options.handler.options_dict['long_names']  = int(
+            self.check_longnames.get_active())
+        self.options.handler.options_dict['specialchars']  = int(
+            self.check_specialchars.get_active())
+        self.options.handler.options_dict['add_serial']  = int(
+            self.check_serial.get_active())
+        self.options.handler.options_dict['person_count']  = int(
+            self.entry_count.get_text())
         self.top.destroy()
 
         if response == gtk.RESPONSE_OK:
-            self.run_generator(bugs,dates,persons,person_count,multiple_trans)
-
-
-    def run_generator( self, generate_bugs = 1, generate_dates = 1, generate_families = 1, generate_max_persons = 2000, multiple_transactions=False):
-        title = "%s - GRAMPS" % _("Generate testcases")
-        self.top = gtk.Window()
-        self.top.set_title(title)
-        self.top.set_position(gtk.WIN_POS_MOUSE)
-        self.top.set_modal(True)
-        self.top.set_default_size(400,150)
-        vbox = gtk.VBox()
-        self.top.add(vbox)
-        label = gtk.Label(_("Generating persons and families.\nPlease wait."))
-        vbox.pack_start(label,0,0,5)
-        self.progress = gtk.ProgressBar()
-        self.progress.set_fraction(0.0)
-        vbox.pack_end(self.progress,0,0,5)
-        self.top.show_all()
-        while gtk.events_pending():
-            gtk.main_iteration()
+            self.run_tool( cli=False)
+            # Save options
+            self.options.handler.save_options()
         
-        self.max_person_count = generate_max_persons
-
-        self.multiple_transactions = multiple_transactions
+    def run_tool(self, cli=False):
+        self.cli = cli
+        if( not cli):
+            title = "%s - GRAMPS" % _("Generate testcases")
+            self.top = gtk.Window()
+            self.top.set_title(title)
+            self.top.set_position(gtk.WIN_POS_MOUSE)
+            self.top.set_modal(True)
+            self.top.set_default_size(400,150)
+            vbox = gtk.VBox()
+            self.top.add(vbox)
+            label = gtk.Label(_("Generating persons and families.\nPlease wait."))
+            vbox.pack_start(label,0,0,5)
+            self.progress = gtk.ProgressBar()
+            self.progress.set_fraction(0.0)
+            vbox.pack_end(self.progress,0,0,5)
+            self.top.show_all()
+            while gtk.events_pending():
+                gtk.main_iteration()
+        
         self.transaction_count = 0;
         
         self.trans = self.db.transaction_begin()
-        if not self.multiple_transactions:
+        if not self.options.handler.options_dict['no_trans']:
             self.trans.set_batch(True)
             self.db.disable_signals()
 
-        if self.multiple_transactions:
+        if self.options.handler.options_dict['no_trans']:
     
             print "TESTING SIGNALS..."
     
@@ -247,49 +336,42 @@ class TestcaseGenerator:
             print "DONE."
         
         
-        if generate_bugs or generate_dates or generate_families:
-            self.default_source = RelLib.Source()
-            self.default_source.set_title("TestcaseGenerator")
-            self.db.add_source(self.default_source, self.trans)
-            self.default_sourceref = RelLib.SourceRef()
-            self.default_sourceref.set_base_handle(self.default_source.get_handle())
-            self.default_place = RelLib.Place()
-            self.default_place.set_title("TestcaseGenerator place")
-            self.db.add_place(self.default_place, self.trans)
-            self.default_media = RelLib.MediaObject()
-            self.default_media.set_description("TestcaseGenerator media")
-            self.default_media.set_path("/tmp/TestcaseGenerator.png")
-            self.default_media.set_mime_type("image/png")
-            self.db.add_object(self.default_media, self.trans)
-            self.default_mediaref = RelLib.MediaRef()
-            self.default_mediaref.set_reference_handle(self.default_media.get_handle())
+        if self.options.handler.options_dict['bugs']\
+            or self.options.handler.options_dict['dates']\
+            or self.options.handler.options_dict['persons']:
+            # bootstrap random source and media
+            self.rand_source()
+            self.rand_media()
+            
 
-        if generate_bugs:
+        if self.options.handler.options_dict['bugs']:
             self.generate_broken_relations()
         
-        if generate_dates:
+        if self.options.handler.options_dict['dates']:
             self.generate_date_tests()
 
-        if generate_families:
-            self.persons_todo.append( self.generate_person(0))
+        if self.options.handler.options_dict['persons']:
+            if not self.persons_todo:
+                self.persons_todo.append( self.generate_person(0))
             for person_h in self.persons_todo:
                 self.generate_family(person_h)
                 if randint(0,3) == 0:
                     self.generate_family(person_h)
                 if randint(0,7) == 0:
                     self.generate_family(person_h)
-                if self.person_count > self.max_person_count:
+                if self.person_count > self.options.handler.options_dict['person_count']:
                     break
                 for child_h in self.parents_todo:
                     self.generate_parents(child_h)
-                    if self.person_count > self.max_person_count:
+                    if self.person_count > self.options.handler.options_dict['person_count']:
                         break
             
         self.db.transaction_commit(self.trans,_("Testcase generator"))
-        if not self.multiple_transactions:
+        if not self.options.handler.options_dict['no_trans']:
             self.db.enable_signals()
             self.db.request_rebuild()
-        self.top.destroy()
+        if( not cli):
+            self.top.destroy()
         
 
     def generate_broken_relations(self):
@@ -535,6 +617,30 @@ class TestcaseGenerator:
         self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
+        # Creates a person with a birth event pointing to nonexisting place
+        person_h = self.generate_person(None,"Broken17",None)
+        event = RelLib.Event()
+        event.set_name("Birth")
+        event.set_place_handle("InvalidHandle7")
+        event.set_description("Test for Broken17")
+        event_h = self.db.add_event(event,self.trans)
+        person = self.db.get_person_from_handle(person_h)
+        person.set_birth_handle(event_h)
+        self.db.commit_person(person,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
+
+        # Creates a person with an event pointing to nonexisting place
+        person_h = self.generate_person(None,"Broken18",None)
+        event = RelLib.Event()
+        event.set_name("Birth")
+        event.set_place_handle("InvalidHandle8")
+        event.set_description("Test for Broken18")
+        event_h = self.db.add_event(event,self.trans)
+        person = self.db.get_person_from_handle(person_h)
+        person.add_event_handle(event_h)
+        self.db.commit_person(person,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
+
 
     def generate_date_tests(self):
         dates = []
@@ -640,15 +746,18 @@ class TestcaseGenerator:
             self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
     
-    def generate_person(self,gender=None,lastname=None,note=None):
-        self.progress.set_fraction(min(1.0,max(0.0, 1.0*self.person_count/self.max_person_count)))
-        if self.person_count % 10 == 0:
-            while gtk.events_pending():
-                gtk.main_iteration()
+    def generate_person(self,gender=None,lastname=None,note=None, alive_in_year=None):
+        if not self.cli:
+            self.progress.set_fraction(min(1.0,max(0.0, 1.0*self.person_count/self.options.handler.options_dict['person_count'])))
+            if self.person_count % 10 == 0:
+                while gtk.events_pending():
+                    gtk.main_iteration()
 
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         np = RelLib.Person()
+        np.set_privacy( randint(0,5) == 1)
+        np.set_complete_flag( randint(0,5) == 1)
         
         self.add_defaults(np)
         
@@ -659,49 +768,114 @@ class TestcaseGenerator:
         # Gender
         if gender == None:
             gender = randint(0,1)
-        np.set_gender(gender)
+        if randint(0,10) == 1:  # Set some persons to unknown gender
+            np.set_gender(RelLib.Person.UNKNOWN)
+        else:
+            np.set_gender(gender)
         
         # Name
-        syllables1 = ["sa","li","na","ma","no","re","mi","cha","ki","du","ba","ku","el"]
-        syllables2 = ["as","il","an","am","on","er","im","ach","ik","ud","ab","ul","le"]
-
         name = RelLib.Name()
-        firstname = ""
-        for i in range(0,randint(1,5)):
-            for j in range(0,randint(2,5)):
-                firstname = firstname + choice(syllables2)
-            if gender == RelLib.Person.FEMALE:
-                firstname = firstname + choice(("a","e","i","o","u"))
-            firstname = firstname + " "
-        firstname = firstname.title().strip()
-        if not lastname:
-            lastname = ""
-            for i in range(0,randint(2,5)):
-                lastname = lastname + choice(syllables1)
-        n = randint(0,2)
-        if n == 0:
-            lastname = lastname.title()
-        elif n == 1:
-            lastname = lastname.upper()
+        name.set_privacy( randint(0,5) == 1)
+        (firstname,lastname) = self.rand_name(lastname, gender)
         name.set_first_name(firstname)
         name.set_surname(lastname)
+        name.add_source_reference( self.rand_sourceref())
+        name.set_note( self.rand_text(self.NOTE))
         np.set_primary_name(name)
+        
+        # generate some slightly different alternate name
+        alt_name = RelLib.Name(name)
+        alt_name.set_privacy( randint(0,5) == 1)
+        firstname2 = firstname.replace("m", "n").replace("l", "i").replace("b", "d")
+        if firstname2 != firstname:
+            alt_name.set_first_name( firstname2)
+            alt_name.set_title( self.rand_text(self.SHORT))
+            alt_name.set_patronymic( self.rand_text(self.FIRSTNAME_MALE))
+            alt_name.set_surname_prefix( self.rand_text(self.SHORT))
+            alt_name.set_suffix( self.rand_text(self.SHORT))
+            alt_name.add_source_reference( self.rand_sourceref())
+            alt_name.set_note( self.rand_text(self.NOTE))
+            np.add_alternate_name( alt_name)
+        firstname2 = firstname.replace("a", "e").replace("o", "u").replace("r", "p")
+        if firstname2 != firstname:
+            alt_name.set_first_name( firstname2)
+            alt_name.set_title( self.rand_text(self.SHORT))
+            alt_name.set_patronymic( self.rand_text(self.FIRSTNAME_MALE))
+            alt_name.set_surname_prefix( self.rand_text(self.SHORT))
+            alt_name.set_suffix( self.rand_text(self.SHORT))
+            alt_name.add_source_reference( self.rand_sourceref())
+            alt_name.set_note( self.rand_text(self.NOTE))
+            np.add_alternate_name( alt_name)
 
+        if not alive_in_year:
+            alive_in_year = randint(1700,2000)
+
+        by = alive_in_year - randint(0,60)
+        dy = alive_in_year + randint(0,60)
+        
+        # birth
+        if randint(0,1) == 1:
+            (birth_year, eref) = self.rand_event( "Birth", by,by)
+            np.set_birth_ref(eref)
+
+        # baptism
+        if randint(0,1) == 1:
+            (bapt_year, eref) = self.rand_event(
+                choice( ("Baptism", "Christening")), by, by+2)
+            np.add_event_ref(eref)
+
+        # death
+        death_year = None
+        if randint(0,1) == 1:
+            (death_year, eref) = self.rand_event( "Death", dy,dy)
+            np.set_death_ref(eref)
+
+        # burial
+        if randint(0,1) == 1:
+            (bur_year, eref) = self.rand_event(
+                choice( ("Burial", "Cremation")), dy, dy+2)
+            np.add_event_handle(e.get_handle())
+        
+        #LDS
+        if randint(0,1) == 1:
+            lds = self.rand_ldsord( const.lds_baptism)
+            np.set_lds_baptism( lds)
+        if randint(0,1) == 1:
+            lds = self.rand_ldsord( const.lds_baptism)
+            np.set_lds_endowment( lds)
+        if randint(0,1) == 1:
+            lds = self.rand_ldsord( const.lds_csealing)
+            np.set_lds_sealing( lds)
+
+        person_handle = self.db.add_person(np,self.trans)
+        
         self.person_count = self.person_count+1
+        self.person_dates[person_handle] = (by,dy)
 
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
-        return( self.db.add_person(np,self.trans))
+        return( person_handle)
         
     def generate_family(self,person1_h):
         if not person1_h:
             return
         person1 = self.db.get_person_from_handle(person1_h)
+        alive_in_year = None
+        if person1_h in self.person_dates:
+            (born, died) = self.person_dates[person1_h]
+            alive_in_year = min( born+randint(10,50), died + randint(-10,10))
+            
         if person1.get_gender() == 1:
-            person2_h = self.generate_person(0)
+            if alive_in_year:
+                person2_h = self.generate_person(0, alive_in_year = alive_in_year)
+            else:
+                person2_h = self.generate_person(0)
         else:
             person2_h = person1_h
-            person1_h = self.generate_person(1)
+            if alive_in_year:
+                person1_h = self.generate_person(1, alive_in_year = alive_in_year)
+            else:
+                person1_h = self.generate_person(1)
         
         if randint(0,2) > 0:
             self.parents_todo.append(person1_h)
@@ -712,7 +886,12 @@ class TestcaseGenerator:
         self.add_defaults(fam)
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship((RelLib.Family.MARRIED,''))
+        if randint(0,2) == 1:
+            fam.set_relationship( choice( self.random_marrtype_list))
+        else:
+            fam.set_relationship((RelLib.Family.MARRIED,''))
+        lds = self.rand_ldsord( const.lds_ssealing)
+        fam.set_lds_sealing( lds)
         fam_h = self.db.add_family(fam,self.trans)
         fam = self.db.commit_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
@@ -725,12 +904,23 @@ class TestcaseGenerator:
         lastname = person1.get_primary_name().get_surname()     
         
         for i in range(0,randint(1,10)):
-            child_h = self.generate_person(None, lastname)
+            if alive_in_year:
+                child_h = self.generate_person(None, lastname, alive_in_year = alive_in_year + randint( 16+2*i, 30 + 2*i))
+            else:
+                child_h = self.generate_person(None, lastname)
+                (born,died) = self.person_dates[child_h]
+                alive_in_year = born
             fam = self.db.get_family_from_handle(fam_h)
             fam.add_child_handle(child_h)
             self.db.commit_family(fam,self.trans)
             child = self.db.get_person_from_handle(child_h)
-            child.add_parent_family_handle(fam_h,(RelLib.Person.CHILD_BIRTH,''),(RelLib.Person.CHILD_BIRTH,''))
+            rel1 = (RelLib.Person.CHILD_REL_BIRTH,'')
+            if randint(0,2) == 1:
+                rel1 = choice( self.random_childrel_list)
+            rel2 = (RelLib.Person.CHILD_REL_BIRTH,'')
+            if randint(0,2) == 1:
+                rel2 = choice( self.random_childrel_list)
+            child.add_parent_family_handle(fam_h, rel1, rel2)
             self.db.commit_person(child,self.trans)
             if randint(0,3) > 0:
                 self.persons_todo.append(child_h)
@@ -743,10 +933,14 @@ class TestcaseGenerator:
         if child.get_parent_family_handle_list():
             return
 
-        lastname = child.get_primary_name().get_surname()     
-
-        person1_h = self.generate_person(1,lastname)
-        person2_h = self.generate_person(0)
+        lastname = child.get_primary_name().get_surname()
+        if child_h in self.person_dates:
+            (born,died) = self.person_dates[child_h]
+            person1_h = self.generate_person(1,lastname, alive_in_year=born)
+            person2_h = self.generate_person(0, alive_in_year=born)
+        else:
+            person1_h = self.generate_person(1,lastname)
+            person2_h = self.generate_person(0)
 
         if randint(0,2) > 1:
             self.parents_todo.append(person1_h)
@@ -754,9 +948,15 @@ class TestcaseGenerator:
             self.parents_todo.append(person2_h)
             
         fam = RelLib.Family()
+        self.add_defaults(fam)
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship((RelLib.Family.MARRIED,''))
+        if randint(0,2) == 1:
+            fam.set_relationship( choice( self.random_marrtype_list))
+        else:
+            fam.set_relationship( (RelLib.Family.MARRIED,'') )
+        lds = self.rand_ldsord( const.lds_ssealing)
+        fam.set_lds_sealing( lds)
         fam.add_child_handle(child_h)
         fam_h = self.db.add_family(fam,self.trans)
         fam = self.db.commit_family(fam,self.trans)
@@ -766,51 +966,479 @@ class TestcaseGenerator:
         person2 = self.db.get_person_from_handle(person2_h)
         person2.add_family_handle(fam_h)
         self.db.commit_person(person2,self.trans)
-
-        child.add_parent_family_handle(fam_h,(RelLib.Person.CHILD_BIRTH,''),(RelLib.Person.CHILD_BIRTH,''))
+        rel1 = (RelLib.Person.CHILD_REL_BIRTH,'')
+        if randint(0,2) == 1:
+            rel1 = choice( self.random_childrel_list)
+        rel2 = (RelLib.Person.CHILD_REL_BIRTH,'')
+        if randint(0,2) == 1:
+            rel2 = choice( self.random_childrel_list)
+        child.add_parent_family_handle(fam_h, rel1, rel2)
         self.db.commit_person(child,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
     def add_defaults(self,object,ref_text = ""):
-        object.add_source_reference(self.default_sourceref)
-        object.add_media_reference(self.default_mediaref)
+        while randint(0,1) == 1:
+            object.add_source_reference( self.rand_sourceref())
+        while randint(0,1) == 1:
+            object.add_media_reference( self.rand_mediaref())
+        while randint(0,1) == 1:
+            (year,e) = self.rand_event()
+            object.add_event_handle( e.get_handle())
+        while randint(0,1) == 1:
+            object.add_attribute( self.rand_attribute())
+        try:
+            while randint(0,1) == 1:
+                object.add_url( self.rand_url())
+            while randint(0,1) == 1:
+                object.add_address( self.rand_address())
+        except AttributeError:
+            pass    # family does not have an url and address
+        object.set_note( self.rand_text(self.NOTE))
+    
+    def rand_name( self, lastname=None, gender=None):
+        if gender == RelLib.Person.MALE:
+            firstname = self.rand_text( self.FIRSTNAME_MALE)
+        elif gender == RelLib.Person.FEMALE:
+            firstname = self.rand_text( self.FIRSTNAME_FEMALE)
+        else:
+            firstname = self.rand_text( self.FIRSTNAME)
+        if not lastname:
+            lastname = self.rand_text( self.LASTNAME)
+        return (firstname,lastname)
+    
+    def rand_date( self, start=None, end=None):
+        """
+        Generates a random date object between the given years start and end
+        """
+        if not start and not end:
+            start = randint(1700,2000)
+        if start and not end:
+            end = start + randint(0,100)
+        if end and not start:
+            start = end - randint(0,100)
+        year = randint(start,end)
+        
+        ndate = Date.Date()
+        if randint(0,10) == 1:
+            # Some get a textual date
+            ndate.set_as_text( choice((self.rand_text(self.SHORT),"Unknown","??","Don't know","TODO!")))
+        else:
+            if randint(0,10) == 1:
+                # some get an empty date
+                pass
+            else:
+                # regular dates
+                calendar = Date.CAL_GREGORIAN
+                quality = choice( (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED))
+                modifier = choice( (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER,\
+                                   Date.MOD_ABOUT, Date.MOD_RANGE, Date.MOD_SPAN))
+                day = randint(0,28)
+                if day > 0: # avoid days without month
+                    month = randint(1,12)
+                else:
+                    month = randint(0,12)
+                
+                if modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
+                    day2 = randint(0,28)
+                    if day2 > 0:
+                        month2 = randint(1,12)
+                    else:
+                        month2 = randint(0,12)
+                    year2 = year + randint(1,5)
+                    ndate.set(quality,modifier,calendar,(day,month,year,False,day2,month2,year2,False),"")
+                else:
+                    ndate.set(quality,modifier,calendar,(day,month,year,False),"")
+        
+        return (year, ndate)
+        
+        
+    def rand_event( self, type=None, start=None, end=None):
         e = RelLib.Event()
-        e.set_type((RelLib.Event.CUSTOM,"TestcaseGenerator"))
-        e.set_place_handle(self.default_place.get_handle())
+        if not type:
+            type = choice( (self.rand_text(self.SHORT),
+                            "Census", "Degree", "Emigration", "Immigration"))
+        e.set_type( (RelLib.Event.CUSTOM,type) )
+        if randint(0,1) == 1:
+            e.set_note( self.rand_text(self.NOTE))
+        if randint(0,1) == 1:
+            e.set_cause( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            e.set_description( self.rand_text(self.LONG))
+        while randint(0,1) == 1:
+            e.add_source_reference( self.rand_sourceref())
+        while randint(0,1) == 1:
+            e.add_media_reference( self.rand_mediaref())
+        if randint(0,1) == 1:
+            e.set_place_handle( self.rand_place())
+        (year, d) = self.rand_date( start, end)
+        e.set_date_object( d)
+        if randint(0,5) == 1:
+            w = RelLib.Witness()
+            w.set_privacy( randint(0,5) == 1)
+            w.set_comment( self.rand_text(self.NOTE))
+            if randint(0,1) == 1:
+                w.set_type( RelLib.Event.ID)
+                wph = self.generate_person( alive_in_year=year)
+                w.set_value( wph)
+            else:
+                w.set_type( RelLib.Event.NAME)
+                w.set_value( "%s %s" % self.rand_name())
+            e.add_witness(w)
         event_h = self.db.add_event(e, self.trans)
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event_h)
         event_ref.set_role((RelLib.EventRef.PRIMARY,''))
-        object.add_event_ref(event_ref)
+        return (year, event_ref)
+    
+    def rand_ldsord( self, status_list):
+        lds = RelLib.LdsOrd()
+        if randint(0,1) == 1:
+            lds.set_status( randint(0,len(status_list)-1))
+        if randint(0,1) == 1:
+            lds.set_temple( choice( const.lds_temple_to_abrev.keys()))
+        if randint(0,1) == 1:
+            lds.set_place_handle( self.rand_place())
+        while randint(0,1) == 1:
+            lds.add_source_reference( self.rand_sourceref())
+        if randint(0,1) == 1:
+            lds.set_note( self.rand_text(self.NOTE))
+        if randint(0,1) == 1:
+            (year,d) = self.rand_date( )
+            lds.set_date_object( d)
+        return lds
+
+    def rand_source( self):
+        source = RelLib.Source()
+        source.set_title( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            source.set_author( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            source.set_publication_info( self.rand_text(self.LONG))
+        if randint(0,1) == 1:
+            source.set_abbreviation( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            source.set_note( self.rand_text(self.NOTE))
+        while randint(0,1) == 1:
+            source.set_data_item( self.rand_text(self.SHORT), self.rand_text(self.SHORT))
+        while randint(0,1) == 1 and self.generated_media:
+            source.add_media_reference( self.rand_mediaref())
+        self.db.add_source( source, self.trans)
+        self.generated_sources.append( source.get_handle())
+        return source
+    
+    def rand_sourceref( self):
+        if not self.generated_sources or randint(0,10) == 1:
+            self.rand_source()
+        sref = RelLib.SourceRef()
+        sref.set_base_handle( choice( self.generated_sources))
+        if randint(0,1) == 1:
+            sref.set_page( self.rand_text(self.NUMERIC))
+        if randint(0,1) == 1:
+            sref.set_text( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            sref.set_note( self.rand_text(self.NOTE))
+        sref.set_privacy( randint(0,5) == 1)
+        if randint(0,1) == 1:
+            (year, d) = self.rand_date( )
+            sref.set_date_object( d)
+        sref.set_confidence_level( choice( self.random_confidence_list))
+        return sref
+
+    def rand_media( self):
+        media = RelLib.MediaObject()
+        media.set_description( self.rand_text(self.SHORT))
+        media.set_path("/tmp/TestcaseGenerator.png")
+        media.set_mime_type("image/png")
+        if randint(0,1) == 1:
+            media.set_note( self.rand_text(self.NOTE))
+        if randint(0,1) == 1:
+            (year,d) = self.rand_date()
+            media.set_date_object(d)
+        while randint(0,1) == 1:
+            media.add_source_reference( self.rand_sourceref())
+        while randint(0,1) == 1:
+            media.add_attribute( self.rand_attribute())
+        self.db.add_object( media, self.trans)
+        self.generated_media.append( media.get_handle())
+        return media
         
+    def rand_mediaref( self):
+        if not self.generated_media or randint(0,10) == 1:
+            self.rand_media()
+        mref = RelLib.MediaRef()
+        mref.set_reference_handle( choice( self.generated_media))
+        if randint(0,1) == 1:
+            mref.set_note( self.rand_text(self.NOTE))
+        while randint(0,1) == 1:
+            mref.add_source_reference( self.rand_sourceref())
+        while randint(0,1) == 1:
+            mref.add_attribute( self.rand_attribute())
+        mref.set_privacy( randint(0,5) == 1)
+        return mref
+
+    def rand_address( self):
+        addr = RelLib.Address()
+        if randint(0,1) == 1:
+            addr.set_street( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            addr.set_phone( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            addr.set_city( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            addr.set_state( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            addr.set_country( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            addr.set_postal_code( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            addr.set_note( self.rand_text(self.NOTE))
+        while randint(0,1) == 1:
+            addr.add_source_reference( self.rand_sourceref())
+        addr.set_privacy( randint(0,5) == 1)
+        return addr
+    
+    def rand_url( self):
+        url = RelLib.Url()
+        url.set_path("http://www.gramps-project.org/")
+        url.set_description( self.rand_text(self.SHORT))
+        url.set_privacy( randint(0,5) == 1)
+        return url
+
+    def rand_attribute( self):
+        attr = RelLib.Attribute()
+        attr.set_type( self.rand_text(self.SHORT))
+        attr.set_value( self.rand_text(self.SHORT))
+        attr.set_note( self.rand_text(self.NOTE))
+        while randint(0,1) == 1:
+            attr.add_source_reference( self.rand_sourceref())
+        attr.set_privacy( randint(0,5) == 1)
+        return attr
+        
+    def rand_location( self):
+        loc = RelLib.Location()
+        if randint(0,1) == 1:
+            loc.set_city( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            loc.set_postal_code( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            loc.set_phone( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            loc.set_parish( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            loc.set_county( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            loc.set_state( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            loc.set_country( self.rand_text(self.SHORT))
+        return loc
+    
+    def rand_place( self):
+        if not self.generated_places or randint(0,10) == 1:
+            place = RelLib.Place()
+            place.set_main_location( self.rand_location())
+            while randint(0,1) == 1:
+                place.add_alternate_locations( self.rand_location())
+            place.set_title( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                place.set_note( self.rand_text(self.NOTE))
+            if randint(0,1) == 1:
+                place.set_longitude( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                place.set_latitude( self.rand_text(self.SHORT))
+            while randint(0,1) == 1:
+                    place.add_source_reference( self.rand_sourceref())
+            while randint(0,1) == 1:
+                    place.add_media_reference( self.rand_mediaref())
+            if randint(0,1) == 1:
+                place.add_url( self.rand_url())
+            self.db.add_place( place, self.trans)
+            self.generated_places.append( place.get_handle())
+        return choice( self.generated_places)        
+        
+    def rand_text(self, type=None):
+        # for lastnamesnames
+        syllables1 = ["sa","li","na","ma","no","re","mi","cha","ki","du","ba","ku","el"]
+        # for firstnames
+        syllables2 = ["as","il","an","am","on","er","im","ach","ik","ud","ab","ul","le"]
+        # others
+        syllables3 = ["ka", "po", "lo", "chi", "she", "di", "fa", "go", "ja", "ne", "pe"]
+
+        syllables = syllables1 + syllables2 +syllables3
+        minwords = 5
+        maxwords = 8
+        minsyllables = 2
+        maxsyllables = 5
+
+        result = ""
+        if self.options.handler.options_dict['specialchars']:
+            result = result + u"ä<ö&ü%ß'\""
+        if self.options.handler.options_dict['add_serial']:
+            result = result + "#+#%06d#-#" % self.text_serial_number
+            self.text_serial_number = self.text_serial_number + 1
+        
+        if not type:
+            type = self.SHORT
+            
+        if type == self.SHORT:
+            minwords = 1
+            maxwords = 3
+            minsyllables = 2
+            maxsyllables = 4
+        
+        if type == self.LONG:
+            minwords = 5
+            maxwords = 8
+            minsyllables = 2
+            maxsyllables = 5
+
+        if type == self.FIRSTNAME:
+            type = choice( (self.FIRSTNAME_MALE,self.FIRSTNAME_FEMALE))
+
+        if type == self.FIRSTNAME_MALE or type == self.FIRSTNAME_FEMALE:
+            syllables = syllables2
+            minwords = 1
+            maxwords = 5
+            minsyllables = 2
+            maxsyllables = 5
+            if not self.options.handler.options_dict['long_names']:
+                maxwords = 2
+                maxsyllables = 3
+
+        if type == self.LASTNAME:
+            syllables = syllables1
+            minwords = 1
+            maxwords = 1
+            minsyllables = 2
+            maxsyllables = 5
+            if not self.options.handler.options_dict['long_names']:
+                maxsyllables = 3
+
+        if type == self.NOTE:
+            result = result + "Geberated by TestcaseGenerator."
+            minwords = 20
+            maxwords = 100
+
+        if type == self.NUMERIC:
+            if randint(0,1) == 1:
+                return "%d %s" % (randint(1,100), result)
+            if randint(0,1) == 1:
+                return "%d, %d %s" % (randint(1,100), randint(100,1000), result)
+            m = randint(100,1000)
+            return "%d - %d %s" % (m, m+randint(1,5), result)
+
+        for i in range(0,randint(minwords,maxwords)):
+            if result:
+                result = result + " "
+            word = ""
+            for j in range(0,randint(minsyllables,maxsyllables)):
+                word = word + choice(syllables)
+            if type == self.FIRSTNAME_MALE:
+                word = word + choice(("a","e","i","o","u"))
+            elif type == self.NOTE:
+                if randint(0,20) == 1:
+                    word = word + "."
+                elif randint(0,30) == 1:
+                    word = word + ".\n"
+            if randint(0,3) == 1:
+                word = word.title()
+            result = result + word
+        
+        if type == self.LASTNAME:
+            n = randint(0,2)
+            if n == 0:
+                result = result.title()
+            elif n == 1:
+                result = result.upper()
+        
+        return result
+    
     def commit_transaction(self):
-        if self.multiple_transactions:
+        if self.options.handler.options_dict['no_trans']:
             self.db.transaction_commit(self.trans,_("Testcase generator step %d") % self.transaction_count)
             self.transaction_count += 1
             self.trans = self.db.transaction_begin()
 
 
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
+# 
 #
-#
-#-------------------------------------------------------------------------
-def TestcaseGeneratorPlugin(database,active_person,callback,parent=None):
-    if not database.readonly:
-        fg = TestcaseGenerator(database,active_person,callback,parent)
-        fg.run()
+#------------------------------------------------------------------------
+class TestcaseGeneratorOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
+    def set_new_options(self):
+        # Options specific for this report
+        self.options_dict = {
+            'bugs'          : 0,
+            'dates'         : 1,
+            'persons'       : 1,
+            'person_count'  : 2000,
+            'no_trans'      : 0,
+            'long_names'    : 0,
+            'specialchars'  : 0,
+            'add_serial'    : 0,
+        }
+        self.options_help = {
+            'bugs'          : ("=0/1",
+                                "Whether to create invalid database references.",
+                                ["Skip test","Create invalid Database references"],
+                                True),
+            'dates'         : ("=0/1",
+                                "Whether to create test for date handling.",
+                                ["Skip test","Create date tests"],
+                                True),
+            'persons'       : ("=0/1",
+                                "Whether to create a bunch of dummy persons",
+                                ["Dont create persons","Create dummy persons"],
+                                True),
+            'person_count'  : ("=int",
+                                "Number of dummy persons to generate",
+                                "Number of persons"),
+            'no_trans'      : ("=0/1",
+                                "Wheter to use one transaction or multiple small ones",
+                                ["One transaction","Multiple transactions"],
+                                True),
+            'long_names'    : ("=0/1",
+                                "Wheter to create short or long names",
+                                ["Short names","Long names"],
+                                True),
+            'specialchars'    : ("=0/1",
+                                "Wheter to ass some special characters to every text field",
+                                ["No special characters","Add special characters"],
+                                True),
+            'add_serial'    : ("=0/1",
+                                "Wheter to add a serial number to every text field",
+                                ["No serial","Add serial number"],
+                                True),
+        }
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-from PluginMgr import register_tool
 
-register_tool(
-    TestcaseGeneratorPlugin,
-    _("Generate Testcases for persons and families"),
-    category=_("Debug"),
-    description=_("The testcase generator will generate some persons and families"
-                    " that have broken links in the database or data that is in conflict to a relation.")
-    )
+if __debug__:
+    from PluginMgr import register_tool
+    
+    register_tool(
+        name = 'testcasegenerator',
+        category = Tool.TOOL_DEBUG,
+        tool_class = TestcaseGenerator,
+        options_class = TestcaseGeneratorOptions,
+        modes = Tool.MODE_GUI | Tool.MODE_CLI,
+        translated_name = _("Generate Testcases for persons and families"),
+        status = _("Beta"),
+        author_name = "Martin Hawlisch",
+        author_email = "martin@hawlisch.de",
+        description = _("The testcase generator will generate some persons "
+                        "and families that have broken links in the database "
+                        "or data that is in conflict to a relation.")
+        )
+    

@@ -18,7 +18,6 @@
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="has_separator">False</property>
-  <signal name="delete_event" handler="on_plugstat_delete_event" last_modification_time="Sat, 20 Nov 2004 04:07:44 GMT"/>
 
   <child internal-child="vbox">
     <widget class="GtkVBox" id="vbox37">

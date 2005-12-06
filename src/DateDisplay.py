@@ -186,17 +186,13 @@ class DateDisplay:
     def _slash_year(self,val,slash):
         if val < 0:
             val = - val
-            # self._bce_str is a localizes string that prints B.C.E. at the apropriate place
-            format_string = self._bce_str
-        else:
-            format_string = "%s"
             
         if slash:
             year = "%d/%d" % (val,(val%10)+1)
         else:
             year = "%d" % (val)
         
-        return format_string % year
+        return year
         
     def display_iso(self,date_val):
         # YYYY-MM-DD (ISO)
@@ -208,7 +204,10 @@ class DateDisplay:
                 value = "%s-%02d" % (year,date_val[1])
         else:
             value = "%s-%02d-%02d" % (year,date_val[1],date_val[0])
-        return value
+        if date_val[2] < 0:
+            return self._bce_str % value
+        else:
+            return value
 
     def text_display(self,date):
         """
@@ -221,14 +220,14 @@ class DateDisplay:
     def _display_gregorian(self,date_val):
         year = self._slash_year(date_val[2],date_val[3])
         if self.format == 0:
-            value = self.display_iso(date_val)
+            return self.display_iso(date_val)
         elif self.format == 1:
             if date_val[0] == 0 and date_val[1] == 0:
                 value = str(date_val[2])
             else:
                 value = self._tformat.replace('%m',str(date_val[1]))
                 value = value.replace('%d',str(date_val[0]))
-                value = value.replace('%Y',str(date_val[2]))
+                value = value.replace('%Y',str(abs(date_val[2])))
         elif self.format == 2:
             # Month Day, Year
             if date_val[0] == 0:
@@ -265,27 +264,48 @@ class DateDisplay:
                     value = "%s %s" % (self._MONS[date_val[1]],year)
             else:
                 value = "%d %s %s" % (date_val[0],self._MONS[date_val[1]],year)
-        return value
+        if date_val[2] < 0:
+            return self._bce_str % value
+        else:
+            return value
 
     def _display_julian(self,date_val):
         # Julian date display is the same as Gregorian
         return self._display_gregorian(date_val)
 
     def _display_calendar(self,date_val,month_list):
-        year = date_val[2]
+        year = abs(date_val[2])
         if self.format == 0 or self.format == 1:
             return self.display_iso(date_val)
         else:
             if date_val[0] == 0:
                 if date_val[1] == 0:
-                    return year
+                    value = year
                 else:
-                    return u"%s %d" % (month_list[date_val[1]],year)
+                    value = u"%s %d" % (month_list[date_val[1]],year)
             else:
-                return u"%s %d, %s" % (month_list[date_val[1]],date_val[0],year)
+                value = u"%s %d, %s" % (month_list[date_val[1]],date_val[0],year)
+        if date_val[2] < 0:
+            return self._bce_str % value
+        else:
+            return value
 
     def _display_french(self,date_val):
-        return self._display_calendar(date_val,self._french)
+        year = abs(date_val[2])
+        if self.format == 0 or self.format == 1:
+            return self.display_iso(date_val)
+        else:
+            if date_val[0] == 0:
+                if date_val[1] == 0:
+                    value = year
+                else:
+                    value = u"%s %d" % (self._french[date_val[1]],year)
+            else:
+                value = u"%d %s %s" % (date_val[0],self._french[date_val[1]],year)
+        if date_val[2] < 0:
+            return self._bce_str % value
+        else:
+            return value
 
     def _display_hebrew(self,date_val):
         return self._display_calendar(date_val,self._hebrew)

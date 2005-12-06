@@ -42,6 +42,7 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -51,8 +52,6 @@ from gettext import gettext as _
 import gtk
 import gtk.gdk
 import gtk.glade
-import gobject
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -63,7 +62,7 @@ import Date
 import DateHandler
 import const
 import Utils
-import QuestionDialog
+import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -80,8 +79,8 @@ MOD_TEXT = (
     (Date.MOD_TEXTONLY   , _('Text only')) )
 
 QUAL_TEXT = (
-    (Date.QUAL_NONE, _('Regular')), 
-    (Date.QUAL_ESTIMATED, _('Estimated')), 
+    (Date.QUAL_NONE,       _('Regular')), 
+    (Date.QUAL_ESTIMATED,  _('Estimated')), 
     (Date.QUAL_CALCULATED, _('Calculated')) )
 
 CAL_TO_MONTHS_NAMES = { 
@@ -119,6 +118,7 @@ class DateEdit:
         self.parent_window = parent_window
 
         self.pixmap_obj = button_obj.get_child()
+        
         self.text_obj.connect('focus-out-event',self.parse_and_check)
         self.button_obj.connect('clicked',self.invoke_date_editor)
         
@@ -130,11 +130,11 @@ class DateEdit:
         Check current date object and display LED indicating the validity.
         """
         if self.date_obj.get_modifier() == Date.MOD_TEXTONLY:
-            self.pixmap_obj.set_from_pixbuf(self.bad)
+            self.pixmap_obj.set_from_pixbuf(self.pixmap_obj.render_icon(gtk.STOCK_DIALOG_ERROR,gtk.ICON_SIZE_MENU))
         elif self.date_obj.is_regular():
-            self.pixmap_obj.set_from_pixbuf(self.good)
+            self.pixmap_obj.set_from_pixbuf(self.pixmap_obj.render_icon(gtk.STOCK_YES,gtk.ICON_SIZE_MENU))
         else:
-            self.pixmap_obj.set_from_pixbuf(self.caution)
+            self.pixmap_obj.set_from_pixbuf(self.pixmap_obj.render_icon(gtk.STOCK_DIALOG_WARNING,gtk.ICON_SIZE_MENU))
         
     def parse_and_check(self,obj,val):
         """
@@ -258,10 +258,8 @@ class DateEditorDialog:
         while 1:
             response = self.top_window.run()
             if response == gtk.RESPONSE_HELP:
-                try:
-                    gnome.help_display('gramps-manual','adv-dates')
-                except gobject.GError, msg:
-                    QuestionDialog.ErrorDialog(_("Could not open help"),str(msg))
+                GrampsDisplay.help('adv-dates')
+
             elif response == gtk.RESPONSE_OK:
                 (the_quality,the_modifier,the_calendar,the_value,the_text) = \
                                         self.build_date_from_ui()
@@ -276,6 +274,7 @@ class DateEditorDialog:
             else:
                 break
         self.top_window.destroy()
+        gc.collect()
 
     def build_date_from_ui(self):
         """

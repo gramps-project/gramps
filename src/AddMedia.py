@@ -30,6 +30,7 @@ Provides the interface to allow a person to add a media object to the database.
 #
 #-------------------------------------------------------------------------
 import os
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -45,8 +46,8 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from QuestionDialog import ErrorDialog
+from WindowUtils import GladeIf
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -58,6 +59,7 @@ import Utils
 import RelImage
 import RelLib
 import GrampsMime
+import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -89,12 +91,9 @@ class AddMediaObject:
 
         Utils.set_titles(self.window,self.glade.get_widget('title'),
                          _('Select a media object'))
-        
-        self.glade.signal_autoconnect({
-            "on_fname_update_preview" : self.on_name_changed,
-            "on_help_imagesel_clicked" : self.on_help_imagesel_clicked,
-            })
-        
+
+        self.gladeif = GladeIf(self.glade)
+        self.gladeif.connect('fname', 'update_preview', self.on_name_changed)
         self.window.show()
 
     def internal_toggled(self, obj):
@@ -102,7 +101,7 @@ class AddMediaObject:
         
     def on_help_imagesel_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-quick')
+        GrampsDisplay.help('gramps-edit-quick')
         self.val = self.window.run()
 
     def on_savephoto_clicked(self):
@@ -156,8 +155,9 @@ class AddMediaObject:
         if old_title == '' or old_title == self.temp_name:
             self.description.set_text(root)
         self.temp_name = root
-
-        if os.path.isfile(filename):
+        
+        filename = Utils.find_file( filename)
+        if filename:
             mtype = GrampsMime.get_type(filename)
             if mtype and mtype.startswith("image"):
                 image = RelImage.scale_image(filename,const.thumbScale)
@@ -172,10 +172,12 @@ class AddMediaObject:
             if val == gtk.RESPONSE_OK:
                 self.on_savephoto_clicked()
                 self.window.destroy()
+                gc.collect()
                 return self.object
             elif val == gtk.RESPONSE_HELP: 
                 self.on_help_imagesel_clicked(None)
             else:
                 self.window.destroy()
+                gc.collect()
                 return None
         return None

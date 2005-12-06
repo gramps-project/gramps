@@ -47,11 +47,9 @@ import gtk
 import Report
 import ReportOptions
 import GenericFilter
-import const
 import RelLib
 import DateHandler
 from BaseDoc import PAPER_LANDSCAPE
-from latin_utf8 import utf8_to_latin
 from QuestionDialog import ErrorDialog
 
 #------------------------------------------------------------------------
@@ -323,7 +321,7 @@ class GraphViz:
                 else:
                     self.f.write('%s=%s, ' % (style, self.colors['unknown']))
             if self.latin:
-                label = utf8_to_latin(label)
+                label = label.encode('iso-8859-1')
             self.f.write('fontname="%s", label="%s"];\n' % (self.fontname,label))
 
             # Output families's nodes.
@@ -536,7 +534,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
         pass
 
     def add_user_options(self,dialog):
-        if self.handler.report_name == "rel_graph2":
+        if self.handler.module_name == "rel_graph2":
             dialog.make_doc_menu = self.make_doc_menu
             dialog.format_menu = GraphicsFormatComboBox()
             dialog.format_menu.set(self.options_dict['gvof'])
@@ -739,7 +737,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                 _options.fonts[self.font_box.get_active()][0]
         self.options_dict['latin'] = \
                 _options.fonts[self.font_box.get_active()][3]
-        if self.handler.report_name == "rel_graph2":
+        if self.handler.module_name == "rel_graph2":
             self.options_dict['gvof'] = dialog.format_menu.get_format_str()
 
 #------------------------------------------------------------------------
@@ -755,7 +753,7 @@ class GraphVizDialog(Report.ReportDialog):
         name = "rel_graph"
         translated_name = _("Relationship Graph")
         self.options_class = GraphVizOptions(name)
-        self.category = const.CATEGORY_CODE
+        self.category = Report.CATEGORY_CODE
         Report.ReportDialog.__init__(self,database,person,self.options_class,
                                     name,translated_name)
 
@@ -961,27 +959,27 @@ def get_description_graphics():
 from PluginMgr import register_report
 register_report(
     name = 'rel_graph',
-    category = const.CATEGORY_CODE,
+    category = Report.CATEGORY_CODE,
     report_class = GraphVizDialog,
     options_class = cl_report,
     modes = Report.MODE_GUI | Report.MODE_CLI,
     translated_name = _("Relationship Graph"),
-    status = _("Beta"),
+    status = _("Stable"),
     description= get_description(),
     author_name="Donald N. Allingham",
-    author_email="dallingham@users.sourceforge.net"
+    author_email="don@gramps-project.org"
     )
 
 if dot_found:
     register_report(
         name = 'rel_graph2',
-        category = const.CATEGORY_DRAW,
+        category = Report.CATEGORY_DRAW,
         report_class = GraphVizGraphics,
         options_class = GraphVizOptions,
         modes = Report.MODE_GUI | Report.MODE_CLI,
         translated_name = _("Relationship Graph"),
-        status = _("Beta"),
+        status = _("Stable"),
         description= get_description_graphics(),
         author_name="Donald N. Allingham",
-        author_email="dallingham@users.sourceforge.net"
+        author_email="don@gramps-project.org"
     )

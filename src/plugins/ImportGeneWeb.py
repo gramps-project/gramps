@@ -27,7 +27,6 @@
 # standard python modules
 #
 #-------------------------------------------------------------------------
-import os
 import re
 import time
 from gettext import gettext as _
@@ -47,12 +46,26 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import Errors
 import RelLib
-import latin_utf8 
-import Utils
+import Date
 import const
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
 from htmlentitydefs import name2codepoint
+
+_date_parse = re.compile('([~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F])?')
+_text_parse = re.compile('0\((.*)\)')
+
+_mod_map = {
+    '>' : Date.MOD_AFTER,
+    '<' : Date.MOD_BEFORE,
+    '~' : Date.MOD_ABOUT,
+    }
+
+_cal_map = {
+    'J' : Date.CAL_JULIAN,
+    'H' : Date.CAL_HEBREW,
+    'F' : Date.CAL_FRENCH,
+    }
 
 #-------------------------------------------------------------------------
 #
@@ -100,7 +113,7 @@ class GeneWebParser:
         self.lineno += 1
         line = self.f.readline()
         if line:
-            line = line.strip()
+            line = unicode( line.strip())
         else:
             line = None
         return line
@@ -245,7 +258,9 @@ class GeneWebParser:
                 elif fields[1] == "f":
                     (idx,child) = self.parse_person(fields,2,RelLib.Person.FEMALE,father_surname)
                 else:
-                    (idx,child) = self.parse_person(fields,1,None,father_surname)
+                    (idx,child) = self.parse_person(fields,1,RelLib.Person.UNKNOWN,father_surname)
+
+                print child.get_gender(),":",fields[1], child.get_primary_name().get_name()
                     
                 if child:
                     self.current_family.add_child_handle(child.get_handle())
@@ -282,7 +297,7 @@ class GeneWebParser:
         if not self.current_family:
             print "Unknown family of child in line %d!" % self.lineno
             return None
-        self.current_family.set_note(self.cnv(line))
+        self.current_family.set_note(line)
         self.db.commit_family(self.current_family,self.trans)
         return None
 
@@ -301,16 +316,15 @@ class GeneWebParser:
                 continue
             else:
                 if note_txt:
-                    note_txt = note_txt + "\n" + self.cnv(line)
+                    note_txt = note_txt + "\n" + line
                 else:
-                    note_txt = note_txt + self.cnv(line)
+                    note_txt = note_txt + line
         if note_txt:
             person.set_note(note_txt)
             self.db.commit_person(person,self.trans)
         return None
     
     def parse_marriage(self,fields,idx):
-        mdate = self.parse_date(fields[idx])
         mariageDataRe = re.compile("^[+#-0-9].*$")
 
         mar_date = None
@@ -327,7 +341,8 @@ class GeneWebParser:
         #Alex: this failed when fields[idx] was an empty line. Fixed.
         #while idx < len(fields) and not fields[idx][0] == "+":
         while idx < len(fields) and not (fields[idx] and fields[idx][0] == "+"):
-            print "Unknown field: '%s' in line %d!" %(fields[idx],self.lineno)
+            if fields[idx]:
+                print "Unknown field: '%s' in line %d!" %(fields[idx],self.lineno)
             idx = idx + 1
 
         while idx < len(fields) and mariageDataRe.match(fields[idx]):
@@ -385,11 +400,6 @@ class GeneWebParser:
         return idx
 
     def parse_person(self,fields,idx,gender,father_surname):
-        firstname = ""
-        surname = ""
-        occupation = ""
-        birthplace = ""
-        alias = ""
         
         if not father_surname:
             if not idx < len(fields):
@@ -403,11 +413,11 @@ class GeneWebParser:
         if not idx < len(fields):
             print "Missing firstname of person in line %d!" % self.lineno
             return (idx,None)
-        firstname = self.decode(self.cnv(fields[idx]))
+        firstname = self.decode(fields[idx])
         idx = idx + 1
         if idx < len(fields) and father_surname:
             noSurnameRe = re.compile("^[({\[~><?0-9#].*$")
-            if not noSurnameRe.match(self.cnv(fields[idx])):
+            if not noSurnameRe.match(fields[idx]):
                 surname = self.decode(fields[idx])
                 idx = idx + 1
 
@@ -418,10 +428,8 @@ class GeneWebParser:
         name.set_first_name(firstname)
         name.set_surname(surname)
         person.set_primary_name(name)
-        if gender != None:
+        if person.get_gender() == RelLib.Person.UNKNOWN and gender != None:
             person.set_gender(gender)
-        else:
-            person.set_gender(RelLib.Person.UNKNOWN)
         self.db.commit_person(person,self.trans)
         personDataRe = re.compile("^[0-9<>~#\[({!].*$")
         dateRe = re.compile("^[0-9~<>?]+.*$")
@@ -454,105 +462,107 @@ class GeneWebParser:
             if fields[idx][0] == '(':
                 #print "Public Name: %s" % fields[idx]
                 public_name = self.decode(fields[idx][1:-1])
-                idx = idx + 1
+                idx += 1
             elif fields[idx][0] == '{':
                 #print "Firstsname Alias: %s" % fields[idx]
                 firstname_aliases.append(self.decode(fields[idx][1:-1]))
-                idx = idx + 1
+                idx += 1
             elif fields[idx][0] == '[':
                 print "TODO: Titles: %s" % fields[idx]
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#nick':
-                idx = idx + 1
+                idx += 1
                 #print "Nick Name: %s" % fields[idx]
                 nick_names.append(self.decode(fields[idx]))
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#occu':
-                idx = idx + 1
+                idx += 1
                 #print "Occupation: %s" % fields[idx]
                 occu = self.create_event("Occupation",self.decode(fields[idx]))
                 person.add_event_handle(occu.get_handle())
-                self.db.commit_person(person,self.trans)
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#alias':
-                idx = idx + 1
+                idx += 1
                 #print "Name Alias: %s" % fields[idx]
                 name_aliases.append(self.decode(fields[idx]))
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#salias':
-                idx = idx + 1
+                idx += 1
                 #print "Surname Alias: %s" % fields[idx]
                 surname_aliases.append(self.decode(fields[idx]))
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#image':
-                idx = idx + 1
+                idx += 1
                 #print "Image: %s" % fields[idx]
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#src':
-                idx = idx + 1
+                idx += 1
                 #print "Source: %s" % fields[idx]
                 source = self.get_or_create_source(self.decode(fields[idx]))
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#bs':
-                idx = idx + 1
+                idx += 1
                 #print "Birth Source: %s" % fields[idx]
                 birth_source = self.get_or_create_source(self.decode(fields[idx]))
-                idx = idx + 1
+                idx += 1
             elif fields[idx][0] == '!':
                 #print "Baptize at: %s" % fields[idx]
                 bapt_date = self.parse_date(self.decode(fields[idx]))
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#bp':
-                idx = idx + 1
+                idx += 1
                 #print "Birth Place: %s" % fields[idx]
                 birth_place = self.get_or_create_place(self.decode(fields[idx]))
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#pp':
-                idx = idx + 1
+                idx += 1
                 #print "Baptize Place: %s" % fields[idx]
                 bapt_place = self.get_or_create_place(self.decode(fields[idx]))
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#ps':
-                idx = idx + 1
+                idx += 1
                 #print "Baptize Source: %s" % fields[idx]
                 bapt_source = self.get_or_create_source(self.decode(fields[idx]))
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#dp':
-                idx = idx + 1
+                idx += 1
                 #print "Death Place: %s" % fields[idx]
                 death_place = self.get_or_create_place(self.decode(fields[idx]))
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#ds':
-                idx = idx + 1
+                idx += 1
                 #print "Death Source: %s" % fields[idx]
                 death_source = self.get_or_create_source(self.decode(fields[idx]))
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#buri':
-                idx = idx + 1
+                idx += 1
                 #print "Burial Date: %s" % fields[idx]
-                bur_date = self.parse_date(self.decode(fields[idx]))
-                idx = idx + 1
+                try:
+                    bur_date = self.parse_date(self.decode(fields[idx]))
+                except IndexError:
+                    pass
+                idx += 1
             elif fields[idx] == '#crem':
-                idx = idx + 1
+                idx += 1
                 #print "Cremention Date: %s" % fields[idx]
                 crem_date = self.parse_date(self.decode(fields[idx]))
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#rp':
-                idx = idx + 1
+                idx += 1
                 #print "Burial Place: %s" % fields[idx]
                 bur_place = self.get_or_create_place(self.decode(fields[idx]))
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#rs':
-                idx = idx + 1
+                idx += 1
                 #print "Burial Source: %s" % fields[idx]
                 bur_source = self.get_or_create_source(self.decode(fields[idx]))
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#apubl':
                 #print "This is a public record"
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == '#apriv':
                 #print "This is a private record"
-                idx = idx + 1
+                idx += 1
             elif dateRe.match( fields[idx]):
                 if not birth_date:
                     #print "Birth Date: %s" % fields[idx]
@@ -560,10 +570,10 @@ class GeneWebParser:
                 else:
                     #print "Death Date: %s" % fields[idx]
                     death_date = self.parse_date(self.decode(fields[idx]))
-                idx = idx + 1
+                idx += 1
             else:
                 print "Unknown field '%s' for person in line %d!" % (fields[idx],self.lineno)
-                idx = idx + 1
+                idx += 1
         
         if public_name:
             name = person.get_primary_name()
@@ -641,8 +651,40 @@ class GeneWebParser:
     def parse_date(self,field):
         if field == "0":
             return None
-        date = _dp.parse(field)
-        return date
+        date = Date.Date()
+        matches = _text_parse.match(field)
+        if matches:
+            groups = matches.groups()
+            date.set_as_text(groups[0])
+            date.set_modifier(Date.MOD_TEXTONLY)
+            return date
+
+        matches = _date_parse.match(field)
+        if matches:
+            groups = matches.groups()
+            mod = _mod_map.get(groups[0],Date.MOD_NONE)
+            if groups[3] == "..":
+                mod = Date.MOD_SPAN
+                cal2 = _cal_map.get(groups[5],Date.CAL_GREGORIAN)
+                sub2 = self.sub_date(groups[4])
+            else:
+                sub2 = (0,0,0)
+            cal1 = _cal_map.get(groups[2],Date.CAL_GREGORIAN)
+            sub1 = self.sub_date(groups[1])
+            date.set(Date.QUAL_NONE,mod, cal1,
+                     (sub1[0],sub1[1],sub1[2],None,sub2[0],sub2[1],sub2[2],None))
+            return date
+        else:
+            return None
+
+    def sub_date(self,data):
+        vals = data.split('/')
+        if len(vals) == 1:
+            return (0,0,int(vals[0]))
+        elif len(vals) == 2:
+            return (0,int(vals[0]),int(vals[1]))
+        else:
+            return (int(vals[0]),int(vals[1]),int(vals[2]))
         
     def create_event(self,type,desc=None,date=None,place=None,source=None):
         event = RelLib.Event()
@@ -699,7 +741,7 @@ class GeneWebParser:
         return sref
 
     def decode(self,s):
-        s = latin_utf8.latin_to_utf8( s.replace('_',' '))
+        s = s.replace('_',' ')
         charref_re = re.compile('(&#)(x?)([0-9a-zA-Z]+)(;)')
         for match in charref_re.finditer(s):
             try:
@@ -722,9 +764,6 @@ class GeneWebParser:
                 pass
         
         return( s)
-
-    def cnv(seld,s):
-        return( latin_utf8.latin_to_utf8(s))
 
 #-------------------------------------------------------------------------
 #

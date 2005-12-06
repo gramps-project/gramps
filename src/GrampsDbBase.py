@@ -37,7 +37,10 @@ import locale
 import re
 from sys import maxint
 import sets
+import sys
 from gettext import gettext as _
+
+log = sys.stderr.write
 
 #-------------------------------------------------------------------------
 #
@@ -54,7 +57,6 @@ import GrampsDBCallback
 #
 #-------------------------------------------------------------------------
 _UNDO_SIZE = 1000
-_id_reg    = re.compile("%\d+d")
 
 PERSON_KEY     = 0
 FAMILY_KEY     = 1
@@ -156,6 +158,14 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         'repository-rebuild'  : None,
         }
     
+
+    # If this is True logging will be turned on.
+    try:
+        __LOG_ALL = int(os.environ.get('GRAMPS_SIGNAL',"0")) == 1
+    except:
+        __LOG_ALL = False
+
+
     def __init__(self):
         """
         Creates a new GrampsDbBase instance. A new GrampDbBase class should
@@ -261,7 +271,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
     def get_repository_cursor(self):
         assert False, "Needs to be overridden in the derived class"
 
-    def load(self,name,callback):
+    def load(self,name,callback,mode="w"):
         """
         Opens the specified database. The method needs to be overridden
         in the derived class.
@@ -305,6 +315,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         """
         if self.readonly or not obj or not obj.handle:
             return 
+
         if change_time:
             obj.change = int(change_time)
         else:
@@ -891,6 +902,22 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
             return self.repository_map.keys()
         return []
 
+    def _validated_id_prefix(self, val, default):
+        if val:
+            try:
+                junk = val % 1
+                prefix_var = val    # use the prefix as is because it works fine
+            except:
+                try:
+                    val = val + "%d"
+                    junk = val % 1
+                    prefix_var = val    # format string was missing
+                except:
+                    prefix_var = default+"%04d" # use default
+        else:
+            prefix_var = default+"%04d"
+        return prefix_var
+    
     def set_person_id_prefix(self,val):
         """
         Sets the naming template for GRAMPS Person ID values. The string is
@@ -898,13 +925,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         that contains a C/Python style format string using %d, such as I%d
         or I%04d.
         """
-        if val:
-            if _id_reg.search(val):
-                self.iprefix = val
-            else:
-                self.iprefix = val + "%d"
-        else:
-            self.iprefix = "I%04d"
+        self.iprefix = self._validated_id_prefix(val,"I")
             
     def set_source_id_prefix(self,val):
         """
@@ -913,13 +934,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         that contains a C/Python style format string using %d, such as S%d
         or S%04d.
         """
-        if val:
-            if _id_reg.search(val):
-                self.sprefix = val
-            else:
-                self.sprefix = val + "%d"
-        else:
-            self.sprefix = "S%04d"
+        self.sprefix = self._validated_id_prefix(val,"S")
             
     def set_object_id_prefix(self,val):
         """
@@ -928,13 +943,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         that contains a C/Python style format string using %d, such as O%d
         or O%04d.
         """
-        if val:
-            if _id_reg.search(val):
-                self.oprefix = val
-            else:
-                self.oprefix = val + "%d"
-        else:
-            self.oprefix = "O%04d"
+        self.oprefix = self._validated_id_prefix(val,"O")
 
     def set_place_id_prefix(self,val):
         """
@@ -943,13 +952,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         that contains a C/Python style format string using %d, such as P%d
         or P%04d.
         """
-        if val:
-            if _id_reg.search(val):
-                self.pprefix = val
-            else:
-                self.pprefix = val + "%d"
-        else:
-            self.pprefix = "P%04d"
+        self.pprefix = self._validated_id_prefix(val,"P")
 
     def set_family_id_prefix(self,val):
         """
@@ -958,13 +961,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         that contains a C/Python style format string using %d, such as F%d
         or F%04d.
         """
-        if val:
-            if _id_reg.search(val):
-                self.fprefix = val
-            else:
-                self.fprefix = val + "%d"
-        else:
-            self.fprefix = "F%04d"
+        self.fprefix = self._validated_id_prefix(val,"F")
 
     def set_event_id_prefix(self,val):
         """
@@ -973,41 +970,33 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         that contains a C/Python style format string using %d, such as E%d
         or E%04d.
         """
-        if val:
-            if _id_reg.search(val):
-                self.eprefix = val
-            else:
-                self.eprefix = val + "%d"
-        else:
-            self.eprefix = "E%04d"
+        self.eprefix = self._validated_id_prefix(val,"E")
 
     def set_repository_id_prefix(self,val):
         """
         Sets the naming template for GRAMPS Repository ID values. The string is
         expected to be in the form of a simple text string, or in a format
-        that contains a C/Python style format string using %d, such as E%d
-        or E%04d.
+        that contains a C/Python style format string using %d, such as R%d
+        or R%04d.
         """
-        if val:
-            if _id_reg.search(val):
-                self.rprefix = val
-            else:
-                self.rprefix = val + "%d"
-        else:
-            self.rprefix = "R%04d"
-
+        self.rprefix = self._validated_id_prefix(val,"R")
+            
     def transaction_begin(self,msg=""):
         """
         Creates a new Transaction tied to the current UNDO database. The
         transaction has no effect until it is committed using the
         transaction_commit function of the this database object.
         """
+        if self.__LOG_ALL:
+            log("%s: Transaction begin '%s'\n" % (self.__class__.__name__, str(msg)))
         return Transaction(msg,self.undodb)
 
     def transaction_commit(self,transaction,msg):
         """
         Commits the transaction to the assocated UNDO database.
         """
+        if self.__LOG_ALL:
+            log("%s: Transaction commit '%s'\n" % (self.__class__.__name__, str(msg)))
         if not len(transaction) or self.readonly:
             return
         transaction.set_description(msg)

@@ -26,6 +26,8 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
+from cgi import escape
 
 #-------------------------------------------------------------------------
 #
@@ -33,7 +35,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -50,6 +51,9 @@ import Date
 import DateEdit
 import DateHandler
 import Spell
+import GrampsDisplay
+
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -74,16 +78,25 @@ class NameEditor:
         self.callback = callback
         self.child_windows = {}
         self.top = gtk.glade.XML(const.dialogFile, "name_edit","gramps")
+        self.gladeif = GladeIf(self.top)
         self.window = self.top.get_widget("name_edit")
         self.given_field  = self.top.get_widget("alt_given")
+        self.given_field.set_editable(not self.db.readonly)
         self.sort_as  = self.top.get_widget("sort_as")
+        self.sort_as.set_sensitive(not self.db.readonly)
         self.display_as  = self.top.get_widget("display_as")
+        self.display_as.set_sensitive(not self.db.readonly)
         self.group_as  = self.top.get_widget("group_as")
         self.title_field  = self.top.get_widget("alt_title")
+        self.title_field.set_editable(not self.db.readonly)
         self.suffix_field = self.top.get_widget("alt_suffix")
+        self.suffix_field.set_editable(not self.db.readonly)
         self.patronymic_field = self.top.get_widget("patronymic")
+        self.patronymic_field.set_editable(not self.db.readonly)
         self.combo = self.top.get_widget("alt_surname_list")
+        self.combo.set_sensitive(not self.db.readonly)
         self.date = self.top.get_widget('date')
+        self.date.set_editable(not self.db.readonly)
 
         if self.name:
             self.srcreflist = self.name.get_source_references()
@@ -94,16 +107,21 @@ class NameEditor:
 
         self.date.set_text(DateHandler.displayer.display(self.date_obj))
 
+        date_stat = self.top.get_widget("date_stat")
+        date_stat.set_sensitive(not self.db.readonly)
         self.date_check = DateEdit.DateEdit(
             self.date_obj, self.date,
-            self.top.get_widget("date_stat"), self.window)
+            date_stat, self.window)
 
         AutoComp.fill_combo(self.combo,self.parent.db.get_surname_list())
         self.surname_field = self.combo.get_child()
         self.prefix_field = self.top.get_widget("alt_prefix")
+        self.prefix_field.set_editable(not self.db.readonly)
 
         self.type_combo = self.top.get_widget("name_type")
+        self.type_combo.set_sensitive(not self.db.readonly)
         self.note_field = self.top.get_widget("alt_note")
+        self.note_field.set_editable(not self.db.readonly)
         self.spell = Spell.Spell(self.note_field)
         
         self.slist = self.top.get_widget('slist')
@@ -111,9 +129,13 @@ class NameEditor:
         self.general_label = self.top.get_widget("general_tab")
         self.sources_label = self.top.get_widget("sources_tab")
         self.notes_label = self.top.get_widget("note_tab")
+        self.priv.set_sensitive(not self.db.readonly)
         self.flowed = self.top.get_widget("alt_flowed")
+        self.flowed.set_sensitive(not self.db.readonly)
         self.preform = self.top.get_widget("alt_preform")
+        self.preform.set_sensitive(not self.db.readonly)
         self.group_over = self.top.get_widget('group_over')
+        self.group_over.set_sensitive(not self.db.readonly)
 
         self.type_selector = AutoComp.StandardCustomSelector(
             Utils.name_types, self.type_combo, RelLib.Name.CUSTOM,
@@ -126,7 +148,7 @@ class NameEditor:
         if full_name == "":
             tmsg = _("Name Editor")
         else:
-            tmsg = _("Name Editor for %s") % full_name
+            tmsg = _("Name Editor for %s") % escape(full_name)
 
         Utils.set_titles(self.window, alt_title, tmsg, _('Name Editor'))
 
@@ -137,14 +159,14 @@ class NameEditor:
         
         self.note_buffer = self.note_field.get_buffer()
         
-        self.top.signal_autoconnect({
-            "on_help_name_clicked"        : self.on_help_clicked,
-            "on_name_edit_ok_clicked"     : self.on_name_edit_ok_clicked,
-            "on_name_edit_cancel_clicked" : self.close, 
-            "on_name_edit_delete_event"   : self.on_delete_event,
-            "on_group_over_toggled"       : self.on_group_over_toggled,
-            "on_switch_page"              : self.on_switch_page
-            })
+        self.gladeif.connect('name_edit','delete_event',self.on_delete_event)
+        self.gladeif.connect('button119','clicked',self.close)
+        self.gladeif.connect('button118','clicked',self.on_name_edit_ok_clicked)
+        okbtn = self.top.get_widget('button118')
+        okbtn.set_sensitive(not self.db.readonly)
+        self.gladeif.connect('button131','clicked',self.on_help_clicked)
+        self.gladeif.connect('notebook3','switch_page',self.on_switch_page)
+        self.gladeif.connect('group_over','toggled',self.on_group_over_toggled)
 
         if name != None:
             self.given_field.set_text(name.get_first_name())
@@ -206,13 +228,17 @@ class NameEditor:
             self.group_as.set_editable(False)
 
     def on_delete_event(self,*obj):
+        self.gladeif.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
+        gc.collect()
 
     def close(self,*obj):
+        self.gladeif.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.window.destroy()
+        gc.collect()
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():
@@ -249,7 +275,7 @@ class NameEditor:
 
     def on_help_clicked(self,*obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-an')
+        GrampsDisplay.help('adv-an')
 
     def on_name_edit_ok_clicked(self,obj):
         first = unicode(self.given_field.get_text())
@@ -265,6 +291,12 @@ class NameEditor:
 
         the_type = self.type_selector.get_values()
 
+        # FIXME: this remained from gramps20 -- check
+        # if const.NameTypesMap.has_value(mtype):
+        #     mtype = const.NameTypesMap.find_key(mtype)
+        # if not mtype:
+        #     mtype = "Also Known As"
+        
         if self.name == None:
             self.name = RelLib.Name()
             self.parent.nlist.append(self.name)

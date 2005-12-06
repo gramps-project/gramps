@@ -449,7 +449,7 @@ class SourceNote(BaseObject,NoteBase):
         @param source: Object used to initialize the new object
         @type source: SourceNote
         """
-        
+        BaseObject.__init__(self)
         NoteBase.__init__(self,source)
         if source:
             self.source_list = [SourceRef(sref) for sref in source.source_list]
@@ -2368,8 +2368,9 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         """
         if other == None:
             other = Event (None)
+
         if self.type[0] != other.type[0] or \
-           (self.type[0] == Event.CUSTOM and self.type[1] != other.type[1]) or \
+           (self.type[0] == Event.CUSTOM and self.type[1] != other.type[1]) or\
            ((self.place or other.place) and (self.place != other.place)) or \
            self.description != other.description or self.cause != other.cause \
            or self.private != other.private or \
@@ -2926,7 +2927,9 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.title,self.author,self.pubinfo,self.abbrev,self.gramps_id]
+        return [self.title,self.author,self.pubinfo,self.abbrev,self.gramps_id]\
+                + self.datamap.keys() + self.datamap.values()
+        
 
     def get_text_data_child_list(self):
         """
@@ -3317,6 +3320,7 @@ class Location(BaseObject):
     
     def __init__(self,source=None):
         """creates a Location object, copying from the source object if it exists"""
+        BaseObject.__init__(self)
         if source:
             self.city = source.city
             self.parish = source.parish
@@ -3417,6 +3421,7 @@ class Note(BaseObject):
         """
         Creates a new Note object, initializing from the passed string.
         """
+        BaseObject.__init__(self)
         self.text = text
         self.format = 0
 
@@ -4056,6 +4061,7 @@ class Url(BaseObject,PrivacyBase):
 
     def __init__(self,source=None):
         """creates a new URL instance, copying from the source if present"""
+        BaseObject.__init__(self)
         PrivacyBase.__init__(self,source)
         if source:
             self.path = source.path
@@ -4111,6 +4117,7 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
 
     def __init__(self,source=None):
         """creates a new SourceRef, copying from the source if present"""
+        BaseObject.__init__(self)
         DateBase.__init__(self,source)
         PrivacyBase.__init__(self,source)
         NoteBase.__init__(self,source)
@@ -4195,12 +4202,7 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
         if self.ref and other.ref:
             if self.page != other.page:
                 return False
-            if (self.date and other.date and \
-                                        not self.date.is_equal(other.date)) \
-                        or ((not self.date) and other.date and \
-                                not other.date.is_empty()) \
-                        or ((not other.date) and self.date and \
-                                not self.date.is_empty()):
+            if not self.get_date_object().is_equal(other.get_date_object()):
                 return False
             if self.get_text() != other.get_text():
                 return False

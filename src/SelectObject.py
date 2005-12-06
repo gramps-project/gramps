@@ -30,7 +30,7 @@
 # general modules
 #
 #-------------------------------------------------------------------------
-import os
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -82,7 +82,7 @@ class SelectObject:
 
         Utils.set_titles(self.top,title_label,title)
 
-        titles = [(_('Title'),4,350), (_('ID'),1,50),
+        titles = [(_('Title'),0,350), (_('ID'),1,50),
                     (_('Type'),2,70), ('Path',3,150), ('',4,0) ] 
         self.ncols = len(titles)      
 
@@ -117,7 +117,7 @@ class SelectObject:
         path = obj.get_path()
 
         if the_type and the_type[0:5] == "image":
-            image = ImgManip.get_thumbnail_image(path)
+            image = ImgManip.get_thumbnail_image(path,the_type)
         else:
             image = Utils.find_mime_type_pixbuf(the_type)
         self.preview.set_from_pixbuf(image)
@@ -148,7 +148,9 @@ class SelectObject:
             else:
                 return_value = None
             self.top.destroy()
+            gc.collect()
 	    return return_value
         else:
             self.top.destroy()
+            gc.collect()
             return None

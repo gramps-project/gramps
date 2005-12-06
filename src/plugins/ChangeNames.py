@@ -48,46 +48,34 @@ from gnome import help_display
 #-------------------------------------------------------------------------
 import Utils
 from QuestionDialog import OkDialog
-
-#-------------------------------------------------------------------------
-#
-# Search each name in the database, and compare the firstname against the
-# form of "Name (Nickname)".  If it matches, change the first name entry
-# to "Name" and add "Nickname" into the nickname field.
-#
-#-------------------------------------------------------------------------
-def runTool(database,active_person,callback,parent=None):
-    try:
-        ChangeNames(database,callback,parent)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+import Tool
 
 #-------------------------------------------------------------------------
 #
 # ChangeNames
 #
 #-------------------------------------------------------------------------
-class ChangeNames:
+class ChangeNames(Tool.Tool):
 
-    def __init__(self,db,callback,parent):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
+
         self.cb = callback
-        self.db = db
         self.parent = parent
         if self.parent.child_windows.has_key(self.__class__):
             self.parent.child_windows[self.__class__].present(None)
             return
         self.win_key = self.__class__
-        self.name_list = []
-        self.progress = Utils.ProgressMeter(_('Checking family names'),'')
-
         
+        self.progress = Utils.ProgressMeter(_('Checking family names'),'')
         self.progress.set_pass(_('Searching family names'),
                                len(self.db.get_surname_list()))
+        self.name_list = []
         for name in self.db.get_surname_list():
             if name != name.capitalize():
                 self.name_list.append(name)
-            self.progress.step()
+            if self.parent:
+                self.progress.step()
         
         if self.name_list:
             self.display()
@@ -204,12 +192,31 @@ class ChangeNames:
 # 
 #
 #------------------------------------------------------------------------
+class ChangeNamesOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 from PluginMgr import register_tool
 
 register_tool(
-    runTool,
-    _("Fix capitalization of family names"),
-    category=_("Database Processing"),
-    description=_("Searches the entire database and attempts to "
-                  "fix capitalization of the names.")
+    name = 'chname',
+    category = Tool.TOOL_DBPROC,
+    tool_class = ChangeNames,
+    options_class = ChangeNamesOptions,
+    modes = Tool.MODE_GUI,
+    translated_name = _("Fix capitalization of family names"),
+    status = _("Stable"),
+    author_name = "Donald N. Allingham",
+    author_email = "don@gramps-project.org",
+    description = _("Searches the entire database and attempts to "
+                    "fix capitalization of the names.")
     )

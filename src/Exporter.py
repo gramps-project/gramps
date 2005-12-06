@@ -28,7 +28,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-import shutil
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -37,7 +36,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-import gnome
 from gnome.ui import Druid, DruidPageEdge, DruidPageStandard
 
 #-------------------------------------------------------------------------
@@ -50,6 +48,7 @@ import Utils
 import PluginMgr
 import QuestionDialog
 import GrampsKeys
+import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -120,7 +119,7 @@ class Exporter:
         """
         Help handler.
         """
-        gnome.help_display('gramps-manual','export-data')
+        GrampsDisplay.help('export-data')
 
     def build_info_page(self):
         """

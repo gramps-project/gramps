@@ -38,6 +38,14 @@ import Errors
 import BaseDoc
 from Report import run_print_dialog
 from ReportUtils import pt2cm, rgb_color
+from Utils import gformat
+
+def lrgb(grp):
+    grp = rgb_color(grp)
+    return (gformat(grp[0]),gformat(grp[1]),gformat(grp[2]))
+
+def coords(grp):
+    return (gformat(grp[0]),gformat(grp[1]))
 
 #-------------------------------------------------------------------------
 #
@@ -139,19 +147,24 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write("%%Page:")
         self.f.write("%d %d\n" % (self.page,self.page))
         if self.orientation != BaseDoc.PAPER_PORTRAIT:
-            self.f.write('90 rotate %5.2f cm %5.2f cm translate\n' % (0,-1*self.height))
+            self.f.write('90 rotate %s cm %s cm translate\n' % (
+                gformat(0),gformat(-1*self.height)))
 
     def end_page(self):
         self.f.write('showpage\n')
         self.f.write('%%PageTrailer\n')
 
-    def encode_text(self,p,text):
-        fdef = self.fontdef(p)
+    def encode(self,text):
         try:
             orig = unicode(text)
             new_text = orig.encode('iso-8859-1')
         except:
-            new_text = "?"
+            new_text = "?"*len(text)
+        return new_text
+
+    def encode_text(self,p,text):
+        fdef = self.fontdef(p)
+        new_text = self.encode(text)
         return (new_text,fdef)
 
     def center_text(self,style,text,x,y):
@@ -165,10 +178,10 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         (text,fdef) = self.encode_text(p,text)
 
         self.f.write('gsave\n')
-        self.f.write('%.4f %.4f %.4f setrgbcolor\n' % rgb_color(stype.get_color()))
+        self.f.write('%s %s %s setrgbcolor\n' % lrgb(stype.get_color()))
         self.f.write(fdef)
         self.f.write('(%s) dup stringwidth pop -2 div ' % text)
-        self.f.write('%.4f cm add %.4f cm moveto ' % self.translate(x,y))
+        self.f.write('%s cm add %s cm moveto ' % coords(self.translate(x,y)))
         self.f.write('show\n')
         self.f.write('grestore\n')
 
@@ -183,7 +196,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         (text,fdef) = self.encode_text(p,text)
 
         self.f.write('gsave\n')
-        self.f.write('%f cm %f cm moveto\n' % self.translate(x1,y1))
+        self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x1,y1)))
         self.f.write(fdef)
         self.f.write('(%s) show grestore\n' % text)
 
@@ -254,17 +267,20 @@ class PSDrawDoc(BaseDoc.BaseDoc):
 
         self.f.write('gsave\n')
         self.f.write(fdef)
-        self.f.write('%4.2f cm %4.2f cm translate\n' % self.translate(x,y))
-        self.f.write('%4.2f rotate\n' % -angle)
+        coords = self.translate(x,y)
+        self.f.write('%s cm %s cm translate\n' % (
+            gformat(coords[0]),gformat(coords[1])))
+        self.f.write('%s rotate\n' % gformat(-angle))
 
-        self.f.write('%.4f %.4f %.4f setrgbcolor\n' % rgb_color(stype.get_color()))
+        self.f.write('%s %s %s setrgbcolor\n' % lrgb(stype.get_color()))
 
         val = len(text)
         y = ((size * val)/2.0) - size
 
         for line in text:
-            self.f.write('(%s) dup stringwidth pop -2 div  '% line.encode('iso-8859-1'))
-            self.f.write("%.4f moveto show\n" % y)
+            self.f.write('(%s) dup stringwidth pop -2 div  '
+                         % self.encode(line))
+            self.f.write("%s moveto show\n" % gformat(y))
             y -= size
  
         self.f.write('grestore\n')
@@ -273,7 +289,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         stype = self.draw_styles[style]
         self.f.write('gsave\n')
         self.f.write('newpath\n')
-        self.f.write('%.4f setlinewidth\n' % stype.get_line_width())
+        self.f.write('%s setlinewidth\n' % gformat(stype.get_line_width()))
         if stype.get_line_style() == BaseDoc.SOLID:
             self.f.write('[] 0 setdash\n')
         else:
@@ -282,17 +298,17 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         point = path[0]
         x1 = point[0]+self.lmargin
         y1 = point[1]+self.tmargin
-        self.f.write('%f cm %f cm moveto\n' % self.translate(x1,y1))
+        self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x1,y1)))
 
         for point in path[1:]:
             x1 = point[0]+self.lmargin
             y1 = point[1]+self.tmargin
-            self.f.write('%f cm %f cm lineto\n' % self.translate(x1,y1))
+            self.f.write('%s cm %s cm lineto\n' % coords(self.translate(x1,y1)))
         self.f.write('closepath\n')
 
         color = stype.get_fill_color()
-        self.f.write('gsave %.4f %.4f %.4f setrgbcolor fill grestore\n' % rgb_color(color))
-        self.f.write('%.4f %.4f %.4f setrgbcolor stroke\n' % rgb_color(stype.get_color()))
+        self.f.write('gsave %s %s %s setrgbcolor fill grestore\n' % lrgb(color))
+        self.f.write('%s %s %s setrgbcolor stroke\n' % lrgb(stype.get_color()))
         self.f.write('grestore\n')
 
     def draw_line(self,style,x1,y1,x2,y2):
@@ -302,20 +318,17 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         y2 = y2 + self.tmargin
         stype = self.draw_styles[style]
         self.f.write('gsave newpath\n')
-        self.f.write('%f cm %f cm moveto\n' % self.translate(x1,y1))
-        self.f.write('%f cm %f cm lineto\n' % self.translate(x2,y2))
-        self.f.write('%.4f setlinewidth\n' % stype.get_line_width())
+        self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x1,y1)))
+        self.f.write('%s cm %s cm lineto\n' % coords(self.translate(x2,y2)))
+        self.f.write('%s setlinewidth\n' % gformat(stype.get_line_width()))
         if stype.get_line_style() == BaseDoc.SOLID:
             self.f.write('[] 0 setdash\n')
         else:
             self.f.write('[2 4] 0 setdash\n')
             
         self.f.write('2 setlinecap\n')
-        self.f.write('%.4f %.4f %.4f setrgbcolor stroke\n' % rgb_color(stype.get_color()))
+        self.f.write('%s %s %s setrgbcolor stroke\n' % lrgb(stype.get_color()))
         self.f.write('grestore\n')
-
-    def patch_text(self,text):
-        return text.encode('iso-8859-1')
 
     def write_at(self,style,text,x,y):
         para_style = self.style_list[style]
@@ -326,7 +339,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         (text,fdef) = self.encode_text(para_style,text)
 
         self.f.write('gsave\n')
-        self.f.write('%f cm %f cm moveto\n' % self.translate(x,y))
+        self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x,y)))
         self.f.write(fdef)
         self.f.write('(%s) show grestore\n' % text)
 
@@ -341,14 +354,14 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         color = rgb_color(box_type.get_color())
 
         self.f.write('gsave\n')
-        self.f.write("%f cm %f cm moveto\n" % self.translate(x1,y1))
-        self.f.write("0 %f cm rlineto\n" % (y2-y1)) 
-        self.f.write("%f cm 0 rlineto\n" % (x2-x1)) 
-        self.f.write("0  %f cm rlineto\n" % (y1-y2))
+        self.f.write("%s cm %s cm moveto\n" % coords(self.translate(x1,y1)))
+        self.f.write("0 %s cm rlineto\n" % gformat(y2-y1)) 
+        self.f.write("%s cm 0 rlineto\n" % gformat(x2-x1)) 
+        self.f.write("0 %s cm rlineto\n" % gformat(y1-y2))
         self.f.write('closepath\n')
-        self.f.write("%.4f setlinewidth\n" % box_type.get_line_width())
-        self.f.write('gsave %.4f %.4f %.4f setrgbcolor fill grestore\n' % fill_color)
-        self.f.write('%.4f %.4f %.4f setrgbcolor stroke\n' % color)
+        self.f.write("%s setlinewidth\n" % gformat(box_type.get_line_width()))
+        self.f.write('gsave %s %s %s setrgbcolor fill grestore\n' % lrgb(fill_color))
+        self.f.write('%s %s %s setrgbcolor stroke\n' % lrgb(color))
         self.f.write('grestore\n')
     
     def draw_box(self,style,text,x,y):
@@ -366,34 +379,35 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         shadsize = box_style.get_shadow_space()
         if box_style.get_shadow():
             self.f.write('newpath\n')
-            self.f.write('%f cm %f cm moveto\n' % self.translate(x+shadsize,y+shadsize))
-            self.f.write('0 -%f cm rlineto\n' % bh)
-            self.f.write('%f cm 0 rlineto\n' % bw)
-            self.f.write('0 %f cm rlineto\n' % bh)
+            self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x+shadsize,y+shadsize)))
+            self.f.write('0 -%s cm rlineto\n' % gformat(bh))
+            self.f.write('%s cm 0 rlineto\n' % gformat(bw))
+            self.f.write('0 %s cm rlineto\n' % gformat(bh))
             self.f.write('closepath\n')
             self.f.write('.5 setgray\n')
             self.f.write('fill\n')
         self.f.write('newpath\n')
-        self.f.write('%f cm %f cm moveto\n' % self.translate(x,y))
-        self.f.write('0 -%f cm rlineto\n' % bh)
-        self.f.write('%f cm 0 rlineto\n' % bw)
-        self.f.write('0 %f cm rlineto\n' % bh)
+        self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x,y)))
+        self.f.write('0 -%s cm rlineto\n' % gformat(bh))
+        self.f.write('%s cm 0 rlineto\n' % gformat(bw))
+        self.f.write('0 %s cm rlineto\n' % gformat(bh))
         self.f.write('closepath\n')
         self.f.write('1 setgray\n')
         self.f.write('fill\n')
         self.f.write('newpath\n')
         if box_style.get_line_width():
-            self.f.write('%f cm %f cm moveto\n' % self.translate(x,y))
-            self.f.write('0 -%f cm rlineto\n' % bh)
-            self.f.write('%f cm 0 rlineto\n' % bw)
-            self.f.write('0 %f cm rlineto\n' % bh)
+            self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x,y)))
+            self.f.write('0 -%s cm rlineto\n' % gformat(bh))
+            self.f.write('%s cm 0 rlineto\n' % gformat(bw))
+            self.f.write('0 %s cm rlineto\n' % gformat(bh))
             self.f.write('closepath\n')
-            self.f.write('%.4f setlinewidth\n' % box_style.get_line_width())
-            self.f.write('%.4f %.4f %.4f setrgbcolor stroke\n' % rgb_color(box_style.get_color()))
+            self.f.write('%s setlinewidth\n' % gformat(box_style.get_line_width()))
+            self.f.write('%s %s %s setrgbcolor stroke\n' % lrgb(box_style.get_color()))
         if text != "":
             (text,fdef) = self.encode_text(p,text)
             self.f.write(fdef)
-            lines = '\n'.split(text)
+            lines = text.split('\n')
+
             nlines = len(lines)
             mar = 10/28.35
             f_in_cm = p.get_font().get_size()/28.35
@@ -402,7 +416,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
             ystart = center - (fs/2.0) * nlines
             for i in range(nlines):
                 ypos = ystart + (i * fs)
-                self.f.write('%f cm %f cm moveto\n' % self.translate(x+mar,ypos))
+                self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x+mar,ypos)))
                 self.f.write("(%s) show\n" % lines[i])
         self.f.write('grestore\n')
 

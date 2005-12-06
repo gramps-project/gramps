@@ -24,11 +24,6 @@
 
   <title>Known Bugs and Limitations</title>
 
-<para>The bugs are tracked through the 
-   <ulink url="http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137" type="http">
-   sourceforge.net tracking system</ulink>.
-</para>
-
 <para>The known limitations include the BSDDB performance issues related
 to caching and the memory size. As long as the BSDDB cache fits completely
 into the available memory on the system, the performance should be
