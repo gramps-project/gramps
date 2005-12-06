@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+from cgi import escape
 
 #-------------------------------------------------------------------------
 #
@@ -44,6 +45,7 @@ import gtk.gdk
 import RelLib
 import PageView
 import EditPerson
+import Relationship
 import NameDisplay
 import Utils
 import DateHandler
@@ -205,6 +207,9 @@ class PedView(PageView.PersonNavView):
     def person_updated_cb(self,handle_list):
         print "PedView.person_updated_cb"
         self.rebuild_trees(self.dbstate.active)
+##         if self.active_person and self.active_person.handle == handle_list[0]:
+##             self.active_person = self.db.get_person_from_handle(handle_list[0])
+##         self.load_canvas(self.active_person)
 
     def person_rebuild(self):
         print "PedView.person_rebuild"
@@ -301,6 +306,7 @@ class PedView(PageView.PersonNavView):
         # Build ancestor tree
         lst = [None]*31
         self.find_tree(active_person,0,1,lst)
+##         self.find_tree(person,0,1,lst)
 
         # Purge current table content
         for child in table_widget.get_children():
@@ -697,9 +703,9 @@ class PedView(PageView.PersonNavView):
                 child_menu = item.get_submenu()
 
             if find_children(self.db,child):
-                label = gtk.Label('<b><i>%s</i></b>' % NameDisplay.displayer.display(child))
+                label = gtk.Label('<b><i>%s</i></b>' % escape(NameDisplay.displayer.display(child)))
             else:
-                label = gtk.Label(NameDisplay.displayer.display(child))
+                label = gtk.Label(escape(NameDisplay.displayer.display(child)))
 
             go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
             go_image.show()
@@ -734,9 +740,9 @@ class PedView(PageView.PersonNavView):
                 par_menu = item.get_submenu()
 
             if find_parents(self.db,par):
-                label = gtk.Label('<b><i>%s</i></b>' % NameDisplay.displayer.display(par))
+                label = gtk.Label('<b><i>%s</i></b>' % escape(NameDisplay.displayer.display(par)))
             else:
-                label = gtk.Label(NameDisplay.displayer.display(par))
+                label = gtk.Label(escape(NameDisplay.displayer.display(par)))
 
             go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
             go_image.show()
