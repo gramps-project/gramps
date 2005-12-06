@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import cPickle as pickle
+import gc
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -36,7 +37,6 @@ from gettext import gettext as _
 import gobject
 import gtk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -50,8 +50,12 @@ import ImageSelect
 import NameDisplay
 import DisplayState
 import Spell
+import GrampsDisplay
+import RelLib
+import ListModel
 
 from DdTargets import DdTargets
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -60,11 +64,13 @@ from DdTargets import DdTargets
 #-------------------------------------------------------------------------
 class EditPlace(DisplayState.ManagedWindow):
 
+<<<<<<< EditPlace.py
     def __init__(self,place,dbstate,uistate):
         self.dbstate = dbstate
         self.uistate = uistate
 
         self.ref_not_loaded = place and place.get_handle()
+        self.idle = None
         self.name_display = NameDisplay.displayer.display
         self.place = place
         self.db = dbstate.db
@@ -77,6 +83,8 @@ class EditPlace(DisplayState.ManagedWindow):
             self.srcreflist = []
 
         self.top_window = gtk.glade.XML(const.placesFile,"placeEditor","gramps")
+        self.gladeif = GladeIf(self.top_window)
+
         self.top = self.top_window.get_widget("placeEditor")
         self.iconlist = self.top_window.get_widget('iconlist')
         title_label = self.top_window.get_widget('title')
@@ -158,7 +166,7 @@ class EditPlace(DisplayState.ManagedWindow):
         self.country.set_text(mloc.get_country())
         self.longitude.set_text(place.get_longitude())
         self.latitude.set_text(place.get_latitude())
-        self.refinfo = self.top_window.get_widget("refinfo")
+        self.plist = self.top_window.get_widget("plist")
         self.slist = self.top_window.get_widget("slist")
         self.sources_label = self.top_window.get_widget("sourcesPlaceEdit")
         self.names_label = self.top_window.get_widget("namesPlaceEdit")
@@ -188,26 +196,23 @@ class EditPlace(DisplayState.ManagedWindow):
         else:
             Utils.unbold_label(self.gallery_label)
 
-        self.top_window.signal_autoconnect({
-            "on_switch_page"            : self.on_switch_page,
-            "on_addphoto_clicked"       : self.glry.on_add_media_clicked,
-            "on_selectphoto_clicked"    : self.glry.on_select_media_clicked,
-            "on_deletephoto_clicked"    : self.glry.on_delete_media_clicked,
-            "on_edit_photo_clicked"     : self.glry.on_edit_media_clicked,
-            "on_edit_properties_clicked": self.glry.popup_change_description,
-            "on_add_url_clicked"        : self.on_add_url_clicked,
-            "on_delete_url_clicked"     : self.on_delete_url_clicked,
-            "on_update_url_clicked"     : self.on_update_url_clicked,
-            "on_add_loc_clicked"        : self.on_add_loc_clicked,
-            "on_delete_loc_clicked"     : self.on_delete_loc_clicked,
-            "on_update_loc_clicked"     : self.on_update_loc_clicked,
-            "on_web_go_clicked"         : self.on_web_go_clicked,
-            "on_help_clicked"           : self.on_help_clicked,
-            "on_delete_event"           : self.on_delete_event,
-            "on_cancel_clicked"         : self.close,
-            "on_apply_clicked"          : self.on_place_apply_clicked,
-            })
-
+        self.gladeif.connect('placeEditor', 'delete_event', self.on_delete_event)
+        self.gladeif.connect('button127', 'clicked', self.close)
+        self.gladeif.connect('ok', 'clicked', self.on_place_apply_clicked)
+        self.gladeif.connect('button135', 'clicked', self.on_help_clicked)
+        self.gladeif.connect('notebook3', 'switch_page', self.on_switch_page)
+        self.gladeif.connect('add_name', 'clicked', self.on_add_loc_clicked)
+        self.gladeif.connect('loc_edit', 'clicked', self.on_update_loc_clicked)
+        self.gladeif.connect('del_name', 'clicked', self.on_delete_loc_clicked)
+        self.gladeif.connect('add_photo', 'clicked', self.glry.on_add_media_clicked)
+        self.gladeif.connect('sel_photo', 'clicked', self.glry.on_select_media_clicked)
+        self.gladeif.connect('button134', 'clicked', self.glry.on_edit_media_clicked)
+        self.gladeif.connect('delete_photo', 'clicked', self.glry.on_delete_media_clicked)
+        self.gladeif.connect('add_url', 'clicked', self.on_add_url_clicked)
+        self.gladeif.connect('web_edit', 'clicked', self.on_update_url_clicked)
+        self.gladeif.connect('web_go', 'clicked', self.on_web_go_clicked)
+        self.gladeif.connect('del_url', 'clicked', self.on_delete_url_clicked)
+        
         self.sourcetab = Sources.SourceTab(
             self.srcreflist,self,
             self.top_window,self.top,self.slist,
@@ -228,7 +233,8 @@ class EditPlace(DisplayState.ManagedWindow):
                                       gtk.gdk.ACTION_COPY)
         self.web_list.connect('drag_data_get',
                               self.url_source_drag_data_get)
-        self.web_list.connect('drag_data_received',
+        if not self.db.readonly:
+            self.web_list.connect('drag_data_received',
                               self.url_dest_drag_data_received)
 
         for name in ['del_name','add_name','sel_photo','add_url','del_url']:
@@ -251,7 +257,8 @@ class EditPlace(DisplayState.ManagedWindow):
         
         if self.ref_not_loaded:
             Utils.temp_label(self.refs_label,self.top)
-            gobject.idle_add(self.display_references)
+            self.cursor_type = None
+            self.idle = gobject.idle_add(self.display_references)
             self.ref_not_loaded = False
 
     def build_pdmap(self):
@@ -265,19 +272,25 @@ class EditPlace(DisplayState.ManagedWindow):
         cursor.close()
 
     def on_delete_event(self,obj,b):
+        self.gladeif.close()
         self.glry.close()
         self.remove_itself_from_menu()
+        gc.collect()
 
     def close(self,obj):
         self.glry.close()
+        self.gladeif.close()
         self.top.destroy()
+        if self.idle != None:
+            gobject.source_remove(self.idle)
+        gc.collect()
 
     def present(self,obj):
         self.top.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-plc')
+        GrampsDisplay.help('adv-plc')
 
     def build_columns(self,tree,list):
         cnum = 0
@@ -338,9 +351,9 @@ class EditPlace(DisplayState.ManagedWindow):
             Utils.unbold_label(self.names_label)
 
     def on_web_go_clicked(self,obj):
-        text = obj.get()
+        text = self.web_url.get()
         if text != "":
-            gnome.url_show(text)
+            GrampsDisplay.url(text)
 
     def set(self,field,getf,setf):
         text = unicode(field.get_text())
@@ -404,7 +417,7 @@ class EditPlace(DisplayState.ManagedWindow):
         elif page == 6 and self.ref_not_loaded:
             self.ref_not_loaded = False
             Utils.temp_label(self.refs_label,self.top)
-            gobject.idle_add(self.display_references)
+            self.idle = gobject.idle_add(self.display_references)
         text = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
                                 self.note_buffer.get_end_iter(),False))
         if text:
@@ -433,12 +446,12 @@ class EditPlace(DisplayState.ManagedWindow):
             LocEdit.LocationEditor(self,loc,self.top)
 
     def on_delete_url_clicked(self,obj):
-        if Utils.delete_selected(obj,self.ulist):
+        if Utils.delete_selected(self.web_list,self.ulist):
             self.lists_changed = 1
             self.redraw_url_list()
 
     def on_delete_loc_clicked(self,obj):
-        if Utils.delete_selected(obj,self.llist):
+        if Utils.delete_selected(self.loc_list,self.llist):
             self.lists_changed = 1
             self.redraw_location_list()
 
@@ -492,64 +505,110 @@ class EditPlace(DisplayState.ManagedWindow):
             self.loc_parish.set_text(loc.get_parish())
             self.loc_country.set_text(loc.get_country())
 
+    def button_press(self,obj):
+        data = self.model.get_selected_objects()
+        if not data:
+            return
+        (data_type,handle) = data[0]
+        import EventEdit
+        event = self.db.get_event_from_handle(handle)
+        event_name = event.get_name()
+        if data_type == 0:
+            if event_name in ["Birth","Death"]:
+                EventEdit.PersonEventEditor(
+                    self,", ", event, None, 1, None, None, self.db.readonly)
+            else:
+                EventEdit.PersonEventEditor(
+                    self,", ", event, None, 0, None, None, self.db.readonly)
+        elif data_type == 1:
+            EventEdit.FamilyEventEditor(
+                self,", ", event, None, 0, None, None, self.db.readonly)
+
     def display_references(self):
-        pevent = []
-        fevent = []
-        msg = ""
-        for key in self.db.get_person_handles(sort_handles=False):
-            p = self.db.get_person_from_handle(key)
+        place_handle = self.place.get_handle()
+        # Initialize things if we're entering this functioin
+        # for the first time
+        if not self.cursor_type:
+            self.cursor_type = 'Person'
+            self.cursor = self.db.get_person_cursor()
+            self.data = self.cursor.first()
+        
+            self.any_refs = False
+            titles = [(_('Type'),0,150),(_('Name'),1,150),
+                      (_('ID'),2,75),(_('Event Name'),3,150)]
+            self.model = ListModel.ListModel(self.plist,
+                                             titles,
+                                             event_func=self.button_press)
+
+        if self.cursor_type == 'Person':
+            while self.data:
+                handle,val = self.data
+                person = RelLib.Person()
+                person.unserialize(val)
+                for event_handle in [person.get_birth_handle(),
+                                     person.get_death_handle()] \
+                                     + person.get_event_list():
+                    event = self.db.get_event_from_handle(event_handle)
+                    if event and event.get_place_handle() == place_handle:
+                        pname = self.name_display(person)
+                        gramps_id = person.get_gramps_id()
+                        ename = event.get_name()
+                        self.model.add(
+                            [_("Personal Event"),pname,gramps_id,ename],
+                            (0,event_handle))
+                        self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
             
-            ref_list = [p.get_birth_ref(), p.get_death_ref()] + p.get_event_ref_list()
-            ref_list = [ ref for ref in ref_list if ref ]
-            
-            for event_ref in ref_list:
-                event = self.db.get_event_from_handle(event_ref.ref)
-                if event and event.get_place_handle() == self.place.get_handle():
-                    pevent.append((p,event))
-                    
-        for family_handle in self.db.get_family_handles():
-            f = self.db.get_family_from_handle(family_handle)
+            self.cursor_type = 'Family'
+            self.cursor = self.db.get_family_cursor()
+            self.data = self.cursor.first()
 
-            for event_ref in f.get_event_ref_list():
-                event = self.db.get_event_from_handle(event_ref.ref)
-                if event and event.get_place_handle() == self.place.get_handle():
-                    fevent.append((f,event))
+        if self.cursor_type == 'Family':
+            while self.data:
+                handle,val = self.data
+                family = RelLib.Family()
+                family.unserialize(val)
+                for event_handle in family.get_event_list():
+                    event = self.db.get_event_from_handle(event_handle)
+                    if event and event.get_place_handle() == place_handle:
+                        father = family.get_father_handle()
+                        mother = family.get_mother_handle()
+                        if father and mother:
+                            fname = _("%(father)s and %(mother)s")  % {
+                                "father" : self.name_display(
+                                self.db.get_person_from_handle(father)),
+                                "mother" : self.name_display(
+                                self.db.get_person_from_handle(mother))
+                                }
+                        elif father:
+                            fname = self.name_display(
+                                self.db.get_person_from_handle(father))
+                        else:
+                            fname = self.name_display(
+                                self.db.get_person_from_handle(mother))
 
-        any = 0
-        if len(pevent) > 0:
-            any = 1
-            msg = msg + _("People") + "\n"
-            msg = msg + "_________________________\n\n"
-            t = _("%s [%s]: event %s\n")
+                        gramps_id = family.get_gramps_id()
+                        ename = event.get_name()
+                        self.model.add(
+                            [_("Family Event"),fname,gramps_id,ename],
+                            (1,event_handle))
+                        self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
 
-            for e in pevent:
-                msg = msg + ( t % (self.name_display(e[0]),e[0].get_gramps_id(),_(e[1].get_type())))
-
-        if len(fevent) > 0:
-            any = 1
-            msg = msg + "\n%s\n" % _("Families")
-            msg = msg + "_________________________\n\n"
-            t = _("%s [%s]: event %s\n")
-
-            for e in fevent:
-                father = e[0].get_father_handle()
-                mother = e[0].get_mother_handle()
-                if father and mother:
-                    fname = _("%(father)s and %(mother)s")  % {
-                                "father" : self.name_display( self.db.get_person_from_handle( father)),
-                                "mother" : self.name_display( self.db.get_person_from_handle( mother)) }
-                elif father:
-                    fname = self.name_display( self.db.get_person_from_handle( father))
-                else:
-                    fname = self.name_display( self.db.get_person_from_handle( mother))
-
-                msg = msg + ( t % (fname,e[0].get_gramps_id(),_(e[1].get_type())))
-
-        self.refinfo.get_buffer().set_text(msg)
-        if any:
+        if self.any_refs:
             Utils.bold_label(self.refs_label,self.top)
         else:
             Utils.unbold_label(self.refs_label,self.top)
+
+        self.ref_not_loaded = 0
+        self.cursor_type = None
+        return False
         
 #-------------------------------------------------------------------------
 #
