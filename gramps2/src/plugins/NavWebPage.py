@@ -2622,28 +2622,19 @@ class WebReportDialog(Report.ReportDialog):
 
     def parse_style_frame(self):
         """The style frame is not used in this dialog."""
-        pass
+        self.options.handler.options_dict['NWEBarchive'] = self.archive.get_active()
 
     def parse_html_frame(self):
-        self.options.handler.options_dict['NWEBarchive'] = self.archive.get_active()
+        pass
     
     def parse_paper_frame(self):
         pass
     
     def setup_html_frame(self):
-        self.html_table = gtk.Table(3,3)
-        self.html_table.set_col_spacings(12)
-        self.html_table.set_row_spacings(6)
-        self.html_table.set_border_width(0)
-        html_label = gtk.Label("<b>%s</b>" % _("HTML Options"))
-        html_label.set_alignment(0.0,0.5)
-        html_label.set_use_markup(True)
-        self.html_table.attach(html_label, 0, 3, 0, 1, gtk.FILL)
-
         self.archive = gtk.CheckButton(_('Store web pages in .tar.gz archive'))
         self.archive.set_alignment(0.0,0.5)
         self.archive.connect('toggled',self.archive_toggle)
-        self.html_table.attach(self.archive, 1, 2, 1, 2, gtk.SHRINK|gtk.FILL)
+        self.add_option(None,self.archive)
 
     def archive_toggle(self,obj):
         if obj.get_active():
