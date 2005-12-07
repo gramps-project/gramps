@@ -1,5 +1,6 @@
 2005-12-06  Alex Roitman  <shura@gramps-project.org>
 	* src/gramps.glade (date_edit): Allow negative year integers.
+	* src/po/nl.po: Correct %s mismatches.
 
 2005-12-06  Jérôme Rapinat  <romjerome@yahoo.fr>
 	* src/po/fr.po: Partial translation update.
