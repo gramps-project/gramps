@@ -7,6 +7,8 @@
 	slashes to prevent collision with the ISO format.
 
 2005-12-07  Don Allingham  <don@gramps-project.org>
+	* src/Report.py: change from gtk.FILE_CHOOSER_CREATE_FOLDER to 
+	gtl.FILE_CHOOSER_SELECT_FOLDER. GTK documentation error.
 	* src/plugins/NavWebPage.py: restore .tar.gz archive option
 
 2005-12-07  Jérôme Rapinat  <romjerome@yahoo.fr>

@@ -62,14 +62,26 @@ class FileEntry(gtk.HBox):
         self.pack_end(self.button,False,False)
 
     def select_file(self,obj):
+        if self.dir:
+            my_action = gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER
+        else:
+            my_action = gtk.FILE_CHOOSER_ACTION_SAVE
+        
         f = gtk.FileChooserDialog(self.title,
-                                  action=gtk.FILE_CHOOSER_ACTION_SAVE,
+                                  action=my_action,
                                   buttons=(gtk.STOCK_CANCEL,
                                            gtk.RESPONSE_CANCEL,
                                            gtk.STOCK_OPEN,
                                            gtk.RESPONSE_OK))
 
-        f.set_current_name(os.path.basename(self.entry.get_text()))
+        name = os.path.basename(self.entry.get_text())
+        if self.dir:
+            if os.path.isdir(name):
+                f.set_current_name(name)
+            elif os.path.isdir(os.path.basename(name)):
+                f.set_current_name(os.path.basename(name))
+        else:
+            f.set_current_name(name)
         f.set_current_folder(self.spath)
         status = f.run()
         if status == gtk.RESPONSE_OK:
@@ -93,7 +105,7 @@ class FileEntry(gtk.HBox):
         return self.entry.get_text()
 
     def set_directory_entry(self,opt):
-        self.dir = False
+        self.dir = opt
 
     
         
