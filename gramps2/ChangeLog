@@ -1,3 +1,6 @@
+2005-12-06  Don Allingham  <don@gramps-project.org>
+	* src/FamilyView.py: Fixed FamilyView layout
+
 2005-12-05  Alex Roitman  <shura@gramps-project.org>
 	* merge some changes from gramps20.
 
