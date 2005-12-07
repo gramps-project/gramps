@@ -89,6 +89,8 @@ class FileEntry(gtk.HBox):
         f.destroy()
 
     def set_filename(self,path):
+        if not path:
+            return
         if os.path.dirname(path):
             self.spath = os.path.dirname(path)
             self.defname = os.path.basename(path)
@@ -106,8 +108,6 @@ class FileEntry(gtk.HBox):
 
     def set_directory_entry(self,opt):
         self.dir = opt
-
-    
         
 #from gnome.ui import FileEntry
 
