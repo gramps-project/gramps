@@ -1877,7 +1877,7 @@ class IndividualPage(BasePage):
             format = nobj.get_format()
             text = nobj.get()
             if format:
-                of.write( u"<pre>%s</pre>" % text
+                of.write( u"<pre>%s</pre>" % text )
             else:
                 of.write( u"</p><p>".join(text.split("\n")))
             of.write('</td>\n</tr>\n')
