@@ -399,7 +399,7 @@ class BasePage:
             of.write('<div id="narrative">\n')
             of.write('<h4>%s</h4>\n' % _('Narrative'))
             if format:
-                text = u"<pre>" + u"<br />".join(text.split("\n"))+u"</pre>"
+                text = u"<pre>%s</pre>" % text
             else:
                 text = u"</p><p>".join(text.split("\n"))
             of.write('<p>%s</p>\n' % text)
@@ -1308,7 +1308,7 @@ class ContactPage(BasePage):
                 text = nobj.get()
     
                 if format:
-                    text = u"<pre>" + u"<br />".join(text.split("\n"))+u"</pre>"
+                    text = u"<pre>%s</pre>" % text
                 else:
                     text = u"</p><p>".join(text.split("\n"))
                 of.write('<p>%s</p>\n' % text)
@@ -1371,9 +1371,9 @@ class IndividualPage(BasePage):
 
             self.display_additional_images_as_gallery(of, db, media_list)
             
-        self.display_note_object(of, self.person.get_note_object())
-        self.display_url_list(of, self.person.get_url_list())
-        self.display_ind_sources(of)
+            self.display_note_object(of, self.person.get_note_object())
+            self.display_url_list(of, self.person.get_url_list())
+            self.display_ind_sources(of)
         self.display_ind_pedigree(of)
         if self.usegraph:
             self.display_tree(of)
@@ -1877,8 +1877,9 @@ class IndividualPage(BasePage):
             format = nobj.get_format()
             text = nobj.get()
             if format:
-                of.write( u"<pre>" + u"<br />".join(text.split("\n"))+u"</pre>")
-            else:                of.write( u"</p><p>".join(text.split("\n")))
+                of.write( u"<pre>%s</pre>" % text
+            else:
+                of.write( u"</p><p>".join(text.split("\n")))
             of.write('</td>\n</tr>\n')
             
     def pedigree_person(self,of,person,is_spouse=False):

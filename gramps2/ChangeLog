@@ -1,6 +1,10 @@
 2005-12-06  Alex Roitman  <shura@gramps-project.org>
 	* src/gramps.glade (date_edit): Allow negative year integers.
 	* src/po/nl.po: Correct %s mismatches.
+	* src/plugins/NavWebPage.py (display_note_object,
+	ContactPage.__init__, display_spouse): Do not treat linebreaks in
+	the preformatted notes; (IndividualPage.__init__): restrict notes,
+	url list, and source on living people.
 
 2005-12-06  Jérôme Rapinat  <romjerome@yahoo.fr>
 	* src/po/fr.po: Partial translation update.
