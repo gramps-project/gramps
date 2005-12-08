@@ -77,6 +77,15 @@ def fix_encoding(value):
     else:
         return value
 
+import locale
+
+def xml_lang():
+    (loc,enc) = locale.getlocale()
+    if loc == None:
+        return ""
+    else:
+        return loc.replace('_','-')
+
 #-------------------------------------------------------------------------
 #
 # force_unicode

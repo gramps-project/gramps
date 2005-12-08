@@ -44,6 +44,7 @@ import PluginMgr
 import ImgManip
 import FontScale
 import GrampsMime
+import Utils
 from ReportUtils import pt2cm
 
 #-------------------------------------------------------------------------
@@ -103,12 +104,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         assert(self.init_called==False)
         self.init_called = True
         
-        current_locale = locale.getlocale()
-        self.lang = current_locale[0]
-        if self.lang:
-            self.lang = self.lang.replace('_','-')
-        else:
-            self.lang = "en-US"
+        self.lang = Utils.xml_lang()
 
         self.cntnt.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.cntnt.write('<office:document-content ')
@@ -998,7 +994,6 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 #--------------------------------------------------------------------------
 print_label = None
 try:
-    import Utils
     
     mprog = GrampsMime.get_application(_apptype)
     mtype = GrampsMime.get_description(_apptype)
