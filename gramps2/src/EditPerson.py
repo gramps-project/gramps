@@ -179,8 +179,8 @@ class EditPerson(DisplayState.ManagedWindow):
         
         self.gender = self.top.get_widget('gender')
         self.gender.set_sensitive(mod)
-        self.complete = self.top.get_widget('complete')
-        self.complete.set_sensitive(mod)
+#        self.complete = self.top.get_widget('complete')
+#        self.complete.set_sensitive(mod)
         self.private = self.top.get_widget('private')
         self.private.set_sensitive(mod)
         name_delete_btn = self.top.get_widget('aka_del')
@@ -252,8 +252,8 @@ class EditPerson(DisplayState.ManagedWindow):
         self.prefix.set_editable(mod)
         self.given = self.top.get_widget("givenName")
         self.given.set_editable(mod)
-        self.nick = self.top.get_widget("nickname")
-        self.nick.set_editable(mod)
+#        self.nick = self.top.get_widget("nickname")
+#        self.nick.set_editable(mod)
         self.title = self.top.get_widget("title")
         self.title.set_editable(mod)
         self.surname = self.top.get_widget("surname")
@@ -269,15 +269,15 @@ class EditPerson(DisplayState.ManagedWindow):
 
         self.slist = self.top.get_widget("slist")
         self.general_label = self.top.get_widget("general_label")
-        self.names_label = self.top.get_widget("names_label")
-        self.events_label = self.top.get_widget("events_label")
-        self.attr_label = self.top.get_widget("attr_label")
-        self.addr_label = self.top.get_widget("addr_label")
-        self.notes_label = self.top.get_widget("notes_label")
-        self.sources_label = self.top.get_widget("sources_label")
-        self.inet_label = self.top.get_widget("inet_label")
-        self.gallery_label = self.top.get_widget("gallery_label")
-        self.lds_tab = self.top.get_widget("lds_tab")
+        self.names_label = self.top.get_widget("names_text")
+        self.events_label = self.top.get_widget("events_text")
+        self.attr_label = self.top.get_widget("attr_text")
+        self.addr_label = self.top.get_widget("addr_text")
+        self.notes_label = self.top.get_widget("notes_text")
+        self.sources_label = self.top.get_widget("sources_text")
+        self.inet_label = self.top.get_widget("inet_text")
+        self.gallery_label = self.top.get_widget("gallery_text")
+        self.lds_tab = self.top.get_widget("lds_text")
         self.person_photo = self.top.get_widget("personPix")
         self.eventbox = self.top.get_widget("eventbox1")
         self.prefix_label = self.top.get_widget('prefix_label')
@@ -310,23 +310,23 @@ class EditPerson(DisplayState.ManagedWindow):
 
         # event display
         self.event_box = ListBox.EventListBox(
-            self, self.person, self.event_ref_list, events_label,
+            self, self.person, self.event_list, self.events_label,
             [event_add_btn,event_edit_btn,event_delete_btn,event_sel_btn])
 
         self.attr_box = ListBox.AttrListBox(
-            self, self.person, self.attr_list, attr_label,
+            self, self.person, self.attr_list, self.attr_label,
             [attr_add_btn, attr_edit_btn, attr_delete_btn])
 
         self.addr_box = ListBox.AddressListBox(
-            self, self.person, self.addr_list, addr_label,
+            self, self.person, self.addr_list, self.addr_label,
             [addr_add_btn, addr_edit_btn, addr_delete_btn])
 
         self.name_box = ListBox.NameListBox(
-            self, self.person, self.name_list, names_label,
+            self, self.person, self.name_list, self.names_label,
             [name_add_btn, name_edit_btn, name_delete_btn])
 
         self.url_box = ListBox.UrlListBox(
-            self, self.person, self.web_list, web_label,
+            self, self.person, self.web_list, self.inet_label,
             [web_add_btn, web_edit_btn, web_delete_btn])
 
         self.place_list = self.pdmap.keys()

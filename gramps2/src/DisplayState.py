@@ -297,8 +297,8 @@ class DisplayState(GrampsDBCallback.GrampsDBCallback):
             if GrampsKeys.get_statusbar() <= 1:
                 pname = NameDisplay.displayer.display(self.dbstate.active)
                 name = "[%s] %s" % (self.dbstate.active.get_gramps_id(),pname)
-#            else:
-#                name = self.display_relationship()
+            else:
+                name = "" #self.display_relationship()
             self.status.push(self.status_id,name)
 
         while gtk.events_pending():

@@ -18,6 +18,7 @@
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="focus_on_map">True</property>
+  <property name="urgency_hint">False</property>
   <property name="has_separator">False</property>
   <signal name="delete_event" handler="on_delete_event"/>
 
@@ -3410,7 +3411,7 @@ Unknown</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="lds_label">
+		<widget class="GtkLabel" id="lds_text">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">LDS</property>
 		  <property name="use_underline">False</property>
