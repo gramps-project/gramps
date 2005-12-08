@@ -538,6 +538,10 @@ def probably_alive(person,db,current_year=None,limit=0):
             if ev.get_date_object().get_start_date() != Date.EMPTY:
                 if ev.get_date_object().get_year() - limit < current_year:
                     return False
+        # For any other event of this person, check whether it happened
+        # too long ago. If so then the person is likely dead now.
+        elif ev and too_old(ev.get_date_object(),current_year):
+            return False
 
     if not current_year:
         time_struct = time.localtime(time.time())
@@ -551,8 +555,11 @@ def probably_alive(person,db,current_year=None,limit=0):
         if birth.get_date_object().get_start_date() != Date.EMPTY:
             if not birth_year:
                 birth_year = birth.get_date_object().get_year()
-            r = not_too_old(birth.get_date_object(),current_year)
-            if r:
+            # Check whether the birth event is too old because the
+            # code above did not look at birth, only at other events
+            if too_old(birth.get_date_object(),current_year):
+                return False
+            if not_too_old(birth.get_date_object(),current_year):
                 return True
     
     if not birth_year and death_year:
@@ -682,7 +689,18 @@ def not_too_old(date,current_year=None):
     year = date.get_year()
     if year > current_year:
         return False
-    return not( year != 0 and current_year - year > 110)
+    return (year != 0 and current_year - year < 110)
+
+def too_old(date,current_year=None):
+    if current_year:
+        the_current_year = current_year
+    else:
+        time_struct = time.localtime(time.time())
+        the_current_year = time_struct[0]
+    year = date.get_year()
+    if year > the_current_year:
+        return True
+    return (year != 0 and the_current_year - year > 150)
 
 #-------------------------------------------------------------------------
 #
