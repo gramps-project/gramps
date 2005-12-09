@@ -2639,11 +2639,23 @@ class WebReportDialog(Report.ReportDialog):
 
     def archive_toggle(self,obj):
         if obj.get_active():
+            # The .tar.gz box is on
+            # Set doc label, mark file vs dir, add '.tar.gz' to the path
             self.target_fileentry.set_directory_entry(False)
             self.doc_label.set_label("%s:" % _("Filename"))
+            fname = self.target_fileentry.get_full_path(0)
+            if fname[-7:] != '.tar.gz':
+                fname = fname + '.tar.gz'
+                self.target_fileentry.set_filename(fname)
         else:
+            # The .tar.gz box is off
+            # Set doc label, mark dir vs file, remove '.tar.gz' from path
             self.target_fileentry.set_directory_entry(True)
             self.doc_label.set_label("%s:" % _("Directory"))
+            fname = self.target_fileentry.get_full_path(0)
+            if fname[-7:] == '.tar.gz':
+                fname = fname[:-7]
+                self.target_fileentry.set_filename(fname)
 
     def setup_paper_frame(self):
         pass

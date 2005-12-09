@@ -1412,15 +1412,10 @@ class ReportDialog(BareReportDialog):
         # First we check whether the selected path exists
         if os.path.exists(self.target_path):
 
-            # selected path is an existing dir
-            if os.path.isdir(self.target_path):
-                # check whether we asked for a dir
-                if not self.get_target_is_directory():
-                    ErrorDialog(_("Invalid file name"),
-                                _("The filename that you gave is a "
-                                  "directory.\n"
-                                  "You need to provide a valid filename."))
-                    return None
+            # selected path is an existing dir and we need a dir
+            if os.path.isdir(self.target_path) \
+                   and self.get_target_is_directory():
+
                 # check whether the dir has rwx permissions
                 if not os.access(self.target_path,os.R_OK|os.W_OK|os.X_OK):
                     ErrorDialog(_('Permission problem'),
@@ -1431,8 +1426,9 @@ class ReportDialog(BareReportDialog):
                                 )
                     return None
 
-            # selected path is an exsting file
-            if os.path.isfile(self.target_path):
+            # selected path is an exsting file and we need a file
+            if os.path.isfile(self.target_path) \
+                   and not self.get_target_is_directory():
                 a = OptionDialog(_('File already exists'),
                                  _('You can choose to either overwrite the '
                                    'file, or change the selected filename.'),

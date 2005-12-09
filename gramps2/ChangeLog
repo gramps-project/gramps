@@ -1,3 +1,10 @@
+2005-12-09  Alex Roitman  <shura@gramps-project.org>
+	* src/Report.py (parse_target_frame): Remove unneeded check; when
+	checking existing file/dir, make sure we requested file/dir,
+	correspondingly.
+	* src/plugins/NavWebPage (archive_toggle): Add/remove '.tar.gz'
+	to path when this options is turned on/off.
+
 2005-12-08  Don Allingham  <don@gramps-project.org>
 	* src/Merge.py: fix date comparison
 	* src/Utils.py: add xml:lang generation function
