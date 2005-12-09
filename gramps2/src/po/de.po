@@ -117,7 +117,7 @@ msgid ""
 msgstr ""
 "Die als Ehepartner(-in) ausgewählte Person ist ein Kind der aktuellen "
 "Person. Gewöhnlich ist dies ein Fehler. Sie können mit dem Speichern "
-"fortfahren oder zum Person bearbeiten-Dialogzurückkehren um das Problem zu "
+"fortfahren oder zum Person bearbeiten-Dialog zurückkehren um das Problem zu "
 "lösen."
 
 #: AddSpouse.py:303 FamilyView.py:730
@@ -588,7 +588,7 @@ msgid ""
 msgstr ""
 "Das Geschlecht der Person ist im Moment unbekannt. Gewöhnlich ist dies ein "
 "Fehler. Sie können mit dem Speichern fortfahren oder zum Person bearbeiten-"
-"Dialogzurückkehren um das Problem zu lösen."
+"Dialog zurückkehren um das Problem zu lösen."
 
 #: EditPerson.py:1681
 msgid "Continue saving"
@@ -1194,11 +1194,11 @@ msgstr "Entspricht Personen mit einer bestimmten GRAMPS-ID"
 
 #: GenericFilter.py:280
 msgid "Default person"
-msgstr "Anfangsperson"
+msgstr "Hauptperson"
 
 #: GenericFilter.py:282
 msgid "Matches the default person"
-msgstr "Entspricht der Anfangsperson"
+msgstr "Entspricht der Hauptperson"
 
 #: GenericFilter.py:303
 msgid "Bookmarked people"
@@ -1744,13 +1744,13 @@ msgstr ""
 
 #: GenericFilter.py:2096
 msgid "Ancestors of the default person not more than <N> generations away"
-msgstr "Vorfahren der Anfangsperson, weniger als <N> Generationen entfernt"
+msgstr "Vorfahren der Hauptperson, weniger als <N> Generationen entfernt"
 
 #: GenericFilter.py:2099
 msgid ""
 "Matches ancestors of the default person not more than N generations away"
 msgstr ""
-"Entspricht Personen, die Vorfahren der Anfangsperson sind, aber höchstens N "
+"Entspricht Personen, die Vorfahren der Hauptperson sind, aber höchstens N "
 "Generationen entfernt"
 
 #: GrampsCfg.py:65
@@ -6308,8 +6308,8 @@ msgid ""
 "Person</b>. The home person is the person who is selected when the database "
 "is opened or when the home button is pressed."
 msgstr ""
-"Jeder kann in GRAMPS als \"Anfangsperson\" ausgewählt werden. Benützen Sie "
-"<b>Bearbeiten -> Anfangsperson setzen</b>. Die Anfangsperson ist jener "
+"Jeder kann in GRAMPS als \"Hauptperson\" ausgewählt werden. Benützen Sie "
+"<b>Bearbeiten -> Hauptperson setzen</b>. Die Hauptperson ist jener "
 "Person, die beim Öffnen der Datenbank oder durch das Drücken des \"Anfang\" "
 "Knopfes angezeigt wird."
 
@@ -6712,7 +6712,7 @@ msgstr "_Spalteneditor..."
 
 #: gramps.glade:401
 msgid "Set _Home person..."
-msgstr "_Anfangsperson setzen..."
+msgstr "_Hauptperson setzen..."
 
 #: gramps.glade:426
 msgid "_View"
@@ -8591,7 +8591,7 @@ msgstr "Keine Hauptperson gesetzt."
 
 #: gramps_main.py:1901
 msgid "The Home Person may be set from the Edit menu."
-msgstr "Die Anfangsperson kann im Menü Bearbeiten gesetzt werden."
+msgstr "Die Hauptperson kann im Menü Bearbeiten gesetzt werden."
 
 #: gramps_main.py:1907
 msgid "%s has been bookmarked"
