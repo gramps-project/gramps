@@ -7,9 +7,9 @@ AC_PREREQ(2.57)
 AC_INIT(gramps, 2.0.9, gramps-bugs@lists.sourceforge.net)
 AC_CONFIG_SRCDIR(src/gramps.py)
 AM_INIT_AUTOMAKE(1.6.3)
-dnl RELEASE=0.CVS$(head -c 10 ${srcdir}/ChangeLog | tr -d '-')
+RELEASE=0.CVS$(head -c 10 ${srcdir}/ChangeLog | tr -d '-')
 dnl RELEASE=1
-RELEASE=0.RC1
+dnl RELEASE=0.RC2
 
 VERSIONSTRING=$VERSION
 if test x"$RELEASE" != "x"

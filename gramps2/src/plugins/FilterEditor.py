@@ -40,7 +40,7 @@ from gettext import gettext as _
 import gtk
 import gtk.glade
 import gobject
-from gnome import help_display
+import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -351,7 +351,7 @@ class FilterEditor:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','tools-util-cfe')
+        GrampsDisplay.help('tools-util-cfe')
 
     def on_delete_event(self,obj,b):
         self.filterdb.save()

@@ -3,6 +3,14 @@
 	* src/docgen/AbiWord2Doc.py: set locale
 	* src/docgen/OpenOfficeDoc: set locale using xml_lang()
 	* src/plugins/NavWebPage.py: set locale
+	* src/plugins/ChangeNames.py: call GrampsDisplay.help
+	* src/plugins/Checkpoint.py: call GrampsDisplay.help
+	* src/plugins/Desbrowser.py: call GrampsDisplay.help
+	* src/plugins/EventCmp.py: call GrampsDisplay.help
+	* src/plugins/FilterEditor.py: call GrampsDisplay.help
+	* src/plugins/Merge.py: call GrampsDisplay.help
+	* src/plugins/PatchNames.py: call GrampsDisplay.help
+	* src/plugins/Verify.py: call GrampsDisplay.help
 
 2005-12-08  Alex Roitman  <shura@gramps-project.org>
 	* src/Utils.py (probably_alive): return False if any event
