@@ -1409,20 +1409,51 @@ class ReportDialog(BareReportDialog):
         if not self.target_path:
             return None
 
-        if not self.get_target_is_directory() and os.path.isdir(self.target_path):
-            ErrorDialog(_("Invalid file name"),
-                        _("The filename that you gave is a directory.\n"
-                          "You need to provide a valid filename."))
-            return None
+        # First we check whether the selected path exists
+        if os.path.exists(self.target_path):
 
-        if os.path.isfile(self.target_path):
-            a = OptionDialog(_('File already exists'),
-                             _('You can choose to either overwrite the file, or change '
-                               'the selected filename.'),
-                             _('_Overwrite'),None,
-                             _('_Change filename'),None)
+            # selected path is an existing dir
+            if os.path.isdir(self.target_path):
+                # check whether we asked for a dir
+                if not self.get_target_is_directory():
+                    ErrorDialog(_("Invalid file name"),
+                                _("The filename that you gave is a "
+                                  "directory.\n"
+                                  "You need to provide a valid filename."))
+                    return None
+                # check whether the dir has rwx permissions
+                if not os.access(self.target_path,os.R_OK|os.W_OK|os.X_OK):
+                    ErrorDialog(_('Permission problem'),
+                                _("You do not have permissions to write "
+                                  "under the directory %s\n\n"
+                                  "Please select another directory or correct"
+                                  "the permissions." % self.target_path) 
+                                )
+                    return None
+
+            # selected path is an exsting file
+            if os.path.isfile(self.target_path):
+                a = OptionDialog(_('File already exists'),
+                                 _('You can choose to either overwrite the '
+                                   'file, or change the selected filename.'),
+                                 _('_Overwrite'),None,
+                                 _('_Change filename'),None)
                              
-            if a.get_response() == gtk.RESPONSE_YES:
+                if a.get_response() == gtk.RESPONSE_YES:
+                    return None
+
+        # selected path does not exist yet
+        else:
+            # we will need to create the file/dir
+            # need to make sure we can create in the parent dir
+            parent_dir = os.path.dirname(os.path.normpath(self.target_path))
+            if not os.access(self.parent_dir,os.W_OK):
+                ErrorDialog(_('Permission problem'),
+                            _("You do not have permissions to create "
+                              "%s\n\n"
+                              "Please select another path or correct"
+                              "the permissions." % self.target_path) 
+                            )
                 return None
         
         self.set_default_directory(os.path.dirname(self.target_path) + os.sep)
