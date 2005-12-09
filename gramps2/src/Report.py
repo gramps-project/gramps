@@ -1426,7 +1426,7 @@ class ReportDialog(BareReportDialog):
                     ErrorDialog(_('Permission problem'),
                                 _("You do not have permissions to write "
                                   "under the directory %s\n\n"
-                                  "Please select another directory or correct"
+                                  "Please select another directory or correct "
                                   "the permissions." % self.target_path) 
                                 )
                     return None
@@ -1447,11 +1447,11 @@ class ReportDialog(BareReportDialog):
             # we will need to create the file/dir
             # need to make sure we can create in the parent dir
             parent_dir = os.path.dirname(os.path.normpath(self.target_path))
-            if not os.access(self.parent_dir,os.W_OK):
+            if not os.access(parent_dir,os.W_OK):
                 ErrorDialog(_('Permission problem'),
                             _("You do not have permissions to create "
                               "%s\n\n"
-                              "Please select another path or correct"
+                              "Please select another path or correct "
                               "the permissions." % self.target_path) 
                             )
                 return None
