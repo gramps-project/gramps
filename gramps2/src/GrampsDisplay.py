@@ -26,7 +26,7 @@ def help(target):
     try:
         gnome.help_display('gramps-manual',target)
     except gobject.GError, msg:
-        gnome.url_show('http://gramps-project.org/gramps-manual/gramps-manual-en/index.html')
+        url('http://gramps-project.org/gramps-manual/gramps-manual-en/index.html')
         
 def url(target):
     try:
