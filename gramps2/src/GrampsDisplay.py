@@ -43,7 +43,8 @@ def run_browser(url):
         for path in search:
             prog = os.path.join(path,browser)
             if os.path.isfile(prog):
-                os.system("%s %s" % (prog, url))
+                if os.fork() == 0:
+                    os.execvp(prog,[prog, url])
                 return
     
                           
