@@ -1,3 +1,6 @@
+2005-12-09  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/po/de.po: Translation update
+
 2005-12-09  Alex Roitman  <shura@gramps-project.org>
 	* src/Report.py (parse_target_frame): Remove unneeded check; when
 	checking existing file/dir, make sure we requested file/dir,
