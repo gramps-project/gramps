@@ -2623,7 +2623,8 @@ class WebReportDialog(Report.ReportDialog):
 
     def parse_style_frame(self):
         """The style frame is not used in this dialog."""
-        self.options.handler.options_dict['NWEBarchive'] = self.archive.get_active()
+        self.options.handler.options_dict['NWEBarchive'] = int(
+            self.archive.get_active())
 
     def parse_html_frame(self):
         pass
@@ -2634,6 +2635,8 @@ class WebReportDialog(Report.ReportDialog):
     def setup_html_frame(self):
         self.archive = gtk.CheckButton(_('Store web pages in .tar.gz archive'))
         self.archive.set_alignment(0.0,0.5)
+        self.archive.set_active(
+            self.options.handler.options_dict['NWEBarchive'])
         self.archive.connect('toggled',self.archive_toggle)
         self.add_option(None,self.archive)
 

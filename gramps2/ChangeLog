@@ -6,7 +6,9 @@
 	checking existing file/dir, make sure we requested file/dir,
 	correspondingly.
 	* src/plugins/NavWebPage (archive_toggle): Add/remove '.tar.gz'
-	to path when this options is turned on/off.
+	to path when this options is turned on/off; (parse_style_frame):
+	save archive option as an integer; (setup_html_frame): set the
+	state for archive option.
 
 2005-12-08  Don Allingham  <don@gramps-project.org>
 	* src/Merge.py: fix date comparison
