@@ -1,9 +1,12 @@
 #! /bin/sh
 #
-# Report test for GRAMPS: Generate det_ancesto_report testing
+# Report test for GRAMPS: Generate det_ancestor_report testing
 # different option combinations.
 
 # $Id$
+
+REP="det_ancestor_report"
+FMT="txt"
 
 TOP_DIR=`dirname $PWD`
 TEST_DIR=$TOP_DIR/test
@@ -11,7 +14,7 @@ SRC_DIR=$TOP_DIR/src
 PRG="python gramps.py"
 EXAMPLE_XML=$TOP_DIR/example/gramps/example.gramps
 
-REP_DIR=$TEST_DIR/reports/det_ancestor_report
+REP_DIR=$TEST_DIR/reports/$REP
 mkdir -p $REP_DIR
 
 DATA_DIR=$TEST_DIR/data
@@ -29,10 +32,6 @@ OPTS="-i $EXAMPLE_XML -o $DATA_DIR/example.grdb"
 
 OPTS="-O $DATA_DIR/example.grdb"
 
-REP="det_ancestor_report"
-FMT="txt"
-
-# Single run with all textual reports in all formats
 echo ""
 echo "+--------------------------------------------------------------"
 echo "| Text Report: "$REP
