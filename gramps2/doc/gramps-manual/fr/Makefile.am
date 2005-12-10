@@ -11,6 +11,7 @@ entities = legal.xml\
 	keybind.xml\
 	filtref.xml\
 	cmdline.xml \
+	cmdplug.xml \
 	authors.xml \
 	bugs.xml \
 	preface.xml

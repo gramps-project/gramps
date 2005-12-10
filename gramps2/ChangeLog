@@ -1,3 +1,10 @@
+2005-12-09  Jérôme Rapinat  <romjerome@yahoo.fr>
+	* doc/gramps-manual/fr/cmdplug.xml: Add file with new section.
+	* doc/gramps-manual/fr/gramps-manual.xml: Define entity for new
+	section.
+	* doc/gramps-manual/fr/cmdline.xml: Insert new section.
+	* doc/gramps-manual/fr/Makefile.am: Ship new file.
+
 2005-12-09  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/po/de.po: Translation update
 

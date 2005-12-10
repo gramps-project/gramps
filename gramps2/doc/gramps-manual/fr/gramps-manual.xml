@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?yelp:chunk-depth 3?>
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
@@ -50,6 +50,7 @@
   <!ENTITY keybind SYSTEM "keybind.xml">
   <!ENTITY filtref SYSTEM "filtref.xml">
   <!ENTITY cmdline SYSTEM "cmdline.xml">
+  <!ENTITY cmdplug SYSTEM "cmdplug.xml">
   <!ENTITY bugs SYSTEM "bugs.xml">
   <!ENTITY authors SYSTEM "authors.xml">
 ]>
