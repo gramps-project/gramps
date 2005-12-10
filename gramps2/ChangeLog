@@ -4,6 +4,7 @@
 	section.
 	* doc/gramps-manual/fr/cmdline.xml: Insert new section.
 	* doc/gramps-manual/fr/Makefile.am: Ship new file.
+	* src/po/fr.po: Translation update.
 
 2005-12-09  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/po/de.po: Translation update
