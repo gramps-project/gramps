@@ -17,6 +17,8 @@
 	to path when this options is turned on/off; (parse_style_frame):
 	save archive option as an integer; (setup_html_frame): set the
 	state for archive option.
+	* test/det_ancestor_report.sh: Add thorough test for the Detailed
+	Ancestor Report.
 
 2005-12-08  Don Allingham  <don@gramps-project.org>
 	* src/Merge.py: fix date comparison
