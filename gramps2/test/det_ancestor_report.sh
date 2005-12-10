@@ -52,7 +52,7 @@ for incnames in {0,1}; do
 for incevents in {0,1}; do
 for listc in {0,1}; do
     output="$desref$incphotos$omitda$incsources$usenick$fulldates$incnotes$repplace$repdate$computeage$incnames$incevents$listc"
-    action="-a report -p name=$TEXT_REP,id=I44,off=$FMT,of=$REP/$output.$FMT,desref=$desref,incphotos=$incphotos,omitda=$omitda,incources=$incsources,usenick=$usenick,fulldates=$fulldates,incnotes=$incnotes,repplace=$repplace,repdate=$repdate,computeage=$computeage,incnames=$incnames,incevents=$incevents,listc=$listc"
+    action="-a report -p name=$REP,id=I44,off=$FMT,of=$REP_DIR/$output.$FMT,desref=$desref,incphotos=$incphotos,omitda=$omitda,incsources=$incsources,usenick=$usenick,fulldates=$fulldates,incnotes=$incnotes,repplace=$repplace,repdate=$repdate,computeage=$computeage,incnames=$incnames,incevents=$incevents,listc=$listc"
     (cd $SRC_DIR; $PRG $OPTS $action)
 done
 done
