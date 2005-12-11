@@ -79,10 +79,18 @@ class DateParserFR(DateParser):
 
     quality_to_int = {
         u'estimated'  : Date.QUAL_ESTIMATED,
+        u'estimer'    : Date.QUAL_ESTIMATED,
         u'est.'       : Date.QUAL_ESTIMATED,
         u'est'        : Date.QUAL_ESTIMATED,
+        u'environ'    : Date.QUAL_ESTIMATED,
+        u'env'        : Date.QUAL_ESTIMATED,
+        u'env.'       : Date.QUAL_ESTIMATED,
+        u'calculer'   : Date.QUAL_CALCULATED,
         u'calc.'      : Date.QUAL_CALCULATED,
         u'calc'       : Date.QUAL_CALCULATED,
+        u'compter'    : Date.QUAL_CALCULATED,
+        u'compt'      : Date.QUAL_CALCULATED,
+        u'compt.'     : Date.QUAL_CALCULATED,
         u'calculated' : Date.QUAL_CALCULATED,
         }
 

@@ -1,3 +1,8 @@
+2005-12-10  Jérôme Rapinat  <romjerome@yahoo.fr>
+	* src/po/fr.po: Translation update.
+	* src/dates/Date_fr.py (DateParserFR): Add more quality_to_int
+	pairs.
+
 2005-12-10  Don Allingham  <don@gramps-project.org>
 	* doc/gramps-manual/C/getstart.xml: update
 	* doc/gramps-manual/C/preface.xml: update
