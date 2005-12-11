@@ -23,278 +23,242 @@
 <!-- $Id$ -->
 
     <title>Preface</title> 
-    <para>
 
-    &app; is a free software package designed to help you with
-    genealogical research. It allows you to store, edit, and research
-    genealogical data using your computer. &app; is an open source
-    software package, which means you are free to run it on any number
-    of computers, examine the code, make changes, and redistribute as
-    many copies as you like.  It is developed and maintained by a
-    worldwide team of volunteers and is available at no cost from the
-    project web site and from many software distributions
-    
-    </para> 
+    <para>GRAMPS is a software package designed for genealogical
+    research. Although similar to other genealogical programs, GRAMPS
+    offers some unique and powerful features, which we'll discuss
+    below. </para>
+
+    <para>GRAMPS is a Open Source Software package, which means you
+    are free to make copies and distribute it to anyone you like.
+    It's developed and maintained by a worldwide team of volunteers
+    whose goal is to make GRAMPS powerful, yet easy to use.</para>
 
     <sect1 id="why-gramps">
       <title>Why use GRAMPS?</title>
 
-      <para> 
- 
-      Most genealogy programs allow the researcher to input
-      information related to a family tree. They can usually display
-      descendant or ancestral relationships through graphical
-      displays, charts, or reports. Some allow pictures or other media
-      to be inserted to enhance the raw data. Most provide a means to
-      include data on individuals or families that may or may not be
-      related to the primary family being researched.  And they may
-      include other features such as exporting or importing to and
-      from other programs and printing data contained in various
-      reports.
+      <para>Most genealogy programs allow you to enter information
+      about your ancestors and descendants. Typically, they can
+      display family relationships through charts, graphs, or
+      reports. Some allow you to include pictures or other media. Most
+      let you include information about people even if those people
+      are not related to the primary family you happen to be
+      researching. And they may include features that let you exchange
+      data with other programs and print different types of
+      reports. </para>
 
-      </para><para>
+      <para>GRAMPS has all these capabilities and more. Notably, it
+      allows you to integrate bits and pieces of data as they arise
+      from your research and to put them in one place &mdash; your
+      computer. You can then use your computer to manipulate,
+      correlate, and analyze your data, rather than messing with reams
+      of paper. </para>
 
-      &app; has all these capabilities and more. Notably, it allows
-      you to integrate bits and pieces of stray data as the arise from
-      your research and put all this information in one place - your
-      computer. You can then use the speed, power, and accuracy of
-      your computer to store, manipulate, correlate, and analyze your
-      data, rather than messing with reams of paper.
-
-      </para><para>
-
-      &app; has the power to let you rearrange your data in any order
-      or sequence and to help you fill gaps in genealogical
-      relationships.
-
-      </para>
     </sect1>
     
-
     <sect1 id="whats-new">
-        <title>What's new since 1.0.X</title>
-        <para>
-          
-            This section lists most notable changes from the previous
-            stable branch of &app;, the 1.0.X.
+      <title>What's new since 1.0.X</title>
 
-        </para>
+      <para>If you are new to GRAMPS, it may not be important for you
+      to know how GRAMPS version 2.0.0 (the object of this manual)
+      differs from previous versions of the software. You may
+      therefore elect to skip this section.</para>
+
+      <para>However, if you are already familiar with GRAMPS and are
+      interested in the new aspects and features of version 2.0.0,
+      please read on.</para>
 
       <variablelist>
 
       <varlistentry><term>Berkeley database backend</term>
 	<listitem>
-          <para>
 
-            The default format for &app; is now the BSDDB database.
-	    This change allowed us to overcome performance issues and
-	    memory requirements of the 1.0.X branch. With the database
-	    backend, the database sizes of up to a hundred thousand
-	    people do not present a major obstacle any longer.
+  	  <para>We've adopted the Berkeley database format (BSDDB) as
+	  the default for GRAMPS. Berkeley is the most widely used
+	  open source developer database in the world.</para>
 
-          </para><para>
+	  <para>This change allowed us to overcome issues of
+	  performance and memory requirements that beset version
+	  1.0.X. With the new back-end, database sizes of up to a
+	  hundred thousand people no longer present a major
+	  obstacle.</para>
 
-	    The default extension for &app; BSDDB database files is
-   	    grdb. The new format is open and fully documented in the
-   	    developer's API reference distributed with the source of
-   	    &app;.
+	  <para>The default extension for GRAMPS' BSDDB database files
+	  is grdb. The new format is open and fully documented in the
+	  developer's API reference distributed with the source code
+	  of GRAMPS. </para>
 
-	</para><para>
+	  <note id="default-format">
+	    <title>Preferred format</title> 
 
-            A consequence of the new database backend is that the
-            changes, once approved by the user, are applied
-            immediately. In short, once you click
-            <guibutton>OK</guibutton> in the Person, Family, Source,
-            Place, Media object, or Event editor, all the changes made
-            to this object are recorded in the database. No saving is
-            necessary (or even possible). The analog of quitting
-            without saving would be abandoning all changes and
-            quitting. Also, it is possible to undo recent actions.
-	
-	</para>
+	    <para>The preferred and default format for &app; is the
+	    new BSDDB format.</para>
+	  </note>
+
+	  <para>A consequence of the new database back-end is that the
+	  &quot;saving&quot; function is no longer necessary (or even
+	  possible). Now, once you approve changes, they are
+	  immediately applied; this means that clicking
+	  <guibutton>OK</guibutton> in the Person, Family, Source,
+	  Place, Media object, or Event editor immediately records
+	  changes in the database. </para>
+
+	  <para>In previous versions, you could &quot;quit without
+	  saving.&quot; This option no longer exists per se; however,
+	  in version 2.0.0, you can achieve the same effect if you
+	  abandon or &quot;cancel&quot; all changes and then
+	  quit.</para>
+
+	  <para>Also, it is now possible to undo recent
+	  actions.</para>
 	</listitem>
       </varlistentry>
 
-      <varlistentry><term>Interface improvements</term>
-	<listitem>
-          <para>
+      <varlistentry><term>Other database back-ends</term>
+        <listitem>
+	
+	  <para>Along with the BSDDB backend, we've incorporated
+	  &quot;in-memory&quot; database handling for the GRAMPS XML
+	  and GEDCOM formats. This means you can now open files in
+	  those two formats and work with their data without having to
+	  first create a new database and import data into it. Since
+	  this approach requires GRAMPS to hold all the data in
+	  memory, it is only useful for small databases (depending on
+	  available memory size).</para>
 
-  	    There were numerous changes in the interface. Most of them
-  	    are subtle and incremental improvements, and all of them
-  	    cannot be listed here. The most noticeable changes are:
+	  <warning id="gedcom-editing">
+	    <title>GEDCOM Editing</title> 
 
-  	      <itemizedlist>
-	        <listitem>
-                  <para>
-                    Removal of alphabetical tabs
-                  </para>
-                </listitem>
-         	<listitem>
-                  <para>
-                    Ability to add/remove/rearrange columns in list views
-                  </para>
-                </listitem>
-	        <listitem>
-                  <para>
-                    Removal of Save function and addition of Undo
-                  </para>
-                </listitem>
-	        <listitem>
-                  <para>
-                    Proper window management and removal of most modal windows
-                  </para>
-                </listitem>
-	        <listitem>
-                  <para>
-                    Support for Tip of the Day
-                  </para>
-                </listitem>
-	        <listitem>
-                  <para>
-                    Person-dependent context menus (right-click) in Pedigree View
- 	            listing parents, children, spouses, and siblings
-                  </para>
-                </listitem>
-      	        <listitem>
-                  <para>
-                    Export wizard
-                  </para>
-                </listitem>
-	        <listitem>
-                  <para>
-                    Built-in Find function in list views
-                  </para>
-                </listitem>
- 	        <listitem>
-                  <para>
-                    Date selector dialog
-                  </para>
-                </listitem>
- 	        <listitem>
-                  <para>
-                    Name editor enhancements: patronymic names and non-default 
-                    grouping
-                  </para>
-                </listitem>
-	        <listitem>
-                  <para>
-                    Recent file support (both gramps-specific and gnome-wide)
-                  </para>
-                </listitem>
-  	      </itemizedlist>	
+	    <para>Please keep in mind that some information in a
+	    GEDCOM file may be lost during import into GRAMPS. Simply
+	    opening and viewing the file will not change it. However,
+	    if any changes were made and they were not abandoned upon
+	    exit, exiting GRAMPS will save the data, with the possible
+	    data loss.</para>
+	  </warning>
 
-	  </para>
-        </listitem>
+	</listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>
-          Other database backends
-        </term>
+        <term>Desktop integration</term>
 	<listitem>
-          <para>
-	    Along with the BSDDB backend, the in-memory database handling 
-            for &app; XML and GEDCOM formats has been added. Simply put, it 
-            is now possible to natively open data in those two formats 
-            (although the preferred and default format is grdb) and work with
- 	    that data, without necessarily setting up an empty database and 
-            then importing into it. This approach requires holding all data in 
-            memory, so it is only useful for small databases (depending on the 
-            available memory size). In such mode, the data is automatically
-   	    saved upon exit, to mimic the functionality of the real database.
 
-            <warning id="gedcom-inmem1-warn">
-              <title>GEDCOM Editing</title>
-	      <para>
-		Please keep in mind that some information in GEDCOM
-		file may be lost during import into &app;. Simply
-		opening and viewing the file will not change it.
-		However, if any changes were made and they were not
-		abandoned upon exit, exiting &app; will save the data,
-		with the possible data loss.
-	      </para>
-           </warning>                
-  	  </para>
+	<para>We've improved the way GRAMPS integrates with the GNOME
+	desktop interface common to many Linux distributions. All file
+	formats recognized by GRAMPS are now registered as mime types;
+	each has its own icon and has GRAMPS as its default
+	handler. Thus, if you double-click on any file having one of
+	these formats, GRAMPS will launch and open the file.</para>
+
+	<para>We've also added support for GNOME's &quot;recent
+	documents&quot; function and have incorporated this function
+	within GRAMPS itself.</para>
+
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Interface improvements</term>
+	<listitem>
+
+	<para>We've made numerous changes in the interface. Most of
+	them are subtle and incremental improvements, and all of them
+	cannot be listed here. The most notable are:</para>
+
+	<itemizedlist>
+	  <listitem>
+	    <para>Removal of alphabetical tabs.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Ability to add/remove/rearrange columns in list views.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Removal of the Save function and addition of Undo.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Proper window management and removal of most modal windows.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Support for Tip of the Day.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Person-dependent context menus (right-click) in
+	    Pedigree View, listing parents, children, spouses, and
+	    siblings.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Addition of an Export wizard.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Built-in Find function in list views.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Addition of a Date selector dialog.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Name editor enhancements: patronymic names and
+	    non-default grouping.</para>
+	  </listitem>
+	  <listitem>
+	    <para>&quot;Recent document&quot; support (both within GRAMPS and 
+	    GNOME-wide)</para>
+	  </listitem>
+	</itemizedlist>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term>Import and Export</term>
 	<listitem>
-          <para>
-	    New import and export filters available for the GeneWeb format.
-	  </para>
+	  <para>We've added import and export filters for the GeneWeb format.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term>Reports</term>
-	<listitem>
-          <para>
-	    A new report -- Statistics Chart -- has been added to &app;.
-	  </para><para>
-            An overall change of the whole report framework has been
-	    accomplished.  All reports now remember their options. It
-	    is possible to generate reports from the command line,
-	    without launching the interactive &app; session. The
-	    report API is much simpler now, making it easy to write a
-	    custom report. A single code instance may be used for a
-	    standalone report, a book item, and a command-line
-	    report. 
-          </para>
-        </listitem> 
-      </varlistentry>
-
-      <varlistentry>
-        <term>Command line</term> 
-        <listitem> 
-          <para> 
-            The new command line functionality includes opening the
-	    filename argument given without any flags, as well as new
-	    flags and options for report generation.  Also, the
-	    addition of new formats leads to additional available
-	    format options.
-          </para>
-        </listitem> 
+        <listitem>
+	<itemizedlist>
+ 	  <listitem>
+  	    <para>We've added a new report: Statistics Chart. </para>
+	  </listitem>
+	  <listitem>
+	    <para>We've changed the overall report framework. All
+	    reports now remember the options you configure for
+	    them.</para>
+	  </listitem>
+	  <listitem>
+	    <para>It is possible to generate reports from the command
+	    line, without launching the interactive GRAMPS
+	    session.</para>
+	  </listitem>
+	  <listitem>
+	    <para>The report API is much simpler now, making it easy to
+	    write custom reports.</para>
+	  </listitem>
+	  <listitem>
+	    <para>A single code instance may be used for a standalone
+	    report, a book item, and a command-line report. </para>
+	  </listitem>
+	</itemizedlist>
+        </listitem>
       </varlistentry>
 
       <varlistentry>
         <term>Internationalization</term>
 	<listitem>
-          <para>
-  	    The approach for entering and displaying dates has been
-            completely re-worked. In particular, the new framework
-            allows for a deeper localization of displayed dates than
-            was ever possible using the translatable strings.
-          </para><para>
-            The internationalization of names have also been improved.
-            Names can be grouped under a non-default
-            string. Patronymic names are supported, and it is easy to
-            program new ways of displaying names, as may be required
-            by various cultures and languages.
-	  </para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>Desktop integration</term>
-	<listitem>
-          <para>
-            All formats known to &app; are now registered as mime
-	    types, each with its icon and &app; as a default
-	    handler. Double-clicking on a file with any of these
-	    formats will launch &app; and open that file. &app; also
-	    added support for the recent documents
-	    functionality. This is on both the GNOME-wide level
-	    and within the &app;.  
-          </para><para>
-            The preferences are now properly stored using GConf, with
-	    schemas, partitioning of keys into smaller directories,
-	    error checking, and notification.
-          </para> 
-        </listitem> 
-      </varlistentry>
-      </variablelist>
+	  <para>The approach for entering and displaying dates has
+	  been completely reworked. The new framework allows for a
+	  deeper localization of displayed dates than was ever
+	  possible using the translatable strings.</para>
+ 	  <para>The internationalization of names has also been
+	  improved. Names can be grouped under a non-default
+	  string. Patronymic names are supported, and it is easy to
+	  program new ways to display names in the manner customary to
+	  a given culture or language.</para>
+	</listitem>
+       </varlistentry>
+     </variablelist>
     </sect1>
 
     <sect1 id="typography">

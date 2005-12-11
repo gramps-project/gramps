@@ -1,3 +1,8 @@
+2005-12-10  Don Allingham  <don@gramps-project.org>
+	* doc/gramps-manual/C/getstart.xml: update
+	* doc/gramps-manual/C/preface.xml: update
+	* doc/gramps-manual/C/usage.xml: update
+
 2005-12-09  Jérôme Rapinat  <romjerome@yahoo.fr>
 	* doc/gramps-manual/fr/cmdplug.xml: Add file with new section.
 	* doc/gramps-manual/fr/gramps-manual.xml: Define entity for new

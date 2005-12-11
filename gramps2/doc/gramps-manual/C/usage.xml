@@ -4985,7 +4985,7 @@
           To insert the code from the internal notes into the web pages,
           select the appropriate Media Objects from the <guilabel>HTML user
           header</guilabel> and <guilabel>HTML user footer</guilabel> menus.
-          Two div sections will be added to the pages &mdash; userheader and userfooter.
+          Two div sections will be added to the pages - userheader and userfooter.
           The corresponding HTML code is inserted into the HTML page surrounded by div
           markers. You can customize your style sheet to provide additional formatting
           and positioning information to control these sections.</para>
