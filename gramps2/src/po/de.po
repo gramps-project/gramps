@@ -4256,11 +4256,11 @@ msgstr "Sie ist die Tochter von %(father)s und %(mother)s."
 
 #: ReportUtils.py:735
 msgid "%(female_name)s is the child of %(father)s and %(mother)s."
-msgstr "%(female_name)s ist der Sohn von %(father)s und %(mother)s."
+msgstr "%(female_name)s ist die Tochter von %(father)s und %(mother)s."
 
 #: ReportUtils.py:736
 msgid "%(female_name)s was the child of %(father)s and %(mother)s."
-msgstr "%(female_name)s ist der Sohn von %(father)s und %(mother)s."
+msgstr "%(female_name)s ist die Tochter von %(father)s und %(mother)s."
 
 #: ReportUtils.py:744
 msgid "This person is the child of %(father)s."
