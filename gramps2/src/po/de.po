@@ -3407,7 +3407,7 @@ msgstr ""
 
 #: ReportUtils.py:317
 msgid "He died in %(month_year)s in %(death_place)s."
-msgstr "%(male_name)s starb im %(month_year)s in %(death_place)s. "
+msgstr "Er starb im %(month_year)s in %(death_place)s."
 
 #: ReportUtils.py:318
 msgid ""
@@ -3913,34 +3913,34 @@ msgstr "Die Person wurde im %(month_year)s begraben."
 
 #: ReportUtils.py:542
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s wurde am %(burial_date)s in %(burial_place)s begraben."
+msgstr "%(male_name)s wurde am %(modified_date)s in %(burial_place)s begraben."
 
 #: ReportUtils.py:543
 msgid "He was buried %(modified_date)s in %(burial_place)s."
-msgstr "Er wurde am %(burial_date)s in %(burial_place)s begraben."
+msgstr "Er wurde am %(modified_date)s in %(burial_place)s begraben."
 
 #: ReportUtils.py:546
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(female_name)s wurde am %(burial_date)s in %(burial_place)s begraben."
+msgstr "%(female_name)s wurde am %(modified_date)s in %(burial_place)s begraben."
 
 #: ReportUtils.py:547
 msgid "She was buried %(modified_date)s in %(burial_place)s."
-msgstr "Sie wurde am %(burial_date)s in %(burial_place)s begraben."
+msgstr "Sie wurde am %(modified_date)s in %(burial_place)s begraben."
 
 #: ReportUtils.py:550
 msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
 msgstr ""
-"%(unknown_gender_name)s wurde am %(burial_date)s in %(burial_place)s "
+"%(unknown_gender_name)s wurde am %(modified_date)s in %(burial_place)s "
 "begraben."
 
 #: ReportUtils.py:551
 msgid "This person was buried %(modified_date)s in %(burial_place)s."
-msgstr "Die Person wurde am %(burial_date)s in %(burial_place)s begraben."
+msgstr "Die Person wurde am %(modified_date)s in %(burial_place)s begraben."
 
 #: ReportUtils.py:557
 msgid "%(male_name)s was buried %(modified_date)s."
-msgstr "%(male_name)s wurde am %(burial_date)s begraben."
+msgstr "%(male_name)s wurde am %(modified_date)s begraben."
 
 #: ReportUtils.py:558
 msgid "He was buried %(modified_date)s."
@@ -3948,7 +3948,7 @@ msgstr "Er wurde %(modified_date)s begraben."
 
 #: ReportUtils.py:561
 msgid "%(female_name)s was buried %(modified_date)s."
-msgstr "%(female_name)s wurde am %(burial_date)s  begraben."
+msgstr "%(female_name)s wurde am %(modified_date)s  begraben."
 
 #: ReportUtils.py:562
 msgid "She was buried %(modified_date)s."
@@ -4232,11 +4232,11 @@ msgstr "Er ist der Sohn von %(father)s und %(mother)s."
 
 #: ReportUtils.py:715 ReportUtils.py:725
 msgid "%(male_name)s is the child of %(father)s and %(mother)s."
-msgstr "Er ist der Sohn von %(father)s und %(mother)s."
+msgstr "%(male_name)s ist der Sohn von %(father)s und %(mother)s."
 
 #: ReportUtils.py:716 ReportUtils.py:726
 msgid "%(male_name)s was the child of %(father)s and %(mother)s."
-msgstr "Er ist der Sohn von %(father)s und %(mother)s."
+msgstr "%(male_name)s ist der Sohn von %(father)s und %(mother)s."
 
 #: ReportUtils.py:721
 msgid "He is the son of %(father)s and %(mother)s."
@@ -4256,11 +4256,11 @@ msgstr "Sie ist die Tochter von %(father)s und %(mother)s."
 
 #: ReportUtils.py:735
 msgid "%(female_name)s is the child of %(father)s and %(mother)s."
-msgstr "Er ist der Sohn von %(father)s und %(mother)s."
+msgstr "%(female_name)s ist der Sohn von %(father)s und %(mother)s."
 
 #: ReportUtils.py:736
 msgid "%(female_name)s was the child of %(father)s and %(mother)s."
-msgstr "Er ist der Sohn von %(father)s und %(mother)s."
+msgstr "%(female_name)s ist der Sohn von %(father)s und %(mother)s."
 
 #: ReportUtils.py:744
 msgid "This person is the child of %(father)s."

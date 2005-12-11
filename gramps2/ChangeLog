@@ -1,3 +1,8 @@
+2005-12-10  Alex Roitman  <shura@gramps-project.org>
+	* src/po/it.po: Correct mismatched % parameters.
+	* src/po/de.po: Correct mismatched % parameters.
+	* src/po/eo.po: Correct mismatched % parameters.
+
 2005-12-10  Jérôme Rapinat  <romjerome@yahoo.fr>
 	* src/po/fr.po: Translation update.
 	* src/dates/Date_fr.py (DateParserFR): Add more quality_to_int
@@ -12,7 +17,8 @@
 	* doc/gramps-manual/fr/cmdplug.xml: Add file with new section.
 	* doc/gramps-manual/fr/gramps-manual.xml: Define entity for new
 	section.
-	* doc/gramps-manual/fr/cmdline.xml: Insert new section.
+	* doc/gramps-manual/fr/cmdline.xml: Insert new section
+	.
 	* doc/gramps-manual/fr/Makefile.am: Ship new file.
 	* src/po/fr.po: Translation update.
 
