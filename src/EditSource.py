@@ -276,6 +276,10 @@ class EditSource:
         self.gladeif.connect('sel_photo','clicked',self.gallery.on_select_media_clicked)
         self.gladeif.connect('edit_photo','clicked',self.gallery.on_edit_media_clicked)
         self.gladeif.connect('delete_photo','clicked',self.gallery.on_delete_media_clicked)
+        self.gladeif.connect('add_repos_ref','clicked',self.on_add_repos_ref_clicked)
+        self.gladeif.connect('del_repos_ref','clicked',self.on_delete_repos_ref_clicked)
+        self.gladeif.connect('edit_repos_ref','clicked',self.on_edit_repos_ref_clicked)
+        self.gladeif.connect('repository_ref_list','row_activated',self.on_edit_repos_ref_clicked)
 
         if self.source.get_handle() == None or self.db.readonly:
             self.top_window.get_widget("edit_photo").set_sensitive(False)

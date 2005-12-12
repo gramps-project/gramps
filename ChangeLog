@@ -1,3 +1,6 @@
+2005-12-12  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/EditSource.py: Connected up add/del/edit buttons for Repos tab.
+	
 2005-12-06  Don Allingham  <don@gramps-project.org>
 	* src/FamilyView.py: Fixed FamilyView layout
 
