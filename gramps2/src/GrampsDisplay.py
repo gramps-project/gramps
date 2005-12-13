@@ -26,7 +26,29 @@ def help(target):
     try:
         gnome.help_display('gramps-manual',target)
     except gobject.GError, msg:
-        gnome.url_show('http://gramps-project.org/gramps-manual/gramps-manual-en/index.html')
+        url('http://gramps-project.org/gramps-manual/gramps-manual-en/index.html')
         
 def url(target):
-    gnome.url_show(target)
+    try:
+        gnome.url_show(target)
+    except gobject.GError, msg:
+        run_browser(target)
+
+def run_browser(url):
+    import os
+
+    search = os.environ['PATH'].split(':')
+
+    for browser in ['firefox','konqueror','epiphany','galeon','mozilla']:
+        for path in search:
+            prog = os.path.join(path,browser)
+            if os.path.isfile(prog):
+                if os.fork() == 0:
+                    os.execvp(prog,[prog, url])
+                return
+    
+                          
+    
+
+    
+        

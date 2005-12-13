@@ -22,6 +22,10 @@
 # $Id$
 
 # Written by Benny Malengier
+# Last change 2005/12/05:
+# Correspond  naming of dates with actual action, so for abbreviation
+# of month given by mnd. not MAAND
+# Also less possibilities
 
 """
 Dutch-specific classes for parsing and displaying dates.
@@ -143,22 +147,23 @@ class DateDisplayNL(DateDisplay):
     _bce_str = "%s v. Chr."
 
     formats = (
-        "JJJJ-MM-DD (ISO)", "Numerisch", "Maand Dag Jaar",
-        "MAAND Dag Jaar", "Dag. Maand Jaar", "Dag. MAAND Jaar",
-        "Dag Maand Jaar"
+        "JJJJ-MM-DD (ISO)", "Numerisch DD/MM/JJ", "Maand Dag, Jaar",
+        "Mnd. Dag Jaar", "Dag Maand Jaar", "Dag Mnd. Jaar"
         )
 
     def _display_gregorian(self,date_val):
         year = self._slash_year(date_val[2],date_val[3])
         if self.format == 0:
-            value = self.display_iso(date_val)
+            return self.display_iso(date_val)
         elif self.format == 1:
+	    # Numeric
             if date_val[0] == 0 and date_val[1] == 0:
                 value = str(date_val[2])
             else:
                 value = self._tformat.replace('%m',str(date_val[1]))
                 value = value.replace('%d',str(date_val[0]))
-                value = value.replace('%Y',str(date_val[2]))
+                value = value.replace('%Y',str(abs(date_val[2])))
+		value = value.replace('-','/')
         elif self.format == 2:
             # Month Day, Year
             if date_val[0] == 0:
@@ -169,7 +174,7 @@ class DateDisplayNL(DateDisplay):
             else:
                 value = "%s %d, %s" % (self._months[date_val[1]],date_val[0],year)
         elif self.format == 3:
-            # MON Day, Year
+            # Mnd Day, Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -178,25 +183,16 @@ class DateDisplayNL(DateDisplay):
             else:
                 value = "%s %d, %s" % (self._MONS[date_val[1]],date_val[0],year)
         elif self.format == 4:
-            # Day. Month Year
+            # Day Month Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
                 else:
                     value = "%s %s" % (self._months[date_val[1]],year)
             else:
-                value = "%d. %s %s" % (date_val[0],self._months[date_val[1]],year)
-        elif self.format == 5:
-            # Day. MON Year
-            if date_val[0] == 0:
-                if date_val[1] == 0:
-                    value = year
-                else:
-                    value = "%s %s" % (self._MONS[date_val[1]],year)
-            else:
-                value = "%d. %s %s" % (date_val[0],self._MONS[date_val[1]],year)
+                value = "%d %s %s" % (date_val[0],self._months[date_val[1]],year)
         else:
-            # Day Mon Year
+            # Day Mnd Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -204,7 +200,10 @@ class DateDisplayNL(DateDisplay):
                     value = "%s %s" % (self._MONS[date_val[1]],year)
             else:
                 value = "%d %s %s" % (date_val[0],self._MONS[date_val[1]],year)		
-        return value
+        if date_val[2] < 0:
+            return self._bce_str % value
+        else:
+            return value
 
     def display(self,date):
         """

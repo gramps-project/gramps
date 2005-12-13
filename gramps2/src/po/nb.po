@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Tue Aug 30 13:54:34 2005\n"
-"PO-Revision-Date: 2005-12-03 17:36+0100\n"
+"PO-Revision-Date: 2005-12-09 23:57+0100\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål <Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>>\n"
 "MIME-Version: 1.0\n"
@@ -1106,7 +1106,6 @@ msgid "Relationship filters"
 msgstr "Relasjonsfiltere"
 
 #: GenericFilter.py:171
-#, fuzzy
 msgid "Matches the ancestors of two persons back to a common ancestor, producing the relationship path between two persons."
 msgstr "Samsvarer med to personers aner, tilbake til en felles ane. Dette gir relasjonslinje for et slektskap mellom to personer."
 
@@ -1182,7 +1181,6 @@ msgid "Filter name:"
 msgstr "Filternavn:"
 
 #: GenericFilter.py:421
-#, fuzzy
 msgid "Descendants of <filter> match"
 msgstr "Etterkommer av <filter> søk"
 
@@ -1212,7 +1210,6 @@ msgid "Matches people that are descendants of a specified person at least N gene
 msgstr "Samsvarer med de som er etterkommere av en bestemt person minst N generasjoner unna"
 
 #: GenericFilter.py:549
-#, fuzzy
 msgid "Children of <filter> match"
 msgstr "Barn av <filter> søk"
 
@@ -1227,7 +1224,6 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "Samsvarer med barn av en person som er funnet med et filter"
 
 #: GenericFilter.py:587
-#, fuzzy
 msgid "Siblings of <filter> match"
 msgstr "Søsken av <filter> søk"
 
@@ -1258,7 +1254,6 @@ msgstr "Samsvarer med personer som er aner til en bestemt person"
 
 # <
 #: GenericFilter.py:729
-#, fuzzy
 msgid "Ancestors of <filter> match"
 msgstr "Ane av <filter> søk"
 
@@ -1283,25 +1278,22 @@ msgid "Matches people that are ancestors of a specified person at least N genera
 msgstr "Samsvarer med personer som er aner av en bestemt person minst N generasjoner unna"
 
 #: GenericFilter.py:875
-#, fuzzy
 msgid "Parents of <filter> match"
 msgstr "Forelder av <filter> søk"
 
 #: GenericFilter.py:877
 msgid "Matches parents of anybody matched by a filter"
-msgstr "Samsvare med personer som er foreldre til noen samsvarer med et filter"
+msgstr "Samsvarer med personer som er foreldre til noen samsvarer med et filter"
 
 #: GenericFilter.py:912
-#, fuzzy
 msgid "People with a common ancestor with <person>"
-msgstr "Personer med felles ane med <person>"
+msgstr "Personer med en felles ane med <person>"
 
 #: GenericFilter.py:914
 msgid "Matches people that have a common ancestor with a specified person"
 msgstr "Samsvarer med personer som har en felles ane med en bestemt person"
 
 #: GenericFilter.py:956
-#, fuzzy
 msgid "People with a common ancestor with <filter> match"
 msgstr "Personer som har en ane felles med <filter> søk"
 
@@ -1447,7 +1439,6 @@ msgid "person|Title:"
 msgstr "person|Tittel:"
 
 #: GenericFilter.py:1292
-#, fuzzy
 msgid "People with the <name>"
 msgstr "Personer med <navn>"
 
@@ -1460,7 +1451,6 @@ msgid "Substring:"
 msgstr "Delstreng:"
 
 #: GenericFilter.py:1324
-#, fuzzy
 msgid "People matching the <name>"
 msgstr "Samsvarer med personer med <navn>"
 
@@ -1473,7 +1463,6 @@ msgid "Matches people with firstname or lastname missing"
 msgstr "Samsvarer med personer som mangler for- eller etternavn"
 
 #: GenericFilter.py:1362
-#, fuzzy
 msgid "People matching the <filter>"
 msgstr "Samsvarer med personer med <filter>"
 
@@ -1482,7 +1471,6 @@ msgid "Matches people macthed by the specified filter name"
 msgstr "Samsvarer med personer fra et bestemt filter"
 
 #: GenericFilter.py:1405
-#, fuzzy
 msgid "Spouses of <filter> match"
 msgstr "Ektefelle av et <filter> søk"
 
@@ -1591,7 +1579,6 @@ msgid "Regular-Expression matching:"
 msgstr "Regulært uttrykk:"
 
 #: GenericFilter.py:1646
-#, fuzzy
 msgid "People with records containing <substring>"
 msgstr "Personer med poster som inneholder <delstreng>"
 
@@ -1604,7 +1591,6 @@ msgid "Source ID:"
 msgstr "Kilde ID:"
 
 #: GenericFilter.py:1814
-#, fuzzy
 msgid "People with the <source>"
 msgstr "Personer med <kilde>"
 
@@ -3469,9 +3455,8 @@ msgid "The data can only be recovered by Undo operation or by quitting with aban
 msgstr "Dataene kan kun gjenopprettes ved hjelp av «Angre»-operasjonen, eller ved å avslutte uten å lagre endringene som er gjort."
 
 #: Utils.py:526
-#, fuzzy
 msgid "Database error: %s is defined as his or her own ancestor"
-msgstr "Database feil: %s er deffinert som sin egen ane"
+msgstr "Databasefeil: %s er angitt som sin egen ane"
 
 #: Witness.py:64
 msgid "Witness"
@@ -3541,9 +3526,8 @@ msgid "Could not create %s"
 msgstr "Kunne ikke lage %s"
 
 #: WriteGedcom.py:1273
-#, fuzzy
 msgid "Export failed"
-msgstr "Eksport feilet"
+msgstr "Eksporteringen feilet"
 
 #: WriteGedcom.py:1284
 msgid "GE_DCOM"
@@ -3599,7 +3583,7 @@ msgstr "Stebarn"
 
 #: const.py:234 const.py:244
 msgid "Sponsored"
-msgstr "Sponset"
+msgstr "Fadder"
 
 #: const.py:234 const.py:245
 msgid "Foster"
@@ -3945,9 +3929,8 @@ msgid "Graphics"
 msgstr "Grafikk"
 
 #: data/tips.xml:9
-#, fuzzy
 msgid "A range of dates can be given by using the format \"between January 4, 2000 and March 20, 2003\""
-msgstr "En dato rekke kan spesifiseres ved å bruke formatet \"mellom 4. januar 2000 og 20. mars 2003\" (Fungerer ikke på norsk. Bruk engelsk inntil feilen er funnet. Eks. \"between January 4, 2000 and March 20, 2003\")"
+msgstr "En datorekke kan angis ved å bruke formatet «mellom 4. januar 2000 og 20. mars 2003» (Fungerer ikke på norsk. Bruk engelsk inntil feilen er funnet. Eks. «between January 4, 2000 and March 20, 2003»)"
 
 #: data/tips.xml:16
 msgid "In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the relationship editor."
@@ -4026,31 +4009,28 @@ msgid "Unsure what a button does? Simply hold the mouse over a button and a tool
 msgstr "Usikker på hva en knapp gjør? Hold musa over knappen, og et verktøytips vil komme frem."
 
 #: data/tips.xml:156
-#, fuzzy
 msgid "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred (for example birth or death), GRAMPS allows you to enter a wide range of date formats based on a guess or an estimate. For instance, \"about 1908\" is a valid entry for a birth date in GRAMPS. See section 3.7.2.2 of the GRAMPS manual for a complete description of date entry options."
-msgstr "<b>Usikker på en dato?</b> Hvis du er usikker på datoen for når en hendelse skjedde (for eksempel fødsel eller død), så tillater GRAMPS en rekke forskjellige dato formater basert på gjetning eller estimater. For eksempel \"Omkring 1908\" er en gyldig fødselsdato i GRAMPS. Andre dato muligheter er: før, etter, omkring, området, periode. Se seksjon 3.7.2.2. i GRAMPS manualen for en komplett beskrivelse av dato opsjoner."
+msgstr "<b>Usikker på en dato?</b> Hvis du er usikker på datoen for når en hendelse skjedde (for eksempel fødsel eller dødsfall), så gir GRAMPS muligheten til å skrive inn en rekke forskjellige datoformater basert på gjetning eller estimater. For eksempel «Omkring 1908» er en gyldig fødselsdato i GRAMPS. Andre datomuligheter er: «før», «etter», «omkring», «område», «periode». Se seksjon 3.7.2.2. i GRAMPS-manualen for en komplett beskrivelse av datoalternativene."
 
 #: data/tips.xml:162
 msgid "<b>Duplicate Entries</b>: <b>Tools > Database Processing > Find possible duplicate</b> people allows you to located (and merge) entries of the same person entered more than once in the database."
 msgstr "<b>Dobble oppføringer</b>: <b>Verktøy > Databasebehandling > Finn personer med doble oppføringer</b> gir deg muligheten til å finne (og flette sammen) inntastinger av personer som er lagt inn flere ganger i databasen."
 
 #: data/tips.xml:168
-#, fuzzy
 msgid "The 'merge' function allows you to combine separately listed people into one. This is very useful for combining two databases with overlapping people, or combining erroneously entered differing names for one individual."
-msgstr "'Flett sammen' funksjonen lar deg flette sammen to personer til en. Dette er praktisk for å flette sammen to databaser i en med overlappende personer, eller for å slå sammen personer som er tastet inn feil, og viser seg å være samme person."
+msgstr "«Flett sammen»-funksjonen lar deg slå to personer sammen til en. Dette er veldig praktisk hvis du skal slå sammen to databaser hvor du har de samme personene, eller for å slå sammen personer som ved en feiltasting av navnet har fått to oppføringer."
 
 #: data/tips.xml:174
-#, fuzzy
 msgid "To easily merge two people, select them both (a second person can be selected by holding the Control key while clicking) and clicking on <b>Edit > Fast Merge</b>."
-msgstr "For å enkelt flette sammen to personer, velg dem begge (den andre personen kan bli valgt ved å holde nede «Ctrl»-tasten samtidig som man klikker) og klikker på <b>Rediger > Hurtig fletting</b>."
+msgstr "For å flette sammen to personer må du velge dem begge (den andre personen kan bli valgt ved å holde nede «Ctrl»-tasten samtidig som man trykker på personen), før du trykker på <b>Rediger - Hurtig fletting</b>."
 
 #: data/tips.xml:180
 msgid "GRAMPS maintains a list of previous Active People. You can move forward and backward through the list using <b>Go > Forward</b> and <b>Go > Back</b>."
-msgstr "GRAMPS har en liste over tidligere valgte aktive personer. Du kan flytte deg fremover og bakover gjennom lista ved å bruke <b>Gå > Fremover</b> (eller Ctrl+pil høyre) og <b>Gå > Tilbake</b> (eller Ctrl+pil venstre)."
+msgstr "GRAMPS har en liste over tidligere valgte aktive personer. Du kan flytte deg fremover og bakover gjennom lista ved å bruke <b>Gå - Fremover</b> (eller «Ctrl + Pil høyre») og <b>Gå - Tilbake</b> (eller «Ctrl + Pil venstre»)."
 
 #: data/tips.xml:186
 msgid "Tired of having to take your hand off the keyboard to use the mouse? Many functions in GRAMPS have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu."
-msgstr "Lei av å måtte flytte hånden av tastaturet for å bruke musa? Mange av funksjonene i GRAMPS har hurtigtaster. Hvis en funksjon har slike vil de vises til høyre side i menyen."
+msgstr "Lei av å måtte flytte hånden av tastaturet for å flytte musepekeren? Mange av funksjonene i GRAMPS har hurtigtaster. Hvis en funksjon har slike vil de vises til høyre side i menyen."
 
 #: data/tips.xml:193
 msgid "Don't forget to read the GRAMPS manual, <b>Help > User Manual</b>. The developers have worked hard to make most operations intuitive but the manual is full of information that will make your time spent on genealogy more productive."
@@ -4061,17 +4041,19 @@ msgid "<b>Adding Children</b>: To add children in GRAMPS make either of the pare
 msgstr "<b>Legge til barn</b>: For å legge til barn i GRAMPS, angi en av foreldrene som aktiv person, gå så til Familievisningen. Hvis barnet allerede er i databasen, velg den tredje knappen på høyre side av Barn-lista. Hvis barnet ikke er i databasen, klikk på den andre knappen på høyre side av Barn-lista. Etter at barn informasjonen er tastet inn, vil de automatisk bli listet som et barn av den aktive personen."
 
 #: data/tips.xml:212
-#, fuzzy
+# Sponset? betyr egentlig at man i gamle dager tok til
+# seg barn som ikke var ens egne ... men hva bør dette være på norsk?
+# tror ikke sponset er noe fornuftig ord dessverre ... -Jørgen
 msgid "<b>Editing The Relationship of a Child</b>: Not all children are the related by birth to their parents. You can edit the relationship of a child to each parent by selecting the child, right-clicking, and choosing \"Edit the child parent relationship\". Relationships can be any of Birth, Adopted, Stepchild, Sponsored, Foster, or Unknown."
-msgstr "<b>Rediger relasjonen til et barn</b>: Ikke alle barn er relatert til sine foreldre ved fødsel. Du kan redigere relasjonen for et barn til hver av foreldrene ved å velge barnet, og høyreklikke det, og velg \"Rediger barn/foreldrerelasjonen\". Relasjonen kan være fødsel, adoptert, stebarn, sponset, pleiebarn eller ukjent."
+msgstr "<b>Rediger relasjonen til et barn</b>: Ikke alle barn er relatert til sine foreldre ved fødsel. Du kan redigere relasjonen for et barn til hver av foreldrene ved å velge barnet, og høyreklikke det, og velg «Rediger barn/foreldrerelasjonen». Relasjonen kan være enten «Fødsel», «Adoptert», «Stebarn», «Fadderbarn», «Fosterbarn» eller «Ukjent»."
 
 #: data/tips.xml:220
 msgid "<b>Show All Checkbutton</b>: When adding a spouse or child, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case GRAMPS is wrong in making this choice, you can override that filter by checking the \"Show All\" checkbutton."
-msgstr "<b>'Vis alle'-sjekknappen</b>: Når man legger til en ektefelle eller et barn er lista over personer som vises er filtrert til å vise bare personer som realistisk sett kan passe i rollen (basert på datoer i databasen). I tilfelle GRAMPS har tatt feil med dette valget, kan du overstyre filteret ved å krysse av \"Vis alle\"-sjekknappen."
+msgstr "<b>«Vis alle»</b>: Når man legger til en ektefelle eller et barn, er lista over personer som vises filtrert til å vise bare personer som realistisk sett kan passe i rollen (basert på datoer i databasen). I tilfelle GRAMPS har tatt feil med dette valget, kan du overstyre filteret ved å krysse av for «Vis alle»."
 
 #: data/tips.xml:227
 msgid "<b>GRAMPS Manual</b>: The GRAMPS manual is quite elaborate and well written. It includes details on keybindings and includes some useful tips that will help you in your genealogy work. Check it out."
-msgstr "<b>GRAMPS manual</b>: GRAMPS manualen er ganske utfyllende og bra skrevet. Den inneholder detaljer om hurtigtaster og inneholder noen nyttige tips som vil hjelpe deg i ditt slektsforskningsarbeide. Sjekk den ut."
+msgstr "<b>GRAMPS-manual</b>: GRAMPS-manualen er ganske utfyllende og bra skrevet. Den inneholder detaljer om hurtigtaster og inneholder noen nyttige tips som vil hjelpe deg i ditt slektsforskningsarbeide. Sjekk den ut."
 
 #: data/tips.xml:236
 msgid "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to GRAMPS. Requesting an enhancement can be done either through the gramps-users or gramps-devel mailing lists, or by creating a Request for Enhancement (RFE) at http://sourceforge.net/tracker/?group_id=25770&amp;atid=385140 Filing an RFE is preferred."
@@ -4138,149 +4120,120 @@ msgid "You can convert your data into a GRAMPS package, which is a compressed fi
 msgstr "Du kan konvertere dataene dine til en GRAMPS-pakke, som er en komprimert fil som inneholder dine familetre-data og denne inneholder alle andre filer brukt av databasen, som bilder. Denne fila er fullstendig portabel så den er fint brukbar som sikkerhetskopi eller deling med andre GRAMPS brukere. Dette formatet har den fordelen over GEDCOM med at ingen informasjon blir borte ved eksport eller import."
 
 #: data/tips.xml:363
-#, fuzzy
 msgid "Make your data portable --- your family tree data and media can be exported directly to the GNOME file manager (Nautilus), for burning onto a CD."
-msgstr "Gjør dine data portable --- dataene for ditt familietre og media kan eksporteres direkte til GNOME filbehandleren (Nautilus), for brenning til en CD."
+msgstr "Gjør dine data flyttbare --- dataene for ditt familietre og all annen media kan eksporteres direkte til GNOME-filbehandleren (Nautilus) for brenning til en CD."
 
 #: data/tips.xml:369
-#, fuzzy
 msgid "GRAMPS can export data to the Web Family Tree (WFT) format. This format allows a family tree to be displayed online using a single file, instead of many html files."
-msgstr "GRAMPS kan eksportere data til Web Family Tree (WFT) formatet. Dette formatet tillater at et familie tre kan vises på nett, ved å bruke en enkelt fil, i stede for mange html filer."
+msgstr "GRAMPS kan eksportere data til Web Family Tree (WFT)-formatet. Dette formatet tillater at et familie tre kan vises på en nettside ved å bruke en enkeltfil, i stedet for mange html-filer."
 
 #: data/tips.xml:375
-#, fuzzy
 msgid "You can easily export your family tree to a web page. Select the entire database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide Web."
-msgstr "Du kan enkelt eksportere ditt familietre til en webside. Velg hele databasen, familielinjer, eller enkelt individer, for å lage en samling med nettsider som er klare for å legges opp på internett."
+msgstr "Du kan enkelt eksportere ditt familietre til en nettside. Velg hele databasen, familielinjer, eller enkeltindivider for å lage en samling med nettsider som er klare for å legges ut på Internett."
 
 #: data/tips.xml:380
-#, fuzzy
 msgid "The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
-msgstr "Den beste måten å rapportere en feil i GRAMPS på, er GRAMPS Bug Tracker på Sourceforge,  http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
+msgstr "Den beste måten å rapportere en feil i GRAMPS på, er ved å bruke GRAMPS Bug Tracker på Sourceforge. Gå til nettsiden: http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
 
 #: data/tips.xml:384
-#, fuzzy
 msgid "The GRAMPS homepage is at http://gramps-project.org/"
-msgstr "Hjemmesiden for GRAMPS er på adressen http://gramps-project.org/"
+msgstr "Hjemmesiden til GRAMPS finner du på: http://gramps-project.org/"
 
 #: data/tips.xml:392
-#, fuzzy
 msgid "GRAMPS has some unique features, including the ability to input any piece of information directly into GRAMPS. All data in the data base can be rearranged/manipulated to assist the user in doing research, analysis and correlation with the potential of filling relationship gaps."
-msgstr "GRAMPS har noen unike trekk, som egenskapen til å ta inn hvilke som helst informasjon direkte inn i GRAMPS. Alle data i databasen kan bli omorganisert/manipulert til å bistå brukere i å gjøre forskning, analyse og "
+msgstr "GRAMPS har en del smarte funksjoner. Du kan for eksempel sette inn hvilken som helst informasjon direkte inn i GRAMPS. Alle data i databasen kan bli omorganisert/manipulert for å hjelpe brukeren i arbeidet med analyser og slektskap for å få fylt inn tomrom."
 
 #: data/tips.xml:398
-#, fuzzy
 msgid "GRAMPS helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports."
-msgstr "GRAMPS hjelper deg å holde personlig informasjon sikkert, bed å tillatte at du kan merke informasjonen som privat. Data markert private kan holdes ute fra rapporter og eksporter."
+msgstr "GRAMPS hjelper deg å holde personlig informasjon privat, nettopp ved å merke informasjon som «privat». Informasjon som er merket «privat» kan du enkelt holde utenfor rapporter og eksporteringer."
 
 #: data/tips.xml:406
-#, fuzzy
 msgid "Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
-msgstr "Vær nøyaktig når du samler slektsinformasjon. Ikke gjør antagelser når du samler primær informasjon, skriv det nøyaktig som du ser det. Skriv tekst i parenteser for å indikere tillegg, sletting, eller kommentarer. Bruk av det latinske 'sic' er anbefalt for å bekrefte nøyaktig gjengiving av hva som kan se ut som en feil i en kilde."
+msgstr "Vær nøyaktig når du samler slektsinformasjon. Ikke gjør antagelser når du samler primær informasjon, skriv det nøyaktig som du ser det. Skriv tekst i parenteser for å indikere tillegg, sletting, eller kommentarer. Bruk av det latinske «sic» er anbefalt for å bekrefte nøyaktig gjengiving av hva som kan se ut som en feil i en kilde."
 
 #: data/tips.xml:411
-#, fuzzy
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
-msgstr "Du kan lenke alle typer elektroniske media (inkludert ikke-tekst informasjon) og andre filtyper til dit GRAMPS familietre."
+msgstr "Du kan lenke alle typer elektroniske media (inkludert ikke-tekst informasjon) og andre filtyper til ditt GRAMPS-familietre."
 
 #: data/tips.xml:420
-#, fuzzy
 msgid "GRAMPS allows you to generate a number of reports (both text and graphical) based on your genealogical information. There is great flexibility in selecting what people are included in the reports as well as the output format (html, pdf, OpenOffice, RTF, AbiWord, KWord, LaTeX and plain text). Experiment with the reports under the <b>Reports</b> menu to get an idea of how powerful GRAMPS is."
-msgstr "GRAMPS har muligheten for å lage flere rapporter (både tekst og grafisk) basert på ditt slektsforskningsmateriale. Det er fleksibilitet i utvalgsmuligheter av hvilke personer som er inkludert i rapportene, så vel som for lagringsformater (html, pdf, OpenOffice, RTF, AbiWord, Kword, LaTeX og ren tekst). Eksperimenter med rapportene under <b>Reports</b> menyen for å få en ide om hvor kraftig GRAMPS er."
+msgstr "GRAMPS har muligheten for å lage flere rapporter (både tekstbaserte og grafiske) basert på ditt slektsforskningsmateriale. Det er mange muligheter for hvilke personer som blir inkludert i rapportene, så vel som mange lagringsformater (html, pdf, OpenOffice, RTF, AbiWord, Kword, LaTeX og ren tekst). Prøv deg fram med rapportene under <b>Rapporter</b>-menyen for å få en ide om hvor kraftig GRAMPS er."
 
 #: data/tips.xml:426
-#, fuzzy
 msgid "Custom reports can be created by advanced users under the \"plugin\" system. More information on custom reports can be found at http://developers.gramps-project.org"
-msgstr "Tilpassede rapporter kan lages av avanserte brukere under \"plugin\" systemet. Mer informasjon om tilpassede rapporter kan du finne på http://developers.gramps-project.org"
+msgstr "Tilpassede rapporter kan lages av avanserte brukere under «plugin»-systemet. Mer informasjon om tilpassede rapporter kan du finne på http://developers.gramps-project.org"
 
 #: data/tips.xml:432
-#, fuzzy
 msgid "The Book report, <b>Reports > Books > Book Report</b>, allows users to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
-msgstr "Bok rapporten, <b>Rapporter > Bok > Bok rapport</b>, lar brukere samle en mengde rapporter i et enkelt dokument. Denne rapporten er enklere å distribuere en flere rapporter, spesielt når den er skrevet ut."
+msgstr "Bokrapporten, <b>Rapporter - Bok - Bokrapport</b>, lar brukere samle en mengde rapporter i et enkelt dokument. Denne rapporten er enklere å distribuere enn flere rapporter, spesielt når den er skal skrives ut."
 
 #: data/tips.xml:438
-#, fuzzy
 msgid "Interested in getting notified when a new version of GRAMPS is released? Join the gramps-announce mailing list at http://lists.sourceforge.net/lists/listinfo/gramps-announce"
-msgstr "Interesert i å bli informert om når en ny versjon av GRAMPS blir sluppet? Meld deg på gramps-announce mail listen ved å gå inn på http://lists.sourceforge.net/lists/listinfo/gramps-announce"
+msgstr "Interessert i å bli informert om når en ny versjon av GRAMPS blir sluppet? Meld deg på e-postlista for GRAMPS-annonseringer ved å gå inn på http://lists.sourceforge.net/lists/listinfo/gramps-announce"
 
 #: data/tips.xml:446
-#, fuzzy
 msgid "<b>Good genealogy tip</b>: Information collected about your family is only as good as the source it came from. Take time and trouble to record all the details of where the information came from. Whenever possible get a copy of original documents."
-msgstr "<b>Godt slektsforsknings tips</b>: Informasjon samlet om din familie er kun så bra som kilden det kommer i fra. Ta deg tiden og utfordringene det er å samle alle detaljene fra hvor informasjonen kom fra. Hvis mulig så tak i en kopi av orginale dokumenter."
+msgstr "<b>Godt slektsforskningstips</b>: Informasjon samlet om din familie er kun så bra som kilden det kommer i fra. Ta deg tiden og utfordringene det er å samle alle detaljene om hvor informasjonen kom fra. Bruk alltid kopier av originale dokumenter når det er mulig."
 
 #: data/tips.xml:453
-#, fuzzy
 msgid "Go from what you know to what you do not. Always record everything that is known before making conjecture. Often the facts at hand suggest plenty of direction for more research. Don't waste time looking through thousands of records hoping for a trail when you have other unexplored leads."
-msgstr "Gå fra hva du vet til hva du ikke vet. Skriv inn alt som er kjent før du konkluderer. Ofte viser de faktaene man har for hånd, mange mulige retninger for videre forskning. Ikke missbruk tid ved å lete gjennom tusener av skrifter etter et håp om en videre retning, når du har andre ikke utforskede muligheter."
+msgstr "Gå fra hva du vet til hva du ikke vet. Skriv inn alt som er kjent før du konkluderer. Ofte viser de faktaene man har for hånd, mange mulige retninger for videre forskning. Ikke kast bort tid ved å lete gjennom tusener av poster etter et håp om en videre retning, når du har andre muligheter som du ikke har sett på ennå."
 
 #: data/tips.xml:460
-#, fuzzy
 msgid "Genealogy isn't only about dates and names. It is about people. Be descriptive. Include the <b>why</b> of how things happened, and how descendants might have been shaped by the events they went through. Narratives go a long way in making your family history come alive."
-msgstr "Slektsforskning er ikke bare om datoer og navn. Det handler om menesker. Vær beskrivende. Ta med <b>hvorfor</b> tingene skjedde, og hvordan etterfølgerne kan ha blitt formet av hendelsene de gikk gjennom. Små historier(?) bidrar til at din slektshistorie blir levende."
+msgstr "Slektsforskning dreier seg ikke bare om datoer og navn. Det handler om mennesker. Vær derfor beskrivende, og ta med <b>hvorfor</b> tingene skjedde, og hvordan etterfølgerne kan ha blitt formet av hendelsene de gikk gjennom. Små historier bidrar til at din slektshistorie blir levende."
 
 #: data/tips.xml:466
-#, fuzzy
 msgid "GRAMPS has been translated to 15 languages. If GRAMPS supports your language and it is not being displayed, set the default language on your machine and restart GRAMPS."
-msgstr "GRAMPS har blitt oversatt til 15 språk. Hvis GRAMPS støtter ditt språk, og dette ikke vises, sett standard språket for maskinen din, og start GRAMPS på nytt."
+msgstr "GRAMPS har blitt oversatt til 15 språk. Hvis GRAMPS er oversatt til ditt språk uten at det vises, må du endre standardspråket for maskinen din før du starter GRAMPS på nytt."
 
 #: data/tips.xml:472
-#, fuzzy
 msgid "GRAMPS has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net"
-msgstr "GRAMPS har blitt utviklet så nye oversettelser enkelt kan legges til. Hvis du er interessert i å bidra, vennligst send en mail til gramps-devel@lists.sf.net"
+msgstr "GRAMPS har blitt utviklet slik at nye oversettelser enkelt kan legges til. Hvis du er interessert i å bidra kan du sende en e-post til gramps-devel@lists.sf.net"
 
 #: data/tips.xml:476
-#, fuzzy
 msgid "Relationship calculators in GRAMPS are available in ten languages."
 msgstr "Relasjonskalkulatorer i GRAMPS er tilgjengelig på 10 språk."
 
 #: data/tips.xml:481
-#, fuzzy
 msgid "GRAMPS offers full Unicode support. Characters for all languages are properly displayed."
-msgstr "GRAMPS tilbyr full Unicode støtte. Særtegn for alle språk skal vises riktig."
+msgstr "GRAMPS tilbyr full Unicode-støtte. Særtegn for alle språk skal vises riktig."
 
 #: data/tips.xml:487
-#, fuzzy
 msgid "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit -> Set Home Person</b>. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr "Hvem som helst kan settes som hjemperson i GRAMPS. Bruk <b>Rediger -> Sett hjemperson</b>. Hjempersonen er personen som blir valgt når databasen blir åpnet, eller når man trykker på hjempersons knappen."
+msgstr "Hvem som helst kan settes som «Hjemperson» i GRAMPS. Bruk <b>Rediger - Sett hjemperson</b>. Hjempersonen er personen som blir valgt når databasen blir åpnet, eller når man trykker på «Hjemperson»-knappen."
 
 #: data/tips.xml:492
-#, fuzzy
 msgid "Multiple names can be specified for individuals. Examples are birth name, marriage name or aliases."
-msgstr "Flere navn kan spesifiserer for individer. Eksempler er fødselsnavn, ekteskapsnavn og aliaser."
+msgstr "Flere navn kan angis for hvert enkelt individ. Eksempler er fødselsnavn, ekteskapsnavn og aliaser."
 
 #: data/tips.xml:497
-#, fuzzy
 msgid "An alternate name can be selected as a person's preferred name by selecting the desired name in the person's name list, bringing up the context menu by clicking the right mouse button, and selecting from the menu."
-msgstr "Et alternativt navn kan velges som en person foretrukne navn, ved å velge det ønskede navnet, i personens navneliste, og høyreklikke dette, og sett navnet som foretrukket fra menyen."
+msgstr "Et alternativt navn kan velges som en persons foretrukne navn. Velg først det ønskede navnet i personens navneliste, før du høyreklikker på dette og angir navnet som foretrukket fra menyen."
 
 #: data/tips.xml:504
-#, fuzzy
 msgid "GRAMPS is written in a computer language called Python using the GTK and GNOME libraries for the graphical interface. GRAMPS is supported on any computer system where these programs have been ported."
-msgstr "GRAMPS er skrevet i et programmeringspråk som heter Python, og brukere GTK og GNOME bibliotekene for den grafiske fremvisningen. GRAMPS er støttet på alle datasystemer hvor disse programmene offisielt kjører."
+msgstr "GRAMPS er skrevet i et programmeringspråk som heter Python, og bruker GTK- og GNOME-bibliotekene for den grafiske fremvisningen. GRAMPS er støttet på alle datasystemer hvor disse programmene offisielt kjører."
 
 #: data/tips.xml:510
-#, fuzzy
 msgid "The Free/Libre and Open Source Software (FLOSS) development model means GRAMPS can be extended by any programmer since all of the source code is freely available under its license."
-msgstr "Den \"Free/Libre and Open Source Software\" (FLOSS) utviklingsmodellen betyr at GRAMPS kan utvides av alle programmer siden all kildekode er fritt tilgjengelig under den åpne lisensen."
+msgstr "«Free/Libre and Open Source Software» (FLOSS)-utviklingsmodellen betyr at GRAMPS kan utvides av alle programmer siden all kildekode er fritt tilgjengelig under den åpne lisensen."
 
 #: data/tips.xml:515
-#, fuzzy
 msgid "GRAMPS is freely distributable under the General Public License, see http://www.gnu.org/licenses/licenses.html#GPL"
-msgstr "GRAMPS kan fritt distribueres under General Public Licesne, se http://www.gnu.org/licenses/licenses.html#GPL"
+msgstr "GRAMPS kan fritt distribueres under General Public License. Se http://www.gnu.org/licenses/licenses.html#GPL"
 
 #: data/tips.xml:520
-#, fuzzy
 msgid "GRAMPS works even when using KDE, as long as the required GNOME libraries are installed."
-msgstr "GRAMPS fungerer også når man bruker KDE, så lenge de nødvendige GNOME bibliotekene er installert."
+msgstr "GRAMPS fungerer også når man bruker KDE, så lenge de nødvendige GNOME-bibliotekene er installert."
 
 #: data/tips.xml:525
-#, fuzzy
 msgid "To run GRAMPS, you need to have GNOME installed. But you do not need to be running the GNOME desktop."
-msgstr "For å kjøre GRAMPS, må du ha GNOME installert. Men du trenger ikke å kjøre GNOME skrivebordet."
+msgstr "For å kjøre GRAMPS må du ha GNOME installert. Men du trenger ikke å benytte GNOME-skrivebordsmiljøet."
 
 #: data/tips.xml:531
-#, fuzzy
 msgid "GRAMPS makes every effort to maintain compatibility with GEDCOM, the general standard of recording genealogical information. Filters exist that make importing and exporting GEDCOM files trivial."
-msgstr "GRAMPS, er så godt det lar seg gjøre, kompatibel med GEDCOM, den generelle standarden for å lagre slektsforsknings informasjon. Det eksisterer filtre, som gjøre import og eksport av GEDCOM filer enkelt."
+msgstr "GRAMPS er, så godt det lar seg gjøre, kompatibel med GEDCOM, den generelle standarden for å lagre slektsforskningsinformasjon. Det eksisterer filtre som gjør import og eksport av GEDCOM-filer enkelt."
 
 #: docgen/AbiWord2Doc.py:340
 msgid "AbiWord document"
@@ -6069,7 +6022,6 @@ msgid "<b>Name Information</b>"
 msgstr "<b> Navneinformasjon</b>"
 
 #: gramps.glade:31245
-#, fuzzy
 msgid ""
 "Default (based on locale)\n"
 "Family name, Given name [Patronymic]\n"
@@ -6088,7 +6040,6 @@ msgid "_Override"
 msgstr "_Overskriv"
 
 #: gramps.glade:31411
-#, fuzzy
 msgid ""
 "Default (based on locale)\n"
 "Given name [Patronymic] Family name\n"
@@ -6100,7 +6051,7 @@ msgstr ""
 "Fornavn [Patronymisk] Etternavn\n"
 "Etternavn Fornavn\n"
 "Fornavn Patronymisk\n"
-"Etternavn"
+"Fornavn\n"
 
 #: gramps.glade:31977
 msgid "_Comment:"
@@ -6580,9 +6531,8 @@ msgid "Ancestor Chart (Wall Chart)"
 msgstr "Slektstavle (Veggtavle)"
 
 #: plugins/AncestorReport.py:97
-#, fuzzy
 msgid "Ahnentafel Report for %s"
-msgstr "Ahnentafel rapport for %s"
+msgstr "Ahnentafel-rapport for %s"
 
 #: plugins/AncestorReport.py:110
 msgid "%s Generation"
@@ -6674,9 +6624,8 @@ msgid "The style used for the generation header."
 msgstr "Stilen som brukes til generasjons-overskriften."
 
 #: plugins/AncestorReport.py:305
-#, fuzzy
 msgid "Ahnentafel Report"
-msgstr "Ahnentafel rapport"
+msgstr "Ahnentafel-rapport"
 
 #: plugins/AncestorReport.py:307
 msgid "Produces a textual ancestral report"
@@ -6906,7 +6855,6 @@ msgid "Creates a book containing several reports."
 msgstr "Lager en bok som inneholder flere rapporter."
 
 #: plugins/ChangeNames.py:82
-#, fuzzy
 msgid "Checking family names"
 msgstr "Kontrollerer familinavn"
 
@@ -7186,20 +7134,17 @@ msgid "Checks the database for integrity problems, fixing the problems that it c
 msgstr "Kontrollerer databasen for integritetsproblemer og retter det den kan"
 
 #: plugins/Checkpoint.py:85
-#, fuzzy
 msgid "Checkpointing database..."
-msgstr "Lager en sikkerhetskopi av databasen..."
+msgstr "Lager en sikkerhetskopi av databasen ..."
 
 #: plugins/Checkpoint.py:108 plugins/Checkpoint.py:128
 #: plugins/Checkpoint.py:141
-#, fuzzy
 msgid "Checkpoint failed"
 msgstr "Sikkerhetskopieringen feilet"
 
 #: plugins/Checkpoint.py:163
-#, fuzzy
 msgid "Checkpoint the database"
-msgstr "Lager en sikkerhetskopi av databasen"
+msgstr "Lag en sikkerhetskopi av databasen"
 
 #: plugins/Checkpoint.py:164
 msgid "Revision control"
@@ -7291,14 +7236,12 @@ msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Gir et hierarki, som man kan bla gjennom, og som er baseret på den aktive personen"
 
 #: plugins/DescendChart.py:474
-#, fuzzy
 msgid "Descendant Wall Chart"
-msgstr "Veggtavle slektstre over etterkommere"
+msgstr "Slektstre (veggtavle ) over etterkommere"
 
 #: plugins/DescendChart.py:478
-#, fuzzy
 msgid "Produces a graphical descendant tree graph"
-msgstr "Lager et grafisk etterkommertre"
+msgstr "Lager en grafisk trevisning over etterkommerne"
 
 #: plugins/DescendReport.py:182
 msgid "The style used for the level %d display."
@@ -8173,7 +8116,6 @@ msgid "Business"
 msgstr "Profesjonell"
 
 #: plugins/NavWebPage.py:81
-#, fuzzy
 msgid "Certificate"
 msgstr "Sertifikat"
 
@@ -8182,7 +8124,6 @@ msgid "Antique"
 msgstr "Antikk"
 
 #: plugins/NavWebPage.py:83
-#, fuzzy
 msgid "Tranquil"
 msgstr "Ren"
 
@@ -8297,16 +8238,14 @@ msgid "Next"
 msgstr "Neste"
 
 #: plugins/NavWebPage.py:816
-#, fuzzy
 msgid "MIME type"
-msgstr "MIME type"
+msgstr "MIME-type"
 
 #: plugins/NavWebPage.py:846
 msgid "Missing media object"
 msgstr "Manglende mediaobjekter"
 
 #: plugins/NavWebPage.py:901 plugins/NavWebPage.py:903
-#, fuzzy
 msgid "Surnames by person count"
 msgstr "Opptelling av personer etter etternavn"
 
@@ -8442,9 +8381,8 @@ msgid "File extension"
 msgstr "Filetternavn"
 
 #: plugins/NavWebPage.py:2169
-#, fuzzy
 msgid "Publisher contact/Note ID"
-msgstr "Utgivers kontakt/notat ID"
+msgstr "Utgivers kontakt-/notat-ID"
 
 #: plugins/NavWebPage.py:2170
 msgid "Include images and media objects"
@@ -8463,41 +8401,34 @@ msgid "Standard copyright"
 msgstr "Alminnelig opphavsrett"
 
 #: plugins/NavWebPage.py:2218
-#, fuzzy
 msgid "Creative Commons - By attribution"
 msgstr "Creative Commons - Etter egenskap"
 
 #: plugins/NavWebPage.py:2219
-#, fuzzy
 msgid "Creative Commons - By attribution, No derivations"
-msgstr "Creative Commons - Etter egenskap, Ingen avtegnelser"
+msgstr "Creative Commons - Etter egenskap, Ingen avledninger"
 
 #: plugins/NavWebPage.py:2220
-#, fuzzy
 msgid "Creative Commons - By attribution, Share-alike"
 msgstr "Creative Commons - Etter egenskap, Del-likt"
 
 #: plugins/NavWebPage.py:2221
-#, fuzzy
 msgid "Creative Commons - By attribution, Non-commercial"
-msgstr "Creative Commons - Etter egenskap, Ikke komersiel"
+msgstr "Creative Commons - Etter egenskap, Ikke-kommersiell"
 
 #: plugins/NavWebPage.py:2222
-#, fuzzy
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
-msgstr "Creative Commons - Etter egenskap, Ikke komersiel, Ingen avtegnelser"
+msgstr "Creative Commons - Etter egenskap, Ikke-kommersiell, Ingen avledninger"
 
 #: plugins/NavWebPage.py:2223
-#, fuzzy
 msgid "Creative Commons - By attribution, Non-commerical, Share-alike"
-msgstr "Creative Commons - Etter egenskap, Ikke komersiel, Del-likt"
+msgstr "Creative Commons - Etter egenskap, Ikke-kommersiell, Del-likt"
 
 #: plugins/NavWebPage.py:2224
 msgid "No copyright notice"
 msgstr "Ingen opphavsrett"
 
 #: plugins/NavWebPage.py:2258
-#, fuzzy
 msgid "Character set encoding"
 msgstr "Tegnsett"
 
@@ -8510,29 +8441,24 @@ msgid "Copyright"
 msgstr "Opphavsrett"
 
 #: plugins/NavWebPage.py:2262
-#, fuzzy
 msgid "Page Generation"
-msgstr "Side generasjon"
+msgstr "Side-generering"
 
 #: plugins/NavWebPage.py:2285
-#, fuzzy
 msgid "Home Media/Note ID"
-msgstr "Hjem media/notat ID"
+msgstr "Hjem media-/notat-ID"
 
 #: plugins/NavWebPage.py:2287
-#, fuzzy
 msgid "Introduction Media/Note ID"
-msgstr "Introduksjons media/notat ID"
+msgstr "Introduksjon media-/notat-ID"
 
 #: plugins/NavWebPage.py:2290
-#, fuzzy
 msgid "HTML user header"
-msgstr "HTML bruker start"
+msgstr "HTML-brukertopptekst"
 
 #: plugins/NavWebPage.py:2291
-#, fuzzy
 msgid "HTML user footer"
-msgstr "HTML bruker slutt"
+msgstr "HTML-brukerbunntekst"
 
 #: plugins/NavWebPage.py:2296 plugins/WebPage.py:1499
 msgid "Privacy"
@@ -9215,7 +9141,6 @@ msgid "Verify the database"
 msgstr "Bekreft databasen"
 
 #: plugins/Verify.py:158
-#, fuzzy
 msgid "Checking data"
 msgstr "Kontrollerer data"
 
@@ -10041,146 +9966,4 @@ msgstr "<b>Valgte regel</b>"
 #: rule.glade:1186
 msgid "<b>Values</b>"
 msgstr "<b>Verdier</b>"
-
-#~ msgid "(no photo)"
-#~ msgstr "(intet bilde)"
-
-#~ msgid "Titles"
-#~ msgstr "Titler"
-
-#~ msgid "Genders"
-#~ msgstr "Kjønn"
-
-#, fuzzy
-#~ msgid "Chart Selection"
-#~ msgstr "Diagram utvalg"
-
-#~ msgid "Top & Bottom Margins"
-#~ msgstr "Topp- og bunnmarger"
-
-#~ msgid "Left & Right Margins"
-#~ msgstr "Venstre- og høyremarger"
-
-#~ msgid "Determining possible merges"
-#~ msgstr "Finner ut hva som kanskje kan flettes sammen"
-
-#, fuzzy
-#~ msgid "Added person is not visible"
-#~ msgstr "Personen som ble lagt til er ikke synlig"
-
-#, fuzzy
-#~ msgid "The person you added is currently not visible due to the chosen filter. This may occur if you did not specify a birth date."
-#~ msgstr "Personen du la til er for tiden ikke synlig grunnet det aktive filteret. Dette kan oppstå hvis du ikke spesifiserte en fødselsdato."
-
-#~ msgid "Month Day, Year"
-#~ msgstr "Måned Dag, År"
-
-#~ msgid "Numerical"
-#~ msgstr "Numerisk"
-
-#~ msgid "YYYY-MM-DD (ISO)"
-#~ msgstr "ÅÅÅÅ-MM-DD (ISO)"
-
-#~ msgid "DAY MON YEAR"
-#~ msgstr "DAG MÅN ÅR"
-
-#~ msgid "Day Month Year"
-#~ msgstr "Dag Måned År"
-
-#~ msgid "MON DAY, YEAR"
-#~ msgstr "MÅN DAG, ÅR"
-
-#~ msgid "Index of individuals, sorted by last name."
-#~ msgstr "Register over alle individer, sortert etter etternavn."
-
-#~ msgid "Index of all the places in the project."
-#~ msgstr "Register over alle steder i prosjektet."
-
-#~ msgid "All sources cited in the project."
-#~ msgstr "Alle kilder referert til i prosjektet."
-
-#~ msgid "Relationships"
-#~ msgstr "Relasjoner"
-
-#, fuzzy
-#~ msgid "Min. bar char items"
-#~ msgstr "Min. kaker i kakediagram"
-
-#~ msgid "A person cannot be linked as his/her child's spouse"
-#~ msgstr "En person kan ikke angis som sitt barns ektefelle"
-
-#~ msgid "A person cannot be linked as his/her parent's spouse"
-#~ msgstr "En person kan ikke angis som sin forelders ektefelle"
-
-#~ msgid "Matches individuals that have no relationships"
-#~ msgstr "Gjelder individer uten noen relasjoner"
-
-#~ msgid "Matches the person that is a parent of someone matched by a filter"
-#~ msgstr "Gjelder personen som er en forelder til noen som er funnet ved hjelp av et filter"
-
-#~ msgid "Is bookmarked person"
-#~ msgstr "Er en person i bokmerkelista"
-
-#~ msgid "Has the Id"
-#~ msgstr "Har Id-en"
-
-#~ msgid "Has a name"
-#~ msgstr "Har navnet"
-
-#~ msgid "Has the death"
-#~ msgstr "Har dødsfallet"
-
-#~ msgid "Has the birth"
-#~ msgstr "Er født"
-
-#~ msgid "Is a descendant of"
-#~ msgstr "Er en etterkommer av"
-
-#~ msgid "Is an ancestor of"
-#~ msgstr "Er stamfar til"
-
-#~ msgid "Has a common ancestor with"
-#~ msgstr "Har en felles stamfar med"
-
-#~ msgid "Is a female"
-#~ msgstr "Er en kvinne"
-
-#~ msgid "Is a male"
-#~ msgstr "Er en mann"
-
-#~ msgid "Has complete record"
-#~ msgstr "Har komplett informasjon"
-
-#~ msgid "Has source of"
-#~ msgstr "Har kilde av"
-
-#~ msgid "Matches the filter named"
-#~ msgstr "Gjelder det filteret som heter"
-
-#~ msgid "People who were adopted"
-#~ msgstr "Personer som er adopterte"
-
-#~ msgid "Has text matching substring of"
-#~ msgstr "Har tekst som inneholder delstrengen"
-
-#~ msgid "Name contains..."
-#~ msgstr "Navn inneholder ..."
-
-#~ msgid "Generates statistical bar graphs."
-#~ msgstr "Generer statistiske histogrammer."
-
-#~ msgid "Use at your own risk"
-#~ msgstr "Brukes på egen risiko"
-
-#~ msgid "This is an unstable development version of GRAMPS. It is intended as a technology preview. Do not trust your family database to this development version. This version may contain bugs which could corrupt your database."
-#~ msgstr "Dette er en ustabil utviklerversjon av GRAMPS. Den er ment som en teknologisk forhåndsvisning. Ikke stol på at dine familiedata er trygge med denne versjonen. Denne versjonen kan inneholde feil som kan ødlegge din database."
-
-#~ msgid "<span weight=\"bold\" size=\"larger\">Merge Sources</span>"
-#~ msgstr "<span weight=\"bold\" size=\"larger\">Flett kilder</span>"
-
-#~ msgid "Tool currently unavailable"
-#~ msgstr "Verktøy for øyeblikket utilgjengelig"
-
-#~ msgid "This tool has not yet been brought up to date after transition to the database, sorry."
-#~ msgstr "Dette verktøyet har ikke blitt oppdatert til å takle det nye database-formatet."
 

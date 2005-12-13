@@ -260,7 +260,8 @@ class BasePage:
         of.write('"-//W3C//DTD XHTML 1.0 Strict//EN" ')
         of.write('"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
         of.write('<html xmlns="http://www.w3.org/1999/xhtml" ')
-        of.write('xml:lang="en" lang="en">\n<head>\n')
+        xmllang = Utils.xml_lang()
+        of.write('xml:lang="%s" lang="%s">\n<head>\n' % (xmllang,xmllang))
         of.write('<title>%s - %s</title>\n' % (self.title_str, title))
         of.write('<meta http-equiv="Content-Type" content="text/html; ')
         of.write('charset=%s" />\n' % self.encoding)
@@ -399,7 +400,7 @@ class BasePage:
             of.write('<div id="narrative">\n')
             of.write('<h4>%s</h4>\n' % _('Narrative'))
             if format:
-                text = u"<pre>" + u"<br />".join(text.split("\n"))+u"</pre>"
+                text = u"<pre>%s</pre>" % text
             else:
                 text = u"</p><p>".join(text.split("\n"))
             of.write('<p>%s</p>\n' % text)
@@ -1308,7 +1309,7 @@ class ContactPage(BasePage):
                 text = nobj.get()
     
                 if format:
-                    text = u"<pre>" + u"<br />".join(text.split("\n"))+u"</pre>"
+                    text = u"<pre>%s</pre>" % text
                 else:
                     text = u"</p><p>".join(text.split("\n"))
                 of.write('<p>%s</p>\n' % text)
@@ -1371,9 +1372,9 @@ class IndividualPage(BasePage):
 
             self.display_additional_images_as_gallery(of, db, media_list)
             
-        self.display_note_object(of, self.person.get_note_object())
-        self.display_url_list(of, self.person.get_url_list())
-        self.display_ind_sources(of)
+            self.display_note_object(of, self.person.get_note_object())
+            self.display_url_list(of, self.person.get_url_list())
+            self.display_ind_sources(of)
         self.display_ind_pedigree(of)
         if self.usegraph:
             self.display_tree(of)
@@ -1877,8 +1878,9 @@ class IndividualPage(BasePage):
             format = nobj.get_format()
             text = nobj.get()
             if format:
-                of.write( u"<pre>" + u"<br />".join(text.split("\n"))+u"</pre>")
-            else:                of.write( u"</p><p>".join(text.split("\n")))
+                of.write( u"<pre>%s</pre>" % text )
+            else:
+                of.write( u"</p><p>".join(text.split("\n")))
             of.write('</td>\n</tr>\n')
             
     def pedigree_person(self,of,person,is_spouse=False):
@@ -2621,36 +2623,42 @@ class WebReportDialog(Report.ReportDialog):
 
     def parse_style_frame(self):
         """The style frame is not used in this dialog."""
-        pass
+        self.options.handler.options_dict['NWEBarchive'] = int(
+            self.archive.get_active())
 
     def parse_html_frame(self):
-        self.options.handler.options_dict['NWEBarchive'] = self.archive.get_active()
+        pass
     
     def parse_paper_frame(self):
         pass
     
     def setup_html_frame(self):
-        self.html_table = gtk.Table(3,3)
-        self.html_table.set_col_spacings(12)
-        self.html_table.set_row_spacings(6)
-        self.html_table.set_border_width(0)
-        html_label = gtk.Label("<b>%s</b>" % _("HTML Options"))
-        html_label.set_alignment(0.0,0.5)
-        html_label.set_use_markup(True)
-        self.html_table.attach(html_label, 0, 3, 0, 1, gtk.FILL)
-
         self.archive = gtk.CheckButton(_('Store web pages in .tar.gz archive'))
         self.archive.set_alignment(0.0,0.5)
+        self.archive.set_active(
+            self.options.handler.options_dict['NWEBarchive'])
         self.archive.connect('toggled',self.archive_toggle)
-        self.html_table.attach(self.archive, 1, 2, 1, 2, gtk.SHRINK|gtk.FILL)
+        self.add_option(None,self.archive)
 
     def archive_toggle(self,obj):
         if obj.get_active():
+            # The .tar.gz box is on
+            # Set doc label, mark file vs dir, add '.tar.gz' to the path
             self.target_fileentry.set_directory_entry(False)
             self.doc_label.set_label("%s:" % _("Filename"))
+            fname = self.target_fileentry.get_full_path(0)
+            if fname[-7:] != '.tar.gz':
+                fname = fname + '.tar.gz'
+                self.target_fileentry.set_filename(fname)
         else:
+            # The .tar.gz box is off
+            # Set doc label, mark dir vs file, remove '.tar.gz' from path
             self.target_fileentry.set_directory_entry(True)
             self.doc_label.set_label("%s:" % _("Directory"))
+            fname = self.target_fileentry.get_full_path(0)
+            if fname[-7:] == '.tar.gz':
+                fname = fname[:-7]
+                self.target_fileentry.set_filename(fname)
 
     def setup_paper_frame(self):
         pass

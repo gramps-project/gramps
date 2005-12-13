@@ -228,6 +228,7 @@ class DateDisplay:
                 value = self._tformat.replace('%m',str(date_val[1]))
                 value = value.replace('%d',str(date_val[0]))
                 value = value.replace('%Y',str(abs(date_val[2])))
+                value = value.replace('-','/')
         elif self.format == 2:
             # Month Day, Year
             if date_val[0] == 0:

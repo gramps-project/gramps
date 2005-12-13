@@ -1344,7 +1344,7 @@ msgstr "Vindt de persoon die een kind is van iemand gevonden via een filter"
 #: GenericFilter.py:624
 #, fuzzy
 msgid "Descendant family members of <person>"
-msgstr "Afstammende familieledn van %s"
+msgstr "Afstammende familieledn van <persoon>"
 
 #: GenericFilter.py:626
 msgid ""
@@ -1417,7 +1417,7 @@ msgstr "Vindt personen die voorouder zijn van iemand gevonden via een filter"
 #: GenericFilter.py:908
 #, fuzzy
 msgid "People with a common ancestor with <person>"
-msgstr "Personen met dezelfde voorouder als %s"
+msgstr "Personen met dezelfde voorouder als <persoon>"
 
 #: GenericFilter.py:910
 msgid "Matches people that have a common ancestor with a specified person"
@@ -10019,7 +10019,7 @@ msgstr "Familie-informatie"
 #: plugins/WriteFtree.py:283
 #, fuzzy
 msgid "Web Family Tree export options"
-msgstr "Familiegroep-rapport voor %s"
+msgstr "Familiegroep-rapport voor"
 
 #: plugins/WriteGeneWeb.py:227
 #, fuzzy

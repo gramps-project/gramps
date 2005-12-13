@@ -38,7 +38,7 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import gtk
 import gtk.glade 
-from gnome import help_display
+import GrampsDisplay
 
 #------------------------------------------------------------------------
 #
@@ -148,7 +148,7 @@ class Verify(Tool.Tool):
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','tools-util-other')
+        GrampsDisplay.help('tools-util-other')
 
     def get_year(self,event_handle):
         """
