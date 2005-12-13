@@ -4495,11 +4495,11 @@ msgstr " Più tardi sposo %(name)s"
 
 #: plugins/Ancestors.py:681
 msgid "  She married %(name)s"
-msgstr " Sposò %s"
+msgstr " Sposò %(name)s"
 
 #: plugins/Ancestors.py:684
 msgid "  He married %(name)s"
-msgstr " Sposò %s"
+msgstr " Sposò %(name)s"
 
 #: plugins/Ancestors.py:698
 msgid "  Note about their name: "

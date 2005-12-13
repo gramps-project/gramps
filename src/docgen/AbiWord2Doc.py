@@ -37,6 +37,7 @@ import Errors
 import PluginMgr
 import ImgManip
 import GrampsMime
+import Utils
 
 from gettext import gettext as _
 
@@ -85,7 +86,7 @@ class AbiWordDoc(BaseDoc.BaseDoc):
         self.f.write('fileformat="1.1" xmlns:math="http://www.w3.org/1998/Math/MathML" ')
         self.f.write('xmlns:awml="http://www.abisource.com/awml.dtd" xmlns="http://www.abisource.com/awml.dtd" ')
         self.f.write('xmlns:xlink="http://www.w3.org/1999/xlink" version="1.9.1" xml:space="preserve" ')
-        self.f.write('props="lang:en-US; dom-dir:ltr">\n')
+        self.f.write('props="lang:%s; dom-dir:ltr">\n' % Utils.xml_lang())
 
         # metadata section
         self.f.write('<metadata>\n')
@@ -323,8 +324,6 @@ class AbiWordDoc(BaseDoc.BaseDoc):
 # Register plugins
 #
 #--------------------------------------------------------------------------
-
-import Utils
 
 try:
     prog = GrampsMime.get_application("application/x-abiword")

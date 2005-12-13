@@ -1778,11 +1778,11 @@ msgstr "Aldonu idon al la familio"
 
 #: SelectChild.py:89 SelectChild.py:338
 msgid "Relationship to %(father)s"
-msgstr "Parenceco kun % (father)s"
+msgstr "Parenceco kun %(father)s"
 
 #: SelectChild.py:96 SelectChild.py:349
 msgid "Relationship to %(mother)s"
-msgstr "Parenceco kun (mother)s"
+msgstr "Parenceco kun %(mother)s"
 
 #: SelectChild.py:102 plugins/RelCalc.py:82
 msgid "Relationship to %s"
@@ -5200,7 +5200,7 @@ msgstr "naskita la %(date)s en %(place)s%(endnotes)s"
 
 #: plugins/FtmStyleAncestors.py:140
 msgid "born %(date)s%(endnotes)s"
-msgstr "naskita la %(date)s % (endnotes)s"
+msgstr "naskita la %(date)s %(endnotes)s"
 
 #: plugins/FtmStyleAncestors.py:146
 msgid "born in %(place)s%(endnotes)s"

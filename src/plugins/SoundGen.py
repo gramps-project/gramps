@@ -37,7 +37,7 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import gtk
 import gtk.glade
-from gnome import help_display
+import GrampsDisplay
 
 #------------------------------------------------------------------------
 #
@@ -112,7 +112,7 @@ class SoundGen(Tool.Tool):
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','tools-util-other')
+        GrampsDisplay.help('tools-util-other')
 
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()

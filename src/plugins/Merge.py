@@ -37,7 +37,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk 
 import gtk.glade
-from gnome import help_display
+import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -144,7 +144,7 @@ class Merge(Tool.Tool):
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','tools-db')
+        GrampsDisplay.help('tools-db')
 
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()
@@ -374,7 +374,7 @@ class Merge(Tool.Tool):
             return s1 == s2
 
     def date_match(self,date1,date2):
-        if date1.is_empty() == "" or date2.is_empty() == "":
+        if date1.is_empty() or date2.is_empty():
             return 0
         if date1.is_equal(date2):
             return 1
@@ -514,7 +514,7 @@ class Merge(Tool.Tool):
         else:
             death2 = RelLib.Event()
 
-        value = self.date_match(birth1.get_date_object(),birth2.get_date_object()) 
+        value = self.date_match(birth1.get_date_object(),birth2.get_date_object())
         if value == -1 :
             return -1
         chance = chance + value

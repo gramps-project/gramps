@@ -14,7 +14,7 @@ msgstr ""
 "Language-Team: German <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: AddMedia.py:93 ImageSelect.py:134
 msgid "Select a media object"
@@ -117,7 +117,7 @@ msgid ""
 msgstr ""
 "Die als Ehepartner(-in) ausgewählte Person ist ein Kind der aktuellen "
 "Person. Gewöhnlich ist dies ein Fehler. Sie können mit dem Speichern "
-"fortfahren oder zum Person bearbeiten-Dialogzurückkehren um das Problem zu "
+"fortfahren oder zum Person bearbeiten-Dialog zurückkehren um das Problem zu "
 "lösen."
 
 #: AddSpouse.py:303 FamilyView.py:730
@@ -588,7 +588,7 @@ msgid ""
 msgstr ""
 "Das Geschlecht der Person ist im Moment unbekannt. Gewöhnlich ist dies ein "
 "Fehler. Sie können mit dem Speichern fortfahren oder zum Person bearbeiten-"
-"Dialogzurückkehren um das Problem zu lösen."
+"Dialog zurückkehren um das Problem zu lösen."
 
 #: EditPerson.py:1681
 msgid "Continue saving"
@@ -1156,8 +1156,8 @@ msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
 msgstr ""
-"Entspricht Personen, die gemeinsame Vorfahren mit Jemandem haben, der "
-"imFilter ebenfalls vorhanden ist"
+"Entspricht Personen, die keine familiären Beziehungen zu irgend "
+"jemandemanders in der Datenbank haben"
 
 #: GenericFilter.py:168 GenericFilter.py:264 GenericFilter.py:372
 #: GenericFilter.py:463 GenericFilter.py:506 GenericFilter.py:627
@@ -1194,27 +1194,28 @@ msgstr "Entspricht Personen mit einer bestimmten GRAMPS-ID"
 
 #: GenericFilter.py:280
 msgid "Default person"
-msgstr "Anfangsperson"
+msgstr "Hauptperson"
 
 #: GenericFilter.py:282
 msgid "Matches the default person"
-msgstr "Entspricht der Vorgabeperson"
+msgstr "Entspricht der Hauptperson"
 
 #: GenericFilter.py:303
 msgid "Bookmarked people"
-msgstr "Personen zu einem Lesezeichen hinzufügen"
+msgstr "Personen aus Lesezeichen"
 
 #: GenericFilter.py:305
 msgid "Matches the people on the bookmark list"
-msgstr "Entspricht den Personen auf der Lesezeichenliste"
+msgstr "Entspricht den Personen aus der Lesezeichenliste"
 
 #: GenericFilter.py:326
 msgid "People with complete records"
-msgstr "Personen mit vollständigen Namen"
+msgstr "Als vollständig gekennzeichnete Personen"
 
 #: GenericFilter.py:328
 msgid "Matches all people whose records are complete"
-msgstr "Entspricht allen Personen, deren Daten vollständig sind"
+msgstr ""
+"Entspricht allen Personen, deren Daten als vollständig gekennzeichnet sind"
 
 #: GenericFilter.py:341 gramps_main.py:967 plugins/Summary.py:112
 msgid "Females"
@@ -1226,7 +1227,7 @@ msgstr "Entspricht allen Frauen"
 
 #: GenericFilter.py:356 gramps_main.py:977
 msgid "People with unknown gender"
-msgstr "Personen ohne Ehen"
+msgstr "Personen mit unbekanntem Geschlecht"
 
 #: GenericFilter.py:358
 msgid "Matches all people with unknown gender"
@@ -1298,7 +1299,7 @@ msgstr ""
 
 #: GenericFilter.py:549
 msgid "Children of <filter> match"
-msgstr "Ist ein Kind von einen <Filter>treffer"
+msgstr "Kinder von einen <Filter>treffer"
 
 #: GenericFilter.py:550 GenericFilter.py:588 GenericFilter.py:876
 #: GenericFilter.py:1109 GenericFilter.py:1410 GenericFilter.py:1436
@@ -1312,13 +1313,13 @@ msgstr "Entspricht den Kindern von jemanden, der im Filter enthalten ist"
 
 #: GenericFilter.py:587
 msgid "Siblings of <filter> match"
-msgstr "Ist Bruder oder Schwester eines <Filter>treffers"
+msgstr "Geschwister eines <Filter>treffers"
 
 #: GenericFilter.py:589
 msgid "Matches siblings of anybody matched by a filter"
 msgstr ""
-"Entspricht den Personen, die Bruder oder Schwester sind von jemanden, dieim "
-"Filter enthalten sind"
+"Entspricht den Personen, die Geschwister sind von jemanden sind, der in "
+"einem Filter enthalten ist"
 
 #: GenericFilter.py:628
 msgid "Descendant family members of <person>"
@@ -1358,7 +1359,7 @@ msgstr ""
 
 #: GenericFilter.py:773
 msgid "Ancestors of <person> not more than <N> generations away"
-msgstr "Ist ein Vorfahre einer <Person> weniger als <N> Generationen entfernt"
+msgstr "Vorfahren einer <Person>, nicht mehr als <N> Generationen entfernt"
 
 #: GenericFilter.py:775
 msgid ""
@@ -1370,8 +1371,7 @@ msgstr ""
 
 #: GenericFilter.py:825
 msgid "Ancestors of <person> at least <N> generations away"
-msgstr ""
-"Ist ein Vorfahre einer <Person> und wenigstens <N> Generationen entfernt"
+msgstr "Vorfahren einer <Person>, wenigstens <N> Generationen entfernt"
 
 #: GenericFilter.py:827
 msgid ""
@@ -1383,13 +1383,11 @@ msgstr ""
 
 #: GenericFilter.py:875
 msgid "Parents of <filter> match"
-msgstr "Ist Vater oder Mutter eines <Filter>treffers"
+msgstr "Eltern eines <Filter>treffers"
 
 #: GenericFilter.py:877
 msgid "Matches parents of anybody matched by a filter"
-msgstr ""
-"Entspricht Personen, die Vorfahren von jemandem sind, der/die im Filter "
-"enthalten ist/sind"
+msgstr "Entspricht den Eltern von den im Filter enthalten Personen"
 
 #: GenericFilter.py:912
 msgid "People with a common ancestor with <person>"
@@ -1482,7 +1480,7 @@ msgstr "Kinderzahl:"
 
 #: GenericFilter.py:1107
 msgid "People with the <relationships>"
-msgstr "Personen mit der <Beziehungen>"
+msgstr "Personen mit der <Beziehung>"
 
 #: GenericFilter.py:1108
 msgid "Matches people with a particular relationship"
@@ -1490,19 +1488,19 @@ msgstr "Entspricht der Person mit der bestimmten Beziehung"
 
 #: GenericFilter.py:1156
 msgid "People with the <birth data>"
-msgstr "Personen ohne <Geburtsdatum>"
+msgstr "Personen mit <Geburtsdaten>"
 
 #: GenericFilter.py:1157
 msgid "Matches people with birth data of a particular value"
-msgstr "Entspricht der Person mit einem bestimmten Geburtsdatum"
+msgstr "Entspricht der Person mit bestimmten Geburtsdaten"
 
 #: GenericFilter.py:1199
 msgid "People with the <death data>"
-msgstr "Personen ohne <Sterbedatum>"
+msgstr "Personen mit <Sterbedaten>"
 
 #: GenericFilter.py:1200
 msgid "Matches people with death data of a particular value"
-msgstr "Entspricht den Personen mit einem bestimmten Todestag"
+msgstr "Entspricht den Personen mit bestimmten Todesdaten"
 
 #: GenericFilter.py:1241 GenericFilter.py:1265 gramps.glade:9686
 #: gramps.glade:23969 gramps.glade:25037
@@ -1547,7 +1545,7 @@ msgstr "Suffix:"
 
 #: GenericFilter.py:1294
 msgid "person|Title:"
-msgstr "Person|Titel:"
+msgstr "Titel:"
 
 #: GenericFilter.py:1295
 msgid "People with the <name>"
@@ -1579,8 +1577,7 @@ msgstr "Personen, die dem <Filter> entsprechen"
 
 #: GenericFilter.py:1366
 msgid "Matches people macthed by the specified filter name"
-msgstr ""
-"Entspricht Personen mit einem bestimmten Namen oder Namensteil im Filter"
+msgstr "Entspricht Personen, die dem gegebenen Filter entsprechenden"
 
 #: GenericFilter.py:1408
 msgid "Spouses of <filter> match"
@@ -1634,11 +1631,11 @@ msgstr "Enthält Personen, die mehr als einen (Ehe-)Partner haben"
 
 #: GenericFilter.py:1505 gramps_main.py:1022
 msgid "People without a known birth date"
-msgstr "Personen ohne einem bekannten Geburtsdatum"
+msgstr "Personen ohne bekanntes Geburtsdatum"
 
 #: GenericFilter.py:1506
 msgid "Matches people without a known birthdate"
-msgstr "Enthält Personen ohne Geburtsdatum"
+msgstr "Enthält Personen ohne bekanntes Geburtsdatum"
 
 #: GenericFilter.py:1524 gramps_main.py:1027
 msgid "People with incomplete events"
@@ -1671,7 +1668,7 @@ msgstr "Enthält Personen ohne Todeseintrag, die nicht zu alt sind"
 
 #: GenericFilter.py:1586 gramps_main.py:1042
 msgid "People marked private"
-msgstr "Personen, die als privat markiert sind"
+msgstr "Als privat markierte Personen"
 
 #: GenericFilter.py:1587
 msgid "Matches people that are indicated as private"
@@ -1695,9 +1692,7 @@ msgstr "Regulärer Ausdruck:"
 
 #: GenericFilter.py:1652
 msgid "People with records containing <substring>"
-msgstr ""
-"Enthält Personen, dern Aufzeichnungen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+msgstr "Personen, dern Aufzeichnungen die <Zeichenfolge> enthalten"
 
 #: GenericFilter.py:1653
 msgid "Matches people whose records contain text matching a substring"
@@ -1707,7 +1702,7 @@ msgstr ""
 
 #: GenericFilter.py:1819 plugins/FilterEditor.py:688
 msgid "Source ID:"
-msgstr "Quell-ID:"
+msgstr "Quellen-ID:"
 
 #: GenericFilter.py:1820
 msgid "People with the <source>"
@@ -1727,38 +1722,36 @@ msgstr "Enthält Personen, die Notizen haben"
 
 #: GenericFilter.py:1855
 msgid "People having notes containing <subtring>"
-msgstr ""
-"Enthält Personen, deren Aufzeichnungen Text, entsprechend einer "
-"Zeichenfolge, enthalten"
+msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
 
 #: GenericFilter.py:1856
 msgid "Matches people whose notes contain text matching a substring"
 msgstr ""
-"Enthält Personen, deren Aufzeichnungen Text, entsprechend einer "
-"Zeichenfolge, enthalten"
+"Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
+"enthalten"
 
 #: GenericFilter.py:2038
 msgid "Ancestors of bookmarked people not more than <N> generations away"
-msgstr "Ist ein Vorfahre einer <Person> weniger als <N> Generationen entfernt"
+msgstr "Vorfahre eines Lesezeichens, nicht mehr als <N> Generationen entfernt"
 
 #: GenericFilter.py:2041
 msgid ""
 "Matches ancestors of the people on the bookmark listnot more than N "
 "generations away"
 msgstr ""
-"Entspricht Personen, die Vorfahren einer festgelegten Person sind, aber "
-"höchstens N Generationen entfernt"
+"Entspricht Personen, die Vorfahren einer Person aus den Lesezeichen sind, "
+"aber nicht mehr als N Generationen entfernt"
 
 #: GenericFilter.py:2096
 msgid "Ancestors of the default person not more than <N> generations away"
-msgstr "Ist ein Vorfahre der Hauptperson und weniger als <N> Generationen entfernt"
+msgstr "Vorfahren der Hauptperson, weniger als <N> Generationen entfernt"
 
 #: GenericFilter.py:2099
 msgid ""
 "Matches ancestors of the default person not more than N generations away"
 msgstr ""
-"Entspricht Vorfahren der  Hauptperson sind, aber "
-"höchstens N Generationen entfernt"
+"Entspricht Personen, die Vorfahren der Hauptperson sind, aber höchstens N "
+"Generationen entfernt"
 
 #: GrampsCfg.py:65
 msgid "Father's surname"
@@ -3414,7 +3407,7 @@ msgstr ""
 
 #: ReportUtils.py:317
 msgid "He died in %(month_year)s in %(death_place)s."
-msgstr "%(male_name)s starb im %(month_year)s in %(death_place)s. "
+msgstr "Er starb im %(month_year)s in %(death_place)s."
 
 #: ReportUtils.py:318
 msgid ""
@@ -3920,34 +3913,34 @@ msgstr "Die Person wurde im %(month_year)s begraben."
 
 #: ReportUtils.py:542
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s wurde am %(burial_date)s in %(burial_place)s begraben."
+msgstr "%(male_name)s wurde am %(modified_date)s in %(burial_place)s begraben."
 
 #: ReportUtils.py:543
 msgid "He was buried %(modified_date)s in %(burial_place)s."
-msgstr "Er wurde am %(burial_date)s in %(burial_place)s begraben."
+msgstr "Er wurde am %(modified_date)s in %(burial_place)s begraben."
 
 #: ReportUtils.py:546
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(female_name)s wurde am %(burial_date)s in %(burial_place)s begraben."
+msgstr "%(female_name)s wurde am %(modified_date)s in %(burial_place)s begraben."
 
 #: ReportUtils.py:547
 msgid "She was buried %(modified_date)s in %(burial_place)s."
-msgstr "Sie wurde am %(burial_date)s in %(burial_place)s begraben."
+msgstr "Sie wurde am %(modified_date)s in %(burial_place)s begraben."
 
 #: ReportUtils.py:550
 msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
 msgstr ""
-"%(unknown_gender_name)s wurde am %(burial_date)s in %(burial_place)s "
+"%(unknown_gender_name)s wurde am %(modified_date)s in %(burial_place)s "
 "begraben."
 
 #: ReportUtils.py:551
 msgid "This person was buried %(modified_date)s in %(burial_place)s."
-msgstr "Die Person wurde am %(burial_date)s in %(burial_place)s begraben."
+msgstr "Die Person wurde am %(modified_date)s in %(burial_place)s begraben."
 
 #: ReportUtils.py:557
 msgid "%(male_name)s was buried %(modified_date)s."
-msgstr "%(male_name)s wurde am %(burial_date)s begraben."
+msgstr "%(male_name)s wurde am %(modified_date)s begraben."
 
 #: ReportUtils.py:558
 msgid "He was buried %(modified_date)s."
@@ -3955,7 +3948,7 @@ msgstr "Er wurde %(modified_date)s begraben."
 
 #: ReportUtils.py:561
 msgid "%(female_name)s was buried %(modified_date)s."
-msgstr "%(female_name)s wurde am %(burial_date)s  begraben."
+msgstr "%(female_name)s wurde am %(modified_date)s  begraben."
 
 #: ReportUtils.py:562
 msgid "She was buried %(modified_date)s."
@@ -4239,11 +4232,11 @@ msgstr "Er ist der Sohn von %(father)s und %(mother)s."
 
 #: ReportUtils.py:715 ReportUtils.py:725
 msgid "%(male_name)s is the child of %(father)s and %(mother)s."
-msgstr "Er ist der Sohn von %(father)s und %(mother)s."
+msgstr "%(male_name)s ist der Sohn von %(father)s und %(mother)s."
 
 #: ReportUtils.py:716 ReportUtils.py:726
 msgid "%(male_name)s was the child of %(father)s and %(mother)s."
-msgstr "Er ist der Sohn von %(father)s und %(mother)s."
+msgstr "%(male_name)s ist der Sohn von %(father)s und %(mother)s."
 
 #: ReportUtils.py:721
 msgid "He is the son of %(father)s and %(mother)s."
@@ -4263,11 +4256,11 @@ msgstr "Sie ist die Tochter von %(father)s und %(mother)s."
 
 #: ReportUtils.py:735
 msgid "%(female_name)s is the child of %(father)s and %(mother)s."
-msgstr "Er ist der Sohn von %(father)s und %(mother)s."
+msgstr "%(female_name)s ist die Tochter von %(father)s und %(mother)s."
 
 #: ReportUtils.py:736
 msgid "%(female_name)s was the child of %(father)s and %(mother)s."
-msgstr "Er ist der Sohn von %(father)s und %(mother)s."
+msgstr "%(female_name)s ist die Tochter von %(father)s und %(mother)s."
 
 #: ReportUtils.py:744
 msgid "This person is the child of %(father)s."
@@ -4868,7 +4861,6 @@ msgstr ""
 "\n"
 "Eventuell ist die Installation von GRAMPS nicht vollständig. Stellen Sie "
 "sicher, dass das GConf-Schema von GRAMPS richtig installiert ist."
-"Familieninformation"
 
 #: StartupDialog.py:176
 msgid "Getting Started"
@@ -6316,8 +6308,8 @@ msgid ""
 "Person</b>. The home person is the person who is selected when the database "
 "is opened or when the home button is pressed."
 msgstr ""
-"Jeder kann in GRAMPS als \"Anfangsperson\" ausgewählt werden. Benützen Sie "
-"<b>Bearbeiten -> Anfangsperson setzen</b>. Die Anfangsperson ist jener "
+"Jeder kann in GRAMPS als \"Hauptperson\" ausgewählt werden. Benützen Sie "
+"<b>Bearbeiten -> Hauptperson setzen</b>. Die Hauptperson ist jener "
 "Person, die beim Öffnen der Datenbank oder durch das Drücken des \"Anfang\" "
 "Knopfes angezeigt wird."
 
@@ -6720,7 +6712,7 @@ msgstr "_Spalteneditor..."
 
 #: gramps.glade:401
 msgid "Set _Home person..."
-msgstr "_Anfangsperson setzen..."
+msgstr "_Hauptperson setzen..."
 
 #: gramps.glade:426
 msgid "_View"
@@ -8466,17 +8458,15 @@ msgstr "Einzelstehende Personen"
 
 #: gramps_main.py:987
 msgid "People with names containing..."
-msgstr "Personen mit unvollständigen Namen..."
+msgstr "Personen mit Namen..."
 
 #: gramps_main.py:1052
 msgid "People with records containing..."
-msgstr "Personen, die schriftliche Aufzeichnungen enthalten..."
+msgstr "Personendaten enthalten Zeichenfolge..."
 
 #: gramps_main.py:1057
 msgid "People with records matching regular expression..."
-msgstr ""
-"Schriftliche Aufzeichnung von Personen entsprechend eines regulären "
-"Ausdrucks..."
+msgstr "Personendaten entsprechend regulärem Ausdruck..."
 
 #: gramps_main.py:1062
 msgid "People with notes"
@@ -8484,7 +8474,7 @@ msgstr "Personen mit Notizen"
 
 #: gramps_main.py:1067
 msgid "People with notes containing..."
-msgstr "Personen, die Notizen enthalten..."
+msgstr "Personen, deren Notizen enthalten..."
 
 #: gramps_main.py:1095 gramps_main.py:1107 gramps_main.py:1125
 #: gramps_main.py:1137
@@ -8601,7 +8591,7 @@ msgstr "Keine Hauptperson gesetzt."
 
 #: gramps_main.py:1901
 msgid "The Home Person may be set from the Edit menu."
-msgstr "Die Anfangsperson kann im Menü Bearbeiten gesetzt werden."
+msgstr "Die Hauptperson kann im Menü Bearbeiten gesetzt werden."
 
 #: gramps_main.py:1907
 msgid "%s has been bookmarked"

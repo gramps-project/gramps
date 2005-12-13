@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gramps 2.0.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Sun Nov 27 16:06:29 2005\n"
-"PO-Revision-Date: 2005-12-04 15:16-0800\n"
+"PO-Revision-Date: 2005-12-09 18:24-0800\n"
 "Last-Translator: Alexander Roitman <shura@gramps-project.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3565,7 +3565,7 @@ msgstr ""
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
 msgstr ""
-" в %(month_year)s в возрасте %(age)d дней."
+"%(unknown_gender_name)s умер(ла) в %(month_year)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:377
 msgid "%(male_name)s died in %(month_year)s."
@@ -3980,200 +3980,164 @@ msgstr ""
 "Этот человек вступил в брак с %(spouse)s в %(partial_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:609
-#, fuzzy
 msgid ""
 "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Она вышла замуж за %(spouse)s в %(date)s в %(place)s%(endnotes)s."
+msgstr ""
+"Этот человек вступил в брак с %(spouse)s %(full_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:610
-#, fuzzy
 msgid ""
 "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Она вышла замуж за %(spouse)s в %(date)s в %(place)s%(endnotes)s."
+msgstr ""
+"Этот человек вступил в брак с %(spouse)s %(modified_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:613
-#, fuzzy
 msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Он женился на %(spouse)s %(date)s в %(place)s%(endnotes)s."
+msgstr "Он женился на %(spouse)s в %(partial_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:614
-#, fuzzy
 msgid "He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Он женился на %(spouse)s %(date)s в %(place)s%(endnotes)s."
+msgstr "Он женился на %(spouse)s %(full_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:615
-#, fuzzy
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Он женился на %(spouse)s %(date)s в %(place)s%(endnotes)s."
+msgstr "Он женился на %(spouse)s %(modified_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:618
-#, fuzzy
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Она вышла замуж за %(spouse)s в %(date)s в %(place)s%(endnotes)s."
+msgstr "Она вышла замуж за %(spouse)s в %(partial_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:619
-#, fuzzy
 msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Она вышла замуж за %(spouse)s в %(date)s в %(place)s%(endnotes)s."
+msgstr "Она вышла замуж за %(spouse)s %(full_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:620
-#, fuzzy
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Она вышла замуж за %(spouse)s в %(date)s в %(place)s%(endnotes)s."
+msgstr "Она вышла замуж за %(spouse)s %(modified_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:626
-#, fuzzy
 msgid ""
 "This person also married %(spouse)s in %(partial_date)s in %(place)s%"
 "(endnotes)s."
 msgstr ""
-"Она также вышла замуж за %(spouse)s в %(date)s в %(place)s%(endnotes)s."
+"Этот человек также вступил в брак с %(spouse)s в %(partial_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:627
-#, fuzzy
 msgid ""
 "This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)"
 "s."
 msgstr ""
-"Она также вышла замуж за %(spouse)s в %(date)s в %(place)s%(endnotes)s."
+"Этот человек также вступил в брак с %(spouse)s %(full_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:628
-#, fuzzy
 msgid ""
 "This person also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)"
 "s."
 msgstr ""
-"Она также вышла замуж за %(spouse)s в %(date)s в %(place)s%(endnotes)s."
+"Этот человек также вступил в брак с %(spouse)s в %(modified_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:631
-#, fuzzy
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Он также женился на %(spouse)s %(date)s в %(place)s%(endnotes)s."
+msgstr "Он также женился на %(spouse)s в %(partial_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:632
-#, fuzzy
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Он также женился на %(spouse)s %(date)s в %(place)s%(endnotes)s."
+msgstr "Он также женился на %(spouse)s %(full_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:633
-#, fuzzy
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Он также женился на %(spouse)s %(date)s в %(place)s%(endnotes)s."
+msgstr "Он также женился на %(spouse)s %(modified_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:636
-#, fuzzy
 msgid ""
 "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Она также вышла замуж за %(spouse)s в %(date)s в %(place)s%(endnotes)s."
+"Она также вышла замуж за %(spouse)s в %(partial_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:637
-#, fuzzy
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Она также вышла замуж за %(spouse)s в %(date)s в %(place)s%(endnotes)s."
+msgstr "Она также вышла замуж за %(spouse)s %(full_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:638
-#, fuzzy
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Она также вышла замуж за %(spouse)s в %(date)s в %(place)s%(endnotes)s."
+msgstr "Она также вышла замуж за %(spouse)s %(modified_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:644
-#, fuzzy
 msgid "This person married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Она вышла замуж за %(spouse)s в %(place)s%(endnotes)s."
+msgstr "Этот человек вступил в брак с %(spouse)s в %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:645
-#, fuzzy
 msgid "This person married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Он женился на %(spouse)s в %(date)s%(endnotes)s."
+msgstr "Этот человек вступил в брак с %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:646
-#, fuzzy
 msgid "This person married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Он женился на %(spouse)s в %(date)s%(endnotes)s."
+msgstr "Этот человек вступил в брак с %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:649
-#, fuzzy
 msgid "He married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Он женился на %(spouse)s в %(place)s%(endnotes)s."
+msgstr "Он женился на %(spouse)s в %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:650
-#, fuzzy
 msgid "He married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Он женился на %(spouse)s в %(date)s%(endnotes)s."
+msgstr "Он женился на %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:651
-#, fuzzy
 msgid "He married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Он женился на %(spouse)s в %(date)s%(endnotes)s."
+msgstr "Он женился на %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:654
-#, fuzzy
 msgid "She married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Она вышла замуж за %(spouse)s в %(place)s%(endnotes)s."
+msgstr "Она вышла замуж за %(spouse)s в %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:655
-#, fuzzy
 msgid "She married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Она вышла замуж за %(spouse)s в %(place)s%(endnotes)s."
+msgstr "Она вышла замуж за %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:656
-#, fuzzy
 msgid "She married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Он женился на %(spouse)s в %(date)s%(endnotes)s."
+msgstr "Она вышла замуж за %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:662
-#, fuzzy
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Она также вышла замуж за %(spouse)s в %(place)s%(endnotes)s."
+msgstr "Этот человек также вступил в брак с %(spouse)s в %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:663
-#, fuzzy
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Он также женился на %(spouse)s в %(date)s%(endnotes)s."
+msgstr "Этот человек также вступил в брак с %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:664
-#, fuzzy
 msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Он также женился на %(spouse)s в %(date)s%(endnotes)s."
+msgstr "Этот человек также вступил в брак с %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:667
-#, fuzzy
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Он также женился на %(spouse)s в %(place)s%(endnotes)s."
+msgstr "Он также женился на %(spouse)s в %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:668
-#, fuzzy
 msgid "He also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Он также женился на %(spouse)s в %(date)s%(endnotes)s."
+msgstr "Он также женился на %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:669
-#, fuzzy
 msgid "He also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Он также женился на %(spouse)s в %(date)s%(endnotes)s."
+msgstr "Он также женился на %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:672
-#, fuzzy
 msgid "She also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Она также вышла замуж за %(spouse)s в %(place)s%(endnotes)s."
+msgstr "Она также вышла замуж за %(spouse)s в %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:673
-#, fuzzy
 msgid "She also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Она также вышла замуж за %(spouse)s в %(place)s%(endnotes)s."
+msgstr "Она также вышла замуж за %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:674
-#, fuzzy
 msgid "She also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Он также женился на %(spouse)s в %(date)s%(endnotes)s."
+msgstr "Она также вышла замуж за %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:679
-#, fuzzy
 msgid "This person married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Она вышла замуж за %(spouse)s в %(place)s%(endnotes)s."
+msgstr "Этот человек вступил в брак с %(spouse)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:680
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
@@ -4184,9 +4148,8 @@ msgid "She married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Она вышла замуж за %(spouse)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:685
-#, fuzzy
 msgid "This person also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Она также вышла замуж за %(spouse)s в %(place)s%(endnotes)s."
+msgstr "Этот человек также вступил в брак с %(spouse)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:686
 msgid "He also married %(spouse)s in %(place)s%(endnotes)s."
@@ -4197,9 +4160,8 @@ msgid "She also married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Она также вышла замуж за %(spouse)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:691
-#, fuzzy
 msgid "This person married %(spouse)s%(endnotes)s."
-msgstr "Она вышла замуж за %(spouse)s%(endnotes)s."
+msgstr "Этот человек вступил в брак с %(spouse)s%(endnotes)s."
 
 #: ReportUtils.py:692
 msgid "He married %(spouse)s%(endnotes)s."
@@ -4210,9 +4172,8 @@ msgid "She married %(spouse)s%(endnotes)s."
 msgstr "Она вышла замуж за %(spouse)s%(endnotes)s."
 
 #: ReportUtils.py:697
-#, fuzzy
 msgid "This person also married %(spouse)s%(endnotes)s."
-msgstr "Она также вышла замуж за %(spouse)s%(endnotes)s."
+msgstr "Этот человек также вступил в брак с %(spouse)s%(endnotes)s."
 
 #: ReportUtils.py:698
 msgid "He also married %(spouse)s%(endnotes)s."
@@ -4223,24 +4184,20 @@ msgid "She also married %(spouse)s%(endnotes)s."
 msgstr "Она также вышла замуж за %(spouse)s%(endnotes)s."
 
 #: ReportUtils.py:711
-#, fuzzy
 msgid "This person is the child of %(father)s and %(mother)s."
-msgstr "Он сын %(father)s и %(mother)s."
+msgstr "Этот человек -- ребёнок %(father)s и %(mother)s."
 
 #: ReportUtils.py:712
-#, fuzzy
 msgid "This person was the child of %(father)s and %(mother)s."
-msgstr "Он сын %(father)s и %(mother)s."
+msgstr "Этот человек был ребёнком %(father)s и %(mother)s."
 
 #: ReportUtils.py:715 ReportUtils.py:725
-#, fuzzy
 msgid "%(male_name)s is the child of %(father)s and %(mother)s."
-msgstr "Он сын %(father)s и %(mother)s."
+msgstr "%(male_name)s -- сын %(father)s и %(mother)s."
 
 #: ReportUtils.py:716 ReportUtils.py:726
-#, fuzzy
 msgid "%(male_name)s was the child of %(father)s and %(mother)s."
-msgstr "Он сын %(father)s и %(mother)s."
+msgstr "%(male_name)s был сыном %(father)s и %(mother)s."
 
 #: ReportUtils.py:721
 msgid "He is the son of %(father)s and %(mother)s."
@@ -4259,34 +4216,28 @@ msgid "She was the daughter of %(father)s and %(mother)s."
 msgstr "Она дочь %(father)s and %(mother)s."
 
 #: ReportUtils.py:735
-#, fuzzy
 msgid "%(female_name)s is the child of %(father)s and %(mother)s."
-msgstr "Он сын %(father)s и %(mother)s."
+msgstr "%(female_name)s -- дочь %(father)s и %(mother)s."
 
 #: ReportUtils.py:736
-#, fuzzy
 msgid "%(female_name)s was the child of %(father)s and %(mother)s."
-msgstr "Он сын %(father)s и %(mother)s."
+msgstr "%(female_name)s была дочерью %(father)s и %(mother)s."
 
 #: ReportUtils.py:744
-#, fuzzy
 msgid "This person is the child of %(father)s."
-msgstr "Он сын %(father)s."
+msgstr "Этот человек -- сын %(father)s."
 
 #: ReportUtils.py:745
-#, fuzzy
 msgid "This person was the child of %(father)s."
-msgstr "Он сын %(father)s."
+msgstr "Этот человек был сыном %(father)s."
 
 #: ReportUtils.py:748 ReportUtils.py:758
-#, fuzzy
 msgid "%(male_name)s is the child of %(father)s."
-msgstr "%(male_name)s умер %(death_date)s."
+msgstr "%(male_name)s -- сын %(father)s."
 
 #: ReportUtils.py:749 ReportUtils.py:759
-#, fuzzy
 msgid "%(male_name)s was the child of %(father)s."
-msgstr "%(male_name)s был похоронен в %(month_year)s."
+msgstr "%(male_name)s был сыном %(father)s."
 
 #: ReportUtils.py:754
 msgid "He is the son of %(father)s."
@@ -4305,34 +4256,28 @@ msgid "She was the daughter of %(father)s."
 msgstr "Она дочь %(father)s."
 
 #: ReportUtils.py:768
-#, fuzzy
 msgid "%(female_name)s is the child of %(father)s."
-msgstr "%(female_name)s умерла %(death_date)s."
+msgstr "%(female_name)s -- дочь %(father)s."
 
 #: ReportUtils.py:769
-#, fuzzy
 msgid "%(female_name)s was the child of %(father)s."
-msgstr "%(female_name)s была похоронена в %(month_year)s."
+msgstr "%(female_name)s была дочерью %(father)s."
 
 #: ReportUtils.py:777
-#, fuzzy
 msgid "This person is the child of %(mother)s."
-msgstr "Он сын %(mother)s."
+msgstr "Этот человек -- сын %(mother)s."
 
 #: ReportUtils.py:778
-#, fuzzy
 msgid "This person was the child of %(mother)s."
-msgstr "Он сын %(mother)s."
+msgstr "Этот человек был сыном %(mother)s."
 
 #: ReportUtils.py:781 ReportUtils.py:791
-#, fuzzy
 msgid "%(male_name)s is the child of %(mother)s."
-msgstr "%(male_name)s умер в %(month_year)s."
+msgstr "%(male_name)s -- сын %(mother)s."
 
 #: ReportUtils.py:782 ReportUtils.py:792
-#, fuzzy
 msgid "%(male_name)s was the child of %(mother)s."
-msgstr "%(male_name)s был похоронен в %(month_year)s."
+msgstr "%(male_name)s был сыном %(mother)s."
 
 #: ReportUtils.py:787
 msgid "He is the son of %(mother)s."
@@ -4351,24 +4296,20 @@ msgid "She was the daughter of %(mother)s."
 msgstr "Она дочь %(mother)s."
 
 #: ReportUtils.py:801
-#, fuzzy
 msgid "%(female_name)s is the child of %(mother)s."
-msgstr "%(female_name)s умерла в %(month_year)s."
+msgstr "%(female_name)s -- дочь %(mother)s."
 
 #: ReportUtils.py:802
-#, fuzzy
 msgid "%(female_name)s was the child of %(mother)s."
-msgstr "%(female_name)s была похоронена в %(month_year)s."
+msgstr "%(female_name)s была дочерью %(mother)s."
 
 #: ReportUtils.py:813
-#, fuzzy
 msgid "unmarried"
-msgstr "Не женаты"
+msgstr "не женаты"
 
 #: ReportUtils.py:814
-#, fuzzy
 msgid "civil union"
-msgstr "Гражданский союз"
+msgstr "гражданский союз"
 
 # !!!FIXME!!! В закладке людей должно быть как минимум Другие (а что в остальных местах?)
 #: ReportUtils.py:816 ReportUtils.py:2104 const.py:235 const.py:249
@@ -4633,24 +4574,20 @@ msgid "She married %(spouse)s."
 msgstr "Она вышла замуж за %(spouse)s."
 
 #: ReportUtils.py:1664
-#, fuzzy
 msgid "This person married %(spouse)s."
-msgstr "Она вышла замуж за %(spouse)s."
+msgstr "Этот человек вступил в брак с %(spouse)s."
 
 #: ReportUtils.py:1667 ReportUtils.py:1689
-#, fuzzy
 msgid "He had an unmarried relationship with %(spouse)s."
-msgstr "Он состоял в отношениях с %(spouse)s."
+msgstr "Он состоял во внебрачных отношениях с %(spouse)s."
 
 #: ReportUtils.py:1669 ReportUtils.py:1693
-#, fuzzy
 msgid "This person had an unmarried relationship with %(spouse)s."
-msgstr "Она также состояла в отношениях с %(spouse)s."
+msgstr "Этот человек состоял во внебрачных отношениях с %(spouse)s."
 
 #: ReportUtils.py:1671 ReportUtils.py:1691
-#, fuzzy
 msgid "She had an unmarried relationship with %(spouse)s."
-msgstr "Она состояла в отношениях с %(spouse)s."
+msgstr "Она состояла во внебрачных отношениях с %(spouse)s."
 
 #: ReportUtils.py:1674
 msgid "He had relationship with %(spouse)s."
@@ -4661,9 +4598,8 @@ msgid "She had relationship with %(spouse)s."
 msgstr "Она состояла в отношениях с %(spouse)s."
 
 #: ReportUtils.py:1678
-#, fuzzy
 msgid "This person had relationship with %(spouse)s."
-msgstr "Она состояла в отношениях с %(spouse)s."
+msgstr "Этот человек состоял в отношениях с %(spouse)s."
 
 #: ReportUtils.py:1682
 msgid "He also married %(spouse)s."
@@ -4674,9 +4610,8 @@ msgid "She also married %(spouse)s."
 msgstr "Она также вышла замуж за %(spouse)s."
 
 #: ReportUtils.py:1686
-#, fuzzy
 msgid "This person also married %(spouse)s."
-msgstr "Она также вышла замуж за %(spouse)s."
+msgstr "Этот человек также вступил в брак с %(spouse)s."
 
 #: ReportUtils.py:1696
 msgid "He also had relationship with %(spouse)s."
@@ -4687,91 +4622,70 @@ msgid "She also had relationship with %(spouse)s."
 msgstr "Она также состояла в отношениях с %(spouse)s."
 
 #: ReportUtils.py:1700
-#, fuzzy
 msgid "This person also had relationship with %(spouse)s."
-msgstr "Она также состояла в отношениях с %(spouse)s."
+msgstr "Этот человек также состоял в отношениях с %(spouse)s."
 
 #: ReportUtils.py:2042
-#, fuzzy
 msgid ""
 "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
 msgstr ""
-"%(male_name)s Родился: %(birth_date)s %(birth_place)s Умер: %(death_date)s %"
-"(death_place)s."
+"Родился(ась): %(birth_date)s %(birth_place)s, Умер(ла): %(death_date)s %(death_place)s."
 
 #: ReportUtils.py:2045
-#, fuzzy
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s."
-msgstr ""
-"%(male_name)s Родился: %(birth_date)s %(birth_place)s Умер: %(death_date)s."
+msgstr "Родился(ась): %(birth_date)s %(birth_place)s, Умер(ла): %(death_date)s."
 
 #: ReportUtils.py:2049
-#, fuzzy
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_place)s."
-msgstr ""
-"%(male_name)s Родился: %(birth_date)s %(birth_place)s Умер: %(death_place)s."
+msgstr "Родился(ась): %(birth_date)s %(birth_place)s, Умер(ла): %(death_place)s."
 
 #: ReportUtils.py:2052
-#, fuzzy
 msgid "Born: %(birth_date)s %(birth_place)s."
-msgstr "%(male_name)s Родился: %(birth_date)s %(birth_place)s."
+msgstr "Родился(ась): %(birth_date)s %(birth_place)s."
 
 #: ReportUtils.py:2056
-#, fuzzy
 msgid "Born: %(birth_date)s, Died: %(death_date)s %(death_place)s."
-msgstr ""
-"%(male_name)s Родился: %(birth_date)s  Умер: %(death_date)s %(death_place)s."
+msgstr "Родился(ась): %(birth_date)s, Умер(ла): %(death_date)s %(death_place)s."
 
 #: ReportUtils.py:2059
-#, fuzzy
 msgid "Born: %(birth_date)s, Died: %(death_date)s."
-msgstr "%(male_name)s Родился: %(birth_date)s Умер: %(death_date)s."
+msgstr "Родился(ась): %(birth_date)s, Умер(ла): %(death_date)s."
 
 #: ReportUtils.py:2062
-#, fuzzy
 msgid "Born: %(birth_date)s, Died: %(death_place)s."
-msgstr "%(male_name)s Родился: %(birth_date)s Умер: %(death_place)s."
+msgstr "Родился(ась): %(birth_date)s, Умер(ла): %(death_place)s."
 
 #: ReportUtils.py:2064
-#, fuzzy
 msgid "Born: %(birth_date)s."
-msgstr " р. %(birth_date)s"
+msgstr "Родился(ась): %(birth_date)s."
 
 #: ReportUtils.py:2069
-#, fuzzy
 msgid "Born: %(birth_place)s, Died: %(death_date)s %(death_place)s."
-msgstr ""
-"%(male_name)s Родился: %(birth_place)s Умер: %(death_date)s %(death_place)s."
+msgstr "Родился(ась): %(birth_place)s, Умер(ла): %(death_date)s %(death_place)s."
 
 #: ReportUtils.py:2072
-#, fuzzy
 msgid "Born: %(birth_place)s, Died: %(death_date)s."
-msgstr "%(male_name)s Родился: %(birth_place)s Умер: %(death_date)s."
+msgstr "Родился(ась): %(birth_place)s, Умер: %(death_date)s."
 
 #: ReportUtils.py:2076
-#, fuzzy
 msgid "Born: %(birth_place)s, Died: %(death_place)s."
-msgstr "%(male_name)s Родился: %(birth_place)s Умер: %(death_place)s."
+msgstr "Родился(ась): %(birth_place)s, Умер: %(death_place)s."
 
 #: ReportUtils.py:2079
-#, fuzzy
 msgid "Born: %(birth_place)s."
-msgstr "%(male_name)s Родился: %(birth_place)s."
+msgstr "Родился(ась): %(birth_place)s."
 
 #: ReportUtils.py:2083
-#, fuzzy
 msgid "Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s Умер: %(death_date)s %(death_place)s."
+msgstr "Умер(ла): %(death_date)s %(death_place)s."
 
 #: ReportUtils.py:2085
-#, fuzzy
 msgid "Died: %(death_date)s."
-msgstr " у. %(death_date)s"
+msgstr "Умер(ла): %(death_date)s."
 
 #: ReportUtils.py:2088
-#, fuzzy
 msgid "Died: %(death_place)s."
-msgstr "%(male_name)s Умер: %(death_place)s."
+msgstr "Умер(ла): %(death_place)s."
 
 #: ReportUtils.py:2100 const.py:512 gramps.glade:4576
 #: plugins/FamilyGroup.py:375 plugins/FamilyGroup.py:377
@@ -5862,6 +5776,11 @@ msgid ""
 "parent relationship\". Relationships can be any of Birth, Adopted, "
 "Stepchild, Sponsored, Foster, or Unknown."
 msgstr ""
+"<b>Правка отношений детей и родителей</b>: Не все дети являются "
+"родными для своих родителей. Отношения детей и родителей можно "
+"править путём выбора ребёнка, правого щелчка и выбора \"Правка "
+" отношений детей и родителей\". Отношения могут быть: Рождение, "
+"Приёмный, Пасынок/Падчерица или Неизвестно."
 
 #: data/tips.xml:211
 msgid ""
@@ -5878,6 +5797,10 @@ msgid ""
 "It includes details on keybindings and includes some useful tips that will "
 "help you in your genealogy work. Check it out."
 msgstr ""
+"<b>Руководство GRAMPS</b>: Руководство пользователя GRAMPS написано "
+"хорошо и подробно. Оно описывает детали работы с программой и содержит "
+"полезные советы, которые помогут в Ваших генеалогических исследованиях. "
+"Советуем ознакомится с ним."
 
 #: data/tips.xml:227
 msgid ""
@@ -6015,6 +5938,9 @@ msgid ""
 "Make your data portable --- your family tree data and media can be exported "
 "directly to the GNOME file manager (Nautilus), for burning onto a CD."
 msgstr ""
+"Сделайте свои данные портативными --- Ваше семейное дерево и "
+"документы можно экспортировать в файловый менеджер GNOME "
+"(Nautilus), для создания CD."
 
 #: data/tips.xml:360
 msgid ""
@@ -6035,6 +5961,8 @@ msgid ""
 "The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at "
 "Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
 msgstr ""
+"Лучший способ послать сообщение об ошибке GRAMPS -- это "
+"GRAMPS Bug Tracker, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
 
 #: data/tips.xml:375
 msgid "The GRAMPS homepage is at http://gramps-project.org/"
@@ -6054,6 +5982,9 @@ msgid ""
 "information as private. Data marked as private can be excluded from reports "
 "and data exports."
 msgstr ""
+"GRAMPS помогает Вам оберегать личную информацию путём пометки "
+"записей как личные. Личные данные могут быть исключены из отчётов "
+"и экспорта данных."
 
 #: data/tips.xml:397
 msgid ""
@@ -6069,6 +6000,8 @@ msgid ""
 "You can link any electronic media (including non-text information) and other "
 "file types to your GRAMPS family tree."
 msgstr ""
+"Вы можете дополнить Ваше семейное дерево любыми электронными "
+"документами и файлами, включая не-текстовую информацию."
 
 #: data/tips.xml:411
 msgid ""
@@ -6086,6 +6019,9 @@ msgid ""
 "More information on custom reports can be found at http://developers.gramps-"
 "project.org"
 msgstr ""
+"Дополнительные отчёты могут быть написаны продвинутыми пользователями "
+"благодаря системе расширений. Подробная информация о написании "
+"отчётов находится здесь: http://developers.gramps-project.org"
 
 #: data/tips.xml:423
 msgid ""
@@ -6093,6 +6029,10 @@ msgid ""
 "collect a variety of reports into a single document. This single report is "
 "easier to distribute than multiple reports, especially when printed."
 msgstr ""
+"Отчёт-Книга, <b>Отчёты > Книги > Отчёт-Книга</b>, позволяет "
+"собрать несколько отчётов в единый документ. Такой отчёт легче "
+"распространять, чем несколько разных отчётов, особенно в "
+"напечатанном виде."
 
 #: data/tips.xml:429
 msgid ""
@@ -6100,6 +6040,9 @@ msgid ""
 "Join the gramps-announce mailing list at http://lists.sourceforge.net/lists/"
 "listinfo/gramps-announce"
 msgstr ""
+"Хотите получать уведомление о новых выпусках GRAMPS? Подпишитесь "
+"на список рассылки gramps-announce на сайте http://lists.sourceforge.net/lists/"
+"listinfo/gramps-announce"
 
 #: data/tips.xml:437
 msgid ""
@@ -6116,6 +6059,11 @@ msgid ""
 "direction for more research. Don't waste time looking through thousands of "
 "records hoping for a trail when you have other unexplored leads."
 msgstr ""
+"Двигайтесь от известного к неизвестному. Всегда записывайте все "
+"известные факты перед тем, как сделать заключение. Зачастую, "
+"доступные факты дают обильную почву для новых исследований. "
+"Не тратьте время, просматривая тысячи записей в надежде найти "
+"след, если у Вас есть другие неисследованные зацепки."
 
 #: data/tips.xml:451
 msgid ""
@@ -6124,6 +6072,11 @@ msgid ""
 "descendants might have been shaped by the events they went through. "
 "Narratives go a long way in making your family history come alive."
 msgstr ""
+"Генеалогия касается не только дат и имён, она касается людей. "
+"Будьте подробны, включайте <b>причину</b> того, как развивались "
+"события и как потомки могли быть сформированы событиями, через "
+"которые они прошли. Повествования очень помогают сделать "
+"живой историю Вашей семьи."
 
 #: data/tips.xml:457
 msgid ""
@@ -6131,6 +6084,9 @@ msgid ""
 "and it is not being displayed, set the default language on your machine and "
 "restart GRAMPS."
 msgstr ""
+"GRAMPS переведена на 15 языков. Если GRAMPS поддерживает Ваш язык, "
+"но этот язык не показан при работе, установите язык по умолчанию на "
+"Вашем компьютере и запустите GRAMPS."
 
 #: data/tips.xml:463
 msgid ""
@@ -6138,6 +6094,9 @@ msgid ""
 "little development effort. If you are interested in participating please "
 "email gramps-devel@lists.sf.net"
 msgstr ""
+"GRAMPS спроектирована так, что новые переводы можно добавлять "
+"без дополнительных усилий. Если Вы заинтересованы в помощи с "
+"переводом, пожалуйста, напишите в gramps-devel@lists.sf.net"
 
 #: data/tips.xml:467
 msgid "Relationship calculators in GRAMPS are available in ten languages."

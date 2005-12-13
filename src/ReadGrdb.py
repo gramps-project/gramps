@@ -61,12 +61,17 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
         return
     if not other_database.version_supported():
         if cl:
-            print "Error: %s could not be opened.\n%s  Exiting." % (filename,\
-                        _("The database version is not supported by this version of GRAMPS.\n"\
-                          "Please upgrade to the corresponding version or use XML for porting data between different database versions."))
+            print "Error: %s could not be opened.\n%s  Exiting." \
+                  % (filename,
+                     _("The database version is not supported "
+                       "by this version of GRAMPS.\n"\
+                       "Please upgrade to the corresponding version "
+                       "or use XML for porting data between different "
+                       "database versions."))
         else:
             ErrorDialog(_("%s could not be opened") % filename,
-                        _("The Database version is not supported by this version of GRAMPS."))
+                        _("The Database version is not supported "
+                          "by this version of GRAMPS."))
         return
         
     # Check for duplicate handles. At the moment we simply exit here,
@@ -102,9 +107,17 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     if handles.intersection(other_handles):
         raise Errors.HandleError('Event handles in two databases overlap.')
 
+    # Proceed with preparing for import
+    if use_trans:
+        trans = database.transaction_begin()
+        trans.set_batch(True)
+    else:
+        trans = None
+
+    database.disable_signals()
+
     # copy all data from new_database to database,
     # rename gramps IDs of first-class objects when conflicts are found
-    trans = database.transaction_begin(_("Import database"))
 
     # People table
     for person_handle in other_database.person_map.keys():
@@ -172,4 +185,9 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
             event.set_gramps_id(gramps_id)
         database.add_event(event,trans)
 
+    # close the other database and clean things up
+    other_database.close()
+
     database.transaction_commit(trans,_("Import database"))
+    database.enable_signals()
+    database.request_rebuild()
