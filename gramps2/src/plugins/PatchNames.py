@@ -66,8 +66,10 @@ prefix_list = [
 
 _title_re = re.compile(r"^([A-Za-z][A-Za-z]+\.)\s+(.*)$")
 _nick_re = re.compile(r"(.+)\s*[(\"](.*)[)\"]")
-_fn_prefix_re = re.compile("(.*)\s+(%s)\s*$" % '|'.join(prefix_list),re.IGNORECASE)
-_sn_prefix_re = re.compile("^\s*(%s)\s+(.*)" % '|'.join(prefix_list),re.IGNORECASE)
+_fn_prefix_re = re.compile("(.*)\s+(%s)\s*$" % '|'.join(prefix_list),
+                           re.IGNORECASE)
+_sn_prefix_re = re.compile("^\s*(%s)\s+(.*)" % '|'.join(prefix_list),
+                           re.IGNORECASE)
                 
 #-------------------------------------------------------------------------
 #
@@ -111,19 +113,22 @@ class PatchNames(Tool.Tool):
             first = name.get_first_name()
             sname = name.get_surname()
 
-            match = _title_re.match(first)
             if name.get_title():
-                current_title = [name.get_title()]
+                old_title = [name.get_title()]
             else:
-                current_title = []
+                old_title = []
+            new_title = []
+
+            match = _title_re.match(first)
             while match:
                 groups = match.groups()
                 first = groups[1]
-                current_title.append(groups[0])
+                new_title.append(groups[0])
                 match = _title_re.match(first)
 
-            if current_title:
-                self.title_list.append((key," ".join(current_title),first))
+            if new_title:
+                self.title_list.append((key," ".join(old_title+new_title),
+                                        first))
                 continue
             
             match = _nick_re.match(first)
@@ -131,15 +136,24 @@ class PatchNames(Tool.Tool):
                 groups = match.groups()
                 self.nick_list.append((key,groups[0],groups[1]))
                 continue
+
+            old_prefix = name.get_surname_prefix()
+
             match = _fn_prefix_re.match(first)
             if match:
                 groups = match.groups()
-                self.prefix1_list.append((key,groups[0],groups[1]))
+                self.prefix1_list.append((key,groups[0],
+                                          " ".join([groups[1],old_prefix]))
+                                         )
                 continue
+            
             match = _sn_prefix_re.match(sname)
             if match:
                 groups = match.groups()
-                self.prefix2_list.append((key,groups[1],groups[0]))
+                self.prefix2_list.append((key,groups[1],
+                                          " ".join([old_prefix,groups[0]]))
+                                         )
+
             self.progress.step()
 
         if self.nick_list or self.title_list or self.prefix1_list or self.prefix2_list:
@@ -217,38 +231,38 @@ class PatchNames(Tool.Tool):
             self.nick_hash[id] = handle
             self.progress.step()
             
-        for (id,title,nick) in self.title_list:
+        for (id,title,name) in self.title_list:
             p = self.db.get_person_from_handle(id)
             gid = p.get_gramps_id()
             handle = self.model.append()
             self.model.set_value(handle,0,1)
             self.model.set_value(handle,1,gid)
             self.model.set_value(handle,2,_('Title'))
-            self.model.set_value(handle,3,nick)
+            self.model.set_value(handle,3,title)
             self.model.set_value(handle,4,p.get_primary_name().get_name())
             self.title_hash[id] = handle
             self.progress.step()
 
-        for (id,prefix,fname) in self.prefix1_list:
+        for (id,fname,prefix) in self.prefix1_list:
             p = self.db.get_person_from_handle(id)
             gid = p.get_gramps_id()
             handle = self.model.append()
             self.model.set_value(handle,0,1)
             self.model.set_value(handle,1,gid)
             self.model.set_value(handle,2,_('Prefix'))
-            self.model.set_value(handle,3,fname)
+            self.model.set_value(handle,3,prefix)
             self.model.set_value(handle,4,p.get_primary_name().get_name())
             self.prefix1_hash[id] = handle
             self.progress.step()
 
-        for (id,prefix,fname) in self.prefix2_list:
+        for (id,sname,prefix) in self.prefix2_list:
             p = self.db.get_person_from_handle(id)
             gid = p.get_gramps_id()
             handle = self.model.append()
             self.model.set_value(handle,0,1)
             self.model.set_value(handle,1,gid)
             self.model.set_value(handle,2,_('Prefix'))
-            self.model.set_value(handle,3,fname)
+            self.model.set_value(handle,3,prefix)
             self.model.set_value(handle,4,p.get_primary_name().get_name())
             self.prefix2_hash[id] = handle
             self.progress.step()

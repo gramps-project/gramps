@@ -1,3 +1,7 @@
+2005-12-14  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/PatchNames.py: Fix title/name mixup, only detect new
+	title, keep old title, keep old prefix.
+
 2005-12-12  Alex Roitman  <shura@gramps-project.org>
 	* configure.in: bump up the version number.
 
