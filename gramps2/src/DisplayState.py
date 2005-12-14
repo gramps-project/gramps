@@ -132,60 +132,121 @@ class History(GrampsDBCallback.GrampsDBCallback):
 #
 #-------------------------------------------------------------------------
 class GrampsWindowManager:
+    """
+    Manage hierarchy of open GRAMPS windows.
+
+    This class's purpose is to manage the hierarchy of open windows.
+    The idea is to maintain the tree of branches and leaves.
+    A leaf does not have children and corresponds to a single open window.
+    A branch has children and corresponds to a group of windows.
+
+    We will follow the convention of having first leaf in any given
+    branch represent a parent window of the group, and the rest of the
+    children leaves/branches represent windows spawned from the parent.
+
+    The tree structure is maintained as a list of items.
+    Items which are lists are branches.
+    Items which are not lists are leaves.
+
+    Lookup of an item is done via track sequence. The elements of
+    the track sequence specify the lookup order: [2,3,1] means
+    'take the second item of the tree, take its third child, and
+    then the first child of that child'.
+
+    Lookup can be also done by ID for windows that are identifiable.
+    """
 
     def __init__(self):
+        # initialize empty tree and lookup dictionary
         self.window_tree = []
         self.id2item = {}
 
-    def get_item_from_node(self,node):
+    def get_item_from_track(self,track):
+        # Recursively find an item given track sequence
         item = self.window_tree
-        for index in node:
+        for index in track:
             item = item[index]
         return item
 
-    def get_window_from_id(self,window_id):
-        return self.id2item.get(window_id,None)
+    def get_item_from_id(self,item_id):
+        # Find an item given its ID
+        # Return None if the ID is not found
+        return self.id2item.get(item_id,None)
     
-    def close_node(self,node):
-        import traceback
-        traceback.print_stack()
-        item = self.get_item_from_node(node)
-        self.close_item_recursively(item)
-        self.remove_node(node)
+    def close_item(self,track):
+        # This is called when item needs to be closed
+        # Closes all its children and then removes the item from the tree.
+        item = self.get_item_from_track(track)
+        last_item = self.close_item_recursively(item)
+        # now we have the only surviving item from possibly a huge
+        # nested group of items
+        if last_item.window_id:
+            del self.id2item[last_item.window_id]
+        last_item.window.destroy()
+        self.remove_item(track)
 
     def close_item_recursively(self,item):
+        # This function calls children's close_item() method
+        # to let the children go away cleanly. Then it returns
+        # the actual window item to later remove from dictionary
+        # and delete.
         if type(item) == list:
+            # If this item is a branch
+            # close the children except for the first one
             for sub_item in item[1:]:
-                self.close_item_recursively(sub_item)
+                self.close_item(sub_item)
+            # return the first child
+            the_item = item[0]
         else:
-            if item.window_id:
-                del self.id2item[item.window_id]
-            item.window.destroy()
-    
-    def add_item(self,node,item):
+            # This item is a leaf -- no children to close
+            # return itself
+            the_item = item
+        return the_item
+
+    def remove_item(self,track):
+        # We need the whole gymnastics below because our item
+        # may actually be a list consisting of a single real
+        # item and empty lists.
+        
+        # find the track corresponding to the parent item
+        parent_track = track[:-1]
+        # find index of our item in parent
+        child_in_parent = track[-1:][0]
+        # obtain parent item and remove our item from it
+        parent_item = self.get_item_from_track(parent_track)
+        parent_item.pop(child_in_parent)
+        # Rebuild menu
+        self.build_windows_menu()
+
+    def add_item(self,track,item):
+        # if the item is identifiable then we need to remember
+        # its id so that in the future we recall this window
+        # instead of spawning a new one
         if item.window_id:
             self.id2item[item.window_id] = item
 
-        parent_item = self.get_item_from_node(node)
-        assert type(parent_item) == list or node == [], \
-               "Gwm: add_item: Incorrect node."
+        # Make sure we have a track
+        parent_item = self.get_item_from_track(track)
+        assert type(parent_item) == list or track == [], \
+               "Gwm: add_item: Incorrect track."
+
+        # Prepare a new item, depending on whether it is branch or leaf
         if item.submenu_label:
-            # This is an item with potential children
+            # This is an item with potential children -- branch
             new_item = [item]
         else:
-            # This is an item without children
+            # This is an item without children -- leaf
             new_item = item
-        parent_item.append(new_item)
-        new_node = node + [len(parent_item) + 1]
-        self.build_windows_menu()
-        return new_node
 
-    def remove_node(self,node):
-        parent_node = node[:-1]
-        child_in_parent = node[-1:][0]
-        item = self.get_item_from_node(parent_node)
-        item.pop(child_in_parent)
+        # append new item to the parent
+        parent_item.append(new_item)
+
+        # rebuild the Windows menu based on the new tree
         self.build_windows_menu()
+
+        # prepare new track corresponding to the added item and return it
+        new_track = track + [len(parent_item)-1]
+        return new_track
 
     def call_back_factory(self,item):
         if type(item) != list:
@@ -217,7 +278,7 @@ class ManagedWindow:
     event, and presenting itself when selected or attempted to create again.
     """
 
-    def __init__(self,uistate,node,window_key,submenu_label,menu_label):
+    def __init__(self,uistate,track,window_key,submenu_label,menu_label):
         """
         Create child windows and add itself to menu, if not there already.
 
@@ -227,13 +288,13 @@ class ManagedWindow:
 
         import DisplayState
         class SomeWindowClass(DisplayState.ManagedWindow):
-            def __init__(self,uistate,dbstate,node):
+            def __init__(self,uistate,dbstate,track):
                 window_id = self        # Or e.g. window_id = person.handle
                 submenu_label = None    # This window cannot have children
                 menu_label = 'Menu label for this window'
                 DisplayState.ManagedWindow.__init__(self,
                                                     uistate,
-                                                    node,
+                                                    track,
                                                     window_id,
                                                     submenu_label,
                                                     menu_label)
@@ -244,8 +305,8 @@ class ManagedWindow:
                 ...
 
         """
-        if uistate.gwm.get_window_from_id(window_key):
-            uistate.gwm.get_window_from_id(window_key).present()
+        if uistate.gwm.get_item_from_id(window_key):
+            uistate.gwm.get_item_from_id(window_key).present()
             self.already_exist = True
         else:
             self.already_exist = False
@@ -253,7 +314,7 @@ class ManagedWindow:
             self.submenu_label = submenu_label
             self.menu_label = menu_label
             self.uistate = uistate
-            self.node = self.uistate.gwm.add_item(node,self)
+            self.track = self.uistate.gwm.add_item(track,self)
 
     def close(self):
         """
@@ -261,7 +322,7 @@ class ManagedWindow:
 
         Takes care of closing children and removing itself from menu.
         """
-        self.uistate.gwm.close_node(self.node)
+        self.uistate.gwm.close_item(self.track)
 
     def present(self):
         """
