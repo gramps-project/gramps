@@ -1,3 +1,6 @@
+2005-12-13  Alex Roitman  <shura@gramps-project.org>
+	* src/DisplayState.py: Correct and add comments.
+
 2005-12-13  Don Allingham  <don@gramps-project.org>
 	* src/EditPerson.py: fix after merge
 	* src/GrampsDbBase.py: fix after merge
