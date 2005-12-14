@@ -384,11 +384,13 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
                           transaction, change_time)
 
     def commit_personal_event(self,event,transaction,change_time=None):
-        self.individual_event_names.add(event.name)
+        if event.type[0] == Event.CUSTOM:
+            self.individual_event_names.add(event.type[1])
         self.commit_event(event,transaction,change_time)
 
     def commit_family_event(self,event,transaction,change_time=None):
-        self.family_event_names.add(event.name)
+        if event.type[0] == Event.CUSTOM:
+            self.family_event_names.add(event.type[1])
         self.commit_event(event,transaction,change_time)
 
     def commit_event(self,event,transaction,change_time=None):

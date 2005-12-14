@@ -1,3 +1,8 @@
+2005-12-13  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: fix after merge
+	* src/GrampsDbBase.py: fix after merge
+	* src/edit_person.glade: fix after merge
+
 2005-12-12  Alex Roitman  <shura@gramps-project.org>
 	* various: merge changes made in gramps20 up until R2_0_9 tag.
 
