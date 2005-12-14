@@ -138,7 +138,6 @@
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
-	      <property name="mnemonic_widget">givenName</property>
 	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	      <property name="width_chars">-1</property>
 	      <property name="single_line_mode">False</property>
@@ -508,7 +507,7 @@ Unknown</property>
 	      <property name="spacing">6</property>
 
 	      <child>
-		<widget class="GtkEntry" id="givenName">
+		<widget class="GtkEntry" id="given_name">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">The person's given name</property>
 		  <property name="can_focus">True</property>
