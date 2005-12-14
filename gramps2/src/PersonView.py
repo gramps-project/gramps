@@ -449,11 +449,11 @@ class PersonView(PageView.PersonNavView):
 
     def add(self,obj):
         person = RelLib.Person()
-        EditPerson.EditPerson(self.dbstate, self.uistate, person)
+        EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
 
     def edit(self,obj):
         if self.dbstate.active:
-            EditPerson.EditPerson(self.dbstate, self.uistate, self.dbstate.active)
+            EditPerson.EditPerson(self.dbstate, self.uistate, [], self.dbstate.active)
 
     def remove(self,obj):
         mlist = self.get_selected_objects()
@@ -736,7 +736,7 @@ class PersonView(PageView.PersonNavView):
             handle = self.first_selected()
             person = self.dbstate.db.get_person_from_handle(handle)
             if person:
-                EditPerson.EditPerson(self.dbstate, self.uistate,person)
+                EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
                 return True
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             menu = self.uistate.uimanager.get_widget('/Popup')

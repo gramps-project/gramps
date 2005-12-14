@@ -164,6 +164,7 @@ class GrampsWindowManager:
     def get_item_from_track(self,track):
         # Recursively find an item given track sequence
         item = self.window_tree
+        print "track", track
         for index in track:
             item = item[index]
         return item
@@ -173,35 +174,33 @@ class GrampsWindowManager:
         # Return None if the ID is not found
         return self.id2item.get(item_id,None)
     
-    def close_item(self,track):
+    def close_track(self,track):
         # This is called when item needs to be closed
         # Closes all its children and then removes the item from the tree.
+        print "1", track
         item = self.get_item_from_track(track)
-        last_item = self.close_item_recursively(item)
-        # now we have the only surviving item from possibly a huge
-        # nested group of items
-        if last_item.window_id:
-            del self.id2item[last_item.window_id]
-        last_item.window.destroy()
+        self.close_item(item)
+        # This only needs to be run once for the highest level point
+        # to remove.
         self.remove_item(track)
 
-    def close_item_recursively(self,item):
+    def close_item(self,item):
         # This function calls children's close_item() method
-        # to let the children go away cleanly. Then it returns
-        # the actual window item to later remove from dictionary
-        # and delete.
+        # to let the children go away cleanly.
         if type(item) == list:
             # If this item is a branch
             # close the children except for the first one
             for sub_item in item[1:]:
                 self.close_item(sub_item)
             # return the first child
-            the_item = item[0]
+            last_item = item[0]
         else:
             # This item is a leaf -- no children to close
             # return itself
-            the_item = item
-        return the_item
+            last_item = item
+        if last_item.window_id:
+            del self.id2item[last_item.window_id]
+        last_item.window.destroy()
 
     def remove_item(self,track):
         # We need the whole gymnastics below because our item
@@ -224,6 +223,8 @@ class GrampsWindowManager:
         # instead of spawning a new one
         if item.window_id:
             self.id2item[item.window_id] = item
+
+        print "Adding: Track:", track
 
         # Make sure we have a track
         parent_item = self.get_item_from_track(track)
@@ -322,7 +323,7 @@ class ManagedWindow:
 
         Takes care of closing children and removing itself from menu.
         """
-        self.uistate.gwm.close_item(self.track)
+        self.uistate.gwm.close_track(self.track)
 
     def present(self):
         """

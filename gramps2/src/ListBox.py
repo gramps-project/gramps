@@ -65,17 +65,20 @@ class ListBox:
 
     The primary argument is either Person or Family object.
     """
-    def __init__(self, parent, primary, obj, label, button_list, titles):
+    def __init__(self, state, uistate, track, 
+                 primary, obj, label, button_list, titles):
         self.primary = primary
         if self.primary.__class__.__name__ == 'Person':
             self.name = NameDisplay.displayer.display(primary)
         elif self.primary.__class__.__name__ == 'Family':
-            self.name = Utils.family_name(primary,parent.db)
+            self.name = Utils.family_name(primary,state.db)
         else:
             self.name = ""
         self.label = label
-        self.db = parent.db
-        self.parent = parent
+        self.db = state.db
+        self.state = state
+        self.uistate = uistate
+        self.track = track
         self.list_model = ListModel(
             obj, titles, self.select_row, self.update)
         self.blist = button_list
@@ -170,9 +173,11 @@ class ListBox:
 
 class ReorderListBox(ListBox):
 
-    def __init__(self,parent,primary,obj,label,button_list,evalues, dnd_type):
+    def __init__(self,state,uistate,track,
+                 primary,obj,label,button_list,evalues, dnd_type):
 
-        ListBox.__init__(self,parent,primary,obj,label,button_list,evalues)
+        ListBox.__init__(self,state,uistate,track,
+                         primary,obj,label,button_list,evalues)
 
         self.dnd_type = dnd_type
 
@@ -218,7 +223,8 @@ class ReorderListBox(ListBox):
 
 class AttrListBox(ReorderListBox):
 
-    def __init__(self, parent, primary, obj, label, button_list):
+    def __init__(self, state, uistate, track,
+                 primary, obj, label, button_list):
 
         if primary.__class__.__name__ == 'Person':
             self.attr_dict = Utils.personal_attributes
@@ -239,7 +245,8 @@ class AttrListBox(ReorderListBox):
             ]
 
         self.data = primary.get_attribute_list()[:]
-        ListBox.__init__(self, parent, primary, obj, label,
+        ListBox.__init__(self, state, uistate, track,
+                         primary, obj, label,
                          button_list, titles)
 
         self.attr_name_map,self.attr_val_map = self.build_maps(
@@ -258,17 +265,17 @@ class AttrListBox(ReorderListBox):
 
     def add(self,obj):
         """Brings up the AttributeEditor for a new attribute"""
-        AttrEdit.AttributeEditor(self.parent, None, self.name,
+        AttrEdit.AttributeEditor(state, uistate, None, self.name,
                                  self.attr_dict,
-                                 self.edit_callback,self.parent.window)
+                                 self.edit_callback)
 
     def update(self,obj):
         store,node = self.list_model.get_selected()
         if node:
             attr = self.list_model.get_object(node)
-            AttrEdit.AttributeEditor(self.parent, attr, self.name,
+            AttrEdit.AttributeEditor(state,uistate, attr, self.name,
                                      self.attr_dict,
-                                     self.edit_callback,self.parent.window)
+                                     self.edit_callback)
 
     def display_data(self,attr):
         has_note = attr.get_note()
@@ -287,20 +294,23 @@ class EventListBox(ReorderListBox):
     
     titles = ['Event', 'Description','Date','Place','Source','Note']
 
-    def __init__(self,parent,primary,obj,label,button_list):
+    def __init__(self,state,uistate,track,primary,obj,label,button_list):
 
         self.data = []
         self.primary = primary
-        self.parent = parent
+        self.state = state
+        self.uistate = uistate
         if self.primary.__class__.__name__ == 'Person':
             birth_ref = primary.get_birth_ref()
             death_ref = primary.get_death_ref()
             if birth_ref:
-                self.data.append((birth_ref,
-                             parent.db.get_event_from_handle(birth_ref.ref)))
+                self.data.append(
+                    (birth_ref,state.db.get_event_from_handle(birth_ref.ref)))
                 if death_ref:
-                    self.data.append((death_ref,
-                             parent.db.get_event_from_handle(death_ref.ref)))
+                    self.data.append(
+                        (death_ref,
+                         state.db.get_event_from_handle(death_ref.ref))
+                        )
             self.ev_dict = Utils.personal_events
             self.role_dict = Utils.event_roles
         elif self.primary.__class__.__name__ == 'Family':
@@ -309,7 +319,7 @@ class EventListBox(ReorderListBox):
 
         for event_ref in primary.get_event_ref_list():
             self.data.append((event_ref,
-                              parent.db.get_event_from_handle(event_ref.ref)))
+                              state.db.get_event_from_handle(event_ref.ref)))
 
         ev_custom_str = self.ev_dict[RelLib.Event.CUSTOM]
         eventnames = filter(lambda x: x != ev_custom_str,
@@ -321,8 +331,8 @@ class EventListBox(ReorderListBox):
                            self.role_dict.values())
 
         self.place_dict = {} 
-        for handle in self.parent.db.get_place_handles():
-            title = self.parent.db.get_place_from_handle(handle).get_title()
+        for handle in self.state.db.get_place_handles():
+            title = self.state.db.get_place_from_handle(handle).get_title()
             self.place_dict[title] = handle
         placenames = self.place_dict.keys()
         placenames.sort(locale.strcoll)
@@ -338,7 +348,8 @@ class EventListBox(ReorderListBox):
             (_('Note'),        NOSORT, 50,  TOGGLE, None,      None),
             ]
         
-        ReorderListBox.__init__(self, parent, primary, obj, label,
+        ReorderListBox.__init__(self, state, uistate, track,
+                                primary, obj, label,
                                 button_list, evalues, DdTargets.EVENT)
 
         self.ev_name_map,self.ev_val_map = self.build_maps(
@@ -371,13 +382,13 @@ class EventListBox(ReorderListBox):
             return
         handle = self.place_dict.get(value,None)
         if handle:
-            place = self.parent.db.get_place_from_handle(handle)
+            place = self.state.db.get_place_from_handle(handle)
         else:
             place = RelLib.Place()
             place.set_title(value)
-            trans = self.parent.db.transaction_begin()
-            self.parent.db.add_place(place,trans)
-            self.parent.db.transaction_commit(trans,_("Add Place"))
+            trans = self.state.db.transaction_begin()
+            self.state.db.add_place(place,trans)
+            self.state.db.transaction_commit(trans,_("Add Place"))
             handle = place.get_handle()
         
         self.data[index][1].set_place_handle(handle)
@@ -389,8 +400,8 @@ class EventListBox(ReorderListBox):
 
     def add(self,obj):
         """Brings up the EventEditor for a new event"""
-        EventEdit.EventRefEditor(None,None,self.primary,self.parent.db,
-                                 self.edit_callback,self.parent)
+        EventEdit.EventRefEditor(self.state,self.uistate,self.track,
+                                 None,None,self.primary,self.edit_callback)
 
     def select(self,obj):
         """
@@ -398,20 +409,21 @@ class EventListBox(ReorderListBox):
         """
         # select existing event
         import SelectEvent
-        sel_event = SelectEvent.SelectEvent(self.db,_('Select Event'),
-                                            self.parent.window)
+        sel_event = SelectEvent.SelectEvent(self.state.db,_('Select Event'))
         event = sel_event.run()
         if event:
-            EventEdit.EventRefEditor(event,None,self.primary,self.parent.db,
-                                     self.edit_callback,self.parent)
+            EventEdit.EventRefEditor(self.state,self.uistate,self.track,
+                                     event,None,self.primary,
+                                     self.edit_callback)
     
     def update(self,obj):
         store,node = self.list_model.get_selected()
         if not node:
             return
         event_ref,event = self.list_model.get_object(node)
-        EventEdit.EventRefEditor(event,event_ref,self.primary,self.parent.db,
-                                 self.edit_callback,self.parent)   
+        EventEdit.EventRefEditor(self.state,self.uistate,self.track,
+                                 event,event_ref,self.primary,
+                                 self.edit_callback)   
 
     def display_data(self,event_tuple):
         (event_ref, event) = event_tuple
@@ -439,9 +451,9 @@ class EventListBox(ReorderListBox):
 
 class NameListBox(ReorderListBox):
     
-    def __init__(self,parent,person,obj,label,button_list):
+    def __init__(self,state,uistate,track,person,obj,label,button_list):
 
-        surnames = parent.db.get_surname_list()
+        surnames = state.db.get_surname_list()
 
         custom_str = Utils.name_types[RelLib.Name.CUSTOM]
         types = filter(lambda x: x != custom_str, Utils.name_types.values())
@@ -459,7 +471,8 @@ class NameListBox(ReorderListBox):
             ]
 
         self.data = person.get_alternate_names()[:]
-        ReorderListBox.__init__(self, parent, person, obj, label,
+        ReorderListBox.__init__(self, state, uistate, track,
+                                person, obj, label,
                                 button_list, titles, DdTargets.NAME)
 
         self.name_name_map,self.name_val_map = self.build_maps(
@@ -486,14 +499,14 @@ class NameListBox(ReorderListBox):
         self.data[index].set_suffix(value)
 
     def add(self,obj):
-        NameEdit.NameEditor(self.parent, None, self.edit_callback,
-                            self.parent.window)
+        NameEdit.NameEditor(self.state, self.uistate, None, self.edit_callback)
 
     def update(self,obj):
         store,node = self.list_model.get_selected()
         if node:
-            NameEdit.NameEditor(self.parent, self.list_model.get_object(node),
-                                self.edit_callback, self.parent.window)
+            NameEdit.NameEditor(self.state, self.uistate,
+                                self.list_model.get_object(node),
+                                self.edit_callback)
 
     def display_data(self,name):
         has_note = name.get_note()
@@ -518,7 +531,7 @@ class NameListBox(ReorderListBox):
 
 class AddressListBox(ReorderListBox):
     
-    def __init__(self,parent,person,obj,label,button_list):
+    def __init__(self,state,uistate,track,person,obj,label,button_list):
 
         titles = [
             # Title              Sort Col Size, Type
@@ -532,7 +545,8 @@ class AddressListBox(ReorderListBox):
             ]
 
         self.data = person.get_address_list()[:]
-        ReorderListBox.__init__(self, parent, person, obj, label,
+        ReorderListBox.__init__(self, state, uistate, track,
+                                person, obj, label,
                                 button_list, titles, DdTargets.ADDRESS)
 
     def set_date(self,index,value):
@@ -551,15 +565,15 @@ class AddressListBox(ReorderListBox):
         self.data[index].set_country(value)
 
     def add(self,obj):
-        AddrEdit.AddressEditor(self.parent, None, self.edit_callback,
-                               self.parent.window)
+        AddrEdit.AddressEditor(self.state,self.uistate, None,
+                               self.edit_callback)
 
     def update(self,obj):
         store,node = self.list_model.get_selected()
         if node:
             item = self.list_model.get_object(node)
-            AddrEdit.AddressEditor(self.parent, item,
-                                   self.edit_callback, self.parent.window)
+            AddrEdit.AddressEditor(self.state,self.uistate, item,
+                                   self.edit_callback)
 
     def display_data(self,item):
         has_note = item.get_note()
@@ -578,7 +592,7 @@ class AddressListBox(ReorderListBox):
 
 class UrlListBox(ReorderListBox):
     
-    def __init__(self,parent,person,obj,label,button_list):
+    def __init__(self,state,uistate,track,person,obj,label,button_list):
 
         titles = [
             # Title            Sort Col  Size, Type
@@ -586,7 +600,8 @@ class UrlListBox(ReorderListBox):
             (_('Description'), NOSORT,   100,  TEXT, None, self.set_description),
             ]
         self.data = person.get_url_list()[:]
-        ReorderListBox.__init__(self, parent, person, obj, label,
+        ReorderListBox.__init__(self, state, uistate, track,
+                                person, obj, label,
                                 button_list, titles, DdTargets.URL)
 
     def set_path(self,index,value):
@@ -596,17 +611,15 @@ class UrlListBox(ReorderListBox):
         self.data[index].set_description(value)
 
     def add(self,obj):
-        UrlEdit.UrlEditor(self.parent, self.name, None,
-                          self.edit_callback, self.parent.window)
+        UrlEdit.UrlEditor(self.state, self.uistate, self.name, None,
+                          self.edit_callback)
 
     def update(self,obj):
         store,node = self.list_model.get_selected()
         if node:
-            UrlEdit.UrlEditor(self.parent, self.name,
+            UrlEdit.UrlEditor(self.state, self.uistate, self.name,
                               self.list_model.get_object(node),
                               self.edit_callback, self.window)
 
     def display_data(self,url):
         return [url.get_path(), url.get_description()]
-
-
