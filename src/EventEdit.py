@@ -55,6 +55,7 @@ import ImageSelect
 import DateEdit
 import Spell
 import GrampsDisplay
+import DisplayState
 
 from QuestionDialog import WarningDialog, ErrorDialog
 from WindowUtils import GladeIf
@@ -435,23 +436,30 @@ class EventEditor:
 # EventRefEditor class
 #
 #-------------------------------------------------------------------------
-class EventRefEditor:
-    def __init__(self, event, event_ref, referent, database, update, parent):
-        self.db = database
-        self.parent = parent
+class EventRefEditor(DisplayState.ManagedWindow):
+    def __init__(self, state, uistate, track, 
+                 event, event_ref, referent, update):
+        self.db = state.db
+        self.state = state
+        self.uistate = uistate
         self.referent = referent
-        if self.parent.__dict__.has_key('child_windows'):
-            self.win_parent = self.parent
-        else:
-            self.win_parent = self.parent.parent
+        #if self.parent.__dict__.has_key('child_windows'):
+        #    self.win_parent = self.parent
+        #else:
+        #    self.win_parent = self.parent.parent
         if event_ref:
-            if self.win_parent.child_windows.has_key(event_ref):
-                self.win_parent.child_windows[event_ref].present(None)
-                return
-            else:
-                self.win_key = event_ref
+            win_key = event_ref
         else:
-            self.win_key = self
+            win_key = self
+        submenu_label =_('Event Reference')
+        menu_label = _('Event Reference Editor')
+
+        DisplayState.ManagedWindow.__init__(
+            self, uistate, track, win_key, submenu_label, menu_label)
+
+        if self.already_exist:
+            return
+
         self.update = update
         self.event_ref = event_ref
         self.event = event
@@ -592,21 +600,23 @@ class EventRefEditor:
         if self.event.get_media_list():
             Utils.bold_label(self.gallery_label)
 
-        self.add_itself_to_menu()
-        try:
-            self.window.set_transient_for(self.parent.window)
-        except AttributeError:
-            pass
+        #self.add_itself_to_menu()
+        #try:
+        #    self.window.set_transient_for(self.parent.window)
+        #except AttributeError:
+        #    pass
         self.window.show()
+        print "added track:", self.track
 
     def on_delete_event(self,obj,b):
-        self.close_child_windows()
-        self.remove_itself_from_menu()
+        #self.close_child_windows()
+        #self.remove_itself_from_menu()
+        self.close()
 
-    def close(self,obj):
-        self.close_child_windows()
-        self.remove_itself_from_menu()
-        self.window.destroy()
+#    def close(self,obj):
+#        self.close_child_windows()
+#        self.remove_itself_from_menu()
+#        self.window.destroy()
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():
@@ -633,8 +643,8 @@ class EventRefEditor:
         self.winsmenu.destroy()
         self.parent_menu_item.destroy()
 
-    def present(self,obj):
-        self.window.present()
+#    def present(self,obj):
+#        self.window.present()
 
     def on_help_clicked(self,obj):
         pass

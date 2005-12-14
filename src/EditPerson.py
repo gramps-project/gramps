@@ -96,7 +96,7 @@ class EditPerson(DisplayState.ManagedWindow):
 
     use_patronymic = locale.getlocale(locale.LC_TIME)[0] in _use_patronymic
     
-    def __init__(self,state,uistate,person,callback=None):
+    def __init__(self,state,uistate,track,person,callback=None):
         """Creates an edit window.  Associates a person with the window."""
 
         self.dp = DateHandler.parser
@@ -113,6 +113,7 @@ class EditPerson(DisplayState.ManagedWindow):
         if self.already_exist:
             return
 
+        print "EditPerson added: track:", self.track
         self.state = state
         self.uistate = uistate
         self.retval = const.UPDATE_PERSON
@@ -309,24 +310,24 @@ class EditPerson(DisplayState.ManagedWindow):
             Utils.bold_label(self.gallery_label)
 
         # event display
-        self.event_box = ListBox.EventListBox(
-            self, self.person, self.event_list, self.events_label,
+        self.event_box = ListBox.EventListBox( state, uistate, self.track,
+            self.person, self.event_list, self.events_label,
             [event_add_btn,event_edit_btn,event_delete_btn,event_sel_btn])
 
-        self.attr_box = ListBox.AttrListBox(
-            self, self.person, self.attr_list, self.attr_label,
+        self.attr_box = ListBox.AttrListBox( state, uistate, self.track,
+            self.person, self.attr_list, self.attr_label,
             [attr_add_btn, attr_edit_btn, attr_delete_btn])
 
-        self.addr_box = ListBox.AddressListBox(
-            self, self.person, self.addr_list, self.addr_label,
+        self.addr_box = ListBox.AddressListBox( state, uistate, self.track,
+            self.person, self.addr_list, self.addr_label,
             [addr_add_btn, addr_edit_btn, addr_delete_btn])
 
-        self.name_box = ListBox.NameListBox(
-            self, self.person, self.name_list, self.names_label,
+        self.name_box = ListBox.NameListBox( state, uistate, self.track,
+            self.person, self.name_list, self.names_label,
             [name_add_btn, name_edit_btn, name_delete_btn])
 
-        self.url_box = ListBox.UrlListBox(
-            self, self.person, self.web_list, self.inet_label,
+        self.url_box = ListBox.UrlListBox( state, uistate, self.track,
+            self.person, self.web_list, self.inet_label,
             [web_add_btn, web_edit_btn, web_delete_btn])
 
         self.place_list = self.pdmap.keys()
