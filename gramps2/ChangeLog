@@ -1,3 +1,8 @@
+2005-12-15 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/GrampsDbBase.py: in preparation for new reference_map, 
+	added a sequencial scan implementation of get_backlink_handles 
+	method that will work on all backends.
+
 2005-12-14  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsBSDDB.py: Rename upgrade to avoid collision; add DB
 	upgrade routine; require DB to be at least version 5 (gramps
