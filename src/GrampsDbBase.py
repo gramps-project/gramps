@@ -1446,6 +1446,75 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         default = [(1,1),(0,5),(0,6),(1,2),(1,3),(0,4),(0,7),(0,8),(0,9),(0,10)]
         return self._get_column_order(REPOSITORY_COL_KEY,default)
 
+
+    def find_backlink_handles(self, handle, include_classes=None):
+        """
+        Find all objects that hold a reference to the object handle.
+        Returns an interator over alist of (handle,class_name) tuples.
+
+        @param handle: handle of the object to search for.
+        @type handle: database handle
+        @param include_classes: list of class names to include in the results.
+                                Default: None means include all classes.
+        @type include_classes: list of class names
+        
+        This default implementation does a sequencial scan through all
+        the primary object databases and is very slow. Backends can
+        override this method to provide much faster implementations that
+        make use of additional capabilities of the backend.
+
+        Note that this is a generator function, it returns a iterator for
+        use in loops. If you want a list of the results use:
+
+               result_list = [i for i in find_backlink_handles(handle)]
+        """
+
+        # Make a dictionary of the functions and classes that we need for
+        # each of the primary object tables.
+        primary_tables = {'Person': {'cursor_func': self.get_person_cursor,
+                                     'class_func': Person},
+                          'Family': {'cursor_func': self.get_family_cursor,
+                                     'class_func': Family},
+                          'Event': {'cursor_func': self.get_event_cursor,
+                                     'class_func': Event},
+                          'Place': {'cursor_func': self.get_place_cursor,
+                                     'class_func': Place},
+                          'Source': {'cursor_func': self.get_source_cursor,
+                                     'class_func': Source},
+                          'MediaObject': {'cursor_func': self.get_media_cursor,
+                                     'class_func': MediaObject},
+                          'Repository': {'cursor_func': self.get_repository_cursor,
+                                     'class_func': Repository},
+                          }
+
+
+        # Now we use the functions and classes defined above to loop through each of the
+        # primary object tables that have been requests in the include_classes list.
+        for primary_table_name in primary_tables.keys():
+            
+            if include_classes == None or primary_table_name in include_classes:
+                
+                cursor = primary_tables[primary_table_name]['cursor_func']()
+                data = cursor.first()
+
+                # Grap the real object class here so that the lookup does
+                # not happen inside the main loop.
+                class_func = primary_tables[primary_table_name]['class_func']
+                
+                while data:
+                    found_handle,val = data
+                    obj = class_func()
+                    obj.unserialize(val)
+                    
+                    if obj.has_source_reference(handle):
+                        yield (found_handle,primary_table_name)
+                        
+                    data = cursor.next()
+                    
+                cursor.close()
+
+        return
+        
 class Transaction:
     """
     Defines a group of database commits that define a single logical
