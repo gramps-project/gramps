@@ -281,7 +281,7 @@ class GrampsParser:
         
         self.callback = callback
         self.count = 0
-        self.increment = 500
+        self.increment = 100
         self.event = None
         self.name = None
         self.tempDefault = None
@@ -732,6 +732,7 @@ class GrampsParser:
     def start_person(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
             self.callback(True)
+        self.count += 1
         new_id = self.map_gid(attrs['id'])
         try:
             self.person = self.db.find_person_from_handle(
@@ -740,10 +741,12 @@ class GrampsParser:
         except KeyError:
             self.person = self.find_person_by_gramps_id(new_id)
 
-        try:
-            self.person.set_complete_flag(int(attrs['complete']))
-        except KeyError:
-            self.person.set_complete_flag(0)
+        if attrs.has_key('complete'):
+            try:
+                if int(attrs['complete']):
+                    self.person.set_marker((RelLib.PrimaryObject.MARKER_COMPLETE, ""))
+            except KeyError:
+                pass
 
     def start_people(self,attrs):
         if attrs.has_key('home'):
@@ -815,10 +818,12 @@ class GrampsParser:
             else:
                 self.family.set_relationship((ftype,""))
                 
-        if attrs.has_key("complete"):
-            self.family.set_complete_flag(int(attrs['complete']))
-        else:
-            self.family.set_complete_flag(0)
+        if attrs.has_key('complete'):
+            try:
+                if int(attrs['complete']):
+                    self.family.set_marker((RelLib.PrimaryObject.MARKER_COMPLETE, ""))
+            except KeyError:
+                pass
 
     def start_childof(self,attrs):
         try:
@@ -922,6 +927,9 @@ class GrampsParser:
             self.person.add_source_reference(self.source_ref)
 
     def start_source(self,attrs):
+        if self.callback != None and self.count % self.increment == 0:
+            self.callback(True)
+        self.count += 1
         handle = self.map_sid(attrs["id"])
         try:
             self.source = self.db.find_source_from_handle(
