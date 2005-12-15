@@ -175,9 +175,11 @@ class ViewManager:
         self.bbox = gtk.VBox()
         self.ebox.add(self.bbox)
         hbox.pack_start(self.ebox,False)
+        hbox.show_all()
 
         self.notebook = gtk.Notebook()
         self.notebook.set_show_tabs(False)
+        self.notebook.show()
         self.build_ui_manager()
 
         hbox.pack_start(self.notebook,True)
@@ -186,7 +188,16 @@ class ViewManager:
         vbox.pack_start(self.menubar, False)
         vbox.pack_start(self.toolbar, False)
         vbox.add(hbox)
-        vbox.pack_end(self.statusbar,False)
+        self.progress = gtk.ProgressBar()
+        self.progress.set_size_request(100,-1)
+        self.progress.hide()
+        self.statusbar.show()
+        hbox2 = gtk.HBox()
+        hbox2.pack_start(self.progress,False)
+        hbox2.pack_end(self.statusbar,True)
+        hbox2.show()
+        vbox.pack_end(hbox2,False)
+        vbox.show()
 
         self.notebook.connect('switch-page',self.change_page)
         self.uistate = DisplayState.DisplayState(self.window, self.statusbar,
@@ -194,7 +205,7 @@ class ViewManager:
 
         person_nav = Navigation.PersonNavigation(self.uistate)
         self.navigation_type[PageView.NAVIGATION_PERSON] = (person_nav,None)
-        self.window.show_all()
+        self.window.show()
 
     def init_interface(self):
         self.create_pages()
@@ -708,6 +719,9 @@ class ViewManager:
         import ScratchPad
         ScratchPad.ScratchPadWindow(self.state, self)
 
+    def pulse_progressbar(self,value):
+        self.progress.pulse()
+
     def import_data(self,obj):
         choose = gtk.FileChooserDialog(_('GRAMPS: Import database'),
                                            self.uistate.window,
@@ -773,7 +787,9 @@ class ViewManager:
             elif filetype == const.app_gramps_xml:
                 choose.destroy()
                 import ReadXML
-                ReadXML.importData(self.state.db,filename)
+                self.progress.show()
+                ReadXML.importData(self.state.db,filename,self.pulse_progressbar)
+                self.progress.hide()
                 return True
             elif filetype == const.app_gedcom:
                 choose.destroy()
