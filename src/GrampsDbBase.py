@@ -307,6 +307,8 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self.emit('event-rebuild')
         self.emit('repository-rebuild')
 
+
+            
     def _commit_base(self, obj, data_map, key, update_list, add_list,
                      transaction, change_time):
         """
@@ -321,7 +323,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         else:
             obj.change = int(time.time())
         handle = str(obj.handle)
-
+        
         if transaction.batch:
             data_map[handle] = obj.serialize()
             old_data = None
@@ -339,6 +341,9 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Commits the specified Person to the database, storing the changes
         as part of the transaction.
         """
+
+        self._update_reference_map(person,'Person')
+        
         old_data = self._commit_base(
             person, self.person_map, PERSON_KEY, transaction.person_update,
             transaction.person_add, transaction, change_time)
@@ -361,6 +366,9 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Commits the specified MediaObject to the database, storing the changes
         as part of the transaction.
         """
+        
+        self._update_reference_map(obj,'MediaObject')
+
         self._commit_base(obj, self.media_map, MEDIA_KEY,
                           transaction.media_update, transaction.media_add,
                           transaction, change_time)
@@ -370,6 +378,9 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Commits the specified Source to the database, storing the changes
         as part of the transaction.
         """
+
+        self._update_reference_map(source,'Source')
+
         self._commit_base(source, self.source_map, SOURCE_KEY,
                           transaction.source_update, transaction.source_add,
                           transaction, change_time)
@@ -379,6 +390,9 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Commits the specified Place to the database, storing the changes
         as part of the transaction.
         """
+
+        self._update_reference_map(place,'Place')
+                
         self._commit_base(place, self.place_map, PLACE_KEY,
                           transaction.place_update, transaction.place_add,
                           transaction, change_time)
@@ -398,6 +412,9 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Commits the specified Event to the database, storing the changes
         as part of the transaction.
         """
+        
+        self._update_reference_map(event,'Event')
+
         self._commit_base(event, self.event_map, EVENT_KEY,
                           transaction.event_update, transaction.event_add,
                           transaction, change_time)
@@ -407,6 +424,9 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Commits the specified Family to the database, storing the changes
         as part of the transaction.
         """
+
+        self._update_reference_map(family,'Family')
+
         self._commit_base(family, self.family_map, FAMILY_KEY,
                           transaction.family_update, transaction.family_add,
                           transaction, change_time)
@@ -419,6 +439,9 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Commits the specified Repository to the database, storing the changes
         as part of the transaction.
         """
+
+        self._update_reference_map(repository,'Repository')
+
         self._commit_base(repository, self.repository_map, REPOSITORY_KEY,
                           transaction.repository_update, transaction.repository_add,
                           transaction, change_time)
@@ -1446,11 +1469,16 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         default = [(1,1),(0,5),(0,6),(1,2),(1,3),(0,4),(0,7),(0,8),(0,9),(0,10)]
         return self._get_column_order(REPOSITORY_COL_KEY,default)
 
+    def _update_reference_map(self,obj, class_name):
+        """Called each time an object is writen to the database. This can
+        be used by subclasses to update any additional index tables that might
+        need to be changed."""
+        pass
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
         Find all objects that hold a reference to the object handle.
-        Returns an interator over alist of (handle,class_name) tuples.
+        Returns an interator over alist of (class_name,handle) tuples.
 
         @param handle: handle of the object to search for.
         @type handle: database handle
@@ -1507,7 +1535,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
                     obj.unserialize(val)
                     
                     if obj.has_source_reference(handle):
-                        yield (found_handle,primary_table_name)
+                        yield (primary_table_name,found_handle)
                         
                     data = cursor.next()
                     

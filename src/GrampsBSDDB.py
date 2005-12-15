@@ -29,6 +29,7 @@ Provides the Berkeley DB (BSDDB) database backend for GRAMPS
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+import cPickle
 import os
 import time
 import locale
@@ -62,6 +63,17 @@ def find_eventname(key,data):
 def find_repository_type(key,data):
     return str(data[2])
 
+# Secondary database key lookups for reference_map table
+# reference_map data values are of the form:
+#   ((primary_object_class_name, primary_object_handle),
+#    (referenced_object_class_name, referenced_object_handle))
+
+def find_primary_handle(key,data):
+    return (data)[0][1]
+
+def find_referenced_handle(key,data):
+    return (data)[1][1]
+
 class GrampsBSDDBCursor(GrampsCursor):
 
     def __init__(self,source):
@@ -75,6 +87,16 @@ class GrampsBSDDBCursor(GrampsCursor):
 
     def close(self):
         self.cursor.close()
+
+class GrampsBSDDBDupCursor(GrampsBSDDBCursor):
+    """Cursor that includes handling for duplicate keys"""
+
+    def set(self,key):
+        return self.cursor.set(key)
+
+    def next_dup(self):
+        return self.cursor.next_dup()
+
 
 #-------------------------------------------------------------------------
 #
@@ -119,6 +141,23 @@ class GrampsBSDDB(GrampsDbBase):
     def get_repository_cursor(self):
         return GrampsBSDDBCursor(self.repository_map)
 
+    # cursors for lookups in the reference_map for back reference
+    # lookups. The reference_map has three indexes:
+    # the main index: a tuple of (primary_handle,referenced_handle)
+    # the primary_handle index: the primary_handle
+    # the referenced_handle index: the referenced_handle
+    # the main index is unique, the others allow duplicate entries.
+
+    def get_reference_map_cursor(self):
+        return GrampsBSDDBCursor(self.reference_map)
+
+    def get_reference_map_primary_cursor(self):
+        return GrampsBSDDBDupCursor(self.reference_map_primary_map)
+
+    def get_reference_map_referenced_cursor(self):
+        return GrampsBSDDBDupCursor(self.reference_map_referenced_map)
+
+        
     def version_supported(self):
         return (self.metadata.get('version',0) <= _DBVERSION and
                 self.metadata.get('version',0) >= _MINVERSION)
@@ -157,6 +196,10 @@ class GrampsBSDDB(GrampsDbBase):
         self.metadata       = self.dbopen(name, "meta")
         self.person_map     = self.dbopen(name, "person")
         self.repository_map = self.dbopen(name, "repository")
+
+        # index tables used just for speeding up searches
+
+        self.reference_map = self.dbopen(name, "reference_map")
 
         if not self.readonly:
             self.undodb = db.DB()
@@ -249,6 +292,20 @@ class GrampsBSDDB(GrampsDbBase):
         self.rid_trans.open(self.save_name, "ridtrans",
                             db.DB_HASH, flags=openflags)
 
+
+        self.reference_map_primary_map = db.DB(self.env)
+        self.reference_map_primary_map.set_flags(db.DB_DUP)
+        self.reference_map_primary_map.open(self.save_name,
+                                            "reference_map_primary_map",
+                                            db.DB_BTREE, flags=openflags)
+
+        self.reference_map_referenced_map = db.DB(self.env)
+        self.reference_map_referenced_map.set_flags(db.DB_DUP)
+        self.reference_map_referenced_map.open(self.save_name,
+                                               "reference_map_referenced_map",
+                                               db.DB_BTREE, flags=openflags)
+
+
         if not self.readonly:
             self.person_map.associate(self.surnames,  find_surname, openflags)
             self.person_map.associate(self.id_trans,  find_idmap, openflags)
@@ -261,6 +318,12 @@ class GrampsBSDDB(GrampsDbBase):
             self.place_map.associate(self.pid_trans,  find_idmap, openflags)
             self.media_map.associate(self.oid_trans, find_idmap, openflags)
             self.source_map.associate(self.sid_trans, find_idmap, openflags)
+            self.reference_map.associate(self.reference_map_primary_map,
+                                         find_primary_handle,
+                                         openflags)
+            self.reference_map.associate(self.reference_map_referenced_map,
+                                         find_referenced_handle,
+                                         openflags)
 
     def rebuild_secondary(self,callback=None):
 
@@ -369,6 +432,114 @@ class GrampsBSDDB(GrampsDbBase):
                 callback()
             self.repository_map[key] = self.repository_map[key]
         self.repository_map.sync()
+
+    def find_backlink_handles(self, handle, include_classes=None):
+        """
+        Find all objects that hold a reference to the object handle.
+        Returns an interator over alist of (class_name,handle) tuples.
+
+        @param handle: handle of the object to search for.
+        @type handle: database handle
+        @param include_classes: list of class names to include in the results.
+                                Default: None means include all classes.
+        @type include_classes: list of class names
+        
+        This default implementation does a sequencial scan through all
+        the primary object databases and is very slow. Backends can
+        override this method to provide much faster implementations that
+        make use of additional capabilities of the backend.
+
+        Note that this is a generator function, it returns a iterator for
+        use in loops. If you want a list of the results use:
+
+               result_list = [i for i in find_backlink_handles(handle)]
+        """
+
+
+        # Use the secondary index to locate all the reference_map entries
+        # that include a reference to the object we are looking for.
+        referenced_cur = self.get_reference_map_referenced_cursor()
+
+        ret = referenced_cur.set(handle)
+        while (ret is not None):
+            (key,data) = ret
+            
+            # data values are of the form:
+            #   ((primary_object_class_name, primary_object_handle),
+            #    (referenced_object_class_name, referenced_object_handle))
+            # so we need the first tuple to give us the type to compare
+
+            data = cPickle.loads(data)
+            if include_classes == None or data[0][0] in include_classes:
+                yield data[0]
+                
+            ret = referenced_cur.next_dup()
+
+        referenced_cur.close()
+
+        return 
+
+
+    def _update_reference_map(self, obj, class_name):
+        
+        # Add references to the reference_map for all primary object referenced
+        # from the primary object 'obj' or any of its secondary objects.
+        
+        # FIXME: this needs to be properly integrated into the transaction
+        # framework so that the reference_map changes are part of the
+        # transaction
+        
+        handle = obj.get_handle()
+
+        # First thing to do is get hold of all rows in the reference_map
+        # table that hold a reference from this primary obj. This means finding
+        # all the rows that have this handle somewhere in the list of (class_name,handle)
+        # pairs.
+        # The primary_map secondary index allows us to look this up quickly.
+
+        existing_references = set()
+        
+        primary_cur = self.get_reference_map_primary_cursor()
+        
+        ret = primary_cur.set(handle)
+        while (ret is not None):
+            (key,data) = ret
+            
+            # data values are of the form:
+            #   ((primary_object_class_name, primary_object_handle),
+            #    (referenced_object_class_name, referenced_object_handle))
+            # so we need the second tuple give us a reference that we can
+            # compare with what is returned from get_referenced_handles_recursively
+
+            # Looks like there is a bug in the set() and next_dup() methods
+            # because they do not run the data through cPickle.loads before
+            # returning it, so we have to here.
+            existing_references.add(cPickle.loads(data)[1])
+            ret = primary_cur.next_dup()
+
+        primary_cur.close()
+        
+        # Once we have the list of rows that already have a reference we need to compare
+        # it with the list of objects that are still references from the primary object.
+
+        current_references = set(obj.get_referenced_handles_recursively())
+
+        no_longer_required_references = existing_references.difference(current_references)
+
+        
+        new_references = current_references.difference(existing_references)
+        
+        # handle addition of new references
+        if len(new_references) > 0:
+            for (ref_class_name,ref_handle) in new_references:
+                self.reference_map[str((handle,ref_handle),)] = ((class_name,handle),
+                                                                 (ref_class_name,ref_handle),)
+
+        # handle deletion of old references
+        if len(no_longer_required_references) > 0:
+            for (ref_class_name,ref_handle) in no_longer_required_references:
+                self.reference_map.delete(str((handle,ref_handle),))
+
 
     def abort_changes(self):
         while self.undo():
