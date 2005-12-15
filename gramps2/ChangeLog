@@ -1,4 +1,11 @@
 2005-12-15 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+        * src/GrampsBSDDB.py: implemented get_backlink_handles that uses 
+	the reference_map index, _update_reference_map that populates 
+	the reference_map and supporting code.
+        * src/GrampsDbBase.py: added hooks to update reference_map when
+	primary objects are commited.
+
+2005-12-15 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GrampsDbBase.py: in preparation for new reference_map, 
 	added a sequencial scan implementation of get_backlink_handles 
 	method that will work on all backends.
