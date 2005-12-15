@@ -117,6 +117,7 @@ uidefault = '''<ui>
   <menu action="ToolsMenu">
   </menu>
   <menu action="WindowsMenu">
+    <placeholder name="WinMenu"/>
   </menu>
   <menu action="HelpMenu">
     <menuitem action="UserManual"/>

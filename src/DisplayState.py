@@ -131,6 +131,10 @@ class History(GrampsDBCallback.GrampsDBCallback):
 # Window manager
 #
 #-------------------------------------------------------------------------
+
+_win_top = '<ui><menubar name="MenuBar"><menu name="WindowsMenu"><placeholder name="WinMenu">'
+_win_btm = '</placeholder</menu></menubar></ui>'
+
 class GrampsWindowManager:
     """
     Manage hierarchy of open GRAMPS windows.

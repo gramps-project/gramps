@@ -604,8 +604,7 @@ class GedcomParser:
 
         self.progressbar.set_fraction(1.0)
         self.progressbar.set_text(_("Complete"))
-        if use_trans:
-            self.db.transaction_commit(self.trans,_("GEDCOM import"))
+        self.db.transaction_commit(self.trans,_("GEDCOM import"))
         self.db.enable_signals()
         self.db.request_rebuild()
         
