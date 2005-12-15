@@ -1,3 +1,7 @@
+2005-12-14  Don Allingham  <don@gramps-project.org>
+	* doc/gramps-manual/C/getstart.xml: updates
+	* doc/gramps-manual/C/mainwin.xml: updates
+
 2005-12-14  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/PatchNames.py: Fix title/name mixup, only detect new
 	title, keep old title, keep old prefix.
