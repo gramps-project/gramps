@@ -1,3 +1,8 @@
+2005-12-14  Don Allingham  <don@gramps-project.org>
+	* src/DisplayState.py: start of Windows menu
+	* src/ReadGedcom.py: sync database with transaction
+	* src/ViewManager.py: WinMenu support
+
 2005-12-14  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps.glade: Fix Tip of the day
 
