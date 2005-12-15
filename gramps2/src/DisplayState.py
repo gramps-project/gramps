@@ -25,6 +25,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from cStringIO import StringIO
 
 #-------------------------------------------------------------------------
 #
@@ -132,8 +133,9 @@ class History(GrampsDBCallback.GrampsDBCallback):
 #
 #-------------------------------------------------------------------------
 
-_win_top = '<ui><menubar name="MenuBar"><menu name="WindowsMenu"><placeholder name="WinMenu">'
-_win_btm = '</placeholder</menu></menubar></ui>'
+_win_top = '<ui><menubar name="MenuBar"><menu name="WindowsMenu">'
+_win_btm = '</menu></menubar></ui>'
+DISABLED = -1
 
 class GrampsWindowManager:
     """
@@ -160,15 +162,35 @@ class GrampsWindowManager:
     Lookup can be also done by ID for windows that are identifiable.
     """
 
-    def __init__(self):
+    def __init__(self,uimanager):
         # initialize empty tree and lookup dictionary
+        self.uimanager = uimanager
         self.window_tree = []
         self.id2item = {}
+        self.action_group = gtk.ActionGroup('WindowManger')
+        self.active = DISABLED
+        self.ui = _win_top + _win_btm
+        
+    def disable(self):
+        """
+        Removes the UI and action groups if the navigation is enabled
+        """
+        if self.active != DISABLED:
+            self.uimanager.remove_ui(self.active)
+            self.uimanager.remove_action_group(self.action_group)
+            self.active = DISABLED
+
+    def enable(self):
+        """
+        Enables the UI and action groups
+        """
+        self.uimanager.insert_action_group(self.action_group, 1)
+        self.active = self.uimanager.add_ui_from_string(self.ui)
 
     def get_item_from_track(self,track):
         # Recursively find an item given track sequence
         item = self.window_tree
-        print "track", track
+        #print "track", track
         for index in track:
             item = item[index]
         return item
@@ -181,7 +203,7 @@ class GrampsWindowManager:
     def close_track(self,track):
         # This is called when item needs to be closed
         # Closes all its children and then removes the item from the tree.
-        print "1", track
+        #print "1", track
         item = self.get_item_from_track(track)
         self.close_item(item)
         # This only needs to be run once for the highest level point
@@ -228,7 +250,7 @@ class GrampsWindowManager:
         if item.window_id:
             self.id2item[item.window_id] = item
 
-        print "Adding: Track:", track
+        #print "Adding: Track:", track
 
         # Make sure we have a track
         parent_item = self.get_item_from_track(track)
@@ -256,17 +278,53 @@ class GrampsWindowManager:
     def call_back_factory(self,item):
         if type(item) != list:
             def f(obj):
-                if item.window_id and self.get_window_from_id(item.window_id):
-                    self.get_window_from_id(item.window_id).present()
+                if item.window_id and self.id2item.get(item.window_id):
+                    self.id2item[item.window_id].present()
         else:
             def f(obj):
                 pass
         return f
 
+    def generate_id(self,win_id):
+        return str(win_id).replace(' ','-')[1:-1]
+
+    def display_menu_list(self,data,action_data,mlist):
+        i = mlist[0]
+        idval = self.generate_id(i.window_id)
+        data.write('<menu action="M:%s">' % idval)
+        data.write('<menuitem action="%s"/>' % self.generate_id(i.window_id))
+
+        action_data.append(("M:"+idval,None,i.submenu_label,None,None,None))
+        action_data.append((idval,None,i.menu_label,None,None,self.call_back_factory(i)))
+
+        if len(mlist) > 1:
+            for i in mlist[1:]:
+                if type(i) == list:
+                    self.display_menu_list(data,action_data,i)
+                else:
+                    idval = self.generate_id(i.window_id)
+                    data.write('<menuitem action="%s"/>' %self.generate_id(i.window_id))        
+                    action_data.append((idval,None,i.menu_label,None,None,self.call_back_factory(i)))
+        data.write('</menu>')
+        
     def build_windows_menu(self):
-        print self.window_tree
-        print self.id2item
-        pass
+
+        if self.active != DISABLED:
+            self.uimanager.remove_ui(self.active)
+            self.uimanager.remove_action_group(self.action_group)
+
+        self.action_group = gtk.ActionGroup('WindowManger')
+        action_data = []
+
+        data = StringIO()
+        data.write(_win_top)
+        for i in self.window_tree:
+            self.display_menu_list(data,action_data,i)
+        data.write(_win_btm)
+        self.ui = data.getvalue()
+        data.close()
+        self.action_group.add_actions(action_data)
+        self.enable()
 
 #-------------------------------------------------------------------------
 #
@@ -353,7 +411,7 @@ class DisplayState(GrampsDBCallback.GrampsDBCallback):
         self.status = status
         self.status_id = status.get_context_id('GRAMPS')
         self.phistory = History()
-        self.gwm = GrampsWindowManager()
+        self.gwm = GrampsWindowManager(uimanager)
 
     def modify_statusbar(self,active=None):
         self.status.pop(self.status_id)
