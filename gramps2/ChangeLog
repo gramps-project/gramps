@@ -1,3 +1,8 @@
+2005-12-15  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsBSDDB.py: go back to a single load function;
+	finish gramps_upgrade_9.
+	* src/ViewManager: Go back to the old way of load/upgrade.
+
 2005-12-15 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GrampsBSDDB.py: added delete support for the 
 	reference_map
