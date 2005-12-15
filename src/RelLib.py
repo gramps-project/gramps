@@ -2158,6 +2158,11 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         """
         self.event_ref_list = event_ref_list
 
+class Witness(BaseObject,PrivacyBase):
+    # FIXME: this class is only present to enable db upgrade
+    def __init__(self):
+        pass
+
 class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
     """
     Introduction

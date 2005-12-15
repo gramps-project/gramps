@@ -44,7 +44,8 @@ from bsddb import dbshelve, db
 from RelLib import *
 from GrampsDbBase import *
 
-_DBVERSION = 8
+_MINVERSION = 5
+_DBVERSION = 9
 
 def find_surname(key,data):
     return str(data[3].get_surname())
@@ -119,12 +120,20 @@ class GrampsBSDDB(GrampsDbBase):
         return GrampsBSDDBCursor(self.repository_map)
 
     def version_supported(self):
-        return self.metadata.get('version',0) <= _DBVERSION
+        return (self.metadata.get('version',0) <= _DBVERSION and
+                self.metadata.get('version',0) >= _MINVERSION)
     
     def need_upgrade(self):
-        return not self.readonly and self.metadata.get('version',0) < _DBVERSION
+        return not self.readonly \
+               and self.metadata.get('version',0) < _DBVERSION
 
     def load(self,name,callback,mode="w"):
+        self.load_primary(name,callback,mode)
+        self.load_secondary(callback)
+        if self.need_upgrade():
+            self.gramps_upgrade()
+
+    def load_primary(self,name,callback,mode="w"):
         if self.person_map:
             self.close()
 
@@ -149,65 +158,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.person_map     = self.dbopen(name, "person")
         self.repository_map = self.dbopen(name, "repository")
 
-        if self.readonly:
-            openflags = db.DB_RDONLY
-        else:
-            openflags = db.DB_CREATE
-
-        self.surnames = db.DB(self.env)
-        self.surnames.set_flags(db.DB_DUP)
-        self.surnames.open(name, "surnames", db.DB_HASH, flags=openflags)
-
-        self.name_group = db.DB(self.env)
-        self.name_group.set_flags(db.DB_DUP)
-        self.name_group.open(name, "name_group", db.DB_HASH, flags=openflags)
-
-        self.id_trans = db.DB(self.env)
-        self.id_trans.set_flags(db.DB_DUP)
-        self.id_trans.open(name, "idtrans", db.DB_HASH, flags=openflags)
-
-        self.fid_trans = db.DB(self.env)
-        self.fid_trans.set_flags(db.DB_DUP)
-        self.fid_trans.open(name, "fidtrans", db.DB_HASH, flags=openflags)
-
-        self.eid_trans = db.DB(self.env)
-        self.eid_trans.set_flags(db.DB_DUP)
-        self.eid_trans.open(name, "eidtrans", db.DB_HASH, flags=openflags)
-
-        self.pid_trans = db.DB(self.env)
-        self.pid_trans.set_flags(db.DB_DUP)
-        self.pid_trans.open(name, "pidtrans", db.DB_HASH, flags=openflags)
-
-        self.sid_trans = db.DB(self.env)
-        self.sid_trans.set_flags(db.DB_DUP)
-        self.sid_trans.open(name, "sidtrans", db.DB_HASH, flags=openflags)
-
-        self.oid_trans = db.DB(self.env)
-        self.oid_trans.set_flags(db.DB_DUP)
-        self.oid_trans.open(name, "oidtrans", db.DB_HASH, flags=openflags)
-
-        self.rid_trans = db.DB(self.env)
-        self.rid_trans.set_flags(db.DB_DUP)
-        self.rid_trans.open(name, "ridtrans", db.DB_HASH, flags=openflags)
-
-        self.eventnames = db.DB(self.env)
-        self.eventnames.set_flags(db.DB_DUP)
-        self.eventnames.open(name, "eventnames", db.DB_HASH, flags=openflags)
-
-        self.repository_types = db.DB(self.env)
-        self.repository_types.set_flags(db.DB_DUP)
-        self.repository_types.open(name, "repostypes", db.DB_HASH, flags=openflags)
-
         if not self.readonly:
-            self.person_map.associate(self.surnames,  find_surname, openflags)
-            self.person_map.associate(self.id_trans,  find_idmap, openflags)
-            self.family_map.associate(self.fid_trans, find_idmap, openflags)
-            self.event_map.associate(self.eid_trans,  find_idmap,  openflags)
-            self.repository_map.associate(self.rid_trans, find_idmap, openflags)
-            self.repository_map.associate(self.repository_types, find_repository_type, openflags)
-            self.place_map.associate(self.pid_trans,  find_idmap, openflags)
-            self.media_map.associate(self.oid_trans, find_idmap, openflags)
-            self.source_map.associate(self.sid_trans, find_idmap, openflags)
             self.undodb = db.DB()
             self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
 
@@ -217,6 +168,31 @@ class GrampsBSDDB(GrampsDbBase):
         self.individual_event_names = sets.Set(self.metadata.get('pevent_names',[]))
         self.family_attributes = sets.Set(self.metadata.get('fattr_names',[]))
         self.individual_attributes = sets.Set(self.metadata.get('pattr_names',[]))
+
+        if self.readonly:
+            openflags = db.DB_RDONLY
+        else:
+            openflags = db.DB_CREATE
+
+        self.surnames = db.DB(self.env)
+        self.surnames.set_flags(db.DB_DUP)
+        self.surnames.open(self.save_name, "surnames",
+                           db.DB_HASH, flags=openflags)
+
+        self.name_group = db.DB(self.env)
+        self.name_group.set_flags(db.DB_DUP)
+        self.name_group.open(self.save_name, "name_group",
+                             db.DB_HASH, flags=openflags)
+
+        self.eventnames = db.DB(self.env)
+        self.eventnames.set_flags(db.DB_DUP)
+        self.eventnames.open(self.save_name, "eventnames",
+                             db.DB_HASH, flags=openflags)
+
+        self.repository_types = db.DB(self.env)
+        self.repository_types.set_flags(db.DB_DUP)
+        self.repository_types.open(self.save_name, "repostypes",
+                                   db.DB_HASH, flags=openflags)
 
         gstats = self.metadata.get('gender_stats')
 
@@ -231,6 +207,60 @@ class GrampsBSDDB(GrampsDbBase):
 
         self.genderStats = GenderStats(gstats)
         return 1
+
+    def load_secondary(self,callback):
+        if self.readonly:
+            openflags = db.DB_RDONLY
+        else:
+            openflags = db.DB_CREATE
+
+        self.id_trans = db.DB(self.env)
+        self.id_trans.set_flags(db.DB_DUP)
+        self.id_trans.open(self.save_name, "idtrans",
+                           db.DB_HASH, flags=openflags)
+
+        self.fid_trans = db.DB(self.env)
+        self.fid_trans.set_flags(db.DB_DUP)
+        self.fid_trans.open(self.save_name, "fidtrans",
+                            db.DB_HASH, flags=openflags)
+
+        self.eid_trans = db.DB(self.env)
+        self.eid_trans.set_flags(db.DB_DUP)
+        self.eid_trans.open(self.save_name, "eidtrans",
+                            db.DB_HASH, flags=openflags)
+
+        self.pid_trans = db.DB(self.env)
+        self.pid_trans.set_flags(db.DB_DUP)
+        self.pid_trans.open(self.save_name, "pidtrans",
+                            db.DB_HASH, flags=openflags)
+
+        self.sid_trans = db.DB(self.env)
+        self.sid_trans.set_flags(db.DB_DUP)
+        self.sid_trans.open(self.save_name, "sidtrans",
+                            db.DB_HASH, flags=openflags)
+
+        self.oid_trans = db.DB(self.env)
+        self.oid_trans.set_flags(db.DB_DUP)
+        self.oid_trans.open(self.save_name, "oidtrans",
+                            db.DB_HASH, flags=openflags)
+
+        self.rid_trans = db.DB(self.env)
+        self.rid_trans.set_flags(db.DB_DUP)
+        self.rid_trans.open(self.save_name, "ridtrans",
+                            db.DB_HASH, flags=openflags)
+
+        if not self.readonly:
+            self.person_map.associate(self.surnames,  find_surname, openflags)
+            self.person_map.associate(self.id_trans,  find_idmap, openflags)
+            self.family_map.associate(self.fid_trans, find_idmap, openflags)
+            self.event_map.associate(self.eid_trans,  find_idmap,  openflags)
+            self.repository_map.associate(self.rid_trans, find_idmap,
+                                          openflags)
+            self.repository_map.associate(self.repository_types,
+                                          find_repository_type, openflags)
+            self.place_map.associate(self.pid_trans,  find_idmap, openflags)
+            self.media_map.associate(self.oid_trans, find_idmap, openflags)
+            self.source_map.associate(self.sid_trans, find_idmap, openflags)
 
     def rebuild_secondary(self,callback=None):
 
@@ -323,6 +353,22 @@ class GrampsBSDDB(GrampsDbBase):
                 callback()
             self.source_map[key] = self.source_map[key]
         self.source_map.sync()
+
+        # Repair secondary indices related to repository_map
+
+        self.rid_trans.close()
+        self.rid_trans = db.DB(self.env)
+        self.rid_trans.set_flags(db.DB_DUP)
+        self.rid_trans.open(self.save_name, "ridtrans", db.DB_HASH,
+                            flags=db.DB_CREATE)
+        self.rid_trans.truncate()
+        self.repository_map.associate(self.rid_trans, find_idmap, db.DB_CREATE)
+
+        for key in self.repository_map.keys():
+            if callback:
+                callback()
+            self.repository_map[key] = self.repository_map[key]
+        self.repository_map.sync()
 
     def abort_changes(self):
         while self.undo():
@@ -599,349 +645,25 @@ class GrampsBSDDB(GrampsDbBase):
         self.oid_trans.sync()
         self.undodb.sync()
 
-    def upgrade(self):
+    def gramps_upgrade(self):
         child_rel_notrans = [
             "None",      "Birth",  "Adopted", "Stepchild",
             "Sponsored", "Foster", "Unknown", "Other", ]
         
-        version = self.metadata.get('version',0)
+        version = self.metadata.get('version',_MINVERSION)
 
-        if version < 2:
-            self.upgrade_2(child_rel_notrans)
-        if version < 3:
-            self.upgrade_3()
-        if version < 4:
-            self.upgrade_4(child_rel_notrans)
-        if version < 5:
-            self.upgrade_5()
         if version < 6:
-            self.upgrade_6()
+            self.gramps_upgrade_6()
         if version < 7:
-            self.upgrade_7()
+            self.gramps_upgrade_7()
         if version < 8:
-            self.upgrade_9()
+            self.gramps_upgrade_8()
+        if version < 9:
+            self.gramps_upgrade_9()
 
         self.metadata['version'] = _DBVERSION
 
-    def upgrade_2(self,child_rel_notrans):
-        print "Upgrading to DB version 2"
-        trans = Transaction("",self)
-        trans.set_batch(True)
-        cursor = self.get_person_cursor()
-        data = cursor.first()
-        while data:
-            handle,info = data
-            person = Person()
-            person.unserialize(info)
-                
-            plist = person.get_parent_family_handle_list()
-            new_list = []
-            for (f,mrel,frel) in plist:
-                try:
-                    mrel = child_rel_notrans.index(mrel)
-                except:
-                    mrel = RelLib.Person.CHILD_BIRTH
-                try:
-                    frel = child_rel_notrans.index(frel)
-                except:
-                    frel = RelLib.Person.CHILD_BIRTH
-                new_list.append((f,mrel,frel))
-            person.parent_family_list = new_list
-            self.commit_person(person,trans)
-            data = cursor.next()
-        cursor.close()
-        self.transaction_commit(trans,"Upgrade to DB version 2")
-
-    def upgrade_3(self):
-        print "Upgrading to DB version 3"
-        trans = Transaction("",self)
-        trans.set_batch(True)
-        cursor = self.get_person_cursor()
-        data = cursor.first()
-        while data:
-            handle,info = data
-            person = Person()
-            person.unserialize(info)
-
-            person.primary_name.date = None
-            for name in person.alternate_names:
-                name.date = None
-            self.commit_person(person,trans)
-            data = cursor.next()
-        cursor.close()
-        self.transaction_commit(trans,"Upgrade to DB version 3")
-
-    def upgrade_4(self,child_rel_notrans):
-        print "Upgrading to DB version 4"
-        trans = Transaction("",self)
-        trans.set_batch(True)
-        cursor = self.get_person_cursor()
-        data = cursor.first()
-        while data:
-            handle,info = data
-            person = Person()
-            person.unserialize(info)
-                
-            plist = person.get_parent_family_handle_list()
-            new_list = []
-            change = False
-            for (f,mrel,frel) in plist:
-                if type(mrel) == str:
-                    mrel = child_rel_notrans.index(mrel)
-                    change = True
-                if type(frel) == str:
-                    frel = child_rel_notrans.index(frel)
-                    change = True
-                new_list.append((f,mrel,frel))
-            if change:
-                person.parent_family_list = new_list
-                self.commit_person(person,trans)
-            data = cursor.next()
-        cursor.close()
-        self.transaction_commit(trans,"Upgrade to DB version 4")
-
-    def upgrade_5(self):
-        print "Upgrading to DB version 5 -- this may take a while"
-        trans = Transaction("",self)
-        trans.set_batch(True)
-        # Need to rename:
-        #       attrlist into attribute_list in MediaRefs
-        #       comments into note in SourceRefs
-        # in all primary and secondary objects
-        # Also MediaObject gets place attribute removed
-
-        cursor = self.get_media_cursor()
-        data = cursor.first()
-        while data:
-            changed = False
-            handle,info = data
-            obj = MediaObject()
-            # can't use unserialize here, since the new class
-            # defines tuples one element short
-            if len(info) == 11:
-                (obj.handle, obj.gramps_id, obj.path, obj.mime, obj.desc,
-                obj.attribute_list, obj.source_list, obj.note, obj.change,
-                obj.date, junk) = info
-                changed = True
-            else:
-                obj.unserialize(info)
-            for src_ref in obj.source_list:
-                if 'comments' in dir(src_ref):
-                    src_ref.note = src_ref.comments
-                    del src_ref.comments
-                    changed = True
-            for attr in obj.attribute_list:
-                for src_ref in attr.source_list:
-                    if 'comments' in dir(src_ref):
-                        src_ref.note = src_ref.comments
-                        del src_ref.comments
-                        changed = True
-            if changed:
-                self.commit_media_object(obj,trans)
-            data = cursor.next()
-        cursor.close()
-        # person
-        cursor = self.get_person_cursor()
-        data = cursor.first()
-        while data:
-            changed = False
-            handle,info = data
-            person = Person()
-            person.unserialize(info)
-            for media_ref in person.media_list:
-                if 'attrlist' in dir(media_ref):
-                    media_ref.attribute_list = media_ref.attrlist
-                    del media_ref.attrlist
-                    changed = True
-                for src_ref in media_ref.source_list:
-                    if 'comments' in dir(src_ref):
-                        src_ref.note = src_ref.comments
-                        del src_ref.comments
-                        changed = True
-                for attr in media_ref.attribute_list:
-                    for src_ref in attr.source_list:
-                        if 'comments' in dir(src_ref):
-                            src_ref.note = src_ref.comments
-                            del src_ref.comments
-                            changed = True
-            for src_ref in person.source_list:
-                if 'comments' in dir(src_ref):
-                    src_ref.note = src_ref.comments
-                    del src_ref.comments
-                    changed = True
-            for attr in person.attribute_list:
-                for src_ref in attr.source_list:
-                    if 'comments' in dir(src_ref):
-                        src_ref.note = src_ref.comments
-                        del src_ref.comments
-                        changed = True
-            for o in [o for o in [person.lds_bapt,
-                                person.lds_endow,
-                                person.lds_seal] if o]:
-                for src_ref in o.source_list:
-                    if 'comments' in dir(src_ref):
-                        src_ref.note = src_ref.comments
-                        del src_ref.comments
-                        changed = True
-            for name in person.alternate_names + [person.primary_name]:
-                for src_ref in name.source_list:
-                    if 'comments' in dir(src_ref):
-                        src_ref.note = src_ref.comments
-                        del src_ref.comments
-                        changed = True
-            for addr in person.address_list:
-                for src_ref in addr.source_list:
-                    if 'comments' in dir(src_ref):
-                        src_ref.note = src_ref.comments
-                        del src_ref.comments
-                        changed = True
-            if changed:
-                self.commit_person(person,trans)
-            data = cursor.next()
-        cursor.close()
-        # family
-        cursor = self.get_family_cursor()
-        data = cursor.first()
-        while data:
-            changed = False
-            handle,info = data
-            family = Family()
-            family.unserialize(info)
-            for media_ref in family.media_list:
-                if 'attrlist' in dir(media_ref):
-                    media_ref.attribute_list = media_ref.attrlist
-                    del media_ref.attrlist
-                    changed = True
-                for src_ref in media_ref.source_list:
-                    if 'comments' in dir(src_ref):
-                        src_ref.note = src_ref.comments
-                        del src_ref.comments
-                        changed = True
-                for attr in media_ref.attribute_list:
-                    for src_ref in attr.source_list:
-                        if 'comments' in dir(src_ref):
-                            src_ref.note = src_ref.comments
-                            del src_ref.comments
-                            changed = True
-            for src_ref in family.source_list:
-                if 'comments' in dir(src_ref):
-                    src_ref.note = src_ref.comments
-                    del src_ref.comments
-                    changed = True
-            for attr in family.attribute_list:
-                for src_ref in attr.source_list:
-                    if 'comments' in dir(src_ref):
-                        src_ref.note = src_ref.comments
-                        del src_ref.comments
-                        changed = True
-            if family.lds_seal:
-                for src_ref in family.lds_seal.source_list:
-                    if 'comments' in dir(src_ref):
-                        src_ref.note = src_ref.comments
-                        del src_ref.comments
-                        changed = True
-            if changed:
-                self.commit_family(family,trans)
-            data = cursor.next()
-        cursor.close()
-        # event
-        cursor = self.get_event_cursor()
-        data = cursor.first()
-        while data:
-            changed = False
-            handle,info = data
-            event = Event()
-            event.unserialize(info)
-            changed = event.media_list or event.source_list
-            for media_ref in event.media_list:
-                if 'attrlist' in dir(media_ref):
-                    media_ref.attribute_list = media_ref.attrlist
-                    del media_ref.attrlist
-                    changed = True
-                for src_ref in media_ref.source_list:
-                    if 'comments' in dir(src_ref):
-                        src_ref.note = src_ref.comments
-                        del src_ref.comments
-                        changed = True
-                for attr in media_ref.attribute_list:
-                    for src_ref in attr.source_list:
-                        if 'comments' in dir(src_ref):
-                            src_ref.note = src_ref.comments
-                            del src_ref.comments
-                            changed = True
-            for src_ref in event.source_list:
-                if 'comments' in dir(src_ref):
-                    src_ref.note = src_ref.comments
-                    del src_ref.comments
-                    changed = True
-            if changed:
-                self.commit_event(event,trans)
-            data = cursor.next()
-        cursor.close()
-        # place
-        cursor = self.get_place_cursor()
-        data = cursor.first()
-        while data:
-            changed = False
-            handle,info = data
-            place = Place()
-            place.unserialize(info)
-            for media_ref in place.media_list:
-                if 'attrlist' in dir(media_ref):
-                    media_ref.attribute_list = media_ref.attrlist
-                    del media_ref.attrlist
-                    changed = True
-                for src_ref in media_ref.source_list:
-                    if 'comments' in dir(src_ref):
-                        src_ref.note = src_ref.comments
-                        del src_ref.comments
-                        changed = True
-                for attr in media_ref.attribute_list:
-                    for src_ref in attr.source_list:
-                        if 'comments' in dir(src_ref):
-                            src_ref.note = src_ref.comments
-                            del src_ref.comments
-                            changed = True
-            for src_ref in place.source_list:
-                if 'comments' in dir(src_ref):
-                    src_ref.note = src_ref.comments
-                    del src_ref.comments
-                    changed = True
-            if changed:
-                self.commit_place(place,trans)
-            data = cursor.next()
-        cursor.close()
-        # source
-        cursor = self.get_source_cursor()
-        data = cursor.first()
-        while data:
-            changed = False
-            handle,info = data
-            source = Source()
-            source.unserialize(info)
-            for media_ref in source.media_list:
-                if 'attrlist' in dir(media_ref):
-                    media_ref.attribute_list = media_ref.attrlist
-                    del media_ref.attrlist
-                    changed = True
-                for src_ref in media_ref.source_list:
-                    if 'comments' in dir(src_ref):
-                        src_ref.note = src_ref.comments
-                        del src_ref.comments
-                        changed = True
-                for attr in media_ref.attribute_list:
-                    for src_ref in attr.source_list:
-                        if 'comments' in dir(src_ref):
-                            src_ref.note = src_ref.comments
-                            del src_ref.comments
-                            changed = True
-            if changed:
-                self.commit_source(source,trans)
-            data = cursor.next()
-        cursor.close()
-        self.transaction_commit(trans,"Upgrade to DB version 5")
-
-    def upgrade_6(self):
+    def gramps_upgrade_6(self):
         print "Upgrading to DB version 6"
         order = []
         for val in self.get_media_column_order():
@@ -949,7 +671,7 @@ class GrampsBSDDB(GrampsDbBase):
                 order.append(val)
         self.set_media_column_order(order)
 
-    def upgrade_7(self):
+    def gramps_upgrade_7(self):
         print "Upgrading to DB version 7"
 
         self.genderStats = GenderStats()
@@ -962,7 +684,7 @@ class GrampsBSDDB(GrampsDbBase):
             data = cursor.next()
         cursor.close()
 
-    def upgrade_8(self):
+    def gramps_upgrade_8(self):
         print "Upgrading to DB version 8"
         cursor = self.get_person_cursor()
         data = cursor.first()
@@ -990,7 +712,7 @@ class GrampsBSDDB(GrampsDbBase):
             data = cursor.next()
         cursor.close()
 
-    def upgrade_9(self):
+    def gramps_upgrade_9(self):
         print "Upgrading to DB version 9"
         # First, make sure the stored default person handle is str, not unicode
         try:
@@ -1013,8 +735,100 @@ class GrampsBSDDB(GrampsDbBase):
             self.commit_source(source,trans)
             data = cursor.next()
         cursor.close()
-        self.transaction_commit(trans,"Upgrade to DB version 9")
 
+        # Change every event handle to the EventRef
+        # in Person and Family objects
+        #     person
+        cursor = self.get_person_cursor()
+        data = cursor.first()
+        while data:
+            changed = False
+            handle,info = data
+            person = Person()
+            # Restore data from dbversion 8 (gramps 2.0.9)
+            (person.handle, person.gramps_id, person.gender,
+             person.primary_name, person.alternate_names, person.nickname,
+             death_handle, birth_handle, event_list,
+             person.family_list, person.parent_family_list,
+             person.media_list, person.address_list, person.attribute_list,
+             person.urls, person.lds_bapt, person.lds_endow, person.lds_seal,
+             person.complete, person.source_list, person.note,
+             person.change, person.private) = (info + (False,))[0:23]
+
+            if birth_handle:
+                event_ref = EventRef()
+                event_ref.set_reference_handle(birth_handle)
+                event_ref.set_role((EventRef.PRIMARY,''))
+                person.birth_ref = event_ref
+                changed = True
+
+            if death_handle:
+                event_ref = EventRef()
+                event_ref.set_reference_handle(death_handle)
+                event_ref.set_role((EventRef.PRIMARY,''))
+                person.death_ref = event_ref
+                changed = True
+
+            event_ref_list = []
+            for event_handle in event_list:
+                event_ref = EventRef()
+                event_ref.set_reference_handle(event_handle)
+                event_ref.set_role((EventRef.PRIMARY,''))
+                event_ref_list.append(event_ref)
+
+            if event_ref_list:
+                person.event_ref_list = event_ref_list[:]
+                changed = True
+
+            if changed:
+                self.commit_person(person,trans)
+            data = cursor.next()
+        cursor.close()
+
+        #     family
+        cursor = self.get_family_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            family = Family()
+            # Restore data from dbversion 8 (gramps 2.0.9)
+            (family.handle, family.gramps_id, family.father_handle,
+             family.mother_handle, family.child_list, family.type,
+             event_list, family.media_list, family.attribute_list,
+             family.lds_seal, family.complete, family.source_list,
+             family.note, family.change) = info
+
+            event_ref_list = []
+            for event_handle in event_list:
+                event_ref = EventRef()
+                event_ref.set_reference_handle(event_handle)
+                event_ref.set_role((EventRef.PRIMARY,''))
+                event_ref_list.append(event_ref)
+
+            if event_ref_list:
+                family.event_ref_list = event_ref_list[:]
+                changed = True
+
+            if changed:
+                self.commit_family(family,trans)
+            data = cursor.next()
+        cursor.close()
+
+        # Remove Witness from every event and convert name to type
+        cursor = self.get_event_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            event = Event()
+            (event.handle, event.gramps_id, name, event.date,
+             event.description, event.place, event.cause, event.private,
+             event.source_list, event.note, witness, event.media_list,
+             event.change) = info
+            self.commit_event(event,trans)
+            data = cursor.next()
+        cursor.close()
+
+        self.transaction_commit(trans,"Upgrade to DB version 9")
 
 if __name__ == "__main__":
 

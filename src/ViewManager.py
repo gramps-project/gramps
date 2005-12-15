@@ -682,10 +682,14 @@ class ViewManager:
         #self.state.db.set_undo_callback(self.undo_callback)
         #self.state.db.set_redo_callback(self.redo_callback)
 
-        if self.state.db.need_upgrade():
-            if callback:
-                callback(_('Upgrading database...'))
-            self.state.db.upgrade()
+        #if self.state.db.need_upgrade():
+        #    print "start callback"
+        #    if callback:
+        #        callback(_('Upgrading database...'))
+        #    print "done callback"
+        #    print "start upgrade"
+        #    self.state.db.gramps_upgrade()
+        #    print "done upgrade"
 
         GrampsKeys.save_last_file(name)
     
