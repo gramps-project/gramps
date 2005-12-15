@@ -443,11 +443,6 @@ class GrampsBSDDB(GrampsDbBase):
         @param include_classes: list of class names to include in the results.
                                 Default: None means include all classes.
         @type include_classes: list of class names
-        
-        This default implementation does a sequencial scan through all
-        the primary object databases and is very slow. Backends can
-        override this method to provide much faster implementations that
-        make use of additional capabilities of the backend.
 
         Note that this is a generator function, it returns a iterator for
         use in loops. If you want a list of the results use:
@@ -479,7 +474,31 @@ class GrampsBSDDB(GrampsDbBase):
 
         return 
 
+    def _delete_primary_from_reference_map(self, handle):
+        """Remove all references to the primary object from the reference_map"""
 
+        primary_cur = self.get_reference_map_primary_cursor()
+        
+        ret = primary_cur.set(handle)
+        
+        while (ret is not None):
+            (key,data) = ret
+            
+            # data values are of the form:
+            #   ((primary_object_class_name, primary_object_handle),
+            #    (referenced_object_class_name, referenced_object_handle))
+            
+            # so we need the second tuple give us a reference that we can
+            # combine with the primary_handle to get the main key.
+
+            main_key = (handle, cPickle.loads(data)[1][1])
+
+            self.reference_map.delete(str(main_key))
+            
+            ret = primary_cur.next_dup()
+
+        primary_cur.close()
+        
     def _update_reference_map(self, obj, class_name):
         
         # Add references to the reference_map for all primary object referenced
@@ -502,6 +521,7 @@ class GrampsBSDDB(GrampsDbBase):
         primary_cur = self.get_reference_map_primary_cursor()
         
         ret = primary_cur.set(handle)
+        
         while (ret is not None):
             (key,data) = ret
             
@@ -596,24 +616,31 @@ class GrampsBSDDB(GrampsDbBase):
         self.metadata       = None
 
     def _del_person(self,handle):
+        self._delete_primary_from_reference_map(handle)
         self.person_map.delete(str(handle))
 
     def _del_source(self,handle):
+        self._delete_primary_from_reference_map(handle)               
         self.source_map.delete(str(handle))
 
     def _del_repository(self,handle):
+        self._delete_primary_from_reference_map(handle)
         self.repository_map.delete(str(handle))
 
     def _del_place(self,handle):
+        self._delete_primary_from_reference_map(handle)
         self.place_map.delete(str(handle))
 
     def _del_media(self,handle):
+        self._delete_primary_from_reference_map(handle)
         self.media_map.delete(str(handle))
 
     def _del_family(self,handle):
+        self._delete_primary_from_reference_map(handle)
         self.family_map.delete(str(handle))
 
     def _del_event(self,handle):
+        self._delete_primary_from_reference_map(handle)
         self.event_map.delete(str(handle))
 
     def set_name_group_mapping(self,name,group):
