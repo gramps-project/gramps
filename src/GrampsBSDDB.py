@@ -37,6 +37,13 @@ import sets
 from gettext import gettext as _
 from bsddb import dbshelve, db
 
+# hack to use native set for python2.4
+# and module sets for earlier pythons
+try:
+    set()
+except NameError:
+    from sets import Set as set
+
 #-------------------------------------------------------------------------
 #
 # Gramps modules
@@ -92,7 +99,7 @@ class GrampsBSDDBDupCursor(GrampsBSDDBCursor):
     """Cursor that includes handling for duplicate keys"""
 
     def set(self,key):
-        return self.cursor.set(key)
+        return self.cursor.set(str(key))
 
     def next_dup(self):
         return self.cursor.next_dup()
@@ -167,12 +174,6 @@ class GrampsBSDDB(GrampsDbBase):
                and self.metadata.get('version',0) < _DBVERSION
 
     def load(self,name,callback,mode="w"):
-        self.load_primary(name,callback,mode)
-        self.load_secondary(callback)
-        if self.need_upgrade():
-            self.gramps_upgrade()
-
-    def load_primary(self,name,callback,mode="w"):
         if self.person_map:
             self.close()
 
@@ -201,17 +202,6 @@ class GrampsBSDDB(GrampsDbBase):
 
         self.reference_map = self.dbopen(name, "reference_map")
 
-        if not self.readonly:
-            self.undodb = db.DB()
-            self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
-
-        self.metadata   = self.dbopen(name, "meta")
-        self.bookmarks = self.metadata.get('bookmarks')
-        self.family_event_names = sets.Set(self.metadata.get('fevent_names',[]))
-        self.individual_event_names = sets.Set(self.metadata.get('pevent_names',[]))
-        self.family_attributes = sets.Set(self.metadata.get('fattr_names',[]))
-        self.individual_attributes = sets.Set(self.metadata.get('pattr_names',[]))
-
         if self.readonly:
             openflags = db.DB_RDONLY
         else:
@@ -236,26 +226,6 @@ class GrampsBSDDB(GrampsDbBase):
         self.repository_types.set_flags(db.DB_DUP)
         self.repository_types.open(self.save_name, "repostypes",
                                    db.DB_HASH, flags=openflags)
-
-        gstats = self.metadata.get('gender_stats')
-
-        if not self.readonly:
-            if gstats == None:
-                self.metadata['version'] = _DBVERSION
-            elif not self.metadata.has_key('version'):
-                self.metadata['version'] = 0
-
-        if self.bookmarks == None:
-            self.bookmarks = []
-
-        self.genderStats = GenderStats(gstats)
-        return 1
-
-    def load_secondary(self,callback):
-        if self.readonly:
-            openflags = db.DB_RDONLY
-        else:
-            openflags = db.DB_CREATE
 
         self.id_trans = db.DB(self.env)
         self.id_trans.set_flags(db.DB_DUP)
@@ -324,6 +294,30 @@ class GrampsBSDDB(GrampsDbBase):
             self.reference_map.associate(self.reference_map_referenced_map,
                                          find_referenced_handle,
                                          openflags)
+
+            self.undodb = db.DB()
+            self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
+
+        self.metadata   = self.dbopen(name, "meta")
+        self.bookmarks = self.metadata.get('bookmarks')
+        self.family_event_names = sets.Set(self.metadata.get('fevent_names',[]))
+        self.individual_event_names = sets.Set(self.metadata.get('pevent_names',[]))
+        self.family_attributes = sets.Set(self.metadata.get('fattr_names',[]))
+        self.individual_attributes = sets.Set(self.metadata.get('pattr_names',[]))
+
+        gstats = self.metadata.get('gender_stats')
+
+        if not self.readonly:
+            if gstats == None:
+                self.metadata['version'] = _DBVERSION
+            elif not self.metadata.has_key('version'):
+                self.metadata['version'] = 0
+
+        if self.bookmarks == None:
+            self.bookmarks = []
+
+        self.genderStats = GenderStats(gstats)
+        return 1
 
     def rebuild_secondary(self,callback=None):
 
@@ -911,7 +905,7 @@ class GrampsBSDDB(GrampsDbBase):
         cursor.close()
 
     def gramps_upgrade_9(self):
-        print "Upgrading to DB version 9"
+        print "Upgrading to DB version 9 -- this may take a while"
         # First, make sure the stored default person handle is str, not unicode
         try:
             handle = self.metadata['default']
@@ -919,14 +913,24 @@ class GrampsBSDDB(GrampsDbBase):
         except KeyError:
             # default person was not stored in database
             pass
+
+        # The rest of the upgrade deals with real data, not metadata
+        # so starting transaction here.
         trans = Transaction("",self)
         trans.set_batch(True)
-        # Change every source to have reporef_list
+
+        # This upgrade adds marker to every primary object.
+        # We need to extract and commit every primary object
+        # even if no other changes are made.
+
+        # Change every Source to have reporef_list
         cursor = self.get_source_cursor()
         data = cursor.first()
         while data:
             handle,info = data
             source = Source()
+            # We already have a new Source object with the reporef_list
+            # just fill in the rest of the fields for this source
             (source.handle, source.gramps_id, source.title, source.author,
              source.pubinfo, source.note, source.media_list,
              source.abbrev, source.change, source.datamap) = info
@@ -935,12 +939,10 @@ class GrampsBSDDB(GrampsDbBase):
         cursor.close()
 
         # Change every event handle to the EventRef
-        # in Person and Family objects
-        #     person
+        # in all Person objects
         cursor = self.get_person_cursor()
         data = cursor.first()
         while data:
-            changed = False
             handle,info = data
             person = Person()
             # Restore data from dbversion 8 (gramps 2.0.9)
@@ -950,22 +952,23 @@ class GrampsBSDDB(GrampsDbBase):
              person.family_list, person.parent_family_list,
              person.media_list, person.address_list, person.attribute_list,
              person.urls, person.lds_bapt, person.lds_endow, person.lds_seal,
-             person.complete, person.source_list, person.note,
+             complete, person.source_list, person.note,
              person.change, person.private) = (info + (False,))[0:23]
 
+            if complete:
+                person.marker = (PrimaryObject.MARKER_COMPLETE,"")
+                
             if birth_handle:
                 event_ref = EventRef()
                 event_ref.set_reference_handle(birth_handle)
                 event_ref.set_role((EventRef.PRIMARY,''))
                 person.birth_ref = event_ref
-                changed = True
 
             if death_handle:
                 event_ref = EventRef()
                 event_ref.set_reference_handle(death_handle)
                 event_ref.set_role((EventRef.PRIMARY,''))
                 person.death_ref = event_ref
-                changed = True
 
             event_ref_list = []
             for event_handle in event_list:
@@ -976,14 +979,13 @@ class GrampsBSDDB(GrampsDbBase):
 
             if event_ref_list:
                 person.event_ref_list = event_ref_list[:]
-                changed = True
 
-            if changed:
-                self.commit_person(person,trans)
+            self.commit_person(person,trans)
             data = cursor.next()
         cursor.close()
 
-        #     family
+        # Change every event handle to the EventRef
+        # in all Family objects
         cursor = self.get_family_cursor()
         data = cursor.first()
         while data:
@@ -993,9 +995,12 @@ class GrampsBSDDB(GrampsDbBase):
             (family.handle, family.gramps_id, family.father_handle,
              family.mother_handle, family.child_list, family.type,
              event_list, family.media_list, family.attribute_list,
-             family.lds_seal, family.complete, family.source_list,
+             family.lds_seal, complete, family.source_list,
              family.note, family.change) = info
 
+            if complete:
+                family.marker = (PrimaryObject.MARKER_COMPLETE,"")
+                
             event_ref_list = []
             for event_handle in event_list:
                 event_ref = EventRef()
@@ -1005,12 +1010,59 @@ class GrampsBSDDB(GrampsDbBase):
 
             if event_ref_list:
                 family.event_ref_list = event_ref_list[:]
-                changed = True
 
-            if changed:
-                self.commit_family(family,trans)
+            self.commit_family(family,trans)
             data = cursor.next()
         cursor.close()
+        
+        event_conversion = {
+            "Alternate Marriage"  : (Event.MARR_ALT,""),
+            "Annulment"           : (Event.ANNULMENT,""),
+            "Divorce"             : (Event.DIVORCE,""),
+            "Engagement"          : (Event.ENGAGEMENT,""),
+            "Marriage Banns"      : (Event.MARR_BANNS,""),
+            "Marriage Contract"   : (Event.MARR_CONTR,""),
+            "Marriage License"    : (Event.MARR_LIC,""),
+            "Marriage Settlement" : (Event.MARR_SETTL,""),
+            "Marriage"            : (Event.MARRIAGE,""),
+            "Adopted"             : (Event.ADOPT,""),
+            "Birth"               : (Event.BIRTH,""),
+            "Alternate Birth"     : (Event.BIRTH,""),
+            "Death"               : (Event.DEATH,""),
+            "Alternate Death"     : (Event.DEATH,""),
+            "Adult Christening"   : (Event.ADULT_CHRISTEN,""),
+            "Baptism"             : (Event.BAPTISM,""),
+            "Bar Mitzvah"         : (Event.BAR_MITZVAH,""),
+            "Bas Mitzvah"         : (Event.BAS_MITZVAH,""),
+            "Blessing"            : (Event.BLESS,""),
+            "Burial"              : (Event.BURIAL,""),
+            "Cause Of Death"      : (Event.CAUSE_DEATH,""),
+            "Census"              : (Event.CENSUS,""),
+            "Christening"         : (Event.CHRISTEN,""),
+            "Confirmation"        : (Event.CONFIRMATION,""),
+            "Cremation"           : (Event.CREMATION,""),
+            "Degree"              : (Event.DEGREE,""),
+            "Divorce Filing"      : (Event.DIV_FILING,""),
+            "Education"           : (Event.EDUCATION,""),
+            "Elected"             : (Event.ELECTED,""),
+            "Emigration"          : (Event.EMIGRATION,""),
+            "First Communion"     : (Event.FIRST_COMMUN,""),
+            "Immigration"         : (Event.IMMIGRATION,""),
+            "Graduation"          : (Event.GRADUATION,""),
+            "Medical Information" : (Event.MED_INFO,""),
+            "Military Service"    : (Event.MILITARY_SERV,""),
+            "Naturalization"      : (Event.NATURALIZATION,""),
+            "Nobility Title"      : (Event.NOB_TITLE,""),
+            "Number of Marriages" : (Event.NUM_MARRIAGES,""),
+            "Occupation"          : (Event.OCCUPATION,""),
+            "Ordination"          : (Event.ORDINATION,""),
+            "Probate"             : (Event.PROBATE,""),
+            "Property"            : (Event.PROPERTY,""),
+            "Religion"            : (Event.RELIGION,""),
+            "Residence"           : (Event.RESIDENCE,""),
+            "Retirement"          : (Event.RETIREMENT,""),
+            "Will"                : (Event.WILL,""),
+            }
 
         # Remove Witness from every event and convert name to type
         cursor = self.get_event_cursor()
@@ -1022,11 +1074,47 @@ class GrampsBSDDB(GrampsDbBase):
              event.description, event.place, event.cause, event.private,
              event.source_list, event.note, witness, event.media_list,
              event.change) = info
+            if name:
+                if event_conversion.has_key(name):
+                    the_type = (event_conversion[name],"")
+                else:
+                    the_type = (Event.CUSTOM,name)
+            else:
+                the_type = (Event.UNKNOWN,"")
+            
             self.commit_event(event,trans)
             data = cursor.next()
         cursor.close()
 
+        # Work out marker addition to the Place
+        cursor = self.get_place_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            place = Place()
+            (place.handle, place.gramps_id, place.title, place.long, place.lat,
+             place.main_loc, place.alt_loc, place.urls, place.media_list,
+             place.source_list, place.note, place.change) = info
+            self.commit_place(place,trans)
+            data = cursor.next()
+        cursor.close()
+
+        # Work out marker addition to the Media
+        cursor = self.get_media_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            media_object = MediaObject()
+            (media_object.handle, media_object.gramps_id, media_object.path,
+             media_object.mime, media_object.desc, media_object.attribute_list,
+             media_object.source_list, media_object.note, media_object.change,
+             media_object.date) = info
+            self.commit_media_object(media_object,trans)
+            data = cursor.next()
+        cursor.close()
+
         self.transaction_commit(trans,"Upgrade to DB version 9")
+        print "Done upgrading to DB version 9"
 
 if __name__ == "__main__":
 
