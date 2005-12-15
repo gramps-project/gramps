@@ -243,7 +243,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
     def need_upgrade(self):
         return False
 
-    def upgrade(self):
+    def gramps_upgrade(self):
         pass
 
     def create_id(self):

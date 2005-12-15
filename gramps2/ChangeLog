@@ -1,3 +1,14 @@
+2005-12-14  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsBSDDB.py: Rename upgrade to avoid collision; add DB
+	upgrade routine; require DB to be at least version 5 (gramps
+	2.0.0); separate primary and secondary load (may need to reverse
+	later).
+	* src/GrampsDbBase.py: Rename upgrade to avoid collission.
+	* src/RelLib.py (Witness.py): Add empty class to enable upgrades
+	from the earlier DB versions.
+	* src/ViewManager.py: move upgrade into the DB class (may need to
+	reverse later).
+
 2005-12-14  Don Allingham  <don@gramps-project.org>
 	* src/DisplayState.py: start of Windows menu
 	* src/ReadGedcom.py: sync database with transaction
