@@ -554,7 +554,63 @@ class GrampsBSDDB(GrampsDbBase):
             for (ref_class_name,ref_handle) in no_longer_required_references:
                 self.reference_map.delete(str((handle,ref_handle),))
 
+    def reindex_reference_map(self):
+        """Reindex all primary records in the database. This will be a
+        slow process for large databases.
 
+        At present this method does not clear the reference_map before it
+        reindexes. This is fine when if reindex is run to index new content or
+        when upgrading from a non-reference_map version of the database. But it
+        might be a problem if reindex is used to repair a broken index because any
+        references to primary objects that are no longer in the database will
+        remain in the reference_map index. So if you want to reindex for repair
+        purposes you need to clear the reference_map first.
+        """
+
+
+        # Make a dictionary of the functions and classes that we need for
+        # each of the primary object tables.
+        primary_tables = {'Person': {'cursor_func': self.get_person_cursor,
+                                     'class_func': Person},
+                          'Family': {'cursor_func': self.get_family_cursor,
+                                     'class_func': Family},
+                          'Event': {'cursor_func': self.get_event_cursor,
+                                    'class_func': Event},
+                          'Place': {'cursor_func': self.get_place_cursor,
+                                    'class_func': Place},
+                          'Source': {'cursor_func': self.get_source_cursor,
+                                     'class_func': Source},
+                          'MediaObject': {'cursor_func': self.get_media_cursor,
+                                          'class_func': MediaObject},
+                          'Repository': {'cursor_func': self.get_repository_cursor,
+                                         'class_func': Repository},
+                          }
+
+        # Now we use the functions and classes defined above to loop through each of the
+        # primary object tables.
+        for primary_table_name in primary_tables.keys():
+            
+            cursor = primary_tables[primary_table_name]['cursor_func']()
+            data = cursor.first()
+
+            # Grap the real object class here so that the lookup does
+            # not happen inside the main loop.
+            class_func = primary_tables[primary_table_name]['class_func']
+
+            while data:
+                found_handle,val = data
+                obj = class_func()
+                obj.unserialize(val)
+
+                self._update_reference_map(obj,primary_table_name)
+                
+                data = cursor.next()
+
+            cursor.close()
+
+        return
+
+        
     def abort_changes(self):
         while self.undo():
             pass
@@ -682,6 +738,7 @@ class GrampsBSDDB(GrampsDbBase):
                 transaction.add(PERSON_KEY,handle,person.serialize())
                 self.emit('person-delete',([str(handle)],))
             self.person_map.delete(str(handle))
+            self._delete_primary_from_reference_map(handle)
 
     def remove_source(self,handle,transaction):
         if not self.readonly and handle and str(handle) in self.source_map:
@@ -690,6 +747,7 @@ class GrampsBSDDB(GrampsDbBase):
                 transaction.add(SOURCE_KEY,handle,old_data)
                 self.emit('source-delete',([handle],))
             self.source_map.delete(str(handle))
+            self._delete_primary_from_reference_map(handle)
 
     def remove_repository(self,handle,transaction):
         if not self.readonly and handle and str(handle) in self.repository_map:
@@ -698,6 +756,7 @@ class GrampsBSDDB(GrampsDbBase):
                 transaction.add(REPOSITORY_KEY,handle,old_data)
                 self.emit('repository-delete',([handle],))
             self.repository_map.delete(str(handle))
+            self._delete_primary_from_reference_map(handle)
 
     def remove_family(self,handle,transaction):
         if not self.readonly and handle and str(handle) in self.family_map:
@@ -706,6 +765,7 @@ class GrampsBSDDB(GrampsDbBase):
                 transaction.add(FAMILY_KEY,handle,old_data)
                 self.emit('family-delete',([str(handle)],))
             self.family_map.delete(str(handle))
+            self._delete_primary_from_reference_map(handle)
 
     def remove_event(self,handle,transaction):
         if not self.readonly and handle and str(handle) in self.event_map:
@@ -714,6 +774,7 @@ class GrampsBSDDB(GrampsDbBase):
                 transaction.add(EVENT_KEY,handle,old_data)
                 self.emit('event-delete',([str(handle)],))
             self.event_map.delete(str(handle))
+            self._delete_primary_from_reference_map(handle)
 
     def remove_place(self,handle,transaction):
         if not self.readonly and handle and str(handle) in self.place_map:
@@ -722,6 +783,7 @@ class GrampsBSDDB(GrampsDbBase):
                 transaction.add(PLACE_KEY,handle,old_data)
                 self.emit('place-delete',([handle],))
             self.place_map.delete(str(handle))
+            self._delete_primary_from_reference_map(handle)
 
     def remove_object(self,handle,transaction):
         if not self.readonly and handle and str(handle) in self.media_map:
@@ -730,6 +792,7 @@ class GrampsBSDDB(GrampsDbBase):
                 transaction.add(MEDIA_KEY,handle,old_data)
                 self.emit('media-delete',([handle],))
             self.media_map.delete(str(handle))
+            self._delete_primary_from_reference_map(handle)
 
     def get_person_from_gramps_id(self,val):
         """finds a Person in the database from the passed gramps' ID.
