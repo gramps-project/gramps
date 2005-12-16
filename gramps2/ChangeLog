@@ -7,6 +7,8 @@
 	* src/GrampsBSDDB.py: go back to a single load function;
 	finish gramps_upgrade_9.
 	* src/ViewManager: Go back to the old way of load/upgrade.
+	* src/RelLib.py (RepoRef): Typos.
+	* src/Utils.py: Typos.
 
 2005-12-15 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GrampsBSDDB.py: added delete support for the 

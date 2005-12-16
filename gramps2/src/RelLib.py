@@ -4412,7 +4412,7 @@ class RepoRef(BaseObject,NoteBase):
     MAP        = 9
     NEWSPAPER  = 10
     PHOTO      = 11
-    THOMBSTOBE = 12
+    TOMBSTONE  = 12
     VIDEO      = 13
 
     def __init__(self,source=None):
@@ -4498,7 +4498,7 @@ class Repository(PrimaryObject,NoteBase):
         NoteBase.__init__(self)
         self.type = (Repository.LIBRARY,"")
         self.name = ""
-        self.address = Location()
+        self.address = Location() #FIXME: This needs to become address
         self.email = ""
         self.search_url = ""
         self.home_url = ""
