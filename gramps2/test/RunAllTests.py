@@ -43,12 +43,19 @@ if __name__ == '__main__':
 
     if options.verbose_level == 1:
         logger.setLevel(logging.INFO)
-    elif options.verbose_level >= 2:
+        console.setLevel(logging.INFO)
+    elif options.verbose_level == 2:
         logger.setLevel(logging.DEBUG)
-        os.environ['GRAMPS_SIGNAL'] = "1"
-    elif options.verbose_level >= 3:
+        console.setLevel(logging.DEBUG)
+    elif options.verbose_level == 3:
         logger.setLevel(logging.NOTSET)
+        console.setLevel(logging.NOTSET)
+    elif options.verbose_level >= 4:
+        logger.setLevel(logging.NOTSET)
+        console.setLevel(logging.NOTSET)
+        os.environ['GRAMPS_SIGNAL'] = "1"
     else:
         logger.setLevel(logging.ERROR)
+        console.setLevel(logging.ERROR)
         
     unittest.TextTestRunner(verbosity=options.verbose_level).run(allTheTests())
