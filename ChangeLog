@@ -1,4 +1,8 @@
 2005-12-16 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* test/GrampsDbBase_Test.py: added a crude performance test.
+	* test/RunAllTests.py: fixed log level setting.
+	
+2005-12-16 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GrampsBSDDB.py: reindex_reference_map added to rebuild the 
 	reference_map when upgrading database
 	* test/RunAllTests.py: script to run multiple unittests
