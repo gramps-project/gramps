@@ -217,16 +217,6 @@ class GrampsBSDDB(GrampsDbBase):
         self.name_group.open(self.save_name, "name_group",
                              db.DB_HASH, flags=openflags)
 
-        self.eventnames = db.DB(self.env)
-        self.eventnames.set_flags(db.DB_DUP)
-        self.eventnames.open(self.save_name, "eventnames",
-                             db.DB_HASH, flags=openflags)
-
-        self.repository_types = db.DB(self.env)
-        self.repository_types.set_flags(db.DB_DUP)
-        self.repository_types.open(self.save_name, "repostypes",
-                                   db.DB_HASH, flags=openflags)
-
         self.id_trans = db.DB(self.env)
         self.id_trans.set_flags(db.DB_DUP)
         self.id_trans.open(self.save_name, "idtrans",
@@ -262,6 +252,16 @@ class GrampsBSDDB(GrampsDbBase):
         self.rid_trans.open(self.save_name, "ridtrans",
                             db.DB_HASH, flags=openflags)
 
+
+        self.eventnames = db.DB(self.env)
+        self.eventnames.set_flags(db.DB_DUP)
+        self.eventnames.open(self.save_name, "eventnames",
+                             db.DB_HASH, flags=openflags)
+
+        self.repository_types = db.DB(self.env)
+        self.repository_types.set_flags(db.DB_DUP)
+        self.repository_types.open(self.save_name, "repostypes",
+                                   db.DB_HASH, flags=openflags)
 
         self.reference_map_primary_map = db.DB(self.env)
         self.reference_map_primary_map.set_flags(db.DB_DUP)
