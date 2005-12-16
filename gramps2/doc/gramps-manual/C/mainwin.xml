@@ -144,7 +144,7 @@
     <sect2 id="view-modes">
       <title>Switching Views and Viewing Modes</title>
 
-      <para>As mentioned above there are 6 different Views. In
+      <para>As mentioned above there are six different Views. In
       addition, there are two different Viewing Modes. You can tell at
       a glance which Viewing Mode you are in: If you see icons listed
       vertically in a sidebar at the left of the window, you are in
@@ -211,8 +211,8 @@
       You'll note that people are grouped according to their family
       names. To the left of each family name is an arrow. Clicking it
       once will reveal the entire list of people sharing that
-      name. Clicking the arrow again will &quot;roll up&quot; the list
-      and show only the family name.
+      name. Clicking the arrow again will &quot;roll up&quot; the
+      list and show only the family name.
 
       </para>
       <para>
@@ -416,83 +416,85 @@
             </para>
    	    </listitem>
 	  </varlistentry>
+
+  	  <varlistentry>
+	    <term>Active person's parents</term>
+	    <listitem>
+	    <para>
+
+	    Click the <guibutton>+</guibutton> or
+	    <guibutton>-</guibutton> buttons to add or remove parents
+	    of the Active person. Click the right arrow button to make
+	    the Father the new Active person and the Mother the new
+	    Spouse.
+
+	    </para>
+	    </listitem>
+          </varlistentry>
+
+  	  <varlistentry>
+	    <term>Spouse's parents</term>
+	    <listitem>
+	    <para>
+	    This list box functions the same as that of the Active
+	    person's parents.
+	    </para>
+	    </listitem>
+          </varlistentry>
+
+  	  <varlistentry>
+	    <term>Children</term>
+	    <listitem>
+	    <para>
+
+	    Displays the children of the Active person and the
+	    currently selected Spouse. The list can be ordered however
+	    you want by clicking on a column heading.
+
+	    </para><para>
+
+	    Note that in addition to columns for Name, ID, Gender,
+	    Birth Date, and Death Date, there is a column labeled
+	    Status.1 This column reflects the relationship between the
+	    child and his parents (Birth, Adoption, etc.).
+
+	    </para><para>
+
+	    As with the other list boxes, the Children list box has
+	    some associated buttons. Click the left arrow button to
+	    make the selected Child the Active person. Click the next
+	    button down to add a new person to the database and to
+	    make this person a Child of the Active person. Click the
+	    next button down to select a person from the database and
+	    to make this person a Child of the Active person. Click
+	    the lowest button to remove the selected Child from the
+	    Family (note that this does not remove the Child from the
+	    database).
+	    </para>
+
+	    <note id="right-click-menu">
+	    <title>Right Click Menu</title>
+	    <para>
+	    Most of the functions described above can also be executed
+	    by right-clicking your mouse.
+	    </para>
+	    </note>
+	    </listitem>
+          </varlistentry>
+
         </variablelist>
 
+
 	<para>
-          The Active person's data is in the list box in the upper
-	  left corner of the window. Directly below it, another box
-	  lists the Spouse's data, for each relationship of Active
-	  person (can be more than one).  The double-arrow button to
-	  the right of the Active person list box allows you to
-	  exchange the currently selected spouse (Current spouse) with
-	  the Active person. Double-clicking on the Active person
-	  allows the editing of Active person's data. Double-clicking
-	  on the Current spouse allows you to edit their relationship
-	  information. Shift-clicking on the Current spouse allows the
-	  editing of the Current spouse's data.
-        </para>
-        <para> 
-           To add a new relationship, use one of the two upper buttons
-          to the right of the spouse box. Click the top one to add a
-          new person to a database and to the new relationship. Click
-          the middle one to add a person already existing in the
-          database to the new relationship.  To remove Current spouse,
-          click the lowest button (<guibutton>-</guibutton>) to the
-          right of the spouse box. Note that removing a spouse from
-          the relationship does not remove the person from the
-          database. Most of these functions are also available by
-          right-clicking into the spouse box and selecting an
-          appropriate item from the context menu.
-        </para>
-	<para>
-          The parents of both the Active person and the Current spouse
-	  are listed in the corresponding list boxes in the right-hand
-	  part of the window (Active person's parents on top, Current
-	  spouse parents on the bottom). Both list boxes have a set of
-	  three buttons on their right side. The
-	  <guibutton>+</guibutton> and <guibutton>-</guibutton>
-	  buttons allow you to add and remove parents of the Active
-	  person and the Current spouse, respectively. Clicking the
-	  right arrow button makes the family in the corresponding
-	  list box an active family.  That is, it makes the selected
-	  Father the Active person, and the selected Mother the
-	  Current spouse. Most of these functions are also available
-	  by right-clicking into the parent box and selecting an
-	  appropriate item from the context menu.
-        </para>
-	<para>
-          The bottom list box displays children of the Active person
-	  and the Current Spouse. The Children's list can be ordered
-	  by the Birth date in the usual way of clicking on the
-	  <guilabel>Birth date</guilabel> column header. In addition
-	  to the <guilabel>Name</guilabel>, <guilabel>ID</guilabel>,
-	  <guilabel>Gender</guilabel>, and <guilabel>Birth
-	  date</guilabel> columns, the list includes a
-	  <guilabel>Status</guilabel> column. The pair of status words
-	  reflect the relationship between the child and his
-	  Father/Mother (such as Birth, Adoption,
-	  etc.). <guilabel>Column Editor Dialog</guilabel> can be used
-	  to change column arrangement.  Four buttons are available on
-	  the right side of the children list box. The top (left
-	  arrow) button makes the selected child the Active
-	  person. The next two buttons add a new child to the family:
-	  the upper one adds a new person to the database and to the
-	  family, the lower one just adds a person existing in the
-	  database to the family. Finally, the lowest
-	  <guibutton>-</guibutton> button removes the selected child
-	  from the family. Note that removing a child from the family
-	  does not remove the person from the database. Most of these
-	  functions are also available by right-clicking into the
-	  children box and selecting an appropriate item from the
-	  context menu.
-        </para> 
-	<para>
+
           The layout of the Family View can be switched from the
-          left-to-right arrangement (shown above) to the top-to-bottom
-          arrangement (shown below). This can be done in the
-          <guilabel>Display</guilabel> section of the
-          <guilabel>Preferences</guilabel> dialog. The top-to-bottom
-          view has the same functionality as the left-to-right view.
+          &quot;left-to-right&quot; arrangement shown in <xref linkend="family-fig"/> to the
+          &quot;top-to-bottom&quot; arrangement shown in <xref linkend="family-alt-fig"/>. This is
+          done by going to
+          <menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></menuchoice>
+          and selecting the <guilabel>Display</guilabel> section of
+          the dialog that appears.
+
         </para>
 
 <!-- ==== Figure: Family View ==== -->
@@ -519,6 +521,19 @@
       <sect2 id="pedigree-view">
         <title>Pedigree View</title>
 
+	<para>
+
+          The Pedigree View displays a family tree of the Active
+	  person's ancestors. The Pedigree View shows up to five
+	  generations, depending the size of the window. Each person is
+	  indicated by a box labeled with his or her name. Two lines
+	  branch from each box. The top one shows the person's father
+	  and the bottom one the mother. Solid lines represent birth
+	  relations, while dashed lines represent non-birth relations
+	  such as adoption, step-parenthood, guardianship, etc.
+
+	</para>
+
 <!-- ==== Figure: Pedigree View ==== -->
 
 	<figure id="pedigree-fig"> 
@@ -539,26 +554,12 @@
 
 	<para>
 
-          The Pedigree View helps to visualize the place of the Active
-	  person in the tree of his/her ancestors. The Pedigree View
-	  shows four generations, going back in time from the Active
-	  person <guilabel>1</guilabel> to his/her parents
-	  <guilabel>2</guilabel>, to grandparents
-	  <guilabel>3</guilabel>, to great-grandparents
-	  <guilabel>4</guilabel>.  Each person is denoted by a box
-	  bearing the person's name.  The two lines that converge on
-	  the box represent ties with the person's Father (top line)
-	  and mother (bottom line). Solid lines represent birth
-	  relations, while dashed lines represent non-birth relations
-	  (such as adoption, step-parenthood, guardianship, etc.).
-	  When the mouse moves over the white box, it expands to
-	  display the corresponding person's dates of birth and
-	  death. When the mouse is placed over the family line, the
-	  line becomes highlighted to indicate an active link:
-	  double-clicking on the line makes the corresponding ancestor
-	  the Active person. The display in that case is re-adjusted
-	  to show four generations, starting from the newly selected
-	  Active person.
+	If you move your mouse over a box, it expands to show birth
+	and death dates. If you move your mouse over a line, the line
+	gets highlighted, indicating an active link. Double-click the
+	line to make the corresponding ancestor the Active
+	person. You'll note that the display is updated to show four
+	generations beginning with the new Active person.
 
         </para>
 	
@@ -582,28 +583,31 @@
 
 	<para>
 
-          The left-hand side of the window shows the left arrow
-	  button.  Upon clicking, the button expands to the menu
-	  listing the children of the Active person. Selecting the
-	  menu item makes the corresponding child the Active
-	  person. The appearance of the children's names in the menu
-	  serves to differentiate the "dead ends" of the tree from the
-	  continuing branches as follows. The children who have
-	  children appear in the menu in the boldface and italic
-	  typeset, while the children without children ("dead ends")
-	  appear in a regular font. If the Active person has a single
-	  child, no menu will be displayed (since there is no choice)
-	  and the child will become the Active person upon clicking
-	  the arrow button.
+	To the left of the Active Person is a left arrow
+	button. Clicking this button expands a list of the Active
+	Person's children. Selecting one of the children makes that
+	child the Active Person.
 
        </para><para>
 
-          The right-hand side of the window shows two right arrow
-	  buttons.  When the top button is clicked, the Father of the
-	  Active person becomes the Active person. Clicking the bottom
-	  button makes the Mother of the Active person the Active
-	  person. Again, the display is re-adjusted to show four
-	  generations, starting from the newly selected Active person.
+	The appearance of the children's names in the menu
+	differentiates the &quot;dead ends&quot; of the tree from the
+	continuing branches. Children who have children themselves
+	appear in the menu in the boldface and italic type, while
+	children without children (&quot;dead ends&quot;) appear in a
+	regular font. If the Active person has only one child, no menu
+	will be displayed (since there is only one choice) and the
+	child will become the Active Person when the arrow button is
+	clicked.
+
+       </para><para>
+
+        The right-hand side of the window shows two right arrow
+	buttons.  When the top button is clicked, the Father of the
+	Active person becomes the Active person. Clicking the bottom
+	button makes the Mother of the Active person the Active
+	person. Again, the display is re-adjusted to show four
+	generations, starting from the newly selected Active person.
 
         </para> 
 
@@ -627,16 +631,16 @@
 	
 	<para>
 
-	  Right-clicking on any person's box in the Pedigree View will
-	  bring up the context menu. Among other useful items, the
-	  context menu has submenus listing
-	  <guilabel>Spouses</guilabel>, <guilabel>Siblings</guilabel>,
-	  <guilabel>Children</guilabel>, and
-	  <guilabel>Parents</guilabel> of that person. Insensitive
-	  (grayed out) sub-menus indicate the absence of the data in
-	  the appropriate category. Similarly to the children menu
-	  above, children's and parents' menus distinguish continuing
-	  lines from dead ends.
+	Right-clicking on any person's box in the Pedigree View will
+	bring up the &quot;context menu&quot;. Among other useful
+	items, the context menu has submenus listing
+	<guilabel>Spouses</guilabel>, <guilabel>Siblings</guilabel>,
+	<guilabel>Children</guilabel>, and
+	<guilabel>Parents</guilabel> of that
+	person. &quot;Greyed-out&quot; sub-menus indicate the absence
+	of the data in the appropriate category. Similarly to the
+	children menu above, Children's and Parents' menus distinguish
+	continuing lines from dead ends.
 
 	</para>
 
@@ -661,36 +665,57 @@
     
         <para>
 
-          An additional advanced scheme of labeling generations exists
-          in Pedigree View. It becomes available by setting the anchor
-          on some active person. If the anchor is set, the generations
-          are labeled as follows.  The anchor person (and his/her
-          generation) is labeled as <guilabel>0</guilabel>.  The
-          ancestor generations are numbered with positive integers
-          (<guilabel>1</guilabel>, <guilabel>2</guilabel>,
-          <guilabel>3</guilabel>, etc.) while the descendant
-          generations are numbered with negative integers
-          (<guilabel>-1</guilabel>, <guilabel>-2</guilabel>,
-          <guilabel>-3</guilabel>, etc.). In all cases, the number
-          represents the number of generations between the labeled
-          generation and the anchor person. In this mode, you can
-          travel along the extensive pedigree line and see the number
-          of generations counting from the anchor person.
+	Pedigree View gives you an additional, advanced way of
+	labeling generations. This feature becomes available by
+	setting the &quot;anchor&quot; on a selected person. If the
+	anchor is set, the generations are labeled as follows:
+	</para>
 
-        </para><para>
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	    The Anchor Person (and his/her generation) is labeled as 
+	    <guilabel>0</guilabel>.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	    The ancestor generations are numbered with positive integers 
+	    (<guilabel>1</guilabel>,<guilabel>2</guilabel>,
+	    <guilabel>3</guilabel>,etc.).
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	    The descendant generations are numbered with negative integers
+	    (<guilabel>-1</guilabel>,<guilabel>-2</guilabel>,
+	    <guilabel>-3</guilabel>, etc.).
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	    In all cases, the number represents the number of
+	    generations between the labeled generation and the anchor
+	    person. In this mode, you can travel along the extensive
+	    pedigree line and see the number of generations removed
+	    from the Anchor Person.
+	    </para>
+	  </listitem>
+	</itemizedlist>
 
-          To set the anchor, select the <guilabel>Set
-          anchor</guilabel> menu item from the right-click context
-          menu, when the desired person is the Active person in the
-          Pedigree View. The labels will change immediately, and the
-          name of the anchor person will appear at the lower left
-          corner of the display area.  The set anchor person will stay
-          in effect until either the anchor is removed (by selecting
-          the <guilabel>Remove anchor</guilabel> item from the context
-          menu), or until the active person chosen is unrelated to the
-          anchor person. The latter move can be made using extensive
-          navigation tools available in &app;, see <xref
-          linkend="gramps-nav"/> for the detailed reference.
+	<para>
+
+	To set the anchor, select the person you want as the Active
+	person (recall that you can do so in the Pedigree View by
+	clicking the line that leads to the person from his or her
+	child). Then, while in Pedigree View, right click anywhere in
+	the main window. A context menu will appear. Select
+	<guilabel>Set anchor</guilabel> and you will see the Active
+	person's indicated as the anchor in the lower left corner.
+	This newly established Anchor Person will remain in effect
+	until you right-click again and select <guilabel>Remove
+	anchor</guilabel> from the context menu or until a new Active
+	person is chosen who is unrelated to the Anchor Person.
 
         </para>
 
@@ -700,6 +725,29 @@
 
       <sect2 id="sources-view">
         <title>Sources View</title>
+	  <para>
+
+	  Sources View lists the sources of certain information stored
+	  in the database. These can include various documents (birth,
+	  death, and marriage certificates, etc.), books, films,
+	  journals, private diaries, - nearly anything that can
+	  provide genealogical evidence. GRAMPS gives you the option
+	  to provide a source for each event you record (births,
+	  deaths, marriages, etc.). The Source View lists the
+	  <guilabel>Title</guilabel>, <guilabel>ID</guilabel>, and
+	  <guilabel>Author</guilabel> of the source, as well as any
+	  <guilabel>Publication</guilabel> information that may be
+	  associated with it.
+
+	  </para><para>
+
+	  The list of Sources can be sorted in the usual manner, by
+	  clicking on a column heading. Clicking once sorts in
+	  ascending order, clicking again sorts in descending
+	  order. The <guilabel>Column Editor</guilabel> dialog can be
+	  used to add, remove and rearrange the displayed columns.
+
+	  </para>
 
 <!-- ==== Figure: Sources View ==== -->
 
@@ -718,29 +766,30 @@
         </figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>
-
-          The Sources View lists the sources of information stored in
-	  the database. This can include various documents (birth,
-	  death, and marriage certificates, etc.), books, films,
-	  journals, private diaries; virtually anything that can
-	  be classified as a source of information. The sources can be
-	  used as a reference for any event stored in the
-	  database. The Source View lists the
-	  <guilabel>Title</guilabel>, <guilabel>ID</guilabel>, and the
-	  <guilabel>Author</guilabel> of the source. Any column can be
-	  used for sorting the list. The usual rules apply: one click
-	  for ascending order, another click for descending order.
-	  <guilabel>Column Editor Dialog</guilabel> may be used to
-	  rearrange the displayed columns.
-
-        </para>
       </sect2>
 
 <!-- ================ Main Window Sub-subsection  -->
 
       <sect2 id="places-view">
         <title>Places View</title>
+	  <para>
+
+	  The Places View lists the geographical places in which the
+	  events of the database took place. These could be places of
+	  birth, death, and marriages of people, as well as their
+	  home, employment, education addresses, or any other
+	  conceivable reference to the geographical location. The
+	  Places View lists the places' <guilabel>Name</guilabel>,
+	  <guilabel>ID</guilabel>, <guilabel>Church Parish</guilabel>,
+	  <guilabel>City</guilabel>, <guilabel>County</guilabel>,
+	  <guilabel>State</guilabel>, and
+	  <guilabel>Country</guilabel>. All of these columns can be
+	  used for sorting by the usual sorting rules. The
+	  <guilabel>Column Editor<guilabel> dialog may be used to
+	  add, remove and rearrange the displayed columns.
+
+	  </para>
+
 
 <!-- ==== Figure: Places View ==== -->
   	
@@ -759,23 +808,6 @@
           </figure>
 
 <!-- ==== End of Figure ==== -->
-
-	<para>
-          The Places View lists the geographical places in which the
-	  events of the database took place. These could be places of
-	  birth, death, and marriages of people, as well as their
-	  home, employment, education addresses, or any other
-	  conceivable reference to the geographical location. The
-	  Places View lists the places' <guilabel>Name</guilabel>,
-	  <guilabel>ID</guilabel>, <guilabel>Church Parish</guilabel>,
-	  <guilabel>City</guilabel>, <guilabel>County</guilabel>,
-	  <guilabel>State</guilabel>, and
-	  <guilabel>Country</guilabel>. All of these columns can be
-	  used for sorting by the usual sorting rules.
-	  <guilabel>Column Editor Dialog</guilabel> may be used to
-	  rearrange the displayed columns.
-        </para> 
-      </sect2>
 
 <!-- ================ Main Window Sub-subsection  -->
 
