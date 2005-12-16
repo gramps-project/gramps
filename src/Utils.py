@@ -196,7 +196,7 @@ source_media_types = {
     RelLib.RepoRef.MAP        : _("Map"),
     RelLib.RepoRef.NEWSPAPER  : _("Newspaper"),
     RelLib.RepoRef.PHOTO      : _("Photo"),
-    RelLib.RepoRef.THOMBSTOBE : _("Thombstone"),
+    RelLib.RepoRef.TOMBSTONE  : _("Tombstone"),
     RelLib.RepoRef.VIDEO      : _("Video"),
     }
 
