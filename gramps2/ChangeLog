@@ -1,3 +1,10 @@
+2005-12-16 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/GrampsBSDDB.py: reindex_reference_map added to rebuild the 
+	reference_map when upgrading database
+	* test/RunAllTests.py: script to run multiple unittests
+	* test/GrampsDbBase_Test.py: unittest to test reference_map table 
+	implementation.
+	
 2005-12-15  Don Allingham  <don@gramps-project.org>
 	* src/DisplayState.py: Window management completed
 	* src/ViewManger.py: progress bar added back in

@@ -1020,6 +1020,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         """
         Commits the transaction to the assocated UNDO database.
         """
+        
         if self.__LOG_ALL:
             log("%s: Transaction commit '%s'\n" % (self.__class__.__name__, str(msg)))
         if not len(transaction) or self.readonly:
@@ -1238,6 +1239,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
+
         if not self.readonly:
             person = self.get_person_from_handle(handle)
             self.genderStats.uncount_person (person)
