@@ -60,7 +60,7 @@ class ReferenceMapTest (unittest.TestCase):
                     lnk_sources.add(sources[source_idx-1])
                     source_idx = (source_idx+1) % len(sources)
 
-                    add_func(lnk_sources)
+                add_func(lnk_sources)
 
         return
 
@@ -202,7 +202,7 @@ class ReferenceMapTest (unittest.TestCase):
     def test_performance(self):
         
         self._populate_database(num_sources = 100,
-                                num_persons = 10,
+                                num_persons = 80,
                                 num_families = 10,
                                 num_events = 10,
                                 num_places = 10,
