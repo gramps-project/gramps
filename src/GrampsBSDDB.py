@@ -464,7 +464,7 @@ class GrampsBSDDB(GrampsDbBase):
 
             data = cPickle.loads(data)
             if include_classes == None or KEY_TO_CLASS_MAP[data[0][0]] in include_classes:
-                yield data[0]
+                yield (KEY_TO_CLASS_MAP[data[0][0]],data[0][1])
                 
             ret = referenced_cur.next_dup()
 
