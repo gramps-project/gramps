@@ -250,7 +250,7 @@
 	<screenshot>
           <mediaobject>
             <imageobject>
-              <imagedata fileref="figures/column-editor.png" format="PNG" width="444" depth="437" scale="75"/>
+              <imagedata fileref="figures/column-editor.png" format="PNG" width="444" depth="437"/>
             </imageobject>
 	    <textobject> 
 	      <phrase>Shows column editor dialog. </phrase>
@@ -263,16 +263,18 @@
 
       <sect3 id="filters">
         <title>Filters</title>
-        <para>
-          Genealogical databases may contain huge numbers of people.
-	  Since the long lists are hard for humans to manage, &app;
-	  provides a convenient way to limit the scope of browsing by
-	  using the filter. To save screen space, filter controls may
-	  be hidden, depending on the state of <menuchoice>
-	  <guimenu>View</guimenu> <guimenuitem>Filter</guimenuitem>
-	  </menuchoice> menu item.
-        </para>
-	  
+
+	<para>
+
+	Genealogical databases can contain information on many people,
+	families, places, and objects. It's therefore possible for a
+	View to can contain a long list of data that's difficult to
+	work with.  &app; gives you a means for controlling this
+	condition by allowing you to filter a list to a more
+	manageable size.
+
+	</para>
+
 <!-- ==== Figure: Enabled Filter ==== -->
 
 	<figure id="side-filt-fig"> 
@@ -292,15 +294,37 @@
 <!-- ==== End of Figure ==== -->
 
 	<para>
-          When &app; opens a database, the filter is set to the
-	  trivial filter called <guilabel>All people</guilabel>,
-	  i.e. no filtering is in effect. To choose a filter, use the
-	  pop-up <guilabel>Filter</guilabel> menu above the people's
-	  list. Once the filter is chosen, click the
-	  <guibutton>Apply</guibutton> button in the upper right
-	  corner of the window. The filtering will take effect upon
-	  clicking the <guibutton>Apply</guibutton> button.
-         </para>
+
+	When &app; opens a database, no filtering is in effect. In
+	People View, for example, all people in the database are
+	listed by default. To filter the list, go to <menuchoice>
+	<guimenu>View</guimenu> <guimenuitem>Filter</guimenuitem>
+	</menuchoice>. This will place a new menu just above the list
+	of People. Click on the double arrows of this menu to get a
+	pop-up list of all the criteria by which you can filter the
+	People listed. Choose a filter (for example, &quot;Males&quot;
+	or &quot;People with children&quot;) and click
+	<guibutton>Apply</guibutton>.
+
+        </para>
+
+        <note id="filter-note">
+          <title>Displaying the filter</title>
+	  <para>
+
+	  To reduce screen clutter, the filter menu is hidden by
+	  default. To display it, go to the <menuchoice>
+	  <guimenu>View</guimenu> <guimenuitem>Filter</guimenuitem>
+	  </menuchoice> menu. Please understand that even if the
+	  filter menu is not displayed, filtering may still be in
+	  effect. (Thus, we say that filtering is persistent.)  If you
+	  are unsure if your list is filtered, bring up the filter
+	  menu (by going to <menuchoice> <guimenu>View</guimenu>
+	  <guimenuitem>Filter</guimenuitem> </menuchoice>) and check
+	  if any filtering is set.
+	  </para>
+	</note>  
+
 	  
 	 <tip id="filt-tip">
            <title>Example filter use</title>
@@ -313,27 +337,6 @@
             </para>
 	  </tip>
 	  
-	  <note id="filt-note">
- 	    <title>Filtering is persistent</title>
-	    <para> 
-              Even if the filter controls are not displayed
-	      (<menuchoice> <guimenu>View</guimenu>
-	      <guimenuitem>Filter</guimenuitem> </menuchoice> menu
-	      item is unchecked), the filtering might still be in
-	      place. In other words, the visibility of the filter
-	      controls is not related to the actual filtering imposed
-	      on the list.
-            </para>
-	    <para>
-              This may be a cause of confusion, when you enable the
-	      filtering and then remove the controls from the
-	      display. If in doubt, enable the display of filter
-	      controls by checking <menuchoice>
-	      <guimenu>View</guimenu>
-	      <guimenuitem>Filter</guimenuitem> </menuchoice> menu
-	      item and check what kind of filtering is currently set.
-            </para> 
-	  </note>
         </sect3>
       </sect2>
       
@@ -772,42 +775,43 @@
 
       <sect2 id="places-view">
         <title>Places View</title>
-	  <para>
+        <para>
 
-	  The Places View lists the geographical places in which the
-	  events of the database took place. These could be places of
-	  birth, death, and marriages of people, as well as their
-	  home, employment, education addresses, or any other
-	  conceivable reference to the geographical location. The
-	  Places View lists the places' <guilabel>Name</guilabel>,
-	  <guilabel>ID</guilabel>, <guilabel>Church Parish</guilabel>,
-	  <guilabel>City</guilabel>, <guilabel>County</guilabel>,
-	  <guilabel>State</guilabel>, and
-	  <guilabel>Country</guilabel>. All of these columns can be
-	  used for sorting by the usual sorting rules. The
-	  <guilabel>Column Editor<guilabel> dialog may be used to
-	  add, remove and rearrange the displayed columns.
+	The Places View lists the geographical places in which the
+	events of the database took place. These could be places of
+	birth, death, and marriages of people, as well as their
+	home, employment, education addresses, or any other
+	conceivable reference to the geographical location. The
+	Places View lists the places' <guilabel>Name</guilabel>,
+	<guilabel>ID</guilabel>, <guilabel>Church Parish</guilabel>,
+	<guilabel>City</guilabel>, <guilabel>County</guilabel>,
+	<guilabel>State</guilabel>, and
+	<guilabel>Country</guilabel>. All of these columns can be
+	used for sorting by the usual sorting rules. The
+	<guilabel>Column Editor</guilabel> dialog may be used to
+	add, remove and rearrange the displayed columns.
 
-	  </para>
+	</para>
 
 
 <!-- ==== Figure: Places View ==== -->
   	
-          <figure id="places-fig"> 
-	    <title>Places View</title> 
-	    <screenshot>
-              <mediaobject>
-                <imageobject>
-                  <imagedata fileref="figures/places.png" format="PNG" width="500" depth="353" scale="75"/>
-                </imageobject>
-	        <textobject> 
-	          <phrase>Shows Places View.</phrase>
-	        </textobject>
-              </mediaobject>
-            </screenshot>
-          </figure>
+        <figure id="places-fig"> 
+	  <title>Places View</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/places.png" format="PNG" width="500" depth="353" scale="75"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Places View.</phrase>
+	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
 
 <!-- ==== End of Figure ==== -->
+      </sect2>
 
 <!-- ================ Main Window Sub-subsection  -->
 
@@ -849,6 +853,5 @@
  
         </para> 
       </sect2>
-
     </sect1>
   </chapter>

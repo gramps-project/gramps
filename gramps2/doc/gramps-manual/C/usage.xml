@@ -23,9 +23,10 @@
   <title>Usage</title>
   <para>
 
-    As commonly encountered in everyday life, there is usually more
-    than one way to accomplish something in &app;. The alternatives to
-    some actions will therefore be listed as appropriate.
+  Now we turn to a detailed exploration of the day-to-day use of
+  GRAMPS. First, we should point out that GRAMPS often offers more
+  than one way to do the same task. We'll try to point out some of
+  these alternatives where appropriate.
 
   </para>
 
@@ -42,20 +43,17 @@
         <guimenuitem>New</guimenuitem>
       </menuchoice>. 
 
-      You will then be prompted with the <guilabel>Create GRAMPS
-      database</guilabel> dialog asking to specify the name under
-      which the new database will be stored.  The new database will be
-      created in the BSDDB format, with <filename>.grdb</filename> as
-      the default extension.
-
+      You will then be asked to give the new database a name.
     </para>
+
     <note id="new-db-notdir-note">
-      <title>Selecting file</title>
+      <title>&app; databases</title>
       <para>
 
-        This version does not require selecting a directory for the
-        database. Please select filename, as you would in any other
-        application.
+      &app; stores your data in Berkeley database, sometimes
+      known as BSDDB. These files have &quot;.grdb&quot; as 
+      their default extension. The extension is automatically
+      added to your filename.
 
       </para>
     </note>
@@ -75,59 +73,50 @@
       </menuchoice>
 
       or click the <guibutton>Open</guibutton> button on the Toolbar.
-      The <guilabel>Open database</guilabel> dialog will appear.
+      The <guilabel>Open database</guilabel> dialog will appear and
+      you'll see a list of files. If you don't see the file you're
+      looking for, make sure the All files filter is selected. (This
+      dialog has a &quot;filetype&quot; filter, meaning it may only be
+      showing files that have a certain extension.)
 
     </para>
     <para>
 
-      The filetype filter in the <guilabel>Open database</guilabel>
-      dialog allows you to display files of a certain type. If the
-      <guilabel>All files</guilabel> filter is selected (the default),
-      all the files will be shown. The type will be determined by the
-      extension of the selected filename.
+    To open a recently accessed database, choose <menuchoice>
+    <guimenu>File</guimenu> <guimenuitem>Open Recent</guimenuitem>
+    </menuchoice> and select the filename from the list.
 
     </para>
-    <note id="open-db-note">
-      <title>Selecting file</title>
-      <para>
-
-        Unlike the version 1.0.X of &app;, this version does not
-        require selecting directory for the database. Please select
-        filename, as you would in any other application.
-
-      </para>
-    </note>
     <para>
 
-      If you do not have write permissions for the selected database,
+      If you do not have &quot;write permissions&quot; for the selected database,
       it will be opened in a Read Only mode. In this mode, the data
       may be viewed, but no changes will be made to the database. To
       indicate this mode, the title of the main window will be
       appended with <guilabel>(Read Only)</guilabel> text.
 
+    </para><para>
+
+    GRAMPS allows you to open certain databases that have not been
+    saved in GRAMPS' own file format. These include XML and GEDCOM
+    databases. But you should be aware that if the XML or GEDCOM
+    database is relatively large, you may encounter some performance
+    problems. These can be avoided by creating a new GRAMPS database
+    and importing your XML/GEDCOM data into it.
+
     </para>
+
     <note id="open-db-note2">
       <title>Opening XML and GEDCOM databases</title>
       <para>
 
-        This version allows direct opening and editing of &app; XML
-        and GEDCOM databases. Please keep in mind that, unlike using
-        the native grdb format, these formats require holding all data
-        in memory. This leads to performance and memory consumption
-        problems which grdb was designed to solve.
-
-      </para>
-      <para>
-
-        While direct opening of a &app; XML or GEDCOM file is
-        convenient for a small database, it may prove burdensome for
-        large databases.  If you experience this, please consider
-        creating a new native (grdb) database and importing your XML
-        or GEDCOM data into it. This will make accessing your data
-        much more efficient and quick.
+      XML and GEDCOM databases require all data to be held in
+      memory. GRAMPS' native grdb format does not. Thus, a database
+      with a grdb format can access data quicker and more efficiently.
 
       </para>
     </note>
+
     <warning id="open-db-warn">
       <title>GEDCOM Editing</title>
       <para>
@@ -140,23 +129,6 @@
 
       </para>
     </warning>
-    <para>
-      To open a recently opened database, choose 
-
-      <menuchoice>
-        <guimenu>File</guimenu>
-        <guimenuitem>Open Recent</guimenuitem>
-      </menuchoice> 
-
-      and select the filename from the list.  You can also use
-
-      <menuchoice>
-        <guimenu>Actions</guimenu>
-        <guimenuitem>Recent Documents</guimenuitem>
-      </menuchoice> 
-
-      from the GNOME <guilabel>Actions</guilabel> menu.
-    </para>
   </sect1>
 
 <!-- ================ Usage Subsection ================================ -->
@@ -165,56 +137,41 @@
     <title>Saving a Database</title>
     <para>
 
-      A consequence of the new database backend is that the changes,
-      once approved by the user, are applied immediately.  Once you
-      click <guibutton>OK</guibutton> in the Person, Family, Source,
-      Place, Media object, or Event editor, all the changes made to
-      this object are recorded in the database. No saving is
-      necessary, or even possible.
+      GRAMPS saves your changes as soon as you apply them.  This
+      means, for example, that any time you click
+      <guibutton>OK</guibutton> when using GRAMPS, your changes are
+      immediately recorded and saved. There is no separate
+      &quot;save&quot; command (although there is a &quot;save
+      as&quot; command that we'll discuss below.)
 
     </para>
+
     <para>
-      Choosing
-      <menuchoice>
-        <guimenu>Edit</guimenu>
-        <guimenuitem>Undo</guimenuitem>
-      </menuchoice> 
-      allows you to undo the changes you made, one step at a time.
+      You can undo changes you've made by selecting
+      <menuchoice><guimenu>Edit</guimenu>
+      <guimenuitem>Undo</guimenuitem> </menuchoice>. If you select
+      this command repeatedly, your most recent changes will be undone
+      one at a time.  </para>
+
+      If you have made changes to your data, and would like to return
+      your database to the way it was when you opened it, select
+      <menuchoice><guimenu>File</guimenu><guimenuitem>Abandon changes
+      and quit</guimenuitem></menuchoice>. This just like quitting
+      without saving in other programs.
     </para>
 
-    <tip id="save-tip">
-      <title>Reverting the whole session</title>
-      <para>
-
-        If you would like to revert the whole editing session, choose
-        <menuchoice><guimenu>File</guimenu><guimenuitem>Abandon
-        changes and quit</guimenuitem></menuchoice>. This will be
-        analogous to quitting without saving any changes in other
-        applications.
-
-      </para>
-    </tip>
     <para>
 
       If you would like to save your database under a different name,
-      you can do so by choosing 
-      <menuchoice>
-        <guimenu>File</guimenu>
-        <guimenuitem>Save as...</guimenuitem>
-      </menuchoice> 
-      and specifying the name (and, optionally, format) of your new
-      database.
+      you can do so by choosing <menuchoice><guimenu>File</guimenu>
+      <guimenuitem>Save as...</guimenuitem></menuchoice> and
+      specifying the name (and, optionally, format) of your new
+      database. Note that &quot;Save as&quot; will allow you to
+      continuing editing the newly saved database. If this is not what
+      you want to do, you may wish to use the &quot;Export&quot;
+      command instead.
 
     </para>
-    <note id="save-as-note">
-      <title>"Save as" continues editing</title>
-      <para>
-        If you use the <guilabel>Save as...</guilabel> function, the
-        editing in the main window is performed on the newly made
-        copy. If this is not what you want to do, please consider
-        using <guilabel>Export...</guilabel> instead.
-      </para>
-    </note>
   </sect1>
 
 <!-- ================ Usage Subsection ================================ -->
@@ -223,40 +180,83 @@
     <title>Importing Data</title>
     <para>
 
-      Importing allows you to incorporate the data from other
-      databases into your currently open &app; database. Currently,
-      &app; can import data from the following formats: &app; database
-      (grdb), GEDCOM, &app; XML, &app; package, and GeneWeb. All of
-      these are available by choosing
-
-      <menuchoice>
-        <guimenu>File</guimenu>
-        <guisubmenu>Import</guisubmenu>
-      </menuchoice> 
-      and selecting an appropriate file.
-
+      Importing allows you to bring data from other
+      genealogy programs into a &app; database Currently,
+      &app; can import data from the following formats: 
     </para>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+	  Another &app; database (having the &quot;grdb&quot; file
+	  extension), 
+	</para>
+      </listitem>
+      <listitem>
+	<para>GEDCOM</para>
+      </listitem>
+      <listitem>
+	<para>&app; XML</para>
+      </listitem>
+      <listitem>
+	<para>&app; package</para>
+      </listitem>
+      <listitem>
+	<para>GeneWeb</para>
+      </listitem>
+    </itemizedlist>
+
+    <note id="import-note">
+    <title>Importing vs. opening</title>
+    <para>
+    Please recognize that importing a database is different from
+    opening a database. When you import, you are actually bringing
+    data from one database into a GRAMPS database. When you open a
+    file, you editing your original file.
+    <para>
+    </note>
+
     <para>
 
-      &app; database (grdb), &app; XML, and &app; package are all
-      native &app; formats in that there is no information loss
-      resulting from reading from and writing into these formats.
+    To import data, select <menuchoice> <guimenu>File</guimenu>
+    <guisubmenu>Import</guisubmenu> </menuchoice>. The
+    <guilabel>Import database</guilabel> dialog will open, asking you
+    to specify the file you wish to import.
 
-      <variablelist>
-        <varlistentry>
-          <term>&app; database (grdb)</term>
-          <listitem>
-            <para>
-              The native &app; database format is a specific form of
-              Berkeley database (BSDDB) with special structure of data
-              tables. This format is binary and
-              architecture-dependent.  It is very quick and efficient,
-              but not generally portable across computers with
-              different binary architecture (e.g. i386 vs alpha).
-            </para>
-	  </listitem>
-        </varlistentry>
-        <varlistentry>
+    </para>
+
+    <warn id="import-dataloss">
+      <title>Data loss with some formats</title>
+      <para>
+      It is important to note that the importing process is not 
+      perfect for GEDCOM and GeneWeb databases. There is a chance
+      that some of the data in these databases will not be imported
+      into &app;.
+      </para>
+    </warn>
+
+
+    <para>
+      The &app; database (grdb), &app; XML, and &app; package are all
+      native &app; formats. There is no risk of information loss
+      when import or exporting to these formats.
+    </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>&app; database (grdb)</term>
+        <listitem>
+          <para>
+            The native &app; database format is a specific form of
+            Berkeley database (BSDDB) with special structure of data
+            tables. This format is binary and
+            architecture-dependent.  It is very quick and efficient,
+            but not generally portable across computers with
+            different binary architecture (e.g. i386 vs alpha).
+          </para>
+	 </listitem>
+      </varlistentry>
+      <varlistentry>
           <term>&app; XML</term>
           <listitem>
             <para>
@@ -300,37 +300,18 @@
       </variablelist>
     </para>
 
-    <tip id="import-tip">
-      <title>Opening vs importing</title>
-      <para>
-        The difference between opening &app; database (in any format)
-        and importing from &app; or GEDCOM database is that importing
-        incorporates all the data into your currently open database,
-        if any. In contrast, opening the database will switch from
-        editing your current data to editing another file.
-      </para>
-    </tip>
-
     <para>
-      After choosing an import format, you will be prompted with the
-      <guilabel>Import database</guilabel> dialog asking you to
-      specify the file name from which to import.
-    </para>
 
-    <note id="import-note">
-      <title>Selecting file</title>
-      <para>
-        This version does not require selecting a directory for the
-	database. Please select filename, as you would in any other
-	application.
-      </para>
-    </note>
+    If you import information from another GRAMPS database, you will
+    see the progress of the operation in the progress bar of GRAMPS'
+    main window.
 
-    <para>
-      Upon starting the GEDCOM import, &app; will display the
-      following GEDCOM import dialog with the summary of the
-      information about the data. The information is updated as the
-      import progresses.
+    </para><para>
+
+    If you import a GEDCOM database, you will see the import dialog
+    shown in <xref linkend="gedcom-import-fig"/>.  The information in
+    the dialog is updated as the import progresses.
+
     </para>
 
 <!-- ==== Figure: GEDCOM Import ==== -->
