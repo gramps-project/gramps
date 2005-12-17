@@ -12,7 +12,7 @@ sys.path.append('../src')
 try:
     set()
 except NameError:
-    from set import Set as set
+    from sets import Set as set
     
 import GrampsBSDDB
 import RelLib
