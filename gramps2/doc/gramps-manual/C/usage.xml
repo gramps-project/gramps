@@ -37,13 +37,9 @@
     <para>
 
       To start a new database, choose
+      <menuchoice><guimenu>File</guimenu><guimenuitem>New</guimenuitem>
+      </menuchoice>.You will then be asked to give the new database a name.
 
-      <menuchoice>
-        <guimenu>File</guimenu>
-        <guimenuitem>New</guimenuitem>
-      </menuchoice>. 
-
-      You will then be asked to give the new database a name.
     </para>
 
     <note id="new-db-notdir-note">
@@ -65,29 +61,23 @@
     <title>Opening a Database</title>
     <para>
 
-      To open a database, either choose 
-
-      <menuchoice>
-        <guimenu>File</guimenu>
-        <guimenuitem>Open</guimenuitem>
-      </menuchoice>
-
-      or click the <guibutton>Open</guibutton> button on the Toolbar.
-      The <guilabel>Open database</guilabel> dialog will appear and
-      you'll see a list of files. If you don't see the file you're
-      looking for, make sure the All files filter is selected. (This
-      dialog has a &quot;filetype&quot; filter, meaning it may only be
+      To open a database, either choose
+      <menuchoice><guimenu>File</guimenu>
+      <guimenuitem>Open</guimenuitem></menuchoice> or click the
+      <guibutton>Open</guibutton> button on the Toolbar.  The
+      <guilabel>Open database</guilabel> dialog will appear and you'll
+      see a list of files. If you don't see the file you're looking
+      for, make sure the All files filter is selected. (This dialog
+      has a &quot;filetype&quot; filter, meaning it may only be
       showing files that have a certain extension.)
 
-    </para>
-    <para>
+    </para><para>
 
     To open a recently accessed database, choose <menuchoice>
-    <guimenu>File</guimenu> <guimenuitem>Open Recent</guimenuitem>
+    <guimenu>File</guimenu><guimenuitem>Open Recent</guimenuitem>
     </menuchoice> and select the filename from the list.
 
-    </para>
-    <para>
+    </para><para>
 
       If you do not have &quot;write permissions&quot; for the selected database,
       it will be opened in a Read Only mode. In this mode, the data
@@ -97,12 +87,12 @@
 
     </para><para>
 
-    GRAMPS allows you to open certain databases that have not been
-    saved in GRAMPS' own file format. These include XML and GEDCOM
-    databases. But you should be aware that if the XML or GEDCOM
-    database is relatively large, you may encounter some performance
-    problems. These can be avoided by creating a new GRAMPS database
-    and importing your XML/GEDCOM data into it.
+      GRAMPS allows you to open certain databases that have not been
+      saved in GRAMPS' own file format. These include XML and GEDCOM
+      databases. But you should be aware that if the XML or GEDCOM
+      database is relatively large, you may encounter some performance
+      problems. These can be avoided by creating a new GRAMPS database
+      and importing your XML/GEDCOM data into it.
 
     </para>
 
@@ -144,23 +134,23 @@
       &quot;save&quot; command (although there is a &quot;save
       as&quot; command that we'll discuss below.)
 
-    </para>
+    </para><para>
 
-    <para>
       You can undo changes you've made by selecting
       <menuchoice><guimenu>Edit</guimenu>
       <guimenuitem>Undo</guimenuitem> </menuchoice>. If you select
       this command repeatedly, your most recent changes will be undone
-      one at a time.  </para>
+      one at a time.  
+
+    <para></para>
 
       If you have made changes to your data, and would like to return
       your database to the way it was when you opened it, select
       <menuchoice><guimenu>File</guimenu><guimenuitem>Abandon changes
       and quit</guimenuitem></menuchoice>. This just like quitting
       without saving in other programs.
-    </para>
 
-    <para>
+    </para><para>
 
       If you would like to save your database under a different name,
       you can do so by choosing <menuchoice><guimenu>File</guimenu>
@@ -180,9 +170,10 @@
     <title>Importing Data</title>
     <para>
 
-      Importing allows you to bring data from other
-      genealogy programs into a &app; database Currently,
-      &app; can import data from the following formats: 
+      Importing allows you to bring data from other genealogy programs
+      into a &app; database Currently, &app; can import data from the
+      following formats:
+
     </para>
 
     <itemizedlist>
@@ -207,25 +198,25 @@
     </itemizedlist>
 
     <note id="import-note">
-    <title>Importing vs. opening</title>
-    <para>
-    Please recognize that importing a database is different from
-    opening a database. When you import, you are actually bringing
-    data from one database into a GRAMPS database. When you open a
-    file, you editing your original file.
-    <para>
+      <title>Importing vs. opening</title>
+      <para>
+        Please recognize that importing a database is different from
+	opening a database. When you import, you are actually bringing
+	data from one database into a GRAMPS database. When you open a
+	file, you editing your original file.
+      </para>
     </note>
 
     <para>
 
-    To import data, select <menuchoice> <guimenu>File</guimenu>
-    <guisubmenu>Import</guisubmenu> </menuchoice>. The
-    <guilabel>Import database</guilabel> dialog will open, asking you
-    to specify the file you wish to import.
+    To import data, select <menuchoice><guimenu>File</guimenu>
+    <guisubmenu>Import</guisubmenu></menuchoice>. The <guilabel>Import
+    database</guilabel> dialog will open, asking you to specify the
+    file you wish to import.
 
     </para>
 
-    <warn id="import-dataloss">
+    <warning id="import-dataloss">
       <title>Data loss with some formats</title>
       <para>
       It is important to note that the importing process is not 
@@ -233,8 +224,7 @@
       that some of the data in these databases will not be imported
       into &app;.
       </para>
-    </warn>
-
+    </warning>
 
     <para>
       The &app; database (grdb), &app; XML, and &app; package are all
@@ -254,51 +244,51 @@
             but not generally portable across computers with
             different binary architecture (e.g. i386 vs alpha).
           </para>
-	 </listitem>
+	</listitem>
       </varlistentry>
-      <varlistentry>
-          <term>&app; XML</term>
-          <listitem>
-            <para>
 
-              The &app; XML file was the default format for the
-              previous stable version of &app;. Unlike the grdb
-              format, it is architecture independent and
-              human-readable. The database may also have references to
-              non-local (external) media objects, therefore it is not
-              guaranteed to be completely portable. The &app; XML
-              database is created by saving (
+      <varlistentry>
+        <term>&app; XML</term>
+        <listitem>
+          <para>
+
+            The &app; XML file was the default format for the
+            previous stable version of &app;. Unlike the grdb
+            format, it is architecture independent and
+            human-readable. The database may also have references to
+            non-local (external) media objects, therefore it is not
+            guaranteed to be completely portable. The &app; XML
+            database is created by saving (
 	      <menuchoice>
                 <guimenu>File</guimenu>
                 <guimenuitem>Save As...</guimenuitem>
-               </menuchoice>
+              </menuchoice>
               ) or exporting (
               <menuchoice>
                 <guimenu>File</guimenu>
                 <guimenuitem>Export...</guimenuitem>
               </menuchoice>
               ) data in that format
-            </para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term>&app; package</term>
-          <listitem>
-            <para> 
-              The package is a compressed archive containing the &app;
-              XML file and all media objects (images, sound files,
-              etc.) to which the database refers. The &app; package is
-              created by exporting ( 
-              <menuchoice>
-                <guimenu>File</guimenu>
-                <guimenuitem>Export...</guimenuitem>
-              </menuchoice>
-              ) data in that format.
-            </para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-    </para>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&app; package</term>
+        <listitem>
+          <para> 
+            The package is a compressed archive containing the &app;
+            XML file and all media objects (images, sound files,
+            etc.) to which the database refers. The &app; package is
+            created by exporting ( 
+            <menuchoice>
+              <guimenu>File</guimenu>
+              <guimenuitem>Export...</guimenuitem>
+            </menuchoice>
+            ) data in that format.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
 
     <para>
 
