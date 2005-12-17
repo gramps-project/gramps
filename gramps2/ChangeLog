@@ -1,4 +1,12 @@
 2005-12-17 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+        * src/GrampsBSDDB.py: reference_map now uses keys rather 
+	than class names
+	* src/GrampsDbBase.py: reference_map now uses keys rather 
+	than class names
+	* test/GrampsDbBase_Test.py: reference_map now uses keys rather 
+	than class names
+
+2005-12-17 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GrampsDbBase.py: fixed UNDO buffer issue
 	* test/GrampsDbBase_Test.py: improved performance test
 	* test/RunAllTests.py: added -p cmdline flag

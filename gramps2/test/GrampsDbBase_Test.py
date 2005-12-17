@@ -153,7 +153,7 @@ class ReferenceMapTest (unittest.TestCase):
         references = [ ref for ref in self._db.find_backlink_handles(source.get_handle()) ]
 
         assert len(references) == 1
-        assert references[0] == ('Person',person.get_handle())
+        assert references[0] == (GrampsBSDDB.CLASS_TO_KEY_MAP[RelLib.Person.__name__],person.get_handle())
 
     def test_delete_primary(self):
         """check that deleting a primary will remove the backreferences
@@ -181,7 +181,7 @@ class ReferenceMapTest (unittest.TestCase):
         # unhook the reference_map update function so that we
         # can insert some records without the reference_map being updated.
         update_method = self._db._update_reference_map
-        self._db._update_reference_map = lambda x,y: 1
+        self._db._update_reference_map = lambda x: 1
 
         # Insert a person/source pair.
         source = self._add_source()
