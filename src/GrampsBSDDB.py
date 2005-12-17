@@ -513,8 +513,11 @@ class GrampsBSDDB(GrampsDbBase):
         existing_references = set()
         
         primary_cur = self.get_reference_map_primary_cursor()
-        
-        ret = primary_cur.set(handle)
+
+        try:
+            ret = primary_cur.set(handle)
+        except:
+            ret = None
         
         while (ret is not None):
             (key,data) = ret
