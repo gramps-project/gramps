@@ -1001,7 +1001,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         transaction.set_description(msg)
         self.undoindex += 1
         if self.undoindex == _UNDO_SIZE:
-            self.translist = transaction[0:-1] + [ transaction ]
+            self.translist = self.translist[0:-1] + [ transaction ]
         else:
             self.translist[self.undoindex] = transaction
             
