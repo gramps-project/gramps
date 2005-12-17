@@ -13,6 +13,8 @@ def make_parser():
     parser = OptionParser(usage)
     parser.add_option("-v", "--verbosity", type="int", dest="verbose_level", default=0,
                       help="Level of verboseness")  
+    parser.add_option("-p", "--performance", action="store_true", dest="performance", default=False,
+                      help="Run the performance tests.")  
     return parser
 
 
@@ -21,15 +23,23 @@ def getTestSuites():
     test_modules = [ i for i in os.listdir('.') if i[-8:] == "_Test.py" ]
 
     test_suites = []
+    perf_suites = []
     for module in test_modules:
         mod = __import__(module[:-3])
         test_suites.append(mod.testSuite())
+        try:
+            perf_suites.append(mod.perfSuite())
+        except:
+            pass
 
-    return test_suites
+    return (test_suites,perf_suites)
 
 def allTheTests():
-    return unittest.TestSuite(getTestSuites())
+    return unittest.TestSuite(getTestSuites()[0])
 
+def perfTests():
+    return unittest.TestSuite(getTestSuites()[1])
+    
 if __name__ == '__main__':
 
     console = logging.StreamHandler()
@@ -57,5 +67,9 @@ if __name__ == '__main__':
     else:
         logger.setLevel(logging.ERROR)
         console.setLevel(logging.ERROR)
-        
-    unittest.TextTestRunner(verbosity=options.verbose_level).run(allTheTests())
+
+
+    if options.performance:
+        unittest.TextTestRunner(verbosity=options.verbose_level).run(perfTests())
+    else:
+        unittest.TextTestRunner(verbosity=options.verbose_level).run(allTheTests())
