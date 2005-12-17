@@ -1,4 +1,9 @@
 2005-12-17 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/GrampsDbBase.py: fixed UNDO buffer issue
+	* test/GrampsDbBase_Test.py: improved performance test
+	* test/RunAllTests.py: added -p cmdline flag
+	
+2005-12-17 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GrampsBSDDB.py: added work around for cursor set not 
 	returing None.
 	* test/GrampsDbBase_Test.py: corrected indent as found by Benny

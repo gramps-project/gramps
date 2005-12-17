@@ -4,10 +4,16 @@ import os
 import tempfile
 import shutil
 import time
-
+import traceback
 import sys
+
 sys.path.append('../src')
 
+try:
+    set()
+except NameError:
+    from set import Set as set
+    
 import GrampsBSDDB
 import RelLib
 
@@ -23,6 +29,7 @@ class ReferenceMapTest (unittest.TestCase):
         self._db.load(self._filename,
                       None, # callback
                       "w")
+
 
     def tearDown(self):
         shutil.rmtree(self._tmpdir)
@@ -60,7 +67,12 @@ class ReferenceMapTest (unittest.TestCase):
                     lnk_sources.add(sources[source_idx-1])
                     source_idx = (source_idx+1) % len(sources)
 
-                add_func(lnk_sources)
+                try:
+                    add_func(lnk_sources)
+                except:
+                    print "person_idx = ", person_idx
+                    print "lnk_sources = ", repr(lnk_sources)
+                    raise
 
         return
 
@@ -199,15 +211,23 @@ class ReferenceMapTest (unittest.TestCase):
 
         return end - start
     
-    def test_performance(self):
+    def perf_simple_search_speed(self):
+
+        num_sources = 100
+        num_persons = 1000
+        num_families = 10
+        num_events = 10
+        num_places = 10
+        num_media_objects = 10
+        num_links = 10
         
-        self._populate_database(num_sources = 100,
-                                num_persons = 80,
-                                num_families = 10,
-                                num_events = 10,
-                                num_places = 10,
-                                num_media_objects = 10,
-                                num_links = 10)
+        self._populate_database(num_sources,
+                                num_persons,
+                                num_families,
+                                num_events,
+                                num_places,
+                                num_media_objects,
+                                num_links)
 
 
         # time searching for source backrefs with and without reference_map
@@ -232,7 +252,21 @@ class ReferenceMapTest (unittest.TestCase):
         without_reference_map = end - start
                 
         self._db.__class__.find_backlink_handles = remember
-        
+
+        logger.info("search test with following data: \n"
+                    "num_sources = %d \n"                    
+                    "num_persons = %d \n"
+                    "num_families = %d \n"
+                    "num_events = %d \n"
+                    "num_places = %d \n"
+                    "num_media_objects = %d \n"
+                    "num_links = %d" % (num_sources,
+                                        num_persons,
+                                        num_families,
+                                        num_events,
+                                        num_places,
+                                        num_media_objects,
+                                        num_links))
         logger.info("with refs %s\n", str(with_reference_map))
         logger.info("without refs %s\n", str(without_reference_map))
 
@@ -240,6 +274,9 @@ class ReferenceMapTest (unittest.TestCase):
         
 def testSuite():
     return unittest.makeSuite(ReferenceMapTest,'test')
+
+def perfSuite():
+    return unittest.makeSuite(ReferenceMapTest,'perf')
 
 if __name__ == '__main__':
     unittest.TextTestRunner().run(testSuite())
