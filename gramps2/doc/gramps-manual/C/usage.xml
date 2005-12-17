@@ -138,11 +138,11 @@
 
       You can undo changes you've made by selecting
       <menuchoice><guimenu>Edit</guimenu>
-      <guimenuitem>Undo</guimenuitem> </menuchoice>. If you select
+      <guimenuitem>Undo</guimenuitem></menuchoice>. If you select
       this command repeatedly, your most recent changes will be undone
       one at a time.  
 
-    <para></para>
+    </para><para>
 
       If you have made changes to your data, and would like to return
       your database to the way it was when you opened it, select
@@ -292,9 +292,9 @@
 
     <para>
 
-    If you import information from another GRAMPS database, you will
-    see the progress of the operation in the progress bar of GRAMPS'
-    main window.
+    If you import information from another GRAMPS database or GRAMPS
+    XML database, you will see the progress of the operation in the
+    progress bar of GRAMPS' main window.
 
     </para><para>
 
