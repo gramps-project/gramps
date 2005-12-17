@@ -449,7 +449,11 @@ class GrampsBSDDB(GrampsDbBase):
         # that include a reference to the object we are looking for.
         referenced_cur = self.get_reference_map_referenced_cursor()
 
-        ret = referenced_cur.set(handle)
+        try:
+            ret = referenced_cur.set(handle)
+        except:
+            ret = None
+            
         while (ret is not None):
             (key,data) = ret
             
@@ -472,8 +476,11 @@ class GrampsBSDDB(GrampsDbBase):
         """Remove all references to the primary object from the reference_map"""
 
         primary_cur = self.get_reference_map_primary_cursor()
-        
-        ret = primary_cur.set(handle)
+
+        try:
+            ret = primary_cur.set(handle)
+        except:
+            ret = None
         
         while (ret is not None):
             (key,data) = ret
