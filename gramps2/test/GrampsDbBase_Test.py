@@ -153,7 +153,37 @@ class ReferenceMapTest (unittest.TestCase):
         references = [ ref for ref in self._db.find_backlink_handles(source.get_handle()) ]
 
         assert len(references) == 1
-        assert references[0] == (GrampsBSDDB.CLASS_TO_KEY_MAP[RelLib.Person.__name__],person.get_handle())
+        assert references[0] == (RelLib.Person.__name__,person.get_handle())
+
+    def test_class_limited_lookup(self):
+        """check that class limited lookups work."""
+
+        source = self._add_source()
+        person = self._add_person_with_sources([source])
+
+        self._add_family_with_sources([source])
+        self._add_event_with_sources([source])
+        self._add_place_with_sources([source])
+        self._add_media_object_with_sources([source])
+
+        # make sure that we have the correct number of references (one for each object)
+        references = [ ref for ref in self._db.find_backlink_handles(source.get_handle()) ]
+
+        assert len(references) == 5, "len(references) == %s " % str(len(references))
+
+        # should just return the person reference
+        references = [ ref for ref in self._db.find_backlink_handles(source.get_handle(),(RelLib.Person.__name__,)) ]
+        assert len(references) == 1, "len(references) == %s " % str(len(references))
+        assert references[0][0] == RelLib.Person.__name__, "references = %s" % repr(references)
+
+        # should just return the person  and event reference
+        references = [ ref for ref in self._db.find_backlink_handles(source.get_handle(),(RelLib.Person.__name__,
+                                                                                          RelLib.Event.__name__)) ]
+        assert len(references) == 2, "len(references) == %s " % str(len(references))
+        assert references[0][0] == RelLib.Person.__name__, "references = %s" % repr(references)
+        assert references[1][0] == RelLib.Event.__name__, "references = %s" % repr(references)
+
+        
 
     def test_delete_primary(self):
         """check that deleting a primary will remove the backreferences
@@ -202,14 +232,6 @@ class ReferenceMapTest (unittest.TestCase):
         assert len(references) == 1, "len(references) == %s " % str(len(references))
 
         
-    def _timeit(func,*args,**kwargs):
-        start = time.time()
-        
-        func(*args,**kwargs)
-            
-        end = time.time()
-
-        return end - start
     
     def perf_simple_search_speed(self):
 
