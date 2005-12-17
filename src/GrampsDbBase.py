@@ -74,6 +74,29 @@ MEDIA_COL_KEY       = 'media_columns'
 REPOSITORY_COL_KEY  = 'repository_columns'
 EVENT_COL_KEY       = 'event_columns'
 
+
+# The following two dictionaries provide fast translation
+# between the primary class names and the keys used to reference
+# these classes in the database tables. Beware that changing
+# these maps or modifying the values of the keys will break
+# existing databases.
+
+CLASS_TO_KEY_MAP = {Person.__name__: PERSON_KEY,
+                    Family.__name__: FAMILY_KEY,
+                    Source.__name__: SOURCE_KEY,
+                    Event.__name__: EVENT_KEY,
+                    MediaObject.__name__: MEDIA_KEY,
+                    Place.__name__: PLACE_KEY,
+                    Repository.__name__:REPOSITORY_KEY}
+
+KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__,
+                    FAMILY_KEY: Family.__name__,
+                    SOURCE_KEY: Source.__name__,
+                    EVENT_KEY: Event.__name__,
+                    MEDIA_KEY: MediaObject.__name__,
+                    PLACE_KEY: Place.__name__,
+                    REPOSITORY_KEY: Repository.__name__}
+
 _sigbase = ('person', 'family', 'source', 'event',
             'media', 'place', 'repository')
 
@@ -342,7 +365,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         as part of the transaction.
         """
 
-        self._update_reference_map(person,'Person')
+        self._update_reference_map(person)
         
         old_data = self._commit_base(
             person, self.person_map, PERSON_KEY, transaction.person_update,
@@ -367,7 +390,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         as part of the transaction.
         """
         
-        self._update_reference_map(obj,'MediaObject')
+        self._update_reference_map(obj)
 
         self._commit_base(obj, self.media_map, MEDIA_KEY,
                           transaction.media_update, transaction.media_add,
@@ -379,7 +402,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         as part of the transaction.
         """
 
-        self._update_reference_map(source,'Source')
+        self._update_reference_map(source)
 
         self._commit_base(source, self.source_map, SOURCE_KEY,
                           transaction.source_update, transaction.source_add,
@@ -391,7 +414,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         as part of the transaction.
         """
 
-        self._update_reference_map(place,'Place')
+        self._update_reference_map(place)
                 
         self._commit_base(place, self.place_map, PLACE_KEY,
                           transaction.place_update, transaction.place_add,
@@ -413,7 +436,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         as part of the transaction.
         """
         
-        self._update_reference_map(event,'Event')
+        self._update_reference_map(event)
 
         self._commit_base(event, self.event_map, EVENT_KEY,
                           transaction.event_update, transaction.event_add,
@@ -425,7 +448,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         as part of the transaction.
         """
 
-        self._update_reference_map(family,'Family')
+        self._update_reference_map(family)
 
         self._commit_base(family, self.family_map, FAMILY_KEY,
                           transaction.family_update, transaction.family_add,
@@ -440,7 +463,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         as part of the transaction.
         """
 
-        self._update_reference_map(repository,'Repository')
+        self._update_reference_map(repository)
 
         self._commit_base(repository, self.repository_map, REPOSITORY_KEY,
                           transaction.repository_update, transaction.repository_add,

@@ -463,7 +463,7 @@ class GrampsBSDDB(GrampsDbBase):
             # so we need the first tuple to give us the type to compare
 
             data = cPickle.loads(data)
-            if include_classes == None or data[0][0] in include_classes:
+            if include_classes == None or KEY_TO_CLASS_MAP[data[0][0]] in include_classes:
                 yield data[0]
                 
             ret = referenced_cur.next_dup()
@@ -500,8 +500,7 @@ class GrampsBSDDB(GrampsDbBase):
 
         primary_cur.close()
         
-    def _update_reference_map(self, obj, class_name):
-        
+    def _update_reference_map(self, obj):        
         # Add references to the reference_map for all primary object referenced
         # from the primary object 'obj' or any of its secondary objects.
         
@@ -538,7 +537,9 @@ class GrampsBSDDB(GrampsDbBase):
             # Looks like there is a bug in the set() and next_dup() methods
             # because they do not run the data through cPickle.loads before
             # returning it, so we have to here.
-            existing_references.add(cPickle.loads(data)[1])
+            existing_reference = cPickle.loads(data)[1]
+            existing_references.add((KEY_TO_CLASS_MAP[existing_reference[0]],
+                                     existing_reference[1]))
             ret = primary_cur.next_dup()
 
         primary_cur.close()
@@ -554,10 +555,11 @@ class GrampsBSDDB(GrampsDbBase):
         new_references = current_references.difference(existing_references)
         
         # handle addition of new references
+
         if len(new_references) > 0:
             for (ref_class_name,ref_handle) in new_references:
-                self.reference_map[str((handle,ref_handle),)] = ((class_name,handle),
-                                                                 (ref_class_name,ref_handle),)
+                self.reference_map[str((handle,ref_handle),)] = ((CLASS_TO_KEY_MAP[obj.__class__.__name__],handle),
+                                                                 (CLASS_TO_KEY_MAP[ref_class_name],ref_handle),)
 
         # handle deletion of old references
         if len(no_longer_required_references) > 0:
@@ -612,7 +614,7 @@ class GrampsBSDDB(GrampsDbBase):
                 obj = class_func()
                 obj.unserialize(val)
 
-                self._update_reference_map(obj,primary_table_name)
+                self._update_reference_map(obj)
                 
                 data = cursor.next()
 
