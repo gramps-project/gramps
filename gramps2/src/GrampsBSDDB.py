@@ -1003,10 +1003,12 @@ class GrampsBSDDB(GrampsDbBase):
         # even if no other changes are made.
 
         # Change every Source to have reporef_list
-        cursor = self.get_source_cursor()
-        data = cursor.first()
-        while data:
-            handle,info = data
+#        cursor = self.get_source_cursor()
+#        data = cursor.first()
+#        while data:
+#            handle,info = data
+        for handle in self.source_map.keys():
+            info = self.source_map[handle]        
             source = Source()
             source.handle = handle
             # We already have a new Source object with the reporef_list
@@ -1015,15 +1017,17 @@ class GrampsBSDDB(GrampsDbBase):
              source.pubinfo, source.note, source.media_list,
              source.abbrev, source.change, source.datamap) = info
             self.commit_source(source,trans)
-            data = cursor.next()
-        cursor.close()
+#            data = cursor.next()
+#        cursor.close()
 
         # Change every event handle to the EventRef
         # in all Person objects
-        cursor = self.get_person_cursor()
-        data = cursor.first()
-        while data:
-            handle,info = data
+        #cursor = self.get_person_cursor()
+        #data = cursor.first()
+        #while data:
+        #    handle,info = data
+        for handle in self.person_map.keys():
+            info = self.person_map[handle]
             person = Person()
             person.handle = handle
             # Restore data from dbversion 8 (gramps 2.0.9)
@@ -1060,17 +1064,18 @@ class GrampsBSDDB(GrampsDbBase):
 
             if event_ref_list:
                 person.event_ref_list = event_ref_list[:]
-
             self.commit_person(person,trans)
-            data = cursor.next()
-        cursor.close()
+            #data = cursor.next()
+        #cursor.close()
 
         # Change every event handle to the EventRef
         # in all Family objects
-        cursor = self.get_family_cursor()
-        data = cursor.first()
-        while data:
-            handle,info = data
+        #cursor = self.get_family_cursor()
+        #data = cursor.first()
+        #while data:
+        #    handle,info = data
+        for handle in self.family_map.keys():
+            info = self.family_map[handle]
             family = Family()
             family.handle = handle
             # Restore data from dbversion 8 (gramps 2.0.9)
@@ -1094,8 +1099,8 @@ class GrampsBSDDB(GrampsDbBase):
                 family.event_ref_list = event_ref_list[:]
 
             self.commit_family(family,trans)
-            data = cursor.next()
-        cursor.close()
+#            data = cursor.next()
+#        cursor.close()
         
         event_conversion = {
             "Alternate Marriage"  : (Event.MARR_ALT,""),
@@ -1147,10 +1152,12 @@ class GrampsBSDDB(GrampsDbBase):
             }
 
         # Remove Witness from every event and convert name to type
-        cursor = self.get_event_cursor()
-        data = cursor.first()
-        while data:
-            handle,info = data
+#        cursor = self.get_event_cursor()
+#        data = cursor.first()
+#        while data:
+        #    handle,info = data
+        for handle in self.event_map.keys():
+            info = self.event_map[handle]        
             event = Event()
             event.handle = handle
             (junk_handle, event.gramps_id, name, event.date,
@@ -1166,28 +1173,32 @@ class GrampsBSDDB(GrampsDbBase):
                 the_type = (Event.UNKNOWN,"")
             
             self.commit_event(event,trans)
-            data = cursor.next()
-        cursor.close()
+#            data = cursor.next()
+#        cursor.close()
 
         # Work out marker addition to the Place
-        cursor = self.get_place_cursor()
-        data = cursor.first()
-        while data:
-            handle,info = data
+#        cursor = self.get_place_cursor()
+#        data = cursor.first()
+#        while data:
+#            handle,info = data
+        for handle in self.place_map.keys():
+            info = self.place_map[handle]        
             place = Place()
             place.handle = handle
             (junk_handle, place.gramps_id, place.title, place.long, place.lat,
              place.main_loc, place.alt_loc, place.urls, place.media_list,
              place.source_list, place.note, place.change) = info
             self.commit_place(place,trans)
-            data = cursor.next()
-        cursor.close()
+#            data = cursor.next()
+#        cursor.close()
 
         # Work out marker addition to the Media
-        cursor = self.get_media_cursor()
-        data = cursor.first()
-        while data:
-            handle,info = data
+#        cursor = self.get_media_cursor()
+#        data = cursor.first()
+#        while data:
+#            handle,info = data
+        for handle in self.media_map.keys():
+            info = self.media_map[handle]        
             media_object = MediaObject()
             media_object.handle = handle
             (junk_handle, media_object.gramps_id, media_object.path,
@@ -1195,8 +1206,8 @@ class GrampsBSDDB(GrampsDbBase):
              media_object.source_list, media_object.note, media_object.change,
              media_object.date) = info
             self.commit_media_object(media_object,trans)
-            data = cursor.next()
-        cursor.close()
+#            data = cursor.next()
+#        cursor.close()
 
         self.transaction_commit(trans,"Upgrade to DB version 9")
         print "Done upgrading to DB version 9"

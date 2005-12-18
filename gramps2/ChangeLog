@@ -1,3 +1,9 @@
+2005-12-17  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsBSDDB.py (gramps_upgrade_9): Switch to using keys in
+	upgrade. When using DB cusrsor, modifying the record sometimes
+	confuses the cursor operation. Possibly this only happens if
+	secondary indexes are involved.
+
 2005-12-17  Don Allingham  <don@gramps-project.org>
 	* src/GrampsBSDDB.py: associate functions return str instead
 	of unicode
