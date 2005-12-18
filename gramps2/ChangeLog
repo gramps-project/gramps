@@ -1,9 +1,12 @@
+2005-12-17  Don Allingham  <don@gramps-project.org>
+	* doc/gramps-manual/C/usage.xml: updates
+
 2005-12-17  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDbBase.py (transaction_commit): Typo.
 
 2005-12-16  Don Allingham  <don@gramps-project.org>
-	* src/gramps-manual/C/usuage.xml: updates
-	* src/gramps-manual/C/mainwin.xml: updates
+	* doc/gramps-manual/C/usage.xml: updates
+	* doc/gramps-manual/C/mainwin.xml: updates
 
 2005-12-14  Don Allingham  <don@gramps-project.org>
 	* doc/gramps-manual/C/getstart.xml: updates

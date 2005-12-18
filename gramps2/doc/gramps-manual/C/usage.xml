@@ -321,14 +321,11 @@
     </figure>
 
 <!-- ==== End of Figure ==== -->
-    <para>
-      Upon starting the &app; database or &app; package import, &app;
-      will display the progress in the progress bar of its main window.
-    </para>
 
     <para>
-      If a media file is not found during import, the following dialog
-      will prompt you for the possible actions:
+      If a media file is not found during import, you'll be prompted
+      to take one of the actions indicated in <xref
+      linkend="missing-media-im"/>.
     </para>
 
 <!-- ==== Figure: Missing media window  ==== -->
@@ -353,35 +350,28 @@
     <itemizedlist>
       <listitem>
         <para>
-          To remove the object corresponding to the missing file as
-          well as all the references to that object from various
-          database records, click the <guibutton>Remove
-          Object</guibutton> button. This will alter your database so
-          that it will be in a consistent state, but all the
-          references to the missing file will be gone. Use this option
-          if the file is irrevocably lost and there is no possibility
-          of ever replacing it.
+	If you don't have the missing file and have no possibility of
+	replacing it, click the <guibutton>Remove Object</guibutton>
+	button. This will remove the object that corresponds to the
+	missing file as well as all the references in the database to
+	that object.
         </para>
       </listitem>
       <listitem>
         <para>
-          To keep the reference to the object corresponding to the
-          missing file, click the <guibutton>Keep
-          Reference</guibutton> button.  This will leave things as is,
-          i.e. in an inconsistent state.  You could supply the missing
-          file later, in which case you will have to copy it into your
-          database directory. Choose this option if the replacement is
-          possible, but not available right now.
+	If you're not sure where the missing file is, but think you
+	still have it or may be able to find it, click the
+	<guibutton>Keep Reference</guibutton> button. If and when you
+	find the file, you can simply copy it into your database
+	directory and have access to it through &app;.
         </para>
       </listitem>
       <listitem>
         <para>
-          To supply the missing file during import, click the
-          <guibutton>Select File</guibutton> button. This will copy
-          the file you select in place of the missing file. No
-          references will be altered in the database, and it will be
-          in the consistent state. Use this option if the replacement
-          is readily available.
+	If you can supply the missing file during the import
+	operation, click the <guibutton>Select File</guibutton>
+	button. This will copy the file you select in place of the
+	missing file. No references will be altered in the database.
         </para>
       </listitem>
       <listitem>
@@ -402,28 +392,30 @@
     <title>Exporting Data</title>
     <para>
       Exporting allows you to share any portion of your &app; database
-      with other researchers as well as to make your database
-      completely portable to another computer. Currently, &app; can
+      with other researchers as well as to enable you to transfer your data to another computer. Currently, &app; can
       export data to the following formats: &app; database (grdb),
       &app; XML, GEDCOM, &app; package, Web Family Tree, and GeneWeb.
     </para>
+
     <note id="export-note">
       <title>Export is saving a copy</title>
       <para>
-         Exporting will create another file with the copy of your data.
-        The database currently opened in your &app; window is NOT the
-        file saved by your export. Future editing of the currently
-        opened database will not alter the copy produced by the
-        export.
+      WheN you export, you are saving a copy of the currently opened
+      database. Exporting creates another file with a copy of your
+      data. Note that the database that remains opened in your GRAMPS
+      window is NOT the file saved by your export. Additional editing
+      of the currently opened database will not alter the copy
+      produced by the export.
       </para>
     </note>
+
     <para>
       To export data, choose 
       <menuchoice>
         <guimenu>File</guimenu>
         <guimenuitem>Export</guimenuitem>
       </menuchoice>. 
-      This will bring up the <guilabel>Export</guilabel> druid. Its
+      This will bring up the <guilabel>Export</guilabel> assistant. Its
       pages will guide you through the format selection (see <xref
       linkend="export-druid-fig"/>), file selection, and format
       specific export options (see <xref
@@ -437,7 +429,7 @@
 <!-- ==== Figure: GEDCOM Export ==== -->
 
     <figure id="export-druid-fig">
-      <title>Export druid: format selection</title>
+      <title>Export assistant: format selection</title>
       <screenshot>
         <mediaobject>
           <imageobject>
@@ -445,34 +437,125 @@
 	               width="500" depth="383" scale="75"/>
           </imageobject>
           <textobject>
-            <phrase>Shows format selection page of an Export druid</phrase>
+            <phrase>Shows format selection page of an Export assistant</phrase>
           </textobject>
         </mediaobject>
       </screenshot>
     </figure>
     <sect2 id="export-gedcom">
-      <title>GEDCOM export</title>
+      <title>Exporting into the GEDCOM format</title>
       <para> 
-        GEDCOM export options allow you to fine tune your export (see
-        <xref linkend="gedcom-export-fig"/>).  Choose the desired
-        <guilabel>Encoding</guilabel> of the exported file.  Use the
-        <guilabel>Filter</guilabel> pop-up menu to limit the scope of
-        the export according to the stated rule.  Use the
-        <guilabel>Target</guilabel> menu to select the desired GEDCOM
-        dialect. Select your copyright statement from the
-        <guilabel>Copyright</guilabel> menu. Check <guilabel>Do not
-        include records marked private</guilabel> to disable the
-        output of private records. Check <guilabel>Restrict data on
-        living people</guilabel> to limit living people's data to
-        family ties. With this option, information concerning birth,
-        death, addresses, various events, etc. will be omitted in the
-        exported GEDCOM file. If this option is selected, you can
-        further choose whether to use the word "Living" as first name,
-        exclude notes, and exclude sources for the living
-        people. Check <guilabel>Reference images from path</guilabel>
-        to tell &app; to use the specific path for your images when
-        writing image references in GEDCOM.
+
+      &app; allows you to export a database into the common GEDCM
+      format. It provides options that allow you to fine tune your
+      export (see <xref linkend="gedcom-export-fig"/>).
+
       </para>
+      <variablelist>
+      <varlistentry>
+        <term>Encoding</term>
+	<listitem>
+          <para>
+	  Since different languages use different characters, it is
+	  important to tell a GEDCOM file what character set is used.
+	  The two formats traditionally accepted are ASCII and ANSEL.
+	  Since all ASCII characters are valid ANSEL characters, 
+	  GRAMPS does not provide an option for ASCII.
+	  </para>
+	  <para>
+	  Because ANSEL is not commonly used, some genealogy programs
+	  will accept the ANSI (more commonly know as ISO-8859-1) and
+	  Unicode character sets. Only select ANSI or Unicode if you
+	  know any program that attempts to read the GEDCOM file will
+	  understand these character sets.
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Filter</term>
+	<listitem>
+          <para>
+	  The filter allows you to export a limited amount of data,
+	  based on the criteria you select.
+	  </para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Target</term>
+	<listitem>
+          <para>
+	  While GEDCOM is a standard, not every program implements
+	  it in the same way. This can lead to data loss. &app; can
+	  reduce the data loss in some cases. You can tell &app; 
+	  what program is the target, and &app; will customize the
+	  exported file for that program. If your program is not 
+	  listed, choose the &quot;GEDCOM 5.5 Standard&quot;.
+	  </para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Copyright</term>
+	<listitem>
+          <para>
+	  Allows you to select a statement to describe your Copyright 
+	  claim.
+	  </para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>No not include records marked private</term>
+	<listitem>
+          <para>
+	  Check this box to prevent private records from being 
+	  included in the exported file.
+	  </para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Restrict data on living people</term>
+	<listitem>
+          <para>
+	  Check this box to limit the information exported for living
+	  people. This means that all information concerning their
+	  birth, death, addresses, significant events, etc., will be
+	  omitted in the exported GEDCOM file. If you choose this
+	  option, you will be given additional options to limit
+	  further the data on living people. For example, you can
+	  choose to substitute the word &quot;Living&quot; for the
+	  first name; you can exclude notes; and you can exclude
+	  sources for living people.
+	  </para>
+	  <para>
+	  Sometimes, it is not always obvious from the data if someone
+	  is actually alive. &app; uses an advanced algorithm to try
+	  to determine if a person could still be alive. Remember, 
+	  &app; is making its best guess, and it may not always be
+	  able to guess correctly all the time. Please double check
+	  your data.
+	  </para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Reference images from path</term>
+	<listitem>
+          <para>
+	  Check this box to tell GRAMPS to use the specific path for
+	  your images when writing image references in GEDCOM.
+	  </para>
+          <para>
+	  This option allows specify where your image files are 
+	  located. This is useful when you are transfering your GEDCOM
+	  file from one computer to another. It tells the program
+	  that is importing the data where your images are.
+          </para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
 <!-- ==== Figure: GEDCOM Export ==== -->
       <figure id="gedcom-export-fig">
         <title>Export druid: GEDCOM options</title>
@@ -490,6 +573,8 @@
       </figure>
 <!-- ==== End of Export ==== -->
     </sect2>
+
+
     <sect2 id="export-gramps-formats">
       <title>Export into &app; formats</title>
       <variablelist>
@@ -497,10 +582,11 @@
           <term>&app; database (grdb) export</term>
           <listitem>
             <para>
-               Exporting to the native format will simply make a copy
-               of your data under another name. It also may be useful
-               if you have directly opened XML or GEDCOM file and
-               would like to save it as the grdb file.
+               Exporting to the &app; native format will simply make a
+               copy of your data under another name. Exporting to this
+               format can also be useful if you have directly opened
+               an XML or GEDCOM file and would like to save it as the
+               grdb file.
             </para>
           </listitem>
         </varlistentry>
@@ -519,12 +605,11 @@
           <term>&app; package export</term>
           <listitem>
             <para>
-              Exporting to &app; package will create a gzip-compressed
-              tar archive (also known as tarball) which contains
-              gramps database and copies of all media objects
-              files. This is a useful format for moving your database
-              to another machine or for sharing it with somebody,
-              while retaining all the features provided by &app; .
+	    Exporting to the GRAMPS package format will create a
+	    compressed file that contains the database and copies of
+	    all associated media files. This is useful if you want to
+	    move your database to another computer or to share it with
+	    someone.
             </para>
           </listitem>
         </varlistentry>
@@ -556,78 +641,13 @@
         </varlistentry>
       </variablelist>
       <para>
-         If a media file is not found during export, the following
-         dialog will prompt you for the possible actions:
+      If a media file is not found during export, you will see the 
+      same <guilabel>Missing Media</guilabel> dialog you encounter 
+      with GEDCOM export.
       </para>
 
-<!-- ==== Figure: Missing media window  ==== -->
-
-      <figure id="missing-media-ex">
-        <title>Missing Media dialog</title>
-        <screenshot>
-          <mediaobject>
-            <imageobject>
-              <imagedata fileref="figures/missing-media.png" format="PNG" 
-	                 width="434" depth="264" scale="75"/>
-            </imageobject>
-            <textobject>
-              <phrase>Shows Missing Media dialog.</phrase>
-            </textobject>
-          </mediaobject>
-        </screenshot>
-      </figure>
-
-<!-- ==== End of Figure ==== -->
-
-      <itemizedlist>
-        <listitem>
-          <para>
-            To remove the object corresponding to the missing file
-            as well as all the references to that object from
-            various database records, click the <guibutton>Remove
-            Object</guibutton> button. This will alter your database
-            so that it will be in the consistent state, but all the
-            references to the missing file will be gone. Use this
-            option if the file is irrevocably lost and there is no
-            possibility of ever replacing it.
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            To keep the reference to the object corresponding to the
-            missing file, click the <guibutton>Keep
-            Reference</guibutton> button.  This will leave things as
-            is, i.e. in the inconsistent state.  You could supply
-            the missing file later, in which case you will have to
-            copy it into your database directory. Choose this option
-            if the replacement is possible, but not available right
-            now.
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            To supply the missing file during export, click the
-            <guibutton>Select File</guibutton> button. This will
-            copy the file you select in place of the missing
-            file. No references will be altered in the database, and
-            it will be in the consistent state. Use this option if
-            the replacement is readily available.
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            To automatically use the selection made in this dialog
-            for all missing media files, check the <guilabel>Use
-            this selection for all missing media files</guilabel>
-            box. This will remember your choice and use it for all
-            media files missing during this export, so that no
-            further dialogs will be presented. Use this option if
-            you anticipate many missing files and want to deal with
-            all of them in the same manner.
-          </para>
-        </listitem>
-      </itemizedlist>
     </sect2>
+
     <sect2 id="export-other-formats">
       <title>Export into other formats</title>
       <variablelist>
@@ -635,11 +655,11 @@
           <term>Web Family Tree</term>
           <listitem>
             <para>
-              Exporting to Web Family Tree will create the text file
-              suitable as an input for the WFT program. Specific
-              options include filter selection and the ability to
-              restrict data on living people, that is to limit living
-              people's data to family ties.
+              Exporting to Web Family Tree will create atext file
+              that can be used by the Web Family Tree program.
+	      Export options include filter selection and the ability 
+	      to limit data on living people to that of their family 
+	      ties.
             </para>
           </listitem>
         </varlistentry>
@@ -651,7 +671,7 @@
               a popular web genealogy format. To find out more about
               GeneWeb and its format, visit 
 	      <ulink url="http://cristal.inria.fr/~ddr/GeneWeb/en/" 
-	             type="http">this site.</ulink>
+	             type="http">http://cristal.inria.fr/~ddr/GeneWeb/en/</ulink>.
             </para>
           </listitem>
         </varlistentry>
@@ -670,129 +690,219 @@
     </sect2>
   </sect1>
 <!-- ================ Usage Subsection ================================ -->
+
   <sect1 id="gramps-edit-quick">
     <title>Editing Data: Quick Start</title>
-    <para> 
-        Editing any portion of data allows you to amend and/or modify
-	information stored in the database. The available editing
-	options include editing personal data, relationship data, data
-	about children and parents, and information about sources,
-	places, and media objects used in the database. In short, any
-	data stored in the database can be edited! Adding a new piece
-	of information is the process of creating an appropriate empty
-	data structure and subsequently editing that empty structure.
-      </para>
+
     <para>
-         This section refers mainly to the menu items and buttons as
-         the main way of interacting with &app;. In addition to this,
-         &app; provides an extensive set of key bindings. The detailed
-         reference to the key bindings is found in the 
-	 <xref linkend="append-keybind"/>.
-       </para>
+
+    This section is designed to give you the basic knowledge necessary
+    to start putting your genealogical information into GRAMPS.  It
+    will explain how to enter people into the database and how to
+    specify their family relationships. (A more detailed explanation
+    will follow in the section entitled <xref
+    linkend="gramps-edit-complete"/>.)
+
+    </para><para>
+
+    First, let's identify the types of information you can enter into
+    your GRAMPS database. These include:
+
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+	Personal information about an individual (names, addresses,
+	birth and death dates, etc.)
+	</para>
+      </listitem>
+      <listitem>
+        <para>
+	Information about an individual's relationships (marriages, 
+	divorces, civil unions, etc.)
+	</para>
+      </listitem>
+      <listitem>
+        <para>
+	Information about an individual's parents and children
+	</para>
+      </listitem>
+      <listitem>
+        <para>
+	Sources that document your research
+	</para>
+      </listitem>
+    </itemizedlist>
+
+    <note id="keybind">
+      <title>Keybindings</title>
+      <para>
+      In addition to interacting with GRAMPS through menu items and
+      buttons, you can use its extensive set of
+      &quot;keybindings.&quot; For more information, see <xref
+      linkend="append-keybind"/>.
+      </para>
+    </note>
+
+    <para>
+    Now let's take a quick look at how you can enter and edit these
+    various types of information.
+    </para>
+
 <!-- ================ Usage Sub-subsection ================ -->
     <sect2 id="gramps-add-pers">
-      <title>To Add a Person</title>
+      <title>To Add or Edit a Person</title>
       <para> 
         To add a person to the database, switch to the People View
 	(<xref linkend="side-nofilt-fig"/>) and then click the
 	<guibutton>Add</guibutton> on the toolbar.  Enter any data you
 	know about this person into the <guilabel>Edit
-	Person</guilabel> Dialog (see <xref linkend="edit-pers-fig"/>
-	for details). To edit information about a person already
+	Person</guilabel> dialog (see <xref linkend="edit-pers-fig"/>
+	for details). 
+      </para><para>
+	To edit information about a person already
 	present in the database, select an entry you would like to
 	view/modify, and then click the <guibutton>Edit</guibutton>
 	icon on the toolbar.
       </para>
-      <para>
-         You can also use <guilabel>Add...</guilabel> and
-         <guilabel>Edit...</guilabel> menu items available under the
-         <guimenu>Edit</guimenu>. Or you can right-click on the
-         person and select <guilabel>Add...</guilabel> or
-         <guilabel>Edit...</guilabel> from the invoked context menu.
-      </para>
+
+      <note id="person-menu">
+        <title>Alternate ways of adding or editing a person</title>
+	<para> 
+          You can also use <guilabel>Add...</guilabel> and
+          <guilabel>Edit...</guilabel> menu items available under the
+          <guimenu>Edit</guimenu>. Or you can right-click on the
+          person and select <guilabel>Add...</guilabel> or
+          <guilabel>Edit...</guilabel> from the context menu that pops
+          up.
+        </para>
+      </note>
     </sect2>
+
 <!-- ================ Usage Sub-subsection ================ -->
+
     <sect2 id="gramps-spec-rel">
       <title>To Specify a Relationship</title>
       <para>
 
-        To specify a relationship, first switch to the Family View
-	(<xref linkend="family-fig"/>). Then click one of the two top
-	buttons on the right of the spouse box. The topmost button
-	adds a new person to the database and to the relationship,
-	while the second top button adds a person that is already in a
-	database to the relationship.
+        To specify a relationship, select the person for whom the
+	relationship applies. Switch to the Family View
+	(<xref linkend="family-fig"/>) and you'll see this individual
+	indicated as the &quot;Active person&quot;.
+
+      </para><para>
+
+        Now a question: Does the person who will form the relationship
+        with the Active person already exist in the database? If yes,
+        click the middle button to the right of the Spouse box. You'll
+        then be able to browse through the list of people in the
+        database to select the one you want. If not, click the topmost
+        button to the right of the Spouse box. This will allow you to
+        add a new person to the database and to specify the
+        relationship this person has to the Active person.
+
       </para>
-      <para> 
-        If using the second button, select the spouse/partner from the
-        list and specify the relationship using the menu at the
-        bottom. If necessary, you can add a person to the list by
-        clicking the <guibutton>+</guibutton> button. &app; will
-        filter the displayed list of people based on the apparent
-        relationship possibility. Specifically, shown are the people who
-        could possibly be in relationship with the active person, as
-        judged by the available birth and death information. To
-        override this and display all people from the database, check
-        the <guilabel>Show all</guilabel> box.
-      </para>
+
+      <note id="spouse-filter">
+        <title>Filtering</title>
+	<para>
+	By default, GRAMPS filters the displayed list to show only
+	those people who could theoretically have a relationship with
+	the Active Person. That is, GRAMPS only shows those people
+	whose birthdates and death dates fit within the lifetime of
+	the Active Person. If you wish, you can add a person to the
+	list by clicking the <guibutton>+</guibutton> button. To
+	completely override the filter and display all people from the
+	database, check the <guilabel>Show all</guilabel> box.
+	</para>
+      </note>
+
       <para>
-	To edit information about a relationship already present in
-        the database, move the mouse over the
-        <guilabel>Spouse</guilabel> box and double-click.  If the
-        relationship lists has more than one person, you can specify
-        the preferred spouse/partner by selecting an appropriate item
-        from the context menu available upon right-clicking into the
-        spouse box. Also, most of the above function are available
-        from the items of this context menu.
+      To edit an existing relationship, double-click in the Spouse
+      box. If there is more than one relationship in the list, you can
+      select the spouse or partner you want from the list before 
+      double-clicking.
       </para>
+
+      <note id="spouse-alt-edit">
+        <title>Alternate ways of editing relationships.</title>
+	<para>
+	Most of the functions described above are also available in
+	the context menu that pops up when you right-click.
+	</para>
+      </note>
     </sect2>
+
 <!-- ================ Usage Sub-subsection ================ -->
     <sect2 id="gramps-spec-par">
       <title>To Specify Parents</title>
       <para>
-        To specify parents of an active person, first switch to the
-	Family View (<xref linkend="family-fig"/>). Then click the
-	<guibutton>+</guibutton> button on the right of the active
-	person's parents list box. Select the parents from two lists
-	and specify the parents' relationships to the active person
-	using menus at the bottom.  You can also specify parents'
-	relationship to each other.  If necessary, you can add a
-	person to the list by clicking the
-	<guibutton>Add...</guibutton> button.
+
+        To specify parents of a person, highlight that individual in
+	the People View and then switch to the Family View (<xref
+	linkend="family-fig"/>). Your selected person will be
+	indicated as the Active person. Click the
+	<guibutton>+</guibutton> button to the right of the Active
+	person's parents list box. This will bring up the Choose
+	Parents dialog. You will see three sections, one for Father,
+	one for Mother, and one for specifying the relationships
+	between everyone.
+
+      </para><para> 
+
+      If the Father and Mother of the Active person are already stored
+      in your database, you can scroll through the lists and make your
+      selections. If they are not in the database, you can click
+      <guibutton>+</guibutton> to add them.
+
       </para>
-      <para> 
-        The top and bottom lists contain males and females,
-	respectively. By default, &app; will limit both lists to
-	people who could possibly be the parents (judged by the date
-	of birth) of the active person. To override this, check the
-	<guilabel>Show all</guilabel> box for each list.
-      </para>
+      <note id="parent-filter"> 
+        <title>Filtering</title>
+	<para>
+	By default, GRAMPS will limit both lists to people who could
+	possibly be the parents (judged by the date of birth) of the
+	Active person. To override this, check the Show all box for
+	each list.
+	</para>
+      </note>
+
       <para>
-        To specify parents of the active person's spouse, switch to
-	the Family View and then click the <guibutton>+</guibutton>
-	button on the right of the spouse's parents list box. To edit
-	information about parents already present in the database,
-	move the mouse over the corresponding parents' box and
-	double-click. All these functions can also be performed by
-	right-clicking on the parents' box and selecting an
-	appropriate item from the context menu.
+      To specify parents of the Active person's spouse, switch to
+      Family View and then click the <guibutton>+</guibutton> button
+      to the right of the Spouse's parents list box.
+      </para><para>
+      To edit information about parents who are already present in the
+      database, move the mouse over the corresponding parents' box and
+      double-click.
       </para>
+
+      <note id="parents-alt-menu">
+        <title>Alternate ways of specifying parents</title>
+	<para>
+	These functions can also be performed by right-clicking on the
+	parents' box and using the context menu that pops up.
+	</para>
+      </note>
+
     </sect2>
+
 <!-- ================ Usage Sub-subsection ================ -->
+
     <sect2 id="gramps-spec-ch">
       <title>To Specify Children</title>
       <para>
-        To specify children of an active person, switch to the Family
+        To specify children of an Active person, switch to the Family
 	View (<xref linkend="family-fig"/>) and then click either the
-	second or the third button from the top on the right of the
+	second or the third button from the top righht of the
 	children list box. The second button adds a child to the
 	database and to the family, while the third button adds a
-	child already present in the database to the family.
+	child to the family who is already present in the database.
       </para>
       <para> 
         If using the third button, select a child from the list and
 	specify the child's relationship with father and mother using
-	menus at the bottom. If necessary, you can add a person to the
+	menus at the bottom. If you want, you can add a person to the
 	list by clicking the <guibutton>Add...</guibutton> button. By
 	default, &app; will limit the lists to people who could
 	possibly be the child (judged by the date of birth) of the
@@ -800,72 +910,93 @@
 	all</guilabel> box.
       </para>
       <para>
-        The relationship of the child to the parents can be modified
-        by selecting an appropriate item from the context menu
-        available upon right-clicking into the children box. Also,
-        most of the above function are available from the items of
-        this context menu.
+      The relationship of the child to the parents can be modified by
+      right-clicking in the children's box and using the context menu
+      that pops up. Again, most of the above functions are available
+      through this context menu.
       </para>
     </sect2>
+
 <!-- ================ Usage Sub-subsection ================ -->
     <sect2 id="gramps-add-img">
-      <title>To Add Images</title>
+      <title>Adding Photos and Other Media Objects</title>
       <para>
-        You can add images (as well as other media objects) to
-	individual people, events, sources, places, as well as images
-	generally related to the database (e.g. group family photos).
+      You can add photos and other media objects to individual people,
+      events, sources, and places.  You can also add images that might
+      not be limited to a single person or event (for example, group
+      family photos).
+      </para><para> 
+      If you want to add an image to a single person, switch to the
+      People View (<xref linkend="side-nofilt-fig"/>), select a
+      person, and then click the <guibutton>Edit</guibutton> icon on
+      the toolbar.  This will bring up the <guilabel>Edit
+      Person</guilabel> dialog (<xref
+      linkend="edit-pers-fig"/>). Next, select the
+      <guilabel>Gallery</guilabel> tab, and click the
+      <guibutton>+</guibutton> button to call up the <guilabel>Select
+      a media object</guilabel> dialog. Type a filename or browse to
+      find the image file you want and then provide a title for that
+      image. Keep adding images until you are done.
+      </para><para> 
+      To add images related to a relationship (for example, a
+      marriage), switch to the Family View (<xref
+      linkend="family-fig"/>) and double-click on the Spouse box. This
+      calls up the <guilabel>Marriage/Relationship editor</guilabel>
+      dialog. Select the <guilabel>Gallery</guilabel> tab and click
+      the <guibutton>+</guibutton> button to add an image.
+      </para><para> 
+      To add images related to a source or a place, first switch to
+      the Source View (<xref linkend="sources-fig"/>) or Place View
+      (<xref linkend="places-fig"/>). Select the source or place you
+      want and then either double-click on it or click the
+      <guibutton>Edit</guibutton> icon on the toolbar.  Select the
+      <guilabel>Gallery</guilabel> tab and click the
+      <guibutton>+</guibutton> button to add an image.
+
+      </para><para> 
+
+      Finally, to add images that you want to include in the database,
+      but hare are not limited to any particular person, relationship,
+      source or place, switch to the Media View (<xref
+      linkend="media-fig"/>).  Then click the
+      <guibutton>Add</guibutton> icon on the toolbar to add an
+      image. If you have already added any images to any individual
+      galleries, you will also find them listed in the Media View.
       </para>
+
+      <note id="alt-add-image">
+        <title>Alternate way of adding images to galleries</title>
+	<para>
+
+	An image can always be added to any gallery by using
+	drag-and-drop. Items can be dragged from the Media View, any
+	gallery, the desktop, the file manager or a web browser and
+	dropped on the target gallery, adding the image to the
+	gallery.
+
+	</para>
+      </note>
+
       <para> 
-        To add images related to a single person, switch to the People
-	View (<xref linkend="side-nofilt-fig"/>), select a person, and
-	then click the <guibutton>Edit</guibutton> icon on the toolbar
-	to invoke the <guilabel>Edit Person</guilabel> Dialog
-        (<xref linkend="edit-pers-fig"/>). Then, select the
-	<guilabel>Gallery</guilabel> tab, and click the
-	<guibutton>+</guibutton> button to invoke the <guilabel>Select
-	a media object</guilabel> dialog. Type the filename or select
-	a file with the image, then provide a title for that
-	image. Keep adding images until you are done.
-      </para>
-      <para> 
-        To add images related to a relationship (e.g. marriage),
-	switch to the Family View (<xref linkend="family-fig"/>) and
-	then double-click on the Spouse box invoke the
-	<guilabel>Marriage/Relationship editor</guilabel>
-	dialog. Select the <guilabel>Gallery</guilabel> tab and click
-	the <guibutton>+</guibutton> button to add an image.
-      </para>
-      <para> 
-        To add images related to a source or a place, first switch to
-	the Sources View (<xref linkend="sources-fig"/>) or Places
-	View (<xref linkend="places-fig"/>), respectively. Then select
-	the appropriate source or place and then either double-click
-	on it or click the <guibutton>Edit</guibutton> icon on the
-	toolbar to invoke the <guilabel>Source Editor</guilabel> (or
-	<guilabel>Place Editor</guilabel>) dialog. Select the
-	<guilabel>Gallery</guilabel> tab and click the
-	<guibutton>+</guibutton> button to add an image.
-      </para>
-      <para> 
-        Finally, to add images that are generally related to the
-	database but not limited to any person, relationship, source,
-	or place in particular, switch to the Media View (<xref
-	linkend="media-fig"/>).  Then click the
-	<guibutton>Add</guibutton> icon on the toolbar to add an
-	image.  If you have already added any images to any individual
-	galleries, you will also find them listed in the Media View.
-      </para>
-      <para> 
+
         In any gallery, you can also use the
-	<guibutton>Edit</guibutton> and <guibutton>-</guibutton>
-	buttons to edit image information and to remove the image
-	reference from that gallery. Note that in all galleries
-	removing the reference to the image does not remove the image
-	from the database. To completely remove the image from the
-	database, delete it from Media View by first selecting it and
-	then clicking the <guibutton>Remove</guibutton> icon on the
-	toolbar.
+	<guibutton>Edit</guibutton> to edit image information and the
+	<guibutton>-</guibutton> button and to remove the image
+	reference from that gallery.
       </para>
+
+      <note id="remove-image-from-gallery">
+	<title>Removing an image from a gallery</title>
+	<para>
+	 
+	In all galleries, removing the reference to the image does
+	not remove the image from the database, but just from the
+	gallery. To completely remove the image from the database,
+	delete it from Media View by first selecting it and then
+	clicking the <guibutton>Remove</guibutton> icon on the
+	toolbar.
+	</para>
+       </note>
     </sect2>
 
 <!-- ================ Usage Sub-subsection ================ -->
@@ -874,8 +1005,8 @@
       <title>To Edit Sources and Places</title>
       <para> 
         To add a source or a place to the database, switch to the
-	appropriate Sources View (<xref linkend="sources-fig"/>) or
-	Places View (<xref linkend="places-fig"/>).  Then click the
+	appropriate Source View (<xref linkend="sources-fig"/>) or
+	Place View (<xref linkend="places-fig"/>).  Then click the
 	<guibutton>Add</guibutton> icon on the toolbar to add a
 	source/place. Enter the information into the <guilabel>Source
 	Editor</guilabel> (or <guilabel>Place Editor</guilabel>)
