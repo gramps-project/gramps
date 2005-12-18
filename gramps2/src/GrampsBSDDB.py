@@ -76,10 +76,10 @@ def find_repository_type(key,data):
 #    (referenced_object_class_name, referenced_object_handle))
 
 def find_primary_handle(key,data):
-    return (data)[0][1]
+    return str((data)[0][1])
 
 def find_referenced_handle(key,data):
-    return (data)[1][1]
+    return str((data)[1][1])
 
 class GrampsBSDDBCursor(GrampsCursor):
 

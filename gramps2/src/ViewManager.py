@@ -720,7 +720,7 @@ class ViewManager:
         ScratchPad.ScratchPadWindow(self.state, self)
 
     def pulse_progressbar(self,value):
-        self.progress.pulse()
+        self.progress.set_fraction(value)
 
     def import_data(self,obj):
         choose = gtk.FileChooserDialog(_('GRAMPS: Import database'),
