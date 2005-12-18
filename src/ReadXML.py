@@ -91,6 +91,9 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     change = os.path.getmtime(filename)
     parser = GrampsParser(database,callback,basefile,change,filename)
 
+    linecounter = LineParser(filename)
+    lc = linecounter.get_count()
+    
     ro = database.readonly
     database.readonly = False
     
@@ -128,7 +131,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
             ErrorDialog(_("%s could not be opened") % filename)
             return
     try:
-        parser.parse(xml_file,use_trans)
+        parser.parse(xml_file,use_trans,lc)
     except IOError,msg:
         if cl:
             print "Error reading %s" % filename
@@ -202,6 +205,43 @@ def rs(text):
 
 def fix_spaces(text_list):
     return '\n'.join(map(rs,text_list))
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+class LineParser:
+    def __init__(self, filename):
+
+        self.count = 0
+
+        if gzip_ok:
+            use_gzip = 1
+            try:
+                f = gzip.open(filename,"r")
+                f.read(1)
+                f.close()
+            except IOError,msg:
+                use_gzip = 0
+            except ValueError, msg:
+                use_gzip = 1
+        else:
+            use_gzip = 0
+
+        try:
+            if use_gzip:
+                f = gzip.open(filename,"rb")
+            else:
+                f = open(filename,"r")
+
+            self.count = len(f.readlines())
+            f.close()
+        except:
+            self.count = 0
+
+    def get_count(self):
+        return self.count
 
 #-------------------------------------------------------------------------
 #
@@ -536,18 +576,19 @@ class GrampsParser:
                 self.oidswap[handle] = handle
         return self.oidswap[handle]
 
-    def parse(self,file,use_trans=True):
+    def parse(self,file,use_trans=True,linecount=0):
 
         self.trans = self.db.transaction_begin()
         self.trans.set_batch(True)
+        self.linecount = linecount
 
         self.db.disable_signals()
 
-        p = ParserCreate()
-        p.StartElementHandler = self.startElement
-        p.EndElementHandler = self.endElement
-        p.CharacterDataHandler = self.characters
-        p.ParseFile(file)
+        self.p = ParserCreate()
+        self.p.StartElementHandler = self.startElement
+        self.p.EndElementHandler = self.endElement
+        self.p.CharacterDataHandler = self.characters
+        self.p.ParseFile(file)
             
         self.db.set_researcher(self.owner)
         if self.home != None:
@@ -563,7 +604,7 @@ class GrampsParser:
             del self.func_map[key]
         del self.func_map
         del self.func_list
-        del p
+        del self.p
         if use_trans:
             self.db.transaction_commit(self.trans,_("GRAMPS XML import"))
         self.db.enable_signals()
@@ -624,7 +665,8 @@ class GrampsParser:
         self.placeobj.set_title(title)
         self.locations = 0
         if self.callback != None and self.count % self.increment == 0:
-            self.callback(True)
+            if self.linecount:
+                self.callback(float(self.p.CurrentLineNumber)/float(self.linecount))
         self.count += 1
             
     def start_location(self,attrs):
@@ -731,7 +773,8 @@ class GrampsParser:
 
     def start_person(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
-            self.callback(True)
+            if self.linecount:
+                self.callback(float(self.p.CurrentLineNumber)/float(self.linecount))
         self.count += 1
         new_id = self.map_gid(attrs['id'])
         try:
@@ -801,7 +844,8 @@ class GrampsParser:
 
     def start_family(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
-            self.callback(True)
+            if self.linecount:
+                self.callback(float(self.p.CurrentLineNumber)/float(self.linecount))
         self.count = self.count + 1
         handle = self.map_fid(attrs["id"])
         try:
@@ -928,7 +972,8 @@ class GrampsParser:
 
     def start_source(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
-            self.callback(True)
+            if self.linecount:
+                self.callback(float(self.p.CurrentLineNumber)/float(self.linecount))
         self.count += 1
         handle = self.map_sid(attrs["id"])
         try:
@@ -984,7 +1029,7 @@ class GrampsParser:
 
     def stop_database(self,*tag):
         if self.callback:
-            self.callback(False)
+            self.callback(1.0)
 
     def stop_object(self,*tag):
         self.db.commit_media_object(self.object,self.trans,self.change)
