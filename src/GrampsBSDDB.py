@@ -1008,9 +1008,10 @@ class GrampsBSDDB(GrampsDbBase):
         while data:
             handle,info = data
             source = Source()
+            source.handle = handle
             # We already have a new Source object with the reporef_list
             # just fill in the rest of the fields for this source
-            (source.handle, source.gramps_id, source.title, source.author,
+            (junk_handle, source.gramps_id, source.title, source.author,
              source.pubinfo, source.note, source.media_list,
              source.abbrev, source.change, source.datamap) = info
             self.commit_source(source,trans)
@@ -1024,8 +1025,9 @@ class GrampsBSDDB(GrampsDbBase):
         while data:
             handle,info = data
             person = Person()
+            person.handle = handle
             # Restore data from dbversion 8 (gramps 2.0.9)
-            (person.handle, person.gramps_id, person.gender,
+            (junk_handle, person.gramps_id, person.gender,
              person.primary_name, person.alternate_names, person.nickname,
              death_handle, birth_handle, event_list,
              person.family_list, person.parent_family_list,
@@ -1070,8 +1072,9 @@ class GrampsBSDDB(GrampsDbBase):
         while data:
             handle,info = data
             family = Family()
+            family.handle = handle
             # Restore data from dbversion 8 (gramps 2.0.9)
-            (family.handle, family.gramps_id, family.father_handle,
+            (junk_handle, family.gramps_id, family.father_handle,
              family.mother_handle, family.child_list, family.type,
              event_list, family.media_list, family.attribute_list,
              family.lds_seal, complete, family.source_list,
@@ -1149,7 +1152,8 @@ class GrampsBSDDB(GrampsDbBase):
         while data:
             handle,info = data
             event = Event()
-            (event.handle, event.gramps_id, name, event.date,
+            event.handle = handle
+            (junk_handle, event.gramps_id, name, event.date,
              event.description, event.place, event.cause, event.private,
              event.source_list, event.note, witness, event.media_list,
              event.change) = info
@@ -1171,7 +1175,8 @@ class GrampsBSDDB(GrampsDbBase):
         while data:
             handle,info = data
             place = Place()
-            (place.handle, place.gramps_id, place.title, place.long, place.lat,
+            place.handle = handle
+            (junk_handle, place.gramps_id, place.title, place.long, place.lat,
              place.main_loc, place.alt_loc, place.urls, place.media_list,
              place.source_list, place.note, place.change) = info
             self.commit_place(place,trans)
@@ -1184,7 +1189,8 @@ class GrampsBSDDB(GrampsDbBase):
         while data:
             handle,info = data
             media_object = MediaObject()
-            (media_object.handle, media_object.gramps_id, media_object.path,
+            media_object.handle = handle
+            (junk_handle, media_object.gramps_id, media_object.path,
              media_object.mime, media_object.desc, media_object.attribute_list,
              media_object.source_list, media_object.note, media_object.change,
              media_object.date) = info
