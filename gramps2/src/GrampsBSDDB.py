@@ -918,6 +918,7 @@ class GrampsBSDDB(GrampsDbBase):
             "Sponsored", "Foster", "Unknown", "Other", ]
         
         version = self.metadata.get('version',_MINVERSION)
+        print version
 
         if version < 6:
             self.gramps_upgrade_6()
@@ -929,6 +930,9 @@ class GrampsBSDDB(GrampsDbBase):
             self.gramps_upgrade_9()
 
         self.metadata['version'] = _DBVERSION
+        print "set version to %d" % _DBVERSION
+        print "actual version now is %d" % self.metadata['version']
+        self.metadata.sync()
 
     def gramps_upgrade_6(self):
         print "Upgrading to DB version 6"
