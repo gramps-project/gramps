@@ -1086,6 +1086,10 @@ class GrampsBSDDB(GrampsDbBase):
             # Cover attributes contained in MediaRefs
             for media_ref in person.media_list:
                 convert_mediaref_9(media_ref)
+
+            # In all Urls, add type attribute
+            for url in person.urls:
+                convert_url_9(url)
             
             self.commit_person(person,trans)
             #data = cursor.next()
@@ -1123,7 +1127,7 @@ class GrampsBSDDB(GrampsDbBase):
             for attribute in family.attribute_list:
                 convert_attribute_9(attribute)
             # Cover attributes contained in MediaRefs
-            for media_ref in person.media_list:
+            for media_ref in family.media_list:
                 convert_mediaref_9(media_ref)
             
             self.commit_family(family,trans)
@@ -1224,8 +1228,12 @@ class GrampsBSDDB(GrampsDbBase):
              place.source_list, place.note, place.change) = info
 
             # Cover attributes contained in MediaRefs
-            for media_ref in person.media_list:
+            for media_ref in place.media_list:
                 convert_mediaref_9(media_ref)
+
+            # In all Urls, add type attribute
+            for url in place.urls:
+                convert_url_9(url)
 
             self.commit_place(place,trans)
 #            data = cursor.next()
@@ -1246,7 +1254,7 @@ class GrampsBSDDB(GrampsDbBase):
              media_object.date) = info
 
             # In all Attributes, convert type from string to a tuple
-            for attribute in family.attribute_list:
+            for attribute in media_object.attribute_list:
                 convert_attribute_9(attribute)
 
             self.commit_media_object(media_object,trans)
@@ -1256,19 +1264,20 @@ class GrampsBSDDB(GrampsDbBase):
         self.transaction_commit(trans,"Upgrade to DB version 9")
         print "Done upgrading to DB version 9"
 
+_attribute_conversion_9 = {
+    "Caste"                  : (Attribute.CASTE,""),
+    "Description"            : (Attribute.DESCRIPTION,""),
+    "Identification Number"  : (Attribute.ID,""),
+    "National Origin"        : (Attribute.NATIONAL,""),
+    "Number of Children"     : (Attribute.NUM_CHILD,""),
+    "Social Security Number" : (Attribute.SSN,""),
+    }
+
 def convert_attribute_9(attribute):
-    attribute_conversion = {
-        "Caste"                  : (Attribute.CASTE,""),
-        "Description"            : (Attribute.DESCRIPTION,""),
-        "Identification Number"  : (Attribute.ID,""),
-        "National Origin"        : (Attribute.NATIONAL,""),
-        "Number of Children"     : (Attribute.NUM_CHILD,""),
-        "Social Security Number" : (Attribute.SSN,""),
-        }
     old_type = attribute.type
     if old_type:
-        if attribute_conversion.has_key(old_type):
-            new_type = attribute_conversion[old_type]
+        if _attribute_conversion_9.has_key(old_type):
+            new_type = _attribute_conversion_9[old_type]
         else:
             new_type = (Attribute.CUSTOM,old_type)
     else:
@@ -1279,6 +1288,16 @@ def convert_mediaref_9(media_ref):
     for attribute in media_ref.attribute_list:
         convert_attribute_9(attribute)
 
+def convert_url_9(url):
+    path = url.path.strip()
+    if path.find('mailto:') == 0 or url.path.find('@') != -1:
+        url.type = (Url.EMAIL,'')
+    elif path.find('http://') == 0:
+        url.type = (Url.WEB_HOME,'')
+    elif path.find('ftp://') == 0:
+        url.type = (Url.WEB_FTP,'')
+    else:
+        url.type = (Url.CUSTOM,'')
 
 if __name__ == "__main__":
 
