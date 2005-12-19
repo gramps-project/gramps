@@ -188,7 +188,45 @@ class BaseObject:
 
         return ret
 
-class PrimaryObject(BaseObject):
+class PrivacyBase:
+    """
+    Base class for privacy-aware objects.
+    """
+
+    def __init__(self,source=None):
+        """
+        Initialize a PrivacyBase. If the source is not None, then object
+        is initialized from values of the source object.
+
+        @param source: Object used to initialize the new object
+        @type source: PrivacyBase
+        """
+        
+        if source:
+            self.private = source.private
+        else:
+            self.private = False
+
+    def set_privacy(self,val):
+        """
+        Sets or clears the privacy flag of the data
+
+        @param val: value to assign to the privacy flag. True indicates that the
+           record is private, False indicates that it is public.
+        @type val: bool
+        """
+        self.private = val
+
+    def get_privacy(self):
+        """
+        Returns the privacy level of the data. 
+
+        @returns: True indicates that the record is private
+        @rtype: bool
+        """
+        return self.private
+
+class PrimaryObject(BaseObject,PrivacyBase):
     """
     The PrimaryObject is the base class for all primary objects in the
     database. Primary objects are the core objects in the database.
@@ -212,6 +250,7 @@ class PrimaryObject(BaseObject):
         @type source: PrimaryObject
         """
         BaseObject.__init__(self)
+        PrivacyBase.__init__(self,source)
         if source:
             self.gramps_id = source.gramps_id
             self.handle = source.handle
@@ -735,44 +774,6 @@ class DateBase:
         """
         self.date = date
 
-class PrivacyBase:
-    """
-    Base class for privacy-aware objects.
-    """
-
-    def __init__(self,source=None):
-        """
-        Initialize a PrivacyBase. If the source is not None, then object
-        is initialized from values of the source object.
-
-        @param source: Object used to initialize the new object
-        @type source: PrivacyBase
-        """
-        
-        if source:
-            self.private = source.private
-        else:
-            self.private = False
-
-    def set_privacy(self,val):
-        """
-        Sets or clears the privacy flag of the data
-
-        @param val: value to assign to the privacy flag. True indicates that the
-           record is private, False indicates that it is public.
-        @type val: bool
-        """
-        self.private = val
-
-    def get_privacy(self):
-        """
-        Returns the privacy level of the data. 
-
-        @returns: True indicates that the record is private
-        @rtype: bool
-        """
-        return self.private
-
 class AttributeBase:
     """
     Base class for attribute-aware objects.
@@ -840,6 +841,137 @@ class AttributeBase:
         """
         self.attribute_list = attribute_list
 
+class AddressBase:
+    """
+    Base class for address-aware objects.
+    """
+
+    def __init__(self,source=None):
+        """
+        Initialize a AddressBase. If the source is not None, then object
+        is initialized from values of the source object.
+
+        @param source: Object used to initialize the new object
+        @type source: AddressBase
+        """
+        
+        if source:
+            self.address_list = [ Address(address) \
+                                    for address in source.address_list ]
+        else:
+            self.address_list = []
+
+    def add_address(self,address):
+        """
+        Adds the L{Address} instance to the object's list of addresses
+
+        @param address: L{Address} instance to add to the object's address list
+        @type address: list
+        """
+        self.address_list.append(address)
+
+    def remove_address(self,address):
+        """
+        Removes the specified L{Address} instance from the address list
+        If the instance does not exist in the list, the operation has
+        no effect.
+
+        @param address: L{Address} instance to remove from the list
+        @type address: L{Address}
+
+        @return: True if the address was removed, False if it was not in the list.
+        @rtype: bool
+        """
+        if address in self.address_list:
+            self.address_list.remove(address)
+            return True
+        else:
+            return False
+
+    def get_address_list(self):
+        """
+        Returns the list of L{Address} instances associated with the object
+
+        @return: Returns the list of L{Address} instances
+        @rtype: list
+        """
+        return self.address_list
+
+    def set_address_list(self,address_list):
+        """
+        Assigns the passed list to the object's list of L{Address} instances.
+        @param address_list: List of L{Address} instances to be associated
+            with the object
+        @type address_list: list
+        """
+        self.address_list = address_list
+
+class UrlBase:
+    """
+    Base class for url-aware objects.
+    """
+
+    def __init__(self,source=None):
+        """
+        Initialize an UrlBase. If the source is not None, then object
+        is initialized from values of the source object.
+
+        @param source: Object used to initialize the new object
+        @type source: UrlBase
+        """
+        
+        if source:
+            self.urls = [ Url(url) for url in source.urls ]
+        else:
+            self.urls = []
+
+    def get_url_list(self):
+        """
+        Returns the list of L{Url} instances associated with the object.
+
+        @returns: List of L{Url} instances
+        @rtype: list
+        """
+        return self.urls
+
+    def set_url_list(self,url_list):
+        """
+        Sets the list of L{Url} instances to passed the list.
+
+        @param url_list: List of L{Url} instances
+        @type url_list: list
+        """
+        self.urls = url_list
+
+    def add_url(self,url):
+        """
+        Adds a L{Url} instance to the object's list of L{Url} instances
+
+        @param url: L{Url} instance to be added to the Person's list of
+            related web sites.
+        @type url: L{Url}
+        """
+        self.urls.append(url)
+    
+
+    def remove_url(self,url):
+        """
+        Removes the specified L{Url} instance from the url list
+        If the instance does not exist in the list, the operation has
+        no effect.
+
+        @param attribute: L{Url} instance to remove from the list
+        @type attribute: L{Url}
+
+        @return: True if the url was removed, False if it was not in the list.
+        @rtype: bool
+        """
+        if url in self.urls:
+            self.urls.remove(url)
+            return True
+        else:
+            return False
+
 class PlaceBase:
     """
     Base class for place-aware objects.
@@ -896,7 +1028,8 @@ class PrivateSourceNote(SourceNote,PrivacyBase):
 # Actual GRAMPS objects
 #
 #-------------------------------------------------------------------------
-class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
+class Person(PrimaryObject,SourceNote,
+             MediaBase,AttributeBase,AddressBase,UrlBase):
     """
     Introduction
     ============
@@ -943,9 +1076,11 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
             self.unserialize(data)
         else:
             PrimaryObject.__init__(self)
-            PrivateSourceNote.__init__(self)
+            SourceNote.__init__(self)
             MediaBase.__init__(self)
             AttributeBase.__init__(self)
+            AddressBase.__init__(self)
+            UrlBase.__init__(self)
             self.primary_name = Name()
             self.event_ref_list = []
             self.family_list = []
@@ -955,8 +1090,6 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
             self.gender = Person.UNKNOWN
             self.death_ref = None
             self.birth_ref = None
-            self.address_list = []
-            self.urls = []
             self.lds_bapt = None
             self.lds_endow = None
             self.lds_seal = None
@@ -1189,34 +1322,6 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         """
         self.alternate_names.append(name)
 
-    def get_url_list(self):
-        """
-        Returns the list of L{Url} instances associated with the Person
-
-        @returns: List of L{Url} instances
-        @rtype: list
-        """
-        return self.urls
-
-    def set_url_list(self,url_list):
-        """
-        Sets the list of L{Url} instances to passed the list.
-
-        @param url_list: List of L{Url} instances
-        @type url_list: list
-        """
-        self.urls = url_list
-
-    def add_url(self,url):
-        """
-        Adds a L{Url} instance to the Person's list of L{Url} instances
-
-        @param url: L{Url} instance to be added to the Person's list of
-            related web sites.
-        @type url: L{Url}
-        """
-        self.urls.append(url)
-    
     def set_nick_name(self,name):
         """
         Sets the nickname field for the Person
@@ -1498,53 +1603,6 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         else:
             return False
 
-    def add_address(self,address):
-        """
-        Adds the L{Address} instance to the Person's list of addresses
-
-        @param address: L{Address} instance to add to the Person's address
-            list
-        @type address: list
-        """
-        self.address_list.append(address)
-
-    def remove_address(self,address):
-        """
-        Removes the specified L{Address} instance from the address list
-        If the instance does not exist in the list, the operation has
-        no effect.
-
-        @param address: L{Address} instance to remove from the list
-        @type address: L{Address}
-
-        @return: True if the address was removed, False if it was not
-            in the list.
-        @rtype: bool
-        """
-        if address in self.address_list:
-            self.address_list.remove(address)
-            return True
-        else:
-            return False
-
-    def get_address_list(self):
-        """
-        Returns the list of L{Address} instances associated with the
-        Person
-        @return: Returns the list of L{Address} instances
-        @rtype: list
-        """
-        return self.address_list
-
-    def set_address_list(self,address_list):
-        """
-        Assigns the passed list to the Person's list of L{Address} instances.
-        @param address_list: List of L{Address} instances to ba associated
-            with the Person
-        @type address_list: list
-        """
-        self.address_list = address_list
-
     def get_parent_family_handle_list(self):
         """
         Returns the list of L{Family} handles in which the person is a
@@ -1822,7 +1880,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
                 self.child_list, self.type, self.event_ref_list,
                 self.media_list, self.attribute_list, self.lds_seal,
                 self.complete, self.source_list, self.note,
-                self.change, self.marker)
+                self.change, self.marker, self.private)
 
     def unserialize(self, data):
         """
@@ -1832,7 +1890,8 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
          self.child_list, self.type, self.event_ref_list,
          self.media_list, self.attribute_list, self.lds_seal,
-         self.complete, self.source_list, self.note, self.change, self.marker) = data
+         self.complete, self.source_list, self.note, self.change,
+         self.marker, self.private) = data
 
     def _has_handle_reference(self,classname,handle):
         if classname == 'Event':
@@ -2181,7 +2240,7 @@ class Witness(BaseObject,PrivacyBase):
     def __init__(self):
         pass
 
-class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
+class Event(PrimaryObject,SourceNote,MediaBase,DateBase,PlaceBase):
     """
     Introduction
     ============
@@ -2246,7 +2305,7 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         """
 
         PrimaryObject.__init__(self,source)
-        PrivateSourceNote.__init__(self,source)
+        SourceNote.__init__(self,source)
         MediaBase.__init__(self,source)
         DateBase.__init__(self,source)
         PlaceBase.__init__(self,source)
@@ -2281,7 +2340,7 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         return (self.handle, self.gramps_id, self.type, self.date,
                 self.description, self.place, self.cause, self.private,
                 self.source_list, self.note, self.media_list, self.change,
-                self.marker)
+                self.marker, self.private)
 
     def unserialize(self,data):
         """
@@ -2295,7 +2354,7 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         (self.handle, self.gramps_id, self.type, self.date,
          self.description, self.place, self.cause, self.private,
          self.source_list, self.note, self.media_list, self.change,
-         self.marker) = data
+         self.marker, self.private) = data
 
     def _has_handle_reference(self,classname,handle):
         if classname == 'Place':
@@ -2508,7 +2567,7 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
     def set_ext_witness_list(self,witness_list):
         self.ext_witness_list = witness_list
 
-class Place(PrimaryObject,SourceNote,MediaBase):
+class Place(PrimaryObject,SourceNote,MediaBase,UrlBase):
     """
     Contains information related to a place, including multiple address
     information (since place names can change with time), longitude, latitude,
@@ -2525,6 +2584,7 @@ class Place(PrimaryObject,SourceNote,MediaBase):
         PrimaryObject.__init__(self,source)
         SourceNote.__init__(self,source)
         MediaBase.__init__(self,source)
+        UrlBase.__init__(self,source)
         if source:
             self.long = source.long
             self.lat = source.lat
@@ -2533,16 +2593,12 @@ class Place(PrimaryObject,SourceNote,MediaBase):
             self.alt_loc = []
             for loc in source.alt_loc:
                 self.alt_loc = Location(loc)
-            self.urls = []
-            for u in source.urls:
-                self.urls.append(Url(u))
         else:
             self.long = ""
             self.lat = ""
             self.title = ""
             self.main_loc = None
             self.alt_loc = []
-            self.urls = []
 
     def serialize(self):
         """
@@ -2562,7 +2618,8 @@ class Place(PrimaryObject,SourceNote,MediaBase):
         """
         return (self.handle, self.gramps_id, self.title, self.long, self.lat,
                 self.main_loc, self.alt_loc, self.urls, self.media_list,
-                self.source_list, self.note, self.change, self.marker)
+                self.source_list, self.note, self.change, self.marker,
+                self.private)
 
     def unserialize(self,data):
         """
@@ -2575,7 +2632,8 @@ class Place(PrimaryObject,SourceNote,MediaBase):
         """
         (self.handle, self.gramps_id, self.title, self.long, self.lat,
          self.main_loc, self.alt_loc, self.urls, self.media_list,
-         self.source_list, self.note, self.change, self.marker) = data
+         self.source_list, self.note, self.change, self.marker,
+         self.private) = data
             
     def get_text_data_list(self):
         """
@@ -2618,34 +2676,6 @@ class Place(PrimaryObject,SourceNote,MediaBase):
         """
         return self.media_list + self.source_list
 
-    def get_url_list(self):
-        """
-        Returns the list of L{Url} instances associated with the Place
-
-        @returns: List of L{Url} instances
-        @rtype: list
-        """
-        return self.urls
-
-    def set_url_list(self,url_list):
-        """
-        Sets the list of L{Url} instances to passed the list.
-
-        @param url_list: List of L{Url} instances
-        @type url_list: list
-        """
-        self.urls = url_list
-
-    def add_url(self,url):
-        """
-        Adds a L{Url} instance to the Place's list of L{Url} instances
-
-        @param url: L{Url} instance to be added to the Place's list of
-            related web sites.
-        @type url: L{Url}
-        """
-        self.urls.append(url)
-    
     def set_title(self,title):
         """
         Sets the descriptive title of the Place object
@@ -2822,7 +2852,7 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         """
         return (self.handle, self.gramps_id, self.path, self.mime,
                 self.desc, self.attribute_list, self.source_list, self.note,
-                self.change, self.date, self.marker)
+                self.change, self.date, self.marker, self.private)
 
     def unserialize(self,data):
         """
@@ -2834,7 +2864,7 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         """
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
          self.attribute_list, self.source_list, self.note, self.change,
-         self.date, self.marker) = data
+         self.date, self.marker, self.private) = data
 
     def get_text_data_list(self):
         """
@@ -2931,7 +2961,8 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         return (self.handle, self.gramps_id, unicode(self.title),
                 unicode(self.author), unicode(self.pubinfo),
                 self.note, self.media_list, unicode(self.abbrev),
-                self.change,self.datamap,self.reporef_list, self.marker)
+                self.change,self.datamap,self.reporef_list, self.marker,
+                self.private)
 
     def unserialize(self,data):
         """
@@ -2941,7 +2972,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         (self.handle, self.gramps_id, self.title, self.author,
          self.pubinfo, self.note, self.media_list,
          self.abbrev, self.change, self.datamap, self.reporef_list,
-         self.marker) = data
+         self.marker, self.private) = data
         
     def get_text_data_list(self):
         """
@@ -4082,6 +4113,13 @@ class Url(BaseObject,PrivacyBase):
     """Contains information related to internet Uniform Resource Locators,
     allowing gramps to store information about internet resources"""
 
+    UNKNOWN    = -1
+    CUSTOM     = 0
+    EMAIL      = 1
+    WEB_HOME   = 2
+    WEB_SEARCH = 3
+    WEB_FTP    = 4
+    
     def __init__(self,source=None):
         """creates a new URL instance, copying from the source if present"""
         BaseObject.__init__(self)
@@ -4089,9 +4127,11 @@ class Url(BaseObject,PrivacyBase):
         if source:
             self.path = source.path
             self.desc = source.desc
+            self.type = source.type
         else:
             self.path = ""
             self.desc = ""
+            self.type = (Url.CUSTOM,"")
 
     def get_text_data_list(self):
         """
@@ -4118,6 +4158,28 @@ class Url(BaseObject,PrivacyBase):
         """returns the description of the URL"""
         return self.desc
 
+    def set_type(self,the_type):
+        """
+        @param type: descriptive type of the Url
+        @type type: str
+        """
+        if not type(the_type) == tuple:
+            warn( "set_type now takes a tuple", DeprecationWarning, 2)
+            # Wrapper for old API
+            # remove when transitition done.
+            if the_type in range(-1,5):
+                the_type = (the_type,'')
+            else:
+                the_type = (Url.CUSTOM,the_type)
+        self.type = the_type
+
+    def get_type(self):
+        """
+        @returns: the descriptive type of the Url
+        @rtype: str
+        """
+        return self.type
+
     def are_equal(self,other):
         """returns 1 if the specified URL is the same as the instance"""
         if other == None:
@@ -4125,6 +4187,8 @@ class Url(BaseObject,PrivacyBase):
         if self.path != other.path:
             return 0
         if self.desc != other.desc:
+            return 0
+        if self.type != other.type:
             return 0
         return 1
 
@@ -4495,7 +4559,7 @@ class RepoRef(BaseObject,NoteBase):
     def set_media_type(self,media_type):
        self.media_type = media_type
 
-class Repository(PrimaryObject,NoteBase):
+class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
     """A location where collections of Sources are found"""
     
     UNKNOWN    = -1
@@ -4514,29 +4578,23 @@ class Repository(PrimaryObject,NoteBase):
         """creates a new Repository instance"""
         PrimaryObject.__init__(self)
         NoteBase.__init__(self)
+        AddressBase.__init__(self)
+        UrlBase.__init__(self)
         self.type = (Repository.LIBRARY,"")
         self.name = ""
-        self.address = Location() #FIXME: This needs to become address
-        self.email = ""
-        self.search_url = ""
-        self.home_url = ""
-        self.note = Note()
 
     def serialize(self):
-        return (self.handle, self.gramps_id, self.type,
-                unicode(self.name), self.address,
-                unicode(self.email),
-                unicode(self.search_url), unicode(self.home_url),
-                self.note)
+        return (self.handle, self.gramps_id, self.type, unicode(self.name),
+                self.note, self.address_list, self.urls,self.marker,
+                self.private)
 
     def unserialize(self,data):
         """
         Converts the data held in a tuple created by the serialize method
         back into the data in an Repository structure.
         """
-        (self.handle, self.gramps_id, self.type, self.name,
-         self.address, self.email,
-         self.search_url, self.home_url, self.note) = data
+        (self.handle, self.gramps_id, self.type, self.name, self.note,
+         self.address_list, self.urls ,self.marker, self.private) = data
         
     def get_text_data_list(self):
         """
@@ -4545,7 +4603,7 @@ class Repository(PrimaryObject,NoteBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.name,self.type[1],self.email,self.search_url,self.home_url]
+        return [self.name,self.type[1]]
 
     def get_text_data_child_list(self):
         """
@@ -4554,7 +4612,7 @@ class Repository(PrimaryObject,NoteBase):
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = [self.address]
+        check_list = self.address_list + self.urls
         if self.note:
             check_list.append(self.note)
         return check_list
@@ -4593,12 +4651,20 @@ class Repository(PrimaryObject,NoteBase):
         """
         pass
 
-    def set_type(self,type):
+    def set_type(self,the_type):
         """
         @param type: descriptive type of the Repository
         @type type: str
         """
-        self.type = type
+        if not type(the_type) == tuple:
+            warn( "set_type now takes a tuple", DeprecationWarning, 2)
+            # Wrapper for old API
+            # remove when transitition done.
+            if the_type in range(-1,10):
+                the_type = (the_type,'')
+            else:
+                the_type = (Repository.CUSTOM,the_type)
+        self.type = the_type
 
     def get_type(self):
         """
@@ -4621,62 +4687,6 @@ class Repository(PrimaryObject,NoteBase):
         """
         return self.name
 
-    def set_address(self,address):
-        """
-        @param address: L{Location} instance to set as Repository's address
-        @type address: L{Location}
-        """
-        self.address = address
-
-    def get_address(self):
-        """
-        @returns: L{Location} instance representing Repository's address
-        @rtype: L{Location}
-        """
-        return self.address
-    
-    def set_email(self,email):
-        """
-        @param email: descriptive email of the Repository
-        @type email: str
-        """
-        self.email = email
-
-    def get_email(self):
-        """
-        @returns: the descriptive email of the Repository
-        @rtype: str
-        """
-        return self.email
-    
-    def set_search_url(self,search_url):
-        """
-        @param search_url: descriptive search_url of the Repository
-        @type search_url: str
-        """
-        self.search_url = search_url
-
-    def get_search_url(self):
-        """
-        @returns: the descriptive search_url of the Repository
-        @rtype: str
-        """
-        return self.search_url
-    
-    def set_home_url(self,home_url):
-        """
-        @param home_url: descriptive home_url of the Repository
-        @type home_url: str
-        """
-        self.home_url = home_url
-
-    def get_home_url(self):
-        """
-        @returns: the descriptive home_url of the Repository
-        @rtype: str
-        """
-        return self.home_url
-    
     
 #-------------------------------------------------------------------------
 #
@@ -4693,33 +4703,39 @@ if __name__ == "__main__":
         def test_simple(self):
 
             rep1 = Repository()
-            rep1.set_type("type")
+            rep1.set_type((Repository.LIBRARY,''))
             rep1.set_name("name")
-            addr1 = Location()
-            rep1.set_address(addr1)
-            rep1.set_email("email")
-            rep1.set_search_url("search url")
-            rep1.set_home_url("home url")
+            addr1 = Address()
+            rep1.add_address(addr1)
+            email = Url()
+            email.set_type((Url.EMAIL,''))
+            email.set_path('mailto:nobody@domain.com')
+            rep1.add_url(email)
+            home_url = Url()
+            home_url.set_type((Url.WEB_HOME,''))
+            rep1.add_url(home_url)
             rep1.set_note("a note")
 
-            assert rep1.get_type() == "type"
+            assert rep1.get_type() == (Repository.LIBRARY,'')
             assert rep1.get_name() == "name"
-            assert rep1.get_address() == addr1
-            assert rep1.get_email() == "email"
-            assert rep1.get_search_url() == "search url"
-            assert rep1.get_home_url() == "home url"
+            assert rep1.get_address_list() == [addr1]
+            assert rep1.get_url_list() == [email,home_url]
             assert rep1.get_note() == "a note"
 
         def test_serialize(self):
             
             rep1 = Repository()
-            addr1 = Location()
-            rep1.set_type("type")
+            rep1.set_type((Repository.LIBRARY,''))
             rep1.set_name("name")
-            rep1.set_address(addr1)
-            rep1.set_email("email")
-            rep1.set_search_url("search url")
-            rep1.set_home_url("home url")
+            addr1 = Address()
+            rep1.add_address(addr1)
+            email = Url()
+            email.set_type((Url.EMAIL,''))
+            email.set_path('mailto:nobody@domain.com')
+            rep1.add_url(email)
+            home_url = Url()
+            home_url.set_type((Url.WEB_HOME,''))
+            rep1.add_url(home_url)
             rep1.set_note("a note")
 
             rep2 = Repository()
@@ -4728,18 +4744,17 @@ if __name__ == "__main__":
             assert rep1.get_gramps_id() == rep2.get_gramps_id()
             assert rep1.get_type() == rep2.get_type()
             assert rep1.get_name() == rep2.get_name()
-            assert rep1.get_address() == rep2.get_address()
-            assert rep1.get_email() == rep2.get_email()
-            assert rep1.get_search_url() == rep2.get_search_url()
-            assert rep1.get_home_url() == rep2.get_home_url()
+            for idx in range(len(rep1.get_url_list())):
+                assert rep1.get_url_list()[idx] == rep2.get_url_list()[idx]
+            #assert rep1.get_address_list() == rep2.get_address_list()
             assert rep1.get_note() == rep2.get_note()
 
         def test_methods(self):
             
             rep1 = Repository()
-            addr1 = Location()
+            addr1 = Address()
             rep1.set_note("a note")
-            rep1.set_address(addr1)
+            rep1.add_address(addr1)
 
             assert type(rep1.get_text_data_list()) == type([])
             assert rep1.get_text_data_child_list() == [addr1,rep1.note]

@@ -3,6 +3,14 @@
 	Attribute objects to use tuple types.
 	* src/RelLib.py (Name.set_type): Typo in the wrapper code.
 
+	* src/RelLib.py: Add privacy flag to all objects via making
+	PrimaryObject inherit from PrivacyBase; Add AddressBase and
+	UrlBase classes to manage Address and Url lists in other objects; 
+	Add tuple type to the Url class; make Repository inherit from
+	AddressBase and UrlBase to be able to store lists of both.
+	* src/GrampsBSDDB.py (gramps_upgrade_9): Provide upgrade for the
+	changes in RelLib.
+
 2005-12-19 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/RelLib.py: added get_backlink_handles method to PrimaryObject
         * test/GrampsDbBase_Test.py: factored out common db test methods
