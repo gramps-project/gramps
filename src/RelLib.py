@@ -347,6 +347,24 @@ class PrimaryObject(BaseObject):
     def _replace_handle_reference(self,classname,old_handle,new_handle):
         pass
 
+    def get_backlink_handles(self,db,include_classes=None):
+        """Get a list of all primary objects that make some reference to this
+        primary object, either directly or via a child object.
+
+        Returns an iterator over tuples each of the form (class_name,handle).
+
+        To get a list use:
+
+        references = [ ref for ref in obj.get_backlink_handles() ]
+
+        @param db: a object with the find_backlink_handles method
+        @type db: usually a instance of a class derived from GrampsDbBase.
+        @param include_classes: the primary classes to include in the result.
+        @type: tuple of primary class names as strings, or None for all classes.
+        """
+        
+        return db.find_backlink_handles(self.get_handle(),include_classes)
+        
     def set_marker(self,marker):
         self.marker = marker
     

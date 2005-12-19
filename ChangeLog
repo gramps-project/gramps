@@ -1,3 +1,10 @@
+2005-12-19 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/RelLib.py: added get_backlink_handles method to PrimaryObject
+        * test/GrampsDbBase_Test.py: factored out common db test methods
+	* test/GrampsDbTestBase.py: new base class for unittests that need to 
+	create database records
+	* test/RelLib_Test.py: unittest for the get_backlink_handles method
+	
 2005-12-17  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsBSDDB.py (gramps_upgrade_9): Switch to using keys in
 	upgrade. When using DB cusrsor, modifying the record sometimes
