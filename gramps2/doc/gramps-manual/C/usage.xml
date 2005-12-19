@@ -967,18 +967,15 @@
       <note id="alt-add-image">
         <title>Alternate way of adding images to galleries</title>
 	<para>
-
 	An image can always be added to any gallery by using
 	drag-and-drop. Items can be dragged from the Media View, any
 	gallery, the desktop, the file manager or a web browser and
 	dropped on the target gallery, adding the image to the
 	gallery.
-
 	</para>
       </note>
 
       <para> 
-
         In any gallery, you can also use the
 	<guibutton>Edit</guibutton> to edit image information and the
 	<guibutton>-</guibutton> button and to remove the image
@@ -988,7 +985,6 @@
       <note id="remove-image-from-gallery">
 	<title>Removing an image from a gallery</title>
 	<para>
-	 
 	In all galleries, removing the reference to the image does
 	not remove the image from the database, but just from the
 	gallery. To completely remove the image from the database,
@@ -1028,29 +1024,41 @@
   <sect1 id="gramps-edit-complete">
     <title>Editing Data: Complete Description</title>
     <para> 
-      This section provides a complete description of all editing
-      options for all pieces of data in the &app; database. It refers
-      mainly to the menu items and buttons as the main way of
-      interacting with &app;.  In addition to this, &app; provides an
-      extensive set of keybindings.  The detailed reference to the
-      keybindings is found in the <xref linkend="append-keybind"/>.
+    The previous section offered you a quick overview of how to enter
+    and edit data in GRAMPS. This section continues that discussion in
+    much greater detail.
+    </para><para>
+    As we have seen above, GRAMPS offers you a series of Views. Each
+    of these Views gives you opportunities to enter and edit
+    information. In fact, you can often get to the same information
+    from different Views.
+    </para><para>
+    In GRAMPS, information is entered and edited through what we call
+    dialogs. Since we use that term frequently, we should define what
+    we mean by it:
+    </para><para>
+    A dialog is a pop-up window that provides one or more forms for
+    entering and editing data that fits a certain category. Examples
+    in GRAMPS include the Edit Person dialog and the
+    Marriage/Relationship dialog, among many others.
+    </para><para>
+    A dialog often includes a series of &quot;notebook tabs&quot; that
+    group the information into subcategories.  For example, the Edit
+    Person dialog has notebook tabs for subcategories such as Events,
+    Attributes, Addresses, and Notes, among others.
     </para>
+
     <note id="edit-button-note">
       <title>Add, Remove, and Edit buttons</title>
       <para>
-         In order to save precious screen space, most of the
-         <guibutton>Add</guibutton>, <guibutton>Remove</guibutton>,
-         and <guibutton>Edit</guibutton> buttons no longer are labeled
-         with text. Instead, the first two use
-         <guibutton>+</guibutton> and <guibutton>-</guibutton> icons,
-         and the third uses the icon depicting a pen on top of a paper
-         sheet.
-      </para>
-      <para>
-        Reference the latter as the
-        <guibutton>Edit</guibutton> button, while using
-        <guibutton>+</guibutton> and <guibutton>-</guibutton> to
-        denote the former two buttons.
+      In most cases, GRAMPS uses a <guibutton>+</guibutton> to
+      correspond to <guibutton>Add</guibutton>, a
+      <guibutton>-</guibutton> correspond to
+      <guibutton>Remove</guibutton>, and an icon of a pen on a sheet
+      of paper to denote <guibutton>Edit</guibutton>. We will continue
+      referring to the latter as the <guibutton>Edit</guibutton>
+      button, while using <guibutton>+</guibutton> and
+      <guibutton>-</guibutton> to denote the two former buttons.
       </para>
     </note>
 
@@ -1131,41 +1139,38 @@
 <!-- ==== End of Figure ==== -->
 
       <para> 
-        The top of the window shows the name of the person whose
-	data is being edited. The main part of the window displays
-	ten notebook tabs containing different categories of
-	available information. You can bring any tab to the top for
-	viewing or editing by clicking on the appropriate tab
-	heading.  The bottom part has <guibutton>OK</guibutton> and
-	<guibutton>Cancel</guibutton> buttons. Clicking the
-	<guibutton>OK</guibutton> button at any time will apply all
-	the changes made in all tabs and close the dialog
-	window. Clicking the <guibutton>Cancel</guibutton> button at
-	any time will close the window without applying any
-	changes. If any of the data in any tab were modified, the
-	alert window will appear with the choices of closing the
-	dialog without saving changes, canceling the initial cancel
-	request, or saving the changes.
+
+      The top of the window shows the name of the person whose data is
+      being edited. Below this name are ten &quot;notebook tabs&quot;
+      containing different categories of available information. Click
+      any tab to view and edit its contents. Clicking the
+      <guibutton>OK</guibutton> button at the bottom will apply all
+      the changes made in all tabs and close the dialog
+      window. Clicking the <guibutton>Cancel</guibutton> button will
+      close the window without applying any changes. If any data in
+      any tabs were modified, an alert window will appear, prompting
+      you to choose from the following options: close the dialog
+      without saving changes, cancel the initial cancel request, or
+      save the changes.
+
       </para>
+
       <note>
         <para>
           Clicking <guibutton>OK</guibutton> will immediately save
-          changes to the database (write on disk).  This version of
-          &app; does not have a separate saving function, all
-          changes are immediate.
+          changes to the database.  There is no need for a Save
+	  operation, since all changes are immediate.
         </para>
       </note>
       <tip>
         <para>
-           The tab labels reflect the presence of corresponding
-           information: if the tab contains any data, its label
-           appears boldface; if the tab has no data then its label
-           appears regular (not bold).
+	If a tab label is in boldface type, this means it contains
+	data. If not, it has no data.
         </para>
       </tip>
       <para>
-        The tabs provide the following information categories of
-	 personal data:
+      The tabs provide the following information categories of
+      personal data:
       </para>
       <variablelist>
         <varlistentry>
@@ -1174,50 +1179,52 @@
           </term>
           <listitem>
             <para> 
-   	      The <guilabel>General</guilabel> tab allows editing of
- 	      general information about the person. This includes
- 	      the text entry fields of <guilabel>Given
- 	      name</guilabel>, <guilabel>Family name</guilabel>,
- 	      <guilabel>Family prefix</guilabel> (such as de or
- 	      van), <guilabel>Suffix</guilabel> (e.g. Jr. or III),
- 	      <guilabel>Title</guilabel> (e.g. Dr. or Rev.),
- 	      <guilabel>Nickname</guilabel> (Bob for Robert),
- 	      <guilabel>Type</guilabel> of the name (birth name,
- 	      married name, etc.)  and <guilabel>Date</guilabel> and
- 	      <guilabel>Place</guilabel> of birth and death. Some of
- 	      these (<guilabel>Family name</guilabel>,
- 	      <guilabel>Type</guilabel>, and both
- 	      <guilabel>Place</guilabel> fields), also provide
- 	      autocompletion feature: as you type in these fields,
- 	      the menu is displayed below the field with the
- 	      available entries from the database that are
- 	      compatible with your partial input. This allows for a
- 	      quick selection of an available entry by selecting it
- 	      from the menu, either using the mouse or arrows and
- 	      <keycap>Enter</keycap> key.
+   	    The <guilabel>General</guilabel> tab contains general
+ 	    information about the person. This includes
+ 	    <guilabel>Given name</guilabel>, <guilabel>Family
+ 	    name</guilabel>, <guilabel>Family prefix</guilabel> (such
+ 	    as &quot;de&quot; or &quot;van&quot;),
+ 	    <guilabel>Suffix</guilabel> (e.g. Jr.  or III),
+ 	    <guilabel>Title</guilabel> (e.g. Dr. or Rev.),
+ 	    <guilabel>Nickname</guilabel> (Bob for Robert),
+ 	    <guilabel>Type</guilabel> of the name (birth name, married
+ 	    name, etc.)  and <guilabel>Date</guilabel> and
+ 	    <guilabel>Place</guilabel> of birth and death. Some of
+ 	    these (<guilabel>Family name</guilabel>,
+ 	    <guilabel>Type</guilabel>, and both
+ 	    <guilabel>Place</guilabel> fields), also provide
+ 	    &quot;autocompletion&quot; feature: as you type in these
+ 	    fields, the menu is displayed below the field with the
+ 	    available entries from the database that match your
+ 	    partial input. This gives you a shortcut by letting you
+ 	    select an entry that already exists in the database rather
+ 	    than having to type it all out. You can select the entry
+ 	    using your mouse or using your arrow and
+ 	    <keycap>Enter</keycap> keys.
             </para>
             <para>
-              The <guilabel>Edit</guilabel> button located by the
-              <guilabel>Family name</guilabel> entry allows editing
-              the preferred name in complete detail, by invoking
-              the <guilabel>Name Editor</guilabel> dialog (see
-              <xref linkend="adv-an"/>).
+            The <guilabel>Edit</guilabel> (that is, the &quot;pen and
+            paper&quot; icon) next to the <guilabel>Family
+            name</guilabel> entry field invokes the <guilabel>Name
+            Editor</guilabel> dialog. This dialog allows editing the
+            preferred name in full detail (see <xref
+            linkend="adv-an"/>).
             </para>
             <para>
 	      The <guilabel>Gender</guilabel> radio buttons offer the
-	      choice of person's gender between
+	      choice of person's gender :
 	      <guilabel>male</guilabel>, <guilabel>female</guilabel>,
 	      and <guilabel>unknown</guilabel>.  Clicking the colored
-	      circle buttons (green, yellow, or red, also called LED
-	      buttons) located next to the birth and death Date fields
+	      &quot;LED&quot;
+	      buttons located next to the birth and death Date fields
 	      will bring up the <guilabel>Date Selection</guilabel>
 	      dialog allowing detailed modification of the date, see
-	      <xref linkend="adv-dates"/>.  Clicking either
+	      <xref linkend="adv-dates"/>.  Clicking either the
 	      <guibutton>Edit</guibutton> button located next to the
 	      birth and death LED buttons will bring up a dialog
-	      allowing you to edit the corresponding event (birth or
-	      death) details, see <xref linkend="adv-ev"/>.  The field
-	      <guilabel>ID</guilabel> displays an internal &app; ID
+	      allowing you to edit the birth or
+	      death details (see <xref linkend="adv-ev"/>).  The field
+	      <guilabel>ID</guilabel> displays an &app; ID
 	      number which identifies the user in the database. The
 	      <guilabel>Image</guilabel> area shows the first image
 	      available in the <guilabel>Gallery</guilabel> of this
@@ -1226,9 +1233,9 @@
             <para>
               Finally, the <guilabel>Information is
 	      complete</guilabel> and <guilabel>Information is
-	      private</guilabel> check buttons provides the way to
-	      mark whether this person's record is complete or not and
-	      whether it is a private record.
+	      private</guilabel> check buttons let you mark whether
+	      or not the person's record is complete and
+	      whether or not the record is private.
              </para>
           </listitem>
         </varlistentry>
@@ -1238,9 +1245,26 @@
           <term>
             <guilabel>Names</guilabel>
           </term>
-          <listitem>
 
 <!-- ==== Figure: Edit Person dialog - Names ==== -->
+
+          <listitem>
+            <para> 
+
+            The <guilabel>Names</guilabel> tab displays information
+            concerning alternate names of the person and the controls
+            allowing their modification. The bottom part displays the
+            list of all alternate names of the person stored in the
+            database. The top part shows the details of the currently
+            selected name in the list (if any). The buttons
+            <guibutton>+</guibutton>, <guibutton>Edit</guibutton>, and
+            <guibutton>-</guibutton> allow the addition, modification,
+            and removal of an alternate name record from the database.
+            Note that the <guibutton>Edit</guibutton> and
+            <guibutton>-</guibutton> buttons become available only
+            when an alternate name is selected from the list.
+
+    	    </para>
 
             <figure id="edit-pers-names-fig">
               <title>Edit Person dialog - Names</title>
@@ -1259,22 +1283,6 @@
 
 <!-- ==== End of Figure ==== -->
 
-            <para> 
-              The <guilabel>Names</guilabel> tab displays information
- 	      concerning alternate names of the person and the
- 	      controls allowing their modification. The bottom part
- 	      displays the list of all alternate names of the person
- 	      stored in the database. The top part shows the details
- 	      of the currently selected name in the list (if any). The
- 	      buttons <guibutton>+</guibutton>,
- 	      <guibutton>Edit</guibutton>, and
- 	      <guibutton>-</guibutton> allow the addition,
- 	      modification, and removal of an alternate name record
- 	      from the database.  Note that the
- 	      <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
- 	      buttons become available only when an alternate name is
- 	      selected from the list.
-  	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
