@@ -1,3 +1,8 @@
+2005-12-19  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsBSDDB.py (gramps_upgrade_9): Convert all Name and
+	Attribute objects to use tuple types.
+	* src/RelLib.py (Name.set_type): Typo in the wrapper code.
+
 2005-12-19 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/RelLib.py: added get_backlink_handles method to PrimaryObject
         * test/GrampsDbBase_Test.py: factored out common db test methods

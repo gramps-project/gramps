@@ -918,7 +918,6 @@ class GrampsBSDDB(GrampsDbBase):
             "Sponsored", "Foster", "Unknown", "Other", ]
         
         version = self.metadata.get('version',_MINVERSION)
-        print version
 
         if version < 6:
             self.gramps_upgrade_6()
@@ -930,8 +929,6 @@ class GrampsBSDDB(GrampsDbBase):
             self.gramps_upgrade_9()
 
         self.metadata['version'] = _DBVERSION
-        print "set version to %d" % _DBVERSION
-        print "actual version now is %d" % self.metadata['version']
         self.metadata.sync()
 
     def gramps_upgrade_6(self):
@@ -1020,8 +1017,6 @@ class GrampsBSDDB(GrampsDbBase):
 #            data = cursor.next()
 #        cursor.close()
 
-        # Change every event handle to the EventRef
-        # in all Person objects
         #cursor = self.get_person_cursor()
         #data = cursor.first()
         #while data:
@@ -1040,9 +1035,11 @@ class GrampsBSDDB(GrampsDbBase):
              complete, person.source_list, person.note,
              person.change, person.private) = (info + (False,))[0:23]
 
+            # Convert complete flag into marker
             if complete:
                 person.marker = (PrimaryObject.MARKER_COMPLETE,"")
-                
+            
+            # Change every event handle to the EventRef
             if birth_handle:
                 event_ref = EventRef()
                 event_ref.set_reference_handle(birth_handle)
@@ -1064,12 +1061,36 @@ class GrampsBSDDB(GrampsDbBase):
 
             if event_ref_list:
                 person.event_ref_list = event_ref_list[:]
+
+            # In all Name instances, convert type from string to a tuple
+            name_conversion = {
+                "Also Known As" : (Name.AKA,""),
+                "Birth Name"    : (Name.BIRTH,""),
+                "Married Name"  : (Name.MARRIED,""),
+                "Other Name"    : (Name.CUSTOM,_("Other Name")),
+                }
+            for name in [person.primary_name] + person.alternate_names:
+                old_type = name.type
+                if old_type:
+                    if name_conversion.has_key(old_type):
+                        new_type = name_conversion[old_type]
+                    else:
+                        new_type = (Name.CUSTOM,old_type)
+                else:
+                    new_type = (Name.UNKNOWN,"")
+                name.type = new_type
+
+            # In all Attributes, convert type from string to a tuple
+            for attribute in person.attribute_list:
+                convert_attribute_9(attribute)
+            # Cover attributes contained in MediaRefs
+            for media_ref in person.media_list:
+                convert_mediaref_9(media_ref)
+            
             self.commit_person(person,trans)
             #data = cursor.next()
         #cursor.close()
 
-        # Change every event handle to the EventRef
-        # in all Family objects
         #cursor = self.get_family_cursor()
         #data = cursor.first()
         #while data:
@@ -1088,16 +1109,23 @@ class GrampsBSDDB(GrampsDbBase):
             if complete:
                 family.marker = (PrimaryObject.MARKER_COMPLETE,"")
                 
+            # Change every event handle to the EventRef
             event_ref_list = []
             for event_handle in event_list:
                 event_ref = EventRef()
                 event_ref.set_reference_handle(event_handle)
                 event_ref.set_role((EventRef.PRIMARY,''))
                 event_ref_list.append(event_ref)
-
             if event_ref_list:
                 family.event_ref_list = event_ref_list[:]
 
+            # In all Attributes, convert type from string to a tuple
+            for attribute in family.attribute_list:
+                convert_attribute_9(attribute)
+            # Cover attributes contained in MediaRefs
+            for media_ref in person.media_list:
+                convert_mediaref_9(media_ref)
+            
             self.commit_family(family,trans)
 #            data = cursor.next()
 #        cursor.close()
@@ -1160,18 +1188,24 @@ class GrampsBSDDB(GrampsDbBase):
             info = self.event_map[handle]        
             event = Event()
             event.handle = handle
-            (junk_handle, event.gramps_id, name, event.date,
+            (junk_handle, event.gramps_id, old_type, event.date,
              event.description, event.place, event.cause, event.private,
              event.source_list, event.note, witness, event.media_list,
              event.change) = info
-            if name:
-                if event_conversion.has_key(name):
-                    the_type = (event_conversion[name],"")
+
+            if old_type:
+                if event_conversion.has_key(old_type):
+                    new_type = event_conversion[old_type]
                 else:
-                    the_type = (Event.CUSTOM,name)
+                    new_type = (Event.CUSTOM,old_type)
             else:
-                the_type = (Event.UNKNOWN,"")
+                new_type = (Event.UNKNOWN,"")
+            event.type = new_type
             
+            # Cover attributes contained in MediaRefs
+            for media_ref in event.media_list:
+                convert_mediaref_9(media_ref)
+
             self.commit_event(event,trans)
 #            data = cursor.next()
 #        cursor.close()
@@ -1188,6 +1222,11 @@ class GrampsBSDDB(GrampsDbBase):
             (junk_handle, place.gramps_id, place.title, place.long, place.lat,
              place.main_loc, place.alt_loc, place.urls, place.media_list,
              place.source_list, place.note, place.change) = info
+
+            # Cover attributes contained in MediaRefs
+            for media_ref in person.media_list:
+                convert_mediaref_9(media_ref)
+
             self.commit_place(place,trans)
 #            data = cursor.next()
 #        cursor.close()
@@ -1205,12 +1244,41 @@ class GrampsBSDDB(GrampsDbBase):
              media_object.mime, media_object.desc, media_object.attribute_list,
              media_object.source_list, media_object.note, media_object.change,
              media_object.date) = info
+
+            # In all Attributes, convert type from string to a tuple
+            for attribute in family.attribute_list:
+                convert_attribute_9(attribute)
+
             self.commit_media_object(media_object,trans)
 #            data = cursor.next()
 #        cursor.close()
 
         self.transaction_commit(trans,"Upgrade to DB version 9")
         print "Done upgrading to DB version 9"
+
+def convert_attribute_9(attribute):
+    attribute_conversion = {
+        "Caste"                  : (Attribute.CASTE,""),
+        "Description"            : (Attribute.DESCRIPTION,""),
+        "Identification Number"  : (Attribute.ID,""),
+        "National Origin"        : (Attribute.NATIONAL,""),
+        "Number of Children"     : (Attribute.NUM_CHILD,""),
+        "Social Security Number" : (Attribute.SSN,""),
+        }
+    old_type = attribute.type
+    if old_type:
+        if attribute_conversion.has_key(old_type):
+            new_type = attribute_conversion[old_type]
+        else:
+            new_type = (Attribute.CUSTOM,old_type)
+    else:
+        new_type = (Attribute.UNKNOWN,"")
+    attribute.type = new_type
+
+def convert_mediaref_9(media_ref):
+    for attribute in media_ref.attribute_list:
+        convert_attribute_9(attribute)
+
 
 if __name__ == "__main__":
 
