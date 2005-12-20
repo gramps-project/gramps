@@ -1013,7 +1013,7 @@ class PrivateSourceNote(SourceNote,PrivacyBase):
         SourceNote.__init__(self,source)
         PrivacyBase.__init__(self,source)
 
-class LocationBase(BaseObject):
+class LocationBase:
     """
     Base class for all things Address.
     """
@@ -1023,8 +1023,6 @@ class LocationBase(BaseObject):
         Creates a LocationBase object,
         copying from the source object if it exists.
         """
-
-        BaseObject.__init__(self)
         if source:
             self.city = source.city
             self.state = source.state

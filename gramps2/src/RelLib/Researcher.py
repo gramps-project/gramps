@@ -1,15 +1,50 @@
-class Researcher:
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2000-2005  Donald N. Allingham
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+# $Id$
+
+"""
+Researcher informaiton for GRAMPS.
+"""
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from _helper import LocationBase
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+class Researcher(LocationBase):
     """Contains the information about the owner of the database"""
     
     def __init__(self):
         """Initializes the Researcher object"""
+
+        LocationBase.__init__(self )
         self.name = ""
         self.addr = ""
-        self.city = ""
-        self.state = ""
-        self.country = ""
-        self.postal = ""
-        self.phone = ""
         self.email = ""
 
     def get_name(self):
@@ -19,26 +54,6 @@ class Researcher:
     def get_address(self):
         """returns the database owner's address"""
         return self.addr
-
-    def get_city(self):
-        """returns the database owner's city"""
-        return self.city
-
-    def get_state(self):
-        """returns the database owner's state"""
-        return self.state
-
-    def get_country(self):
-        """returns the database owner's country"""
-        return self.country
-
-    def get_postal_code(self):
-        """returns the database owner's postal code"""
-        return self.postal
-
-    def get_phone(self):
-        """returns the database owner's phone number"""
-        return self.phone
 
     def get_email(self):
         """returns the database owner's email"""
