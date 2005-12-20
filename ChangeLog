@@ -1,3 +1,8 @@
+2005-12-20  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib/__init__.py: More breaking up in RelLib;
+	* src/RelLib/Makefile.am: Ship new files;
+	* src/RelLib/ various files: add more files.
+
 2005-12-20 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/RelLib/_helper.py: removed get_backlink_handles
 	* test/RelLib_Test.py: removed test for get_backlink_handles

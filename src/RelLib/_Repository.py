@@ -36,8 +36,16 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _helper import PrimaryObject,NoteBase,AddressBase,UrlBase
+from _PrimaryObject import PrimaryObject
+from _NoteBase import NoteBase
+from _AddressBase import AddressBase
+from _UrlBase import UrlBase
 
+#-------------------------------------------------------------------------
+#
+# Repository class
+#
+#-------------------------------------------------------------------------
 class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
     """A location where collections of Sources are found"""
     

@@ -23,6 +23,7 @@
 """
 Event object for GRAMPS
 """
+
 #-------------------------------------------------------------------------
 #
 # standard python modules
@@ -35,9 +36,17 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _helper import PrimaryObject,SourceNote,MediaBase,DateBase,PlaceBase
+from _PrimaryObject import PrimaryObject
+from _SourceNote import SourceNote
+from _MediaBase import MediaBase
+from _DateBase import DateBase
+from _PlaceBase import PlaceBase
 
-
+#-------------------------------------------------------------------------
+#
+# Event class
+#
+#-------------------------------------------------------------------------
 class Event(PrimaryObject,SourceNote,MediaBase,DateBase,PlaceBase):
     """
     Introduction
@@ -364,4 +373,3 @@ class Event(PrimaryObject,SourceNote,MediaBase,DateBase,PlaceBase):
 
     def set_ext_witness_list(self,witness_list):
         self.ext_witness_list = witness_list
-

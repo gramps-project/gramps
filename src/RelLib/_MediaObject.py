@@ -36,9 +36,16 @@ import os
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _helper import PrimaryObject,SourceNote,DateBase,AttributeBase
+from _PrimaryObject import PrimaryObject
+from _SourceNote import SourceNote
+from _DateBase import DateBase
+from _AttributeBase import AttributeBase
 
-
+#-------------------------------------------------------------------------
+#
+# MediaObject class
+#
+#-------------------------------------------------------------------------
 class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
     """
     Containter for information about an image file, including location,
@@ -175,4 +182,3 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
     def get_description(self):
         """returns the description of the image"""
         return self.desc
-

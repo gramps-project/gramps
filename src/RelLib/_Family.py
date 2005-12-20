@@ -36,9 +36,17 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _helper import PrimaryObject,SourceNote,MediaBase,AttributeBase
-from _secondary import EventRef
+from _PrimaryObject import PrimaryObject
+from _SourceNote import SourceNote
+from _MediaBase import MediaBase
+from _AttributeBase import AttributeBase
+from _EventRef import EventRef
 
+#-------------------------------------------------------------------------
+#
+# Family class
+#
+#-------------------------------------------------------------------------
 class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
     """
     Introduction

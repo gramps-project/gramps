@@ -20,33 +20,16 @@
 
 # $Id$
 
-"""The core library of GRAMPS objects"""
+"""
+Witness class for GRAMPS
+"""
 
-__author__ = "Donald N. Allingham"
-__version__ = "$Revision$"
-
-# Secondary objects
-from _Address import Address
-from _Location import Location
-from _Attribute import Attribute
-from _EventRef import EventRef
-from _LdsOrd import LdsOrd
-from _MediaRef import MediaRef 
-from _Name import Name
-from _Note import Note
-from _RepoRef import RepoRef
-from _SourceRef import SourceRef
-from _Url import Url
-
-# Primary objects
-from _Person import Person
-from _Family import Family
-from _Event import Event
-from _Place import Place
-from _Source import Source
-from _MediaObject import MediaObject
-from _Repository import Repository
-
-# These are actually metadata
-from _GenderStats import GenderStats
-from _Researcher import Researcher
+#-------------------------------------------------------------------------
+#
+# Witness class
+#
+#-------------------------------------------------------------------------
+class Witness(BaseObject,PrivacyBase):
+    # FIXME: this class is only present to enable db upgrade
+    def __init__(self):
+        pass

@@ -29,9 +29,17 @@ Place object for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _helper import PrimaryObject,SourceNote,MediaBase,UrlBase
-from _secondary import Location
+from _PrimaryObject import PrimaryObject
+from _SourceNote import SourceNote
+from _MediaBase import MediaBase
+from _UrlBase import UrlBase
+from _Location import Location
 
+#-------------------------------------------------------------------------
+#
+# Place class
+#
+#-------------------------------------------------------------------------
 class Place(PrimaryObject,SourceNote,MediaBase,UrlBase):
     """
     Contains information related to a place, including multiple address
@@ -252,20 +260,25 @@ class Place(PrimaryObject,SourceNote,MediaBase,UrlBase):
             self.alt_loc.append(location)
 
     def get_display_info(self):
-        """Gets the display information associated with the object. This includes
-        the information that is used for display and for sorting. Returns a list
-        consisting of 13 strings. These are: Place Title, Place ID, Main Location
-        Parish, Main Location County, Main Location City, Main Location State/Province,
-        Main Location Country, upper case Place Title, upper case Parish, upper
-        case city, upper case county, upper case state, upper case country"""
+        """
+        Gets the display information associated with the object.
+
+        This includes the information that is used for display and for sorting.
+        Returns a list consisting of 13 strings. These are:
+            Place Title, Place ID, Main Location Parish, Main Location County,
+            Main Location City, Main Location State/Province,
+            Main Location Country, upper case Place Title, upper case Parish,
+            upper case city, upper case county, upper case state,
+            upper case country
+        """
         
         if self.main_loc:
-            return [self.title,self.gramps_id,self.main_loc.parish,self.main_loc.city,
-                    self.main_loc.county,self.main_loc.state,self.main_loc.country,
+            return [self.title,self.gramps_id,self.main_loc.parish,
+                    self.main_loc.city,self.main_loc.county,
+                    self.main_loc.state,self.main_loc.country,
                     self.title.upper(), self.main_loc.parish.upper(),
                     self.main_loc.city.upper(), self.main_loc.county.upper(),
                     self.main_loc.state.upper(), self.main_loc.country.upper()]
         else:
             return [self.title,self.gramps_id,'','','','','',
                     self.title.upper(), '','','','','']
-        
