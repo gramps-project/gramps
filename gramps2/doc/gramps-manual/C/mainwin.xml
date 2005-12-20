@@ -82,7 +82,7 @@
 	  &app; window. It displays the progress of time consuming
 	  operations, such as opening and saving large data bases,
 	  importing and exporting to other formats, generating web
-	  sites, etc. Whey you are not doing these types of operations,
+	  sites, etc. When you are not doing these types of operations,
 	  the Progress Bar is blank.
         </para>
       </listitem>
@@ -92,12 +92,13 @@
       <term>Status Bar</term>
       <listitem>
         <para>
-          The Status Bar is located to the right of the Progress Bar, on
-          the very bottom of the &app; window.  It displays
+          The Status Bar is located to the right of the Progress Bar,
+          on the very bottom of the &app; window.  It displays
           information about current &app; activity and contextual
           information about the selected items.  The behavior of the
-          Status Bar can be adjusted in Preferences dialog, which can
-	  be found by selecting <menuchoice><guimenu>Edit</guimenu><guisubmenu>Preferences</guisubmenu></menuchoice>.
+          Status Bar can be adjusted in the Preferences dialog, which
+          can be found by selecting
+          <menuchoice><guimenu>Edit</guimenu><guisubmenu>Preferences</guisubmenu></menuchoice>.
         </para>
       </listitem>
     </varlistentry>
@@ -229,7 +230,7 @@
         the boxes listed. You can also change the position of a column
         in People View by clicking and dragging it to a new position
         in the Editor. Once you have made the changes you want, click
-        <guibutton>OK</guibutton>to exit the Editor and see your
+        <guibutton>OK</guibutton> to exit the Editor and see your
         changes in the People View.
 
       </para>
@@ -268,7 +269,7 @@
 
 	Genealogical databases can contain information on many people,
 	families, places, and objects. It's therefore possible for a
-	View to can contain a long list of data that's difficult to
+	View to contain a long list of data that's difficult to
 	work with.  &app; gives you a means for controlling this
 	condition by allowing you to filter a list to a more
 	manageable size.
@@ -329,7 +330,7 @@
 	 <tip id="filt-tip">
            <title>Example filter use</title>
 	   <para>
-             To show males only, choose <guilabel>Males</guilabel>
+             To show males only, choose the <guilabel>Males</guilabel>
 	     filter, then click the <guibutton>Apply</guibutton>
 	     button. To cancel any filtering, set the filter to
 	     <guilabel>Entire Database</guilabel> and then click the
@@ -528,7 +529,7 @@
 
           The Pedigree View displays a family tree of the Active
 	  person's ancestors. The Pedigree View shows up to five
-	  generations, depending the size of the window. Each person is
+	  generations, depending on the size of the window. Each person is
 	  indicated by a box labeled with his or her name. Two lines
 	  branch from each box. The top one shows the person's father
 	  and the bottom one the mother. Solid lines represent birth
@@ -561,8 +562,7 @@
 	and death dates. If you move your mouse over a line, the line
 	gets highlighted, indicating an active link. Double-click the
 	line to make the corresponding ancestor the Active
-	person. You'll note that the display is updated to show four
-	generations beginning with the new Active person.
+	person. 
 
         </para>
 	
@@ -586,10 +586,10 @@
 
 	<para>
 
-	To the left of the Active Person is a left arrow
-	button. Clicking this button expands a list of the Active
-	Person's children. Selecting one of the children makes that
-	child the Active Person.
+	To the left of the Active person is a left arrow button. If
+	the Active person has children, clicking this button expands a
+	list of the Active person's children. Selecting one of the
+	children makes that child the pctive Person.
 
        </para><para>
 
@@ -600,7 +600,7 @@
 	children without children (&quot;dead ends&quot;) appear in a
 	regular font. If the Active person has only one child, no menu
 	will be displayed (since there is only one choice) and the
-	child will become the Active Person when the arrow button is
+	child will become the Active person when the arrow button is
 	clicked.
 
        </para><para>
@@ -609,8 +609,7 @@
 	buttons.  When the top button is clicked, the Father of the
 	Active person becomes the Active person. Clicking the bottom
 	button makes the Mother of the Active person the Active
-	person. Again, the display is re-adjusted to show four
-	generations, starting from the newly selected Active person.
+	person. 
 
         </para> 
 
@@ -636,13 +635,13 @@
 
 	Right-clicking on any person's box in the Pedigree View will
 	bring up the &quot;context menu&quot;. Among other useful
-	items, the context menu has submenus listing
+	items, the context menu has sub-menus listing
 	<guilabel>Spouses</guilabel>, <guilabel>Siblings</guilabel>,
 	<guilabel>Children</guilabel>, and
 	<guilabel>Parents</guilabel> of that
 	person. &quot;Greyed-out&quot; sub-menus indicate the absence
 	of the data in the appropriate category. Similarly to the
-	children menu above, Children's and Parents' menus distinguish
+	children menu above, Childrens' and Parents' menus distinguish
 	continuing lines from dead ends.
 
 	</para>
@@ -714,7 +713,7 @@
 	child). Then, while in Pedigree View, right click anywhere in
 	the main window. A context menu will appear. Select
 	<guilabel>Set anchor</guilabel> and you will see the Active
-	person's indicated as the anchor in the lower left corner.
+	person indicated as the anchor in the lower left corner.
 	This newly established Anchor Person will remain in effect
 	until you right-click again and select <guilabel>Remove
 	anchor</guilabel> from the context menu or until a new Active
@@ -845,8 +844,8 @@
 	  images, audio files, animation files, etc. The list box on
 	  the bottom lists the <guilabel>Name</guilabel>,
 	  <guilabel>ID</guilabel>, <guilabel>Type</guilabel>, and
-	  <guilabel>Path</guilabel> of the Media Object.
-	  <guilabel>Column Editor Dialog</guilabel> may be used to
+	  <guilabel>Path</guilabel> of the Media Object. The
+	  <guilabel>Column Editor</guilabel> dialog may be used to
 	  rearrange the displayed columns, which obey usual sorting
 	  rules. The top part of the GRAMPS window shows a preview (if
 	  available) and information about the Media Object.

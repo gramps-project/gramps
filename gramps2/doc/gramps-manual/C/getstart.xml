@@ -166,8 +166,7 @@
 
     <para>To open a database that you have recently opened, choose the 
     top selection, select your database from the menu and 
-    click <guibutton>OK</guibutton>. &app; will then ask you to specify 
-    the name of the database you wish to open. </para> 
+    click <guibutton>OK</guibutton>.</para> 
 
     <para>To open an existing database you have not recently opened,
     choose the middle selection and click

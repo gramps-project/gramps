@@ -38,7 +38,7 @@
 
       To start a new database, choose
       <menuchoice><guimenu>File</guimenu><guimenuitem>New</guimenuitem>
-      </menuchoice>.You will then be asked to give the new database a name.
+      </menuchoice>. You will then be asked to give the new database a name.
 
     </para>
 
@@ -46,7 +46,7 @@
       <title>&app; databases</title>
       <para>
 
-      &app; stores your data in Berkeley database, sometimes
+      &app; stores your data in a Berkeley database, sometimes
       known as BSDDB. These files have &quot;.grdb&quot; as 
       their default extension. The extension is automatically
       added to your filename.
@@ -147,7 +147,7 @@
       If you have made changes to your data, and would like to return
       your database to the way it was when you opened it, select
       <menuchoice><guimenu>File</guimenu><guimenuitem>Abandon changes
-      and quit</guimenuitem></menuchoice>. This just like quitting
+      and quit</guimenuitem></menuchoice>. This is just like quitting
       without saving in other programs.
 
     </para><para>
@@ -155,9 +155,9 @@
       If you would like to save your database under a different name,
       you can do so by choosing <menuchoice><guimenu>File</guimenu>
       <guimenuitem>Save as...</guimenuitem></menuchoice> and
-      specifying the name (and, optionally, format) of your new
+      specifying the name (and, optionally, the format) of your new
       database. Note that &quot;Save as&quot; will allow you to
-      continuing editing the newly saved database. If this is not what
+      continue editing the newly saved database. If this is not what
       you want to do, you may wish to use the &quot;Export&quot;
       command instead.
 
@@ -171,7 +171,7 @@
     <para>
 
       Importing allows you to bring data from other genealogy programs
-      into a &app; database Currently, &app; can import data from the
+      into a &app; database. Currently, &app; can import data from the
       following formats:
 
     </para>
@@ -203,7 +203,7 @@
         Please recognize that importing a database is different from
 	opening a database. When you import, you are actually bringing
 	data from one database into a GRAMPS database. When you open a
-	file, you editing your original file.
+	file, you are editing your original file.
       </para>
     </note>
 
@@ -238,7 +238,7 @@
         <listitem>
           <para>
             The native &app; database format is a specific form of
-            Berkeley database (BSDDB) with special structure of data
+            Berkeley database (BSDDB) with a special structure of data
             tables. This format is binary and
             architecture-dependent.  It is very quick and efficient,
             but not generally portable across computers with
@@ -276,7 +276,7 @@
         <term>&app; package</term>
         <listitem>
           <para> 
-            The package is a compressed archive containing the &app;
+            The &app; package is a compressed archive containing the &app;
             XML file and all media objects (images, sound files,
             etc.) to which the database refers. The &app; package is
             created by exporting ( 
@@ -400,7 +400,7 @@
     <note id="export-note">
       <title>Export is saving a copy</title>
       <para>
-      WheN you export, you are saving a copy of the currently opened
+      When you export, you are saving a copy of the currently opened
       database. Exporting creates another file with a copy of your
       data. Note that the database that remains opened in your GRAMPS
       window is NOT the file saved by your export. Additional editing
@@ -446,7 +446,7 @@
       <title>Exporting into the GEDCOM format</title>
       <para> 
 
-      &app; allows you to export a database into the common GEDCM
+      &app; allows you to export a database into the common GEDCOM
       format. It provides options that allow you to fine tune your
       export (see <xref linkend="gedcom-export-fig"/>).
 
