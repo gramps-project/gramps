@@ -1,3 +1,6 @@
+2005-12-19  Don Allingham  <don@gramps-project.org>
+	* src/ReadXML.py: handle _NAME_TRANS keyerror exception
+
 2005-12-19  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsBSDDB.py (gramps_upgrade_9): Convert all Name and
 	Attribute objects to use tuple types.

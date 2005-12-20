@@ -421,6 +421,18 @@ class GrampsParser:
             "url"        : (self.start_url, None)
             }
 
+        self.save_attr = {
+            "Unknown" : RelLib.Attribute.UNKNOWN,
+            "Custom" : RelLib.Attribute.CUSTOM,
+            "Caste" : RelLib.Attribute.CASTE,
+            "Description" : RelLib.Attribute.DESCRIPTION,
+            "Identification Number" : RelLib.Attribute.ID,
+            "National Origin" : RelLib.Attribute.NATIONAL,
+            "Number of Children" : RelLib.Attribute.NUM_CHILD,
+            "Social Security Number" : RelLib.Attribute.SSN,
+            "Number of Children" : RelLib.Attribute.NUM_CHILD,
+            }
+
         self.save_event = {
             "Unknown" : RelLib.Event.UNKNOWN,
             "Custom" : RelLib.Event.CUSTOM,
@@ -737,8 +749,12 @@ class GrampsParser:
             self.attribute.conf = 2
         if attrs.has_key("priv"):
             self.attribute.private = int(attrs["priv"])
-        if attrs.has_key('type'):
-            self.attribute.set_type(attrs["type"])
+
+        atype = self.save_attr.get(attrs["type"],RelLib.Attribute.CUSTOM)
+        if atype == RelLib.Attribute.CUSTOM:
+            self.attribute.set_type((atype,attrs["type"]))
+        else:
+            self.attribute.set_type((atype,u""))
         if attrs.has_key('value'):
             self.attribute.set_value(attrs["value"])
         if self.photo:
@@ -902,7 +918,7 @@ class GrampsParser:
         if not self.in_witness:
             self.name = RelLib.Name()
             if attrs.has_key("type"):
-                tval = _NAME_TRANS[attrs['type']]
+                tval = _NAME_TRANS.get(attrs['type'],RelLib.Name.CUSTOM)
                 if tval == RelLib.Name.CUSTOM:
                     self.name.set_type((tval,attrs["type"]))
                 else:
@@ -1338,7 +1354,6 @@ class GrampsParser:
                 self.name.set_type("Birth Name")
             self.person.set_primary_name (self.name)
             self.person.get_primary_name().build_sort_name()
-
         self.name = None
 
     def stop_ref(self,tag):
