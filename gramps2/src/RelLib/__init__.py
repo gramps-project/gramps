@@ -39,6 +39,7 @@ from _SourceRef import SourceRef
 from _Url import Url
 
 # Primary objects
+from _PrimaryObject import PrimaryObject
 from _Person import Person
 from _Family import Family
 from _Event import Event
