@@ -38,228 +38,11 @@ from warnings import warn
 #-------------------------------------------------------------------------
 from _helper import *
 
-class LdsOrd(SourceNote,DateBase,PlaceBase):
-    """
-    Class that contains information about LDS Ordinances. LDS
-    ordinances are similar to events, but have very specific additional
-    information related to data collected by the Church of Jesus Christ
-    of Latter Day Saints (Morman church). The LDS church is the largest
-    source of genealogical information in the United States.
-    """
-    def __init__(self,source=None):
-        """Creates a LDS Ordinance instance"""
-        SourceNote.__init__(self,source)
-        DateBase.__init__(self,source)
-        PlaceBase.__init__(self,source)
-        
-        if source:
-            self.famc = source.famc
-            self.temple = source.temple
-            self.status = source.status
-        else:
-            self.famc = None
-            self.temple = ""
-            self.status = 0
-
-    def get_text_data_list(self):
-        """
-        Returns the list of all textual attributes of the object.
-
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
-        """
-        return [self.temple]
-        #return [self.temple,self.get_date()]
-
-    def get_text_data_child_list(self):
-        """
-        Returns the list of child objects that may carry textual data.
-
-        @return: Returns the list of child objects that may carry textual data.
-        @rtype: list
-        """
-        check_list = self.source_list
-        if self.note:
-            check_list.append(self.note)
-        return check_list
-
-    def get_referenced_handles(self):
-        """
-        Returns the list of (classname,handle) tuples for all directly
-        referenced primary objects.
-        
-        @return: Returns the list of (classname,handle) tuples for referenced objects.
-        @rtype: list
-        """
-        if self.place:
-            return [('Place',self.place)]
-        else:
-            return []
-
-    def get_handle_referents(self):
-        """
-        Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
-        
-        @return: Returns the list of objects refereincing primary objects.
-        @rtype: list
-        """
-        return self.source_list
-
-    def set_family_handle(self,family):
-        """Sets the Family database handle associated with the LDS ordinance"""
-        self.famc = family
-
-    def get_family_handle(self):
-        """Gets the Family database handle associated with the LDS ordinance"""
-        return self.famc
-
-    def set_status(self,val):
-        """
-        Sets the status of the LDS ordinance. The status is a text string
-        that matches a predefined set of strings."""
-        self.status = val
-
-    def get_status(self):
-        """Gets the status of the LDS ordinance"""
-        return self.status
-
-    def set_temple(self,temple):
-        """Sets the temple assocated with the ordinance"""
-        self.temple = temple
-
-    def get_temple(self):
-        """Gets the temple assocated with the ordinance"""
-        return self.temple
-
-    def is_empty(self):
-        """Returns 1 if the ordidance is actually empty"""
-        if (self.famc or 
-                (self.date and not self.date.is_empty()) or 
-                self.temple or 
-                self.status or 
-                self.place):
-            return False
-        else:
-            return True
-        
-    def are_equal(self,other):
-        """returns 1 if the specified ordinance is the same as the instance"""
-        if other == None:
-            return self.is_empty()
-        if (self.famc != other.famc or
-            self.place != other.place or
-            self.status != other.status or
-            self.temple != other.temple or
-            not self.get_date_object().is_equal(other.get_date_object()) or
-            len(self.get_source_references()) != len(other.get_source_references())):
-            return False
-
-        index = 0
-        olist = other.get_source_references()
-        for a in self.get_source_references():
-            if not a.are_equal(olist[index]):
-                return False
-            index += 1
-        return True
-
-
-class Location(BaseObject):
-    """Provides information about a place, including city, county, state,
-    and country. Multiple Location objects can represent the same place,
-    since names of citys, countys, states, and even countries can change
-    with time"""
-    
-    def __init__(self,source=None):
-        """creates a Location object, copying from the source object if it exists"""
-        BaseObject.__init__(self)
-        if source:
-            self.city = source.city
-            self.parish = source.parish
-            self.county = source.county
-            self.state = source.state
-            self.country = source.country
-            self.postal = source.postal
-            self.phone = source.phone
-        else:
-            self.city = ""
-            self.parish = ""
-            self.county = ""
-            self.state = ""
-            self.country = ""
-            self.postal = ""
-            self.phone = ""
-
-    def get_text_data_list(self):
-        """
-        Returns the list of all textual attributes of the object.
-
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
-        """
-        return [self.city,self.parish,self.county,self.state,
-                self.country,self.postal,self.phone]
-
-    def is_empty(self):
-        return not self.city and not self.county and not self.state and \
-               not self.country and not self.postal and not self.phone
-        
-    def set_city(self,data):
-        """sets the city name of the Location object"""
-        self.city = data
-
-    def get_postal_code(self):
-        """returns the postal code of the Location object"""
-        return self.postal
-
-    def set_postal_code(self,data):
-        """sets the postal code of the Location object"""
-        self.postal = data
-
-    def get_phone(self):
-        """returns the phone number of the Location object"""
-        return self.phone
-
-    def set_phone(self,data):
-        """sets the phone number of the Location object"""
-        self.phone = data
-
-    def get_city(self):
-        """returns the city name of the Location object"""
-        return self.city
-
-    def set_parish(self,data):
-        """sets the religious parish name"""
-        self.parish = data
-
-    def get_parish(self):
-        """gets the religious parish name"""
-        return self.parish
-
-    def set_county(self,data):
-        """sets the county name of the Location object"""
-        self.county = data
-
-    def get_county(self):
-        """returns the county name of the Location object"""
-        return self.county
-
-    def set_state(self,data):
-        """sets the state name of the Location object"""
-        self.state = data
-
-    def get_state(self):
-        """returns the state name of the Location object"""
-        return self.state
-
-    def set_country(self,data):
-        """sets the country name of the Location object"""
-        self.country = data
-
-    def get_country(self):
-        """returns the country name of the Location object"""
-        return self.country
-
+#-------------------------------------------------------------------------
+#
+# Class for notes used throughout the majority of GRAMPS objects
+#
+#-------------------------------------------------------------------------
 class Note(BaseObject):
     """
     Introduction
@@ -332,266 +115,17 @@ class Note(BaseObject):
         """
         return self.format
 
-class MediaRef(PrivateSourceNote,AttributeBase):
-    """Media reference class"""
-    def __init__(self,source=None):
-
-        PrivateSourceNote.__init__(self,source)
-        AttributeBase.__init__(self,source)
-
-        if source:
-            self.ref = source.ref
-            self.rect = source.rect
-        else:
-            self.ref = None
-            self.rect = None
-
-    def get_text_data_child_list(self):
-        """
-        Returns the list of child objects that may carry textual data.
-
-        @return: Returns the list of child objects that may carry textual data.
-        @rtype: list
-        """
-        check_list = self.attribute_list + self.source_list
-        if self.note:
-            check_list.append(self.note)
-        return check_list
-
-    def get_sourcref_child_list(self):
-        """
-        Returns the list of child secondary objects that may refer sources.
-
-        @return: Returns the list of child secondary child objects that may refer sources.
-        @rtype: list
-        """
-        return self.attribute_list
-
-    def get_referenced_handles(self):
-        """
-        Returns the list of (classname,handle) tuples for all directly
-        referenced primary objects.
-        
-        @return: Returns the list of (classname,handle) tuples for referenced objects.
-        @rtype: list
-        """
-        if self.ref:
-            return [('MediaObject',self.ref)]
-        else:
-            return []
-
-    def get_handle_referents(self):
-        """
-        Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
-        
-        @return: Returns the list of objects refereincing primary objects.
-        @rtype: list
-        """
-        return self.attribute_list + self.source_list
-
-    def set_rectangle(self,coord):
-        """Sets subection of an image"""
-        self.rect = coord
-
-    def get_rectangle(self):
-        """Returns the subsection of an image"""
-        return self.rect
-
-    def set_reference_handle(self,obj_id):
-        self.ref = obj_id
-
-    def get_reference_handle(self):
-        return self.ref
-
-class Attribute(PrivateSourceNote):
-    """Provides a simple key/value pair for describing properties. Used
-    by the Person and Family objects to store descriptive information."""
-    
-    UNKNOWN     = -1
-    CUSTOM      = 0
-    CASTE       = 1
-    DESCRIPTION = 2
-    ID          = 3
-    NATIONAL    = 4
-    NUM_CHILD   = 5
-    SSN         = 6
-
-    def __init__(self,source=None):
-        """creates a new Attribute object, copying from the source if provided"""
-        PrivateSourceNote.__init__(self,source)
-        
-        if source:
-            self.type = source.type
-            self.value = source.value
-        else:
-            self.type = (Attribute.CUSTOM,"")
-            self.value = ""
-
-    def get_text_data_list(self):
-        """
-        Returns the list of all textual attributes of the object.
-
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
-        """
-        return [self.value]
-
-    def get_text_data_child_list(self):
-        """
-        Returns the list of child objects that may carry textual data.
-
-        @return: Returns the list of child objects that may carry textual data.
-        @rtype: list
-        """
-        check_list = self.source_list
-        if self.note:
-            check_list.append(self.note)
-        return check_list
-
-    def get_handle_referents(self):
-        """
-        Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
-        
-        @return: Returns the list of objects refereincing primary objects.
-        @rtype: list
-        """
-        return self.source_list
-
-    def set_type(self,val):
-        """sets the type (or key) of the Attribute instance"""
-        if not type(val) == tuple:
-            warn( "set_type now takes a tuple", DeprecationWarning, 2)
-            # Wrapper for old API
-            # remove when transitition done.
-            if val in range(-1,7):
-                val = (val,'')
-            else:
-                val = (Attribute.CUSTOM,val)
-        self.type = val
-
-    def get_type(self):
-        """returns the type (or key) or the Attribute instance"""
-        return self.type
-
-    def set_value(self,val):
-        """sets the value of the Attribute instance"""
-        self.value = val
-
-    def get_value(self):
-        """returns the value of the Attribute instance"""
-        return self.value
-
-class Address(PrivateSourceNote,DateBase):
-    """Provides address information for a person"""
-
-    def __init__(self,source=None):
-        """Creates a new Address instance, copying from the source
-        if provided"""
-        PrivateSourceNote.__init__(self,source)
-        DateBase.__init__(self,source)
-
-        if source:
-            self.street = source.street
-            self.city = source.city
-            self.state = source.state
-            self.country = source.country
-            self.postal = source.postal
-            self.phone = source.phone
-        else:
-            self.street = ""
-            self.city = ""
-            self.state = ""
-            self.country = ""
-            self.postal = ""
-            self.phone = ""
-
-    def get_text_data_list(self):
-        """
-        Returns the list of all textual attributes of the object.
-
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
-        """
-        return [self.street,self.city,self.state,self.country,
-                self.postal,self.phone]
-        #return [self.street,self.city,self.state,self.country,
-        #        self.postal,self.phone,self.get_date()]
-
-    def get_text_data_child_list(self):
-        """
-        Returns the list of child objects that may carry textual data.
-
-        @return: Returns the list of child objects that may carry textual data.
-        @rtype: list
-        """
-        check_list = self.source_list
-        if self.note:
-            check_list.append(self.note)
-        return check_list
-
-    def get_handle_referents(self):
-        """
-        Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
-        
-        @return: Returns the list of objects refereincing primary objects.
-        @rtype: list
-        """
-        return self.source_list
-
-    def set_street(self,val):
-        """sets the street portion of the Address"""
-        self.street = val
-
-    def get_street(self):
-        """returns the street portion of the Address"""
-        return self.street
-
-    def set_phone(self,val):
-        """sets the phone number portion of the Address"""
-        self.phone = val
-
-    def get_phone(self):
-        """returns the phone number portion of the Address"""
-        return self.phone
-
-    def set_city(self,val):
-        """sets the city portion of the Address"""
-        self.city = val
-
-    def get_city(self):
-        """returns the city portion of the Address"""
-        return self.city
-
-    def set_state(self,val):
-        """sets the state portion of the Address"""
-        self.state = val
-
-    def get_state(self):
-        """returns the state portion of the Address"""
-        return self.state
-
-    def set_country(self,val):
-        """sets the country portion of the Address"""
-        self.country = val
-
-    def get_country(self):
-        """returns the country portion of the Address"""
-        return self.country
-
-    def set_postal_code(self,val):
-        """sets the postal code of the Address"""
-        self.postal = val
-
-    def get_postal_code(self):
-        """returns the postal code of the Address"""
-        return self.postal
-
+#-------------------------------------------------------------------------
+#
+# Personal Name
+#
+#-------------------------------------------------------------------------
 class Name(PrivateSourceNote,DateBase):
-    """Provides name information about a person. A person may have more
-    that one name throughout his or her life."""
+    """
+    Provides name information about a person.
+
+    A person may have more that one name throughout his or her life.
+    """
 
     DEF  = 0  # locale default
     LNFN = 1  # last name first name [patronymic]
@@ -907,6 +441,206 @@ class Name(PrivateSourceNote,DateBase):
             index += 1
         return True
 
+#-------------------------------------------------------------------------
+#
+# Attribute for Person/Family/MediaObject/MediaRef
+#
+#-------------------------------------------------------------------------
+class Attribute(PrivateSourceNote):
+    """Provides a simple key/value pair for describing properties. Used
+    by the Person and Family objects to store descriptive information."""
+    
+    UNKNOWN     = -1
+    CUSTOM      = 0
+    CASTE       = 1
+    DESCRIPTION = 2
+    ID          = 3
+    NATIONAL    = 4
+    NUM_CHILD   = 5
+    SSN         = 6
+
+    def __init__(self,source=None):
+        """creates a new Attribute object, copying from the source if provided"""
+        PrivateSourceNote.__init__(self,source)
+        
+        if source:
+            self.type = source.type
+            self.value = source.value
+        else:
+            self.type = (Attribute.CUSTOM,"")
+            self.value = ""
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.value]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        check_list = self.source_list
+        if self.note:
+            check_list.append(self.note)
+        return check_list
+
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return self.source_list
+
+    def set_type(self,val):
+        """sets the type (or key) of the Attribute instance"""
+        if not type(val) == tuple:
+            warn( "set_type now takes a tuple", DeprecationWarning, 2)
+            # Wrapper for old API
+            # remove when transitition done.
+            if val in range(-1,7):
+                val = (val,'')
+            else:
+                val = (Attribute.CUSTOM,val)
+        self.type = val
+
+    def get_type(self):
+        """returns the type (or key) or the Attribute instance"""
+        return self.type
+
+    def set_value(self,val):
+        """sets the value of the Attribute instance"""
+        self.value = val
+
+    def get_value(self):
+        """returns the value of the Attribute instance"""
+        return self.value
+
+#-------------------------------------------------------------------------
+#
+# Address for Person/Repository
+#
+#-------------------------------------------------------------------------
+class Address(PrivateSourceNote,DateBase):
+    """Provides address information for a person"""
+
+    def __init__(self,source=None):
+        """Creates a new Address instance, copying from the source
+        if provided"""
+        PrivateSourceNote.__init__(self,source)
+        DateBase.__init__(self,source)
+
+        if source:
+            self.street = source.street
+            self.city = source.city
+            self.state = source.state
+            self.country = source.country
+            self.postal = source.postal
+            self.phone = source.phone
+        else:
+            self.street = ""
+            self.city = ""
+            self.state = ""
+            self.country = ""
+            self.postal = ""
+            self.phone = ""
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.street,self.city,self.state,self.country,
+                self.postal,self.phone]
+        #return [self.street,self.city,self.state,self.country,
+        #        self.postal,self.phone,self.get_date()]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        check_list = self.source_list
+        if self.note:
+            check_list.append(self.note)
+        return check_list
+
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return self.source_list
+
+    def set_street(self,val):
+        """sets the street portion of the Address"""
+        self.street = val
+
+    def get_street(self):
+        """returns the street portion of the Address"""
+        return self.street
+
+    def set_phone(self,val):
+        """sets the phone number portion of the Address"""
+        self.phone = val
+
+    def get_phone(self):
+        """returns the phone number portion of the Address"""
+        return self.phone
+
+    def set_city(self,val):
+        """sets the city portion of the Address"""
+        self.city = val
+
+    def get_city(self):
+        """returns the city portion of the Address"""
+        return self.city
+
+    def set_state(self,val):
+        """sets the state portion of the Address"""
+        self.state = val
+
+    def get_state(self):
+        """returns the state portion of the Address"""
+        return self.state
+
+    def set_country(self,val):
+        """sets the country portion of the Address"""
+        self.country = val
+
+    def get_country(self):
+        """returns the country portion of the Address"""
+        return self.country
+
+    def set_postal_code(self,val):
+        """sets the postal code of the Address"""
+        self.postal = val
+
+    def get_postal_code(self):
+        """returns the postal code of the Address"""
+        return self.postal
+
+#-------------------------------------------------------------------------
+#
+# Url for Person/Place/Repository
+#
+#-------------------------------------------------------------------------
 class Url(BaseObject,PrivacyBase):
     """Contains information related to internet Uniform Resource Locators,
     allowing gramps to store information about internet resources"""
@@ -990,6 +724,350 @@ class Url(BaseObject,PrivacyBase):
             return 0
         return 1
 
+#-------------------------------------------------------------------------
+#
+# Location class for Places
+#
+#-------------------------------------------------------------------------
+class Location(BaseObject):
+    """
+    Provides information about a place.
+
+    The data including city, county, state, and country.
+    Multiple Location objects can represent the same place, since names
+    of citys, countys, states, and even countries can change with time.
+    """
+    
+    def __init__(self,source=None):
+        """
+        Creates a Location object, copying from the source object if it exists.
+        """
+
+        BaseObject.__init__(self)
+        if source:
+            self.city = source.city
+            self.parish = source.parish
+            self.county = source.county
+            self.state = source.state
+            self.country = source.country
+            self.postal = source.postal
+            self.phone = source.phone
+        else:
+            self.city = ""
+            self.parish = ""
+            self.county = ""
+            self.state = ""
+            self.country = ""
+            self.postal = ""
+            self.phone = ""
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.city,self.parish,self.county,self.state,
+                self.country,self.postal,self.phone]
+
+    def is_empty(self):
+        return not self.city and not self.county and not self.state and \
+               not self.country and not self.postal and not self.phone
+        
+    def set_city(self,data):
+        """sets the city name of the Location object"""
+        self.city = data
+
+    def get_postal_code(self):
+        """returns the postal code of the Location object"""
+        return self.postal
+
+    def set_postal_code(self,data):
+        """sets the postal code of the Location object"""
+        self.postal = data
+
+    def get_phone(self):
+        """returns the phone number of the Location object"""
+        return self.phone
+
+    def set_phone(self,data):
+        """sets the phone number of the Location object"""
+        self.phone = data
+
+    def get_city(self):
+        """returns the city name of the Location object"""
+        return self.city
+
+    def set_parish(self,data):
+        """sets the religious parish name"""
+        self.parish = data
+
+    def get_parish(self):
+        """gets the religious parish name"""
+        return self.parish
+
+    def set_county(self,data):
+        """sets the county name of the Location object"""
+        self.county = data
+
+    def get_county(self):
+        """returns the county name of the Location object"""
+        return self.county
+
+    def set_state(self,data):
+        """sets the state name of the Location object"""
+        self.state = data
+
+    def get_state(self):
+        """returns the state name of the Location object"""
+        return self.state
+
+    def set_country(self,data):
+        """sets the country name of the Location object"""
+        self.country = data
+
+    def get_country(self):
+        """returns the country name of the Location object"""
+        return self.country
+
+#-------------------------------------------------------------------------
+#
+# LDS Ordinance class
+#
+#-------------------------------------------------------------------------
+class LdsOrd(SourceNote,DateBase,PlaceBase):
+    """
+    Class that contains information about LDS Ordinances. LDS
+    ordinances are similar to events, but have very specific additional
+    information related to data collected by the Church of Jesus Christ
+    of Latter Day Saints (Morman church). The LDS church is the largest
+    source of genealogical information in the United States.
+    """
+    def __init__(self,source=None):
+        """Creates a LDS Ordinance instance"""
+        SourceNote.__init__(self,source)
+        DateBase.__init__(self,source)
+        PlaceBase.__init__(self,source)
+        
+        if source:
+            self.famc = source.famc
+            self.temple = source.temple
+            self.status = source.status
+        else:
+            self.famc = None
+            self.temple = ""
+            self.status = 0
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.temple]
+        #return [self.temple,self.get_date()]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        check_list = self.source_list
+        if self.note:
+            check_list.append(self.note)
+        return check_list
+
+    def get_referenced_handles(self):
+        """
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        if self.place:
+            return [('Place',self.place)]
+        else:
+            return []
+
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return self.source_list
+
+    def set_family_handle(self,family):
+        """Sets the Family database handle associated with the LDS ordinance"""
+        self.famc = family
+
+    def get_family_handle(self):
+        """Gets the Family database handle associated with the LDS ordinance"""
+        return self.famc
+
+    def set_status(self,val):
+        """
+        Sets the status of the LDS ordinance. The status is a text string
+        that matches a predefined set of strings."""
+        self.status = val
+
+    def get_status(self):
+        """Gets the status of the LDS ordinance"""
+        return self.status
+
+    def set_temple(self,temple):
+        """Sets the temple assocated with the ordinance"""
+        self.temple = temple
+
+    def get_temple(self):
+        """Gets the temple assocated with the ordinance"""
+        return self.temple
+
+    def is_empty(self):
+        """Returns 1 if the ordidance is actually empty"""
+        if (self.famc or 
+                (self.date and not self.date.is_empty()) or 
+                self.temple or 
+                self.status or 
+                self.place):
+            return False
+        else:
+            return True
+        
+    def are_equal(self,other):
+        """returns 1 if the specified ordinance is the same as the instance"""
+        if other == None:
+            return self.is_empty()
+        if (self.famc != other.famc or
+            self.place != other.place or
+            self.status != other.status or
+            self.temple != other.temple or
+            not self.get_date_object().is_equal(other.get_date_object()) or
+            len(self.get_source_references()) != len(other.get_source_references())):
+            return False
+
+        index = 0
+        olist = other.get_source_references()
+        for a in self.get_source_references():
+            if not a.are_equal(olist[index]):
+                return False
+            index += 1
+        return True
+
+#-------------------------------------------------------------------------
+#
+# Event References for Person/Family
+#
+#-------------------------------------------------------------------------
+class EventRef(BaseObject,PrivacyBase,NoteBase):
+    """
+    Event reference class.
+
+    This class is for keeping information about how the person relates
+    to the refereneced event.
+    """
+
+    UNKNOWN   = -1
+    CUSTOM    = 0
+    PRIMARY   = 1
+    CLERGY    = 2
+    CELEBRANT = 3
+    AIDE      = 4
+    BRIDE     = 5
+    GROOM     = 6
+    WITNESS   = 7
+    FAMILY    = 8
+
+    def __init__(self,source=None):
+        """
+        Creates a new EventRef instance, copying from the source if present.
+        """
+        PrivacyBase.__init__(self)
+        NoteBase.__init__(self)
+        if source:
+            self.ref = source.ref
+            self.role = source.role_int
+        else:
+            self.ref = None
+            self.role = (EventRef.CUSTOM,"")
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.role_str]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        if self.note:
+            return [self.note]
+        return []
+
+    def get_referenced_handles(self):
+        """
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        if self.ref:
+            return [('Event',self.ref)]
+        else:
+            return []
+
+    def get_reference_handle(self):
+        """
+        Returns the handle of the referred Event object.
+        """
+        return self.ref
+
+    def set_reference_handle(self,handle):
+        """
+        Sets the handle of the referred Event object.
+        """
+        self.ref = handle
+
+    def get_role(self):
+        """
+        Returns the tuple corresponding to the preset role.
+        """
+        return self.role
+
+    def set_role(self,role):
+        """
+        Sets the role according to the given argument.
+        """
+        if not type(role) == tuple:
+            if role in range(-1,9):
+                warn( "set_role now takes a tuple", DeprecationWarning, 2)
+                # Wrapper for old API
+                # remove when transitition done.
+                role = (role,'')
+            else:
+                assert type(role) == tuple
+        self.role = role
+
+#-------------------------------------------------------------------------
+#
+# Source References for all primary objects
+#
+#-------------------------------------------------------------------------
 class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
     """Source reference, containing detailed information about how a
     referenced source relates to it"""
@@ -1101,46 +1179,24 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
         else:
             return False
 
-class EventRef(BaseObject,PrivacyBase,NoteBase):
-    """
-    Event reference class.
-
-    This class is for keeping information about how the person relates
-    to the refereneced event.
-    """
-
-    UNKNOWN   = -1
-    CUSTOM    = 0
-    PRIMARY   = 1
-    CLERGY    = 2
-    CELEBRANT = 3
-    AIDE      = 4
-    BRIDE     = 5
-    GROOM     = 6
-    WITNESS   = 7
-    FAMILY    = 8
-
+#-------------------------------------------------------------------------
+#
+# MediaObject References for Person/Place/Source
+#
+#-------------------------------------------------------------------------
+class MediaRef(PrivateSourceNote,AttributeBase):
+    """Media reference class"""
     def __init__(self,source=None):
-        """
-        Creates a new EventRef instance, copying from the source if present.
-        """
-        PrivacyBase.__init__(self)
-        NoteBase.__init__(self)
+
+        PrivateSourceNote.__init__(self,source)
+        AttributeBase.__init__(self,source)
+
         if source:
             self.ref = source.ref
-            self.role = source.role_int
+            self.rect = source.rect
         else:
             self.ref = None
-            self.role = (EventRef.CUSTOM,"")
-
-    def get_text_data_list(self):
-        """
-        Returns the list of all textual attributes of the object.
-
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
-        """
-        return [self.role_str]
+            self.rect = None
 
     def get_text_data_child_list(self):
         """
@@ -1149,9 +1205,19 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
+        check_list = self.attribute_list + self.source_list
         if self.note:
-            return [self.note]
-        return []
+            check_list.append(self.note)
+        return check_list
+
+    def get_sourcref_child_list(self):
+        """
+        Returns the list of child secondary objects that may refer sources.
+
+        @return: Returns the list of child secondary child objects that may refer sources.
+        @rtype: list
+        """
+        return self.attribute_list
 
     def get_referenced_handles(self):
         """
@@ -1162,41 +1228,33 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
         @rtype: list
         """
         if self.ref:
-            return [('Event',self.ref)]
+            return [('MediaObject',self.ref)]
         else:
             return []
 
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return self.attribute_list + self.source_list
+
+    def set_rectangle(self,coord):
+        """Sets subection of an image"""
+        self.rect = coord
+
+    def get_rectangle(self):
+        """Returns the subsection of an image"""
+        return self.rect
+
+    def set_reference_handle(self,obj_id):
+        self.ref = obj_id
+
     def get_reference_handle(self):
-        """
-        Returns the handle of the referred Event object.
-        """
         return self.ref
-
-    def set_reference_handle(self,handle):
-        """
-        Sets the handle of the referred Event object.
-        """
-        self.ref = handle
-
-    def get_role(self):
-        """
-        Returns the tuple corresponding to the preset role.
-        """
-        return self.role
-
-    def set_role(self,role):
-        """
-        Sets the role according to the given argument.
-        """
-        if not type(role) == tuple:
-            if role in range(-1,9):
-                warn( "set_role now takes a tuple", DeprecationWarning, 2)
-                # Wrapper for old API
-                # remove when transitition done.
-                role = (role,'')
-            else:
-                assert type(role) == tuple
-        self.role = role
 
 class RepoRef(BaseObject,NoteBase):
     """
