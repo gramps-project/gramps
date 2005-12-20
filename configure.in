@@ -251,6 +251,7 @@ AC_CONFIG_FILES([
 Makefile 
 src/Makefile
 src/const.py
+src/RelLib/Makefile
 src/docgen/Makefile
 src/plugins/Makefile
 src/dates/Makefile
