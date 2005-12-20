@@ -530,29 +530,20 @@ class Attribute(PrivateSourceNote):
 # Address for Person/Repository
 #
 #-------------------------------------------------------------------------
-class Address(PrivateSourceNote,DateBase):
-    """Provides address information for a person"""
+class Address(PrivateSourceNote,DateBase,LocationBase):
+    """Provides address information."""
 
     def __init__(self,source=None):
         """Creates a new Address instance, copying from the source
         if provided"""
         PrivateSourceNote.__init__(self,source)
         DateBase.__init__(self,source)
+        LocationBase.__init__(self,source)
 
         if source:
             self.street = source.street
-            self.city = source.city
-            self.state = source.state
-            self.country = source.country
-            self.postal = source.postal
-            self.phone = source.phone
         else:
             self.street = ""
-            self.city = ""
-            self.state = ""
-            self.country = ""
-            self.postal = ""
-            self.phone = ""
 
     def get_text_data_list(self):
         """
@@ -561,8 +552,7 @@ class Address(PrivateSourceNote,DateBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.street,self.city,self.state,self.country,
-                self.postal,self.phone]
+        return [self.street] + LocationBase.get_text_data_list()
         #return [self.street,self.city,self.state,self.country,
         #        self.postal,self.phone,self.get_date()]
 
@@ -581,7 +571,7 @@ class Address(PrivateSourceNote,DateBase):
     def get_handle_referents(self):
         """
         Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
+        their children, reference primary objects.
         
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
@@ -596,45 +586,61 @@ class Address(PrivateSourceNote,DateBase):
         """returns the street portion of the Address"""
         return self.street
 
-    def set_phone(self,val):
-        """sets the phone number portion of the Address"""
-        self.phone = val
+#-------------------------------------------------------------------------
+#
+# Location class for Places
+#
+#-------------------------------------------------------------------------
+class Location(LocationBase):
+    """
+    Provides information about a place.
 
-    def get_phone(self):
-        """returns the phone number portion of the Address"""
-        return self.phone
+    The data including city, county, state, and country.
+    Multiple Location objects can represent the same place, since names
+    of citys, countys, states, and even countries can change with time.
+    """
+    
+    def __init__(self,source=None):
+        """
+        Creates a Location object, copying from the source object if it exists.
+        """
 
-    def set_city(self,val):
-        """sets the city portion of the Address"""
-        self.city = val
+        LocationBase.__init__(self,source)
+        if source:
+            self.parish = source.parish
+            self.county = source.county
+        else:
+            self.parish = ""
+            self.county = ""
 
-    def get_city(self):
-        """returns the city portion of the Address"""
-        return self.city
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
 
-    def set_state(self,val):
-        """sets the state portion of the Address"""
-        self.state = val
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.parish,self.county] + LocationBase.get_text_data_list()
 
-    def get_state(self):
-        """returns the state portion of the Address"""
-        return self.state
+    def is_empty(self):
+        return not self.city and not self.county and not self.state and \
+               not self.country and not self.postal and not self.phone
+        
+    def set_parish(self,data):
+        """sets the religious parish name"""
+        self.parish = data
 
-    def set_country(self,val):
-        """sets the country portion of the Address"""
-        self.country = val
+    def get_parish(self):
+        """gets the religious parish name"""
+        return self.parish
 
-    def get_country(self):
-        """returns the country portion of the Address"""
-        return self.country
+    def set_county(self,data):
+        """sets the county name of the Location object"""
+        self.county = data
 
-    def set_postal_code(self,val):
-        """sets the postal code of the Address"""
-        self.postal = val
-
-    def get_postal_code(self):
-        """returns the postal code of the Address"""
-        return self.postal
+    def get_county(self):
+        """returns the county name of the Location object"""
+        return self.county
 
 #-------------------------------------------------------------------------
 #
@@ -723,113 +729,6 @@ class Url(BaseObject,PrivacyBase):
         if self.type != other.type:
             return 0
         return 1
-
-#-------------------------------------------------------------------------
-#
-# Location class for Places
-#
-#-------------------------------------------------------------------------
-class Location(BaseObject):
-    """
-    Provides information about a place.
-
-    The data including city, county, state, and country.
-    Multiple Location objects can represent the same place, since names
-    of citys, countys, states, and even countries can change with time.
-    """
-    
-    def __init__(self,source=None):
-        """
-        Creates a Location object, copying from the source object if it exists.
-        """
-
-        BaseObject.__init__(self)
-        if source:
-            self.city = source.city
-            self.parish = source.parish
-            self.county = source.county
-            self.state = source.state
-            self.country = source.country
-            self.postal = source.postal
-            self.phone = source.phone
-        else:
-            self.city = ""
-            self.parish = ""
-            self.county = ""
-            self.state = ""
-            self.country = ""
-            self.postal = ""
-            self.phone = ""
-
-    def get_text_data_list(self):
-        """
-        Returns the list of all textual attributes of the object.
-
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
-        """
-        return [self.city,self.parish,self.county,self.state,
-                self.country,self.postal,self.phone]
-
-    def is_empty(self):
-        return not self.city and not self.county and not self.state and \
-               not self.country and not self.postal and not self.phone
-        
-    def set_city(self,data):
-        """sets the city name of the Location object"""
-        self.city = data
-
-    def get_postal_code(self):
-        """returns the postal code of the Location object"""
-        return self.postal
-
-    def set_postal_code(self,data):
-        """sets the postal code of the Location object"""
-        self.postal = data
-
-    def get_phone(self):
-        """returns the phone number of the Location object"""
-        return self.phone
-
-    def set_phone(self,data):
-        """sets the phone number of the Location object"""
-        self.phone = data
-
-    def get_city(self):
-        """returns the city name of the Location object"""
-        return self.city
-
-    def set_parish(self,data):
-        """sets the religious parish name"""
-        self.parish = data
-
-    def get_parish(self):
-        """gets the religious parish name"""
-        return self.parish
-
-    def set_county(self,data):
-        """sets the county name of the Location object"""
-        self.county = data
-
-    def get_county(self):
-        """returns the county name of the Location object"""
-        return self.county
-
-    def set_state(self,data):
-        """sets the state name of the Location object"""
-        self.state = data
-
-    def get_state(self):
-        """returns the state name of the Location object"""
-        return self.state
-
-    def set_country(self,data):
-        """sets the country name of the Location object"""
-        self.country = data
-
-    def get_country(self):
-        """returns the country name of the Location object"""
-        return self.country
 
 #-------------------------------------------------------------------------
 #
