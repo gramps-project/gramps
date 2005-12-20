@@ -591,7 +591,7 @@ class Address(PrivateSourceNote,DateBase,LocationBase):
 # Location class for Places
 #
 #-------------------------------------------------------------------------
-class Location(LocationBase):
+class Location(BaseObject,LocationBase):
     """
     Provides information about a place.
 
@@ -605,6 +605,7 @@ class Location(LocationBase):
         Creates a Location object, copying from the source object if it exists.
         """
 
+        BaseObject.__init__(self)
         LocationBase.__init__(self,source)
         if source:
             self.parish = source.parish
