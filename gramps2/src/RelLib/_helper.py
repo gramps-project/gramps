@@ -1013,6 +1013,80 @@ class PrivateSourceNote(SourceNote,PrivacyBase):
         SourceNote.__init__(self,source)
         PrivacyBase.__init__(self,source)
 
+class LocationBase(BaseObject):
+    """
+    Base class for all things Address.
+    """
+    
+    def __init__(self,source=None):
+        """
+        Creates a LocationBase object,
+        copying from the source object if it exists.
+        """
+
+        BaseObject.__init__(self)
+        if source:
+            self.city = source.city
+            self.state = source.state
+            self.country = source.country
+            self.postal = source.postal
+            self.phone = source.phone
+        else:
+            self.city = ""
+            self.state = ""
+            self.country = ""
+            self.postal = ""
+            self.phone = ""
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.city,self.state,self.country,self.postal,self.phone]
+
+    def set_city(self,data):
+        """sets the city name of the LocationBase object"""
+        self.city = data
+
+    def get_city(self):
+        """returns the city name of the LocationBase object"""
+        return self.city
+
+    def set_postal_code(self,data):
+        """sets the postal code of the LocationBase object"""
+        self.postal = data
+
+    def get_postal_code(self):
+        """returns the postal code of the LocationBase object"""
+        return self.postal
+
+    def set_phone(self,data):
+        """sets the phone number of the LocationBase object"""
+        self.phone = data
+
+    def get_phone(self):
+        """returns the phone number of the LocationBase object"""
+        return self.phone
+
+    def set_state(self,data):
+        """sets the state name of the LocationBase object"""
+        self.state = data
+
+    def get_state(self):
+        """returns the state name of the LocationBase object"""
+        return self.state
+
+    def set_country(self,data):
+        """sets the country name of the LocationBase object"""
+        self.country = data
+
+    def get_country(self):
+        """returns the country name of the LocationBase object"""
+        return self.country
+
 class Witness(BaseObject,PrivacyBase):
     # FIXME: this class is only present to enable db upgrade
     def __init__(self):
