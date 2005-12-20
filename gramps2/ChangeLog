@@ -14,6 +14,17 @@
 	* src/GrampsBSDDB.py (gramps_upgrade_9): Provide upgrade for the
 	changes in RelLib.
 
+	* src/RelLib.py: Remove file (replaced by the package dir).
+	* src/RelLib: Add directory.
+	* src/RelLib/__init__.py, src/RelLib/_helper.py,
+	src/RelLib/_secondary.py, src/RelLib/Researcher.py,
+	src/RelLib/GenderStats.py, src/RelLib/Person.py,
+	src/RelLib/Family.py, src/RelLib/Event.py, src/RelLib/Place.py,
+	src/RelLib/Source.py, src/RelLib/MediaObject.py,
+	src/RelLib/Repository.py, src/RelLib/Makefile.am,
+	src/RelLib/.cvsignore: Add to CVS.
+	* src/configure.in: Create Makefile in src/RelLib.
+
 2005-12-19 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/RelLib.py: added get_backlink_handles method to PrimaryObject
         * test/GrampsDbBase_Test.py: factored out common db test methods
