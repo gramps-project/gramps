@@ -29,7 +29,7 @@ Gender statistics kept in GRAMPS database.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Person import Person
+from _Person import Person
 
 #-------------------------------------------------------------------------
 #

@@ -36,11 +36,20 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _helper import PrimaryObject,SourceNote,MediaBase,\
-     AttributeBase,AddressBase,UrlBase
-from _secondary import Name,EventRef
+from _PrimaryObject import PrimaryObject
+from _SourceNote import SourceNote
+from _MediaBase import MediaBase
+from _AttributeBase import AttributeBase
+from _AddressBase import AddressBase
+from _UrlBase import UrlBase
+from _Name import Name
+from _EventRef import EventRef
 
-
+#-------------------------------------------------------------------------
+#
+# Person class
+#
+#-------------------------------------------------------------------------
 class Person(PrimaryObject,SourceNote,
              MediaBase,AttributeBase,AddressBase,UrlBase):
     """

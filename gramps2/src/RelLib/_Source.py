@@ -29,9 +29,16 @@ Source object for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _helper import PrimaryObject,MediaBase,NoteBase
-from _secondary import Note
+from _PrimaryObject import PrimaryObject
+from _MediaBase import MediaBase
+from _NoteBase import NoteBase
+from _Note import Note
 
+#-------------------------------------------------------------------------
+#
+# Source class
+#
+#-------------------------------------------------------------------------
 class Source(PrimaryObject,MediaBase,NoteBase):
     """A record of a source of information"""
     

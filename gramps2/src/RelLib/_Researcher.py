@@ -29,7 +29,7 @@ Researcher informaiton for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _helper import LocationBase
+from _LocationBase import LocationBase
 
 #-------------------------------------------------------------------------
 #

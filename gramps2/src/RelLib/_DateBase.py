@@ -1,0 +1,116 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2000-2005  Donald N. Allingham
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+# $Id$
+
+"""
+DateBase class for GRAMPS
+"""
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+import Date
+
+#-------------------------------------------------------------------------
+#
+# Base classes
+#
+#-------------------------------------------------------------------------
+class DateBase:
+    """
+    Base class for storing date information.
+    """
+
+    def __init__(self,source=None):
+        """
+        Create a new DateBase, copying from source if not None
+        
+        @param source: Object used to initialize the new object
+        @type source: DateBase
+        """
+        if source:
+            self.date = Date.Date(source.date)
+        else:
+            self.date = None
+
+#     def set_date(self, date) :
+#         """
+#         Sets the date of the DateBase instance.
+        
+#         The date is parsed into a L{Date} instance.
+
+#         @param date: String representation of a date. The locale specific
+#             L{DateParser} is used to parse the string into a GRAMPS L{Date}
+#             object.
+#         @type date: str
+#         """
+#         self.date = DateHandler.parser.parse(date)
+
+#     def get_date(self) :
+#         """
+#         Returns a string representation of the date of the DateBase instance.
+        
+#         This representation is based off the default date display format
+#         determined by the locale's L{DateDisplay} instance.
+
+#         @return: Returns a string representing the DateBase date
+#         @rtype: str
+#         """
+#         if self.date:
+#             return DateHandler.displayer.display(self.date)
+#         return u""
+
+#     def get_quote_date(self) :
+#         """
+#         Returns a string representation of the date of the DateBase instance.
+        
+#         This representation is based off the default date display format
+#         determined by the locale's L{DateDisplay} instance. The date is
+#         enclosed in quotes if the L{Date} is not a valid date.
+
+#         @return: Returns a string representing the DateBase date
+#         @rtype: str
+#         """
+#         if self.date:
+#             return DateHandler.displayer.quote_display(self.date)
+#         return u""
+
+    def get_date_object(self):
+        """
+        Returns the L{Date} object associated with the DateBase.
+
+        @return: Returns a DateBase L{Date} instance.
+        @rtype: L{Date}
+        """
+        if not self.date:
+            self.date = Date.Date()
+        return self.date
+
+    def set_date_object(self,date):
+        """
+        Sets the L{Date} object associated with the DateBase.
+
+        @param date: L{Date} instance to be assigned to the DateBase
+        @type date: L{Date}
+        """
+        self.date = date

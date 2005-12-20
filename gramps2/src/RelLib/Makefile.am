@@ -6,18 +6,41 @@
 pkgdatadir = $(datadir)/@PACKAGE@/RelLib
 
 pkgdata_PYTHON = \
+	_AddressBase.py\
+	_Address.py\
+	_AttributeBase.py\
+	_Attribute.py\
+	_BaseObject.py\
+	_DateBase.py\
+	_Event.py\
+	_EventRef.py\
+	_Family.py\
+	_GenderStats.py\
 	__init__.py\
-	_helper.py\
-	_secondary.py\
-	Researcher.py\
-	GenderStats.py\
-	Person.py\
-	Family.py\
-	Event.py\
-	Place.py\
-	Source.py\
-	MediaObject.py\
-	Repository.py
+	_LdsOrd.py\
+	_LocationBase.py\
+	_Location.py\
+	_MediaBase.py\
+	_MediaObject.py\
+	_MediaRef.py\
+	_Name.py\
+	_NoteBase.py\
+	_Note.py\
+	_Person.py\
+	_PlaceBase.py\
+	_Place.py\
+	_PrimaryObject.py\
+	_PrivacyBase.py\
+	_PrivateSourceNote.py\
+	_RepoRef.py\
+	_Repository.py\
+	_Researcher.py\
+	_SourceNote.py\
+	_Source.py\
+	_SourceRef.py\
+	_UrlBase.py\
+	_Url.py\
+	_Witness.py\
 
 pkgpyexecdir = @pkgpyexecdir@/RelLib
 pkgpythondir = @pkgpythondir@/RelLib
