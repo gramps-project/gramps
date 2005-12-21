@@ -117,7 +117,7 @@
         <mediaobject>
           <imageobject>
             <imagedata fileref="figures/researcher.png" format="PNG" 
-	               width="510" depth="369" scale="75"/>
+	               width="510" depth="369" />
           </imageobject>
 	  <textobject> 
 	    <phrase>Shows Researcher Information Window. </phrase>

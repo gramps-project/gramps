@@ -316,6 +316,38 @@ class NoteParser:
     def get_lines(self):
         return self.count
 
+
+class IdMapper:
+
+    def __init__(self,trans_func,gen_next_id):
+        self.idswap = {}
+        self.id2handle = {}
+        self.trans_func = trans_func
+        self.gen_next_id = gen_next_id
+
+    def map_id(self, gramps_id):
+        gramps_id = str(gramps_id)
+        
+        handle = self.idswap.get(gramps_id)
+        print handle, self.idswap
+        if not handle:
+            if self.trans_func(gramps_id):
+                handle = self.gen_next_id()
+            else:
+                handle = gramps_id
+            self.idswap[gramps_id] = handle
+        print "mapping %s to %s" % (gramps_id,handle)
+        return handle
+
+    def convert_to_handle(self,gramps_id):
+        print "converting %s to %s" % (gramps_id, self.id2handle.get(gramps_id))
+        return self.id2handle.get(gramps_id)
+
+    def save_id_to_handle(self,gramps_id,handle):
+        print "storing %s to %s" % (gramps_id, handle)
+        self.id2handle[gramps_id] = handle
+                
+
 #-------------------------------------------------------------------------
 #
 #
@@ -349,11 +381,11 @@ class GedcomParser:
         self.broken_conc_list = [ 'FamilyOrigins', 'FTW' ]
         self.broken_conc = 0
         self.is_ftw = 0
-        self.idswap = {}
-        self.gid2id = {}
-        self.sid2id = {}
+
+        self.pmapper = IdMapper(self.db.id_trans.get, self.db.find_next_person_gramps_id)
+        self.fmapper = IdMapper(self.db.fid_trans.get, self.db.find_next_family_gramps_id)
+        self.smapper = IdMapper(self.db.sid_trans.get, self.db.find_next_source_gramps_id)
         self.lid2id = {}
-        self.fid2id = {}
 
         self.place_names = sets.Set()
         cursor = dbase.get_place_cursor()
@@ -369,11 +401,6 @@ class GedcomParser:
         self.index = 0
         self.backoff = 0
         self.override = codeset
-
-        if self.db.get_number_of_people() == 0:
-            self.map_gid = self.map_gid_empty
-        else:
-            self.map_gid = self.map_gid_not_empty
 
         if self.override != 0:
             if self.override == 1:
@@ -650,7 +677,7 @@ class GedcomParser:
                 self.ignore_sub_junk(level+1)
 
     def parse_source(self,name,level):
-        self.source = self.find_or_create_source(name[1:-1])
+        self.source = self.find_or_create_source(self.smapper.map_id(name[1:-1]))
         note = ""
         while True:
             matches = self.get_next()
@@ -703,7 +730,7 @@ class GedcomParser:
                 if self.fam_count % UPDATE == 0 and self.window:
                     self.update(self.families_obj,str(self.fam_count))
                 self.fam_count = self.fam_count + 1
-                self.family = self.find_or_create_family(matches[1][1:-1])
+                self.family = self.find_or_create_family(self.fmapper.map_id(matches[1][1:-1]))
                 self.parse_family()
                 if self.addr != None:
                     father_handle = self.family.get_father_handle()
@@ -733,7 +760,8 @@ class GedcomParser:
                 self.indi_count = self.indi_count + 1
                 gid = matches[1]
                 gid = gid[1:-1]
-                self.person = self.find_or_create_person(self.map_gid(gid))
+#                self.person = self.find_or_create_person(self.map_gid(gid))
+                self.person = self.find_or_create_person(self.pmapper.map_id(gid))
                 self.added[self.person.get_handle()] = 1
                 self.parse_individual()
                 if len(self.person.get_source_references()) == 0:
@@ -751,7 +779,7 @@ class GedcomParser:
             elif matches[2].startswith("SOUR "):
                 # A source formatted in a single line, for example:
                 # 0 @S62@ SOUR This is the title of the source
-                source = self.find_or_create_source(matches[1][1:-1])
+                source = self.find_or_create_source(self.smapper.map_id(matches[1][1:-1]))
                 source.set_title( matches[2][5:])
                 self.db.commit_source(source, self.trans)
             elif matches[2][0:4] == "NOTE":
@@ -766,22 +794,9 @@ class GedcomParser:
             else:
                 self.barf(1)
 
-    def map_gid_empty(self,gid):
-        return gid
-
-    def map_gid_not_empty(self,gid):
-        if self.idswap.get(gid):
-            return self.idswap[gid]
-        else:
-            if self.db.id_trans.get(str(gid)):
-                self.idswap[gid] = self.db.find_next_person_gramps_id()
-            else:
-                self.idswap[gid] = gid
-            return self.idswap[gid]
-
     def find_or_create_person(self,gramps_id):
         person = RelLib.Person()
-        intid = self.gid2id.get(gramps_id)
+        intid = self.pmapper.convert_to_handle(gramps_id)
         if self.db.person_map.has_key(intid):
             person.unserialize(self.db.person_map.get(intid))
         else:
@@ -791,33 +806,33 @@ class GedcomParser:
         return person
 
     def find_person_handle(self,gramps_id):
-        intid = self.gid2id.get(gramps_id)
+        intid = self.pmapper.convert_to_handle(gramps_id)
         if not intid:
             intid = create_id()
-            self.gid2id[gramps_id] = intid
+            self.pmapper.save_id_to_handle(gramps_id,intid)
         return intid
 
     def find_or_create_family(self,gramps_id):
         family = RelLib.Family()
-        intid = self.fid2id.get(gramps_id)
+        intid = self.fmapper.convert_to_handle(gramps_id)
         if self.db.family_map.has_key(intid):
             family.unserialize(self.db.family_map.get(intid))
         else:
-            intid = self.find_family_handle(gramps_id)
+            intid = self.find_family_handle(self.fmapper.map_id(gramps_id))
             family.set_handle(intid)
             family.set_gramps_id(gramps_id)
         return family
 
     def find_family_handle(self,gramps_id):
-        intid = self.fid2id.get(gramps_id)
+        intid = self.fmapper.convert_to_handle(gramps_id)
         if not intid:
             intid = create_id()
-            self.fid2id[gramps_id] = intid
+            self.fmapper.save_id_to_handle(gramps_id,intid)
         return intid
 
     def find_or_create_source(self,gramps_id):
         source = RelLib.Source()
-        intid = self.sid2id.get(gramps_id)
+        intid = self.smapper.convert_to_handle(gramps_id)
         if self.db.source_map.has_key(intid):
             source.unserialize(self.db.source_map.get(intid))
         else:
@@ -825,7 +840,7 @@ class GedcomParser:
             source.set_handle(intid)
             source.set_gramps_id(gramps_id)
             self.db.add_source(source,self.trans)
-            self.sid2id[gramps_id] = intid
+            self.smapper.save_id_to_handle(gramps_id,intid)
         return source
 
     def find_or_create_place(self,title):
@@ -833,6 +848,7 @@ class GedcomParser:
 
         # check to see if we've encountered this name before
         # if we haven't we need to get a new GRAMPS ID
+
         intid = self.lid2id.get(title)
         if intid == None:
             new_id = self.db.find_next_place_gramps_id()
@@ -927,12 +943,12 @@ class GedcomParser:
                 return
             elif matches[1] == "HUSB":
                 gid = matches[2]
-                handle = self.find_person_handle(self.map_gid(gid[1:-1]))
+                handle = self.find_person_handle(self.pmapper.map_id(gid[1:-1]))
                 self.family.set_father_handle(handle)
                 self.ignore_sub_junk(2)
             elif matches[1] == "WIFE":
                 gid = matches[2]
-                handle = self.find_person_handle(self.map_gid(gid[1:-1]))
+                handle = self.find_person_handle(self.pmapper.map_id(gid[1:-1]))
                 self.family.set_mother_handle(handle)
                 self.ignore_sub_junk(2)
             elif matches[1] == "SLGS":
@@ -946,7 +962,7 @@ class GedcomParser:
             elif matches[1] == "CHIL":
                 mrel,frel = self.parse_ftw_relations(2)
                 gid = matches[2]
-                child = self.find_or_create_person(self.map_gid(gid[1:-1]))
+                child = self.find_or_create_person(self.pmapper.map_id(gid[1:-1]))
                 self.family.add_child_handle(child.get_handle())
 
                 for f in child.get_parent_family_handle_list():
@@ -1093,7 +1109,7 @@ class GedcomParser:
                     self.person.set_lds_sealing(lds_ord)
                 self.parse_ord(lds_ord,2)
             elif matches[1] == "FAMS":
-                handle = self.find_family_handle(matches[2][1:-1])
+                handle = self.find_family_handle(self.fmapper.map_id(matches[2][1:-1]))
                 self.person.add_family_handle(handle)
                 if note == "":
                     note = self.parse_optional_note(2)
@@ -1101,7 +1117,7 @@ class GedcomParser:
                     note = "%s\n\n%s" % (note,self.parse_optional_note(2))
             elif matches[1] == "FAMC":
                 ftype,note = self.parse_famc_type(2)
-                handle = self.find_family_handle(matches[2][1:-1])
+                handle = self.find_family_handle(self.fmapper.map_id(matches[2][1:-1]))
                 
                 for f in self.person.get_parent_family_handle_list():
                     if f[0] == handle:
@@ -1439,7 +1455,7 @@ class GedcomParser:
             elif matches[1] == "DATE":
                 lds_ord.set_date_object(self.extract_date(matches[2]))
             elif matches[1] == "FAMC":
-                lds_ord.set_family_handle(self.find_family_handle(matches[2][1:-1]))
+                lds_ord.set_family_handle(self.find_family_handle(self.fmapper.map_id(matches[2][1:-1])))
             elif matches[1] == "PLAC":
               try:
                 place = self.find_or_create_place(matches[2])
@@ -1519,7 +1535,7 @@ class GedcomParser:
                 event.set_description("%s\n%s" % (event.get_description(),matches[2]))
             elif matches[1] in ["_GODP", "_WITN", "_WTN"]:
                 if matches[2][0] == "@":
-                    witness_handle = self.find_person_handle(self.map_gid(matches[2][1:-1]))
+                    witness_handle = self.find_person_handle(self.pmapper.map_id(matches[2][1:-1]))
                     witness = RelLib.Witness(RelLib.Event.ID,witness_handle)
                 else:
                     witness = RelLib.Witness(RelLib.Event.NAME,matches[2])
@@ -1546,7 +1562,7 @@ class GedcomParser:
             elif matches[1] == "SOUR":
                 event.add_source_reference(self.handle_source(matches,level+1))
             elif matches[1] == "FAMC":
-                handle = self.find_family_handle(matches[2][1:-1])
+                handle = self.find_family_handle(self.fmapper.map_id(matches[2][1:-1]))
                 mrel,frel = self.parse_adopt_famc(level+1);
                 if self.person.get_main_parents_family_handle() == handle:
                     self.person.set_main_parent_family_handle(None)
@@ -1691,7 +1707,7 @@ class GedcomParser:
                 note = self.parse_note(matches,event,level+1,note)
             elif matches[1] in ["_WITN", "_WTN"]:
                 if matches[2][0] == "@":
-                    witness_handle = self.find_person_handle(self.map_gid(matches[2][1:-1]))
+                    witness_handle = self.find_person_handle(self.self.pmapper.map_id(matches[2][1:-1]))
                     witness = RelLib.Witness(RelLib.Event.ID,witness_handle)
                 else:
                     witness = RelLib.Witness(RelLib.Event.NAME,matches[2])
@@ -2094,7 +2110,7 @@ class GedcomParser:
             self.inline_srcs[(title,note)] = handle
             self.ignore_sub_junk(level+1)
         else:
-            handle = self.find_or_create_source(matches[2][1:-1]).get_handle()
+            handle = self.find_or_create_source(self.smapper.map_id(matches[2][1:-1])).get_handle()
             self.parse_source_reference(source_ref,level)
         source_ref.set_base_handle(handle)
         return source_ref
