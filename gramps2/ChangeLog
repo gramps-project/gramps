@@ -1,4 +1,7 @@
 2005-12-21 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/EditSource.py: fixed small mistake in display_references
+
+2005-12-21 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/EditSource.py: changed display_references to use find_backlink_handles
 	
 2005-12-21 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
