@@ -1,3 +1,9 @@
+2005-12-21  Alex Roitman  <shura@gramps-project.org>
+	* src/DisplayState.py (remove_item): Add code to adjust other
+	item's tracks after deleting an item; (move_item_down):
+	Recursively walk the items under a given item and lower the track
+	entry.
+
 2005-12-21 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/EditSource.py: fixed small mistake in display_references
 

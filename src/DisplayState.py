@@ -242,9 +242,27 @@ class GrampsWindowManager:
         parent_item.pop(child_in_parent)
         # Adjust each item following the removed one
         # so that it's track is down by one on this level
-        # MISSING CODE HERE
+        for ix in range(child_in_parent,len(parent_item)):
+            item = parent_item[ix]
+            self.move_item_down(item,len(track)-1)
         # Rebuild menu
         self.build_windows_menu()
+
+    def move_item_down(self,item,index):
+        # This function calls children's move_item_down() method
+        # to subtract 1 from the children's track component given by index.
+        if type(item) == list:
+            # If this item is a branch
+            # move down the children except for the first one
+            for sub_item in item[1:]:
+                self.move_item_down(sub_item,index)
+            # return the first child
+            last_item = item[0]
+        else:
+            # This item is a leaf -- no children to move down
+            # return itself
+            last_item = item
+        last_item.track[index] -= 1
 
     def add_item(self,track,item):
         # if the item is identifiable then we need to remember
