@@ -201,30 +201,35 @@ class GrampsWindowManager:
     def close_track(self,track):
         # This is called when item needs to be closed
         # Closes all its children and then removes the item from the tree.
-        #print "1", track
         item = self.get_item_from_track(track)
-        self.close_item(item)
+        self.recursive_action(item,self.close_item)
         # This only needs to be run once for the highest level point
         # to remove.
         self.remove_item(track)
 
-    def close_item(self,item):
-        # This function calls children's close_item() method
-        # to let the children go away cleanly.
+    def recursive_action(self,item,func,*args):
+        # This function recursively calls itself over the child items
+        # starting with the given item.
+        # Eventualy, every non-list item (leaf) will be reached
+        # and the func(item,*args) will be called on that item.
         if type(item) == list:
             # If this item is a branch
             # close the children except for the first one
             for sub_item in item[1:]:
-                self.close_item(sub_item)
+                self.recursive_action(sub_item,func,*args)
             # return the first child
             last_item = item[0]
         else:
             # This item is a leaf -- no children to close
             # return itself
             last_item = item
-        if last_item.window_id:
-            del self.id2item[last_item.window_id]
-        last_item.window.destroy()
+        func(last_item,*args)
+
+    def close_item(self,item,*args):
+        # Given an item, close its window and remove it's ID from the dict
+        if item.window_id:
+            del self.id2item[item.window_id]
+        item.window.destroy()
 
     def remove_item(self,track):
         # We need the whole gymnastics below because our item
@@ -242,25 +247,15 @@ class GrampsWindowManager:
         # so that it's track is down by one on this level
         for ix in range(child_in_parent,len(parent_item)):
             item = parent_item[ix]
-            self.move_item_down(item,len(track)-1)
+            self.recursive_action(item,self.move_item_down,len(track)-1)
         # Rebuild menu
         self.build_windows_menu()
 
-    def move_item_down(self,item,index):
-        # This function calls children's move_item_down() method
-        # to subtract 1 from the children's track component given by index.
-        if type(item) == list:
-            # If this item is a branch
-            # move down the children except for the first one
-            for sub_item in item[1:]:
-                self.move_item_down(sub_item,index)
-            # return the first child
-            last_item = item[0]
-        else:
-            # This item is a leaf -- no children to move down
-            # return itself
-            last_item = item
-        last_item.track[index] -= 1
+    def move_item_down(self,item,*args):
+        # Given an item and an index, adjust the item's track
+        # by subtracting 1 from that index's level
+        index = args[0]
+        item.track[index] -= 1
 
     def add_item(self,track,item):
         # if the item is identifiable then we need to remember
