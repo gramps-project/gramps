@@ -1,4 +1,7 @@
 2005-12-21 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/EditSource.py: changed display_references to use find_backlink_handles
+	
+2005-12-21 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/EditRepository.py: hack to work with current state of Address
 
 2005-12-21 Richard Taylor <rjt-gramps@thegrindstone.me.uk>

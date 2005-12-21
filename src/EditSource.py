@@ -27,6 +27,9 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import gc
+import sys
+
+log = sys.stderr.write
 
 #-------------------------------------------------------------------------
 #
@@ -324,11 +327,15 @@ class EditSource:
 #            self.top.set_transient_for(parent_window)
 #        self.add_itself_to_menu()
         self.top.show()
+
+        self.model = None # This will hold the model for backreferences once it is complete.
+        
         if self.ref_not_loaded:
             self.ref_not_loaded = 0
             Utils.temp_label(self.refs_label,self.top)
             self.cursor_type = None
             self.idle = gobject.idle_add(self.display_references)
+            
         self.data_sel = self.datalist.get_selection()
 
     def on_add_data_clicked(self,widget):
@@ -471,131 +478,82 @@ class EditSource:
             ImageSelect.GlobalMediaProperties(self.db,media,self)
 
     def display_references(self):
-        source_handle = self.source.get_handle()
 
-        # Initialize things if we're entering this functioin
-        # for the first time
-        if not self.cursor_type:
-            self.cursor_type = 'Person'
-            self.cursor = self.db.get_person_cursor()
-            self.data = self.cursor.first()
-
+        if not self.model:
             self.any_refs = False
+            source_handle = self.source.get_handle()
+
             slist = self.top_window.get_widget('slist')
             titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Name'),2,150)]
             self.model = ListModel.ListModel(slist,
                                              titles,
                                              event_func=self.button_press)
-
-        if self.cursor_type == 'Person':
-            while self.data:
-                handle,val = self.data
-                person = RelLib.Person()
-                person.unserialize(val)
-                if person.has_source_reference(source_handle):
-                    name = self.name_display(person)
-                    gramps_id = person.get_gramps_id()
-                    self.model.add([_("Person"),gramps_id,name],(0,handle))
-                    self.any_refs = True
-                self.data = self.cursor.next()
-                if gtk.events_pending():
-                    return True
-            self.cursor.close()
+            self.backlink_generator = self.db.find_backlink_handles(source_handle)
             
-            self.cursor_type = 'Family'
-            self.cursor = self.db.get_family_cursor()
-            self.data = self.cursor.first()
 
-        if self.cursor_type == 'Family':
-            while self.data:
-                handle,val = self.data
-                family = RelLib.Family()
-                family.unserialize(val)
-                if family.has_source_reference(source_handle):
-                    name = Utils.family_name(family,self.db)
-                    gramps_id = family.get_gramps_id()
-                    self.model.add([_("Family"),gramps_id,name],(1,handle))
-                    self.any_refs = True
-                self.data = self.cursor.next()
-                if gtk.events_pending():
-                    return True
-            self.cursor.close()
+
+        while True: # The loop is broken when the backlink_generator finishes
+
+            try:
+                reference = self.backlink_generator.next()
+            except StopIteration:
+                # Last reference reached.
+                break
+
+            # If we make it here then there is at least one reference
+            self.any_refs = True
             
-            self.cursor_type = 'Event'
-            self.cursor = self.db.get_event_cursor()
-            self.data = self.cursor.first()
-
-        if self.cursor_type == 'Event':
-            while self.data:
-                handle,val = self.data
-                event = RelLib.Event()
-                event.unserialize(val)
-                if event.has_source_reference(source_handle):
-                    name = event.get_name()
-                    gramps_id = event.get_gramps_id()
-                    self.model.add([_("Event"),gramps_id,name],(2,handle))
-                    self.any_refs = True
-                self.data = self.cursor.next()
-                if gtk.events_pending():
-                    return True
-            self.cursor.close()
+            cls_name,handle = reference
             
-            self.cursor_type = 'Place'
-            self.cursor = self.db.get_place_cursor()
-            self.data = self.cursor.first()
+            if cls_name == 'Person':
+                person = self.db.get_person_from_handle(handle)
+                name = self.name_display(person)
+                gramps_id = person.get_gramps_id()
+                self.model.add([_("Person"),gramps_id,name],(0,handle))
+                
+            elif cls_name == 'Event':
+                event = self.db.get_event_from_handle()
+                name = event.get_name()
+                gramps_id = event.get_gramps_id()
+                self.model.add([_("Event"),gramps_id,name],(2,handle))
+                
+            elif cls_name == 'Family':
+                family = self.db.get_family_from_handle(handle)
+                name = Utils.family_name(family,self.db)
+                gramps_id = family.get_gramps_id()
+                self.model.add([_("Family"),gramps_id,name],(1,handle))
 
-        if self.cursor_type == 'Place':
-            while self.data:
-                handle,val = self.data
-                place = RelLib.Place()
-                place.unserialize(val)
-                if place.has_source_reference(source_handle):
-                    name = place.get_title()
-                    gramps_id = place.get_gramps_id()
-                    self.model.add([_("Place"),gramps_id,name],(3,handle))
-                    self.any_refs = True
-                self.data = self.cursor.next()
-                if gtk.events_pending():
-                    return True
-            self.cursor.close()
-            
-            self.cursor_type = 'Source'
-            self.cursor = self.db.get_source_cursor()
-            self.data = self.cursor.first()
+            elif cls_name == 'Place':
+                place = self.db.get_place_from_handle(handle)
+                name = place.get_title()
+                gramps_id = place.get_gramps_id()
+                self.model.add([_("Place"),gramps_id,name],(3,handle))
+                
+            elif cls_name == 'Source':
+                source = self.db.get_source_from_handle(handle)
+                name = source.get_title()
+                gramps_id = source.get_gramps_id()
+                self.model.add([_("Source"),gramps_id,name],(4,handle))
+                self.any_refs = True
+                
+            elif cls_name == 'Media':
+                obj = self.db.get_object_from_handle(handle)
+                name = obj.get_description()
+                gramps_id = obj.get_gramps_id()
+                self.model.add([_("Media"),gramps_id,name],(5,handle))
 
-        if self.cursor_type == 'Source':
-            while self.data:
-                handle,val = self.data
-                source = RelLib.Source()
-                source.unserialize(val)
-                if source.has_source_reference(source_handle):
-                    name = source.get_title()
-                    gramps_id = source.get_gramps_id()
-                    self.model.add([_("Source"),gramps_id,name],(4,handle))
-                    self.any_refs = True
-                self.data = self.cursor.next()
-                if gtk.events_pending():
-                    return True
-            self.cursor.close()
-            
-            self.cursor_type = 'Media'
-            self.cursor = self.db.get_media_cursor()
-            self.data = self.cursor.first()
+            elif cls_name == 'Repository':
+                pass # handled by seperate Repositories tab in UI
 
-        if self.cursor_type == 'Media':
-            while self.data:
-                handle,val = self.data
-                obj = RelLib.MediaObject()
-                obj.unserialize(val)
-                if obj.has_source_reference(source_handle):
-                    name = obj.get_description()
-                    gramps_id = obj.get_gramps_id()
-                    self.model.add([_("Media"),gramps_id,name],(5,handle))
-                    self.any_refs = True
-                self.data = self.cursor.next()
-                if gtk.events_pending():
-                    return True
-            self.cursor.close()
+            else:
+                # If we get here it means there is a new Primary object type
+                # that has been added to the database. Print a warning
+                # to remind us that this code need updating.
+                log("WARNING: Unhandled Primary object type returned from "
+                    "find_backlink_handles()\n")
+                
+            if gtk.events_pending():
+                return True
 
         if self.any_refs:
             Utils.bold_label(self.refs_label,self.top)
@@ -603,7 +561,8 @@ class EditSource:
             Utils.unbold_label(self.refs_label,self.top)
             
         self.ref_not_loaded = 0
-        self.cursor_type = None
+        self.backlink_generator = None
+        
         return False
 
     def on_source_apply_clicked(self,obj):
