@@ -40,7 +40,7 @@ pkgdata_PYTHON = \
 	_SourceRef.py\
 	_UrlBase.py\
 	_Url.py\
-	_Witness.py\
+	_Witness.py
 
 pkgpyexecdir = @pkgpyexecdir@/RelLib
 pkgpythondir = @pkgpythondir@/RelLib
