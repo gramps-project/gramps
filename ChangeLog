@@ -15,6 +15,9 @@
 	privacy flag and comment to the privacy flag and note of the new
 	EventRef for old witness_by_ID references.
 
+	* src/GrampsDb/Makefile.am, .cvsignore: Add to CVS.
+	* configure.in: Create Makefile in new directory.
+
 2005-12-21 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/EditSource.py: fixed small mistake in display_references
 
