@@ -190,7 +190,8 @@ class GrampsWindowManager:
     def get_item_from_track(self,track):
         # Recursively find an item given track sequence
         item = self.window_tree
-        #print "track", track
+        print "item", item
+        print "track", track
         for index in track:
             item = item[index]
         return item
@@ -240,6 +241,9 @@ class GrampsWindowManager:
         # obtain parent item and remove our item from it
         parent_item = self.get_item_from_track(parent_track)
         parent_item.pop(child_in_parent)
+        # Adjust each item following the removed one
+        # so that it's track is down by one on this level
+        # MISSING CODE HERE
         # Rebuild menu
         self.build_windows_menu()
 
@@ -250,7 +254,7 @@ class GrampsWindowManager:
         if item.window_id:
             self.id2item[item.window_id] = item
 
-        #print "Adding: Track:", track
+        print "Adding: Track:", track
 
         # Make sure we have a track
         parent_item = self.get_item_from_track(track)
@@ -295,7 +299,8 @@ class GrampsWindowManager:
         data.write('<menuitem action="%s"/>' % self.generate_id(i.window_id))
 
         action_data.append(("M:"+idval,None,i.submenu_label,None,None,None))
-        action_data.append((idval,None,i.menu_label,None,None,self.call_back_factory(i)))
+        action_data.append((idval,None,i.menu_label,None,None,
+                            self.call_back_factory(i)))
 
         if len(mlist) > 1:
             for i in mlist[1:]:
@@ -303,8 +308,10 @@ class GrampsWindowManager:
                     self.display_menu_list(data,action_data,i)
                 else:
                     idval = self.generate_id(i.window_id)
-                    data.write('<menuitem action="%s"/>' %self.generate_id(i.window_id))        
-                    action_data.append((idval,None,i.menu_label,None,None,self.call_back_factory(i)))
+                    data.write('<menuitem action="%s"/>'
+                               % self.generate_id(i.window_id))        
+                    action_data.append((idval,None,i.menu_label,None,None,
+                                        self.call_back_factory(i)))
         data.write('</menu>')
         
     def build_windows_menu(self):
@@ -379,7 +386,7 @@ class ManagedWindow:
             self.uistate = uistate
             self.track = self.uistate.gwm.add_item(track,self)
 
-    def close(self):
+    def close(self,obj=None):
         """
         Close itself.
 
