@@ -1220,6 +1220,9 @@ class GrampsBSDDB(GrampsDbBase):
                     event_ref = EventRef()
                     event_ref.ref = event.handle
                     event_ref.role = (EventRef.WITNESS,'')
+                    # Add comment
+                    if witness.comment:
+                        event_ref.set_note(witness.comment)
                     person = self.get_person_from_handle(witness.val)
                     person.event_ref_list.append(event_ref)
                     self.commit_person(person,trans)
