@@ -121,12 +121,10 @@ class Event(PrimaryObject,SourceNote,MediaBase,DateBase,PlaceBase):
             self.description = source.description
             self.type = source.type
             self.cause = source.cause
-            self.ext_witness_list = source.ext_witness_list
         else:
             self.description = ""
             self.type = (Event.CUSTOM,"")
             self.cause = ""
-            self.ext_witness_list = []
 
     def serialize(self):
         """
@@ -145,9 +143,9 @@ class Event(PrimaryObject,SourceNote,MediaBase,DateBase,PlaceBase):
         @rtype: tuple
         """
         return (self.handle, self.gramps_id, self.type, self.date,
-                self.description, self.place, self.cause, self.private,
-                self.source_list, self.note, self.media_list, self.change,
-                self.marker, self.private)
+                self.description, self.place, self.cause,
+                self.source_list, self.note, self.media_list,
+                self.change, self.marker, self.private)
 
     def unserialize(self,data):
         """
@@ -159,9 +157,8 @@ class Event(PrimaryObject,SourceNote,MediaBase,DateBase,PlaceBase):
         @type data: tuple
         """
         (self.handle, self.gramps_id, self.type, self.date,
-         self.description, self.place, self.cause, self.private,
-         self.source_list, self.note, self.media_list, self.change,
-         self.marker, self.private) = data
+         self.description, self.place, self.cause, self.source_list, self.note,
+         self.media_list, self.change, self.marker, self.private) = data
 
     def _has_handle_reference(self,classname,handle):
         if classname == 'Place':
@@ -356,20 +353,3 @@ class Event(PrimaryObject,SourceNote,MediaBase,DateBase,PlaceBase):
         @rtype: str
         """
         return self.description
-
-    def add_ext_witness(self,witness):
-        assert type(witness) == tuple
-        self.ext_witness_list.append(witness)
-
-    def remove_ext_witness(self,witness):
-        assert type(witness) == tuple
-        if witness in self.ext_witness_list:
-            self.ext_witness_list.remove(witness)
-            return True
-        return False
-
-    def get_ext_witness_list(self):
-        return self.ext_witness_list
-
-    def set_ext_witness_list(self,witness_list):
-        self.ext_witness_list = witness_list
