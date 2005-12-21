@@ -3,6 +3,12 @@
 	* src/RelLib/Makefile.am: Ship new files;
 	* src/RelLib/ various files: add more files.
 
+	* src/GrampsBSDDB.py (gramps_upgrade_9): Upgrade witness list in
+	the old Event object.
+	* src/RelLib/_Event.py: Remove external witnesses altogether.
+	* src/RelLib/_Witness.py: Make even emptier (needed for upgrade only).
+	* src/RelLib/__init__.py: Expose Witness (needed for upgrade only).
+
 2005-12-20 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/RelLib/_helper.py: removed get_backlink_handles
 	* test/RelLib_Test.py: removed test for get_backlink_handles

@@ -29,7 +29,7 @@ Witness class for GRAMPS
 # Witness class
 #
 #-------------------------------------------------------------------------
-class Witness(BaseObject,PrivacyBase):
+class Witness:
     # FIXME: this class is only present to enable db upgrade
     def __init__(self):
         pass

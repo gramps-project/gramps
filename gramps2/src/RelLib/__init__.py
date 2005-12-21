@@ -37,6 +37,7 @@ from _Note import Note
 from _RepoRef import RepoRef
 from _SourceRef import SourceRef
 from _Url import Url
+from _Witness import Witness
 
 # Primary objects
 from _PrimaryObject import PrimaryObject

@@ -1042,25 +1042,21 @@ class GrampsBSDDB(GrampsDbBase):
             # Change every event handle to the EventRef
             if birth_handle:
                 event_ref = EventRef()
-                event_ref.set_reference_handle(birth_handle)
-                event_ref.set_role((EventRef.PRIMARY,''))
+                event_ref.ref = birth_handle
+                event_ref.role = (EventRef.PRIMARY,'')
                 person.birth_ref = event_ref
 
             if death_handle:
                 event_ref = EventRef()
-                event_ref.set_reference_handle(death_handle)
-                event_ref.set_role((EventRef.PRIMARY,''))
+                event_ref.ref = death_handle
+                event_ref.role = (EventRef.PRIMARY,'')
                 person.death_ref = event_ref
 
-            event_ref_list = []
             for event_handle in event_list:
                 event_ref = EventRef()
-                event_ref.set_reference_handle(event_handle)
-                event_ref.set_role((EventRef.PRIMARY,''))
-                event_ref_list.append(event_ref)
-
-            if event_ref_list:
-                person.event_ref_list = event_ref_list[:]
+                event_ref.ref = event_handle
+                event_ref.role = (EventRef.PRIMARY,'')
+                person.event_ref_list.append(event_ref)
 
             # In all Name instances, convert type from string to a tuple
             name_conversion = {
@@ -1114,14 +1110,11 @@ class GrampsBSDDB(GrampsDbBase):
                 family.marker = (PrimaryObject.MARKER_COMPLETE,"")
                 
             # Change every event handle to the EventRef
-            event_ref_list = []
             for event_handle in event_list:
                 event_ref = EventRef()
-                event_ref.set_reference_handle(event_handle)
-                event_ref.set_role((EventRef.PRIMARY,''))
-                event_ref_list.append(event_ref)
-            if event_ref_list:
-                family.event_ref_list = event_ref_list[:]
+                event_ref.ref = event_handle
+                event_ref.role = (EventRef.PRIMARY,'')
+                family.event_ref_list.append(event_ref)
 
             # In all Attributes, convert type from string to a tuple
             for attribute in family.attribute_list:
@@ -1183,7 +1176,6 @@ class GrampsBSDDB(GrampsDbBase):
             "Will"                : (Event.WILL,""),
             }
 
-        # Remove Witness from every event and convert name to type
 #        cursor = self.get_event_cursor()
 #        data = cursor.first()
 #        while data:
@@ -1194,8 +1186,8 @@ class GrampsBSDDB(GrampsDbBase):
             event.handle = handle
             (junk_handle, event.gramps_id, old_type, event.date,
              event.description, event.place, event.cause, event.private,
-             event.source_list, event.note, witness, event.media_list,
-             event.change) = info
+             event.source_list, event.note, witness_list,
+             event.media_list, event.change) = info
 
             if old_type:
                 if event_conversion.has_key(old_type):
@@ -1210,6 +1202,27 @@ class GrampsBSDDB(GrampsDbBase):
             for media_ref in event.media_list:
                 convert_mediaref_9(media_ref)
 
+            # Upgrade witness -- no more Witness class
+            if type(witness_list) != list:
+                witness_list = []
+            for witness in witness_list:
+                if witness.type == 0:     # witness name recorded
+                    # Add name and comment to the event note
+                    note_text = event.get_note() + "\n" + \
+                                _("Witness name: %s") % witness.val
+                    if witness.comment:
+                        note_text += "\n" + _("Wittness comment: %s") \
+                                     % witness.comment
+                    event.set_note(note_text)
+                elif witness.type == 1:   # witness ID recorded
+                    # Add an EventRef from that person
+                    # to this event using ROLE_WITNESS role
+                    event_ref = EventRef()
+                    event_ref.ref = event.handle
+                    event_ref.role = (EventRef.WITNESS,'')
+                    person = self.get_person_from_handle(witness.val)
+                    person.event_ref_list.append(event_ref)
+                    self.commit_person(person,trans)
             self.commit_event(event,trans)
 #            data = cursor.next()
 #        cursor.close()
