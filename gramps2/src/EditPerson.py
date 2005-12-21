@@ -107,8 +107,15 @@ class EditPerson(DisplayState.ManagedWindow):
         if not win_menu_label.strip():
             win_menu_label = _("New Person")
 
+        if person:
+            self.orig_handle = person.get_handle()
+            win_key = self.orig_handle
+        else:
+            self.orig_handle = ""
+            win_key = self
+            
         DisplayState.ManagedWindow.__init__(
-            self, uistate, [], self, win_menu_label, _('Edit Person'))
+            self, uistate, [], win_key, win_menu_label, _('Edit Person'))
 
         if self.already_exist:
             return
@@ -118,11 +125,6 @@ class EditPerson(DisplayState.ManagedWindow):
         self.uistate = uistate
         self.retval = const.UPDATE_PERSON
         
-        if person:
-            self.orig_handle = person.get_handle()
-        else:
-            self.orig_handle = ""
-            
         # UGLY HACK to refresh person object from handle if that exists
         # done to ensure that the person object is not stale, as it could
         # have been changed by something external (merge, tool, etc).

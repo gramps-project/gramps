@@ -8,6 +8,10 @@
 	Recursively walk the items under a given item and lower the track
 	entry.
 
+	* src/DisplayState.py: Factor out recursive action function.
+	* src/EditPerson.py: Use person handle to identify the window.
+	* src/EventEdit.py: Use more descriptive menu label.	
+
 2005-12-21 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/EditSource.py: fixed small mistake in display_references
 
