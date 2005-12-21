@@ -365,8 +365,7 @@ class Exporter:
         In the future, filter and other options may be added.
         """
         try:
-            import WriteGrdb
-            WriteGrdb.exportData(database,filename,person)
+            GrampsDb.gramps_db_writer_factory(const.app_gramps)(database,filename,person)
             return 1
         except IOError, msg:
             QuestionDialog.ErrorDialog( _("Could not write file: %s") % filename,

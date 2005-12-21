@@ -14,7 +14,8 @@ try:
 except NameError:
     from sets import Set as set
     
-import GrampsBSDDB
+import GrampsDb
+import const
 import RelLib
 
 logger = logging.getLogger('Gramps.GrampsDbTestBase')
@@ -27,7 +28,7 @@ class GrampsDbBaseTest(unittest.TestCase):
         self._tmpdir = tempfile.mkdtemp()
         self._filename = os.path.join(self._tmpdir,'test.grdb')
         
-        self._db = GrampsBSDDB.GrampsBSDDB()
+        self._db = GrampsDb.gramps_db_factory(const.app_gramps)()
         self._db.load(self._filename,
                       None, # callback
                       "w")

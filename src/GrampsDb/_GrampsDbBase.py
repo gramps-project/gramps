@@ -49,7 +49,7 @@ log = sys.stderr.write
 #-------------------------------------------------------------------------
 from RelLib import *
 import GrampsKeys
-import GrampsDBCallback
+from _GrampsDBCallback import GrampsDBCallback
 
 #-------------------------------------------------------------------------
 #
@@ -144,7 +144,7 @@ class GrampsCursor:
         """
         pass
 
-class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
+class GrampsDbBase(GrampsDBCallback):
     """
     GRAMPS database object. This object is a base class for all
     database interfaces.
@@ -196,7 +196,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         be created.
         """
 
-        GrampsDBCallback.GrampsDBCallback.__init__(self)
+        GrampsDBCallback.__init__(self)
         
         self.readonly = False
         self.rand = random.Random(time.time())
@@ -1671,7 +1671,7 @@ class Transaction:
             return self.last - self.first + 1
         return 0
 
-class DbState(GrampsDBCallback.GrampsDBCallback):
+class DbState(GrampsDBCallback):
 
     __signals__ = {
         'database-changed' : (GrampsDbBase,),
@@ -1680,7 +1680,7 @@ class DbState(GrampsDBCallback.GrampsDBCallback):
         }
 
     def __init__(self):
-        GrampsDBCallback.GrampsDBCallback.__init__(self)
+        GrampsDBCallback.__init__(self)
         self.db     = GrampsDbBase()
         self.open   = False
         self.active = None

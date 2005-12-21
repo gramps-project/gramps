@@ -33,7 +33,7 @@ from bsddb import dbshelve, db
 #
 #-------------------------------------------------------------------------
 from RelLib import *
-from GrampsDbBase import *
+from _GrampsDbBase import *
 import sets
 
 class GrampsInMemCursor(GrampsCursor):

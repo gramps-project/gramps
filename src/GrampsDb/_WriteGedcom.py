@@ -49,7 +49,7 @@ import RelLib
 import GenericFilter
 import const
 import Date
-import GedcomInfo
+import _GedcomInfo as GedcomInfo
 import Errors
 import ansel_utf8
 import Utils

@@ -57,7 +57,7 @@ from ansel_utf8 import ansel_to_utf8
 import Utils
 import GrampsMime
 from bsddb import db
-from GedcomInfo import *
+from _GedcomInfo import *
 from QuestionDialog import ErrorDialog, WarningDialog
 
 #-------------------------------------------------------------------------

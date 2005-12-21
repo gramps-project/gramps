@@ -26,10 +26,10 @@ of GEDCOM files.
 """
 
 from RelLib import *
-from GrampsInMemDB import *
+from _GrampsInMemDB import *
 
-import ReadGedcom
-import WriteGedcom
+import _ReadGedcom as ReadGedcom
+import _WriteGedcom as WriteGedcom
 
 #-------------------------------------------------------------------------
 #

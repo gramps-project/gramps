@@ -51,10 +51,7 @@ import DbPrompter
 import const
 import PluginMgr
 import GrampsKeys
-import GrampsDbBase
-import GrampsBSDDB
-import GrampsGEDDB
-import GrampsXMLDB
+import GrampsDb
 import GrampsCfg
 import Errors
 import DisplayTrace
@@ -556,7 +553,7 @@ class ViewManager:
                     self.state.db.close()
                 except:
                     pass
-                self.state.change_database(GrampsBSDDB.GrampsBSDDB())
+                self.state.change_database(GrampsDb.gramps_db_factory(app_gramps)())
                 self.read_file(filename)
                 self.state.db.request_rebuild()
                 self.change_page(None,None)
@@ -580,7 +577,7 @@ class ViewManager:
         
         success = False
         if filetype == const.app_gramps:
-            self.state.change_database(GrampsBSDDB.GrampsBSDDB())
+            self.state.change_database(GrampsDb.gramps_db_factory(db_type = const.app_gramps)())
             msgxml = gtk.glade.XML(const.gladeFile, "load_message","gramps")
             msg_top = msgxml.get_widget('load_message')
             msg_label = msgxml.get_widget('message')
@@ -596,12 +593,12 @@ class ViewManager:
             self.change_page(None,None)
             msg_top.destroy()
         elif filetype == const.app_gramps_xml:
-            self.state.change_database(GrampsXMLDB.GrampsXMLDB())
+            self.state.change_database(GrampsDb.gramps_db_factory(db_type = const.app_gramps_xml)())
             success = self.read_file(filename)
             self.state.db.request_rebuild()
             self.change_page(None,None)
         elif filetype == const.app_gedcom:
-            self.state.change_database(GrampsGEDDB.GrampsGEDDB())
+            self.state.change_database(GrampsDb.gramps_db_factory(db_type = const.app_gedcom)())
             success = self.read_file(filename)
             self.state.db.request_rebuild()
             self.change_page(None,None)
@@ -781,20 +778,18 @@ class ViewManager:
                     
             if filetype == const.app_gramps:
                 choose.destroy()
-                ReadGrdb.importData(self.state.db,filename)
+                GrampsDb.gramps_db_reader_factory(filetype)(self.state.db,filename)
                 self.parent.import_tool_callback()
                 return True
             elif filetype == const.app_gramps_xml:
                 choose.destroy()
-                import ReadXML
                 self.progress.show()
-                ReadXML.importData(self.state.db,filename,self.pulse_progressbar)
+                GrampsDb.gramps_db_reader_factory(filetype)(self.state.db,filename,self.pulse_progressbar)
                 self.progress.hide()
                 return True
             elif filetype == const.app_gedcom:
                 choose.destroy()
-                import ReadGedcom
-                ReadGedcom.importData(self.state.db,filename)
+                GrampsDb.gramps_db_reader_factory(filetype)(self.state.db,filename)
                 return True
 
             (the_path,the_file) = os.path.split(filename)

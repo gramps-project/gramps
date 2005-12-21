@@ -50,7 +50,6 @@ import RelLib
 import Date
 import DateEdit
 import DateHandler
-import GrampsDBCallback
 import AutoComp
 
 

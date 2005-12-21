@@ -41,7 +41,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import const
-import ReadXML
+import GrampsDb
 import GrampsMime
 import DbPrompter
 import QuestionDialog
@@ -407,18 +407,17 @@ class ArgHandler:
         Any errors will cause the os._exit(1) call.
         """
         if format == 'grdb':
-            import ReadGrdb
             filename = os.path.normpath(os.path.abspath(filename))
             try:
-                ReadGrdb.importData(self.parent.db,filename,None)
+                GrampsDb.gramps_db_reader_factory(const.app_gramps)(self.parent.db,filename,None)
             except:
                 print "Error importing %s" % filename
                 os._exit(1)
         elif format == 'gedcom':
-            import ReadGedcom
+            from GrampsDb import GedcomParser
             filename = os.path.normpath(os.path.abspath(filename))
             try:
-                g = ReadGedcom.GedcomParser(self.parent.db,filename,None)
+                g = GedcomParser(self.parent.db,filename,None)
                 g.parse_gedcom_file()
                 g.resolve_refns()
                 del g
@@ -427,7 +426,7 @@ class ArgHandler:
                 os._exit(1)
         elif format == 'gramps-xml':
             try:
-                ReadXML.importData(self.parent.db,filename,None,self.parent.cl)
+                GrampsDb.gramps_db_reader_factory(const.app_gramps_xml)(self.parent.db,filename,None,self.parent.cl)
             except:
                 print "Error importing %s" % filename
                 os._exit(1)
@@ -469,7 +468,7 @@ class ArgHandler:
             dbname = os.path.join(tmpdir_path,const.xmlFile)
 
             try:
-                ReadXML.importData(self.parent.db,dbname,None)
+                GrampsDb.gramps_db_reader_factory(const.app_gramps_xml)(self.parent.db,dbname,None)
             except:
                 print "Error importing %s" % filename
                 os._exit(1)
@@ -496,16 +495,14 @@ class ArgHandler:
         Any errors will cause the os._exit(1) call.
         """
         if format == 'grdb':
-            import WriteGrdb
             try:
-                WriteGrdb.exportData(self.parent.db,filename)
+                GrampsDb.gramps_db_writer_factory(const.app_gramps)(self.parent.db,filename)
             except:
                 print "Error exporting %s" % filename
                 os._exit(1)
         elif format == 'gedcom':
-            import WriteGedcom
             try:
-                gw = WriteGedcom.GedcomWriter(self.parent.db,None,1,filename)
+                gw = GrampsDb.GedcomWriter(self.parent.db,None,1,filename)
                 ret = gw.export_data(filename)
             except:
                 print "Error exporting %s" % filename
@@ -514,8 +511,7 @@ class ArgHandler:
             filename = os.path.normpath(os.path.abspath(filename))
             if filename:
                 try:
-                    import WriteXML
-                    g = WriteXML.XmlWriter(self.parent.db,None,1,1)
+                    g = GrampsDb.XmlWriter(self.parent.db,None,1,1)
                     ret = g.write(filename)
                 except:
                     print "Error exporting %s" % filename
