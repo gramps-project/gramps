@@ -9,6 +9,8 @@
 	* src/RelLib/_Witness.py: Make even emptier (needed for upgrade only).
 	* src/RelLib/__init__.py: Expose Witness (needed for upgrade only).
 
+	* src/DisplayState.py (ManagedWindow.close): Add default argument.
+
 2005-12-20 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/RelLib/_helper.py: removed get_backlink_handles
 	* test/RelLib_Test.py: removed test for get_backlink_handles
