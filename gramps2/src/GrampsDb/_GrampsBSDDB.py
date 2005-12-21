@@ -1211,7 +1211,7 @@ class GrampsBSDDB(GrampsDbBase):
                     note_text = event.get_note() + "\n" + \
                                 _("Witness name: %s") % witness.val
                     if witness.comment:
-                        note_text += "\n" + _("Wittness comment: %s") \
+                        note_text += "\n" + _("Witness comment: %s") \
                                      % witness.comment
                     event.set_note(note_text)
                 elif witness.type == 1:   # witness ID recorded
