@@ -1,4 +1,7 @@
 2005-12-21 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/EditRepository.py: hack to work with current state of Address
+
+2005-12-21 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GrampsDb: new package for all the db related modules
 	* src/GedcomInfo.py moved to src/GrampsDb/_GedcomInfo.py
 	* src/GrampsBSDDB.py moved to src/GrampsDb/_GrampsBSDDB.py
