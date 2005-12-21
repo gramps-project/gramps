@@ -310,43 +310,43 @@ class EditRepository:
         self.type_selector.set_values(repository.get_type())
         
         self.street = self.top_window.get_widget("repository_street")
-        self.street.set_text(repository.get_address().get_parish())
-        self.street.set_editable(mode)
-
         self.city = self.top_window.get_widget("repository_city")
-        self.city.set_text(repository.get_address().get_city())
-        self.city.set_editable(mode)
-
         self.county = self.top_window.get_widget("repository_county")
-        self.county.set_text(repository.get_address().get_county())
-        self.county.set_editable(mode)
-
         self.state = self.top_window.get_widget("repository_state")
-        self.state.set_text(repository.get_address().get_state())
-        self.state.set_editable(mode)
-
         self.postal = self.top_window.get_widget("repository_postal")
-        self.postal.set_text(repository.get_address().get_postal_code())
-        self.postal.set_editable(mode)
-
         self.country = self.top_window.get_widget("repository_country")
-        self.country.set_text(repository.get_address().get_country())
-        self.country.set_editable(mode)
-
         self.phone = self.top_window.get_widget("repository_phone")
-        self.phone.set_text(repository.get_address().get_phone())
-        self.phone.set_editable(mode)
-
         self.email = self.top_window.get_widget("repository_email")
-        self.email.set_text(repository.get_email())
-        self.email.set_editable(mode)
-
         self.search_url = self.top_window.get_widget("repository_search_url")
-        self.search_url.set_text(repository.get_search_url())
-        self.search_url.set_editable(mode)
-
         self.home_url = self.top_window.get_widget("repository_home_url")
-        self.home_url.set_text(repository.get_home_url())
+        
+        # FIXME: AddressBase has changed to support multiple addresses
+        # the UI does not support this yet so for the time being we
+        # just grab the first address
+        addresses = repository.get_address_list()
+
+        if len(addresses) != 0:
+            address = addresses[0]
+            self.street.set_text(address.get_street())
+            self.city.set_text(address.get_city())        
+            #self.county.set_text(address.get_county())
+            self.state.set_text(address.get_state())
+            self.postal.set_text(address.get_postal_code())
+            self.country.set_text(address.get_country())
+            self.phone.set_text(address.get_phone())
+            #self.email.set_text(repository.get_email())
+            #self.search_url.set_text(repository.get_search_url())
+            #self.home_url.set_text(repository.get_home_url())
+
+        self.street.set_editable(mode)
+        self.city.set_editable(mode)
+        self.county.set_editable(mode)
+        self.state.set_editable(mode)
+        self.postal.set_editable(mode)
+        self.country.set_editable(mode)
+        self.phone.set_editable(mode)
+        self.email.set_editable(mode)
+        self.search_url.set_editable(mode)
         self.home_url.set_editable(mode)
 
 
@@ -503,48 +503,29 @@ class EditRepository:
         repos_type = self.type_selector.get_values()
         if repos_type != self.repository.get_type():
             self.repository.set_type(repos_type)
+
+
+        # FIXME: AddressBase has changed to support multiple addresses
+        # the UI does not support this yet so for the time being we
+        # just grab the first address
+        addresses = self.repository.get_address_list()
+
+        if len(addresses) != 0:
+            address = addresses[0]
+        else:
+            address = RelLib.Address()
+
+        address.set_street(unicode(self.street.get_text()))
+        address.set_city(unicode(self.city.get_text()))
+        address.set_state(unicode(self.state.get_text()))
+        address.set_postal_code(unicode(self.postal.get_text()))
+        address.set_country(unicode(self.country.get_text()))
+        address.set_phone(unicode(self.phone.get_text()))
+        #address.set_search_url(unicode(self.search_url.get_text()))
+        #address.set_home_url(unicode(self.home_url.get_text()))
         
-
-        street = unicode(self.street.get_text())
-        if street != self.repository.get_address().get_parish():
-            self.repository.get_address().set_parish(street)
-
-        city = unicode(self.city.get_text())
-        if city != self.repository.get_address().get_city():
-            self.repository.get_address().set_city(city)
-
-        county = unicode(self.county.get_text())
-        if county != self.repository.get_address().get_county():
-            self.repository.get_address().set_county(county)
-
-        state = unicode(self.state.get_text())
-        if state != self.repository.get_address().get_state():
-            self.repository.get_address().set_state(state)
-
-        postal = unicode(self.postal.get_text())
-        if postal != self.repository.get_address().get_postal_code():
-            self.repository.get_address().set_postal_code(postal)
-            
-        country = unicode(self.country.get_text())
-        if country != self.repository.get_address().get_country():
-            self.repository.get_address().set_country(country)
-
-        phone = unicode(self.phone.get_text())
-        if phone != self.repository.get_address().get_phone():
-            self.repository.get_address().set_phone(phone)
-            
-        email = unicode(self.email.get_text())
-        if email != self.repository.get_email():
-            self.repository.set_email(email)
-
-        search_url = unicode(self.search_url.get_text())
-        if search_url != self.repository.get_search_url():
-            self.repository.set_search_url(search_url)
-
-        home_url = unicode(self.home_url.get_text())
-        if home_url != self.repository.get_home_url():
-            self.repository.set_home_url(home_url)
-
+        self.repository.set_address_list([address])
+        
         note = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                                   self.notes_buffer.get_end_iter(),False))
         if note != self.repository.get_note():
