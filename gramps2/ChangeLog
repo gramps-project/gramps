@@ -1,4 +1,32 @@
 2005-12-21 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/GrampsDb: new package for all the db related modules
+	* src/GedcomInfo.py moved to src/GrampsDb/_GedcomInfo.py
+	* src/GrampsBSDDB.py moved to src/GrampsDb/_GrampsBSDDB.py
+	* src/GrampsDBCallback.py moved to src/GrampsDb/_GrampsDBCallback.py
+	* src/GrampsDbBase.py moved to src/GrampsDb/_GrampsDbBase.py
+	* src/GrampsGEDDB.py moved to src/GrampsDb/_GrampsGEDDB.py
+	* src/GrampsInMemDB.py moved to src/GrampsDb/_GrampsInMemDB.py
+	* src/GrampsXMLDB.py moved to src/GrampsDb/_GrampsXMLDB.py
+	* src/ReadGedcom.py moved to src/GrampsDb/_ReadGedcom.py
+	* src/eadGrdb.py moved to src/GrampsDb/_ReadGrdb.py
+	* src/ReadXML.py moved to src/GrampsDb/_ReadXML.py
+	* src/WriteGedcom.py moved to src/GrampsDb/_WriteGedcom.py
+	* src/WriteGrdb.py moved to src/GrampsDb/_WriteGrdb.py
+	* src/WriteXML.py moved to src/GrampsDb/_WriteXML.py
+	* src/GrampsDb/__init__.py: new package export file
+	* src/GrampsDb/_GrampsDbExceptions.py: new module for GrampDb exceptions
+	* src/GrampsDb/_GrampsDbFactories.py: new module for factory methods
+	* test/RelLib: new test directory
+	* test/RelLib: new test directory
+	* test/GrampsDbBase_Test.py moved to test/GrampsDb/GrampsDbBase_Test.py
+	* test/GrampsDbTestBase.py moved to test/GrampsDb/GrampsDbTestBase.py
+	* test/RelLib_Test.py moved to test/RelLib/RelLib_Test.py
+	* src/ArgHandler.py src/DbPrompter.py src/DisplayState.py 
+	src/Exporter.py src/RepositoryRefEdit.py src/ViewManager.py 
+	src/gramps_main.py: modified to work with new GrampsDb package
+	* test/RunAllTests.py: find tests in subdirectories
+	
+2005-12-21 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/RelLib/_SourceRef.py: added import for Note class
 	
 2005-12-20  Alex Roitman  <shura@gramps-project.org>

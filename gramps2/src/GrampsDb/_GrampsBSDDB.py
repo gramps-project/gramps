@@ -50,7 +50,7 @@ except NameError:
 #
 #-------------------------------------------------------------------------
 from RelLib import *
-from GrampsDbBase import *
+from _GrampsDbBase import *
 
 _MINVERSION = 5
 _DBVERSION = 9

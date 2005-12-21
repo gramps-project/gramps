@@ -40,8 +40,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import GrampsDbBase
-import GrampsDBCallback
+import GrampsDb
 import GrampsKeys
 import NameDisplay
 
@@ -50,7 +49,7 @@ import NameDisplay
 # History manager
 #
 #-------------------------------------------------------------------------
-class History(GrampsDBCallback.GrampsDBCallback):
+class History(GrampsDb.GrampsDBCallback):
 
     __signals__ = {
         'changed'      : (list,),
@@ -58,7 +57,7 @@ class History(GrampsDBCallback.GrampsDBCallback):
         }
 
     def __init__(self):
-        GrampsDBCallback.GrampsDBCallback.__init__(self)
+        GrampsDb.GrampsDBCallback.__init__(self)
         self.history = []
         self.mhistory = []
         self.index = -1
@@ -405,7 +404,7 @@ class ManagedWindow:
 # Gramps Display State class
 #
 #-------------------------------------------------------------------------
-class DisplayState(GrampsDBCallback.GrampsDBCallback):
+class DisplayState(GrampsDb.GrampsDBCallback):
 
     __signals__ = {
         }
@@ -414,7 +413,7 @@ class DisplayState(GrampsDBCallback.GrampsDBCallback):
         self.dbstate = dbstate
         self.uimanager = uimanager
         self.window = window
-        GrampsDBCallback.GrampsDBCallback.__init__(self)
+        GrampsDb.GrampsDBCallback.__init__(self)
         self.status = status
         self.status_id = status.get_context_id('GRAMPS')
         self.phistory = History()

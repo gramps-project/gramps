@@ -13,14 +13,64 @@ try:
     set()
 except NameError:
     from sets import Set as set
-    
-import GrampsBSDDB
+
+import const
 import RelLib
 
 logger = logging.getLogger('Gramps.GrampsDbBase_Test')
 
 from GrampsDbTestBase import GrampsDbBaseTest
-    
+import GrampsDb
+
+class FactoryTest(unittest.TestCase):
+    """Test the GrampsDb Factory classes."""
+
+    def test_gramps_db_factory(self):
+        """test than gramps_db_factory returns the correct classes."""
+        
+        cls = GrampsDb.gramps_db_factory(db_type = const.app_gramps)
+        assert cls.__name__ == "GrampsBSDDB", \
+               "Returned class is %s " % str(cls.__class__.__name__)
+
+        cls = GrampsDb.gramps_db_factory(db_type = const.app_gramps_xml)
+        assert cls.__name__ == "GrampsXMLDB", \
+               "Returned class is %s " % str(cls.__class__.__name__)
+
+        cls = GrampsDb.gramps_db_factory(db_type = const.app_gedcom)
+        assert cls.__name__ == "GrampsGEDDB", \
+               "Returned class is %s " % str(cls.__class__.__name__)
+
+        self.assertRaises(GrampsDb.GrampsDbException, GrampsDb.gramps_db_factory, "gibberish")
+
+    def test_gramps_db_writer_factory(self):
+        """Test that gramps_db_writer_factory returns the correct method."""
+
+        md = GrampsDb.gramps_db_writer_factory(db_type = const.app_gramps)
+        assert callable(md), "Returned method is %s " % str(md)
+
+        md = GrampsDb.gramps_db_writer_factory(db_type = const.app_gramps_xml)
+        assert callable(md), "Returned method is %s " % str(md)
+
+        md = GrampsDb.gramps_db_writer_factory(db_type = const.app_gedcom)
+        assert callable(md), "Returned method is %s " % str(md)
+
+        self.assertRaises(GrampsDb.GrampsDbException, GrampsDb.gramps_db_writer_factory, "gibberish")
+
+    def test_gramps_db_reader_factory(self):
+        """Test that gramps_db_reader_factory returns the correct method."""
+
+        md = GrampsDb.gramps_db_reader_factory(db_type = const.app_gramps)
+        assert callable(md), "Returned method is %s " % str(md)
+
+        md = GrampsDb.gramps_db_reader_factory(db_type = const.app_gramps_xml)
+        assert callable(md), "Returned method is %s " % str(md)
+
+        md = GrampsDb.gramps_db_reader_factory(db_type = const.app_gedcom)
+        assert callable(md), "Returned method is %s " % str(md)
+
+        self.assertRaises(GrampsDb.GrampsDbException, GrampsDb.gramps_db_reader_factory, "gibberish")
+
+        
         
 class ReferenceMapTest (GrampsDbBaseTest):
     """Test methods on the GrampsDbBase class that are related to the reference_map
@@ -180,6 +230,7 @@ class ReferenceMapTest (GrampsDbBaseTest):
         
 def testSuite():
     suite = unittest.makeSuite(ReferenceMapTest,'test')
+    suite.addTests(unittest.makeSuite(FactoryTest,'test'))
     return suite
 
 def perfSuite():

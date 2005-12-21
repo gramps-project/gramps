@@ -35,7 +35,7 @@ from gettext import gettext as _
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import GrampsBSDDB
+from _GrampsBSDDB import GrampsBSDDB
 from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -47,7 +47,7 @@ def exportData(database, filename, person=None, callback=None, cl=False):
 
     filename = os.path.normpath(filename)
 
-    new_database = GrampsBSDDB.GrampsBSDDB()
+    new_database = GrampsBSDDB()
     try:
         new_database.load(filename,callback)
     except:

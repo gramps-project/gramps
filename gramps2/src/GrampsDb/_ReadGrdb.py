@@ -37,7 +37,7 @@ import sets
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import GrampsBSDDB
+from _GrampsBSDDB import GrampsBSDDB
 from QuestionDialog import ErrorDialog
 import Errors
 
@@ -50,7 +50,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
 
     filename = os.path.normpath(filename)
 
-    other_database = GrampsBSDDB.GrampsBSDDB()
+    other_database = GrampsBSDDB()
     try:
         other_database.load(filename,callback)
     except:

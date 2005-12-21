@@ -7,7 +7,6 @@ import time
 import traceback
 import sys
 
-sys.path.append('../src')
 
 try:
     set()
@@ -19,9 +18,8 @@ import RelLib
 
 logger = logging.getLogger('Gramps.RelLib_Test')
 
-from GrampsDbTestBase import GrampsDbBaseTest
     
-class PrimaryObjectTest (GrampsDbBaseTest):
+class PrimaryObjectTest (unittest.TestCase):
     """Test methods on the PrimaryObject class"""
     
 

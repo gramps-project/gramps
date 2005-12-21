@@ -38,8 +38,7 @@ import PersonView
 import RepositoryView
 import GrampsDisplay
 import RelLib
-import GrampsDbBase
-import GrampsBSDDB
+import GrampsDb
 import PedView
 import MapView
 import FamilyView
@@ -155,7 +154,7 @@ class Gramps:
 
         register_stock_icons()
         
-        state = GrampsDbBase.DbState()
+        state = GrampsDb.DbState()
         vm = ViewManager.ViewManager(state)
         vm.register_view(PersonView.PersonView)
         vm.register_view(FamilyView.FamilyView)

@@ -50,15 +50,9 @@ import Utils
 import const
 import QuestionDialog
 import PluginMgr
-import GrampsBSDDB
-import GrampsXMLDB
-import GrampsGEDDB
+import GrampsDb
 import GrampsKeys
 import RecentFiles
-import ReadGrdb
-import WriteGrdb
-import WriteXML
-import WriteGedcom
 import GrampsDisplay
 
 from bsddb import db
@@ -353,18 +347,16 @@ class ImportDbPrompter:
                     
             if filetype == const.app_gramps:
                 choose.destroy()
-                ReadGrdb.importData(self.parent.db,filename)
+                GrampsDb.gramps_db_reader_factory(filetype)(self.parent.db,filename)
                 self.parent.import_tool_callback()
                 return True
             elif filetype == const.app_gramps_xml:
                 choose.destroy()
-                import ReadXML
-                ReadXML.importData(self.parent.db,filename,self.parent.update_bar)
+                GrampsDb.gramps_db_reader_factory(filetype)(self.parent.db,filename,self.parent.update_bar)
                 return True
             elif filetype == const.app_gedcom:
                 choose.destroy()
-                import ReadGedcom
-                ReadGedcom.importData(self.parent.db,filename)
+                GrampsDb.gramps_db_reader_factory(filetype)(self.parent.db,filename)
                 return True
 
             (the_path,the_file) = os.path.split(filename)
@@ -443,7 +435,7 @@ class NewNativeDbPrompter:
                     close(self.parent)
                 except:
                     pass
-                self.parent.db = GrampsBSDDB.GrampsBSDDB()
+                self.parent.db = GrampsDb.gramps_db_factory(const.app_gramps)()
                 self.parent.read_file(filename)
                 # Add the file to the recent items
                 RecentFiles.recent_files(filename,const.app_gramps)
@@ -530,17 +522,17 @@ class NewSaveasDbPrompter:
                         _('File type "%s" is unknown to GRAMPS.\n\nValid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM.') % filetype)
                     return False
                 if filetype == const.app_gramps:
-                    WriteGrdb.exportData(self.parent.db,filename,None,None)
+                    GrampsDb.gramps_db_writer_factory(filetype)(self.parent.db,filename,None,None)
                     close(self.parent)
-                    self.parent.db = GrampsBSDDB.GrampsBSDDB()
+                    self.parent.db = GrampsDb.gramps_db_factory(filetype)()
                 elif filetype == const.app_gramps_xml:
-                    WriteXML.exportData(self.parent.db,filename,None,None)
+                    GrampsDb.gramps_db_writer_factory(filetype)(self.parent.db,filename,None,None)
                     close(self.parent)
-                    self.parent.db = GrampsXMLDB.GrampsXMLDB()
+                    self.parent.db = GrampsDb.gramps_db_factory(filetype)()
                 elif filetype == const.app_gedcom:
-                    WriteGedcom.exportData(self.parent.db,filename,None,None)
+                    GrampsDb.gramps_db_writer_factory(filetype)(self.parent.db,filename,None,None)
                     close(self.parent)
-                    self.parent.db = GrampsGEDDB.GrampsGEDDB()
+                    self.parent.db = GrampsDb.gramps_db_factory(filetype)()
                 self.parent.read_file(filename)
                 # Add the file to the recent items
                 RecentFiles.recent_files(filename,const.app_gramps)
@@ -574,8 +566,8 @@ def open_native(parent,filename,filetype):
     GrampsKeys.save_last_import_dir(the_path)
         
     success = False
-    if filetype == const.app_gramps:
-        state.db = GrampsBSDDB.GrampsBSDDB()
+    if filetype == const.app_gramps:        
+        state.db = GrampsDb.gramps_db_factory(filetype)()
         msgxml = gtk.glade.XML(const.gladeFile, "load_message","gramps")
         msg_top = msgxml.get_widget('load_message')
         msg_label = msgxml.get_widget('message')
@@ -589,10 +581,10 @@ def open_native(parent,filename,filetype):
         success = self.read_file(filename,update_msg)
         msg_top.destroy()
     elif filetype == const.app_gramps_xml:
-        state.db = GrampsXMLDB.GrampsXMLDB()
+        state.db = GrampsDb.gramps_db_factory(filetype)()
         success = self.read_file(filename)
     elif filetype == const.app_gedcom:
-        state.db = GrampsGEDDB.GrampsGEDDB()
+        state.db = GrampsDb.gramps_db_factory(filetype)()
         success = self.read_file(filename)
 
     #if success:

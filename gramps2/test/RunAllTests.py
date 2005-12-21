@@ -5,8 +5,11 @@
 import logging
  
 import os
+import sys
 import unittest
 from optparse import OptionParser
+
+sys.path.append('../src')
 
 def make_parser():
     usage = "usage: %prog [options]"
@@ -19,18 +22,29 @@ def make_parser():
 
 
 def getTestSuites():
+    # Sorry about this line, but it is the easiest way of doing it.
+    # It just walks the filetree from '.' downwards and returns
+    # a tuple per directory of (dirpatch,filelist) if the directory
+    # contains any test files.
     
-    test_modules = [ i for i in os.listdir('.') if i[-8:] == "_Test.py" ]
+    paths = [(f[0],f[2]) for f in os.walk('.') \
+             if len ([i for i in f[2] \
+                      if i[-8:] == "_Test.py"]) ]
 
-    test_suites = []
-    perf_suites = []
-    for module in test_modules:
-        mod = __import__(module[:-3])
-        test_suites.append(mod.testSuite())
-        try:
-            perf_suites.append(mod.perfSuite())
-        except:
-            pass
+    for (dir,test_modules) in paths:
+        sys.path.append(dir)
+
+        test_suites = []
+        perf_suites = []
+        for module in test_modules:
+            if module[-8:] != "_Test.py":
+                break
+            mod = __import__(module[:-3])
+            test_suites.append(mod.testSuite())
+            try:
+                perf_suites.append(mod.perfSuite())
+            except:
+                pass
 
     return (test_suites,perf_suites)
 

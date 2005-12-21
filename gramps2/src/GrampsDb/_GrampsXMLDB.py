@@ -26,10 +26,10 @@ of GRAMPS XML format.
 """
 
 from RelLib import *
-from GrampsInMemDB import *
+from _GrampsInMemDB import *
 
-import ReadXML
-import WriteXML
+import _ReadXML as ReadXML
+import _WriteXML as WriteXML
 
 #-------------------------------------------------------------------------
 #
