@@ -12,7 +12,8 @@
 	* src/EditPerson.py: Use person handle to identify the window.
 	* src/EventEdit.py: Use more descriptive menu label.
 	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Convert witness
-	comment to the EventRef note for old witness_by_ID references.
+	privacy flag and comment to the privacy flag and note of the new
+	EventRef for old witness_by_ID references.
 
 2005-12-21 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/EditSource.py: fixed small mistake in display_references
