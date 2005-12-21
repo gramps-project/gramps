@@ -553,7 +553,7 @@ class ViewManager:
                     self.state.db.close()
                 except:
                     pass
-                self.state.change_database(GrampsDb.gramps_db_factory(app_gramps)())
+                self.state.change_database(GrampsDb.gramps_db_factory(const.app_gramps)())
                 self.read_file(filename)
                 self.state.db.request_rebuild()
                 self.change_page(None,None)

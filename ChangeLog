@@ -1,3 +1,7 @@
+2005-12-21  Don Allingham  <don@gramps-project.org>
+	* src/DisplayState.py: remove print statements
+	* src/ViewManger.py: Fix const.app_* 
+
 2005-12-21  Alex Roitman  <shura@gramps-project.org>
 	* src/DisplayState.py (remove_item): Add code to adjust other
 	item's tracks after deleting an item; (move_item_down):
