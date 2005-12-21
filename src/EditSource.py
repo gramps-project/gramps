@@ -512,7 +512,7 @@ class EditSource:
                 self.model.add([_("Person"),gramps_id,name],(0,handle))
                 
             elif cls_name == 'Event':
-                event = self.db.get_event_from_handle()
+                event = self.db.get_event_from_handle(handle)
                 name = event.get_name()
                 gramps_id = event.get_gramps_id()
                 self.model.add([_("Event"),gramps_id,name],(2,handle))
