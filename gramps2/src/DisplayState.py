@@ -189,8 +189,6 @@ class GrampsWindowManager:
     def get_item_from_track(self,track):
         # Recursively find an item given track sequence
         item = self.window_tree
-        print "item", item
-        print "track", track
         for index in track:
             item = item[index]
         return item
@@ -270,8 +268,6 @@ class GrampsWindowManager:
         # instead of spawning a new one
         if item.window_id:
             self.id2item[item.window_id] = item
-
-        print "Adding: Track:", track
 
         # Make sure we have a track
         parent_item = self.get_item_from_track(track)
