@@ -89,6 +89,17 @@ class ReferenceMapTest (GrampsDbBaseTest):
         assert len(references) == 1
         assert references[0] == (RelLib.Person.__name__,person.get_handle())
 
+    def test_backlink_for_repository(self):
+        """check that the source / repos backlink lookup works."""
+
+        repos = self._add_repository()
+        source = self._add_source(repos=repos)
+        
+        references = [ ref for ref in self._db.find_backlink_handles(repos.get_handle()) ]
+
+        assert len(references) == 1
+        assert references[0] == (RelLib.Source.__name__,source.get_handle())
+
     def test_class_limited_lookup(self):
         """check that class limited lookups work."""
 
