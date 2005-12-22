@@ -95,29 +95,27 @@ def get_place(field,pmap,db):
 # EventEditor class
 #
 #-------------------------------------------------------------------------
-class EventEditor:
+class EventEditor(DisplayState.ManagedWindow):
 
-    def __init__(self,event,dbstate,uistate):
-        #self.parent = parent
+    def __init__(self,event,dbstate,uistate,track=[]):
         self.db = dbstate.db
+        self.uistate = uistate
+        self.dbstate = dbstate
+        self.track = track
+        
         read_only = self.db.readonly
         noedit = self.db.readonly
-#        if event:
-#            if self.parent.child_windows.has_key(event.get_handle()):
-#                self.parent.child_windows[event.get_handle()].present(None)
-#                return
-#            else:
-#                self.win_key = event.get_handle()
-#        else:
-#            self.win_key = self
         self.event = event
-#        self.child_windows = {}
         self.path = self.db.get_save_path()
         self.plist = []
         self.pmap = {}
 
         self.dp = _dp
         self.dd = _dd
+
+        DisplayState.ManagedWindow.__init__(self, uistate, [], event)
+        if self.already_exist:
+            return
 
         # build list for menu
        ##  values = sets.Set(elist)
@@ -184,7 +182,7 @@ class EventEditor:
         del_src = self.top.get_widget('del_src')
         del_src.set_sensitive(not noedit)
 
-        self.sourcetab = Sources.SourceTab(
+        self.sourcetab = Sources.SourceTab(self.dbstate, self.uistate, self.track,
             self.srcreflist, self, self.top, self.window, self.slist,
             add_src, self.top.get_widget('edit_src'), del_src,
             self.db.readonly)
@@ -263,69 +261,32 @@ class EventEditor:
 
         Utils.bold_label(self.general_label)
 
-#        try:
-#            self.window.set_transient_for(self.parent.window)
-#        except AttributeError:
-#            pass
-#        self.add_itself_to_menu()
+        self.window.set_transient_for(self.parent_window)
         self.window.show()
+
+    def build_menu_names(self,event):
+        if event:
+            win_menu_label = event.get_type()[1]
+        if not win_menu_label.strip():
+            win_menu_label = _("New Place")
+        return (win_menu_label,_('Edit Place'))
+
+    def build_window_key(self,obj):
+        if obj:
+            win_key = obj.get_handle()
+        else:
+            win_key = self
 
     def on_delete_event(self,obj,b):
         self.gladeif.close()
         self.gallery.close()
-        self.close_child_windows()
-        self.remove_itself_from_menu()
         gc.collect()
 
     def close(self,obj):
         self.gladeif.close()
         self.gallery.close()
-        self.close_child_windows()
-        self.remove_itself_from_menu()
         self.window.destroy()
         gc.collect()
-
-    def close_child_windows(self):
-        return
-        for child_window in self.child_windows.values():
-            child_window.close(None)
-        self.child_windows = {}
-
-    def add_itself_to_menu(self):
-        return
-        self.parent.child_windows[self.win_key] = self
-        if not self.event:
-            label = _("New Event")
-        else:
-            (val,strval) = self.event.get_type()
-            if val == RelLib.Event.CUSTOM:
-                label = strval
-            else:
-                label = total_events[val]
-        if not label.strip():
-            label = _("New Event")
-        label = "%s: %s" % (_('Event'),label)
-        self.parent_menu_item = gtk.MenuItem(label)
-        self.parent_menu_item.set_submenu(gtk.Menu())
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-        self.winsmenu = self.parent_menu_item.get_submenu()
-        self.menu_item = gtk.MenuItem(_('Event Editor'))
-        self.menu_item.connect("activate",self.present)
-        self.menu_item.show()
-        self.winsmenu.append(self.menu_item)
-
-    def remove_itself_from_menu(self):
-        return
-        if self.window:
-            del self.parent.child_windows[self.win_key]
-        self.menu_item.destroy()
-        self.winsmenu.destroy()
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        return
-        self.window.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -443,33 +404,14 @@ class EventRefEditor(DisplayState.ManagedWindow):
         self.state = state
         self.uistate = uistate
         self.referent = referent
-        if event_ref:
-            win_key = event_ref
-        else:
-            win_key = self
-        if event:
-            if event.get_type()[0] == RelLib.Event.CUSTOM:
-                event_name = event.get_type()[1]
-            else:
-                try:
-                    event_name = Utils.personal_events[event.get_type()[0]]
-                except:
-                    event_name = Utils.family_events[event.get_type()[0]]
-            submenu_label = _('Event: %s')  % event_name
-        else:
-            submenu_label = _('New Event')
-        menu_label = _('Event Reference Editor')
 
-        DisplayState.ManagedWindow.__init__(
-            self, uistate, track, win_key, submenu_label, menu_label)
-
+        DisplayState.ManagedWindow.__init__(self, uistate, track, event_ref)
         if self.already_exist:
             return
 
         self.update = update
         self.event_ref = event_ref
         self.event = event
-        self.child_windows = {}
 
         self.pmap = {}
         for key in self.db.get_place_handles():
@@ -570,6 +512,7 @@ class EventRefEditor(DisplayState.ManagedWindow):
 
         self.srcreflist = self.event.get_source_references()
         self.sourcetab = Sources.SourceTab(
+            self.state, self.uistate, self.track,
             self.srcreflist, self, self.top, self.window, self.slist,
             add_src, self.top.get_widget('eer_edit_src'), del_src,
             self.db.readonly)
@@ -608,6 +551,26 @@ class EventRefEditor(DisplayState.ManagedWindow):
 
         self.window.set_transient_for(self.parent_window)
         self.window.show()
+
+    def build_menu_names(self,event):
+        if event:
+            if event.get_type()[0] == RelLib.Event.CUSTOM:
+                event_name = event.get_type()[1]
+            else:
+                try:
+                    event_name = Utils.personal_events[event.get_type()[0]]
+                except:
+                    event_name = Utils.family_events[event.get_type()[0]]
+            submenu_label = _('Event: %s')  % event_name
+        else:
+            submenu_label = _('New Event')
+        menu_label = _('Event Reference Editor')
+        
+    def build_window_key(self,event):
+        if event:
+            return event.get_handle()
+        else:
+            return self
 
     def on_help_clicked(self,obj):
         pass

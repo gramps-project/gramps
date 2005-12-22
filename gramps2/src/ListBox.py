@@ -499,14 +499,14 @@ class NameListBox(ReorderListBox):
         self.data[index].set_suffix(value)
 
     def add(self,obj):
-        NameEdit.NameEditor(self.state, self.uistate, None, self.edit_callback)
+        NameEdit.NameEditor(self.state, self.uistate, None, self.track)
 
     def update(self,obj):
         store,node = self.list_model.get_selected()
         if node:
             NameEdit.NameEditor(self.state, self.uistate,
                                 self.list_model.get_object(node),
-                                self.edit_callback)
+                                self.track)
 
     def display_data(self,name):
         has_note = name.get_note()

@@ -52,6 +52,7 @@ import DateEdit
 import DateHandler
 import GrampsDisplay
 import Spell
+import DisplayState
 
 from DdTargets import DdTargets
 from WindowUtils import GladeIf
@@ -62,21 +63,27 @@ from WindowUtils import GladeIf
 #
 #-------------------------------------------------------------------------
 
-class SourceSelector:
-    def __init__(self,srclist,parent,update=None):
-        self.db = parent.db
-        self.parent = parent
+class SourceSelector(DisplayState.ManagedWindow):
+    def __init__(self,state,uistate,track,srclist,parent,update=None):
+        self.db = state.db
+        self.state = state
+        self.uistate = uistate
+        self.track = track
+
         if srclist:
-            if self.parent.child_windows.has_key(id(srclist)):
-                self.parent.child_windows[id(srclist)].present(None)
-                return
-            else:
-                self.win_key = id(srclist)
+            win_key = id(srclist)
         else:
-            self.win_key = self
+            win_key = self
+
+
+        submenu_label = _('Source')
+        
+        DisplayState.ManagedWindow.__init__(
+            self, uistate, self.track, win_key, submenu_label,
+            _('Source Selector'))
+
         self.orig = srclist
         self.list = []
-        self.child_windows = {}
         for s in self.orig:
             self.list.append(RelLib.SourceRef(s))
         self.update=update
@@ -130,43 +137,12 @@ class SourceSelector:
 
     def on_delete_event(self,obj,b):
         self.gladeif.close()
-        self.close_child_windows()
-        self.remove_itself_from_menu()
         gc.collect()
 
     def close(self,obj):
-        self.close_child_windows()
-        self.remove_itself_from_menu()
         self.gladeif.close()
         self.window.destroy()
         gc.collect()
-
-    def close_child_windows(self):
-        for child_window in self.child_windows.values():
-            child_window.close(None)
-        self.child_windows = {}
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        label = _('Source Reference')
-        self.parent_menu_item = gtk.MenuItem(label)
-        self.parent_menu_item.set_submenu(gtk.Menu())
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-        self.winsmenu = self.parent_menu_item.get_submenu()
-        self.menu_item = gtk.MenuItem(_('Reference Selector'))
-        self.menu_item.connect("activate",self.present)
-        self.menu_item.show()
-        self.winsmenu.append(self.menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.menu_item.destroy()
-        self.winsmenu.destroy()
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -229,10 +205,13 @@ class SourceSelector:
 #
 #-------------------------------------------------------------------------
 class SourceTab:
-    def __init__(self, srclist, parent, top, window, clist, add_btn,
-                 edit_btn, del_btn, readonly=False):
+    def __init__(self, state, uistate, track, srclist, parent, top, window,
+                 clist, add_btn, edit_btn, del_btn, readonly=False):
 
-        self.db = parent.db
+        self.db = state.db
+        self.state = state
+        self.uistate = uistate
+        self.track = track
         self.parent = parent
         self.list = srclist
         self.top = top
@@ -340,11 +319,11 @@ class SourceTab:
         if node:
             col = store.get_path(node)
             src = self.list[col[0]]
-            SourceEditor(src,self.db,self.update_clist,self)
+            SourceEditor(self.state, self.uistate, self.track, src, self.update_clist)
 
     def add_src_clicked(self,obj):
         src = RelLib.SourceRef()
-        SourceEditor(src,self.db,self.add_ref,self)
+        SourceEditor(self.state, self.uistate, self.track, src, self.add_ref)
 
     def del_src_clicked(self,obj):
         (store,node) = self.selection.get_selected()
@@ -359,32 +338,30 @@ class SourceTab:
 # SourceEditor
 #
 #-------------------------------------------------------------------------
-class SourceEditor:
+class SourceEditor(DisplayState.ManagedWindow):
 
-    def __init__(self, srcref, database, update, parent):
+    def __init__(self, state, uistate, track, srcref, update):
 
-        self.db = database
-        self.parent = parent
-        if self.parent.__dict__.has_key('child_windows'):
-            self.win_parent = self.parent
-        else:
-            self.win_parent = self.parent.parent
+        self.db = state.db 
+        self.state = state
+        self.track = track
+        self.uistate = uistate
         if srcref:
-            if self.win_parent.child_windows.has_key(srcref):
-                self.win_parent.child_windows[srcref].present(None)
-                return
-            else:
-                self.win_key = srcref
+            submenu_label = _('Source Reference')
         else:
-            self.win_key = self
+            submenu_label = _('New Source Reference')
+            
+        DisplayState.ManagedWindow.__init__(
+            self, uistate, self.track, srcref, submenu_label,
+            _('Source Reference Editor'))
+
         self.update = update
         self.source_ref = srcref
-        self.child_windows = {}
         self.showSource = gtk.glade.XML(const.srcselFile,
                                         "sourceDisplay","gramps")
-        self.sourceDisplay = self.get_widget("sourceDisplay")
+        self.window = self.get_widget("sourceDisplay")
 
-        Utils.set_titles(self.sourceDisplay,
+        Utils.set_titles(self.window,
                          self.showSource.get_widget('title'),
                          _('Source Information'))
 
@@ -433,7 +410,7 @@ class SourceEditor:
         date_stat.set_sensitive(not self.db.readonly)
         self.date_check = DateEdit.DateEdit(
             self.date_obj, self.date_entry_field,
-            date_stat, self.sourceDisplay)
+            date_stat, self.window)
 
         self.spage = self.get_widget("spage")
         self.spage.set_editable(not self.db.readonly)
@@ -446,60 +423,21 @@ class SourceEditor:
 
         self.draw(self.active_source,fresh=True)
         self.set_button()
-        if self.parent:
-            self.sourceDisplay.set_transient_for(self.parent.window)
-        self.add_itself_to_menu()
+        self.window.set_transient_for(self.parent_window)
         self.db.connect('source-add', self.rebuild_menu)
-        self.sourceDisplay.show()
+        self.window.show()
 
     def rebuild_menu(self,handle_list):
         self.build_source_menu(handle_list[0])
 
     def on_delete_event(self,obj,b):
-        self.close_child_windows()
-        self.remove_itself_from_menu()
         self.gladeif.close()
         gc.collect()
 
     def close(self,obj):
-        self.close_child_windows()
-        self.remove_itself_from_menu()
         self.gladeif.close()
-        self.sourceDisplay.destroy()
+        self.window.destroy()
         gc.collect()
-
-    def close_child_windows(self):
-        for child_window in self.child_windows.values():
-            child_window.close(None)
-        self.child_windows = {}
-
-    def add_itself_to_menu(self):
-        self.win_parent.child_windows[self.win_key] = self
-        if self.active_source:
-            label = self.active_source.get_title()
-        else:
-            label = _("New Source")
-        if not label.strip():
-            label = _("New Source")
-        label = "%s: %s" % (_('Source Reference'),label)
-        self.parent_menu_item = gtk.MenuItem(label)
-        self.parent_menu_item.set_submenu(gtk.Menu())
-        self.parent_menu_item.show()
-        self.win_parent.winsmenu.append(self.parent_menu_item)
-        self.winsmenu = self.parent_menu_item.get_submenu()
-        self.menu_item = gtk.MenuItem(_('Source Information'))
-        self.menu_item.connect("activate",self.present)
-        self.menu_item.show()
-        self.winsmenu.append(self.menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.win_parent.child_windows[self.win_key]
-        self.menu_item.destroy()
-        self.winsmenu.destroy()
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.sourceDisplay.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -609,4 +547,4 @@ class SourceEditor:
 
     def add_src_clicked(self,obj):
         import EditSource
-        EditSource.EditSource(RelLib.Source(),self.db, self)
+        EditSource.EditSource(self.state, self.uistate, self.track, RelLib.Source())

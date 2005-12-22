@@ -356,14 +356,14 @@ class ManagedWindow:
     event, and presenting itself when selected or attempted to create again.
     """
 
-    def __init__(self,uistate,track,window_key,submenu_label,menu_label):
+    def __init__(self,uistate,track,obj):
         """
         Create child windows and add itself to menu, if not there already.
         
-
+        
         The usage from derived classes is envisioned as follows:
-
-
+        
+        
         import DisplayState
         class SomeWindowClass(DisplayState.ManagedWindow):
             def __init__(self,uistate,dbstate,track):
@@ -378,11 +378,21 @@ class ManagedWindow:
                                                     menu_label)
                 if self.already_exist:
                     return
-
+                
                 # Proceed with the class.
                 ...
-
+                
         """
+
+        window_key = self.build_window_key(obj)
+
+        menu_info = self.build_menu_names(obj)
+        if not menu_info:
+            menu_info = ('Undefined Menu','Undefined Submenu')
+            
+        menu_label = menu_info[0]
+        submenu_label = menu_info[1]
+            
         if uistate.gwm.get_item_from_id(window_key):
             uistate.gwm.get_item_from_id(window_key).present()
             self.already_exist = True
@@ -413,6 +423,12 @@ class ManagedWindow:
             else:
                 # On the top level: we use gramps top window
                 self.parent_window = self.uistate.window
+
+    def build_menu_names(self,obj):
+        return None
+
+    def build_window_key(self,obj):
+        return self
 
     def close(self,obj=None,obj2=None):
         """

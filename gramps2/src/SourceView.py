@@ -110,10 +110,10 @@ class SourceView(PageView.ListView):
     def on_double_click(self,obj,event):
         handle = self.first_selected()
         source = self.dbstate.db.get_source_from_handle(handle)
-        EditSource.EditSource(source,self.dbstate, self.uistate)
+        EditSource.EditSource(self.dbstate, self.uistate, [], source)
 
     def add(self,obj):
-        EditSource.EditSource(RelLib.Source(),self.dbstate, self.uistate)
+        EditSource.EditSource(self.dbstate, self.uistate, [], RelLib.Source())
 
     def remove(self,obj):
         for event_handle in self.selected_handles():
@@ -151,5 +151,5 @@ class SourceView(PageView.ListView):
 
         for handle in mlist:
             source = self.dbstate.db.get_source_from_handle(handle)
-            EditSource.EditSource(source, self.dbstate, self.uistate)
+            EditSource.EditSource(self.dbstate, self.uistate, [], source)
 

@@ -95,7 +95,7 @@ _use_patronymic = [
 class EditPerson(DisplayState.ManagedWindow):
 
     use_patronymic = locale.getlocale(locale.LC_TIME)[0] in _use_patronymic
-    
+
     def __init__(self,state,uistate,track,person,callback=None):
         """Creates an edit window.  Associates a person with the window."""
 
@@ -103,24 +103,16 @@ class EditPerson(DisplayState.ManagedWindow):
         self.dd = DateHandler.displayer
         self.nd = NameDisplay.displayer
 
-        win_menu_label = self.nd.display(person)
-        if not win_menu_label.strip():
-            win_menu_label = _("New Person")
-
         if person:
             self.orig_handle = person.get_handle()
-            win_key = self.orig_handle
         else:
             self.orig_handle = ""
-            win_key = self
             
-        DisplayState.ManagedWindow.__init__(
-            self, uistate, [], win_key, win_menu_label, _('Edit Person'))
+        DisplayState.ManagedWindow.__init__(self, uistate, [], person)
 
         if self.already_exist:
             return
 
-        print "EditPerson added: track:", self.track
         self.state = state
         self.uistate = uistate
         self.retval = const.UPDATE_PERSON
@@ -132,9 +124,6 @@ class EditPerson(DisplayState.ManagedWindow):
             person = self.state.db.get_person_from_handle(self.orig_handle)
         self.person = person
         self.orig_surname = self.person.get_primary_name().get_group_name()
-        #if self.parent_window.child_windows.has_key(self.orig_handle):
-        #    self.parent_window.child_windows[self.orig_handle].present(None)
-        #    return
         self.db = self.state.db
         self.callback = callback
         self.child_windows = {}
@@ -435,7 +424,7 @@ class EditPerson(DisplayState.ManagedWindow):
 #        self.gladeif.connect("button130", "clicked", self.on_ldsseal_note_clicked)
 
 
-        self.sourcetab = Sources.SourceTab(
+        self.sourcetab = Sources.SourceTab(self.state, self.uistate, self.track,
             self.srcreflist, self, self.top, self.window, self.slist,
             self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
             self.top.get_widget('del_src'), self.db.readonly)
@@ -461,6 +450,18 @@ class EditPerson(DisplayState.ManagedWindow):
                 widget.set_sensitive(not self.db.readonly)
         self.window.show()
 
+    def build_menu_names(self,person):
+        win_menu_label = self.nd.display(person)
+        if not win_menu_label.strip():
+            win_menu_label = _("New Person")
+        return (win_menu_label,_('Edit Person'))
+
+    def build_window_key(self,obj):
+        if obj:
+            win_key = obj.get_handle()
+        else:
+            win_key = self
+    
     def set_list_dnd(self,obj, get, begin, receive):
         obj.drag_dest_set(gtk.DEST_DEFAULT_ALL, [DdTargets.NAME.target()],
                           gtk.gdk.ACTION_COPY)
@@ -1371,7 +1372,8 @@ class EditPerson(DisplayState.ManagedWindow):
         self.write_primary_name()
         
     def on_ldsbap_source_clicked(self,obj):
-        Sources.SourceSelector(self.lds_baptism.get_source_references(),
+        Sources.SourceSelector(self.state, self.uistate, self.track,
+                               self.lds_baptism.get_source_references(),
                                self,self.update_ldsbap_list)
 
     def update_ldsbap_list(self,list):
@@ -1383,7 +1385,8 @@ class EditPerson(DisplayState.ManagedWindow):
                             readonly=self.db.readonly)
 
     def on_ldsendow_source_clicked(self,obj):
-        Sources.SourceSelector(self.lds_endowment.get_source_references(),
+        Sources.SourceSelector(self.state, self.uitstate, self.track,
+                               self.lds_endowment.get_source_references(),
                                self,self.set_ldsendow_list)
 
     def set_ldsendow_list(self,list):
@@ -1395,7 +1398,8 @@ class EditPerson(DisplayState.ManagedWindow):
                             readonly=self.db.readonly)
 
     def on_ldsseal_source_clicked(self,obj):
-        Sources.SourceSelector(self.lds_sealing.get_source_references(),
+        Sources.SourceSelector(self.state, self.uistate, self.track,
+                               self.lds_sealing.get_source_references(),
                                self,self.lds_seal_list)
 
     def lds_seal_list(self,list):

@@ -52,6 +52,7 @@ import DateEdit
 import DateHandler
 import Spell
 import GrampsDisplay
+import DisplayState
 
 from WindowUtils import GladeIf
 
@@ -60,23 +61,19 @@ from WindowUtils import GladeIf
 # NameEditor class
 #
 #-------------------------------------------------------------------------
-class NameEditor:
+class NameEditor(DisplayState.ManagedWindow):
 
-    def __init__(self,parent,name,callback,parent_window=None):
+    def __init__(self,dbstate,uistate,name,track):
 
-        self.parent = parent
-        self.db = self.parent.db
-        if name:
-            if self.parent.child_windows.has_key(name):
-                self.parent.child_windows[name].present(None)
-                return
-            else:
-                self.win_key = name
-        else:
-            self.win_key = self
+        self.db = dbstate.db
+        self.uistate = uistate
+        self.state = dbstate
+        
+        DisplayState.ManagedWindow.__init__(self, uistate, track, name)
+        if self.already_exist:
+            return
+
         self.name = name
-        self.callback = callback
-        self.child_windows = {}
         self.top = gtk.glade.XML(const.dialogFile, "name_edit","gramps")
         self.gladeif = GladeIf(self.top)
         self.window = self.top.get_widget("name_edit")
@@ -113,7 +110,7 @@ class NameEditor:
             self.date_obj, self.date,
             date_stat, self.window)
 
-        AutoComp.fill_combo(self.combo,self.parent.db.get_surname_list())
+        AutoComp.fill_combo(self.combo,self.db.get_surname_list())
         self.surname_field = self.combo.get_child()
         self.prefix_field = self.top.get_widget("alt_prefix")
         self.prefix_field.set_editable(not self.db.readonly)
@@ -153,6 +150,7 @@ class NameEditor:
         Utils.set_titles(self.window, alt_title, tmsg, _('Name Editor'))
 
         self.sourcetab = Sources.SourceTab(
+            self.state, self.uistate, self.track,
             self.srcreflist, self, self.top, self.window, self.slist,
             self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
             self.top.get_widget('del_src'), self.db.readonly)
@@ -201,11 +199,18 @@ class NameEditor:
             Utils.unbold_label(self.sources_label)
             Utils.unbold_label(self.general_label)
 
-        if parent_window:
-            self.window.set_transient_for(parent_window)
         self.surname_field.connect('changed',self.update_group_as)
-        self.add_itself_to_menu()
+
+        self.window.set_transient_for(self.parent_window)
         self.window.show()
+
+    def build_menu_names(self,name):
+        if name:
+            submenu_label = _('%s: %s') % (_('Name',NameDisplay.displayer.display(name)))
+        else:
+            submenu_label = _('New Name')
+        menu_label = _('Name Editor')
+        return (menu_label,submenu_label)
 
     def update_group_as(self,obj):
         if not self.group_over.get_active():
@@ -229,49 +234,12 @@ class NameEditor:
 
     def on_delete_event(self,*obj):
         self.gladeif.close()
-        self.close_child_windows()
-        self.remove_itself_from_menu()
         gc.collect()
 
     def close(self,*obj):
         self.gladeif.close()
-        self.close_child_windows()
-        self.remove_itself_from_menu()
         self.window.destroy()
         gc.collect()
-
-    def close_child_windows(self):
-        for child_window in self.child_windows.values():
-            child_window.close(None)
-        self.child_windows = {}
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        if not self.name:
-            label = _("New Name")
-        else:
-            label = self.name.get_name()
-        if not label.strip():
-            label = _("New Name")
-        label = "%s: %s" % (_('Alternate Name'),label)
-        self.parent_menu_item = gtk.MenuItem(label)
-        self.parent_menu_item.set_submenu(gtk.Menu())
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-        self.winsmenu = self.parent_menu_item.get_submenu()
-        self.menu_item = gtk.MenuItem(_('Name Editor'))
-        self.menu_item.connect("activate",self.present)
-        self.menu_item.show()
-        self.winsmenu.append(self.menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.menu_item.destroy()
-        self.winsmenu.destroy()
-        self.parent_menu_item.destroy()
-
-    def present(self,*obj):
-        self.window.present()
 
     def on_help_clicked(self,*obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -346,7 +314,6 @@ class NameEditor:
         self.update_name(first,last,suffix,patronymic,title,the_type,note,format,priv)
         self.parent.lists_changed = 1
 
-        self.callback(self.name)
         self.close(obj)
 
     def update_name(self,first,last,suffix,patronymic,title,the_type,note,format,priv):

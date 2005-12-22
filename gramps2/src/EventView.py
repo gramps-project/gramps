@@ -111,10 +111,10 @@ class EventView(PageView.ListView):
     def on_double_click(self,obj,event):
         handle = self.first_selected()
         the_event = self.dbstate.db.get_event_from_handle(handle)
-        EventEdit.EventEditor(the_event,self.dbstate, self.uistate)
+        EventEdit.EventEditor(the_event,self.dbstate, self.uistate, [])
 
     def add(self,obj):
-        EventEdit.EventEditor(RelLib.Event(),self.dbstate, self.uistate)
+        EventEdit.EventEditor(RelLib.Event(),self.dbstate, self.uistate, [])
 
     def remove(self,obj):
         for event_handle in self.selected_handles():
