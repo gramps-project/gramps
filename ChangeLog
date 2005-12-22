@@ -22,6 +22,10 @@
 	* src/GrampsDb/_GrampsBSDDB.py (close): close reference_map tables.
 	* src/ViewManager.py (quit): Add function to properly quit.
 
+	* src/DisplayState.py: Work out parent_window, correct close method.
+	* src/EventEdit.py: Use parent_window; get rid of parent; remove
+	unused code.
+	
 2005-12-21 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/EditSource.py: fixed small mistake in display_references
 
