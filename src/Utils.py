@@ -717,37 +717,60 @@ def search_for(name):
 #
 #-------------------------------------------------------------------------
 def bold_label(label,widget=None):
-    clist = label.get_children()
-    text = unicode(clist[1].get_text())
-    text = text.replace('<i>','')
-    text = text.replace('</i>','')
-    clist[0].show()
-    clist[1].set_text("<b>%s</b>" % text )
-    clist[1].set_use_markup(True)
+    if label.__class__ == gtk.Label:
+        text = unicode(label.get_text())
+        text = text.replace('<i>','')
+        text = text.replace('</i>','')
+        label.set_text("<b>%s</b>" % text )
+        label.set_use_markup(True)
+    else:
+        clist = label.get_children()
+        text = unicode(clist[1].get_text())
+        text = text.replace('<i>','')
+        text = text.replace('</i>','')
+        clist[0].show()
+        clist[1].set_text("<b>%s</b>" % text )
+        clist[1].set_use_markup(True)
     if widget:
         widget.window.set_cursor(None)
         
 def unbold_label(label,widget=None):
-    clist = label.get_children()
-    text = unicode(clist[1].get_text())
-    text = text.replace('<b>','')
-    text = text.replace('</b>','')
-    text = text.replace('<i>','')
-    text = text.replace('</i>','')
-    clist[0].hide()
-    clist[1].set_text(text)
-    clist[1].set_use_markup(False)
+    if label.__class__ == gtk.Label:
+        text = unicode(label.get_text())
+        text = text.replace('<b>','')
+        text = text.replace('</b>','')
+        text = text.replace('<i>','')
+        text = text.replace('</i>','')
+        label.set_text(text)
+        label.set_use_markup(False)
+    else:
+        clist = label.get_children()
+        text = unicode(clist[1].get_text())
+        text = text.replace('<b>','')
+        text = text.replace('</b>','')
+        text = text.replace('<i>','')
+        text = text.replace('</i>','')
+        clist[0].hide()
+        clist[1].set_text(text)
+        clist[1].set_use_markup(False)
     if widget:
         widget.window.set_cursor(None)
 
 def temp_label(label,widget=None):
-    clist = label.get_children()
-    text = unicode(clist[1].get_text())
-    text = text.replace('<b>','')
-    text = text.replace('</b>','')
-    clist[0].hide()
-    clist[1].set_text("<i>%s</i>" % text )
-    clist[1].set_use_markup(True)
+    if label.__class__ == gtk.Label:
+        text = unicode(label.get_text())
+        text = text.replace('<b>','')
+        text = text.replace('</b>','')
+        label.set_text("<i>%s</i>" % text )
+        label.set_use_markup(True)
+    else:
+        clist = label.get_children()
+        text = unicode(clist[1].get_text())
+        text = text.replace('<b>','')
+        text = text.replace('</b>','')
+        clist[0].hide()
+        clist[1].set_text("<i>%s</i>" % text )
+        clist[1].set_use_markup(True)
     if widget:
         widget.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
 
