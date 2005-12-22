@@ -621,7 +621,6 @@ class GrampsBSDDB(GrampsDbBase):
             cursor.close()
 
         return
-
         
     def abort_changes(self):
         while self.undo():
@@ -718,31 +717,18 @@ class GrampsBSDDB(GrampsDbBase):
             self.emit('person-rebuild')
             
     def get_surname_list(self):
-        names = self.surnames.keys()
-        a = {}
-        for name in names:
-            a[unicode(name)] = 1
-        vals = a.keys()
+        vals = [ unicode(val) for val in set(self.surname.keys()) ]
         vals.sort(locale.strcoll)
         return vals
 
     def get_person_event_type_list(self):
-        names = self.eventnames.keys()
-        a = {}
-        for name in names:
-            a[unicode(name)] = 1
-        vals = a.keys()
-        vals.sort()
+        vals = [ unicode(val) for val in set(self.eventnames.keys()) ]
+        vals.sort(locale.strcoll)
         return vals
 
     def get_repository_type_list(self):
-        repos_types = self.repository_types.keys()
-        a = {}
-        for repos_type in repos_types:
-            
-            a[unicode(repos_type)] = 1
-        vals = a.keys()
-        vals.sort()
+        vals = list(set(self.repository_types.keys()))
+        vals.sort(locale.strcoll)
         return vals
 
     def remove_person(self,handle,transaction):
@@ -755,143 +741,72 @@ class GrampsBSDDB(GrampsDbBase):
             self.person_map.delete(str(handle))
             self._delete_primary_from_reference_map(handle)
 
-    def remove_source(self,handle,transaction):
-        if not self.readonly and handle and str(handle) in self.source_map:
+    def _remove_obj(self, handle, transaction, data_map, key, signal):
+        if not self.readonly and handle and str(handle) in data_map:
             if transaction != None:
-                old_data = self.source_map.get(str(handle))
-                transaction.add(SOURCE_KEY,handle,old_data)
-                self.emit('source-delete',([handle],))
-            self.source_map.delete(str(handle))
+                old_data = data_map.get(str(handle))
+                transaction.add(key,handle,old_data)
+                self.emit(signal,([handle],))
+            data_map.delete(str(handle))
             self._delete_primary_from_reference_map(handle)
+
+    def remove_source(self,handle,transaction):
+        self._remove_obj(handle,transaction,self.source_map, SOURCE_KEY, 'source-delete')
 
     def remove_repository(self,handle,transaction):
-        if not self.readonly and handle and str(handle) in self.repository_map:
-            if transaction != None:
-                old_data = self.repository_map.get(str(handle))
-                transaction.add(REPOSITORY_KEY,handle,old_data)
-                self.emit('repository-delete',([handle],))
-            self.repository_map.delete(str(handle))
-            self._delete_primary_from_reference_map(handle)
+        self._remove_obj(handle,transaction,self.repository_map, REPOSITORY_KEY,
+                         'repository-delete')
 
     def remove_family(self,handle,transaction):
-        if not self.readonly and handle and str(handle) in self.family_map:
-            if transaction != None:
-                old_data = self.family_map.get(str(handle))
-                transaction.add(FAMILY_KEY,handle,old_data)
-                self.emit('family-delete',([str(handle)],))
-            self.family_map.delete(str(handle))
-            self._delete_primary_from_reference_map(handle)
+        self._remove_obj(handle,transaction,self.family_map, FAMILY_KEY, 'family-delete')
 
     def remove_event(self,handle,transaction):
-        if not self.readonly and handle and str(handle) in self.event_map:
-            if transaction != None:
-                old_data = self.event_map.get(str(handle))
-                transaction.add(EVENT_KEY,handle,old_data)
-                self.emit('event-delete',([str(handle)],))
-            self.event_map.delete(str(handle))
-            self._delete_primary_from_reference_map(handle)
+        self._remove_obj(handle,transaction,self.event_map, EVENT_KEY, 'event-delete')
 
     def remove_place(self,handle,transaction):
-        if not self.readonly and handle and str(handle) in self.place_map:
-            if transaction != None:
-                old_data = self.place_map.get(str(handle))
-                transaction.add(PLACE_KEY,handle,old_data)
-                self.emit('place-delete',([handle],))
-            self.place_map.delete(str(handle))
-            self._delete_primary_from_reference_map(handle)
+        self._remove_obj(handle,transaction,self.place_map, PLACE_KEY, 'place-delete')
 
     def remove_object(self,handle,transaction):
-        if not self.readonly and handle and str(handle) in self.media_map:
-            if transaction != None:
-                old_data = self.media_map.get(str(handle))
-                transaction.add(MEDIA_KEY,handle,old_data)
-                self.emit('media-delete',([handle],))
-            self.media_map.delete(str(handle))
-            self._delete_primary_from_reference_map(handle)
+        self._remove_obj(handle,transaction,self.media_map, MEDIA_KEY, 'media-delete')
 
-    def get_person_from_gramps_id(self,val):
-        """finds a Person in the database from the passed gramps' ID.
-        If no such Person exists, None is returned."""
-
-        data = self.id_trans.get(str(val))
+    def _get_obj_from_gramps_id(self,val,tbl,class_init):
+        data = tbl.get(str(val))
         if data:
-            person = Person()
-            person.unserialize(cPickle.loads(data))
+            obj = class_init()
+            obj.unserialize(cPickle.loads(data))
             return person
         else:
             return None
 
+    def get_person_from_gramps_id(self,val):
+        """finds a Person in the database from the passed gramps' ID.
+        If no such Person exists, a new Person is added to the database."""
+        return self._get_obj_from_gramps_id(val,self.id_trans,Person)
+
     def get_family_from_gramps_id(self,val):
         """finds a Family in the database from the passed gramps' ID.
-        If no such Family exists, None is returned."""
-
-        data = self.fid_trans.get(str(val))
-        if data:
-            family = Family()
-            family.unserialize(cPickle.loads(data))
-            return family
-        else:
-            return None
-
-    def get_event_from_gramps_id(self,val):
-        """finds an Event in the database from the passed gramps' ID.
-        If no such Event exists, None is returned."""
-
-        data = self.eid_trans.get(str(val))
-        if data:
-            event = Event()
-            event.unserialize(cPickle.loads(data))
-            return event
-        else:
-            return None
+        If no such Family exists, a new Person is added to the database."""
+        return self._get_obj_from_gramps_id(val,self.fid_trans,Family)
 
     def get_place_from_gramps_id(self,val):
         """finds a Place in the database from the passed gramps' ID.
-        If no such Place exists, None is returned."""
-
-        data = self.pid_trans.get(str(val))
-        if data:
-            place = Place()
-            place.unserialize(cPickle.loads(data))
-            return place
-        else:
-            return None
+        If no such Place exists, a new Person is added to the database."""
+        return self._get_obj_from_gramps_id(val,self.pid_trans,Place)
 
     def get_source_from_gramps_id(self,val):
         """finds a Source in the database from the passed gramps' ID.
-        If no such Source exists, None is returned."""
-
-        data = self.sid_trans.get(str(val))
-        if data:
-            source = Source()
-            source.unserialize(cPickle.loads(data))
-            return source
-        else:
-            return None
-
-    def get_repository_from_gramps_id(self,val):
-        """finds a Repository in the database from the passed gramps' ID.
-        If no such Repository exists, None is returned."""
-
-        data = self.rid_trans.get(str(val))
-        if data:
-            repository = Repository()
-            repository.unserialize(cPickle.loads(data))
-            return repository
-        else:
-            return None
+        If no such Source exists, a new Person is added to the database."""
+        return self._get_obj_from_gramps_id(val,self.sid_trans,Source)
 
     def get_object_from_gramps_id(self,val):
         """finds a MediaObject in the database from the passed gramps' ID.
-        If no such MediaObject exists, None is returned."""
+        If no such MediaObject exists, a new Person is added to the database."""
+        return self._get_obj_from_gramps_id(val,self.oid_trans,MediaObject)
 
-        data = self.oid_trans.get(str(val))
-        if data:
-            obj = MediaObject()
-            obj.unserialize(cPickle.loads(data))
-            return obj
-        else:
-            return None
+    def get_repository_from_gramps_id(self,val):
+        """finds a MediaObject in the database from the passed gramps' ID.
+        If no such MediaObject exists, a new Person is added to the database."""
+        return self._get_obj_from_gramps_id(val,self.rid_trans,Repository)
 
     def transaction_commit(self,transaction,msg):
         GrampsDbBase.transaction_commit(self,transaction,msg)
