@@ -53,6 +53,8 @@ import NameDisplay
 import RepositoryRefEdit
 import Spell
 import GrampsDisplay
+import DisplayState
+
 from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
@@ -168,30 +170,26 @@ class ReposRefListView:
         return self._widget.get_selection()
 
         
-class EditSource:
+class EditSource(DisplayState.ManagedWindow):
 
-    def __init__(self,source,dbstate,uistate,readonly=False):
+    def __init__(self,dbstate,uistate,track,source,readonly=False):
         self.dbstate = dbstate
-        if source:
-            self.source = source
-        else:
-            self.source = RelLib.Source()
-        if self.source.get_handle():
-            self.ref_not_loaded = 1
-        else:
-            self.ref_not_loaded = 0
+        self.track = track
+        self.uistate = uistate
+
         self.db = dbstate.db
         self.idle = None
         self.name_display = NameDisplay.displayer.display
-#         if source:
-#             if parent and self.parent.child_windows.has_key(source.get_handle()):
-#                 self.parent.child_windows[source.get_handle()].present(None)
-#                 return
-#             else:
-#                 self.win_key = source.get_handle()
-#         else:
-#             self.win_key = self
-#         self.child_windows = {}
+
+        DisplayState.ManagedWindow.__init__(self, uistate, self.track, self.source)
+
+        if source:
+            self.source = source
+            self.ref_not_loaded = 1
+        else:
+            self.source = RelLib.Source()
+            self.ref_not_loaded = 0
+
         self.path = self.db.get_save_path()
         self.not_loaded = 1
         self.lists_changed = 0
@@ -199,17 +197,17 @@ class EditSource:
         mode = not self.db.readonly
 
         self.top_window = gtk.glade.XML(const.gladeFile,"sourceEditor","gramps")
-        self.top = self.top_window.get_widget("sourceEditor")
+        self.window = self.top_window.get_widget("sourceEditor")
         self.gladeif = GladeIf(self.top_window)
 
-        Utils.set_titles(self.top,self.top_window.get_widget('title'),
+        Utils.set_titles(self.window,self.top_window.get_widget('title'),
                          _('Source Editor'))
         
         plwidget = self.top_window.get_widget("iconlist")
         self.gallery = ImageSelect.Gallery(source, self.db.commit_place,
                                            self.path,
                                            plwidget,
-                                           self.db, self, self.top)
+                                           self.db, self, self.window)
         self.author = self.top_window.get_widget("author")
         self.pubinfo = self.top_window.get_widget("pubinfo")
         self.abbrev = self.top_window.get_widget("abbrev")
@@ -318,25 +316,33 @@ class EditSource:
         else:
             Utils.unbold_label(self.data_label)
 
-#        if parent_window:
-#           self.top.set_transient_for(parent_window)
-
         self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
 
-#        if parent_window:
-#            self.top.set_transient_for(parent_window)
-#        self.add_itself_to_menu()
-        self.top.show()
+        self.window.set_transient_for(self.parent_window)
+        self.window.show()
 
         self.model = None # This will hold the model for backreferences once it is complete.
         
         if self.ref_not_loaded:
             self.ref_not_loaded = 0
-            Utils.temp_label(self.refs_label,self.top)
+            Utils.temp_label(self.refs_label,self.window)
             self.cursor_type = None
             self.idle = gobject.idle_add(self.display_references)
             
         self.data_sel = self.datalist.get_selection()
+
+    def build_window_key(self,source):
+        if source:
+            return source.get_handle()
+        else:
+            return self
+
+    def build_menu_names(self,source):
+        if source:
+            label = "Edit Source"
+        else:
+            label = "New Source"
+        return (label, _('Source Editor'))        
 
     def on_add_data_clicked(self,widget):
         node = self.data_model.append(row=['',''])
@@ -392,51 +398,12 @@ class EditSource:
 
     def close(self,obj):
         self.gallery.close()
-        self.close_child_windows()
-        self.remove_itself_from_menu()
         self.gladeif.close()
-        self.top.destroy()
+        self.window.destroy()
         if self.idle != None:
             gobject.source_remove(self.idle)
         gc.collect()
         
-    def close_child_windows(self):
-        return
-        for child_window in self.child_windows.values():
-            child_window.close(None)
-        self.child_windows = {}
-
-    def add_itself_to_menu(self):
-        return
-        self.parent.child_windows[self.win_key] = self
-        if not self.source:
-            label = _("New Source")
-        else:
-            label = self.source.get_title()
-        if not label.strip():
-            label = _("New Source")
-        label = "%s: %s" % (_('Source'),label)
-        self.parent_menu_item = gtk.MenuItem(label)
-        self.parent_menu_item.set_submenu(gtk.Menu())
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-        self.winsmenu = self.parent_menu_item.get_submenu()
-        self.menu_item = gtk.MenuItem(_('Source Editor'))
-        self.menu_item.connect("activate",self.present)
-        self.menu_item.show()
-        self.winsmenu.append(self.menu_item)
-
-    def remove_itself_from_menu(self):
-        return
-        del self.parent.child_windows[self.win_key]
-        self.menu_item.destroy()
-        self.winsmenu.destroy()
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        return
-        self.top.present()
-
     def button_press(self,obj):
         data = self.model.get_selected_objects()
         if not data:
@@ -556,9 +523,9 @@ class EditSource:
                 return True
 
         if self.any_refs:
-            Utils.bold_label(self.refs_label,self.top)
+            Utils.bold_label(self.refs_label,self.window)
         else:
-            Utils.unbold_label(self.refs_label,self.top)
+            Utils.unbold_label(self.refs_label,self.window)
             
         self.ref_not_loaded = 0
         self.backlink_generator = None
@@ -629,7 +596,7 @@ class EditSource:
             self.gallery.load_images()
         elif page == 3 and self.ref_not_loaded:
             self.ref_not_loaded = 0
-            Utils.temp_label(self.refs_label,self.top)
+            Utils.temp_label(self.refs_label,self.window)
             self.idle = gobject.idle_add(self.display_references)
         text = unicode(
             self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
@@ -637,9 +604,9 @@ class EditSource:
                                        False)
             )
         if text:
-            Utils.bold_label(self.notes_label,self.top)
+            Utils.bold_label(self.notes_label,self.window)
         else:
-            Utils.unbold_label(self.notes_label,self.top)
+            Utils.unbold_label(self.notes_label,self.window)
 
     def update_repositories(self, repos_ref):
         """Make the repository list reflect the change or addition of repos_ref"""

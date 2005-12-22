@@ -1,3 +1,15 @@
+2005-12-22  Don Allingham  <don@gramps-project.org>
+        * src/DisplayState.py: window management improvements
+	* src/EditPerson.py: window management improvements
+	* src/EditPlace.py: window management improvements
+	* src/EditSource.py: window management improvements
+	* src/EventEdit.py: window management improvements
+	* src/EventView.py: window management improvements
+	* src/ListBox.py: window management improvements
+	* src/NameEdit.py: window management improvements
+	* src/SourceView.py: window management improvements
+	* src/Sources.py: window management improvements
+
 2005-12-22 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/ImageSelect.py: changed display_refs to use find_backlink_handles and updated
 	GlobalMediaProperties to use new UI model.

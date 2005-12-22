@@ -67,9 +67,10 @@ from WindowUtils import GladeIf
 #-------------------------------------------------------------------------
 class EditPlace(DisplayState.ManagedWindow):
 
-    def __init__(self,place,dbstate,uistate):
+    def __init__(self,place,dbstate,uistate,trace=[]):
         self.dbstate = dbstate
         self.uistate = uistate
+        self.trace = []
 
         self.ref_not_loaded = place and place.get_handle()
         self.idle = None
@@ -218,6 +219,7 @@ class EditPlace(DisplayState.ManagedWindow):
         self.gladeif.connect('del_url', 'clicked', self.on_delete_url_clicked)
         
         self.sourcetab = Sources.SourceTab(
+            self.state, self.ui_state, self.track,
             self.srcreflist,self,
             self.top_window,self.top,self.slist,
             self.top_window.get_widget('add_src'),
@@ -249,12 +251,8 @@ class EditPlace(DisplayState.ManagedWindow):
         self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
         self.top.show()
 
-        win_menu_label = place.get_title()
-        if not win_menu_label.strip():
-            win_menu_label = _("New Place")
 
-        DisplayState.ManagedWindow.__init__(
-            self, uistate, [], self, win_menu_label, _('Edit Place'))
+        DisplayState.ManagedWindow.__init__(self, uistate, [], place)
 
         self.pdmap = {}
         self.build_pdmap()
@@ -264,6 +262,18 @@ class EditPlace(DisplayState.ManagedWindow):
             self.cursor_type = None
             self.idle = gobject.idle_add(self.display_references)
             self.ref_not_loaded = False
+
+    def build_window_key(self,place):
+        if place:
+            return place.get_handle()
+        else:
+            return self
+
+    def build_menu_names(self,place):
+        win_menu_label = place.get_title()
+        if not win_menu_label.strip():
+            win_menu_label = _("New Place")
+        return (win_menu_label, _('Edit Place'))
 
     def build_pdmap(self):
         self.pdmap.clear()
@@ -278,7 +288,6 @@ class EditPlace(DisplayState.ManagedWindow):
     def on_delete_event(self,obj,b):
         self.gladeif.close()
         self.glry.close()
-        self.remove_itself_from_menu()
         gc.collect()
 
     def close(self,obj):
