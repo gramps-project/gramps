@@ -18,6 +18,9 @@
 	* src/GrampsDb/Makefile.am, src/GrampsDb/.cvsignore: Add to CVS.
 	* configure.in: Create Makefile in new directory.
 
+	* src/GrampsDb/_GrampsBSDDB.py (close): close reference_map tables.
+	* src/ViewManager.py (quit): Add function to properly quit.
+
 2005-12-21 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/EditSource.py: fixed small mistake in display_references
 

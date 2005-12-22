@@ -639,6 +639,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.source_map.close()
         self.media_map.close()
         self.event_map.close()
+        self.reference_map.close()
         if not self.readonly:
             self.metadata['bookmarks'] = self.bookmarks
             self.metadata['gender_stats'] = self.genderStats.save_stats()
@@ -657,6 +658,8 @@ class GrampsBSDDB(GrampsDbBase):
         self.oid_trans.close()
         self.sid_trans.close()
         self.pid_trans.close()
+        self.reference_map_primary_map.close()
+        self.reference_map_referenced_map.close()
         self.env.close()
 
         if not self.readonly:
