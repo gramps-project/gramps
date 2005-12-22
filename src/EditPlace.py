@@ -28,6 +28,9 @@
 import cPickle as pickle
 import gc
 from gettext import gettext as _
+import sys
+
+log = sys.stderr.write
 
 #-------------------------------------------------------------------------
 #
@@ -75,6 +78,7 @@ class EditPlace(DisplayState.ManagedWindow):
         self.db = dbstate.db
         self.path = dbstate.db.get_save_path()
         self.not_loaded = True
+        self.model = None # becomes the model for back references.
         self.lists_changed = 0
         if place:
             self.srcreflist = place.get_source_references()
@@ -165,8 +169,9 @@ class EditPlace(DisplayState.ManagedWindow):
         self.country.set_text(mloc.get_country())
         self.longitude.set_text(place.get_longitude())
         self.latitude.set_text(place.get_latitude())
-        self.plist = self.top_window.get_widget("plist")
+        self.plist = self.top_window.get_widget("refinfo")
         self.slist = self.top_window.get_widget("slist")
+
         self.sources_label = self.top_window.get_widget("sourcesPlaceEdit")
         self.names_label = self.top_window.get_widget("namesPlaceEdit")
         self.notes_label = self.top_window.get_widget("notesPlaceEdit")
@@ -524,6 +529,104 @@ class EditPlace(DisplayState.ManagedWindow):
                 self,", ", event, None, 0, None, None, self.db.readonly)
 
     def display_references(self):
+
+
+        if not self.model:
+            self.any_refs = False
+            place_handle = self.place.get_handle()
+
+            titles = [(_('Type'),0,150),(_('Name'),1,150),
+                      (_('ID'),2,75),(_('Event Name'),3,150)]
+
+            self.model = ListModel.ListModel(self.plist,
+                                             titles,
+                                             event_func=self.button_press)
+            self.backlink_generator = self.db.find_backlink_handles(place_handle)
+            
+
+        while True: # The loop is broken when the backlink_generator finishes
+
+            try:
+                reference = self.backlink_generator.next()
+            except StopIteration:
+                # Last reference reached.
+                break
+
+            cls_name,handle = reference
+            
+            if cls_name == 'Person':
+                person = self.db.get_person_from_handle(handle)
+                for event_handle in [person.get_birth_handle(),
+                                     person.get_death_handle()] \
+                                     + person.get_event_list():
+                    event = self.db.get_event_from_handle(event_handle)
+                    if event and event.get_place_handle() == place_handle:
+                        pname = self.name_display(person)
+                        gramps_id = person.get_gramps_id()
+                        ename = event.get_name()
+                        self.model.add(
+                            [_("Personal Event"),pname,gramps_id,ename],
+                            (0,event_handle))
+                        self.any_refs = True
+
+            elif cls_name == 'Family':
+                family = self.db.get_family_from_handle(handle)
+                for event_handle in family.get_event_list():
+                    event = self.db.get_event_from_handle(event_handle)
+                    if event and event.get_place_handle() == place_handle:
+                        father = family.get_father_handle()
+                        mother = family.get_mother_handle()
+                        if father and mother:
+                            fname = _("%(father)s and %(mother)s")  % {
+                                "father" : self.name_display(
+                                self.db.get_person_from_handle(father)),
+                                "mother" : self.name_display(
+                                self.db.get_person_from_handle(mother))
+                                }
+                        elif father:
+                            fname = self.name_display(
+                                self.db.get_person_from_handle(father))
+                        else:
+                            fname = self.name_display(
+                                self.db.get_person_from_handle(mother))
+                            
+                        gramps_id = family.get_gramps_id()
+                        ename = event.get_name()
+                        self.model.add(
+                            [_("Family Event"),fname,gramps_id,ename],
+                            (1,event_handle))
+                        self.any_refs = True
+
+            elif cls_name == 'Event':
+                event = self.db.get_event_from_handle(handle)
+                ev_type = event.get_type()[1]
+                description = event.get_description()
+                gramps_id = event.get_gramps_id()
+                self.model.add([_("Event"),str(ev_type),gramps_id,description],(2,handle))
+
+            else:
+                # If we get here it means there is a new Primary object type
+                # that has been added to the database or that Place has started
+                # to be referenced by a different primary object. Print a warning
+                # to remind us that this code need updating.
+                log("WARNING: Unhandled Primary object type returned from "
+                    "find_backlink_handles(): %s \n" % str(cls_name))
+                
+            if gtk.events_pending():
+                return True
+
+        if self.any_refs:
+            Utils.bold_label(self.refs_label,self.top)
+        else:
+            Utils.unbold_label(self.refs_label,self.top)
+            
+        self.ref_not_loaded = 0
+        self.backlink_generator = None
+        
+        return False
+
+
+        
         place_handle = self.place.get_handle()
         # Initialize things if we're entering this functioin
         # for the first time

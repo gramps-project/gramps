@@ -1,3 +1,11 @@
+2005-12-22 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/EditPlace.py: changed display_references to use find_backlink_handles
+	* src/EditRepository.py: modified to use  find_backlink_handles and fixed subtle bug
+	* src/RelLib/_Source.py: added reporef_list to referent object lists so that backref 
+	are put in reference_map
+	* test/GrampsDb/GrampsDbBase_Test.py: added unittest for source/reference backlinks
+	* test/GrampsDb/GrampsDbTestBase.py: added unittest for source/reference backlinks
+	
 2005-12-21  Don Allingham  <don@gramps-project.org>
 	* src/DisplayState.py: remove print statements
 	* src/ViewManger.py: Fix const.app_* 

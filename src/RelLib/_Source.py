@@ -112,7 +112,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
         """
-        return self.media_list
+        return self.media_list + self.reporef_list
 
     def has_source_reference(self,src_handle) :
         """

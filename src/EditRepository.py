@@ -76,10 +76,10 @@ class ReposSrcListModel(gtk.ListStore):
 
         # Get the list of sources that reference this repository
         repos_handle = self._repos.get_handle()
-        source_list = [ src_handle for src_handle \
-                        in self._db.get_source_handles() \
-                        if self._db.get_source_from_handle(src_handle).has_repo_reference(repos_handle)]
 
+        # find_backlink_handles returns a list of (class_name,handle) tuples
+        # so src[1] is just the handle of the source.
+        source_list = [ src[1] for src in self._db.find_backlink_handles(repos_handle,['Source']) ]
         
         # Add each (source,repos_ref) to list. It is possible for
         # a source to reference to same repository more than once.
@@ -116,7 +116,7 @@ class ReposSrcListModel(gtk.ListStore):
         found = False
         for val in range(0,len(self)):
             iter = self.get_iter(val)
-            if source.get_handle() == self.get_value(iter,0).get_handle and \
+            if source.get_handle() == self.get_value(iter,0).get_handle() and \
                    repos_ref == self.get_value(iter,1):
                 self.row_changed(self.get_path(iter),iter)
                 found = True
@@ -558,6 +558,7 @@ class EditRepository:
         # These are the ones that are in the list model but not in the
         # original sources list.
         items_added =  self.repos_source_model.get_added_items()
+        
         for item in items_added:
             item[1].set_reference_handle(handle)
         
@@ -580,10 +581,11 @@ class EditRepository:
             stripped_list = [ repos_ref for repos_ref \
                               in original_list  \
                               if repos_ref.get_reference_handle() != self.repository.get_handle() ]
+            
             # Now add back in those to be added and updated
             new_list = stripped_list + \
-                       [ item[1] for item in items_added ] + \
-                       [ item[1] for item in items_updated ]
+                       [ item[1] for item in items_added if item[0] == source_hdl ] + \
+                       [ item[1] for item in items_updated if item[0] == source_hdl ]
 
             
             # Set the new list on the source

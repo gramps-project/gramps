@@ -79,16 +79,31 @@ class GrampsDbBaseTest(unittest.TestCase):
 
         return
 
-    def _add_source(self):
+    def _add_source(self,repos=None):
         # Add a Source
         
         tran = self._db.transaction_begin()
         source = RelLib.Source()
+        if repos != None:
+            repo_ref = RelLib.RepoRef()
+            repo_ref.set_reference_handle(repos.get_handle())
+            source.add_repo_reference(repo_ref)
         self._db.add_source(source,tran)
         self._db.commit_source(source,tran)
         self._db.transaction_commit(tran, "Add Source")
 
         return source
+
+    def _add_repository(self):
+        # Add a Repository
+        
+        tran = self._db.transaction_begin()
+        repos = RelLib.Repository()
+        self._db.add_repository(repos,tran)
+        self._db.commit_repository(repos,tran)
+        self._db.transaction_commit(tran, "Add Repository")
+
+        return repos
 
                            
     def _add_object_with_source(self,sources,object_class,add_method,commit_method):
