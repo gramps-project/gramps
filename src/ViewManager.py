@@ -157,7 +157,7 @@ class ViewManager:
         self.views = []
         self.pages = []
         self.window = gtk.Window()
-        self.window.connect('destroy', lambda w: gtk.main_quit())
+        self.window.connect('destroy', self.quit)
         self.window.set_size_request(775,500)
 
         self.statusbar = gtk.Statusbar()
@@ -209,6 +209,10 @@ class ViewManager:
         self.change_page(None,None)
         self.actiongroup.set_visible(False)
 
+    def quit(self,obj=None):
+        self.state.db.close()
+        gtk.main_quit()
+
     def set_color(self,obj):
         style = obj.get_style().copy()
         new_color = style.bg[gtk.STATE_ACTIVE]
@@ -233,7 +237,7 @@ class ViewManager:
             ('New', gtk.STOCK_NEW, '_New', "<control>n", None, self.new_activate),
             ('Open', gtk.STOCK_OPEN, '_Open', "<control>o", None, self.open_activate),
             ('OpenRecent', gtk.STOCK_OPEN, 'Open _Recent'),
-            ('Quit', gtk.STOCK_QUIT, '_Quit', "<control>q", None, gtk.main_quit),
+            ('Quit', gtk.STOCK_QUIT, '_Quit', "<control>q", None, self.quit),
             ('ViewMenu', None, '_View'),
             ('Preferences', gtk.STOCK_PREFERENCES, '_Preferences'),
             ('ColumnEdit', gtk.STOCK_PROPERTIES, '_Column Editor'),
