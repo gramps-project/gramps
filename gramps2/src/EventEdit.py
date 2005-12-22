@@ -443,10 +443,6 @@ class EventRefEditor(DisplayState.ManagedWindow):
         self.state = state
         self.uistate = uistate
         self.referent = referent
-        #if self.parent.__dict__.has_key('child_windows'):
-        #    self.win_parent = self.parent
-        #else:
-        #    self.win_parent = self.parent.parent
         if event_ref:
             win_key = event_ref
         else:
@@ -523,7 +519,7 @@ class EventRefEditor(DisplayState.ManagedWindow):
             "on_eer_help_clicked"   : self.on_help_clicked,
             "on_eer_ok_clicked"     : self.on_ok_clicked,
             "on_eer_cancel_clicked" : self.close,
-            "on_eer_delete_event"   : self.on_delete_event,
+            "on_eer_delete_event"   : self.close,
             })
 
         if self.referent.__class__.__name__ == 'Person':
@@ -610,51 +606,8 @@ class EventRefEditor(DisplayState.ManagedWindow):
         if self.event.get_media_list():
             Utils.bold_label(self.gallery_label)
 
-        #self.add_itself_to_menu()
-        #try:
-        #    self.window.set_transient_for(self.parent.window)
-        #except AttributeError:
-        #    pass
+        self.window.set_transient_for(self.parent_window)
         self.window.show()
-        print "added track:", self.track
-
-    def on_delete_event(self,obj,b):
-        #self.close_child_windows()
-        #self.remove_itself_from_menu()
-        self.close()
-
-#    def close(self,obj):
-#        self.close_child_windows()
-#        self.remove_itself_from_menu()
-#        self.window.destroy()
-
-    def close_child_windows(self):
-        for child_window in self.child_windows.values():
-            child_window.close(None)
-        self.child_windows = {}
-
-    def add_itself_to_menu(self):
-        self.win_parent.child_windows[self.win_key] = self
-        label = _('Event Reference')
-        self.parent_menu_item = gtk.MenuItem(label)
-        self.parent_menu_item.set_submenu(gtk.Menu())
-        self.parent_menu_item.show()
-        self.win_parent.winsmenu.append(self.parent_menu_item)
-        self.winsmenu = self.parent_menu_item.get_submenu()
-        self.menu_item = gtk.MenuItem(self.title)
-        self.menu_item.connect("activate",self.present)
-        self.menu_item.show()
-        self.winsmenu.append(self.menu_item)
-
-    def remove_itself_from_menu(self):
-        return
-        del self.win_parent.child_windows[self.win_key]
-        self.menu_item.destroy()
-        self.winsmenu.destroy()
-        self.parent_menu_item.destroy()
-
-#    def present(self,obj):
-#        self.window.present()
 
     def on_help_clicked(self,obj):
         pass
@@ -672,10 +625,11 @@ class EventRefEditor(DisplayState.ManagedWindow):
         eformat = self.preform.get_active()
         edesc = unicode(self.descr_field.get_text())
         epriv = self.ev_privacy.get_active()
+        self.lists_changed = 0
         self.update_event(etype,self.date,eplace_obj,edesc,enote,eformat,
                           epriv,ecause)
         # event is a primary object, so its change has to be committed now
-        if self.parent.lists_changed:
+        if self.lists_changed:
             trans = self.db.transaction_begin()
             self.db.commit_event(self.event,trans)
             if self.event_added:
@@ -700,27 +654,27 @@ class EventRefEditor(DisplayState.ManagedWindow):
         if place:
             if self.event.get_place_handle() != place.get_handle():
                 self.event.set_place_handle(place.get_handle())
-                self.parent.lists_changed = 1
+                self.lists_changed = 1
         else:
             if self.event.get_place_handle():
                 self.event.set_place_handle("")
-                self.parent.lists_changed = 1
+                self.lists_changed = 1
         
         if self.event.get_type() != the_type:
             self.event.set_type(the_type)
-            self.parent.lists_changed = 1
+            self.lists_changed = 1
         
         if self.event.get_description() != desc:
             self.event.set_description(desc)
-            self.parent.lists_changed = 1
+            self.lists_changed = 1
 
         if self.event.get_note() != note:
             self.event.set_note(note)
-            self.parent.lists_changed = 1
+            self.lists_changed = 1
 
         if self.event.get_note_format() != format:
             self.event.set_note_format(format)
-            self.parent.lists_changed = 1
+            self.lists_changed = 1
 
         dobj = self.event.get_date_object()
 
@@ -728,15 +682,15 @@ class EventRefEditor(DisplayState.ManagedWindow):
         
         if not dobj.is_equal(date):
             self.event.set_date_object(date)
-            self.parent.lists_changed = 1
+            self.lists_changed = 1
 
         if self.event.get_cause() != cause:
             self.event.set_cause(cause)
-            self.parent.lists_changed = 1
+            self.lists_changed = 1
 
         if self.event.get_privacy() != priv:
             self.event.set_privacy(priv)
-            self.parent.lists_changed = 1
+            self.lists_changed = 1
 
     def on_switch_page(self,obj,a,page):
         buf = self.ev_note_field.get_buffer()

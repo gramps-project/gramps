@@ -359,7 +359,7 @@ class ManagedWindow:
     def __init__(self,uistate,track,window_key,submenu_label,menu_label):
         """
         Create child windows and add itself to menu, if not there already.
-
+        
 
         The usage from derived classes is envisioned as follows:
 
@@ -393,8 +393,28 @@ class ManagedWindow:
             self.menu_label = menu_label
             self.uistate = uistate
             self.track = self.uistate.gwm.add_item(track,self)
+            # Work out parent_window
+            if len(self.track) > 1:
+            # We don't belong to the lop level
+                if self.track[-1] > 0:
+                # If we are not the first in the group,
+                # then first in that same group is our parent
+                    parent_item_track = self.track[:-1]
+                    parent_item_track.append(0)
+                else:
+                # If we're first in the group, then our parent
+                # is the first in the group one level up
+                    parent_item_track = self.track[:-2]
+                    parent_item_track.append(0)
 
-    def close(self,obj=None):
+                # Based on the track, get item and then window object
+                self.parent_window = self.uistate.gwm.get_item_from_track(
+                    parent_item_track).window
+            else:
+                # On the top level: we use gramps top window
+                self.parent_window = self.uistate.window
+
+    def close(self,obj=None,obj2=None):
         """
         Close itself.
 
