@@ -717,7 +717,7 @@ class GrampsBSDDB(GrampsDbBase):
             self.emit('person-rebuild')
             
     def get_surname_list(self):
-        vals = [ unicode(val) for val in set(self.surname.keys()) ]
+        vals = [ unicode(val) for val in set(self.surnames.keys()) ]
         vals.sort(locale.strcoll)
         return vals
 

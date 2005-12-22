@@ -56,7 +56,7 @@ import ListModel
 class Bookmarks :
     "Handle the bookmarks interface for Gramps"
     
-    def __init__(self,db,bookmarks,menu,callback):
+    def __init__(self,db,bookmarks):
         """
         Creates a the bookmark editor.
 
@@ -65,22 +65,12 @@ class Bookmarks :
         callback - task to connect to the menu item as a callback
         """
         self.db = db
-        self.menu = menu
         self.bookmarks = bookmarks
-        self.callback = callback
         self.redraw()
 
     def redraw(self):
         """Create the pulldown menu"""
-        if len(self.bookmarks) > 0:
-            self.myMenu = gtk.Menu()
-            for person_handle in self.bookmarks:
-                self.add_to_menu(person_handle)
-            self.menu.set_submenu(self.myMenu)
-            self.menu.set_sensitive(1)
-        else:
-            self.menu.remove_submenu()
-            self.menu.set_sensitive(0)
+        pass
 
     def add(self,person_handle):
         """appends the person to the bottom of the bookmarks"""
@@ -102,16 +92,6 @@ class Bookmarks :
                 modified = True
         if modified:
             self.redraw()
-
-    def add_to_menu(self,person_handle):
-        """adds a person's name to the drop down menu"""
-        person = self.db.get_person_from_handle(person_handle)
-        if person:
-            name = NameDisplay.displayer.display(person)
-            item = gtk.MenuItem(name)
-            item.connect("activate", self.callback, person_handle)
-            item.show()
-            self.myMenu.append(item)
 
     def draw_window(self):
         """Draws the bookmark dialog box"""

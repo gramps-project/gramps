@@ -1,6 +1,8 @@
 2005-12-21  Don Allingham  <don@gramps-project.org>
 	* src/DisplayState.py: remove print statements
 	* src/ViewManger.py: Fix const.app_* 
+	* src/Bookmark.py: start of reimplementation
+	* src/PersonView.py: commit fixes
 	* src/GrampsDb/_GrampsBSDDB.py: refactor remove and id function
 
 2005-12-21  Alex Roitman  <shura@gramps-project.org>

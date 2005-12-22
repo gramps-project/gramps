@@ -60,6 +60,7 @@ import QuestionDialog
 import PageView
 import Navigation
 import TipOfDay
+import Bookmarks
 
 #-------------------------------------------------------------------------
 #
@@ -689,7 +690,7 @@ class ViewManager:
         if res.get_name() == "" and owner.get_name():
             self.state.db.set_researcher(owner)
 
-        #self.setup_bookmarks()
+        self.setup_bookmarks()
 
         #self.state.db.set_undo_callback(self.undo_callback)
         #self.state.db.set_redo_callback(self.redo_callback)
@@ -707,6 +708,40 @@ class ViewManager:
         self.actiongroup.set_visible(True)
         return True
 
+    def setup_bookmarks(self):
+        self.bookmarks = Bookmarks.Bookmarks(self.state.db,self.state.db.get_bookmarks())
+
+    def on_add_bookmark_activate(self,obj):
+        return
+        if self.active_person:
+            self.bookmarks.add(self.active_person.get_handle())
+            name = NameDisplay.displayer.display(self.active_person)
+            self.status_text(_("%s has been bookmarked") % name)
+            gtk.timeout_add(5000,self.modify_statusbar)
+        else:
+            WarningDialog(_("Could Not Set a Bookmark"),
+                          _("A bookmark could not be set because "
+                            "no one was selected."))
+
+    def on_edit_bookmarks_activate(self,obj):
+        self.bookmarks.edit()
+        
+    def bookmark_callback(self,obj,person_handle):
+        old_person = self.active_person
+        person = self.state.db.get_person_from_handle(person_handle)
+        try:
+            self.change_active_person(person)
+            self.update_display(0)
+            self.goto_active_person()
+        except TypeError:
+            WarningDialog(_("Could not go to a Person"),
+                          _("Either stale bookmark or broken history "
+                            "caused by IDs reorder."))
+            self.clear_history()
+            self.change_active_person(old_person)
+            self.update_display(0)
+            self.goto_active_person()
+    
     def find_initial_person(self):
         person = self.state.db.get_default_person()
         if not person:
