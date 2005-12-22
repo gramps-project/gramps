@@ -306,7 +306,7 @@ class GrampsDbBase(GrampsDBCallback):
         Closes the specified database. The method needs to be overridden
         in the derived class.
         """
-        assert False, "Needs to be overridden in the derived class"
+        pass
         
     def abort_changes(self):
         pass

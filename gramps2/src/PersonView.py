@@ -500,22 +500,22 @@ class PersonView(PageView.PersonNavView):
                 for child_handle in family.get_child_handle_list():
                     child = self.dbstate.db.get_person_from_handle(child_handle)
                     child.remove_parent_family_handle(family_handle)
-                    self.db.commit_person(child,trans)
+                    self.dbstate.db.commit_person(child,trans)
                 self.dbstate.db.remove_family(family_handle,trans)
             else:
                 self.dbstate.db.commit_family(family,trans)
 
         for (family_handle,mrel,frel) in self.active_person.get_parent_family_handle_list():
             if family_handle:
-                family = self.db.get_family_from_handle(family_handle)
+                family = self.dbstate.db.get_family_from_handle(family_handle)
                 family.remove_child_handle(self.active_person.get_handle())
-                self.db.commit_family(family,trans)
+                self.dbstate.db.commit_family(family,trans)
 
         handle = self.active_person.get_handle()
 
         person = self.active_person
         self.remove_from_person_list(person)
-        self.people_view.remove_from_history(handle)
+        #self.remove_from_history(handle)
         self.dbstate.db.remove_person(handle, trans)
 
         if self.uistate.phistory.index >= 0:
