@@ -1,4 +1,10 @@
 2005-12-22 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/ImageSelect.py: changed display_refs to use find_backlink_handles and updated
+	GlobalMediaProperties to use new UI model.
+	* src/MediaView.py: changed call to GlobalMediaProperties to use new UI params.
+	* src/Utils.py: added support for Gtk.labels to bold/unbold/temp label util funcs.
+
+2005-12-22 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/EditPlace.py: changed display_references to use find_backlink_handles
 	* src/EditRepository.py: modified to use  find_backlink_handles and fixed subtle bug
 	* src/RelLib/_Source.py: added reporef_list to referent object lists so that backref 

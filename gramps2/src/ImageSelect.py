@@ -60,6 +60,7 @@ import DateHandler
 import Date
 import ImgManip
 import Spell
+import DisplayState
 import GrampsDisplay
 
 from QuestionDialog import ErrorDialog
@@ -935,25 +936,38 @@ class LocalMediaProperties:
 # GlobalMediaProperties
 #
 #-------------------------------------------------------------------------
-class GlobalMediaProperties:
+class GlobalMediaProperties(DisplayState.ManagedWindow):
 
-    def __init__(self,db,obj,parent,parent_window=None):
-        self.parent = parent
+    def __init__(self,state,uistate,track,obj):
+        #self.parent = parent
         self.dp = DateHandler.parser
         self.dd = DateHandler.displayer
+
+        win_menu_label = _("Media Properties")
+        
         if obj:
-            if self.parent.parent.child_windows.has_key(obj.get_handle()):
-                self.parent.parent.child_windows[obj.get_handle()].present(None)
-                return
-            else:
-                self.win_key = obj.get_handle()
+            ## if self.parent.parent.child_windows.has_key(obj.get_handle()):
+##                 self.parent.parent.child_windows[obj.get_handle()].present(None)
+##                 return
+##             else:
+            self.win_key = obj.get_handle()
         else:
             self.win_key = self
+
+        DisplayState.ManagedWindow.__init__(
+            self, uistate, [], self.win_key, win_menu_label, _('Media Properties'))
+
+        if self.already_exist:
+            return
+
+        self.state = state
+        self.uistate = uistate
+
         self.pdmap = {}
         self.child_windows = {}
         self.obj = obj
         self.lists_changed = 0
-        self.db = db
+        self.db = self.state.db
         self.idle = None
         if obj:
             self.date_object = Date.Date(self.obj.get_date_object())
@@ -963,7 +977,9 @@ class GlobalMediaProperties:
             self.date_object = Date.Date()
             self.alist = []
             self.refs = 1
-            
+
+        self.refmodel = None # this becomes the model for the references
+        
         self.path = self.db.get_save_path()
         self.change_dialog = gtk.glade.XML(const.imageselFile,
                                            "change_global","gramps")
@@ -1073,9 +1089,9 @@ class GlobalMediaProperties:
             self.change_dialog.get_widget(name).set_sensitive(mode)
 
         self.redraw_attr_list()
-        if parent_window:
-            self.window.set_transient_for(parent_window)
-        self.add_itself_to_menu()
+        #if parent_window:
+        #    self.window.set_transient_for(parent_window)
+        #self.add_itself_to_menu()
         self.window.show()
         if not self.refs:
             Utils.temp_label(self.refs_label,self.window)
@@ -1083,41 +1099,41 @@ class GlobalMediaProperties:
             self.idle = gobject.idle_add(self.display_refs)
 
     def on_delete_event(self,obj,b):
-        self.close_child_windows()
-        self.remove_itself_from_menu()
+        #self.close_child_windows()
+        #self.remove_itself_from_menu()
         gc.collect()
 
     def close(self,obj):
-        self.close_child_windows()
-        self.remove_itself_from_menu()
+        #self.close_child_windows()
+        #self.remove_itself_from_menu()
         self.window.destroy()
         if self.idle != None:
             gobject.source_remove(self.idle)
         gc.collect()
 
-    def close_child_windows(self):
-        for child_window in self.child_windows.values():
-            child_window.close(None)
-        self.child_windows = {}
+##     def close_child_windows(self):
+##         for child_window in self.child_windows.values():
+##             child_window.close(None)
+##         self.child_windows = {}
 
-    def add_itself_to_menu(self):
-        self.parent.parent.child_windows[self.win_key] = self
-        label = _('Media Object')
-        self.parent_menu_item = gtk.MenuItem(label)
-        self.parent_menu_item.set_submenu(gtk.Menu())
-        self.parent_menu_item.show()
-        self.parent.parent.winsmenu.append(self.parent_menu_item)
-        self.winsmenu = self.parent_menu_item.get_submenu()
-        self.menu_item = gtk.MenuItem(_('Properties Editor'))
-        self.menu_item.connect("activate",self.present)
-        self.menu_item.show()
-        self.winsmenu.append(self.menu_item)
+##     def add_itself_to_menu(self):
+##         self.parent.parent.child_windows[self.win_key] = self
+##         label = _('Media Object')
+##         self.parent_menu_item = gtk.MenuItem(label)
+##         self.parent_menu_item.set_submenu(gtk.Menu())
+##         self.parent_menu_item.show()
+##         self.parent.parent.winsmenu.append(self.parent_menu_item)
+##         self.winsmenu = self.parent_menu_item.get_submenu()
+##         self.menu_item = gtk.MenuItem(_('Properties Editor'))
+##         self.menu_item.connect("activate",self.present)
+##         self.menu_item.show()
+##         self.winsmenu.append(self.menu_item)
 
-    def remove_itself_from_menu(self):
-        del self.parent.parent.child_windows[self.win_key]
-        self.menu_item.destroy()
-        self.winsmenu.destroy()
-        self.parent_menu_item.destroy()
+##     def remove_itself_from_menu(self):
+##         del self.parent.parent.child_windows[self.win_key]
+##         self.menu_item.destroy()
+##         self.winsmenu.destroy()
+##         self.parent_menu_item.destroy()
 
     def present(self,obj):
         self.window.present()
@@ -1189,126 +1205,98 @@ class GlobalMediaProperties:
                                   None,self.db.readonly)
             
     def display_refs(self):
-        media_handle = self.obj.get_handle()
-        self.refs = 1
 
-        # Initialize things if we're entering this functioin
-        # for the first time
-        if not self.cursor_type:
-            self.cursor_type = 'Person'
-            self.cursor = self.db.get_person_cursor()
-            self.data = self.cursor.first()
+        self.refs = 1 # not sure what this does
 
+        if not self.refmodel:
             self.any_refs = False
+            media_handle = self.obj.get_handle()
+
             titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Name'),2,150)]
             self.refmodel = ListModel.ListModel(
                 self.change_dialog.get_widget("refinfo"),
                 titles,
                 event_func=self.button_press)
 
-        if self.cursor_type == 'Person':
-            while self.data:
-                handle,val = self.data
-                person = RelLib.Person()
-                person.unserialize(val)
-                if person.has_media_reference(media_handle):
-                    name = NameDisplay.displayer.display(person)
-                    gramps_id = person.get_gramps_id()
-                    self.refmodel.add([_("Person"),gramps_id,name],
-                                      (0,handle))
-                    self.any_refs = True
-                self.data = self.cursor.next()
-                if gtk.events_pending():
-                    return True
-            self.cursor.close()
+            self.backlink_generator = self.db.find_backlink_handles(media_handle)
             
-            self.cursor_type = 'Family'
-            self.cursor = self.db.get_family_cursor()
-            self.data = self.cursor.first()
 
-        if self.cursor_type == 'Family':
-            while self.data:
-                handle,val = self.data
-                family = RelLib.Family()
-                family.unserialize(val)
-                if family.has_media_reference(media_handle):
-                    name = Utils.family_name(family,self.db)
-                    gramps_id = family.get_gramps_id()
-                    self.refmodel.add([_("Family"),gramps_id,name],
-                                      (1,handle))
-                    self.any_refs = True
-                self.data = self.cursor.next()
-                if gtk.events_pending():
-                    return True
-            self.cursor.close()
+        while True: # The loop is broken when the backlink_generator finishes
+
+            try:
+                reference = self.backlink_generator.next()
+            except StopIteration:
+                # Last reference reached.
+                break
+
+            # If we make it here then there is at least one reference
+            self.any_refs = True
             
-            self.cursor_type = 'Event'
-            self.cursor = self.db.get_event_cursor()
-            self.data = self.cursor.first()
-
-        if self.cursor_type == 'Event':
-            while self.data:
-                handle,val = self.data
-                event = RelLib.Event()
-                event.unserialize(val)
-                if event.has_media_reference(media_handle):
-                    name = event.get_name()
-                    gramps_id = event.get_gramps_id()
-                    self.refmodel.add([_("Event"),gramps_id,name],
-                                      (2,handle))
-                    self.any_refs = True
-                self.data = self.cursor.next()
-                if gtk.events_pending():
-                    return True
-            self.cursor.close()
+            cls_name,handle = reference
             
-            self.cursor_type = 'Place'
-            self.cursor = self.db.get_place_cursor()
-            self.data = self.cursor.first()
+            if cls_name == 'Person':
+                person = self.db.get_person_from_handle(handle)
+                name = NameDisplay.displayer.display(person)
+                gramps_id = person.get_gramps_id()
+                self.refmodel.add([_("Person"),gramps_id,name],
+                                  (0,handle))
+                self.model.add([_("Person"),gramps_id,name],(0,handle))
+                
+            elif cls_name == 'Event':
+                event = self.db.get_event_from_handle(handle)
+                name = event.get_name()
+                gramps_id = event.get_gramps_id()
+                self.refmodel.add([_("Event"),gramps_id,name],
+                                  (2,handle))
+                
+            elif cls_name == 'Family':
+                family = self.db.get_family_from_handle(handle)
+                name = Utils.family_name(family,self.db)
+                gramps_id = family.get_gramps_id()
+                self.refmodel.add([_("Family"),gramps_id,name],
+                                  (1,handle))
 
-        if self.cursor_type == 'Place':
-            while self.data:
-                handle,val = self.data
-                place = RelLib.Place()
-                place.unserialize(val)
-                if place.has_media_reference(media_handle):
-                    name = place.get_title()
-                    gramps_id = place.get_gramps_id()
-                    self.refmodel.add([_("Place"),gramps_id,name],
+            elif cls_name == 'Place':
+                place = self.db.get_place_from_handle(handle)
+                name = place.get_title()
+                gramps_id = place.get_gramps_id()
+                self.refmodel.add([_("Place"),gramps_id,name],
                                       (3,handle))
-                    self.any_refs = True
-                self.data = self.cursor.next()
-                if gtk.events_pending():
-                    return True
-            self.cursor.close()
-            
-            self.cursor_type = 'Source'
-            self.cursor = self.db.get_source_cursor()
-            self.data = self.cursor.first()
+                
+            elif cls_name == 'Source':
+                source = self.db.get_source_from_handle(handle)
+                name = source.get_title()
+                gramps_id = source.get_gramps_id()
+                self.refmodel.add([_("Source"),gramps_id,name],
+                                  (4,handle))
+                
+            elif cls_name == 'Media':
+                obj = self.db.get_object_from_handle(handle)
+                name = obj.get_description()
+                gramps_id = obj.get_gramps_id()
+                self.refmodel.add([_("Media"),gramps_id,name],
+                                  (5,handle))
 
-        if self.cursor_type == 'Source':
-            while self.data:
-                handle,val = self.data
-                source = RelLib.Source()
-                source.unserialize(val)
-                if source.has_media_reference(media_handle):
-                    name = source.get_title()
-                    gramps_id = source.get_gramps_id()
-                    self.refmodel.add([_("Source"),gramps_id,name],
-                                      (4,handle))
-                    self.any_refs = True
-                self.data = self.cursor.next()
-                if gtk.events_pending():
-                    return True
-            self.cursor.close()
+            else:
+                # If we get here it means there is a new Primary object type
+                # that has been added to the database. Print a warning
+                # to remind us that this code need updating.
+                log("WARNING: Unhandled Primary object type returned from "
+                    "find_backlink_handles()\n")
+                
+            if gtk.events_pending():
+                return True
 
         if self.any_refs:
             Utils.bold_label(self.refs_label,self.window)
         else:
             Utils.unbold_label(self.refs_label,self.window)
-
-        self.cursor_type = None
+            
+        self.ref_not_loaded = 0
+        self.backlink_generator = None
+        
         return False
+        
         
     def on_notebook_switch_page(self,obj,junk,page):
         if page == 3 and not self.refs:
