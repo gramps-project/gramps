@@ -318,8 +318,7 @@ class EditSource(DisplayState.ManagedWindow):
 
         self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
 
-        self.window.set_transient_for(self.parent_window)
-        self.window.show()
+        self.show()
 
         self.model = None # This will hold the model for backreferences once it is complete.
         

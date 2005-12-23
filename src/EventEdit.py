@@ -261,8 +261,7 @@ class EventEditor(DisplayState.ManagedWindow):
 
         Utils.bold_label(self.general_label)
 
-        self.window.set_transient_for(self.parent_window)
-        self.window.show()
+        self.show()
 
     def build_menu_names(self,event):
         if event:
@@ -556,8 +555,7 @@ class EventRefEditor(DisplayState.ManagedWindow):
         if self.event.get_media_list():
             Utils.bold_label(self.gallery_label)
 
-        self.window.set_transient_for(self.parent_window)
-        self.window.show()
+        self.show()
 
     def build_menu_names(self,eventref):
         if self.event:
