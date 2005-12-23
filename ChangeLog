@@ -2,6 +2,7 @@
 	* test/RunAllTests.py: Change header.
 	* src/EventEdit.py: Fix build_ methods.
 	* src/MediaView.py: Skip empty selections.
+	* src/ToolTips.py (PersonTip.get_tip): Use new birth_ref interface.
 
 2005-12-22  Don Allingham  <don@gramps-project.org>
 	* src/DisplayState.py: window management improvements
