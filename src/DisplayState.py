@@ -297,14 +297,14 @@ class GrampsWindowManager:
                 pass
         return f
 
-    def generate_id(self,win_id):
-        return str(win_id).replace(' ','-')[1:-1]
+    def generate_id(self,item):
+        return str(item.window_id)
 
     def display_menu_list(self,data,action_data,mlist):
         i = mlist[0]
-        idval = self.generate_id(i.window_id)
+        idval = self.generate_id(i)
         data.write('<menu action="M:%s">' % idval)
-        data.write('<menuitem action="%s"/>' % self.generate_id(i.window_id))
+        data.write('<menuitem action="%s"/>' % idval)
 
         action_data.append(("M:"+idval,None,i.submenu_label,None,None,None))
         action_data.append((idval,None,i.menu_label,None,None,
@@ -315,15 +315,14 @@ class GrampsWindowManager:
                 if type(i) == list:
                     self.display_menu_list(data,action_data,i)
                 else:
-                    idval = self.generate_id(i.window_id)
+                    idval = self.generate_id(i)
                     data.write('<menuitem action="%s"/>'
-                               % self.generate_id(i.window_id))        
+                               % self.generate_id(i))        
                     action_data.append((idval,None,i.menu_label,None,None,
                                         self.call_back_factory(i)))
         data.write('</menu>')
         
     def build_windows_menu(self):
-
         if self.active != DISABLED:
             self.uimanager.remove_ui(self.active)
             self.uimanager.remove_action_group(self.action_group)

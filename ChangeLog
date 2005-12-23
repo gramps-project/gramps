@@ -2,6 +2,12 @@
 	* src/EditPerson.py: Swap menu/submenu labels.
 	* src/EventEdit.py: Menu label fixes.
 
+	* src/DisplayState.py: Simplify ID generation for UIManager.
+	* src/EditPerson.py: Use id(self) instead of self.
+	* src/EditPlace.py: Use id(self) instead of self.
+	* src/EditSource.py: Use id(self) instead of self.
+	* src/EventEdit.py: Use id(self) instead of self.
+
 2005-12-22  Don Allingham  <don@gramps-project.org>
 	* src/AddrEdit.py: More window management
 	* src/AttrEdit.py: More window management

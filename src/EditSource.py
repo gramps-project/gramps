@@ -335,7 +335,7 @@ class EditSource(DisplayState.ManagedWindow):
         if source:
             return source.get_handle()
         else:
-            return self
+            return id(self)
 
     def build_menu_names(self,source):
         if source:
