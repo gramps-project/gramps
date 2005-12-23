@@ -448,7 +448,7 @@ class EditPerson(DisplayState.ManagedWindow):
             widget = self.top.get_widget(i)
             if widget:
                 widget.set_sensitive(not self.db.readonly)
-        self.window.show()
+        self.show()
 
     def build_menu_names(self,person):
         win_menu_label = self.nd.display(person)

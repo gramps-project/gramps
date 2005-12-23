@@ -384,13 +384,7 @@ class ManagedWindow:
         """
 
         window_key = self.build_window_key(obj)
-
-        menu_info = self.build_menu_names(obj)
-        if not menu_info:
-            menu_info = ('Undefined Menu','Undefined Submenu')
-            
-        menu_label = menu_info[0]
-        submenu_label = menu_info[1]
+        menu_label,submenu_label = self.build_menu_names(obj)
             
         if uistate.gwm.get_item_from_id(window_key):
             uistate.gwm.get_item_from_id(window_key).present()
@@ -424,10 +418,14 @@ class ManagedWindow:
                 self.parent_window = self.uistate.window
 
     def build_menu_names(self,obj):
-        return None
+        return ('Undefined Menu','Undefined Submenu')
 
     def build_window_key(self,obj):
-        return self
+        return id(self)
+
+    def show(self):
+        self.window.set_transient_for(self.parent_window)
+        self.window.show()
 
     def close(self,obj=None,obj2=None):
         """
