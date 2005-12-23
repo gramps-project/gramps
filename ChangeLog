@@ -1,5 +1,9 @@
+2005-12-22  Alex Roitman  <shura@gramps-project.org>
+	* test/RunAllTests.py: Change header.
+	* src/EventEdit.py: Fix build_ methods.
+
 2005-12-22  Don Allingham  <don@gramps-project.org>
-        * src/DisplayState.py: window management improvements
+	* src/DisplayState.py: window management improvements
 	* src/EditPerson.py: window management improvements
 	* src/EditPlace.py: window management improvements
 	* src/EditSource.py: window management improvements

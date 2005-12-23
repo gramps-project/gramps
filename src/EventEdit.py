@@ -404,14 +404,14 @@ class EventRefEditor(DisplayState.ManagedWindow):
         self.state = state
         self.uistate = uistate
         self.referent = referent
+        self.event_ref = event_ref
+        self.event = event
 
         DisplayState.ManagedWindow.__init__(self, uistate, track, event_ref)
         if self.already_exist:
             return
 
         self.update = update
-        self.event_ref = event_ref
-        self.event = event
 
         self.pmap = {}
         for key in self.db.get_place_handles():
@@ -552,23 +552,23 @@ class EventRefEditor(DisplayState.ManagedWindow):
         self.window.set_transient_for(self.parent_window)
         self.window.show()
 
-    def build_menu_names(self,event):
-        if event:
-            if event.get_type()[0] == RelLib.Event.CUSTOM:
-                event_name = event.get_type()[1]
+    def build_menu_names(self,eventref):
+        if self.event:
+            if self.event.get_type()[0] == RelLib.Event.CUSTOM:
+                event_name = self.event.get_type()[1]
             else:
                 try:
-                    event_name = Utils.personal_events[event.get_type()[0]]
+                    event_name = Utils.personal_events[self.event.get_type()[0]]
                 except:
-                    event_name = Utils.family_events[event.get_type()[0]]
+                    event_name = Utils.family_events[self.event.get_type()[0]]
             submenu_label = _('Event: %s')  % event_name
         else:
             submenu_label = _('New Event')
         menu_label = _('Event Reference Editor')
         
-    def build_window_key(self,event):
-        if event:
-            return event.get_handle()
+    def build_window_key(self,eventref):
+        if self.event:
+            return self.event.get_handle()
         else:
             return self
 
