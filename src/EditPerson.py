@@ -454,7 +454,7 @@ class EditPerson(DisplayState.ManagedWindow):
         win_menu_label = self.nd.display(person)
         if not win_menu_label.strip():
             win_menu_label = _("New Person")
-        return (win_menu_label,_('Edit Person'))
+        return (_('Edit Person'),win_menu_label)
 
     def build_window_key(self,obj):
         if obj:

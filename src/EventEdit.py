@@ -266,10 +266,17 @@ class EventEditor(DisplayState.ManagedWindow):
 
     def build_menu_names(self,event):
         if event:
-            win_menu_label = event.get_type()[1]
-        if not win_menu_label.strip():
-            win_menu_label = _("New Place")
-        return (win_menu_label,_('Edit Place'))
+            if event.get_type()[0] == RelLib.Event.CUSTOM:
+                event_name = event.get_type()[1]
+            else:
+                try:
+                    event_name = Utils.personal_events[event.get_type()[0]]
+                except:
+                    event_name = Utils.family_events[event.get_type()[0]]
+            submenu_label = _('Event: %s')  % event_name
+        else:
+            submenu_label = _('New Event')
+        return (_('Event Editor'),submenu_label)
 
     def build_window_key(self,obj):
         if obj:
@@ -564,7 +571,7 @@ class EventRefEditor(DisplayState.ManagedWindow):
             submenu_label = _('Event: %s')  % event_name
         else:
             submenu_label = _('New Event')
-        menu_label = _('Event Reference Editor')
+        return (_('Event Reference Editor'),submenu_label)
         
     def build_window_key(self,eventref):
         if self.event:
