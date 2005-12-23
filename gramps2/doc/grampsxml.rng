@@ -31,7 +31,7 @@
 
 <grammar
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"  
-  ns="http://gramps-project.org/xml/1.0.0/"
+  ns="http://gramps-project.org/xml/1.1.0/"
   xmlns="http://relaxng.org/ns/structure/1.0">
 
   <start><element name="database">
@@ -80,6 +80,12 @@
           </element></zeroOrMore>
       </element></optional>
 
+      <optional><element name="repositories">
+          <zeroOrMore><element name="repository">
+              <ref name="repository-content"/>
+          </element></zeroOrMore>
+      </element></optional>
+
       <optional><element name="bookmarks">
           <zeroOrMore><element name="bookmark">
               <ref name="bookmark-content"/>
@@ -103,14 +109,17 @@
     <attribute name="id"><text/></attribute>
     <attribute name="handle"><data type="ID"/></attribute>
     <attribute name="change"><text/></attribute>
+    <optional><attribute name="priv"><choice>
+        <value>0</value>
+        <value>1</value>
+    </choice></attribute></optional>
+    <optional><element name="marker">
+        <attribute name="value"><text/></attribute>
+    </element></optional>
   </define>
 
   <define name="person-content">
     <ref name="primary-object"/>
-    <optional><attribute name="complete"><choice>
-        <value>0</value>
-        <value>1</value>
-    </choice></attribute></optional>
     <element name="gender"><choice>
         <value>M</value>
         <value>F</value>
@@ -120,8 +129,8 @@
         <ref name="name-content"/>
     </element></zeroOrMore>
     <optional><element name="nick"><text/></element></optional>
-    <zeroOrMore><element name="event">
-        <ref name="event-content"/>
+    <zeroOrMore><element name="eventref">
+        <ref name="eventref-content"/>
     </element></zeroOrMore>
     <zeroOrMore><element name="lds_ord">
         <ref name="lds-content"/>
@@ -256,10 +265,6 @@
 
   <define name="family-content">
     <ref name="primary-object"/>
-    <optional><attribute name="complete"><choice>
-        <value>0</value>
-        <value>1</value>
-    </choice></attribute></optional>
     <optional><attribute name="type"><choice>
         <value>Married</value>
         <value>Unmarried</value>
@@ -273,8 +278,8 @@
     <optional><element name="mother">
         <attribute name="hlink"><data type="IDREF"/></attribute>
     </element></optional>
-    <zeroOrMore><element name="event">
-        <ref name="event-content"/>
+    <zeroOrMore><element name="eventref">
+        <ref name="eventref-content"/>
             </element></zeroOrMore>
     <zeroOrMore><element name="lds_ord">
         <ref name="lds-content"/>
@@ -297,6 +302,26 @@
     </element></zeroOrMore>
   </define>
 
+  <define name="event-content">
+    <ref name="primary-object"/>
+    <attribute name="type"><text/></attribute>
+    <optional><ref name="date-content"/></optional>
+    <optional><element name="place">
+        <attribute name="hlink"><data type="IDREF"/></attribute>
+    </element></optional>
+    <optional><element name="cause"><text/></element></optional>
+    <optional><element name="description"><text/></element></optional>
+    <optional><element name="note">
+        <ref name="note-content"/>
+    </element></optional>
+    <zeroOrMore><element name="sourceref">
+        <ref name="sourceref-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="objref">
+        <ref name="objref-content"/>
+    </element></zeroOrMore>
+  </define>
+
   <define name="source-content">
     <ref name="primary-object"/>
     <optional><element name="stitle"><text/></element></optional>
@@ -312,6 +337,9 @@
     <zeroOrMore><element name="data_item">
         <attribute name="key"><text/></attribute>
         <attribute name="value"><text/></attribute>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="reporef">
+        <ref name="reporef-content"/>
     </element></zeroOrMore>
   </define>
 
@@ -363,6 +391,21 @@
     </element></zeroOrMore>
   </define>
 
+  <define name="repository-content">
+    <ref name="primary-object"/>
+    <optional><element name="name"><text/></element></optional>
+    <optional><element name="type"><text/></element></optional>
+    <zeroOrMore><element name="address">
+        <ref name="address-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="url">
+        <ref name="url-content"/>
+    </element></zeroOrMore>
+    <optional><element name="note">
+        <ref name="note-content"/>
+    </element></optional>
+  </define>
+
   <define name="bookmark-content">
     <attribute name="hlink"><data type="IDREF"/></attribute>
   </define>
@@ -384,12 +427,32 @@
     <optional><ref name="date-content"/></optional>
   </define>
 
+  <define name="eventref-content">
+    <attribute name="hlink"><data type="IDREF"/></attribute>
+    <optional><attribute name="priv">
+        <ref name="priv-content"/>
+    </attribute></optional>
+    <optional><attribute name="role"><text/></attribute></optional>
+    <optional><element name="note">
+        <ref name="note-content"/>
+    </element></optional>
+  </define>
+
+  <define name="reporef-content">
+    <attribute name="hlink"><data type="IDREF"/></attribute>
+    <optional><attribute name="callno"><text/></attribute></optional>
+    <optional><attribute name="medium"><text/></attribute></optional>
+    <optional><element name="note">
+        <ref name="note-content"/>
+    </element></optional>
+  </define>
+
   <define name="priv-content">
       <choice>
           <value>0</value>
           <value>1</value>
       </choice>
-    </define>
+  </define>
   
   <define name="attribute-content">
     <optional><attribute name="priv">
@@ -405,40 +468,11 @@
     </element></optional>
   </define>
 
-  <define name="event-content">
-    <attribute name="type"><text/></attribute>
-    <optional><attribute name="priv">
-        <ref name="priv-content"/>
-    </attribute></optional>
-    <optional><ref name="date-content"/></optional>
-    <zeroOrMore><element name="witness">
-        <optional><attribute name="hlink">
-            <data type="IDREF"/>
-        </attribute></optional>
-        <optional><attribute name="name"><text/></attribute></optional>
-        <optional><element name="comment"><text/></element></optional>
-    </element></zeroOrMore>
-    <optional><element name="place">
-        <attribute name="hlink"><data type="IDREF"/></attribute>
-    </element></optional>
-    <optional><element name="cause"><text/></element></optional>
-    <optional><element name="description"><text/></element></optional>
-    <optional><element name="note">
-        <ref name="note-content"/>
-    </element></optional>
-    <optional><ref name="date-content"/></optional>
-    <zeroOrMore><element name="sourceref">
-        <ref name="sourceref-content"/>
-    </element></zeroOrMore>
-    <zeroOrMore><element name="objref">
-        <ref name="objref-content"/>
-    </element></zeroOrMore>
-  </define>
-
   <define name="url-content">
       <optional><attribute name="priv">
           <ref name="priv-content"/>
       </attribute></optional>
+      <optional><attribute name="type"><text/></attribute></optional>
       <attribute name="href"><text/></attribute>
       <optional><attribute name="description"><text/></attribute></optional>
   </define>
