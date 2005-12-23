@@ -105,6 +105,8 @@ class MediaView(PageView.ListView):
 
     def row_change(self,obj):
         handle = self.first_selected()
+        if not handle:
+            return
         obj = self.dbstate.db.get_object_from_handle(handle)
         pix = ImgManip.get_thumbnail_image(obj.get_path())
         self.image.set_from_pixbuf(pix)
@@ -136,7 +138,8 @@ class MediaView(PageView.ListView):
 
     def on_double_click(self,obj,event):
         handle = self.first_selected()
-        place = self.dbstate.db.get_place_from_handle(handle)
+        if handle:
+            place = self.dbstate.db.get_place_from_handle(handle)
         #EditPlace.EditPlace(place,self.dbstate, self.uistate)
 
     def add(self,obj):
@@ -147,6 +150,8 @@ class MediaView(PageView.ListView):
 
     def remove(self,obj):
         handle = self.first_selected()
+        if not handle:
+            return
         the_lists = Utils.get_media_referents(handle,self.dbstate.db)
 
         ans = ImageSelect.DeleteMediaQuery(handle,self.dbstate.db,the_lists)
@@ -163,6 +168,8 @@ class MediaView(PageView.ListView):
 
     def edit(self,obj):
         handle = self.first_selected()
+        if not handle:
+            return
         
         obj = self.dbstate.db.get_object_from_handle(handle)
         if obj.get_mime_type():
