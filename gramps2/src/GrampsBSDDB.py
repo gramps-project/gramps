@@ -69,6 +69,18 @@ class GrampsBSDDBCursor(GrampsCursor):
     def close(self):
         self.cursor.close()
 
+    def delete(self):
+        self.cursor.delete()
+
+class GrampsBSDDBDupCursor(GrampsBSDDBCursor):
+    """Cursor that includes handling for duplicate keys"""
+
+    def set(self,key):
+        return self.cursor.set(str(key))
+
+    def next_dup(self):
+        return self.cursor.next_dup()
+
 #-------------------------------------------------------------------------
 #
 # GrampsBSDDB

@@ -51,6 +51,79 @@ import const
 import Tool
 from QuestionDialog import OkDialog, MissingMediaDialog
 
+
+#-------------------------------------------------------------------------
+#
+# Low Level repair
+#
+#-------------------------------------------------------------------------
+def low_level(db):
+    """
+    This is a low-level repair routine.
+
+    It is fixing DB inconsistencies such as duplicates.
+    Returns a (status,name) tuple.
+    The boolean status indicates the success of the procedure.
+    The name indicates the problematic table (empty if status is True).
+    """
+
+    for the_map in [('Person',db.person_map),
+                    ('Family',db.family_map),
+                    ('Event',db.event_map),
+                    ('Place',db.place_map),
+                    ('Source',db.source_map),
+                    ('Media',db.media_map)]:
+
+        print "Low-level repair: table: %s" % the_map[0]
+        if _table_low_level(db,the_map[1]):
+            print "Done."
+        else:
+            print "Low-level repair: Problem with table: %s" % the_map[0]
+            return (False,the_map[0])
+    return (True,'')
+
+
+def _table_low_level(db,table):
+    """
+    Low level repair for a given db table.
+    """
+    handle_list = table.keys()
+    dup_handles = sets.Set(
+        [ handle for handle in handle_list if handle_list.count(handle) > 1 ]
+        )
+
+    if not dup_handles:
+        print "    No dupes found for this table"
+        return True
+
+    import GrampsBSDDB
+    table_cursor = GrampsBSDDB.GrampsBSDDBDupCursor(table)
+    for handle in dup_handles:
+        print "    Duplicates found for handle: %s" % handle
+        try:
+            ret = table_cursor.set(handle)
+        except:
+            print "    Failed setting initial cursor."
+            return False
+
+        for count in range(handle_list.count(handle)-1):
+            try:
+                table_cursor.delete()
+                print "    Succesfully deleted dupe #%d" % (count+1)
+            except:
+                print "    Failed deleting dupe."
+                return False
+
+            try:
+                ret = table_cursor.next_dup()
+            except:
+                print "    Failed moving the cursor."
+                return False
+
+    table_cursor.close()
+    table.sync()
+    return True
+
 #-------------------------------------------------------------------------
 #
 # runTool
@@ -68,6 +141,12 @@ class Check(Tool.Tool):
                 # TODO: split plugin in a check and repair part to support
                 # checking of a read only database
                 return
+
+            # The low-level repair is bypassing the transaction mechanism.
+            # As such, we run it before starting the transaction.
+            # We only do this for the BSDDB backend.
+            if db.__class__.__name__ == 'GrampsBSDDB':
+                low_level(db)
         
             trans = db.transaction_begin()
             trans.set_batch(True)
@@ -137,10 +216,8 @@ class CheckIntegrity:
         self.progress.set_pass(_('Looking for duplicate spouses'),
                                self.db.get_number_of_people())
 
-        cursor = self.db.get_person_cursor()
-        data = cursor.first()
-        while data:
-            (handle,value) = data
+        for handle in self.db.person_map.keys():
+            value = self.db.person_map[handle]
             p = RelLib.Person(value)
             splist = p.get_family_handle_list()
             if len(splist) != len(sets.Set(splist)):
@@ -151,27 +228,21 @@ class CheckIntegrity:
                         self.duplicate_links.append((handle,value))
                 p.set_family_handle_list(new_list)
                 self.db.commit_person(p,self.trans)
-            data = cursor.next()
             self.progress.step()
-        cursor.close()
 
 
     def fix_encoding(self):
         self.progress.set_pass(_('Looking for character encoding errors'),
                                self.db.get_number_of_media_objects())
 
-        cursor = self.db.get_media_cursor()
-        value = cursor.first()
-        while value:
-            (handle,data) = value
+        for handle in self.db.media_map.keys():
+            data = self.db.media_map[handle]
             if type(data[2]) != unicode or type(data[4]) != unicode:
                 obj = self.db.get_object_from_handle(handle)
                 obj.path = Utils.fix_encoding( obj.path)
                 obj.desc = Utils.fix_encoding( obj.desc)
                 self.db.commit_media_object(obj,self.trans)
             self.progress.step()
-            value = cursor.next()
-        cursor.close()
 
     def check_for_broken_family_links(self):
         # Check persons referenced by the family objects
@@ -559,11 +630,9 @@ class CheckIntegrity:
         self.progress.set_pass(_('Looking for source reference problems'),
                                total)
         
-        cursor = self.db.get_person_cursor()
-        data = cursor.first()
-        while data:
+        for handle in self.db.person_map.keys():
             self.progress.step()
-            handle,info = data
+            info = self.db.person_map[handle]
             person = RelLib.Person()
             person.unserialize(info)
             handle_list = person.get_referenced_handles_recursively()
@@ -576,14 +645,10 @@ class CheckIntegrity:
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
-            data = cursor.next()
-        cursor.close()
 
-        cursor = self.db.get_family_cursor()
-        data = cursor.first()
-        while data:
+        for handle in self.db.family_map.keys():
             self.progress.step()
-            handle,info = data
+            info = self.db.family_map[handle]
             family = RelLib.Family()
             family.unserialize(info)
             handle_list = family.get_referenced_handles_recursively()
@@ -596,14 +661,10 @@ class CheckIntegrity:
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
-            data = cursor.next()
-        cursor.close()
 
-        cursor = self.db.get_place_cursor()
-        data = cursor.first()
-        while data:
+        for handle in self.db.place_map.keys():
             self.progress.step()
-            handle,info = data
+            info = self.db.place_map[handle]
             place = RelLib.Place()
             place.unserialize(info)
             handle_list = place.get_referenced_handles_recursively()
@@ -612,18 +673,14 @@ class CheckIntegrity:
                             item[1] not in known_handles ]
             if bad_handles:
                 place.remove_source_references(bad_handles)
-                self.db.commit_family(place,self.trans)
+                self.db.commit_place(place,self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
-            data = cursor.next()
-        cursor.close()
             
-        cursor = self.db.get_source_cursor()
-        data = cursor.first()
-        while data:
+        for handle in known_handles:
             self.progress.step()
-            handle,info = data
+            info = self.db.source_map[handle]
             source = RelLib.Source()
             source.unserialize(info)
             handle_list = source.get_referenced_handles_recursively()
@@ -636,14 +693,10 @@ class CheckIntegrity:
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
-            data = cursor.next()
-        cursor.close()
 
-        cursor = self.db.get_media_cursor()
-        data = cursor.first()
-        while data:
+        for handle in self.db.media_map.keys():
             self.progress.step()
-            handle,info = data
+            info = self.db.media_map[handle]
             obj = RelLib.MediaObject()
             obj.unserialize(info)
             handle_list = obj.get_referenced_handles_recursively()
@@ -656,14 +709,10 @@ class CheckIntegrity:
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
-            data = cursor.next()
-        cursor.close()
 
-        cursor = self.db.get_event_cursor()
-        data = cursor.first()
-        while data:
+        for handle in self.db.event_map.keys():
             self.progress.step()
-            handle,info = data
+            info = self.db.event_map[handle]
             event = RelLib.Event()
             event.unserialize(info)
             handle_list = event.get_referenced_handles_recursively()
@@ -676,8 +725,6 @@ class CheckIntegrity:
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
-            data = cursor.next()
-        cursor.close()
 
     def build_report(self,cl=0):
         self.progress.close()

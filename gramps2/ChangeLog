@@ -1,3 +1,9 @@
+2005-12-22  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsBSDDB.py (GrampsBSDDBCursor): add delete method;
+	(GrampsBSDDBDupCursor): Add class to handle duplicates.
+	* src/plugins/Check.py: Avoid cursors when modifying data;
+	(low_level): Add a low level repair routine, bypassing transactions.
+
 2005-12-21  Don Allingham  <don@gramps-project.org>
 	* src/ReadGedcom.py: handle overlapping on source and family ID values
 
