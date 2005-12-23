@@ -132,7 +132,7 @@ class History(GrampsDb.GrampsDBCallback):
 #
 #-------------------------------------------------------------------------
 
-_win_top = '<ui><menubar name="MenuBar"><menu name="WindowsMenu">'
+_win_top = '<ui><menubar name="MenuBar"><menu action="WindowsMenu">'
 _win_btm = '</menu></menubar></ui>'
 DISABLED = -1
 
@@ -463,6 +463,10 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.status_id = status.get_context_id('GRAMPS')
         self.phistory = History()
         self.gwm = GrampsWindowManager(uimanager)
+
+    def push_message(self, text):
+        self.status_text(text)
+        gobject.timeout_add(5000,self.modify_statusbar)
 
     def modify_statusbar(self,active=None):
         self.status.pop(self.status_id)

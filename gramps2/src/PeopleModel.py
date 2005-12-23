@@ -383,9 +383,9 @@ class PeopleModel(gtk.GenericTreeModel):
                         return cgi.escape(place_title)
         
         for event_ref in data[_EVENT_COL]:
+            event = self.db.get_event_from_handle(event_ref.ref)
             etype = event.get_type()[0]
             if etype in [Event.BAPTISM, Event.CHRISTEN]:
-                event = self.db.get_event_from_handle(event_ref.ref)
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place_title = self.db.get_place_from_handle(place_handle).get_title()
@@ -405,9 +405,9 @@ class PeopleModel(gtk.GenericTreeModel):
                         return cgi.escape(place_title)
         
         for event_ref in data[_EVENT_COL]:
+            event = self.db.get_event_from_handle(event_ref.ref)
             etype = event.get_type()[0]
             if etype in [Event.BURIAL, Event.CREMATION]:
-                event = self.db.get_event_from_handle(event_ref.ref)
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place_title = self.db.get_place_from_handle(place_handle).get_title()

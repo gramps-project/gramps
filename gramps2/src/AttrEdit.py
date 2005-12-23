@@ -56,6 +56,7 @@ import AutoComp
 import RelLib
 import Spell
 import GrampsDisplay
+import DisplayState
 
 from QuestionDialog import WarningDialog
 from WindowUtils import GladeIf
@@ -65,12 +66,11 @@ from WindowUtils import GladeIf
 # AttributeEditor class
 #
 #-------------------------------------------------------------------------
-class AttributeEditor:
+class AttributeEditor(DisplayState.ManagedWindow):
     """
     Displays a dialog that allows the user to edit an attribute.
     """
-    def __init__(self, parent, attrib, title, data_list, callback,
-                 parent_window=None):
+    def __init__(self, state, uistate, track, attrib, title, data_list, callback):
         """
         Displays the dialog box.
 
@@ -80,20 +80,17 @@ class AttributeEditor:
         list - list of options for the pop down menu
         """
 
-        self.parent = parent
-        if attrib:
-            if self.parent.child_windows.has_key(attrib):
-                self.parent.child_windows[attrib].present(None)
-                return
-            else:
-                self.win_key = attrib
-        else:
-            self.win_key = self
-        self.db = self.parent.db
+        self.db = state.db
         self.attrib = attrib
         self.callback = callback
-        self.child_windows = {}
+        self.track = track
+        self.uistate = uistate
+        self.state = state
         self.alist = data_list
+
+        DisplayState.ManagedWindow.__init__(self, uistate, track, attrib)
+        if self.already_exist:
+            return
 
         self.top = gtk.glade.XML(const.dialogFile, "attr_edit","gramps")
         self.slist  = self.top.get_widget("slist")
@@ -121,6 +118,7 @@ class AttributeEditor:
             self.srcreflist = []
 
         self.sourcetab = Sources.SourceTab(
+            self.state, self.uistate, self.track,
             self.srcreflist, self, self.top, self.window, self.slist,
             self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
             self.top.get_widget('del_src'), self.db.readonly)
@@ -132,7 +130,7 @@ class AttributeEditor:
         l = self.top.get_widget("title")
         Utils.set_titles(self.window,l,title,_('Attribute Editor'))
 
-        if attrib != None:
+        if attrib:
             self.type_selector.set_values(attrib.get_type())
             self.value_field.set_text(attrib.get_value())
             self.priv.set_active(attrib.get_privacy())
@@ -146,10 +144,12 @@ class AttributeEditor:
                     self.flowed.set_active(True)
             else:
                 Utils.unbold_label(self.notes_label)
-
+        else:
+            self.attrib = RelLib.Attribute()
+            
         self.gladeif = GladeIf(self.top)
         self.gladeif.connect('attr_edit','delete_event', self.on_delete_event)
-        self.gladeif.connect('button116', 'clicked', self.close)
+        self.gladeif.connect('button116', 'clicked', self.close_window)
         self.gladeif.connect('button115', 'clicked', self.on_ok_clicked)
         self.gladeif.connect('button127', 'clicked', self.on_help_clicked)
         self.gladeif.connect('notebook', 'switch_page', self.on_switch_page)
@@ -164,57 +164,30 @@ class AttributeEditor:
             self.flowed.set_sensitive(False)
             self.preform.set_sensitive(False)
             
-        if parent_window:
-            self.window.set_transient_for(parent_window)
-        self.add_itself_to_menu()
         self.update_note_page()
+        self.window.set_transient_for(self.parent_window)
         self.window.show()
 
     def on_delete_event(self,obj,b):
-        self.close_child_windows()
-        self.remove_itself_from_menu()
         self.gladeif.close()
+        self.close()
         gc.collect()
 
-    def close(self,obj):
-        self.close_child_windows()
-        self.remove_itself_from_menu()
+    def close_window(self,obj):
         self.gladeif.close()
+        self.close()
         self.window.destroy()
         gc.collect()
 
-    def close_child_windows(self):
-        for child_window in self.child_windows.values():
-            child_window.close(None)
-        self.child_windows = {}
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        if not self.attrib:
+    def build_menu_names(self, attrib):
+        if not attrib:
             label = _("New Attribute")
         else:
-            label = self.attrib.get_type()[1]
+            label = attrib.get_type()[1]
         if not label.strip():
             label = _("New Attribute")
         label = "%s: %s" % (_('Attribute'),label)
-        self.parent_menu_item = gtk.MenuItem(label)
-        self.parent_menu_item.set_submenu(gtk.Menu())
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-        self.winsmenu = self.parent_menu_item.get_submenu()
-        self.menu_item = gtk.MenuItem(_('Attribute Editor'))
-        self.menu_item.connect("activate",self.present)
-        self.menu_item.show()
-        self.winsmenu.append(self.menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.menu_item.destroy()
-        self.winsmenu.destroy()
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
+        return (label, _('Attribute Editor'))
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -243,20 +216,16 @@ class AttributeEditor:
             self.alist.append(attr_data[1])
             self.alist.sort()
 
-        if self.attrib == None:
-            self.attrib = RelLib.Attribute()
-            self.parent.alist.append(self.attrib)
         self.attrib.set_source_reference_list(self.srcreflist)
         self.update(attr_data,value,note,format,priv)
         self.callback(self.attrib)
-        self.close(obj)
+        self.close_window(obj)
 
     def check(self,get,set,data):
         """Compares a data item, updates if necessary, and sets the
         parents lists_changed flag"""
         if get() != data:
             set(data)
-            self.parent.lists_changed = 1
             
     def update(self,attr_data,value,note,format,priv):
         """Compares the data items, and updates if necessary"""

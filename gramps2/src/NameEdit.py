@@ -63,11 +63,12 @@ from WindowUtils import GladeIf
 #-------------------------------------------------------------------------
 class NameEditor(DisplayState.ManagedWindow):
 
-    def __init__(self,dbstate,uistate,name,track):
+    def __init__(self, dbstate, uistate, track, name, callback):
 
         self.db = dbstate.db
         self.uistate = uistate
         self.state = dbstate
+        self.callback = callback
         
         DisplayState.ManagedWindow.__init__(self, uistate, track, name)
         if self.already_exist:
@@ -101,6 +102,7 @@ class NameEditor(DisplayState.ManagedWindow):
         else:
             self.srcreflist = []
             self.date_obj = Date.Date()
+            self.name = RelLib.Name()
 
         self.date.set_text(DateHandler.displayer.display(self.date_obj))
 
@@ -158,7 +160,7 @@ class NameEditor(DisplayState.ManagedWindow):
         self.note_buffer = self.note_field.get_buffer()
         
         self.gladeif.connect('name_edit','delete_event',self.on_delete_event)
-        self.gladeif.connect('button119','clicked',self.close)
+        self.gladeif.connect('button119','clicked',self.close_window)
         self.gladeif.connect('button118','clicked',self.on_name_edit_ok_clicked)
         okbtn = self.top.get_widget('button118')
         okbtn.set_sensitive(not self.db.readonly)
@@ -206,7 +208,8 @@ class NameEditor(DisplayState.ManagedWindow):
 
     def build_menu_names(self,name):
         if name:
-            submenu_label = _('%s: %s') % (_('Name',NameDisplay.displayer.display(name)))
+            ntext = NameDisplay.displayer.display_name(name)
+            submenu_label = _('%s: %s') % (_('Name'),ntext)
         else:
             submenu_label = _('New Name')
         menu_label = _('Name Editor')
@@ -234,10 +237,12 @@ class NameEditor(DisplayState.ManagedWindow):
 
     def on_delete_event(self,*obj):
         self.gladeif.close()
+        self.close()
         gc.collect()
 
-    def close(self,*obj):
+    def close_window(self,*obj):
         self.gladeif.close()
+        self.close()
         self.window.destroy()
         gc.collect()
 
@@ -265,10 +270,6 @@ class NameEditor(DisplayState.ManagedWindow):
         # if not mtype:
         #     mtype = "Also Known As"
         
-        if self.name == None:
-            self.name = RelLib.Name()
-            self.parent.nlist.append(self.name)
-
         self.name.set_date_object(self.date_obj)
         
         self.name.set_source_reference_list(self.srcreflist)
@@ -278,20 +279,16 @@ class NameEditor(DisplayState.ManagedWindow):
 
         if self.name.get_display_as() != self.display_as.get_active():
             self.name.set_display_as(self.display_as.get_active())
-            self.parent.lists_changed = 1
 
         prefix = unicode(self.prefix_field.get_text())
         if self.name.get_surname_prefix() != prefix:
             self.name.set_surname_prefix(prefix)
-            self.parent.lists_changed = 1
  
         if self.name.get_sort_as() != self.sort_as.get_active():
             self.name.set_sort_as(self.sort_as.get_active())
-            self.parent.lists_changed = 1
 
         if not self.group_over.get_active():
             self.name.set_group_as("")
-            self.parent.lists_changed = 1
         elif self.name.get_group_as() != grp_as:
             if grp_as not in self.db.get_name_group_keys():
                 from QuestionDialog import QuestionDialog2
@@ -309,50 +306,39 @@ class NameEditor(DisplayState.ManagedWindow):
                     self.db.set_name_group_mapping(srn,grp_as)
                 else:
                     self.name.set_group_as(grp_as)
-            self.parent.lists_changed = 1
 
         self.update_name(first,last,suffix,patronymic,title,the_type,note,format,priv)
-        self.parent.lists_changed = 1
-
-        self.close(obj)
+        self.callback(self.name)
+        self.close_window(obj)
 
     def update_name(self,first,last,suffix,patronymic,title,the_type,note,format,priv):
         
         if self.name.get_first_name() != first:
             self.name.set_first_name(first)
-            self.parent.lists_changed = 1
         
         if self.name.get_surname() != last:
             self.name.set_surname(last)
-            self.parent.lists_changed = 1
 
         if self.name.get_suffix() != suffix:
             self.name.set_suffix(suffix)
-            self.parent.lists_changed = 1
 
         if self.name.get_patronymic() != patronymic:
             self.name.set_patronymic(patronymic)
-            self.parent.lists_changed = 1
 
         if self.name.get_title() != title:
             self.name.set_title(title)
-            self.parent.lists_changed = 1
 
         if self.name.get_type() != the_type:
             self.name.set_type(the_type)
-            self.parent.lists_changed = 1
 
         if self.name.get_note() != note:
             self.name.set_note(note)
-            self.parent.lists_changed = 1
 
         if self.name.get_note_format() != format:
             self.name.set_note_format(format)
-            self.parent.lists_changed = 1
 
         if self.name.get_privacy() != priv:
             self.name.set_privacy(priv)
-            self.parent.lists_changed = 1
         
     def on_switch_page(self,obj,a,page):
         start = self.note_buffer.get_start_iter()

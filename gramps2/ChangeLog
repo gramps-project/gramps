@@ -1,3 +1,15 @@
+2005-12-22  Don Allingham  <don@gramps-project.org>
+	* src/AddrEdit.py: More window management
+	* src/AttrEdit.py: More window management
+	* src/DisplayState.py: added push_message
+	* src/EditPerson.py: More window management
+	* src/ListBox.py: More window management
+	* src/NameEdit.py: More window management
+	* src/Navigation.py: More window management
+	* src/PeopleModel.py: More window management
+	* src/PersonView.py: More window management
+	* src/ViewManager.py: better handling of ui and action groups
+
 2005-12-22  Alex Roitman  <shura@gramps-project.org>
 	* test/RunAllTests.py: Change header.
 	* src/EventEdit.py: Fix build_ methods.

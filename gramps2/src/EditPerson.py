@@ -313,7 +313,7 @@ class EditPerson(DisplayState.ManagedWindow):
             self.person, self.addr_list, self.addr_label,
             [addr_add_btn, addr_edit_btn, addr_delete_btn])
 
-        self.name_box = ListBox.NameListBox( state, uistate, self.track,
+        self.name_box = ListBox.NameListBox(state, uistate, self.track,
             self.person, self.name_list, self.names_label,
             [name_add_btn, name_edit_btn, name_delete_btn])
 
@@ -1030,6 +1030,10 @@ class EditPerson(DisplayState.ManagedWindow):
         changed = False
         name = self.person.get_primary_name()
 
+        for item in [ self.event_box, self.attr_box, self.addr_box,
+                      self.name_box, self.url_box] :
+            if len(item.get_changed_objects()) > 0:
+                changed = True
         
         #TODO#if self.complete.get_active() != self.person.get_complete_flag():
         #    changed = True
@@ -1366,7 +1370,7 @@ class EditPerson(DisplayState.ManagedWindow):
         self.pname.set_first_name(unicode(self.given.get_text()))
         self.pname.set_title(unicode(self.title.get_text()))
 
-        NameEdit.NameEditor(self, self.pname, self.update_name, self.window)
+        NameEdit.NameEditor(self.state, self.uistate, self.track, self.pname, self)
 
     def update_name(self,name):
         self.write_primary_name()
