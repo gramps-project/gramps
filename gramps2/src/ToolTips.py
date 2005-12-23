@@ -179,9 +179,9 @@ class PersonTip:
         global escape
 
         birth_str = ""
-        birth_handle = self._obj.get_birth_handle()
-        if birth_handle:
-            birth = self._db.get_event_from_handle(birth_handle)
+        birth_ref = self._obj.get_birth_ref()
+        if birth_ref:
+            birth = self._db.get_event_from_handle(birth_ref.ref)
             date_str = DateHandler.get_date(birth)
             if date_str != "":
                 birth_str = escape(date_str)
