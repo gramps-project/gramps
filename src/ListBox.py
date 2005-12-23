@@ -265,16 +265,16 @@ class AttrListBox(ReorderListBox):
 
     def add(self,obj):
         """Brings up the AttributeEditor for a new attribute"""
-        AttrEdit.AttributeEditor(state, uistate, None, self.name,
-                                 self.attr_dict,
+        AttrEdit.AttributeEditor(self.state, self.uistate, self.track,
+                                 None, self.name, self.attr_dict,
                                  self.edit_callback)
 
     def update(self,obj):
         store,node = self.list_model.get_selected()
         if node:
             attr = self.list_model.get_object(node)
-            AttrEdit.AttributeEditor(state,uistate, attr, self.name,
-                                     self.attr_dict,
+            AttrEdit.AttributeEditor(self.state, self.uistate, self.track,
+                                     attr, self.name, self.attr_dict,
                                      self.edit_callback)
 
     def display_data(self,attr):
@@ -451,7 +451,7 @@ class EventListBox(ReorderListBox):
 
 class NameListBox(ReorderListBox):
     
-    def __init__(self,state,uistate,track,person,obj,label,button_list):
+    def __init__(self, state, uistate, track, person, obj, label, button_list):
 
         surnames = state.db.get_surname_list()
 
@@ -499,14 +499,15 @@ class NameListBox(ReorderListBox):
         self.data[index].set_suffix(value)
 
     def add(self,obj):
-        NameEdit.NameEditor(self.state, self.uistate, None, self.track)
+        NameEdit.NameEditor(self.state, self.uistate, self.track,
+                            None, self.edit_callback)
 
     def update(self,obj):
         store,node = self.list_model.get_selected()
         if node:
-            NameEdit.NameEditor(self.state, self.uistate,
+            NameEdit.NameEditor(self.state, self.uistate, self.track,
                                 self.list_model.get_object(node),
-                                self.track)
+                                self.edit_callback)
 
     def display_data(self,name):
         has_note = name.get_note()
@@ -565,14 +566,14 @@ class AddressListBox(ReorderListBox):
         self.data[index].set_country(value)
 
     def add(self,obj):
-        AddrEdit.AddressEditor(self.state,self.uistate, None,
+        AddrEdit.AddressEditor(self.state, self.uistate, self.track, None,
                                self.edit_callback)
 
     def update(self,obj):
         store,node = self.list_model.get_selected()
         if node:
             item = self.list_model.get_object(node)
-            AddrEdit.AddressEditor(self.state,self.uistate, item,
+            AddrEdit.AddressEditor(self.state, self.uistate, self.track, item,
                                    self.edit_callback)
 
     def display_data(self,item):

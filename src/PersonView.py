@@ -284,7 +284,7 @@ class PersonView(PageView.PersonNavView):
                 self.tree.scroll_to_cell(path,None,1,0.5,0)
         except KeyError:
             self.selection.unselect_all()
-            print "Person not currently available due to filter"
+            self.uistate.push_message(_("Active person not visible"))
             self.dbstate.active = p
 
         # disable the inactive flag

@@ -392,7 +392,7 @@ class ViewManager:
 
             for mergeid in self.merge_ids:
                 self.uimanager.remove_ui(mergeid)
-            
+
             if self.active_page:
                 groups = self.active_page.get_actions()
                 for grp in groups:
@@ -416,10 +416,12 @@ class ViewManager:
 
                 ui = self.active_page.ui_definition()
                 self.merge_ids = [self.uimanager.add_ui_from_string(ui)]
-            
+
                 for ui in self.active_page.additional_ui_definitions():
                     mergeid = self.uimanager.add_ui_from_string(ui)
                     self.merge_ids.append(mergeid)
+                while gtk.events_pending():
+                    gtk.main_iteration()
 
                 self.pages[num].change_page()
 
@@ -717,7 +719,7 @@ class ViewManager:
             self.bookmarks.add(self.active_person.get_handle())
             name = NameDisplay.displayer.display(self.active_person)
             self.status_text(_("%s has been bookmarked") % name)
-            gtk.timeout_add(5000,self.modify_statusbar)
+            gobject.timeout_add(5000,self.modify_statusbar)
         else:
             WarningDialog(_("Could Not Set a Bookmark"),
                           _("A bookmark could not be set because "

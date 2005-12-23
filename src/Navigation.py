@@ -65,8 +65,9 @@ class BaseNavigation:
         """
         Enables the UI and action groups
         """
-        self.uistate.uimanager.insert_action_group(self.action_group, 1)
-        self.active = self.uistate.uimanager.add_ui_from_string(self.ui)
+        if self.active == DISABLED:
+            self.uistate.uimanager.insert_action_group(self.action_group, 1)
+            self.active = self.uistate.uimanager.add_ui_from_string(self.ui)
 
     def build_item_name(self,handle):
         """
@@ -81,9 +82,7 @@ class BaseNavigation:
         """
         self.items = items
 
-        if self.active != DISABLED:
-            self.uistate.uimanager.remove_ui(self.active)
-            self.uistate.uimanager.remove_action_group(self.action_group)
+        self.disable()
 
         data = map(lambda x: '<menuitem action="%s%02d"/>' % (self.title,x), range(0,len(items)))
         self.ui = _top + "".join(data) + _btm

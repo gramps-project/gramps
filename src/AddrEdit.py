@@ -53,6 +53,7 @@ import RelLib
 import Sources
 import DateEdit
 import DateHandler
+import DisplayState
 import Spell
 
 from WindowUtils import GladeIf
@@ -62,11 +63,11 @@ from WindowUtils import GladeIf
 # AddressEditor class
 #
 #-------------------------------------------------------------------------
-class AddressEditor:
+class AddressEditor(DisplayState.ManagedWindow):
     """
     Displays a dialog that allows the user to edit an address.
     """
-    def __init__(self,parent,addr,callback,parent_window=None):
+    def __init__(self, dbstate, uistate, track, addr, callback):
         """
         Displays the dialog box.
 
@@ -74,19 +75,15 @@ class AddressEditor:
         addr - The address that is to be edited
         """
 
-        self.parent = parent
-        if addr:
-            if self.parent.child_windows.has_key(addr):
-                self.parent.child_windows[addr].present(None)
-                return
-            else:
-                self.win_key = addr
-        else:
-            self.win_key = self
-        self.db = self.parent.db
-        self.addr = addr
+        self.db = dbstate.db
+        self.uistate = uistate
+        self.dbstate = dbstate
         self.callback = callback
-        self.child_windows = {}
+        self.addr = addr
+
+        DisplayState.ManagedWindow.__init__(self, uistate, track, addr)
+        if self.already_exist:
+            return
 
         # Get the important widgets from the glade description
         self.top = gtk.glade.XML(const.dialogFile, "addr_edit","gramps")
@@ -151,9 +148,11 @@ class AddressEditor:
             Utils.unbold_label(self.general_label)
             self.addr_date_obj = Date.Date()
             self.srcreflist = []
+            self.addr = RelLib.Address()
         self.switch_page()
 
         self.sourcetab = Sources.SourceTab(
+            self.dbstate, self.uistate, self.track,
             self.srcreflist, self, self.top, self.window, self.slist,
             self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
             self.top.get_widget('del_src'), self.db.readonly)
@@ -164,57 +163,29 @@ class AddressEditor:
             self.addr_date_obj, self.addr_start, date_stat, self.window)
 
         self.gladeif.connect('addr_edit','delete_event',self.on_delete_event)
-        self.gladeif.connect('button122','clicked',self.close)
+        self.gladeif.connect('button122','clicked',self.close_window)
         self.gladeif.connect('button121','clicked',self.ok_clicked)
         okbtn = self.top.get_widget('button121')
         okbtn.set_sensitive(not self.db.readonly)
         self.gladeif.connect('button129','clicked',self.on_help_clicked)
         self.gladeif.connect('notebook2','switch_page',self.on_switch_page)
 
-        if parent_window:
-            self.window.set_transient_for(parent_window)
-        self.add_itself_to_menu()
+        self.window.set_transient_for(self.parent_window)
         self.window.show()
 
     def on_delete_event(self,obj,b):
-        self.close_child_windows()
-        self.remove_itself_from_menu()
         self.gladeif.close()
+        self.close()
         gc.collect()
 
-    def close(self,obj):
-        self.close_child_windows()
-        self.remove_itself_from_menu()
+    def close_window(self,obj):
         self.gladeif.close()
+        self.close()
         self.window.destroy()
         gc.collect()
 
-    def close_child_windows(self):
-        for child_window in self.child_windows.values():
-            child_window.close(None)
-        self.child_windows = {}
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        label = _('Address')
-        self.parent_menu_item = gtk.MenuItem(label)
-        self.parent_menu_item.set_submenu(gtk.Menu())
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-        self.winsmenu = self.parent_menu_item.get_submenu()
-        self.menu_item = gtk.MenuItem(_('Address Editor'))
-        self.menu_item.connect("activate",self.present)
-        self.menu_item.show()
-        self.winsmenu.append(self.menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.menu_item.destroy()
-        self.winsmenu.destroy()
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
+    def build_menu_names(self,obj):
+        return (_('Address'),_('Address Editor'))
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -237,28 +208,23 @@ class AddressEditor:
         format = self.preform.get_active()
         priv = self.priv.get_active()
         
-        if self.addr == None:
-            self.addr = RelLib.Address()
-            self.parent.plist.append(self.addr)
         self.addr.set_source_reference_list(self.srcreflist)
 
         self.update(date_obj,street,city,state,country,postal,phone,note,format,priv)
         self.callback(self.addr)
-        self.close(obj)
+        self.close_window(obj)
 
     def check(self,get,set,data):
         """Compares a data item, updates if necessary, and sets the
         parents lists_changed flag"""
         if get() != data:
             set(data)
-            self.parent.lists_changed = 1
             
     def update(self,date_obj,street,city,state,country,postal,phone,note,format,priv):
         """Compares the data items, and updates if necessary"""
 
         if not self.addr.get_date_object().is_equal(date_obj):
             self.addr.set_date_object(date_obj)
-            self.parent.lists_changed = 1
         
         self.check(self.addr.get_street,self.addr.set_street,street)
         self.check(self.addr.get_country,self.addr.set_country,country)
