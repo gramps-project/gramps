@@ -456,11 +456,11 @@ class EditPerson(DisplayState.ManagedWindow):
             win_menu_label = _("New Person")
         return (_('Edit Person'),win_menu_label)
 
-    def build_window_key(self,obj):
-        if obj:
-            win_key = obj.get_handle()
+    def build_window_key(self,person):
+        if person:
+            return person.get_handle()
         else:
-            win_key = self
+            return id(self)
     
     def set_list_dnd(self,obj, get, begin, receive):
         obj.drag_dest_set(gtk.DEST_DEFAULT_ALL, [DdTargets.NAME.target()],

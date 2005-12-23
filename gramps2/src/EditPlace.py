@@ -267,7 +267,7 @@ class EditPlace(DisplayState.ManagedWindow):
         if place:
             return place.get_handle()
         else:
-            return self
+            return id(self)
 
     def build_menu_names(self,place):
         win_menu_label = place.get_title()

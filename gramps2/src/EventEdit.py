@@ -282,7 +282,7 @@ class EventEditor(DisplayState.ManagedWindow):
         if obj:
             win_key = obj.get_handle()
         else:
-            win_key = self
+            win_key = id(self)
 
     def on_delete_event(self,obj,b):
         self.gladeif.close()
@@ -577,7 +577,7 @@ class EventRefEditor(DisplayState.ManagedWindow):
         if self.event:
             return self.event.get_handle()
         else:
-            return self
+            return id(self)
 
     def on_help_clicked(self,obj):
         pass
