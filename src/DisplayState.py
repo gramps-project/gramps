@@ -358,10 +358,24 @@ except:
     from gnome.vfs import get_mime_type
 
 class RecentDocsMenu:
-    def __init__(self,uimanager):
+    def __init__(self,uimanager, state, fileopen):
         self.action_group = gtk.ActionGroup('RecentFiles')
         self.active = DISABLED
         self.uimanager = uimanager
+        self.fileopen = fileopen
+        self.state = state
+
+    def load(self,item):
+        print item
+        name = item.get_path()
+        dbtype = item.get_mime()
+        
+        db = GrampsDb.gramps_db_factory(dbtype)()
+        self.state.change_database(db)
+        self.fileopen(name)
+        self.state.db.request_rebuild()
+        RecentFiles.recent_files(name,dbtype)
+        self.build()
 
     def build(self):
         f = StringIO()
@@ -382,7 +396,8 @@ class RecentDocsMenu:
                 filetype = get_mime_type(item.get_path())
                 action_id = "RecentMenu%d" % count
                 f.write('<menuitem action="%s"/>' % action_id)
-                actions.append((action_id,None,filename,None,None,None))
+                actions.append((action_id,None,filename,None,None,
+                                make_callback(item,self.load)))
             except RuntimeError:
                 pass    # ignore no longer existing files
             
@@ -390,8 +405,11 @@ class RecentDocsMenu:
         f.write(_rct_btm)
         self.action_group.add_actions(actions)
         self.uimanager.insert_action_group(self.action_group,1)
-        self.action = self.uimanager.add_ui_from_string(f.getvalue())
+        self.active = self.uimanager.add_ui_from_string(f.getvalue())
         f.close()
+
+def make_callback(n,f):
+    return lambda x: f(n)
 
 #-------------------------------------------------------------------------
 #
