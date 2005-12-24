@@ -108,7 +108,7 @@ class EditPerson(DisplayState.ManagedWindow):
         else:
             self.orig_handle = ""
             
-        DisplayState.ManagedWindow.__init__(self, uistate, [], person)
+        DisplayState.ManagedWindow.__init__(self, uistate, track, person)
 
         if self.already_exist:
             return

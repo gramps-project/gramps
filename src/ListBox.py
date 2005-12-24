@@ -612,15 +612,16 @@ class UrlListBox(ReorderListBox):
         self.data[index].set_description(value)
 
     def add(self,obj):
-        UrlEdit.UrlEditor(self.state, self.uistate, self.name, None,
-                          self.edit_callback)
+        UrlEdit.UrlEditor(self.state, self.uistate, self.track,
+                          self.name, None, self.edit_callback)
 
     def update(self,obj):
         store,node = self.list_model.get_selected()
         if node:
-            UrlEdit.UrlEditor(self.state, self.uistate, self.name,
+            UrlEdit.UrlEditor(self.state, self.uistate, self.track,
+                              self.name,
                               self.list_model.get_object(node),
-                              self.edit_callback, self.window)
+                              self.edit_callback)
 
     def display_data(self,url):
         return [url.get_path(), url.get_description()]

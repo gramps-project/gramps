@@ -78,7 +78,8 @@ uidefault = '''<ui>
   <menu action="FileMenu">
     <menuitem action="New"/>
     <menuitem action="Open"/>
-    <menuitem action="OpenRecent"/>
+    <menu action="OpenRecent">
+    </menu>
     <separator/>
     <menuitem action="Import"/>
     <menuitem action="SaveAs"/>
@@ -203,6 +204,8 @@ class ViewManager:
 
         person_nav = Navigation.PersonNavigation(self.uistate)
         self.navigation_type[PageView.NAVIGATION_PERSON] = (person_nav,None)
+        self.recent_manager = DisplayState.RecentDocsMenu(self.uimanager)
+        self.recent_manager.build()
         self.window.show()
 
     def init_interface(self):
@@ -237,7 +240,7 @@ class ViewManager:
             ('FileMenu', None, '_File'),
             ('New', gtk.STOCK_NEW, '_New', "<control>n", None, self.new_activate),
             ('Open', gtk.STOCK_OPEN, '_Open', "<control>o", None, self.open_activate),
-            ('OpenRecent', gtk.STOCK_OPEN, 'Open _Recent'),
+            ('OpenRecent', None, 'Open _Recent'),
             ('Quit', gtk.STOCK_QUIT, '_Quit', "<control>q", None, self.quit),
             ('ViewMenu', None, '_View'),
             ('Preferences', gtk.STOCK_PREFERENCES, '_Preferences'),

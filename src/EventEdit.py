@@ -113,7 +113,7 @@ class EventEditor(DisplayState.ManagedWindow):
         self.dp = _dp
         self.dd = _dd
 
-        DisplayState.ManagedWindow.__init__(self, uistate, [], event)
+        DisplayState.ManagedWindow.__init__(self, uistate, self.track, event)
         if self.already_exist:
             return
 

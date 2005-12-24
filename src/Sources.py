@@ -319,7 +319,8 @@ class SourceTab:
         if node:
             col = store.get_path(node)
             src = self.list[col[0]]
-            SourceEditor(self.state, self.uistate, self.track, src, self.update_clist)
+            SourceEditor(self.state, self.uistate, self.track,
+                         src, self.update_clist)
 
     def add_src_clicked(self,obj):
         src = RelLib.SourceRef()
@@ -351,9 +352,7 @@ class SourceEditor(DisplayState.ManagedWindow):
         else:
             submenu_label = _('New Source Reference')
             
-        DisplayState.ManagedWindow.__init__(
-            self, uistate, self.track, srcref, submenu_label,
-            _('Source Reference Editor'))
+        DisplayState.ManagedWindow.__init__(self, uistate, self.track, srcref)
 
         self.update = update
         self.source_ref = srcref
@@ -426,6 +425,13 @@ class SourceEditor(DisplayState.ManagedWindow):
         self.window.set_transient_for(self.parent_window)
         self.db.connect('source-add', self.rebuild_menu)
         self.window.show()
+
+    def build_menu_names(self,srcref):
+        if srcref:
+            submenu_label = _('Source Reference')
+        else:
+            submenu_label = _('New Source Reference')
+        return (_('Source Reference Editor'),submenu_label)
 
     def rebuild_menu(self,handle_list):
         self.build_source_menu(handle_list[0])
