@@ -61,6 +61,7 @@ import PageView
 import Navigation
 import TipOfDay
 import Bookmarks
+import RecentFiles
 
 #-------------------------------------------------------------------------
 #
@@ -204,7 +205,7 @@ class ViewManager:
 
         person_nav = Navigation.PersonNavigation(self.uistate)
         self.navigation_type[PageView.NAVIGATION_PERSON] = (person_nav,None)
-        self.recent_manager = DisplayState.RecentDocsMenu(self.uimanager)
+        self.recent_manager = DisplayState.RecentDocsMenu(self.uimanager,self.state,self.read_file)
         self.recent_manager.build()
         self.window.show()
 
@@ -568,8 +569,8 @@ class ViewManager:
                 self.state.db.request_rebuild()
                 self.change_page(None,None)
                 # Add the file to the recent items
-                #RecentFiles.recent_files(filename,const.app_gramps)
-                #self.parent.build_recent_menu()
+                RecentFiles.recent_files(filename,const.app_gramps)
+                self.recent_manager.build()
                 return True
             else:
                 choose.destroy()
@@ -613,10 +614,10 @@ class ViewManager:
             self.state.db.request_rebuild()
             self.change_page(None,None)
 
-        #if success:
-        # Add the file to the recent items
-        #RecentFiles.recent_files(filename,filetype)
-        #parent.build_recent_menu()
+        if success:
+            # Add the file to the recent items
+            RecentFiles.recent_files(filename,filetype)
+            self.recent_manager.build()
 
         return success
 
@@ -642,6 +643,7 @@ class ViewManager:
                                                'to the selected file.'))
 
         try:
+            print self.load_database, filename, callback, mode
             if self.load_database(filename,callback,mode=mode):
                 if filename[-1] == '/':
                     filename = filename[:-1]
