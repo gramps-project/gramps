@@ -98,7 +98,10 @@ class DateParserFR(DateParser):
         u'environ': Date.MOD_ABOUT,
         u'circa'  : Date.MOD_ABOUT,
         u'c.'     : Date.MOD_ABOUT,
+        u'ca'     : Date.MOD_ABOUT,
+        u'ca.'    : Date.MOD_ABOUT,
         u'vers'   : Date.MOD_ABOUT,
+        u'~'      : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
@@ -120,9 +123,6 @@ class DateParserFR(DateParser):
         u'estimée'    : Date.QUAL_ESTIMATED,
         u'est.'       : Date.QUAL_ESTIMATED,
         u'est'        : Date.QUAL_ESTIMATED,
-        u'environ'    : Date.QUAL_ESTIMATED,
-        u'env'        : Date.QUAL_ESTIMATED,
-        u'env.'       : Date.QUAL_ESTIMATED,
         u'calculée'   : Date.QUAL_CALCULATED,
         u'calc.'      : Date.QUAL_CALCULATED,
         u'calc'       : Date.QUAL_CALCULATED,
@@ -152,9 +152,9 @@ class DateDisplayFR(DateDisplay):
         u" (Révolutionnaire)", u" (Perse)", u" (Islamique)"
         )
 
-    _mod_str = ("",u"avant ",u"après ",u"vers ","environ ","circa ","")
+    _mod_str = ("",u"avant ",u"après ",u"vers ","","","")
     
-    _qual_str = ("","estimée ","calculée ","environ ")
+    _qual_str = ("","estimée ","calculée ","")
 
     formats = (
         "AAAA-MM-DD (ISO)", "Numérique", "Mois Jour, Année",
