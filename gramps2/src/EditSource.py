@@ -181,7 +181,7 @@ class EditSource(DisplayState.ManagedWindow):
         self.idle = None
         self.name_display = NameDisplay.displayer.display
 
-        DisplayState.ManagedWindow.__init__(self, uistate, self.track, self.source)
+        DisplayState.ManagedWindow.__init__(self, uistate, self.track, source)
 
         if source:
             self.source = source
@@ -411,7 +411,7 @@ class EditSource(DisplayState.ManagedWindow):
         if data_type == 0:
             import EditPerson
             person = self.db.get_person_from_handle(handle)
-            EditPerson.EditPerson(self.parent,person,self.db)
+            EditPerson.EditPerson(self.state, self.uistate, self.track, person)
         elif data_type == 1:
             import Marriage
             family = self.db.get_family_from_handle(handle)

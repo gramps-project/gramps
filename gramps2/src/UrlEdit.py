@@ -45,6 +45,8 @@ import const
 import Utils
 import RelLib
 import GrampsDisplay
+import DisplayState
+
 from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
@@ -52,18 +54,20 @@ from WindowUtils import GladeIf
 # UrlEditor class
 #
 #-------------------------------------------------------------------------
-class UrlEditor:
+class UrlEditor(DisplayState.ManagedWindow):
 
-    def __init__(self,parent,name,url,callback,parent_window=None):
-        self.parent = parent
-        if url:
-            if self.parent.child_windows.has_key(url):
-                self.parent.child_windows[url].present(None)
-                return
-            else:
-                self.win_key = url
-        else:
-            self.win_key = self
+    def __init__(self, dbstate, uistate, track, name, url, callback):
+
+        self.db = dbstate.db
+        self.uistate = uistate
+        self.state = dbstate
+        self.callback = callback
+        self.name = name
+        
+        DisplayState.ManagedWindow.__init__(self, uistate, track, url)
+        if self.already_exist:
+            return
+
         self.url = url
         self.callback = callback
         self.top = gtk.glade.XML(const.dialogFile, "url_edit","gramps")
@@ -78,7 +82,7 @@ class UrlEditor:
         if not name or name == ", ":
             etitle =_('Internet Address Editor')
         else:
-            etitle =_('Internet Address Editor for %s') % escape(name),
+            etitle =_('Internet Address Editor for %s') % escape(name)
             
 
         Utils.set_titles(self.window,title_label, etitle,
@@ -93,36 +97,24 @@ class UrlEditor:
         self.gladeif.connect('button124','clicked', self.on_url_edit_ok_clicked)
         self.gladeif.connect('button130','clicked', self.on_help_clicked)
 
-        if parent_window:
-            self.window.set_transient_for(parent_window)
-        self.add_itself_to_menu()
+        self.window.set_transient_for(self.parent_window)
         self.window.show()
+
+    def build_menu_names(self,obj):
+        if not self.name or self.name == ", ":
+            etitle =_('Internet Address Editor')
+        else:
+            etitle =_('Internet Address Editor for %s') % escape(self.name)
+        return (etitle, _('Internet Address Editor'))
 
     def on_delete_event(self,*obj):
         self.gladeif.close()
-        self.remove_itself_from_menu()
         gc.collect()
 
     def close(self,*obj):
         self.gladeif.close()
-        self.remove_itself_from_menu()
         self.window.destroy()
         gc.collect()
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        label = _('Internet Address Editor')
-        self.parent_menu_item = gtk.MenuItem(label)
-        self.parent_menu_item.connect("activate",self.present)
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.parent_menu_item.destroy()
-
-    def present(self,*obj):
-        self.window.present()
 
     def on_help_clicked(self,*obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -133,10 +125,6 @@ class UrlEditor:
         addr = unicode(self.addr.get_text())
         priv = self.priv.get_active()
         
-        if self.url == None:
-            self.url = RelLib.Url()
-            self.parent.ulist.append(self.url)
-        
         self.update_url(des,addr,priv)
         self.callback(self.url)
         self.close(obj)
@@ -144,12 +132,10 @@ class UrlEditor:
     def update_url(self,des,addr,priv):
         if self.url.get_path() != addr:
             self.url.set_path(addr)
-            self.parent.lists_changed = 1
         
         if self.url.get_description() != des:
             self.url.set_description(des)
-            self.parent.lists_changed = 1
 
         if self.url.get_privacy() != priv:
             self.url.set_privacy(priv)
-            self.parent.lists_changed = 1
+

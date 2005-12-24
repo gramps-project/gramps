@@ -340,6 +340,59 @@ class GrampsWindowManager:
         self.action_group.add_actions(action_data)
         self.enable()
 
+
+#-------------------------------------------------------------------------
+#
+# Recent Docs Menu
+#
+#-------------------------------------------------------------------------
+
+_rct_top = '<ui><menubar name="MenuBar"><menu action="FileMenu"><menu action="OpenRecent">'
+_rct_btm = '</menu></menu></menubar></ui>'
+
+import RecentFiles
+import os
+try:
+    from gnomevfs import get_mime_type
+except:
+    from gnome.vfs import get_mime_type
+
+class RecentDocsMenu:
+    def __init__(self,uimanager):
+        self.action_group = gtk.ActionGroup('RecentFiles')
+        self.active = DISABLED
+        self.uimanager = uimanager
+
+    def build(self):
+        f = StringIO()
+        f.write(_rct_top)
+        gramps_rf = RecentFiles.GrampsRecentFiles()
+
+        count = 0
+        
+        if self.active != DISABLED:
+            self.uimanager.remove_ui(self.active)
+            self.uimanager.remove_action_group(self.action_group)
+            self.active = DISABLED
+            
+        actions = []
+        for item in gramps_rf.gramps_recent_files:
+            try:
+                filename = os.path.basename(item.get_path()).replace('_','__')
+                filetype = get_mime_type(item.get_path())
+                action_id = "RecentMenu%d" % count
+                f.write('<menuitem action="%s"/>' % action_id)
+                actions.append((action_id,None,filename,None,None,None))
+            except RuntimeError:
+                pass    # ignore no longer existing files
+            
+            count +=1
+        f.write(_rct_btm)
+        self.action_group.add_actions(actions)
+        self.uimanager.insert_action_group(self.action_group,1)
+        self.action = self.uimanager.add_ui_from_string(f.getvalue())
+        f.close()
+
 #-------------------------------------------------------------------------
 #
 # Gramps Managed Window class

@@ -1,3 +1,13 @@
+2005-12-23  Don Allingham  <don@gramps-project.org>
+	* DisplayState.py: recent file support
+	* EditPerson.py: Window management
+	* EditSource.py: Window management
+	* EventEdit.py: Window management
+	* ListBox.py: Window management
+	* Sources.py: Window management
+	* UrlEdit.py: Window management
+	* ViewManager.py: Window management
+
 2005-12-23  Alex Roitman  <shura@gramps-project.org>
 	* src/EditPerson.py: Swap menu/submenu labels.
 	* src/EventEdit.py: Menu label fixes.
