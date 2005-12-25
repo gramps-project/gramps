@@ -65,7 +65,7 @@ class History(GrampsDb.GrampsDBCallback):
 
     def clear(self):
         self.history = []
-        self.mistory = []
+        self.mhistory = []
         self.index = -1
         self.lock = False
 
@@ -366,7 +366,6 @@ class RecentDocsMenu:
         self.state = state
 
     def load(self,item):
-        print item
         name = item.get_path()
         dbtype = item.get_mime()
         
@@ -390,7 +389,9 @@ class RecentDocsMenu:
             self.active = DISABLED
             
         actions = []
-        for item in gramps_rf.gramps_recent_files:
+        rfiles = gramps_rf.gramps_recent_files
+        rfiles.sort(by_time)
+        for item in rfiles:
             try:
                 filename = os.path.basename(item.get_path()).replace('_','__')
                 filetype = get_mime_type(item.get_path())
@@ -410,6 +411,9 @@ class RecentDocsMenu:
 
 def make_callback(n,f):
     return lambda x: f(n)
+
+def by_time(a,b):
+    return cmp(b.get_time(),a.get_time())
 
 #-------------------------------------------------------------------------
 #

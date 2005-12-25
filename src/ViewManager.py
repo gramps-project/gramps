@@ -62,6 +62,7 @@ import Navigation
 import TipOfDay
 import Bookmarks
 import RecentFiles
+import NameDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -110,7 +111,7 @@ uidefault = '''<ui>
   <menu action="BookMenu">
     <menuitem action="AddBook"/>
     <menuitem action="EditBook"/>
-    <menuitem action="GoToBook"/>
+    <menu action="GoToBook"/>
   </menu>
   <menu action="ReportsMenu">
   </menu>
@@ -271,7 +272,7 @@ class ViewManager:
             ('EditMenu',   None,                      '_Edit'),
             ('GoMenu',     None,                      '_Go'),
             ('BookMenu',   None,                      '_Bookmarks'),
-            ('AddBook',    gtk.STOCK_INDEX,           '_Add bookmark', '<control>d'),
+            ('AddBook',    gtk.STOCK_INDEX,           '_Add bookmark', '<control>d', None, self.add_bookmark),
             ('EditBook',   None,                      '_Edit bookmarks', '<control>b'),
             ('GoToBook',   gtk.STOCK_JUMP_TO,         '_Go to bookmark'),
             ('ReportsMenu',None,                      '_Reports'),
@@ -643,7 +644,6 @@ class ViewManager:
                                                'to the selected file.'))
 
         try:
-            print self.load_database, filename, callback, mode
             if self.load_database(filename,callback,mode=mode):
                 if filename[-1] == '/':
                     filename = filename[:-1]
@@ -716,15 +716,14 @@ class ViewManager:
         return True
 
     def setup_bookmarks(self):
-        self.bookmarks = Bookmarks.Bookmarks(self.state.db,self.state.db.get_bookmarks())
+        self.bookmarks = Bookmarks.Bookmarks(self.state,self.uimanager,
+                                             self.state.db.get_bookmarks())
 
-    def on_add_bookmark_activate(self,obj):
-        return
-        if self.active_person:
-            self.bookmarks.add(self.active_person.get_handle())
-            name = NameDisplay.displayer.display(self.active_person)
-            self.status_text(_("%s has been bookmarked") % name)
-            gobject.timeout_add(5000,self.modify_statusbar)
+    def add_bookmark(self,obj):
+        if self.state.active:
+            self.bookmarks.add(self.state.active.get_handle())
+            name = NameDisplay.displayer.display(self.state.active)
+            self.uistate.push_message(_("%s has been bookmarked") % name)
         else:
             WarningDialog(_("Could Not Set a Bookmark"),
                           _("A bookmark could not be set because "
@@ -733,22 +732,6 @@ class ViewManager:
     def on_edit_bookmarks_activate(self,obj):
         self.bookmarks.edit()
         
-    def bookmark_callback(self,obj,person_handle):
-        old_person = self.active_person
-        person = self.state.db.get_person_from_handle(person_handle)
-        try:
-            self.change_active_person(person)
-            self.update_display(0)
-            self.goto_active_person()
-        except TypeError:
-            WarningDialog(_("Could not go to a Person"),
-                          _("Either stale bookmark or broken history "
-                            "caused by IDs reorder."))
-            self.clear_history()
-            self.change_active_person(old_person)
-            self.update_display(0)
-            self.goto_active_person()
-    
     def find_initial_person(self):
         person = self.state.db.get_default_person()
         if not person:
