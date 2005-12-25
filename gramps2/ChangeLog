@@ -1,4 +1,6 @@
 2005-12-24  Don Allingham  <don@gramps-project.org>
+	* src/Bookmarks.py: get bookmark menu working
+	* src/EditPlace.py: menu tracking
 	* src/DisplayState.py: recent file support
 	* src/ViewManager.py: recent file support
 

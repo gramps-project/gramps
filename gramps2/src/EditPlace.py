@@ -67,10 +67,10 @@ from WindowUtils import GladeIf
 #-------------------------------------------------------------------------
 class EditPlace(DisplayState.ManagedWindow):
 
-    def __init__(self,place,dbstate,uistate,trace=[]):
+    def __init__(self,place,dbstate,uistate,track=[]):
         self.dbstate = dbstate
         self.uistate = uistate
-        self.trace = []
+        self.track = []
 
         self.ref_not_loaded = place and place.get_handle()
         self.idle = None
@@ -219,7 +219,7 @@ class EditPlace(DisplayState.ManagedWindow):
         self.gladeif.connect('del_url', 'clicked', self.on_delete_url_clicked)
         
         self.sourcetab = Sources.SourceTab(
-            self.state, self.ui_state, self.track,
+            self.state, self.uistate, self.track,
             self.srcreflist,self,
             self.top_window,self.top,self.slist,
             self.top_window.get_widget('add_src'),
@@ -252,7 +252,7 @@ class EditPlace(DisplayState.ManagedWindow):
         self.top.show()
 
 
-        DisplayState.ManagedWindow.__init__(self, uistate, [], place)
+        DisplayState.ManagedWindow.__init__(self, uistate, self.track, place)
 
         self.pdmap = {}
         self.build_pdmap()

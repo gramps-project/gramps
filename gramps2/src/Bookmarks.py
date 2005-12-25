@@ -31,6 +31,7 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+from cStringIO import StringIO
 
 #-------------------------------------------------------------------------
 #
@@ -53,10 +54,16 @@ import ListModel
 # Bookmarks
 #
 #-------------------------------------------------------------------------
+
+_top = '''<ui><menubar name="MenuBar"><menu action="BookMenu"><menu action="GoToBook">'''
+_btm = '''</menu></menu></menubar></ui>'''
+
+DISABLED = -1
+
 class Bookmarks :
     "Handle the bookmarks interface for Gramps"
     
-    def __init__(self,db,bookmarks):
+    def __init__(self,dbstate,uimanager,bookmarks):
         """
         Creates a the bookmark editor.
 
@@ -64,13 +71,40 @@ class Bookmarks :
         menu - parent menu to attach users
         callback - task to connect to the menu item as a callback
         """
-        self.db = db
+        self.dbstate = dbstate
+        self.uimanager = uimanager
         self.bookmarks = bookmarks
+        self.active = DISABLED
+        self.action_group = gtk.ActionGroup('Bookmarks')
         self.redraw()
 
     def redraw(self):
         """Create the pulldown menu"""
-        pass
+        f = StringIO()
+        f.write(_top)
+
+        count = 0
+        if self.active != DISABLED:
+            self.uimanager.remove_ui(self.active)
+            self.uimanager.remove_action_group(self.action_group)
+            self.active = DISABLED
+            
+        actions = []
+        for item in self.bookmarks:
+            person = self.dbstate.db.get_person_from_handle(item)
+            name = NameDisplay.displayer.display(person)
+            action_id = "BM:%s" % item
+            f.write('<menuitem action="%s"/>' % action_id)
+            label = "%s [%s]" % (name,person.gramps_id)
+            func = make_callback(item,self.dbstate.change_active_handle)
+            actions.append((action_id,None,label,None,None,func))
+            count +=1
+        f.write(_btm)
+        self.action_group.add_actions(actions)
+        self.uimanager.insert_action_group(self.action_group,1)
+        self.active = self.uimanager.add_ui_from_string(f.getvalue())
+        print f.getvalue()
+        f.close()
 
     def add(self,person_handle):
         """appends the person to the bottom of the bookmarks"""
@@ -144,7 +178,7 @@ class Bookmarks :
         """
         self.draw_window()
         for person_handle in self.bookmarks:
-            person = self.db.get_person_from_handle(person_handle)
+            person = self.dbstate.db.get_person_from_handle(person_handle)
             if person:
                 name = NameDisplay.displayer.display(person)
                 gramps_id = person.get_gramps_id()
@@ -193,3 +227,6 @@ class Bookmarks :
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('gramps-nav')
         self.response = self.top.run()
+
+def make_callback(n,f):
+    return lambda x: f(n)
