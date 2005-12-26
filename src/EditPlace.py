@@ -67,10 +67,9 @@ from WindowUtils import GladeIf
 #-------------------------------------------------------------------------
 class EditPlace(DisplayState.ManagedWindow):
 
-    def __init__(self,place,dbstate,uistate,track=[]):
+    def __init__(self,dbstate,uistate,track,place):
         self.dbstate = dbstate
         self.uistate = uistate
-        self.track = []
 
         self.ref_not_loaded = place and place.get_handle()
         self.idle = None
@@ -86,50 +85,51 @@ class EditPlace(DisplayState.ManagedWindow):
         else:
             self.srcreflist = []
 
-        self.top_window = gtk.glade.XML(const.placesFile,"placeEditor","gramps")
-        self.gladeif = GladeIf(self.top_window)
+        self.top = gtk.glade.XML(const.placesFile,"placeEditor","gramps")
+        self.gladeif = GladeIf(self.top)
 
-        self.top = self.top_window.get_widget("placeEditor")
-        self.iconlist = self.top_window.get_widget('iconlist')
-        title_label = self.top_window.get_widget('title')
+        self.window = self.top.get_widget("placeEditor")
+        self.iconlist = self.top.get_widget('iconlist')
+        title_label = self.top.get_widget('title')
 
-        Utils.set_titles(self.top,title_label,_('Place Editor'))
+        Utils.set_titles(self.window,title_label,_('Place Editor'))
 
         self.glry = ImageSelect.Gallery(place, self.db.commit_place, self.path,
-                                        self.iconlist, self.db, self,self.top)
+                                        self.iconlist, self.db,
+                                        self,self.window)
 
         mode = not self.dbstate.db.readonly
-        self.title = self.top_window.get_widget("place_title")
+        self.title = self.top.get_widget("place_title")
         self.title.set_editable(mode)
-        self.city = self.top_window.get_widget("city")
+        self.city = self.top.get_widget("city")
         self.city.set_editable(mode)
-        self.parish = self.top_window.get_widget("parish")
+        self.parish = self.top.get_widget("parish")
         self.parish.set_editable(mode)
-        self.county = self.top_window.get_widget("county")
+        self.county = self.top.get_widget("county")
         self.county.set_editable(mode)
-        self.state = self.top_window.get_widget("state")
+        self.state = self.top.get_widget("state")
         self.state.set_editable(mode)
-        self.phone = self.top_window.get_widget("phone")
+        self.phone = self.top.get_widget("phone")
         self.phone.set_editable(mode)
-        self.postal = self.top_window.get_widget("postal")
+        self.postal = self.top.get_widget("postal")
         self.postal.set_editable(mode)
-        self.country = self.top_window.get_widget("country")
+        self.country = self.top.get_widget("country")
         self.country.set_editable(mode)
-        self.longitude = self.top_window.get_widget("longitude")
+        self.longitude = self.top.get_widget("longitude")
         self.longitude.set_editable(mode)
-        self.latitude = self.top_window.get_widget("latitude")
+        self.latitude = self.top.get_widget("latitude")
         self.latitude.set_editable(mode)
-        self.note = self.top_window.get_widget("place_note")
+        self.note = self.top.get_widget("place_note")
         self.note.set_editable(mode)
         self.spell = Spell.Spell(self.note)
 
-        self.web_list = self.top_window.get_widget("web_list")
-        self.web_url = self.top_window.get_widget("web_url")
-        self.web_go = self.top_window.get_widget("web_go")
-        self.web_edit = self.top_window.get_widget("web_edit")
-        self.web_description = self.top_window.get_widget("url_des")
+        self.web_list = self.top.get_widget("web_list")
+        self.web_url = self.top.get_widget("web_url")
+        self.web_go = self.top.get_widget("web_go")
+        self.web_edit = self.top.get_widget("web_edit")
+        self.web_description = self.top.get_widget("url_des")
 
-        self.top_window.get_widget('changed').set_text(place.get_change_display())
+        self.top.get_widget('changed').set_text(place.get_change_display())
 
         # event display
         self.web_model = gtk.ListStore(str,str)
@@ -139,15 +139,15 @@ class EditPlace(DisplayState.ManagedWindow):
         self.web_list.get_selection().connect('changed',
                                               self.on_web_list_select_row)
         
-        self.loc_edit = self.top_window.get_widget("loc_edit")
-        self.loc_list = self.top_window.get_widget("loc_list")
-        self.loc_city = self.top_window.get_widget("loc_city")
-        self.loc_county = self.top_window.get_widget("loc_county")
-        self.loc_state  = self.top_window.get_widget("loc_state")
-        self.loc_postal = self.top_window.get_widget("loc_postal")
-        self.loc_phone  = self.top_window.get_widget("loc_phone")
-        self.loc_parish  = self.top_window.get_widget("loc_parish")
-        self.loc_country = self.top_window.get_widget("loc_country")
+        self.loc_edit = self.top.get_widget("loc_edit")
+        self.loc_list = self.top.get_widget("loc_list")
+        self.loc_city = self.top.get_widget("loc_city")
+        self.loc_county = self.top.get_widget("loc_county")
+        self.loc_state  = self.top.get_widget("loc_state")
+        self.loc_postal = self.top.get_widget("loc_postal")
+        self.loc_phone  = self.top.get_widget("loc_phone")
+        self.loc_parish  = self.top.get_widget("loc_parish")
+        self.loc_country = self.top.get_widget("loc_country")
 
         self.ulist = place.get_url_list()[:]
         self.llist = place.get_alternate_locations()[:]
@@ -170,17 +170,17 @@ class EditPlace(DisplayState.ManagedWindow):
         self.country.set_text(mloc.get_country())
         self.longitude.set_text(place.get_longitude())
         self.latitude.set_text(place.get_latitude())
-        self.plist = self.top_window.get_widget("refinfo")
-        self.slist = self.top_window.get_widget("slist")
+        self.plist = self.top.get_widget("refinfo")
+        self.slist = self.top.get_widget("slist")
 
-        self.sources_label = self.top_window.get_widget("sourcesPlaceEdit")
-        self.names_label = self.top_window.get_widget("namesPlaceEdit")
-        self.notes_label = self.top_window.get_widget("notesPlaceEdit")
-        self.gallery_label = self.top_window.get_widget("galleryPlaceEdit")
-        self.inet_label = self.top_window.get_widget("inetPlaceEdit")
-        self.refs_label = self.top_window.get_widget("refsPlaceEdit")
-        self.flowed = self.top_window.get_widget("place_flowed")
-        self.preform = self.top_window.get_widget("place_preform")
+        self.sources_label = self.top.get_widget("sourcesPlaceEdit")
+        self.names_label = self.top.get_widget("namesPlaceEdit")
+        self.notes_label = self.top.get_widget("notesPlaceEdit")
+        self.gallery_label = self.top.get_widget("galleryPlaceEdit")
+        self.inet_label = self.top.get_widget("inetPlaceEdit")
+        self.refs_label = self.top.get_widget("refsPlaceEdit")
+        self.flowed = self.top.get_widget("place_flowed")
+        self.preform = self.top.get_widget("place_preform")
 
         self.note_buffer = self.note.get_buffer()
         if place.get_note():
@@ -217,19 +217,21 @@ class EditPlace(DisplayState.ManagedWindow):
         self.gladeif.connect('web_edit', 'clicked', self.on_update_url_clicked)
         self.gladeif.connect('web_go', 'clicked', self.on_web_go_clicked)
         self.gladeif.connect('del_url', 'clicked', self.on_delete_url_clicked)
+
+        DisplayState.ManagedWindow.__init__(self, uistate, track, place)
         
         self.sourcetab = Sources.SourceTab(
-            self.state, self.uistate, self.track,
+            self.dbstate, self.uistate, self.track,
             self.srcreflist,self,
-            self.top_window,self.top,self.slist,
-            self.top_window.get_widget('add_src'),
-            self.top_window.get_widget('edit_src'),
-            self.top_window.get_widget('del_src'),
+            self.top,self.window,self.slist,
+            self.top.get_widget('add_src'),
+            self.top.get_widget('edit_src'),
+            self.top.get_widget('del_src'),
             self.dbstate.db.readonly)
         
         if self.place.get_handle() == None or self.dbstate.db.readonly:
-            self.top_window.get_widget("add_photo").set_sensitive(0)
-            self.top_window.get_widget("delete_photo").set_sensitive(0)
+            self.top.get_widget("add_photo").set_sensitive(0)
+            self.top.get_widget("delete_photo").set_sensitive(0)
 
         self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
                                     [DdTargets.URL.target()],
@@ -244,21 +246,19 @@ class EditPlace(DisplayState.ManagedWindow):
                               self.url_dest_drag_data_received)
 
         for name in ['del_name','add_name','sel_photo','add_url','del_url']:
-            self.top_window.get_widget(name).set_sensitive(mode)
+            self.top.get_widget(name).set_sensitive(mode)
 
         self.redraw_url_list()
         self.redraw_location_list()
-        self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
-        self.top.show()
+        self.top.get_widget('ok').set_sensitive(not self.db.readonly)
+        self.show()
 
-
-        DisplayState.ManagedWindow.__init__(self, uistate, self.track, place)
 
         self.pdmap = {}
         self.build_pdmap()
         
         if self.ref_not_loaded:
-            Utils.temp_label(self.refs_label,self.top)
+            Utils.temp_label(self.refs_label,self.window)
             self.cursor_type = None
             self.idle = gobject.idle_add(self.display_references)
             self.ref_not_loaded = False
@@ -293,13 +293,10 @@ class EditPlace(DisplayState.ManagedWindow):
     def close(self,obj):
         self.glry.close()
         self.gladeif.close()
-        self.top.destroy()
+        self.window.destroy()
         if self.idle != None:
             gobject.source_remove(self.idle)
         gc.collect()
-
-    def present(self,obj):
-        self.top.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -429,7 +426,7 @@ class EditPlace(DisplayState.ManagedWindow):
             self.glry.load_images()
         elif page == 6 and self.ref_not_loaded:
             self.ref_not_loaded = False
-            Utils.temp_label(self.refs_label,self.top)
+            Utils.temp_label(self.refs_label,self.window)
             self.idle = gobject.idle_add(self.display_references)
         text = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
                                 self.note_buffer.get_end_iter(),False))
@@ -456,7 +453,7 @@ class EditPlace(DisplayState.ManagedWindow):
         if node:
             row = store.get_path(node)
             loc = self.llist[row[0]]
-            LocEdit.LocationEditor(self,loc,self.top)
+            LocEdit.LocationEditor(self,loc,self.window)
 
     def on_delete_url_clicked(self,obj):
         if Utils.delete_selected(self.web_list,self.ulist):
@@ -480,7 +477,7 @@ class EditPlace(DisplayState.ManagedWindow):
 
     def on_add_loc_clicked(self,obj):
         import LocEdit
-        LocEdit.LocationEditor(self,None,self.top)
+        LocEdit.LocationEditor(self,None,self.window)
 
     def on_web_list_select_row(self,obj):
         store,node = obj.get_selected()
@@ -625,9 +622,9 @@ class EditPlace(DisplayState.ManagedWindow):
                 return True
 
         if self.any_refs:
-            Utils.bold_label(self.refs_label,self.top)
+            Utils.bold_label(self.refs_label,self.window)
         else:
-            Utils.unbold_label(self.refs_label,self.top)
+            Utils.unbold_label(self.refs_label,self.window)
             
         self.ref_not_loaded = 0
         self.backlink_generator = None
@@ -713,9 +710,9 @@ class EditPlace(DisplayState.ManagedWindow):
             self.cursor.close()
 
         if self.any_refs:
-            Utils.bold_label(self.refs_label,self.top)
+            Utils.bold_label(self.refs_label,self.window)
         else:
-            Utils.unbold_label(self.refs_label,self.top)
+            Utils.unbold_label(self.refs_label,self.window)
 
         self.ref_not_loaded = 0
         self.cursor_type = None

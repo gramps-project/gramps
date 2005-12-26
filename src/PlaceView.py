@@ -115,10 +115,10 @@ class PlaceView(PageView.ListView):
     def on_double_click(self,obj,event):
         handle = self.first_selected()
         place = self.dbstate.db.get_place_from_handle(handle)
-        EditPlace.EditPlace(place,self.dbstate, self.uistate)
+        EditPlace.EditPlace(self.dbstate,self.uistate,[],place)
 
     def add(self,obj):
-        EditPlace.EditPlace(RelLib.Place(),self.dbstate, self.uistate)
+        EditPlace.EditPlace(self.dbstate,self.uistate,[],RelLib.Place())
 
     def remove(self,obj):
         for event_handle in self.selected_handles():
@@ -156,5 +156,5 @@ class PlaceView(PageView.ListView):
 
         for handle in mlist:
             place = self.dbstate.db.get_place_from_handle(handle)
-            EditPlace.EditPlace(place, self.dbstate, self.uistate)
+            EditPlace.EditPlace(self.dbstate,self.uistate,[],place)
 
