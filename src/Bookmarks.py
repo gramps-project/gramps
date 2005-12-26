@@ -103,7 +103,6 @@ class Bookmarks :
         self.action_group.add_actions(actions)
         self.uimanager.insert_action_group(self.action_group,1)
         self.active = self.uimanager.add_ui_from_string(f.getvalue())
-        print f.getvalue()
         f.close()
 
     def add(self,person_handle):
