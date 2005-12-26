@@ -422,9 +422,8 @@ class SourceEditor(DisplayState.ManagedWindow):
 
         self.draw(self.active_source,fresh=True)
         self.set_button()
-        self.window.set_transient_for(self.parent_window)
         self.db.connect('source-add', self.rebuild_menu)
-        self.window.show()
+        self.show()
 
     def build_menu_names(self,srcref):
         if srcref:

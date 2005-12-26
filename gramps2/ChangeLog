@@ -1,3 +1,8 @@
+2005-12-25  Alex Roitman  <shura@gramps-project.org>
+	* src/EditPlace.py: Change arguments, use correct track.
+	* src/PlaceView.py: Call EditPlace with new arguments.
+	* src/Sources.py: Minor.
+
 2005-12-24  Don Allingham  <don@gramps-project.org>
 	* src/Bookmarks.py: get bookmark menu working
 	* src/EditPlace.py: menu tracking
