@@ -267,7 +267,7 @@ class ViewManager:
             ('FastMerge',  None,                      '_Fast merge'),
             ('ScratchPad', gtk.STOCK_PASTE,           '_ScratchPad', None, None, self.scratchpad),
             ('Import',     gtk.STOCK_CONVERT,         '_Import', None, None, self.import_data),
-            ('Reports',    gtk.STOCK_DND_MULTIPLE,    '_Reports'),
+            ('Reports',    gtk.STOCK_DND_MULTIPLE,    '_Reports', None, None, self.reports_clicked),
             ('Tools',      gtk.STOCK_EXECUTE,         '_Tools'),
             ('EditMenu',   None,                      '_Edit'),
             ('GoMenu',     None,                      '_Go'),
@@ -567,7 +567,6 @@ class ViewManager:
                     pass
                 self.state.change_database(GrampsDb.gramps_db_factory(const.app_gramps)())
                 self.read_file(filename)
-                self.state.db.request_rebuild()
                 self.change_page(None,None)
                 # Add the file to the recent items
                 RecentFiles.recent_files(filename,const.app_gramps)
@@ -601,18 +600,15 @@ class ViewManager:
                     gtk.main_iteration()
 
             success = self.read_file(filename,update_msg)
-            self.state.db.request_rebuild()
             self.change_page(None,None)
             msg_top.destroy()
         elif filetype == const.app_gramps_xml:
             self.state.change_database(GrampsDb.gramps_db_factory(db_type = const.app_gramps_xml)())
             success = self.read_file(filename)
-            self.state.db.request_rebuild()
             self.change_page(None,None)
         elif filetype == const.app_gedcom:
             self.state.change_database(GrampsDb.gramps_db_factory(db_type = const.app_gedcom)())
             success = self.read_file(filename)
-            self.state.db.request_rebuild()
             self.change_page(None,None)
 
         if success:
@@ -683,6 +679,7 @@ class ViewManager:
         return self.post_load(name,callback)
 
     def post_load(self,name,callback=None):
+        self.state.db.request_rebuild()
         if not self.state.db.version_supported():
             raise Errors.FileVersionError(
                     "The database version is not supported by this "
@@ -731,6 +728,10 @@ class ViewManager:
 
     def on_edit_bookmarks_activate(self,obj):
         self.bookmarks.edit()
+
+    def reports_clicked(self,obj):
+        import Plugins
+        Plugins.ReportPlugins(self.state,self.uistate,[])
         
     def find_initial_person(self):
         person = self.state.db.get_default_person()

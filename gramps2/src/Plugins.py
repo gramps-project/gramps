@@ -61,6 +61,7 @@ import Report
 import Tool
 import PluginMgr
 import GrampsDisplay
+import DisplayState
 
 #-------------------------------------------------------------------------
 #
@@ -77,26 +78,27 @@ UNSUPPORTED = _("Unsupported")
 #
 #-------------------------------------------------------------------------
 
-class PluginDialog:
+class PluginDialog(DisplayState.ManagedWindow):
     """Displays the dialog box that allows the user to select the
     report that is desired."""
 
-    def __init__(self,parent,db,active,item_list,categories,msg,label=None,
+    def __init__(self,state, uistate, track, item_list,categories,msg,label=None,
                  button_label=None,tool_tip=None,content=REPORTS):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
         
-        self.parent = parent
-        if self.parent.child_windows.has_key(msg):
-            self.parent.child_windows[msg].present(None)
-            return
-        self.db = db
-        self.active = active
+        self.active = state.active
         self.update = None
         self.imap = {}
         self.msg = msg
         self.content = content
+
+        DisplayState.ManagedWindow.__init__(self, uistate, [], None)
+        if self.already_exist:
+            return
+        self.state = state
+        self.uistate = uistate
         
         self.dialog = gtk.glade.XML(const.pluginsFile,"report","gramps")
         self.dialog.signal_autoconnect({
@@ -106,10 +108,10 @@ class PluginDialog:
             })
 
         self.tree = self.dialog.get_widget("tree")
-        self.top = self.dialog.get_widget("report")
+        self.window = self.dialog.get_widget("report")
         self.title = self.dialog.get_widget("title")
 
-        Utils.set_titles(self.top, self.title, msg )
+        Utils.set_titles(self.window, self.title, msg )
 
         self.store = gtk.TreeStore(gobject.TYPE_STRING)
         self.selection = self.tree.get_selection()
@@ -146,29 +148,13 @@ class PluginDialog:
 
         self.item = None
         self.build_plugin_tree(item_list,categories)
-        self.add_itself_to_menu()
-        self.top.show()
+        self.window.show()
 
     def on_delete_event(self,obj,b):
-        self.remove_itself_from_menu()
+        pass
 
     def close(self,ok=0):
-        self.remove_itself_from_menu()
-        self.top.destroy()
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.msg] = self
-        self.win_menu_item = gtk.MenuItem(self.msg)
-        self.win_menu_item.connect("activate",self.present)
-        self.win_menu_item.show()
-        self.parent.winsmenu.append(self.win_menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.msg]
-        self.win_menu_item.destroy()
-
-    def present(self,obj):
-        self.top.present()
+        self.window.destroy()
 
     def on_apply_clicked(self,obj):
         """Execute the selected report"""
@@ -274,14 +260,15 @@ class ReportPlugins(PluginDialog):
     """Displays the dialog box that allows the user to select the
     report that is desired."""
 
-    def __init__(self,parent,db,active):
+    def __init__(self,dbstate,uistate,track):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
         PluginDialog.__init__(
-            self,parent,
-            db,
-            active,
+            self,
+            dbstate,
+            uistate,
+            track,
             PluginMgr.report_list,
             Report.standalone_categories,
             _("Report Selection"),
@@ -339,8 +326,8 @@ class PluginStatus:
         import cStringIO
         
         self.glade = gtk.glade.XML(const.pluginsFile,"plugstat","gramps")
-        self.top = self.glade.get_widget("plugstat")
-        self.top.set_title("%s - GRAMPS" % _('Plugin status'))
+        self.window = self.glade.get_widget("plugstat")
+        self.window.set_title("%s - GRAMPS" % _('Plugin status'))
         window = self.glade.get_widget("text")
         self.pop_button = self.glade.get_widget("pop_button")
         self.pop_button.set_active(GrampsKeys.get_pop_plugin_status())
@@ -355,7 +342,7 @@ class PluginStatus:
             })
 
 	if parent_window:
-	    self.top.set_transient_for(parent_window)
+	    self.window.set_transient_for(parent_window)
 
         info = cStringIO.StringIO()
 
@@ -382,7 +369,7 @@ class PluginStatus:
         status_up = None
 
     def close(self,obj):
-        self.top.destroy()
+        self.window.destroy()
         status_up = None
 
     def help(self,obj):

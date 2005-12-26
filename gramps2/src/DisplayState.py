@@ -372,7 +372,6 @@ class RecentDocsMenu:
         db = GrampsDb.gramps_db_factory(dbtype)()
         self.state.change_database(db)
         self.fileopen(name)
-        self.state.db.request_rebuild()
         RecentFiles.recent_files(name,dbtype)
         self.build()
 
