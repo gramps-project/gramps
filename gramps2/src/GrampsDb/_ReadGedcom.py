@@ -164,7 +164,7 @@ def importData(database, filename, cb=None, use_trans=True):
     f.close()
 
     if not gramps and ansel:
-        glade_file = "%s/gedcomimport.glade" % os.path.dirname(__file__)
+        glade_file = "%s/../gedcomimport.glade" % os.path.dirname(__file__)
         top = gtk.glade.XML(glade_file,'encoding','gramps')
         code = top.get_widget('codeset')
         code.set_active(0)
@@ -180,9 +180,9 @@ def importData(database, filename, cb=None, use_trans=True):
 def import2(database, filename, cb, codeset, use_trans):
     # add some checking here
 
-    glade_file = "%s/gedcomimport.glade" % os.path.dirname(__file__)
+    glade_file = "%s/../gedcomimport.glade" % os.path.dirname(__file__)
     if not os.path.isfile(glade_file):
-        glade_file = "plugins/gedcomimport.glade"
+        glade_file = "../gedcomimport.glade"
 
     statusTop = gtk.glade.XML(glade_file,"status","gramps")
     status_window = statusTop.get_widget("status")

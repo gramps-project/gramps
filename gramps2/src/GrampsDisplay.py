@@ -18,18 +18,19 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-import gnome
 import gobject
 from QuestionDialog import ErrorDialog
 
 def help(target):
     try:
+        import gnome
         gnome.help_display('gramps-manual',target)
     except gobject.GError, msg:
         url('http://gramps-project.org/gramps-manual/gramps-manual-en/index.html')
         
 def url(target):
     try:
+        import gnome
         gnome.url_show(target)
     except gobject.GError, msg:
         run_browser(target)

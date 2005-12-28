@@ -41,7 +41,6 @@ from cgi import escape
 import gtk
 import gtk.glade
 import gobject
-import gnome
 import gtk.gdk
 
 #-------------------------------------------------------------------------
@@ -502,7 +501,7 @@ class EditPerson(DisplayState.ManagedWindow):
         if mtype[0:5] == "image":
             image = ImgManip.get_thumbnail_image(obj.get_path())
         else:
-            image = Utils.find_mime_type_pixbuf(mtype)
+            image = GrampsMime.find_mime_type_pixbuf(mtype)
         if not image:
             image = gtk.gdk.pixbuf_new_from_file(const.icon)
         return image

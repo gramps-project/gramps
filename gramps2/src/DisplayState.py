@@ -43,6 +43,7 @@ import gtk
 import GrampsDb
 import GrampsKeys
 import NameDisplay
+import GrampsMime
 
 #-------------------------------------------------------------------------
 #
@@ -352,10 +353,6 @@ _rct_btm = '</menu></menu></menubar></ui>'
 
 import RecentFiles
 import os
-try:
-    from gnomevfs import get_mime_type
-except:
-    from gnome.vfs import get_mime_type
 
 class RecentDocsMenu:
     def __init__(self,uimanager, state, fileopen):
@@ -393,7 +390,7 @@ class RecentDocsMenu:
         for item in rfiles:
             try:
                 filename = os.path.basename(item.get_path()).replace('_','__')
-                filetype = get_mime_type(item.get_path())
+                filetype = GrampsMime.get_type(item.get_path())
                 action_id = "RecentMenu%d" % count
                 f.write('<menuitem action="%s"/>' % action_id)
                 actions.append((action_id,None,filename,None,None,

@@ -505,30 +505,6 @@ def view_photo(photo):
     if os.fork() == 0:
         os.execvp(args[0],args)
 
-_icon_theme = gtk.icon_theme_get_default()
-
-def find_mime_type_pixbuf(mime_type):
-    try:
-        icontmp = mime_type.replace('/','-')
-        newicon = "gnome-mime-%s" % icontmp
-        try:
-            return _icon_theme.load_icon(newicon,48,0)
-        except:
-            icontmp = mime_type.split('/')[0]
-            try:
-                newicon = "gnome-mime-%s" % icontmp
-                return _icon_theme.load_icon(newicon,48,0)
-            except:
-                return gtk.gdk.pixbuf_new_from_file(const.icon)
-    except:
-        return gtk.gdk.pixbuf_new_from_file(const.icon)
-    
-def get_mime_description(mime_type):
-    try:
-        return GrampsMime.get_description(mime_type)
-    except:
-        return ''
-
 def find_file( filename):
     # try the filename we got
     try:

@@ -179,6 +179,8 @@ class GrampsBSDDB(GrampsDbBase):
 
         self.readonly = mode == "r"
 
+        callback(0.25)
+        
         self.env = db.DBEnv()
         self.env.set_cachesize(0,0x2000000) # 2MB
         flags = db.DB_CREATE|db.DB_INIT_MPOOL|db.DB_PRIVATE
@@ -275,7 +277,6 @@ class GrampsBSDDB(GrampsDbBase):
                                                "reference_map_referenced_map",
                                                db.DB_BTREE, flags=openflags)
 
-
         if not self.readonly:
             self.person_map.associate(self.surnames,  find_surname, openflags)
             self.person_map.associate(self.id_trans,  find_idmap, openflags)
@@ -297,6 +298,8 @@ class GrampsBSDDB(GrampsDbBase):
 
             self.undodb = db.DB()
             self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
+
+        callback(0.5)
 
         self.metadata   = self.dbopen(name, "meta")
         self.bookmarks = self.metadata.get('bookmarks')

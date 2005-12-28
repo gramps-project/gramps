@@ -35,7 +35,6 @@ from gettext import gettext as _
 import gobject
 import gtk.glade
 import gtk.gdk
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -50,6 +49,7 @@ import RelLib
 import NameDisplay
 import AutoComp
 import RepositoryRefEdit
+import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -418,7 +418,7 @@ class EditRepository:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-src')
+        GrampsDisplay.help('adv-src')
 
     def close(self,obj):
         self.close_child_windows()

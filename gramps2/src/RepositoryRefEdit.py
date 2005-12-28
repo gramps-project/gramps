@@ -34,7 +34,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gnome
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_file
 from gobject import TYPE_PYOBJECT
 import cPickle as pickle
@@ -51,7 +50,7 @@ import Date
 import DateEdit
 import DateHandler
 import AutoComp
-
+import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -218,7 +217,7 @@ class RepositoryRefEdit(RepositoryRefEditBase):
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-si')
+        GrampsDisplay.help('adv-si')
 
     def set_button(self):
         if self.active_repos:
@@ -355,7 +354,7 @@ class RepositoryRefSourceEdit(RepositoryRefEditBase):
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-si')
+        GrampsDisplay.help('adv-si')
 
     def set_button(self):
         if self.active_source:

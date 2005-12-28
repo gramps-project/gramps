@@ -25,6 +25,7 @@ import md5
 import gtk
 import gobject
 
+import GrampsMime
 import GrampsKeys
 import Utils
 
@@ -152,7 +153,7 @@ def get_thumbnail_image(path,mtype=None):
         return gtk.gdk.pixbuf_new_from_file(filename)
     except (gobject.GError, OSError):
         if mtype:
-            return Utils.find_mime_type_pixbuf(mtype)
+            return GrampsMime.find_mime_type_pixbuf(mtype)
         else:
             return gtk.gdk.pixbuf_new_from_file(os.path.join(const.dataDir,"document.png"))
 

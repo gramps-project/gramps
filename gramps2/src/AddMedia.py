@@ -162,7 +162,7 @@ class AddMediaObject:
             if mtype and mtype.startswith("image"):
                 image = RelImage.scale_image(filename,const.thumbScale)
             else:
-                image = Utils.find_mime_type_pixbuf(mtype)
+                image = GrampsMime.find_mime_type_pixbuf(mtype)
             self.image.set_from_pixbuf(image)
 
     def run(self):

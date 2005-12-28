@@ -169,7 +169,7 @@ class ImageSelect:
                 image = RelImage.scale_image(filename,const.thumbScale)
                 self.image.set_from_pixbuf(image)
             else:
-                i = Utils.find_mime_type_pixbuf(mtype)
+                i = GrampsMime.find_mime_type_pixbuf(mtype)
                 self.image.set_from_pixbuf(i)
 
     def on_savephoto_clicked(self):
@@ -754,7 +754,7 @@ class LocalMediaProperties:
 
         self.change_dialog.get_widget("path").set_text(fname)
 
-        mt = Utils.get_mime_description(mtype)
+        mt = GrampsMime.get_description(mtype)
         if mt:
             self.change_dialog.get_widget("type").set_text(mt)
         else:
@@ -1055,7 +1055,7 @@ class GlobalMediaProperties(DisplayState.ManagedWindow):
         if mtype:
             pb = ImgManip.get_thumbnail_image(self.obj.get_path(),mtype)
             self.pixmap.set_from_pixbuf(pb)
-            descr = Utils.get_mime_description(mtype)
+            descr = GrampsMime.get_description(mtype)
             if descr:
                 self.change_dialog.get_widget("type").set_text(descr)
         else:
