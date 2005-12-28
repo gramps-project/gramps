@@ -95,7 +95,7 @@ def load_plugins(direct):
     is done in this routine to register the tasks."""
     
     global _success_list,attempt_list,loaddir_list,failmsg_list
-    
+
     # if the directory does not exist, do nothing
     if not os.path.isdir(direct):
         return True
@@ -263,7 +263,6 @@ def register_report(
     The low-level functions (starting with '_') should not be used
     on their own. Instead, this function will call them as needed.
     """
-
     import Report
     (junk,standalone_task) = divmod(modes,2**Report.MODE_GUI)
     if standalone_task:
@@ -302,6 +301,7 @@ def _register_standalone(report_class, options_class, translated_name,
             del_index = i
     if del_index != -1:
         del report_list[del_index]
+
     report_list.append((report_class, options_class, translated_name, 
                         category, name, description, status,
                         author_name, author_email, unsupported))

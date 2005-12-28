@@ -89,7 +89,6 @@ class PluginDialog(DisplayState.ManagedWindow):
         hand side of the dailog box."""
         
         self.active = state.active
-        self.update = None
         self.imap = {}
         self.msg = msg
         self.content = content
@@ -161,12 +160,12 @@ class PluginDialog(DisplayState.ManagedWindow):
 
         (item_class,options_class,title,category,name) = self.item
         if self.content == REPORTS:
-            Report.report(self.db,self.active,
+            Report.report(self.state.db,self.state.active,
                           item_class,options_class,title,name,category)
         else:
-            Tool.gui_tool(self.db,self.active,
+            Tool.gui_tool(self.state.db,self.state.active,
                           item_class,options_class,title,name,category,
-                          self.update,self.parent)
+                          self.state.db.request_rebuild,self.parent)
 
     def on_node_selected(self,obj):
         """Updates the informational display on the right hand side of
@@ -285,16 +284,16 @@ class ToolPlugins(PluginDialog):
     """Displays the dialog box that allows the user to select the tool
     that is desired."""
 
-    def __init__(self,parent,db,active,update):
+    def __init__(self,dbstate,uistate,track):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
 
         PluginDialog.__init__(
             self,
-            parent,
-            db,
-            active,
+            dbstate,
+            uistate,
+            track,
             PluginMgr.tool_list,
             Tool.tool_categories,
             _("Tool Selection"),
@@ -302,28 +301,24 @@ class ToolPlugins(PluginDialog):
             _("_Run"),
             _("Run selected tool"),
             TOOLS)
-        self.update = update
 
 #-------------------------------------------------------------------------
 #
 # PluginStatus
 #
 #-------------------------------------------------------------------------
-status_up = None
-parent_window = None
 
-class PluginStatus:
+class PluginStatus(DisplayState.ManagedWindow):
     """Displays a dialog showing the status of loaded plugins"""
     
-    def __init__(self,parent_class=None):
-        global status_up, parent_window
-        if status_up:
-            status_up.close(None)
-	if parent_class:
-	    parent_window = parent_class.topWindow
-        status_up = self
+    def __init__(self,state,uistate,track):
 
         import cStringIO
+        DisplayState.ManagedWindow.__init__(self, uistate, [], None)
+        if self.already_exist:
+            return
+        self.state = state
+        self.uistate = uistate
         
         self.glade = gtk.glade.XML(const.pluginsFile,"plugstat","gramps")
         self.window = self.glade.get_widget("plugstat")
@@ -340,9 +335,6 @@ class PluginStatus:
             'on_help_clicked'   : self.help,
             'on_plugstat_delete_event'   : self.on_delete,
             })
-
-	if parent_window:
-	    self.window.set_transient_for(parent_window)
 
         info = cStringIO.StringIO()
 
@@ -366,11 +358,10 @@ class PluginStatus:
             window.get_buffer().set_text(info.read())
 
     def on_delete(self,obj1,obj2):
-        status_up = None
+        pass
 
     def close(self,obj):
         self.window.destroy()
-        status_up = None
 
     def help(self,obj):
         """Display the GRAMPS manual"""

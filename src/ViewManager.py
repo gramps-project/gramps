@@ -28,6 +28,7 @@
 from gettext import gettext as _
 from bsddb import db
 import os
+from cStringIO import StringIO
 
 #-------------------------------------------------------------------------
 #
@@ -35,11 +36,6 @@ import os
 #
 #-------------------------------------------------------------------------
 import gtk
-import gnome
-try:
-    from gnomevfs import get_mime_type
-except:
-    from gnome.vfs import get_mime_type
 
 #-------------------------------------------------------------------------
 #
@@ -47,9 +43,9 @@ except:
 #
 #-------------------------------------------------------------------------
 import DisplayState
-import DbPrompter
 import const
 import PluginMgr
+import Plugins
 import GrampsKeys
 import GrampsDb
 import GrampsCfg
@@ -63,6 +59,9 @@ import TipOfDay
 import Bookmarks
 import RecentFiles
 import NameDisplay
+import Tool
+import Report
+import GrampsMime
 
 #-------------------------------------------------------------------------
 #
@@ -124,6 +123,7 @@ uidefault = '''<ui>
     <menuitem action="UserManual"/>
     <menuitem action="FAQ"/>
     <menuitem action="TipOfDay"/>
+    <menuitem action="PluginStatus"/>
     <separator/>
     <menuitem action="HomePage"/>
     <menuitem action="MailingLists"/>
@@ -206,7 +206,8 @@ class ViewManager:
 
         person_nav = Navigation.PersonNavigation(self.uistate)
         self.navigation_type[PageView.NAVIGATION_PERSON] = (person_nav,None)
-        self.recent_manager = DisplayState.RecentDocsMenu(self.uimanager,self.state,self.read_file)
+        self.recent_manager = DisplayState.RecentDocsMenu(self.uimanager,self.state,
+                                                          self.read_file)
         self.recent_manager.build()
         self.window.show()
 
@@ -214,6 +215,22 @@ class ViewManager:
         self.create_pages()
         self.change_page(None,None)
         self.actiongroup.set_visible(False)
+        self.fileactions.set_sensitive(False)
+        self.load_plugins()
+        self.build_tools_menu()
+        self.build_report_menu()
+        self.fileactions.set_sensitive(True)
+
+    def load_plugins(self):
+        self.uistate.status_text(_('Loading document formats...'))
+        error  = PluginMgr.load_plugins(const.docgenDir)
+        error |= PluginMgr.load_plugins(os.path.expanduser("~/.gramps/docgen"))
+        self.uistate.status_text(_('Loading plugins...'))
+        error |= PluginMgr.load_plugins(const.pluginsDir)
+        error |= PluginMgr.load_plugins(os.path.expanduser("~/.gramps/plugins"))
+        if GrampsKeys.get_pop_plugin_status() and error:
+            Plugins.PluginStatus(self)
+        self.uistate.push_message(_('Ready'))
 
     def quit(self,obj=None):
         self.state.db.close()
@@ -238,6 +255,7 @@ class ViewManager:
 
         self.actiongroup = gtk.ActionGroup('MainWindow')
         self.fileactions = gtk.ActionGroup('FileWindow')
+
         self.fileactions.add_actions([
             ('FileMenu', None, '_File'),
             ('New', gtk.STOCK_NEW, '_New', "<control>n", None, self.new_activate),
@@ -252,6 +270,7 @@ class ViewManager:
             ('MailingLists', None, _('GRAMPS _mailing lists'), None, None, self.mailing_lists_activate),
             ('ReportBug', None, _('_Report a bug'), None, None, self.report_bug_activate),
             ('About', gtk.STOCK_ABOUT, '_About', None, None, self.about),
+            ('PluginStatus', None, '_Plugin status', None, None, self.plugin_status),
             ('FAQ', None, '_FAQ', None, None, self.faq_activate),
             ('UserManual', gtk.STOCK_HELP, '_User Manual', 'F1', None, self.manual_activate),
             ('TipOfDay', None, 'Tip of the day', None, None, self.tip_of_day_activate),
@@ -268,7 +287,7 @@ class ViewManager:
             ('ScratchPad', gtk.STOCK_PASTE,           '_ScratchPad', None, None, self.scratchpad),
             ('Import',     gtk.STOCK_CONVERT,         '_Import', None, None, self.import_data),
             ('Reports',    gtk.STOCK_DND_MULTIPLE,    '_Reports', None, None, self.reports_clicked),
-            ('Tools',      gtk.STOCK_EXECUTE,         '_Tools'),
+            ('Tools',      gtk.STOCK_EXECUTE,         '_Tools', None, None, self.tools_clicked),
             ('EditMenu',   None,                      '_Edit'),
             ('GoMenu',     None,                      '_Go'),
             ('BookMenu',   None,                      '_Bookmarks'),
@@ -290,31 +309,35 @@ class ViewManager:
         self.uimanager.insert_action_group(self.actiongroup,1)
 
     def home_page_activate(self,obj):
-        gnome.url_show( const.url_homepage)
+        GrampsDisplay.url(const.url_homepage)
 
     def mailing_lists_activate(self,obj):
-        gnome.url_show( const.url_mailinglist)
+        GrampsDisplay.url( const.url_mailinglist)
 
     def report_bug_activate(self,obj):
-        gnome.url_show( const.url_bugtracker)
+        GrampsDisplay.url( const.url_bugtracker)
 
     def manual_activate(self,obj):
         """Display the GRAMPS manual"""
         try:
-            gnome.help_display('gramps-manual','index')
+            GrampsDisplay.help('index')
         except gobject.GError, msg:
             ErrorDialog(_("Could not open help"),str(msg))
 
     def faq_activate(self,obj):
         """Display FAQ"""
         try:
-            gnome.help_display('gramps-manual','faq')
+            GrampsDisplay.help('faq')
         except gobject.GError, msg:
             ErrorDialog(_("Could not open help"),str(msg))
 
     def tip_of_day_activate(self,obj):
         """Display Tip of the day"""
         TipOfDay.TipOfDay(self.uistate)
+
+    def plugin_status(self,obj):
+        """Display Tip of the day"""
+        Plugins.PluginStatus(self.state,self.uistate,[])
 
     def about(self,obj):
         about = gtk.AboutDialog()
@@ -481,7 +504,7 @@ class ViewManager:
                 return False
             filetype = type_selector.get_value()
             if filetype == 'auto':
-                filetype = get_mime_type(filename)
+                filetype = GrampsMime.get_type(filename)
             (the_path,the_file) = os.path.split(filename)
             choose.destroy()
             if filetype in [const.app_gramps,const.app_gramps_xml,
@@ -674,8 +697,10 @@ class ViewManager:
         return True
 
     def load_database(self,name,callback=None,mode="w"):
-        if not self.state.db.load(name,callback,mode):
+        self.progress.show()
+        if not self.state.db.load(name,self.pulse_progressbar,mode):
             return False
+        self.progress.hide()
         return self.post_load(name,callback)
 
     def post_load(self,name,callback=None):
@@ -732,6 +757,10 @@ class ViewManager:
     def reports_clicked(self,obj):
         import Plugins
         Plugins.ReportPlugins(self.state,self.uistate,[])
+
+    def tools_clicked(self,obj):
+        import Plugins
+        Plugins.ToolPlugins(self.state,self.uistate,[])
         
     def find_initial_person(self):
         person = self.state.db.get_default_person()
@@ -748,6 +777,8 @@ class ViewManager:
 
     def pulse_progressbar(self,value):
         self.progress.set_fraction(value)
+        while gtk.events_pending():
+            gtk.main_iteration()
 
     def import_data(self,obj):
         choose = gtk.FileChooserDialog(_('GRAMPS: Import database'),
@@ -799,7 +830,7 @@ class ViewManager:
             filetype = type_selector.get_value()
             if filetype == 'auto':
                 try:
-                    filetype = get_mime_type(filename)
+                    filetype = GrampsMime.get_type(filename)
                 except RuntimeError,msg:
                     QuestionDialog.ErrorDialog(
                         _("Could not open file: %s") % filename,
@@ -808,8 +839,10 @@ class ViewManager:
                     
             if filetype == const.app_gramps:
                 choose.destroy()
-                GrampsDb.gramps_db_reader_factory(filetype)(self.state.db,filename)
+                self.progress.show()
+                GrampsDb.gramps_db_reader_factory(filetype)(self.state.db,filename,self.pulse_progressbar)
                 self.parent.import_tool_callback()
+                self.progress.hide()
                 return True
             elif filetype == const.app_gramps_xml:
                 choose.destroy()
@@ -835,6 +868,85 @@ class ViewManager:
                 _('File type "%s" is unknown to GRAMPS.\n\nValid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM.') % filetype)
         choose.destroy()
         return False
+
+
+    def build_tools_menu(self):
+        self.toolactions = gtk.ActionGroup('ToolWindow')
+        (ui,actions) = self.build_plugin_menu('ToolsMenu',
+                                              PluginMgr.tool_list,
+                                              Tool.tool_categories,
+                                              make_tool_callback)
+        self.toolactions.add_actions(actions)
+        self.uistate.uimanager.add_ui_from_string(ui)
+        self.uimanager.insert_action_group(self.toolactions,1)
+    
+    def build_report_menu(self):
+        self.reportactions = gtk.ActionGroup('ReportWindow')
+        (ui,actions) = self.build_plugin_menu('ReportsMenu',
+                                              PluginMgr.report_list,
+                                              Report.standalone_categories,
+                                              make_report_callback)
+        self.reportactions.add_actions(actions)
+        self.uistate.uimanager.add_ui_from_string(ui)
+        self.uimanager.insert_action_group(self.reportactions,1)
+
+    def build_plugin_menu(self,text,item_list,categories,func):
+        actions = []
+        f = StringIO()
+        f.write('<ui><menubar name="MenuBar"><menu action="%s">' % text)
+        
+        menu = gtk.Menu()
+        menu.show()
+    
+        hash_data = {}
+        for item in item_list:
+            if item[9]:
+                category = Plugins.UNSUPPORTED
+            else:
+                category = categories[item[3]]
+            if hash_data.has_key(category):
+                hash_data[category].append(
+                    (item[0],item[1],item[2],item[4],item[3]))
+            else:
+                hash_data[category] = [
+                    (item[0],item[1],item[2],item[4],item[3])]
+                
+        # Sort categories, skipping the unsupported
+        catlist = [item for item in hash_data.keys() if item != Plugins.UNSUPPORTED]
+        catlist.sort()
+        for key in catlist:
+            new_key = key.replace(' ','-')
+            f.write('<menu action="%s">' % new_key)
+            actions.append((new_key,None,key))
+            lst = hash_data[key]
+            lst.sort(by_menu_name)
+            for name in lst:
+                new_key = name[2].replace(' ','-')
+                f.write('<menuitem action="%s"/>' % new_key)
+                actions.append((new_key,None,name[2],None,None,
+                                func(name,self.state)))
+            f.write('</menu>')
+
+        # If there are any unsupported items we add separator
+        # and the unsupported category at the end of the menu
+        if hash_data.has_key(Plugins.UNSUPPORTED):
+            f.write('<separator/>')
+            f.write('<menu action="%s">' % Plugins.UNSUPPORTED)
+            actions.append((Plugins.UNSUPPORTED,None,Plugins.UNSUPPORTED))
+            lst = hash_data[key]
+            lst.sort(by_menu_name)
+            for name in lst:
+                new_key = name[2].replace(' ','-')
+                f.write('<menuitem action="%s"/>' % new_key)
+                actions.append((new_key,None,name[2],None,None,
+                                func(name,self.state)))
+            f.write('</menu>')
+
+        f.write('</menu></menubar></ui>')
+        return (f.getvalue(),actions)
+
+def by_menu_name(a,b):
+    return cmp(a[2],b[2])
 
 def add_all_files_filter(chooser):
     """
@@ -882,6 +994,15 @@ def add_gedcom_filter(chooser):
     mime_filter.set_name(_('GEDCOM files'))
     mime_filter.add_mime_type(const.app_gedcom)
     chooser.add_filter(mime_filter)
+
+def make_report_callback(lst,dbstate):
+    return lambda x: Report.report(dbstate.db,dbstate.active,
+                                   lst[0],lst[1],lst[2],lst[3],lst[4])
+
+def make_tool_callback(lst,dbstate):
+    return lambda x: Tool.gui_tool(dbstate.db,dbstate.active,
+                                   lst[0],lst[1],lst[2],lst[3],lst[4],
+                                   dbstate.db.request_rebuild,None)
 
 #-------------------------------------------------------------------------
 #

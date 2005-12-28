@@ -19,43 +19,6 @@
 #
 
 try:
-    from gnomevfs import mime_get_short_list_applications, mime_get_description, get_mime_type
+    from GnomeMime import *
 except:
-    from gnome.vfs import mime_get_short_list_applications, mime_get_description, get_mime_type
-    
-from gettext import gettext as _
-
-def get_application(type):
-    """Returns the application command and application name of the
-    specified mime type"""
-    try:
-        applist = mime_get_short_list_applications(type)
-        if applist:
-            prog = applist[0]
-            return (prog[2],prog[1])
-        else:
-            return None
-    except:
-        return None
-
-def get_description(type):
-    """Returns the description of the specfied mime type"""
-    try:
-        return mime_get_description(type)
-    except:
-        return _("unknown")
-
-def get_type(file):
-    """Returns the mime type of the specified file"""
-    try:
-        return get_mime_type(file)
-    except:
-        return _('unknown')
-
-def mime_type_is_defined(type):
-    """"Return True if a description for a mime type exists"""
-    try:
-        mime_get_description(type)
-        return True
-    except:
-        return False
+    from PythonMime import *
