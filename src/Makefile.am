@@ -54,6 +54,7 @@ gdir_PYTHON = \
 	FontScale.py\
 	GedcomInfo.py\
 	GenericFilter.py\
+	GnomeMime.py\
 	GrampsCfg.py\
 	GrampsBSDDB.py\
 	GrampsDbBase.py\
@@ -86,6 +87,7 @@ gdir_PYTHON = \
 	PlaceView.py\
 	Plugins.py\
 	PluginMgr.py\
+	PythonMime.py\
 	QuestionDialog.py\
 	ReadGedcom.py \
 	ReadXML.py\
