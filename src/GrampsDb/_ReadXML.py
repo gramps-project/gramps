@@ -1307,8 +1307,12 @@ class GrampsParser:
                 (code,val) = self.event.get_type()
                 if code == RelLib.Event.CUSTOM:
                     event_name = val
-                else:
+                elif code in Utils.family_events:
                     event_name = Utils.family_events[code]
+                else:
+                    # FIXME: What do we want to do in that case?
+                    print "Importing unknown event code '%d' value '%s'" % (code,val)
+                    event_name = _("Unknown event code '%d' value '%s'") % (code,val)
                 text = _("%(event_name)s of %(family)s") % {
                     'event_name' : event_name,
                     'family' : Utils.family_name(self.family,self.db),

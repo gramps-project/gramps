@@ -63,6 +63,135 @@ _CHRI = _('chr.')
 _BURI = _('bur.')
 _CREM = _('crem.')
 
+class PersonBoxWidget_old( gtk.Button):
+    def __init__(self,fh,person,maxlines):
+        print "PersonBoxWidget"
+        print person
+        gtk.Button.__init__(self, fh.format_person(person, maxlines))
+        self.fh = fh
+        self.set_alignment(0.0,0.0)
+        gender = person.get_gender()
+        if gender == RelLib.Person.MALE:
+            self.modify_bg( gtk.STATE_NORMAL, self.get_colormap().alloc_color("#F5FFFF"))
+        elif gender == RelLib.Person.FEMALE:
+            self.modify_bg( gtk.STATE_NORMAL, self.get_colormap().alloc_color("#FFF5FF"))
+        else:
+            self.modify_bg( gtk.STATE_NORMAL, self.get_colormap().alloc_color("#FFFFF5"))
+        white = self.get_colormap().alloc_color("white")
+        self.modify_bg( gtk.STATE_ACTIVE, white)
+        self.modify_bg( gtk.STATE_PRELIGHT, white)
+        self.modify_bg( gtk.STATE_SELECTED, white)
+
+class PersonBoxWidget( gtk.DrawingArea):
+    def __init__(self,fh,person,maxlines):
+        gtk.DrawingArea.__init__(self)
+        self.add_events(gtk.gdk.BUTTON_PRESS_MASK)
+        self.fh = fh
+        self.person = person
+        self.maxlines = maxlines
+        self.init_done = False
+        self.connect("expose_event", self.expose)
+        text = ""
+        if self.person:
+            text = self.fh.format_person(self.person,self.maxlines)
+        self.textlayout = self.create_pango_layout(text)
+        s = self.textlayout.get_pixel_size()
+        xmin = s[0] + 11
+        ymin = s[1] + 11
+        self.set_size_request(max(xmin,120),max(ymin,25))
+    
+    def expose(self,widget,event):
+        if not self.init_done:
+            self.bg_gc = self.window.new_gc()
+            self.text_gc = self.window.new_gc()
+            self.border_gc = self.window.new_gc()
+            self.border_gc.line_style = gtk.gdk.LINE_SOLID
+            self.border_gc.line_width = 3
+            self.shadow_gc = self.window.new_gc()
+            self.shadow_gc.line_style = gtk.gdk.LINE_SOLID
+            self.shadow_gc.line_width = 3
+            if self.person:
+                self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
+                if self.person.get_gender() == RelLib.Person.MALE:
+                    self.bg_gc.set_foreground( self.get_colormap().alloc_color("#F5FFFF"))
+                elif self.person.get_gender() == RelLib.Person.FEMALE:
+                    self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFF5FF"))
+                else:
+                    self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFFFF5"))
+            else:
+                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#eeeeee"))
+                self.border_gc.set_foreground( self.get_colormap().alloc_color("#777777"))
+            self.shadow_gc.set_foreground( self.get_colormap().alloc_color("#999999"))
+            self.init_done = True
+        alloc = self.get_allocation()
+        self.window.draw_rectangle(self.bg_gc, True, 1, 1, alloc.width-5, alloc.height-5)
+        if self.person:
+            self.window.draw_layout( self.text_gc, 5,5, self.textlayout)
+        self.window.draw_rectangle(self.border_gc, False, 1, 1, alloc.width-5, alloc.height-5)
+        self.window.draw_line(self.shadow_gc, 3, alloc.height-1, alloc.width-1, alloc.height-1)
+        self.window.draw_line(self.shadow_gc, alloc.width-1, 3, alloc.width-1, alloc.height-1)
+
+class FormattingHelper:
+    def __init__(self,db):
+        self.db = db
+        
+    def format_relation( self, family, line_count):
+        text = ""
+        for event_ref in family.get_event_ref_list():
+            event = self.db.get_event_from_handle(event_ref.ref)
+            if event:
+                if line_count < 3:
+                    return DateHandler.get_date(event)
+                i,s = event.get_type()
+                name = Utils.family_relations[i]
+                text += name
+                text += "\n"
+                text += DateHandler.get_date(event)
+                text += "\n"
+                text += self.get_place_name(event.get_place_handle())
+                if line_count < 5:
+                   return text;
+                break
+        return text
+
+    def get_place_name( self, place_handle):
+        text = ""
+        place = self.db.get_place_from_handle(place_handle)
+        if place:
+            place_title = self.db.get_place_from_handle(place_handle).get_title()
+            if place_title != "":
+                if len(place_title) > 25:
+                    text = place_title[:24]+"..."
+                else:
+                    text = place_title
+        return text
+        
+    def format_person( self, person, line_count):
+        if not person:
+            return ""
+        name = NameDisplay.displayer.display(person)
+        if line_count < 3:
+            return name
+        birth_ref = person.get_birth_ref()
+        bd=""
+        bp=""
+        if birth_ref:
+            birth = self.db.get_event_from_handle(birth_ref.ref)
+            if birth:
+                bd = DateHandler.get_date(birth)
+                bp = self.get_place_name(birth.get_place_handle())
+        death_ref = person.get_death_ref()
+        dd=""
+        dp=""
+        if death_ref:
+            death = self.db.get_event_from_handle(death_ref.ref)
+            if death:
+                dd = DateHandler.get_date(death)
+                dp = self.get_place_name(death.get_place_handle())
+        if line_count < 5:
+            return "%s\n* %s\n+ %s" % (name,bd,dd)
+        else:
+            return "%s\n* %s\n  %s\n+ %s\n  %s" % (name,bd,bp,dd,dp)
 
 #-------------------------------------------------------------------------
 #
@@ -78,6 +207,7 @@ class PedView(PageView.PersonNavView):
         self.force_size = 0 # Automatic resize
         self.tree_style = 0 # Nice tree
         self.db = dbstate.db
+        self.format_helper = FormattingHelper( self.db)
 
     def init_parent_signals_cb(self, widget, event):
         # required to properly bootstrap the signal handlers.
@@ -402,38 +532,26 @@ class PedView(PageView.PersonNavView):
                 h = positions[i][0][3]
                 if not lst[i]:
                     # No person -> show empty box
-                    text = gtk.Button("                     ")
-                    text.set_sensitive(False)
+                    pw = PersonBoxWidget( self.format_helper, None, 0);
                     if positions[i][0][2] > 1:
-                        table_widget.attach(text,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
+                        table_widget.attach(pw,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
                     else:
-                        table_widget.attach(text,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
+                        table_widget.attach(pw,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
                     if x+w > xmax:
                         xmax = x+w
                     if y+h > ymax:
                         ymax = y+h
                 else:
-                    text = gtk.Button(self.format_person(lst[i][0], positions[i][0][3]))
-                    if i > 0 and positions[i][0][2] < 3:
-                        tooltip.set_tip(text, self.format_person(lst[i][0], 11))
-                    text.set_alignment(0.0,0.0)
-                    gender = lst[i][0].get_gender()
-                    if gender == RelLib.Person.MALE:
-                        text.modify_bg( gtk.STATE_NORMAL, text.get_colormap().alloc_color("#F5FFFF"))
-                    elif gender == RelLib.Person.FEMALE:
-                        text.modify_bg( gtk.STATE_NORMAL, text.get_colormap().alloc_color("#FFF5FF"))
-                    else:
-                        text.modify_bg( gtk.STATE_NORMAL, text.get_colormap().alloc_color("#FFFFF5"))
-                    white = text.get_colormap().alloc_color("white")
-                    text.modify_bg( gtk.STATE_ACTIVE, white)
-                    text.modify_bg( gtk.STATE_PRELIGHT, white)
-                    text.modify_bg( gtk.STATE_SELECTED, white)
-                    text.set_data(_PERSON,lst[i][0].get_handle())
-                    text.connect("button-press-event", self.build_full_nav_menu_cb)
+                    pw = PersonBoxWidget( self.format_helper, lst[i][0], positions[i][0][3]);
+                    if i > 0 and positions[i][2] < 3:
+                        tooltip.set_tip(pw, self.format_helper.format_person(lst[i][0], 11))
+
+                    pw.set_data(_PERSON,lst[i][0].get_handle())
+                    pw.connect("button-press-event", self.build_full_nav_menu_cb)
                     if positions[i][0][2] > 1:
-                        table_widget.attach(text,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
+                        table_widget.attach(pw,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.EXPAND|gtk.FILL,0,0)
                     else:
-                        table_widget.attach(text,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
+                        table_widget.attach(pw,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
                     if x+w > xmax:
                         xmax = x+w
                     if y+h > ymax:
@@ -581,7 +699,7 @@ class PedView(PageView.PersonNavView):
         person_handle = obj.get_data(_PERSON)
         person = self.db.get_person_from_handle(person_handle)
         if person:
-            EditPerson.EditPerson(self.dbstate, person, self.person_edited_cb)
+            EditPerson.EditPerson(self.dbstate, self.uistate, [], person, self.person_edited_cb)
             return True
         return False
 
@@ -988,63 +1106,6 @@ class PedView(PageView.PersonNavView):
         self.add_settings_to_menu(menu)
         menu.popup(None,None,None,event.button,event.time)
         return 1
-
-    def format_relation( self, family, line_count):
-        text = ""
-        for event_ref in family.get_event_ref_list():
-            event = self.db.get_event_from_handle(event_ref.ref)
-            if event:
-                if line_count < 3:
-                    return DateHandler.get_date(event)
-                i,s = event.get_type()
-                name = Utils.family_relations[i]
-                text += name
-                text += "\n"
-                text += DateHandler.get_date(event)
-                text += "\n"
-                text += self.get_place_name(event.get_place_handle())
-                if line_count < 5:
-                   return text;
-                break
-        return text
-
-    def get_place_name( self, place_handle):
-        text = ""
-        place = self.db.get_place_from_handle(place_handle)
-        if place:
-            place_title = self.db.get_place_from_handle(place_handle).get_title()
-            if place_title != "":
-                if len(place_title) > 25:
-                    text = place_title[:24]+"..."
-                else:
-                    text = place_title
-        return text
-        
-    def format_person( self, person, line_count):
-        if not person:
-            return ""
-        name = NameDisplay.displayer.display(person)
-        if line_count < 3:
-            return name
-        birth_ref = person.get_birth_ref()
-        bd=""
-        bp=""
-        if birth_ref:
-            birth = self.db.get_event_from_handle(birth_ref.ref)
-            bd = DateHandler.get_date(birth)
-            bp = self.get_place_name(birth.get_place_handle())
-        death_ref = person.get_death_ref()
-        dd=""
-        dp=""
-        if death_ref:
-            death = self.db.get_event_from_handle(death_ref.ref)
-            dd = DateHandler.get_date(death)
-            dp = self.get_place_name(death.get_place_handle())
-        if line_count < 5:
-            return "%s\n* %s\n+ %s" % (name,bd,dd)
-        else:
-            return "%s\n* %s\n  %s\n+ %s\n  %s" % (name,bd,bp,dd,dp)
-            
             
 
 #-------------------------------------------------------------------------

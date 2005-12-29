@@ -1,3 +1,10 @@
+2005-12-29  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/PedView.py: Use a DrawingArea for nicer person boxes
+	* src/GrampsDb/_GrampsDbBase.py (_update_reference_map): Sync
+	parameters to other classes
+	* src/GrampsDb/_ReadXML.py (stop_event): Catch invalid event
+	code. Still has to be done properly
+
 2005-12-29  Don Allingham  <don@gramps-project.org>
 	* src/gramps_main.py: move gnome program init to gramps.py
 	* src/gramps.py: add gnome program init	        

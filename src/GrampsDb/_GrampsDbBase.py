@@ -1494,7 +1494,7 @@ class GrampsDbBase(GrampsDBCallback):
         default = [(1,1),(0,5),(0,6),(1,2),(1,3),(0,4),(0,7),(0,8),(0,9),(0,10)]
         return self._get_column_order(REPOSITORY_COL_KEY,default)
 
-    def _update_reference_map(self,obj, class_name):
+    def _update_reference_map(self,obj):
         """Called each time an object is writen to the database. This can
         be used by subclasses to update any additional index tables that might
         need to be changed."""
