@@ -38,7 +38,6 @@ from gettext import gettext as _
 import gtk
 import gtk.glade
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK
-from gnome import help_display
 
 #-------------------------------------------------------------------------
 #
@@ -48,6 +47,7 @@ from gnome import help_display
 import const
 import TreeTips
 import DateHandler
+import GrampsDisplay
 
 from DdTargets import DdTargets
 
@@ -902,7 +902,7 @@ class ScratchPadWindow:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','tools-util-scratch-pad')
+        GrampsDisplay.help('tools-util-scratch-pad')
 
     def on_close_scratchpad(self,obj):
         self.remove_itself_from_menu()

@@ -95,6 +95,30 @@
       </schema>
 
       <schema>
+        <key>/schemas/apps/gramps/interface/height</key>
+        <applyto>/apps/gramps/interface/height</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>500</default>
+        <locale name="C">
+          <short>Height of the interface.</short>
+          <long>Specifies the height of the interface when GRAMPS starts.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/width</key>
+        <applyto>/apps/gramps/interface/width</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>775</default>
+        <locale name="C">
+          <short>Width of the interface.</short>
+          <long>Specifies the width of the interface when GRAMPS starts.</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/interface/familyview</key>
         <applyto>/apps/gramps/interface/familyview</applyto>
         <owner>gramps</owner>

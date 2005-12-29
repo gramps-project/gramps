@@ -60,6 +60,18 @@ def get_default_view():
 def save_default_view(val):
     set_int("/apps/gramps/interface/defaultview",val,(0,1))
 
+def get_height():
+    return get_int("/apps/gramps/interface/height")
+
+def save_height(val):
+    set_int("/apps/gramps/interface/height",val)
+
+def get_width():
+    return get_int("/apps/gramps/interface/width")
+
+def save_width(val):
+    set_int("/apps/gramps/interface/width",val)
+
 def get_family_view():
     return get_int("/apps/gramps/interface/familyview",(0,1))
 

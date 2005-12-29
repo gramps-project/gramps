@@ -41,6 +41,33 @@ from types import ClassType, InstanceType
 #-------------------------------------------------------------------------
 import gtk
 
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+import const
+import Utils
+import Plugins
+import PluginMgr
+import BaseDoc
+import StyleEditor
+import GrampsKeys
+import PaperMenu
+import Errors
+import GenericFilter
+import NameDisplay
+from QuestionDialog import  ErrorDialog, OptionDialog
+
+#-------------------------------------------------------------------------
+#
+# Import XML libraries
+#
+#-------------------------------------------------------------------------
+try:
+    from xml.sax import make_parser,handler,SAXParseException
+except:
+    from _xmlplus.sax import make_parser,handler,SAXParseException
 
 class FileEntry(gtk.HBox):
     def __init__(self,defname,title):
@@ -109,36 +136,6 @@ class FileEntry(gtk.HBox):
     def set_directory_entry(self,opt):
         self.dir = opt
         
-#from gnome.ui import FileEntry
-
-#-------------------------------------------------------------------------
-#
-# GRAMPS modules
-#
-#-------------------------------------------------------------------------
-import const
-import Utils
-import Plugins
-import PluginMgr
-import BaseDoc
-import StyleEditor
-import GrampsKeys
-import PaperMenu
-import Errors
-import GenericFilter
-import NameDisplay
-from QuestionDialog import  ErrorDialog, OptionDialog
-
-#-------------------------------------------------------------------------
-#
-# Import XML libraries
-#
-#-------------------------------------------------------------------------
-try:
-    from xml.sax import make_parser,handler,SAXParseException
-except:
-    from _xmlplus.sax import make_parser,handler,SAXParseException
-
 #-------------------------------------------------------------------------
 #
 # Constants

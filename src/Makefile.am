@@ -1,7 +1,7 @@
 # $Id$
 
 # This is the src level Makefile for Gramps
-SUBDIRS = docgen plugins dates data po 
+SUBDIRS = docgen plugins dates data po GrampsDb RelLib
 
 # For intl. support, how do we compile?
 MOSTLYCLEANFILES = 
@@ -41,7 +41,6 @@ gdir_PYTHON = \
 	DateParser.py\
 	DateHandler.py\
 	DateDisplay.py\
-	DbPrompter.py\
 	DdTargets.py\
 	DisplayModels.py\
 	DisplayTrace.py\
@@ -52,24 +51,16 @@ gdir_PYTHON = \
 	EventEdit.py\
 	FamilyView.py\
 	FontScale.py\
-	GedcomInfo.py\
 	GenericFilter.py\
 	GnomeMime.py\
 	GrampsCfg.py\
-	GrampsBSDDB.py\
-	GrampsDbBase.py\
-	GrampsDBCallback.py\
 	GrampsDisplay.py\
-	GrampsInMemDB.py\
-	GrampsXMLDB.py\
-	GrampsGEDDB.py\
 	GrampsMime.py\
 	gramps_main.py\
 	gramps.py\
 	ImageSelect.py\
 	ImgManip.py\
 	latin_ansel.py\
-	latin_utf8.py\
 	ListBox.py\
 	ListModel.py\
 	LocEdit.py\
@@ -89,11 +80,8 @@ gdir_PYTHON = \
 	PluginMgr.py\
 	PythonMime.py\
 	QuestionDialog.py\
-	ReadGedcom.py \
-	ReadXML.py\
 	Relationship.py\
 	RelImage.py\
-	RelLib.py\
 	Report.py\
 	ReportUtils.py\
 	ScratchPad.py\
@@ -114,8 +102,6 @@ gdir_PYTHON = \
 	UrlEdit.py\
 	Utils.py\
 	Witness.py\
-	WriteGedcom.py \
-	WriteXML.py\
 	SelectPerson.py\
 	ArgHandler.py\
 	Exporter.py\
@@ -124,8 +110,6 @@ gdir_PYTHON = \
 	GrampsGconfKeys.py\
 	RecentFiles.py\
 	ReportOptions.py\
-	ReadGrdb.py\
-	WriteGrdb.py\
 	EventView.py\
 	SelectEvent.py\
 	Spell.py\
