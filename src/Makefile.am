@@ -28,6 +28,7 @@ gdir_PYTHON = \
 	AddrEdit.py\
 	AddSpouse.py\
 	ansel_utf8.py\
+	Assistant.py \
 	AttrEdit.py\
 	AutoComp.py\
 	BaseDoc.py\
