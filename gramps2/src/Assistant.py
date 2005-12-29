@@ -128,9 +128,9 @@ class Assistant:
         label = gtk.Label(text)
         label.set_line_wrap(True)
         hbox.add(label)
-        self.notebook.insert_page(hbox,position=0)
+        self.notebook.append_page(hbox)
 
-    def set_conclusion(self,text):
+    def set_conclusion(self,title,text):
         self.conclude_text = text
 
     def add_page(self, title, child):
@@ -149,7 +149,10 @@ class Assistant:
         hbox.add(label)
         self.notebook.append_page(hbox)
         self.window.show_all()
+        self.notebook.set_current_page(0)
 
+    def destroy(self):
+        self.window.destroy()
         
 if __name__ == "__main__":
 

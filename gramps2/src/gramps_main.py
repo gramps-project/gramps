@@ -111,22 +111,6 @@ class Gramps:
     def __init__(self,args):
 
         try:
-            import gnome
-            self.program = gnome.program_init('gramps',const.version, 
-                                              gnome.libgnome_module_info_get(),
-                                              args, const.popt_table)
-
-            self.program.set_property('app-libdir',
-                                      '%s/lib' % const.prefixdir)
-            self.program.set_property('app-datadir',
-                                      '%s/share/gramps' % const.prefixdir)
-            self.program.set_property('app-sysconfdir',
-                                      '%s/etc' % const.prefixdir)
-            self.program.set_property('app-prefix', const.prefixdir)
-        except:
-            pass
-
-        try:
             GrampsCfg.loadConfig()
             self.welcome()    
         except OSError, msg:

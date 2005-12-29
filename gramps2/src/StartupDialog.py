@@ -34,9 +34,13 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gnome
-import gnome.ui
 
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+import Assistant
 import const
 
 if not const.no_gconf:
@@ -46,12 +50,6 @@ if not const.no_gconf:
         import gnome.gconf
         gconf = gnome.gconf
 
-#-------------------------------------------------------------------------
-#
-# GRAMPS modules
-#
-#-------------------------------------------------------------------------
-import const
 import GrampsKeys
 from QuestionDialog import ErrorDialog
 
@@ -128,34 +126,16 @@ class StartupDialog:
             GrampsKeys.save_startup(const.startup)
             self.close(None)
             return
-        self.w = gtk.Window()
-        self.fg_color = gtk.gdk.color_parse('#7d684a')
-        self.bg_color = gtk.gdk.color_parse('#e1dbc5')
-        self.logo = gtk.gdk.pixbuf_new_from_file("%s/gramps.png" % const.rootDir)
-        self.splash = gtk.gdk.pixbuf_new_from_file("%s/splash.jpg" % const.rootDir)
-
+        self.w = Assistant.Assistant(_('Getting started'),self.complete)
+        self.w.set_intro(_('Welcome to GRAMPS, the Genealogical Research '
+                           'and Analysis Management Programming System.\n'
+                           'Several options and information need to be gathered '
+                           'before GRAMPS is ready to be used. Any of this '
+                           'information can be changed in the future in the '
+                           'Preferences dialog under the Settings menu.'))
         try:
-            d = gnome.ui.Druid()
-        except AttributeError:
-            ErrorDialog(_("Broken GNOME libraries"),
-                        _("GRAMPS has detected an incomplete gnome-python "
-                          "library, which is required by GRAMPS. This is "
-                          "frequently seen on Slackware systems, due to the "
-                          "lack of support for GNOME in the Slackware "
-                          "environment. If you are running Slackware, this "
-                          "problem can be resolved by installing Dropline "
-                          "GNOME (http://www.dropline.net/gnome/). If you "
-                          "are running another distribution, please check "
-                          "your GNOME configuration."))
-            gtk.main_quit()
-            
-            
-        self.w.add(d)
-        try:
-            d.add(self.build_page1())
-            d.add(self.build_page2())
-            d.add(self.build_page5())
-            d.add(self.build_page_last())
+            self.w.add_page(_('Researcher information'),self.build_page2())
+            self.w.add_page(_('LDS support'), self.build_page5())
         except:
             ErrorDialog(_("Configuration error"),
                         _("\n\nPossibly the installation of GRAMPS was incomplete."
@@ -163,46 +143,19 @@ class StartupDialog:
             gtk.main_quit()
             return
             
+        self.w.set_conclusion(_('Complete'),
+                              _('GRAMPS is an Open Source project. Its success '
+                                'depends on the users. User feedback is important. '
+                                'Please join the mailing lists, submit bug reports, '
+                                'suggest improvements, and see how you can '
+                                'contribute.\n\nPlease enjoy using GRAMPS.'))
 
-        d.connect('cancel',self.close)
-        self.w.connect("delete_event", gtk.main_quit)
-        self.w.show_all()
+        self.w.show()
 
-    def close(self,obj):
+    def close(self):
         self.task(self.args)
 
-    def build_page1(self):
-        p = gnome.ui.DruidPageEdge(0)
-        p.set_title(_('Getting Started'))
-        p.set_title_color(self.fg_color)
-        p.set_bg_color(self.bg_color)
-        p.set_logo(self.logo)
-        p.set_watermark(self.splash)
-        p.set_text(_('Welcome to GRAMPS, the Genealogical Research '
-                     'and Analysis Management Programming System.\n'
-                     'Several options and information need to be gathered '
-                     'before GRAMPS is ready to be used. Any of this '
-                     'information can be changed in the future in the '
-                     'Preferences dialog under the Settings menu.'))
-        return p
-
-    def build_page_last(self):
-        p = gnome.ui.DruidPageEdge(1)
-        p.set_title(_('Complete'))
-        p.set_title_color(self.fg_color)
-        p.set_bg_color(self.bg_color)
-        p.set_logo(self.logo)
-        p.set_watermark(self.splash)
-        p.connect('finish',self.complete)
-
-        p.set_text(_('GRAMPS is an Open Source project. Its success '
-                     'depends on the users. User feedback is important. '
-                     'Please join the mailing lists, submit bug reports, '
-                     'suggest improvements, and see how you can '
-                     'contribute.\n\nPlease enjoy using GRAMPS.'))
-        return p
-
-    def complete(self,obj,obj2):
+    def complete(self):
         GrampsKeys.save_researcher_name(unicode(self.name.get_text()))
         GrampsKeys.save_researcher_addr(unicode(self.addr.get_text()))
         GrampsKeys.save_researcher_city(unicode(self.city.get_text()))
@@ -219,15 +172,9 @@ class StartupDialog:
         self.task(self.args)
         
     def build_page2(self):
-        p = gnome.ui.DruidPageStandard()
-        p.set_title(_('Researcher Information'))
-        p.set_title_foreground(self.fg_color)
-        p.set_background(self.bg_color)
-        p.set_logo(self.logo)
         
         box = gtk.VBox()
         box.set_spacing(12)
-        p.append_item("",box,"")
         
         label = gtk.Label(
             _('In order to create valid GEDCOM files, the following '
@@ -252,7 +199,6 @@ class StartupDialog:
         
         box.add(table)
         box.show_all()
-
 
         name = GrampsKeys.get_researcher_name()
         if not name or name.strip() == "":
@@ -285,18 +231,11 @@ class StartupDialog:
                           "problem. Please read the INSTALL file in the "
                           "top-level source directory."))
             gtk.main_quit()
-        return p
+        return box
 
     def build_page5(self):
-        p = gnome.ui.DruidPageStandard()
-        p.set_title(_('LDS extensions'))
-        p.set_title_foreground(self.fg_color)
-        p.set_background(self.bg_color)
-        p.set_logo(self.logo)
-
         box = gtk.VBox()
         box.set_spacing(12)
-        p.append_item("",box,"")
         
         label = gtk.Label(
             _('GRAMPS has support for LDS Ordinances, which are special '
@@ -318,7 +257,7 @@ class StartupDialog:
         align.add(self.lds)
         
         box.show_all()
-        return p
+        return box
 
 def make_label(table,val,y,x1,x2,x3,x4):
     label = gtk.Label(val)

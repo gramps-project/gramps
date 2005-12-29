@@ -1,4 +1,7 @@
 2005-12-29  Don Allingham  <don@gramps-project.org>
+	* src/gramps_main.py: move gnome program init to gramps.py
+	* src/gramps.py: add gnome program init	        
+	* src/StartupDialog.py: use Assistant instead of gnome.ui.druid
 	* src/Assistant.py: added
 	* src/ArgHandler.py: remove DbPrompter dependency
 	* src/GrampsGconfKeys.py: Support for saving window size
