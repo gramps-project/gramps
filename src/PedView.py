@@ -72,23 +72,29 @@ _CREM = _('crem.')
 class PedView(PageView.PersonNavView):
 
     def __init__(self,dbstate,uistate):
-        print "PedView.__init__"
         PageView.PersonNavView.__init__(self,'Pedigree View',dbstate,uistate)
         dbstate.connect('database-changed',self.change_db)
         dbstate.connect('active-changed',self.goto_active_person)
         self.force_size = 0 # Automatic resize
+        self.tree_style = 0 # Nice tree
         self.db = dbstate.db
 
     def init_parent_signals_cb(self, widget, event):
-        print "PedView.init_parent_signals_cb"
+        # required to properly bootstrap the signal handlers.
+        # This handler is connected by build_widget. After the outside ViewManager
+        # has placed this widget we are able to access the parent container.
         self.notebook.disconnect(self.bootstrap_handler)
         self.notebook.parent.connect("size-allocate", self.size_request_cb)
         self.size_request_cb(widget.parent,event)
         
     def add_table_to_notebook( self, table):
         frame = gtk.ScrolledWindow(None,None)
+        frame.set_shadow_type(gtk.SHADOW_NONE)
         frame.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         frame.add_with_viewport(table)
+        table.get_parent().set_shadow_type(gtk.SHADOW_NONE)
+        table.set_row_spacings(2)
+        table.set_col_spacings(0)
         try:
             self.notebook.append_page(frame,None)
         except:
@@ -104,7 +110,6 @@ class PedView(PageView.PersonNavView):
         return 'gramps-pedigree'
 
     def build_widget(self):
-        print "PedView.build_widget"
         """
         Builds the interface and returns a gtk.Container type that
         contains the interface. This containter will be inserted into
@@ -180,7 +185,6 @@ class PedView(PageView.PersonNavView):
         self.add_action('HomePerson',gtk.STOCK_HOME,  "_Home",  callback=self.home)
 
     def change_db(self,db):
-        print "PedView.change_db"
         """
         Callback associated with DbState. Whenenver the database
         changes, this task is called. In this case, we rebuild the
@@ -196,7 +200,6 @@ class PedView(PageView.PersonNavView):
         self.rebuild_trees(None)
  
     def goto_active_person(self,handle=None):
-        print "PedView.goto_active_person"
         if handle:
             person = self.db.get_person_from_handle(handle)
             self.rebuild_trees(person)
@@ -205,25 +208,18 @@ class PedView(PageView.PersonNavView):
             self.rebuild_trees(None)
     
     def person_updated_cb(self,handle_list):
-        print "PedView.person_updated_cb"
         self.rebuild_trees(self.dbstate.active)
-##         if self.active_person and self.active_person.handle == handle_list[0]:
-##             self.active_person = self.db.get_person_from_handle(handle_list[0])
-##         self.load_canvas(self.active_person)
 
     def person_rebuild(self):
-        print "PedView.person_rebuild"
         self.rebuild_trees(self.dbstate.active)
 
     def person_edited_cb(self, p1=None, p2=None):
-        print "PedView.person_edited_cb"
+        pass
 
     def request_resize(self):
-        print "PedView.request_resize"
         self.size_request_cb(self.notebook.parent,None,None)
         
     def size_request_cb(self, widget, event, data=None):
-        print "PedView.size_request_cb"
         if self.force_size == 0:
             v = widget.get_allocation()
             page_list = range(0,self.notebook.get_n_pages())
@@ -237,62 +233,124 @@ class PedView(PageView.PersonNavView):
             self.notebook.set_current_page(self.force_size-2)
 
     def rebuild_trees(self,person):
-        pos_2 =((0,3,3,(3,4,5)),
-                (2,0,3,None),
-                (2,10,3,None))
-        pos_3 =((0,4,5,(3,6,3)),
-                (2,1,3,(5,2,3)),
-                (2,9,3,(5,10,3)),
-                (4,0,1,None),
-                (4,4,1,None),
-                (4,8,1,None),
-                (4,12,1,None))
-        pos_4 =((0, 5,5,(3, 7,5)),
-                (2, 2,3,(5, 3,3)),
-                (2,10,3,(5,11,3)),
-                (4, 1,1,(7,1,1)),
-                (4, 5,1,(7,5,1)),
-                (4, 9,1,(7,9,1)),
-                (4,13,1,(7,13,1)),
-                (6, 0,1,None),
-                (6, 2,1,None),
-                (6, 4,1,None),
-                (6, 6,1,None),
-                (6, 8,1,None),
-                (6,10,1,None),
-                (6,12,1,None),
-                (6,14,1,None),)
-        pos_5 =((0,10,11,(3,15,3)),
-                (2, 5,5,(5, 7,1)),
-                (2,21,5,(5,23,1)),
-                (4, 2,3,(7,3,1)),
-                (4,10,3,(7,11,1)),
-                (4,18,3,(7,19,1)),
-                (4,26,3,(7,27,1)),
-                (6, 1,1,(9,1,1)),
-                (6, 5,1,(9,5,1)),
-                (6, 9,1,(9,9,1)),
-                (6,13,1,(9,13,1)),
-                (6,17,1,(9,17,1)),
-                (6,21,1,(9,21,1)),
-                (6,25,1,(9,25,1)),
-                (6,29,1,(9,29,1)),
-                (8, 0,1,None),
-                (8, 2,1,None),
-                (8, 4,1,None),
-                (8, 6,1,None),
-                (8, 8,1,None),
-                (8,10,1,None),
-                (8,12,1,None),
-                (8,14,1,None),
-                (8,16,1,None),
-                (8,18,1,None),
-                (8,20,1,None),
-                (8,22,1,None),
-                (8,24,1,None),
-                (8,26,1,None),
-                (8,28,1,None),
-                (8,30,1,None),)
+        if self.tree_style == 1:
+            # format of the definition is:
+            # ((each box of the pedigree has a node here),
+            #  ((person box position and size),(parent relation box)),
+            #   ((or for another design),(fater relation box),(mother relation box)))
+            pos_2 =(((0,3,3,3),((1,0,3),(1,6,3)),(3,4,5)),
+                    ((2,0,3,3),None,None),
+                    ((2,6,3,3),None,None))
+            pos_3 =(((0,4,3,5),((1,1,3),(1,9,3)),(3,6,3)),
+                    ((2,1,3,3),((3,0,1),(3,4,1)),(5,2,3)),
+                    ((2,9,3,3),((3,8,1),(3,12,1)),(5,10,3)),
+                    ((4,0,3,1),None,None),
+                    ((4,4,3,1),None,None),
+                    ((4,8,3,1),None,None),
+                    ((4,12,3,1),None,None))
+            pos_4 =(((0, 5,3,5),((1,2,3),(1,10,3)),(3, 7,5)),
+                    ((2, 2,3,3),((3,1,1),(3,5,1)),(5, 3,3)),
+                    ((2,10,3,3),((3,9,1),(3,13,1)),(5,11,3)),
+                    ((4, 1,3,1),((5,0,1),(5,2,1)),(7,1,1)),
+                    ((4, 5,3,1),((5,4,1),(5,6,1)),(7,5,1)),
+                    ((4, 9,3,1),((5,8,1),(5,10,1)),(7,9,1)),
+                    ((4,13,3,1),((5,12,1),(5,14,1)),(7,13,1)),
+                    ((6, 0,3,1),None,None),
+                    ((6, 2,3,1),None,None),
+                    ((6, 4,3,1),None,None),
+                    ((6, 6,3,1),None,None),
+                    ((6, 8,3,1),None,None),
+                    ((6,10,3,1),None,None),
+                    ((6,12,3,1),None,None),
+                    ((6,14,3,1),None,None),)
+            pos_5 =(((0,10,3,11),((1,5,5),(1,21,5)),(3,15,3)),
+                    ((2, 5,3,5),((3,2,3),(3,10,3)),(5, 7,1)),
+                    ((2,21,3,5),((3,18,3),(3,26,3)),(5,23,1)),
+                    ((4, 2,3,3),((5,1,1),(5,5,1)),(7,3,1)),
+                    ((4,10,3,3),((5,9,1),(5,13,1)),(7,11,1)),
+                    ((4,18,3,3),((5,17,1),(5,21,1)),(7,19,1)),
+                    ((4,26,3,3),((5,25,1),(5,29,1)),(7,27,1)),
+                    ((6, 1,3,1),((7,0,1),(7,2,1)),(9,1,1)),
+                    ((6, 5,3,1),((7,4,1),(7,6,1)),(9,5,1)),
+                    ((6, 9,3,1),((7,8,1),(7,10,1)),(9,9,1)),
+                    ((6,13,3,1),((7,12,1),(7,14,1)),(9,13,1)),
+                    ((6,17,3,1),((7,16,1),(7,18,1)),(9,17,1)),
+                    ((6,21,3,1),((7,20,1),(7,22,1)),(9,21,1)),
+                    ((6,25,3,1),((7,24,1),(7,26,1)),(9,25,1)),
+                    ((6,29,3,1),((7,28,1),(7,30,1)),(9,29,1)),
+                    ((8, 0,3,1),None,None),
+                    ((8, 2,3,1),None,None),
+                    ((8, 4,3,1),None,None),
+                    ((8, 6,3,1),None,None),
+                    ((8, 8,3,1),None,None),
+                    ((8,10,3,1),None,None),
+                    ((8,12,3,1),None,None),
+                    ((8,14,3,1),None,None),
+                    ((8,16,3,1),None,None),
+                    ((8,18,3,1),None,None),
+                    ((8,20,3,1),None,None),
+                    ((8,22,3,1),None,None),
+                    ((8,24,3,1),None,None),
+                    ((8,26,3,1),None,None),
+                    ((8,28,3,1),None,None),
+                    ((8,30,3,1),None,None),)
+        elif self.tree_style == 0:
+            pos_2 =(((0,0,1,3),(1,0,3),(3,4,5)),
+                    ((2,0,1,1),None,None),
+                    ((2,2,1,1),None,None))
+            pos_3 =(((0,2,1,3),(1,1,5),(3,4,5)),
+                    ((2,0,1,3),(3,0,3),(3,4,5)),
+                    ((2,4,1,3),(3,4,3),(3,4,5)),
+                    ((4,0,1,1),None,None),
+                    ((4,2,1,1),None,None),
+                    ((4,4,1,1),None,None),
+                    ((4,6,1,1),None,None))
+            pos_4 =(((0,6,1,3),(1,3,9),(3,4,5)),
+                    ((2,2,1,3),(3,1,5),(3,4,5)),
+                    ((2,10,1,3),(3,9,5),(3,4,5)),
+                    ((4,0,1,3),(5,0,3),(3,4,5)),
+                    ((4,4,1,3),(5,4,3),(3,4,5)),
+                    ((4,8,1,3),(5,8,3),(3,4,5)),
+                    ((4,12,1,3),(5,12,3),(3,4,5)),
+                    ((6,0,1,1),None,None),
+                    ((6,2,1,1),None,None),
+                    ((6,4,1,1),None,None),
+                    ((6,6,1,1),None,None),
+                    ((6,8,1,1),None,None),
+                    ((6,10,1,1),None,None),
+                    ((6,12,1,1),None,None),
+                    ((6,14,1,1),None,None))
+            pos_5 =(((0,14,1,3),(1,7,17),(3,4,5)),
+                    ((2,6,1,3),(3,3,9),(3,4,5)),
+                    ((2,22,1,3),(3,19,9),(3,4,5)),
+                    ((4,2,1,3),(5,1,5),(3,4,5)),
+                    ((4,10,1,3),(5,9,5),(3,4,5)),
+                    ((4,18,1,3),(5,17,5),(3,4,5)),
+                    ((4,26,1,3),(5,25,5),(3,4,5)),
+                    ((6,0,1,3),(7,0,3),(3,4,5)),
+                    ((6,4,1,3),(7,4,3),(3,4,5)),
+                    ((6,8,1,3),(7,8,3),(3,4,5)),
+                    ((6,12,1,3),(7,12,3),(3,4,5)),
+                    ((6,16,1,3),(7,16,3),(3,4,5)),
+                    ((6,20,1,3),(7,20,3),(3,4,5)),
+                    ((6,24,1,3),(7,24,3),(3,4,5)),
+                    ((6,28,1,3),(7,28,3),(3,4,5)),
+                    ((8,0,1,1),None,None),
+                    ((8,2,1,1),None,None),
+                    ((8,4,1,1),None,None),
+                    ((8,6,1,1),None,None),
+                    ((8,8,1,1),None,None),
+                    ((8,10,1,1),None,None),
+                    ((8,12,1,1),None,None),
+                    ((8,14,1,1),None,None),
+                    ((8,16,1,1),None,None),
+                    ((8,18,1,1),None,None),
+                    ((8,20,1,1),None,None),
+                    ((8,22,1,1),None,None),
+                    ((8,24,1,1),None,None),
+                    ((8,26,1,1),None,None),
+                    ((8,28,1,1),None,None),
+                    ((8,30,1,1),None,None))
         self.rebuild( self.table_2, pos_2, person)
         self.rebuild( self.table_3, pos_3, person)
         self.rebuild( self.table_4, pos_4, person)
@@ -302,11 +360,9 @@ class PedView(PageView.PersonNavView):
 
 
     def rebuild( self, table_widget, positions, active_person):
-        print "PedView.rebuild"
         # Build ancestor tree
         lst = [None]*31
         self.find_tree(active_person,0,1,lst)
-##         self.find_tree(person,0,1,lst)
 
         # Purge current table content
         for child in table_widget.get_children():
@@ -320,43 +376,45 @@ class PedView(PageView.PersonNavView):
             xmax = 0
             ymax = 0
             for field in positions:
-                x = field[0]+3
+                x = field[0][0]+field[0][2]
                 if x > xmax:
                     xmax = x
-                y = field[1]+field[2]
+                y = field[0][1]+field[0][3]
                 if y > ymax:
                     ymax = y
             for x in range(0,xmax):
                 for y in range(0,ymax):
                     label=gtk.Label("%d,%d"%(x,y))
                     frame = gtk.ScrolledWindow(None,None)
-                    frame.set_shadow_type(gtk.SHADOW_ETCHED_OUT)
+                    frame.set_shadow_type(gtk.SHADOW_NONE)
                     frame.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
-                    frame.add(label)
-                    table_widget.attach(frame,x,x+1,y,y+1,0,0,0,0)          
-        
+                    frame.add_with_viewport(label)
+                    table_widget.attach(frame,x+1,x+2,y+1,y+2,gtk.FILL,gtk.FILL,0,0)          
+
+        xmax = 0
+        ymax = 0
         for i in range(0,31):
             try:
                 # Table placement for person data
-                x = positions[i][0]
-                y = positions[i][1]
-                w = 3
-                h = positions[i][2]
-                
+                x = positions[i][0][0]+1
+                y = positions[i][0][1]+1
+                w = positions[i][0][2]
+                h = positions[i][0][3]
                 if not lst[i]:
                     # No person -> show empty box
-                    label = gtk.Label(" ")
-                    frame = gtk.ScrolledWindow(None,None)
-                    frame.set_shadow_type(gtk.SHADOW_OUT)
-                    frame.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
-                    frame.add_with_viewport(label)
-                    if positions[i][2] > 1:
-                        table_widget.attach(frame,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.EXPAND|gtk.FILL,0,0)
+                    text = gtk.Button("                     ")
+                    text.set_sensitive(False)
+                    if positions[i][0][2] > 1:
+                        table_widget.attach(text,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
                     else:
-                        table_widget.attach(frame,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.FILL,0,0)
+                        table_widget.attach(text,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
+                    if x+w > xmax:
+                        xmax = x+w
+                    if y+h > ymax:
+                        ymax = y+h
                 else:
-                    text = gtk.Button(self.format_person(lst[i][0], positions[i][2]))
-                    if i > 0 and positions[i][2] < 3:
+                    text = gtk.Button(self.format_person(lst[i][0], positions[i][0][3]))
+                    if i > 0 and positions[i][0][2] < 3:
                         tooltip.set_tip(text, self.format_person(lst[i][0], 11))
                     text.set_alignment(0.0,0.0)
                     gender = lst[i][0].get_gender()
@@ -372,47 +430,98 @@ class PedView(PageView.PersonNavView):
                     text.modify_bg( gtk.STATE_SELECTED, white)
                     text.set_data(_PERSON,lst[i][0].get_handle())
                     text.connect("button-press-event", self.build_full_nav_menu_cb)
-                    if positions[i][2] > 1:
-                        table_widget.attach(text,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.EXPAND|gtk.FILL,0,0)
+                    if positions[i][0][2] > 1:
+                        table_widget.attach(text,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
                     else:
-                        table_widget.attach(text,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.FILL,0,0)
+                        table_widget.attach(text,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
+                    if x+w > xmax:
+                        xmax = x+w
+                    if y+h > ymax:
+                        ymax = y+h
                     
-                    # Connection lines
-                    if i > 0:
-                        x = positions[i][0]-1
-                        y = positions[i][1]
-                        w = 1
-                        h = positions[i][2]
-                        line = gtk.DrawingArea()
-                        line.connect("expose-event", self.line_expose_cb)
-                        line.set_data("idx", i)
-                        line.set_data("rela", lst[i][1])
-                        table_widget.attach(line,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
+                # Connection lines
+                if positions[i][1] and len(positions[i][1]) == 2:
+                    # separate boxes for father and mother
+                    x = positions[i][1][0][0]+1
+                    y = positions[i][1][0][1]+1
+                    w = 1
+                    h = positions[i][1][0][2]
+                    line = gtk.DrawingArea()
+                    line.connect("expose-event", self.line_expose_cb)
+                    line.set_data("idx", i*2+1)
+                    if lst[i*2+1]:
+                        line.set_data("rela", lst[i*2+1][1])
+                    table_widget.attach(line,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
+                    if x+w > xmax:
+                        xmax = x+w
+                    if y+h > ymax:
+                        ymax = y+h
+                    
+                    x = positions[i][1][1][0]+1
+                    y = positions[i][1][1][1]+1
+                    w = 1
+                    h = positions[i][1][1][2]
+                    line = gtk.DrawingArea()
+                    line.connect("expose-event", self.line_expose_cb)
+                    line.set_data("idx", i*2+2)
+                    if lst[i*2+2]:
+                        line.set_data("rela", lst[i*2+2][1])
+                    table_widget.attach(line,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
+                    if x+w > xmax:
+                        xmax = x+w
+                    if y+h > ymax:
+                        ymax = y+h
+                if positions[i][1] and len(positions[i][1]) == 3:
+                    # combined for father and mother
+                    x = positions[i][1][0]+1
+                    y = positions[i][1][1]+1
+                    w = 1
+                    h = positions[i][1][2]
+                    line = gtk.DrawingArea()
+                    line.set_size_request(20,-1)
+                    line.connect("expose-event", self.tree_expose_cb)
+                    line.set_data("height", h)
+                    if lst[i*2+1]:
+                        line.set_data("frela", lst[i*2+1][1])
+                    if lst[i*2+2]:
+                        line.set_data("mrela", lst[i*2+2][1])
+                    table_widget.attach(line,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
+                    if x+w > xmax:
+                        xmax = x+w
+                    if y+h > ymax:
+                        ymax = y+h
                     
                 # Marriage data
-                if positions[i][3]:
-                    # An empty label is used as fallback, to allow it to EXPAND.
-                    # This gives a nicer layout
-                    text = " "
-                    try:
-                        if lst[i] and lst[i][2]:
-                            text = self.format_relation( lst[i][2], positions[i][3][2])
-                    except IndexError:
-                        pass
-                    label = gtk.Label(text)
-                    label.set_justify(gtk.JUSTIFY_LEFT)
-                    label.set_line_wrap(True)
-                    label.set_alignment(0.1,0.0)
-                    x = positions[i][3][0]
-                    y = positions[i][3][1]
-                    w = 2
-                    h = 1
-                    if positions[i][3][2] > 1:
-                        table_widget.attach(label,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.EXPAND|gtk.FILL,0,0)
-                    else:
-                        table_widget.attach(label,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.FILL,0,0)
+                #if positions[i][4] and False:
+                #    # An empty label is used as fallback, to allow it to EXPAND.
+                #    # This gives a nicer layout
+                #    text = " "
+                #    try:
+                #        if lst[i] and lst[i][2]:
+                #            text = self.format_relation( lst[i][2], positions[i][3][2])
+                #    except IndexError:
+                #        pass
+                #    label = gtk.Label(text)
+                #    label.set_justify(gtk.JUSTIFY_LEFT)
+                #    label.set_line_wrap(True)
+                #    label.set_alignment(0.1,0.0)
+                #    x = positions[i][4][0]
+                #    y = positions[i][4][1]
+                #    w = 2
+                #    h = 1
+                #    if positions[i][4][2] > 1:
+                #        table_widget.attach(label,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.EXPAND|gtk.FILL,0,0)
+                #    else:
+                #        table_widget.attach(label,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.FILL,0,0)
             except IndexError:
                 pass
+        
+        # add dummy widgets into the corners of the table to allow the pedigree to be centered
+        l = gtk.Label("")
+        table_widget.attach(l,0,1,0,1,gtk.EXPAND|gtk.FILL,gtk.EXPAND|gtk.FILL,0,0)
+        l = gtk.Label("")
+        table_widget.attach(l,xmax,xmax+1,ymax,ymax+1,gtk.EXPAND|gtk.FILL,gtk.EXPAND|gtk.FILL,0,0)
+        
         table_widget.show_all()
 
     def line_expose_cb(self, area, event):
@@ -421,18 +530,49 @@ class PedView(PageView.PersonNavView):
         alloc = area.get_allocation()
         idx = area.get_data("idx")
         rela = area.get_data("rela")
-        if rela:
+        if not rela:
             gc.line_style = gtk.gdk.LINE_ON_OFF_DASH
         else:
             gc.line_style = gtk.gdk.LINE_SOLID
         gc.line_width = 3
         if idx %2 == 0:
-            area.window.draw_line(gc, alloc.width, alloc.height/2, alloc.width/2, 0)
+            area.window.draw_line(gc, alloc.width, alloc.height/2, alloc.width/2,alloc.height/2)
+            area.window.draw_line(gc, alloc.width/2, 0, alloc.width/2,alloc.height/2)
         else:
-            area.window.draw_line(gc, alloc.width, alloc.height/2, alloc.width/2, alloc.height)
-    
+            area.window.draw_line(gc, alloc.width, alloc.height/2, alloc.width/2,alloc.height/2)
+            area.window.draw_line(gc, alloc.width/2, alloc.height, alloc.width/2,alloc.height/2)
+
+    def tree_expose_cb(self, area, event):
+        style = area.get_style()
+        gc = style.fg_gc[gtk.STATE_NORMAL]
+        alloc = area.get_allocation()
+        h = area.get_data("height")
+        gap = alloc.height / (h*2)
+        frela = area.get_data("frela")
+        mrela = area.get_data("mrela")
+        if not frela and not mrela:
+            gc.line_style = gtk.gdk.LINE_ON_OFF_DASH
+        else:
+            gc.line_style = gtk.gdk.LINE_SOLID
+        gc.line_width = 3
+        rela = area.get_data("mrela")
+        area.window.draw_line(gc, 0, alloc.height/2, alloc.width/2,alloc.height/2)
+
+        if not frela:
+            gc.line_style = gtk.gdk.LINE_ON_OFF_DASH
+        else:
+            gc.line_style = gtk.gdk.LINE_SOLID
+        area.window.draw_line(gc, alloc.width/2, alloc.height/2, alloc.width/2,gap)
+        area.window.draw_line(gc, alloc.width/2, gap, alloc.width,gap)
+        
+        if not mrela:
+            gc.line_style = gtk.gdk.LINE_ON_OFF_DASH
+        else:
+            gc.line_style = gtk.gdk.LINE_SOLID
+        area.window.draw_line(gc, alloc.width/2, alloc.height/2, alloc.width/2,alloc.height-gap)
+        area.window.draw_line(gc, alloc.width/2, alloc.height-gap, alloc.width,alloc.height-gap)
+
     def home(self,obj):
-        print "PedView.home"
         defperson = self.dbstate.db.get_default_person()
         if defperson:
             self.dbstate.change_active_person(defperson)
@@ -500,7 +640,13 @@ class PedView(PageView.PersonNavView):
         if data in [0,2,3,4,5]:
             self.force_size = data
             self.size_request_cb(self.notebook.parent,None) # switch to matching size
-    
+
+    def change_tree_style_cb(self,event,data):
+        if data in [0,1]:
+            if self.tree_style != data:
+                self.tree_style = data
+                self.rebuild_trees(self.dbstate.active) # Rebuild using new style
+
     def find_tree(self,person,index,depth,lst,val=0):
         """Recursively build a list of ancestors"""
 
@@ -562,24 +708,50 @@ class PedView(PageView.PersonNavView):
             menu.append(item)
 
     def add_settings_to_menu(self,menu):
+        item = gtk.MenuItem(_("Tree style"))
+        item.set_submenu(gtk.Menu())
+        style_menu = item.get_submenu()
+
+        current_style_image = gtk.image_new_from_stock(gtk.STOCK_APPLY,gtk.ICON_SIZE_MENU)
+        current_style_image.show()
+
+        entry = gtk.ImageMenuItem(_("Version A"))
+        entry.connect("activate", self.change_tree_style_cb,0)
+        if self.tree_style == 0:
+            entry.set_image(current_style_image)
+        entry.show()
+        style_menu.append(entry)
+
+        entry = gtk.ImageMenuItem(_("Version B"))
+        entry.connect("activate", self.change_tree_style_cb,1)
+        if self.tree_style == 1:
+            entry.set_image(current_style_image)
+        entry.show()
+        style_menu.append(entry)
+
+        style_menu.show()
+        item.show()
+        menu.append(item)
+
+
         item = gtk.MenuItem(_("Tree size"))
         item.set_submenu(gtk.Menu())
         size_menu = item.get_submenu()
         
-        current_image = gtk.image_new_from_stock(gtk.STOCK_APPLY,gtk.ICON_SIZE_MENU)
-        current_image.show()
-        
+        current_size_image = gtk.image_new_from_stock(gtk.STOCK_APPLY,gtk.ICON_SIZE_MENU)
+        current_size_image.show()
+
         entry = gtk.ImageMenuItem(_("Automatic"))
         entry.connect("activate", self.change_force_size_cb,0)
         if self.force_size == 0:
-            entry.set_image(current_image)
+            entry.set_image(current_size_image)
         entry.show()
         size_menu.append(entry)
 
         for n in range(2,6):
             entry = gtk.ImageMenuItem(_("%d generations") % n)
             if self.force_size == n:
-                entry.set_image(current_image)
+                entry.set_image(current_size_image)
             entry.connect("activate", self.change_force_size_cb,n)
             entry.show()
             size_menu.append(entry)

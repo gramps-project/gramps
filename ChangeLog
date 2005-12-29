@@ -1,6 +1,7 @@
 2005-12-29  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: Add new submenu showing people that share
 	the same event. This for example lists witnesses.
+	Added alternate version of the tree; Tree is now centered;
 
 2005-12-28  Don Allingham  <don@gramps-project.org>
 	* src/Makefile.am: add PythonMime and GnomeMime
