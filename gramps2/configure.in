@@ -144,28 +144,6 @@ then
 fi
 AC_MSG_RESULT(ok)
 
-AC_MSG_CHECKING(Python bindings for gnome canvas)
-cat > conftest.py <<EOF
-$pygtk_require
-try:
-    # Do not import gnome.canvas, this can raise a RuntimeError if the
-    # display cannot be opened.  Just search it.
-    import imp
-    imp.find_module('gnome/canvas')
-    out("YES")
-except ImportError:
-    out("NO")
-EOF
-$PYTHON conftest.py
-has_canvas=`cat conftest.out`
-rm -f conftest.out conftest.py
-if test YES != "$has_canvas"
-then
-   AC_MSG_ERROR([
-**** The python bindings for gnome canvas (gnome-python2-canvas) could not be found.])
-fi
-AC_MSG_RESULT(ok)
-
 AC_MSG_CHECKING(Python bindings for gnome vfs)
 cat > conftest.py <<EOF
 $pygtk_require

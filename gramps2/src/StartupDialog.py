@@ -229,9 +229,10 @@ class StartupDialog:
         box.set_spacing(12)
         p.append_item("",box,"")
         
-        label = gtk.Label(_('In order to create valid GEDCOM files, the following information '
-                            'needs to be entered. If you do not plan to generate GEDCOM files, '
-                            'you may leave this empty.'))
+        label = gtk.Label(
+            _('In order to create valid GEDCOM files, the following '
+              'information needs to be entered. If you do not plan to '
+              'generate GEDCOM files, you may leave this empty.'))
         label.set_line_wrap(True)
         
         box.pack_start(label)
@@ -297,10 +298,12 @@ class StartupDialog:
         box.set_spacing(12)
         p.append_item("",box,"")
         
-        label = gtk.Label(_('GRAMPS has support for LDS Ordinances, which are special event types\n'
-                            'related to the Church of Jesus Christ of Latter Day Saints.\n\n'
-                            'You may choose to either enable or disable this support. You may\n'
-                            'change this option in the future in the Preferences dialog.'))
+        label = gtk.Label(
+            _('GRAMPS has support for LDS Ordinances, which are special '
+              'event types\nrelated to the Church of Jesus Christ of '
+              'Latter Day Saints.\n\nYou may choose to either enable '
+              'or disable this support. You may\nchange this option in '
+              'the future in the Preferences dialog.'))
 
         box.add(label)
         align = gtk.Alignment(0.5,0)

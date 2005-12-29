@@ -43,7 +43,6 @@ from gettext import gettext as _
 import const
 import GrampsDb
 import GrampsMime
-import DbPrompter
 import QuestionDialog
 import GrampsKeys
 import RecentFiles
@@ -277,7 +276,7 @@ class ArgHandler:
                                       "following dialog will let you select "
                                       "the new database."),
                                     self.parent.topWindow)
-                prompter = DbPrompter.NewNativeDbPrompter(self.parent)
+                prompter = NewNativeDbPrompter(self.parent)
                 if not prompter.chooser():
                     QuestionDialog.ErrorDialog( 
                         _("New GRAMPS database was not set up"),
@@ -636,3 +635,91 @@ class ArgHandler:
         else:
             print "Unknown action: %s." % action
             os._exit(1)
+
+#-------------------------------------------------------------------------
+#
+# NewNativeDbPrompter
+#
+#-------------------------------------------------------------------------
+class NewNativeDbPrompter:
+    """
+    This class allows to set up a new empty native (grdb) database.
+    The filename is forced to have an '.grdb' extension. If not given,
+    it is appended. 
+    """
+    
+    def __init__(self,parent,parent_window=None):
+        self.parent = parent
+        self.parent_window = parent_window
+
+    def chooser(self):
+        """
+        Select the new file. Suggest the Untitled_X.grdb name.
+        Return 1 when selection is made and 0 otherwise.
+        """
+        choose = gtk.FileChooserDialog(_('GRAMPS: Create GRAMPS database'),
+                                           self.parent_window,
+                                           gtk.FILE_CHOOSER_ACTION_SAVE,
+                                           (gtk.STOCK_CANCEL,
+                                            gtk.RESPONSE_CANCEL,
+                                            gtk.STOCK_OPEN,
+                                            gtk.RESPONSE_OK))
+        self.parent.clear_database()
+
+        # Always add automatic (macth all files) filter
+        add_all_files_filter(choose)
+        add_grdb_filter(choose)
+
+        # Suggested folder: try last open file, import, then last export, 
+        # then home.
+        default_dir = os.path.split(GrampsKeys.get_lastfile())[0] + os.path.sep
+        if len(default_dir)<=1:
+            default_dir = GrampsKeys.get_last_import_dir()
+        if len(default_dir)<=1:
+            default_dir = GrampsKeys.get_last_export_dir()
+        if len(default_dir)<=1:
+            default_dir = '~/'
+
+        new_filename = Utils.get_new_filename('grdb',default_dir)
+        
+        choose.set_current_folder(default_dir)
+        choose.set_current_name(os.path.split(new_filename)[1])
+
+        while (True):
+            response = choose.run()
+            if response == gtk.RESPONSE_OK:
+                filename = choose.get_filename()
+                if filename == None:
+                    continue
+                if os.path.splitext(filename)[1] != ".grdb":
+                    filename = filename + ".grdb"
+                choose.destroy()
+                self.parent.db = GrampsDb.gramps_db_factory(const.app_gramps)()
+                self.parent.read_file(filename)
+                # Add the file to the recent items
+                RecentFiles.recent_files(filename,const.app_gramps)
+                self.parent.build_recent_menu()
+                return True
+            else:
+                choose.destroy()
+                return False
+        choose.destroy()
+        return False
+
+def add_all_files_filter(chooser):
+    """
+    Add an all-permitting filter to the file chooser dialog.
+    """
+    mime_filter = gtk.FileFilter()
+    mime_filter.set_name(_('All files'))
+    mime_filter.add_pattern('*')
+    chooser.add_filter(mime_filter)
+
+def add_grdb_filter(chooser):
+    """
+    Add a GRDB filter to the file chooser dialog.
+    """
+    mime_filter = gtk.FileFilter()
+    mime_filter.set_name(_('GRAMPS databases'))
+    mime_filter.add_mime_type(const.app_gramps)
+    chooser.add_filter(mime_filter)

@@ -162,8 +162,15 @@ class ViewManager:
         self.pages = []
         self.window = gtk.Window()
         self.window.connect('destroy', self.quit)
-        self.window.set_size_request(775,500)
 
+        try:
+            width = GrampsKeys.get_width()
+            height = GrampsKeys.get_height()
+            print width,height
+            self.window.set_default_size(width,height)
+        except:
+            self.window.set_default_size(775,500)
+            
         self.statusbar = gtk.Statusbar()
 
         self.RelClass = PluginMgr.relationship_class
@@ -234,6 +241,10 @@ class ViewManager:
 
     def quit(self,obj=None):
         self.state.db.close()
+        (width,height) = self.window.get_size()
+        GrampsKeys.save_width(width)
+        GrampsKeys.save_height(height)
+        GrampsKeys.sync()
         gtk.main_quit()
 
     def set_color(self,obj):

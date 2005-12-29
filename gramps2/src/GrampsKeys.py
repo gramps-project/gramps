@@ -18,9 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-import const
 
-if const.no_gconf:
-   from GrampsIniKeys import *
-else:
+try:
    from GrampsGconfKeys import *
+except:
+   from GrampsIniKeys import *

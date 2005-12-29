@@ -1,3 +1,16 @@
+2005-12-29  Don Allingham  <don@gramps-project.org>
+	* src/ArgHandler.py: remove DbPrompter dependency
+	* src/GrampsGconfKeys.py: Support for saving window size
+	* src/GrampsIniKeys.py: Support for saving window size
+	* src/GrampsKeys.py: more gracefully handling missing gconf
+	* src/Makefile.am: Fixed moved files
+	* src/Report.py: clean up
+	* src/ScratchPad.py: use GrampsDisplay instead of gnome.help_display
+	* src/StartupDialog.py: clean up
+	* src/ViewManager.py: save window size
+	* src/gramps_main.py: don't require gnome
+	* src/data/gramps.schemas: keys for saving window size
+
 2005-12-29  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: Add new submenu showing people that share
 	the same event. This for example lists witnesses.
