@@ -49,6 +49,8 @@ import Relationship
 import NameDisplay
 import Utils
 import DateHandler
+import ImgManip
+import ReportUtils
 
 #-------------------------------------------------------------------------
 #
@@ -64,41 +66,66 @@ _BURI = _('bur.')
 _CREM = _('crem.')
 
 class PersonBoxWidget_old( gtk.Button):
-    def __init__(self,fh,person,maxlines):
-        print "PersonBoxWidget"
-        print person
-        gtk.Button.__init__(self, fh.format_person(person, maxlines))
+    def __init__(self,fh,person,maxlines,image=None):
+        if person:
+            gtk.Button.__init__(self, fh.format_person(person, maxlines))
+            gender = person.get_gender()
+            if gender == RelLib.Person.MALE:
+                self.modify_bg( gtk.STATE_NORMAL, self.get_colormap().alloc_color("#F5FFFF"))
+            elif gender == RelLib.Person.FEMALE:
+                self.modify_bg( gtk.STATE_NORMAL, self.get_colormap().alloc_color("#FFF5FF"))
+            else:
+                self.modify_bg( gtk.STATE_NORMAL, self.get_colormap().alloc_color("#FFFFF5"))
+        else:
+            gtk.Button.__init__(self, "               ")
+            #self.set_sensitive(False)
         self.fh = fh
         self.set_alignment(0.0,0.0)
-        gender = person.get_gender()
-        if gender == RelLib.Person.MALE:
-            self.modify_bg( gtk.STATE_NORMAL, self.get_colormap().alloc_color("#F5FFFF"))
-        elif gender == RelLib.Person.FEMALE:
-            self.modify_bg( gtk.STATE_NORMAL, self.get_colormap().alloc_color("#FFF5FF"))
-        else:
-            self.modify_bg( gtk.STATE_NORMAL, self.get_colormap().alloc_color("#FFFFF5"))
         white = self.get_colormap().alloc_color("white")
         self.modify_bg( gtk.STATE_ACTIVE, white)
         self.modify_bg( gtk.STATE_PRELIGHT, white)
         self.modify_bg( gtk.STATE_SELECTED, white)
 
 class PersonBoxWidget( gtk.DrawingArea):
-    def __init__(self,fh,person,maxlines):
+    def __init__(self,fh,person,maxlines,image=None):
         gtk.DrawingArea.__init__(self)
-        self.add_events(gtk.gdk.BUTTON_PRESS_MASK)
+        self.add_events(gtk.gdk.BUTTON_PRESS_MASK)  # Required for popup menu
+        self.add_events(gtk.gdk.ENTER_NOTIFY_MASK)  # Required for tooltip and mouse-over
+        self.add_events(gtk.gdk.LEAVE_NOTIFY_MASK)  # Required for tooltip and mouse-over
         self.fh = fh
         self.person = person
         self.maxlines = maxlines
+        self.image = image
         self.init_done = False
         self.connect("expose_event", self.expose)
         text = ""
         if self.person:
             text = self.fh.format_person(self.person,self.maxlines)
+            self.connect("enter-notify-event", self.on_enter_cb)    # enable mouse-over
+            self.connect("leave-notify-event", self.on_leave_cb)
         self.textlayout = self.create_pango_layout(text)
         s = self.textlayout.get_pixel_size()
         xmin = s[0] + 11
         ymin = s[1] + 11
+        if image:
+            xmin += image.get_width()
+            ymin = max( ymin,image.get_height())
         self.set_size_request(max(xmin,120),max(ymin,25))
+    
+    def on_enter_cb(self,widget,event):
+        '''' On mouse-over hightlight border'''
+        try:
+            self.border_gc.line_width = 3
+            self.queue_draw()
+        except AttributeError:
+            pass # ignore missing self.border_gc because we are not yet exposed
+        
+    def on_leave_cb(self,widget,event):
+        try:
+            self.border_gc.line_width = 1
+            self.queue_draw()
+        except AttributeError:
+            pass # ignore missing self.border_gc because we are not yet exposed
     
     def expose(self,widget,event):
         if not self.init_done:
@@ -106,7 +133,7 @@ class PersonBoxWidget( gtk.DrawingArea):
             self.text_gc = self.window.new_gc()
             self.border_gc = self.window.new_gc()
             self.border_gc.line_style = gtk.gdk.LINE_SOLID
-            self.border_gc.line_width = 3
+            self.border_gc.line_width = 1
             self.shadow_gc = self.window.new_gc()
             self.shadow_gc.line_style = gtk.gdk.LINE_SOLID
             self.shadow_gc.line_width = 3
@@ -127,12 +154,20 @@ class PersonBoxWidget( gtk.DrawingArea):
         self.window.draw_rectangle(self.bg_gc, True, 1, 1, alloc.width-5, alloc.height-5)
         if self.person:
             self.window.draw_layout( self.text_gc, 5,5, self.textlayout)
-        self.window.draw_rectangle(self.border_gc, False, 1, 1, alloc.width-5, alloc.height-5)
+        if self.image:
+            self.window.draw_pixbuf( self.text_gc, self.image, 0,0, alloc.width-4-self.image.get_width(),1)
+        if self.border_gc.line_width > 1:
+            self.window.draw_rectangle(self.border_gc, False, 1, 1, alloc.width-5, alloc.height-5)
+        else:
+            self.window.draw_rectangle(self.border_gc, False, 0, 0, alloc.width-3, alloc.height-3)
         self.window.draw_line(self.shadow_gc, 3, alloc.height-1, alloc.width-1, alloc.height-1)
         self.window.draw_line(self.shadow_gc, alloc.width-1, 3, alloc.width-1, alloc.height-1)
 
 class FormattingHelper:
     def __init__(self,db):
+        self.db = db
+    
+    def change_db(self,db):
         self.db = db
         
     def format_relation( self, family, line_count):
@@ -172,26 +207,12 @@ class FormattingHelper:
         name = NameDisplay.displayer.display(person)
         if line_count < 3:
             return name
-        birth_ref = person.get_birth_ref()
-        bd=""
-        bp=""
-        if birth_ref:
-            birth = self.db.get_event_from_handle(birth_ref.ref)
-            if birth:
-                bd = DateHandler.get_date(birth)
-                bp = self.get_place_name(birth.get_place_handle())
-        death_ref = person.get_death_ref()
-        dd=""
-        dp=""
-        if death_ref:
-            death = self.db.get_event_from_handle(death_ref.ref)
-            if death:
-                dd = DateHandler.get_date(death)
-                dp = self.get_place_name(death.get_place_handle())
+        bdate,bplace,bdate_full,bdate_mod,ddate,dplace,ddate_full,ddate_mod = \
+                        ReportUtils.get_birth_death_strings(self.db,person)
         if line_count < 5:
-            return "%s\n* %s\n+ %s" % (name,bd,dd)
+            return "%s\n* %s\n+ %s" % (name,bdate,ddate)
         else:
-            return "%s\n* %s\n  %s\n+ %s\n  %s" % (name,bd,bp,dd,dp)
+            return "%s\n* %s\n  %s\n+ %s\n  %s" % (name,bdate,bplace,ddate,dplace)
 
 #-------------------------------------------------------------------------
 #
@@ -206,6 +227,7 @@ class PedView(PageView.PersonNavView):
         dbstate.connect('active-changed',self.goto_active_person)
         self.force_size = 0 # Automatic resize
         self.tree_style = 0 # Nice tree
+        self.show_images = True # Show photos of persons
         self.db = dbstate.db
         self.format_helper = FormattingHelper( self.db)
 
@@ -245,6 +267,9 @@ class PedView(PageView.PersonNavView):
         contains the interface. This containter will be inserted into
         a gtk.Notebook page.
         """
+        self.tooltips = gtk.Tooltips()
+        self.tooltips.enable()
+        
         self.notebook = gtk.Notebook()
         self.notebook.connect("button-press-event", self.on_show_option_menu_cb)
         self.bootstrap_handler = self.notebook.connect("expose-event", self.init_parent_signals_cb)
@@ -323,6 +348,7 @@ class PedView(PageView.PersonNavView):
         from self.state.db
         """
         self.db = db
+        self.format_helper.change_db(db)
         db.connect('person-add', self.person_updated_cb)
         db.connect('person-update', self.person_updated_cb)
         db.connect('person-delete', self.person_updated_cb)
@@ -499,8 +525,6 @@ class PedView(PageView.PersonNavView):
             child.destroy()
         table_widget.resize(1,1)
         
-        tooltip = gtk.Tooltips()
-        
         debug = False
         if debug:
             xmax = 0
@@ -532,7 +556,7 @@ class PedView(PageView.PersonNavView):
                 h = positions[i][0][3]
                 if not lst[i]:
                     # No person -> show empty box
-                    pw = PersonBoxWidget( self.format_helper, None, 0);
+                    pw = PersonBoxWidget( self.format_helper, None, 0, None);
                     if positions[i][0][2] > 1:
                         table_widget.attach(pw,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
                     else:
@@ -542,9 +566,21 @@ class PedView(PageView.PersonNavView):
                     if y+h > ymax:
                         ymax = y+h
                 else:
-                    pw = PersonBoxWidget( self.format_helper, lst[i][0], positions[i][0][3]);
-                    if i > 0 and positions[i][2] < 3:
-                        tooltip.set_tip(pw, self.format_helper.format_person(lst[i][0], 11))
+                    # Get foto
+                    image = None
+                    if self.show_images and i < ((len(positions)-1)/2) and  positions[i][0][3] > 1:
+                        media_list = lst[i][0].get_media_list()
+                        if media_list:
+                            ph = media_list[0]
+                            object_handle = ph.get_reference_handle()
+                            obj = self.db.get_object_from_handle(object_handle)
+                            if obj:
+                                mtype = obj.get_mime_type()
+                                if mtype[0:5] == "image":
+                                    image = ImgManip.get_thumbnail_image(obj.get_path())
+                    pw = PersonBoxWidget( self.format_helper, lst[i][0], positions[i][0][3], image);
+                    if positions[i][0][3] < 7:
+                        self.tooltips.set_tip(pw, self.format_helper.format_person(lst[i][0], 11))
 
                     pw.set_data(_PERSON,lst[i][0].get_handle())
                     pw.connect("button-press-event", self.build_full_nav_menu_cb)
@@ -643,8 +679,7 @@ class PedView(PageView.PersonNavView):
         table_widget.show_all()
 
     def line_expose_cb(self, area, event):
-        style = area.get_style()
-        gc = style.fg_gc[gtk.STATE_NORMAL]
+        gc = area.window.new_gc()
         alloc = area.get_allocation()
         idx = area.get_data("idx")
         rela = area.get_data("rela")
@@ -661,8 +696,7 @@ class PedView(PageView.PersonNavView):
             area.window.draw_line(gc, alloc.width/2, alloc.height, alloc.width/2,alloc.height/2)
 
     def tree_expose_cb(self, area, event):
-        style = area.get_style()
-        gc = style.fg_gc[gtk.STATE_NORMAL]
+        gc = area.window.new_gc()
         alloc = area.get_allocation()
         h = area.get_data("height")
         gap = alloc.height / (h*2)
@@ -765,6 +799,10 @@ class PedView(PageView.PersonNavView):
                 self.tree_style = data
                 self.rebuild_trees(self.dbstate.active) # Rebuild using new style
 
+    def change_show_images_cb(self,event):
+        self.show_images = not self.show_images
+        self.rebuild_trees(self.dbstate.active) # Rebuild using new style
+
     def find_tree(self,person,index,depth,lst,val=0):
         """Recursively build a list of ancestors"""
 
@@ -826,6 +864,15 @@ class PedView(PageView.PersonNavView):
             menu.append(item)
 
     def add_settings_to_menu(self,menu):
+        entry = gtk.ImageMenuItem(_("Show images"))
+        if self.show_images:
+            current_show_images_image = gtk.image_new_from_stock(gtk.STOCK_APPLY,gtk.ICON_SIZE_MENU)
+            current_show_images_image.show()
+            entry.set_image(current_show_images_image)
+        entry.connect("activate", self.change_show_images_cb)
+        entry.show()
+        menu.append(entry)
+
         item = gtk.MenuItem(_("Tree style"))
         item.set_submenu(gtk.Menu())
         style_menu = item.get_submenu()
