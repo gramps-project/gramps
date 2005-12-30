@@ -35,7 +35,6 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 import re
-import locale
 import calendar
 
 #-------------------------------------------------------------------------
@@ -44,6 +43,7 @@ import calendar
 #
 #-------------------------------------------------------------------------
 import Date
+import GrampsLocale
 from Errors import DateError
 #-------------------------------------------------------------------------
 #
@@ -80,8 +80,6 @@ class DateParser:
     converted, the text string is assigned.
     """
 
-    # determine the code set returned by nl_langinfo
-    _codeset = locale.nl_langinfo(locale.CODESET)
     _fmt_parse = re.compile(".*%(\S).*%(\S).*%(\S).*")
 
     # RFC-2822 only uses capitalized English abbreviated names, no locales.
@@ -92,32 +90,7 @@ class DateParser:
         'Sep' : 9,  'Oct' : 10, 'Nov' : 11, 'Dec' : 12,
         }
 
-    month_to_int = {
-        unicode(locale.nl_langinfo(locale.MON_1),_codeset).lower()   : 1,
-        unicode(locale.nl_langinfo(locale.ABMON_1),_codeset).lower() : 1,
-        unicode(locale.nl_langinfo(locale.MON_2),_codeset).lower()   : 2,
-        unicode(locale.nl_langinfo(locale.ABMON_2),_codeset).lower() : 2,
-        unicode(locale.nl_langinfo(locale.MON_3),_codeset).lower()   : 3,
-        unicode(locale.nl_langinfo(locale.ABMON_3),_codeset).lower() : 3,
-        unicode(locale.nl_langinfo(locale.MON_4),_codeset).lower()   : 4,
-        unicode(locale.nl_langinfo(locale.ABMON_4),_codeset).lower() : 4,
-        unicode(locale.nl_langinfo(locale.MON_5),_codeset).lower()   : 5,
-        unicode(locale.nl_langinfo(locale.ABMON_5),_codeset).lower() : 5,
-        unicode(locale.nl_langinfo(locale.MON_6),_codeset).lower()   : 6,
-        unicode(locale.nl_langinfo(locale.ABMON_6),_codeset).lower() : 6,
-        unicode(locale.nl_langinfo(locale.MON_7),_codeset).lower()   : 7,
-        unicode(locale.nl_langinfo(locale.ABMON_7),_codeset).lower() : 7,
-        unicode(locale.nl_langinfo(locale.MON_8),_codeset).lower()   : 8,
-        unicode(locale.nl_langinfo(locale.ABMON_8),_codeset).lower() : 8,
-        unicode(locale.nl_langinfo(locale.MON_9),_codeset).lower()   : 9,
-        unicode(locale.nl_langinfo(locale.ABMON_9),_codeset).lower() : 9,
-        unicode(locale.nl_langinfo(locale.MON_10),_codeset).lower()  : 10,
-        unicode(locale.nl_langinfo(locale.ABMON_10),_codeset).lower(): 10,
-        unicode(locale.nl_langinfo(locale.MON_11),_codeset).lower()  : 11,
-        unicode(locale.nl_langinfo(locale.ABMON_11),_codeset).lower(): 11,
-        unicode(locale.nl_langinfo(locale.MON_12),_codeset).lower()  : 12,
-        unicode(locale.nl_langinfo(locale.ABMON_12),_codeset).lower(): 12,
-       }
+    month_to_int = GrampsLocale.month_to_int
 
     # modifiers before the date
     modifier_to_int = {
@@ -215,7 +188,7 @@ class DateParser:
             Date.CAL_ISLAMIC   : self._parse_islamic,
             }
 
-        fmt = locale.nl_langinfo(locale.D_FMT)
+        fmt = GrampsLocale.tformat
         match = self._fmt_parse.match(fmt.lower())
         if match:
             self.dmy = (match.groups() == ('d','m','y'))

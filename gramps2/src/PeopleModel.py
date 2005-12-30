@@ -27,11 +27,11 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import time
-import locale
 import cgi
 import sets
 import sys
 import traceback
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -51,14 +51,14 @@ from RelLib import *
 import NameDisplay
 import DateHandler
 import ToolTips
+import GrampsLocale
 
 #-------------------------------------------------------------------------
 #
 # Localized constants
 #
 #-------------------------------------------------------------------------
-_date_format = locale.nl_langinfo(locale.D_T_FMT)
-_codeset = locale.nl_langinfo(locale.CODESET)
+_codeset = GrampsLocale.codeset
 
 #-------------------------------------------------------------------------
 #
@@ -325,8 +325,7 @@ class PeopleModel(gtk.GenericTreeModel):
         return data[_ID_COL]
 
     def column_change(self,data,node):
-        return unicode(time.strftime(_date_format,
-                                        time.localtime(data[_CHANGE_COL])),
+        return unicode(time.strftime('%x %X',time.localtime(data[_CHANGE_COL])),
                             _codeset)
 
     def column_gender(self,data,node):

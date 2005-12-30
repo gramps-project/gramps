@@ -166,7 +166,6 @@ class ViewManager:
         try:
             width = GrampsKeys.get_width()
             height = GrampsKeys.get_height()
-            print width,height
             self.window.set_default_size(width,height)
         except:
             self.window.set_default_size(775,500)

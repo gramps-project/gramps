@@ -29,53 +29,17 @@ __author__ = "Donald N. Allingham"
 __version__ = "$Revision$"
 
 import Date
-import locale
 from gettext import gettext as _
 
+import GrampsLocale
 
 class DateDisplay:
 
-    # determine the code set returned by nl_langinfo
-    _codeset = locale.nl_langinfo(locale.CODESET)
-    
-    # get month information from nl_langinfo. Since nl_langinfo
-    # returns data in the code set specified by the user, and
-    # gnome wants unicode, we need to convert each string from
-    # the native code set into unicode
-    _months = (
-        "",
-        unicode(locale.nl_langinfo(locale.MON_1),_codeset),
-        unicode(locale.nl_langinfo(locale.MON_2),_codeset),
-        unicode(locale.nl_langinfo(locale.MON_3),_codeset),
-        unicode(locale.nl_langinfo(locale.MON_4),_codeset),
-        unicode(locale.nl_langinfo(locale.MON_5),_codeset),
-        unicode(locale.nl_langinfo(locale.MON_6),_codeset),
-        unicode(locale.nl_langinfo(locale.MON_7),_codeset),
-        unicode(locale.nl_langinfo(locale.MON_8),_codeset),
-        unicode(locale.nl_langinfo(locale.MON_9),_codeset),
-        unicode(locale.nl_langinfo(locale.MON_10),_codeset),
-        unicode(locale.nl_langinfo(locale.MON_11),_codeset),
-        unicode(locale.nl_langinfo(locale.MON_12),_codeset),
-        )
+    _months = GrampsLocale.long_months
+    _MONS   = GrampsLocale.short_months
 
-    _MONS = (
-        "",
-        unicode(locale.nl_langinfo(locale.ABMON_1),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_2),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_3),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_4),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_5),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_6),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_7),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_8),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_9),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_10),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_11),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_12),_codeset),
-        )
+    _tformat = GrampsLocale.tformat
 
-    _tformat = locale.nl_langinfo(locale.D_FMT).replace('%y','%Y')
-    
     _hebrew = (
         "", "Tishri", "Heshvan", "Kislev", "Tevet", "Shevat",
         "AdarI", "AdarII", "Nisan", "Iyyar", "Sivan", "Tammuz",

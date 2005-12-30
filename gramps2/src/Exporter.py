@@ -36,7 +36,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-from gnome.ui import Druid, DruidPageEdge, DruidPageStandard
+import Assistant
 
 #-------------------------------------------------------------------------
 #
@@ -83,31 +83,30 @@ class Exporter:
         self.confirm_label = gtk.Label()
         self.extra_pages = []
 
-        self.w = gtk.Window()
+        self.w = Assistant.Assistant(_('Saving your data'),None)
 
-        self.fg_color = gtk.gdk.color_parse('#7d684a')
-        self.bg_color = gtk.gdk.color_parse('#e1dbc5')
-        self.logo = gtk.gdk.pixbuf_new_from_file("%s/gramps.png" % const.rootDir)
-        self.splash = gtk.gdk.pixbuf_new_from_file("%s/splash.jpg" % const.rootDir)
-
-        self.d = Druid()
-        self.w.add(self.d)
-        self.w.set_title(_('GRAMPS: Export'))
-        self.d.add(self.build_info_page())
-        self.d.add(self.build_format_page())
-        self.file_sel_page = self.build_file_sel_page()
-        self.d.add(self.file_sel_page)
-        self.d.add(self.build_confirm_page())
-        self.last_page = self.build_last_page()
-        self.d.add(self.last_page)
-
-        self.d.set_show_help(True)
-        self.d.connect('cancel',self.close)
-        self.d.connect('help',self.help)
-        self.w.connect("destroy_event",self.close)
-        self.w.set_transient_for(self.parent_window)
+        self.w.set_intro(
+            _('Under normal circumstances, GRAMPS does not require you '
+              'to directly save your changes. All changes you make are '
+              'immediately saved to the database.\n\n'
+              'This process will help you save a copy of your data '
+              'in any of the several formats supported by GRAMPS. '
+              'This can be used to make a copy of your data, backup '
+              'your data, or convert it to a format that will allow '
+              'you to transfer it to a different program.\n\n'
+              'If you change your mind during this process, you '
+              'can safely press the Cancel button at any time and your '
+              'present database will still be intact.'))
         
-        self.w.show_all()
+        self.w.add_page(self.build_info_page())
+        self.w.add_page(self.build_format_page())
+        self.file_sel_page = self.build_file_sel_page()
+        self.w.add_page(self.file_sel_page)
+        self.w.add_page(self.build_confirm_page())
+        self.last_page = self.build_last_page()
+        self.w.add_page(self.last_page)
+
+        self.w.show()
 
     def close(self,obj,obj2=None):
         """
@@ -127,7 +126,7 @@ class Exporter:
         This is a static page, nothing fun here :-)
         """
         p = DruidPageEdge(0)
-        p.set_title(_('Saving your data'))
+        p.set_title()
         p.set_title_color(self.fg_color)
         p.set_bg_color(self.bg_color)
         p.set_logo(self.logo)

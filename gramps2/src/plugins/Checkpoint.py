@@ -237,8 +237,7 @@ class Checkpoint(Tool.Tool):
             self.parent.modify_statusbar()
 
     def timestamp(self):
-        format = locale.nl_langinfo(locale.D_T_FMT)
-        return unicode(time.strftime(format,time.localtime(time.time())))
+        return unicode(time.strftime('%x %X',time.localtime(time.time())))
 
     def custom(self,cmd,checkin,cli):
         """
