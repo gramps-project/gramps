@@ -2,6 +2,10 @@
 	* src/ReportUtils.py: Use new RelLib API
 	* src/PedView.py: Use ReportUtils to generate text; highlight selected
 	person; enable Tooltips; Optionally show peoples images
+	* src/plugins/TestcaseGenerator.py: Use new RelLib API
+	* src/GrampsDb/_GrampsBSDDB.py (_update_reference_map): Dont crash if
+	no_longer_required_references dont exist in the database
+	
 	
 2005-12-29  Don Allingham  <don@gramps-project.org>
 	* src/GrampsLocale.py: handle platform specific locale issues
