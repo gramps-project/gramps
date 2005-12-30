@@ -814,7 +814,7 @@ _rtype = {
     RelLib.Family.UNMARRIED     : _("unmarried"),
     RelLib.Family.CIVIL_UNION   : _("civil union"),
     RelLib.Family.UNKNOWN       : _("Unknown"),
-    RelLib.Family.OTHER         : _("Other"),
+    RelLib.Family.CUSTOM        : _("Other"),
     }
    
 #-------------------------------------------------------------------------
@@ -1305,27 +1305,31 @@ def get_birth_death_strings(database,person,empty_date="",empty_place=""):
     bdate_mod = False
     ddate_mod = False
 
-    birth_handle = person.get_birth_handle()
-    if birth_handle:
+    birth_ref = person.get_birth_ref()
+    if birth_ref and birth_ref.ref:
+        birth_handle = birth_ref.ref
         birth = database.get_event_from_handle(birth_handle)
-        bdate = DateHandler.get_date(birth)
-        bplace_handle = birth.get_place_handle()
-        if bplace_handle:
-            bplace = database.get_place_from_handle(bplace_handle).get_title()
-        bdate_obj = birth.get_date_object()
-        bdate_full = bdate_obj and bdate_obj.get_day_valid()
-        bdate_mod = bdate_obj and bdate_obj.get_modifier() != Date.MOD_NONE
+        if birth:
+            bdate = DateHandler.get_date(birth)
+            bplace_handle = birth.get_place_handle()
+            if bplace_handle:
+                bplace = database.get_place_from_handle(bplace_handle).get_title()
+            bdate_obj = birth.get_date_object()
+            bdate_full = bdate_obj and bdate_obj.get_day_valid()
+            bdate_mod = bdate_obj and bdate_obj.get_modifier() != Date.MOD_NONE
 
-    death_handle = person.get_death_handle()
-    if death_handle:
+    death_ref = person.get_death_ref()
+    if death_ref and death_ref.ref:
+        death_handle = death_ref.ref
         death = database.get_event_from_handle(death_handle)
-        ddate = DateHandler.get_date(death)
-        dplace_handle = death.get_place_handle()
-        if dplace_handle:
-            dplace = database.get_place_from_handle(dplace_handle).get_title()
-        ddate_obj = death.get_date_object()
-        ddate_full = ddate_obj and ddate_obj.get_day_valid()
-        ddate_mod = ddate_obj and ddate_obj.get_modifier() != Date.MOD_NONE
+        if death:
+            ddate = DateHandler.get_date(death)
+            dplace_handle = death.get_place_handle()
+            if dplace_handle:
+                dplace = database.get_place_from_handle(dplace_handle).get_title()
+            ddate_obj = death.get_date_object()
+            ddate_full = ddate_obj and ddate_obj.get_day_valid()
+            ddate_mod = ddate_obj and ddate_obj.get_modifier() != Date.MOD_NONE
 
     return (bdate,bplace,bdate_full,bdate_mod,ddate,dplace,ddate_full,ddate_mod)
 

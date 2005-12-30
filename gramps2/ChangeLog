@@ -1,3 +1,6 @@
+2005-12-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/ReportUtils.py: Use new RelLib API
+	
 2005-12-29  Don Allingham  <don@gramps-project.org>
 	* src/GrampsLocale.py: handle platform specific locale issues
 	* src/DateDisplay.py: use GrampsLocale
