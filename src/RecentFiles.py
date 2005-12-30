@@ -28,9 +28,15 @@
 #
 #-------------------------------------------------------------------------
 import os
-import fcntl
 import time
 from  xml.parsers.expat import ParserCreate
+
+try:
+    import fcntl
+    use_lock = True
+except:
+    use_lock = False
+
 
 #-------------------------------------------------------------------------
 #
@@ -174,7 +180,8 @@ class GnomeRecentFiles:
         Saves the current GNOME RecentFiles collection to the associated file.
         """
         xml_file = file(os.path.expanduser(GNOME_FILENAME),'w')
-        fcntl.lockf(xml_file,fcntl.LOCK_EX)
+        if use_lock:
+            fcntl.lockf(xml_file,fcntl.LOCK_EX)
         xml_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         xml_file.write('<RecentFiles>\n')
         index = 0
@@ -194,7 +201,8 @@ class GnomeRecentFiles:
             xml_file.write('    </Groups>\n')
             xml_file.write('  </RecentItem>\n')
         xml_file.write('</RecentFiles>\n')
-        fcntl.lockf(xml_file,fcntl.LOCK_UN)
+        if use_lock:
+            fcntl.lockf(xml_file,fcntl.LOCK_UN)
         xml_file.close()
 
 #-------------------------------------------------------------------------
@@ -251,7 +259,8 @@ class GrampsRecentFiles:
         Saves the current GRAMPS RecentFiles collection to the associated file.
         """
         xml_file = file(os.path.expanduser(GRAMPS_FILENAME),'w')
-        fcntl.lockf(xml_file,fcntl.LOCK_EX)
+        if use_lock:
+            fcntl.lockf(xml_file,fcntl.LOCK_EX)
         xml_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         xml_file.write('<RecentFiles>\n')
         index = 0
@@ -265,7 +274,8 @@ class GrampsRecentFiles:
             xml_file.write('    <Timestamp>%d</Timestamp>\n' % item.get_time())
             xml_file.write('  </RecentItem>\n')
         xml_file.write('</RecentFiles>\n')
-        fcntl.lockf(xml_file,fcntl.LOCK_UN)
+        if use_lock:
+            fcntl.lockf(xml_file,fcntl.LOCK_UN)
         xml_file.close()
 
 #-------------------------------------------------------------------------
@@ -283,7 +293,8 @@ class GnomeRecentParser:
 
         try:
             xml_file = open(os.path.expanduser(GNOME_FILENAME))
-            fcntl.lockf(xml_file,fcntl.LOCK_SH)
+            if use_lock:
+                fcntl.lockf(xml_file,fcntl.LOCK_SH)
 
             p = ParserCreate()
             p.StartElementHandler = self.startElement
@@ -291,7 +302,8 @@ class GnomeRecentParser:
             p.CharacterDataHandler = self.characters
             p.ParseFile(xml_file)
 
-            fcntl.lockf(xml_file,fcntl.LOCK_UN)
+            if use_lock:
+                fcntl.lockf(xml_file,fcntl.LOCK_UN)
             xml_file.close()
         except:
             pass
@@ -343,7 +355,8 @@ class GrampsRecentParser:
 
         try:
             xml_file = open(os.path.expanduser(GRAMPS_FILENAME))
-            fcntl.lockf(xml_file,fcntl.LOCK_SH)
+            if use_lock:
+                fcntl.lockf(xml_file,fcntl.LOCK_SH)
 
             p = ParserCreate()
             p.StartElementHandler = self.startElement
@@ -351,7 +364,8 @@ class GrampsRecentParser:
             p.CharacterDataHandler = self.characters
             p.ParseFile(xml_file)
 
-            fcntl.lockf(xml_file,fcntl.LOCK_UN)
+            if use_lock:
+                fcntl.lockf(xml_file,fcntl.LOCK_UN)
             xml_file.close()
         except:
             pass

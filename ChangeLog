@@ -1,3 +1,17 @@
+2005-12-29  Don Allingham  <don@gramps-project.org>
+	* src/GrampsLocale.py: handle platform specific locale issues
+	* src/DateDisplay.py: use GrampsLocale
+	* src/DateParser.py: use GrampsLocale
+	* src/DisplayModels.py: use GrampsLocale
+	* src/Exporter.py: start conversion to Assistant
+	* src/PeopleModel.py: use GrampsLocale
+	* src/RecentFiles.py: fcntl option for broken platforms
+	* src/StartupDialog.py: convert to Assistant
+	* src/ViewManager.py: remove debug statement
+	* src/RelLib/_PrimaryObject.py: use GrampsLocale
+	* src/plugins/Checkpoint.py: use GrampsLocale
+	* src/plugins/NavWebPage.py: use GrampsLocale
+
 2005-12-29  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: Use a DrawingArea for nicer person boxes
 	* src/GrampsDb/_GrampsDbBase.py (_update_reference_map): Sync

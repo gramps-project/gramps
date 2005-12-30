@@ -47,6 +47,7 @@ import RelLib
 import Utils
 import ToolTips
 import DisplayTrace
+import GrampsLocale
 
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
@@ -55,8 +56,7 @@ _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 # Localized constants
 #
 #-------------------------------------------------------------------------
-_date_format = locale.nl_langinfo(locale.D_T_FMT)
-_codeset = locale.nl_langinfo(locale.CODESET)
+_codeset = GrampsLocale.codeset
 
 #-------------------------------------------------------------------------
 #
@@ -327,8 +327,9 @@ class SourceModel(BaseModel):
         return unicode(data[4])
 
     def column_change(self,data):
-        return unicode(time.strftime(_date_format,time.localtime(data[8])),
-                            _codeset)
+        return unicode(time.strftime('%x %X',time.localtime(data[8])),
+                       GrampsLocale.codeset)
+    
     def sort_change(self,data):
         return time.localtime(data[8])
 
@@ -435,7 +436,7 @@ class PlaceModel(BaseModel):
         return time.localtime(data[11])
     
     def column_change(self,data):
-        return unicode(time.strftime(_date_format,time.localtime(data[11])),
+        return unicode(time.strftime('%x %X',time.localtime(data[11])),
                             _codeset)
 
     def column_tooltip(self,data):
@@ -513,7 +514,7 @@ class MediaModel(BaseModel):
         return time.localtime(data[8])
 
     def column_change(self,data):
-        return unicode(time.strftime(_date_format,time.localtime(data[8])),
+        return unicode(time.strftime('%x %X',time.localtime(data[8])),
                             _codeset)
 
     def column_tooltip(self,data):
@@ -597,7 +598,7 @@ class EventModel(BaseModel):
         return time.localtime(data[11])
 
     def column_change(self,data):
-        return unicode(time.strftime(_date_format,time.localtime(data[11])),
+        return unicode(time.strftime('%x %X',time.localtime(data[11])),
                             _codeset)
 
     def column_tooltip(self,data):

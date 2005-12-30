@@ -30,7 +30,7 @@ Primary Object class for GRAMPS
 #
 #-------------------------------------------------------------------------
 import time
-import locale
+import GrampsLocale
 
 #-------------------------------------------------------------------------
 #
@@ -47,8 +47,7 @@ from _MediaBase import MediaBase
 # Localized constants
 #
 #-------------------------------------------------------------------------
-_date_format = locale.nl_langinfo(locale.D_T_FMT)
-_codeset = locale.nl_langinfo(locale.CODESET)
+_codeset = GrampsLocale.codeset
 
 #-------------------------------------------------------------------------
 #
@@ -111,8 +110,7 @@ class PrimaryObject(BaseObject,PrivacyBase):
         
         """
         if self.change:
-            return unicode(time.strftime(_date_format,
-                                         time.localtime(self.change)),
+            return unicode(time.strftime('%x %X',time.localtime(self.change)),
                            _codeset)
         else:
             return ''

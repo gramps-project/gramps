@@ -43,13 +43,6 @@ import gtk.glade
 import Assistant
 import const
 
-if not const.no_gconf:
-    try:
-        import gconf
-    except ImportError:
-        import gnome.gconf
-        gconf = gnome.gconf
-
 import GrampsKeys
 from QuestionDialog import ErrorDialog
 
@@ -58,10 +51,6 @@ from QuestionDialog import ErrorDialog
 # 
 #
 #-------------------------------------------------------------------------
-
-if not const.no_gconf:
-    client = gconf.client_get_default()
-    client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
 
 def need_to_run():
     val = GrampsKeys.get_startup()
@@ -76,6 +65,9 @@ def upgrade_prefs():
     On failure, print message and return False.
     """
     try:
+        client = gconf.client_get_default()
+        client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
+
         GrampsKeys.save_fprefix(client.get_string('/apps/gramps/fprefix'))
         GrampsKeys.save_sprefix(client.get_string('/apps/gramps/sprefix'))
         GrampsKeys.save_pprefix(client.get_string('/apps/gramps/pprefix'))
@@ -104,10 +96,8 @@ def upgrade_prefs():
             toolbar = -1
         GrampsKeys.save_toolbar(toolbar)
         GrampsKeys.save_toolbar_on(client.get_bool('/apps/gramps/toolbar-on'))
-        print "Successfully imported preferences from the 1.0.x version."
         return True
     except:
-        print "Failed to import preferences from the 1.0.x version."
         return False
 
 #-------------------------------------------------------------------------
