@@ -83,25 +83,43 @@ class TestcaseGenerator(Tool.Tool):
         self.generated_sources = []
         self.generated_media = []
         self.generated_places = []
+        self.generated_events = []
         self.text_serial_number = 1
         
         self.random_marrtype_list = (
             (RelLib.Family.UNMARRIED,''),
             (RelLib.Family.CIVIL_UNION,''),
             (RelLib.Family.UNKNOWN,''),
-            (RelLib.Family.OTHER,'')
+            (RelLib.Family.CUSTOM,'Custom 123')
             )
         self.random_childrel_list = (
-            (RelLib.Person.CHILD_REL_NONE,''),
-            (RelLib.Person.CHILD_REL_ADOPT,''),
-            (RelLib.Person.CHILD_REL_STEP,''),
-            (RelLib.Person.CHILD_REL_SPONS,''),
-            (RelLib.Person.CHILD_REL_FOST,''),
-            (RelLib.Person.CHILD_REL_UNKWN,''),
-            (RelLib.Person.CHILD_REL_OTHER,''),
+            (RelLib.Person.CHILD_NONE,''),
+            (RelLib.Person.CHILD_ADOPTED,''),
+            (RelLib.Person.CHILD_STEPCHILD,''),
+            (RelLib.Person.CHILD_SPONSORED,''),
+            (RelLib.Person.CHILD_FOSTER,''),
+            (RelLib.Person.CHILD_UNKNOWN,''),
+            (RelLib.Person.CHILD_CUSTOM,'Custom 123'),
             )
-        self.random_confidence_list = (RelLib.CONF_VERY_LOW, RelLib.CONF_LOW,
-                                     RelLib.CONF_NORMAL, RelLib.CONF_HIGH, RelLib.CONF_VERY_HIGH)
+        self.random_confidence_list = (
+            RelLib.SourceRef.CONF_VERY_LOW,
+            RelLib.SourceRef.CONF_LOW,
+            RelLib.SourceRef.CONF_NORMAL,
+            RelLib.SourceRef.CONF_HIGH,
+            RelLib.SourceRef.CONF_VERY_HIGH
+            )
+        self.random_event_role_list = (
+            (RelLib.EventRef.UNKNOWN,''),
+            (RelLib.EventRef.CUSTOM,'Custom 123'),
+            (RelLib.EventRef.PRIMARY,''),
+            (RelLib.EventRef.CLERGY,''),
+            (RelLib.EventRef.CELEBRANT,''),
+            (RelLib.EventRef.AIDE,''),
+            (RelLib.EventRef.BRIDE,''),
+            (RelLib.EventRef.GROOM,''),
+            (RelLib.EventRef.WITNESS,''),
+            (RelLib.EventRef.FAMILY,'')
+            )
         
         # If an active persons exists the generated tree is connected to that person
         if person:
@@ -530,24 +548,6 @@ class TestcaseGenerator(Tool.Tool):
         self.db.commit_person(child,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
-        # Creates a person with an event having a witness reference to a nonexisting person
-        person_h = self.generate_person(None,"Broken10",None)
-        witness = RelLib.Witness()
-        witness.set_type(RelLib.Event.ID)
-        witness.set_value("InvalidHandle3")
-        witness.set_comment("Pointing to non existing person");
-        event = RelLib.Event()
-        event.add_witness(witness)
-        event.set_name("Christening")
-        event_h = self.db.add_event(event,self.trans)
-        event_ref = RelLib.EventRef()
-        event_ref.set_reference_handle(event_h)
-        event_ref.set_role((RelLib.EventRef.PRIMARY,''))
-        person = self.db.get_person_from_handle(person_h)
-        person.add_event_ref(event_ref)
-        self.db.commit_person(person,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
-
         # Creates a person having a non existing birth event handle set
         person_h = self.generate_person(None,"Broken11",None)
         person = self.db.get_person_from_handle(person_h)
@@ -708,6 +708,7 @@ class TestcaseGenerator(Tool.Tool):
             bevent.set_type((RelLib.Event.BIRTH, "Birth"))
             bevent.set_date_object(dateval)
             bevent_h = self.db.add_event(bevent,self.trans)
+            self.generated_events.append(bevent_h)
             bevent_ref = RelLib.EventRef()
             bevent_ref.set_reference_handle(bevent_h)
             bevent_ref.set_role((RelLib.EventRef.PRIMARY,''))
@@ -736,6 +737,7 @@ class TestcaseGenerator(Tool.Tool):
             devent.set_type((RelLib.Event.DEATH,"Death"))
             devent.set_date_object(ndate)
             devent_h = self.db.add_event(devent,self.trans)
+            self.generated_events.append(devent_h)
             devent_ref = RelLib.EventRef()
             devent_ref.set_reference_handle(devent_h)
             devent_ref.set_role((RelLib.EventRef.PRIMARY,''))
@@ -834,7 +836,14 @@ class TestcaseGenerator(Tool.Tool):
         if randint(0,1) == 1:
             (bur_year, eref) = self.rand_event(
                 choice( ("Burial", "Cremation")), dy, dy+2)
-            np.add_event_handle(e.get_handle())
+            np.add_event_handle(eref)
+        
+        # some shared events
+        if randint(0,5) == 1:
+            e_h = choice(self.generated_events)
+            ref = RelLib.EventRef()
+            ref.set_reference_handle(e_h)
+            ref.set_role( choice(self.random_event_role_list))
         
         #LDS
         if randint(0,1) == 1:
@@ -914,10 +923,10 @@ class TestcaseGenerator(Tool.Tool):
             fam.add_child_handle(child_h)
             self.db.commit_family(fam,self.trans)
             child = self.db.get_person_from_handle(child_h)
-            rel1 = (RelLib.Person.CHILD_REL_BIRTH,'')
+            rel1 = (RelLib.Person.CHILD_BIRTH,'')
             if randint(0,2) == 1:
                 rel1 = choice( self.random_childrel_list)
-            rel2 = (RelLib.Person.CHILD_REL_BIRTH,'')
+            rel2 = (RelLib.Person.CHILD_BIRTH,'')
             if randint(0,2) == 1:
                 rel2 = choice( self.random_childrel_list)
             child.add_parent_family_handle(fam_h, rel1, rel2)
@@ -966,10 +975,10 @@ class TestcaseGenerator(Tool.Tool):
         person2 = self.db.get_person_from_handle(person2_h)
         person2.add_family_handle(fam_h)
         self.db.commit_person(person2,self.trans)
-        rel1 = (RelLib.Person.CHILD_REL_BIRTH,'')
+        rel1 = (RelLib.Person.CHILD_BIRTH,'')
         if randint(0,2) == 1:
             rel1 = choice( self.random_childrel_list)
-        rel2 = (RelLib.Person.CHILD_REL_BIRTH,'')
+        rel2 = (RelLib.Person.CHILD_BIRTH,'')
         if randint(0,2) == 1:
             rel2 = choice( self.random_childrel_list)
         child.add_parent_family_handle(fam_h, rel1, rel2)
@@ -983,7 +992,7 @@ class TestcaseGenerator(Tool.Tool):
             object.add_media_reference( self.rand_mediaref())
         while randint(0,1) == 1:
             (year,e) = self.rand_event()
-            object.add_event_handle( e.get_handle())
+            object.add_event_ref( e)
         while randint(0,1) == 1:
             object.add_attribute( self.rand_attribute())
         try:
@@ -1072,19 +1081,8 @@ class TestcaseGenerator(Tool.Tool):
             e.set_place_handle( self.rand_place())
         (year, d) = self.rand_date( start, end)
         e.set_date_object( d)
-        if randint(0,5) == 1:
-            w = RelLib.Witness()
-            w.set_privacy( randint(0,5) == 1)
-            w.set_comment( self.rand_text(self.NOTE))
-            if randint(0,1) == 1:
-                w.set_type( RelLib.Event.ID)
-                wph = self.generate_person( alive_in_year=year)
-                w.set_value( wph)
-            else:
-                w.set_type( RelLib.Event.NAME)
-                w.set_value( "%s %s" % self.rand_name())
-            e.add_witness(w)
         event_h = self.db.add_event(e, self.trans)
+        self.generated_events.append(event_h)
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event_h)
         event_ref.set_role((RelLib.EventRef.PRIMARY,''))
@@ -1441,4 +1439,3 @@ if __debug__:
                         "and families that have broken links in the database "
                         "or data that is in conflict to a relation.")
         )
-    

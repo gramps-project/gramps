@@ -567,7 +567,10 @@ class GrampsBSDDB(GrampsDbBase):
         # handle deletion of old references
         if len(no_longer_required_references) > 0:
             for (ref_class_name,ref_handle) in no_longer_required_references:
-                self.reference_map.delete(str((handle,ref_handle),))
+                try:
+                    self.reference_map.delete(str((handle,ref_handle),))
+                except: # ignore missing old reference
+                    pass
 
     def reindex_reference_map(self):
         """Reindex all primary records in the database. This will be a
