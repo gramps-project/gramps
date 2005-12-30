@@ -105,11 +105,11 @@ class PersonBoxWidget( gtk.DrawingArea):
             self.connect("leave-notify-event", self.on_leave_cb)
         self.textlayout = self.create_pango_layout(text)
         s = self.textlayout.get_pixel_size()
-        xmin = s[0] + 11
+        xmin = s[0] + 12
         ymin = s[1] + 11
         if image:
             xmin += image.get_width()
-            ymin = max( ymin,image.get_height())
+            ymin = max( ymin,image.get_height()+4)
         self.set_size_request(max(xmin,120),max(ymin,25))
     
     def on_enter_cb(self,widget,event):
@@ -136,7 +136,7 @@ class PersonBoxWidget( gtk.DrawingArea):
             self.border_gc.line_width = 1
             self.shadow_gc = self.window.new_gc()
             self.shadow_gc.line_style = gtk.gdk.LINE_SOLID
-            self.shadow_gc.line_width = 3
+            self.shadow_gc.line_width = 4
             if self.person:
                 self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
                 if self.person.get_gender() == RelLib.Person.MALE:
@@ -151,17 +151,22 @@ class PersonBoxWidget( gtk.DrawingArea):
             self.shadow_gc.set_foreground( self.get_colormap().alloc_color("#999999"))
             self.init_done = True
         alloc = self.get_allocation()
+        # shadow
+        self.window.draw_line(self.shadow_gc, 3, alloc.height-1, alloc.width, alloc.height-1)
+        self.window.draw_line(self.shadow_gc, alloc.width-1, 3, alloc.width-1, alloc.height)
+        # box background
         self.window.draw_rectangle(self.bg_gc, True, 1, 1, alloc.width-5, alloc.height-5)
+        # text
         if self.person:
-            self.window.draw_layout( self.text_gc, 5,5, self.textlayout)
+            self.window.draw_layout( self.text_gc, 5,4, self.textlayout)
+        # image
         if self.image:
             self.window.draw_pixbuf( self.text_gc, self.image, 0,0, alloc.width-4-self.image.get_width(),1)
+        # border
         if self.border_gc.line_width > 1:
-            self.window.draw_rectangle(self.border_gc, False, 1, 1, alloc.width-5, alloc.height-5)
+            self.window.draw_rectangle(self.border_gc, False, 1, 1, alloc.width-6, alloc.height-6)
         else:
-            self.window.draw_rectangle(self.border_gc, False, 0, 0, alloc.width-3, alloc.height-3)
-        self.window.draw_line(self.shadow_gc, 3, alloc.height-1, alloc.width-1, alloc.height-1)
-        self.window.draw_line(self.shadow_gc, alloc.width-1, 3, alloc.width-1, alloc.height-1)
+            self.window.draw_rectangle(self.border_gc, False, 0, 0, alloc.width-4, alloc.height-4)
 
 class FormattingHelper:
     def __init__(self,db):
@@ -245,7 +250,7 @@ class PedView(PageView.PersonNavView):
         frame.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         frame.add_with_viewport(table)
         table.get_parent().set_shadow_type(gtk.SHADOW_NONE)
-        table.set_row_spacings(2)
+        table.set_row_spacings(1)
         table.set_col_spacings(0)
         try:
             self.notebook.append_page(frame,None)
@@ -635,6 +640,10 @@ class PedView(PageView.PersonNavView):
                     line.set_size_request(20,-1)
                     line.connect("expose-event", self.tree_expose_cb)
                     line.set_data("height", h)
+                    if lst[i] and lst[i][2]:
+                        line.add_events(gtk.gdk.ENTER_NOTIFY_MASK)  # Required for tooltip and mouse-over
+                        line.add_events(gtk.gdk.LEAVE_NOTIFY_MASK)  # Required for tooltip and mouse-over
+                        self.tooltips.set_tip(line, self.format_helper.format_relation(lst[i][2], 11))
                     if lst[i*2+1]:
                         line.set_data("frela", lst[i*2+1][1])
                     if lst[i*2+2]:
@@ -1015,10 +1024,19 @@ class PedView(PageView.PersonNavView):
                     item.set_submenu(gtk.Menu())
                     sib_menu = item.get_submenu()
 
+                if find_children(self.db,sib):
+                    label = gtk.Label('<b><i>%s</i></b>' % escape(NameDisplay.displayer.display(sib)))
+                else:
+                    label = gtk.Label(escape(NameDisplay.displayer.display(sib)))
+
                 go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
                 go_image.show()
-                sib_item = gtk.ImageMenuItem(NameDisplay.displayer.display(sib))
+                sib_item = gtk.ImageMenuItem(None)
                 sib_item.set_image(go_image)
+                label.set_use_markup(True)
+                label.show()
+                label.set_alignment(0,0)
+                sib_item.add(label)
                 sib_item.set_data(_PERSON,sib_id)
                 linked_persons.append(sib_id)
                 sib_item.connect("activate",self.on_childmenu_changed)

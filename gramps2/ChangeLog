@@ -1,7 +1,8 @@
 2005-12-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/ReportUtils.py: Use new RelLib API
 	* src/PedView.py: Use ReportUtils to generate text; highlight selected
-	person; enable Tooltips; Optionally show peoples images
+	person; enable Tooltips; Optionally show peoples images; Some pixel
+	shifting; Tooltips for child relations; Sibling with childs bold
 	* src/plugins/TestcaseGenerator.py: Use new RelLib API
 	* src/GrampsDb/_GrampsBSDDB.py (_update_reference_map): Dont crash if
 	no_longer_required_references dont exist in the database
