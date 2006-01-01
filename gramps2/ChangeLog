@@ -1,3 +1,6 @@
+2006-01-01 Eero Tamminen <eerot@sf>
+	* doc/gramps.1.in: nroff and a couple of typo fixes
+
 2005-12-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/ReportUtils.py: Use new RelLib API
 	* src/PedView.py: Use ReportUtils to generate text; highlight selected
