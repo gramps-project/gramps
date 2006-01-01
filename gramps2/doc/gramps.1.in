@@ -44,8 +44,8 @@ wide by almost all other genealogy software.
 .BI gramps " FILE" 
 When \fIFILE\fR is given (without any flags) then it is
 opened and an interactive session is started. The rest of the options
-is ignored. This way of launching is suitable for using gramps
-as a handler for genealogical data in e.g. web browsers. This invokation
+are ignored. This way of launching is suitable for using gramps
+as a handler for genealogical data in e.g. web browsers. This invocation
 can accept any data format native to gramps, see below.
 .br
 
@@ -58,9 +58,10 @@ the format of that file is guessed according to its extension.
 .br
 
 Formats 
-available for opening are \fBgrdb\fR (guessed if \fIFILE\fR ends with
-\fB.grdb\fR), \fBgramps\-xml\fR (guessed if \fIFILE\fR ends with
-\fB.gramps\fR), and \fBgedcom\fR (guessed if \fIFILE\fR ends with \fB.ged\fR).
+available for opening are \fBgrdb\fR (guessed if \fIFILE\fR ends
+with \fB.grdb\fR), \fBgramps\-xml\fR (guessed if \fIFILE\fR ends
+with \fB.gramps\fR), and \fBgedcom\fR (guessed if \fIFILE\fR ends
+with \fB.ged\fR).
 .br
 
 Formats 
@@ -71,7 +72,7 @@ available for import are \fBgrdb\fR, \fBgramps\-xml\fR, \fBgedcom\fR,
 
 Formats available for export are  \fBgrdb\fR, \fBgramps\-xml\fR, \fBgedcom\fR,
 \fBgramps\-pkg\fR, \fBwft\fR (guessed if \fIFILE\fR ends with \fB.wft\fR),
-\fBgeneweb\fR, and \fBiso\fR (never guessed, always specify with
+\fBgeneweb\fR, and \fBiso\fR (never guessed, always specified with
 \fB\-f\fR option).
 
 .TP 
@@ -159,8 +160,8 @@ by \fB\-a\fR flag. The actions are performed one by one, in the specified order.
 .br
 If the first argument on the command line does not start with dash (i.e. no
 flag), gramps will attempt to open the file with the name given by the first
-argument and start interactive session, ignoring the rest of the command line
-arguments.
+argument and start an interactive session, ignoring the rest of the command
+line arguments.
 
 .LP
 If the \fB\-O\fR flag is given, then gramps will try opening
@@ -179,8 +180,8 @@ actual order always is: all imports (if any) -> all actions (if any)
 
 .LP
 If no \fB\-O\fR or \fB\-i\fR option is given, gramps will launch its main 
-window and start the usual interactive session with the empty database,
-since there is no data to process, anyway.
+window and start the usual interactive session with the empty database
+anyway, since there is no data to process.
 
 .LP
 If no \fB\-o\fR or \fB\-a\fR options are given, gramps will launch its main 
