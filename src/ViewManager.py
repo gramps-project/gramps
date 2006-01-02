@@ -714,7 +714,6 @@ class ViewManager:
         return self.post_load(name,callback)
 
     def post_load(self,name,callback=None):
-        self.state.db.request_rebuild()
         if not self.state.db.version_supported():
             raise Errors.FileVersionError(
                     "The database version is not supported by this "
@@ -738,6 +737,8 @@ class ViewManager:
             if callback:
                 callback(_('Upgrading database...'))
             self.state.db.gramps_upgrade()
+
+        self.state.db.request_rebuild()
 
         GrampsKeys.save_last_file(name)
     
