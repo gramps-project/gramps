@@ -1,3 +1,6 @@
+2006-01-02  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/PedView.py: Show marriage data
+
 2006-01-01 Eero Tamminen <eerot@sf>
 	* doc/gramps.1.in: nroff and a couple of typo fixes
 
