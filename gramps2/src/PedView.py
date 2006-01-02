@@ -138,13 +138,25 @@ class PersonBoxWidget( gtk.DrawingArea):
             self.shadow_gc.line_style = gtk.gdk.LINE_SOLID
             self.shadow_gc.line_width = 4
             if self.person:
-                self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
-                if self.person.get_gender() == RelLib.Person.MALE:
+                alive = Utils.probably_alive(self.person,self.fh.db)
+                if alive and self.person.get_gender() == RelLib.Person.MALE:
                     self.bg_gc.set_foreground( self.get_colormap().alloc_color("#F5FFFF"))
-                elif self.person.get_gender() == RelLib.Person.FEMALE:
+                    self.border_gc.set_foreground( self.get_colormap().alloc_color("#009999"))
+                elif self.person.get_gender() == RelLib.Person.MALE:
+                    self.bg_gc.set_foreground( self.get_colormap().alloc_color("#F5FFFF"))
+                    self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
+                elif alive and self.person.get_gender() == RelLib.Person.FEMALE:
                     self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFF5FF"))
+                    self.border_gc.set_foreground( self.get_colormap().alloc_color("#990099"))
+                elif  self.person.get_gender() == RelLib.Person.FEMALE:
+                    self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFF5FF"))
+                    self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
+                elif alive:
+                    self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFFFF5"))
+                    self.border_gc.set_foreground( self.get_colormap().alloc_color("#999900"))
                 else:
                     self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFFFF5"))
+                    self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
             else:
                 self.bg_gc.set_foreground( self.get_colormap().alloc_color("#eeeeee"))
                 self.border_gc.set_foreground( self.get_colormap().alloc_color("#777777"))
