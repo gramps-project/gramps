@@ -79,11 +79,12 @@
 
     </para><para>
 
-      If you do not have &quot;write permissions&quot; for the selected database,
-      it will be opened in a Read Only mode. In this mode, the data
-      may be viewed, but no changes will be made to the database. To
-      indicate this mode, the title of the main window will be
-      appended with <guilabel>(Read Only)</guilabel> text.
+      If you do not have &quot;write permissions&quot; for the
+      selected database, it will be opened in a Read Only mode. In
+      this mode, the data may be viewed, but no changes will be made
+      to the database. To indicate this mode, the title of the main
+      window will be appended with <guilabel>(Read Only)</guilabel>
+      text.
 
     </para><para>
 
@@ -124,42 +125,40 @@
 <!-- ================ Usage Subsection ================================ -->
 
   <sect1 id="save-db">
-    <title>Saving a Database</title>
+    <title>Saving Changes to Your Database</title>
     <para>
 
-      GRAMPS saves your changes as soon as you apply them.  This
-      means, for example, that any time you click
-      <guibutton>OK</guibutton> when using GRAMPS, your changes are
-      immediately recorded and saved. There is no separate
-      &quot;save&quot; command (although there is a &quot;save
-      as&quot; command that we'll discuss below.)
+    GRAMPS saves your changes as soon as you apply them.  This means,
+    for example, that any time you click <guibutton>OK</guibutton>
+    when using GRAMPS, your changes are immediately recorded and
+    saved. There is no separate &quot;save&quot; command (although
+    there is a &quot;save as&quot; command that we'll discuss later.)
 
     </para><para>
 
-      You can undo changes you've made by selecting
-      <menuchoice><guimenu>Edit</guimenu>
-      <guimenuitem>Undo</guimenuitem></menuchoice>. If you select
-      this command repeatedly, your most recent changes will be undone
-      one at a time.  
+    You can undo changes you've made by selecting
+    <menuchoice><guimenu>Edit</guimenu>
+    <guimenuitem>Undo</guimenuitem></menuchoice>. If you select this
+    command repeatedly, your most recent changes will be undone one at
+    a time.
 
     </para><para>
 
-      If you have made changes to your data, and would like to return
-      your database to the way it was when you opened it, select
-      <menuchoice><guimenu>File</guimenu><guimenuitem>Abandon changes
-      and quit</guimenuitem></menuchoice>. This is just like quitting
-      without saving in other programs.
+    If you want to return your database to the way it was when you
+    opened it, select
+    <menuchoice><guimenu>File</guimenu><guimenuitem>Abandon changes
+    and quit</guimenuitem></menuchoice>. (This is just like quitting
+    without saving in other programs.)
 
     </para><para>
 
-      If you would like to save your database under a different name,
-      you can do so by choosing <menuchoice><guimenu>File</guimenu>
-      <guimenuitem>Save as...</guimenuitem></menuchoice> and
-      specifying the name (and, optionally, the format) of your new
-      database. Note that &quot;Save as&quot; will allow you to
-      continue editing the newly saved database. If this is not what
-      you want to do, you may wish to use the &quot;Export&quot;
-      command instead.
+    If you would like to save your database under a different name,
+    you can do so by choosing <menuchoice><guimenu>File</guimenu>
+    <guimenuitem>Save as...</guimenuitem></menuchoice> and specifying
+    the name (and, optionally, the format) of your new database. Note
+    that &quot;Save as&quot; will allow you to continue editing the
+    newly saved database. If this is not what you want to do, you may
+    wish to use the &quot;Export&quot; command instead.
 
     </para>
   </sect1>
@@ -251,9 +250,8 @@
         <term>&app; XML</term>
         <listitem>
           <para>
-
-            The &app; XML file was the default format for the
-            previous stable version of &app;. Unlike the grdb
+            The &app; XML file was the default format for 
+	    older versions of &app;. Unlike the grdb
             format, it is architecture independent and
             human-readable. The database may also have references to
             non-local (external) media objects, therefore it is not
@@ -278,8 +276,9 @@
           <para> 
             The &app; package is a compressed archive containing the &app;
             XML file and all media objects (images, sound files,
-            etc.) to which the database refers. The &app; package is
-            created by exporting ( 
+            etc.) to which the database refers. Because it contains all
+	    the media objects, this format is completely portable. 
+	    The &app; package is created by exporting ( 
             <menuchoice>
               <guimenu>File</guimenu>
               <guimenuitem>Export...</guimenuitem>
@@ -311,7 +310,7 @@
         <mediaobject>
           <imageobject>
             <imagedata fileref="figures/gedcom-import.png" format="PNG" 
-	               width="510" depth="490" scale="75"/>
+	               width="510" depth="490"/>
           </imageobject>
           <textobject>
             <phrase>Shows GEDCOM Import Window.</phrase>
@@ -336,8 +335,7 @@
         <mediaobject>
           <imageobject>
             <imagedata fileref="figures/missing-media.png" 
-	               format="PNG" width="493" depth="264"
-		       scale="75"/>
+	               format="PNG" width="493" depth="264"/>
           </imageobject>
           <textobject>
             <phrase>Shows Missing Media dialog.</phrase>
@@ -391,10 +389,13 @@
   <sect1 id="export-data">
     <title>Exporting Data</title>
     <para>
+
       Exporting allows you to share any portion of your &app; database
-      with other researchers as well as to enable you to transfer your data to another computer. Currently, &app; can
-      export data to the following formats: &app; database (grdb),
-      &app; XML, GEDCOM, &app; package, Web Family Tree, and GeneWeb.
+      with other researchers as well as to enable you to transfer your
+      data to another computer. Currently, &app; can export data to
+      the following formats: &app; database (grdb), &app; XML, GEDCOM,
+      &app; package, Web Family Tree, and GeneWeb.
+
     </para>
 
     <note id="export-note">
@@ -410,13 +411,10 @@
     </note>
 
     <para>
-      To export data, choose 
-      <menuchoice>
-        <guimenu>File</guimenu>
-        <guimenuitem>Export</guimenuitem>
-      </menuchoice>. 
-      This will bring up the <guilabel>Export</guilabel> assistant. Its
-      pages will guide you through the format selection (see <xref
+      To export data, choose <menuchoice> <guimenu>File</guimenu>
+      <guimenuitem>Export</guimenuitem> </menuchoice>.  This will
+      bring up the <guilabel>Export</guilabel> assistant. Its pages
+      will guide you through the format selection (see <xref
       linkend="export-druid-fig"/>), file selection, and format
       specific export options (see <xref
       linkend="gedcom-export-fig"/>).  After a final confirmation
@@ -434,7 +432,7 @@
         <mediaobject>
           <imageobject>
             <imagedata fileref="figures/export-druid.png" format="PNG" 
-	               width="500" depth="383" scale="75"/>
+	               width="500" depth="383"/>
           </imageobject>
           <textobject>
             <phrase>Shows format selection page of an Export assistant</phrase>
@@ -464,7 +462,7 @@
 	  </para>
 	  <para>
 	  Because ANSEL is not commonly used, some genealogy programs
-	  will accept the ANSI (more commonly know as ISO-8859-1) and
+	  will accept ANSI (more commonly know as ISO-8859-1) and
 	  Unicode character sets. Only select ANSI or Unicode if you
 	  know any program that attempts to read the GEDCOM file will
 	  understand these character sets.
@@ -558,12 +556,12 @@
     </variablelist>
 <!-- ==== Figure: GEDCOM Export ==== -->
       <figure id="gedcom-export-fig">
-        <title>Export druid: GEDCOM options</title>
+        <title>Export assistant: GEDCOM options</title>
         <screenshot>
           <mediaobject>
             <imageobject>
               <imagedata fileref="figures/gedcom-export.png" format="PNG" 
-	                 width="500" depth="481" scale="75"/>
+	                 width="500" depth="481"/>
             </imageobject>
             <textobject>
               <phrase>Shows GEDCOM options page of an Export druid</phrase>
@@ -605,7 +603,7 @@
           <term>&app; package export</term>
           <listitem>
             <para>
-	    Exporting to the GRAMPS package format will create a
+	    Exporting to the &app; package format will create a
 	    compressed file that contains the database and copies of
 	    all associated media files. This is useful if you want to
 	    move your database to another computer or to share it with
@@ -617,25 +615,18 @@
           <term>Export to CD</term>
           <listitem>
             <para>
-              Exporting to CD will prepare your database and copies of
-              all media objects files to be recorded to the CD. This
-              is done through the <guilabel>burn:///</guilabel>
-              location in Nautilus. After exporting to CD, go to the
-              <guilabel>burn:///</guilabel> location by selecting
-              <menuchoice>
-                <guimenu>Go</guimenu>
-                <guisubmenu>CD Creator</guisubmenu>
-              </menuchoice> 
-
-              in Nautilus menu (unless this location is already
-              displayed by &app;). Your database directory will show
-              up. To record it on to the CD, click the CD icon on the
-              Nautilus toolbar, or select
-              <menuchoice>
-                <guimenu>File</guimenu>
-                <guisubmenu>Write to CD</guisubmenu>
-              </menuchoice> 
-              in Nautilus menu.
+	    Exporting to CD will prepare your database and copies of
+	    all media object files for recording onto a CD. To
+	    actually burn the CD, you will need to go to the GNOME
+	    <guilabel>burn:///</guilabel> location, which can be
+	    accessed by navigating through Nautilus: After exporting
+	    to CD, select <menuchoice><guimenu>Go</guimenu>
+	    <guisubmenu>CD Creator</guisubmenu></menuchoice> in the
+	    Nautilus menu. Your database directory will show up. To
+	    burn it to the CD, click the CD icon on the Nautilus
+	    toolbar, or select
+	    <menuchoice><guimenu>File</guimenu><guisubmenu>Write to
+	    CD</guisubmenu></menuchoice> in the Nautilus menu.
             </para>
           </listitem>
         </varlistentry>
@@ -655,7 +646,7 @@
           <term>Web Family Tree</term>
           <listitem>
             <para>
-              Exporting to Web Family Tree will create atext file
+              Exporting to Web Family Tree will create a text file
               that can be used by the Web Family Tree program.
 	      Export options include filter selection and the ability 
 	      to limit data on living people to that of their family 
@@ -692,12 +683,11 @@
 <!-- ================ Usage Subsection ================================ -->
 
   <sect1 id="gramps-edit-quick">
-    <title>Editing Data: Quick Start</title>
-
+    <title>Entering and Editing Data: Quick Start Overview</title>
     <para>
 
     This section is designed to give you the basic knowledge necessary
-    to start putting your genealogical information into GRAMPS.  It
+    to start putting your genealogical information into &app;.  It
     will explain how to enter people into the database and how to
     specify their family relationships. (A more detailed explanation
     will follow in the section entitled <xref
@@ -762,16 +752,16 @@
 	for details). 
       </para><para>
 	To edit information about a person already
-	present in the database, select an entry you would like to
-	view/modify, and then click the <guibutton>Edit</guibutton>
-	icon on the toolbar.
+	present in the database, select the person from the People View
+	and click the <guibutton>Edit</guibutton>
+	button on the toolbar.
       </para>
 
       <note id="person-menu">
         <title>Alternate ways of adding or editing a person</title>
 	<para> 
           You can also use <guilabel>Add...</guilabel> and
-          <guilabel>Edit...</guilabel> menu items available under the
+          <guilabel>Edit...</guilabel> menu items available under
           <guimenu>Edit</guimenu>. Or you can right-click on the
           person and select <guilabel>Add...</guilabel> or
           <guilabel>Edit...</guilabel> from the context menu that pops
@@ -810,7 +800,7 @@
 	By default, GRAMPS filters the displayed list to show only
 	those people who could theoretically have a relationship with
 	the Active Person. That is, GRAMPS only shows those people
-	whose birthdates and death dates fit within the lifetime of
+	whose birth dates and death dates fit within the lifetime of
 	the Active Person. If you wish, you can add a person to the
 	list by clicking the <guibutton>+</guibutton> button. To
 	completely override the filter and display all people from the
@@ -835,23 +825,25 @@
     </sect2>
 
 <!-- ================ Usage Sub-subsection ================ -->
+
     <sect2 id="gramps-spec-par">
       <title>To Specify Parents</title>
       <para>
 
-        To specify parents of a person, highlight that individual in
-	the People View and then switch to the Family View (<xref
+        To specify the parents for a person, highlight that individual
+	in the People View and then switch to the Family View (<xref
 	linkend="family-fig"/>). Your selected person will be
 	indicated as the Active person. Click the
-	<guibutton>+</guibutton> button to the right of the Active
-	person's parents list box. This will bring up the Choose
-	Parents dialog. You will see three sections, one for Father,
-	one for Mother, and one for specifying the relationships
-	between everyone.
+	<guibutton>+</guibutton> button to the right of the
+	<guilabel>Active person's parents</guilabel> list box. This
+	will bring up the <guilabel>Choose Parents</guilabel>
+	dialog. You will see three sections, one for father, one for
+	mother, and one for specifying the relationships between
+	everyone.
 
       </para><para> 
 
-      If the Father and Mother of the Active person are already stored
+      If the father and mother of the Active person are already stored
       in your database, you can scroll through the lists and make your
       selections. If they are not in the database, you can click
       <guibutton>+</guibutton> to add them.
@@ -871,7 +863,9 @@
       To specify parents of the Active person's spouse, switch to
       Family View and then click the <guibutton>+</guibutton> button
       to the right of the Spouse's parents list box.
+
       </para><para>
+
       To edit information about parents who are already present in the
       database, move the mouse over the corresponding parents' box and
       double-click.
@@ -894,7 +888,7 @@
       <para>
         To specify children of an Active person, switch to the Family
 	View (<xref linkend="family-fig"/>) and then click either the
-	second or the third button from the top righht of the
+	second or the third button from the top right of the
 	children list box. The second button adds a child to the
 	database and to the family, while the third button adds a
 	child to the family who is already present in the database.
@@ -985,12 +979,11 @@
       <note id="remove-image-from-gallery">
 	<title>Removing an image from a gallery</title>
 	<para>
-	In all galleries, removing the reference to the image does
-	not remove the image from the database, but just from the
-	gallery. To completely remove the image from the database,
-	delete it from Media View by first selecting it and then
-	clicking the <guibutton>Remove</guibutton> icon on the
-	toolbar.
+	Removing a media object from a gallery does not remove the
+	image from the database.  To completely remove the image from
+	the database, delete it from Media View by first selecting it
+	and then clicking the <guibutton>Remove</guibutton> icon on
+	the toolbar.
 	</para>
        </note>
     </sect2>
@@ -1021,8 +1014,9 @@
 
 <!-- ================ Usage Subsection ================================ -->
 
+
   <sect1 id="gramps-edit-complete">
-    <title>Editing Data: Complete Description</title>
+    <title>Enterng and Editing Data: Complete Description</title>
     <para> 
     The previous section offered you a quick overview of how to enter
     and edit data in GRAMPS. This section continues that discussion in
@@ -1065,26 +1059,50 @@
 <!-- ================ Usage Sub-subsection ================ -->
 
     <sect2 id="adv-pers">
-      <title>Personal Information</title>
+      <title>Editing Information About People</title>
       <para> 
-          Editing of personal data can be performed in the following
-	  ways:
-        </para>
+
+      Information about people is entered and edited through the
+      <guilabel>Edit Person</guilabel> dialog. This dialog can be
+      invoked from different Views in the following ways:
+
+      </para>
       <variablelist>
         <varlistentry>
           <term>From the People View:</term>
           <listitem>
-            <para> 
+            <itemizedlist>
+	      <listitem>
+	      <para>
               Double-click the name of the person whose data you would
-	      like to edit, or select the name by single click and
-	      then click the <guibutton>Edit</guibutton> icon on the
-	      toolbar. You may also select the name and then press
-	      <keycap>Enter</keycap>. Finally, you may select
-	      <guimenuitem>Edit...</guimenuitem> from the
-	      <guisubmenu>Edit</guisubmenu> menu of &app; or choose
-	      <guimenuitem>Edit</guimenuitem> from the context menu
+	      like to edit
+	      </para>
+	      </listitem>
+	      <listitem>
+	      <para>
+	      Select the name by single click and
+	      then click the <guibutton>Edit</guibutton> button on the
+	      toolbar. 
+	      </para>
+	      </listitem>
+	      <listitem>
+	      <para>
+	      Select the name and then press <keycap>Enter</keycap>.
+	      </para>
+	      </listitem>
+	      <listitem>
+	      <para>
+	      Select <guimenuitem>Edit...</guimenuitem> from the
+	      <guisubmenu>Edit</guisubmenu> menu of &app;
+	      </para>
+	      </listitem>
+	      <listitem>
+	      <para>
+	      Select <guimenuitem>Edit</guimenuitem> from the context menu
 	      that appears upon right-click on the name.
-            </para>
+	      </para>
+	      </listitem>
+	    </itemizedlist>
           </listitem>
         </varlistentry>
         <varlistentry>
@@ -1092,14 +1110,15 @@
           <listitem>
             <para>
   	      To edit active person's data, move the mouse into the
-	      <guilabel>Active person</guilabel> box, then
-	      double-click, or use any of the menu items described
-	      above.  To edit Spouse's data, Shift-click desired
-	      spouse entry. Also, from <guilabel>Spouse</guilabel> and
-	      <guilabel>Children</guilabel> boxes you may select the
-	      desired person, right-click, and then select the menu
-	      item from the context menu to edit the selected person's
-	      data.
+	      <guilabel>Active person</guilabel> box.
+	    </para><para>
+	      To edit Spouse's data, shift-click the
+	      <guilabel>Spouse</guilabel> entry.
+	    </para><para>
+	      From the <guilabel>Spouse</guilabel> and
+	      <guilabel>Children</guilabel> boxes you can select the
+	      desired person, right-click, and use the context menu
+	      that pops up.
             </para>
           </listitem>
         </varlistentry>
@@ -1107,16 +1126,15 @@
           <term>From the Pedigree View:</term>
           <listitem>
             <para>
- 	      Move the mouse into the box bearing the name of the
-	      person whose data you would like to edit, then
-	      double-click.
+	    Double-click in the box having the name of the person
+	    whose data you want to edit.
 	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <para> 
-          With either method, the following <guilabel>Edit
-	  Person</guilabel> dialog will appear:
+      In each of the above cases, the <guilabel>Edit Person</guilabel>
+      dialog will appear:
       </para>
 
 <!-- ==== Figure: Edit Person dialog ==== -->
@@ -1127,7 +1145,7 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="figures/edit-person.png" format="PNG" 
-                         width="500" depth="413" scale="75"/>
+                         width="500" depth="413"/>
             </imageobject>
             <textobject>
               <phrase>Shows Edit Person dialog. </phrase>
@@ -1169,14 +1187,11 @@
         </para>
       </tip>
       <para>
-      The tabs provide the following information categories of
-      personal data:
+      The tabs reflect the following categories of personal data:
       </para>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>General</guilabel>
-          </term>
+          <term>General</term>
           <listitem>
             <para> 
    	    The <guilabel>General</guilabel> tab contains general
@@ -1194,8 +1209,8 @@
  	    <guilabel>Type</guilabel>, and both
  	    <guilabel>Place</guilabel> fields), also provide
  	    &quot;autocompletion&quot; feature: as you type in these
- 	    fields, the menu is displayed below the field with the
- 	    available entries from the database that match your
+ 	    fields, a menu appears below the field containing database
+	    entries that match your
  	    partial input. This gives you a shortcut by letting you
  	    select an entry that already exists in the database rather
  	    than having to type it all out. You can select the entry
@@ -1209,60 +1224,68 @@
             Editor</guilabel> dialog. This dialog allows editing the
             preferred name in full detail (see <xref
             linkend="adv-an"/>).
-            </para>
-            <para>
-	      The <guilabel>Gender</guilabel> radio buttons offer the
-	      choice of person's gender :
-	      <guilabel>male</guilabel>, <guilabel>female</guilabel>,
-	      and <guilabel>unknown</guilabel>.  Clicking the colored
-	      &quot;LED&quot;
-	      buttons located next to the birth and death Date fields
-	      will bring up the <guilabel>Date Selection</guilabel>
-	      dialog allowing detailed modification of the date, see
-	      <xref linkend="adv-dates"/>.  Clicking either the
-	      <guibutton>Edit</guibutton> button located next to the
-	      birth and death LED buttons will bring up a dialog
-	      allowing you to edit the birth or
-	      death details (see <xref linkend="adv-ev"/>).  The field
-	      <guilabel>ID</guilabel> displays an &app; ID
-	      number which identifies the user in the database. The
-	      <guilabel>Image</guilabel> area shows the first image
-	      available in the <guilabel>Gallery</guilabel> of this
-	      person (if any exist).
-	    </para>
-            <para>
-              Finally, the <guilabel>Information is
-	      complete</guilabel> and <guilabel>Information is
-	      private</guilabel> check buttons let you mark whether
-	      or not the person's record is complete and
-	      whether or not the record is private.
-             </para>
+            </para><para>
+	    The <guilabel>Gender</guilabel> radio buttons offer the
+	    choice of person's gender : <guilabel>male</guilabel>,
+	    <guilabel>female</guilabel>, and
+	    <guilabel>unknown</guilabel>.
+	    </para><para>
+
+	    Clicking the colored &quot;LED&quot; buttons located next
+	    to the birth and death Date fields will bring up the
+	    <guilabel>Date Selection</guilabel> dialog allowing
+	    detailed modification of the date, see <xref
+	    linkend="adv-dates"/>.  Clicking either the
+	    <guibutton>Edit</guibutton> button located next to the
+	    birth and death LED buttons will bring up a dialog
+	    allowing you to edit the birth or death details (see <xref
+	    linkend="adv-ev"/>).
+
+	    </para><para>
+
+	    The field <guilabel>ID</guilabel> displays the &app; ID
+	    number which identifies the user in the database. This value
+	    helps you distiguish between people who have the same name.
+	    You may enter any unique value you want. If you do not provide
+	    a value, &app; will automatically select a value for you.
+
+	    </para><para>
+
+	    The <guilabel>Image</guilabel> area shows the first image
+	    available in the <guilabel>Gallery</guilabel> of this
+	    person (if any exist).
+
+	    </para><para>
+
+            Finally, the <guilabel>Information is complete</guilabel>
+	    and <guilabel>Information is private</guilabel> check
+	    buttons let you mark whether or not the person's record is
+	    complete and whether or not the record is private.
+
+           </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Names</guilabel>
-          </term>
+          <term>Names</term>
 
 <!-- ==== Figure: Edit Person dialog - Names ==== -->
 
           <listitem>
             <para> 
 
-            The <guilabel>Names</guilabel> tab displays information
-            concerning alternate names of the person and the controls
-            allowing their modification. The bottom part displays the
-            list of all alternate names of the person stored in the
-            database. The top part shows the details of the currently
-            selected name in the list (if any). The buttons
-            <guibutton>+</guibutton>, <guibutton>Edit</guibutton>, and
-            <guibutton>-</guibutton> allow the addition, modification,
-            and removal of an alternate name record from the database.
-            Note that the <guibutton>Edit</guibutton> and
-            <guibutton>-</guibutton> buttons become available only
-            when an alternate name is selected from the list.
+	    The <guilabel>Names</guilabel> tab lets you view and edit
+	    any alternate names the person may have. The bottom part
+	    of the window lists all alternate names for the person
+	    stored in the database. The top part shows the details of
+	    the currently selected name in the list (if any). The
+	    buttons <guibutton>+</guibutton>,
+	    <guibutton>Edit</guibutton>, and <guibutton>-</guibutton>
+	    allow the addition, modification, and removal of an
+	    alternate name from the database. Note that the Edit and -
+	    buttons become available only when an alternate name is
+	    selected from the list.
 
     	    </para>
 
@@ -1272,7 +1295,7 @@
                 <mediaobject>
                   <imageobject>
                     <imagedata fileref="figures/edit-person-names.png" 
-		               format="PNG" width="500" depth="252" scale="75"/>
+		               format="PNG" width="500" depth="252"/>
                   </imageobject>
                   <textobject>
                     <phrase>Shows Names Tab of Edit Person dialog.</phrase>
@@ -1281,6 +1304,14 @@
               </screenshot>
             </figure>
 
+	    <para>
+
+	    When you add a new name or edit an existing name, the <guilabel>Name
+	    Editor</guilabel> dialog is invoked. This dialog is described in the
+	    section below (see <xref linkend="adv-an"/>). 
+
+	    </para>
+
 <!-- ==== End of Figure ==== -->
 
           </listitem>
@@ -1288,10 +1319,23 @@
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Events</guilabel>
-          </term>
+          <term>Events</term>
           <listitem>
+            <para>
+
+	    The <guilabel>Events</guilabel> tab lets you view and edit
+	    any events relevant to the person. The bottom part of the
+	    window lists all such events stored in the database. The
+	    top part shows the details of the currently selected event
+	    in the list (if any). The buttons
+	    <guibutton>+</guibutton>, <guibutton>Edit</guibutton>, and
+	    <guibutton>-</guibutton> allow you to add, modify, and
+	    remove an event record from the database. Note that the
+	    <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
+	    buttons become available only when an event is selected
+	    from the list.
+
+ 	    </para>
 <!-- ==== Figure: Edit Person dialog - Events ==== -->
             <figure id="edit-pers-events-fig">
               <title>Edit Person dialog - Events</title>
@@ -1299,7 +1343,7 @@
                 <mediaobject>
                   <imageobject>
                     <imagedata fileref="figures/edit-person-events.png" 
-		               format="PNG" width="500" depth="278" scale="75"/>
+		               format="PNG" width="500" depth="278"/>
                   </imageobject>
                   <textobject>
                     <phrase>Shows Events Tab of Edit Person dialog.</phrase>
@@ -1308,30 +1352,44 @@
               </screenshot>
             </figure>
 <!-- ==== End of Figure ==== -->
-            <para>
-              The <guilabel>Events</guilabel> tab displays information
-	      about the events relevant to the person and controls
-	      allowing its modification. The bottom part displays the
-	      list of all such events stored in the database. The top
-	      part shows the details of the currently selected event
-	      in the list (if any). The buttons
-	      <guibutton>+</guibutton>, <guibutton>Edit</guibutton>,
-	      and <guibutton>-</guibutton> allow you to
-	      correspondingly add, modify, and remove an event record
-	      from the database.  Note that the
-	      <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
-	      buttons become available only when an event is selected
-	      from the list.
- 	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Attributes</guilabel>
-          </term>
+          <term>Attributes</term>
           <listitem>
+            <para>
+	    The <guilabel>Attributes</guilabel> tab lets you view and
+	    assign attributes to the person. You have complete freedom
+	    to define and use attributes. For example, attributes
+	    might be assigned to describe the person's physical
+	    characteristics or personality traits.
+            </para><para>
+	    Note that each attribute listed in the
+	    <guilabel>Attribute</guilabel> dialog consists of two
+	    parts: the Attribute itself and a Value associated with
+	    that Attribute. This so-called &quot;Parameter-Value&quot; pairing
+	    can help you organize and systematize your research. For
+	    example, if you define &quot;Hair color&quot; as an
+	    Attribute for a person, &quot;Hair Color&quot; will become
+	    a selectable Attribute for all other people. The Value of
+	    Hair Color for person A might be red, and brown for person
+	    B. In similar fashion, you might define an Attribute like
+	    &quot;Generosity&quot; and use the Value of
+	    &quot;Enormous&quot; to describe a particularly generous
+	    person.
+            </para><para>
+	    The bottom part of the dialog window displays the list of
+	    all Attributes stored in the database. The top part shows
+	    the details of the currently selected attribute in the
+	    list (if any). The buttons <guibutton>+</guibutton>,
+	    <guibutton>Edit</guibutton>, and <guibutton>-</guibutton>
+	    let you add, modify, and remove an attribute record from
+	    the database. Note that the <guibutton>Edit</guibutton>
+	    and <guibutton>-</guibutton> buttons become available only
+	    when an attribute is selected from the list.
+    	    </para>
 <!-- ==== Figure: Edit Person dialog - Attributes ==== -->
             <figure id="edit-pers-attributes-fig">
               <title>Edit Person dialog - Attributes</title>
@@ -1339,8 +1397,7 @@
                 <mediaobject>
                   <imageobject>
                     <imagedata fileref="figures/edit-person-attributes.png" 
-		               format="PNG" width="500" depth="231" 
-                               scale="75"/>
+		               format="PNG" width="500" depth="231" />
                   </imageobject>
                   <textobject>
                     <phrase>Shows Attributes Tab of Edit Person dialog.</phrase>
@@ -1349,34 +1406,30 @@
               </screenshot>
             </figure>
 <!-- ==== End of Figure ==== -->
-            <para>
-              The <guilabel>Attributes</guilabel> tab displays
-	      information about the attributes of the person and
-	      controls allowing their modification. These could be any
-	      personal attributes of a person whose description
-	      naturally fits into Parameter-Value pairs (e.g. enormous
-	      generosity can be stored as the parameter "Generosity"
-	      with the value "Enormous", etc.). The bottom part
-	      displays the list of all attributes stored in the
-	      database. The top part shows the details of the
-	      currently selected attribute in the list (if any). The
-	      buttons <guibutton>+</guibutton>,
-	      <guibutton>Edit</guibutton>, and
-	      <guibutton>-</guibutton> allow you to correspondingly
-	      add, modify, and remove an attribute record from the
-	      database.  Note that the <guibutton>Edit</guibutton> and
-	      <guibutton>-</guibutton> buttons become available only
-	      when an attribute is selected from the list.
-    	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Addresses</guilabel>
-          </term>
+          <term>Addresses</term>
           <listitem>
+            <para>
+	    The <guilabel>Addresses</guilabel> tab lets you view and
+	    record the various addresses of the person. The bottom
+	    part of the window lists all addresses stored in the
+	    database. The top part shows the details of the currently
+	    selected address in the list (if any). The buttons
+	    <guibutton>+</guibutton>, <guibutton>Edit</guibutton>, and
+	    <guibutton>-</guibutton> allow you to correspondingly add,
+	    modify, and remove an address record from the
+	    database. Note that the <guibutton>Edit</guibutton> and
+	    <guibutton>-</guibutton> buttons become available only
+	    when an address is selected from the list.
+	    </para><para>
+	    Some reports allow you to restrict data on living
+	    people. In particular, that option will omit their
+	    addresses.
+	    </para>
 <!-- ==== Figure: Edit Person dialog - Addresses ==== -->
             <figure id="edit-pers-addresses-fig">
               <title>Edit Person dialog - Addresses</title>
@@ -1384,8 +1437,7 @@
                 <mediaobject>
                   <imageobject>
                     <imagedata fileref="figures/edit-person-addresses.png" 
-		               format="PNG" width="500" depth="272" 
-			       scale="75"/>
+		               format="PNG" width="500" depth="272" />
                   </imageobject>
                   <textobject>
                     <phrase>Shows Addresses Tab of Edit Person dialog.</phrase>
@@ -1394,34 +1446,12 @@
               </screenshot>
             </figure>
 <!-- ==== End of Figure ==== -->
-            <para>
-              The <guilabel>Addresses</guilabel> tab displays
-	      information about the addresses of the person and the
-	      controls allowing their modification. The bottom part
-	      displays the list of all addresses stored in the
-	      database. The top part shows the details of the
-	      currently selected address in the list (if any). The
-	      buttons <guibutton>+</guibutton>,
-	      <guibutton>Edit</guibutton>, and
-	      <guibutton>-</guibutton> allow you to correspondingly
-	      add, modify, and remove an address record from the
-	      database.  Note that the <guibutton>Edit</guibutton> and
-	      <guibutton>-</guibutton> buttons become available only
-	      when an address is selected from the list.
- 	    </para>
-            <para>
-              Some reports allow you to restrict data on living
-              people.  In particular, that option will omit the
-              addresses of people who are currently alive.
-            </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Notes</guilabel>
-          </term>
+          <term>Notes</term>
           <listitem>
 <!-- ==== Figure: Edit Person dialog - Notes ==== -->
             <figure id="edit-pers-notes-fig">
@@ -1430,8 +1460,7 @@
                 <mediaobject>
                   <imageobject>
                     <imagedata fileref="figures/edit-person-notes.png" 
-		               format="PNG" width="500" depth="228"
-			       scale="75"/>
+		               format="PNG" width="500" depth="228"/>
                   </imageobject>
                   <textobject>
                     <phrase>Shows Notes Tab of Edit Person dialog. </phrase>
@@ -1442,34 +1471,31 @@
 <!-- ==== End of Figure ==== -->
 
             <para>
-              The <guilabel>Notes</guilabel> tab displays information
-     	      about the notes concerning the person. These could be
-     	      any notes which do not naturally fit into the
-     	      Parameter-Value pairs available to Attributes.  To add
-      	      a note or modify existing notes simply edit the text in
-      	      the text entry field.
-            </para>
-            <para>
-              The <guilabel>Format</guilabel> option allows you to set
-              the appearance of the note in the output (i.e. in
-              reports and web pages).  Selecting
-              <guilabel>Flowed</guilabel> will replace all multiple
-              spaces, tabs, and single end-of-line characters with
-              single space in the output.  The two consecutive new
-              lines (i.e. an empty line) denote a new paragraph.
-              Selecting <guilabel>Preformatted</guilabel> will honor
-              all multiple spaces tabs, and new lines, so that the
-              output will appear as it is entered into the text entry
-              field.
-  	    </para>
+
+	    The <guilabel>Notes</guilabel> tab provides a place to
+	    record various items about the person that do not fit
+	    neatly into other categories. To add a note or modify
+	    existing notes simply edit the text in the text entry
+	    field.
+	    </para><para>
+	    The <guilabel>Format</guilabel> option lets you set the
+	    way the note will appear in reports and web pages. If you
+	    select &quot;Flowed,&quot; the text generated will have single
+	    spaces put in place of all multiple spaces, tabs, and
+	    single end-of-line characters. A blank line inserted
+	    between two blocks of text will signal a new paragraph;
+	    additional inserted lines will be ignored.
+	    </para><para>
+	    If you select the Preformatted option, the text in reports
+	    and web pages will appear exactly as you enter it in the
+	    Notes dialog.
+	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Sources</guilabel>
-          </term>
+          <term>Sources</term>
           <listitem>
 
 <!-- ==== Figure: Edit Person dialog - Sources ==== -->
@@ -1480,8 +1506,7 @@
                 <mediaobject>
                   <imageobject>
                     <imagedata fileref="figures/edit-person-sources.png" 
-		               format="PNG" width="500" depth="147"
-			       scale="75"/>
+		               format="PNG" width="500" depth="147"/>
                   </imageobject>
                   <textobject>
                     <phrase>Shows Sources Tab of Edit Person dialog.</phrase>
@@ -1493,25 +1518,28 @@
 <!-- ==== End of Figure ==== -->
 
             <para>
-              The <guilabel>Sources</guilabel> tab displays
-	      information about the sources related to the person and
-	      controls allowing its modification.  These could be any
-	      general sources which refer to the person but do not
-	      describe specifically any event.  For example, Aunt
-	      Martha's memoirs may mention her great grandson Paul, so
-	      the researcher may assume that this person (Paul)
-	      existed and cite the memoirs as the source for this
-	      assumption.
+	    The <guilabel>Sources</guilabel> tab allows you to view
+	    and document the sources for the information you
+	    collect. These might be general sources that do not
+	    describe a specific event, but which nevertheless yield
+	    information about the person. For example, if Aunt
+	    Martha's memoirs mention her great-grandson Paul, the
+	    researcher may assume that this Paul actually existed and
+	    cite Aunt Martha's memoirs as the source that justifies
+	    this assumption.
 	    </para>
+
             <tip>
               <para>
-                Sources documenting specific events are better
-		recorded in relation to those events, under the
-		<guilabel>Events</guilabel> tab. The person's
+                Sources which document specific events are best
+		recorded as sources of the event (under the 
+		<guilabel>Events</guilabel> tab) instead of as a source
+		of the person. The person's
 		<guilabel>Sources</guilabel> tab is best used for
-		general source references.
+		any sources not specificly connected to any other data.
               </para>
             </tip>
+
             <para>
               The central part displays the list of all source
               references stored in the database in relation to the
@@ -1525,13 +1553,41 @@
             </para>
           </listitem>
         </varlistentry>
-      </variablelist>
-      <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Gallery</guilabel>
-          </term>
+          <term>Gallery</term>
           <listitem>
+
+            <para>
+
+	    The <guilabel>Gallery</guilabel> tab lets you view and
+	    store photos, videos, and other media objects that are
+	    associated with the person. The central part of the window
+	    lists all such media objects. Any object in the form of a
+	    valid image file will result in the display of a thumbnail
+	    view of the image. For other objects such as audio files,
+	    movie files, etc., a corresponding file type icon is
+	    displayed instead.
+	    </para>
+
+            <tip>
+              <para> 
+                The first available image in the gallery will be also
+		displayed in the <guilabel>Image</guilabel> area in
+		the <guilabel>General</guilabel> tab.
+              </para>
+            </tip>
+
+            <para>
+	    The buttons <guibutton>+</guibutton>,
+            <guibutton>Select</guibutton>,
+            <guibutton>Edit</guibutton>, and <guibutton>-</guibutton>
+            let you add a new image to the database, link to an image
+            already stored in the database, modify an image, and
+            remove a given media object from the person's gallery.
+            Note that the <guibutton>Edit</guibutton> and
+            <guibutton>-</guibutton> buttons become available only
+            when a media object is selected from the list.
+            </para>
 
 <!-- ==== Figure: Edit Person dialog - Gallery ==== -->
 
@@ -1541,8 +1597,7 @@
                 <mediaobject>
                   <imageobject>
                     <imagedata fileref="figures/edit-person-gallery.png" 
-		               format="PNG" width="500" depth="182"
-			       scale="75" />
+		               format="PNG" width="500" depth="182"/>
                   </imageobject>
                   <textobject>
                     <phrase>Shows Gallery Tab of Edit Person dialog. </phrase>
@@ -1553,35 +1608,6 @@
 
 <!-- ==== End of Figure ==== -->
 
-            <para>
-              The <guilabel>Gallery</guilabel> tab displays
-	      information about media objects associated with the
-	      person and controls allowing subsequent
-	      modification. The central part shows the list of all
-	      such media objects.  For media object which are valid
-	      image files, previews of images are displayed. For other
-	      objects such as audio files, movie files, etc., a
-	      corresponding file type icon is displayed instead.
-            </para>
-            <tip>
-              <para> 
-                The first available image in the gallery will be also
-		displayed in the <guilabel>Image</guilabel> area in
-		the <guilabel>General</guilabel> tab.
-              </para>
-            </tip>
-            <para>
-	      The buttons <guibutton>+</guibutton>,
-              <guibutton>Select</guibutton>,
-              <guibutton>Edit</guibutton>, and
-              <guibutton>-</guibutton> allow you to correspondingly
-              add a new image, add a reference to an image already
-              stored in the database, modify, and remove a media
-              object reference to this person. Note that the
-              <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
-              buttons become available only when a media object is
-              selected from the list.  
-            </para>
             <note>
               <para>
                 Removing a media object from a person's gallery does
@@ -1589,16 +1615,33 @@
 		reference to that object from this person's record.
   	      </para>
             </note>
+
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Internet</guilabel>
-          </term>
+          <term>Internet</term>
           <listitem>
 
+	  <para>
+
+	  The <guilabel>Internet</guilabel> tab displays Internet
+	  addresses relevant to the person. The bottom part lists all
+	  such Internet addresses and accompanying descriptions. The
+	  top part shows the details of the currently selected
+	  addresses in the list (if any). The buttons
+	  <guibutton>+</guibutton>, <guibutton>Edit</guibutton>, and
+	  <guibutton>-</guibutton> let you add, modify, and remove an
+	  Internet address. The &quot;Go&quot; button (represented by
+	  an icon having a green arrow and yellow circle) opens your
+	  web browser and takes you directly to the highlighted
+	  page. Note that the <guibutton>Edit</guibutton>,
+	  <guibutton>-</guibutton>, and <guibutton>Go</guibutton>
+	  buttons become available only when an address is selected
+	  from the list.
+	  </para>
+	  
 <!-- ==== Figure: Edit Person dialog - Internet ==== -->
 
             <figure id="edit-pers-internet-fig">
@@ -1607,8 +1650,7 @@
                 <mediaobject>
                   <imageobject>
                     <imagedata fileref="figures/edit-person-internet.png" 
-		               format="PNG" width="500" depth="218"
-			       scale="75"/>
+		               format="PNG" width="500" depth="218"/>
                   </imageobject>
                   <textobject>
                     <phrase>Shows Internet Tab of Edit Person dialog. </phrase>
@@ -1619,34 +1661,28 @@
 
 <!-- ==== End of Figure ==== -->
 
-            <para>
-              The <guilabel>Internet</guilabel> tab displays
-      	      information about Internet addresses relevant to the
-      	      person and the controls allowing data modification. The
-      	      bottom part displays the list of all such Internet
-      	      addresses stored in the database. The top part shows the
-      	      details of the currently selected addresses in the list
-      	      (if any).  The buttons <guibutton>+</guibutton>,
-      	      <guibutton>Edit</guibutton>, and
-      	      <guibutton>-</guibutton> allow you to correspondingly
-      	      add, modify, and remove an Internet address record from
-      	      the database. The button <guibutton>Go</guibutton>
-      	      allows opening a web-page with the corresponding address
-      	      with your default browser. Note that the
-      	      <guibutton>Edit</guibutton>, <guibutton>-</guibutton>,
-      	      and <guibutton>Go</guibutton> buttons become available
-      	      only when an address is selected from the list.
-  	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>LDS</guilabel>
-          </term>
+          <term>LDS</term>
           <listitem>
-
+	    <para>
+	    The <guilabel>LDS</guilabel> (Latter Days Saints) tab lets
+	    you view and edit information about LDS ordinances of the
+	    person. These are LDS Baptism, Endowment, and Sealed to
+	    Parents ordinances, as labeled inside the tab. Each
+	    ordinance is described by its date, LDS temple, and Place
+	    where it happened. An additional pop-up menu,
+	    &quot;Parents,&quot; is available for the Sealed to
+	    Parents ordinance. Each ordinance can be further described
+	    through the selections available in the Status pop-up
+	    menu. It can also be include notes and references to
+	    sources through the corresponding
+	    <guibutton>Sources...</guibutton> and
+	    <guibutton>Note</guibutton> buttons.
+	    </para>
 <!-- ==== Figure: Edit Person dialog - LDS ==== -->
 
             <figure id="edit-pers-lds-fig">
@@ -1655,8 +1691,7 @@
                 <mediaobject>
                   <imageobject>
                     <imagedata fileref="figures/edit-person-lds.png" 
-		               format="PNG" width="500" depth="403"
-			       scale="75"/>
+		               format="PNG" width="500" depth="403"/>
                   </imageobject>
                   <textobject>
                     <phrase>Shows LDS Tab of Edit Person dialog. </phrase>
@@ -1665,23 +1700,6 @@
               </screenshot>
             </figure>
 <!-- ==== End of Figure ==== -->
-            <para>
-              The <guilabel>LDS</guilabel> tab displays information
-	      about LDS ordinances of the person and controls allowing
-	      modification. These are <guilabel>LDS
-	      baptism</guilabel>, <guilabel>Endowment</guilabel>, and
-	      <guilabel>Sealed to parents</guilabel> ordinances, as
-	      labeled inside the tab.  Each ordinance is described by
-	      its date, LDS temple, and Place where it happened. An
-	      additional pop-up menu <guilabel>Parents</guilabel> is
-	      available for the <guilabel>Sealed to parents</guilabel>
-	      ordinance.  Each ordinance can further be described by
-	      its status through the selections available in the
-	      <guilabel>Status</guilabel> pop-up menu and can also be
-	      referenced by sources and notes via corresponding
-	      <guibutton>Sources...</guibutton> and
-	      <guibutton>Note</guibutton> buttons.
-  	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1690,15 +1708,161 @@
 <!-- ================ Usage Sub-subsection ================ -->
 
     <sect2 id="adv-dates">
-      <title>Dates</title>
+      <title>Editing Dates</title>
       <para> 
-        This section describes the details of entering and modifying
-	dates.  Dates are important in genealogical research, so &app;
-	goes a long way to preserve and use any date information
-	available.
+      This section describes how to enter and modify dates. Since
+      dates are so important in genealogical research, GRAMPS takes
+      special care to preserve and use any date information available.
+      </para><para>
+      Information can be entered into a date field by directly typing
+      it or by invoking the Date selection dialog. Both methods will
+      be discussed below, but first, we will cover some important
+      features of dates as they are used in GRAMPS.
       </para>
+
       <sect3 id="adv-dates-led">
-        <title>Date types and validity indicators</title>
+        <title>Date types</title>
+ 	<para>
+	Dates in GRAMPS are classified according to the following types:
+	</para>
+
+	<variablelist>
+	  <varlistentry>
+	  <term>Regular</term>
+	  <para>
+	  A &quot;regular&quot; date is one which includes a specific
+	  day, date, or month. It can be complete (e.g., June 6, 1990)
+	  or partial (e.g., July 1977).
+	  </para>
+	  </varlistentry>
+
+	  <varlistentry>
+	  <term>Before</term>
+	  <para>
+	  A &quot;before&quot; date is one that can only be identified
+	  as occurring before a certain day, month, or year.
+	  </para>
+	  </varlistentry>
+
+	  <varlistentry>
+	  <term>After</term>
+	  <para>
+	  An &quot;after&quot; date is one that occurs after a certain
+	  day, month, or year.
+	  </para>
+	  </varlistentry>
+
+	  <varlistentry>
+	  <term>Range</term>
+	  <para>
+	  A &quot;range&quot; describes a time period during which the
+	  event occurred. For example, &quot;between January 1932 and
+	  March 1932.&quot;
+	  </para>
+	  </varlistentry>
+
+	  <varlistentry>
+	  <term>Span</term>
+	  <para>
+	  A &quot;span&quot; describes a time period during which a
+	  condition existed. For example, &quot;from May 12, 2000 to
+	  February 2, 2002.&quot;
+	  </para>
+	  </varlistentry>
+
+	</variablelist>
+      </sect3>
+      <sect3 id="adv-dates-parsing">
+        <title>Date formats and parsing rules</title>
+        <para>
+	GRAMPS recognizes dates entered in a variety of formats. The
+	default numeric format is that which is conventional for the
+	environment is which GRAMPS is operating; that is, DD.MM.YYYY
+	for most European countries, MM/DD/YYYY for the U.S., and so
+	on.
+	</para>
+        <para>
+
+          Besides exact dates, &app; recognizes many dates that are
+          not regular: before, after, about, ranges and spans. It also
+          understands the quality: estimated or calculated.  Finally,
+          it supports partial dates and many alternative calendars.
+          Below is the list of date entry rules to allow precise date
+          parsing.
+
+        </para>
+        <note>
+          <title>Date parsing rules</title>
+          <para>
+            The list only applys to the English version of GRAMPS.  If
+	    you are using localized version of &app;, your version may
+	    or may not provide a localized date parser.  At the time
+	    of this writing, localized parsers exist for French, German,
+	    Russian, Finnish, Dutch and Spanish languages.
+          </para>
+          <para>
+            If the localized parser is available for your version,
+            chances are that other rules are in effect. If there is no
+            manual in your language yet, you may try following your
+            instinct and go with the common ways of denoting dates in
+            your language. If all else fails, use the <guilabel>Date
+            selection</guilabel> dialog described below.
+          </para>
+
+        </note>
+        <itemizedlist>
+          <listitem>
+            <para>
+              Regular single dates can be entered just as you would
+	      write them. Examples: May 24, 1961 or January 1,
+	      2004.
+            </para>
+          </listitem>
+          <listitem>
+            <para> 
+              Dates that are not regular should start with the
+              quality: <guilabel>estimated</guilabel> or 
+	      <guilabel>calculated</guilabel>, if applicable. 
+	      Example: est. 1961, or calc 2005. (Note that a quality
+	      does not need to be specified for regular dates.)
+            </para>
+          </listitem>
+          <listitem>
+            <para> 
+	    After the quality should appear the type. If the type is
+	    <guilabel>before</guilabel>, <guilabel>after</guilabel>,
+	    or <guilabel>about</guilabel>, you scan specify the type by 
+	    writing &quot;before&quot;, &quot;after&quot; or
+	    &quot;about&quot;.  If the type is a range, write
+	    &quot;between DATE and DATE&quot;, and if the type is a
+	    span, write &quot;from DATE to DATE&quot;. patterns, where
+	    DATE is a single date.
+            </para>
+            <para>
+               Examples: est from 2001 to 2003, before June 1975, est
+	       about 2000, calc between May 1900 and January 1, 1990.
+            </para>
+          </listitem>
+          <listitem>
+            <para> 
+              Partial dates are entered simply by omitting unknown
+	      information. Examples: May 1961 and 2004.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Alternate calendars are calendars other than the Gregorian
+              calendar. Currently, &app; supports Hebrew, French
+              Republican, Julian, Islamic, and Persian alternate
+              calendars.  To specify the calendar other than the
+              default Gregorian, append the name of the calendar to
+              the date string, e.g.  &quot;January 9, 1905 (julian)&quot;.
+            </para>
+          </listitem>
+        </itemizedlist>
+      </sect3>
+      <sect3 id="adv-dates-led">
+        <title>Date Validity Indicators</title>
         <para>
           &app; uses color circles to indicate the validity of the
           entered date.
@@ -1715,15 +1879,15 @@
         <itemizedlist>
           <listitem>
             <para> 
-              Green circle means that the date is valid and complete
+              A green circle means that the date is valid and complete
               regular date (e.g. May 24, 1961). In simple terms, green
-              means that the date is uniquely defined up to a day.
+              means that the date corresponds to a unique date.
             </para>
           </listitem>
           <listitem>
             <para> 
               Yellow circle means that the date is valid but is not a
-	      regular date. This could be the date of an alternative
+	      regular date. This could be the date of a different
 	      type: a before date (before May 25, 1962), an after date
 	      (after May, 1960), an about date (about May 23, 1961), a
 	      range (between May 1, 1961 and May 31, 1961), or a span
@@ -1742,109 +1906,30 @@
           <listitem>
             <para> 
               Red circle means that the date is not recognized as a
-	      valid date (e.g. "Christmas week of 61", or "the summer
-	      when I had surgery").  n that case the date will be
-	      stored as a text string. Therefore, no comparison with
-	      other dates will be available. It is best to avoid such
-	      date entries. Same information can be entered as a note
-	      for the event of interest instead of a date. In the
-	      example considered, a better things to do is to enter
-	      December 1961 as a date and "Christmas week of 61" as a
-	      note.
+	      valid date (e.g. &quot;Christmas week of 61&quot;, or
+	      &quot;the summer when I had surgery&quot;).  In such a
+	      case the date will be stored as a text string and
+	      therefore cannot be compared other dates.  As you can
+	      see, it is best to avoid such date entries. It would be
+	      better, for example, to enter a date of &quot;December
+	      1961&quot; and then to add the note &quot;Christmas week
+	      of '61.&quot;
             </para>
           </listitem>
         </itemizedlist>
-      </sect3>
-      <sect3 id="adv-dates-parsing">
-        <title>Acceptable date entries</title>
-        <para>
-          &app; recognizes many formats of exact dates. The numeric
-          formats are determined by the default environment &app; is
-          running under. Most European countries use DD.MM.YYYY, the
-          US commonly uses MM/DD/YYYY, and so on.
-        </para>
-        <para>
-          Besides exact dates, &app; recognizes many dates that are
-          not regular: before, after, about, ranges and spans. It also
-          understands the quality: estimated or calculated.  Finally,
-          it supports partial dates and many alternative calendars.
-          Below is the list of date entry rules to allow precise date
-          parsing.
-        </para>
-        <note>
-          <title>Date parsing rules</title>
-          <para>
-            The list below is only valid for English. If you are using
-            localized version of &app;, your version may or may not
-            provide a localized date parser.  At the time of this
-            writing, localized parsers exist for French, Russian, and
-            Spanish languages.
-          </para>
-          <para>
-            If the localized parser is available for your version,
-            chances are that other rules are in effect. If there's no
-            manual in your language yet, you may try following your
-            instinct and go with the common ways of denoting dates in
-            your language. If all else fails, use the <guilabel>Date
-            selection</guilabel> dialog described below.
-          </para>
-        </note>
-        <itemizedlist>
-          <listitem>
-            <para>
-              Regular single dates can be entered just as you would
-	      write them in the letter: May 24, 1961 or January 1,
-	      2004.
-            </para>
-          </listitem>
-          <listitem>
-            <para> 
-              Dates that are not regular should start with the
-              quality: estimated or calculated, if applicable. Regular
-              quality does not need to be specified, as it is the
-              default. Example: est. 1961, or calc 2005.
-            </para>
-          </listitem>
-          <listitem>
-            <para> 
-              Next should appear the type: before, after, or about.
-	      Ranges are denoted with "between DATE and DATE" and
-	      spans use "from DATE to DATE" patterns, where DATE
-	      stands for a single date.
-            </para>
-            <para>
-               Examples: est from 2001 to 2003, before June 1975, est
-	       about 2000, calc between May 1900 and January 1, 1990.
-            </para>
-          </listitem>
-          <listitem>
-            <para> 
-              Partial dates are entered simply by omitting unknown
-	      information: May 1961, 2004.
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              Alternate calendars are calendars other than Gregorian
-              calendar. Currently, &app; supports Hebrew, French
-              Republican, Julian, Islamic, and Persian alternate
-              calendars.  To specify the calendar other than the
-              default Gregorian, append the name of the calendar to
-              the date string, e.g.  "January 9, 1905 (julian)".
-            </para>
-          </listitem>
-        </itemizedlist>
+
       </sect3>
       <sect3 id="adv-dates-gui">
-        <title>Graphical User Interface for entering dates</title>
+        <title>Graphical User Interface for Entering Dates</title>
         <para>
-           While the above rules provide a quick and easy way for
-          entering most common dates, sometimes there is a need to
-          either build a complex date or simply check the date using
-          graphical user interface. The <guilabel>Date
-          selection</guilabel> dialog can be invoked by clicking the
-          color circle button (also known as the LED button) next to
-          the date entry field.
+	While the above parsing rules provide a guide for you to type
+	in most common dates, you can also use <guilabel>Date
+	selection</guilabel> dialog. The dialog is particularly useful
+	for building a complex date or for simply insuring that your
+	information is entered in a way GRAMPS will understand. The
+	<guilabel>Date selection</guilabel> dialog can be invoked by
+	clicking the colored circle button next to the date entry
+	field.
         </para>
 
 <!-- ==== Figure: Date selection dialog ==== -->
@@ -1856,7 +1941,7 @@
               <mediaobject>
                 <imageobject>
                   <imagedata fileref="figures/date-selection.png" format="PNG"
-		             width="400" depth="270" scale="75"/>
+		             width="400" depth="270"/>
                 </imageobject>
                 <textobject>
                   <phrase>Shows Date selection dialog. </phrase>
@@ -1869,33 +1954,34 @@
 <!-- ==== End of Figure ==== -->
 
         <para>
-          The <guilabel>Calendar</guilabel> menu allows the choice of
-          any supported calendar. The <guilabel>Quality</guilabel>
-          menu provides choices of Regular, Estimated, or Calculated
-          quality. The <guilabel>Type</guilabel> menu allows to adjust
-          the exact date type: Regular, Before, After, About, Range,
-          Span, and Text only.  A set of controls labeled
-          <guilabel>Date</guilabel> allows setting the day, the month,
-          and the year for a date. The second set of controls,
-          <guilabel>Second date</guilabel>, is disabled for all dates
-          except for those of Range and Span type. For ranges and
-          spans, the <guilabel>Second date</guilabel> controls allow
-          setting the details of the second date. Finally, the
-          <guilabel>Text comment</guilabel> text entry field allows
-          storing an arbitrary text string along with the date.
+
+        The <guilabel>Calendar</guilabel> menu lets you choose a
+	calendar other than the default Gregorian. The
+	<guilabel>Quality</guilabel> menu gives you the choices of
+	Regular, Estimated, or Calculated.  The
+	<guilabel>Type</guilabel> menu allows you establish the exact
+	date type: Regular, Before, After, About, Range, Span, and
+	Text only.  You can set the <guilabel>Date</guilabel> by
+	setting the day, the month, and the year. In the event that
+	your date type is Range or Span, the <guilabel>Second
+	date</guilabel> will be activated. Finally, the <guilabel>Text
+	comment</guilabel> text entry field allows storing an
+	arbitrary text string along with the date.
+
         </para>
         <note>
           <para>
-            If you enter the date outside this dialog, i.e. as a text
-	    in any date entry field, that text will be copied and
-	    stored as the text comment string during parsing of
-	    entered text.
-	  </para>
-          <para>
-            Therefore, the comment only lives until the next parsing.
-	    If you have some important text corresponding to the date,
-	    you are probably better off by saving that text as a Note
-	    for the corresponding event.
+
+	  If you have an important comment to make about a date, you
+	  are better off doing so in a Note that corresponds to the
+	  event than in the Text comment field of the Date selection
+	  dialog. We recommend this for the following reason: If you
+	  enter a date by typing it directly into the date field (that
+	  is, not via the Date selector dialog), your entry will be
+	  copied and stored as the text comment string when GRAMPS
+	  parses the entered text. Thus, any comment that may have
+	  been there prior to the parsing will be overwritten.
+
 	  </para>
         </note>
       </sect3>
@@ -1904,16 +1990,23 @@
 <!-- ================ Usage Sub-subsection ================ -->
 
     <sect2 id="adv-rel">
-      <title>Relationship Data</title>
+      <title>Editing Information About Relationships</title>
       <para> 
-        Editing of relationship data is performed in the following
-	<guilabel>Marriage/Relationship Editor</guilabel> dialog which
-	appears after double-clicking on the spouse box in the Family
-	View. Alternatively, you may invoke this dialog by
-	right-clicking into the spouse box and selecting
-	<guilabel>Edit relationship</guilabel> item from the context
-	menu.
+
+      Information about relationships is entered and edited through
+      the <guilabel>Marriage/Relationship Editor</guilabel>
+      dialog. This dialog is invoked from Family View by
+      double-clicking the Spouse box
       </para>
+
+      <note>
+        <para>
+	You can also invoke this dialog by right-clicking inside the
+	Spouse box and selecting &quot;Edit relationship&quot; item
+	from the context menu that pops up.
+        </para>
+      </note>
+
 <!-- ==== Figure: Edit Relationship dialog ==== -->
       <figure id="edit-rel-fig">
         <title>Marriage/Relationship Editor dialog</title>
@@ -1921,7 +2014,7 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="figures/edit-rel.png" format="PNG"
-	                 width="500" depth="258" scale="75"/>
+	                 width="500" depth="258"/>
             </imageobject>
             <textobject>
               <phrase>Shows Marriage/Relationship Editor dialog. </phrase>
@@ -1931,239 +2024,225 @@
       </figure>
 <!-- ==== End of Figure ==== -->
       <para> 
-        The top of the window shows the names of the people whose
-	relationship is being edited. The main part of the window
-	displays seven notebook tabs containing different categories
-	of available information. You can bring any tab to the top for
-	viewing or editing by clicking on the appropriate tab heading.
-	The bottom part has <guibutton>OK</guibutton> and
-	<guibutton>Cancel</guibutton> buttons. Clicking the
-	<guibutton>OK</guibutton> button at any time will apply all
-	the changes made in all tabs and close the dialog
-	window. Clicking the <guibutton>Cancel</guibutton> button at
-	any time will close the window without applying any
-	changes. If any of the data in any tab were modified, the
-	alert window will appear with the choices of closing the
-	dialog without saving changes, canceling the initial cancel
-	request, or saving the changes.
+
+      The top of the window shows the names of the people whose
+      relationship is being edited. The main part of the window
+      displays seven notebook tabs representing different categories
+      of information about the relationship. Click any tab to view or
+      edit the information it contains. The bottom part has
+      <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton>
+      buttons. Clicking the <guibutton>OK</guibutton> button at any
+      time will apply all the changes made in all tabs and close the
+      dialog window. Clicking the <guibutton>Cancel</guibutton> button
+      at any time will close the window without applying any
+      changes. If any of the data in any tab is modified, an alert
+      window will appear that will prompt you choose between closing
+      the dialog without saving changes, canceling the initial cancel
+      request, or saving the changes.
+
       </para>
       <note>
         <para>
-          Clicking <guibutton>OK</guibutton> will immediately save
-          changes to the database (write on disk).  This version of
-          &app; does not have a separate saving function, all changes
-          are immediate.
+        Clicking <guibutton>OK</guibutton> will immediately save
+        changes to the database.  This version of &app; does not have
+        a separate saving function, all changes are immediate.
         </para>
       </note>
       <tip>
         <para>
-	  The tab labels reflect the presence of corresponding
-          information: if the tab contains any data, its label
-          appears boldface; if the tab has no data then its label
-          appears regular (not bold). 
+	If a tab label is in boldface type, this means it contains
+	data. If not, it has no data.
         </para>
       </tip>
       <para>
         The tabs provide the following information categories of
 	relationship data:
       </para>
+
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>General</guilabel>
-          </term>
+          <term>General</term>
           <listitem>
             <para> 
-	      The <guilabel>General</guilabel> tab allows editing of
-	      the most general information about the relationship: the
-	      relationship type.  The available types (such as
-	      married, partners, etc.) can be chosen from the
-	      drop-down <guilabel>Relationship type</guilabel> menu.
-	      The <guilabel>ID</guilabel> field displays &app; ID
-	      number which labels this relationship in the
-	      database. The <guilabel>Last changed</guilabel> label
-	      shows the last modification time for this relationship.
-	      Finally, the <guilabel>Information is
-	      complete</guilabel> check button provides the way to
-	      mark whether this relationship's record is complete or
-	      not.
+	    The <guilabel>General</guilabel> tab lets you edit the
+	    Relationship type. The available types (such as Married,
+	    Unmarried, etc.) can be chosen from the drop-down
+	    <guilabel>Relationship type</guilabel> menu. The
+	    <guilabel>GRAMPS ID</guilabel> field displays the ID
+	    number which labels this relationship in the database. The
+	    <guilabel>Last changed</guilabel> label shows the last
+	    time the relationship was modified. Finally, the
+	    Information is complete check button indicates whether the
+	    record of this relationship is complete or not.
             </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Events</guilabel>
-          </term>
+          <term>Events</term>
           <listitem>
             <para>
-              The <guilabel>Events</guilabel> tab displays information
-	      about the events relevant to the relationship and the
-	      controls allowing modification. The bottom part displays
-	      the list of all such events stored in the database. The
-	      top part shows the details of the currently selected
-	      event in the list (if any). The buttons
-	      <guibutton>+</guibutton>, <guibutton>Edit</guibutton>,
-	      and <guibutton>-</guibutton> allow you to
-	      correspondingly add, modify, and remove an event record
-	      from the database.  Note that the
-	      <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
-	      buttons become available only when an event is selected
-	      from the list.
+	    The <guilabel>Events</guilabel> tab lets you view and edit
+	    events relevant to the relationship. The bottom part
+	    displays the list of all such events stored in the
+	    database. The top part shows the details of the currently
+	    selected event in the list (if any). The buttons
+	    <guibutton>+</guibutton>, <guibutton>Edit</guibutton>, and
+	    <guibutton>-</guibutton> let you add, modify, or remove an
+	    event record from the database. Note that the
+	    <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
+	    buttons become available only when an event is selected
+	    from the list.
   	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Attributes</guilabel>
-          </term>
+          <term>Attributes</term>
           <listitem>
             <para>
-              The <guilabel>Attributes</guilabel> tab displays
-	      information about the attributes of the relationship and
-	      the controls allowing modification. The bottom part
-	      displays the list of all such attributes stored in the
-	      database. The top part shows the details of the
-	      currently selected attribute in the list (if any). The
-	      buttons <guibutton>+</guibutton>,
-	      <guibutton>Edit</guibutton>, and
-	      <guibutton>-</guibutton> allow you to correspondingly
-	      add, modify, and remove an attribute record from the
-	      database.  Note that the <guibutton>Edit</guibutton> and
-	      <guibutton>-</guibutton> buttons become available only
-	      when an attribute is selected from the list.
+	    The <guilabel>Attributes</guilabel> tab lets you view and
+	    edit particular information about the relationship that
+	    can be expressed as attributes. The bottom part displays
+	    the list of all such attributes stored in the
+	    database. The top part shows the details of the currently
+	    selected attribute in the list (if any). The buttons
+	    <guibutton>+</guibutton>, <guibutton>Edit</guibutton>, and
+	    <guibutton>-</guibutton> let you add, modify, or remove an
+	    attribute. Note that the <guibutton>Edit</guibutton> and
+	    <guibutton>-</guibutton> buttons become available only
+	    when an attribute is selected from the list.
  	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Notes</guilabel>
-          </term>
+          <term>Notes</term>
           <listitem>
             <para>
-              The <guilabel>Notes</guilabel> tab displays information
-	      about the notes concerning the relationship. These could
-	      be any notes which do not naturally fit into the
-	      Parameter-Value pairs available to Attributes. To add a
-	      note or modify existing notes simply edit the text in
-	      the text entry field.
-  	    </para>
-            <para>
-              The <guilabel>Format</guilabel> option allows you to set
-	      the appearance of the note in the output (i.e. in
-	      reports and web pages).  Selecting
-	      <guilabel>Flowed</guilabel> will replace all multiple
-	      spaces, tabs, and single end-of-line characters with
-	      single space in the output.  The two consecutive new
-	      lines (i.e. an empty line) denote a new paragraph.
-	      Selecting <guilabel>Preformatted</guilabel> will honor
-	      all multiple spaces tabs, and new lines, so that the
-	      output will appear as it is entered into the text entry
-	      field.
+
+	    The <guilabel>Notes</guilabel> tab lets you view and edit
+	    notes associated with the relationship. These could be any
+	    comments which do not naturally fit into the
+	    &quot;Parameter-Value&quot; pairs available to
+	    Attributes. To add a note or modify existing notes simply
+	    edit the text in the text entry field.
+
+	    </para><para>
+
+	    The <guilabel>Format</guilabel> option lets you set the
+	    way the note will appear in reports and web pages. If you
+	    select Flowed, the text generated will have single spaces
+	    put in place of all multiple spaces, tabs, and single
+	    end-of-line characters. A blank line inserted between two
+	    blocks of text will signal a new paragraph; additional
+	    inserted lines will be ignored.
+	    </para><para>
+
+	    If you select the Preformatted option, the text in reports
+	    and web pages will appear exactly as you enter it in the
+	    Notes dialog.
+
 	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Sources</guilabel>
-          </term>
+          <term>Sources</term>
           <listitem>
             <para>
-              The <guilabel>Sources</guilabel> tab displays
-	      information about he sources related to the relationship
-	      and controls allowing its modification. These could be
-	      any general sources which refer to the relationship but
-	      do not describe specifically any event.  For example,
-	      Aunt Martha's memoirs may mention that her great
-	      grandson Paul was married, so the researcher may assume
-	      that this relationship (between Paul and his wife)
-	      existed and cite the memoirs as the source for this
-	      assumption.
-  	    </para>
-            <note>
-              <para> 
-                Sources documenting specific events such as marriages
-		or divorces are better filed in relation to those
-		events, under the <guilabel>Events</guilabel> tab.
-               </para>
-            </note>
-            <para>
-              The central part displays the list of all source
-	      references stored in the database for this
-	      relationship. The buttons <guibutton>+</guibutton>,
-	      <guibutton>Edit</guibutton>, and
-	      <guibutton>-</guibutton> allow you to correspondingly
-	      add, modify, and remove a source reference to this
-	      relationship. Note that the <guibutton>Edit</guibutton>
-	      and <guibutton>-</guibutton> buttons become available
-	      only when a source reference is selected from the list.
+
+	    The <guilabel>Sources</guilabel> tab lets you view and
+	    edit the sources which provide evidence for the
+	    relationship. These might be documents that refer to the
+	    relationship, but which do not necessarily document it
+	    officially. For example, if Aunt Martha's memoirs mention
+	    that her great-grandson Paul was married, the researcher
+	    may take this as evidence of the relationship between Paul
+	    and his wife existed and cite the memoirs as the source
+	    for this assumption.
+	    </para>
+
+	    <note>
+	      <para>
+	      Sources that document specific events such as marriages
+	      or divorces are better filed in relation to those
+	      events, under the Events tab.
+	      </para>
+	    </note>
+
+	    <para>
+	    The central part of the Sources window displays the list
+	    of all source references associated with the
+	    relationship. The buttons <guibutton>+</guibutton>,
+	    <guibutton>Edit</guibutton>, and <guibutton>-</guibutton>
+	    allow let you add, modify, and remove a source reference
+	    to this relationship. Note that the
+	    <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
+	    buttons become available only when a source reference is
+	    selected from the list.
             </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Gallery</guilabel>
-          </term>
+          <term>Gallery</term>
           <listitem>
             <para>
-              The <guilabel>Gallery</guilabel> tab displays
-	      information about media objects associated with the
-	      relationship and the controls allowing modification of
-	      such. The central part shows the list of all such media
-	      objects.  For media object which are valid image files
-	      previews of images are displayed. For other objects such
-	      as audio files, movie files, etc., a generic &app; icon
-	      is displayed instead.  The buttons
-	      <guibutton>+</guibutton>, <guibutton>Select</guibutton>,
-	      <guibutton>Edit</guibutton>, and
-	      <guibutton>-</guibutton> allow you to correspondingly
-	      add a new image, add a reference to an image already
-	      stored in the database, modify, and remove a media
-	      object reference to this relationship.  Note that the
-	      <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
-	      buttons become available only when a media object is
-	      selected from the list.
+
+	    The <guilabel>Gallery</guilabel> tab lets you store and
+	    display photos and other media objects associated with the
+	    relationship. The central part of the window lists all
+	    such objects and gives you a thumbnail preview of image
+	    files. Other objects such as audio files, movie files,
+	    etc., are represented by a generic GRAMPS icon. The
+	    buttons <guilabel>+</guilabel>,
+	    <guilabel>Select</guilabel>, <guilabel>Edit</guilabel>,
+	    and <guilabel>-</guilabel> let you add a new image, add a
+	    reference to an existing image, modify an existing image,
+	    and remove a media object's link to the relationship. Note
+	    that the <guilabel>Edit</guilabel> and
+	    <guilabel>-</guilabel> buttons become available only when
+	    a media object is selected from the list.
+
 	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>LDS</guilabel>
-          </term>
+          <term>LDS</term>
           <listitem>
             <para>
-              The <guilabel>LDS</guilabel> tab displays information
-	      about the LDS <guilabel>Sealed to spouse</guilabel>
-	      ordinance of the person and the controls allowing
-	      modification. The data can include date, LDS temple, and
-	      Place where it happened. The ordinance can further be
-	      described by its status through the selections available
-	      in the <guilabel>Status</guilabel> pop-up menu and can
-	      also be referenced by sources and notes via
-	      corresponding <guibutton>Sources...</guibutton> and
-	      <guibutton>Note</guibutton> buttons.
+
+	    The <guilabel>LDS</guilabel> (Latter Days Saints) tab
+	    displays information about the LDS <guilabel>Sealed to
+	    Spouse</guilabel> ordinance. The data can include date,
+	    LDS temple, and Place. The status of the ordinance can be
+	    described through the selections available in the
+	    <guilabel>Status</guilabel> pop-up menu and can also be
+	    referenced in the corresponding
+	    <guibutton>Sources...</guibutton> and
+	    <guibutton>Note</guibutton> buttons.
+
             </para>
           </listitem>
         </varlistentry>
       </variablelist>
     </sect2>
 <!-- ================ Usage Sub-subsection ================ -->
+
+
     <sect2 id="adv-src">
-      <title>Source Data</title>
+      <title>Editing Information About Sources</title>
       <para> 
         To edit source data, switch to the Sources View and select the
-	desired entry in the list of sources. Double-click on that
+	desired entry in the list of sources. Double-click that
 	entry or click the <guibutton>Edit</guibutton> icon on the
 	toolbar to invoke the following <guilabel>Source
 	Editor</guilabel> dialog:
@@ -2177,7 +2256,7 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="figures/edit-src.png" format="PNG"
-	                 width="450" depth="256" scale="75"/>
+	                 width="450" depth="256"/>
             </imageobject>
             <textobject>
               <phrase>Shows Source Editor dialog. </phrase>
@@ -2188,32 +2267,27 @@
 <!-- ==== End of Figure ==== -->
 
       <para> 
-        The top of the window shows the <guilabel>Source
-	Editor</guilabel> title of the dialog. The main part of the
-	window displays four notebook tabs containing different
-	categories of available information. You can bring any tab to
-	the top for viewing or editing by clicking on the appropriate
-	tab heading.  The bottom part has <guibutton>OK</guibutton>
-	and <guibutton>Cancel</guibutton> buttons. Clicking the
-	<guibutton>OK</guibutton> button at any time will apply all
-	the changes made in all tabs and close the dialog
-	window. Clicking the <guibutton>Cancel</guibutton> button at
-	any time will close the window without applying any changes.
+      The main part of the window displays four notebook tabs
+      containing different categories of information. Click a tab to
+      view or edit its contents. The bottom part of the window has
+      <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton>
+      buttons. Clicking <guibutton>OK</guibutton> will apply all the
+      changes made in all tabs and close the dialog window. Clicking
+      the <guibutton>Cancel</guibutton> button will close the window
+      without applying any changes.
       </para>
+
       <note>
         <para>
           Clicking <guibutton>OK</guibutton> will immediately save
-	  changes to the database (write on disk).  This version of
-	  &app; does not have a separate saving function, all
-	  changes are immediate.
+	  changes to the database (write on disk). All changes are 
+	  immediate.
         </para>
       </note>
       <tip>
         <para>
-          The tab labels reflect the presence of corresponding
-          information: if the tab contains any data, its label
-          appears boldface; if the tab has no data then its label
-          appears regular (not bold). 
+	If a tab label is in boldface type, this means it contains
+	data. If not, it has no data.
         </para>
       </tip>
       <para>
@@ -2222,131 +2296,109 @@
       </para>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>General</guilabel>
-          </term>
+          <term>General</term>
           <listitem>
             <para>
-              The <guilabel>General</guilabel> tab allows editing of
-	      the most general information about the source: its
-	      title, author, abbreviated title, and publication
-	      information. This information can be typed in the
-	      appropriate text entry fields.
+	    The <guilabel>General</guilabel> tab lets you define basic
+	    information about the source: its
+	    <guilabel>Title</guilabel>, <guilabel>Author</guilabel>,
+	    <guilabel>Abbreviation</guilabel>, and
+	    <guilabel>Publication information</guilabel>. You can type
+	    this information directly into the adjacent fields.
   	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Note</guilabel>
-          </term>
+          <term>Note</term>
           <listitem>
             <para>
-              The <guilabel>Note</guilabel> tab displays any notes
-	      concerning the source. To add a note or modify existing
-	      notes simply edit the text in the text entry field.
-	    </para>
-            <para>
-              The <guilabel>Format</guilabel> option allows you to set
-	      the appearance of the note in the output (i.e. in
-	      reports and web pages).  Selecting
-	      <guilabel>Flowed</guilabel> will replace all multiple
-	      spaces, tabs, and single end-of-line characters with
-	      single space in the output.  The two consecutive new
-	      lines (i.e. an empty line) denote a new paragraph.
-	      Selecting <guilabel>Preformatted</guilabel> will honor
-	      all multiple spaces tabs, and new lines, so that the
-	      output will appear as it is entered into the text entry
-	      field.
+	    The <guilabel>Note</guilabel> tab provides a place to
+	    record various information about the source that does not
+	    fit neatly into other categories. To add a note or modify
+	    existing notes simply edit the text in the text entry
+	    field.
 	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Data</guilabel>
-          </term>
+          <term>Data</term>
           <listitem>
             <para>
-              The <guilabel>Data</guilabel> tab displays Key/Value
-	      pairs that may be associated with the source. These are
-	      similar to the attributes used for other record
-	      types. The difference from these Key/Value pairs and the
-	      attributes is that the attributes may have source
-	      references and notes, while the Key/Value data may
-	      not.
-	    </para>
-            <para> 
-              The central part shows the list of all Key/Value pairs,
-	      if any.  The buttons <guibutton>+</guibutton> and
-	      <guibutton>-</guibutton> allow you to correspondingly
-	      add and remove pairs. To modify the text of Key or
-	      Value, first select the desired entry (may be an empty
-	      entry when new pair has just been added). Then click
-	      into either Key or Value cell inside that entry and edit
-	      the text in place.  When you are done, click outside the
-	      cell to exit editing mode.
-	    </para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-      <variablelist>
-        <varlistentry>
-          <term>
-            <guilabel>Gallery</guilabel>
-          </term>
-          <listitem>
-            <para>
-              The <guilabel>Gallery</guilabel> tab displays
-      	      information about media objects associated with the
-      	      given source and controls allowing its modification. The
-      	      central part shows the list of all such media
-      	      objects. For media object which are valid image files
-      	      previews of images are displayed. For other objects such
-      	      as audio files, movie files, etc., a generic &app; icon
-      	      is displayed instead.  The buttons
-      	      <guibutton>+</guibutton>, <guibutton>Select</guibutton>,
-      	      <guibutton>Edit</guibutton>, and
-      	      <guibutton>-</guibutton> allow you to correspondingly
-      	      add a new image, add a reference to an image already
-      	      stored in the database, modify, and remove a media
-      	      object reference to this source.  Note that the
-      	      <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
-      	      buttons become available only when a media object is
-      	      selected from the list.
+
+	    The <guilabel>Data</guilabel> tab displays
+	    &quot;Key/Value&quot; pairs that may be associated with
+	    the source. These are similar to the
+	    &quot;Attributes&quot; used for other types of GRAMPS
+	    records. The difference between these Key/Value pairs and
+	    Attributes is that Attributes may have source references
+	    and notes, while Key/Value data may not.
+
+	    </para><para>
+
+	    The central part of the window lists all existing
+	    Key/Value pairs. The buttons <guibutton>+</guibutton> and
+	    <guibutton>-</guibutton> let you add and remove pairs. To
+	    modify the text of Key or Value, first select the desired
+	    entry. Then click in either the Key or Value cell of that
+	    entry and type your text. When you are done, click outside
+	    the cell to exit editing mode.
+
 	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>References</guilabel>
-          </term>
+          <term>Gallery</term>
           <listitem>
             <para>
-              The <guilabel>References</guilabel> tab displays
-	      information about database records that refer to this
-	      source. If the source is not referenced from any
-	      database record, the tab shows an empty list.  If the
-	      source is referenced from many records, the tab will
-	      list all of them. The list can be ordered by any of its
-	      column headers: <guilabel>Type</guilabel>,
-	      <guilabel>ID</guilabel>, or
-	      <guilabel>Name</guilabel>. Double-clicking on the list
-	      entry opens up an editor for a corresponding record
-	      allowing to view or modify the record.
+
+	    The <guilabel>Gallery</guilabel> tab lets you store and
+	    display photos and other media objects associated with a
+	    given source (for example, a photo of a birth
+	    certificate). The central part of the window lists all
+	    such media objects and gives you a thumbnail preview of
+	    image files. Other objects such as audio files, movie
+	    files, etc., are represented by a generic GRAMPS icon. The
+	    buttons <guibutton>+</guibutton>,
+	    <guibutton>Select</guibutton>,
+	    <guibutton>Edit</guibutton>, and <guibutton>-</guibutton>
+	    let you add a new image, add a reference to an existing
+	    image, modify an existing image, and remove a media
+	    object's link to the source. Note that the
+	    <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
+	    buttons become available only when a media object is
+	    selected from the list.
+
+	    </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+      <variablelist>
+        <varlistentry>
+          <term>References</term>
+          <listitem>
+            <para>
+
+	    The <guilabel>References</guilabel> tab lists all the
+	    database records that refer to this source, if any. The
+	    list can be ordered by any of its column headings:
+	    <guilabel>Type</guilabel>, <guilabel>ID</guilabel>, or
+	    <guilabel>Name</guilabel>. Double-clicking an entry allows
+	    you to view and edit the record.
+
 	    </para>
             <note>
               <para>
                 Only primary objects can be shown in the
 		<guilabel>References</guilabel> tab: Person, Family,
-		Event, Place, or Media object. The secondary objects
-		such as Names and Attributes, although may refer the
-		source, will only show up through their primary
-		objects they belong to.
+		Event, Place, or Media object. Secondary objects
+		such as Names and Attributes can only be accessed
+		through the primary objects to which they belong.
 	      </para>
             </note>
           </listitem>
@@ -2357,13 +2409,15 @@
 <!-- ================ Usage Sub-subsection ================ -->
 
     <sect2 id="adv-plc">
-      <title>Place Data</title>
+      <title>Editing Information About Places</title>
       <para> 
-        To edit place data, switch to the Places View and select the
-	desired entry in the list of places. Double-click on that
-	entry or click the <guibutton>Edit</guibutton> icon on the
-	toolbar to invoke the following <guilabel>Place
-	Editor</guilabel> dialog:
+
+      To edit information about places, switch to the Places View and
+      select the desired entry from the list of places. Double-click
+      that entry or click the <guibutton>Edit</guibutton> button on
+      the toolbar to bring up the following <guilabel>Place
+      Editor</guilabel> dialog:
+
       </para>
 
 <!-- ==== Figure: Place Editor dialog ==== -->
@@ -2374,7 +2428,7 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="figures/edit-plc.png" format="PNG"
-	                 width="450" depth="411" scale="75"/>
+	                 width="450" depth="411"/>
             </imageobject>
             <textobject>
               <phrase>Shows Place Editor dialog. </phrase>
@@ -2385,104 +2439,82 @@
 
 <!-- ==== End of Figure ==== -->
 
+
       <para> 
-        The top of the window shows the <guilabel>Place
-	Editor</guilabel> title of the dialog. The main part of the
-	window displays seven notebook tabs containing different
-	categories of available information.  You can bring any tab to
-	the top for viewing or editing by clicking on the appropriate
-	tab heading.  The bottom part has <guibutton>OK</guibutton>
-	and <guibutton>Cancel</guibutton> buttons.  Clicking the
-	<guibutton>OK</guibutton> button at any time will apply all
-	the changes made in all tabs and close the dialog
-	window. Clicking the <guibutton>Cancel</guibutton> button at
-	any time will close the window without applying any changes.
+
+      The main part of the window displays seven notebook tabs
+      containing different categories of information. Click a tab to
+      view or edit its contents. The bottom part of the window has
+      <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton>
+      buttons. Clicking <guibutton>OK</guibutton> will apply all the
+      changes made in all tabs and close the dialog window. Clicking
+      the <guibutton>Cancel</guibutton> button will close the window
+      without applying any changes.
+
       </para>
+
       <note>
         <para>
           Clicking <guibutton>OK</guibutton> will immediately save
-	  changes to the database (write on disk).  This version of
-	  &app; does not have a separate saving function, all
-	  changes are immediate.
+	  changes to the database). All changes are immediate.
         </para>
       </note>
       <tip>
         <para>
-          The tab labels reflect the presence of corresponding
-	  information: if the tab contains any data, its label
-	  appears boldface; if the tab has no data then its label
-	  appears regular (not bold). 
+	If a tab label is in boldface type, this means it contains
+	data. If not, it has no data.
 	</para>
       </tip>
       <para>
-        The tabs provide the following information categories of 
-	place data:
+        The tabs represent following categories of place data:
       </para>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>General</guilabel>
-          </term>
+          <term>General</term>
           <listitem>
             <para>
-              The <guilabel>General</guilabel> tab allows editing of
-	      the most general information about the place: the title
-	      which labels it in the database, city, church parish,
-	      county, state, country, longitude, and latitude.  This
-	      information can be typed in the appropriate text entry
-	      fields.
+            The <guilabel>General</guilabel> tab you view and edit the
+            basic information about the place: the
+            <guilabel>Title</guilabel> which labels it in the
+            database, <guilabel>City</guilabel>, <guilabel>Church
+            parish</guilabel>, <guilabel>County</guilabel>,
+            <guilabel>State</guilabel>, <guilabel>Country</guilabel>,
+            <guilabel>Longitude</guilabel>, and
+            <guilabel>Latitude</guilabel>. You can type this
+            information directly into the adjacent fields.
 	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Other names</guilabel>
-          </term>
+          <term>Other names</term>
           <listitem>
             <para> 
-	      The <guilabel>Other names</guilabel> tab displays
-	      information concerning other names by which the place
-	      might be known and the controls allowing their
-	      modification. The bottom part displays the list of all
-	      other names of the place stored in the database. The top
-	      part shows the details of the currently selected name in
-	      the list (if any).  The buttons
-	      <guibutton>+</guibutton>, <guibutton>Edit</guibutton>,
-	      and <guibutton>-</guibutton> allow you to
-	      correspondingly add, modify, and remove a name record
-	      from the database. Note that the
-	      <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
-	      buttons become available only when a name is selected
-	      from the list.
+	    The <guilabel>Other names</guilabel> tab lets you view and
+	    edit other names by which the place might be known. The
+	    bottom part of the window lists all other names of the
+	    place stored in the database. The top part of the window
+	    shows the details of the currently selected name in the
+	    list (if any). The buttons <guibutton>+</guibutton>,
+	    <guibutton>Edit</guibutton>, and <guibutton>-</guibutton>
+	    let you add, modify, and remove a name record. Note that
+	    the <guibutton>Edit</guibutton> and
+	    <guibutton>-</guibutton> buttons become available only
+	    when a name is selected from the list.
             </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Note</guilabel>
-          </term>
+          <term>Note</term>
           <listitem>
             <para>
-              The <guilabel>Note</guilabel> tab displays any notes
-	      concerning the place. To add a note or modify existing
-	      notes simply edit the text in the text entry field.
-  	    </para>
-            <para>
-              The <guilabel>Format</guilabel> option allows you to set
-	      the appearance of the note in the output (i.e. in
-	      reports and web pages).  Selecting
-	      <guilabel>Flowed</guilabel> will replace all multiple
-	      spaces, tabs, and single end-of-line characters with
-	      single space in the output.  The two consecutive new
-	      lines (i.e. an empty line) denote a new paragraph.
-	      Selecting <guilabel>Preformatted</guilabel> will honor
-	      all multiple spaces tabs, and new lines, so that the
-	      output will appear as it is entered into the text entry
-	      field.
+	    The <guilabel>Note</guilabel> tab displays any comments or
+	    notes concerning the place. To add a note or modify
+	    existing notes simply edit the text in the text entry
+	    field.
   	    </para>
           </listitem>
         </varlistentry>
@@ -2494,94 +2526,79 @@
           </term>
           <listitem>
             <para> 
-	      The <guilabel>Sources</guilabel> tab displays
-	      information about sources relevant to this place and
-	      controls allowing its modification.  The central part
-	      displays the list of all such source references stored
-	      in the database. The buttons <guibutton>+</guibutton>,
-	      <guibutton>Edit</guibutton>, and
-	      <guibutton>-</guibutton> allow you to correspondingly
-	      add, modify, and remove a source reference to this
-	      place. Note that the <guibutton>Edit</guibutton> and
-	      <guibutton>-</guibutton> buttons become available only
-	      when a source reference is selected from the
-	      list. 
+	    The <guilabel>Sources</guilabel> tab lets you view and
+	    edit sources relevant to a place. The central part of the
+	    window lists all such source references stored in the
+	    database. The buttons <guibutton>+</guibutton>,
+	    <guibutton>Edit</guibutton>, and <guibutton>-</guibutton>
+	    let you add, modify, and remove a source reference
+	    associated with a place. Note that the
+	    <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
+	    buttons become available only when a source reference is
+	    selected from the list.
 	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Gallery</guilabel>
-          </term>
+          <term>Gallery</term>
           <listitem>
             <para>
-              The <guilabel>Gallery</guilabel> tab displays
-	      information about media objects associated with the
-	      given place and the controls allowing its
-	      modification. The central part shows the list of all
-	      such media objects. For media objects which are valid
-	      image files previews of images are displayed. For other
-	      objects such as audio files, movie files, etc., a
-	      generic &app; icon is displayed instead.  The buttons
-	      <guibutton>+</guibutton>, <guibutton>Select</guibutton>,
-	      <guibutton>Edit.</guibutton>, and
-	      <guibutton>-</guibutton> allow you to correspondingly
-	      add a new image, add a reference to an image already
-	      stored in the database, modify, and remove a media
-	      object reference to this place.  Note that the
-	      <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
-	      buttons become available only when a media object is
-	      selected from the list.
+	    The <guilabel>Gallery</guilabel> tab lets you store and
+	    display photos and other media objects associated with a
+	    given place. The central part of the window lists all such
+	    media objects and gives you a thumbnail preview of image
+	    files. Other objects such as audio files, movie files,
+	    etc., are represented by a generic GRAMPS icon. The
+	    buttons <guibutton>+</guibutton>,
+	    <guibutton>Select</guibutton>,
+	    <guibutton>Edit</guibutton>, and <guibutton>-</guibutton>
+	    let you add a new image, add a reference to an existing
+	    image, modify an existing image, and remove a media
+	    object's link to the place. Note that the
+	    <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
+	    buttons become available only when a media object is
+	    selected from the list.
  	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Internet</guilabel>
-          </term>
+          <term>Internet</term>
           <listitem>
             <para>
-	      The <guilabel>Internet</guilabel> tab displays
-	      information about Internet addresses relevant to the
-	      place and controls allowing its modification. The bottom
-	      part displays the list of all such Internet addresses
-	      stored in the database. The top part shows the details
-	      of the currently selected addresses in the list (if
-	      any).  The buttons <guibutton>+</guibutton>,
-	      <guibutton>Edit</guibutton>, and
-	      <guibutton>-</guibutton> allow you to correspondingly
-	      add, modify, and remove an Internet address record from
-	      the database. The button <guibutton>Go</guibutton>
-	      allows you to open a web-page with the corresponding
-	      address with your default browser. Note that the
-	      <guibutton>Edit</guibutton>, <guibutton>-</guibutton>,
-	      and <guibutton>Go</guibutton> buttons become available
-	      only when an address is selected from the list.
+	    The <guilabel>Internet</guilabel> tab contains Internet
+	    addresses relevant to the place. The bottom part of the
+	    window lists all such Internet addresses stored in the
+	    database. The top part shows the details of the currently
+	    selected address in the list (if any). The buttons
+	    <guibutton>+</guibutton>, <guibutton>Edit</guibutton>, and
+	    <guibutton>-</guibutton> let you add, modify, and remove
+	    an Internet address. The <guibutton>Go</guibutton> button
+	    (represented by an icon with a green arrow and yellow
+	    circle) opens your browser and takes you to the web page
+	    corresponding to the highlighted Internet address. Note
+	    that the <guibutton>Edit</guibutton>,
+	    <guibutton>-</guibutton>, and <guibutton>Go</guibutton>
+	    buttons become available only when an address is selected
+	    from the list.
 	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>References</guilabel>
-          </term>
+          <term>References</term>
           <listitem>
             <para>
-               The <guilabel>References</guilabel> tab displays
-	       information about database records (events or LDS
-	       ordinances) that refer to this place. If the place is
-	       not referenced from any database record, the tab shows
-	       an empty list.  If the place is referenced from many
-	       records, the tab will list all of them. This
-	       information cannot be modified from the <guilabel>Place
-	       Editor</guilabel> dialog. Instead, the corresponding
-	       database record (e.g. birth event) has to be brought up
-	       and its place reference edited.
+	    The <guilabel>References</guilabel> tab indicates any
+	    database records (events or LDS ordinances) that refer to
+	    a place. This information cannot be modified from the
+	    Place Editor dialog. Instead, the corresponding database
+	    record (e.g., a birth event) has to be brought up and its
+	    place reference edited.
             </para>
           </listitem>
         </varlistentry>
@@ -2591,7 +2608,7 @@
 <!-- ================ Usage Sub-subsection ================ -->
 
     <sect2 id="adv-media">
-      <title>Media Data</title>
+      <title>Editing Information About Media Objects</title>
       <para> 
         To edit media data, switch to the Media View and select the
 	desired entry in the list of sources. Double-click on that
@@ -2608,7 +2625,7 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="figures/edit-media.png" format="PNG"
-	                 width="450" depth="286" scale="75"/>
+	                 width="450" depth="286"/>
             </imageobject>
             <textobject>
               <phrase>Shows Media Properties Editor dialog. </phrase>
@@ -2620,147 +2637,113 @@
 <!-- ==== End of Figure ==== -->
 
       <para> 
-        The top of the window shows the dialog title. Below the title
-	is the preview of an object and the summary of its properties
-	(ID, path, and object type). The central part of the window
-	displays four notebook tabs containing different categories of
-	available information.  You can bring any tab to the top for
-	viewing or editing by clicking on the appropriate tab
-	heading. The bottom part has <guibutton>OK</guibutton> and
-	<guibutton>Cancel</guibutton> buttons.  Clicking the
-	<guibutton>OK</guibutton> button at any time will apply all
-	the changes made in all tabs and close the dialog
-	window. Clicking the <guibutton>Cancel</guibutton> button at
-	any time will close the window without applying any changes.
+      A thumbnail preview of the object is presented, along with a
+      summary of its properties (ID, path, and object type). The
+      central part of the window displays five notebook tabs
+      containing different categories of information. Click a tab to
+      view or edit its contents. The bottom part of the window has
+      <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton>
+      buttons. Clicking <guibutton>OK</guibutton> will apply all the
+      changes made in all tabs and close the dialog window. Clicking
+      the <guibutton>Cancel</guibutton> button will close the window
+      without applying any changes.
       </para>
       <note>
         <para>
-           Clicking <guibutton>OK</guibutton> will immediately save
-	   changes to the database (write on disk).  This version of
-	   &app; does not have a separate saving function, all changes
-	   are immediate.
+        Clicking <guibutton>OK</guibutton> will immediately save
+        changes to the database (write on disk). All changes are
+        immediate.
         </para>
       </note>
       <tip>
         <para>
-	  The tab labels reflect the presence of corresponding
-	  information: if the tab contains any data, its label appears
-	  boldface; if the tab has no data then its label appears
-	  regular (not bold).
+	If a tab label is in boldface type, this means it contains
+	data. If not, it has no data.
         </para>
       </tip>
       <para>
-	The tabs provide the following information categories of 
-	media object data:
+      The tabs represent the following categories of media data: 
       </para>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>General</guilabel>
-          </term>
+          <term>General</term>
           <listitem>
             <para>
-              The <guilabel>General</guilabel> tab allows editing the
-	      title which labels this object in the database. The
-	      title can be typed in the appropriate text entry
-	      field. The <guilabel>Date</guilabel> field allows
-	      entering the date by typing, while the LED button beside
-	      it will invoke a <guilabel>Date selection</guilabel>
-	      dialog for setting the date graphically.
+	    The <guilabel>General</guilabel> tab lets you view and
+	    edit the object's Title and Date. You can type this
+	    information directly into the corresponding fields.  For
+	    the Date, you can also enter information by clicking the
+	    LED button and invoking the <guilabel>Date
+	    selection</guilabel> dialog.
             </para>
             <note>
               <para>
-                 &app; no longer has a concept of local media objects.
-		 Every media object is referred to by its path. The
-		 users are responsible for keeping track of the object
-		 files. &app; will only reference and display the
-		 contents, not manage the files themselves.
-	       </para>
+	      Every media object is referred to by its Path. The user
+	      is responsible for keeping track of the object
+	      files. GRAMPS will only reference and display the
+	      contents, not manage the files themselves.
+              </para>
             </note>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Attributes</guilabel>
-          </term>
+          <term>Attributes</term>
           <listitem>
             <para>
-              The <guilabel>Attributes</guilabel> tab displays
-	      information about the attributes of the media object and
-	      controls allowing its modification. The bottom part
-	      displays the list of all such attributes stored in the
-	      database. The top part shows the details of the
-	      currently selected attribute in the list (if any). The
-	      buttons <guibutton>+</guibutton>,
-	      <guibutton>Edit</guibutton>, and
-	      <guibutton>-</guibutton> allow you to correspondingly
-	      add, modify, and remove an attribute record from the
-	      database.  Note that the <guibutton>Edit</guibutton> and
-	      <guibutton>-</guibutton> buttons become available only
-	      when an attribute is selected from the list.
+	    The <guilabel>Attributes</guilabel> tab lets you view and
+	    edit particular information about the media object that
+	    can be expressed as Attributes. The bottom part displays
+	    the list of all such attributes stored in the
+	    database. The top part shows the details of the currently
+	    selected attribute in the list (if any). The buttons
+	    <guibutton>+</guibutton>, <guibutton>Edit</guibutton>, and
+	    <guibutton>-</guibutton> let you add, modify, or remove an
+	    attribute. Note that the <guibutton>Edit</guibutton> and
+	    <guibutton>-</guibutton> buttons become available only
+	    when an attribute is selected from the list.
             </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Notes</guilabel>
-          </term>
+          <term>Notes</term>
           <listitem>
             <para>
-	      The <guilabel>Notes</guilabel> tab displays information
-	      about the notes concerning the media object. These could
-	      be any notes which do not naturally fit into the
-	      Parameter-Value pairs available to Attributes. To add a
-	      note or modify existing notes simply edit the text in
-	      the text entry field. 
-	    </para>
-            <para>
-	      The <guilabel>Format</guilabel> option allows you to set
-	      the appearance of the note in the output (i.e. in
-	      reports and web pages).  Selecting
-	      <guilabel>Flowed</guilabel> will replace all multiple
-	      spaces, tabs, and single end-of-line characters with
-	      single space in the output.  The two consecutive new
-	      lines (i.e. an empty line) denote a new paragraph.
-	      Selecting <guilabel>Preformatted</guilabel> will honor
-	      all multiple spaces tabs, and new lines, so that the
-	      output will appear as it is entered into the text entry
-	      field.
+	    The <guilabel>Note</guilabel> tab provides a place to
+	    record various information about the source that does not
+	    fit neatly into other categories. This area is
+	    particularly useful for recording information that does
+	    not naturally fit into the &quot;Parameter/Value&quot; pairs
+	    available to Attributes. To add a note or modify existing
+	    notes simply edit the text in the text entry field.
 	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>References</guilabel>
-          </term>
+          <term>References</term>
           <listitem>
             <para>
-	      The <guilabel>References</guilabel> tab displays
-	      information about database records that refer to this
-	      media object. If the object is not referenced from any
-	      database record, the tab shows an empty list.  If the
-	      object is referenced from many records, the tab will
-	      list all of them. The list can be ordered by any of its
-	      column headers: <guilabel>Type</guilabel>,
-	      <guilabel>ID</guilabel>, or
-	      <guilabel>Name</guilabel>. Double-clicking on the list
-	      entry opens up an editor for a corresponding record
-	      allowing to view or modify the record.
+	    The <guilabel>References</guilabel> tab indicates any
+	    database records that refer to a given media object. The
+	    list can be ordered according to any of its column
+	    headings: <guilabel>Type</guilabel>,
+	    <guilabel>ID</guilabel>, or
+	    <guilabel>Name</guilabel>. Double-clicking an entry allows
+	    you to view and edit the corresponding record.
             </para>
             <note>
               <para>
-                Only primary objects can be shown in the
-		<guilabel>References</guilabel> tab: Person, Family,
-		Event, Source, or Place.  The secondary objects such
-		as Names and Attributes, although able to refer the
-		media object, will only show up through their primary
-		objects they belong to.
+              Only primary objects can be shown in the
+	      <guilabel>References</guilabel> tab: Person, Family,
+	      Event, Source, or Place.  The secondary objects such as
+	      Names and Attributes, although able to refer the media
+	      object, will only show up through their primary objects
+	      to which they belong.
 	      </para>
             </note>
           </listitem>
@@ -2771,10 +2754,12 @@
 <!-- ================ Usage Sub-subsection ================ -->
 
     <sect2 id="adv-ev">
-      <title>Events</title>
+      <title>Editing Information About Events</title>
       <para> 
-        Events are edited through the following <guilabel>Event
-	Editor</guilabel> dialog: 
+      Events are edited through the <guilabel>Event
+      Editor</guilabel> dialog. This dialog can be accessed from 
+      either the <guilabel>Edit Person</guilabel> dialog or the
+      <guilabel>Marriage/Relationship</guilabel> dialog.
       </para>
  
 <!-- ==== Figure: Event Editor dialog ==== -->
@@ -2785,7 +2770,7 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="figures/edit-ev.png" format="PNG"
-	                 width="450" depth="316" scale="75"/>
+	                 width="450" depth="316"/>
             </imageobject>
             <textobject>
               <phrase>Shows Event Editor dialog. </phrase>
@@ -2797,134 +2782,112 @@
 <!-- ==== End of Figure ==== -->
 
       <para> 
-        The top of the window shows the dialog title including the
-	name of the persons whose event is being edited. The central
-	part of the window displays four notebook tabs containing
-	different categories of available information. You can bring
-	any tab to the top for viewing or editing by clicking on the
-	appropriate tab heading. The bottom part has
-	<guibutton>OK</guibutton> and <guibutton>Cancel</guibutton>
-	buttons.  Clicking the <guibutton>OK</guibutton> button at any
-	time will apply all the changes made in all tabs and close the
-	dialog window. Clicking the <guibutton>Cancel</guibutton>
-	button at any time will close the window without applying any
-	changes.
+      The central part of the window displays five notebook tabs
+      containing different categories of information. Click a tab to
+      view or edit its contents. The bottom part of the window has
+      <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton>
+      buttons. Clicking <guibutton>OK</guibutton> will apply all the
+      changes made in all tabs and close the dialog window. Clicking
+      the <guibutton>Cancel</guibutton> button will close the window
+      without applying any changes.
       </para>
+
       <tip>
         <para>
-	  The tab labels reflect the presence of corresponding
-	  information: if the tab contains any data, its label appears
-	  boldface; if the tab has no data then its label appears
-	  regular (not bold).
+	If a tab label is in boldface type, this means it contains
+	data. If not, it has no data.
         </para>
       </tip>
+
       <para>
-        The tabs provide the following information categories of 
-	the event data: 
+      The tabs provide the following information categories of 
+      the event data: 
       </para>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>General</guilabel>
-          </term>
+          <term>General</term>
           <listitem>
             <para>
-              The <guilabel>General</guilabel> tab allows editing of
-	      the most general information about the event: its type,
-	      date, place, cause, and description. The type can be
-	      selected from available types listed in the
-	      <guilabel>Event type </guilabel> drop-down menu. The
-	      rest of the information can be typed in the appropriate
-	      text entry fields.  Check the <guilabel>Private
-	      record</guilabel> box to mark this event record as
-	      private. This will give you a chance to omit this event
-	      from being included in reports, if you choose so among
-	      the report generation options.
+	    The <guilabel>General</guilabel> tab lets you view and
+	    edit basic information about the event: its
+	    <guilabel>Type</guilabel>, <guilabel>Date</guilabel>,
+	    <guilabel>Place</guilabel>, <guilabel>Cause</guilabel>,
+	    and <guilabel>Description</guilabel>. You can type this
+	    information directly into the adjacent fields. The type
+	    can be selected from available types listed in the Event
+	    type drop-down menu. The rest of the information can be
+	    typed in the appropriate text entry fields. Checking the
+	    Private record box marks the event record as private and
+	    allows it to be omitted from reports.
             </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Sources</guilabel>
-          </term>
+          <term>Sources</term>
           <listitem>
             <para>
-              The <guilabel>Sources</guilabel> tab displays
-	      information about sources relevant to this event and
-	      controls allowing its modification.  The central part
-	      displays the list of all such sources references stored
-	      in the database. The buttons <guibutton>+</guibutton>,
-	      <guibutton>Edit</guibutton>, and
-	      <guibutton>-</guibutton> allow you to correspondingly
-	      add, modify, and remove a source reference to this
-	      event. Note that the <guibutton>Edit</guibutton> and
-	      <guibutton>-</guibutton> buttons become available only
-	      when a source reference is selected from the list.
+	    The <guilabel>Sources</guilabel> tab lets you view and
+	    edit sources relevant to an event. The central part of the
+	    window lists all such source references stored in the
+	    database. The buttons <guibutton>+</guibutton>,
+	    <guibutton>Edit</guibutton>, and <guibutton>-</guibutton>
+	    let you add, modify, and remove a source reference
+	    associated with a place. Note that the
+	    <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
+	    buttons become available only when a source reference is
+	    selected from the list.
             </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Note</guilabel>
-          </term>
+          <term>Note</term>
           <listitem>
             <para>
-              The <guilabel>Note</guilabel> tab displays any notes
-	      concerning the event. To add a note or modify existing
-	      notes simply edit the text in the text entry field.
-	    </para>
-            <para>
-              The <guilabel>Format</guilabel> option allows you to set
-              the appearance of the note in the output (i.e. in
-              reports and web pages).  Selecting
-              <guilabel>Flowed</guilabel> will replace all multiple
-              spaces, tabs, and single end-of-line characters with
-              single space in the output.  The two consecutive new
-              lines (i.e. an empty line) denote a new paragraph.
-              Selecting <guilabel>Preformatted</guilabel> will honor
-              all multiple spaces tabs, and new lines, so that the
-              output will appear as it is entered into the text entry
-              field.
+	    The <guilabel>Note</guilabel> tab provides a place to
+	    record notes or comments about the event. To add a note or
+	    modify existing notes simply edit the text in the text
+	    entry field.
 	    </para>
           </listitem>
         </varlistentry>
       </variablelist>
       <variablelist>
         <varlistentry>
-          <term>
-            <guilabel>Witnesses</guilabel>
-          </term>
+          <term>Witnesses</term>
           <listitem>
             <para>
-              The <guilabel>Witnesses</guilabel> tab displays
-	      information about witnesses relevant to this event and
-	      controls allowing its modification.  The central part
-	      displays the list of all such witnesses stored in the
-	      database. The buttons <guibutton>+</guibutton>,
-	      <guibutton>Edit</guibutton>, and
-	      <guibutton>-</guibutton> allow you to correspondingly
-	      add, modify, and remove a witness reference to this
-	      event, see <xref linkend="adv-wit"/>. Note that the
-	      <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
-	      buttons become available only when a witness reference
-	      is selected from the list.
-            </para>
+	    The <guilabel>Witnesses</guilabel> tab lets you view and
+	    edit witnesses to the event. The central part of the
+	    window lists all such witnesses stored in the
+	    database. The buttons <guibutton>+</guibutton>,
+	    <guibutton>Edit</guibutton>, and <guibutton>-</guibutton>
+	    let you add, modify, and remove a witness reference to
+	    this event (see <xref linkend="adv-wit"/>). Note
+	    that the <guibutton>Edit</guibutton> and
+	    <guibutton>-</guibutton> buttons become available only
+            </para> 
           </listitem>
-        </varlistentry>
-      </variablelist>
+	</varlistentry> 
+      </variablelist> 
     </sect2>
 
 <!-- ================ Usage Sub-subsection ================ -->
 
+<!-- END OF EDIT -->
+
     <sect2 id="adv-si">
-      <title>Source Information</title>
+      <title>Editing Source References</title>
       <para> 
-        When adding source references to events, places, etc., the
-	following dialog appears: 
+
+      Source references connect a Source to another object and allow
+      you to provide additional information about the source. When
+      adding source references to events, places, etc., the following
+      dialog appears:
+
       </para>
 
 <!-- ==== Figure: Source Information dialog ==== -->
@@ -2935,7 +2898,7 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="figures/edit-si.png" format="PNG"
-	                 width="450" depth="489" scale="75"/>
+	                 width="450" depth="489"/>
             </imageobject>
             <textobject>
               <phrase>Shows Source Information dialog. </phrase>
@@ -2947,42 +2910,38 @@
 
       <para> 
 
-        The top of the window shows the dialog title. The central part
-	displays the source information. The bottom part has
-	<guibutton>OK</guibutton> and <guibutton>Cancel</guibutton>
-	buttons.  Clicking the <guibutton>OK</guibutton> button at any
-	time will apply all the changes made and close the dialog
-	window. Clicking the <guibutton>Cancel</guibutton> button at
-	any time will close the window without applying any changes.
-
+      The dialog includes two main headings, <guilabel>Source
+      selection</guilabel> and <guilabel>Source
+      details</guilabel>. <guilabel>Source selection</guilabel>
+      displays the <guilabel>Title</guilabel> of the Source, its
+      <guilabel>Author</guilabel>, and <guilabel>Publication
+      information</guilabel>. The <guilabel>Title</guilabel> can be
+      selected from the available sources listed in the drop-down
+      menu. If the source you are referencing is not already in the
+      database, you can enter it by clicking
+      <guibutton>New...</guibutton> and filling out the invoked
+      <guilabel>Source Editor</guilabel> dialog.
+      </para><para> 
+      The <guilabel>Source details</guilabel> section indicates the
+      details associated with the particular reference to this Source:
+      <guilabel>Confidence</guilabel>,
+      <guilabel>Volume/Film/Page</guilabel>,
+      <guilabel>Date</guilabel>, <guilabel>Text</guilabel>, and
+      <guilabel>Comments</guilabel>. You can choose the Confidence
+      level from the <guilabel>Confidence</guilabel> drop-down
+      menu. The remaining details can be typed in the corresponding
+      text entry fields.
       </para>
-      <para> 
 
-        The source can be selected from available sources listed in
-	the <guilabel>Title</guilabel> drop-down menu. If the source
-	you are referencing is not present in the database yet, you
-	can enter it into the database. To do this, click the
-	<guibutton>New...</guibutton> button and enter source
-	information into the invoked <guilabel>Source
-	Editor</guilabel> dialog. You can also set the details
-	specific for this particular reference: confidence,
-	volume/file/page, date, text, and comments. Choose the
-	confidence level from the <guilabel>Confidence</guilabel>
-	drop-down menu.  The rest of the details can be typed in the
-	appropriate text entry fields.
-
-      </para>
       <tip>
         <para>
-
-          Information in this dialog is specific to the particular
-	  reference.  A single source can be referenced many times,
-	  and all such references will have in common the overall
-	  source information. This dialog lets you provide
-	  reference-specific data, such as relevant quotes, comments,
-	  confidence, page numbers, etc, to further specify and
-	  document the reference.
-
+        Information in this dialog is specific to the particular
+	reference.  A single source can be referenced many times,
+	and all such references will have in common the overall
+	source information. This dialog lets you provide
+	reference-specific data, such as relevant quotes, comments,
+	confidence, page numbers, etc., to further specify and
+	document the reference.
         </para>
       </tip>
     </sect2>
@@ -2991,8 +2950,10 @@
 
     <sect2 id="adv-an">
       <title>Names</title>
-      <para> Names are edited through the following 
-	<guilabel>Name Editor</guilabel> dialog: </para>
+      <para> 
+      Names are edited through the following <guilabel>Name
+      Editor</guilabel> dialog: 
+      </para>
 
 <!-- ==== Figure: Names Editor dialog ==== -->
 
@@ -3002,7 +2963,7 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="figures/edit-an.png" format="PNG"
-	                 width="400" depth="509" scale="75"/>
+	                 width="400" depth="509" />
             </imageobject>
             <textobject>
               <phrase>Shows Name Editor dialog. </phrase>
@@ -3159,7 +3120,7 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="figures/edit-at.png" format="PNG"
-	                 width="430" depth="248" scale="75"/>
+	                 width="430" depth="248" />
             </imageobject>
             <textobject>
               <phrase>Shows Attribute Editor dialog. </phrase>
@@ -3296,7 +3257,7 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="figures/edit-ad.png" format="PNG"
-	                 width="450" depth="376" scale="75"/>
+	                 width="450" depth="376" />
             </imageobject>
             <textobject>
               <phrase>Shows Address Editor dialog. </phrase>
@@ -3436,7 +3397,7 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="figures/edit-wi.png" format="PNG"
-	                 width="450" depth="259" scale="75"/>
+	                 width="450" depth="259" />
             </imageobject>
             <textobject>
               <phrase>Shows Witness Editor dialog. </phrase>
@@ -3608,7 +3569,7 @@
                   <mediaobject>
                     <imageobject>
                       <imagedata fileref="figures/comp-people.png" format="PNG"
-		                 width="500" depth="469" scale="75"/>
+		                 width="500" depth="469" />
                     </imageobject>
                     <textobject>
                       <phrase>Shows Compare People dialog. </phrase>
@@ -3667,7 +3628,7 @@
                     <imageobject>
                       <imagedata fileref="figures/merge-people.png" 
 		                 format="PNG" width="382" depth="245"
-				 scale="75"/>
+				 />
                     </imageobject>
                     <textobject>
                       <phrase>Shows Merge People dialog. </phrase>
@@ -3728,7 +3689,7 @@
             <mediaobject>
               <imageobject>
                 <imagedata fileref="figures/merge-src.png" format="PNG"
-		           width="500" depth="224" scale="75"/>
+		           width="500" depth="224" />
               </imageobject>
               <textobject>
                 <phrase>Shows Merge Sources dialog. </phrase>
@@ -3774,7 +3735,7 @@
             <mediaobject>
               <imageobject>
                 <imagedata fileref="figures/merge-plc.png" format="PNG"
-		           width="400" depth="185" scale="75"/>
+		           width="400" depth="185" />
               </imageobject>
               <textobject>
                 <phrase>Shows Select title dialog. </phrase>
@@ -4117,7 +4078,7 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="figures/edit-bm.png" format="PNG"
-	                 width="412" depth="376" scale="75"/>
+	                 width="412" depth="376" />
             </imageobject>
             <textobject>
               <phrase>Shows Edit Bookmarks dialog. </phrase>
@@ -4153,7 +4114,7 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="figures/find-people.png" format="PNG"
-	                 width="500" depth="352" scale="75"/>
+	                 width="500" depth="352" />
             </imageobject>
             <textobject>
               <phrase>Shows type-ahead find. </phrase>
@@ -4379,7 +4340,7 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="figures/bookreport.png" format="PNG"
-	                 width="510" depth="524" scale="75"/>
+	                 width="510" depth="524" />
             </imageobject>
             <textobject>
               <phrase>Shows Book Report dialog. </phrase>
@@ -5448,7 +5409,7 @@
             <mediaobject>
               <imageobject>
                 <imagedata fileref="figures/cfe-df.png" format="PNG"
-		           width="400" depth="410" scale="75"/>
+		           width="400" depth="410" />
               </imageobject>
               <textobject>
                 <phrase>Shows Define filter dialog. </phrase>
@@ -5499,7 +5460,7 @@
             <mediaobject>
               <imageobject>
                 <imagedata fileref="figures/cfe-ar.png" format="PNG"
-		           width="500" depth="297" scale="75"/>
+		           width="500" depth="297" />
               </imageobject>
               <textobject>
                 <phrase>Shows Add Rule dialog. </phrase>
@@ -5577,7 +5538,7 @@
             <mediaobject>
               <imageobject>
                 <imagedata fileref="figures/scratch-pad.png" format="PNG"
-		           width="500" depth="246" scale="75"/>
+		           width="500" depth="246" />
               </imageobject>
               <textobject>
                 <phrase>Shows Add Scratch Pad tool. </phrase>
