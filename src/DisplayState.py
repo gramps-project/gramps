@@ -92,11 +92,9 @@ class History(GrampsDb.GrampsDBCallback):
         self.prune()
         if len(self.history) == 0 or person_handle != self.history[-1]:
             self.history.append(person_handle)
-            if person_handle not in self.mhistory:
-                self.mhistory.append(person_handle)
-            else:
+            if person_handle in self.mhistory:
                 self.mhistory.remove(person_handle)
-                self.mhistory.push(person_handle)
+            self.mhistory.append(person_handle)
             self.index += 1
         self.emit('menu-changed',(self.mhistory,))
         self.emit('changed',(self.history,))
