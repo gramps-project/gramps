@@ -1720,7 +1720,7 @@
       features of dates as they are used in GRAMPS.
       </para>
 
-      <sect3 id="adv-dates-led">
+      <sect3 id="adv-dates-types">
         <title>Date types</title>
  	<para>
 	Dates in GRAMPS are classified according to the following types:
@@ -1729,45 +1729,55 @@
 	<variablelist>
 	  <varlistentry>
 	  <term>Regular</term>
+	  <listitem>
 	  <para>
 	  A &quot;regular&quot; date is one which includes a specific
 	  day, date, or month. It can be complete (e.g., June 6, 1990)
 	  or partial (e.g., July 1977).
 	  </para>
+	  </listitem>
 	  </varlistentry>
 
 	  <varlistentry>
 	  <term>Before</term>
+	  <listitem>
 	  <para>
 	  A &quot;before&quot; date is one that can only be identified
 	  as occurring before a certain day, month, or year.
 	  </para>
+	  </listitem>
 	  </varlistentry>
 
 	  <varlistentry>
 	  <term>After</term>
+	  <listitem>
 	  <para>
 	  An &quot;after&quot; date is one that occurs after a certain
 	  day, month, or year.
 	  </para>
+	  </listitem>
 	  </varlistentry>
 
 	  <varlistentry>
 	  <term>Range</term>
+	  <listitem>
 	  <para>
 	  A &quot;range&quot; describes a time period during which the
 	  event occurred. For example, &quot;between January 1932 and
 	  March 1932.&quot;
 	  </para>
+	  </listitem>
 	  </varlistentry>
 
 	  <varlistentry>
 	  <term>Span</term>
+	  <listitem>
 	  <para>
 	  A &quot;span&quot; describes a time period during which a
 	  condition existed. For example, &quot;from May 12, 2000 to
 	  February 2, 2002.&quot;
 	  </para>
+	  </listitem>
 	  </varlistentry>
 
 	</variablelist>
