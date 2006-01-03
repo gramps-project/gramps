@@ -1,3 +1,6 @@
+2006-01-03  Alex Roitman  <shura@gramps-project.org>
+	* src/DisplayState.py (push): Typo.
+
 2006-01-03  Don Allingham  <don@gramps-project.org>
 	* src/FamilyView.py: new format
 
