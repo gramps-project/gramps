@@ -110,9 +110,6 @@ class FamilyView(PageView.PageView):
     def make_edit_button(self,handle):
         return self.make_button(handle,gtk.STOCK_EDIT,self.edit_person)
 
-    def make_goto_button(self,handle):
-        return self.make_button(handle,gtk.STOCK_JUMP_TO,self.change_to)
-
     def write_title(self,person):
         label = gtk.Label('<span size="larger" weight="bold">%s</span>'
                           % NameDisplay.displayer.display(person))
@@ -143,17 +140,27 @@ class FamilyView(PageView.PageView):
         label.show()
         self.child.attach(label,2,3,self.row,self.row+1,xoptions=0)
 
-        label = gtk.Label(self.get_name(handle))
+        label = gtk.Label('<span underline="single">%s</span>' %
+                          self.get_name(handle))
+        label.set_use_markup(True)
         label.set_alignment(0,0.5)
         label.show()
-        self.child.attach(label,3,4,self.row,self.row+1,
+        eventbox = gtk.EventBox()
+        eventbox.add(label)
+        eventbox.set_visible_window(False)
+        eventbox.connect('button-press-event',self.button_press,handle)
+        eventbox.show()
+        
+        self.child.attach(eventbox,3,4,self.row,self.row+1,
                           xoptions=gtk.EXPAND|gtk.FILL)
         button = self.make_edit_button(handle)
         self.child.attach(button,7,8,self.row,self.row+1,xoptions=0)
-        button = self.make_goto_button(handle)
-        self.child.attach(button,6,7,self.row,self.row+1,xoptions=0)
         self.row += 1
-        
+
+    def button_press(self,obj,event,handle):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+            self.dbstate.change_active_handle(handle)
+    
     def write_parents(self,family_handle):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         self.write_person(_('Father'),family.get_father_handle())
