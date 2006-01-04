@@ -1,3 +1,6 @@
+2006-01-04  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/FamilyView.py: Handle active person == None
+	
 2006-01-04  Don Allingham  <don@gramps-project.org>
 	* src/FamilyView.py: fix place == None problem
 

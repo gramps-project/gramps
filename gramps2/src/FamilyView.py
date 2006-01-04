@@ -85,8 +85,11 @@ class FamilyView(PageView.PageView):
         self.child.set_border_width(12)
         self.child.set_col_spacings(12)
         self.child.set_row_spacings(6)
+        self.vbox.pack_start(self.child,False)
 
         person = self.dbstate.db.get_person_from_handle(obj)
+        if not person:
+            return
         self.write_title(person)
 
         family_handle_list = person.get_parent_family_handle_list()
@@ -101,8 +104,7 @@ class FamilyView(PageView.PageView):
                 self.write_label(_('Family'))
                 self.write_family(family_handle)
         
-        self.child.show()
-        self.vbox.pack_start(self.child,False)
+        self.child.show_all()
 
     def make_button(self,handle,icon,func):
         image = gtk.Image()
