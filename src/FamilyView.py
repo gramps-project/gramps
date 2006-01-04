@@ -149,6 +149,8 @@ class FamilyView(PageView.PageView):
         eventbox.add(label)
         eventbox.set_visible_window(False)
         eventbox.connect('button-press-event',self.button_press,handle)
+        eventbox.connect('enter-notify-event',self.enter_text,handle)
+        eventbox.connect('leave-notify-event',self.leave_text,handle)
         eventbox.show()
         
         self.child.attach(eventbox,3,4,self.row,self.row+1,
@@ -160,6 +162,21 @@ class FamilyView(PageView.PageView):
     def button_press(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             self.dbstate.change_active_handle(handle)
+
+    def enter_text(self,obj,event,handle):
+        label = obj.child
+        label.set_text('<span foreground="blue" underline="single">%s</span>' %
+                     self.get_name(handle))
+        label.set_use_markup(True)
+
+    def leave_text(self,obj,event,handle):
+        label = obj.child
+        label.set_text('<span underline="single">%s</span>' %
+                       self.get_name(handle))
+        label.set_use_markup(True)
+
+    def make_enter_notify(self,handle):
+        return lambda x: self.enter_text(x,handle)
     
     def write_parents(self,family_handle):
         family = self.dbstate.db.get_family_from_handle(family_handle)
