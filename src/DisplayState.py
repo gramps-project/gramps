@@ -353,12 +353,16 @@ import RecentFiles
 import os
 
 class RecentDocsMenu:
-    def __init__(self,uimanager, state, fileopen):
+    def __init__(self,uistate, state, fileopen):
         self.action_group = gtk.ActionGroup('RecentFiles')
         self.active = DISABLED
-        self.uimanager = uimanager
+        self.uistate = uistate
+        self.uimanager = uistate.uimanager
         self.fileopen = fileopen
         self.state = state
+
+        menu_item = self.uimanager.get_widget('/MenuBar/FileMenu/OpenRecent')
+        self.uistate.set_open_recent_menu(menu_item.get_submenu())
 
     def load(self,item):
         name = item.get_path()
@@ -402,6 +406,9 @@ class RecentDocsMenu:
         self.uimanager.insert_action_group(self.action_group,1)
         self.active = self.uimanager.add_ui_from_string(f.getvalue())
         f.close()
+
+        menu_item = self.uistate.uimanager.get_widget('/MenuBar/FileMenu/OpenRecent')
+        self.uistate.set_open_recent_menu(menu_item.get_submenu())
 
 def make_callback(n,f):
     return lambda x: f(n)
@@ -529,6 +536,13 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.status_id = status.get_context_id('GRAMPS')
         self.phistory = History()
         self.gwm = GrampsWindowManager(uimanager)
+        self.widget = None
+
+    def set_open_widget(self,widget):
+        self.widget = widget
+
+    def set_open_recent_menu(self,menu):
+        self.widget.set_menu(menu)
 
     def push_message(self, text):
         self.status_text(text)
