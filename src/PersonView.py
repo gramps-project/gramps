@@ -102,8 +102,6 @@ class PersonView(PageView.PersonNavView):
                         callback=self.edit)
         self.add_action('Remove', gtk.STOCK_REMOVE, "_Remove",
                         callback=self.remove)
-        self.add_action('HomePerson', gtk.STOCK_HOME, "_Home",
-                        callback=self.home)
 
         self.add_toggle_action('Filter', None, '_Filter',
                                callback=self.filter_toggle)
