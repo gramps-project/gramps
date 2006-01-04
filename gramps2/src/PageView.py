@@ -162,6 +162,9 @@ class PersonNavView(PageView):
             ('Back',gtk.STOCK_GO_BACK,"_Back", None, None, self.back_clicked)
             ])
 
+        self.add_action('HomePerson', gtk.STOCK_HOME, "_Home",
+                        callback=self.home)
+
         self.add_action_group(self.back_action)
         self.add_action_group(self.fwd_action)
 

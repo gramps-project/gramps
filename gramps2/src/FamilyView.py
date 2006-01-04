@@ -6,6 +6,7 @@
 from gettext import gettext as _
 import gc
 import re
+import cgi
 
 #-------------------------------------------------------------------------
 #
@@ -29,10 +30,10 @@ import Utils
 import DateHandler
 import ImgManip
 
-class FamilyView(PageView.PageView):
+class FamilyView(PageView.PersonNavView):
 
     def __init__(self,dbstate,uistate):
-        PageView.PageView.__init__(self,'Pedigree View',dbstate,uistate)
+        PageView.PersonNavView.__init__(self,'Pedigree View',dbstate,uistate)
         dbstate.connect('database-changed',self.change_db)
         dbstate.connect('active-changed',self.change_person)
 
@@ -54,19 +55,40 @@ class FamilyView(PageView.PageView):
         self.scroll.add_with_viewport(self.vbox)
         return self.scroll
 
-    def navigation_type(self):
-        return PageView.NAVIGATION_PERSON
-
-    def define_actions(self):
-        pass
-
     def ui_definition(self):
         """
         Specifies the UIManager XML code that defines the menus and buttons
         associated with the interface.
         """
         return '''<ui>
+          <menubar name="MenuBar">
+            <menu action="GoMenu">
+              <placeholder name="CommonGo">
+                <menuitem action="Back"/>
+                <menuitem action="Forward"/>
+                <separator/>
+                <menuitem action="HomePerson"/>
+                <separator/>
+              </placeholder>
+            </menu>
+          </menubar>
+          <toolbar name="ToolBar">
+            <placeholder name="CommonNavigation">
+              <toolitem action="Back"/>  
+              <toolitem action="Forward"/>  
+              <toolitem action="HomePerson"/>
+            </placeholder>
+          </toolbar>
+          <popup name="Popup">
+            <menuitem action="Back"/>
+            <menuitem action="Forward"/>
+            <menuitem action="HomePerson"/>
+            <separator/>
+          </popup>
         </ui>'''
+
+    def define_actions(self):
+        PageView.PersonNavView.define_actions(self)
 
     def change_db(self,db):
         return
@@ -125,9 +147,12 @@ class FamilyView(PageView.PageView):
     def make_edit_button(self,handle):
         return self.make_button(handle,gtk.STOCK_EDIT,self.edit_person)
 
-    def write_title(self,person):        
-        label = gtk.Label('<span size="larger" weight="bold">%s</span>'
-                          % NameDisplay.displayer.display(person))
+    def write_title(self,person):
+
+        # name and edit button
+        name = NameDisplay.displayer.display(person)
+        text = '<span size="larger" weight="bold">%s</span>' % cgi.escape(name)
+        label = gtk.Label(text)
         label.set_use_markup(True)
         label.set_alignment(0,0.5)
         label.show()
@@ -139,38 +164,73 @@ class FamilyView(PageView.PageView):
         hbox.pack_start(label,False)
         hbox.pack_start(button,False)
 
+        # image
         image_list = person.get_media_list()
         if image_list:
-            print image_list
             mobj = self.dbstate.db.get_object_from_handle(image_list[0].ref)
             if mobj.get_mime_type()[0:5] == "image":
                 pixbuf = ImgManip.get_thumbnail_image(mobj.get_path())
                 image = gtk.Image()
                 image.set_from_pixbuf(pixbuf)
                 image.show()
-                self.child.attach(image,4,5,0,1)
+                self.child.attach(image,4,5,0,4)
+        self.child.attach(hbox,0,5,0,1)
+
+        # GRAMPS ID
+        self.row = 1
+
+        self.write_person_data("%s:" % _('ID'),person.gramps_id)
+
+        # birth/death events
+
+        birth_ref = person.get_birth_ref()
+        if birth_ref:
+            birth = self.dbstate.db.get_event_from_handle(birth_ref.ref)
+        else:
+            birth = None
+        self.write_person_event("%s:" % _('Birth'),birth)
         
-        self.child.attach(hbox,0,4,0,1)
-#        self.child.attach(button,4,5,0,1,xoptions=0)
+        death_ref = person.get_death_ref()
+        if death_ref:
+            death = self.dbstate.db.get_event_from_handle(death_ref.ref)
+        else:
+            death = None
+        self.write_person_event("%s:" % _('Death'),death)
+
+        # separator
         sep = gtk.HSeparator()
         sep.show()
-        self.child.attach(sep,0,5,1,2)
-        self.row = 2
+        self.child.attach(sep,0,5,4,5)
+        self.row = 5
 
-    def write_data(self,title):
+    def write_data(self,title,start_col=3,stop_col=5):
         label = gtk.Label(title)
         label.set_alignment(0,0.5)
         label.show()
-        self.child.attach(label,3,5,self.row,self.row+1,
+        self.child.attach(label,start_col,stop_col,self.row,self.row+1,
                           xoptions=gtk.EXPAND|gtk.FILL)
         self.row += 1
 
     def write_label(self,title):
-        label = gtk.Label('<span style="oblique" weight="bold">%s</span>' % title)
+        text = '<span style="oblique" weight="bold">%s</span>' % cgi.escape(title)
+        label = gtk.Label(text)
         label.set_use_markup(True)
         label.set_alignment(0,0.5)
         label.show()
         self.child.attach(label,1,5,self.row,self.row+1)
+        self.row += 1
+
+    def write_person_data(self,title,data):
+        label = gtk.Label(title)
+        label.set_alignment(0,0.5)
+        label.show()
+        self.child.attach(label,2,3,self.row,self.row+1,xoptions=gtk.FILL)
+
+        label = gtk.Label(data)
+        label.set_alignment(0,0.5)
+        label.show()
+        self.child.attach(label,3,4,self.row,self.row+1,
+                          xoptions=gtk.EXPAND|gtk.FILL)
         self.row += 1
 
     def write_person(self,title,handle):
@@ -179,14 +239,14 @@ class FamilyView(PageView.PageView):
         else:
             format = "%s"
 
-        label = gtk.Label(format % title)
+        label = gtk.Label(format % cgi.escape(title))
         label.set_use_markup(True)
         label.set_alignment(0,0.5)
         label.show()
         self.child.attach(label,2,3,self.row,self.row+1,xoptions=gtk.FILL)
 
-        label = gtk.Label('<span underline="single">%s</span>' %
-                          self.get_name(handle))
+        text = '<span underline="single">%s</span>' % cgi.escape(self.get_name(handle))
+        label = gtk.Label(text)
         label.set_use_markup(True)
         label.set_alignment(0,0.5)
         label.show()
@@ -215,14 +275,14 @@ class FamilyView(PageView.PageView):
 
     def enter_text(self,obj,event,handle):
         label = obj.child
-        label.set_text('<span foreground="blue" underline="single">%s</span>' %
-                     self.get_name(handle))
+        text = '<span foreground="blue" underline="single">%s</span>' % cgi.escape(self.get_name(handle))
+        label.set_text(text)
         label.set_use_markup(True)
 
     def leave_text(self,obj,event,handle):
+        text = '<span underline="single">%s</span>' % cgi.escape(self.get_name(handle))
         label = obj.child
-        label.set_text('<span underline="single">%s</span>' %
-                       self.get_name(handle))
+        label.set_text(text)
         label.set_use_markup(True)
 
     def make_enter_notify(self,handle):
@@ -232,6 +292,15 @@ class FamilyView(PageView.PageView):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         self.write_person(_('Father'),family.get_father_handle())
         self.write_person(_('Mother'),family.get_mother_handle())
+
+        active = self.dbstate.active.handle
+        
+        child_list = [handle for handle in family.get_child_handle_list() if handle != active]
+        label = _("Siblings")
+        if child_list:
+            for child in child_list:
+                self.write_person(label,child)
+                label = u""
 
     def write_relationship(self,family):
         rtype = family.get_relationship()
@@ -254,21 +323,72 @@ class FamilyView(PageView.PageView):
             event = self.dbstate.db.get_event_from_handle(handle)
             etype = event.get_type()
             if etype[0] == RelLib.Event.MARRIAGE:
-                dobj = event.get_date_object()
-                phandle = event.get_place_handle()
-                if phandle:
-                    pname = self.place_name(phandle)
-                else:
-                    pname = None
-                value = {
-                    'date' : DateHandler.displayer.display(dobj),
-                    'place' : pname,
-                    }
+                self.write_event_ref(_('Marriage'),event)
 
-                if phandle:
-                    self.write_data(_('Married: %(date)s in %(place)s') % value)
-                else:
-                    self.write_data(_('Married: %(date)s') % value)
+    def write_event_ref(self, ename, event,start_col=3,stop_col=5):
+        if event:
+            dobj = event.get_date_object()
+            phandle = event.get_place_handle()
+            if phandle:
+                pname = self.place_name(phandle)
+            else:
+                pname = None
+            date_str = DateHandler.displayer.display(dobj)
+
+            value = {
+                'date' : DateHandler.displayer.display(dobj),
+                'place' : pname,
+                'event_type' : ename,
+                }
+        else:
+            pname = None
+            dobj = None
+            value = {
+                'event_type' : ename,
+                }
+
+        if dobj:
+            if pname:
+                self.write_data(_('%(event_type)s: %(date)s in %(place)s') %
+                                value,start_col,stop_col)
+            else:
+                self.write_data(_('%(event_type)s: %(date)s') % value,
+                                start_col, stop_col)
+        elif pname:
+            self.write_data(_('%(event_type)s: %(place)s') % value,
+                            start_col,stop_col)
+        else:
+            self.write_data(_('%(event_type)s:') % value,
+                            start_col, stop_col)
+
+    def write_person_event(self, ename, event):
+        if event:
+            dobj = event.get_date_object()
+            phandle = event.get_place_handle()
+            if phandle:
+                pname = self.place_name(phandle)
+            else:
+                pname = None
+            date_str = DateHandler.displayer.display(dobj)
+
+            value = {
+                'date' : DateHandler.displayer.display(dobj),
+                'place' : pname,
+                }
+        else:
+            pname = None
+            dobj = None
+
+        if dobj:
+            if pname:
+                self.write_person_data(ename,
+                                       _('%(date)s in %(place)s') % value)
+            else:
+                self.write_person_data(ename,'%(date)s' % value)
+        elif pname:
+            self.write_person_data(ename,pname)
+        else:
+            self.write_person_data(ename,'')
 
     def write_family(self,family_handle):
         family = self.dbstate.db.get_family_from_handle(family_handle)
