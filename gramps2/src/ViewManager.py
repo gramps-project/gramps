@@ -134,7 +134,6 @@ uidefault = '''<ui>
 </menubar>
 <toolbar name="ToolBar">
   <toolitem action="New"/>  
-  <toolitem action="Open"/>  
   <separator/>
   <placeholder name="CommonNavigation"/>
   <separator/>
@@ -210,9 +209,17 @@ class ViewManager:
         self.uistate = DisplayState.DisplayState(self.window, self.statusbar,
                                                  self.uimanager, self.state)
 
+        toolbar = self.uimanager.get_widget('/ToolBar')
+        openbtn = gtk.MenuToolButton(gtk.STOCK_OPEN)
+        openbtn.show()
+        openbtn.connect('clicked',self.open_activate)
+        openbtn.set_sensitive(False)
+        self.uistate.set_open_widget(openbtn)
+        toolbar.insert(openbtn,1)
+
         person_nav = Navigation.PersonNavigation(self.uistate)
         self.navigation_type[PageView.NAVIGATION_PERSON] = (person_nav,None)
-        self.recent_manager = DisplayState.RecentDocsMenu(self.uimanager,self.state,
+        self.recent_manager = DisplayState.RecentDocsMenu(self.uistate,self.state,
                                                           self.read_file)
         self.recent_manager.build()
         self.window.show()
@@ -226,6 +233,7 @@ class ViewManager:
         self.build_tools_menu()
         self.build_report_menu()
         self.fileactions.set_sensitive(True)
+        self.uistate.widget.set_sensitive(True)
 
     def load_plugins(self):
         self.uistate.status_text(_('Loading document formats...'))
@@ -315,6 +323,7 @@ class ViewManager:
             ])
 
         merge_id = self.uimanager.add_ui_from_string(uidefault)
+        
         self.uimanager.insert_action_group(self.fileactions,1)
         self.uimanager.insert_action_group(self.actiongroup,1)
 
