@@ -27,6 +27,7 @@ import DisplayTrace
 import NameDisplay
 import Utils
 import DateHandler
+import ImgManip
 
 class FamilyView(PageView.PageView):
 
@@ -128,10 +129,30 @@ class FamilyView(PageView.PageView):
         label.set_use_markup(True)
         label.set_alignment(0,0.5)
         label.show()
-        self.child.attach(label,0,4,0,1)
         button = self.make_edit_button(person.handle)
-        self.child.attach(button,4,5,0,1,xoptions=0)
-        self.child.attach(gtk.HSeparator(),0,5,1,2)
+
+        hbox = gtk.HBox()
+        hbox.set_spacing(6)
+        hbox.show()
+        hbox.pack_start(label,False)
+        hbox.pack_start(button,False)
+
+        image_list = person.get_media_list()
+        if image_list:
+            print image_list
+            mobj = self.dbstate.db.get_object_from_handle(image_list[0].ref)
+            if mobj.get_mime_type()[0:5] == "image":
+                pixbuf = ImgManip.get_thumbnail_image(mobj.get_path())
+                image = gtk.Image()
+                image.set_from_pixbuf(pixbuf)
+                image.show()
+                self.child.attach(image,4,5,0,1)
+        
+        self.child.attach(hbox,0,4,0,1)
+#        self.child.attach(button,4,5,0,1,xoptions=0)
+        sep = gtk.HSeparator()
+        sep.show()
+        self.child.attach(sep,0,5,1,2)
         self.row = 2
 
     def write_data(self,title):
@@ -232,12 +253,20 @@ class FamilyView(PageView.PageView):
             etype = event.get_type()
             if etype[0] == RelLib.Event.MARRIAGE:
                 dobj = event.get_date_object()
-                pname = self.place_name(event.get_place_handle())
+                phandle = event.get_place_handle()
+                if phandle:
+                    pname = self.place_name(phandle)
+                else:
+                    phandle = None
                 value = {
                     'date' : DateHandler.displayer.display(dobj),
                     'place' : pname,
                     }
-                self.write_data(_('Married: %(date)s in %(place)s') % value)
+
+                if phandle:
+                    self.write_data(_('Married: %(date)s in %(place)s') % value)
+                else:
+                    self.write_data(_('Married: %(date)s') % value)
 
     def write_family(self,family_handle):
         family = self.dbstate.db.get_family_from_handle(family_handle)
