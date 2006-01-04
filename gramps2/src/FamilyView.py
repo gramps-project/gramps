@@ -257,7 +257,7 @@ class FamilyView(PageView.PageView):
                 if phandle:
                     pname = self.place_name(phandle)
                 else:
-                    phandle = None
+                    pname = None
                 value = {
                     'date' : DateHandler.displayer.display(dobj),
                     'place' : pname,
