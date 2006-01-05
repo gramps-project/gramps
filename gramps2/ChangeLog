@@ -1,3 +1,13 @@
+2006-01-05  Alex Roitman  <shura@gramps-project.org>
+	* doc/man, doc/man/fr: Add directories.
+	* doc/man/Makefile.am, doc/man/fr/Makefile.am: Add files to CVS.
+	* configure: Generate makefiles for new directories.
+	* doc/man/gramps.1.in: move from doc.
+	* doc/Makefile.am: Remove stuff related to man pages.
+
+2006-01-05  Jérôme Rapinat  <romjerome@yahoo.fr>
+	* doc/man/fr/gramps.1.in: Add translated manpage.
+
 2006-01-05  Stefan Bjork  <skalman@acc.umu.se>
 	* src/po/sv.po: Updates.
 

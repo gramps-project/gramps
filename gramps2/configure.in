@@ -259,6 +259,8 @@ src/data/Makefile
 src/data/templates/Makefile
 src/po/Makefile
 doc/Makefile
+doc/man/Makefile
+doc/man/fr/Makefile
 doc/gramps-manual/Makefile
 doc/gramps-manual/C/Makefile	
 doc/gramps-manual/fr/Makefile	
