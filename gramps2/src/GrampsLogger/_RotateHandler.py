@@ -31,6 +31,16 @@ class RotateHandler(logging.Handler):
         return [record for record in self._buffer[self._index:] + self._buffer[:self._index]
                 if record is not None]
 
+    def get_formatted_log(self):
+        """
+        Return the log buffer after it has been formatted.
+
+        Returns a list of strings.
+        """
+
+        return [self.format(record) for record in self._buffer[self._index:] + self._buffer[:self._index]
+                if record is not None]
+
     def set_capacity(self,capacity):
         """
         Set the number of log records that will be stored.
