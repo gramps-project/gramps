@@ -30,6 +30,70 @@ import Utils
 import DateHandler
 import ImgManip
 
+
+class LinkLabel(gtk.EventBox):
+
+    def __init__(self,label,func,handle):
+        gtk.EventBox.__init__(self)
+        self.orig_text = cgi.escape(label)
+        text = '<span underline="single">%s</span>' % self.orig_text
+        
+        self.label = gtk.Label(text)
+        self.label.set_use_markup(True)
+        self.label.set_alignment(0,0.5)
+
+        self.add(self.label)
+        self.set_visible_window(False)
+
+        self.connect('button-press-event',func,handle)
+        self.connect('enter-notify-event',self.enter_text,handle)
+        self.connect('leave-notify-event',self.leave_text,handle)
+        
+    def enter_text(self,obj,event,handle):
+        text = '<span foreground="blue" underline="single">%s</span>' % self.orig_text
+        self.label.set_text(text)
+        self.label.set_use_markup(True)
+
+    def leave_text(self,obj,event,handle):
+        text = '<span underline="single">%s</span>' % self.orig_text
+        self.label.set_text(text)
+        self.label.set_use_markup(True)
+        
+class IconButton(gtk.EventBox):
+
+    def __init__(self,func,handle):
+        gtk.EventBox.__init__(self)
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_EDIT,gtk.ICON_SIZE_MENU)
+        image.show()
+        self.add(image)
+        self.show()
+        self.connect('button-press-event',func,handle)
+        
+class LinkBox(gtk.HBox):
+
+    def __init__(self,link,button):
+        gtk.HBox.__init__(self)
+        self.set_spacing(6)
+        self.pack_start(link,False)
+        self.pack_start(button,False)
+        self.show()
+
+class BasicLabel(gtk.Label):
+
+    def __init__(self,text):
+        gtk.Label.__init__(self,text)
+        self.set_alignment(0,0.5)
+        self.show()
+
+class MarkupLabel(gtk.Label):
+
+    def __init__(self,text):
+        gtk.Label.__init__(self,text)
+        self.set_alignment(0,0.5)
+        self.set_use_markup(True)
+        self.show()
+
 class FamilyView(PageView.PersonNavView):
 
     def __init__(self,dbstate,uistate):
@@ -91,7 +155,9 @@ class FamilyView(PageView.PersonNavView):
         PageView.PersonNavView.define_actions(self)
 
     def change_db(self,db):
-        return
+        if self.child:
+            self.vbox.remove(self.child)
+            self.child = None
 
     def get_name(self,handle):
         if handle:
@@ -103,7 +169,7 @@ class FamilyView(PageView.PersonNavView):
     def change_person(self,obj):
         if self.child:
             self.vbox.remove(self.child)
-        self.child = gtk.Table(20,5)
+        self.child = gtk.Table(20,6)
         self.child.set_border_width(12)
         self.child.set_col_spacings(12)
         self.child.set_row_spacings(6)
@@ -128,41 +194,15 @@ class FamilyView(PageView.PersonNavView):
         
         self.child.show_all()
 
-    def make_button(self,handle,icon,func):
-        image = gtk.Image()
-        image.set_from_stock(icon,gtk.ICON_SIZE_MENU)
-        image.show()
-        eventbox = gtk.EventBox()
-        eventbox.add(image)
-        eventbox.show()
-        eventbox.connect('button-press-event',self.edit_button_press,handle)
-        return eventbox
-
-    def edit_button_press(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
-            import EditPerson
-            person = self.dbstate.db.get_person_from_handle(handle)
-            EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
-        
-    def make_edit_button(self,handle):
-        return self.make_button(handle,gtk.STOCK_EDIT,self.edit_person)
-
     def write_title(self,person):
 
         # name and edit button
         name = NameDisplay.displayer.display(person)
         text = '<span size="larger" weight="bold">%s</span>' % cgi.escape(name)
-        label = gtk.Label(text)
-        label.set_use_markup(True)
-        label.set_alignment(0,0.5)
-        label.show()
-        button = self.make_edit_button(person.handle)
+        label = MarkupLabel(text)
+        button = IconButton(self.edit_button_press,person.handle)
 
-        hbox = gtk.HBox()
-        hbox.set_spacing(6)
-        hbox.show()
-        hbox.pack_start(label,False)
-        hbox.pack_start(button,False)
+        hbox = LinkBox(label,button)
 
         # image
         image_list = person.get_media_list()
@@ -173,8 +213,8 @@ class FamilyView(PageView.PersonNavView):
                 image = gtk.Image()
                 image.set_from_pixbuf(pixbuf)
                 image.show()
-                self.child.attach(image,4,5,0,4)
-        self.child.attach(hbox,0,5,0,1)
+                self.child.attach(image,5,6,0,4)
+        self.child.attach(hbox,0,5,0,1,gtk.FILL|gtk.EXPAND)
 
         # GRAMPS ID
         self.row = 1
@@ -200,36 +240,23 @@ class FamilyView(PageView.PersonNavView):
         # separator
         sep = gtk.HSeparator()
         sep.show()
-        self.child.attach(sep,0,5,4,5)
+        self.child.attach(sep,0,6,4,5)
         self.row = 5
 
     def write_data(self,title,start_col=3,stop_col=5):
-        label = gtk.Label(title)
-        label.set_alignment(0,0.5)
-        label.show()
-        self.child.attach(label,start_col,stop_col,self.row,self.row+1,
+        self.child.attach(BasicLabel(title),start_col,stop_col,self.row,self.row+1,
                           xoptions=gtk.EXPAND|gtk.FILL)
         self.row += 1
 
     def write_label(self,title):
         text = '<span style="oblique" weight="bold">%s</span>' % cgi.escape(title)
-        label = gtk.Label(text)
-        label.set_use_markup(True)
-        label.set_alignment(0,0.5)
-        label.show()
+        label = MarkupLabel(text)
         self.child.attach(label,1,5,self.row,self.row+1)
         self.row += 1
 
     def write_person_data(self,title,data):
-        label = gtk.Label(title)
-        label.set_alignment(0,0.5)
-        label.show()
-        self.child.attach(label,2,3,self.row,self.row+1,xoptions=gtk.FILL)
-
-        label = gtk.Label(data)
-        label.set_alignment(0,0.5)
-        label.show()
-        self.child.attach(label,3,4,self.row,self.row+1,
+        self.child.attach(BasicLabel(title),2,3,self.row,self.row+1,xoptions=gtk.FILL)
+        self.child.attach(BasicLabel(data),3,5,self.row,self.row+1,
                           xoptions=gtk.EXPAND|gtk.FILL)
         self.row += 1
 
@@ -239,33 +266,27 @@ class FamilyView(PageView.PersonNavView):
         else:
             format = "%s"
 
-        label = gtk.Label(format % cgi.escape(title))
-        label.set_use_markup(True)
-        label.set_alignment(0,0.5)
-        label.show()
+        label = MarkupLabel(format % cgi.escape(title))
         self.child.attach(label,2,3,self.row,self.row+1,xoptions=gtk.FILL)
 
-        text = '<span underline="single">%s</span>' % cgi.escape(self.get_name(handle))
-        label = gtk.Label(text)
-        label.set_use_markup(True)
-        label.set_alignment(0,0.5)
-        label.show()
-        eventbox = gtk.EventBox()
-        eventbox.add(label)
-        eventbox.set_visible_window(False)
-        eventbox.connect('button-press-event',self.button_press,handle)
-        eventbox.connect('enter-notify-event',self.enter_text,handle)
-        eventbox.connect('leave-notify-event',self.leave_text,handle)
-        eventbox.show()
+        link_label = LinkLabel(self.get_name(handle),self.button_press,handle)
+        button = IconButton(self.edit_button_press,handle)
+        self.child.attach(LinkBox(link_label,button),3,5,self.row,self.row+1,
+                          xoptions=gtk.EXPAND|gtk.FILL)
+        self.row += 1
 
-        button = self.make_edit_button(handle)
+    def write_child(self,title,handle):
+        if title:
+            format = '<span weight="bold">%s: </span>'
+        else:
+            format = "%s"
 
-        box = gtk.HBox()
-        box.set_spacing(6)
-        box.pack_start(eventbox,False)
-        box.pack_start(button,False)
-        box.show()
-        self.child.attach(box,3,4,self.row,self.row+1,
+        label = MarkupLabel(format % cgi.escape(title))
+        self.child.attach(label,3,4,self.row,self.row+1,xoptions=gtk.FILL)
+
+        link_label = LinkLabel(self.get_name(handle),self.button_press,handle)
+        button = IconButton(self.edit_button_press,handle)
+        self.child.attach(LinkBox(link_label,button),4,5,self.row,self.row+1,
                           xoptions=gtk.EXPAND|gtk.FILL)
         self.row += 1
 
@@ -273,21 +294,6 @@ class FamilyView(PageView.PersonNavView):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             self.dbstate.change_active_handle(handle)
 
-    def enter_text(self,obj,event,handle):
-        label = obj.child
-        text = '<span foreground="blue" underline="single">%s</span>' % cgi.escape(self.get_name(handle))
-        label.set_text(text)
-        label.set_use_markup(True)
-
-    def leave_text(self,obj,event,handle):
-        text = '<span underline="single">%s</span>' % cgi.escape(self.get_name(handle))
-        label = obj.child
-        label.set_text(text)
-        label.set_use_markup(True)
-
-    def make_enter_notify(self,handle):
-        return lambda x: self.enter_text(x,handle)
-    
     def write_parents(self,family_handle):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         self.write_person(_('Father'),family.get_father_handle())
@@ -299,7 +305,7 @@ class FamilyView(PageView.PersonNavView):
         label = _("Siblings")
         if child_list:
             for child in child_list:
-                self.write_person(label,child)
+                self.write_child(label,child)
                 label = u""
 
     def write_relationship(self,family):
@@ -406,9 +412,15 @@ class FamilyView(PageView.PersonNavView):
         label = _("Children")
         if child_list:
             for child in child_list:
-                self.write_person(label,child)
+                self.write_child(label,child)
                 label = u""
 
+    def edit_button_press(self, obj, event, handle):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+            import EditPerson
+            person = self.dbstate.db.get_person_from_handle(handle)
+            EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
+        
     def edit_person(self,obj,handle):
         import EditPerson
         person = self.dbstate.db.get_person_from_handle(handle)
