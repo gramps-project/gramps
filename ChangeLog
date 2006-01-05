@@ -1,4 +1,10 @@
 2006-01-05 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/GrampsLogger/__init__.py: added package interface
+	* src/GrampsLogger/_ErrorReportAssistant.py: enable rotate_handler output
+	* src/GrampsLogger/_RotateHandler.py: enable rotate_handler output
+	* test/GrampsLogger/GtkHandler_Test.py: add test for rotate_handler output
+	
+2006-01-05 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/Assistant.py: added callback support for pages
 	* src/GrampsLogger/_ErrorReportAssistant.py src/GrampsLogger/_ErrorView.py
 	  src/GrampsLogger/_GtkHandler.py  src/GrampsLogger/_RotateHandler.py

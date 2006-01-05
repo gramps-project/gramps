@@ -89,7 +89,9 @@ class ErrorReportAssistant:
         textview = gtk.TextView()
 
         self._error_details_text_buffer = textview.get_buffer()
-        self._error_details_text_buffer.set_text(self._error_detail)
+        self._error_details_text_buffer.set_text("\n".join(self._rotate_handler.get_formatted_log()) +
+                                                 "\n\n" + 
+                                                 self._error_detail)
             
         sw.add(textview)
         sw.show()
@@ -117,7 +119,8 @@ class ErrorReportAssistant:
         textview = gtk.TextView()
 
         self._sys_information_text_buffer = textview.get_buffer()
-        self._sys_information_text_buffer.set_text(self._get_sys_information())
+        self._sys_information_text_buffer.set_text(
+            self._get_sys_information())
             
         sw.add(textview)
         sw.show()
