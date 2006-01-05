@@ -29,14 +29,16 @@ import NameDisplay
 import Utils
 import DateHandler
 import ImgManip
-
+import ReportUtils
 
 class LinkLabel(gtk.EventBox):
 
     def __init__(self,label,func,handle):
         gtk.EventBox.__init__(self)
-        self.orig_text = cgi.escape(label)
+        self.orig_text = cgi.escape(label[0])
         text = '<span underline="single">%s</span>' % self.orig_text
+        if label[1]:
+            text += u" %s" % label[1]
         
         self.label = gtk.Label(text)
         self.label.set_use_markup(True)
@@ -159,12 +161,19 @@ class FamilyView(PageView.PersonNavView):
             self.vbox.remove(self.child)
             self.child = None
 
-    def get_name(self,handle):
+    def get_name(self,handle,use_gender=False):
         if handle:
             p = self.dbstate.db.get_person_from_handle(handle)
-            return NameDisplay.displayer.display(p)
+            name = NameDisplay.displayer.display(p)
+            gender = ""
+            if use_gender:
+                if p.gender == RelLib.Person.MALE:
+                    gender = u" \u2642"
+                elif p.gender == RelLib.Person.FEMALE:
+                    gender = u" \u2640"
+            return (name,gender)
         else:
-            return _(u"Unknown")
+            return _(u"Unknown","")
 
     def change_person(self,obj):
         if self.child:
@@ -269,7 +278,7 @@ class FamilyView(PageView.PersonNavView):
         label = MarkupLabel(format % cgi.escape(title))
         self.child.attach(label,2,3,self.row,self.row+1,xoptions=gtk.FILL)
 
-        link_label = LinkLabel(self.get_name(handle),self.button_press,handle)
+        link_label = LinkLabel(self.get_name(handle,True),self.button_press,handle)
         button = IconButton(self.edit_button_press,handle)
         self.child.attach(LinkBox(link_label,button),3,5,self.row,self.row+1,
                           xoptions=gtk.EXPAND|gtk.FILL)
@@ -284,11 +293,36 @@ class FamilyView(PageView.PersonNavView):
         label = MarkupLabel(format % cgi.escape(title))
         self.child.attach(label,3,4,self.row,self.row+1,xoptions=gtk.FILL)
 
-        link_label = LinkLabel(self.get_name(handle),self.button_press,handle)
+        link_label = LinkLabel(self.get_name(handle,True),self.button_press,handle)
         button = IconButton(self.edit_button_press,handle)
         self.child.attach(LinkBox(link_label,button),4,5,self.row,self.row+1,
                           xoptions=gtk.EXPAND|gtk.FILL)
+
         self.row += 1
+
+        value = self.info_string(handle)
+        if value:
+            self.child.attach(BasicLabel(value),4,5,self.row, self.row+1)
+            self.row += 1
+        
+
+    def info_string(self,handle):
+        child = self.dbstate.db.get_person_from_handle(handle)
+        birth_ref = child.get_birth_ref()
+        death_ref = child.get_death_ref()
+        value = None
+        if birth_ref or death_ref:
+            info = ReportUtils.get_birth_death_strings(self.dbstate.db,child)
+            bdate = info[0]
+            ddate = info[4]
+            if bdate and ddate:
+                value = _("b. %s, d. %s") % (bdate,ddate)
+            elif bdate:
+                value = _("b. %s") % (bdate)
+            elif ddate:
+                value = _("d. %s") % (ddate)
+        return value
+        
 
     def button_press(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
@@ -297,7 +331,15 @@ class FamilyView(PageView.PersonNavView):
     def write_parents(self,family_handle):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         self.write_person(_('Father'),family.get_father_handle())
+        value = self.info_string(family.get_father_handle())
+        if value:
+            self.child.attach(BasicLabel(value),3,5,self.row, self.row+1)
+            self.row += 1
         self.write_person(_('Mother'),family.get_mother_handle())
+        value = self.info_string(family.get_mother_handle())
+        if value:
+            self.child.attach(BasicLabel(value),3,5,self.row, self.row+1)
+            self.row += 1
 
         active = self.dbstate.active.handle
         
@@ -401,10 +443,16 @@ class FamilyView(PageView.PersonNavView):
         father_handle = family.get_father_handle()
         mother_handle = family.get_mother_handle()
         if self.dbstate.active.handle == father_handle:
-            self.write_person(_('Spouse'),mother_handle)
+            handle = mother_handle
         else:
-            self.write_person(_('Spouse'),father_handle)
+            handle = father_handle
 
+        self.write_person(_('Spouse'),handle)
+
+        value = self.info_string(handle)
+        if value:
+            self.child.attach(BasicLabel(value),3,5,self.row, self.row+1)
+            self.row += 1
         self.write_relationship(family)
         self.write_marriage(family)
         
