@@ -40,6 +40,7 @@ class Assistant:
 
         self.current_page = 0
         self.max_page = 1
+        self.page_callbacks = {}
         
         self.window = gtk.Window()
         titlebox = gtk.HBox()
@@ -100,6 +101,8 @@ class Assistant:
         self.next.set_use_stock(True)
         self.cancel.show()
 
+        self.call_page_callback()
+
     def next_clicked(self,obj):
         if self.current_page == self.max_page:
             self.complete()
@@ -120,6 +123,15 @@ class Assistant:
                 self.back.set_sensitive(True)
                 self.cancel.show()
 
+            self.call_page_callback()
+            
+    def call_page_callback(self):
+        # If the page has a callback then call it.
+        if self.page_callbacks.has_key(
+            self.notebook.get_nth_page(self.notebook.get_current_page())):
+            self.page_callbacks[
+                self.notebook.get_nth_page(self.notebook.get_current_page())]()
+
     def set_intro(self,text):
         hbox = gtk.HBox(spacing=12)
         image = gtk.Image()
@@ -133,10 +145,12 @@ class Assistant:
     def set_conclusion(self,title,text):
         self.conclude_text = text
 
-    def add_page(self, title, child):
+    def add_page(self, title, child, callback=None):
         self.title_text.append(_format % title)
         self.notebook.append_page(child)
         self.max_page += 1
+        if callback is not None:
+            self.page_callbacks[child] = callback
 
     def show(self):
         self.title_text.append(_format % _('Finished'))
@@ -150,6 +164,9 @@ class Assistant:
         self.notebook.append_page(hbox)
         self.window.show_all()
         self.notebook.set_current_page(0)
+
+        self.call_page_callback()
+
 
     def destroy(self):
         self.window.destroy()

@@ -1,3 +1,10 @@
+2006-01-05 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/Assistant.py: added callback support for pages
+	* src/GrampsLogger/_ErrorReportAssistant.py src/GrampsLogger/_ErrorView.py
+	  src/GrampsLogger/_GtkHandler.py  src/GrampsLogger/_RotateHandler.py
+	  test/GrampsLogger/GtkHandler_Test.py  test/GrampsLogger/RotateLogger_Test.py:
+	added initial logging and error reporting framework.
+	
 2006-01-04  Don Allingham  <don@gramps-project.org>
 	* src/FamilyView.py: Incorporate Steve Hall's identing ideas, general classes
 	* src/DisplayView.py: Open/OpenRecent MenuToolButton goodness :-)
