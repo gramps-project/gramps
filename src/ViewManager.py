@@ -160,6 +160,7 @@ class ViewManager:
         self.views = []
         self.pages = []
         self.window = gtk.Window()
+        self.window.set_icon_from_file(const.icon)
         self.window.connect('destroy', self.quit)
 
         try:
