@@ -36,6 +36,7 @@ class LinkLabel(gtk.EventBox):
     def __init__(self,label,func,handle):
         gtk.EventBox.__init__(self)
         self.orig_text = cgi.escape(label[0])
+        self.gender = label[1]
         text = '<span underline="single">%s</span>' % self.orig_text
         if label[1]:
             text += u" %s" % label[1]
@@ -53,11 +54,15 @@ class LinkLabel(gtk.EventBox):
         
     def enter_text(self,obj,event,handle):
         text = '<span foreground="blue" underline="single">%s</span>' % self.orig_text
+        if self.gender:
+            text += u" %s" % self.gender
         self.label.set_text(text)
         self.label.set_use_markup(True)
 
     def leave_text(self,obj,event,handle):
         text = '<span underline="single">%s</span>' % self.orig_text
+        if self.gender:
+            text += u" %s" % self.gender
         self.label.set_text(text)
         self.label.set_use_markup(True)
         
@@ -171,6 +176,8 @@ class FamilyView(PageView.PersonNavView):
                     gender = u" \u2642"
                 elif p.gender == RelLib.Person.FEMALE:
                     gender = u" \u2640"
+                else:
+                    gender = u" \u2650"
             return (name,gender)
         else:
             return _(u"Unknown","")
@@ -192,13 +199,11 @@ class FamilyView(PageView.PersonNavView):
         family_handle_list = person.get_parent_family_handle_list()
         for (family_handle,mrel,frel) in family_handle_list:
             if family_handle:
-                self.write_label(_('Parents'))
                 self.write_parents(family_handle)
 
         family_handle_list = person.get_family_handle_list()
         for family_handle in family_handle_list:
             if family_handle:
-                self.write_label(_('Family'))
                 self.write_family(family_handle)
         
         self.child.show_all()
