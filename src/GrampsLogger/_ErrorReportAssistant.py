@@ -32,10 +32,13 @@ class ErrorReportAssistant:
                            "exactly what information is being sent."))
 
 
-        self.w.add_page(_("Error Details"), self.build_page2())
-        self.w.add_page(_("System Information"), self.build_page3())
-        self.w.add_page(_("Further Information"), self.build_page4())
-        self.w.add_page(_("Summary"), self.build_page5(),self.page5_update)
+        self.w.add_page(_("Error Details"), self.build_page1())
+        self.w.add_page(_("System Information"), self.build_page2())
+        self.w.add_page(_("Further Information"), self.build_page3())
+        
+        page4 = self.build_page4()
+        self.w.add_page(_("Summary"), page4)
+        self.cb = {4:self.page4_update}
 
         self.w.set_conclusion(_('Complete'),
                               _('The error report will be copied to your clipboard when you click OK. \n'
@@ -45,8 +48,14 @@ class ErrorReportAssistant:
                                 'depends on the users. User feedback is important. '
                                 'Thankyou for taking the time to submit a bug report.'))
 
+        self.w.connect('page-changed',self.on_page_changed)
+
         self.w.show()
 
+    def on_page_changed(self,obj,page,data=None):
+        if self.cb.has_key(page):
+            self.cb[page]()
+            
     def complete(self):
         clipboard = gtk.Clipboard()
         clipboard.set_text(
@@ -70,7 +79,7 @@ class ErrorReportAssistant:
                   os.uname()[0],
                   os.uname()[2])
 
-    def build_page2(self):
+    def build_page1(self):
 
         box = gtk.VBox()
 
@@ -102,7 +111,7 @@ class ErrorReportAssistant:
 
         return box
 
-    def build_page3(self):
+    def build_page2(self):
 
         box = gtk.VBox()
 
@@ -131,7 +140,7 @@ class ErrorReportAssistant:
 
         return box
 
-    def build_page4(self):
+    def build_page3(self):
 
         box = gtk.VBox()
 
@@ -158,7 +167,7 @@ class ErrorReportAssistant:
         return box
 
 
-    def build_page5(self):
+    def build_page4(self):
 
         box = gtk.VBox()
 
@@ -190,7 +199,7 @@ class ErrorReportAssistant:
 
         return box
 
-    def page5_update(self):
+    def page4_update(self):
 
         self._final_report_text_buffer.set_text(
             "System Information: \n\n" +

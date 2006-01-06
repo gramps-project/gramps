@@ -22,6 +22,7 @@ from gettext import gettext as _
 
 import gtk
 import gtk.gdk
+import gobject
 
 import const
 
@@ -29,9 +30,28 @@ _gramps_png = "%s/gramps.png" % const.rootDir
 _splash_jpg = "%s/splash.jpg" % const.rootDir
 _format = '<span weight="bold" size="xx-large">%s</span>'
 
-class Assistant:
+class Assistant(gtk.Object):
+    """ A tabbed dialog box used to implement Assistant interfaces."""
 
+    __gproperties__ = {}
+
+    __gsignals__ = { 'page-changed' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
+                                         (gobject.TYPE_INT,)),
+                     'before-page-next' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
+                                              (gobject.TYPE_INT,)),
+                     'after-page-next' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
+                                              (gobject.TYPE_INT,)),
+                     'before-page-back' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
+                                              (gobject.TYPE_INT,)),
+                     'after-page-back' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
+                                              (gobject.TYPE_INT,)),
+                     'complete' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
+                                              ())
+                     }
+    
     def __init__(self,title,complete):
+        gobject.GObject.__init__(self)
+         
         self.complete = complete
         self.fg_color = gtk.gdk.color_parse('#7d684a')
         self.bg_color = gtk.gdk.color_parse('#e1dbc5')
@@ -40,7 +60,6 @@ class Assistant:
 
         self.current_page = 0
         self.max_page = 1
-        self.page_callbacks = {}
         
         self.window = gtk.Window()
         titlebox = gtk.HBox()
@@ -85,11 +104,21 @@ class Assistant:
 
         self.window.add(vbox)
 
+    def do_get_property(self, prop):
+        '''Return the gproperty's value.'''
+        raise AttributeError, 'unknown property %s' % prop.name
+
+    def do_set_property(self, prop, value):
+        '''Set the property of writable properties.'''
+        raise AttributeError, 'unknown or read only property %s' % prop.name
+
+
     def update_title(self):
         self.title.set_label(self.title_text[self.current_page])
         self.title.set_use_markup(True)
     
     def back_clicked(self,obj):
+        self.emit('before-page-back',self.notebook.get_current_page())
         if self.current_page == 1:
             self.back.show()
             self.back.set_sensitive(False)
@@ -100,11 +129,14 @@ class Assistant:
         self.next.set_label(gtk.STOCK_GO_FORWARD)
         self.next.set_use_stock(True)
         self.cancel.show()
-
-        self.call_page_callback()
+        
+        self.emit('after-page-back',self.notebook.get_current_page())
+        self.emit('page-changed',self.notebook.get_current_page())
 
     def next_clicked(self,obj):
+        self.emit('before-page-next',self.notebook.get_current_page())
         if self.current_page == self.max_page:
+            self.emit('complete')
             self.complete()
             self.window.destroy()
         else:
@@ -123,14 +155,8 @@ class Assistant:
                 self.back.set_sensitive(True)
                 self.cancel.show()
 
-            self.call_page_callback()
-            
-    def call_page_callback(self):
-        # If the page has a callback then call it.
-        if self.page_callbacks.has_key(
-            self.notebook.get_nth_page(self.notebook.get_current_page())):
-            self.page_callbacks[
-                self.notebook.get_nth_page(self.notebook.get_current_page())]()
+        self.emit('after-page-next',self.notebook.get_current_page())
+        self.emit('page-changed',self.notebook.get_current_page())
 
     def set_intro(self,text):
         hbox = gtk.HBox(spacing=12)
@@ -145,12 +171,10 @@ class Assistant:
     def set_conclusion(self,title,text):
         self.conclude_text = text
 
-    def add_page(self, title, child, callback=None):
+    def add_page(self, title, child):
         self.title_text.append(_format % title)
         self.notebook.append_page(child)
         self.max_page += 1
-        if callback is not None:
-            self.page_callbacks[child] = callback
 
     def show(self):
         self.title_text.append(_format % _('Finished'))
@@ -164,13 +188,16 @@ class Assistant:
         self.notebook.append_page(hbox)
         self.window.show_all()
         self.notebook.set_current_page(0)
-
-        self.call_page_callback()
+        
+        self.emit('page-changed',self.notebook.get_current_page())
 
 
     def destroy(self):
         self.window.destroy()
-        
+
+if gtk.pygtk_version < (2,8,0):
+    gobject.type_register(Assistant)
+
 if __name__ == "__main__":
 
     def complete():
