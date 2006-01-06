@@ -860,7 +860,7 @@ class GrampsBSDDB(GrampsDbBase):
         # Start BSD DB transaction -- DBTxn
         self.txn = self.env.txn_begin()
 
-        return GrampsDbBase.transaction_begin(sef,msg)
+        return GrampsDbBase.transaction_begin(self,msg)
 
     def transaction_commit(self,transaction,msg):
 
