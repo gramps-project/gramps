@@ -30,6 +30,7 @@ import Utils
 import DateHandler
 import ImgManip
 import ReportUtils
+import GrampsKeys
 
 class LinkLabel(gtk.EventBox):
 
@@ -107,6 +108,12 @@ class FamilyView(PageView.PersonNavView):
         PageView.PersonNavView.__init__(self,'Pedigree View',dbstate,uistate)
         dbstate.connect('database-changed',self.change_db)
         dbstate.connect('active-changed',self.change_person)
+        self.show_siblings = GrampsKeys.get_family_siblings()
+        if self.show_siblings == None:
+            self.show_siblings = True
+        self.show_details = GrampsKeys.get_family_details()
+        if self.show_details == None:
+            self.show_details = True
 
     def get_stock(self):
         """
@@ -142,6 +149,10 @@ class FamilyView(PageView.PersonNavView):
                 <separator/>
               </placeholder>
             </menu>
+            <menu action="ViewMenu">
+              <menuitem action="Siblings"/>
+              <menuitem action="Details"/>
+            </menu>
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
@@ -161,6 +172,23 @@ class FamilyView(PageView.PersonNavView):
     def define_actions(self):
         PageView.PersonNavView.define_actions(self)
 
+        self.add_toggle_action('Details', None, _('Show details'),
+                               None, None, self.details_toggle,
+                               self.show_details)
+        self.add_toggle_action('Siblings', None, _('Show siblings'),
+                               None, None, self.siblings_toggle,
+                               self.show_siblings)
+
+    def siblings_toggle(self,obj):
+        self.show_siblings = obj.get_active()
+        self.change_person(self.dbstate.active.handle)
+        GrampsKeys.save_family_siblings(self.show_siblings)
+
+    def details_toggle(self,obj):
+        self.show_details = obj.get_active()
+        self.change_person(self.dbstate.active.handle)
+        GrampsKeys.save_family_details(self.show_details)
+
     def change_db(self,db):
         if self.child:
             self.vbox.remove(self.child)
@@ -173,18 +201,19 @@ class FamilyView(PageView.PersonNavView):
             gender = ""
             if use_gender:
                 if p.gender == RelLib.Person.MALE:
-                    gender = u" \u2642"
+                    gender = u' <span weight="bold">\u2642</span>'
                 elif p.gender == RelLib.Person.FEMALE:
                     gender = u" \u2640"
                 else:
                     gender = u" \u2650"
             return (name,gender)
         else:
-            return _(u"Unknown","")
+            return (_(u"Unknown"),"")
 
     def change_person(self,obj):
         if self.child:
             self.vbox.remove(self.child)
+            
         self.child = gtk.Table(20,6)
         self.child.set_border_width(12)
         self.child.set_col_spacings(12)
@@ -205,7 +234,7 @@ class FamilyView(PageView.PersonNavView):
         for family_handle in family_handle_list:
             if family_handle:
                 self.write_family(family_handle)
-        
+
         self.child.show_all()
 
     def write_title(self,person):
@@ -258,8 +287,8 @@ class FamilyView(PageView.PersonNavView):
         self.row = 5
 
     def write_data(self,title,start_col=3,stop_col=5):
-        self.child.attach(BasicLabel(title),start_col,stop_col,self.row,self.row+1,
-                          xoptions=gtk.EXPAND|gtk.FILL)
+        self.child.attach(BasicLabel(title),start_col,stop_col,self.row,
+                          self.row+1, xoptions=gtk.EXPAND|gtk.FILL)
         self.row += 1
 
     def write_label(self,title):
@@ -269,7 +298,8 @@ class FamilyView(PageView.PersonNavView):
         self.row += 1
 
     def write_person_data(self,title,data):
-        self.child.attach(BasicLabel(title),2,3,self.row,self.row+1,xoptions=gtk.FILL)
+        self.child.attach(BasicLabel(title),2,3,self.row,self.row+1,
+                          xoptions=gtk.FILL)
         self.child.attach(BasicLabel(data),3,5,self.row,self.row+1,
                           xoptions=gtk.EXPAND|gtk.FILL)
         self.row += 1
@@ -305,12 +335,12 @@ class FamilyView(PageView.PersonNavView):
 
         self.row += 1
 
-        value = self.info_string(handle)
-        if value:
-            self.child.attach(BasicLabel(value),4,5,self.row, self.row+1)
-            self.row += 1
+        if self.show_details:
+            value = self.info_string(handle)
+            if value:
+                self.child.attach(BasicLabel(value),4,5,self.row, self.row+1)
+                self.row += 1
         
-
     def info_string(self,handle):
         child = self.dbstate.db.get_person_from_handle(handle)
         birth_ref = child.get_birth_ref()
@@ -336,24 +366,28 @@ class FamilyView(PageView.PersonNavView):
     def write_parents(self,family_handle):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         self.write_person(_('Father'),family.get_father_handle())
-        value = self.info_string(family.get_father_handle())
-        if value:
-            self.child.attach(BasicLabel(value),3,5,self.row, self.row+1)
-            self.row += 1
+        if self.show_details:
+            value = self.info_string(family.get_father_handle())
+            if value:
+                self.child.attach(BasicLabel(value),3,5,self.row, self.row+1)
+                self.row += 1
         self.write_person(_('Mother'),family.get_mother_handle())
-        value = self.info_string(family.get_mother_handle())
-        if value:
-            self.child.attach(BasicLabel(value),3,5,self.row, self.row+1)
-            self.row += 1
+        if self.show_details:
+            value = self.info_string(family.get_mother_handle())
+            if value:
+                self.child.attach(BasicLabel(value),3,5,self.row, self.row+1)
+                self.row += 1
 
-        active = self.dbstate.active.handle
+        if self.show_siblings:
+            active = self.dbstate.active.handle
         
-        child_list = [handle for handle in family.get_child_handle_list() if handle != active]
-        label = _("Siblings")
-        if child_list:
-            for child in child_list:
-                self.write_child(label,child)
-                label = u""
+            child_list = [handle for handle in family.get_child_handle_list()\
+                          if handle != active]
+            label = _("Siblings")
+            if child_list:
+                for child in child_list:
+                    self.write_child(label,child)
+                    label = u""
 
     def write_relationship(self,family):
         rtype = family.get_relationship()
@@ -452,14 +486,15 @@ class FamilyView(PageView.PersonNavView):
         else:
             handle = father_handle
 
-        self.write_person(_('Spouse'),handle)
+        if handle:
+            self.write_person(_('Spouse'),handle)
 
-        value = self.info_string(handle)
-        if value:
-            self.child.attach(BasicLabel(value),3,5,self.row, self.row+1)
-            self.row += 1
-        self.write_relationship(family)
-        self.write_marriage(family)
+            value = self.info_string(handle)
+            if value:
+                self.child.attach(BasicLabel(value),3,5,self.row, self.row+1)
+                self.row += 1
+            self.write_relationship(family)
+            self.write_marriage(family)
         
         child_list = family.get_child_handle_list()
         label = _("Children")

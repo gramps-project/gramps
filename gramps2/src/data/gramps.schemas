@@ -4,6 +4,30 @@
     <schemalist>
 
       <schema>
+        <key>/schemas/apps/gramps/preferences/family-details</key>
+        <applyto>/apps/gramps/preferences/family-details</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>1</default>
+        <locale name="C">
+          <short>Show event details on the Family View</short>
+          <long>If set to True, event reports are shown on the Family View.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/preferences/family-siblings</key>
+        <applyto>/apps/gramps/preferences/family-siblings</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>1</default>
+        <locale name="C">
+          <short>Show siblings on the Family View</short>
+          <long>If set to True, siblings will be shown on the Family View.</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/behavior/autoload</key>
         <applyto>/apps/gramps/behavior/autoload</applyto>
         <owner>gramps</owner>

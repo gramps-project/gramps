@@ -364,6 +364,18 @@ def get_researcher_email():
 def save_researcher_email(val):
     set_string("/apps/gramps/researcher/researcher-email",val)
 
+def get_family_details():
+    return get_bool("/apps/gramps/preferences/family-details")
+
+def save_family_details(val):
+    set_bool("/apps/gramps/preferences/family-details",val)
+
+def get_family_siblings():
+    return get_bool("/apps/gramps/preferences/family-siblings")
+
+def save_family_siblings(val):
+    set_bool("/apps/gramps/preferences/family-siblings",val)
+
 #-------------------------------------------------------------------------
 #
 # Low-level grabbing and saving keys with error checking.

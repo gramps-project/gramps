@@ -229,6 +229,18 @@ def get_family_view():
 def save_family_view(val):
     set_int("interface", "familyview",val, (0,1))
 
+def get_family_details():
+    return get_bool("/apps/gramps/preferences/family-details", (0,1))
+
+def save_family_details(val):
+    set_bool("/apps/gramps/preferences/family-details",val, (0,1))
+
+def get_family_siblings():
+    return get_bool("/apps/gramps/preferences/family-siblings",(0,1))
+
+def save_family_siblings(val):
+    set_bool("/apps/gramps/preferences/family-siblings",val,(0,1))
+
 def get_filter():
     return get_bool("interface", "filter")
 
