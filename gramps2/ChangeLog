@@ -1,4 +1,7 @@
 2006-01-06 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+        * src/gramps.py, src/gramps_main.py: integration of logging framework.
+
+2006-01-06 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
  	* test/GrampsLogger/ErrorReportAssistant_Test.py: added unittest for
 	ErrorReportAssistant
 	

@@ -28,6 +28,9 @@ import os
 import locale
 import signal
 import gettext
+import logging
+
+log = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
@@ -85,8 +88,57 @@ signal.signal(signal.SIGCHLD, signal.SIG_DFL)
 
 args = sys.argv
 
+def setup_logging():
+    """Setup basic logging support."""
+
+    import logging
+    from GrampsLogger import RotateHandler, GtkHandler
+
+    # Setup a formatter
+    form = logging.Formatter(fmt="%(relativeCreated)d: %(levelname)s: %(filename)s: line %(lineno)d: %(message)s")
+    
+    # Create the log handlers
+    rh = RotateHandler(capacity=20)
+    rh.setFormatter(form)
+
+    # Only error and critical log records should
+    # trigger the GUI handler.
+    gtkh = GtkHandler(rotate_handler=rh)
+    gtkh.setFormatter(form)
+    gtkh.setLevel(logging.ERROR)
+    
+    stderrh = logging.StreamHandler(sys.stderr)
+    stderrh.setFormatter(form)
+    stderrh.setLevel(logging.DEBUG)
+
+    # Setup the base level logger, this one gets
+    # everything.
+    l = logging.getLogger()
+    l.setLevel(logging.DEBUG)
+    l.addHandler(rh)
+    l.addHandler(gtkh)
+    l.addHandler(stderrh)
+
+    # put a hook on to catch any completly unhandled exceptions.
+    def exc_hook(type, value, tb):
+        import traceback
+        log.error("Unhandled exception\n" +
+                  "".join(traceback.format_exception(type, value, tb)))
+      
+    sys.excepthook = exc_hook
+    
 def run():
-    try:
+
+    try:        
+        setup_logging()
+    except:
+        # If logging can't be started fall back on
+        # old exception display
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
+    
+    
+    try:        
         import gnome
         self.program = gnome.program_init('gramps',const.version, 
                                           gnome.libgnome_module_info_get(),
@@ -102,7 +154,7 @@ def run():
     except:
         pass
 
-    try:
+    try:        
         import StartupDialog
         
         if StartupDialog.need_to_run():
@@ -110,8 +162,7 @@ def run():
         else:
             gramps_main.Gramps(args)
     except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+        log.error("Gramps failed to start.", exc_info=True)
 
 gobject.timeout_add(100, run, priority=100)
 gtk.main()
