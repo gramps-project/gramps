@@ -236,7 +236,7 @@ class PeopleModel(gtk.GenericTreeModel):
             # return values for 'data' row, calling a function
             # according to column_defs table
             try:
-                return COLUMN_DEFS[col][COLUMN_DEF_LIST](self,self.db.person_map[str(node)],node)
+                return COLUMN_DEFS[col][COLUMN_DEF_LIST](self,self.db.get_raw_person_data(str(node)),node)
             except:
                 print "".join(traceback.format_exception(*sys.exc_info()))
                 return u'error'

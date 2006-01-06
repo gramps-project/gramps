@@ -778,8 +778,8 @@ class GedcomParser:
     def find_or_create_person(self,gramps_id):
         person = RelLib.Person()
         intid = self.gid2id.get(gramps_id)
-        if self.db.person_map.has_key(intid):
-            person.unserialize(self.db.person_map.get(intid))
+        if self.db.has_person_handle(intid):
+            person.unserialize(self.db.get_raw_person_data(intid))
         else:
             intid = self.find_person_handle(gramps_id)
             person.set_handle(intid)
@@ -796,8 +796,8 @@ class GedcomParser:
     def find_or_create_family(self,gramps_id):
         family = RelLib.Family()
         intid = self.fid2id.get(gramps_id)
-        if self.db.family_map.has_key(intid):
-            family.unserialize(self.db.family_map.get(intid))
+        if self.db.has_family_handle(intid):
+            family.unserialize(self.db.get_raw_family_data(intid))
         else:
             intid = self.find_family_handle(gramps_id)
             family.set_handle(intid)
@@ -814,8 +814,8 @@ class GedcomParser:
     def find_or_create_source(self,gramps_id):
         source = RelLib.Source()
         intid = self.sid2id.get(gramps_id)
-        if self.db.source_map.has_key(intid):
-            source.unserialize(self.db.source_map.get(intid))
+        if self.db.has_source_handle(intid):
+            source.unserialize(self.db.get_raw_source_data(intid))
         else:
             intid = create_id()
             source.set_handle(intid)
@@ -846,8 +846,8 @@ class GedcomParser:
         else:
             pname = title
             
-        if self.db.place_map.has_key(intid):
-            place.unserialize(self.db.place_map.get(intid))
+        if self.db.has_place_handle(intid):
+            place.unserialize(self.db.get_raw_place_data(intid))
         else:
             intid = create_id()
             place.set_handle(intid)

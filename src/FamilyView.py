@@ -32,6 +32,12 @@ import ImgManip
 import ReportUtils
 import GrampsKeys
 
+_GenderCode = {
+    RelLib.Person.MALE    : u'\u2642',
+    RelLib.Person.FEMALE  : u'\u2640',
+    RelLib.Person.UNKNOWN : u'\u2650',
+    }
+
 class LinkLabel(gtk.EventBox):
 
     def __init__(self,label,func,handle):
@@ -40,7 +46,7 @@ class LinkLabel(gtk.EventBox):
         self.gender = label[1]
         text = '<span underline="single">%s</span>' % self.orig_text
         if label[1]:
-            text += u" %s" % label[1]
+            text += u' %s' % label[1]
         
         self.label = gtk.Label(text)
         self.label.set_use_markup(True)
@@ -198,14 +204,10 @@ class FamilyView(PageView.PersonNavView):
         if handle:
             p = self.dbstate.db.get_person_from_handle(handle)
             name = NameDisplay.displayer.display(p)
-            gender = ""
             if use_gender:
-                if p.gender == RelLib.Person.MALE:
-                    gender = u' <span weight="bold">\u2642</span>'
-                elif p.gender == RelLib.Person.FEMALE:
-                    gender = u" \u2640"
-                else:
-                    gender = u" \u2650"
+                gender = _GenderCode[p.gender]
+            else:
+                gender = ""
             return (name,gender)
         else:
             return (_(u"Unknown"),"")
@@ -241,7 +243,8 @@ class FamilyView(PageView.PersonNavView):
 
         # name and edit button
         name = NameDisplay.displayer.display(person)
-        text = '<span size="larger" weight="bold">%s</span>' % cgi.escape(name)
+        text = '<span size="larger" weight="bold">%s %s</span>' % (cgi.escape(name),
+                                                                   _GenderCode[person.gender])
         label = MarkupLabel(text)
         button = IconButton(self.edit_button_press,person.handle)
 
