@@ -1,3 +1,20 @@
+2006-01-06  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsLogger/.cvsignore: Add to CVS.
+	* src/const.py.in: Add directory for the db environment.
+	* src/GrampsDb/_GrampsDbBase.py: Use new logging;
+	(get_number_of_repositories): add method; (_del_*): add
+	placeholder methods -- must be overriden in derived classes.
+	* src/GrampsDb/_GrampsBSDDB.py: Use new logging; Add txn attribute
+	to the database; (open_table): rename dbopen; (get_*_cursor): Pass
+	txn to cursor constructors; (load): Open environment with
+	transaction-capable flags, open tables with AUTO_COMMIT flag;
+	(rebuild): use txn; (_delete_primary_from_reference_map): Use txn;
+	(_update_reference_map): Use txn; (_del_*)L Use txn; (remove_*):
+	remove unneeded functions (already in DbBase);
+	(_get_obj_from_gramps_id): Use txn;
+	(_commit_base,_do_commit,_find_from_handle): Add and use txn;
+	(transaction_commit): create and commit txn; do not sync().	
+
 2006-01-06 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
         * src/Assistant.py: converted to gobject and added signals
 	* src/GrampsLogger/_ErrorReportAssistant.py: uses new Assistant signals
