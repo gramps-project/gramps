@@ -850,9 +850,21 @@ class GrampsBSDDB(GrampsDbBase):
             add_func(obj,transaction)
         return obj
 
-    def transaction_commit(self,transaction,msg):
+    def transaction_begin(self,msg=""):
+        """
+        Creates a new Transaction tied to the current UNDO database. The
+        transaction has no effect until it is committed using the
+        transaction_commit function of the this database object.
+        """
+        if self.__LOG_ALL:
+            log.debug("%s: Transaction begin '%s'\n"
+                      % (self.__class__.__name__, str(msg)))
         # Start BSD DB transaction -- DBTxn
         self.txn = self.env.txn_begin()
+
+        return Transaction(msg,self.undodb)
+
+    def transaction_commit(self,transaction,msg):
 
         GrampsDbBase.transaction_commit(self,transaction,msg)
 
