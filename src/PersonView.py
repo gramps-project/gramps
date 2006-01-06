@@ -103,8 +103,8 @@ class PersonView(PageView.PersonNavView):
         self.add_action('Remove', gtk.STOCK_REMOVE, "_Remove",
                         callback=self.remove)
 
-        self.add_toggle_action('Filter', None, '_Filter',
-                               callback=self.filter_toggle)
+        self.add_toggle_action('Filter', None, '_Filter', None, None,
+                               self.filter_toggle)
 
     def get_stock(self):
         """
@@ -529,7 +529,8 @@ class PersonView(PageView.PersonNavView):
         for column in self.columns:
             self.tree.remove_column(column)
         try:
-            column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0,background=self.model.marker_color_column)
+            column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0,
+                                        background=self.model.marker_color_column)
         except AttributeError:
             column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
         column.set_resizable(True)
@@ -545,7 +546,8 @@ class PersonView(PageView.PersonNavView):
                 continue
             name = column_names[pair[1]]
             try:
-                column = gtk.TreeViewColumn(name, self.renderer, markup=pair[1],background=self.model.marker_color_column)
+                column = gtk.TreeViewColumn(name, self.renderer, markup=pair[1],
+                                            background=self.model.marker_color_column)
             except AttributeError:
                 column = gtk.TreeViewColumn(name, self.renderer, markup=pair[1])
             column.set_resizable(True)

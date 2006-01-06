@@ -81,25 +81,26 @@ class BaseNavigation:
         Builds the UI and action group. 
         """
         self.items = items
-
         self.disable()
+        menu_len = min(len(items),10)
 
-        data = map(lambda x: '<menuitem action="%s%02d"/>' % (self.title,x), range(0,len(items)))
+        data = map(lambda x: '<menuitem action="%s%02d"/>' % (self.title,x), range(0,menu_len))
         self.ui = _top + "".join(data) + _btm
-
         self.action_group = gtk.ActionGroup(self.title)
-
         data = []
         index = 0
-        for item in items:
+
+        mitems = items[:]
+        mitems.reverse()
+        for item in mitems[:10]:
             name = self.build_item_name(item)
             f = self.func[index]
-            data.append(('%s%02d'%(self.title,index), None, name, "<alt>%d" % index, None, f))
-            index +=1
+            data.append(('%s%02d'%(self.title,index), None, name,
+                         "<alt>%d" % index, None, f))
+            index += 1
+
         self.action_group.add_actions(data)
-            
-        if self.active != DISABLED:
-            self.enable()
+        self.enable()
 
         
 class PersonNavigation(BaseNavigation):

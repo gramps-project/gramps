@@ -96,8 +96,9 @@ class PageView:
         self.action_list.append((name,stock_icon,label,accel,tip,callback))
 
     def add_toggle_action(self, name, stock_icon, label, accel=None,
-                          tip=None, callback=None):
-        self.action_toggle_list.append((name,stock_icon,label,accel,tip,callback))
+                          tip=None, callback=None, value=False):
+        self.action_toggle_list.append((name,stock_icon,label,accel,
+                                        tip,callback,value))
 
     def get_actions(self):
         if not self.action_group:
