@@ -101,6 +101,7 @@ system_filters = "%s/system_filters.xml" % rootDir
 custom_filters = "~/.gramps/custom_filters.xml"
 report_options = "~/.gramps/report_options.xml"
 tool_options   = "~/.gramps/tool_options.xml"
+bsddbenv_dir   = "~/.gramps/bsddbenv"
 icon           = "%s/gramps.png" % rootDir
 logo           = "%s/logo.png" % rootDir
 splash         = "%s/splash.jpg" % rootDir

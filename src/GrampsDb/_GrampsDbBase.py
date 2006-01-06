@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -39,8 +39,8 @@ from sys import maxint
 import sets
 import sys
 from gettext import gettext as _
-
-log = sys.stderr.write
+import logging
+log = logging.getLogger(".GrampsDb")
 
 #-------------------------------------------------------------------------
 #
@@ -269,6 +269,27 @@ class GrampsDbBase(GrampsDBCallback):
     def gramps_upgrade(self):
         pass
 
+    def _del_person(self,handle):
+        pass
+
+    def _del_source(self,handle):
+        pass
+
+    def _del_repository(self,handle):
+        pass
+
+    def _del_place(self,handle):
+        pass
+
+    def _del_media(self,handle):
+        pass
+
+    def _del_family(self,handle):
+        pass
+
+    def _del_event(self,handle):
+        pass
+
     def create_id(self):
         return "%08x%08x" % ( int(time.time()*10000),
                               self.rand.randint(0,maxint))
@@ -329,8 +350,6 @@ class GrampsDbBase(GrampsDBCallback):
         self.emit('media-rebuild')
         self.emit('event-rebuild')
         self.emit('repository-rebuild')
-
-
             
     def _commit_base(self, obj, data_map, key, update_list, add_list,
                      transaction, change_time):
@@ -856,6 +875,12 @@ class GrampsDbBase(GrampsDBCallback):
         """
         return len(self.media_map)
 
+    def get_number_of_repositories(self):
+        """
+        Returns the number of source repositories currently in the databse.
+        """
+        return len(self.repository_map)
+
     def get_person_handles(self,sort_handles=True):
         """
         Returns a list of database handles, one handle for each Person in
@@ -1036,7 +1061,8 @@ class GrampsDbBase(GrampsDBCallback):
         transaction_commit function of the this database object.
         """
         if self.__LOG_ALL:
-            log("%s: Transaction begin '%s'\n" % (self.__class__.__name__, str(msg)))
+            log.debug("%s: Transaction begin '%s'\n"
+                      % (self.__class__.__name__, str(msg)))
         return Transaction(msg,self.undodb)
 
     def transaction_commit(self,transaction,msg):
@@ -1045,7 +1071,8 @@ class GrampsDbBase(GrampsDBCallback):
         """
         
         if self.__LOG_ALL:
-            log("%s: Transaction commit '%s'\n" % (self.__class__.__name__, str(msg)))
+            log.debug("%s: Transaction commit '%s'\n"
+                      % (self.__class__.__name__, str(msg)))
         if not len(transaction) or self.readonly:
             return
         transaction.set_description(msg)
@@ -1055,21 +1082,32 @@ class GrampsDbBase(GrampsDBCallback):
         else:
             self.translist[self.undoindex] = transaction
 
-        person_add      = self._do_commit(transaction.person_add,self.person_map)
-        family_add      = self._do_commit(transaction.family_add,self.family_map)
-        source_add      = self._do_commit(transaction.source_add,self.source_map)
+        person_add      = self._do_commit(transaction.person_add,
+                                          self.person_map)
+        family_add      = self._do_commit(transaction.family_add,
+                                          self.family_map)
+        source_add      = self._do_commit(transaction.source_add,
+                                          self.source_map)
         place_add       = self._do_commit(transaction.place_add,self.place_map)
         media_add       = self._do_commit(transaction.media_add,self.media_map)
         event_add       = self._do_commit(transaction.event_add,self.event_map)
-        repository_add  = self._do_commit(transaction.repository_add,self.repository_map)
+        repository_add  = self._do_commit(transaction.repository_add,
+                                          self.repository_map)
 
-        person_upd      = self._do_commit(transaction.person_update,self.person_map)
-        family_upd      = self._do_commit(transaction.family_update,self.family_map)
-        source_upd      = self._do_commit(transaction.source_update,self.source_map)
-        place_upd       = self._do_commit(transaction.place_update,self.place_map)
-        media_upd       = self._do_commit(transaction.media_update,self.media_map)
-        event_upd       = self._do_commit(transaction.event_update,self.event_map)
-        repository_upd  = self._do_commit(transaction.repository_update,self.repository_map)
+        person_upd      = self._do_commit(transaction.person_update,
+                                          self.person_map)
+        family_upd      = self._do_commit(transaction.family_update,
+                                          self.family_map)
+        source_upd      = self._do_commit(transaction.source_update,
+                                          self.source_map)
+        place_upd       = self._do_commit(transaction.place_update,
+                                          self.place_map)
+        media_upd       = self._do_commit(transaction.media_update,
+                                          self.media_map)
+        event_upd       = self._do_commit(transaction.event_update,
+                                          self.event_map)
+        repository_upd  = self._do_commit(transaction.repository_update,
+                                          self.repository_map)
 
         self._do_emit('person', person_add, person_upd, transaction.person_del)
         self._do_emit('family', family_add, family_upd, transaction.family_del)
@@ -1077,7 +1115,8 @@ class GrampsDbBase(GrampsDBCallback):
         self._do_emit('source', source_add, source_upd, transaction.source_del)
         self._do_emit('place',  place_add,  place_upd,  transaction.place_del)
         self._do_emit('media',  media_add,  media_upd,  transaction.media_del)
-        self._do_emit('repository', repository_add, repository_upd, transaction.repository_del)
+        self._do_emit('repository', repository_add, repository_upd,
+                      transaction.repository_del)
 
         self._do_del(transaction.person_del,     self._del_person)
         self._do_del(transaction.family_del,     self._del_family)
