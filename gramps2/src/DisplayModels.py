@@ -157,7 +157,7 @@ class BaseModel(gtk.GenericTreeModel):
 
     def on_get_value(self,node,col):
         try:
-            return self.fmap[col](self.map[str(node)])
+            return self.fmap[col](self.map(str(node)))
         except:
             return u''
 
@@ -283,7 +283,7 @@ class ChildModel(gtk.ListStore):
 class SourceModel(BaseModel):
 
     def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
-        self.map = db.source_map
+        self.map = db.get_raw_source_data
         self.gen_cursor = db.get_source_cursor
         self.fmap = [
             self.column_title,
@@ -346,7 +346,7 @@ class PlaceModel(BaseModel):
 
     def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
         self.gen_cursor = db.get_place_cursor
-        self.map = db.place_map
+        self.map = db.get_raw_place_data
         self.fmap = [
             self.column_name,
             self.column_id,
@@ -455,7 +455,7 @@ class MediaModel(BaseModel):
 
     def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
         self.gen_cursor = db.get_media_cursor
-        self.map = db.media_map
+        self.map = db.get_raw_object_data
         
         self.fmap = [
             self.column_description,
@@ -533,7 +533,7 @@ class EventModel(BaseModel):
 
     def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
         self.gen_cursor = db.get_event_cursor
-        self.map = db.event_map
+        self.map = db.get_raw_event_data
         
         self.fmap = [
             self.column_description,
@@ -619,7 +619,7 @@ class RepositoryModel(BaseModel):
     def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
         self.gen_cursor = db.get_repository_cursor
         self.get_handles = db.get_repository_handles
-        self.map = db.repository_map
+        self.map = db.get_raw_repository_data
         self.fmap = [
             self.column_name,
             self.column_id,

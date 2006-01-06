@@ -155,6 +155,69 @@ class GrampsBSDDB(GrampsDbBase):
     def get_repository_cursor(self):
         return GrampsBSDDBCursor(self.repository_map,self.txn)
 
+    def has_person_handle(self,handle):
+        """
+        returns True if the handle exists in the current Person database.
+        """
+        return self.person_map.get(str(handle),txn=self.txn) != None
+
+    def has_family_handle(self,handle):            
+        """
+        returns True if the handle exists in the current Family database.
+        """
+        return self.family_map.get(str(handle),txn=self.txn) != None
+
+    def has_object_handle(self,handle):
+        """
+        returns True if the handle exists in the current MediaObjectdatabase.
+        """
+        return self.media_map.get(str(handle),txn=self.txn) != None
+
+    def has_repository_handle(self,handle):
+        """
+        returns True if the handle exists in the current Repository database.
+        """
+        return self.repository_map.get(str(handle),txn=self.txn) != None
+
+    def has_event_handle(self,handle):
+        """
+        returns True if the handle exists in the current Repository database.
+        """
+        return self.event_map.get(str(handle),txn=self.txn) != None
+
+    def has_place_handle(self,handle):
+        """
+        returns True if the handle exists in the current Repository database.
+        """
+        return self.place_map.get(str(handle),txn=self.txn) != None
+
+    def has_source_handle(self,handle):
+        """
+        returns True if the handle exists in the current Repository database.
+        """
+        return self.source_map.get(str(handle),txn=self.txn) != None
+
+    def get_raw_person_data(self,handle):
+        return self.person_map.get(str(handle),txn=self.txn)
+
+    def get_raw_family_data(self,handle):
+        return self.family_map.get(str(handle),txn=self.txn)
+
+    def get_raw_object_data(self,handle):
+        return self.media_map.get(str(handle),txn=self.txn)
+
+    def get_raw_place_data(self,handle):
+        return self.place_map.get(str(handle),txn=self.txn)
+
+    def get_raw_event_data(self,handle):
+        return self.event_map.get(str(handle),txn=self.txn)
+
+    def get_raw_source_data(self,handle):
+        return self.source_map.get(str(handle),txn=self.txn)
+
+    def get_raw_repository_data(self,handle):
+        return self.repository_map.get(str(handle),txn=self.txn)
+
     # cursors for lookups in the reference_map for back reference
     # lookups. The reference_map has three indexes:
     # the main index: a tuple of (primary_handle,referenced_handle)
@@ -759,7 +822,7 @@ class GrampsBSDDB(GrampsDbBase):
         if data:
             obj = class_init()
             obj.unserialize(cPickle.loads(data))
-            return person
+            return obj
         else:
             return None
 

@@ -1370,11 +1370,50 @@ class GrampsDbBase(GrampsDBCallback):
         self._do_remove_object(handle,transaction,self.repository_map,
                                REPOSITORY_KEY, transaction.repository_del)
 
+    def get_raw_person_data(self,handle):
+        return self.person_map.get(str(handle))
+
+    def get_raw_family_data(self,handle):
+        return self.family_map.get(str(handle))
+
+    def get_raw_object_data(self,handle):
+        return self.media_map.get(str(handle))
+
+    def get_raw_place_data(self,handle):
+        return self.place_map.get(str(handle))
+
+    def get_raw_event_data(self,handle):
+        return self.event_map.get(str(handle))
+
+    def get_raw_source_data(self,handle):
+        return self.source_map.get(str(handle))
+
+    def get_raw_repository_data(self,handle):
+        return self.repository_map.get(str(handle))
+
     def has_person_handle(self,handle):
         """
         returns True if the handle exists in the current Person database.
         """
         return self.person_map.has_key(str(handle))
+
+    def has_event_handle(self,handle):
+        """
+        returns True if the handle exists in the current Event database.
+        """
+        return self.event_map.has_key(str(handle))
+
+    def has_source_handle(self,handle):
+        """
+        returns True if the handle exists in the current Source database.
+        """
+        return self.source_map.has_key(str(handle))
+
+    def has_place_handle(self,handle):
+        """
+        returns True if the handle exists in the current Place database.
+        """
+        return self.place_map.has_key(str(handle))
 
     def has_family_handle(self,handle):            
         """
