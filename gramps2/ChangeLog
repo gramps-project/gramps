@@ -1,4 +1,8 @@
 2006-01-06 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+        * src/Assistant.py: converted to gobject and added signals
+	* src/GrampsLogger/_ErrorReportAssistant.py: uses new Assistant signals
+	
+2006-01-06 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
         * src/gramps.py, src/gramps_main.py: integration of logging framework.
 
 2006-01-06 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
