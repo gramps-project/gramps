@@ -26,6 +26,9 @@
 #
 #-------------------------------------------------------------------------
 import gtk
+import logging
+
+log = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
@@ -98,7 +101,7 @@ def register_stock_icons ():
             icon_set = gtk.IconSet (pixbuf)
             factory.add (data[0], icon_set)
         else:
-            print 'failed to load GTK logo for toolbar'
+            log.debug('failed to load GTK logo for toolbar')
 
 class Gramps:
     """
@@ -109,7 +112,6 @@ class Gramps:
     """
 
     def __init__(self,args):
-
         try:
             GrampsCfg.loadConfig()
             self.welcome()    
