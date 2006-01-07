@@ -35,30 +35,42 @@ class ErrorView(object):
         #self.top.set_default_size(400,350)
         self.top.set_has_separator(False)
         self.top.vbox.set_spacing(5)
+        self.top.set_border_width(12)
+        hbox = gtk.HBox()
+        hbox.set_spacing(12)
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_DIALOG_ERROR, gtk.ICON_SIZE_DIALOG)
         label = gtk.Label('<span size="larger" weight="bold">%s</span>'
-                          % _("An unexpected error has occured"))
+                          % _("GRAMPS has experienced an unexpected error"))
         label.set_use_markup(True)
-        self.top.vbox.pack_start(label,False,False,5)
 
-        sep = gtk.HSeparator()
-        self.top.vbox.pack_start(sep,False,False,5)
+        hbox.pack_start(image,False)
+        hbox.add(label)
 
-        instructions_label = gtk.Label('<span weight="bold">%s</span>\n'\
-                                       '%s' % \
-                                       ( _("Gramps has experienced an unexpected error."),
-                                         _("Your data will safe but it would be advisable to restart gramps immediately. "\
-                                           "If you would like to report the problem to the Gramps team "\
-                                           "please click Report and the Error Reporting Wizard will help you "\
-                                           "to make a bug report.")))
+        self.top.vbox.pack_start(hbox,False,False,5)
+
+        instructions_label = gtk.Label(
+            _("Your data will safe but it would be advisable to restart GRAMPS immediately. "\
+              "If you would like to report the problem to the GRAMPS team "\
+              "please click Report and the Error Reporting Wizard will help you "\
+              "to make a bug report."))
         instructions_label.set_line_wrap(True)
         instructions_label.set_use_markup(True)
 
         self.top.vbox.pack_start(instructions_label,False,False,5)
         
         tb_frame = gtk.Frame(_("Error Detail"))
-        tb_label = gtk.Label(self._error_detail)
+        tb_frame.set_border_width(6)
+        tb_label = gtk.TextView()
+        tb_label.get_buffer().set_text(self._error_detail)
+        tb_label.set_border_width(6)
+        tb_label.set_editable(False)
         
-        tb_frame.add(tb_label)
+        scroll = gtk.ScrolledWindow()
+        scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        
+        tb_frame.add(scroll)
+        scroll.add_with_viewport(tb_label)
 
         tb_expander = gtk.Expander('<span weight="bold">%s</span>' % _("Error Detail"))
         tb_expander.set_use_markup(True)
