@@ -93,10 +93,14 @@ class Assistant(gtk.Object):
         self.back.connect('clicked',self.back_clicked)
         self.next   = gtk.Button(stock=gtk.STOCK_GO_FORWARD)
         self.next.connect('clicked',self.next_clicked)
+        self.ok   = gtk.Button(stock=gtk.STOCK_OK)
+        self.ok.connect('clicked',self.next_clicked)
+	self.ok.set_sensitive(False)
         
         hbox.add(self.cancel)
         hbox.add(self.back)
         hbox.add(self.next)
+	hbox.add(self.ok)
 
         vbox.pack_start(titlebox,False)
         vbox.pack_start(self.notebook,True)
@@ -116,19 +120,40 @@ class Assistant(gtk.Object):
     def update_title(self):
         self.title.set_label(self.title_text[self.current_page])
         self.title.set_use_markup(True)
+
+    def set_buttons(self):
+	print "current_page = ", self.current_page
+        if self.current_page == self.max_page-1:
+	    self.next.show()
+	    self.back.show()
+	    self.cancel.show()
+	    self.ok.set_sensitive(True)
+	    self.next.set_sensitive(False)
+	elif self.current_page == self.max_page:
+	    self.next.hide()
+	    self.back.hide()
+	    self.cancel.hide()
+	elif self.current_page == 0:
+	    self.next.show()
+	    self.back.show()
+	    self.cancel.show()
+	    self.back.set_sensitive(False)
+	    self.next.set_sensitive(True)
+	    self.ok.set_sensitive(False)
+	else:
+	    self.next.show()
+	    self.back.show()
+	    self.back.set_sensitive(True)
+	    self.next.set_sensitive(True)
+	    self.ok.set_sensitive(False)
+	    self.cancel.show()
     
     def back_clicked(self,obj):
         self.emit('before-page-back',self.notebook.get_current_page())
-        if self.current_page == 1:
-            self.back.show()
-            self.back.set_sensitive(False)
-            self.cancel.show()
         self.current_page -= 1
         self.notebook.set_current_page(self.current_page)
         self.update_title()
-        self.next.set_label(gtk.STOCK_GO_FORWARD)
-        self.next.set_use_stock(True)
-        self.cancel.show()
+	self.set_buttons()
         
         self.emit('after-page-back',self.notebook.get_current_page())
         self.emit('page-changed',self.notebook.get_current_page())
@@ -143,17 +168,7 @@ class Assistant(gtk.Object):
             self.current_page += 1
             self.notebook.set_current_page(self.current_page)
             self.update_title()
-            if self.current_page == self.max_page:
-                self.next.set_label(gtk.STOCK_OK)
-                self.next.set_use_stock(True)
-                self.back.hide()
-                self.cancel.hide()
-            else:
-                self.next.set_label(gtk.STOCK_GO_FORWARD)
-                self.next.set_use_stock(True)
-                self.back.show()
-                self.back.set_sensitive(True)
-                self.cancel.show()
+	    self.set_buttons()
 
         self.emit('after-page-next',self.notebook.get_current_page())
         self.emit('page-changed',self.notebook.get_current_page())
