@@ -102,6 +102,8 @@ class PersonView(PageView.PersonNavView):
                         callback=self.edit)
         self.add_action('Remove', gtk.STOCK_REMOVE, "_Remove",
                         callback=self.remove)
+        self.add_action('Jump', None, "_Jump",
+                        accel="<control>j",callback=self.jumpto)
 
         self.add_toggle_action('Filter', None, '_Filter', None, None,
                                self.filter_toggle)
@@ -179,6 +181,7 @@ class PersonView(PageView.PersonNavView):
         associated with the interface.
         """
         return '''<ui>
+          <accelerator action="Jump"/>
           <menubar name="MenuBar">
             <menu action="ViewMenu">
               <menuitem action="Filter"/>

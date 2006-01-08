@@ -1,4 +1,6 @@
 2006-01-07  Don Allingham  <don@gramps-project.org>
+	* src/PageView.py: support for ctrl-j for jump to person by gramps id
+	* src/PersonView.py: support for ctrl-j for jump to person by gramps id
 	* src/ToolTips.py: fix spacing
 	* src/ViewManager.py: remember toolbar/sidebar status.
 	* src/FamilyView.py: fix gtk.Table's bizzare way of handling empty
