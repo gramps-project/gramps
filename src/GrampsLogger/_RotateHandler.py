@@ -31,7 +31,7 @@ class RotateHandler(logging.Handler):
         return [record for record in self._buffer[self._index:] + self._buffer[:self._index]
                 if record is not None]
 
-    def get_formatted_log(self):
+    def get_formatted_log(self, remove_tail_duplicate=None):
         """
         Return the log buffer after it has been formatted.
 
@@ -39,7 +39,7 @@ class RotateHandler(logging.Handler):
         """
 
         return [self.format(record) for record in self._buffer[self._index:] + self._buffer[:self._index]
-                if record is not None]
+                if record is not None and record != remove_tail_duplicate]
 
     def set_capacity(self,capacity):
         """

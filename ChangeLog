@@ -1,4 +1,10 @@
 2006-01-08 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/GrampsLogger/_ErrorReportAssistant.py: don't show excep twice
+	* src/GrampsLogger/_ErrorView.py: don't show excep twice
+	* src/GrampsLogger/_GtkHandler.py: don't show excep twice
+	* src/GrampsLogger/_RotateHandler.py: don't show excep twice
+	
+2006-01-08 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/Assistant.py: changed button handling to improve usability
 	* src/GrampsLogger/_ErrorReportAssistant.py: rewording and some frames.
 
