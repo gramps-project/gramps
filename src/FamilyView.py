@@ -38,6 +38,20 @@ _GenderCode = {
     RelLib.Person.UNKNOWN : u'\u2650',
     }
 
+
+class AttachList:
+
+    def __init__(self):
+        self.list = []
+        self.max_x = 0
+        self.max_y = 0
+
+    def attach(self,widget,x0,x1,y0,y1,xoptions=gtk.EXPAND|gtk.FILL,
+               yoptions=gtk.EXPAND|gtk.FILL):
+        self.list.append((widget,x0,x1,y0,y1,xoptions,yoptions))
+        self.max_x = max(self.max_x,x1)
+        self.max_y = max(self.max_y,y1)
+
 class LinkLabel(gtk.EventBox):
 
     def __init__(self,label,func,handle):
@@ -215,29 +229,59 @@ class FamilyView(PageView.PersonNavView):
     def change_person(self,obj):
         if self.child:
             self.vbox.remove(self.child)
-            
-        self.child = gtk.Table(20,6)
-        self.child.set_border_width(12)
-        self.child.set_col_spacings(12)
-        self.child.set_row_spacings(6)
-        self.vbox.pack_start(self.child,False)
+        self.attach = AttachList()
 
         person = self.dbstate.db.get_person_from_handle(obj)
         if not person:
             return
-        self.write_title(person)
 
+        self.row = 5
         family_handle_list = person.get_parent_family_handle_list()
         for (family_handle,mrel,frel) in family_handle_list:
             if family_handle:
                 self.write_parents(family_handle)
-
+                
         family_handle_list = person.get_family_handle_list()
         for family_handle in family_handle_list:
             if family_handle:
                 self.write_family(family_handle)
 
+        self.row = 1
+        self.write_title(person)
+
+        # Here it is necessary to beat GTK into submission. For some
+        # bizzare reason, if you have an empty column that is spanned,
+        # you lose the appropriate FILL handling. So, we need to see if
+        # column 3 is unused (usually if there is no siblings or children.
+        # If so, we need to subtract one index of each x coord > 3.
+                
+        found = False
+        for d in self.attach.list:
+            if d[1] == 3 or d[2] == 3:
+                found = True
+
+        if found:
+            cols = self.attach.max_x
+        else:
+            cols = self.attach.max_x-1
+
+        self.child = gtk.Table(self.attach.max_y,cols)
+        self.child.set_border_width(12)
+        self.child.set_col_spacings(12)
+        self.child.set_row_spacings(6)
+
+        for d in self.attach.list:
+            x0 = d[1]
+            x1 = d[2]
+            if not found:
+                if x0 > 3:
+                   x0 -= 1
+                if x1 > 3:
+                    x1 -= 1
+            self.child.attach(d[0],x0,x1,d[3],d[4],d[5],d[6])
+
         self.child.show_all()
+        self.vbox.pack_start(self.child,False)
 
     def write_title(self,person):
 
@@ -249,19 +293,7 @@ class FamilyView(PageView.PersonNavView):
         button = IconButton(self.edit_button_press,person.handle)
 
         hbox = LinkBox(label,button)
-
-        # image
-        image_list = person.get_media_list()
-        if image_list:
-            mobj = self.dbstate.db.get_object_from_handle(image_list[0].ref)
-            if mobj.get_mime_type()[0:5] == "image":
-                pixbuf = ImgManip.get_thumbnail_image(mobj.get_path())
-                image = gtk.Image()
-                image.set_from_pixbuf(pixbuf)
-                image.show()
-                self.child.attach(image,5,6,0,4)
-        self.child.attach(hbox,0,5,0,1,gtk.FILL|gtk.EXPAND)
-
+                
         # GRAMPS ID
         self.row = 1
 
@@ -284,28 +316,86 @@ class FamilyView(PageView.PersonNavView):
         self.write_person_event("%s:" % _('Death'),death)
 
         # separator
+        end = self.attach.max_x
         sep = gtk.HSeparator()
         sep.show()
-        self.child.attach(sep,0,6,4,5)
-        self.row = 5
+        self.attach.attach(hbox,0,end,0,1,gtk.FILL|gtk.EXPAND)
 
-    def write_data(self,title,start_col=3,stop_col=5):
-        self.child.attach(BasicLabel(title),start_col,stop_col,self.row,
-                          self.row+1, xoptions=gtk.EXPAND|gtk.FILL)
-        self.row += 1
+        # image
+        image_list = person.get_media_list()
+        if image_list:
+            mobj = self.dbstate.db.get_object_from_handle(image_list[0].ref)
+            if mobj.get_mime_type()[0:5] == "image":
+                pixbuf = ImgManip.get_thumbnail_image(mobj.get_path())
+                image = gtk.Image()
+                image.set_from_pixbuf(pixbuf)
+                image.show()
+                self.attach.attach(image,end,end+1,0,4,xoptions=gtk.SHRINK|gtk.FILL)
 
-    def write_label(self,title):
-        text = '<span style="oblique" weight="bold">%s</span>' % cgi.escape(title)
-        label = MarkupLabel(text)
-        self.child.attach(label,1,5,self.row,self.row+1)
-        self.row += 1
+        self.attach.attach(sep,0,self.attach.max_x,4,5)
+
+    def write_person_event(self, ename, event):
+        if event:
+            dobj = event.get_date_object()
+            phandle = event.get_place_handle()
+            if phandle:
+                pname = self.place_name(phandle)
+            else:
+                pname = None
+            date_str = DateHandler.displayer.display(dobj)
+
+            value = {
+                'date' : DateHandler.displayer.display(dobj),
+                'place' : pname,
+                }
+        else:
+            pname = None
+            dobj = None
+
+        if dobj:
+            if pname:
+                self.write_person_data(ename,
+                                       _('%(date)s in %(place)s') % value)
+            else:
+                self.write_person_data(ename,'%(date)s' % value)
+        elif pname:
+            self.write_person_data(ename,pname)
+        else:
+            self.write_person_data(ename,'')
 
     def write_person_data(self,title,data):
-        self.child.attach(BasicLabel(title),2,3,self.row,self.row+1,
-                          xoptions=gtk.FILL)
-        self.child.attach(BasicLabel(data),3,5,self.row,self.row+1,
-                          xoptions=gtk.EXPAND|gtk.FILL)
+        self.attach.attach(BasicLabel(title),1,2,self.row,self.row+1,
+                           xoptions=gtk.FILL|gtk.SHRINK)
+        self.attach.attach(BasicLabel(data),2,4,self.row,self.row+1)
         self.row += 1
+
+######################################################################
+
+    def write_parents(self,family_handle):
+        family = self.dbstate.db.get_family_from_handle(family_handle)
+        self.write_person(_('Father'),family.get_father_handle())
+        if self.show_details:
+            value = self.info_string(family.get_father_handle())
+            if value:
+                self.attach.attach(BasicLabel(value),2,4,self.row, self.row+1)
+                self.row += 1
+        self.write_person(_('Mother'),family.get_mother_handle())
+        if self.show_details:
+            value = self.info_string(family.get_mother_handle())
+            if value:
+                self.attach.attach(BasicLabel(value),2,4,self.row, self.row+1)
+                self.row += 1
+
+        if self.show_siblings:
+            active = self.dbstate.active.handle
+        
+            child_list = [handle for handle in family.get_child_handle_list()\
+                          if handle != active]
+            label = _("Siblings")
+            if child_list:
+                for child in child_list:
+                    self.write_child(label,child)
+                    label = u""
 
     def write_person(self,title,handle):
         if title:
@@ -314,12 +404,12 @@ class FamilyView(PageView.PersonNavView):
             format = "%s"
 
         label = MarkupLabel(format % cgi.escape(title))
-        self.child.attach(label,2,3,self.row,self.row+1,xoptions=gtk.FILL)
+        self.attach.attach(label,1,2,self.row,self.row+1,
+                           xoptions=gtk.FILL|gtk.SHRINK)
 
         link_label = LinkLabel(self.get_name(handle,True),self.button_press,handle)
         button = IconButton(self.edit_button_press,handle)
-        self.child.attach(LinkBox(link_label,button),3,5,self.row,self.row+1,
-                          xoptions=gtk.EXPAND|gtk.FILL)
+        self.attach.attach(LinkBox(link_label,button),2,4,self.row,self.row+1)
         self.row += 1
 
     def write_child(self,title,handle):
@@ -329,11 +419,12 @@ class FamilyView(PageView.PersonNavView):
             format = "%s"
 
         label = MarkupLabel(format % cgi.escape(title))
-        self.child.attach(label,3,4,self.row,self.row+1,xoptions=gtk.FILL)
+        self.attach.attach(label,2,3,self.row,self.row+1,
+                           xoptions=gtk.FILL|gtk.SHRINK)
 
         link_label = LinkLabel(self.get_name(handle,True),self.button_press,handle)
         button = IconButton(self.edit_button_press,handle)
-        self.child.attach(LinkBox(link_label,button),4,5,self.row,self.row+1,
+        self.attach.attach(LinkBox(link_label,button),3,4,self.row,self.row+1,
                           xoptions=gtk.EXPAND|gtk.FILL)
 
         self.row += 1
@@ -341,9 +432,20 @@ class FamilyView(PageView.PersonNavView):
         if self.show_details:
             value = self.info_string(handle)
             if value:
-                self.child.attach(BasicLabel(value),4,5,self.row, self.row+1)
+                self.attach.attach(BasicLabel(value),3,4,self.row, self.row+1)
                 self.row += 1
         
+    def write_data(self,title,start_col=2,stop_col=4):
+        self.attach.attach(BasicLabel(title),start_col,stop_col,self.row,
+                          self.row+1, xoptions=gtk.EXPAND|gtk.FILL)
+        self.row += 1
+
+    def write_label(self,title):
+        text = '<span style="oblique" weight="bold">%s</span>' % cgi.escape(title)
+        label = MarkupLabel(text)
+        self.attach.attach(label,1,4,self.row,self.row+1)
+        self.row += 1
+
     def info_string(self,handle):
         child = self.dbstate.db.get_person_from_handle(handle)
         birth_ref = child.get_birth_ref()
@@ -365,32 +467,6 @@ class FamilyView(PageView.PersonNavView):
     def button_press(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             self.dbstate.change_active_handle(handle)
-
-    def write_parents(self,family_handle):
-        family = self.dbstate.db.get_family_from_handle(family_handle)
-        self.write_person(_('Father'),family.get_father_handle())
-        if self.show_details:
-            value = self.info_string(family.get_father_handle())
-            if value:
-                self.child.attach(BasicLabel(value),3,5,self.row, self.row+1)
-                self.row += 1
-        self.write_person(_('Mother'),family.get_mother_handle())
-        if self.show_details:
-            value = self.info_string(family.get_mother_handle())
-            if value:
-                self.child.attach(BasicLabel(value),3,5,self.row, self.row+1)
-                self.row += 1
-
-        if self.show_siblings:
-            active = self.dbstate.active.handle
-        
-            child_list = [handle for handle in family.get_child_handle_list()\
-                          if handle != active]
-            label = _("Siblings")
-            if child_list:
-                for child in child_list:
-                    self.write_child(label,child)
-                    label = u""
 
     def write_relationship(self,family):
         rtype = family.get_relationship()
@@ -415,7 +491,7 @@ class FamilyView(PageView.PersonNavView):
             if etype[0] == RelLib.Event.MARRIAGE:
                 self.write_event_ref(_('Marriage'),event)
 
-    def write_event_ref(self, ename, event,start_col=3,stop_col=5):
+    def write_event_ref(self, ename, event,start_col=2,stop_col=4):
         if event:
             dobj = event.get_date_object()
             phandle = event.get_place_handle()
@@ -451,35 +527,6 @@ class FamilyView(PageView.PersonNavView):
             self.write_data(_('%(event_type)s:') % value,
                             start_col, stop_col)
 
-    def write_person_event(self, ename, event):
-        if event:
-            dobj = event.get_date_object()
-            phandle = event.get_place_handle()
-            if phandle:
-                pname = self.place_name(phandle)
-            else:
-                pname = None
-            date_str = DateHandler.displayer.display(dobj)
-
-            value = {
-                'date' : DateHandler.displayer.display(dobj),
-                'place' : pname,
-                }
-        else:
-            pname = None
-            dobj = None
-
-        if dobj:
-            if pname:
-                self.write_person_data(ename,
-                                       _('%(date)s in %(place)s') % value)
-            else:
-                self.write_person_data(ename,'%(date)s' % value)
-        elif pname:
-            self.write_person_data(ename,pname)
-        else:
-            self.write_person_data(ename,'')
-
     def write_family(self,family_handle):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         father_handle = family.get_father_handle()
@@ -494,7 +541,7 @@ class FamilyView(PageView.PersonNavView):
 
             value = self.info_string(handle)
             if value:
-                self.child.attach(BasicLabel(value),3,5,self.row, self.row+1)
+                self.attach.attach(BasicLabel(value),2,4,self.row, self.row+1)
                 self.row += 1
             self.write_relationship(family)
             self.write_marriage(family)
