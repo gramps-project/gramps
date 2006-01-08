@@ -72,6 +72,7 @@ SOURCE_COL_KEY      = 'source_columns'
 MEDIA_COL_KEY       = 'media_columns'
 REPOSITORY_COL_KEY  = 'repository_columns'
 EVENT_COL_KEY       = 'event_columns'
+FAMILY_COL_KEY      = 'family_columns'
 
 
 # The following two dictionaries provide fast translation
@@ -1463,6 +1464,13 @@ class GrampsDbBase(GrampsDBCallback):
         """
         self._set_column_order(col_list,PERSON_COL_KEY)
 
+    def set_family_list_column_order(self,col_list):
+        """
+        Stores the Person display common information in the
+        database's metadata.
+        """
+        self._set_column_order(col_list,FAMILY_COL_KEY)
+
     def set_child_column_order(self,col_list):
         """
         Stores the Person display common information in the
@@ -1522,6 +1530,14 @@ class GrampsDbBase(GrampsDBCallback):
         """
         default = [(1,1),(1,2),(1,3),(0,4),(1,5),(0,6),(0,7),(0,8),(0,9,)]
         return self._get_column_order(PERSON_COL_KEY,default)
+
+    def get_family_list_column_order(self):
+        """
+        Returns the Person display common information stored in the
+        database's metadata.
+        """
+        default = [(1,1),(1,2),(1,3),(1,4),(0,5)]
+        return self._get_column_order(FAMILY_COL_KEY,default)
 
     def get_child_column_order(self):
         """

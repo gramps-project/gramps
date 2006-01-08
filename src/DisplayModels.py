@@ -340,6 +340,9 @@ class SourceModel(BaseModel):
             DisplayTrace.DisplayTrace()
         return t
         
+#-------------------------------------------------------------------------
+#
+# PlaceModel
 #
 #-------------------------------------------------------------------------
 class PlaceModel(BaseModel):
@@ -445,6 +448,96 @@ class PlaceModel(BaseModel):
         except:
             DisplayTrace.DisplayTrace()
         return t
+
+#-------------------------------------------------------------------------
+#
+# FamilyModel
+#
+#-------------------------------------------------------------------------
+class FamilyModel(BaseModel):
+
+    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
+        self.gen_cursor = db.get_family_cursor
+        self.map = db.get_raw_family_data
+        self.fmap = [
+            self.column_father,
+            self.column_mother,
+            self.column_id,
+            self.column_type,
+            self.column_change,
+            self.column_handle,
+            self.column_tooltip
+            ]
+        self.smap = [
+            self.sort_father,
+            self.sort_mother,
+            self.column_id,
+            self.column_type,
+            self.sort_change,
+            self.column_handle,
+            self.column_tooltip
+            ]
+        BaseModel.__init__(self,db,scol,order,tooltip_column=6)
+
+    def on_get_n_columns(self):
+        return len(self.fmap)+1
+
+    def column_handle(self,data):
+        return unicode(data[0])
+
+    def column_father(self,data):
+        if data[2]:
+            person = self.db.get_person_from_handle(data[2])
+            return unicode(NameDisplay.displayer.sorted_name(person.primary_name))
+        else:
+            return u""
+
+    def sort_father(self,data):
+        if data[2]:
+            person = self.db.get_person_from_handle(data[2])
+            return person.primary_name.get_sort_name()
+        else:
+            return u""
+
+    def column_mother(self,data):
+        if data[3]:
+            person = self.db.get_person_from_handle(data[3])
+            return unicode(NameDisplay.displayer.sorted_name(person.primary_name))
+        else:
+            return u""
+
+    def sort_mother(self,data):
+        if data[3]:
+            person = self.db.get_person_from_handle(data[3])
+            return person.primary_name.get_sort_name()
+        else:
+            return u""
+
+    def column_type(self,data):
+        t = data[5]
+        if t[0] == RelLib.Family.CUSTOM:
+            val = t[1]
+        else:
+            val = Utils.family_relations[t[0]]
+        return unicode(val)
+
+    def column_id(self,data):
+        return unicode(data[1])
+
+    def sort_change(self,data):
+        return time.localtime(data[13])
+    
+    def column_change(self,data):
+        return unicode(time.strftime('%x %X',time.localtime(data[13])),
+                            _codeset)
+
+    def column_tooltip(self,data):
+        try:
+            t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_family_from_handle(data[0]))
+        except:
+            DisplayTrace.DisplayTrace()
+        return t
+
 
 #-------------------------------------------------------------------------
 #

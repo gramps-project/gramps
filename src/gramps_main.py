@@ -37,6 +37,7 @@ log = logging.getLogger(".")
 #-------------------------------------------------------------------------
 import ViewManager
 import PersonView
+import FamilyList
 import RepositoryView
 import GrampsDisplay
 import RelLib
@@ -67,6 +68,7 @@ def register_stock_icons ():
     items = [
         ('people48.png',('gramps-person','Person',gtk.gdk.CONTROL_MASK,0,'')),
         ('family48.png',('gramps-family','Family',gtk.gdk.CONTROL_MASK,0,'')),
+        ('family48.png',('gramps-family-list','Family List',gtk.gdk.CONTROL_MASK,0,'')),
         ('media.png',('gramps-media','Media',gtk.gdk.CONTROL_MASK,0,'')),
         ('ped24.png',('gramps-pedigree','Pedigree',gtk.gdk.CONTROL_MASK,0,'')),
         ('repos.png',('gramps-repository','Repositories',
@@ -146,6 +148,7 @@ class Gramps:
         vm = ViewManager.ViewManager(state)
         vm.register_view(PersonView.PersonView)
         vm.register_view(FamilyView.FamilyView)
+        vm.register_view(FamilyList.FamilyListView)
         vm.register_view(PedView.PedView)
         vm.register_view(EventView.EventView)
         vm.register_view(SourceView.SourceView)
