@@ -199,6 +199,35 @@ class PersonNavView(PageView):
         if defperson:
             self.dbstate.change_active_person(defperson)
 
+    def jumpto(self,obj):
+        dialog = gtk.Dialog(_('Jump to by GRAMPS ID'),None,
+                            gtk.DIALOG_NO_SEPARATOR)
+        dialog.set_border_width(12)
+        label = gtk.Label('<span weight="bold" size="larger">%s</span>' % _('Jump to by GRAMPS ID'))
+        label.set_use_markup(True)
+        dialog.vbox.add(label)
+        dialog.vbox.set_spacing(10)
+        dialog.vbox.set_border_width(12)
+        hbox = gtk.HBox()
+        hbox.pack_start(gtk.Label("%s: " % _('ID')),False)
+        text = gtk.Entry()
+        text.set_activates_default(True)
+        hbox.pack_start(text,False)
+        dialog.vbox.pack_start(hbox,False)
+        dialog.add_buttons(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+                           gtk.STOCK_JUMP_TO, gtk.RESPONSE_OK)
+        dialog.set_default_response(gtk.RESPONSE_OK)
+        dialog.vbox.show_all()
+        
+        if dialog.run() == gtk.RESPONSE_OK:
+            gid = text.get_text()
+            person = self.dbstate.db.get_person_from_gramps_id(gid)
+            if person:
+                self.dbstate.change_active_person(person)
+            else:
+                self.uistate.push_message(_("Error: %s is not a valid GRAMPS ID") % gid)
+        dialog.destroy()
+
     def fwd_clicked(self,obj,step=1):
         hobj = self.uistate.phistory
         hobj.lock = True
