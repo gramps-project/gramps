@@ -62,7 +62,7 @@ class ErrorView(object):
         tb_frame = gtk.Frame(_("Error Detail"))
         tb_frame.set_border_width(6)
         tb_label = gtk.TextView()
-        tb_label.get_buffer().set_text(self._error_detail)
+        tb_label.get_buffer().set_text(self._error_detail.get_formatted_log())
         tb_label.set_border_width(6)
         tb_label.set_editable(False)
         
