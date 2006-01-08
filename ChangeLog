@@ -1,4 +1,6 @@
 2006-01-07  Don Allingham  <don@gramps-project.org>
+	* src/ToolTips.py: fix spacing
+	* src/ViewManager.py: remember toolbar/sidebar status.
 	* src/FamilyView.py: fix gtk.Table's bizzare way of handling empty
 	columns that are spanned.
 	* src/GrampsLogger/_ErrorView.py: make dialog more HIG compliant
