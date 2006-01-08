@@ -62,6 +62,7 @@ import NameDisplay
 import Tool
 import Report
 import GrampsMime
+import GrampsKeys
 
 #-------------------------------------------------------------------------
 #
@@ -102,6 +103,7 @@ uidefault = '''<ui>
   <menu action="ViewMenu">
     <menuitem action="Sidebar"/>
     <menuitem action="Toolbar"/>    
+    <separator/>
   </menu>
   <menu action="GoMenu">
     <placeholder name="CommonGo"/>
@@ -184,6 +186,13 @@ class ViewManager:
         hbox.pack_start(self.ebox,False)
         hbox.show_all()
 
+        self.show_sidebar = GrampsKeys.get_view()
+        if self.show_sidebar == None:
+            self.show_sidebar = True
+        self.show_toolbar = GrampsKeys.get_toolbar()
+        if self.show_toolbar == None:
+            self.show_toolbar = True
+
         self.notebook = gtk.Notebook()
         self.notebook.set_show_tabs(False)
         self.notebook.show()
@@ -223,7 +232,20 @@ class ViewManager:
         self.recent_manager = DisplayState.RecentDocsMenu(self.uistate,self.state,
                                                           self.read_file)
         self.recent_manager.build()
+
         self.window.show()
+
+        if self.show_sidebar:
+            self.ebox.show()
+            self.notebook.set_show_tabs(False)
+        else:
+            self.ebox.hide()
+            self.notebook.set_show_tabs(True)
+
+        if self.show_toolbar:
+            self.toolbar.show()
+        else:
+            self.toolbar.hide()
 
     def init_interface(self):
         self.create_pages()
@@ -319,8 +341,12 @@ class ViewManager:
             ])
 
         self.fileactions.add_toggle_actions([
-            ('Sidebar', None, '_Sidebar', None, None, self.sidebar_toggle),
-            ('Toolbar', None, '_Toolbar', None, None, self.toolbar_toggle),
+            ('Sidebar', None, '_Sidebar', None, None, self.sidebar_toggle,
+             self.show_sidebar
+             ),
+            ('Toolbar', None, '_Toolbar', None, None, self.toolbar_toggle,
+             self.show_toolbar
+             ),
             ])
 
         merge_id = self.uimanager.add_ui_from_string(uidefault)
@@ -384,15 +410,21 @@ class ViewManager:
         if obj.get_active():
             self.ebox.show()
             self.notebook.set_show_tabs(False)
+            GrampsKeys.save_view(True)
         else:
             self.ebox.hide()
             self.notebook.set_show_tabs(True)
+            GrampsKeys.save_view(False)
+        GrampsKeys.sync()
 
     def toolbar_toggle(self,obj):
         if obj.get_active():
             self.toolbar.show()
+            GrampsKeys.save_toolbar(True)
         else:
             self.toolbar.hide()
+            GrampsKeys.save_toolbar(False)
+        GrampsKeys.sync()
 
     def register_view(self, view):
         self.views.append(view)

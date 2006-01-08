@@ -186,9 +186,9 @@ class PersonTip:
             if date_str != "":
                 birth_str = escape(date_str)
                 
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n" % (
+        s = "<span size=\"larger\" weight=\"bold\">%s</span>\n"\
+            "   <span weight=\"bold\">%s:</span> %s\n"\
+            "   <span weight=\"bold\">%s:</span> %s\n" % (
             _("Person"),
             _("Name"),escape(self._obj.get_primary_name().get_name()),
             _("Birth"),birth_str)
@@ -198,8 +198,8 @@ class PersonTip:
             psrc_id = psrc_ref.get_base_handle()
             psrc = self._db.get_source_from_handle(psrc_id)
 
-            s += "\n<big><b>%s</b></big>\n\n"\
-                 "\t<b>%s:</b>\t%s\n" % (
+            s += "\n<span size=\"larger\" weight=\"bold\">%s</span>\n"\
+                 "   <span weight=\"bold\">%s:</span> %s\n" % (
                 _("Primary source"),
                 _("Name"),
                 escape(short(psrc.get_title())))
