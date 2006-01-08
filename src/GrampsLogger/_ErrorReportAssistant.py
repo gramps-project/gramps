@@ -21,13 +21,13 @@ class ErrorReportAssistant:
 
         self.w.set_intro(_("This is the Bug Reporting Assistant. It will "\
                            "help you to make a bug report to the Gramps "\
-                           "developers that will be as detailed as possible.\n"\
+                           "developers that will be as detailed as possible.\n\n"\
                            "The assistant will ask you a few questions and will "\
                            "gather some information about the error that has "\
                            "occured and the operating environment. "\
-                           "At then end of the assistent you will be asked to "\
-                           "send an email to the Gramps bug reporting mailing list "\
-                           "and the bug report will be placed on the clip board so "\
+                           "At the end of the assistent you will be asked to "\
+                           "send an email to the Gramps bug reporting mailing list. "\
+                           "The assistant will place the bug report on the clip board so "\
                            "that you can paste it into your email programme and review "\
                            "exactly what information is being sent."))
 
@@ -83,9 +83,9 @@ class ErrorReportAssistant:
 
         box = gtk.VBox()
 
-        label = gtk.Label(_("This is the detail Gramps error information, don't worry if you "\
+        label = gtk.Label(_("This is the detailed Gramps error information, don't worry if you "\
                             "do not understand it. If you can see that there is any personal "\
-                            "informatin included in the error details please remove it, you "\
+                            "information included in the error please remove it. You "\
                             "will have the opportunity to add further detail about the error "\
                             "in the following pages of the assistant."))
 
@@ -95,6 +95,7 @@ class ErrorReportAssistant:
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+
         textview = gtk.TextView()
 
         self._error_details_text_buffer = textview.get_buffer()
@@ -105,8 +106,11 @@ class ErrorReportAssistant:
         sw.add(textview)
         sw.show()
         textview.show()
+
+	frm = gtk.Frame()
+	frm.add(sw)
         
-        box.pack_start(sw)
+        box.pack_start(frm)
         box.show_all()
 
         return box
@@ -135,7 +139,10 @@ class ErrorReportAssistant:
         sw.show()
         textview.show()
         
-        box.pack_start(sw)
+	frm = gtk.Frame()
+	frm.add(sw)
+
+        box.pack_start(frm)
         box.show_all()
 
         return box
@@ -161,7 +168,10 @@ class ErrorReportAssistant:
         sw.show()
         textview.show()
         
-        box.pack_start(sw)
+	frm = gtk.Frame()
+	frm.add(sw)
+
+        box.pack_start(frm)
         box.show_all()
 
         return box
@@ -194,7 +204,10 @@ class ErrorReportAssistant:
         sw.show()
         textview.show()
         
-        box.pack_start(sw)
+	frm = gtk.Frame()
+	frm.add(sw)
+
+        box.pack_start(frm)
         box.show_all()
 
         return box

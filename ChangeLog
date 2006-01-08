@@ -1,3 +1,7 @@
+2006-01-08 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/Assistant.py: changed button handling to improve usability
+	* src/GrampsLogger/_ErrorReportAssistant.py: rewording and some frames.
+
 2006-01-07  Don Allingham  <don@gramps-project.org>
 	* src/FamilyList.py: new family list view
 	* src/DisplayModels.py: model for family list
