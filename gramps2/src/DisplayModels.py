@@ -58,6 +58,9 @@ _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 #-------------------------------------------------------------------------
 _codeset = GrampsLocale.codeset
 
+def sfunc(a,b):
+    return locale.strcoll(a[0],b[0])
+
 #-------------------------------------------------------------------------
 #
 # BaseModel
@@ -86,7 +89,7 @@ class BaseModel(gtk.GenericTreeModel):
             sarray.append((self.sort_func(data[1]),data[0]))
             data = cursor.next()
         cursor.close()
-        sarray.sort()
+        sarray.sort(sfunc)
         if self.reverse:
             sarray.reverse()
         return map(lambda x: x[1], sarray)
@@ -460,18 +463,18 @@ class FamilyModel(BaseModel):
         self.gen_cursor = db.get_family_cursor
         self.map = db.get_raw_family_data
         self.fmap = [
+            self.column_id,
             self.column_father,
             self.column_mother,
-            self.column_id,
             self.column_type,
             self.column_change,
             self.column_handle,
             self.column_tooltip
             ]
         self.smap = [
+            self.column_id,
             self.sort_father,
             self.sort_mother,
-            self.column_id,
             self.column_type,
             self.sort_change,
             self.column_handle,
@@ -801,7 +804,6 @@ class RepositoryModel(BaseModel):
             return data[4].get_phone()
         except:
             return u''
-
 
     def column_email(self,data):
         return unicode(data[5])
