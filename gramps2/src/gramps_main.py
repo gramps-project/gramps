@@ -66,9 +66,9 @@ def register_stock_icons ():
     import os
     items = [
         ('person.svg',('gramps-person','Person',gtk.gdk.CONTROL_MASK,0,'')),
-        ('family48.png',('gramps-family','Relationships',gtk.gdk.CONTROL_MASK,0,'')),
+        ('relation.svg',('gramps-family','Relationships',gtk.gdk.CONTROL_MASK,0,'')),
         ('family48.png',('gramps-family-list','Family List',gtk.gdk.CONTROL_MASK,0,'')),
-        ('media.png',('gramps-media','Media',gtk.gdk.CONTROL_MASK,0,'')),
+        ('media.svg',('gramps-media','Media',gtk.gdk.CONTROL_MASK,0,'')),
         ('ped24.png',('gramps-pedigree','Pedigree',gtk.gdk.CONTROL_MASK,0,'')),
         ('repos.png',('gramps-repository','Repositories',
                       gtk.gdk.CONTROL_MASK,0,'')),
