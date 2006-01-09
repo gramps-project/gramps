@@ -278,16 +278,6 @@ class ViewManager:
         GrampsKeys.sync()
         gtk.main_quit()
 
-    def set_color(self,obj):
-        style = obj.get_style().copy()
-        new_color = style.bg[gtk.STATE_ACTIVE]
-        style.bg[gtk.STATE_NORMAL] = new_color
-        style.bg[gtk.STATE_PRELIGHT] = new_color
-        style.bg[gtk.STATE_ACTIVE] = new_color
-        style.bg[gtk.STATE_INSENSITIVE] = new_color
-        style.bg[gtk.STATE_SELECTED] = new_color
-        obj.set_style(style)
-
     def build_ui_manager(self):
         self.merge_ids = []
         self.uimanager = gtk.UIManager()
@@ -435,7 +425,6 @@ class ViewManager:
         self.prev_nav = PageView.NAVIGATION_NONE
         
         index = 0
-        self.set_color(self.ebox)
         for page_def in self.views:
             page = page_def(self.state,self.uistate)
 
@@ -461,7 +450,6 @@ class ViewManager:
             button.set_alignment(0,0.5)
             button.connect('clicked',
                            lambda x,y : self.notebook.set_current_page(y), index)
-            self.set_color(button)
             button.show()
             index += 1
             self.bbox.pack_start(button,False)

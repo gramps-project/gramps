@@ -1,3 +1,9 @@
+2006-01-09  Don Allingham  <don@gramps-project.org>
+	* relation.svg: Relationship view icon
+	* media.svg: Relationship view icon
+	* src/ViewManager.py: no background color for sidebar
+	* src/gramps_main.py: new icons
+
 2006-01-09 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/ChooseParents.py: replaced DisplayTrace with new logger
 	* src/DbPrompter.py: replaced DisplayTrace with new logger
