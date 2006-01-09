@@ -170,8 +170,6 @@ class EditPerson(DisplayState.ManagedWindow):
         
         self.gender = self.top.get_widget('gender')
         self.gender.set_sensitive(mod)
-#        self.complete = self.top.get_widget('complete')
-#        self.complete.set_sensitive(mod)
         self.private = self.top.get_widget('private')
         self.private.set_sensitive(mod)
         name_delete_btn = self.top.get_widget('aka_del')
@@ -354,7 +352,6 @@ class EditPerson(DisplayState.ManagedWindow):
                                                            RelLib.Name.CUSTOM,
                                                            RelLib.Name.BIRTH)
         self.write_primary_name()
-        
         self.load_person_image()
         
         # set notes data
@@ -381,7 +378,6 @@ class EditPerson(DisplayState.ManagedWindow):
 
         self.set_list_dnd(self.addr_list, self.ad_drag_data_get,
                           self.ad_drag_begin, self.ad_drag_data_received)
-
 
         self.gladeif.connect("edit_person", "delete_event", self.on_delete_event)
         self.gladeif.connect("button15", "clicked", self.on_cancel_edit)
