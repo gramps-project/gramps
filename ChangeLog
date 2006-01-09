@@ -1,4 +1,8 @@
-2006-01-08 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+2006-01-09 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/GrampsLogger/_ErrorReportAssistant.py: corrected wording, minor layout 
+	changes.
+
+2006-01-09 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/Assistant.py: remove print statement
 	* src/GrampsLogger/_ErrorReportAssistant.py: polish UI and added option
 	to start email client.

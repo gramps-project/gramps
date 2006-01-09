@@ -50,7 +50,7 @@ class ErrorView(object):
         self.top.vbox.pack_start(hbox,False,False,5)
 
         instructions_label = gtk.Label(
-            _("Your data will safe but it would be advisable to restart GRAMPS immediately. "\
+            _("Your data will be safe but it would be advisable to restart GRAMPS immediately. "\
               "If you would like to report the problem to the GRAMPS team "\
               "please click Report and the Error Reporting Wizard will help you "\
               "to make a bug report."))
