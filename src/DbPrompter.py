@@ -241,8 +241,7 @@ class ExistingDbPrompter:
                         _("Could not open file: %s") % filename, msg[1])
                     return False
                 except:
-                    import DisplayTrace
-                    DisplayTrace.DisplayTrace()
+                    log.error("Failed to open native database file.", exc_info=True)
                     return False
 
             # The above native formats did not work, so we need to 

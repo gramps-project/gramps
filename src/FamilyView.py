@@ -24,7 +24,6 @@ import pango
 #-------------------------------------------------------------------------
 import RelLib
 import PageView
-import DisplayTrace
 import NameDisplay
 import Utils
 import DateHandler

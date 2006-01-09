@@ -32,6 +32,8 @@ __version__ = "$Revision$"
 #-------------------------------------------------------------------------
 from types import ClassType, InstanceType
 from gettext import gettext as _
+import logging
+log = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
@@ -215,8 +217,7 @@ def gui_tool(database,person,tool_class,options_class,translated_name,
     try:
         tool_class(database,person,options_class,name,callback,parent)
     except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+        log.error("Failed to start tool.", exc_info=True)
 
 # Command-line generic task
 def cli_tool(database,name,category,tool_class,options_class,options_str_dict):
@@ -232,8 +233,7 @@ def cli_tool(database,name,category,tool_class,options_class,options_str_dict):
     try:
         tool_class(database,clt.person,clt.option_class,name)
     except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+        log.error("Failed to start tool.", exc_info=True)
 
 #-------------------------------------------------------------------------
 #

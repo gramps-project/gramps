@@ -50,7 +50,6 @@ import EventView
 import SourceView
 import MediaView
 import ArgHandler
-import DisplayTrace
 import GrampsKeys
 import GrampsCfg
 import const
@@ -128,7 +127,7 @@ class Gramps:
             gtk.main_quit()
             return
         except:
-            DisplayTrace.DisplayTrace()
+            log.error("Error reading configuration.", exc_info=True)
             return
             
         if not mime_type_is_defined(const.app_gramps):

@@ -29,6 +29,8 @@ from gettext import gettext as _
 from bsddb import db
 import os
 from cStringIO import StringIO
+import logging
+log = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
@@ -50,7 +52,6 @@ import GrampsKeys
 import GrampsDb
 import GrampsCfg
 import Errors
-import DisplayTrace
 import Utils
 import QuestionDialog
 import PageView
@@ -569,8 +570,7 @@ class ViewManager:
                         _("Could not open file: %s") % filename, msg[1])
                     return False
                 except:
-                    import DisplayTrace
-                    DisplayTrace.DisplayTrace()
+                    log.error("Failed to open native.", exc_info=True)
                     return False
 
             # The above native formats did not work, so we need to 
@@ -738,7 +738,7 @@ class ViewManager:
                         _('%s could not be opened.' % filename) + '\n' + msg[1])
             return False
         except Exception:
-            DisplayTrace.DisplayTrace()
+            log.error("Failed to open database.", exc_info=True)
             return False
         
         # Undo/Redo always start with standard labels and insensitive state

@@ -29,7 +29,8 @@ from gettext import gettext as _
 import gc
 import sys
 
-log = sys.stderr.write
+import logging
+log = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
@@ -515,8 +516,8 @@ class EditSource(DisplayState.ManagedWindow):
                 # If we get here it means there is a new Primary object type
                 # that has been added to the database. Print a warning
                 # to remind us that this code need updating.
-                log("WARNING: Unhandled Primary object type returned from "
-                    "find_backlink_handles()\n")
+                log.warning("Unhandled Primary object type returned from "
+                            "find_backlink_handles()\n")
                 
             if gtk.events_pending():
                 return True

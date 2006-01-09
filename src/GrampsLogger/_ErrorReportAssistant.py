@@ -468,7 +468,7 @@ class ErrorReportAssistant:
               self._user_information_text_buffer.get_start_iter(),
               self._user_information_text_buffer.get_end_iter()) +
 
-            "\n\nError Details: \n" +
+            "\n\n\nError Details: \n" +
             "===================\n\n" +
 
             self._error_details_text_buffer.get_text(

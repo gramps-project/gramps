@@ -27,6 +27,8 @@
 import time
 from gettext import gettext as _
 import locale
+import logging
+log = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
@@ -46,7 +48,6 @@ import DateHandler
 import RelLib
 import Utils
 import ToolTips
-import DisplayTrace
 import GrampsLocale
 
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
@@ -340,7 +341,7 @@ class SourceModel(BaseModel):
         try:
             t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_source_from_handle(data[0]))
         except:
-            DisplayTrace.DisplayTrace()
+            log.error("Failed to create tooltip.",exc_info=True)
         return t
         
 #-------------------------------------------------------------------------
@@ -449,7 +450,7 @@ class PlaceModel(BaseModel):
         try:
             t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_place_from_handle(data[0]))
         except:
-            DisplayTrace.DisplayTrace()
+            log.error("Failed to create tooltip.", exc_info=True)
         return t
 
 #-------------------------------------------------------------------------
@@ -538,7 +539,7 @@ class FamilyModel(BaseModel):
         try:
             t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_family_from_handle(data[0]))
         except:
-            DisplayTrace.DisplayTrace()
+            log.error("Failed to create tooltip.", exc_info=True)
         return t
 
 
@@ -617,7 +618,7 @@ class MediaModel(BaseModel):
         try:
             t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_object_from_handle(data[0]))
         except:
-            DisplayTrace.DisplayTrace()
+            log.error("Failed to create tooltip.", exc_info=True)
         return t
 
 #-------------------------------------------------------------------------
@@ -701,7 +702,7 @@ class EventModel(BaseModel):
         try:
             t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_event_from_handle(data[0]))
         except:
-            DisplayTrace.DisplayTrace()
+            log.error("Failed to create tooltip.", exc_info=True)
         return t
 
 
@@ -818,5 +819,5 @@ class RepositoryModel(BaseModel):
         try:
             t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_repository_from_handle(data[0]))
         except:
-            DisplayTrace.DisplayTrace()
+            log.error("Failed to create tooltip.", exc_info=True)
         return t
