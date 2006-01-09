@@ -43,8 +43,8 @@ class ErrorReportAssistant:
 
         self.w.set_conclusion(_('Complete'),
                               _('GRAMPS is an Open Source project. Its success '
-                                'depends on the users. User feedback is important. '
-                                'Thankyou for taking the time to submit a bug report.'))
+                                'depends on its users. User feedback is important. '
+                                'Thank you for taking the time to submit a bug report.'))
 
         self.w.connect('page-changed',self.on_page_changed)
 
@@ -90,7 +90,6 @@ class ErrorReportAssistant:
     def _reset_error_details_text_buffer(self,obj=None):
         self._error_details_text_buffer.set_text(
 	    "\n".join(self._rotate_handler.get_formatted_log(self._error_detail.get_record())) +
-	    "\n\n" + 
 	    self._error_detail.get_formatted_log())
 
     def _clear_error_details_text_buffer(self,obj=None):
@@ -379,7 +378,8 @@ class ErrorReportAssistant:
 
 
         url_label = gtk.Label(_("If your email client is configured correctly you may be able "\
-                                "to use this button to start it with the bug report ready to send. "))
+                                "to use this button to start it with the bug report ready to send. "\
+                                "(This will probably only work if you are running Gnome)"))
         url_label.set_alignment(0.01,0.5)
         url_label.set_padding(0, 4)
         url_label.set_line_wrap(True)
