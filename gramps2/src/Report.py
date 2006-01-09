@@ -34,6 +34,10 @@ __version__ = "$Revision$"
 import os
 from gettext import gettext as _
 from types import ClassType, InstanceType
+import logging
+
+log = logging.getLogger(".")
+
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK modules
@@ -549,8 +553,7 @@ class BareReportDialog:
         try:
             self.options.parse_user_options(self)
         except:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
+            log.error("Failed to parse user options.", exc_info=True)
             
 
     def add_option(self,label_text,widget,tooltip=None):
@@ -1896,8 +1899,7 @@ def report(database,person,report_class,options_class,translated_name,name,categ
         except Errors.DatabaseError,msg:
             ErrorDialog(_("Report could not be created"),str(msg))
         except:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
+            log.error("Failed to run report.", exc_info=True)
     dialog.window.destroy()
 
 # Book item generic task
@@ -1915,8 +1917,7 @@ def write_book_item(database,person,report_class,options_class):
         (m1,m2) = msg.messages()
         ErrorDialog(m1,m2)
     except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+        log.error("Failed to write book item.", exc_info=True)
     return None
 
 # Command-line generic task
@@ -1938,5 +1939,4 @@ def cl_report(database,name,category,report_class,options_class,options_str_dict
         MyReport.write_report()
         MyReport.end_report()
     except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+        log.error("Failed to write report.", exc_info=True)

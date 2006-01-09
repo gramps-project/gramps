@@ -1,4 +1,19 @@
 2006-01-09 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/ChooseParents.py: replaced DisplayTrace with new logger
+	* src/DbPrompter.py: replaced DisplayTrace with new logger
+	* src/DisplayModels.py: replaced DisplayTrace with new logger
+	* src/EditPlace.py: replaced DisplayTrace with new logger
+	* src/EditSource.py: replaced DisplayTrace with new logger
+	* src/FamilyView.py: replaced DisplayTrace with new logger
+	* src/MapView.py: replaced DisplayTrace with new logger
+	* src/Report.py: replaced DisplayTrace with new logger
+	* src/StyleEditor.py: replaced DisplayTrace with new logger
+	* src/Tool.py: replaced DisplayTrace with new logger
+	* src/ViewManager.py: replaced DisplayTrace with new logger
+	* src/gramps_main.py: replaced DisplayTrace with new logger
+	* src/GrampsLogger/_ErrorReportAssistant.py: added a newline
+
+2006-01-09 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GrampsLogger/_ErrorReportAssistant.py: corrected wording, minor layout 
 	changes.
 

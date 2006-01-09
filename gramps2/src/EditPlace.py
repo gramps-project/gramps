@@ -30,7 +30,8 @@ import gc
 from gettext import gettext as _
 import sys
 
-log = sys.stderr.write
+import logging
+log = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
@@ -615,8 +616,8 @@ class EditPlace(DisplayState.ManagedWindow):
                 # that has been added to the database or that Place has started
                 # to be referenced by a different primary object. Print a warning
                 # to remind us that this code need updating.
-                log("WARNING: Unhandled Primary object type returned from "
-                    "find_backlink_handles(): %s \n" % str(cls_name))
+                log.warning("Unhandled Primary object type returned from "
+                            "find_backlink_handles(): %s \n" % str(cls_name))
                 
             if gtk.events_pending():
                 return True

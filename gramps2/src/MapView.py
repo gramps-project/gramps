@@ -28,6 +28,9 @@
 from gettext import gettext as _
 import gc
 import re
+import logging
+
+log = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
@@ -45,7 +48,6 @@ import gtk.gdk
 #-------------------------------------------------------------------------
 import RelLib
 import PageView
-import DisplayTrace
 
 glob_loc_data = [ # (Name, longitude, latitude)
         ("_Center", 0,0),
@@ -456,7 +458,7 @@ class MapView(PageView.PageView):
             #d = self.parse_nima_countryfile("/tmp/gm.txt")
             d = d + self.get_markers_from_database( self.dbstate.db)
         except:
-            DisplayTrace.DisplayTrace()
+            log.error("Failed to rebuild places.", exc_info=True)
         self.place_list_view.change_data( d)
 
     def entry_select_cb(self,treeview):

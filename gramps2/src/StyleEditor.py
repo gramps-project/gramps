@@ -33,6 +33,9 @@ __version__ = "$Revision$"
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
+import logging
+log = logging.getLogger(".")
+
 
 #------------------------------------------------------------------------
 #
@@ -131,8 +134,7 @@ class StyleListDisplay:
             from QuestionDialog import ErrorDialog
             ErrorDialog(_("Error saving stylesheet"),str(msg))
         except:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
+            log.error("Failed to save stylesheet",exc_info=True)
 
     def on_button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:

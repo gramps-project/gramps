@@ -38,6 +38,14 @@ import gc
 
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".")
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -653,8 +661,7 @@ class ChooseParents:
             import EditPerson
             EditPerson.EditPerson(self, person,self.db,self.add_new_parent)
         except:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
+            log.error("Failed to add parent",exc_info=True)
 
     def change_family_type(self,family,mother_rel,father_rel,trans):
         """
