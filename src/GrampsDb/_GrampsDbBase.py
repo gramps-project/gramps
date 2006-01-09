@@ -1536,7 +1536,7 @@ class GrampsDbBase(GrampsDBCallback):
         Returns the Person display common information stored in the
         database's metadata.
         """
-        default = [(1,1),(1,2),(1,3),(1,4),(0,5)]
+        default = [(1,0), (1,1),(1,2),(1,3),(0,4)]
         return self._get_column_order(FAMILY_COL_KEY,default)
 
     def get_child_column_order(self):
@@ -1552,7 +1552,7 @@ class GrampsDbBase(GrampsDBCallback):
         Returns the Place display common information stored in the
         database's metadata.
         """
-        default = [(1,1),(1,2),(0,3),(0,4),(1,5),(0,6),(1,7),(0,8),(0,9),(0,10)]
+        default = [(1,0), (1,1),(1,2),(0,3),(0,4),(1,5),(0,6),(1,7),(0,8),(0,9),(0,10)]
         return self._get_column_order(PLACE_COL_KEY,default)
 
     def get_source_column_order(self):
@@ -1560,7 +1560,7 @@ class GrampsDbBase(GrampsDBCallback):
         Returns the Source display common information stored in the
         database's metadata.
         """
-        default = [(1,1),(1,2),(0,3),(1,4),(0,5)]
+        default = [(1,0),(1,1),(1,2),(0,3),(1,4),(0,5)]
         return self._get_column_order(SOURCE_COL_KEY,default)
 
     def get_media_column_order(self):
@@ -1568,7 +1568,7 @@ class GrampsDbBase(GrampsDBCallback):
         Returns the MediaObject display common information stored in the
         database's metadata.
         """
-        default = [(1,1),(1,2),(1,3),(1,5),(0,4)]
+        default = [(1,0),(1,1),(1,2),(1,3),(1,5),(0,4)]
         return self._get_column_order(MEDIA_COL_KEY,default)
 
     def get_event_column_order(self):
@@ -1576,7 +1576,7 @@ class GrampsDbBase(GrampsDBCallback):
         Returns the Event display common information stored in the
         database's metadata.
         """
-        default = [(1,1),(1,2),(1,3),(1,4),(1,5),(0,6)]
+        default = [(1,0),(1,1),(1,2),(1,3),(1,4),(1,5),(0,6)]
         return self._get_column_order(EVENT_COL_KEY,default)
 
     def get_repository_column_order(self):
@@ -1584,7 +1584,7 @@ class GrampsDbBase(GrampsDBCallback):
         Returns the Repository display common information stored in the
         database's metadata.
         """
-        default = [(1,1),(0,5),(0,6),(1,2),(1,3),(0,4),(0,7),(0,8),(0,9),(0,10)]
+        default = [(1,0),(1,1),(0,5),(0,6),(1,2),(1,3),(0,4),(0,7),(0,8),(0,9),(0,10)]
         return self._get_column_order(REPOSITORY_COL_KEY,default)
 
     def _update_reference_map(self,obj):

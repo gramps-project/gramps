@@ -357,8 +357,8 @@ class ListView(PageView):
             path = self.model.on_get_path(handle)
             self.selection.select_path(path)
             self.list.scroll_to_cell(path,None,1,0.5,0)
-        for i in range(0,len(self.columns)):
-            self.columns[i].set_sort_indicator(i==colmap[data][1]-1)
+        for i in xrange(len(self.columns)):
+            self.columns[i].set_sort_indicator(i==colmap[data][1])
         self.columns[self.sort_col].set_sort_order(order)
 
     def build_columns(self):
@@ -367,17 +367,8 @@ class ListView(PageView):
             
         self.columns = []
 
-        column = gtk.TreeViewColumn(self.colinfo[0], self.renderer,text=0)
-        column.set_resizable(True)
-        column.set_min_width(225)
-        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
-        self.list.append_column(column)
-        self.columns = [column]
-
         index = 0
-        for pair in self.column_order():
-            if not pair[0]:
-                continue
+        for pair in [pair for pair in self.column_order() if pair[0]]:
             name = self.colinfo[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
             column.connect('clicked',self.column_clicked,index)
@@ -388,14 +379,14 @@ class ListView(PageView):
             self.list.append_column(column)
             index += 1
 
-
     def build_tree(self):
         self.model = self.make_model(self.dbstate.db,self.sort_col)
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
 
         if self.model.tooltip_column != None:
-            self.tooltips = TreeTips.TreeTips(self.list,self.model.tooltip_column,True)
+            self.tooltips = TreeTips.TreeTips(self.list,
+                                              self.model.tooltip_column,True)
 
     def change_db(self,db):
         for sig in self.signal_map:
@@ -425,9 +416,9 @@ class ListView(PageView):
         Most PageViews really won't care about this.
         """
 
-        self.add_action('Add',       gtk.STOCK_ADD,   "_Add",   callback=self.add)
-        self.add_action('Edit',      gtk.STOCK_EDIT,  "_Edit",  callback=self.edit)
-        self.add_action('Remove',    gtk.STOCK_REMOVE,"_Remove",callback=self.remove)
+        self.add_action('Add',   gtk.STOCK_ADD,   "_Add",   callback=self.add)
+        self.add_action('Edit',  gtk.STOCK_EDIT,  "_Edit",  callback=self.edit)
+        self.add_action('Remove',gtk.STOCK_REMOVE,"_Remove",callback=self.remove)
 
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:

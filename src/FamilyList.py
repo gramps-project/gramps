@@ -48,9 +48,9 @@ from QuestionDialog import QuestionDialog, ErrorDialog
 from gettext import gettext as _
 
 column_names = [
+    _('ID'),
     _('Father'),
     _('Mother'),
-    _('ID'),
     _('Relationship'),
     _('Last Changed'),
     ]
