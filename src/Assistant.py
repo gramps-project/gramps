@@ -122,7 +122,6 @@ class Assistant(gtk.Object):
         self.title.set_use_markup(True)
 
     def set_buttons(self):
-	print "current_page = ", self.current_page
         if self.current_page == self.max_page-1:
 	    self.next.show()
 	    self.back.show()
