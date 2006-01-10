@@ -133,6 +133,9 @@ class GrampsBSDDB(GrampsDbBase):
             dbmap.open(name, dbname, db.DB_HASH,
                        db.DB_CREATE|db.DB_AUTO_COMMIT, 0666)
         return dbmap
+
+    def _all_handles(self,table):
+        return table.keys(self.txn)
     
     def get_person_cursor(self):
         return GrampsBSDDBCursor(self.person_map,self.txn)
@@ -244,7 +247,7 @@ class GrampsBSDDB(GrampsDbBase):
                and self.metadata.get('version',0) < _DBVERSION
 
     def load(self,name,callback,mode="w"):
-        if self.person_map:
+        if self.db_is_open:
             self.close()
 
         self.readonly = mode == "r"
@@ -394,6 +397,7 @@ class GrampsBSDDB(GrampsDbBase):
             self.bookmarks = []
 
         self.genderStats = GenderStats(gstats)
+        self.db_is_open = True
         return 1
 
     def rebuild_secondary(self,callback=None):
@@ -714,7 +718,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.close()
 
     def close(self):
-        if self.person_map == None:
+        if not self.db_is_open:
             return
         self.name_group.close()
         self.person_map.close()
@@ -764,6 +768,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.surnames       = None
         self.env            = None
         self.metadata       = None
+        self.db_is_open     = False
 
     def _del_person(self,handle):
         self._delete_primary_from_reference_map(handle)
