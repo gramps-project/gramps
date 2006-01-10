@@ -45,6 +45,8 @@ class GrampsXMLDB(GrampsInMemDB):
         GrampsInMemDB.__init__(self)
 
     def load(self,name,callback,mode="w"):
+        if self.db_is_open:
+            self.close()
         GrampsInMemDB.load(self,name,callback,mode)
         self.id_trans = {}
         
@@ -53,9 +55,12 @@ class GrampsXMLDB(GrampsInMemDB):
         self.bookmarks = self.metadata.get('bookmarks')
         if self.bookmarks == None:
             self.bookmarks = []
+        self.db_is_open = True
         return 1
 
     def close(self):
+        if not self.db_is_open:
+            return
         if not self.readonly and len(self.undodb) > 0:
             WriteXML.quick_write(self,self.filename)
-
+        self.db_is_open = False

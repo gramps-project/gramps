@@ -262,14 +262,22 @@ class FamilyView(PageView.PersonNavView):
 
         self.row = 5
         family_handle_list = person.get_parent_family_handle_list()
-        for (family_handle,mrel,frel) in family_handle_list:
-            if family_handle:
-                self.write_parents(family_handle)
+        if family_handle_list:
+            for (family_handle,mrel,frel) in family_handle_list:
+                if family_handle:
+                    self.write_parents(family_handle)
+        else:
+            self.write_label("%s:" % _('Parents'),None)
+            self.row += 1
                 
         family_handle_list = person.get_family_handle_list()
-        for family_handle in family_handle_list:
-            if family_handle:
-                self.write_family(family_handle)
+        if family_handle_list:
+            for family_handle in family_handle_list:
+                if family_handle:
+                    self.write_family(family_handle)
+        else:
+            self.write_label("%s:" % _('Family'),None)
+            self.row += 1
 
         self.row = 1
         self.write_title(person)
@@ -303,8 +311,6 @@ class FamilyView(PageView.PersonNavView):
                    x0 -= 1
                 if x1 > 4:
                     x1 -= 1
-            if x0 == x1:
-                print d[0]
             self.child.attach(d[0],x0,x1,d[3],d[4],d[5],d[6])
 
         self.child.show_all()
@@ -403,17 +409,22 @@ class FamilyView(PageView.PersonNavView):
         self.attach.attach(MarkupLabel(msg),_LABEL_START,_LABEL_STOP,
                            self.row,self.row+1,gtk.SHRINK|gtk.FILL)
 
-        self.attach.attach(BasicLabel(family.gramps_id),_DATA_START,_DATA_STOP,
+        if family:
+            value = family.gramps_id
+        else:
+            value = ""
+        self.attach.attach(BasicLabel(value),_DATA_START,_DATA_STOP,
                            self.row,self.row+1,gtk.SHRINK|gtk.FILL)
 
         hbox = gtk.HBox()
         hbox.set_spacing(6)
         add = IconButton(self.add_family,None,gtk.STOCK_ADD)
         hbox.pack_start(add,False)
-        edit = IconButton(self.edit_family,family.handle,gtk.STOCK_EDIT)
-        hbox.pack_start(edit,False)
-        delete = IconButton(self.delete_family,family.handle,gtk.STOCK_REMOVE)
-        hbox.pack_start(delete,False)
+        if family:
+            edit = IconButton(self.edit_family,family.handle,gtk.STOCK_EDIT)
+            hbox.pack_start(edit,False)
+            delete = IconButton(self.delete_family,family.handle,gtk.STOCK_REMOVE)
+            hbox.pack_start(delete,False)
         self.attach.attach(hbox,_BTN_START,_BTN_STOP,self.row,self.row+1)
         self.row += 1
         
@@ -532,12 +543,15 @@ class FamilyView(PageView.PersonNavView):
         return p.get_title()
 
     def write_marriage(self,family):
+        value = False
         for event_ref in family.get_event_ref_list():
             handle = event_ref.ref
             event = self.dbstate.db.get_event_from_handle(handle)
             etype = event.get_type()
             if etype[0] == RelLib.Event.MARRIAGE:
                 self.write_event_ref(_('Marriage'),event)
+                value = True
+        return value
 
     def write_event_ref(self, ename, event,start_col=_SDATA_START,stop_col=_SDATA_STOP):
         if event:
@@ -593,8 +607,8 @@ class FamilyView(PageView.PersonNavView):
                 self.attach.attach(BasicLabel(value),_PDTLS_START,
                                    _PDTLS_STOP,self.row, self.row+1)
                 self.row += 1
-            self.write_relationship(family)
-            self.write_marriage(family)
+            if not self.write_marriage(family):
+                self.write_relationship(family)
         
         child_list = family.get_child_handle_list()
         label = _("Children")

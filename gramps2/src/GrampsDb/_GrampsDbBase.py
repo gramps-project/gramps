@@ -207,6 +207,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.lmap_index = 0
         self.omap_index = 0
         self.rmap_index = 0
+        self.db_is_open = False
 
         self.family_event_names = sets.Set()
         self.individual_event_names = sets.Set()
@@ -336,7 +337,7 @@ class GrampsDbBase(GrampsDBCallback):
         """
         Returns 1 if the database has been opened.
         """
-        return self.person_map != None
+        return self.db_is_open
 
     def request_rebuild(self):
         """
@@ -843,7 +844,10 @@ class GrampsDbBase(GrampsDBCallback):
         """
         Returns the number of people currently in the databse.
         """
-        return len(self.person_map)
+        if self.db_is_open:
+            return len(self.person_map)
+        else:
+            return 0
 
     def get_number_of_families(self):
         """
@@ -881,12 +885,15 @@ class GrampsDbBase(GrampsDBCallback):
         """
         return len(self.repository_map)
 
+    def _all_handles(self,table):
+        return table.keys()
+
     def get_person_handles(self,sort_handles=True):
         """
         Returns a list of database handles, one handle for each Person in
         the database. If sort_handles is True, the list is sorted by surnames
         """
-        if self.person_map:
+        if self.db_is_open:
             if sort_handles:
                 slist = []
                 cursor = self.get_person_cursor()
@@ -898,7 +905,7 @@ class GrampsDbBase(GrampsDBCallback):
                 slist.sort()
                 return map(lambda x: x[1], slist)
             else:
-                return self.person_map.keys()
+                return self._all_handles(self.person_map)
         return []
 
     def get_place_handles(self,sort_handles=True):
@@ -920,7 +927,7 @@ class GrampsDbBase(GrampsDBCallback):
                 val = map(lambda x: x[1], slist)
                 return val
             else:
-                return self.place_map.keys()
+                return self._all_handles(self.place_map)
         return []
 
     def get_source_handles(self,sort_handles=True):
@@ -930,7 +937,7 @@ class GrampsDbBase(GrampsDBCallback):
         Source title.
         """
         if self.source_map:
-            handle_list = self.source_map.keys()
+            handle_list = self._all_handles(self.source_map)
             if sort_handles:
                 handle_list.sort(self._sortbysource)
             return handle_list
@@ -942,7 +949,7 @@ class GrampsDbBase(GrampsDBCallback):
         the database. If sort_handles is True, the list is sorted by title.
         """
         if self.media_map:
-            handle_list = self.media_map.keys()
+            handle_list = self._all_handles(self.media_map)
             if sort_handles:
                 handle_list.sort(self._sortbymedia)
             return handle_list
@@ -954,7 +961,7 @@ class GrampsDbBase(GrampsDBCallback):
         the database. 
         """
         if self.event_map:
-            return self.event_map.keys()
+            return self._all_handles(self.event_map)
         return []
 
     def get_family_handles(self):
@@ -963,7 +970,7 @@ class GrampsDbBase(GrampsDBCallback):
         the database.
         """
         if self.family_map:
-            return self.family_map.keys()
+            return self._all_handles(self.family_map)
         return []
 
     def get_repository_handles(self):
@@ -972,7 +979,7 @@ class GrampsDbBase(GrampsDBCallback):
         the database.
         """
         if self.repository_map:
-            return self.repository_map.keys()
+            return self._all_handles(self.repository_map)
         return []
 
     def _validated_id_prefix(self, val, default):

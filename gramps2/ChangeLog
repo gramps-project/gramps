@@ -1,6 +1,11 @@
 2006-01-10  Don Allingham  <don@gramps-project.org>
-	* src/FamilyView.py: add/edit/delete buttons for families added
-
+	* src/FamilyView.py: add/edit/delete buttons for families added,
+	add support for no families or parents
+	* src/GrampsDb/_GrampsBSDDB.py: txn handling for get_handles
+	* src/GrampsDb/_GrampsDbBase.py: txn handling for get_handles
+	* src/GrampsDb/_GrampsGEDDB.py: txn handling for get_handles
+	* src/GrampsDb/_GrampsXMLDb.py: txn handling for get_handles
+	
 2006-01-10  Alex Roitman  <shura@gramps-project.org>
 	* src/Assistant.py: Cosmeti c changes.
 	* src/Exporter.py: Start converting to Assistant.
