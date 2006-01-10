@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004-2005 Donald N. Allingham
+# Copyright (C) 2004-2006 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,7 +36,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-import Assistant
 
 #-------------------------------------------------------------------------
 #
@@ -49,7 +48,8 @@ import PluginMgr
 import QuestionDialog
 import GrampsKeys
 import GrampsDisplay
-
+import Assistant
+print "0"
 #-------------------------------------------------------------------------
 #
 # Exporter
@@ -66,18 +66,20 @@ class Exporter:
     name. 
     """
 
-    def __init__(self,parent,parent_window):
+    def __init__(self,dbstate,uistate):
         """
         Set up the window, the druid, and build all the druid's pages. 
         Some page elements are left empty, since their contents depends
         on the user choices and on the success of the attempted save. 
         """
-        self.parent = parent
-        self.parent_window = parent_window
-        if self.parent.active_person:
-            self.person = self.parent.active_person
+        self.dbstate = dbstate
+        self.uistate = uistate
+        # self.parent_window = parent_window
+        if self.dbstate.active:
+            self.person = self.dbstate.active
         else:
-            self.person = self.parent.find_initial_person()
+            pass
+            # self.person = self.parent.find_initial_person()
 
         self.build_exports()
         self.confirm_label = gtk.Label()
@@ -85,26 +87,19 @@ class Exporter:
 
         self.w = Assistant.Assistant(_('Saving your data'),None)
 
-        self.w.set_intro(
-            _('Under normal circumstances, GRAMPS does not require you '
-              'to directly save your changes. All changes you make are '
-              'immediately saved to the database.\n\n'
-              'This process will help you save a copy of your data '
-              'in any of the several formats supported by GRAMPS. '
-              'This can be used to make a copy of your data, backup '
-              'your data, or convert it to a format that will allow '
-              'you to transfer it to a different program.\n\n'
-              'If you change your mind during this process, you '
-              'can safely press the Cancel button at any time and your '
-              'present database will still be intact.'))
+        self.w.set_intro(self.get_intro_text())
         
-        self.w.add_page(self.build_info_page())
-        self.w.add_page(self.build_format_page())
-        self.file_sel_page = self.build_file_sel_page()
-        self.w.add_page(self.file_sel_page)
-        self.w.add_page(self.build_confirm_page())
-        self.last_page = self.build_last_page()
-        self.w.add_page(self.last_page)
+        title,box = self.build_format_page()
+        self.w.add_page(title,box)
+
+        title,box = self.build_file_sel_page()
+        self.w.add_page(title,box)
+
+        title,box = self.build_confirm_page()
+        self.w.add_page(title,box)
+
+        title,text=self.get_conclusion_text()
+        self.w.set_conclusion(title,text)
 
         self.w.show()
 
@@ -120,42 +115,18 @@ class Exporter:
         """
         GrampsDisplay.help('export-data')
 
-    def build_info_page(self):
-        """
-        Build initial druid page with the overall information about the process.
-        This is a static page, nothing fun here :-)
-        """
-        p = DruidPageEdge(0)
-        p.set_title()
-        p.set_title_color(self.fg_color)
-        p.set_bg_color(self.bg_color)
-        p.set_logo(self.logo)
-        p.set_watermark(self.splash)
-        p.set_text(_('Under normal circumstances, GRAMPS does not require you '
-                    'to directly save your changes. All changes you make are '
-                    'immediately saved to the database.\n\n'
-                    'This process will help you save a copy of your data '
-                    'in any of the several formats supported by GRAMPS. '
-                    'This can be used to make a copy of your data, backup '
-                    'your data, or convert it to a format that will allow '
-                    'you to transfer it to a different program.\n\n'
-                    'If you change your mind during this process, you '
-                    'can safely press the Cancel button at any time and your '
-                    'present database will still be intact.'))
-        return p
-
-    def build_last_page(self):
-        """
-        Build the last druid page. The actual text will be added after the
-        save is performed and the success status us known. 
-        """
-        p = DruidPageEdge(1)
-        p.set_title_color(self.fg_color)
-        p.set_bg_color(self.bg_color)
-        p.set_logo(self.logo)
-        p.set_watermark(self.splash)
-        p.connect('finish',self.close)
-        return p
+    def get_intro_text(self):
+        return _('Under normal circumstances, GRAMPS does not require you '
+                 'to directly save your changes. All changes you make are '
+                 'immediately saved to the database.\n\n'
+                 'This process will help you save a copy of your data '
+                 'in any of the several formats supported by GRAMPS. '
+                 'This can be used to make a copy of your data, backup '
+                 'your data, or convert it to a format that will allow '
+                 'you to transfer it to a different program.\n\n'
+                 'If you change your mind during this process, you '
+                 'can safely press the Cancel button at any time and your '
+                 'present database will still be intact.')
 
     def build_confirm_page(self):
         """
@@ -164,17 +135,13 @@ class Exporter:
         is necessary, because no choice is made by the user when this
         page is set up. 
         """
-        p = DruidPageStandard()
-        p.set_title(_('Final save confirmation'))
-        p.set_title_foreground(self.fg_color)
-        p.set_background(self.bg_color)
-        p.set_logo(self.logo)
-        
-        p.append_item("",self.confirm_label,"")
-
-        p.connect('prepare',self.build_confirm_label)
-        p.connect('next',self.save)
-        return p
+        page_title = _('Final save confirmation')
+        box = gtk.VBox()
+        box.set_spacing(12)
+        box.add(self.confirm_label)
+        #p.connect('prepare',self.build_confirm_label)
+        #p.connect('next',self.save)
+        return (page_title,box)
 
     def build_confirm_label(self,obj,obj2):
         """
@@ -219,10 +186,29 @@ class Exporter:
                     'not alter the copy you have just made. '))
         else:
             self.last_page.set_title(_('Saving failed'))
-            self.last_page.set_text(_('There was an error '
-                    'while saving your data. Please go back and try again.\n\n'
-                    'Note: your currently opened database is safe. It was only '
-                    'a copy of your data that failed to save.'))
+            self.last_page.set_text()
+
+    def get_conclusion_text(self,success=False):
+        if success:
+            return (
+                _('Your data has been saved'),
+                _('The copy of your data has been '
+                     'successfully saved. You may press Apply button '
+                     'now to continue.\n\n'
+                     'Note: the database currently opened in your GRAMPS '
+                     'window is NOT the file you have just saved. '
+                     'Future editing of the currently opened database will '
+                     'not alter the copy you have just made. ')
+                )
+        else:
+            return (
+                _('Saving failed'),
+                _('There was an error while saving your data. '
+                  'Please go back and try again.\n\n'
+                  'Note: your currently opened database is safe. '
+                  'It was only '
+                  'a copy of your data that failed to save.')
+                )
 
     def build_format_page(self):
         """
@@ -231,16 +217,11 @@ class Exporter:
         """
         self.format_buttons = []
 
-        p = DruidPageStandard()
-        p.set_title(_('Choosing the format to save'))
-        p.set_title_foreground(self.fg_color)
-        p.set_background(self.bg_color)
-        p.set_logo(self.logo)
+        page_title = _('Choosing the format to save')
 
         box = gtk.VBox()
         box.set_spacing(12)
-        p.append_item("",box,"")
-        
+
         table = gtk.Table(2*len(self.exports),2)
         table.set_row_spacings(6)
         table.set_col_spacings(6)
@@ -260,9 +241,9 @@ class Exporter:
             tip.set_tip(button,description)
         
         box.add(table)
-        box.show_all()
-        p.connect('next',self.build_options)
-        return p
+        #box.show_all()
+        #p.connect('next',self.build_options)
+        return (page_title,box)
 
     def build_options(self,obj,obj2):
         """
@@ -305,22 +286,20 @@ class Exporter:
         """
         Build a druid page embedding the FileChooserWidget.
         """
-        p = DruidPageStandard()
-        p.set_title(_('Selecting the file name'))
-        p.set_title_foreground(self.fg_color)
-        p.set_background(self.bg_color)
-        p.set_logo(self.logo)
+        page_title = _('Selecting the file name')
 
         self.chooser = gtk.FileChooserWidget(gtk.FILE_CHOOSER_ACTION_SAVE)
         self.chooser.set_local_only(False)
-        p.append_item("",self.chooser,"")
+        box = gtk.VBox()
+        box.set_spacing(12)
+        box.add(self.chooser)
+
         # Dirty hack to enable proper EXPAND and FILL properties of the chooser
-        parent = self.chooser.get_parent()
-        parent.set_child_packing(self.chooser,1,1,0,gtk.PACK_START)
-        gradnparent = parent.get_parent()
-        gradnparent.set_child_packing(parent,1,1,0,gtk.PACK_START)
-        p.connect('prepare',self.suggest_filename)
-        return p
+        box.set_child_packing(self.chooser,1,1,0,gtk.PACK_START)
+        #gradnparent = parent.get_parent()
+        #gradnparent.set_child_packing(parent,1,1,0,gtk.PACK_START)
+        #p.connect('prepare',self.suggest_filename)
+        return (page_title,box)
 
     def suggest_filename(self,obj,obj2):
         """
@@ -386,6 +365,9 @@ class Exporter:
         native_ext = 'grdb'
         native_export = self.native_export
 
-        self.exports = [ (native_export,native_title,native_description,
-                    native_config,native_ext) ]
-        self.exports = self.exports + [ item for item in PluginMgr.export_list ]
+        self.exports = [(native_export,
+                         native_title,
+                         native_description,
+                         native_config,
+                         native_ext)]
+        self.exports = self.exports + [item for item in PluginMgr.export_list]
