@@ -1,3 +1,9 @@
+2006-01-10  Alex Roitman  <shura@gramps-project.org>
+	* src/Assistant.py: Cosmeti c changes.
+	* src/Exporter.py: Start converting to Assistant.
+	* src/ViewManager.py: Add handler for Export; add hot keys for
+	import and export.
+
 2006-01-09  Don Allingham  <don@gramps-project.org>
 	* relation.svg: Relationship view icon
 	* media.svg: Relationship view icon

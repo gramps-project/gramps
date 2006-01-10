@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,36 +18,70 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
 from gettext import gettext as _
 
+#-------------------------------------------------------------------------
+#
+# GTK modules
+#
+#-------------------------------------------------------------------------
 import gtk
 import gtk.gdk
 import gobject
 
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 import const
 
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
 _gramps_png = "%s/gramps.png" % const.rootDir
 _splash_jpg = "%s/splash.jpg" % const.rootDir
 _format = '<span weight="bold" size="xx-large">%s</span>'
 
+#-------------------------------------------------------------------------
+#
+# Assistant class
+#
+#-------------------------------------------------------------------------
 class Assistant(gtk.Object):
     """ A tabbed dialog box used to implement Assistant interfaces."""
 
     __gproperties__ = {}
 
-    __gsignals__ = { 'page-changed' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
-                                         (gobject.TYPE_INT,)),
-                     'before-page-next' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
-                                              (gobject.TYPE_INT,)),
-                     'after-page-next' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
-                                              (gobject.TYPE_INT,)),
-                     'before-page-back' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
-                                              (gobject.TYPE_INT,)),
-                     'after-page-back' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
-                                              (gobject.TYPE_INT,)),
-                     'complete' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
-                                              ())
-                     }
+    __gsignals__ = {
+        'page-changed'     : (gobject.SIGNAL_RUN_LAST,
+                              gobject.TYPE_NONE,
+                              (gobject.TYPE_INT,)),
+        'before-page-next' : (gobject.SIGNAL_RUN_LAST,
+                              gobject.TYPE_NONE,
+                              (gobject.TYPE_INT,)),
+        'after-page-next'  : (gobject.SIGNAL_RUN_LAST,
+                              gobject.TYPE_NONE,
+                              (gobject.TYPE_INT,)),
+        'before-page-back' : (gobject.SIGNAL_RUN_LAST,
+                              gobject.TYPE_NONE,
+                              (gobject.TYPE_INT,)),
+        'after-page-back'  : (gobject.SIGNAL_RUN_LAST,
+                              gobject.TYPE_NONE,
+                              (gobject.TYPE_INT,)),
+        'complete'         : (gobject.SIGNAL_RUN_LAST,
+                              gobject.TYPE_NONE,
+                              ())
+        }
     
     def __init__(self,title,complete):
         gobject.GObject.__init__(self)
@@ -109,11 +143,11 @@ class Assistant(gtk.Object):
         self.window.add(vbox)
 
     def do_get_property(self, prop):
-        '''Return the gproperty's value.'''
+        """Return the gproperty's value."""
         raise AttributeError, 'unknown property %s' % prop.name
 
     def do_set_property(self, prop, value):
-        '''Set the property of writable properties.'''
+        """Set the property of writable properties."""
         raise AttributeError, 'unknown or read only property %s' % prop.name
 
 
@@ -227,11 +261,11 @@ if __name__ == "__main__":
 
     a = Assistant('Getting started',complete)
     a.set_intro('Welcome to GRAMPS, the Genealogical Research '
-                     'and Analysis Management Programming System.\n'
-                     'Several options and information need to be gathered '
-                     'before GRAMPS is ready to be used. Any of this '
-                     'information can be changed in the future in the '
-                     'Preferences dialog under the Settings menu.')
+                'and Analysis Management Programming System.\n'
+                'Several options and information need to be gathered '
+                'before GRAMPS is ready to be used. Any of this '
+                'information can be changed in the future in the '
+                'Preferences dialog under the Settings menu.')
 
     box = gtk.VBox()
     box.set_spacing(12)
