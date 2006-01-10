@@ -1,3 +1,6 @@
+2006-01-10  Don Allingham  <don@gramps-project.org>
+	* src/FamilyView.py: add/edit/delete buttons for families added
+
 2006-01-10  Alex Roitman  <shura@gramps-project.org>
 	* src/Assistant.py: Cosmeti c changes.
 	* src/Exporter.py: Start converting to Assistant.
