@@ -4,7 +4,7 @@
 # translation of template.po to Norsk Bokmål
 # GRAMPS
 # Copyright (C) YEAR ORGANIZATION.
-# Frode Jemtland <frode.jemtland@skolelinux.no>, 2003, 2004, 2005.
+# Frode Jemtland <frode.jemtland@skolelinux.no>, 2003, 2004, 2005, 2006.
 # Axel Bojer <axelb@skolelinux.no>, 2003.
 # Jørgen Grønlund <jorgenhg@broadpark.no>, 2005.
 #
@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Sun Nov 27 16:06:29 2005\n"
-"PO-Revision-Date: 2005-12-09 23:57+0100\n"
+"PO-Revision-Date: 2006-01-10 22:47+0100\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål <Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>>\n"
 "MIME-Version: 1.0\n"
@@ -5479,7 +5479,7 @@ msgstr "GRAMPS tilbyr full Unicode-støtte. Særtegn for alle språk skal vises rik
 
 #: data/tips.xml:478
 msgid "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit -> Set Home Person</b>. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr "Hvem som helst kan settes som «Hjemperson» i GRAMPS. Bruk <b>Rediger - Sett hjemperson</b>. Hjempersonen er personen som blir valgt når databasen blir åpnet, eller når man trykker på «Hjemperson»-knappen."
+msgstr "Hvem som helst kan settes som «proband» i GRAMPS. Bruk <b>Rediger - Sett proband</b>. Proband er personen som blir satt i fokus når databasen blir åpnet, eller når man trykker på «Proband»-knappen."
 
 #: data/tips.xml:483
 msgid "Multiple names can be specified for individuals. Examples are birth name, marriage name or aliases."
@@ -5829,7 +5829,7 @@ msgstr "_Kolonnebehandler ..."
 
 #: gramps.glade:401
 msgid "Set _Home person..."
-msgstr "Sett _hjemperson ..."
+msgstr "Sett proband ..."
 
 #: gramps.glade:426
 msgid "_View"
@@ -5941,7 +5941,7 @@ msgstr "Fremover"
 
 #: gramps.glade:824
 msgid "Make the Home Person the active person"
-msgstr "Gjør hjempersonen til den aktive personen"
+msgstr "Gjør proband til den aktive personen"
 
 #: gramps.glade:855
 msgid "Open Scratch Pad"
@@ -6804,7 +6804,7 @@ msgstr "<b>Verktøylinje</b>"
 
 #: gramps.glade:17844
 msgid "Active person's _relationship to Home Person"
-msgstr "Den aktive personens _relasjon til hjempersonen"
+msgstr "Den aktive personens _relasjon til proband"
 
 #: gramps.glade:17867
 msgid "Active person's name and _GRAMPS ID"
@@ -7638,11 +7638,11 @@ msgstr "Åpner databasen ..."
 
 #: gramps_main.py:1900
 msgid "No Home Person has been set."
-msgstr "Ingen hjemperson er valgt."
+msgstr "Ingen proband er valgt."
 
 #: gramps_main.py:1901
 msgid "The Home Person may be set from the Edit menu."
-msgstr "Hjempersonen kan velges via «Rediger»-menyen."
+msgstr "Proband kan velges via «Rediger»-menyen."
 
 #: gramps_main.py:1907
 msgid "%s has been bookmarked"
@@ -7666,15 +7666,15 @@ msgstr "På grunn av omorganiserte ID-er er det enten oppstått et gammelt bokmerk
 
 #: gramps_main.py:1952
 msgid "Set %s as the Home Person"
-msgstr "Angi %s som hjemperson"
+msgstr "Angi %s som proband"
 
 #: gramps_main.py:1953
 msgid "Once a Home Person is defined, pressing the Home button on the toolbar will make the home person the active person."
-msgstr "Så snart en hjemperson er angitt, vil man gå til denne personen ved å tykke på «Hjem»-knappen på verktøylinjen."
+msgstr "Så snart en proband er angitt, vil man gå til denne personen ved å tykke på «Hjem»-knappen på verktøylinjen."
 
 #: gramps_main.py:1956
 msgid "_Set Home Person"
-msgstr "_Velg hjemperson"
+msgstr "_Velg proband"
 
 #: gramps_main.py:1967
 msgid "A person must be selected to export"
@@ -11579,3 +11579,4 @@ msgstr "<b>Verdier</b>"
 
 #~ msgid "Could not create burn:///%s/.thumb"
 #~ msgstr "Kunne ikke lage burn:///%s/.thumb"
+
