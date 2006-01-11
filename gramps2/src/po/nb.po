@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Sun Nov 27 16:06:29 2005\n"
-"PO-Revision-Date: 2006-01-10 22:47+0100\n"
+"PO-Revision-Date: 2006-01-12 00:28+0100\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål <Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>>\n"
 "MIME-Version: 1.0\n"
@@ -643,12 +643,12 @@ msgstr "Rediger sted (%s)"
 #: EditPlace.py:571
 #, fuzzy
 msgid "Event Name"
-msgstr "Hendelsestyper"
+msgstr "Hendelsesnavn"
 
 #: EditPlace.py:590
 #, fuzzy
 msgid "Personal Event"
-msgstr "Personlig hendelse:"
+msgstr "Personlig hendelse"
 
 #: EditPlace.py:613 Utils.py:120
 msgid "%(father)s and %(mother)s"
@@ -1615,22 +1615,22 @@ msgstr "Samsvarer med personer med notater som inneholder tekst fra et treff på 
 #: GenericFilter.py:2038
 #, fuzzy
 msgid "Ancestors of bookmarked people not more than <N> generations away"
-msgstr "Ane av <person>, ikke mer enn <N> generasjoner unna"
+msgstr "Ane av bokmerkede personer, ikke mer enn <N> generasjoner unna"
 
 #: GenericFilter.py:2041
 #, fuzzy
 msgid "Matches ancestors of the people on the bookmark listnot more than N generations away"
-msgstr "Samsvarer med personer som er aner av en bestemt person ikke mer enn N generasjoner unna"
+msgstr "Samsvarer med aner av personer i bokmerkelista, ikke mer en N generasjoner unna"
 
 #: GenericFilter.py:2096
 #, fuzzy
 msgid "Ancestors of the default person not more than <N> generations away"
-msgstr "Ane av <person>, ikke mer enn <N> generasjoner unna"
+msgstr "Ane av standard personen, ikke mer enn <N> generasjoner unna"
 
 #: GenericFilter.py:2099
 #, fuzzy
 msgid "Matches ancestors of the default person not more than N generations away"
-msgstr "Samsvarer med personer som er aner av en bestemt person ikke mer enn N generasjoner unna"
+msgstr "Samsvarer med aner av standard personen, ikke mer enn N generasjoner unna"
 
 #: GrampsCfg.py:65
 msgid "Father's surname"
@@ -1669,38 +1669,45 @@ msgid "Researcher Information"
 msgstr "Forskerinformasjon"
 
 #: GrampsCfg.py:345
+#, fuzzy
 msgid ""
 "Example for valid IDs are:\n"
 "I%d which will be displayed as I123 or\n"
 "S%06d which will be displayed as S000123."
 msgstr ""
+"Eksempel på gyldige ID'er er:\n"
+"I%d som vil bli vist som I123, eller\n"
+"S%06d som vil bli vist som S000123."
 
 #: GrampsCfg.py:349
 #, fuzzy
 msgid "Invalid GRAMPS ID prefix"
-msgstr "<b>GRAMPS ID forstavelser</b>"
+msgstr "Ugyldig GRAMPS ID forstavelse"
 
 #: GrampsCfg.py:350
+#, fuzzy
 msgid "The GRAMPS ID prefix is invalid.\n"
-msgstr ""
+msgstr "Forstavelsen for GRAMPS ID'en er ugyldig.\n"
 
 #: GrampsCfg.py:355
 #, fuzzy
 msgid "Incompatible GRAMPS ID prefix"
-msgstr "<b>GRAMPS ID forstavelser</b>"
+msgstr "Innkompatibel forstavelsen for GRAMPS ID'en"
 
 #: GrampsCfg.py:356
+#, fuzzy
 msgid "The GRAMPS ID prefix is in an unusual format and may cause problems when exporting the database to GEDCOM format.\n"
-msgstr ""
+msgstr "Forstavelsen for GRAMPS ID'en er i et uvanlig format. Dette kan forårsake problemer når man eksporterer databasen til GEDCOM formatet.\n"
 
 #: GrampsCfg.py:361
 #, fuzzy
 msgid "Unsuited GRAMPS ID prefix"
-msgstr "<b>GRAMPS ID forstavelser</b>"
+msgstr "Uegnet forstavelse for GRAMPS ID'en"
 
 #: GrampsCfg.py:362
+#, fuzzy
 msgid "The GRAMPS ID prefix is unsuited because it does not distinguish between different objects.\n"
-msgstr ""
+msgstr "Forstavelsen til GRAMPS ID'en er uegnet, da den ikke skiller mellom forskjellige objekter.\n"
 
 #: GrampsDbBase.py:1009 GrampsDbBase.py:1047
 msgid "_Undo %s"
@@ -2077,7 +2084,7 @@ msgstr "Ukjent"
 #: Plugins.py:72 plugins/WebPage.py:1979
 #, fuzzy
 msgid "Unsupported"
-msgstr "Fadder"
+msgstr "Ikke supportert"
 
 #: Plugins.py:137 gramps.glade:1430
 msgid "_Apply"
@@ -2519,24 +2526,20 @@ msgid "Report could not be created"
 msgstr "Klarte ikke å lage rapport"
 
 #: ReportUtils.py:50
-#, fuzzy
 msgid "This person was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(male_name)s ble født %(birth_date)s, %(birth_place)s."
+msgstr "Denne personen ble født %(birth_date)s, %(birth_place)s."
 
 #: ReportUtils.py:51
-#, fuzzy
 msgid "He was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(male_name)s ble født %(birth_date)s, %(birth_place)s."
+msgstr "Han ble født %(birth_date)s, %(birth_place)s."
 
 #: ReportUtils.py:52
-#, fuzzy
 msgid "She was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(male_name)s ble født %(birth_date)s, %(birth_place)s."
+msgstr "Hun ble født %(birth_date)s, %(birth_place)s."
 
 #: ReportUtils.py:55
-#, fuzzy
 msgid "%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(female_name)s ble født %(birth_date)s, %(birth_place)s."
+msgstr "%(unknown_gender_name)s ble født %(birth_date)s, %(birth_place)s."
 
 #: ReportUtils.py:56
 msgid "%(male_name)s was born on %(birth_date)s in %(birth_place)s."
@@ -2547,54 +2550,44 @@ msgid "%(female_name)s was born on %(birth_date)s in %(birth_place)s."
 msgstr "%(female_name)s ble født %(birth_date)s, %(birth_place)s."
 
 #: ReportUtils.py:63
-#, fuzzy
 msgid "This person was born %(modified_date)s in %(birth_place)s."
-msgstr "%(male_name)s ble født %(birth_date)s, %(birth_place)s."
+msgstr "Denne personen ble født %(modified_date)s, %(birth_place)s."
 
 #: ReportUtils.py:64
-#, fuzzy
 msgid "He was born %(modified_date)s in %(birth_place)s."
-msgstr "%(male_name)s ble født %(birth_date)s, %(birth_place)s."
+msgstr "Han ble født %(modified_date)s, %(birth_place)s."
 
 #: ReportUtils.py:65
-#, fuzzy
 msgid "She was born %(modified_date)s in %(birth_place)s."
-msgstr "%(male_name)s ble født %(birth_date)s, %(birth_place)s."
+msgstr "Hun ble født %(modified_date)s, %(birth_place)s."
 
 #: ReportUtils.py:68
-#, fuzzy
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(female_name)s ble født %(birth_date)s, %(birth_place)s."
+msgstr "%(unknown_gender_name)s ble født %(modified_date)s, %(birth_place)s."
 
 #: ReportUtils.py:69
-#, fuzzy
 msgid "%(male_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(male_name)s ble født %(birth_date)s, %(birth_place)s."
+msgstr "%(male_name)s ble født %(modified_date)s, %(birth_place)s."
 
 #: ReportUtils.py:70
-#, fuzzy
 msgid "%(female_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(female_name)s ble født %(birth_date)s, %(birth_place)s."
+msgstr "%(female_name)s ble født %(modified_date)s, %(birth_place)s."
 
 #: ReportUtils.py:76
-#, fuzzy
 msgid "This person was born on %(birth_date)s."
-msgstr "%(male_name)s ble født %(birth_date)s."
+msgstr "Denne personen ble født %(birth_date)s."
 
 #: ReportUtils.py:77
-#, fuzzy
 msgid "He was born on %(birth_date)s."
-msgstr "%(male_name)s ble født %(birth_date)s."
+msgstr "Han ble født %(birth_date)s."
 
 #: ReportUtils.py:78
-#, fuzzy
 msgid "She was born on %(birth_date)s."
-msgstr "%(male_name)s ble født %(birth_date)s."
+msgstr "Hun ble født %(birth_date)s."
 
 #: ReportUtils.py:81
-#, fuzzy
 msgid "%(unknown_gender_name)s was born on %(birth_date)s."
-msgstr "%(female_name)s ble født %(birth_date)s."
+msgstr "%(unknown_gender_name)s ble født %(birth_date)s."
 
 #: ReportUtils.py:82
 msgid "%(male_name)s was born on %(birth_date)s."
@@ -2606,52 +2599,43 @@ msgstr "%(female_name)s ble født %(birth_date)s."
 
 #: ReportUtils.py:89
 msgid "This person was born %(modified_date)s."
-msgstr ""
+msgstr "Denne personen ble født %(modified_date)s."
 
 #: ReportUtils.py:90
-#, fuzzy
 msgid "He was born %(modified_date)s."
-msgstr "Han var sønn av %(father)s."
+msgstr "Han ble født %(modified_date)s."
 
 #: ReportUtils.py:91
-#, fuzzy
 msgid "She was born %(modified_date)s."
-msgstr " %(specific_date)s"
+msgstr "Hun ble født %(modified_date)s"
 
 #: ReportUtils.py:94
-#, fuzzy
 msgid "%(unknown_gender_name)s was born on %(modified_date)s."
-msgstr "%(female_name)s ble født %(birth_date)s."
+msgstr "%(unknown_gender_name)s ble født %(modified_date)s."
 
 #: ReportUtils.py:95
-#, fuzzy
 msgid "%(male_name)s was born on %(modified_date)s."
-msgstr "%(male_name)s ble født %(birth_date)s."
+msgstr "%(male_name)s ble født %(modified_date)s."
 
 #: ReportUtils.py:96
-#, fuzzy
 msgid "%(female_name)s was born on %(modified_date)s."
-msgstr "%(female_name)s ble født %(birth_date)s."
+msgstr "%(female_name)s ble født %(modified_date)s."
 
 #: ReportUtils.py:102
-#, fuzzy
 msgid "This person was born in %(month_year)s in %(birth_place)s."
-msgstr "%(male_name)s ble født %(month_year)s, %(birth_place)s."
+msgstr "Denne personen ble født %(month_year)s, %(birth_place)s."
 
 #: ReportUtils.py:103
-#, fuzzy
 msgid "He was born in %(month_year)s in %(birth_place)s."
-msgstr "%(male_name)s ble født %(month_year)s, %(birth_place)s."
+msgstr "Han ble født %(month_year)s, %(birth_place)s."
 
 #: ReportUtils.py:104
-#, fuzzy
 msgid "She was born in %(month_year)s in %(birth_place)s."
-msgstr "%(male_name)s ble født %(month_year)s, %(birth_place)s."
+msgstr "Hun ble født %(month_year)s, %(birth_place)s."
 
 #: ReportUtils.py:107
-#, fuzzy
 msgid "%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr "%(female_name)s ble født %(month_year)s, %(birth_place)s."
+msgstr "%(unknown_gender_name)s ble født %(month_year)s, %(birth_place)s."
 
 #: ReportUtils.py:108
 msgid "%(male_name)s was born in %(month_year)s in %(birth_place)s."
@@ -2662,24 +2646,20 @@ msgid "%(female_name)s was born in %(month_year)s in %(birth_place)s."
 msgstr "%(female_name)s ble født %(month_year)s, %(birth_place)s."
 
 #: ReportUtils.py:115
-#, fuzzy
 msgid "This person was born in %(month_year)s."
-msgstr "%(male_name)s ble født %(month_year)s."
+msgstr "Personen ble født %(month_year)s."
 
 #: ReportUtils.py:116
-#, fuzzy
 msgid "He was born in %(month_year)s."
-msgstr "%(male_name)s ble født %(month_year)s."
+msgstr "Han ble født %(month_year)s."
 
 #: ReportUtils.py:117
-#, fuzzy
 msgid "She was born in %(month_year)s."
-msgstr "%(male_name)s ble født %(month_year)s."
+msgstr "Hun ble født %(month_year)s."
 
 #: ReportUtils.py:120
-#, fuzzy
 msgid "%(unknown_gender_name)s was born in %(month_year)s."
-msgstr "%(female_name)s ble født %(month_year)s."
+msgstr "%(unknown_gender_name)s ble født %(month_year)s."
 
 #: ReportUtils.py:121
 msgid "%(male_name)s was born in %(month_year)s."
@@ -2690,24 +2670,20 @@ msgid "%(female_name)s was born in %(month_year)s."
 msgstr "%(female_name)s ble født %(month_year)s."
 
 #: ReportUtils.py:128
-#, fuzzy
 msgid "This person was born in %(birth_place)s."
-msgstr "%(male_name)s ble født %(birth_place)s."
+msgstr "Denne personen ble født %(birth_place)s."
 
 #: ReportUtils.py:129
-#, fuzzy
 msgid "He was born in %(birth_place)s."
-msgstr "%(male_name)s ble født %(birth_place)s."
+msgstr "Han ble født %(birth_place)s."
 
 #: ReportUtils.py:130
-#, fuzzy
 msgid "She was born in %(birth_place)s."
-msgstr "%(male_name)s ble født %(birth_place)s."
+msgstr "Hun ble født %(birth_place)s."
 
 #: ReportUtils.py:133
-#, fuzzy
 msgid "%(unknown_gender_name)s was born in %(birth_place)s."
-msgstr "%(female_name)s ble født %(birth_place)s."
+msgstr "%(unknown_gender_name)s ble født %(birth_place)s."
 
 #: ReportUtils.py:134
 msgid "%(male_name)s was born in %(birth_place)s."
@@ -2718,84 +2694,68 @@ msgid "%(female_name)s was born in %(birth_place)s."
 msgstr "%(female_name)s ble født %(birth_place)s."
 
 #: ReportUtils.py:147
-#, fuzzy
 msgid "This person died on %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s."
+msgstr "Denne personen døde %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:148
-#, fuzzy
 msgid "This person died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Denne personen døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:149
-#, fuzzy
 msgid "This person died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "Denne personen døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:150
-#, fuzzy
 msgid "This person died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "Denne personen døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:153
-#, fuzzy
 msgid "He died on %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s."
+msgstr "Han døde %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:154
-#, fuzzy
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "He døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:155
-#, fuzzy
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "Han døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:156
-#, fuzzy
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "Han døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:159
-#, fuzzy
 msgid "She died on %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s."
+msgstr "Hun døde %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:160
-#, fuzzy
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Hun døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:161
-#, fuzzy
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "Hun døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:162
-#, fuzzy
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "Hun døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:166
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."
-msgstr "%(female_name)s døde %(death_date)s, %(death_place)s."
+msgstr "%(unknown_gender_name)s døde %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:167
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "%(unkown_gender_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:168
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "%(unkown_gender_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:169
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "%(unkown_gender_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:172
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s."
@@ -2830,204 +2790,164 @@ msgid "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %
 msgstr "%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:188
-#, fuzzy
 msgid "This person died %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s."
+msgstr "Denne personen døde %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:189
-#, fuzzy
 msgid "This person died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Denne personen døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:190
-#, fuzzy
 msgid "This person died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "Denne personen døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:191
-#, fuzzy
 msgid "This person died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "Denne personen døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:194
-#, fuzzy
 msgid "He died %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s."
+msgstr "Han døde %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:195
-#, fuzzy
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Han døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:196
-#, fuzzy
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "Han døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:197
-#, fuzzy
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "Han døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:200
-#, fuzzy
 msgid "She died %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s."
+msgstr "Hun døde %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:201
-#, fuzzy
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Hun døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:202
-#, fuzzy
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "Hun døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:203
-#, fuzzy
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "Hun døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:207
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s."
-msgstr "%(female_name)s døde %(death_date)s, %(death_place)s."
+msgstr "%(unkown_gender_name)s døde %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:208
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "%(unkown_gender_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:209
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "%(unkown_gender_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:210
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "%(unkown_gender_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:213
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s in %(death_place)s."
 msgstr "%(male_name)s døde %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:214
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:215
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:216
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:219
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s in %(death_place)s."
 msgstr "%(female_name)s døde %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:220
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr "%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:221
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:222
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr "%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:229
-#, fuzzy
 msgid "This person died on %(death_date)s."
-msgstr "%(male_name)s døde %(death_date)s."
+msgstr "Denne personen døde %(death_date)s."
 
 #: ReportUtils.py:230
-#, fuzzy
 msgid "This person died on %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d år."
+msgstr "Denne personen døde %(death_date)s i en alder av %(age)d år."
 
 #: ReportUtils.py:231
-#, fuzzy
 msgid "This person died on %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d måneder."
+msgstr "Denne personen døde %(death_date)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:232
-#, fuzzy
 msgid "This person died on %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d dager."
+msgstr "Denne personen døde %(death_date)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:235
-#, fuzzy
 msgid "He died on %(death_date)s."
-msgstr "%(male_name)s døde %(death_date)s."
+msgstr "Han døde %(death_date)s."
 
 #: ReportUtils.py:236
-#, fuzzy
 msgid "He died on %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d år."
+msgstr "Han døde %(death_date)s i en alder av %(age)d år."
 
 #: ReportUtils.py:237
-#, fuzzy
 msgid "He died on %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d måneder."
+msgstr "Han døde %(death_date)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:238
-#, fuzzy
 msgid "He died on %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d dager."
+msgstr "Han døde %(death_date)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:241
-#, fuzzy
 msgid "She died on %(death_date)s."
-msgstr "%(male_name)s døde %(death_date)s."
+msgstr "Hun døde %(death_date)s."
 
 #: ReportUtils.py:242
-#, fuzzy
 msgid "She died on %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d år."
+msgstr "Hun døde %(death_date)s i en alder av %(age)d år."
 
 #: ReportUtils.py:243
-#, fuzzy
 msgid "She died on %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d måneder."
+msgstr "Hun døde %(death_date)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:244
-#, fuzzy
 msgid "She died on %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d dager."
+msgstr "Hun døde %(death_date)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:248
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s."
-msgstr "%(female_name)s døde %(death_date)s."
+msgstr "%(unkown_gender_name)s døde %(death_date)s."
 
 #: ReportUtils.py:249
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr "%(female_name)s døde %(death_date)s, i en alder av %(age)d år."
+msgstr "%(unkown_gender_name)s døde %(death_date)s, i en alder av %(age)d år."
 
 #: ReportUtils.py:250
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr "%(female_name)s døde %(death_date)s, i en alder av %(age)d måneder."
+msgstr "%(unkown_gender_name)s døde %(death_date)s, i en alder av %(age)d måneder."
 
 #: ReportUtils.py:251
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr "%(female_name)s døde %(death_date)s, i en alder av %(age)d dager."
+msgstr "%(unkown_gender_name)s døde %(death_date)s, i en alder av %(age)d dager."
 
 #: ReportUtils.py:254
 msgid "%(male_name)s died on %(death_date)s."
@@ -3062,204 +2982,164 @@ msgid "%(female_name)s died on %(death_date)s at the age of %(age)d days."
 msgstr "%(female_name)s døde %(death_date)s, i en alder av %(age)d dager."
 
 #: ReportUtils.py:270
-#, fuzzy
 msgid "This person died %(death_date)s."
-msgstr " d. %(death_date)s"
+msgstr "Denne personen døde %(death_date)s"
 
 #: ReportUtils.py:271
-#, fuzzy
 msgid "This person died %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d år."
+msgstr "Denne personen døde %(death_date)s i en alder av %(age)d år."
 
 #: ReportUtils.py:272
-#, fuzzy
 msgid "This person died %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d måneder."
+msgstr "Denne personen døde %(death_date)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:273
-#, fuzzy
 msgid "This person died %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d dager."
+msgstr "Denne personen døde %(death_date)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:276
-#, fuzzy
 msgid "He died %(death_date)s."
-msgstr " d. %(death_date)s"
+msgstr "Han døde %(death_date)s"
 
 #: ReportUtils.py:277
-#, fuzzy
 msgid "He died %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d år."
+msgstr "Han døde %(death_date)s i en alder av %(age)d år."
 
 #: ReportUtils.py:278
-#, fuzzy
 msgid "He died %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d måneder."
+msgstr "Han døde %(death_date)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:279
-#, fuzzy
 msgid "He died %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d dager."
+msgstr "Han døde døde %(death_date)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:282
-#, fuzzy
 msgid "She died %(death_date)s."
-msgstr " d. %(death_date)s"
+msgstr "Hun døde %(death_date)s."
 
 #: ReportUtils.py:283
-#, fuzzy
 msgid "She died %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d år."
+msgstr "Hun døde %(death_date)s i en alder av %(age)d år."
 
 #: ReportUtils.py:284
-#, fuzzy
 msgid "She died %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d måneder."
+msgstr "Hun døde %(death_date)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:285
-#, fuzzy
 msgid "She died %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d dager."
+msgstr "Hun døde %(death_date)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:289
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s."
-msgstr "%(female_name)s døde %(death_date)s."
+msgstr "%(unkown_gender_name)s døde %(death_date)s."
 
 #: ReportUtils.py:290
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
-msgstr "%(female_name)s døde %(death_date)s, i en alder av %(age)d år."
+msgstr "%(unkown_gender_name)s døde %(death_date)s, i en alder av %(age)d år."
 
 #: ReportUtils.py:291
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
-msgstr "%(female_name)s døde %(death_date)s, i en alder av %(age)d måneder."
+msgstr "%(unkown_gender_name)s døde %(death_date)s, i en alder av %(age)d måneder."
 
 #: ReportUtils.py:292
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d days."
-msgstr "%(female_name)s døde %(death_date)s, i en alder av %(age)d dager."
+msgstr "%(unkown_gender_name)s døde %(death_date)s, i en alder av %(age)d dager."
 
 #: ReportUtils.py:295
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s."
 msgstr "%(male_name)s døde %(death_date)s."
 
 #: ReportUtils.py:296
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d years."
 msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d år."
 
 #: ReportUtils.py:297
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d months."
 msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:298
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d days."
 msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:301
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s."
 msgstr "%(female_name)s døde %(death_date)s."
 
 #: ReportUtils.py:302
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d years."
 msgstr "%(female_name)s døde %(death_date)s, i en alder av %(age)d år."
 
 #: ReportUtils.py:303
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d months."
 msgstr "%(female_name)s døde %(death_date)s, i en alder av %(age)d måneder."
 
 #: ReportUtils.py:304
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d days."
 msgstr "%(female_name)s døde %(death_date)s, i en alder av %(age)d dager."
 
 #: ReportUtils.py:311
-#, fuzzy
 msgid "This person died in %(month_year)s in %(death_place)s."
-msgstr "%(male_name)s døde %(month_year)s, %(death_place)s."
+msgstr "Denne personen døde %(month_year)s, %(death_place)s."
 
 #: ReportUtils.py:312
-#, fuzzy
 msgid "This person died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Denne personen døde %(month_year)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:313
-#, fuzzy
 msgid "This person died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "Denne personen døde %(month_year)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:314
-#, fuzzy
 msgid "This person died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "Denne personen døde %(month_year)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:317
-#, fuzzy
 msgid "He died in %(month_year)s in %(death_place)s."
-msgstr "%(male_name)s døde %(month_year)s, %(death_place)s."
+msgstr "Han døde %(month_year)s, %(death_place)s."
 
 #: ReportUtils.py:318
-#, fuzzy
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Han døde %(month_year)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:319
-#, fuzzy
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "Han døde %(month_year)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:320
-#, fuzzy
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "Han døde %(month_year)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:323
-#, fuzzy
 msgid "She died in %(month_year)s in %(death_place)s."
-msgstr "%(male_name)s døde %(month_year)s, %(death_place)s."
+msgstr "Hun døde %(month_year)s, %(death_place)s."
 
 #: ReportUtils.py:324
-#, fuzzy
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Hun døde %(month_year)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:325
-#, fuzzy
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "Hun døde %(month_year)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:326
-#, fuzzy
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "Hun døde %(month_year)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:330
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."
-msgstr "%(female_name)s døde %(month_year)s, %(death_place)s."
+msgstr "%(unkown_gender_name)s døde %(month_year)s, %(death_place)s."
 
 #: ReportUtils.py:331
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(female_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d år."
+msgstr "%(unkown_gender_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:332
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(female_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "%(unkown_gender_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:333
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(female_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "%(unkown_gender_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:336
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
@@ -3294,84 +3174,68 @@ msgid "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %
 msgstr "%(female_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:352
-#, fuzzy
 msgid "This person died in %(month_year)s."
-msgstr "%(male_name)s døde %(month_year)s."
+msgstr "Denne personen døde %(month_year)s."
 
 #: ReportUtils.py:353
-#, fuzzy
 msgid "This person died in %(month_year)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(month_year)s, i en alder av %(age)d år."
+msgstr "Denne personen døde %(month_year)s, i en alder av %(age)d år."
 
 #: ReportUtils.py:354
-#, fuzzy
 msgid "This person died in %(month_year)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(month_year)s, i en alder av %(age)d måneder."
+msgstr "Denne personen døde %(month_year)s, i en alder av %(age)d måneder."
 
 #: ReportUtils.py:355
-#, fuzzy
 msgid "This person died in %(month_year)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(month_year)s, i en alder av %(age)d dager."
+msgstr "Denne personen døde %(month_year)s, i en alder av %(age)d dager."
 
 #: ReportUtils.py:358
-#, fuzzy
 msgid "He died in %(month_year)s."
-msgstr "%(male_name)s døde %(month_year)s."
+msgstr "Han døde %(month_year)s."
 
 #: ReportUtils.py:359
-#, fuzzy
 msgid "He died in %(month_year)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(month_year)s, i en alder av %(age)d år."
+msgstr "Han døde %(month_year)s, i en alder av %(age)d år."
 
 #: ReportUtils.py:360
-#, fuzzy
 msgid "He died in %(month_year)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(month_year)s, i en alder av %(age)d måneder."
+msgstr "Han døde %(month_year)s, i en alder av %(age)d måneder."
 
 #: ReportUtils.py:361
-#, fuzzy
 msgid "He died in %(month_year)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(month_year)s, i en alder av %(age)d dager."
+msgstr "Han døde %(month_year)s, i en alder av %(age)d dager."
 
 #: ReportUtils.py:364
-#, fuzzy
 msgid "She died in %(month_year)s."
-msgstr "%(male_name)s døde %(month_year)s."
+msgstr "Hun døde %(month_year)s."
 
 #: ReportUtils.py:365
-#, fuzzy
 msgid "She died in %(month_year)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(month_year)s, i en alder av %(age)d år."
+msgstr "Hun døde %(month_year)s, i en alder av %(age)d år."
 
 #: ReportUtils.py:366
-#, fuzzy
 msgid "She died in %(month_year)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(month_year)s, i en alder av %(age)d måneder."
+msgstr "Hun døde %(month_year)s, i en alder av %(age)d måneder."
 
 #: ReportUtils.py:367
-#, fuzzy
 msgid "She died in %(month_year)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(month_year)s, i en alder av %(age)d dager."
+msgstr "Hun døde %(month_year)s, i en alder av %(age)d dager."
 
 #: ReportUtils.py:371
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s."
-msgstr "%(female_name)s døde %(month_year)s."
+msgstr "%(unkown_gender_name)s døde %(month_year)s."
 
 #: ReportUtils.py:372
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr "%(female_name)s døde %(month_year)s, i en alder av %(age)d år."
+msgstr "%(unkown_gender_name)s døde %(month_year)s, i en alder av %(age)d år."
 
 #: ReportUtils.py:373
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr "%(female_name)s døde %(month_year)s, i en alder av %(age)d måneder."
+msgstr "%(unkown_gender_name)s døde %(month_year)s, i en alder av %(age)d måneder."
 
 #: ReportUtils.py:374
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr "%(female_name)s døde %(month_year)s, i en alder av %(age)d dager."
+msgstr "%(unkown_gender_name)s døde %(month_year)s, i en alder av %(age)d dager."
 
 #: ReportUtils.py:377
 msgid "%(male_name)s died in %(month_year)s."
@@ -3406,84 +3270,68 @@ msgid "%(female_name)s died in %(month_year)s at the age of %(age)d days."
 msgstr "%(female_name)s døde %(month_year)s, i en alder av %(age)d dager."
 
 #: ReportUtils.py:394
-#, fuzzy
 msgid "This person died in %(death_place)s."
-msgstr "%(male_name)s døde %(death_place)s."
+msgstr "Denne personen døde %(death_place)s."
 
 #: ReportUtils.py:395
-#, fuzzy
 msgid "This person died in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_place)s i en alder av %(age)d år."
+msgstr "Denne personen døde %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:396
-#, fuzzy
 msgid "This person died in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_place)s i en alder av %(age)d måneder."
+msgstr "Denne personen døde %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:397
-#, fuzzy
 msgid "This person died in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_place)s i en alder av %(age)d dager."
+msgstr "Denne personen døde %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:400
-#, fuzzy
 msgid "He died in %(death_place)s."
-msgstr "%(male_name)s døde %(death_place)s."
+msgstr "Han døde %(death_place)s."
 
 #: ReportUtils.py:401
-#, fuzzy
 msgid "He died in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_place)s i en alder av %(age)d år."
+msgstr "Han døde %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:402
-#, fuzzy
 msgid "He died in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_place)s i en alder av %(age)d måneder."
+msgstr "Han døde %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:403
-#, fuzzy
 msgid "He died in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_place)s i en alder av %(age)d dager."
+msgstr "Han døde %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:406
-#, fuzzy
 msgid "She died in %(death_place)s."
-msgstr "%(male_name)s døde %(death_place)s."
+msgstr "Hun døde %(death_place)s."
 
 #: ReportUtils.py:407
-#, fuzzy
 msgid "She died in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_place)s i en alder av %(age)d år."
+msgstr "Hun døde %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:408
-#, fuzzy
 msgid "She died in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_place)s i en alder av %(age)d måneder."
+msgstr "Hun døde %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:409
-#, fuzzy
 msgid "She died in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_place)s i en alder av %(age)d dager."
+msgstr "Hun døde %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:413
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(death_place)s."
-msgstr "%(female_name)s døde %(death_place)s."
+msgstr "%(unkown_gender_name)s døde %(death_place)s."
 
 #: ReportUtils.py:414
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr "%(female_name)s døde %(death_place)s, i en alder av %(age)d år."
+msgstr "%(unkown_gender_name)s døde %(death_place)s, i en alder av %(age)d år."
 
 #: ReportUtils.py:415
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr "%(female_name)s døde %(death_place)s, i en alder av %(age)d måneder."
+msgstr "%(unkown_gender_name)s døde %(death_place)s, i en alder av %(age)d måneder."
 
 #: ReportUtils.py:416
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr "%(female_name)s døde %(death_place)s, i en alder av %(age)d dager."
+msgstr "%(unkown_gender_name)s døde %(death_place)s, i en alder av %(age)d dager."
 
 #: ReportUtils.py:419
 msgid "%(male_name)s died in %(death_place)s."
@@ -3518,64 +3366,52 @@ msgid "%(female_name)s died in %(death_place)s at the age of %(age)d days."
 msgstr "%(female_name)s døde %(death_place)s, i en alder av %(age)d dager."
 
 #: ReportUtils.py:436
-#, fuzzy
 msgid "This person died at the age of %(age)d years."
-msgstr "%(male_name)s døde i en alder av %(age)d år."
+msgstr "Denne personen døde i en alder av %(age)d år."
 
 #: ReportUtils.py:437
-#, fuzzy
 msgid "This person died at the age of %(age)d months."
-msgstr "%(male_name)s døde i en alder av %(age)d måneder."
+msgstr "Denne personen døde i en alder av %(age)d måneder."
 
 #: ReportUtils.py:438
-#, fuzzy
 msgid "This person died at the age of %(age)d days."
-msgstr "%(male_name)s døde i en alder av %(age)d dager."
+msgstr "Denne personen døde i en alder av %(age)d dager."
 
 #: ReportUtils.py:442
-#, fuzzy
 msgid "He died at the age of %(age)d years."
-msgstr "%(male_name)s døde i en alder av %(age)d år."
+msgstr "Han døde i en alder av %(age)d år."
 
 #: ReportUtils.py:443
-#, fuzzy
 msgid "He died at the age of %(age)d months."
-msgstr "%(male_name)s døde i en alder av %(age)d måneder."
+msgstr "Han døde i en alder av %(age)d måneder."
 
 #: ReportUtils.py:444
-#, fuzzy
 msgid "He died at the age of %(age)d days."
-msgstr "%(male_name)s døde i en alder av %(age)d dager."
+msgstr "Han døde i en alder av %(age)d dager."
 
 #: ReportUtils.py:448
-#, fuzzy
 msgid "She died at the age of %(age)d years."
-msgstr "%(male_name)s døde i en alder av %(age)d år."
+msgstr "Han døde i en alder av %(age)d år."
 
 #: ReportUtils.py:449
-#, fuzzy
 msgid "She died at the age of %(age)d months."
-msgstr "%(male_name)s døde i en alder av %(age)d måneder."
+msgstr "Han døde i en alder av %(age)d måneder."
 
 #: ReportUtils.py:450
-#, fuzzy
 msgid "She died at the age of %(age)d days."
-msgstr "%(male_name)s døde i en alder av %(age)d dager."
+msgstr "Han døde i en alder av %(age)d dager."
 
 #: ReportUtils.py:455
-#, fuzzy
 msgid "%(unknown_gender_name)s died at the age of %(age)d years."
-msgstr "%(female_name)s døde i en alder av %(age)d år."
+msgstr "%(unkown_gender_name)s døde i en alder av %(age)d år."
 
 #: ReportUtils.py:456
-#, fuzzy
 msgid "%(unknown_gender_name)s died at the age of %(age)d months."
-msgstr "%(female_name)s døde i en alder av %(age)d måneder."
+msgstr "%(unkown_gender_name)s døde i en alder av %(age)d måneder."
 
 #: ReportUtils.py:457
-#, fuzzy
 msgid "%(unknown_gender_name)s died at the age of %(age)d days."
-msgstr "%(female_name)s døde i en alder av %(age)d dager."
+msgstr "%(unkown_gender_name)s døde i en alder av %(age)d dager."
 
 #: ReportUtils.py:461
 msgid "%(male_name)s died at the age of %(age)d years."
@@ -3606,412 +3442,340 @@ msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s."
 msgstr "%(male_name)s ble begravet %(burial_date)s, %(burial_place)s."
 
 #: ReportUtils.py:483
-#, fuzzy
 msgid "He was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(male_name)s ble begravet %(burial_date)s, %(burial_place)s."
+msgstr "Han ble begravet %(burial_date)s, %(burial_place)s."
 
 #: ReportUtils.py:486
 msgid "%(female_name)s was buried on %(burial_date)s in %(burial_place)s."
 msgstr "%(female_name)s ble begravet %(burial_date)s, %(burial_place)s."
 
 #: ReportUtils.py:487
-#, fuzzy
 msgid "She was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(male_name)s ble begravet %(burial_date)s, %(burial_place)s."
+msgstr "Hun ble begravet %(burial_date)s, %(burial_place)s."
 
 #: ReportUtils.py:490
-#, fuzzy
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(female_name)s ble begravet %(burial_date)s, %(burial_place)s."
+msgstr "%(unkown_gender_name)s ble begravet %(burial_date)s, %(burial_place)s."
 
 #: ReportUtils.py:491
-#, fuzzy
 msgid "This person was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(male_name)s ble begravet %(burial_date)s, %(burial_place)s."
+msgstr "Denne personen ble begravet %(burial_date)s, %(burial_place)s."
 
 #: ReportUtils.py:497
 msgid "%(male_name)s was buried on %(burial_date)s."
 msgstr "%(male_name)s ble begravet %(burial_date)s."
 
 #: ReportUtils.py:498
-#, fuzzy
 msgid "He was buried on %(burial_date)s."
-msgstr "%(male_name)s ble begravet %(burial_date)s."
+msgstr "Han ble begravet %(burial_date)s."
 
 #: ReportUtils.py:501
 msgid "%(female_name)s was buried on %(burial_date)s."
 msgstr "%(female_name)s ble begravet %(burial_date)s."
 
 #: ReportUtils.py:502
-#, fuzzy
 msgid "She was buried on %(burial_date)s."
-msgstr "%(male_name)s ble begravet %(burial_date)s."
+msgstr "Hun ble begravet %(burial_date)s."
 
 #: ReportUtils.py:505
-#, fuzzy
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s."
-msgstr "%(female_name)s ble begravet %(burial_date)s."
+msgstr "%(unkown_gender_name)s ble begravet %(burial_date)s."
 
 #: ReportUtils.py:506
-#, fuzzy
 msgid "This person was buried on %(burial_date)s."
-msgstr "%(male_name)s ble begravet %(burial_date)s."
+msgstr "Denne personen ble begravet %(burial_date)s."
 
 #: ReportUtils.py:512
 msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s."
 msgstr "%(male_name)s ble begravet %(month_year)s, %(burial_place)s."
 
 #: ReportUtils.py:513
-#, fuzzy
 msgid "He was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(male_name)s ble begravet %(month_year)s, %(burial_place)s."
+msgstr "Han ble begravet %(month_year)s, %(burial_place)s."
 
 #: ReportUtils.py:516
 msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s."
 msgstr "%(female_name)s ble begravet %(month_year)s, %(burial_place)s."
 
 #: ReportUtils.py:517
-#, fuzzy
 msgid "She was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(male_name)s ble begravet %(month_year)s, %(burial_place)s."
+msgstr "Hun ble begravet %(month_year)s, %(burial_place)s."
 
 #: ReportUtils.py:520
-#, fuzzy
 msgid "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(female_name)s ble begravet %(month_year)s, %(burial_place)s."
+msgstr "%(unkown_gender_name)s ble begravet %(month_year)s, %(burial_place)s."
 
 #: ReportUtils.py:521
-#, fuzzy
 msgid "This person was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(male_name)s ble begravet %(month_year)s, %(burial_place)s."
+msgstr "Denne personen ble begravet %(month_year)s, %(burial_place)s."
 
 #: ReportUtils.py:527
 msgid "%(male_name)s was buried in %(month_year)s."
 msgstr "%(male_name)s ble begravet %(month_year)s."
 
 #: ReportUtils.py:528
-#, fuzzy
 msgid "He was buried on %(month_year)s."
-msgstr "%(male_name)s ble begravet %(month_year)s."
+msgstr "Han ble begravet %(month_year)s."
 
 #: ReportUtils.py:531
 msgid "%(female_name)s was buried in %(month_year)s."
 msgstr "%(female_name)s ble begravet %(month_year)s."
 
 #: ReportUtils.py:532
-#, fuzzy
 msgid "She was buried in %(month_year)s."
-msgstr "%(male_name)s ble begravet %(month_year)s."
+msgstr "Hun ble begravet %(month_year)s."
 
 #: ReportUtils.py:535
-#, fuzzy
 msgid "%(unknown_gender_name)s was buried in %(month_year)s."
-msgstr "%(female_name)s ble begravet %(month_year)s."
+msgstr "%(unkown_gender_name)s ble begravet %(month_year)s."
 
 #: ReportUtils.py:536
-#, fuzzy
 msgid "This person was buried in %(month_year)s."
-msgstr "%(male_name)s ble begravet %(month_year)s."
+msgstr "Denne personen ble begravet %(month_year)s."
 
 #: ReportUtils.py:542
-#, fuzzy
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s ble begravet %(burial_date)s, %(burial_place)s."
+msgstr "%(male_name)s ble begravet %(modified_date)s, %(burial_place)s."
 
 #: ReportUtils.py:543
-#, fuzzy
 msgid "He was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s ble begravet %(burial_date)s, %(burial_place)s."
+msgstr "Han ble begravet %(modified_date)s, %(burial_place)s."
 
 #: ReportUtils.py:546
-#, fuzzy
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(female_name)s ble begravet %(burial_date)s, %(burial_place)s."
+msgstr "%(female_name)s ble begravet %(modified_date)s, %(burial_place)s."
 
 #: ReportUtils.py:547
-#, fuzzy
 msgid "She was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s ble begravet %(burial_date)s, %(burial_place)s."
+msgstr "Hun ble begravet %(modified_date)s, %(burial_place)s."
 
 #: ReportUtils.py:550
-#, fuzzy
 msgid "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(female_name)s ble begravet %(burial_date)s, %(burial_place)s."
+msgstr "%(unkown_gender_name)s ble begravet %(modified_date)s, %(burial_place)s."
 
 #: ReportUtils.py:551
-#, fuzzy
 msgid "This person was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s ble begravet %(burial_date)s, %(burial_place)s."
+msgstr "Denne personen ble begravet %(modified_date)s, %(burial_place)s."
 
 #: ReportUtils.py:557
-#, fuzzy
 msgid "%(male_name)s was buried %(modified_date)s."
-msgstr "%(male_name)s ble begravet %(burial_date)s."
+msgstr "%(male_name)s ble begravet %(modified_date)s."
 
 #: ReportUtils.py:558
-#, fuzzy
 msgid "He was buried %(modified_date)s."
-msgstr "%(male_name)s ble begravet %(burial_date)s."
+msgstr "Han ble begravet %(modified_date)s."
 
 #: ReportUtils.py:561
-#, fuzzy
 msgid "%(female_name)s was buried %(modified_date)s."
-msgstr "%(female_name)s ble begravet %(burial_date)s."
+msgstr "%(female_name)s ble begravet %(modified_date)s."
 
 #: ReportUtils.py:562
-#, fuzzy
 msgid "She was buried %(modified_date)s."
-msgstr "%(male_name)s ble begravet %(burial_date)s."
+msgstr "Hun ble begravet %(modified_date)s."
 
 #: ReportUtils.py:565
-#, fuzzy
 msgid "%(unknown_gender_name)s was buried %(modified_date)s."
-msgstr "%(female_name)s ble begravet %(burial_date)s."
+msgstr "%(unkown_gender_name)s ble begravet %(modified_date)s."
 
 #: ReportUtils.py:566
 msgid "This person was buried %(modified_date)s."
-msgstr ""
+msgstr "Denne personen ble begravet %(modified_date)s."
 
 #: ReportUtils.py:572
 msgid "%(male_name)s was buried in %(burial_place)s."
 msgstr "%(male_name)s ble begravet %(burial_place)s."
 
 #: ReportUtils.py:573
-#, fuzzy
 msgid "He was buried in %(burial_place)s."
-msgstr "%(male_name)s ble begravet %(burial_place)s."
+msgstr "Han ble begravet %(burial_place)s."
 
 #: ReportUtils.py:576
 msgid "%(female_name)s was buried in %(burial_place)s."
 msgstr "%(female_name)s ble begravet %(burial_place)s."
 
 #: ReportUtils.py:577
-#, fuzzy
 msgid "She was buried in %(burial_place)s."
-msgstr "%(male_name)s ble begravet %(burial_place)s."
+msgstr "Hun ble begravet %(burial_place)s."
 
 #: ReportUtils.py:580
-#, fuzzy
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s."
-msgstr "%(female_name)s ble begravet %(burial_place)s."
+msgstr "%(unkown_gender_name)s ble begravet %(burial_place)s."
 
 #: ReportUtils.py:581
-#, fuzzy
 msgid "This person was buried in %(burial_place)s."
-msgstr "%(male_name)s ble begravet %(burial_place)s."
+msgstr "Denne personen ble begravet %(burial_place)s."
 
 #: ReportUtils.py:587
 msgid "%(male_name)s was buried."
 msgstr "%(male_name)s ble begravet."
 
 #: ReportUtils.py:588
-#, fuzzy
 msgid "He was buried."
-msgstr ", og ble begravd i %s."
+msgstr "Han ble begravet."
 
 #: ReportUtils.py:591
 msgid "%(female_name)s was buried."
 msgstr "%(female_name)s ble begravet."
 
 #: ReportUtils.py:592
-#, fuzzy
 msgid "She was buried."
-msgstr "%(male_name)s ble begravet."
+msgstr "Hun ble begravet."
 
 #: ReportUtils.py:595
-#, fuzzy
 msgid "%(unknown_gender_name)s was buried."
-msgstr "%(female_name)s ble begravet."
+msgstr "%(unkown_gender_name)s ble begravet."
 
 #: ReportUtils.py:596
-#, fuzzy
 msgid "This person was buried."
-msgstr ", og ble begravd i %s."
+msgstr "Denne personen ble begravet."
 
 #: ReportUtils.py:608
-#, fuzzy
 msgid "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Hun giftet seg med %(spouse)s %(date)s i %(place)s%(endnotes)s."
+msgstr "Denne personen giftet seg med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ReportUtils.py:609
-#, fuzzy
 msgid "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Hun giftet seg med %(spouse)s %(date)s i %(place)s%(endnotes)s."
+msgstr "Denne personen giftet seg med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ReportUtils.py:610
-#, fuzzy
 msgid "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Hun giftet seg med %(spouse)s %(date)s i %(place)s%(endnotes)s."
+msgstr "Denne personen giftet seg med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ReportUtils.py:613
-#, fuzzy
 msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Han giftet seg med %(spouse)s %(date)s i %(place)s%(endnotes)s."
+msgstr "Han giftet seg med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ReportUtils.py:614
-#, fuzzy
 msgid "He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Han giftet seg med %(spouse)s %(date)s i %(place)s%(endnotes)s."
+msgstr "Han giftet seg med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ReportUtils.py:615
-#, fuzzy
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Han giftet seg med %(spouse)s %(date)s i %(place)s%(endnotes)s."
+msgstr "Han giftet seg med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ReportUtils.py:618
-#, fuzzy
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Hun giftet seg med %(spouse)s %(date)s i %(place)s%(endnotes)s."
+msgstr "Hun giftet seg med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ReportUtils.py:619
-#, fuzzy
 msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Hun giftet seg med %(spouse)s %(date)s i %(place)s%(endnotes)s."
+msgstr "Hun giftet seg med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ReportUtils.py:620
-#, fuzzy
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Hun giftet seg med %(spouse)s %(date)s i %(place)s%(endnotes)s."
+msgstr "Hun giftet seg med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ReportUtils.py:626
-#, fuzzy
 msgid "This person also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Hun giftet seg også med %(spouse)s, %(date)s i %(place)s %(endnotes)s."
+msgstr "Denne personen giftet seg også med %(spouse)s, %(partial_date)s i %(place)s %(endnotes)s."
 
 #: ReportUtils.py:627
-#, fuzzy
 msgid "This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Hun giftet seg også med %(spouse)s, %(date)s i %(place)s %(endnotes)s."
+msgstr "Denne personen giftet seg også med %(spouse)s, %(full_date)s i %(place)s %(endnotes)s."
 
 #: ReportUtils.py:628
-#, fuzzy
 msgid "This person also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Hun giftet seg også med %(spouse)s, %(date)s i %(place)s %(endnotes)s."
+msgstr "Denne personen giftet seg også med %(spouse)s, %(modified_date)s i %(place)s %(endnotes)s."
 
 #: ReportUtils.py:631
-#, fuzzy
 msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Han giftet seg også med %(spouse)s, %(date)s i %(place)s %(endnotes)s."
+msgstr "Han giftet seg også med %(spouse)s, %(partial_date)s i %(place)s %(endnotes)s."
 
 #: ReportUtils.py:632
-#, fuzzy
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Han giftet seg også med %(spouse)s, %(date)s i %(place)s %(endnotes)s."
+msgstr "Han giftet seg også med %(spouse)s, %(full_date)s i %(place)s %(endnotes)s."
 
 #: ReportUtils.py:633
-#, fuzzy
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Han giftet seg også med %(spouse)s, %(date)s i %(place)s %(endnotes)s."
+msgstr "Han giftet seg også med %(spouse)s, %(modified_date)s i %(place)s %(endnotes)s."
 
 #: ReportUtils.py:636
-#, fuzzy
 msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Hun giftet seg også med %(spouse)s, %(date)s i %(place)s %(endnotes)s."
+msgstr "Hun giftet seg også med %(spouse)s, %(partial_date)s i %(place)s %(endnotes)s."
 
 #: ReportUtils.py:637
-#, fuzzy
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Hun giftet seg også med %(spouse)s, %(date)s i %(place)s %(endnotes)s."
+msgstr "Hun giftet seg også med %(spouse)s, %(full_date)s i %(place)s %(endnotes)s."
 
 #: ReportUtils.py:638
-#, fuzzy
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Hun giftet seg også med %(spouse)s, %(date)s i %(place)s %(endnotes)s."
+msgstr "Hun giftet seg også med %(spouse)s, %(modified_date)s i %(place)s %(endnotes)s."
 
 #: ReportUtils.py:644
-#, fuzzy
 msgid "This person married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Hun giftet seg med %(spouse)s i %(place)s%(endnotes)s."
+msgstr "Denne personen giftet seg med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:645
-#, fuzzy
 msgid "This person married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Han giftet seg med %(spouse)s %(date)s%(endnotes)s."
+msgstr "Denne personen giftet seg med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:646
-#, fuzzy
 msgid "This person married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Han giftet seg med %(spouse)s %(date)s%(endnotes)s."
+msgstr "Denne personen giftet seg med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:649
-#, fuzzy
 msgid "He married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Han giftet seg med %(spouse)s i %(place)s%(endnotes)s."
+msgstr "Han giftet seg med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:650
-#, fuzzy
 msgid "He married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Han giftet seg med %(spouse)s %(date)s%(endnotes)s."
+msgstr "Han giftet seg med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:651
-#, fuzzy
 msgid "He married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Han giftet seg med %(spouse)s %(date)s%(endnotes)s."
+msgstr "Han giftet seg med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:654
-#, fuzzy
 msgid "She married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Hun giftet seg med %(spouse)s i %(place)s%(endnotes)s."
+msgstr "Hun giftet seg med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:655
-#, fuzzy
 msgid "She married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Hun giftet seg med %(spouse)s i %(place)s%(endnotes)s."
+msgstr "Hun giftet seg med %(spouse)s i %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:656
-#, fuzzy
 msgid "She married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Han giftet seg med %(spouse)s %(date)s%(endnotes)s."
+msgstr "Hun giftet seg med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:662
-#, fuzzy
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Hun giftet seg også med %(spouse)s i %(place)s %(endnotes)s."
+msgstr "Denne personen giftet seg også med %(spouse)s i %(partial_date)s %(endnotes)s."
 
 #: ReportUtils.py:663
-#, fuzzy
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Han giftet seg også med %(spouse)s, %(date)s %(endnotes)s."
+msgstr "Denne personen giftet seg også med %(spouse)s, %(full_date)s %(endnotes)s."
 
 #: ReportUtils.py:664
-#, fuzzy
 msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Han giftet seg også med %(spouse)s, %(date)s %(endnotes)s."
+msgstr "Denne personen giftet seg også med %(spouse)s, %(modified_date)s %(endnotes)s."
 
 #: ReportUtils.py:667
-#, fuzzy
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Han giftet seg også med %(spouse)s, %(place)s %(endnotes)s."
+msgstr "Han giftet seg også med %(spouse)s, %(partial_date)s %(endnotes)s."
 
 #: ReportUtils.py:668
-#, fuzzy
 msgid "He also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Han giftet seg også med %(spouse)s, %(date)s %(endnotes)s."
+msgstr "Han giftet seg også med %(spouse)s, %(full_date)s %(endnotes)s."
 
 #: ReportUtils.py:669
-#, fuzzy
 msgid "He also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Han giftet seg også med %(spouse)s, %(date)s %(endnotes)s."
+msgstr "Han giftet seg også med %(spouse)s, %(modified_date)s %(endnotes)s."
 
 #: ReportUtils.py:672
-#, fuzzy
 msgid "She also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Hun giftet seg også med %(spouse)s i %(place)s %(endnotes)s."
+msgstr "Hun giftet seg også med %(spouse)s i %(partial_date)s %(endnotes)s."
 
 #: ReportUtils.py:673
-#, fuzzy
 msgid "She also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Hun giftet seg også med %(spouse)s i %(place)s %(endnotes)s."
+msgstr "Hun giftet seg også med %(spouse)s i %(full_date)s %(endnotes)s."
 
 #: ReportUtils.py:674
-#, fuzzy
 msgid "She also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Han giftet seg også med %(spouse)s, %(date)s %(endnotes)s."
+msgstr "Hun giftet seg også med %(spouse)s, %(modified_date)s %(endnotes)s."
 
 #: ReportUtils.py:679
-#, fuzzy
 msgid "This person married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Hun giftet seg med %(spouse)s i %(place)s%(endnotes)s."
+msgstr "Denne personen giftet seg med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ReportUtils.py:680
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
@@ -4022,9 +3786,8 @@ msgid "She married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Hun giftet seg med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ReportUtils.py:685
-#, fuzzy
 msgid "This person also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Hun giftet seg også med %(spouse)s i %(place)s %(endnotes)s."
+msgstr "Denne personen giftet seg også med %(spouse)s i %(place)s %(endnotes)s."
 
 #: ReportUtils.py:686
 msgid "He also married %(spouse)s in %(place)s%(endnotes)s."
@@ -4035,9 +3798,8 @@ msgid "She also married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Hun giftet seg også med %(spouse)s i %(place)s %(endnotes)s."
 
 #: ReportUtils.py:691
-#, fuzzy
 msgid "This person married %(spouse)s%(endnotes)s."
-msgstr "Hun giftet seg med %(spouse)s%(endnotes)s."
+msgstr "Denne personen giftet seg med %(spouse)s%(endnotes)s."
 
 #: ReportUtils.py:692
 msgid "He married %(spouse)s%(endnotes)s."
@@ -4048,9 +3810,8 @@ msgid "She married %(spouse)s%(endnotes)s."
 msgstr "Hun giftet seg med %(spouse)s%(endnotes)s."
 
 #: ReportUtils.py:697
-#, fuzzy
 msgid "This person also married %(spouse)s%(endnotes)s."
-msgstr "Hun giftet seg også med %(spouse)s, %(endnotes)s."
+msgstr "Denne personen giftet seg også med %(spouse)s, %(endnotes)s."
 
 #: ReportUtils.py:698
 msgid "He also married %(spouse)s%(endnotes)s."
@@ -4061,24 +3822,20 @@ msgid "She also married %(spouse)s%(endnotes)s."
 msgstr "Hun giftet seg også med %(spouse)s, %(endnotes)s."
 
 #: ReportUtils.py:711
-#, fuzzy
 msgid "This person is the child of %(father)s and %(mother)s."
-msgstr "Han er sønn av %(father)s og %(mother)s."
+msgstr "Denne personen er barn av %(father)s og %(mother)s."
 
 #: ReportUtils.py:712
-#, fuzzy
 msgid "This person was the child of %(father)s and %(mother)s."
-msgstr "Han var sønn av %(father)s og %(mother)s."
+msgstr "Denne personen var barn av %(father)s og %(mother)s."
 
 #: ReportUtils.py:715 ReportUtils.py:725
-#, fuzzy
 msgid "%(male_name)s is the child of %(father)s and %(mother)s."
-msgstr "Han er sønn av %(father)s og %(mother)s."
+msgstr "%(male_name)s er sønn av %(father)s og %(mother)s."
 
 #: ReportUtils.py:716 ReportUtils.py:726
-#, fuzzy
 msgid "%(male_name)s was the child of %(father)s and %(mother)s."
-msgstr "Han var sønn av %(father)s og %(mother)s."
+msgstr "%(male_name)s var sønn av %(father)s og %(mother)s."
 
 #: ReportUtils.py:721
 msgid "He is the son of %(father)s and %(mother)s."
@@ -4097,34 +3854,28 @@ msgid "She was the daughter of %(father)s and %(mother)s."
 msgstr "Hun var datter av %(father)s og %(mother)s."
 
 #: ReportUtils.py:735
-#, fuzzy
 msgid "%(female_name)s is the child of %(father)s and %(mother)s."
-msgstr "Han er sønn av %(father)s og %(mother)s."
+msgstr "%(female_name)s er datter av %(father)s og %(mother)s."
 
 #: ReportUtils.py:736
-#, fuzzy
 msgid "%(female_name)s was the child of %(father)s and %(mother)s."
-msgstr "Han var sønn av %(father)s og %(mother)s."
+msgstr "%(female_name)s var datter av %(father)s og %(mother)s."
 
 #: ReportUtils.py:744
-#, fuzzy
 msgid "This person is the child of %(father)s."
-msgstr "Han er sønn av %(father)s."
+msgstr "Denne personen er barn av %(father)s."
 
 #: ReportUtils.py:745
-#, fuzzy
 msgid "This person was the child of %(father)s."
-msgstr "Han var sønn av %(father)s."
+msgstr "Denne personen var barn av %(father)s."
 
 #: ReportUtils.py:748 ReportUtils.py:758
-#, fuzzy
 msgid "%(male_name)s is the child of %(father)s."
-msgstr "%(male_name)s døde %(death_date)s."
+msgstr "%(male_name)s er sønn av %(father)s."
 
 #: ReportUtils.py:749 ReportUtils.py:759
-#, fuzzy
 msgid "%(male_name)s was the child of %(father)s."
-msgstr "%(male_name)s ble begravet %(month_year)s."
+msgstr "%(male_name)s var sønn av %(father)s."
 
 #: ReportUtils.py:754
 msgid "He is the son of %(father)s."
@@ -4143,34 +3894,28 @@ msgid "She was the daughter of %(father)s."
 msgstr "Hun var datter av %(father)s."
 
 #: ReportUtils.py:768
-#, fuzzy
 msgid "%(female_name)s is the child of %(father)s."
-msgstr "%(female_name)s døde %(death_date)s."
+msgstr "%(female_name)s er datter av %(father)s."
 
 #: ReportUtils.py:769
-#, fuzzy
 msgid "%(female_name)s was the child of %(father)s."
-msgstr "%(female_name)s ble begravet %(month_year)s."
+msgstr "%(female_name)s var datter av %(father)s."
 
 #: ReportUtils.py:777
-#, fuzzy
 msgid "This person is the child of %(mother)s."
-msgstr "Han er sønn av %(mother)s."
+msgstr "Denne personen er barn av %(mother)s."
 
 #: ReportUtils.py:778
-#, fuzzy
 msgid "This person was the child of %(mother)s."
-msgstr "Han var sønn av %(mother)s."
+msgstr "Denne personen var barn av %(mother)s."
 
 #: ReportUtils.py:781 ReportUtils.py:791
-#, fuzzy
 msgid "%(male_name)s is the child of %(mother)s."
-msgstr "%(male_name)s døde %(month_year)s."
+msgstr "%(male_name)s er sønn av %(mother)s."
 
 #: ReportUtils.py:782 ReportUtils.py:792
-#, fuzzy
 msgid "%(male_name)s was the child of %(mother)s."
-msgstr "%(male_name)s ble begravet %(month_year)s."
+msgstr "%(male_name)s var sønn av %(mother)s."
 
 #: ReportUtils.py:787
 msgid "He is the son of %(mother)s."
@@ -4189,24 +3934,21 @@ msgid "She was the daughter of %(mother)s."
 msgstr "Hun var datter av %(mother)s."
 
 #: ReportUtils.py:801
-#, fuzzy
 msgid "%(female_name)s is the child of %(mother)s."
-msgstr "%(female_name)s døde %(month_year)s."
+msgstr "%(female_name)s er datter av %(mother)s."
 
 #: ReportUtils.py:802
-#, fuzzy
 msgid "%(female_name)s was the child of %(mother)s."
-msgstr "%(female_name)s ble begravet %(month_year)s."
+msgstr "%(female_name)s var datter av %(mother)s."
 
 #: ReportUtils.py:813
-#, fuzzy
 msgid "unmarried"
-msgstr "Ugift"
+msgstr "ugift"
 
 #: ReportUtils.py:814
 #, fuzzy
 msgid "civil union"
-msgstr "Partnerskap"
+msgstr "partnerskap"
 
 #: ReportUtils.py:816 ReportUtils.py:2104 const.py:235 const.py:249
 #: const.py:516 mergedata.glade:242
@@ -4377,22 +4119,22 @@ msgstr "Hun giftet seg med %(spouse)s."
 #: ReportUtils.py:1664
 #, fuzzy
 msgid "This person married %(spouse)s."
-msgstr "Hun giftet seg med %(spouse)s."
+msgstr "Denne personen giftet seg med %(spouse)s."
 
 #: ReportUtils.py:1667 ReportUtils.py:1689
 #, fuzzy
 msgid "He had an unmarried relationship with %(spouse)s."
-msgstr "Han hadde en relasjon til %(spouse)s."
+msgstr "Han hadde en ugift relasjon til %(spouse)s."
 
 #: ReportUtils.py:1669 ReportUtils.py:1693
 #, fuzzy
 msgid "This person had an unmarried relationship with %(spouse)s."
-msgstr "Hun hadde også en relasjon til %(spouse)s."
+msgstr "Denne personen hadde en ugift relasjon til %(spouse)s."
 
 #: ReportUtils.py:1671 ReportUtils.py:1691
 #, fuzzy
 msgid "She had an unmarried relationship with %(spouse)s."
-msgstr "Hun hadde en relasjon til %(spouse)s."
+msgstr "Hun hadde en ugift relasjon til %(spouse)s."
 
 #: ReportUtils.py:1674
 msgid "He had relationship with %(spouse)s."
@@ -4405,7 +4147,7 @@ msgstr "Hun hadde en relasjon til %(spouse)s."
 #: ReportUtils.py:1678
 #, fuzzy
 msgid "This person had relationship with %(spouse)s."
-msgstr "Hun hadde en relasjon til %(spouse)s."
+msgstr "Denne personen hadde en relasjon til %(spouse)s."
 
 #: ReportUtils.py:1682
 msgid "He also married %(spouse)s."
@@ -4418,7 +4160,7 @@ msgstr "Hun giftet seg også med %(spouse)s."
 #: ReportUtils.py:1686
 #, fuzzy
 msgid "This person also married %(spouse)s."
-msgstr "Hun giftet seg også med %(spouse)s."
+msgstr "Denne personen giftet seg også med %(spouse)s."
 
 #: ReportUtils.py:1696
 msgid "He also had relationship with %(spouse)s."
@@ -4431,82 +4173,68 @@ msgstr "Hun hadde også en relasjon til %(spouse)s."
 #: ReportUtils.py:1700
 #, fuzzy
 msgid "This person also had relationship with %(spouse)s."
-msgstr "Hun hadde også en relasjon til %(spouse)s."
+msgstr "Denne personen hadde også en relasjon til %(spouse)s."
 
 #: ReportUtils.py:2042
-#, fuzzy
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s. Født: %(birth_date)s, %(birth_place)s. Døde: %(death_date)s, %(death_place)s."
+msgstr "Født: %(birth_date)s, %(birth_place)s. Døde: %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:2045
-#, fuzzy
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s."
-msgstr "%(male_name)s. Født: %(birth_date)s, %(birth_place)s. Døde: %(death_date)s."
+msgstr "Født: %(birth_date)s, %(birth_place)s. Døde: %(death_date)s."
 
 #: ReportUtils.py:2049
-#, fuzzy
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_place)s."
-msgstr "%(male_name)s. Født: %(birth_date)s, %(birth_place)s. Døde: %(death_place)s."
+msgstr "Født: %(birth_date)s, %(birth_place)s. Døde: %(death_place)s."
 
 #: ReportUtils.py:2052
-#, fuzzy
 msgid "Born: %(birth_date)s %(birth_place)s."
-msgstr "%(male_name)s. Født: %(birth_date)s, %(birth_place)s."
+msgstr "Født: %(birth_date)s, %(birth_place)s."
 
 #: ReportUtils.py:2056
-#, fuzzy
 msgid "Born: %(birth_date)s, Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s. Født: %(birth_date)s. Døde: %(death_date)s, %(death_place)s."
+msgstr "Født: %(birth_date)s. Døde: %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:2059
-#, fuzzy
 msgid "Born: %(birth_date)s, Died: %(death_date)s."
-msgstr "%(male_name)s. Født: %(birth_date)s. Døde: %(death_date)s."
+msgstr "Født: %(birth_date)s. Døde: %(death_date)s."
 
 #: ReportUtils.py:2062
-#, fuzzy
 msgid "Born: %(birth_date)s, Died: %(death_place)s."
-msgstr "%(male_name)s. Født: %(birth_date)s. Døde: %(death_place)s."
+msgstr "Født: %(birth_date)s. Døde: %(death_place)s."
 
 #: ReportUtils.py:2064
-#, fuzzy
 msgid "Born: %(birth_date)s."
-msgstr " f. %(birth_date)s"
+msgstr "Født: %(birth_date)s"
 
 #: ReportUtils.py:2069
-#, fuzzy
 msgid "Born: %(birth_place)s, Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s. Født: %(birth_place)s. Døde: %(death_date)s, %(death_place)s."
+msgstr "Født: %(birth_place)s. Døde: %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:2072
-#, fuzzy
 msgid "Born: %(birth_place)s, Died: %(death_date)s."
-msgstr "%(male_name)s. Født: %(birth_place)s. Døde: %(death_date)s."
+msgstr "Født: %(birth_place)s. Døde: %(death_date)s."
 
 #: ReportUtils.py:2076
-#, fuzzy
 msgid "Born: %(birth_place)s, Died: %(death_place)s."
-msgstr "%(male_name)s. Født: %(birth_place)s. Døde: %(death_place)s."
+msgstr "Født: %(birth_place)s. Døde: %(death_place)s."
 
 #: ReportUtils.py:2079
-#, fuzzy
 msgid "Born: %(birth_place)s."
-msgstr "%(male_name)s. Født: %(birth_place)s."
+msgstr "Født: %(birth_place)s."
 
 #: ReportUtils.py:2083
-#, fuzzy
 msgid "Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s. Døde: %(death_date)s, %(death_place)s."
+msgstr "Døde: %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:2085
-#, fuzzy
 msgid "Died: %(death_date)s."
-msgstr " d. %(death_date)s"
+msgstr "Døde: %(death_date)s"
 
 #: ReportUtils.py:2088
 #, fuzzy
 msgid "Died: %(death_place)s."
-msgstr "%(male_name)s. Døde: %(death_place)s."
+msgstr "Døde: %(death_place)s."
 
 #: ReportUtils.py:2100 const.py:512 gramps.glade:4576
 #: plugins/FamilyGroup.py:375 plugins/FamilyGroup.py:377
@@ -4586,12 +4314,14 @@ msgid "Source Information"
 msgstr "Kilde-informasjon"
 
 #: Spell.py:53
+#, fuzzy
 msgid "Spelling checker is not installed"
-msgstr ""
+msgstr "Stavekontroll ikke installert"
 
 #: Spell.py:57
+#, fuzzy
 msgid "Spelling checker is not available for %s"
-msgstr ""
+msgstr "Stavekontroll er ikke tilgjengelig for %s"
 
 #: StartupDialog.py:140
 msgid "Broken GNOME libraries"
@@ -4728,12 +4458,12 @@ msgstr "Ingen beskrivelse tilgjengelig"
 #: TipOfDay.py:62
 #, fuzzy
 msgid "GRAMPS' Tip of the Day"
-msgstr "Vis _dagens tips"
+msgstr "GRAMPS' dagens tips"
 
 #: TipOfDay.py:63
 #, fuzzy
 msgid "Tip of the Day"
-msgstr "Vis _dagens tips"
+msgstr "Dagens tips"
 
 #: Tool.py:65
 msgid "Debug"
@@ -4752,7 +4482,6 @@ msgid "Database Repair"
 msgstr "Reparer database"
 
 #: Tool.py:69
-#, fuzzy
 msgid "Revision Control"
 msgstr "Revisjonskontroll"
 
@@ -6287,7 +6016,7 @@ msgstr "Referanser"
 #: gramps.glade:6048
 #, fuzzy
 msgid "Open recent file: "
-msgstr "Åpne _nylig brukt"
+msgstr "Åpne nylig brukt fil:"
 
 #: gramps.glade:6088
 msgid "Open an _existing database"
@@ -7011,7 +6740,7 @@ msgstr "Et dobbeltklikk vil åpne den valgte kilden for redigering"
 #: gramps.glade:21218
 #, fuzzy
 msgid "Style n_ame:"
-msgstr "Stil_navn:"
+msgstr "Stiln_avn:"
 
 #: gramps.glade:21391 rule.glade:1144
 msgid "<b>Description</b>"
@@ -7084,12 +6813,12 @@ msgstr "<b>Justering</b>"
 #: gramps.glade:21903
 #, fuzzy
 msgid "<b>Background color</b>"
-msgstr "<b>Bakgrunn</b>"
+msgstr "<b>Bakgrunnsfarge</b>"
 
 #: gramps.glade:21950
 #, fuzzy
 msgid "First li_ne:"
-msgstr "<b>Første linje</b>"
+msgstr "Første li_nje:"
 
 #: gramps.glade:22063
 msgid "R_ight:"
@@ -7102,15 +6831,15 @@ msgstr "_Venstre:"
 #: gramps.glade:22121
 #, fuzzy
 msgid "<b>Spacing</b>"
-msgstr "<b>Koding</b>"
+msgstr "<b>Mellomrom</b>"
 
 #: gramps.glade:22149
 msgid "Abo_ve:"
-msgstr ""
+msgstr "O_ver:"
 
 #: gramps.glade:22178
 msgid "Belo_w:"
-msgstr ""
+msgstr "Under:"
 
 #: gramps.glade:22263
 msgid "<b>Borders</b>"
@@ -7139,7 +6868,7 @@ msgstr "_Nederst"
 #: gramps.glade:22591
 #, fuzzy
 msgid "<b>Indentation</b>"
-msgstr "<b>Identifikasjon</b>"
+msgstr "<b>Innrykk</b>"
 
 #: gramps.glade:22625
 msgid "<b>Paragraph options</b>"
@@ -7798,7 +7527,7 @@ msgstr "Slektstavle"
 #: plugins/StatisticsChart.py:982 plugins/TimeLine.py:479
 #, fuzzy
 msgid "Stable"
-msgstr "Stat"
+msgstr "Stabil"
 
 #: plugins/AncestorChart.py:275 plugins/AncestorChart2.py:526
 msgid "Produces a graphical ancestral tree graph"
@@ -7819,7 +7548,7 @@ msgstr "Den grunnleggende stilen for tittelvisning."
 #: plugins/AncestorChart2.py:522
 #, fuzzy
 msgid "Ancestor Graph"
-msgstr "Anetavle-dybde"
+msgstr "Anetavle"
 
 #: plugins/AncestorReport.py:102
 msgid "Ahnentafel Report for %s"
@@ -7829,7 +7558,7 @@ msgstr "Ahnentafel-rapport for %s"
 #: plugins/DetDescendantReport.py:194
 #, fuzzy
 msgid "Generation %d"
-msgstr "Generasjon 1"
+msgstr "Generasjon %d"
 
 #: plugins/AncestorReport.py:170 plugins/Ancestors.py:895
 #: plugins/DescendReport.py:221 plugins/DetAncestralReport.py:647
@@ -8145,17 +7874,17 @@ msgstr "Endre typer"
 #: plugins/ChangeTypes.py:133
 #, fuzzy
 msgid "No event record was modified."
-msgstr "1 hendelse ble endret"
+msgstr "Ingen hendelse ble endret."
 
 #: plugins/ChangeTypes.py:135
 #, fuzzy
 msgid "1 event record was modified."
-msgstr "1 hendelse ble endret"
+msgstr "1 hendelse ble endret."
 
 #: plugins/ChangeTypes.py:137
 #, fuzzy
 msgid "%d event records were modified."
-msgstr "%d hendelse ble endret"
+msgstr "%d hendelse ble endret."
 
 #: plugins/ChangeTypes.py:216
 msgid "Rename personal event types"
@@ -8164,7 +7893,7 @@ msgstr "Endre navn på personlige hendelsestyper"
 #: plugins/ChangeTypes.py:220
 #, fuzzy
 msgid "Allows all the events of a certain name to be renamed to a new name."
-msgstr "Tillater at alle hendelser med et bestemt navn får nytt navn"
+msgstr "Tillater at alle hendelser med et bestemt navn får nytt navn."
 
 #: plugins/Check.py:95
 msgid "Check Integrity"
@@ -8181,7 +7910,7 @@ msgstr "Søker etter doble ektefeller"
 #: plugins/Check.py:160
 #, fuzzy
 msgid "Looking for character encoding errors"
-msgstr "Søker etter problemer med stedsreferanser"
+msgstr "Ser etter tegnkodingsfeil"
 
 #: plugins/Check.py:180
 msgid "Looking for broken family links"
@@ -8376,65 +8105,83 @@ msgstr "Kontrollerer databasen for integritetsproblemer og retter det den kan"
 #: plugins/Checkpoint.py:73
 #, fuzzy
 msgid "Checkpoint Archive Creation Failed"
-msgstr "Forberedelsene til å overføre til CD feilet"
+msgstr "Opprettelse av sjekkpunkt arkiv feilet"
 
 #: plugins/Checkpoint.py:74
+#, fuzzy
 msgid ""
 "No checkpointing archive was found. An attempt to create it has failed with the following message:\n"
 "\n"
 "%s"
 msgstr ""
+"Ingen sjekkpunkt arkiv ble funnet. Et forsøk på å lage et har feilet, med følgende melding:\n"
+"\n"
+"%s"
 
 #: plugins/Checkpoint.py:80
 #, fuzzy
 msgid "Checkpoint Archive Created"
-msgstr "Lag en sikkerhetskopi av databasen"
+msgstr "Opprettet sjekkpunkt arkiv"
 
 #: plugins/Checkpoint.py:81
+#, fuzzy
 msgid ""
 "No checkpointing archive was found, so it was created to enable archiving.\n"
 "\n"
 "The archive file name is %s\n"
 "Deleting this file will lose the archive and make impossible to extract archived data from it."
 msgstr ""
+"Ingen sjekkpunkt arkiv ble funnet, så det ble opprettet, for å skru på arkivering.\n"
+"\n"
+"Arkiv filnavn er %s\n"
+"Hvis denne filen blir slettet, mistes arkivet, og gjør det umulig å hente ut arkiverte data."
 
 #: plugins/Checkpoint.py:90 plugins/Checkpoint.py:101
 #, fuzzy
 msgid "Checkpoint Failed"
-msgstr "Sikkerhetskopieringen feilet"
+msgstr "Sjekkpunkt feilet"
 
 #: plugins/Checkpoint.py:91
+#, fuzzy
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
 "\n"
 "%s"
 msgstr ""
+"Forsøk på å arkivere data feilet med følgende melding:\n"
+"\n"
+"%s"
 
 #: plugins/Checkpoint.py:96 plugins/Checkpoint.py:107
 #, fuzzy
 msgid "Checkpoint Succeeded "
-msgstr "Sikkerhetskopieringen feilet"
+msgstr "Sjekkpunkt lyktes"
 
 #: plugins/Checkpoint.py:97
 #, fuzzy
 msgid "The data was successfully archived."
-msgstr "Alle modulene ble lastet riktig."
+msgstr "Dataene ble arkivert"
 
 #: plugins/Checkpoint.py:102
+#, fuzzy
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
 "\n"
 "%s"
 msgstr ""
+"Et forsøk på å hente ut dataene feilet med følgende melding:\n"
+"\n"
+"%s"
 
 #: plugins/Checkpoint.py:108
+#, fuzzy
 msgid "The data was successfully retrieved."
-msgstr ""
+msgstr "Dataene ble hentet ut."
 
 #: plugins/Checkpoint.py:163
 #, fuzzy
 msgid "Checkpoint Data"
-msgstr "Kontrollerer data"
+msgstr "Sjekkpunkt data"
 
 #: plugins/Checkpoint.py:238
 msgid "Checkpointing database..."
@@ -8449,12 +8196,14 @@ msgid "Store a snapshot of the current database into a revision control system"
 msgstr "Lagre en sikkerhetskopi av den aktive databasen i et revisjonskontroll system"
 
 #: plugins/CmdRef.py:256
+#, fuzzy
 msgid "Generate Commandline Plugin Reference"
-msgstr ""
+msgstr "Generere kommandolinje innsettingsreferanse"
 
 #: plugins/CmdRef.py:260
+#, fuzzy
 msgid "Generates a DocBook XML file that contains a parameter reference of Reports and Tools."
-msgstr ""
+msgstr "Generere en DocBook XML fil som inneholder en parameter referans av Rapporter og verktøy."
 
 #: plugins/CountAncestors.py:70
 msgid "Number of ancestors of \"%s\" by generation"
@@ -8535,27 +8284,27 @@ msgstr "Lager en grafisk trevisning over etterkommerne"
 #: plugins/DescendReport.py:125
 #, fuzzy
 msgid "b. %(birth_year)d - %(place)s"
-msgstr " f. %(birth_date)s"
+msgstr "f. %(birth_year)d - %(place)s"
 
 #: plugins/DescendReport.py:130
 #, fuzzy
 msgid "b. %(birth_year)d"
-msgstr " f. %(birth_date)s"
+msgstr "f. %(birth_year)d"
 
 #: plugins/DescendReport.py:138
 #, fuzzy
 msgid "d. %(death_year)d - %(place)s"
-msgstr "%(date)s i %(place)s."
+msgstr "d. %(death_year)d - %(place)s"
 
 #: plugins/DescendReport.py:143
 #, fuzzy
 msgid "d. %(death_year)d"
-msgstr " d. %(death_date)s"
+msgstr "d. %(death_year)d"
 
 #: plugins/DescendReport.py:175
 #, fuzzy
 msgid "sp. %(spouse)s"
-msgstr "Han giftet seg med %(spouse)s."
+msgstr "ef. %(spouse)s"
 
 #: plugins/DescendReport.py:233
 msgid "The style used for the level %d display."
@@ -8564,7 +8313,7 @@ msgstr "Stilen som brukes til visning av nivå %d."
 #: plugins/DescendReport.py:241
 #, fuzzy
 msgid "The style used for the spouse level %d display."
-msgstr "Stilen som brukes til visning av nivå %d."
+msgstr "Stilen som brukes til visning av ektefelle nivå %d."
 
 #: plugins/DescendReport.py:256
 msgid "Descendant Report"
@@ -8577,7 +8326,7 @@ msgstr "Lager en liste over den aktive personens etterkommere"
 #: plugins/DetAncestralReport.py:151
 #, fuzzy
 msgid "Ancestral Report for %s"
-msgstr "Ahnentafel-rapport for %s"
+msgstr "Ane rapport for %s"
 
 #: plugins/DetAncestralReport.py:221 plugins/DetDescendantReport.py:248
 msgid "%(name)s is the same person as [%(id_str)s]."
@@ -8616,7 +8365,7 @@ msgstr "%(event_name)s: "
 #: plugins/DetAncestralReport.py:402 plugins/DetDescendantReport.py:425
 #, fuzzy
 msgid "Children of %s and %s"
-msgstr "Barn av %s og %s er:"
+msgstr "Barn av %s og %s"
 
 #: plugins/DetAncestralReport.py:494 plugins/DetDescendantReport.py:520
 #: plugins/FtmStyleAncestors.py:143 plugins/FtmStyleDescendants.py:172
@@ -8670,8 +8419,9 @@ msgid "Include notes"
 msgstr "Ta med kommentarer"
 
 #: plugins/DetAncestralReport.py:759 plugins/DetDescendantReport.py:784
+#, fuzzy
 msgid "Use nickname for common name"
-msgstr ""
+msgstr "Bruk kallenavn som vanlignavn"
 
 #: plugins/DetAncestralReport.py:763 plugins/DetDescendantReport.py:788
 msgid "Replace missing places with ______"
@@ -8725,13 +8475,13 @@ msgstr "Innhold"
 #: plugins/DetDescendantReport.py:836
 #, fuzzy
 msgid "Include"
-msgstr "Ta med ID-er"
+msgstr "Ta med"
 
 #: plugins/DetAncestralReport.py:813 plugins/DetAncestralReport.py:814
 #: plugins/DetDescendantReport.py:837 plugins/DetDescendantReport.py:838
 #, fuzzy
 msgid "Missing information"
-msgstr "Publikasjonsinformasjon"
+msgstr "Mangler informasjon"
 
 #: plugins/DetAncestralReport.py:847
 msgid "Detailed Ancestral Report"
@@ -8744,7 +8494,7 @@ msgstr "Lag en detaljert rapport over forfedre"
 #: plugins/DetDescendantReport.py:180
 #, fuzzy
 msgid "Descendant Report for %(person_name)s"
-msgstr "Detaljert etterkommere-rapport for %(person_name)s"
+msgstr "Etterkommere-rapport for %(person_name)s"
 
 #: plugins/DetDescendantReport.py:870
 msgid "Detailed Descendant Report"
@@ -9486,7 +9236,7 @@ msgstr "Etternavn"
 #: plugins/NavWebPage.py:584 plugins/NavWebPage.py:634
 #, fuzzy
 msgid "restricted"
-msgstr "Estimert"
+msgstr "begrenset"
 
 #: plugins/NavWebPage.py:612
 msgid "This page contains an index of all the individuals in the database with the surname of %s. Selecting the person's name will take you to that person's individual page."
@@ -9560,7 +9310,7 @@ msgstr "Denne siden inneholder en oversikt over alle mediaobjektene i databasen,
 #: plugins/NavWebPage.py:1441
 #, fuzzy
 msgid "Ancestors"
-msgstr "Aner av %s"
+msgstr "Aner"
 
 #: plugins/NavWebPage.py:1544
 msgid "Source References"
@@ -9692,7 +9442,7 @@ msgstr "Ta med nedlastningsside"
 #: plugins/NavWebPage.py:2417
 #, fuzzy
 msgid "Include ancestor graph"
-msgstr "Ta med et kort slektstre"
+msgstr "Ta med anetavle"
 
 #: plugins/NavWebPage.py:2425
 msgid "Suppress GRAMPS ID"
@@ -9887,7 +9637,7 @@ msgstr "Deres felles forfedre er : "
 #: plugins/RelCalc.py:203
 #, fuzzy
 msgid "%s and %s are the same person."
-msgstr " er den samme personen som [%s]."
+msgstr "%s og %s er den samme personen."
 
 #: plugins/RelCalc.py:205
 msgid "%(person)s and %(active_person)s are not related."
@@ -10109,7 +9859,7 @@ msgstr "Ekteskapssted"
 #: plugins/StatisticsChart.py:121
 #, fuzzy
 msgid "Number of relationships"
-msgstr "Antall relasjoner:"
+msgstr "Antall relasjoner"
 
 #: plugins/StatisticsChart.py:123
 msgid "Age when first child born"
@@ -10126,7 +9876,7 @@ msgstr "Antall barn"
 #: plugins/StatisticsChart.py:129
 #, fuzzy
 msgid "Age at marriage"
-msgstr "Alternativt ekteskap"
+msgstr "Alder ved ekteskapsinngåelse"
 
 #: plugins/StatisticsChart.py:131
 msgid "Age at death"
@@ -10383,13 +10133,14 @@ msgid "Generate long names"
 msgstr "Lag lange navn"
 
 #: plugins/TestcaseGenerator.py:160
+#, fuzzy
 msgid "Add special characters"
-msgstr ""
+msgstr "Legg til spesial tegn"
 
 #: plugins/TestcaseGenerator.py:164
 #, fuzzy
 msgid "Add serial number"
-msgstr "Legg til mediaobjekt"
+msgstr "Legg til serienummer"
 
 #: plugins/TestcaseGenerator.py:212
 msgid ""
@@ -11011,36 +10762,42 @@ msgstr "_Ny hendelsestype:"
 #: plugins/checkpoint.glade:109
 #, fuzzy
 msgid "R_etrieve"
-msgstr "Pensjonert"
+msgstr "H_ente"
 
 #: plugins/checkpoint.glade:181
+#, fuzzy
 msgid "_Archive"
-msgstr ""
+msgstr "_Arkiver"
 
 #: plugins/checkpoint.glade:244
+#, fuzzy
 msgid "This tool allows archiving and retrieval of your data using the revision control system of your choice."
-msgstr ""
+msgstr "Dette verktøyet muliggjør arkivering og innhenting av dine data, via ditt ønskede versjonshåndterings-system."
 
 #: plugins/checkpoint.glade:275
 #, fuzzy
 msgid "<b>Revision control system</b>"
-msgstr "Revisjonskontroll"
+msgstr "<b>Revisjonskontroll-system</b>"
 
 #: plugins/checkpoint.glade:300
+#, fuzzy
 msgid "_RCS"
-msgstr ""
+msgstr "_RCS"
 
 #: plugins/checkpoint.glade:322
+#, fuzzy
 msgid "C_ustom commands"
-msgstr ""
+msgstr "Tilpassede kommandoer"
 
 #: plugins/checkpoint.glade:344
+#, fuzzy
 msgid "Archiving:"
-msgstr ""
+msgstr "Arkivering:"
 
 #: plugins/checkpoint.glade:368
+#, fuzzy
 msgid "Retrieval:"
-msgstr ""
+msgstr "Gjeninnhenting:"
 
 #: plugins/desbrowse.glade:126
 msgid "<i>Double-click on the row to edit personal information</i>"
@@ -11199,12 +10956,12 @@ msgstr "<b>Menn</b>"
 #: plugins/verify.glade:1068
 #, fuzzy
 msgid "<b>Warnings:</b>"
-msgstr "<b>Marger</b>"
+msgstr "<b>Advarsel:</b>"
 
 #: plugins/verify.glade:1130
 #, fuzzy
 msgid "<b>Errors:</b>"
-msgstr "<b>Feilvindu</b>"
+msgstr "<b>Feil:</b>"
 
 #: rule.glade:132
 msgid "Add another rule to the filter"
