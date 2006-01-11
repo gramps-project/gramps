@@ -94,6 +94,7 @@ class Assistant(gtk.Object):
 
         self.current_page = 0
         self.max_page = 1
+        self.conclusion_set = False
         
         self.window = gtk.Window()
         titlebox = gtk.HBox()
@@ -103,7 +104,6 @@ class Assistant(gtk.Object):
         self.title = gtk.Label(self.title_text[0])
         self.title.set_alignment(0,0.5)
         self.title.set_use_markup(True)
-        self.conclude_text = "No finish text specified"
 
         titlebox.pack_start(self.title,True)
         image = gtk.Image()
@@ -150,9 +150,11 @@ class Assistant(gtk.Object):
         """Set the property of writable properties."""
         raise AttributeError, 'unknown or read only property %s' % prop.name
 
-
     def update_title(self):
-        self.title.set_label(self.title_text[self.current_page])
+        try:
+            self.title.set_label(self.title_text[self.current_page])
+        except IndexError:
+            pass
         self.title.set_use_markup(True)
 
     def set_buttons(self):
@@ -201,7 +203,7 @@ class Assistant(gtk.Object):
             self.current_page += 1
             self.notebook.set_current_page(self.current_page)
             self.update_title()
-	    self.set_buttons()
+            self.set_buttons()
 
         self.emit('after-page-next',self.notebook.get_current_page())
         self.emit('page-changed',self.notebook.get_current_page())
@@ -217,28 +219,43 @@ class Assistant(gtk.Object):
         self.notebook.append_page(hbox)
 
     def set_conclusion(self,title,text):
-        self.conclude_text = text
+        hbox = gtk.HBox(spacing=12)
+        image = gtk.Image()
+        image.set_from_file(_splash_jpg)
+        hbox.pack_start(image,False)
+        label = gtk.Label(text)
+        label.set_line_wrap(True)
+        hbox.add(label)
+        hbox.show_all()
+        if self.conclusion_set:
+            self.notebook.remove_page(-1)
+            self.title_text.pop(-1)
+        self.notebook.append_page(hbox)
+        self.title_text.append(_format % title)
+        self.conclusion_set = True
 
     def add_page(self, title, child):
         self.title_text.append(_format % title)
         self.notebook.append_page(child)
         self.max_page += 1
 
+    def insert_page(self, title, child, position=-1):
+        self.title_text.insert(position,_format % title)
+        self.notebook.insert_page(child,None,position)
+        self.max_page += 1
+
+    def remove_page(self,position):
+        self.title_text.pop(position)
+        self.notebook.remove_page(position)
+        self.max_page -= 1
+
+    def get_number_of_pages(self):
+        return self.max_page
+
     def show(self):
-        self.title_text.append(_format % _('Finished'))
-        hbox = gtk.HBox(spacing=12)
-        image = gtk.Image()
-        image.set_from_file(_splash_jpg)
-        hbox.pack_start(image,False)
-        label = gtk.Label(self.conclude_text)
-        label.set_line_wrap(True)
-        hbox.add(label)
-        self.notebook.append_page(hbox)
         self.window.show_all()
         self.notebook.set_current_page(0)
-        
         self.emit('page-changed',self.notebook.get_current_page())
-
 
     def destroy(self):
         self.window.destroy()
@@ -283,6 +300,8 @@ if __name__ == "__main__":
     make_label(table,_('Email:'),5,0,1,1,4)
     box.add(table)
     a.add_page('Researcher information',box)
+
+    a.set_conclusion('aaa','bbb')
     a.show()
-    
+
     gtk.main()

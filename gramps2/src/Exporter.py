@@ -49,7 +49,8 @@ import QuestionDialog
 import GrampsKeys
 import GrampsDisplay
 import Assistant
-print "0"
+
+from GrampsDb import gramps_db_writer_factory
 #-------------------------------------------------------------------------
 #
 # Exporter
@@ -83,31 +84,38 @@ class Exporter:
 
         self.build_exports()
         self.confirm_label = gtk.Label()
-        self.extra_pages = []
+        self.format_option = None
 
-        self.w = Assistant.Assistant(_('Saving your data'),None)
+        self.w = Assistant.Assistant(_('Saving your data'),self.complete)
 
         self.w.set_intro(self.get_intro_text())
         
-        title,box = self.build_format_page()
-        self.w.add_page(title,box)
+        title1,box1 = self.build_format_page()
+        self.w.add_page(title1,box1)
+        self.format_page = 1
 
-        title,box = self.build_file_sel_page()
-        self.w.add_page(title,box)
+        title2,box2 = self.build_file_sel_page()
+        self.w.add_page(title2,box2)
+        self.file_sel_page = self.w.get_number_of_pages()
 
-        title,box = self.build_confirm_page()
-        self.w.add_page(title,box)
+        title3,box3 = self.build_confirm_page()
+        self.w.add_page(title3,box3)
 
-        title,text=self.get_conclusion_text()
-        self.w.set_conclusion(title,text)
+        self.w.connect('before-page-next',self.on_before_page_next)
 
         self.w.show()
 
-    def close(self,obj,obj2=None):
-        """
-        Close and delete handler.
-        """
-        self.w.destroy()
+    def complete(self):
+        pass
+
+    def on_before_page_next(self,obj,page,data=None):
+        if page == self.format_page:
+            self.build_options()
+            self.suggest_filename()
+        elif page == self.file_sel_page-1:
+            self.build_confirm_label()
+        elif page == self.file_sel_page:
+            self.success = self.save()
 
     def help(self,obj):
         """
@@ -139,11 +147,9 @@ class Exporter:
         box = gtk.VBox()
         box.set_spacing(12)
         box.add(self.confirm_label)
-        #p.connect('prepare',self.build_confirm_label)
-        #p.connect('next',self.save)
         return (page_title,box)
 
-    def build_confirm_label(self,obj,obj2):
+    def build_confirm_label(self):
         """
         Build the text of the confirmation label. This should query
         the selected options (format, filename) and present the summary
@@ -158,11 +164,12 @@ class Exporter:
         self.confirm_label.set_text(
                 _('The data will be saved as follows:\n\n'
                 'Format:\t%s\nName:\t%s\nFolder:\t%s\n\n'
-                'Press Forward to proceed, Cancel to abort, or Back to '
+                'Press OK to proceed, Cancel to abort, or Back to '
                 'revisit your options.') % (format, name, folder))
         self.confirm_label.set_line_wrap(True)
+        self.confirm_label.show_all()
 
-    def save(self,obj,obj2):
+    def save(self):
         """
         Perform the actual Save As/Export operation. 
         Depending on the success status, set the text for the final page.
@@ -171,44 +178,31 @@ class Exporter:
         GrampsKeys.save_last_export_dir(os.path.split(filename)[0])
         ix = self.get_selected_format_index()
         if self.exports[ix][3]:
-            success = self.exports[ix][0](self.parent.db,filename,self.person,
-                    self.option_box_instance)
+            success = self.exports[ix][0](self.dbstate.db,
+                                          filename,self.person,
+                                          self.option_box_instance)
         else:
-            success = self.exports[ix][0](self.parent.db,filename,self.person)
+            success = self.exports[ix][0](self.dbstate.db,
+                                          filename,self.person)
         if success:
-            self.last_page.set_title(_('Your data has been saved'))
-            self.last_page.set_text(_('The copy of your data has been '
-                    'successfully saved. You may press Apply button '
-                    'now to continue.\n\n'
-                    'Note: the database currently opened in your GRAMPS '
-                    'window is NOT the file you have just saved. '
-                    'Future editing of the currently opened database will '
-                    'not alter the copy you have just made. '))
+            conclusion_title =  _('Your data has been saved')
+            conclusion_text = _(
+                'The copy of your data has been '
+                'successfully saved. You may press Apply button '
+                'now to continue.\n\n'
+                'Note: the database currently opened in your GRAMPS '
+                'window is NOT the file you have just saved. '
+                'Future editing of the currently opened database will '
+                'not alter the copy you have just made. ')
         else:
-            self.last_page.set_title(_('Saving failed'))
-            self.last_page.set_text()
-
-    def get_conclusion_text(self,success=False):
-        if success:
-            return (
-                _('Your data has been saved'),
-                _('The copy of your data has been '
-                     'successfully saved. You may press Apply button '
-                     'now to continue.\n\n'
-                     'Note: the database currently opened in your GRAMPS '
-                     'window is NOT the file you have just saved. '
-                     'Future editing of the currently opened database will '
-                     'not alter the copy you have just made. ')
-                )
-        else:
-            return (
-                _('Saving failed'),
-                _('There was an error while saving your data. '
-                  'Please go back and try again.\n\n'
-                  'Note: your currently opened database is safe. '
-                  'It was only '
-                  'a copy of your data that failed to save.')
-                )
+            conclusion_title =  _('Saving failed'),
+            conclusion_text = _(
+                'There was an error while saving your data. '
+                'You may try starting the export again.\n\n'
+                'Note: your currently opened database is safe. '
+                'It was only '
+                'a copy of your data that failed to save.')
+        self.w.set_conclusion(conclusion_title,conclusion_text)
 
     def build_format_page(self):
         """
@@ -241,46 +235,35 @@ class Exporter:
             tip.set_tip(button,description)
         
         box.add(table)
-        #box.show_all()
-        #p.connect('next',self.build_options)
         return (page_title,box)
 
-    def build_options(self,obj,obj2):
+    def build_options(self):
         """
         Build an extra page with the options specific for the chosen format.
-        If there's already a page (or pages) for this format in 
-        self.empty_pages then do nothing, otherwise add a page.
+        If there's already an entry for this format in self.extra_pages then
+        do nothing, otherwise add a page.
 
         If the chosen format does not have options then remove all
         extra pages that are already there (from previous user passes 
-        through the druid).
+        through the assistant).
         """
         ix = self.get_selected_format_index()
         if self.exports[ix][3]:
+            if ix == self.format_option:
+                return
+            elif self.format_option:
+                self.w.remove_page(self.format_page+1)
+                self.format_option = None
             title = self.exports[ix][3][0]
-            for (ep_ix,ep) in self.extra_pages:
-                if ep_ix == ix:
-                    return
-                else:
-                   ep.destroy()
-                   self.extra_pages.remove((ep_ix,ep))
-
             option_box_class = self.exports[ix][3][1]
             self.option_box_instance = option_box_class(self.person)
-
-            p = DruidPageStandard()
-            p.set_title(title)
-            p.set_title_foreground(self.fg_color)
-            p.set_background(self.bg_color)
-            p.set_logo(self.logo)
-            p.append_item("",self.option_box_instance.get_option_box(),"")
-            self.extra_pages.append((ix,p))
-            self.d.insert_page(self.file_sel_page,p)
-            p.show_all()
-        else:
-            for (ep_ix,ep) in self.extra_pages:
-                ep.destroy()
-            self.extra_pages = []
+            box = self.option_box_instance.get_option_box()
+            self.w.insert_page(title,box,self.format_page+1)
+            self.format_option = ix
+            box.show_all()
+        elif self.format_option:
+            self.w.remove_page(self.format_page+1)
+            self.format_option = None
 
     def build_file_sel_page(self):
         """
@@ -294,14 +277,12 @@ class Exporter:
         box.set_spacing(12)
         box.add(self.chooser)
 
-        # Dirty hack to enable proper EXPAND and FILL properties of the chooser
+        # Dirty hack to enable proper EXPAND/FILL properties of the chooser
         box.set_child_packing(self.chooser,1,1,0,gtk.PACK_START)
-        #gradnparent = parent.get_parent()
-        #gradnparent.set_child_packing(parent,1,1,0,gtk.PACK_START)
-        #p.connect('prepare',self.suggest_filename)
+
         return (page_title,box)
 
-    def suggest_filename(self,obj,obj2):
+    def suggest_filename(self):
         """
         Prepare suggested filename and set it in the file chooser. 
         """
@@ -318,7 +299,7 @@ class Exporter:
         if ext == 'gramps':
             new_filename = os.path.expanduser(default_dir + 'data.gramps')
         elif ext == 'burn':
-            new_filename = os.path.basename(self.parent.db.get_save_path())
+            new_filename = os.path.basename(self.dbstate.db.get_save_path())
         else:
             new_filename = Utils.get_new_filename(ext,default_dir)
         self.chooser.set_current_folder(default_dir)
@@ -343,7 +324,7 @@ class Exporter:
         In the future, filter and other options may be added.
         """
         try:
-            GrampsDb.gramps_db_writer_factory(const.app_gramps)(database,filename,person)
+            gramps_db_writer_factory(const.app_gramps)(database,filename,person)
             return 1
         except IOError, msg:
             QuestionDialog.ErrorDialog( _("Could not write file: %s") % filename,
