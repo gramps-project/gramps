@@ -150,7 +150,7 @@ class MarkupLabel(gtk.Label):
 class FamilyView(PageView.PersonNavView):
 
     def __init__(self,dbstate,uistate):
-        PageView.PersonNavView.__init__(self,'Pedigree View',dbstate,uistate)
+        PageView.PersonNavView.__init__(self,'Relationship View',dbstate,uistate)
         dbstate.connect('database-changed',self.change_db)
         dbstate.connect('active-changed',self.change_person)
         self.show_siblings = GrampsKeys.get_family_siblings()
