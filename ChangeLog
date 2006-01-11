@@ -1,3 +1,7 @@
+2006-01-11  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/PedView.py: Now using cairo :-)
+	Changed menu handling
+
 2006-01-10  Don Allingham  <don@gramps-project.org>
 	* src/FamilyView.py: fix title
 	* src/MapView.py: fix title
