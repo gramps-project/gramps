@@ -308,7 +308,7 @@ class MapPlacesList(gtk.TreeView):
 # Map View main class
 class MapView(PageView.PageView):
     def __init__(self,dbstate,uistate):
-        PageView.PageView.__init__(self,'Pedigree View',dbstate,uistate)
+        PageView.PageView.__init__(self,'Map View',dbstate,uistate)
         dbstate.connect('database-changed',self.change_db)
         self.current_marker = None
 
