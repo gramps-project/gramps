@@ -7,7 +7,7 @@
 	* src/GrampsDb/_GrampsXMLDb.py: txn handling for get_handles
 	
 2006-01-10  Alex Roitman  <shura@gramps-project.org>
-	* src/Assistant.py: Cosmeti c changes.
+	* src/Assistant.py: Cosmetic changes.
 	* src/Exporter.py: Start converting to Assistant.
 	* src/ViewManager.py: Add handler for Export; add hot keys for
 	import and export.
