@@ -235,8 +235,9 @@ class DetAncestorReport(Report.Report):
                 self.endnotes(self.database.get_event_from_handle(birth_handle))
             first = 0
 
+        age,units = self.calc_age(person)
         text = ReportUtils.died_str(self.database,person,first,
-                                    self.EMPTY_DATE,self.EMPTY_PLACE)
+                                    self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
         if text:
             self.doc.write_text(text)
             death_handle = person.get_birth_handle()

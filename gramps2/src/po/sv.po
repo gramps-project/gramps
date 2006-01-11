@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: Gramps 2.0.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Sun Nov 27 16:06:29 2005\n"
-"PO-Revision-Date: 2006-01-02 22:42+0100\n"
+"PO-Revision-Date: 2006-01-06 11:30+0100\n"
 "Last-Translator: Stefan Bjork <skalman@acc.umu.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -8322,7 +8322,7 @@ msgstr "Avslutande notiser"
 #: plugins/DetAncestralReport.py:515 plugins/DetDescendantReport.py:539
 #: plugins/FtmStyleAncestors.py:162 plugins/FtmStyleDescendants.py:192
 msgid "Text:"
-msgstr "Te_xt:"
+msgstr "Text:"
 
 #: plugins/DetAncestralReport.py:522 plugins/DetDescendantReport.py:546
 #: plugins/FtmStyleAncestors.py:169 plugins/FtmStyleDescendants.py:199
