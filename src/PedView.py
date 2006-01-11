@@ -103,7 +103,7 @@ class PersonBoxWidget_cairo( gtk.DrawingArea):
         self.hightlight = False
         self.connect("expose_event", self.expose)
         self.connect("realize", self.realize)
-        self.text = "Cairo"
+        self.text = ""
         if self.person:
             self.text = self.fh.format_person(self.person,self.maxlines)
             alive = Utils.probably_alive(self.person,self.fh.db)
@@ -128,7 +128,6 @@ class PersonBoxWidget_cairo( gtk.DrawingArea):
         else:
             self.bgcolor = (0.9,0.9,0.9)
             self.bordercolor = (0,0,0)
-        self.lines = self.text.split("\n")
         self.image = image
         try:
             self.img_surf = cairo.ImageSurface.create_from_png(image)
@@ -148,19 +147,15 @@ class PersonBoxWidget_cairo( gtk.DrawingArea):
 
     def realize(self,widget):
         self.context = self.window.cairo_create()
-        e = self.context.font_extents()
-        textheight = len(self.lines) * e[2]
-        textwidth = 1
-        for txt in self.lines:
-            le = self.context.text_extents(txt)
-            textwidth = max(textwidth,le[4])
-        xmin = textwidth + 12
-        ymin = textheight + 11
+        self.textlayout = self.context.create_layout()
+        self.textlayout.set_text(self.text)
+        s = self.textlayout.get_pixel_size()
+        xmin = s[0] + 12
+        ymin = s[1] + 11
         if self.image:
             xmin += self.img_surf.get_width()
             ymin = max( ymin,self.img_surf.get_height()+4)
         self.set_size_request(max(xmin,120),max(ymin,25))
-        self.text_gc = self.window.new_gc()
         
     def expose(self,widget,event):
         alloc = self.get_allocation()
@@ -210,6 +205,11 @@ class PersonBoxWidget_cairo( gtk.DrawingArea):
             self.context.set_source_surface( self.img_surf,alloc.width-4-self.img_surf.get_width(),1)
             self.context.paint()
         
+        # text
+        self.context.move_to(5,4)
+        self.context.set_source_rgb( 0,0,0)
+        self.context.show_layout( self.textlayout)
+
         #border
         if self.hightlight:
             self.context.set_line_width(5)
@@ -218,14 +218,6 @@ class PersonBoxWidget_cairo( gtk.DrawingArea):
         self.context.append_path( path)
         self.context.set_source_rgb( self.bordercolor[0], self.bordercolor[1], self.bordercolor[2])
         self.context.stroke()
-
-        e = self.context.font_extents()
-        ypos = 5+e[0]
-        for txt in self.lines:
-            self.context.move_to(5,ypos)
-            self.context.set_source_rgb( 0,0,0)
-            self.context.show_text(txt)
-            ypos = ypos + e[2]
 
 
 class PersonBoxWidget( gtk.DrawingArea):
