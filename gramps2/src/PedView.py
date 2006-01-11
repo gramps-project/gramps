@@ -36,6 +36,11 @@ from cgi import escape
 import gobject
 import gtk
 import gtk.gdk
+try:
+    import cairo
+    cairo_available = True
+except:
+    cairo_available = False
 
 #-------------------------------------------------------------------------
 #
@@ -86,6 +91,143 @@ class PersonBoxWidget_old( gtk.Button):
         self.modify_bg( gtk.STATE_PRELIGHT, white)
         self.modify_bg( gtk.STATE_SELECTED, white)
 
+class PersonBoxWidget_cairo( gtk.DrawingArea):
+    def __init__(self,fh,person,maxlines,image=None):
+        gtk.DrawingArea.__init__(self)
+        self.add_events(gtk.gdk.BUTTON_PRESS_MASK)  # Required for popup menu
+        self.add_events(gtk.gdk.ENTER_NOTIFY_MASK)  # Required for tooltip and mouse-over
+        self.add_events(gtk.gdk.LEAVE_NOTIFY_MASK)  # Required for tooltip and mouse-over
+        self.fh = fh
+        self.person = person
+        self.maxlines = maxlines
+        self.hightlight = False
+        self.connect("expose_event", self.expose)
+        self.connect("realize", self.realize)
+        self.text = "Cairo"
+        if self.person:
+            self.text = self.fh.format_person(self.person,self.maxlines)
+            alive = Utils.probably_alive(self.person,self.fh.db)
+            if alive and self.person.get_gender() == RelLib.Person.MALE:
+                self.bgcolor = (0.9,0.9,1)
+                self.bordercolor = (0.5,0.5,0.8)
+            elif alive and self.person.get_gender() == RelLib.Person.FEMALE:
+                self.bgcolor = (1,0.9,0.9)
+                self.bordercolor = (0.8,0.5,0.5)
+            elif alive:
+                self.bgcolor = (1,0.9,1)
+                self.bordercolor = (0.8,0.5,0.8)
+            elif self.person.get_gender() == RelLib.Person.MALE:
+                self.bgcolor = (0.8,0.8,1)
+                self.bordercolor = (0,0,0)
+            elif self.person.get_gender() == RelLib.Person.FEMALE:
+                self.bgcolor = (1,0.8,0.8)
+                self.bordercolor = (0,0,0)
+            else:
+                self.bgcolor = (1,0.8,1)
+                self.bordercolor = (0,0,0)
+        else:
+            self.bgcolor = (0.9,0.9,0.9)
+            self.bordercolor = (0,0,0)
+        self.lines = self.text.split("\n")
+        self.image = image
+        try:
+            self.img_surf = cairo.ImageSurface.create_from_png(image)
+        except:
+            self.image = False
+        self.connect("enter-notify-event", self.on_enter_cb)    # enable mouse-over
+        self.connect("leave-notify-event", self.on_leave_cb)
+        self.set_size_request(120,25)
+
+    def on_enter_cb(self,widget,event):
+        self.hightlight = True
+        self.queue_draw()
+        
+    def on_leave_cb(self,widget,event):
+        self.hightlight = False
+        self.queue_draw()
+
+    def realize(self,widget):
+        self.context = self.window.cairo_create()
+        e = self.context.font_extents()
+        textheight = len(self.lines) * e[2]
+        textwidth = 1
+        for txt in self.lines:
+            le = self.context.text_extents(txt)
+            textwidth = max(textwidth,le[4])
+        xmin = textwidth + 12
+        ymin = textheight + 11
+        if self.image:
+            xmin += self.img_surf.get_width()
+            ymin = max( ymin,self.img_surf.get_height()+4)
+        self.set_size_request(max(xmin,120),max(ymin,25))
+        self.text_gc = self.window.new_gc()
+        
+    def expose(self,widget,event):
+        alloc = self.get_allocation()
+        self.context = self.window.cairo_create()
+
+        # widget area for debugging
+        #self.context.rectangle(0,0,alloc.width,alloc.height)
+        #self.context.set_source_rgb( 1,0,1)
+        #self.context.fill_preserve()
+        #self.context.stroke()
+        
+        # Create box shape and store path
+        self.context.move_to(0,5)
+        self.context.curve_to(0,2,2,0, 5,0)
+        self.context.line_to(alloc.width-8,0)
+        self.context.curve_to(alloc.width-5,0,alloc.width-3,2, alloc.width-3,5)
+        self.context.line_to(alloc.width-3,alloc.height-8)
+        self.context.curve_to(alloc.width-3,alloc.height-5, alloc.width-5,alloc.height-3, alloc.width-8,alloc.height-3)
+        self.context.line_to(5,alloc.height-3)
+        self.context.curve_to(2,alloc.height-3,0,alloc.height-5,0,alloc.height-8)
+        self.context.close_path()
+        path = self.context.copy_path()
+        
+        # shadow
+        self.context.save()
+        self.context.translate(3,3)
+        self.context.new_path()
+        self.context.append_path( path)
+        self.context.set_source_rgba( self.bordercolor[0], self.bordercolor[1], self.bordercolor[2],0.4)
+        self.context.fill_preserve()
+        self.context.set_line_width(0)
+        self.context.stroke()
+        self.context.restore()
+        
+        # box shape used for clipping
+        self.context.append_path( path)
+        self.context.clip()
+
+        # background
+        self.context.append_path( path)
+        self.context.set_source_rgb( self.bgcolor[0], self.bgcolor[1], self.bgcolor[2])
+        self.context.fill_preserve()
+        self.context.stroke()
+
+        # image
+        if self.image:
+            self.context.set_source_surface( self.img_surf,alloc.width-4-self.img_surf.get_width(),1)
+            self.context.paint()
+        
+        #border
+        if self.hightlight:
+            self.context.set_line_width(5)
+        else:
+            self.context.set_line_width(2)
+        self.context.append_path( path)
+        self.context.set_source_rgb( self.bordercolor[0], self.bordercolor[1], self.bordercolor[2])
+        self.context.stroke()
+
+        e = self.context.font_extents()
+        ypos = 5+e[0]
+        for txt in self.lines:
+            self.context.move_to(5,ypos)
+            self.context.set_source_rgb( 0,0,0)
+            self.context.show_text(txt)
+            ypos = ypos + e[2]
+
+
 class PersonBoxWidget( gtk.DrawingArea):
     def __init__(self,fh,person,maxlines,image=None):
         gtk.DrawingArea.__init__(self)
@@ -95,9 +237,12 @@ class PersonBoxWidget( gtk.DrawingArea):
         self.fh = fh
         self.person = person
         self.maxlines = maxlines
-        self.image = image
-        self.init_done = False
+        try:
+            self.image = gtk.gdk.pixbuf_new_from_file( image)
+        except:
+            self.image = None
         self.connect("expose_event", self.expose)
+        self.connect("realize", self.realize)
         text = ""
         if self.person:
             text = self.fh.format_person(self.person,self.maxlines)
@@ -107,61 +252,56 @@ class PersonBoxWidget( gtk.DrawingArea):
         s = self.textlayout.get_pixel_size()
         xmin = s[0] + 12
         ymin = s[1] + 11
-        if image:
-            xmin += image.get_width()
-            ymin = max( ymin,image.get_height()+4)
+        if self.image:
+            xmin += self.image.get_width()
+            ymin = max( ymin,self.image.get_height()+4)
         self.set_size_request(max(xmin,120),max(ymin,25))
     
     def on_enter_cb(self,widget,event):
         '''' On mouse-over hightlight border'''
-        try:
-            self.border_gc.line_width = 3
-            self.queue_draw()
-        except AttributeError:
-            pass # ignore missing self.border_gc because we are not yet exposed
+        self.border_gc.line_width = 3
+        self.queue_draw()
         
     def on_leave_cb(self,widget,event):
-        try:
-            self.border_gc.line_width = 1
-            self.queue_draw()
-        except AttributeError:
-            pass # ignore missing self.border_gc because we are not yet exposed
+        self.border_gc.line_width = 1
+        self.queue_draw()
     
-    def expose(self,widget,event):
-        if not self.init_done:
-            self.bg_gc = self.window.new_gc()
-            self.text_gc = self.window.new_gc()
-            self.border_gc = self.window.new_gc()
-            self.border_gc.line_style = gtk.gdk.LINE_SOLID
-            self.border_gc.line_width = 1
-            self.shadow_gc = self.window.new_gc()
-            self.shadow_gc.line_style = gtk.gdk.LINE_SOLID
-            self.shadow_gc.line_width = 4
-            if self.person:
-                alive = Utils.probably_alive(self.person,self.fh.db)
-                if alive and self.person.get_gender() == RelLib.Person.MALE:
-                    self.bg_gc.set_foreground( self.get_colormap().alloc_color("#F5FFFF"))
-                    self.border_gc.set_foreground( self.get_colormap().alloc_color("#009999"))
-                elif self.person.get_gender() == RelLib.Person.MALE:
-                    self.bg_gc.set_foreground( self.get_colormap().alloc_color("#F5FFFF"))
-                    self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
-                elif alive and self.person.get_gender() == RelLib.Person.FEMALE:
-                    self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFF5FF"))
-                    self.border_gc.set_foreground( self.get_colormap().alloc_color("#990099"))
-                elif  self.person.get_gender() == RelLib.Person.FEMALE:
-                    self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFF5FF"))
-                    self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
-                elif alive:
-                    self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFFFF5"))
-                    self.border_gc.set_foreground( self.get_colormap().alloc_color("#999900"))
-                else:
-                    self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFFFF5"))
-                    self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
+    def realize(self,widget):
+        self.bg_gc = self.window.new_gc()
+        self.text_gc = self.window.new_gc()
+        self.border_gc = self.window.new_gc()
+        self.border_gc.line_style = gtk.gdk.LINE_SOLID
+        self.border_gc.line_width = 1
+        self.shadow_gc = self.window.new_gc()
+        self.shadow_gc.line_style = gtk.gdk.LINE_SOLID
+        self.shadow_gc.line_width = 4
+        if self.person:
+            alive = Utils.probably_alive(self.person,self.fh.db)
+            if alive and self.person.get_gender() == RelLib.Person.MALE:
+                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#F5FFFF"))
+                self.border_gc.set_foreground( self.get_colormap().alloc_color("#009999"))
+            elif self.person.get_gender() == RelLib.Person.MALE:
+                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#F5FFFF"))
+                self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
+            elif alive and self.person.get_gender() == RelLib.Person.FEMALE:
+                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFF5FF"))
+                self.border_gc.set_foreground( self.get_colormap().alloc_color("#990099"))
+            elif  self.person.get_gender() == RelLib.Person.FEMALE:
+                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFF5FF"))
+                self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
+            elif alive:
+                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFFFF5"))
+                self.border_gc.set_foreground( self.get_colormap().alloc_color("#999900"))
             else:
-                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#eeeeee"))
-                self.border_gc.set_foreground( self.get_colormap().alloc_color("#777777"))
-            self.shadow_gc.set_foreground( self.get_colormap().alloc_color("#999999"))
-            self.init_done = True
+                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFFFF5"))
+                self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
+        else:
+            self.bg_gc.set_foreground( self.get_colormap().alloc_color("#eeeeee"))
+            self.border_gc.set_foreground( self.get_colormap().alloc_color("#777777"))
+        self.shadow_gc.set_foreground( self.get_colormap().alloc_color("#999999"))
+
+
+    def expose(self,widget,event):
         alloc = self.get_allocation()
         # shadow
         self.window.draw_line(self.shadow_gc, 3, alloc.height-1, alloc.width, alloc.height-1)
@@ -191,11 +331,11 @@ class FormattingHelper:
         text = ""
         for event_ref in family.get_event_ref_list():
             event = self.db.get_event_from_handle(event_ref.ref)
-            if event:
+            if event and event.get_type()[0] == RelLib.Event.MARRIAGE:
                 if line_count < 3:
                     return DateHandler.get_date(event)
-                i,s = event.get_type()
-                name = Utils.family_relations[i]
+                (i,s) = event.get_type()
+                name = Utils.family_events.get(i)
                 text += name
                 text += "\n"
                 text += DateHandler.get_date(event)
@@ -204,6 +344,8 @@ class FormattingHelper:
                 if line_count < 5:
                    return text;
                 break
+        if not text:
+            text = ReportUtils.relationship_name(family.get_relationship())
         return text
 
     def get_place_name( self, place_handle):
@@ -557,7 +699,10 @@ class PedView(PageView.PersonNavView):
                 continue
             if not lst[i]:
                 # No person -> show empty box
-                pw = PersonBoxWidget( self.format_helper, None, 0, None);
+                if cairo_available:
+                    pw = PersonBoxWidget_cairo( self.format_helper, None, 0, None);
+                else:
+                    pw = PersonBoxWidget( self.format_helper, None, 0, None);
                 if positions[i][0][2] > 1:
                     table_widget.attach(pw,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
                 else:
@@ -578,13 +723,15 @@ class PedView(PageView.PersonNavView):
                         if obj:
                             mtype = obj.get_mime_type()
                             if mtype[0:5] == "image":
-                                image = ImgManip.get_thumbnail_image(obj.get_path())
-                pw = PersonBoxWidget( self.format_helper, lst[i][0], positions[i][0][3], image);
+                                image = ImgManip.get_thumbnail_path(obj.get_path())
+                if cairo_available:
+                    pw = PersonBoxWidget_cairo( self.format_helper, lst[i][0], positions[i][0][3], image);
+                else:
+                    pw = PersonBoxWidget( self.format_helper, lst[i][0], positions[i][0][3], image);
                 if positions[i][0][3] < 7:
                     self.tooltips.set_tip(pw, self.format_helper.format_person(lst[i][0], 11))
 
-                pw.set_data(_PERSON,lst[i][0].get_handle())
-                pw.connect("button-press-event", self.build_full_nav_menu_cb)
+                pw.connect("button-press-event", self.person_button_press_cb,lst[i][0].get_handle())
                 if positions[i][0][2] > 1:
                     table_widget.attach(pw,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.EXPAND|gtk.FILL,0,0)
                 else:
@@ -771,10 +918,22 @@ class PedView(PageView.PersonNavView):
 
     def on_show_option_menu_cb(self,obj,data=None):
         myMenu = gtk.Menu()
+        self.add_nav_portion_to_menu(myMenu)
         self.add_settings_to_menu(myMenu)
         myMenu.popup(None,None,None,0,0)
         return(True);
-    
+
+    def person_button_press_cb(self,obj,event,person_handle):
+        if event.button==1:
+            defperson = self.dbstate.active
+            if defperson and defperson.get_handle() != person_handle:
+                self.dbstate.change_active_handle(person_handle)
+            else:
+                self.build_full_nav_menu_cb(obj,event,person_handle)
+        else:
+            self.build_full_nav_menu_cb(obj,event,person_handle)
+        return True
+
     def on_show_child_menu(self,obj):
         """User clicked button to move to child of active person"""
 
@@ -810,15 +969,11 @@ class PedView(PageView.PersonNavView):
             return 1
         return 0
 
-    def on_childmenu_changed(self,obj):
+    def on_childmenu_changed(self,obj,person_handle):
         """Callback for the pulldown menu selection, changing to the person
            attached with menu item."""
-
-        person_handle = obj.get_data(_PERSON)
-        if person_handle:
-            self.dbstate.change_active_handle(person_handle)
-            return True
-        return False
+        self.dbstate.change_active_handle(person_handle)
+        return True
     
     def change_force_size_cb(self,event,data):
         if data in [0,2,3,4,5]:
@@ -893,9 +1048,12 @@ class PedView(PageView.PersonNavView):
                 im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
                 im.show()
                 item.set_image(im)
+                if not self.dbstate.db.get_default_person():
+                    item.set_sensitive(False)
+            else:
+                item.set_sensitive(sensitivity)
             if callback:
                 item.connect("activate",callback)
-            item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
 
@@ -971,7 +1129,7 @@ class PedView(PageView.PersonNavView):
         menu.append(item)
         
 
-    def build_full_nav_menu_cb(self,obj,event):
+    def build_full_nav_menu_cb(self,obj,event,person_handle):
         """
         Builds the full menu (including Siblings, Spouses, Children, 
         and Parents) with navigation.
@@ -980,7 +1138,6 @@ class PedView(PageView.PersonNavView):
         menu = gtk.Menu()
         menu.set_title(_('People Menu'))
 
-        person_handle = obj.get_data(_PERSON)
         person = self.db.get_person_from_handle(person_handle)
         if not person:
             return 0
@@ -989,8 +1146,7 @@ class PedView(PageView.PersonNavView):
         go_image.show()
         go_item = gtk.ImageMenuItem(NameDisplay.displayer.display(person))
         go_item.set_image(go_image)
-        go_item.set_data(_PERSON,person_handle)
-        go_item.connect("activate",self.on_childmenu_changed)
+        go_item.connect("activate",self.on_childmenu_changed,person_handle)
         go_item.show()
         menu.append(go_item)
 
@@ -1029,9 +1185,8 @@ class PedView(PageView.PersonNavView):
             go_image.show()
             sp_item = gtk.ImageMenuItem(NameDisplay.displayer.display(spouse))
             sp_item.set_image(go_image)
-            sp_item.set_data(_PERSON,sp_id)
             linked_persons.append(sp_id)
-            sp_item.connect("activate",self.on_childmenu_changed)
+            sp_item.connect("activate",self.on_childmenu_changed,sp_id)
             sp_item.show()
             sp_menu.append(sp_item)
 
@@ -1073,9 +1228,8 @@ class PedView(PageView.PersonNavView):
                 label.show()
                 label.set_alignment(0,0)
                 sib_item.add(label)
-                sib_item.set_data(_PERSON,sib_id)
                 linked_persons.append(sib_id)
-                sib_item.connect("activate",self.on_childmenu_changed)
+                sib_item.connect("activate",self.on_childmenu_changed,sib_id)
                 sib_item.show()
                 sib_menu.append(sib_item)
 
@@ -1111,9 +1265,8 @@ class PedView(PageView.PersonNavView):
             label.show()
             label.set_alignment(0,0)
             child_item.add(label)
-            child_item.set_data(_PERSON,child_handle)
             linked_persons.append(child_handle)
-            child_item.connect("activate",self.on_childmenu_changed)
+            child_item.connect("activate",self.on_childmenu_changed,child_handle)
             child_item.show()
             child_menu.append(child_item)
 
@@ -1149,9 +1302,8 @@ class PedView(PageView.PersonNavView):
             label.show()
             label.set_alignment(0,0)
             par_item.add(label)
-            par_item.set_data(_PERSON,par_id)
             linked_persons.append(par_id)
-            par_item.connect("activate",self.on_childmenu_changed)
+            par_item.connect("activate",self.on_childmenu_changed,par_id)
             par_item.show()
             par_menu.append(par_item)
 
@@ -1186,8 +1338,7 @@ class PedView(PageView.PersonNavView):
             label.show()
             label.set_alignment(0,0)
             per_item.add(label)
-            per_item.set_data(_PERSON,p_id)
-            per_item.connect("activate",self.on_childmenu_changed)
+            per_item.connect("activate",self.on_childmenu_changed,p_id)
             per_item.show()
             per_menu.append(per_item)
         
