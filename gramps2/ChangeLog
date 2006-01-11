@@ -15,6 +15,9 @@
 	* src/Assistant.py: More changes, still needs work.
 	* src/Exporter.py: More changes, still needs work.
 
+	* src/flist.svg: Add new icon.
+	* src/gramps_main.py: Use new icon.
+
 2006-01-09  Don Allingham  <don@gramps-project.org>
 	* relation.svg: Relationship view icon
 	* media.svg: Relationship view icon
