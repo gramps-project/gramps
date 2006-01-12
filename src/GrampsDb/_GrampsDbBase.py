@@ -373,11 +373,12 @@ class GrampsDbBase(GrampsDBCallback):
             old_data = None
         else:
             old_data = data_map.get(handle)
-            transaction.add(key,handle,old_data)
+            new_data = obj.serialize()
+            transaction.add(key,handle,old_data,new_data)
             if old_data:
-                update_list.append((handle,obj.serialize()))
+                update_list.append((handle,new_data))
             else:
-                add_list.append((handle,obj.serialize()))
+                add_list.append((handle,new_data))
         return old_data
 
     def commit_person(self,person,transaction,change_time=None):
@@ -1164,6 +1165,7 @@ class GrampsDbBase(GrampsDBCallback):
         """
         if self.undoindex == -1 or self.readonly:
             return False
+
         transaction = self.translist[self.undoindex]
 
         mapbase = (self.person_map, self.family_map, self.source_map,
@@ -1173,18 +1175,53 @@ class GrampsDbBase(GrampsDBCallback):
         subitems = transaction.get_recnos()
         subitems.reverse()
         for record_id in subitems:
-            (key, handle, data) = transaction.get_record(record_id)
+            (key,handle,old_data,new_data) = transaction.get_record(record_id)
             if key == REFERENCE_KEY:
-                self.undo_reference(data,handle)
+                self.undo_reference(old_data,handle)
             else:
-                self.undo_data(data,handle,mapbase[key],_sigbase[key])
+                self.undo_data(old_data,handle,mapbase[key],_sigbase[key])
 
         if self.undo_callback:
             if self.undoindex == -1:
                 self.undo_callback(None)
             else:
-                transaction = self.translist[self.undoindex]
-                self.undo_callback(_("_Undo %s") % transaction.get_description())
+                new_transaction = self.translist[self.undoindex]
+                self.undo_callback(_("_Undo %s")
+                                   % new_transaction.get_description())
+
+        return True
+
+    def redo(self):
+        """
+        Accesses the last undone transaction, and reverts the data to
+        the state before the transaction was undone.
+        """
+        if self.undoindex == _UNDO_SIZE or self.readonly:
+            return False
+
+        self.undoindex +=1
+        transaction = self.translist[self.undoindex]
+        if transaction == None:
+            return False
+
+        mapbase = (self.person_map, self.family_map, self.source_map,
+                   self.event_map, self.media_map, self.place_map)
+
+        subitems = transaction.get_recnos()
+        for record_id in subitems:
+            (key,handle,old_data,new_data) = transaction.get_record(record_id)
+            if key == REFERENCE_KEY:
+                self.undo_reference(new_data,handle)
+            else:
+                self.undo_data(new_data,handle,mapbase[key],_sigbase[key])
+
+        if self.undo_callback:
+            if self.undoindex == _UNDO_SIZE:
+                self.undo_callback(None)
+            else:
+                self.undo_callback(_("_Undo %s")
+                                   % transaction.get_description())
+
         return True
 
     def undo_reference(self,data,handle):
@@ -1321,16 +1358,16 @@ class GrampsDbBase(GrampsDBCallback):
             person = self.get_person_from_handle(handle)
             self.genderStats.uncount_person (person)
             if not transaction.batch:
-                transaction.add(PERSON_KEY,handle,person.serialize())
+                transaction.add(PERSON_KEY,handle,person.serialize(),None)
             transaction.person_del.append(str(handle))
 
     def _do_remove_object(self,handle,trans,dmap,key,del_list):
-        self._delete_primary_from_reference_map(handle,transaction)
+        self._delete_primary_from_reference_map(handle,trans)
         if not self.readonly:
             handle = str(handle)
             if not trans.batch:
                 old_data = dmap.get(handle)
-                trans.add(key,handle,old_data)
+                trans.add(key,handle,old_data,None)
             del_list.append(handle)
 
     def remove_source(self,handle,transaction):
@@ -1751,14 +1788,19 @@ class Transaction:
         """
         self.msg = msg
 
-    def add(self, type, handle, data):
+    def add(self, type, handle, old_data, new_data):
         """
         Adds a commit operation to the Transaction. The type is a constant
         that indicates what type of PrimaryObject is being added. The handle
         is the object's database handle, and the data is the tuple returned
         by the object's serialize method.
         """
-        self.last = self.db.append(cPickle.dumps((type,handle,data),1))
+        self.last = self.db.append(cPickle.dumps((type,
+                                                  handle,
+                                                  old_data,
+                                                  new_data),
+                                                 1)
+                                   )
         if self.first == None:
             self.first = self.last
 

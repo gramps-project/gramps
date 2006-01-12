@@ -261,7 +261,8 @@ class GrampsBSDDB(GrampsDbBase):
                     db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
                     db.DB_INIT_LOG|db.DB_INIT_TXN|db.DB_RECOVER
 
-        self.undolog = "%s.log" % name
+        self.undolog = "%s.undo" % name
+        self.redolog = "%s.redo" % name
         env_name = os.path.expanduser(const.bsddbenv_dir)
         if not os.path.isdir(env_name):
             os.mkdir(env_name)
@@ -375,7 +376,8 @@ class GrampsBSDDB(GrampsDbBase):
 
             self.undodb = db.DB()
             self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
-
+            self.redodb = db.DB()
+            self.redodb.open(self.redolog, db.DB_RECNO, db.DB_CREATE)
         callback(0.5)
 
         self.metadata   = self.open_table(self.full_name, "meta", no_txn=True)
@@ -664,9 +666,9 @@ class GrampsBSDDB(GrampsDbBase):
         preserving the change in the passed transaction.
         """
         if not self.readonly:
-            data = self.reference_map.get(str(main_key),txn=self.txn)
+            old_data = self.reference_map.get(str(main_key),txn=self.txn)
             if not transaction.batch:
-                transaction.add(REFERENCE_KEY,str(key),cPickle.dumps(data))
+                transaction.add(REFERENCE_KEY,str(key),old_data,None)
             transaction.reference_del.append(str(key))
 
     def _add_reference(self,key,data,transaction):
@@ -681,7 +683,7 @@ class GrampsBSDDB(GrampsDbBase):
         if transaction.batch:
             self.reference_map.put(str(key),data,txn=self.txn)
         else:
-            transaction.add(REFERENCE_KEY,str(key),None)
+            transaction.add(REFERENCE_KEY,str(key),None,data)
             transaction.reference_add.append(str(key),data)
 
     def reindex_reference_map(self):
@@ -798,6 +800,15 @@ class GrampsBSDDB(GrampsDbBase):
         self.metadata       = None
         self.db_is_open     = False
 
+    def _do_remove_object(self,handle,trans,dmap,key,del_list):
+        self._delete_primary_from_reference_map(handle,trans)
+        if not self.readonly:
+            handle = str(handle)
+            if not trans.batch:
+                old_data = dmap.get(handle,txn=self.txn)
+                trans.add(key,handle,old_data,None)
+            del_list.append(handle)
+
     def _del_person(self,handle):
         self.person_map.delete(str(handle),txn=self.txn)
 
@@ -902,11 +913,12 @@ class GrampsBSDDB(GrampsDbBase):
             old_data = None
         else:
             old_data = data_map.get(handle,txn=self.txn)
-            transaction.add(key,handle,old_data)
+            new_data = obj.serialize()
+            transaction.add(key,handle,old_data,new_data)
             if old_data:
-                update_list.append((handle,obj.serialize()))
+                update_list.append((handle,new_data))
             else:
-                add_list.append((handle,obj.serialize()))
+                add_list.append((handle,new_data))
         return old_data
 
     def _do_commit(self,add_list,db_map):
@@ -1050,17 +1062,24 @@ class GrampsBSDDB(GrampsDbBase):
         self.txn = None
 
     def undo(self):
-        print "Doing it"
+        print "Undoing it"
         self.txn = self.env.txn_begin()
         GrampsDbBase.undo(self)
         self.txn.commit()
         self.txn = None
 
+    def redo(self):
+        print "Redoing it"
+        self.txn = self.env.txn_begin()
+        GrampsDbBase.redo(self)
+        self.txn.commit()
+        self.txn = None        
+
     def undo_reference(self,data,handle):
         if data == None:
             self.reference_map.delete(handle,txn=self.txn)
         else:
-            self.reference_map.put(handl,data,txn=self.txn)
+            self.reference_map.put(handle,data,txn=self.txn)
 
     def undo_data(self,data,handle,db_map,signal_root):
         if data == None:
