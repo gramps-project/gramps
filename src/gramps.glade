@@ -3567,7 +3567,7 @@
 	    <widget class="GtkTable" id="table10">
 	      <property name="border_width">6</property>
 	      <property name="visible">True</property>
-	      <property name="n_rows">7</property>
+	      <property name="n_rows">6</property>
 	      <property name="n_columns">8</property>
 	      <property name="homogeneous">False</property>
 	      <property name="row_spacing">6</property>
@@ -4273,7 +4273,7 @@
 			  <child>
 			    <widget class="GtkLabel" id="label544">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Select famly members</property>
+			      <property name="label" translatable="yes"></property>
 			      <property name="use_underline">True</property>
 			      <property name="use_markup">False</property>
 			      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -4300,10 +4300,10 @@
 		  </child>
 		</widget>
 		<packing>
-		  <property name="left_attach">6</property>
-		  <property name="right_attach">7</property>
-		  <property name="top_attach">6</property>
-		  <property name="bottom_attach">7</property>
+		  <property name="left_attach">7</property>
+		  <property name="right_attach">8</property>
+		  <property name="top_attach">5</property>
+		  <property name="bottom_attach">6</property>
 		  <property name="x_options">fill</property>
 		  <property name="y_options"></property>
 		</packing>
