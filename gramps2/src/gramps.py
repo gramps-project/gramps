@@ -84,7 +84,10 @@ gettext.install("gramps",loc,unicode=1)
 import gramps_main 
 import gobject
 
-signal.signal(signal.SIGCHLD, signal.SIG_DFL)
+try:
+    signal.signal(signal.SIGCHLD, signal.SIG_DFL)
+except:
+    pass
 
 args = sys.argv
 

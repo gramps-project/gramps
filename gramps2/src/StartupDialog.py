@@ -192,10 +192,9 @@ class StartupDialog:
 
         name = GrampsKeys.get_researcher_name()
         if not name or name.strip() == "":
-            import pwd
-            import os
-
             try:
+                import pwd
+                import os
                 name = pwd.getpwnam(os.environ['USER'])[4]
             except:
                 name = ""
