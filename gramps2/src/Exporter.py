@@ -80,26 +80,25 @@ class Exporter:
             self.person = self.dbstate.active
         else:
             pass
+            # FIXME: find_initial_person needs to move into dbstate or db
+            #        and then it will be available here
             # self.person = self.parent.find_initial_person()
 
         self.build_exports()
-        self.confirm_label = gtk.Label()
         self.format_option = None
 
-        self.w = Assistant.Assistant(_('Saving your data'),self.complete)
+        self.w = Assistant.Assistant(self.complete)
 
-        self.w.set_intro(self.get_intro_text())
+        self.w.add_text_page(_('Saving your data'),self.get_intro_text())
         
-        title1,box1 = self.build_format_page()
-        self.w.add_page(title1,box1)
-        self.format_page = 1
+        self.format_page = self.w.add_page(_('Choosing the format to save'),
+                                           self.build_format_page())
 
-        title2,box2 = self.build_file_sel_page()
-        self.w.add_page(title2,box2)
-        self.file_sel_page = self.w.get_number_of_pages()
+        self.file_sel_page = self.w.add_page(_('Selecting the file name'),
+                                             self.build_file_sel_page())
 
-        title3,box3 = self.build_confirm_page()
-        self.w.add_page(title3,box3)
+        self.confirm_page = self.w.add_text_page('','')
+        self.conclusion_page = self.w.add_text_page('','')
 
         self.w.connect('before-page-next',self.on_before_page_next)
 
@@ -112,10 +111,11 @@ class Exporter:
         if page == self.format_page:
             self.build_options()
             self.suggest_filename()
-        elif page == self.file_sel_page-1:
-            self.build_confirm_label()
         elif page == self.file_sel_page:
-            self.success = self.save()
+            self.build_confirmation()
+        elif page == self.confirm_page:
+            success = self.save()
+            self.build_conclusion(success)
 
     def help(self,obj):
         """
@@ -136,20 +136,7 @@ class Exporter:
                  'can safely press the Cancel button at any time and your '
                  'present database will still be intact.')
 
-    def build_confirm_page(self):
-        """
-        Build a save confirmation page. Setting up the actual label 
-        text is deferred until the page is being prepared. This
-        is necessary, because no choice is made by the user when this
-        page is set up. 
-        """
-        page_title = _('Final save confirmation')
-        box = gtk.VBox()
-        box.set_spacing(12)
-        box.add(self.confirm_label)
-        return (page_title,box)
-
-    def build_confirm_label(self):
+    def build_confirmation(self):
         """
         Build the text of the confirmation label. This should query
         the selected options (format, filename) and present the summary
@@ -161,13 +148,15 @@ class Exporter:
         ix = self.get_selected_format_index()
         format = self.exports[ix][1].replace('_','')
 
-        self.confirm_label.set_text(
-                _('The data will be saved as follows:\n\n'
+        confirm_text = _(
+                'The data will be saved as follows:\n\n'
                 'Format:\t%s\nName:\t%s\nFolder:\t%s\n\n'
                 'Press OK to proceed, Cancel to abort, or Back to '
-                'revisit your options.') % (format, name, folder))
-        self.confirm_label.set_line_wrap(True)
-        self.confirm_label.show_all()
+                'revisit your options.') % (format, name, folder)
+        self.w.remove_page(self.confirm_page)
+        self.confirm_page = self.w.insert_text_page(_('Final confirmation'),
+                                                    confirm_text,
+                                                    self.confirm_page)
 
     def save(self):
         """
@@ -184,11 +173,14 @@ class Exporter:
         else:
             success = self.exports[ix][0](self.dbstate.db,
                                           filename,self.person)
+        return success
+
+    def build_conclusion(self,success):
         if success:
             conclusion_title =  _('Your data has been saved')
             conclusion_text = _(
                 'The copy of your data has been '
-                'successfully saved. You may press Apply button '
+                'successfully saved. You may press OK button '
                 'now to continue.\n\n'
                 'Note: the database currently opened in your GRAMPS '
                 'window is NOT the file you have just saved. '
@@ -202,7 +194,10 @@ class Exporter:
                 'Note: your currently opened database is safe. '
                 'It was only '
                 'a copy of your data that failed to save.')
-        self.w.set_conclusion(conclusion_title,conclusion_text)
+        self.w.remove_page(self.conclusion_page)
+        self.conclusion_page = self.w.insert_text_page(conclusion_title,
+                                                       conclusion_text,
+                                                       self.conclusion_page)
 
     def build_format_page(self):
         """
@@ -210,8 +205,6 @@ class Exporter:
         their descriptions.
         """
         self.format_buttons = []
-
-        page_title = _('Choosing the format to save')
 
         box = gtk.VBox()
         box.set_spacing(12)
@@ -235,7 +228,7 @@ class Exporter:
             tip.set_tip(button,description)
         
         box.add(table)
-        return (page_title,box)
+        return box
 
     def build_options(self):
         """
@@ -252,24 +245,26 @@ class Exporter:
             if ix == self.format_option:
                 return
             elif self.format_option:
-                self.w.remove_page(self.format_page+1)
+                self.w.remove_page(self.option_page)
                 self.format_option = None
             title = self.exports[ix][3][0]
             option_box_class = self.exports[ix][3][1]
             self.option_box_instance = option_box_class(self.person)
             box = self.option_box_instance.get_option_box()
-            self.w.insert_page(title,box,self.format_page+1)
+            self.option_page = self.w.insert_page(title,box,
+                                                   self.format_page+1)
+            self.confirm_page += 1
+            self.conclusion_page += 1
             self.format_option = ix
             box.show_all()
         elif self.format_option:
-            self.w.remove_page(self.format_page+1)
+            self.w.remove_page(self.option_page)
             self.format_option = None
 
     def build_file_sel_page(self):
         """
         Build a druid page embedding the FileChooserWidget.
         """
-        page_title = _('Selecting the file name')
 
         self.chooser = gtk.FileChooserWidget(gtk.FILE_CHOOSER_ACTION_SAVE)
         self.chooser.set_local_only(False)
@@ -280,7 +275,7 @@ class Exporter:
         # Dirty hack to enable proper EXPAND/FILL properties of the chooser
         box.set_child_packing(self.chooser,1,1,0,gtk.PACK_START)
 
-        return (page_title,box)
+        return box
 
     def suggest_filename(self):
         """
@@ -324,11 +319,14 @@ class Exporter:
         In the future, filter and other options may be added.
         """
         try:
-            gramps_db_writer_factory(const.app_gramps)(database,filename,person)
+            gramps_db_writer_factory(const.app_gramps)(database,
+                                                       filename,
+                                                       person)
             return 1
         except IOError, msg:
-            QuestionDialog.ErrorDialog( _("Could not write file: %s") % filename,
-                    _('System message was: %s') % msg )
+            QuestionDialog.ErrorDialog(
+                _("Could not write file: %s") % filename,
+                _('System message was: %s') % msg )
             return 0
 
     def build_exports(self):

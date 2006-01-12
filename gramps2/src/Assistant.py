@@ -83,7 +83,7 @@ class Assistant(gtk.Object):
                               ())
         }
     
-    def __init__(self,title,complete):
+    def __init__(self,complete):
         gobject.GObject.__init__(self)
          
         self.complete = complete
@@ -92,16 +92,13 @@ class Assistant(gtk.Object):
         self.logo = gtk.gdk.pixbuf_new_from_file(_gramps_png)
         self.splash = gtk.gdk.pixbuf_new_from_file(_splash_jpg)
 
-        self.current_page = 0
-        self.max_page = 1
-        self.conclusion_set = False
+        self.current_page = -1
         
         self.window = gtk.Window()
         titlebox = gtk.HBox()
         self.title_text = []
-        self.title_text.append(_format % title)
         
-        self.title = gtk.Label(self.title_text[0])
+        self.title = gtk.Label('')
         self.title.set_alignment(0,0.5)
         self.title.set_use_markup(True)
 
@@ -150,21 +147,23 @@ class Assistant(gtk.Object):
         """Set the property of writable properties."""
         raise AttributeError, 'unknown or read only property %s' % prop.name
 
+    def get_number_of_pages(self):
+        return self.notebook.get_n_pages()
+
     def update_title(self):
-        try:
-            self.title.set_label(self.title_text[self.current_page])
-        except IndexError:
-            pass
+        self.title.set_label(self.title_text[self.current_page])
         self.title.set_use_markup(True)
 
     def set_buttons(self):
-        if self.current_page == self.max_page-1:
+        max_page = self.notebook.get_n_pages()
+        if self.current_page == max_page-2:
 	    self.next.show()
 	    self.back.show()
 	    self.cancel.show()
 	    self.ok.set_sensitive(True)
 	    self.next.set_sensitive(False)
-	elif self.current_page == self.max_page:
+	    self.back.set_sensitive(True)
+	elif self.current_page == max_page-1:
 	    self.next.hide()
 	    self.back.hide()
 	    self.cancel.hide()
@@ -195,7 +194,7 @@ class Assistant(gtk.Object):
 
     def next_clicked(self,obj):
         self.emit('before-page-next',self.notebook.get_current_page())
-        if self.current_page == self.max_page:
+        if self.current_page == self.notebook.get_n_pages()-1:
             self.emit('complete')
             self.complete()
             self.window.destroy()
@@ -208,17 +207,25 @@ class Assistant(gtk.Object):
         self.emit('after-page-next',self.notebook.get_current_page())
         self.emit('page-changed',self.notebook.get_current_page())
 
-    def set_intro(self,text):
-        hbox = gtk.HBox(spacing=12)
-        image = gtk.Image()
-        image.set_from_file(_splash_jpg)
-        hbox.pack_start(image,False)
-        label = gtk.Label(text)
-        label.set_line_wrap(True)
-        hbox.add(label)
-        self.notebook.append_page(hbox)
+    def add_text_page(self, title, text):
+        """
+        Add page with Gramps logo and given text and title.
+        Usually, first page (introduction) and last page (conclusion)
+        use this method.
+        """
+        hbox = self.prepare_text_page(text)
+        return self.add_page(title,hbox)
 
-    def set_conclusion(self,title,text):
+    def insert_text_page(self, title, text, position):
+        """
+        Add page with Gramps logo and given text and title.
+        Usually, first page (introduction) and last page (conclusion)
+        use this method.
+        """
+        hbox = self.prepare_text_page(text)
+        return self.insert_page(title,hbox,position)
+
+    def prepare_text_page(self,text):
         hbox = gtk.HBox(spacing=12)
         image = gtk.Image()
         image.set_from_file(_splash_jpg)
@@ -227,34 +234,37 @@ class Assistant(gtk.Object):
         label.set_line_wrap(True)
         hbox.add(label)
         hbox.show_all()
-        if self.conclusion_set:
-            self.notebook.remove_page(-1)
-            self.title_text.pop(-1)
-        self.notebook.append_page(hbox)
-        self.title_text.append(_format % title)
-        self.conclusion_set = True
+        return hbox
 
     def add_page(self, title, child):
+        """
+        Add page with the title and child widget.
+        Returns index number of the new page.
+        """
         self.title_text.append(_format % title)
-        self.notebook.append_page(child)
-        self.max_page += 1
+        return self.notebook.append_page(child)
 
-    def insert_page(self, title, child, position=-1):
+    def insert_page(self, title, child, position):
+        """
+        Insert page at a given position.
+        Returns index number of the new page.
+        """
         self.title_text.insert(position,_format % title)
-        self.notebook.insert_page(child,None,position)
-        self.max_page += 1
+        return self.notebook.insert_page(child,None,position)
 
     def remove_page(self,position):
+        """
+        Remove page from a given position.
+        """
         self.title_text.pop(position)
         self.notebook.remove_page(position)
-        self.max_page -= 1
-
-    def get_number_of_pages(self):
-        return self.max_page
 
     def show(self):
         self.window.show_all()
-        self.notebook.set_current_page(0)
+        self.current_page = 0
+        self.notebook.set_current_page(self.current_page)
+        self.update_title()
+        self.set_buttons()
         self.emit('page-changed',self.notebook.get_current_page())
 
     def destroy(self):
@@ -276,13 +286,14 @@ if __name__ == "__main__":
         table.attach(text,x3,x4,y,y+1,gtk.EXPAND|gtk.FILL)
         return text
 
-    a = Assistant('Getting started',complete)
-    a.set_intro('Welcome to GRAMPS, the Genealogical Research '
-                'and Analysis Management Programming System.\n'
-                'Several options and information need to be gathered '
-                'before GRAMPS is ready to be used. Any of this '
-                'information can be changed in the future in the '
-                'Preferences dialog under the Settings menu.')
+    a = Assistant(complete)
+    a.add_text_page('Getting started',
+                    'Welcome to GRAMPS, the Genealogical Research '
+                    'and Analysis Management Programming System.\n'
+                    'Several options and information need to be gathered '
+                    'before GRAMPS is ready to be used. Any of this '
+                    'information can be changed in the future in the '
+                    'Preferences dialog under the Settings menu.')
 
     box = gtk.VBox()
     box.set_spacing(12)
@@ -301,7 +312,7 @@ if __name__ == "__main__":
     box.add(table)
     a.add_page('Researcher information',box)
 
-    a.set_conclusion('aaa','bbb')
+    a.add_text_page('Conclusion title','Very long conclusion text here')
     a.show()
 
     gtk.main()

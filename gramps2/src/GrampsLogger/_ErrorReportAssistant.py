@@ -17,19 +17,21 @@ class ErrorReportAssistant:
         self._error_details_text_buffer = None
         self._final_report_text_buffer = None
         
-        self.w = Assistant.Assistant(_('Report a bug'),self.complete)
+        self.w = Assistant.Assistant(self.complete)
 
-        self.w.set_intro(_("This is the Bug Reporting Assistant. It will "\
-                           "help you to make a bug report to the Gramps "\
-                           "developers that will be as detailed as possible.\n\n"\
-                           "The assistant will ask you a few questions and will "\
-                           "gather some information about the error that has "\
-                           "occured and the operating environment. "\
-                           "At the end of the assistant you will be asked to "\
-                           "send an email to the Gramps bug reporting mailing list. "\
-                           "The assistant will place the bug report on the clip board so "\
-                           "that you can paste it into your email programme and review "\
-                           "exactly what information is being sent."))
+        self.w.add_text_page(
+            _('Report a bug'),
+            _("This is the Bug Reporting Assistant. It will "\
+              "help you to make a bug report to the Gramps "\
+              "developers that will be as detailed as possible.\n\n"\
+              "The assistant will ask you a few questions and will "\
+              "gather some information about the error that has "\
+              "occured and the operating environment. "\
+              "At the end of the assistant you will be asked to "\
+              "send an email to the Gramps bug reporting mailing list. "\
+              "The assistant will place the bug report on the clip board so "\
+              "that you can paste it into your email programme and review "\
+              "exactly what information is being sent."))
 
 
         self.w.add_page(_("Report a bug: Step 1 of 5"), self.build_page1())
@@ -41,10 +43,11 @@ class ErrorReportAssistant:
         self.cb = {4:self.page4_update}
         self.w.add_page(_("Report a bug: Step 5 of 5"), self.build_page5())
 
-        self.w.set_conclusion(_('Complete'),
-                              _('GRAMPS is an Open Source project. Its success '
-                                'depends on its users. User feedback is important. '
-                                'Thank you for taking the time to submit a bug report.'))
+        self.w.add_text_page(
+            _('Complete'),
+            _('GRAMPS is an Open Source project. Its success '
+              'depends on its users. User feedback is important. '
+              'Thank you for taking the time to submit a bug report.'))
 
         self.w.connect('page-changed',self.on_page_changed)
 

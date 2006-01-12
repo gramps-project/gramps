@@ -1,3 +1,10 @@
+2006-01-11  Alex Roitman  <shura@gramps-project.org>
+	* src/Assistant.py: Many changes.
+	* src/Exporter.py: Work with new Assistant.
+	* src/StartupDialog.py: Work with new Assistant.
+	* src/GrampsLogger/_ErrorReportAssistant.py: Work with new Assistant.
+	* src/gedcomexport.glade, src/gedcomimport.glade: Move to GrampsDb.
+
 2006-01-11  Don Allingham  <don@gramps-project.org>
 	* src/FamilyList.py: call family editor
 	* src/StartupDialog.py: pwm in try/except

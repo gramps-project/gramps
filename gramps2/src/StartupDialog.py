@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005 Donald N. Allingham
+# Copyright (C) 2000-2006 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -116,13 +116,15 @@ class StartupDialog:
             GrampsKeys.save_startup(const.startup)
             self.close(None)
             return
-        self.w = Assistant.Assistant(_('Getting started'),self.complete)
-        self.w.set_intro(_('Welcome to GRAMPS, the Genealogical Research '
-                           'and Analysis Management Programming System.\n'
-                           'Several options and information need to be gathered '
-                           'before GRAMPS is ready to be used. Any of this '
-                           'information can be changed in the future in the '
-                           'Preferences dialog under the Settings menu.'))
+        self.w = Assistant.Assistant(self.complete)
+        self.w.add_text_page(
+            _('Getting started'),
+            _('Welcome to GRAMPS, the Genealogical Research '
+              'and Analysis Management Programming System.\n'
+              'Several options and information need to be gathered '
+              'before GRAMPS is ready to be used. Any of this '
+              'information can be changed in the future in the '
+              'Preferences dialog under the Settings menu.'))
         try:
             self.w.add_page(_('Researcher information'),self.build_page2())
             self.w.add_page(_('LDS support'), self.build_page5())
@@ -133,12 +135,13 @@ class StartupDialog:
             gtk.main_quit()
             return
             
-        self.w.set_conclusion(_('Complete'),
-                              _('GRAMPS is an Open Source project. Its success '
-                                'depends on the users. User feedback is important. '
-                                'Please join the mailing lists, submit bug reports, '
-                                'suggest improvements, and see how you can '
-                                'contribute.\n\nPlease enjoy using GRAMPS.'))
+        self.w.add_text_page(
+            _('Complete'),
+            _('GRAMPS is an Open Source project. Its success '
+              'depends on the users. User feedback is important. '
+              'Please join the mailing lists, submit bug reports, '
+              'suggest improvements, and see how you can '
+              'contribute.\n\nPlease enjoy using GRAMPS.'))
 
         self.w.show()
 
