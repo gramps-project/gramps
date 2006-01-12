@@ -313,7 +313,7 @@ class ViewManager:
             ('SaveAs',     gtk.STOCK_SAVE_AS,         '_Save As'),
             ('Export',     gtk.STOCK_SAVE_AS,         '_Export', "<control>e", None, self.export_data),
             ('Abandon',    gtk.STOCK_REVERT_TO_SAVED, '_Abandon changes and quit'),
-            ('Undo',       gtk.STOCK_UNDO,            '_Undo', '<control>z' ),
+            ('Undo',       gtk.STOCK_UNDO,            '_Undo', '<control>z', None, self.undo),
             ('CmpMerge',   None,                      '_Compare and merge'),
             ('FastMerge',  None,                      '_Fast merge'),
             ('ScratchPad', gtk.STOCK_PASTE,           '_ScratchPad', None, None, self.scratchpad),
@@ -820,6 +820,9 @@ class ViewManager:
         self.progress.set_fraction(value)
         while gtk.events_pending():
             gtk.main_iteration()
+
+    def undo(self,obj):
+        self.state.db.undo()
 
     def export_data(self,obj):
         import Exporter
