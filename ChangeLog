@@ -1,4 +1,7 @@
 2006-01-11  Don Allingham  <don@gramps-project.org>
+	* src/FamilyList.py: call family editor
+	* src/StartupDialog.py: pwm in try/except
+	* src/gramps.py: don't fail on missing SIG_CHILD
 	* src/EditPerson.py: removed unused variable
 	* src/EditFamily.py: start of the family editor
 	* src/FamilyView.py: call family editor

@@ -34,7 +34,6 @@ import gtk.gdk
 #-------------------------------------------------------------------------
 import RelLib
 import PageView
-#import EditPlace
 import DisplayModels
 import const
 import Utils
@@ -110,11 +109,18 @@ class FamilyListView(PageView.ListView):
         return
 
     def add(self,obj):
-        return
+        import EditFamily
+        EditFamily.EditFamily(self.dbstate,self.uistate,[],None)
 
     def remove(self,obj):
         return
-
+    
     def edit(self,obj):
-        return
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+
+        for handle in mlist:
+            import EditFamily
+            family = self.dbstate.db.get_family_from_handle(handle)
+            EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
 
