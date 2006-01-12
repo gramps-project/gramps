@@ -93,6 +93,7 @@ uidefault = '''<ui>
   </menu>
   <menu action="EditMenu">
     <menuitem action="Undo"/>
+    <menuitem action="Redo"/>
     <separator/>
     <placeholder name="CommonEdit"/>
     <menuitem action="CmpMerge"/>
@@ -314,6 +315,7 @@ class ViewManager:
             ('Export',     gtk.STOCK_SAVE_AS,         '_Export', "<control>e", None, self.export_data),
             ('Abandon',    gtk.STOCK_REVERT_TO_SAVED, '_Abandon changes and quit'),
             ('Undo',       gtk.STOCK_UNDO,            '_Undo', '<control>z', None, self.undo),
+            ('Redo',       gtk.STOCK_REDO,            '_Redo', '<shift><control>z', None, self.redo),
             ('CmpMerge',   None,                      '_Compare and merge'),
             ('FastMerge',  None,                      '_Fast merge'),
             ('ScratchPad', gtk.STOCK_PASTE,           '_ScratchPad', None, None, self.scratchpad),
@@ -823,6 +825,9 @@ class ViewManager:
 
     def undo(self,obj):
         self.state.db.undo()
+
+    def redo(self,obj):
+        self.state.db.redo()
 
     def export_data(self,obj):
         import Exporter

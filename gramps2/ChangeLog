@@ -1,8 +1,10 @@
 2006-01-12 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
-       * src/ObjectSelector/_ObjectSelectorWindow.py: initial outline of ObjectSelector
-       * src/ObjectSelector/_PersonPreviewFrame.py: initial outline of ObjectSelector
-       * src/ObjectSelector/_PersonSearchCriteriaWidget.py: initial outline of ObjectSelector
-     
+	* src/ObjectSelector/_ObjectSelectorWindow.py: initial outline of
+	ObjectSelector 
+	* src/ObjectSelector/_PersonPreviewFrame.py: initial outline of
+	ObjectSelector
+	* src/ObjectSelector/_PersonSearchCriteriaWidget.py: initial
+	outline of ObjectSelector
 	
 2006-01-12  Alex Roitman  <shura@gramps-project.org>
 	* src/ViewManager.py: Connect undo handler to the menu item.
