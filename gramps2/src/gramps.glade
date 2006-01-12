@@ -3,7 +3,6 @@
 
 <glade-interface>
 <requires lib="gnome"/>
-<requires lib="canvas"/>
 
 <widget class="GtkDialog" id="sourceEditor">
   <property name="visible">True</property>
@@ -787,15 +786,12 @@
 			  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
 			  <child>
-			    <widget class="GnomeCanvas" id="iconlist">
+			    <widget class="GtkIconView" id="iconview1">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="aa">False</property>
-			      <property name="scroll_x1">0</property>
-			      <property name="scroll_y1">0</property>
-			      <property name="scroll_x2">100</property>
-			      <property name="scroll_y2">100</property>
-			      <property name="pixels_per_unit">1</property>
+			      <property name="selection_mode">GTK_SELECTION_SINGLE</property>
+			      <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+			      <property name="reorderable">False</property>
 			    </widget>
 			  </child>
 			</widget>
@@ -2351,33 +2347,6 @@
 		  <property name="spacing">6</property>
 
 		  <child>
-		    <widget class="GtkButton" id="button205">
-		      <property name="visible">True</property>
-		      <property name="tooltip" translatable="yes">Edit the selected event reference</property>
-		      <property name="can_focus">True</property>
-		      <property name="relief">GTK_RELIEF_NORMAL</property>
-		      <property name="focus_on_click">True</property>
-		      <signal name="clicked" handler="on_event_update_clicked" last_modification_time="Thu, 08 May 2003 17:11:05 GMT"/>
-
-		      <child>
-			<widget class="GtkImage" id="image2662">
-			  <property name="visible">True</property>
-			  <property name="pixbuf">edit_sm.png</property>
-			  <property name="xalign">0.5</property>
-			  <property name="yalign">0.5</property>
-			  <property name="xpad">0</property>
-			  <property name="ypad">0</property>
-			</widget>
-		      </child>
-		    </widget>
-		    <packing>
-		      <property name="padding">0</property>
-		      <property name="expand">False</property>
-		      <property name="fill">False</property>
-		    </packing>
-		  </child>
-
-		  <child>
 		    <widget class="GtkButton" id="button206">
 		      <property name="visible">True</property>
 		      <property name="tooltip" translatable="yes">Remove selected event reference</property>
@@ -2389,7 +2358,7 @@
 		      <child>
 			<widget class="GtkImage" id="image2663">
 			  <property name="visible">True</property>
-			  <property name="stock">gtk-remove</property>
+			  <property name="stock">gtk-add</property>
 			  <property name="icon_size">4</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
@@ -2500,118 +2469,10 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkButton" id="button210">
-		  <property name="visible">True</property>
-		  <property name="can_focus">True</property>
-		  <property name="relief">GTK_RELIEF_NORMAL</property>
-		  <property name="focus_on_click">True</property>
-
-		  <child>
-		    <widget class="GtkAlignment" id="alignment5">
-		      <property name="visible">True</property>
-		      <property name="xalign">0.5</property>
-		      <property name="yalign">0.5</property>
-		      <property name="xscale">0</property>
-		      <property name="yscale">0</property>
-		      <property name="top_padding">0</property>
-		      <property name="bottom_padding">0</property>
-		      <property name="left_padding">0</property>
-		      <property name="right_padding">0</property>
-
-		      <child>
-			<widget class="GtkHBox" id="hbox121">
-			  <property name="visible">True</property>
-			  <property name="homogeneous">False</property>
-			  <property name="spacing">2</property>
-
-			  <child>
-			    <widget class="GtkImage" id="image2667">
-			      <property name="visible">True</property>
-			      <property name="stock">gtk-index</property>
-			      <property name="icon_size">4</property>
-			      <property name="xalign">0.5</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">0</property>
-			      <property name="ypad">0</property>
-			    </widget>
-			    <packing>
-			      <property name="padding">0</property>
-			      <property name="expand">False</property>
-			      <property name="fill">False</property>
-			    </packing>
-			  </child>
-
-			  <child>
-			    <widget class="GtkLabel" id="label544">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes"></property>
-			      <property name="use_underline">True</property>
-			      <property name="use_markup">False</property>
-			      <property name="justify">GTK_JUSTIFY_LEFT</property>
-			      <property name="wrap">False</property>
-			      <property name="selectable">False</property>
-			      <property name="xalign">0.5</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">0</property>
-			      <property name="ypad">0</property>
-			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-			      <property name="width_chars">-1</property>
-			      <property name="single_line_mode">False</property>
-			      <property name="angle">0</property>
-			    </widget>
-			    <packing>
-			      <property name="padding">0</property>
-			      <property name="expand">False</property>
-			      <property name="fill">False</property>
-			    </packing>
-			  </child>
-			</widget>
-		      </child>
-		    </widget>
-		  </child>
-		</widget>
-		<packing>
-		  <property name="left_attach">7</property>
-		  <property name="right_attach">8</property>
-		  <property name="top_attach">5</property>
-		  <property name="bottom_attach">6</property>
-		  <property name="x_options">fill</property>
-		  <property name="y_options"></property>
-		</packing>
-	      </child>
-
-	      <child>
 		<widget class="GtkVBox" id="vbox113">
 		  <property name="visible">True</property>
 		  <property name="homogeneous">False</property>
 		  <property name="spacing">6</property>
-
-		  <child>
-		    <widget class="GtkButton" id="button208">
-		      <property name="visible">True</property>
-		      <property name="tooltip" translatable="yes">Edit the selected event reference</property>
-		      <property name="can_focus">True</property>
-		      <property name="relief">GTK_RELIEF_NORMAL</property>
-		      <property name="focus_on_click">True</property>
-		      <signal name="clicked" handler="on_event_update_clicked" last_modification_time="Thu, 08 May 2003 17:11:05 GMT"/>
-
-		      <child>
-			<widget class="GtkImage" id="image2665">
-			  <property name="visible">True</property>
-			  <property name="pixbuf">edit_sm.png</property>
-			  <property name="xalign">0.5</property>
-			  <property name="yalign">0.5</property>
-			  <property name="xpad">0</property>
-			  <property name="ypad">0</property>
-			</widget>
-		      </child>
-		    </widget>
-		    <packing>
-		      <property name="padding">0</property>
-		      <property name="expand">False</property>
-		      <property name="fill">False</property>
-		    </packing>
-		  </child>
 
 		  <child>
 		    <widget class="GtkButton" id="button209">
@@ -2625,7 +2486,7 @@
 		      <child>
 			<widget class="GtkImage" id="image2666">
 			  <property name="visible">True</property>
-			  <property name="stock">gtk-remove</property>
+			  <property name="stock">gtk-add</property>
 			  <property name="icon_size">4</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
@@ -2724,7 +2585,7 @@
 			  <child>
 			    <widget class="GtkImage" id="image2654">
 			      <property name="visible">True</property>
-			      <property name="stock">gtk-index</property>
+			      <property name="stock">gtk-add</property>
 			      <property name="icon_size">4</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
@@ -3673,15 +3534,12 @@
 		      <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
 		      <child>
-			<widget class="GnomeCanvas" id="iconlist">
+			<widget class="GtkIconView" id="iconview2">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
-			  <property name="aa">False</property>
-			  <property name="scroll_x1">0</property>
-			  <property name="scroll_y1">0</property>
-			  <property name="scroll_x2">100</property>
-			  <property name="scroll_y2">100</property>
-			  <property name="pixels_per_unit">1</property>
+			  <property name="selection_mode">GTK_SELECTION_SINGLE</property>
+			  <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+			  <property name="reorderable">False</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -6131,15 +5989,12 @@
 			  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
 			  <child>
-			    <widget class="GnomeCanvas" id="iconlist">
+			    <widget class="GtkIconView" id="iconview3">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="aa">False</property>
-			      <property name="scroll_x1">0</property>
-			      <property name="scroll_y1">0</property>
-			      <property name="scroll_x2">100</property>
-			      <property name="scroll_y2">100</property>
-			      <property name="pixels_per_unit">1</property>
+			      <property name="selection_mode">GTK_SELECTION_SINGLE</property>
+			      <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+			      <property name="reorderable">False</property>
 			    </widget>
 			  </child>
 			</widget>
@@ -11116,25 +10971,6 @@ Very High</property>
 		      </child>
 
 		      <child>
-			<widget class="GnomeColorPicker" id="color">
-			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="dither">True</property>
-			  <property name="use_alpha">False</property>
-			  <property name="title" translatable="yes">Pick a color</property>
-			  <property name="focus_on_click">True</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">1</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">6</property>
-			  <property name="bottom_attach">7</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
-
-		      <child>
 			<widget class="GtkLabel" id="label7">
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes">&lt;b&gt;Options&lt;/b&gt;</property>
@@ -11250,6 +11086,23 @@ Very High</property>
 			<packing>
 			  <property name="left_attach">2</property>
 			  <property name="right_attach">3</property>
+			  <property name="top_attach">6</property>
+			  <property name="bottom_attach">7</property>
+			  <property name="x_options">fill</property>
+			  <property name="y_options"></property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkColorButton" id="colorbutton1">
+			  <property name="visible">True</property>
+			  <property name="can_focus">True</property>
+			  <property name="use_alpha">False</property>
+			  <property name="focus_on_click">True</property>
+			</widget>
+			<packing>
+			  <property name="left_attach">1</property>
+			  <property name="right_attach">2</property>
 			  <property name="top_attach">6</property>
 			  <property name="bottom_attach">7</property>
 			  <property name="x_options">fill</property>
@@ -11438,25 +11291,6 @@ Very High</property>
 			  <property name="right_attach">5</property>
 			  <property name="top_attach">2</property>
 			  <property name="bottom_attach">3</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GnomeColorPicker" id="bgcolor">
-			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="dither">True</property>
-			  <property name="use_alpha">False</property>
-			  <property name="title" translatable="yes">Pick a color</property>
-			  <property name="focus_on_click">True</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">1</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">3</property>
-			  <property name="bottom_attach">4</property>
 			  <property name="x_options">fill</property>
 			  <property name="y_options"></property>
 			</packing>
@@ -12126,6 +11960,23 @@ Very High</property>
 			  <property name="right_attach">5</property>
 			  <property name="top_attach">4</property>
 			  <property name="bottom_attach">5</property>
+			  <property name="x_options">fill</property>
+			  <property name="y_options"></property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkColorButton" id="colorbutton2">
+			  <property name="visible">True</property>
+			  <property name="can_focus">True</property>
+			  <property name="use_alpha">False</property>
+			  <property name="focus_on_click">True</property>
+			</widget>
+			<packing>
+			  <property name="left_attach">1</property>
+			  <property name="right_attach">2</property>
+			  <property name="top_attach">3</property>
+			  <property name="bottom_attach">4</property>
 			  <property name="x_options">fill</property>
 			  <property name="y_options"></property>
 			</packing>
@@ -17719,15 +17570,12 @@ Very High</property>
 			  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
 			  <child>
-			    <widget class="GnomeCanvas" id="iconlist">
+			    <widget class="GtkIconView" id="iconview4">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="aa">False</property>
-			      <property name="scroll_x1">0</property>
-			      <property name="scroll_y1">0</property>
-			      <property name="scroll_x2">100</property>
-			      <property name="scroll_y2">100</property>
-			      <property name="pixels_per_unit">1</property>
+			      <property name="selection_mode">GTK_SELECTION_SINGLE</property>
+			      <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+			      <property name="reorderable">False</property>
 			    </widget>
 			  </child>
 			</widget>
@@ -26148,7 +25996,7 @@ Family name Given name
 	      <property name="border_width">6</property>
 	      <property name="visible">True</property>
 	      <property name="can_focus">True</property>
-	      <property name="expanded">False</property>
+	      <property name="expanded">True</property>
 	      <property name="spacing">6</property>
 
 	      <child>
@@ -27229,15 +27077,12 @@ Family name Given name
 			      <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
 			      <child>
-				<widget class="GnomeCanvas" id="eer_iconlist">
+				<widget class="GtkIconView" id="iconview5">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="aa">False</property>
-				  <property name="scroll_x1">0</property>
-				  <property name="scroll_y1">0</property>
-				  <property name="scroll_x2">100</property>
-				  <property name="scroll_y2">100</property>
-				  <property name="pixels_per_unit">1</property>
+				  <property name="selection_mode">GTK_SELECTION_SINGLE</property>
+				  <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+				  <property name="reorderable">False</property>
 				</widget>
 			      </child>
 			    </widget>
