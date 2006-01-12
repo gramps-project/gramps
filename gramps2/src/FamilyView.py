@@ -632,11 +632,14 @@ class FamilyView(PageView.PersonNavView):
 
     def edit_family(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
-            print "Edit Family",handle
+            import EditFamily
+            family = self.dbstate.db.get_family_from_handle(handle)
+            EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
 
     def add_family(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
-            print "Add Family",handle
+            import EditFamily
+            EditFamily.EditFamily(self.dbstate,self.uistate,[],None)
 
     def delete_family(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:

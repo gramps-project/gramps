@@ -125,7 +125,6 @@ class EditPerson(DisplayState.ManagedWindow):
         self.orig_surname = self.person.get_primary_name().get_group_name()
         self.db = self.state.db
         self.callback = callback
-        self.child_windows = {}
         self.path = self.db.get_save_path()
         self.not_loaded = True
         self.lds_not_loaded = True
