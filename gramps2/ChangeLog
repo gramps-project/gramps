@@ -12,6 +12,9 @@
 	transaction management.
 	* src/GrampsDb/_GrampsDbBase.py: reference_map changes.
 
+	* src/GrampsDb/_GrampsDbBase.py, src/GrampsDb/_GrampsBSDDB.py:
+	Add Redo capability.
+
 2006-01-11  Alex Roitman  <shura@gramps-project.org>
 	* src/Assistant.py: Many changes.
 	* src/Exporter.py: Work with new Assistant.
