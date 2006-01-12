@@ -1,3 +1,9 @@
+2006-01-12  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py: Connect undo handler to the menu item.
+	* src/GrampsDb/_GrampsBSDDB.py: Place reference_map under
+	transaction management.
+	* src/GrampsDb/_GrampsDbBase.py: reference_map changes.
+
 2006-01-11  Alex Roitman  <shura@gramps-project.org>
 	* src/Assistant.py: Many changes.
 	* src/Exporter.py: Work with new Assistant.

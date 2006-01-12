@@ -64,6 +64,7 @@ EVENT_KEY      = 3
 MEDIA_KEY      = 4
 PLACE_KEY      = 5
 REPOSITORY_KEY = 6
+REFERENCE_KEY  = 7
 
 PERSON_COL_KEY      = 'columns'
 CHILD_COL_KEY       = 'child_columns'
@@ -385,7 +386,7 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
 
-        self._update_reference_map(person)
+        self._update_reference_map(person,transaction)
         
         old_data = self._commit_base(
             person, self.person_map, PERSON_KEY, transaction.person_update,
@@ -410,7 +411,7 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
         
-        self._update_reference_map(obj)
+        self._update_reference_map(obj,transaction)
 
         self._commit_base(obj, self.media_map, MEDIA_KEY,
                           transaction.media_update, transaction.media_add,
@@ -422,7 +423,7 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
 
-        self._update_reference_map(source)
+        self._update_reference_map(source,transaction)
 
         self._commit_base(source, self.source_map, SOURCE_KEY,
                           transaction.source_update, transaction.source_add,
@@ -434,7 +435,7 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
 
-        self._update_reference_map(place)
+        self._update_reference_map(place,transaction)
                 
         self._commit_base(place, self.place_map, PLACE_KEY,
                           transaction.place_update, transaction.place_add,
@@ -456,7 +457,7 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
         
-        self._update_reference_map(event)
+        self._update_reference_map(event,transaction)
 
         self._commit_base(event, self.event_map, EVENT_KEY,
                           transaction.event_update, transaction.event_add,
@@ -468,7 +469,7 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
 
-        self._update_reference_map(family)
+        self._update_reference_map(family,transaction)
 
         self._commit_base(family, self.family_map, FAMILY_KEY,
                           transaction.family_update, transaction.family_add,
@@ -483,7 +484,7 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
 
-        self._update_reference_map(repository)
+        self._update_reference_map(repository,transaction)
 
         self._commit_base(repository, self.repository_map, REPOSITORY_KEY,
                           transaction.repository_update, transaction.repository_add,
@@ -1173,7 +1174,10 @@ class GrampsDbBase(GrampsDBCallback):
         subitems.reverse()
         for record_id in subitems:
             (key, handle, data) = transaction.get_record(record_id)
-            self.undo_data(data,handle,mapbase[key],_sigbase[key])
+            if key == REFERENCE_KEY:
+                self.undo_reference(data,handle)
+            else:
+                self.undo_data(data,handle,mapbase[key],_sigbase[key])
 
         if self.undo_callback:
             if self.undoindex == -1:
@@ -1182,6 +1186,9 @@ class GrampsDbBase(GrampsDBCallback):
                 transaction = self.translist[self.undoindex]
                 self.undo_callback(_("_Undo %s") % transaction.get_description())
         return True
+
+    def undo_reference(self,data,handle):
+        pass
 
     def undo_data(self,data,handle,db_map,signal_root):
         if data == None:
@@ -1309,6 +1316,7 @@ class GrampsDbBase(GrampsDBCallback):
         method must be overridden in the derived class.
         """
 
+        self._delete_primary_from_reference_map(handle,transaction)
         if not self.readonly:
             person = self.get_person_from_handle(handle)
             self.genderStats.uncount_person (person)
@@ -1317,6 +1325,7 @@ class GrampsDbBase(GrampsDBCallback):
             transaction.person_del.append(str(handle))
 
     def _do_remove_object(self,handle,trans,dmap,key,del_list):
+        self._delete_primary_from_reference_map(handle,transaction)
         if not self.readonly:
             handle = str(handle)
             if not trans.batch:
@@ -1594,7 +1603,13 @@ class GrampsDbBase(GrampsDBCallback):
         default = [(1,0),(1,1),(0,5),(0,6),(1,2),(1,3),(0,4),(0,7),(0,8),(0,9),(0,10)]
         return self._get_column_order(REPOSITORY_COL_KEY,default)
 
-    def _update_reference_map(self,obj):
+    def _delete_primary_from_reference_map(self, handle, transaction):
+        """Called each time an object is removed from the database. This can
+        be used by subclasses to update any additional index tables that might
+        need to be changed."""
+        pass
+
+    def _update_reference_map(self,obj,transaction):
         """Called each time an object is writen to the database. This can
         be used by subclasses to update any additional index tables that might
         need to be changed."""

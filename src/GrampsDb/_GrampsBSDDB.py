@@ -257,15 +257,15 @@ class GrampsBSDDB(GrampsDbBase):
         self.env = db.DBEnv()
         self.env.set_cachesize(0,0x2000000)  # 2MB
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
-        flags = db.DB_CREATE|db.DB_PRIVATE|\
-                     db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
-                     db.DB_INIT_LOG|db.DB_INIT_TXN|db.DB_RECOVER
+        env_flags = db.DB_CREATE|db.DB_PRIVATE|\
+                    db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
+                    db.DB_INIT_LOG|db.DB_INIT_TXN|db.DB_RECOVER
 
         self.undolog = "%s.log" % name
         env_name = os.path.expanduser(const.bsddbenv_dir)
         if not os.path.isdir(env_name):
             os.mkdir(env_name)
-        self.env.open(env_name, flags)
+        self.env.open(env_name,env_flags)
 
         self.full_name = os.path.abspath(name)
         self.brief_name = os.path.basename(name)
@@ -282,96 +282,96 @@ class GrampsBSDDB(GrampsDbBase):
         
         # index tables used just for speeding up searches
         if self.readonly:
-            openflags = db.DB_RDONLY
+            table_flags = db.DB_RDONLY
         else:
-            openflags = db.DB_CREATE|db.DB_AUTO_COMMIT
+            table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
 
         self.surnames = db.DB(self.env)
         self.surnames.set_flags(db.DB_DUP)
         self.surnames.open(self.full_name, "surnames",
-                           db.DB_HASH, flags=openflags)
+                           db.DB_HASH, flags=table_flags)
 
         self.name_group = db.DB(self.env)
         self.name_group.set_flags(db.DB_DUP)
         self.name_group.open(self.full_name, "name_group",
-                             db.DB_HASH, flags=openflags)
+                             db.DB_HASH, flags=table_flags)
 
         self.id_trans = db.DB(self.env)
         self.id_trans.set_flags(db.DB_DUP)
         self.id_trans.open(self.full_name, "idtrans",
-                           db.DB_HASH, flags=openflags)
+                           db.DB_HASH, flags=table_flags)
 
         self.fid_trans = db.DB(self.env)
         self.fid_trans.set_flags(db.DB_DUP)
         self.fid_trans.open(self.full_name, "fidtrans",
-                            db.DB_HASH, flags=openflags)
+                            db.DB_HASH, flags=table_flags)
 
         self.eid_trans = db.DB(self.env)
         self.eid_trans.set_flags(db.DB_DUP)
         self.eid_trans.open(self.full_name, "eidtrans",
-                            db.DB_HASH, flags=openflags)
+                            db.DB_HASH, flags=table_flags)
 
         self.pid_trans = db.DB(self.env)
         self.pid_trans.set_flags(db.DB_DUP)
         self.pid_trans.open(self.full_name, "pidtrans",
-                            db.DB_HASH, flags=openflags)
+                            db.DB_HASH, flags=table_flags)
 
         self.sid_trans = db.DB(self.env)
         self.sid_trans.set_flags(db.DB_DUP)
         self.sid_trans.open(self.full_name, "sidtrans",
-                            db.DB_HASH, flags=openflags)
+                            db.DB_HASH, flags=table_flags)
 
         self.oid_trans = db.DB(self.env)
         self.oid_trans.set_flags(db.DB_DUP)
         self.oid_trans.open(self.full_name, "oidtrans",
-                            db.DB_HASH, flags=openflags)
+                            db.DB_HASH, flags=table_flags)
 
         self.rid_trans = db.DB(self.env)
         self.rid_trans.set_flags(db.DB_DUP)
         self.rid_trans.open(self.full_name, "ridtrans",
-                            db.DB_HASH, flags=openflags)
+                            db.DB_HASH, flags=table_flags)
 
 
         self.eventnames = db.DB(self.env)
         self.eventnames.set_flags(db.DB_DUP)
         self.eventnames.open(self.full_name, "eventnames",
-                             db.DB_HASH, flags=openflags)
+                             db.DB_HASH, flags=table_flags)
 
         self.repository_types = db.DB(self.env)
         self.repository_types.set_flags(db.DB_DUP)
         self.repository_types.open(self.full_name, "repostypes",
-                                   db.DB_HASH, flags=openflags)
+                                   db.DB_HASH, flags=table_flags)
 
         self.reference_map_primary_map = db.DB(self.env)
         self.reference_map_primary_map.set_flags(db.DB_DUP)
         self.reference_map_primary_map.open(self.full_name,
                                             "reference_map_primary_map",
-                                            db.DB_BTREE, flags=openflags)
+                                            db.DB_BTREE, flags=table_flags)
 
         self.reference_map_referenced_map = db.DB(self.env)
         self.reference_map_referenced_map.set_flags(db.DB_DUP)
         self.reference_map_referenced_map.open(self.full_name,
                                                "reference_map_referenced_map",
-                                               db.DB_BTREE, flags=openflags)
+                                               db.DB_BTREE, flags=table_flags)
 
         if not self.readonly:
-            self.person_map.associate(self.surnames,  find_surname, openflags)
-            self.person_map.associate(self.id_trans,  find_idmap, openflags)
-            self.family_map.associate(self.fid_trans, find_idmap, openflags)
-            self.event_map.associate(self.eid_trans,  find_idmap,  openflags)
+            self.person_map.associate(self.surnames,  find_surname, table_flags)
+            self.person_map.associate(self.id_trans,  find_idmap, table_flags)
+            self.family_map.associate(self.fid_trans, find_idmap, table_flags)
+            self.event_map.associate(self.eid_trans,  find_idmap,  table_flags)
             self.repository_map.associate(self.rid_trans, find_idmap,
-                                          openflags)
+                                          table_flags)
             self.repository_map.associate(self.repository_types,
-                                          find_repository_type, openflags)
-            self.place_map.associate(self.pid_trans,  find_idmap, openflags)
-            self.media_map.associate(self.oid_trans, find_idmap, openflags)
-            self.source_map.associate(self.sid_trans, find_idmap, openflags)
+                                          find_repository_type, table_flags)
+            self.place_map.associate(self.pid_trans,  find_idmap, table_flags)
+            self.media_map.associate(self.oid_trans, find_idmap, table_flags)
+            self.source_map.associate(self.sid_trans, find_idmap, table_flags)
             self.reference_map.associate(self.reference_map_primary_map,
                                          find_primary_handle,
-                                         openflags)
+                                         table_flags)
             self.reference_map.associate(self.reference_map_referenced_map,
                                          find_referenced_handle,
-                                         openflags)
+                                         table_flags)
 
             self.undodb = db.DB()
             self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
@@ -401,7 +401,7 @@ class GrampsBSDDB(GrampsDbBase):
         return 1
 
     def rebuild_secondary(self,callback=None):
-        openflags = db.DB_CREATE|db.DB_AUTO_COMMIT
+        table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
 
         # Repair secondary indices related to person_map
         
@@ -411,13 +411,13 @@ class GrampsBSDDB(GrampsDbBase):
         self.id_trans = db.DB(self.env)
         self.id_trans.set_flags(db.DB_DUP)
         self.id_trans.open(self.full_name, "idtrans", db.DB_HASH,
-                           flags=openflags)
+                           flags=table_flags)
         self.id_trans.truncate()
 
         self.surnames = db.DB(self.env)
         self.surnames.set_flags(db.DB_DUP)
         self.surnames.open(self.full_name, "surnames", db.DB_HASH,
-                           flags=openflags)
+                           flags=table_flags)
         self.surnames.truncate()
 
         self.person_map.associate(self.surnames, find_surname, db.DB_CREATE)
@@ -436,7 +436,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.fid_trans = db.DB(self.env)
         self.fid_trans.set_flags(db.DB_DUP)
         self.fid_trans.open(self.full_name, "fidtrans", db.DB_HASH,
-                            flags=openflags)
+                            flags=table_flags)
         self.fid_trans.truncate()
         self.family_map.associate(self.fid_trans, find_idmap, db.DB_CREATE)
 
@@ -452,7 +452,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.pid_trans = db.DB(self.env)
         self.pid_trans.set_flags(db.DB_DUP)
         self.pid_trans.open(self.full_name, "pidtrans", db.DB_HASH,
-                            flags=openflags)
+                            flags=table_flags)
         self.pid_trans.truncate()
         self.place_map.associate(self.pid_trans, find_idmap, db.DB_CREATE)
 
@@ -468,7 +468,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.oid_trans = db.DB(self.env)
         self.oid_trans.set_flags(db.DB_DUP)
         self.oid_trans.open(self.full_name, "oidtrans", db.DB_HASH,
-                            flags=openflags)
+                            flags=table_flags)
         self.oid_trans.truncate()
         self.media_map.associate(self.oid_trans, find_idmap, db.DB_CREATE)
 
@@ -484,7 +484,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.sid_trans = db.DB(self.env)
         self.sid_trans.set_flags(db.DB_DUP)
         self.sid_trans.open(self.full_name, "sidtrans", db.DB_HASH,
-                            flags=openflags)
+                            flags=table_flags)
         self.sid_trans.truncate()
         self.source_map.associate(self.sid_trans, find_idmap, db.DB_CREATE)
 
@@ -500,7 +500,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.rid_trans = db.DB(self.env)
         self.rid_trans.set_flags(db.DB_DUP)
         self.rid_trans.open(self.full_name, "ridtrans", db.DB_HASH,
-                            flags=openflags)
+                            flags=table_flags)
         self.rid_trans.truncate()
         self.repository_map.associate(self.rid_trans, find_idmap, db.DB_CREATE)
 
@@ -555,7 +555,7 @@ class GrampsBSDDB(GrampsDbBase):
 
         return 
 
-    def _delete_primary_from_reference_map(self, handle):
+    def _delete_primary_from_reference_map(self, handle, transaction):
         """Remove all references to the primary object from the reference_map"""
 
         primary_cur = self.get_reference_map_primary_cursor()
@@ -577,13 +577,13 @@ class GrampsBSDDB(GrampsDbBase):
 
             main_key = (handle, cPickle.loads(data)[1][1])
 
-            self.reference_map.delete(str(main_key),txn=self.txn)
+            self._remove_reference(main_key,transaction)
             
             ret = primary_cur.next_dup()
 
         primary_cur.close()
         
-    def _update_reference_map(self, obj):        
+    def _update_reference_map(self, obj, transaction):
         # Add references to the reference_map for all primary object referenced
         # from the primary object 'obj' or any of its secondary objects.
         
@@ -641,20 +641,48 @@ class GrampsBSDDB(GrampsDbBase):
 
         if len(new_references) > 0:
             for (ref_class_name,ref_handle) in new_references:
-                self.reference_map.put(
-                    str((handle,ref_handle),),
-                    ((CLASS_TO_KEY_MAP[obj.__class__.__name__],handle),
-                     (CLASS_TO_KEY_MAP[ref_class_name],ref_handle),),
-                    txn=self.txn)
+                self._add_reference((handle,ref_handle),data,transaction)
+                #self.reference_map.put(
+                #    str((handle,ref_handle),),
+                #    ((CLASS_TO_KEY_MAP[obj.__class__.__name__],handle),
+                #     (CLASS_TO_KEY_MAP[ref_class_name],ref_handle),),
+                #    txn=self.txn)
 
         # handle deletion of old references
         if len(no_longer_required_references) > 0:
             for (ref_class_name,ref_handle) in no_longer_required_references:
                 try:
-                    self.reference_map.delete(str((handle,ref_handle),),
-                                              txn=self.txn)
+                    self._remove_reference((handle,ref_handle),transaction)
+                    #self.reference_map.delete(str((handle,ref_handle),),
+                    #                          txn=self.txn)
                 except: # ignore missing old reference
                     pass
+
+    def _remove_reference(self,key,transaction):
+        """
+        Removes the reference specified by the key,
+        preserving the change in the passed transaction.
+        """
+        if not self.readonly:
+            data = self.reference_map.get(str(main_key),txn=self.txn)
+            if not transaction.batch:
+                transaction.add(REFERENCE_KEY,str(key),cPickle.dumps(data))
+            transaction.reference_del.append(str(key))
+
+    def _add_reference(self,key,data,transaction):
+        """
+        Adds the reference specified by the key and the data,
+        preserving the change in the passed transaction.
+        """
+
+        if self.readonly or not key:
+            return
+        
+        if transaction.batch:
+            self.reference_map.put(str(key),data,txn=self.txn)
+        else:
+            transaction.add(REFERENCE_KEY,str(key),None)
+            transaction.reference_add.append(str(key),data)
 
     def reindex_reference_map(self):
         """Reindex all primary records in the database. This will be a
@@ -704,7 +732,7 @@ class GrampsBSDDB(GrampsDbBase):
                 obj = class_func()
                 obj.unserialize(val)
 
-                self._update_reference_map(obj)
+                self._update_reference_map(obj,transaction)
                 
                 data = cursor.next()
 
@@ -771,31 +799,24 @@ class GrampsBSDDB(GrampsDbBase):
         self.db_is_open     = False
 
     def _del_person(self,handle):
-        self._delete_primary_from_reference_map(handle)
         self.person_map.delete(str(handle),txn=self.txn)
 
     def _del_source(self,handle):
-        self._delete_primary_from_reference_map(handle)               
         self.source_map.delete(str(handle),txn=self.txn)
 
     def _del_repository(self,handle):
-        self._delete_primary_from_reference_map(handle)
         self.repository_map.delete(str(handle),txn=self.txn)
 
     def _del_place(self,handle):
-        self._delete_primary_from_reference_map(handle)
         self.place_map.delete(str(handle),txn=self.txn)
 
     def _del_media(self,handle):
-        self._delete_primary_from_reference_map(handle)
         self.media_map.delete(str(handle),txn=self.txn)
 
     def _del_family(self,handle):
-        self._delete_primary_from_reference_map(handle)
         self.family_map.delete(str(handle),txn=self.txn)
 
     def _del_event(self,handle):
-        self._delete_primary_from_reference_map(handle)
         self.event_map.delete(str(handle),txn=self.txn)
 
     def set_name_group_mapping(self,name,group):
@@ -1012,15 +1033,47 @@ class GrampsBSDDB(GrampsDbBase):
         # Start BSD DB transaction -- DBTxn
         self.txn = self.env.txn_begin()
 
-        return GrampsDbBase.transaction_begin(self,msg)
+        return BdbTransaction(msg,self.undodb)
 
     def transaction_commit(self,transaction,msg):
 
         GrampsDbBase.transaction_commit(self,transaction,msg)
 
+        for (key,data) in transaction.reference_add:
+            self.reference_map.put(str(key),data,txn=self.txn)
+
+        for (key,data) in transaction.reference_del:
+            self.reference_map.delete(str(key),txn=self.txn)
+
         # Commit BSD DB transaction -- DBTxn
         self.txn.commit()
         self.txn = None
+
+    def undo(self):
+        print "Doing it"
+        self.txn = self.env.txn_begin()
+        GrampsDbBase.undo(self)
+        self.txn.commit()
+        self.txn = None
+
+    def undo_reference(self,data,handle):
+        if data == None:
+            self.reference_map.delete(handle,txn=self.txn)
+        else:
+            self.reference_map.put(handl,data,txn=self.txn)
+
+    def undo_data(self,data,handle,db_map,signal_root):
+        if data == None:
+            self.emit(signal_root + '-delete',([handle],))
+            db_map.delete(handle,txn=self.txn)
+        else:
+            ex_data = db_map.get(handle,txn=self.txn)
+            if ex_data:
+                signal = signal_root + '-update'
+            else:
+                signal = signal_root + '-add'
+            db_map.put(handle,data,txn=self.txn)
+            self.emit(signal,([handle],))
 
     def gramps_upgrade(self):
         child_rel_notrans = [
@@ -1390,6 +1443,14 @@ class GrampsBSDDB(GrampsDbBase):
 
         self.transaction_commit(trans,"Upgrade to DB version 9")
         print "Done upgrading to DB version 9"
+
+
+class BdbTransaction(Transaction):
+    def __init__(self,msg,db):
+        Transaction.__init__(self,msg,db)
+        self.reference_del = []
+        self.reference_add = []
+
 
 _attribute_conversion_9 = {
     "Caste"                  : (Attribute.CASTE,""),
