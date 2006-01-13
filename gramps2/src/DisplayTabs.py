@@ -75,6 +75,85 @@ class EmbeddedList(gtk.HBox):
         return gtk.Label('UNDEFINED')
 
 
+class NoteTab(gtk.HBox):
+
+    def __init__(self, note_obj):
+        gtk.HBox.__init__(self)
+        self.note_obj = note_obj
+
+        self.text = gtk.TextView()
+        scroll = gtk.ScrolledWindow()
+        scroll.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        scroll.add_with_viewport(self.text)
+        self.pack_start(scroll,True)
+        if note_obj:
+            self.text.get_buffer().insert_at_cursor(note_obj.get())
+        
+        self.show_all()
+
+    def rebuild(self):
+        pass
+
+    def get_tab_widget(self):
+        return gtk.Label(_('Note'))
+
+class GalleryTab(gtk.HBox):
+
+    def __init__(self,db,  media_list):
+        gtk.HBox.__init__(self)
+        self.db = db
+        self.media_list = media_list
+
+        self.hbox = gtk.HBox()
+        self.label = gtk.Label(_('Children'))
+
+        self.iconmodel= gtk.ListStore(gtk.gdk.Pixbuf,str)
+        self.iconlist = gtk.IconView()
+        self.iconlist.set_pixbuf_column(0)
+        self.iconlist.set_text_column(1)
+        self.iconlist.set_model(self.iconmodel)
+        
+        scroll = gtk.ScrolledWindow()
+        scroll.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        scroll.add_with_viewport(self.iconlist)
+        self.pack_start(scroll,True)
+
+        self.rebuild()
+        self.show_all()
+
+    def get_data(self):
+        return self.media_list
+
+    def rebuild(self):
+        for ref in self.media_list:
+            obj = self.db.get_object_from_handle(ref.get_reference_handle())
+            pixbuf = self.get_image(obj)
+            self.iconmodel.append(row=[pixbuf,obj.get_description()])
+        self.set_label()
+
+    def get_image(self,obj):
+        import ImgManip
+        
+        mtype = obj.get_mime_type()
+        if mtype[0:5] == "image":
+            image = ImgManip.get_thumbnail_image(obj.get_path())
+        else:
+            image = GrampsMime.find_mime_type_pixbuf(mtype)
+        if not image:
+            image = gtk.gdk.pixbuf_new_from_file(const.icon)
+        return image
+
+    def get_tab_widget(self):
+        return self.label
+
+    def set_label(self):
+        if len(self.get_data()):
+            self.label.set_text("<b>%s</b>" % _('Gallery'))
+            self.label.set_use_markup(True)
+        else:
+            self.label.set_text(_('Gallery'))
+
+
 #-------------------------------------------------------------------------
 #
 # ChildModel
@@ -202,4 +281,46 @@ class EventRefModel(gtk.ListStore):
                 if place_handle:
                     return self.db.get_place_from_handle(place_handle).get_title()
         return u""
+
+
+#-------------------------------------------------------------------------
+#
+# EventRefModel
+#
+#-------------------------------------------------------------------------
+
+class AttrModel(gtk.ListStore):
+
+    def __init__(self,attr_list,db):
+        gtk.ListStore.__init__(self,str,str)
+        self.db = db
+        index = 1
+        for attr in attr_list:
+            self.append(row=[
+                self.type_name(attr),
+                attr.get_value(),
+                ])
+            index += 1
+
+    def type_name(self, attr):
+        t = attr.get_type()
+        if t[0] == RelLib.Attribute.CUSTOM:
+            return t[1]
+        else:
+            return Utils.personal_attributes[t[0]]
+
+
+class FamilyAttrModel(AttrModel):
+
+    def __init__(self,attr_list,db):
+        AttrModel.__init__(self,attr_list,db)
+
+    def type_name(self, attr):
+        t = attr.get_type()
+        if t[0] == RelLib.Attribute.CUSTOM:
+            return t[1]
+        else:
+            return Utils.family_attributes[t[0]]
+
+    
 
