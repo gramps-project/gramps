@@ -1092,7 +1092,7 @@ class GrampsDbBase(GrampsDBCallback):
             self.translist[self.undoindex] = transaction
             # Real commit erases all subsequent transactions
             # to there's no Redo anymore.
-            for index in range(self.undoindex,_UNDO_SIZE):
+            for index in range(self.undoindex+1,_UNDO_SIZE):
                 self.translist[index] = None
 
         person_add      = self._do_commit(transaction.person_add,
@@ -1141,7 +1141,7 @@ class GrampsDbBase(GrampsDBCallback):
 
         if self.undo_callback:
             self.undo_callback(_("_Undo %s") % transaction.get_description())
-        if self.redu_callback:
+        if self.redo_callback:
             self.redo_callback(None)
 
     def _do_emit(self, objtype, add_list, upd_list, del_list):
