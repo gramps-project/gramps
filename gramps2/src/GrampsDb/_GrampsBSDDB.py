@@ -264,7 +264,6 @@ class GrampsBSDDB(GrampsDbBase):
                     db.DB_INIT_LOG|db.DB_INIT_TXN|db.DB_RECOVER
 
         self.undolog = "%s.undo" % name
-        self.redolog = "%s.redo" % name
         env_name = os.path.expanduser(const.bsddbenv_dir)
         if not os.path.isdir(env_name):
             os.mkdir(env_name)
@@ -378,8 +377,6 @@ class GrampsBSDDB(GrampsDbBase):
 
             self.undodb = db.DB()
             self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
-            self.redodb = db.DB()
-            self.redodb.open(self.redolog, db.DB_RECNO, db.DB_CREATE)
         callback(0.5)
 
         self.metadata   = self.open_table(self.full_name, "meta", no_txn=True)
