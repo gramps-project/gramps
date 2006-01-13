@@ -19,7 +19,7 @@ class PersonPreviewFrame(gtk.Frame):
         image = gtk.Image()
 
         # test image
-        image.set_from_file("person.svg")
+        image.set_from_file("../person.svg")
         image_frame = gtk.Frame()
         image_frame.add(image)
         
