@@ -49,53 +49,19 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-import ImageSelect
 import NameDisplay
 import DisplayState
 import Spell
 import GrampsDisplay
 import RelLib
-import ListModel
 import ReportUtils
 import DisplayTabs
+import AutoComp
+import GrampsWidgets
 
 from DdTargets import DdTargets
 from WindowUtils import GladeIf
 
-class EventEmbedList(DisplayTabs.EmbeddedList):
-
-    column_names = [
-        (_('Description'),0),
-        (_('ID'),1),
-        (_('Type'),2),
-        (_('Date'),3),
-        (_('Place'),4),
-        (_('Cause'),5),
-        ]
-    
-    def __init__(self,db,family):
-        self.family = family
-        self.hbox = gtk.HBox()
-        self.label = gtk.Label(_('Events'))
-        self.hbox.show_all()
-        
-        DisplayTabs.EmbeddedList.__init__(self, db, DisplayTabs.EventRefModel)
-
-    def get_data(self):
-        return self.family.get_event_ref_list()
-
-    def column_order(self):
-        return ((1,0),(1,1),(1,2),(1,3),(1,4),(1,5))
-
-    def set_label(self):
-        if len(self.get_data()):
-            self.label.set_text("<b>%s</b>" % _('Events'))
-            self.label.set_use_markup(True)
-        else:
-            self.label.set_text(_('Events'))
-        
-    def get_tab_widget(self):
-        return self.label
 
 class AttrEmbedList(DisplayTabs.EmbeddedList):
 
@@ -203,6 +169,9 @@ class EditFamily(DisplayState.ManagedWindow):
         if self.family:
             self.load_data()
 
+        self.mname  = None
+        self.fname  = None
+        
         self.show()
 
     def build_menu_names(self,obj):
@@ -216,44 +185,57 @@ class EditFamily(DisplayState.ManagedWindow):
         self.gladeif = GladeIf(self.top)
         self.window = self.top.get_widget("marriageEditor")
 
-        self.fname  = self.top.get_widget('fname')
         self.fbirth = self.top.get_widget('fbirth')
         self.fdeath = self.top.get_widget('fdeath')
         
-        self.mname  = self.top.get_widget('mname')
         self.mbirth = self.top.get_widget('mbirth')
         self.mdeath = self.top.get_widget('mdeath')
 
         self.gid    = self.top.get_widget('gid')
-        self.reltype= self.top.get_widget('relationship_type')
+        self.reltype= self.top.get_widget('marriage_type')
 
         self.mbutton= self.top.get_widget('mbutton')
         self.fbutton= self.top.get_widget('fbutton')
+
+        self.mbox   = self.top.get_widget('mbox')
+        self.fbox   = self.top.get_widget('fbox')
 
         self.ok     = self.top.get_widget('ok')
         self.cancel = self.top.get_widget('cancel')
 
         self.vbox   = self.top.get_widget('vbox')
-        
+        self.child_list = self.top.get_widget('child_list')
+
+        rel_types = dict(Utils.family_relations)
+
+        mtype = self.family.get_relationship()
+        if mtype:
+            defval = mtype[0]
+        else:
+            defval = None
+
+        self.type_sel = AutoComp.StandardCustomSelector(
+            rel_types, self.reltype, RelLib.Family.CUSTOM, defval)
+
         self.notebook = gtk.Notebook()
         self.notebook.show()
         
         self.vbox.pack_start(self.notebook,True)
-
-        self.child_list = self.top.get_widget('child_list')
         self.cancel.connect('clicked', self.close_window)
         
     def load_data(self):
-        self.load_parent(self.family.get_father_handle(),self.fname,
-                         self.fbirth, self.fdeath, self.fbutton)
-        self.load_parent(self.family.get_mother_handle(),self.mname,
-                         self.mbirth, self.mdeath, self.mbutton)
+        self.update_father(self.family.get_father_handle())
+        self.update_mother(self.family.get_mother_handle())
+
+        self.mbutton.connect('clicked',self.mother_clicked)
+        self.fbutton.connect('clicked',self.father_clicked)
 
         self.child_list = ChildEmbedList(self.dbstate.db, self.family)
-        self.event_list = EventEmbedList(self.dbstate.db, self.family)
+        self.event_list = DisplayTabs.EventEmbedList(self.dbstate.db, self.family)
         self.attr_list = AttrEmbedList(self.dbstate.db, self.family.get_attribute_list())
         self.note_tab = DisplayTabs.NoteTab(self.family.get_note_object())
-        self.gallery_tab = DisplayTabs.GalleryTab(self.dbstate.db,self.family.get_media_list())
+        self.gallery_tab = DisplayTabs.GalleryTab(self.dbstate.db,
+                                                  self.family.get_media_list())
 
         self.notebook.insert_page(self.child_list)
         self.notebook.set_tab_label(self.child_list,self.child_list.get_tab_widget())
@@ -272,10 +254,40 @@ class EditFamily(DisplayState.ManagedWindow):
 
         self.gid.set_text(self.family.get_gramps_id())
 
+    def update_father(self,handle):
+        self.load_parent(handle, self.fbox, self.fbirth, self.fdeath, self.fbutton)
 
-    def load_parent(self,handle,name_obj,birth_obj,death_obj,btn_obj):
+    def update_mother(self,handle):
+        self.load_parent(handle, self.mbox, self.mbirth, self.mdeath, self.mbutton)
+
+    def mother_clicked(self,obj):
+        handle = self.family.get_mother_handle()
+        if handle:
+            self.family.set_mother_handle(None)
+            self.update_mother(None)
+        else:
+            print "Call person selector"
+
+    def father_clicked(self,obj):
+        handle = self.family.get_father_handle()
+        if handle:
+            self.family.set_father_handle(None)
+            self.update_father(None)
+        else:
+            print "Call person selector"
+
+    def edit_person(self,obj,event,handle):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+            import EditPerson
+            person = self.dbstate.db.get_person_from_handle(handle)
+            EditPerson.EditPerson(self.dbstate, self.uistate, self.track, person)
+
+    def load_parent(self,handle,box,birth_obj,death_obj,btn_obj):
 
         is_used = handle != None
+
+        for i in box.get_children():
+            box.remove(i)
         
         btn_obj.remove(btn_obj.get_children()[0])
         
@@ -292,6 +304,11 @@ class EditFamily(DisplayState.ManagedWindow):
             del_image.show()
             del_image.set_from_stock(gtk.STOCK_REMOVE,gtk.ICON_SIZE_BUTTON)
             btn_obj.add(del_image)
+
+            box.pack_start(GrampsWidgets.LinkBox(
+                GrampsWidgets.BasicLabel(name),
+                GrampsWidgets.IconButton(self.edit_person,person.handle)
+                ))
         else:
             name = ""
             birth = ""
@@ -302,7 +319,6 @@ class EditFamily(DisplayState.ManagedWindow):
             add_image.set_from_stock(gtk.STOCK_ADD,gtk.ICON_SIZE_BUTTON)
             btn_obj.add(add_image)
 
-        name_obj.set_text(name)
         birth_obj.set_text(birth)
         death_obj.set_text(death)
 

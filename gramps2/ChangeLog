@@ -1,3 +1,11 @@
+2006-01-13  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: Move event list  
+	* src/EditFamily.py: add editing of people, add relationship type
+	* src/EventEdit.py: move event list
+	* src/FamilyView.py: remove common widgets
+	* src/gramps.glade: EditFamily changes
+	* src/GrampsWidgets.py: Common widgets
+
 2006-01-13  Alex Roitman  <shura@gramps-project.org>
 	* src/ViewManager.py: Proper label change for Undo/Redo.
 

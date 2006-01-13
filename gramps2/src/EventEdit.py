@@ -240,20 +240,20 @@ class EventEditor(DisplayState.ManagedWindow):
                                         date_stat,
                                         self.window)
 
-        self.icon_list = self.top.get_widget("iconlist")
-        self.gallery = ImageSelect.Gallery(event, self.db.commit_event,
-                                           self.path, self.icon_list,
-                                           self.db,self,self.window)
+#        self.icon_list = self.top.get_widget("iconlist")
+#        self.gallery = ImageSelect.Gallery(event, self.db.commit_event,
+#                                           self.path, self.icon_list,
+#                                           self.db,self,self.window)
 
         self.gladeif.connect('event_edit','delete_event',self.on_delete_event)
         self.gladeif.connect('button111','clicked',self.close)
         self.gladeif.connect('ok','clicked',self.on_event_edit_ok_clicked)
         self.gladeif.connect('button126','clicked',self.on_help_clicked)
         self.gladeif.connect('notebook','switch_page',self.on_switch_page)
-        self.gladeif.connect('add_obj','clicked',self.gallery.on_add_media_clicked)
-        self.gladeif.connect('sel_obj','clicked',self.gallery.on_select_media_clicked)
-        self.gladeif.connect('button172','clicked',self.gallery.on_edit_media_clicked)
-        self.gladeif.connect('del_obj','clicked',self.gallery.on_delete_media_clicked)
+#        self.gladeif.connect('add_obj','clicked',self.gallery.on_add_media_clicked)
+#        self.gladeif.connect('sel_obj','clicked',self.gallery.on_select_media_clicked)
+#        self.gladeif.connect('button172','clicked',self.gallery.on_edit_media_clicked)
+#        self.gladeif.connect('del_obj','clicked',self.gallery.on_delete_media_clicked)
 
         self.top.get_widget('del_obj').set_sensitive(not noedit)
         self.top.get_widget('sel_obj').set_sensitive(not noedit)
@@ -285,12 +285,12 @@ class EventEditor(DisplayState.ManagedWindow):
 
     def on_delete_event(self,obj,b):
         self.gladeif.close()
-        self.gallery.close()
+#        self.gallery.close()
         gc.collect()
 
     def close(self,obj):
         self.gladeif.close()
-        self.gallery.close()
+#        self.gallery.close()
         self.window.destroy()
         gc.collect()
 
