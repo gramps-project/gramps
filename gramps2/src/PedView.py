@@ -148,6 +148,7 @@ class PersonBoxWidget_cairo( gtk.DrawingArea):
     def realize(self,widget):
         self.context = self.window.cairo_create()
         self.textlayout = self.context.create_layout()
+        self.textlayout.set_font_description(self.get_style().font_desc) 
         self.textlayout.set_text(self.text)
         s = self.textlayout.get_pixel_size()
         xmin = s[0] + 12
@@ -209,6 +210,13 @@ class PersonBoxWidget_cairo( gtk.DrawingArea):
         self.context.move_to(5,4)
         self.context.set_source_rgb( 0,0,0)
         self.context.show_layout( self.textlayout)
+
+        # text extents
+        #self.context.set_source_rgba( 1,0,0,0.5)
+        #s = self.textlayout.get_pixel_size()
+        #self.context.set_line_width(1)
+        #self.context.rectangle(5.5,4.5,s[0]-1,s[1]-1)
+        #self.context.stroke()
 
         #border
         if self.hightlight:
