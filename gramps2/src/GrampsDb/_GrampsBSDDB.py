@@ -685,7 +685,7 @@ class GrampsBSDDB(GrampsDbBase):
             self.reference_map.put(str(key),data,txn=self.txn)
         else:
             transaction.add(REFERENCE_KEY,str(key),None,data)
-            transaction.reference_add.append(str(key),data)
+            transaction.reference_add.append((str(key),data))
 
     def reindex_reference_map(self):
         """Reindex all primary records in the database. This will be a
