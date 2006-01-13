@@ -1,3 +1,6 @@
+2006-01-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/PedView.py: Use the same font as used in the gtk style
+
 2006-01-13 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
         * src/ObjectSelector/_ObjectSelectorWindow.py: layout improvements
 	* src/ObjectSelector/_PersonPreviewFrame.py: layout improvements
