@@ -180,9 +180,9 @@ def importData(database, filename, cb=None, use_trans=True):
 def import2(database, filename, cb, codeset, use_trans):
     # add some checking here
 
-    glade_file = "%s/../gedcomimport.glade" % os.path.dirname(__file__)
+    glade_file = "%s/gedcomimport.glade" % os.path.dirname(__file__)
     if not os.path.isfile(glade_file):
-        glade_file = "../gedcomimport.glade"
+        glade_file = "gedcomimport.glade"
 
     statusTop = gtk.glade.XML(glade_file,"status","gramps")
     status_window = statusTop.get_widget("status")
