@@ -643,6 +643,8 @@ class GrampsBSDDB(GrampsDbBase):
 
         if len(new_references) > 0:
             for (ref_class_name,ref_handle) in new_references:
+                data = ((CLASS_TO_KEY_MAP[obj.__class__.__name__],handle),
+                        (CLASS_TO_KEY_MAP[ref_class_name],ref_handle),)
                 self._add_reference((handle,ref_handle),data,transaction)
                 #self.reference_map.put(
                 #    str((handle,ref_handle),),
