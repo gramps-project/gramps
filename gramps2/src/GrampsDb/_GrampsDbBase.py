@@ -1090,6 +1090,10 @@ class GrampsDbBase(GrampsDBCallback):
             self.translist = self.translist[0:-1] + [ transaction ]
         else:
             self.translist[self.undoindex] = transaction
+            # Real commit erases all subsequent transactions
+            # to there's no Redo anymore.
+            for index in range(self.undoindex,_UNDO_SIZE):
+                self.translist[index] = None
 
         person_add      = self._do_commit(transaction.person_add,
                                           self.person_map)
@@ -1137,6 +1141,8 @@ class GrampsDbBase(GrampsDBCallback):
 
         if self.undo_callback:
             self.undo_callback(_("_Undo %s") % transaction.get_description())
+        if self.redu_callback:
+            self.redo_callback(None)
 
     def _do_emit(self, objtype, add_list, upd_list, del_list):
         if add_list:
@@ -1188,6 +1194,13 @@ class GrampsDbBase(GrampsDBCallback):
                 new_transaction = self.translist[self.undoindex]
                 self.undo_callback(_("_Undo %s")
                                    % new_transaction.get_description())
+        if self.redo_callback:
+            if self.undoindex >= _UNDO_SIZE \
+                   or self.translist[self.undoindex+1]==None:
+                self.redo_callback(None)
+            else:
+                self.redo_callback(_("_Redo %s")
+                                   % transaction.get_description())
 
         return True
 
@@ -1214,6 +1227,21 @@ class GrampsDbBase(GrampsDBCallback):
                 self.undo_reference(new_data,handle)
             else:
                 self.undo_data(new_data,handle,mapbase[key],_sigbase[key])
+
+        if self.undo_callback:
+            if self.undoindex == -1:
+                self.undo_callback(None)
+            else:
+                self.undo_callback(_("_Undo %s")
+                                   % transaction.get_description())
+        if self.redo_callback:
+            if self.undoindex >= _UNDO_SIZE \
+                   or self.translist[self.undoindex+1]==None:
+                self.redo_callback(None)
+            else:
+                new_transaction = self.translist[self.undoindex+1]
+                self.redo_callback(_("_Redo %s")
+                                   % new_transaction.get_description())
 
         if self.undo_callback:
             if self.undoindex == _UNDO_SIZE:
