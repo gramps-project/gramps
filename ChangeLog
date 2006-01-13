@@ -1,3 +1,8 @@
+2006-01-12  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: sub tabs for edit dialogs
+	* src/EditFamily.py: family editor integration
+	* src/gramps.glade: family editor changes
+
 2006-01-12 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/ObjectSelector/_ObjectSelectorWindow.py: initial outline of
 	ObjectSelector 
