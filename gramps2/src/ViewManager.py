@@ -288,6 +288,8 @@ class ViewManager:
 
         self.actiongroup = gtk.ActionGroup('MainWindow')
         self.fileactions = gtk.ActionGroup('FileWindow')
+        self.undoactions = gtk.ActionGroup('Undo')
+        self.redoactions = gtk.ActionGroup('Redo')
 
         self.fileactions.add_actions([
             ('FileMenu', None, '_File'),
@@ -314,8 +316,6 @@ class ViewManager:
             ('SaveAs',     gtk.STOCK_SAVE_AS,         '_Save As'),
             ('Export',     gtk.STOCK_SAVE_AS,         '_Export', "<control>e", None, self.export_data),
             ('Abandon',    gtk.STOCK_REVERT_TO_SAVED, '_Abandon changes and quit'),
-            ('Undo',       gtk.STOCK_UNDO,            '_Undo', '<control>z', None, self.undo),
-            ('Redo',       gtk.STOCK_REDO,            '_Redo', '<shift><control>z', None, self.redo),
             ('CmpMerge',   None,                      '_Compare and merge'),
             ('FastMerge',  None,                      '_Fast merge'),
             ('ScratchPad', gtk.STOCK_PASTE,           '_ScratchPad', None, None, self.scratchpad),
@@ -342,10 +342,20 @@ class ViewManager:
              ),
             ])
 
+        self.undoactions.add_actions([
+            ('Undo',gtk.STOCK_UNDO,'_Undo','<control>z',None,self.undo)])
+        self.undoactions.set_sensitive(False)
+        self.redoactions.add_actions([
+            ('Redo',gtk.STOCK_REDO,'_Redo','<shift><control>z',None,self.redo)
+            ])
+        self.redoactions.set_sensitive(False)
+
         merge_id = self.uimanager.add_ui_from_string(uidefault)
         
         self.uimanager.insert_action_group(self.fileactions,1)
         self.uimanager.insert_action_group(self.actiongroup,1)
+        self.uimanager.insert_action_group(self.undoactions,1)
+        self.uimanager.insert_action_group(self.redoactions,1)
 
     def home_page_activate(self,obj):
         GrampsDisplay.url(const.url_homepage)
@@ -777,8 +787,37 @@ class ViewManager:
         self.relationship = self.RelClass(self.state.db)
         self.state.change_active_person(self.find_initial_person())
         self.change_page(None,None)
+        self.state.db.undo_callback = self.change_undo_label
+        self.state.db.redo_callback = self.change_redo_label
         self.actiongroup.set_visible(True)
         return True
+
+    def change_undo_label(self,label):
+        self.uimanager.remove_action_group(self.undoactions)
+        self.undoactions = gtk.ActionGroup('Undo')
+        if label:
+            self.undoactions.add_actions([
+                ('Undo',gtk.STOCK_UNDO,label,'<control>z',None,self.undo)])
+        else:
+            self.undoactions.add_actions([
+                ('Undo',gtk.STOCK_UNDO,'_Undo',
+                 '<control>z',None,self.undo)])
+            self.undoactions.set_sensitive(False)
+        self.uimanager.insert_action_group(self.undoactions,1)
+
+    def change_redo_label(self,label):
+        self.uimanager.remove_action_group(self.redoactions)
+        self.redoactions = gtk.ActionGroup('Redo')
+        if label:
+            self.redoactions.add_actions([
+                ('Redo',gtk.STOCK_REDO,label,'<shift><control>z',
+                 None,self.redo)])
+        else:
+            self.redoactions.add_actions([
+                ('Redo',gtk.STOCK_UNDO,'_Redo',
+                 '<shift><control>z',None,self.redo)])
+            self.redoactions.set_sensitive(False)
+        self.uimanager.insert_action_group(self.redoactions,1)
 
     def setup_bookmarks(self):
         self.bookmarks = Bookmarks.Bookmarks(self.state,self.uimanager,
