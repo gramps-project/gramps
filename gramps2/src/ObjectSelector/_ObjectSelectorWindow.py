@@ -20,6 +20,8 @@ class ObjectSelectorWindow(gtk.Window):
         
         # Selected object label
         label = gtk.Label("Selected:")
+        label.set_alignment(xalign=1,yalign=0.5)
+
         sel_label = gtk.Label("No Selected Object")
         sel_frame = gtk.Frame()
         sel_frame.set_shadow_type(gtk.SHADOW_IN)
@@ -30,41 +32,41 @@ class ObjectSelectorWindow(gtk.Window):
         label_box.pack_start(label,False,False)
         label_box.pack_start(sel_frame,True,True)
         
-        # Toolbar
+        # Object select
 
-        # FIXME: This should be done somewhere central
-        factory = gtk.IconFactory()
-        
-        pixbuf = gtk.gdk.pixbuf_new_from_file("person.svg")
-        iconset = gtk.IconSet(pixbuf)
-        factory.add('gramps-person', iconset)
+        obj_label = gtk.Label("Show")
+        obj_label.set_alignment(xalign=1,yalign=0.5)
+                
+        person_pixbuf = gtk.gdk.pixbuf_new_from_file("../person.svg")
+        flist_pixbuf = gtk.gdk.pixbuf_new_from_file("../flist.svg")
 
-        pixbuf = gtk.gdk.pixbuf_new_from_file("flist.svg")
-        iconset = gtk.IconSet(pixbuf)
-        factory.add('gramps-family', iconset)
-        
-        factory.add_default()
-  
-        tips = gtk.Tooltips()
-        
-        person_tool = gtk.ToolButton("gramps-person")
-        person_tool.set_tooltip(tips,"Show People")
-        
-        family_tool = gtk.ToolButton("gramps-family")
-        family_tool.set_tooltip(tips,"Show Families")
-        
-        event_tool = gtk.ToolButton("gramps-person")
-        event_tool.set_tooltip(tips,"Show Events")
+        tool_list = gtk.ListStore(gtk.gdk.Pixbuf, str,int)
+        tool_list.append([person_pixbuf,'People',0])
+        tool_list.append([flist_pixbuf,'Families',1])
+        tool_list.append([person_pixbuf,'Events',2])
 
-        toolbar = gtk.Toolbar()
-        toolbar.insert(person_tool,0)
-        toolbar.insert(family_tool,1)
-        toolbar.insert(event_tool,2)
+        
+        tool_combo = gtk.ComboBox(tool_list)
+        
+        icon_cell = gtk.CellRendererPixbuf()
+        label_cell = gtk.CellRendererText()
+        
+        tool_combo.pack_start(icon_cell, True)
+        tool_combo.pack_start(label_cell, True)
+        
+        tool_combo.add_attribute(icon_cell, 'pixbuf', 0)
+        tool_combo.add_attribute(label_cell, 'text', 1)
 
+        tool_combo.set_active(0)
+
+        tool_box = gtk.HBox()
+        tool_box.pack_start(obj_label,False,False)
+        tool_box.pack_start(tool_combo,False,False)
+        
         # Top box
 
         top_box = gtk.HBox()
-        top_box.pack_start(toolbar,True,True)
+        top_box.pack_start(tool_box,False,False)
         top_box.pack_start(label_box,True,True)
 
         # Filters
@@ -128,6 +130,8 @@ class ObjectSelectorWindow(gtk.Window):
         
         cancel_button = gtk.Button(stock=gtk.STOCK_CANCEL)
 
+        cancel_button.connect_object("clicked", gtk.Widget.destroy, self)
+        
         bottom_button_bar = gtk.HButtonBox()
         bottom_button_bar.set_layout(gtk.BUTTONBOX_SPREAD)
         bottom_button_bar.set_spacing(self.__class__.__default_border_width/2)
@@ -160,5 +164,6 @@ if __name__ == "__main__":
 
     w = ObjectSelectorWindow()
     w.show_all()
+    w.connect("destroy", gtk.main_quit)
 
     gtk.main()
