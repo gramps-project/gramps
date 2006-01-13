@@ -27,8 +27,8 @@
 #-------------------------------------------------------------------------
 import cPickle as pickle
 import gc
-from gettext import gettext as _
 import sys
+from gettext import gettext as _
 
 import logging
 log = logging.getLogger(".")
@@ -57,13 +57,86 @@ import GrampsDisplay
 import RelLib
 import ListModel
 import ReportUtils
+import DisplayTabs
 
 from DdTargets import DdTargets
 from WindowUtils import GladeIf
 
+class EventEmbedList(DisplayTabs.EmbeddedList):
+
+    column_names = [
+        (_('Description'),0),
+        (_('ID'),1),
+        (_('Type'),2),
+        (_('Date'),3),
+        (_('Place'),4),
+        (_('Cause'),5),
+        ]
+    
+    def __init__(self,db,family):
+        self.family = family
+        self.hbox = gtk.HBox()
+        self.label = gtk.Label(_('Events'))
+        self.hbox.show_all()
+        
+        DisplayTabs.EmbeddedList.__init__(self, db, DisplayTabs.EventRefModel)
+
+    def get_data(self):
+        return self.family.get_event_ref_list()
+
+    def column_order(self):
+        return ((1,0),(1,1),(1,2),(1,3),(1,4),(1,5))
+
+    def set_label(self):
+        if len(self.get_data()):
+            self.label.set_text("<b>%s</b>" % _('Events'))
+            self.label.set_use_markup(True)
+        else:
+            self.label.set_text(_('Events'))
+        
+    def get_tab_widget(self):
+        return self.label
+
+class ChildEmbedList(DisplayTabs.EmbeddedList):
+
+    column_names = [
+        (_('#'),0) ,
+        (_('ID'),1) ,
+        (_('Name'),9),
+        (_('Gender'),3),
+        (_('Birth Date'),10),
+        (_('Death Date'),11),
+        (_('Birth Place'),6),
+        (_('Death Place'),7),
+        ]
+    
+    def __init__(self,db,family):
+        self.family = family
+        self.hbox = gtk.HBox()
+        self.label = gtk.Label(_('Children'))
+        self.hbox.show_all()
+        
+        DisplayTabs.EmbeddedList.__init__(self, db, DisplayTabs.ChildModel)
+
+    def get_data(self):
+        return self.family.get_child_handle_list()
+
+    def column_order(self):
+        return self.db.get_child_column_order()
+
+    def set_label(self):
+        if len(self.get_data()):
+            self.label.set_text("<b>%s</b>" % _('Children'))
+            self.label.set_use_markup(True)
+        else:
+            self.label.set_text(_('Children'))
+        
+    def get_tab_widget(self):
+        return self.label
+
 #-------------------------------------------------------------------------
 #
-# EditPlace
+# EditFamily
 #
 #-------------------------------------------------------------------------
 class EditFamily(DisplayState.ManagedWindow):
@@ -105,19 +178,47 @@ class EditFamily(DisplayState.ManagedWindow):
         self.gid    = self.top.get_widget('gid')
         self.reltype= self.top.get_widget('relationship_type')
 
+        self.mbutton= self.top.get_widget('mbutton')
+        self.fbutton= self.top.get_widget('fbutton')
+
         self.ok     = self.top.get_widget('ok')
         self.cancel = self.top.get_widget('cancel')
 
+        self.vbox   = self.top.get_widget('vbox')
+        
+        self.notebook = gtk.Notebook()
+        self.notebook.show()
+        
+        self.vbox.pack_start(self.notebook,True)
+
+        self.child_list = self.top.get_widget('child_list')
         self.cancel.connect('clicked', self.close_window)
         
     def load_data(self):
         self.load_parent(self.family.get_father_handle(),self.fname,
-                         self.fbirth, self.fdeath)
+                         self.fbirth, self.fdeath, self.fbutton)
         self.load_parent(self.family.get_mother_handle(),self.mname,
-                         self.mbirth, self.mdeath)
+                         self.mbirth, self.mdeath, self.mbutton)
 
-    def load_parent(self,handle,name_obj,birth_obj,death_obj):
-        if handle:
+        self.child_list = ChildEmbedList(self.dbstate.db, self.family)
+        self.event_list = EventEmbedList(self.dbstate.db, self.family)
+
+        self.notebook.insert_page(self.child_list)
+        self.notebook.set_tab_label(self.child_list,self.child_list.get_tab_widget())
+
+        self.notebook.insert_page(self.event_list)
+        self.notebook.set_tab_label(self.event_list,self.event_list.get_tab_widget())
+
+        self.gid.set_text(self.family.get_gramps_id())
+
+
+    def load_parent(self,handle,name_obj,birth_obj,death_obj,btn_obj):
+
+        is_used = handle != None
+        
+        btn_obj.remove(btn_obj.get_children()[0])
+        
+        if is_used:
             db = self.dbstate.db
             person = db.get_person_from_handle(handle)
             name = "%s [%s]" % (NameDisplay.displayer.display(person),
@@ -125,10 +226,20 @@ class EditFamily(DisplayState.ManagedWindow):
             data = ReportUtils.get_birth_death_strings(db,person)
             birth = data[0]
             death = data[4]
+
+            del_image = gtk.Image()
+            del_image.show()
+            del_image.set_from_stock(gtk.STOCK_REMOVE,gtk.ICON_SIZE_BUTTON)
+            btn_obj.add(del_image)
         else:
             name = ""
             birth = ""
             death = ""
+
+            add_image = gtk.Image()
+            add_image.show()
+            add_image.set_from_stock(gtk.STOCK_ADD,gtk.ICON_SIZE_BUTTON)
+            btn_obj.add(add_image)
 
         name_obj.set_text(name)
         birth_obj.set_text(birth)
