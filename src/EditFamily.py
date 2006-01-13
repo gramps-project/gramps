@@ -97,6 +97,37 @@ class EventEmbedList(DisplayTabs.EmbeddedList):
     def get_tab_widget(self):
         return self.label
 
+class AttrEmbedList(DisplayTabs.EmbeddedList):
+
+    column_names = [
+        (_('Type'),0),
+        (_('Value'),1),
+        ]
+    
+    def __init__(self,db,data):
+        self.data = data
+        self.hbox = gtk.HBox()
+        self.label = gtk.Label(_('Attributes'))
+        self.hbox.show_all()
+        
+        DisplayTabs.EmbeddedList.__init__(self, db, DisplayTabs.FamilyAttrModel)
+
+    def get_data(self):
+        return self.data
+
+    def column_order(self):
+        return ((1,0),(1,1))
+
+    def set_label(self):
+        if len(self.get_data()):
+            self.label.set_text("<b>%s</b>" % _('Attributes'))
+            self.label.set_use_markup(True)
+        else:
+            self.label.set_text(_('Attributes'))
+        
+    def get_tab_widget(self):
+        return self.label
+
 class ChildEmbedList(DisplayTabs.EmbeddedList):
 
     column_names = [
@@ -114,10 +145,28 @@ class ChildEmbedList(DisplayTabs.EmbeddedList):
         self.family = family
         self.hbox = gtk.HBox()
         self.label = gtk.Label(_('Children'))
+        self.add_btn = gtk.Button()
+        self.add_btn.add(gtk.image_new_from_stock(gtk.STOCK_ADD,
+                                                  gtk.ICON_SIZE_BUTTON))
+        self.edit_btn = gtk.Button()
+        self.edit_btn.add(gtk.image_new_from_stock(gtk.STOCK_EDIT,
+                                                   gtk.ICON_SIZE_BUTTON))
+        self.del_btn = gtk.Button()
+        self.del_btn.add(gtk.image_new_from_stock(gtk.STOCK_REMOVE,
+                                                  gtk.ICON_SIZE_BUTTON))
         self.hbox.show_all()
-        
+
         DisplayTabs.EmbeddedList.__init__(self, db, DisplayTabs.ChildModel)
 
+        self.set_spacing(6)
+        vbox = gtk.VBox()
+        vbox.set_spacing(6)
+        vbox.pack_start(self.add_btn,False)
+        vbox.pack_start(self.edit_btn,False)
+        vbox.pack_start(self.del_btn,False)
+        vbox.show_all()
+        self.pack_start(vbox,False)
+    
     def get_data(self):
         return self.family.get_child_handle_list()
 
@@ -202,12 +251,24 @@ class EditFamily(DisplayState.ManagedWindow):
 
         self.child_list = ChildEmbedList(self.dbstate.db, self.family)
         self.event_list = EventEmbedList(self.dbstate.db, self.family)
+        self.attr_list = AttrEmbedList(self.dbstate.db, self.family.get_attribute_list())
+        self.note_tab = DisplayTabs.NoteTab(self.family.get_note_object())
+        self.gallery_tab = DisplayTabs.GalleryTab(self.dbstate.db,self.family.get_media_list())
 
         self.notebook.insert_page(self.child_list)
         self.notebook.set_tab_label(self.child_list,self.child_list.get_tab_widget())
 
         self.notebook.insert_page(self.event_list)
         self.notebook.set_tab_label(self.event_list,self.event_list.get_tab_widget())
+
+        self.notebook.insert_page(self.attr_list)
+        self.notebook.set_tab_label(self.attr_list,self.attr_list.get_tab_widget())
+
+        self.notebook.insert_page(self.note_tab)
+        self.notebook.set_tab_label(self.note_tab,self.note_tab.get_tab_widget())
+
+        self.notebook.insert_page(self.gallery_tab)
+        self.notebook.set_tab_label(self.gallery_tab,self.gallery_tab.get_tab_widget())
 
         self.gid.set_text(self.family.get_gramps_id())
 
