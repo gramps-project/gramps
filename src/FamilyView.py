@@ -30,6 +30,7 @@ import DateHandler
 import ImgManip
 import ReportUtils
 import GrampsKeys
+import GrampsWidgets
 
 _GenderCode = {
     RelLib.Person.MALE    : u'\u2642',
@@ -76,76 +77,6 @@ class AttachList:
         self.list.append((widget,x0,x1,y0,y1,xoptions,yoptions))
         self.max_x = max(self.max_x,x1)
         self.max_y = max(self.max_y,y1)
-
-class LinkLabel(gtk.EventBox):
-
-    def __init__(self,label,func,handle):
-        gtk.EventBox.__init__(self)
-        self.orig_text = cgi.escape(label[0])
-        self.gender = label[1]
-        text = '<span underline="single">%s</span>' % self.orig_text
-        if label[1]:
-            text += u' %s' % label[1]
-        
-        self.label = gtk.Label(text)
-        self.label.set_use_markup(True)
-        self.label.set_alignment(0,0.5)
-
-        self.add(self.label)
-        self.set_visible_window(False)
-
-        self.connect('button-press-event',func,handle)
-        self.connect('enter-notify-event',self.enter_text,handle)
-        self.connect('leave-notify-event',self.leave_text,handle)
-        
-    def enter_text(self,obj,event,handle):
-        text = '<span foreground="blue" underline="single">%s</span>' % self.orig_text
-        if self.gender:
-            text += u" %s" % self.gender
-        self.label.set_text(text)
-        self.label.set_use_markup(True)
-
-    def leave_text(self,obj,event,handle):
-        text = '<span underline="single">%s</span>' % self.orig_text
-        if self.gender:
-            text += u" %s" % self.gender
-        self.label.set_text(text)
-        self.label.set_use_markup(True)
-        
-class IconButton(gtk.EventBox):
-
-    def __init__(self,func,handle,icon=gtk.STOCK_EDIT):
-        gtk.EventBox.__init__(self)
-        image = gtk.Image()
-        image.set_from_stock(icon,gtk.ICON_SIZE_MENU)
-        image.show()
-        self.add(image)
-        self.show()
-        self.connect('button-press-event',func,handle)
-        
-class LinkBox(gtk.HBox):
-
-    def __init__(self,link,button):
-        gtk.HBox.__init__(self)
-        self.set_spacing(6)
-        self.pack_start(link,False)
-        self.pack_start(button,False)
-        self.show()
-
-class BasicLabel(gtk.Label):
-
-    def __init__(self,text):
-        gtk.Label.__init__(self,text)
-        self.set_alignment(0,0.5)
-        self.show()
-
-class MarkupLabel(gtk.Label):
-
-    def __init__(self,text):
-        gtk.Label.__init__(self,text)
-        self.set_alignment(0,0.5)
-        self.set_use_markup(True)
-        self.show()
 
 class FamilyView(PageView.PersonNavView):
 
@@ -322,10 +253,10 @@ class FamilyView(PageView.PersonNavView):
         name = NameDisplay.displayer.display(person)
         text = '<span size="larger" weight="bold">%s %s</span>' % (cgi.escape(name),
                                                                    _GenderCode[person.gender])
-        label = MarkupLabel(text)
-        button = IconButton(self.edit_button_press,person.handle)
+        label = GrampsWidgets.MarkupLabel(text)
+        button = GrampsWidgets.IconButton(self.edit_button_press,person.handle)
 
-        hbox = LinkBox(label,button)
+        hbox = GrampsWidgets.LinkBox(label,button)
                 
         # GRAMPS ID
         self.row = 1
@@ -397,33 +328,33 @@ class FamilyView(PageView.PersonNavView):
             self.write_person_data(ename,'')
 
     def write_person_data(self,title,data):
-        self.attach.attach(BasicLabel(title),_ALABEL_START,
+        self.attach.attach(GrampsWidgets.BasicLabel(title),_ALABEL_START,
                            _ALABEL_STOP,self.row,self.row+1,
                            xoptions=gtk.FILL|gtk.SHRINK)
-        self.attach.attach(BasicLabel(data),_ADATA_START,_ADATA_STOP,
+        self.attach.attach(GrampsWidgets.BasicLabel(data),_ADATA_START,_ADATA_STOP,
                            self.row,self.row+1)
         self.row += 1
 
     def write_label(self,title,family):
         msg = "<i><b>%s</b></i>" % cgi.escape(title)
-        self.attach.attach(MarkupLabel(msg),_LABEL_START,_LABEL_STOP,
+        self.attach.attach(GrampsWidgets.MarkupLabel(msg),_LABEL_START,_LABEL_STOP,
                            self.row,self.row+1,gtk.SHRINK|gtk.FILL)
 
         if family:
             value = family.gramps_id
         else:
             value = ""
-        self.attach.attach(BasicLabel(value),_DATA_START,_DATA_STOP,
+        self.attach.attach(GrampsWidgets.BasicLabel(value),_DATA_START,_DATA_STOP,
                            self.row,self.row+1,gtk.SHRINK|gtk.FILL)
 
         hbox = gtk.HBox()
         hbox.set_spacing(6)
-        add = IconButton(self.add_family,None,gtk.STOCK_ADD)
+        add = GrampsWidgets.IconButton(self.add_family,None,gtk.STOCK_ADD)
         hbox.pack_start(add,False)
         if family:
-            edit = IconButton(self.edit_family,family.handle,gtk.STOCK_EDIT)
+            edit = GrampsWidgets.IconButton(self.edit_family,family.handle,gtk.STOCK_EDIT)
             hbox.pack_start(edit,False)
-            delete = IconButton(self.delete_family,family.handle,gtk.STOCK_REMOVE)
+            delete = GrampsWidgets.IconButton(self.delete_family,family.handle,gtk.STOCK_REMOVE)
             hbox.pack_start(delete,False)
         self.attach.attach(hbox,_BTN_START,_BTN_STOP,self.row,self.row+1)
         self.row += 1
@@ -437,15 +368,15 @@ class FamilyView(PageView.PersonNavView):
         if self.show_details:
             value = self.info_string(family.get_father_handle())
             if value:
-                self.attach.attach(BasicLabel(value),_PDTLS_START,
+                self.attach.attach(GrampsWidgets.BasicLabel(value),_PDTLS_START,
                                    _PDTLS_STOP,self.row, self.row+1)
                 self.row += 1
         self.write_person(_('Mother'),family.get_mother_handle())
         if self.show_details:
             value = self.info_string(family.get_mother_handle())
             if value:
-                self.attach.attach(BasicLabel(value),_PDTLS_START,_PDTLS_STOP,
-                                   self.row, self.row+1)
+                self.attach.attach(GrampsWidgets.BasicLabel(value),_PDTLS_START,
+                                   _PDTLS_STOP, self.row, self.row+1)
                 self.row += 1
 
         if self.show_siblings:
@@ -466,13 +397,14 @@ class FamilyView(PageView.PersonNavView):
         else:
             format = "%s"
 
-        label = MarkupLabel(format % cgi.escape(title))
+        label = GrampsWidgets.MarkupLabel(format % cgi.escape(title))
         self.attach.attach(label,_PLABEL_START,_PLABEL_STOP,self.row,self.row+1,
                            xoptions=gtk.FILL|gtk.SHRINK)
 
-        link_label = LinkLabel(self.get_name(handle,True),self.button_press,handle)
-        button = IconButton(self.edit_button_press,handle)
-        self.attach.attach(LinkBox(link_label,button),_PDATA_START,
+        link_label = GrampsWidgets.LinkLabel(self.get_name(handle,True),
+                                             self.button_press,handle)
+        button = GrampsWidgets.IconButton(self.edit_button_press,handle)
+        self.attach.attach(GrampsWidgets.LinkBox(link_label,button),_PDATA_START,
                            _PDATA_STOP,self.row,self.row+1)
         self.row += 1
 
@@ -482,13 +414,14 @@ class FamilyView(PageView.PersonNavView):
         else:
             format = "%s"
 
-        label = MarkupLabel(format % cgi.escape(title))
+        label = GrampsWidgets.MarkupLabel(format % cgi.escape(title))
         self.attach.attach(label,_CLABEL_START,_CLABEL_STOP,self.row,self.row+1,
                            xoptions=gtk.FILL|gtk.SHRINK)
 
-        link_label = LinkLabel(self.get_name(handle,True),self.button_press,handle)
-        button = IconButton(self.edit_button_press,handle)
-        self.attach.attach(LinkBox(link_label,button),_CDATA_START,
+        link_label = GrampsWidgets.LinkLabel(self.get_name(handle,True),
+                                             self.button_press,handle)
+        button = GrampsWidgets.IconButton(self.edit_button_press,handle)
+        self.attach.attach(GrampsWidgets.LinkBox(link_label,button),_CDATA_START,
                            _CDATA_STOP,self.row,self.row+1,
                           xoptions=gtk.EXPAND|gtk.FILL)
 
@@ -497,13 +430,13 @@ class FamilyView(PageView.PersonNavView):
         if self.show_details:
             value = self.info_string(handle)
             if value:
-                self.attach.attach(BasicLabel(value),_CDTLS_START,
+                self.attach.attach(GrampsWidgets.BasicLabel(value),_CDTLS_START,
                                    _CDTLS_STOP,self.row, self.row+1)
                 self.row += 1
         
     def write_data(self,title,start_col=_SDATA_START,stop_col=_SDATA_STOP):
-        self.attach.attach(BasicLabel(title),start_col,stop_col,self.row,
-                          self.row+1, xoptions=gtk.EXPAND|gtk.FILL)
+        self.attach.attach(GrampsWidgets.BasicLabel(title),start_col,stop_col,
+                           self.row, self.row+1, xoptions=gtk.EXPAND|gtk.FILL)
         self.row += 1
 
     def info_string(self,handle):
@@ -604,7 +537,7 @@ class FamilyView(PageView.PersonNavView):
 
             value = self.info_string(handle)
             if value:
-                self.attach.attach(BasicLabel(value),_PDTLS_START,
+                self.attach.attach(GrampsWidgets.BasicLabel(value),_PDTLS_START,
                                    _PDTLS_STOP,self.row, self.row+1)
                 self.row += 1
             if not self.write_marriage(family):

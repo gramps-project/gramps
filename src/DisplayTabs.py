@@ -52,8 +52,6 @@ class EmbeddedList(gtk.HBox):
             self.tree.remove_column(column)
         self.columns = []
 
-        #for pair in self.parent.db.get_child_column_order():
-
         for pair in self.column_order():
             if not pair[0]:
                 continue
@@ -74,6 +72,40 @@ class EmbeddedList(gtk.HBox):
     def get_tab_widget(self):
         return gtk.Label('UNDEFINED')
 
+class EventEmbedList(EmbeddedList):
+
+    column_names = [
+        (_('Description'),0),
+        (_('ID'),1),
+        (_('Type'),2),
+        (_('Date'),3),
+        (_('Place'),4),
+        (_('Cause'),5),
+        ]
+    
+    def __init__(self,db,obj):
+        self.obj = obj
+        self.hbox = gtk.HBox()
+        self.label = gtk.Label(_('Events'))
+        self.hbox.show_all()
+        
+        EmbeddedList.__init__(self, db, EventRefModel)
+
+    def get_data(self):
+        return self.obj.get_event_ref_list()
+
+    def column_order(self):
+        return ((1,0),(1,1),(1,2),(1,3),(1,4),(1,5))
+
+    def set_label(self):
+        if len(self.get_data()):
+            self.label.set_text("<b>%s</b>" % _('Events'))
+            self.label.set_use_markup(True)
+        else:
+            self.label.set_text(_('Events'))
+        
+    def get_tab_widget(self):
+        return self.label
 
 class NoteTab(gtk.HBox):
 
