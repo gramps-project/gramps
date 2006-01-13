@@ -256,7 +256,7 @@ class GrampsBSDDB(GrampsDbBase):
         
         self.env = db.DBEnv()
         self.env.set_cachesize(0,0x2000000)  # 2MB
-        self.env.set_lk_max_lockers(200)      # 20 lockers
+        self.env.set_lk_max_locks(10000)     # 10K locks
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
         env_flags = db.DB_CREATE|db.DB_PRIVATE|\
                     db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
@@ -401,6 +401,8 @@ class GrampsBSDDB(GrampsDbBase):
 
         self.genderStats = GenderStats(gstats)
         self.db_is_open = True
+        print self.env.lock_stat()
+        print self.person_map.stat()
         return 1
 
     def rebuild_secondary(self,callback=None):
