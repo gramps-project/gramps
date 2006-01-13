@@ -1,3 +1,6 @@
+2006-01-13  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py: Proper label change for Undo/Redo.
+
 2006-01-13 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
     * src/ObjectSelector/_IntEdit.py: added int only edit
 
