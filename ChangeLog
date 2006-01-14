@@ -1,3 +1,8 @@
+2006-01-14  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: fix scrolled window
+	* src/EditFamily.py: delete button
+	* src/gramps.glade: clean up the window.
+	
 2006-01-13  Don Allingham  <don@gramps-project.org>
 	* src/const.py.in: remove unused variables
 	* src/gramps.glade: remove unused dialogs

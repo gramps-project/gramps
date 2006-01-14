@@ -51,8 +51,9 @@ class EmbeddedList(gtk.HBox):
         self.selection.connect('changed',self.selection_changed)
         
         scroll = gtk.ScrolledWindow()
+        scroll.set_shadow_type(gtk.SHADOW_IN)
         scroll.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
-        scroll.add_with_viewport(self.tree)
+        scroll.add(self.tree)
         self.pack_start(scroll,True)
         self.columns = []
         self.build_columns()

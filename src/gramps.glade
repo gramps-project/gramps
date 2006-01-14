@@ -2234,7 +2234,7 @@
 	      <property name="border_width">6</property>
 	      <property name="visible">True</property>
 	      <property name="n_rows">3</property>
-	      <property name="n_columns">8</property>
+	      <property name="n_columns">3</property>
 	      <property name="homogeneous">False</property>
 	      <property name="row_spacing">6</property>
 	      <property name="column_spacing">12</property>
@@ -2259,7 +2259,7 @@
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
-		  <property name="right_attach">8</property>
+		  <property name="right_attach">3</property>
 		  <property name="top_attach">0</property>
 		  <property name="bottom_attach">1</property>
 		  <property name="x_options">fill</property>
@@ -2333,7 +2333,7 @@
 		</widget>
 		<packing>
 		  <property name="left_attach">2</property>
-		  <property name="right_attach">8</property>
+		  <property name="right_attach">3</property>
 		  <property name="top_attach">2</property>
 		  <property name="bottom_attach">3</property>
 		  <property name="x_options">fill</property>
@@ -2355,9 +2355,10 @@
 		</widget>
 		<packing>
 		  <property name="left_attach">2</property>
-		  <property name="right_attach">8</property>
+		  <property name="right_attach">3</property>
 		  <property name="top_attach">1</property>
 		  <property name="bottom_attach">2</property>
+		  <property name="x_options">fill</property>
 		  <property name="y_options"></property>
 		</packing>
 	      </child>
