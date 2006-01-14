@@ -145,7 +145,10 @@ class ChildEmbedList(DisplayTabs.EmbeddedList):
         print "Add Button Clicked"
 
     def del_button_clicked(self,obj):
-        print "Del Button Clicked"
+        handle = self.get_selected()
+        if handle:
+            self.family.remove_child_handle(handle)
+            self.rebuild()
 
     def edit_button_clicked(self,obj):
         handle = self.get_selected()
