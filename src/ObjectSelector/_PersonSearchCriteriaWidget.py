@@ -12,7 +12,7 @@ class PersonSearchCriteriaWidget(gtk.Frame):
 
     __default_border_width = 5
 
-    def __init__(self,label="Filter"):
+    def __init__(self,dbstate,label="Filter"):
 	gtk.Frame.__init__(self,label)
 
 	align = gtk.Alignment()
