@@ -62,22 +62,29 @@ import GrampsWidgets
 from DdTargets import DdTargets
 from WindowUtils import GladeIf
 
-
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
 class AttrEmbedList(DisplayTabs.EmbeddedList):
+
+    _HANDLE_COL = -1
 
     column_names = [
         (_('Type'),0),
         (_('Value'),1),
         ]
     
-    def __init__(self,db,data):
+    def __init__(self,dbstate,uistate,track,data):
         self.data = data
         self.hbox = gtk.HBox()
         self.label = gtk.Label(_('Attributes'))
         self.hbox.show_all()
         
-        DisplayTabs.EmbeddedList.__init__(self, db, DisplayTabs.FamilyAttrModel)
-
+        DisplayTabs.EmbeddedList.__init__(self, dbstate, uistate, track,
+                                          DisplayTabs.FamilyAttrModel)
+    
     def get_data(self):
         return self.data
 
@@ -94,7 +101,10 @@ class AttrEmbedList(DisplayTabs.EmbeddedList):
     def get_tab_widget(self):
         return self.label
 
+
 class ChildEmbedList(DisplayTabs.EmbeddedList):
+
+    _HANDLE_COL = 8
 
     column_names = [
         (_('#'),0) ,
@@ -107,37 +117,19 @@ class ChildEmbedList(DisplayTabs.EmbeddedList):
         (_('Death Place'),7),
         ]
     
-    def __init__(self,db,family):
+    def __init__(self,dbstate,uistate,track,family):
         self.family = family
         self.hbox = gtk.HBox()
         self.label = gtk.Label(_('Children'))
-        self.add_btn = gtk.Button()
-        self.add_btn.add(gtk.image_new_from_stock(gtk.STOCK_ADD,
-                                                  gtk.ICON_SIZE_BUTTON))
-        self.edit_btn = gtk.Button()
-        self.edit_btn.add(gtk.image_new_from_stock(gtk.STOCK_EDIT,
-                                                   gtk.ICON_SIZE_BUTTON))
-        self.del_btn = gtk.Button()
-        self.del_btn.add(gtk.image_new_from_stock(gtk.STOCK_REMOVE,
-                                                  gtk.ICON_SIZE_BUTTON))
         self.hbox.show_all()
+        DisplayTabs.EmbeddedList.__init__(self, dbstate, uistate, track,
+                                          DisplayTabs.ChildModel)
 
-        DisplayTabs.EmbeddedList.__init__(self, db, DisplayTabs.ChildModel)
-
-        self.set_spacing(6)
-        vbox = gtk.VBox()
-        vbox.set_spacing(6)
-        vbox.pack_start(self.add_btn,False)
-        vbox.pack_start(self.edit_btn,False)
-        vbox.pack_start(self.del_btn,False)
-        vbox.show_all()
-        self.pack_start(vbox,False)
-    
     def get_data(self):
         return self.family.get_child_handle_list()
 
     def column_order(self):
-        return self.db.get_child_column_order()
+        return self.dbstate.db.get_child_column_order()
 
     def set_label(self):
         if len(self.get_data()):
@@ -148,6 +140,19 @@ class ChildEmbedList(DisplayTabs.EmbeddedList):
         
     def get_tab_widget(self):
         return self.label
+
+    def add_button_clicked(self,obj):
+        print "Add Button Clicked"
+
+    def del_button_clicked(self,obj):
+        print "Del Button Clicked"
+
+    def edit_button_clicked(self,obj):
+        handle = self.get_selected()
+        if handle:
+            import EditPerson
+            person = self.dbstate.db.get_person_from_handle(handle)
+            EditPerson.EditPerson(self.dbstate,self.uistate,self.track,person)
 
 #-------------------------------------------------------------------------
 #
@@ -230,9 +235,12 @@ class EditFamily(DisplayState.ManagedWindow):
         self.mbutton.connect('clicked',self.mother_clicked)
         self.fbutton.connect('clicked',self.father_clicked)
 
-        self.child_list = ChildEmbedList(self.dbstate.db, self.family)
-        self.event_list = DisplayTabs.EventEmbedList(self.dbstate.db, self.family)
-        self.attr_list = AttrEmbedList(self.dbstate.db, self.family.get_attribute_list())
+        self.child_list = ChildEmbedList(self.dbstate,self.uistate,
+                                         self.track, self.family)
+        self.event_list = DisplayTabs.EventEmbedList(self.dbstate, self.uistate,
+                                                     self.track, self.family)
+        self.attr_list = AttrEmbedList(self.dbstate, self.uistate, self.track,
+                                       self.family.get_attribute_list())
         self.note_tab = DisplayTabs.NoteTab(self.family.get_note_object())
         self.gallery_tab = DisplayTabs.GalleryTab(self.dbstate.db,
                                                   self.family.get_media_list())
