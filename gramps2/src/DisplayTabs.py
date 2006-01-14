@@ -1,3 +1,23 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2000-2004  Donald N. Allingham
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
 import gtk
 import DateHandler
 import NameDisplay
@@ -10,33 +30,84 @@ _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
 #-------------------------------------------------------------------------
 #
-# Localized constants
+# EmbeddedList
 #
 #-------------------------------------------------------------------------
-_codeset = GrampsLocale.codeset
-
-def sfunc(a,b):
-    return locale.strcoll(a[0],b[0])
-
 class EmbeddedList(gtk.HBox):
 
-    _HANDLE_COL = 8
+    _HANDLE_COL = -1
     
-    def __init__(self, db, build_model):
+    def __init__(self, dbstate, uistate, track, build_model):
         gtk.HBox.__init__(self)
         self.build_model = build_model
+
+        self.dbstate = dbstate
+        self.uistate = uistate
+        self.track = track
         
         self.tree = gtk.TreeView()
         self.tree.set_rules_hint(True)
+        self.selection = self.tree.get_selection()
+        self.selection.connect('changed',self.selection_changed)
+        
         scroll = gtk.ScrolledWindow()
         scroll.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         scroll.add_with_viewport(self.tree)
         self.pack_start(scroll,True)
         self.columns = []
-        self.db = db
         self.build_columns()
+        self.create_buttons()
         self.rebuild()
         self.show_all()
+
+    def get_selected(self):
+        (model,node) = self.selection.get_selected()
+        if node:
+            return model.get_value(node,self._HANDLE_COL)
+        else:
+            return None
+
+    def selection_changed(self,obj=None):
+        if self.get_selected():
+            self.edit_btn.set_sensitive(True)
+            self.del_btn.set_sensitive(True)
+        else:
+            self.edit_btn.set_sensitive(False)
+            self.del_btn.set_sensitive(False)
+
+    def create_buttons(self):
+        self.add_btn = gtk.Button()
+        self.add_btn.set_relief(gtk.RELIEF_NONE)
+        self.add_btn.add(gtk.image_new_from_stock(gtk.STOCK_ADD,
+                                                  gtk.ICON_SIZE_BUTTON))
+        self.edit_btn = gtk.Button()
+        self.edit_btn.set_relief(gtk.RELIEF_NONE)
+        self.edit_btn.add(gtk.image_new_from_stock(gtk.STOCK_EDIT,
+                                                   gtk.ICON_SIZE_BUTTON))
+        self.del_btn = gtk.Button()
+        self.del_btn.set_relief(gtk.RELIEF_NONE)
+        self.del_btn.add(gtk.image_new_from_stock(gtk.STOCK_REMOVE,
+                                                  gtk.ICON_SIZE_BUTTON))
+        vbox = gtk.VBox()
+        vbox.set_spacing(6)
+        vbox.pack_start(self.add_btn,False)
+        vbox.pack_start(self.edit_btn,False)
+        vbox.pack_start(self.del_btn,False)
+        vbox.show_all()
+        self.pack_start(vbox,False)
+
+        self.add_btn.connect('clicked',self.add_button_clicked)
+        self.del_btn.connect('clicked',self.del_button_clicked)
+        self.edit_btn.connect('clicked',self.edit_button_clicked)
+
+    def add_button_clicked(self,obj):
+        pass
+
+    def del_button_clicked(self,obj):
+        pass
+
+    def edit_button_clicked(self,obj):
+        pass
 
     def set_label(self):
         return
@@ -65,13 +136,19 @@ class EmbeddedList(gtk.HBox):
             self.tree.append_column(column)
 
     def rebuild(self):
-        self.model = self.build_model(self.get_data(),self.db)
+        self.model = self.build_model(self.get_data(),self.dbstate.db)
         self.tree.set_model(self.model)
         self.set_label()
+        self.selection_changed()
 
     def get_tab_widget(self):
         return gtk.Label('UNDEFINED')
 
+#-------------------------------------------------------------------------
+#
+# EventEmbedList
+#
+#-------------------------------------------------------------------------
 class EventEmbedList(EmbeddedList):
 
     column_names = [
@@ -83,13 +160,13 @@ class EventEmbedList(EmbeddedList):
         (_('Cause'),5),
         ]
     
-    def __init__(self,db,obj):
+    def __init__(self,dbstate,uistate,track,obj):
         self.obj = obj
         self.hbox = gtk.HBox()
         self.label = gtk.Label(_('Events'))
         self.hbox.show_all()
         
-        EmbeddedList.__init__(self, db, EventRefModel)
+        EmbeddedList.__init__(self, dbstate, uistate, track, EventRefModel)
 
     def get_data(self):
         return self.obj.get_event_ref_list()
@@ -107,6 +184,11 @@ class EventEmbedList(EmbeddedList):
     def get_tab_widget(self):
         return self.label
 
+#-------------------------------------------------------------------------
+#
+# NoteTab
+#
+#-------------------------------------------------------------------------
 class NoteTab(gtk.HBox):
 
     def __init__(self, note_obj):
@@ -129,6 +211,11 @@ class NoteTab(gtk.HBox):
     def get_tab_widget(self):
         return gtk.Label(_('Note'))
 
+#-------------------------------------------------------------------------
+#
+# GalleryTab
+#
+#-------------------------------------------------------------------------
 class GalleryTab(gtk.HBox):
 
     def __init__(self,db,  media_list):
@@ -158,7 +245,7 @@ class GalleryTab(gtk.HBox):
 
     def rebuild(self):
         for ref in self.media_list:
-            obj = self.db.get_object_from_handle(ref.get_reference_handle())
+            obj = self.dbstate.db.get_object_from_handle(ref.get_reference_handle())
             pixbuf = self.get_image(obj)
             self.iconmodel.append(row=[pixbuf,obj.get_description()])
         self.set_label()
@@ -185,7 +272,6 @@ class GalleryTab(gtk.HBox):
         else:
             self.label.set_text(_('Gallery'))
 
-
 #-------------------------------------------------------------------------
 #
 # ChildModel
@@ -193,7 +279,9 @@ class GalleryTab(gtk.HBox):
 #-------------------------------------------------------------------------
 class ChildModel(gtk.ListStore):
 
-    def __init__(self,child_list,db):
+    _HANDLE_COL = -8
+
+    def __init__(self, child_list,db):
         gtk.ListStore.__init__(self,int,str,str,str,str,str,str,str,str,str,int,int)
         self.db = db
         index = 1
@@ -266,40 +354,33 @@ class ChildModel(gtk.ListStore):
                     return self.db.get_place_from_handle(place_handle).get_title()
         return u""
 
-def type_name(event):
-    t = event.get_type()
-    if t[0] == RelLib.Event.CUSTOM:
-        return t[1]
-    else:
-        return Utils.family_events[t[0]]
-
-def place_of(event):
-    t = event.get_place_handle()
-    return t
-
 #-------------------------------------------------------------------------
 #
 # EventRefModel
 #
 #-------------------------------------------------------------------------
-
 class EventRefModel(gtk.ListStore):
 
     def __init__(self,event_list,db):
         gtk.ListStore.__init__(self,str,str,str,str,str,str)
         self.db = db
-        index = 1
         for event_ref in event_list:
             event = db.get_event_from_handle(event_ref.ref)
             self.append(row=[
                 event.get_description(),
                 event.get_gramps_id(),
-                type_name(event),
+                self.column_type(event),
                 self.column_date(event_ref),
                 self.column_place(event_ref),
                 event.get_cause(),
                 ])
-            index += 1
+
+    def column_type(self,event):
+        t = event.get_type()
+        if t[0] == RelLib.Event.CUSTOM:
+            return t[1]
+        else:
+            return Utils.family_events[t[0]]
 
     def column_date(self,event_ref):
         event = self.db.get_event_from_handle(event_ref.ref)
@@ -314,25 +395,21 @@ class EventRefModel(gtk.ListStore):
                     return self.db.get_place_from_handle(place_handle).get_title()
         return u""
 
-
 #-------------------------------------------------------------------------
 #
-# EventRefModel
+# AttrModel
 #
 #-------------------------------------------------------------------------
-
 class AttrModel(gtk.ListStore):
 
     def __init__(self,attr_list,db):
         gtk.ListStore.__init__(self,str,str)
         self.db = db
-        index = 1
         for attr in attr_list:
             self.append(row=[
                 self.type_name(attr),
                 attr.get_value(),
                 ])
-            index += 1
 
     def type_name(self, attr):
         t = attr.get_type()
@@ -341,7 +418,11 @@ class AttrModel(gtk.ListStore):
         else:
             return Utils.personal_attributes[t[0]]
 
-
+#-------------------------------------------------------------------------
+#
+# FamilyAttrModel
+#
+#-------------------------------------------------------------------------
 class FamilyAttrModel(AttrModel):
 
     def __init__(self,attr_list,db):

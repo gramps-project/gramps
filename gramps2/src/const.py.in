@@ -116,7 +116,6 @@ prefsFile      = "%s/gramps.glade" % rootDir
 stylesFile     = "%s/gramps.glade" % rootDir
 dialogFile     = "%s/gramps.glade" % rootDir
 srcselFile     = "%s/gramps.glade" % rootDir
-findFile       = "%s/find.glade" % rootDir
 mergeFile      = "%s/mergedata.glade" % rootDir
 merge2File     = "%s/merge.glade" % rootDir
 filterFile     = "%s/rule.glade" % rootDir
