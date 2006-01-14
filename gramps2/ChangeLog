@@ -1,3 +1,14 @@
+2006-01-14 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+       * src/ObjectSelector/_Constants.py: enums
+       * src/ObjectSelector/_Factories.py: multi object type factories
+       * src/ObjectSelector/_FamilyFilterFrame.py: family support 
+       * src/ObjectSelector/_FamilyPreviewFrame.py: family support 
+       * src/ObjectSelector/_FamilyTreeFrame.py: family support 
+       * src/ObjectSelector/_PersonTreeFrame.py: separated out person tree
+       * src/ObjectSelector/_ObjectSelectorWindow.py: implemented view switching
+       * src/ObjectSelector/_PersonPreviewFrame.py: implemented view switching
+       * src/ObjectSelector/_PersonSearchCriteriaWidget.py: implemented view switching
+	
 2006-01-14  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: fix scrolled window
 	* src/EditFamily.py: delete button

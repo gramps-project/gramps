@@ -1,0 +1,73 @@
+import gtk
+import gobject
+
+from DisplayModels import FamilyModel
+
+class FamilyTreeFrame(gtk.Frame):
+    
+    __gproperties__ = {}
+
+    __gsignals__ = {
+        }
+
+    __default_border_width = 5
+
+
+    def __init__(self,dbstate):
+	gtk.Frame.__init__(self)        
+
+        self._dbstate = dbstate
+        
+        self._list = gtk.TreeView()
+        self._list.set_rules_hint(True)
+        self._list.set_headers_visible(True)
+        self._list.set_headers_clickable(True)
+
+        #self._list.connect('button-press-event',self._button_press)
+        #self._list.connect('key-press-event',self._key_press)
+
+        # Add columns
+        columns = [['ID',0],
+                   ['Father',1],
+                   ['Mother',2],
+                   ['Type',3],
+                   ['Change',4]]
+        
+        for field in columns:
+            column = gtk.TreeViewColumn(field[0], gtk.CellRendererText(), text=field[1])
+            column.set_resizable(True)
+            column.set_min_width(75)
+            column.set_clickable(True)
+            self._list.append_column(column)
+            
+        scrollwindow = gtk.ScrolledWindow()
+        scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        scrollwindow.set_shadow_type(gtk.SHADOW_ETCHED_IN)
+
+        scrollwindow.add(self._list)
+
+        self._inactive = False
+
+        self._selection = self._list.get_selection()
+        #self._selection.connect('changed',self._row_changed)
+
+        self.add(scrollwindow)
+
+        self.set_model(self._dbstate.db)
+
+    def set_model(self,db):
+
+        self._model = FamilyModel(db)
+
+        self._list.set_model(self._model)
+        
+if gtk.pygtk_version < (2,8,0):
+    gobject.type_register(FamilyTreeFrame)
+
+if __name__ == "__main__":
+
+    w = ObjectSelectorWindow()
+    w.show_all()
+    w.connect("destroy", gtk.main_quit)
+
+    gtk.main()

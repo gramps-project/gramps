@@ -1,7 +1,7 @@
 import gtk
 import gobject
 
-class PersonPreviewFrame(gtk.Frame):
+class FamilyPreviewFrame(gtk.Frame):
     
     __gproperties__ = {}
 
@@ -19,7 +19,7 @@ class PersonPreviewFrame(gtk.Frame):
         image = gtk.Image()
 
         # test image
-        image.set_from_file("../person.svg")
+        image.set_from_file("../flist.svg")
         image_frame = gtk.Frame()
         image_frame.add(image)
         
@@ -29,9 +29,9 @@ class PersonPreviewFrame(gtk.Frame):
         label.set_line_wrap(True)
         label.set_justify(gtk.JUSTIFY_LEFT)
         label.set_alignment(xalign=0.1,yalign=0.1)
-        label.set_markup("<b>Name:</b> Joe Blogs\n"
-                         "<b>b:</b> 1906\n"
-                         "<b>d:</b> 1937\n")
+        label.set_markup("<b>Father:</b> Joe Blogs\n"
+                         "<b>Mother:</b> Joe Blogs\n"
+                         "<b>m:</b> 1906\n")
         
         # box
         box = gtk.VBox()
@@ -55,7 +55,7 @@ class PersonPreviewFrame(gtk.Frame):
 	
     
 if gtk.pygtk_version < (2,8,0):
-    gobject.type_register(PersonPreviewFrame)
+    gobject.type_register(FamilyPreviewFrame)
 
 if __name__ == "__main__":
 
