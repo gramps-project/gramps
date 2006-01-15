@@ -208,9 +208,42 @@ class PersonTip:
 
     __call__ = get_tip
 
+class FamilyTip:
+    def __init__(self,db,obj):
+        self._db = db
+        self._obj = obj
+
+    def get_tip(self):
+        global escape
+
+        fhandle = self._obj.get_father_handle()
+        mhandle = self._obj.get_mother_handle()
+                
+        s = "<span size=\"larger\" weight=\"bold\">%s</span>" % _("Family")
+
+        if fhandle:
+            father = self._db.get_person_from_handle(fhandle)
+            s +="\n   <span weight=\"bold\">%s:</span> %s" % (
+                _("Father"),escape(father.get_primary_name().get_name()))
+
+        if mhandle:
+            mother = self._db.get_person_from_handle(mhandle)
+            s +="\n   <span weight=\"bold\">%s:</span> %s" % (
+                _("Mother"),escape(mother.get_primary_name().get_name()))
+
+        for chandle in self._obj.get_child_handle_list():
+            child =  self._db.get_person_from_handle(chandle)
+            s +="\n   <span weight=\"bold\">%s:</span> %s" % (
+                _("Child"),escape(child.get_primary_name().get_name()))
+
+        return s
+
+    __call__ = get_tip
+
 
 CLASS_MAP = {
     RelLib.Repository : RepositoryTip,
-    RelLib.Person     : PersonTip
+    RelLib.Person     : PersonTip,
+    RelLib.Family     : FamilyTip
     }
 

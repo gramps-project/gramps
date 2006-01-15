@@ -240,8 +240,8 @@ class EditFamily(DisplayState.ManagedWindow):
 
         self.child_list = ChildEmbedList(self.dbstate,self.uistate,
                                          self.track, self.family)
-        self.event_list = DisplayTabs.EventEmbedList(self.dbstate, self.uistate,
-                                                     self.track, self.family)
+        self.event_list = DisplayTabs.EventEmbedList(self.dbstate,self.uistate,
+                                                     self.track,self.family)
         self.attr_list = AttrEmbedList(self.dbstate, self.uistate, self.track,
                                        self.family.get_attribute_list())
         self.note_tab = DisplayTabs.NoteTab(self.family.get_note_object())

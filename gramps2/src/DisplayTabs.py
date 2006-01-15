@@ -19,12 +19,16 @@
 #
 
 import gtk
+import gobject
+
 import DateHandler
 import NameDisplay
 import RelLib
 import Utils
 import ToolTips
 import GrampsLocale
+
+from GrampsWidgets import SimpleButton
 
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
@@ -77,18 +81,10 @@ class EmbeddedList(gtk.HBox):
             self.del_btn.set_sensitive(False)
 
     def create_buttons(self):
-        self.add_btn = gtk.Button()
-        self.add_btn.set_relief(gtk.RELIEF_NONE)
-        self.add_btn.add(gtk.image_new_from_stock(gtk.STOCK_ADD,
-                                                  gtk.ICON_SIZE_BUTTON))
-        self.edit_btn = gtk.Button()
-        self.edit_btn.set_relief(gtk.RELIEF_NONE)
-        self.edit_btn.add(gtk.image_new_from_stock(gtk.STOCK_EDIT,
-                                                   gtk.ICON_SIZE_BUTTON))
-        self.del_btn = gtk.Button()
-        self.del_btn.set_relief(gtk.RELIEF_NONE)
-        self.del_btn.add(gtk.image_new_from_stock(gtk.STOCK_REMOVE,
-                                                  gtk.ICON_SIZE_BUTTON))
+        self.add_btn  = SimpleButton(gtk.STOCK_ADD, self.add_button_clicked)
+        self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
+        self.del_btn  = SimpleButton(gtk.STOCK_REMOVE, self.del_button_clicked)
+
         vbox = gtk.VBox()
         vbox.set_spacing(6)
         vbox.pack_start(self.add_btn,False)
@@ -97,9 +93,11 @@ class EmbeddedList(gtk.HBox):
         vbox.show_all()
         self.pack_start(vbox,False)
 
-        self.add_btn.connect('clicked',self.add_button_clicked)
-        self.del_btn.connect('clicked',self.del_button_clicked)
-        self.edit_btn.connect('clicked',self.edit_button_clicked)
+        self.tree.connect('button_press_event',self.double_click)
+
+    def double_click(self, obj, event):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+            self.edit_button_clicked(obj)
 
     def add_button_clicked(self,obj):
         pass
@@ -152,10 +150,12 @@ class EmbeddedList(gtk.HBox):
 #-------------------------------------------------------------------------
 class EventEmbedList(EmbeddedList):
 
+    _HANDLE_COL = 6
+
     column_names = [
-        (_('Description'),0),
-        (_('ID'),1),
-        (_('Type'),2),
+        (_('Type'),0),
+        (_('Description'),1),
+        (_('ID'),2),
         (_('Date'),3),
         (_('Place'),4),
         (_('Cause'),5),
@@ -184,6 +184,22 @@ class EventEmbedList(EmbeddedList):
         
     def get_tab_widget(self):
         return self.label
+
+    def add_button_clicked(self,obj):
+        pass
+
+    def del_button_clicked(self,obj):
+        ref = self.get_selected()
+        if ref:
+            ref_list = self.obj.get_event_ref_list()
+            ref_list.remove(ref)
+            self.rebuild()
+
+    def edit_button_clicked(self,obj):
+        ref = self.get_selected()
+        if ref:
+            print ref
+
 
 #-------------------------------------------------------------------------
 #
@@ -363,17 +379,19 @@ class ChildModel(gtk.ListStore):
 class EventRefModel(gtk.ListStore):
 
     def __init__(self,event_list,db):
-        gtk.ListStore.__init__(self,str,str,str,str,str,str)
+        gtk.ListStore.__init__(self,str,str,str,str,str,str,
+                               gobject.TYPE_PYOBJECT)
         self.db = db
         for event_ref in event_list:
             event = db.get_event_from_handle(event_ref.ref)
             self.append(row=[
+                self.column_type(event),
                 event.get_description(),
                 event.get_gramps_id(),
-                self.column_type(event),
                 self.column_date(event_ref),
                 self.column_place(event_ref),
                 event.get_cause(),
+                event_ref
                 ])
 
     def column_type(self,event):
