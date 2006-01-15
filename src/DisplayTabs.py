@@ -99,13 +99,13 @@ class ButtonTab(GrampsTab):
             self.edit_button_clicked(obj)
 
     def add_button_clicked(self,obj):
-        pass
+        print "Uncaught Add clicked"
 
     def del_button_clicked(self,obj):
-        pass
+        print "Uncaught Delete clicked"
 
     def edit_button_clicked(self,obj):
-        pass
+        print "Uncaught Edit clicked"
 
 
 #-------------------------------------------------------------------------
@@ -128,6 +128,9 @@ class EmbeddedList(ButtonTab):
         self.build_columns()
         self.rebuild()
         self.show_all()
+
+    def get_icon_name(self):
+        return gtk.STOCK_JUSTIFY_FILL
 
     def build_interface(self):
         self.tree = gtk.TreeView()
@@ -251,7 +254,7 @@ class NoteTab(GrampsTab):
         scroll.add_with_viewport(self.text)
         self.pack_start(scroll,True)
         if self.note_obj:
-            self.text.get_buffer().insert_at_cursor(note_obj.get())
+            self.text.get_buffer().insert_at_cursor(self.note_obj.get())
 
     def rebuild(self):
         pass
