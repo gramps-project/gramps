@@ -78,29 +78,15 @@ class AttrEmbedList(DisplayTabs.EmbeddedList):
     
     def __init__(self,dbstate,uistate,track,data):
         self.data = data
-        self.hbox = gtk.HBox()
-        self.label = gtk.Label(_('Attributes'))
-        self.hbox.show_all()
-        
         DisplayTabs.EmbeddedList.__init__(self, dbstate, uistate, track,
+                                          _('Attributes'),
                                           DisplayTabs.FamilyAttrModel)
-    
+
     def get_data(self):
         return self.data
 
     def column_order(self):
         return ((1,0),(1,1))
-
-    def set_label(self):
-        if len(self.get_data()):
-            self.label.set_text("<b>%s</b>" % _('Attributes'))
-            self.label.set_use_markup(True)
-        else:
-            self.label.set_text(_('Attributes'))
-        
-    def get_tab_widget(self):
-        return self.label
-
 
 class ChildEmbedList(DisplayTabs.EmbeddedList):
 
@@ -119,27 +105,18 @@ class ChildEmbedList(DisplayTabs.EmbeddedList):
     
     def __init__(self,dbstate,uistate,track,family):
         self.family = family
-        self.hbox = gtk.HBox()
-        self.label = gtk.Label(_('Children'))
-        self.hbox.show_all()
         DisplayTabs.EmbeddedList.__init__(self, dbstate, uistate, track,
+                                          _('Children'),
                                           DisplayTabs.ChildModel)
+
+    def get_icon_name(self):
+        return 'gramps-person'
 
     def get_data(self):
         return self.family.get_child_handle_list()
 
     def column_order(self):
         return self.dbstate.db.get_child_column_order()
-
-    def set_label(self):
-        if len(self.get_data()):
-            self.label.set_text("<b>%s</b>" % _('Children'))
-            self.label.set_use_markup(True)
-        else:
-            self.label.set_text(_('Children'))
-        
-    def get_tab_widget(self):
-        return self.label
 
     def add_button_clicked(self,obj):
         print "Add Button Clicked"
@@ -244,8 +221,9 @@ class EditFamily(DisplayState.ManagedWindow):
                                                      self.track,self.family)
         self.attr_list = AttrEmbedList(self.dbstate, self.uistate, self.track,
                                        self.family.get_attribute_list())
-        self.note_tab = DisplayTabs.NoteTab(self.family.get_note_object())
-        self.gallery_tab = DisplayTabs.GalleryTab(self.dbstate.db,
+        self.note_tab = DisplayTabs.NoteTab(self.dbstate, self.uistate, self.track,
+                                            self.family.get_note_object())
+        self.gallery_tab = DisplayTabs.GalleryTab(self.dbstate, self.uistate, self.track,
                                                   self.family.get_media_list())
 
         self.notebook.insert_page(self.child_list)
