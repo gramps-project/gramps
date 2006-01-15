@@ -37,33 +37,108 @@ _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 # EmbeddedList
 #
 #-------------------------------------------------------------------------
-class EmbeddedList(gtk.HBox):
+class GrampsTab(gtk.HBox):
 
-    _HANDLE_COL = -1
-    
-    def __init__(self, dbstate, uistate, track, build_model):
+    def __init__(self,dbstate,uistate,track,name):
         gtk.HBox.__init__(self)
-        self.build_model = build_model
-
         self.dbstate = dbstate
         self.uistate = uistate
         self.track = track
+        self.tab_name = name
         
-        self.tree = gtk.TreeView()
-        self.tree.set_rules_hint(True)
+        self.hbox = gtk.HBox()
+        self.tab_image = gtk.image_new_from_stock(self.get_icon_name(),
+                                                  gtk.ICON_SIZE_MENU)
+        self.label = gtk.Label(name)
+        self.hbox.pack_start(self.tab_image)
+        self.hbox.set_spacing(3)
+        self.hbox.add(self.label)
+        self.hbox.show_all()
+
+        self.build_interface()
+
+    def get_icon_name(self):
+        return gtk.STOCK_NEW
+
+    def get_tab_widget(self):
+        return self.hbox
+
+    def set_label(self):
+        if len(self.get_data()):
+            self.tab_image.show()
+            self.label.set_text("<b>%s</b>" % self.tab_name)
+            self.label.set_use_markup(True)
+        else:
+            self.tab_image.hide()
+            self.label.set_text(self.tab_name)
+
+    def build_interface(self):
+        pass
+
+class ButtonTab(GrampsTab):
+
+    def __init__(self,dbstate,uistate,track,name):
+        GrampsTab.__init__(self,dbstate,uistate,track,name)
+        self.create_buttons()
+
+    def create_buttons(self):
+        self.add_btn  = SimpleButton(gtk.STOCK_ADD, self.add_button_clicked)
+        self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
+        self.del_btn  = SimpleButton(gtk.STOCK_REMOVE, self.del_button_clicked)
+
+        vbox = gtk.VBox()
+        vbox.set_spacing(6)
+        vbox.pack_start(self.add_btn,False)
+        vbox.pack_start(self.edit_btn,False)
+        vbox.pack_start(self.del_btn,False)
+        vbox.show_all()
+        self.pack_start(vbox,False)
+
+    def double_click(self, obj, event):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+            self.edit_button_clicked(obj)
+
+    def add_button_clicked(self,obj):
+        pass
+
+    def del_button_clicked(self,obj):
+        pass
+
+    def edit_button_clicked(self,obj):
+        pass
+
+
+#-------------------------------------------------------------------------
+#
+# EmbeddedList
+#
+#-------------------------------------------------------------------------
+class EmbeddedList(ButtonTab):
+
+    _HANDLE_COL = -1
+    
+    def __init__(self, dbstate, uistate, track, name, build_model):
+        ButtonTab.__init__(self, dbstate, uistate, track, name)
+        self.build_model = build_model
+
         self.selection = self.tree.get_selection()
         self.selection.connect('changed',self.selection_changed)
         
+        self.columns = []
+        self.build_columns()
+        self.rebuild()
+        self.show_all()
+
+    def build_interface(self):
+        self.tree = gtk.TreeView()
+        self.tree.set_rules_hint(True)
+        self.tree.connect('button_press_event',self.double_click)
+
         scroll = gtk.ScrolledWindow()
         scroll.set_shadow_type(gtk.SHADOW_IN)
         scroll.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         scroll.add(self.tree)
         self.pack_start(scroll,True)
-        self.columns = []
-        self.build_columns()
-        self.create_buttons()
-        self.rebuild()
-        self.show_all()
 
     def get_selected(self):
         (model,node) = self.selection.get_selected()
@@ -79,37 +154,6 @@ class EmbeddedList(gtk.HBox):
         else:
             self.edit_btn.set_sensitive(False)
             self.del_btn.set_sensitive(False)
-
-    def create_buttons(self):
-        self.add_btn  = SimpleButton(gtk.STOCK_ADD, self.add_button_clicked)
-        self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
-        self.del_btn  = SimpleButton(gtk.STOCK_REMOVE, self.del_button_clicked)
-
-        vbox = gtk.VBox()
-        vbox.set_spacing(6)
-        vbox.pack_start(self.add_btn,False)
-        vbox.pack_start(self.edit_btn,False)
-        vbox.pack_start(self.del_btn,False)
-        vbox.show_all()
-        self.pack_start(vbox,False)
-
-        self.tree.connect('button_press_event',self.double_click)
-
-    def double_click(self, obj, event):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
-            self.edit_button_clicked(obj)
-
-    def add_button_clicked(self,obj):
-        pass
-
-    def del_button_clicked(self,obj):
-        pass
-
-    def edit_button_clicked(self,obj):
-        pass
-
-    def set_label(self):
-        return
 
     def get_data(self):
         return []
@@ -140,9 +184,6 @@ class EmbeddedList(gtk.HBox):
         self.set_label()
         self.selection_changed()
 
-    def get_tab_widget(self):
-        return gtk.Label('UNDEFINED')
-
 #-------------------------------------------------------------------------
 #
 # EventEmbedList
@@ -163,27 +204,18 @@ class EventEmbedList(EmbeddedList):
     
     def __init__(self,dbstate,uistate,track,obj):
         self.obj = obj
-        self.hbox = gtk.HBox()
-        self.label = gtk.Label(_('Events'))
-        self.hbox.show_all()
         
-        EmbeddedList.__init__(self, dbstate, uistate, track, EventRefModel)
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('Events'), EventRefModel)
+
+    def get_icon_name(self):
+        return 'gramps-event'
 
     def get_data(self):
         return self.obj.get_event_ref_list()
 
     def column_order(self):
         return ((1,0),(1,1),(1,2),(1,3),(1,4),(1,5))
-
-    def set_label(self):
-        if len(self.get_data()):
-            self.label.set_text("<b>%s</b>" % _('Events'))
-            self.label.set_use_markup(True)
-        else:
-            self.label.set_text(_('Events'))
-        
-    def get_tab_widget(self):
-        return self.label
 
     def add_button_clicked(self,obj):
         pass
@@ -200,49 +232,48 @@ class EventEmbedList(EmbeddedList):
         if ref:
             print ref
 
-
 #-------------------------------------------------------------------------
 #
 # NoteTab
 #
 #-------------------------------------------------------------------------
-class NoteTab(gtk.HBox):
+class NoteTab(GrampsTab):
 
-    def __init__(self, note_obj):
-        gtk.HBox.__init__(self)
-        self.note_obj = note_obj
+    def __init__(self, dbstate, uistate, track, note_obj):
+        self.note_obj = note_obj        
+        GrampsTab.__init__(self, dbstate, uistate, track, _('Note'))
+        self.show_all()
 
+    def build_interface(self):
         self.text = gtk.TextView()
         scroll = gtk.ScrolledWindow()
         scroll.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         scroll.add_with_viewport(self.text)
         self.pack_start(scroll,True)
-        if note_obj:
+        if self.note_obj:
             self.text.get_buffer().insert_at_cursor(note_obj.get())
-        
-        self.show_all()
 
     def rebuild(self):
         pass
-
-    def get_tab_widget(self):
-        return gtk.Label(_('Note'))
 
 #-------------------------------------------------------------------------
 #
 # GalleryTab
 #
 #-------------------------------------------------------------------------
-class GalleryTab(gtk.HBox):
+class GalleryTab(ButtonTab):
 
-    def __init__(self,db,  media_list):
-        gtk.HBox.__init__(self)
-        self.db = db
+    def __init__(self, dbstate, uistate, track,  media_list):
+        ButtonTab.__init__(self, dbstate, uistate, track, _('Gallery'))
         self.media_list = media_list
 
-        self.hbox = gtk.HBox()
-        self.label = gtk.Label(_('Children'))
+        self.rebuild()
+        self.show_all()
 
+    def get_icon_name(self):
+        return 'gramps-media'
+
+    def build_interface(self):
         self.iconmodel= gtk.ListStore(gtk.gdk.Pixbuf,str)
         self.iconlist = gtk.IconView()
         self.iconlist.set_pixbuf_column(0)
@@ -253,9 +284,6 @@ class GalleryTab(gtk.HBox):
         scroll.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         scroll.add_with_viewport(self.iconlist)
         self.pack_start(scroll,True)
-
-        self.rebuild()
-        self.show_all()
 
     def get_data(self):
         return self.media_list
@@ -278,16 +306,6 @@ class GalleryTab(gtk.HBox):
         if not image:
             image = gtk.gdk.pixbuf_new_from_file(const.icon)
         return image
-
-    def get_tab_widget(self):
-        return self.label
-
-    def set_label(self):
-        if len(self.get_data()):
-            self.label.set_text("<b>%s</b>" % _('Gallery'))
-            self.label.set_use_markup(True)
-        else:
-            self.label.set_text(_('Gallery'))
 
 #-------------------------------------------------------------------------
 #

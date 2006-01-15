@@ -1,4 +1,6 @@
 2006-01-14  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: add button control class
+	* src/EditFamily.py: add icons
 	* src/DisplayTabs.py: fix double click
 	* src/EditFamily.py: fix double click
 	* src/GrampsWidgets.py: add SimpleButton
