@@ -1,3 +1,9 @@
+2006-01-14  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: fix double click
+	* src/EditFamily.py: fix double click
+	* src/GrampsWidgets.py: add SimpleButton
+	* src/ToolTips.py: Family tool tip
+
 2006-01-14 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
        * src/ObjectSelector/_Constants.py: enums
        * src/ObjectSelector/_Factories.py: multi object type factories

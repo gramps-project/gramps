@@ -75,6 +75,15 @@ class IconButton(gtk.EventBox):
         self.add(image)
         self.show()
         self.connect('button-press-event',func,handle)
+
+class SimpleButton(gtk.Button):
+
+    def __init__(self,image,func):
+        gtk.Button.__init__(self)
+        self.set_relief(gtk.RELIEF_NONE)
+        self.add(gtk.image_new_from_stock(image,gtk.ICON_SIZE_BUTTON))
+        self.connect('clicked',func)
+        self.show()
         
 class LinkBox(gtk.HBox):
 
