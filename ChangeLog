@@ -1,3 +1,6 @@
+2006-01-16  Don Allingham  <don@gramps-project.org>
+	* src/gramps.glade: reposition add/delete buttons
+
 2006-01-16 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
        * src/ObjectSelector/_Factories.py: refactored object frame
        * src/ObjectSelector/_FamilyFrame.py: refactored object frame
