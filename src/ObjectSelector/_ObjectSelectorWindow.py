@@ -7,25 +7,17 @@ import gobject
 
 import _Factories
 from _Constants import ObjectTypes
-from _PersonSearchCriteriaWidget import PersonSearchCriteriaWidget
-from _PersonPreviewFrame import PersonPreviewFrame
 
 class _ObjectTypeWidgets(object):
 
     def __init__(self):
-        self.filter_frame = None
-        self.preview_frame = None
-        self.tree_frame = None
+        self.frame = None
 
     def show(self):
-        self.filter_frame.show_all()
-        self.preview_frame.show_all()
-        self.tree_frame.show_all()
+        self.frame.show_all()
 
     def hide(self):
-        self.filter_frame.hide_all()
-        self.preview_frame.hide_all()
-        self.tree_frame.hide_all()
+        self.frame.hide_all()
 
 OBJECT_LIST = [ObjectTypes.PERSON, ObjectTypes.FAMILY,
                ObjectTypes.SOURCE, ObjectTypes.EVENT,
@@ -117,53 +109,23 @@ class ObjectSelectorWindow(gtk.Window):
         
         # Create the widgets for each of the object types
 
-        self._object_frames = {}
-        
-        vbox = gtk.VBox()
-        vbox.show()
+        # Object frame box
 
-        vbox2 = gtk.VBox()
-        vbox2.show()
+        frame_box = gtk.HBox()
+        frame_box.show()
         
-        pane = gtk.HPaned()
-        pane.show()
+        self._object_frames = {}
         
         for object_type in object_list:
             self._object_frames[object_type] = _ObjectTypeWidgets()
             
-            # Filters
+            self._object_frames[object_type].frame = \
+                        _Factories.ObjectFrameFactory().get_frame(object_type,dbstate)
 
-            self._object_frames[object_type].filter_frame = _Factories.FilterFactory().get_frame(object_type,dbstate)
-
-            # Preview
-
-            self._object_frames[object_type].preview_frame = _Factories.PreviewFactory().get_frame(object_type,dbstate)
-
-            # Tree
-
-            self._object_frames[object_type].tree_frame = _Factories.TreeFactory().get_frame(object_type,dbstate)
-            
-
-            vbox.pack_start(self._object_frames[object_type].preview_frame,True,True)
-            vbox.pack_start(self._object_frames[object_type].filter_frame,True,True)
-            vbox2.pack_start(self._object_frames[object_type].tree_frame,True,True)
+            frame_box.pack_start(self._object_frames[object_type].frame,True,True)
 
         self._set_object_type(default_object_type)
         
-        pane.pack1(vbox2,True,False)
-        pane.pack2(vbox,False,True)
-
-        pane_align = gtk.Alignment()
-        pane_align.add(pane)
-        pane_align.set_padding(self.__class__.__default_border_width,
-                               self.__class__.__default_border_width,
-                               self.__class__.__default_border_width,
-                               self.__class__.__default_border_width)
-        pane_align.set(0.5,0.5,1,1)
-        pane_align.show()
-
-
-
         # Bottom buttons
         add_button = gtk.Button(stock=gtk.STOCK_ADD)
         add_button.set_sensitive(False)
@@ -184,7 +146,7 @@ class ObjectSelectorWindow(gtk.Window):
         
         box = gtk.VBox()
         box.pack_start(top_box,False,False)
-        box.pack_start(pane_align,True,True)
+        box.pack_start(frame_box,True,True)
         box.pack_start(bottom_button_bar,False,False)
         box.show()
         
@@ -231,7 +193,7 @@ if __name__ == "__main__":
         pass
 
     db = GrampsDb.gramps_db_factory(const.app_gramps)()
-    db.load("/home/gramps/lib/gramps.rjt/gramps2.grdb",
+    db.load("/home/rtaylor/devel/Personal/gramps/test/Untitled_1.grdb",
             cb, # callback
             "w")
     class D:
@@ -242,7 +204,7 @@ if __name__ == "__main__":
     
 
     w = ObjectSelectorWindow(dbstate=dbstate,
-                             default_object_type = ObjectTypes.FAMILY,
+                             default_object_type = ObjectTypes.PERSON,
                              object_list=[ObjectTypes.PERSON,ObjectTypes.FAMILY])
     w.show()
     w.connect("destroy", gtk.main_quit)

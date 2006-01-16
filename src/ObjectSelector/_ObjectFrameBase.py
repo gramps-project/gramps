@@ -1,0 +1,63 @@
+#for debug, remove later
+import sys
+sys.path.append("..")
+
+import gtk
+import gobject
+
+class ObjectFrameBase(gtk.Frame):
+    
+    __gproperties__ = {}
+
+    __gsignals__ = {}
+
+    __default_border_width = 5
+
+    def __init__(self,
+                 dbstate,
+                 filter_frame,
+                 preview_frame,
+                 tree_frame):
+        
+        gtk.Frame.__init__(self)
+
+        self._dbstate = dbstate
+        self._filter_frame = filter_frame
+        self._preview_frame = preview_frame
+        self._tree_frame = tree_frame
+        
+        # Create the widgets for each of the object types
+
+        vbox = gtk.VBox()
+        vbox.show()
+
+        vbox2 = gtk.VBox()
+        vbox2.show()
+        
+        pane = gtk.HPaned()
+        pane.show()
+        
+        vbox.pack_start(self._preview_frame,True,True)
+        vbox.pack_start(self._filter_frame,True,True)
+        vbox2.pack_start(self._tree_frame,True,True)
+
+        pane.pack1(vbox2,True,False)
+        pane.pack2(vbox,False,True)
+
+        pane_align = gtk.Alignment()
+        pane_align.add(pane)
+        pane_align.set_padding(self.__class__.__default_border_width,
+                               self.__class__.__default_border_width,
+                               self.__class__.__default_border_width,
+                               self.__class__.__default_border_width)
+        pane_align.set(0.5,0.5,1,1)
+        pane_align.show()
+        
+        self.add(pane_align)
+
+    
+if gtk.pygtk_version < (2,8,0):
+    gobject.type_register(PersonFrame)
+
+if __name__ == "__main__":
+    pass
