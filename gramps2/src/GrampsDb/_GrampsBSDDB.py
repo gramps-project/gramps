@@ -258,6 +258,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.env.set_cachesize(0,0x2000000)  # 2MB
         self.env.set_lk_max_locks(10000)     # 10K locks
         self.env.set_lk_max_objects(10000)   # 10K lock objects
+        self.env.set_flags(db.DB_TXN_NOSYNC,1)
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
         env_flags = db.DB_CREATE|db.DB_PRIVATE|\
                     db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
@@ -682,7 +683,9 @@ class GrampsBSDDB(GrampsDbBase):
             return
         
         if transaction.batch:
-            self.reference_map.put(str(key),data,txn=self.txn)
+            the_txn = self.env.txn_begin()
+            self.reference_map.put(str(key),data,txn=the_txn)
+            the_txn.commit()
         else:
             transaction.add(REFERENCE_KEY,str(key),None,data)
             transaction.reference_add.append((str(key),data))
@@ -834,10 +837,11 @@ class GrampsBSDDB(GrampsDbBase):
     def set_name_group_mapping(self,name,group):
         if not self.readonly:
             name = str(name)
-            if not group and self.name_group.has_key(name):
-                self.name_group.delete(name)
+            data = self.name_group.get(name,txn=self.txn)
+            if not group and data:
+                self.name_group.delete(name,txn=self.txn)
             else:
-                self.name_group[name] = group
+                self.name_group.put(name,group,txn=self.txn)
             self.emit('person-rebuild')
             
     def get_surname_list(self):
@@ -910,7 +914,9 @@ class GrampsBSDDB(GrampsDbBase):
         handle = str(obj.handle)
         
         if transaction.batch:
-            data_map.put(handle,obj.serialize(),txn=self.txn)
+            the_txn = self.env.txn_begin()
+            data_map.put(handle,obj.serialize(),txn=the_txn)
+            the_txn.commit()
             old_data = None
         else:
             old_data = data_map.get(handle,txn=self.txn)
@@ -1043,12 +1049,12 @@ class GrampsBSDDB(GrampsDbBase):
         transaction_commit function of the this database object.
         """
 
-        # Start BSD DB transaction -- DBTxn
-        self.txn = self.env.txn_begin()
-
         return BdbTransaction(msg,self.undodb)
 
     def transaction_commit(self,transaction,msg):
+
+        # Start BSD DB transaction -- DBTxn
+        self.txn = self.env.txn_begin()
 
         GrampsDbBase.transaction_commit(self,transaction,msg)
 
