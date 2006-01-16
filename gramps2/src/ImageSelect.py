@@ -800,7 +800,7 @@ class LocalMediaProperties:
         self.remove_itself_from_menu()
         gc.collect()
 
-    def close(self,obj):
+    def close(self,obj=None):
         self.gladeif.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
@@ -1091,7 +1091,7 @@ class GlobalMediaProperties:
         self.remove_itself_from_menu()
         gc.collect()
 
-    def close(self,obj):
+    def close(self,obj=None):
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.window.destroy()

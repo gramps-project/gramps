@@ -1,6 +1,8 @@
 2006-01-16  Alex Roitman  <shura@gramps-project.org>
 	* src/GenericFilter.py
 	(IsLessThanNthGenerationAncestorOfBookmarked): Typo.
+	* src/EditPlace.py, src/EditSource.py, src/ImageSelect.py: Provide
+	default value for the second argument on close().
 
 2006-01-15  Don Allingham  <don@gramps-project.org>
 	* src/RelLib.py: improve Event is_equal method

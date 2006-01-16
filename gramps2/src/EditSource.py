@@ -227,7 +227,7 @@ class EditSource:
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('adv-src')
 
-    def close(self,obj):
+    def close(self,obj=None):
         self.gallery.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
