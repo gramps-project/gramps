@@ -55,19 +55,20 @@ import Spell
 import GrampsDisplay
 import RelLib
 import ReportUtils
-import DisplayTabs
 import AutoComp
 import GrampsWidgets
 
 from DdTargets import DdTargets
 from WindowUtils import GladeIf
+from DisplayTabs import *
+from GrampsWidgets import *
 
 #-------------------------------------------------------------------------
 #
 # 
 #
 #-------------------------------------------------------------------------
-class AttrEmbedList(DisplayTabs.EmbeddedList):
+class AttrEmbedList(EmbeddedList):
 
     _HANDLE_COL = -1
 
@@ -78,9 +79,8 @@ class AttrEmbedList(DisplayTabs.EmbeddedList):
     
     def __init__(self,dbstate,uistate,track,data):
         self.data = data
-        DisplayTabs.EmbeddedList.__init__(self, dbstate, uistate, track,
-                                          _('Attributes'),
-                                          DisplayTabs.FamilyAttrModel)
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('Attributes'), FamilyAttrModel)
 
     def get_data(self):
         return self.data
@@ -88,7 +88,7 @@ class AttrEmbedList(DisplayTabs.EmbeddedList):
     def column_order(self):
         return ((1,0),(1,1))
 
-class ChildEmbedList(DisplayTabs.EmbeddedList):
+class ChildEmbedList(EmbeddedList):
 
     _HANDLE_COL = 8
 
@@ -105,9 +105,8 @@ class ChildEmbedList(DisplayTabs.EmbeddedList):
     
     def __init__(self,dbstate,uistate,track,family):
         self.family = family
-        DisplayTabs.EmbeddedList.__init__(self, dbstate, uistate, track,
-                                          _('Children'),
-                                          DisplayTabs.ChildModel)
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('Children'), ChildModel)
 
     def get_icon_name(self):
         return 'gramps-person'
@@ -166,6 +165,7 @@ class EditFamily(DisplayState.ManagedWindow):
         return id(self.family.handle)
 
     def build_interface(self):
+
         self.top = gtk.glade.XML(const.placesFile,"marriageEditor","gramps")
         self.gladeif = GladeIf(self.top)
         self.window = self.top.get_widget("marriageEditor")
@@ -217,14 +217,14 @@ class EditFamily(DisplayState.ManagedWindow):
 
         self.child_list = ChildEmbedList(self.dbstate,self.uistate,
                                          self.track, self.family)
-        self.event_list = DisplayTabs.EventEmbedList(self.dbstate,self.uistate,
-                                                     self.track,self.family)
+        self.event_list = EventEmbedList(self.dbstate,self.uistate,
+                                         self.track,self.family)
         self.attr_list = AttrEmbedList(self.dbstate, self.uistate, self.track,
                                        self.family.get_attribute_list())
-        self.note_tab = DisplayTabs.NoteTab(self.dbstate, self.uistate, self.track,
-                                            self.family.get_note_object())
-        self.gallery_tab = DisplayTabs.GalleryTab(self.dbstate, self.uistate, self.track,
-                                                  self.family.get_media_list())
+        self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
+                                self.family.get_note_object())
+        self.gallery_tab = GalleryTab(self.dbstate, self.uistate, self.track,
+                                      self.family.get_media_list())
 
         self.notebook.insert_page(self.child_list)
         self.notebook.set_tab_label(self.child_list,self.child_list.get_tab_widget())
