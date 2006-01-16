@@ -108,25 +108,25 @@ class PersonBoxWidget_cairo( gtk.DrawingArea):
             self.text = self.fh.format_person(self.person,self.maxlines)
             alive = Utils.probably_alive(self.person,self.fh.db)
             if alive and self.person.get_gender() == RelLib.Person.MALE:
-                self.bgcolor = (0.9,0.9,1)
-                self.bordercolor = (0.5,0.5,0.8)
+                self.bgcolor = (185/256.0, 207/256.0, 231/256.0)
+                self.bordercolor = (32/256.0, 74/256.0, 135/256.0)
             elif alive and self.person.get_gender() == RelLib.Person.FEMALE:
-                self.bgcolor = (1,0.9,0.9)
-                self.bordercolor = (0.8,0.5,0.5)
+                self.bgcolor = (255/256.0, 205/256.0, 241/256.0)
+                self.bordercolor = (135/256.0, 32/256.0, 106/256.0)
             elif alive:
-                self.bgcolor = (1,0.9,1)
-                self.bordercolor = (0.8,0.5,0.8)
+                self.bgcolor = (244/256.0, 220/256.0, 183/256.0)
+                self.bordercolor = (143/256.0, 89/256.0, 2/256.0)
             elif self.person.get_gender() == RelLib.Person.MALE:
-                self.bgcolor = (0.8,0.8,1)
+                self.bgcolor = (185/256.0, 207/256.0, 231/256.0)
                 self.bordercolor = (0,0,0)
             elif self.person.get_gender() == RelLib.Person.FEMALE:
-                self.bgcolor = (1,0.8,0.8)
+                self.bgcolor = (255/256.0, 205/256.0, 241/256.0)
                 self.bordercolor = (0,0,0)
             else:
-                self.bgcolor = (1,0.8,1)
+                self.bgcolor = (244/256.0, 220/256.0, 183/256.0)
                 self.bordercolor = (0,0,0)
         else:
-            self.bgcolor = (0.9,0.9,0.9)
+            self.bgcolor = (211/256.0, 215/256.0, 207/256.0)
             self.bordercolor = (0,0,0)
         self.image = image
         try:
@@ -138,8 +138,9 @@ class PersonBoxWidget_cairo( gtk.DrawingArea):
         self.set_size_request(120,25)
 
     def on_enter_cb(self,widget,event):
-        self.hightlight = True
-        self.queue_draw()
+        if self.person:
+            self.hightlight = True
+            self.queue_draw()
         
     def on_leave_cb(self,widget,event):
         self.hightlight = False
@@ -278,22 +279,22 @@ class PersonBoxWidget( gtk.DrawingArea):
         if self.person:
             alive = Utils.probably_alive(self.person,self.fh.db)
             if alive and self.person.get_gender() == RelLib.Person.MALE:
-                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#F5FFFF"))
-                self.border_gc.set_foreground( self.get_colormap().alloc_color("#009999"))
+                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#b9cfe7"))
+                self.border_gc.set_foreground( self.get_colormap().alloc_color("#204a87"))
             elif self.person.get_gender() == RelLib.Person.MALE:
-                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#F5FFFF"))
+                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#b9cfe7"))
                 self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
             elif alive and self.person.get_gender() == RelLib.Person.FEMALE:
-                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFF5FF"))
-                self.border_gc.set_foreground( self.get_colormap().alloc_color("#990099"))
+                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#ffcdf1"))
+                self.border_gc.set_foreground( self.get_colormap().alloc_color("#87206a"))
             elif  self.person.get_gender() == RelLib.Person.FEMALE:
-                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFF5FF"))
+                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#ffcdf1"))
                 self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
             elif alive:
-                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFFFF5"))
-                self.border_gc.set_foreground( self.get_colormap().alloc_color("#999900"))
+                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#f4dcb7"))
+                self.border_gc.set_foreground( self.get_colormap().alloc_color("#8f5902"))
             else:
-                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#FFFFF5"))
+                self.bg_gc.set_foreground( self.get_colormap().alloc_color("#f4dcb7"))
                 self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
         else:
             self.bg_gc.set_foreground( self.get_colormap().alloc_color("#eeeeee"))
@@ -431,25 +432,21 @@ class PedView(PageView.PersonNavView):
         self.tooltips.enable()
         
         self.notebook = gtk.Notebook()
-        self.notebook.connect("button-press-event", self.on_show_option_menu_cb)
+        self.notebook.connect("button-press-event", self.bg_button_press_cb)
         self.bootstrap_handler = self.notebook.connect("expose-event", self.init_parent_signals_cb)
         self.notebook.set_show_border(False)
         self.notebook.set_show_tabs(False)
             
         self.table_2 = gtk.Table(1,1,False)
-        self.table_2.connect("button-press-event", self.on_show_option_menu_cb)
         self.add_table_to_notebook( self.table_2)
 
         self.table_3 = gtk.Table(1,1,False)
-        self.table_3.connect("button-press-event", self.on_show_option_menu_cb)
         self.add_table_to_notebook( self.table_3)
 
         self.table_4 = gtk.Table(1,1,False)
-        self.table_4.connect("button-press-event", self.on_show_option_menu_cb)
         self.add_table_to_notebook( self.table_4)
 
         self.table_5 = gtk.Table(1,1,False)
-        self.table_5.connect("button-press-event", self.on_show_option_menu_cb)
         self.add_table_to_notebook( self.table_5)
 
         self.rebuild_trees(None)
@@ -908,8 +905,7 @@ class PedView(PageView.PersonNavView):
         if defperson:
             self.dbstate.change_active_person(defperson)
 
-    def edit_person_cb(self,obj):
-        person_handle = obj.get_data(_PERSON)
+    def edit_person_cb(self,obj,person_handle):
         person = self.db.get_person_from_handle(person_handle)
         if person:
             EditPerson.EditPerson(self.dbstate, self.uistate, [], person, self.person_edited_cb)
@@ -923,14 +919,18 @@ class PedView(PageView.PersonNavView):
         myMenu.popup(None,None,None,0,0)
         return(True);
 
+    def bg_button_press_cb(self,obj,event):
+        if event.button != 1:
+            self.on_show_option_menu_cb(obj)
+            return True
+        return False
+        
     def person_button_press_cb(self,obj,event,person_handle):
-        if event.button==1:
-            defperson = self.dbstate.active
-            if defperson and defperson.get_handle() != person_handle:
-                self.dbstate.change_active_handle(person_handle)
-            else:
-                self.build_full_nav_menu_cb(obj,event,person_handle)
-        else:
+        if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
+            person = self.db.get_person_from_handle(person_handle)
+            if person:
+                EditPerson.EditPerson(self.dbstate, self.uistate, [], person, self.person_edited_cb)
+        elif event.button!=1:
             self.build_full_nav_menu_cb(obj,event,person_handle)
         return True
 
