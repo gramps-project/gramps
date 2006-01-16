@@ -1,3 +1,8 @@
+2006-01-16  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager: Remov unused code.
+	* src/GrampsDb/_GrampsBSDDB.py: Do small txn during batch
+	transaction; set db.DB_TXN_NOSYNC flag on an environment.
+
 2006-01-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: Edit on doublecklick; only right click gives
 	optionsmenu; Colors similar to tango icons

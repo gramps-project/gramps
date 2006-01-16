@@ -772,9 +772,6 @@ class ViewManager:
 
         self.setup_bookmarks()
 
-        #self.state.db.set_undo_callback(self.undo_callback)
-        #self.state.db.set_redo_callback(self.redo_callback)
-
         if self.state.db.need_upgrade():
             if callback:
                 callback(_('Upgrading database...'))
