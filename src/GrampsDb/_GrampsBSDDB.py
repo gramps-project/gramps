@@ -253,12 +253,11 @@ class GrampsBSDDB(GrampsDbBase):
         self.readonly = mode == "r"
 
         callback(0.25)
-        
+
         self.env = db.DBEnv()
-        self.env.set_cachesize(0,0x2000000)  # 2MB
-        self.env.set_lk_max_locks(10000)     # 10K locks
-        self.env.set_lk_max_objects(10000)   # 10K lock objects
-        self.env.set_flags(db.DB_TXN_NOSYNC,1)
+        self.env.set_cachesize(0,0x2000000)        # 2MB
+        self.env.set_flags(db.DB_TXN_NOSYNC,1)     # async txn
+        self.env.set_flags(db.DB_LOG_AUTOREMOVE,1) # clean up unused logs
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
         env_flags = db.DB_CREATE|db.DB_PRIVATE|\
                     db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
@@ -269,6 +268,7 @@ class GrampsBSDDB(GrampsDbBase):
         if not os.path.isdir(env_name):
             os.mkdir(env_name)
         self.env.open(env_name,env_flags)
+        self.env.txn_checkpoint()
 
         self.full_name = os.path.abspath(name)
         self.brief_name = os.path.basename(name)
@@ -783,6 +783,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.pid_trans.close()
         self.reference_map_primary_map.close()
         self.reference_map_referenced_map.close()
+        self.env.txn_checkpoint()
         self.env.close()
 
         if not self.readonly:
@@ -1066,6 +1067,8 @@ class GrampsBSDDB(GrampsDbBase):
 
         # Commit BSD DB transaction -- DBTxn
         self.txn.commit()
+        if transaction.batch:
+            self.env.txn_checkpoint()
         self.txn = None
 
     def undo(self):
@@ -1476,6 +1479,8 @@ class BdbTransaction(Transaction):
         Transaction.__init__(self,msg,db)
         self.reference_del = []
         self.reference_add = []
+        if self.batch:
+            self.env.txn_checkpoint()
 
 
 _attribute_conversion_9 = {
