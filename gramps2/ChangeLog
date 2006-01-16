@@ -1,3 +1,7 @@
+2006-01-16  Alex Roitman  <shura@gramps-project.org>
+	* src/GenericFilter.py
+	(IsLessThanNthGenerationAncestorOfBookmarked): Typo.
+
 2006-01-15  Don Allingham  <don@gramps-project.org>
 	* src/RelLib.py: improve Event is_equal method
 
