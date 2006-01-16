@@ -3,7 +3,7 @@ import gobject
 
 from _IntEdit import IntEdit
 
-class PersonSearchCriteriaWidget(gtk.Frame):
+class PersonFilterFrame(gtk.Frame):
     
     __gproperties__ = {}
 
@@ -207,12 +207,12 @@ class PersonSearchCriteriaWidget(gtk.Frame):
 	
     
 if gtk.pygtk_version < (2,8,0):
-    gobject.type_register(PersonSearchCriteriaWidget)
+    gobject.type_register(PersonFilterFrame)
 
 if __name__ == "__main__":
 
     w = gtk.Window()
-    f = PersonSearchCriteriaWidget()
+    f = PersonFilterFrame()
     w.add(f)
     w.show_all()
 
