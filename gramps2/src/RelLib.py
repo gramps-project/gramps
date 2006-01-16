@@ -2248,7 +2248,8 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
             self.description != other.description or self.cause != other.cause or
             self.private != other.private or
             (not self.get_date_object().is_equal(other.get_date_object())) or
-            len(self.get_source_references()) != len(other.get_source_references())):
+            len(self.get_source_references()) != len(other.get_source_references()) or
+            len(self.media_list) != len(other.media_list)):
             return False
 
         index = 0

@@ -1,3 +1,6 @@
+2006-01-15  Don Allingham  <don@gramps-project.org>
+	* src/RelLib.py: improve Event is_equal method
+
 2006-01-11  Stefan Bjork  <skalman@acc.umu.se>
 	* src/plugins/DetAncestralReport.py: Calculate age for indiviuals.
 	* src/po/sv.po: Updates.

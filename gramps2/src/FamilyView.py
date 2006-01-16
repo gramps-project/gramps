@@ -67,7 +67,6 @@ from DdTargets import DdTargets
 _BORN = _('b.')
 _DIED = _('d.')
 
-
 column_names = [
     (_('#'),0) ,
     (_('ID'),1) ,
