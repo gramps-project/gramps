@@ -1,7 +1,11 @@
 2006-01-16  Alex Roitman  <shura@gramps-project.org>
 	* src/ViewManager: Remov unused code.
 	* src/GrampsDb/_GrampsBSDDB.py: Do small txn during batch
-	transaction; set db.DB_TXN_NOSYNC flag on an environment.
+	transaction; set db.DB_TXN_NOSYNC flag on an environment;
+	Remove lock limits; set db.DB_LOG_AUTOREMOVE flag; add checkpoints
+	on: open, batch transaction start and end; close.
+	* src/GrampsDb/_GrampsDbBase.py (change_database, no_database):
+	close existing db before changing to the new one.
 
 2006-01-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: Edit on doublecklick; only right click gives
