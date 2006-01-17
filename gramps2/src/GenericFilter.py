@@ -2279,14 +2279,19 @@ class GenericFilterList:
     loads the filters."""
     
     def __init__(self,file):
-        self.filter_list = []
+        self.filter_list = {}
         self.file = os.path.expanduser(file)
 
-    def get_filters(self):
-        return self.filter_list
+    def get_filters(self,namespace):
+        try:
+            return self.filter_list[namespace]
+        except KeyError:
+            return []
     
-    def add(self,filt):
-        self.filter_list.append(filt)
+    def add(self,namespace,filt):
+        if namespace not in self.filter_list:
+            self.filter_list[namespace] = []
+        self.filter_list[namespace].append(filt)
         
     def load(self):
        try:
@@ -2313,24 +2318,27 @@ class GenericFilterList:
         
         f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<filters>\n')
-        for i in self.filter_list:
-            f.write('  <filter name="%s"' % self.fix(i.get_name()))
-            if i.get_invert():
-                f.write(' invert="1"')
-            f.write(' function="%s"' % i.get_logical_op())
-            comment = i.get_comment()
-            if comment:
-                f.write(' comment="%s"' % self.fix(comment))
-            f.write('>\n')
-            for rule in i.get_rules():
-                rule_module_name = rule.__module__
-                rule_class_name = rule.__class__.__name__
-                rule_save_name = "%s.%s" % (rule_module_name,rule_class_name)
-                f.write('    <rule class="%s">\n' % rule_save_name)
-                for v in rule.values():
-                    f.write('      <arg value="%s"/>\n' % self.fix(v))
-                f.write('    </rule>\n')
-            f.write('  </filter>\n')
+        for namespace in self.filter_list:
+            f.write('<object "%s">\n' % "person")
+            for i in namespace:
+                f.write('  <filter name="%s"' % self.fix(i.get_name()))
+                if i.get_invert():
+                    f.write(' invert="1"')
+                f.write(' function="%s"' % i.get_logical_op())
+                comment = i.get_comment()
+                if comment:
+                    f.write(' comment="%s"' % self.fix(comment))
+                f.write('>\n')
+                for rule in i.get_rules():
+                    rule_module_name = rule.__module__
+                    rule_class_name = rule.__class__.__name__
+                    rule_save_name = "%s.%s" % (rule_module_name,rule_class_name)
+                    f.write('    <rule class="%s">\n' % rule_save_name)
+                    for v in rule.values():
+                        f.write('      <arg value="%s"/>\n' % self.fix(v))
+                    f.write('    </rule>\n')
+                f.write('  </filter>\n')
+            f.write('</object>\n')
         f.write('</filters>\n')
         f.close()
 
@@ -2349,12 +2357,18 @@ class FilterParser(handler.ContentHandler):
         self.r = None
         self.a = []
         self.cname = None
+        self.namespace = "person"
         
     def setDocumentLocator(self,locator):
         self.locator = locator
 
     def startElement(self,tag,attrs):
-        if tag == "filter":
+        if tag == "object":
+            if attrs.has_key('type'):
+                self.namespace = attrs['type']
+            else:
+                self.namespace = "generic"
+        elif tag == "filter":
             self.f = GenericFilter()
             self.f.set_name(attrs['name'])
             if attrs.has_key('function'):
@@ -2373,7 +2387,7 @@ class FilterParser(handler.ContentHandler):
                     self.f.set_invert(int(attrs['invert']))
                 except ValueError:
                     pass
-            self.gfilter_list.add(self.f)
+            self.gfilter_list.add(self.namespace,self.f)
         elif tag == "rule":
             save_name = attrs['class']
             if save_name in old_names_2_class.keys():
@@ -2529,7 +2543,7 @@ class GrampsFilterComboBox(gtk.ComboBox):
 
 class FilterStore(gtk.ListStore):
 
-    def __init__(self,local_filters=[], default=""):
+    def __init__(self,local_filters=[], namespace="generic",default=""):
         gtk.ListStore.__init__(self,str)
         self.list_map = []
         self.def_index = 0
@@ -2543,7 +2557,7 @@ class FilterStore(gtk.ListStore):
                 self.def_index = cnt
             cnt += 1
 
-        for filt in SystemFilters.get_filters() + CustomFilters.get_filters():
+        for filt in SystemFilters.get_filters(namespace) + CustomFilters.get_filters(namespace):
             name = _(filt.get_name())
             self.append(row=[name])
             self.list_map.append(filt)
@@ -2557,7 +2571,99 @@ class FilterStore(gtk.ListStore):
     def get_filter(self,index):
         return self.list_map[index]
     
-            
+class FilterWidget:
+    def __init__( self, uistate, on_apply, apply_done = None):
+        self.on_apply_callback = on_apply
+        self.apply_done_callback = apply_done
+        self.uistate = uistate
+        
+    def build( self):
+        self.filterbar = gtk.HBox()
+        self.filterbar.set_spacing(4)
+        self.filter_text = gtk.Entry()
+        self.filter_label = gtk.Label('Label:')
+        self.filter_list = gtk.ComboBox()
+        self.filter_invert = gtk.CheckButton('Invert')
+        self.filter_button = gtk.Button('Apply')
+        self.filter_button.connect( 'clicked',self.apply_filter_clicked)
+        self.filterbar.pack_start(self.filter_list,False)
+        self.filterbar.pack_start(self.filter_label,False)
+        self.filterbar.pack_start(self.filter_text,True)
+        self.filterbar.pack_start(self.filter_invert,False)
+        self.filterbar.pack_end(self.filter_button,False)
+
+        self.filter_text.set_sensitive(False)
+
+        return self.filterbar
+        
+    def setup_filter( self, default_filters, namespace="generic"):
+        cell = gtk.CellRendererText()
+        self.filter_list.clear()
+        self.filter_list.pack_start(cell,True)
+        self.filter_list.add_attribute(cell,'text',0)
+
+        filter_list = []
+        
+        for f in default_filters:
+            all = GenericFilter()
+            rule = f[0](f[1])
+            print rule
+            all.set_name( rule.name)
+            all.add_rule( rule)
+            filter_list.append(all)
+
+        self.filter_model = FilterStore(filter_list, namespace)
+        self.filter_list.set_model(self.filter_model)
+        self.filter_list.set_active(self.filter_model.default_index())
+        self.filter_list.connect('changed',self.on_filter_name_changed)
+        self.filter_text.set_sensitive(False)
+        self.DataFilter = filter_list[self.filter_model.default_index()]
+        
+    def apply_filter_clicked(self,ev=None):
+        print "apply_filter_clicked"
+        index = self.filter_list.get_active()
+        self.DataFilter = self.filter_model.get_filter(index)
+        if self.DataFilter.need_param:
+            qual = unicode(self.filter_text.get_text())
+            self.DataFilter.set_parameter(qual)
+        self.apply_filter()
+        if self.apply_done_callback:
+            self.apply_done_callback()
+
+    def on_filter_name_changed(self,obj):
+        print "on_filter_name_changed"
+        index = self.filter_list.get_active()
+        mime_filter = self.filter_model.get_filter(index)
+        qual = mime_filter.need_param
+        if qual:
+            self.filter_text.show()
+            self.filter_text.set_sensitive(True)
+            self.filter_label.show()
+            self.filter_label.set_text(mime_filter.get_rules()[0].labels[0])
+        else:
+            self.filter_text.hide()
+            self.filter_text.set_sensitive(False)
+            self.filter_label.hide()
+
+    def apply_filter(self,current_model=None):
+        self.uistate.status_text(_('Updating display...'))
+        self.on_apply_callback()
+        self.uistate.modify_statusbar()
+
+    def get_filter( self):
+        print "get_filter"
+        print self.DataFilter.flist[0]
+        return self.DataFilter
+        
+    def inverted( self):
+        return self.filter_invert.get_active()
+
+    def show( self):
+        self.filterbar.show()
+
+    def hide( self):
+        self.filterbar.hide()
+    
 def build_filter_menu(local_filters = [], default=""):
     menu = gtk.Menu()
 

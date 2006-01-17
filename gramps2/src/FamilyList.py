@@ -90,6 +90,9 @@ class FamilyListView(PageView.ListView):
                 <menuitem action="Remove"/>
               </placeholder>
             </menu>
+            <menu action="ViewMenu">
+              <menuitem action="Filter"/>
+            </menu>
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonEdit">
@@ -123,4 +126,3 @@ class FamilyListView(PageView.ListView):
             import EditFamily
             family = self.dbstate.db.get_family_from_handle(handle)
             EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
-

@@ -1,3 +1,14 @@
+2006-01-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/EventView.py (ui_definition): Add filter menu entry
+	* src/FamilyList.py (ui_definition): Add filter menu entry
+	* src/PlaceView.py (ui_definition): Add filter menu entry
+	* src/RepositoryView.py (ui_definition): Add filter menu entry
+	* src/SourceView.py (ui_definition): Add filter menu entry
+	* src/GenericFilter.py: Adding generic filter widget to be used in all
+	list views; Custom filter rules now get prefixed by primary object type
+	* src/PageView.py: Add filter control to all list views
+	* src/PersonView.py: Filter handling moved to GenericFiler
+
 2006-01-17 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
       * src/ObjectSelector/_FamilyFrame.py src/ObjectSelector/_FamilyPreviewFrame.py
         src/ObjectSelector/_FamilyTreeFrame.py src/ObjectSelector/_ObjectSelectorWindow.py

@@ -78,7 +78,7 @@ class PersonView(PageView.PersonNavView):
         self.handle_col = len(column_names)+2
         
     def change_page(self):
-        self.on_filter_name_changed(None)
+        self.generic_filter_widget.on_filter_name_changed(None)
         
     def define_actions(self):
         """
@@ -126,20 +126,9 @@ class PersonView(PageView.PersonNavView):
         self.vbox.set_border_width(4)
         self.vbox.set_spacing(4)
         
-        self.filterbar = gtk.HBox()
-        self.filterbar.set_spacing(4)
-        self.filter_text = gtk.Entry()
-        self.filter_label = gtk.Label('Label:')
-        self.filter_list = gtk.ComboBox()
-        self.filter_invert = gtk.CheckButton('Invert')
-        self.filter_button = gtk.Button('Apply')
-        self.filterbar.pack_start(self.filter_list,False)
-        self.filterbar.pack_start(self.filter_label,False)
-        self.filterbar.pack_start(self.filter_text,True)
-        self.filterbar.pack_start(self.filter_invert,False)
-        self.filterbar.pack_end(self.filter_button,False)
-
-        self.filter_text.set_sensitive(False)
+        self.generic_filter_widget = GenericFilter.FilterWidget( self.uistate, self.build_tree, self.goto_active_person)
+        filter_box = self.generic_filter_widget.build()
+        
 
         self.tree = gtk.TreeView()
         self.tree.set_rules_hint(True)
@@ -152,7 +141,7 @@ class PersonView(PageView.PersonNavView):
         scrollwindow.add(self.tree)
         scrollwindow.show_all()
 
-        self.vbox.pack_start(self.filterbar,False)
+        self.vbox.pack_start(filter_box,False)
         self.vbox.pack_start(scrollwindow,True)
 
         self.renderer = gtk.CellRendererText()
@@ -168,9 +157,9 @@ class PersonView(PageView.PersonNavView):
         self.selection.set_mode(gtk.SELECTION_MULTIPLE)
         self.selection.connect('changed',self.row_changed)
 
-        self.vbox.set_focus_chain([self.tree, self.filter_list,
-                                   self.filter_text, self.filter_invert,
-                                   self.filter_button])
+        #self.vbox.set_focus_chain([self.tree, self.filter_list,
+        #                           self.filter_text, self.filter_invert,
+        #                           self.filter_button])
 
         self.setup_filter()
         return self.vbox
@@ -239,7 +228,7 @@ class PersonView(PageView.PersonNavView):
         db.connect('person-update', self.person_updated)
         db.connect('person-delete', self.person_removed)
         db.connect('person-rebuild', self.build_tree)
-        self.apply_filter()
+        self.generic_filter_widget.apply_filter()
 
     def goto_active_person(self,obj=None):
         """
@@ -298,135 +287,32 @@ class PersonView(PageView.PersonNavView):
         """
         Builds the default filters and add them to the filter menu.
         """
-        
-        cell = gtk.CellRendererText()
-        self.filter_list.clear()
-        self.filter_list.pack_start(cell,True)
-        self.filter_list.add_attribute(cell,'text',0)
-
-        filter_list = []
-
-        self.DataFilter = None
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(GenericFilter.Everyone([]))
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(GenericFilter.Everyone([]))
-        filter_list.append(all)
-        
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("Females"))
-        all.add_rule(GenericFilter.IsFemale([]))
-        filter_list.append(all)
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("Males"))
-        all.add_rule(GenericFilter.IsMale([]))
-        filter_list.append(all)
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("People with unknown gender"))
-        all.add_rule(GenericFilter.HasUnknownGender([]))
-        filter_list.append(all)
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("Disconnected individuals"))
-        all.add_rule(GenericFilter.Disconnected([]))
-        filter_list.append(all)
-
-        all = GenericFilter.ParamFilter()
-        all.set_name(_("People with names containing..."))
-        all.add_rule(GenericFilter.SearchName(['']))
-        filter_list.append(all)
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("Adopted people"))
-        all.add_rule(GenericFilter.HaveAltFamilies([]))
-        filter_list.append(all)
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("People with images"))
-        all.add_rule(GenericFilter.HavePhotos([]))
-        filter_list.append(all)
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("People with incomplete names"))
-        all.add_rule(GenericFilter.IncompleteNames([]))
-        filter_list.append(all)
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("People with children"))
-        all.add_rule(GenericFilter.HaveChildren([]))
-        filter_list.append(all)
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("People with no marriage records"))
-        all.add_rule(GenericFilter.NeverMarried([]))
-        filter_list.append(all)
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("People with multiple marriage records"))
-        all.add_rule(GenericFilter.MultipleMarriages([]))
-        filter_list.append(all)
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("People without a known birth date"))
-        all.add_rule(GenericFilter.NoBirthdate([]))
-        filter_list.append(all)
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("People with incomplete events"))
-        all.add_rule(GenericFilter.PersonWithIncompleteEvent([]))
-        filter_list.append(all)
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("Families with incomplete events"))
-        all.add_rule(GenericFilter.FamilyWithIncompleteEvent([]))
-        filter_list.append(all)
-
-        all = GenericFilter.ParamFilter()
-        all.set_name(_("People probably alive"))
-        all.add_rule(GenericFilter.ProbablyAlive(['']))
-        filter_list.append(all)
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("People marked private"))
-        all.add_rule(GenericFilter.PeoplePrivate([]))
-        filter_list.append(all)
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("Witnesses"))
-        all.add_rule(GenericFilter.IsWitness(['','']))
-        filter_list.append(all)
-
-        all = GenericFilter.ParamFilter()
-        all.set_name(_("People with records containing..."))
-        all.add_rule(GenericFilter.HasTextMatchingSubstringOf(['',0,0]))
-        filter_list.append(all)
-
-        all = GenericFilter.ParamFilter()
-        all.set_name(_("People with records matching regular expression..."))
-        all.add_rule(GenericFilter.HasTextMatchingRegexpOf(['',0,1]))
-        filter_list.append(all)
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("People with notes"))
-        all.add_rule(GenericFilter.HasNote([]))
-        filter_list.append(all)
-
-        all = GenericFilter.ParamFilter()
-        all.set_name(_("People with notes containing..."))
-        all.add_rule(GenericFilter.HasNoteMatchingSubstringOf(['']))
-        filter_list.append(all)
-
-        self.filter_model = GenericFilter.FilterStore(filter_list)
-        self.filter_list.set_model(self.filter_model)
-        self.filter_list.set_active(self.filter_model.default_index())
-        self.filter_list.connect('changed',self.on_filter_name_changed)
-        self.filter_text.set_sensitive(False)
+        default_filters = [
+            [GenericFilter.Everyone, []],
+            [GenericFilter.IsFemale, []],
+            [GenericFilter.IsMale, []],
+            [GenericFilter.HasUnknownGender, []],
+            [GenericFilter.Disconnected, []],
+            [GenericFilter.SearchName, ['']],
+            [GenericFilter.HaveAltFamilies, []],
+            [GenericFilter.HavePhotos, []],
+            [GenericFilter.IncompleteNames, []],
+            [GenericFilter.HaveChildren, []],
+            [GenericFilter.NeverMarried, []],
+            [GenericFilter.MultipleMarriages, []],
+            [GenericFilter.NoBirthdate, []],
+            [GenericFilter.PersonWithIncompleteEvent, []],
+            [GenericFilter.FamilyWithIncompleteEvent, []],
+            [GenericFilter.ProbablyAlive, ['']],
+            [GenericFilter.PeoplePrivate, []],
+            [GenericFilter.IsWitness, ['','']],
+            [GenericFilter.HasTextMatchingSubstringOf, ['',0,0]],
+            [GenericFilter.HasTextMatchingRegexpOf, ['',0,1]],
+            [GenericFilter.HasNote, []],
+            [GenericFilter.HasNoteMatchingSubstringOf, ['']],
+            [GenericFilter.IsFemale, []],
+            ]
+        self.generic_filter_widget.setup_filter( default_filters, "person")        
 
     def build_tree(self):
         """
@@ -434,7 +320,7 @@ class PersonView(PageView.PersonNavView):
         rebuild of the data.
         """
         self.model = PeopleModel.PeopleModel(
-            self.dbstate.db, self.DataFilter, self.filter_invert.get_active())
+            self.dbstate.db, self.generic_filter_widget.get_filter(), self.generic_filter_widget.inverted())
         self.tree.set_model(self.model)
 
         if self.model.tooltip_column != None:
@@ -444,9 +330,9 @@ class PersonView(PageView.PersonNavView):
 
     def filter_toggle(self,obj):
         if obj.get_active():
-            self.filterbar.show()
+            self.generic_filter_widget.show()
         else:
-            self.filterbar.hide()
+            self.generic_filter_widget.hide()
 
     def add(self,obj):
         person = RelLib.Person()
@@ -592,15 +478,6 @@ class PersonView(PageView.PersonNavView):
             sel_data.set(DdTargets.PERSON_LINK_LIST.drag_type,8,
                          pickle.dumps(selected_ids))
 
-    def apply_filter_clicked(self):
-        index = self.filter_list.get_active()
-        self.DataFilter = self.filter_model.get_filter(index)
-        if self.DataFilter.need_param:
-            qual = unicode(self.filter_text.get_text())
-            self.DataFilter.set_parameter(qual)
-        self.apply_filter()
-        self.goto_active_person()
-
     def person_added(self,handle_list):
         for node in handle_list:
             person = self.dbstate.db.get_person_from_handle(node)
@@ -697,24 +574,6 @@ class PersonView(PageView.PersonNavView):
                 
         self.goto_active_person()
 
-    def on_filter_name_changed(self,obj):
-        index = self.filter_list.get_active()
-        mime_filter = self.filter_model.get_filter(index)
-        qual = mime_filter.need_param
-        if qual:
-            self.filter_text.show()
-            self.filter_text.set_sensitive(True)
-            self.filter_label.show()
-            self.filter_label.set_text(mime_filter.get_rules()[0].labels[0])
-        else:
-            self.filter_text.hide()
-            self.filter_text.set_sensitive(False)
-            self.filter_label.hide()
-
-    def apply_filter(self,current_model=None):
-        self.uistate.status_text(_('Updating display...'))
-        self.build_tree()
-        self.uistate.modify_statusbar()
 
     def get_selected_objects(self):
         (mode,paths) = self.selection.get_selected_rows()
