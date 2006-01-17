@@ -501,13 +501,11 @@ class GedcomParser:
             next_line = self.f.readline()
             self.current += 1.0
 
-            newval = self.current/self.maxlines
+            newval = int(100*self.current/self.maxlines)
             if newval != self.oldval:
-                self.progressbar.set_fraction(min(newval,1.0))
-                self.progressbar.set_text("%d%%" % int(newval*100))
+                self.progressbar.set_fraction(newval/100.0)
+                self.progressbar.set_text("%d%%" % newval)
                 self.oldval = newval
-                while gtk.events_pending():
-                    gtk.main_iteration()
             
             # EOF ?
             if next_line == "":
