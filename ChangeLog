@@ -1,3 +1,7 @@
+2006-01-17  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py (redo): Properly abort redo action
+	when no redo is available.
+
 2006-01-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EventView.py (ui_definition): Add filter menu entry
 	* src/FamilyList.py (ui_definition): Add filter menu entry
