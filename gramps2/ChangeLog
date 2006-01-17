@@ -1,3 +1,6 @@
+2006-01-17 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+        * src/GrampsDb/_GrampsBSDDB.py: make ref update optional
+	
 2006-01-17  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsDbBase.py (redo): Properly abort redo action
 	when no redo is available.

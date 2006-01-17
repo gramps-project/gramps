@@ -586,60 +586,69 @@ class GrampsBSDDB(GrampsDbBase):
 
         primary_cur.close()
         
-    def _update_reference_map(self, obj, transaction):
+    def _update_reference_map(self, obj, transaction, update=True):
+        """
+        If update = True old references are cleaned up and only new references are added
+        if update = False then it is assumed that the object is not already referenced.
+        """
+        
         # Add references to the reference_map for all primary object referenced
         # from the primary object 'obj' or any of its secondary objects.
-        
-        # FIXME: this needs to be properly integrated into the transaction
-        # framework so that the reference_map changes are part of the
-        # transaction
-        
-        handle = obj.get_handle()
 
-        # First thing to do is get hold of all rows in the reference_map
-        # table that hold a reference from this primary obj. This means finding
-        # all the rows that have this handle somewhere in the list of (class_name,handle)
-        # pairs.
-        # The primary_map secondary index allows us to look this up quickly.
+        if update:
+            # FIXME: this needs to be properly integrated into the transaction
+            # framework so that the reference_map changes are part of the
+            # transaction
 
-        existing_references = set()
-        
-        primary_cur = self.get_reference_map_primary_cursor()
+            handle = obj.get_handle()
 
-        try:
-            ret = primary_cur.set(handle)
-        except:
-            ret = None
-        
-        while (ret is not None):
-            (key,data) = ret
+            # First thing to do is get hold of all rows in the reference_map
+            # table that hold a reference from this primary obj. This means finding
+            # all the rows that have this handle somewhere in the list of (class_name,handle)
+            # pairs.
+            # The primary_map secondary index allows us to look this up quickly.
+
+            existing_references = set()
+
+            primary_cur = self.get_reference_map_primary_cursor()
+
+            try:
+                ret = primary_cur.set(handle)
+            except:
+                ret = None
+
+            while (ret is not None):
+                (key,data) = ret
+
+                # data values are of the form:
+                #   ((primary_object_class_name, primary_object_handle),
+                #    (referenced_object_class_name, referenced_object_handle))
+                # so we need the second tuple give us a reference that we can
+                # compare with what is returned from get_referenced_handles_recursively
+
+                # Looks like there is a bug in the set() and next_dup() methods
+                # because they do not run the data through cPickle.loads before
+                # returning it, so we have to here.
+                existing_reference = cPickle.loads(data)[1]
+                existing_references.add((KEY_TO_CLASS_MAP[existing_reference[0]],
+                                         existing_reference[1]))
+                ret = primary_cur.next_dup()
+
+            primary_cur.close()
+
+            # Once we have the list of rows that already have a reference we need to compare
+            # it with the list of objects that are still references from the primary object.
+
+            current_references = set(obj.get_referenced_handles_recursively())
+
+            no_longer_required_references = existing_references.difference(current_references)
+
+
+            new_references = current_references.difference(existing_references)
+
+        else:
+            new_references = set(obj.get_referenced_handles_recursively())
             
-            # data values are of the form:
-            #   ((primary_object_class_name, primary_object_handle),
-            #    (referenced_object_class_name, referenced_object_handle))
-            # so we need the second tuple give us a reference that we can
-            # compare with what is returned from get_referenced_handles_recursively
-
-            # Looks like there is a bug in the set() and next_dup() methods
-            # because they do not run the data through cPickle.loads before
-            # returning it, so we have to here.
-            existing_reference = cPickle.loads(data)[1]
-            existing_references.add((KEY_TO_CLASS_MAP[existing_reference[0]],
-                                     existing_reference[1]))
-            ret = primary_cur.next_dup()
-
-        primary_cur.close()
-        
-        # Once we have the list of rows that already have a reference we need to compare
-        # it with the list of objects that are still references from the primary object.
-
-        current_references = set(obj.get_referenced_handles_recursively())
-
-        no_longer_required_references = existing_references.difference(current_references)
-
-        
-        new_references = current_references.difference(existing_references)
-        
         # handle addition of new references
 
         if len(new_references) > 0:
@@ -647,21 +656,17 @@ class GrampsBSDDB(GrampsDbBase):
                 data = ((CLASS_TO_KEY_MAP[obj.__class__.__name__],handle),
                         (CLASS_TO_KEY_MAP[ref_class_name],ref_handle),)
                 self._add_reference((handle,ref_handle),data,transaction)
-                #self.reference_map.put(
-                #    str((handle,ref_handle),),
-                #    ((CLASS_TO_KEY_MAP[obj.__class__.__name__],handle),
-                #     (CLASS_TO_KEY_MAP[ref_class_name],ref_handle),),
-                #    txn=self.txn)
 
-        # handle deletion of old references
-        if len(no_longer_required_references) > 0:
-            for (ref_class_name,ref_handle) in no_longer_required_references:
-                try:
-                    self._remove_reference((handle,ref_handle),transaction)
-                    #self.reference_map.delete(str((handle,ref_handle),),
-                    #                          txn=self.txn)
-                except: # ignore missing old reference
-                    pass
+        if update:
+            # handle deletion of old references
+            if len(no_longer_required_references) > 0:
+                for (ref_class_name,ref_handle) in no_longer_required_references:
+                    try:
+                        self._remove_reference((handle,ref_handle),transaction)
+                        #self.reference_map.delete(str((handle,ref_handle),),
+                        #                          txn=self.txn)
+                    except: # ignore missing old reference
+                        pass
 
     def _remove_reference(self,key,transaction):
         """
