@@ -1753,7 +1753,7 @@ class Transaction:
     Defines a group of database commits that define a single logical
     operation.
     """
-    def __init__(self,msg,db):
+    def __init__(self,msg,db,batch=False):
         """
         Creates a new transaction. A Transaction instance should not be created
         directly, but by the GrampsDbBase class or classes derived from
@@ -1764,7 +1764,7 @@ class Transaction:
         self.db = db
         self.first = None
         self.last = None
-        self.batch = False
+        self.batch = batch
         self.length = 0
 
         self.person_add = []

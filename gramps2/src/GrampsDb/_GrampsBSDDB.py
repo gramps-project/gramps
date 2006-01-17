@@ -125,7 +125,6 @@ class GrampsBSDDB(GrampsDbBase):
     def open_table(self,name,dbname,no_txn=False):
         dbmap = dbshelve.DBShelf(self.env)
         dbmap.db.set_pagesize(16384)
-        dbmap.set_flags(db.DB_TXN_NOT_DURABLE)
         if self.readonly:
             dbmap.open(name, dbname, db.DB_HASH, db.DB_RDONLY)
         elif no_txn:
@@ -257,8 +256,7 @@ class GrampsBSDDB(GrampsDbBase):
 
         self.env = db.DBEnv()
         self.env.set_cachesize(0,0x2000000)         # 2MB
-        self.env.set_flags(db.DB_TXN_NOSYNC,1)      # async txn
-        #self.env.set_flags(db.DB_LOG_AUTOREMOVE,1)  # clean up unused logs
+        self.env.set_flags(db.DB_LOG_AUTOREMOVE,1)  # clean up unused logs
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
         env_flags = db.DB_CREATE|db.DB_PRIVATE|\
                     db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
@@ -291,69 +289,69 @@ class GrampsBSDDB(GrampsDbBase):
             table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
 
         self.surnames = db.DB(self.env)
-        self.surnames.set_flags(db.DB_DUP|db.DB_TXN_NOT_DURABLE)
+        self.surnames.set_flags(db.DB_DUP)
         self.surnames.open(self.full_name, "surnames",
                            db.DB_HASH, flags=table_flags)
 
         self.name_group = db.DB(self.env)
-        self.name_group.set_flags(db.DB_DUP|db.DB_TXN_NOT_DURABLE)
+        self.name_group.set_flags(db.DB_DUP)
         self.name_group.open(self.full_name, "name_group",
                              db.DB_HASH, flags=table_flags)
 
         self.id_trans = db.DB(self.env)
-        self.id_trans.set_flags(db.DB_DUP|db.DB_TXN_NOT_DURABLE)
+        self.id_trans.set_flags(db.DB_DUP)
         self.id_trans.open(self.full_name, "idtrans",
                            db.DB_HASH, flags=table_flags)
 
         self.fid_trans = db.DB(self.env)
-        self.fid_trans.set_flags(db.DB_DUP|db.DB_TXN_NOT_DURABLE)
+        self.fid_trans.set_flags(db.DB_DUP)
         self.fid_trans.open(self.full_name, "fidtrans",
                             db.DB_HASH, flags=table_flags)
 
         self.eid_trans = db.DB(self.env)
-        self.eid_trans.set_flags(db.DB_DUP|db.DB_TXN_NOT_DURABLE)
+        self.eid_trans.set_flags(db.DB_DUP)
         self.eid_trans.open(self.full_name, "eidtrans",
                             db.DB_HASH, flags=table_flags)
 
         self.pid_trans = db.DB(self.env)
-        self.pid_trans.set_flags(db.DB_DUP|db.DB_TXN_NOT_DURABLE)
+        self.pid_trans.set_flags(db.DB_DUP)
         self.pid_trans.open(self.full_name, "pidtrans",
                             db.DB_HASH, flags=table_flags)
 
         self.sid_trans = db.DB(self.env)
-        self.sid_trans.set_flags(db.DB_DUP|db.DB_TXN_NOT_DURABLE)
+        self.sid_trans.set_flags(db.DB_DUP)
         self.sid_trans.open(self.full_name, "sidtrans",
                             db.DB_HASH, flags=table_flags)
 
         self.oid_trans = db.DB(self.env)
-        self.oid_trans.set_flags(db.DB_DUP|db.DB_TXN_NOT_DURABLE)
+        self.oid_trans.set_flags(db.DB_DUP)
         self.oid_trans.open(self.full_name, "oidtrans",
                             db.DB_HASH, flags=table_flags)
 
         self.rid_trans = db.DB(self.env)
-        self.rid_trans.set_flags(db.DB_DUP|db.DB_TXN_NOT_DURABLE)
+        self.rid_trans.set_flags(db.DB_DUP)
         self.rid_trans.open(self.full_name, "ridtrans",
                             db.DB_HASH, flags=table_flags)
 
 
         self.eventnames = db.DB(self.env)
-        self.eventnames.set_flags(db.DB_DUP|db.DB_TXN_NOT_DURABLE)
+        self.eventnames.set_flags(db.DB_DUP)
         self.eventnames.open(self.full_name, "eventnames",
                              db.DB_HASH, flags=table_flags)
 
         self.repository_types = db.DB(self.env)
-        self.repository_types.set_flags(db.DB_DUP|db.DB_TXN_NOT_DURABLE)
+        self.repository_types.set_flags(db.DB_DUP)
         self.repository_types.open(self.full_name, "repostypes",
                                    db.DB_HASH, flags=table_flags)
 
         self.reference_map_primary_map = db.DB(self.env)
-        self.reference_map_primary_map.set_flags(db.DB_DUP|db.DB_TXN_NOT_DURABLE)
+        self.reference_map_primary_map.set_flags(db.DB_DUP)
         self.reference_map_primary_map.open(self.full_name,
                                             "reference_map_primary_map",
                                             db.DB_BTREE, flags=table_flags)
 
         self.reference_map_referenced_map = db.DB(self.env)
-        self.reference_map_referenced_map.set_flags(db.DB_DUP|db.DB_TXN_NOT_DURABLE)
+        self.reference_map_referenced_map.set_flags(db.DB_DUP)
         self.reference_map_referenced_map.open(self.full_name,
                                                "reference_map_referenced_map",
                                                db.DB_BTREE, flags=table_flags)
@@ -1049,14 +1047,18 @@ class GrampsBSDDB(GrampsDbBase):
         self.rmap_index += 1
         return index
 
-    def transaction_begin(self,msg=""):
+    def transaction_begin(self,msg="",batch=False):
         """
         Creates a new Transaction tied to the current UNDO database. The
         transaction has no effect until it is committed using the
         transaction_commit function of the this database object.
         """
 
-        return BdbTransaction(msg,self.undodb)
+        transaction = BdbTransaction(msg,self.undodb,batch)
+        if transaction.batch:
+            self.env.txn_checkpoint()
+            self.env.set_flags(db.DB_TXN_NOSYNC,1)      # async txn
+        return transaction
 
     def transaction_commit(self,transaction,msg):
 
@@ -1075,6 +1077,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.txn.commit()
         if transaction.batch:
             self.env.txn_checkpoint()
+            self.env.set_flags(db.DB_TXN_NOSYNC,0)      # sync txn
         self.txn = None
 
     def undo(self):
@@ -1481,13 +1484,10 @@ class GrampsBSDDB(GrampsDbBase):
 
 
 class BdbTransaction(Transaction):
-    def __init__(self,msg,db):
-        Transaction.__init__(self,msg,db)
+    def __init__(self,msg,db,batch=False):
+        Transaction.__init__(self,msg,db,batch)
         self.reference_del = []
         self.reference_add = []
-        if self.batch:
-            self.env.txn_checkpoint()
-
 
 _attribute_conversion_9 = {
     "Caste"                  : (Attribute.CASTE,""),
