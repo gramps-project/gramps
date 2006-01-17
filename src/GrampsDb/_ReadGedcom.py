@@ -566,8 +566,8 @@ class GedcomParser:
 
     def parse_gedcom_file(self,use_trans=True):
 
-        self.trans = self.db.transaction_begin()
-        self.trans.set_batch(not use_trans)
+        self.trans = self.db.transaction_begin("",not use_trans)
+        #self.trans.set_batch(not use_trans)
         self.db.disable_signals()
         t = time.time()
         self.index = 0
@@ -715,10 +715,10 @@ class GedcomParser:
                         if child:
                             child.add_address(self.addr)
                             self.db.commit_person(child, self.trans)
-                if len(self.family.get_source_references()) == 0:
-                    sref = RelLib.SourceRef()
-                    sref.set_base_handle(self.def_src.get_handle())
-                    self.family.add_source_reference(sref)
+                #if len(self.family.get_source_references()) == 0:
+                #    sref = RelLib.SourceRef()
+                #    sref.set_base_handle(self.def_src.get_handle())
+                #    self.family.add_source_reference(sref)
                 self.db.commit_family(self.family, self.trans)
                 del self.family
             elif matches[2] == "INDI":
@@ -730,10 +730,10 @@ class GedcomParser:
                 self.person = self.find_or_create_person(self.map_gid(gid))
                 self.added[self.person.get_handle()] = 1
                 self.parse_individual()
-                if len(self.person.get_source_references()) == 0:
-                    sref = RelLib.SourceRef()
-                    sref.set_base_handle(self.def_src.get_handle())
-                    self.person.add_source_reference(sref)
+                #if len(self.person.get_source_references()) == 0:
+                #    sref = RelLib.SourceRef()
+                #    sref.set_base_handle(self.def_src.get_handle())
+                #    self.person.add_source_reference(sref)
                 self.db.commit_person(self.person, self.trans)
                 del self.person
             elif matches[2] in ["SUBM","SUBN","REPO"]:
