@@ -29,10 +29,6 @@ class FamilyPreviewFrame(gtk.Frame):
         image_box.pack_start(self._image_l)
         image_box.pack_start(self._image_r)
                              
-        # test image
-        image_frame = gtk.Frame()
-        image_frame.add(image_box)
-        
         # Text
         label = gtk.Label()
         label.set_use_markup(True)
@@ -45,7 +41,7 @@ class FamilyPreviewFrame(gtk.Frame):
         
         # box
         box = gtk.VBox()
-        box.pack_start(image_frame)
+        box.pack_start(image_box,False,False)
         box.pack_start(label)
         
 

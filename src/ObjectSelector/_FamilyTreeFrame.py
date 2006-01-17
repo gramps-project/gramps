@@ -65,7 +65,10 @@ class FamilyTreeFrame(gtk.Frame):
 
     def get_selection(self):
         return self._selection
-        
+
+    def get_tree(self):
+        return self._list
+    
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(FamilyTreeFrame)
 

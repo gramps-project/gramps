@@ -26,8 +26,6 @@ class PersonPreviewFrame(gtk.Frame):
 
         # test image
         self._image.set_from_file("../person.svg")
-        image_frame = gtk.Frame()
-        image_frame.add(self._image)
         
         # Text
         label = gtk.Label()
@@ -41,7 +39,7 @@ class PersonPreviewFrame(gtk.Frame):
         
         # box
         box = gtk.VBox()
-        box.pack_start(image_frame)
+        box.pack_start(self._image,False,False)
         box.pack_start(label)
         
 
