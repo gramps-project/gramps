@@ -49,10 +49,7 @@ class FamilyTreeFrame(gtk.Frame):
 
         scrollwindow.add(self._list)
 
-        self._inactive = False
-
         self._selection = self._list.get_selection()
-        #self._selection.connect('changed',self._row_changed)
 
         self.add(scrollwindow)
 

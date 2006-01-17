@@ -57,6 +57,17 @@ class ObjectFrameBase(gtk.Frame):
         
         self.add(pane_align)
 
+        
+    def set_preview(self,treeselection,id_field):
+        (model, iter) = treeselection.get_selected()
+        if iter and model.get_value(iter,id_field):
+            self._preview_frame.set_sensitive(True)
+            self._preview_frame.set_object_from_id(model.get_value(iter,id_field))
+        else:
+            self._preview_frame.set_sensitive(False)
+            self._preview_frame.clear_object()
+
+
     def get_selection(self):
         return self._tree_frame.get_selection()
     

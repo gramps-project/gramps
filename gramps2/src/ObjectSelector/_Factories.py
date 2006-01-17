@@ -1,7 +1,6 @@
 from _Constants import ObjectTypes
 
 from _PersonFrame import PersonFrame
-
 from _FamilyFrame import FamilyFrame
 
 

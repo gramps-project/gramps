@@ -7,12 +7,14 @@ import gobject
 
 import _Factories
 from _Constants import ObjectTypes
+from _ObjectSelectorResult import ObjectSelectorResult
 
 class _ObjectTypeWidgets(object):
 
     def __init__(self):
         self.frame = None
         self.sel_label = None
+        self.selected_id = None
 
     def show(self):
         self.frame.show_all()
@@ -22,16 +24,22 @@ class _ObjectTypeWidgets(object):
         self.frame.hide_all()
         self.sel_label.hide_all()
 
+    def set_selected_id(self,id):
+        self.selected_id = id
+
 OBJECT_LIST = [ObjectTypes.PERSON, ObjectTypes.FAMILY,
                ObjectTypes.SOURCE, ObjectTypes.EVENT,
                ObjectTypes.MEDIA,  ObjectTypes.PLACE,
-               ObjectTypes.REPOSITORY, ObjectTypes.REFERENCE]
+               ObjectTypes.REPOSITORY]
 
 class ObjectSelectorWindow(gtk.Window):
     
     __gproperties__ = {}
 
     __gsignals__ = {
+        'add-object'  : (gobject.SIGNAL_RUN_LAST,
+                         gobject.TYPE_NONE,
+                         (gobject.TYPE_PYOBJECT,)),
         }
 
     __default_border_width = 5
@@ -47,6 +55,7 @@ class ObjectSelectorWindow(gtk.Window):
 
         self._dbstate = dbstate
         self._object_list = object_list
+        self._current_object_type = None
         
         self.set_title("Add Person")
         
@@ -146,15 +155,25 @@ class ObjectSelectorWindow(gtk.Window):
                 lambda widget,text,handle,label: label.set_text(text),
                 self._object_frames[object_type].sel_label)
 
+            self._object_frames[object_type].frame.connect(
+                'selection-changed',
+                lambda widget,text,handle,current_object: current_object.set_selected_id(handle),
+                self._object_frames[object_type])
+
+            self._object_frames[object_type].frame.connect(
+                'selection-changed',
+                self.on_selection_changed)
+            
             
             frame_box.pack_start(self._object_frames[object_type].frame,True,True)
 
-        self._set_object_type(default_object_type)
         
         # Bottom buttons
-        add_button = gtk.Button(stock=gtk.STOCK_ADD)
-        add_button.set_sensitive(False)
-        add_button.show()
+        self._add_button = gtk.Button(stock=gtk.STOCK_ADD)
+        self._add_button.set_sensitive(False)
+        self._add_button.show()
+
+        self._add_button.connect("clicked", self.on_add)
         
         cancel_button = gtk.Button(stock=gtk.STOCK_CANCEL)
         cancel_button.show()
@@ -166,7 +185,7 @@ class ObjectSelectorWindow(gtk.Window):
         bottom_button_bar.set_spacing(self.__class__.__default_border_width/2)
         bottom_button_bar.set_border_width(self.__class__.__default_border_width)
         bottom_button_bar.add(cancel_button)
-        bottom_button_bar.add(add_button)
+        bottom_button_bar.add(self._add_button)
         bottom_button_bar.show()
         
         box = gtk.VBox()
@@ -186,15 +205,20 @@ class ObjectSelectorWindow(gtk.Window):
         
 	self.add(align)
 
+        self._set_object_type(default_object_type)
+
 
     def _set_object_type(self,selected_object_type):
-        # enable default
+        # enable selected object type
         self._object_frames[selected_object_type].show()
 
         # disable all the others
         [ self._object_frames[object_type].hide() for object_type in self._object_list
           if object_type != selected_object_type]
 
+        # Set the object selector list to the selected object type
+        # this is required because we may be asked to set the object type
+        # without the use selecting it explicitly from the list.
         store = self._tool_list
         it = store.get_iter_first()
         while it:
@@ -204,7 +228,32 @@ class ObjectSelectorWindow(gtk.Window):
 
         if it != None:
             self._tool_combo.set_active_iter(it)
-    
+
+        self._current_object_type = selected_object_type
+
+        # Set the add button sensitivity
+        if self._object_frames[selected_object_type].selected_id:
+            self._add_button.set_sensitive(True)
+        else:
+            self._add_button.set_sensitive(False)
+            
+
+    def get_result(self):
+        result = ObjectSelectorResult()
+        result.set_object_type(self._current_object_type)
+        result.set_gramps_id(self._object_frames[self._current_object_type].selected_id)
+        return result
+
+    def on_add(self,button):
+        self.emit('add-object',self.get_result())
+        
+    def on_selection_changed(self,widget,text,handle):
+        if handle:
+            self._add_button.set_sensitive(True)
+        else:
+            self._add_button.set_sensitive(False)
+        
+        
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(PersonSearchCriteriaWidget)
 
@@ -214,11 +263,24 @@ if __name__ == "__main__":
     import GrampsDb
     import const
 
+    import logging
+    import sys,os.path
+    
+    form = logging.Formatter(fmt="%(relativeCreated)d: %(levelname)s: %(filename)s: line %(lineno)d: %(message)s")
+    stderrh = logging.StreamHandler(sys.stderr)
+    stderrh.setFormatter(form)
+    stderrh.setLevel(logging.DEBUG)
+
+    # everything.
+    l = logging.getLogger()
+    l.setLevel(logging.DEBUG)
+    l.addHandler(stderrh)
+
     def cb(d):
         pass
 
     db = GrampsDb.gramps_db_factory(const.app_gramps)()
-    db.load("/home/rtaylor/devel/Personal/gramps/test/Untitled_2.grdb",
+    db.load(os.path.realpath(sys.argv[1]),
             cb, # callback
             "w")
     class D:
@@ -226,7 +288,7 @@ if __name__ == "__main__":
 
     dbstate = D()
     dbstate.db = db
-    
+
 
     w = ObjectSelectorWindow(dbstate=dbstate,
                              default_object_type = ObjectTypes.FAMILY,
@@ -235,4 +297,9 @@ if __name__ == "__main__":
     w.show()
     w.connect("destroy", gtk.main_quit)
 
+    def add(w,results):
+        print str(results)
+
+    w.connect('add-object',add)
+    
     gtk.main()
