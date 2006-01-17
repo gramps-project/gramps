@@ -14,9 +14,12 @@ class PersonFrame(ObjectFrameBase):
     
     __gproperties__ = {}
 
-    __gsignals__ = {}
-
-    __default_border_width = 5
+    __gsignals__ = {
+        'selection-changed'  : (gobject.SIGNAL_RUN_LAST,
+                                gobject.TYPE_NONE,
+                                (gobject.TYPE_STRING,
+                                 gobject.TYPE_STRING)),
+        }
 
     def __init__(self,
                  dbstate):
@@ -27,6 +30,15 @@ class PersonFrame(ObjectFrameBase):
                                  preview_frame = PersonPreviewFrame(dbstate),
                                  tree_frame = PersonTreeFrame(dbstate))
 
+        def handle_selection(treeselection):
+            (model, iter) = treeselection.get_selected()
+            self.emit('selection-changed', "%s (%s)" % (                
+                str(model.get_value(iter,0)),
+                str(model.get_value(iter,1))),
+                      model.get_value(iter,0))
+            
+
+        self._tree_frame.get_selection().connect('changed',handle_selection)
 
     
 if gtk.pygtk_version < (2,8,0):

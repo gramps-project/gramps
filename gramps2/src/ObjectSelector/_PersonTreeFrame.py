@@ -1,5 +1,22 @@
+from gettext import gettext as _
+
 import gtk
 import gobject
+
+from PeopleModel import PeopleModel
+
+column_names = [
+    _('Name'),
+    _('ID') ,
+    _('Gender'),
+    _('Birth Date'),
+    _('Birth Place'),
+    _('Death Date'),
+    _('Death Place'),
+    _('Spouse'),
+    _('Last Change'),
+    _('Cause of Death'),
+    ]
 
 
 class PersonTreeFrame(gtk.Frame):
@@ -15,29 +32,48 @@ class PersonTreeFrame(gtk.Frame):
     def __init__(self,dbstate):
 	gtk.Frame.__init__(self)
 
-        # dummy data for testing
-        self.treestore = gtk.TreeStore(str)
+        self._dbstate = dbstate
+        self._selection = None
+        self._model = None
 
-        # we'll add some data now - 4 rows with 3 child rows each
-        for parent in range(4):
-            piter = self.treestore.append(None, ['parent %i' % parent])
-            for child in range(3):
-                self.treestore.append(piter, ['child %i of parent %i' %
-                                              (child, parent)])
-   
-        self.person_tree = gtk.TreeView(self.treestore)
-        self.tvcolumn = gtk.TreeViewColumn('Column 0')
-        self.person_tree.append_column(self.tvcolumn)
-        self.cell = gtk.CellRendererText()
-        self.tvcolumn.pack_start(self.cell, True)
-        self.tvcolumn.add_attribute(self.cell, 'text', 0)
-        self.person_tree.set_search_column(0)
-        self.tvcolumn.set_sort_column_id(0)
-        self.person_tree.set_reorderable(True)
+        self._tree = gtk.TreeView()
+        self._tree.set_rules_hint(True)
+        self._tree.set_headers_visible(True)
+        #self._tree.connect('key-press-event',self.key_press)
+
+        renderer = gtk.CellRendererText()
+
+        column = gtk.TreeViewColumn(_('Name'), renderer,text=0)
+        column.set_resizable(True)
+        column.set_min_width(225)
+        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        self._tree.append_column(column)
+       
+        for pair in self._dbstate.db.get_person_column_order():
+            if not pair[0]:
+                continue
+            name = column_names[pair[1]]
+            column = gtk.TreeViewColumn(name, renderer, markup=pair[1])
+            column.set_resizable(True)
+            column.set_min_width(60)
+            column.set_sizing(gtk.TREE_VIEW_COLUMN_GROW_ONLY)
+            self._tree.append_column(column)
         
-        self.add(self.person_tree)
+        self.add(self._tree)
         self.set_shadow_type(gtk.SHADOW_IN)
 
+        self.set_model(self._dbstate.db)
+
+    def set_model(self,db):
+
+        self._model = PeopleModel(db)
+
+        self._tree.set_model(self._model)
+
+        self._selection = self._tree.get_selection()
+
+    def get_selection(self):
+        return self._selection
     
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(PersonTreeFrame)

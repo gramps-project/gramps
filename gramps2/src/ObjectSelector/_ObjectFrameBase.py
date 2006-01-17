@@ -25,6 +25,8 @@ class ObjectFrameBase(gtk.Frame):
         self._filter_frame = filter_frame
         self._preview_frame = preview_frame
         self._tree_frame = tree_frame
+
+        self._preview_frame.set_sensitive(False)
         
         # Create the widgets for each of the object types
 
@@ -55,6 +57,9 @@ class ObjectFrameBase(gtk.Frame):
         
         self.add(pane_align)
 
+    def get_selection(self):
+        return self._tree_frame.get_selection()
+    
     
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(PersonFrame)

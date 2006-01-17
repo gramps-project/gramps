@@ -12,12 +12,15 @@ class _ObjectTypeWidgets(object):
 
     def __init__(self):
         self.frame = None
+        self.sel_label = None
 
     def show(self):
         self.frame.show_all()
+        self.sel_label.show_all()
 
     def hide(self):
         self.frame.hide_all()
+        self.sel_label.hide_all()
 
 OBJECT_LIST = [ObjectTypes.PERSON, ObjectTypes.FAMILY,
                ObjectTypes.SOURCE, ObjectTypes.EVENT,
@@ -51,12 +54,26 @@ class ObjectSelectorWindow(gtk.Window):
         label = gtk.Label("Selected:")
         label.set_alignment(xalign=1,yalign=0.5)
         label.show()
-        
-        sel_label = gtk.Label("No Selected Object")
+
         sel_frame = gtk.Frame()
         sel_frame.set_shadow_type(gtk.SHADOW_IN)
         sel_frame.set_border_width(self.__class__.__default_border_width*2)
-        sel_frame.add(sel_label)
+
+        sel_label_box = gtk.HBox()
+        sel_label_box.show()
+        
+        self._object_frames = {}
+        
+        for object_type in object_list:
+            self._object_frames[object_type] = _ObjectTypeWidgets()
+
+            sel_label = gtk.Label("No Selected Object")
+            sel_label.set_alignment(xalign=0,yalign=0.5)
+            sel_label_box.pack_start(sel_label)
+
+            self._object_frames[object_type].sel_label = sel_label
+
+        sel_frame.add(sel_label_box)
         sel_frame.show()
         
         label_box = gtk.HBox()
@@ -74,10 +91,13 @@ class ObjectSelectorWindow(gtk.Window):
         flist_pixbuf = gtk.gdk.pixbuf_new_from_file("../flist.svg")
 
         self._tool_list = gtk.ListStore(gtk.gdk.Pixbuf, str,int)
-        self._tool_list.append([person_pixbuf,'People',ObjectTypes.PERSON])
-        self._tool_list.append([flist_pixbuf,'Families',ObjectTypes.FAMILY])
-        self._tool_list.append([person_pixbuf,'Events',ObjectTypes.EVENT])
 
+        d={ObjectTypes.PERSON: [person_pixbuf,'People',ObjectTypes.PERSON],
+           ObjectTypes.FAMILY: [flist_pixbuf,'Families',ObjectTypes.FAMILY],
+           ObjectTypes.EVENT: [person_pixbuf,'Events',ObjectTypes.EVENT]}
+        
+        for object_type in self._object_list:        
+            self._tool_list.append(d[object_type])
         
         self._tool_combo = gtk.ComboBox(self._tool_list)
         
@@ -113,15 +133,20 @@ class ObjectSelectorWindow(gtk.Window):
 
         frame_box = gtk.HBox()
         frame_box.show()
-        
-        self._object_frames = {}
-        
+
+
         for object_type in object_list:
-            self._object_frames[object_type] = _ObjectTypeWidgets()
             
             self._object_frames[object_type].frame = \
                         _Factories.ObjectFrameFactory().get_frame(object_type,dbstate)
 
+            # connect signals                
+            self._object_frames[object_type].frame.connect(
+                'selection-changed',
+                lambda widget,text,handle,label: label.set_text(text),
+                self._object_frames[object_type].sel_label)
+
+            
             frame_box.pack_start(self._object_frames[object_type].frame,True,True)
 
         self._set_object_type(default_object_type)
@@ -193,7 +218,7 @@ if __name__ == "__main__":
         pass
 
     db = GrampsDb.gramps_db_factory(const.app_gramps)()
-    db.load("/home/rtaylor/devel/Personal/gramps/test/Untitled_1.grdb",
+    db.load("/home/rtaylor/devel/Personal/gramps/test/Untitled_2.grdb",
             cb, # callback
             "w")
     class D:
@@ -204,8 +229,9 @@ if __name__ == "__main__":
     
 
     w = ObjectSelectorWindow(dbstate=dbstate,
-                             default_object_type = ObjectTypes.PERSON,
-                             object_list=[ObjectTypes.PERSON,ObjectTypes.FAMILY])
+                             default_object_type = ObjectTypes.FAMILY,
+                             object_list=[ObjectTypes.FAMILY,
+                                          ObjectTypes.PERSON])
     w.show()
     w.connect("destroy", gtk.main_quit)
 
