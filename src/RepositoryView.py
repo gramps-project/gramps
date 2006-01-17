@@ -93,6 +93,9 @@ class RepositoryView(PageView.ListView):
     def ui_definition(self):
         return '''<ui>
           <menubar name="MenuBar">
+            <menu action="ViewMenu">
+              <menuitem action="Filter"/>
+            </menu>
             <menu action="EditMenu">
               <placeholder name="CommonEdit">
                 <menuitem action="Add"/>

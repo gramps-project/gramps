@@ -22,6 +22,7 @@
 
 import gtk
 import TreeTips
+import GenericFilter
 
 NAVIGATION_NONE   = -1
 NAVIGATION_PERSON = 0
@@ -316,6 +317,13 @@ class ListView(PageView):
         contains the interface. This containter will be inserted into
         a gtk.Notebook page.
         """
+        self.vbox = gtk.VBox()
+        self.vbox.set_border_width(0)
+        self.vbox.set_spacing(4)
+        
+        self.generic_filter_widget = GenericFilter.FilterWidget( self.uistate, self.build_tree)
+        filter_box = self.generic_filter_widget.build()
+
         self.list = gtk.TreeView()
         self.list.set_rules_hint(True)
         self.list.set_headers_visible(True)
@@ -328,6 +336,9 @@ class ListView(PageView):
         scrollwindow.set_shadow_type(gtk.SHADOW_ETCHED_IN)
         scrollwindow.add(self.list)
 
+        self.vbox.pack_start(filter_box,False)
+        self.vbox.pack_start(scrollwindow,True)
+
         self.renderer = gtk.CellRendererText()
         self.inactive = False
 
@@ -336,8 +347,22 @@ class ListView(PageView):
         self.selection = self.list.get_selection()
         #self.selection.connect('changed',self.row_changed)
 
-        return scrollwindow
+        self.setup_filter()
+
+        return self.vbox
     
+    def setup_filter(self):
+        """
+        Builds the default filters and add them to the filter menu.
+        """
+        default_filters = [
+            [GenericFilter.Everyone, []],
+            [GenericFilter.HasTextMatchingSubstringOf, ['',0,0]],
+            [GenericFilter.HasTextMatchingRegexpOf, ['',0,1]],
+            [GenericFilter.PeoplePrivate, []],
+            ]
+        self.generic_filter_widget.setup_filter( default_filters)        
+
     def column_clicked(self,obj,data):
         if self.sort_col != data:
             order = gtk.SORT_ASCENDING
@@ -419,6 +444,8 @@ class ListView(PageView):
         self.add_action('Add',   gtk.STOCK_ADD,   "_Add",   callback=self.add)
         self.add_action('Edit',  gtk.STOCK_EDIT,  "_Edit",  callback=self.edit)
         self.add_action('Remove',gtk.STOCK_REMOVE,"_Remove",callback=self.remove)
+        self.add_toggle_action('Filter', None, '_Filter',
+                               callback=self.filter_toggle)
 
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -440,3 +467,9 @@ class ListView(PageView):
 
     def double_click(self,obj,event):
         return False
+
+    def filter_toggle(self,obj):
+        if obj.get_active():
+            self.generic_filter_widget.show()
+        else:
+            self.generic_filter_widget.hide()
