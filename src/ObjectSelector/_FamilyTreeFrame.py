@@ -16,6 +16,9 @@ class FamilyTreeFrame(gtk.Frame):
     def __init__(self,dbstate):
 	gtk.Frame.__init__(self)        
 
+        self._selection = None
+        self._model = None
+        
         self._dbstate = dbstate
         
         self._list = gtk.TreeView()
@@ -60,6 +63,11 @@ class FamilyTreeFrame(gtk.Frame):
         self._model = FamilyModel(db)
 
         self._list.set_model(self._model)
+
+        self._selection = self._list.get_selection()
+
+    def get_selection(self):
+        return self._selection
         
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(FamilyTreeFrame)
