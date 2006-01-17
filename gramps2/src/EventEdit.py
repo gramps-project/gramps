@@ -134,7 +134,7 @@ class EventEditor(DisplayState.ManagedWindow):
             self.srcreflist = []
             self.date = Date.Date(None)
 
-        self.top = gtk.glade.XML(const.dialogFile, "event_edit","gramps")
+        self.top = gtk.glade.XML(const.gladeFile, "event_edit","gramps")
         self.gladeif = GladeIf(self.top)
 
         self.window = self.top.get_widget("event_edit")
@@ -426,7 +426,7 @@ class EventRefEditor(DisplayState.ManagedWindow):
 
         self.title = _('Event Reference Editor')
 
-        self.top = gtk.glade.XML(const.dialogFile, "event_eref_edit","gramps")
+        self.top = gtk.glade.XML(const.gladeFile, "event_eref_edit","gramps")
         self.window = self.top.get_widget('event_eref_edit')
         self.ref_note_field = self.top.get_widget('eer_ref_note')
         self.role_combo = self.top.get_widget('eer_role_combo')

@@ -144,7 +144,7 @@ class WitnessEditor:
             self.win_key = self
         self.update = update
         self.ref = ref
-        self.show_witness = gtk.glade.XML(const.dialogFile,
+        self.show_witness = gtk.glade.XML(const.gladeFile,
                                           "witness_edit","gramps")
         self.gladeif = GladeIf(self.show_witness)
 

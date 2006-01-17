@@ -75,7 +75,7 @@ class NameEditor(DisplayState.ManagedWindow):
             return
 
         self.name = name
-        self.top = gtk.glade.XML(const.dialogFile, "name_edit","gramps")
+        self.top = gtk.glade.XML(const.gladeFile, "name_edit","gramps")
         self.gladeif = GladeIf(self.top)
         self.window = self.top.get_widget("name_edit")
         self.given_field  = self.top.get_widget("alt_given")

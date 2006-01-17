@@ -79,7 +79,7 @@ class AddMediaObject:
         db - the database in which the new object is to be stored
         """
         self.db = db
-        self.glade = gtk.glade.XML(const.imageselFile,"imageSelect","gramps")
+        self.glade = gtk.glade.XML(const.gladeFile,"imageSelect","gramps")
         self.window = self.glade.get_widget("imageSelect")
         self.description = self.glade.get_widget("photoDescription")
         self.image = self.glade.get_widget("image")

@@ -86,7 +86,7 @@ class AddressEditor(DisplayState.ManagedWindow):
             return
 
         # Get the important widgets from the glade description
-        self.top = gtk.glade.XML(const.dialogFile, "addr_edit","gramps")
+        self.top = gtk.glade.XML(const.gladeFile, "addr_edit","gramps")
         self.gladeif = GladeIf(self.top)
         
         self.window = self.top.get_widget("addr_edit")

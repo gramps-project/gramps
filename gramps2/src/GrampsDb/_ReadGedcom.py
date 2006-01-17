@@ -493,8 +493,8 @@ class GedcomParser:
 
     def update(self,field,text):
         field.set_text(text)
-        while gtk.events_pending():
-            gtk.main_iteration()
+#        while gtk.events_pending():
+#            gtk.main_iteration()
 
     def get_next(self):
         if self.backoff == 0:

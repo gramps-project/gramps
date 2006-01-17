@@ -59,7 +59,7 @@ class LocationEditor:
         else:
             self.win_key = self
         self.location = location
-        self.top = gtk.glade.XML(const.dialogFile, "loc_edit","gramps")
+        self.top = gtk.glade.XML(const.gladeFile, "loc_edit","gramps")
         self.gladeif = GladeIf(self.top)
         
         self.window = self.top.get_widget("loc_edit")
