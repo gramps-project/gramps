@@ -56,12 +56,22 @@ class ObjectSelectorWindow(gtk.Window):
         self._dbstate = dbstate
         self._object_list = object_list
         self._current_object_type = None
-        
+
+        # Create objects to hold the information about
+        # each object type
+        self._object_frames = {}        
+        for object_type in object_list:
+            self._object_frames[object_type] = _ObjectTypeWidgets()
+
         self.set_title("Add Person")
         
         # Selected object label
-        label = gtk.Label("Selected:")
-        label.set_alignment(xalign=1,yalign=0.5)
+        label = gtk.Label("<b>Selected:</b>")
+        label.set_use_markup(True)
+        label.set_alignment(xalign=0.9,yalign=0.5)
+        label.set_padding(self.__class__.__default_border_width,
+                          self.__class__.__default_border_width)
+
         label.show()
 
         sel_frame = gtk.Frame()
@@ -70,12 +80,8 @@ class ObjectSelectorWindow(gtk.Window):
 
         sel_label_box = gtk.HBox()
         sel_label_box.show()
-        
-        self._object_frames = {}
-        
+                
         for object_type in object_list:
-            self._object_frames[object_type] = _ObjectTypeWidgets()
-
             sel_label = gtk.Label("No Selected Object")
             sel_label.set_alignment(xalign=0,yalign=0.5)
             sel_label_box.pack_start(sel_label)
@@ -91,10 +97,12 @@ class ObjectSelectorWindow(gtk.Window):
         label_box.show()
         
         # Object select
+        obj_label = gtk.Label("<b>Show</b>")
+        obj_label.set_use_markup(True)
+        obj_label.set_alignment(xalign=0.9,yalign=0.5)
+        obj_label.set_padding(self.__class__.__default_border_width,
+                              self.__class__.__default_border_width)
 
-        obj_label = gtk.Label("Show")
-        obj_label.set_alignment(xalign=1,yalign=0.5)
-        obj_label.show()
         
         person_pixbuf = gtk.gdk.pixbuf_new_from_file("../person.svg")
         flist_pixbuf = gtk.gdk.pixbuf_new_from_file("../flist.svg")
@@ -120,15 +128,20 @@ class ObjectSelectorWindow(gtk.Window):
         self._tool_combo.add_attribute(label_cell, 'text', 1)
 
         self._tool_combo.set_active(0)
-        self._tool_combo.show()
 
         self._tool_combo.connect('changed', lambda c: self._set_object_type(self._tool_list.get_value(c.get_active_iter(),2)))
         
         tool_box = gtk.HBox()
         tool_box.pack_start(obj_label,False,False)
         tool_box.pack_start(self._tool_combo,False,False)
-        tool_box.show()
-        
+
+        # only show the object_list if there is more than
+        # one object_type requested.
+        if len(self._object_list) > 1:
+            self._tool_combo.show()
+            obj_label.show()
+            tool_box.show()
+
         # Top box
 
         top_box = gtk.HBox()
@@ -163,6 +176,10 @@ class ObjectSelectorWindow(gtk.Window):
             self._object_frames[object_type].frame.connect(
                 'selection-changed',
                 self.on_selection_changed)
+
+            self._object_frames[object_type].frame.connect(
+                'add-object',
+                self.on_add)
             
             
             frame_box.pack_start(self._object_frames[object_type].frame,True,True)
@@ -244,7 +261,7 @@ class ObjectSelectorWindow(gtk.Window):
         result.set_gramps_id(self._object_frames[self._current_object_type].selected_id)
         return result
 
-    def on_add(self,button):
+    def on_add(self,button=None):
         self.emit('add-object',self.get_result())
         
     def on_selection_changed(self,widget,text,handle):
