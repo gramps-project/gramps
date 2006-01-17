@@ -1209,14 +1209,14 @@ class GrampsDbBase(GrampsDBCallback):
         Accesses the last undone transaction, and reverts the data to
         the state before the transaction was undone.
         """
-        if self.undoindex == _UNDO_SIZE or self.readonly:
+        if self.undoindex >= _UNDO_SIZE or self.readonly:
             return False
 
-        self.undoindex +=1
-        transaction = self.translist[self.undoindex]
+        transaction = self.translist[self.undoindex+1]
         if transaction == None:
             return False
 
+        self.undoindex +=1
         mapbase = (self.person_map, self.family_map, self.source_map,
                    self.event_map, self.media_map, self.place_map)
 
