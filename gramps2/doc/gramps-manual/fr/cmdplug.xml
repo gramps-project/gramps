@@ -1485,7 +1485,7 @@
     </variablelist>
 </sect3>
 <sect3 id="cmdplug-id29">
-  <title>Mémoriser le genre de statistiques ???</title>
+  <title>Tableau statistique croisé du prénom et du sexe</title>
     <variablelist>
         <varlistentry>
           <term><command>name</command>:</term>
