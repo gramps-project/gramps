@@ -70,7 +70,7 @@ class UrlEditor(DisplayState.ManagedWindow):
 
         self.url = url
         self.callback = callback
-        self.top = gtk.glade.XML(const.dialogFile, "url_edit","gramps")
+        self.top = gtk.glade.XML(const.gladeFile, "url_edit","gramps")
         self.gladeif = GladeIf(self.top)
         
         self.window = self.top.get_widget("url_edit")

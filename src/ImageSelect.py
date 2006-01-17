@@ -116,7 +116,7 @@ class ImageSelect:
         if self.path == '':
             return
 
-        self.glade       = gtk.glade.XML(const.imageselFile,"imageSelect","gramps")
+        self.glade       = gtk.glade.XML(const.gladeFile,"imageSelect","gramps")
         self.window      = self.glade.get_widget("imageSelect")
 
         self.fname       = self.glade.get_widget("fname")
@@ -695,7 +695,7 @@ class LocalMediaProperties:
         self.lists_changed = 0
         
         fname = self.obj.get_path()
-        self.change_dialog = gtk.glade.XML(const.imageselFile,
+        self.change_dialog = gtk.glade.XML(const.gladeFile,
                                            "change_description","gramps")
 
         title = _('Media Reference Editor')
@@ -981,7 +981,7 @@ class GlobalMediaProperties(DisplayState.ManagedWindow):
         self.refmodel = None # this becomes the model for the references
         
         self.path = self.db.get_save_path()
-        self.change_dialog = gtk.glade.XML(const.imageselFile,
+        self.change_dialog = gtk.glade.XML(const.gladeFile,
                                            "change_global","gramps")
         self.gladeif = GladeIf(self.change_dialog)
 

@@ -187,7 +187,7 @@ class DateEditorDialog:
         # Create self.date as a copy of the given Date object.
         self.date = Date.Date(date)
 
-        self.top = gtk.glade.XML(const.dialogFile, "date_edit","gramps" )
+        self.top = gtk.glade.XML(const.gladeFile, "date_edit","gramps" )
         self.top_window = self.top.get_widget('date_edit')
         self.top_window.hide()
         title = self.top.get_widget('title')

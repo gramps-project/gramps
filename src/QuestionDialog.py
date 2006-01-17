@@ -51,7 +51,7 @@ except:
 
 class SaveDialog:
     def __init__(self,msg1,msg2,task1,task2,parent=None):
-        self.xml = gtk.glade.XML(const.errdialogsFile,"savedialog","gramps")
+        self.xml = gtk.glade.XML(const.gladeFile,"savedialog","gramps")
         self.top = self.xml.get_widget('savedialog')
         self.top.set_icon(ICON)
         self.dontask = self.xml.get_widget('dontask')
@@ -79,7 +79,7 @@ class SaveDialog:
 
 class QuestionDialog:
     def __init__(self,msg1,msg2,label,task,parent=None):
-        self.xml = gtk.glade.XML(const.errdialogsFile,"questiondialog","gramps")
+        self.xml = gtk.glade.XML(const.gladeFile,"questiondialog","gramps")
         self.top = self.xml.get_widget('questiondialog')
         self.top.set_icon(ICON)
         self.top.set_title('')
@@ -104,7 +104,7 @@ class QuestionDialog:
 
 class QuestionDialog2:
     def __init__(self,msg1,msg2,label_msg1,label_msg2,parent=None):
-        self.xml = gtk.glade.XML(const.errdialogsFile,"questiondialog","gramps")
+        self.xml = gtk.glade.XML(const.gladeFile,"questiondialog","gramps")
         self.top = self.xml.get_widget('questiondialog')
         self.top.set_icon(ICON)
         self.top.set_title('')
@@ -130,7 +130,7 @@ class QuestionDialog2:
 
 class OptionDialog:
     def __init__(self,msg1,msg2,btnmsg1,task1,btnmsg2,task2,parent=None):
-        self.xml = gtk.glade.XML(const.errdialogsFile,"optiondialog","gramps")
+        self.xml = gtk.glade.XML(const.gladeFile,"optiondialog","gramps")
         self.top = self.xml.get_widget('optiondialog')
         self.top.set_icon(ICON)
         self.top.set_title('')
@@ -163,7 +163,7 @@ class OptionDialog:
 class ErrorDialog:
     def __init__(self,msg1,msg2="",parent=None):
         
-        self.xml = gtk.glade.XML(const.errdialogsFile,"errdialog","gramps")
+        self.xml = gtk.glade.XML(const.gladeFile,"errdialog","gramps")
         self.top = self.xml.get_widget('errdialog')
         self.top.set_icon(ICON)
         
@@ -181,7 +181,7 @@ class ErrorDialog:
 class WarningDialog:
     def __init__(self,msg1,msg2="",parent=None):
         
-        self.xml = gtk.glade.XML(const.errdialogsFile,"warndialog","gramps")
+        self.xml = gtk.glade.XML(const.gladeFile,"warndialog","gramps")
         self.top = self.xml.get_widget('warndialog')
         self.top.set_icon(ICON)
         
@@ -199,7 +199,7 @@ class WarningDialog:
 class OkDialog:
     def __init__(self,msg1,msg2="",parent=None):
 
-        self.xml = gtk.glade.XML(const.errdialogsFile,"okdialog","gramps")
+        self.xml = gtk.glade.XML(const.gladeFile,"okdialog","gramps")
         self.top = self.xml.get_widget('okdialog')
         self.top.set_icon(ICON)
 
@@ -216,7 +216,7 @@ class OkDialog:
 
 class MissingMediaDialog:
     def __init__(self,msg1,msg2,task1,task2,task3,parent=None):
-        self.xml = gtk.glade.XML(const.errdialogsFile,"missmediadialog","gramps")
+        self.xml = gtk.glade.XML(const.gladeFile,"missmediadialog","gramps")
         self.top = self.xml.get_widget('missmediadialog')
         self.top.set_icon(ICON)
         self.task1 = task1

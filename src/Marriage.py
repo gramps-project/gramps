@@ -111,7 +111,7 @@ class Marriage:
             p = db.get_place_from_handle(key).get_display_info()
             self.pmap[p[0]] = key
 
-        self.top = gtk.glade.XML(const.marriageFile,"marriageEditor","gramps")
+        self.top = gtk.glade.XML(const.gladeFile,"marriageEditor","gramps")
         self.gladeif = GladeIf(self.top)
         
         self.window = self.get_widget("marriageEditor")

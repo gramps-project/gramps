@@ -26,7 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import cPickle as pickle
-import gc
+import os
 import sys
 from gettext import gettext as _
 
@@ -166,7 +166,7 @@ class EditFamily(DisplayState.ManagedWindow):
 
     def build_interface(self):
 
-        self.top = gtk.glade.XML(const.placesFile,"marriageEditor","gramps")
+        self.top = gtk.glade.XML(const.gladeFile,"marriageEditor","gramps")
         self.gladeif = GladeIf(self.top)
         self.window = self.top.get_widget("marriageEditor")
 
@@ -190,6 +190,8 @@ class EditFamily(DisplayState.ManagedWindow):
 
         self.vbox   = self.top.get_widget('vbox')
         self.child_list = self.top.get_widget('child_list')
+
+        self.private= self.top.get_widget('private')
 
         rel_types = dict(Utils.family_relations)
 
@@ -242,6 +244,19 @@ class EditFamily(DisplayState.ManagedWindow):
         self.notebook.set_tab_label(self.gallery_tab,self.gallery_tab.get_tab_widget())
 
         self.gid.set_text(self.family.get_gramps_id())
+        self.private.connect('toggled',self.privacy_toggled)
+        self.private.set_active(self.family.get_privacy())
+
+    def privacy_toggled(self,obj):
+        for o in obj.get_children():
+            obj.remove(o)
+        img = gtk.Image()
+        if obj.get_active():
+            img.set_from_file(os.path.join(const.rootDir,"locked.png"))
+        else:
+            img.set_from_file(os.path.join(const.rootDir,"unlocked.png"))
+        img.show()
+        obj.add(img)
 
     def update_father(self,handle):
         self.load_parent(handle, self.fbox, self.fbirth, self.fdeath, self.fbutton)

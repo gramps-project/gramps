@@ -145,7 +145,7 @@ class GrampsPreferences:
     def __init__(self,db):
         self.built = 0
         self.db = db
-        self.top = gtk.glade.XML(const.prefsFile,"preferences","gramps")
+        self.top = gtk.glade.XML(const.gladeFile,"preferences","gramps")
         self.gladeif = GladeIf(self.top)
 
         self.gladeif.connect('button6','clicked',self.on_close_clicked)

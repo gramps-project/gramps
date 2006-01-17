@@ -93,42 +93,34 @@ if os.environ.has_key('GRAMPSDIR'):
 else:
     rootDir = "."
 
-good_xpm       = "%s/good.png" % rootDir
-bad_xpm        = "%s/bad.png" % rootDir
-caution_xpm    = "%s/caution.png" % rootDir
+good_xpm       = os.path.join(rootDir,"good.png")
+bad_xpm        = os.path.join(rootDir,"bad.png")
+caution_xpm    = os.path.join(rootDir,"caution.png")
 
-system_filters = "%s/system_filters.xml" % rootDir
+system_filters = os.path.join(rootDir,"system_filters.xml")
 custom_filters = "~/.gramps/custom_filters.xml"
 report_options = "~/.gramps/report_options.xml"
 tool_options   = "~/.gramps/tool_options.xml"
 bsddbenv_dir   = "~/.gramps/bsddbenv"
-icon           = "%s/gramps.png" % rootDir
-logo           = "%s/logo.png" % rootDir
-splash         = "%s/splash.jpg" % rootDir
-license        = "%s/COPYING" % rootDir
-gladeFile      = "%s/gramps.glade" % rootDir
-placesFile     = "%s/gramps.glade" % rootDir
-imageselFile   = "%s/gramps.glade" % rootDir
-marriageFile   = "%s/gramps.glade" % rootDir
-editPersonFile = "%s/edit_person.glade" % rootDir
-pluginsFile    = "%s/plugins.glade" % rootDir
-prefsFile      = "%s/gramps.glade" % rootDir
-stylesFile     = "%s/gramps.glade" % rootDir
-dialogFile     = "%s/gramps.glade" % rootDir
-srcselFile     = "%s/gramps.glade" % rootDir
-mergeFile      = "%s/mergedata.glade" % rootDir
-merge2File     = "%s/merge.glade" % rootDir
-filterFile     = "%s/rule.glade" % rootDir
-errdialogsFile = "%s/gramps.glade" % rootDir
+icon           = os.path.join(rootDir,"gramps.png")
+logo           = os.path.join(rootDir,"logo.png")
+splash         = os.path.join(rootDir,"splash.jpg")
+license        = os.path.join(rootDir,"COPYING")
+gladeFile      = os.path.join(rootDir,"gramps.glade")
+editPersonFile = os.path.join(rootDir,"edit_person.glade")
+pluginsFile    = os.path.join(rootDir,"plugins.glade")
+mergeFile      = os.path.join(rootDir,"mergedata.glade")
+merge2File     = os.path.join(rootDir,"merge.glade")
+filterFile     = os.path.join(rootDir,"rule.glade")
 
-pluginsDir     = "%s/plugins" % rootDir
-datesDir       = "%s/dates" % rootDir
-docgenDir      = "%s/docgen" % rootDir
-dataDir        = "%s/data" % rootDir
-template_dir   = "%s/templates" % dataDir
+pluginsDir     = os.path.join(rootDir,"plugins")
+datesDir       = os.path.join(rootDir,"dates")
+docgenDir      = os.path.join(rootDir,"docgen")
+dataDir        = os.path.join(rootDir,"data")
+template_dir   = os.path.join(dataDir,"templates")
 papersize      = "file:%s/papersize.xml" % dataDir
-tipdata        = "%s/tips.xml" % dataDir
-fdl            = "%s/fdl.txt" % dataDir
+tipdata        = os.path.join(dataDir,"tips.xml")
+fdl            = os.path.join(dataDir,"fdl.txt")
 
 startup        = 1
 dnd_images     = 1

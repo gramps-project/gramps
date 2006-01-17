@@ -87,7 +87,7 @@ class SourceSelector(DisplayState.ManagedWindow):
         for s in self.orig:
             self.list.append(RelLib.SourceRef(s))
         self.update=update
-        self.top = gtk.glade.XML(const.srcselFile,"sourcesel","gramps")
+        self.top = gtk.glade.XML(const.gladeFile,"sourcesel","gramps")
         self.gladeif = GladeIf(self.top)
         
         self.window = self.top.get_widget("sourcesel")
@@ -356,7 +356,7 @@ class SourceEditor(DisplayState.ManagedWindow):
 
         self.update = update
         self.source_ref = srcref
-        self.showSource = gtk.glade.XML(const.srcselFile,
+        self.showSource = gtk.glade.XML(const.gladeFile,
                                         "sourceDisplay","gramps")
         self.window = self.get_widget("sourceDisplay")
 

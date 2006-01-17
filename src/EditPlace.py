@@ -86,7 +86,7 @@ class EditPlace(DisplayState.ManagedWindow):
         else:
             self.srcreflist = []
 
-        self.top = gtk.glade.XML(const.placesFile,"placeEditor","gramps")
+        self.top = gtk.glade.XML(const.gladeFile,"placeEditor","gramps")
         self.gladeif = GladeIf(self.top)
 
         self.window = self.top.get_widget("placeEditor")
