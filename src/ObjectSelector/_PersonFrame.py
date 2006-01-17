@@ -21,6 +21,8 @@ class PersonFrame(ObjectFrameBase):
                                  gobject.TYPE_STRING)),
         }
 
+    __person_id_field = 1
+    
     def __init__(self,
                  dbstate):
         
@@ -32,13 +34,19 @@ class PersonFrame(ObjectFrameBase):
 
         def handle_selection(treeselection):
             (model, iter) = treeselection.get_selected()
-            self.emit('selection-changed', "%s (%s)" % (                
-                str(model.get_value(iter,0)),
-                str(model.get_value(iter,1))),
-                      model.get_value(iter,0))
+            if iter and model.get_value(iter,1):                            
+                self.emit('selection-changed', "%s (%s)" % (                
+                    str(model.get_value(iter,0)),
+                    str(model.get_value(iter,1))),
+                          model.get_value(iter,1))
+            else:
+                self.emit('selection-changed',"No Selection","")
             
 
         self._tree_frame.get_selection().connect('changed',handle_selection)
+
+                
+        self._tree_frame.get_selection().connect('changed',self.set_preview,self.__class__.__person_id_field)
 
     
 if gtk.pygtk_version < (2,8,0):

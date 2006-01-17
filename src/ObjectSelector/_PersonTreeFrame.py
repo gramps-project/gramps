@@ -58,9 +58,14 @@ class PersonTreeFrame(gtk.Frame):
             column.set_min_width(60)
             column.set_sizing(gtk.TREE_VIEW_COLUMN_GROW_ONLY)
             self._tree.append_column(column)
-        
-        self.add(self._tree)
-        self.set_shadow_type(gtk.SHADOW_IN)
+
+        scrollwindow = gtk.ScrolledWindow()
+        scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        scrollwindow.set_shadow_type(gtk.SHADOW_ETCHED_IN)
+
+        scrollwindow.add(self._tree)
+
+        self.add(scrollwindow)
 
         self.set_model(self._dbstate.db)
 

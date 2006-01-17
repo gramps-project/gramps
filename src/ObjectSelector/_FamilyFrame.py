@@ -21,7 +21,7 @@ class FamilyFrame(ObjectFrameBase):
                                  gobject.TYPE_STRING)),
         }
 
-    __default_border_width = 5
+    __person_id_field = 0
 
     def __init__(self,
                  dbstate):
@@ -34,7 +34,7 @@ class FamilyFrame(ObjectFrameBase):
 
         def handle_selection(treeselection):
             (model, iter) = treeselection.get_selected()
-            if iter:
+            if iter and model.get_value(iter,0):
                 self.emit('selection-changed', "%s / %s (%s)" % (                
                     str(model.get_value(iter,1)),
                     str(model.get_value(iter,2)),
@@ -46,14 +46,8 @@ class FamilyFrame(ObjectFrameBase):
 
         self._tree_frame.get_selection().connect('changed',handle_selection)
 
-        def set_preview_frame_sensitivity(treeselection):
-            (model, iter) = treeselection.get_selected()
-            if iter:
-                self._preview_frame.set_sensitive(True)
-            else:
-                self._preview_frame.set_sensitive(False)
+        self._tree_frame.get_selection().connect('changed',self.set_preview,self.__class__.__person_id_field)
 
-        self._tree_frame.get_selection().connect('changed',set_preview_frame_sensitivity)
         
             
 

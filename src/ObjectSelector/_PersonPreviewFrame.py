@@ -1,5 +1,9 @@
 import gtk
 import gobject
+from logging import getLogger
+log = getLogger(".ObjectSelector")
+
+import ImgManip
 
 class PersonPreviewFrame(gtk.Frame):
     
@@ -13,15 +17,17 @@ class PersonPreviewFrame(gtk.Frame):
     def __init__(self,dbstate,label="Preview"):
 	gtk.Frame.__init__(self,label)
 
+        self._dbstate = dbstate
+        
 	align = gtk.Alignment()
 
         # Image
-        image = gtk.Image()
+        self._image = gtk.Image()
 
         # test image
-        image.set_from_file("../person.svg")
+        self._image.set_from_file("../person.svg")
         image_frame = gtk.Frame()
-        image_frame.add(image)
+        image_frame.add(self._image)
         
         # Text
         label = gtk.Label()
@@ -52,7 +58,27 @@ class PersonPreviewFrame(gtk.Frame):
 
 	self.add(align)
 
-	
+    def set_object_from_id(self,id):
+        try:
+            person = self._dbstate.db.get_person_from_gramps_id(id)
+            if not person:
+                return
+
+            image_list = person.get_media_list()
+            if image_list:
+                mobj = self._dbstate.db.get_object_from_handle(image_list[0].ref)
+                if mobj.get_mime_type()[0:5] == "image":
+                    pixbuf = ImgManip.get_thumbnail_image(mobj.get_path())
+                    self._image.set_from_pixbuf(pixbuf)
+            else:
+                self._image.set_from_file("../person.svg")
+
+        except:
+            log.warn("Failed to generate preview for person", exc_info=True)
+            self._clear_object()
+
+    def clear_object(self):
+        self._image.set_from_file("../person.svg")
     
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(PersonPreviewFrame)
