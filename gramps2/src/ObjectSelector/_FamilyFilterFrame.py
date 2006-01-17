@@ -1,7 +1,7 @@
 import gtk
 import gobject
 
-from _IntEdit import IntEdit
+from GrampsWidgets import IntEdit
 
 class FamilyFilterFrame(gtk.Frame):
     

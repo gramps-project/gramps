@@ -40,7 +40,7 @@ class PersonFrame(ObjectFrameBase):
         def handle_selection(treeselection):
             (model, iter) = treeselection.get_selected()
             if iter and model.get_value(iter,1):                            
-                self.emit('selection-changed', "%s (%s)" % (                
+                self.emit('selection-changed', "%s [%s]" % (                
                     str(model.get_value(iter,0)),
                     str(model.get_value(iter,1))),
                           model.get_value(iter,1))

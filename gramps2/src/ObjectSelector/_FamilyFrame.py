@@ -45,7 +45,7 @@ class FamilyFrame(ObjectFrameBase):
     def _handle_selection(self,treeselection):
         (model, iter) = treeselection.get_selected()
         if iter and model.get_value(iter,self.__class__.__person_id_field):
-            self.emit('selection-changed', "%s / %s (%s)" % (                
+            self.emit('selection-changed', "%s / %s [%s]" % (                
                 str(model.get_value(iter,1)),
                 str(model.get_value(iter,2)),
                 str(model.get_value(iter,0))),
