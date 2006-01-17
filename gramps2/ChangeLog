@@ -9,6 +9,8 @@
 	the constructor.
 	* src/GrampsDb/_GrampsBSDDB.py: Back to durable transactions, set
 	TXN_NOSYNC flag only on batch transactions.
+	* src/GrampsDb/_ReadGedcom.py (parse_record): Do not add def_src
+	to person/family. Need to optimize the performance first.
 
 2006-01-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EventView.py (ui_definition): Add filter menu entry
