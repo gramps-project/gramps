@@ -2151,5 +2151,17 @@ def create_id():
 
 if __name__ == "__main__":
     import sys
+    import profile
+    import const
+    from GrampsDb import gramps_db_factory, gramps_db_reader_factory
 
-    a = NoteParser(sys.argv[1],False)
+
+    codeset = None
+
+    db_class = gramps_db_factory(const.app_gramps)
+    database = db_class()
+    database.load("test.grdb",lambda x: None, mode="w")
+    statusTop = gtk.glade.XML('GrampsDb/gedcomimport.glade',"status","gramps")
+    np = NoteParser(sys.argv[1],False)
+    g = GedcomParser(database,sys.argv[1],statusTop, codeset, np.get_map(),np.get_lines())
+    profile.run('g.parse_gedcom_file(False)')
