@@ -1,6 +1,7 @@
 2006-01-18  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: mediatab improvements
-	* src/EditFamily.py: monitor for changed people and update if needed.
+	* src/EditFamily.py: monitor for changed people and update if needed,
+	CellRendererCombo for child relations
 
 2006-01-18  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (load): Use BTREE for

@@ -95,7 +95,7 @@ class ButtonTab(GrampsTab):
         self.pack_start(vbox,False)
 
     def double_click(self, obj, event):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.edit_button_clicked(obj)
 
     def add_button_clicked(self,obj):
@@ -341,16 +341,19 @@ class ChildModel(gtk.ListStore):
 
     _HANDLE_COL = -8
 
-    def __init__(self, child_list,db):
-        gtk.ListStore.__init__(self,int,str,str,str,str,str,str,str,str,str,int,int)
+    def __init__(self, family,db):
+        self.family = family
+        gtk.ListStore.__init__(self,int,str,str,str,str,str,str,str,str,str,str,str,int,int)
         self.db = db
         index = 1
-        for child_handle in child_list:
+        for child_handle in family.get_child_handle_list():
             child = db.get_person_from_handle(child_handle)
             self.append(row=[index,
                              child.get_gramps_id(),
                              NameDisplay.displayer.display(child),
                              _GENDER[child.get_gender()],
+                             self.column_father_rel(child),
+                             self.column_mother_rel(child),
                              self.column_birth_day(child),
                              self.column_death_day(child),
                              self.column_birth_place(child),
@@ -361,6 +364,28 @@ class ChildModel(gtk.ListStore):
                              self.column_death_sort(child),
                              ])
             index += 1
+
+    def display_rel(self,rtype):
+        if rtype[0] == RelLib.Family.CUSTOM:
+            return unicode(rtype[1])
+        else:
+            return Utils.child_relations[rtype[0]]
+
+    def column_father_rel(self,data):
+        chandle = data.handle
+        fhandle = self.family.handle
+        for (handle, mrel, frel) in data.get_parent_family_handle_list():
+            if handle == fhandle:
+                return self.display_rel(frel)
+        return ""
+
+    def column_mother_rel(self,data):
+        chandle = data.handle
+        fhandle = self.family.handle
+        for (handle, mrel, frel) in data.get_parent_family_handle_list():
+            if handle == fhandle:
+                return self.display_rel(mrel)
+        return ""
 
     def column_birth_day(self,data):
         event_ref = data.get_birth_ref()

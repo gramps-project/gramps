@@ -90,13 +90,15 @@ class AttrEmbedList(EmbeddedList):
 
 class ChildEmbedList(EmbeddedList):
 
-    _HANDLE_COL = 8
+    _HANDLE_COL = 10
 
     column_names = [
         (_('#'),0) ,
         (_('ID'),1) ,
         (_('Name'),9),
         (_('Gender'),3),
+        (_('Paternal'),12),
+        (_('Maternal'),13),
         (_('Birth Date'),10),
         (_('Death Date'),11),
         (_('Birth Place'),6),
@@ -108,14 +110,51 @@ class ChildEmbedList(EmbeddedList):
         EmbeddedList.__init__(self, dbstate, uistate, track,
                               _('Children'), ChildModel)
 
+    def build_columns(self):
+        for column in self.columns:
+            self.tree.remove_column(column)
+        self.columns = []
+
+        for pair in self.column_order():
+            if not pair[0]:
+                continue
+            name = self.column_names[pair[1]][0]
+            if pair[1] == 4 or pair[1] == 5:
+                model = gtk.ListStore(str,int)
+                for x in Utils.child_relations.keys():
+                    model.append(row=[Utils.child_relations[x],x])
+                render = gtk.CellRendererCombo()
+                render.set_property('editable',True)
+                render.set_property('model',model)
+                render.set_property('text-column',0)
+            else:
+                render = gtk.CellRendererText()
+
+            column = gtk.TreeViewColumn(name, render, text=pair[1])
+            column = gtk.TreeViewColumn(name, render, text=pair[1])
+            column.set_resizable(True)
+            column.set_min_width(40)
+            column.set_sort_column_id(self.column_names[pair[1]][1])
+            self.columns.append(column)
+            self.tree.append_column(column)
+
     def get_icon_name(self):
         return 'gramps-person'
 
+    def set_label(self):
+        if len(self.family.get_child_handle_list()):
+            self.tab_image.show()
+            self.label.set_text("<b>%s</b>" % self.tab_name)
+            self.label.set_use_markup(True)
+        else:
+            self.tab_image.hide()
+            self.label.set_text(self.tab_name)
+
     def get_data(self):
-        return self.family.get_child_handle_list()
+        return self.family
 
     def column_order(self):
-        return self.dbstate.db.get_child_column_order()
+        return [(1,0),(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(0,8),(0,9)]
 
     def add_button_clicked(self,obj):
         print "Add Button Clicked"
