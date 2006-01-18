@@ -415,111 +415,112 @@ class GrampsBSDDB(GrampsDbBase):
         table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
 
         # Repair secondary indices related to person_map
-        
         self.id_trans.close()
-        self.surnames.close()
-
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"idtrans")
         self.id_trans = db.DB(self.env)
         self.id_trans.set_flags(db.DB_DUP)
         self.id_trans.open(self.full_name, "idtrans", db.DB_HASH,
                            flags=table_flags)
-        self.id_trans.truncate()
+        self.person_map.associate(self.id_trans,find_idmap,table_flags)
 
+        self.surnames.close()
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"surnames")
         self.surnames = db.DB(self.env)
         self.surnames.set_flags(db.DB_DUP)
         self.surnames.open(self.full_name, "surnames", db.DB_HASH,
                            flags=table_flags)
-        self.surnames.truncate()
+        self.person_map.associate(self.surnames,  find_surname, table_flags)
 
-        self.person_map.associate(self.surnames, find_surname, db.DB_CREATE)
-        self.person_map.associate(self.id_trans, find_idmap, db.DB_CREATE)
-
-        for key in self.person_map.keys():
-            if callback:
-                callback()
-            data = self.person_map.get(key,txn=self.txn)
-            self.person_map.put(key,data,txn=self.txn)
-        self.person_map.sync()
 
         # Repair secondary indices related to family_map
-
         self.fid_trans.close()
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"fidtrans")
         self.fid_trans = db.DB(self.env)
         self.fid_trans.set_flags(db.DB_DUP)
         self.fid_trans.open(self.full_name, "fidtrans", db.DB_HASH,
                             flags=table_flags)
-        self.fid_trans.truncate()
-        self.family_map.associate(self.fid_trans, find_idmap, db.DB_CREATE)
-
-        for key in self.family_map.keys():
-            if callback:
-                callback()
-            self.family_map[key] = self.family_map[key]
-        self.family_map.sync()
+        self.family_map.associate(self.fid_trans, find_idmap, table_flags)
 
         # Repair secondary indices related to place_map
-
         self.pid_trans.close()
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"pidtrans")
         self.pid_trans = db.DB(self.env)
         self.pid_trans.set_flags(db.DB_DUP)
         self.pid_trans.open(self.full_name, "pidtrans", db.DB_HASH,
                             flags=table_flags)
-        self.pid_trans.truncate()
-        self.place_map.associate(self.pid_trans, find_idmap, db.DB_CREATE)
-
-        for key in self.place_map.keys():
-            if callback:
-                callback()
-            self.place_map[key] = self.place_map[key]
-        self.place_map.sync()
+        self.place_map.associate(self.pid_trans, find_idmap, table_flags)
 
         # Repair secondary indices related to media_map
-
         self.oid_trans.close()
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"oidtrans")
         self.oid_trans = db.DB(self.env)
         self.oid_trans.set_flags(db.DB_DUP)
         self.oid_trans.open(self.full_name, "oidtrans", db.DB_HASH,
                             flags=table_flags)
-        self.oid_trans.truncate()
-        self.media_map.associate(self.oid_trans, find_idmap, db.DB_CREATE)
-
-        for key in self.media_map.keys():
-            if callback:
-                callback()
-            self.media_map[key] = self.media_map[key]
-        self.media_map.sync()
+        self.media_map.associate(self.oid_trans, find_idmap, table_flags)
 
         # Repair secondary indices related to source_map
-
         self.sid_trans.close()
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"sidtrans")
         self.sid_trans = db.DB(self.env)
         self.sid_trans.set_flags(db.DB_DUP)
         self.sid_trans.open(self.full_name, "sidtrans", db.DB_HASH,
                             flags=table_flags)
-        self.sid_trans.truncate()
-        self.source_map.associate(self.sid_trans, find_idmap, db.DB_CREATE)
+        self.source_map.associate(self.sid_trans, find_idmap, table_flags)
 
-        for key in self.source_map.keys():
-            if callback:
-                callback()
-            self.source_map[key] = self.source_map[key]
-        self.source_map.sync()
+        # Repair secondary indices related to event_map
+        self.eid_trans.close()
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"eidtrans")
+        self.eid_trans = db.DB(self.env)
+        self.eid_trans.set_flags(db.DB_DUP)
+        self.eid_trans.open(self.full_name, "eidtrans", db.DB_HASH,
+                            flags=table_flags)
+        self.event_map.associate(self.eid_trans, find_idmap, table_flags)
 
         # Repair secondary indices related to repository_map
-
         self.rid_trans.close()
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"ridtrans")
         self.rid_trans = db.DB(self.env)
         self.rid_trans.set_flags(db.DB_DUP)
         self.rid_trans.open(self.full_name, "ridtrans", db.DB_HASH,
                             flags=table_flags)
-        self.rid_trans.truncate()
-        self.repository_map.associate(self.rid_trans, find_idmap, db.DB_CREATE)
+        self.repository_map.associate(self.rid_trans, find_idmap, table_flags)
 
-        for key in self.repository_map.keys():
-            if callback:
-                callback()
-            self.repository_map[key] = self.repository_map[key]
-        self.repository_map.sync()
+
+        # Repair secondary indices related to reference_map
+        self.reference_map_primary_map.close()
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"reference_map_primary_map")
+        self.reference_map_primary_map = db.DB(self.env)
+        self.reference_map_primary_map.set_flags(db.DB_DUP)
+        self.reference_map_primary_map.open(self.full_name,
+                                            "reference_map_primary_map",
+                                            db.DB_BTREE,
+                                            flags=table_flags)
+        self.reference_map.associate(self.reference_map_primary_map,
+                                     find_primary_handle,
+                                     table_flags)
+
+        self.reference_map_referenced_map.close()
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"reference_map_referenced_map")
+        self.reference_map_referenced_map = db.DB(self.env)
+        self.reference_map_referenced_map.set_flags(db.DB_DUP|db.DB_DUPSORT)
+        self.reference_map_referenced_map.open(self.full_name,
+                                               "reference_map_referenced_map",
+                                               db.DB_BTREE,
+                                               flags=table_flags)
+        self.reference_map.associate(self.reference_map_referenced_map,
+                                     find_referenced_handle,
+                                     table_flags)
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
