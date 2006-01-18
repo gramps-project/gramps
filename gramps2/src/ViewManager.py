@@ -664,19 +664,8 @@ class ViewManager:
         success = False
         if filetype == const.app_gramps:
             self.state.change_database(GrampsDb.gramps_db_factory(db_type = const.app_gramps)())
-            msgxml = gtk.glade.XML(const.gladeFile, "load_message","gramps")
-            msg_top = msgxml.get_widget('load_message')
-            msg_label = msgxml.get_widget('message')
-            
-            def update_msg(msg):
-                msg_label.set_text("<i>%s</i>" % msg)
-                msg_label.set_use_markup(True)
-                while gtk.events_pending():
-                    gtk.main_iteration()
-
-            success = self.read_file(filename,update_msg)
+            success = self.read_file(filename) #,update_msg)
             self.change_page(None,None)
-            msg_top.destroy()
         elif filetype == const.app_gramps_xml:
             self.state.change_database(GrampsDb.gramps_db_factory(db_type = const.app_gramps_xml)())
             success = self.read_file(filename)
