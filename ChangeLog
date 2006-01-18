@@ -1,3 +1,8 @@
+2006-01-18  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (load): Use BTREE for
+	reference_map; sort reference_map_referenced_map index.
+	* src/GrampsDb/_ReadGedcom.py (parse_record): Restore add def_src.
+
 2006-01-17  Don Allingham  <don@gramps-project.org>
 	* src/DbPrompter.py: removed
 	* src/gramps.glade: delete unused stuff

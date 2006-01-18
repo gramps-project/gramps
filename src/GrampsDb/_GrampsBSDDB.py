@@ -282,7 +282,10 @@ class GrampsBSDDB(GrampsDbBase):
         self.metadata       = self.open_table(self.full_name, "meta")
         self.person_map     = self.open_table(self.full_name, "person")
         self.repository_map = self.open_table(self.full_name, "repository")
-        self.reference_map  = self.open_table(self.full_name, "reference_map")
+        self.reference_map  = dbshelve.DBShelf(self.env)
+        self.reference_map.db.set_pagesize(16384)
+        self.reference_map.open(self.full_name, 'reference_map', db.DB_BTREE,
+                       db.DB_CREATE|db.DB_AUTO_COMMIT, 0666)
         
         callback(37)
         
@@ -356,7 +359,7 @@ class GrampsBSDDB(GrampsDbBase):
                                             db.DB_BTREE, flags=table_flags)
 
         self.reference_map_referenced_map = db.DB(self.env)
-        self.reference_map_referenced_map.set_flags(db.DB_DUP)
+        self.reference_map_referenced_map.set_flags(db.DB_DUP|db.DB_DUPSORT)
         self.reference_map_referenced_map.open(self.full_name,
                                                "reference_map_referenced_map",
                                                db.DB_BTREE, flags=table_flags)
