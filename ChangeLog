@@ -6,7 +6,8 @@
 	* src/GrampsDb/_GrampsBSDDB.py (load): Use BTREE for
 	reference_map; sort reference_map_referenced_map index.
 	* src/GrampsDb/_ReadGedcom.py (parse_record): Restore add def_src.
-	* src/GrampsDb/_GrampsBSDDB.py (rebuild_secondary): Proper rebuild.
+	* src/GrampsDb/_GrampsBSDDB.py (rebuild_secondary): Proper
+	rebuild; convert surnames secondary index to DUPSORTed BTREE.
 
 2006-01-17  Don Allingham  <don@gramps-project.org>
 	* src/DbPrompter.py: removed

@@ -122,15 +122,15 @@ class GrampsBSDDB(GrampsDbBase):
         GrampsDbBase.__init__(self)
         self.txn = None
 
-    def open_table(self,name,dbname,no_txn=False):
+    def open_table(self,name,dbname,no_txn=False,dbtype=db.DB_HASH):
         dbmap = dbshelve.DBShelf(self.env)
         dbmap.db.set_pagesize(16384)
         if self.readonly:
-            dbmap.open(name, dbname, db.DB_HASH, db.DB_RDONLY)
+            dbmap.open(name, dbname, dbtype, db.DB_RDONLY)
         elif no_txn:
-            dbmap.open(name, dbname, db.DB_HASH, db.DB_CREATE, 0666)
+            dbmap.open(name, dbname, dbtype, db.DB_CREATE, 0666)
         else:
-            dbmap.open(name, dbname, db.DB_HASH,
+            dbmap.open(name, dbname, dbtype,
                        db.DB_CREATE|db.DB_AUTO_COMMIT, 0666)
         return dbmap
 
@@ -282,11 +282,8 @@ class GrampsBSDDB(GrampsDbBase):
         self.metadata       = self.open_table(self.full_name, "meta")
         self.person_map     = self.open_table(self.full_name, "person")
         self.repository_map = self.open_table(self.full_name, "repository")
-        self.reference_map  = dbshelve.DBShelf(self.env)
-        self.reference_map.db.set_pagesize(16384)
-        self.reference_map.open(self.full_name, 'reference_map', db.DB_BTREE,
-                       db.DB_CREATE|db.DB_AUTO_COMMIT, 0666)
-        
+        self.reference_map  = self.open_table(self.full_name, "reference_map",
+                                              dbtype=db.DB_BTREE)
         callback(37)
         
         # index tables used just for speeding up searches
@@ -296,9 +293,9 @@ class GrampsBSDDB(GrampsDbBase):
             table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
 
         self.surnames = db.DB(self.env)
-        self.surnames.set_flags(db.DB_DUP)
+        self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
         self.surnames.open(self.full_name, "surnames",
-                           db.DB_HASH, flags=table_flags)
+                           db.DB_BTREE, flags=table_flags)
 
         self.name_group = db.DB(self.env)
         self.name_group.set_flags(db.DB_DUP)
@@ -428,8 +425,8 @@ class GrampsBSDDB(GrampsDbBase):
         junk = db.DB(self.env)
         junk.remove(self.full_name,"surnames")
         self.surnames = db.DB(self.env)
-        self.surnames.set_flags(db.DB_DUP)
-        self.surnames.open(self.full_name, "surnames", db.DB_HASH,
+        self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
+        self.surnames.open(self.full_name, "surnames", db.DB_BTREE,
                            flags=table_flags)
         self.person_map.associate(self.surnames,  find_surname, table_flags)
 
