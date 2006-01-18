@@ -292,10 +292,21 @@ class GrampsBSDDB(GrampsDbBase):
         else:
             table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
 
-        self.surnames = db.DB(self.env)
-        self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
-        self.surnames.open(self.full_name, "surnames",
-                           db.DB_BTREE, flags=table_flags)
+        # Try to upgrade from gramps20
+        # that had HASH for surnames table
+        try:
+            self.surnames = db.DB(self.env)
+            self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
+            self.surnames.open(self.full_name, "surnames",
+                               db.DB_BTREE, flags=table_flags)
+        except db.DBInvalidArgError:
+            self.surnames.close()
+            junk = db.DB(self.env)
+            junk.remove(self.full_name,"surnames")
+            self.surnames = db.DB(self.env)
+            self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
+            self.surnames.open(self.full_name, "surnames", db.DB_BTREE,
+                               flags=table_flags)
 
         self.name_group = db.DB(self.env)
         self.name_group.set_flags(db.DB_DUP)
@@ -1200,9 +1211,8 @@ class GrampsBSDDB(GrampsDbBase):
             pass
 
         # The rest of the upgrade deals with real data, not metadata
-        # so starting transaction here.
-        trans = Transaction("",self)
-        trans.set_batch(True)
+        # so starting (batch) transaction here.
+        trans = self.transaction_begin("",True)
 
         # This upgrade adds marker to every primary object.
         # We need to extract and commit every primary object
