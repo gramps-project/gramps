@@ -255,6 +255,7 @@ class GrampsParser:
         self.stext_list = []
         self.scomments_list = []
         self.note_list = []
+        self.oldval = 0
         self.tlist = []
         self.conf = 2
         self.gid2id = {}
@@ -320,7 +321,6 @@ class GrampsParser:
         self.media_file_map = {}
         
         self.callback = callback
-        self.count = 0
         self.increment = 100
         self.event = None
         self.name = None
@@ -676,10 +676,8 @@ class GrampsParser:
 
         self.placeobj.set_title(title)
         self.locations = 0
-        if self.callback != None and self.count % self.increment == 0:
-            if self.linecount:
-                self.callback(float(self.p.CurrentLineNumber)/float(self.linecount))
-        self.count += 1
+
+        self.update()
             
     def start_location(self,attrs):
         """Bypass the function calls for this one, since it appears to
@@ -788,10 +786,7 @@ class GrampsParser:
         self.db.bookmarks.append(person.get_handle())
 
     def start_person(self,attrs):
-        if self.callback != None and self.count % self.increment == 0:
-            if self.linecount:
-                self.callback(float(self.p.CurrentLineNumber)/float(self.linecount))
-        self.count += 1
+        self.update()
         new_id = self.map_gid(attrs['id'])
         try:
             self.person = self.db.find_person_from_handle(
@@ -859,10 +854,7 @@ class GrampsParser:
             return
 
     def start_family(self,attrs):
-        if self.callback != None and self.count % self.increment == 0:
-            if self.linecount:
-                self.callback(float(self.p.CurrentLineNumber)/float(self.linecount))
-        self.count = self.count + 1
+        self.update()
         handle = self.map_fid(attrs["id"])
         try:
             self.family = self.db.find_family_from_handle(
@@ -987,10 +979,7 @@ class GrampsParser:
             self.person.add_source_reference(self.source_ref)
 
     def start_source(self,attrs):
-        if self.callback != None and self.count % self.increment == 0:
-            if self.linecount:
-                self.callback(float(self.p.CurrentLineNumber)/float(self.linecount))
-        self.count += 1
+        self.update()
         handle = self.map_sid(attrs["id"])
         try:
             self.source = self.db.find_source_from_handle(
@@ -1044,8 +1033,7 @@ class GrampsParser:
         pass
 
     def stop_database(self,*tag):
-        if self.callback:
-            self.callback(1.0)
+        self.update()
 
     def stop_object(self,*tag):
         self.db.commit_media_object(self.object,self.trans,self.change)
@@ -1589,7 +1577,6 @@ class GrampsParser:
             self.func = None
 
     def endElement(self,tag):
-
         if self.func:
             self.func(''.join(self.tlist))
         self.func_index = self.func_index - 1    
@@ -1598,6 +1585,13 @@ class GrampsParser:
     def characters(self, data):
         if self.func:
             self.tlist.append(data)
+
+    def update(self):
+        line = self.p.CurrentLineNumber
+        newval = int(100*line/self.linecount)
+        if newval != self.oldval:
+            self.callback(newval)
+            self.oldval = newval
 
 def append_value(orig,val):
     if orig:

@@ -855,7 +855,7 @@ class ViewManager:
         ScratchPad.ScratchPadWindow(self.state, self)
 
     def pulse_progressbar(self,value):
-        self.progress.set_fraction(value)
+        self.progress.set_fraction(value/100.0)
         while gtk.events_pending():
             gtk.main_iteration()
 
@@ -933,15 +933,11 @@ class ViewManager:
                 self.parent.import_tool_callback()
                 self.progress.hide()
                 return True
-            elif filetype == const.app_gramps_xml:
+            elif filetype == const.app_gramps_xml or filetype == const.app_gedcom:
                 choose.destroy()
                 self.progress.show()
                 GrampsDb.gramps_db_reader_factory(filetype)(self.state.db,filename,self.pulse_progressbar)
                 self.progress.hide()
-                return True
-            elif filetype == const.app_gedcom:
-                choose.destroy()
-                GrampsDb.gramps_db_reader_factory(filetype)(self.state.db,filename)
                 return True
 
             (the_path,the_file) = os.path.split(filename)
