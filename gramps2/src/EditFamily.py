@@ -155,8 +155,30 @@ class EditFamily(DisplayState.ManagedWindow):
 
         self.mname  = None
         self.fname  = None
+
+        self.signal_keys = []
+        self.signal_keys.append(self.dbstate.db.connect('person-update',
+                                                        self.check_for_change))
+        self.signal_keys.append(self.dbstate.db.connect('person-delete',
+                                                        self.check_for_change))
+        self.signal_keys.append(self.dbstate.db.connect('person-rebuild',
+                                                        self.reload_people))
         
         self.show()
+
+    def check_for_change(self,handles):
+        for node in handles:
+            if node in self.phandles:
+                self.reload_people()
+                break;
+
+    def reload_people(self):
+        fhandle = self.family.get_father_handle()
+        self.update_father(fhandle)
+
+        mhandle = self.family.get_mother_handle()
+        self.update_mother(mhandle)
+        self.child_list.rebuild()
 
     def build_menu_names(self,obj):
         return ('Edit Family','Undefined Submenu')
@@ -211,8 +233,14 @@ class EditFamily(DisplayState.ManagedWindow):
         self.cancel.connect('clicked', self.close_window)
         
     def load_data(self):
-        self.update_father(self.family.get_father_handle())
-        self.update_mother(self.family.get_mother_handle())
+        fhandle = self.family.get_father_handle()
+        self.update_father(fhandle)
+
+        mhandle = self.family.get_mother_handle()
+        self.update_mother(mhandle)
+
+        self.phandles = [mhandle, fhandle] + self.family.get_child_handle_list()
+        self.phandles = [handle for handle in self.phandles if handle]
 
         self.mbutton.connect('clicked',self.mother_clicked)
         self.fbutton.connect('clicked',self.father_clicked)
@@ -327,4 +355,6 @@ class EditFamily(DisplayState.ManagedWindow):
         death_obj.set_text(death)
 
     def close_window(self,obj):
+        for key in self.signal_keys:
+            self.dbstate.db.disconnect(key)
         self.close()

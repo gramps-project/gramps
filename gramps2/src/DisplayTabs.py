@@ -282,6 +282,7 @@ class GalleryTab(ButtonTab):
         self.iconlist.set_pixbuf_column(0)
         self.iconlist.set_text_column(1)
         self.iconlist.set_model(self.iconmodel)
+        self.iconlist.set_selection_mode(gtk.SELECTION_SINGLE)
         
         scroll = gtk.ScrolledWindow()
         scroll.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
@@ -292,10 +293,12 @@ class GalleryTab(ButtonTab):
         return self.media_list
 
     def rebuild(self):
+        self.iconmodel= gtk.ListStore(gtk.gdk.Pixbuf,str)
         for ref in self.media_list:
             obj = self.dbstate.db.get_object_from_handle(ref.get_reference_handle())
             pixbuf = self.get_image(obj)
             self.iconmodel.append(row=[pixbuf,obj.get_description()])
+        self.iconlist.set_model(self.iconmodel)
         self.set_label()
 
     def get_image(self,obj):
@@ -309,6 +312,25 @@ class GalleryTab(ButtonTab):
         if not image:
             image = gtk.gdk.pixbuf_new_from_file(const.icon)
         return image
+
+    def get_selected(self):
+        node = self.iconlist.get_selected_items()
+        if len(node) > 0:
+            return self.media_list[node[0][0]]
+        else:
+            return None
+
+    def add_button_clicked(self,obj):
+        print "Media Add clicked"
+
+    def del_button_clicked(self,obj):
+        ref = self.get_selected()
+        if ref:
+            self.media_list.remove(ref)
+            self.rebuild()
+
+    def edit_button_clicked(self,obj):
+        print "Media Edit clicked"
 
 #-------------------------------------------------------------------------
 #
