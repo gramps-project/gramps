@@ -252,7 +252,7 @@ class GrampsBSDDB(GrampsDbBase):
 
         self.readonly = mode == "r"
 
-        callback(0.25)
+        callback(12)
 
         self.env = db.DBEnv()
         self.env.set_cachesize(0,0x2000000)         # 2MB
@@ -269,6 +269,8 @@ class GrampsBSDDB(GrampsDbBase):
         self.env.open(env_name,env_flags)
         self.env.txn_checkpoint()
 
+        callback(25)
+
         self.full_name = os.path.abspath(name)
         self.brief_name = os.path.basename(name)
 
@@ -281,6 +283,8 @@ class GrampsBSDDB(GrampsDbBase):
         self.person_map     = self.open_table(self.full_name, "person")
         self.repository_map = self.open_table(self.full_name, "repository")
         self.reference_map  = self.open_table(self.full_name, "reference_map")
+        
+        callback(37)
         
         # index tables used just for speeding up searches
         if self.readonly:
@@ -333,7 +337,8 @@ class GrampsBSDDB(GrampsDbBase):
         self.rid_trans.open(self.full_name, "ridtrans",
                             db.DB_HASH, flags=table_flags)
 
-
+        callback(50)
+        
         self.eventnames = db.DB(self.env)
         self.eventnames.set_flags(db.DB_DUP)
         self.eventnames.open(self.full_name, "eventnames",
@@ -356,6 +361,7 @@ class GrampsBSDDB(GrampsDbBase):
                                                "reference_map_referenced_map",
                                                db.DB_BTREE, flags=table_flags)
 
+        callback(62)
         if not self.readonly:
             self.person_map.associate(self.surnames,  find_surname, table_flags)
             self.person_map.associate(self.id_trans,  find_idmap, table_flags)
@@ -377,14 +383,14 @@ class GrampsBSDDB(GrampsDbBase):
 
             self.undodb = db.DB()
             self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
-        callback(0.5)
 
+        callback(75)
         self.metadata   = self.open_table(self.full_name, "meta", no_txn=True)
         self.bookmarks = self.metadata.get('bookmarks')
-        self.family_event_names = sets.Set(self.metadata.get('fevent_names',[]))
-        self.individual_event_names = sets.Set(self.metadata.get('pevent_names',[]))
-        self.family_attributes = sets.Set(self.metadata.get('fattr_names',[]))
-        self.individual_attributes = sets.Set(self.metadata.get('pattr_names',[]))
+        self.family_event_names = set(self.metadata.get('fevent_names',[]))
+        self.individual_event_names = set(self.metadata.get('pevent_names',[]))
+        self.family_attributes = set(self.metadata.get('fattr_names',[]))
+        self.individual_attributes = set(self.metadata.get('pattr_names',[]))
 
         gstats = self.metadata.get('gender_stats')
 
@@ -399,6 +405,7 @@ class GrampsBSDDB(GrampsDbBase):
 
         self.genderStats = GenderStats(gstats)
         self.db_is_open = True
+        callback(87)
         return 1
 
     def rebuild_secondary(self,callback=None):

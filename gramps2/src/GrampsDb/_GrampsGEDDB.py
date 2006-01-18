@@ -48,7 +48,7 @@ class GrampsGEDDB(GrampsInMemDB):
         if self.db_is_open:
             self.close()
         GrampsInMemDB.load(self,name,callback,mode)
-        ReadGedcom.importData(self,name,use_trans=False)
+        ReadGedcom.importData(self,name,callback,use_trans=False)
 
         self.bookmarks = self.metadata.get('bookmarks')
         if self.bookmarks == None:
