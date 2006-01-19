@@ -57,6 +57,8 @@ class PersonFrame(ObjectFrameBase):
         self._tree_frame.get_selection().connect('changed',self.set_preview,self.__class__.__person_id_field)
         self._tree_frame.get_tree().connect('row-activated',self._on_row_activated)
 
+        self._filter_frame.connect('apply-filter',lambda w,m: self._tree_frame.set_model(m))
+
     def _on_row_activated(self,widget,path,col):
         (model, iter) = widget.get_selection().get_selected()
         if iter and model.get_value(iter,self.__class__.__person_id_field):
