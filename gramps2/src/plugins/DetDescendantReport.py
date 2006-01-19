@@ -88,6 +88,7 @@ class DetDescendantReport(Report.Report):
         firstName     - Whether to use first names instead of pronouns.
         fullDate      - Whether to use full dates instead of just year.
         listChildren  - Whether to list children.
+       includeMates  - Whether to include information about spouses
         includeNotes  - Whether to include notes.
         blankPlace    - Whether to replace missing Places with ___________.
         blankDate     - Whether to replace missing Dates with ___________.
@@ -116,6 +117,7 @@ class DetDescendantReport(Report.Report):
         self.includeNames  = options_class.handler.options_dict['incnames']
         self.includeEvents = options_class.handler.options_dict['incevents']
         self.includeSources= options_class.handler.options_dict['incsources']
+        self.includeMates  = options_class.handler.options_dict['incmates']
 
         self.gen_handles = {}
         self.prev_gen_handles= {}
@@ -284,7 +286,7 @@ class DetDescendantReport(Report.Report):
         self.write_marriage(person)
         self.doc.end_paragraph()
 
-        if key == 1:
+        if self.includeMates:
             self.write_mate(person)
 
         if person.get_note() != "" and self.includeNotes:
@@ -611,6 +613,7 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
             'incnames'      : 0,
             'incevents'     : 0,
             'incsources'    : 0,
+            'incmates'      : 1,
         }
         self.options_help = {
             'fulldates'     : ("=0/1","Whether to use full dates instead of just year.",
@@ -651,6 +654,9 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
                             True),
             'incsources'    : ("=0/1","Whether to include source references.",
                             ["Do not include sources","Include sources"],
+                            True),
+            'incmates'      : ("=0/1","Whether to include detailed spouse information.",
+                            ["Do not include spouse info","Include spouse info"],
                             True),
         }
 
@@ -821,6 +827,10 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         self.include_sources_option = gtk.CheckButton(_("Include sources"))
         self.include_sources_option.set_active(self.options_dict['incsources'])
 
+        # Print Spouses
+        self.include_spouses_option = gtk.CheckButton(_("Include spouses"))
+        self.include_spouses_option.set_active(self.options_dict['incmates'])
+
         # Add new options. The first argument is the tab name for grouping options.
         # if you want to put everyting in the generic "Options" category, use
         # self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
@@ -835,6 +845,7 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         dialog.add_frame_option(_('Include'),'',self.include_names_option)
         dialog.add_frame_option(_('Include'),'',self.include_events_option)
         dialog.add_frame_option(_('Include'),'',self.include_sources_option)
+        dialog.add_frame_option(_('Include'),'',self.include_spouses_option)
         dialog.add_frame_option(_('Missing information'),'',self.place_option)
         dialog.add_frame_option(_('Missing information'),'',self.date_option)
 
@@ -855,6 +866,7 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         self.options_dict['incnames'] = int(self.include_names_option.get_active())
         self.options_dict['incevents'] = int(self.include_events_option.get_active())
         self.options_dict['incsources'] = int(self.include_sources_option.get_active())
+        self.options_dict['incmates'] = int(self.include_spouses_option.get_active())
 
 #------------------------------------------------------------------------
 #
