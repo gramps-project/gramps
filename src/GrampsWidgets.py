@@ -94,13 +94,21 @@ class LinkBox(gtk.HBox):
         self.pack_start(button,False)
         self.show()
 
+class EditLabel(gtk.HBox):
+    def __init__(self,text):
+        gtk.HBox.__init__(self)
+        self.pack_start(BasicLabel(text),False)
+        self.pack_start(gtk.image_new_from_stock(gtk.STOCK_EDIT,
+                                                 gtk.ICON_SIZE_MENU),False)
+        self.set_spacing(4)
+        self.show_all()
+
 class BasicLabel(gtk.Label):
 
     def __init__(self,text):
         gtk.Label.__init__(self,text)
         self.set_alignment(0,0.5)
         self.show()
-
 
 class MarkupLabel(gtk.Label):
 
@@ -110,7 +118,6 @@ class MarkupLabel(gtk.Label):
         self.set_use_markup(True)
         self.show()
         
-
 class IntEdit(gtk.Entry):
     """An gtk.Edit widget that only allows integers."""
     
@@ -140,3 +147,16 @@ class IntEdit(gtk.Entry):
             widget.handler_unblock(self._signal)
             # set the correct position in the widget
             widget.set_position(pos + len(text))
+
+class TypeCellRenderer(gtk.CellRendererCombo):
+
+    def __init__(self,values):
+        gtk.CellRendererCombo.__init__(self)
+
+        model = gtk.ListStore(str,int)
+        for key in values:
+            model.append(row=[values[key],key])
+        self.set_property('editable',True)
+        self.set_property('model',model)
+        self.set_property('text-column',0)
+
