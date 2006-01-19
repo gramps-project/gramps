@@ -13,6 +13,12 @@
 	rebuild; convert surnames secondary index to DUPSORTed BTREE.
 	* src/GrampsDb/_GrampsBSDDB.py: upgrade from gramps20.
 	* src/GrampsDb/_ReadXML.py (parse): Properly set batch transaction.
+	* src/GrampsDb/_ReadGrdb.py (importData): Properly set batch
+	transaction.
+	* src/plugins/Check.py: Properly set batch transaction.
+	* src/plugins/ImportGeneWeb.py: Properly set batch transaction.
+	* src/plugins/ImportvCard.py: Properly set batch transaction.
+	* src/plugins/TestCaseGenerator.py: Properly set batch transaction.
 
 2006-01-17  Don Allingham  <don@gramps-project.org>
 	* src/DbPrompter.py: removed

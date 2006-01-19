@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Martin Hawlisch, Donald N. Allingham
+# Copyright (C) 2000-2006  Martin Hawlisch, Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -119,8 +119,7 @@ class GeneWebParser:
         return line
         
     def parse_geneweb_file(self):
-        self.trans = self.db.transaction_begin()
-        self.trans.set_batch(True)
+        self.trans = self.db.transaction_begin("",batch=True)
         self.db.disable_signals()
         t = time.time()
         self.lineno = 0

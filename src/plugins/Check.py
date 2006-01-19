@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -69,8 +69,7 @@ class Check(Tool.Tool):
                 # checking of a read only database
                 return
         
-            trans = db.transaction_begin()
-            trans.set_batch(True)
+            trans = db.transaction_begin("",batch=True)
             db.disable_signals()
             checker = CheckIntegrity(db,parent,trans)
             checker.fix_encoding()
