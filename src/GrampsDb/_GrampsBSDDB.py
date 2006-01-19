@@ -374,10 +374,10 @@ class GrampsBSDDB(GrampsDbBase):
 
         callback(62)
         if not self.readonly:
-            self.person_map.associate(self.surnames,  find_surname, table_flags)
-            self.person_map.associate(self.id_trans,  find_idmap, table_flags)
-            self.family_map.associate(self.fid_trans, find_idmap, table_flags)
-            self.event_map.associate(self.eid_trans,  find_idmap,  table_flags)
+            self.person_map.associate(self.surnames, find_surname, table_flags)
+            self.person_map.associate(self.id_trans, find_idmap, table_flags)
+            self.family_map.associate(self.fid_trans,find_idmap, table_flags)
+            self.event_map.associate(self.eid_trans, find_idmap,  table_flags)
             self.repository_map.associate(self.rid_trans, find_idmap,
                                           table_flags)
             self.repository_map.associate(self.repository_types,
@@ -1077,6 +1077,16 @@ class GrampsBSDDB(GrampsDbBase):
         if transaction.batch:
             self.env.txn_checkpoint()
             self.env.set_flags(db.DB_TXN_NOSYNC,1)      # async txn
+
+            # Disconnect unneeded secondary indices
+            self.surnames.close()
+            junk = db.DB(self.env)
+            junk.remove(self.full_name,"surnames")
+
+            self.reference_map_referenced_map.close()
+            junk = db.DB(self.env)
+            junk.remove(self.full_name,"reference_map_referenced_map")
+            
         return transaction
 
     def transaction_commit(self,transaction,msg):
@@ -1097,6 +1107,24 @@ class GrampsBSDDB(GrampsDbBase):
         if transaction.batch:
             self.env.txn_checkpoint()
             self.env.set_flags(db.DB_TXN_NOSYNC,0)      # sync txn
+
+            table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
+            # create new secondary indices to replace the ones removed
+            self.surnames = db.DB(self.env)
+            self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
+            self.surnames.open(self.full_name, "surnames", db.DB_BTREE,
+                               flags=table_flags)
+            self.person_map.associate(self.surnames,find_surname,table_flags)
+
+            self.reference_map_referenced_map = db.DB(self.env)
+            self.reference_map_referenced_map.set_flags(
+                db.DB_DUP|db.DB_DUPSORT)
+            self.reference_map_referenced_map.open(
+                self.full_name,
+                "reference_map_referenced_map",
+                db.DB_BTREE,
+                flags=table_flags)
+            
         self.txn = None
 
     def undo(self):
