@@ -2,8 +2,9 @@ import gtk
 import gobject
 
 from GrampsWidgets import IntEdit
+from _FilterFrameBase import FilterFrameBase
 
-class FamilyFilterFrame(gtk.Frame):
+class FamilyFilterFrame(FilterFrameBase):
     
     __gproperties__ = {}
 
@@ -13,9 +14,7 @@ class FamilyFilterFrame(gtk.Frame):
     __default_border_width = 5
 
     def __init__(self,dbstate,label="Filter"):
-	gtk.Frame.__init__(self,label)
-
-	align = gtk.Alignment()
+	FilterFrameBase.__init__(self,label)
 
         # Gramps ID
         id_check = gtk.CheckButton()
@@ -86,65 +85,39 @@ class FamilyFilterFrame(gtk.Frame):
         
         # table layout
         
-        table = gtk.Table(3,6,False)
-        table.set_row_spacings(5)
-        table.set_col_spacings(5)
-
-        label_col = 0
-        check_col = 1
-        control_col = 2
         
         current_row = 0
         
-        table.attach(id_check,check_col,check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
-        table.attach(id_label,label_col,label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        table.attach(id_edit,control_col,control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+        self._table.attach(id_check,self._check_col,self._check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
+        self._table.attach(id_label,self._label_col,self._label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
+        self._table.attach(id_edit,self._control_col,self._control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
 
         current_row +=1
         
-        table.attach(name_check,check_col,check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
-        table.attach(name_label,label_col,label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        table.attach(name_edit,control_col,control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+        self._table.attach(name_check,self._check_col,self._check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
+        self._table.attach(name_label,self._label_col,self._label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
+        self._table.attach(name_edit,self._control_col,self._control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
 
 
         current_row +=1
 
-        table.attach(mar_check,check_col,check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
-        table.attach(m_label,label_col,label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        table.attach(m_edit,control_col,control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+        self._table.attach(mar_check,self._check_col,self._check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
+        self._table.attach(m_label,self._label_col,self._label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
+        self._table.attach(m_edit,self._control_col,self._control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
         current_row +=1
-        table.attach(m_inner_box,control_col,control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+        self._table.attach(m_inner_box,self._control_col,self._control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
         current_row +=1
-        table.attach(m_unknown,control_col,control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+        self._table.attach(m_unknown,self._control_col,self._control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
 
         current_row +=1
 
-        table.attach(filter_check,check_col,check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
-        table.attach(filter_label,label_col,label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        table.attach(filter_combo,control_col,control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+        self._table.attach(filter_check,self._check_col,self._check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
+        self._table.attach(filter_label,self._label_col,self._label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
+        self._table.attach(filter_combo,self._control_col,self._control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
 
-        # Apply
 
-        apply_button = gtk.Button(stock=gtk.STOCK_APPLY)
-
-        # Outer box
-
-        outer_box = gtk.VBox()
-        outer_box.pack_start(table,True,True)
-        outer_box.pack_start(apply_button,False,False)
-        outer_box.set_border_width(self.__class__.__default_border_width/2)
-        outer_box.set_spacing(self.__class__.__default_border_width/2)
-        
-	align.add(outer_box)
-        align.set_padding(self.__class__.__default_border_width,
-                          self.__class__.__default_border_width,
-                          self.__class__.__default_border_width,
-                          self.__class__.__default_border_width)
-                          
-
-	self.add(align)
-
-	
+    def on_apply(self,button):
+        pass
     
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(FamilyFilterFrame)

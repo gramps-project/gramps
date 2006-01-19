@@ -2,8 +2,10 @@ import gtk
 import gobject
 
 from GrampsWidgets import IntEdit
+from _FilterFrameBase import FilterFrameBase
+import GenericFilter
 
-class PersonFilterFrame(gtk.Frame):
+class PersonFilterFrame(FilterFrameBase):
     
     __gproperties__ = {}
 
@@ -13,198 +15,199 @@ class PersonFilterFrame(gtk.Frame):
     __default_border_width = 5
 
     def __init__(self,dbstate,label="Filter"):
-	gtk.Frame.__init__(self,label)
-
-	align = gtk.Alignment()
+	FilterFrameBase.__init__(self,label)
 
         # Gramps ID
-        id_check = gtk.CheckButton()
+        self._id_check = gtk.CheckButton()
         id_label = gtk.Label("Gramps ID")
         id_label.set_alignment(xalign=0,yalign=0.5)
 
-        id_edit = gtk.Entry()
-        id_edit.set_sensitive(False)
+        self._id_edit = gtk.Entry()
+        self._id_edit.set_sensitive(False)
 
-        id_check.connect('toggled',lambda b: id_edit.set_sensitive(id_check.get_active()))
+        self._id_check.connect('toggled',lambda b: self._id_edit.set_sensitive(self._id_check.get_active()))
 
         # Name
-	name_check = gtk.CheckButton()
+	self._name_check = gtk.CheckButton()
         name_label = gtk.Label("Name")
         name_label.set_alignment(xalign=0,yalign=0.5)
 
-        name_edit = gtk.Entry()
-        name_edit.set_sensitive(False)
+        self._name_edit = gtk.Entry()
+        self._name_edit.set_sensitive(False)
         
-        name_check.connect('toggled',lambda b: name_edit.set_sensitive(name_check.get_active()))
+        self._name_check.connect('toggled',lambda b: self._name_edit.set_sensitive(self._name_check.get_active()))
 
         # Gender
-	gender_check = gtk.CheckButton()
+	self._gender_check = gtk.CheckButton()
         gender_label = gtk.Label("Gender")
         gender_label.set_alignment(xalign=0,yalign=0.5)
 
-        gender_combo = gtk.combo_box_new_text()
-        gender_combo.append_text("Male")
-        gender_combo.append_text("Female")
-        gender_combo.append_text("Unknown")
-        gender_combo.set_active(2)
-        gender_combo.set_sensitive(False)
+        self._gender_combo = gtk.combo_box_new_text()
+        self._gender_combo.append_text("Male")
+        self._gender_combo.append_text("Female")
+        self._gender_combo.append_text("Unknown")
+        self._gender_combo.set_active(2)
+        self._gender_combo.set_sensitive(False)
 
-        gender_check.connect('toggled',lambda b: gender_combo.set_sensitive(gender_check.get_active()))
+        self._gender_check.connect('toggled',lambda b: self._gender_combo.set_sensitive(self._gender_check.get_active()))
 
         # Birth
-        birth_check = gtk.CheckButton()
-        birth_check.set_alignment(xalign=0,yalign=0)
+        self._birth_check = gtk.CheckButton()
+        self._birth_check.set_alignment(xalign=0,yalign=0)
 
         b_label = gtk.Label("Birth Year")
         b_label.set_alignment(xalign=0,yalign=0)
         
-        b_edit = IntEdit()
-        b_edit.set_sensitive(False)
+        self._b_edit = IntEdit()
+        self._b_edit.set_sensitive(False)
 
-        b_before = gtk.RadioButton(group=None,label="Before")
-        b_before.set_sensitive(False)
+        self._b_before = gtk.RadioButton(group=None,label="Before")
+        self._b_before.set_sensitive(False)
 
-        b_after = gtk.RadioButton(b_before,"After")
-        b_after.set_sensitive(False)
-        b_before.set_active(True)
+        self._b_after = gtk.RadioButton(self._b_before,"After")
+        self._b_after.set_sensitive(False)
+        self._b_before.set_active(True)
         
-        b_unknown = gtk.CheckButton("Include Unknown")
-        b_unknown.set_sensitive(False)
-        b_unknown.set_active(True)
+        self._b_unknown = gtk.CheckButton("Include Unknown")
+        self._b_unknown.set_sensitive(False)
+        self._b_unknown.set_active(True)
 
-        birth_check.connect('toggled',lambda b: b_edit.set_sensitive(birth_check.get_active()))
-        birth_check.connect('toggled',lambda b: b_before.set_sensitive(birth_check.get_active()))
-        birth_check.connect('toggled',lambda b: b_after.set_sensitive(birth_check.get_active()))
-        birth_check.connect('toggled',lambda b: b_unknown.set_sensitive(birth_check.get_active()))
+        self._birth_check.connect('toggled',lambda b: self._b_edit.set_sensitive(self._birth_check.get_active()))
+        self._birth_check.connect('toggled',lambda b: self._b_before.set_sensitive(self._birth_check.get_active()))
+        self._birth_check.connect('toggled',lambda b: self._b_after.set_sensitive(self._birth_check.get_active()))
+        self._birth_check.connect('toggled',lambda b: self._b_unknown.set_sensitive(self._birth_check.get_active()))
 
-        b_inner_box = gtk.HBox()
-        b_inner_box.pack_start(b_before)
-        b_inner_box.pack_start(b_after)
+        self._b_inner_box = gtk.HBox()
+        self._b_inner_box.pack_start(self._b_before)
+        self._b_inner_box.pack_start(self._b_after)
         
         # Death
 
-        death_check = gtk.CheckButton()
+        self._death_check = gtk.CheckButton()
 
         d_label = gtk.Label("Death Year")
         d_label.set_alignment(xalign=0,yalign=0)
 
-        d_edit = IntEdit()
-        d_edit.set_sensitive(False)
+        self._d_edit = IntEdit()
+        self._d_edit.set_sensitive(False)
 
-        d_before = gtk.RadioButton(group=None,label="Before")
-        d_before.set_sensitive(False)
+        self._d_before = gtk.RadioButton(group=None,label="Before")
+        self._d_before.set_sensitive(False)
 
-        d_after = gtk.RadioButton(d_before,"After")
-        d_after.set_sensitive(False)
+        self._d_after = gtk.RadioButton(self._d_before,"After")
+        self._d_after.set_sensitive(False)
 
-        d_before.set_active(True)
-        d_before.set_sensitive(False)
+        self._d_before.set_active(True)
+        self._d_before.set_sensitive(False)
 
-        d_unknown = gtk.CheckButton("Include Unknown")
-        d_unknown.set_sensitive(False)
-        d_unknown.set_active(True)
+        self._d_unknown = gtk.CheckButton("Include Unknown")
+        self._d_unknown.set_sensitive(False)
+        self._d_unknown.set_active(True)
 
-        death_check.connect('toggled',lambda b: d_edit.set_sensitive(death_check.get_active()))
-        death_check.connect('toggled',lambda b: d_before.set_sensitive(death_check.get_active()))
-        death_check.connect('toggled',lambda b: d_after.set_sensitive(death_check.get_active()))
-        death_check.connect('toggled',lambda b: d_unknown.set_sensitive(death_check.get_active()))
+        self._death_check.connect('toggled',lambda b: self._d_edit.set_sensitive(self._death_check.get_active()))
+        self._death_check.connect('toggled',lambda b: self._d_before.set_sensitive(self._death_check.get_active()))
+        self._death_check.connect('toggled',lambda b: self._d_after.set_sensitive(self._death_check.get_active()))
+        self._death_check.connect('toggled',lambda b: self._d_unknown.set_sensitive(self._death_check.get_active()))
 
         d_inner_box = gtk.HBox()
-        d_inner_box.pack_start(d_before)
-        d_inner_box.pack_start(d_after)
+        d_inner_box.pack_start(self._d_before)
+        d_inner_box.pack_start(self._d_after)
 
         # Filter
-	filter_check = gtk.CheckButton()
+	self._filter_check = gtk.CheckButton()
         filter_label = gtk.Label("Filter")
         filter_label.set_alignment(xalign=0,yalign=0.5)
 
-        filter_combo = gtk.combo_box_new_text()
-        filter_combo.append_text("Male")
-        filter_combo.append_text("Female")
-        filter_combo.append_text("Unknown")
-        filter_combo.set_active(2)
-        filter_combo.set_sensitive(False)
+        self._filter_combo = gtk.combo_box_new_text()
+        self._filter_combo.append_text("Male")
+        self._filter_combo.append_text("Female")
+        self._filter_combo.append_text("Unknown")
+        self._filter_combo.set_active(2)
+        self._filter_combo.set_sensitive(False)
         
         
-        filter_check.connect('toggled',lambda b: filter_combo.set_sensitive(filter_check.get_active()))
+        self._filter_check.connect('toggled',lambda b: self._filter_combo.set_sensitive(self._filter_check.get_active()))
         
         # table layout
         
-        table = gtk.Table(3,6,False)
-        table.set_row_spacings(5)
-        table.set_col_spacings(5)
-
-        label_col = 0
-        check_col = 1
-        control_col = 2
-        
         current_row = 0
         
-        table.attach(id_check,check_col,check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
-        table.attach(id_label,label_col,label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        table.attach(id_edit,control_col,control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+        self._table.attach(self._id_check,self._check_col,self._check_col+1,
+                           current_row,current_row+1,xoptions=False,yoptions=False)
+        self._table.attach(id_label,self._label_col,self._label_col+1,
+                           current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
+        self._table.attach(self._id_edit,self._control_col,self._control_col+1,
+                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
 
         current_row +=1
         
-        table.attach(name_check,check_col,check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
-        table.attach(name_label,label_col,label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        table.attach(name_edit,control_col,control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+        self._table.attach(self._name_check,self._check_col,self._check_col+1,
+                           current_row,current_row+1,xoptions=False,yoptions=False)
+        self._table.attach(name_label,self._label_col,self._label_col+1,
+                           current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
+        self._table.attach(self._name_edit,self._control_col,self._control_col+1,
+                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
 
         current_row +=1
 
-        table.attach(gender_check,check_col,check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
-        table.attach(gender_label,label_col,label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        table.attach(gender_combo,control_col,control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+        self._table.attach(self._gender_check,self._check_col,self._check_col+1,
+                           current_row,current_row+1,xoptions=False,yoptions=False)
+        self._table.attach(gender_label,self._label_col,self._label_col+1,
+                           current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
+        self._table.attach(self._gender_combo,self._control_col,self._control_col+1,
+                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
 
 
         current_row +=1
 
-        table.attach(birth_check,check_col,check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
-        table.attach(b_label,label_col,label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        table.attach(b_edit,control_col,control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-        current_row +=1
-        table.attach(b_inner_box,control_col,control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-        current_row +=1
-        table.attach(b_unknown,control_col,control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-
-        current_row +=1
-
-        table.attach(death_check,check_col,check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
-        table.attach(d_label,label_col,label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        table.attach(d_edit,control_col,control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-        current_row +=1
-        table.attach(d_inner_box,control_col,control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-        current_row +=1
-        table.attach(d_unknown,control_col,control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-
-        current_row +=1
-
-        table.attach(filter_check,check_col,check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
-        table.attach(filter_label,label_col,label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        table.attach(filter_combo,control_col,control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-
-        # Apply
-
-        apply_button = gtk.Button(stock=gtk.STOCK_APPLY)
-
-        # Outer box
-
-        outer_box = gtk.VBox()
-        outer_box.pack_start(table,True,True)
-        outer_box.pack_start(apply_button,False,False)
-        outer_box.set_border_width(self.__class__.__default_border_width/2)
-        outer_box.set_spacing(self.__class__.__default_border_width/2)
+        self._table.attach(self._birth_check,self._check_col,self._check_col+1,
+                           current_row,current_row+1,xoptions=False,yoptions=False)
+        self._table.attach(b_label,self._label_col,self._label_col+1,
+                           current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
+        self._table.attach(self._b_edit,self._control_col,self._control_col+1,
+                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
         
-	align.add(outer_box)
-        align.set_padding(self.__class__.__default_border_width,
-                          self.__class__.__default_border_width,
-                          self.__class__.__default_border_width,
-                          self.__class__.__default_border_width)
-                          
+        current_row +=1
+        self._table.attach(self._b_inner_box,self._control_col,self._control_col+1,
+                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+        
+        current_row +=1
+        self._table.attach(self._b_unknown,self._control_col,self._control_col+1,
+                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
 
-	self.add(align)
+        current_row +=1
 
-	
+        self._table.attach(self._death_check,self._check_col,self._check_col+1,
+                           current_row,current_row+1,xoptions=False,yoptions=False)
+        self._table.attach(d_label,self._label_col,self._label_col+1,current_row,
+                           current_row+1,xoptions=gtk.FILL,yoptions=False)
+        self._table.attach(self._d_edit,self._control_col,self._control_col+1,
+                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+        
+        current_row +=1
+        self._table.attach(d_inner_box,self._control_col,self._control_col+1,
+                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+        
+        current_row +=1
+        self._table.attach(self._d_unknown,self._control_col,self._control_col+1,
+                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+
+        current_row +=1
+
+        self._table.attach(self._filter_check,self._check_col,self._check_col+1,
+                           current_row,current_row+1,xoptions=False,yoptions=False)
+        self._table.attach(filter_label,self._label_col,self._label_col+1,
+                           current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
+        self._table.attach(self._filter_combo,self._control_col,self._control_col+1,
+                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+
+    def on_apply(self,button):
+        filter = GenericFilter.GenericFilter()
+        
+        if self._id_check.get_active():
+            filter.add_rule(GenericFilter.HasIdOf([self._id_edit.get_text()]))
+
+	self.emit('apply-filter',filter)
     
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(PersonFilterFrame)
@@ -214,6 +217,7 @@ if __name__ == "__main__":
     w = gtk.Window()
     f = PersonFilterFrame()
     w.add(f)
+    
     w.show_all()
 
     gtk.main()

@@ -336,7 +336,7 @@ if __name__ == "__main__":
     w = ObjectSelectorWindow(dbstate=dbstate,
                              uistate=vm.uistate,
                              default_object_type = ObjectTypes.PERSON,
-                             object_list=[ObjectTypes.PERSON])
+                             object_list=[ObjectTypes.PERSON,ObjectTypes.FAMILY])
     w.show()
     w.connect("destroy", gtk.main_quit)
 

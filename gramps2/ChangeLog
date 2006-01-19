@@ -1,9 +1,14 @@
+2006-01-17 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+       * src/ObjectSelector/_FamilyFilterFrame.py, src/ObjectSelector/_ObjectSelectorWindow.py
+         src/ObjectSelector/_PersonFilterFrame.py: ground work for filters
+	* src/ObjectSelector/_FilterFrameBase.py: new file
+
 2006-01-19  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (transaction_begin): Disconnect
 	unneeded secondary indices; (transaction_commit): Create new
 	secondary indices to replace the ones removed.
 
-2006-01-17 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+2006-01-19 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
        * src/ListBox.py: added import for gettext
        * src/ObjectSelector/_Factories.py, src/ObjectSelector/_FamilyFrame.py
          src/ObjectSelector/_ObjectFrameBase.py, src/ObjectSelector/_ObjectSelectorWindow.py
