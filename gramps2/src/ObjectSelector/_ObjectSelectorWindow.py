@@ -1,6 +1,8 @@
 #for debug, remove later
 import sys
 sys.path.append("..")
+sys.path.append(".")
+sys.path.append("ObjectSelector")
 
 import gtk
 import gobject
@@ -15,14 +17,17 @@ class _ObjectTypeWidgets(object):
         self.frame = None
         self.sel_label = None
         self.selected_id = None
+        self.new_button = None
 
     def show(self):
         self.frame.show_all()
         self.sel_label.show_all()
+        self.new_button.show()
 
     def hide(self):
         self.frame.hide_all()
         self.sel_label.hide_all()
+        self.new_button.hide()
 
     def set_selected_id(self,id):
         self.selected_id = id
@@ -48,12 +53,14 @@ class ObjectSelectorWindow(gtk.Window):
 
     def __init__(self,
                  dbstate,
+                 uistate,
                  default_object_type = ObjectTypes.PERSON,
                  object_list = OBJECT_LIST):
         
 	gtk.Window.__init__(self)
 
         self._dbstate = dbstate
+        self._uistate = dbstate
         self._object_list = object_list
         self._current_object_type = None
 
@@ -66,6 +73,16 @@ class ObjectSelectorWindow(gtk.Window):
         self.set_title("Add Person")
         
         # Selected object label
+
+        new_button_box = gtk.VBox()
+        new_button_box.show()
+        
+        for object_type in object_list:
+            new_button = gtk.Button(stock=gtk.STOCK_NEW)
+
+            self._object_frames[object_type].new_button = new_button
+            new_button_box.pack_start(new_button)
+
         label = gtk.Label("<b>Selected:</b>")
         label.set_use_markup(True)
         label.set_alignment(xalign=0.9,yalign=0.5)
@@ -92,6 +109,7 @@ class ObjectSelectorWindow(gtk.Window):
         sel_frame.show()
         
         label_box = gtk.HBox()
+        label_box.pack_start(new_button_box,False,False)
         label_box.pack_start(label,False,False)
         label_box.pack_start(sel_frame,True,True)
         label_box.show()
@@ -104,8 +122,8 @@ class ObjectSelectorWindow(gtk.Window):
                               self.__class__.__default_border_width)
 
         
-        person_pixbuf = gtk.gdk.pixbuf_new_from_file("../person.svg")
-        flist_pixbuf = gtk.gdk.pixbuf_new_from_file("../flist.svg")
+        person_pixbuf = gtk.gdk.pixbuf_new_from_file("./person.svg")
+        flist_pixbuf = gtk.gdk.pixbuf_new_from_file("./flist.svg")
 
         self._tool_list = gtk.ListStore(gtk.gdk.Pixbuf, str,int)
 
@@ -160,7 +178,7 @@ class ObjectSelectorWindow(gtk.Window):
         for object_type in object_list:
             
             self._object_frames[object_type].frame = \
-                        _Factories.ObjectFrameFactory().get_frame(object_type,dbstate)
+                        _Factories.ObjectFrameFactory().get_frame(object_type,dbstate,uistate)
 
             # connect signals                
             self._object_frames[object_type].frame.connect(
@@ -181,6 +199,9 @@ class ObjectSelectorWindow(gtk.Window):
                 'add-object',
                 self.on_add)
             
+            self._object_frames[object_type].new_button.connect(
+                'clicked',
+                self._object_frames[object_type].frame.new_object)
             
             frame_box.pack_start(self._object_frames[object_type].frame,True,True)
 
@@ -223,6 +244,7 @@ class ObjectSelectorWindow(gtk.Window):
 	self.add(align)
 
         self._set_object_type(default_object_type)
+        self.set_default_size(700,300)
 
 
     def _set_object_type(self,selected_object_type):
@@ -272,12 +294,13 @@ class ObjectSelectorWindow(gtk.Window):
         
         
 if gtk.pygtk_version < (2,8,0):
-    gobject.type_register(PersonSearchCriteriaWidget)
+    gobject.type_register(ObjectSelectorWindow)
 
 if __name__ == "__main__":
 
 
     import GrampsDb
+    import ViewManager
     import const
 
     import logging
@@ -296,6 +319,9 @@ if __name__ == "__main__":
     def cb(d):
         pass
 
+    state = GrampsDb.DbState()
+    vm = ViewManager.ViewManager(state)
+
     db = GrampsDb.gramps_db_factory(const.app_gramps)()
     db.load(os.path.realpath(sys.argv[1]),
             cb, # callback
@@ -308,9 +334,9 @@ if __name__ == "__main__":
 
 
     w = ObjectSelectorWindow(dbstate=dbstate,
-                             default_object_type = ObjectTypes.FAMILY,
-                             object_list=[ObjectTypes.FAMILY,
-                                          ObjectTypes.PERSON])
+                             uistate=vm.uistate,
+                             default_object_type = ObjectTypes.PERSON,
+                             object_list=[ObjectTypes.PERSON])
     w.show()
     w.connect("destroy", gtk.main_quit)
 

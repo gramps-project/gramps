@@ -5,6 +5,9 @@ sys.path.append("..")
 import gtk
 import gobject
 
+from RelLib import Person
+from EditPerson import EditPerson
+
 from _ObjectFrameBase import ObjectFrameBase
 from _PersonFilterFrame import PersonFilterFrame
 from _PersonPreviewFrame import PersonPreviewFrame
@@ -29,10 +32,12 @@ class PersonFrame(ObjectFrameBase):
     __person_id_field = 1
     
     def __init__(self,
-                 dbstate):
+                 dbstate,
+                 uistate):
         
         ObjectFrameBase.__init__(self,
                                  dbstate=dbstate,
+                                 uistate=uistate,
                                  filter_frame = PersonFilterFrame(dbstate),
                                  preview_frame = PersonPreviewFrame(dbstate),
                                  tree_frame = PersonTreeFrame(dbstate))
@@ -56,7 +61,11 @@ class PersonFrame(ObjectFrameBase):
         (model, iter) = widget.get_selection().get_selected()
         if iter and model.get_value(iter,self.__class__.__person_id_field):
             self.emit('add-object')
-            
+
+    def new_object(self,button):
+        person = Person()
+        EditPerson(self._dbstate,self._uistate,[],person)
+        
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(PersonFrame)
 

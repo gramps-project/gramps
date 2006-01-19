@@ -15,6 +15,7 @@ class ObjectFrameBase(gtk.Frame):
 
     def __init__(self,
                  dbstate,
+                 uistate,
                  filter_frame,
                  preview_frame,
                  tree_frame):
@@ -22,6 +23,7 @@ class ObjectFrameBase(gtk.Frame):
         gtk.Frame.__init__(self)
 
         self._dbstate = dbstate
+        self._uistate = uistate
         self._filter_frame = filter_frame
         self._preview_frame = preview_frame
         self._tree_frame = tree_frame
@@ -73,7 +75,7 @@ class ObjectFrameBase(gtk.Frame):
     
     
 if gtk.pygtk_version < (2,8,0):
-    gobject.type_register(PersonFrame)
+    gobject.type_register(ObjectFrameBase)
 
 if __name__ == "__main__":
     pass

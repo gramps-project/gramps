@@ -25,6 +25,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from gettext import gettext as _
 import cPickle as pickle
 from sets import Set
 import locale

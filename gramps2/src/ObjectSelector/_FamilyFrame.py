@@ -28,10 +28,12 @@ class FamilyFrame(ObjectFrameBase):
     __person_id_field = 0
 
     def __init__(self,
-                 dbstate):
+                 dbstate,
+                 uistate):
         
         ObjectFrameBase.__init__(self,
                                  dbstate=dbstate,
+                                 uistate=uistate,
                                  filter_frame = FamilyFilterFrame(dbstate),
                                  preview_frame = FamilyPreviewFrame(dbstate),
                                  tree_frame = FamilyTreeFrame(dbstate))
@@ -41,6 +43,8 @@ class FamilyFrame(ObjectFrameBase):
         self._tree_frame.get_selection().connect('changed',self.set_preview,self.__class__.__person_id_field)
         self._tree_frame.get_tree().connect('row-activated',self._on_row_activated)
 
+    def new_object(self,button):
+        pass
 
     def _handle_selection(self,treeselection):
         (model, iter) = treeselection.get_selected()
