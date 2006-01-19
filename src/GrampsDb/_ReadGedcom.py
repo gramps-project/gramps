@@ -101,15 +101,15 @@ file_systems = {
     "SMBFS"   : _('Networked Windows file system')
     }
 
-rel_types = (RelLib.Person.CHILD_BIRTH,
-             RelLib.Person.CHILD_UNKNOWN,
-             RelLib.Person.CHILD_NONE)
+rel_types = ((RelLib.Person.CHILD_BIRTH,''),
+             (RelLib.Person.CHILD_UNKNOWN,''),
+             (RelLib.Person.CHILD_NONE,''))
 
 pedi_type = {
-    'birth'  : RelLib.Person.CHILD_BIRTH,
-    'natural': RelLib.Person.CHILD_BIRTH,
-    'adopted': RelLib.Person.CHILD_ADOPTED,
-    'foster' : RelLib.Person.CHILD_FOSTER,
+    'birth'  : (RelLib.Person.CHILD_BIRTH,''),
+    'natural': (RelLib.Person.CHILD_BIRTH,''),
+    'adopted': (RelLib.Person.CHILD_ADOPTED,''),
+    'foster' : (RelLib.Person.CHILD_FOSTER,''),
     }
 
 #-------------------------------------------------------------------------
@@ -833,8 +833,8 @@ class GedcomParser:
                 self.barf(level+1)
 
     def parse_ftw_relations(self,level):
-        mrel = RelLib.Person.CHILD_BIRTH
-        frel = RelLib.Person.CHILD_BIRTH
+        mrel = (RelLib.Person.CHILD_BIRTH,'')
+        frel = (RelLib.Person.CHILD_BIRTH,'')
         
         while 1:
             matches = self.get_next()
@@ -843,17 +843,17 @@ class GedcomParser:
                 return (mrel,frel)
             # FTW
             elif matches[1] == TOKEN__FREL:
-                frel = pedi_type.get(matches[2].lower(),RelLib.Person.CHILD_BIRTH)
+                frel = pedi_type.get(matches[2].lower(),(RelLib.Person.CHILD_BIRTH,''))
             # FTW
             elif matches[1] == TOKEN__MREL:
-                mrel = pedi_type.get(matches[2].lower(),RelLib.Person.CHILD_BIRTH)
+                mrel = pedi_type.get(matches[2].lower(),(RelLib.Person.CHILD_BIRTH,''))
             elif matches[1] == TOKEN_ADOP:
-                mrel = RelLib.Person.CHILD_ADOPTED
-                frel = RelLib.Person.CHILD_ADOPTED
+                mrel = (RelLib.Person.CHILD_ADOPTED,'')
+                frel = (RelLib.Person.CHILD_ADOPTED,'')
             # Legacy
             elif matches[1] == TOKEN__STAT:
-                mrel = RelLib.Person.CHILD_BIRTH
-                frel = RelLib.Person.CHILD_BIRTH
+                mrel = (RelLib.Person.CHILD_BIRTH,'')
+                frel = (RelLib.Person.CHILD_BIRTH,'')
             # Legacy _PREF
             elif matches[1][0] == TOKEN_UNKNOWN:
                 pass
@@ -894,18 +894,24 @@ class GedcomParser:
                 child = self.find_or_create_person(self.map_gid(gid[1:-1]))
                 self.family.add_child_handle(child.get_handle())
 
+                change = False
+
                 for f in child.get_parent_family_handle_list():
                     if f[0] == self.family.get_handle():
-                        child.change_parent_family_handle(self.family.get_handle(),
-                                                          mrel, frel)
+                        if (mrel != f[1] or frel != f[2]):
+                            change = True
+                            child.change_parent_family_handle(self.family.get_handle(),
+                                                              mrel, frel)
                         break
                 else:
+                    change = True
                     if mrel in rel_types and frel in rel_types:
                         child.set_main_parent_family_handle(self.family.get_handle())
                     else:
-                        if child.get_main_parents_family_handle() == self.family:
+                        if child.get_main_parents_family_handle() == self.family.handle:
                             child.set_main_parent_family_handle(None)
-                self.db.commit_person(child, self.trans)
+                if change:
+                    self.db.commit_person(child, self.trans)
             elif matches[1] == TOKEN_NCHI:
                 a = RelLib.Attribute()
                 a.set_type("Number of Children")
@@ -1073,7 +1079,7 @@ class GedcomParser:
             oref.set_reference_handle(photo.get_handle())
             oref.set_note(note)
             self.person.add_media_reference(oref)
-            self.db.commit_person(self.person, self.trans)
+            #self.db.commit_person(self.person, self.trans)
 
     def parse_family_object(self,level):
         form = ""
@@ -1118,7 +1124,7 @@ class GedcomParser:
             oref.set_reference_handle(photo.get_handle())
             oref.set_note(note)
             self.family.add_media_reference(oref)
-            self.db.commit_family(self.family, self.trans)
+            #self.db.commit_family(self.family, self.trans)
 
     def parse_residence(self,address,level):
         note = ""
@@ -2136,5 +2142,9 @@ if __name__ == "__main__":
     database = db_class()
     database.load("test.grdb",lambda x: None, mode="w")
     np = NoteParser(sys.argv[1],False)
+    import time
+    t = time.time()
     g = GedcomParser(database,sys.argv[1],callback, codeset, np.get_map(),np.get_lines())
-    profile.run('g.parse_gedcom_file(False)')
+    #profile.run('g.parse_gedcom_file(False)')
+    g.parse_gedcom_file(False)
+    print time.time() - t
