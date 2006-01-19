@@ -1041,7 +1041,7 @@ class GedcomParser:
                 filename = matches[2]
             elif matches[1] == TOKEN_NOTE:
                 note = matches[2] + self.parse_continue_data(level+1)
-            elif matches[1][0] == TOKEN_UNKNOWN:
+            elif matches[1] == TOKEN_UNKNOWN:
                 self.ignore_sub_junk(level+1)
             else:
                 self.barf(level+1)
@@ -1577,13 +1577,13 @@ class GedcomParser:
         if len(data) == 1:
             name = RelLib.Name(person.get_primary_name())
             name.set_surname(data[0])
-            name.set_type('Married Name')
+            name.set_type((RelLib.Name.MARRIED,''))
             person.add_alternate_name(name)
         elif len(data) > 1:
             name = RelLib.Name()
             name.set_surname(data[-1])
             name.set_first_name(' '.join(data[0:-1]))
-            name.set_type('Married Name')
+            name.set_type((RelLib.Name.MARRIED,''))
             person.add_alternate_name(name)
 
     def parse_header_head(self):

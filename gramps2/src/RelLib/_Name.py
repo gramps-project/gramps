@@ -202,7 +202,7 @@ class Name(PrivateSourceNote,DateBase):
     def set_type(self,the_type):
         """sets the type of the Name instance"""
         if not type(the_type) == tuple:
-            if the_type in [UNKNOWN,CUSTOM,AKA,BIRTH,MARRIED]:
+            if the_type in [self.UNKNOWN,self.CUSTOM,self.AKA,self.BIRTH,self.MARRIED]:
                 warn( "set_type now takes a tuple", DeprecationWarning, 2)
                 # Wrapper for old API
                 # remove when transitition done.

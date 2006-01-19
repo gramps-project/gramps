@@ -97,10 +97,14 @@ class LinkBox(gtk.HBox):
 class EditLabel(gtk.HBox):
     def __init__(self,text):
         gtk.HBox.__init__(self)
-        self.pack_start(BasicLabel(text),False)
+        label = BasicLabel(text)
+        self.pack_start(label,False)
         self.pack_start(gtk.image_new_from_stock(gtk.STOCK_EDIT,
                                                  gtk.ICON_SIZE_MENU),False)
         self.set_spacing(4)
+#        self.tooltip = gtk.Tooltips()
+#        self.tooltip.set_tip(label,_('Click in the cell to change the value'))
+#        self.tooltip.enable()
         self.show_all()
 
 class BasicLabel(gtk.Label):
