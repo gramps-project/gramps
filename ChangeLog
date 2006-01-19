@@ -7,6 +7,10 @@
 	* src/GrampsDb/_GrampsBSDDB.py (transaction_begin): Disconnect
 	unneeded secondary indices; (transaction_commit): Create new
 	secondary indices to replace the ones removed.
+	* src/plugins/ChangeNames.py (on_ok_clicked): Properly set batch
+	transaction.
+	* src/GrampsDb/_GrampsDbBase.py (transaction_begin): Add batch
+	argument; (set_batch): Remove method.
 
 2006-01-19 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
        * src/ListBox.py: added import for gettext

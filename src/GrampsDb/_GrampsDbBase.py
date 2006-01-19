@@ -1063,7 +1063,7 @@ class GrampsDbBase(GrampsDBCallback):
         """
         self.rprefix = self._validated_id_prefix(val,"R")
             
-    def transaction_begin(self,msg=""):
+    def transaction_begin(self,msg="",batch=False):
         """
         Creates a new Transaction tied to the current UNDO database. The
         transaction has no effect until it is committed using the
@@ -1072,7 +1072,7 @@ class GrampsDbBase(GrampsDBCallback):
         if self.__LOG_ALL:
             log.debug("%s: Transaction begin '%s'\n"
                       % (self.__class__.__name__, str(msg)))
-        return Transaction(msg,self.undodb)
+        return Transaction(msg,self.undodb,batch)
 
     def transaction_commit(self,transaction,msg):
         """
@@ -1795,9 +1795,8 @@ class Transaction:
         self.repository_del = []
         self.repository_update = []
 
-
-    def set_batch(self,batch):
-        self.batch = batch
+##     def set_batch(self,batch):
+##         self.batch = batch
 
     def get_batch(self):
         return self.batch
