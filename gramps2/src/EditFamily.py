@@ -120,18 +120,14 @@ class ChildEmbedList(EmbeddedList):
                 continue
             name = self.column_names[pair[1]][0]
             if pair[1] == 4 or pair[1] == 5:
-                model = gtk.ListStore(str,int)
-                for x in Utils.child_relations.keys():
-                    model.append(row=[Utils.child_relations[x],x])
-                render = gtk.CellRendererCombo()
-                render.set_property('editable',True)
-                render.set_property('model',model)
-                render.set_property('text-column',0)
+
+                render = TypeCellRenderer(Utils.child_relations)
+                column = gtk.TreeViewColumn(name, render, text=pair[1])
+                column.set_widget(EditLabel(name))
             else:
                 render = gtk.CellRendererText()
+                column = gtk.TreeViewColumn(name, render, text=pair[1])
 
-            column = gtk.TreeViewColumn(name, render, text=pair[1])
-            column = gtk.TreeViewColumn(name, render, text=pair[1])
             column.set_resizable(True)
             column.set_min_width(40)
             column.set_sort_column_id(self.column_names[pair[1]][1])

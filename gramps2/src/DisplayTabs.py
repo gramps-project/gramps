@@ -366,10 +366,17 @@ class ChildModel(gtk.ListStore):
             index += 1
 
     def display_rel(self,rtype):
-        if rtype[0] == RelLib.Family.CUSTOM:
-            return unicode(rtype[1])
+        if type(rtype) == tuple:
+            rel = rtype[0]
+            val = rtype[1]
         else:
-            return Utils.child_relations[rtype[0]]
+            rel = rtype
+            val = "???"
+            
+        if rel == RelLib.Family.CUSTOM:
+            return unicode(val)
+        else:
+            return Utils.child_relations[rel]
 
     def column_father_rel(self,data):
         chandle = data.handle
