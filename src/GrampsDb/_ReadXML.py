@@ -590,8 +590,7 @@ class GrampsParser:
 
     def parse(self,file,use_trans=True,linecount=0):
 
-        self.trans = self.db.transaction_begin()
-        self.trans.set_batch(True)
+        self.trans = self.db.transaction_begin("",batch=True)
         self.linecount = linecount
 
         self.db.disable_signals()

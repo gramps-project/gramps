@@ -11,6 +11,7 @@
 	* src/GrampsDb/_GrampsBSDDB.py (rebuild_secondary): Proper
 	rebuild; convert surnames secondary index to DUPSORTed BTREE.
 	* src/GrampsDb/_GrampsBSDDB.py: upgrade from gramps20.
+	* src/GrampsDb/_ReadXML.py (parse): Properly set batch transaction.
 
 2006-01-17  Don Allingham  <don@gramps-project.org>
 	* src/DbPrompter.py: removed
