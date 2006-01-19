@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Martin Hawlisch, Donald N. Allingham
+# Copyright (C) 2000-2006  Martin Hawlisch, Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -247,10 +247,12 @@ class TestcaseGenerator(Tool.Tool):
         
         self.transaction_count = 0;
         
-        self.trans = self.db.transaction_begin()
         if not self.options.handler.options_dict['no_trans']:
-            self.trans.set_batch(True)
+            batch = True
             self.db.disable_signals()
+        else:
+            batch = False
+        self.trans = self.db.transaction_begin("",batch)
 
         if self.options.handler.options_dict['no_trans']:
     

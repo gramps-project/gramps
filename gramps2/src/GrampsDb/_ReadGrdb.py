@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2005  Donald N. Allingham
+# Copyright (C) 2005-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -109,8 +109,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
 
     # Proceed with preparing for import
     if use_trans:
-        trans = database.transaction_begin()
-        trans.set_batch(True)
+        trans = database.transaction_begin("",batch=True)
     else:
         trans = None
 
