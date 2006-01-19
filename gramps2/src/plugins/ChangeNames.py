@@ -159,8 +159,7 @@ class ChangeNames(Tool.Tool):
         self.window.present()
                 
     def on_ok_clicked(self,obj):
-        self.trans = self.db.transaction_begin()
-        self.trans.set_batch(True)
+        self.trans = self.db.transaction_begin("",batch=True)
         self.db.disable_signals()
         changelist = []
         for node in self.iter_list:
