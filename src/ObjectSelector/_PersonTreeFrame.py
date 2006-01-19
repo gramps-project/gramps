@@ -4,6 +4,7 @@ import gtk
 import gobject
 
 from PeopleModel import PeopleModel
+import NameDisplay
 
 column_names = [
     _('Name'),
@@ -35,11 +36,15 @@ class PersonTreeFrame(gtk.Frame):
         self._dbstate = dbstate
         self._selection = None
         self._model = None
+        self._data_filter = None
 
         self._tree = gtk.TreeView()
         self._tree.set_rules_hint(True)
         self._tree.set_headers_visible(True)
         #self._tree.connect('key-press-event',self.key_press)
+
+        self._tree.connect('row-activated',self._on_row_activated)
+
 
         renderer = gtk.CellRendererText()
 
@@ -67,15 +72,124 @@ class PersonTreeFrame(gtk.Frame):
 
         self.add(scrollwindow)
 
-        self.set_model(self._dbstate.db)
+        self.change_db(self._dbstate.db)
 
-    def set_model(self,db):
+    def _on_row_activated(self,widget,path,col):
+        """Expand / colapse row"""
 
-        self._model = PeopleModel(db)
+        if self._tree.row_expanded(path):
+            self._tree.collapse_row(path)
+        else:
+            self._tree.expand_row(path,False)
+
+    def change_db(self,db):
+        self.set_model(db)
+        db.connect('person-add', self.person_added)
+        db.connect('person-update', self.person_updated)
+        db.connect('person-delete', self.person_removed)
+
+    def set_model(self,db,data_filter=None):
+
+        self._model = PeopleModel(db,data_filter=data_filter)
 
         self._tree.set_model(self._model)
 
         self._selection = self._tree.get_selection()
+
+        # expand the first row so that the tree is a sensible size.
+        self._tree.expand_row((0,),False)
+
+    def person_added(self,handle_list):
+        for node in handle_list:
+            person = self._dbstate.db.get_person_from_handle(node)
+            top = NameDisplay.displayer.name_grouping(self._dbstate.db,person)
+            self._model.rebuild_data(self._data_filter)
+            if not self._model.is_visable(node):
+                continue
+            if (not self._model.sname_sub.has_key(top) or 
+                len(self._model.sname_sub[top]) == 1):
+                path = self._model.on_get_path(top)
+                pnode = self._model.get_iter(path)
+                self._model.row_inserted(path,pnode)
+            path = self._model.on_get_path(node)
+            pnode = self._model.get_iter(path)
+            self._model.row_inserted(path,pnode)
+            self._tree.expand_to_path(path)
+            self._tree.set_cursor(path)
+
+    def person_removed(self,handle_list):
+        for node in handle_list:
+            person = self._dbstate.db.get_person_from_handle(node)
+            if not self._model.is_visable(node):
+                continue
+            top = NameDisplay.displayer.name_grouping(self._dbstate.db,person)
+            mylist = self._model.sname_sub.get(top,[])
+            if mylist:
+                try:
+                    path = self._model.on_get_path(node)
+                    self._model.row_deleted(path)
+                    if len(mylist) == 1:
+                        path = self._model.on_get_path(top)
+                        self._model.row_deleted(path)
+                except KeyError:
+                    pass
+        self._model.rebuild_data(self.DataFilter,skip=node)
+
+    def person_updated(self,handle_list):
+        for node in handle_list:
+            person = self._dbstate.db.get_person_from_handle(node)
+            try:
+                oldpath = self._model.iter2path[node]
+            except:
+                return
+            pathval = self._model.on_get_path(node)
+            pnode = self._model.get_iter(pathval)
+
+            # calculate the new data
+
+            surname = NameDisplay.displayer.name_grouping(self._dbstate.db,person)
+
+            if oldpath[0] == surname:
+                self._model.build_sub_entry(surname)
+            else:
+                self._model.calculate_data(self.DataFilter)
+            
+            # find the path of the person in the new data build
+            newpath = self._model.temp_iter2path[node]
+            
+            # if paths same, just issue row changed signal
+
+            if oldpath == newpath:
+                self._model.row_changed(pathval,pnode)
+            else:
+                # paths different, get the new surname list
+                
+                mylist = self._model.temp_sname_sub.get(oldpath[0],[])
+                path = self._model.on_get_path(node)
+                
+                # delete original
+                self._model.row_deleted(pathval)
+                
+                # delete top node of original if necessar
+                if len(mylist)==0:
+                    self._model.row_deleted(pathval[0])
+                    
+                # determine if we need to insert a new top node',
+                insert = not self._model.sname_sub.has_key(newpath[0])
+
+                # assign new data
+                self._model.assign_data()
+                
+                # insert new row if needed
+                if insert:
+                    path = self._model.on_get_path(newpath[0])
+                    pnode = self._model.get_iter(path)
+                    self._model.row_inserted(path,pnode)
+
+                # insert new person
+                path = self._model.on_get_path(node)
+                pnode = self._model.get_iter(path)
+                self._model.row_inserted(path,pnode)
 
     def get_selection(self):
         return self._selection
