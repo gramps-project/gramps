@@ -83,14 +83,14 @@ class PersonTreeFrame(gtk.Frame):
             self._tree.expand_row(path,False)
 
     def change_db(self,db):
-        self.set_model(db)
+        self.set_model()
         db.connect('person-add', self.person_added)
         db.connect('person-update', self.person_updated)
         db.connect('person-delete', self.person_removed)
 
-    def set_model(self,db,data_filter=None):
+    def set_model(self,data_filter=None):
 
-        self._model = PeopleModel(db,data_filter=data_filter)
+        self._model = PeopleModel(self._dbstate.db,data_filter=data_filter)
 
         self._tree.set_model(self._model)
 

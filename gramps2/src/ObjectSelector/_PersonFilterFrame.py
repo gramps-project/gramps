@@ -1,9 +1,14 @@
 import gtk
 import gobject
+from gettext import gettext as _
+from logging import getLogger
+
+log = getLogger(".ObjectSelector")
 
 from GrampsWidgets import IntEdit
 from _FilterFrameBase import FilterFrameBase
 import GenericFilter
+import RelLib
 
 class PersonFilterFrame(FilterFrameBase):
     
@@ -42,10 +47,21 @@ class PersonFilterFrame(FilterFrameBase):
         gender_label = gtk.Label("Gender")
         gender_label.set_alignment(xalign=0,yalign=0.5)
 
-        self._gender_combo = gtk.combo_box_new_text()
-        self._gender_combo.append_text("Male")
-        self._gender_combo.append_text("Female")
-        self._gender_combo.append_text("Unknown")
+        self._gender_list = gtk.ListStore(str,int)
+
+        genders=[[_("Male"),RelLib.Person.MALE],
+                 [_("Female"),RelLib.Person.FEMALE],
+                 [_("Unknown"),RelLib.Person.UNKNOWN]]
+        
+        for gender in genders:        
+            self._gender_list.append(gender)
+        
+        self._gender_combo = gtk.ComboBox(self._gender_list)
+        
+        label_cell = gtk.CellRendererText()
+        
+        self._gender_combo.pack_start(label_cell, True)
+        self._gender_combo.add_attribute(label_cell, 'text', 0)
         self._gender_combo.set_active(2)
         self._gender_combo.set_sensitive(False)
 
@@ -118,15 +134,55 @@ class PersonFilterFrame(FilterFrameBase):
         filter_label = gtk.Label("Filter")
         filter_label.set_alignment(xalign=0,yalign=0.5)
 
-        self._filter_combo = gtk.combo_box_new_text()
-        self._filter_combo.append_text("Male")
-        self._filter_combo.append_text("Female")
-        self._filter_combo.append_text("Unknown")
-        self._filter_combo.set_active(2)
+        default_filters = [
+            GenericFilter.Everyone,
+            GenericFilter.IsFemale,
+            GenericFilter.IsMale,
+            GenericFilter.HasUnknownGender,
+            GenericFilter.Disconnected,
+            GenericFilter.SearchName,
+            GenericFilter.HaveAltFamilies,
+            GenericFilter.HavePhotos,
+            GenericFilter.IncompleteNames,
+            GenericFilter.HaveChildren,
+            GenericFilter.NeverMarried,
+            GenericFilter.MultipleMarriages,
+            GenericFilter.NoBirthdate,
+            GenericFilter.PersonWithIncompleteEvent,
+            GenericFilter.FamilyWithIncompleteEvent,
+            GenericFilter.ProbablyAlive,
+            GenericFilter.PeoplePrivate,
+            GenericFilter.IsWitness, 
+            GenericFilter.HasTextMatchingSubstringOf, 
+            GenericFilter.HasTextMatchingRegexpOf, 
+            GenericFilter.HasNote, 
+            GenericFilter.HasNoteMatchingSubstringOf, 
+            GenericFilter.IsFemale,
+            ]
+
+        self._filter_list = gtk.ListStore(object,str)
+
+        for filter in default_filters:
+            if not hasattr(filter,'labels') or len(filter.labels) == 0:
+                # don't currently support filters that need an attribute.
+                self._filter_list.append([filter,filter.name])
+        
+        self._filter_combo = gtk.ComboBox(self._filter_list)
+        
+        label_cell = gtk.CellRendererText()
+        
+        self._filter_combo.pack_start(label_cell, True)
+        self._filter_combo.add_attribute(label_cell, 'text', 1)
+        self._filter_combo.set_active(0)
         self._filter_combo.set_sensitive(False)
-        
-        
+
         self._filter_check.connect('toggled',lambda b: self._filter_combo.set_sensitive(self._filter_check.get_active()))
+
+        self._filter_entry_label = gtk.Label()
+        self._filter_entry_label.set_sensitive(False)
+        
+        self._filter_entry_edit = gtk.Entry()
+        self._filter_entry_edit.set_sensitive(False)
         
         # table layout
         
@@ -207,6 +263,45 @@ class PersonFilterFrame(FilterFrameBase):
         if self._id_check.get_active():
             filter.add_rule(GenericFilter.HasIdOf([self._id_edit.get_text()]))
 
+        if self._name_check.get_active():
+            filter.add_rule(GenericFilter.SearchName([self._name_edit.get_text()]))
+
+        if self._gender_check.get_active():
+            gender = self._gender_list.get_value(self._gender_combo.get_active_iter(),1)
+            if gender == RelLib.Person.MALE:
+                filter.add_rule(GenericFilter.IsMale([]))
+            elif gender == RelLib.Person.FEMALE:
+                filter.add_rule(GenericFilter.IsFemale([]))
+            elif gender == RelLib.Person.UNKNOWN:
+                filter.add_rule(GenericFilter.HasUnknownGender([]))
+            else:
+                log.warn("Received unknown gender from filter widget")
+
+        if self._birth_check.get_active():
+            date = ""
+            if self._b_before.get_active():
+                date = "before " + self._b_edit.get_text()
+            elif self._b_after.get_active():
+                date = "after " + self._b_edit.get_text()
+            else:
+                log.warn("neither before or after is selected, this should not happen")
+            filter.add_rule(GenericFilter.HasBirth([date,'','']))
+                
+        if self._death_check.get_active():
+            date = ""
+            if self._d_before.get_active():
+                date = "before " + self._d_edit.get_text()
+            elif self._d_after.get_active():
+                date = "after " + self._d_edit.get_text()
+            else:
+                log.warn("neither before or after is selected, this should not happen")
+            filter.add_rule(GenericFilter.HasDeath([date,'','']))
+
+
+        if self._filter_check.get_active():
+            filter.add_rule(self._filter_list.get_value(self._filter_combo.get_active_iter(),0)([]))
+
+            
 	self.emit('apply-filter',filter)
     
 if gtk.pygtk_version < (2,8,0):

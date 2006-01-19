@@ -1,4 +1,8 @@
-2006-01-17 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+2006-01-19 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/ObjectSelector/_PersonFilterFrame.py, src/ObjectSelector/_PersonFrame.py
+	  src/ObjectSelector/_PersonTreeFrame.py: filters in Person view just about work.
+	
+2006-01-19 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
        * src/ObjectSelector/_FamilyFilterFrame.py, src/ObjectSelector/_ObjectSelectorWindow.py
          src/ObjectSelector/_PersonFilterFrame.py: ground work for filters
 	* src/ObjectSelector/_FilterFrameBase.py: new file
