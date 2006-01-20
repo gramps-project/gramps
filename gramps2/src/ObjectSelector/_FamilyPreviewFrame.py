@@ -1,9 +1,11 @@
+import os.path
 import gtk
 import gobject
 from logging import getLogger
 log = getLogger(".ObjectSelector")
 
 import ImgManip
+import const
 
 class FamilyPreviewFrame(gtk.Frame):
     
@@ -79,16 +81,16 @@ class FamilyPreviewFrame(gtk.Frame):
                         image[image_no].set_from_pixbuf(pixbuf)
                         image_no += 1
                 else:
-                    self._image_l.set_from_file("../person.svg")
-                    self._image_r.set_from_file("../person.svg")
+                    self._image_l.set_from_file(os.path.join(const.rootDir,"person.svg"))
+                    self._image_r.set_from_file(os.path.join(const.rootDir,"person.svg"))
 
         except:
             log.warn("Failed to generate preview for family", exc_info=True)
             self.clear_object()
 
     def clear_object(self):
-        self._image_l.set_from_file("../person.svg")
-        self._image_r.set_from_file("../person.svg")
+        self._image_l.set_from_file(os.path.join(const.rootDir,"person.svg"))
+        self._image_r.set_from_file(os.path.join(const.rootDir,"person.svg"))
 
     
 if gtk.pygtk_version < (2,8,0):

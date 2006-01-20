@@ -29,12 +29,13 @@ class FamilyFrame(ObjectFrameBase):
 
     def __init__(self,
                  dbstate,
-                 uistate):
+                 uistate,
+                 filter_spec=None):
         
         ObjectFrameBase.__init__(self,
                                  dbstate=dbstate,
                                  uistate=uistate,
-                                 filter_frame = FamilyFilterFrame(dbstate),
+                                 filter_frame = FamilyFilterFrame(filter_spec=filter_spec),
                                  preview_frame = FamilyPreviewFrame(dbstate),
                                  tree_frame = FamilyTreeFrame(dbstate))
 

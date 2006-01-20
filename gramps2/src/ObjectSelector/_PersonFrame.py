@@ -33,12 +33,13 @@ class PersonFrame(ObjectFrameBase):
     
     def __init__(self,
                  dbstate,
-                 uistate):
+                 uistate,
+                 filter_spec = None):
         
         ObjectFrameBase.__init__(self,
                                  dbstate=dbstate,
-                                 uistate=uistate,
-                                 filter_frame = PersonFilterFrame(dbstate),
+                                 uistate=uistate,                                 
+                                 filter_frame = PersonFilterFrame(filter_spec=filter_spec),
                                  preview_frame = PersonPreviewFrame(dbstate),
                                  tree_frame = PersonTreeFrame(dbstate))
 
@@ -58,6 +59,11 @@ class PersonFrame(ObjectFrameBase):
         self._tree_frame.get_tree().connect('row-activated',self._on_row_activated)
 
         self._filter_frame.connect('apply-filter',lambda w,m: self._tree_frame.set_model(m))
+
+        # Now that the filter is connected we need to tell it to apply any
+        # filter_spec that may have been passed to it. We can't apply the filter
+        # until the connections have been made.
+        self._filter_frame.on_apply()
 
     def _on_row_activated(self,widget,path,col):
         (model, iter) = widget.get_selection().get_selected()

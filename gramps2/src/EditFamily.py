@@ -62,6 +62,7 @@ from DdTargets import DdTargets
 from WindowUtils import GladeIf
 from DisplayTabs import *
 from GrampsWidgets import *
+from ObjectSelector import PersonSelector,PersonFilterSpec
 
 #-------------------------------------------------------------------------
 #
@@ -153,7 +154,21 @@ class ChildEmbedList(EmbeddedList):
         return [(1,0),(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(0,8),(0,9)]
 
     def add_button_clicked(self,obj):
-        print "Add Button Clicked"
+        # we could workout the death years of the parents here and
+        # set a suitable filter_spec on the PersonSelector
+        # we might also be able to set a filter that only includes
+        # people that are not already listed as children in another
+        # family.
+        selector = PersonSelector(self.dbstate,self.uistate,self.track)
+
+        # this need the window handle of the main EditFamily window
+        # to make the PersonSelector transient to it. I am not sure
+        # want the best way is to get that handle from here.
+        #selector.set_transient_for(self.window)
+
+        # Connect this to the method used to add a new child.
+        #selector.connect('add-object',self.on_add_child)
+        
 
     def del_button_clicked(self,obj):
         handle = self.get_selected()
@@ -327,13 +342,72 @@ class EditFamily(DisplayState.ManagedWindow):
     def update_mother(self,handle):
         self.load_parent(handle, self.mbox, self.mbirth, self.mdeath, self.mbutton)
 
+    def on_change_mother(self, selector_window, select_result):
+        if select_result.is_person():
+            try:
+                self.update_mother(
+                    self.dbstate.db.get_person_from_gramps_id(
+                        select_result.get_gramps_id()).get_handle())
+            except:
+                log.warn("Failed to update mother: \n"
+                         "gramps_id returned from selector was: %s\n"
+                         "person returned from get_person_from_gramps_id: %s"
+                         % (select_result.get_gramps_id(),
+                            repr(self.dbstate.db.get_person_from_gramps_id(
+                                    select_result.get_gramps_id()))))
+                raise
+        else:
+            log.warn("Object selector returned a result of type = %s, it should "
+                     "have been of type PERSON." % (str(select_result.get_object_type())))
+            
+        selector_window.close()
+            
     def mother_clicked(self,obj):
         handle = self.family.get_mother_handle()
         if handle:
             self.family.set_mother_handle(None)
             self.update_mother(None)
         else:
-            print "Call person selector"
+            filter_spec = PersonFilterSpec()
+            filter_spec.set_gender(RelLib.Person.FEMALE)
+            
+            child_birth_years = []
+            for person_handle in self.family.get_child_handle_list():
+                person = self.dbstate.db.get_person_from_handle(person_handle)
+                event_handle = person.get_birth_handle()
+                if event_handle:
+                    event = self.dbstate.db.get_event_from_handle(event_handle)
+                    child_birth_years.append(event.get_date_object().get_year())
+                    
+            if len(child_birth_years) > 0:
+                filter_spec.set_birth_year(min(child_birth_years))
+                filter_spec.set_birth_criteria(PersonFilterSpec.BEFORE)
+                
+
+            selector = PersonSelector(self.dbstate,self.uistate,self.track,filter_spec=filter_spec)
+            selector.set_transient_for(self.window)
+            selector.connect('add-object',self.on_change_mother)
+            
+
+    def on_change_father(self, selector_window, select_result):
+        if select_result.is_person():
+            try:
+                self.update_father(
+                    self.dbstate.db.get_person_from_gramps_id(
+                        select_result.get_gramps_id()).get_handle())
+            except:
+                log.warn("Failed to update father: \n"
+                         "gramps_id returned from selector was: %s\n"
+                         "person returned from get_person_from_gramps_id: %s"
+                         % (select_result.get_gramps_id(),
+                            repr(self.dbstate.db.get_person_from_gramps_id(
+                                    select_result.get_gramps_id()))))
+                raise
+        else:
+            log.warn("Object selector returned a result of type = %s, it should "
+                     "have been of type PERSON." % (str(select_result.get_object_type())))
+            
+        selector_window.close()
 
     def father_clicked(self,obj):
         handle = self.family.get_father_handle()
@@ -341,7 +415,25 @@ class EditFamily(DisplayState.ManagedWindow):
             self.family.set_father_handle(None)
             self.update_father(None)
         else:
-            print "Call person selector"
+            filter_spec = PersonFilterSpec()
+            filter_spec.set_gender(RelLib.Person.MALE)
+
+            child_birth_years = []
+            for person_handle in self.family.get_child_handle_list():
+                person = self.dbstate.db.get_person_from_handle(person_handle)
+                event_handle = person.get_birth_handle()
+                if event_handle:
+                    event = self.dbstate.db.get_event_from_handle(event_handle)
+                    child_birth_years.append(event.get_date_object().get_year())
+                    
+            if len(child_birth_years) > 0:
+                filter_spec.set_birth_year(min(child_birth_years))
+                filter_spec.set_birth_criteria(PersonFilterSpec.BEFORE)
+                
+            selector = PersonSelector(self.dbstate,self.uistate,self.track,filter_spec=filter_spec)
+            selector.set_transient_for(self.window)
+            selector.connect('add-object',self.on_change_father)
+
 
     def edit_person(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
