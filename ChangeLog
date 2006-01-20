@@ -1,3 +1,9 @@
+2006-01-20  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (transaction_begin,
+	transaction_commit): disable secondary index removal/rebuilding
+	due to bugs in bsddb; (_update_reference_map): explicitly check
+	for addition versus update.
+
 2006-01-20  Don Allingham  <don@gramps-project.org>
 	* src/PageView.py: add ellipsize, better dirty/clean management,
 	set fixed column width and fixed height
