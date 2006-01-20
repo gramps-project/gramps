@@ -10,6 +10,10 @@
 	transaction_commit): disable secondary index removal/rebuilding
 	due to bugs in bsddb; (_update_reference_map): explicitly check
 	for addition versus update.
+	* src/GrampsDb/_GrampsDbBase.py: Move _update_reference_map into
+	_commite_base.
+	* src/GrampsDb/_GrampsBSDDB.py: Move _update_reference_map into
+	_commite_base.
 
 2006-01-20  Don Allingham  <don@gramps-project.org>
 	* src/PageView.py: add ellipsize, better dirty/clean management,

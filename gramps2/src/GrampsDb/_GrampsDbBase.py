@@ -368,6 +368,8 @@ class GrampsDbBase(GrampsDBCallback):
             obj.change = int(time.time())
         handle = str(obj.handle)
         
+        self._update_reference_map(obj,transaction)
+        
         if transaction.batch:
             data_map[handle] = obj.serialize()
             old_data = None
@@ -387,8 +389,6 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
 
-        self._update_reference_map(person,transaction)
-        
         old_data = self._commit_base(
             person, self.person_map, PERSON_KEY, transaction.person_update,
             transaction.person_add, transaction, change_time)
@@ -412,8 +412,6 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
         
-        self._update_reference_map(obj,transaction)
-
         self._commit_base(obj, self.media_map, MEDIA_KEY,
                           transaction.media_update, transaction.media_add,
                           transaction, change_time)
@@ -423,8 +421,6 @@ class GrampsDbBase(GrampsDBCallback):
         Commits the specified Source to the database, storing the changes
         as part of the transaction.
         """
-
-        self._update_reference_map(source,transaction)
 
         self._commit_base(source, self.source_map, SOURCE_KEY,
                           transaction.source_update, transaction.source_add,
@@ -436,8 +432,6 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
 
-        self._update_reference_map(place,transaction)
-                
         self._commit_base(place, self.place_map, PLACE_KEY,
                           transaction.place_update, transaction.place_add,
                           transaction, change_time)
@@ -458,8 +452,6 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
         
-        self._update_reference_map(event,transaction)
-
         self._commit_base(event, self.event_map, EVENT_KEY,
                           transaction.event_update, transaction.event_add,
                           transaction, change_time)
@@ -469,8 +461,6 @@ class GrampsDbBase(GrampsDBCallback):
         Commits the specified Family to the database, storing the changes
         as part of the transaction.
         """
-
-        self._update_reference_map(family,transaction)
 
         self._commit_base(family, self.family_map, FAMILY_KEY,
                           transaction.family_update, transaction.family_add,
@@ -484,8 +474,6 @@ class GrampsDbBase(GrampsDBCallback):
         Commits the specified Repository to the database, storing the changes
         as part of the transaction.
         """
-
-        self._update_reference_map(repository,transaction)
 
         self._commit_base(repository, self.repository_map, REPOSITORY_KEY,
                           transaction.repository_update, transaction.repository_add,
