@@ -1612,13 +1612,26 @@ class GrampsDbBase(GrampsDBCallback):
         default = [(1,1),(1,2),(1,3),(0,4),(1,5),(0,6),(0,7),(0,8),(0,9,)]
         return self._get_column_order(PERSON_COL_KEY,default)
 
+    def _get_columns(self,key,default):
+        values = self._get_column_order(key,default)
+        new = []
+        for val in values:
+            if len(val) == 2:
+                for x in default:
+                    if val[1] == x[1]:
+                        new.append((val[0],val[1],x[2]))
+                        break
+            else:
+                new.append(val)
+        return new
+        
     def get_family_list_column_order(self):
         """
         Returns the Person display common information stored in the
         database's metadata.
         """
-        default = [(1,0), (1,1),(1,2),(1,3),(0,4)]
-        return self._get_column_order(FAMILY_COL_KEY,default)
+        default = [(1,0,75), (1,1,200),(1,2,200),(1,3,100),(0,4,100)]
+        return self._get_columns(FAMILY_COL_KEY,default)
 
     def get_child_column_order(self):
         """
@@ -1633,40 +1646,40 @@ class GrampsDbBase(GrampsDBCallback):
         Returns the Place display common information stored in the
         database's metadata.
         """
-        default = [(1,0), (1,1),(1,2),(0,3),(0,4),(1,5),(0,6),(1,7),(0,8),(0,9),(0,10)]
-        return self._get_column_order(PLACE_COL_KEY,default)
+        default = [(1,0,250), (1,1,75),(1,2,100),(0,3,100),(0,4,100,),(1,5,150),(0,6,150),(1,7,150),(0,8,150),(0,9,150),(0,10,150)]
+        return self._get_columns(PLACE_COL_KEY,default)
 
     def get_source_column_order(self):
         """
         Returns the Source display common information stored in the
         database's metadata.
         """
-        default = [(1,0),(1,1),(1,2),(0,3),(1,4),(0,5)]
-        return self._get_column_order(SOURCE_COL_KEY,default)
+        default = [(1,0,200),(1,1,75),(1,2,150),(0,3,100),(1,4,150),(0,5,100)]
+        return self._get_columns(SOURCE_COL_KEY,default)
 
     def get_media_column_order(self):
         """
         Returns the MediaObject display common information stored in the
         database's metadata.
         """
-        default = [(1,0),(1,1),(1,2),(1,3),(1,5),(0,4)]
-        return self._get_column_order(MEDIA_COL_KEY,default)
+        default = [(1,0,200,),(1,1,75),(1,2,100),(1,3,200),(1,5,150),(0,4,150)]
+        return self._get_columns(MEDIA_COL_KEY,default)
 
     def get_event_column_order(self):
         """
         Returns the Event display common information stored in the
         database's metadata.
         """
-        default = [(1,0),(1,1),(1,2),(1,3),(1,4),(1,5),(0,6)]
-        return self._get_column_order(EVENT_COL_KEY,default)
+        default = [(1,0,200),(1,1,75),(1,2,100),(1,3,150),(1,4,200),(1,5,100),(0,6,100)]
+        return self._get_columns(EVENT_COL_KEY,default)
 
     def get_repository_column_order(self):
         """
         Returns the Repository display common information stored in the
         database's metadata.
         """
-        default = [(1,0),(1,1),(0,5),(0,6),(1,2),(1,3),(0,4),(0,7),(0,8),(0,9),(0,10)]
-        return self._get_column_order(REPOSITORY_COL_KEY,default)
+        default = [(1,0,200),(1,1,75),(0,5,100),(0,6,100),(1,2,100),(1,3,250),(0,4,100),(0,7,100),(0,8,100),(0,9,100),(0,10,100)]
+        return self._get_columns(REPOSITORY_COL_KEY,default)
 
     def _delete_primary_from_reference_map(self, handle, transaction):
         """Called each time an object is removed from the database. This can

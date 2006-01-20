@@ -1,3 +1,8 @@
+2006-01-20  Don Allingham  <don@gramps-project.org>
+	* src/PageView.py: add ellipsize, better dirty/clean management,
+	set fixed column width and fixed height
+	* src/GrampsDb/_GrampsDbBase.py: handle default column sizes
+
 2006-01-20 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
         * src/ObjectSelector/Makefile.am: added automake stuff.
 	
