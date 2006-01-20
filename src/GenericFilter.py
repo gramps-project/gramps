@@ -2652,7 +2652,7 @@ class FilterWidget:
 
     def get_filter( self):
         print "get_filter"
-        print self.DataFilter.flist[0]
+        #print self.DataFilter.flist[0]
         return self.DataFilter
         
     def inverted( self):

@@ -1,3 +1,10 @@
+2006-01-19  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels.py: use dirty flag to only draw when requested
+	* src/PageView.py: use dirty flag to only draw when requested
+	* src/PeopleView.py: use dirty flag to only draw when requested
+	* src/PeopleModel.py: provide simple caching
+	* src/ViewManager.py: control dirty flags
+
 2006-01-19 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/ObjectSelector/_PersonFilterFrame.py, src/ObjectSelector/_PersonFrame.py
 	  src/ObjectSelector/_PersonTreeFrame.py: filters in Person view just about work.
