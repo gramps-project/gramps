@@ -603,19 +603,18 @@ class GrampsBSDDB(GrampsDbBase):
 
         primary_cur.close()
         
-    def _update_reference_map(self, obj, transaction, update=True):
+    def _update_reference_map(self, obj, transaction, txn=None):
         """
-        If update = True old references are cleaned up and only new references are added
-        if update = False then it is assumed that the object is not already referenced.
+        If txn is given, then changes are written right away using txn.
         """
         
         # Add references to the reference_map for all primary object referenced
         # from the primary object 'obj' or any of its secondary objects.
 
         handle = obj.get_handle()
-        do_update = self.reference_map_primary_map.has_key(str(handle))
+        update = self.reference_map_primary_map.has_key(str(handle))
 
-        if do_update:
+        if update:
             # FIXME: this needs to be properly integrated into the transaction
             # framework so that the reference_map changes are part of the
             # transaction
@@ -674,31 +673,33 @@ class GrampsBSDDB(GrampsDbBase):
             for (ref_class_name,ref_handle) in new_references:
                 data = ((CLASS_TO_KEY_MAP[obj.__class__.__name__],handle),
                         (CLASS_TO_KEY_MAP[ref_class_name],ref_handle),)
-                self._add_reference((handle,ref_handle),data,transaction)
+                self._add_reference((handle,ref_handle),data,transaction,txn)
 
-        if do_update:
+        if update:
             # handle deletion of old references
             if len(no_longer_required_references) > 0:
                 for (ref_class_name,ref_handle) in no_longer_required_references:
                     try:
-                        self._remove_reference((handle,ref_handle),transaction)
+                        self._remove_reference((handle,ref_handle),transaction,txn)
                         #self.reference_map.delete(str((handle,ref_handle),),
                         #                          txn=self.txn)
                     except: # ignore missing old reference
                         pass
 
-    def _remove_reference(self,key,transaction):
+    def _remove_reference(self,key,transaction,txn=None):
         """
         Removes the reference specified by the key,
         preserving the change in the passed transaction.
         """
         if not self.readonly:
-            old_data = self.reference_map.get(str(main_key),txn=self.txn)
-            if not transaction.batch:
+            if transaction.batch:
+                self.reference_map.delete(str(key),txn=txn)#=the_txn)
+            else:
+                old_data = self.reference_map.get(str(key),txn=self.txn)
                 transaction.add(REFERENCE_KEY,str(key),old_data,None)
-            transaction.reference_del.append(str(key))
+                transaction.reference_del.append(str(key))
 
-    def _add_reference(self,key,data,transaction):
+    def _add_reference(self,key,data,transaction,txn=None):
         """
         Adds the reference specified by the key and the data,
         preserving the change in the passed transaction.
@@ -708,9 +709,9 @@ class GrampsBSDDB(GrampsDbBase):
             return
         
         if transaction.batch:
-            the_txn = self.env.txn_begin()
-            self.reference_map.put(str(key),data,txn=the_txn)
-            the_txn.commit()
+            #the_txn = self.env.txn_begin()
+            self.reference_map.put(str(key),data,txn=txn)#=the_txn)
+            #the_txn.commit()
         else:
             transaction.add(REFERENCE_KEY,str(key),None,data)
             transaction.reference_add.append((str(key),data))
@@ -941,10 +942,12 @@ class GrampsBSDDB(GrampsDbBase):
         
         if transaction.batch:
             the_txn = self.env.txn_begin()
+            self._update_reference_map(obj,transaction,txn=the_txn)
             data_map.put(handle,obj.serialize(),txn=the_txn)
             the_txn.commit()
             old_data = None
         else:
+            self._update_reference_map(obj,transaction)
             old_data = data_map.get(handle,txn=self.txn)
             new_data = obj.serialize()
             transaction.add(key,handle,old_data,new_data)
