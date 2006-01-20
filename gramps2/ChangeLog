@@ -1,5 +1,9 @@
 2006-01-20  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py: remove function call in find_surname
+	* src/GenericFilter.py: implement short-circuit if only rule is
+	Everyone
+	* src/NameDisplay.py: optimization
+	* src/PeopleModel.py: optimization of data building
 
 2006-01-20  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (transaction_begin,

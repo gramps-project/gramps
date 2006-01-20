@@ -28,10 +28,14 @@
 from gettext import gettext as _
 import time
 import cgi
-import sets
 import sys
 import traceback
 import locale
+
+try:
+    set()
+except:
+    from sets import Set as set
 
 #-------------------------------------------------------------------------
 #
@@ -132,7 +136,7 @@ class PeopleModel(gtk.GenericTreeModel):
         if not self.db.is_open():
             return
 
-        if data_filter:
+        if data_filter and not data_filter.is_empty():
             keys = data_filter.apply(self.db)
             if self.invert_result:
                 handle_list = self.db.get_person_handles(sort_handles=False)
@@ -142,7 +146,7 @@ class PeopleModel(gtk.GenericTreeModel):
         else:
             keys = self.db.get_person_handles(sort_handles=False)
 
-        flist = sets.Set(keys)
+        flist = set(keys)
         if skip and skip in flist:
             flist.remove(skip)
 
@@ -152,15 +156,17 @@ class PeopleModel(gtk.GenericTreeModel):
 
         ngn = NameDisplay.displayer.name_grouping_name
         nsn = NameDisplay.displayer.sorted_name
+
         while node:
-            if node[0] in flist:
-                primary_name = node[1][_NAME_COL]
-                surname = unicode(ngn(self.db,primary_name))
-                self.sortnames[node[0]] = unicode(nsn(primary_name))
-                if self.temp_sname_sub.has_key(surname):
-                    self.temp_sname_sub[surname].append(node[0])
-                else:
-                    self.temp_sname_sub[surname] = [node[0]]
+            n,d = node
+            if n in flist:
+                primary_name = d[_NAME_COL]
+                surname = ngn(self.db,primary_name)
+                self.sortnames[n] = nsn(primary_name)
+                try:
+                    self.temp_sname_sub[surname].append(n)
+                except:
+                    self.temp_sname_sub[surname] = [n]
             node = cursor.next()
         cursor.close()
 
@@ -169,11 +175,9 @@ class PeopleModel(gtk.GenericTreeModel):
             self.build_sub_entry(name)
         
     def build_sub_entry(self,name):
-        slist = map(lambda x: (self.sortnames[x],x),self.temp_sname_sub[name])
-        slist.sort(self.byname)
-        entries = map(lambda x: x[1], slist)
+        self.temp_sname_sub[name].sort(locale.strcoll)
         val = 0
-        for person_handle in entries:
+        for person_handle in self.temp_sname_sub[name]:
             tpl = (name,val)
             self.temp_iter2path[person_handle] = tpl
             self.temp_path2iter[tpl] = person_handle
@@ -184,9 +188,6 @@ class PeopleModel(gtk.GenericTreeModel):
         self.iter2path = self.temp_iter2path
         self.path2iter = self.temp_path2iter
         self.sname_sub = self.temp_sname_sub
-
-    def byname(self,f,s):
-        return locale.strcoll(f[0],s[0])
 
     def on_get_flags(self):
         '''returns the GtkTreeModelFlags for this particular type of model'''

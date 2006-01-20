@@ -94,6 +94,9 @@ class Rule:
 
     def __init__(self,list):
         self.set_list(list)
+
+    def is_empty(self):
+        return False
     
     def prepare(self,db):
         pass
@@ -135,6 +138,9 @@ class Everyone(Rule):
     name        = _('Everyone')
     category    = _('General filters')
     description = _('Matches everyone in the database')
+
+    def is_empty(self):
+        return True
 
     def apply(self,db,person):
         return True
@@ -1901,6 +1907,9 @@ class GenericFilter:
             self.comment = ''
             self.logical_op = 'and'
             self.invert = False
+
+    def is_empty(self):
+        return len(self.flist) == 1 and self.flist[0].is_empty()
 
     def set_logical_op(self,val):
         if val in GenericFilter.logical_functions:
