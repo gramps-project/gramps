@@ -29,7 +29,7 @@ Class handling language-specific displaying of names.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+from RelLib import Name
 
 #-------------------------------------------------------------------------
 #
@@ -64,107 +64,28 @@ class NameDisplay:
     def sorted(self,person):
         """
         Returns a text string representing the L{RelLib.Person} instance's
-        L{RelLib.Name} in a manner that should be used for displaying a sorted
+        L{Name} in a manner that should be used for displaying a sorted
         name.
 
         @param person: L{RelLib.Person} instance that contains the
-        L{RelLib.Name} that is to be displayed. The primary name is used for
+        L{Name} that is to be displayed. The primary name is used for
         the display.
         @type person: L{RelLib.Person}
         @returns: Returns the L{RelLib.Person} instance's name
         @rtype: str
         """
         name = person.get_primary_name()
-        if name.sort_as == RelLib.Name.FNLN:
+        if name.sort_as == Name.FNLN:
             return self._fnln(name)
-        elif name.sort_as == RelLib.Name.PTFN:
+        elif name.sort_as == Name.PTFN:
             return self._ptfn(name)
-        elif name.sort_as == RelLib.Name.FN:
+        elif name.sort_as == Name.FN:
             return name.first_name
         else:
             return self._lnfn(name)
 
-    def sorted_name(self,name):
-        """
-        Returns a text string representing the L{RelLib.Name} instance
-        in a manner that should be used for displaying a sorted
-        name.
-
-        @param name: L{RelLib.Name} instance that is to be displayed.
-        @type name: L{RelLib.Name}
-        @returns: Returns the L{RelLib.Name} string representation
-        @rtype: str
-        """
-        if name.sort_as == RelLib.Name.FNLN:
-            return self._fnln(name)
-        elif name.sort_as == RelLib.Name.PTFN:
-            return self._ptfn(name)
-        elif name.sort_as == RelLib.Name.FN:
-            return name.first_name
-        else:
-            return self._lnfn(name)
-
-    def display_given(self,person):
-        name = person.get_primary_name()
-        if name.patronymic:
-            return "%s %s" % (name.first_name, name.patronymic)
-        else:
-            return name.first_name
-
-    def display(self,person):
-        """
-        Returns a text string representing the L{RelLib.Person} instance's
-        L{RelLib.Name} in a manner that should be used for normal displaying.
-
-        @param person: L{RelLib.Person} instance that contains the
-        L{RelLib.Name} that is to be displayed. The primary name is used for
-        the display.
-        @type person: L{RelLib.Person}
-        @returns: Returns the L{RelLib.Person} instance's name
-        @rtype: str
-        """
-        name = person.get_primary_name()
-        if name.display_as == RelLib.Name.LNFN:
-            return self._lnfn(name,"")
-        else:
-            return self._fnln(name,"")
-
-    def display_formal(self,person):
-        """
-        Returns a text string representing the L{RelLib.Person} instance's
-        L{RelLib.Name} in a manner that should be used for normal displaying.
-
-        @param person: L{RelLib.Person} instance that contains the
-        L{RelLib.Name} that is to be displayed. The primary name is used for
-        the display.
-        @type person: L{RelLib.Person}
-        @returns: Returns the L{RelLib.Person} instance's name
-        @rtype: str
-        """
-        name = person.get_primary_name()
-        if name.display_as == RelLib.Name.LNFN:
-            return self._lnfn(name,'')
-        else:
-            return self._fnln(name,'')
-
-    def display_name(self,name):
-        """
-        Returns a text string representing the L{RelLib.Name} instance
-        in a manner that should be used for normal displaying.
-
-        @param name: L{RelLib.Name} instance that is to be displayed.
-        @type name: L{RelLib.Name}
-        @returns: Returns the L{RelLib.Name} string representation
-        @rtype: str
-        """
-        if name == None:
-            return ""
-        elif name.display_as == RelLib.Name.LNFN:
-            return self._lnfn(name)
-        elif name.display_as == RelLib.Name.PTFN:
-            return self._ptfn(name)
-        else:
-            return self._fnln(name)
+    def _empty(self,name):
+        return name.first_name
 
     def _ptfn(self,name):
         """
@@ -224,21 +145,6 @@ class NameDisplay:
             else:
                 return "%s %s, %s" % (first, last, name.suffix)
 
-    def name_grouping(self,db,person):
-        return self.name_grouping_name(db,person.primary_name)
-
-    def name_grouping_name(self,db,pn):
-        sv = pn.sort_as
-        if pn.group_as:
-            return pn.group_as
-        if sv <= RelLib.Name.LNFN:
-            val = pn.surname
-        elif sv == RelLib.Name.PTFN:
-            val = pn.patronymic
-        else:
-            val = pn.first_name
-        return db.get_name_group_mapping(val)
-        
     def _lnfn(self,name,nickname=u""):
         """
         Prints the Western style last name, first name style.
@@ -249,9 +155,6 @@ class NameDisplay:
 
         first = name.first_name
 
-        if nickname:
-            first = '%s "%s"' % (first,nickname)
-            
         if name.patronymic:
             first = "%s %s" % (first, name.patronymic)
 
@@ -274,5 +177,103 @@ class NameDisplay:
             else:
                 return "%s %s" % (last, first)
 
-    
+    fn_array = { Name.FNLN : _fnln,
+                 Name.PTFN : _ptfn,
+                 Name.FN   : _empty,
+                 }
+
+    def sorted_name(self,name):
+        """
+        Returns a text string representing the L{Name} instance
+        in a manner that should be used for displaying a sorted
+        name.
+
+        @param name: L{Name} instance that is to be displayed.
+        @type name: L{Name}
+        @returns: Returns the L{Name} string representation
+        @rtype: str
+        """
+        return self.fn_array.get(name.sort_as,self._lnfn)(name)
+
+    def display_given(self,person):
+        name = person.get_primary_name()
+        if name.patronymic:
+            return "%s %s" % (name.first_name, name.patronymic)
+        else:
+            return name.first_name
+
+    def display(self,person):
+        """
+        Returns a text string representing the L{RelLib.Person} instance's
+        L{Name} in a manner that should be used for normal displaying.
+
+        @param person: L{RelLib.Person} instance that contains the
+        L{Name} that is to be displayed. The primary name is used for
+        the display.
+        @type person: L{RelLib.Person}
+        @returns: Returns the L{RelLib.Person} instance's name
+        @rtype: str
+        """
+        name = person.get_primary_name()
+        if name.display_as == Name.LNFN:
+            return self._lnfn(name,"")
+        else:
+            return self._fnln(name,"")
+
+    def display_formal(self,person):
+        """
+        Returns a text string representing the L{RelLib.Person} instance's
+        L{Name} in a manner that should be used for normal displaying.
+
+        @param person: L{RelLib.Person} instance that contains the
+        L{Name} that is to be displayed. The primary name is used for
+        the display.
+        @type person: L{RelLib.Person}
+        @returns: Returns the L{RelLib.Person} instance's name
+        @rtype: str
+        """
+        name = person.get_primary_name()
+        if name.display_as == Name.LNFN:
+            return self._lnfn(name,'')
+        else:
+            return self._fnln(name,'')
+
+    def display_name(self,name):
+        """
+        Returns a text string representing the L{Name} instance
+        in a manner that should be used for normal displaying.
+
+        @param name: L{Name} instance that is to be displayed.
+        @type name: L{Name}
+        @returns: Returns the L{Name} string representation
+        @rtype: str
+        """
+        if name == None:
+            return ""
+        elif name.display_as == Name.LNFN:
+            return self._lnfn(name)
+        elif name.display_as == Name.PTFN:
+            return self._ptfn(name)
+        else:
+            return self._fnln(name)
+
+    def name_grouping(self,db,person):
+        return self.name_grouping_name(db,person.primary_name)
+
+
+    sort_field = (Name.get_surname, Name.get_surname,
+                  Name.get_first_name, Name.get_patronymic,
+                  Name.get_first_name)
+
+    def name_grouping_name(self,db,pn):
+        if pn.group_as:
+            return pn.group_as
+        sv = pn.sort_as
+        if sv <= Name.LNFN:
+            return db.get_name_group_mapping(pn.surname)
+        elif sv == Name.PTFN:
+            return db.get_name_group_mapping(pn.patronymic)
+        else:
+            return db.get_name_group_mapping(pn.first_name)
+
 displayer = NameDisplay()
