@@ -230,6 +230,7 @@ Makefile
 src/Makefile
 src/const.py
 src/RelLib/Makefile
+src/ObjectSelector/Makefile
 src/GrampsDb/Makefile
 src/docgen/Makefile
 src/plugins/Makefile

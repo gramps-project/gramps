@@ -1,4 +1,7 @@
 2006-01-20 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+        * src/ObjectSelector/Makefile.am: added automake stuff.
+	
+2006-01-20 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
         * src/ObjectSelector/_Constants.py, src/ObjectSelector/_Factories.py,
 	  src/ObjectSelector/_FamilyFilterFrame.py,src/ObjectSelector/_FamilyFrame.py,
 	  src/ObjectSelector/_FamilyPreviewFrame.py,src/ObjectSelector/_FamilyTreeFrame.py,
