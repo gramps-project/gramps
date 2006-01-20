@@ -1,4 +1,15 @@
 2006-01-20 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+        * src/ObjectSelector/_Constants.py, src/ObjectSelector/_Factories.py,
+	  src/ObjectSelector/_FamilyFilterFrame.py,src/ObjectSelector/_FamilyFrame.py,
+	  src/ObjectSelector/_FamilyPreviewFrame.py,src/ObjectSelector/_FamilyTreeFrame.py,
+	  src/ObjectSelector/_FilterFrameBase.py,src/ObjectSelector/_FilterSpec.py,
+	  src/ObjectSelector/_FilterSpecBase.py,src/ObjectSelector/_ObjectFrameBase.py,
+	  src/ObjectSelector/_ObjectSelectorResut.py,src/ObjectSelector/_ObjectSelectorWindow.py,
+	  src/ObjectSelector/_PersonFilterFrame.py,src/ObjectSelector/_PersonFilterSpec.py,
+	  src/ObjectSelector/_PersonFrame.py,src/ObjectSelector/_PersonPreviewFrame.py,
+	  src/ObjectSelector/_PersonTreeFrame.py,src/ObjectSelector/__init__.py: added standard header
+
+2006-01-20 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/gramps.py: stoped Ctrl-C causing an error report
         * src/EditFamily.py: integrated ObjectSelector
 	* src/ObjectSelector/_Factories.py, src/ObjectSelector/_FamilyFilterFrame.py,
