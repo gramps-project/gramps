@@ -612,12 +612,14 @@ class GrampsBSDDB(GrampsDbBase):
         # Add references to the reference_map for all primary object referenced
         # from the primary object 'obj' or any of its secondary objects.
 
-        if update:
+        handle = obj.get_handle()
+        do_update = self.reference_map_primary_map.has_key(str(handle))
+
+        if do_update:
             # FIXME: this needs to be properly integrated into the transaction
             # framework so that the reference_map changes are part of the
             # transaction
 
-            handle = obj.get_handle()
 
             # First thing to do is get hold of all rows in the reference_map
             # table that hold a reference from this primary obj. This means finding
@@ -674,7 +676,7 @@ class GrampsBSDDB(GrampsDbBase):
                         (CLASS_TO_KEY_MAP[ref_class_name],ref_handle),)
                 self._add_reference((handle,ref_handle),data,transaction)
 
-        if update:
+        if do_update:
             # handle deletion of old references
             if len(no_longer_required_references) > 0:
                 for (ref_class_name,ref_handle) in no_longer_required_references:
@@ -1077,15 +1079,20 @@ class GrampsBSDDB(GrampsDbBase):
         if transaction.batch:
             self.env.txn_checkpoint()
             self.env.set_flags(db.DB_TXN_NOSYNC,1)      # async txn
+            # FIXME: There appears to have a bug in bsddb
+            # preventing us from rebuilding the secondary indices.
+            # In particular, the rebuild_secondary will also fail,
+            # but we can't help it. Disabling the secondary index
+            # removal/rebuilding for batch transactions for now.
 
-            # Disconnect unneeded secondary indices
-            self.surnames.close()
-            junk = db.DB(self.env)
-            junk.remove(self.full_name,"surnames")
+##             # Disconnect unneeded secondary indices
+##             self.surnames.close()
+##             junk = db.DB(self.env)
+##             junk.remove(self.full_name,"surnames")
 
-            self.reference_map_referenced_map.close()
-            junk = db.DB(self.env)
-            junk.remove(self.full_name,"reference_map_referenced_map")
+##             self.reference_map_referenced_map.close()
+##             junk = db.DB(self.env)
+##             junk.remove(self.full_name,"reference_map_referenced_map")
             
         return transaction
 
@@ -1108,23 +1115,30 @@ class GrampsBSDDB(GrampsDbBase):
             self.env.txn_checkpoint()
             self.env.set_flags(db.DB_TXN_NOSYNC,0)      # sync txn
 
-            table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
-            # create new secondary indices to replace the ones removed
-            self.surnames = db.DB(self.env)
-            self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
-            self.surnames.open(self.full_name, "surnames", db.DB_BTREE,
-                               flags=table_flags)
-            self.person_map.associate(self.surnames,find_surname,table_flags)
+            # FIXME: There appears to have a bug in bsddb
+            # preventing us from rebuilding the secondary indices.
+            # In particular, the rebuild_secondary will also fail,
+            # but we can't help it. Disabling the secondary index
+            # removal/rebuilding for batch transactions for now.
 
-            self.reference_map_referenced_map = db.DB(self.env)
-            self.reference_map_referenced_map.set_flags(
-                db.DB_DUP|db.DB_DUPSORT)
-            self.reference_map_referenced_map.open(
-                self.full_name,
-                "reference_map_referenced_map",
-                db.DB_BTREE,
-                flags=table_flags)
+##             table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
+##             # create new secondary indices to replace the ones removed
+##             self.surnames = db.DB(self.env)
+##             self.surnames.set_flags(db.DB_DUP)
+##             self.surnames.open(self.full_name, "surnames", db.DB_BTREE,
+##                                flags=table_flags)
+##             self.person_map.associate(self.surnames,find_surname,table_flags)
             
+##             self.reference_map_referenced_map = db.DB(self.env)
+##             self.reference_map_referenced_map.set_flags(
+##                 db.DB_DUP)
+##             self.reference_map_referenced_map.open(
+##                 self.full_name,
+##                 "reference_map_referenced_map",
+##                 db.DB_BTREE,
+##                 flags=table_flags)
+##             self.reference_map.associate(self.reference_map_referenced_map,
+##                                          find_referenced_handle,table_flags)
         self.txn = None
 
     def undo(self):
