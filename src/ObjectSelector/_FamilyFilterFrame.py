@@ -13,8 +13,8 @@ class FamilyFilterFrame(FilterFrameBase):
 
     __default_border_width = 5
 
-    def __init__(self,dbstate,label="Filter"):
-	FilterFrameBase.__init__(self,label)
+    def __init__(self,dbstate,filter_spec=None,label="Filter"):
+	FilterFrameBase.__init__(self,filter_spec,label)
 
         # Gramps ID
         id_check = gtk.CheckButton()
@@ -115,7 +115,13 @@ class FamilyFilterFrame(FilterFrameBase):
         self._table.attach(filter_label,self._label_col,self._label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
         self._table.attach(filter_combo,self._control_col,self._control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
 
+        if filter_spec is not None:
+            self._set_filter(filter_spec)
 
+
+    def _set_filter(filter_spec):
+        pass
+    
     def on_apply(self,button):
         pass
     

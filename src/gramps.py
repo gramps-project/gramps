@@ -28,6 +28,7 @@ import os
 import locale
 import signal
 import gettext
+import exceptions
 import logging
 
 log = logging.getLogger(".")
@@ -124,6 +125,9 @@ def setup_logging():
 
     # put a hook on to catch any completly unhandled exceptions.
     def exc_hook(type, value, tb):
+        if type == KeyboardInterrupt:
+            # Ctrl-C is not a bug.
+            return
         import traceback
         log.error("Unhandled exception\n" +
                   "".join(traceback.format_exception(type, value, tb)))

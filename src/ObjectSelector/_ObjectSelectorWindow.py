@@ -4,12 +4,17 @@ sys.path.append("..")
 sys.path.append(".")
 sys.path.append("ObjectSelector")
 
+import os.path
 import gtk
 import gobject
+from gettext import gettext as _
 
 import _Factories
 from _Constants import ObjectTypes
 from _ObjectSelectorResult import ObjectSelectorResult
+
+from DisplayState import ManagedWindow
+import const
 
 class _ObjectTypeWidgets(object):
 
@@ -37,7 +42,7 @@ OBJECT_LIST = [ObjectTypes.PERSON, ObjectTypes.FAMILY,
                ObjectTypes.MEDIA,  ObjectTypes.PLACE,
                ObjectTypes.REPOSITORY]
 
-class ObjectSelectorWindow(gtk.Window):
+class ObjectSelectorWindow(gtk.Window,ManagedWindow):
     
     __gproperties__ = {}
 
@@ -54,13 +59,21 @@ class ObjectSelectorWindow(gtk.Window):
     def __init__(self,
                  dbstate,
                  uistate,
+                 track,
+                 title = _("Select Object"),
+                 filter_spec = None,
                  default_object_type = ObjectTypes.PERSON,
                  object_list = OBJECT_LIST):
-        
+
+        # Init the display manager
+        ManagedWindow.__init__(self,uistate,track,self)
+
+        # Init the Window
 	gtk.Window.__init__(self)
 
         self._dbstate = dbstate
         self._uistate = dbstate
+        self._track = track
         self._object_list = object_list
         self._current_object_type = None
 
@@ -70,7 +83,7 @@ class ObjectSelectorWindow(gtk.Window):
         for object_type in object_list:
             self._object_frames[object_type] = _ObjectTypeWidgets()
 
-        self.set_title("Add Person")
+        self.set_title(title)
         
         # Selected object label
 
@@ -122,8 +135,8 @@ class ObjectSelectorWindow(gtk.Window):
                               self.__class__.__default_border_width)
 
         
-        person_pixbuf = gtk.gdk.pixbuf_new_from_file("./person.svg")
-        flist_pixbuf = gtk.gdk.pixbuf_new_from_file("./flist.svg")
+        person_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(const.rootDir,"person.svg"))
+        flist_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(const.rootDir,"flist.svg"))
 
         self._tool_list = gtk.ListStore(gtk.gdk.Pixbuf, str,int)
 
@@ -178,7 +191,7 @@ class ObjectSelectorWindow(gtk.Window):
         for object_type in object_list:
             
             self._object_frames[object_type].frame = \
-                        _Factories.ObjectFrameFactory().get_frame(object_type,dbstate,uistate)
+                        _Factories.ObjectFrameFactory().get_frame(object_type,dbstate,uistate,filter_spec)
 
             # connect signals                
             self._object_frames[object_type].frame.connect(
@@ -245,6 +258,8 @@ class ObjectSelectorWindow(gtk.Window):
 
         self._set_object_type(default_object_type)
         self.set_default_size(700,300)
+
+        self.show()
 
 
     def _set_object_type(self,selected_object_type):

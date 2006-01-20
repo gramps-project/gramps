@@ -1,9 +1,22 @@
+import os.path
+
+from xml.sax.saxutils import escape
+
 import gtk
 import gobject
 from logging import getLogger
 log = getLogger(".ObjectSelector")
 
 import ImgManip
+import const
+from ToolTips import PersonTip
+import DateHandler
+
+def short(val,size=60):
+    if len(val) > size:
+        return "%s..." % val[0:size]
+    else:
+        return val
 
 class PersonPreviewFrame(gtk.Frame):
     
@@ -25,17 +38,14 @@ class PersonPreviewFrame(gtk.Frame):
         self._image = gtk.Image()
 
         # test image
-        self._image.set_from_file("../person.svg")
+        self._image.set_from_file(os.path.join(const.rootDir,"person.svg"))
         
         # Text
         label = gtk.Label()
         label.set_use_markup(True)
         label.set_line_wrap(True)
         label.set_justify(gtk.JUSTIFY_LEFT)
-        label.set_alignment(xalign=0.1,yalign=0.1)
-        label.set_markup("<b>Name:</b> Joe Blogs\n"
-                         "<b>b:</b> 1906\n"
-                         "<b>d:</b> 1937\n")
+        label.set_alignment(xalign=0.5,yalign=0.1)
         
         # box
         box = gtk.VBox()
@@ -56,6 +66,49 @@ class PersonPreviewFrame(gtk.Frame):
 
 	self.add(align)
 
+        self._label = label
+
+    def _get_text_preview(self,person):
+        global escape
+
+        birth_str = ""
+        birth_ref = person.get_birth_ref()
+        if birth_ref:
+            birth = self._dbstate.db.get_event_from_handle(birth_ref.ref)
+            date_str = DateHandler.get_date(birth)
+            if date_str != "":
+                birth_str = escape(date_str)
+
+        death_str = ""
+        death_ref = person.get_death_ref()
+        if death_ref:
+            death = self._dbstate.db.get_event_from_handle(death_ref.ref)
+            date_str = DateHandler.get_date(death)
+            if date_str != "":
+                death_str = escape(date_str)
+
+        s = "<span weight=\"bold\">%s</span>\n"\
+            "   <span weight=\"normal\">%s:</span> %s\n"\
+            "   <span weight=\"normal\">%s:</span> %s\n"\
+            "   <span weight=\"normal\">%s:</span> %s\n"% (
+            _("Person"),
+            _("Name"),escape(person.get_primary_name().get_name()),
+            _("Birth"),birth_str,
+            _("Death"),death_str)
+
+        if len(person.get_source_references()) > 0:
+            psrc_ref = person.get_source_references()[0]
+            psrc_id = psrc_ref.get_base_handle()
+            psrc = self._dbstate.db.get_source_from_handle(psrc_id)
+
+            s += "\n<span weight=\"bold\">%s</span>\n"\
+                 "   <span weight=\"normal\">%s:</span> %s\n" % (
+                _("Primary source"),
+                _("Name"),
+                escape(short(psrc.get_title())))
+
+        return s
+            
     def set_object_from_id(self,id):
         try:
             person = self._dbstate.db.get_person_from_gramps_id(id)
@@ -69,14 +122,18 @@ class PersonPreviewFrame(gtk.Frame):
                     pixbuf = ImgManip.get_thumbnail_image(mobj.get_path())
                     self._image.set_from_pixbuf(pixbuf)
             else:
-                self._image.set_from_file("../person.svg")
+                self._image.set_from_file(os.path.join(const.rootDir,"person.svg"))
+
+            self._label.set_markup(self._get_text_preview(person))
 
         except:
             log.warn("Failed to generate preview for person", exc_info=True)
-            self._clear_object()
+            self.clear_object()
 
     def clear_object(self):
-        self._image.set_from_file("../person.svg")
+        self._image.set_from_file(os.path.join(const.rootDir,"person.svg"))
+        self._label.set_markup("")
+
     
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(PersonPreviewFrame)

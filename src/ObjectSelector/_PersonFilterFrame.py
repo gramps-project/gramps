@@ -19,8 +19,8 @@ class PersonFilterFrame(FilterFrameBase):
 
     __default_border_width = 5
 
-    def __init__(self,dbstate,label="Filter"):
-	FilterFrameBase.__init__(self,label)
+    def __init__(self,filter_spec=None,label="Filter"):
+	FilterFrameBase.__init__(self,filter_spec,label)
 
         # Gramps ID
         self._id_check = gtk.CheckButton()
@@ -86,13 +86,13 @@ class PersonFilterFrame(FilterFrameBase):
         
         self._b_unknown = gtk.CheckButton("Include Unknown")
         self._b_unknown.set_sensitive(False)
-        self._b_unknown.set_active(True)
+        self._b_unknown.set_active(False)
 
         self._birth_check.connect('toggled',lambda b: self._b_edit.set_sensitive(self._birth_check.get_active()))
         self._birth_check.connect('toggled',lambda b: self._b_before.set_sensitive(self._birth_check.get_active()))
         self._birth_check.connect('toggled',lambda b: self._b_after.set_sensitive(self._birth_check.get_active()))
-        self._birth_check.connect('toggled',lambda b: self._b_unknown.set_sensitive(self._birth_check.get_active()))
-
+        #self._birth_check.connect('toggled',lambda b: self._b_unknown.set_sensitive(self._birth_check.get_active()))
+        
         self._b_inner_box = gtk.HBox()
         self._b_inner_box.pack_start(self._b_before)
         self._b_inner_box.pack_start(self._b_after)
@@ -118,12 +118,12 @@ class PersonFilterFrame(FilterFrameBase):
 
         self._d_unknown = gtk.CheckButton("Include Unknown")
         self._d_unknown.set_sensitive(False)
-        self._d_unknown.set_active(True)
+        self._d_unknown.set_active(False)
 
         self._death_check.connect('toggled',lambda b: self._d_edit.set_sensitive(self._death_check.get_active()))
         self._death_check.connect('toggled',lambda b: self._d_before.set_sensitive(self._death_check.get_active()))
         self._death_check.connect('toggled',lambda b: self._d_after.set_sensitive(self._death_check.get_active()))
-        self._death_check.connect('toggled',lambda b: self._d_unknown.set_sensitive(self._death_check.get_active()))
+        #self._death_check.connect('toggled',lambda b: self._d_unknown.set_sensitive(self._death_check.get_active()))
 
         d_inner_box = gtk.HBox()
         d_inner_box.pack_start(self._d_before)
@@ -257,7 +257,68 @@ class PersonFilterFrame(FilterFrameBase):
         self._table.attach(self._filter_combo,self._control_col,self._control_col+1,
                            current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
 
-    def on_apply(self,button):
+        if filter_spec is not None:
+            self._set_filter(filter_spec)
+
+
+    def _set_filter(self,filter_spec):
+        if filter_spec.include_gramps_id():
+            self._id_check.set_active(True)
+            self._id_edit.set_text(filter_spec.get_gramps_id())
+        else:
+            self._id_check.set_active(False)
+            self._id_edit.set_text("")
+
+        if filter_spec.include_name():
+            self._name_check.set_active(True)
+            self._name_edit.set_text(filter_spec.get_name())
+        else:
+            self._name_check.set_active(False)
+            self._name_edit.set_text("")
+
+        if filter_spec.include_gender():
+            self._gender_check.set_active(True)
+            store = self._gender_list
+            it = store.get_iter_first()
+            while it:
+                if store.get(it, 1)[0] == filter_spec.get_gender():
+                    break
+                it = store.iter_next(it)
+
+            if it != None:
+                self._gender_combo.set_active_iter(it)
+        else:
+            self._gender_check.set_active(False)
+
+
+        if filter_spec.include_birth():
+            self._birth_check.set_active(True)
+            self._b_edit.set_text(filter_spec.get_birth_year())
+            if filter_spec.get_birth_criteria() == filter_spec.__class__.BEFORE:
+                self._b_before.set_active(True)
+                self._b_after.set_active(False)
+            else:
+                self._b_before.set_active(False)
+                self._b_after.set_active(True)
+        else:
+            self._birth_check.set_active(False)
+            self._b_edit.set_text("")
+
+        if filter_spec.include_death():
+            self._death_check.set_active(True)
+            self._d_edit.set_text(filter_spec.get_death_year())
+            if filter_spec.get_death_criteria() == filter_spec.__class__.BEFORE:
+                self._d_before.set_active(True)
+                self._d_after.set_active(False)
+            else:
+                self._d_before.set_active(False)
+                self._d_after.set_active(True)
+        else:
+            self._death_check.set_active(False)
+            self._d_edit.set_text("")
+
+
+    def on_apply(self,button=None):
         filter = GenericFilter.GenericFilter()
         
         if self._id_check.get_active():

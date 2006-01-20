@@ -16,8 +16,10 @@ class FilterFrameBase(gtk.Frame):
 
     __default_border_width = 5
 
-    def __init__(self,dbstate,label="Filter"):
+    def __init__(self,filter_spec=None,label="Filter"):
 	gtk.Frame.__init__(self,label)
+                
+        self._filter_spec = filter_spec    
 
 	align = gtk.Alignment()
 
@@ -53,6 +55,7 @@ class FilterFrameBase(gtk.Frame):
                           
 
 	self.add(align)
+
 
     def on_apply(self,button):
         """Build a GenericFilter object from the settings in the filter controls and
