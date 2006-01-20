@@ -231,6 +231,12 @@ class PersonView(PageView.PersonNavView):
         self.generic_filter_widget.apply_filter()
 
     def goto_active_person(self,obj=None):
+        import time
+        t = time.time()
+        self.goto_active_person_2(None)
+        print time.time() - t
+
+    def goto_active_person_2(self,obj=None):
         """
         Callback (and usable function) that selects the active person
         in the display tree.
@@ -319,14 +325,17 @@ class PersonView(PageView.PersonNavView):
         Creates a new PeopleModel instance. Essentially creates a complete
         rebuild of the data.
         """
-        self.model = PeopleModel.PeopleModel(
-            self.dbstate.db, self.generic_filter_widget.get_filter(), self.generic_filter_widget.inverted())
-        self.tree.set_model(self.model)
+        if self.active:
+            self.model = PeopleModel.PeopleModel(
+                self.dbstate.db, self.generic_filter_widget.get_filter(), self.generic_filter_widget.inverted())
+            self.tree.set_model(self.model)
 
-        if self.model.tooltip_column != None:
-            self.tooltips = TreeTips.TreeTips(self.tree,self.model.tooltip_column,True)
-        self.build_columns()
-
+            if self.model.tooltip_column != None:
+                self.tooltips = TreeTips.TreeTips(self.tree,self.model.tooltip_column,True)
+            self.build_columns()
+            self.dirty = False
+        else:
+            self.dirty = True
 
     def filter_toggle(self,obj):
         if obj.get_active():

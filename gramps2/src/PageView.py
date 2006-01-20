@@ -47,6 +47,20 @@ class PageView:
         self.ui = '<ui></ui>'
         self.dbstate.connect('no-database',self.disable_action_group)
         self.dbstate.connect('database-changed',self.enable_action_group)
+        self.dirty = True
+        self.active = False
+
+    def set_active(self):
+        self.active = True
+        if self.dirty:
+            print self,"set active dirty"
+            self.build_tree()
+            
+    def set_inactive(self):
+        self.active = False
+
+    def build_tree(self):
+        pass
 
     def navigation_type(self):
         return NAVIGATION_NONE
@@ -405,33 +419,53 @@ class ListView(PageView):
             index += 1
 
     def build_tree(self):
-        self.model = self.make_model(self.dbstate.db,self.sort_col)
-        self.list.set_model(self.model)
-        self.selection = self.list.get_selection()
+        if self.active:
+            self.model = self.make_model(self.dbstate.db,self.sort_col)
+            self.list.set_model(self.model)
+            self.selection = self.list.get_selection()
 
-        if self.model.tooltip_column != None:
-            self.tooltips = TreeTips.TreeTips(self.list,
-                                              self.model.tooltip_column,True)
-
+            if self.model.tooltip_column != None:
+                self.tooltips = TreeTips.TreeTips(self.list,
+                                                  self.model.tooltip_column,True)
+            self.dirty = False
+        else:
+            self.dirty = True
+        
     def change_db(self,db):
         for sig in self.signal_map:
             db.connect(sig, self.signal_map[sig])
         self.model = self.make_model(self.dbstate.db,0)
         self.list.set_model(self.model)
         self.build_columns()
-        self.build_tree()
+        if self.active:
+            self.build_tree()
+        else:
+            print self,"change_db dirty"
+            self.dirty = True
 
     def row_add(self,handle_list):
-        for handle in handle_list:
-            self.model.add_row_by_handle(handle)
+        if self.active:
+            for handle in handle_list:
+                self.model.add_row_by_handle(handle)
+        else:
+            print self,"row add dirty"
+            self.dirty = True
 
     def row_update(self,handle_list):
-        for handle in handle_list:
-            self.model.update_row_by_handle(handle)
+        if self.active:
+            for handle in handle_list:
+                self.model.update_row_by_handle(handle)
+        else:
+            print self,"row update dirty"
+            self.dirty = True
 
     def row_delete(self,handle_list):
-        for handle in handle_list:
-            self.model.delete_row_by_handle(handle)
+        if self.active:
+            for handle in handle_list:
+                self.model.delete_row_by_handle(handle)
+        else:
+            print self,"row delete dirty"
+            self.dirty = True
 
     def define_actions(self):
         """

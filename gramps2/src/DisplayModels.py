@@ -71,6 +71,8 @@ class BaseModel(gtk.GenericTreeModel):
 
     def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING,tooltip_column=None):
         gtk.GenericTreeModel.__init__(self)
+        self.prev_handle = None
+        self.prev_data = None
         self.set_property("leak_references",False)
         self.db = db
         self.sort_func = self.smap[scol]
@@ -161,7 +163,10 @@ class BaseModel(gtk.GenericTreeModel):
 
     def on_get_value(self,node,col):
         try:
-            return self.fmap[col](self.map(str(node)))
+            if node != self.prev_handle:
+                self.prev_data = self.map(str(node))
+                self.prev_handle = node
+            return self.fmap[col](self.prev_data)
         except:
             return u''
 

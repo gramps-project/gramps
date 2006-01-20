@@ -466,22 +466,28 @@ class ViewManager:
             index += 1
             self.bbox.pack_start(button,False)
 
+        self.active_page = self.pages[0]
+        self.active_page.set_active()
+
     def change_page(self,obj,page,num=-1):
         if num == -1:
             num = self.notebook.get_current_page()
+
         if self.state.open == True:
 
             for mergeid in self.merge_ids:
                 self.uimanager.remove_ui(mergeid)
 
             if self.active_page:
+                self.active_page.set_inactive()
                 groups = self.active_page.get_actions()
                 for grp in groups:
                     self.uimanager.remove_action_group(grp)
 
             if len(self.pages) > 0:
                 self.active_page = self.pages[num]
-
+                self.active_page.set_active()
+                
                 old_nav = self.navigation_type[self.prev_nav]
                 if old_nav[0] != None:
                     old_nav[0].disable()

@@ -112,8 +112,10 @@ class PeopleModel(gtk.GenericTreeModel):
         self.sortnames = {}
         self.marker_color_column = 11
         self.tooltip_column = 12
+        self.prev_handle = None
+        self.prev_data = None
         self.rebuild_data(data_filter)
-    
+
     def rebuild_data(self,data_filter=None,skip=None):
         self.calculate_data(data_filter,skip)
         self.assign_data()
@@ -236,7 +238,10 @@ class PeopleModel(gtk.GenericTreeModel):
             # return values for 'data' row, calling a function
             # according to column_defs table
             try:
-                return COLUMN_DEFS[col][COLUMN_DEF_LIST](self,self.db.get_raw_person_data(str(node)),node)
+                if node != self.prev_handle:
+                    self.prev_data = self.db.get_raw_person_data(str(node))
+                    self.prev_handle = node
+                return COLUMN_DEFS[col][COLUMN_DEF_LIST](self,self.prev_data,node)
             except:
                 print "".join(traceback.format_exception(*sys.exc_info()))
                 return u'error'
