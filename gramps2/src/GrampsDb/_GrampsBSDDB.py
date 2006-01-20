@@ -59,7 +59,7 @@ _MINVERSION = 5
 _DBVERSION = 9
 
 def find_surname(key,data):
-    return str(data[3].get_surname())
+    return str(data[3].surname)
 
 def find_idmap(key,data):
     return str(data[1])
