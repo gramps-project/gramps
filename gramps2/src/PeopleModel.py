@@ -121,10 +121,10 @@ class PeopleModel(gtk.GenericTreeModel):
         self.rebuild_data(data_filter)
 
     def rebuild_data(self,data_filter=None,skip=None):
-        self.calculate_data(data_filter,skip)
+        self.calculate_data(data_filter)
         self.assign_data()
         
-    def calculate_data(self,data_filter=None,skip=None):
+    def calculate_data(self,data_filter=None):
 
         if data_filter:
             self.data_filter = data_filter
@@ -145,10 +145,6 @@ class PeopleModel(gtk.GenericTreeModel):
                 del handle_list
         else:
             keys = self.db.get_person_handles(sort_handles=False)
-
-        flist = set(keys)
-        if skip and skip in flist:
-            flist.remove(skip)
 
         self.sortnames = {}
         cursor = self.db.get_person_cursor()
