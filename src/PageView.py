@@ -21,6 +21,7 @@
 # $Id$
 
 import gtk
+import pango
 import TreeTips
 import GenericFilter
 
@@ -314,6 +315,7 @@ class ListView(PageView):
                  make_model, signal_map):
         PageView.__init__(self, title, dbstate, uistate)
         self.renderer = gtk.CellRendererText()
+        self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
         self.sort_col = 0
         self.columns = []
         self.colinfo = columns
@@ -342,6 +344,7 @@ class ListView(PageView):
         self.list.set_rules_hint(True)
         self.list.set_headers_visible(True)
         self.list.set_headers_clickable(True)
+        self.list.set_fixed_height_mode(True)
         self.list.connect('button-press-event',self.button_press)
         self.list.connect('key-press-event',self.key_press)
 
@@ -354,6 +357,7 @@ class ListView(PageView):
         self.vbox.pack_start(scrollwindow,True)
 
         self.renderer = gtk.CellRendererText()
+        self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
         self.inactive = False
 
         self.columns = []
@@ -412,7 +416,8 @@ class ListView(PageView):
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
             column.connect('clicked',self.column_clicked,index)
             column.set_resizable(True)
-            column.set_min_width(75)
+            column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+            column.set_fixed_width(pair[2])
             column.set_clickable(True)
             self.columns.append(column)
             self.list.append_column(column)
@@ -444,28 +449,16 @@ class ListView(PageView):
             self.dirty = True
 
     def row_add(self,handle_list):
-        if self.active:
-            for handle in handle_list:
-                self.model.add_row_by_handle(handle)
-        else:
-            print self,"row add dirty"
-            self.dirty = True
+        for handle in handle_list:
+            self.model.add_row_by_handle(handle)
 
     def row_update(self,handle_list):
-        if self.active:
-            for handle in handle_list:
-                self.model.update_row_by_handle(handle)
-        else:
-            print self,"row update dirty"
-            self.dirty = True
+        for handle in handle_list:
+            self.model.update_row_by_handle(handle)
 
     def row_delete(self,handle_list):
-        if self.active:
-            for handle in handle_list:
-                self.model.delete_row_by_handle(handle)
-        else:
-            print self,"row delete dirty"
-            self.dirty = True
+        for handle in handle_list:
+            self.model.delete_row_by_handle(handle)
 
     def define_actions(self):
         """
