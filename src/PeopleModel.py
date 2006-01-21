@@ -153,6 +153,8 @@ class PeopleModel(gtk.GenericTreeModel):
         ngn = NameDisplay.displayer.name_grouping_name
         nsn = NameDisplay.displayer.sorted_name
 
+        flist = set(keys)
+        
         while node:
             n,d = node
             if n in flist:
