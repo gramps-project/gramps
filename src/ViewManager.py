@@ -482,7 +482,8 @@ class ViewManager:
                 self.active_page.set_inactive()
                 groups = self.active_page.get_actions()
                 for grp in groups:
-                    self.uimanager.remove_action_group(grp)
+                    if grp in self.uimanager.get_action_groups():
+                        self.uimanager.remove_action_group(grp)
 
             if len(self.pages) > 0:
                 self.active_page = self.pages[num]

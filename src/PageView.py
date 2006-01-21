@@ -54,7 +54,6 @@ class PageView:
     def set_active(self):
         self.active = True
         if self.dirty:
-            print self,"set active dirty"
             self.build_tree()
             
     def set_inactive(self):
@@ -276,7 +275,6 @@ class PersonNavView(PageView):
                 self.uistate.modify_statusbar()
                 self.dbstate.change_active_handle(handle)
                 hobj.mhistory.append(hobj.history[hobj.index])
-#                self.redraw_histmenu()
                 self.back_action.set_sensitive(not hobj.at_front())
                 self.fwd_action.set_sensitive(True)
             except:
@@ -445,7 +443,6 @@ class ListView(PageView):
         if self.active:
             self.build_tree()
         else:
-            print self,"change_db dirty"
             self.dirty = True
 
     def row_add(self,handle_list):
