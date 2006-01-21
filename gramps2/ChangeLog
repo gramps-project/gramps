@@ -1,4 +1,6 @@
 2006-01-20  Don Allingham  <don@gramps-project.org>
+	* src/PageView.py: remove debug statements
+	* src/ViewManager.py: check for existing action group before removing
 	* src/GrampsDb/_GrampsBSDDB.py: remove function call in find_surname
 	* src/GenericFilter.py: implement short-circuit if only rule is
 	Everyone
