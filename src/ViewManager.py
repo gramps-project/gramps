@@ -745,6 +745,7 @@ class ViewManager:
         return True
 
     def load_database(self,name,callback=None,mode="w"):
+        self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         self.progress.show()
         if not self.state.db.load(name,self.pulse_progressbar,mode):
             return False
@@ -783,6 +784,7 @@ class ViewManager:
         self.state.db.undo_callback = self.change_undo_label
         self.state.db.redo_callback = self.change_redo_label
         self.actiongroup.set_visible(True)
+        self.window.window.set_cursor(None)
         return True
 
     def change_undo_label(self,label):
@@ -852,6 +854,7 @@ class ViewManager:
 
     def pulse_progressbar(self,value):
         self.progress.set_fraction(value/100.0)
+        self.progress.set_text("%d%%" % value)
         while gtk.events_pending():
             gtk.main_iteration()
 
@@ -924,16 +927,20 @@ class ViewManager:
                     
             if filetype == const.app_gramps:
                 choose.destroy()
+                self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
                 self.progress.show()
                 GrampsDb.gramps_db_reader_factory(filetype)(self.state.db,filename,self.pulse_progressbar)
                 self.parent.import_tool_callback()
                 self.progress.hide()
+                self.window.window.set_cursor(None)
                 return True
             elif filetype == const.app_gramps_xml or filetype == const.app_gedcom:
                 choose.destroy()
+                self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
                 self.progress.show()
                 GrampsDb.gramps_db_reader_factory(filetype)(self.state.db,filename,self.pulse_progressbar)
                 self.progress.hide()
+                self.window.window.set_cursor(None)
                 return True
 
             (the_path,the_file) = os.path.split(filename)

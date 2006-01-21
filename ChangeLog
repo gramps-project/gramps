@@ -1,3 +1,7 @@
+2006-01-21  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py (pulse_progressbar): Print percentage text;
+	Set cursor to WATCH on open and import.
+
 2006-01-20  Don Allingham  <don@gramps-project.org>
 	* src/PageView.py: remove debug statements
 	* src/ViewManager.py: check for existing action group before removing
