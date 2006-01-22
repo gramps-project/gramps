@@ -962,15 +962,20 @@ class GedcomParser:
             else:
                 event = RelLib.Event()
                 try:
+                    print matches[1]
+                    print ged2fam[matches[1]]
                     event.set_name(ged2fam[matches[1]])
                 except:
                     event.set_name(matches[1])
-                if event.get_name() == "Marriage":
+                if event.get_type()[0] == RelLib.Event.MARRIAGE:
                     self.family.set_relationship(RelLib.Family.MARRIED)
-                self.db.add_event(event,self.trans)
-                self.family.add_event_handle(event.get_handle())
                 self.parse_family_event(event,2)
-                self.db.commit_family_event(event, self.trans)
+                self.db.add_event(event,self.trans)
+
+                event_ref = RelLib.EventRef()
+                event_ref.set_reference_handle(event.handle)
+                event_ref.set_role((RelLib.EventRef.PRIMARY,''))
+                self.family.add_event_ref(event_ref)
                 del event
 
     def parse_note_base(self,matches,obj,level,old_note,task):
@@ -1264,16 +1269,16 @@ class GedcomParser:
                 self.backup()
                 break
             elif matches[1] == TOKEN_TYPE:
-                if event.get_name() == "":
+                if event.get_type() == (RelLib.Event.CUSTOM,""):
                     if ged2gramps.has_key(matches[2]):
-                        name = ged2gramps[matches[2]]
+                        name = (ged2gramps[matches[2]],'')
                     else:
-                        val = self.gedsource.tag2gramps(matches[2])
+                        #print val, matches
                         if val:
-                            name = val
+                            name = (RelLib.Event.CUSTOM,val)
                         else:
-                            name = matches[2]
-                    event.set_name(name)
+                            name = (RelLib.Event.CUSTOM,matches[3])
+                    event.set_type(name)
                 else:
                     event.set_description(matches[2])
             elif matches[1] == TOKEN__PRIV and  matches[2] == "Y":
@@ -1284,8 +1289,8 @@ class GedcomParser:
                 event.add_source_reference(self.handle_source(matches,level+1))
             elif matches[1] == TOKEN_PLAC:
                 val = matches[2]
-                n = event.get_name().strip()
-                if self.is_ftw and n in ["Occupation","Degree","SSN"]:
+                n = event.get_type()
+                if self.is_ftw and n[0] in [RelLib.Event.OCCUPATION,RelLib.Event.DEGREE]:
                     event.set_description(val)
                     self.ignore_sub_junk(level+1)
                 else:
@@ -2086,9 +2091,9 @@ class GedcomParser:
             val = self.gedsource.tag2gramps(n)
             print n, val
             if val:
-                event.set_name((RelLib.Event.CUSTOM,val))
+                event.set_type((RelLib.Event.CUSTOM,val))
             else:
-                event.set_name((RelLib.Event.CUSTOM,n))
+                event.set_type((RelLib.Event.CUSTOM,n))
                 
         self.parse_person_event(event,2)
         if matches[2]:
