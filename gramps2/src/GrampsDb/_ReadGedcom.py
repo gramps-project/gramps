@@ -1273,7 +1273,7 @@ class GedcomParser:
                     if ged2gramps.has_key(matches[2]):
                         name = (ged2gramps[matches[2]],'')
                     else:
-                        #print val, matches
+                        val = self.gedsource.tag2gramps(matches[2])
                         if val:
                             name = (RelLib.Event.CUSTOM,val)
                         else:
