@@ -559,7 +559,7 @@ class GedcomParser:
     def backup(self):
         self.backoff = 1
 
-    def parse_gedcom_file(self,use_trans=True):
+    def parse_gedcom_file(self,use_trans=False):
 
         self.trans = self.db.transaction_begin("",not use_trans)
         #self.trans.set_batch(not use_trans)
