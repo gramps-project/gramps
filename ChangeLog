@@ -1,3 +1,8 @@
+2006-01-21  Don Allingham  <don@gramps-project.org>
+	* src/PeopleModel.py: fix sorting of subnames
+	* src/Utils.py: fix GEDCOM mappings
+	* src/GrampsDb/_ReadGedcom.py:  More updates, bring up to the new RelLib
+
 2006-01-21  Alex Roitman  <shura@gramps-project.org>
 	* src/ViewManager.py (pulse_progressbar): Print percentage text;
 	Set cursor to WATCH on open and import.

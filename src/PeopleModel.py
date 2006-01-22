@@ -173,9 +173,12 @@ class PeopleModel(gtk.GenericTreeModel):
             self.build_sub_entry(name)
         
     def build_sub_entry(self,name):
-        self.temp_sname_sub[name].sort(locale.strcoll)
+        slist = map(lambda x: (self.sortnames[x],x),self.temp_sname_sub[name])
+        slist.sort(lambda f,s: locale.strcoll(f[0],s[0]))
+        entries = map(lambda x: x[1], slist)
+
         val = 0
-        for person_handle in self.temp_sname_sub[name]:
+        for person_handle in entries:
             tpl = (name,val)
             self.temp_iter2path[person_handle] = tpl
             self.temp_path2iter[tpl] = person_handle

@@ -56,6 +56,7 @@
 4 LABL Marriage Ending Status
 0 @IC3a2b1@ INDI
 1 NAME Edwin Michael /Smith/
+2 NOTE This is a note attached to a name
 2 SOUR @S1600@
 1 SEX M
 1 TITL Grand Poobah
