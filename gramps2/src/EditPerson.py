@@ -147,11 +147,6 @@ class EditPerson(DisplayState.ManagedWindow):
         self.gladeif = GladeIf(self.top)
         self.window.set_title("%s - GRAMPS" % _('Edit Person'))
         
-        #self.icon_list = self.top.get_widget("iconlist")
-        #self.gallery = ImageSelect.Gallery(person, self.db.commit_person,
-        #                                   self.path, self.icon_list,
-        #                                   self.db, self, self.window)
-
         self.build_gallery(self.top.get_widget('iconbox'))
 
         self.marker = self.top.get_widget('marker')

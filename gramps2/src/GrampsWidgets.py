@@ -74,7 +74,28 @@ class IconButton(gtk.EventBox):
         image.show()
         self.add(image)
         self.show()
-        self.connect('button-press-event',func,handle)
+
+        if func:
+            self.connect('button-press-event',func,handle)
+
+class WarnButton(gtk.EventBox):
+    def __init__(self):
+        gtk.EventBox.__init__(self)
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_INFO,gtk.ICON_SIZE_MENU)
+        image.show()
+        self.add(image)
+        self.show()
+        self.func = None
+        self.hide()
+
+    def on_clicked(self,func):
+        self.connect('button-press-event',self._button_press)
+        self.func = func
+
+    def _button_press(self,obj,event):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+            self.func(obj)
 
 class SimpleButton(gtk.Button):
 

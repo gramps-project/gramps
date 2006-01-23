@@ -121,10 +121,8 @@ class ChildEmbedList(EmbeddedList):
                 continue
             name = self.column_names[pair[1]][0]
             if pair[1] == 4 or pair[1] == 5:
-
                 render = TypeCellRenderer(Utils.child_relations)
                 column = gtk.TreeViewColumn(name, render, text=pair[1])
-                column.set_widget(EditLabel(name))
             else:
                 render = gtk.CellRendererText()
                 column = gtk.TreeViewColumn(name, render, text=pair[1])
