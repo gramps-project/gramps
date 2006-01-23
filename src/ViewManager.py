@@ -64,6 +64,7 @@ import Tool
 import Report
 import GrampsMime
 import GrampsKeys
+import GrampsWidgets
 
 #-------------------------------------------------------------------------
 #
@@ -210,8 +211,15 @@ class ViewManager:
         self.progress.set_size_request(100,-1)
         self.progress.hide()
         self.statusbar.show()
+        self.warnbtn = GrampsWidgets.IconButton(lambda x: True, '',
+                                                gtk.STOCK_INFO,
+                                                gtk.ICON_SIZE_MENU)
+        self.warnbtn.hide()
         hbox2 = gtk.HBox()
+        hbox2.set_spacing(4)
+        hbox2.set_border_width(2)
         hbox2.pack_start(self.progress,False)
+        hbox2.pack_start(self.warnbtn,False)
         hbox2.pack_end(self.statusbar,True)
         hbox2.show()
         vbox.pack_end(hbox2,False)
@@ -219,6 +227,7 @@ class ViewManager:
 
         self.notebook.connect('switch-page',self.change_page)
         self.uistate = DisplayState.DisplayState(self.window, self.statusbar,
+                                                 self.warnbtn,
                                                  self.uimanager, self.state)
 
         toolbar = self.uimanager.get_widget('/ToolBar')

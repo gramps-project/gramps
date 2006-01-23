@@ -32,6 +32,8 @@ import re
 import string
 import const
 import time
+import logging
+
 from gettext import gettext as _
 
 # and module sets for earlier pythons
@@ -1150,9 +1152,6 @@ class GedcomParser:
             (ok,path) = self.find_file(filename,self.dir_path)
             if not ok:
                 self.warn(_("Warning: could not import %s") % filename + "\n")
-                self.warn(_("\tThe following paths were tried:\n\t\t"))
-                self.warn("\n\t\t".join(path))
-                self.warn('\n')
                 path = filename.replace('\\','/')
             photo_handle = self.media_map.get(path)
             if photo_handle == None:
@@ -2030,7 +2029,7 @@ class GedcomParser:
             else:
                 if state.person.get_main_parents_family_handle() == handle:
                     state.person.set_main_parent_family_handle(None)
-                state.person.add_parent_family_handle((handle,ftype,ftype))
+                state.person.add_parent_family_handle(handle,ftype,ftype)
 
     def func_person_resi(self,matches,state):
         addr = RelLib.Address()

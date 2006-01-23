@@ -1,4 +1,7 @@
 2006-01-22  Don Allingham  <don@gramps-project.org>
+	* src/DisplayState.py: add info button
+	* src/ViewManager.py: add info button
+	* src/GrampsWidgets.py: add optional size to icon button
 	* src/Makefile.am: remove PeopleView.py
 	* src/PeopleView.py: removed, replaced by PersonView
 	* src/PersonView.py: set ellipsize property
