@@ -44,6 +44,7 @@ import GrampsDb
 import GrampsKeys
 import NameDisplay
 import GrampsMime
+import const
 
 #-------------------------------------------------------------------------
 #
@@ -522,6 +523,31 @@ class ManagedWindow:
 # Gramps Display State class
 #
 #-------------------------------------------------------------------------
+
+import logging
+from GrampsLogger import RotateHandler
+
+class WarnHandler(RotateHandler):
+    def __init__(self,capacity,button):
+        RotateHandler.__init__(self,capacity)
+        self.setLevel(logging.WARN)
+        self.button = button
+        button.on_clicked(self.display)
+
+    def emit(self,record):
+        RotateHandler.emit(self,record)
+        self.button.show()
+
+    def display(self,obj):
+        obj.hide()
+        g = gtk.glade.XML(const.gladeFile,'scrollmsg')
+        top = g.get_widget('scrollmsg')
+        msg = g.get_widget('msg')
+        buf = msg.get_buffer()
+        for i in self.get_formatted_log():
+            buf.insert_at_cursor(i + '\n')
+        top.run()
+
 class DisplayState(GrampsDb.GrampsDBCallback):
 
     __signals__ = {
@@ -538,6 +564,11 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.gwm = GrampsWindowManager(uimanager)
         self.widget = None
         self.warnbtn = warnbtn
+
+        self.rh = WarnHandler(capacity=400,button=warnbtn)
+        self.log = logging.getLogger()
+        self.log.setLevel(logging.WARN)
+        self.log.addHandler(self.rh)
 
     def set_open_widget(self,widget):
         self.widget = widget
@@ -569,4 +600,14 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.status.push(self.status_id,text)
         while gtk.events_pending():
             gtk.main_iteration()
+
+
+if __name__ == "__main__":
+
+    import GrampsWidgets
+    
+    rh = WarnHandler(capacity=400,button=GrampsWidgets.WarnButton())
+    log = logging.getLogger()
+    log.setLevel(logging.WARN)
+    log.addHandler(rh)
 

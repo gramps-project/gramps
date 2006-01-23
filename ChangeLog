@@ -1,3 +1,12 @@
+2006-01-23  Don Allingham  <don@gramps-project.org>
+	* src/DisplayState.py: Warning log handler
+	* src/EditFamily.py: remove icon in father/mother column
+	* src/EditPerson.py: remove commented out code
+	* src/GrampsWidgets.py: add WarnButton
+	* src/ViewManager.py: use WarnButton in the status bar
+	* src/GrampsDb/_GedTokens.py: Add HEAD
+	* src/GrampsDb/_ReadGedcom.py: New min-lexical analyzer
+
 2006-01-22  Don Allingham  <don@gramps-project.org>
 	* src/DisplayState.py: add info button
 	* src/ViewManager.py: add info button

@@ -211,10 +211,7 @@ class ViewManager:
         self.progress.set_size_request(100,-1)
         self.progress.hide()
         self.statusbar.show()
-        self.warnbtn = GrampsWidgets.IconButton(lambda x: True, '',
-                                                gtk.STOCK_INFO,
-                                                gtk.ICON_SIZE_MENU)
-        self.warnbtn.hide()
+        self.warnbtn = GrampsWidgets.WarnButton()
         hbox2 = gtk.HBox()
         hbox2.set_spacing(4)
         hbox2.set_border_width(2)

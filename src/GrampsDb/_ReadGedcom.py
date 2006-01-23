@@ -63,6 +63,7 @@ import DisplayTrace
 from ansel_utf8 import ansel_to_utf8
 import Utils
 import GrampsMime
+import logging
 from bsddb import db
 from _GedcomInfo import *
 from _GedTokens import *
@@ -82,6 +83,9 @@ def latin_to_utf8(s):
         return s
     else:
         return unicode(s,'iso-8859-1')
+
+
+log = logging.getLogger('.ReadGedcom')
 
 #-------------------------------------------------------------------------
 #
@@ -139,14 +143,11 @@ ged2fam_custom = {}
 #
 #-------------------------------------------------------------------------
 intRE = re.compile(r"\s*(\d+)\s*$")
-lineRE = re.compile(r"\s*(\d+)\s+(\S+)\s*(.*)$")
-headRE = re.compile(r"\s*(\d+)\s+HEAD")
 nameRegexp= re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
 snameRegexp= re.compile(r"/([^/]*)/([^/]*)")
 calRegexp = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
 rangeRegexp = re.compile(r"\s*BET\s+@#D([^@]+)@\s*(.*)\s+AND\s+@#D([^@]+)@\s*(.*)$")
 spanRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
-whitespaceRegexp = re.compile(r"\s+")
 
 #-------------------------------------------------------------------------
 #
@@ -313,6 +314,73 @@ class NoteParser:
 
 #-------------------------------------------------------------------------
 #
+# Reader - serves as the lexical analysis engine
+#
+#-------------------------------------------------------------------------
+class Reader:
+
+    def __init__(self,name):
+        self.f = open(name,'rU')
+        self.current_list = []
+        self.eof = False
+        self.transtable = string.maketrans('','')
+        self.delc = self.transtable[0:31]
+        self.transtable2 = self.transtable[0:128] + ('?' * 128)
+        self.cnv = lambda s: unicode(s)
+        self.broken_conc = False
+
+    def set_charset_fn(self,cnv):
+        self.cnv = cnv
+
+    def set_broken_conc(self,broken):
+        self.broken_conc = broken
+
+    def read(self):
+        if len(self.current_list) <= 1 and not self.eof:
+            self.readahead()
+        try:
+            d = self.current_list.pop()
+            return d
+        except:
+            return None
+
+    def readahead(self):
+        while len(self.current_list) < 5:
+            line = self.f.readline()
+            if line == "":
+                self.f.close()
+                self.eof = True
+                break
+            line = line.rstrip('\r\n').split(None,2) + ['']
+
+            val = line[2].translate(self.transtable,self.delc)
+            try:
+                val = self.cnv(val)
+            except:
+                val = line[2].translate(val,self.transtable2)
+
+            try:
+                level = int(line[0])
+            except:
+                level = 0
+
+            data = (level,tokens.get(line[1],TOKEN_UNKNOWN),val,line[1])
+            
+            if data[1] == TOKEN_CONT:
+                l = self.current_list[0]
+                self.current_list[0] = (l[0],l[1],l[2]+'\n'+data[2],l[3])
+            elif data[1] == TOKEN_CONC:
+                l = self.current_list[0]
+                if self.broken_conc:
+                    new_value = "%s %s" % (l[2],data[2])
+                else:
+                    new_value = l[2] + data[2]
+                self.current_list[0] = (l[0],l[1],new_value,l[3])
+            else:
+                self.current_list.insert(0,data)
+
+#-------------------------------------------------------------------------
+#
 #
 #
 #-------------------------------------------------------------------------
@@ -344,7 +412,6 @@ class GedcomParser:
         self.localref = 0
         self.placemap = {}
         self.broken_conc_list = [ 'FamilyOrigins', 'FTW' ]
-        self.broken_conc = 0
         self.is_ftw = 0
         self.idswap = {}
         self.gid2id = {}
@@ -410,7 +477,7 @@ class GedcomParser:
             data = cursor.next()
         cursor.close()
 
-        self.f = open(filename,"rU")
+        self.lexer = Reader(filename)
         self.filename = filename
         self.index = 0
         self.backoff = 0
@@ -423,20 +490,12 @@ class GedcomParser:
 
         if self.override != 0:
             if self.override == 1:
-                self.cnv = ansel_to_utf8
+                self.lexer.set_charset_fn(ansel_to_utf8)
             elif self.override == 2:
-                self.cnv = latin_to_utf8
-            else:
-                self.cnv = nocnv
-        else:
-            self.cnv = nocnv
+                self.lexer.set_charset_fn(latin_to_utf8)
 
         self.geddir = os.path.dirname(os.path.normpath(os.path.abspath(filename)))
     
-        self.transtable = string.maketrans('','')
-        self.delc = self.transtable[0:31]
-        self.transtable2 = self.transtable[0:128] + ('?' * 128)
-        
         self.error_count = 0
         amap = Utils.personalConstantAttributes
         self.current = 0
@@ -464,10 +523,10 @@ class GedcomParser:
             pass
 
     def errmsg(self,msg):
-        print msg
+        log.warning(msg)
 
     def infomsg(self,msg):
-        print msg
+        log.warning(msg)
 
     def find_file(self,fullname,altpath):
         tries = []
@@ -505,98 +564,22 @@ class GedcomParser:
 
     def get_next(self):
         if self.backoff == 0:
-            next_line = self.f.readline()
+            next_line = self.lexer.read()
             self.track_lines()
             
             # EOF ?
-            if next_line == "":
+            if next_line == None:
                 self.index += 1
                 self.text = "";
                 self.backoff = 0
                 msg = _("Warning: Premature end of file at line %d.\n") % self.index
                 self.errmsg(msg)
                 self.error_count = self.error_count + 1
-                self.groups = (-1, "END OF FILE", "","")
+                self.groups = (-1, TOKEN_UNKNOWN, "","")
                 return self.groups
 
-            try:
-                self.text = string.translate(next_line.strip(),self.transtable,self.delc)
-            except:
-                self.text = next_line.strip()
-
-            try:
-                self.text = self.cnv(self.text)
-            except:
-                self.text = string.translate(self.text,self.transtable2)
-            
+            self.groups = next_line
             self.index += 1
-            l = whitespaceRegexp.split(self.text, 2)
-            ln = len(l)
-            try:
-                if ln == 2:
-                    self.groups = (int(l[0]),tokens.get(l[1],TOKEN_UNKNOWN),u"",unicode(l[1]))
-                else:
-                    self.groups = (int(l[0]),tokens.get(l[1],TOKEN_UNKNOWN),unicode(l[2]),unicode(l[1]))
-            except:
-                if self.text == "":
-                    msg = _("Warning: line %d was blank, so it was ignored.\n") % self.index
-                else:
-                    msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
-                    msg = "%s\n\t%s\n" % (msg,self.text)
-                self.errmsg(msg)
-                self.error_count = self.error_count + 1
-                self.groups = (999, TOKEN_UNKNOWN, "XXX", "")
-        self.backoff = 0
-        return self.groups
-
-    def get_next_original(self):
-        if self.backoff == 0:
-            next_line = self.f.readline()
-            self.current += 1
-
-            newval = int((100*self.current)/self.maxlines)
-            if self.callback and newval != self.oldval:
-                self.callback(newval)
-                self.oldval = newval
-            
-            # EOF ?
-            if next_line == "":
-                self.index += 1
-                self.text = "";
-                self.backoff = 0
-                msg = _("Warning: Premature end of file at line %d.\n") % self.index
-                self.errmsg(msg)
-                self.error_count = self.error_count + 1
-                self.groups = (-1, "END OF FILE", "","")
-                return self.groups
-
-            try:
-                self.text = string.translate(next_line.strip(),self.transtable,self.delc)
-            except:
-                self.text = next_line.strip()
-
-            try:
-                self.text = self.cnv(self.text)
-            except:
-                self.text = string.translate(self.text,self.transtable2)
-            
-            self.index += 1
-            l = whitespaceRegexp.split(self.text, 2)
-            ln = len(l)
-            try:
-                if ln == 2:
-                    self.groups = (int(l[0]),tokens.get(l[1],TOKEN_UNKNOWN),u"",unicode(l[1]))
-                else:
-                    self.groups = (int(l[0]),tokens.get(l[1],TOKEN_UNKNOWN),unicode(l[2]),unicode(l[1]))
-            except:
-                if self.text == "":
-                    msg = _("Warning: line %d was blank, so it was ignored.\n") % self.index
-                else:
-                    msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
-                    msg = "%s\n\t%s\n" % (msg,self.text)
-                self.errmsg(msg)
-                self.error_count = self.error_count + 1
-                self.groups = (999, TOKEN_UNKNOWN, "XXX", "")
         self.backoff = 0
         return self.groups
             
@@ -658,7 +641,6 @@ class GedcomParser:
         matches = self.get_next()
         if matches[0] >= 0 and matches[1] != TOKEN_TRLR:
             self.barf(0)
-        self.f.close()
         
     def parse_header(self):
         self.parse_header_head()
@@ -695,31 +677,26 @@ class GedcomParser:
                 self.backup()
                 return
             elif matches[1] == TOKEN_TITL:
-                title = matches[2] + self.parse_continue_data(level+1)
+                title = matches[2]
                 title = title.replace('\n',' ')
                 self.source.set_title(title)
             elif matches[1] in (TOKEN_TAXT,TOKEN_PERI): # EasyTree Sierra On-Line
                 if self.source.get_title() == "":
-                    title = matches[2] + self.parse_continue_data(level+1)
+                    title = matches[2]
                     title = title.replace('\n',' ')
                     self.source.set_title(title)
             elif matches[1] == TOKEN_AUTH:
-                self.source.set_author(matches[2] + self.parse_continue_data(level+1))
+                self.source.set_author(matches[2])
             elif matches[1] == TOKEN_PUBL:
-                self.source.set_publication_info(matches[2] + self.parse_continue_data(level+1))
+                self.source.set_publication_info(matches[2])
             elif matches[1] == TOKEN_NOTE:
                 note = self.parse_note(matches,self.source,level+1,note)
                 self.source.set_note(note)
             elif matches[1] == TOKEN_TEXT:
                 note = self.source.get_note()
-                d = self.parse_continue_data(level+1)
-                if note:
-                    note = "%s\n%s %s" % (note,matches[2],d)
-                else:
-                    note = "%s %s" % (matches[2],d)
                 self.source.set_note(note.strip())
             elif matches[1] == TOKEN_ABBR:
-                self.source.set_abbreviation(matches[2] + self.parse_continue_data(level+1))
+                self.source.set_abbreviation(matches[2])
             elif matches[1] in (TOKEN_OBJE,TOKEN_CHAN,TOKEN__CAT):
                 self.ignore_sub_junk(2)
             else:
@@ -969,7 +946,7 @@ class GedcomParser:
                 self.parse_ord(lds_ord,2)
             elif matches[1] == TOKEN_ADDR:
                 self.addr = RelLib.Address()
-                self.addr.set_street(matches[2] + self.parse_continue_data(1))
+                self.addr.set_street(matches[2])
                 self.parse_address(self.addr,2)
             elif matches[1] == TOKEN_CHIL:
                 mrel,frel = self.parse_ftw_relations(2)
@@ -1011,7 +988,7 @@ class GedcomParser:
                 else:
                     self.parse_family_object(2)
             elif matches[1] == TOKEN__COMM:
-                note = matches[2].strip() + self.parse_continue_data(1)
+                note = matches[2]
                 self.family.set_note(note)
                 self.ignore_sub_junk(2)
             elif matches[1] == TOKEN_NOTE:
@@ -1047,9 +1024,9 @@ class GedcomParser:
                 return u""
         else:
             if old_note:
-                note = "%s\n%s%s" % (old_note,matches[2],self.parse_continue_data(level))
+                note = "%s\n%s%s" % (old_note,matches[2])
             else:
-                note = matches[2] + self.parse_continue_data(level)
+                note = matches[2]
             task(note)
             self.ignore_sub_junk(level+1)
         return note
@@ -1086,7 +1063,7 @@ class GedcomParser:
                 return note
             elif matches[1] == TOKEN_NOTE:
                 if not matches[2].strip() or matches[2] and matches[2][0] != "@":
-                    note = matches[2] + self.parse_continue_data(level+1)
+                    note = matches[2]
                     self.parse_note_data(level+1)
                 else:
                     self.ignore_sub_junk(level+1)
@@ -1112,7 +1089,7 @@ class GedcomParser:
                 pass #type = matches[1]
             elif matches[1] == TOKEN_NOTE:
                 if not matches[2].strip() or matches[2] and matches[2][0] != "@":
-                    note = matches[2] + self.parse_continue_data(level+1)
+                    note = matches[2]
                     self.parse_note_data(level+1)
                 else:
                     self.ignore_sub_junk(level+1)
@@ -1137,7 +1114,7 @@ class GedcomParser:
             elif matches[1] == TOKEN_FILE:
                 filename = matches[2]
             elif matches[1] == TOKEN_NOTE:
-                note = matches[2] + self.parse_continue_data(level+1)
+                note = matches[2]
             elif matches[1] == TOKEN_UNKNOWN:
                 self.ignore_sub_junk(level+1)
             else:
@@ -1151,7 +1128,7 @@ class GedcomParser:
         else:
             (ok,path) = self.find_file(filename,self.dir_path)
             if not ok:
-                self.warn(_("Warning: could not import %s") % filename + "\n")
+                self.warn(_("Warning: could not import %s") % filename)
                 path = filename.replace('\\','/')
             photo_handle = self.media_map.get(path)
             if photo_handle == None:
@@ -1182,7 +1159,7 @@ class GedcomParser:
             elif matches[1] == TOKEN_FILE:
                 filename = matches[2]
             elif matches[1] == TOKEN_NOTE:
-                note = matches[2] + self.parse_continue_data(level+1)
+                note = matches[2]
             elif int(matches[0]) < level:
                 self.backup()
                 break
@@ -1192,10 +1169,7 @@ class GedcomParser:
         if form:
             (ok,path) = self.find_file(filename,self.dir_path)
             if not ok:
-                self.warn(_("Warning: could not import %s") % filename + "\n")
-                self.warn(_("\tThe following paths were tried:\n\t\t"))
-                self.warn("\n\t\t".join(path))
-                self.warn('\n')
+                self.warn(_("Warning: could not import %s") % filename)
                 path = filename.replace('\\','/')
             photo_handle = self.media_map.get(path)
             if photo_handle == None:
@@ -1223,9 +1197,10 @@ class GedcomParser:
             elif matches[1] == TOKEN_DATE:
                 address.set_date_object(self.extract_date(matches[2]))
             elif matches[1] == TOKEN_ADDR:
-                address.set_street(matches[2] + self.parse_continue_data(level+1))
+                address.set_street(matches[2])
                 self.parse_address(address,level+1)
-            elif matches[1] in (TOKEN_AGE,TOKEN_AGNC,TOKEN_CAUS,TOKEN_STAT,TOKEN_TEMP,TOKEN_OBJE,TOKEN_TYPE,TOKEN__DATE2):
+            elif matches[1] in (TOKEN_AGE,TOKEN_AGNC,TOKEN_CAUS,TOKEN_STAT,
+                                TOKEN_TEMP,TOKEN_OBJE,TOKEN_TYPE,TOKEN__DATE2):
                 self.ignore_sub_junk(level+1)
             elif matches[1] == TOKEN_SOUR:
                 address.add_source_reference(self.handle_source(matches,level+1))
@@ -1253,12 +1228,11 @@ class GedcomParser:
                 return
             elif matches[1] in (TOKEN_ADDR, TOKEN_ADR1, TOKEN_ADR2):
                 val = address.get_street()
-                data = self.parse_continue_data(level+1)
                 if first == 0:
-                    val = "%s %s" % (matches[2],data)
+                    val = matches[2]
                     first = 1
                 else:
-                    val = "%s,%s %s" % (val,matches[2],data)
+                    val = "%s,%s" % (val,matches[2])
                 address.set_street(val)
             elif matches[1] == TOKEN_CITY:
                 address.set_city(matches[2])
@@ -1354,23 +1328,15 @@ class GedcomParser:
                     event.set_place_handle(place_handle)
                     self.ignore_sub_junk(level+1)
             elif matches[1] == TOKEN_CAUS:
-                info = matches[2] + self.parse_continue_data(level+1)
+                info = matches[2]
                 event.set_cause(info)
                 self.parse_cause(event,level+1)
             elif matches[1] in (TOKEN_NOTE,TOKEN_OFFI):
-                info = matches[2] + self.parse_continue_data(level+1)
+                info = matches[2]
                 if note == "":
                     note = info
                 else:
                     note = "\n%s" % info
-            elif matches[1] == TOKEN_CONC:
-                d = event.get_description()
-                if self.broken_conc:
-                    event.set_description("%s %s" % (d, matches[2]))
-                else:
-                    event.set_description("%s%s" % (d, matches[2]))
-            elif matches[1] == TOKEN_CONT:
-                event.set_description("%s\n%s" % (event.get_description(),matches[2]))
             elif matches[1] in (TOKEN__GODP, TOKEN__WITN, TOKEN__WTN):
                 if matches[2][0] == "@":
                     witness_handle = self.find_person_handle(self.map_gid(matches[2][1:-1]))
@@ -1397,7 +1363,8 @@ class GedcomParser:
                 break
             elif matches[1] == TOKEN_DATE:
                 event.set_date_object(self.extract_date(matches[2]))
-            elif matches[1] in (TOKEN_TIME,TOKEN_ADDR,TOKEN_AGE,TOKEN_AGNC,TOKEN_STAT,TOKEN_TEMP,TOKEN_OBJE):
+            elif matches[1] in (TOKEN_TIME,TOKEN_ADDR,TOKEN_AGE,TOKEN_AGNC,
+                                TOKEN_STAT,TOKEN_TEMP,TOKEN_OBJE):
                 self.ignore_sub_junk(level+1)
             elif matches[1] == TOKEN_SOUR:
                 event.add_source_reference(self.handle_source(matches,level+1))
@@ -1418,24 +1385,15 @@ class GedcomParser:
                 # eventually do something intelligent here
                 pass
             elif matches[1] == TOKEN_CAUS:
-                info = matches[2] + self.parse_continue_data(level+1)
+                info = matches[2]
                 event.set_cause(info)
                 self.parse_cause(event,level+1)
             elif matches[1] == TOKEN_NOTE:
-                info = matches[2] + self.parse_continue_data(level+1)
+                info = matches[2]
                 if note == "":
                     note = info
                 else:
                     note = "\n%s" % info
-            elif matches[1] == TOKEN_CONC:
-                d = event.get_description()
-                if self.broken_conc:
-                    event.set_description("%s %s" % (d,matches[2]))
-                else:
-                    event.set_description("%s%s" % (d,matches[2]))
-            elif matches[1] == TOKEN_CONT:
-                d = event.get_description()
-                event.set_description("%s\n%s" % (d,matches[2]))
             else:
                 self.barf(level+1)
 
@@ -1474,7 +1432,8 @@ class GedcomParser:
                         else:
                             name = matches[2]
                     attr.set_name(name)
-            elif matches[1] in (TOKEN_CAUS,TOKEN_DATE,TOKEN_TIME,TOKEN_ADDR,TOKEN_AGE,TOKEN_AGNC,TOKEN_STAT,TOKEN_TEMP,TOKEN_OBJE):
+            elif matches[1] in (TOKEN_CAUS,TOKEN_DATE,TOKEN_TIME,TOKEN_ADDR,
+                                TOKEN_AGE,TOKEN_AGNC,TOKEN_STAT,TOKEN_TEMP,TOKEN_OBJE):
                 self.ignore_sub_junk(level+1)
             elif matches[1] == TOKEN_SOUR:
                 attr.add_source_reference(self.handle_source(matches,level+1))
@@ -1486,18 +1445,11 @@ class GedcomParser:
             elif matches[1] == TOKEN_DATE:
                 note = "%s\n\n" % ("Date : %s" % matches[2])
             elif matches[1] == TOKEN_NOTE:
-                info = matches[2] + self.parse_continue_data(level+1)
+                info = matches[2]
                 if note == "":
                     note = info
                 else:
                     note = "%s\n\n%s" % (note,info)
-            elif matches[1] == TOKEN_CONC:
-                if self.broken_conc:
-                    attr.set_value("%s %s" % (attr.get_value(), matches[2]))
-                else:
-                    attr.set_value("%s %s" % (attr.get_value(), matches[2]))
-            elif matches[1] == TOKEN_CONT:
-                attr.set_value("%s\n%s" % (attr.get_value(),matches[2]))
             else:
                 self.barf(level+1)
         if note != "":
@@ -1524,7 +1476,7 @@ class GedcomParser:
             elif matches[1] == TOKEN_DATE:
                 event.set_date_object(self.extract_date(matches[2]))
             elif matches[1] == TOKEN_CAUS:
-                info = matches[2] + self.parse_continue_data(level+1)
+                info = matches[2]
                 event.set_cause(info)
                 self.parse_cause(event,level+1)
             elif matches[1] in (TOKEN_TIME,TOKEN_AGE,TOKEN_AGNC,TOKEN_ADDR,TOKEN_STAT,
@@ -1568,7 +1520,7 @@ class GedcomParser:
                 self.backup()
                 return
             elif matches[1] == TOKEN_PAGE:
-                source.set_page(matches[2] + self.parse_continue_data(level+1))
+                source.set_page(matches[2])
             elif matches[1] == TOKEN_DATE:
                 source.set_date_object(self.extract_date(matches[2]))
             elif matches[1] == TOKEN_DATA:
@@ -1605,7 +1557,7 @@ class GedcomParser:
             elif matches[1] == TOKEN_DATE:
                 date = matches[2]
             elif matches[1] == TOKEN_TEXT:
-                note = matches[2] + self.parse_continue_data(level+1)
+                note = matches[2]
             else:
                 self.barf(level+1)
         return None
@@ -1626,11 +1578,10 @@ class GedcomParser:
 
     def parse_header_head(self):
         """validiates that this is a valid GEDCOM file"""
-        line = self.f.readline().replace('\r','')
-        match = headRE.search(line)
-        if not match:
+        line = self.lexer.read()
+        if line[1] != TOKEN_HEAD:
             raise Errors.GedcomError("%s is not a GEDCOM file" % self.filename)
-        self.index = self.index + 1
+        self.index += 1
 
     def parse_header_source(self):
         genby = ""
@@ -1641,7 +1592,7 @@ class GedcomParser:
                 return
             elif matches[1] == TOKEN_SOUR:
                 self.gedsource = self.gedmap.get_from_source_tag(matches[2])
-                self.broken_conc = self.gedsource.get_conc()
+                self.lexer.set_broken_conc(self.gedsource.get_conc())
                 if matches[2] == "FTW":
                     self.is_ftw = 1
                 genby = matches[2]
@@ -1661,14 +1612,12 @@ class GedcomParser:
             elif matches[1] == TOKEN_DEST:
                 if genby == "GRAMPS":
                     self.gedsource = self.gedmap.get_from_source_tag(matches[2])
-                    self.broken_conc = self.gedsource.get_conc()
+                    self.lexer.set_broken_conc(self.gedsource.get_conc())
             elif matches[1] == TOKEN_CHAR and not self.override:
-                if matches[2] in ["UNICODE","UTF-8","UTF8"]:
-                    self.cnv = nocnv
-                elif matches[2] == "ANSEL":
-                    self.cnv = ansel_to_utf8
-                else:
-                    self.cnv = latin_to_utf8
+                if matches[2] == "ANSEL":
+                    self.lexer.set_charset_fn(ansel_to_utf8)
+                elif matches[2] not in ("UNICODE","UTF-8","UTF8"):
+                    self.lexer.set_charset_fn(latin_to_utf8)
                 self.ignore_sub_junk(2)
             elif matches[1] == TOKEN_GEDC:
                 self.ignore_sub_junk(2)
@@ -1681,7 +1630,7 @@ class GedcomParser:
                 date.date = matches[2]
                 self.def_src.set_data_item('Creation date',matches[2])
             elif matches[1] == TOKEN_NOTE:
-                note = matches[2] + self.parse_continue_data(2)
+                note = matches[2]
             elif matches[1][0] == TOKEN_UNKNOWN:
                 self.ignore_sub_junk(2)
             else:
@@ -1762,48 +1711,6 @@ class GedcomParser:
             elif matches[1] != TOKEN_FORM:
                 self.barf(level+1)
     
-    def parse_continue_data(self,level):
-        data = ""
-        while 1:
-            matches = self.get_next()
-
-            if int(matches[0]) < level:
-                self.backup()
-                return data
-            elif matches[1] == TOKEN_CONC:
-                if self.broken_conc:
-                    data = "%s %s" % (data,matches[2])
-                else:
-                    data = "%s%s" % (data,matches[2])
-            elif matches[1] == TOKEN_CONT:
-                data = "%s\n%s" % (data,matches[2])
-            else:
-                self.backup()
-                return data
-        return None
-    
-    def parse_note_continue(self,level):
-        data = ""
-        while 1:
-            matches = self.get_next()
-
-            if int(matches[0]) < level:
-                self.backup()
-                return data
-            elif matches[1] == TOKEN_NOTE:
-                data = "%s\n%s%s" % (data,matches[2],self.parse_continue_data(level+1))
-            elif matches[1] == TOKEN_CONC:
-                if self.broken_conc:
-                    data = "%s %s" % (data,matches[2])
-                else:
-                    data = "%s%s" % (data,matches[2])
-            elif matches[1] == TOKEN_CONT:
-                data = "%s\n%s" % (data,matches[2])
-            else:
-                self.backup()
-                return data
-        return None
-
     def parse_date(self,level):
         date = DateStruct()
         while 1:
@@ -1884,7 +1791,7 @@ class GedcomParser:
         source_ref = RelLib.SourceRef()
         if matches[2] and matches[2][0] != "@":
             title = matches[2]
-            note = self.parse_continue_data(level)
+            note = ''
             handle = self.inline_srcs.get((title,note),Utils.create_id())
             self.inline_srcs[(title,note)] = handle
             self.ignore_sub_junk(level+1)
@@ -2038,7 +1945,7 @@ class GedcomParser:
 
     def func_person_addr(self,matches,state):
         addr = RelLib.Address()
-        addr.set_street(matches[2] + self.parse_continue_data(1))
+        addr.set_street(matches[2])
         self.parse_address(addr,2)
         state.person.add_address(addr)
 
