@@ -1517,9 +1517,9 @@ class GedcomParser:
                 etype = event.get_type()
                 if etype[0] == RelLib.Event.CUSTOM:
                     try:
-                        event.set_name((ged2fam[matches[2]],''))
+                        event.set_type((ged2fam[matches[2]],''))
                     except:
-                        event.set_name((RelLib.Event.CUSTOM,matches[2]))
+                        event.set_type((RelLib.Event.CUSTOM,matches[2]))
                 else:
                     note = 'Status = %s\n' % matches[2]
             elif matches[1] == TOKEN_DATE:
@@ -2127,7 +2127,13 @@ class GedcomParser:
 
     def func_person_attr(self,matches,state):
         attr = RelLib.Attribute()
-        attr.set_type(matches[1])
+        n = matches[3]
+        atype = self.gedattr.get(n,RelLib.Attribute.CUSTOM)
+        if atype == RelLib.Attribute.CUSTOM:
+            attr.set_type((atype,n))
+        else:
+            attr.set_type((atype,''))
+            
         attr.set_value(matches[2])
         state.person.add_attribute(attr)
 
@@ -2245,7 +2251,7 @@ class GedcomParser:
         sref = self.handle_source(matches,state.level+1)
         state.name.add_source_reference(sref)
 
-    def skip_record(self,matches):
+    def skip_record(self,matches,state):
         self.ignore_sub_junk(2)
         
 #-------------------------------------------------------------------------
