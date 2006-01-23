@@ -182,7 +182,6 @@ class ViewManager:
         vbox = gtk.VBox()
         self.window.add(vbox)
         hbox = gtk.HBox()
-        hbox.set_border_width(4)
         self.ebox = gtk.EventBox()
         self.bbox = gtk.VBox()
         self.ebox.add(self.bbox)

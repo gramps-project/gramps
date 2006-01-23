@@ -1,5 +1,5 @@
 2006-01-23  Don Allingham  <don@gramps-project.org>
-	* src/DisplayState.py: Warning log handler
+	* src/DisplayState.py: Warning log handler, add timeout handler
 	* src/EditFamily.py: remove icon in father/mother column
 	* src/EditPerson.py: remove commented out code
 	* src/GrampsWidgets.py: add WarnButton
