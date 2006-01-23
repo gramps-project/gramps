@@ -533,10 +533,20 @@ class WarnHandler(RotateHandler):
         self.setLevel(logging.WARN)
         self.button = button
         button.on_clicked(self.display)
+        self.timer = None
 
     def emit(self,record):
+        if self.timer:
+            gobject.source_remove(self.timer)
+        gobject.timeout_add(180*1000,self._clear)
         RotateHandler.emit(self,record)
         self.button.show()
+
+    def _clear(self):
+        self.button.hide()
+        self.set_capacity(self._capacity)
+        self.timer = None
+        return False
 
     def display(self,obj):
         obj.hide()
@@ -546,7 +556,9 @@ class WarnHandler(RotateHandler):
         buf = msg.get_buffer()
         for i in self.get_formatted_log():
             buf.insert_at_cursor(i + '\n')
+        self.set_capacity(self._capacity)
         top.run()
+        top.destroy()
 
 class DisplayState(GrampsDb.GrampsDBCallback):
 
@@ -565,7 +577,9 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.widget = None
         self.warnbtn = warnbtn
 
+        formatter = logging.Formatter('%(levelname)s %(name)s: %(message)s')
         self.rh = WarnHandler(capacity=400,button=warnbtn)
+        self.rh.setFormatter(formatter)
         self.log = logging.getLogger()
         self.log.setLevel(logging.WARN)
         self.log.addHandler(self.rh)

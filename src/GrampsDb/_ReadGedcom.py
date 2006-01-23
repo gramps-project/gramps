@@ -85,7 +85,7 @@ def latin_to_utf8(s):
         return unicode(s,'iso-8859-1')
 
 
-log = logging.getLogger('.ReadGedcom')
+log = logging.getLogger('.GEDCOM_import')
 
 #-------------------------------------------------------------------------
 #
@@ -572,7 +572,7 @@ class GedcomParser:
                 self.index += 1
                 self.text = "";
                 self.backoff = 0
-                msg = _("Warning: Premature end of file at line %d.\n") % self.index
+                msg = _("Premature end of file at line %d.\n") % self.index
                 self.errmsg(msg)
                 self.error_count = self.error_count + 1
                 self.groups = (-1, TOKEN_UNKNOWN, "","")
@@ -584,10 +584,7 @@ class GedcomParser:
         return self.groups
             
     def barf(self,level):
-        msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
-        self.errmsg(msg)
-        msg = "\n\t%s\n" % self.text
-
+        msg = _("Line %d was not understood, so it was ignored.") % self.index
         self.errmsg(msg)
         self.error_count = self.error_count + 1
         self.ignore_sub_junk(level)
@@ -1128,7 +1125,7 @@ class GedcomParser:
         else:
             (ok,path) = self.find_file(filename,self.dir_path)
             if not ok:
-                self.warn(_("Warning: could not import %s") % filename)
+                self.warn(_("Could not import %s") % filename)
                 path = filename.replace('\\','/')
             photo_handle = self.media_map.get(path)
             if photo_handle == None:
@@ -1169,7 +1166,7 @@ class GedcomParser:
         if form:
             (ok,path) = self.find_file(filename,self.dir_path)
             if not ok:
-                self.warn(_("Warning: could not import %s") % filename)
+                self.warn(_("Could not import %s") % filename)
                 path = filename.replace('\\','/')
             photo_handle = self.media_map.get(path)
             if photo_handle == None:
