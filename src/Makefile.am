@@ -74,7 +74,7 @@ gdir_PYTHON = \
 	NoteEdit.py\
 	PaperMenu.py\
 	PedView.py\
-	PeopleView.py\
+	PersonView.py\
 	PeopleModel.py\
 	PlaceView.py\
 	Plugins.py\

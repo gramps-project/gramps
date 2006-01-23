@@ -129,6 +129,8 @@ for _val in Utils.familyConstantEvents.keys():
     if _key != "":
         ged2fam[_key] = _val
 
+ged2fam_custom = {}
+
 #-------------------------------------------------------------------------
 #
 # regular expressions
@@ -274,7 +276,7 @@ class NoteParser:
         f = open(filename,"rU")
         innote = False
         
-        for line in f.xreadlines():
+        for line in f:
 
             self.count += 1
             if innote:
@@ -449,7 +451,7 @@ class GedcomParser:
             mypaths = []
             f = open("/proc/mounts","r")
 
-            for line in f.xreadlines():
+            for line in f:
                 paths = line.split()
                 ftype = paths[2].upper()
                 if ftype in file_systems.keys():
@@ -492,7 +494,60 @@ class GedcomParser:
         else:
             return (0,tries)
 
+    def track_lines(self):
+        self.current += 1
+        newval = int((100*self.current)/self.maxlines)
+        if self.callback and newval != self.oldval:
+            self.callback(newval)
+            self.oldval = newval
+
     def get_next(self):
+        if self.backoff == 0:
+            next_line = self.f.readline()
+            self.track_lines()
+            
+            # EOF ?
+            if next_line == "":
+                self.index += 1
+                self.text = "";
+                self.backoff = 0
+                msg = _("Warning: Premature end of file at line %d.\n") % self.index
+                self.errmsg(msg)
+                self.error_count = self.error_count + 1
+                self.groups = (-1, "END OF FILE", "","")
+                return self.groups
+
+            try:
+                self.text = string.translate(next_line.strip(),self.transtable,self.delc)
+            except:
+                self.text = next_line.strip()
+
+            try:
+                self.text = self.cnv(self.text)
+            except:
+                self.text = string.translate(self.text,self.transtable2)
+            
+            self.index += 1
+            l = whitespaceRegexp.split(self.text, 2)
+            ln = len(l)
+            try:
+                if ln == 2:
+                    self.groups = (int(l[0]),tokens.get(l[1],TOKEN_UNKNOWN),u"",unicode(l[1]))
+                else:
+                    self.groups = (int(l[0]),tokens.get(l[1],TOKEN_UNKNOWN),unicode(l[2]),unicode(l[1]))
+            except:
+                if self.text == "":
+                    msg = _("Warning: line %d was blank, so it was ignored.\n") % self.index
+                else:
+                    msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
+                    msg = "%s\n\t%s\n" % (msg,self.text)
+                self.errmsg(msg)
+                self.error_count = self.error_count + 1
+                self.groups = (999, TOKEN_UNKNOWN, "XXX", "")
+        self.backoff = 0
+        return self.groups
+
+    def get_next_original(self):
         if self.backoff == 0:
             next_line = self.f.readline()
             self.current += 1
@@ -962,13 +1017,15 @@ class GedcomParser:
             else:
                 event = RelLib.Event()
                 try:
-                    print matches[1]
-                    print ged2fam[matches[1]]
-                    event.set_name(ged2fam[matches[1]])
+                    event.set_type((ged2fam[matches[3]],''))
                 except:
-                    event.set_name(matches[1])
+                    val = ged2fam_custom.has_key(matches[3])
+                    if val:
+                        event.set_type((RelLib.Event.CUSTOM,val))
+                    else:
+                        event.set_type((RelLib.Event.CUSTOM,matches[1]))
                 if event.get_type()[0] == RelLib.Event.MARRIAGE:
-                    self.family.set_relationship(RelLib.Family.MARRIED)
+                    self.family.set_relationship((RelLib.Family.MARRIED,''))
                 self.parse_family_event(event,2)
                 self.db.add_event(event,self.trans)
 
@@ -1011,7 +1068,7 @@ class GedcomParser:
             if int(matches[0]) < 1:
                 self.backup()
                 if state.get_text():
-                    self.person.set_note(state.get_text())
+                    state.person.set_note(state.get_text())
                 return
             else:
                 func = self.person_func.get(matches[1],self.func_person_event)
@@ -1035,8 +1092,8 @@ class GedcomParser:
                 self.barf(level+1)
         return None
         
-    def parse_famc_type(self,level):
-        ftype = RelLib.Person.CHILD_BIRTH
+    def parse_famc_type(self,level,person):
+        ftype = (RelLib.Person.CHILD_BIRTH,'')
         note = ""
         while 1:
             matches = self.get_next()
@@ -1048,7 +1105,7 @@ class GedcomParser:
                 ftype = pedi_type.get(matches[2],RelLib.Person.UNKNOWN)
             elif matches[1] == TOKEN_SOUR:
                 source_ref = self.handle_source(matches,level+1)
-                self.person.get_primary_name().add_source_reference(source_ref)
+                person.get_primary_name().add_source_reference(source_ref)
             elif matches[1] == TOKEN__PRIMARY:
                 pass #type = matches[1]
             elif matches[1] == TOKEN_NOTE:
@@ -1061,7 +1118,7 @@ class GedcomParser:
                 self.barf(level+1)
         return None
     
-    def parse_person_object(self,level):
+    def parse_person_object(self,level,state):
         form = ""
         filename = ""
         title = "no title"
@@ -1088,7 +1145,7 @@ class GedcomParser:
             url = RelLib.Url()
             url.set_path(filename)
             url.set_description(title)
-            self.person.add_url(url)
+            state.person.add_url(url)
         else:
             (ok,path) = self.find_file(filename,self.dir_path)
             if not ok:
@@ -1110,8 +1167,7 @@ class GedcomParser:
             oref = RelLib.MediaRef()
             oref.set_reference_handle(photo.get_handle())
             oref.set_note(note)
-            self.person.add_media_reference(oref)
-            #self.db.commit_person(self.person, self.trans)
+            state.person.add_media_reference(oref)
 
     def parse_family_object(self,level):
         form = ""
@@ -1156,7 +1212,6 @@ class GedcomParser:
             oref.set_reference_handle(photo.get_handle())
             oref.set_note(note)
             self.family.add_media_reference(oref)
-            #self.db.commit_family(self.family, self.trans)
 
     def parse_residence(self,address,level):
         note = ""
@@ -1459,11 +1514,12 @@ class GedcomParser:
                 self.backup()
                 break
             elif matches[1] == TOKEN_TYPE:
-                if event.get_name() == "" or event.get_name() == 'EVEN': 
+                etype = event.get_type()
+                if etype[0] == RelLib.Event.CUSTOM:
                     try:
-                        event.set_name(ged2fam[matches[2]])
+                        event.set_name((ged2fam[matches[2]],''))
                     except:
-                        event.set_name(matches[2])
+                        event.set_name((RelLib.Event.CUSTOM,matches[2]))
                 else:
                     note = 'Status = %s\n' % matches[2]
             elif matches[1] == TOKEN_DATE:
@@ -1679,7 +1735,7 @@ class GedcomParser:
                 return
             else:
                 label = self.parse_label(level+1)
-                ged2fam[matches[1]] = label
+                ged2fam[matches[3]] = label
         return None
     
     def ignore_sub_junk(self,level):
@@ -1900,9 +1956,9 @@ class GedcomParser:
         if names[4]:
             name.set_suffix(names[4].strip())
         if state.name_cnt == 0:
-            self.person.set_primary_name(name)
+            state.person.set_primary_name(name)
         else:
-            self.person.add_alternate_name(name)
+            state.person.add_alternate_name(name)
         state.name_cnt += 1
         self.parse_name(name,2,state)
 
@@ -1918,49 +1974,49 @@ class GedcomParser:
             aka.set_surname(names[2])
         if names[4]:
             aka.set_suffix(names[4])
-        self.person.add_alternate_name(aka)
+        state.person.add_alternate_name(aka)
 
     def func_person_object(self,matches,state):
         if matches[2] and matches[2][0] == '@':
             self.barf(2)
         else:
-            self.parse_person_object(2)
+            self.parse_person_object(2,state)
 
     def func_person_note(self,matches,state):
         self.note = self.parse_note(matches,self.person,1,state)#self.note)
 
     def func_person_sex(self,matches,state):
         if matches[2] == '':
-            self.person.set_gender(RelLib.Person.UNKNOWN)
+            state.person.set_gender(RelLib.Person.UNKNOWN)
         elif matches[2][0] == "M":
-            self.person.set_gender(RelLib.Person.MALE)
+            state.person.set_gender(RelLib.Person.MALE)
         elif matches[2][0] == "F":
-            self.person.set_gender(RelLib.Person.FEMALE)
+            state.person.set_gender(RelLib.Person.FEMALE)
         else:
-            self.person.set_gender(RelLib.Person.UNKNOWN)
+            state.person.set_gender(RelLib.Person.UNKNOWN)
 
     def func_person_bapl(self,matches,state):
         lds_ord = RelLib.LdsOrd()
-        self.person.set_lds_baptism(lds_ord)
+        state.person.set_lds_baptism(lds_ord)
         self.parse_ord(lds_ord,2)
 
     def func_person_endl(self,matches,state):
         lds_ord = RelLib.LdsOrd()
-        self.person.set_lds_endowment(lds_ord)
+        state.person.set_lds_endowment(lds_ord)
         self.parse_ord(lds_ord,2)
 
     def func_person_slgc(self,matches,state):
         lds_ord = RelLib.LdsOrd()
-        self.person.set_lds_sealing(lds_ord)
+        state.person.set_lds_sealing(lds_ord)
         self.parse_ord(lds_ord,2)
 
     def func_person_fams(self,matches,state):
         handle = self.find_family_handle(matches[2][1:-1])
-        self.person.add_family_handle(handle)
+        state.person.add_family_handle(handle)
         state.add_to_note(self.parse_optional_note(2))
 
     def func_person_famc(self,matches,state):
-        ftype,note = self.parse_famc_type(2)
+        ftype,note = self.parse_famc_type(2,state.person)
         handle = self.find_family_handle(matches[2][1:-1])
                 
         for f in self.person.get_parent_family_handle_list():
@@ -1968,29 +2024,30 @@ class GedcomParser:
                 break
         else:
             if ftype in rel_types:
-                self.person.add_parent_family_handle(
-                    handle, RelLib.Person.CHILD_BIRTH, RelLib.Person.CHILD_BIRTH)
+                state.person.add_parent_family_handle(
+                    handle, (RelLib.Person.CHILD_BIRTH,''),
+                    (RelLib.Person.CHILD_BIRTH,''))
             else:
-                if self.person.get_main_parents_family_handle() == handle:
-                    self.person.set_main_parent_family_handle(None)
-                self.person.add_parent_family_handle(handle,ftype,ftype)
+                if state.person.get_main_parents_family_handle() == handle:
+                    state.person.set_main_parent_family_handle(None)
+                state.person.add_parent_family_handle((handle,ftype,ftype))
 
     def func_person_resi(self,matches,state):
         addr = RelLib.Address()
-        self.person.add_address(addr)
+        state.person.add_address(addr)
         self.parse_residence(addr,2)
 
     def func_person_addr(self,matches,state):
         addr = RelLib.Address()
         addr.set_street(matches[2] + self.parse_continue_data(1))
         self.parse_address(addr,2)
-        self.person.add_address(addr)
+        state.person.add_address(addr)
 
     def func_person_phon(self,matches,state):
         addr = RelLib.Address()
         addr.set_street("Unknown")
         addr.set_phone(matches[2])
-        self.person.add_address(addr)
+        state.person.add_address(addr)
 
     def func_person_birt(self,matches,state):
         event = RelLib.Event()
@@ -2005,10 +2062,10 @@ class GedcomParser:
         event_ref.set_reference_handle(event.handle)
         event_ref.set_role((RelLib.EventRef.PRIMARY,''))
 
-        if self.person.get_birth_ref():
-            self.person.add_event_ref(event_ref)
+        if state.person.get_birth_ref():
+            state.person.add_event_ref(event_ref)
         else:
-            self.person.set_birth_ref(event_ref)
+            state.person.set_birth_ref(event_ref)
 
     def func_person_adop(self,matches,state):
         event = RelLib.Event()
@@ -2019,7 +2076,7 @@ class GedcomParser:
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event.handle)
         event_ref.set_rol((RelLib.EventRef.PRIMARY,''))
-        self.person.add_event_ref(event_ref)
+        state.person.add_event_ref(event_ref)
 
     def func_person_deat(self,matches,state):
         event = RelLib.Event()
@@ -2034,32 +2091,32 @@ class GedcomParser:
         event_ref.set_reference_handle(event.handle)
         event_ref.set_role((RelLib.EventRef.PRIMARY,''))
 
-        if self.person.get_death_ref():
-            self.person.add_event_ref(event_ref)
+        if state.person.get_death_ref():
+            state.person.add_event_ref(event_ref)
         else:
-            self.person.set_death_ref(event_ref)
+            state.person.set_death_ref(event_ref)
 
     def func_person_even(self,matches,state):
         event = RelLib.Event()
         if matches[2]:
             event.set_description(matches[2])
         self.parse_person_event(event,2)
-        n = event.get_name().strip() 
-        if n in self.attrs:
+        (t,n) = event.get_type()
+        if t == RelLib.Event.CUSTOM and n in self.attrs:
             attr = RelLib.Attribute()
             attr.set_type((self.gedattr[n],''))
             attr.set_value(event.get_description())
-            self.person.add_attribute(attr)
+            state.person.add_attribute(attr)
         else:
             self.db.add_event(event, self.trans)
             event_ref = RelLib.EventRef()
             event_ref.set_reference_handle(event.handle)
             event_ref.set_role((RelLib.EventRef.PRIMARY,''))
-            self.person.add_event_ref(event_ref)
+            state.person.add_event_ref(event_ref)
 
     def func_person_sour(self,matches,state):
         source_ref = self.handle_source(matches,2)
-        self.person.add_source_reference(source_ref)
+        state.person.add_source_reference(source_ref)
 
     def func_person_refn(self,matches,state):
         if intRE.match(matches[2]):
@@ -2072,7 +2129,7 @@ class GedcomParser:
         attr = RelLib.Attribute()
         attr.set_type(matches[1])
         attr.set_value(matches[2])
-        self.person.add_attribute(attr)
+        state.person.add_attribute(attr)
 
     def func_person_event(self,matches,state):
         n = matches[3].strip()
@@ -2080,7 +2137,7 @@ class GedcomParser:
             attr = RelLib.Attribute()
             attr.set_type((self.gedattr[n],''))
             attr.set_value(matches[2])
-            self.person.add_attribute(attr)
+            state.person.add_attribute(attr)
             self.parse_person_attr(attr,2)
             return
         elif ged2gramps.has_key(n):
@@ -2089,7 +2146,6 @@ class GedcomParser:
         else:
             event = RelLib.Event()
             val = self.gedsource.tag2gramps(n)
-            print n, val
             if val:
                 event.set_type((RelLib.Event.CUSTOM,val))
             else:
@@ -2103,7 +2159,7 @@ class GedcomParser:
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event.get_handle())
         event_ref.set_role((RelLib.EventRef.PRIMARY,''))
-        self.person.add_event_ref(event_ref)
+        state.person.add_event_ref(event_ref)
 
     #-------------------------------------------------------------------------
     #

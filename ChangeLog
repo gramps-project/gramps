@@ -1,3 +1,9 @@
+2006-01-22  Don Allingham  <don@gramps-project.org>
+	* src/Makefile.am: remove PeopleView.py
+	* src/PeopleView.py: removed, replaced by PersonView
+	* src/PersonView.py: set ellipsize property
+	* src/GrampsDb/_ReadGedcom.py: fix event handling
+
 2006-01-21  Don Allingham  <don@gramps-project.org>
 	* src/PeopleModel.py: fix sorting of subnames
 	* src/Utils.py: fix GEDCOM mappings

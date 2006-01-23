@@ -35,6 +35,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
+import pango
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 
 #-------------------------------------------------------------------------
@@ -145,6 +146,7 @@ class PersonView(PageView.PersonNavView):
         self.vbox.pack_start(scrollwindow,True)
 
         self.renderer = gtk.CellRendererText()
+        self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
         self.inactive = False
 
         self.columns = []
