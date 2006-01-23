@@ -67,10 +67,10 @@ class LinkLabel(gtk.EventBox):
 
 class IconButton(gtk.EventBox):
 
-    def __init__(self,func,handle,icon=gtk.STOCK_EDIT):
+    def __init__(self,func,handle,icon=gtk.STOCK_EDIT,size=gtk.ICON_SIZE_MENU):
         gtk.EventBox.__init__(self)
         image = gtk.Image()
-        image.set_from_stock(icon,gtk.ICON_SIZE_MENU)
+        image.set_from_stock(icon,size)
         image.show()
         self.add(image)
         self.show()

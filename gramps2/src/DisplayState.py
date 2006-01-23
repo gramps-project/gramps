@@ -527,7 +527,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
     __signals__ = {
         }
 
-    def __init__(self,window,status,uimanager,dbstate):
+    def __init__(self,window,status,warnbtn,uimanager,dbstate):
         self.dbstate = dbstate
         self.uimanager = uimanager
         self.window = window
@@ -537,6 +537,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.phistory = History()
         self.gwm = GrampsWindowManager(uimanager)
         self.widget = None
+        self.warnbtn = warnbtn
 
     def set_open_widget(self,widget):
         self.widget = widget
@@ -568,3 +569,4 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.status.push(self.status_id,text)
         while gtk.events_pending():
             gtk.main_iteration()
+
