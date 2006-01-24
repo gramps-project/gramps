@@ -305,6 +305,8 @@ class Event(PrimaryObject,SourceNote,MediaBase,DateBase,PlaceBase):
                 the_type = (the_type,'')
             else:
                 the_type = (Event.CUSTOM,the_type)
+        assert(type(the_type[0]) == int)
+        assert(type(the_type[1]) == unicode or type(the_type[1]) == str)
         self.type = the_type
 
     def get_type(self):

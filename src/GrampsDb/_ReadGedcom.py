@@ -70,6 +70,10 @@ from _GedcomInfo import *
 from _GedTokens import *
 from QuestionDialog import ErrorDialog, WarningDialog
 
+addr_re  = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)\s+(\d+)\s*(.*)')
+addr2_re = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)\s+(\d+)')
+addr3_re = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)')
+
 #-------------------------------------------------------------------------
 #
 # latin/utf8 conversions
@@ -329,6 +333,8 @@ class Reader:
         self.transtable2 = self.transtable[0:128] + ('?' * 128)
         self.cnv = lambda s: unicode(s)
         self.broken_conc = False
+        self.cnt = 0
+        self.index = 0
 
     def set_charset_fn(self,cnv):
         self.cnv = cnv
@@ -340,14 +346,15 @@ class Reader:
         if len(self.current_list) <= 1 and not self.eof:
             self.readahead()
         try:
-            d = self.current_list.pop()
-            return d
+            self.current = self.current_list.pop()
+            return self.current
         except:
             return None
 
     def readahead(self):
         while len(self.current_list) < 5:
             line = self.f.readline()
+            self.index += 1
             if line == "":
                 self.f.close()
                 self.eof = True
@@ -365,18 +372,18 @@ class Reader:
             except:
                 level = 0
 
-            data = (level,tokens.get(line[1],TOKEN_UNKNOWN),val,line[1])
+            data = (level,tokens.get(line[1],TOKEN_UNKNOWN),val,line[1],self.index)
             
             if data[1] == TOKEN_CONT:
                 l = self.current_list[0]
-                self.current_list[0] = (l[0],l[1],l[2]+'\n'+data[2],l[3])
+                self.current_list[0] = (l[0],l[1],l[2]+'\n'+data[2],l[3],l[4])
             elif data[1] == TOKEN_CONC:
                 l = self.current_list[0]
                 if self.broken_conc:
                     new_value = "%s %s" % (l[2],data[2])
                 else:
                     new_value = l[2] + data[2]
-                self.current_list[0] = (l[0],l[1],new_value,l[3])
+                self.current_list[0] = (l[0],l[1],new_value,l[3],l[4])
             else:
                 self.current_list.insert(0,data)
 
@@ -403,7 +410,7 @@ class GedcomParser:
         self.smap = {}
         self.note_map = note_map
         self.refn = {}
-        self.added = {}
+        self.added = set()
         self.gedmap = GedcomInfoDB()
         self.gedsource = self.gedmap.get_from_source_tag('GEDCOM 5.5')
         self.def_src = RelLib.Source()
@@ -419,6 +426,12 @@ class GedcomParser:
         self.sid2id = {}
         self.lid2id = {}
         self.fid2id = {}
+        self.rid2id = {}
+
+        self.repo_func = {
+            TOKEN_NAME   : self.func_repo_name,
+            TOKEN_ADDR   : self.func_repo_addr,
+            }
 
         self.name_func = {
             TOKEN_ALIA   : self.func_name_alia,
@@ -480,7 +493,6 @@ class GedcomParser:
 
         self.lexer = Reader(filename)
         self.filename = filename
-        self.index = 0
         self.backoff = 0
         self.override = codeset
 
@@ -570,22 +582,20 @@ class GedcomParser:
             
             # EOF ?
             if next_line == None:
-                self.index += 1
                 self.text = "";
                 self.backoff = 0
-                msg = _("Premature end of file at line %d.\n") % self.index
+                msg = _("Premature end of file at line %d.\n") % next_line[4]
                 self.errmsg(msg)
                 self.error_count = self.error_count + 1
                 self.groups = (-1, TOKEN_UNKNOWN, "","")
                 return self.groups
 
             self.groups = next_line
-            self.index += 1
         self.backoff = 0
         return self.groups
             
     def barf(self,level):
-        msg = _("Line %d was not understood, so it was ignored.") % self.index
+        msg = _("Line %d was not understood, so it was ignored.") % self.groups[4]
         self.errmsg(msg)
         self.error_count = self.error_count + 1
         self.ignore_sub_junk(level)
@@ -603,9 +613,9 @@ class GedcomParser:
         #self.trans.set_batch(not use_trans)
         self.db.disable_signals()
         t = time.time()
-        self.index = 0
         self.fam_count = 0
         self.indi_count = 0
+        self.repo_count = 0
         self.source_count = 0
         try:
             self.parse_header()
@@ -739,7 +749,7 @@ class GedcomParser:
                 gid = matches[3]
                 gid = gid[1:-1]
                 self.person = self.find_or_create_person(self.map_gid(gid))
-                self.added[self.person.get_handle()] = 1
+                self.added.add(self.person.get_handle())
                 self.parse_individual(self.person)
                 if len(self.person.get_source_references()) == 0:
                     sref = RelLib.SourceRef()
@@ -747,6 +757,14 @@ class GedcomParser:
                     self.person.add_source_reference(sref)
                 self.db.commit_person(self.person, self.trans)
                 del self.person
+            elif matches[2] == "REPO":
+                self.repo_count = self.repo_count + 1
+                self.repo = self.find_or_create_repository(matches[3][1:-1])
+                self.repo.set_type((RelLib.Repository.UNKNOWN,""))
+                self.added.add(self.repo.get_handle())
+                self.parse_repository(self.repo)
+                self.db.commit_repository(self.repo, self.trans)
+                del self.repo
             elif matches[2] in ["SUBM","SUBN","REPO"]:
                 self.ignore_sub_junk(1)
             elif matches[1] in (TOKEN_SUBM,TOKEN_SUBN,TOKEN_OBJE,TOKEN__EVENT_DEFN):
@@ -813,6 +831,24 @@ class GedcomParser:
             family.set_gramps_id(gramps_id)
         return family
 
+    def find_or_create_repository(self,gramps_id):
+        repository = RelLib.Repository()
+        intid = self.rid2id.get(gramps_id)
+        if self.db.has_repository_handle(intid):
+            repository.unserialize(self.db.get_raw_repository_data(intid))
+        else:
+            intid = self.find_repository_handle(gramps_id)
+            repository.set_handle(intid)
+            repository.set_gramps_id(gramps_id)
+        return repository
+
+    def find_repository_handle(self,gramps_id):
+        intid = self.rid2id.get(gramps_id)
+        if not intid:
+            intid = create_id()
+            self.rid2id[gramps_id] = intid
+        return intid
+
     def find_family_handle(self,gramps_id):
         intid = self.fid2id.get(gramps_id)
         if not intid:
@@ -867,7 +903,7 @@ class GedcomParser:
         return place
 
     def parse_cause(self,event,level):
-        while 1:
+        while True:
             matches = self.get_next()
             if int(matches[0]) < level:
                 self.backup()
@@ -878,7 +914,7 @@ class GedcomParser:
                 self.barf(1)
                 
     def parse_note_data(self,level):
-        while 1:
+        while True:
             matches = self.get_next()
             if int(matches[0]) < level:
                 self.backup()
@@ -894,7 +930,7 @@ class GedcomParser:
         mrel = (RelLib.Person.CHILD_BIRTH,'')
         frel = (RelLib.Person.CHILD_BIRTH,'')
         
-        while 1:
+        while True:
             matches = self.get_next()
             if int(matches[0]) < level:
                 self.backup()
@@ -922,7 +958,7 @@ class GedcomParser:
     def parse_family(self):
         self.addr = None
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
 
             if int(matches[0]) < 1:
@@ -972,7 +1008,7 @@ class GedcomParser:
                     self.db.commit_person(child, self.trans)
             elif matches[1] == TOKEN_NCHI:
                 a = RelLib.Attribute()
-                a.set_type("Number of Children")
+                a.set_type((RelLib.Attribute.NUM_CHILD,''))
                 a.set_value(matches[2])
                 self.family.add_attribute(a)
             elif matches[1] == TOKEN_SOUR:
@@ -996,11 +1032,14 @@ class GedcomParser:
                 try:
                     event.set_type((ged2fam[matches[3]],''))
                 except:
-                    val = ged2fam_custom.has_key(matches[3])
-                    if val:
-                        event.set_type((RelLib.Event.CUSTOM,val))
+                    if ged2fam_custom.has_key(matches[3]):
+                        event.set_type((RelLib.Event.CUSTOM,ged2fam_custom[matches[3]]))
+                    elif matches[3]:
+                        event.set_type((RelLib.Event.CUSTOM,matches[3]))
                     else:
-                        event.set_type((RelLib.Event.CUSTOM,matches[1]))
+                        event.set_type((RelLib.Event.UNKNOWN,''))
+                    if matches[2] and not event.get_description():
+                        event.set_description(matches[2])
                 self.parse_family_event(event,2)
                 if event.get_type()[0] == RelLib.Event.MARRIAGE:
                     self.family.set_relationship((RelLib.Family.MARRIED,''))
@@ -1029,7 +1068,7 @@ class GedcomParser:
                 return u""
         else:
             if old_note:
-                note = "%s\n%s%s" % (old_note,matches[2])
+                note = "%s\n%s" % (old_note,matches[2])
             else:
                 note = matches[2]
             task(note)
@@ -1060,7 +1099,7 @@ class GedcomParser:
                 
     def parse_optional_note(self,level):
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
 
             if int(matches[0]) < level:
@@ -1079,7 +1118,7 @@ class GedcomParser:
     def parse_famc_type(self,level,person):
         ftype = (RelLib.Person.CHILD_BIRTH,'')
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
 
             if int(matches[0]) < level:
@@ -1155,7 +1194,7 @@ class GedcomParser:
         filename = ""
         title = ""
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
             if matches[1] == TOKEN_FORM:
                 form = matches[2].lower()
@@ -1193,7 +1232,7 @@ class GedcomParser:
 
     def parse_residence(self,address,level):
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
 
             if int(matches[0]) < level:
@@ -1223,7 +1262,7 @@ class GedcomParser:
     def parse_address(self,address,level):
         first = 0
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
             if int(matches[0]) < level:
                 if matches[1] == TOKEN_PHON:
@@ -1260,7 +1299,7 @@ class GedcomParser:
 
     def parse_ord(self,lds_ord,level):
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
             if int(matches[0]) < level:
                 self.backup()
@@ -1294,7 +1333,7 @@ class GedcomParser:
 
     def parse_person_event(self,event,level):
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
             if int(matches[0]) < level:
                 if note:
@@ -1359,7 +1398,7 @@ class GedcomParser:
 
     def parse_adopt_event(self,event,level):
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
             if int(matches[0]) < level:
                 if note != "":
@@ -1405,7 +1444,7 @@ class GedcomParser:
     def parse_adopt_famc(self,level):
         mrel = RelLib.Person.CHILD_ADOPTED
         frel = RelLib.Person.CHILD_ADOPTED
-        while 1:
+        while True:
             matches = self.get_next()
             if int(matches[0]) < level:
                 self.backup()
@@ -1421,7 +1460,7 @@ class GedcomParser:
     
     def parse_person_attr(self,attr,level):
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
             if int(matches[0]) < level:
                 self.backup()
@@ -1462,7 +1501,7 @@ class GedcomParser:
 
     def parse_family_event(self,event,level):
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
             if int(matches[0]) < level:
                 if note:
@@ -1472,10 +1511,7 @@ class GedcomParser:
             elif matches[1] == TOKEN_TYPE:
                 etype = event.get_type()
                 if etype[0] == RelLib.Event.CUSTOM:
-                    try:
-                        event.set_type((ged2fam[matches[2]],''))
-                    except:
-                        event.set_type((RelLib.Event.CUSTOM,matches[2]))
+                    event.set_type((RelLib.Event.CUSTOM,matches[2]))
                 else:
                     note = 'Status = %s\n' % matches[2]
             elif matches[1] == TOKEN_DATE:
@@ -1517,7 +1553,7 @@ class GedcomParser:
     def parse_source_reference(self,source,level):
         """Reads the data associated with a SOUR reference"""
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
 
             if int(matches[0]) < level:
@@ -1554,7 +1590,7 @@ class GedcomParser:
         """Parses the source data"""
         date = ""
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
             if int(matches[0]) < level:
                 self.backup()
@@ -1586,11 +1622,10 @@ class GedcomParser:
         line = self.lexer.read()
         if line[1] != TOKEN_HEAD:
             raise Errors.GedcomError("%s is not a GEDCOM file" % self.filename)
-        self.index += 1
 
     def parse_header_source(self):
         genby = ""
-        while 1:
+        while True:
             matches = self.get_next()
             if int(matches[0]) < 1:
                 self.backup()
@@ -1642,7 +1677,7 @@ class GedcomParser:
                 self.barf(2)
 
     def parse_ftw_schema(self,level):
-        while 1:
+        while True:
             matches = self.get_next()
 
             if int(matches[0]) < level:
@@ -1656,7 +1691,7 @@ class GedcomParser:
                 self.barf(2)
 
     def parse_ftw_indi_schema(self,level):
-        while 1:
+        while True:
             matches = self.get_next()
 
             if int(matches[0]) < level:
@@ -1667,7 +1702,7 @@ class GedcomParser:
                 ged2gramps[matches[1]] = label
 
     def parse_label(self,level):
-        while 1:
+        while True:
             matches = self.get_next()
 
             if int(matches[0]) < level:
@@ -1680,7 +1715,7 @@ class GedcomParser:
         return None
     
     def parse_ftw_fam_schema(self,level):
-        while 1:
+        while True:
             matches = self.get_next()
 
             if int(matches[0]) < level:
@@ -1688,15 +1723,17 @@ class GedcomParser:
                 return
             else:
                 label = self.parse_label(level+1)
-                ged2fam[matches[3]] = label
+                ged2fam_custom[matches[3]] = label
         return None
     
     def ignore_sub_junk(self,level):
-        while 1:
+        while True:
             matches = self.get_next()
             if int(matches[0]) < level:
                 self.backup()
                 return
+#            else:
+#                print self.lexer.current
         return
     
     def ignore_change_data(self,level):
@@ -1707,7 +1744,7 @@ class GedcomParser:
             self.backup()
 
     def parse_place_form(self,level):
-        while 1:
+        while True:
             matches = self.get_next()
 
             if int(matches[0]) < level:
@@ -1718,7 +1755,7 @@ class GedcomParser:
     
     def parse_date(self,level):
         date = DateStruct()
-        while 1:
+        while True:
             matches = self.get_next()
 
             if int(matches[0]) < level:
@@ -1812,7 +1849,7 @@ class GedcomParser:
         prefix = self.db.iprefix
         index = 0
         new_pmax = self.db.pmap_index
-        for pid in self.added.keys():
+        for pid in self.added:
             index = index + 1
             if self.refn.has_key(pid):
                 val = self.refn[pid]
@@ -1988,7 +2025,7 @@ class GedcomParser:
 
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event.handle)
-        event_ref.set_rol((RelLib.EventRef.PRIMARY,''))
+        event_ref.set_role((RelLib.EventRef.PRIMARY,''))
         state.person.add_event_ref(event_ref)
 
     def func_person_deat(self,matches,state):
@@ -2018,7 +2055,7 @@ class GedcomParser:
         (t,n) = event.get_type()
         if t == RelLib.Event.CUSTOM and n in self.attrs:
             attr = RelLib.Attribute()
-            attr.set_type((self.gedattr[n],''))
+            attr.set_type((RelLib.Event.CUSTOM,self.gedattr[n]))
             attr.set_value(event.get_description())
             state.person.add_attribute(attr)
         else:
@@ -2055,7 +2092,7 @@ class GedcomParser:
         n = matches[3].strip()
         if self.gedattr.has_key(n):
             attr = RelLib.Attribute()
-            attr.set_type((self.gedattr[n],''))
+            attr.set_type((RelLib.Event.CUSTOM,self.gedattr[n]))
             attr.set_value(matches[2])
             state.person.add_attribute(attr)
             self.parse_person_attr(attr,2)
@@ -2165,6 +2202,60 @@ class GedcomParser:
     def func_name_sour(self,matches,state):
         sref = self.handle_source(matches,state.level+1)
         state.name.add_source_reference(sref)
+
+    def parse_repository(self,repo):
+        state = CurrentState()
+        state.repo = repo
+
+        while True:
+            matches = self.get_next()
+            
+            if int(matches[0]) < 1:
+                self.backup()
+                if state.get_text():
+                    state.repo.set_note(state.get_text())
+                return
+            else:
+                func = self.repo_func.get(matches[1],self.skip_record)
+                func(matches,state)
+
+    def func_repo_name(self,matches,state):
+        state.repo.set_name(matches[2])
+
+    def func_repo_addr(self,matches,state):
+        addr = RelLib.Address()
+        matched = False
+        
+        match = addr_re.match(matches[2])
+        if match:
+            groups = match.groups()
+            addr.set_street(groups[0].strip())
+            addr.set_city(groups[2].strip())
+            addr.set_state(groups[3].strip())
+            addr.set_postal_code(groups[4].strip())
+            addr.set_country(groups[5].strip())
+            matched = True
+            
+        match = addr2_re.match(matches[2])
+        if match:
+            groups = match.groups()
+            addr.set_street(groups[0].strip())
+            addr.set_city(groups[2].strip())
+            addr.set_state(groups[3].strip())
+            addr.set_postal_code(groups[4].strip())
+            matched = True
+
+        match = addr3_re.match(matches[2])
+        if match:
+            groups = match.groups()
+            addr.set_street(groups[0].strip())
+            addr.set_city(groups[2].strip())
+            addr.set_state(groups[3].strip())
+            matched = True
+
+        if not matched:
+            addr.set_street(matches[2])
+        state.repo.add_address(addr)
 
     def skip_record(self,matches,state):
         self.ignore_sub_junk(2)

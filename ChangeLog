@@ -1,3 +1,10 @@
+2006-01-24  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels.py: Fix column handling for repositories
+	* src/RepositoryView.py: Columns for repositories
+	* src/GrampsDb/_GrampsDbBase.py: default columns settings for repositories
+	* src/GrampsDb/_ReadGedcom.py: Import repository information
+	* src/RelLib/_Event.py: check Event type values
+
 2006-01-23  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: Add source ref model/tab
 	* src/PeopleModel.py: specify handle column
