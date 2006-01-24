@@ -297,6 +297,8 @@ class EditFamily(DisplayState.ManagedWindow):
                                          self.track, self.family)
         self.event_list = EventEmbedList(self.dbstate,self.uistate,
                                          self.track,self.family)
+        self.src_list = SourceEmbedList(self.dbstate,self.uistate,
+                                        self.track,self.family.source_list)
         self.attr_list = AttrEmbedList(self.dbstate, self.uistate, self.track,
                                        self.family.get_attribute_list())
         self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
@@ -309,6 +311,9 @@ class EditFamily(DisplayState.ManagedWindow):
 
         self.notebook.insert_page(self.event_list)
         self.notebook.set_tab_label(self.event_list,self.event_list.get_tab_widget())
+
+        self.notebook.insert_page(self.src_list)
+        self.notebook.set_tab_label(self.src_list,self.src_list.get_tab_widget())
 
         self.notebook.insert_page(self.attr_list)
         self.notebook.set_tab_label(self.attr_list,self.attr_list.get_tab_widget())
