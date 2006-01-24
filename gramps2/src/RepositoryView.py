@@ -53,6 +53,7 @@ column_names = [
     _('ID'),
     _('Type'),
     _('Home URL'),
+    _('Street'),
     _('ZIP/Postal Code'),
     _('City'),
     _('County'),

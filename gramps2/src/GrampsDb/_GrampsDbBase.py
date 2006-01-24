@@ -1666,7 +1666,7 @@ class GrampsDbBase(GrampsDBCallback):
         Returns the Repository display common information stored in the
         database's metadata.
         """
-        default = [(1,0,200),(1,1,75),(0,5,100),(0,6,100),(1,2,100),(1,3,250),(0,4,100),(0,7,100),(0,8,100),(0,9,100),(0,10,100)]
+        default = [(1,0,200),(1,1,75),(0,5,100),(0,6,100),(1,2,100),(1,3,250),(1,4,100),(0,7,100),(0,8,100),(0,9,100),(0,10,100)]
         return self._get_columns(REPOSITORY_COL_KEY,default)
 
     def _delete_primary_from_reference_map(self, handle, transaction):

@@ -646,6 +646,7 @@ class RepositoryModel(BaseModel):
             self.column_id,
             self.column_type,
             self.column_home_url,
+            self.column_street,
             self.column_postal_code,
             self.column_city,
             self.column_county,
@@ -662,6 +663,7 @@ class RepositoryModel(BaseModel):
             self.column_id,
             self.column_type,
             self.column_home_url,
+            self.column_street,
             self.column_postal_code,
             self.column_city,
             self.column_county,
@@ -699,34 +701,58 @@ class RepositoryModel(BaseModel):
             return data[4].get_city()
         except:
             return u''
+
+    def column_street(self,data):
+        try:
+            if data[5]:
+                return data[5][0].get_street()
+            else:
+                return u''
+        except:
+            return u''
         
     def column_county(self,data):
         try:
-            return data[4].get_county()
+            if data[5]:
+                return data[5][0].get_county()
+            else:
+                return u''
         except:
             return u''
     
     def column_state(self,data):
         try:
-            return data[4].get_state()
+            if data[5]:
+                return data[5][0].get_state()
+            else:
+                return u''
         except:
             return u''
 
     def column_country(self,data):
         try:
-            return data[4].get_country()
+            if data[5]:
+                return data[5][0].get_country()
+            else:
+                return u''
         except:
             return u''
 
     def column_postal_code(self,data):
         try:
-            return data[4].get_postal_code()
+            if data[5]:
+                return data[5][0].get_postal_code()
+            else:
+                return u''
         except:
             return u''
 
     def column_phone(self,data):
         try:
-            return data[4].get_phone()
+            if data[5]:
+                return data[5][0].get_phone()
+            else:
+                return u''
         except:
             return u''
 
@@ -737,11 +763,16 @@ class RepositoryModel(BaseModel):
         return unicode(data[6])
     
     def column_home_url(self,data):
-        return unicode(data[7])
+        if data[6]:
+            urllist = data[6]
+            return unicode(urllist[0].path)
+        else:
+            return u""
 
     def column_tooltip(self,data):
-        try:
-            t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_repository_from_handle(data[0]))
-        except:
-            log.error("Failed to create tooltip.", exc_info=True)
-        return t
+        return ""
+#         try:
+#             t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_repository_from_handle(data[0]))
+#         except:
+#             log.error("Failed to create tooltip.", exc_info=True)
+#         return t
