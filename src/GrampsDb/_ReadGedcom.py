@@ -59,6 +59,7 @@ import Errors
 import RelLib
 import Date
 import DateParser
+import NameDisplay
 import DisplayTrace
 from ansel_utf8 import ansel_to_utf8
 import Utils
@@ -1000,9 +1001,16 @@ class GedcomParser:
                         event.set_type((RelLib.Event.CUSTOM,val))
                     else:
                         event.set_type((RelLib.Event.CUSTOM,matches[1]))
+                self.parse_family_event(event,2)
                 if event.get_type()[0] == RelLib.Event.MARRIAGE:
                     self.family.set_relationship((RelLib.Family.MARRIED,''))
-                self.parse_family_event(event,2)
+                if event.get_type()[0] != RelLib.Event.CUSTOM:
+                    if not event.get_description():
+                        text = _("%(event_name)s of %(family)s") % {
+                            'event_name' : Utils.family_events[event.get_type()[0]],
+                            'family' : Utils.family_name(self.family,self.db),
+                            }
+                        event.set_description(text)
                 self.db.add_event(event,self.trans)
 
                 event_ref = RelLib.EventRef()
@@ -1959,6 +1967,7 @@ class GedcomParser:
         event.set_type((RelLib.Event.BIRTH,""))
         self.parse_person_event(event,2)
 
+        person_event_name(event,state.person)
         self.db.add_event(event, self.trans)
 
         event_ref = RelLib.EventRef()
@@ -1974,6 +1983,7 @@ class GedcomParser:
         event = RelLib.Event()
         event.set_type((RelLib.Event.ADOPT,''))
         self.parse_adopt_event(event,2)
+        person_event_name(event,state.person)
         self.db.add_event(event, self.trans)
 
         event_ref = RelLib.EventRef()
@@ -1988,6 +1998,7 @@ class GedcomParser:
         event.set_type((RelLib.Event.DEATH,""))
         self.parse_person_event(event,2)
 
+        person_event_name(event,state.person)
         self.db.add_event(event, self.trans)
 
         event_ref = RelLib.EventRef()
@@ -2063,6 +2074,7 @@ class GedcomParser:
         self.parse_person_event(event,2)
         if matches[2]:
             event.set_description(matches[2])
+        person_event_name(event,state.person)
         self.db.add_event(event, self.trans)
 
         event_ref = RelLib.EventRef()
@@ -2156,7 +2168,17 @@ class GedcomParser:
 
     def skip_record(self,matches,state):
         self.ignore_sub_junk(2)
-        
+
+
+def person_event_name(event,person):
+    if event.get_type()[0] != RelLib.Event.CUSTOM:
+        if not event.get_description():
+            text = _("%(event_name)s of %(person)s") % {
+                'event_name' : Utils.personal_events[event.get_type()[0]],
+                'person' : NameDisplay.displayer.display(person),
+                }
+            event.set_description(text)
+    
 #-------------------------------------------------------------------------
 #
 #

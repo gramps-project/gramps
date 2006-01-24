@@ -1,6 +1,9 @@
 2006-01-23  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: Add source ref model/tab
+	* src/PeopleModel.py: specify handle column
+	* src/PersonView.py: fix selection column
 	* src/DisplayState.py: Warning log handler, add timeout handler
-	* src/EditFamily.py: remove icon in father/mother column
+	* src/EditFamily.py: remove icon in father/mother column, add source tab
 	* src/EditPerson.py: remove commented out code
 	* src/GrampsWidgets.py: add WarnButton
 	* src/ViewManager.py: use WarnButton in the status bar

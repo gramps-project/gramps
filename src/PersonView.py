@@ -76,7 +76,7 @@ class PersonView(PageView.PersonNavView):
         self.inactive = False
         dbstate.connect('database-changed',self.change_db)
         dbstate.connect('active-changed',self.goto_active_person)
-        self.handle_col = len(column_names)+2
+        self.handle_col = PeopleModel.COLUMN_INT_ID
         
     def change_page(self):
         self.generic_filter_widget.on_filter_name_changed(None)
@@ -233,10 +233,7 @@ class PersonView(PageView.PersonNavView):
         self.generic_filter_widget.apply_filter()
 
     def goto_active_person(self,obj=None):
-        import time
-        t = time.time()
         self.goto_active_person_2(None)
-        print time.time() - t
 
     def goto_active_person_2(self,obj=None):
         """
@@ -329,7 +326,8 @@ class PersonView(PageView.PersonNavView):
         """
         if self.active:
             self.model = PeopleModel.PeopleModel(
-                self.dbstate.db, self.generic_filter_widget.get_filter(), self.generic_filter_widget.inverted())
+                self.dbstate.db, self.generic_filter_widget.get_filter(),
+                self.generic_filter_widget.inverted())
             self.tree.set_model(self.model)
 
             if self.model.tooltip_column != None:
@@ -351,7 +349,8 @@ class PersonView(PageView.PersonNavView):
 
     def edit(self,obj):
         if self.dbstate.active:
-            EditPerson.EditPerson(self.dbstate, self.uistate, [], self.dbstate.active)
+            EditPerson.EditPerson(self.dbstate, self.uistate, [],
+                                  self.dbstate.active)
 
     def remove(self,obj):
         mlist = self.get_selected_objects()
@@ -591,7 +590,8 @@ class PersonView(PageView.PersonNavView):
         mlist = []
         for path in paths:
             node = self.model.on_get_iter(path)
-            mlist.append(self.model.on_get_value(node, PeopleModel.COLUMN_INT_ID))
+            handle = self.model.on_get_value(node, PeopleModel.COLUMN_INT_ID)
+            mlist.append(handle)
         return mlist
 
     def remove_from_person_list(self,person):

@@ -334,6 +334,49 @@ class GalleryTab(ButtonTab):
 
 #-------------------------------------------------------------------------
 #
+# SourceEmbedList
+#
+#-------------------------------------------------------------------------
+class SourceEmbedList(EmbeddedList):
+
+    _HANDLE_COL = 6
+
+    column_names = [
+        (_('ID'),0),
+        (_('Title'),1),
+        ]
+    
+    def __init__(self,dbstate,uistate,track,obj):
+        self.obj = obj
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('Sources'), SourceRefModel)
+
+    def get_icon_name(self):
+        return 'gramps-event'
+
+    def get_data(self):
+        return self.obj
+
+    def column_order(self):
+        return ((1,0),(1,1))
+
+    def add_button_clicked(self,obj):
+        pass
+
+    def del_button_clicked(self,obj):
+        ref = self.get_selected()
+        if ref:
+            ref_list = self.obj.get_event_ref_list()
+            ref_list.remove(ref)
+            self.rebuild()
+
+    def edit_button_clicked(self,obj):
+        ref = self.get_selected()
+        if ref:
+            print ref
+
+#-------------------------------------------------------------------------
+#
 # ChildModel
 #
 #-------------------------------------------------------------------------
@@ -511,6 +554,23 @@ class AttrModel(gtk.ListStore):
             return t[1]
         else:
             return Utils.personal_attributes[t[0]]
+
+#-------------------------------------------------------------------------
+#
+# SourceRefModel
+#
+#-------------------------------------------------------------------------
+class SourceRefModel(gtk.ListStore):
+
+    def __init__(self,sref_list,db):
+        gtk.ListStore.__init__(self,str,str)
+        self.db = db
+        for sref in sref_list:
+            src = db.get_source_from_handle(sref.ref)
+            self.append(row=[
+                src.gramps_id,
+                src.title,
+                ])
 
 #-------------------------------------------------------------------------
 #

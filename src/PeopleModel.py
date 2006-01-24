@@ -486,7 +486,7 @@ COLUMN_DEFS = [
     ]
 
 # dynamic calculation of column indices, for use by various Views
-COLUMN_INT_ID = len(COLUMN_DEFS) - 1
+COLUMN_INT_ID = 14
 
 # indices into main column definition table
 COLUMN_DEF_LIST = 0
