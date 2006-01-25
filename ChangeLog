@@ -1,3 +1,7 @@
+2006-01-25  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py: Add proper upgrade path from
+	within load.
+
 2006-01-25  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: use idle_loop to load data for source
 	backreferences
