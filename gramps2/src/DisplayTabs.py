@@ -34,7 +34,7 @@ _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
 #-------------------------------------------------------------------------
 #
-# EmbeddedList
+# GrampsTab
 #
 #-------------------------------------------------------------------------
 class GrampsTab(gtk.HBox):
@@ -207,7 +207,6 @@ class EventEmbedList(EmbeddedList):
     
     def __init__(self,dbstate,uistate,track,obj):
         self.obj = obj
-        
         EmbeddedList.__init__(self, dbstate, uistate, track,
                               _('Events'), EventRefModel)
 
@@ -227,6 +226,111 @@ class EventEmbedList(EmbeddedList):
         ref = self.get_selected()
         if ref:
             ref_list = self.obj.get_event_ref_list()
+            ref_list.remove(ref)
+            self.rebuild()
+
+    def edit_button_clicked(self,obj):
+        ref = self.get_selected()
+        if ref:
+            print ref
+
+
+#-------------------------------------------------------------------------
+#
+# SourceBackRefList
+#
+#-------------------------------------------------------------------------
+class SourceBackRefList(EmbeddedList):
+
+    _HANDLE_COL = 3
+
+    column_names = [
+        (_('Type'),0),
+        (_('ID'),1),
+        (_('Name'),2),
+        ]
+    
+    def __init__(self,dbstate,uistate,track,obj):
+        self.obj = obj
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('References'), SourceBackRefModel)
+
+    def set_label(self):
+        self.tab_image.show()
+        self.label.set_text("<b>%s</b>" % self.tab_name)
+        self.label.set_use_markup(True)
+
+    def create_buttons(self):
+        self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
+
+        vbox = gtk.VBox()
+        vbox.set_spacing(6)
+        vbox.pack_start(self.edit_btn,False)
+        vbox.show_all()
+        self.pack_start(vbox,False)
+
+    def selection_changed(self,obj=None):
+        if self.get_selected():
+            self.edit_btn.set_sensitive(True)
+        else:
+            self.edit_btn.set_sensitive(False)
+
+    def get_icon_name(self):
+        return 'gramps-source'
+
+    def get_data(self):
+        return self.obj
+
+    def column_order(self):
+        return ((1,0),(1,1),(1,2))
+
+    def add_button_clicked(self,obj):
+        pass
+
+    def del_button_clicked(self,obj):
+        ref = self.get_selected()
+        if ref:
+            ref_list = self.obj.get_event_ref_list()
+            ref_list.remove(ref)
+            self.rebuild()
+
+    def edit_button_clicked(self,obj):
+        ref = self.get_selected()
+        if ref:
+            print ref
+
+
+#-------------------------------------------------------------------------
+#
+# DataEmbedList
+#
+#-------------------------------------------------------------------------
+class DataEmbedList(EmbeddedList):
+
+    column_names = [
+        (_('Key'),0),
+        (_('Value'),1),
+        ]
+    
+    def __init__(self,dbstate,uistate,track,obj):
+        self.obj = obj
+        
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('Data'), DataModel)
+
+    def get_data(self):
+        return self.obj.get_data_map()
+
+    def column_order(self):
+        return ((1,0),(1,1))
+
+    def add_button_clicked(self,obj):
+        pass
+
+    def del_button_clicked(self,obj):
+        ref = self.get_selected()
+        if ref:
+            ref_list = self.obj.get_data_map()
             ref_list.remove(ref)
             self.rebuild()
 
@@ -557,20 +661,67 @@ class AttrModel(gtk.ListStore):
 
 #-------------------------------------------------------------------------
 #
+# DataModel
+#
+#-------------------------------------------------------------------------
+class DataModel(gtk.ListStore):
+
+    def __init__(self,attr_list,db):
+        gtk.ListStore.__init__(self,str,str)
+        self.db = db
+        for attr in attr_list.keys():
+            self.append(row=[
+                attr,
+                attr_list[attr],
+                ])
+
+#-------------------------------------------------------------------------
+#
 # SourceRefModel
 #
 #-------------------------------------------------------------------------
-class SourceRefModel(gtk.ListStore):
+class SourceBackRefModel(gtk.ListStore):
 
     def __init__(self,sref_list,db):
-        gtk.ListStore.__init__(self,str,str)
+        gtk.ListStore.__init__(self,str,str,str,str)
         self.db = db
-        for sref in sref_list:
-            src = db.get_source_from_handle(sref.ref)
-            self.append(row=[
-                src.gramps_id,
-                src.title,
-                ])
+        for ref in sref_list:
+            dtype = ref[0]
+            if dtype == 'Person':
+                p = self.db.get_person_from_handle(ref[1])
+                gid = p.gramps_id
+                handle = p.handle
+                name = NameDisplay.displayer.display(p)
+            elif dtype == 'Family':
+                p = self.db.get_family_from_handle(ref[1])
+                gid = p.gramps_id
+                handle = p.handle
+                name = Utils.family_name(p,self.db)
+            elif dtype == 'Event':
+                p = self.db.get_event_from_handle(ref[1])
+                gid = p.gramps_id
+                name = event.get_description()
+                handle = p.handle
+                if not name:
+                    etype = event.get_type()
+                    if etype[0] == RelLib.Event.CUSTOM:
+                        name = etype[1]
+                    elif Utils.personal_events.has_key(etype[0]):
+                        name = Utils.personal_events[etype[0]]
+                    else:
+                        name = Utils.family_events[etype[0]]
+            elif dtype == 'Place':
+                p = self.db.get_place_from_handle(ref[1])
+                name = p.get_title()
+                gid = p.gramps_id
+                handle = p.handle
+            else:
+                p = self.db.get_object_from_handle(ref[1])
+                name = p.get_description()
+                gid = p.gramps_id
+                handle = p.handle
+
+            self.append(row=[dtype,gid,name,handle])
 
 #-------------------------------------------------------------------------
 #

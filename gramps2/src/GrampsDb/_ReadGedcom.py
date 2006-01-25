@@ -42,6 +42,7 @@ try:
 except NameError:
     from sets import Set as set
 
+
 #-------------------------------------------------------------------------
 #
 # GTK/GNOME Modules
@@ -64,7 +65,6 @@ import DisplayTrace
 from ansel_utf8 import ansel_to_utf8
 import Utils
 import GrampsMime
-import logging
 from bsddb import db
 from _GedcomInfo import *
 from _GedTokens import *
@@ -84,11 +84,13 @@ def utf8_to_latin(s):
     return s.encode('iso-8859-1','replace')
 
 def latin_to_utf8(s):
-    if type(s) == type(u''):
+    if type(s) == unicode:
         return s
     else:
         return unicode(s,'iso-8859-1')
 
+def nocnv(s):
+    return unicode(s)
 
 log = logging.getLogger('.GEDCOM_import')
 
@@ -100,9 +102,6 @@ log = logging.getLogger('.GEDCOM_import')
 ANSEL = 1
 UNICODE = 2
 UPDATE = 25
-
-def nocnv(s):
-    return unicode(s)
 
 file_systems = {
     'VFAT'    : _('Windows 9x file system'),
@@ -705,6 +704,11 @@ class GedcomParser:
                 self.source.set_note(note.strip())
             elif matches[1] == TOKEN_ABBR:
                 self.source.set_abbreviation(matches[2])
+            elif matches[1] == TOKEN_REPO:
+                repo_ref = RelLib.RepoRef()
+                repo_ref = self.find_or_create_repository(matches[2][1:-1])
+                self.parse_repo_ref(matches,repo_ref,level+1)
+                self.source.add_repo_reference(repo_ref)
             elif matches[1] in (TOKEN_OBJE,TOKEN_CHAN,TOKEN__CAT):
                 self.ignore_sub_junk(2)
             else:
@@ -910,6 +914,31 @@ class GedcomParser:
                 return
             elif matches[1] == TOKEN_SOUR:
                 event.add_source_reference(self.handle_source(matches,level+1))
+            else:
+                self.barf(1)
+                
+    def parse_repo_caln(self, matches, repo, level):
+        while True:
+            matches = self.get_next()
+            if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == TOKEN_CALN:
+                repo.set_call_number(matches[2])
+                self.parse_repo_caln(matches, repo. level+1)
+            elif matches[1] == TOKEN_NOTE:
+                repo.set_note(matches[2])
+            else:
+                self.barf(1)
+
+    def parse_repo_ref(self, matches, repo, level):
+        while True:
+            matches = self.get_next()
+            if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == TOKEN_MEDI:
+                repo.set_media_type(matches[2])
             else:
                 self.barf(1)
                 

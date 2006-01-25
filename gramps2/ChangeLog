@@ -1,3 +1,10 @@
+2006-01-24  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: SourceRef tab
+	* src/EditSource.py: New source ref dialog
+	* src/grampsl.glade: New source ref dialog
+	* src/GrampsDb/_GedTokens.py: repository tokens
+	* src/GrampsDb/_ReadGedcom.py: repository support
+
 2006-01-24  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (load): Set max locks and objects
 	to 25000; Add DB_RECOVER flag to the environment.
