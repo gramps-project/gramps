@@ -255,6 +255,9 @@ class SourceBackRefList(EmbeddedList):
         EmbeddedList.__init__(self, dbstate, uistate, track,
                               _('References'), SourceBackRefModel)
 
+    def close(self):
+        self.model.close()
+
     def set_label(self):
         self.tab_image.show()
         self.label.set_text("<b>%s</b>" % self.tab_name)
@@ -685,7 +688,15 @@ class SourceBackRefModel(gtk.ListStore):
     def __init__(self,sref_list,db):
         gtk.ListStore.__init__(self,str,str,str,str)
         self.db = db
-        for ref in sref_list:
+        self.sref_list = sref_list
+        self.idle = 0
+        self.idle = gobject.idle_add(self.load_model().next)
+
+    def close(self):
+        gobject.source_remove(self.idle)
+
+    def load_model(self):
+        for ref in self.sref_list:
             dtype = ref[0]
             if dtype == 'Person':
                 p = self.db.get_person_from_handle(ref[1])
@@ -722,7 +733,9 @@ class SourceBackRefModel(gtk.ListStore):
                 handle = p.handle
 
             self.append(row=[dtype,gid,name,handle])
-
+            yield True
+        yield False
+            
 #-------------------------------------------------------------------------
 #
 # FamilyAttrModel

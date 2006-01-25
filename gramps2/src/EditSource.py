@@ -275,6 +275,7 @@ class EditSource(DisplayState.ManagedWindow):
         return (label, _('Source Editor'))        
 
     def on_delete_event(self,obj,b):
+        self.backref_tab.close()
         self.gladeif.close()
 
     def on_help_clicked(self,obj):
@@ -282,6 +283,7 @@ class EditSource(DisplayState.ManagedWindow):
         GrampsDisplay.help('adv-src')
 
     def close_window(self,obj):
+        self.backref_tab.close()
         self.gladeif.close()
         self.close()
 
