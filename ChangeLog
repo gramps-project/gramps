@@ -1,3 +1,10 @@
+2006-01-25  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: use idle_loop to load data for source
+	backreferences
+	* src/EditSource.py: close the BackReferences tab to turn off the
+	idle loop if still active
+	* src/GrampsDb/_GrampsBSDDB.py: close secondary indexes before primary
+	
 2006-01-24  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: SourceRef tab
 	* src/EditSource.py: New source ref dialog
