@@ -56,6 +56,8 @@ import Spell
 import GrampsDisplay
 import DisplayState
 
+from DisplayTabs import NoteTab, GalleryTab, DataEmbedList, SourceBackRefList
+
 from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
@@ -179,7 +181,6 @@ class EditSource(DisplayState.ManagedWindow):
         self.uistate = uistate
 
         self.db = dbstate.db
-        self.idle = None
         self.name_display = NameDisplay.displayer.display
 
         DisplayState.ManagedWindow.__init__(self, uistate, self.track, source)
@@ -194,7 +195,6 @@ class EditSource(DisplayState.ManagedWindow):
         self.path = self.db.get_save_path()
         self.not_loaded = 1
         self.lists_changed = 0
-        self.gallery_ok = 0
         mode = not self.db.readonly
 
         self.top_window = gtk.glade.XML(const.gladeFile,"sourceEditor","gramps")
@@ -204,27 +204,12 @@ class EditSource(DisplayState.ManagedWindow):
         Utils.set_titles(self.window,self.top_window.get_widget('title'),
                          _('Source Editor'))
         
-        plwidget = self.top_window.get_widget("iconlist")
-        self.gallery = ImageSelect.Gallery(source, self.db.commit_place,
-                                           self.path,
-                                           plwidget,
-                                           self.db, self, self.window)
         self.author = self.top_window.get_widget("author")
         self.pubinfo = self.top_window.get_widget("pubinfo")
         self.abbrev = self.top_window.get_widget("abbrev")
-        self.note = self.top_window.get_widget("source_note")
-        self.note.set_editable(mode)
-        self.spell = Spell.Spell(self.note)
-        self.notes_buffer = self.note.get_buffer()
-        self.gallery_label = self.top_window.get_widget("source_edit_gallery")
-        self.refs_label = self.top_window.get_widget("source_edit_refs")
-        self.notes_label = self.top_window.get_widget("source_edit_notes")
-        self.data_label = self.top_window.get_widget("source_edit_data")
-        self.flowed = self.top_window.get_widget("source_flowed")
-        self.flowed.set_sensitive(mode)
-        self.preform = self.top_window.get_widget("source_preform")
-        self.preform.set_sensitive(mode)
         
+        self.vbox = self.top_window.get_widget('vbox')
+
         self.refinfo = self.top_window.get_widget("refinfo")
         
         self.title = self.top_window.get_widget("source_title")
@@ -237,99 +222,44 @@ class EditSource(DisplayState.ManagedWindow):
         self.abbrev.set_text(source.get_abbreviation())
         self.abbrev.set_editable(mode)
 
-        self.top_window.get_widget('del_data').set_sensitive(mode)
-        self.top_window.get_widget('add_data').set_sensitive(mode)
-        self.top_window.get_widget('add_photo').set_sensitive(mode)
-        self.top_window.get_widget('sel_photo').set_sensitive(mode)
-        self.top_window.get_widget('delete_photo').set_sensitive(mode)
-
-        self.repos_ref_view = ReposRefListView(self.dbstate,
-                                              self.top_window.get_widget('repository_ref_list'))
-        self.repos_ref_model = ReposRefListModel(self.source)
-        self.repos_ref_view.set_model(self.repos_ref_model)
-        
-        self.top_window.get_widget('add_repos_ref').set_sensitive(mode)
-        self.top_window.get_widget('edit_repos_ref').set_sensitive(mode)
-        self.top_window.get_widget('del_repos_ref').set_sensitive(mode)
-
-        if source.get_note():
-            self.notes_buffer.set_text(source.get_note())
-            Utils.bold_label(self.notes_label)
-            if source.get_note_format() == 1:
-                self.preform.set_active(1)
-            else:
-                self.flowed.set_active(1)
-        else:
-            Utils.unbold_label(self.notes_label)
-
-        if self.source.get_media_list():
-            Utils.bold_label(self.gallery_label)
-        else:
-            Utils.unbold_label(self.gallery_label)
-
-        self.gladeif.connect('sourceEditor','delete_event',self.on_delete_event)
-        self.gladeif.connect('button90','clicked',self.close)
-        self.gladeif.connect('ok','clicked',self.on_source_apply_clicked)
-        self.gladeif.connect('button166','clicked',self.on_help_clicked)
-        self.gladeif.connect('notebook2','switch_page',self.on_switch_page)
-        self.gladeif.connect('add_data','clicked',self.on_add_data_clicked)
-        self.gladeif.connect('del_data','clicked',self.on_delete_data_clicked)
-        self.gladeif.connect('add_photo','clicked',self.gallery.on_add_media_clicked)
-        self.gladeif.connect('sel_photo','clicked',self.gallery.on_select_media_clicked)
-        self.gladeif.connect('edit_photo','clicked',self.gallery.on_edit_media_clicked)
-        self.gladeif.connect('delete_photo','clicked',self.gallery.on_delete_media_clicked)
-        self.gladeif.connect('add_repos_ref','clicked',self.on_add_repos_ref_clicked)
-        self.gladeif.connect('del_repos_ref','clicked',self.on_delete_repos_ref_clicked)
-        self.gladeif.connect('edit_repos_ref','clicked',self.on_edit_repos_ref_clicked)
-        self.gladeif.connect('repository_ref_list','row_activated',self.on_edit_repos_ref_clicked)
-
-        if self.source.get_handle() == None or self.db.readonly:
-            self.top_window.get_widget("edit_photo").set_sensitive(False)
-            self.top_window.get_widget("delete_photo").set_sensitive(False)
-
-        self.datalist = self.top_window.get_widget('datalist')
-        colno = 0
-        first = True
-        for title in [ (_('Key'),0,175), (_('Value'),1,150)]:
-            renderer = gtk.CellRendererText()
-            renderer.set_property('editable',True)
-            renderer.connect('edited',self.edit_cb, colno)
-            column = gtk.TreeViewColumn(title[0], renderer, text=colno)
-            colno += 1
-            column.set_clickable(True)
-            column.set_resizable(True)
-            column.set_min_width(title[2])
-            column.set_sort_column_id(title[1])
-            self.datalist.append_column(column)
-            if first:
-                first = False
-                self.key_cell = renderer
-                self.key_col = column
-
-        self.data_model = gtk.ListStore(str,str)
-        self.datalist.set_model(self.data_model)
-        dmap = self.source.get_data_map()
-        for item in dmap.keys():
-            self.data_model.append(row=[item,dmap[item]])
-
-        if dmap:
-            Utils.bold_label(self.data_label)
-        else:
-            Utils.unbold_label(self.data_label)
-
         self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
+        self.top_window.get_widget('cancel').connect('clicked', self.close_window)
+
+        self.notebook = gtk.Notebook()
+        self.notebook.show()
+        self.vbox.pack_start(self.notebook,True)
+
+        self.load_data()
 
         self.show()
 
         self.model = None # This will hold the model for backreferences once it is complete.
         
-        if self.ref_not_loaded:
-            self.ref_not_loaded = 0
-            Utils.temp_label(self.refs_label,self.window)
-            self.cursor_type = None
-            self.idle = gobject.idle_add(self.display_references)
-            
-        self.data_sel = self.datalist.get_selection()
+    def load_data(self):
+        self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
+                                self.source.get_note_object())
+        self.gallery_tab = GalleryTab(self.dbstate, self.uistate, self.track,
+                                      self.source.get_media_list())
+
+        self.data_tab = DataEmbedList(self.dbstate, self.uistate, self.track,
+                                      self.source)
+
+        self.backref_tab = SourceBackRefList(self.dbstate, self.uistate, self.track,
+                                             self.db.find_backlink_handles(self.source.handle))
+        
+        self.notebook.insert_page(self.note_tab)
+        self.notebook.set_tab_label(self.note_tab,self.note_tab.get_tab_widget())
+
+        self.notebook.insert_page(self.data_tab)
+        self.notebook.set_tab_label(self.data_tab,self.data_tab.get_tab_widget())
+
+        self.notebook.insert_page(self.gallery_tab)
+        self.notebook.set_tab_label(self.gallery_tab,self.gallery_tab.get_tab_widget())
+
+        self.notebook.insert_page(self.backref_tab)
+        self.notebook.set_tab_label(self.backref_tab,self.backref_tab.get_tab_widget())
+
+        self.notebook.show_all()
 
     def build_window_key(self,source):
         if source:
@@ -344,193 +274,16 @@ class EditSource(DisplayState.ManagedWindow):
             label = "New Source"
         return (label, _('Source Editor'))        
 
-    def on_add_data_clicked(self,widget):
-        node = self.data_model.append(row=['',''])
-        self.data_sel.select_iter(node)
-        path = self.data_model.get_path(node)
-        self.datalist.set_cursor_on_cell(path,
-                                         focus_column=self.key_col,
-                                         focus_cell=None,
-                                         start_editing=True)
-
-
-    def on_delete_data_clicked(self,widget):
-        (model,node) = self.data_sel.get_selected()
-        if node:
-            model.remove(node)
-
-    def on_add_repos_ref_clicked(self,widget):
-        RepositoryRefEdit.RepositoryRefEdit(RelLib.RepoRef(),self.dbstate,
-                                            self.repos_ref_model.update,self)
-
-    def on_delete_repos_ref_clicked(self,widget):
-        selection = self.repos_ref_view.get_selection()
-        model, iter = selection.get_selected()
-        if iter:
-            model.remove(iter)
-        return        
-
-
-    def on_edit_repos_ref_clicked(self,widget,path=None,colm=None,userp=None):
-        selection = self.repos_ref_view.get_selection()
-        model, iter = selection.get_selected()
-        
-        if iter:
-            repos_ref = model.get_value(iter,0)
-            
-            RepositoryRefEdit.RepositoryRefEdit(repos_ref,self.dbstate,
-                                                self.repos_ref_model.update,self)
-
-
-    def edit_cb(self, cell, path, new_text, data):
-        node = self.data_model.get_iter(path)
-        self.data_model.set_value(node,data,new_text)
-
     def on_delete_event(self,obj,b):
-        self.close_child_windows()
-        self.remove_itself_from_menu()
         self.gladeif.close()
-        gc.collect()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('adv-src')
 
-    def close(self,obj):
-        self.gallery.close()
+    def close_window(self,obj):
         self.gladeif.close()
-        self.window.destroy()
-        if self.idle != None:
-            gobject.source_remove(self.idle)
-        gc.collect()
-        
-    def button_press(self,obj):
-        data = self.model.get_selected_objects()
-        if not data:
-            return
-        (data_type,handle) = data[0]
-        if data_type == 0:
-            import EditPerson
-            person = self.db.get_person_from_handle(handle)
-            EditPerson.EditPerson(self.state, self.uistate, self.track, person)
-        elif data_type == 1:
-            import Marriage
-            family = self.db.get_family_from_handle(handle)
-            Marriage.Marriage(self.parent,family,self.db)
-        elif data_type == 2:
-            import EventEdit
-            event = self.db.get_event_from_handle(handle)
-            event_name = event.get_name()
-            if Utils.family_events.has_key(event_name):
-                EventEdit.EventEditor(
-                    self,", ", const.marriageEvents, Utils.family_events,
-                    event, None, 0, None, None, self.db.readonly)
-            elif Utils.personal_events.has_key(event_name):
-                EventEdit.EventEditor(
-                    self,", ", const.personalEvents, Utils.personal_events,
-                    event, None, 0, None, None, self.db.readonly)
-            elif event_name in ["Birth","Death"]:
-                EventEdit.EventEditor(
-                    self,", ", const.personalEvents, Utils.personal_events,
-                    event, None, 1, None, None, self.db.readonly)
-        elif data_type == 3:
-            import EditPlace
-            place = self.db.get_place_from_handle(handle)
-            EditPlace.EditPlace(self.parent,place)
-        elif data_type == 4:
-            source = self.db.get_source_from_handle(handle)
-            EditSource(source,self.db,self.parent,None,self.db.readonly)
-        elif data_type == 5:
-            media = self.db.get_object_from_handle(handle)
-            ImageSelect.GlobalMediaProperties(self.db,media,self)
-
-    def display_references(self):
-
-        if not self.model:
-            self.any_refs = False
-            source_handle = self.source.get_handle()
-
-            slist = self.top_window.get_widget('slist')
-            titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Name'),2,150)]
-            self.model = ListModel.ListModel(slist,
-                                             titles,
-                                             event_func=self.button_press)
-            self.backlink_generator = self.db.find_backlink_handles(source_handle)
-            
-
-
-        while True: # The loop is broken when the backlink_generator finishes
-
-            try:
-                reference = self.backlink_generator.next()
-            except StopIteration:
-                # Last reference reached.
-                break
-
-            # If we make it here then there is at least one reference
-            self.any_refs = True
-            
-            cls_name,handle = reference
-            
-            if cls_name == 'Person':
-                person = self.db.get_person_from_handle(handle)
-                name = self.name_display(person)
-                gramps_id = person.get_gramps_id()
-                self.model.add([_("Person"),gramps_id,name],(0,handle))
-                
-            elif cls_name == 'Event':
-                event = self.db.get_event_from_handle(handle)
-                name = event.get_name()
-                gramps_id = event.get_gramps_id()
-                self.model.add([_("Event"),gramps_id,name],(2,handle))
-                
-            elif cls_name == 'Family':
-                family = self.db.get_family_from_handle(handle)
-                name = Utils.family_name(family,self.db)
-                gramps_id = family.get_gramps_id()
-                self.model.add([_("Family"),gramps_id,name],(1,handle))
-
-            elif cls_name == 'Place':
-                place = self.db.get_place_from_handle(handle)
-                name = place.get_title()
-                gramps_id = place.get_gramps_id()
-                self.model.add([_("Place"),gramps_id,name],(3,handle))
-                
-            elif cls_name == 'Source':
-                source = self.db.get_source_from_handle(handle)
-                name = source.get_title()
-                gramps_id = source.get_gramps_id()
-                self.model.add([_("Source"),gramps_id,name],(4,handle))
-                self.any_refs = True
-                
-            elif cls_name == 'Media':
-                obj = self.db.get_object_from_handle(handle)
-                name = obj.get_description()
-                gramps_id = obj.get_gramps_id()
-                self.model.add([_("Media"),gramps_id,name],(5,handle))
-
-            elif cls_name == 'Repository':
-                pass # handled by seperate Repositories tab in UI
-
-            else:
-                # If we get here it means there is a new Primary object type
-                # that has been added to the database. Print a warning
-                # to remind us that this code need updating.
-                log.warning("Unhandled Primary object type returned from "
-                            "find_backlink_handles()\n")
-                
-            if gtk.events_pending():
-                return True
-
-        if self.any_refs:
-            Utils.bold_label(self.refs_label,self.window)
-        else:
-            Utils.unbold_label(self.refs_label,self.window)
-            
-        self.ref_not_loaded = 0
-        self.backlink_generator = None
-        
-        return False
+        self.close()
 
     def on_source_apply_clicked(self,obj):
 
@@ -580,8 +333,6 @@ class EditSource(DisplayState.ManagedWindow):
             
         self.source.set_reporef_list(repos_ref_list)
         
-        self.gallery_ok = 1
-
         trans = self.db.transaction_begin()
         if self.source.get_handle() == None:
             self.db.add_source(self.source,trans)
@@ -589,28 +340,6 @@ class EditSource(DisplayState.ManagedWindow):
             self.db.commit_source(self.source,trans)
         self.db.transaction_commit(trans,_("Edit Source (%s)") % title)
         self.close(obj)
-
-    def on_switch_page(self,obj,a,page):
-        if page == 2 and self.not_loaded:
-            self.not_loaded = 0
-            self.gallery.load_images()
-        elif page == 3 and self.ref_not_loaded:
-            self.ref_not_loaded = 0
-            Utils.temp_label(self.refs_label,self.window)
-            self.idle = gobject.idle_add(self.display_references)
-        text = unicode(
-            self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                       self.notes_buffer.get_end_iter(),
-                                       False)
-            )
-        if text:
-            Utils.bold_label(self.notes_label,self.window)
-        else:
-            Utils.unbold_label(self.notes_label,self.window)
-
-    def update_repositories(self, repos_ref):
-        """Make the repository list reflect the change or addition of repos_ref"""
-        pass
 
 
 class DelSrcQuery:
