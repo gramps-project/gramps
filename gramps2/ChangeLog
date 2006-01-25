@@ -1,3 +1,7 @@
+2006-01-24  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (load): Set max locks and objects
+	to 25000; Add DB_RECOVER flag to the environment.
+
 2006-01-24  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels.py: Fix column handling for repositories
 	* src/RepositoryView.py: Columns for repositories
