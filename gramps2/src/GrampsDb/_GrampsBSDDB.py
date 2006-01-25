@@ -98,6 +98,9 @@ class GrampsBSDDBCursor(GrampsCursor):
     def close(self):
         self.cursor.close()
 
+    def delete(self):
+        self.cursor.delete()
+
 class GrampsBSDDBDupCursor(GrampsBSDDBCursor):
     """Cursor that includes handling for duplicate keys"""
 
@@ -121,6 +124,7 @@ class GrampsBSDDB(GrampsDbBase):
         """creates a new GrampsDB"""
         GrampsDbBase.__init__(self)
         self.txn = None
+        self.secondary_connected = False
 
     def open_table(self,name,dbname,no_txn=False,dbtype=db.DB_HASH):
         dbmap = dbshelve.DBShelf(self.env)
@@ -281,12 +285,65 @@ class GrampsBSDDB(GrampsDbBase):
         self.source_map     = self.open_table(self.full_name, "sources")
         self.media_map      = self.open_table(self.full_name, "media")
         self.event_map      = self.open_table(self.full_name, "events")
-        self.metadata       = self.open_table(self.full_name, "meta")
+        self.metadata       = self.open_table(self.full_name, "meta",
+                                              no_txn=True)
         self.person_map     = self.open_table(self.full_name, "person")
         self.repository_map = self.open_table(self.full_name, "repository")
         self.reference_map  = self.open_table(self.full_name, "reference_map",
                                               dbtype=db.DB_BTREE)
         callback(37)
+
+        self.bookmarks = self.metadata.get('bookmarks')
+        self.family_event_names = set(self.metadata.get('fevent_names',[]))
+        self.individual_event_names = set(self.metadata.get('pevent_names',[]))
+        self.family_attributes = set(self.metadata.get('fattr_names',[]))
+        self.individual_attributes = set(self.metadata.get('pattr_names',[]))
+
+        gstats = self.metadata.get('gender_stats')
+
+        if not self.readonly:
+            if gstats == None:
+                self.metadata['version'] = _DBVERSION
+            elif not self.metadata.has_key('version'):
+                self.metadata['version'] = 0
+
+        if self.bookmarks == None:
+            self.bookmarks = []
+
+        self.genderStats = GenderStats(gstats)
+
+        # Here we take care of any changes in the tables related to new code.
+        # If secondary indices change, then they should removed
+        # or rebuilt by upgrade as well. In any case, the
+        # self.secondary_connected flag should be set accordingly.
+        if self.need_upgrade():
+            self.gramps_upgrade()
+
+        callback(50)
+
+        if not self.secondary_connected:
+            self.connect_secondary()
+
+        callback(75)
+
+        if not self.readonly:
+            self.undodb = db.DB()
+            self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
+        self.db_is_open = True
+
+        callback(87)
+
+        return 1
+
+    def connect_secondary(self):
+        """
+        This method connects or creates secondary index tables.
+        It assumes that the tables either exist and are in the right
+        format or do not exist (in which case they get created).
+
+        It is the responsibility of upgrade code to either create
+        or remove invalid secondary index tables.
+        """
         
         # index tables used just for speeding up searches
         if self.readonly:
@@ -294,20 +351,9 @@ class GrampsBSDDB(GrampsDbBase):
         else:
             table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
 
-        # Try to upgrade from gramps20
-        # that had HASH for surnames table
-        try:
-            self.surnames = db.DB(self.env)
-            self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
-            self.surnames.open(self.full_name, "surnames",
-                               db.DB_BTREE, flags=table_flags)
-        except db.DBInvalidArgError:
-            self.surnames.close()
-            junk = db.DB(self.env)
-            junk.remove(self.full_name,"surnames")
-            self.surnames = db.DB(self.env)
-            self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
-            self.surnames.open(self.full_name, "surnames", db.DB_BTREE,
+        self.surnames = db.DB(self.env)
+        self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
+        self.surnames.open(self.full_name, "surnames", db.DB_BTREE,
                                flags=table_flags)
 
         self.name_group = db.DB(self.env)
@@ -350,8 +396,6 @@ class GrampsBSDDB(GrampsDbBase):
         self.rid_trans.open(self.full_name, "ridtrans",
                             db.DB_HASH, flags=table_flags)
 
-        callback(50)
-        
         self.eventnames = db.DB(self.env)
         self.eventnames.set_flags(db.DB_DUP)
         self.eventnames.open(self.full_name, "eventnames",
@@ -374,7 +418,6 @@ class GrampsBSDDB(GrampsDbBase):
                                                "reference_map_referenced_map",
                                                db.DB_BTREE, flags=table_flags)
 
-        callback(62)
         if not self.readonly:
             self.person_map.associate(self.surnames, find_surname, table_flags)
             self.person_map.associate(self.id_trans, find_idmap, table_flags)
@@ -393,144 +436,67 @@ class GrampsBSDDB(GrampsDbBase):
             self.reference_map.associate(self.reference_map_referenced_map,
                                          find_referenced_handle,
                                          table_flags)
+        self.secondary_connected = True
 
-            self.undodb = db.DB()
-            self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
-
-        callback(75)
-        self.metadata   = self.open_table(self.full_name, "meta", no_txn=True)
-        self.bookmarks = self.metadata.get('bookmarks')
-        self.family_event_names = set(self.metadata.get('fevent_names',[]))
-        self.individual_event_names = set(self.metadata.get('pevent_names',[]))
-        self.family_attributes = set(self.metadata.get('fattr_names',[]))
-        self.individual_attributes = set(self.metadata.get('pattr_names',[]))
-
-        gstats = self.metadata.get('gender_stats')
-
-        if not self.readonly:
-            if gstats == None:
-                self.metadata['version'] = _DBVERSION
-            elif not self.metadata.has_key('version'):
-                self.metadata['version'] = 0
-
-        if self.bookmarks == None:
-            self.bookmarks = []
-
-        self.genderStats = GenderStats(gstats)
-        self.db_is_open = True
-        callback(87)
-        return 1
 
     def rebuild_secondary(self,callback=None):
+        if self.read_only:
+            return
+
         table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
 
-        # Repair secondary indices related to person_map
+        # remove existing secondary indices
         self.id_trans.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name,"idtrans")
-        self.id_trans = db.DB(self.env)
-        self.id_trans.set_flags(db.DB_DUP)
-        self.id_trans.open(self.full_name, "idtrans", db.DB_HASH,
-                           flags=table_flags)
-        self.person_map.associate(self.id_trans,find_idmap,table_flags)
 
         self.surnames.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name,"surnames")
-        self.surnames = db.DB(self.env)
-        self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
-        self.surnames.open(self.full_name, "surnames", db.DB_BTREE,
-                           flags=table_flags)
-        self.person_map.associate(self.surnames,  find_surname, table_flags)
-
 
         # Repair secondary indices related to family_map
         self.fid_trans.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name,"fidtrans")
-        self.fid_trans = db.DB(self.env)
-        self.fid_trans.set_flags(db.DB_DUP)
-        self.fid_trans.open(self.full_name, "fidtrans", db.DB_HASH,
-                            flags=table_flags)
-        self.family_map.associate(self.fid_trans, find_idmap, table_flags)
 
         # Repair secondary indices related to place_map
         self.pid_trans.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name,"pidtrans")
-        self.pid_trans = db.DB(self.env)
-        self.pid_trans.set_flags(db.DB_DUP)
-        self.pid_trans.open(self.full_name, "pidtrans", db.DB_HASH,
-                            flags=table_flags)
-        self.place_map.associate(self.pid_trans, find_idmap, table_flags)
 
         # Repair secondary indices related to media_map
         self.oid_trans.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name,"oidtrans")
-        self.oid_trans = db.DB(self.env)
-        self.oid_trans.set_flags(db.DB_DUP)
-        self.oid_trans.open(self.full_name, "oidtrans", db.DB_HASH,
-                            flags=table_flags)
-        self.media_map.associate(self.oid_trans, find_idmap, table_flags)
 
         # Repair secondary indices related to source_map
         self.sid_trans.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name,"sidtrans")
-        self.sid_trans = db.DB(self.env)
-        self.sid_trans.set_flags(db.DB_DUP)
-        self.sid_trans.open(self.full_name, "sidtrans", db.DB_HASH,
-                            flags=table_flags)
-        self.source_map.associate(self.sid_trans, find_idmap, table_flags)
 
         # Repair secondary indices related to event_map
         self.eid_trans.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name,"eidtrans")
-        self.eid_trans = db.DB(self.env)
-        self.eid_trans.set_flags(db.DB_DUP)
-        self.eid_trans.open(self.full_name, "eidtrans", db.DB_HASH,
-                            flags=table_flags)
-        self.event_map.associate(self.eid_trans, find_idmap, table_flags)
 
         # Repair secondary indices related to repository_map
         self.rid_trans.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name,"ridtrans")
-        self.rid_trans = db.DB(self.env)
-        self.rid_trans.set_flags(db.DB_DUP)
-        self.rid_trans.open(self.full_name, "ridtrans", db.DB_HASH,
-                            flags=table_flags)
-        self.repository_map.associate(self.rid_trans, find_idmap, table_flags)
-
 
         # Repair secondary indices related to reference_map
         self.reference_map_primary_map.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name,"reference_map_primary_map")
-        self.reference_map_primary_map = db.DB(self.env)
-        self.reference_map_primary_map.set_flags(db.DB_DUP)
-        self.reference_map_primary_map.open(self.full_name,
-                                            "reference_map_primary_map",
-                                            db.DB_BTREE,
-                                            flags=table_flags)
-        self.reference_map.associate(self.reference_map_primary_map,
-                                     find_primary_handle,
-                                     table_flags)
 
         self.reference_map_referenced_map.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name,"reference_map_referenced_map")
-        self.reference_map_referenced_map = db.DB(self.env)
-        self.reference_map_referenced_map.set_flags(db.DB_DUP|db.DB_DUPSORT)
-        self.reference_map_referenced_map.open(self.full_name,
-                                               "reference_map_referenced_map",
-                                               db.DB_BTREE,
-                                               flags=table_flags)
-        self.reference_map.associate(self.reference_map_referenced_map,
-                                     find_referenced_handle,
-                                     table_flags)
+
+        # Set flag saying that we have removed secondary indices
+        # and then call the creating routine
+        self.secondary_connected = False
+        self.connect_secondary()
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
@@ -1195,9 +1161,8 @@ class GrampsBSDDB(GrampsDbBase):
             self.gramps_upgrade_8()
         if version < 9:
             self.gramps_upgrade_9()
-
-        self.metadata['version'] = _DBVERSION
-        self.metadata.sync()
+        # self.metadata.put('version',_DBVERSION)
+        # self.metadata.sync()
 
     def gramps_upgrade_6(self):
         print "Upgrading to DB version 6"
@@ -1206,6 +1171,8 @@ class GrampsBSDDB(GrampsDbBase):
             if val[1] != 6:
                 order.append(val)
         self.set_media_column_order(order)
+        self.metadata.put('version',6)
+        self.metadata.sync()
 
     def gramps_upgrade_7(self):
         print "Upgrading to DB version 7"
@@ -1219,6 +1186,8 @@ class GrampsBSDDB(GrampsDbBase):
             self.genderStats.count_person(p,self)
             data = cursor.next()
         cursor.close()
+        self.metadata.put('version',7)
+        self.metadata.sync()
 
     def gramps_upgrade_8(self):
         print "Upgrading to DB version 8"
@@ -1247,9 +1216,33 @@ class GrampsBSDDB(GrampsDbBase):
                     self.family_event_names.add(event.name)
             data = cursor.next()
         cursor.close()
+        self.metadata.put('version',7)
+        self.metadata.sync()
 
     def gramps_upgrade_9(self):
         print "Upgrading to DB version 9 -- this may take a while"
+        # The very very first thing is to check for duplicates in the
+        # primary tables and remove them. 
+        low_level_9(self)
+
+        # Then we remove the surname secondary index table
+        # because its format changed from HASH to DUPSORTed BTREE.
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"surnames")
+
+        # Create one secondary index for reference_map
+        # because every commit will require this to exist
+        table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
+        self.reference_map_primary_map = db.DB(self.env)
+        self.reference_map_primary_map.set_flags(db.DB_DUP)
+        self.reference_map_primary_map.open(self.full_name,
+                                            "reference_map_primary_map",
+                                            db.DB_BTREE, flags=table_flags)
+        self.reference_map.associate(self.reference_map_primary_map,
+                                     find_primary_handle,
+                                     table_flags)
+
+        ### Now we're ready to proceed with the normal upgrade.
         # First, make sure the stored default person handle is str, not unicode
         try:
             handle = self.metadata['default']
@@ -1545,7 +1538,11 @@ class GrampsBSDDB(GrampsDbBase):
 #            data = cursor.next()
 #        cursor.close()
 
-        self.transaction_commit(trans,"Upgrade to DB version 9")
+            self.transaction_commit(trans,"Upgrade to DB version 9")
+            # Close secodnary index
+            self.reference_map_primary_map.close()
+        self.metadata.put('version',9)
+        self.metadata.sync()
         print "Done upgrading to DB version 9"
 
 
@@ -1589,6 +1586,84 @@ def convert_url_9(url):
         url.type = (Url.WEB_FTP,'')
     else:
         url.type = (Url.CUSTOM,'')
+
+def low_level_9(the_db):
+    """
+    This is a low-level repair routine.
+
+    It is fixing DB inconsistencies such as duplicates.
+    Returns a (status,name) tuple.
+    The boolean status indicates the success of the procedure.
+    The name indicates the problematic table (empty if status is True).
+    """
+
+    for the_map in [('Person',the_db.person_map),
+                    ('Family',the_db.family_map),
+                    ('Event',the_db.event_map),
+                    ('Place',the_db.place_map),
+                    ('Source',the_db.source_map),
+                    ('Media',the_db.media_map)]:
+
+        print "Low-level repair: table: %s" % the_map[0]
+        if _table_low_level_9(the_db.env,the_map[1]):
+            print "Done."
+        else:
+            print "Low-level repair: Problem with table: %s" % the_map[0]
+            return (False,the_map[0])
+    return (True,'')
+
+
+def _table_low_level_9(env,table):
+    """
+    Low level repair for a given db table.
+    """
+    
+    handle_list = table.keys()
+    dup_handles = sets.Set(
+        [ handle for handle in handle_list if handle_list.count(handle) > 1 ]
+        )
+
+    if not dup_handles:
+        print "    No dupes found for this table"
+        return True
+
+    the_txn = env.txn_begin()
+    table_cursor = GrampsBSDDBDupCursor(table,txn=the_txn)
+    # Dirty hack to prevent records from unpicking by DBShelve
+    table_cursor._extract = lambda rec: rec
+    
+    for handle in dup_handles:
+        print "    Duplicates found for handle: %s" % handle
+        try:
+            ret = table_cursor.set(handle)
+        except:
+            print "    Failed setting initial cursor."
+            table_cursor.close()
+            the_txn.abort()
+            return False
+
+        for count in range(handle_list.count(handle)-1):
+            try:
+                table_cursor.delete()
+                print "    Succesfully deleted dupe #%d" % (count+1)
+            except:
+                print "    Failed deleting dupe."
+                table_cursor.close()
+                the_txn.abort()
+                return False
+
+            try:
+                ret = table_cursor.next_dup()
+            except:
+                print "    Failed moving the cursor."
+                table_cursor.close()
+                the_txn.abort()
+                return False
+
+    table_cursor.close()
+    the_txn.commit()
+    return True
+
 
 if __name__ == "__main__":
 
