@@ -256,9 +256,11 @@ class GrampsBSDDB(GrampsDbBase):
 
         self.env = db.DBEnv()
         self.env.set_cachesize(0,0x2000000)         # 2MB
+        self.env.set_lk_max_locks(25000)
+        self.env.set_lk_max_objects(25000)
         self.env.set_flags(db.DB_LOG_AUTOREMOVE,1)  # clean up unused logs
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
-        env_flags = db.DB_CREATE|db.DB_PRIVATE|\
+        env_flags = db.DB_CREATE|db.DB_RECOVER|db.DB_PRIVATE|\
                     db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
                     db.DB_INIT_LOG|db.DB_INIT_TXN
 
@@ -1124,24 +1126,22 @@ class GrampsBSDDB(GrampsDbBase):
             # but we can't help it. Disabling the secondary index
             # removal/rebuilding for batch transactions for now.
 
-##             table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
+##             open_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
+##             dupe_flags = db.DB_DUP|db.DB_DUPSORT
 ##             # create new secondary indices to replace the ones removed
 ##             self.surnames = db.DB(self.env)
-##             self.surnames.set_flags(db.DB_DUP)
-##             self.surnames.open(self.full_name, "surnames", db.DB_BTREE,
-##                                flags=table_flags)
-##             self.person_map.associate(self.surnames,find_surname,table_flags)
+##             self.surnames.set_flags(dupe_flags)
+##             self.surnames.open(self.full_name,"surnames",
+##                                db.DB_BTREE,flags=table_flags)
+##             self.person_map.associate(self.surnames,find_surname,open_flags)
             
 ##             self.reference_map_referenced_map = db.DB(self.env)
-##             self.reference_map_referenced_map.set_flags(
-##                 db.DB_DUP)
+##             self.reference_map_referenced_map.set_flags(dupe_flags)
 ##             self.reference_map_referenced_map.open(
-##                 self.full_name,
-##                 "reference_map_referenced_map",
-##                 db.DB_BTREE,
-##                 flags=table_flags)
+##                 self.full_name,"reference_map_referenced_map",
+##                 db.DB_BTREE,flags=open_flags)
 ##             self.reference_map.associate(self.reference_map_referenced_map,
-##                                          find_referenced_handle,table_flags)
+##                                          find_referenced_handle,open_flags)
         self.txn = None
 
     def undo(self):
