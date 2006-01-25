@@ -5269,6 +5269,15 @@ msgstr "Ouvrir avec OpenOffice.org"
 msgid "OpenOffice.org Writer"
 msgstr "Traitement de Texte OpenOffice"
 
+#: docgen/OpenDocumentDoc.py:1139
+msgid "Open in Open Document Editor"
+msgstr "Ouvrir avec éditeur Open Document"
+
+#: docgen/OpenDocumentDoc.py:1147 docgen/OpenDocumentDoc.py:1148
+#: docgen/OpenDocumentDoc.py:1149
+msgid "Open Document Text"
+msgstr "Texte Open Document"
+
 #: docgen/PSDrawDoc.py:423
 msgid "PostScript"
 msgstr "PostScript"

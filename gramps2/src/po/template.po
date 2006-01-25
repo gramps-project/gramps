@@ -5206,6 +5206,15 @@ msgstr ""
 msgid "OpenOffice.org Writer"
 msgstr ""
 
+#: docgen/OpenDocumentDoc.py:1139
+msgid "Open in Open Document Editor"
+msgstr ""
+
+#: docgen/OpenDocumentDoc.py:1147 docgen/OpenDocumentDoc.py:1148
+#: docgen/OpenDocumentDoc.py:1149
+msgid "Open Document Text"
+msgstr ""
+
 #: docgen/PSDrawDoc.py:423
 msgid "PostScript"
 msgstr ""

@@ -10,6 +10,7 @@ docgen_PYTHON = \
 	HtmlDoc.py\
 	KwordDoc.py\
 	LaTeXDoc.py\
+	ODFDoc.py\
 	OpenOfficeDoc.py\
 	OpenSpreadSheet.py\
 	PdfDoc.py\

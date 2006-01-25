@@ -1,3 +1,8 @@
+2006-01-25  Serge Noiraud  <Serge.Noiraud@free.fr>
+	* src/docgen/ODFDoc.py: Add new document generator.
+	* src/docgen/Makefile.am: Ship new file.
+	* src/po/fr.po, src/po/template.po: Add new format's name.
+
 2006-01-25  Kees Bakker  <kees.bakker@xs4all.nl>
 	* src/po/nl.po: Translation update.
 
