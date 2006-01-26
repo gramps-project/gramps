@@ -8,6 +8,11 @@
 	within load.
 	* src/GenericFilters.py (get_filters): Use default value of
 	'generic' for the namespace argument; Remove unneeded import.
+	* src/GrampsDb/_ConstXML.py: Add new file.
+	* src/GrampsDb/Makefile.am: Ship new file.
+	* src/GrampsDb/_GrampsBSDDB.py: Convert family and parent family
+	relations from integer to tuple on upgrade.
+	* src/GrampsDb/_WriteGedcom.py: Convert from tuple to string.
 
 2006-01-25  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: use idle_loop to load data for source

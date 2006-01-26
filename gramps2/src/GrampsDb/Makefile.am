@@ -21,7 +21,8 @@ pkgdata_PYTHON = \
 	_ReadXML.py\
 	_WriteGedcom.py\
 	_WriteGrdb.py\
-	_WriteXML.py
+	_WriteXML.py\
+	_ConstXML.py
 
 pkgpyexecdir = @pkgpyexecdir@/RelLib
 pkgpythondir = @pkgpythondir@/RelLib

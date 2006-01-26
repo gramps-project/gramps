@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -52,6 +52,7 @@ import const
 import RelLib 
 import Date
 from QuestionDialog import ErrorDialog
+import _ConstXML
 
 #-------------------------------------------------------------------------
 #
@@ -270,8 +271,8 @@ class XmlWriter:
                 self.write_line("nick",person.get_nick_name(),3)
                 birth = self.db.get_event_from_handle(person.get_birth_handle())
                 death = self.db.get_event_from_handle(person.get_death_handle())
-                self.dump_my_event("Birth",birth,3)
-                self.dump_my_event("Death",death,3)
+                self.dump_event(birth,3)
+                self.dump_event(death,3)
                 for event_handle in person.get_event_list():
                     event = self.db.get_event_from_handle(event_handle)
                     self.dump_event(event,3)
@@ -302,12 +303,16 @@ class XmlWriter:
                 self.write_url_list(person.get_url_list())
 
                 for alt in person.get_parent_family_handle_list():
-                    if alt[1] != RelLib.Person.CHILD_BIRTH:
-                        mrel=' mrel="%s"' % const.child_rel_notrans[alt[1]]
+                    if alt[1][0] != RelLib.Person.CHILD_BIRTH:
+                        mrel=' mrel="%s"' % _ConstXML.str_for_xml(
+                            _ConstXML.child_relations,alt[1])
+                        # const.child_rel_notrans[alt[1]]
                     else:
                         mrel=''
-                    if alt[2] != RelLib.Person.CHILD_BIRTH:
-                        frel=' frel="%s"' % const.child_rel_notrans[alt[2]]
+                    if alt[2][0] != RelLib.Person.CHILD_BIRTH:
+                        frel=' frel="%s"' % _ConstXML.str_for_xml(
+                            _ConstXML.child_relations,alt[2])
+                        # const.child_rel_notrans[alt[2]]
                     else:
                         frel=''
                     self.g.write("      <childof hlink=\"%s\"%s%s/>\n" % \
@@ -465,13 +470,9 @@ class XmlWriter:
         self.g.write(self.fix(text.rstrip()))
         self.g.write("</%s>\n" % val)
 
-    def dump_event(self,event,index=1):
-        if event:
-            self.dump_my_event(event.get_name(),event,index)
-
     def write_witness(self,witness_list,index):
-        if not witness_list:
-            return
+        #if not witness_list:
+        return
         for w in witness_list:
             sp = "  "*index
             com = self.fix(w.get_comment())
@@ -487,16 +488,17 @@ class XmlWriter:
                     self.g.write('  %s<comment>%s</comment>\n' % (sp,com))
                 self.g.write('%s</witness>\n' % sp)
 
-    def dump_my_event(self,name,event,index=1):
+    def dump_event(self,event,index=1):
         if not event or event.is_empty():
             return
 
         sp = "  " * index
-        name = const.save_event(name) 
-        self.g.write('%s<event type="%s"%s>\n' % (sp,self.fix(name),conf_priv(event)))
+        etype = _ConstXML.str_for_xml(_ConstXML.events,event.get_type())
+        self.g.write('%s<event type="%s"%s>\n' %
+                     (sp,self.fix(etype),conf_priv(event)))
         self.write_date(event.get_date_object(),index+1)
 
-        self.write_witness(event.get_witness_list(),index+1)
+        #self.write_witness(event.get_witness_list(),index+1)
         self.write_ref("place",event.get_place_handle(),index+1)
         self.write_line("cause",event.get_cause(),index+1)
         self.write_line("description",event.get_description(),index+1)
@@ -563,22 +565,26 @@ class XmlWriter:
             self.g.write('%s<%s id="%s" handle="%s" change="%d"' %
                          ("  "*index,label,person.get_gramps_id(),"_"+person.get_handle(),
                           person.get_change_time()))
-            comp = person.get_complete_flag()
-            if comp:
-                self.g.write(' complete="1"')
+            marker = _ConstXML.str_for_xml(_ConstXML.marker_types,
+                                           person.get_marker())
+            if marker:
+                self.g.write(' marker="%s"' % marker)
             self.g.write('>\n')
 
     def write_family_handle(self,family,index=1):
         if family:
-            rel = family.get_relationship()
-            comp = family.get_complete_flag()
+            rel = _ConstXML.str_for_xml(_ConstXML.family_relations,
+                                        family.get_relationship())
+            marker = _ConstXML.str_for_xml(_ConstXML.marker_types,
+                                           family.get_marker())
             sp = "  " * index
             self.g.write('%s<family id="%s" handle="%s" change="%d"' %
                          (sp,family.get_gramps_id(),"_"+family.get_handle(),family.get_change_time()))
-            if comp:
-                self.g.write(' complete="1"')
+            if marker:
+                self.g.write(' marker="%s"' % marker)
             if rel != "":
-                self.g.write(' type="%s">\n' % const.save_frel(rel))
+                self.g.write(' type="%s">\n' % rel )
+                # const.save_frel(rel))
             else:
                 self.g.write('>\n')
 
@@ -672,7 +678,8 @@ class XmlWriter:
 
     def dump_name(self,name,alternative=False,index=1):
         sp = "  "*index
-        name_type = name.get_type()
+        name_type = _ConstXML.str_for_xml(_ConstXML.name_types,
+                                          name.get_type())
         self.g.write('%s<name' % sp)
         if alternative:
             self.g.write(' alt="1"')
@@ -758,7 +765,10 @@ class XmlWriter:
         sp = '  ' * indent
         for attr in list:
             self.g.write('%s<attribute%s type="%s" value="%s"' % \
-                         (sp,conf_priv(attr),const.save_attr(attr.get_type()),
+                         (sp,conf_priv(attr),
+                          _ConstXML.str_for_xml(_ConstXML.attributes,
+                                                attr.get_type()),
+                          #const.save_attr(attr.get_type()),
                          self.fix(attr.get_value())))
             slist = attr.get_source_references()
             note = attr.get_note()
