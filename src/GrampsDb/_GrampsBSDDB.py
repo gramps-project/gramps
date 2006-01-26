@@ -1336,6 +1336,13 @@ class GrampsBSDDB(GrampsDbBase):
                     new_type = (Name.UNKNOWN,"")
                 name.type = new_type
 
+            # In all parent family instances, convert relationships from
+            # string to a tuple.
+            new_parent_family_list = [ (family_handle,(mrel,''),(frel,''))
+                                      for (family_handle,mrel,frel)
+                                      in person.parent_family_list[:] ]
+            person.parent_family_list = new_parent_family_list
+
             # In all Attributes, convert type from string to a tuple
             for attribute in person.attribute_list:
                 convert_attribute_9(attribute)
@@ -1375,6 +1382,9 @@ class GrampsBSDDB(GrampsDbBase):
                 event_ref.ref = event_handle
                 event_ref.role = (EventRef.PRIMARY,'')
                 family.event_ref_list.append(event_ref)
+
+            # Change relationship type from int to tuple
+            family.type = (family.type,'')
 
             # In all Attributes, convert type from string to a tuple
             for attribute in family.attribute_list:
@@ -1586,7 +1596,7 @@ def convert_url_9(url):
         url.type = (Url.WEB_FTP,'')
     else:
         url.type = (Url.CUSTOM,'')
-
+    
 def low_level_9(the_db):
     """
     This is a low-level repair routine.
