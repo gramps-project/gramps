@@ -2,7 +2,7 @@
 	* src/GrampsDb/_GrampsBSDDB.py: Add proper upgrade path from
 	within load.
 	* src/GenericFilters.py (get_filters): Use default value of
-	'generic' for the namespace argument.
+	'generic' for the namespace argument; Remove unneeded import.
 
 2006-01-25  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: use idle_loop to load data for source
