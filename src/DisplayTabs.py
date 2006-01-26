@@ -140,7 +140,7 @@ class GrampsTab(gtk.HBox):
         """
         return self.label_container
 
-    def set_label(self):
+    def _set_label(self):
         """
         Updates the label based of if the tab contains information. Tabs
         without information will not have an icon, and the text will not
@@ -192,6 +192,11 @@ class ButtonTab(GrampsTab):
         self.create_buttons()
 
     def create_buttons(self):
+        """
+        Creates a button box consisting of three buttons, one for Add,
+        one for Edit, and one for Delete. This button box is then appended
+        hbox (self).
+        """
         self.add_btn  = SimpleButton(gtk.STOCK_ADD, self.add_button_clicked)
         self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
         self.del_btn  = SimpleButton(gtk.STOCK_REMOVE, self.del_button_clicked)
@@ -205,48 +210,88 @@ class ButtonTab(GrampsTab):
         self.pack_start(vbox,False)
 
     def double_click(self, obj, event):
+        """
+        Handles the double click on list. If the double click occurs,
+        the Edit button handler is called
+        """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.edit_button_clicked(obj)
 
     def add_button_clicked(self,obj):
+        """
+        Function called with the Add button is clicked. This function
+        should be overridden by the derived class.
+        """
         print "Uncaught Add clicked"
 
     def del_button_clicked(self,obj):
+        """
+        Function called with the Delete button is clicked. This function
+        should be overridden by the derived class.
+        """
         print "Uncaught Delete clicked"
 
     def edit_button_clicked(self,obj):
+        """
+        Function called with the Edit button is clicked or the double
+        click is caught. This function should be overridden by the derived
+        class.
+        """
         print "Uncaught Edit clicked"
 
 
-#-------------------------------------------------------------------------
-#
-# EmbeddedList
-#
-#-------------------------------------------------------------------------
 class EmbeddedList(ButtonTab):
-
+    """
+    This class provides the base class for all the list tabs. It
+    maintains a gtk.TreeView, including the selection and button
+    sensitivity.
+    """
+    
     _HANDLE_COL = -1
     
     def __init__(self, dbstate, uistate, track, name, build_model):
+        """
+        Creates a new list, using the passed build_model to
+        populate the list.
+        """
         ButtonTab.__init__(self, dbstate, uistate, track, name)
         self.build_model = build_model
 
+        # handle the selection
         self.selection = self.tree.get_selection()
-        self.selection.connect('changed',self.selection_changed)
-        
+        self.selection.connect('changed',self._selection_changed)
+
+        # build the columns
         self.columns = []
         self.build_columns()
+
+        # build the initial data
         self.rebuild()
         self.show_all()
 
     def get_icon_name(self):
+        """
+        Specifies the basic icon used for a generic list. Typically,
+        a derived class will override this. The icon chose is the
+        STOCK_JUSTIFY_FILL icon, which in the default GTK style
+        looks kind of like a list.
+        """
         return gtk.STOCK_JUSTIFY_FILL
 
     def build_interface(self):
+        """
+        Builds the interface, instantiating a gtk.TreeView in a
+        gtk.ScrolledWindow.
+        """
+
+        # create the tree, turn on rule hinting and connect the
+        # button press to the double click function.
+        
         self.tree = gtk.TreeView()
         self.tree.set_rules_hint(True)
         self.tree.connect('button_press_event',self.double_click)
 
+        # create the scrolled window, and attach the treeview
         scroll = gtk.ScrolledWindow()
         scroll.set_shadow_type(gtk.SHADOW_IN)
         scroll.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
@@ -254,13 +299,24 @@ class EmbeddedList(ButtonTab):
         self.pack_start(scroll,True)
 
     def get_selected(self):
+        """
+        returns the value associated with selected row in the model,
+        based of the _HANDLE_COL value. Each model must define this
+        to indicate what the returned value should be. If no selection
+        has been made, None is returned.
+        """
         (model,node) = self.selection.get_selected()
         if node:
             return model.get_value(node,self._HANDLE_COL)
         else:
             return None
 
-    def selection_changed(self,obj=None):
+    def _selection_changed(self,obj=None):
+        """
+        Attached to the selection's 'changed' signal. Checks
+        to see if anything is selected. If it is, the edit and
+        delete buttons are enabled, otherwise the are disabled.
+        """
         if self.get_selected():
             self.edit_btn.set_sensitive(True)
             self.del_btn.set_sensitive(True)
@@ -269,36 +325,77 @@ class EmbeddedList(ButtonTab):
             self.del_btn.set_sensitive(False)
 
     def is_empty(self):
+        """
+        Returns True if the get_data returns a length greater than
+        0. Typically, get_data returns the list of associated data.
+        """
         return len(self.get_data()) > 0
     
     def get_data(self):
+        """
+        Returns the data associated with the list. This is typically
+        a list of objects.
+
+        This should be overridden in the derrived classes.
+        """
         return []
 
     def column_order(self):
+        """
+        Specifies the column order for the columns. This should be
+        in the format of a list of tuples, in the format of (int,int),
+        where the first in indicates if the column is visible, and the
+        second column indicates the index into the model.
+
+        This should be overridden in the derrived classes.
+        """
         return []
 
     def build_columns(self):
+        """
+        Builds the columns and inserts them into the TreeView. Any
+        previous columns exist, they will be in the self.columns array,
+        and removed. 
+        """
+
+        # remove any existing columns, which would be stored in
+        # self.columns
+        
         for column in self.columns:
             self.tree.remove_column(column)
         self.columns = []
 
+        # loop through the values returned by column_order
+        
         for pair in self.column_order():
+
+            # if the first value isn't 1, then we skip the values
             if not pair[0]:
                 continue
-            name = self.column_names[pair[1]][0]
+
+            # extract the name from the _column_names variable, and
+            # assign it to the column name. The text value is extracted
+            # from the model column specified in pair[1]
+            name = self._column_names[pair[1]][0]
             column = gtk.TreeViewColumn(name, gtk.CellRendererText(),
                                         text=pair[1])
+
+            # insert the colum into the tree
             column.set_resizable(True)
-            column.set_min_width(40)
-            column.set_sort_column_id(self.column_names[pair[1]][1])
+            column.set_min_width(75)
+            column.set_sort_column_id(self._column_names[pair[1]][1])
             self.columns.append(column)
             self.tree.append_column(column)
 
     def rebuild(self):
+        """
+        Rebuilds the data in the database by creating a new model,
+        using the build_model function passed at creation time.
+        """
         self.model = self.build_model(self.get_data(),self.dbstate.db)
         self.tree.set_model(self.model)
-        self.set_label()
-        self.selection_changed()
+        self._set_label()
+        self._selection_changed()
 
 #-------------------------------------------------------------------------
 #
@@ -309,7 +406,7 @@ class EventEmbedList(EmbeddedList):
 
     _HANDLE_COL = 6
 
-    column_names = [
+    _column_names = [
         (_('Type'),0),
         (_('Description'),1),
         (_('ID'),2),
@@ -357,7 +454,7 @@ class SourceBackRefList(EmbeddedList):
 
     _HANDLE_COL = 3
 
-    column_names = [
+    _column_names = [
         (_('Type'),0),
         (_('ID'),1),
         (_('Name'),2),
@@ -371,7 +468,7 @@ class SourceBackRefList(EmbeddedList):
     def close(self):
         self.model.close()
 
-    def set_label(self):
+    def _set_label(self):
         self.tab_image.show()
         self.label.set_text("<b>%s</b>" % self.tab_name)
         self.label.set_use_markup(True)
@@ -385,7 +482,7 @@ class SourceBackRefList(EmbeddedList):
         vbox.show_all()
         self.pack_start(vbox,False)
 
-    def selection_changed(self,obj=None):
+    def _selection_changed(self,obj=None):
         if self.get_selected():
             self.edit_btn.set_sensitive(True)
         else:
@@ -423,7 +520,7 @@ class SourceBackRefList(EmbeddedList):
 #-------------------------------------------------------------------------
 class DataEmbedList(EmbeddedList):
 
-    column_names = [
+    _column_names = [
         (_('Key'),0),
         (_('Value'),1),
         ]
@@ -467,6 +564,14 @@ class NoteTab(GrampsTab):
         GrampsTab.__init__(self, dbstate, uistate, track, _('Note'))
         self.show_all()
 
+    def is_empty(self):
+        """
+        Indicates if the tab contains any data. This is used to determine
+        how the label should be displayed.
+        """
+        buf = self.text.get_buffer()
+        return len(buf.get_text(buf.get_start_iter(),buf.get_end_iter()))>0
+
     def build_interface(self):
         self.text = gtk.TextView()
         scroll = gtk.ScrolledWindow()
@@ -475,9 +580,10 @@ class NoteTab(GrampsTab):
         self.pack_start(scroll,True)
         if self.note_obj:
             self.text.get_buffer().insert_at_cursor(self.note_obj.get())
+        self.rebuild()
 
     def rebuild(self):
-        pass
+        self._set_label()
 
 #-------------------------------------------------------------------------
 #
@@ -515,11 +621,12 @@ class GalleryTab(ButtonTab):
     def rebuild(self):
         self.iconmodel= gtk.ListStore(gtk.gdk.Pixbuf,str)
         for ref in self.media_list:
-            obj = self.dbstate.db.get_object_from_handle(ref.get_reference_handle())
+            handle = ref.get_reference_handle()
+            obj = self.dbstate.db.get_object_from_handle(handle)
             pixbuf = self.get_image(obj)
             self.iconmodel.append(row=[pixbuf,obj.get_description()])
         self.iconlist.set_model(self.iconmodel)
-        self.set_label()
+        self._set_label()
 
     def get_image(self,obj):
         import ImgManip
@@ -561,7 +668,7 @@ class SourceEmbedList(EmbeddedList):
 
     _HANDLE_COL = 6
 
-    column_names = [
+    _column_names = [
         (_('ID'),0),
         (_('Title'),1),
         ]
