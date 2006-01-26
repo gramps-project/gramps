@@ -88,14 +88,18 @@ class BaseModel(gtk.GenericTreeModel):
         cursor = self.gen_cursor()
         sarray = []
         data = cursor.next()
+        
         while data:
-            sarray.append((self.sort_func(data[1]),data[0]))
+            sarray.append((locale.strxfrm(self.sort_func(data[1])),data[0]))
             data = cursor.next()
         cursor.close()
-        sarray.sort(sfunc)
+
+        sarray.sort()
+
         if self.reverse:
             sarray.reverse()
-        return map(lambda x: x[1], sarray)
+
+        return [ x[1] for x in sarray ]
 
     def rebuild_data(self):
         if self.db.is_open():
@@ -107,7 +111,7 @@ class BaseModel(gtk.GenericTreeModel):
                 i += 1
         else:
             self.datalist = []
-            self.indexlist = []
+            self.indexlist = {}
         
     def add_row_by_handle(self,handle):
         self.datalist = self.sort_keys()
@@ -583,14 +587,14 @@ class EventModel(BaseModel):
         return len(self.fmap)+1
 
     def column_description(self,data):
-        return unicode(data[4])
+        return data[4]
 
     def column_cause(self,data):
-        return unicode(data[6])
+        return data[6]
 
     def column_place(self,data):
         if data[5]:
-            return unicode(self.db.get_place_from_handle(data[5]).get_title())
+            return self.db.get_place_from_handle(data[5]).get_title()
         else:
             return u''
 

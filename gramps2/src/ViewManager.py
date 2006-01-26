@@ -935,7 +935,6 @@ class ViewManager:
                 self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
                 self.progress.show()
                 GrampsDb.gramps_db_reader_factory(filetype)(self.state.db,filename,self.pulse_progressbar)
-                self.parent.import_tool_callback()
                 self.progress.hide()
                 self.window.window.set_cursor(None)
                 return True
@@ -954,7 +953,6 @@ class ViewManager:
                 if filetype == mime_type or the_file == mime_type:
                     choose.destroy()
                     importData(self.state.db,filename)
-                    self.parent.import_tool_callback()
                     return True
             QuestionDialog.ErrorDialog(
                 _("Could not open file: %s") % filename,
