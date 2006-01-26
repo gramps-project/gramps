@@ -18,9 +18,19 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# GTK libraries
+#
+#-------------------------------------------------------------------------
 import gtk
 import gobject
 
+#-------------------------------------------------------------------------
+#
+# GRAMPS libraries
+#
+#-------------------------------------------------------------------------
 import DateHandler
 import NameDisplay
 import RelLib
@@ -30,41 +40,114 @@ import GrampsLocale
 
 from GrampsWidgets import SimpleButton
 
+#-------------------------------------------------------------------------
+#
+# constants
+#
+#-------------------------------------------------------------------------
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
 #-------------------------------------------------------------------------
 #
-# GrampsTab
+# Classes
 #
 #-------------------------------------------------------------------------
+
 class GrampsTab(gtk.HBox):
+    """
+    This class provides the base level class for 'tabs', which are used to
+    fill in notebook tabs for GRAMPS edit dialogs. Each tab returns a
+    gtk container widget which can be inserted into a gtk.Notebook by the
+    instantiating object.
+
+    All tab classes should inherit from GrampsTab
+    """
 
     def __init__(self,dbstate,uistate,track,name):
+        """
+        @param dbstate: The database state. Contains a reference to
+        the database, along with other state information. The GrampsTab
+        uses this to access the database and to pass to and created
+        child windows (such as edit dialogs).
+        @type dbstate: DbState
+        @param uistate: The UI state. Used primarily to pass to any created
+        subwindows.
+        @type uistate: DisplayState
+        @param track: The window tracking mechanism used to manage windows.
+        This is only used to pass to generted child windows.
+        @type track: list
+        @param name: Notebook label name
+        @type name: str/unicode
+        """
         gtk.HBox.__init__(self)
+
+        # store information to pass to child windows
         self.dbstate = dbstate
         self.uistate = uistate
         self.track = track
-        self.tab_name = name
-        
-        self.hbox = gtk.HBox()
-        self.tab_image = gtk.image_new_from_stock(self.get_icon_name(),
-                                                  gtk.ICON_SIZE_MENU)
-        self.label = gtk.Label(name)
-        self.hbox.pack_start(self.tab_image)
-        self.hbox.set_spacing(3)
-        self.hbox.add(self.label)
-        self.hbox.show_all()
 
+        # save name used for notebook label, and build the widget used
+        # for the label
+        
+        self.tab_name = name
+        self.label_container = self.build_label_widget()
+
+        # build the interface
         self.build_interface()
 
+    def is_empty(self):
+        """
+        Indicates if the tab contains any data. This is used to determine
+        how the label should be displayed.
+        """
+        return True
+
+    def build_label_widget(self):
+        """
+        Standard routine to build a widget. Does not need to be overridden
+        by the derrived class. Creates an container that has the label and
+        the icon in it.
+        @returns: widget to be used for the notebook label.
+        @rtype: gtk.HBox
+        """
+        hbox = gtk.HBox()
+        self.tab_image = gtk.image_new_from_stock(self.get_icon_name(),
+                                                  gtk.ICON_SIZE_MENU)
+        self.label = gtk.Label(self.tab_name)
+        hbox.pack_start(self.tab_image)
+        hbox.set_spacing(3)
+        hbox.add(self.label)
+        hbox.show_all()
+        return hbox
+
     def get_icon_name(self):
+        """
+        Provides the name of the registered stock icon to be used as the
+        icon in the label. This is typically overridden by the derrived
+        class to provide the new name.
+        @returns: stock icon name
+        @rtype: str
+        """
         return gtk.STOCK_NEW
 
     def get_tab_widget(self):
-        return self.hbox
+        """
+        Provides the widget to be used for the notebook tab label. A
+        container class is provided, and the object may manipulate the
+        child widgets contained in the container.
+        @returns: gtk widget
+        @rtype: gtk.HBox
+        """
+        return self.label_container
 
     def set_label(self):
-        if len(self.get_data()):
+        """
+        Updates the label based of if the tab contains information. Tabs
+        without information will not have an icon, and the text will not
+        be bold. Tabs that contain data will have their icon displayed and
+        the label text will be in bold face.
+        """
+        if not self.is_empty():
             self.tab_image.show()
             self.label.set_text("<b>%s</b>" % self.tab_name)
             self.label.set_use_markup(True)
@@ -73,11 +156,38 @@ class GrampsTab(gtk.HBox):
             self.label.set_text(self.tab_name)
 
     def build_interface(self):
+        """
+        Builds the interface for the derived class. This function should be
+        overridden in the derived class. Since the classes are derrived from
+        gtk.HBox, the self.pack_start, self.pack_end, and self.add functions
+        can be used to add widgets to the interface.
+        """
         pass
 
 class ButtonTab(GrampsTab):
+    """
+    This class derives from the base GrampsTab, yet is not a usable Tab. It
+    serves as another base tab for classes which need an Add/Edit/Remove button
+    combination.
+    """
 
     def __init__(self,dbstate,uistate,track,name):
+        """
+        Similar to the base class, except after Build
+        @param dbstate: The database state. Contains a reference to
+        the database, along with other state information. The GrampsTab
+        uses this to access the database and to pass to and created
+        child windows (such as edit dialogs).
+        @type dbstate: DbState
+        @param uistate: The UI state. Used primarily to pass to any created
+        subwindows.
+        @type uistate: DisplayState
+        @param track: The window tracking mechanism used to manage windows.
+        This is only used to pass to generted child windows.
+        @type track: list
+        @param name: Notebook label name
+        @type name: str/unicode
+        """
         GrampsTab.__init__(self,dbstate,uistate,track,name)
         self.create_buttons()
 
@@ -158,6 +268,9 @@ class EmbeddedList(ButtonTab):
             self.edit_btn.set_sensitive(False)
             self.del_btn.set_sensitive(False)
 
+    def is_empty(self):
+        return len(self.get_data()) > 0
+    
     def get_data(self):
         return []
 
@@ -711,10 +824,10 @@ class SourceBackRefModel(gtk.ListStore):
             elif dtype == 'Event':
                 p = self.db.get_event_from_handle(ref[1])
                 gid = p.gramps_id
-                name = event.get_description()
+                name = p.get_description()
                 handle = p.handle
                 if not name:
-                    etype = event.get_type()
+                    etype = p.get_type()
                     if etype[0] == RelLib.Event.CUSTOM:
                         name = etype[1]
                     elif Utils.personal_events.has_key(etype[0]):
