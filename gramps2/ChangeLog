@@ -1,3 +1,7 @@
+2006-01-26  Brian Matherly  <pez4brian@users.sourceforge.net>
+	* src/docgen/ODFDoc.py (init): Correct name for parent style;
+	Use handling program name obtained from the mime system.	
+
 2006-01-25  Serge Noiraud  <Serge.Noiraud@free.fr>
 	* src/docgen/ODFDoc.py: Add new document generator.
 	* src/docgen/Makefile.am: Ship new file.

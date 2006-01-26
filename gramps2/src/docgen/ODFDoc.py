@@ -219,7 +219,7 @@ class ODFDoc(BaseDoc.BaseDoc):
 
             self.cntnt.write('<style:style style:name="NL%s" ' % style_name)
             self.cntnt.write('style:family="paragraph" ')
-            self.cntnt.write('style:parent-style-name="Standard" ')
+            self.cntnt.write('style:parent-style-name="%s">\n' % style_name)
             self.cntnt.write('<style:paragraph-properties fo:break-before="page"/>\n')
             self.cntnt.write('</style:style>\n')
 
@@ -1136,7 +1136,8 @@ try:
     mtype = GrampsMime.get_description(_apptype)
 
     if Utils.search_for(mprog[0]):
-        print_label = _("Open in Open Document Editor")
+        print_label = _("Open in %{program_name}s") % { 'program_name':
+                                                        mprog[1]}
     else:
         print_label = None
 
@@ -1144,6 +1145,9 @@ try:
     PluginMgr.register_book_doc(mtype,ODFDoc,1,1,1,".odt")
     PluginMgr.register_draw_doc(mtype,ODFDoc,1,1,  ".odt",print_label);
 except:
-    PluginMgr.register_text_doc(_('Open Document Text'), OpenDocumentDoc,1,1,1,".odt", None)
-    PluginMgr.register_book_doc(_("Open Document Text"), OpenDocumentDoc,1,1,1,".odt")
-    PluginMgr.register_draw_doc(_("Open Document Text"), OpenDocumentDoc,1,1,".odt",None);
+    PluginMgr.register_text_doc(_('Open Document Text'),
+                                OpenDocumentDoc,1,1,1,".odt", None)
+    PluginMgr.register_book_doc(_("Open Document Text"),
+                                OpenDocumentDoc,1,1,1,".odt")
+    PluginMgr.register_draw_doc(_("Open Document Text"),
+                                OpenDocumentDoc,1,1,".odt",None);
