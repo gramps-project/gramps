@@ -2291,7 +2291,7 @@ class GenericFilterList:
         self.filter_list = {}
         self.file = os.path.expanduser(file)
 
-    def get_filters(self,namespace):
+    def get_filters(self,namespace='generic'):
         try:
             return self.filter_list[namespace]
         except KeyError:
