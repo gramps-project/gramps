@@ -1,3 +1,8 @@
+2006-01-27  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: Typo.
+	* src/GrampsDb/_GrampsBSDDB.py: Correct duplicate event IDs on upgrade.
+	* src/GrampsDb/_WriteXML.py: More XML updates.
+
 2006-01-27  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcomp.py: preselect gramps ids for events
 

@@ -1470,6 +1470,18 @@ class GrampsBSDDB(GrampsDbBase):
 #        data = cursor.first()
 #        while data:
         #    handle,info = data
+
+        # Turns out that a lof ot events have duplicate gramps IDs
+        # We need to fix this
+        table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
+        self.eid_trans = db.DB(self.env)
+        self.eid_trans.set_flags(db.DB_DUP)
+        self.eid_trans.open(self.full_name, "eidtrans",
+                            db.DB_HASH, flags=table_flags)
+        self.event_map.associate(self.eid_trans,find_idmap,table_flags)
+        eid_list = self.eid_trans.keys()
+        dup_ids = [eid for eid in eid_list if eid_list.count(eid) > 1 ]
+
         for handle in self.event_map.keys():
             info = self.event_map[handle]        
             event = Event()
@@ -1478,6 +1490,9 @@ class GrampsBSDDB(GrampsDbBase):
              event.description, event.place, event.cause, event.private,
              event.source_list, event.note, witness_list,
              event.media_list, event.change) = info
+
+            if event.gramps_id in dup_ids:
+                event.gramps_id = self.find_next_event_gramps_id()
 
             if old_type:
                 if event_conversion.has_key(old_type):
@@ -1520,7 +1535,8 @@ class GrampsBSDDB(GrampsDbBase):
             self.commit_event(event,trans)
 #            data = cursor.next()
 #        cursor.close()
-
+        self.eid_trans.close()
+        
         # Work out marker addition to the Place
 #        cursor = self.get_place_cursor()
 #        data = cursor.first()
