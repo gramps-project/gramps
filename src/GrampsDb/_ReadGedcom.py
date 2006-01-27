@@ -69,7 +69,7 @@ from bsddb import db
 from _GedcomInfo import *
 from _GedTokens import *
 from QuestionDialog import ErrorDialog, WarningDialog
-from GrampsDbBase import EVENT_KEY
+from _GrampsDbBase import EVENT_KEY
 
 addr_re  = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)\s+(\d+)\s*(.*)')
 addr2_re = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)\s+(\d+)')
