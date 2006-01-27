@@ -165,6 +165,14 @@ marker_types = (
     (RelLib.PrimaryObject.MARKER_TODO     , "todo"),
     )
 
+url_types = (
+    (RelLib.Url.UNKNOWN    , "Unknown"),
+    (RelLib.Url.EMAIL      , "Email"),
+    (RelLib.Url.WEB_HOME   , "Home"),
+    (RelLib.Url.WEB_SEARCH , "Search"),
+    (RelLib.Url.WEB_FTP    , "FTP"),
+    )
+
 # mapping from the tuple collection to the appropriate CUSTOM integer
 custom_types = {
     child_relations    : RelLib.Person.CHILD_CUSTOM,
@@ -176,6 +184,7 @@ custom_types = {
     event_roles        : RelLib.EventRef.CUSTOM,
     repository_types   : RelLib.Repository.CUSTOM,
     marker_types       : RelLib.PrimaryObject.MARKER_CUSTOM,
+    url_types          : RelLib.Url.CUSTOM,
     }
 
 def str_for_xml(tuples,the_tuple):

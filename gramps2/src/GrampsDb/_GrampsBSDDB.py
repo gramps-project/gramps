@@ -841,11 +841,26 @@ class GrampsBSDDB(GrampsDbBase):
             else:
                 self.name_group.put(name,group,txn=self.txn)
             self.emit('person-rebuild')
-            
+
+    def get_gramps_ids(self,obj_key):
+        key2table = {
+            PERSON_KEY: self.id_trans,
+            FAMILY_KEY: self.fid_trans,
+            SOURCE_KEY: self.sid_trans,
+            EVENT_KEY:  self.eid_trans,
+            MEDIA_KEY:  self.oid_trans,
+            PLACE_KEY:  self.pid_trans,
+            REPOSITORY_KEY: self.rid_trans,
+            }
+
+        table = key2table[obj_key]
+        return table.keys()
+
     def get_surname_list(self):
-        vals = [ unicode(val) for val in set(self.surnames.keys()) ]
-        vals.sort(locale.strcoll)
-        return vals
+        vals = [ (strxfrm(unicode(val)),unicode(val))
+                 for val in set(self.surnames.keys()) ]
+        vals.sort()
+        return [item[0] for item in vals]
 
     def get_person_event_type_list(self):
         vals = [ unicode(val) for val in set(self.eventnames.keys()) ]
@@ -875,6 +890,11 @@ class GrampsBSDDB(GrampsDbBase):
         """finds a Family in the database from the passed gramps' ID.
         If no such Family exists, a new Person is added to the database."""
         return self._get_obj_from_gramps_id(val,self.fid_trans,Family)
+
+    def get_event_from_gramps_id(self,val):
+        """finds a Family in the database from the passed gramps' ID.
+        If no such Family exists, a new Person is added to the database."""
+        return self._get_obj_from_gramps_id(val,self.eid_trans,Event)
 
     def get_place_from_gramps_id(self,val):
         """finds a Place in the database from the passed gramps' ID.
