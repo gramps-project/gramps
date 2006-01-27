@@ -202,11 +202,12 @@ class XmlWriter:
         owner = self.db.get_researcher()
         person_len = self.db.get_number_of_people()
         family_len = len(self.db.get_family_handles())
+        event_len = len(self.db.get_event_handles())
         source_len = len(self.db.get_source_handles())
         place_len = len(self.db.get_place_handles())
         objList = self.db.get_media_object_handles()
         
-        total = person_len + family_len + place_len + source_len
+        total = person_len + family_len + event_len + place_len + source_len
 
         self.g.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.g.write('<!DOCTYPE database '
@@ -239,25 +240,22 @@ class XmlWriter:
             self.g.write("  <people")
             person = self.db.get_default_person()
             if person:
-                self.g.write(' default="%s" home="%s"' %
-                             (person.get_gramps_id (),
-                              "_"+person.get_handle()))
-            self.g.write(">\n")
+                self.g.write(' default="%s" home="_%s">\n' %
+                             (person.gramps_id,person.handle))
 
             keys = self.db.get_person_handles(sort_handles=False)
             sorted_keys = []
             for key in keys:
                 person = self.db.get_person_from_handle (key)
-                value = (person.get_gramps_id (), person)
-                sorted_keys.append (value)
-
+                sorted_keys.append ((person.gramps_id, person))
             sorted_keys.sort ()
+
             for (gramps_id, person) in sorted_keys:
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count += 1
             
-                self.write_id("person",person,2)
+                self.write_primary_tag("person",person,2)
                 if person.get_gender() == RelLib.Person.MALE:
                     self.write_line("gender","M",3)
                 elif person.get_gender() == RelLib.Person.FEMALE:
@@ -269,13 +267,10 @@ class XmlWriter:
                     self.dump_name(name,True,3)
             
                 self.write_line("nick",person.get_nick_name(),3)
-                birth = self.db.get_event_from_handle(person.get_birth_handle())
-                death = self.db.get_event_from_handle(person.get_death_handle())
-                self.dump_event(birth,3)
-                self.dump_event(death,3)
-                for event_handle in person.get_event_list():
-                    event = self.db.get_event_from_handle(event_handle)
-                    self.dump_event(event,3)
+                self.dump_event_ref(person.birth_ref,3)
+                self.dump_event_ref(person.death_ref,3)
+                for event_ref in person.get_event_ref_list():
+                    self.dump_event_ref(event_ref,3)
                 
                 self.dump_ordinance("baptism",person.get_lds_baptism(),3)
                 self.dump_ordinance("endowment",person.get_lds_endowment(),3)
@@ -351,9 +346,8 @@ class XmlWriter:
                     self.write_ref("father",fhandle,3)
                 if mhandle:
                     self.write_ref("mother",mhandle,3)
-                for event_handle in family.get_event_list():
-                    event = self.db.get_event_from_handle(event_handle)
-                    self.dump_event(event,3)
+                for event_ref in family.get_event_ref_list():
+                    self.dump_event_ref(event_ref,3)
                 self.dump_ordinance("sealed_to_spouse",family.get_lds_sealing(),3)
 
                 self.write_media_list(family.get_media_list())
@@ -367,6 +361,22 @@ class XmlWriter:
                     self.dump_source_ref(s,3)
                 self.g.write("    </family>\n")
             self.g.write("  </families>\n")
+
+        if event_len > 0:
+            self.g.write("  <events>\n")
+            keys = self.db.get_event_handles()
+            sorted_keys = []
+            for key in keys:
+                 event = self.db.get_event_from_handle(key)
+                 sorted_keys.append((event.gramps_id, event))
+            sorted_keys.sort ()
+            
+            for (gramps_id, event) in sorted_keys:
+                if self.callback and count % delta == 0:
+                    self.callback(float(count)/float(total))
+                count = count + 1
+                self.write_event(event,2)
+            self.g.write("  </events>\n")
 
         if source_len > 0:
             self.g.write("  <sources>\n")
@@ -488,17 +498,35 @@ class XmlWriter:
                     self.g.write('  %s<comment>%s</comment>\n' % (sp,com))
                 self.g.write('%s</witness>\n' % sp)
 
-    def dump_event(self,event,index=1):
+    def dump_event_ref(self,eventref,index=1):
+        if not eventref or not eventref.ref:
+            return
+        priv_text = conf_priv(eventref)
+        role = _ConstXML.str_for_xml(_ConstXML.event_roles,eventref.role)
+        if role:
+            role_text = ' role="%s"' % role
+        else:
+            role_text = ''
+
+        if eventref.get_note() == "":
+            started = self.write_ref('eventref',eventref.ref,index,
+                       close=True,extra_text=priv_text+role_text)
+        else:
+            started = self.write_ref('eventref',eventref.ref,index,
+                       close=False,extra_text=priv_text+role_text)
+            self.write_note("note",eventref.get_note_object(),index+1)
+            self.g.write('%s</eventref>\n' % ("  "*index))
+
+    def write_event(self,event,index=1):
         if not event or event.is_empty():
             return
 
+        self.write_primary_tag("event",event,2)
+
         sp = "  " * index
         etype = _ConstXML.str_for_xml(_ConstXML.events,event.get_type())
-        self.g.write('%s<event type="%s"%s>\n' %
-                     (sp,self.fix(etype),conf_priv(event)))
+        self.g.write('  %s<type>%s</type>\n' % (sp,self.fix(etype)) )
         self.write_date(event.get_date_object(),index+1)
-
-        #self.write_witness(event.get_witness_list(),index+1)
         self.write_ref("place",event.get_place_handle(),index+1)
         self.write_line("cause",event.get_cause(),index+1)
         self.write_line("description",event.get_description(),index+1)
@@ -556,37 +584,41 @@ class XmlWriter:
                 self.write_date(d,index+1)
                 self.g.write("%s</sourceref>\n" % ("  " * index))
 
-    def write_ref(self,label,gid,index=1):
-        if gid:
-            self.g.write('%s<%s hlink="%s"/>\n' % ("  "*index,label,"_"+gid))
+    def write_ref(self,tagname,handle,index=1,close=True,extra_text=''):
+        if handle:
+            if close:
+                close_tag = "/"
+            else:
+                close_tag = ""
+            self.g.write('%s<%s hlink="_%s"%s%s>\n'
+                         % ("  "*index,tagname,handle,extra_text,close_tag))
 
-    def write_id(self,label,person,index=1):
-        if person:
-            self.g.write('%s<%s id="%s" handle="%s" change="%d"' %
-                         ("  "*index,label,person.get_gramps_id(),"_"+person.get_handle(),
-                          person.get_change_time()))
-            marker = _ConstXML.str_for_xml(_ConstXML.marker_types,
-                                           person.get_marker())
-            if marker:
-                self.g.write(' marker="%s"' % marker)
-            self.g.write('>\n')
+    def write_primary_tag(self,tagname,obj,index=1):
+        if not obj:
+            return
+
+        marker = _ConstXML.str_for_xml(_ConstXML.marker_types,
+                                       obj.get_marker())
+        if marker:
+            marker_text = ' marker="%s"' % marker
+        else:
+            marker_text = ''
+        priv_text = conf_priv(obj)
+        change_text = ' change="%d"' % obj.get_change_time()
+        handle_id_text = ' handle="_%s" id="%s"' % (obj.handle,obj.gramps_id)
+        obj_text = '%s<%s' % ("  "*index,tagname)
+
+        self.g.write(obj_text + handle_id_text + priv_text + marker_text +
+                     change_text + '>\n')
 
     def write_family_handle(self,family,index=1):
+        self.write_primary_tag('family',family,index)
+
         if family:
             rel = _ConstXML.str_for_xml(_ConstXML.family_relations,
                                         family.get_relationship())
-            marker = _ConstXML.str_for_xml(_ConstXML.marker_types,
-                                           family.get_marker())
-            sp = "  " * index
-            self.g.write('%s<family id="%s" handle="%s" change="%d"' %
-                         (sp,family.get_gramps_id(),"_"+family.get_handle(),family.get_change_time()))
-            if marker:
-                self.g.write(' marker="%s"' % marker)
             if rel != "":
-                self.g.write(' type="%s">\n' % rel )
-                # const.save_frel(rel))
-            else:
-                self.g.write('>\n')
+                self.g.write('%s<rel type="%s"/>\n' % ("  "*index,rel) )
 
     def write_last(self,name,indent=1):
         p = name.get_surname_prefix()
@@ -599,9 +631,10 @@ class XmlWriter:
             self.g.write(' group="%s"' % g)
         self.g.write('>%s</last>\n' % self.fix(n))
 
-    def write_line(self,label,value,indent=1):
+    def write_line(self,tagname,value,indent=1):
         if value:
-            self.g.write('%s<%s>%s</%s>\n' % ('  '*indent,label,self.fix(value),label))
+            self.g.write('%s<%s>%s</%s>\n' %
+                         ('  '*indent,tagname,self.fix(value),tagname))
 
     def get_iso_date(self,date):
         if date[2] == 0:

@@ -13,6 +13,7 @@
 	* src/GrampsDb/_GrampsBSDDB.py: Convert family and parent family
 	relations from integer to tuple on upgrade.
 	* src/GrampsDb/_WriteGedcom.py: Convert from tuple to string.
+	* src/GrampsDb/_WriteXML.py: Handle some of new XML.
 
 2006-01-25  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: use idle_loop to load data for source
