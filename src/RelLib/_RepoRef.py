@@ -118,4 +118,4 @@ class RepoRef(BaseObject,NoteBase):
         return self.media_type
 
     def set_media_type(self,media_type):
-       self.media_type = media_type
+        self.media_type = media_type
