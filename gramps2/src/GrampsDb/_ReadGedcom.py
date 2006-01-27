@@ -122,6 +122,9 @@ pedi_type = {
     'foster' : (RelLib.Person.CHILD_FOSTER,''),
     }
 
+_event_family_str = _("%(event_name)s of %(family)s")
+_event_person_str = _("%(event_name)s of %(person)s")
+
 #-------------------------------------------------------------------------
 #
 # GEDCOM events to GRAMPS events conversion
@@ -706,7 +709,8 @@ class GedcomParser:
                 self.source.set_abbreviation(matches[2])
             elif matches[1] == TOKEN_REPO:
                 repo_ref = RelLib.RepoRef()
-                repo_ref = self.find_or_create_repository(matches[2][1:-1])
+                repo = self.find_or_create_repository(matches[2][1:-1])
+                repo_ref.set_reference_handle(repo.handle)
                 self.parse_repo_ref(matches,repo_ref,level+1)
                 self.source.add_repo_reference(repo_ref)
             elif matches[1] in (TOKEN_OBJE,TOKEN_CHAN,TOKEN__CAT):
@@ -931,7 +935,22 @@ class GedcomParser:
             else:
                 self.barf(1)
 
-    def parse_repo_ref(self, matches, repo, level):
+    def parse_repo_ref(self, matches, repo_ref, level):
+        while True:
+            matches = self.get_next()
+            if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == TOKEN_CALN:
+                repo_ref.set_call_number(matches[2])
+                self.parse_repo_ref_caln(repo_ref, level+1)
+            elif matches[1] == TOKEN_NOTE:
+                note = self.parse_note(matches,repo_ref,level+1,"")
+                repo_ref.set_note(note)
+            else:
+                self.barf(1)
+
+    def parse_repo_ref_caln(self, repo, level):
         while True:
             matches = self.get_next()
             if int(matches[0]) < level:
@@ -1074,7 +1093,7 @@ class GedcomParser:
                     self.family.set_relationship((RelLib.Family.MARRIED,''))
                 if event.get_type()[0] != RelLib.Event.CUSTOM:
                     if not event.get_description():
-                        text = _("%(event_name)s of %(family)s") % {
+                        text = _event_family_str % {
                             'event_name' : Utils.family_events[event.get_type()[0]],
                             'family' : Utils.family_name(self.family,self.db),
                             }
@@ -2289,11 +2308,10 @@ class GedcomParser:
     def skip_record(self,matches,state):
         self.ignore_sub_junk(2)
 
-
 def person_event_name(event,person):
     if event.get_type()[0] != RelLib.Event.CUSTOM:
         if not event.get_description():
-            text = _("%(event_name)s of %(person)s") % {
+            text = _event_person_str % {
                 'event_name' : Utils.personal_events[event.get_type()[0]],
                 'person' : NameDisplay.displayer.display(person),
                 }
@@ -2320,7 +2338,7 @@ def create_id():
 
 if __name__ == "__main__":
     import sys
-    import profile
+    import hotshot, hotshot.stats
     import const
     from GrampsDb import gramps_db_factory, gramps_db_reader_factory
 
@@ -2333,9 +2351,22 @@ if __name__ == "__main__":
     database = db_class()
     database.load("test.grdb",lambda x: None, mode="w")
     np = NoteParser(sys.argv[1],False)
-    import time
-    t = time.time()
     g = GedcomParser(database,sys.argv[1],callback, codeset, np.get_map(),np.get_lines())
-    #profile.run('g.parse_gedcom_file(False)')
-    g.parse_gedcom_file(False)
-    print time.time() - t
+
+    if False:
+        pr = hotshot.Profile('mystats.profile')
+        print "Start"
+        pr.runcall(g.parse_gedcom_file,False)
+        print "Finished"
+        pr.close()
+        print "Loading profile"
+        stats = hotshot.stats.load('mystats.profile')
+        print "done"
+        stats.strip_dirs()
+        stats.sort_stats('time','calls')
+        stats.print_stats(100)
+    else:
+        import time
+        t = time.time()
+        g.parse_gedcom_file(False)
+        print time.time() - t

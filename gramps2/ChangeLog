@@ -2,6 +2,7 @@
 	* src/DisplayModels.py: optimization
 	* src/DisplayTabs.py: improved docs
 	* src/ViewManger.py: remove import_tool_callback
+	* src/GrampsDb/_ReadGedcom.py: fix repeated translation call
 
 2006-01-25  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py: Add proper upgrade path from
