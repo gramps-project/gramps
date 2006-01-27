@@ -69,6 +69,7 @@ from bsddb import db
 from _GedcomInfo import *
 from _GedTokens import *
 from QuestionDialog import ErrorDialog, WarningDialog
+from GrampsDbBase import EVENT_KEY
 
 addr_re  = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)\s+(\d+)\s*(.*)')
 addr2_re = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)\s+(\d+)')
@@ -245,6 +246,26 @@ class GedcomDateParser(DateParser.DateParser):
         'sep' : 9,  'oct' : 10, 'nov' : 11, 'dec' : 12,
         }
 
+class IdFinder:
+
+    def __init__(self,keys,prefix):
+        self.ids = set(keys)
+        self.index = 0
+        self.prefix = prefix
+
+    def find_next(self):
+        """
+        Returns the next available GRAMPS' ID for a Event object based
+        off the person ID prefix.
+        """
+        index = self.prefix % self.index
+        while str(index) in self.ids:
+            self.index += 1
+            index = self.prefix % self.index
+        self.ids.add(index)
+        self.index += 1
+        return index
+        
 #-------------------------------------------------------------------------
 #
 #
@@ -402,9 +423,14 @@ class GedcomParser:
     def __init__(self, dbase, filename, callback, codeset, note_map, lines):
 
         self.maxlines = lines
+        self.interval = lines/100
+        self.percent = 0
         self.callback = callback
         self.dp = GedcomDateParser()
         self.db = dbase
+        self.emapper = IdFinder(dbase.get_gramps_ids(EVENT_KEY),
+                                dbase.eprefix)
+        
         self.person = None
         self.inline_srcs = {}
         self.media_map = {}
@@ -495,7 +521,7 @@ class GedcomParser:
 
         self.lexer = Reader(filename)
         self.filename = filename
-        self.backoff = 0
+        self.backoff = False
         self.override = codeset
 
         if self.db.get_number_of_people() == 0:
@@ -513,8 +539,7 @@ class GedcomParser:
     
         self.error_count = 0
         amap = Utils.personalConstantAttributes
-        self.current = 0
-        self.oldval = 0
+        self.current = self.interval
         
         self.attrs = amap.values()
         self.gedattr = {}
@@ -571,43 +596,44 @@ class GedcomParser:
             return (0,tries)
 
     def track_lines(self):
-        self.current += 1
-        newval = int((100*self.current)/self.maxlines)
-        if self.callback and newval != self.oldval:
-            self.callback(newval)
-            self.oldval = newval
+        if self.current == 1:
+            self.current = self.interval
+            self.percent += 1
+            if self.callback:
+                self.callback(self.percent)
+        else:
+            self.current -= 1
 
     def get_next(self):
-        if self.backoff == 0:
-            next_line = self.lexer.read()
+        if self.backoff == False:
+            self.groups = self.lexer.read()
             self.track_lines()
             
             # EOF ?
-            if next_line == None:
+            if not self.groups:
                 self.text = "";
-                self.backoff = 0
+                self.backoff = False
                 msg = _("Premature end of file at line %d.\n") % next_line[4]
                 self.errmsg(msg)
-                self.error_count = self.error_count + 1
+                self.error_count += 1
                 self.groups = (-1, TOKEN_UNKNOWN, "","")
                 return self.groups
 
-            self.groups = next_line
-        self.backoff = 0
+        self.backoff = False
         return self.groups
             
     def barf(self,level):
         msg = _("Line %d was not understood, so it was ignored.") % self.groups[4]
         self.errmsg(msg)
-        self.error_count = self.error_count + 1
+        self.error_count += 1
         self.ignore_sub_junk(level)
 
     def warn(self,msg):
         self.errmsg(msg)
-        self.error_count = self.error_count + 1
+        self.error_count += 1
 
     def backup(self):
-        self.backoff = 1
+        self.backoff = True
 
     def parse_gedcom_file(self,use_trans=False):
 
@@ -748,7 +774,7 @@ class GedcomParser:
                             self.db.commit_person(child, self.trans)
                 if len(self.family.get_source_references()) == 0:
                     sref = RelLib.SourceRef()
-                    sref.set_base_handle(self.def_src.get_handle())
+                    sref.set_base_handle(self.def_src.handle)
                     self.family.add_source_reference(sref)
                 self.db.commit_family(self.family, self.trans)
                 del self.family
@@ -757,11 +783,11 @@ class GedcomParser:
                 gid = matches[3]
                 gid = gid[1:-1]
                 self.person = self.find_or_create_person(self.map_gid(gid))
-                self.added.add(self.person.get_handle())
+                self.added.add(self.person.handle)
                 self.parse_individual(self.person)
                 if len(self.person.get_source_references()) == 0:
                     sref = RelLib.SourceRef()
-                    sref.set_base_handle(self.def_src.get_handle())
+                    sref.set_base_handle(self.def_src.handle)
                     self.person.add_source_reference(sref)
                 self.db.commit_person(self.person, self.trans)
                 del self.person
@@ -769,7 +795,7 @@ class GedcomParser:
                 self.repo_count = self.repo_count + 1
                 self.repo = self.find_or_create_repository(matches[3][1:-1])
                 self.repo.set_type((RelLib.Repository.UNKNOWN,""))
-                self.added.add(self.repo.get_handle())
+                self.added.add(self.repo.handle)
                 self.parse_repository(self.repo)
                 self.db.commit_repository(self.repo, self.trans)
                 del self.repo
@@ -1034,21 +1060,21 @@ class GedcomParser:
                 mrel,frel = self.parse_ftw_relations(2)
                 gid = matches[2]
                 child = self.find_or_create_person(self.map_gid(gid[1:-1]))
-                self.family.add_child_handle(child.get_handle())
+                self.family.add_child_handle(child.handle)
 
                 change = False
 
                 for f in child.get_parent_family_handle_list():
-                    if f[0] == self.family.get_handle():
+                    if f[0] == self.family.handle:
                         if (mrel != f[1] or frel != f[2]):
                             change = True
-                            child.change_parent_family_handle(self.family.get_handle(),
+                            child.change_parent_family_handle(self.family.handle,
                                                               mrel, frel)
                         break
                 else:
                     change = True
                     if mrel in rel_types and frel in rel_types:
-                        child.set_main_parent_family_handle(self.family.get_handle())
+                        child.set_main_parent_family_handle(self.family.handle)
                     else:
                         if child.get_main_parents_family_handle() == self.family.handle:
                             child.set_main_parent_family_handle(None)
@@ -1077,6 +1103,7 @@ class GedcomParser:
                 note = self.parse_note(matches,self.family,1,note)
             else:
                 event = RelLib.Event()
+                event.set_gramps_id(self.emapper.find_next())
                 try:
                     event.set_type((ged2fam[matches[3]],''))
                 except:
@@ -1176,7 +1203,7 @@ class GedcomParser:
                 ftype = pedi_type.get(matches[2],RelLib.Person.UNKNOWN)
             elif matches[1] == TOKEN_SOUR:
                 source_ref = self.handle_source(matches,level+1)
-                person.get_primary_name().add_source_reference(source_ref)
+                person.primary_name.add_source_reference(source_ref)
             elif matches[1] == TOKEN__PRIMARY:
                 pass #type = matches[1]
             elif matches[1] == TOKEN_NOTE:
@@ -1229,11 +1256,11 @@ class GedcomParser:
                 photo.set_description(title)
                 photo.set_mime_type(GrampsMime.get_type(os.path.abspath(path)))
                 self.db.add_object(photo, self.trans)
-                self.media_map[path] = photo.get_handle()
+                self.media_map[path] = photo.handle
             else:
                 photo = self.db.get_object_from_handle(photo_handle)
             oref = RelLib.MediaRef()
-            oref.set_reference_handle(photo.get_handle())
+            oref.set_reference_handle(photo.handle)
             oref.set_note(note)
             state.person.add_media_reference(oref)
 
@@ -1270,11 +1297,11 @@ class GedcomParser:
                 photo.set_description(title)
                 photo.set_mime_type(GrampsMime.get_type(os.path.abspath(path)))
                 self.db.add_object(photo, self.trans)
-                self.media_map[path] = photo.get_handle()
+                self.media_map[path] = photo.handle
             else:
                 photo = self.db.get_object_from_handle(photo_handle)
             oref = RelLib.MediaRef()
-            oref.set_reference_handle(photo.get_handle())
+            oref.set_reference_handle(photo.handle)
             oref.set_note(note)
             self.family.add_media_reference(oref)
 
@@ -1364,7 +1391,7 @@ class GedcomParser:
               try:
                 place = self.find_or_create_place(matches[2])
                 place.set_title(matches[2])
-                place_handle = place.get_handle()
+                place_handle = place.handle
                 lds_ord.set_place_handle(place_handle)
                 self.ignore_sub_junk(level+1)
               except NameError:
@@ -1415,7 +1442,7 @@ class GedcomParser:
                     self.ignore_sub_junk(level+1)
                 else:
                     place = self.find_or_create_place(val)
-                    place_handle = place.get_handle()
+                    place_handle = place.handle
                     place.set_title(matches[2])
                     event.set_place_handle(place_handle)
                     self.ignore_sub_junk(level+1)
@@ -1469,7 +1496,7 @@ class GedcomParser:
             elif matches[1] == TOKEN_PLAC:
                 val = matches[2]
                 place = self.find_or_create_place(val)
-                place_handle = place.get_handle()
+                place_handle = place.handle
                 place.set_title(matches[2])
                 event.set_place_handle(place_handle)
                 self.ignore_sub_junk(level+1)
@@ -1576,7 +1603,7 @@ class GedcomParser:
             elif matches[1] == TOKEN_PLAC:
                 val = matches[2]
                 place = self.find_or_create_place(val)
-                place_handle = place.get_handle()
+                place_handle = place.handle
                 place.set_title(matches[2])
                 event.set_place_handle(place_handle)
                 self.ignore_sub_junk(level+1)
@@ -1654,7 +1681,7 @@ class GedcomParser:
     def parse_marnm(self,person,text):
         data = text.split()
         if len(data) == 1:
-            name = RelLib.Name(person.get_primary_name())
+            name = RelLib.Name(person.primary_name)
             name.set_surname(data[0])
             name.set_type((RelLib.Name.MARRIED,''))
             person.add_alternate_name(name)
@@ -1780,8 +1807,6 @@ class GedcomParser:
             if int(matches[0]) < level:
                 self.backup()
                 return
-#            else:
-#                print self.lexer.current
         return
     
     def ignore_change_data(self,level):
@@ -1886,7 +1911,7 @@ class GedcomParser:
             self.inline_srcs[(title,note)] = handle
             self.ignore_sub_junk(level+1)
         else:
-            handle = self.find_or_create_source(matches[2][1:-1]).get_handle()
+            handle = self.find_or_create_source(matches[2][1:-1]).handle
             self.parse_source_reference(source_ref,level)
         source_ref.set_base_handle(handle)
         return source_ref
@@ -2047,6 +2072,7 @@ class GedcomParser:
 
     def func_person_birt(self,matches,state):
         event = RelLib.Event()
+        event.set_gramps_id(self.emapper.find_next())
         if matches[2]:
             event.set_description(matches[2])
         event.set_type((RelLib.Event.BIRTH,""))
@@ -2066,6 +2092,7 @@ class GedcomParser:
 
     def func_person_adop(self,matches,state):
         event = RelLib.Event()
+        event.set_gramps_id(self.emapper.find_next())
         event.set_type((RelLib.Event.ADOPT,''))
         self.parse_adopt_event(event,2)
         person_event_name(event,state.person)
@@ -2078,6 +2105,7 @@ class GedcomParser:
 
     def func_person_deat(self,matches,state):
         event = RelLib.Event()
+        event.set_gramps_id(self.emapper.find_next())
         if matches[2]:
             event.set_description(matches[2])
         event.set_type((RelLib.Event.DEATH,""))
@@ -2097,6 +2125,7 @@ class GedcomParser:
 
     def func_person_even(self,matches,state):
         event = RelLib.Event()
+        event.set_gramps_id(self.emapper.find_next())
         if matches[2]:
             event.set_description(matches[2])
         self.parse_person_event(event,2)
@@ -2120,7 +2149,7 @@ class GedcomParser:
     def func_person_refn(self,matches,state):
         if intRE.match(matches[2]):
             try:
-                self.refn[self.person.get_handle()] = int(matches[2])
+                self.refn[self.person.handle] = int(matches[2])
             except:
                 pass
 
@@ -2147,9 +2176,11 @@ class GedcomParser:
             return
         elif ged2gramps.has_key(n):
             event = RelLib.Event()
+            event.set_gramps_id(self.emapper.find_next())
             event.set_type((ged2gramps[n],''))
         else:
             event = RelLib.Event()
+            event.set_gramps_id(self.emapper.find_next())
             val = self.gedsource.tag2gramps(n)
             if val:
                 event.set_type((RelLib.Event.CUSTOM,val))
@@ -2163,7 +2194,7 @@ class GedcomParser:
         self.db.add_event(event, self.trans)
 
         event_ref = RelLib.EventRef()
-        event_ref.set_reference_handle(event.get_handle())
+        event_ref.set_reference_handle(event.handle)
         event_ref.set_role((RelLib.EventRef.PRIMARY,''))
         state.person.add_event_ref(event_ref)
 
