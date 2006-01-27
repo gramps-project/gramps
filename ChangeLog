@@ -15,6 +15,12 @@
 	relations from integer to tuple on upgrade.
 	* src/GrampsDb/_WriteGedcom.py: Convert from tuple to string.
 	* src/GrampsDb/_WriteXML.py: Handle some of new XML.
+	
+	* src/GrampsDb/_ConstXML.py: More XML export fixes.
+	* src/GrampsDb/_GrampsBSDDB.py: More XML export fixes.
+	* src/GrampsDb/_GrampsDbBase.py: More XML export fixes.
+	* src/GrampsDb/_GrampsInMemDB.py: More XML export fixes.
+	* src/GrampsDb/_WriteXML.py: More XML export fixes.
 
 2006-01-25  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: use idle_loop to load data for source

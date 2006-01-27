@@ -706,6 +706,15 @@ class GrampsDbBase(GrampsDBCallback):
         """
         assert False, "Needs to be overridden in the derived class"
 
+    def get_event_from_gramps_id(self,val):
+        """
+        Finds an Event in the database from the passed GRAMPS ID.
+        If no such Event exists, None is returned.
+
+        Needs to be overridden by the derrived class.
+        """
+        assert False, "Needs to be overridden in the derived class"
+
     def get_place_from_gramps_id(self,val):
         """finds a Place in the database from the passed gramps' ID.
         If no such Place exists, a new Person is added to the database.
@@ -972,6 +981,14 @@ class GrampsDbBase(GrampsDBCallback):
             return self._all_handles(self.repository_map)
         return []
 
+    def get_gramps_ids(self,obj_key):
+        """
+        Returns the list of gramps IDs contained within the database
+        for the objects of the obj_key type.
+        The function must be overridden in the derived class.
+        """
+        assert False, "Needs to be overridden in the derived class"
+       
     def _validated_id_prefix(self, val, default):
         if val:
             try:

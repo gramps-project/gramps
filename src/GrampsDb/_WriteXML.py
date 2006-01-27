@@ -53,6 +53,9 @@ import RelLib
 import Date
 from QuestionDialog import ErrorDialog
 import _ConstXML
+from _GrampsDbBase import \
+     PERSON_KEY,FAMILY_KEY,SOURCE_KEY,EVENT_KEY,\
+     MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY
 
 #-------------------------------------------------------------------------
 #
@@ -67,7 +70,7 @@ except:
     _gzip_ok = 0
 
 
-_xml_version = "1.0.0"
+_xml_version = "1.1.0"
 
 #-------------------------------------------------------------------------
 #
@@ -143,8 +146,8 @@ class XmlWriter:
         if os.path.isdir(base):
             if not os.access(base,os.W_OK) or not os.access(base,os.R_OK):
                 ErrorDialog(_('Failure writing %s') % filename,
-                            _("The database cannot be saved because you do not "
-                              "have permission to write to the directory. "
+                            _("The database cannot be saved because you do "
+                              "not have permission to write to the directory. "
                               "Please make sure you have write access to the "
                               "directory and try again."))
                 return 0
@@ -152,8 +155,8 @@ class XmlWriter:
         if os.path.exists(filename):
             if not os.access(filename,os.W_OK):
                 ErrorDialog(_('Failure writing %s') % filename,
-                            _("The database cannot be saved because you do not "
-                              "have permission to write to the file. "
+                            _("The database cannot be saved because you do "
+                              "not have permission to write to the file. "
                               "Please make sure you have write access to the "
                               "file and try again."))
                 return 0
@@ -243,14 +246,17 @@ class XmlWriter:
                 self.g.write(' default="%s" home="_%s">\n' %
                              (person.gramps_id,person.handle))
 
-            keys = self.db.get_person_handles(sort_handles=False)
-            sorted_keys = []
-            for key in keys:
-                person = self.db.get_person_from_handle (key)
-                sorted_keys.append ((person.gramps_id, person))
-            sorted_keys.sort ()
+            # keys = self.db.get_person_handles(sort_handles=False)
+            # sorted_keys = []
+            # for key in keys:
+            #     person = self.db.get_person_from_handle (key)
+            #     sorted_keys.append ((person.gramps_id, person))
+            # sorted_keys.sort ()
+            sorted_keys = self.db.get_gramps_ids(PERSON_KEY)
+            sorted_keys.sort()
 
-            for (gramps_id, person) in sorted_keys:
+            for gramps_id in sorted_keys:
+                person = self.db.get_person_from_gramps_id(gramps_id)
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count += 1
@@ -274,13 +280,15 @@ class XmlWriter:
                 
                 self.dump_ordinance("baptism",person.get_lds_baptism(),3)
                 self.dump_ordinance("endowment",person.get_lds_endowment(),3)
-                self.dump_ordinance("sealed_to_parents",person.get_lds_sealing(),3)
+                self.dump_ordinance("sealed_to_parents",
+                                    person.get_lds_sealing(),3)
 
                 self.write_media_list(person.get_media_list())
 
                 if len(person.get_address_list()) > 0:
                     for address in person.get_address_list():
-                        self.g.write('      <address%s>\n' % conf_priv(address))
+                        self.g.write('      <address%s>\n'
+                                     % conf_priv(address))
                         self.write_date(address.get_date_object(),4)
                         self.write_line("street",address.get_street(),4)
                         self.write_line("city",address.get_city(),4)
@@ -301,17 +309,15 @@ class XmlWriter:
                     if alt[1][0] != RelLib.Person.CHILD_BIRTH:
                         mrel=' mrel="%s"' % _ConstXML.str_for_xml(
                             _ConstXML.child_relations,alt[1])
-                        # const.child_rel_notrans[alt[1]]
                     else:
                         mrel=''
                     if alt[2][0] != RelLib.Person.CHILD_BIRTH:
                         frel=' frel="%s"' % _ConstXML.str_for_xml(
                             _ConstXML.child_relations,alt[2])
-                        # const.child_rel_notrans[alt[2]]
                     else:
                         frel=''
-                    self.g.write("      <childof hlink=\"%s\"%s%s/>\n" % \
-                            ("_"+alt[0], mrel, frel))
+                    self.g.write('      <childof hlink="_%s"%s%s/>\n' % \
+                            (alt[0], mrel, frel))
 
                 for family_handle in person.get_family_handle_list():
                     self.write_ref("parentin",family_handle,3)
@@ -326,15 +332,17 @@ class XmlWriter:
         if family_len > 0:
             self.g.write("  <families>\n")
 
-            keys = self.db.get_family_handles()
-            sorted_keys = []
-            for key in keys:
-                 family = self.db.get_family_from_handle(key)
-                 value = (family.get_gramps_id (), family)
-                 sorted_keys.append (value)
+##             keys = self.db.get_family_handles()
+##             sorted_keys = []
+##             for key in keys:
+##                  family = self.db.get_family_from_handle(key)
+##                  value = (family.get_gramps_id (), family)
+##                  sorted_keys.append (value)
 
+            sorted_keys = self.db.get_gramps_ids(FAMILY_KEY)
             sorted_keys.sort ()
-            for (gramps_id, family) in sorted_keys:
+            for gramps_id in sorted_keys:
+                family = self.db.get_family_from_gramps_id(gramps_id)
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1
@@ -348,7 +356,8 @@ class XmlWriter:
                     self.write_ref("mother",mhandle,3)
                 for event_ref in family.get_event_ref_list():
                     self.dump_event_ref(event_ref,3)
-                self.dump_ordinance("sealed_to_spouse",family.get_lds_sealing(),3)
+                self.dump_ordinance("sealed_to_spouse",
+                                    family.get_lds_sealing(),3)
 
                 self.write_media_list(family.get_media_list())
 
@@ -364,14 +373,16 @@ class XmlWriter:
 
         if event_len > 0:
             self.g.write("  <events>\n")
-            keys = self.db.get_event_handles()
-            sorted_keys = []
-            for key in keys:
-                 event = self.db.get_event_from_handle(key)
-                 sorted_keys.append((event.gramps_id, event))
+##             keys = self.db.get_event_handles()
+##             sorted_keys = []
+##             for key in keys:
+##                  event = self.db.get_event_from_handle(key)
+##                  sorted_keys.append((event.gramps_id, event))
+            sorted_keys = self.db.get_gramps_ids(EVENT_KEY)
             sorted_keys.sort ()
             
-            for (gramps_id, event) in sorted_keys:
+            for gramps_id in sorted_keys:
+                event = self.db.get_event_from_gramps_id(gramps_id)
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1
@@ -380,16 +391,15 @@ class XmlWriter:
 
         if source_len > 0:
             self.g.write("  <sources>\n")
-            keys = self.db.get_source_handles ()
+            #keys = self.db.get_source_handles ()
+            keys = self.db.get_gramps_ids(SOURCE_KEY)
             keys.sort ()
             for key in keys:
-                source = self.db.get_source_from_handle(key)
+                source = self.db.get_source_from_gramps_id(key)
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1
-                self.g.write("    <source id=\"%s\" handle=\"%s\" change=\"%d\">\n" %
-                             (source.get_gramps_id(), "_"+source.get_handle(),
-                              source.get_change_time()))
+                self.write_primary_tag("source",source,2)
                 self.write_force_line("stitle",source.get_title(),3)
                 self.write_line("sauthor",source.get_author(),3)
                 self.write_line("spubinfo",source.get_publication_info(),3)
@@ -397,17 +407,19 @@ class XmlWriter:
                 if source.get_note() != "":
                     self.write_note("note",source.get_note_object(),3)
                 self.write_media_list(source.get_media_list())
+                self.write_reporef_list(source.get_reporef_list())
                 self.write_data_map(source.get_data_map())
                 self.g.write("    </source>\n")
             self.g.write("  </sources>\n")
 
         if place_len > 0:
             self.g.write("  <places>\n")
-            keys = self.db.get_place_handles()
+            #keys = self.db.get_place_handles()
+            keys = self.db.get_gramps_ids(PLACE_KEY)
             keys.sort ()
             for key in keys:
                 try:
-                    place = self.db.get_place_from_handle(key)
+                    place = self.db.get_place_from_gramps_id(key)
                     if self.callback and count % delta == 0:
                         self.callback(float(count)/float(total))
                     self.write_place_obj(place)
@@ -419,22 +431,24 @@ class XmlWriter:
 
         if len(objList) > 0:
             self.g.write("  <objects>\n")
-            keys = self.db.get_media_object_handles()
-            sorted_keys = []
-            for key in keys:
-                obj = self.db.get_object_from_handle (key)
-                value = (obj.get_gramps_id (), obj)
-                sorted_keys.append (value)
+            #keys = self.db.get_media_object_handles()
+            sorted_keys = self.db.get_gramps_ids(MEDIA_KEY)
+##             sorted_keys = []
+##             for key in keys:
+##                 obj = self.db.get_object_from_handle (key)
+##                 value = (obj.get_gramps_id (), obj)
+##                 sorted_keys.append (value)
 
             sorted_keys.sort ()
-            for (gramps_id, obj) in sorted_keys:
+            for gramps_id in sorted_keys:
+                obj = self.db.get_object_from_gramps_id(gramps_id)
                 self.write_object(obj)
             self.g.write("  </objects>\n")
 
         if len(self.db.get_bookmarks()) > 0:
             self.g.write("  <bookmarks>\n")
             for person_handle in self.db.get_bookmarks():
-                self.g.write('    <bookmark hlink="%s"/>\n' % ("_"+person_handle))
+                self.g.write('    <bookmark hlink="_%s"/>\n' % person_handle)
             self.g.write("  </bookmarks>\n")
 
         if len(self.db.name_group) > 0:
@@ -509,11 +523,11 @@ class XmlWriter:
             role_text = ''
 
         if eventref.get_note() == "":
-            started = self.write_ref('eventref',eventref.ref,index,
-                       close=True,extra_text=priv_text+role_text)
+            self.write_ref('eventref',eventref.ref,index,
+                           close=True,extra_text=priv_text+role_text)
         else:
-            started = self.write_ref('eventref',eventref.ref,index,
-                       close=False,extra_text=priv_text+role_text)
+            self.write_ref('eventref',eventref.ref,index,
+                           close=False,extra_text=priv_text+role_text)
             self.write_note("note",eventref.get_note_object(),index+1)
             self.g.write('%s</eventref>\n' % ("  "*index))
 
@@ -769,6 +783,8 @@ class XmlWriter:
 
     def dump_location(self,loc):
         "Writes the location information to the output file"
+        if loc.is_empty():
+            return
         city = self.fix(loc.get_city())
         parish = self.fix(loc.get_parish())
         state = self.fix(loc.get_state())
@@ -843,41 +859,73 @@ class XmlWriter:
             self.g.write('%s<data_item key="%s" value="%s"/>' %
                          (sp,key,datamap[key]))
 
+    def write_reporef_list(self,rrlist):
+        for reporef in rrlist:
+            if not reporef or not reporef.ref:
+                continue
+
+            if reporef.call_number == "":
+                callno_text = ''
+            else:
+                callno_text = ' callno="%s"' % reporef.call_number
+                
+            mtype = _ConstXML.str_for_xml(_ConstXML.source_media_types,
+                                         reporef.media_type)
+            if mtype:
+                type_text = ' type="%s"' % mtype
+            else:
+                type_text = ''
+
+            if reporef.get_note() == "":
+                self.write_ref('reporef',reporef.ref,3,
+                               close=True,extra_text=callno_text+type_text)
+            else:
+                self.write_ref('reporef',reporef.ref,index,
+                               close=False,extra_text=callno_text+type_text)
+                self.write_note("note",reporef.get_note_object(),4)
+                self.g.write('%s</reporef>\n' % ("  "*index))            
+            
     def write_url_list(self,list):
         for url in list:
-            self.g.write('      <url priv="%d" href="%s"' % \
-                         (url.get_privacy(),self.fix(url.get_path())))
+            url_type = _ConstXML.str_for_xml(_ConstXML.url_types,
+                                             url.get_type())
+            if url_type:
+                type_text = ' type="%s"' % url_type
+            else:
+                type_text = ''
+            priv_text = conf_priv(url)
             if url.get_description() != "":
-                self.g.write(' description="%s"' % self.fix(url.get_description()))
-            self.g.write('/>\n')
+                desc_text = ' description="%s"' % self.fix(
+                    url.get_description())
+            else:
+                desc_text = ''
+            path_text = '  href="%s"' % self.fix(url.get_path())
+            self.g.write('      <url%s%s%s%s/>\n' % \
+                         (priv_text,path_text,type_text,desc_text))
 
     def write_place_obj(self,place):
+        self.write_primary_tag("placeobj",place,2)
+
         title = self.fix(place.get_title())
         longitude = self.fix(place.get_longitude())
         lat = self.fix(place.get_latitude())
         handle = place.get_gramps_id()
         main_loc = place.get_main_location()
-        llen = len(place.get_alternate_locations()) + len(place.get_url_list()) + \
-               len(place.get_media_list()) + len(place.get_source_references())
+        llen = len(place.get_alternate_locations()) \
+               + len(place.get_url_list()) + \
+               len(place.get_media_list()) + \
+               len(place.get_source_references())
                                                       
         ml_empty = main_loc.is_empty()
         note = place.get_note()
 
         if title == "":
             title = self.fix(self.build_place_title(place.get_main_location()))
-    
-        self.g.write('    <placeobj id="%s" handle="%s" change="%d" title="%s"' %
-                     (handle,"_"+place.get_handle(),place.get_change_time(),title))
-
-        if longitude or lat or not ml_empty or llen > 0 or note:
-            self.g.write('>\n')
-        else:
-            self.g.write('/>\n')
-            return
+            self.write_line("title",title,3)
     
         if longitude or lat:
-            self.g.write('      <coord long="%s" lat="%s"/>\n' % (longitude,lat))
-
+            self.g.write('      <coord long="%s" lat="%s"/>\n'
+                         % (longitude,lat))
         self.dump_location(main_loc)
         for loc in place.get_alternate_locations():
             self.dump_location(loc)
@@ -890,31 +938,28 @@ class XmlWriter:
         self.g.write("    </placeobj>\n")
 
     def write_object(self,obj):
+        self.write_primary_tag("object",obj,2)
         handle = obj.get_gramps_id()
         mime_type = obj.get_mime_type()
         path = obj.get_path()
+        desc = obj.get_description()
+        if desc:
+            desc_text = ' description="%s"' % self.fix(desc)
+        else:
+            desc_text = ''
         if self.strip_photos:
             path = os.path.basename(path)
-        self.g.write('    <object id="%s" handle="%s" change="%d" src="%s" mime="%s"' %
-                     (handle,"_"+obj.get_handle(),obj.get_change_time(),path,mime_type))
-        self.g.write(' description="%s"' % self.fix(obj.get_description()))
-        alist = obj.get_attribute_list()
-        note = obj.get_note()
+        self.g.write('    <file src="%s" mime="%s"%s/>\n'
+                     % (path,mime_type,desc_text))
+        self.write_attribute_list(obj.get_attribute_list())
+        if obj.get_note() != "":
+            self.write_note("note",obj.get_note_object(),3)
         dval = obj.get_date_object()
-        slist = obj.get_source_references()
-        if len(alist) == 0 and len(slist) == 0 and note == "" \
-               and not dval.is_empty():
-            self.g.write('/>\n')
-        else:
-            self.g.write('>\n')
-            self.write_attribute_list(alist)
-            if note != "":
-                self.write_note("note",obj.get_note_object(),3)
-            if not dval.is_empty():
-                self.write_date(dval,3)
-            for s in slist:
-                self.dump_source_ref(s,3)
-            self.g.write("    </object>\n")
+        if not dval.is_empty():
+            self.write_date(dval,3)
+        for s in obj.get_source_references():
+            self.dump_source_ref(s,3)
+        self.g.write("    </object>\n")
 
 #-------------------------------------------------------------------------
 #
