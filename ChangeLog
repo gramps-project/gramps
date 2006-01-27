@@ -1,3 +1,6 @@
+2006-01-27  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcomp.py: preselect gramps ids for events
+
 2006-01-26  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels.py: optimization
 	* src/DisplayTabs.py: improved docs
