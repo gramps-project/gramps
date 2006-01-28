@@ -857,10 +857,10 @@ class GrampsBSDDB(GrampsDbBase):
         return table.keys()
 
     def get_surname_list(self):
-        vals = [ (strxfrm(unicode(val)),unicode(val))
+        vals = [ (locale.strxfrm(unicode(val)),unicode(val))
                  for val in set(self.surnames.keys()) ]
         vals.sort()
-        return [item[0] for item in vals]
+        return [item[1] for item in vals]
 
     def get_person_event_type_list(self):
         vals = [ unicode(val) for val in set(self.eventnames.keys()) ]
