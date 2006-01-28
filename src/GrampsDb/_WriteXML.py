@@ -245,8 +245,9 @@ class XmlWriter:
             self.g.write("  <people")
             person = self.db.get_default_person()
             if person:
-                self.g.write(' default="%s" home="_%s">\n' %
+                self.g.write(' default="%s" home="_%s"' %
                              (person.gramps_id,person.handle))
+            self.g.write('>\n')
 
             sorted_keys = self.db.get_gramps_ids(PERSON_KEY)
             sorted_keys.sort()
@@ -480,7 +481,7 @@ class XmlWriter:
         if repo.get_note() != "":
             self.write_note("note",repo.get_note_object(),index+1)
         #name
-        self.write_line('name',repo.name,index+1)
+        self.write_line('rname',repo.name,index+1)
         rtype = _ConstXML.str_for_xml(_ConstXML.repository_types,repo.type)
         if rtype:
             self.write_line('type',rtype,index+1)
@@ -618,7 +619,7 @@ class XmlWriter:
             marker_text = ''
         priv_text = conf_priv(obj)
         change_text = ' change="%d"' % obj.get_change_time()
-        handle_id_text = ' handle="_%s" id="%s"' % (obj.handle,obj.gramps_id)
+        handle_id_text = ' id="%s" handle="_%s"' % (obj.gramps_id,obj.handle)
         obj_text = '%s<%s' % (sp,tagname)
 
         self.g.write(obj_text + handle_id_text + priv_text + marker_text +
@@ -631,7 +632,7 @@ class XmlWriter:
             rel = _ConstXML.str_for_xml(_ConstXML.family_relations,
                                         family.get_relationship())
             if rel != "":
-                self.g.write('%s<rel type="%s"/>\n' % (sp,rel) )
+                self.g.write('  %s<rel type="%s"/>\n' % (sp,rel) )
 
     def write_last(self,name,indent=1):
         p = name.get_surname_prefix()
@@ -871,7 +872,7 @@ class XmlWriter:
             mtype = _ConstXML.str_for_xml(_ConstXML.source_media_types,
                                          reporef.media_type)
             if mtype:
-                type_text = ' type="%s"' % mtype
+                type_text = ' medium="%s"' % mtype
             else:
                 type_text = ''
 
@@ -922,7 +923,7 @@ class XmlWriter:
 
         if title == "":
             title = self.fix(self.build_place_title(place.get_main_location()))
-            self.write_line("title",title,index+1)
+            self.write_line("ptitle",title,index+1)
     
         if longitude or lat:
             self.g.write('%s<coord long="%s" lat="%s"/>\n'

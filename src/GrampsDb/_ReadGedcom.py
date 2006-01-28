@@ -70,6 +70,7 @@ from _GedcomInfo import *
 from _GedTokens import *
 from QuestionDialog import ErrorDialog, WarningDialog
 from _GrampsDbBase import EVENT_KEY
+import _ConstXML
 
 addr_re  = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)\s+(\d+)\s*(.*)')
 addr2_re = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)\s+(\d+)')
@@ -976,14 +977,16 @@ class GedcomParser:
             else:
                 self.barf(1)
 
-    def parse_repo_ref_caln(self, repo, level):
+    def parse_repo_ref_caln(self, reporef, level):
         while True:
             matches = self.get_next()
             if int(matches[0]) < level:
                 self.backup()
                 return
             elif matches[1] == TOKEN_MEDI:
-                repo.set_media_type(matches[2])
+                media_type = _ConstXML.tuple_from_xml(
+                    _ConstXML.source_media_types,matches[2])
+                reporef.set_media_type(media_type)
             else:
                 self.barf(1)
                 
