@@ -3,7 +3,7 @@
 <!-- 
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2005  Donald N. Allingham
+# Copyright (C) 2005-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -62,6 +62,12 @@
           </element></zeroOrMore>
       </element></optional>
 
+      <optional><element name="events">
+          <zeroOrMore><element name="event">
+              <ref name="event-content"/>
+          </element></zeroOrMore>
+      </element></optional>
+
       <optional><element name="sources">
           <zeroOrMore><element name="source">
               <ref name="source-content"/>
@@ -108,14 +114,12 @@
   <define name="primary-object">
     <attribute name="id"><text/></attribute>
     <attribute name="handle"><data type="ID"/></attribute>
-    <attribute name="change"><text/></attribute>
     <optional><attribute name="priv"><choice>
         <value>0</value>
         <value>1</value>
     </choice></attribute></optional>
-    <optional><element name="marker">
-        <attribute name="value"><text/></attribute>
-    </element></optional>
+    <optional><attribute name="marker"><text/></attribute></optional>
+    <attribute name="change"><text/></attribute>
   </define>
 
   <define name="person-content">
@@ -265,13 +269,9 @@
 
   <define name="family-content">
     <ref name="primary-object"/>
-    <optional><attribute name="type"><choice>
-        <value>Married</value>
-        <value>Unmarried</value>
-        <value>Civil Union</value>
-        <value>Unknown</value>
-        <value>Other</value>
-    </choice></attribute></optional>
+    <optional><element name="rel">
+        <attribute name="type"><text/></attribute>
+    </element></optional>
     <optional><element name="father">
         <attribute name="hlink"><data type="IDREF"/></attribute>
     </element></optional>
@@ -304,7 +304,7 @@
 
   <define name="event-content">
     <ref name="primary-object"/>
-    <attribute name="type"><text/></attribute>
+    <element name="type"><text/></element>
     <optional><ref name="date-content"/></optional>
     <optional><element name="place">
         <attribute name="hlink"><data type="IDREF"/></attribute>
@@ -345,7 +345,7 @@
 
   <define name="place-content">
     <ref name="primary-object"/>
-    <attribute name="title"><text/></attribute>
+    <optional><element name="ptitle"><text/></element></optional>
     <optional><element name="coord">
         <attribute name="long"><data type="float"/></attribute>
         <attribute name="lat"><data type="float"/></attribute>
@@ -376,9 +376,11 @@
 
   <define name="object-content">
     <ref name="primary-object"/>
-    <attribute name="src"><text/></attribute>
-    <attribute name="mime"><text/></attribute>
-    <attribute name="description"><text/></attribute>
+    <element name="file">
+        <attribute name="src"><text/></attribute>
+        <attribute name="mime"><text/></attribute>
+        <attribute name="description"><text/></attribute>
+    </element>
     <zeroOrMore><element name="attribute">
         <ref name="attribute-content"/>
     </element></zeroOrMore>

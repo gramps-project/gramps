@@ -7,6 +7,7 @@
 	* src/GrampsDb/_ReadGedcom.py (parse_repo_ref_caln): Properly set
 	media type.
 	* src/GrampsDb/_WriteXML.py: More XML updates.
+	* doc/grampsxml.rng: Update to reflect new XML.
 
 2006-01-27  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcomp.py: preselect gramps ids for events
