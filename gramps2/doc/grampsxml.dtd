@@ -50,8 +50,8 @@ DATABASE
 	bookmarks
 -->
 
-<!ELEMENT database (header, people?, families?, sources?, places?, objects?, 
-                    bookmarks?)>
+<!ELEMENT database (header, people?, families?, events?, sources?, 
+                    places?, objects?, repositories?, bookmarks?)>
 <!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.1.0/">
 
 <!--	************************************************************
@@ -93,12 +93,13 @@ PEOPLE
 
 <!ELEMENT person (gender, name*, nick?, eventref*, lds_ord*,
                   objref*, address*, attribute*, url*,
-                  childof*,  parentin*, note?, sourceref*, marker?)>
+                  childof*,  parentin*, note?, sourceref*)>
 <!ATTLIST person
         id        CDATA #REQUIRED
         handle    ID    #REQUIRED
-        change    CDATA #REQUIRED
         priv      (0|1) #IMPLIED
+	marker    CDATA #IMPLIED
+        change    CDATA #REQUIRED
 >
 
 <!--
@@ -157,14 +158,14 @@ FAMILY
 
 <!ELEMENT families (family)*>
 
-<!ELEMENT family (father?,mother?,eventref*,lds_ord*,
-                  objref*,child*,attribute*,note?,sourceref*,marker?)>
+<!ELEMENT family (rel?,father?,mother?,eventref*,lds_ord*,
+                  objref*,child*,attribute*,note?,sourceref*)>
 <!ATTLIST family
-        id       CDATA #REQUIRED
-        handle   ID    #REQUIRED
-        change   CDATA #REQUIRED
-        priv     (0|1) #IMPLIED
-        type     CDATA #IMPLIED
+        id        CDATA #REQUIRED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
+	marker    CDATA #IMPLIED
+        change    CDATA #REQUIRED
 >
 
 <!ELEMENT father EMPTY>
@@ -176,18 +177,24 @@ FAMILY
 <!ELEMENT child EMPTY>
 <!ATTLIST child hlink IDREF #REQUIRED>
 
+<!ELEMENT type (#PCDATA)>
+
+<!ELEMENT rel EMPTY>
+<!ATTLIST rel type CDATA #REQUIRED>
+
 <!--	************************************************************
 EVENT
 -->
+<!ELEMENT events (event)*>
 
-<!ELEMENT event ((daterange|dateval|datestr)?,place?,cause?,
-                 description?,note?,sourceref*,objref*,marker?)>
+<!ELEMENT event (type?,(daterange|dateval|datestr)?,place?,cause?,
+                 description?,note?,sourceref*,objref*)>
 <!ATTLIST event 
-        id       CDATA #REQUIRED
-        handle   ID    #REQUIRED
-        change   CDATA #REQUIRED
-        priv     (0|1) #IMPLIED
-        type     CDATA #IMPLIED
+        id        CDATA #REQUIRED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
+	marker    CDATA #IMPLIED
+        change    CDATA #REQUIRED
 >
 
 <!--	************************************************************
@@ -196,12 +203,13 @@ SOURCES
 
 <!ELEMENT sources (source)*>
 <!ELEMENT source (stitle?,sauthor?,spubinfo?,sabbrev?,
-                  note?,objref*,data_item*,reporef*,marker?)>
+                  note?,objref*,data_item*,reporef*)>
 <!ATTLIST source
-        id     CDATA #REQUIRED
-        handle ID    #REQUIRED
-        change CDATA #REQUIRED
-        priv   (0|1) #IMPLIED
+        id        CDATA #REQUIRED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
+	marker    CDATA #IMPLIED
+        change    CDATA #REQUIRED
 >
 <!ELEMENT stitle   (#PCDATA)>
 <!ELEMENT sauthor  (#PCDATA)>
@@ -214,14 +222,16 @@ PLACES
 
 <!ELEMENT places (placeobj)*>
 
-<!ELEMENT placeobj (coord?,location*,objref*,url*,note?,sourceref*,marker?)>
+<!ELEMENT placeobj (ptitle?,coord?,location*,objref*,url*,note?,sourceref*)>
 <!ATTLIST placeobj
-        id     CDATA #REQUIRED
-        handle ID    #REQUIRED
-        change CDATA #REQUIRED
-        priv   (0|1) #IMPLIED
-        title  CDATA #REQUIRED
+        id        CDATA #REQUIRED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
+	marker    CDATA #IMPLIED
+        change    CDATA #REQUIRED
 >
+
+<!ELEMENT ptitle   (#PCDATA)>
 
 <!ELEMENT coord EMPTY>
 <!ATTLIST coord
@@ -246,13 +256,18 @@ OBJECTS
 
 <!ELEMENT objects (object)*>
 
-<!ELEMENT object (attribute*,note?,(daterange|dateval|datestr)?,
-		  sourceref*,marker?)>
+<!ELEMENT object (file,attribute*,note?,(daterange|dateval|datestr)?,
+		  sourceref*)>
 <!ATTLIST object
-        id          CDATA #REQUIRED
-        handle      ID    #REQUIRED
-        change      CDATA #REQUIRED
-        priv        (0|1) #IMPLIED
+        id        CDATA #REQUIRED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
+	marker    CDATA #IMPLIED
+        change    CDATA #REQUIRED
+>
+
+<!ELEMENT file EMPTY>
+<!ATTLIST file
         src         CDATA #REQUIRED
         mime        CDATA #REQUIRED
         description CDATA #REQUIRED
@@ -264,13 +279,16 @@ REPOSITORIES
 
 <!ELEMENT repositories (repository)*>
 
-<!ELEMENT repository (name,type,address*,url*,note?,marker?)>
+<!ELEMENT repository (rname,type,address*,url*,note?)>
 <!ATTLIST repository
-        id          CDATA #REQUIRED
-        handle      ID    #REQUIRED
-        change      CDATA #REQUIRED
-        priv        (0|1) #IMPLIED
+        id        CDATA #REQUIRED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
+	marker    CDATA #IMPLIED
+        change    CDATA #REQUIRED
 >
+
+<!ELEMENT rname   (#PCDATA)>
 
 
 <!--	************************************************************

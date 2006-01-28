@@ -3,6 +3,11 @@
 	* src/GrampsDb/_GrampsBSDDB.py: Correct duplicate event IDs on upgrade.
 	* src/GrampsDb/_WriteXML.py: More XML updates.
 
+	* doc/grampsxml.dtd: Update to reflect new XML.
+	* src/GrampsDb/_ReadGedcom.py (parse_repo_ref_caln): Properly set
+	media type.
+	* src/GrampsDb/_WriteXML.py: More XML updates.
+
 2006-01-27  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcomp.py: preselect gramps ids for events
 
