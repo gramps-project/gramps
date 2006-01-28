@@ -73,7 +73,7 @@ class AttrEmbedList(EmbeddedList):
 
     _HANDLE_COL = -1
 
-    column_names = [
+    _column_names = [
         (_('Type'),0),
         (_('Value'),1),
         ]
@@ -93,7 +93,7 @@ class ChildEmbedList(EmbeddedList):
 
     _HANDLE_COL = 10
 
-    column_names = [
+    _column_names = [
         (_('#'),0) ,
         (_('ID'),1) ,
         (_('Name'),9),
@@ -119,7 +119,7 @@ class ChildEmbedList(EmbeddedList):
         for pair in self.column_order():
             if not pair[0]:
                 continue
-            name = self.column_names[pair[1]][0]
+            name = self._column_names[pair[1]][0]
             if pair[1] == 4 or pair[1] == 5:
                 render = TypeCellRenderer(Utils.child_relations)
                 column = gtk.TreeViewColumn(name, render, text=pair[1])
@@ -129,7 +129,7 @@ class ChildEmbedList(EmbeddedList):
 
             column.set_resizable(True)
             column.set_min_width(40)
-            column.set_sort_column_id(self.column_names[pair[1]][1])
+            column.set_sort_column_id(self._column_names[pair[1]][1])
             self.columns.append(column)
             self.tree.append_column(column)
 
@@ -144,6 +144,9 @@ class ChildEmbedList(EmbeddedList):
         else:
             self.tab_image.hide()
             self.label.set_text(self.tab_name)
+
+    def is_empty(self):
+        return len(self.family.get_child_handle_list()) == 0
 
     def get_data(self):
         return self.family
