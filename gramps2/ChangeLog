@@ -1,4 +1,6 @@
 2006-01-28  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: add SourceRefModel
+	* src/EditFamily.py: fix variable names
 	* src/GrampsDb/_GrampsBSDDB.py: qualify strxfrm
 
 2006-01-27  Alex Roitman  <shura@gramps-project.org>

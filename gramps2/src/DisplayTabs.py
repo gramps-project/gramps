@@ -239,7 +239,6 @@ class ButtonTab(GrampsTab):
         """
         print "Uncaught Edit clicked"
 
-
 class EmbeddedList(ButtonTab):
     """
     This class provides the base class for all the list tabs. It
@@ -444,7 +443,6 @@ class EventEmbedList(EmbeddedList):
         if ref:
             print ref
 
-
 #-------------------------------------------------------------------------
 #
 # SourceBackRefList
@@ -512,7 +510,6 @@ class SourceBackRefList(EmbeddedList):
         if ref:
             print ref
 
-
 #-------------------------------------------------------------------------
 #
 # DataEmbedList
@@ -570,7 +567,7 @@ class NoteTab(GrampsTab):
         how the label should be displayed.
         """
         buf = self.text.get_buffer()
-        return len(buf.get_text(buf.get_start_iter(),buf.get_end_iter()))>0
+        return len(buf.get_text(buf.get_start_iter(),buf.get_end_iter())) == 0
 
     def build_interface(self):
         self.text = gtk.TextView()
@@ -671,6 +668,8 @@ class SourceEmbedList(EmbeddedList):
     _column_names = [
         (_('ID'),0),
         (_('Title'),1),
+        (_('Author'),2),
+        (_('Page'),3),
         ]
     
     def __init__(self,dbstate,uistate,track,obj):
@@ -711,12 +710,13 @@ class ChildModel(gtk.ListStore):
 
     _HANDLE_COL = -8
 
-    def __init__(self, family,db):
+    def __init__(self, family, db):
         self.family = family
-        gtk.ListStore.__init__(self,int,str,str,str,str,str,str,str,str,str,str,str,int,int)
+        gtk.ListStore.__init__(self,int,str,str,str,str,str,
+                               str,str,str,str,str,str,int,int)
         self.db = db
         index = 1
-        for child_handle in family.get_child_handle_list():
+        for child_handle in self.get_data():
             child = db.get_person_from_handle(child_handle)
             self.append(row=[index,
                              child.get_gramps_id(),
@@ -734,6 +734,9 @@ class ChildModel(gtk.ListStore):
                              self.column_death_sort(child),
                              ])
             index += 1
+
+    def get_data(self):
+        return self.family.get_child_handle_list()
 
     def display_rel(self,rtype):
         if type(rtype) == tuple:
@@ -900,7 +903,26 @@ class DataModel(gtk.ListStore):
 
 #-------------------------------------------------------------------------
 #
-# SourceRefModel
+# DataModel
+#
+#-------------------------------------------------------------------------
+class SourceRefModel(gtk.ListStore):
+
+    def __init__(self,sref_list,db):
+        gtk.ListStore.__init__(self,str,str,str,str)
+        self.db = db
+        for sref in sref_list:
+            src = self.db.get_source_from_handle(sref.ref)
+            self.append(row=[
+                sref.ref,
+                src.title,
+                src.author,
+                sref.page
+                ])
+
+#-------------------------------------------------------------------------
+#
+# SourceBacRefModel
 #
 #-------------------------------------------------------------------------
 class SourceBackRefModel(gtk.ListStore):
