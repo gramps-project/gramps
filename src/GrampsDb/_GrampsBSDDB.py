@@ -1584,9 +1584,9 @@ class GrampsBSDDB(GrampsDbBase):
 #            data = cursor.next()
 #        cursor.close()
 
-            self.transaction_commit(trans,"Upgrade to DB version 9")
-            # Close secodnary index
-            self.reference_map_primary_map.close()
+        self.transaction_commit(trans,"Upgrade to DB version 9")
+        # Close secodnary index
+        self.reference_map_primary_map.close()
         self.metadata.put('version',9)
         self.metadata.sync()
         print "Done upgrading to DB version 9"
