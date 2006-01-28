@@ -395,7 +395,7 @@
 
   <define name="repository-content">
     <ref name="primary-object"/>
-    <optional><element name="name"><text/></element></optional>
+    <optional><element name="rname"><text/></element></optional>
     <optional><element name="type"><text/></element></optional>
     <zeroOrMore><element name="address">
         <ref name="address-content"/>

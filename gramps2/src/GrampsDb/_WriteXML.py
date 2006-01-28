@@ -471,15 +471,13 @@ class XmlWriter:
         if source.get_note() != "":
             self.write_note("note",source.get_note_object(),index+1)
         self.write_media_list(source.get_media_list(),index+1)
-        self.write_reporef_list(source.get_reporef_list(),index+1)
         self.write_data_map(source.get_data_map())
+        self.write_reporef_list(source.get_reporef_list(),index+1)
         self.g.write("%s</source>\n" % sp)
 
     def write_repository(self,repo,index=1):
         sp = "  "*index
         self.write_primary_tag("repository",repo,index)
-        if repo.get_note() != "":
-            self.write_note("note",repo.get_note_object(),index+1)
         #name
         self.write_line('rname',repo.name,index+1)
         rtype = _ConstXML.str_for_xml(_ConstXML.repository_types,repo.type)
@@ -489,6 +487,8 @@ class XmlWriter:
         self.write_address_list(repo,index+1)
         # url list
         self.write_url_list(repo.get_url_list(),index+1)
+        if repo.get_note() != "":
+            self.write_note("note",repo.get_note_object(),index+1)
         self.g.write("%s</repository>\n" % sp)
 
     def write_address_list(self,obj,index=1):
@@ -856,7 +856,7 @@ class XmlWriter:
         
         sp = '  '*indent
         for key in datamap.keys():
-            self.g.write('%s<data_item key="%s" value="%s"/>' %
+            self.g.write('%s<data_item key="%s" value="%s"/>\n' %
                          (sp,key,datamap[key]))
 
     def write_reporef_list(self,rrlist,index=1):
