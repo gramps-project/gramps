@@ -923,7 +923,7 @@ class XmlWriter:
 
         if title == "":
             title = self.fix(self.build_place_title(place.get_main_location()))
-            self.write_line("ptitle",title,index+1)
+        self.write_line("ptitle",title,index+1)
     
         if longitude or lat:
             self.g.write('%s<coord long="%s" lat="%s"/>\n'
@@ -952,7 +952,7 @@ class XmlWriter:
         if self.strip_photos:
             path = os.path.basename(path)
         self.g.write('%s<file src="%s" mime="%s"%s/>\n'
-                     % ("  "*index,path,mime_type,desc_text))
+                     % ("  "*(index+1),path,mime_type,desc_text))
         self.write_attribute_list(obj.get_attribute_list())
         if obj.get_note() != "":
             self.write_note("note",obj.get_note_object(),index+1)
