@@ -75,14 +75,10 @@ class Exporter:
         """
         self.dbstate = dbstate
         self.uistate = uistate
-        # self.parent_window = parent_window
         if self.dbstate.active:
             self.person = self.dbstate.active
         else:
-            pass
-            # FIXME: find_initial_person needs to move into dbstate or db
-            #        and then it will be available here
-            # self.person = self.parent.find_initial_person()
+            self.person = self.dbstate.db.find_initial_person()
 
         self.build_exports()
         self.format_option = None
