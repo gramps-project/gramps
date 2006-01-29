@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,10 +27,16 @@
 #-------------------------------------------------------------------------
 import os
 import sets
-import gtk
 import shutil
 from xml.parsers.expat import ExpatError, ParserCreate
 from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# GTK+ Modules
+#
+#-------------------------------------------------------------------------
+import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -45,6 +51,7 @@ import const
 import Utils
 import DateHandler
 import NameDisplay
+import _ConstXML
 
 #-------------------------------------------------------------------------
 #
@@ -323,6 +330,7 @@ class GrampsParser:
         self.callback = callback
         self.increment = 100
         self.event = None
+        self.eventref = None
         self.name = None
         self.tempDefault = None
         self.home = None
@@ -361,9 +369,13 @@ class GrampsParser:
             "cause"      : (None, self.stop_cause),
             "description": (None, self.stop_description),
             "event"      : (self.start_event, self.stop_event),
+            "type"       : (None, self.stop_type),
+            "witness"    : (self.start_witness,self.stop_witness),
+            "eventref"   : (self.start_eventref,self.stop_eventref),
             "data_item"  : (self.start_data_item, None),
             "families"   : (None, self.stop_families),
             "family"     : (self.start_family, self.stop_family),
+            "rel"        : (self.start_rel, None),
             "father"     : (self.start_father, None),
             "first"      : (None, self.stop_first),
             "gender"     : (None, self.stop_gender),
@@ -380,6 +392,7 @@ class GrampsParser:
             "img"        : (self.start_photo, self.stop_photo),
             "objref"     : (self.start_objref, self.stop_objref),
             "object"     : (self.start_object, self.stop_object),
+            "file"       : (self.start_file, self.stop_file),
             "place"      : (self.start_place, self.stop_place),
             "dateval"    : (self.start_dateval, None),
             "daterange"  : (self.start_daterange, None),
@@ -683,20 +696,13 @@ class GrampsParser:
         take up quite a bit of time"""
         
         loc = RelLib.Location()
-        if attrs.has_key('phone'):
-            loc.phone = attrs['phone']
-        if attrs.has_key('postal'):
-            loc.postal = attrs['postal']
-        if attrs.has_key('city'):
-            loc.city = attrs['city']
-        if attrs.has_key('parish'):
-            loc.parish = attrs['parish']
-        if attrs.has_key('state'):
-            loc.state = attrs['state']
-        if attrs.has_key('county'):
-            loc.county =attrs['county']
-        if attrs.has_key('country'):
-            loc.country = attrs['country']
+        loc.phone = attrs.get('phone','')
+        loc.postal = attrs.get('postal','')
+        loc.city = attrs.get('city','')
+        loc.parish = attrs.get('parish','')
+        loc.state = attrs.bet('state','')
+        loc.county = attrs.get('county','')
+        loc.country = attrs.get('country','')
         if self.locations > 0:
             self.placeobj.add_alternate_locations(loc)
         else:
@@ -704,56 +710,78 @@ class GrampsParser:
             self.locations = self.locations + 1
 
     def start_witness(self,attrs):
-        return
+        # Parse witnesses created by older gramps
         self.in_witness = 1
         self.witness_comment = ""
+        print "in start_witness"
+        if attrs.has_key('name'):
+            note_text = self.event.get_note() + "\n" + \
+                        _("Witness name: %s") % attrs['name']
+            self.event.set_note(note_text)
+            return
+
         if attrs.has_key('hlink'):
-            self.witness = RelLib.Witness(RelLib.Event.ID,
-                                          attrs['hlink'].replace('_',''))
+            person = self.db.find_person_from_handle(
+                attrs['hlink'].replace('_',''),self.trans)
         elif attrs.has_key('ref'):
             person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
-            self.witness = RelLib.Witness(RelLib.Event.ID,person.get_handle())
-        elif attrs.has_key('name'):
-            self.witness = RelLib.Witness(RelLib.Event.NAME,attrs['name'])
+        # Add an EventRef from that person
+        # to this event using ROLE_WITNESS role
+        event_ref = RelLib.EventRef()
+        event_ref.ref = self.event.handle
+        event_ref.role = (RelLib.EventRef.WITNESS,'')
+        person.event_ref_list.append(event_ref)
+        self.db.commit_person(person,self.trans,self.change)
         
     def start_coord(self,attrs):
-        if attrs.has_key('lat'):
-            self.placeobj.set_latitude(attrs['lat'])
-        if attrs.has_key('long'):
-            self.placeobj.set_longitude(attrs['long'])
+        #if attrs.has_key('lat'):
+        self.placeobj.lat = attrs.get('lat','')
+        #if attrs.has_key('long'):
+        self.placeobj.long = attrs.get('long','')
 
     def start_event(self,attrs):
         self.event = RelLib.Event()
-        self.event.set_handle(Utils.create_id())
+        if self.person or self.family:
+            # GRAMPS LEGACY: old events that were written inside
+            # person or family objects.
+            self.event.handle = Utils.create_id()
+            self.event.type = _ConstXML.tuple_from_xml(_ConstXML.events,
+                                                       attrs['type'])
+        else:
+            # This is new event, with handle already existing
+            self.event.handle = attrs['handle'].replace('_','')
+            self.event.conf = int(attrs.get("conf",2))
+            self.event.private = bool(attrs.get("priv"))
         self.db.add_event(self.event,self.trans)
-        etype = self.save_event.get(attrs["type"],RelLib.Event.CUSTOM)
-        if etype == RelLib.Event.CUSTOM:
-            self.event.set_type((etype,attrs["type"]))
-        else:
-            self.event.set_type((etype,u""))
-        if attrs.has_key("conf"):
-            self.event.conf = int(attrs["conf"])
-        else:
-            self.event.conf = 2
-        if attrs.has_key("priv"):
-            self.event.private = int(attrs["priv"])
-        
+
+    def start_eventref(self,attrs):
+        self.eventref = RelLib.EventRef()
+        self.eventref.ref = attrs['hlink'].replace('_','')
+        self.eventref.private = bool(attrs.get('priv'))
+        self.eventref.role = _ConstXML.tuple_from_xml(_ConstXML.event_roles,
+                                            attrs.get('role',''))
+        if self.family:
+            self.family.add_event_ref(self.eventref)
+        elif self.person:
+            # We count here on events being already parsed prior
+            # to parsing people. This will fail if this is not true.
+            event = self.db.get_event_from_handle(self.eventref.ref)
+            print self.eventref.ref
+            print "event", event
+            if event.type[0] == RelLib.Event.BIRTH:
+                self.person.birth_ref = self.eventref
+            elif event.type[0] == RelLib.Event.DEATH:
+                self.person.death_ref = self.eventref
+            else:
+                self.person.add_event_ref(self.eventref)
+
     def start_attribute(self,attrs):
         self.attribute = RelLib.Attribute()
-        if attrs.has_key("conf"):
-            self.attribute.conf = int(attrs["conf"])
-        else:
-            self.attribute.conf = 2
-        if attrs.has_key("priv"):
-            self.attribute.private = int(attrs["priv"])
-
-        atype = self.save_attr.get(attrs["type"],RelLib.Attribute.CUSTOM)
-        if atype == RelLib.Attribute.CUSTOM:
-            self.attribute.set_type((atype,attrs["type"]))
-        else:
-            self.attribute.set_type((atype,u""))
-        if attrs.has_key('value'):
-            self.attribute.set_value(attrs["value"])
+        self.attribute.conf = int(attrs.get("conf",2))
+        self.attribute.private = bool(attrs.get("priv"))
+        self.attribute.type = _ConstXML.tuple_from_xml(_ConstXML.attributes,
+                                                       attrs.get("type",''))
+        self.attribute.value = attrs.get("value",'')
         if self.photo:
             self.photo.add_attribute(self.attribute)
         elif self.object:
@@ -768,12 +796,8 @@ class GrampsParser:
     def start_address(self,attrs):
         self.address = RelLib.Address()
         self.person.add_address(self.address)
-        if attrs.has_key("conf"):
-            self.address.conf = int(attrs["conf"])
-        else:
-            self.address.conf = 2
-        if attrs.has_key("priv"):
-            self.address.private = int(attrs["priv"])
+        self.address.conf = int(attrs.get("conf",2))
+        self.address.private = bool(attrs.get("priv"))
 
     def start_bmark(self,attrs):
         try:
@@ -794,12 +818,12 @@ class GrampsParser:
         except KeyError:
             self.person = self.find_person_by_gramps_id(new_id)
 
-        if attrs.has_key('complete'):
-            try:
-                if int(attrs['complete']):
-                    self.person.set_marker((RelLib.PrimaryObject.MARKER_COMPLETE, ""))
-            except KeyError:
-                pass
+        # Old and new markers: complete=1 and marker=word both have to work
+        if attrs.get('complete'): # this is only true for complete=1
+            self.person.marker = (RelLib.PrimaryObject.MARKER_COMPLETE,"")
+        else:
+            self.person.marker = _ConstXML.tuple_from_xml(
+                _ConstXML.marker_types,attrs.get("marker",''))
 
     def start_people(self,attrs):
         if attrs.has_key('home'):
@@ -834,23 +858,14 @@ class GrampsParser:
     def start_url(self,attrs):
         if not attrs.has_key("href"):
             return
-        try:
-            desc = attrs["description"]
-        except KeyError:
-            desc = ""
-
-        try:
-            url = RelLib.Url()
-            url.set_path(attrs["href"])
-            url.set_description(desc)
-            if attrs.has_key("priv"):
-                url.set_privacy(int(attrs['priv']))
-            if self.person:
-                self.person.add_url(url)
-            elif self.placeobj:
-                self.placeobj.add_url(url)
-        except KeyError:
-            return
+        url = RelLib.Url()
+        url.path = attrs["href"]
+        url.description = attrs.get("description",'')
+        url.privacy = bool(attrs.get('priv'))
+        if self.person:
+            self.person.add_url(url)
+        elif self.placeobj:
+            self.placeobj.add_url(url)
 
     def start_family(self,attrs):
         self.update()
@@ -861,20 +876,26 @@ class GrampsParser:
             self.family.set_gramps_id(handle)
         except KeyError:
             self.family = self.find_family_by_gramps_id(handle)
-
-        if attrs.has_key("type"):
-            ftype = _FAMILY_TRANS.get(attrs["type"],RelLib.Family.UNKNOWN)
-            if ftype == RelLib.Family.UNKNOWN:
-                self.family.set_relationship((ftype,attrs['type']))
-            else:
-                self.family.set_relationship((ftype,""))
+        # GRAMPS LEGACY: the type now belongs to <rel> tag
+        # Here we need to support old format of <family type="Married">
+        self.family.type = _ConstXML.tuple_from_xml(
+            _ConstXML.family_relations,attrs.get("type",'Unknown'))
                 
-        if attrs.has_key('complete'):
-            try:
-                if int(attrs['complete']):
-                    self.family.set_marker((RelLib.PrimaryObject.MARKER_COMPLETE, ""))
-            except KeyError:
-                pass
+        # Old and new markers: complete=1 and marker=word both have to work
+        if attrs.get('complete'): # this is only true for complete=1
+            self.family.marker = (RelLib.PrimaryObject.MARKER_COMPLETE,"")
+        else:
+            self.family.marker = _ConstXML.tuple_from_xml(
+                _ConstXML.marker_types,attrs.get("marker",''))
+
+    def start_rel(self,attrs):
+        pass
+
+    def start_file(self,attrs):
+        pass
+
+    def stop_file(self,tag):
+        pass
 
     def start_childof(self,attrs):
         try:
@@ -883,19 +904,11 @@ class GrampsParser:
         except KeyError:
             family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
             
-        if attrs.has_key("mrel"):
-            mval = attrs.has_key('mrel')
-            mrel = (self.child_relmap.get(mval,RelLib.Person.CHILD_CUSTOM),
-                    mval)
-        else:
-            mrel = (RelLib.Person.CHILD_BIRTH,'Birth')
-        if attrs.has_key("frel"):
-            fval = attrs.has_key('frel')
-            frel = (self.child_relmap.get(fval,RelLib.Person.CHILD_CUSTOM),
-                    fval)
-        else:
-            frel = (RelLib.Person.CHILD_BIRTH,'Birth')
-        self.person.add_parent_family_handle(family.get_handle(),mrel,frel)
+        mrel = _ConstXML.tuple_from_xml(_ConstXML.child_relations,
+                                        attrs.get('mrel','Birth'))
+        frel = _ConstXML.tuple_from_xml(_ConstXML.child_relations,
+                                        attrs.get('frel','Birth'))
+        self.person.add_parent_family_handle(family.handle,mrel,frel)
 
     def start_parentin(self,attrs):
         try:
@@ -903,43 +916,27 @@ class GrampsParser:
                 attrs['hlink'].replace('_',''),self.trans)
         except KeyError:
             family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
-        self.person.add_family_handle(family.get_handle())
+        self.person.add_family_handle(family.handle)
 
     def start_name(self,attrs):
         if not self.in_witness:
             self.name = RelLib.Name()
-            if attrs.has_key("type"):
-                tval = _NAME_TRANS.get(attrs['type'],RelLib.Name.CUSTOM)
-                if tval == RelLib.Name.CUSTOM:
-                    self.name.set_type((tval,attrs["type"]))
-                else:
-                    self.name.set_type((tval,Utils.name_types[tval]))
-            if attrs.has_key("sort"):
-                self.name.set_sort_as(int(attrs["sort"]))
-            if attrs.has_key("display"):
-                self.name.set_display_as(int(attrs["display"]))
-            if attrs.has_key("conf"):
-                self.name.set_confidence(int(attrs["conf"]))
-            else:
-                self.name.conf = 2
-            if attrs.has_key("priv"):
-                self.name.set_privacy(int(attrs["priv"]))
-            if attrs.has_key("alt"):
-                self.alt_name = int(attrs["alt"])
-            else:
-                self.alt_name = 0
+            self.name.type =_ConstXML.tuple_from_xml(
+                _ConstXML.name_types,attrs.get('type','Birth Name'))
+            self.name.sort_as = int(attrs.get("sort",RelLib.Name.DEF))
+            self.name.display_as = int(attrs.get("display",RelLib.Name.DEF))
+            self.name.conf = int(attrs.get("conf",2))
+            self.name.set_private = bool(attrs.get("priv"))
+            self.alt_name = bool(attrs.get("alt"))
 
     def start_last(self,attrs):
-        if attrs.has_key('prefix'):
-            self.name.set_surname_prefix(attrs['prefix'])
-        if attrs.has_key('group'):
-            self.name.set_group_as(attrs['group'])
+        self.name.prefix = attrs.get('prefix','')
+        self.name.group_as = attrs.get('group','')
         
     def start_note(self,attrs):
         self.in_note = 1
         self.note = RelLib.Note()
-        if attrs.has_key("format"):
-            self.note.set_format(int(attrs['format']))
+        self.note.format = int(attrs.get('format',0))
 
     def start_sourceref(self,attrs):
         self.source_ref = RelLib.SourceRef()
@@ -949,11 +946,8 @@ class GrampsParser:
         except KeyError:
             source = self.find_source_by_gramps_id(self.map_sid(attrs["ref"]))
             
-        if attrs.has_key("conf"):
-            self.source_ref.confidence = int(attrs["conf"])
-        else:
-            self.source_ref.confidence = self.conf
-        self.source_ref.set_base_handle(source.get_handle())
+        self.source_ref.confidence = int(attrs.get("conf",self.conf))
+        self.source_ref.ref = source.handle
         if self.photo:
             self.photo.add_source_reference(self.source_ref)
         elif self.ord:
@@ -995,11 +989,8 @@ class GrampsParser:
         except KeyError:
             obj = self.find_object_by_gramps_id(self.map_oid(attrs['ref']))
             
-        handle = obj.get_handle()
-        
-        self.objref.set_reference_handle(handle)
-        if attrs.has_key('priv'):
-            self.objref.set_privacy(int(attrs['priv']))
+        self.objref.ref = obj.handle
+        self.objref.private = bool(attrs.get('priv'))
         if self.event:
             self.event.add_media_reference(self.objref)
         elif self.family:
@@ -1019,14 +1010,18 @@ class GrampsParser:
             self.object.set_gramps_id(handle)
         except KeyError:
             self.object = self.find_object_by_gramps_id(handle)
-        self.object.set_mime_type(attrs['mime'])
-        self.object.set_description(attrs['description'])
+
+        # GRAMPS LEGACY: src, mime, and description attributes
+        # now belong to the <file> tag. Here we are supporting
+        # the old format of <object src="blah"...>
+        self.object.mime = attrs['mime']
+        self.object.desc = attrs['description']
         src = attrs["src"]
         if src:
             if src[0] != '/':
                 fullpath = os.path.abspath(self.filename)
                 src = os.path.dirname(fullpath) + '/' + src
-            self.object.set_path(src)
+            self.object.path = src
 
     def stop_people(self,*tag):
         pass
@@ -1235,19 +1230,22 @@ class GrampsParser:
         self.attribute = None
 
     def stop_comment(self,tag):
+        # Parse witnesses created by older gramps
         if tag.strip():
             self.witness_comment = tag
         else:
             self.witness_comment = ""
 
     def stop_witness(self,tag):
+        # Parse witnesses created by older gramps
         if self.witness_comment:
-            self.witness.set_comment(self.witness_comment)
+            note_text = self.event.get_note() + "\n" + \
+                        _("Witness comment: %s") % self.witness_comment
+            self.event.set_note(note_text)
         elif tag.strip():
-            self.witness.set_comment(tag)
-        else:
-            self.witness.set_comment("")
-        self.event.add_witness(self.witness)
+            note_text = self.event.get_note() + "\n" + \
+                        _("Witness comment: %s") % tag
+            self.event.set_note(note_text)
         self.in_witness = 0
 
     def stop_attr_type(self,tag):
@@ -1283,59 +1281,41 @@ class GrampsParser:
         while gtk.events_pending():
             gtk.main_iteration()
         
+    def stop_type(self,tag):
+        # Event type
+        self.event.type = _ConstXML.tuple_from_xml(_ConstXML.events,tag)
+
+    def stop_eventref(self,tag):
+        self.eventref = None
+
     def stop_event(self,*tag):
         if self.family:
             ref = RelLib.EventRef()
-            ref.set_reference_handle(self.event.get_handle())
+            ref.ref = self.event.handle
+            ref.private = self.event.private
+            ref.role = (RelLib.EventRef.FAMILY,'')
             self.family.add_event_ref(ref)
-
-            descr = self.event.get_description()
-            if not descr:
-                (code,val) = self.event.get_type()
-                if code == RelLib.Event.CUSTOM:
-                    event_name = val
-                elif code in Utils.family_events:
-                    event_name = Utils.family_events[code]
-                else:
-                    # FIXME: What do we want to do in that case?
-                    print "Importing unknown event code '%d' value '%s'" % (code,val)
-                    event_name = _("Unknown event code '%d' value '%s'") % (code,val)
-                text = _("%(event_name)s of %(family)s") % {
-                    'event_name' : event_name,
-                    'family' : Utils.family_name(self.family,self.db),
-                    }
-                self.event.set_description(text)
-        else:
+        elif self.person:
             ref = RelLib.EventRef()
-            ref.set_reference_handle(self.event.get_handle())
-            ref.set_role((RelLib.EventRef.PRIMARY,''))
-            if self.event.get_type()[0] == RelLib.Event.BIRTH:
-                self.person.set_birth_ref(ref)
-            elif self.event.get_type()[0] == RelLib.Event.DEATH:
-                self.person.set_death_ref(ref)
+            ref.ref = self.event.handle
+            ref.private = self.event.private
+            ref.role = (RelLib.EventRef.PRIMARY,'')
+            if self.event.type[0] == RelLib.Event.BIRTH:
+                self.person.birth_ref = ref
+            elif self.event.type[0] == RelLib.Event.DEATH:
+                self.person.death_ref = ref
             else:
                 self.person.add_event_ref(ref)
-
-            descr = self.event.get_description()
-            if not descr:
-                (code,val) = self.event.get_type()
-                if code == RelLib.Event.CUSTOM:
-                    event_name = val
-                else:
-                    event_name = Utils.personal_events[code]
-                text = _("%(event_name)s of %(person)s") % {
-                    'event_name' : event_name,
-                    'person' : NameDisplay.displayer.display(self.person),
-                    }
-                self.event.set_description(text)
         self.db.commit_event(self.event,self.trans,self.change)
         self.event = None
 
     def stop_name(self,tag):
-        #if self.in_witness:
-        #    self.witness = RelLib.Witness(RelLib.Event.NAME,tag)
-        #else:
-        if self.alt_name:
+        # Parse witnesses created by older gramps
+        if self.in_witness:
+            note_text = self.event.get_note() + "\n" + \
+                        _("Witness name: %s") % tag
+            self.event.set_note(note_text)
+        elif self.alt_name:
             # former aka tag -- alternate name
             if self.name.get_type() == "":
                 self.name.set_type("Also Known As")
@@ -1348,10 +1328,15 @@ class GrampsParser:
         self.name = None
 
     def stop_ref(self,tag):
-##         # FIXME: Work this out when Witness is working again
-##         person = self.find_person_by_gramps_id(self.map_gid(tag))
-##         self.witness = RelLib.Witness(RelLib.Event.ID,person.get_handle())
-        return
+        # Parse witnesses created by older gramps
+        person = self.find_person_by_gramps_id(self.map_gid(tag))
+        # Add an EventRef from that person
+        # to this event using ROLE_WITNESS role
+        event_ref = RelLib.EventRef()
+        event_ref.ref = self.event.handle
+        event_ref.role = (RelLib.EventRef.WITNESS,'')
+        person.event_ref_list.append(event_ref)
+        self.db.commit_person(person,self.trans,self.change)
 
     def stop_place(self,tag):
         if self.placeobj == None:
@@ -1391,10 +1376,10 @@ class GrampsParser:
             gtk.main_iteration()
 
     def stop_description(self,tag):
-        self.event.set_description(tag)
+        self.event.description = tag
 
     def stop_cause(self,tag):
-        self.event.set_cause(tag)
+        self.event.cause = tag
 
     def stop_gender(self,tag):
         t = tag
@@ -1517,6 +1502,8 @@ class GrampsParser:
             self.family.set_note_object(self.note)
         elif self.placeobj:
             self.placeobj.set_note_object(self.note)
+        elif self.eventref:
+            self.eventref.set_note_object(self.note)
 
     def stop_research(self,tag):
         self.owner.set(self.resname, self.resaddr, self.rescity, self.resstate,

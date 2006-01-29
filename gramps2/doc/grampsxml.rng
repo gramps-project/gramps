@@ -46,6 +46,12 @@
         </element></optional>
       </element>
 
+      <optional><element name="events">
+          <zeroOrMore><element name="event">
+              <ref name="event-content"/>
+          </element></zeroOrMore>
+      </element></optional>
+
       <optional><element name="people">
           <optional><attribute name="default"><text/></attribute></optional>
           <optional><attribute name="home">
@@ -59,12 +65,6 @@
       <optional><element name="families">
           <zeroOrMore><element name="family">
               <ref name="family-content"/>
-          </element></zeroOrMore>
-      </element></optional>
-
-      <optional><element name="events">
-          <zeroOrMore><element name="event">
-              <ref name="event-content"/>
           </element></zeroOrMore>
       </element></optional>
 
