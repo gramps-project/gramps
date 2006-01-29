@@ -784,7 +784,7 @@ class ViewManager:
         GrampsKeys.save_last_file(name)
     
         self.relationship = self.RelClass(self.state.db)
-        self.state.change_active_person(self.find_initial_person())
+        self.state.change_active_person(self.state.db.find_initial_person())
         self.change_page(None,None)
         self.state.db.undo_callback = self.change_undo_label
         self.state.db.redo_callback = self.change_redo_label
@@ -844,15 +844,6 @@ class ViewManager:
         import Plugins
         Plugins.ToolPlugins(self.state,self.uistate,[])
         
-    def find_initial_person(self):
-        person = self.state.db.get_default_person()
-        if not person:
-            the_ids = self.state.db.get_person_handles(sort_handles=False)
-            if the_ids:
-                the_ids.sort()
-                person = self.state.db.get_person_from_handle(the_ids[0])
-        return person
-
     def scratchpad(self,obj):
         import ScratchPad
         ScratchPad.ScratchPadWindow(self.state, self)

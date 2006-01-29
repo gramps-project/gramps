@@ -989,6 +989,14 @@ class GrampsDbBase(GrampsDBCallback):
         """
         assert False, "Needs to be overridden in the derived class"
        
+    def find_initial_person(self):
+        person = self.get_default_person()
+        if not person:
+            the_ids = self.get_gramps_ids(PERSON_KEY)
+            if the_ids:
+                person = self.get_person_from_gramps_id(min(the_ids))
+        return person
+
     def _validated_id_prefix(self, val, default):
         if val:
             try:

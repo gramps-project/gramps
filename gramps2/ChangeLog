@@ -2,6 +2,9 @@
 	* src/GrampsDb/_WriteXML.py (write_place_obj): Always write ptitle.
 	* src/GrampsDb/_ReadXML.py: Prase file and ptitle tags.
 	* example/gramps/example.gramps: Update XML example.
+	* src/Exporter.py: Set initial person in case there's no active.
+	* src/ViewManager.py (find_initial_person): Remove method.
+	* src/GrampsDb/_GrampsDbBase.py (find_initial_person): Add method.
 
 2006-01-28  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: hook up event ref editor
