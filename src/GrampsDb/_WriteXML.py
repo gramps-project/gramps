@@ -241,6 +241,18 @@ class XmlWriter:
         count = 0
         delta = max(int(total/50),1)
 
+        if event_len > 0:
+            self.g.write("  <events>\n")
+            sorted_keys = self.db.get_gramps_ids(EVENT_KEY)
+            sorted_keys.sort ()
+            for gramps_id in sorted_keys:
+                event = self.db.get_event_from_gramps_id(gramps_id)
+                self.write_event(event,2)
+                if self.callback and count % delta == 0:
+                    self.callback(float(count)/float(total))
+                count = count + 1
+            self.g.write("  </events>\n")
+
         if person_len > 0:
             self.g.write("  <people")
             person = self.db.get_default_person()
@@ -271,18 +283,6 @@ class XmlWriter:
                     self.callback(float(count)/float(total))
                 count = count + 1
             self.g.write("  </families>\n")
-
-        if event_len > 0:
-            self.g.write("  <events>\n")
-            sorted_keys = self.db.get_gramps_ids(EVENT_KEY)
-            sorted_keys.sort ()
-            for gramps_id in sorted_keys:
-                event = self.db.get_event_from_gramps_id(gramps_id)
-                self.write_event(event,2)
-                if self.callback and count % delta == 0:
-                    self.callback(float(count)/float(total))
-                count = count + 1
-            self.g.write("  </events>\n")
 
         if source_len > 0:
             self.g.write("  <sources>\n")
@@ -531,7 +531,7 @@ class XmlWriter:
             self.g.write('%s</eventref>\n' % sp)
 
     def write_event(self,event,index=1):
-        if not event or event.is_empty():
+        if not event:
             return
 
         self.write_primary_tag("event",event,2)
