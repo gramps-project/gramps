@@ -2164,7 +2164,7 @@ class GedcomParser:
             attr.set_type((atype,n))
         else:
             attr.set_type((atype,''))
-            
+
         attr.set_value(matches[2])
         state.person.add_attribute(attr)
 
@@ -2172,7 +2172,7 @@ class GedcomParser:
         n = matches[3].strip()
         if self.gedattr.has_key(n):
             attr = RelLib.Attribute()
-            attr.set_type((RelLib.Event.CUSTOM,self.gedattr[n]))
+            attr.set_type((self.gedattr[n],''))
             attr.set_value(matches[2])
             state.person.add_attribute(attr)
             self.parse_person_attr(attr,2)

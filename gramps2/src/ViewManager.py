@@ -858,7 +858,7 @@ class ViewManager:
         ScratchPad.ScratchPadWindow(self.state, self)
 
     def pulse_progressbar(self,value):
-        self.progress.set_fraction(value/100.0)
+        self.progress.set_fraction(min(value/100.0,1.0))
         self.progress.set_text("%d%%" % value)
         while gtk.events_pending():
             gtk.main_iteration()
