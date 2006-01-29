@@ -28,6 +28,14 @@ import gobject
 
 #-------------------------------------------------------------------------
 #
+# python
+#
+#-------------------------------------------------------------------------
+
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
@@ -35,8 +43,8 @@ import DateHandler
 import NameDisplay
 import RelLib
 import Utils
-import ToolTips
-import GrampsLocale
+import GrampsMime
+import const
 
 from GrampsWidgets import SimpleButton
 
@@ -307,8 +315,7 @@ class EmbeddedList(ButtonTab):
         (model,node) = self.selection.get_selected()
         if node:
             return model.get_value(node,self._HANDLE_COL)
-        else:
-            return None
+        return None
 
     def _selection_changed(self,obj=None):
         """
@@ -775,8 +782,7 @@ class GalleryTab(ButtonTab):
         node = self.iconlist.get_selected_items()
         if len(node) > 0:
             return self.media_list[node[0][0]]
-        else:
-            return None
+        return None
 
     def add_button_clicked(self,obj):
         print "Media Add clicked"
@@ -886,7 +892,6 @@ class ChildModel(gtk.ListStore):
             return Utils.child_relations[rel]
 
     def column_father_rel(self,data):
-        chandle = data.handle
         fhandle = self.family.handle
         for (handle, mrel, frel) in data.get_parent_family_handle_list():
             if handle == fhandle:
@@ -894,7 +899,6 @@ class ChildModel(gtk.ListStore):
         return ""
 
     def column_mother_rel(self,data):
-        chandle = data.handle
         fhandle = self.family.handle
         for (handle, mrel, frel) in data.get_parent_family_handle_list():
             if handle == fhandle:
@@ -1036,8 +1040,8 @@ class NameModel(gtk.ListStore):
         self.db = db
         for obj in obj_list:
             self.append(row=[
-                NameDisplay.display_name(obj),
-                type_name(obj),
+                NameDisplay.displayer.display_name(obj),
+                self.type_name(obj),
                 ])
 
     def type_name(self, obj):
