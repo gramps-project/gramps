@@ -423,6 +423,7 @@ class EventEmbedList(EmbeddedList):
     
     def __init__(self,dbstate,uistate,track,obj):
         self.obj = obj
+        self.changed = False
         EmbeddedList.__init__(self, dbstate, uistate, track,
                               _('Events'), EventRefModel)
 
@@ -436,7 +437,10 @@ class EventEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2),(1,3),(1,4),(1,5))
 
     def add_button_clicked(self,obj):
-        pass
+        import EventEdit
+        ref = RelLib.EventRef()
+        EventEdit.EventRefEditor(self.dbstate,self.uistate,self.track,
+                                 None, ref, self.obj, self.event_added)
 
     def del_button_clicked(self,obj):
         ref = self.get_selected()
@@ -448,8 +452,20 @@ class EventEmbedList(EmbeddedList):
     def edit_button_clicked(self,obj):
         ref = self.get_selected()
         if ref:
-            print ref
+            import EventEdit
+            event = self.dbstate.db.get_event_from_handle(ref.ref)
+            EventEdit.EventRefEditor(self.dbstate,self.uistate,self.track,
+                                     event, ref, self.obj, self.event_updated)
 
+    def event_updated(self,value):
+        self.changed = True
+        print value
+        self.rebuild()
+
+    def event_added(self,value):
+        self.changed = True
+        self.rebuild()
+                                     
 #-------------------------------------------------------------------------
 #
 # SourceBackRefList
@@ -563,7 +579,7 @@ class DataEmbedList(EmbeddedList):
 #-------------------------------------------------------------------------
 class AttrEmbedList(EmbeddedList):
 
-    _HANDLE_COL = -1
+    _HANDLE_COL = 2
 
     _column_names = [
         (_('Type'),0),
@@ -803,7 +819,7 @@ class GalleryTab(ButtonTab):
 #-------------------------------------------------------------------------
 class SourceEmbedList(EmbeddedList):
 
-    _HANDLE_COL = 6
+    _HANDLE_COL = 4
 
     _column_names = [
         (_('ID'),0),
@@ -824,7 +840,7 @@ class SourceEmbedList(EmbeddedList):
         return self.obj
 
     def column_order(self):
-        return ((1,0),(1,1))
+        return ((1,0),(1,1),(1,2),(1,3))
 
     def add_button_clicked(self,obj):
         pass
@@ -965,8 +981,7 @@ class ChildModel(gtk.ListStore):
 class EventRefModel(gtk.ListStore):
 
     def __init__(self,event_list,db):
-        gtk.ListStore.__init__(self,str,str,str,str,str,str,
-                               gobject.TYPE_PYOBJECT)
+        gtk.ListStore.__init__(self,str,str,str,str,str,str,object)
         self.db = db
         for event_ref in event_list:
             event = db.get_event_from_handle(event_ref.ref)
@@ -1011,12 +1026,13 @@ class EventRefModel(gtk.ListStore):
 class AttrModel(gtk.ListStore):
 
     def __init__(self,attr_list,db):
-        gtk.ListStore.__init__(self,str,str)
+        gtk.ListStore.__init__(self,str,str,object)
         self.db = db
         for attr in attr_list:
             self.append(row=[
                 self.type_name(attr),
                 attr.get_value(),
+                attr,
                 ])
 
     def type_name(self, attr):
@@ -1036,12 +1052,13 @@ class AttrModel(gtk.ListStore):
 class NameModel(gtk.ListStore):
 
     def __init__(self,obj_list,db):
-        gtk.ListStore.__init__(self,str,str)
+        gtk.ListStore.__init__(self,str,str,object)
         self.db = db
         for obj in obj_list:
             self.append(row=[
                 NameDisplay.displayer.display_name(obj),
                 self.type_name(obj),
+                obj,
                 ])
 
     def type_name(self, obj):
@@ -1059,7 +1076,7 @@ class NameModel(gtk.ListStore):
 class AddressModel(gtk.ListStore):
 
     def __init__(self,obj_list,db):
-        gtk.ListStore.__init__(self,str,str,str,str,str)
+        gtk.ListStore.__init__(self,str,str,str,str,str,object)
         self.db = db
         for obj in obj_list:
             self.append(row=[
@@ -1068,6 +1085,7 @@ class AddressModel(gtk.ListStore):
                 obj.city,
                 obj.state,
                 obj.country,
+                obj,
                 ])
 
 #-------------------------------------------------------------------------
@@ -1078,14 +1096,10 @@ class AddressModel(gtk.ListStore):
 class WebModel(gtk.ListStore):
 
     def __init__(self,obj_list,db):
-        gtk.ListStore.__init__(self,str,str,str)
+        gtk.ListStore.__init__(self,str,str,str,object)
         self.db = db
         for obj in obj_list:
-            self.append(row=[
-                obj.type,
-                obj.path,
-                obj.desc,
-                ])
+            self.append(row=[obj.type, obj.path, obj.desc, obj])
 
 #-------------------------------------------------------------------------
 #
@@ -1098,10 +1112,7 @@ class DataModel(gtk.ListStore):
         gtk.ListStore.__init__(self,str,str)
         self.db = db
         for attr in attr_list.keys():
-            self.append(row=[
-                attr,
-                attr_list[attr],
-                ])
+            self.append(row=[attr, attr_list[attr] ])
 
 #-------------------------------------------------------------------------
 #
@@ -1111,16 +1122,12 @@ class DataModel(gtk.ListStore):
 class SourceRefModel(gtk.ListStore):
 
     def __init__(self,sref_list,db):
-        gtk.ListStore.__init__(self,str,str,str,str)
+        gtk.ListStore.__init__(self,str,str,str,str,object)
         self.db = db
         for sref in sref_list:
             src = self.db.get_source_from_handle(sref.ref)
-            self.append(row=[
-                src.gramps_id,
-                src.title,
-                src.author,
-                sref.page
-                ])
+            self.append(row=[src.gramps_id, src.title, src.author,
+                             sref.page, sref, ])
 
 #-------------------------------------------------------------------------
 #
