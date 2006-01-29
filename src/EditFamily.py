@@ -64,31 +64,6 @@ from DisplayTabs import *
 from GrampsWidgets import *
 from ObjectSelector import PersonSelector,PersonFilterSpec
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-class AttrEmbedList(EmbeddedList):
-
-    _HANDLE_COL = -1
-
-    _column_names = [
-        (_('Type'),0),
-        (_('Value'),1),
-        ]
-    
-    def __init__(self,dbstate,uistate,track,data):
-        self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _('Attributes'), FamilyAttrModel)
-
-    def get_data(self):
-        return self.data
-
-    def column_order(self):
-        return ((1,0),(1,1))
-
 class ChildEmbedList(EmbeddedList):
 
     _HANDLE_COL = 10

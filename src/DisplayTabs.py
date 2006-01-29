@@ -328,7 +328,7 @@ class EmbeddedList(ButtonTab):
         Returns True if the get_data returns a length greater than
         0. Typically, get_data returns the list of associated data.
         """
-        return len(self.get_data()) > 0
+        return len(self.get_data()) == 0
     
     def get_data(self):
         """
@@ -551,6 +551,110 @@ class DataEmbedList(EmbeddedList):
 
 #-------------------------------------------------------------------------
 #
+# 
+#
+#-------------------------------------------------------------------------
+class AttrEmbedList(EmbeddedList):
+
+    _HANDLE_COL = -1
+
+    _column_names = [
+        (_('Type'),0),
+        (_('Value'),1),
+        ]
+    
+    def __init__(self,dbstate,uistate,track,data):
+        self.data = data
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('Attributes'), AttrModel)
+
+    def get_data(self):
+        return self.data
+
+    def column_order(self):
+        return ((1,0),(1,1))
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+class WebEmbedList(EmbeddedList):
+
+    _HANDLE_COL = -1
+
+    _column_names = [
+        (_('Type'),0),
+        (_('Path'),1),
+        (_('Description'),2),
+        ]
+    
+    def __init__(self,dbstate,uistate,track,data):
+        self.data = data
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('Internet'), WebModel)
+
+    def get_data(self):
+        return self.data
+
+    def column_order(self):
+        return ((1,0),(1,1),(1,2))
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+class NameEmbedList(EmbeddedList):
+
+    _HANDLE_COL = -1
+
+    _column_names = [
+        (_('Name'),0),
+        (_('Type'),1),
+        ]
+    
+    def __init__(self,dbstate,uistate,track,data):
+        self.data = data
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('Names'), NameModel)
+
+    def get_data(self):
+        return self.data
+
+    def column_order(self):
+        return ((1,0),(1,1))
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+class AddrEmbedList(EmbeddedList):
+
+    _HANDLE_COL = -1
+
+    _column_names = [
+        (_('Date'),0),
+        (_('Street'),1),
+        (_('State'),2),
+        (_('City'),3),
+        (_('Country'),4),
+        ]
+    
+    def __init__(self,dbstate,uistate,track,data):
+        self.data = data
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('Addresses'), AddressModel)
+
+    def get_data(self):
+        return self.data
+
+    def column_order(self):
+        return ((1,0),(1,1),(1,2),(1,3),(1,4))
+
+#-------------------------------------------------------------------------
+#
 # NoteTab
 #
 #-------------------------------------------------------------------------
@@ -570,14 +674,44 @@ class NoteTab(GrampsTab):
         return len(buf.get_text(buf.get_start_iter(),buf.get_end_iter())) == 0
 
     def build_interface(self):
+        vbox = gtk.VBox()
         self.text = gtk.TextView()
+        self.flowed = gtk.RadioButton(None,_('Flowed'))
+        self.format = gtk.RadioButton(self.flowed,_('Formatted'))
+
+        if self.note_obj and self.note_obj.get_format():
+            self.format.set_active(True)
+            self.text.set_wrap_mode(gtk.WRAP_NONE)
+        else:
+            self.flowed.set_active(True)
+            self.text.set_wrap_mode(gtk.WRAP_WORD)
+
+        self.flowed.connect('toggled',self.flow_changed)
+
         scroll = gtk.ScrolledWindow()
         scroll.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         scroll.add_with_viewport(self.text)
-        self.pack_start(scroll,True)
+
+        vbox.pack_start(scroll,True)
+        vbox.set_spacing(6)
+
+        hbox = gtk.HBox()
+        hbox.set_spacing(6)
+        hbox.pack_start(self.flowed,False)
+        hbox.pack_start(self.format,False)
+
+        vbox.pack_start(hbox,False)
+        
+        self.pack_start(vbox,True)
         if self.note_obj:
             self.text.get_buffer().insert_at_cursor(self.note_obj.get())
         self.rebuild()
+
+    def flow_changed(self,obj):
+        if obj.get_active():
+            self.text.set_wrap_mode(gtk.WRAP_WORD)
+        else:
+            self.text.set_wrap_mode(gtk.WRAP_NONE)
 
     def rebuild(self):
         self._set_label()
@@ -843,11 +977,14 @@ class EventRefModel(gtk.ListStore):
                 ])
 
     def column_type(self,event):
-        t = event.get_type()
-        if t[0] == RelLib.Event.CUSTOM:
-            return t[1]
+        t,v = event.get_type()
+        if t == RelLib.Event.CUSTOM:
+            return v
         else:
-            return Utils.family_events[t[0]]
+            if Utils.personal_events.has_key(t):
+                return Utils.personal_events[t]
+            else:
+                return Utils.family_events[t]
 
     def column_date(self,event_ref):
         event = self.db.get_event_from_handle(event_ref.ref)
@@ -879,11 +1016,72 @@ class AttrModel(gtk.ListStore):
                 ])
 
     def type_name(self, attr):
-        t = attr.get_type()
-        if t[0] == RelLib.Attribute.CUSTOM:
-            return t[1]
+        t,v = attr.get_type()
+        if t == RelLib.Attribute.CUSTOM:
+            return v
+        elif Utils.personal_attributes.has_key(t):
+            return Utils.personal_attributes[t]
         else:
-            return Utils.personal_attributes[t[0]]
+            return Utils.family_attributes[t]
+
+#-------------------------------------------------------------------------
+#
+# NameModel
+#
+#-------------------------------------------------------------------------
+class NameModel(gtk.ListStore):
+
+    def __init__(self,obj_list,db):
+        gtk.ListStore.__init__(self,str,str)
+        self.db = db
+        for obj in obj_list:
+            self.append(row=[
+                NameDisplay.display_name(obj),
+                type_name(obj),
+                ])
+
+    def type_name(self, obj):
+        t,v = obj.get_type()
+        if t == RelLib.Name.CUSTOM:
+            return v
+        else:
+            return Utils.name_types[t]
+
+#-------------------------------------------------------------------------
+#
+# AddressModel
+#
+#-------------------------------------------------------------------------
+class AddressModel(gtk.ListStore):
+
+    def __init__(self,obj_list,db):
+        gtk.ListStore.__init__(self,str,str,str,str,str)
+        self.db = db
+        for obj in obj_list:
+            self.append(row=[
+                DateHandler.get_date(obj),
+                obj.street,
+                obj.city,
+                obj.state,
+                obj.country,
+                ])
+
+#-------------------------------------------------------------------------
+#
+# AddressModel
+#
+#-------------------------------------------------------------------------
+class WebModel(gtk.ListStore):
+
+    def __init__(self,obj_list,db):
+        gtk.ListStore.__init__(self,str,str,str)
+        self.db = db
+        for obj in obj_list:
+            self.append(row=[
+                obj.type,
+                obj.path,
+                obj.desc,
+                ])
 
 #-------------------------------------------------------------------------
 #
@@ -914,7 +1112,7 @@ class SourceRefModel(gtk.ListStore):
         for sref in sref_list:
             src = self.db.get_source_from_handle(sref.ref)
             self.append(row=[
-                sref.ref,
+                src.gramps_id,
                 src.title,
                 src.author,
                 sref.page
@@ -978,22 +1176,3 @@ class SourceBackRefModel(gtk.ListStore):
             yield True
         yield False
             
-#-------------------------------------------------------------------------
-#
-# FamilyAttrModel
-#
-#-------------------------------------------------------------------------
-class FamilyAttrModel(AttrModel):
-
-    def __init__(self,attr_list,db):
-        AttrModel.__init__(self,attr_list,db)
-
-    def type_name(self, attr):
-        t = attr.get_type()
-        if t[0] == RelLib.Attribute.CUSTOM:
-            return t[1]
-        else:
-            return Utils.family_attributes[t[0]]
-
-    
-
