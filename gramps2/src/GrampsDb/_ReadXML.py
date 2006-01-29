@@ -392,13 +392,14 @@ class GrampsParser:
             "img"        : (self.start_photo, self.stop_photo),
             "objref"     : (self.start_objref, self.stop_objref),
             "object"     : (self.start_object, self.stop_object),
-            "file"       : (self.start_file, self.stop_file),
+            "file"       : (self.start_file, None),
             "place"      : (self.start_place, self.stop_place),
             "dateval"    : (self.start_dateval, None),
             "daterange"  : (self.start_daterange, None),
             "datestr"    : (self.start_datestr, None),
             "places"     : (None, self.stop_places),
             "placeobj"   : (self.start_placeobj,self.stop_placeobj),
+            "ptitle"     : (None,self.stop_ptitle),
             "location"   : (self.start_location,None),
             "lds_ord"    : (self.start_lds_ord, self.stop_lds_ord),
             "temple"     : (self.start_temple, None),
@@ -682,11 +683,8 @@ class GrampsParser:
             self.placeobj.set_gramps_id(handle)
         except KeyError:
             self.placeobj = self.find_place_by_gramps_id(handle)
-        title = attrs['title']
-        if title == "":
-            title = attrs['id']
-
-        self.placeobj.set_title(title)
+        # GRAMPS LEGACY: title in the placeobj tag
+        self.placeobj.title = attrs.get('title','')
         self.locations = 0
 
         self.update()
@@ -713,7 +711,6 @@ class GrampsParser:
         # Parse witnesses created by older gramps
         self.in_witness = 1
         self.witness_comment = ""
-        print "in start_witness"
         if attrs.has_key('name'):
             note_text = self.event.get_note() + "\n" + \
                         _("Witness name: %s") % attrs['name']
@@ -734,9 +731,7 @@ class GrampsParser:
         self.db.commit_person(person,self.trans,self.change)
         
     def start_coord(self,attrs):
-        #if attrs.has_key('lat'):
         self.placeobj.lat = attrs.get('lat','')
-        #if attrs.has_key('long'):
         self.placeobj.long = attrs.get('long','')
 
     def start_event(self,attrs):
@@ -766,8 +761,6 @@ class GrampsParser:
             # We count here on events being already parsed prior
             # to parsing people. This will fail if this is not true.
             event = self.db.get_event_from_handle(self.eventref.ref)
-            print self.eventref.ref
-            print "event", event
             if event.type[0] == RelLib.Event.BIRTH:
                 self.person.birth_ref = self.eventref
             elif event.type[0] == RelLib.Event.DEATH:
@@ -889,13 +882,18 @@ class GrampsParser:
                 _ConstXML.marker_types,attrs.get("marker",''))
 
     def start_rel(self,attrs):
-        pass
+        self.family.type = _ConstXML.tuple_from_xml(
+            _ConstXML.family_relations,attrs.get("type",'Unknown'))
 
     def start_file(self,attrs):
-        pass
-
-    def stop_file(self,tag):
-        pass
+        self.object.mime = attrs['mime']
+        self.object.desc = attrs['description']
+        src = attrs["src"]
+        if src:
+            if src[0] != '/':
+                fullpath = os.path.abspath(self.filename)
+                src = os.path.dirname(fullpath) + '/' + src
+            self.object.path = src
 
     def start_childof(self,attrs):
         try:
@@ -1014,9 +1012,9 @@ class GrampsParser:
         # GRAMPS LEGACY: src, mime, and description attributes
         # now belong to the <file> tag. Here we are supporting
         # the old format of <object src="blah"...>
-        self.object.mime = attrs['mime']
-        self.object.desc = attrs['description']
-        src = attrs["src"]
+        self.object.mime = attrs.get('mime','')
+        self.object.desc = attrs.get('description','')
+        src = attrs.get("src",'')
         if src:
             if src[0] != '/':
                 fullpath = os.path.abspath(self.filename)
@@ -1263,14 +1261,16 @@ class GrampsParser:
     def stop_photo(self,*tag):
         self.photo = None
 
-    def stop_placeobj(self,*tag):
-        if self.placeobj.get_title() == "":
-            loc = self.placeobj.get_main_location()
-            self.placeobj.set_title(build_place_title(loc))
+    def stop_ptitle(self,tag):
+        self.placeobj.title = tag
 
-        title = self.placeobj.get_title()
-        if title in self.place_names:
-            self.placeobj.set_title(title + " [%s]" % self.placeobj.get_gramps_id())
+    def stop_placeobj(self,*tag):
+        if self.placeobj.title == "":
+            loc = self.placeobj.get_main_location()
+            self.placeobj.title = build_place_title(loc)
+
+        if self.placeobj.title in self.place_names:
+            self.placeobj.title += " [%s]" % self.placeobj.gramps_id
 
         self.db.commit_place(self.placeobj,self.trans,self.change)
         self.placeobj = None
