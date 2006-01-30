@@ -77,8 +77,6 @@ from DdTargets import DdTargets
 #
 #-------------------------------------------------------------------------
 
-_PICTURE_WIDTH = 200.0
-
 _temple_names = const.lds_temple_codes.keys()
 _temple_names.sort()
 _temple_names = [""] + _temple_names
@@ -175,8 +173,6 @@ class EditPerson(DisplayState.ManagedWindow):
         self.prefix.set_editable(mod)
         self.given = self.top.get_widget("given_name")
         self.given.set_editable(mod)
-#        self.nick = self.top.get_widget("nickname")
-#        self.nick.set_editable(mod)
         self.title = self.top.get_widget("title")
         self.title.set_editable(mod)
         self.surname = self.top.get_widget("surname")
@@ -249,8 +245,8 @@ class EditPerson(DisplayState.ManagedWindow):
         self.gladeif.connect("button15", "clicked", self.on_cancel_edit)
         self.gladeif.connect("ok", "clicked", self.on_apply_person_clicked)
         self.gladeif.connect("button134", "clicked", self.on_help_clicked)
-#        self.gladeif.connect("notebook", "switch_page", self.on_switch_page)
-        self.gladeif.connect("given_name", "focus_out_event", self.on_given_focus_out_event)
+        self.gladeif.connect("given_name", "focus_out_event",
+                             self.on_given_focus_out_event)
         self.gladeif.connect("button177", "clicked", self.on_edit_name_clicked)
 
         self.private.set_active(self.person.get_privacy())
@@ -261,10 +257,10 @@ class EditPerson(DisplayState.ManagedWindow):
         self.vbox.pack_start(self.notebook,True)
         self.notebook.show_all()
 
-        self.event_list = EventEmbedList(self.dbstate,self.uistate,
-                                         self.track,self.person)
-        self.name_list = NameEmbedList(self.dbstate,self.uistate,
-                                       self.track,self.person.get_alternate_names())
+        self.event_list = PersonEventEmbedList(self.dbstate,self.uistate,
+                                               self.track,self.person)
+        self.name_list = NameEmbedList(self.dbstate, self.uistate, self.track,
+                                       self.person.get_alternate_names())
         self.srcref_list = SourceEmbedList(self.dbstate,self.uistate,
                                            self.track,self.person.source_list)
         self.attr_list = AttrEmbedList(self.dbstate,self.uistate,self.track,
@@ -410,125 +406,6 @@ class EditPerson(DisplayState.ManagedWindow):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('adv-pers')
 
-    def lds_field(self,lds_ord,combo,date,place):
-        build_combo(combo,_temple_names)
-        temple_code = const.lds_temple_to_abrev.get(lds_ord.get_temple(),"")
-        index = _temple_names.index(temple_code)
-        combo.set_active(index)
-        if not lds_ord.is_empty():
-            stat = lds_ord.get_status()
-        else:
-            stat = 0
-        date.set_text(DateHandler.get_date(lds_ord))
-
-        build_dropdown(place,self.place_list)
-        if lds_ord and lds_ord.get_place_handle():
-            handle = lds_ord.get_place_handle()
-            lds_ord_place = self.db.get_place_from_handle(handle)
-            place.set_text(lds_ord_place.get_title())
-        return stat
-
-    def draw_lds(self):
-        """Draws the LDS window. This window is not always drawn, and in
-        may cases is hidden."""
-
-        self.ldsbap_date = self.top.get_widget("ldsbapdate")
-        self.ldsbap_date.set_editable(not self.db.readonly)
-        self.ldsbap_temple = self.top.get_widget("ldsbaptemple")
-        self.ldsbap_temple.set_sensitive(not self.db.readonly)
-        self.ldsbapplace = self.top.get_widget("lds_bap_place")
-        self.ldsbapplace.set_editable(not self.db.readonly)
-        self.ldsbap_date_led = self.top.get_widget("ldsbap_stat")
-        self.ldsbap_date_led.set_sensitive(not self.db.readonly)
-        self.ldsbap_date_check = DateEdit.DateEdit(
-            self.lds_baptism.get_date_object(), self.ldsbap_date,
-            self.ldsbap_date_led, self.window)
-
-        self.ldsend_date = self.top.get_widget("endowdate")
-        self.ldsend_date.set_editable(not self.db.readonly)
-        self.ldsend_temple = self.top.get_widget("endowtemple")
-        self.ldsend_temple.set_sensitive(not self.db.readonly)
-        self.ldsendowplace = self.top.get_widget("lds_end_place")
-        self.ldsendowplace.set_editable(not self.db.readonly)
-        self.ldsendowstat = self.top.get_widget("endowstat")
-        self.ldsendowstat.set_sensitive(not self.db.readonly)
-        self.ldsend_date_led = self.top.get_widget("endow_stat")
-        self.ldsend_date_led.set_sensitive(not self.db.readonly)
-        self.ldsend_date_check = DateEdit.DateEdit(
-            self.lds_endowment.get_date_object(), self.ldsend_date,
-            self.ldsend_date_led, self.window)
-
-        self.ldsseal_date = self.top.get_widget("sealdate")
-        self.ldsseal_temple = self.top.get_widget("sealtemple")
-        self.ldssealplace = self.top.get_widget("lds_seal_place")
-        self.ldsseal_date.set_editable(not self.db.readonly)
-        self.ldsseal_temple.set_sensitive(not self.db.readonly)
-        self.ldssealplace.set_editable(not self.db.readonly)
-        self.ldsseal_date_led = self.top.get_widget("seal_stat")
-        self.ldsseal_date_led.set_sensitive(not self.db.readonly)
-        self.ldsseal_date_check = DateEdit.DateEdit(
-            self.lds_sealing.get_date_object(), self.ldsseal_date,
-            self.ldsseal_date_led, self.window)
-        
-        self.ldsseal_fam = self.top.get_widget("sealparents")
-        self.ldsseal_fam.set_sensitive(not self.db.readonly)
-        
-        self.ldsbapstat = self.top.get_widget("ldsbapstat")
-        self.ldsbapstat.set_sensitive(not self.db.readonly)
-
-        self.ldssealstat = self.top.get_widget("sealstat")
-        self.ldssealstat.set_sensitive(not self.db.readonly)
-
-        self.bstat = self.lds_field(
-            self.lds_baptism, self.ldsbap_temple,
-            self.ldsbap_date, self.ldsbapplace)
-        
-        self.estat = self.lds_field(
-            self.lds_endowment, self.ldsend_temple,
-            self.ldsend_date, self.ldsendowplace)
-
-        self.seal_stat = self.lds_field(
-            self.lds_sealing, self.ldsseal_temple,
-            self.ldsseal_date, self.ldssealplace)
-        
-        if self.lds_sealing:
-            self.ldsfam = self.lds_sealing.get_family_handle()
-        else:
-            self.ldsfam = None
-
-        cell = gtk.CellRendererText()
-        self.ldsseal_fam.pack_start(cell,True)
-        self.ldsseal_fam.add_attribute(cell,'text',0)
-
-        store = gtk.ListStore(str)
-        store.append(row=[_("None")])
-        
-        index = 0
-        hist = 0
-        self.lds_fam_list = [None]
-        flist = [self.person.get_main_parents_family_handle()]
-        for (fam,mrel,frel) in self.person.get_parent_family_handle_list():
-            if fam not in flist:
-                flist.append(fam)
-
-        for fam_id in flist:
-            index += 1
-            family = self.db.get_family_from_handle(fam_id)
-            if family == None:
-                continue
-            name = Utils.family_name(family,self.db)
-            store.append(row=[name])
-            self.lds_fam_list.append(fam_id)
-            if fam_id == self.ldsfam:
-                hist = index
-        self.ldsseal_fam.set_model(store)
-        self.ldsseal_fam.set_active(hist)
-        self.ldsseal_fam.connect("changed",self.menu_changed)
-
-        self.build_bap_menu()
-        self.build_seal_menu()
-        self.build_endow_menu()
-
     def on_gender_activate (self, button):
         self.should_guess_gender = False
 
@@ -550,37 +427,6 @@ class EditPerson(DisplayState.ManagedWindow):
         opt_menu.set_model(store)
         opt_menu.connect('changed',task)
         opt_menu.set_active(type)
-
-    def build_bap_menu(self):
-        self.build_menu(const.lds_baptism,self.set_lds_bap,self.ldsbapstat,
-                        self.bstat)
-
-    def build_endow_menu(self):
-        self.build_menu(const.lds_baptism,self.set_lds_endow,self.ldsendowstat,
-                        self.estat)
-
-    def build_seal_menu(self):
-        self.build_menu(const.lds_csealing,self.set_lds_seal,self.ldssealstat,
-                        self.seal_stat)
-
-    def set_lds_bap(self,obj):
-        self.lds_baptism.set_status(obj.get_active())
-
-    def set_lds_endow(self,obj):
-        self.lds_endowment.set_status(obj.get_active())
-
-    def set_lds_seal(self,obj):
-        self.lds_sealing.set_status(obj.get_active())
-
-    def menu_changed(self,obj):
-        self.ldsfam = self.lds_fam_list[obj.get_active()]
-        
-    def strip_id(self,text):
-        index = text.rfind('[')
-        if (index > 0):
-            text = text[:index]
-            text = text.rstrip()
-        return text
 
     def on_cancel_edit(self,obj):
         """If the data has changed, give the user a chance to cancel
@@ -728,19 +574,6 @@ class EditPerson(DisplayState.ManagedWindow):
         self.lds_sealing.set_family_handle(self.ldsfam)
         self.lds_sealing.set_place_handle(self.get_place(self.ldssealplace,1))
 
-    def aka_double_click(self,obj,event):
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            self.on_aka_update_clicked(obj)
-        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            menu = gtk.Menu()
-            item = gtk.TearoffMenuItem()
-            item.show()
-            menu.append(item)
-            if not self.db.readonly:
-                msg = _("Make the selected name the preferred name")
-                Utils.add_menuitem(menu,msg,None,self.change_name)
-            menu.popup(None,None,None,event.button,event.time)
-
     def load_photo(self,photo):
         """loads, scales, and displays the person's main photo"""
         self.load_obj = photo
@@ -760,6 +593,7 @@ class EditPerson(DisplayState.ManagedWindow):
                 self.person_photo.hide()
 
     def on_apply_person_clicked(self,obj):
+        return
 
         if self.gender.get_active() == RelLib.Person.UNKNOWN:
             dialog = QuestionDialog2(

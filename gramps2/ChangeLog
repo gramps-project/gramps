@@ -1,3 +1,10 @@
+2006-01-29  Don Allingham  <don@gramps-project.org>
+	* src/DdTargets.py: Add support for EventRef
+	* src/DisplayTabs.py: Drag and drop support in base class
+	* src/EditPerson.py: remove unused functions
+	* src/edit_person.glade: privacy flag change
+	* src/gramps.glade: add tooltip
+
 2006-01-29  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_WriteXML.py (write_place_obj): Always write ptitle.
 	* src/GrampsDb/_ReadXML.py: Prase file and ptitle tags.
