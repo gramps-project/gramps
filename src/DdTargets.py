@@ -99,6 +99,7 @@ class _DdTargets(object):
         
         self.URL       = _DdType(self,'url')
         self.EVENT     = _DdType(self,'pevent')
+        self.EVENTREF  = _DdType(self,'peventref')
         self.ATTRIBUTE = _DdType(self,'pattr')
         self.ADDRESS   = _DdType(self,'paddr')
         self.SOURCEREF = _DdType(self,'srcref')

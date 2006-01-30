@@ -1490,6 +1490,7 @@
 	      <child>
 		<widget class="GtkToggleButton" id="private">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Indicates if the record is private</property>
 		  <property name="can_focus">True</property>
 		  <property name="relief">GTK_RELIEF_NONE</property>
 		  <property name="focus_on_click">True</property>

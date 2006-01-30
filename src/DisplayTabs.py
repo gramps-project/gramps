@@ -25,6 +25,8 @@
 #-------------------------------------------------------------------------
 import gtk
 import gobject
+import pango
+from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 
 #-------------------------------------------------------------------------
 #
@@ -33,6 +35,7 @@ import gobject
 #-------------------------------------------------------------------------
 
 from gettext import gettext as _
+import pickle
 
 #-------------------------------------------------------------------------
 #
@@ -46,6 +49,7 @@ import Utils
 import GrampsMime
 import const
 
+from DdTargets import DdTargets
 from GrampsWidgets import SimpleButton
 
 #-------------------------------------------------------------------------
@@ -123,7 +127,7 @@ class GrampsTab(gtk.HBox):
                                                   gtk.ICON_SIZE_MENU)
         self.label = gtk.Label(self.tab_name)
         hbox.pack_start(self.tab_image)
-        hbox.set_spacing(3)
+        hbox.set_spacing(6)
         hbox.add(self.label)
         hbox.show_all()
         return hbox
@@ -255,6 +259,7 @@ class EmbeddedList(ButtonTab):
     """
     
     _HANDLE_COL = -1
+    _DND_TYPE   = ""
     
     def __init__(self, dbstate, uistate, track, name, build_model):
         """
@@ -272,9 +277,57 @@ class EmbeddedList(ButtonTab):
         self.columns = []
         self.build_columns()
 
+        self.set_dnd()
+
         # build the initial data
         self.rebuild()
         self.show_all()
+
+    def set_dnd(self):
+        self.tree.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                [DdTargets.NAME.target()],
+                                ACTION_COPY)
+        self.tree.drag_source_set(BUTTON1_MASK,
+                                  [DdTargets.NAME.target()],
+                                  ACTION_COPY)
+        self.tree.connect('drag_data_get', self.drag_data_get)
+        self.tree.connect('drag_data_received', self.drag_data_received)
+        
+    def drag_data_get(self,widget, context, sel_data, info, time):
+        obj = self.get_selected()
+        if not obj:
+            return
+
+        bits_per = 8; # we're going to pass a string
+        pickled = pickle.dumps(obj);
+        data = str((self._DND_TYPE, id(self), pickled))
+        sel_data.set(sel_data.target, bits_per, data)
+
+    def drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        row = self.tree.get_path_at_pos(x,y)
+        if row == None:
+            row = len(self.get_data())
+        else:
+            row = row[0][0]
+        if sel_data and sel_data.data:
+            exec 'dnddata = %s' % sel_data.data
+            mytype = dnddata[0]
+            selfid = dnddata[1]
+            obj = pickle.loads(dnddata[2])
+            if mytype == self._DND_TYPE:
+                if id(self) == selfid:
+                    self.move(row,obj)
+                else:
+                    self.handle_drag(row,obj)
+                self.rebuild()
+
+    def handle_drag(self, row, obj):
+        print "drag row=",row
+        print "drag obj=", obj
+
+    def move(self, row, obj):
+        print "move row=",row
+        print "move obj=", obj
 
     def get_icon_name(self):
         """
@@ -295,6 +348,7 @@ class EmbeddedList(ButtonTab):
         # button press to the double click function.
         
         self.tree = gtk.TreeView()
+        self.tree.set_reorderable(True)
         self.tree.set_rules_hint(True)
         self.tree.connect('button_press_event',self.double_click)
 
@@ -383,12 +437,13 @@ class EmbeddedList(ButtonTab):
             # assign it to the column name. The text value is extracted
             # from the model column specified in pair[1]
             name = self._column_names[pair[1]][0]
-            column = gtk.TreeViewColumn(name, gtk.CellRendererText(),
-                                        text=pair[1])
+            renderer = gtk.CellRendererText()
+            renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
+            column = gtk.TreeViewColumn(name, renderer, text=pair[1])
 
             # insert the colum into the tree
             column.set_resizable(True)
-            column.set_min_width(75)
+            column.set_min_width(self._column_names[pair[1]][2])
             column.set_sort_column_id(self._column_names[pair[1]][1])
             self.columns.append(column)
             self.tree.append_column(column)
@@ -411,14 +466,15 @@ class EmbeddedList(ButtonTab):
 class EventEmbedList(EmbeddedList):
 
     _HANDLE_COL = 6
+    _DND_TYPE   = DdTargets.EVENTREF.drag_type
 
     _column_names = [
-        (_('Type'),0),
-        (_('Description'),1),
-        (_('ID'),2),
-        (_('Date'),3),
-        (_('Place'),4),
-        (_('Cause'),5),
+        (_('Type'),0,100),
+        (_('Description'),1,200),
+        (_('ID'),2, 60),
+        (_('Date'),3, 150),
+        (_('Place'),4, 140),
+        (_('Role'),5, 80),
         ]
     
     def __init__(self,dbstate,uistate,track,obj):
@@ -463,8 +519,20 @@ class EventEmbedList(EmbeddedList):
         self.rebuild()
 
     def event_added(self,value):
+        value[0].ref = value[1].handle
+        self.obj.add_event_ref(value[0])
         self.changed = True
         self.rebuild()
+
+class PersonEventEmbedList(EventEmbedList):
+
+    def __init__(self,dbstate,uistate,track,obj):
+        EventEmbedList.__init__(self, dbstate, uistate, track, obj)
+
+    def get_data(self):
+        return [ obj for obj in [ self.obj.get_birth_ref(), \
+                 self.obj.get_death_ref()] + self.obj.get_event_ref_list() \
+                 if obj ]
                                      
 #-------------------------------------------------------------------------
 #
@@ -476,9 +544,9 @@ class SourceBackRefList(EmbeddedList):
     _HANDLE_COL = 3
 
     _column_names = [
-        (_('Type'),0),
-        (_('ID'),1),
-        (_('Name'),2),
+        (_('Type'),0, 100),
+        (_('ID'),  1,  75),
+        (_('Name'),2, 250),
         ]
     
     def __init__(self,dbstate,uistate,track,obj):
@@ -541,8 +609,8 @@ class SourceBackRefList(EmbeddedList):
 class DataEmbedList(EmbeddedList):
 
     _column_names = [
-        (_('Key'),0),
-        (_('Value'),1),
+        (_('Key'),0,150),
+        (_('Value'),1,250),
         ]
     
     def __init__(self,dbstate,uistate,track,obj):
@@ -580,10 +648,11 @@ class DataEmbedList(EmbeddedList):
 class AttrEmbedList(EmbeddedList):
 
     _HANDLE_COL = 2
+    _DND_TYPE   = DdTargets.ATTRIBUTE.drag_type
 
     _column_names = [
-        (_('Type'),0),
-        (_('Value'),1),
+        (_('Type'),0,250),
+        (_('Value'),1,200),
         ]
     
     def __init__(self,dbstate,uistate,track,data):
@@ -605,11 +674,12 @@ class AttrEmbedList(EmbeddedList):
 class WebEmbedList(EmbeddedList):
 
     _HANDLE_COL = -1
+    _DND_TYPE   = DdTargets.URL.drag_type
 
     _column_names = [
-        (_('Type'),0),
-        (_('Path'),1),
-        (_('Description'),2),
+        (_('Type')       ,0, 100),
+        (_('Path')       ,1, 200),
+        (_('Description'),2, 150),
         ]
     
     def __init__(self,dbstate,uistate,track,data):
@@ -631,10 +701,11 @@ class WebEmbedList(EmbeddedList):
 class NameEmbedList(EmbeddedList):
 
     _HANDLE_COL = -1
+    _DND_TYPE   = DdTargets.NAME.drag_type
 
     _column_names = [
-        (_('Name'),0),
-        (_('Type'),1),
+        (_('Name'),0, 250),
+        (_('Type'),1, 100),
         ]
     
     def __init__(self,dbstate,uistate,track,data):
@@ -656,13 +727,14 @@ class NameEmbedList(EmbeddedList):
 class AddrEmbedList(EmbeddedList):
 
     _HANDLE_COL = -1
+    _DND_TYPE   = DdTargets.ADDRESS.drag_type
 
     _column_names = [
-        (_('Date'),0),
-        (_('Street'),1),
-        (_('State'),2),
-        (_('City'),3),
-        (_('Country'),4),
+        (_('Date'),    0, 150),
+        (_('Street'),  1, 225),
+        (_('State'),   2, 100),
+        (_('City'),    3, 100),
+        (_('Country'), 4, 75),
         ]
     
     def __init__(self,dbstate,uistate,track,data):
@@ -820,12 +892,13 @@ class GalleryTab(ButtonTab):
 class SourceEmbedList(EmbeddedList):
 
     _HANDLE_COL = 4
-
+    _DND_TYPE = DdTargets.SOURCEREF.drag_type
+        
     _column_names = [
-        (_('ID'),0),
-        (_('Title'),1),
-        (_('Author'),2),
-        (_('Page'),3),
+        (_('ID'),     0, 75),
+        (_('Title'),  1, 200),
+        (_('Author'), 2, 125),
+        (_('Page'),   3, 100),
         ]
     
     def __init__(self,dbstate,uistate,track,obj):
@@ -865,7 +938,8 @@ class SourceEmbedList(EmbeddedList):
 class ChildModel(gtk.ListStore):
 
     _HANDLE_COL = -8
-
+    _DND_TYPE = DdTargets.PERSON_LINK.drag_type
+    
     def __init__(self, family, db):
         self.family = family
         gtk.ListStore.__init__(self,int,str,str,str,str,str,
@@ -991,7 +1065,7 @@ class EventRefModel(gtk.ListStore):
                 event.get_gramps_id(),
                 self.column_date(event_ref),
                 self.column_place(event_ref),
-                event.get_cause(),
+                self.column_role(event_ref),
                 event_ref
                 ])
 
@@ -1004,6 +1078,13 @@ class EventRefModel(gtk.ListStore):
                 return Utils.personal_events[t]
             else:
                 return Utils.family_events[t]
+
+    def column_role(self,event_ref):
+        t,v = event_ref.get_role()
+        if t == RelLib.EventRef.CUSTOM:
+            return v
+        else:
+            return Utils.event_roles[t]
 
     def column_date(self,event_ref):
         event = self.db.get_event_from_handle(event_ref.ref)
