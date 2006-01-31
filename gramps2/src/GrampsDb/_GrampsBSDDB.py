@@ -842,20 +842,6 @@ class GrampsBSDDB(GrampsDbBase):
                 self.name_group.put(name,group,txn=self.txn)
             self.emit('person-rebuild')
 
-    def get_gramps_ids(self,obj_key):
-        key2table = {
-            PERSON_KEY: self.id_trans,
-            FAMILY_KEY: self.fid_trans,
-            SOURCE_KEY: self.sid_trans,
-            EVENT_KEY:  self.eid_trans,
-            MEDIA_KEY:  self.oid_trans,
-            PLACE_KEY:  self.pid_trans,
-            REPOSITORY_KEY: self.rid_trans,
-            }
-
-        table = key2table[obj_key]
-        return table.keys()
-
     def get_surname_list(self):
         vals = [ (locale.strxfrm(unicode(val)),unicode(val))
                  for val in set(self.surnames.keys()) ]
@@ -873,8 +859,8 @@ class GrampsBSDDB(GrampsDbBase):
         return vals
 
     def _get_obj_from_gramps_id(self,val,tbl,class_init):
-        data = tbl.get(str(val),txn=self.txn)
-        if data:
+        if tbl.has_key(str(val)):
+            data = tbl.get(str(val),txn=self.txn)
             obj = class_init()
             obj.unserialize(cPickle.loads(data))
             return obj
@@ -970,8 +956,8 @@ class GrampsBSDDB(GrampsDbBase):
     def _find_from_handle(self,handle,transaction,class_type,dmap,add_func):
         obj = class_type()
         handle = str(handle)
-        data = dmap.get(handle,txn=self.txn)
-        if data:
+        if dmap.has_key(handle):
+            data = dmap.get(handle,txn=self.txn)
             obj.unserialize(data)
         else:
             obj.set_handle(handle)

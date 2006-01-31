@@ -625,12 +625,19 @@ class GrampsDbBase(GrampsDBCallback):
     def _find_from_handle(self,handle,transaction,class_type,dmap,add_func):
         obj = class_type()
         handle = str(handle)
-        if dmap.get(handle):
+        if dmap.has_key(handle):
             obj.unserialize(dmap.get(handle))
         else:
             obj.set_handle(handle)
             add_func(obj,transaction)
         return obj
+
+    def _check_from_handle(self,handle,transaction,class_type,dmap,add_func):
+        handle = str(handle)
+        if not dmap.has_key(handle):
+            obj = class_type()
+            obj.set_handle(handle)
+            add_func(obj,transaction)
 
     def find_person_from_handle(self,handle,transaction):
         """
@@ -642,7 +649,7 @@ class GrampsDbBase(GrampsDBCallback):
 
     def find_source_from_handle(self,handle,transaction):
         """
-        Finds a Source in the database from the passed GRAMPS ID.
+        Finds a Source in the database from the passed handle.
         If no such Source exists, a new Source is added to the database.
         """
         return self._find_from_handle(handle,transaction,Source,
@@ -650,7 +657,7 @@ class GrampsDbBase(GrampsDBCallback):
 
     def find_event_from_handle(self,handle,transaction):
         """
-        Finds a Event in the database from the passed GRAMPS ID.
+        Finds a Event in the database from the passed handle.
         If no such Event exists, a new Event is added to the database.
         """
         return self._find_from_handle(handle,transaction,Event,
@@ -658,15 +665,15 @@ class GrampsDbBase(GrampsDBCallback):
 
     def find_object_from_handle(self,handle,transaction):
         """
-        Finds an MediaObject in the database from the passed GRAMPS ID.
-        If no such MediaObject exists, a new Object is added to the database."""
-
+        Finds an MediaObject in the database from the passed handle.
+        If no such MediaObject exists, a new Object is added to the database.
+        """
         return self._find_from_handle(handle,transaction,MediaObject,
                                       self.media_map,self.add_object)
 
     def find_place_from_handle(self,handle,transaction):
         """
-        Finds a Place in the database from the passed GRAMPS ID.
+        Finds a Place in the database from the passed handle.
         If no such Place exists, a new Place is added to the database.
         """
         return self._find_from_handle(handle,transaction,Place,
@@ -674,7 +681,7 @@ class GrampsDbBase(GrampsDBCallback):
 
     def find_family_from_handle(self,handle,transaction):
         """
-        Finds a Family in the database from the passed gramps' ID.
+        Finds a Family in the database from the passed handle.
         If no such Family exists, a new Family is added to the database.
         """
         return self._find_from_handle(handle,transaction,Family,
@@ -682,11 +689,70 @@ class GrampsDbBase(GrampsDBCallback):
 
     def find_repository_from_handle(self,handle,transaction):
         """
-        Finds a Repository in the database from the passed gramps' ID.
+        Finds a Repository in the database from the passed handle.
         If no such Repository exists, a new Repository is added to the database.
         """
         return self._find_from_handle(handle,transaction,Repository,
                                       self.repository_map,self.add_repository)
+
+    def check_person_from_handle(self,handle,transaction):
+        """
+        Checks whether a Person with the passed handle exists in the database.
+        If no such Person exists, a new Person is added to the database.
+        """
+        self._check_from_handle(handle,transaction,Person,
+                                self.person_map,self.add_person)
+
+    def check_source_from_handle(self,handle,transaction):
+        """
+        Checks whether a Source with the passed handle exists in the database.
+        If no such Source exists, a new Source is added to the database.
+        """
+        self._check_from_handle(handle,transaction,Source,
+                                self.source_map,self.add_source)
+
+    def check_event_from_handle(self,handle,transaction):
+        """
+        Checks whether an Event with the passed handle exists in the database.
+        If no such Event exists, a new Event is added to the database.
+        """
+        self._check_from_handle(handle,transaction,Event,
+                                self.event_map,self.add_event)
+
+    def check_object_from_handle(self,handle,transaction):
+        """
+        Checks whether a MediaObject with the passed handle exists in
+        the database. If no such MediaObject exists, a new Object is
+        added to the database.
+        """
+
+        self._check_from_handle(handle,transaction,MediaObject,
+                                self.media_map,self.add_object)
+
+    def check_place_from_handle(self,handle,transaction):
+        """
+        Checks whether a Place with the passed handle exists in the database.
+        If no such Place exists, a new Place is added to the database.
+        """
+        self._check_from_handle(handle,transaction,Place,
+                                self.place_map,self.add_place)
+
+    def check_family_from_handle(self,handle,transaction):
+        """
+        Checks whether a Family with the passed handle exists in the database.
+        If no such Family exists, a new Family is added to the database.
+        """
+        self._check_from_handle(handle,transaction,Family,
+                                self.family_map,self.add_family)
+
+    def check_repository_from_handle(self,handle,transaction):
+        """
+        Checks whether a Repository with the passed handle exists in the
+        database. If no such Repository exists, a new Repository is added
+        to the database.
+        """
+        self._check_from_handle(handle,transaction,Repository,
+                                self.repository_map,self.add_repository)
 
     def get_person_from_gramps_id(self,val):
         """
@@ -982,13 +1048,33 @@ class GrampsDbBase(GrampsDBCallback):
         return []
 
     def get_gramps_ids(self,obj_key):
-        """
-        Returns the list of gramps IDs contained within the database
-        for the objects of the obj_key type.
-        The function must be overridden in the derived class.
-        """
-        assert False, "Needs to be overridden in the derived class"
-       
+        key2table = {
+            PERSON_KEY: self.id_trans,
+            FAMILY_KEY: self.fid_trans,
+            SOURCE_KEY: self.sid_trans,
+            EVENT_KEY:  self.eid_trans,
+            MEDIA_KEY:  self.oid_trans,
+            PLACE_KEY:  self.pid_trans,
+            REPOSITORY_KEY: self.rid_trans,
+            }
+
+        table = key2table[obj_key]
+        return table.keys()
+
+    def has_gramps_id(self,obj_key,gramps_id):
+        key2table = {
+            PERSON_KEY: self.id_trans,
+            FAMILY_KEY: self.fid_trans,
+            SOURCE_KEY: self.sid_trans,
+            EVENT_KEY:  self.eid_trans,
+            MEDIA_KEY:  self.oid_trans,
+            PLACE_KEY:  self.pid_trans,
+            REPOSITORY_KEY: self.rid_trans,
+            }
+
+        table = key2table[obj_key]
+        return table.has_key(str(gramps_id))
+
     def find_initial_person(self):
         person = self.get_default_person()
         if not person:
