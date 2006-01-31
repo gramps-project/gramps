@@ -146,27 +146,6 @@ class GrampsInMemDB(GrampsDbBase):
         else:
             self.name_group[name] = group
 
-    def get_gramps_ids(self,obj_key):
-        """
-        Returns the list of gramps IDs contained within the database
-        for the objects of the obj_key type.
-        The function must be overridden in the derived class.
-        """
-        
-        key2table_getfun = {
-            PERSON_KEY: (self.person_map, self.get_person_from_handle),
-            FAMILY_KEY: (self.family_map, self.get_family_from_handle),
-            SOURCE_KEY: (self.source_map, self.get_source_from_handle),
-            EVENT_KEY:  (self.event_map,  self.get_event_from_handle),
-            MEDIA_KEY:  (self.media_map,  self.get_object_from_handle),
-            PLACE_KEY:  (self.place_map,  self.get_place_from_handle),
-            REPOSITORY_KEY: (self.repository_map,
-                             self.get_repository_from_handle),
-            }
-
-        table,getfun = key2table_getfun[obj_key]
-        return [getfun(handle).gramps_id for handle in iter(table)]           
-
     def get_surname_list(self):
         a = {}
         for person_id in iter(self.person_map):

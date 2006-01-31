@@ -1,3 +1,16 @@
+2006-01-30  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (get_gramps_ids): Move to
+	GrampsDbBase; (_get_obj_from_gramps_id,_find_from_handle): Only
+	read data if the key exists.
+	* src/GrampsDb/_GrampsDbBase.py (get_gramps_ids,has_gramps_id):
+	Add methods; (check_*_from_handle): Add methods that make sure
+	that object exists in the db, create as necessary, but do not read
+	if it exists; (_check_from_handle): Add lower-level method; 
+	(_find_from_handle): Only read data if the key exists.
+	* src/GrampsDb/_GrampsInMemDB.py (get_gramps_ids): Move to 
+	GrampsDbBase.
+	* src/GrampsDb/_ReadXML.py: Multiple improvements.
+
 2006-01-29  Don Allingham  <don@gramps-project.org>
 	* src/DdTargets.py: Add support for EventRef
 	* src/DisplayTabs.py: Drag and drop support in base class
