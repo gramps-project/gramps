@@ -259,7 +259,7 @@ class EmbeddedList(ButtonTab):
     """
     
     _HANDLE_COL = -1
-    _DND_TYPE   = ""
+    _DND_TYPE   = None
     
     def __init__(self, dbstate, uistate, track, name, build_model):
         """
@@ -267,6 +267,7 @@ class EmbeddedList(ButtonTab):
         populate the list.
         """
         ButtonTab.__init__(self, dbstate, uistate, track, name)
+        self.changed = False
         self.build_model = build_model
 
         # handle the selection
@@ -277,57 +278,108 @@ class EmbeddedList(ButtonTab):
         self.columns = []
         self.build_columns()
 
-        self.set_dnd()
+        self._set_dnd()
 
         # build the initial data
         self.rebuild()
         self.show_all()
 
-    def set_dnd(self):
-        self.tree.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                [DdTargets.NAME.target()],
+    def find_index(self,obj):
+        """
+        returns the index of the object within the associated data
+        """
+        return self.get_data().index(obj)
+
+    def _set_dnd(self):
+        """
+        Sets up drag-n-drop. The source and destionation are set by calling .target()
+        on the _DND_TYPE. Obviously, this means that there must be a _DND_TYPE
+        variable defined that points to an entry in DdTargets.
+        """
+        self.tree.drag_dest_set(gtk.DEST_DEFAULT_ALL, [self._DND_TYPE.target()],
                                 ACTION_COPY)
-        self.tree.drag_source_set(BUTTON1_MASK,
-                                  [DdTargets.NAME.target()],
-                                  ACTION_COPY)
+        self.tree.drag_source_set(BUTTON1_MASK, [self._DND_TYPE.target()], ACTION_COPY)
         self.tree.connect('drag_data_get', self.drag_data_get)
         self.tree.connect('drag_data_received', self.drag_data_received)
         
     def drag_data_get(self,widget, context, sel_data, info, time):
+        """
+        Provide the drag_data_get function, which passes a tuple consisting of:
+
+           1) Drag type defined by the .drag_type field specfied by the value
+              assigned to _DND_TYPE
+           2) The id value of this object, used for the purpose of determining
+              the source of the object. If the source of the object is the same
+              as the object, we are doing a reorder instead of a normal drag
+              and drop
+           3) Pickled data. The pickled version of the selected object
+           4) Source row. Used for a reorder to determine the original position
+              of the object
+        """
+
+        # get the selected object, returning if not is defined
         obj = self.get_selected()
         if not obj:
             return
 
-        bits_per = 8; # we're going to pass a string
+        # pickle the data, and build the tuple to be passed
         pickled = pickle.dumps(obj);
-        data = str((self._DND_TYPE, id(self), pickled))
-        sel_data.set(sel_data.target, bits_per, data)
+        data = str((self._DND_TYPE.drag_type, id(self), pickled, self.find_index(obj)))
+
+        # pass as a string (8 bits)
+        sel_data.set(sel_data.target, 8, data)
 
     def drag_data_received(self,widget,context,x,y,sel_data,info,time):
-        row = self.tree.get_path_at_pos(x,y)
-        if row == None:
-            row = len(self.get_data())
-        else:
-            row = row[0][0]
+        """
+        Handle the standard gtk interface for drag_data_received.
+
+        If the selection data is define, extract the value from sel_data.data,
+        and decide if this is a move or a reorder.
+        """
         if sel_data and sel_data.data:
             exec 'dnddata = %s' % sel_data.data
             mytype = dnddata[0]
             selfid = dnddata[1]
             obj = pickle.loads(dnddata[2])
-            if mytype == self._DND_TYPE:
+            row_from = dnddata[3]
+
+            # make sure this is the correct DND type for this object
+            if mytype == self._DND_TYPE.drag_type:
+                
+                # determine the destination row
+                row = self._find_row(x,y)
+
+                # if the is same object, we have a move, otherwise,
+                # it is a standard drag-n-drop
+                
                 if id(self) == selfid:
-                    self.move(row,obj)
+                    self._move(row_from,row,obj)
                 else:
-                    self.handle_drag(row,obj)
+                    self._handle_drag(row,obj)
                 self.rebuild()
 
-    def handle_drag(self, row, obj):
-        print "drag row=",row
-        print "drag obj=", obj
+    def _find_row(self,x,y):
+        row = self.tree.get_path_at_pos(x,y)
+        if row == None:
+            return len(self.get_data())
+        else:
+            return row[0][0]
 
-    def move(self, row, obj):
-        print "move row=",row
-        print "move obj=", obj
+    def _handle_drag(self, row, obj):
+        self.get_data().insert(row,obj)
+        self.changed = True
+        self.rebuild()
+
+    def _move(self, row_from, row_to, obj):
+        dlist = self.get_data()
+        if row_from < row_to:
+            dlist.insert(row_to,obj)
+            del dlist[row_from]
+        else:
+            del dlist[row_from]
+            dlist.insert(row_to-1,obj)
+        self.changed = True
+        self.rebuild()
 
     def get_icon_name(self):
         """
@@ -466,7 +518,7 @@ class EmbeddedList(ButtonTab):
 class EventEmbedList(EmbeddedList):
 
     _HANDLE_COL = 6
-    _DND_TYPE   = DdTargets.EVENTREF.drag_type
+    _DND_TYPE   = DdTargets.EVENTREF
 
     _column_names = [
         (_('Type'),0,100),
@@ -479,7 +531,6 @@ class EventEmbedList(EmbeddedList):
     
     def __init__(self,dbstate,uistate,track,obj):
         self.obj = obj
-        self.changed = False
         EmbeddedList.__init__(self, dbstate, uistate, track,
                               _('Events'), EventRefModel)
 
@@ -503,7 +554,8 @@ class EventEmbedList(EmbeddedList):
         if ref:
             ref_list = self.obj.get_event_ref_list()
             ref_list.remove(ref)
-            self.rebuild()
+            self.changed = True
+            self.rebuild() 
 
     def edit_button_clicked(self,obj):
         ref = self.get_selected()
@@ -526,13 +578,15 @@ class EventEmbedList(EmbeddedList):
 
 class PersonEventEmbedList(EventEmbedList):
 
-    def __init__(self,dbstate,uistate,track,obj):
+    def __init__(self,dbstate,uistate,track,obj):        
+        self.orig_data =  [ data for data in [ obj.get_birth_ref(), \
+                                             obj.get_death_ref()] + \
+                            obj.get_event_ref_list() \
+                            if data ]
         EventEmbedList.__init__(self, dbstate, uistate, track, obj)
 
     def get_data(self):
-        return [ obj for obj in [ self.obj.get_birth_ref(), \
-                 self.obj.get_death_ref()] + self.obj.get_event_ref_list() \
-                 if obj ]
+        return self.orig_data
                                      
 #-------------------------------------------------------------------------
 #
@@ -648,7 +702,7 @@ class DataEmbedList(EmbeddedList):
 class AttrEmbedList(EmbeddedList):
 
     _HANDLE_COL = 2
-    _DND_TYPE   = DdTargets.ATTRIBUTE.drag_type
+    _DND_TYPE   = DdTargets.ATTRIBUTE
 
     _column_names = [
         (_('Type'),0,250),
@@ -674,7 +728,7 @@ class AttrEmbedList(EmbeddedList):
 class WebEmbedList(EmbeddedList):
 
     _HANDLE_COL = -1
-    _DND_TYPE   = DdTargets.URL.drag_type
+    _DND_TYPE   = DdTargets.URL
 
     _column_names = [
         (_('Type')       ,0, 100),
@@ -701,7 +755,7 @@ class WebEmbedList(EmbeddedList):
 class NameEmbedList(EmbeddedList):
 
     _HANDLE_COL = -1
-    _DND_TYPE   = DdTargets.NAME.drag_type
+    _DND_TYPE   = DdTargets.NAME
 
     _column_names = [
         (_('Name'),0, 250),
@@ -727,7 +781,7 @@ class NameEmbedList(EmbeddedList):
 class AddrEmbedList(EmbeddedList):
 
     _HANDLE_COL = -1
-    _DND_TYPE   = DdTargets.ADDRESS.drag_type
+    _DND_TYPE   = DdTargets.ADDRESS
 
     _column_names = [
         (_('Date'),    0, 150),
@@ -892,7 +946,7 @@ class GalleryTab(ButtonTab):
 class SourceEmbedList(EmbeddedList):
 
     _HANDLE_COL = 4
-    _DND_TYPE = DdTargets.SOURCEREF.drag_type
+    _DND_TYPE = DdTargets.SOURCEREF
         
     _column_names = [
         (_('ID'),     0, 75),
@@ -938,7 +992,7 @@ class SourceEmbedList(EmbeddedList):
 class ChildModel(gtk.ListStore):
 
     _HANDLE_COL = -8
-    _DND_TYPE = DdTargets.PERSON_LINK.drag_type
+    _DND_TYPE = DdTargets.PERSON_LINK
     
     def __init__(self, family, db):
         self.family = family
