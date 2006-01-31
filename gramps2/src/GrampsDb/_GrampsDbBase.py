@@ -485,7 +485,7 @@ class GrampsDbBase(GrampsDBCallback):
         off the person ID prefix.
         """
         index = self.iprefix % self.pmap_index
-        while self.id_trans.get(str(index)):
+        while self.id_trans.has_key(str(index)):
             self.pmap_index += 1
             index = self.iprefix % self.pmap_index
         self.pmap_index += 1
@@ -497,7 +497,7 @@ class GrampsDbBase(GrampsDBCallback):
         off the person ID prefix.
         """
         index = self.pprefix % self.lmap_index
-        while self.pid_trans.get(str(index)):
+        while self.pid_trans.has_key(str(index)):
             self.lmap_index += 1
             index = self.pprefix % self.lmap_index
         self.lmap_index += 1
@@ -509,7 +509,7 @@ class GrampsDbBase(GrampsDBCallback):
         off the person ID prefix.
         """
         index = self.eprefix % self.emap_index
-        while self.eid_trans.get(str(index)):
+        while self.eid_trans.has_key(str(index)):
             self.emap_index += 1
             index = self.eprefix % self.emap_index
         self.emap_index += 1
@@ -521,7 +521,7 @@ class GrampsDbBase(GrampsDBCallback):
         off the person ID prefix.
         """
         index = self.oprefix % self.omap_index
-        while self.oid_trans.get(str(index)):
+        while self.oid_trans.has_key(str(index)):
             self.omap_index += 1
             index = self.oprefix % self.omap_index
         self.omap_index += 1
@@ -533,7 +533,7 @@ class GrampsDbBase(GrampsDBCallback):
         off the person ID prefix.
         """
         index = self.sprefix % self.smap_index
-        while self.sid_trans.get(str(index)):
+        while self.sid_trans.has_key(str(index)):
             self.smap_index += 1
             index = self.sprefix % self.smap_index
         self.smap_index += 1
@@ -545,7 +545,7 @@ class GrampsDbBase(GrampsDBCallback):
         off the person ID prefix.
         """
         index = self.fprefix % self.fmap_index
-        while self.fid_trans.get(str(index)):
+        while self.fid_trans.has_key(str(index)):
             self.fmap_index += 1
             index = self.fprefix % self.fmap_index
         self.fmap_index += 1
@@ -557,7 +557,7 @@ class GrampsDbBase(GrampsDBCallback):
         off the repository ID prefix.
         """
         index = self.rprefix % self.rmap_index
-        while self.rid_trans.get(str(index)):
+        while self.rid_trans.has_key(str(index)):
             self.rmap_index += 1
             index = self.rprefix % self.rmap_index
         self.rmap_index += 1
