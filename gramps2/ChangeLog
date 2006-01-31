@@ -1,3 +1,7 @@
+2006-01-31  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: clean up building notebook pages
+	* src/DisplayTabs.py: support for drag-n-drop
+
 2006-01-30  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (get_gramps_ids): Move to
 	GrampsDbBase; (_get_obj_from_gramps_id,_find_from_handle): Only

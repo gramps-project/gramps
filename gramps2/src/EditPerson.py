@@ -253,46 +253,51 @@ class EditPerson(DisplayState.ManagedWindow):
 
         self.eventbox.connect('button-press-event',self.image_button_press)
 
-        self.notebook = gtk.Notebook()
-        self.vbox.pack_start(self.notebook,True)
-        self.notebook.show_all()
-
-        self.event_list = PersonEventEmbedList(self.dbstate,self.uistate,
-                                               self.track,self.person)
-        self.name_list = NameEmbedList(self.dbstate, self.uistate, self.track,
-                                       self.person.get_alternate_names())
-        self.srcref_list = SourceEmbedList(self.dbstate,self.uistate,
-                                           self.track,self.person.source_list)
-        self.attr_list = AttrEmbedList(self.dbstate,self.uistate,self.track,
-                                       self.person.get_attribute_list())
-        self.addr_list = AddrEmbedList(self.dbstate,self.uistate,self.track,
-                                       self.person.get_address_list())
-        self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
-                                self.person.get_note_object())
-        self.gallery_tab = GalleryTab(self.dbstate, self.uistate, self.track,
-                                      self.person.get_media_list())
-        self.web_list = WebEmbedList(self.dbstate,self.uistate,self.track,
-                                     self.person.get_url_list())
-
-        self.notebook.insert_page(self.event_list)
-        self.notebook.set_tab_label(self.event_list,self.event_list.get_tab_widget())
-        self.notebook.insert_page(self.name_list)
-        self.notebook.set_tab_label(self.name_list,self.name_list.get_tab_widget())
-        self.notebook.insert_page(self.attr_list)
-        self.notebook.set_tab_label(self.attr_list,self.attr_list.get_tab_widget())
-        self.notebook.insert_page(self.addr_list)
-        self.notebook.set_tab_label(self.addr_list,self.addr_list.get_tab_widget())
-        self.notebook.insert_page(self.note_tab)
-        self.notebook.set_tab_label(self.note_tab,self.note_tab.get_tab_widget())
-        self.notebook.insert_page(self.srcref_list)
-        self.notebook.set_tab_label(self.srcref_list,self.srcref_list.get_tab_widget())
-        self.notebook.insert_page(self.gallery_tab)
-        self.notebook.set_tab_label(self.gallery_tab,self.gallery_tab.get_tab_widget())
-        self.notebook.insert_page(self.web_list)
-        self.notebook.set_tab_label(self.web_list,self.web_list.get_tab_widget())
-
+        self._create_tabbed_pages()
+        
         self.given.grab_focus()
         self.show()
+
+    def _add_page(self,page):
+        self.notebook.insert_page(page)
+        self.notebook.set_tab_label(page,page.get_tab_widget())
+        return page
+        
+    def _create_tabbed_pages(self):
+        """
+        Creates the notebook tabs and inserts them into the main
+        window.
+        
+        """
+        self.notebook = gtk.Notebook()
+
+        self.event_list = self._add_page(PersonEventEmbedList(
+            self.dbstate,self.uistate, self.track,self.person))
+        
+        self.name_list = self._add_page(NameEmbedList(
+            self.dbstate, self.uistate, self.track,
+            self.person.get_alternate_names()))
+        self.srcref_list = self._add_page(SourceEmbedList(
+            self.dbstate,self.uistate, self.track,
+            self.person.source_list))
+        self.attr_list = self._add_page(AttrEmbedList(
+            self.dbstate,self.uistate,self.track,
+            self.person.get_attribute_list()))
+        self.addr_list = self._add_page(AddrEmbedList(
+            self.dbstate,self.uistate,self.track,
+            self.person.get_address_list()))
+        self.note_tab = self._add_page(NoteTab(
+            self.dbstate, self.uistate, self.track,
+            self.person.get_note_object()))
+        self.gallery_tab = self._add_page(GalleryTab(
+            self.dbstate, self.uistate, self.track,
+            self.person.get_media_list()))
+        self.web_list = self._add_page(WebEmbedList(
+            self.dbstate,self.uistate,self.track,
+            self.person.get_url_list()))
+
+        self.notebook.show_all()
+        self.vbox.pack_start(self.notebook,True)
 
     def build_menu_names(self,person):
         win_menu_label = self.nd.display(person)
@@ -593,6 +598,12 @@ class EditPerson(DisplayState.ManagedWindow):
                 self.person_photo.hide()
 
     def on_apply_person_clicked(self,obj):
+        print self.event_list.changed
+        print self.name_list.changed
+        print self.srcref_list.changed
+        print self.attr_list.changed
+        print self.addr_list.changed
+        print self.web_list.changed
         return
 
         if self.gender.get_active() == RelLib.Person.UNKNOWN:
