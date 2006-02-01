@@ -960,7 +960,7 @@ class GrampsBSDDB(GrampsDbBase):
     def _find_from_handle(self,handle,transaction,class_type,dmap,add_func):
         obj = class_type()
         handle = str(handle)
-        if dmap.db.has_key(handle):
+        if dmap.has_key(handle):
             data = dmap.get(handle,txn=self.txn)
             obj.unserialize(data)
         else:
