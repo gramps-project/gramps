@@ -37,6 +37,11 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 from gettext import gettext as _
 import pickle
 
+try:
+    set()
+except:
+    from sets import Set as set
+    
 #-------------------------------------------------------------------------
 #
 # GRAMPS libraries
@@ -390,6 +395,14 @@ class EmbeddedList(ButtonTab):
         """
         return gtk.STOCK_JUSTIFY_FILL
 
+    def del_button_clicked(self,obj):
+        ref = self.get_selected()
+        if ref:
+            ref_list = self.get_data()
+            ref_list.remove(ref)
+            self.changed = True
+            self.rebuild()
+
     def build_interface(self):
         """
         Builds the interface, instantiating a gtk.TreeView in a
@@ -548,14 +561,6 @@ class EventEmbedList(EmbeddedList):
         ref = RelLib.EventRef()
         EventEdit.EventRefEditor(self.dbstate,self.uistate,self.track,
                                  None, ref, self.obj, self.event_added)
-
-    def del_button_clicked(self,obj):
-        ref = self.get_selected()
-        if ref:
-            ref_list = self.obj.get_event_ref_list()
-            ref_list.remove(ref)
-            self.changed = True
-            self.rebuild() 
 
     def edit_button_clicked(self,obj):
         ref = self.get_selected()
@@ -720,6 +725,33 @@ class AttrEmbedList(EmbeddedList):
     def column_order(self):
         return ((1,0),(1,1))
 
+    def add_button_clicked(self,obj):
+        import AttrEdit
+        pname = ''
+        attr_list = []
+        AttrEdit.AttributeEditor(
+            self.dbstate, self.uistate, self.track, None,
+            pname, attr_list, self.add_callback)
+
+    def add_callback(self,name):
+        self.get_data().append(name)
+        self.changed = True
+        self.rebuild()
+
+    def edit_button_clicked(self,obj):
+        attr = self.get_selected()
+        if attr:
+            import AttrEdit
+            pname = ''
+            attr_list = []
+            AttrEdit.AttributeEditor(
+                self.dbstate, self.uistate, self.track, attr,
+                pname, attr_list, self.edit_callback)
+
+    def edit_callback(self,name):
+        self.changed = True
+        self.rebuild()
+
 #-------------------------------------------------------------------------
 #
 # 
@@ -727,7 +759,7 @@ class AttrEmbedList(EmbeddedList):
 #-------------------------------------------------------------------------
 class WebEmbedList(EmbeddedList):
 
-    _HANDLE_COL = -1
+    _HANDLE_COL = 3
     _DND_TYPE   = DdTargets.URL
 
     _column_names = [
@@ -747,6 +779,26 @@ class WebEmbedList(EmbeddedList):
     def column_order(self):
         return ((1,0),(1,1),(1,2))
 
+    def add_button_clicked(self,obj):
+        import UrlEdit
+        url = RelLib.Url()
+        UrlEdit.UrlEditor(self.dbstate, self.uistate, self.track,
+                          '', url, self.add_callback)
+
+    def add_callback(self,url):
+        self.get_data().append(url)
+        self.rebuild()
+
+    def edit_button_clicked(self,obj):
+        url = self.get_selected()
+        if url:
+            import UrlEdit
+            UrlEdit.UrlEditor(self.dbstate, self.uistate, self.track,
+                              '', url, self.edit_callback)
+
+    def edit_callback(self,url):
+        self.rebuild()
+
 #-------------------------------------------------------------------------
 #
 # 
@@ -754,7 +806,7 @@ class WebEmbedList(EmbeddedList):
 #-------------------------------------------------------------------------
 class NameEmbedList(EmbeddedList):
 
-    _HANDLE_COL = -1
+    _HANDLE_COL = 2
     _DND_TYPE   = DdTargets.NAME
 
     _column_names = [
@@ -773,6 +825,26 @@ class NameEmbedList(EmbeddedList):
     def column_order(self):
         return ((1,0),(1,1))
 
+    def add_button_clicked(self,obj):
+        import NameEdit
+        name = RelLib.Name()
+        NameEdit.NameEditor(self.dbstate, self.uistate, self.track,
+                            name, self.add_callback)
+
+    def add_callback(self,name):
+        self.get_data().append(name)
+        self.rebuild()
+
+    def edit_button_clicked(self,obj):
+        name = self.get_selected()
+        if name:
+            import NameEdit
+            NameEdit.NameEditor(self.dbstate, self.uistate, self.track,
+                                name, self.edit_callback)
+
+    def edit_callback(self,name):
+        self.rebuild()
+
 #-------------------------------------------------------------------------
 #
 # 
@@ -780,7 +852,7 @@ class NameEmbedList(EmbeddedList):
 #-------------------------------------------------------------------------
 class AddrEmbedList(EmbeddedList):
 
-    _HANDLE_COL = -1
+    _HANDLE_COL = 5
     _DND_TYPE   = DdTargets.ADDRESS
 
     _column_names = [
@@ -801,6 +873,26 @@ class AddrEmbedList(EmbeddedList):
 
     def column_order(self):
         return ((1,0),(1,1),(1,2),(1,3),(1,4))
+
+    def add_button_clicked(self,obj):
+        import AddrEdit
+        addr = RelLib.Address()
+        AddrEdit.AddressEditor(self.dbstate, self.uistate, self.track,
+                               addr, self.add_callback)
+
+    def add_callback(self,name):
+        self.get_data().append(name)
+        self.rebuild()
+
+    def edit_button_clicked(self,obj):
+        addr = self.get_selected()
+        if addr:
+            import AddrEdit
+            AddrEdit.AddressEditor(self.dbstate, self.uistate, self.track,
+                                   addr, self.edit_callback)
+
+    def edit_callback(self,name):
+        self.rebuild()
 
 #-------------------------------------------------------------------------
 #
@@ -992,7 +1084,6 @@ class SourceEmbedList(EmbeddedList):
 class ChildModel(gtk.ListStore):
 
     _HANDLE_COL = -8
-    _DND_TYPE = DdTargets.PERSON_LINK
     
     def __init__(self, family, db):
         self.family = family
@@ -1234,7 +1325,16 @@ class WebModel(gtk.ListStore):
         gtk.ListStore.__init__(self,str,str,str,object)
         self.db = db
         for obj in obj_list:
-            self.append(row=[obj.type, obj.path, obj.desc, obj])
+            self.append(row=[self.show_type(obj.type),
+                             obj.path, obj.desc, obj])
+
+    def show_type(self,rtype):
+        rel = rtype[0]
+        val = rtype[1]
+        if rel == RelLib.Url.CUSTOM:
+            return val
+        else:
+            return Utils.web_types[rel]
 
 #-------------------------------------------------------------------------
 #

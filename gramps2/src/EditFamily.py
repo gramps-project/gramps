@@ -67,6 +67,7 @@ from ObjectSelector import PersonSelector,PersonFilterSpec
 class ChildEmbedList(EmbeddedList):
 
     _HANDLE_COL = 10
+    _DND_TYPE = DdTargets.PERSON_LINK
 
     _column_names = [
         (_('#'),0) ,
