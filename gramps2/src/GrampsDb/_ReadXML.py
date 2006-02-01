@@ -84,11 +84,8 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
     change = os.path.getmtime(filename)
     parser = GrampsParser(database,callback,basefile,change,filename)
 
-    print "starting line parser"
     linecounter = LineParser(filename)
-    print "finished parser"
     lc = linecounter.get_count()
-    print "got line count:", lc
     
     ro = database.readonly
     database.readonly = False
@@ -231,7 +228,9 @@ class LineParser:
             else:
                 f = open(filename,"r")
 
-            self.count = len(f.readlines())
+            for line in f:
+                self.count += 1
+
             f.close()
         except:
             self.count = 0
@@ -587,12 +586,12 @@ class GrampsParser:
         self.db.set_researcher(self.owner)
         if self.home != None:
             person = self.db.find_person_from_handle(self.home,self.trans)
-            self.db.set_default_person_handle(person.get_handle())
+            self.db.set_default_person_handle(person.handle)
         if self.tempDefault != None:
-            handle = self.map_gid(self.tempDefault)
-            person = self.find_person_by_gramps_id(handle)
+            gramps_id = self.map_gid(self.tempDefault)
+            person = self.find_person_by_gramps_id(gramps_id)
             if person:
-                self.db.set_default_person_handle(person.get_handle())
+                self.db.set_default_person_handle(person.handle)
 
         for key in self.func_map.keys():
             del self.func_map[key]
@@ -1649,11 +1648,8 @@ if __name__ == "__main__":
 
     parser = GrampsParser(database,callback,basefile,change,filename)
 
-    print "starting line parser"
     linecounter = LineParser(filename)
-    print "finished parser"
     lc = linecounter.get_count()
-    print "got line count:", lc
 
     xml_file = gzip.open(filename,"rb")
 
