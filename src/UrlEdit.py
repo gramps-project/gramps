@@ -46,6 +46,7 @@ import Utils
 import RelLib
 import GrampsDisplay
 import DisplayState
+import AutoComp
 
 from WindowUtils import GladeIf
 
@@ -74,10 +75,21 @@ class UrlEditor(DisplayState.ManagedWindow):
         self.gladeif = GladeIf(self.top)
         
         self.window = self.top.get_widget("url_edit")
+        self.wtype = self.top.get_widget("type")
         self.des  = self.top.get_widget("url_des")
         self.addr = self.top.get_widget("url_addr")
         self.priv = self.top.get_widget("priv")
         title_label = self.top.get_widget("title")
+
+        mtype = self.url.get_type()
+        if mtype:
+            defval = mtype[0]
+        else:
+            defval = None
+        rel_types = dict(Utils.web_types)
+
+        self.type_sel = AutoComp.StandardCustomSelector(
+            rel_types, self.wtype, RelLib.Url.CUSTOM, defval)
 
         if not name or name == ", ":
             etitle =_('Internet Address Editor')
@@ -93,7 +105,7 @@ class UrlEditor(DisplayState.ManagedWindow):
             self.priv.set_active(url.get_privacy())
 
         self.gladeif.connect('url_edit','delete_event', self.on_delete_event)
-        self.gladeif.connect('button125','clicked', self.close)
+        self.gladeif.connect('button125','clicked', self.close_window)
         self.gladeif.connect('button124','clicked', self.on_url_edit_ok_clicked)
         self.gladeif.connect('button130','clicked', self.on_help_clicked)
 
@@ -109,12 +121,11 @@ class UrlEditor(DisplayState.ManagedWindow):
 
     def on_delete_event(self,*obj):
         self.gladeif.close()
-        gc.collect()
+        self.close()
 
-    def close(self,*obj):
+    def close_window(self,*obj):
         self.gladeif.close()
-        self.window.destroy()
-        gc.collect()
+        self.close()
 
     def on_help_clicked(self,*obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -127,11 +138,15 @@ class UrlEditor(DisplayState.ManagedWindow):
         
         self.update_url(des,addr,priv)
         self.callback(self.url)
-        self.close(obj)
+        self.close_window(obj)
 
     def update_url(self,des,addr,priv):
         if self.url.get_path() != addr:
             self.url.set_path(addr)
+
+        val = self.type_sel.get_values()
+        if self.url.get_type() != val:
+            self.url.set_type(val)
         
         if self.url.get_description() != des:
             self.url.set_description(des)

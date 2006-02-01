@@ -182,6 +182,15 @@ name_types = {
     RelLib.Name.MARRIED : _("Married Name"),
     }
 
+web_types = {
+    RelLib.Url.UNKNOWN    : _("Unknown"),
+    RelLib.Url.CUSTOM     : _("Custom"),
+    RelLib.Url.EMAIL      : _("E-mail"),
+    RelLib.Url.WEB_HOME   : _("Web Home"),
+    RelLib.Url.WEB_SEARCH : _("Web Search"),
+    RelLib.Url.WEB_FTP    : _("FTP"),
+    }
+
 source_media_types = {
     RelLib.RepoRef.UNKNOWN    : _("Unknown"),
     RelLib.RepoRef.CUSTOM     : _("Custom"),

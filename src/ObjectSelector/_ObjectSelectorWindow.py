@@ -251,7 +251,7 @@ class ObjectSelectorWindow(gtk.Window,ManagedWindow):
         cancel_button = gtk.Button(stock=gtk.STOCK_CANCEL)
         cancel_button.show()
         
-        cancel_button.connect_object("clicked", gtk.Widget.destroy, self)
+        cancel_button.connect_object("clicked", self._close_window, self)
         
         bottom_button_bar = gtk.HButtonBox()
         bottom_button_bar.set_layout(gtk.BUTTONBOX_SPREAD)
@@ -283,6 +283,9 @@ class ObjectSelectorWindow(gtk.Window,ManagedWindow):
 
         self.show()
 
+
+    def _close_window(self,obj):
+        self.close()
 
     def _set_object_type(self,selected_object_type):
         # enable selected object type
