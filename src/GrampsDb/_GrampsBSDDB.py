@@ -579,7 +579,7 @@ class GrampsBSDDB(GrampsDbBase):
         # Add references to the reference_map for all primary object referenced
         # from the primary object 'obj' or any of its secondary objects.
 
-        handle = obj.get_handle()
+        handle = obj.handle
         update = self.reference_map_primary_map.has_key(str(handle))
 
         if update:
@@ -589,10 +589,10 @@ class GrampsBSDDB(GrampsDbBase):
 
 
             # First thing to do is get hold of all rows in the reference_map
-            # table that hold a reference from this primary obj. This means finding
-            # all the rows that have this handle somewhere in the list of (class_name,handle)
-            # pairs.
-            # The primary_map secondary index allows us to look this up quickly.
+            # table that hold a reference from this primary obj. This means
+            # finding all the rows that have this handle somewhere in the
+            # list of (class_name,handle) pairs.
+            # The primary_map sec index allows us to look this up quickly.
 
             existing_references = set()
 
@@ -610,25 +610,27 @@ class GrampsBSDDB(GrampsDbBase):
                 #   ((primary_object_class_name, primary_object_handle),
                 #    (referenced_object_class_name, referenced_object_handle))
                 # so we need the second tuple give us a reference that we can
-                # compare with what is returned from get_referenced_handles_recursively
+                # compare with what is returned from
+                # get_referenced_handles_recursively
 
-                # Looks like there is a bug in the set() and next_dup() methods
-                # because they do not run the data through cPickle.loads before
-                # returning it, so we have to here.
+                # secondary DBs are not DBShelf's, so we need to do pickling
+                # and unpicking ourselves here
                 existing_reference = cPickle.loads(data)[1]
-                existing_references.add((KEY_TO_CLASS_MAP[existing_reference[0]],
-                                         existing_reference[1]))
+                existing_references.add(
+                    (KEY_TO_CLASS_MAP[existing_reference[0]],
+                     existing_reference[1]))
                 ret = primary_cur.next_dup()
 
             primary_cur.close()
 
-            # Once we have the list of rows that already have a reference we need to compare
-            # it with the list of objects that are still references from the primary object.
+            # Once we have the list of rows that already have a reference
+            # we need to compare it with the list of objects that are
+            # still references from the primary object.
 
             current_references = set(obj.get_referenced_handles_recursively())
 
-            no_longer_required_references = existing_references.difference(current_references)
-
+            no_longer_required_references = existing_references.difference(
+                current_references)
 
             new_references = current_references.difference(existing_references)
 
@@ -646,9 +648,11 @@ class GrampsBSDDB(GrampsDbBase):
         if update:
             # handle deletion of old references
             if len(no_longer_required_references) > 0:
-                for (ref_class_name,ref_handle) in no_longer_required_references:
+                for (ref_class_name,ref_handle) in \
+                        no_longer_required_references:
                     try:
-                        self._remove_reference((handle,ref_handle),transaction,txn)
+                        self._remove_reference(
+                            (handle,ref_handle),transaction,txn)
                         #self.reference_map.delete(str((handle,ref_handle),),
                         #                          txn=self.txn)
                     except: # ignore missing old reference
@@ -956,7 +960,7 @@ class GrampsBSDDB(GrampsDbBase):
     def _find_from_handle(self,handle,transaction,class_type,dmap,add_func):
         obj = class_type()
         handle = str(handle)
-        if dmap.has_key(handle):
+        if dmap.db.has_key(handle):
             data = dmap.get(handle,txn=self.txn)
             obj.unserialize(data)
         else:
@@ -981,14 +985,14 @@ class GrampsBSDDB(GrampsDbBase):
             # but we can't help it. Disabling the secondary index
             # removal/rebuilding for batch transactions for now.
 
-##             # Disconnect unneeded secondary indices
-##             self.surnames.close()
-##             junk = db.DB(self.env)
-##             junk.remove(self.full_name,"surnames")
+            # Disconnect unneeded secondary indices
+            self.surnames.close()
+            junk = db.DB(self.env)
+            junk.remove(self.full_name,"surnames")
 
-##             self.reference_map_referenced_map.close()
-##             junk = db.DB(self.env)
-##             junk.remove(self.full_name,"reference_map_referenced_map")
+            self.reference_map_referenced_map.close()
+            junk = db.DB(self.env)
+            junk.remove(self.full_name,"reference_map_referenced_map")
             
         return transaction
 
@@ -1017,22 +1021,22 @@ class GrampsBSDDB(GrampsDbBase):
             # but we can't help it. Disabling the secondary index
             # removal/rebuilding for batch transactions for now.
 
-##             open_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
-##             dupe_flags = db.DB_DUP|db.DB_DUPSORT
-##             # create new secondary indices to replace the ones removed
-##             self.surnames = db.DB(self.env)
-##             self.surnames.set_flags(dupe_flags)
-##             self.surnames.open(self.full_name,"surnames",
-##                                db.DB_BTREE,flags=table_flags)
-##             self.person_map.associate(self.surnames,find_surname,open_flags)
+            open_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
+            dupe_flags = db.DB_DUP|db.DB_DUPSORT
+            # create new secondary indices to replace the ones removed
+            self.surnames = db.DB(self.env)
+            self.surnames.set_flags(dupe_flags)
+            self.surnames.open(self.full_name,"surnames",
+                               db.DB_BTREE,flags=open_flags)
+            self.person_map.associate(self.surnames,find_surname,open_flags)
             
-##             self.reference_map_referenced_map = db.DB(self.env)
-##             self.reference_map_referenced_map.set_flags(dupe_flags)
-##             self.reference_map_referenced_map.open(
-##                 self.full_name,"reference_map_referenced_map",
-##                 db.DB_BTREE,flags=open_flags)
-##             self.reference_map.associate(self.reference_map_referenced_map,
-##                                          find_referenced_handle,open_flags)
+            self.reference_map_referenced_map = db.DB(self.env)
+            self.reference_map_referenced_map.set_flags(dupe_flags)
+            self.reference_map_referenced_map.open(
+                self.full_name,"reference_map_referenced_map",
+                db.DB_BTREE,flags=open_flags)
+            self.reference_map.associate(self.reference_map_referenced_map,
+                                         find_referenced_handle,open_flags)
         self.txn = None
 
     def undo(self):

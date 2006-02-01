@@ -4,6 +4,11 @@
 	* src/GrampsDb/_GrampsBSDDB.py (find_next_*_gramps_id): Remove 
 	methods, as there's no need to override ones the DbBase now.
 
+	* src/GrampsDb/_GrampsBSDDB.py (_find_by_handle): delegate key
+	lookup to dbmap.db; (transaction_commit, transaction_begin):
+	Enable removing/rebuilding of the secondary index.
+	* src/GrampsDb/_ReadXML.py (LineParser): Improve first pass.
+
 2006-01-31  Don Allingham  <don@gramps-project.org>
 	* src/EditPerson.py: clean up building notebook pages
 	* src/DisplayTabs.py: support for drag-n-drop
