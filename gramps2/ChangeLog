@@ -2,6 +2,10 @@
 	* src/DisplayState.py: add standard function for using WATCH cursor
 	* src/PageView.py: enable watch cursor when it is necessary to 
 	rebuild a page.
+	* src/EditMedia.py: break out of ImageSelect, since ImageSelect
+	will probably go away. Add media editing ability using DisplayTabs.
+	* src/MediaView.py: call EditMedia
+	* src/gramps.glade: clean up media editor dialog
 
 2006-02-02  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (transaction_begin,
