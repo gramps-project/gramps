@@ -537,7 +537,7 @@ class SourceEditor(DisplayState.ManagedWindow):
         self.source_ref.set_confidence_level(conf)
         self.source_ref.set_privacy(self.private.get_active())
 
-        self.update(self.parent,self.source_ref)
+        self.update(self.source_ref)
         self.close(obj)
 
     def on_source_changed(self,obj):

@@ -26,10 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import os
-import gc
 import locale
-import ListBox
-import sets
 from gettext import gettext as _
 from cgi import escape
 
@@ -55,14 +52,10 @@ import GrampsMime
 import ImageSelect
 import AutoComp
 import RelLib
-import Sources
-import DateEdit
-import Date
 import DateHandler
 import NameDisplay
 import NameEdit
 import NoteEdit
-import Spell
 import DisplayState
 import GrampsDisplay
 from DisplayTabs import *
@@ -126,7 +119,7 @@ class EditPerson(DisplayState.ManagedWindow):
         self.callback = callback
         self.path = self.db.get_save_path()
         self.not_loaded = True
-        self.lds_not_loaded = True
+#        self.lds_not_loaded = True
         self.lists_changed = False
         self.pdmap = {}
         self.add_places = []
@@ -331,18 +324,6 @@ class EditPerson(DisplayState.ManagedWindow):
             data = cursor.next()
         cursor.close()
 
-    def get_image(self,obj):
-        import ImgManip
-        
-        mtype = obj.get_mime_type()
-        if mtype[0:5] == "image":
-            image = ImgManip.get_thumbnail_image(obj.get_path())
-        else:
-            image = GrampsMime.find_mime_type_pixbuf(mtype)
-        if not image:
-            image = gtk.gdk.pixbuf_new_from_file(const.icon)
-        return image
-        
     def image_button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
 
@@ -482,10 +463,6 @@ class EditPerson(DisplayState.ManagedWindow):
         given = unicode(self.given.get_text())
         title = unicode(self.title.get_text())
 
-        start = self.notes_buffer.get_start_iter()
-        end = self.notes_buffer.get_end_iter()
-        text = unicode(self.notes_buffer.get_text(start, end, False))
-        format = self.preform.get_active()
         idval = unicode(self.gid.get_text())
         if idval == "":
             idval = None
@@ -493,11 +470,6 @@ class EditPerson(DisplayState.ManagedWindow):
         changed = False
         name = self.person.get_primary_name()
 
-        for item in [ self.event_box, self.attr_box, self.addr_box,
-                      self.name_box, self.url_box] :
-            if len(item.get_changed_objects()) > 0:
-                changed = True
-        
         #TODO#if self.complete.get_active() != self.person.get_complete_flag():
         #    changed = True
         if self.private.get_active() != self.person.get_privacy():
@@ -522,8 +494,8 @@ class EditPerson(DisplayState.ManagedWindow):
             changed = True
         if self.pname.get_note() != name.get_note():
             changed = True
-        if not self.lds_not_loaded and self.check_lds():
-            changed = True
+#        if not self.lds_not_loaded and self.check_lds():
+#            changed = True
 
         (female,male,unknown) = _select_gender[self.gender.get_active()]
         
@@ -535,49 +507,47 @@ class EditPerson(DisplayState.ManagedWindow):
             changed = True
         if text != self.person.get_note():
             changed = True
-        if format != self.person.get_note_format():
-            changed = True
 
-        if not self.lds_not_loaded:
-            if not self.lds_baptism.are_equal(self.person.get_lds_baptism()):
-                changed= True
+#         if not self.lds_not_loaded:
+#             if not self.lds_baptism.are_equal(self.person.get_lds_baptism()):
+#                 changed= True
 
-            if not self.lds_endowment.are_equal(self.person.get_lds_endowment()):
-                changed = True
+#             if not self.lds_endowment.are_equal(self.person.get_lds_endowment()):
+#                 changed = True
 
-            if not self.lds_sealing.are_equal(self.person.get_lds_sealing()):
-                changed = True
+#             if not self.lds_sealing.are_equal(self.person.get_lds_sealing()):
+#                 changed = True
                 
         return changed
 
-    def check_lds(self):
-        date_str = unicode(self.ldsbap_date.get_text())
-        DateHandler.set_date(self.lds_baptism,date_str)
-        temple = _temple_names[self.ldsbap_temple.get_active()]
-        if const.lds_temple_codes.has_key(temple):
-            self.lds_baptism.set_temple(const.lds_temple_codes[temple])
-        else:
-            self.lds_baptism.set_temple("")
-        self.lds_baptism.set_place_handle(self.get_place(self.ldsbapplace,1))
+#     def check_lds(self):
+#         date_str = unicode(self.ldsbap_date.get_text())
+#         DateHandler.set_date(self.lds_baptism,date_str)
+#         temple = _temple_names[self.ldsbap_temple.get_active()]
+#         if const.lds_temple_codes.has_key(temple):
+#             self.lds_baptism.set_temple(const.lds_temple_codes[temple])
+#         else:
+#             self.lds_baptism.set_temple("")
+#         self.lds_baptism.set_place_handle(self.get_place(self.ldsbapplace,1))
 
-        date_str = unicode(self.ldsend_date.get_text())
-        DateHandler.set_date(self.lds_endowment,date_str)
-        temple = _temple_names[self.ldsend_temple.get_active()]
-        if const.lds_temple_codes.has_key(temple):
-            self.lds_endowment.set_temple(const.lds_temple_codes[temple])
-        else:
-            self.lds_endowment.set_temple("")
-        self.lds_endowment.set_place_handle(self.get_place(self.ldsendowplace,1))
+#         date_str = unicode(self.ldsend_date.get_text())
+#         DateHandler.set_date(self.lds_endowment,date_str)
+#         temple = _temple_names[self.ldsend_temple.get_active()]
+#         if const.lds_temple_codes.has_key(temple):
+#             self.lds_endowment.set_temple(const.lds_temple_codes[temple])
+#         else:
+#             self.lds_endowment.set_temple("")
+#         self.lds_endowment.set_place_handle(self.get_place(self.ldsendowplace,1))
 
-        date_str = unicode(self.ldsseal_date.get_text())
-        DateHandler.set_date(self.lds_sealing,date_str)
-        temple = _temple_names[self.ldsseal_temple.get_active()]
-        if const.lds_temple_codes.has_key(temple):
-            self.lds_sealing.set_temple(const.lds_temple_codes[temple])
-        else:
-            self.lds_sealing.set_temple("")
-        self.lds_sealing.set_family_handle(self.ldsfam)
-        self.lds_sealing.set_place_handle(self.get_place(self.ldssealplace,1))
+#         date_str = unicode(self.ldsseal_date.get_text())
+#         DateHandler.set_date(self.lds_sealing,date_str)
+#         temple = _temple_names[self.ldsseal_temple.get_active()]
+#         if const.lds_temple_codes.has_key(temple):
+#             self.lds_sealing.set_temple(const.lds_temple_codes[temple])
+#         else:
+#             self.lds_sealing.set_temple("")
+#         self.lds_sealing.set_family_handle(self.ldsfam)
+#         self.lds_sealing.set_place_handle(self.get_place(self.ldssealplace,1))
 
     def load_photo(self,photo):
         """loads, scales, and displays the person's main photo"""
@@ -727,33 +697,22 @@ class EditPerson(DisplayState.ManagedWindow):
                     "the person's marriages.")
             ErrorDialog(msg)
 
-        start = self.notes_buffer.get_start_iter()
-        stop = self.notes_buffer.get_end_iter()
-        text = unicode(self.notes_buffer.get_text(start,stop,False))
-
-        if text != self.person.get_note():
-            self.person.set_note(text)
-
-        format = self.preform.get_active()
-        if format != self.person.get_note_format():
-            self.person.set_note_format(format)
-
         self.person.set_marker(self.marker_type_selector.get_values())
         self.person.set_privacy(self.private.get_active())
 
-        if not self.lds_not_loaded:
-            self.check_lds()
-            lds_ord = RelLib.LdsOrd(self.person.get_lds_baptism())
-            if not self.lds_baptism.are_equal(lds_ord):
-                self.person.set_lds_baptism(self.lds_baptism)
+#         if not self.lds_not_loaded:
+#             self.check_lds()
+#             lds_ord = RelLib.LdsOrd(self.person.get_lds_baptism())
+#             if not self.lds_baptism.are_equal(lds_ord):
+#                 self.person.set_lds_baptism(self.lds_baptism)
 
-            lds_ord = RelLib.LdsOrd(self.person.get_lds_endowment())
-            if not self.lds_endowment.are_equal(lds_ord):
-                self.person.set_lds_endowment(self.lds_endowment)
+#             lds_ord = RelLib.LdsOrd(self.person.get_lds_endowment())
+#             if not self.lds_endowment.are_equal(lds_ord):
+#                 self.person.set_lds_endowment(self.lds_endowment)
 
-            lds_ord = RelLib.LdsOrd(self.person.get_lds_sealing())
-            if not self.lds_sealing.are_equal(lds_ord):
-                self.person.set_lds_sealing(self.lds_sealing)
+#             lds_ord = RelLib.LdsOrd(self.person.get_lds_sealing())
+#             if not self.lds_sealing.are_equal(lds_ord):
+#                 self.person.set_lds_sealing(self.lds_sealing)
 
         self.person.set_source_reference_list(self.srcreflist)
         self.update_lists()
@@ -767,9 +726,6 @@ class EditPerson(DisplayState.ManagedWindow):
 
         n = self.nd.display(self.person)
 
-        for (event_ref,event) in self.event_box.get_changed_objects():
-            self.db.commit_event(event,trans)
-        
         self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
         if self.callback:
             self.callback(self,self.retval)
@@ -812,44 +768,44 @@ class EditPerson(DisplayState.ManagedWindow):
     def update_name(self,name):
         self.write_primary_name()
         
-    def on_ldsbap_source_clicked(self,obj):
-        Sources.SourceSelector(self.dbstate, self.uistate, self.track,
-                               self.lds_baptism.get_source_references(),
-                               self,self.update_ldsbap_list)
+#     def on_ldsbap_source_clicked(self,obj):
+#         Sources.SourceSelector(self.dbstate, self.uistate, self.track,
+#                                self.lds_baptism.get_source_references(),
+#                                self,self.update_ldsbap_list)
 
-    def update_ldsbap_list(self,list):
-        self.lds_baptism.set_source_reference_list(list)
-        self.lists_changed = True
+#     def update_ldsbap_list(self,list):
+#         self.lds_baptism.set_source_reference_list(list)
+#         self.lists_changed = True
         
-    def on_ldsbap_note_clicked(self,obj):
-        NoteEdit.NoteEditor(self.lds_baptism,self,self.window,
-                            readonly=self.db.readonly)
+#     def on_ldsbap_note_clicked(self,obj):
+#         NoteEdit.NoteEditor(self.lds_baptism,self,self.window,
+#                             readonly=self.db.readonly)
 
-    def on_ldsendow_source_clicked(self,obj):
-        Sources.SourceSelector(self.dbstate, self.uitstate, self.track,
-                               self.lds_endowment.get_source_references(),
-                               self,self.set_ldsendow_list)
+#     def on_ldsendow_source_clicked(self,obj):
+#         Sources.SourceSelector(self.dbstate, self.uistate, self.track,
+#                                self.lds_endowment.get_source_references(),
+#                                self,self.set_ldsendow_list)
 
-    def set_ldsendow_list(self,list):
-        self.lds_endowment.set_source_reference_list(list)
-        self.lists_changed = True
+#     def set_ldsendow_list(self,list):
+#         self.lds_endowment.set_source_reference_list(list)
+#         self.lists_changed = True
 
-    def on_ldsendow_note_clicked(self,obj):
-        NoteEdit.NoteEditor(self.lds_endowment,self,self.window,
-                            readonly=self.db.readonly)
+#     def on_ldsendow_note_clicked(self,obj):
+#         NoteEdit.NoteEditor(self.lds_endowment,self,self.window,
+#                             readonly=self.db.readonly)
 
-    def on_ldsseal_source_clicked(self,obj):
-        Sources.SourceSelector(self.dbstate, self.uistate, self.track,
-                               self.lds_sealing.get_source_references(),
-                               self,self.lds_seal_list)
+#     def on_ldsseal_source_clicked(self,obj):
+#         Sources.SourceSelector(self.dbstate, self.uistate, self.track,
+#                                self.lds_sealing.get_source_references(),
+#                                self,self.lds_seal_list)
 
-    def lds_seal_list(self,list):
-        self.lds_sealing.set_source_reference_list(list)
-        self.lists_changed = True
+#     def lds_seal_list(self,list):
+#         self.lds_sealing.set_source_reference_list(list)
+#         self.lists_changed = True
 
-    def on_ldsseal_note_clicked(self,obj):
-        NoteEdit.NoteEditor(self.lds_sealing,self,self.window,
-                            readonly=self.db.readonly)
+#     def on_ldsseal_note_clicked(self,obj):
+#         NoteEdit.NoteEditor(self.lds_sealing,self,self.window,
+#                             readonly=self.db.readonly)
 
     def load_person_image(self):
         media_list = self.person.get_media_list()
@@ -866,18 +822,6 @@ class EditPerson(DisplayState.ManagedWindow):
         else:
             self.load_photo(None)
 
-    def change_name(self,obj):
-        sel_objs = self.ntree.get_selected_objects()
-        if sel_objs:
-            old = self.pname
-            new = sel_objs[0]
-            self.nlist.remove(new)
-            self.nlist.append(old)
-            self.name_box.redraw()
-            self.pname = RelLib.Name(new)
-            self.lists_changed = True
-            self.write_primary_name()
-
     def write_primary_name(self):
         # initial values
         self.suffix.set_text(self.pname.get_suffix())
@@ -888,8 +832,6 @@ class EditPerson(DisplayState.ManagedWindow):
 
         self.surname.set_text(self.pname.get_surname())
         self.given.set_text(self.pname.get_first_name())
-
-        self.ntype_selector.set_values(self.pname.get_type())
         self.title.set_text(self.pname.get_title())
 
     def birth_dates_in_order(self,list):
