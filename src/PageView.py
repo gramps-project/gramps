@@ -54,7 +54,9 @@ class PageView:
     def set_active(self):
         self.active = True
         if self.dirty:
+            self.uistate.set_busy_cursor(True)
             self.build_tree()
+            self.uistate.set_busy_cursor(False)
             
     def set_inactive(self):
         self.active = False

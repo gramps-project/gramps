@@ -584,6 +584,14 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.log.setLevel(logging.WARN)
         self.log.addHandler(self.rh)
 
+    def set_busy_cursor(self,value):
+        if value:
+            self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        else:
+            self.window.window.set_cursor(None)
+        while gtk.events_pending():
+            gtk.main_iteration()
+
     def set_open_widget(self,widget):
         self.widget = widget
 
