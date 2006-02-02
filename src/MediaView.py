@@ -173,8 +173,8 @@ class MediaView(PageView.ListView):
         
         obj = self.dbstate.db.get_object_from_handle(handle)
         if obj.get_mime_type():
-            ImageSelect.GlobalMediaProperties(self.dbstate,self.uistate, [],
-                                              obj)
+            import EditMedia
+            EditMedia.EditMedia(self.dbstate,self.uistate, [], obj)
         else:
             import NoteEdit
             NoteEdit.NoteEditor(obj,self.parent,self.topWindow,
