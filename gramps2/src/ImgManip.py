@@ -162,3 +162,13 @@ def get_thumbnail_path(path,mtype=None):
     if not os.path.isfile(filename):
         set_thumbnail_image(path,mtype)
     return filename
+
+def get_thumb_from_obj(obj):
+    mtype = obj.get_mime_type()
+    if mtype[0:5] == "image":
+        image = get_thumbnail_image(obj.get_path())
+    else:
+        image = GrampsMime.find_mime_type_pixbuf(mtype)
+    if not image:
+        image = gtk.gdk.pixbuf_new_from_file(const.icon)
+    return image

@@ -53,6 +53,7 @@ import RelLib
 import Utils
 import GrampsMime
 import const
+import ImgManip
 
 from DdTargets import DdTargets
 from GrampsWidgets import SimpleButton
@@ -906,17 +907,26 @@ class NoteTab(GrampsTab):
         GrampsTab.__init__(self, dbstate, uistate, track, _('Note'))
         self.show_all()
 
+    def _update_label(self,*obj):
+        cc = self.buf.get_char_count()
+        if cc == 0 and not self.empty:
+            self.empty = True
+            self._set_label()
+        elif cc != 0 and self.empty:
+            self.empty = False
+            self._set_label()
+
     def is_empty(self):
         """
         Indicates if the tab contains any data. This is used to determine
         how the label should be displayed.
         """
-        buf = self.text.get_buffer()
-        return len(buf.get_text(buf.get_start_iter(),buf.get_end_iter())) == 0
+        return self.buf.get_char_count() == 0
 
     def build_interface(self):
         vbox = gtk.VBox()
         self.text = gtk.TextView()
+        
         self.flowed = gtk.RadioButton(None,_('Flowed'))
         self.format = gtk.RadioButton(self.flowed,_('Formatted'))
 
@@ -944,8 +954,14 @@ class NoteTab(GrampsTab):
         vbox.pack_start(hbox,False)
         
         self.pack_start(vbox,True)
+        self.buf = self.text.get_buffer()
         if self.note_obj:
-            self.text.get_buffer().insert_at_cursor(self.note_obj.get())
+            self.empty = False
+            self.buf.insert_at_cursor(self.note_obj.get())
+        else:
+            self.empty = True
+            
+        self.buf.connect('changed',self._update_label)
         self.rebuild()
 
     def flow_changed(self,obj):
@@ -974,6 +990,9 @@ class GalleryTab(ButtonTab):
     def get_icon_name(self):
         return 'gramps-media'
 
+    def is_empty(self):
+        return len(self.media_list)==0
+
     def build_interface(self):
         self.iconmodel= gtk.ListStore(gtk.gdk.Pixbuf,str)
         self.iconlist = gtk.IconView()
@@ -995,22 +1014,10 @@ class GalleryTab(ButtonTab):
         for ref in self.media_list:
             handle = ref.get_reference_handle()
             obj = self.dbstate.db.get_object_from_handle(handle)
-            pixbuf = self.get_image(obj)
+            pixbuf = ImgManip.get_thumb_from_obj(obj)
             self.iconmodel.append(row=[pixbuf,obj.get_description()])
         self.iconlist.set_model(self.iconmodel)
         self._set_label()
-
-    def get_image(self,obj):
-        import ImgManip
-        
-        mtype = obj.get_mime_type()
-        if mtype[0:5] == "image":
-            image = ImgManip.get_thumbnail_image(obj.get_path())
-        else:
-            image = GrampsMime.find_mime_type_pixbuf(mtype)
-        if not image:
-            image = gtk.gdk.pixbuf_new_from_file(const.icon)
-        return image
 
     def get_selected(self):
         node = self.iconlist.get_selected_items()
@@ -1062,19 +1069,28 @@ class SourceEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2),(1,3))
 
     def add_button_clicked(self,obj):
-        pass
+        from Sources import SourceEditor
+        
+        sref = RelLib.SourceRef()
+        SourceEditor(self.dbstate, self.uistate, self.track, sref,
+                     self.add_callback)
 
-    def del_button_clicked(self,obj):
-        ref = self.get_selected()
-        if ref:
-            ref_list = self.obj.get_event_ref_list()
-            ref_list.remove(ref)
-            self.rebuild()
+    def add_callback(self,obj):
+        self.get_data().append(name)
+        self.changed = True
+        self.rebuild()
 
     def edit_button_clicked(self,obj):
-        ref = self.get_selected()
-        if ref:
-            print ref
+        from Sources import SourceEditor
+
+        sref = self.get_selected()
+        if sref:
+            SourceEditor(self.dbstate, self.uistate, self.track, sref,
+                         self.edit_callback)
+
+    def edit_callback(self,name):
+        self.changed = True
+        self.rebuild()
 
 #-------------------------------------------------------------------------
 #

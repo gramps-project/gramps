@@ -1,4 +1,7 @@
 2006-02-01  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: unused code
+	* src/ImgManip.py: convienence code
+	* src/Sources.py: DisplayManager-ize the SourceEditor
 	* src/DisplayTabs.py: Hook up editors
 	* src/EditFamily.py: Add _DND_TYPE
 	* src/UrlEdit.py: Add type selector
