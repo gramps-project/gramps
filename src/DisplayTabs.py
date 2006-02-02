@@ -284,7 +284,8 @@ class EmbeddedList(ButtonTab):
         self.columns = []
         self.build_columns()
 
-        self._set_dnd()
+        if self._DND_TYPE:
+            self._set_dnd()
 
         # build the initial data
         self.rebuild()
@@ -668,6 +669,7 @@ class SourceBackRefList(EmbeddedList):
 #-------------------------------------------------------------------------
 class DataEmbedList(EmbeddedList):
 
+    _DND_TYPE   = DdTargets.DATA
     _column_names = [
         (_('Key'),0,150),
         (_('Value'),1,250),

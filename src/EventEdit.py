@@ -51,14 +51,13 @@ import AutoComp
 import RelLib
 import Date
 from DateHandler import parser as _dp, displayer as _dd
-import ImageSelect
 import DateEdit
-import Spell
 import GrampsDisplay
 import DisplayState
 
 from QuestionDialog import WarningDialog, ErrorDialog
 from WindowUtils import GladeIf
+from DisplayTabs import *
 
 #-------------------------------------------------------------------------
 #
@@ -117,12 +116,6 @@ class EventEditor(DisplayState.ManagedWindow):
         if self.already_exist:
             return
 
-        # build list for menu
-       ##  values = sets.Set(elist)
-##         values.union(self.get_event_names())
-##         self.elist = list(values)
-        ##self.elist.sort()
-
         for key in self.db.get_place_handles():
             title = self.db.get_place_from_handle(key).get_title()
             self.pmap[title] = key
@@ -148,27 +141,13 @@ class EventEditor(DisplayState.ManagedWindow):
         self.place_field.set_editable(not noedit)
         self.cause_field = self.top.get_widget("eventCause")
         self.cause_field.set_editable(not noedit)
-        self.slist = self.top.get_widget("slist")
-        self.wlist = self.top.get_widget("wlist")
         self.date_field  = self.top.get_widget("eventDate")
         self.date_field.set_editable(not noedit)
         self.descr_field = self.top.get_widget("event_description")
         self.descr_field.set_editable(not noedit)
-        self.note_field = self.top.get_widget("eventNote")
-        self.note_field.set_editable(not noedit)
-        self.spell = Spell.Spell(self.note_field)
         self.event_menu = self.top.get_widget("personal_events")
         self.priv = self.top.get_widget("priv")
         self.priv.set_sensitive(not noedit)
-        self.sources_label = self.top.get_widget("sources_tab")
-        self.notes_label = self.top.get_widget("note_tab")
-        self.general_label = self.top.get_widget("general_tab")
-        self.gallery_label = self.top.get_widget("gallery_tab")
-        self.witnesses_label = self.top.get_widget("witness_tab")
-        self.flowed = self.top.get_widget("eventflowed")
-        self.flowed.set_sensitive(not noedit)
-        self.preform = self.top.get_widget("eventpreform")
-        self.preform.set_sensitive(not noedit)
         self.ok = self.top.get_widget('ok')
         
         self.ok.set_sensitive(not noedit)
@@ -176,26 +155,6 @@ class EventEditor(DisplayState.ManagedWindow):
         if read_only or noedit:
             self.event_menu.set_sensitive(False)
             self.date_field.grab_focus()
-
-        add_src = self.top.get_widget('add_src')
-        add_src.set_sensitive(not noedit)
-        del_src = self.top.get_widget('del_src')
-        del_src.set_sensitive(not noedit)
-
-        self.sourcetab = Sources.SourceTab(self.dbstate, self.uistate, self.track,
-            self.srcreflist, self, self.top, self.window, self.slist,
-            add_src, self.top.get_widget('edit_src'), del_src,
-            self.db.readonly)
-
-        add_witness = self.top.get_widget('add_witness')
-        add_witness.set_sensitive(not noedit)
-        edit_witness = self.top.get_widget('edit_witness')
-        del_witness = self.top.get_widget('del_witness')
-        del_witness.set_sensitive(not noedit)
-        
-#        self.witnesstab = Witness.WitnessTab(
-#            self.witnesslist, self, self.top, self.window, self.wlist,
-#            add_witness, edit_witness, del_witness)
 
         if event:
             defval = event.get_type()[0]
@@ -221,16 +180,6 @@ class EventEditor(DisplayState.ManagedWindow):
             self.descr_field.set_text(event.get_description())
             self.priv.set_active(event.get_privacy())
             
-            self.note_field.get_buffer().set_text(event.get_note())
-            if event.get_note():
-                self.note_field.get_buffer().set_text(event.get_note())
-                Utils.bold_label(self.notes_label)
-                if event.get_note_format() == 1:
-                    self.preform.set_active(1)
-                else:
-                    self.flowed.set_active(1)
-            if event.get_media_list():
-                Utils.bold_label(self.gallery_label)
         else:
             event = RelLib.Event()
         date_stat = self.top.get_widget("date_stat")
@@ -240,28 +189,40 @@ class EventEditor(DisplayState.ManagedWindow):
                                         date_stat,
                                         self.window)
 
-#        self.icon_list = self.top.get_widget("iconlist")
-#        self.gallery = ImageSelect.Gallery(event, self.db.commit_event,
-#                                           self.path, self.icon_list,
-#                                           self.db,self,self.window)
-
-        self.gladeif.connect('event_edit','delete_event',self.on_delete_event)
         self.gladeif.connect('button111','clicked',self.close)
         self.gladeif.connect('ok','clicked',self.on_event_edit_ok_clicked)
         self.gladeif.connect('button126','clicked',self.on_help_clicked)
-        self.gladeif.connect('notebook','switch_page',self.on_switch_page)
-#        self.gladeif.connect('add_obj','clicked',self.gallery.on_add_media_clicked)
-#        self.gladeif.connect('sel_obj','clicked',self.gallery.on_select_media_clicked)
-#        self.gladeif.connect('button172','clicked',self.gallery.on_edit_media_clicked)
-#        self.gladeif.connect('del_obj','clicked',self.gallery.on_delete_media_clicked)
 
-        self.top.get_widget('del_obj').set_sensitive(not noedit)
-        self.top.get_widget('sel_obj').set_sensitive(not noedit)
-        self.top.get_widget('add_obj').set_sensitive(not noedit)
-
-        Utils.bold_label(self.general_label)
+        self._create_tabbed_pages()
 
         self.show()
+
+    def _add_page(self,page):
+        self.notebook.insert_page(page)
+        self.notebook.set_tab_label(page,page.get_tab_widget())
+        return page
+
+    def _create_tabbed_pages(self):
+        """
+        Creates the notebook tabs and inserts them into the main
+        window.
+        
+        """
+        vbox = self.top.get_widget('vbox')
+        self.notebook = gtk.Notebook()
+
+        self.srcref_list = self._add_page(SourceEmbedList(
+            self.dbstate,self.uistate, self.track,
+            self.event.source_list))
+        self.note_tab = self._add_page(NoteTab(
+            self.dbstate, self.uistate, self.track,
+            self.event.get_note_object()))
+        self.gallery_tab = self._add_page(GalleryTab(
+            self.dbstate, self.uistate, self.track,
+            self.event.get_media_list()))
+
+        self.notebook.show_all()
+        vbox.pack_start(self.notebook,True)
 
     def build_menu_names(self,event):
         if event:

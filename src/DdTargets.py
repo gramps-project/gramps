@@ -105,6 +105,7 @@ class _DdTargets(object):
         self.SOURCEREF = _DdType(self,'srcref')
         self.NAME      = _DdType(self,'name')
         self.MEDIAOBJ  = _DdType(self,'mediaobj')
+        self.DATA      = _DdType(self,'data_tuple')
 
         self.PERSON_LINK  = _DdType(self,'person-link')
         self.PERSON_LINK_LIST  = _DdType(self,'person-link-list')

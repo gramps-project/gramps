@@ -1,4 +1,9 @@
 2006-02-02  Don Allingham  <don@gramps-project.org>
+	* src/DdTargets.py: add support for data items in sources
+	* src/EventEdit.py: use DisplayTabs
+	* src/gramps.glade: New EventEditor with display tabs
+	* src/DisplayTabs.py: specify data _DND_TYPE, don't enable d-n-d if 
+	_DND_TYPE not defined
 	* src/DisplayState.py: add standard function for using WATCH cursor
 	* src/PageView.py: enable watch cursor when it is necessary to 
 	rebuild a page.
