@@ -1,3 +1,17 @@
+2006-02-02  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (transaction_begin,
+	transaction_commit): only do secondary index magic if not
+	instructde otherwise; (BdbTransaction.__init__): accept additional
+	argument, pass it on to Transaction class.
+	* src/GrampsDb/_GrampsDbBase.py (Transaction.__init__): accept
+	additional argument for no_magic.
+	* src/GrampsDb/_ReadGedcom.py (NoteParser): count people during
+	first pass; (parse_gedcom_file): start transaction with or without
+	secondary index magic.
+	* src/GrampsDb/_ReadXML.py (LineParser):count people during
+	first pass; (parse): start transaction with or without secondary
+	index magic.
+
 2006-02-01  Don Allingham  <don@gramps-project.org>
 	* src/EditPerson.py: unused code
 	* src/ImgManip.py: convienence code

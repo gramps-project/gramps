@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -198,7 +198,7 @@ def import2(database, filename, callback, codeset, use_trans):
     try:
         np = NoteParser(filename, False)
         g = GedcomParser(database,filename, callback, codeset, np.get_map(),
-                         np.get_lines())
+                         np.get_lines(),np.get_persons())
     except IOError,msg:
         ErrorDialog(_("%s could not be opened\n") % filename,str(msg))
         return
@@ -275,6 +275,7 @@ class IdFinder:
 noteRE = re.compile(r"\s*\d+\s+\@(\S+)\@\s+NOTE(.*)$")
 contRE = re.compile(r"\s*\d+\s+CONT\s(.*)$")
 concRE = re.compile(r"\s*\d+\s+CONC\s(.*)$")
+personRE = re.compile(r"\s*\d+\s+\@(\S+)\@\s+INDI(.*)$")
 
 #-------------------------------------------------------------------------
 #
@@ -305,6 +306,7 @@ class NoteParser:
         self.name_map = {}
 
         self.count = 0
+        self.person_count = 0
         f = open(filename,"rU")
         innote = False
         
@@ -333,6 +335,9 @@ class NoteParser:
                     self.name_map["@%s@" % data] = noteobj
                     noteobj.append(match.groups()[1])
                     innote = True
+                elif personRE.match(line):
+                    self.person_count += 1
+                
         f.close()
 
     def get_map(self):
@@ -340,6 +345,9 @@ class NoteParser:
 
     def get_lines(self):
         return self.count
+
+    def get_persons(self):
+        return self.person_count
 
 #-------------------------------------------------------------------------
 #
@@ -421,9 +429,10 @@ class GedcomParser:
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
 
-    def __init__(self, dbase, filename, callback, codeset, note_map, lines):
+    def __init__(self,dbase,filename,callback,codeset,note_map,lines,people):
 
         self.maxlines = lines
+        self.maxpeople = people
         self.interval = lines/100
         self.percent = 0
         self.callback = callback
@@ -637,9 +646,12 @@ class GedcomParser:
         self.backoff = True
 
     def parse_gedcom_file(self,use_trans=False):
+        if self.maxpeople < 1000:
+            no_magic = True
+        else:
+            no_magic = False
+        self.trans = self.db.transaction_begin("",not use_trans,no_magic)
 
-        self.trans = self.db.transaction_begin("",not use_trans)
-        #self.trans.set_batch(not use_trans)
         self.db.disable_signals()
         t = time.time()
         self.fam_count = 0
