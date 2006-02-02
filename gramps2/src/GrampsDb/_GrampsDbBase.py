@@ -1865,18 +1865,29 @@ class Transaction:
     Defines a group of database commits that define a single logical
     operation.
     """
-    def __init__(self,msg,db,batch=False):
+    def __init__(self,msg,db,batch=False,no_magic=False):
         """
-        Creates a new transaction. A Transaction instance should not be created
-        directly, but by the GrampsDbBase class or classes derived from
-        GrampsDbBase. The db parameter is a list-like interface that stores
-        the commit data. This could be a simple list, or a RECNO-style database
-        object.
+        Creates a new transaction. A Transaction instance should not be
+        created directly, but by the GrampsDbBase class or classes derived
+        from GrampsDbBase. The db parameter is a list-like interface that
+        stores the commit data. This could be a simple list, or a RECNO-style
+        database object.
+
+        The batch parameter is set to True for large transactions. For such
+        transactions, the list of changes is not maintained, and no undo
+        is possible.
+
+        The no_magic parameter is ignored for non-batch transactions, and
+        is also of no importance for DB backends other than BSD DB. For
+        the BSDDB, when this paramter is set to True, some secondary
+        indices will be removed at the beginning and then rebuilt at
+        the end of such transaction (only if it is batch).
         """
         self.db = db
         self.first = None
         self.last = None
         self.batch = batch
+        self.no_magic = no_magic
         self.length = 0
 
         self.person_add = []

@@ -30,6 +30,7 @@ import sets
 import shutil
 from xml.parsers.expat import ExpatError, ParserCreate
 from gettext import gettext as _
+import re
 
 #-------------------------------------------------------------------------
 #
@@ -67,6 +68,8 @@ try:
 except:
     gzip_ok = 0
 
+personRE = re.compile(r"\s*\<person\s(.*)$")
+
 #-------------------------------------------------------------------------
 #
 # Importing data into the currently open database. 
@@ -86,6 +89,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
 
     linecounter = LineParser(filename)
     lc = linecounter.get_count()
+    pc = linecounter.get_person_count()
     
     ro = database.readonly
     database.readonly = False
@@ -124,7 +128,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
             ErrorDialog(_("%s could not be opened") % filename)
             return
     try:
-        parser.parse(xml_file,use_trans,lc)
+        parser.parse(xml_file,use_trans,lc,pc)
     except IOError,msg:
         if cl:
             print "Error reading %s" % filename
@@ -208,6 +212,7 @@ class LineParser:
     def __init__(self, filename):
 
         self.count = 0
+        self.person_count = 0
 
         if gzip_ok:
             use_gzip = 1
@@ -230,13 +235,19 @@ class LineParser:
 
             for line in f:
                 self.count += 1
+                if personRE.match(line):
+                    self.person_count += 1
 
             f.close()
         except:
             self.count = 0
+            self.person_count = 0
 
     def get_count(self):
         return self.count
+
+    def get_person_count(self):
+        return self.person_count
 
 #-------------------------------------------------------------------------
 #
@@ -570,9 +581,12 @@ class GrampsParser:
                 self.ridswap[gramps_id] = gramps_id
         return self.ridswap[gramps_id]
 
-    def parse(self,file,use_trans=False,linecount=0):
-
-        self.trans = self.db.transaction_begin("",batch=True)
+    def parse(self,file,use_trans=False,linecount=0,personcount=0):
+        if personcount < 1000:
+            no_magic = True
+        else:
+            no_magic = False
+        self.trans = self.db.transaction_begin("",batch=True,no_magic=no_magic)
         self.linecount = linecount
 
         self.db.disable_signals()
