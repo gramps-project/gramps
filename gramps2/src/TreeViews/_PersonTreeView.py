@@ -56,7 +56,7 @@ class PersonTreeView(gtk.TreeView):
         self.set_model(PersonFilterModel(self._db,apply_filter))
 
     def clear_filter(self):
-        self.set_model(PersonModel(self._db))
+        self.set_model(PersonTreeModel(self._db))
 
                   
     # Accessor methods for the columns
