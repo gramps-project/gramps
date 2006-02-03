@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -69,11 +69,13 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
             self.path = source.path
             self.mime = source.mime
             self.desc = source.desc
+            # FIXME: thumb is not currently being serialized!
             self.thumb = source.thumb
         else:
             self.path = ""
             self.mime = ""
             self.desc = ""
+            # FIXME: thumb is not currently being serialized!
             self.thumb = None
 
     def serialize(self):
@@ -92,9 +94,11 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
             be considered persistent.
         @rtype: tuple
         """
-        return (self.handle, self.gramps_id, self.path, self.mime,
-                self.desc, self.attribute_list, self.source_list, self.note,
-                self.change, self.date, self.marker, self.private)
+        return (self.handle, self.gramps_id, self.path, self.mime, self.desc,
+                AttributeBase.serialize(self),
+                SourceNote.serialize(self),
+                self.change,
+                DateBase.serialize(self), self.marker, self.private)
 
     def unserialize(self,data):
         """
@@ -105,8 +109,12 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         @type data: tuple
         """
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
-         self.attribute_list, self.source_list, self.note, self.change,
-         self.date, self.marker, self.private) = data
+         attribute_list, sn, self.change,
+         date, self.marker, self.private) = data
+
+        AttributeBase.unserialize(self,attribute_list)
+        SourceNote.unserialize(self,sn)
+        DateBase.unserialize(self,date)
 
     def get_text_data_list(self):
         """

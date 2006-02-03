@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -63,7 +63,6 @@ import RelLib
 import const
 import Utils
 import PeopleModel
-import Date
 import NameDisplay
 import DateHandler
 import GenericFilter
@@ -247,18 +246,18 @@ class ChooseParents:
 
         if birth_ref:
             birth = self.db.get_event_from_handle(birth_ref.ref)
-            date_obj = Date.Date(birth.get_date_object())
+            date_obj = RelLib.Date(birth.get_date_object())
             year = date_obj.get_year()
             if year:
                 date_obj.set_year(year-10)
-                date_obj.set_modifier(Date.MOD_BEFORE)
+                date_obj.set_modifier(RelLib.Date.MOD_BEFORE)
                 rule = GenericFilter.HasBirth(
                     [DateHandler.displayer.display(date_obj),"",""])
                 filt.add_rule(rule)
 
-                date_obj = Date.Date(birth.get_date_object())
+                date_obj = RelLib.Date(birth.get_date_object())
                 date_obj.set_year(year-60)
-                date_obj.set_modifier(Date.MOD_AFTER)
+                date_obj.set_modifier(RelLib.Date.MOD_AFTER)
                 rule = GenericFilter.HasBirth(
                     [DateHandler.displayer.display(date_obj),"",""])
                 filt.add_rule(rule)

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -142,9 +142,11 @@ class Event(PrimaryObject,SourceNote,MediaBase,DateBase,PlaceBase):
             be considered persistent.
         @rtype: tuple
         """
-        return (self.handle, self.gramps_id, self.type, self.date,
+        return (self.handle, self.gramps_id, self.type,
+                DateBase.serialize(self),
                 self.description, self.place, self.cause,
-                self.source_list, self.note, self.media_list,
+                SourceNote.serialize(self),
+                MediaBase.serialize(self),
                 self.change, self.marker, self.private)
 
     def unserialize(self,data):
@@ -156,9 +158,13 @@ class Event(PrimaryObject,SourceNote,MediaBase,DateBase,PlaceBase):
             Person object
         @type data: tuple
         """
-        (self.handle, self.gramps_id, self.type, self.date,
-         self.description, self.place, self.cause, self.source_list, self.note,
-         self.media_list, self.change, self.marker, self.private) = data
+        (self.handle, self.gramps_id, self.type, date,
+         self.description, self.place, self.cause, sn,
+         media_list, self.change, self.marker, self.private) = data
+
+        DateBase.unserialize(self,date)
+        MediaBase.unserialize(self,media_list)
+        SourceNote.unserialize(self,sn)        
 
     def _has_handle_reference(self,classname,handle):
         if classname == 'Place':

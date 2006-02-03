@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -63,9 +63,7 @@ class Place(PrimaryObject,SourceNote,MediaBase,UrlBase):
             self.lat = source.lat
             self.title = source.title
             self.main_loc = Location(source.main_loc)
-            self.alt_loc = []
-            for loc in source.alt_loc:
-                self.alt_loc = Location(loc)
+            self.alt_loc = [Location(loc) for loc in source.alt_loc]
         else:
             self.long = ""
             self.lat = ""
@@ -89,10 +87,17 @@ class Place(PrimaryObject,SourceNote,MediaBase,UrlBase):
             be considered persistent.
         @rtype: tuple
         """
+        if self.main_loc == None:
+            main_loc = None
+        else:
+            main_loc = self.main_loc.serialize()
+
         return (self.handle, self.gramps_id, self.title, self.long, self.lat,
-                self.main_loc, self.alt_loc, self.urls, self.media_list,
-                self.source_list, self.note, self.change, self.marker,
-                self.private)
+                main_loc, [al.serialize() for al in self.alt_loc],
+                UrlBase.serialize(self),
+                MediaBase.serialize(self),
+                SourceNote.serialize(self),
+                self.change, self.marker,self.private)
 
     def unserialize(self,data):
         """
@@ -104,10 +109,18 @@ class Place(PrimaryObject,SourceNote,MediaBase,UrlBase):
         @type data: tuple
         """
         (self.handle, self.gramps_id, self.title, self.long, self.lat,
-         self.main_loc, self.alt_loc, self.urls, self.media_list,
-         self.source_list, self.note, self.change, self.marker,
-         self.private) = data
-            
+         main_loc, alt_loc, urls, media_list, sn,
+         self.change, self.marker, self.private) = data
+
+        if main_loc == None:
+            self.main_loc = None
+        else:
+            self.main.loc = Location().unserialize(main_loc)
+        self.alt_loc = [Location().unserialize(al) for al in alt_loc]
+        UrlBase.unserialize(self,urls)
+        MediaBase.unserialize(self,media_list)
+        SourceNote.unserialize(self,sn)
+
     def get_text_data_list(self):
         """
         Returns the list of all textual attributes of the object.

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,7 +47,6 @@ import RelLib
 import GrampsMime
 import DateEdit
 import DateHandler
-import Date
 import ImgManip
 import DisplayState
 import GrampsDisplay
@@ -89,11 +88,11 @@ class EditMedia(DisplayState.ManagedWindow):
         self.db = self.state.db
         self.idle = None
         if obj:
-            self.date_object = Date.Date(self.obj.get_date_object())
+            self.date_object = RelLib.Date(self.obj.get_date_object())
             self.alist = self.obj.get_attribute_list()[:]
             self.refs = 0
         else:
-            self.date_object = Date.Date()
+            self.date_object = RelLib.Date()
             self.alist = []
             self.refs = 1
 

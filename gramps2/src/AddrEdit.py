@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +48,6 @@ import gtk.glade
 import GrampsDisplay
 import const
 import Utils
-import Date
 import RelLib
 import Sources
 import DateEdit
@@ -124,7 +123,7 @@ class AddressEditor(DisplayState.ManagedWindow):
 
         if self.addr:
             self.srcreflist = self.addr.get_source_references()
-            self.addr_date_obj = Date.Date(self.addr.get_date_object())
+            self.addr_date_obj = RelLib.Date(self.addr.get_date_object())
             self.addr_start.set_text(DateHandler.get_date(self.addr))
             self.street.set_text(self.addr.get_street())
             self.city.set_text(self.addr.get_city())
@@ -146,7 +145,7 @@ class AddressEditor(DisplayState.ManagedWindow):
             Utils.bold_label(self.general_label)
         else:
             Utils.unbold_label(self.general_label)
-            self.addr_date_obj = Date.Date()
+            self.addr_date_obj = RelLib.Date()
             self.srcreflist = []
             self.addr = RelLib.Address()
         self.switch_page()

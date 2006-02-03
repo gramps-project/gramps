@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004  Martin Hawlisch
-# Copyright (C) 2004-2005 Donald N. Allingham
+# Copyright (C) 2004-2006 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,7 +47,6 @@ import RelLib
 import GenericFilter
 import const
 import Utils
-import Date
 import Errors
 from QuestionDialog import ErrorDialog
 
@@ -528,19 +527,19 @@ class GeneWebWriter:
         (day,month,year,sl) = subdate
         
         cal_type = ""
-        if cal == Date.CAL_HEBREW:
+        if cal == RelLib.Date.CAL_HEBREW:
             cal_type = "H"
-        elif cal == Date.CAL_FRENCH:
+        elif cal == RelLib.Date.CAL_FRENCH:
             cal_type = "F"
-        elif cal == Date.CAL_JULIAN:
+        elif cal == RelLib.Date.CAL_JULIAN:
             cal_type = "J"
         
         mode_prefix = ""
-        if mode == Date.MOD_ABOUT:
+        if mode == RelLib.Date.MOD_ABOUT:
             mode_prefix = "~"
-        elif mode == Date.MOD_BEFORE:
+        elif mode == RelLib.Date.MOD_BEFORE:
             mode_prefix = "<"
-        elif mode == Date.MOD_AFTER:
+        elif mode == RelLib.Date.MOD_AFTER:
             mode_prefix = ">"
             
         if year > 0:
@@ -563,9 +562,10 @@ class GeneWebWriter:
         elif not date.is_empty():
             mod = date.get_modifier()
             cal = cal = date.get_calendar()
-            if mod == Date.MOD_SPAN or mod == Date.MOD_RANGE:
-                retval = "%s..%s" % (self.format_single_date(date.get_start_date(), cal,mod),
-                                    self.format_single_date(date.get_stop_date(),cal,mod))
+            if mod == RelLib.Date.MOD_SPAN or mod == RelLib.Date.MOD_RANGE:
+                retval = "%s..%s" % (
+                    self.format_single_date(date.get_start_date(), cal,mod),
+                    self.format_single_date(date.get_stop_date(),cal,mod))
             else:
                 retval = self.format_single_date(date.get_start_date(),cal,mod)
         return retval

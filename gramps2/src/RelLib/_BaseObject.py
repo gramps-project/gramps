@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,6 +48,13 @@ class BaseObject:
         Initialize a BaseObject.
         """
         pass
+
+    def serialize(self):
+        assert False, "Needs to be overridden in the derived class"
+
+    def unserialize(self,data):
+        assert False, "Needs to be overridden in the derived class"
+        return self
     
     def matches_string(self,pattern,case_sensitive=False):
         """

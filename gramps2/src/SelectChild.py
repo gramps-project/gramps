@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -49,7 +49,6 @@ import PeopleModel
 import NameDisplay
 import AutoComp
 import GenericFilter
-import Date
 import GrampsDisplay
 from QuestionDialog import ErrorDialog
 from WindowUtils import GladeIf
@@ -337,7 +336,7 @@ class LikelyFilter(GenericFilter.Rule):
         person = db.get_person_from_handle(self.list[0])
         if person.birth_handle:
             birth = db.get_event_from_handle(person.birth_handle)
-            dateobj = Date.Date(birth.date)
+            dateobj = RelLib.Date(birth.date)
             year = dateobj.get_year()
             dateobj.set_year(year+10)
             self.lower = dateobj.sortval

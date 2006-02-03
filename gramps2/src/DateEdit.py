@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2005  Donald N. Allingham
+# Copyright (C) 2002-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -58,7 +58,7 @@ import gtk.glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import Date
+from RelLib import Date
 import DateHandler
 import const
 import Utils
@@ -130,11 +130,16 @@ class DateEdit:
         Check current date object and display LED indicating the validity.
         """
         if self.date_obj.get_modifier() == Date.MOD_TEXTONLY:
-            self.pixmap_obj.set_from_pixbuf(self.pixmap_obj.render_icon(gtk.STOCK_DIALOG_ERROR,gtk.ICON_SIZE_MENU))
+            self.pixmap_obj.set_from_pixbuf(
+                self.pixmap_obj.render_icon(gtk.STOCK_DIALOG_ERROR,
+                                            gtk.ICON_SIZE_MENU))
         elif self.date_obj.is_regular():
-            self.pixmap_obj.set_from_pixbuf(self.pixmap_obj.render_icon(gtk.STOCK_YES,gtk.ICON_SIZE_MENU))
+            self.pixmap_obj.set_from_pixbuf(
+                self.pixmap_obj.render_icon(gtk.STOCK_YES,gtk.ICON_SIZE_MENU))
         else:
-            self.pixmap_obj.set_from_pixbuf(self.pixmap_obj.render_icon(gtk.STOCK_DIALOG_WARNING,gtk.ICON_SIZE_MENU))
+            self.pixmap_obj.set_from_pixbuf(
+                self.pixmap_obj.render_icon(gtk.STOCK_DIALOG_WARNING,
+                                            gtk.ICON_SIZE_MENU))
         
     def parse_and_check(self,obj,val):
         """
@@ -185,7 +190,7 @@ class DateEditorDialog:
         """
 
         # Create self.date as a copy of the given Date object.
-        self.date = Date.Date(date)
+        self.date = Date(date)
 
         self.top = gtk.glade.XML(const.gladeFile, "date_edit","gramps" )
         self.top_window = self.top.get_widget('date_edit')
@@ -194,7 +199,7 @@ class DateEditorDialog:
         Utils.set_titles(self.top_window,title,_('Date selection'))
 
         self.calendar_box = self.top.get_widget('calendar_box')
-        for name in Date.Date.ui_calendar_names:
+        for name in Date.ui_calendar_names:
             self.calendar_box.append_text(name)
         self.calendar_box.set_active(self.date.get_calendar())
         self.calendar_box.connect('changed',self.switch_calendar)
@@ -263,7 +268,7 @@ class DateEditorDialog:
             elif response == gtk.RESPONSE_OK:
                 (the_quality,the_modifier,the_calendar,the_value,the_text) = \
                                         self.build_date_from_ui()
-                self.return_date = Date.Date(self.date)
+                self.return_date = Date(self.date)
                 self.return_date.set(
                     quality=the_quality,
                     modifier=the_modifier,
@@ -293,7 +298,7 @@ class DateEditorDialog:
 
         if modifier == Date.MOD_TEXTONLY:
             return (Date.QUAL_NONE,Date.MOD_TEXTONLY,Date.CAL_GREGORIAN,
-                                            Date.EMPTY,text)
+                    Date.EMPTY,text)
 
         quality = QUAL_TEXT[self.quality_box.get_active()][0]
 

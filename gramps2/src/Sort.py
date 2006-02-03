@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ import locale
 # GRAMPS Modules
 #
 #-------------------------------------------------------------------------
-import Date
+from RelLib import Date
 from NameDisplay import displayer as _nd
 
 #-------------------------------------------------------------------------
@@ -103,13 +103,13 @@ class Sort:
         if birth_handle1:
             date1 = self.database.get_event_from_handle(birth_handle1).get_date_object()
         else:
-            date1 = Date.Date()
+            date1 = Date()
 
         birth_handle2 = second.get_birth_handle()
         if birth_handle2:
             date2 = self.database.get_event_from_handle(birth_handle2).get_date_object()
         else:
-            date2 = Date.Date()
+            date2 = Date()
 
         dsv1 = date1.get_sort_value()
         dsv2 = date2.get_sort_value()

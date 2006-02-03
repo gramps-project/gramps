@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,7 +47,6 @@ import GrampsDisplay
 #------------------------------------------------------------------------
 import RelLib
 import Utils
-import Date
 import Tool
 
 #-------------------------------------------------------------------------
@@ -160,8 +159,8 @@ class Verify(Tool.Tool):
             event = self.db.get_event_from_handle(event_handle)
             dateObj = event.get_date_object()
             if dateObj:
-                if dateObj.get_calendar() != Date.CAL_GREGORIAN:
-                    dateObj.set_calendar(Date.CAL_GREGORIAN)
+                if dateObj.get_calendar() != RelLib.Date.CAL_GREGORIAN:
+                    dateObj.set_calendar(RelLib.Date.CAL_GREGORIAN)
                 year = dateObj.get_year()
         return year
 

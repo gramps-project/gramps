@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -158,7 +158,8 @@ class PeopleModel(gtk.GenericTreeModel):
         while node:
             n,d = node
             if n in flist:
-                primary_name = d[_NAME_COL]
+                primary_name = Name()
+                primary_name.unserialize(d[_NAME_COL])
                 surname = ngn(self.db,primary_name)
                 self.sortnames[n] = nsn(primary_name)
                 try:
@@ -307,7 +308,9 @@ class PeopleModel(gtk.GenericTreeModel):
         return None
 
     def column_sort_name(self,data,node):
-        return data[_NAME_COL].get_sort_name()
+        n = Name()
+        n.unserialize(data[_NAME_COL])
+        return n.get_sort_name()
 
     def column_spouse(self,data,node):
         spouses_names = u""
@@ -326,7 +329,9 @@ class PeopleModel(gtk.GenericTreeModel):
         return spouses_names
 
     def column_name(self,data,node):
-        return NameDisplay.displayer.sorted_name(data[_NAME_COL])
+        n = Name()
+        n.unserialize(data[_NAME_COL])
+        return NameDisplay.displayer.sorted_name(n)
 
     def column_id(self,data,node):
         return data[_ID_COL]
@@ -340,13 +345,17 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_birth_day(self,data,node):
         if data[_BIRTH_COL]:
-            birth = self.db.get_event_from_handle(data[_BIRTH_COL].ref)
+            b=EventRef()
+            b.unserialize(data[_BIRTH_COL])
+            birth = self.db.get_event_from_handle(b.ref)
             date_str = DateHandler.get_date(birth)
             if date_str != "":
                 return cgi.escape(date_str)
         
         for event_ref in data[_EVENT_COL]:
-            event = self.db.get_event_from_handle(event_ref.ref)
+            er = EventRef()
+            er.unserialize(event_ref)
+            event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()[0]
             date_str = DateHandler.get_date(event)
             if (etype in [Event.BAPTISM, Event.CHRISTEN]
@@ -357,13 +366,17 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_death_day(self,data,node):
         if data[_DEATH_COL]:
-            death = self.db.get_event_from_handle(data[_DEATH_COL].ref)
+            dr = EventRef()
+            dr.unserialize(data[_DEATH_COL])
+            death = self.db.get_event_from_handle(dr.ref)
             date_str = DateHandler.get_date(death)
             if date_str != "":
                 return cgi.escape(date_str)
         
         for event_ref in data[_EVENT_COL]:
-            event = self.db.get_event_from_handle(event_ref.ref)
+            er = EventRef()
+            er.unserialize(event_ref)
+            event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()[0]
             date_str = DateHandler.get_date(event)
             if (etype in [Event.BURIAL, Event.CREMATION]
@@ -374,13 +387,17 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_cause_of_death(self,data,node):
         if data[_DEATH_COL]:
-            return self.db.get_event_from_handle(data[_DEATH_COL].ref).get_cause()
+            dr = EventRef()
+            dr.unserialize(data[_DEATH_COL])
+            return self.db.get_event_from_handle(dr.ref).get_cause()
         else:
             return u""
         
     def column_birth_place(self,data,node):
         if data[_BIRTH_COL]:
-            event = self.db.get_event_from_handle(data[_BIRTH_COL].ref)
+            br = EventRef()
+            br.unserialize(data[_BIRTH_COL])
+            event = self.db.get_event_from_handle(br.ref)
             if event:
                   place_handle = event.get_place_handle()
                   if place_handle:
@@ -389,7 +406,9 @@ class PeopleModel(gtk.GenericTreeModel):
                         return cgi.escape(place_title)
         
         for event_ref in data[_EVENT_COL]:
-            event = self.db.get_event_from_handle(event_ref.ref)
+            er = EventRef()
+            er.unserialize(event_ref)
+            event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()[0]
             if etype in [Event.BAPTISM, Event.CHRISTEN]:
                 place_handle = event.get_place_handle()
@@ -402,7 +421,9 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_death_place(self,data,node):
         if data[_DEATH_COL]:
-            event = self.db.get_event_from_handle(data[_DEATH_COL].ref)
+            dr = EventRef()
+            dr.unserialize(data[_DEATH_COL])
+            event = self.db.get_event_from_handle(dr.ref)
             if event:
                   place_handle = event.get_place_handle()
                   if place_handle:
@@ -411,7 +432,9 @@ class PeopleModel(gtk.GenericTreeModel):
                         return cgi.escape(place_title)
         
         for event_ref in data[_EVENT_COL]:
-            event = self.db.get_event_from_handle(event_ref.ref)
+            er = EventRef()
+            er.unserialize(event_ref)
+            event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()[0]
             if etype in [Event.BURIAL, Event.CREMATION]:
                 place_handle = event.get_place_handle()

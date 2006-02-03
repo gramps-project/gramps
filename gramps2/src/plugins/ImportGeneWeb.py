@@ -46,7 +46,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import Errors
 import RelLib
-import Date
 import const
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
@@ -56,15 +55,15 @@ _date_parse = re.compile('([~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F]
 _text_parse = re.compile('0\((.*)\)')
 
 _mod_map = {
-    '>' : Date.MOD_AFTER,
-    '<' : Date.MOD_BEFORE,
-    '~' : Date.MOD_ABOUT,
+    '>' : RelLib.Date.MOD_AFTER,
+    '<' : RelLib.Date.MOD_BEFORE,
+    '~' : RelLib.Date.MOD_ABOUT,
     }
 
 _cal_map = {
-    'J' : Date.CAL_JULIAN,
-    'H' : Date.CAL_HEBREW,
-    'F' : Date.CAL_FRENCH,
+    'J' : RelLib.Date.CAL_JULIAN,
+    'H' : RelLib.Date.CAL_HEBREW,
+    'F' : RelLib.Date.CAL_FRENCH,
     }
 
 #-------------------------------------------------------------------------
@@ -650,27 +649,27 @@ class GeneWebParser:
     def parse_date(self,field):
         if field == "0":
             return None
-        date = Date.Date()
+        date = RelLib.Date()
         matches = _text_parse.match(field)
         if matches:
             groups = matches.groups()
             date.set_as_text(groups[0])
-            date.set_modifier(Date.MOD_TEXTONLY)
+            date.set_modifier(RelLib.Date.MOD_TEXTONLY)
             return date
 
         matches = _date_parse.match(field)
         if matches:
             groups = matches.groups()
-            mod = _mod_map.get(groups[0],Date.MOD_NONE)
+            mod = _mod_map.get(groups[0],RelLib.Date.MOD_NONE)
             if groups[3] == "..":
-                mod = Date.MOD_SPAN
-                cal2 = _cal_map.get(groups[5],Date.CAL_GREGORIAN)
+                mod = RelLib.Date.MOD_SPAN
+                cal2 = _cal_map.get(groups[5],RelLib.Date.CAL_GREGORIAN)
                 sub2 = self.sub_date(groups[4])
             else:
                 sub2 = (0,0,0)
-            cal1 = _cal_map.get(groups[2],Date.CAL_GREGORIAN)
+            cal1 = _cal_map.get(groups[2],RelLib.Date.CAL_GREGORIAN)
             sub1 = self.sub_date(groups[1])
-            date.set(Date.QUAL_NONE,mod, cal1,
+            date.set(RelLib.Date.QUAL_NONE,mod, cal1,
                      (sub1[0],sub1[1],sub1[2],None,sub2[0],sub2[1],sub2[2],None))
             return date
         else:

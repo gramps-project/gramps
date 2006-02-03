@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 #
 # This program is free software; you can redistribute it and/or modify
@@ -30,7 +30,6 @@ A collection of utilities to aid in the generation of reports.
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import Date
 import DateHandler
 import RelLib
 from NameDisplay import displayer as _nd
@@ -1040,14 +1039,14 @@ def estimate_age(db, person, end_handle=None, start_handle=None):
         else:
             return high[2] - low[2]
 
-    if bstop == Date.EMPTY and dstop == Date.EMPTY:
+    if bstop == RelLib.Date.EMPTY and dstop == RelLib.Date.EMPTY:
         lower = _calc_diff(bstart,dstart)
         age = (lower, lower)
-    elif bstop == Date.EMPTY:
+    elif bstop == RelLib.Date.EMPTY:
         lower = _calc_diff(bstart,dstart)
         upper = _calc_diff(bstart,dstop)
         age = (lower,upper)
-    elif dstop == Date.EMPTY:
+    elif dstop == RelLib.Date.EMPTY:
         lower = _calc_diff(bstop,dstart)
         upper = _calc_diff(bstart,dstart)
         age = (lower,upper)
@@ -1316,7 +1315,7 @@ def get_birth_death_strings(database,person,empty_date="",empty_place=""):
                 bplace = database.get_place_from_handle(bplace_handle).get_title()
             bdate_obj = birth.get_date_object()
             bdate_full = bdate_obj and bdate_obj.get_day_valid()
-            bdate_mod = bdate_obj and bdate_obj.get_modifier() != Date.MOD_NONE
+            bdate_mod = bdate_obj and bdate_obj.get_modifier() != RelLib.Date.MOD_NONE
 
     death_ref = person.get_death_ref()
     if death_ref and death_ref.ref:
@@ -1329,7 +1328,7 @@ def get_birth_death_strings(database,person,empty_date="",empty_place=""):
                 dplace = database.get_place_from_handle(dplace_handle).get_title()
             ddate_obj = death.get_date_object()
             ddate_full = ddate_obj and ddate_obj.get_day_valid()
-            ddate_mod = ddate_obj and ddate_obj.get_modifier() != Date.MOD_NONE
+            ddate_mod = ddate_obj and ddate_obj.get_modifier() != RelLib.Date.MOD_NONE
 
     return (bdate,bplace,bdate_full,bdate_mod,ddate,dplace,ddate_full,ddate_mod)
 
@@ -1594,7 +1593,7 @@ def married_str(database,person,spouse,event,endnotes=None,
 
     dobj = event.get_date_object()
     
-    if dobj.get_modifier() != Date.MOD_NONE:
+    if dobj.get_modifier() != RelLib.Date.MOD_NONE:
         date_full = 2
     elif dobj and dobj.get_day_valid():
         date_full = 1
@@ -1980,7 +1979,7 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
             bplace = database.get_place_from_handle(bplace_handle).get_title()
         bdate_obj = burial.get_date_object()
         bdate_full = bdate_obj and bdate_obj.get_day_valid()
-        bdate_mod = bdate_obj and bdate_obj.get_modifier() != Date.MOD_NONE
+        bdate_mod = bdate_obj and bdate_obj.get_modifier() != RelLib.Date.MOD_NONE
     else:
         return text
 

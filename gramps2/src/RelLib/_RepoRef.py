@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -68,6 +68,14 @@ class RepoRef(BaseObject,NoteBase):
             self.ref = None
             self.call_number = ""
             self.media_type = (RepoRef.CUSTOM,"")
+
+    def serialize(self):
+        return (NoteBase.serialize(self),
+                self.ref,self.call_number,self.media_type)
+
+    def unserialize(self,data):
+        (note,self.ref,self.call_number,self.media_type) = data
+        NoteBase.unserialize(self,note)
 
     def get_text_data_list(self):
         """

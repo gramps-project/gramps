@@ -1,3 +1,12 @@
+2006-02-03  Alex Roitman  <shura@gramps-project.org>
+	* RelLib/_*.py: Make objects serialize all the way down to built-in
+	python objects, so that Gramps classes are never pickled.
+	* Date.py, CalSdn.py: Move to RelLib.
+	* src/dates/Date_*.py: Use new Date.
+	* src/plugins/*.py: Use new Date.
+	* src/GrampsDb/_*.py: Use new Date, new unserialize.
+	* src/*.py: Use new Date.
+
 2006-02-03 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
         * src/TreeViews/_PersonTreeView.py: added more columns
 	

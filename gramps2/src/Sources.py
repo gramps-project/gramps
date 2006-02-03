@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,7 +47,6 @@ import cPickle as pickle
 import const
 import Utils
 import RelLib
-import Date
 import DateEdit
 import DateHandler
 import GrampsDisplay
@@ -402,7 +401,7 @@ class SourceEditor(DisplayState.ManagedWindow):
             self.date_entry_field.set_text(date_str)
             self.private.set_active(self.source_ref.get_privacy())
         else:
-            self.date_obj = Date.Date()
+            self.date_obj = RelLib.Date()
             self.active_source = None
 
         date_stat = self.get_widget("date_stat")

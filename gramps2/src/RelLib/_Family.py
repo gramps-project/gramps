@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -109,10 +109,16 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
             be considered persistent.
         @rtype: tuple
         """
-        return (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
-                self.child_list, self.type, self.event_ref_list,
-                self.media_list, self.attribute_list, self.lds_seal,
-                self.complete, self.source_list, self.note,
+        if self.lds_seal == None:
+            lds_seal = None
+        else:
+            lds_seal = self.lds_seal.serialize()
+        return (self.handle, self.gramps_id, self.father_handle,
+                self.mother_handle,self.child_list, self.type,
+                [er.serialize() for er in self.event_ref_list],
+                MediaBase.serialize(self),
+                AttributeBase.serialize(self),
+                lds_seal,SourceNote.serialize(self),
                 self.change, self.marker, self.private)
 
     def unserialize(self, data):
@@ -121,10 +127,15 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         back into the data in a Family structure.
         """
         (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
-         self.child_list, self.type, self.event_ref_list,
-         self.media_list, self.attribute_list, self.lds_seal,
-         self.complete, self.source_list, self.note, self.change,
-         self.marker, self.private) = data
+         self.child_list, self.type,
+         event_ref_list, media_list, attribute_list, lds_seal, sn,
+         self.change,self.marker, self.private) = data
+
+        self.event_ref_list = [EventRef().unserialize(er)
+                               for er in event_ref_list]
+        MediaBase.unserialize(self,media_list)
+        AttributeBase.unserialize(self,attribute_list)
+        SourceNote.unserialize(self,sn)
 
     def _has_handle_reference(self,classname,handle):
         if classname == 'Event':

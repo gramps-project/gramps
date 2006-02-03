@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -56,6 +56,16 @@ class SourceNote(BaseObject,NoteBase):
             self.source_list = [SourceRef(sref) for sref in source.source_list]
         else:
             self.source_list = []
+
+    def serialize(self):
+        return (NoteBase.serialize(self),
+                [sref.serialize() for sref in self.source_list])
+
+    def unserialize(self,data):
+        (note,source_list) = data
+        NoteBase.unserialize(self,note)
+        self.source_list = [SourceRef().unserialize(item)
+                            for item in source_list]
 
     def add_source_reference(self,src_ref) :
         """

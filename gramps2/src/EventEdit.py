@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -49,7 +49,6 @@ import const
 import Utils
 import AutoComp
 import RelLib
-import Date
 from DateHandler import parser as _dp, displayer as _dd
 import DateEdit
 import GrampsDisplay
@@ -122,10 +121,10 @@ class EventEditor(DisplayState.ManagedWindow):
 
         if event:
             self.srcreflist = self.event.get_source_references()
-            self.date = Date.Date(self.event.get_date_object())
+            self.date = RelLib.Date(self.event.get_date_object())
         else:
             self.srcreflist = []
-            self.date = Date.Date(None)
+            self.date = RelLib.Date(None)
 
         self.top = gtk.glade.XML(const.gladeFile, "event_edit","gramps")
         self.gladeif = GladeIf(self.top)
@@ -454,7 +453,7 @@ class EventRefEditor(DisplayState.ManagedWindow):
 
         if self.event:
             self.event_added = False
-            self.date = Date.Date(self.event.get_date_object())
+            self.date = RelLib.Date(self.event.get_date_object())
             if self.event_ref:
                 if self.event_ref.get_role()[0] == default_role:
                     self.expander.set_expanded(True)
@@ -468,7 +467,7 @@ class EventRefEditor(DisplayState.ManagedWindow):
             self.event.set_handle(self.db.create_id())
             self.event.set_gramps_id(self.db.find_next_event_gramps_id())
             self.event_added = True
-            self.date = Date.Date(None)
+            self.date = RelLib.Date(None)
             self.expander.set_expanded(True)
             self.warning.hide()
 
