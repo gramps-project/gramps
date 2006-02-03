@@ -55,7 +55,6 @@ import RelLib
 import DateHandler
 import NameDisplay
 import NameEdit
-import NoteEdit
 import DisplayState
 import GrampsDisplay
 from DisplayTabs import *
@@ -94,12 +93,11 @@ class EditPerson(DisplayState.ManagedWindow):
         self.dd = DateHandler.displayer
         self.nd = NameDisplay.displayer
 
-        if person:
-            self.orig_handle = person.get_handle()
-        else:
-            self.orig_handle = ""
+        self.orig_handle = person.get_handle()
+        if self.orig_handle:
+            self.person = state.db.get_person_from_handle(self.orig_handle)
             
-        DisplayState.ManagedWindow.__init__(self, uistate, track, person)
+        DisplayState.ManagedWindow.__init__(self, uistate, track, self.person)
 
         if self.already_exist:
             return
@@ -108,19 +106,10 @@ class EditPerson(DisplayState.ManagedWindow):
         self.uistate = uistate
         self.retval = const.UPDATE_PERSON
         
-        # UGLY HACK to refresh person object from handle if that exists
-        # done to ensure that the person object is not stale, as it could
-        # have been changed by something external (merge, tool, etc).
-        if self.orig_handle:
-            person = self.dbstate.db.get_person_from_handle(self.orig_handle)
-        self.person = person
         self.orig_surname = self.person.get_primary_name().get_group_name()
         self.db = self.dbstate.db
         self.callback = callback
-        self.path = self.db.get_save_path()
-        self.not_loaded = True
 #        self.lds_not_loaded = True
-        self.lists_changed = False
         self.pdmap = {}
         self.add_places = []
         self.should_guess_gender = (not person.get_gramps_id() and
@@ -567,15 +556,7 @@ class EditPerson(DisplayState.ManagedWindow):
             except:
                 self.person_photo.hide()
 
-    def on_apply_person_clicked(self,obj):
-        print self.event_list.changed
-        print self.name_list.changed
-        print self.srcref_list.changed
-        print self.attr_list.changed
-        print self.addr_list.changed
-        print self.web_list.changed
-        return
-
+    def _check_for_unknown_gender(self):
         if self.gender.get_active() == RelLib.Person.UNKNOWN:
             dialog = QuestionDialog2(
                 _("Unknown gender specified"),
@@ -586,20 +567,11 @@ class EditPerson(DisplayState.ManagedWindow):
                 _("Continue saving"), _("Return to window"),
                 self.window)
             if not dialog.run():
-                return
-
-        self.window.hide()
-        trans = self.db.transaction_begin()
-
-        surname = unicode(self.surname.get_text())
-        suffix = unicode(self.suffix.get_text())
-        prefix = unicode(self.prefix.get_text())
-        ntype = self.ntype_selector.get_values()
-        given = unicode(self.given.get_text())
-        title = unicode(self.title.get_text())
+                return True
+        return False
+        
+    def _check_and_update_id(self):
         idval = unicode(self.gid.get_text())
-
-        name = self.pname
         if idval != self.person.get_gramps_id():
             person = self.db.get_person_from_gramps_id(idval)
             if not person:
@@ -613,6 +585,16 @@ class EditPerson(DisplayState.ManagedWindow):
                     'person' : n }
                 WarningDialog(msg1,msg2)
 
+    def _update_primary_name(self):
+        surname = unicode(self.surname.get_text())
+        suffix = unicode(self.suffix.get_text())
+        prefix = unicode(self.prefix.get_text())
+        ntype = self.ntype_selector.get_values()
+        given = unicode(self.given.get_text())
+        title = unicode(self.title.get_text())
+        
+        name = self.pname
+        
         if suffix != name.get_suffix():
             name.set_suffix(suffix)
 
@@ -637,8 +619,8 @@ class EditPerson(DisplayState.ManagedWindow):
         if name != self.person.get_primary_name():
             self.person.set_primary_name(name)
 
-        self.build_pdmap()
 
+    def _update_family_ids(self, trans):
         # Update each of the families child lists to reflect any
         # change in ordering due to the new birth date
         family = self.person.get_main_parents_family_handle()
@@ -696,6 +678,26 @@ class EditPerson(DisplayState.ManagedWindow):
                     "with marriage information.\nPlease check "
                     "the person's marriages.")
             ErrorDialog(msg)
+        
+
+    def on_apply_person_clicked(self,obj):
+        """
+        Save the data.
+        """
+
+        if self._check_for_unknown_gender():
+            return
+        
+        self.window.hide()
+
+        trans = self.db.transaction_begin()
+
+        self._check_and_update_id()
+        self._update_primary_name()
+        
+        self.build_pdmap()
+
+        self._update_family_ids(trans)
 
         self.person.set_marker(self.marker_type_selector.get_values())
         self.person.set_privacy(self.private.get_active())
@@ -714,8 +716,7 @@ class EditPerson(DisplayState.ManagedWindow):
 #             if not self.lds_sealing.are_equal(lds_ord):
 #                 self.person.set_lds_sealing(self.lds_sealing)
 
-        self.person.set_source_reference_list(self.srcreflist)
-        self.update_lists()
+#        self.person.set_source_reference_list(self.srcreflist)
 
         if not self.person.get_handle():
             self.db.add_person(self.person, trans)
@@ -726,9 +727,9 @@ class EditPerson(DisplayState.ManagedWindow):
 
         n = self.nd.display(self.person)
 
+        print "title",self.person.primary_name.get_title()
+
         self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
-        if self.callback:
-            self.callback(self,self.retval)
         self.close()
 
     def get_place(self,field,makenew=0):
@@ -775,7 +776,6 @@ class EditPerson(DisplayState.ManagedWindow):
 
 #     def update_ldsbap_list(self,list):
 #         self.lds_baptism.set_source_reference_list(list)
-#         self.lists_changed = True
         
 #     def on_ldsbap_note_clicked(self,obj):
 #         NoteEdit.NoteEditor(self.lds_baptism,self,self.window,
@@ -788,7 +788,6 @@ class EditPerson(DisplayState.ManagedWindow):
 
 #     def set_ldsendow_list(self,list):
 #         self.lds_endowment.set_source_reference_list(list)
-#         self.lists_changed = True
 
 #     def on_ldsendow_note_clicked(self,obj):
 #         NoteEdit.NoteEditor(self.lds_endowment,self,self.window,
@@ -801,7 +800,6 @@ class EditPerson(DisplayState.ManagedWindow):
 
 #     def lds_seal_list(self,list):
 #         self.lds_sealing.set_source_reference_list(list)
-#         self.lists_changed = True
 
 #     def on_ldsseal_note_clicked(self,obj):
 #         NoteEdit.NoteEditor(self.lds_sealing,self,self.window,
