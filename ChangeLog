@@ -1,4 +1,7 @@
 2006-02-03 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+        * src/TreeViews/_PersonTreeView.py: added more columns
+	
+2006-02-03 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
         * src/GrampsDb/_GrampsBSDDB.py: fixed typo
 	* src/Models: added initial fast model implementation
 	* src/TreeViews: added treeview that uses new Models
