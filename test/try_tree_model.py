@@ -3,9 +3,9 @@ import gtk
 import gobject
 
 import sys, os
-sys.path.append("..")
+sys.path.append("../src")
 
-from Models import PersonModel,PersonFilterModel
+#from Models import PersonModel,PersonFilterModel
 from TreeViews import PersonTreeView
 import GenericFilter
 
