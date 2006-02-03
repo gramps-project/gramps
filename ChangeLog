@@ -1,3 +1,9 @@
+2006-02-03 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+        * src/GrampsDb/_GrampsBSDDB.py: fixed typo
+	* src/Models: added initial fast model implementation
+	* src/TreeViews: added treeview that uses new Models
+	* src/try_tree_model.py: harness for running treeview
+	
 2006-02-02  Don Allingham  <don@gramps-project.org>
 	* src/PersonView.py: history
 	* src/EditPerson.py: start the save routine.
