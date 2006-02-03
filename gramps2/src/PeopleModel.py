@@ -110,8 +110,7 @@ class PeopleModel(gtk.GenericTreeModel):
         gtk.GenericTreeModel.__init__(self)
 
         self.db = db
-        self.visible = {}
-        self.top_visible = {}
+
         self.invert_result = invert_result
         self.sortnames = {}
         self.marker_color_column = 11
@@ -125,7 +124,6 @@ class PeopleModel(gtk.GenericTreeModel):
         self.assign_data()
         
     def calculate_data(self,data_filter=None):
-
         if data_filter:
             self.data_filter = data_filter
         self.temp_top_path2iter = []
@@ -174,6 +172,7 @@ class PeopleModel(gtk.GenericTreeModel):
             self.build_sub_entry(name)
         
     def build_sub_entry(self,name):
+        self.prev_handle = None
         slist = map(lambda x: (self.sortnames[x],x),self.temp_sname_sub[name])
         slist.sort(lambda f,s: locale.strcoll(f[0],s[0]))
         entries = map(lambda x: x[1], slist)
@@ -248,12 +247,6 @@ class PeopleModel(gtk.GenericTreeModel):
             except:
                 print "".join(traceback.format_exception(*sys.exc_info()))
                 return u'error'
-
-    def reset_visible(self):
-        pass
-
-    def set_visible(self,node,val):
-        pass
 
     def on_iter_next(self, node):
         '''returns the next node at this level of the tree'''

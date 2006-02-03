@@ -1,3 +1,9 @@
+2006-02-03  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: Handle notes properly
+	* src/EventEdit.py: commit modified events
+	* src/PeopleModel.py: remove unused functions
+	* src/PersonView.py: remove debug
+
 2006-02-03  Alex Roitman  <shura@gramps-project.org>
 	* RelLib/_*.py: Make objects serialize all the way down to built-in
 	python objects, so that Gramps classes are never pickled.

@@ -95,11 +95,12 @@ def get_place(field,pmap,db):
 #-------------------------------------------------------------------------
 class EventEditor(DisplayState.ManagedWindow):
 
-    def __init__(self,event,dbstate,uistate,track=[]):
+    def __init__(self,event,dbstate,uistate,track=[],callback=None):
         self.db = dbstate.db
         self.uistate = uistate
         self.dbstate = dbstate
         self.track = track
+        self.callback = callback
         
         read_only = self.db.readonly
         noedit = self.db.readonly
@@ -245,14 +246,10 @@ class EventEditor(DisplayState.ManagedWindow):
 
     def on_delete_event(self,obj,b):
         self.gladeif.close()
-#        self.gallery.close()
-        gc.collect()
 
     def close(self,obj):
         self.gladeif.close()
-#        self.gallery.close()
         self.window.destroy()
-        gc.collect()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -284,6 +281,7 @@ class EventEditor(DisplayState.ManagedWindow):
 
         self.update_event(event_data,self.date,eplace_obj,edesc,enote,eformat,
                           epriv,ecause)
+
         if just_added:
             trans = self.db.transaction_begin()
             self.db.add_event(self.event,trans)
@@ -292,6 +290,8 @@ class EventEditor(DisplayState.ManagedWindow):
             trans = self.db.transaction_begin()
             self.db.commit_event(self.event,trans)
             self.db.transaction_commit(trans,_("Edit Event"))
+        if self.callback:
+            self.callback(self.event)
 
         self.close(obj)
 
@@ -556,14 +556,13 @@ class EventRefEditor(DisplayState.ManagedWindow):
         self.lists_changed = 0
         self.update_event(etype,self.date,eplace_obj,edesc,enote,eformat,
                           epriv,ecause)
-        # event is a primary object, so its change has to be committed now
-        if self.lists_changed:
-            trans = self.db.transaction_begin()
-            self.db.commit_event(self.event,trans)
-            if self.event_added:
-                self.db.transaction_commit(trans,_("Add Event"))
-            else:
-                self.db.transaction_commit(trans,_("Modify Event"))
+        
+        trans = self.db.transaction_begin()
+        self.db.commit_event(self.event,trans)
+        if self.event_added:
+            self.db.transaction_commit(trans,_("Add Event"))
+        else:
+            self.db.transaction_commit(trans,_("Modify Event"))
         
         # then, set properties of the event_ref
         self.event_ref.set_role(self.role_selector.get_values())

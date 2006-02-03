@@ -574,7 +574,6 @@ class EventEmbedList(EmbeddedList):
 
     def event_updated(self,value):
         self.changed = True
-        print value
         self.rebuild()
 
     def event_added(self,value):
@@ -586,8 +585,8 @@ class EventEmbedList(EmbeddedList):
 class PersonEventEmbedList(EventEmbedList):
 
     def __init__(self,dbstate,uistate,track,obj):        
-        self.orig_data =  [ data for data in [ obj.get_birth_ref(), \
-                                             obj.get_death_ref()] + \
+        self.orig_data = [ data for data in [ obj.get_birth_ref(), \
+                                              obj.get_death_ref()] + \
                             obj.get_event_ref_list() \
                             if data ]
         EventEmbedList.__init__(self, dbstate, uistate, track, obj)
@@ -927,8 +926,8 @@ class NoteTab(GrampsTab):
 
     def build_interface(self):
         vbox = gtk.VBox()
-        self.text = gtk.TextView()
         
+        self.text = gtk.TextView()
         self.flowed = gtk.RadioButton(None,_('Flowed'))
         self.format = gtk.RadioButton(self.flowed,_('Formatted'))
 
@@ -944,6 +943,7 @@ class NoteTab(GrampsTab):
         scroll = gtk.ScrolledWindow()
         scroll.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         scroll.add_with_viewport(self.text)
+        scroll.connect('focus-out-event',self.update)
 
         vbox.pack_start(scroll,True)
         vbox.set_spacing(6)
@@ -963,8 +963,16 @@ class NoteTab(GrampsTab):
         else:
             self.empty = True
             
-        self.buf.connect('changed',self._update_label)
+        self.buf.connect('changed',self.update)
         self.rebuild()
+
+    def update(self,obj):
+        self._update_label(obj)
+        if self.note_obj:
+            self.note_obj.set(self.buf.get_start_iter(),self.buf.get_end_iter(),False)
+        else:
+            print "NOTE OBJ DOES NOT EXIST"
+        return False
 
     def flow_changed(self,obj):
         if obj.get_active():
