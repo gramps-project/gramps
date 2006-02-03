@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004-2005  Donald N. Allingham
+# Copyright (C) 2004-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,9 +42,9 @@ import calendar
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Date
+from RelLib import Date, DateError
 import GrampsLocale
-from Errors import DateError
+
 #-------------------------------------------------------------------------
 #
 # Top-level module functions
@@ -497,7 +497,8 @@ class DateParser:
             if match:
                 grps = match.groups()
                 start = self._parse_subdate(grps[0])
-                mod = self.modifier_after_to_int.get(grps[1].lower(),Date.MOD_NONE)
+                mod = self.modifier_after_to_int.get(grps[1].lower(),
+                                                     Date.MOD_NONE)
                 if bc:
                     date.set(qual,mod,cal,self.invert_year(start))
                 else:
@@ -558,7 +559,7 @@ class DateParser:
         """
         Parses the text, returning a Date object.
         """
-        new_date = Date.Date()
+        new_date = Date()
         try:
             self.set_date(new_date,text)
         except DateError:

@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004  Martin Hawlisch
-# Copyright (C) 2005  Donald N. Allingham
+# Copyright (C) 2005-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import GenericFilter
 import const
-import Date
+from RelLib import Date
 import Errors
 from gettext import gettext as _
 from QuestionDialog import ErrorDialog

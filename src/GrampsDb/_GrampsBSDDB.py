@@ -59,7 +59,7 @@ _MINVERSION = 5
 _DBVERSION = 9
 
 def find_surname(key,data):
-    return str(data[3].surname)
+    return str(data[3][3])
 
 def find_idmap(key,data):
     return str(data[1])
@@ -980,7 +980,7 @@ class GrampsBSDDB(GrampsDbBase):
             self.env.txn_checkpoint()
             self.env.set_flags(db.DB_TXN_NOSYNC,1)      # async txn
 
-            if not transaction.no_magic:
+            if self.secondary_connected and not transaction.no_magic:
                 # Disconnect unneeded secondary indices
                 self.surnames.close()
                 junk = db.DB(self.env)

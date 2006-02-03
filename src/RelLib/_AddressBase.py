@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,6 +55,12 @@ class AddressBase:
                                     for address in source.address_list ]
         else:
             self.address_list = []
+
+    def serialize(self):
+        return [addr.serialize() for addr in self.address_list]
+
+    def unserialize(self,data):
+        self.address_list = [Address().unserialize(item) for item in data]
 
     def add_address(self,address):
         """

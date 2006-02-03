@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ DateBase class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Date
+from _Date import Date
 
 #-------------------------------------------------------------------------
 #
@@ -49,9 +49,22 @@ class DateBase:
         @type source: DateBase
         """
         if source:
-            self.date = Date.Date(source.date)
+            self.date = Date(source.date)
         else:
             self.date = None
+
+    def serialize(self):
+        if self.date == None:
+            date = None
+        else:
+            date = self.date.serialize()
+        return date
+
+    def unserialize(self,data):
+        if data == None:
+            self.date = None
+        else:
+            self.date = Date().unserialize(data)
 
 #     def set_date(self, date) :
 #         """
@@ -103,7 +116,7 @@ class DateBase:
         @rtype: L{Date}
         """
         if not self.date:
-            self.date = Date.Date()
+            self.date = Date()
         return self.date
 
     def set_date_object(self,date):

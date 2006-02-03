@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modiy
 # it under the terms of the GNU General Public License as published by
@@ -56,7 +56,6 @@ import DateHandler
 import Sources
 import GrampsKeys
 import NameDisplay
-import Date
 import DateEdit
 import DateHandler
 import Spell
@@ -240,7 +239,7 @@ class Marriage:
         lds_ord = self.family.get_lds_sealing()
         self.seal_stat = 0
         
-        self.lds_date_object = Date.Date()
+        self.lds_date_object = RelLib.Date()
         if GrampsKeys.get_uselds() or lds_ord:
             if lds_ord:
                 place_handle = lds_ord.get_place_handle()

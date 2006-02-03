@@ -47,7 +47,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import Errors
-import Date
 import RelLib
 import Tool
 import const
@@ -647,61 +646,71 @@ class TestcaseGenerator(Tool.Tool):
     def generate_date_tests(self):
         dates = []
         # first some valid dates
-        calendar = Date.CAL_GREGORIAN
-        for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
-            for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
+        calendar = RelLib.Date.CAL_GREGORIAN
+        for quality in (RelLib.Date.QUAL_NONE, RelLib.Date.QUAL_ESTIMATED,
+                        RelLib.Date.QUAL_CALCULATED):
+            for modifier in (RelLib.Date.MOD_NONE, RelLib.Date.MOD_BEFORE,
+                             RelLib.Date.MOD_AFTER, RelLib.Date.MOD_ABOUT):
                 for slash1 in (False,True):
-                    d = Date.Date()
+                    d = RelLib.Date()
                     d.set(quality,modifier,calendar,(4,7,1789,slash1),"Text comment")
                     dates.append( d)
-            for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
+            for modifier in (RelLib.Date.MOD_RANGE, RelLib.Date.MOD_SPAN):
                 for slash1 in (False,True):
                     for slash2 in (False,True):
-                        d = Date.Date()
+                        d = RelLib.Date()
                         d.set(quality,modifier,calendar,(4,7,1789,slash1,5,8,1876,slash2),"Text comment")
                         dates.append( d)
-            modifier = Date.MOD_TEXTONLY
-            d = Date.Date()
-            d.set(quality,modifier,calendar,Date.EMPTY,"This is a textual date")
+            modifier = RelLib.Date.MOD_TEXTONLY
+            d = RelLib.Date()
+            d.set(quality,modifier,calendar,RelLib.Date.EMPTY,
+                  "This is a textual date")
             dates.append( d)
         
         # test invalid dates
         dateval = (4,7,1789,False,5,8,1876,False)
         for l in range(1,len(dateval)):
-            d = Date.Date()
+            d = RelLib.Date()
             try:
-                d.set(Date.QUAL_NONE,Date.MOD_NONE,Date.CAL_GREGORIAN,dateval[:l],"Text comment")
+                d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
+                      RelLib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
                 dates.append( d)
             except Errors.DateError, e:
                 d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
                 dates.append( d)
             except:
-                d = Date.Date()
+                d = RelLib.Date()
                 d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
                 dates.append( d)
         for l in range(1,len(dateval)):
-            d = Date.Date()
+            d = RelLib.Date()
             try:
-                d.set(Date.QUAL_NONE,Date.MOD_SPAN,Date.CAL_GREGORIAN,dateval[:l],"Text comment")
+                d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,RelLib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
                 dates.append( d)
             except Errors.DateError, e:
                 d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
                 dates.append( d)
             except:
-                d = Date.Date()
+                d = RelLib.Date()
                 d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
                 dates.append( d)
-        d = Date.Date()
-        d.set(Date.QUAL_NONE,Date.MOD_NONE,Date.CAL_GREGORIAN,(44,7,1789,False),"Text comment")
+        d = RelLib.Date()
+        d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
+              RelLib.Date.CAL_GREGORIAN,(44,7,1789,False),"Text comment")
         dates.append( d)
-        d = Date.Date()
-        d.set(Date.QUAL_NONE,Date.MOD_NONE,Date.CAL_GREGORIAN,(4,77,1789,False),"Text comment")
+        d = RelLib.Date()
+        d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
+              RelLib.Date.CAL_GREGORIAN,(4,77,1789,False),"Text comment")
         dates.append( d)
-        d = Date.Date()
-        d.set(Date.QUAL_NONE,Date.MOD_SPAN,Date.CAL_GREGORIAN,(4,7,1789,False,55,8,1876,False),"Text comment")
+        d = RelLib.Date()
+        d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,
+              RelLib.Date.CAL_GREGORIAN,
+              (4,7,1789,False,55,8,1876,False),"Text comment")
         dates.append( d)
-        d = Date.Date()
-        d.set(Date.QUAL_NONE,Date.MOD_SPAN,Date.CAL_GREGORIAN,(4,7,1789,False,5,88,1876,False),"Text comment")
+        d = RelLib.Date()
+        d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,
+              RelLib.Date.CAL_GREGORIAN,
+              (4,7,1789,False,5,88,1876,False),"Text comment")
         dates.append( d)
         
         # now add them as birth to new persons
@@ -721,16 +730,17 @@ class TestcaseGenerator(Tool.Tool):
                 try:
                     ndate = _dp.parse( datestr)
                     if not ndate:
-                        ndate = Date.Date()
+                        ndate = RelLib.Date()
                         ndate.set_as_text("DateParser None")
                 except:
-                    ndate = Date.Date()
+                    ndate = RelLib.Date()
                     ndate.set_as_text("DateParser Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
             except:
-                ndate = Date.Date()
+                ndate = RelLib.Date()
                 ndate.set_as_text("DateDisplay Exception: %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
             
-            if dateval.get_modifier() != Date.MOD_TEXTONLY and ndate.get_modifier() == Date.MOD_TEXTONLY:
+            if dateval.get_modifier() != RelLib.Date.MOD_TEXTONLY \
+                   and ndate.get_modifier() == RelLib.Date.MOD_TEXTONLY:
                 # parser was unable to correctly parse the string
                 ndate.set_as_text( "TEXTONLY: "+ndate.get_text())
                 
@@ -1029,7 +1039,7 @@ class TestcaseGenerator(Tool.Tool):
             start = end - randint(0,100)
         year = randint(start,end)
         
-        ndate = Date.Date()
+        ndate = RelLib.Date()
         if randint(0,10) == 1:
             # Some get a textual date
             ndate.set_as_text( choice((self.rand_text(self.SHORT),"Unknown","??","Don't know","TODO!")))
@@ -1039,17 +1049,23 @@ class TestcaseGenerator(Tool.Tool):
                 pass
             else:
                 # regular dates
-                calendar = Date.CAL_GREGORIAN
-                quality = choice( (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED))
-                modifier = choice( (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER,\
-                                   Date.MOD_ABOUT, Date.MOD_RANGE, Date.MOD_SPAN))
+                calendar = RelLib.Date.CAL_GREGORIAN
+                quality = choice( (RelLib.Date.QUAL_NONE,
+                                   RelLib.Date.QUAL_ESTIMATED,
+                                   RelLib.Date.QUAL_CALCULATED))
+                modifier = choice( (RelLib.Date.MOD_NONE,
+                                    RelLib.Date.MOD_BEFORE,
+                                    RelLib.Date.MOD_AFTER,\
+                                    RelLib.Date.MOD_ABOUT,
+                                    RelLib.Date.MOD_RANGE,
+                                    RelLib.Date.MOD_SPAN))
                 day = randint(0,28)
                 if day > 0: # avoid days without month
                     month = randint(1,12)
                 else:
                     month = randint(0,12)
                 
-                if modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
+                if modifier in (RelLib.Date.MOD_RANGE, RelLib.Date.MOD_SPAN):
                     day2 = randint(0,28)
                     if day2 > 0:
                         month2 = randint(1,12)

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2005  Donald N. Allingham
+# Copyright (C) 2003-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,15 +32,6 @@ class FilterError(Exception):
 
     def messages(self):
         return (self.value,self.value2)
-
-class DateError(Exception):
-    """Error used to report Date errors"""
-    def __init__(self,value=""):
-        Exception.__init__(self)
-        self.value = value
-
-    def __str__(self):
-        return self.value
 
 class DatabaseError(Exception):
     """Error used to report Date errors"""

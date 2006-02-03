@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -72,16 +72,22 @@ class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
 
     def serialize(self):
         return (self.handle, self.gramps_id, self.type, unicode(self.name),
-                self.note, self.address_list, self.urls,self.marker,
-                self.private)
+                NoteBase.serialize(self),
+                AddressBase.serialize(self),
+                UrlBase.serialize(self),
+                self.marker, self.private)
 
     def unserialize(self,data):
         """
         Converts the data held in a tuple created by the serialize method
         back into the data in an Repository structure.
         """
-        (self.handle, self.gramps_id, self.type, self.name, self.note,
-         self.address_list, self.urls ,self.marker, self.private) = data
+        (self.handle, self.gramps_id, self.type, self.name, note,
+         address_list, urls ,self.marker, self.private) = data
+
+        NoteBase.unserialize(self,note)
+        AddressBase.unserialize(self,address_list)
+        UrlBase.unserialize(self,urls)
         
     def get_text_data_list(self):
         """

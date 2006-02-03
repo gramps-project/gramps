@@ -45,7 +45,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from QuestionDialog import ErrorDialog, WarningDialog, MissingMediaDialog
-import Date
 import GrampsMime
 import RelLib
 import const
@@ -1144,22 +1143,22 @@ class GrampsParser:
             rd = 0
 
         if attrs.has_key("cformat"):
-            cal = Date.Date.calendar.index(attrs['calendar'])
+            cal = RelLib.Date.calendar.index(attrs['calendar'])
         else:
-            cal = Date.CAL_GREGORIAN
+            cal = RelLib.Date.CAL_GREGORIAN
 
         if attrs.has_key('quality'):
             val = attrs['quality']
             if val == 'estimated':
-                qual = Date.QUAL_ESTIMATED
+                qual = RelLib.Date.QUAL_ESTIMATED
             elif val == 'calculated':
-                qual = Date.QUAL_CALCULATED
+                qual = RelLib.Date.QUAL_CALCULATED
             else:
-                qual = Date.QUAL_NONE
+                qual = RelLib.Date.QUAL_NONE
         else:
-            qual = Date.QUAL_NONE
+            qual = RelLib.Date.QUAL_NONE
         
-        dv.set(qual,Date.MOD_RANGE,cal,(d,m,y,False,rd,rm,ry,False))
+        dv.set(qual,RelLib.Date.MOD_RANGE,cal,(d,m,y,False,rd,rm,ry,False))
 
     def start_dateval(self,attrs):
         if self.source_ref:
@@ -1197,31 +1196,31 @@ class GrampsParser:
             d = 0
 
         if attrs.has_key("cformat"):
-            cal = Date.Date.calendar_names.index(attrs['cformat'])
+            cal = RelLib.Date.calendar_names.index(attrs['cformat'])
         else:
-            cal = Date.CAL_GREGORIAN
+            cal = RelLib.Date.CAL_GREGORIAN
 
         if attrs.has_key('type'):
             val = attrs['type']
             if val == "about":
-                mod = Date.MOD_ABOUT
+                mod = RelLib.Date.MOD_ABOUT
             elif val == "after":
-                mod = Date.MOD_AFTER
+                mod = RelLib.Date.MOD_AFTER
             else:
-                mod = Date.MOD_BEFORE
+                mod = RelLib.Date.MOD_BEFORE
         else:
-            mod = Date.MOD_NONE
+            mod = RelLib.Date.MOD_NONE
 
         if attrs.has_key('quality'):
             val = attrs['quality']
             if val == 'estimated':
-                qual = Date.QUAL_ESTIMATED
+                qual = RelLib.Date.QUAL_ESTIMATED
             elif val == 'calculated':
-                qual = Date.QUAL_CALCULATED
+                qual = RelLib.Date.QUAL_CALCULATED
             else:
-                qual = Date.QUAL_NONE
+                qual = RelLib.Date.QUAL_NONE
         else:
-            qual = Date.QUAL_NONE
+            qual = RelLib.Date.QUAL_NONE
         
         dv.set(qual,mod,cal,(d,m,y,False))
 

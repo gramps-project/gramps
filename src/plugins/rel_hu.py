@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2005  Donald N. Allingham
+# Copyright (C) 2003-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,7 +31,6 @@
 #-------------------------------------------------------------------------
 
 import RelLib
-import Date
 import Relationship
 from PluginMgr import register_relcalc
 import types
@@ -155,7 +154,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         other_birth_event = other_person.get_birth()
         other_birth_date = other_birth_event.get_date_object()
         if (orig_birth_date == "")or(other_birth_date == "") :return 0
-        else  :return Date.compare_dates(orig_birth_date,other_birth_date)
+        else  :return RelLib.Date.compare_dates(orig_birth_date,other_birth_date)
           
 
     def get_age_brother (self,level):

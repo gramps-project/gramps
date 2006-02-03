@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,7 +54,6 @@ import RelLib
 import const
 import Utils
 import PeopleModel
-import Date
 import Marriage
 import NameDisplay
 import GenericFilter
@@ -152,11 +151,11 @@ class AddSpouse:
         
         if birth_ref:
             birth = self.db.get_event_from_handle(birth_ref.ref)
-            date_obj = Date.Date(birth.get_date_object())
+            date_obj = RelLib.Date(birth.get_date_object())
             year = date_obj.get_year()
             if year:
                 date_obj.set_year(year-50)
-                date_obj.set_modifier(Date.MOD_AFTER)
+                date_obj.set_modifier(RelLib.Date.MOD_AFTER)
                 text = DateHandler.displayer.display(date_obj)
                 rule = GenericFilter.HasBirth([text,"",""])
                 filt.add_rule(rule)
@@ -373,7 +372,7 @@ class LikelyFilter(GenericFilter.Rule):
         person = db.get_person_from_handle(self.list[0])
         if person.birth_handle:
             birth = db.get_event_from_handle(person.birth_handle)
-            dateobj = Date.Date(birth.date)
+            dateobj = RelLib.Date(birth.date)
             year = dateobj.get_year()
             dateobj.set_year(year+40)
             self.lower = dateobj.sortval

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,6 +54,12 @@ class UrlBase:
             self.urls = [ Url(url) for url in source.urls ]
         else:
             self.urls = []
+
+    def serialize(self):
+        return [url.serialize() for url in self.urls]
+
+    def unserialize(self,data):
+        self.urls = [Url().unserialize(item) for item in data]
 
     def get_url_list(self):
         """

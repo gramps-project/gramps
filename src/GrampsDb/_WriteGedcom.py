@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +48,6 @@ import gtk.glade
 import RelLib
 import GenericFilter
 import const
-import Date
 import _GedcomInfo as GedcomInfo
 import Errors
 import ansel_utf8
@@ -81,15 +80,15 @@ _month = [
     "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ]
 
 _calmap = {
-    Date.CAL_HEBREW : (_hmonth, '@#HEBREW@'),
-    Date.CAL_FRENCH : (_fmonth, '@#FRENCH R@'),
-    Date.CAL_JULIAN : (_month, '@#JULIAN@'),
+    RelLib.Date.CAL_HEBREW : (_hmonth, '@#HEBREW@'),
+    RelLib.Date.CAL_FRENCH : (_fmonth, '@#FRENCH R@'),
+    RelLib.Date.CAL_JULIAN : (_month, '@#JULIAN@'),
     }
 
 _caldef = {
-    Date.MOD_ABOUT : "ABT",
-    Date.MOD_BEFORE : "BEF",
-    Date.MOD_AFTER : "AFT",
+    RelLib.Date.MOD_ABOUT : "ABT",
+    RelLib.Date.MOD_BEFORE : "BEF",
+    RelLib.Date.MOD_AFTER : "AFT",
     }
 
 #-------------------------------------------------------------------------
@@ -1142,13 +1141,13 @@ class GedcomWriter:
 
     def print_date(self,prefix,date):
         start = date.get_start_date()
-        if start != Date.EMPTY:
+        if start != RelLib.Date.EMPTY:
             cal = date.get_calendar()
             mod = date.get_modifier()
-            if date.get_modifier() == Date.MOD_SPAN:
+            if date.get_modifier() == RelLib.Date.MOD_SPAN:
                 val = "FROM %s TO %s" % (make_date(start,cal,mod),
                                          make_date(date.get_stop_date(),cal,mod))
-            elif date.get_modifier() == Date.MOD_RANGE:
+            elif date.get_modifier() == RelLib.Date.MOD_RANGE:
                 val = "BET %s AND %s" % (make_date(start,cal,mod),
                                          make_date(date.get_stop_date(),cal,mod))
             else:

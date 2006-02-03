@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004-2005  Donald N. Allingham
+# Copyright (C) 2004-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,9 +28,8 @@ localized tasks.
 __author__ = "Donald N. Allingham"
 __version__ = "$Revision$"
 
-import Date
 from gettext import gettext as _
-
+from RelLib import Date
 import GrampsLocale
 
 class DateDisplay:

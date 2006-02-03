@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -92,6 +92,22 @@ class Name(PrivateSourceNote,DateBase):
             self.group_as = ""
             self.sort_as = self.DEF
             self.display_as = self.DEF
+
+    def serialize(self):
+        return (PrivateSourceNote.serialize(self),
+                DateBase.serialize(self),
+                self.first_name,self.surname,self.suffix,self.title,
+                self.type,self.prefix,self.patronymic,self.sname,
+                self.group_as,self.sort_as,self.display_as)
+
+    def unserialize(self,data):
+        (psn,date,
+         self.first_name,self.surname,self.suffix,self.title,
+         self.type,self.prefix,self.patronymic,self.sname,
+         self.group_as,self.sort_as,self.display_as) = data
+        PrivateSourceNote.unserialize(self,psn)
+        DateBase.unserialize(self,date)
+        return self
 
     def get_text_data_list(self):
         """

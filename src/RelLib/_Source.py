@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,6 +33,7 @@ from _PrimaryObject import PrimaryObject
 from _MediaBase import MediaBase
 from _NoteBase import NoteBase
 from _Note import Note
+from _RepoRef import RepoRef
 
 #-------------------------------------------------------------------------
 #
@@ -58,9 +59,11 @@ class Source(PrimaryObject,MediaBase,NoteBase):
     def serialize(self):
         return (self.handle, self.gramps_id, unicode(self.title),
                 unicode(self.author), unicode(self.pubinfo),
-                self.note, self.media_list, unicode(self.abbrev),
-                self.change,self.datamap,self.reporef_list, self.marker,
-                self.private)
+                NoteBase.serialize(self),
+                MediaBase.serialize(self), unicode(self.abbrev),
+                self.change,self.datamap,
+                [rr.serialize() for rr in self.reporef_list],
+                self.marker,self.private)
 
     def unserialize(self,data):
         """
@@ -68,9 +71,13 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         back into the data in an Event structure.
         """
         (self.handle, self.gramps_id, self.title, self.author,
-         self.pubinfo, self.note, self.media_list,
-         self.abbrev, self.change, self.datamap, self.reporef_list,
+         self.pubinfo, note, media_list,
+         self.abbrev, self.change, self.datamap, reporef_list,
          self.marker, self.private) = data
+
+        NoteBase.unserialize(self,note)
+        MediaBase.unserialize(self,media_list)
+        self.reporef_list = [RepoRef().unserialize(rr) for rr in reporef_list]
         
     def get_text_data_list(self):
         """
@@ -79,10 +86,9 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.title,self.author,self.pubinfo,self.abbrev,self.gramps_id]\
-                + self.datamap.keys() + self.datamap.values()
-        
-
+        return [self.title,self.author,self.pubinfo,self.abbrev,
+                self.gramps_id] + self.datamap.keys() + self.datamap.values()
+    
     def get_text_data_child_list(self):
         """
         Returns the list of child objects that may carry textual data.

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,6 +44,7 @@ from _AddressBase import AddressBase
 from _UrlBase import UrlBase
 from _Name import Name
 from _EventRef import EventRef
+from _LdsOrd import LdsOrd
 
 #-------------------------------------------------------------------------
 #
@@ -94,27 +95,27 @@ class Person(PrimaryObject,SourceNote,
         data items have empty or null values, including the database
         handle.
         """
+        PrimaryObject.__init__(self)
+        SourceNote.__init__(self)
+        MediaBase.__init__(self)
+        AttributeBase.__init__(self)
+        AddressBase.__init__(self)
+        UrlBase.__init__(self)
+        self.primary_name = Name()
+        self.event_ref_list = []
+        self.family_list = []
+        self.parent_family_list = []
+        self.nickname = ""
+        self.alternate_names = []
+        self.gender = Person.UNKNOWN
+        self.death_ref = None
+        self.birth_ref = None
+        self.lds_bapt = None
+        self.lds_endow = None
+        self.lds_seal = None
+
         if data:
             self.unserialize(data)
-        else:
-            PrimaryObject.__init__(self)
-            SourceNote.__init__(self)
-            MediaBase.__init__(self)
-            AttributeBase.__init__(self)
-            AddressBase.__init__(self)
-            UrlBase.__init__(self)
-            self.primary_name = Name()
-            self.event_ref_list = []
-            self.family_list = []
-            self.parent_family_list = []
-            self.nickname = ""
-            self.alternate_names = []
-            self.gender = Person.UNKNOWN
-            self.death_ref = None
-            self.birth_ref = None
-            self.lds_bapt = None
-            self.lds_endow = None
-            self.lds_seal = None
         
         # We hold a reference to the GrampsDB so that we can maintain
         # its genderStats.  It doesn't get set here, but from
@@ -136,13 +137,40 @@ class Person(PrimaryObject,SourceNote,
             be considered persistent.
         @rtype: tuple
         """
+        if self.birth_ref == None:
+            birth_ref = None
+        else:
+            birth_ref = self.birth_ref.serialize()
+        if self.death_ref == None:
+            death_ref = None
+        else:
+            death_ref = self.death_ref.serialize()
+        if self.lds_bapt == None:
+            lds_bapt = None
+        else:
+            lds_bapt = self.lds_bapt.serialize()
+        if self.lds_endow == None:
+            lds_endow = None
+        else:
+            lds_endow = self.lds_endow.serialize()
+        if self.lds_seal == None:
+            lds_seal = None
+        else:
+            lds_seal = self.lds_seal.serialize()
+
         return (self.handle, self.gramps_id, self.gender, 
-                self.primary_name, self.alternate_names,
-                unicode(self.nickname), self.death_ref, self.birth_ref,
-                self.event_ref_list, self.family_list, self.parent_family_list,
-                self.media_list, self.address_list, self.attribute_list,
-                self.urls, self.lds_bapt, self.lds_endow, self.lds_seal,
-                self.source_list, self.note, self.change, self.marker,
+                self.primary_name.serialize(),
+                [name.serialize() for name in self.alternate_names],
+                unicode(self.nickname), death_ref, birth_ref,
+                [er.serialize() for er in self.event_ref_list],
+                self.family_list,self.parent_family_list,
+                MediaBase.serialize(self),
+                AddressBase.serialize(self),
+                AttributeBase.serialize(self),
+                UrlBase.serialize(self),
+                lds_bapt, lds_endow, lds_seal,
+                SourceNote.serialize(self),
+                self.change, self.marker,
                 self.private)
 
     def unserialize(self,data):
@@ -154,13 +182,34 @@ class Person(PrimaryObject,SourceNote,
             Person object
         @type data: tuple
         """
-        (self.handle, self.gramps_id, self.gender, self.primary_name,
-         self.alternate_names, self.nickname, self.death_ref,
-         self.birth_ref, self.event_ref_list, self.family_list,
-         self.parent_family_list, self.media_list, self.address_list,
-         self.attribute_list, self.urls, self.lds_bapt, self.lds_endow,
-         self.lds_seal, self.source_list, self.note, self.change,
-         self.marker, self.private) = (data + (False,))[0:23]
+        (self.handle, self.gramps_id, self.gender, primary_name,
+         alternate_names, self.nickname, death_ref,
+         birth_ref, event_ref_list, self.family_list,
+         self.parent_family_list, media_list, address_list,
+         attribute_list, urls, lds_bapt, lds_endow,
+         lds_seal, sn, self.change,
+         self.marker, self.private) = (data + (False,))[0:22]
+
+        self.primary_name.unserialize(primary_name)
+        if death_ref:
+            self.death_ref = EventRef().unserialize(death_ref)
+        if birth_ref:
+            self.birth_ref = EventRef().unserialize(birth_ref)
+        if lds_bapt:
+            self.lds_bapt = LdsOrd().unserialize(lds_bapt)
+        if lds_endow:
+            self.lds_endow = LdsOrd().unserialize(lds_endow)
+        if lds_seal:
+            self.lds_seal = LdsOrd().unserialize(lds_seal)
+        self.alternate_names = [Name().unserialize(name)
+                                for name in alternate_names]
+        self.event_ref_list = [EventRef().unserialize(er)
+                               for er in event_ref_list]
+        MediaBase.unserialize(self,media_list)
+        AddressBase.unserialize(self,address_list)
+        AttributeBase.unserialize(self,attribute_list)
+        UrlBase.unserialize(self,urls)
+        SourceNote.unserialize(self,sn)
             
     def _has_handle_reference(self,classname,handle):
         if classname == 'Event':

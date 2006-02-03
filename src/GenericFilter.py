@@ -54,7 +54,6 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import RelLib
-import Date
 import DateHandler
 import NameDisplay
 from TransUtils import strip_context as __
@@ -71,9 +70,9 @@ def date_cmp(rule,value):
     od = value.get_start_date()
     cmp_rule = (sd[2],sd[1],sd[0])
     cmp_value = (od[2],od[1],od[0])
-    if s == Date.MOD_BEFORE:
+    if s == RelLib.Date.MOD_BEFORE:
         return  cmp_rule > cmp_value
-    elif s == Date.MOD_AFTER:
+    elif s == RelLib.Date.MOD_AFTER:
         return cmp_rule < cmp_value
     else:
         return cmp_rule == cmp_value

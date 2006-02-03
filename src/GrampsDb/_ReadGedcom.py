@@ -58,7 +58,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import Errors
 import RelLib
-import Date
 import DateParser
 import NameDisplay
 import DisplayTrace
@@ -1856,7 +1855,7 @@ class GedcomParser:
         return None
 
     def extract_date(self,text):
-        dateobj = Date.Date()
+        dateobj = RelLib.Date()
         try:
             match = rangeRegexp.match(text)
             if match:
@@ -1865,17 +1864,17 @@ class GedcomParser:
                     pass
                 
                 if cal1 == "FRENCH R":
-                    cal = Date.CAL_FRENCH
+                    cal = RelLib.Date.CAL_FRENCH
                 elif cal1 == "JULIAN":
-                    cal = Date.CAL_JULIAN
+                    cal = RelLib.Date.CAL_JULIAN
                 elif cal1 == "HEBREW":
-                    cal = Date.CAL_HEBREW
+                    cal = RelLib.Date.CAL_HEBREW
                 else:
-                    cal = Date.CAL_GREGORIAN
+                    cal = RelLib.Date.CAL_GREGORIAN
                     
                 start = self.dp.parse(data1)
                 stop =  self.dp.parse(data2)
-                dateobj.set(Date.QUAL_NONE, Date.MOD_RANGE, cal,
+                dateobj.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_RANGE, cal,
                             start.get_start_date() + stop.get_start_date())
                 return dateobj
 
@@ -1886,17 +1885,17 @@ class GedcomParser:
                     pass
                 
                 if cal1 == "FRENCH R":
-                    cal = Date.CAL_FRENCH
+                    cal = RelLib.Date.CAL_FRENCH
                 elif cal1 == "JULIAN":
-                    cal = Date.CAL_JULIAN
+                    cal = RelLib.Date.CAL_JULIAN
                 elif cal1 == "HEBREW":
-                    cal = Date.CAL_HEBREW
+                    cal = RelLib.Date.CAL_HEBREW
                 else:
-                    cal = Date.CAL_GREGORIAN
+                    cal = RelLib.Date.CAL_GREGORIAN
                     
                 start = self.dp.parse(data1)
                 stop =  self.dp.parse(data2)
-                dateobj.set(Date.QUAL_NONE, Date.MOD_SPAN, cal,
+                dateobj.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_SPAN, cal,
                             start.get_start_date() + stop.get_start_date())
                 return dateobj
         
@@ -1905,11 +1904,11 @@ class GedcomParser:
                 (abt,cal,data) = match.groups()
                 dateobj = self.dp.parse("%s %s" % (abt, data))
                 if cal == "FRENCH R":
-                    dateobj.set_calendar(Date.CAL_FRENCH)
+                    dateobj.set_calendar(RelLib.Date.CAL_FRENCH)
                 elif cal == "JULIAN":
-                    dateobj.set_calendar(Date.CAL_JULIAN)
+                    dateobj.set_calendar(RelLib.Date.CAL_JULIAN)
                 elif cal == "HEBREW":
-                    dateobj.set_calendar(Date.CAL_HEBREW)
+                    dateobj.set_calendar(RelLib.Date.CAL_HEBREW)
                 return dateobj
             else:
                 dval = self.dp.parse(text)
@@ -2384,7 +2383,7 @@ def create_id():
 
 if __name__ == "__main__":
     import sys
-    import hotshot, hotshot.stats
+    import hotshot#, hotshot.stats
     import const
     from GrampsDb import gramps_db_factory, gramps_db_reader_factory
 
@@ -2397,7 +2396,7 @@ if __name__ == "__main__":
     database = db_class()
     database.load("test.grdb",lambda x: None, mode="w")
     np = NoteParser(sys.argv[1],False)
-    g = GedcomParser(database,sys.argv[1],callback, codeset, np.get_map(),np.get_lines())
+    g = GedcomParser(database,sys.argv[1],callback, codeset, np.get_map(),np.get_lines(),np.get_persons())
 
     if False:
         pr = hotshot.Profile('mystats.profile')
@@ -2405,12 +2404,12 @@ if __name__ == "__main__":
         pr.runcall(g.parse_gedcom_file,False)
         print "Finished"
         pr.close()
-        print "Loading profile"
-        stats = hotshot.stats.load('mystats.profile')
-        print "done"
-        stats.strip_dirs()
-        stats.sort_stats('time','calls')
-        stats.print_stats(100)
+##         print "Loading profile"
+##         stats = hotshot.stats.load('mystats.profile')
+##         print "done"
+##         stats.strip_dirs()
+##         stats.sort_stats('time','calls')
+##         stats.print_stats(100)
     else:
         import time
         t = time.time()

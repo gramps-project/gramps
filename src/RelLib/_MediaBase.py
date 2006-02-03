@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,6 +53,12 @@ class MediaBase:
             self.media_list = [ MediaRef(mref) for mref in source.media_list ]
         else:
             self.media_list = []
+
+    def serialize(self):
+        return [mref.serialize() for mref in self.media_list]
+
+    def unserialize(self,data):
+        self.media_list = [MediaRef().unserialize(item) for item in data]
 
     def add_media_reference(self,media_ref):
         """
