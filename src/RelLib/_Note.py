@@ -57,7 +57,8 @@ class Note(BaseObject):
         return (self.text,self.format)
 
     def unserialize(self,data):
-        (self.text,self.format) = data
+        if data is not None:
+            (self.text,self.format) = data
         return self
 
     def get_text_data_list(self):

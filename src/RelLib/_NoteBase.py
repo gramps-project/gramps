@@ -49,21 +49,16 @@ class NoteBase:
         """
         
         if source and source.note:
-            self.note = Note(source.note.get())
+            text = source.note.get()
         else:
-            self.note = None
+            text = ""
+        self.note = Note(text)
 
     def serialize(self):
-        if self.note == None:
-            note = None
-        else:
-            note = self.note.serialize()
-        return note
+        return self.note.serialize()
 
     def unserialize(self,data):
-        if data == None:
-            self.note = None
-        else:
+        if data is not None:
             self.note = Note().unserialize(data)
 
     def set_note(self,text):
