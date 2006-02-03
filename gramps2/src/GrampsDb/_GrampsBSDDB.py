@@ -440,7 +440,7 @@ class GrampsBSDDB(GrampsDbBase):
 
 
     def rebuild_secondary(self,callback=None):
-        if self.read_only:
+        if self.readonly:
             return
 
         table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
