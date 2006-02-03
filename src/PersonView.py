@@ -545,7 +545,6 @@ class PersonView(PageView.PersonNavView):
             # if paths same, just issue row changed signal
 
             if oldpath == newpath:
-                print "row change", pathval, pnode
                 self.model.row_changed(pathval,pnode)
             else:
                 # paths different, get the new surname list
