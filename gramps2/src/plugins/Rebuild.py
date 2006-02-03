@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -65,16 +65,13 @@ class Rebuild(Tool.Tool):
                 # checking of a read only database
                 return
 
-            total = db.get_number_of_people() + \
-                    db.get_number_of_families() + \
-                    db.get_number_of_places() + \
-                    db.get_number_of_sources() + \
-                    db.get_number_of_media_objects()
-
             db.disable_signals()
             if parent:
                 progress = Utils.ProgressMeter(
                     _('Rebuilding Secondary Indices'))
+                # Six indices to rebuild, and the first step is removing
+                # old ones
+                total = 7
                 progress.set_pass('',total)
                 db.rebuild_secondary(progress.step)
                 progress.close()

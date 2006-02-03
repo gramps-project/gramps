@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -216,96 +216,88 @@ class GrampsBSDDB(GrampsDbBase):
         return 1
 
     def rebuild_secondary(self,callback=None):
+        openflags = db.DB_CREATE
 
-        # Repair secondary indices related to person_map
-        
+
+        # Repair secondary indices related to person_map        
         self.id_trans.close()
+        junk = db.DB(self.env)
+        junk.remove(self.save_name,"idtrans")
+
         self.surnames.close()
+        junk = db.DB(self.env)
+        junk.remove(self.save_name,"surnames")
+
+        # Repair secondary indices related to place_map
+        self.pid_trans.close()
+        junk = db.DB(self.env)
+        junk.remove(self.save_name,"pidtrans")
+
+        # Repair secondary indices related to media_map
+        self.oid_trans.close()
+        junk = db.DB(self.env)
+        junk.remove(self.save_name,"oidtrans")
+
+        # Repair secondary indices related to source_map
+        self.sid_trans.close()
+        junk = db.DB(self.env)
+        junk.remove(self.save_name,"sidtrans")
+        if callback:
+            callback()
 
         self.id_trans = db.DB(self.env)
         self.id_trans.set_flags(db.DB_DUP)
-        self.id_trans.open(self.save_name, "idtrans", db.DB_HASH,
-                           flags=db.DB_CREATE)
-        self.id_trans.truncate()
+        self.id_trans.open(self.save_name, "idtrans",
+                           db.DB_HASH, flags=openflags)
+        self.person_map.associate(self.id_trans,  find_idmap, openflags)
+        self.id_trans.sync()
+        if callback:
+            callback()
 
         self.surnames = db.DB(self.env)
         self.surnames.set_flags(db.DB_DUP)
-        self.surnames.open(self.save_name, "surnames", db.DB_HASH,
-                           flags=db.DB_CREATE)
-        self.surnames.truncate()
+        self.surnames.open(self.save_name, "surnames",
+                           db.DB_HASH, flags=openflags)
+        self.person_map.associate(self.surnames,  find_surname, openflags)
+        self.surnames.sync()
+        if callback:
+            callback()
 
-        self.person_map.associate(self.surnames, find_surname, db.DB_CREATE)
-        self.person_map.associate(self.id_trans, find_idmap, db.DB_CREATE)
-
-        for key in self.person_map.keys():
-            if callback:
-                callback()
-            self.person_map[key] = self.person_map[key]
-        self.person_map.sync()
-
-        # Repair secondary indices related to family_map
-
-        self.fid_trans.close()
         self.fid_trans = db.DB(self.env)
         self.fid_trans.set_flags(db.DB_DUP)
-        self.fid_trans.open(self.save_name, "fidtrans", db.DB_HASH,
-                            flags=db.DB_CREATE)
-        self.fid_trans.truncate()
-        self.family_map.associate(self.fid_trans, find_idmap, db.DB_CREATE)
+        self.fid_trans.open(self.save_name, "fidtrans",
+                            db.DB_HASH, flags=openflags)
+        self.family_map.associate(self.fid_trans, find_idmap, openflags)
+        self.fid_trans.sync()
+        if callback:
+            callback()
 
-        for key in self.family_map.keys():
-            if callback:
-                callback()
-            self.family_map[key] = self.family_map[key]
-        self.family_map.sync()
-
-        # Repair secondary indices related to place_map
-
-        self.pid_trans.close()
         self.pid_trans = db.DB(self.env)
         self.pid_trans.set_flags(db.DB_DUP)
-        self.pid_trans.open(self.save_name, "pidtrans", db.DB_HASH,
-                            flags=db.DB_CREATE)
-        self.pid_trans.truncate()
-        self.place_map.associate(self.pid_trans, find_idmap, db.DB_CREATE)
+        self.pid_trans.open(self.save_name, "pidtrans",
+                            db.DB_HASH, flags=openflags)
+        self.place_map.associate(self.pid_trans,  find_idmap, openflags)
+        self.pid_trans.sync()
+        if callback:
+            callback()
 
-        for key in self.place_map.keys():
-            if callback:
-                callback()
-            self.place_map[key] = self.place_map[key]
-        self.place_map.sync()
-
-        # Repair secondary indices related to media_map
-
-        self.oid_trans.close()
-        self.oid_trans = db.DB(self.env)
-        self.oid_trans.set_flags(db.DB_DUP)
-        self.oid_trans.open(self.save_name, "oidtrans", db.DB_HASH,
-                            flags=db.DB_CREATE)
-        self.oid_trans.truncate()
-        self.media_map.associate(self.oid_trans, find_idmap, db.DB_CREATE)
-
-        for key in self.media_map.keys():
-            if callback:
-                callback()
-            self.media_map[key] = self.media_map[key]
-        self.media_map.sync()
-
-        # Repair secondary indices related to source_map
-
-        self.sid_trans.close()
         self.sid_trans = db.DB(self.env)
         self.sid_trans.set_flags(db.DB_DUP)
-        self.sid_trans.open(self.save_name, "sidtrans", db.DB_HASH,
-                            flags=db.DB_CREATE)
-        self.sid_trans.truncate()
-        self.source_map.associate(self.sid_trans, find_idmap, db.DB_CREATE)
+        self.sid_trans.open(self.save_name, "sidtrans",
+                            db.DB_HASH, flags=openflags)
+        self.source_map.associate(self.sid_trans, find_idmap, openflags)
+        self.sid_trans.sync()
+        if callback:
+            callback()
 
-        for key in self.source_map.keys():
-            if callback:
-                callback()
-            self.source_map[key] = self.source_map[key]
-        self.source_map.sync()
+        self.oid_trans = db.DB(self.env)
+        self.oid_trans.set_flags(db.DB_DUP)
+        self.oid_trans.open(self.save_name, "oidtrans",
+                            db.DB_HASH, flags=openflags)
+        self.media_map.associate(self.oid_trans, find_idmap, openflags)
+        self.oid_trans.sync()
+        if callback:
+            callback()
 
     def abort_changes(self):
         while self.undo():
@@ -863,7 +855,10 @@ class GrampsBSDDB(GrampsDbBase):
                 for handle in handle_list:
                     event = self.get_event_from_handle(handle)
                     self.individual_event_names.add(event.name)
-            data = cursor.next()
+            try:
+                data = cursor.next()
+            except:
+                data = None
         cursor.close()
 
         cursor = self.get_family_cursor()
@@ -875,7 +870,8 @@ class GrampsBSDDB(GrampsDbBase):
             # Check to prevent crash on corrupted data (event_list=None)
                 for handle in handle_list:
                     event = self.get_event_from_handle(handle)
-                    self.family_event_names.add(event.name)
+                    if event:
+                        self.family_event_names.add(event.name)
             data = cursor.next()
         cursor.close()
 
@@ -886,13 +882,14 @@ if __name__ == "__main__":
     d = GrampsBSDDB()
     d.load(sys.argv[1],lambda x: x)
 
-    c = d.get_person_cursor()
-    data = c.first()
-    while data:
-        person = Person(data[1])
-        print data[0], person.get_primary_name().get_name(),
-        data = c.next()
-    c.close()
 
-    print d.surnames.keys()
+##     c = d.get_person_cursor()
+##     data = c.first()
+##     while data:
+##         person = Person(data[1])
+##         print data[0], person.get_primary_name().get_name(),
+##         data = c.next()
+##     c.close()
+
+##     print d.surnames.keys()
     

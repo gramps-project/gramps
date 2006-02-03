@@ -1,3 +1,10 @@
+2006-02-02  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsBSDDB.py (rebuild_secondary): properly rebuild
+	secondary indices relying on BSD DB rather than manually re-adding
+	every record.
+	* src/plugins/Rebuild.py (__init__): Use fixed 7 progress steps
+	for 1 removing step and 6 index rebuilds.
+
 2006-01-26  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/docgen/ODFDoc.py (init): Correct name for parent style;
 	Use handling program name obtained from the mime system.	
