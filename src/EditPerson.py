@@ -93,7 +93,8 @@ class EditPerson(DisplayState.ManagedWindow):
         self.dd = DateHandler.displayer
         self.nd = NameDisplay.displayer
 
-        self.orig_handle = person.get_handle()
+        self.person = person
+        self.orig_handle = self.person.get_handle()
         if self.orig_handle:
             self.person = state.db.get_person_from_handle(self.orig_handle)
             
@@ -173,26 +174,16 @@ class EditPerson(DisplayState.ManagedWindow):
         self.birth_ref = person.get_birth_ref()
         self.death_ref = person.get_death_ref()
 
-        self.pname = RelLib.Name(person.get_primary_name())
+        self.pname = RelLib.Name(self.person.get_primary_name())
 
-        self.gender.set_active(person.get_gender())
+        self.gender.set_active(self.person.get_gender())
         
-        self.nlist = person.get_alternate_names()[:]
-        self.alist = person.get_attribute_list()[:]
-        self.ulist = person.get_url_list()[:]
-        self.plist = person.get_address_list()[:]
-
-        if person:
-            self.srcreflist = person.get_source_references()
-        else:
-            self.srcreflist = []
-
         self.place_list = self.pdmap.keys()
         self.place_list.sort()
 
         build_dropdown(self.surname,self.db.get_surname_list())
 
-        gid = person.get_gramps_id()
+        gid = self.person.get_gramps_id()
         if gid:
             self.gid.set_text(gid)
         self.gid.set_editable(True)
@@ -459,8 +450,6 @@ class EditPerson(DisplayState.ManagedWindow):
         changed = False
         name = self.person.get_primary_name()
 
-        #TODO#if self.complete.get_active() != self.person.get_complete_flag():
-        #    changed = True
         if self.private.get_active() != self.person.get_privacy():
             changed = True
 
@@ -726,8 +715,6 @@ class EditPerson(DisplayState.ManagedWindow):
             self.db.commit_person(self.person, trans)
 
         n = self.nd.display(self.person)
-
-        print "title",self.person.primary_name.get_title()
 
         self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
         self.close()

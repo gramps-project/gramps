@@ -1,4 +1,6 @@
 2006-02-02  Don Allingham  <don@gramps-project.org>
+	* src/PersonView.py: history
+	* src/EditPerson.py: start the save routine.
 	* src/DdTargets.py: add support for data items in sources
 	* src/EventEdit.py: use DisplayTabs
 	* src/gramps.glade: New EventEditor with display tabs
