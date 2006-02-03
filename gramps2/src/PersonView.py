@@ -415,14 +415,8 @@ class PersonView(PageView.PersonNavView):
         #self.remove_from_history(handle)
         self.dbstate.db.remove_person(handle, trans)
 
-        if self.uistate.phistory.index >= 0:
-            handle = self.uistate.phistory.history[self.index]
-            self.active_person = self.dbstate.db.get_person_from_handle(handle)
-        else:
-            self.dbstate.change_active_person(None)
+        self.uistate.phistory.back()
         self.dbstate.db.transaction_commit(trans,_("Delete Person (%s)") % n)
-        #self.redraw_histmenu()
-        #self.enable_interface()
 
     def build_columns(self):
         for column in self.columns:
@@ -492,7 +486,7 @@ class PersonView(PageView.PersonNavView):
         for node in handle_list:
             person = self.dbstate.db.get_person_from_handle(node)
             top = person.get_primary_name().get_group_name()
-            self.model.rebuild_data(self.DataFilter)
+            self.model.rebuild_data()
             if not self.model.is_visable(node):
                 continue
             if (not self.model.sname_sub.has_key(top) or 
@@ -520,7 +514,7 @@ class PersonView(PageView.PersonNavView):
                         self.model.row_deleted(path)
                 except KeyError:
                     pass
-        self.model.rebuild_data(self.DataFilter,skip=node)
+        self.model.rebuild_data()
 
     def person_updated(self,handle_list):
         for node in handle_list:
@@ -551,6 +545,7 @@ class PersonView(PageView.PersonNavView):
             # if paths same, just issue row changed signal
 
             if oldpath == newpath:
+                print "row change", pathval, pnode
                 self.model.row_changed(pathval,pnode)
             else:
                 # paths different, get the new surname list
