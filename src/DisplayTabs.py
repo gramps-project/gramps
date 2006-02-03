@@ -967,11 +967,12 @@ class NoteTab(GrampsTab):
         self.rebuild()
 
     def update(self,obj):
-        self._update_label(obj)
         if self.note_obj:
-            self.note_obj.set(self.buf.get_start_iter(),self.buf.get_end_iter(),False)
+            text = self.buf.get_text(self.buf.get_start_iter(),self.buf.get_end_iter())
+            self.note_obj.set(text)
         else:
             print "NOTE OBJ DOES NOT EXIST"
+        self._update_label(obj)
         return False
 
     def flow_changed(self,obj):
