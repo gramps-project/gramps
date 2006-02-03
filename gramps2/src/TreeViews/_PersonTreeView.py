@@ -9,6 +9,7 @@ from Models import \
 from NameDisplay import displayer
 display_given = displayer.display_given
 
+
 class PersonTreeView(gtk.TreeView):
 
     def __init__(self,db,apply_filter=None):
@@ -17,33 +18,24 @@ class PersonTreeView(gtk.TreeView):
         self._db = db
 
         # Add the Name column
-        self._name_col = gtk.TreeViewColumn(_("Family Name"))
-        self._name_col.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
-        self._name_col.set_fixed_width(300)
-        self._id_cell1 = gtk.CellRendererText()
-        self._name_col.pack_start(self._id_cell1,True)
-        self._name_col.set_cell_data_func(self._id_cell1,self._family_name)
+        cols = (\
+            (_("Family Name"),300,self._family_name),\
+            (_("ID"),100,self._object_id),\
+            (_("Given Name"),300,self._given_name),\
+            (_("Gender"),100,self._gender),\
+            (_("Birth Date"),200,self._birth_date),\
+            (_("Birth Place"),200,self._birth_place),\
+            (_("Death Date"),200,self._death_date),\
+            (_("Death Place"),200,self._death_place),\
+            (_("Spouce"),200,self._spouce),\
+            (_("Last Change"),200,self._last_change),\
+            (_("Cause of Death"),300,self._death_cause))
 
-        # Add the Name column
-        self._given_col = gtk.TreeViewColumn(_("Given Name"))
-        self._given_col.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
-        self._given_col.set_fixed_width(300)
-        self._id_cell1 = gtk.CellRendererText()
-        self._given_col.pack_start(self._id_cell1,True)
-        self._given_col.set_cell_data_func(self._id_cell1,self._given_name)
-
-        # Add the ID column
-        self._id_col = gtk.TreeViewColumn(_("ID"))
-        self._id_col.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
-        self._id_col.set_fixed_width(100)
-        self._id_cell = gtk.CellRendererText()
-        self._id_col.pack_start(self._id_cell,True)
-        self._id_col.set_cell_data_func(self._id_cell,self._object_id)
-
-        self.append_column(self._name_col)
-        self.append_column(self._given_col)
-        self.append_column(self._id_col)
-
+        for col in cols:
+            self.append_column(
+                self._new_column(
+                    col[0],col[1],col[2]))
+            
         self.set_enable_search(False)
         self.set_fixed_height_mode(True)
 
@@ -52,13 +44,23 @@ class PersonTreeView(gtk.TreeView):
         else:
             self.clear_filter()
 
+    def _new_column(self,name,size,func):
+        col = gtk.TreeViewColumn(name)
+        col.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        col.set_fixed_width(size)
+        cell = gtk.CellRendererText()
+        col.pack_start(cell,True)
+        col.set_cell_data_func(cell,func)
+        return col
+
     def set_filter(self,apply_filter=None):
         self.set_model(PersonFilterModel(self._db,apply_filter))
 
     def clear_filter(self):
         self.set_model(PersonTreeModel(self._db))
 
-                  
+
+    
     # Accessor methods for the columns
 
     def _object_id(self, column, cell, model, iter, user_data=None):
@@ -75,8 +77,64 @@ class PersonTreeView(gtk.TreeView):
     def _given_name(self, column, cell, model, iter, user_data=None):
         (o,rowref) = model.get_value(iter, 0)
         if len(rowref) > 1:
-            cell.set_property('text', display_given(o))
+            cell.set_property('text', "")
         else:
             cell.set_property('text', "")
 
         
+    def _gender(self, column, cell, model, iter, user_data=None):
+        (o,rowref) = model.get_value(iter, 0)
+        if len(rowref) > 1:
+            cell.set_property('text', "")
+        else:
+            cell.set_property('text', "")
+
+    def _birth_date(self, column, cell, model, iter, user_data=None):
+        (o,rowref) = model.get_value(iter, 0)
+        if len(rowref) > 1:
+            cell.set_property('text', "")
+        else:
+            cell.set_property('text', "")
+
+    def _birth_place(self, column, cell, model, iter, user_data=None):
+        (o,rowref) = model.get_value(iter, 0)
+        if len(rowref) > 1:
+            cell.set_property('text', "")
+        else:
+            cell.set_property('text', "")
+
+    def _death_date(self, column, cell, model, iter, user_data=None):
+        (o,rowref) = model.get_value(iter, 0)
+        if len(rowref) > 1:
+            cell.set_property('text', "")
+        else:
+            cell.set_property('text', "")
+
+    def _death_place(self, column, cell, model, iter, user_data=None):
+        (o,rowref) = model.get_value(iter, 0)
+        if len(rowref) > 1:
+            cell.set_property('text', "")
+        else:
+            cell.set_property('text', "")
+
+    def _last_change(self, column, cell, model, iter, user_data=None):
+        (o,rowref) = model.get_value(iter, 0)
+        if len(rowref) > 1:
+            cell.set_property('text', "")
+        else:
+            cell.set_property('text', "")
+
+    def _death_cause(self, column, cell, model, iter, user_data=None):
+        (o,rowref) = model.get_value(iter, 0)
+        if len(rowref) > 1:
+            cell.set_property('text', "")
+        else:
+            cell.set_property('text', "")
+
+    def _spouce(self, column, cell, model, iter, user_data=None):
+        (o,rowref) = model.get_value(iter, 0)
+        if len(rowref) > 1:
+            cell.set_property('text', "")
+        else:
+            cell.set_property('text', "")
+
