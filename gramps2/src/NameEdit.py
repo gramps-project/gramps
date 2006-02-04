@@ -52,6 +52,7 @@ import DateHandler
 import Spell
 import GrampsDisplay
 import DisplayState
+from DisplayTabs import *
 
 from WindowUtils import GladeIf
 
@@ -65,6 +66,7 @@ class NameEditor(DisplayState.ManagedWindow):
     def __init__(self, dbstate, uistate, track, name, callback):
 
         self.db = dbstate.db
+        self.dbstate = dbstate
         self.uistate = uistate
         self.state = dbstate
         self.callback = callback
@@ -90,16 +92,13 @@ class NameEditor(DisplayState.ManagedWindow):
         self.suffix_field.set_editable(not self.db.readonly)
         self.patronymic_field = self.top.get_widget("patronymic")
         self.patronymic_field.set_editable(not self.db.readonly)
-        self.combo = self.top.get_widget("alt_surname_list")
-        self.combo.set_sensitive(not self.db.readonly)
+        self.surname_field = self.top.get_widget("alt_surname")
         self.date = self.top.get_widget('date')
         self.date.set_editable(not self.db.readonly)
 
         if self.name:
-            self.srcreflist = self.name.get_source_references()
             self.date_obj = self.name.get_date_object()
         else:
-            self.srcreflist = []
             self.date_obj = RelLib.Date()
             self.name = RelLib.Name()
 
@@ -111,27 +110,16 @@ class NameEditor(DisplayState.ManagedWindow):
             self.date_obj, self.date,
             date_stat, self.window)
 
-        AutoComp.fill_combo(self.combo,self.db.get_surname_list())
-        self.surname_field = self.combo.get_child()
         self.prefix_field = self.top.get_widget("alt_prefix")
         self.prefix_field.set_editable(not self.db.readonly)
 
         self.type_combo = self.top.get_widget("name_type")
         self.type_combo.set_sensitive(not self.db.readonly)
-        self.note_field = self.top.get_widget("alt_note")
-        self.note_field.set_editable(not self.db.readonly)
-        self.spell = Spell.Spell(self.note_field)
         
-        self.slist = self.top.get_widget('slist')
         self.priv = self.top.get_widget("priv")
+        self.notebook = self.top.get_widget("notebook")
         self.general_label = self.top.get_widget("general_tab")
-        self.sources_label = self.top.get_widget("sources_tab")
-        self.notes_label = self.top.get_widget("note_tab")
         self.priv.set_sensitive(not self.db.readonly)
-        self.flowed = self.top.get_widget("alt_flowed")
-        self.flowed.set_sensitive(not self.db.readonly)
-        self.preform = self.top.get_widget("alt_preform")
-        self.preform.set_sensitive(not self.db.readonly)
         self.group_over = self.top.get_widget('group_over')
         self.group_over.set_sensitive(not self.db.readonly)
 
@@ -150,21 +138,12 @@ class NameEditor(DisplayState.ManagedWindow):
 
         Utils.set_titles(self.window, alt_title, tmsg, _('Name Editor'))
 
-        self.sourcetab = Sources.SourceTab(
-            self.state, self.uistate, self.track,
-            self.srcreflist, self, self.top, self.window, self.slist,
-            self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
-            self.top.get_widget('del_src'), self.db.readonly)
-        
-        self.note_buffer = self.note_field.get_buffer()
-        
         self.gladeif.connect('name_edit','delete_event',self.on_delete_event)
         self.gladeif.connect('button119','clicked',self.close_window)
         self.gladeif.connect('button118','clicked',self.on_name_edit_ok_clicked)
         okbtn = self.top.get_widget('button118')
         okbtn.set_sensitive(not self.db.readonly)
         self.gladeif.connect('button131','clicked',self.on_help_clicked)
-        self.gladeif.connect('notebook3','switch_page',self.on_switch_page)
         self.gladeif.connect('group_over','toggled',self.on_group_over_toggled)
 
         if name != None:
@@ -177,15 +156,6 @@ class NameEditor(DisplayState.ManagedWindow):
             self.patronymic_field.set_text(name.get_patronymic())
             self.priv.set_active(name.get_privacy())
             Utils.bold_label(self.general_label)
-            if name.get_note():
-                self.note_buffer.set_text(name.get_note())
-                Utils.bold_label(self.notes_label)
-                if name.get_note_format() == 1:
-                    self.preform.set_active(1)
-                else:
-                    self.flowed.set_active(1)
-            else:
-                Utils.unbold_label(self.notes_label)
             self.display_as.set_active(name.get_display_as())
             self.sort_as.set_active(name.get_display_as())
             grp_as = name.get_group_as()
@@ -196,14 +166,17 @@ class NameEditor(DisplayState.ManagedWindow):
         else:
             self.display_as.set_active(0)
             self.sort_as.set_active(0)
-            Utils.unbold_label(self.notes_label)
-            Utils.unbold_label(self.sources_label)
-            Utils.unbold_label(self.general_label)
 
         self.surname_field.connect('changed',self.update_group_as)
 
-        self.window.set_transient_for(self.parent_window)
-        self.window.show()
+        self.srcref_list = self._add_page(SourceEmbedList(
+            self.dbstate,self.uistate, self.track,
+            self.name.source_list))
+        self.note_tab = self._add_page(NoteTab(
+            self.dbstate, self.uistate, self.track,
+            self.name.get_note_object()))
+
+        self.show()
 
     def build_menu_names(self,name):
         if name:
@@ -213,6 +186,11 @@ class NameEditor(DisplayState.ManagedWindow):
             submenu_label = _('New Name')
         menu_label = _('Name Editor')
         return (menu_label,submenu_label)
+
+    def _add_page(self,page):
+        self.notebook.insert_page(page)
+        self.notebook.set_tab_label(page,page.get_tab_widget())
+        return page
 
     def update_group_as(self,obj):
         if not self.group_over.get_active():
@@ -237,7 +215,6 @@ class NameEditor(DisplayState.ManagedWindow):
     def on_delete_event(self,*obj):
         self.gladeif.close()
         self.close()
-        gc.collect()
 
     def close_window(self,*obj):
         self.gladeif.close()
@@ -256,9 +233,6 @@ class NameEditor(DisplayState.ManagedWindow):
         prefix = unicode(self.prefix_field.get_text())
         suffix = unicode(self.suffix_field.get_text())
         patronymic = unicode(self.patronymic_field.get_text())
-        note = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
-                                 self.note_buffer.get_end_iter(),False))
-        format = self.preform.get_active()
         priv = self.priv.get_active()
 
         the_type = self.type_selector.get_values()
@@ -271,8 +245,6 @@ class NameEditor(DisplayState.ManagedWindow):
         
         self.name.set_date_object(self.date_obj)
         
-        self.name.set_source_reference_list(self.srcreflist)
-
         grp_as = unicode(self.group_as.get_text())
         srn = unicode(self.surname_field.get_text())
 
@@ -306,11 +278,12 @@ class NameEditor(DisplayState.ManagedWindow):
                 else:
                     self.name.set_group_as(grp_as)
 
-        self.update_name(first,last,suffix,patronymic,title,the_type,note,format,priv)
+        self.update_name(first,last,suffix,patronymic,title,the_type,priv)
         self.callback(self.name)
         self.close_window(obj)
 
-    def update_name(self,first,last,suffix,patronymic,title,the_type,note,format,priv):
+    def update_name(self,first,last,suffix,patronymic,title,
+                    the_type,priv):
         
         if self.name.get_first_name() != first:
             self.name.set_first_name(first)
@@ -330,20 +303,6 @@ class NameEditor(DisplayState.ManagedWindow):
         if self.name.get_type() != the_type:
             self.name.set_type(the_type)
 
-        if self.name.get_note() != note:
-            self.name.set_note(note)
-
-        if self.name.get_note_format() != format:
-            self.name.set_note_format(format)
-
         if self.name.get_privacy() != priv:
             self.name.set_privacy(priv)
         
-    def on_switch_page(self,obj,a,page):
-        start = self.note_buffer.get_start_iter()
-        stop = self.note_buffer.get_end_iter()
-        text = unicode(self.note_buffer.get_text(start, stop, False))
-        if text:
-            Utils.bold_label(self.notes_label)
-        else:
-            Utils.unbold_label(self.notes_label)

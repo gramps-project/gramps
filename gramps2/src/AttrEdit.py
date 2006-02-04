@@ -60,6 +60,7 @@ import DisplayState
 
 from QuestionDialog import WarningDialog
 from WindowUtils import GladeIf
+from DisplayTabs import *
 
 #-------------------------------------------------------------------------
 #
@@ -93,36 +94,17 @@ class AttributeEditor(DisplayState.ManagedWindow):
             return
 
         self.top = gtk.glade.XML(const.gladeFile, "attr_edit","gramps")
-        self.slist  = self.top.get_widget("slist")
         self.value_field = self.top.get_widget("attr_value")
-        self.note_field = self.top.get_widget("attr_note")
-        self.spell = Spell.Spell(self.note_field)
         self.attrib_menu = self.top.get_widget("attr_menu")
-#        self.type_field  = self.attrib_menu.child
         self.source_field = self.top.get_widget("attr_source")
         self.priv = self.top.get_widget("priv")
-        self.general_label = self.top.get_widget("general_tab")
-        self.sources_label = self.top.get_widget("sources_tab")
-        self.notes_label = self.top.get_widget("note_tab")
-        self.flowed = self.top.get_widget("attr_flowed")
-        self.preform = self.top.get_widget("attr_preform")
+        self.notebook = self.top.get_widget("notebook")
 
         self.window = self.top.get_widget("attr_edit")
         self.type_selector = AutoComp.StandardCustomSelector(
             Utils.personal_attributes,self.attrib_menu,
             RelLib.Attribute.CUSTOM,RelLib.Attribute.DESCRIPTION)
         
-        if attrib:
-            self.srcreflist = self.attrib.get_source_references()
-        else:
-            self.srcreflist = []
-
-        self.sourcetab = Sources.SourceTab(
-            self.state, self.uistate, self.track,
-            self.srcreflist, self, self.top, self.window, self.slist,
-            self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
-            self.top.get_widget('del_src'), self.db.readonly)
-
         if title == ", ":
             title = _("Attribute Editor")
         else:
@@ -134,16 +116,6 @@ class AttributeEditor(DisplayState.ManagedWindow):
             self.type_selector.set_values(attrib.get_type())
             self.value_field.set_text(attrib.get_value())
             self.priv.set_active(attrib.get_privacy())
-
-            if attrib.get_note():
-                self.note_field.get_buffer().set_text(attrib.get_note())
-                Utils.bold_label(self.notes_label)
-            	if attrib.get_note_format() == 1:
-                    self.preform.set_active(True)
-            	else:
-                    self.flowed.set_active(True)
-            else:
-                Utils.unbold_label(self.notes_label)
         else:
             self.attrib = RelLib.Attribute()
             
@@ -152,32 +124,41 @@ class AttributeEditor(DisplayState.ManagedWindow):
         self.gladeif.connect('button116', 'clicked', self.close_window)
         self.gladeif.connect('button115', 'clicked', self.on_ok_clicked)
         self.gladeif.connect('button127', 'clicked', self.on_help_clicked)
-        self.gladeif.connect('notebook', 'switch_page', self.on_switch_page)
 
         if self.db.readonly:
             w = self.top.get_widget("button115")
             w.set_sensitive(False)
             self.value_field.set_editable(False)
-            self.note_field.set_editable(False)
             self.attrib_menu.set_sensitive(False)
-            self.priv.set_sensitive(False)
-            self.flowed.set_sensitive(False)
-            self.preform.set_sensitive(False)
-            
-        self.update_note_page()
-        self.window.set_transient_for(self.parent_window)
-        self.window.show()
+
+        self._create_tabbed_pages()
+        self.show()
+
+    def _create_tabbed_pages(self):
+        vbox = self.top.get_widget('vbox')
+        
+        self.notebook = gtk.Notebook()
+        self.srcref_list = self._add_page(SourceEmbedList(
+            self.state,self.uistate, self.track,
+            self.attrib.source_list))
+        self.note_tab = self._add_page(NoteTab(
+            self.state, self.uistate, self.track,
+            self.attrib.get_note_object()))
+        self.notebook.show_all()
+        vbox.pack_start(self.notebook,True)
+
+    def _add_page(self,page):
+        self.notebook.insert_page(page)
+        self.notebook.set_tab_label(page,page.get_tab_widget())
+        return page
 
     def on_delete_event(self,obj,b):
         self.gladeif.close()
         self.close()
-        gc.collect()
 
     def close_window(self,obj):
         self.gladeif.close()
         self.close()
-        self.window.destroy()
-        gc.collect()
 
     def build_menu_names(self, attrib):
         if not attrib:
@@ -201,10 +182,6 @@ class AttributeEditor(DisplayState.ManagedWindow):
         attr_data = self.type_selector.get_values()
         value = unicode(self.value_field.get_text())
 
-        buf = self.note_field.get_buffer()
-        note = unicode(buf.get_text(buf.get_start_iter(),
-                                    buf.get_end_iter(),False))
-        format = self.preform.get_active()
         priv = self.priv.get_active()
 
         if (attr_data[0] == RelLib.Attribute.CUSTOM and
@@ -216,7 +193,6 @@ class AttributeEditor(DisplayState.ManagedWindow):
             self.alist.append(attr_data[1])
             self.alist.sort()
 
-        self.attrib.set_source_reference_list(self.srcreflist)
         self.update(attr_data,value,note,format,priv)
         self.callback(self.attrib)
         self.close_window(obj)
@@ -231,19 +207,4 @@ class AttributeEditor(DisplayState.ManagedWindow):
         """Compares the data items, and updates if necessary"""
         self.check(self.attrib.get_type,self.attrib.set_type,attr_data)
         self.check(self.attrib.get_value,self.attrib.set_value,value)
-        self.check(self.attrib.get_note,self.attrib.set_note,note)
-        self.check(self.attrib.get_note_format,self.attrib.set_note_format,format)
         self.check(self.attrib.get_privacy,self.attrib.set_privacy,priv)
-
-    def on_switch_page(self,obj,a,page):
-        self.update_note_page()
-        
-    def update_note_page(self):
-        buf = self.note_field.get_buffer()
-        start = buf.get_start_iter()
-        end = buf.get_end_iter()
-        text = unicode(buf.get_text(start,end,False))
-        if text:
-            Utils.bold_label(self.notes_label)
-        else:
-            Utils.unbold_label(self.notes_label)
