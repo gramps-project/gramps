@@ -716,6 +716,11 @@ class ViewManager:
                                                'to the selected file.'))
 
         try:
+            os.chdir(os.path.dirname(filename))
+        except:
+            print "could not change directory"
+
+        try:
             if self.load_database(filename,callback,mode=mode):
                 if filename[-1] == '/':
                     filename = filename[:-1]

@@ -1118,6 +1118,23 @@ def get_type_converter_by_name(val_str):
         return unicode
     return unicode
 
+def relative_path(original, base):
+    if not os.path.exists(original) or  not os.path.isdir(base):
+        return original
+
+    base_list = (os.path.abspath(base)).split(os.sep)
+    target_list = (os.path.abspath(original)).split(os.sep)
+
+    # Starting from the filepath root, work out how much of the filepath is
+    # shared by base and target.
+
+    for i in range(min(len(base_list), len(target_list))):
+        if base_list[i] <> target_list[i]: break
+    else:
+        i+=1
+    rel_list = [os.pardir] * (len(base_list)-i) + target_list[i:]
+    return os.path.join(*rel_list)
+
 class ProgressMeter:
     """
     Progress meter class for GRAMPS.

@@ -56,8 +56,7 @@ import Spell
 import GrampsDisplay
 import DisplayState
 
-from DisplayTabs import NoteTab, GalleryTab, DataEmbedList, SourceBackRefList
-
+from DisplayTabs import *
 from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
@@ -207,6 +206,8 @@ class EditSource(DisplayState.ManagedWindow):
         self.author = self.top_window.get_widget("author")
         self.pubinfo = self.top_window.get_widget("pubinfo")
         self.abbrev = self.top_window.get_widget("abbrev")
+        self.cancel = self.top_window.get_widget('cancel')
+        self.ok = self.top_window.get_widget('ok')
         
         self.vbox = self.top_window.get_widget('vbox')
 
@@ -222,8 +223,9 @@ class EditSource(DisplayState.ManagedWindow):
         self.abbrev.set_text(source.get_abbreviation())
         self.abbrev.set_editable(mode)
 
-        self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
-        self.top_window.get_widget('cancel').connect('clicked', self.close_window)
+        self.ok.set_sensitive(not self.db.readonly)
+        self.cancel.connect('clicked', self.close_window)
+        self.ok.connect('clicked', self.apply_clicked)
 
         self.notebook = gtk.Notebook()
         self.notebook.show()
@@ -233,19 +235,18 @@ class EditSource(DisplayState.ManagedWindow):
 
         self.show()
 
-        self.model = None # This will hold the model for backreferences once it is complete.
-        
     def load_data(self):
-        self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
-                                self.source.get_note_object())
-        self.gallery_tab = GalleryTab(self.dbstate, self.uistate, self.track,
-                                      self.source.get_media_list())
-
-        self.data_tab = DataEmbedList(self.dbstate, self.uistate, self.track,
-                                      self.source)
-
-        self.backref_tab = SourceBackRefList(self.dbstate, self.uistate, self.track,
-                                             self.db.find_backlink_handles(self.source.handle))
+        self.note_tab = NoteTab(
+            self.dbstate, self.uistate, self.track, self.source.get_note_object())
+        self.gallery_tab = GalleryTab(
+            self.dbstate, self.uistate, self.track, self.source.get_media_list())
+        self.data_tab = DataEmbedList(
+            self.dbstate, self.uistate, self.track, self.source)
+        self.repo_tab = RepoEmbedList(
+            self.dbstate, self.uistate, self.track, self.source.get_reporef_list())
+        self.backref_tab = SourceBackRefList(
+            self.dbstate, self.uistate, self.track,
+            self.db.find_backlink_handles(self.source.handle))
         
         self.notebook.insert_page(self.note_tab)
         self.notebook.set_tab_label(self.note_tab,self.note_tab.get_tab_widget())
@@ -255,6 +256,9 @@ class EditSource(DisplayState.ManagedWindow):
 
         self.notebook.insert_page(self.gallery_tab)
         self.notebook.set_tab_label(self.gallery_tab,self.gallery_tab.get_tab_widget())
+
+        self.notebook.insert_page(self.repo_tab)
+        self.notebook.set_tab_label(self.repo_tab,self.repo_tab.get_tab_widget())
 
         self.notebook.insert_page(self.backref_tab)
         self.notebook.set_tab_label(self.backref_tab,self.backref_tab.get_tab_widget())
@@ -287,17 +291,12 @@ class EditSource(DisplayState.ManagedWindow):
         self.gladeif.close()
         self.close()
 
-    def on_source_apply_clicked(self,obj):
+    def apply_clicked(self,obj):
 
         title = unicode(self.title.get_text())
         author = unicode(self.author.get_text())
         pubinfo = unicode(self.pubinfo.get_text())
         abbrev = unicode(self.abbrev.get_text())
-        note = unicode(
-            self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                       self.notes_buffer.get_end_iter(),
-                                       False))
-        format = self.preform.get_active()
 
         if author != self.source.get_author():
             self.source.set_author(author)
@@ -310,31 +309,7 @@ class EditSource(DisplayState.ManagedWindow):
         
         if abbrev != self.source.get_abbreviation():
             self.source.set_abbreviation(abbrev)
-        
-        if note != self.source.get_note():
-            self.source.set_note(note)
-
-        if format != self.source.get_note_format():
-            self.source.set_note_format(format)
-
-        new_map = {}
-        for val in range(0,len(self.data_model)):
-            node = self.data_model.get_iter(val)
-            key = self.data_model.get_value(node,0)
-            value = self.data_model.get_value(node,1)
-            if key:
-                new_map[unicode(key)] = unicode(value)
-        if new_map != self.source.get_data_map():
-            self.source.set_data_map(new_map)
-
-        # update repository refs
-        repos_ref_list = []
-        for val in range(0,len(self.repos_ref_model)):
-            iter = self.repos_ref_model.get_iter(val)
-            repos_ref_list.append(self.repos_ref_model.get_value(iter,0))
-            
-        self.source.set_reporef_list(repos_ref_list)
-        
+                
         trans = self.db.transaction_begin()
         if self.source.get_handle() == None:
             self.db.add_source(self.source,trans)
@@ -342,7 +317,6 @@ class EditSource(DisplayState.ManagedWindow):
             self.db.commit_source(self.source,trans)
         self.db.transaction_commit(trans,_("Edit Source (%s)") % title)
         self.close(obj)
-
 
 class DelSrcQuery:
     def __init__(self,source,db,the_lists):

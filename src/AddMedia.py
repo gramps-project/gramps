@@ -86,6 +86,7 @@ class AddMediaObject:
         self.file_text = self.glade.get_widget("fname")
         self.internal = self.glade.get_widget('internal')
         self.internal.connect('toggled',self.internal_toggled)
+        self.relpath = self.glade.get_widget('relpath')
         self.temp_name = ""
         self.object = None
 
@@ -118,6 +119,12 @@ class AddMediaObject:
             mobj.set_mime_type(None)
         else:
             filename = self.file_text.get_filename()
+            
+            if self.relpath.get_active():
+                p = self.db.get_save_path()
+                if not os.path.isdir(p):
+                    p = os.path.dirname(p)
+                filename = Utils.relative_path(filename,p)
         
             if os.path.exists(filename) == 0:
                 msgstr = _("Cannot import %s")
