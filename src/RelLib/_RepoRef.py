@@ -76,6 +76,7 @@ class RepoRef(BaseObject,NoteBase):
     def unserialize(self,data):
         (note,self.ref,self.call_number,self.media_type) = data
         NoteBase.unserialize(self,note)
+        return self
 
     def get_text_data_list(self):
         """

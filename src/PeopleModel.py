@@ -77,8 +77,8 @@ _DEATH_COL = 6
 _BIRTH_COL = 7
 _EVENT_COL = 8
 _FAMILY_COL= 9
-_CHANGE_COL= 20
-_MARKER_COL=21
+_CHANGE_COL= 19
+_MARKER_COL= 20
 
 #-------------------------------------------------------------------------
 #
@@ -443,7 +443,7 @@ class PeopleModel(gtk.GenericTreeModel):
             if data[_MARKER_COL]:
                 if data[_MARKER_COL][0] == PrimaryObject.MARKER_CUSTOM:
                     return data[_MARKER_COL][1]
-                elif data[_MARKER_COL][0] in Utils.marker_types:
+                elif data[_MARKER_COL][0] in Utils.marker_types.keys():
                     return Utils.marker_types[data[_MARKER_COL][0]]
         except IndexError:
             return ""
