@@ -16,6 +16,10 @@
 	* src/Makefile.am: Remove absent glade files from the list.
 	* src/GrampsDb/Makefile.am: Ship new glade files; correct directory.
 
+	* src/PeopleModel.py: Correct column numbers.
+	* src/GrampsDb/_ReadGedcom.py (parse_header_source): Typo.
+	* src/RelLib/_RepoRef.py (unserialize): Return unserialized object.
+
 2006-02-03 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
         * src/TreeViews/_PersonTreeView.py: added more columns
 	

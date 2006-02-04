@@ -1760,7 +1760,7 @@ class GedcomParser:
                 self.def_src.set_data_item('Creation date',matches[2])
             elif matches[1] == TOKEN_NOTE:
                 note = matches[2]
-            elif matches[1][0] == TOKEN_UNKNOWN:
+            elif matches[1] == TOKEN_UNKNOWN:
                 self.ignore_sub_junk(2)
             else:
                 self.barf(2)
