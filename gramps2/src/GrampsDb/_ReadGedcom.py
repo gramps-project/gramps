@@ -811,7 +811,7 @@ class GedcomParser:
                 self.parse_repository(self.repo)
                 self.db.commit_repository(self.repo, self.trans)
                 del self.repo
-            elif matches[2] in ["SUBM","SUBN","REPO"]:
+            elif matches[2] in ("SUBM","SUBN"):
                 self.ignore_sub_junk(1)
             elif matches[1] in (TOKEN_SUBM,TOKEN_SUBN,TOKEN_OBJE,TOKEN__EVENT_DEFN):
                 self.ignore_sub_junk(1)

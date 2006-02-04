@@ -36,7 +36,6 @@ import gc
 import gtk
 import gtk.glade
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_file
-from gobject import TYPE_PYOBJECT
 import cPickle as pickle
 
 #-------------------------------------------------------------------------
@@ -217,7 +216,7 @@ class SourceTab:
         self.window = window
         self.slist = clist
         self.selection = clist.get_selection()
-        self.model = gtk.ListStore(str,str,TYPE_PYOBJECT)
+        self.model = gtk.ListStore(str,str,object)
         self.readonly = readonly
 
         add_btn.set_sensitive(not readonly)

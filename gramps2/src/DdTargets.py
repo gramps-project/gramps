@@ -103,6 +103,7 @@ class _DdTargets(object):
         self.ATTRIBUTE = _DdType(self,'pattr')
         self.ADDRESS   = _DdType(self,'paddr')
         self.SOURCEREF = _DdType(self,'srcref')
+        self.REPOREF   = _DdType(self,'reporef')
         self.NAME      = _DdType(self,'name')
         self.MEDIAOBJ  = _DdType(self,'mediaobj')
         self.DATA      = _DdType(self,'data_tuple')

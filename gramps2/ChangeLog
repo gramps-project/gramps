@@ -1,3 +1,19 @@
+2006-02-04  Don Allingham  <don@gramps-project.org>
+	* src/AddMedia.py: relative path support
+	* src/AddrEdit.py: add DisplayTab support
+	* src/DdTargets.py: repository references support
+	* src/DisplayTabs.py: repository reference support
+	* src/EditMedia.py: save support
+	* src/EditSource.py: save support
+	* src/ImageSelect.py: remove unused stuff
+	* src/Sources.py: use object instead of gobject.TYPE_PYOBJECT
+	* src/Utils.py: relative path calculator
+	* src/ViewManager.py: change cwd to directory of the file so that
+	relative paths work
+	* src/edit_person.glade: fix size
+	* src/gramps.glade: add relative path indicator
+	* src/GrampsDb/_ReadGedcom.py: remove useless compare
+
 2006-02-03  Don Allingham  <don@gramps-project.org>
 	* src/AttrEdit.py: use DisplayTabs
 	* src/NameEdit.py: use DisplayTabs

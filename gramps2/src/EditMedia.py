@@ -196,11 +196,10 @@ class EditMedia(DisplayState.ManagedWindow):
         self.change_dialog.get_widget("path").set_text(fname)
             
     def on_apply_clicked(self, obj):
-        t = self.notes.get_buffer()
-        text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),False))
         desc = unicode(self.descr_window.get_text())
         note = self.obj.get_note()
         path = self.change_dialog.get_widget('path').get_text()
+
         if path != self.obj.get_path():
             mime = GrampsMime.get_type(path)
             self.obj.set_mime_type(mime)
@@ -209,15 +208,6 @@ class EditMedia(DisplayState.ManagedWindow):
         if not self.date_object.is_equal(self.obj.get_date_object()):
             self.obj.set_date_object(self.date_object)
 
-        format = self.preform.get_active()
-        if text != note or desc != self.obj.get_description():
-            self.obj.set_note(text)
-            self.obj.set_description(desc)
-        if format != self.obj.get_note_format():
-            self.obj.set_note_format(format)
-        if self.lists_changed:
-            self.obj.set_attribute_list(self.alist)
-            self.obj.set_source_reference_list(self.srcreflist)
         trans = self.db.transaction_begin()
         self.db.commit_media_object(self.obj,trans)
         self.db.transaction_commit(trans,_("Edit Media Object"))

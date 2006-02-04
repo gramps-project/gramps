@@ -537,7 +537,7 @@ class EventEmbedList(EmbeddedList):
 
     _column_names = [
         (_('Type'),0,100),
-        (_('Description'),1,200),
+        (_('Description'),1,175),
         (_('ID'),2, 60),
         (_('Date'),3, 150),
         (_('Place'),4, 140),
@@ -1105,6 +1105,61 @@ class SourceEmbedList(EmbeddedList):
 
 #-------------------------------------------------------------------------
 #
+# RepoEmbedList
+#
+#-------------------------------------------------------------------------
+class RepoEmbedList(EmbeddedList):
+
+    _HANDLE_COL = 4
+    _DND_TYPE = DdTargets.REPOREF
+        
+    _column_names = [
+        (_('ID'),     0, 75),
+        (_('Title'),  1, 200),
+        (_('Call Number'), 2, 125),
+        (_('Type'),   3, 100),
+        ]
+    
+    def __init__(self,dbstate,uistate,track,obj):
+        self.obj = obj
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('Repositories'), RepoRefModel)
+
+    def get_icon_name(self):
+        return 'gramps-repository'
+
+    def get_data(self):
+        return self.obj
+
+    def column_order(self):
+        return ((1,0),(1,1),(1,2),(1,3))
+
+    def add_button_clicked(self,obj):
+        from RepositoryRefEdit import RepositoryRefEdit
+        
+        ref = RelLib.RepositoryRef()
+        RepositoryRefEdit.RepositoryRefEdit(
+            self.dbstate, self.uistate, self.track, ref, self.add_callback)
+
+    def add_callback(self,obj):
+        self.get_data().append(name)
+        self.changed = True
+        self.rebuild()
+
+    def edit_button_clicked(self,obj):
+        from RepositoryRefEdit import RepositoryRefEdit
+
+        ref = self.get_selected()
+        if ref:
+            RepositoryRefEdit.RepositoryRefEdit(
+                self.dbstate, self.uistate, self.track, ref, self.edit_callback)
+
+    def edit_callback(self,name):
+        self.changed = True
+        self.rebuild()
+
+#-------------------------------------------------------------------------
+#
 # ChildModel
 #
 #-------------------------------------------------------------------------
@@ -1256,7 +1311,7 @@ class EventRefModel(gtk.ListStore):
         if t == RelLib.EventRef.CUSTOM:
             return v
         else:
-            return Utils.event_roles[t]
+            return Utils.event_roles.get(t,"error %d" % t)
 
     def column_date(self,event_ref):
         event = self.db.get_event_from_handle(event_ref.ref)
@@ -1378,7 +1433,7 @@ class DataModel(gtk.ListStore):
 
 #-------------------------------------------------------------------------
 #
-# DataModel
+# SourceRefModel
 #
 #-------------------------------------------------------------------------
 class SourceRefModel(gtk.ListStore):
@@ -1393,7 +1448,30 @@ class SourceRefModel(gtk.ListStore):
 
 #-------------------------------------------------------------------------
 #
-# SourceBacRefModel
+# RepoRefModel
+#
+#-------------------------------------------------------------------------
+class RepoRefModel(gtk.ListStore):
+
+    def __init__(self,ref_list,db):
+        gtk.ListStore.__init__(self,str,str,str,str,object)
+        self.db = db
+        for ref in ref_list:
+            repo = self.db.get_repository_from_handle(ref.ref)
+            self.append(row=[repo.gramps_id, repo.name, ref.call_number,
+                             self.type_of(repo), ref,])
+
+    def type_of(self,ref):
+        v,s = ref.get_type()
+        
+        if v == RelLib.RepoRef.CUSTOM:
+            return unicode(s)
+        else:
+            return Utils.source_media_types.get(v,"error %s" % v)
+
+#-------------------------------------------------------------------------
+#
+# SourceBackRefModel
 #
 #-------------------------------------------------------------------------
 class SourceBackRefModel(gtk.ListStore):
