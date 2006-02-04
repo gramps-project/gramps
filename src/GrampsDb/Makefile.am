@@ -3,7 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/RelLib
+pkgdatadir = $(datadir)/@PACKAGE@/GrampsDb
 
 pkgdata_PYTHON = \
 	_GedcomInfo.py\
@@ -24,8 +24,14 @@ pkgdata_PYTHON = \
 	_WriteXML.py\
 	_ConstXML.py
 
-pkgpyexecdir = @pkgpyexecdir@/RelLib
-pkgpythondir = @pkgpythondir@/RelLib
+pkgpyexecdir = @pkgpyexecdir@/GrampsDb
+pkgpythondir = @pkgpythondir@/GrampsDb
+
+GLADEFILES = \
+	gedcomimport.glade\
+	gedcomexport.glade
+
+dist_pkgdata_DATA = $(GLADEFILES) 
 
 GRAMPS_PY_MODPATH = "../"
 

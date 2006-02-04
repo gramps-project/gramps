@@ -126,8 +126,6 @@ GLADEFILES = \
 	gramps.glade\
 	edit_person.glade\
 	mergedata.glade\
-	gedcomexport.glade\
-	gedcomimport.glade\
 	plugins.glade\
 	rule.glade\
 	scratchpad.glade

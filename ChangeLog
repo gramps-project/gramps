@@ -13,6 +13,9 @@
 	* src/GrampsDb/_*.py: Use new Date, new unserialize.
 	* src/*.py: Use new Date.
 
+	* src/Makefile.am: Remove absent glade files from the list.
+	* src/GrampsDb/Makefile.am: Ship new glade files; correct directory.
+
 2006-02-03 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
         * src/TreeViews/_PersonTreeView.py: added more columns
 	
