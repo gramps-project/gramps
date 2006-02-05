@@ -229,7 +229,8 @@ class GrampsWindowManager:
         # Given an item, close its window and remove it's ID from the dict
         if item.window_id:
             del self.id2item[item.window_id]
-        item.window.destroy()
+        if item.window:
+            item.window.destroy()
 
     def remove_item(self,track):
         # We need the whole gymnastics below because our item

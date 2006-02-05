@@ -1,4 +1,6 @@
 2006-02-05  Don Allingham  <don@gramps-project.org>
+	* src/AttrEdit.py: remove unused parameters
+	* src/EditFamily.py: start apply operation
 	* src/DisplayModels.py: handle places correctly
 	* src/DisplayTabs.py: Add LocationTab
 	* src/EditPlace.py: update to use DisplayTabs
