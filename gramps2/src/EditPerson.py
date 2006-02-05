@@ -751,46 +751,11 @@ class EditPerson(DisplayState.ManagedWindow):
         self.pname.set_first_name(unicode(self.given.get_text()))
         self.pname.set_title(unicode(self.title.get_text()))
 
-        NameEdit.NameEditor(self.dbstate, self.uistate, self.track, self.pname, self)
+        NameEdit.NameEditor(self.dbstate, self.uistate, self.track,
+                            self.pname, self)
 
     def update_name(self,name):
         self.write_primary_name()
-        
-#     def on_ldsbap_source_clicked(self,obj):
-#         Sources.SourceSelector(self.dbstate, self.uistate, self.track,
-#                                self.lds_baptism.get_source_references(),
-#                                self,self.update_ldsbap_list)
-
-#     def update_ldsbap_list(self,list):
-#         self.lds_baptism.set_source_reference_list(list)
-        
-#     def on_ldsbap_note_clicked(self,obj):
-#         NoteEdit.NoteEditor(self.lds_baptism,self,self.window,
-#                             readonly=self.db.readonly)
-
-#     def on_ldsendow_source_clicked(self,obj):
-#         Sources.SourceSelector(self.dbstate, self.uistate, self.track,
-#                                self.lds_endowment.get_source_references(),
-#                                self,self.set_ldsendow_list)
-
-#     def set_ldsendow_list(self,list):
-#         self.lds_endowment.set_source_reference_list(list)
-
-#     def on_ldsendow_note_clicked(self,obj):
-#         NoteEdit.NoteEditor(self.lds_endowment,self,self.window,
-#                             readonly=self.db.readonly)
-
-#     def on_ldsseal_source_clicked(self,obj):
-#         Sources.SourceSelector(self.dbstate, self.uistate, self.track,
-#                                self.lds_sealing.get_source_references(),
-#                                self,self.lds_seal_list)
-
-#     def lds_seal_list(self,list):
-#         self.lds_sealing.set_source_reference_list(list)
-
-#     def on_ldsseal_note_clicked(self,obj):
-#         NoteEdit.NoteEditor(self.lds_sealing,self,self.window,
-#                             readonly=self.db.readonly)
 
     def load_person_image(self):
         media_list = self.person.get_media_list()

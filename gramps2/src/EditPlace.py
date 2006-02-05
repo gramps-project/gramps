@@ -221,14 +221,14 @@ class EditPlace(DisplayState.ManagedWindow):
 
         DisplayState.ManagedWindow.__init__(self, uistate, track, place)
         
-        self.sourcetab = Sources.SourceTab(
-            self.dbstate, self.uistate, self.track,
-            self.srcreflist,self,
-            self.top,self.window,self.slist,
-            self.top.get_widget('add_src'),
-            self.top.get_widget('edit_src'),
-            self.top.get_widget('del_src'),
-            self.dbstate.db.readonly)
+#         self.sourcetab = Sources.SourceTab(
+#             self.dbstate, self.uistate, self.track,
+#             self.srcreflist,self,
+#             self.top,self.window,self.slist,
+#             self.top.get_widget('add_src'),
+#             self.top.get_widget('edit_src'),
+#             self.top.get_widget('del_src'),
+#             self.dbstate.db.readonly)
         
         if self.place.get_handle() == None or self.dbstate.db.readonly:
             self.top.get_widget("add_photo").set_sensitive(0)

@@ -138,12 +138,12 @@ class LocalMediaProperties:
         else:
             self.srcreflist = []
     
-        self.sourcetab = Sources.SourceTab(self.srcreflist,self,
-                                 self.change_dialog,
-                                 self.window, self.slist,
-                                 self.change_dialog.get_widget('add_src'),
-                                 self.change_dialog.get_widget('edit_src'),
-                                 self.change_dialog.get_widget('del_src'))
+#         self.sourcetab = Sources.SourceTab(self.srcreflist,self,
+#                                  self.change_dialog,
+#                                  self.window, self.slist,
+#                                  self.change_dialog.get_widget('add_src'),
+#                                  self.change_dialog.get_widget('edit_src'),
+#                                  self.change_dialog.get_widget('del_src'))
 
         descr_window.set_text(self.obj.get_description())
         mtype = self.obj.get_mime_type()

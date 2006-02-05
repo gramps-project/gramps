@@ -54,6 +54,7 @@ import Utils
 import GrampsMime
 import const
 import ImgManip
+import Spell
 
 from DdTargets import DdTargets
 from GrampsWidgets import SimpleButton
@@ -937,6 +938,7 @@ class NoteTab(GrampsTab):
         else:
             self.flowed.set_active(True)
             self.text.set_wrap_mode(gtk.WRAP_WORD)
+        self.spellcheck = Spell.Spell(self.text)
 
         self.flowed.connect('toggled',self.flow_changed)
 
@@ -968,7 +970,9 @@ class NoteTab(GrampsTab):
 
     def update(self,obj):
         if self.note_obj:
-            text = self.buf.get_text(self.buf.get_start_iter(),self.buf.get_end_iter())
+            start = self.buf.get_start_iter()
+            stop = self.buf.get_end_iter()
+            text = self.buf.get_text(start,stop)
             self.note_obj.set(text)
         else:
             print "NOTE OBJ DOES NOT EXIST"

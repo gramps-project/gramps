@@ -206,7 +206,6 @@ class EventEditor(DisplayState.ManagedWindow):
         """
         Creates the notebook tabs and inserts them into the main
         window.
-        
         """
         vbox = self.top.get_widget('vbox')
         self.notebook = gtk.Notebook()
@@ -357,7 +356,6 @@ class EventEditor(DisplayState.ManagedWindow):
         data.union(self.db.get_person_event_types())
         return list(data)
 
-
 #-------------------------------------------------------------------------
 #
 # EventRefEditor class
@@ -394,31 +392,17 @@ class EventRefEditor(DisplayState.ManagedWindow):
 
         self.place_field = self.top.get_widget("eer_place")
         self.cause_field = self.top.get_widget("eer_cause")
-        self.slist = self.top.get_widget("eer_slist")
-        self.wlist = self.top.get_widget("eer_wlist")
         self.date_field  = self.top.get_widget("eer_date")
         self.descr_field = self.top.get_widget("eer_description")
         self.ev_note_field = self.top.get_widget("eer_ev_note")
         self.type_combo = self.top.get_widget("eer_type_combo")
         self.ev_privacy = self.top.get_widget("eer_ev_priv")
-        self.sources_label = self.top.get_widget("eer_sources_tab")
-        self.notes_label = self.top.get_widget("eer_note_tab")
         self.general_label = self.top.get_widget("eer_general_tab")
-        self.gallery_label = self.top.get_widget("eer_gallery_tab")
-        self.witnesses_label = self.top.get_widget("eer_witness_tab")
-        self.flowed = self.top.get_widget("eer_ev_flowed")
-        self.preform = self.top.get_widget("eer_ev_preform")
         self.ok = self.top.get_widget('ok')
         self.expander = self.top.get_widget("eer_expander")
         self.warning = self.top.get_widget("eer_warning")
+        self.notebook = self.top.get_widget('notebook')
         
-        add_src = self.top.get_widget('eer_add_src')
-        del_src = self.top.get_widget('eer_del_src')
-
-        add_witness = self.top.get_widget('eer_add_wit')
-        edit_witness = self.top.get_widget('eer_edit_wit')
-        del_witness = self.top.get_widget('eer_del_wit')
-
         Utils.set_titles(self.window,
                          self.top.get_widget('eer_title'),
                          self.title)
@@ -476,13 +460,6 @@ class EventRefEditor(DisplayState.ManagedWindow):
             self.event_ref.set_role((default_role,role_dict[default_role]))
             self.event_ref.set_reference_handle(self.event.get_handle())
 
-        self.srcreflist = self.event.get_source_references()
-        self.sourcetab = Sources.SourceTab(
-            self.state, self.uistate, self.track,
-            self.srcreflist, self, self.top, self.window, self.slist,
-            add_src, self.top.get_widget('eer_edit_src'), del_src,
-            self.db.readonly)
-
         self.date_check = DateEdit.DateEdit(self.date,
                                         self.date_field,
                                         self.top.get_widget("eer_date_stat"),
@@ -505,17 +482,32 @@ class EventRefEditor(DisplayState.ManagedWindow):
         self.cause_field.set_text(self.event.get_cause())
         self.descr_field.set_text(self.event.get_description())
         self.ev_privacy.set_active(self.event.get_privacy())
-        if self.event.get_note():
-            self.ev_note_field.get_buffer().set_text(event.get_note())
-            Utils.bold_label(self.notes_label)
-            if event.get_note_format() == 1:
-                self.preform.set_active(1)
-            else:
-                self.flowed.set_active(1)
-        if self.event.get_media_list():
-            Utils.bold_label(self.gallery_label)
+
+        self._create_tabbed_pages()
 
         self.show()
+
+    def _add_page(self,page):
+        self.notebook.insert_page(page)
+        self.notebook.set_tab_label(page,page.get_tab_widget())
+        return page
+
+    def _create_tabbed_pages(self):
+        """
+        Creates the notebook tabs and inserts them into the main
+        window.
+        
+        """
+
+        self.srcref_list = self._add_page(SourceEmbedList(
+            self.state,self.uistate, self.track,
+            self.event.source_list))
+        self.note_tab = self._add_page(NoteTab(
+            self.state, self.uistate, self.track,
+            self.event.get_note_object()))
+        self.gallery_tab = self._add_page(GalleryTab(
+            self.state, self.uistate, self.track,
+            self.event.get_media_list()))
 
     def build_menu_names(self,eventref):
         if self.event:
