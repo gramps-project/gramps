@@ -340,59 +340,6 @@ class LocalMediaProperties:
                                  PluginMgr.get_image_attributes(),
                                  self.attr_callback)
 
-class DeleteMediaQuery:
-
-    def __init__(self,media_handle,db,the_lists):
-        self.db = db
-        self.media_handle = media_handle
-        self.the_lists = the_lists
-        
-    def query_response(self):
-        trans = self.db.transaction_begin()
-        self.db.disable_signals()
-        
-        (person_list,family_list,event_list,
-                place_list,source_list) = self.the_lists
-
-        for handle in person_list:
-            person = self.db.get_person_from_handle(handle)
-            new_list = [ photo for photo in person.get_media_list() \
-                        if photo.get_reference_handle() != self.media_handle ]
-            person.set_media_list(new_list)
-            self.db.commit_person(person,trans)
-
-        for handle in family_list:
-            family = self.db.get_family_from_handle(handle)
-            new_list = [ photo for photo in family.get_media_list() \
-                        if photo.get_reference_handle() != self.media_handle ]
-            family.set_media_list(new_list)
-            self.db.commit_family(family,trans)
-
-        for handle in event_list:
-            event = self.db.get_event_from_handle(handle)
-            new_list = [ photo for photo in event.get_media_list() \
-                        if photo.get_reference_handle() != self.media_handle ]
-            event.set_media_list(new_list)
-            self.db.commit_event(event,trans)
-
-        for handle in place_list:
-            place = self.db.get_place_from_handle(handle)
-            new_list = [ photo for photo in place.get_media_list() \
-                        if photo.get_reference_handle() != self.media_handle ]
-            place.set_media_list(new_list)
-            self.db.commit_place(place,trans)
-
-        for handle in source_list:
-            source = self.db.get_source_from_handle(handle)
-            new_list = [ photo for photo in source.get_media_list() \
-                        if photo.get_reference_handle() != self.media_handle ]
-            source.set_media_list(new_list)
-            self.db.commit_source(source,trans)
-
-        self.db.enable_signals()
-        self.db.remove_object(self.media_handle,trans)
-        self.db.transaction_commit(trans,_("Remove Media Object"))
-
 def build_dropdown(entry,strings):
     store = gtk.ListStore(str)
     for value in strings:
