@@ -91,7 +91,7 @@ no_gconf = False
 if os.environ.has_key('GRAMPSDIR'):
     rootDir = os.environ['GRAMPSDIR']
 else:
-    rootDir = "."
+    rootDir = os.getcwd()
 
 good_xpm       = os.path.join(rootDir,"good.png")
 bad_xpm        = os.path.join(rootDir,"bad.png")
