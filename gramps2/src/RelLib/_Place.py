@@ -115,7 +115,7 @@ class Place(PrimaryObject,SourceNote,MediaBase,UrlBase):
         if main_loc == None:
             self.main_loc = None
         else:
-            self.main.loc = Location().unserialize(main_loc)
+            self.main_loc = Location().unserialize(main_loc)
         self.alt_loc = [Location().unserialize(al) for al in alt_loc]
         UrlBase.unserialize(self,urls)
         MediaBase.unserialize(self,media_list)

@@ -333,37 +333,37 @@ class PlaceModel(BaseModel):
 
     def column_parish(self,data):
         try:
-            return data[5].get_parish()
+            return data[5][1]
         except:
             return u''
 
     def column_city(self,data):
         try:
-            return data[5].get_city()
+            return data[5][0][0]
         except:
             return u''
         
     def column_county(self,data):
         try:
-            return data[5].get_county()
+            return data[5][2]
         except:
             return u''
     
     def column_state(self,data):
         try:
-            return data[5].get_state()
+            return data[5][0][1]
         except:
             return u''
 
     def column_country(self,data):
         try:
-            return data[5].get_country()
+            return data[5][0][2]
         except:
             return u''
 
     def column_postal_code(self,data):
         try:
-            return data[5].get_postal_code()
+            return data[5][0][3]
         except:
             return u''
 

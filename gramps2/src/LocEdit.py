@@ -37,8 +37,9 @@ import const
 import Utils
 import RelLib
 import GrampsDisplay
-from WindowUtils import GladeIf
+import DisplayState
 
+from WindowUtils import GladeIf
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -46,18 +47,11 @@ from gettext import gettext as _
 # LocationEditor class
 #
 #-------------------------------------------------------------------------
-class LocationEditor:
+class LocationEditor(DisplayState.ManagedWindow):
 
-    def __init__(self,parent,location,parent_window=None):
-        self.parent = parent
-        if location:
-            if self.parent.child_windows.has_key(location):
-                self.parent.child_windows[location].present(None)
-                return
-            else:
-                self.win_key = location
-        else:
-            self.win_key = self
+    def __init__(self,dbstate,uistate,track,location,callback):
+        DisplayState.ManagedWindow.__init__(self, uistate, track, location)
+
         self.location = location
         self.top = gtk.glade.XML(const.gladeFile, "loc_edit","gramps")
         self.gladeif = GladeIf(self.top)
@@ -70,6 +64,7 @@ class LocationEditor:
         self.parish = self.top.get_widget("parish")
         self.county = self.top.get_widget("county")
         self.country = self.top.get_widget("country")
+        self.callback = callback
 
         Utils.set_titles(self.window, self.top.get_widget('title'),
                          _('Location Editor'))
@@ -83,41 +78,21 @@ class LocationEditor:
             self.postal.set_text(location.get_postal_code())
             self.parish.set_text(location.get_parish())
 
-        self.window.set_data("o",self)
-
         self.gladeif.connect('loc_edit','delete_event',self.on_delete_event)
-        self.gladeif.connect('button119','clicked',self.close)
+        self.gladeif.connect('button119','clicked',self.close_window)
         self.gladeif.connect('button118','clicked',self.on_ok_clicked)
         self.gladeif.connect('button128','clicked',self.on_help_clicked)
         
-        if parent_window:
-            self.window.set_transient_for(parent_window)
-        self.add_itself_to_menu()
-        self.window.show()
+        self.show()
 
     def on_delete_event(self,obj,b):
         self.gladeif.close()
-        self.remove_itself_from_menu()
+        self.close()
 
-    def close(self,obj):
+    def close_window(self,obj):
         self.gladeif.close()
-        self.remove_itself_from_menu()
-        self.window.destroy()
+        self.close()
         
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(_('Location Editor'))
-        self.parent_menu_item.connect("activate",self.present)
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
-
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('gramps-edit-complete')
@@ -131,40 +106,28 @@ class LocationEditor:
         postal = unicode(self.postal.get_text())
         parish = unicode(self.parish.get_text())
         
-        if self.location == None:
-            self.location = RelLib.Location()
-            self.parent.llist.append(self.location)
-        
         self.update_location(city,parish,county,state,phone,postal,country)
-        
-        self.parent.redraw_location_list()
+        self.callback(self.location)
         self.close(obj)
 
     def update_location(self,city,parish,county,state,phone,postal,country):
         if self.location.get_city() != city:
             self.location.set_city(city)
-            self.parent.lists_changed = 1
 
         if self.location.get_parish() != parish:
             self.location.set_parish(parish)
-            self.parent.lists_changed = 1
 
         if self.location.get_county() != county:
             self.location.set_county(county)
-            self.parent.lists_changed = 1
 
         if self.location.get_state() != state:
             self.location.set_state(state)
-            self.parent.lists_changed = 1
 
         if self.location.get_phone() != phone:
             self.location.set_phone(phone)
-            self.parent.lists_changed = 1
 
         if self.location.get_postal_code() != postal:
             self.location.set_postal_code(postal)
-            self.parent.lists_changed = 1
 
         if self.location.get_country() != country:
             self.location.set_country(country)
-            self.parent.lists_changed = 1

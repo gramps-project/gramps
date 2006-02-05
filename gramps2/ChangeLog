@@ -1,3 +1,13 @@
+2006-02-05  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels.py: handle places correctly
+	* src/DisplayTabs.py: Add LocationTab
+	* src/EditPlace.py: update to use DisplayTabs
+	* src/ImageSelect.py: remove SelectObject
+	* src/LocEdit.py: use DisplayManager
+	* src/gramps.glade: update editors
+	* src/GrampsDb/_GrampsDbBase.py: use db_is_open
+	* src/RelLib/_Place.py: typo
+	
 2006-02-04  Don Allingham  <don@gramps-project.org>
 	* src/ChooseParents.py: removed
 	* src/ListBox.py: removed

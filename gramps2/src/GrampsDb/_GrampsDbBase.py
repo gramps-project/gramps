@@ -979,7 +979,7 @@ class GrampsDbBase(GrampsDBCallback):
         the database. If sort_handles is True, the list is sorted by
         Place title.
         """
-        if self.place_map:
+        if self.db_is_open:
             if sort_handles:
                 slist = []
                 cursor = self.get_place_cursor()
@@ -1001,7 +1001,7 @@ class GrampsDbBase(GrampsDBCallback):
         the database. If sort_handles is True, the list is sorted by
         Source title.
         """
-        if self.source_map:
+        if self.db_is_open:
             handle_list = self._all_handles(self.source_map)
             if sort_handles:
                 handle_list.sort(self._sortbysource)
@@ -1013,7 +1013,7 @@ class GrampsDbBase(GrampsDBCallback):
         Returns a list of database handles, one handle for each MediaObject in
         the database. If sort_handles is True, the list is sorted by title.
         """
-        if self.media_map:
+        if self.db_is_open:
             handle_list = self._all_handles(self.media_map)
             if sort_handles:
                 handle_list.sort(self._sortbymedia)
@@ -1025,7 +1025,7 @@ class GrampsDbBase(GrampsDBCallback):
         Returns a list of database handles, one handle for each Event in
         the database. 
         """
-        if self.event_map:
+        if self.db_is_open:
             return self._all_handles(self.event_map)
         return []
 
@@ -1034,7 +1034,7 @@ class GrampsDbBase(GrampsDBCallback):
         Returns a list of database handles, one handle for each Family in
         the database.
         """
-        if self.family_map:
+        if self.db_is_open:
             return self._all_handles(self.family_map)
         return []
 
@@ -1043,7 +1043,7 @@ class GrampsDbBase(GrampsDBCallback):
         Returns a list of database handles, one handle for each Repository in
         the database.
         """
-        if self.repository_map:
+        if self.db_is_open:
             return self._all_handles(self.repository_map)
         return []
 

@@ -52,7 +52,6 @@ import PluginMgr
 import RelLib
 import RelImage
 import ListModel
-import SelectObject
 import GrampsMime
 import Sources
 import DateEdit

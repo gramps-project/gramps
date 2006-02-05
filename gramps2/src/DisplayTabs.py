@@ -899,6 +899,55 @@ class AddrEmbedList(EmbeddedList):
 
 #-------------------------------------------------------------------------
 #
+# 
+#
+#-------------------------------------------------------------------------
+class LocationEmbedList(EmbeddedList):
+
+    _HANDLE_COL = 5
+    _DND_TYPE   = DdTargets.ADDRESS
+
+    _column_names = [
+        (_('City'),           0, 150),
+        (_('County'),         1, 100),
+        (_('Church Parish'),  2, 100),
+        (_('State/Province'), 3, 100),
+        (_('Country'),        4, 75),
+        ]
+    
+    def __init__(self,dbstate,uistate,track,data):
+        self.data = data
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('Alternate Locations'), LocationModel)
+
+    def get_data(self):
+        return self.data
+
+    def column_order(self):
+        return ((1,0),(1,1),(1,2),(1,3),(1,4))
+
+    def add_button_clicked(self,obj):
+        import LocEdit
+        loc = RelLib.Location()
+        LocEdit.LocationEditor(self.dbstate, self.uistate, self.track,
+                               loc, self.add_callback)
+
+    def add_callback(self,name):
+        self.get_data().append(name)
+        self.rebuild()
+
+    def edit_button_clicked(self,obj):
+        loc = self.get_selected()
+        if loc:
+            import LocEdit
+            LocEdit.LocationEditor(self.dbstate, self.uistate, self.track,
+                                   addr, self.edit_callback)
+
+    def edit_callback(self,name):
+        self.rebuild()
+
+#-------------------------------------------------------------------------
+#
 # NoteTab
 #
 #-------------------------------------------------------------------------
@@ -1402,6 +1451,20 @@ class AddressModel(gtk.ListStore):
 
 #-------------------------------------------------------------------------
 #
+# LocationModel
+#
+#-------------------------------------------------------------------------
+class LocationModel(gtk.ListStore):
+
+    def __init__(self,obj_list,db):
+        gtk.ListStore.__init__(self,str,str,str,str,str,object)
+        self.db = db
+        for obj in obj_list:
+            self.append(row=[obj.city, obj.county, obj.parish,
+                             obj.state, obj.country, obj, ])
+
+#-------------------------------------------------------------------------
+#
 # AddressModel
 #
 #-------------------------------------------------------------------------
@@ -1503,6 +1566,11 @@ class SourceBackRefModel(gtk.ListStore):
                 gid = p.gramps_id
                 handle = p.handle
                 name = Utils.family_name(p,self.db)
+            elif dtype == 'Source':
+                p = self.db.get_source_from_handle(ref[1])
+                gid = p.gramps_id
+                handle = p.handle
+                name = p.get_title()
             elif dtype == 'Event':
                 p = self.db.get_event_from_handle(ref[1])
                 gid = p.gramps_id
