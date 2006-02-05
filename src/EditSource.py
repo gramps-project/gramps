@@ -47,8 +47,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-import ImageSelect
-import ListModel
 import RelLib
 import NameDisplay
 import RepositoryRefEdit
