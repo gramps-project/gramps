@@ -193,7 +193,7 @@ class AttributeEditor(DisplayState.ManagedWindow):
             self.alist.append(attr_data[1])
             self.alist.sort()
 
-        self.update(attr_data,value,note,format,priv)
+        self.update(attr_data,value,priv)
         self.callback(self.attrib)
         self.close_window(obj)
 
@@ -203,7 +203,7 @@ class AttributeEditor(DisplayState.ManagedWindow):
         if get() != data:
             set(data)
             
-    def update(self,attr_data,value,note,format,priv):
+    def update(self,attr_data,value,priv):
         """Compares the data items, and updates if necessary"""
         self.check(self.attrib.get_type,self.attrib.set_type,attr_data)
         self.check(self.attrib.get_value,self.attrib.set_value,value)

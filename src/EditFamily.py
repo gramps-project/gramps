@@ -112,15 +112,6 @@ class ChildEmbedList(EmbeddedList):
     def get_icon_name(self):
         return 'gramps-person'
 
-    def set_label(self):
-        if len(self.family.get_child_handle_list()):
-            self.tab_image.show()
-            self.label.set_text("<b>%s</b>" % self.tab_name)
-            self.label.set_use_markup(True)
-        else:
-            self.tab_image.hide()
-            self.label.set_text(self.tab_name)
-
     def is_empty(self):
         return len(self.family.get_child_handle_list()) == 0
 
@@ -258,6 +249,7 @@ class EditFamily(DisplayState.ManagedWindow):
         
         self.vbox.pack_start(self.notebook,True)
         self.cancel.connect('clicked', self.close_window)
+        self.ok.connect('clicked', self.apply_changes)
         
     def load_data(self):
         fhandle = self.family.get_father_handle()
@@ -286,22 +278,28 @@ class EditFamily(DisplayState.ManagedWindow):
                                       self.family.get_media_list())
 
         self.notebook.insert_page(self.child_list)
-        self.notebook.set_tab_label(self.child_list,self.child_list.get_tab_widget())
+        self.notebook.set_tab_label(self.child_list,
+                                    self.child_list.get_tab_widget())
 
         self.notebook.insert_page(self.event_list)
-        self.notebook.set_tab_label(self.event_list,self.event_list.get_tab_widget())
+        self.notebook.set_tab_label(self.event_list,
+                                    self.event_list.get_tab_widget())
 
         self.notebook.insert_page(self.src_list)
-        self.notebook.set_tab_label(self.src_list,self.src_list.get_tab_widget())
+        self.notebook.set_tab_label(self.src_list,
+                                    self.src_list.get_tab_widget())
 
         self.notebook.insert_page(self.attr_list)
-        self.notebook.set_tab_label(self.attr_list,self.attr_list.get_tab_widget())
+        self.notebook.set_tab_label(self.attr_list,
+                                    self.attr_list.get_tab_widget())
 
         self.notebook.insert_page(self.note_tab)
-        self.notebook.set_tab_label(self.note_tab,self.note_tab.get_tab_widget())
+        self.notebook.set_tab_label(self.note_tab,
+                                    self.note_tab.get_tab_widget())
 
         self.notebook.insert_page(self.gallery_tab)
-        self.notebook.set_tab_label(self.gallery_tab,self.gallery_tab.get_tab_widget())
+        self.notebook.set_tab_label(self.gallery_tab,
+                                    self.gallery_tab.get_tab_widget())
 
         self.gid.set_text(self.family.get_gramps_id())
         self.private.connect('toggled',self.privacy_toggled)
@@ -319,10 +317,12 @@ class EditFamily(DisplayState.ManagedWindow):
         obj.add(img)
 
     def update_father(self,handle):
-        self.load_parent(handle, self.fbox, self.fbirth, self.fdeath, self.fbutton)
+        self.load_parent(handle, self.fbox, self.fbirth,
+                         self.fdeath, self.fbutton)
 
     def update_mother(self,handle):
-        self.load_parent(handle, self.mbox, self.mbirth, self.mdeath, self.mbutton)
+        self.load_parent(handle, self.mbox, self.mbirth,
+                         self.mdeath, self.mbutton)
 
     def on_change_mother(self, selector_window, select_result):
         if select_result.is_person():
@@ -331,16 +331,18 @@ class EditFamily(DisplayState.ManagedWindow):
                     self.dbstate.db.get_person_from_gramps_id(
                         select_result.get_gramps_id()).get_handle())
             except:
-                log.warn("Failed to update mother: \n"
-                         "gramps_id returned from selector was: %s\n"
-                         "person returned from get_person_from_gramps_id: %s"
-                         % (select_result.get_gramps_id(),
-                            repr(self.dbstate.db.get_person_from_gramps_id(
-                                    select_result.get_gramps_id()))))
+                log.warn(
+                    "Failed to update mother: \n"
+                    "gramps_id returned from selector was: %s\n"
+                    "person returned from get_person_from_gramps_id: %s"
+                    % (select_result.get_gramps_id(),
+                       repr(self.dbstate.db.get_person_from_gramps_id(
+                    select_result.get_gramps_id()))))
                 raise
         else:
-            log.warn("Object selector returned a result of type = %s, it should "
-                     "have been of type PERSON." % (str(select_result.get_object_type())))
+            log.warn(
+                "Object selector returned a result of type = %s, it should "
+                "have been of type PERSON." % (str(select_result.get_object_type())))
             
         selector_window.close()
             
@@ -356,7 +358,8 @@ class EditFamily(DisplayState.ManagedWindow):
             child_birth_years = []
             for person_handle in self.family.get_child_handle_list():
                 person = self.dbstate.db.get_person_from_handle(person_handle)
-                event_handle = person.get_birth_handle()
+                event_ref = person.get_birth_ref()
+                event_handle = event_ref.ref
                 if event_handle:
                     event = self.dbstate.db.get_event_from_handle(event_handle)
                     child_birth_years.append(event.get_date_object().get_year())
@@ -366,7 +369,8 @@ class EditFamily(DisplayState.ManagedWindow):
                 filter_spec.set_birth_criteria(PersonFilterSpec.BEFORE)
                 
 
-            selector = PersonSelector(self.dbstate,self.uistate,self.track,filter_spec=filter_spec)
+            selector = PersonSelector(self.dbstate,self.uistate,
+                                      self.track,filter_spec=filter_spec)
             selector.set_transient_for(self.window)
             selector.connect('add-object',self.on_change_mother)
             
@@ -403,7 +407,8 @@ class EditFamily(DisplayState.ManagedWindow):
             child_birth_years = []
             for person_handle in self.family.get_child_handle_list():
                 person = self.dbstate.db.get_person_from_handle(person_handle)
-                event_handle = person.get_birth_handle()
+                event_ref = person.get_birth_ref()
+                event_handle = event_ref.ref
                 if event_handle:
                     event = self.dbstate.db.get_event_from_handle(event_handle)
                     child_birth_years.append(event.get_date_object().get_year())
@@ -412,7 +417,8 @@ class EditFamily(DisplayState.ManagedWindow):
                 filter_spec.set_birth_year(min(child_birth_years))
                 filter_spec.set_birth_criteria(PersonFilterSpec.BEFORE)
                 
-            selector = PersonSelector(self.dbstate,self.uistate,self.track,filter_spec=filter_spec)
+            selector = PersonSelector(self.dbstate,self.uistate,
+                                      self.track,filter_spec=filter_spec)
             selector.set_transient_for(self.window)
             selector.connect('add-object',self.on_change_father)
 
@@ -421,7 +427,8 @@ class EditFamily(DisplayState.ManagedWindow):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             import EditPerson
             person = self.dbstate.db.get_person_from_handle(handle)
-            EditPerson.EditPerson(self.dbstate, self.uistate, self.track, person)
+            EditPerson.EditPerson(self.dbstate, self.uistate,
+                                  self.track, person)
 
     def load_parent(self,handle,box,birth_obj,death_obj,btn_obj):
 
@@ -462,6 +469,14 @@ class EditFamily(DisplayState.ManagedWindow):
 
         birth_obj.set_text(birth)
         death_obj.set_text(death)
+
+    def apply_changes(self,obj):
+        original = self.dbstate.db.get_family_from_handle(self.family.handle)
+
+        print original.get_father_handle(), self.family.get_father_handle()
+        print original.get_mother_handle(), self.family.get_mother_handle()
+        print original.get_child_handle_list(), self.family.get_child_handle_list()
+        print "Apply Changes"
 
     def close_window(self,obj):
         for key in self.signal_keys:
