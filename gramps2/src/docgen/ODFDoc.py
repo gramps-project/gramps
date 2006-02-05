@@ -1146,8 +1146,8 @@ try:
     PluginMgr.register_draw_doc(mtype,ODFDoc,1,1,  ".odt",print_label);
 except:
     PluginMgr.register_text_doc(_('Open Document Text'),
-                                OpenDocumentDoc,1,1,1,".odt", None)
+                                ODFDoc,1,1,1,".odt", None)
     PluginMgr.register_book_doc(_("Open Document Text"),
-                                OpenDocumentDoc,1,1,1,".odt")
+                                ODFDoc,1,1,1,".odt")
     PluginMgr.register_draw_doc(_("Open Document Text"),
-                                OpenDocumentDoc,1,1,".odt",None);
+                                ODFDoc,1,1,".odt",None);
