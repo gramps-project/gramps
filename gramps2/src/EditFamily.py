@@ -30,11 +30,22 @@ import os
 import sys
 from gettext import gettext as _
 
+#-------------------------------------------------------------------------
+#
+# 2.4 provides a built in set. We want to use this, but need to handle 
+# older versions of python as well
+#
+#-------------------------------------------------------------------------
 try:
     set()
 except:
     from sets import Set as set
 
+#-------------------------------------------------------------------------
+#
+# enable logging for error handling
+#
+#-------------------------------------------------------------------------
 import logging
 log = logging.getLogger(".")
 
@@ -70,6 +81,10 @@ from GrampsWidgets import *
 from ObjectSelector import PersonSelector,PersonFilterSpec
 
 class ChildEmbedList(EmbeddedList):
+    """
+    The child embed list is specific to the Edit Family dialog, so it
+    is contained here instead of in DisplayTabs.
+    """
 
     _HANDLE_COL = 10
     _DND_TYPE = DdTargets.PERSON_LINK
@@ -88,11 +103,20 @@ class ChildEmbedList(EmbeddedList):
         ]
     
     def __init__(self,dbstate,uistate,track,family):
+        """
+        Create the object, storing the passed family value
+        """
         self.family = family
         EmbeddedList.__init__(self, dbstate, uistate, track,
                               _('Children'), ChildModel)
 
     def build_columns(self):
+        """
+        We can't use the default build_columns in the base class, because
+        we are using the custom TypeCellRenderer to handle father parent
+        relationships. The Paternal and Maternal columns (columns 4 and 5)
+        use this.
+        """
         for column in self.columns:
             self.tree.remove_column(column)
         self.columns = []
@@ -115,12 +139,19 @@ class ChildEmbedList(EmbeddedList):
             self.tree.append_column(column)
 
     def get_icon_name(self):
-        return 'gramps-person'
+        return 'gramps-family'
 
     def is_empty(self):
+        """
+        The list is considered empty if the child list is empty.
+        """
         return len(self.family.get_child_handle_list()) == 0
 
     def get_data(self):
+        """
+        Normally, get_data returns a list. However, we return family
+        object here instead.
+        """
         return self.family
 
     def column_order(self):
@@ -173,8 +204,7 @@ class EditFamily(DisplayState.ManagedWindow):
             return
         
         self.build_interface()
-        if self.family:
-            self.load_data()
+        self.load_data()
 
         self.mname  = None
         self.fname  = None
@@ -207,7 +237,10 @@ class EditFamily(DisplayState.ManagedWindow):
         return ('Edit Family','Undefined Submenu')
 
     def build_window_key(self,obj):
-        return id(self.family.handle)
+        if self.family.handle:
+            return id(self.family.handle)
+        else:
+            return id(self)
 
     def build_interface(self):
 
@@ -248,7 +281,8 @@ class EditFamily(DisplayState.ManagedWindow):
         private.connect('toggled', self.privacy_toggled)
                              
         gid = self.top.get_widget('gid')
-        gid.set_text(self.family.get_gramps_id())
+        if self.family.get_gramps_id():
+            gid.set_text(self.family.get_gramps_id())
         gid.connect('changed',
                     lambda x: self.family.set_gramps_id(x.get_text()))
         
@@ -338,11 +372,13 @@ class EditFamily(DisplayState.ManagedWindow):
                          self.mdeath, self.mbutton)
 
     def on_change_mother(self, selector_window, select_result):
+        print select_result
         if select_result.is_person():
             try:
-                self.update_mother(
-                    self.dbstate.db.get_person_from_gramps_id(
-                        select_result.get_gramps_id()).get_handle())
+                gid = select_result.get_gramps_id()
+                person = self.dbstate.db.get_person_from_gramps_id(gid)
+                self.family.set_mother_handle(person.get_handle()) 
+                self.update_mother(person.get_handle())                    
             except:
                 log.warn(
                     "Failed to update mother: \n"
@@ -391,9 +427,10 @@ class EditFamily(DisplayState.ManagedWindow):
     def on_change_father(self, selector_window, select_result):
         if select_result.is_person():
             try:
-                self.update_father(
-                    self.dbstate.db.get_person_from_gramps_id(
-                        select_result.get_gramps_id()).get_handle())
+                gid = select_result.get_gramps_id()
+                person = self.dbstate.db.get_person_from_gramps_id(gid)
+                self.family.set_father_handle(person.get_handle()) 
+                self.update_father(person.get_handle())                    
             except:
                 log.warn("Failed to update father: \n"
                          "gramps_id returned from selector was: %s\n"
@@ -483,7 +520,7 @@ class EditFamily(DisplayState.ManagedWindow):
         birth_obj.set_text(birth)
         death_obj.set_text(death)
 
-    def fix_parent_handles(self,orig_handle, new_handle):
+    def fix_parent_handles(self,orig_handle, new_handle, trans):
         if orig_handle != new_handle:
             if orig_handle:
                 person = self.dbstate.db.get_person_from_handle(orig_handle)
@@ -496,16 +533,24 @@ class EditFamily(DisplayState.ManagedWindow):
                 self.dbstate.db.commit_person(person,trans)
 
     def apply_changes(self,obj):
-        original = self.dbstate.db.get_family_from_handle(self.family.handle)
+        if self.family.handle:
+            original = self.dbstate.db.get_family_from_handle(self.family.handle)
+        else:
+            original = None
 
-        if cmp(original.serialize(),self.family.serialize()):
+        if not original:
+            print self.family.serialize()
+            trans = self.dbstate.db.transaction_begin()
+            self.dbstate.db.add_family(self.family,trans)
+            self.dbstate.db.transaction_commit(trans,_("Edit Family"))
+        elif cmp(original.serialize(),self.family.serialize()):
 
             trans = self.dbstate.db.transaction_begin()
 
             self.fix_parent_handles(original.get_father_handle(),
-                                    self.family.get_father_handle())
+                                    self.family.get_father_handle(),trans)
             self.fix_parent_handles(original.get_mother_handle(),
-                                    self.family.get_mother_handle())
+                                    self.family.get_mother_handle(),trans)
 
             orig_set = set(original.get_child_handle_list())
             new_set = set(self.family.get_child_handle_list())
@@ -513,7 +558,10 @@ class EditFamily(DisplayState.ManagedWindow):
             # remove the family from children which have been removed
             for handle in orig_set.difference(new_set):
                 person = self.dbstate.db.get_person_from_handle(handle)
+                print person.get_primary_name().get_name()
+                print person.get_parent_family_handle_list()
                 person.remove_parent_family_handle(self.family.handle)
+                print person.get_parent_family_handle_list()
                 self.dbstate.db.commit_person(person,trans)
             
             # add the family from children which have been removed
@@ -522,9 +570,11 @@ class EditFamily(DisplayState.ManagedWindow):
                 #person.remove_parent_family_handle(self.family.handle)
                 #self.dbstate.db.commit_person(person,trans)
 
+            self.dbstate.db.commit_family(self.family,trans)
             self.dbstate.db.transaction_commit(trans,_("Edit Family"))
+        self.close_window()
 
-    def close_window(self,obj):
+    def close_window(self,*obj):
         for key in self.signal_keys:
             self.dbstate.db.disconnect(key)
         self.close()

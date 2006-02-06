@@ -113,7 +113,8 @@ class FamilyListView(PageView.ListView):
 
     def add(self,obj):
         import EditFamily
-        EditFamily.EditFamily(self.dbstate,self.uistate,[],None)
+        family = RelLib.Family()
+        EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
 
     def remove(self,obj):
         return

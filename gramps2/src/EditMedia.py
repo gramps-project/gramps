@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -70,7 +71,6 @@ _drag_targets = [
 class EditMedia(DisplayState.ManagedWindow):
 
     def __init__(self,state,uistate,track,obj):
-        #self.parent = parent
         self.dp = DateHandler.parser
         self.dd = DateHandler.displayer
 
@@ -108,6 +108,9 @@ class EditMedia(DisplayState.ManagedWindow):
         title = _('Media Properties Editor')
 
         self.window = self.change_dialog.get_widget('change_global')
+        self.select = self.change_dialog.get_widget('file_select')
+        self.select.connect('clicked', self.select_file)
+                            
         self.date_entry = self.change_dialog.get_widget('date')
         self.date_entry.set_editable(mode)
         
@@ -186,6 +189,25 @@ class EditMedia(DisplayState.ManagedWindow):
     def on_delete_event(self,obj,b):
         self.close()
 
+    def select_file(self,obj):
+        f = gtk.FileChooserDialog(_('Select Media Object'),
+                                  action=gtk.FILE_CHOOSER_ACTION_OPEN,
+                                  buttons=(gtk.STOCK_CANCEL,
+                                           gtk.RESPONSE_CANCEL,
+                                           gtk.STOCK_OPEN,
+                                           gtk.RESPONSE_OK))
+
+        text = self.file_path.get_text()
+        name = os.path.basename(text)
+        path = os.path.dirname(text)
+
+        f.set_filename(path)
+
+        status = f.run()
+        if status == gtk.RESPONSE_OK:
+            self.file_path.set_text(f.get_filename())
+        f.destroy()
+        
     def close_window(self,obj):
         if self.idle != None:
             gobject.source_remove(self.idle)
@@ -193,7 +215,8 @@ class EditMedia(DisplayState.ManagedWindow):
 
     def update_info(self):
         fname = self.obj.get_path()
-        self.change_dialog.get_widget("path").set_text(fname)
+        self.file_path = self.change_dialog.get_widget("path")
+        self.file_path.set_text(fname)
             
     def on_apply_clicked(self, obj):
         desc = unicode(self.descr_window.get_text())

@@ -7,6 +7,8 @@ from Models import \
      PersonTreeModel, PersonListModel, PersonFilterModel
 
 from NameDisplay import displayer
+import Utils
+
 display_given = displayer.display_given
 
 
@@ -19,15 +21,14 @@ class PersonTreeView(gtk.TreeView):
 
         # Add the Name column
         cols = (\
-            (_("Family Name"),300,self._family_name),\
+            (_("Name"),300,self._family_name),\
             (_("ID"),100,self._object_id),\
-            (_("Given Name"),300,self._given_name),\
             (_("Gender"),100,self._gender),\
             (_("Birth Date"),200,self._birth_date),\
             (_("Birth Place"),200,self._birth_place),\
             (_("Death Date"),200,self._death_date),\
             (_("Death Place"),200,self._death_place),\
-            (_("Spouce"),200,self._spouce),\
+            (_("Spouse"),200,self._spouce),\
             (_("Last Change"),200,self._last_change),\
             (_("Cause of Death"),300,self._death_cause))
 
@@ -71,30 +72,39 @@ class PersonTreeView(gtk.TreeView):
             cell.set_property('text', "")
 
     def _family_name(self, column, cell, model, iter, user_data=None):
-            (o,rowref) = model.get_value(iter, 0)
-            cell.set_property('text', str(rowref) + " " + o.get_primary_name().get_surname())
-
-    def _given_name(self, column, cell, model, iter, user_data=None):
         (o,rowref) = model.get_value(iter, 0)
         if len(rowref) > 1:
-            cell.set_property('text', "")
+            cell.set_property('text', displayer(o))
         else:
-            cell.set_property('text', "")
-
+            cell.set_property('text',o.primary_name.surname)
         
     def _gender(self, column, cell, model, iter, user_data=None):
         (o,rowref) = model.get_value(iter, 0)
         if len(rowref) > 1:
-            cell.set_property('text', "")
+            cell.set_property('text', Utils.gender[o.gender])
         else:
             cell.set_property('text', "")
 
     def _birth_date(self, column, cell, model, iter, user_data=None):
         (o,rowref) = model.get_value(iter, 0)
+        cell_value = ''
         if len(rowref) > 1:
-            cell.set_property('text', "")
-        else:
-            cell.set_property('text', "")
+            b = o.get_birth_ref()
+            if b:
+                birth = self.db.get_event_from_handle(b.ref)
+                date_str = DateHandler.get_date(birth)
+                if date_str != "":
+                    cell_value = cgi.escape(date_str)
+            else:
+                for er in o.get_event_ref_list():
+                    event = self.db.get_event_from_handle(er.ref)
+                    etype = event.get_type()[0]
+                    date_str = DateHandler.get_date(event)
+                    if (etype in [Event.BAPTISM, Event.CHRISTEN]
+                        and date_str != ""):
+                        return 
+                    cell_value = "<i>" + cgi.escape(date_str) + "</i>"
+        cell.set_property('text', cell_value)
 
     def _birth_place(self, column, cell, model, iter, user_data=None):
         (o,rowref) = model.get_value(iter, 0)
