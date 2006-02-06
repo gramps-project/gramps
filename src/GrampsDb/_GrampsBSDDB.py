@@ -1002,7 +1002,7 @@ class GrampsBSDDB(GrampsDbBase):
         for (key,data) in transaction.reference_add:
             self.reference_map.put(str(key),data,txn=self.txn)
 
-        for (key,data) in transaction.reference_del:
+        for key in transaction.reference_del:
             self.reference_map.delete(str(key),txn=self.txn)
 
         # Commit BSD DB transaction -- DBTxn
