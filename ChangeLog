@@ -1,3 +1,10 @@
+2006-02-06  Don Allingham  <don@gramps-project.org>
+	* src/EditFamily.py: Complete save operation, handle new family
+	* src/EditMedia.py: Add file selector button
+	* src/FamilyList.py: Save properly
+	* src/edit_person.glade: lock icon
+	* src/gramps.glade: file selector button
+
 2006-02-06  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (transaction_commit): Typo.
 

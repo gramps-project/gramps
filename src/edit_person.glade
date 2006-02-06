@@ -713,7 +713,8 @@ Unknown</property>
 	      <child>
 		<widget class="GtkImage" id="image2262">
 		  <property name="visible">True</property>
-		  <property name="pixbuf">unlocked.png</property>
+		  <property name="icon_size">4</property>
+		  <property name="icon_name">gtk-dialog-authentication</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
