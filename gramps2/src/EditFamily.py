@@ -30,6 +30,11 @@ import os
 import sys
 from gettext import gettext as _
 
+try:
+    set()
+except:
+    from sets import Set as set
+
 import logging
 log = logging.getLogger(".")
 
@@ -216,9 +221,6 @@ class EditFamily(DisplayState.ManagedWindow):
         self.mbirth = self.top.get_widget('mbirth')
         self.mdeath = self.top.get_widget('mdeath')
 
-        self.gid    = self.top.get_widget('gid')
-        self.reltype= self.top.get_widget('marriage_type')
-
         self.mbutton= self.top.get_widget('mbutton')
         self.fbutton= self.top.get_widget('fbutton')
 
@@ -231,8 +233,25 @@ class EditFamily(DisplayState.ManagedWindow):
         self.vbox   = self.top.get_widget('vbox')
         self.child_list = self.top.get_widget('child_list')
 
-        self.private= self.top.get_widget('private')
+        self.notebook = gtk.Notebook()
+        self.notebook.show()
+        self.vbox.pack_start(self.notebook,True)
 
+        self._setup_monitored_values()
+
+        self.cancel.connect('clicked', self.close_window)
+        self.ok.connect('clicked', self.apply_changes)
+
+    def _setup_monitored_values(self):
+        private= self.top.get_widget('private')
+        private.set_active(self.family.get_privacy())
+        private.connect('toggled', self.privacy_toggled)
+                             
+        gid = self.top.get_widget('gid')
+        gid.set_text(self.family.get_gramps_id())
+        gid.connect('changed',
+                    lambda x: self.family.set_gramps_id(x.get_text()))
+        
         rel_types = dict(Utils.family_relations)
 
         mtype = self.family.get_relationship()
@@ -241,15 +260,11 @@ class EditFamily(DisplayState.ManagedWindow):
         else:
             defval = None
 
+        reltype = self.top.get_widget('marriage_type')
         self.type_sel = AutoComp.StandardCustomSelector(
-            rel_types, self.reltype, RelLib.Family.CUSTOM, defval)
-
-        self.notebook = gtk.Notebook()
-        self.notebook.show()
-        
-        self.vbox.pack_start(self.notebook,True)
-        self.cancel.connect('clicked', self.close_window)
-        self.ok.connect('clicked', self.apply_changes)
+            rel_types, reltype, RelLib.Family.CUSTOM, defval)
+        reltype.connect('changed',
+                        lambda x: self.family.set_relationship(self.type_sel.get_values()))
         
     def load_data(self):
         fhandle = self.family.get_father_handle()
@@ -301,18 +316,16 @@ class EditFamily(DisplayState.ManagedWindow):
         self.notebook.set_tab_label(self.gallery_tab,
                                     self.gallery_tab.get_tab_widget())
 
-        self.gid.set_text(self.family.get_gramps_id())
-        self.private.connect('toggled',self.privacy_toggled)
-        self.private.set_active(self.family.get_privacy())
-
     def privacy_toggled(self,obj):
         for o in obj.get_children():
             obj.remove(o)
         img = gtk.Image()
         if obj.get_active():
             img.set_from_file(os.path.join(const.rootDir,"locked.png"))
+            self.family.set_privacy(True)
         else:
             img.set_from_file(os.path.join(const.rootDir,"unlocked.png"))
+            self.family.set_privacy(False)
         img.show()
         obj.add(img)
 
@@ -470,13 +483,46 @@ class EditFamily(DisplayState.ManagedWindow):
         birth_obj.set_text(birth)
         death_obj.set_text(death)
 
+    def fix_parent_handles(self,orig_handle, new_handle):
+        if orig_handle != new_handle:
+            if orig_handle:
+                person = self.dbstate.db.get_person_from_handle(orig_handle)
+                person.family_list.remove(self.family.handle)
+                self.dbstate.db.commit_person(person,trans)
+            if new_handle:
+                person = self.dbstate.db.get_person_from_handle(orig_handle)
+                if self.family.handle not in self.person.family_list:
+                    person.family_list.append(self.family.handle)
+                self.dbstate.db.commit_person(person,trans)
+
     def apply_changes(self,obj):
         original = self.dbstate.db.get_family_from_handle(self.family.handle)
 
-        print original.get_father_handle(), self.family.get_father_handle()
-        print original.get_mother_handle(), self.family.get_mother_handle()
-        print original.get_child_handle_list(), self.family.get_child_handle_list()
-        print "Apply Changes"
+        if cmp(original.serialize(),self.family.serialize()):
+
+            trans = self.dbstate.db.transaction_begin()
+
+            self.fix_parent_handles(original.get_father_handle(),
+                                    self.family.get_father_handle())
+            self.fix_parent_handles(original.get_mother_handle(),
+                                    self.family.get_mother_handle())
+
+            orig_set = set(original.get_child_handle_list())
+            new_set = set(self.family.get_child_handle_list())
+
+            # remove the family from children which have been removed
+            for handle in orig_set.difference(new_set):
+                person = self.dbstate.db.get_person_from_handle(handle)
+                person.remove_parent_family_handle(self.family.handle)
+                self.dbstate.db.commit_person(person,trans)
+            
+            # add the family from children which have been removed
+            for handle in new_set.difference(orig_set):
+                person = self.dbstate.db.get_person_from_handle(handle)
+                #person.remove_parent_family_handle(self.family.handle)
+                #self.dbstate.db.commit_person(person,trans)
+
+            self.dbstate.db.transaction_commit(trans,_("Edit Family"))
 
     def close_window(self,obj):
         for key in self.signal_keys:
