@@ -396,22 +396,23 @@ class Reader:
             try:
                 val = self.cnv(val)
             except:
-                val = line[2].translate(val,self.transtable2)
+                val = self.cnv(line[2].translate(val,self.transtable2))
 
             try:
                 level = int(line[0])
             except:
                 level = 0
 
-            data = (level,tokens.get(line[1],TOKEN_UNKNOWN),val,line[1],self.index)
-            
+            data = (level,tokens.get(line[1],TOKEN_UNKNOWN),val,
+                    self.cnv(line[1]),self.index)
+
             if data[1] == TOKEN_CONT:
                 l = self.current_list[0]
                 self.current_list[0] = (l[0],l[1],l[2]+'\n'+data[2],l[3],l[4])
             elif data[1] == TOKEN_CONC:
                 l = self.current_list[0]
                 if self.broken_conc:
-                    new_value = "%s %s" % (l[2],data[2])
+                    new_value = u"%s %s" % (l[2],data[2])
                 else:
                     new_value = l[2] + data[2]
                 self.current_list[0] = (l[0],l[1],new_value,l[3],l[4])
@@ -1157,9 +1158,12 @@ class GedcomParser:
                 return u""
         else:
             if old_note:
-                note = "%s\n%s" % (old_note,matches[2])
+                note = u"%s\n%s" % (old_note,matches[2])
             else:
                 note = matches[2]
+            if type(note) != unicode:
+                print type(note),type(matches[2])
+                
             task(note)
             self.ignore_sub_junk(level+1)
         return note
@@ -1180,6 +1184,7 @@ class GedcomParser:
             if int(matches[0]) < 1:
                 self.backup()
                 if state.get_text():
+                    print state
                     state.person.set_note(state.get_text())
                 return
             else:
@@ -2018,7 +2023,7 @@ class GedcomParser:
             self.parse_person_object(2,state)
 
     def func_person_note(self,matches,state):
-        self.note = self.parse_note(matches,self.person,1,state)#self.note)
+        self.note = self.parse_note(matches,self.person,1,state.note)
 
     def func_person_sex(self,matches,state):
         if matches[2] == '':

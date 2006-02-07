@@ -964,7 +964,7 @@ class GrampsDbBase(GrampsDBCallback):
                 cursor = self.get_person_cursor()
                 data = cursor.first()
                 while data:
-                    slist.append((data[1][3].sname,data[0]))
+                    slist.append((data[1][3][3],data[0]))
                     data = cursor.next()
                 cursor.close()
                 slist.sort()

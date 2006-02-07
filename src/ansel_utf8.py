@@ -302,7 +302,7 @@ def ansel_to_utf8(s):
             head = s[0]
             s = s[1:]
         buff.write(head)
-    ans = buff.getvalue()
+    ans = unicode(buff.getvalue())
     buff.close()
     return ans
 

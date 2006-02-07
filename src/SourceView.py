@@ -130,8 +130,8 @@ class SourceView(PageView.ListView):
             
             event = db.get_event_from_handle(event_handle)
 
-            ans = EditSource.DelSourceQuery(event,db,
-                                          person_list,family_list)
+            ans = EditSource.DelSrcQuery(event,db,
+                                         person_list,family_list)
 
             if len(person_list) + len(family_list) > 0:
                 msg = _('This source is currently being used. Deleting it '
