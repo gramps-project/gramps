@@ -119,21 +119,15 @@ class SourceView(PageView.ListView):
         EditSource.EditSource(self.dbstate, self.uistate, [], RelLib.Source())
 
     def remove(self,obj):
-        for event_handle in self.selected_handles():
+        for source_handle in self.selected_handles():
             db = self.dbstate.db
-            person_list = [ handle for handle in
-                            db.get_person_handles(False)
-                            if db.get_person_from_handle(handle).has_handle_reference('Source',event_handle) ]
-            family_list = [ handle for handle in
-                            db.get_family_handles()
-                            if db.get_family_from_handle(handle).has_handle_reference('Source',event_handle) ]
-            
-            event = db.get_event_from_handle(event_handle)
+            the_lists = Utils.get_source_referents(source_handle,db)
 
-            ans = EditSource.DelSrcQuery(event,db,
-                                         person_list,family_list)
+            source = db.get_source_from_handle(source_handle)
 
-            if len(person_list) + len(family_list) > 0:
+            ans = EditSource.DelSrcQuery(source,db,the_lists)
+
+            if filter(None,the_lists): # quick test for non-emptiness
                 msg = _('This source is currently being used. Deleting it '
                         'will remove it from the database and from all '
                         'people and families that reference it.')
@@ -141,9 +135,9 @@ class SourceView(PageView.ListView):
                 msg = _('Deleting source will remove it from the database.')
             
             msg = "%s %s" % (msg,Utils.data_recover_msg)
-            descr = event.get_description()
+            descr = source.get_title()
             if descr == "":
-                descr = event.get_gramps_id()
+                descr = source.get_gramps_id()
                 
             QuestionDialog(_('Delete %s?') % descr, msg,
                            _('_Delete Source'),ans.query_response)

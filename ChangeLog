@@ -1,5 +1,5 @@
 2006-02-06  Don Allingham  <don@gramps-project.org>
-	* src/SourceView.py: fix source query dialog
+	* src/SourceView.py: fix source query dialog, fix source deleting
 	* src/ansel_utf8.py: fix unicode conversion
 	* src/GrampsDb/_GrampsDbBase.py: fix surname detection
 	* src/GrampsDb/_ReadGedcomp.py: fix note importation
