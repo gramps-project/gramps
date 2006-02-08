@@ -50,6 +50,14 @@ class FastModel(gtk.GenericTreeModel):
         
         self._num_children_cache = {}
 
+    # Helper methods to enable treeviews to tell if the model is
+    # a tree or a list.
+
+    def is_tree(self):
+        return not self.is_list()
+
+    def is_list(self):
+        return self.on_get_flags()&gtk.TREE_MODEL_LIST_ONLY
 
     # Methods that must be implemented by subclasses.
     

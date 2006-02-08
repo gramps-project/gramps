@@ -1,3 +1,12 @@
+2006-02-08 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+        * src/EditFamily.py, src/Models/_FastFilterModel.py,
+	 src/Models/_FastModel.py, src/ObjectSelector/_FilterFrameBase.py,
+	 src/ObjectSelector/_ObjectFrameBase.py, src/ObjectSelector/_ObjectSelectorWindow.py,
+	 src/ObjectSelector/_PersonFilterFrame.py, src/ObjectSelector/_PersonFrame.py,
+	 src/ObjectSelector/_PersonPreviewFrame.py, src/ObjectSelector/_PersonTreeFrame.py,
+	 src/TreeViews/_PersonTreeView.py: Integrated new treeview/model code into ObjectSelector
+
+
 2006-02-07  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels.py: gobject.TYPE_STRING -> str
 	* src/EditFamily.py: privacy widget

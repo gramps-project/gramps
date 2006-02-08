@@ -33,7 +33,6 @@ from gettext import gettext as _
 
 import _Factories
 from _Constants import ObjectTypes
-from _ObjectSelectorResult import ObjectSelectorResult
 
 from DisplayState import ManagedWindow
 import const
@@ -317,14 +316,8 @@ class ObjectSelectorWindow(gtk.Window,ManagedWindow):
             self._add_button.set_sensitive(False)
             
 
-    def get_result(self):
-        result = ObjectSelectorResult()
-        result.set_object_type(self._current_object_type)
-        result.set_gramps_id(self._object_frames[self._current_object_type].selected_id)
-        return result
-
-    def on_add(self,button=None):
-        self.emit('add-object',self.get_result())
+    def on_add(self,widget=None,object=None):
+        self.emit('add-object',object)
         
     def on_selection_changed(self,widget,text,handle):
         if handle:

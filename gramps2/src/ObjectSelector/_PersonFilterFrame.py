@@ -44,28 +44,33 @@ class PersonFilterFrame(FilterFrameBase):
     def __init__(self,filter_spec=None,label="Filter"):
 	FilterFrameBase.__init__(self,filter_spec,label)
 
+        self._checkboxes = []
+        
         # Gramps ID
         self._id_check = gtk.CheckButton()
+        self._checkboxes.append(self._id_check)
         id_label = gtk.Label("Gramps ID")
         id_label.set_alignment(xalign=0,yalign=0.5)
 
         self._id_edit = gtk.Entry()
-        self._id_edit.set_sensitive(False)
 
         self._id_check.connect('toggled',lambda b: self._id_edit.set_sensitive(self._id_check.get_active()))
 
         # Name
 	self._name_check = gtk.CheckButton()
+        self._checkboxes.append(self._name_check)
+        
         name_label = gtk.Label("Name")
         name_label.set_alignment(xalign=0,yalign=0.5)
 
         self._name_edit = gtk.Entry()
-        self._name_edit.set_sensitive(False)
         
         self._name_check.connect('toggled',lambda b: self._name_edit.set_sensitive(self._name_check.get_active()))
 
         # Gender
 	self._gender_check = gtk.CheckButton()
+        self._checkboxes.append(self._gender_check)
+
         gender_label = gtk.Label("Gender")
         gender_label.set_alignment(xalign=0,yalign=0.5)
 
@@ -85,29 +90,26 @@ class PersonFilterFrame(FilterFrameBase):
         self._gender_combo.pack_start(label_cell, True)
         self._gender_combo.add_attribute(label_cell, 'text', 0)
         self._gender_combo.set_active(2)
-        self._gender_combo.set_sensitive(False)
 
         self._gender_check.connect('toggled',lambda b: self._gender_combo.set_sensitive(self._gender_check.get_active()))
 
         # Birth
         self._birth_check = gtk.CheckButton()
         self._birth_check.set_alignment(xalign=0,yalign=0)
+        self._checkboxes.append(self._birth_check)
+
 
         b_label = gtk.Label("Birth Year")
         b_label.set_alignment(xalign=0,yalign=0)
         
         self._b_edit = IntEdit()
-        self._b_edit.set_sensitive(False)
 
         self._b_before = gtk.RadioButton(group=None,label="Before")
-        self._b_before.set_sensitive(False)
 
         self._b_after = gtk.RadioButton(self._b_before,"After")
-        self._b_after.set_sensitive(False)
         self._b_before.set_active(True)
         
         self._b_unknown = gtk.CheckButton("Include Unknown")
-        self._b_unknown.set_sensitive(False)
         self._b_unknown.set_active(False)
 
         self._birth_check.connect('toggled',lambda b: self._b_edit.set_sensitive(self._birth_check.get_active()))
@@ -122,24 +124,20 @@ class PersonFilterFrame(FilterFrameBase):
         # Death
 
         self._death_check = gtk.CheckButton()
+        self._checkboxes.append(self._death_check)
+
 
         d_label = gtk.Label("Death Year")
         d_label.set_alignment(xalign=0,yalign=0)
 
         self._d_edit = IntEdit()
-        self._d_edit.set_sensitive(False)
 
         self._d_before = gtk.RadioButton(group=None,label="Before")
-        self._d_before.set_sensitive(False)
 
         self._d_after = gtk.RadioButton(self._d_before,"After")
-        self._d_after.set_sensitive(False)
-
         self._d_before.set_active(True)
-        self._d_before.set_sensitive(False)
 
         self._d_unknown = gtk.CheckButton("Include Unknown")
-        self._d_unknown.set_sensitive(False)
         self._d_unknown.set_active(False)
 
         self._death_check.connect('toggled',lambda b: self._d_edit.set_sensitive(self._death_check.get_active()))
@@ -153,6 +151,8 @@ class PersonFilterFrame(FilterFrameBase):
 
         # Filter
 	self._filter_check = gtk.CheckButton()
+        self._checkboxes.append(self._filter_check)
+
         filter_label = gtk.Label("Filter")
         filter_label.set_alignment(xalign=0,yalign=0.5)
 
@@ -196,15 +196,12 @@ class PersonFilterFrame(FilterFrameBase):
         self._filter_combo.pack_start(label_cell, True)
         self._filter_combo.add_attribute(label_cell, 'text', 1)
         self._filter_combo.set_active(0)
-        self._filter_combo.set_sensitive(False)
 
         self._filter_check.connect('toggled',lambda b: self._filter_combo.set_sensitive(self._filter_check.get_active()))
 
         self._filter_entry_label = gtk.Label()
-        self._filter_entry_label.set_sensitive(False)
         
         self._filter_entry_edit = gtk.Entry()
-        self._filter_entry_edit.set_sensitive(False)
         
         # table layout
         
@@ -279,8 +276,29 @@ class PersonFilterFrame(FilterFrameBase):
         self._table.attach(self._filter_combo,self._control_col,self._control_col+1,
                            current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
 
+        self._reset_widgets()
+        
         if filter_spec is not None:
             self._set_filter(filter_spec)
+
+    def _reset_widgets(self):
+        self._id_edit.set_sensitive(False)
+        self._name_edit.set_sensitive(False)
+        self._gender_combo.set_sensitive(False)
+        self._b_edit.set_sensitive(False)
+        self._b_before.set_sensitive(False)
+        self._b_after.set_sensitive(False)
+        self._b_unknown.set_sensitive(False)
+        self._d_edit.set_sensitive(False)
+        self._d_after.set_sensitive(False)
+        self._d_before.set_sensitive(False)
+        self._d_unknown.set_sensitive(False)
+        self._filter_combo.set_sensitive(False)
+        self._filter_entry_label.set_sensitive(False)
+        self._filter_entry_edit.set_sensitive(False)
+        for check in self._checkboxes:
+            check.set_active(False)
+
 
 
     def _set_filter(self,filter_spec):
@@ -339,6 +357,9 @@ class PersonFilterFrame(FilterFrameBase):
             self._death_check.set_active(False)
             self._d_edit.set_text("")
 
+    def on_clear(self,button=None):
+        self._reset_widgets()
+        self.emit('clear-filter')
 
     def on_apply(self,button=None):
         filter = GenericFilter.GenericFilter()

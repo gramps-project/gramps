@@ -45,17 +45,29 @@ class FastFilterModel(gtk.GenericTreeModel):
 	self._db = db
         self._data_filter = data_filter
         self._fetch_func = self._get_fetch_func(db)
+
+        self._keys = []
+        self._length = 0
         
         self._build_data()
         
     def _build_data(self):
         if not self._data_filter.is_empty():
             self._keys = self._data_filter.apply(self._db)
-        else:
+        else:            
             return 
         
         self._length = len(self._keys)
-        
+
+    # Helper methods to enable treeviews to tell if the model is
+    # a tree or a list.
+
+    def is_tree(self):
+        return not self.is_list()
+
+    def is_list(self):
+        return self.on_get_flags()&gtk.TREE_MODEL_LIST_ONLY
+
 
     # Methods that must be implemented by subclasses.    
     def _get_fetch_func(self,db):
@@ -84,16 +96,29 @@ class FastFilterModel(gtk.GenericTreeModel):
         Fetch the real object from the database.
         """
 
+        record = None
+        
         # We only have one column
-        if column is 0:
-            record = self._fetch_func(self._keys[rowref[0]])
+        if column is 0 and self._length > 0:
+            log.debug("on_get_value: rowref = %s", (repr(rowref)))
 
-            # This should never return none, but there is a subtle bug
-            # somewhere that I can't find and sometimes it does.
-            if record is None:
-                log.warn("Failed to fetch a record from the cursor rowref = %s" % (str(rowref)))
+            try:
+                record = self._fetch_func(self._keys[rowref[0]])
+
+                # This should never return none, but there is a subtle bug
+                # somewhere that I can't find and sometimes it does.
+                if record is None:
+                    log.warn("Failed to fetch a record from the "\
+                             "cursor rowref = %s" % (str(rowref)))
+            except:
+                log.warn("Failed to fetch record, rowref = %s"\
+                         " len(self._keys) = %d "\
+                         " self._length = %d " % (repr(rowref),
+                                                  len(self._keys),
+                                                  self._length),                         
+                         exc_info=True)
                 
-            return (record,rowref)
+        return (record,rowref)
 
     def on_iter_next(self, rowref):
         """

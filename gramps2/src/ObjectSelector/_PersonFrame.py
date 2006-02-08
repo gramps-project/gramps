@@ -29,11 +29,14 @@ import gobject
 
 from RelLib import Person
 from EditPerson import EditPerson
+from NameDisplay import displayer
+display_name = displayer.display
 
 from _ObjectFrameBase import ObjectFrameBase
 from _PersonFilterFrame import PersonFilterFrame
 from _PersonPreviewFrame import PersonPreviewFrame
 from _PersonTreeFrame import PersonTreeFrame
+
 
 class PersonFrame(ObjectFrameBase):
     
@@ -47,7 +50,7 @@ class PersonFrame(ObjectFrameBase):
         
         'add-object': (gobject.SIGNAL_RUN_LAST,
                        gobject.TYPE_NONE,
-                       ())
+                       (gobject.TYPE_PYOBJECT,))
 
         }
 
@@ -67,30 +70,40 @@ class PersonFrame(ObjectFrameBase):
 
         def handle_selection(treeselection):
             (model, iter) = treeselection.get_selected()
-            if iter and model.get_value(iter,1):                            
-                self.emit('selection-changed', "%s [%s]" % (                
-                    str(model.get_value(iter,0)),
-                    str(model.get_value(iter,1))),
-                          model.get_value(iter,1))
+            if iter:                
+                (person,rowref) = model.get_value(iter,0)
+                if len(rowref) > 1 or model.is_list():
+                    if person:
+                        self.emit('selection-changed', "%s [%s]" % (
+                            display_name(person),
+                            person.get_gramps_id()),
+                                  person.get_handle())
+                    else:
+                        self.emit('selection-changed',"No Selection","")                    
+                else:
+                    self.emit('selection-changed',"No Selection","")                    
             else:
                 self.emit('selection-changed',"No Selection","")
             
 
         self._tree_frame.get_selection().connect('changed',handle_selection)                
-        self._tree_frame.get_selection().connect('changed',self.set_preview,self.__class__.__person_id_field)
+        self._tree_frame.get_selection().connect('changed',self.set_preview)
         self._tree_frame.get_tree().connect('row-activated',self._on_row_activated)
 
         self._filter_frame.connect('apply-filter',lambda w,m: self._tree_frame.set_model(m))
+        self._filter_frame.connect('clear-filter',lambda w: self._tree_frame.set_model(None))
 
         # Now that the filter is connected we need to tell it to apply any
         # filter_spec that may have been passed to it. We can't apply the filter
         # until the connections have been made.
-        self._filter_frame.on_apply()
+        gobject.idle_add(self._filter_frame.on_apply)
 
     def _on_row_activated(self,widget,path,col):
         (model, iter) = widget.get_selection().get_selected()
-        if iter and model.get_value(iter,self.__class__.__person_id_field):
-            self.emit('add-object')
+        if iter:
+            (o,rowref) = model.get_value(iter,0)
+            if o:
+                self.emit('add-object',o)
 
     def new_object(self,button):
         person = Person()
