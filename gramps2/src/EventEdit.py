@@ -26,9 +26,11 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import sets
-import gc
-from cgi import escape
+
+try:
+    set()
+except:
+    from sets import Set as set
 
 #-------------------------------------------------------------------------
 #
@@ -57,6 +59,7 @@ import DisplayState
 from QuestionDialog import WarningDialog, ErrorDialog
 from WindowUtils import GladeIf
 from DisplayTabs import *
+from GrampsWidgets import *
 
 #-------------------------------------------------------------------------
 #
@@ -140,13 +143,15 @@ class EventEditor(DisplayState.ManagedWindow):
         self.place_field = self.top.get_widget("eventPlace")
         self.place_field.set_editable(not noedit)
         self.cause_field = self.top.get_widget("eventCause")
-        self.cause_field.set_editable(not noedit)
+        self.cause_monitor = MonitoredEntry(self.cause_field,self.event.set_cause,
+                                            self.event.get_cause, noedit)
         self.date_field  = self.top.get_widget("eventDate")
         self.date_field.set_editable(not noedit)
-        self.descr_field = self.top.get_widget("event_description")
-        self.descr_field.set_editable(not noedit)
+        self.descr_field = MonitoredEntry(self.top.get_widget("event_description"),
+                                          self.event.set_description,
+                                          self.event.get_description, noedit)
         self.event_menu = self.top.get_widget("personal_events")
-        self.priv = self.top.get_widget("priv")
+        self.priv = PrivacyButton(self.top.get_widget("private"),self.event)
         self.priv.set_sensitive(not noedit)
         self.ok = self.top.get_widget('ok')
         
@@ -176,9 +181,6 @@ class EventEditor(DisplayState.ManagedWindow):
             self.place_field.set_text(place_name)
 
             self.date_field.set_text(_dd.display(self.date))
-            self.cause_field.set_text(event.get_cause())
-            self.descr_field.set_text(event.get_description())
-            self.priv.set_active(event.get_privacy())
             
         else:
             event = RelLib.Event()
@@ -257,96 +259,40 @@ class EventEditor(DisplayState.ManagedWindow):
     def on_event_edit_ok_clicked(self,obj):
 
         event_data = self.type_selector.get_values()
-        ecause = unicode(self.cause_field.get_text())
         eplace_obj = get_place(self.place_field,self.pmap,self.db)
-        buf = self.note_field.get_buffer()
 
-        start = buf.get_start_iter()
-        stop = buf.get_end_iter()
-        enote = unicode(buf.get_text(start,stop,False))
-        eformat = self.preform.get_active()
-        edesc = unicode(self.descr_field.get_text())
-        epriv = self.priv.get_active()
+        self.update_event(event_data,self.date,eplace_obj)
 
-#         if ename not in self.elist:
-#             WarningDialog(
-#                 _('New event type created'),
-#                 _('The "%s" event type has been added to this database.\n'
-#                   'It will now appear in the event menus for this database') % ename)
-#             self.elist.append(ename)
-#             self.elist.sort()
-
-        just_added = self.event.handle == None
-
-        self.update_event(event_data,self.date,eplace_obj,edesc,enote,eformat,
-                          epriv,ecause)
-
-        if just_added:
+        if self.event.handle == None:
             trans = self.db.transaction_begin()
             self.db.add_event(self.event,trans)
             self.db.transaction_commit(trans,_("Add Event"))
-        elif self.parent.lists_changed:
-            trans = self.db.transaction_begin()
-            self.db.commit_event(self.event,trans)
-            self.db.transaction_commit(trans,_("Edit Event"))
+        else:
+            orig = self.dbstate.db.get_event_from_handle(self.event.handle)
+            if cmp(self.event.serialize(),orig.serialize()):
+                trans = self.db.transaction_begin()
+                self.db.commit_event(self.event,trans)
+                self.db.transaction_commit(trans,_("Edit Event"))
+
         if self.callback:
             self.callback(self.event)
-
         self.close(obj)
 
-    def update_event(self,the_type,date,place,desc,note,format,priv,cause):
+    def update_event(self,the_type,date,place):
         # FIXME: commented because we no longer have parent
-        #self.parent.lists_changed = 0
         if place:
             if self.event.get_place_handle() != place.get_handle():
                 self.event.set_place_handle(place.get_handle())
-                #self.parent.lists_changed = 1
         else:
             if self.event.get_place_handle():
                 self.event.set_place_handle("")
-                #self.parent.lists_changed = 1
         
         if self.event.get_type() != the_type:
             self.event.set_type(the_type)
-            #self.parent.lists_changed = 1
         
-        if self.event.get_description() != desc:
-            self.event.set_description(desc)
-            #self.parent.lists_changed = 1
-
-        if self.event.get_note() != note:
-            self.event.set_note(note)
-            #self.parent.lists_changed = 1
-
-        if self.event.get_note_format() != format:
-            self.event.set_note_format(format)
-            #self.parent.lists_changed = 1
-
         dobj = self.event.get_date_object()
-
-        self.event.set_source_reference_list(self.srcreflist)
-        
         if not dobj.is_equal(date):
             self.event.set_date_object(date)
-            #self.parent.lists_changed = 1
-
-        if self.event.get_cause() != cause:
-            self.event.set_cause(cause)
-            #self.parent.lists_changed = 1
-
-        if self.event.get_privacy() != priv:
-            self.event.set_privacy(priv)
-            #self.parent.lists_changed = 1
-
-    def on_switch_page(self,obj,a,page):
-        buf = self.note_field.get_buffer()
-        start = buf.get_start_iter()
-        stop = buf.get_end_iter()
-        text = unicode(buf.get_text(start,stop,False))
-        if text:
-            Utils.bold_label(self.notes_label)
-        else:
-            Utils.unbold_label(self.notes_label)
 
     def commit(self,event,trans):
         self.db.commit_event(event,trans)
@@ -388,15 +334,24 @@ class EventRefEditor(DisplayState.ManagedWindow):
         self.window = self.top.get_widget('event_eref_edit')
         self.ref_note_field = self.top.get_widget('eer_ref_note')
         self.role_combo = self.top.get_widget('eer_role_combo')
-        self.ref_privacy = self.top.get_widget('eer_ref_priv')
+        self.ref_privacy = PrivacyButton(self.top.get_widget('eer_ref_priv'),
+                                         self.event_ref)
 
         self.place_field = self.top.get_widget("eer_place")
         self.cause_field = self.top.get_widget("eer_cause")
+        self.cause_monitor = MonitoredEntry(self.cause_field,self.event.set_cause,
+                                            self.event.get_cause, False)
+
         self.date_field  = self.top.get_widget("eer_date")
-        self.descr_field = self.top.get_widget("eer_description")
+        self.descr_field = MonitoredEntry(self.top.get_widget("eer_description"),
+                                          self.event.set_description,
+                                          self.event.get_description, False)
+
         self.ev_note_field = self.top.get_widget("eer_ev_note")
         self.type_combo = self.top.get_widget("eer_type_combo")
-        self.ev_privacy = self.top.get_widget("eer_ev_priv")
+        self.ev_privacy = PrivacyButton(self.top.get_widget("eer_ev_priv"),
+                                        self.event)
+        
         self.general_label = self.top.get_widget("eer_general_tab")
         self.ok = self.top.get_widget('ok')
         self.expander = self.top.get_widget("eer_expander")
@@ -468,7 +423,6 @@ class EventRefEditor(DisplayState.ManagedWindow):
         # set event_ref values
         self.role_selector.set_values(self.event_ref.get_role())
         self.ref_note_field.get_buffer().set_text(self.event_ref.get_note())
-        self.ref_privacy.set_active(self.event_ref.get_privacy())
 
         # set event values
         self.type_selector.set_values(self.event.get_type())
@@ -479,9 +433,6 @@ class EventRefEditor(DisplayState.ManagedWindow):
             place_name = self.db.get_place_from_handle(place_handle).get_title()
         self.place_field.set_text(place_name)
         self.date_field.set_text(_dd.display(self.date))
-        self.cause_field.set_text(self.event.get_cause())
-        self.descr_field.set_text(self.event.get_description())
-        self.ev_privacy.set_active(self.event.get_privacy())
 
         self._create_tabbed_pages()
 
@@ -536,18 +487,8 @@ class EventRefEditor(DisplayState.ManagedWindow):
 
         # first, save event if changed
         etype = self.type_selector.get_values()
-        ecause = unicode(self.cause_field.get_text())
         eplace_obj = get_place(self.place_field,self.pmap,self.db)
-        buf = self.ev_note_field.get_buffer()
-        start = buf.get_start_iter()
-        stop = buf.get_end_iter()
-        enote = unicode(buf.get_text(start,stop,False))
-        eformat = self.preform.get_active()
-        edesc = unicode(self.descr_field.get_text())
-        epriv = self.ev_privacy.get_active()
-        self.lists_changed = 0
-        self.update_event(etype,self.date,eplace_obj,edesc,enote,eformat,
-                          epriv,ecause)
+        self.update_event(etype,self.date,eplace_obj)
         
         trans = self.db.transaction_begin()
         self.db.commit_event(self.event,trans)
@@ -559,67 +500,26 @@ class EventRefEditor(DisplayState.ManagedWindow):
         # then, set properties of the event_ref
         self.event_ref.set_role(self.role_selector.get_values())
         self.event_ref.set_privacy(self.ref_privacy.get_active())
-        buf = self.ref_note_field.get_buffer()
-        start = buf.get_start_iter()
-        stop = buf.get_end_iter()
-        note = unicode(buf.get_text(start,stop,False))
-        self.event_ref.set_note(note)
         self.close(None)
 
         if self.update:
             self.update((self.event_ref,self.event))
 
-    def update_event(self,the_type,date,place,desc,note,format,priv,cause):
+    def update_event(self,the_type,date,place):
         if place:
             if self.event.get_place_handle() != place.get_handle():
                 self.event.set_place_handle(place.get_handle())
-                self.lists_changed = 1
         else:
             if self.event.get_place_handle():
                 self.event.set_place_handle("")
-                self.lists_changed = 1
         
         if self.event.get_type() != the_type:
             self.event.set_type(the_type)
-            self.lists_changed = 1
         
-        if self.event.get_description() != desc:
-            self.event.set_description(desc)
-            self.lists_changed = 1
-
-        if self.event.get_note() != note:
-            self.event.set_note(note)
-            self.lists_changed = 1
-
-        if self.event.get_note_format() != format:
-            self.event.set_note_format(format)
-            self.lists_changed = 1
-
         dobj = self.event.get_date_object()
 
-        self.event.set_source_reference_list(self.srcreflist)
-        
         if not dobj.is_equal(date):
             self.event.set_date_object(date)
-            self.lists_changed = 1
-
-        if self.event.get_cause() != cause:
-            self.event.set_cause(cause)
-            self.lists_changed = 1
-
-        if self.event.get_privacy() != priv:
-            self.event.set_privacy(priv)
-            self.lists_changed = 1
-
-    def on_switch_page(self,obj,a,page):
-        buf = self.ev_note_field.get_buffer()
-        start = buf.get_start_iter()
-        stop = buf.get_end_iter()
-        text = unicode(buf.get_text(start,stop,False))
-        if text:
-            Utils.bold_label(self.eer_notes_label)
-        else:
-            Utils.unbold_label(self.eer_notes_label)
 
 #-------------------------------------------------------------------------
 #
