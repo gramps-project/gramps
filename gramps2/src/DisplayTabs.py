@@ -104,7 +104,8 @@ class GrampsTab(gtk.HBox):
         self.dbstate = dbstate
         self.uistate = uistate
         self.track = track
-
+        self.changed = False
+        
         # save name used for notebook label, and build the widget used
         # for the label
         
@@ -257,6 +258,19 @@ class ButtonTab(GrampsTab):
         class.
         """
         print "Uncaught Edit clicked"
+
+    def _selection_changed(self,obj=None):
+        """
+        Attached to the selection's 'changed' signal. Checks
+        to see if anything is selected. If it is, the edit and
+        delete buttons are enabled, otherwise the are disabled.
+        """
+        if self.get_selected():
+            self.edit_btn.set_sensitive(True)
+            self.del_btn.set_sensitive(True)
+        else:
+            self.edit_btn.set_sensitive(False)
+            self.del_btn.set_sensitive(False)
 
 class EmbeddedList(ButtonTab):
     """
@@ -438,19 +452,6 @@ class EmbeddedList(ButtonTab):
         if node:
             return model.get_value(node,self._HANDLE_COL)
         return None
-
-    def _selection_changed(self,obj=None):
-        """
-        Attached to the selection's 'changed' signal. Checks
-        to see if anything is selected. If it is, the edit and
-        delete buttons are enabled, otherwise the are disabled.
-        """
-        if self.get_selected():
-            self.edit_btn.set_sensitive(True)
-            self.del_btn.set_sensitive(True)
-        else:
-            self.edit_btn.set_sensitive(False)
-            self.del_btn.set_sensitive(False)
 
     def is_empty(self):
         """
@@ -1047,7 +1048,6 @@ class GalleryTab(ButtonTab):
     def __init__(self, dbstate, uistate, track,  media_list):
         ButtonTab.__init__(self, dbstate, uistate, track, _('Gallery'))
         self.media_list = media_list
-
         self.rebuild()
         self.show_all()
 
@@ -1057,32 +1057,61 @@ class GalleryTab(ButtonTab):
     def is_empty(self):
         return len(self.media_list)==0
 
+    def _build_icon_model(self):
+        # build the list model
+        self.iconmodel= gtk.ListStore(gtk.gdk.Pixbuf,str,object)
+
+    def _connect_icon_model(self):
+        self.iconlist.set_model(self.iconmodel)
+        self.iconmodel.connect_after('row-inserted',self._update_internal_list)
+        self.iconmodel.connect_after('row-deleted',self._update_internal_list)
+
     def build_interface(self):
-        self.iconmodel= gtk.ListStore(gtk.gdk.Pixbuf,str)
+
+        self._build_icon_model()
+        # build the icon view
         self.iconlist = gtk.IconView()
         self.iconlist.set_pixbuf_column(0)
         self.iconlist.set_text_column(1)
-        self.iconlist.set_model(self.iconmodel)
+        self.iconlist.set_margin(12)
+        self.iconlist.set_reorderable(True)
+        self.iconlist.set_item_width(125)
+        self.iconlist.set_spacing(24)
         self.iconlist.set_selection_mode(gtk.SELECTION_SINGLE)
+        self.iconlist.connect('selection-changed',self._selection_changed)
+        self._connect_icon_model()
         
         scroll = gtk.ScrolledWindow()
         scroll.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         scroll.add_with_viewport(self.iconlist)
         self.pack_start(scroll,True)
 
+    def _update_internal_list(self, *obj):
+        node = self.iconmodel.get_iter_first()
+        newlist = []
+        while node != None:
+            newlist.append(self.iconmodel.get_value(node,2))
+            node = self.iconmodel.iter_next(node)
+        for i in xrange(len(self.media_list)):
+            self.media_list.pop()
+        for i in newlist:
+            self.media_list.append(i)
+        self.changed = True
+
     def get_data(self):
         return self.media_list
 
     def rebuild(self):
-        self.iconmodel= gtk.ListStore(gtk.gdk.Pixbuf,str)
+        self._build_icon_model()
         for ref in self.media_list:
             handle = ref.get_reference_handle()
             obj = self.dbstate.db.get_object_from_handle(handle)
             pixbuf = ImgManip.get_thumb_from_obj(obj)
-            self.iconmodel.append(row=[pixbuf,obj.get_description()])
-        self.iconlist.set_model(self.iconmodel)
+            self.iconmodel.append(row=[pixbuf,obj.get_description(),ref])
+        self._connect_icon_model()
         self._set_label()
-
+        self._selection_changed()
+        
     def get_selected(self):
         node = self.iconlist.get_selected_items()
         if len(node) > 0:
@@ -1099,7 +1128,9 @@ class GalleryTab(ButtonTab):
             self.rebuild()
 
     def edit_button_clicked(self,obj):
-        print "Media Edit clicked"
+        ref = self.get_selected()
+        if ref:
+            print "Media Edit clicked"
 
 #-------------------------------------------------------------------------
 #
