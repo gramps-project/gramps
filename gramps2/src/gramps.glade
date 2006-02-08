@@ -8738,7 +8738,7 @@ Very High</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkLabel" id="label180">
+		    <widget class="GtkLabel" id="path_label">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Path:</property>
 		      <property name="use_underline">False</property>

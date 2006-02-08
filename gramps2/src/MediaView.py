@@ -32,7 +32,6 @@ import gtk.gdk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import RelLib
 import PageView
 import DisplayModels
 import ImgManip
@@ -171,13 +170,8 @@ class MediaView(PageView.ListView):
             return
         
         obj = self.dbstate.db.get_object_from_handle(handle)
-        if obj.get_mime_type():
-            import EditMedia
-            EditMedia.EditMedia(self.dbstate,self.uistate, [], obj)
-        else:
-            import NoteEdit
-            NoteEdit.NoteEditor(obj,self.parent,self.topWindow,
-                                self.note_callback)
+        import EditMedia
+        EditMedia.EditMedia(self.dbstate,self.uistate, [], obj)
 
 class DeleteMediaQuery:
 

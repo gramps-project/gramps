@@ -41,6 +41,7 @@ try:
     set()
 except:
     from sets import Set as set
+    print "set not used"
     
 #-------------------------------------------------------------------------
 #
@@ -51,8 +52,6 @@ import DateHandler
 import NameDisplay
 import RelLib
 import Utils
-import GrampsMime
-import const
 import ImgManip
 import Spell
 
@@ -64,7 +63,7 @@ from GrampsWidgets import SimpleButton
 # constants
 #
 #-------------------------------------------------------------------------
-_GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
+dnddata = None
 
 #-------------------------------------------------------------------------
 #
@@ -942,7 +941,7 @@ class LocationEmbedList(EmbeddedList):
         if loc:
             import LocEdit
             LocEdit.LocationEditor(self.dbstate, self.uistate, self.track,
-                                   addr, self.edit_callback)
+                                   loc, self.edit_callback)
 
     def edit_callback(self,name):
         self.rebuild()
@@ -1171,7 +1170,7 @@ class SourceEmbedList(EmbeddedList):
                      self.add_callback)
 
     def add_callback(self,obj):
-        self.get_data().append(name)
+        self.get_data().append(obj)
         self.changed = True
         self.rebuild()
 
@@ -1226,7 +1225,7 @@ class RepoEmbedList(EmbeddedList):
             self.dbstate, self.uistate, self.track, ref, self.add_callback)
 
     def add_callback(self,obj):
-        self.get_data().append(name)
+        self.get_data().append(obj)
         self.changed = True
         self.rebuild()
 
@@ -1262,7 +1261,7 @@ class ChildModel(gtk.ListStore):
             self.append(row=[index,
                              child.get_gramps_id(),
                              NameDisplay.displayer.display(child),
-                             _GENDER[child.get_gender()],
+                             Utils.gender[child.get_gender()],
                              self.column_father_rel(child),
                              self.column_mother_rel(child),
                              self.column_birth_day(child),

@@ -20,8 +20,26 @@
 
 # $Id$
 
+#----------------------------------------------------------------
+#
+# python
+#
+#----------------------------------------------------------------
+from gettext import gettext as _
+
+#----------------------------------------------------------------
+#
+# gtk
+#
+#----------------------------------------------------------------
 import gtk
 import pango
+
+#----------------------------------------------------------------
+#
+# GRAMPS 
+#
+#----------------------------------------------------------------
 import TreeTips
 import GenericFilter
 
@@ -386,7 +404,7 @@ class ListView(PageView):
             order = gtk.SORT_ASCENDING
         else:
             if (self.columns[data].get_sort_order() == gtk.SORT_DESCENDING
-                or self.columns[data].get_sort_indicator() == False):
+                or not self.columns[data].get_sort_indicator()):
                 order = gtk.SORT_ASCENDING
             else:
                 order = gtk.SORT_DESCENDING

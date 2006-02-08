@@ -108,8 +108,6 @@ class EditMedia(DisplayState.ManagedWindow):
         title = _('Media Properties Editor')
 
         self.window = self.change_dialog.get_widget('change_global')
-        self.select = self.change_dialog.get_widget('file_select')
-        self.select.connect('clicked', self.select_file)
                             
         self.date_entry = self.change_dialog.get_widget('date')
         self.date_entry.set_editable(mode)
@@ -141,12 +139,13 @@ class EditMedia(DisplayState.ManagedWindow):
             if descr:
                 self.change_dialog.get_widget("type").set_text(descr)
         else:
+            pb = GrampsMime.find_mime_type_pixbuf('text/plain')
+            self.pixmap.set_from_pixbuf(pb)
             self.change_dialog.get_widget("type").set_text(_('Note'))
-            self.pixmap.hide()
 
         self.change_dialog.get_widget("gid").set_text(self.obj.get_gramps_id())
 
-        self.update_info()
+        self.setup_filepath()
         
         self.gladeif.connect('change_global','delete_event',
                              self.on_delete_event)
@@ -154,6 +153,11 @@ class EditMedia(DisplayState.ManagedWindow):
         self.gladeif.connect('ok','clicked',self.on_ok_clicked)
         self.gladeif.connect('button102','clicked',self.on_help_clicked)
 
+        self._create_tabbed_windows()
+
+        self.show()
+
+    def _create_tabbed_windows(self):
         self.vbox = self.change_dialog.get_widget('vbox')
         self.notebook = gtk.Notebook()
         self.notebook.show()
@@ -166,15 +170,18 @@ class EditMedia(DisplayState.ManagedWindow):
         self.src_list = SourceEmbedList(self.state,self.uistate,
                                         self.track,self.obj.source_list)
 
-        self.notebook.insert_page(self.src_list)
+        if self.obj.get_mime_type():
+            self.notebook.insert_page(self.src_list)
+            self.notebook.insert_page(self.attr_list)
+            self.notebook.insert_page(self.note_tab)
+        else:
+            self.notebook.insert_page(self.note_tab)
+            self.notebook.insert_page(self.src_list)
+            self.notebook.insert_page(self.attr_list)
+
         self.notebook.set_tab_label(self.src_list,self.src_list.get_tab_widget())
-
-        self.notebook.insert_page(self.attr_list)
-        self.notebook.set_tab_label(self.attr_list,self.attr_list.get_tab_widget())
-
-        self.notebook.insert_page(self.note_tab)
         self.notebook.set_tab_label(self.note_tab,self.note_tab.get_tab_widget())
-        self.show()
+        self.notebook.set_tab_label(self.attr_list,self.attr_list.get_tab_widget())
 
     def build_menu_names(self,person):
         win_menu_label = _("Media Properties")
@@ -213,10 +220,18 @@ class EditMedia(DisplayState.ManagedWindow):
             gobject.source_remove(self.idle)
         self.close()
 
-    def update_info(self):
-        fname = self.obj.get_path()
+    def setup_filepath(self):
+        self.select = self.change_dialog.get_widget('file_select')
         self.file_path = self.change_dialog.get_widget("path")
-        self.file_path.set_text(fname)
+        
+        if self.obj.get_mime_type():
+            fname = self.obj.get_path()
+            self.file_path.set_text(fname)
+            self.select.connect('clicked', self.select_file)
+        else:
+            self.change_dialog.get_widget('path_label').hide()
+            self.file_path.hide()
+            self.select.hide()
             
     def on_apply_clicked(self, obj):
         desc = unicode(self.descr_window.get_text())
