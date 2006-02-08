@@ -191,7 +191,7 @@ class EventEditor(DisplayState.ManagedWindow):
                                         date_stat,
                                         self.window)
 
-        self.gladeif.connect('button111','clicked',self.close)
+        self.gladeif.connect('button111','clicked',self.close_window)
         self.gladeif.connect('ok','clicked',self.on_event_edit_ok_clicked)
         self.gladeif.connect('button126','clicked',self.on_help_clicked)
 
@@ -241,15 +241,17 @@ class EventEditor(DisplayState.ManagedWindow):
 
     def build_window_key(self,obj):
         if obj:
-            win_key = obj.get_handle()
+            return obj.get_handle()
         else:
-            win_key = id(self)
+            return id(self)
 
     def on_delete_event(self,obj,b):
         self.gladeif.close()
+        self.close()
 
-    def close(self,obj):
+    def close_window(self,obj):
         self.gladeif.close()
+        self.close()
         self.window.destroy()
 
     def on_help_clicked(self,obj):
@@ -298,7 +300,7 @@ class EventEditor(DisplayState.ManagedWindow):
         self.db.commit_event(event,trans)
 
     def get_event_names(self):
-        data = sets.Set(self.db.get_family_event_types())
+        data = set(self.db.get_family_event_types())
         data.union(self.db.get_person_event_types())
         return list(data)
 

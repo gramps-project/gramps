@@ -1,3 +1,13 @@
+2006-02-08  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: pychecker fixes
+	* src/EditMedia.py: Handle Note types properly
+	* src/EditPerson.py: minor cleanup
+	* src/EventEdit.py: pychecker fixes
+	* src/MediaView.py: Don't call NoteEditor, use EditMedia instead
+	* src/PageView.py: pychecker fixes
+	* src/PersonView.py: typo
+	* src/gramps.glade: Handle note types in media editor
+
 2006-02-08 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/ObjectSelector/_FamilyPreviewFrame.py: use new baseclass
 	* src/ObjectSelector/_FamilyTreeFrame.py: use new baseclass
@@ -8,7 +18,6 @@
 	* src/ObjectSelector/_PreviewFrameBase.py: added
 	* src/ObjectSelector/_TreeFrameBase.py: added
 	* src/ObjectSelector/__init__.py: added some documentation
-
 
 2006-02-08  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: reordering items in a Gallery

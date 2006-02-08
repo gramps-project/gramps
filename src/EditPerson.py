@@ -111,7 +111,6 @@ class EditPerson(DisplayState.ManagedWindow):
         self.orig_surname = self.person.get_primary_name().get_group_name()
         self.db = self.dbstate.db
         self.callback = callback
-#        self.lds_not_loaded = True
         self.pdmap = {}
         self.add_places = []
         self.should_guess_gender = (not person.get_gramps_id() and
@@ -472,7 +471,7 @@ class EditPerson(DisplayState.ManagedWindow):
             changed = True
         if self.pname.get_note() != name.get_note():
             changed = True
-#        if not self.lds_not_loaded and self.check_lds():
+#        if self.check_lds():
 #            changed = True
 
         (female,male,unknown) = _select_gender[self.gender.get_active()]
@@ -483,18 +482,15 @@ class EditPerson(DisplayState.ManagedWindow):
             changed = True
         elif unknown and self.person.get_gender() != RelLib.Person.UNKNOWN:
             changed = True
-        if text != self.person.get_note():
-            changed = True
 
-#         if not self.lds_not_loaded:
-#             if not self.lds_baptism.are_equal(self.person.get_lds_baptism()):
-#                 changed= True
+#       if not self.lds_baptism.are_equal(self.person.get_lds_baptism()):
+#            changed= True
 
-#             if not self.lds_endowment.are_equal(self.person.get_lds_endowment()):
-#                 changed = True
+#       if not self.lds_endowment.are_equal(self.person.get_lds_endowment()):
+#            changed = True
 
-#             if not self.lds_sealing.are_equal(self.person.get_lds_sealing()):
-#                 changed = True
+#       if not self.lds_sealing.are_equal(self.person.get_lds_sealing()):
+#            changed = True
                 
         return changed
 
