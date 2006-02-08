@@ -25,7 +25,9 @@ import gobject
 
 from DisplayModels import FamilyModel
 
-class FamilyTreeFrame(gtk.Frame):
+from _TreeFrameBase import TreeFrameBase
+
+class FamilyTreeFrame(TreeFrameBase):
     
     __gproperties__ = {}
 
@@ -36,7 +38,7 @@ class FamilyTreeFrame(gtk.Frame):
 
 
     def __init__(self,dbstate):
-	gtk.Frame.__init__(self)        
+	TreeFrameBase.__init__(self)        
 
         self._selection = None
         self._model = None

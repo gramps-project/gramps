@@ -25,10 +25,11 @@ from gettext import gettext as _
 import gtk
 import gobject
 
-#from PeopleModel import PeopleModel
 from TreeViews import PersonTreeView
 
 import NameDisplay
+
+from _TreeFrameBase import TreeFrameBase
 
 column_names = [
     _('Name'),
@@ -44,7 +45,7 @@ column_names = [
     ]
 
 
-class PersonTreeFrame(gtk.Frame):
+class PersonTreeFrame(TreeFrameBase):
     
     __gproperties__ = {}
 
@@ -55,7 +56,7 @@ class PersonTreeFrame(gtk.Frame):
 
 
     def __init__(self,dbstate):
-	gtk.Frame.__init__(self)
+	TreeFrameBase.__init__(self)
 
         self._dbstate = dbstate
         self._selection = None
