@@ -130,13 +130,9 @@ class PersonPreviewFrame(gtk.Frame):
                 escape(short(psrc.get_title())))
 
         return s
-            
-    def set_object_from_id(self,id):
-        try:
-            person = self._dbstate.db.get_person_from_gramps_id(id)
-            if not person:
-                return
 
+    def set_object(self,person):
+        try:
             image_list = person.get_media_list()
             if image_list:
                 mobj = self._dbstate.db.get_object_from_handle(image_list[0].ref)
@@ -151,6 +147,12 @@ class PersonPreviewFrame(gtk.Frame):
         except:
             log.warn("Failed to generate preview for person", exc_info=True)
             self.clear_object()
+
+    def set_object_from_id(self,id):
+        person = self._dbstate.db.get_person_from_gramps_id(id)
+        if person:
+            self.set_object(person)
+
 
     def clear_object(self):
         self._image.set_from_file(os.path.join(const.rootDir,"person.svg"))

@@ -355,27 +355,23 @@ class EditFamily(DisplayState.ManagedWindow):
         self.load_parent(handle, self.mbox, self.mbirth,
                          self.mdeath, self.mbutton)
 
-    def on_change_mother(self, selector_window, select_result):
-        print select_result
-        if select_result.is_person():
+    def on_change_mother(self, selector_window, obj):
+        if obj.__class__ == RelLib.Person:
             try:
-                gid = select_result.get_gramps_id()
-                person = self.dbstate.db.get_person_from_gramps_id(gid)
+                person = obj
                 self.family.set_mother_handle(person.get_handle()) 
                 self.update_mother(person.get_handle())                    
             except:
                 log.warn(
                     "Failed to update mother: \n"
-                    "gramps_id returned from selector was: %s\n"
-                    "person returned from get_person_from_gramps_id: %s"
-                    % (select_result.get_gramps_id(),
-                       repr(self.dbstate.db.get_person_from_gramps_id(
-                    select_result.get_gramps_id()))))
+                    "obj returned from selector was: %s\n"
+                    % (repr(obj),))
                 raise
         else:
             log.warn(
-                "Object selector returned a result of type = %s, it should "
-                "have been of type PERSON." % (str(select_result.get_object_type())))
+                "Object selector returned obj.__class__ = %s, it should "
+                "have been of type %s." % (obj.__class__.__name__,
+                                           RelLib.Person.__name__))
             
         selector_window.close()
             
@@ -408,24 +404,23 @@ class EditFamily(DisplayState.ManagedWindow):
             selector.connect('add-object',self.on_change_mother)
             
 
-    def on_change_father(self, selector_window, select_result):
-        if select_result.is_person():
+    def on_change_father(self, selector_window, obj):
+        if  obj.__class__ == RelLib.Person:
             try:
-                gid = select_result.get_gramps_id()
-                person = self.dbstate.db.get_person_from_gramps_id(gid)
+                person = obj
                 self.family.set_father_handle(person.get_handle()) 
                 self.update_father(person.get_handle())                    
             except:
                 log.warn("Failed to update father: \n"
-                         "gramps_id returned from selector was: %s\n"
-                         "person returned from get_person_from_gramps_id: %s"
-                         % (select_result.get_gramps_id(),
-                            repr(self.dbstate.db.get_person_from_gramps_id(
-                                    select_result.get_gramps_id()))))
+                         "obj returned from selector was: %s\n"
+                         % (repr(obj),))                
                 raise
+            
         else:
-            log.warn("Object selector returned a result of type = %s, it should "
-                     "have been of type PERSON." % (str(select_result.get_object_type())))
+            log.warn(
+                "Object selector returned obj.__class__ = %s, it should "
+                "have been of type %s." % (obj.__class__.__name__,
+                                           RelLib.Person.__name__))
             
         selector_window.close()
 

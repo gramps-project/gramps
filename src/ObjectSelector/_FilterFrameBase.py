@@ -33,7 +33,10 @@ class FilterFrameBase(gtk.Frame):
     __gsignals__ = {
         'apply-filter': (gobject.SIGNAL_RUN_LAST,
                          gobject.TYPE_NONE,
-                         (gobject.TYPE_PYOBJECT,))
+                         (gobject.TYPE_PYOBJECT,)),
+        'clear-filter': (gobject.SIGNAL_RUN_LAST,
+                         gobject.TYPE_NONE,
+                         ())
         }
 
     __default_border_width = 5
@@ -56,16 +59,23 @@ class FilterFrameBase(gtk.Frame):
         self._control_col = 2
         
 
-        # Apply
+        # Apply / Clear
 
         apply_button = gtk.Button(stock=gtk.STOCK_APPLY)
         apply_button.connect('clicked',self.on_apply)
+        clear_button = gtk.Button(stock=gtk.STOCK_CLEAR)
+        clear_button.connect('clicked',self.on_clear)
+
+        button_box = gtk.HBox()
+        button_box.pack_start(apply_button,False,False)
+        button_box.pack_start(clear_button,False,False)
+        
 
         # Outer box
 
         outer_box = gtk.VBox()
         outer_box.pack_start(self._table,True,True)
-        outer_box.pack_start(apply_button,False,False)
+        outer_box.pack_start(button_box,False,False)
         outer_box.set_border_width(self.__class__.__default_border_width/2)
         outer_box.set_spacing(self.__class__.__default_border_width/2)
         
@@ -83,7 +93,12 @@ class FilterFrameBase(gtk.Frame):
         """Build a GenericFilter object from the settings in the filter controls and
         emit a 'apply-filter' signal with the GenericFilter object as the parameter."""
         
-        pass
+        raise NotImplementedError("subclass of FilterFrameBase must implement on_apply")
+
+    def on_clear(self,button):
+        """Clear all the filter widgets and  emit a 'clear-filter' signal."""
+        
+        raise NotImplementedError("subclass of FilterFrameBase must implement on_apply")
     
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(FilterFrameBase)

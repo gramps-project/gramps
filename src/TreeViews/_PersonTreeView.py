@@ -1,5 +1,6 @@
 
 from gettext import gettext as _
+import cgi
 
 import gtk
 
@@ -7,6 +8,8 @@ from Models import \
      PersonTreeModel, PersonListModel, PersonFilterModel
 
 from NameDisplay import displayer
+from RelLib import Event
+import DateHandler
 import Utils
 
 display_given = displayer.display_given
@@ -66,21 +69,24 @@ class PersonTreeView(gtk.TreeView):
 
     def _object_id(self, column, cell, model, iter, user_data=None):
         (o,rowref) = model.get_value(iter, 0)
-        if len(rowref) > 1:
+        if ( len(rowref) > 1 or model.is_list() )and o is not None:
             cell.set_property('text', o.get_gramps_id())
         else:
             cell.set_property('text', "")
 
     def _family_name(self, column, cell, model, iter, user_data=None):
         (o,rowref) = model.get_value(iter, 0)
-        if len(rowref) > 1:
-            cell.set_property('text', displayer(o))
+        if (len(rowref) > 1 or model.is_list()) and o is not None:
+            cell.set_property('text', "%s, %s"% (o.get_primary_name().surname,
+                                                 display_given(o)))
+        elif o is not None:
+            cell.set_property('text',o.get_primary_name().surname)
         else:
-            cell.set_property('text',o.primary_name.surname)
+            cell.set_property('text','')
         
     def _gender(self, column, cell, model, iter, user_data=None):
         (o,rowref) = model.get_value(iter, 0)
-        if len(rowref) > 1:
+        if (len(rowref) > 1 or model.is_list()) and o is not None:
             cell.set_property('text', Utils.gender[o.gender])
         else:
             cell.set_property('text', "")
@@ -88,62 +94,62 @@ class PersonTreeView(gtk.TreeView):
     def _birth_date(self, column, cell, model, iter, user_data=None):
         (o,rowref) = model.get_value(iter, 0)
         cell_value = ''
-        if len(rowref) > 1:
+        if (len(rowref) > 1 or model.is_list()) and o is not None:
             b = o.get_birth_ref()
             if b:
-                birth = self.db.get_event_from_handle(b.ref)
+                birth = self._db.get_event_from_handle(b.ref)
                 date_str = DateHandler.get_date(birth)
                 if date_str != "":
                     cell_value = cgi.escape(date_str)
             else:
                 for er in o.get_event_ref_list():
-                    event = self.db.get_event_from_handle(er.ref)
+                    event = self._db.get_event_from_handle(er.ref)
                     etype = event.get_type()[0]
                     date_str = DateHandler.get_date(event)
                     if (etype in [Event.BAPTISM, Event.CHRISTEN]
                         and date_str != ""):
                         return 
                     cell_value = "<i>" + cgi.escape(date_str) + "</i>"
-        cell.set_property('text', cell_value)
+        cell.set_property('markup', cell_value)
 
     def _birth_place(self, column, cell, model, iter, user_data=None):
         (o,rowref) = model.get_value(iter, 0)
-        if len(rowref) > 1:
+        if (len(rowref) > 1 or model.is_list()) and o is not None:
             cell.set_property('text', "")
         else:
             cell.set_property('text', "")
 
     def _death_date(self, column, cell, model, iter, user_data=None):
         (o,rowref) = model.get_value(iter, 0)
-        if len(rowref) > 1:
+        if (len(rowref) > 1 or model.is_list()) and o is not None:
             cell.set_property('text', "")
         else:
             cell.set_property('text', "")
 
     def _death_place(self, column, cell, model, iter, user_data=None):
         (o,rowref) = model.get_value(iter, 0)
-        if len(rowref) > 1:
+        if (len(rowref) > 1 or model.is_list()) and o is not None:
             cell.set_property('text', "")
         else:
             cell.set_property('text', "")
 
     def _last_change(self, column, cell, model, iter, user_data=None):
         (o,rowref) = model.get_value(iter, 0)
-        if len(rowref) > 1:
+        if (len(rowref) > 1 or model.is_list()) and o is not None:
             cell.set_property('text', "")
         else:
             cell.set_property('text', "")
 
     def _death_cause(self, column, cell, model, iter, user_data=None):
         (o,rowref) = model.get_value(iter, 0)
-        if len(rowref) > 1:
+        if (len(rowref) > 1 or model.is_list()) and o is not None:
             cell.set_property('text', "")
         else:
             cell.set_property('text', "")
 
     def _spouce(self, column, cell, model, iter, user_data=None):
         (o,rowref) = model.get_value(iter, 0)
-        if len(rowref) > 1:
+        if (len(rowref) > 1 or model.is_list()) and o is not None:
             cell.set_property('text', "")
         else:
             cell.set_property('text', "")
