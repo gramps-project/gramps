@@ -142,7 +142,7 @@ class EditSource:
             Utils.bold_label(self.gallery_label)
 
         self.gladeif.connect('sourceEditor','delete_event',self.on_delete_event)
-        self.gladeif.connect('button90','clicked',self.close)
+        self.gladeif.connect('cancel','clicked',self.close)
         self.gladeif.connect('ok','clicked',self.on_source_apply_clicked)
         self.gladeif.connect('button166','clicked',self.on_help_clicked)
         self.gladeif.connect('notebook2','switch_page',self.on_switch_page)

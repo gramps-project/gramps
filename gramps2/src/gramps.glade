@@ -4735,7 +4735,7 @@ Other</property>
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
-	    <widget class="GtkButton" id="button90">
+	    <widget class="GtkButton" id="cancel">
 	      <property name="visible">True</property>
 	      <property name="tooltip" translatable="yes">Abandon changes and close window</property>
 	      <property name="can_default">True</property>

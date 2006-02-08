@@ -1282,6 +1282,7 @@ class GedcomParser:
         filename = ""
         title = "no title"
         note = ""
+
         while True:
             matches = self.get_next()
             if int(matches[0]) < level:

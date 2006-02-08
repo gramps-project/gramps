@@ -355,22 +355,6 @@ class FamilyGroup(Report.Report):
     def dump_child(self,index,person_handle):
 
         person = self.database.get_person_from_handle(person_handle)
-        self.doc.start_row()
-        self.doc.start_cell('FGR-TextChild1')
-        self.doc.start_paragraph('FGR-ChildText')
-        if person.get_gender() == RelLib.Person.MALE:
-            self.doc.write_text("%dM" % index)
-        else:
-            self.doc.write_text("%dF" % index)
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-        self.doc.start_cell('FGR-ChildName',3)
-        self.doc.start_paragraph('FGR-ChildText')
-        self.doc.write_text(person.get_primary_name().get_regular_name())
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-        self.doc.end_row()
-
         families = len(person.get_family_handle_list())
         birth_handle = person.get_birth_handle()
         if birth_handle:
@@ -382,18 +366,55 @@ class FamilyGroup(Report.Report):
             death = self.database.get_event_from_handle(death_handle)
         else:
             death = None
+        
+        spouse_count = 0;    
+        for family_handle in person.get_family_handle_list():
+            family = self.database.get_family_from_handle(family_handle)
+            spouse_id = None
+            if person_handle == family.get_father_handle():
+                spouse_id = family.get_mother_handle()
+            else:
+                spouse_id = family.get_father_handle()
+            if spouse_id:
+                spouse_count = spouse_count + 1
+
+        self.doc.start_row()
+        if spouse_count != 0 or self.missingInfo or death != None or birth != None:
+            self.doc.start_cell('FGR-TextChild1')
+        else:
+            self.doc.start_cell('FGR-TextChild2')
+        self.doc.start_paragraph('FGR-ChildText')
+        if person.get_gender() == RelLib.Person.MALE:
+            self.doc.write_text("%dM" % index)
+        elif person.get_gender() == RelLib.Person.FEMALE:
+            self.doc.write_text("%dF" % index)
+        else:
+            self.doc.write_text("%dU" % index)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.start_cell('FGR-ChildName',3)
+        self.doc.start_paragraph('FGR-ChildText')
+        self.doc.write_text(person.get_primary_name().get_regular_name())
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
 
         if self.missingInfo or birth != None:
-           self.dump_child_event('FGR-TextChild1',_('Birth'),birth)
+            if spouse_count != 0 or self.missingInfo or death != None:
+                self.dump_child_event('FGR-TextChild1',_('Birth'),birth)
+            else:
+                self.dump_child_event('FGR-TextChild2',_('Birth'),birth)
+                
 
         if self.missingInfo or death != None:
-            if families == 0:
+            if spouse_count == 0:
                 self.dump_child_event('FGR-TextChild2',_('Death'),death)
             else:
                 self.dump_child_event('FGR-TextChild1',_('Death'),death)
             
-        index = 1
+        index = 0
         for family_handle in person.get_family_handle_list():
+            index = index + 1
             family = self.database.get_family_from_handle(family_handle)
             for event_handle in family.get_event_list():
                 if event_handle:
@@ -404,12 +425,13 @@ class FamilyGroup(Report.Report):
             else:
                 m = None
 
+            spouse_id = None
             if person_handle == family.get_father_handle():
                 spouse_id = family.get_mother_handle()
             else:
                 spouse_id = family.get_father_handle()
 	    
-            if self.missingInfo or spouse_id:
+            if spouse_id:
                 self.doc.start_row()
                 self.doc.start_cell('FGR-TextChild1')
                 self.doc.start_paragraph('FGR-Normal')
@@ -441,7 +463,7 @@ class FamilyGroup(Report.Report):
                 self.doc.end_cell()
                 self.doc.end_row()
 
-            if self.missingInfo or m:
+            if m:
                 if index == families:
                     self.dump_child_event('FGR-TextChild2',_("Married"),m)
                 else:
