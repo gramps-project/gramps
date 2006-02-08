@@ -1,4 +1,9 @@
 2006-02-08 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+        * src/ObjectSelector/_FilterFrameBase.py,
+	 src/ObjectSelector/_ObjectSelectorWindow.py,
+	 src/ObjectSelector/_PersonFrame.py: fixed add button in object selector.
+
+2006-02-08 Richard Taylor <rjt-gramps@thegrindstone.me.uk>
         * src/EditFamily.py, src/Models/_FastFilterModel.py,
 	 src/Models/_FastModel.py, src/ObjectSelector/_FilterFrameBase.py,
 	 src/ObjectSelector/_ObjectFrameBase.py, src/ObjectSelector/_ObjectSelectorWindow.py,

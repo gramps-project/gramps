@@ -42,7 +42,7 @@ class _ObjectTypeWidgets(object):
     def __init__(self):
         self.frame = None
         self.sel_label = None
-        self.selected_id = None
+        self.selected_obj = None
         self.new_button = None
 
     def show(self):
@@ -55,8 +55,8 @@ class _ObjectTypeWidgets(object):
         self.sel_label.hide_all()
         self.new_button.hide()
 
-    def set_selected_id(self,id):
-        self.selected_id = id
+    def set_selected_obj(self,obj):
+        self.selected_obj = obj
 
 OBJECT_LIST = [ObjectTypes.PERSON, ObjectTypes.FAMILY,
                ObjectTypes.SOURCE, ObjectTypes.EVENT,
@@ -217,12 +217,12 @@ class ObjectSelectorWindow(gtk.Window,ManagedWindow):
             # connect signals                
             self._object_frames[object_type].frame.connect(
                 'selection-changed',
-                lambda widget,text,handle,label: label.set_text(text),
+                lambda widget,text,selected_object,label: label.set_text(text),
                 self._object_frames[object_type].sel_label)
 
             self._object_frames[object_type].frame.connect(
                 'selection-changed',
-                lambda widget,text,handle,current_object: current_object.set_selected_id(handle),
+                lambda widget,text,selected_object,current_object: current_object.set_selected_obj(selected_object),
                 self._object_frames[object_type])
 
             self._object_frames[object_type].frame.connect(
@@ -310,14 +310,17 @@ class ObjectSelectorWindow(gtk.Window,ManagedWindow):
         self._current_object_type = selected_object_type
 
         # Set the add button sensitivity
-        if self._object_frames[selected_object_type].selected_id:
+        if self._object_frames[selected_object_type].selected_obj:
             self._add_button.set_sensitive(True)
         else:
             self._add_button.set_sensitive(False)
             
 
     def on_add(self,widget=None,object=None):
-        self.emit('add-object',object)
+        if object is None:
+            self.emit('add-object',self._object_frames[self._current_object_type].selected_obj)
+        else:
+            self.emit('add-object',object)
         
     def on_selection_changed(self,widget,text,handle):
         if handle:
