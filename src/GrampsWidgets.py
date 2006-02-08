@@ -185,3 +185,48 @@ class TypeCellRenderer(gtk.CellRendererCombo):
         self.set_property('model',model)
         self.set_property('text-column',0)
 
+class PrivacyButton:
+
+    def __init__(self,button,obj):
+        self.button = button
+        self.button.connect('toggled',self._on_toggle)
+        self.tooltips = gtk.Tooltips()
+        self.obj = obj
+        self.set_active(obj.get_privacy())
+
+    def set_sensitive(self,val):
+        self.button.set_sensitive(val)
+
+    def set_active(self,val):
+        self.button.set_active(val)
+        self._on_toggle(self.button)
+
+    def get_active(self):
+        return self.button.get_active()
+
+    def _on_toggle(self,obj):
+        child = obj.child
+        if child:
+            obj.remove(child)
+        image = gtk.Image()
+        if obj.get_active():
+            image.set_from_icon_name('stock_lock',gtk.ICON_SIZE_BUTTON)
+            self.tooltips.set_tip(obj,_('Record is private'))
+            self.obj.set_privacy(True)
+        else:
+            image.set_from_icon_name('stock_lock-open',gtk.ICON_SIZE_BUTTON)
+            self.tooltips.set_tip(obj,_('Record is public'))
+            self.obj.set_privacy(False)
+        image.show()
+        obj.add(image)
+        
+class MonitoredEntry:
+
+    def __init__(self,obj,set_val,get_val,read_only=False):
+        self.obj = obj
+        self.set_val = set_val
+        self.get_val = get_val
+
+        self.obj.set_text(get_val())
+        self.obj.connect('changed', lambda x: self.set_val(unicode(x.get_text())))
+        self.obj.set_editable(not read_only)

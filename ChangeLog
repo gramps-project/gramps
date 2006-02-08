@@ -1,3 +1,13 @@
+2006-02-07  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels.py: gobject.TYPE_STRING -> str
+	* src/EditFamily.py: privacy widget
+	* src/EditPerson.py: privacy widget
+	* src/EventEdit.py: save support
+	* src/GrampsWidgets.py: Add PrivacyButton support
+	* src/PageView.py: make sure active before updating rows
+	* src/edit_person.glade: privacy icons
+	* src/gramps.glade: privacy icons
+
 2006-02-06  Don Allingham  <don@gramps-project.org>
 	* src/SourceView.py: fix source query dialog, fix source deleting
 	* src/ansel_utf8.py: fix unicode conversion

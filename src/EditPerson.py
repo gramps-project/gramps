@@ -57,6 +57,7 @@ import NameDisplay
 import NameEdit
 import DisplayState
 import GrampsDisplay
+import GrampsWidgets
 from DisplayTabs import *
 
 from WindowUtils import GladeIf
@@ -144,8 +145,9 @@ class EditPerson(DisplayState.ManagedWindow):
         
         self.gender = self.top.get_widget('gender')
         self.gender.set_sensitive(mod)
-        self.private = self.top.get_widget('private')
-        self.private.set_sensitive(mod)
+        self.private = GrampsWidgets.PrivacyButton(self.top.get_widget('private'),
+                                                   self.person)
+
         self.ntype_field = self.top.get_widget("ntype")
         self.ntype_field.set_sensitive(mod)
 
@@ -221,8 +223,6 @@ class EditPerson(DisplayState.ManagedWindow):
         self.gladeif.connect("given_name", "focus_out_event",
                              self.on_given_focus_out_event)
         self.gladeif.connect("button177", "clicked", self.on_edit_name_clicked)
-
-        self.private.set_active(self.person.get_privacy())
 
         self.eventbox.connect('button-press-event',self.image_button_press)
 

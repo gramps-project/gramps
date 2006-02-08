@@ -126,7 +126,6 @@ class BaseModel(gtk.GenericTreeModel):
 
     def delete_row_by_handle(self,handle):
         index = self.indexlist[handle]
-
         self.indexlist = {}
         self.datalist = []
         i = 0
@@ -157,7 +156,7 @@ class BaseModel(gtk.GenericTreeModel):
     def on_get_column_type(self,index):
         if index == self.tooltip_column:
             return object
-        return gobject.TYPE_STRING
+        return str
 
     def on_get_iter(self, path):
         try:

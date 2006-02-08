@@ -448,16 +448,19 @@ class ListView(PageView):
             self.dirty = True
 
     def row_add(self,handle_list):
-        for handle in handle_list:
-            self.model.add_row_by_handle(handle)
+        if self.active:
+            for handle in handle_list:
+                self.model.add_row_by_handle(handle)
 
     def row_update(self,handle_list):
-        for handle in handle_list:
-            self.model.update_row_by_handle(handle)
+        if self.active:
+            for handle in handle_list:
+                self.model.update_row_by_handle(handle)
 
     def row_delete(self,handle_list):
-        for handle in handle_list:
-            self.model.delete_row_by_handle(handle)
+        if self.active:
+            for handle in handle_list:
+                self.model.delete_row_by_handle(handle)
 
     def define_actions(self):
         """

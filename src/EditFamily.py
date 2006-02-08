@@ -276,15 +276,12 @@ class EditFamily(DisplayState.ManagedWindow):
         self.ok.connect('clicked', self.apply_changes)
 
     def _setup_monitored_values(self):
-        private= self.top.get_widget('private')
-        private.set_active(self.family.get_privacy())
-        private.connect('toggled', self.privacy_toggled)
+        self.private= GrampsWidgets.PrivacyButton(self.top.get_widget('private'),
+                                                  self.family)
                              
-        gid = self.top.get_widget('gid')
-        if self.family.get_gramps_id():
-            gid.set_text(self.family.get_gramps_id())
-        gid.connect('changed',
-                    lambda x: self.family.set_gramps_id(x.get_text()))
+        self.gid = GrampsWidgets.MonitoredEntry(self.top.get_widget('gid'),
+                                                self.family.set_gramps_id,
+                                                self.family.get_gramps_id)
         
         rel_types = dict(Utils.family_relations)
 
@@ -349,19 +346,6 @@ class EditFamily(DisplayState.ManagedWindow):
         self.notebook.insert_page(self.gallery_tab)
         self.notebook.set_tab_label(self.gallery_tab,
                                     self.gallery_tab.get_tab_widget())
-
-    def privacy_toggled(self,obj):
-        for o in obj.get_children():
-            obj.remove(o)
-        img = gtk.Image()
-        if obj.get_active():
-            img.set_from_file(os.path.join(const.rootDir,"locked.png"))
-            self.family.set_privacy(True)
-        else:
-            img.set_from_file(os.path.join(const.rootDir,"unlocked.png"))
-            self.family.set_privacy(False)
-        img.show()
-        obj.add(img)
 
     def update_father(self,handle):
         self.load_parent(handle, self.fbox, self.fbirth,
