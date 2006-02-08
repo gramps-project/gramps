@@ -46,7 +46,7 @@ class PersonFrame(ObjectFrameBase):
         'selection-changed'  : (gobject.SIGNAL_RUN_LAST,
                                 gobject.TYPE_NONE,
                                 (gobject.TYPE_STRING,
-                                 gobject.TYPE_STRING)),
+                                 gobject.TYPE_PYOBJECT)),
         
         'add-object': (gobject.SIGNAL_RUN_LAST,
                        gobject.TYPE_NONE,
@@ -74,16 +74,15 @@ class PersonFrame(ObjectFrameBase):
                 (person,rowref) = model.get_value(iter,0)
                 if len(rowref) > 1 or model.is_list():
                     if person:
-                        self.emit('selection-changed', "%s [%s]" % (
-                            display_name(person),
-                            person.get_gramps_id()),
-                                  person.get_handle())
+                        self.emit('selection-changed', "%s [%s]" % (display_name(person),
+                                                                    person.get_gramps_id()),
+                                  person)
                     else:
-                        self.emit('selection-changed',"No Selection","")                    
+                        self.emit('selection-changed',"No Selection",None)
                 else:
-                    self.emit('selection-changed',"No Selection","")                    
+                    self.emit('selection-changed',"No Selection",None)                    
             else:
-                self.emit('selection-changed',"No Selection","")
+                self.emit('selection-changed',"No Selection",None)
             
 
         self._tree_frame.get_selection().connect('changed',handle_selection)                

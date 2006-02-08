@@ -66,7 +66,8 @@ class FilterFrameBase(gtk.Frame):
         clear_button = gtk.Button(stock=gtk.STOCK_CLEAR)
         clear_button.connect('clicked',self.on_clear)
 
-        button_box = gtk.HBox()
+        button_box = gtk.HButtonBox()
+        button_box.set_layout(gtk.BUTTONBOX_SPREAD)
         button_box.pack_start(apply_button,False,False)
         button_box.pack_start(clear_button,False,False)
         
