@@ -20,17 +20,17 @@
 
 # $Id$
 
+import gtk
 
-class FilterSpecBase(object):
+class PreviewFrameBase(gtk.Frame):
+    
+    __gproperties__ = {}
 
-    def __init__(self):
-        self._gramps_id = None
+    __gsignals__ = {
+        }
 
-    def set_gramps_id(self,gramps_id):
-        self._gramps_id = gramps_id
+    def __init__(self,label):
+        gtk.Frame.__init__(self,label)
 
-    def get_gramps_id(self):
-        return self._gramps_id
-
-    def include_gramps_id(self):
-        return self._gramps_id is not None
+    def set_object(self,person):
+        raise NotImplementedError("Subclasses of PreviewFrameBase must implement set_object")

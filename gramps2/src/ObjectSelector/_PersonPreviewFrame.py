@@ -34,13 +34,15 @@ import const
 from ToolTips import PersonTip
 import DateHandler
 
+from _PreviewFrameBase import PreviewFrameBase
+
 def short(val,size=60):
     if len(val) > size:
         return "%s..." % val[0:size]
     else:
         return val
 
-class PersonPreviewFrame(gtk.Frame):
+class PersonPreviewFrame(PreviewFrameBase):
     
     __gproperties__ = {}
 
@@ -50,7 +52,7 @@ class PersonPreviewFrame(gtk.Frame):
     __default_border_width = 5
 
     def __init__(self,dbstate,label="Preview"):
-	gtk.Frame.__init__(self,label)
+	PreviewFrameBase.__init__(self,label)
 
         self._dbstate = dbstate
         

@@ -29,7 +29,9 @@ log = getLogger(".ObjectSelector")
 import ImgManip
 import const
 
-class FamilyPreviewFrame(gtk.Frame):
+from _PreviewFrameBase import PreviewFrameBase
+
+class FamilyPreviewFrame(PreviewFrameBase):
     
     __gproperties__ = {}
 
@@ -39,7 +41,7 @@ class FamilyPreviewFrame(gtk.Frame):
     __default_border_width = 5
 
     def __init__(self,dbstate,label="Preview"):
-	gtk.Frame.__init__(self,label)
+	PreviewFrameBase.__init__(self,label)
 
         self._dbstate = dbstate
         

@@ -20,6 +20,79 @@
 
 # $Id$
 
+"""
+ObjectSelector provides a collection of widgets that can be used to select
+any of the Primary objects in the database.
+
+The class hierachy is currently this:
+
+    gtk.Window
+       ObjectSelectorWindow
+           PersonSelector
+
+    gtk.Frame
+        FilterFrameBase
+            PersonFilterFrame
+            FamilyFilterFrame
+        ObjectFrameBase
+            FamilyFrame
+            PersonFrame
+        PreviewFrameBase
+            FamilyPreviewFrame
+            PersonPreviewFrame
+        TreeFrameBase
+            FamilyTreeFrame
+            PersonTreeFrame
+
+    FilterSpecBase 
+        PersonFilterSpec
+
+    ObjectFrameFactory
+
+To implement a selector for a new Primary RelLib type you need to implement a new
+subclass of each of:
+
+       FilterFrameBase
+       ObjectFrameBase
+       PreviewFrameBase
+       TreeFrameBase
+
+You must then extend ObjectFrameFactory so that it know how to create the new selector
+type. The new type should also be added to the OBJECT_LIST in _ObjectSelectorWindow.py
+so that it shows up in the selector. A subclass of ObjectSelectorWindow can be added to
+this file as a convienience for starting a selector for just the new type.
+
+At runtime Object selector is constructed from these widgets in the following structure:
+
+
+-------------------------------------------------------------------------------
+| ObjectSelectorWindow                                                        |
+|
+| --------------------------------------------------------------------------- |
+| | Subclass of ObjectFrameBase                                             | |
+| |                                                                         | |
+| | -----------------------------  ---------------------------------------- | |
+| | | Subclass of TreeFrameBase |  | Subclass of PreviewFrameBase         | | |
+| | |                           |  |                                      | | |
+| | |                           |  |                                      | | |
+| | |                           |  |                                      | | |
+| | |                           |  |                                      | | |
+| | |                           |  |                                      | | |
+| | |                           |  |                                      | | |
+| | |                           |  ---------------------------------------- | |
+| | |                           |  ---------------------------------------- | |
+| | |                           |  | Subclass of FilterFrameBase          | | |
+| | |                           |  |                                      | | |
+| | |                           |  |                                      | | |
+| | |                           |  |                                      | | |
+| | |                           |  |                                      | | |
+| | |                           |  |                                      | | |
+| | |                           |  |                                      | | |
+| | -----------------------------  ---------------------------------------- | |
+| --------------------------------------------------------------------------- |
+-------------------------------------------------------------------------------
+
+"""
 from gettext import gettext as _
 
 from _ObjectSelectorWindow import ObjectSelectorWindow
