@@ -484,6 +484,7 @@ class PersonView(PageView.PersonNavView):
                          pickle.dumps(selected_ids))
 
     def person_added(self,handle_list):
+        self.model.clear_cache()
         for node in handle_list:
             person = self.dbstate.db.get_person_from_handle(node)
             top = person.get_primary_name().get_group_name()
@@ -500,25 +501,26 @@ class PersonView(PageView.PersonNavView):
             self.model.row_inserted(path,pnode)
 
     def person_removed(self,handle_list):
-        for node in handle_list:
-            person = self.dbstate.db.get_person_from_handle(node)
-            top = person.get_primary_name().get_group_name()
-            mylist = self.model.sname_sub.get(top,[])
-            self.model.calculate_data()
-            if mylist:
-                try:
-                    path = self.model.on_get_path(node)
-                    self.model.row_deleted(path)
-                    print "delete",path
-                    if len(mylist) == 1:
-                        path = self.model.on_get_path(top)
-                        print "delete",path
-                        self.model.row_deleted(path)
-                except KeyError:
-                    pass
-            self.model.assign_data()
+        self.model.clear_cache()
+        self.build_tree()
+#         for node in handle_list:
+#             person = self.dbstate.db.get_person_from_handle(node)
+#             top = person.get_primary_name().get_group_name()
+#             mylist = self.model.sname_sub.get(top,[])
+#             self.model.calculate_data()
+#             if mylist:
+#                 try:
+#                     path = self.model.on_get_path(node)
+#                     self.model.row_deleted(path)
+#                     if len(mylist) == 1:
+#                         path = self.model.on_get_path(top)
+#                         self.model.row_deleted(path)
+#                 except KeyError:
+#                     pass
+#             self.model.assign_data()
             
     def person_updated(self,handle_list):
+        self.model.clear_cache()
         for node in handle_list:
             person = self.dbstate.db.get_person_from_handle(node)
             try:
@@ -577,9 +579,7 @@ class PersonView(PageView.PersonNavView):
                 path = self.model.on_get_path(node)
                 pnode = self.model.get_iter(path)
                 self.model.row_inserted(path,pnode)
-                
         self.goto_active_person()
-
 
     def get_selected_objects(self):
         (mode,paths) = self.selection.get_selected_rows()

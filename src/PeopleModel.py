@@ -170,6 +170,9 @@ class PeopleModel(gtk.GenericTreeModel):
         self.temp_top_path2iter = locale_sort(self.temp_sname_sub.keys())
         for name in self.temp_top_path2iter:
             self.build_sub_entry(name)
+
+    def clear_cache(self):
+        self.prev_handle = None
         
     def build_sub_entry(self,name):
         self.prev_handle = None
