@@ -775,6 +775,13 @@ class GedcomWriter:
 
             if source.get_note():
                 self.write_long_text("NOTE",1,self.cnvtxt(source.get_note()))
+            datamap = source.get_data_map()
+            if datamap:
+                self.writeln("1 DATA")
+                for (key,value) in datamap.items():
+                    self.write_long_text("NOTE",2,
+                                         self.cnvtxt('%s: %s' % (key,value)))
+                
             index = index + 1
             self.write_change(1,source.get_change_time())
             
