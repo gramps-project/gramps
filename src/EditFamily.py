@@ -173,6 +173,26 @@ class ChildEmbedList(EmbeddedList):
         # Connect this to the method used to add a new child.
         #selector.connect('add-object',self.on_add_child)
         
+        selector.connect('add-object',self.on_change_child)
+
+    def on_change_child(self, selector_window, obj):
+        if obj.__class__ == RelLib.Person:
+            try:
+                person = obj
+                self.family.add_child_handle(person.get_handle())
+                self.rebuild()
+            except:
+                log.warn(
+                    "Failed to update child: \n"
+                    "obj returned from selector was: %s\n"
+                    % (repr(obj),))
+                raise
+        else:
+            log.warn(
+                "Object selector returned obj.__class__ = %s, it should "
+                "have been of type %s." % (obj.__class__.__name__,
+                                           RelLib.Person.__name__))
+        selector_window.close()
 
     def del_button_clicked(self,obj):
         handle = self.get_selected()
@@ -374,6 +394,7 @@ class EditFamily(DisplayState.ManagedWindow):
                                            RelLib.Person.__name__))
             
         selector_window.close()
+
             
     def mother_clicked(self,obj):
         handle = self.family.get_mother_handle()
@@ -400,7 +421,6 @@ class EditFamily(DisplayState.ManagedWindow):
 
             selector = PersonSelector(self.dbstate,self.uistate,
                                       self.track,filter_spec=filter_spec)
-            selector.set_transient_for(self.window)
             selector.connect('add-object',self.on_change_mother)
             
 
@@ -448,7 +468,6 @@ class EditFamily(DisplayState.ManagedWindow):
                 
             selector = PersonSelector(self.dbstate,self.uistate,
                                       self.track,filter_spec=filter_spec)
-            selector.set_transient_for(self.window)
             selector.connect('add-object',self.on_change_father)
 
 

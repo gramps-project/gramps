@@ -227,7 +227,7 @@ class EditPerson(DisplayState.ManagedWindow):
 
         self._create_tabbed_pages()
         
-        self.given.grab_focus()
+        self.surname.grab_focus()
         self.show()
 
     def _add_page(self,page):

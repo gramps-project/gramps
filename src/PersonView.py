@@ -502,21 +502,22 @@ class PersonView(PageView.PersonNavView):
     def person_removed(self,handle_list):
         for node in handle_list:
             person = self.dbstate.db.get_person_from_handle(node)
-            if not self.model.is_visable(node):
-                continue
             top = person.get_primary_name().get_group_name()
             mylist = self.model.sname_sub.get(top,[])
+            self.model.calculate_data()
             if mylist:
                 try:
                     path = self.model.on_get_path(node)
                     self.model.row_deleted(path)
+                    print "delete",path
                     if len(mylist) == 1:
                         path = self.model.on_get_path(top)
+                        print "delete",path
                         self.model.row_deleted(path)
                 except KeyError:
                     pass
-        self.model.rebuild_data()
-
+            self.model.assign_data()
+            
     def person_updated(self,handle_list):
         for node in handle_list:
             person = self.dbstate.db.get_person_from_handle(node)
