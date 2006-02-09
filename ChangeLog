@@ -1,3 +1,7 @@
+2006-02-09  Alexandre Prokoudine  <alexandre.prokoudine@gmail.com>
+	* src/data/gramps.desktop: Improve Russian string, add Office
+	category.
+
 2006-02-08  Don Allingham  <don@gramps-project.org>
 	* src/PeopleModel.py: clear data cache
 	* src/EditFamily.py: set focus on surname
