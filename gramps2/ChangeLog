@@ -1,3 +1,7 @@
+2006-02-09  Alexandre Prokoudine  <alexandre.prokoudine@gmail.com>
+	* src/data/gramps.desktop: Improve Russian string, add Office
+	category.
+
 2006-02-08  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/Leak.py (display): Catch exception coming from
 	trying to call __repr__ on a closed db.DB.
