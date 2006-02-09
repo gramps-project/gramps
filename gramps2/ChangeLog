@@ -1,6 +1,7 @@
 2006-02-08  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/Leak.py (display): Catch exception coming from
 	trying to call __repr__ on a closed db.DB.
+	* src/gramps.glade: Correct +/- tooltips for Data tab in Source Editor.
 
 2006-01-26  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/plugins/FamilyGroup.py: correctly put borders on the 
