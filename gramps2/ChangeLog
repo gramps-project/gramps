@@ -4,6 +4,9 @@
 	* src/gramps.glade: Correct +/- tooltips for Data tab in Source Editor.
 	* src/WriteGedcom.py (write_source_ref): Write confidence level
 	(the QUAY tag) of the source reference into GEDCOM.
+	* src/QuestionDialog.py (MissingMediaDialog): Catch delete event
+	and warn the user.
+	* src/Utils.py (ProgressMeter) Catch delete event and warn the user.
 
 2006-01-26  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/plugins/FamilyGroup.py: correctly put borders on the 

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -216,9 +216,11 @@ class OkDialog:
 
 class MissingMediaDialog:
     def __init__(self,msg1,msg2,task1,task2,task3,parent=None):
-        self.xml = gtk.glade.XML(const.errdialogsFile,"missmediadialog","gramps")
+        self.xml = gtk.glade.XML(const.errdialogsFile,
+                                 "missmediadialog","gramps")
         self.top = self.xml.get_widget('missmediadialog')
         self.top.set_icon(ICON)
+
         self.task1 = task1
         self.task2 = task2
         self.task3 = task3
@@ -236,7 +238,15 @@ class MissingMediaDialog:
         self.top.show()
         if parent:
             self.top.set_transient_for(parent)
-        response = self.top.run()
+        self.top.connect('delete_event',self.warn)
+        response = gtk.RESPONSE_DELETE_EVENT
+
+        # Need some magic here, because an attempt to close the dialog
+        # with the X button not only emits the 'delete_event' signal
+        # but also exits with the RESPONSE_DELETE_EVENT
+        while response == gtk.RESPONSE_DELETE_EVENT:
+            response = self.top.run()
+
         if response == 1:
             self.task1()
         elif response == 2:
@@ -248,3 +258,11 @@ class MissingMediaDialog:
         else:
             self.default_action = 0
         self.top.destroy()
+
+    def warn(self,obj,obj2):
+        WarningDialog(
+            _("Attempt to force closing the dialog"),
+            _("Please do not force closing this important dialog.\n"
+              "Instead select one of the available options"),
+            self.top)
+        return True
