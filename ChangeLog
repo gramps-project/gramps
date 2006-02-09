@@ -1,3 +1,6 @@
+2006-02-09  Jérôme Rapinat  <romjerome@yahoo.fr>
+	* src/data/gramps.desktop: Add French strings.
+
 2006-02-09  Alexandre Prokoudine  <alexandre.prokoudine@gmail.com>
 	* src/data/gramps.desktop: Improve Russian string, add Office
 	category.
