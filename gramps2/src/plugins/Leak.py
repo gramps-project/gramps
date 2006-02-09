@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2005  Donald N. Allingham
+# Copyright (C) 2003-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@ Show uncollected objects in a window.
 #------------------------------------------------------------------------
 import os
 from gettext import gettext as _
+from bsddb.db import DBError
 
 #------------------------------------------------------------------------
 #
@@ -114,10 +115,15 @@ class Leak(Tool.Tool):
         mylist = []
         if len(gc.garbage):
             for each in gc.garbage:
-                mylist.append(str(each))
-            self.ebuf.set_text(_("Uncollected objects:\n\n") + '\n\n'.join(mylist))
+                try:
+                    mylist.append(str(each))
+                except DBError:
+                    mylist.append('db.DB instance at %s' % id(each))
+            self.ebuf.set_text(_("Uncollected objects:\n\n")
+                               + '\n\n'.join(mylist))
         else:
-            self.ebuf.set_text(_("No uncollected objects\n") + str(gc.get_debug()))
+            self.ebuf.set_text(_("No uncollected objects\n")
+                               + str(gc.get_debug()))
 
     def apply_clicked(self,obj):
         self.display()
