@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1208,7 +1208,8 @@ class GedcomWriter:
             self.writeln("%d SOUR @%s@" %
                          (level,self.sid(ref.get_base_handle())))
             if ref.get_page() != "":
-                self.write_long_text("PAGE",level+1,self.cnvtxt(ref.get_page()))
+                self.write_long_text("PAGE",level+1,
+                                     self.cnvtxt(ref.get_page()))
  
             ref_text = ref.get_text()
             if ref_text != "" or not ref.get_date_object().is_empty():
@@ -1217,6 +1218,13 @@ class GedcomWriter:
                     self.write_long_text("TEXT",level+2,self.cnvtxt(ref_text))
                 pfx = "%d DATE" % (level+2)
                 self.print_date(pfx,ref.get_date_object())
+            conf = ref.get_confidence_level()
+            if conf != RelLib.CONF_NORMAL:
+                if conf > 1:
+                    gedcom_conf = conf - 1
+                else:
+                    gedcom_conf = conf
+                self.writeln('%d QUAY %d' % (level+1,gedcom_conf))
         else:
             # We put title, page, and date on the SOUR line.
             # Not using CONC and CONT because GeneWeb does not support these.
