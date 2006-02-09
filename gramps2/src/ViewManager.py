@@ -318,24 +318,24 @@ class ViewManager:
 
         self.actiongroup.add_actions([
             # Name         Stock Icon                 Label
-            ('SaveAs',     gtk.STOCK_SAVE_AS,         '_Save As'),
-            ('Export',     gtk.STOCK_SAVE_AS,         '_Export', "<control>e", None, self.export_data),
-            ('Abandon',    gtk.STOCK_REVERT_TO_SAVED, '_Abandon changes and quit'),
-            ('CmpMerge',   None,                      '_Compare and merge'),
-            ('FastMerge',  None,                      '_Fast merge'),
-            ('ScratchPad', gtk.STOCK_PASTE,           '_ScratchPad', None, None, self.scratchpad),
-            ('Import',     gtk.STOCK_CONVERT,         '_Import', "<control>i", None, self.import_data),
-            ('Reports',    gtk.STOCK_DND_MULTIPLE,    '_Reports', None, None, self.reports_clicked),
-            ('Tools',      gtk.STOCK_EXECUTE,         '_Tools', None, None, self.tools_clicked),
-            ('EditMenu',   None,                      '_Edit'),
-            ('GoMenu',     None,                      '_Go'),
-            ('BookMenu',   None,                      '_Bookmarks'),
-            ('AddBook',    gtk.STOCK_INDEX,           '_Add bookmark', '<control>d', None, self.add_bookmark),
-            ('EditBook',   None,                      '_Edit bookmarks', '<control>b'),
-            ('GoToBook',   gtk.STOCK_JUMP_TO,         '_Go to bookmark'),
-            ('ReportsMenu',None,                      '_Reports'),
-            ('ToolsMenu',  None,                      '_Tools'),
-            ('WindowsMenu',None,                      '_Windows'),
+            ('SaveAs', gtk.STOCK_SAVE_AS, '_Save As'),
+            ('Export', gtk.STOCK_SAVE_AS, '_Export', "<control>e", None, self.export_data),
+            ('Abandon', gtk.STOCK_REVERT_TO_SAVED, '_Abandon changes and quit'),
+            ('CmpMerge', None, '_Compare and merge'),
+            ('FastMerge', None, '_Fast merge'),
+            ('ScratchPad', gtk.STOCK_PASTE, '_ScratchPad', None, None, self.scratchpad),
+            ('Import', gtk.STOCK_CONVERT, '_Import', "<control>i", None, self.import_data),
+            ('Reports', gtk.STOCK_DND_MULTIPLE, '_Reports', None, None, self.reports_clicked),
+            ('Tools', gtk.STOCK_EXECUTE, '_Tools', None, None, self.tools_clicked),
+            ('EditMenu', None, '_Edit'),
+            ('GoMenu', None, '_Go'),
+            ('BookMenu', None, '_Bookmarks'),
+            ('AddBook', gtk.STOCK_INDEX, '_Add bookmark', '<control>d', None, self.add_bookmark),
+            ('EditBook', None, '_Edit bookmarks', '<control>b', None, self.edit_bookmarks),
+            ('GoToBook', gtk.STOCK_JUMP_TO, '_Go to bookmark'),
+            ('ReportsMenu', None, '_Reports'),
+            ('ToolsMenu', None, '_Tools'),
+            ('WindowsMenu', None, '_Windows'),
             ])
 
         self.fileactions.add_toggle_actions([
@@ -350,6 +350,7 @@ class ViewManager:
         self.undoactions.add_actions([
             ('Undo',gtk.STOCK_UNDO,'_Undo','<control>z',None,self.undo)])
         self.undoactions.set_sensitive(False)
+        
         self.redoactions.add_actions([
             ('Redo',gtk.STOCK_REDO,'_Redo','<shift><control>z',None,self.redo)
             ])
@@ -838,7 +839,7 @@ class ViewManager:
                           _("A bookmark could not be set because "
                             "no one was selected."))
 
-    def on_edit_bookmarks_activate(self,obj):
+    def edit_bookmarks(self,obj):
         self.bookmarks.edit()
 
     def reports_clicked(self,obj):
