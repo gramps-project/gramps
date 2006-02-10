@@ -257,7 +257,7 @@ class EditFamily(DisplayState.ManagedWindow):
         return ('Edit Family','Undefined Submenu')
 
     def build_window_key(self,obj):
-        if self.family and self.family.handle:
+        if self.family.handle:
             return id(self.family.handle)
         else:
             return id(self)
