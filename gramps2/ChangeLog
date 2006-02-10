@@ -1,4 +1,7 @@
 2006-02-09  Don Allingham  <don@gramps-project.org>
+	* src/PedView.py: fix quote
+	* src/PersonView.py: reset db and build tree on database reload
+	* src/GrampsDb/_GrampsDbBase.py: clear active on database change
 	* src/FamilyView.py: initialize Family
 	* src/EditFamily.py: fix empty gramps_id for new families
 	* src/GrampsWidgets.py: fix empty gramps_id for new families
