@@ -572,7 +572,8 @@ class FamilyView(PageView.PersonNavView):
     def add_family(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             import EditFamily
-            EditFamily.EditFamily(self.dbstate,self.uistate,[],None)
+            family = RelLib.Family()
+            EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
 
     def delete_family(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
