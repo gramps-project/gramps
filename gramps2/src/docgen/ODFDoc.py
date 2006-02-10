@@ -1136,7 +1136,7 @@ try:
     mtype = GrampsMime.get_description(_apptype)
 
     if Utils.search_for(mprog[0]):
-        print_label = _("Open in %{program_name}s") % { 'program_name':
+        print_label = _("Open in %(program_name)s") % { 'program_name':
                                                         mprog[1]}
     else:
         print_label = None

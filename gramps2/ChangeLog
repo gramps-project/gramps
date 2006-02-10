@@ -1,3 +1,6 @@
+2006-02-10  Alex Roitman  <shura@gramps-project.org>
+	* src/docgen/ODFDoc.py: Typo.
+
 2006-02-09  Alex Roitman  <shura@gramps-project.org>
 	* src/WriteGedcom.py (write_sources): Export data_map.
 
