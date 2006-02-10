@@ -1,4 +1,6 @@
 2006-02-09  Don Allingham  <don@gramps-project.org>
+	* src/DisplayState.py: Manage history on db change
+	* src/Navigation.py: Manage history on db change
 	* src/PedView.py: fix quote
 	* src/PersonView.py: reset db and build tree on database reload
 	* src/GrampsDb/_GrampsDbBase.py: clear active on database change

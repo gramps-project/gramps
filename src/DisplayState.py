@@ -585,6 +585,9 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.log.setLevel(logging.WARN)
         self.log.addHandler(self.rh)
 
+    def clear_history(self):
+        self.phistory.clear()
+
     def set_busy_cursor(self,value):
         if value:
             self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
