@@ -234,8 +234,8 @@ class ViewManager:
         self.uistate.set_open_widget(openbtn)
         toolbar.insert(openbtn,1)
 
-        person_nav = Navigation.PersonNavigation(self.uistate)
-        self.navigation_type[PageView.NAVIGATION_PERSON] = (person_nav,None)
+        self.person_nav = Navigation.PersonNavigation(self.uistate)
+        self.navigation_type[PageView.NAVIGATION_PERSON] = (self.person_nav,None)
         self.recent_manager = DisplayState.RecentDocsMenu(self.uistate,self.state,
                                                           self.read_file)
         self.recent_manager.build()
@@ -654,6 +654,7 @@ class ViewManager:
                 except:
                     pass
                 self.state.change_database(GrampsDb.gramps_db_factory(const.app_gramps)())
+                self.uistate.clear_history()
                 self.read_file(filename)
                 self.change_page(None,None)
                 # Add the file to the recent items
@@ -693,6 +694,7 @@ class ViewManager:
             RecentFiles.recent_files(filename,filetype)
             self.recent_manager.build()
 
+        self.uistate.clear_history()
         return success
 
     def read_file(self,filename,callback=None):
@@ -932,6 +934,7 @@ class ViewManager:
                 self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
                 self.progress.show()
                 GrampsDb.gramps_db_reader_factory(filetype)(self.state.db,filename,self.pulse_progressbar)
+                self.uistate.clear_history()
                 self.progress.hide()
                 self.window.window.set_cursor(None)
                 return True
@@ -940,6 +943,7 @@ class ViewManager:
                 self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
                 self.progress.show()
                 GrampsDb.gramps_db_reader_factory(filetype)(self.state.db,filename,self.pulse_progressbar)
+                self.uistate.clear_history()
                 self.progress.hide()
                 self.window.window.set_cursor(None)
                 return True

@@ -46,11 +46,14 @@ class BaseNavigation:
     def __init__(self,uistate,history,title):
         self.title = title
         self.ui = _top+_btm
-        history.connect('menu-changed', self.update_menu)
+        self.uistate = uistate
         self.action_group = gtk.ActionGroup(self.title)
         self.active = DISABLED
-        self.uistate = uistate
         self.items = []
+        self.history = history
+
+    def clear(self):
+        self.history.clear()
         
     def disable(self):
         """
