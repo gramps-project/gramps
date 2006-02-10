@@ -227,6 +227,7 @@ class MonitoredEntry:
         self.set_val = set_val
         self.get_val = get_val
 
-        self.obj.set_text(get_val())
+        if get_val():
+            self.obj.set_text(get_val())
         self.obj.connect('changed', lambda x: self.set_val(unicode(x.get_text())))
         self.obj.set_editable(not read_only)

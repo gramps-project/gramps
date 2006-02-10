@@ -298,7 +298,7 @@ class EditFamily(DisplayState.ManagedWindow):
     def _setup_monitored_values(self):
         self.private= GrampsWidgets.PrivacyButton(self.top.get_widget('private'),
                                                   self.family)
-                             
+
         self.gid = GrampsWidgets.MonitoredEntry(self.top.get_widget('gid'),
                                                 self.family.set_gramps_id,
                                                 self.family.get_gramps_id)
@@ -537,7 +537,6 @@ class EditFamily(DisplayState.ManagedWindow):
             original = None
 
         if not original:
-            print self.family.serialize()
             trans = self.dbstate.db.transaction_begin()
             self.dbstate.db.add_family(self.family,trans)
             self.dbstate.db.transaction_commit(trans,_("Edit Family"))
@@ -556,10 +555,7 @@ class EditFamily(DisplayState.ManagedWindow):
             # remove the family from children which have been removed
             for handle in orig_set.difference(new_set):
                 person = self.dbstate.db.get_person_from_handle(handle)
-                print person.get_primary_name().get_name()
-                print person.get_parent_family_handle_list()
                 person.remove_parent_family_handle(self.family.handle)
-                print person.get_parent_family_handle_list()
                 self.dbstate.db.commit_person(person,trans)
             
             # add the family from children which have been removed
