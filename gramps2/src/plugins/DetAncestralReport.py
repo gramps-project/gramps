@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2002 Bruce J. DeGrasse
-# Copyright (C) 2000-2005 Donald N. Allingham
+# Copyright (C) 2000-2006 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -504,25 +504,29 @@ class DetAncestorReport(Report.Report):
             self.doc.start_paragraph('DAR-Endnotes',"%d." % key)
             self.doc.write_text(base.get_title())
 
-            for item in [ base.get_author(), base.get_publication_info(),
-                          base.get_abbreviation(),
-                          _dd.display(srcref.get_date_object()),]:
-                if item:
-                    self.doc.write_text('; %s' % item)
-
-            item = srcref.get_text()
-            if item:
-                self.doc.write_text('; ')
-                self.doc.write_text(_('Text:'))
-                self.doc.write_text(' ')
-                self.doc.write_text(item)
-
-            item = srcref.get_note()
-            if item:
-                self.doc.write_text('; ')
-                self.doc.write_text(_('Comments:'))
-                self.doc.write_text(' ')
-                self.doc.write_text(item)
+            # Disable writing reference details, because only the details
+            # the first reference to this source will appear.
+            # FIXME: need to properly change self.endnotes() to put
+            #        this feature back correclty.
+##             for item in [ base.get_author(), base.get_publication_info(),
+##                           base.get_abbreviation(),
+##                           _dd.display(srcref.get_date_object()),]:
+##                 if item:
+##                     self.doc.write_text('; %s' % item)
+##
+##             item = srcref.get_text()
+##             if item:
+##                 self.doc.write_text('; ')
+##                 self.doc.write_text(_('Text:'))
+##                 self.doc.write_text(' ')
+##                 self.doc.write_text(item)
+##
+##             item = srcref.get_note()
+##             if item:
+##                 self.doc.write_text('; ')
+##                 self.doc.write_text(_('Comments:'))
+##                 self.doc.write_text(' ')
+##                 self.doc.write_text(item)
 
             self.doc.write_text('.')
             self.doc.end_paragraph()
@@ -552,9 +556,9 @@ class DetAncestorReport(Report.Report):
                     self.sref_map[self.sref_index] = ref
                     msg.write("%d" % self.sref_index)
             msg.write('</super>')
-        str = msg.getvalue()
+        the_str = msg.getvalue()
         msg.close()
-        return str
+        return the_str
 
 #------------------------------------------------------------------------
 #
