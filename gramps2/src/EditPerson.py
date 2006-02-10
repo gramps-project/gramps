@@ -672,6 +672,12 @@ class EditPerson(DisplayState.ManagedWindow):
 
         if self._check_for_unknown_gender():
             return
+
+
+        (br, dr, el) = self.event_list.return_info()
+        self.person.set_birth_ref(br)
+        self.person.set_death_ref(dr)
+        self.person.set_event_ref_list(el)
         
         self.window.hide()
 

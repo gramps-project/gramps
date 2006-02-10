@@ -193,6 +193,7 @@ class PersonView(PageView.PersonNavView):
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
               </placeholder>
+              <menuitem action="SetActive"/>
             </menu>
           </menubar>
           <toolbar name="ToolBar">

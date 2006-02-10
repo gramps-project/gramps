@@ -190,7 +190,14 @@ class ButtonTab(GrampsTab):
     combination.
     """
 
-    def __init__(self,dbstate,uistate,track,name):
+    _MSG = {
+        'add'   : _('Add'),
+        'del'   : _('Remove'),
+        'edit'  : _('Edit'),
+        'share' : _('Share'),
+        }
+
+    def __init__(self,dbstate,uistate,track,name,share_button=False):
         """
         Similar to the base class, except after Build
         @param dbstate: The database state. Contains a reference to
@@ -208,9 +215,10 @@ class ButtonTab(GrampsTab):
         @type name: str/unicode
         """
         GrampsTab.__init__(self,dbstate,uistate,track,name)
-        self.create_buttons()
+        self.tooltips = gtk.Tooltips()
+        self.create_buttons(share_button)
 
-    def create_buttons(self):
+    def create_buttons(self,share_button):
         """
         Creates a button box consisting of three buttons, one for Add,
         one for Edit, and one for Delete. This button box is then appended
@@ -220,9 +228,19 @@ class ButtonTab(GrampsTab):
         self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
         self.del_btn  = SimpleButton(gtk.STOCK_REMOVE, self.del_button_clicked)
 
+        self.tooltips.set_tip(self.add_btn,  self._MSG['add'])
+        self.tooltips.set_tip(self.edit_btn, self._MSG['edit'])
+        self.tooltips.set_tip(self.del_btn,  self._MSG['del'])
+        
+        if share_button:
+            self.share_btn  = SimpleButton(gtk.STOCK_INDEX, self.share_button_clicked)
+            self.tooltips.set_tip(self.share_btn, self._MSG['share'])
+        
         vbox = gtk.VBox()
         vbox.set_spacing(6)
         vbox.pack_start(self.add_btn,False)
+        if share_button:
+            vbox.pack_start(self.share_btn,False)
         vbox.pack_start(self.edit_btn,False)
         vbox.pack_start(self.del_btn,False)
         vbox.show_all()
@@ -242,6 +260,13 @@ class ButtonTab(GrampsTab):
         should be overridden by the derived class.
         """
         print "Uncaught Add clicked"
+
+    def share_button_clicked(self,obj):
+        """
+        Function called with the Add button is clicked. This function
+        should be overridden by the derived class.
+        """
+        print "Uncaught Share clicked"
 
     def del_button_clicked(self,obj):
         """
@@ -281,12 +306,12 @@ class EmbeddedList(ButtonTab):
     _HANDLE_COL = -1
     _DND_TYPE   = None
     
-    def __init__(self, dbstate, uistate, track, name, build_model):
+    def __init__(self, dbstate, uistate, track, name, build_model,share=False):
         """
         Creates a new list, using the passed build_model to
         populate the list.
         """
-        ButtonTab.__init__(self, dbstate, uistate, track, name)
+        ButtonTab.__init__(self, dbstate, uistate, track, name, share)
         self.changed = False
         self.build_model = build_model
 
@@ -536,6 +561,13 @@ class EventEmbedList(EmbeddedList):
     _HANDLE_COL = 6
     _DND_TYPE   = DdTargets.EVENTREF
 
+    _MSG = {
+        'add'   : _('Add a new event'),
+        'del'   : _('Remove the selected event'),
+        'edit'  : _('Edit the selected event'),
+        'share' : _('Share an exisiting event'),
+        }
+
     _column_names = [
         (_('Type'),0,100),
         (_('Description'),1,175),
@@ -548,7 +580,7 @@ class EventEmbedList(EmbeddedList):
     def __init__(self,dbstate,uistate,track,obj):
         self.obj = obj
         EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _('Events'), EventRefModel)
+                              _('Events'), EventRefModel, True)
 
     def get_icon_name(self):
         return 'gramps-event'
@@ -561,9 +593,17 @@ class EventEmbedList(EmbeddedList):
 
     def add_button_clicked(self,obj):
         import EventEdit
-        ref = RelLib.EventRef()
         EventEdit.EventRefEditor(self.dbstate,self.uistate,self.track,
-                                 None, ref, self.obj, self.event_added)
+                                 None, None, self.obj, self.event_added)
+
+    def share_button_clicked(self,obj):
+        import EventEdit
+        import SelectEvent
+
+        sel = SelectEvent.SelectEvent(self.dbstate.db,"Event Select")
+        event = sel.run()
+        EventEdit.EventRefEditor(self.dbstate,self.uistate,self.track,
+                                 event, None, self.obj, self.event_added)
 
     def edit_button_clicked(self,obj):
         ref = self.get_selected()
@@ -579,7 +619,7 @@ class EventEmbedList(EmbeddedList):
 
     def event_added(self,value):
         value[0].ref = value[1].handle
-        self.obj.add_event_ref(value[0])
+        self.get_data().append(value[0])
         self.changed = True
         self.rebuild()
 
@@ -594,7 +634,22 @@ class PersonEventEmbedList(EventEmbedList):
 
     def get_data(self):
         return self.orig_data
-                                     
+
+    def return_info(self):
+        new_list = []
+        birth_ref = None
+        death_ref = None
+        
+        for ref in self.orig_data:
+            event = self.dbstate.db.get_event_from_handle(ref.ref)
+            if birth_ref == None and event.get_type()[0] == RelLib.Event.BIRTH:
+                birth_ref = ref
+            elif death_ref == None and event.get_type()[0] == RelLib.Event.DEATH:
+                death_ref = ref
+            else:
+                new_list.append(ref)
+        return (birth_ref, death_ref, new_list)
+            
 #-------------------------------------------------------------------------
 #
 # SourceBackRefList

@@ -265,6 +265,8 @@ class EventEditor(DisplayState.ManagedWindow):
 
         self.update_event(event_data,self.date,eplace_obj)
 
+        print self.event, self.event.handle
+
         if self.event.handle == None:
             trans = self.db.transaction_begin()
             self.db.add_event(self.event,trans)
@@ -336,40 +338,16 @@ class EventRefEditor(DisplayState.ManagedWindow):
         self.window = self.top.get_widget('event_eref_edit')
         self.ref_note_field = self.top.get_widget('eer_ref_note')
         self.role_combo = self.top.get_widget('eer_role_combo')
-        self.ref_privacy = PrivacyButton(self.top.get_widget('eer_ref_priv'),
-                                         self.event_ref)
-
+        self.date_field  = self.top.get_widget("eer_date")
         self.place_field = self.top.get_widget("eer_place")
         self.cause_field = self.top.get_widget("eer_cause")
-        self.cause_monitor = MonitoredEntry(self.cause_field,self.event.set_cause,
-                                            self.event.get_cause, False)
-
-        self.date_field  = self.top.get_widget("eer_date")
-        self.descr_field = MonitoredEntry(self.top.get_widget("eer_description"),
-                                          self.event.set_description,
-                                          self.event.get_description, False)
-
         self.ev_note_field = self.top.get_widget("eer_ev_note")
         self.type_combo = self.top.get_widget("eer_type_combo")
-        self.ev_privacy = PrivacyButton(self.top.get_widget("eer_ev_priv"),
-                                        self.event)
-        
         self.general_label = self.top.get_widget("eer_general_tab")
         self.ok = self.top.get_widget('ok')
         self.expander = self.top.get_widget("eer_expander")
         self.warning = self.top.get_widget("eer_warning")
         self.notebook = self.top.get_widget('notebook')
-        
-        Utils.set_titles(self.window,
-                         self.top.get_widget('eer_title'),
-                         self.title)
-        
-        self.top.signal_autoconnect({
-            "on_eer_help_clicked"   : self.on_help_clicked,
-            "on_eer_ok_clicked"     : self.on_ok_clicked,
-            "on_eer_cancel_clicked" : self.close,
-            "on_eer_delete_event"   : self.close,
-            })
 
         if self.referent.__class__.__name__ == 'Person':
             default_type = RelLib.Event.BIRTH
@@ -381,16 +359,6 @@ class EventRefEditor(DisplayState.ManagedWindow):
             default_role = RelLib.EventRef.FAMILY
             ev_dict = Utils.family_events
             role_dict = Utils.family_event_roles
-
-        self.role_selector = AutoComp.StandardCustomSelector(
-            role_dict,self.role_combo,
-            RelLib.EventRef.CUSTOM,default_role)
-
-        AutoComp.fill_entry(self.place_field,self.pmap.keys())
-
-        self.type_selector = AutoComp.StandardCustomSelector(
-            ev_dict,self.type_combo,
-            RelLib.Event.CUSTOM,default_type)
 
         if self.event:
             self.event_added = False
@@ -416,6 +384,39 @@ class EventRefEditor(DisplayState.ManagedWindow):
             self.event_ref = RelLib.EventRef()
             self.event_ref.set_role((default_role,role_dict[default_role]))
             self.event_ref.set_reference_handle(self.event.get_handle())
+
+        self.cause_monitor = MonitoredEntry(self.cause_field,self.event.set_cause,
+                                            self.event.get_cause, False)
+        self.ref_privacy = PrivacyButton(self.top.get_widget('eer_ref_priv'),
+                                         self.event_ref)
+
+        self.descr_field = MonitoredEntry(self.top.get_widget("eer_description"),
+                                          self.event.set_description,
+                                          self.event.get_description, False)
+
+        self.ev_privacy = PrivacyButton(self.top.get_widget("eer_ev_priv"),
+                                        self.event)
+                
+        Utils.set_titles(self.window,
+                         self.top.get_widget('eer_title'),
+                         self.title)
+        
+        self.top.signal_autoconnect({
+            "on_eer_help_clicked"   : self.on_help_clicked,
+            "on_eer_ok_clicked"     : self.on_ok_clicked,
+            "on_eer_cancel_clicked" : self.close,
+            "on_eer_delete_event"   : self.close,
+            })
+
+        self.role_selector = AutoComp.StandardCustomSelector(
+            role_dict,self.role_combo,
+            RelLib.EventRef.CUSTOM,default_role)
+
+        AutoComp.fill_entry(self.place_field,self.pmap.keys())
+
+        self.type_selector = AutoComp.StandardCustomSelector(
+            ev_dict,self.type_combo,
+            RelLib.Event.CUSTOM,default_type)
 
         self.date_check = DateEdit.DateEdit(self.date,
                                         self.date_field,

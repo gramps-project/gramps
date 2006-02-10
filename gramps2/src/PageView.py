@@ -200,6 +200,8 @@ class PersonNavView(PageView):
 
         self.add_action('HomePerson', gtk.STOCK_HOME, "_Home",
                         callback=self.home)
+        self.add_action('SetActive', gtk.STOCK_HOME, "Set _Home Person",
+                        callback=self.set_default_person)
 
         self.add_action_group(self.back_action)
         self.add_action_group(self.fwd_action)
@@ -228,6 +230,11 @@ class PersonNavView(PageView):
         hobj = self.uistate.phistory
         self.fwd_action.set_sensitive(not hobj.at_end())
         self.back_action.set_sensitive(not hobj.at_front())
+
+    def set_default_person(self,obj):
+        active = self.dbstate.active
+        if active:
+            self.dbstate.db.set_default_person_handle(active.get_handle())
 
     def home(self,obj):
         defperson = self.dbstate.db.get_default_person()
