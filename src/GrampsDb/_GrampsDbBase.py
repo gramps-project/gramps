@@ -2009,11 +2009,13 @@ class DbState(GrampsDBCallback):
     def change_database(self,db):
         self.db.close()
         self.db = db
+        self.active = None
         self.open = True
         self.emit('database-changed',(self.db,))
 
     def no_database(self):
         self.db.close()
         self.db = GrampsDbBase()
+        self.active = None
         self.open = False
         self.emit('no-database')

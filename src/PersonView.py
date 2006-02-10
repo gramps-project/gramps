@@ -228,10 +228,12 @@ class PersonView(PageView.PersonNavView):
         from self.state.db
         """
         self.build_columns()
+        self.db = db
         db.connect('person-add', self.person_added)
         db.connect('person-update', self.person_updated)
         db.connect('person-delete', self.person_removed)
         db.connect('person-rebuild', self.build_tree)
+        self.build_tree()
         self.generic_filter_widget.apply_filter()
 
     def goto_active_person(self,obj=None):
