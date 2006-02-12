@@ -1,3 +1,6 @@
+2006-02-11  Alex Roitman  <shura@gramps-project.org>
+	* src/DbPrompter.py (open_native): Use empty GRDB when opening fails.
+
 2006-02-10  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/DetDescendantReport.py
 	(DetDescendantReport.write_endnotes): Disable writing reference
