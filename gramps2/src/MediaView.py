@@ -403,6 +403,11 @@ class MediaView:
             protocol,site,name, j,k,l = urlparse.urlparse(d)
             if protocol == "file":
                 mime = GrampsMime.get_type(name)
+                if not GrampsMime.is_valid_type(mime):
+                    ErrorDialog(_('Invalid file type'),
+                                _('An object of type %s cannot be added '
+                                  'to a gallery') % mime)
+                    return
                 photo = RelLib.MediaObject()
                 photo.set_path(name)
                 photo.set_mime_type(mime)
@@ -426,6 +431,11 @@ class MediaView:
                     ErrorDialog(_('Image import failed'),str(msg))
                     return
                 mime = GrampsMime.get_type(tfile)
+                if not GrampsMime.is_valid_type(mime):
+                    ErrorDialog(_('Invalid file type'),
+                                _('An object of type %s cannot be added '
+                                  'to a gallery') % mtype)
+                    return
                 photo = RelLib.MediaObject()
                 photo.set_mime_type(mime)
                 photo.set_description(d)

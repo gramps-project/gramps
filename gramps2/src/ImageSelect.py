@@ -169,6 +169,12 @@ class ImageSelect:
         filename = Utils.find_file( filename)
         if filename:
             mtype = GrampsMime.get_type(filename)
+            if not GrampsMime.is_valid_type(mtype):
+                ErrorDialog(_('Invalid file type'),
+                            _('An object of type %s cannot be added '
+                              'to a gallery') % mtype)
+                return
+                
             if mtype and mtype.startswith("image"):
                 image = RelImage.scale_image(filename,const.thumbScale)
                 self.image.set_from_pixbuf(image)
@@ -209,12 +215,18 @@ class ImageSelect:
                 self.add_thumbnail(oref)
             else:
                 mtype = GrampsMime.get_type(filename)
-                mobj = RelLib.MediaObject()
-                if description == "":
-                    description = os.path.basename(filename)
-                mobj.set_description(description)
-                mobj.set_mime_type(mtype)
-                mobj.set_path(filename)
+                if GrampsMime.is_valid_type(mtype):
+                    mobj = RelLib.MediaObject()
+                    if description == "":
+                        description = os.path.basename(filename)
+                    mobj.set_description(description)
+                    mobj.set_mime_type(mtype)
+                    mobj.set_path(filename)
+                else:
+                    ErrorDialog(_('Invalid file type'),
+                                _('An object of type %s cannot be added '
+                                  'to a gallery') % mtype)
+                    return
         else:
             mobj = RelLib.MediaObject()
             mobj.set_description(description)
@@ -493,6 +505,8 @@ class Gallery(ImageSelect):
             if protocol == "file":
                 name = Utils.fix_encoding(mfile)
                 mime = GrampsMime.get_type(name)
+                if not GrampsMime.is_valid_type(mime):
+                    return
                 photo = RelLib.MediaObject()
                 photo.set_path(name)
                 photo.set_mime_type(mime)
