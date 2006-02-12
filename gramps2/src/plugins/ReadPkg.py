@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,44 +55,51 @@ import TarFile
 #-------------------------------------------------------------------------
 def impData(database, name,cb=None,cl=0):
     # Create tempdir, if it does not exist, then check for writability
-    tmpdir_path = os.path.expanduser("~/.gramps/tmp" )
+    #     THE TEMP DIR is named as the filname.gpkg.media and is created
+    #     in the same dir as the database that we are importing into.
+    db_path = os.path.dirname(database.get_save_path())
+    media_dir = "%s.media" % os.path.basename(name)
+    tmpdir_path = os.path.join(db_path,media_dir)
     if not os.path.isdir(tmpdir_path):
         try:
             os.mkdir(tmpdir_path,0700)
         except:
             ErrorDialog( _("Could not create temporary directory %s") % 
-                            tmpdir_path )
+                         tmpdir_path )
             return
     elif not os.access(tmpdir_path,os.W_OK):
-        ErrorDialog( _("Temporary directory %s is not writable") % tmpdir_path )
+        ErrorDialog(_("Temporary directory %s is not writable") % tmpdir_path)
         return
     else:    # tempdir exists and writable -- clean it up if not empty
         files = os.listdir(tmpdir_path) ;
         for filename in files:
-            os.remove( os.path.join(tmpdir_path,filename) )
+            os.remove(os.path.join(tmpdir_path,filename))
 
     try:
         t = TarFile.ReadTarFile(name,tmpdir_path)
         t.extract()
         t.close()
     except:
-        ErrorDialog(_("Error extracting into %s") % tmpdir_path )
+        ErrorDialog(_("Error extracting into %s") % tmpdir_path)
         return
 
-    dbname = os.path.join(tmpdir_path,const.xmlFile)  
+    imp_db_name = os.path.join(tmpdir_path,const.xmlFile)  
 
     try:
-        ReadXML.importData(database,dbname,cb)
+        ReadXML.importData(database,imp_db_name,cb)
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
 
     # Clean up tempdir after ourselves
-    files = os.listdir(tmpdir_path) 
-    for filename in files:
-        os.remove(os.path.join(tmpdir_path,filename))
+    #     THIS HAS BEEN CHANGED, because now we want to keep images
+    #     stay after the import is over. Just delete the XML file.
+    os.remove(imp_db_name)
 
-    os.rmdir(tmpdir_path)
+##     files = os.listdir(tmpdir_path) 
+##     for filename in files:
+##         os.remove(os.path.join(tmpdir_path,filename))
+##     os.rmdir(tmpdir_path)
 
 #------------------------------------------------------------------------
 #
