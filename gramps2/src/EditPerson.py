@@ -657,8 +657,10 @@ class EditPerson:
 
     def lds_field(self,lds_ord,combo,date,place):
         build_combo(combo,_temple_names)
-        temple_code = const.lds_temple_to_abrev.get(lds_ord.get_temple(),"")
+
+        temple_code = lds_ord.get_temple()
         index = _temple_names.index(temple_code)
+        
         combo.set_active(index)
         if not lds_ord.is_empty():
             stat = lds_ord.get_status()

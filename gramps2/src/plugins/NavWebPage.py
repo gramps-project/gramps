@@ -1665,6 +1665,14 @@ class IndividualPage(BasePage):
             of.write('</td>\n</tr>\n')
 
         # Gender
+
+        nick = self.person.get_nick_name()
+        if nick:
+            of.write('<tr><td class="field">%s</td>\n' % _('Nickname'))
+            of.write('<td class="data">%s</td>\n' % nick)
+            of.write('</tr>\n')
+
+        # Gender
         of.write('<tr><td class="field">%s</td>\n' % _('Gender'))
         gender = self.gender_map[self.person.gender]
         of.write('<td class="data">%s</td>\n' % gender)
@@ -2836,7 +2844,7 @@ def nameof(person,private):
     if person.private and private:
         return _("Private")
     else:
-        return _nd.display(person)
+        return _nd.display_with_nick(person)
 
 def name_nameof(name,private):
     if name.private and private:

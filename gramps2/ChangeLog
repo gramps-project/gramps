@@ -1,3 +1,7 @@
+2006-02-12  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: display LDS temple correctly
+	* src/plugins/NavWebpage.py: print nickname
+
 2006-02-12  Yaakov Selkowitz  <yselkowitz@users.sourceforge.net>
 	* src/po/Makefile.am (.po.mo): Allow for parallel building.
 
