@@ -1,3 +1,6 @@
+2006-02-12  Yaakov Selkowitz  <yselkowitz@users.sourceforge.net>
+	* src/po/Makefile.am (.po.mo): Allow for parallel building.
+
 2006-02-12  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/ReadPkg.py (impData): Use persistent directory for
 	unpacking the tarball: we need images to stay there.

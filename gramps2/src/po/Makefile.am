@@ -20,7 +20,7 @@ uninstall-local:
 SUFFIXES = .po .mo
 
 .po.mo:
-	$(MSGCONV) --to-code=UTF-8 $< -o temp.po
-	$(MSGFMT) temp.po -o $@
-	rm temp.po
+	$(MSGCONV) --to-code=UTF-8 $< -o $<.temp
+	$(MSGFMT) $<.temp -o $@
+	rm $<.temp
 
