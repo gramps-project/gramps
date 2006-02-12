@@ -2,6 +2,15 @@
 	* src/plugins/ReadPkg.py (impData): Use persistent directory for
 	unpacking the tarball: we need images to stay there.
 
+	* src/AddrEdit.py: Make preformatetd note appear without wrapping.
+	* src/EditPerson.py: No wrapping for preformatted notes.
+	* src/EditPlace.py: No wrapping for preformatted notes.
+	* src/EditSource.py: No wrapping for preformatted notes.
+	* src/EventEdit.py: No wrapping for preformatted notes.
+	* src/ImageSelect.py: No wrapping for preformatted notes.
+	* src/NameEdit.py: No wrapping for preformatted notes.
+	* src/Marriage.py: No wrapping for preformatted notes.
+
 2006-02-11  Don Allingham  <don@gramps-project.org>
 	* src/GrampsMime.py: detect directory type
 	* src/ImageSelect.py: don't allow directory types to be added

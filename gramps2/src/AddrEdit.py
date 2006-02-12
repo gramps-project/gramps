@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -139,8 +139,10 @@ class AddressEditor:
                 Utils.bold_label(self.notes_label)
                 if addr.get_note_format() == 1:
                     self.preform.set_active(1)
+                    self.note_field.set_wrap_mode(gtk.WRAP_NONE)
                 else:
                     self.flowed.set_active(1)
+                    self.note_field.set_wrap_mode(gtk.WRAP_WORD)
         else:
             self.addr_date_obj = Date.Date()
             self.srcreflist = []
@@ -162,6 +164,7 @@ class AddressEditor:
         okbtn.set_sensitive(not self.db.readonly)
         self.gladeif.connect('button129','clicked',self.on_help_clicked)
         self.gladeif.connect('notebook2','switch_page',self.on_switch_page)
+        self.gladeif.connect('addr_preform','toggled',self.format_toggled)
 
         if parent_window:
             self.window.set_transient_for(parent_window)
@@ -237,6 +240,12 @@ class AddressEditor:
         self.update(date_obj,street,city,state,country,postal,phone,note,format,priv)
         self.callback(self.addr)
         self.close(obj)
+
+    def format_toggled(self,junk):
+        if self.preform.get_active():
+            self.note_field.set_wrap_mode(gtk.WRAP_NONE)
+        else:
+            self.note_field.set_wrap_mode(gtk.WRAP_WORD)
 
     def check(self,get,set,data):
         """Compares a data item, updates if necessary, and sets the

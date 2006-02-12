@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -204,8 +204,10 @@ class EventEditor:
                 Utils.bold_label(self.notes_label)
                 if event.get_note_format() == 1:
                     self.preform.set_active(1)
+                    self.note_field.set_wrap_mode(gtk.WRAP_NONE)
                 else:
                     self.flowed.set_active(1)
+                    self.note_field.set_wrap_mode(gtk.WRAP_WORD)
             if event.get_media_list():
                 Utils.bold_label(self.gallery_label)
         else:
@@ -236,6 +238,7 @@ class EventEditor:
         self.gladeif.connect('sel_obj','clicked',self.gallery.on_select_media_clicked)
         self.gladeif.connect('button172','clicked',self.gallery.on_edit_media_clicked)
         self.gladeif.connect('del_obj','clicked',self.gallery.on_delete_media_clicked)
+        self.gladeif.connect('eventpreform','toggled',self.format_toggled)
 
         self.top.get_widget('del_obj').set_sensitive(not noedit)
         self.top.get_widget('sel_obj').set_sensitive(not noedit)
@@ -247,6 +250,12 @@ class EventEditor:
             pass
         self.add_itself_to_menu()
         self.window.show()
+
+    def format_toggled(self,junk):
+        if self.preform.get_active():
+            self.note_field.set_wrap_mode(gtk.WRAP_NONE)
+        else:
+            self.note_field.set_wrap_mode(gtk.WRAP_WORD)
 
     def on_delete_event(self,obj,b):
         self.gladeif.close()

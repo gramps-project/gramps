@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -189,8 +189,10 @@ class EditPlace:
             Utils.bold_label(self.notes_label)
             if place.get_note_format() == 1:
                 self.preform.set_active(1)
+                self.note.set_wrap_mode(gtk.WRAP_NONE)
             else:
                 self.flowed.set_active(1)
+                self.note.set_wrap_mode(gtk.WRAP_WORD)
 
         self.flowed.set_sensitive(mode)
         self.preform.set_sensitive(mode)
@@ -214,6 +216,7 @@ class EditPlace:
         self.gladeif.connect('web_edit', 'clicked', self.on_update_url_clicked)
         self.gladeif.connect('web_go', 'clicked', self.on_web_go_clicked)
         self.gladeif.connect('del_url', 'clicked', self.on_delete_url_clicked)
+        self.gladeif.connect('place_preform','toggled',self.format_toggled)
         
         self.sourcetab = Sources.SourceTab(
             self.srcreflist,self,
@@ -258,6 +261,12 @@ class EditPlace:
             self.cursor_type = None
             self.idle = gobject.idle_add(self.display_references)
             self.ref_not_loaded = 0
+
+    def format_toggled(self,junk):
+        if self.preform.get_active():
+            self.note.set_wrap_mode(gtk.WRAP_NONE)
+        else:
+            self.note.set_wrap_mode(gtk.WRAP_WORD)
 
     def build_pdmap(self):
         self.pdmap.clear()

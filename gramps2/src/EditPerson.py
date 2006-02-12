@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -408,8 +408,10 @@ class EditPerson:
             self.notes_buffer.set_text(person.get_note())
             if person.get_note_object().get_format() == 1:
                 self.preform.set_active(1)
+                self.notes_field.set_wrap_mode(gtk.WRAP_NONE)
             else:
                 self.flowed.set_active(1)
+                self.notes_field.set_wrap_mode(gtk.WRAP_WORD)
             Utils.bold_label(self.notes_label)
 
         self.set_list_dnd(self.name_list, self.name_drag_data_get,
@@ -478,7 +480,8 @@ class EditPerson:
         self.gladeif.connect("button129", "clicked", self.on_ldsendow_note_clicked)
         self.gladeif.connect("button133", "clicked", self.on_ldsseal_source_clicked)
         self.gladeif.connect("button130", "clicked", self.on_ldsseal_note_clicked)
-        
+        self.gladeif.connect('preform','toggled',self.format_toggled)
+
         self.sourcetab = Sources.SourceTab(
             self.srcreflist, self, self.top, self.window, self.slist,
             self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
@@ -505,6 +508,12 @@ class EditPerson:
             self.top.get_widget(i).set_sensitive(not self.db.readonly)
 
         self.window.show()
+
+    def format_toggled(self,junk):
+        if self.preform.get_active():
+            self.notes_field.set_wrap_mode(gtk.WRAP_NONE)
+        else:
+            self.notes_field.set_wrap_mode(gtk.WRAP_WORD)
 
     def set_list_dnd(self,obj, get, begin, receive):
         obj.drag_dest_set(gtk.DEST_DEFAULT_ALL, [DdTargets.NAME.target()],

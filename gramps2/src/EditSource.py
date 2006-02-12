@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -135,8 +135,10 @@ class EditSource:
             Utils.bold_label(self.notes_label)
             if source.get_note_format() == 1:
                 self.preform.set_active(1)
+                self.note.set_wrap_mode(gtk.WRAP_NONE)
             else:
                 self.flowed.set_active(1)
+                self.note.set_wrap_mode(gtk.WRAP_WORD)
 
         if self.source.get_media_list():
             Utils.bold_label(self.gallery_label)
@@ -152,6 +154,7 @@ class EditSource:
         self.gladeif.connect('sel_photo','clicked',self.gallery.on_select_media_clicked)
         self.gladeif.connect('edit_photo','clicked',self.gallery.on_edit_media_clicked)
         self.gladeif.connect('delete_photo','clicked',self.gallery.on_delete_media_clicked)
+        self.gladeif.connect('source_preform','toggled',self.format_toggled)
 
         if self.source.get_handle() == None or self.db.readonly:
             self.top_window.get_widget("edit_photo").set_sensitive(False)
@@ -197,6 +200,12 @@ class EditSource:
             self.cursor_type = None
             self.idle = gobject.idle_add(self.display_references)
         self.data_sel = self.datalist.get_selection()
+
+    def format_toggled(self,junk):
+        if self.preform.get_active():
+            self.note.set_wrap_mode(gtk.WRAP_NONE)
+        else:
+            self.note.set_wrap_mode(gtk.WRAP_WORD)
 
     def on_add_data_clicked(self,widget):
         node = self.data_model.append(row=['',''])

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -783,8 +783,10 @@ class LocalMediaProperties:
             Utils.bold_label(self.notes_label)
             if self.photo.get_note_format() == 1:
                 self.preform.set_active(1)
+                self.notes.set_wrap_mode(gtk.WRAP_NONE)
             else:
                 self.flowed.set_active(1)
+                self.notes.set_wrap_mode(gtk.WRAP_WORD)
 
         self.gladeif = GladeIf(self.change_dialog)
         self.gladeif.connect('change_description','delete_event',self.on_delete_event)
@@ -795,6 +797,7 @@ class LocalMediaProperties:
         self.gladeif.connect('button86','clicked',self.on_add_attr_clicked)
         self.gladeif.connect('button100','clicked',self.on_update_attr_clicked)
         self.gladeif.connect('button88','clicked',self.on_delete_attr_clicked)
+        self.gladeif.connect('preform','toggled',self.format_toggled)
             
         media_obj = self.db.get_object_from_handle(self.photo.get_reference_handle())
         gnote = self.change_dialog.get_widget('global_notes')
@@ -807,6 +810,12 @@ class LocalMediaProperties:
             self.window.set_transient_for(parent_window)
         self.add_itself_to_menu()
         self.window.show()
+
+    def format_toggled(self,junk):
+        if self.preform.get_active():
+            self.notes.set_wrap_mode(gtk.WRAP_NONE)
+        else:
+            self.notes.set_wrap_mode(gtk.WRAP_WORD)
 
     def on_delete_event(self,obj,b):
         self.gladeif.close()
@@ -1073,8 +1082,10 @@ class GlobalMediaProperties:
             Utils.bold_label(self.notes_label)
             if self.obj.get_note_format() == 1:
                 self.preform.set_active(1)
+                self.notes.set_wrap_mode(gtk.WRAP_NONE)
             else:
                 self.flowed.set_active(1)
+                self.notes.set_wrap_mode(gtk.WRAP_WORD)
 
         self.gladeif.connect('change_global','delete_event',
                              self.on_delete_event)
@@ -1086,6 +1097,7 @@ class GlobalMediaProperties:
         self.gladeif.connect('add_attr','clicked',self.on_add_attr_clicked)
         self.gladeif.connect('button101','clicked',self.on_update_attr_clicked)
         self.gladeif.connect('del_attr','clicked',self.on_delete_attr_clicked)
+        self.gladeif.connect('global_preform','toggled',self.format_toggled)
 
         for name in ['gl_del_src','gl_add_src','add_attr','del_attr','ok']:
             self.change_dialog.get_widget(name).set_sensitive(mode)
@@ -1099,6 +1111,12 @@ class GlobalMediaProperties:
             Utils.temp_label(self.refs_label,self.window)
             self.cursor_type = None
             self.idle = gobject.idle_add(self.display_refs)
+
+    def format_toggled(self,junk):
+        if self.preform.get_active():
+            self.notes.set_wrap_mode(gtk.WRAP_NONE)
+        else:
+            self.notes.set_wrap_mode(gtk.WRAP_WORD)
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()

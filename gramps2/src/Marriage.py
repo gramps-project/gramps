@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modiy
 # it under the terms of the GNU General Public License as published by
@@ -138,6 +138,7 @@ class Marriage:
         self.gladeif.connect('media_del','clicked',self.gallery.on_delete_media_clicked)
         self.gladeif.connect('button114','clicked',self.lds_src_clicked)
         self.gladeif.connect('button115','clicked',self.lds_note_clicked)
+        self.gladeif.connect('mar_preform','toggled',self.format_toggled)
 
         mode = not self.db.readonly
 
@@ -310,8 +311,10 @@ class Marriage:
             Utils.bold_label(self.notes_label)
             if family.get_note_format() == 1:
                 self.preform.set_active(1)
+                self.notes_field.set_wrap_mode(gtk.WRAP_NONE)
             else:
                 self.flowed.set_active(1)
+                self.notes_field.set_wrap_mode(gtk.WRAP_WORD)
 
         self.sourcetab = Sources.SourceTab(
             self.srcreflist, self, self.top, self.window, self.slist,
@@ -349,6 +352,12 @@ class Marriage:
         else:
             index = 0
         combo.set_active(index)
+
+    def format_toggled(self,junk):
+        if self.preform.get_active():
+            self.notes_field.set_wrap_mode(gtk.WRAP_NONE)
+        else:
+            self.notes_field.set_wrap_mode(gtk.WRAP_WORD)
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():

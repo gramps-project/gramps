@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -167,6 +167,7 @@ class NameEditor:
         self.gladeif.connect('button131','clicked',self.on_help_clicked)
         self.gladeif.connect('notebook3','switch_page',self.on_switch_page)
         self.gladeif.connect('group_over','toggled',self.on_group_over_toggled)
+        self.gladeif.connect('alt_preform','toggled',self.format_toggled)
 
         if name != None:
             self.given_field.set_text(name.get_first_name())
@@ -182,8 +183,10 @@ class NameEditor:
                 Utils.bold_label(self.notes_label)
                 if name.get_note_format() == 1:
                     self.preform.set_active(1)
+                    self.note_field.set_wrap_mode(gtk.WRAP_NONE)
                 else:
                     self.flowed.set_active(1)
+                    self.note_field.set_wrap_mode(gtk.WRAP_WORD)
             self.display_as.set_active(name.get_display_as())
             self.sort_as.set_active(name.get_display_as())
             grp_as = name.get_group_as()
@@ -200,6 +203,12 @@ class NameEditor:
         self.surname_field.connect('changed',self.update_group_as)
         self.add_itself_to_menu()
         self.window.show()
+
+    def format_toggled(self,junk):
+        if self.preform.get_active():
+            self.note_field.set_wrap_mode(gtk.WRAP_NONE)
+        else:
+            self.note_field.set_wrap_mode(gtk.WRAP_WORD)
 
     def update_group_as(self,obj):
         if not self.group_over.get_active():
