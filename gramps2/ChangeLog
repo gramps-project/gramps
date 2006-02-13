@@ -1,3 +1,6 @@
+2006-02-13  Stefan Bjork  <skalman@acc.umu.se>
+	* src/po/sv.po: Minor update.
+
 2006-02-12  Don Allingham  <don@gramps-project.org>
 	* src/EventEdit.py: don't report the false "new event added" message
 	* src/EditPerson.py: display LDS temple correctly

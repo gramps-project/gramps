@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: Gramps 2.0.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Sun Nov 27 16:06:29 2005\n"
-"PO-Revision-Date: 2006-01-06 11:30+0100\n"
+"PO-Revision-Date: 2006-01-15 12:26+0100\n"
 "Last-Translator: Stefan Bjork <skalman@acc.umu.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -861,7 +861,7 @@ msgstr "d."
 
 #: FamilyView.py:72
 msgid "#"
-msgstr "nr."
+msgstr "Nr."
 
 #: FamilyView.py:75 MergePeople.py:123 PeopleView.py:61
 #: plugins/IndivComplete.py:426 plugins/IndivSummary.py:239
