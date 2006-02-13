@@ -1,15 +1,15 @@
-# Copyright (C) 2001-2005, 2006 Free Software Foundation, Inc.
 # Laurent Protois <laurent.protois@free.fr>, 2001-2004.
 # Matthieu Pupat <tieum.tieum@free.fr>, 2004, 2005.
 # Guillaume Pratte <guillaumep@soireevideo.org>, 2005.
-# Jérôme Rapinat <romjerome@yahoo.fr>, 2005-2006
+# Jérôme Rapinat <romjerome@yahoo.fr>, 2005-2006.
+# Copyright (C) 2001-2005, 2006 Free Software Foundation, Inc.
 msgid ""
 msgstr ""
-"Project-Id-Version: gramps 2.0.9\n"
+"Project-Id-Version: 2.0.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Sun Nov 27 16:06:29 2005\n"
-"PO-Revision-Date: 2006-01-03 23:51+0100\n"
-"Last-Translator: romjerome@yahoo.fr\n"
+"PO-Revision-Date: 2006-02-13 12:03+0100\n"
+"Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2510,15 +2510,15 @@ msgstr "Cette personne est née le %(birth_date)s à %(birth_place)s."
 
 #: ReportUtils.py:51
 msgid "He was born on %(birth_date)s in %(birth_place)s."
-msgstr "Il était né le %(birth_date)s à %(birth_place)s."
+msgstr "Il est né le %(birth_date)s à %(birth_place)s."
 
 #: ReportUtils.py:52
 msgid "She was born on %(birth_date)s in %(birth_place)s."
-msgstr "Elle était née le %(birth_date)s à %(birth_place)s."
+msgstr "Elle est née le %(birth_date)s à %(birth_place)s."
 
 #: ReportUtils.py:55
 msgid "%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(unknown_gender_name)s était né le %(birth_date)s à %(birth_place)s."
+msgstr "%(unknown_gender_name)s est né le %(birth_date)s à %(birth_place)s."
 
 #: ReportUtils.py:56
 msgid "%(male_name)s was born on %(birth_date)s in %(birth_place)s."
@@ -2530,19 +2530,19 @@ msgstr "%(female_name)s est née le %(birth_date)s à %(birth_place)s."
 
 #: ReportUtils.py:63
 msgid "This person was born %(modified_date)s in %(birth_place)s."
-msgstr "Cette personne était née %(modified_date)s à %(birth_place)s."
+msgstr "Cette personne est née %(modified_date)s à %(birth_place)s."
 
 #: ReportUtils.py:64
 msgid "He was born %(modified_date)s in %(birth_place)s."
-msgstr "Il était né %(modified_date)s à %(birth_place)s."
+msgstr "Il est né %(modified_date)s à %(birth_place)s."
 
 #: ReportUtils.py:65
 msgid "She was born %(modified_date)s in %(birth_place)s."
-msgstr "Elle était née %(modified_date)s à %(birth_place)s."
+msgstr "Elle est née %(modified_date)s à %(birth_place)s."
 
 #: ReportUtils.py:68
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(unknown_gender_name)s était né %(modified_date)s à %(birth_place)s."
+msgstr "%(unknown_gender_name)s est né %(modified_date)s à %(birth_place)s."
 
 #: ReportUtils.py:69
 msgid "%(male_name)s was born %(modified_date)s in %(birth_place)s."
@@ -2558,15 +2558,15 @@ msgstr "Cette personne est née le %(birth_date)s."
 
 #: ReportUtils.py:77
 msgid "He was born on %(birth_date)s."
-msgstr "Il était né le %(birth_date)s."
+msgstr "Il est né le %(birth_date)s."
 
 #: ReportUtils.py:78
 msgid "She was born on %(birth_date)s."
-msgstr "Elle était née le %(birth_date)s."
+msgstr "Elle est née le %(birth_date)s."
 
 #: ReportUtils.py:81
 msgid "%(unknown_gender_name)s was born on %(birth_date)s."
-msgstr "%(unknown_gender_name)s était né le %(birth_date)s."
+msgstr "%(unknown_gender_name)s est né le %(birth_date)s."
 
 #: ReportUtils.py:82
 msgid "%(male_name)s was born on %(birth_date)s."
@@ -2582,23 +2582,23 @@ msgstr "Cette personne est née %(modified_date)s."
 
 #: ReportUtils.py:90
 msgid "He was born %(modified_date)s."
-msgstr "Il était né %(modified_date)s."
+msgstr "Il est né %(modified_date)s."
 
 #: ReportUtils.py:91
 msgid "She was born %(modified_date)s."
-msgstr "Elle était née %(modified_date)s."
+msgstr "Elle est née %(modified_date)s."
 
 #: ReportUtils.py:94
 msgid "%(unknown_gender_name)s was born on %(modified_date)s."
-msgstr "%(unknown_gender_name)s était né %(modified_date)s."
+msgstr "%(unknown_gender_name)s est né %(modified_date)s."
 
 #: ReportUtils.py:95
 msgid "%(male_name)s was born on %(modified_date)s."
-msgstr "%(male_name)s était né %(modified_date)s."
+msgstr "%(male_name)s est né %(modified_date)s."
 
 #: ReportUtils.py:96
 msgid "%(female_name)s was born on %(modified_date)s."
-msgstr "%(female_name)s était née %(modified_date)s."
+msgstr "%(female_name)s est née %(modified_date)s."
 
 #: ReportUtils.py:102
 msgid "This person was born in %(month_year)s in %(birth_place)s."
@@ -2606,15 +2606,15 @@ msgstr "Cette personne est née en %(month_year)s à %(birth_place)s."
 
 #: ReportUtils.py:103
 msgid "He was born in %(month_year)s in %(birth_place)s."
-msgstr "Il était né en %(month_year)s à %(birth_place)s."
+msgstr "Il est né en %(month_year)s à %(birth_place)s."
 
 #: ReportUtils.py:104
 msgid "She was born in %(month_year)s in %(birth_place)s."
-msgstr "Elle était née en %(month_year)s à %(birth_place)s."
+msgstr "Elle est née en %(month_year)s à %(birth_place)s."
 
 #: ReportUtils.py:107
 msgid "%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr "%(unknown_gender_name)s était né en %(month_year)s à %(birth_place)s."
+msgstr "%(unknown_gender_name)s est né en %(month_year)s à %(birth_place)s."
 
 #: ReportUtils.py:108
 msgid "%(male_name)s was born in %(month_year)s in %(birth_place)s."
@@ -2630,15 +2630,15 @@ msgstr "Cette personne est née en %(month_year)s."
 
 #: ReportUtils.py:116
 msgid "He was born in %(month_year)s."
-msgstr "Il était né en %(month_year)s."
+msgstr "Il est né en %(month_year)s."
 
 #: ReportUtils.py:117
 msgid "She was born in %(month_year)s."
-msgstr "Elle était née en %(month_year)s."
+msgstr "Elle est née en %(month_year)s."
 
 #: ReportUtils.py:120
 msgid "%(unknown_gender_name)s was born in %(month_year)s."
-msgstr "%(unknown_gender_name)s était né en %(month_year)s."
+msgstr "%(unknown_gender_name)s est né en %(month_year)s."
 
 #: ReportUtils.py:121
 msgid "%(male_name)s was born in %(month_year)s."
@@ -2738,19 +2738,19 @@ msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à %(death_place
 
 #: ReportUtils.py:172
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s."
+msgstr "%(male_name)s est décédé le %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:173
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "%(male_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:174
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "%(male_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:175
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "%(male_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:178
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s."
@@ -2770,99 +2770,99 @@ msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l
 
 #: ReportUtils.py:188
 msgid "This person died %(death_date)s in %(death_place)s."
-msgstr "Cette personne est décédée le %(death_date)s à %(death_place)s."
+msgstr "Cette personne est décédée %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:189
 msgid "This person died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "Cette personne est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Cette personne est décédée %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:190
 msgid "This person died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "Cette personne est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "Cette personne est décédée %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:191
 msgid "This person died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "Cette personne est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "Cette personne est décédée %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:194
 msgid "He died %(death_date)s in %(death_place)s."
-msgstr "Il est décédé le %(death_date)s à %(death_place)s."
+msgstr "Il est décédé %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:195
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "Il est décédé le%(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Il est décédé %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:196
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "Il est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "Il est décédé %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:197
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "Il est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "Il est décédé %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:200
 msgid "She died %(death_date)s in %(death_place)s."
-msgstr "Elle est décédée le %(death_date)s à %(death_place)s."
+msgstr "Elle est décédée %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:201
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "Elle est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Elle est décédée %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:202
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "Elle est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "Elle est décédée %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:203
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "Elle est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "Elle est décédée %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:207
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s."
-msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à %(death_place)s."
+msgstr "%(unknown_gender_name)s est décédé %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:208
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "%(unknown_gender_name)s est décédé %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:209
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "%(unknown_gender_name)s est décédé %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:210
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "%(unknown_gender_name)s est décédé %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:213
 msgid "%(male_name)s died %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s est décédé le %(death_date)s à %(death_place)s."
+msgstr "%(male_name)s est décédé %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:214
 msgid "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "%(male_name)s est décédé %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:215
 msgid "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "%(male_name)s est décédé %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:216
 msgid "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "%(male_name)s est décédé %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:219
 msgid "%(female_name)s died %(death_date)s in %(death_place)s."
-msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s."
+msgstr "%(female_name)s est décédée %(death_date)s à %(death_place)s."
 
 #: ReportUtils.py:220
 msgid "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "%(female_name)s est décédée %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:221
 msgid "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr "%(female_name)s est décédée %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:222
 msgid "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr "%(female_name)s est décédée %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:229
 msgid "This person died on %(death_date)s."
@@ -2930,7 +2930,7 @@ msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à l'âge de %(a
 
 #: ReportUtils.py:254
 msgid "%(male_name)s died on %(death_date)s."
-msgstr "%(male_name)s est mort le %(death_date)s."
+msgstr "%(male_name)s est décédé le %(death_date)s."
 
 #: ReportUtils.py:255
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d years."
@@ -2966,95 +2966,95 @@ msgstr "Cette personne est décédée %(death_date)s"
 
 #: ReportUtils.py:271
 msgid "This person died %(death_date)s at the age of %(age)d years."
-msgstr "Cette personne est décédée le %(death_date)s à l'âge de %(age)d ans."
+msgstr "Cette personne est décédée %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:272
 msgid "This person died %(death_date)s at the age of %(age)d months."
-msgstr "Cette personne est décédée le %(death_date)s à l'âge de %(age)d mois."
+msgstr "Cette personne est décédée %(death_date)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:273
 msgid "This person died %(death_date)s at the age of %(age)d days."
-msgstr "Cette personne est décédée le %(death_date)s à l'âge de %(age)d jours."
+msgstr "Cette personne est décédée %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:276
 msgid "He died %(death_date)s."
-msgstr "Il décéda %(death_date)s"
+msgstr "Il est décédé %(death_date)s"
 
 #: ReportUtils.py:277
 msgid "He died %(death_date)s at the age of %(age)d years."
-msgstr "Il est décédé le %(death_date)s à l'âge de %(age)d ans."
+msgstr "Il est décédé %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:278
 msgid "He died %(death_date)s at the age of %(age)d months."
-msgstr "Il est décédé le %(death_date)s à l'âge de %(age)d mois."
+msgstr "Il est décédé %(death_date)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:279
 msgid "He died %(death_date)s at the age of %(age)d days."
-msgstr "Il est décédé le %(death_date)s à l'âge de %(age)d jours."
+msgstr "Il est décédé %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:282
 msgid "She died %(death_date)s."
-msgstr "Elle décéda %(death_date)s"
+msgstr "Elle est décédée %(death_date)s"
 
 #: ReportUtils.py:283
 msgid "She died %(death_date)s at the age of %(age)d years."
-msgstr "Elle est décédée le %(death_date)s à l'âge de %(age)d ans."
+msgstr "Elle est décédée %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:284
 msgid "She died %(death_date)s at the age of %(age)d months."
-msgstr "Elle est décédée le %(death_date)s à l'âge de %(age)d mois."
+msgstr "Elle est décédée %(death_date)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:285
 msgid "She died %(death_date)s at the age of %(age)d days."
-msgstr "Elle est décédée le %(death_date)s à l'âge de %(age)d jours."
+msgstr "Elle est décédée %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:289
 msgid "%(unknown_gender_name)s died %(death_date)s."
-msgstr "%(unknown_gender_name)s est décédé le %(death_date)s."
+msgstr "%(unknown_gender_name)s est décédé %(death_date)s."
 
 #: ReportUtils.py:290
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
-msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à l'âge de %(age)d ans."
+msgstr "%(unknown_gender_name)s est décédé %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:291
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
-msgstr "%(unknown_gender_name)s est décédé le %(death_date)sà l'âge de %(age)d mois."
+msgstr "%(unknown_gender_name)s est décédé %(death_date)sà l'âge de %(age)d mois."
 
 #: ReportUtils.py:292
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d days."
-msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à l'âge de %(age)d jours."
+msgstr "%(unknown_gender_name)s est décédé %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:295
 msgid "%(male_name)s died %(death_date)s."
-msgstr "%(male_name)s est décédé le %(death_date)s."
+msgstr "%(male_name)s est décédé %(death_date)s."
 
 #: ReportUtils.py:296
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s est décédé le %(death_date)s à l'âge de %(age)d ans."
+msgstr "%(male_name)s est décédé %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:297
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s est décédé le %(death_date)s à l'âge de %(age)d mois."
+msgstr "%(male_name)s est décédé %(death_date)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:298
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s est décédé le %(death_date)s à l'âge de %(age)d jours."
+msgstr "%(male_name)s est décédé %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:301
 msgid "%(female_name)s died %(death_date)s."
-msgstr "%(female_name)s est décédée le %(death_date)s."
+msgstr "%(female_name)s est décédée %(death_date)s."
 
 #: ReportUtils.py:302
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d years."
-msgstr "%(female_name)s est décédée le %(death_date)s à l'âge de %(age)d ans."
+msgstr "%(female_name)s est décédée %(death_date)s à l'âge de %(age)d ans."
 
 #: ReportUtils.py:303
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d months."
-msgstr "%(female_name)s est décédée le %(death_date)s à l'âge de %(age)d mois."
+msgstr "%(female_name)s est décédée %(death_date)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:304
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d days."
-msgstr "%(female_name)s est décédée le %(death_date)s à l'âge de %(age)d jours."
+msgstr "%(female_name)s est décédée %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:311
 msgid "This person died in %(month_year)s in %(death_place)s."
@@ -3960,15 +3960,15 @@ msgstr "Elle"
 
 #: ReportUtils.py:1395
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s était né le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédé le %(death_date)s à %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédé %(death_date)s à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1399
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s était né le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédé le %(death_date)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédé %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:1404
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s était né le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédé à %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédé à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1408
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s."
@@ -3976,15 +3976,15 @@ msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s à %(birth_place)s%(
 
 #: ReportUtils.py:1413
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s était né le %(birth_date)s%(birth_endnotes)s et est décédé le %(death_date)s à %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s%(birth_endnotes)s et est décédé %(death_date)s à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1417
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s était né le %(birth_date)s%(birth_endnotes)s et est décédé le %(death_date)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s%(birth_endnotes)s et est décédé %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:1422
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s était né le %(birth_date)s%(birth_endnotes)s et est décédé à %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s%(birth_endnotes)s et est décédé à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1426
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
@@ -3992,11 +3992,11 @@ msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s%(birth_endnotes)s."
 
 #: ReportUtils.py:1432
 msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s était né à %(birth_place)s%(birth_endnotes)s et est décédé le %(death_date)s à %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s est né à %(birth_place)s%(birth_endnotes)s et est décédé %(death_date)s à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1436
 msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s était né à %(birth_place)s%(birth_endnotes)s et est décédé le %(death_date)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s est né à %(birth_place)s%(birth_endnotes)s et est décédé %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:1441
 msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
@@ -4008,11 +4008,11 @@ msgstr "%(male_name)s%(endnotes)s est né à %(birth_place)s%(birth_endnotes)s."
 
 #: ReportUtils.py:1450
 msgid "%(male_name)s%(endnotes)s died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s est décédé le %(death_date)s à %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s est décédé %(death_date)s à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1453
 msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s est décédé le %(death_date)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s est décédé %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:1457
 msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
@@ -4024,15 +4024,15 @@ msgstr "%(male_name)s%(endnotes)s."
 
 #: ReportUtils.py:1466
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s était née le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédée le %(death_date)s à %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédée %(death_date)s à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1470
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s était née le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédée le %(death_date)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédée %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:1475
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s était née le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédée à %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s à %(birth_place)s%(birth_endnotes)s et est décédée à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1479
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s."
@@ -4044,11 +4044,11 @@ msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s
 
 #: ReportUtils.py:1488
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s était née le %(birth_date)s%(birth_endnotes)s et est décédée le %(death_date)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s et est décédée %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:1493
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s, and décédée à %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s, et est décédée à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1497
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
@@ -4056,15 +4056,15 @@ msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s
 
 #: ReportUtils.py:1503
 msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s était née à %(birth_place)s%(birth_endnotes)s et est décédée le %(death_date)s à %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)s et est décédée %(death_date)s à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1507
 msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s était née à %(birth_place)s%(birth_endnotes)s et est décédée le %(death_date)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)s et est décédée %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:1512
 msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s était née à %(birth_place)s%(birth_endnotes)s et est décédée à %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)s et est décédée à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1516
 msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
@@ -4072,11 +4072,11 @@ msgstr "%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)
 
 #: ReportUtils.py:1521
 msgid "%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est décédée le %(death_date)s à %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s est décédée %(death_date)s à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:1524
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est décédée le %(death_date)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s est décédée %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:1528
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
