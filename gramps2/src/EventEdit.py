@@ -346,13 +346,13 @@ class EventEditor:
         edesc = unicode(self.descr_field.get_text())
         epriv = self.priv.get_active()
 
-        if ename not in self.elist + [_("Birth") , _("Death")]:
-            WarningDialog(
-                _('New event type created'),
-                _('The "%s" event type has been added to this database.\n'
-                  'It will now appear in the event menus for this database') % ename)
-            self.elist.append(ename)
-            self.elist.sort()
+#         if ename not in self.elist + [_("Birth") , _("Death")]:
+#             WarningDialog(
+#                 _('New event type created'),
+#                 _('The "%s" event type has been added to this database.\n'
+#                   'It will now appear in the event menus for this database') % ename)
+#             self.elist.append(ename)
+#             self.elist.sort()
 
         if self.event == None:
             self.event = RelLib.Event()
