@@ -1107,10 +1107,31 @@ class EditPerson:
     def event_edit_callback(self,event):
         """Birth and death events may not be in the map"""
         self.redraw_event_list()
+        self.update_pdmap(event)
         try:
             self.etree.select_iter(self.emap[str(event)])
         except:
             pass
+
+    def update_pdmap(self,event):
+        p = event.get_place_handle()
+        if p:
+            place = self.db.get_place_from_handle(p)
+            self.pdmap[place.get_title()] = p
+
+    def event_birth_callback(self,event):
+        """Birth and death events may not be in the map"""
+        self.update_birth = False
+        self.birth = event
+        self.update_birth_info()
+        self.update_pdmap(event)
+
+    def event_death_callback(self,event):
+        """Birth and death events may not be in the map"""
+        self.update_death = False
+        self.death = event
+        self.update_death_info()
+        self.update_pdmap(event)
 
     def attr_edit_callback(self,attr):
         self.redraw_attr_list()
@@ -1212,7 +1233,7 @@ class EditPerson:
         if p:
             event.set_place_handle(p)
         EventEdit.PersonEventEditor(self,pname, event, def_placename, True,
-            self.event_edit_callback, noedit=self.db.readonly)
+            self.event_birth_callback, noedit=self.db.readonly)
 
     def on_edit_death_clicked(self,obj):
         """Brings up the EventEditor for the death record, event
@@ -1229,7 +1250,7 @@ class EditPerson:
         if p:
             event.set_place_handle(p)
         EventEdit.PersonEventEditor(self, pname, event, def_placename,
-                                    True, self.event_edit_callback,
+                                    True, self.event_death_callback,
                                     noedit=self.db.readonly)
 
     def on_aka_delete_clicked(self,obj):
