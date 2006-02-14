@@ -1,3 +1,7 @@
+2006-02-13  Alex Roitman  <shura@gramps-project.org>
+	* src/ArgHandler.py (ArgHandler.cl_export): Do not strip path from
+	the media oject references.
+
 2006-02-13  Stefan Bjork  <skalman@acc.umu.se>
 	* src/po/sv.po: Minor update.
 
