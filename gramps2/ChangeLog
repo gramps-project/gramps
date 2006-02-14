@@ -1,3 +1,12 @@
+2006-02-14  Alex Roitman  <shura@gramps-project.org>
+	* src/docgen/OpenSpreadSheet.py
+	(OpenSpreadSheet._write_meta_file): Properly reference creator string.
+	* src/plugins/EventCmp.py (DisplayChart.on_write_table): Set
+	document creator; write localized event names.
+	(DisplayChart.draw_clist_display): Display localized event names.
+	* src/plugins/ChangeTypes.py: Convert event names to English for
+	storage and comparison.
+
 2006-02-13  Don Allingham  <don@gramps-project.org>
 	* src/EditPerson.py: don't double add a place
 

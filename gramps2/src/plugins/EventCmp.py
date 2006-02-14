@@ -311,8 +311,9 @@ class DisplayChart:
 
         titles = []
         index = 0
-        for v in self.event_titles:
-            titles.append((v,index,150))
+        for event_name in self.event_titles:
+            # Need to display localized event names
+            titles.append((const.display_event(event_name),index,150))
             index = index + 1
             
         self.list = ListModel.ListModel(self.eventlist,titles)
@@ -435,10 +436,12 @@ class DisplayChart:
 
         pstyle = BaseDoc.PaperStyle("junk",10,10)
         doc = OpenSpreadSheet.OpenSpreadSheet(pstyle,BaseDoc.PAPER_PORTRAIT)
+        doc.creator(self.db.get_researcher().get_name())
         spreadsheet = TableReport(name,doc)
         spreadsheet.initialize(len(self.event_titles))
 
-        spreadsheet.write_table_head(self.event_titles)
+        spreadsheet.write_table_head([const.display_event(event_name)
+                                      for event_name in self.event_titles])
 
         index = 0
         for top in self.row_data:

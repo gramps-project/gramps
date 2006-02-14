@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -80,10 +80,11 @@ class ChangeTypes(Tool.Tool):
             
         AutoComp.fill_combo(self.auto1,const.personalEvents)
         AutoComp.fill_combo(self.auto2,const.personalEvents)
-        self.auto1.child.set_text(
-            self.options.handler.options_dict['fromtype'])
-        self.auto2.child.set_text(
-            self.options.handler.options_dict['totype'])
+        # Need to display localized event names
+        self.auto1.child.set_text(const.display_event(
+            self.options.handler.options_dict['fromtype']))
+        self.auto2.child.set_text(const.display_event(
+            self.options.handler.options_dict['totype']))
 
         self.title = _('Change Event Types')
         self.window = self.glade.get_widget('top')
@@ -103,6 +104,7 @@ class ChangeTypes(Tool.Tool):
 
     def run_tool(self,cli=False):
         # Run tool and return results
+        # These are English names, no conversion needed
         fromtype = self.options.handler.options_dict['fromtype']
         totype = self.options.handler.options_dict['totype']
 
@@ -162,10 +164,11 @@ class ChangeTypes(Tool.Tool):
         self.window.present()
 
     def on_apply_clicked(self,obj):
-        self.options.handler.options_dict['fromtype'] = unicode(
-            self.auto1.child.get_text())
-        self.options.handler.options_dict['totype']   = unicode(
-            self.auto2.child.get_text())
+        # Need to store English names for later comparison
+        self.options.handler.options_dict['fromtype'] = const.save_event(
+            unicode(self.auto1.child.get_text()))
+        self.options.handler.options_dict['totype']   = const.save_event(
+            unicode(self.auto2.child.get_text()))
         
         modified,msg = self.run_tool(cli=False)
         OkDialog(_('Change types'),msg,self.parent.topWindow)
