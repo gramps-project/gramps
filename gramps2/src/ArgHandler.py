@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -530,7 +530,7 @@ class ArgHandler:
             if filename:
                 try:
                     import WriteXML
-                    g = WriteXML.XmlWriter(self.parent.db,None,1,1)
+                    g = WriteXML.XmlWriter(self.parent.db,None,0,1)
                     ret = g.write(filename)
                 except:
                     print "Error exporting %s" % filename
