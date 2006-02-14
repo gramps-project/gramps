@@ -9477,11 +9477,11 @@ msgstr "Génération de pages internet (HTML) pour tous les indivdus ou une part
 
 #: plugins/PatchNames.py:103
 msgid "Extracting information from names"
-msgstr "Extraction de données à partir du nom"
+msgstr "Extraction de données à partir du prénom"
 
 #: plugins/PatchNames.py:104
 msgid "Analyzing names"
-msgstr "Analyse des noms"
+msgstr "Analyse des prénoms"
 
 #: plugins/PatchNames.py:150
 msgid "No titles or nicknames were found"
@@ -9489,7 +9489,7 @@ msgstr "Aucun titre ou surnom détectés"
 
 #: plugins/PatchNames.py:173
 msgid "Name and title extraction tool"
-msgstr "Outil d'extraction du nom et du titre"
+msgstr "Outil d'extraction du surnom et du titre"
 
 #: plugins/PatchNames.py:204
 msgid "Bulding display"
@@ -9505,7 +9505,7 @@ msgstr "Préfixe"
 
 #: plugins/PatchNames.py:326 plugins/PatchNames.py:356
 msgid "Extract information from names"
-msgstr "Extraction de données à partir du nom"
+msgstr "Extraction de données à partir du prénom"
 
 #: plugins/PatchNames.py:360
 msgid "Searches the entire database and attempts to extract titles, nicknames and surname prefixes that may be embedded in a person's given name field."
