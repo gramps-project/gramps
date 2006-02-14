@@ -1990,16 +1990,16 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
         'modified_date'       : bdate,
         }
 
-    if bdate and bdate_full:
-        if bplace: #male, date, place
-            text = buried_full_date_place[gender][name_index] % values
-        else:      #male, date, no place
-            text = buried_full_date_no_place[gender][name_index] % values
-    elif bdate and bdate_mod:
+    if bdate and bdate_mod:
         if bplace: #male, date, place
             text = buried_modified_date_place[gender][name_index] % values
         else:      #male, date, no place
             text = buried_modified_date_no_place[gender][name_index] % values
+    elif bdate and bdate_full:
+        if bplace: #male, date, place
+            text = buried_full_date_place[gender][name_index] % values
+        else:      #male, date, no place
+            text = buried_full_date_no_place[gender][name_index] % values
     elif bdate:
         if bplace: #male, month_year, place
             text =  buried_partial_date_place[gender][name_index] % values
