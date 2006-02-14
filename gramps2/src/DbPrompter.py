@@ -138,29 +138,28 @@ class DbPrompter:
             top.show()
             response = top.run()
             top.hide()
-            if response == gtk.RESPONSE_OK:
-                if recent.get_active():
-                    try:
+            try:
+                if response == gtk.RESPONSE_OK:
+                    if recent.get_active():
                         (filename,filetype) = self.recent_files[filelist.get_active()]
                         if open_native(self.parent,filename,filetype):
                             break
-                    except RuntimeError,msg:
-                        QuestionDialog.ErrorDialog(
-                            _("Could not open file: %s") % self.recent_file,
-                            str(msg))
-                    continue
-                elif new.get_active():
-                    prompter = NewNativeDbPrompter(self.parent,
-                                                   self.parent_window)
-                else:
-                    prompter = ExistingDbPrompter(self.parent,
+                        continue
+                    elif new.get_active():
+                        prompter = NewNativeDbPrompter(self.parent,
+                                                       self.parent_window)
+                    else:
+                        prompter = ExistingDbPrompter(self.parent,
                                                   self.parent_window)
-                if prompter.chooser():
+                    if prompter.chooser():
+                        break
+                elif response == gtk.RESPONSE_CANCEL:
                     break
-            elif response == gtk.RESPONSE_CANCEL:
-                break
-            elif response == gtk.RESPONSE_HELP:
-                GrampsDisplay.help('choose-db-start')
+                elif response == gtk.RESPONSE_HELP:
+                    GrampsDisplay.help('choose-db-start')
+            except:
+                import sys
+                QuestionDialog.ErrorDialog(_("Could not open file"),str(sys.exc_info()[1]))
 
         top.destroy()
         if response == gtk.RESPONSE_CANCEL:

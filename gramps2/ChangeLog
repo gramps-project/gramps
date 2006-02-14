@@ -1,3 +1,8 @@
+2006-02-14  Don Allingham  <don@gramps-project.org>
+	* src/DbPrompter.py: Try to give a more intelligent error message on an
+	exception thrown in DbPrompter - don't give a traceback.
+	* src/MediaView.py: clear out details and image if unselected
+
 2006-02-14  Alex Roitman  <shura@gramps-project.org>
 	* src/ReportUtils.py (buried_str): Change the logic to be the same
 	as in born_str: first test for modified date, then full date, then

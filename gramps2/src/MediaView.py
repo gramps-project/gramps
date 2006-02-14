@@ -227,36 +227,41 @@ class MediaView:
 
         store,node = self.selection.get_selected()
         if not node:
-            return
-
-        handle = store.get_value(node,_HANDLE_COL)
-        
-        mobj = self.db.get_object_from_handle(handle)
-        mtype = mobj.get_mime_type()
-        path = mobj.get_path()
-        if mtype:
-            type_name = Utils.get_mime_description(mtype)
-            image = ImgManip.get_thumbnail_image(path,mtype)
-        else:
-            image = Utils.find_mime_type_pixbuf('text/plain')
-            type_name = _('Note')
-        self.preview.set_from_pixbuf(image)
-        del image
-        gc.collect()
-
-        self.mid.set_text(mobj.get_gramps_id())
-        if type_name:
-            self.mtype.set_text(type_name)
-        else:
-            self.mtype.set_text(_('unknown'))
-        self.mdesc.set_text(mobj.get_description())
-        if type_name == _('Note'):
+            self.preview.set_from_pixbuf(None)
+            self.mid.set_text('')
+            self.mdesc.set_text('')
             self.mpath.set_text('')
-        elif len(path) == 0 or fexists == 0:
-            self.mpath.set_text(_("The file no longer exists"))
+            self.mdetails.set_text('')
+            self.mtype.set_text('')
         else:
-            self.mpath.set_text(path)
-        self.mdetails.set_text(Utils.get_detail_text(mobj,0))
+            handle = store.get_value(node,_HANDLE_COL)
+        
+            mobj = self.db.get_object_from_handle(handle)
+            mtype = mobj.get_mime_type()
+            path = mobj.get_path()
+            if mtype:
+                type_name = Utils.get_mime_description(mtype)
+                image = ImgManip.get_thumbnail_image(path,mtype)
+            else:
+                image = Utils.find_mime_type_pixbuf('text/plain')
+                type_name = _('Note')
+            self.preview.set_from_pixbuf(image)
+            del image
+            gc.collect()
+
+            self.mid.set_text(mobj.get_gramps_id())
+            if type_name:
+                self.mtype.set_text(type_name)
+            else:
+                self.mtype.set_text(_('unknown'))
+            self.mdesc.set_text(mobj.get_description())
+            if type_name == _('Note'):
+                self.mpath.set_text('')
+            elif len(path) == 0 or fexists == 0:
+                self.mpath.set_text(_("The file no longer exists"))
+            else:
+                self.mpath.set_text(path)
+            self.mdetails.set_text(Utils.get_detail_text(mobj,0))
 
     def on_button_press_event(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
