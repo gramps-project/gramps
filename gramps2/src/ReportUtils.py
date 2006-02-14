@@ -525,7 +525,7 @@ buried_partial_date_place = {
 buried_partial_date_no_place = {
     RelLib.Person.MALE: [
     _("%(male_name)s was buried in %(month_year)s."),
-    _("He was buried on %(month_year)s."),
+    _("He was buried in %(month_year)s."),
     ],
     RelLib.Person.FEMALE: [
     _("%(female_name)s was buried in %(month_year)s."),

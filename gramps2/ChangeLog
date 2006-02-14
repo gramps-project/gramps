@@ -1,4 +1,5 @@
 2006-02-13  Alex Roitman  <shura@gramps-project.org>
+	* src/ReportUtils.py (buried_partial_date_no_place): Typo.
 	* src/ArgHandler.py (ArgHandler.cl_export): Do not strip path from
 	the media oject references.
 
