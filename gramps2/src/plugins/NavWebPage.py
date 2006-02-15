@@ -111,12 +111,12 @@ _character_sets = [
     ]
 
 _cc = [
-    '<a rel="license" href="http://creativecommons.org/licenses/by/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by/2.5/"><img alt="Creative Commons License - By attribution" title="Creative Commons License - By attribution" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/"><img alt="Creative Commons License - By attribution, No derivations" title="Creative Commons License - By attribution, No derivations" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/"><img alt="Creative Commons License - By attribution, Share-alike" title="Creative Commons License - By attribution, Share-alike" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/"><img alt="Creative Commons License - By attribution, Non-commercial" title="Creative Commons License - By attribution, Non-commercial" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/"><img alt="Creative Commons License - By attribution, Non-commercial, No derivations" title="Creative Commons License - By attribution, Non-commercial, No derivations" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/"><img alt="Creative Commons License - By attribution, Non-commerical, Share-alike" title="Creative Commons License - By attribution, Non-commerical, Share-alike" src="#PATH#images/somerights20.gif" /></a>',
     ]
 
 
@@ -2107,7 +2107,7 @@ class WebReport(Report.Report):
 
         # Copy the Creative Commons icon if the a Creative Commons
         # license is requested
-        if 1 < self.copyright < 7:
+        if 0 < self.copyright < 7:
             from_path = os.path.join(const.dataDir,"somerights20.gif")
             to_path = os.path.join("images","somerights20.gif")
             self.store_file(archive,self.target_path,from_path,to_path)

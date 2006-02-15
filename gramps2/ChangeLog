@@ -1,4 +1,6 @@
 2006-02-14  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: include more information about CC licenses
+	in the ALT and TITLE tags.
 	* src/plugins/GraphViz.py: use new style links for narrative web page
 	generator
 	* src/DbPrompter.py: Try to give a more intelligent error message on an
