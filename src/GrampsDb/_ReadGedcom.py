@@ -474,7 +474,6 @@ class GedcomParser:
 
         self.name_func = {
             TOKEN_ALIA   : self.func_name_alia,
-            TOKEN_ALIA   : self.func_name_alia,
             TOKEN_NPFX   : self.func_name_npfx,
             TOKEN_GIVN   : self.func_name_givn,
             TOKEN_SPFX   : self.func_name_spfx,
@@ -491,7 +490,6 @@ class GedcomParser:
         self.person_func = {
             TOKEN_NAME  : self.func_person_name,
             TOKEN_ALIA  : self.func_person_alt_name,
-            TOKEN__ALIA : self.func_person_alt_name,
             TOKEN_OBJE  : self.func_person_object,
             TOKEN_NOTE  : self.func_person_note,
             TOKEN__COMM : self.func_person_note,
@@ -624,7 +622,7 @@ class GedcomParser:
             if not self.groups:
                 self.text = "";
                 self.backoff = False
-                msg = _("Premature end of file at line %d.\n") % next_line[4]
+                msg = _("Premature end of file at line %d.\n") % self.groups[4]
                 self.errmsg(msg)
                 self.error_count += 1
                 self.groups = (-1, TOKEN_UNKNOWN, "","")
@@ -969,7 +967,7 @@ class GedcomParser:
                 return
             elif matches[1] == TOKEN_CALN:
                 repo.set_call_number(matches[2])
-                self.parse_repo_caln(matches, repo. level+1)
+                #self.parse_repo_caln(matches, repo. level+1)
             elif matches[1] == TOKEN_NOTE:
                 repo.set_note(matches[2])
             else:
@@ -2389,7 +2387,6 @@ def create_id():
 if __name__ == "__main__":
     import sys
     import hotshot#, hotshot.stats
-    import const
     from GrampsDb import gramps_db_factory, gramps_db_reader_factory
 
     def callback(val):
@@ -2416,7 +2413,6 @@ if __name__ == "__main__":
 ##         stats.sort_stats('time','calls')
 ##         stats.print_stats(100)
     else:
-        import time
         t = time.time()
         g.parse_gedcom_file(False)
         print time.time() - t
