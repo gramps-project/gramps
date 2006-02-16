@@ -1,3 +1,7 @@
+2006-02-16  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GedTokens.py: fix constant table
+	* src/GrampsDb/_ReadGedcom.py: ALIA fix
+
 2006-02-15  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: Set up for EditSourceRef
 	* src/GrampsMime.py: handle special mime types

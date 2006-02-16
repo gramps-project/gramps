@@ -28,8 +28,8 @@ TOKEN_ADR1 = 4
 TOKEN_ADR2 = 5
 TOKEN_AFN = 6
 TOKEN_IGNORE = 7
+TOKEN_REFN = 8
 TOKEN__AKA = 9
-TOKEN__ALIA = 10
 TOKEN_ALIA = 11
 TOKEN_ANCI = 12
 TOKEN_ASSO = 13
@@ -133,8 +133,8 @@ tokens = {
     "ADDRESS1"     : TOKEN_ADR1,    "ADR2"         : TOKEN_ADR2,
     "ADDRESS2"     : TOKEN_ADR2,    "AFN"          : TOKEN_AFN,
     "AGE"          : TOKEN_IGNORE,  "AGNC"         : TOKEN_IGNORE,
-    "AGENCY"       : TOKEN_AGNC,    "_AKA"         : TOKEN__AKA,
-    "_ALIA"        : TOKEN__ALIA,   "ALIA"         : TOKEN_ALIA,
+    "AGENCY"       : TOKEN_IGNORE,  "_AKA"         : TOKEN__AKA,
+    "_ALIA"        : TOKEN_ALIA,    "ALIA"         : TOKEN_ALIA,
     "ALIAS"        : TOKEN_ALIA,    "ANCI"         : TOKEN_ANCI,
     "ASSO"         : TOKEN_ASSO,    "ASSOCIATES"   : TOKEN_ASSO,
     "AUTH"         : TOKEN_AUTH,    "AUTHOR"       : TOKEN_AUTH,
