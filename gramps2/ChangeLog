@@ -1,3 +1,11 @@
+2006-02-15  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: Set up for EditSourceRef
+	* src/GrampsMime.py: handle special mime types
+	* src/gramps.glade: add sourceref editor
+	* src/GrampsDb/_GedTokens.py: Unused tokens, FTM 3.0 tokens
+	* src/GrampsDb/_ReadGedcom.py: use TOKEN_IGNORE
+	* src/EditSourceRef.py: added
+
 2006-02-09  Don Allingham  <don@gramps-project.org>
 	* src/DisplayState.py: Manage history on db change
 	* src/Navigation.py: Manage history on db change

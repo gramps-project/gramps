@@ -1008,9 +1008,9 @@ class LocationEmbedList(EmbeddedList):
 #-------------------------------------------------------------------------
 class NoteTab(GrampsTab):
 
-    def __init__(self, dbstate, uistate, track, note_obj):
+    def __init__(self, dbstate, uistate, track, note_obj,title=_('Note')):
         self.note_obj = note_obj        
-        GrampsTab.__init__(self, dbstate, uistate, track, _('Note'))
+        GrampsTab.__init__(self, dbstate, uistate, track, title)
         self.show_all()
 
     def _update_label(self,*obj):
@@ -1218,11 +1218,12 @@ class SourceEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2),(1,3))
 
     def add_button_clicked(self,obj):
-        from Sources import SourceEditor
+        from EditSourceRef import EditSourceRef
         
         sref = RelLib.SourceRef()
-        SourceEditor(self.dbstate, self.uistate, self.track, sref,
-                     self.add_callback)
+        src = RelLib.Source()
+        EditSourceRef(self.dbstate, self.uistate, self.track,
+                      src, sref, self.add_callback)
 
     def add_callback(self,obj):
         self.get_data().append(obj)
