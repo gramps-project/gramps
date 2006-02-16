@@ -329,22 +329,18 @@ class IdMapper:
         gramps_id = str(gramps_id)
         
         handle = self.idswap.get(gramps_id)
-        print handle, self.idswap
         if not handle:
             if self.trans_func(gramps_id):
                 handle = self.gen_next_id()
             else:
                 handle = gramps_id
             self.idswap[gramps_id] = handle
-        print "mapping %s to %s" % (gramps_id,handle)
         return handle
 
     def convert_to_handle(self,gramps_id):
-        print "converting %s to %s" % (gramps_id, self.id2handle.get(gramps_id))
         return self.id2handle.get(gramps_id)
 
     def save_id_to_handle(self,gramps_id,handle):
-        print "storing %s to %s" % (gramps_id, handle)
         self.id2handle[gramps_id] = handle
                 
 
