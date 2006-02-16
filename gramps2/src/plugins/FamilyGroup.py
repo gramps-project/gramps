@@ -629,7 +629,7 @@ class FamilyGroupOptions(ReportOptions.ReportOptions):
         self.spouse_menu.set_active(spouse_index)
 	
         # Recursive
-        self.recursive_option = gtk.CheckButton(_(""))
+        self.recursive_option = gtk.CheckButton()
         self.recursive_option.set_active(self.options_dict['recursive'])
 	
         # Missing Info
