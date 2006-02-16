@@ -119,6 +119,7 @@ rel_types = ((RelLib.Person.CHILD_BIRTH,''),
 pedi_type = {
     'birth'  : (RelLib.Person.CHILD_BIRTH,''),
     'natural': (RelLib.Person.CHILD_BIRTH,''),
+    'step'   : (RelLib.Person.CHILD_ADOPTED,''),
     'adopted': (RelLib.Person.CHILD_ADOPTED,''),
     'foster' : (RelLib.Person.CHILD_FOSTER,''),
     }
@@ -172,9 +173,9 @@ def importData(database, filename, callback=None, use_trans=False):
         line = f.readline().split()
         if len(line) == 0:
             break
-        if len(line) > 2 and line[1] == 'CHAR' and line[2] == "ANSEL":
+        if len(line) > 2 and line[1][0:4] == 'CHAR' and line[2] == "ANSEL":
             ansel = True
-        if len(line) > 2 and line[1] == 'SOUR' and line[2] == "GRAMPS":
+        if len(line) > 2 and line[1][0:4] == 'SOUR' and line[2] == "GRAMPS":
             gramps = True
     f.close()
 
@@ -752,7 +753,7 @@ class GedcomParser:
                 repo_ref.set_reference_handle(repo.handle)
                 self.parse_repo_ref(matches,repo_ref,level+1)
                 self.source.add_repo_reference(repo_ref)
-            elif matches[1] in (TOKEN_OBJE,TOKEN_CHAN,TOKEN__CAT):
+            elif matches[1] in (TOKEN_OBJE,TOKEN_CHAN,TOKEN_IGNORE):
                 self.ignore_sub_junk(2)
             else:
                 note = self.source.get_note()
@@ -814,7 +815,7 @@ class GedcomParser:
                 del self.repo
             elif matches[2] in ("SUBM","SUBN"):
                 self.ignore_sub_junk(1)
-            elif matches[1] in (TOKEN_SUBM,TOKEN_SUBN,TOKEN_OBJE,TOKEN__EVENT_DEFN):
+            elif matches[1] in (TOKEN_SUBM,TOKEN_SUBN,TOKEN_OBJE,TOKEN_IGNORE):
                 self.ignore_sub_junk(1)
             elif matches[2] == "SOUR":
                 self.parse_source(matches[3],1)
@@ -1337,8 +1338,8 @@ class GedcomParser:
             elif matches[1] == TOKEN_ADDR:
                 address.set_street(matches[2])
                 self.parse_address(address,level+1)
-            elif matches[1] in (TOKEN_AGE,TOKEN_AGNC,TOKEN_CAUS,TOKEN_STAT,
-                                TOKEN_TEMP,TOKEN_OBJE,TOKEN_TYPE,TOKEN__DATE2):
+            elif matches[1] in (TOKEN_IGNORE,TOKEN_CAUS,TOKEN_STAT,
+                                TOKEN_TEMP,TOKEN_OBJE,TOKEN_TYPE):
                 self.ignore_sub_junk(level+1)
             elif matches[1] == TOKEN_SOUR:
                 address.add_source_reference(self.handle_source(matches,level+1))
@@ -1483,9 +1484,8 @@ class GedcomParser:
                     witness = RelLib.Witness(RelLib.Event.NAME,matches[2])
                 event.add_witness(witness)
                 self.ignore_sub_junk(level+1)
-            elif matches[1] in (TOKEN_RELI, TOKEN_TIME, TOKEN_ADDR,TOKEN_AGE,
-                                TOKEN_AGNC,TOKEN_STAT,TOKEN_TEMP,TOKEN_OBJE,
-                                TOKEN__DATE2):
+            elif matches[1] in (TOKEN_RELI, TOKEN_TIME, TOKEN_ADDR,TOKEN_IGNORE,
+                                TOKEN_STAT,TOKEN_TEMP,TOKEN_OBJE):
                 self.ignore_sub_junk(level+1)
             else:
                 self.barf(level+1)
@@ -1501,7 +1501,7 @@ class GedcomParser:
                 break
             elif matches[1] == TOKEN_DATE:
                 event.set_date_object(self.extract_date(matches[2]))
-            elif matches[1] in (TOKEN_TIME,TOKEN_ADDR,TOKEN_AGE,TOKEN_AGNC,
+            elif matches[1] in (TOKEN_TIME,TOKEN_ADDR,TOKEN_IGNORE,
                                 TOKEN_STAT,TOKEN_TEMP,TOKEN_OBJE):
                 self.ignore_sub_junk(level+1)
             elif matches[1] == TOKEN_SOUR:
@@ -1571,7 +1571,7 @@ class GedcomParser:
                             name = matches[2]
                     attr.set_name(name)
             elif matches[1] in (TOKEN_CAUS,TOKEN_DATE,TOKEN_TIME,TOKEN_ADDR,
-                                TOKEN_AGE,TOKEN_AGNC,TOKEN_STAT,TOKEN_TEMP,TOKEN_OBJE):
+                                TOKEN_IGNORE,TOKEN_STAT,TOKEN_TEMP,TOKEN_OBJE):
                 self.ignore_sub_junk(level+1)
             elif matches[1] == TOKEN_SOUR:
                 attr.add_source_reference(self.handle_source(matches,level+1))
@@ -1614,8 +1614,8 @@ class GedcomParser:
                 info = matches[2]
                 event.set_cause(info)
                 self.parse_cause(event,level+1)
-            elif matches[1] in (TOKEN_TIME,TOKEN_AGE,TOKEN_AGNC,TOKEN_ADDR,TOKEN_STAT,
-                                TOKEN_TEMP,TOKEN_HUSB,TOKEN_WIFE,TOKEN_OBJE,TOKEN__CHUR):
+            elif matches[1] in (TOKEN_TIME,TOKEN_IGNORE,TOKEN_ADDR,TOKEN_STAT,
+                                TOKEN_TEMP,TOKEN_HUSB,TOKEN_WIFE,TOKEN_OBJE):
                 self.ignore_sub_junk(level+1)
             elif matches[1] == TOKEN_SOUR:
                 event.add_source_reference(self.handle_source(matches,level+1))

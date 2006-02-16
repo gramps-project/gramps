@@ -22,3 +22,17 @@ try:
     from GnomeMime import *
 except:
     from PythonMime import *
+
+def base_type(val):
+    return val.split('/')[0]
+
+def is_image_type(val):
+    return base_type(val) == "image"
+
+def is_directory(val):
+    return base_type(val) == "x-directory"
+
+_invalid_mime_types = ('x-directory','x-special')
+
+def is_valid_type(val):
+    return base_type(val) not in _invalid_mime_types
