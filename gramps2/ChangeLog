@@ -1,3 +1,6 @@
+2006-02-17  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/FamilyGroup.py (dump_parent): Translate event names.
+
 2005-02-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/po/de.po: Translation update
 

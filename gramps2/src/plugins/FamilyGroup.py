@@ -283,7 +283,7 @@ class FamilyGroup(Report.Report):
                 event = self.database.get_event_from_handle(event_handle)
                 evtName = event.get_name()
                 if (evtName != "Death") and (evtName != "Birth"):
-                    self.dump_parent_event(evtName,event)
+                    self.dump_parent_event(_(evtName),event)
 
         if self.incParAddr:
             addrlist = person.get_address_list()[:]
