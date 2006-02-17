@@ -397,7 +397,7 @@ class Reader:
             try:
                 val = self.cnv(val)
             except:
-                val = self.cnv(line[2].translate(val,self.transtable2))
+                val = self.cnv(val.translate(self.transtable2))
 
             try:
                 level = int(line[0])
