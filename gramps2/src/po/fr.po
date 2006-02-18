@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 2.0.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Feb 16 21:39:00 2006\n"
-"PO-Revision-Date: 2006-02-18 10:35+0100\n"
+"POT-Creation-Date: Fri Feb 17 07:54:43 2006\n"
+"PO-Revision-Date: 2006-02-18 12:32+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -261,7 +261,7 @@ msgid "Likely Father"
 msgstr "Père probable"
 
 #: ChooseParents.py:840
-msgid "Matches likely fathersn"
+msgid "Matches likely fathers"
 msgstr "Compare les pères possibles"
 
 #: ChooseParents.py:847
