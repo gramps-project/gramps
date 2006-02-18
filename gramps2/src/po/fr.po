@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gramps 2.0.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Thu Feb 16 21:39:00 2006\n"
-"PO-Revision-Date: 2006-02-17 11:35+0100\n"
+"PO-Revision-Date: 2006-02-18 10:35+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -164,11 +164,11 @@ msgstr ""
 
 #: AttrEdit.py:125 AttrEdit.py:129 AttrEdit.py:200
 msgid "Attribute Editor"
-msgstr "Attribut"
+msgstr "Editeur d'attribut"
 
 #: AttrEdit.py:127
 msgid "Attribute Editor for %s"
-msgstr "Attribut pour %s"
+msgstr "Editeur d'attribut pour %s"
 
 #: AttrEdit.py:189 AttrEdit.py:193
 msgid "New Attribute"
@@ -258,7 +258,7 @@ msgstr "Père"
 
 #: ChooseParents.py:839
 msgid "Likely Father"
-msgstr "Père supposé"
+msgstr "Père probable"
 
 #: ChooseParents.py:840
 msgid "Matches likely fathersn"
@@ -266,7 +266,7 @@ msgstr "Compare les pères possibles"
 
 #: ChooseParents.py:847
 msgid "Likely Mother"
-msgstr "Mère supposée"
+msgstr "Mère probable"
 
 #: ChooseParents.py:848
 msgid "Matches likely mothers"
@@ -450,7 +450,7 @@ msgid ""
 "email message to gramps-bugs@lists.sourceforge.net\n"
 "\n"
 msgstr ""
-"GRAMPS vient de provoquer une erreur interne.\n"
+"GRAMPS vient de rencontrer une erreur interne.\n"
 "Veuillez poster le message d'erreur à \n"
 "http://sourceforge.net/projects/gramps ou envoyer \n"
 "un message à gramps-bugs@lists.sourceforge.net\n"
@@ -527,11 +527,11 @@ msgstr "Ouvrir dans %s"
 
 #: EditPerson.py:569 ImageSelect.py:666 MediaView.py:297
 msgid "Edit with the GIMP"
-msgstr "Afficher avec GIMP"
+msgstr "Editer avec GIMP"
 
 #: EditPerson.py:571 ImageSelect.py:668
 msgid "Edit Object Properties"
-msgstr "Afficher les propriétés de l'objet"
+msgstr "Editer les propriétés de l'objet"
 
 #: EditPerson.py:625
 msgid "New Person"
@@ -604,7 +604,7 @@ msgstr "Ajouter un lieu (%s)"
 
 #: EditPlace.py:98 EditPlace.py:317
 msgid "Place Editor"
-msgstr "Lieu"
+msgstr "Editeur de lieu"
 
 #: EditPlace.py:158 PlaceView.py:53 plugins/NavWebPage.py:735
 msgid "City"
@@ -644,7 +644,7 @@ msgstr "Type d'événement"
 
 #: EditPlace.py:598
 msgid "Personal Event"
-msgstr "Evénement individuel :"
+msgstr "Evénement individuel"
 
 #: EditPlace.py:621 Utils.py:130
 msgid "%(father)s and %(mother)s"
@@ -660,7 +660,7 @@ msgstr "Supprimer le lieu (%s)"
 
 #: EditSource.py:95 EditSource.py:268
 msgid "Source Editor"
-msgstr "Source"
+msgstr "Editeur de source"
 
 #: EditSource.py:166
 msgid "Key"
@@ -697,7 +697,7 @@ msgstr "Supprimer la source (%s)"
 
 #: EventEdit.py:121 EventEdit.py:126 EventEdit.py:294
 msgid "Event Editor"
-msgstr "Evénement"
+msgstr "Editeur d'événement"
 
 #: EventEdit.py:123
 msgid "Event Editor for %s"
@@ -735,7 +735,7 @@ msgid ""
 "\n"
 "If you change your mind during this process, you can safely press the Cancel button at any time and your present database will still be intact."
 msgstr ""
-"Normalement, vous n'avez pas besoin de sauvegarder vosmodifications dans GRAMPS. Toutes les modifications effectuées sont immédiatement sauvée dans la base de données.\n"
+"Normalement, vous n'avez pas besoin de sauvegarder vos modifications dans GRAMPS. Toutes les modifications effectuées sont immédiatement sauvée dans la base de données.\n"
 "\n"
 "Ce processus vous permet de sauver une copie de vos données dans un des formats supportés par GRAMPS. Cela peut être utilisé pour effectuer une copie de vos données, sauvegarder vos données, ou les convertir dans un format qui permettra le transfert dans un autre logiciel.\n"
 "\n"
@@ -902,7 +902,7 @@ msgstr "Supprimer l'enfant sélectionné"
 
 #: FamilyView.py:598
 msgid "Spouse Menu"
-msgstr "Menu Epoux(se)"
+msgstr "Menu Conjoint"
 
 #: FamilyView.py:624
 msgid "Make the selected spouse an active person"
@@ -942,11 +942,11 @@ msgstr "Enlever l'enfant (%s)"
 
 #: FamilyView.py:867
 msgid "Remove %s as a spouse of %s?"
-msgstr "Voulez vous supprimer %s en tant que conjoint de %s?"
+msgstr "Voulez vous enlever %s en tant que conjoint de %s?"
 
 #: FamilyView.py:868
 msgid "Removing a spouse removes the relationship between the spouse and the active person. It does not remove the spouse from the database"
-msgstr "Détruire un conjoint revient à détruire son lien avec la personne sélectionnée. Cela ne supprime pas ce dernier de la base de données."
+msgstr "Enlever un conjoint revient à détruire son lien avec la personne sélectionnée. Cela ne supprime pas ce dernier de la base de données."
 
 #: FamilyView.py:871
 msgid "_Remove Spouse"
@@ -994,7 +994,7 @@ msgstr "Choisir les parents en cours comme famille en cours"
 
 #: FamilyView.py:1204 FamilyView.py:1243
 msgid "Remove parents"
-msgstr "Supprimer les parents"
+msgstr "Enlever les parents"
 
 #: FamilyView.py:1214
 msgid "Spouse Parents Menu"
@@ -1002,19 +1002,19 @@ msgstr "Menu des parents du conjoint"
 
 #: FamilyView.py:1306 FamilyView.py:1321
 msgid "Remove Parents of %s"
-msgstr "Supprimer les parents de %s"
+msgstr "Enlever les parents de %s"
 
 #: FamilyView.py:1307 FamilyView.py:1322
 msgid "Removing the parents of a person removes the person as a child of the parents. The parents are not removed from the database, and the relationship between the parents is not removed."
-msgstr "Détruire les parents d'un individu revient à détruire son lien avec ses parents. Cela ne supprime pas les parents de la base de données et la relation entre les parents ne sera nullement modifiée."
+msgstr "Enlever les parents d'un individu revient à détruire son lien avec ses parents. Cela ne supprime pas les parents de la base de données et la relation entre les parents ne sera nullement modifiée."
 
 #: FamilyView.py:1311 FamilyView.py:1326
 msgid "_Remove Parents"
-msgstr "Supp_rimer les Parents"
+msgstr "_Enlever les Parents"
 
 #: FamilyView.py:1419
 msgid "Remove Parents (%s)"
-msgstr "Supprimer les parents (%s)"
+msgstr "Enlever les parents (%s)"
 
 #: FamilyView.py:1493
 msgid "Attempt to Reorder Children Failed"
@@ -2123,14 +2123,14 @@ msgstr "Essayer de recharger les modules. Note : cet outil ne sera pas rechargé
 
 #: QuestionDialog.py:264 Utils.py:927
 msgid "Attempt to force closing the dialog"
-msgstr "Essayer de fermer le dialogue"
+msgstr "Essayer de fermer la fenêtre"
 
 #: QuestionDialog.py:265
 msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
 msgstr ""
-"S'il vous plait ne fermez pas cet important dialogue.\n"
+"S'il vous plait ne fermez pas cette fenêtre.\n"
 "Sélectionnez plutôt une des options disponibles"
 
 #: ReadGedcom.py:93 ReadGedcom.py:94
@@ -2489,7 +2489,6 @@ msgid "Permission problem"
 msgstr "Problème de droits"
 
 #: Report.py:1422
-
 msgid ""
 "You do not have permission to write under the directory %s\n"
 "\n"
@@ -4350,7 +4349,7 @@ msgid ""
 msgstr ""
 "Bienvenue dans GRAMPS !\n"
 "En anglais, GRAMPS signifie Genealogical Research and Analysis Management Programming System. On pourrait traduire par \"Système informatique de recherche, de gestion et d'analyse généalogique\".\n"
-"Le présent dialogue vous permettra de personnaliser GRAMPS. Tous ces items de configuration pourront être modifiées ultérieurement dans le menu Editions -> Préférences."
+"Une fenêtre vous permet de personnaliser GRAMPS. Tous les items de configuration peuvent être modifiées dans le menu Editions -> Préférences."
 
 #: StartupDialog.py:198
 msgid ""
@@ -4409,7 +4408,7 @@ msgstr "Les schémas GConf n'ont pas été trouvés. Tout d'abord, essayez d'éx
 
 #: StartupDialog.py:291
 msgid "LDS extensions"
-msgstr "Extensions mormones"
+msgstr "Extensions mormons"
 
 #: StartupDialog.py:300
 msgid ""
@@ -4419,7 +4418,7 @@ msgid ""
 "You may choose to either enable or disable this support. You may\n"
 "change this option in the future in the Preferences dialog."
 msgstr ""
-"GRAMPS supporte les Ordonnances Mormones, événements spéciaux \n"
+"GRAMPS supporte les Ordonnances Mormons, événements spéciaux \n"
 "relatifs à l'Eglise de Jésus-Christ des Saints Derniers Jours \n"
 "\n"
 "Vous pouvez choisir de cocher cette options ou non. Vous aurez\n"
@@ -4435,11 +4434,11 @@ msgstr "Styles de documents"
 
 #: StyleEditor.py:132
 msgid "Error saving stylesheet"
-msgstr "Erreur lors de la sauvegarde du tableau"
+msgstr "Erreur d'enregistrement de la feuille de style"
 
 #: StyleEditor.py:197
 msgid "Style editor"
-msgstr "Style"
+msgstr "Editeur de style"
 
 #: StyleEditor.py:201
 msgid "Paragraph"
@@ -4487,7 +4486,7 @@ msgstr "Adresse Internet"
 
 #: UrlEdit.py:81
 msgid "Internet Address Editor for %s"
-msgstr "Adresse Internet de %s"
+msgstr "Adresse Internet pour %s"
 
 #: Utils.py:65
 msgid "The data can only be recovered by Undo operation or by quitting with abandoning changes."
@@ -4499,7 +4498,7 @@ msgstr "Erreur de base de données: %s est défini comme son propre ancêtre"
 
 #: Utils.py:928
 msgid "Please do not force closing this important dialog."
-msgstr "S'il vous plait ne fermez pas cet important dialogue."
+msgstr "S'il vous plait ne fermez pas cette fenêtre."
 
 #: Witness.py:66
 msgid "Witness"
@@ -5929,7 +5928,7 @@ msgstr "Abandonner les modifications et fermer la fenêtre"
 #: gramps.glade:4754 gramps.glade:6579 gramps.glade:11837 gramps.glade:25116
 #: gramps.glade:27363 gramps.glade:28252 gramps.glade:28518
 msgid "Accept changes and close window"
-msgstr "Accepter les modifications et fermer la fenêtre de dialogue"
+msgstr "Accepter les modifications et fermer la fenêtre"
 
 #: gramps.glade:4838 gramps.glade:6771 gramps.glade:14015 gramps.glade:18113
 #: gramps.glade:21195 gramps.glade:22970 gramps.glade:28684
@@ -10764,7 +10763,7 @@ msgstr ""
 
 #: plugins/changenames.glade:125
 msgid "_Accept changes and close"
-msgstr "_Accepter les modifications et fermer la fenêtre de dialogue"
+msgstr "_Accepter les modifications et fermer la fenêtre"
 
 #: plugins/changetype.glade:100
 msgid "This tool will rename all events of one type to a different type. Once completed, this cannot be undone without abandoning all changes since the last database save."
