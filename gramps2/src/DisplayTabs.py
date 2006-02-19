@@ -218,7 +218,7 @@ class ButtonTab(GrampsTab):
         self.tooltips = gtk.Tooltips()
         self.create_buttons(share_button)
 
-    def create_buttons(self,share_button):
+    def create_buttons(self,share_button=None):
         """
         Creates a button box consisting of three buttons, one for Add,
         one for Edit, and one for Delete. This button box is then appended
@@ -1454,6 +1454,7 @@ class EventRefModel(gtk.ListStore):
 
     def column_date(self,event_ref):
         event = self.db.get_event_from_handle(event_ref.ref)
+        print event, DateHandler.get_date(event)
         return DateHandler.get_date(event)
 
     def column_place(self,event_ref):

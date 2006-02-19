@@ -612,7 +612,9 @@ class EventModel(BaseModel):
 
     def column_date(self,data):
         if data[3]:
-            return unicode(DateHandler.displayer.display(data[3]))
+            event = RelLib.Event()
+            event.unserialize(data)
+            return DateHandler.get_date(event)
         return u''
 
     def column_handle(self,data):
