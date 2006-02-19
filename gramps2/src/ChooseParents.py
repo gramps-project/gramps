@@ -837,7 +837,7 @@ class LikelyFilter(GenericFilter.Rule):
 class LikelyFather(LikelyFilter):
 
     name        = _('Likely Father')
-    description = _('Matches likely fathersn')
+    description = _('Matches likely fathers')
 
     def __init__(self,data_list):
         LikelyFilter.__init__(self,data_list,RelLib.Person.MALE)
