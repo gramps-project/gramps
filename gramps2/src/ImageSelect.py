@@ -193,14 +193,14 @@ class ImageSelect:
 
         internal = self.internal.get_active()
 
+        already_imported = None
+        
         if not internal:
             if os.path.exists(filename) == 0:
                 msgstr = _("Cannot import %s")
                 msgstr2 = _("The filename supplied could not be found.")
                 ErrorDialog(msgstr % filename, msgstr2)
                 return
-
-            already_imported = None
 
             for o_id in self.db.get_media_object_handles():
                 o = self.db.get_object_from_handle(o_id)
