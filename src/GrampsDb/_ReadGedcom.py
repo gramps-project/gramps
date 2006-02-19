@@ -81,6 +81,17 @@ addr3_re = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)')
 #
 #-------------------------------------------------------------------------
 
+_place_field = []
+_place_match = {
+    'city'   : RelLib.Location.set_city,
+    'county' : RelLib.Location.set_county,
+    'country': RelLib.Location.set_country,
+    'state'  : RelLib.Location.set_state,
+    }
+
+def _empty_func(a,b):
+    return
+
 def utf8_to_latin(s):
     return s.encode('iso-8859-1','replace')
 
@@ -943,6 +954,7 @@ class GedcomParser:
             intid = create_id()
             place.set_handle(intid)
             place.set_title(pname)
+            load_place_values(place,pname)
             place.set_gramps_id(new_id)
             self.db.add_place(place,self.trans)
             self.lid2id[title] = intid
@@ -1183,7 +1195,6 @@ class GedcomParser:
             if int(matches[0]) < 1:
                 self.backup()
                 if state.get_text():
-                    print state
                     state.person.set_note(state.get_text())
                 return
             else:
@@ -1409,6 +1420,7 @@ class GedcomParser:
               try:
                 place = self.find_or_create_place(matches[2])
                 place.set_title(matches[2])
+                load_place_values(place,matches[2])
                 place_handle = place.handle
                 lds_ord.set_place_handle(place_handle)
                 self.ignore_sub_junk(level+1)
@@ -1462,6 +1474,7 @@ class GedcomParser:
                     place = self.find_or_create_place(val)
                     place_handle = place.handle
                     place.set_title(matches[2])
+                    load_place_values(place,matches[2])
                     event.set_place_handle(place_handle)
                     self.ignore_sub_junk(level+1)
             elif matches[1] == TOKEN_CAUS:
@@ -1515,6 +1528,7 @@ class GedcomParser:
                 place = self.find_or_create_place(val)
                 place_handle = place.handle
                 place.set_title(matches[2])
+                load_place_values(place,matches[2])
                 event.set_place_handle(place_handle)
                 self.ignore_sub_junk(level+1)
             elif matches[1] == TOKEN_TYPE:
@@ -1622,6 +1636,7 @@ class GedcomParser:
                 place = self.find_or_create_place(val)
                 place_handle = place.handle
                 place.set_title(matches[2])
+                load_place_values(place,matches[2])
                 event.set_place_handle(place_handle)
                 self.ignore_sub_junk(level+1)
             elif matches[1] == TOKEN_OFFI:
@@ -1840,7 +1855,12 @@ class GedcomParser:
             if int(matches[0]) < level:
                 self.backup()
                 return
-            elif matches[1] != TOKEN_FORM:
+            elif matches[1] == TOKEN_FORM:
+                for item in matches[2].split(','):
+                    item = item.lower().strip()
+                    fcn = _place_match.get(item,_empty_func)
+                    _place_field.append(fcn)
+            else:
                 self.barf(level+1)
     
     def parse_date(self,level):
@@ -2364,6 +2384,16 @@ def person_event_name(event,person):
                 'person' : NameDisplay.displayer.display(person),
                 }
             event.set_description(text)
+
+def load_place_values(place,text):
+    items = text.split(',')
+    if len(items) != len(_place_field):
+        return
+    loc = place.get_main_location()
+    index = 0
+    for item in items:
+        _place_field[index](loc,item.strip())
+        index += 1
     
 #-------------------------------------------------------------------------
 #
