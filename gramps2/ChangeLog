@@ -1,3 +1,7 @@
+2006-02-19  Soren Roug  <roug@users.sourceforge.net>
+	* src/WriteXML.py: encode paths for objects in XML to handle
+	&, > and < in paths.
+
 2006-02-19  Don Allingham  <don@gramps-project.org>
 	* src/ImageSelect.py: fix already_loaded initalization
 

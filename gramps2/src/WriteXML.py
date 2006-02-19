@@ -849,7 +849,7 @@ class XmlWriter:
     def write_object(self,obj):
         handle = obj.get_gramps_id()
         mime_type = obj.get_mime_type()
-        path = obj.get_path()
+        path = self.fix(obj.get_path())
         if self.strip_photos:
             path = os.path.basename(path)
         self.g.write('    <object id="%s" handle="%s" change="%d" src="%s" mime="%s"' %
