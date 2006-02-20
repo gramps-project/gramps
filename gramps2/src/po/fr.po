@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 2.0.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Sat Feb 18 22:21:36 2006\n"
-"PO-Revision-Date: 2006-02-19 15:27+0100\n"
+"PO-Revision-Date: 2006-02-20 11:41+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -4365,7 +4365,7 @@ msgstr ""
 
 #: StartupDialog.py:232
 msgid "In order to create valid GEDCOM files, the following information needs to be entered. If you do not plan to generate GEDCOM files, you may leave this empty."
-msgstr "Les informations suivantes sont nécessaires pour la création de fichiers GEDCOM valides. Si vous ne prévoyez pas générer des fichiers GEDCOM, vous pouvez opter de n'entrer aucune information."
+msgstr "Les informations suivantes sont nécessaires pour la création de fichiers GEDCOM valides. Si vous ne prévoyez pas de générer des fichiers GEDCOM, vous pouvez opter pour entrer aucune information."
 
 #: StartupDialog.py:243 gramps.glade:5927 gramps.glade:5998
 #: plugins/soundex.glade:110
@@ -9469,7 +9469,7 @@ msgstr "Code postal"
 
 #: plugins/NavWebPage.py:801
 msgid "Previous"
-msgstr "Aperçu"
+msgstr "Précédent"
 
 #: plugins/NavWebPage.py:802
 msgid "%(page_number)d of %(total_pages)d"
@@ -9725,7 +9725,7 @@ msgstr "Vie privée"
 #: plugins/NavWebPage.py:2616 plugins/NavWebPage.py:2676
 #: plugins/WebPage.py:1771 plugins/WebPage.py:1787 plugins/WebPage.py:1976
 msgid "Generate Web Site"
-msgstr "Génération de site internet"
+msgstr "Génération d'un site internet"
 
 #: plugins/NavWebPage.py:2644
 msgid "Store web pages in .tar.gz archive"
@@ -9737,7 +9737,7 @@ msgstr "Répertoire cible"
 
 #: plugins/NavWebPage.py:2873
 msgid "Narrative Web Site"
-msgstr "Génération de site internet narratif"
+msgstr "Génération d'un site internet narratif"
 
 #: plugins/NavWebPage.py:2877
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
