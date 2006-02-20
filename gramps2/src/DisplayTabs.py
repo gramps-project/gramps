@@ -218,7 +218,7 @@ class ButtonTab(GrampsTab):
         self.tooltips = gtk.Tooltips()
         self.create_buttons(share_button)
 
-    def create_buttons(self,share_button=None):
+    def create_buttons(self,share_button=False):
         """
         Creates a button box consisting of three buttons, one for Add,
         one for Edit, and one for Delete. This button box is then appended
@@ -678,7 +678,7 @@ class SourceBackRefList(EmbeddedList):
         self.label.set_text("<b>%s</b>" % self.tab_name)
         self.label.set_use_markup(True)
 
-    def create_buttons(self):
+    def create_buttons(self,share=False):
         self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
 
         vbox = gtk.VBox()
@@ -1231,12 +1231,13 @@ class SourceEmbedList(EmbeddedList):
         self.rebuild()
 
     def edit_button_clicked(self,obj):
-        from Sources import SourceEditor
+        from EditSourceRef import EditSourceRef
 
         sref = self.get_selected()
+        src = self.dbstate.db.get_source_from_handle(sref.ref)
         if sref:
-            SourceEditor(self.dbstate, self.uistate, self.track, sref,
-                         self.edit_callback)
+            EditSourceRef(self.dbstate, self.uistate, self.track,
+                          src, sref, self.edit_callback)
 
     def edit_callback(self,name):
         self.changed = True
@@ -1454,7 +1455,6 @@ class EventRefModel(gtk.ListStore):
 
     def column_date(self,event_ref):
         event = self.db.get_event_from_handle(event_ref.ref)
-        print event, DateHandler.get_date(event)
         return DateHandler.get_date(event)
 
     def column_place(self,event_ref):

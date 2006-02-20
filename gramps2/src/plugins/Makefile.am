@@ -11,6 +11,7 @@ pkgdata_PYTHON = \
 	AncestorReport.py\
 	Ancestors.py\
 	BookReport.py\
+	Calendar.py \
 	ChangeTypes.py\
 	ChangeNames.py\
 	Check.py\
@@ -94,7 +95,10 @@ GLADEFILES = \
 GRAPHICS = \
 	stock_link.png
 
-dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS)
+DATAFILES = \
+	holidays.xml
+
+dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) $(DATAFILES)
 
 GRAMPS_PY_MODPATH = "../:../docgen"
 
