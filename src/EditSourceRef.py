@@ -88,56 +88,86 @@ class EditSourceRef(DisplayState.ManagedWindow):
         
         self.ref_note_field = self.top.get_widget('eer_ref_note')
         self.role_combo = self.top.get_widget('eer_role_combo')
-        self.date_field  = self.top.get_widget("eer_date")
-        self.place_field = self.top.get_widget("eer_place")
-        self.cause_field = self.top.get_widget("eer_cause")
-        self.ev_note_field = self.top.get_widget("eer_ev_note")
-        self.type_combo = self.top.get_widget("eer_type_combo")
-        self.general_label = self.top.get_widget("eer_general_tab")
+        self.date_field  = self.top.get_widget("date")
         self.ok = self.top.get_widget('ok')
         self.expander = self.top.get_widget("src_expander")
         self.warning = self.top.get_widget("warn_box")
-        self.notebook = self.top.get_widget('notebook')
+        self.notebook_src = self.top.get_widget('notebook_src')
+        self.notebook_ref = self.top.get_widget('notebook_ref')
+
+        self.expander.set_expanded(True)
+
+        if self.source.handle:
+            self.warning.show_all()
+        else:
+            self.warning.hide()
 
         if self.source:
             self.source_added = False
-            if self.source_ref:
-                self.expander.set_expanded(False)
-                self.warning.show_all()
         else:
             self.source = RelLib.Source()
             self.source.set_handle(self.db.create_id())
             self.source_added = True
-            self.expander.set_expanded(True)
-            self.warning.hide()
 
         if not self.source_ref:
             self.source_ref = RelLib.SourceRef()
             self.source_ref.set_reference_handle(self.source.get_handle())
 
-        self.privacy = PrivacyButton(self.top.get_widget('privacy'),
-                                     self.source_ref)
-
-        self.volume = MonitoredEntry(self.top.get_widget("volume"),
-                                     self.source.set_volume,
-                                     self.source.get_volume, False)
-
         Utils.set_titles(self.window, self.top.get_widget('source_title'),
                          self.title)
 
+        self.date = self.source_ref.get_date_object()
         self.date_check = DateEdit.DateEdit(
-            self.date, self.date_field,
+            self.source_ref.date, self.date_field,
             self.top.get_widget("date_stat"), self.window)
 
         self.date_field.set_text(_dd.display(self.date))
 
         self._create_tabbed_pages()
-
+        self._setup_fields()
+        self._connect_signals()
         self.show()
 
-    def _add_page(self,page):
-        self.notebook.insert_page(page)
-        self.notebook.set_tab_label(page,page.get_tab_widget())
+    def _connect_signals(self):
+        self.top.get_widget('ok').connect('clicked',self.ok_clicked)
+        self.top.get_widget('cancel').connect('clicked',self.cancel_clicked)
+        
+    def _setup_fields(self):
+        self.privacy = PrivacyButton(
+            self.top.get_widget('privacy'), self.source_ref)
+
+        self.volume = MonitoredEntry(
+            self.top.get_widget("volume"), self.source_ref.set_page,
+            self.source_ref.get_page, False)
+        
+        self.gid = MonitoredEntry(
+            self.top.get_widget('gid'), self.source.set_gramps_id,
+            self.source.get_gramps_id,False)
+        
+        self.title = MonitoredEntry(
+            self.top.get_widget('title'), self.source.set_title,
+            self.source.get_title,False)
+        
+        self.abbrev = MonitoredEntry(
+            self.top.get_widget('abbrev'), self.source.set_abbreviation,
+            self.source.get_abbreviation,False)
+
+        self.author = MonitoredEntry(
+            self.top.get_widget('author'), self.source.set_author,
+            self.source.get_author,False)
+        
+        self.pubinfo = MonitoredEntry(
+            self.top.get_widget('pub_info'), self.source.set_publication_info,
+            self.source.get_publication_info,False)
+
+    def _add_source_page(self,page):
+        self.notebook_src.insert_page(page)
+        self.notebook_src.set_tab_label(page,page.get_tab_widget())
+        return page
+
+    def _add_ref_page(self,page):
+        self.notebook_ref.insert_page(page)
+        self.notebook_ref.set_tab_label(page,page.get_tab_widget())
         return page
 
     def _create_tabbed_pages(self):
@@ -146,16 +176,19 @@ class EditSourceRef(DisplayState.ManagedWindow):
         window.
         
         """
-
-        self.srcref_list = self._add_page(SourceEmbedList(
-            self.state,self.uistate, self.track,
-            self.source.source_list))
-        self.note_tab = self._add_page(NoteTab(
+        self.note_tab = self._add_source_page(NoteTab(
             self.state, self.uistate, self.track,
             self.source.get_note_object()))
-        self.gallery_tab = self._add_page(GalleryTab(
+        self.gallery_tab = self._add_source_page(GalleryTab(
             self.state, self.uistate, self.track,
             self.source.get_media_list()))
+        self.srcref_list = self._add_source_page(SourceBackRefList(
+            self.state,self.uistate, self.track,
+            self.db.find_backlink_handles(self.source.handle)))
+
+        self.comment_tab = self._add_ref_page(NoteTab(
+            self.state, self.uistate, self.track,
+            self.source_ref.get_note_object(),_('Comments')))
 
     def build_menu_names(self,sourceref):
         if self.source:
@@ -174,12 +207,11 @@ class EditSourceRef(DisplayState.ManagedWindow):
     def on_help_clicked(self,obj):
         pass
 
-    def on_ok_clicked(self,obj):
+    def ok_clicked(self,obj):
 
         # first, save source if changed
-        etype = self.type_selector.get_values()
-        eplace_obj = get_place(self.place_field,self.pmap,self.db)
-        self.update_source(etype,self.date,eplace_obj)
+#        etype = self.type_selector.get_values()
+#        self.update_source(etype,self.date,eplace_obj)
         
         trans = self.db.transaction_begin()
         self.db.commit_source(self.source,trans)
@@ -187,28 +219,11 @@ class EditSourceRef(DisplayState.ManagedWindow):
             self.db.transaction_commit(trans,_("Add Source"))
         else:
             self.db.transaction_commit(trans,_("Modify Source"))
-        
-        # then, set properties of the source_ref
-        self.source_ref.set_role(self.role_selector.get_values())
-        self.source_ref.set_privacy(self.ref_privacy.get_active())
         self.close(None)
 
         if self.update:
             self.update((self.source_ref,self.source))
 
-    def update_source(self,the_type,date,place):
-        if place:
-            if self.source.get_place_handle() != place.get_handle():
-                self.source.set_place_handle(place.get_handle())
-        else:
-            if self.source.get_place_handle():
-                self.source.set_place_handle("")
-        
-        if self.source.get_type() != the_type:
-            self.source.set_type(the_type)
-        
-        dobj = self.source.get_date_object()
-
-        if not dobj.is_equal(date):
-            self.source.set_date_object(date)
+    def cancel_clicked(self,obj):
+        self.close()
 

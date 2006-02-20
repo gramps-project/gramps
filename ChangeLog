@@ -1,3 +1,9 @@
+2006-02-19  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: connect new EditSourceRef editor
+	* src/EditSourceRef.py: update data on save
+	* src/gramps.glade: hide src_edit_ref by default
+	* src/plugins/Makefile.am: Calendar.py and holidays.xml
+
 2006-02-18  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels.py: display date properly
 	* src/DisplayTabs.py: fix create_buttons default value
