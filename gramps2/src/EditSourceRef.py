@@ -160,6 +160,19 @@ class EditSourceRef(DisplayState.ManagedWindow):
             self.top.get_widget('pub_info'), self.source.set_publication_info,
             self.source.get_publication_info,False)
 
+        self.text_data = MonitoredText(
+            self.top.get_widget('text'), self.source_ref.set_text,
+            self.source_ref.get_text,False)
+
+        self.type_mon = MonitoredMenu(
+            self.top.get_widget('confidence'), self.source_ref.set_confidence_level,
+            self.source_ref.get_confidence_level, [
+            (_('Very Low'), RelLib.SourceRef.CONF_VERY_LOW),
+            (_('Low'), RelLib.SourceRef.CONF_LOW),
+            (_('Normal'), RelLib.SourceRef.CONF_NORMAL),
+            (_('High'), RelLib.SourceRef.CONF_HIGH),
+            (_('Very High'), RelLib.SourceRef.CONF_VERY_HIGH)])
+
     def _add_source_page(self,page):
         self.notebook_src.insert_page(page)
         self.notebook_src.set_tab_label(page,page.get_tab_widget())
@@ -209,10 +222,6 @@ class EditSourceRef(DisplayState.ManagedWindow):
 
     def ok_clicked(self,obj):
 
-        # first, save source if changed
-#        etype = self.type_selector.get_values()
-#        self.update_source(etype,self.date,eplace_obj)
-        
         trans = self.db.transaction_begin()
         self.db.commit_source(self.source,trans)
         if self.source_added:
