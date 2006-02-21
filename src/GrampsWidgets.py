@@ -31,6 +31,8 @@ from gettext import gettext as _
 import gobject
 import gtk
 
+import AutoComp
+
 class LinkLabel(gtk.EventBox):
 
     def __init__(self,label,func,handle):
@@ -232,3 +234,59 @@ class MonitoredEntry:
             self.obj.set_text(get_val())
         self.obj.connect('changed', lambda x: self.set_val(unicode(x.get_text())))
         self.obj.set_editable(not read_only)
+
+class MonitoredText:
+
+    def __init__(self,obj,set_val,get_val,read_only=False):
+        self.buf = obj.get_buffer()
+        self.set_val = set_val
+        self.get_val = get_val
+
+        if get_val():
+            self.buf.set_text(get_val())
+        self.buf.connect('changed', self.on_change)
+        obj.set_editable(not read_only)
+
+    def on_change(self,obj):
+        s,e = self.buf.get_bounds()
+        self.set_val(unicode(self.buf.get_text(s,e,False)))
+
+class MonitoredType:
+
+    def __init__(self,obj,set_val,get_val,mapping,custom):
+        self.set_val = set_val
+        self.get_val = get_val
+
+        self.obj = obj
+
+        val = get_val()
+        if val:
+            default = val[0]
+        else:
+            default = None
+            
+        self.sel = AutoComp.StandardCustomSelector(
+            mapping, obj, custom, default)
+
+        self.obj.connect('changed', self.on_change)
+
+    def on_change(self, obj):
+        self.set_val(self.sel.get_values())
+
+class MonitoredMenu:
+
+    def __init__(self,obj,set_val,get_val,mapping):
+        self.set_val = set_val
+        self.get_val = get_val
+
+        self.obj = obj
+        self.model = gtk.ListStore(str,int)
+        for t,v in mapping:
+            self.model.append(row=[t,v])
+        self.obj.set_model(self.model)
+        self.obj.set_active(get_val())
+        self.obj.connect('changed',self.on_change)
+
+    def on_change(self, obj):
+        self.set_val(self.model.get_value(obj.get_active_iter(),1))
+        

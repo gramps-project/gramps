@@ -303,20 +303,11 @@ class EditFamily(DisplayState.ManagedWindow):
                                                 self.family.set_gramps_id,
                                                 self.family.get_gramps_id)
         
-        rel_types = dict(Utils.family_relations)
+        self.data_type = GrampsWidgets.MonitoredType(
+            self.top.get_widget('marriage_type'), self.family.set_relationship,
+            self.family.get_relationship, dict(Utils.family_relations),
+            RelLib.Family.CUSTOM)
 
-        mtype = self.family.get_relationship()
-        if mtype:
-            defval = mtype[0]
-        else:
-            defval = None
-
-        reltype = self.top.get_widget('marriage_type')
-        self.type_sel = AutoComp.StandardCustomSelector(
-            rel_types, reltype, RelLib.Family.CUSTOM, defval)
-        reltype.connect('changed',
-                        lambda x: self.family.set_relationship(self.type_sel.get_values()))
-        
     def load_data(self):
         fhandle = self.family.get_father_handle()
         self.update_father(fhandle)

@@ -1,3 +1,9 @@
+2006-02-20  Don Allingham  <don@gramps-project.org>
+	* src/GrampsWidgets.py: Add monitored widgets for type and combo
+	* src/EditFamily.py: use MonitoredType
+	* src/EditSourceRef.py: complete monitoring of values
+	* src/gramps.glade: add text field
+
 2006-02-19  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: connect new EditSourceRef editor
 	* src/EditSourceRef.py: update data on save
