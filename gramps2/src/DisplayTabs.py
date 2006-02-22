@@ -592,26 +592,26 @@ class EventEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2),(1,3),(1,4),(1,5))
 
     def add_button_clicked(self,obj):
-        import EventEdit
-        EventEdit.EventRefEditor(self.dbstate,self.uistate,self.track,
-                                 None, None, self.obj, self.event_added)
+        from EditEventRef import EditEventRef
+        EditEventRef(self.dbstate,self.uistate,self.track,
+                     None, None, self.obj, self.event_added)
 
     def share_button_clicked(self,obj):
-        import EventEdit
+        from EditEventRef import EditEventRef
         import SelectEvent
 
         sel = SelectEvent.SelectEvent(self.dbstate.db,"Event Select")
         event = sel.run()
-        EventEdit.EventRefEditor(self.dbstate,self.uistate,self.track,
-                                 event, None, self.obj, self.event_added)
+        EditEventRef(self.dbstate,self.uistate,self.track,
+                     event, None, self.obj, self.event_added)
 
     def edit_button_clicked(self,obj):
         ref = self.get_selected()
         if ref:
-            import EventEdit
+            from EditEventRef import EditEventRef
             event = self.dbstate.db.get_event_from_handle(ref.ref)
-            EventEdit.EventRefEditor(self.dbstate,self.uistate,self.track,
-                                     event, ref, self.obj, self.event_updated)
+            EditEventRef(self.dbstate,self.uistate,self.track,
+                         event, ref, self.obj, self.event_updated)
 
     def event_updated(self,value):
         self.changed = True

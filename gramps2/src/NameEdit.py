@@ -53,8 +53,7 @@ import Spell
 import GrampsDisplay
 import DisplayState
 from DisplayTabs import *
-
-from WindowUtils import GladeIf
+from GrampsWidgets import *
 
 #-------------------------------------------------------------------------
 #
@@ -76,56 +75,17 @@ class NameEditor(DisplayState.ManagedWindow):
             return
 
         self.name = name
+        self.original_group_as = self.name.get_group_as()
+
         self.top = gtk.glade.XML(const.gladeFile, "name_edit","gramps")
-        self.gladeif = GladeIf(self.top)
         self.window = self.top.get_widget("name_edit")
-        self.given_field  = self.top.get_widget("alt_given")
-        self.given_field.set_editable(not self.db.readonly)
-        self.sort_as  = self.top.get_widget("sort_as")
-        self.sort_as.set_sensitive(not self.db.readonly)
-        self.display_as  = self.top.get_widget("display_as")
-        self.display_as.set_sensitive(not self.db.readonly)
-        self.group_as  = self.top.get_widget("group_as")
-        self.title_field  = self.top.get_widget("alt_title")
-        self.title_field.set_editable(not self.db.readonly)
-        self.suffix_field = self.top.get_widget("alt_suffix")
-        self.suffix_field.set_editable(not self.db.readonly)
-        self.patronymic_field = self.top.get_widget("patronymic")
-        self.patronymic_field.set_editable(not self.db.readonly)
-        self.surname_field = self.top.get_widget("alt_surname")
-        self.date = self.top.get_widget('date')
-        self.date.set_editable(not self.db.readonly)
 
-        if self.name:
-            self.date_obj = self.name.get_date_object()
-        else:
-            self.date_obj = RelLib.Date()
-            self.name = RelLib.Name()
-
-        self.date.set_text(DateHandler.displayer.display(self.date_obj))
-
-        date_stat = self.top.get_widget("date_stat")
-        date_stat.set_sensitive(not self.db.readonly)
-        self.date_check = DateEdit.DateEdit(
-            self.date_obj, self.date,
-            date_stat, self.window)
-
-        self.prefix_field = self.top.get_widget("alt_prefix")
-        self.prefix_field.set_editable(not self.db.readonly)
-
-        self.type_combo = self.top.get_widget("name_type")
-        self.type_combo.set_sensitive(not self.db.readonly)
-        
-        self.priv = self.top.get_widget("priv")
         self.notebook = self.top.get_widget("notebook")
         self.general_label = self.top.get_widget("general_tab")
-        self.priv.set_sensitive(not self.db.readonly)
-        self.group_over = self.top.get_widget('group_over')
-        self.group_over.set_sensitive(not self.db.readonly)
 
-        self.type_selector = AutoComp.StandardCustomSelector(
-            Utils.name_types, self.type_combo, RelLib.Name.CUSTOM,
-            RelLib.Name.BIRTH)
+        self.group_over = self.top.get_widget('group_over')
+        self.group_over.connect('toggled',self.on_group_over_toggled)
+        self.group_over.set_sensitive(not self.db.readonly)
 
         full_name = NameDisplay.displayer.display_name(name)
 
@@ -138,45 +98,92 @@ class NameEditor(DisplayState.ManagedWindow):
 
         Utils.set_titles(self.window, alt_title, tmsg, _('Name Editor'))
 
-        self.gladeif.connect('name_edit','delete_event',self.on_delete_event)
-        self.gladeif.connect('button119','clicked',self.close_window)
-        self.gladeif.connect('button118','clicked',self.on_name_edit_ok_clicked)
+        Utils.bold_label(self.general_label)
+
+        self._create_tabbed_pages()
+        self._setup_fields()
+        self._connect_signals()
+        
+        if self.original_group_as and self.original_group_as != self.name.get_surname():
+            self.group_over.set_active(True)
+
+        self.show()
+
+    def _connect_signals(self):
+        self.window.connect('delete_event',self.on_delete_event)
+        self.top.get_widget('button119').connect('clicked',self.close_window)
+        self.top.get_widget('button131').connect('clicked',self.on_help_clicked)
         okbtn = self.top.get_widget('button118')
         okbtn.set_sensitive(not self.db.readonly)
-        self.gladeif.connect('button131','clicked',self.on_help_clicked)
-        self.gladeif.connect('group_over','toggled',self.on_group_over_toggled)
+        okbtn.connect('clicked',self.on_name_edit_ok_clicked)
 
-        if name != None:
-            self.given_field.set_text(name.get_first_name())
-            self.surname_field.set_text(name.get_surname())
-            self.title_field.set_text(name.get_title())
-            self.suffix_field.set_text(name.get_suffix())
-            self.prefix_field.set_text(name.get_surname_prefix())
-            self.type_selector.set_values(name.get_type())
-            self.patronymic_field.set_text(name.get_patronymic())
-            self.priv.set_active(name.get_privacy())
-            Utils.bold_label(self.general_label)
-            self.display_as.set_active(name.get_display_as())
-            self.sort_as.set_active(name.get_display_as())
-            grp_as = name.get_group_as()
-            if grp_as:
-                self.group_as.set_text(name.get_group_as())
-            else:
-                self.group_as.set_text(name.get_surname())
-        else:
-            self.display_as.set_active(0)
-            self.sort_as.set_active(0)
+    def _setup_fields(self):
+        self.group_as = MonitoredEntry(
+            self.top.get_widget("group_as"), self.name.set_group_as,
+            self.name.get_group_as, self.db.readonly)
 
-        self.surname_field.connect('changed',self.update_group_as)
+        if not self.original_group_as:
+            self.group_as.force_value(self.name.get_surname())
+            
+        self.sort_as = MonitoredMenu(
+            self.top.get_widget('sort_as'),self.name.set_sort_as,
+            self.name.get_sort_as,
+            [(_('Default (based on locale'),RelLib.Name.DEF),
+             (_('Given name Family name'), RelLib.Name.FNLN),
+             (_('Family name Given Name'), RelLib.Name.LNFN)],
+            self.db.readonly)
 
+        self.display_as = MonitoredMenu(
+            self.top.get_widget('display_as'),
+            self.name.set_display_as, self.name.get_display_as,
+            [(_('Default (based on locale'),RelLib.Name.DEF),
+             (_('Given name Family name'), RelLib.Name.FNLN),
+             (_('Family name Given Name'), RelLib.Name.LNFN)],
+            self.db.readonly)
+
+        self.given_field = MonitoredEntry(
+            self.top.get_widget("alt_given"), self.name.set_first_name,
+            self.name.get_first_name, self.db.readonly)
+
+        self.title_field = MonitoredEntry(
+            self.top.get_widget("alt_title"), self.name.set_title,
+            self.name.get_title, self.db.readonly)
+
+        self.suffix_field = MonitoredEntry(
+            self.top.get_widget("alt_suffix"), self.name.set_suffix,
+            self.name.get_suffix, self.db.readonly)
+
+        self.patronymic_field = MonitoredEntry(
+            self.top.get_widget("patronymic"), self.name.set_patronymic,
+            self.name.get_patronymic, self.db.readonly)
+
+        self.surname_field = MonitoredEntry(
+            self.top.get_widget("alt_surname"), self.name.set_surname,
+            self.name.get_surname, self.db.readonly,
+            self.update_group_as)
+
+        self.prefix_field = MonitoredEntry(
+            self.top.get_widget("alt_prefix"), self.name.set_surname_prefix,
+            self.name.get_surname_prefix, self.db.readonly)
+            
+        self.date = MonitoredDate(self.top.get_widget("date"),
+                                  self.top.get_widget("date_stat"), 
+                                  self.name.get_date_object(),self.window)
+
+        self.name_combo = MonitoredType(
+            self.top.get_widget("name_type"), self.name.set_type,
+            self.name.get_type, dict(Utils.name_types), RelLib.Name.CUSTOM)
+        
+        self.privacy = PrivacyButton(
+            self.top.get_widget("priv"), self.name)
+        
+    def _create_tabbed_pages(self):
         self.srcref_list = self._add_page(SourceEmbedList(
             self.dbstate,self.uistate, self.track,
             self.name.source_list))
         self.note_tab = self._add_page(NoteTab(
             self.dbstate, self.uistate, self.track,
             self.name.get_note_object()))
-
-        self.show()
 
     def build_menu_names(self,name):
         if name:
@@ -194,30 +201,25 @@ class NameEditor(DisplayState.ManagedWindow):
 
     def update_group_as(self,obj):
         if not self.group_over.get_active():
-            if self.name and self.name.get_group_as() != self.name.get_surname():
+            if self.name.get_group_as() != self.name.get_surname():
                 val = self.name.get_group_as()
             else:
-                name = unicode(self.surname_field.get_text())
+                name = self.name.get_surname()
                 val = self.db.get_name_group_mapping(name)
-            self.group_as.set_text(val)
+            self.group_as.force_value(val)
         
     def on_group_over_toggled(self,obj):
-        if obj.get_active():
-            self.group_as.set_sensitive(True)
-            self.group_as.set_editable(True)
-        else:
-            field_value = unicode(self.surname_field.get_text())
+        self.group_as.enable(obj.get_active())
+        
+        if not obj.get_active():
+            field_value = self.name.get_surname()
             mapping = self.db.get_name_group_mapping(field_value)
             self.group_as.set_text(mapping)
-            self.group_as.set_sensitive(False)
-            self.group_as.set_editable(False)
 
     def on_delete_event(self,*obj):
-        self.gladeif.close()
         self.close()
 
     def close_window(self,*obj):
-        self.gladeif.close()
         self.close()
         self.window.destroy()
         gc.collect()
@@ -227,40 +229,14 @@ class NameEditor(DisplayState.ManagedWindow):
         GrampsDisplay.help('adv-an')
 
     def on_name_edit_ok_clicked(self,obj):
-        first = unicode(self.given_field.get_text())
-        last = unicode(self.surname_field.get_text())
-        title = unicode(self.title_field.get_text())
-        prefix = unicode(self.prefix_field.get_text())
-        suffix = unicode(self.suffix_field.get_text())
-        patronymic = unicode(self.patronymic_field.get_text())
-        priv = self.priv.get_active()
-
-        the_type = self.type_selector.get_values()
-
-        # FIXME: this remained from gramps20 -- check
-        # if const.NameTypesMap.has_value(mtype):
-        #     mtype = const.NameTypesMap.find_key(mtype)
-        # if not mtype:
-        #     mtype = "Also Known As"
-        
-        self.name.set_date_object(self.date_obj)
-        
-        grp_as = unicode(self.group_as.get_text())
-        srn = unicode(self.surname_field.get_text())
-
-        if self.name.get_display_as() != self.display_as.get_active():
-            self.name.set_display_as(self.display_as.get_active())
-
-        prefix = unicode(self.prefix_field.get_text())
-        if self.name.get_surname_prefix() != prefix:
-            self.name.set_surname_prefix(prefix)
- 
-        if self.name.get_sort_as() != self.sort_as.get_active():
-            self.name.set_sort_as(self.sort_as.get_active())
 
         if not self.group_over.get_active():
             self.name.set_group_as("")
-        elif self.name.get_group_as() != grp_as:
+        elif self.name.get_group_as() == self.name.get_surname():
+            self.name.set_group_as("")
+        elif self.name.get_group_as() != self.original_group_as:
+            grp_as = self.name.get_group_as()
+            srn = self.name.get_surname()
             if grp_as not in self.db.get_name_group_keys():
                 from QuestionDialog import QuestionDialog2
                 q = QuestionDialog2(
@@ -278,31 +254,7 @@ class NameEditor(DisplayState.ManagedWindow):
                 else:
                     self.name.set_group_as(grp_as)
 
-        self.update_name(first,last,suffix,patronymic,title,the_type,priv)
         self.callback(self.name)
         self.close_window(obj)
 
-    def update_name(self,first,last,suffix,patronymic,title,
-                    the_type,priv):
-        
-        if self.name.get_first_name() != first:
-            self.name.set_first_name(first)
-        
-        if self.name.get_surname() != last:
-            self.name.set_surname(last)
-
-        if self.name.get_suffix() != suffix:
-            self.name.set_suffix(suffix)
-
-        if self.name.get_patronymic() != patronymic:
-            self.name.set_patronymic(patronymic)
-
-        if self.name.get_title() != title:
-            self.name.set_title(title)
-
-        if self.name.get_type() != the_type:
-            self.name.set_type(the_type)
-
-        if self.name.get_privacy() != priv:
-            self.name.set_privacy(priv)
         
