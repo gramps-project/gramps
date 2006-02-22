@@ -1,3 +1,7 @@
+2006-02-22  Arturas Sleinius <asleiniu@one.lt>
+	* src/dates/Date_lt.py: new Lithuanian date handler
+	* src/po/lt.po: updated Lithuanian translation
+
 2006-02-19  Soren Roug  <roug@users.sourceforge.net>
 	* src/WriteXML.py: encode paths for objects in XML to handle
 	&, > and < in paths.
