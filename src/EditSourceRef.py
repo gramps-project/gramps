@@ -51,8 +51,6 @@ import const
 import Utils
 import AutoComp
 import RelLib
-from DateHandler import parser as _dp, displayer as _dd
-import DateEdit
 import GrampsDisplay
 import DisplayState
 
@@ -86,17 +84,13 @@ class EditSourceRef(DisplayState.ManagedWindow):
         self.top = gtk.glade.XML(const.gladeFile, "source_ref_edit","gramps")
         self.window = self.top.get_widget('source_ref_edit')
         
-        self.ref_note_field = self.top.get_widget('eer_ref_note')
-        self.role_combo = self.top.get_widget('eer_role_combo')
-        self.date_field  = self.top.get_widget("date")
-        self.ok = self.top.get_widget('ok')
-        self.expander = self.top.get_widget("src_expander")
-        self.warning = self.top.get_widget("warn_box")
         self.notebook_src = self.top.get_widget('notebook_src')
         self.notebook_ref = self.top.get_widget('notebook_ref')
 
-        self.expander.set_expanded(True)
+        expander = self.top.get_widget("src_expander")
+        expander.set_expanded(True)
 
+        warning = self.top.get_widget("warn_box")
         if self.source.handle:
             self.warning.show_all()
         else:
@@ -115,13 +109,6 @@ class EditSourceRef(DisplayState.ManagedWindow):
 
         Utils.set_titles(self.window, self.top.get_widget('source_title'),
                          self.title)
-
-        self.date = self.source_ref.get_date_object()
-        self.date_check = DateEdit.DateEdit(
-            self.source_ref.date, self.date_field,
-            self.top.get_widget("date_stat"), self.window)
-
-        self.date_field.set_text(_dd.display(self.date))
 
         self._create_tabbed_pages()
         self._setup_fields()
@@ -172,6 +159,11 @@ class EditSourceRef(DisplayState.ManagedWindow):
             (_('Normal'), RelLib.SourceRef.CONF_NORMAL),
             (_('High'), RelLib.SourceRef.CONF_HIGH),
             (_('Very High'), RelLib.SourceRef.CONF_VERY_HIGH)])
+
+
+        self.date = MonitoredDate(self.top.get_widget("date"),
+                                  self.top.get_widget("date_stat"), 
+                                  self.source_ref.get_date_object(),self.window)
 
     def _add_source_page(self,page):
         self.notebook_src.insert_page(page)

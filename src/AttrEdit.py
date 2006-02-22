@@ -34,8 +34,6 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import gc
-from cgi import escape
 
 #-------------------------------------------------------------------------
 #
@@ -51,16 +49,13 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-import Sources
-import AutoComp
 import RelLib
-import Spell
 import GrampsDisplay
 import DisplayState
 
 from QuestionDialog import WarningDialog
-from WindowUtils import GladeIf
 from DisplayTabs import *
+from GrampsWidgets import *
 
 #-------------------------------------------------------------------------
 #
@@ -93,46 +88,46 @@ class AttributeEditor(DisplayState.ManagedWindow):
         if self.already_exist:
             return
 
+        if not attrib:
+            self.attrib = RelLib.Attribute()
+
         self.top = gtk.glade.XML(const.gladeFile, "attr_edit","gramps")
-        self.value_field = self.top.get_widget("attr_value")
-        self.attrib_menu = self.top.get_widget("attr_menu")
-        self.source_field = self.top.get_widget("attr_source")
-        self.priv = self.top.get_widget("priv")
         self.notebook = self.top.get_widget("notebook")
 
         self.window = self.top.get_widget("attr_edit")
-        self.type_selector = AutoComp.StandardCustomSelector(
-            Utils.personal_attributes,self.attrib_menu,
-            RelLib.Attribute.CUSTOM,RelLib.Attribute.DESCRIPTION)
-        
-        if title == ", ":
-            title = _("Attribute Editor")
-        else:
-            title = _("Attribute Editor for %s") % escape(title)
+        title = _("Attribute Editor")
         l = self.top.get_widget("title")
         Utils.set_titles(self.window,l,title,_('Attribute Editor'))
-
-        if attrib:
-            self.type_selector.set_values(attrib.get_type())
-            self.value_field.set_text(attrib.get_value())
-            self.priv.set_active(attrib.get_privacy())
-        else:
-            self.attrib = RelLib.Attribute()
             
-        self.gladeif = GladeIf(self.top)
-        self.gladeif.connect('attr_edit','delete_event', self.on_delete_event)
-        self.gladeif.connect('button116', 'clicked', self.close_window)
-        self.gladeif.connect('button115', 'clicked', self.on_ok_clicked)
-        self.gladeif.connect('button127', 'clicked', self.on_help_clicked)
-
-        if self.db.readonly:
-            w = self.top.get_widget("button115")
-            w.set_sensitive(False)
-            self.value_field.set_editable(False)
-            self.attrib_menu.set_sensitive(False)
-
         self._create_tabbed_pages()
+        self._setup_fields()
+        self._connect_signals()
         self.show()
+
+    def _connect_signals(self):
+        self.window.connect('delete_event', self.on_delete_event)
+        
+        self.top.get_widget('cancel').connect('clicked', self.close_window)
+        self.top.get_widget('help').connect('clicked', self.on_help_clicked)
+
+        ok = self.top.get_widget('ok')
+        ok.connect('clicked', self.on_ok_clicked)
+        if self.db.readonly:
+            ok.set_sensitive(False)
+
+    def _setup_fields(self):
+        self.value_field = MonitoredEntry(
+            self.top.get_widget("attr_value"),
+            self.attrib.set_value, self.attrib.get_value,
+            self.db.readonly)
+        
+        self.priv = PrivacyButton(self.top.get_widget("private"),self.attrib)
+
+        self.type_selector = MonitoredType(
+            self.top.get_widget("attr_menu"),
+            self.attrib.set_type, self.attrib.get_type,
+            dict(Utils.personal_attributes),
+            RelLib.Attribute.CUSTOM)
 
     def _create_tabbed_pages(self):
         vbox = self.top.get_widget('vbox')
@@ -153,11 +148,9 @@ class AttributeEditor(DisplayState.ManagedWindow):
         return page
 
     def on_delete_event(self,obj,b):
-        self.gladeif.close()
         self.close()
 
     def close_window(self,obj):
-        self.gladeif.close()
         self.close()
 
     def build_menu_names(self, attrib):
@@ -179,11 +172,8 @@ class AttributeEditor(DisplayState.ManagedWindow):
         Called when the OK button is pressed. Gets data from the
         form and updates the Attribute data structure.
         """
-        attr_data = self.type_selector.get_values()
-        value = unicode(self.value_field.get_text())
 
-        priv = self.priv.get_active()
-
+        attr_data = self.attrib.get_type()
         if (attr_data[0] == RelLib.Attribute.CUSTOM and
             not attr_data[1] in self.alist):
             WarningDialog(
@@ -193,18 +183,6 @@ class AttributeEditor(DisplayState.ManagedWindow):
             self.alist.append(attr_data[1])
             self.alist.sort()
 
-        self.update(attr_data,value,priv)
         self.callback(self.attrib)
         self.close_window(obj)
 
-    def check(self,get,set,data):
-        """Compares a data item, updates if necessary, and sets the
-        parents lists_changed flag"""
-        if get() != data:
-            set(data)
-            
-    def update(self,attr_data,value,priv):
-        """Compares the data items, and updates if necessary"""
-        self.check(self.attrib.get_type,self.attrib.set_type,attr_data)
-        self.check(self.attrib.get_value,self.attrib.set_value,value)
-        self.check(self.attrib.get_privacy,self.attrib.set_privacy,priv)

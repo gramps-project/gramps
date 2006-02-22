@@ -54,8 +54,8 @@ import DateHandler
 import DisplayState
 import Spell
 
-from WindowUtils import GladeIf
 from DisplayTabs import *
+from GrampsWidgets import *
 
 #-------------------------------------------------------------------------
 #
@@ -84,61 +84,63 @@ class AddressEditor(DisplayState.ManagedWindow):
         if self.already_exist:
             return
 
-        # Get the important widgets from the glade description
-        self.top = gtk.glade.XML(const.gladeFile, "addr_edit","gramps")
-        self.gladeif = GladeIf(self.top)
-        
-        self.window = self.top.get_widget("addr_edit")
-        self.addr_start = self.top.get_widget("address_start")
-        self.addr_start.set_editable(not self.db.readonly)
-        self.street = self.top.get_widget("street")
-        self.street.set_editable(not self.db.readonly)
-        self.city = self.top.get_widget("city")
-        self.city.set_editable(not self.db.readonly)
-        self.state = self.top.get_widget("state")
-        self.state.set_editable(not self.db.readonly)
-        self.country = self.top.get_widget("country")
-        self.country.set_editable(not self.db.readonly)
-        self.postal = self.top.get_widget("postal")
-        self.postal.set_editable(not self.db.readonly)
-        self.phone = self.top.get_widget("phone")
-        self.phone.set_editable(not self.db.readonly)
-        self.priv = self.top.get_widget("priv")
-        self.priv.set_sensitive(not self.db.readonly)
-
-        title_label = self.top.get_widget("title")
-
-        Utils.set_titles(self.window,title_label,_('Address Editor'))
-
-        if self.addr:
-            self.addr_date_obj = RelLib.Date(self.addr.get_date_object())
-            self.addr_start.set_text(DateHandler.get_date(self.addr))
-            self.street.set_text(self.addr.get_street())
-            self.city.set_text(self.addr.get_city())
-            self.state.set_text(self.addr.get_state())
-            self.country.set_text(self.addr.get_country())
-            self.postal.set_text(self.addr.get_postal_code())
-            self.phone.set_text(self.addr.get_phone())
-            self.priv.set_active(self.addr.get_privacy())
-        else:
-            self.addr_date_obj = RelLib.Date()
+        if not self.addr:
             self.addr = RelLib.Address()
 
-        date_stat = self.top.get_widget("date_stat")
-        date_stat.set_sensitive(not self.db.readonly)
-        self.date_check = DateEdit.DateEdit(
-            self.addr_date_obj, self.addr_start, date_stat, self.window)
+        # Get the important widgets from the glade description
+        self.top = gtk.glade.XML(const.gladeFile, "addr_edit","gramps")
+        self.window = self.top.get_widget("addr_edit")
 
-        self.gladeif.connect('addr_edit','delete_event',self.on_delete_event)
-        self.gladeif.connect('button122','clicked',self.close_window)
-        self.gladeif.connect('button121','clicked',self.ok_clicked)
-        okbtn = self.top.get_widget('button121')
-        okbtn.set_sensitive(not self.db.readonly)
-        self.gladeif.connect('button129','clicked',self.on_help_clicked)
+        title_label = self.top.get_widget("title")
+        Utils.set_titles(self.window,title_label,_('Address Editor'))
 
+        self._setup_fields()
         self._create_tabbed_pages()
-
+        self._connect_signals()
         self.show()
+
+    def _setup_fields(self):
+        self.addr_start = MonitoredDate(
+            self.top.get_widget("address_start"), 
+            self.top.get_widget("date_stat"), 
+            self.addr.get_date_object(),
+            self.window, self.db.readonly)
+            
+        self.street = MonitoredEntry(
+            self.top.get_widget("street"), self.addr.set_street,
+            self.addr.get_street, self.db.readonly)
+
+        self.city = MonitoredEntry(
+            self.top.get_widget("city"), self.addr.set_city,
+            self.addr.get_city, self.db.readonly)
+
+        self.state = MonitoredEntry(
+            self.top.get_widget("state"), self.addr.set_state,
+            self.addr.get_state, self.db.readonly)
+
+        self.country = MonitoredEntry(
+            self.top.get_widget("country"), self.addr.set_country,
+            self.addr.get_country, self.db.readonly)
+
+        self.postal = MonitoredEntry(
+            self.top.get_widget("postal"), self.addr.set_postal_code,
+            self.addr.get_postal_code, self.db.readonly)
+
+        self.phone = MonitoredEntry(
+            self.top.get_widget("phone"), self.addr.set_phone,
+            self.addr.get_phone, self.db.readonly)
+            
+        self.priv = PrivacyButton(self.top.get_widget("private"),
+                                  self.addr, self.db.readonly)
+
+    def _connect_signals(self):
+        self.window.connect('delete_event',self.on_delete_event)
+        self.top.get_widget('cancel').connect('clicked',self.close_window)
+        self.top.get_widget('help').connect('clicked',self.help_clicked)
+
+        okbtn = self.top.get_widget('ok')
+        okbtn.connect('clicked',self.ok_clicked)
+        okbtn.set_sensitive(not self.db.readonly)
 
     def _add_page(self,page):
         self.notebook.insert_page(page)
@@ -167,18 +169,16 @@ class AddressEditor(DisplayState.ManagedWindow):
         vbox.pack_start(self.notebook,True)
 
     def on_delete_event(self,obj,b):
-        self.gladeif.close()
         self.close()
 
     def close_window(self,obj):
-        self.gladeif.close()
         self.window.destroy()
         self.close()
 
     def build_menu_names(self,obj):
         return (_('Address'),_('Address Editor'))
 
-    def on_help_clicked(self,obj):
+    def help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('adv-ad')
 
@@ -187,41 +187,6 @@ class AddressEditor(DisplayState.ManagedWindow):
         Called when the OK button is pressed. Gets data from the
         form and updates the Address data structure.
         """
-        date_obj = self.addr_date_obj
-        street = unicode(self.street.get_text())
-        city = unicode(self.city.get_text())
-        state = unicode(self.state.get_text())
-        country = unicode(self.country.get_text())
-        phone = unicode(self.phone.get_text())
-        postal = unicode(self.postal.get_text())
-        b = self.note_field.get_buffer()
-        note = unicode(b.get_text(b.get_start_iter(),b.get_end_iter(),False))
-        priv = self.priv.get_active()
-        
-        self.addr.set_source_reference_list(self.srcreflist)
-
-        self.update(date_obj,street,city,state,country,postal,phone,priv)
         self.callback(self.addr)
         self.close_window(obj)
 
-    def check(self,get,set,data):
-        """Compares a data item, updates if necessary, and sets the
-        parents lists_changed flag"""
-        if get() != data:
-            set(data)
-            
-    def update(self,date_obj,street,city,state,country,postal,phone,priv):
-        """Compares the data items, and updates if necessary"""
-
-        if not self.addr.get_date_object().is_equal(date_obj):
-            self.addr.set_date_object(date_obj)
-        
-        self.check(self.addr.get_street,self.addr.set_street,street)
-        self.check(self.addr.get_country,self.addr.set_country,country)
-        self.check(self.addr.get_city,self.addr.set_city,city)
-        self.check(self.addr.get_state,self.addr.set_state,state)
-        self.check(self.addr.get_postal_code,self.addr.set_postal_code,postal)
-        self.check(self.addr.get_phone,self.addr.set_phone,phone)
-        self.check(self.addr.get_note,self.addr.set_note,note)
-        self.check(self.addr.get_note_format,self.addr.set_note_format,format)
-        self.check(self.addr.get_privacy,self.addr.set_privacy,priv)

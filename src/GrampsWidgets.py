@@ -32,6 +32,8 @@ import gobject
 import gtk
 
 import AutoComp
+import DateHandler
+import DateEdit
 
 class LinkLabel(gtk.EventBox):
 
@@ -190,12 +192,13 @@ class TypeCellRenderer(gtk.CellRendererCombo):
 
 class PrivacyButton:
 
-    def __init__(self,button,obj):
+    def __init__(self,button,obj,readonly=False):
         self.button = button
         self.button.connect('toggled',self._on_toggle)
         self.tooltips = gtk.Tooltips()
         self.obj = obj
         self.set_active(obj.get_privacy())
+        self.button.set_sensitive(not readonly)
 
     def set_sensitive(self,val):
         self.button.set_sensitive(val)
@@ -213,27 +216,56 @@ class PrivacyButton:
             obj.remove(child)
         image = gtk.Image()
         if obj.get_active():
-            image.set_from_icon_name('stock_lock',gtk.ICON_SIZE_BUTTON)
+            image.set_from_icon_name('stock_lock',gtk.ICON_SIZE_MENU)
             self.tooltips.set_tip(obj,_('Record is private'))
             self.obj.set_privacy(True)
         else:
-            image.set_from_icon_name('stock_lock-open',gtk.ICON_SIZE_BUTTON)
+            image.set_from_icon_name('stock_lock-open',gtk.ICON_SIZE_MENU)
             self.tooltips.set_tip(obj,_('Record is public'))
             self.obj.set_privacy(False)
         image.show()
         obj.add(image)
-        
-class MonitoredEntry:
 
-    def __init__(self,obj,set_val,get_val,read_only=False):
+class MonitoredCheckbox:
+
+    def __init__(self,obj,button,set_val,get_val,on_toggle=None):
+        self.button = button
+        self.button.connect('toggled',self._on_toggle)
+        self.on_toggle = on_toggle
         self.obj = obj
         self.set_val = set_val
         self.get_val = get_val
+        self.set_active(get_val())
+
+    def _on_toggle(self,obj):
+        self.set_val(obj.get_active())
+        if self.on_toggle:
+            self.on_toggle(get_val())
+        
+class MonitoredEntry:
+
+    def __init__(self,obj,set_val,get_val,read_only=False, changed=None):
+        self.obj = obj
+        self.set_val = set_val
+        self.get_val = get_val
+        self.changed = changed
 
         if get_val():
             self.obj.set_text(get_val())
-        self.obj.connect('changed', lambda x: self.set_val(unicode(x.get_text())))
+        self.obj.connect('changed', self._on_change)
         self.obj.set_editable(not read_only)
+
+    def _on_change(self,obj):
+        self.set_val(unicode(obj.get_text()))
+        if self.changed:
+            self.changed(obj)
+
+    def force_value(self,value):
+        self.obj.set_text(value)
+
+    def enable(self,value):
+        self.obj.set_sensitive(value)
+        self.obj.set_editable(value)
 
 class MonitoredText:
 
@@ -275,7 +307,7 @@ class MonitoredType:
 
 class MonitoredMenu:
 
-    def __init__(self,obj,set_val,get_val,mapping):
+    def __init__(self,obj,set_val,get_val,mapping,readonly=False):
         self.set_val = set_val
         self.get_val = get_val
 
@@ -286,7 +318,19 @@ class MonitoredMenu:
         self.obj.set_model(self.model)
         self.obj.set_active(get_val())
         self.obj.connect('changed',self.on_change)
+        self.obj.set_sensitive(not readonly)
 
     def on_change(self, obj):
         self.set_val(self.model.get_value(obj.get_active_iter(),1))
         
+class MonitoredDate:
+
+    def __init__(self,field,button,value,window, readonly=False):
+        self.date = value
+        self.date_check = DateEdit.DateEdit(
+            self.date, field, button, window)
+        field.set_editable(not readonly)
+        button.set_sensitive(not readonly)
+            
+        field.set_text(DateHandler.displayer.display(self.date))
+    

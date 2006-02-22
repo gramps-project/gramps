@@ -1,3 +1,14 @@
+2006-02-21  Don Allingham  <don@gramps-project.org>
+	* src/AddrEdit.py: Full edit functionality
+	* src/AttrEdit.py: Full edit functionality
+	* src/DisplayTabs.py: call EditEventRef
+	* src/EditSourceRef.py: Full edit functionality
+	* src/EventEdit.py: separate out EditEventRef
+	* src/GrampsWidgets.py: Add date, menu, type handling widgets
+	* src/NameEdit.py: Full edit functionality
+	* src/gramps.glade: fix names and privacy buttons
+	* src/EditEventRef.py: broken out of EditEvent
+
 2006-02-20  Don Allingham  <don@gramps-project.org>
 	* src/GrampsWidgets.py: Add monitored widgets for type and combo
 	* src/EditFamily.py: use MonitoredType
