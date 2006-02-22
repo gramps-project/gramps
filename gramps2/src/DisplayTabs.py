@@ -1185,8 +1185,8 @@ class GalleryTab(ButtonTab):
         from EditMediaRef import EditMediaRef
         
         sref = RelLib.MediaRef()
-        src = RelLib.Media()
-        EditSourceRef(self.dbstate, self.uistate, self.track,
+        src = RelLib.MediaObject()
+        EditMediaRef(self.dbstate, self.uistate, self.track,
                       src, sref, self.add_callback)
 
     def add_callback(self,name):

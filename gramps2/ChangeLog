@@ -1,3 +1,7 @@
+2006-02-22  Alex Roitman  <shura@gramps-project.org>
+	* src/EditSourceRef.py (__init__): Typos.
+	* src/DisplayTabs.py (GalleryTab.add_button_clicked): Typos.
+
 2006-02-21  Don Allingham  <don@gramps-project.org>
 	* src/EditMediaRef.py: added
 	* src/EditPerson.py: call EditMediaRef

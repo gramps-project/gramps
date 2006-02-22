@@ -92,9 +92,9 @@ class EditSourceRef(DisplayState.ManagedWindow):
 
         warning = self.top.get_widget("warn_box")
         if self.source.handle:
-            self.warning.show_all()
+            warning.show_all()
         else:
-            self.warning.hide()
+            warning.hide()
 
         if self.source:
             self.source_added = False
