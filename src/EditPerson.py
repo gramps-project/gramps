@@ -49,7 +49,6 @@ import const
 import Utils
 import GrampsKeys
 import GrampsMime
-import ImageSelect
 import AutoComp
 import RelLib
 import DateHandler
@@ -303,17 +302,23 @@ class EditPerson(DisplayState.ManagedWindow):
             data = cursor.next()
         cursor.close()
 
+    def image_callback(self,ref):
+        obj = self.db.get_object_from_handle(ref.get_reference_handle())
+        self.load_photo(obj)
+
     def image_button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
 
             media_list = self.person.get_media_list()
             if media_list:
-                ph = media_list[0]
-                object_handle = ph.get_reference_handle()
-                obj = self.db.get_object_from_handle(object_handle)
-                ImageSelect.LocalMediaProperties(ph,obj.get_path(),
-                                                 self,self.window)
+                from EditMediaRef import EditMediaRef
+                
+                media_ref = media_list[0]
+                object_handle = media_ref.get_reference_handle()
+                media_obj = self.db.get_object_from_handle(object_handle)
 
+                EditMediaRef(self.dbstate, self.uistate, self.track,
+                             media_obj, media_ref, self.image_callback)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             media_list = self.person.get_media_list()
             if media_list:
@@ -361,11 +366,14 @@ class EditPerson(DisplayState.ManagedWindow):
     def popup_change_description(self,obj):
         media_list = self.person.get_media_list()
         if media_list:
-            ph = media_list[0]
-            object_handle = ph.get_reference_handle()
-            obj = self.db.get_object_from_handle(object_handle)
-            ImageSelect.LocalMediaProperties(ph,obj.get_path(),self,
-                                             self.window)
+            from EditMediaRef import EditMediaRef
+            
+            media_ref = media_list[0]
+            object_handle = media_ref.get_reference_handle()
+            media_obj = self.db.get_object_from_handle(object_handle)
+            EditMediaRef(self.dbstate, self.uistate, self.track,
+                         media_obj, media_ref, self.image_callback)
+
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""

@@ -50,7 +50,6 @@ import gtk.glade
 import const
 import Utils
 import Sources
-import ImageSelect
 import NameDisplay
 import DisplayState
 import Spell

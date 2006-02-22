@@ -1,4 +1,10 @@
 2006-02-21  Don Allingham  <don@gramps-project.org>
+	* src/EditMediaRef.py: added
+	* src/EditPerson.py: call EditMediaRef
+	* src/EditPlace.py: remove import ImageSelect
+	* src/DisplayTabs.py: media double click
+	* src/UrlEdit.py: Full edit functionality
+	* src/ImageSelect.py: removed
 	* src/AddrEdit.py: Full edit functionality
 	* src/AttrEdit.py: Full edit functionality
 	* src/DisplayTabs.py: call EditEventRef

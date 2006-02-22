@@ -47,8 +47,7 @@ import RelLib
 import GrampsDisplay
 import DisplayState
 import AutoComp
-
-from WindowUtils import GladeIf
+from GrampsWidgets import *
 
 #-------------------------------------------------------------------------
 #
@@ -72,25 +71,10 @@ class UrlEditor(DisplayState.ManagedWindow):
         self.url = url
         self.callback = callback
         self.top = gtk.glade.XML(const.gladeFile, "url_edit","gramps")
-        self.gladeif = GladeIf(self.top)
         
         self.window = self.top.get_widget("url_edit")
-        self.wtype = self.top.get_widget("type")
-        self.des  = self.top.get_widget("url_des")
-        self.addr = self.top.get_widget("url_addr")
-        self.priv = self.top.get_widget("priv")
+
         title_label = self.top.get_widget("title")
-
-        mtype = self.url.get_type()
-        if mtype:
-            defval = mtype[0]
-        else:
-            defval = None
-        rel_types = dict(Utils.web_types)
-
-        self.type_sel = AutoComp.StandardCustomSelector(
-            rel_types, self.wtype, RelLib.Url.CUSTOM, defval)
-
         if not name or name == ", ":
             etitle =_('Internet Address Editor')
         else:
@@ -99,18 +83,33 @@ class UrlEditor(DisplayState.ManagedWindow):
 
         Utils.set_titles(self.window,title_label, etitle,
                          _('Internet Address Editor'))
-        if url != None:
-            self.des.set_text(url.get_description())
-            self.addr.set_text(url.get_path())
-            self.priv.set_active(url.get_privacy())
 
-        self.gladeif.connect('url_edit','delete_event', self.on_delete_event)
-        self.gladeif.connect('button125','clicked', self.close_window)
-        self.gladeif.connect('button124','clicked', self.on_url_edit_ok_clicked)
-        self.gladeif.connect('button130','clicked', self.on_help_clicked)
+        self._setup_fields()
+        self._connect_signals()
+        self.show()
 
-        self.window.set_transient_for(self.parent_window)
-        self.window.show()
+    def _connect_signals(self):
+        self.window.connect('delete_event', self.on_delete_event)
+        self.top.get_widget('button125').connect('clicked', self.close_window)
+        self.top.get_widget('button124').connect('clicked', self.ok_clicked)
+        self.top.get_widget('button130').connect('clicked', self.help_clicked)
+        
+    def _setup_fields(self):
+        self.des  = MonitoredEntry(
+            self.top.get_widget("url_des"), self.url.set_description,
+            self.url.get_description, self.db.readonly)
+
+        self.addr  = MonitoredEntry(
+            self.top.get_widget("url_addr"), self.url.set_path,
+            self.url.get_path, self.db.readonly)
+        
+        self.priv = PrivacyButton(self.top.get_widget("priv"),
+                                  self.url, self.db.readonly)
+
+        self.type_sel = MonitoredType(
+            self.top.get_widget("type"), self.url.set_type,
+            self.url.get_type, dict(Utils.web_types), RelLib.Url.CUSTOM)
+            
 
     def build_menu_names(self,obj):
         if not self.name or self.name == ", ":
@@ -120,37 +119,16 @@ class UrlEditor(DisplayState.ManagedWindow):
         return (etitle, _('Internet Address Editor'))
 
     def on_delete_event(self,*obj):
-        self.gladeif.close()
         self.close()
 
     def close_window(self,*obj):
-        self.gladeif.close()
         self.close()
 
-    def on_help_clicked(self,*obj):
+    def help_clicked(self,*obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('gramps-edit-complete')
 
-    def on_url_edit_ok_clicked(self,obj):
-        des = unicode(self.des.get_text())
-        addr = unicode(self.addr.get_text())
-        priv = self.priv.get_active()
-        
-        self.update_url(des,addr,priv)
+    def ok_clicked(self,obj):
         self.callback(self.url)
         self.close_window(obj)
-
-    def update_url(self,des,addr,priv):
-        if self.url.get_path() != addr:
-            self.url.set_path(addr)
-
-        val = self.type_sel.get_values()
-        if self.url.get_type() != val:
-            self.url.set_type(val)
-        
-        if self.url.get_description() != des:
-            self.url.set_description(des)
-
-        if self.url.get_privacy() != priv:
-            self.url.set_privacy(priv)
 

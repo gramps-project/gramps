@@ -1105,6 +1105,14 @@ class GalleryTab(ButtonTab):
         self.rebuild()
         self.show_all()
 
+    def double_click(self, obj, event):
+        """
+        Handles the double click on list. If the double click occurs,
+        the Edit button handler is called
+        """
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            self.edit_button_clicked(obj)
+
     def get_icon_name(self):
         return 'gramps-media'
 
@@ -1133,6 +1141,7 @@ class GalleryTab(ButtonTab):
         self.iconlist.set_spacing(24)
         self.iconlist.set_selection_mode(gtk.SELECTION_SINGLE)
         self.iconlist.connect('selection-changed',self._selection_changed)
+        self.iconlist.connect('button_press_event',self.double_click)
         self._connect_icon_model()
         
         scroll = gtk.ScrolledWindow()
@@ -1173,7 +1182,17 @@ class GalleryTab(ButtonTab):
         return None
 
     def add_button_clicked(self,obj):
-        print "Media Add clicked"
+        from EditMediaRef import EditMediaRef
+        
+        sref = RelLib.MediaRef()
+        src = RelLib.Media()
+        EditSourceRef(self.dbstate, self.uistate, self.track,
+                      src, sref, self.add_callback)
+
+    def add_callback(self,name):
+        self.get_data().append(name)
+        self.changed = True
+        self.rebuild()
 
     def del_button_clicked(self,obj):
         ref = self.get_selected()
@@ -1184,7 +1203,16 @@ class GalleryTab(ButtonTab):
     def edit_button_clicked(self,obj):
         ref = self.get_selected()
         if ref:
-            print "Media Edit clicked"
+            from EditMediaRef import EditMediaRef
+
+            obj = self.dbstate.db.get_object_from_handle(ref.get_reference_handle())
+            EditMediaRef(self.dbstate, self.uistate, self.track,
+                         obj, ref, self.edit_callback)
+
+    def edit_callback(self, name):
+        print "Callback"
+        self.changed = True
+        self.rebuild()
 
 #-------------------------------------------------------------------------
 #
