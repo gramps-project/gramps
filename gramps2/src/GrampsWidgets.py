@@ -334,3 +334,25 @@ class MonitoredDate:
             
         field.set_text(DateHandler.displayer.display(self.date))
     
+class MonitoredPlace:
+
+    def __init__(self,obj,set_val,get_val,mapping,custom):
+        self.set_val = set_val
+        self.get_val = get_val
+
+        self.obj = obj
+
+        val = get_val()
+        if val:
+            default = val[0]
+        else:
+            default = None
+            
+        self.sel = AutoComp.StandardCustomSelector(
+            mapping, obj, custom, default)
+
+        self.obj.connect('changed', self.on_change)
+
+    def on_change(self, obj):
+        self.set_val(self.sel.get_values())
+

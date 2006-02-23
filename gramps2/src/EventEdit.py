@@ -45,19 +45,15 @@ import gtk.glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import Sources
-import Witness
 import const
 import Utils
 import AutoComp
 import RelLib
-from DateHandler import parser as _dp, displayer as _dd
 import DateEdit
 import GrampsDisplay
 import DisplayState
 
 from QuestionDialog import WarningDialog, ErrorDialog
-from WindowUtils import GladeIf
 from DisplayTabs import *
 from GrampsWidgets import *
 
@@ -105,15 +101,10 @@ class EventEditor(DisplayState.ManagedWindow):
         self.track = track
         self.callback = callback
         
-        read_only = self.db.readonly
-        noedit = self.db.readonly
         self.event = event
         self.path = self.db.get_save_path()
         self.plist = []
         self.pmap = {}
-
-        self.dp = _dp
-        self.dd = _dd
 
         DisplayState.ManagedWindow.__init__(self, uistate, self.track, event)
         if self.already_exist:
@@ -123,15 +114,10 @@ class EventEditor(DisplayState.ManagedWindow):
             title = self.db.get_place_from_handle(key).get_title()
             self.pmap[title] = key
 
-        if event:
-            self.srcreflist = self.event.get_source_references()
-            self.date = RelLib.Date(self.event.get_date_object())
-        else:
-            self.srcreflist = []
-            self.date = RelLib.Date(None)
+        if not event:
+            self.event = RelLib.Event()
 
         self.top = gtk.glade.XML(const.gladeFile, "event_edit","gramps")
-        self.gladeif = GladeIf(self.top)
 
         self.window = self.top.get_widget("event_edit")
         title_label = self.top.get_widget('title')
@@ -141,63 +127,56 @@ class EventEditor(DisplayState.ManagedWindow):
                          _('Event Editor'))
         
         self.place_field = self.top.get_widget("eventPlace")
-        self.place_field.set_editable(not noedit)
-        self.cause_field = self.top.get_widget("eventCause")
-        self.cause_monitor = MonitoredEntry(self.cause_field,self.event.set_cause,
-                                            self.event.get_cause, noedit)
-        self.date_field  = self.top.get_widget("eventDate")
-        self.date_field.set_editable(not noedit)
-        self.descr_field = MonitoredEntry(self.top.get_widget("event_description"),
-                                          self.event.set_description,
-                                          self.event.get_description, noedit)
-        self.event_menu = self.top.get_widget("personal_events")
-        self.priv = PrivacyButton(self.top.get_widget("private"),self.event)
-        self.priv.set_sensitive(not noedit)
-        self.ok = self.top.get_widget('ok')
-        
-        self.ok.set_sensitive(not noedit)
-            
-        if read_only or noedit:
-            self.event_menu.set_sensitive(False)
-            self.date_field.grab_focus()
+        self.place_field.set_editable(not self.db.readonly)
 
-        if event:
-            defval = event.get_type()[0]
+        place_handle = event.get_place_handle()
+        if not place_handle:
+            place_name = u""
         else:
-            defval = None
-
-        self.type_selector = AutoComp.StandardCustomSelector(
-            total_events, self.event_menu,
-            RelLib.Event.CUSTOM, defval)
-
-        AutoComp.fill_entry(self.place_field,self.pmap.keys())
-
-        if event != None:
-            place_handle = event.get_place_handle()
-            if not place_handle:
-                place_name = u""
-            else:
-                place_name = self.db.get_place_from_handle(place_handle).get_title()
-            self.place_field.set_text(place_name)
-
-            self.date_field.set_text(_dd.display(self.date))
-            
-        else:
-            event = RelLib.Event()
-        date_stat = self.top.get_widget("date_stat")
-        date_stat.set_sensitive(not self.db.readonly)
-        self.date_check = DateEdit.DateEdit(self.date,
-                                        self.date_field,
-                                        date_stat,
-                                        self.window)
-
-        self.gladeif.connect('button111','clicked',self.close_window)
-        self.gladeif.connect('ok','clicked',self.on_event_edit_ok_clicked)
-        self.gladeif.connect('button126','clicked',self.on_help_clicked)
+            place_name = self.db.get_place_from_handle(place_handle).get_title()
+        self.place_field.set_text(place_name)
 
         self._create_tabbed_pages()
-
+        self._setup_fields()
+        self._connect_signals()
         self.show()
+
+    def _connect_signals(self):
+        self.top.get_widget('button111').connect('clicked',self.close_window)
+        self.top.get_widget('button126').connect('clicked',self.on_help_clicked)
+
+        ok = self.top.get_widget('ok')
+        ok.set_sensitive(not self.db.readonly)
+        ok.connect('clicked',self.on_event_edit_ok_clicked)
+
+    def _setup_fields(self):
+        self.cause_monitor = MonitoredEntry(
+            self.top.get_widget("eventCause"),
+            self.event.set_cause,
+            self.event.get_cause, self.db.readonly)
+
+        self.descr_field = MonitoredEntry(
+            self.top.get_widget("event_description"),
+            self.event.set_description,
+            self.event.get_description, self.db.readonly)
+
+
+        self.priv = PrivacyButton(
+            self.top.get_widget("private"),
+            self.event, self.db.readonly)
+
+        self.event_menu = MonitoredType(
+            self.top.get_widget("personal_events"),
+            self.event.set_type,
+            self.event.get_type,
+            dict(total_events),
+            RelLib.Event.CUSTOM)
+
+        self.date_field = MonitoredDate(
+            self.top.get_widget("eventDate"),
+            self.top.get_widget("date_stat"),
+            self.event.get_date_object(),
+            self.window, self.db.readonly)
 
     def _add_page(self,page):
         self.notebook.insert_page(page)
@@ -246,11 +225,9 @@ class EventEditor(DisplayState.ManagedWindow):
             return id(self)
 
     def on_delete_event(self,obj,b):
-        self.gladeif.close()
         self.close()
 
     def close_window(self,obj):
-        self.gladeif.close()
         self.close()
         self.window.destroy()
 
@@ -260,12 +237,9 @@ class EventEditor(DisplayState.ManagedWindow):
 
     def on_event_edit_ok_clicked(self,obj):
 
-        event_data = self.type_selector.get_values()
         eplace_obj = get_place(self.place_field,self.pmap,self.db)
 
-        self.update_event(event_data,self.date,eplace_obj)
-
-        print self.event, self.event.handle
+        self.update_event(eplace_obj)
 
         if self.event.handle == None:
             trans = self.db.transaction_begin()
@@ -282,7 +256,7 @@ class EventEditor(DisplayState.ManagedWindow):
             self.callback(self.event)
         self.close(obj)
 
-    def update_event(self,the_type,date,place):
+    def update_event(self,place):
         # FIXME: commented because we no longer have parent
         if place:
             if self.event.get_place_handle() != place.get_handle():
@@ -291,13 +265,6 @@ class EventEditor(DisplayState.ManagedWindow):
             if self.event.get_place_handle():
                 self.event.set_place_handle("")
         
-        if self.event.get_type() != the_type:
-            self.event.set_type(the_type)
-        
-        dobj = self.event.get_date_object()
-        if not dobj.is_equal(date):
-            self.event.set_date_object(date)
-
     def commit(self,event,trans):
         self.db.commit_event(event,trans)
 

@@ -56,6 +56,7 @@ import DisplayState
 
 from DisplayTabs import *
 from WindowUtils import GladeIf
+from GrampsWidgets import *
 
 #-------------------------------------------------------------------------
 #
@@ -184,83 +185,83 @@ class EditSource(DisplayState.ManagedWindow):
 
         if source:
             self.source = source
-            self.ref_not_loaded = 1
         else:
             self.source = RelLib.Source()
-            self.ref_not_loaded = 0
 
-        self.path = self.db.get_save_path()
-        self.not_loaded = 1
-        self.lists_changed = 0
-        mode = not self.db.readonly
+        self.glade = gtk.glade.XML(const.gladeFile,"sourceEditor","gramps")
+        self.window = self.glade.get_widget("sourceEditor")
 
-        self.top_window = gtk.glade.XML(const.gladeFile,"sourceEditor","gramps")
-        self.window = self.top_window.get_widget("sourceEditor")
-        self.gladeif = GladeIf(self.top_window)
-
-        Utils.set_titles(self.window,self.top_window.get_widget('title'),
+        Utils.set_titles(self.window,self.glade.get_widget('title'),
                          _('Source Editor'))
-        
-        self.author = self.top_window.get_widget("author")
-        self.pubinfo = self.top_window.get_widget("pubinfo")
-        self.abbrev = self.top_window.get_widget("abbrev")
-        self.cancel = self.top_window.get_widget('cancel')
-        self.ok = self.top_window.get_widget('ok')
-        
-        self.vbox = self.top_window.get_widget('vbox')
-
-        self.refinfo = self.top_window.get_widget("refinfo")
-        
-        self.title = self.top_window.get_widget("source_title")
-        self.title.set_text(source.get_title())
-        self.title.set_editable(mode)
-        self.author.set_text(source.get_author())
-        self.author.set_editable(mode)
-        self.pubinfo.set_text(source.get_publication_info())
-        self.pubinfo.set_editable(mode)
-        self.abbrev.set_text(source.get_abbreviation())
-        self.abbrev.set_editable(mode)
-
-        self.ok.set_sensitive(not self.db.readonly)
-        self.cancel.connect('clicked', self.close_window)
-        self.ok.connect('clicked', self.apply_clicked)
+                
+        self.vbox = self.glade.get_widget('vbox')
 
         self.notebook = gtk.Notebook()
         self.notebook.show()
         self.vbox.pack_start(self.notebook,True)
 
-        self.load_data()
-
+        self._create_tabbed_pages()
+        self._setup_fields()
+        self._connect_signals()
         self.show()
 
-    def load_data(self):
-        self.note_tab = NoteTab(
-            self.dbstate, self.uistate, self.track, self.source.get_note_object())
-        self.gallery_tab = GalleryTab(
-            self.dbstate, self.uistate, self.track, self.source.get_media_list())
-        self.data_tab = DataEmbedList(
-            self.dbstate, self.uistate, self.track, self.source)
-        self.repo_tab = RepoEmbedList(
-            self.dbstate, self.uistate, self.track, self.source.get_reporef_list())
-        self.backref_tab = SourceBackRefList(
+    def _connect_signals(self):
+        self.glade.get_widget('cancel').connect('clicked', self.close_window)
+
+        ok = self.glade.get_widget('ok')
+        ok.set_sensitive(not self.db.readonly)
+        ok.connect('clicked', self.apply_clicked)
+
+    def _setup_fields(self):
+        self.author = MonitoredEntry(
+            self.glade.get_widget("author"),
+            self.source.set_author,
+            self.source.get_author,
+            self.db.readonly)
+
+        self.pubinfo = MonitoredEntry(
+            self.glade.get_widget("pubinfo"),
+            self.source.set_publication_info,
+            self.source.get_publication_info,
+            self.db.readonly)
+
+        self.abbrev = MonitoredEntry(
+            self.glade.get_widget("abbrev"),
+            self.source.set_abbreviation,
+            self.source.get_abbreviation,
+            self.db.readonly)
+
+        self.title = MonitoredEntry(
+            self.glade.get_widget("source_title"),
+            self.source.set_title,
+            self.source.get_title,
+            self.db.readonly)
+
+    def _add_page(self,page):
+        self.notebook.insert_page(page)
+        self.notebook.set_tab_label(page,page.get_tab_widget())
+        return page
+
+    def _create_tabbed_pages(self):
+        self.note_tab = self._add_page(NoteTab(
             self.dbstate, self.uistate, self.track,
-            self.db.find_backlink_handles(self.source.handle))
+            self.source.get_note_object()))
         
-        self.notebook.insert_page(self.note_tab)
-        self.notebook.set_tab_label(self.note_tab,self.note_tab.get_tab_widget())
-
-        self.notebook.insert_page(self.data_tab)
-        self.notebook.set_tab_label(self.data_tab,self.data_tab.get_tab_widget())
-
-        self.notebook.insert_page(self.gallery_tab)
-        self.notebook.set_tab_label(self.gallery_tab,self.gallery_tab.get_tab_widget())
-
-        self.notebook.insert_page(self.repo_tab)
-        self.notebook.set_tab_label(self.repo_tab,self.repo_tab.get_tab_widget())
-
-        self.notebook.insert_page(self.backref_tab)
-        self.notebook.set_tab_label(self.backref_tab,self.backref_tab.get_tab_widget())
-
+        self.gallery_tab = self._add_page(GalleryTab(
+            self.dbstate, self.uistate, self.track,
+            self.source.get_media_list()))
+                                          
+        self.data_tab = self._add_page(DataEmbedList(
+            self.dbstate, self.uistate, self.track, self.source))
+                                       
+        self.repo_tab = self._add_page(RepoEmbedList(
+            self.dbstate, self.uistate, self.track,
+            self.source.get_reporef_list()))
+        
+        self.backref_tab = self._add_page(SourceBackRefList(
+            self.dbstate, self.uistate, self.track,
+            self.db.find_backlink_handles(self.source.handle)))
+        
         self.notebook.show_all()
 
     def build_window_key(self,source):
@@ -278,7 +279,6 @@ class EditSource(DisplayState.ManagedWindow):
 
     def on_delete_event(self,obj,b):
         self.backref_tab.close()
-        self.gladeif.close()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -286,28 +286,10 @@ class EditSource(DisplayState.ManagedWindow):
 
     def close_window(self,obj):
         self.backref_tab.close()
-        self.gladeif.close()
         self.close()
 
     def apply_clicked(self,obj):
 
-        title = unicode(self.title.get_text())
-        author = unicode(self.author.get_text())
-        pubinfo = unicode(self.pubinfo.get_text())
-        abbrev = unicode(self.abbrev.get_text())
-
-        if author != self.source.get_author():
-            self.source.set_author(author)
-        
-        if title != self.source.get_title():
-            self.source.set_title(title)
-        
-        if pubinfo != self.source.get_publication_info():
-            self.source.set_publication_info(pubinfo)
-        
-        if abbrev != self.source.get_abbreviation():
-            self.source.set_abbreviation(abbrev)
-                
         trans = self.db.transaction_begin()
         if self.source.get_handle() == None:
             self.db.add_source(self.source,trans)
