@@ -1,3 +1,10 @@
+2006-02-22  Don Allingham  <don@gramps-project.org>
+	* src/EditPlace.py: use monitored widgets
+	* src/EditSource.py: use monitored widgets
+	* src/EventEdit.py: use monitored widgets
+	* src/GrampsWidgets.py: start of monitored place
+	* src/GrampsDb/_GrampsDbBase.py: monitor place changes
+
 2006-02-22  Alex Roitman  <shura@gramps-project.org>
 	* src/EditSourceRef.py (__init__): Typos.
 	* src/DisplayTabs.py (GalleryTab.add_button_clicked): Typos.
