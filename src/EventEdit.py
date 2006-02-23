@@ -110,10 +110,6 @@ class EventEditor(DisplayState.ManagedWindow):
         if self.already_exist:
             return
 
-        for key in self.db.get_place_handles():
-            title = self.db.get_place_from_handle(key).get_title()
-            self.pmap[title] = key
-
         if not event:
             self.event = RelLib.Event()
 
@@ -125,7 +121,7 @@ class EventEditor(DisplayState.ManagedWindow):
         etitle = _('Event Editor')
         Utils.set_titles(self.window,title_label, etitle,
                          _('Event Editor'))
-        
+
         self.place_field = self.top.get_widget("eventPlace")
         self.place_field.set_editable(not self.db.readonly)
 
@@ -135,6 +131,7 @@ class EventEditor(DisplayState.ManagedWindow):
         else:
             place_name = self.db.get_place_from_handle(place_handle).get_title()
         self.place_field.set_text(place_name)
+        self.place_field.set_completion(self.dbstate.get_place_completion())
 
         self._create_tabbed_pages()
         self._setup_fields()

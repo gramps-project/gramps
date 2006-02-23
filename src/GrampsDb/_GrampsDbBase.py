@@ -2045,3 +2045,18 @@ class DbState(GrampsDBCallback):
         self.active = None
         self.open = False
         self.emit('no-database')
+
+    def get_place_completion(self):
+        import locale
+        
+        store = gtk.ListStore(str,str)
+        foo = []
+        for val in self.places.keys():
+            foo.append((locale.strxform(self.places[val]),val))
+        foo.sort()
+        for val in foo:
+            self.store.append(row=[val[1],val[0]])
+        self.completion = gtk.EntryCompletion()
+        self.completion.set_text_column(0)
+        self.completion.set_model(store)
+        return self.completion
