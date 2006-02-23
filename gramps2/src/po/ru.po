@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 2.0.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sat Feb 18 22:21:36 2006\n"
-"PO-Revision-Date: 2006-02-22 16:34-0800\n"
+"POT-Creation-Date: Wed Feb 22 16:37:12 2006\n"
+"PO-Revision-Date: 2006-02-22 16:43-0800\n"
 "Last-Translator: Alexander Roitman <shura@gramps-project.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,11 +20,11 @@ msgstr ""
 msgid "Select a media object"
 msgstr "Выбрать документ"
 
-#: AddMedia.py:123 ImageSelect.py:198
+#: AddMedia.py:123 ImageSelect.py:200
 msgid "Cannot import %s"
 msgstr "Не могу импортировать %s"
 
-#: AddMedia.py:124 ImageSelect.py:199
+#: AddMedia.py:124 ImageSelect.py:201
 msgid "The filename supplied could not be found."
 msgstr "Указанный файл не найден."
 
@@ -281,8 +281,7 @@ msgid "Likely Father"
 msgstr "Вероятный Отец"
 
 #: ChooseParents.py:840
-#, fuzzy
-msgid "Matches likely fathersn"
+msgid "Matches likely fathers"
 msgstr "Выбирает вероятных отцов"
 
 #: ChooseParents.py:847
@@ -6005,6 +6004,9 @@ msgid ""
 "allows a family tree to be displayed online using a single file, instead of "
 "many html files."
 msgstr ""
+"GRAMPS может экспортировать данные в формате Web Family Tree (WFT). Этот формат "
+"позволяет показ семейного дерева на интернете используя один файл "
+"вместо нескольких файлов HTML."
 
 #: data/tips.xml:366
 msgid ""
@@ -6012,6 +6014,9 @@ msgid ""
 "database, family lines or selected individuals to a collection of web pages "
 "ready for upload to the World Wide Web."
 msgstr ""
+"Вы легко можете экспортировать своё семейное дерево в веб-страницу. "
+"Выберите всю базу данных, семейные линии или избранные лица для "
+"вывода в набор веб страниц, готовых для публикации в сети."
 
 #: data/tips.xml:371
 msgid ""
@@ -8920,14 +8925,6 @@ msgstr "Книга GRAMPS"
 #: plugins/BookReport.py:1126
 msgid "Creates a book containing several reports."
 msgstr "Создаёт книгу, содержащую несколько отчётов."
-
-#: plugins/Calendar.py:121 plugins/Calendar.py:579
-msgid "no widget named '%s'"
-msgstr ""
-
-#: plugins/Calendar.py:376
-msgid "no widget attribute named '%s'"
-msgstr ""
 
 #: plugins/Calendar.py:400
 msgid "Type a number or click the spinner"
