@@ -118,7 +118,7 @@ class Calendar(Report.Report):
             # otherwise it is a option:
             return self.options_class.options_dict[item]
         else:
-            raise AttributeError, (_("no widget named '%s'") % item)
+            raise AttributeError, ("no widget named '%s'" % item)
 
     def define_graphics_styles(self):
         """ Set up the report. Could be moved up to Report. """
@@ -373,7 +373,7 @@ class Widget:
         if key in self.settings:
             return self.settings[key]
         else:
-            raise AttributeError, (_("no widget attribute named '%s'") % key)
+            raise AttributeError, ("no widget attribute named '%s'" % key)
     def __setitem__(self, key, value):
         self.settings[key] = value
     def setup(self, args = {}):
@@ -576,7 +576,7 @@ class NewReportOptions(ReportOptions.ReportOptions):
         if keyword in self.options_dict:
             return self.options_dict[keyword]
         else:
-            raise AttributeError, (_("no widget named '%s'") % keyword)
+            raise AttributeError, ("no widget named '%s'" % keyword)
 
     def __setitem__(self, keyword, value):
         """ This could be moved up to ReportOptions """

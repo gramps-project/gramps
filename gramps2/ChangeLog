@@ -1,3 +1,9 @@
+2006-02-22  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Calendar.py (Calendar.__getitem__,
+	Widget.__getitem__): No translation for exception messages.
+	* src/po/template.po: Update.
+	* src/po/ru.po: Update.
+
 2006-02-22  Arturas Sleinius <asleiniu@one.lt>
 	* src/dates/Date_lt.py: new Lithuanian date handler
 	* src/po/lt.po: updated Lithuanian translation

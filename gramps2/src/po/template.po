@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Sat Feb 18 22:21:36 2006\n"
+"POT-Creation-Date: Wed Feb 22 16:37:12 2006\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,11 @@ msgstr ""
 msgid "Select a media object"
 msgstr ""
 
-#: AddMedia.py:123 ImageSelect.py:198
+#: AddMedia.py:123 ImageSelect.py:200
 msgid "Cannot import %s"
 msgstr ""
 
-#: AddMedia.py:124 ImageSelect.py:199
+#: AddMedia.py:124 ImageSelect.py:201
 msgid "The filename supplied could not be found."
 msgstr ""
 
@@ -255,7 +255,7 @@ msgid "Likely Father"
 msgstr ""
 
 #: ChooseParents.py:840
-msgid "Matches likely fathersn"
+msgid "Matches likely fathers"
 msgstr ""
 
 #: ChooseParents.py:847
@@ -7689,14 +7689,6 @@ msgstr ""
 
 #: plugins/BookReport.py:1126
 msgid "Creates a book containing several reports."
-msgstr ""
-
-#: plugins/Calendar.py:121 plugins/Calendar.py:579
-msgid "no widget named '%s'"
-msgstr ""
-
-#: plugins/Calendar.py:376
-msgid "no widget attribute named '%s'"
 msgstr ""
 
 #: plugins/Calendar.py:400
