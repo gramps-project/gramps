@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Wed Feb 22 16:37:12 2006\n"
+"POT-Creation-Date: Thu Feb 23 11:15:51 2006\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1953,7 +1953,7 @@ msgid "Cause of death"
 msgstr ""
 
 #: PeopleView.py:84 WriteGedcom.py:340 gramps_main.py:962
-#: plugins/Calendar.py:533 plugins/EventCmp.py:159
+#: plugins/Calendar.py:531 plugins/EventCmp.py:159
 #: plugins/ExportVCalendar.py:79 plugins/ExportVCard.py:77
 #: plugins/GraphViz.py:516 plugins/IndivComplete.py:520
 #: plugins/NavWebPage.py:2397 plugins/StatisticsChart.py:846
@@ -2363,7 +2363,7 @@ msgstr ""
 msgid "Report Options"
 msgstr ""
 
-#: Report.py:746 plugins/Calendar.py:607 plugins/FilterEditor.py:345
+#: Report.py:746 plugins/Calendar.py:605 plugins/FilterEditor.py:345
 #: plugins/FilterEditor.py:531
 msgid "Filter"
 msgstr ""
@@ -4464,7 +4464,7 @@ msgid ""
 "Please try again. The witness has not been changed."
 msgstr ""
 
-#: WriteGedcom.py:345 plugins/Calendar.py:538 plugins/DescendReport.py:154
+#: WriteGedcom.py:345 plugins/Calendar.py:536 plugins/DescendReport.py:154
 #: plugins/ExportVCalendar.py:84 plugins/ExportVCard.py:82
 #: plugins/FtmStyleDescendants.py:120 plugins/GraphViz.py:520
 #: plugins/IndivComplete.py:524 plugins/NavWebPage.py:2401
@@ -4473,7 +4473,7 @@ msgstr ""
 msgid "Descendants of %s"
 msgstr ""
 
-#: WriteGedcom.py:351 plugins/Ancestors.py:138 plugins/Calendar.py:548
+#: WriteGedcom.py:351 plugins/Ancestors.py:138 plugins/Calendar.py:546
 #: plugins/ExportVCalendar.py:90 plugins/ExportVCard.py:88
 #: plugins/FtmStyleAncestors.py:95 plugins/GraphViz.py:524
 #: plugins/IndivComplete.py:528 plugins/NavWebPage.py:2409
@@ -4482,7 +4482,7 @@ msgstr ""
 msgid "Ancestors of %s"
 msgstr ""
 
-#: WriteGedcom.py:357 plugins/Calendar.py:553 plugins/ExportVCalendar.py:96
+#: WriteGedcom.py:357 plugins/Calendar.py:551 plugins/ExportVCalendar.py:96
 #: plugins/ExportVCard.py:94 plugins/GraphViz.py:528
 #: plugins/IndivComplete.py:532 plugins/NavWebPage.py:2413
 #: plugins/StatisticsChart.py:858 plugins/TimeLine.py:423
@@ -7691,175 +7691,95 @@ msgstr ""
 msgid "Creates a book containing several reports."
 msgstr ""
 
-#: plugins/Calendar.py:400
-msgid "Type a number or click the spinner"
-msgstr ""
-
-#: plugins/Calendar.py:401
-msgid "Any number"
-msgstr ""
-
-#: plugins/Calendar.py:425
-msgid "Click the checkbox"
-msgstr ""
-
-#: plugins/Calendar.py:426
-msgid "Check means this option is active"
-msgstr ""
-
-#: plugins/Calendar.py:446
-msgid "Enter text in the area"
-msgstr ""
-
-#: plugins/Calendar.py:447
-msgid "Enter any text data"
-msgstr ""
-
-#: plugins/Calendar.py:467
-msgid "Enter a number in the area"
-msgstr ""
-
-#: plugins/Calendar.py:468
-msgid "Enter a number"
-msgstr ""
-
-#: plugins/Calendar.py:543 plugins/NavWebPage.py:2405 plugins/WebPage.py:1341
+#: plugins/Calendar.py:541 plugins/NavWebPage.py:2405 plugins/WebPage.py:1341
 msgid "Descendant Families of %s"
 msgstr ""
 
-#: plugins/Calendar.py:558
+#: plugins/Calendar.py:556
 msgid "People with a Calendar attribute"
 msgstr ""
 
-#: plugins/Calendar.py:610
+#: plugins/Calendar.py:608
 msgid "Text 1"
 msgstr ""
 
-#: plugins/Calendar.py:613
-msgid "Large text area"
-msgstr ""
-
-#: plugins/Calendar.py:614 plugins/Calendar.py:621 plugins/Calendar.py:628
-msgid "Any text"
-msgstr ""
-
-#: plugins/Calendar.py:615 plugins/Calendar.py:622 plugins/Calendar.py:629
+#: plugins/Calendar.py:613 plugins/Calendar.py:620 plugins/Calendar.py:627
 msgid "Text Options"
 msgstr ""
 
-#: plugins/Calendar.py:617
+#: plugins/Calendar.py:615
 msgid "Text 2"
 msgstr ""
 
-#: plugins/Calendar.py:620
-msgid "Medium size text"
-msgstr ""
-
-#: plugins/Calendar.py:624
+#: plugins/Calendar.py:622
 msgid "Text 3"
 msgstr ""
 
-#: plugins/Calendar.py:627
-msgid "Small text area"
-msgstr ""
-
-#: plugins/Calendar.py:631 plugins/Calendar.py:634
+#: plugins/Calendar.py:629
 msgid "Year of calendar"
 msgstr ""
 
 #: plugins/Calendar.py:635
-msgid "Any year"
-msgstr ""
-
-#: plugins/Calendar.py:637
 msgid "Use maiden names"
 msgstr ""
 
-#: plugins/Calendar.py:640
-msgid "Use married women's maiden name."
-msgstr ""
-
 #: plugins/Calendar.py:641
-msgid "Select to use married women's maiden name."
-msgstr ""
-
-#: plugins/Calendar.py:643
 msgid "Only include living people"
 msgstr ""
 
-#: plugins/Calendar.py:646
-msgid "Include only living people"
-msgstr ""
-
 #: plugins/Calendar.py:647
-msgid "Select to only include living people"
-msgstr ""
-
-#: plugins/Calendar.py:649 plugins/Calendar.py:652
 msgid "Include birthdays"
 msgstr ""
 
 #: plugins/Calendar.py:653
-msgid "Select to include birthdays"
-msgstr ""
-
-#: plugins/Calendar.py:655 plugins/Calendar.py:658
 msgid "Include anniversaries"
 msgstr ""
 
 #: plugins/Calendar.py:659
-msgid "Select to include anniversaries"
-msgstr ""
-
-#: plugins/Calendar.py:661 plugins/Calendar.py:664
 msgid "Include holidays"
 msgstr ""
 
-#: plugins/Calendar.py:665
-msgid "Select to include holidays"
-msgstr ""
-
-#: plugins/Calendar.py:674
+#: plugins/Calendar.py:672
 msgid "Title text and background color."
 msgstr ""
 
-#: plugins/Calendar.py:682
+#: plugins/Calendar.py:680
 msgid "Border lines of calendar boxes."
 msgstr ""
 
-#: plugins/Calendar.py:685
+#: plugins/Calendar.py:683
 msgid "Calendar day numbers."
 msgstr ""
 
-#: plugins/Calendar.py:691
+#: plugins/Calendar.py:689
 msgid "Daily text display."
 msgstr ""
 
-#: plugins/Calendar.py:696
+#: plugins/Calendar.py:694
 msgid "Days of the week text."
 msgstr ""
 
-#: plugins/Calendar.py:703
+#: plugins/Calendar.py:701
 msgid "Text at bottom, line 1."
 msgstr ""
 
-#: plugins/Calendar.py:708
+#: plugins/Calendar.py:706
 msgid "Text at bottom, line 2."
 msgstr ""
 
-#: plugins/Calendar.py:713
+#: plugins/Calendar.py:711
 msgid "Text at bottom, line 3."
 msgstr ""
 
-#: plugins/Calendar.py:933
+#: plugins/Calendar.py:931
 msgid "Calendar"
 msgstr ""
 
-#: plugins/Calendar.py:934
+#: plugins/Calendar.py:932
 msgid "Experimental"
 msgstr ""
 
-#: plugins/Calendar.py:937
+#: plugins/Calendar.py:935
 msgid "Produces a graphical calendar"
 msgstr ""
 

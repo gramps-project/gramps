@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,7 +27,6 @@ __version__ = "$Revision$"
 #------------------------------------------------------------------------
 from gettext import gettext as _
 import datetime, time
-import string
 from xml.parsers import expat
 import const
 import os
@@ -41,9 +40,8 @@ import locale
 import BaseDoc
 import Report
 import GenericFilter
-from SubstKeywords import SubstKeywords
 from ReportUtils import pt2cm
-import Date, DateHandler, DateDisplay
+import DateDisplay
 import ReportOptions
 import RelLib
 
@@ -397,8 +395,8 @@ class SpinWidget(Widget):
     """ A spinner number selector widget for GTK. """
     defaults = {
         "wtype"     : "=num",
-        "help"      : _("Type a number or click the spinner"),
-        "valid_text": _("Any number"),
+        "help"      : "Numeric option",
+        "valid_text": "Any number",
         }
     def add_gui(self, dialog):
         keyword = self["name"]
@@ -422,8 +420,8 @@ class CheckWidget(Widget):
     """ A check box widget for GTK. """
     defaults = {
         "wtype"     : "=0/1",
-        "help"      : _("Click the checkbox"),
-        "valid_text": _("Check means this option is active"),
+        "help"      : "Yes/No option",
+        "valid_text": "1 for yes, 0 for no",
         }
     def add_gui(self, dialog):
         keyword = self["name"]
@@ -443,8 +441,8 @@ class EntryWidget(Widget):
     """ A text widget for GTK. """
     defaults = {
         "wtype"     : "=str",
-        "help"      : _("Enter text in the area"),
-        "valid_text": _("Enter any text data"),
+        "help"      : "String option",
+        "valid_text": "Any textual data",
         }
     def add_gui(self, dialog):
         keyword = self["name"]
@@ -464,8 +462,8 @@ class NumberWidget(EntryWidget):
     """ A number widget for GTK. """
     defaults = {
         "wtype"     : "=num",
-        "help"      : _("Enter a number in the area"),
-        "valid_text": _("Enter a number"),
+        "help"      : "Numeric option",
+        "valid_text": "Any number",
         }
     def add_gui(self, dialog):
         keyword = self["name"]
@@ -610,59 +608,59 @@ class CalendarOptions(NewReportOptions):
             EntryWidget(self, label = _("Text 1"),
                         name  = "text1",
                         value = "My Calendar",
-                        help  = _("Large text area"),
-                        valid_text = _("Any text"),
+                        help  = "Large text area",
+                        valid_text = "Any text",
                         frame = _("Text Options")
                         ),                       
             EntryWidget(self, label = _("Text 2"),
                         name  = "text2",
                         value = "Produced with GRAMPS",
-                        help  = _("Medium size text"),
-                        valid_text = _("Any text"),
+                        help  = "Medium size text",
+                        valid_text = "Any text",
                         frame = _("Text Options")
                         ),                       
             EntryWidget(self, label = _("Text 3"),
                         name  = "text3",
                         value = "http://gramps-project.org/",
-                        help  = _("Small text area"),
-                        valid_text = _("Any text"),
+                        help  = "Small text area",
+                        valid_text = "Any text",
                         frame = _("Text Options")
                         ),                       
             SpinWidget(self, label = _("Year of calendar"),
                        name  = "year",
                        value = time.localtime()[0], # the current year
-                       help  = _("Year of calendar"),
-                       valid_text = _("Any year"),
+                       help  = "Year of calendar",
+                       valid_text = "Any year",
                        ),
             CheckWidget(self, label = _("Use maiden names"),
                         name = "maiden_name",
                         value = 1,
-                        help = _("Use married women's maiden name."),
-                        valid_text = _("Select to use married women's maiden name."),
+                        help = "Use married women's maiden name.",
+                        valid_text = "Select to use married women's maiden name.",
                         ),
             CheckWidget(self, label = _("Only include living people"),
                         name = "alive",
                         value = 1,
-                        help = _("Include only living people"),
-                        valid_text = _("Select to only include living people"),
+                        help = "Include only living people",
+                        valid_text = "Select to only include living people",
                         ),
             CheckWidget(self, label = _("Include birthdays"),
                         name = "birthdays",
                         value = 1,
-                        help = _("Include birthdays"),
-                        valid_text = _("Select to include birthdays"),
+                        help = "Include birthdays",
+                        valid_text = "Select to include birthdays",
                         ),
             CheckWidget(self, label = _("Include anniversaries"),
                         name = "anniversaries",
                         value = 1,
-                        help = _("Include anniversaries"),
-                        valid_text = _("Select to include anniversaries"),
+                        help = "Include anniversaries",
+                        valid_text = "Select to include anniversaries",
                         ),
             CheckWidget(self, label = _("Include holidays"),
                         name = "holidays",
                         value = 1,
-                        help = _("Include holidays"),
-                        valid_text = _("Select to include holidays"),
+                        help = "Include holidays",
+                        valid_text = "Select to include holidays",
                         ),
             NumberWidget(self, label = "Offset",
                         name  = "offset",
@@ -793,7 +791,7 @@ class Xml2Obj:
 
     def CharacterData(self,data):
         'SAX character data event handler'
-        if string.strip(data):
+        if data.strip():
             data = data.encode()
             element = self.nodeStack[-1]
             element.cdata += data
