@@ -71,26 +71,6 @@ for event_type in Utils.family_events.keys():
 
 #-------------------------------------------------------------------------
 #
-# helper function
-#
-#-------------------------------------------------------------------------
-def get_place(field,pmap,db):
-    text = unicode(field.get_text().strip())
-    if text:
-        if pmap.has_key(text):
-            return db.get_place_from_handle(pmap[text])
-        else:
-            place = RelLib.Place()
-            place.set_title(text)
-            trans = db.transaction_begin()
-            db.add_place(place,trans)
-            db.transaction_commit(trans,_("Add Place"))
-            return place
-    else:
-        return None
-
-#-------------------------------------------------------------------------
-#
 # EditEventRef class
 #
 #-------------------------------------------------------------------------
@@ -110,27 +90,16 @@ class EditEventRef(DisplayState.ManagedWindow):
 
         self.update = update
 
-        self.pmap = {}
-        for key in self.db.get_place_handles():
-            title = self.db.get_place_from_handle(key).get_title()
-            self.pmap[title] = key
-
         self.title = _('Event Reference Editor')
 
         self.top = gtk.glade.XML(const.gladeFile, "event_eref_edit","gramps")
         self.window = self.top.get_widget('event_eref_edit')
-        self.ref_note_field = self.top.get_widget('eer_ref_note')
-        self.role_combo = self.top.get_widget('eer_role_combo')
-        self.date_field  = self.top.get_widget("eer_date")
-        self.place_field = self.top.get_widget("eer_place")
-        self.cause_field = self.top.get_widget("eer_cause")
-        self.ev_note_field = self.top.get_widget("eer_ev_note")
-        self.type_combo = self.top.get_widget("eer_type_combo")
         self.general_label = self.top.get_widget("eer_general_tab")
         self.ok = self.top.get_widget('ok')
         self.expander = self.top.get_widget("eer_expander")
         self.warning = self.top.get_widget("eer_warning")
         self.notebook = self.top.get_widget('notebook')
+        self.notebook_ref = self.top.get_widget('notebook_ref')
 
         if self.referent.__class__.__name__ == 'Person':
             default_type = RelLib.Event.BIRTH
@@ -143,9 +112,12 @@ class EditEventRef(DisplayState.ManagedWindow):
             ev_dict = Utils.family_events
             role_dict = Utils.family_event_roles
 
+        Utils.set_titles(self.window,
+                         self.top.get_widget('eer_title'),
+                         self.title)
+        
         if self.event:
             self.event_added = False
-            self.date = RelLib.Date(self.event.get_date_object())
             if self.event_ref:
                 if self.event_ref.get_role()[0] == default_role:
                     self.expander.set_expanded(True)
@@ -159,7 +131,6 @@ class EditEventRef(DisplayState.ManagedWindow):
             self.event.set_handle(self.db.create_id())
             self.event.set_gramps_id(self.db.find_next_event_gramps_id())
             self.event_added = True
-            self.date = RelLib.Date(None)
             self.expander.set_expanded(True)
             self.warning.hide()
 
@@ -168,65 +139,75 @@ class EditEventRef(DisplayState.ManagedWindow):
             self.event_ref.set_role((default_role,role_dict[default_role]))
             self.event_ref.set_reference_handle(self.event.get_handle())
 
-        self.cause_monitor = MonitoredEntry(self.cause_field,self.event.set_cause,
-                                            self.event.get_cause, False)
-        self.ref_privacy = PrivacyButton(self.top.get_widget('eer_ref_priv'),
-                                         self.event_ref)
-
-        self.descr_field = MonitoredEntry(self.top.get_widget("eer_description"),
-                                          self.event.set_description,
-                                          self.event.get_description, False)
-
-        self.ev_privacy = PrivacyButton(self.top.get_widget("eer_ev_priv"),
-                                        self.event)
-                
-        Utils.set_titles(self.window,
-                         self.top.get_widget('eer_title'),
-                         self.title)
-        
-        self.top.signal_autoconnect({
-            "on_eer_help_clicked"   : self.on_help_clicked,
-            "on_eer_ok_clicked"     : self.on_ok_clicked,
-            "on_eer_cancel_clicked" : self.close,
-            "on_eer_delete_event"   : self.close,
-            })
-
-        self.role_selector = AutoComp.StandardCustomSelector(
-            role_dict,self.role_combo,
-            RelLib.EventRef.CUSTOM,default_role)
-
-        AutoComp.fill_entry(self.place_field,self.pmap.keys())
-
-        self.type_selector = AutoComp.StandardCustomSelector(
-            ev_dict,self.type_combo,
-            RelLib.Event.CUSTOM,default_type)
-
-        self.date_check = DateEdit.DateEdit(self.date,
-                                        self.date_field,
-                                        self.top.get_widget("eer_date_stat"),
-                                        self.window)
-
         # set event_ref values
-        self.role_selector.set_values(self.event_ref.get_role())
-        self.ref_note_field.get_buffer().set_text(self.event_ref.get_note())
-
-        # set event values
-        self.type_selector.set_values(self.event.get_type())
-        place_handle = self.event.get_place_handle()
-        if not place_handle:
-            place_name = u""
-        else:
-            place_name = self.db.get_place_from_handle(place_handle).get_title()
-        self.place_field.set_text(place_name)
-        self.date_field.set_text(_dd.display(self.date))
-
         self._create_tabbed_pages()
-
+        self._setup_fields(self.state.get_place_completion(),role_dict)
+        self._connect_signals()
+        
         self.show()
+
+    def _setup_fields(self,place_values,role_dict):
+        
+        self.cause_monitor = MonitoredEntry(
+            self.top.get_widget("eer_cause"),
+            self.event.set_cause,
+            self.event.get_cause,
+            self.db.readonly)
+        
+        self.ref_privacy = PrivacyButton(
+            self.top.get_widget('eer_ref_priv'),
+            self.event_ref)
+
+        self.descr_field = MonitoredEntry(
+            self.top.get_widget("eer_description"),
+            self.event.set_description,
+            self.event.get_description,
+            self.db.readonly)
+
+        self.place_field = PlaceEntry(
+            self.top.get_widget("eer_place"),
+            self.event.get_place_handle(),
+            place_values,
+            self.db.readonly)
+
+        self.ev_privacy = PrivacyButton(
+            self.top.get_widget("eer_ev_priv"),
+            self.event)
+                
+        self.role_selector = MonitoredType(
+            self.top.get_widget('eer_role_combo'),
+            self.event_ref.set_role,
+            self.event_ref.get_role,
+            role_dict,
+            RelLib.EventRef.CUSTOM)
+
+        self.event_menu = MonitoredType(
+            self.top.get_widget("eer_type_combo"),
+            self.event.set_type,
+            self.event.get_type,
+            dict(total_events),
+            RelLib.Event.CUSTOM)
+
+        self.date_check = DateEdit.DateEdit(
+            self.event.get_date_object(),
+            self.top.get_widget("eer_date"),
+            self.top.get_widget("eer_date_stat"),
+            self.window)
+
+    def _connect_signals(self):
+        self.top.get_widget('ok').connect('clicked',self.ok_clicked)
+        self.top.get_widget('cancel').connect('clicked',self.close)
+        self.top.get_widget('help').connect('clicked',self.help_clicked)
+        self.window.connect('delete-event',self.close)
 
     def _add_page(self,page):
         self.notebook.insert_page(page)
         self.notebook.set_tab_label(page,page.get_tab_widget())
+        return page
+
+    def _add_ref_page(self,page):
+        self.notebook_ref.insert_page(page)
+        self.notebook_ref.set_tab_label(page,page.get_tab_widget())
         return page
 
     def _create_tabbed_pages(self):
@@ -242,6 +223,9 @@ class EditEventRef(DisplayState.ManagedWindow):
         self.note_tab = self._add_page(NoteTab(
             self.state, self.uistate, self.track,
             self.event.get_note_object()))
+        self.note_ref_tab = self._add_ref_page(NoteTab(
+            self.state, self.uistate, self.track,
+            self.event_ref.get_note_object()))
         self.gallery_tab = self._add_page(GalleryTab(
             self.state, self.uistate, self.track,
             self.event.get_media_list()))
@@ -266,46 +250,35 @@ class EditEventRef(DisplayState.ManagedWindow):
         else:
             return id(self)
 
-    def on_help_clicked(self,obj):
+    def help_clicked(self,obj):
         pass
 
-    def on_ok_clicked(self,obj):
+    def ok_clicked(self,obj):
 
-        # first, save event if changed
-        etype = self.type_selector.get_values()
-        eplace_obj = get_place(self.place_field,self.pmap,self.db)
-        self.update_event(etype,self.date,eplace_obj)
-        
+        (need_new, handle) = self.place_field.get_place_info()
+        if need_new:
+            place_obj = RelLib.Place()
+            place_obj.set_title(handle)
+            self.event.set_place_handle(place_obj.get_handle())
+        else:
+            self.event.set_place_handle(handle)
+
         trans = self.db.transaction_begin()
         self.db.commit_event(self.event,trans)
         if self.event_added:
+            if need_new:
+                self.db.add_place(place_obj,trans)
             self.db.transaction_commit(trans,_("Add Event"))
         else:
+            if need_new:
+                self.db.add_place(place_obj,trans)
             self.db.transaction_commit(trans,_("Modify Event"))
         
-        # then, set properties of the event_ref
-        self.event_ref.set_role(self.role_selector.get_values())
-        self.event_ref.set_privacy(self.ref_privacy.get_active())
         self.close(None)
 
         if self.update:
             self.update((self.event_ref,self.event))
 
-    def update_event(self,the_type,date,place):
-        if place:
-            if self.event.get_place_handle() != place.get_handle():
-                self.event.set_place_handle(place.get_handle())
-        else:
-            if self.event.get_place_handle():
-                self.event.set_place_handle("")
-        
-        if self.event.get_type() != the_type:
-            self.event.set_type(the_type)
-        
-        dobj = self.event.get_date_object()
-
-        if not dobj.is_equal(date):
-            self.event.set_date_object(date)
 
 #-------------------------------------------------------------------------
 #

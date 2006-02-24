@@ -69,26 +69,6 @@ for event_type in Utils.family_events.keys():
 
 #-------------------------------------------------------------------------
 #
-# helper function
-#
-#-------------------------------------------------------------------------
-def get_place(field,pmap,db):
-    text = unicode(field.get_text().strip())
-    if text:
-        if pmap.has_key(text):
-            return db.get_place_from_handle(pmap[text])
-        else:
-            place = RelLib.Place()
-            place.set_title(text)
-            trans = db.transaction_begin()
-            db.add_place(place,trans)
-            db.transaction_commit(trans,_("Add Place"))
-            return place
-    else:
-        return None
-
-#-------------------------------------------------------------------------
-#
 # EventEditor class
 #
 #-------------------------------------------------------------------------
@@ -122,17 +102,6 @@ class EventEditor(DisplayState.ManagedWindow):
         Utils.set_titles(self.window,title_label, etitle,
                          _('Event Editor'))
 
-        self.place_field = self.top.get_widget("eventPlace")
-        self.place_field.set_editable(not self.db.readonly)
-
-        place_handle = event.get_place_handle()
-        if not place_handle:
-            place_name = u""
-        else:
-            place_name = self.db.get_place_from_handle(place_handle).get_title()
-        self.place_field.set_text(place_name)
-        self.place_field.set_completion(self.dbstate.get_place_completion())
-
         self._create_tabbed_pages()
         self._setup_fields()
         self._connect_signals()
@@ -147,6 +116,12 @@ class EventEditor(DisplayState.ManagedWindow):
         ok.connect('clicked',self.on_event_edit_ok_clicked)
 
     def _setup_fields(self):
+        self.place_field = PlaceEntry(
+            self.top.get_widget("eventPlace"),
+            self.event.get_place_handle(),
+            self.dbstate.get_place_completion(),
+            self.db.readonly)
+        
         self.cause_monitor = MonitoredEntry(
             self.top.get_widget("eventCause"),
             self.event.set_cause,
@@ -156,7 +131,6 @@ class EventEditor(DisplayState.ManagedWindow):
             self.top.get_widget("event_description"),
             self.event.set_description,
             self.event.get_description, self.db.readonly)
-
 
         self.priv = PrivacyButton(
             self.top.get_widget("private"),
@@ -234,18 +208,26 @@ class EventEditor(DisplayState.ManagedWindow):
 
     def on_event_edit_ok_clicked(self,obj):
 
-        eplace_obj = get_place(self.place_field,self.pmap,self.db)
-
-        self.update_event(eplace_obj)
-
+        (need_new, handle) = self.place_field.get_place_info()
+        if need_new:
+            place_obj = RelLib.Place()
+            place_obj.set_title(handle)
+            self.event.set_place_handle(place_obj.get_handle())
+        else:
+            self.event.set_place_handle(handle)
+            
         if self.event.handle == None:
             trans = self.db.transaction_begin()
+            if need_new:
+                self.db.add_place(place_obj,trans)
             self.db.add_event(self.event,trans)
             self.db.transaction_commit(trans,_("Add Event"))
         else:
             orig = self.dbstate.db.get_event_from_handle(self.event.handle)
             if cmp(self.event.serialize(),orig.serialize()):
                 trans = self.db.transaction_begin()
+                if need_new:
+                    self.db.add_place(place_obj,trans)
                 self.db.commit_event(self.event,trans)
                 self.db.transaction_commit(trans,_("Edit Event"))
 
@@ -253,15 +235,6 @@ class EventEditor(DisplayState.ManagedWindow):
             self.callback(self.event)
         self.close(obj)
 
-    def update_event(self,place):
-        # FIXME: commented because we no longer have parent
-        if place:
-            if self.event.get_place_handle() != place.get_handle():
-                self.event.set_place_handle(place.get_handle())
-        else:
-            if self.event.get_place_handle():
-                self.event.set_place_handle("")
-        
     def commit(self,event,trans):
         self.db.commit_event(event,trans)
 
