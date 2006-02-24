@@ -1,3 +1,13 @@
+2006-02-24  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: backreference tabs
+	* src/EditEventRef.py: backreference tabs
+	* src/EditMedia.py: backreference tabs
+	* src/EditMediaRef.py: backreference tabs
+	* src/EditPlace.py: backreference tabs
+	* src/EditSource.py: backreference tabs
+	* src/EventEdit.py: backreference tabs
+	* src/gramps.glade: notebook tab fixes
+
 2006-02-24  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib/_Person.py (Person.get_handle_referents): Add
 	birth_ref and death_ref to the list of referents.

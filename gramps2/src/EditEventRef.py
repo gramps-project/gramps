@@ -79,7 +79,6 @@ class EditEventRef(DisplayState.ManagedWindow):
                  event, event_ref, referent, update):
         self.db = state.db
         self.state = state
-        self.uistate = uistate
         self.referent = referent
         self.event_ref = event_ref
         self.event = event
@@ -214,7 +213,6 @@ class EditEventRef(DisplayState.ManagedWindow):
         """
         Creates the notebook tabs and inserts them into the main
         window.
-        
         """
 
         self.srcref_list = self._add_page(SourceEmbedList(
@@ -229,6 +227,9 @@ class EditEventRef(DisplayState.ManagedWindow):
         self.gallery_tab = self._add_page(GalleryTab(
             self.state, self.uistate, self.track,
             self.event.get_media_list()))
+        self.backref_tab = self._add_page(EventBackRefList(
+            self.state, self.uistate, self.track,
+            self.state.db.find_backlink_handles(self.event.handle)))
 
     def build_menu_names(self,eventref):
         if self.event:

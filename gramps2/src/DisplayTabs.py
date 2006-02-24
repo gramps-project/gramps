@@ -652,10 +652,10 @@ class PersonEventEmbedList(EventEmbedList):
             
 #-------------------------------------------------------------------------
 #
-# SourceBackRefList
+# BackRefList
 #
 #-------------------------------------------------------------------------
-class SourceBackRefList(EmbeddedList):
+class BackRefList(EmbeddedList):
 
     _HANDLE_COL = 3
 
@@ -665,18 +665,21 @@ class SourceBackRefList(EmbeddedList):
         (_('Name'),2, 250),
         ]
     
-    def __init__(self,dbstate,uistate,track,obj):
+    def __init__(self,dbstate,uistate,track,obj,refmodel):
         self.obj = obj
         EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _('References'), SourceBackRefModel)
+                              _('References'), refmodel)
+        self.model.connect('row-inserted',self.update_label)
+
+    def update_label(self,*obj):
+        if not self.model.empty:
+            self._set_label()
 
     def close(self):
         self.model.close()
 
-    def _set_label(self):
-        self.tab_image.show()
-        self.label.set_text("<b>%s</b>" % self.tab_name)
-        self.label.set_use_markup(True)
+    def is_empty(self):
+        return self.model.empty
 
     def create_buttons(self,share=False):
         self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
@@ -693,29 +696,53 @@ class SourceBackRefList(EmbeddedList):
         else:
             self.edit_btn.set_sensitive(False)
 
-    def get_icon_name(self):
-        return 'gramps-source'
-
     def get_data(self):
         return self.obj
 
     def column_order(self):
         return ((1,0),(1,1),(1,2))
 
-    def add_button_clicked(self,obj):
-        pass
-
-    def del_button_clicked(self,obj):
-        ref = self.get_selected()
-        if ref:
-            ref_list = self.obj.get_event_ref_list()
-            ref_list.remove(ref)
-            self.rebuild()
-
     def edit_button_clicked(self,obj):
         ref = self.get_selected()
         if ref:
             print ref
+
+class SourceBackRefList(BackRefList):
+
+    def __init__(self,dbstate,uistate,track,obj):
+        BackRefList.__init__(self, dbstate, uistate, track, obj,
+                             BackRefModel)
+
+    def get_icon_name(self):
+        return 'gramps-source'
+
+class EventBackRefList(BackRefList):
+
+    def __init__(self,dbstate,uistate,track,obj):
+        BackRefList.__init__(self, dbstate, uistate, track, obj,
+                             BackRefModel)
+
+    def get_icon_name(self):
+        return 'gramps-event'
+
+class MediaBackRefList(BackRefList):
+
+    def __init__(self,dbstate,uistate,track,obj):
+        BackRefList.__init__(self, dbstate, uistate, track, obj,
+                             BackRefModel)
+
+    def get_icon_name(self):
+        return 'gramps-media'
+
+class PlaceBackRefList(BackRefList):
+
+    def __init__(self,dbstate,uistate,track,obj):
+        BackRefList.__init__(self, dbstate, uistate, track, obj,
+                             BackRefModel)
+
+    def get_icon_name(self):
+        return 'gramps-place'
+
 
 #-------------------------------------------------------------------------
 #
@@ -1210,7 +1237,6 @@ class GalleryTab(ButtonTab):
                          obj, ref, self.edit_callback)
 
     def edit_callback(self, name):
-        print "Callback"
         self.changed = True
         self.rebuild()
 
@@ -1479,7 +1505,10 @@ class EventRefModel(gtk.ListStore):
         if t == RelLib.EventRef.CUSTOM:
             return v
         else:
-            return Utils.event_roles.get(t,"error %d" % t)
+            try:
+                return Utils.event_roles[t]
+            except:
+                return Utils.family_event_roles.get(t,"error %d" % t)
 
     def column_date(self,event_ref):
         event = self.db.get_event_from_handle(event_ref.ref)
@@ -1653,23 +1682,26 @@ class RepoRefModel(gtk.ListStore):
 
 #-------------------------------------------------------------------------
 #
-# SourceBackRefModel
+# BackRefModel
 #
 #-------------------------------------------------------------------------
-class SourceBackRefModel(gtk.ListStore):
+class BackRefModel(gtk.ListStore):
 
     def __init__(self,sref_list,db):
         gtk.ListStore.__init__(self,str,str,str,str)
         self.db = db
         self.sref_list = sref_list
         self.idle = 0
+        self.empty = True
         self.idle = gobject.idle_add(self.load_model().next)
 
     def close(self):
         gobject.source_remove(self.idle)
 
     def load_model(self):
+        self.empty = True
         for ref in self.sref_list:
+            self.empty = False
             dtype = ref[0]
             if dtype == 'Person':
                 p = self.db.get_person_from_handle(ref[1])
@@ -1714,3 +1746,4 @@ class SourceBackRefModel(gtk.ListStore):
             yield True
         yield False
             
+
