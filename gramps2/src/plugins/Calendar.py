@@ -933,5 +933,4 @@ register_report(
     author_name = "Douglas S. Blank",
     author_email = "Doug.Blank@gmail.com",
     description = _("Produces a graphical calendar"),
-    unsupported = True,
     )
