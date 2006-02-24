@@ -1,3 +1,6 @@
+2006-02-24  Marcos Bedinelli  <bedinelli@yahoo.ca>
+	* src/po/pt_BR.po: Update.
+
 2006-02-23  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/Calendar.py: Remove translation from help strings;
 	do not import unused modules.
