@@ -330,8 +330,9 @@ class Person(PrimaryObject,SourceNote,
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
         """
+        birth_death = [item for item in [birth_ref,death_ref] if item]
         return self.get_sourcref_child_list() + self.source_list \
-               + self.event_ref_list
+               + self.event_ref_list + birth_death
 
     def set_complete_flag(self,val):
         warn( "Use set_marker instead of set_complete_flag", DeprecationWarning, 2)
