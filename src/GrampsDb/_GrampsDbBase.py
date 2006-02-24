@@ -1999,20 +1999,23 @@ class DbState(GrampsDBCallback):
         data = cursor.next()
         while data:
             if data[1][2]:
-                self.places[data[1][2]] = data[0]
+                self.places[data[0]] = data[1][2]
             data = cursor.next()
         cursor.close()
 
-    def _place_add(self,handle):
-        place = self.db.get_place_from_handle(handle)
-        self.places[place.get_title()] = handle
+    def _place_add(self,handle_list):
+        for handle in handle_list:
+            place = self.db.get_place_from_handle(handle)
+            self.places[place.get_title()] = handle
 
-    def _place_update(self,handle):
-        place = self.db.get_place_from_handle(handle)
-        self.places[handle] = place.get_title()
+    def _place_update(self,handle_list):
+        for handle in handle_list:
+            place = self.db.get_place_from_handle(handle)
+            self.places[handle] = place.get_title()
 
-    def _place_delete(self,handle):
-        del self.places[handle]
+    def _place_delete(self,handle_list):
+        for handle in handle_list:
+            del self.places[handle]
 
     def change_active_person(self,person):
         self.active = person
@@ -2047,16 +2050,5 @@ class DbState(GrampsDBCallback):
         self.emit('no-database')
 
     def get_place_completion(self):
-        import locale
-        
-        store = gtk.ListStore(str,str)
-        foo = []
-        for val in self.places.keys():
-            foo.append((locale.strxform(self.places[val]),val))
-        foo.sort()
-        for val in foo:
-            self.store.append(row=[val[1],val[0]])
-        self.completion = gtk.EntryCompletion()
-        self.completion.set_text_column(0)
-        self.completion.set_model(store)
-        return self.completion
+        return self.places
+

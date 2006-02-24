@@ -21,6 +21,7 @@
 # $Id$
 
 import cgi
+import locale
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -334,3 +335,42 @@ class MonitoredDate:
             
         field.set_text(DateHandler.displayer.display(self.date))
 
+class PlaceEntry:
+
+    def __init__(self, obj, handle, place_map, read_only=False):
+        self.obj = obj
+        self.handle = handle
+        self.places = place_map
+
+        if handle:
+            name = place_map[handle]
+        else:
+            name = u""
+
+        if read_only:
+            self.obj.set_editable(False)
+        else:
+            self.obj.set_editable(True)
+            
+            store = gtk.ListStore(str)
+            foo = self.places.values()
+            foo.sort(locale.strcoll)
+            for val in foo:
+                store.append(row=[val[0]])
+            completion = gtk.EntryCompletion()
+            completion.set_text_column(0)
+            completion.set_model(store)
+            obj.set_completion(completion)
+
+        obj.set_text(name)
+
+    def get_place_info(self):
+        text = unicode(self.obj.get_text().strip())
+        if text:
+            for key in self.places.keys():
+                if text == self.places[key]:
+                    return (False,key)
+            return (True,text)
+        else:
+            return (False,u"")
+    

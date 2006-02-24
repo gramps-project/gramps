@@ -1,3 +1,10 @@
+2006-02-23  Don Allingham  <don@gramps-project.org>
+	* src/EditEventRef.py: switch to monitored widgets, place selector
+	* src/EventEdit.py: switch to monitored widgets, place selector
+	* src/GrampsWidgets.py: place selection widget
+	* src/GrampsDb/_GrampsDbBase.py: move completion widget, handle 
+	place lists
+
 2006-02-22  Don Allingham  <don@gramps-project.org>
 	* src/EditPlace.py: use monitored widgets
 	* src/EditSource.py: use monitored widgets
