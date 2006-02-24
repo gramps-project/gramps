@@ -330,7 +330,7 @@ class Person(PrimaryObject,SourceNote,
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
         """
-        birth_death = [item for item in [birth_ref,death_ref] if item]
+        birth_death = [i for i in [self.birth_ref,self.death_ref] if i]
         return self.get_sourcref_child_list() + self.source_list \
                + self.event_ref_list + birth_death
 
