@@ -80,7 +80,6 @@ class EditMedia(DisplayState.ManagedWindow):
             return
 
         self.state = state
-        self.uistate = uistate
 
         self.pdmap = {}
         self.obj = obj
@@ -182,6 +181,15 @@ class EditMedia(DisplayState.ManagedWindow):
         self.notebook.set_tab_label(self.src_list,self.src_list.get_tab_widget())
         self.notebook.set_tab_label(self.note_tab,self.note_tab.get_tab_widget())
         self.notebook.set_tab_label(self.attr_list,self.attr_list.get_tab_widget())
+
+        self.backref_list = self._add_page(MediaBackRefList(
+            self.state,self.uistate,self.track,
+            self.db.find_backlink_handles(self.obj.handle)))
+
+    def _add_page(self,page):
+        self.notebook.insert_page(page)
+        self.notebook.set_tab_label(page,page.get_tab_widget())
+        return page
 
     def build_menu_names(self,person):
         win_menu_label = _("Media Properties")

@@ -279,6 +279,7 @@ class EditSource(DisplayState.ManagedWindow):
 
     def on_delete_event(self,obj,b):
         self.backref_tab.close()
+        self.close()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""

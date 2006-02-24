@@ -73,7 +73,6 @@ class EditMediaRef(DisplayState.ManagedWindow):
                  media, media_ref, update):
         self.db = state.db
         self.state = state
-        self.uistate = uistate
         self.media_ref = media_ref
         self.media = media
         self.update = update
@@ -160,6 +159,10 @@ class EditMediaRef(DisplayState.ManagedWindow):
         self.attr_list = self._add_ref_page(AttrEmbedList(
             self.state,self.uistate,self.track,
             self.media_ref.get_attribute_list()))
+
+        self.backref_list = self._add_src_page(MediaBackRefList(
+            self.state,self.uistate,self.track,
+            self.db.find_backlink_handles(self.media.handle)))
 
         self.note_ref_tab = self._add_ref_page(NoteTab(
             self.state, self.uistate, self.track,

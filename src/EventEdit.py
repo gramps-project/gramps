@@ -171,6 +171,9 @@ class EventEditor(DisplayState.ManagedWindow):
         self.gallery_tab = self._add_page(GalleryTab(
             self.dbstate, self.uistate, self.track,
             self.event.get_media_list()))
+        self.backref_tab = self._add_page(EventBackRefList(
+            self.dbstate, self.uistate, self.track,
+            self.dbstate.db.find_backlink_handles(self.event.handle)))
 
         self.notebook.show_all()
         vbox.pack_start(self.notebook,True)

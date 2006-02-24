@@ -70,7 +70,6 @@ class EditPlace(DisplayState.ManagedWindow):
 
     def __init__(self,dbstate,uistate,track,place):
         self.dbstate = dbstate
-        self.uistate = uistate
 
         DisplayState.ManagedWindow.__init__(self, uistate, track, place)
 
@@ -200,7 +199,7 @@ class EditPlace(DisplayState.ManagedWindow):
         self.web_list = self._add_page(WebEmbedList(
             self.dbstate,self.uistate,self.track,
             self.place.get_url_list()))
-        self.backref_list = self._add_page(SourceBackRefList(
+        self.backref_list = self._add_page(PlaceBackRefList(
             self.dbstate,self.uistate,self.track,
             self.db.find_backlink_handles(self.place.handle)))
 
