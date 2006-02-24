@@ -1,3 +1,7 @@
+2006-02-24  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib/_Person.py (Person.get_handle_referents): Add
+	birth_ref and death_ref to the list of referents.
+
 2006-02-23  Don Allingham  <don@gramps-project.org>
 	* src/EditEventRef.py: switch to monitored widgets, place selector
 	* src/EventEdit.py: switch to monitored widgets, place selector
