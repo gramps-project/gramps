@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: German Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Fri Feb 17 07:54:43 2006\n"
-"PO-Revision-Date: 2006-02-17 22:09+0100\n"
+"POT-Creation-Date: Thu Feb 23 11:15:51 2006\n"
+"PO-Revision-Date: 2006-02-24 22:51+0100\n"
 "Last-Translator: Martin Hawlisch <martin@hawlisch.de>\n"
 "Language-Team: German <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,11 @@ msgstr ""
 msgid "Select a media object"
 msgstr "Ein Multimedia-Objekt auswählen"
 
-#: AddMedia.py:123 ImageSelect.py:198
+#: AddMedia.py:123 ImageSelect.py:200
 msgid "Cannot import %s"
 msgstr "%s konnte nicht importiert werden"
 
-#: AddMedia.py:124 ImageSelect.py:199
+#: AddMedia.py:124 ImageSelect.py:201
 msgid "The filename supplied could not be found."
 msgstr "Der eingegebene Dateiname konnte nicht gefunden werden"
 
@@ -2149,11 +2149,12 @@ msgid "Cause of death"
 msgstr "Todesursache "
 
 #: PeopleView.py:84 WriteGedcom.py:340 gramps_main.py:962
-#: plugins/EventCmp.py:159 plugins/ExportVCalendar.py:79
-#: plugins/ExportVCard.py:77 plugins/GraphViz.py:516
-#: plugins/IndivComplete.py:520 plugins/NavWebPage.py:2397
-#: plugins/StatisticsChart.py:846 plugins/TimeLine.py:411
-#: plugins/WebPage.py:1333 plugins/WriteFtree.py:86 plugins/WriteGeneWeb.py:84
+#: plugins/Calendar.py:531 plugins/EventCmp.py:159
+#: plugins/ExportVCalendar.py:79 plugins/ExportVCard.py:77
+#: plugins/GraphViz.py:516 plugins/IndivComplete.py:520
+#: plugins/NavWebPage.py:2397 plugins/StatisticsChart.py:846
+#: plugins/TimeLine.py:411 plugins/WebPage.py:1333 plugins/WriteFtree.py:86
+#: plugins/WriteGeneWeb.py:84
 msgid "Entire Database"
 msgstr "Gesamte Datenbank"
 
@@ -2592,7 +2593,8 @@ msgstr "Stileditor"
 msgid "Report Options"
 msgstr "Berichtsoptionen"
 
-#: Report.py:746 plugins/FilterEditor.py:345 plugins/FilterEditor.py:531
+#: Report.py:746 plugins/Calendar.py:605 plugins/FilterEditor.py:345
+#: plugins/FilterEditor.py:531
 msgid "Filter"
 msgstr "Filter"
 
@@ -5107,7 +5109,7 @@ msgstr ""
 "\n"
 "Bitte versuchen Sie es nochmal. Der Zeuge wurde nicht geändert."
 
-#: WriteGedcom.py:345 plugins/DescendReport.py:154
+#: WriteGedcom.py:345 plugins/Calendar.py:536 plugins/DescendReport.py:154
 #: plugins/ExportVCalendar.py:84 plugins/ExportVCard.py:82
 #: plugins/FtmStyleDescendants.py:120 plugins/GraphViz.py:520
 #: plugins/IndivComplete.py:524 plugins/NavWebPage.py:2401
@@ -5116,19 +5118,20 @@ msgstr ""
 msgid "Descendants of %s"
 msgstr "Nachkommen von %s"
 
-#: WriteGedcom.py:351 plugins/Ancestors.py:138 plugins/ExportVCalendar.py:90
-#: plugins/ExportVCard.py:88 plugins/FtmStyleAncestors.py:95
-#: plugins/GraphViz.py:524 plugins/IndivComplete.py:528
-#: plugins/NavWebPage.py:2409 plugins/StatisticsChart.py:854
-#: plugins/TimeLine.py:419 plugins/WebPage.py:1345 plugins/WriteFtree.py:97
-#: plugins/WriteGeneWeb.py:95
+#: WriteGedcom.py:351 plugins/Ancestors.py:138 plugins/Calendar.py:546
+#: plugins/ExportVCalendar.py:90 plugins/ExportVCard.py:88
+#: plugins/FtmStyleAncestors.py:95 plugins/GraphViz.py:524
+#: plugins/IndivComplete.py:528 plugins/NavWebPage.py:2409
+#: plugins/StatisticsChart.py:854 plugins/TimeLine.py:419
+#: plugins/WebPage.py:1345 plugins/WriteFtree.py:97 plugins/WriteGeneWeb.py:95
 msgid "Ancestors of %s"
 msgstr "Vorfahren von %s"
 
-#: WriteGedcom.py:357 plugins/ExportVCalendar.py:96 plugins/ExportVCard.py:94
-#: plugins/GraphViz.py:528 plugins/IndivComplete.py:532
-#: plugins/NavWebPage.py:2413 plugins/StatisticsChart.py:858
-#: plugins/TimeLine.py:423 plugins/WebPage.py:1349 plugins/WriteFtree.py:103
+#: WriteGedcom.py:357 plugins/Calendar.py:551 plugins/ExportVCalendar.py:96
+#: plugins/ExportVCard.py:94 plugins/GraphViz.py:528
+#: plugins/IndivComplete.py:532 plugins/NavWebPage.py:2413
+#: plugins/StatisticsChart.py:858 plugins/TimeLine.py:423
+#: plugins/WebPage.py:1349 plugins/WriteFtree.py:103
 #: plugins/WriteGeneWeb.py:101
 msgid "People with common ancestor with %s"
 msgstr "Personen mit gleichem Vorfahren wie %s"
@@ -9098,6 +9101,98 @@ msgstr "GRAMPS-Buch"
 msgid "Creates a book containing several reports."
 msgstr "Erstellt ein Buch mit mehreren Berichten"
 
+#: plugins/Calendar.py:541 plugins/NavWebPage.py:2405 plugins/WebPage.py:1341
+msgid "Descendant Families of %s"
+msgstr "Familie eines Nachkommens von %s"
+
+#: plugins/Calendar.py:556
+msgid "People with a Calendar attribute"
+msgstr "Personen mit einem Kalender-Attribut"
+
+#: plugins/Calendar.py:608
+msgid "Text 1"
+msgstr "Text 1"
+
+#: plugins/Calendar.py:613 plugins/Calendar.py:620 plugins/Calendar.py:627
+msgid "Text Options"
+msgstr "Textoptionen"
+
+#: plugins/Calendar.py:615
+msgid "Text 2"
+msgstr "Text 2"
+
+#: plugins/Calendar.py:622
+msgid "Text 3"
+msgstr "Text 3"
+
+#: plugins/Calendar.py:629
+msgid "Year of calendar"
+msgstr "Kalenderjahr"
+
+#: plugins/Calendar.py:635
+msgid "Use maiden names"
+msgstr "Verwende Mädchennamen"
+
+#: plugins/Calendar.py:641
+msgid "Only include living people"
+msgstr "Nur lebende Personen einbeziehen"
+
+#: plugins/Calendar.py:647
+msgid "Include birthdays"
+msgstr "Geburtstage mit einbeziehen"
+
+#: plugins/Calendar.py:653
+msgid "Include anniversaries"
+msgstr "Jubiläen mit einbeziehen"
+
+#: plugins/Calendar.py:659
+msgid "Include holidays"
+msgstr "Feiertage mit einbeziehen"
+
+#: plugins/Calendar.py:672
+msgid "Title text and background color."
+msgstr "Titel Text und Hintergrundfarbe"
+
+#: plugins/Calendar.py:680
+msgid "Border lines of calendar boxes."
+msgstr "Ränder der Kalender-Kästen"
+
+#: plugins/Calendar.py:683
+msgid "Calendar day numbers."
+msgstr "Zahlen der Kalender-Tage"
+
+#: plugins/Calendar.py:689
+msgid "Daily text display."
+msgstr "Text der Tage"
+
+#: plugins/Calendar.py:694
+msgid "Days of the week text."
+msgstr "Text der Wochentage"
+
+#: plugins/Calendar.py:701
+msgid "Text at bottom, line 1."
+msgstr "Text unten, Zeile 1"
+
+#: plugins/Calendar.py:706
+msgid "Text at bottom, line 2."
+msgstr "Text unten, Zeile 2"
+
+#: plugins/Calendar.py:711
+msgid "Text at bottom, line 3."
+msgstr "Text unten, Zeile 3"
+
+#: plugins/Calendar.py:931
+msgid "Calendar"
+msgstr "Kalender"
+
+#: plugins/Calendar.py:932
+msgid "Experimental"
+msgstr "Experimentell"
+
+#: plugins/Calendar.py:935
+msgid "Produces a graphical calendar"
+msgstr "Erstellt eine graphischen Kalender"
+
 #: plugins/ChangeNames.py:70
 msgid "Checking family names"
 msgstr "Familiennamen überprüfen"
@@ -10850,10 +10945,6 @@ msgstr "Multimediaseiten werden erstellt"
 #: plugins/NavWebPage.py:2369
 msgid "My Family Tree"
 msgstr "Mein Stammbaum"
-
-#: plugins/NavWebPage.py:2405 plugins/WebPage.py:1341
-msgid "Descendant Families of %s"
-msgstr "Familie eines Nachkommens von %s"
 
 #: plugins/NavWebPage.py:2419 plugins/WebPage.py:1356
 msgid "Do not include records marked private"
@@ -13020,9 +13111,6 @@ msgstr "<b>Werte</b>"
 
 #~ msgid "Detailed Ancestral Report for %s"
 #~ msgstr "Ausführliche Ahnenübersicht für %s"
-
-#~ msgid "Export to vCalendar"
-#~ msgstr "Nach vCalender exportieren"
 
 #~ msgid "Export to vCard"
 #~ msgstr "Nach vCard exportieren"
