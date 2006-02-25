@@ -1,4 +1,5 @@
 2006-02-24  Alex Roitman  <shura@gramps-project.org>
+	* test/runtest.sh (GRPH_REP): Add calendar to the list of reports.
 	* src/plugins/Calendar.py: Remove the unsupported flag.
 
 2006-02-24  Marcos Bedinelli  <bedinelli@yahoo.ca>
