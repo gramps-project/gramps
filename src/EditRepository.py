@@ -49,6 +49,10 @@ import AutoComp
 import RepositoryRefEdit
 import GrampsDisplay
 
+from GrampsWidgets import *
+from DisplayTabs import *
+import DisplayState
+
 #-------------------------------------------------------------------------
 #
 # Classes to manager the list of Sources that have references to the
@@ -265,275 +269,94 @@ class ReposSrcListView:
 
 
 
-class EditRepository:
+class EditRepository(DisplayState.ManagedWindow):
 
-    def __init__(self,repository,dbstate,uistate,parent_window=None,readonly=False):
+    def __init__(self,dbstate,uistate,track,repository):
+
         if repository:
             self.repository = repository
         else:
             self.repository = RelLib.Repository()
+
+        DisplayState.ManagedWindow.__init__(self, uistate, track, repository)
+
         self.dbstate = dbstate
         self.db = dbstate.db
-        #self.parent = parent
         self.name_display = NameDisplay.displayer.display
-        if repository:
-            #    if parent and self.parent.child_windows.has_key(repository.get_handle()):
-            #        self.parent.child_windows[repository.get_handle()].present(None)
-            #        return
-            #    else:
-            self.win_key = repository.get_handle()
-        else:
-            self.win_key = self
-        self.child_windows = {}
+
         self.path = self.db.get_save_path()
-        self.not_loaded = 1
-        self.ref_not_loaded = 1
-        self.lists_changed = 0
-        mode = not self.db.readonly
 
-        self.top_window = gtk.glade.XML(const.gladeFile,"repositoryEditor","gramps")
-        self.top = self.top_window.get_widget("repositoryEditor")
+        self.glade = gtk.glade.XML(const.gladeFile,"repositoryEditor","gramps")
+        self.window = self.glade.get_widget("repositoryEditor")
 
-        Utils.set_titles(self.top,self.top_window.get_widget('repository_title'),
+        Utils.set_titles(self.window,self.glade.get_widget('repository_title'),
                          _('Repository Editor'))
         
-        self.name = self.top_window.get_widget("repository_name")
-        self.name.set_text(repository.get_name())
-        self.name.set_editable(mode)
+        self.name = MonitoredEntry(
+            self.glade.get_widget("repository_name"),
+            self.repository.set_name,
+            self.repository.get_name,
+            self.db.readonly)
 
-        self.type = self.top_window.get_widget("repository_type")
-        self.type_selector = AutoComp.StandardCustomSelector( \
-            Utils.repository_types,self.type,
-            RelLib.Repository.CUSTOM,RelLib.Repository.LIBRARY)
-        self.type_selector.set_values(repository.get_type())
+        self.type = MonitoredType(
+            self.glade.get_widget("repository_type"),
+            self.repository.set_type,
+            self.repository.get_type,
+            dict(Utils.repository_types),
+            RelLib.Repository.CUSTOM)
         
-        self.street = self.top_window.get_widget("repository_street")
-        self.city = self.top_window.get_widget("repository_city")
-        self.county = self.top_window.get_widget("repository_county")
-        self.state = self.top_window.get_widget("repository_state")
-        self.postal = self.top_window.get_widget("repository_postal")
-        self.country = self.top_window.get_widget("repository_country")
-        self.phone = self.top_window.get_widget("repository_phone")
-        self.email = self.top_window.get_widget("repository_email")
-        self.search_url = self.top_window.get_widget("repository_search_url")
-        self.home_url = self.top_window.get_widget("repository_home_url")
+        self.notebook = self.glade.get_widget("notebook")
+
+#         self.phone = self.glade.get_widget("repository_phone")
+#         self.email = self.glade.get_widget("repository_email")
+#         self.search_url = self.glade.get_widget("repository_search_url")
+#         self.home_url = self.glade.get_widget("repository_home_url")
         
-        # FIXME: AddressBase has changed to support multiple addresses
-        # the UI does not support this yet so for the time being we
-        # just grab the first address
-        addresses = repository.get_address_list()
+#         self.phone.set_editable(mode)
+#         self.email.set_editable(mode)
+#         self.search_url.set_editable(mode)
+#         self.home_url.set_editable(mode)
 
-        if len(addresses) != 0:
-            address = addresses[0]
-            self.street.set_text(address.get_street())
-            self.city.set_text(address.get_city())        
-            #self.county.set_text(address.get_county())
-            self.state.set_text(address.get_state())
-            self.postal.set_text(address.get_postal_code())
-            self.country.set_text(address.get_country())
-            self.phone.set_text(address.get_phone())
-            #self.email.set_text(repository.get_email())
-            #self.search_url.set_text(repository.get_search_url())
-            #self.home_url.set_text(repository.get_home_url())
-
-        self.street.set_editable(mode)
-        self.city.set_editable(mode)
-        self.county.set_editable(mode)
-        self.state.set_editable(mode)
-        self.postal.set_editable(mode)
-        self.country.set_editable(mode)
-        self.phone.set_editable(mode)
-        self.email.set_editable(mode)
-        self.search_url.set_editable(mode)
-        self.home_url.set_editable(mode)
-
-
-        self.note = self.top_window.get_widget("repository_note")
-        self.note.set_editable(mode)
-        self.notes_buffer = self.note.get_buffer()
-
-        self.refs_label = self.top_window.get_widget("refsRepositoryEditor")
-        self.notes_label = self.top_window.get_widget("notesRepositoryEditor")
+        self.addr_tab = self._add_page(AddrEmbedList(
+            self.dbstate, self.uistate, self.track,
+            repository.get_address_list()))
         
-        self.flowed = self.top_window.get_widget("repository_flowed")
-        self.flowed.set_sensitive(mode)
-        self.preform = self.top_window.get_widget("repository_preformatted")
-        self.preform.set_sensitive(mode)
-        
-        self.refinfo = self.top_window.get_widget("refinfo")
-        
+        self.note_tab = self._add_page(NoteTab(
+            self.dbstate, self.uistate, self.track,
+            repository.get_note_object()))
 
-        if repository.get_note():
-            self.notes_buffer.set_text(repository.get_note())
-            # FIXME: this get a 'gtk.Label' object has no attribute 'get_children'
-            # from Utils.py", line 650
-            #Utils.bold_label(self.notes_label)
-            if repository.get_note_format() == 1:
-                self.preform.set_active(1)
-            else:
-                self.flowed.set_active(1)
+        self.backref_tab = self._add_page(SourceBackRefList(
+            self.dbstate, self.uistate, self.track,
+            self.db.find_backlink_handles(self.repository.handle)))
 
-        # Setup source reference tab
-        self.repos_source_view = ReposSrcListView(self.db,
-                                                  self.top_window.get_widget("repository_sources"))
-        self.repos_source_model = ReposSrcListModel(self.db,repository)
-        self.repos_source_view.set_model(self.repos_source_model)
-
-        self.top_window.signal_autoconnect({
-            "on_switch_page" : self.on_switch_page,
+        self.glade.signal_autoconnect({
             "on_repositoryEditor_help_clicked" : self.on_help_clicked,
             "on_repositoryEditor_ok_clicked" : self.on_repository_apply_clicked,
-            "on_repositoryEditor_cancel_clicked" : self.close,
+            "on_repositoryEditor_cancel_clicked" : self.close_window,
             "on_repositoryEditor_delete_event" : self.on_delete_event,
-            "on_add_repos_sources_clicked"    : self.on_add_repos_ref_clicked,
-            "on_delete_repos_ref_clicked" : self.on_delete_repos_ref_clicked,
-            "on_edit_repos_ref_clicked"   : self.on_edit_repos_ref_clicked,
-            "on_edit_repos_ref_row_activated" : self.on_edit_repos_ref_clicked,
             })
 
+        self.glade.get_widget('ok').set_sensitive(not self.db.readonly)
+        self.window.show()
 
-
-        if parent_window:
-            self.top.set_transient_for(parent_window)
-
-        self.top_window.get_widget('repository_ok').set_sensitive(not self.db.readonly)
-
-        if parent_window:
-            self.top.set_transient_for(parent_window)
-        self.add_itself_to_menu()
-        self.top.show()
-        #self.refs_label.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        #gobject.idle_add(self.display_references)
-
-
-    def edit_cb(self, cell, path, new_text, data):
-        node = self.data_model.get_iter(path)
-        self.data_model.set_value(node,data,new_text)
+    def _add_page(self,page):
+        self.notebook.insert_page(page)
+        self.notebook.set_tab_label(page,page.get_tab_widget())
+        return page
 
     def on_delete_event(self,obj,b):
-        self.close_child_windows()
-        self.remove_itself_from_menu()
+        self.close()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('adv-src')
 
-    def close(self,obj):
-        self.close_child_windows()
-        self.remove_itself_from_menu()
-        self.top.destroy()
+    def close_window(self,obj):
+        self.close()
+        self.window.destroy()
         
-    def close_child_windows(self):
-        for child_window in self.child_windows.values():
-            child_window.close(None)
-        self.child_windows = {}
-
-    def add_itself_to_menu(self):
-        #FIXME
-        return    
-        self.parent.child_windows[self.win_key] = self
-        if not self.repository:
-            label = _("New Repository")
-        else:
-            label = self.repository.get_name()
-        if not label.strip():
-            label = _("New Repository")
-        label = "%s: %s" % (_('Repository'),label)
-        self.parent_menu_item = gtk.MenuItem(label)
-        self.parent_menu_item.set_submenu(gtk.Menu())
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-        self.winsmenu = self.parent_menu_item.get_submenu()
-        self.menu_item = gtk.MenuItem(_('Repository Editor'))
-        self.menu_item.connect("activate",self.present)
-        self.menu_item.show()
-        self.winsmenu.append(self.menu_item)
-
-    def remove_itself_from_menu(self):
-        # FIXME
-        return
-        del self.parent.child_windows[self.win_key]
-        self.menu_item.destroy()
-        self.winsmenu.destroy()
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.top.present()
-
-    def on_add_repos_ref_clicked(self,widget):
-        RepositoryRefEdit.RepositoryRefSourceEdit(RelLib.RepoRef(),
-                                                  None,
-                                                  self.dbstate,
-                                                  self.repos_source_model.update,
-                                                  self)
-
-    def on_delete_repos_ref_clicked(self,widget):
-        selection = self.repos_source_view.get_selection()
-        model, iter = selection.get_selected()
-        if iter:
-            model.remove(iter)
-        return
-        
-
-
-    def on_edit_repos_ref_clicked(self,widget,path=None,colm=None,userp=None):
-        selection = self.repos_source_view.get_selection()
-        model, iter = selection.get_selected()
-        
-        if iter:
-            source = model.get_value(iter,0)
-            repos_ref  = model.get_value(iter,1)
-
-            RepositoryRefEdit.RepositoryRefSourceEdit(repos_ref,
-                                                      source,
-                                                      self.dbstate,
-                                                      self.repos_source_model.update,
-                                                      self)
-
-
-
     def on_repository_apply_clicked(self,obj):
 
-        name = unicode(self.name.get_text())
-        if name != self.repository.get_name():
-            self.repository.set_name(name)
-
-        repos_type = self.type_selector.get_values()
-        if repos_type != self.repository.get_type():
-            self.repository.set_type(repos_type)
-
-
-        # FIXME: AddressBase has changed to support multiple addresses
-        # the UI does not support this yet so for the time being we
-        # just grab the first address
-        addresses = self.repository.get_address_list()
-
-        if len(addresses) != 0:
-            address = addresses[0]
-        else:
-            address = RelLib.Address()
-
-        address.set_street(unicode(self.street.get_text()))
-        address.set_city(unicode(self.city.get_text()))
-        address.set_state(unicode(self.state.get_text()))
-        address.set_postal_code(unicode(self.postal.get_text()))
-        address.set_country(unicode(self.country.get_text()))
-        address.set_phone(unicode(self.phone.get_text()))
-        #address.set_search_url(unicode(self.search_url.get_text()))
-        #address.set_home_url(unicode(self.home_url.get_text()))
-        
-        self.repository.set_address_list([address])
-        
-        note = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                                  self.notes_buffer.get_end_iter(),False))
-        if note != self.repository.get_note():
-            self.repository.set_note(note)
-
-        format = self.preform.get_active()
-        if format != self.repository.get_note_format():
-            self.repository.set_note_format(format)
-
-        
         trans = self.db.transaction_begin()
         handle = None
         if self.repository.get_handle() == None:
@@ -541,80 +364,9 @@ class EditRepository:
         else:
             self.db.commit_repository(self.repository,trans)
             handle = self.repository.get_handle()
-        self.db.transaction_commit(trans,_("Edit Repository (%s)") % name)
+        self.db.transaction_commit(trans,_("Edit Repository (%s)") % self.repository.get_name())
 
-
-
-        # Handle the source reference list
-
-        # First look for all the references that need to be deleted
-        # These are the ones that are in the original sources list
-        # but no longer in the list model
-        items_deleted = self.repos_source_model.get_deleted_items()
-        
-        # Now look for those that need to be added.
-        # These are the ones that are in the list model but not in the
-        # original sources list.
-        items_added =  self.repos_source_model.get_added_items()
-        
-        for item in items_added:
-            item[1].set_reference_handle(handle)
-        
-        # Finally look for those that need updating
-        # These are in both lists but the repos_ref has changed in the
-        # list model.
-        items_updated =  self.repos_source_model.get_update_items()
-
-        all_sources = {}
-        for item in items_deleted + items_added + items_updated:
-            all_sources[item[0]] = 1
-
-        commit_list = []
-        for source_hdl in all_sources.keys():
-            # Fetch existing list of repo_refs
-            source = self.db.get_source_from_handle(source_hdl)
-            original_list = source.get_reporef_list()
-
-            # strip out those from this repository
-            stripped_list = [ repos_ref for repos_ref \
-                              in original_list  \
-                              if repos_ref.get_reference_handle() != self.repository.get_handle() ]
-            
-            # Now add back in those to be added and updated
-            new_list = stripped_list + \
-                       [ item[1] for item in items_added if item[0] == source_hdl ] + \
-                       [ item[1] for item in items_updated if item[0] == source_hdl ]
-
-            
-            # Set the new list on the source
-            source.set_reporef_list(new_list)
-
-            # add it to the list of sources to be commited
-            commit_list.append(source)
-
-
-        trans = self.db.transaction_begin()
-        for source in commit_list:
-            self.db.commit_source(source,trans)
-        self.db.transaction_commit(trans,_("Edit Repository (%s)") % name)
-        
         self.close(obj)
-
-    def on_switch_page(self,obj,a,page):
-        ##if page == 2 and self.not_loaded:
-##            self.not_loaded = 0
-##        elif page == 3 and self.ref_not_loaded:
-##            self.ref_not_loaded = 0
-##            self.refs_label.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-##            gobject.idle_add(self.display_references)
-##        text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-##                                self.notes_buffer.get_end_iter(),False))
-##        if text:
-##            Utils.bold_label(self.notes_label)
-##        else:
-##            Utils.unbold_label(self.notes_label)
-        pass
-
 
 class DelRepositoryQuery:
     def __init__(self,repository,db,sources):
