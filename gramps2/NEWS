@@ -1,3 +1,15 @@
+Version 2.0.10 -- the "Holy Hand Grenade of Antioch" release
+* Date handler for Lithuanian language (Arturas Sleinius).
+* New Calendar graphical report (Doug Blank).
+* Multiple tool fixes.
+* GEDCOM import and export improvements.
+* Proper rebuilding of secondary indices.
+* Open Document Format support in reports (Serge Noiraud, Brian Matherly).
+* Multiple report fixes.
+* Fix for low-level duplicate records.
+* User Manual updates.
+* An insane number of bug fixes.
+
 Version 2.0.9 -- the "Nobody expects the Spanish inquisition!" release
 * Incremental interface improvements.
 * Automated testing added, based on the CLI functionality.

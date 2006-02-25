@@ -1,4 +1,5 @@
 2006-02-24  Alex Roitman  <shura@gramps-project.org>
+	* NEWS: Update.
 	* configure.in: Bump up the release number.
 	* test/runtest.sh (GRPH_REP): Add calendar to the list of reports.
 	* src/plugins/Calendar.py: Remove the unsupported flag.
