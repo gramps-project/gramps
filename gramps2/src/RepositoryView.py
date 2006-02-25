@@ -122,10 +122,10 @@ class RepositoryView(PageView.ListView):
     def on_double_click(self,obj,event):
         handle = self.first_selected()
         repos = self.dbstate.db.get_repository_from_handle(handle)
-        EditRepository.EditRepository(repos,self.dbstate, self.uistate)
+        EditRepository.EditRepository(self.dbstate, self.uistate,[],repos)
 
     def add(self,obj):
-        EditRepository.EditRepository(RelLib.Repository(),self.dbstate, self.uistate)
+        EditRepository.EditRepository(self.dbstate, self.uistate,[],RelLib.Repository())
 
     def remove(self,obj):
         db = self.dbstate.db
@@ -160,5 +160,5 @@ class RepositoryView(PageView.ListView):
 
         for handle in mlist:
             repos = self.dbstate.db.get_repository_from_handle(handle)
-            EditRepository.EditRepository(repos, self.dbstate, self.uistate)
+            EditRepository.EditRepository(self.dbstate, self.uistate, [], repos)
 
