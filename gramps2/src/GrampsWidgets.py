@@ -286,7 +286,7 @@ class MonitoredText:
 
 class MonitoredType:
 
-    def __init__(self,obj,set_val,get_val,mapping,custom):
+    def __init__(self,obj,set_val,get_val,mapping,custom,readonly=False):
         self.set_val = set_val
         self.get_val = get_val
 
@@ -301,6 +301,7 @@ class MonitoredType:
         self.sel = AutoComp.StandardCustomSelector(
             mapping, obj, custom, default)
 
+        self.obj.set_sensitive(not readonly)
         self.obj.connect('changed', self.on_change)
 
     def on_change(self, obj):
