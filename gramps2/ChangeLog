@@ -1,3 +1,7 @@
+2006-02-26  Alex Roitman  <shura@gramps-project.org>
+	* src/po/Makefile.am (.po.mo): Avoid using temp file as it breaks
+	distcheck -- use pipe instead.
+
 2006-02-26  Doug Blank  <Doug.Blank@gmail.com>
 	* src/plugins/Calendar.py (Widget.register): Do not add help
 	strings to style widgets.
