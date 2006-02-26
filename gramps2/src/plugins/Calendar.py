@@ -385,6 +385,8 @@ class Widget:
         className = self.__class__.__name__
         if className == "FilterWidget":
             self.option_object.enable_dict['filter'] =  0
+        elif className == "StyleWidget":
+            self.option_object[self["name"]] = self["value"]
         else:
             self.option_object[self["name"]] = self["value"]
             self.option_object.options_help[self["name"]] = (
