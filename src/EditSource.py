@@ -49,7 +49,6 @@ import const
 import Utils
 import RelLib
 import NameDisplay
-import RepositoryRefEdit
 import Spell
 import GrampsDisplay
 import DisplayState
@@ -63,114 +62,6 @@ from GrampsWidgets import *
 # Constants
 #
 #-------------------------------------------------------------------------
-
-class ReposRefListModel(gtk.ListStore):
-    def __init__(self, source=None):
-        gtk.ListStore.__init__(self,
-                               object    # repostory reference
-                               )
-        self.set_source(source)
-
-    def rebuild(self):
-        """Clear the list and repopulate from the current source record."""
-        self.clear()
-
-        for repos_ref in self._source.get_reporef_list():
-            self.append([repos_ref])
-
-    def update(self,repos_ref):
-        """Add the record if it is not already in the list otherwise
-        replace the record with the new one."""
-
-        found = False
-        for val in range(0,len(self)):
-            iter = self.get_iter(val)
-            if repos_ref == self.get_value(iter,0):
-                self.row_changed(self.get_path(iter),iter)
-                found = True
-                break
-
-        if not found:
-            self.append([repos_ref])
-        
-    def set_source(self, source):
-        self._source = source
-        self.rebuild()
-
-class ReposRefListView:
-
-    def __init__(self, dbstate, widget):
-        self._dbstate = dbstate        
-        self.database_changed(self._dbstate.db)
-        self._db.connect('database-changed', self.database_changed)
-
-        self._widget = widget
-
-        # Create the tree columns
-        self._col1 = gtk.TreeViewColumn(_("Name"))
-        self._col2 = gtk.TreeViewColumn(_("Type"))
-        self._col3 = gtk.TreeViewColumn(_("Note"))
-
-        # Add columns
-        self._widget.append_column(self._col1)
-        self._widget.append_column(self._col2)
-        self._widget.append_column(self._col3)
-
-        # Create cell renders
-        self._col1_cell = gtk.CellRendererText()
-        self._col2_cell = gtk.CellRendererText()
-        self._col3_cell = gtk.CellRendererText()
-
-        # Add cells to view
-        self._col1.pack_start(self._col1_cell, True)
-        self._col2.pack_start(self._col2_cell, True)
-        self._col3.pack_start(self._col3_cell, True)
-
-        # Setup the cell data callback funcs
-        self._col1.set_cell_data_func(self._col1_cell, self.object_name)
-        self._col2.set_cell_data_func(self._col2_cell, self.object_type)
-        self._col3.set_cell_data_func(self._col3_cell, self.object_note)                        
-        self._widget.set_enable_search(False)
-
-        
-    def database_changed(self,db):
-        self._db = db
-
-    # Methods for rendering the cells.
-    
-    def object_name(self, column, cell, model, iter, user_data=None):
-        o = model.get_value(iter, 0)
-        repos_hdl = o.get_reference_handle()
-        repos = self._db.get_repository_from_handle(repos_hdl)
-        cell.set_property('text', repos.get_name())
-
-    def object_type(self, column, cell, model, iter, user_data=None):
-        o = model.get_value(iter, 0)
-        repos_hdl = o.get_reference_handle()
-        repos = self._db.get_repository_from_handle(repos_hdl)
-        rtype = repos.get_type()
-        if rtype[0] == RelLib.Event.CUSTOM or rtype[0] not in Utils.repository_types:
-            name = rtype[1]
-        else:
-            name = Utils.repository_types[rtype[0]]
-        cell.set_property('text', name)
-
-    def object_note(self, column, cell, model, iter, user_data=None):
-        o = model.get_value(iter, 0)
-        cell.set_property('text', o.get_note())
-
-    # proxy methods to provide access to the real widget functions.
-    
-    def set_model(self,model=None):
-        self._widget.set_model(model)
-
-    def get_model(self):
-        return self._widget.get_model()
-
-    def get_selection(self):
-        return self._widget.get_selection()
-
-        
 class EditSource(DisplayState.ManagedWindow):
 
     def __init__(self,dbstate,uistate,track,source,readonly=False):
@@ -296,7 +187,8 @@ class EditSource(DisplayState.ManagedWindow):
             self.db.add_source(self.source,trans)
         else:
             self.db.commit_source(self.source,trans)
-        self.db.transaction_commit(trans,_("Edit Source (%s)") % title)
+        self.db.transaction_commit(trans,
+                                   _("Edit Source (%s)") % self.source.get_title())
         self.close(obj)
 
 class DelSrcQuery:

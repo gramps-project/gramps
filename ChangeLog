@@ -1,3 +1,12 @@
+2006-02-25  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: repository reference editor
+	* src/EditRepository.py: repository reference editor
+	* src/EditSource.py: repository reference editor
+	* src/GrampsWidgets.py: more readonly support
+	* src/RepositoryRefEdit.py: removed
+	* src/gramps.glade: repository reference editor
+	* src/EditRepositoryRef.py: added - repository reference editor
+
 2006-02-24  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: backreference tabs
 	* src/EditEventRef.py: backreference tabs

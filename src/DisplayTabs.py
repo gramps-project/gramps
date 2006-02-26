@@ -1329,24 +1329,28 @@ class RepoEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2),(1,3))
 
     def add_button_clicked(self,obj):
-        from RepositoryRefEdit import RepositoryRefEdit
+        from EditRepositoryRef import EditRepositoryRef
         
-        ref = RelLib.RepositoryRef()
-        RepositoryRefEdit.RepositoryRefEdit(
-            self.dbstate, self.uistate, self.track, ref, self.add_callback)
+        ref = RelLib.RepoRef()
+        repo = RelLib.Repository()
+        EditRepositoryRef(
+            self.dbstate, self.uistate, self.track, repo, ref, self.add_callback)
 
-    def add_callback(self,obj):
-        self.get_data().append(obj)
+    def add_callback(self,value):
+        value[0].ref = value[1].handle
+        self.get_data().append(value[0])
         self.changed = True
         self.rebuild()
 
     def edit_button_clicked(self,obj):
-        from RepositoryRefEdit import RepositoryRefEdit
+        from EditRepositoryRef import EditRepositoryRef
 
         ref = self.get_selected()
         if ref:
-            RepositoryRefEdit.RepositoryRefEdit(
-                self.dbstate, self.uistate, self.track, ref, self.edit_callback)
+            repo = self.dbstate.db.get_repository_from_handle(ref.ref)
+            EditRepositoryRef.EditRepositoryRef(
+                self.dbstate, self.uistate, self.track, repo,
+                ref, self.edit_callback)
 
     def edit_callback(self,name):
         self.changed = True
