@@ -113,7 +113,10 @@ class GeneWebParser:
         self.lineno += 1
         line = self.f.readline()
         if line:
-            line = unicode( line.strip())
+            try:
+                line = unicode(line.strip())
+            except UnicodeDecodeError:
+                line = unicode(line.strip(),'iso-8859-1')
         else:
             line = None
         return line
@@ -260,8 +263,6 @@ class GeneWebParser:
                 else:
                     (idx,child) = self.parse_person(fields,1,RelLib.Person.UNKNOWN,father_surname)
 
-                print child.get_gender(),":",fields[1], child.get_primary_name().get_name()
-                    
                 if child:
                     self.current_family.add_child_handle(child.get_handle())
                     self.db.commit_family(self.current_family,self.trans)
@@ -304,7 +305,7 @@ class GeneWebParser:
     def read_notes_lines(self,line,fields):
         (idx,person) = self.parse_person(fields,1,None,None)
         note_txt = ""
-        while 1:
+        while True:
             line = self.get_next_line()
             if line == None:
                 break
@@ -404,16 +405,18 @@ class GeneWebParser:
         if not father_surname:
             if not idx < len(fields):
                 print "Missing surname of person in line %d!" % self.lineno
-                return (idx,None)
-            surname = self.decode(fields[idx])
+                surname =""
+            else:
+                surname = self.decode(fields[idx])
             idx = idx + 1
         else:
             surname = father_surname
         
         if not idx < len(fields):
             print "Missing firstname of person in line %d!" % self.lineno
-            return (idx,None)
-        firstname = self.decode(fields[idx])
+            firstname = ""
+        else:
+            firstname = self.decode(fields[idx])
         idx = idx + 1
         if idx < len(fields) and father_surname:
             noSurnameRe = re.compile("^[({\[~><?0-9#].*$")
