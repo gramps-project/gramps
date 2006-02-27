@@ -1331,7 +1331,7 @@ class EditPerson:
         """Check to see if any of the data has changed from the
         orig record"""
 
-        surname = unicode(self.surname.get_text())
+        surname = unicode(self.surname.get_text().strip())
         self.birth_date_object = self.dp.parse(unicode(self.bdate.get_text()))
         self.death_date_object = self.dp.parse(unicode(self.ddate.get_text()))
 
@@ -1718,14 +1718,14 @@ class EditPerson:
         self.window.hide()
         trans = self.db.transaction_begin()
 
-        surname = unicode(self.surname.get_text())
-        suffix = unicode(self.suffix.get_text())
-        prefix = unicode(self.prefix.get_text())
-        ntype = unicode(self.ntype_field.child.get_text())
-        given = unicode(self.given.get_text())
-        nick = unicode(self.nick.get_text())
-        title = unicode(self.title.get_text())
-        idval = unicode(self.gid.get_text())
+        surname = unicode(self.surname.get_text().strip())
+        suffix = unicode(self.suffix.get_text().strip())
+        prefix = unicode(self.prefix.get_text().strip())
+        ntype = unicode(self.ntype_field.child.get_text().strip())
+        given = unicode(self.given.get_text().strip())
+        nick = unicode(self.nick.get_text().strip())
+        title = unicode(self.title.get_text().strip())
+        idval = unicode(self.gid.get_text().strip())
 
         name = self.pname
 

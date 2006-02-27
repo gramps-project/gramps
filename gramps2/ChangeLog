@@ -1,4 +1,6 @@
 2006-02-26  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: strip names of trailing whitespace before 
+	assigning them
 	* src/plugins/ImportGeneWeb.py: handle people with no firstname
 	or lastname, if encoding fails, attempt and iso-8859-1 conversion
 
