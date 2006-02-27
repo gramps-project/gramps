@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: German Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Feb 23 11:15:51 2006\n"
-"PO-Revision-Date: 2006-02-24 22:51+0100\n"
+"POT-Creation-Date: Sun Feb 26 21:56:22 2006\n"
+"PO-Revision-Date: 2006-02-27 15:23+0100\n"
 "Last-Translator: Martin Hawlisch <martin@hawlisch.de>\n"
 "Language-Team: German <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2149,7 +2149,7 @@ msgid "Cause of death"
 msgstr "Todesursache "
 
 #: PeopleView.py:84 WriteGedcom.py:340 gramps_main.py:962
-#: plugins/Calendar.py:531 plugins/EventCmp.py:159
+#: plugins/Calendar.py:538 plugins/EventCmp.py:159
 #: plugins/ExportVCalendar.py:79 plugins/ExportVCard.py:77
 #: plugins/GraphViz.py:516 plugins/IndivComplete.py:520
 #: plugins/NavWebPage.py:2397 plugins/StatisticsChart.py:846
@@ -2375,7 +2375,7 @@ msgstr "Warnung: Zeile %d war leer und wurde deshalb ignoriert.\n"
 msgid "Warning: line %d was not understood, so it was ignored."
 msgstr "Warnung: Zeile %d wurde nicht verstanden und deshalb ignoriert."
 
-#: ReadGedcom.py:629 plugins/ImportGeneWeb.py:176 plugins/ImportvCard.py:154
+#: ReadGedcom.py:629 plugins/ImportGeneWeb.py:179 plugins/ImportvCard.py:154
 msgid "Import Complete: %d seconds"
 msgstr "Import abgeschlossen: %d Sekunden"
 
@@ -2593,7 +2593,7 @@ msgstr "Stileditor"
 msgid "Report Options"
 msgstr "Berichtsoptionen"
 
-#: Report.py:746 plugins/Calendar.py:605 plugins/FilterEditor.py:345
+#: Report.py:746 plugins/Calendar.py:612 plugins/FilterEditor.py:345
 #: plugins/FilterEditor.py:531
 msgid "Filter"
 msgstr "Filter"
@@ -5109,7 +5109,7 @@ msgstr ""
 "\n"
 "Bitte versuchen Sie es nochmal. Der Zeuge wurde nicht geändert."
 
-#: WriteGedcom.py:345 plugins/Calendar.py:536 plugins/DescendReport.py:154
+#: WriteGedcom.py:345 plugins/Calendar.py:543 plugins/DescendReport.py:154
 #: plugins/ExportVCalendar.py:84 plugins/ExportVCard.py:82
 #: plugins/FtmStyleDescendants.py:120 plugins/GraphViz.py:520
 #: plugins/IndivComplete.py:524 plugins/NavWebPage.py:2401
@@ -5118,7 +5118,7 @@ msgstr ""
 msgid "Descendants of %s"
 msgstr "Nachkommen von %s"
 
-#: WriteGedcom.py:351 plugins/Ancestors.py:138 plugins/Calendar.py:546
+#: WriteGedcom.py:351 plugins/Ancestors.py:138 plugins/Calendar.py:553
 #: plugins/ExportVCalendar.py:90 plugins/ExportVCard.py:88
 #: plugins/FtmStyleAncestors.py:95 plugins/GraphViz.py:524
 #: plugins/IndivComplete.py:528 plugins/NavWebPage.py:2409
@@ -5127,7 +5127,7 @@ msgstr "Nachkommen von %s"
 msgid "Ancestors of %s"
 msgstr "Vorfahren von %s"
 
-#: WriteGedcom.py:357 plugins/Calendar.py:551 plugins/ExportVCalendar.py:96
+#: WriteGedcom.py:357 plugins/Calendar.py:558 plugins/ExportVCalendar.py:96
 #: plugins/ExportVCard.py:94 plugins/GraphViz.py:528
 #: plugins/IndivComplete.py:532 plugins/NavWebPage.py:2413
 #: plugins/StatisticsChart.py:858 plugins/TimeLine.py:423
@@ -9101,95 +9101,103 @@ msgstr "GRAMPS-Buch"
 msgid "Creates a book containing several reports."
 msgstr "Erstellt ein Buch mit mehreren Berichten"
 
-#: plugins/Calendar.py:541 plugins/NavWebPage.py:2405 plugins/WebPage.py:1341
+#: plugins/Calendar.py:344
+msgid ""
+"%(spouse)s and\n"
+" %(person)s, %(nyears)d"
+msgstr ""
+"%(spouse)s und\n"
+" %(person)s, %(nyears)d"
+
+#: plugins/Calendar.py:548 plugins/NavWebPage.py:2405 plugins/WebPage.py:1341
 msgid "Descendant Families of %s"
 msgstr "Familie eines Nachkommens von %s"
 
-#: plugins/Calendar.py:556
+#: plugins/Calendar.py:563
 msgid "People with a Calendar attribute"
 msgstr "Personen mit einem Kalender-Attribut"
 
-#: plugins/Calendar.py:608
+#: plugins/Calendar.py:615
 msgid "Text 1"
 msgstr "Text 1"
 
-#: plugins/Calendar.py:613 plugins/Calendar.py:620 plugins/Calendar.py:627
+#: plugins/Calendar.py:620 plugins/Calendar.py:627 plugins/Calendar.py:634
 msgid "Text Options"
 msgstr "Textoptionen"
 
-#: plugins/Calendar.py:615
+#: plugins/Calendar.py:622
 msgid "Text 2"
 msgstr "Text 2"
 
-#: plugins/Calendar.py:622
+#: plugins/Calendar.py:629
 msgid "Text 3"
 msgstr "Text 3"
 
-#: plugins/Calendar.py:629
+#: plugins/Calendar.py:636
 msgid "Year of calendar"
 msgstr "Kalenderjahr"
 
-#: plugins/Calendar.py:635
+#: plugins/Calendar.py:642
 msgid "Use maiden names"
 msgstr "Verwende Mädchennamen"
 
-#: plugins/Calendar.py:641
+#: plugins/Calendar.py:648
 msgid "Only include living people"
 msgstr "Nur lebende Personen einbeziehen"
 
-#: plugins/Calendar.py:647
+#: plugins/Calendar.py:654
 msgid "Include birthdays"
 msgstr "Geburtstage mit einbeziehen"
 
-#: plugins/Calendar.py:653
+#: plugins/Calendar.py:660
 msgid "Include anniversaries"
 msgstr "Jubiläen mit einbeziehen"
 
-#: plugins/Calendar.py:659
+#: plugins/Calendar.py:666
 msgid "Include holidays"
 msgstr "Feiertage mit einbeziehen"
 
-#: plugins/Calendar.py:672
+#: plugins/Calendar.py:679
 msgid "Title text and background color."
 msgstr "Titel Text und Hintergrundfarbe"
 
-#: plugins/Calendar.py:680
+#: plugins/Calendar.py:687
 msgid "Border lines of calendar boxes."
 msgstr "Ränder der Kalender-Kästen"
 
-#: plugins/Calendar.py:683
+#: plugins/Calendar.py:690
 msgid "Calendar day numbers."
 msgstr "Zahlen der Kalender-Tage"
 
-#: plugins/Calendar.py:689
+#: plugins/Calendar.py:696
 msgid "Daily text display."
 msgstr "Text der Tage"
 
-#: plugins/Calendar.py:694
+#: plugins/Calendar.py:701
 msgid "Days of the week text."
 msgstr "Text der Wochentage"
 
-#: plugins/Calendar.py:701
+#: plugins/Calendar.py:708
 msgid "Text at bottom, line 1."
 msgstr "Text unten, Zeile 1"
 
-#: plugins/Calendar.py:706
+#: plugins/Calendar.py:713
 msgid "Text at bottom, line 2."
 msgstr "Text unten, Zeile 2"
 
-#: plugins/Calendar.py:711
+#: plugins/Calendar.py:718
 msgid "Text at bottom, line 3."
 msgstr "Text unten, Zeile 3"
 
-#: plugins/Calendar.py:931
+#: plugins/Calendar.py:938
 msgid "Calendar"
 msgstr "Kalender"
 
-#: plugins/Calendar.py:932
+#: plugins/Calendar.py:939
 msgid "Experimental"
 msgstr "Experimentell"
 
-#: plugins/Calendar.py:935
+#: plugins/Calendar.py:942
 msgid "Produces a graphical calendar"
 msgstr "Erstellt eine graphischen Kalender"
 
@@ -10491,15 +10499,15 @@ msgstr ""
 "in ein Diagramm zu konvertieren. Falls Sie stattdessen die dot-Datei selbst "
 "wollen, benutzen Sie die Kategorie Code-Generatoren."
 
-#: plugins/ImportGeneWeb.py:178
+#: plugins/ImportGeneWeb.py:181
 msgid "GeneWeb import"
 msgstr "GeneWeb importieren"
 
-#: plugins/ImportGeneWeb.py:775
+#: plugins/ImportGeneWeb.py:778
 msgid "GeneWeb files"
 msgstr "GeneWeb-Dateien"
 
-#: plugins/ImportGeneWeb.py:777
+#: plugins/ImportGeneWeb.py:780
 msgid "GeneWeb"
 msgstr "GeneWeb"
 
