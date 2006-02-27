@@ -294,11 +294,12 @@ class Calendar(Report.Report):
                 day = birth_date_obj.get_day()
                 age = self["year"] - year
                 # add some things to handle maiden name:
-                father_lastname = None
-                if self["maiden_name"]:
+                father_lastname = None # husband, actually
+                if self["maiden_name"] == 0: # get husband's last name:
                     if person.get_gender() == RelLib.Person.FEMALE:
                         family_list = person.get_family_handle_list()
-                        for fhandle in family_list: # FIXME: which is the marriage event?
+                        if len(family_list) > 0:
+                            fhandle = family_list[0] # first is primary
                             fam = self.database.get_family_from_handle(fhandle)
                             father_handle = fam.get_father_handle()
                             mother_handle = fam.get_mother_handle()
@@ -311,7 +312,7 @@ class Calendar(Report.Report):
                 self.add_day_item("%s, %d" % (short_name, age), year, month, day)                
             if self["anniversaries"] and ((self["alive"] and alive) or not self["alive"]):
                 family_list = person.get_family_handle_list()
-                for fhandle in family_list: # FIXME: which is the marriage event?
+                for fhandle in family_list: 
                     fam = self.database.get_family_from_handle(fhandle)
                     father_handle = fam.get_father_handle()
                     mother_handle = fam.get_mother_handle()
@@ -340,7 +341,11 @@ class Calendar(Report.Report):
                                 month = event_obj.get_month()
                                 day = event_obj.get_day()
                                 years = self["year"] - year
-                                text = "%s and\n %s, %d" % (spouse_name, short_name, years)
+                                text = _("%(spouse)s and\n %(person)s, %(nyears)d") % {
+                                    'spouse' : spouse_name,
+                                    'person' : short_name,
+                                    'nyears' : years,
+                                    }
                                 self.add_day_item(text, year, month, day)
 
 ###################################################################################
