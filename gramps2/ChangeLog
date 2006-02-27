@@ -1,3 +1,32 @@
+2006-02-28 Eero Tamminen <eerot@sf>
+	* src/plugins/GraphViz.py: major changes:
+	  Re-factoring:
+	  - split large functions to smaller ones to make code more readable
+	  - renamed few methods and variables to what they actually do
+	  - collect the report text to a buffer first so that it can be
+	    converted to latin-1 at one go
+	  - Move common style stuff to GraphViz header and remove from .dot
+	    comments stuff that's obvious from first .dot file settings
+	  Fixes:
+	    - latin-1 conversion option is explicit, not depending on font
+	    - set the GraphViz charset attribute according to latin1
+	    - quote node and edge identifiers
+	    - rankdir options correspond now to TB and LR (earlier LR and RL)
+	  New features:
+	    - Use christening/burial dates if birth/death dates are missing
+	    - User can add a (e.g. copyright) note to the graph and set its
+	      location (newlines and double quotes are automatically escaped)
+	    - User can give the paging direction
+	    - User can set the GraphViz aspect ratio setting
+	    - The weight option (either for children or parents)
+	    - Women have rounded boxes, except in filled mode
+	      (current GraphViz doesn't support boxes that are
+	       both rounded and filled)
+	  New default settings:
+	    - set the ratio to "compress" instead of "fill"
+	    - "mclimit=2.0", prevents crossed lines
+	    - minimum node separation is 0.25
+
 2006-02-27  Alex Roitman  <shura@gramps-project.org>
 	* configure.in: Bump up release number.
 	* Release: Version 2.0.10 "Holy Hand Grenade of Antioch" released.
