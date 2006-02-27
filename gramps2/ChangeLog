@@ -3,7 +3,7 @@
 
 2006-02-26  Alex Roitman  <shura@gramps-project.org>
 	* src/po/template.po: Update.
-	* src/po/template.po: Update.
+	* src/po/ru.po: Update.
 
 2006-02-27  Doug Blank <Doug.Blank@gmail.com>
 	* src/plugins/Calendar.py: Fixed bug in primary family selection
