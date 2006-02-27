@@ -1,6 +1,7 @@
 2006-02-27  Alex Roitman  <shura@gramps-project.org>
 	* configure.in: Bump up release number.
 	* Release: Version 2.0.10 "Holy Hand Grenade of Antioch" released.
+	* configure.in: Bump up version number.
 
 2006-02-27  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/po/es.po: Translation update
