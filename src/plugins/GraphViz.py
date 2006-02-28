@@ -307,7 +307,8 @@ class GraphViz:
                 label = label + '\\n(%s - %s)' % (birth, death)
             self.f.write('p%s [shape=box, ' % the_id)
             if self.includeurl:
-                self.f.write('URL="%s.html", ' % the_id)
+                h = person.get_handle()
+                self.f.write('URL="ppl/%s/%s/%s.html", ' % (h[0],h[1],h))
             if self.colorize != 'outline':
                 if self.colorize == 'filled':
                     style = 'style=filled, fillcolor'

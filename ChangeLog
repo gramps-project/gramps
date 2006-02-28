@@ -1,3 +1,6 @@
+2006-02-28  Alex Roitman  <shura@gramps-project.org>
+	* various: merge changes made in gramps20 up until R2_0_10_real tag.
+
 2006-02-25  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: repository reference editor
 	* src/EditRepository.py: repository reference editor
@@ -1315,6 +1318,10 @@
 	
 2005-12-12  Alex Roitman  <shura@gramps-project.org>
 	* configure.in: bump up the version number.
+
+2006-02-27  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Bump up release number.
+	* Release: Version 2.0.10 "Holy Hand Grenade of Antioch" released.
 
 2005-12-11  Don Allingham  <don@gramps-project.org>
 	* Release: Version 2.0.9 "Nobody expects the Spanish inquisition!"

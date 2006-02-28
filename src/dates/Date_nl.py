@@ -63,7 +63,7 @@ class DateParserNL(DateParser):
     month_to_int[u"januaris"] = 1
     month_to_int[u"feber"]  = 2
     month_to_int[u"februaris"]  = 2
-    month_to_int[u"merz"]  = 2
+    month_to_int[u"merz"]  = 3
     month_to_int[u"aprilis"]  = 4
     month_to_int[u"maius"]  = 5
     month_to_int[u"junius"]  = 6

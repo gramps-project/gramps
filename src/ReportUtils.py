@@ -525,7 +525,7 @@ buried_partial_date_place = {
 buried_partial_date_no_place = {
     RelLib.Person.MALE: [
     _("%(male_name)s was buried in %(month_year)s."),
-    _("He was buried on %(month_year)s."),
+    _("He was buried in %(month_year)s."),
     ],
     RelLib.Person.FEMALE: [
     _("%(female_name)s was buried in %(month_year)s."),
@@ -1994,16 +1994,16 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
         'modified_date'       : bdate,
         }
 
-    if bdate and bdate_full:
-        if bplace: #male, date, place
-            text = buried_full_date_place[gender][name_index] % values
-        else:      #male, date, no place
-            text = buried_full_date_no_place[gender][name_index] % values
-    elif bdate and bdate_mod:
+    if bdate and bdate_mod:
         if bplace: #male, date, place
             text = buried_modified_date_place[gender][name_index] % values
         else:      #male, date, no place
             text = buried_modified_date_no_place[gender][name_index] % values
+    elif bdate and bdate_full:
+        if bplace: #male, date, place
+            text = buried_full_date_place[gender][name_index] % values
+        else:      #male, date, no place
+            text = buried_full_date_no_place[gender][name_index] % values
     elif bdate:
         if bplace: #male, month_year, place
             text =  buried_partial_date_place[gender][name_index] % values
@@ -2123,8 +2123,11 @@ def old_calc_age(database,person):
         months:         2
         days:           3
     """
+    YEARS  = 1
+    MONTHS = 2
+    DAYS   = 3
 
-    # This is an old and ugly implementation. 
+    # FIXME: This is an old and ugly implementation. 
     # It must be changed to use the new age calculator.
     age = 0
     units = 0
@@ -2142,23 +2145,50 @@ def old_calc_age(database,person):
     else:
         death_year_valid = None
 
-    if birth_year_valid and death_year_valid:
-        age = death.get_year() - birth.get_year()
-        units = 1                          # year
+    # wihtout at least a year for each event we're clueless
+    if not (birth_year_valid and death_year_valid):
+        return (age,units)
+    
+    # FIXME: The code below uses hard-coded 31 days in a month
+    # and 12 month in a year. This is incorrect for half the Gregorian
+    # months and for other calendars.
+    # FIXME: We need to move to estimate_age !!!
+
+    # If born and died in the same year, go to the months
+    if death.get_year() == birth.get_year():
         if birth.get_month_valid() and death.get_month_valid():
+            # if born and died in the same month, do the days
+            if birth.get_month() == death.get_month() \
+               and birth.get_day_valid() and death.get_day_valid():
+                age = death.get_day() - birth.get_day()
+                units = DAYS
+            # if not the same month, just diff the months
+            else:
+                age = death.get_month() - birth.get_month()
+                units = MONTHS
+    # Born and died in different years
+    else:
+        age = death.get_year() - birth.get_year()
+        units = YEARS
+        if birth.get_month_valid() and death.get_month_valid():
+            # Subtract one year if less than a last full year
             if birth.get_month() > death.get_month():
                 age = age - 1
-            if birth.get_day_valid() and death.get_day_valid():
-                if birth.get_month() == death.get_month() and birth.get_day() > death.get_day():
-                    age = age - 1
-                if age == 0:
-                    age = death.get_month() - birth.get_month()   # calc age in months
-                    if birth.get_day() > death.get_day():
-                        age = age - 1
-                        units = 2                        # month
-                    if age == 0:
-                        age = death.get_day() + 31 - birth.get_day() # calc age in days
-                        units  = 3            # day
+
+            # If less than a year (but still in different years)
+            # then calculate month diff modulo 12
+            if age == 0:
+                age = 12 + death.get_month() - birth.get_month()
+                units = MONTHS
+
+    # This is the case of birth on Dec 30 and death on Jan 2
+    # or birth on May 30 and death on June 2
+    if age == 1 and units == MONTHS \
+       and birth.get_day_valid() and death.get_day_valid() \
+       and birth.get_day() > death.get_day():
+        age = death.get_day() + 31 - birth.get_day()
+        unit = DAYS
+
     return (age,units)
 
     

@@ -1,23 +1,1578 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?yelp:chunk-depth 3?> -->
 <!--
-	  User Manual for Gramps - a GTK+/GNOME based genealogy program
+  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003-2005  Alexander Roitman
+  Copyright (C) 2003-2005  Alexander Roitman
 
-	  This document is free software; you can redistribute it and/or modify
-	  it under the terms of the GNU General Public License as published by
-	  the Free Software Foundation; either version 2 of the License, or
-	  (at your option) any later version.
+  This document is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
 
-	  This document is distributed in the hope that it will be useful,
-	  but WITHOUT ANY WARRANTY; without even the implied warranty of
-	  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	  GNU General Public License for more details.
+  This document is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-	  You should have received a copy of the GNU General Public License
-	  along with this program; if not, write to the Free Software
-	  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
+
 <!-- $Id$ -->
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+
+  <!-- Information about the entities
+       The legal.xml file contains legal information, there is no need to edit the file. 
+       Use the appversion entity to specify the version of the application.
+       Use the manrevision entity to specify the revision number of this manual.
+       Use the date entity to specify the release date of this manual.
+       Use the app entity to specify the name of the application. -->
+
+  <!ENTITY appversion "2.0.10">
+  <!ENTITY manrevision "2.6">
+  <!ENTITY date "January 2006">
+  <!ENTITY app "GRAMPS">
+
+]>
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Apr 11, 2002
+-->
+<book id="index" lang="en">
+<!-- 
+please do not change the id; for translations, change lang to 
+appropriate code 
+-->
+  <bookinfo> 
+    <title>GRAMPS Manual V&manrevision;</title>       
+    <copyright>
+      <year>2001</year>
+      <holder>Donald N. Allingham</holder>
+    </copyright>
+    <copyright>
+      <year>2003-2005</year>
+      <holder>Alex Roitman</holder>
+    </copyright> 
+
+<!-- translators: uncomment this:
+
+  <copyright>
+   <year>2002</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+
+-->
+
+<!-- 
+  An address can be added to the publisher information.  If a role is 
+  not specified, the publisher/author is the same for all versions of the 
+  document. 
+ -->
+
+  <publisher>
+    <publishername>GRAMPS Project</publishername>
+  </publisher> 
+
+  <legalnotice id="legalnotice">
+	<para>
+	This manual is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation; either version 2 of the License, or
+	(at your option) any later version.
+    </para>
+
+    <para>
+	This manual is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+    </para>
+
+    <para>
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+	</para>
+  </legalnotice>
+
+    <authorgroup> 
+      <author> 
+	<firstname>Alex</firstname> 
+	<surname>Roitman</surname> 
+	<affiliation> 
+  	  <orgname>GRAMPS Project</orgname> 
+	  <address><email>shura@gramps-project.org</email></address> 
+	</affiliation> 
+      </author> 
+      <author> 
+	<firstname>Donald N.</firstname> 
+	<surname>Allingham</surname> 
+	<affiliation> 
+	  <orgname>GRAMPS Project</orgname> 
+	  <address><email>don@gramps-project.org</email></address> 
+	</affiliation> 
+      </author> 
+      
+<!-- This is appropriate place for other contributors: translators,
+     maintainers,  etc. Commented out by default.
+     
+      <othercredit role="translator">
+	<firstname>Latin</firstname> 
+	<surname>Translator 1</surname> 
+	<affiliation> 
+	  <orgname>Latin Translation Team</orgname> 
+	  <address> <email>translator@gnome.org</email> </address> 
+	</affiliation>
+	<contrib>Latin translation</contrib>
+      </othercredit>
+-->
+    </authorgroup>
+
+<!-- 
+According to GNU GPL, revision history is mandatory if you are
+modifying/reusing someone else's document.  If not, you can omit it.
+Remember to remove the &manrevision; entity from the revision entries other
+than the current revision.
+The revision numbering system for GNOME manuals is as follows:
+* the revision number consists of two components 
+* the first component of the revision number reflects the release version 
+  of the GNOME desktop.
+* the second component of the revision number is a decimal unit that is 
+  incremented with each revision of the manual.
+For example, if the GNOME desktop release is V2.x, the first version of the 
+manual that is written in that desktop time frame is V2.0, the second version 
+of the manual is V2.1, etc. When the desktop release version changes to V3.x, 
+the revision number of the manual changes to V3.0, and so on. 
+-->  
+    <revhistory>
+      <revision> 
+	<revnumber>GRAMPS Manual V&manrevision;</revnumber> 
+	<date>&date;</date> 
+	<revdescription> 
+	  <para role="author">Alex Roitman
+	    <email>shura@gramps-project.org</email>
+          </para>
+          <para role="publisher">GRAMPS Project</para>
+	</revdescription> 
+      </revision> 
+      <revision> 
+	<revnumber>GRAMPS Manual V2.5</revnumber> 
+	<date>February 2004</date> 
+	<revdescription> 
+	  <para role="author">Alex Roitman
+	    <email>shura@gramps-project.org</email>
+          </para>
+          <para role="publisher">GRAMPS Project</para>
+	</revdescription> 
+      </revision> 
+      <revision> 
+	<revnumber>GRAMPS Manual V2.4</revnumber> 
+	<date>December 2003</date> 
+	<revdescription> 
+	  <para role="author">Alex Roitman
+	    <email>shura@gramps-project.org</email>
+          </para>
+          <para role="publisher">GRAMPS Project</para>
+	</revdescription> 
+      </revision> 
+      <revision> 
+	<revnumber>GRAMPS Manual V2.3</revnumber> 
+	<date>September 2003</date> 
+	<revdescription> 
+	  <para role="author">Alex Roitman
+	    <email>shura@gramps-project.org</email>
+          </para>
+          <para role="publisher">GRAMPS Project</para>
+	</revdescription> 
+      </revision> 
+      <revision> 
+	<revnumber>GRAMPS Manual V2.2</revnumber> 
+	<date>July 2003</date> 
+	<revdescription> 
+	  <para role="author">Alex Roitman
+	    <email>shura@gramps-project.org</email>
+          </para>
+  	  <para role="author">Donald A. Peterson
+	    <email>dpeterson@sigmaxi.org</email>
+          </para>
+  	  <para role="publisher">GRAMPS Project</para>
+	</revdescription> 
+      </revision> 
+      <revision> 
+	<revnumber>GRAMPS Manual V2.1</revnumber> 
+	<date>May 2003</date> 
+	<revdescription> 
+	  <para role="author">Alex Roitman
+	    <email>shura@gramps-project.org</email>
+	  </para>
+	  <para role="publisher">GRAMPS Project</para>
+	</revdescription> 
+      </revision> 
+      <revision> 
+	<revnumber>GRAMPS Manual V2.0</revnumber> 
+	<date>April 2003</date> 
+	<revdescription> 
+	  <para role="author">Alex Roitman
+	    <email>shura@gramps-project.org</email>
+	  </para>
+	  <para role="publisher">GRAMPS Project</para>
+	</revdescription> 
+      </revision> 
+      <revision> 
+	<revnumber>GRAMPS User Manual V1.1</revnumber> 
+	<date>2001</date> 
+	<revdescription> 
+	  <para role="author">Donald N. Allingham 
+	    <email>don@gramps-project.org</email>
+	  </para>
+	  <para role="publisher">GRAMPS Project</para>
+	</revdescription> 
+      </revision> 
+      <revision> 
+	<revnumber>gramps User Manual V1.0</revnumber> 
+	<date>2001</date> 
+	<revdescription> 
+	  <para role="author">Donald N. Allingham 
+	    <email>don@gramps-project.org</email>
+	  </para>
+	  <para role="publisher">GRAMPS Project</para>
+	</revdescription> 
+      </revision> 
+    </revhistory> 
+
+    <releaseinfo>
+      This manual describes version &appversion; of GRAMPS.
+    </releaseinfo> 
+
+  </bookinfo> 
+
+<preface id="gramps-preface">
+
+    <title>Preface</title> 
+
+    <para>GRAMPS is a software package designed for genealogical
+    research. Although similar to other genealogical programs, GRAMPS
+    offers some unique and powerful features, which we'll discuss
+    below. </para>
+
+    <para>GRAMPS is a Open Source Software package, which means you
+    are free to make copies and distribute it to anyone you like.
+    It's developed and maintained by a worldwide team of volunteers
+    whose goal is to make GRAMPS powerful, yet easy to use.</para>
+
+    <sect1 id="why-gramps">
+      <title>Why use GRAMPS?</title>
+
+      <para>Most genealogy programs allow you to enter information
+      about your ancestors and descendants. Typically, they can
+      display family relationships through charts, graphs, or
+      reports. Some allow you to include pictures or other media. Most
+      let you include information about people even if those people
+      are not related to the primary family you happen to be
+      researching. And they may include features that let you exchange
+      data with other programs and print different types of
+      reports. </para>
+
+      <para>GRAMPS has all these capabilities and more. Notably, it
+      allows you to integrate bits and pieces of data as they arise
+      from your research and to put them in one place &mdash; your
+      computer. You can then use your computer to manipulate,
+      correlate, and analyze your data, rather than messing with reams
+      of paper. </para>
+
+    </sect1>
+    
+    <sect1 id="whats-new">
+      <title>What's new since 1.0.X</title>
+
+      <para>If you are new to GRAMPS, it may not be important for you
+      to know how GRAMPS version 2.0.0 (the object of this manual)
+      differs from previous versions of the software. You may
+      therefore elect to skip this section.</para>
+
+      <para>However, if you are already familiar with GRAMPS and are
+      interested in the new aspects and features of version 2.0.0,
+      please read on.</para>
+
+      <variablelist>
+
+      <varlistentry><term>Berkeley database backend</term>
+	<listitem>
+
+  	  <para>We've adopted the Berkeley database format (BSDDB) as
+	  the default for GRAMPS. Berkeley is the most widely used
+	  open source developer database in the world.</para>
+
+	  <para>This change allowed us to overcome issues of
+	  performance and memory requirements that beset version
+	  1.0.X. With the new back-end, database sizes of up to a
+	  hundred thousand people no longer present a major
+	  obstacle.</para>
+
+	  <para>The default extension for GRAMPS' BSDDB database files
+	  is grdb. The new format is open and fully documented in the
+	  developer's API reference distributed with the source code
+	  of GRAMPS. </para>
+
+	  <note id="default-format">
+	    <title>Preferred format</title> 
+
+	    <para>The preferred and default format for &app; is the
+	    new BSDDB format.</para>
+	  </note>
+
+	  <para>A consequence of the new database back-end is that the
+	  &quot;saving&quot; function is no longer necessary (or even
+	  possible). Now, once you approve changes, they are
+	  immediately applied; this means that clicking
+	  <guibutton>OK</guibutton> in the Person, Family, Source,
+	  Place, Media object, or Event editor immediately records
+	  changes to the database. </para>
+
+	  <para>In previous versions, you could &quot;quit without
+	  saving.&quot; This option no longer exists per se; however,
+	  in version 2.0.0, you can achieve the same effect if you
+	  abandon or &quot;cancel&quot; all changes and then
+	  quit.</para>
+
+	  <para>Also, it is now possible to undo recent
+	  actions.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry><term>Other database back-ends</term>
+        <listitem>
+	
+	  <para>Along with the BSDDB backend, we've incorporated
+	  &quot;in-memory&quot; database handling for the GRAMPS XML
+	  and GEDCOM formats. This means you can now open files in
+	  those two formats and work with their data without having to
+	  first create a new database and import data into it. Since
+	  this approach requires GRAMPS to hold all the data in
+	  memory, it is only useful for small databases (depending on
+	  available memory size).</para>
+
+	  <warning id="gedcom-editing">
+	    <title>GEDCOM Editing</title> 
+
+	    <para>Please keep in mind that some information in a
+	    GEDCOM file may be lost during import into GRAMPS. Simply
+	    opening and viewing the file will not change it. However,
+	    if any changes were made and they were not abandoned upon
+	    exit, exiting GRAMPS will save the data, with the possible
+	    data loss.</para>
+	  </warning>
+
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Desktop integration</term>
+	<listitem>
+
+	<para>We've improved the way GRAMPS integrates with the GNOME
+	desktop interface common to many Linux distributions. All file
+	formats recognized by GRAMPS are now registered as mime types;
+	each has its own icon and has GRAMPS as its default
+	handler. Thus, if you double-click on any file having one of
+	these formats, GRAMPS will launch and open the file.</para>
+
+	<para>We've also added support for GNOME's &quot;recent
+	documents&quot; function and have incorporated this function
+	within GRAMPS itself.</para>
+
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Interface improvements</term>
+	<listitem>
+
+	<para>We've made numerous changes in the interface. Most of
+	them are subtle and incremental improvements, and all of them
+	cannot be listed here. The most notable are:</para>
+
+	<itemizedlist>
+	  <listitem>
+	    <para>Removal of alphabetical tabs.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Ability to add/remove/rearrange columns in list views.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Removal of the Save function and addition of Undo.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Proper window management.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Support for Tip of the Day.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Person-dependent context menus (right-click) in
+	    Pedigree View, listing parents, children, spouses, and
+	    siblings.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Addition of an Export wizard.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Built-in Find function in list views.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Addition of a Date selector dialog.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Name editor enhancements: patronymic names and
+	    non-default grouping.</para>
+	  </listitem>
+	  <listitem>
+	    <para>&quot;Recent document&quot; support (both within GRAMPS and 
+	    GNOME-wide)</para>
+	  </listitem>
+	</itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Import and Export</term>
+	<listitem>
+	  <para>We've added import and export filters for the GeneWeb format.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Reports</term>
+        <listitem>
+	<itemizedlist>
+ 	  <listitem>
+  	    <para>We've added a new report: Statistics Chart. </para>
+	  </listitem>
+	  <listitem>
+	    <para>We've changed the overall report framework. All
+	    reports now remember the options you configure for
+	    them.</para>
+	  </listitem>
+	  <listitem>
+	    <para>It is possible to generate reports from the command
+	    line, without launching an interactive GRAMPS
+	    session.</para>
+	  </listitem>
+	  <listitem>
+	    <para>The report API is much simpler now, making it easy to
+	    write custom reports.</para>
+	  </listitem>
+	  <listitem>
+	    <para>A single code instance may be used for a standalone
+	    report, a book item, and a command-line report. </para>
+	  </listitem>
+	</itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Internationalization</term>
+	<listitem>
+	  <para>The approach for entering and displaying dates has
+	  been completely reworked. The new framework allows for a
+	  deeper localization of displayed dates than was ever
+	  possible using the translatable strings.</para>
+ 	  <para>The internationalization of names has also been
+	  improved. Names can be grouped under a non-default
+	  string. Patronymic names are supported, and it is easy to
+	  program new ways to display names in the manner customary to
+	  a given culture or language.</para>
+	</listitem>
+       </varlistentry>
+     </variablelist>
+    </sect1>
+
+    <sect1 id="typography">
+      <title>Typographical conventions</title>
+	<para>
+
+          In this book, some words are marked with special typography:
+
+          <itemizedlist>
+	    <listitem>
+              <simpara>
+                <application>Applications</application>
+              </simpara>
+            </listitem>
+	    <listitem>
+              <simpara>
+                <command>Commands</command> you type at the command line
+              </simpara>
+            </listitem>
+            <listitem>
+              <simpara>
+                <filename>Filenames</filename>
+              </simpara>
+            </listitem>
+            <listitem>
+              <simpara>
+                <replaceable>Replaceable text</replaceable>
+              </simpara>
+            </listitem>
+	    <listitem>
+              <simpara>
+                <guilabel>Labels</guilabel> for buttons and other
+                 portions of the graphical interface
+              </simpara>
+            </listitem>
+            <listitem>
+              <simpara>
+                Menu selections look like this:
+                <menuchoice>
+                  <guimenu>Menu</guimenu>
+                  <guisubmenu>Submenu</guisubmenu> 
+                  <guimenuitem>Menu Item</guimenuitem>
+                </menuchoice>
+              </simpara>
+            </listitem>
+	    <listitem>
+              <simpara>
+                <guibutton>Buttons</guibutton> you can click
+              </simpara>
+            </listitem> 
+            <listitem>
+              <simpara>
+                <userinput>Anything you type in</userinput>
+              </simpara>
+            </listitem>
+	 </itemizedlist>
+        </para>
+
+        <para>
+
+          The manual also provides assorted bits of additional information in
+          tips and notes, as follows.
+
+	  <tip id="example-tip">
+	      <title>Tip</title>
+	      <para>
+		Tips and bits of extra information will look like
+		this.
+	      </para>
+	    </tip>
+          
+           <note id="example-note">
+               <title>Note</title>
+	      <para>
+		Notes will look like this.
+	      </para>
+           </note>                
+         </para>
+
+        <para>
+         Finally, there are warnings, notifying you where you should be careful:
+
+	    <warning id="example-warning">
+	      <title>Example Warning</title>
+	      <para>
+		This is what a warning looks like. If there's a chance
+		you'll run into trouble, you will be warned beforehand.
+	      </para>
+	  </warning>
+       </para>
+    </sect1>
+
+  </preface>
+
+<chapter id="gramps-getting-started"> 
+
+  <title>Getting Started</title> 
+    
+  <para>
+  In this chapter, we'll begin with the basics. We'll show you how
+  to start &app; and how to get help when you need it.
+  </para>
+
+  <sect1 id="gramps-start">
+    <title>To Start GRAMPS</title>
+    <para>
+      You can start &app; in the following ways:
+    </para> 
+    <variablelist>
+      <varlistentry>
+	<term>From the <guimenu>Applications</guimenu> menu</term>
+	<listitem>
+
+	  <para>Select &app; from the list of programs displayed in
+	  your computer's Applications menu. (The location and
+	  appearance of this menu vary slightly from one distribution
+	  of Linux to another. On the default GNOME desktop, you'll
+	  find &app; in the
+	  <menuchoice><guimenu>Applications</guimenu><guisubmenu>Other</guisubmenu></menuchoice>
+	  menu.</para>
+
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>From the command line</term>
+    	<listitem>
+          <para>
+  	    If you're adept with Linux and like to work from the command
+	    line, you can start &app; by calling up a terminal window,
+	    typing <command>gramps</command>, and then pressing
+	    <keycap>Enter</keycap>.
+          </para>
+	  <para>
+	    If you would like GRAMPS to open a specific database or to 
+	    import a specific file on startup, you can supply the filename 
+	    as a command line argument:
+          </para>
+	  <para>
+	    <filename>gramps filename.grdb</filename>
+    	  </para> 
+    	  <para>
+            where <filename>filename.grdb</filename> is the name of
+  	    the file you want to open. The command line provides many
+   	    more ways to start &app; and perform different tasks.
+<!-- The detailed reference to the command line options is found in <xref linkend="append-cmdline"/>. -->
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+
+  <sect1 id="run-1st-time">
+    <title>Running GRAMPS for the first time</title>
+    <para> 
+      The first time you run the program, GRAMPS will display the
+      &quot;Getting Started&quot; dialogs. Follow the directions that
+      guide you through <guilabel>Researcher information</guilabel>,
+      <guilabel>Numerical date formats</guilabel>, <guilabel>Alternate
+      calendar support</guilabel>, and <guilabel>the LDS
+      extensions</guilabel> sections. You should find them to be
+      self-explanatory.
+    </para>
+    
+    <note id="note-dialog">
+      <title>Dialog boxes</title>
+      <para>We'll make frequent reference in this manual to
+      dialogs. A dialog is simply a pop-up window into which you can
+      enter information.</para>
+    </note>
+
+    <para>We recommend you enter your personal information when GRAMPS
+    prompts you for it. GRAMPS uses this information strictly so it
+    can create valid GEDCOM output files (which require information
+    about the files' creator). If you wish, you can choose not to
+    supply this information, but be aware that unless and until you
+    do, any GEDCOM files you export will not be valid.</para>
+
+
+    <figure id="druid-fig"> 
+      <title>GRAMPS Getting Started Window: Researcher Information</title> 
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/researcher.png" format="PNG"/>
+          </imageobject>
+	  <textobject> 
+	    <phrase>Shows Researcher Information Window. </phrase>
+	  </textobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <tip id="preferences-tip">
+      <title>Entering personal information</title>
+      <para>This information can be entered at any time in the
+      Preferences dialog, under the Database/Researcher Information
+      category.</para>
+   </tip>
+  </sect1>
+
+  <sect1 id="choose-db-start">
+    <title>Choosing a database on startup</title> 
+    <para>
+      If &app; is started without a database selected, the following
+      window will appear prompting you to choose one to open.
+    </para>
+      
+    <figure id="first-open"> 
+      <title>Open Database Window</title> 
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/first-open.png" format="PNG" />
+          </imageobject>
+	  <textobject> 
+	    <phrase>Shows Open Database Window.</phrase>
+	  </textobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+ 
+    <para>To open a database that you have recently opened, choose the 
+    top selection, select your database from the menu and 
+    click <guibutton>OK</guibutton>.</para> 
+
+    <para>To open an existing database you have not recently opened,
+    choose the middle selection and click
+    <guibutton>OK</guibutton>. &app; will then ask you to specify the
+    name of the database you wish to open. </para>
+
+    <para>As you might guess, to create a new database, choose
+    &quot;Create a new database&quot;</para>
+
+    <note id="file-notdir-note">
+      <title>Selecting file</title>
+      <para>
+      If you're familiar with version 1.0.X of GRAMPS, you'll note
+      that version 2.0 does not require you to select a directory in
+      which to store the database.
+      </para>
+    </note>
+
+  </sect1>
+      
+  <sect1 id="get-help">
+    <title>Obtaining Help</title>
+    <para> 
+    GRAMPS has a <menuchoice><guimenu>Help</guimenu></menuchoice> menu
+    that you can consult at any time. It includes the following items:
+    </para>
+
+    <variablelist>
+
+      <varlistentry>
+        <term>User manual</term>
+	<listitem> 
+          <para>
+	  An electronic version of the manual that you can access while you work in GRAMPS.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>FAQ</term>
+	<listitem>
+          <para>A list of Frequently Asked Questions about &app;.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>GRAMPS home page</term>
+   	<listitem>
+          <para>A link to the GRAMPS' project web site.</para>
+        </listitem>
+      </varlistentry> 
+
+      <varlistentry>
+        <term>GRAMPS mailing lists</term>
+	<listitem>
+          <para>
+	  Gives you direct access to GRAMPS' mailing list archives.
+          </para>
+        </listitem>
+      </varlistentry>
+    
+      <varlistentry>
+        <term>Report a bug</term>
+	<listitem>
+          <para> 
+	  Choose this item to file a bug report in our bug tracking
+	  system. (Remember, &app; is a living project. We want to
+	  know about any problems you encounter so we can work to
+	  solve them for everyone's benefit.)
+          </para>
+        </listitem>
+      </varlistentry>
+    
+      <varlistentry>
+        <term>Show plugin status</term>
+	<listitem>
+          <para> 
+	  Use this item to display the status of any plugins you may have added.
+          </para>
+        </listitem>
+      </varlistentry>
+    
+      <varlistentry>
+        <term>Open example database</term>
+	<listitem>
+          <para> 
+	  Select this item to load the example database that is
+	  included in your GRAMPS package. This database is composed
+	  of fictitious people and serves as a useful example for
+	  learning how to work with GRAMPS.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+</chapter>
+
+
+<chapter id="gramps-mainwin"> 
+
+  <title>Main Window</title> 
+ 
+  <para>
+    When you open a database (either existing or new), the
+    following window is displayed:
+  </para>
+ 
+  <figure id="mainwin-fig" pgwide="1"> 
+    <title>GRAMPS Main Window</title> 
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/mainwin.png" format="PNG" width="500" depth="352" scale="70"/>
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </figure>
+	
+  <para>
+    The main &app; window contains the following elements: 
+  </para>
+
+  <variablelist>
+
+    <varlistentry>
+      <term>Menubar</term>
+      <listitem>
+        <para>
+          The menubar is located at the very top of the window (right
+          below the window title) and provides access to all the features
+          of &app;.
+        </para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Toolbar</term>
+      <listitem>
+        <para> 
+          The toolbar is located right below the menubar.  It gives you
+	  access to the most frequently used
+          functions of &app;. You can set options that control how it
+	  appears by going to 
+	  <menuchoice><guimenu>Edit</guimenu><guisubmenu>Preferences</guisubmenu></menuchoice>. You can also hide it entirely by going to <menuchoice><guimenu>View</guimenu><guisubmenu>Toolbar</guisubmenu></menuchoice>.
+        </para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Progress Bar</term>
+      <listitem>
+        <para>
+          The Progress Bar is located in the lower left corner of the
+	  &app; window. It displays the progress of time consuming
+	  operations, such as opening and saving large data bases,
+	  importing and exporting to other formats, generating web
+	  sites, etc. When you are not doing these types of operations,
+	  the Progress Bar is blank.
+        </para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Status Bar</term>
+      <listitem>
+        <para>
+          The Status Bar is located to the right of the Progress Bar,
+          on the very bottom of the &app; window.  It displays
+          information about current &app; activity and contextual
+          information about the selected items.  The behavior of the
+          Status Bar can be adjusted in the Preferences dialog, which
+          can be found by selecting
+          <menuchoice><guimenu>Edit</guimenu><guisubmenu>Preferences</guisubmenu></menuchoice>.
+        </para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Display area</term>
+      <listitem>
+        <para>
+          The largest area in the center of the &app; window is the
+	  display area.  What it displays depends on the currently
+	  selected View. We'll discuss Views in detail below.
+	</para>
+      </listitem>
+    </varlistentry>
+  </variablelist> 
+
+  <sect1 id="gramps-views">
+    <title>Views</title>
+
+    <para>Genealogical information is very broad and can be extremely
+    detailed. Displaying it poses a challenge that GRAMPS takes on by
+    dividing and organizing the information into a series of
+    Views. Each View displays a portion of the total information,
+    selected according to a particular category. This will become
+    clearer as we explore the six different Views, listed
+    below:</para>
+
+    <itemizedlist>	
+      <listitem><para>People View</para></listitem>
+      <listitem><para>Family View</para></listitem>
+      <listitem><para>Pedigree View</para></listitem>
+      <listitem><para>Sources View</para></listitem>
+      <listitem><para>Places View</para></listitem>
+      <listitem><para>Media View</para></listitem>
+    </itemizedlist>
+
+    <para>Before we launch into a description of each View,
+    let's first explain how to switch between Views.</para>
+
+    <sect2 id="view-modes">
+      <title>Switching Views and Viewing Modes</title>
+
+      <para>As mentioned above there are six different Views. In
+      addition, there are two different Viewing Modes. You can tell at
+      a glance which Viewing Mode you are in: If you see icons listed
+      vertically in a sidebar at the left of the window, you are in
+      the Sidebar Viewing Mode. If instead you see a series of
+      &quot;notebook tabs&quot; (labeled People, Family, Pedigree, Sources,
+      Places, Media) that run horizontally across the window, then you
+      are in the Tabbed Viewing Mode. You can switch from one Viewing
+      Mode to another by selecting <menuchoice><guimenu>View</guimenu><guimenuitem>Sidebar</guimenuitem></menuchoice> from the Sidebar menu item.</para>
+
+      <para>If you're in the Sidebar Viewing Mode, you can select the View 
+      you want by clicking one of the sidebar icons.</para>
+
+      <figure id="side-nofilt-fig"> 
+	<title>Sidebar Viewing Mode</title> 
+	<screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/mainwin.png" format="PNG" width="500" depth="352" scale="75"/>
+            </imageobject>
+  	    <textobject> 
+	      <phrase>Shows sidebar viewing mode.</phrase>
+  	    </textobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>If you're in the Tabbed Viewing Mode, you can select the
+      View you want by clicking the corresponding notebook tab.</para>
+
+      <figure id="noside-nofilt-fig"> 
+	<title>Tabbed Viewing Mode</title> 
+	<screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/noside-nofilt.png" format="PNG" width="500" depth="393" scale="75"/>
+            </imageobject>
+	    <textobject> 
+	      <phrase>Shows tabbed viewing mode.</phrase>
+  	    </textobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+    </sect2>
+    <sect2 id="people-view">
+      <title>People View</title>
+      <para>
+        When &app; first opens a database, it displays the
+	People View (<xref linkend="side-nofilt-fig"/> and <xref
+	linkend="noside-nofilt-fig"/>). This view lists
+	all the people stored in the database.
+      </para>
+      <para> 
+
+      You'll note that people are grouped according to their family
+      names. To the left of each family name is an arrow. Clicking it
+      once will reveal the entire list of people sharing that
+      name. Clicking the arrow again will &quot;roll up&quot; the
+      list and show only the family name.
+
+      </para>
+      <para>
+
+        By default, the People View, displays the following columns:
+        <guilabel>Names</guilabel>, &app; <guilabel>ID</guilabel>
+        numbers, <guilabel>Gender</guilabel>, and their
+        <guilabel>Birth</guilabel> and <guilabel>Death
+        dates</guilabel>.  You can add or remove columns to and from
+        the display by calling up the <guilabel>Column
+        Editor</guilabel> dialog
+        (<menuchoice><guimenu>Edit</guimenu><guimenuitem>Column
+        Editor</guimenuitem></menuchoice>) and checking or unchecking
+        the boxes listed. You can also change the position of a column
+        in People View by clicking and dragging it to a new position
+        in the Editor. Once you have made the changes you want, click
+        <guibutton>OK</guibutton> to exit the Editor and see your
+        changes in the People View.
+
+      </para>
+	
+      <note id="columns-tip">
+        <title>Column Editor</title>
+	<para>
+          The Column Editor is available in all Views and works the 
+	  same way in each.
+        </para> 
+      </note>
+
+      <figure id="column-editor-fig"> 
+	<title>Column Editor Dialog</title> 
+	<screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/column-editor.png" format="PNG" width="444" depth="437"/>
+            </imageobject>
+	    <textobject> 
+	      <phrase>Shows column editor dialog. </phrase>
+  	    </textobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <sect3 id="filters">
+        <title>Filters</title>
+
+	<para>
+
+	Genealogical databases can contain information on many people,
+	families, places, and objects. It's therefore possible for a
+	View to contain a long list of data that's difficult to
+	work with.  &app; gives you a means for controlling this
+	condition by allowing you to filter a list to a more
+	manageable size.
+
+	</para>
+
+	<figure id="side-filt-fig"> 
+  	  <title>Filter Controls Displayed</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/side-filt.png" format="PNG" width="500" depth="352" scale="75"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows filter controls.</phrase>
+  	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+	<para>
+
+	When &app; opens a database, no filtering is in effect. In
+	People View, for example, all people in the database are
+	listed by default. To filter the list, go to <menuchoice>
+	<guimenu>View</guimenu> <guimenuitem>Filter</guimenuitem>
+	</menuchoice>. This will place a new menu just above the list
+	of People. Click on the double arrows of this menu to get a
+	pop-up list of all the criteria by which you can filter the
+	People listed. Choose a filter (for example, &quot;Males&quot;
+	or &quot;People with children&quot;) and click
+	<guibutton>Apply</guibutton>.
+
+        </para>
+
+        <note id="filter-note">
+          <title>Displaying the filter</title>
+	  <para>
+
+	  To reduce screen clutter, the filter menu is hidden by
+	  default. To display it, go to the <menuchoice>
+	  <guimenu>View</guimenu> <guimenuitem>Filter</guimenuitem>
+	  </menuchoice> menu. Please understand that even if the
+	  filter menu is not displayed, filtering may still be in
+	  effect. (Thus, we say that filtering is persistent.)  If you
+	  are unsure if your list is filtered, bring up the filter
+	  menu (by going to <menuchoice> <guimenu>View</guimenu>
+	  <guimenuitem>Filter</guimenuitem> </menuchoice>) and check
+	  if any filtering is set.
+	  </para>
+	</note>  
+
+	  
+	 <tip id="filt-tip">
+           <title>Example filter use</title>
+	   <para>
+             To show males only, choose the <guilabel>Males</guilabel>
+	     filter, then click the <guibutton>Apply</guibutton>
+	     button. To cancel any filtering, set the filter to
+	     <guilabel>Entire Database</guilabel> and then click the
+	     <guibutton>Apply</guibutton> button.
+            </para>
+	  </tip>
+	  
+        </sect3>
+      </sect2>
+      
+      <sect2 id="family-view">
+        <title>Family View</title>
+	<para>
+          The Family View displays the family information of a 
+	  selected person that we call the Active person. Specifically,
+	  it shows his or her closest relationships.
+        </para>
+	
+	<figure id="family-fig"> 
+ 	  <title>Family View</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/family.png" format="PNG" width="500" depth="352" scale="75"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Family View.</phrase>
+	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+	<para>
+	The Family View displays the following series of list boxes:
+	</para>
+
+        <variablelist>
+  	  <varlistentry>
+	    <term>Active person</term>
+	    <listitem>
+	    <para>
+	    Shows birth and death data for the individual you have
+	    selected. Double-click inside the box to edit the Active
+	    person's information. Click on the double arrow to the
+	    right and the currently selected Spouse will become the
+	    new Active person.
+	    </para>
+   	    </listitem>
+	  </varlistentry>
+
+  	  <varlistentry>
+	    <term>Relationship</term>
+	    <listitem>
+	    <para>
+	    Displays birth and death data for the Active person's
+	    Spouse(s). 
+	    </para>
+	    <note id="spouse-info">
+	      <title>Terminology</title>
+	      <para> 
+	      In the Family View, we use the term &quot;spouse&quot;
+	      for sake of simplicity. However, please note that
+	      &quot;spouse&quot; may in fact be a domestic partner, a
+	      partner in a civil union, etc.
+  	      </para>
+            </note>
+
+	    <para>
+	    Double-click a Spouse to edit his or her
+	    relationship to the Active person.  Shift-click (that is,
+	    hold down the Shift key while you click) a Spouse to edit
+	    his or her personal information.  Click the icon to the
+	    top right of the Relationship box to add a new person to
+	    the database and to create a relationship between this
+	    person and the Active person. Click the middle icon to
+	    create a relationship between the Active person and
+	    another person already stored in the database. Click the
+	    minus (-) button to remove the relationship between the
+	    currently selected Spouse and the Active person. (Note
+	    that this does not remove the Spouse from the database.)
+            </para>
+   	    </listitem>
+	  </varlistentry>
+
+  	  <varlistentry>
+	    <term>Active person's parents</term>
+	    <listitem>
+	    <para>
+
+	    Click the <guibutton>+</guibutton> or
+	    <guibutton>-</guibutton> buttons to add or remove parents
+	    of the Active person. Click the right arrow button to make
+	    the Father the new Active person and the Mother the new
+	    Spouse.
+
+	    </para>
+	    </listitem>
+          </varlistentry>
+
+  	  <varlistentry>
+	    <term>Spouse's parents</term>
+	    <listitem>
+	    <para>
+	    This list box functions the same as that of the Active
+	    person's parents.
+	    </para>
+	    </listitem>
+          </varlistentry>
+
+  	  <varlistentry>
+	    <term>Children</term>
+	    <listitem>
+	    <para>
+
+	    Displays the children of the Active person and the
+	    currently selected Spouse. The list can be ordered however
+	    you want by clicking on a column heading.
+
+	    </para><para>
+
+	    Note that in addition to columns for Name, ID, Gender,
+	    Birth Date, and Death Date, there is a column labeled
+	    Status.1 This column reflects the relationship between the
+	    child and his parents (Birth, Adoption, etc.).
+
+	    </para><para>
+
+	    As with the other list boxes, the Children list box has
+	    some associated buttons. Click the left arrow button to
+	    make the selected Child the Active person. Click the next
+	    button down to add a new person to the database and to
+	    make this person a Child of the Active person. Click the
+	    next button down to select a person from the database and
+	    to make this person a Child of the Active person. Click
+	    the lowest button to remove the selected Child from the
+	    Family (note that this does not remove the Child from the
+	    database).
+	    </para>
+
+	    <note id="right-click-menu">
+	    <title>Right Click Menu</title>
+	    <para>
+	    Most of the functions described above can also be executed
+	    by right-clicking your mouse.
+	    </para>
+	    </note>
+	    </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+	<para>
+
+          The layout of the Family View can be switched from the
+          &quot;left-to-right&quot; arrangement shown in <xref linkend="family-fig"/> to the
+          &quot;top-to-bottom&quot; arrangement shown in <xref linkend="family-alt-fig"/>. This is
+          done by going to
+          <menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></menuchoice>
+          and selecting the <guilabel>Display</guilabel> section of
+          the dialog that appears.
+
+        </para>
+
+	<figure id="family-alt-fig"> 
+	  <title>Alternative Family View</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/family-alt.png" format="PNG" width="500" depth="352" scale="75"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Alternative Family View.</phrase>
+  	      </textobject>
+            </mediaobject> 
+          </screenshot>
+        </figure>
+
+      </sect2>
+
+      <sect2 id="pedigree-view">
+        <title>Pedigree View</title>
+
+	<para>
+
+          The Pedigree View displays a family tree of the Active
+	  person's ancestors. The Pedigree View shows up to five
+	  generations, depending on the size of the window. Each person is
+	  indicated by a box labeled with his or her name. Two lines
+	  branch from each box. The top one shows the person's father
+	  and the bottom one the mother. Solid lines represent birth
+	  relations, while dashed lines represent non-birth relations
+	  such as adoption, step-parenthood, guardianship, etc.
+
+	</para>
+
+	<figure id="pedigree-fig"> 
+  	  <title>Pedigree View</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/pedigree.png" format="PNG" width="500" depth="352" scale="75"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Pedigree View.</phrase>
+ 	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+	<para>
+
+	If you move your mouse over a box, it expands to show birth
+	and death dates. If you move your mouse over a line, the line
+	gets highlighted, indicating an active link. Double-click the
+	line to make the corresponding ancestor the Active
+	person. 
+
+        </para>
+	
+	<figure id="pedigree-child-cut-fig"> 
+	  <title>Children Menu</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/pedigree-child-cut.png" format="PNG" width="303" depth="195"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Children Menu in Pedigree View.</phrase>
+ 	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+	<para>
+
+	To the left of the Active person is a left arrow button. If
+	the Active person has children, clicking this button expands a
+	list of the Active person's children. Selecting one of the
+	children makes that child the pctive Person.
+
+       </para><para>
+
+	The appearance of the children's names in the menu
+	differentiates the &quot;dead ends&quot; of the tree from the
+	continuing branches. Children who have children themselves
+	appear in the menu in the boldface and italic type, while
+	children without children (&quot;dead ends&quot;) appear in a
+	regular font. If the Active person has only one child, no menu
+	will be displayed (since there is only one choice) and the
+	child will become the Active person when the arrow button is
+	clicked.
+
+       </para><para>
+
+        The right-hand side of the window shows two right arrow
+	buttons.  When the top button is clicked, the Father of the
+	Active person becomes the Active person. Clicking the bottom
+	button makes the Mother of the Active person the Active
+	person. 
+
+        </para> 
+
+	<figure id="pedigree-siblings-cut-fig"> 
+ 	  <title>Personal Context Menu</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/pedigree-siblings-cut.png" format="PNG" width="500" depth="253" scale="75"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Context Menu in Pedigree View.</phrase>
+ 	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+	<para>
+
+	Right-clicking on any person's box in the Pedigree View will
+	bring up the &quot;context menu&quot;. Among other useful
+	items, the context menu has sub-menus listing
+	<guilabel>Spouses</guilabel>, <guilabel>Siblings</guilabel>,
+	<guilabel>Children</guilabel>, and
+	<guilabel>Parents</guilabel> of that
+	person. &quot;Greyed-out&quot; sub-menus indicate the absence
+	of the data in the appropriate category. Similarly to the
+	children menu above, Childrens' and Parents' menus distinguish
+	continuing lines from dead ends.
+
+	</para>
+
+	<figure id="pedigree-anchor-fig"> 
+	  <title>Pedigree View with the Anchor</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/pedigree-anchor.png" format="PNG" width="500" depth="353" scale="75"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Pedigree View with the anchor set.</phrase>
+	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>
+
+	Pedigree View gives you an additional, advanced way of
+	labeling generations. This feature becomes available by
+	setting the &quot;anchor&quot; on a selected person. If the
+	anchor is set, the generations are labeled as follows:
+	</para>
+
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	    The Anchor Person (and his/her generation) is labeled as 
+	    <guilabel>0</guilabel>.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	    The ancestor generations are numbered with positive integers 
+	    (<guilabel>1</guilabel>,<guilabel>2</guilabel>,
+	    <guilabel>3</guilabel>,etc.).
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	    The descendant generations are numbered with negative integers
+	    (<guilabel>-1</guilabel>,<guilabel>-2</guilabel>,
+	    <guilabel>-3</guilabel>, etc.).
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	    In all cases, the number represents the number of
+	    generations between the labeled generation and the anchor
+	    person. In this mode, you can travel along the extensive
+	    pedigree line and see the number of generations removed
+	    from the Anchor Person.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+
+	<para>
+
+	To set the anchor, select the person you want as the Active
+	person (recall that you can do so in the Pedigree View by
+	clicking the line that leads to the person from his or her
+	child). Then, while in Pedigree View, right click anywhere in
+	the main window. A context menu will appear. Select
+	<guilabel>Set anchor</guilabel> and you will see the Active
+	person indicated as the anchor in the lower left corner.
+	This newly established Anchor Person will remain in effect
+	until you right-click again and select <guilabel>Remove
+	anchor</guilabel> from the context menu or until a new Active
+	person is chosen who is unrelated to the Anchor Person.
+
+        </para>
+
+      </sect2>
+
+      <sect2 id="sources-view">
+        <title>Sources View</title>
+	  <para>
+
+	  Sources View lists the sources of certain information stored
+	  in the database. These can include various documents (birth,
+	  death, and marriage certificates, etc.), books, films,
+	  journals, private diaries, - nearly anything that can
+	  provide genealogical evidence. GRAMPS gives you the option
+	  to provide a source for each event you record (births,
+	  deaths, marriages, etc.). The Source View lists the
+	  <guilabel>Title</guilabel>, <guilabel>ID</guilabel>, and
+	  <guilabel>Author</guilabel> of the source, as well as any
+	  <guilabel>Publication</guilabel> information that may be
+	  associated with it.
+
+	  </para><para>
+
+	  The list of Sources can be sorted in the usual manner, by
+	  clicking on a column heading. Clicking once sorts in
+	  ascending order, clicking again sorts in descending
+	  order. The <guilabel>Column Editor</guilabel> dialog can be
+	  used to add, remove and rearrange the displayed columns.
+
+	  </para>
+
+	<figure id="sources-fig"> 
+	  <title>Sources View</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/sources.png" format="PNG" width="500" depth="353" scale="75"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Sources View.</phrase>
+	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+      </sect2>
+
+      <sect2 id="places-view">
+        <title>Places View</title>
+        <para>
+
+	The Places View lists the geographical places in which the
+	events of the database took place. These could be places of
+	birth, death, and marriages of people, as well as their
+	home, employment, education addresses, or any other
+	conceivable reference to the geographical location. The
+	Places View lists the places' <guilabel>Name</guilabel>,
+	<guilabel>ID</guilabel>, <guilabel>Church Parish</guilabel>,
+	<guilabel>City</guilabel>, <guilabel>County</guilabel>,
+	<guilabel>State</guilabel>, and
+	<guilabel>Country</guilabel>. All of these columns can be
+	used for sorting by the usual sorting rules. The
+	<guilabel>Column Editor</guilabel> dialog may be used to
+	add, remove and rearrange the displayed columns.
+
+	</para>
+
+        <figure id="places-fig"> 
+	  <title>Places View</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/places.png" format="PNG" width="500" depth="353" scale="75"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Places View.</phrase>
+	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+      </sect2>
+
+      <sect2 id="media-view">
+        <title>Media View</title>
+	<figure id="media-fig"> 
+	  <title>Media View</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/media.png" format="PNG" width="500" depth="353" scale="75"/>
+              </imageobject>
+	      <textobject> 
+ 	        <phrase>Shows Media View.</phrase>
+	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+	<para>
+         
+          The Media View is a list of Media Objects used in the
+	  database.  Media Objects are any files that relate somehow
+	  to the stored genealogical data. Technically, any file can
+	  be stored as a Media Object. Most frequently, these are
+	  images, audio files, animation files, etc. The list box on
+	  the bottom lists the <guilabel>Name</guilabel>,
+	  <guilabel>ID</guilabel>, <guilabel>Type</guilabel>, and
+	  <guilabel>Path</guilabel> of the Media Object. The
+	  <guilabel>Column Editor</guilabel> dialog may be used to
+	  rearrange the displayed columns, which obey usual sorting
+	  rules. The top part of the GRAMPS window shows a preview (if
+	  available) and information about the Media Object.
+ 
+        </para> 
+      </sect2>
+    </sect1>
+  </chapter>
 
 <chapter id="gramps-usage">
   <title>Usage</title>
@@ -29,8 +1584,6 @@
   these alternatives where appropriate.
 
   </para>
-
-<!-- ================ Usage Subsection ================================ -->
 
   <sect1 id="new-db">
     <title>Starting a New Database</title>
@@ -54,8 +1607,6 @@
       </para>
     </note>
   </sect1>
-
-<!-- ================ Usage Subsection ================================ -->
 
   <sect1 id="open-db">
     <title>Opening a Database</title>
@@ -122,8 +1673,6 @@
     </warning>
   </sect1>
 
-<!-- ================ Usage Subsection ================================ -->
-
   <sect1 id="save-db">
     <title>Saving Changes to Your Database</title>
     <para>
@@ -162,8 +1711,6 @@
 
     </para>
   </sect1>
-
-<!-- ================ Usage Subsection ================================ -->
 
   <sect1 id="import-data">
     <title>Importing Data</title>
@@ -303,7 +1850,6 @@
 
     </para>
 
-<!-- ==== Figure: GEDCOM Import ==== -->
     <figure id="gedcom-import-fig">
       <title>GEDCOM Import</title>
       <screenshot>
@@ -319,15 +1865,11 @@
       </screenshot>
     </figure>
 
-<!-- ==== End of Figure ==== -->
-
     <para>
       If a media file is not found during import, you'll be prompted
       to take one of the actions indicated in <xref
       linkend="missing-media-im"/>.
     </para>
-
-<!-- ==== Figure: Missing media window  ==== -->
 
     <figure id="missing-media-im">
       <title>Missing Media dialog</title>
@@ -344,7 +1886,6 @@
       </screenshot>
     </figure>
 
-<!-- ==== End of Figure ==== -->
     <itemizedlist>
       <listitem>
         <para>
@@ -385,7 +1926,7 @@
       </listitem>
     </itemizedlist>
   </sect1>
-<!-- ================ Usage Subsection ================================ -->
+
   <sect1 id="export-data">
     <title>Exporting Data</title>
     <para>
@@ -423,8 +1964,6 @@
       <guibutton>Back</guibutton> and revise any selection, and then
       go forward to redo the export.
     </para>
-
-<!-- ==== Figure: GEDCOM Export ==== -->
 
     <figure id="export-druid-fig">
       <title>Export assistant: format selection</title>
@@ -554,7 +2093,6 @@
 	</listitem>
       </varlistentry>
     </variablelist>
-<!-- ==== Figure: GEDCOM Export ==== -->
       <figure id="gedcom-export-fig">
         <title>Export assistant: GEDCOM options</title>
         <screenshot>
@@ -569,7 +2107,6 @@
           </mediaobject>
         </screenshot>
       </figure>
-<!-- ==== End of Export ==== -->
     </sect2>
 
 
@@ -680,7 +2217,6 @@
       </variablelist>
     </sect2>
   </sect1>
-<!-- ================ Usage Subsection ================================ -->
 
   <sect1 id="gramps-edit-quick">
     <title>Entering and Editing Data: Quick Start Overview</title>
@@ -740,7 +2276,6 @@
     various types of information.
     </para>
 
-<!-- ================ Usage Sub-subsection ================ -->
     <sect2 id="gramps-add-pers">
       <title>To Add or Edit a Person</title>
       <para> 
@@ -769,8 +2304,6 @@
         </para>
       </note>
     </sect2>
-
-<!-- ================ Usage Sub-subsection ================ -->
 
     <sect2 id="gramps-spec-rel">
       <title>To Specify a Relationship</title>
@@ -823,8 +2356,6 @@
 	</para>
       </note>
     </sect2>
-
-<!-- ================ Usage Sub-subsection ================ -->
 
     <sect2 id="gramps-spec-par">
       <title>To Specify Parents</title>
@@ -881,8 +2412,6 @@
 
     </sect2>
 
-<!-- ================ Usage Sub-subsection ================ -->
-
     <sect2 id="gramps-spec-ch">
       <title>To Specify Children</title>
       <para>
@@ -911,7 +2440,6 @@
       </para>
     </sect2>
 
-<!-- ================ Usage Sub-subsection ================ -->
     <sect2 id="gramps-add-img">
       <title>Adding Photos and Other Media Objects</title>
       <para>
@@ -988,8 +2516,6 @@
        </note>
     </sect2>
 
-<!-- ================ Usage Sub-subsection ================ -->
-
     <sect2 id="gramps-edit-src-plc">
       <title>To Edit Sources and Places</title>
       <para> 
@@ -1011,9 +2537,6 @@
       </para>
     </sect2>
   </sect1>
-
-<!-- ================ Usage Subsection ================================ -->
-
 
   <sect1 id="gramps-edit-complete">
     <title>Enterng and Editing Data: Complete Description</title>
@@ -1055,8 +2578,6 @@
       <guibutton>-</guibutton> to denote the two former buttons.
       </para>
     </note>
-
-<!-- ================ Usage Sub-subsection ================ -->
 
     <sect2 id="adv-pers">
       <title>Editing Information About People</title>
@@ -1137,8 +2658,6 @@
       dialog will appear:
       </para>
 
-<!-- ==== Figure: Edit Person dialog ==== -->
-
       <figure id="edit-pers-fig">
         <title>Edit Person dialog</title>
         <screenshot>
@@ -1153,8 +2672,6 @@
           </mediaobject>
         </screenshot>
       </figure>
-
-<!-- ==== End of Figure ==== -->
 
       <para> 
 
@@ -1270,8 +2787,6 @@
         <varlistentry>
           <term>Names</term>
 
-<!-- ==== Figure: Edit Person dialog - Names ==== -->
-
           <listitem>
             <para> 
 
@@ -1312,8 +2827,6 @@
 
 	    </para>
 
-<!-- ==== End of Figure ==== -->
-
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1336,7 +2849,6 @@
 	    from the list.
 
  	    </para>
-<!-- ==== Figure: Edit Person dialog - Events ==== -->
             <figure id="edit-pers-events-fig">
               <title>Edit Person dialog - Events</title>
               <screenshot>
@@ -1351,7 +2863,6 @@
                 </mediaobject>
               </screenshot>
             </figure>
-<!-- ==== End of Figure ==== -->
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1390,7 +2901,6 @@
 	    and <guibutton>-</guibutton> buttons become available only
 	    when an attribute is selected from the list.
     	    </para>
-<!-- ==== Figure: Edit Person dialog - Attributes ==== -->
             <figure id="edit-pers-attributes-fig">
               <title>Edit Person dialog - Attributes</title>
               <screenshot>
@@ -1405,7 +2915,6 @@
                 </mediaobject>
               </screenshot>
             </figure>
-<!-- ==== End of Figure ==== -->
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1430,7 +2939,6 @@
 	    people. In particular, that option will omit their
 	    addresses.
 	    </para>
-<!-- ==== Figure: Edit Person dialog - Addresses ==== -->
             <figure id="edit-pers-addresses-fig">
               <title>Edit Person dialog - Addresses</title>
               <screenshot>
@@ -1445,7 +2953,6 @@
                 </mediaobject>
               </screenshot>
             </figure>
-<!-- ==== End of Figure ==== -->
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1453,7 +2960,6 @@
         <varlistentry>
           <term>Notes</term>
           <listitem>
-<!-- ==== Figure: Edit Person dialog - Notes ==== -->
             <figure id="edit-pers-notes-fig">
               <title>Edit Person dialog - Notes</title>
               <screenshot>
@@ -1468,7 +2974,6 @@
                 </mediaobject>
               </screenshot>
             </figure>
-<!-- ==== End of Figure ==== -->
 
             <para>
 
@@ -1498,8 +3003,6 @@
           <term>Sources</term>
           <listitem>
 
-<!-- ==== Figure: Edit Person dialog - Sources ==== -->
-
             <figure id="edit-pers-sources-fig">
               <title>Edit Person dialog - Sources</title>
               <screenshot>
@@ -1515,7 +3018,6 @@
               </screenshot>
 
             </figure>
-<!-- ==== End of Figure ==== -->
 
             <para>
 	    The <guilabel>Sources</guilabel> tab allows you to view
@@ -1589,8 +3091,6 @@
             when a media object is selected from the list.
             </para>
 
-<!-- ==== Figure: Edit Person dialog - Gallery ==== -->
-
             <figure id="edit-pers-gallery-fig">
               <title>Edit Person dialog - Gallery</title>
               <screenshot>
@@ -1605,8 +3105,6 @@
                 </mediaobject>
               </screenshot>
             </figure>
-
-<!-- ==== End of Figure ==== -->
 
             <note>
               <para>
@@ -1642,8 +3140,6 @@
 	  from the list.
 	  </para>
 	  
-<!-- ==== Figure: Edit Person dialog - Internet ==== -->
-
             <figure id="edit-pers-internet-fig">
               <title>Edit Person dialog - Internet</title>
               <screenshot>
@@ -1658,8 +3154,6 @@
                 </mediaobject>
               </screenshot>
             </figure>
-
-<!-- ==== End of Figure ==== -->
 
           </listitem>
         </varlistentry>
@@ -1683,7 +3177,6 @@
 	    <guibutton>Sources...</guibutton> and
 	    <guibutton>Note</guibutton> buttons.
 	    </para>
-<!-- ==== Figure: Edit Person dialog - LDS ==== -->
 
             <figure id="edit-pers-lds-fig">
               <title>Edit Person dialog - LDS</title>
@@ -1699,13 +3192,10 @@
                 </mediaobject>
               </screenshot>
             </figure>
-<!-- ==== End of Figure ==== -->
           </listitem>
         </varlistentry>
       </variablelist>
     </sect2>
-
-<!-- ================ Usage Sub-subsection ================ -->
 
     <sect2 id="adv-dates">
       <title>Editing Dates</title>
@@ -1942,8 +3432,6 @@
 	field.
         </para>
 
-<!-- ==== Figure: Date selection dialog ==== -->
-
         <para>
           <figure id="adv-dates-gui-fig">
             <title>Date selection dialog</title>
@@ -1960,8 +3448,6 @@
             </screenshot>
           </figure>
         </para>
-
-<!-- ==== End of Figure ==== -->
 
         <para>
 
@@ -1997,8 +3483,6 @@
       </sect3>
     </sect2>
 
-<!-- ================ Usage Sub-subsection ================ -->
-
     <sect2 id="adv-rel">
       <title>Editing Information About Relationships</title>
       <para> 
@@ -2017,7 +3501,6 @@
         </para>
       </note>
 
-<!-- ==== Figure: Edit Relationship dialog ==== -->
       <figure id="edit-rel-fig">
         <title>Marriage/Relationship Editor dialog</title>
         <screenshot>
@@ -2032,7 +3515,6 @@
           </mediaobject>
         </screenshot>
       </figure>
-<!-- ==== End of Figure ==== -->
       <para> 
 
       The top of the window shows the names of the people whose
@@ -2245,8 +3727,6 @@
         </varlistentry>
       </variablelist>
     </sect2>
-<!-- ================ Usage Sub-subsection ================ -->
-
 
     <sect2 id="adv-src">
       <title>Editing Information About Sources</title>
@@ -2257,8 +3737,6 @@
 	toolbar to invoke the following <guilabel>Source
 	Editor</guilabel> dialog:
       </para>
-
-<!-- ==== Figure: Source Editor dialog ==== -->
 
       <figure id="edit-src-fig">
         <title>Source Editor dialog</title>
@@ -2274,7 +3752,6 @@
           </mediaobject>
         </screenshot>
       </figure>
-<!-- ==== End of Figure ==== -->
 
       <para> 
       The main part of the window displays four notebook tabs
@@ -2416,8 +3893,6 @@
       </variablelist>
     </sect2>
 
-<!-- ================ Usage Sub-subsection ================ -->
-
     <sect2 id="adv-plc">
       <title>Editing Information About Places</title>
       <para> 
@@ -2429,8 +3904,6 @@
       Editor</guilabel> dialog:
 
       </para>
-
-<!-- ==== Figure: Place Editor dialog ==== -->
 
       <figure id="edit-plc-fig">
         <title>Place Editor dialog</title>
@@ -2446,9 +3919,6 @@
           </mediaobject>
         </screenshot>
       </figure>
-
-<!-- ==== End of Figure ==== -->
-
 
       <para> 
 
@@ -2615,8 +4085,6 @@
       </variablelist>
     </sect2>
 
-<!-- ================ Usage Sub-subsection ================ -->
-
     <sect2 id="adv-media">
       <title>Editing Information About Media Objects</title>
       <para> 
@@ -2626,8 +4094,6 @@
 	invoke the following <guilabel>Media Properties
 	Editor</guilabel> dialog:
       </para>
-
-<!-- ==== Figure: Edit Media Properties dialog ==== -->
 
       <figure id="edit-media-fig">
         <title>Media Properties Editor dialog</title>
@@ -2643,8 +4109,6 @@
           </mediaobject>
         </screenshot>
       </figure>
-
-<!-- ==== End of Figure ==== -->
 
       <para> 
       A thumbnail preview of the object is presented, along with a
@@ -2761,8 +4225,6 @@
       </variablelist>
     </sect2>
 
-<!-- ================ Usage Sub-subsection ================ -->
-
     <sect2 id="adv-ev">
       <title>Editing Information About Events</title>
       <para> 
@@ -2772,8 +4234,6 @@
       <guilabel>Marriage/Relationship</guilabel> dialog.
       </para>
  
-<!-- ==== Figure: Event Editor dialog ==== -->
-
       <figure id="edit-ev-fig">
         <title>Event Editor dialog</title>
         <screenshot>
@@ -2788,8 +4248,6 @@
           </mediaobject>
         </screenshot>
       </figure>
-
-<!-- ==== End of Figure ==== -->
 
       <para> 
       The central part of the window displays five notebook tabs
@@ -2885,8 +4343,6 @@
       </variablelist> 
     </sect2>
 
-<!-- ================ Usage Sub-subsection ================ -->
-
 <!-- END OF EDIT -->
 
     <sect2 id="adv-si">
@@ -2899,8 +4355,6 @@
       dialog appears:
 
       </para>
-
-<!-- ==== Figure: Source Information dialog ==== -->
 
       <figure id="edit-si-fig">
         <title>Source Information dialog</title>
@@ -2916,7 +4370,6 @@
           </mediaobject>
         </screenshot>
       </figure>
-<!-- ==== End of Figure ==== -->
 
       <para> 
 
@@ -2956,16 +4409,12 @@
       </tip>
     </sect2>
 
-<!-- ================ Usage Sub-subsection ================ -->
-
     <sect2 id="adv-an">
       <title>Names</title>
       <para> 
       Names are edited through the following <guilabel>Name
       Editor</guilabel> dialog: 
       </para>
-
-<!-- ==== Figure: Names Editor dialog ==== -->
 
       <figure id="edit-an-fig">
         <title>Name Editor dialog</title>
@@ -2981,8 +4430,6 @@
           </mediaobject>
         </screenshot>
       </figure>
-
-<!-- ==== End of Figure ==== -->
 
       <para> 
 
@@ -3115,14 +4562,10 @@
       </variablelist>
     </sect2>
 
-<!-- ================ Usage Sub-subsection ================ -->
-
     <sect2 id="adv-at">
       <title>Attributes</title>
       <para> Attributes are edited through the following 
 	<guilabel>Attribute Editor</guilabel> dialog: </para>
-
-<!-- ==== Figure: Attribute Editor dialog ==== -->
 
       <figure id="edit-at-fig">
         <title>Attribute Editor dialog</title>
@@ -3138,8 +4581,6 @@
           </mediaobject>
         </screenshot>
       </figure>
-
-<!-- ==== End of Figure ==== -->
 
       <para> 
 
@@ -3251,15 +4692,11 @@
       </variablelist>
     </sect2>
 
-<!-- ================ Usage Sub-subsection ================ -->
-
     <sect2 id="adv-ad">
       <title>Addresses</title>
       <para> Addresses are edited through the following 
 	<guilabel>Address Editor</guilabel> dialog: 
       </para>
-
-<!-- ==== Figure: Address Editor dialog ==== -->
 
       <figure id="edit-ad-fig">
         <title>Address Editor dialog</title>
@@ -3275,8 +4712,6 @@
           </mediaobject>
         </screenshot>
       </figure>
-
-<!-- ==== End of Figure ==== -->
 
       <para> 
  
@@ -3390,16 +4825,12 @@
       </variablelist>
     </sect2>
 
-<!-- ================ Usage Sub-subsection ================ -->
-
     <sect2 id="adv-wit">
       <title>Witnesses</title>
       <para> 
         Witnesses are edited through the following <guilabel>Witness
 	Editor</guilabel> dialog:
       </para>
-
-<!-- ==== Figure: Witness Editor dialog ==== -->
 
       <figure id="edit-wi-fig">
         <title>Witness Editor dialog</title>
@@ -3415,8 +4846,6 @@
           </mediaobject>
         </screenshot>
       </figure>
-
-<!-- ==== End of Figure ==== --> 
 
       <para> 
 
@@ -3505,7 +4934,6 @@
       </para>
     </sect2>
 
-<!-- ================ Usage Sub-subsection ================ -->
     <sect2 id="adv-merge">
       <title>Merging records</title>
       <para> 
@@ -3571,8 +4999,6 @@
 
 	      </para>
 
-<!-- ==== Figure: Compare People dialog ==== -->
-
               <figure id="comp-people-fig">
                 <title>Compare People dialog</title>
                 <screenshot>
@@ -3587,7 +5013,6 @@
                   </mediaobject>
                 </screenshot>
               </figure>
-<!-- ==== End of Figure ==== -->
 
               <para>
 
@@ -3630,7 +5055,6 @@
 		<guilabel>Merge People</guilabel> dialog.
 
             </para>
-<!-- ==== Figure: Compare People dialog ==== -->
               <figure id="merge-people-fig">
                 <title>Merge People dialog</title>
                 <screenshot>
@@ -3646,7 +5070,6 @@
                   </mediaobject>
                 </screenshot>
               </figure>
-<!-- ==== End of Figure ==== -->
               <para>
 
                 The dialog allows you to quickly merge two records,
@@ -3675,8 +5098,6 @@
         </variablelist>
       </sect3>
 
-<!-- ================ Usage Sub-subsection ================ -->
-
       <sect3 id="adv-merge-sources">
         <title>Merge Sources</title>
         <para>
@@ -3690,8 +5111,6 @@
           Sources</guilabel> dialog.
 
         </para>
-
-<!-- ==== Figure: Merge Sources dialog ==== -->
 
         <figure id="merge-src-fig">
           <title>Merge Sources dialog</title>
@@ -3707,8 +5126,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-<!-- ==== End of Figure ==== -->
 
         <para>
 
@@ -3737,8 +5154,6 @@
           to invoke <guilabel>Select title</guilabel> dialog.
         </para>
 
-<!-- ==== Figure: Select title dialog ==== -->
-
         <figure id="merge-plc-fig">
           <title>Merge Places dialog</title>
           <screenshot>
@@ -3753,8 +5168,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-<!-- ==== End of Figure ==== -->
 
         <para>
 
@@ -3773,8 +5186,6 @@
     </sect2>
   </sect1>
 
-<!-- ================ Usage Subsection ================================ -->
-
   <sect1 id="gramps-nav">
     <title>Navigation</title>
     <para> 
@@ -3792,7 +5203,6 @@
 	&app; at the moment.
  
       </para>
-<!-- ================ Usage Sub-subsection ================ -->
 
     <sect2 id="gramps-nav-people">
       <title>Using the People View </title>
@@ -3808,7 +5218,6 @@
       </para>
     </sect2>
 
-<!-- ================ Usage Sub-subsection ================ -->
     <sect2 id="gramps-nav-family">
       <title>Using the Family View</title>
       <para> 
@@ -3876,8 +5285,6 @@
 
       </para>
     </sect2>
-
-<!-- ================ Usage Sub-subsection ================ -->
 
     <sect2 id="gramps-nav-pedigree">
       <title>Using the Pedigree View</title>
@@ -3968,8 +5375,6 @@
       </tip>
     </sect2>
 
-<!-- ================ Usage Sub-subsection ================ -->
-
     <sect2 id="gramps-nav-default">
       <title>Setting the Home Person</title>
       <para> 
@@ -4006,8 +5411,6 @@
       </para>
     </sect2>
 
-<!-- ================ Usage Sub-subsection ================ -->
-
     <sect2 id="gramps-nav-history">
       <title>Using history-based tools</title>
       <para> 
@@ -4038,8 +5441,6 @@
 
       </para>
     </sect2>
-
-<!-- ================ Usage Sub-subsection ================ -->
 
     <sect2 id="gramps-nav-bookmk">
       <title>Bookmarking People</title>
@@ -4080,8 +5481,6 @@
 
       </para>
 
-<!-- ==== Figure: Edit Bookmarks dialog ==== -->
-
       <figure id="edit-bm-fig">
         <title>Edit Bookmarks dialog</title>
         <screenshot> 
@@ -4097,10 +5496,7 @@
         </screenshot>
       </figure>
 
-<!-- ==== End of Figure ==== -->
     </sect2>
-
-<!-- ================ Usage Sub-subsection ================ -->
 
     <sect2 id="gramps-nav-find">
       <title>Finding records</title>
@@ -4116,8 +5512,6 @@
 
       </para>
 
-<!-- ==== Figure: Type-ahead find ==== -->
-
       <figure id="find-people-fig">
         <title>Type-ahead find</title>
         <screenshot>
@@ -4132,8 +5526,6 @@
           </mediaobject>
         </screenshot>
       </figure>
-
-<!-- ==== End of Figure ==== -->
 
       <para> 
         As you type, the first record in the list that is compatible
@@ -4158,8 +5550,6 @@
       </tip>
     </sect2>
   </sect1>
-
-<!-- ================ Usage Subsection ================================ -->
 
   <sect1 id="gen-reports">
     <title>Generating Reports</title>
@@ -4193,8 +5583,6 @@
       <guilabel>Report Selection</guilabel> dialog invoked by clicking
       the <guibutton>Reports</guibutton> icon on the toolbar.
     </para>
-
-<!-- =============== Usage Sub-subsection ================ -->
 
     <sect2 id="subst-values">
       <title>Substitution Values</title>
@@ -4342,8 +5730,6 @@
 
       </para>
 
-<!-- ==== Figure: Book Report dialog ==== -->
-
       <figure id="rep-book-fig">
         <title>Book Report dialog</title>
         <screenshot>
@@ -4358,8 +5744,6 @@
           </mediaobject>
         </screenshot>
       </figure>
-
-<!-- ==== End of Figure ==== -->
 
       <para> 
 
@@ -4463,8 +5847,6 @@
       </variablelist>
     </sect2>
 
-<!-- =============== Usage Sub-subsection ================ -->
-
     <sect2 id="rep-codegen">
       <title>Code Generators</title>
       <para> 
@@ -4501,8 +5883,6 @@
 	</para>
       </tip>
     </sect2>
-
-<!-- =============== Usage Sub-subsection ================ -->
 
     <sect2 id="rep-graph">
       <title>Graphical Reports</title>
@@ -4645,7 +6025,6 @@
 	</para>
       </tip>
     </sect2>
-<!-- =============== Usage Sub-subsection ================ -->
     <sect2 id="rep-text">
       <title>Text Reports</title>
       <para> 
@@ -4830,8 +6209,6 @@
       </tip>
     </sect2>
 
-<!-- =============== Usage Sub-subsection ================ -->
-
     <sect2 id="rep-view">
       <title>View Reports</title>
       <para> 
@@ -4869,8 +6246,6 @@
         </varlistentry>
       </variablelist>
     </sect2>
-
-<!-- =============== Usage Sub-subsection ================ -->
 
     <sect2 id="rep-web">
       <title>Web Page</title>
@@ -5076,7 +6451,7 @@
       </sect3>
     </sect2>
   </sect1>
-<!-- ================ Usage Subsection ================================ -->
+
   <sect1 id="gramps-tools">
     <title>Running Tools</title>
     <para> 
@@ -5111,8 +6486,6 @@
       the <guibutton>Tools</guibutton> icon on the toolbar.
 
     </para>
-
-<!-- =============== Usage Sub-subsection ================ -->
 
     <sect2 id="tools-ae">
       <title>Analysis and Exploration</title>
@@ -5164,7 +6537,7 @@
         </varlistentry>
       </variablelist>
     </sect2>
-<!-- =============== Usage Sub-subsection ================ -->
+
     <sect2 id="tools-db">
       <title>Database Processing</title>
       <para> 
@@ -5304,8 +6677,6 @@
       </variablelist>
     </sect2>
 
-<!-- =============== Usage Sub-subsection ================ -->
-
     <sect2 id="tools-debug">
       <title>Debug</title>
       <para> 
@@ -5358,8 +6729,6 @@
       </variablelist>
     </sect2>
 
-<!-- =============== Usage Sub-subsection ================ -->
-
     <sect2 id="tools-util">
       <title>Utilities</title>
       <para> 
@@ -5411,8 +6780,6 @@
 
 	</para>
 
-<!-- ==== Figure: Define filter dialog ==== -->
-
         <figure id="cfe-df-fig">
           <title>Define filter dialog</title>
           <screenshot>
@@ -5427,8 +6794,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-<!-- ==== End of Figure ==== -->
 
         <para> 
 
@@ -5462,8 +6827,6 @@
 
         </para>
 
-<!-- ==== Figure: Add Rule dialog ==== -->
-
         <figure id="cfe-ar-fig">
           <title>Add Rule dialog</title>
           <screenshot>
@@ -5478,8 +6841,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-<!-- ==== End of Figure ==== -->
 
         <para>
 
@@ -5540,8 +6901,6 @@
 
 	</para>
 
-<!-- ==== Figure: Scratch Pad tool ==== -->
-
         <figure id="scratch-pad-fig">
           <title>Scratch Pad tool</title>
           <screenshot>
@@ -5556,8 +6915,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-<!-- ==== End of Figure ==== -->
 
         <para>
 
@@ -5672,3 +7029,1087 @@
     </sect2>
   </sect1>
 </chapter>
+
+<chapter id="gramps-settings"> 
+
+    <title>Settings</title> 
+    
+    <sect1 id="gramps-prefs">
+    <title>Preferences</title> 
+
+    <para>Most of the settings in &app;, are configured in the 
+    <guilabel>Preferences</guilabel> dialog. To invoke it, choose
+    <menuchoice><guimenu>Edit</guimenu>
+    <guimenuitem>Preferences...</guimenuitem></menuchoice>. </para>
+
+	<figure id="prefs-fig"> 
+	<title>Preferences dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/prefs.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Preferences dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+
+      <para>The pane on the left displays the tree of available option
+      categories. Selecting a tree node will display the corresponding
+      options in the right side of the dialog. </para>
+      
+    <sect2 id="gramps-prefs-db"> 
+      <title>Database</title> 
+	<para> This category contains preferences relevant to the 
+	database itself. It has the following subcategories: </para>
+
+	<variablelist>
+	<varlistentry><term><guilabel>General</guilabel></term>
+	<listitem>
+		<variablelist>
+		<varlistentry><term><guilabel>Automatically
+		load last database</guilabel></term>
+		<listitem><para> Check this box to automatically load the
+		last open database on startup. </para></listitem>
+		</varlistentry>
+
+		<varlistentry><term><guilabel>Family name guessing</guilabel></term>
+		<listitem><para> This option affects the initial family name of a 
+		child when he/she is added to the database. </para>
+		
+		<tip><para>This option only
+		affects the initial family name guessed by &app; when the 
+		<guilabel>Edit Person</guilabel> dialog is launched. You can modify
+		that name the way you see fit. Set this option to the value that you 
+		will most frequently use, as it will save you a lot of
+		typing.</para></tip>
+	
+		<para>If <guilabel>None</guilabel> is selected, no guessing will be 
+		attempted. Selecting <guilabel>Father's surname</guilabel> will use
+		the family name of the father. Selecting <guilabel>Combination of 
+		mother's and father's surname</guilabel> will use the father's name 
+		followed by the mother's name. Finally, <guilabel>Icelandic 
+		style</guilabel> will use the father's given name followed by the 
+		&quot;sson&quot; suffix (e.g. the son of Edwin will be guessed as 
+		Edwinsson).
+		</para></listitem>
+		</varlistentry>
+		</variablelist>
+	</listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>GRAMPS IDs</guilabel></term>
+	<listitem><para> Enter ID prefixes for various kinds of database 
+	entries into the corresponding text entry fields. 
+	</para>
+	
+	<tip><para>The ID prefixes use formatting conventions common for
+	C, Python, and other programming languages. For example, the %04d
+	expands to an integer, prepended with zeros to have the total
+	width of four digits. If you would like IDs to be 1, 2, 3, etc,
+	simply set the formatting parameter to %d.
+	</para></tip>
+	</listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Researcher Information</guilabel></term>
+	<listitem><para> Enter your personal information in the corresponding
+	text entry fields. Although &app; requests information about you, 
+	this information is used only so that &app; can create valid GEDCOM 
+	output files. A valid GEDCOM file requires information about the file's 
+	creator. If you choose, you may leave the information empty, however 
+	none of your exported GEDCOM files will be valid. 
+	</para>
+	</listitem>
+	</varlistentry>
+
+	</variablelist>
+    </sect2>
+
+    <sect2 id="gramps-prefs-display"> 
+      <title>Display</title> 
+	<para> This category contains preferences relevant to  
+	displaying database records and controls in &app;. 
+	It has the following subcategories:</para>
+
+	<variablelist>
+
+	<varlistentry><term><guilabel>General</guilabel></term>
+	<listitem>
+
+		<variablelist>
+		
+		<varlistentry><term><guilabel>Default view</guilabel></term>
+		<listitem><para> This determines which view will appear when
+		you start &app;. Choose between Person and Family views. 
+		</para></listitem>
+		</varlistentry>
+
+		<varlistentry><term><guilabel>Family view style</guilabel></term>
+		<listitem><para> This selects between the two available styles
+		of the Family view layout. The <guilabel>Left to right</guilabel>
+		style is similar to the Family Tree Maker (tm), while the
+		<guilabel>Top to bottom</guilabel> is similar to the Reunion. 
+		</para></listitem>
+		</varlistentry>
+
+		<varlistentry><term><guilabel>Always display the LDS ordinance
+		tabs</guilabel></term>
+		<listitem><para> Check this box to have LDS ordinance tabs
+		displayed. If you do not know what LDS is then you probably
+		should not check it. </para></listitem></varlistentry>
+
+		<varlistentry><term><guilabel>Display Tip of the
+		Day</guilabel></term>
+		<listitem><para> Check this box to have the <guilabel>Tip
+		of the Day</guilabel> dialog appear on every startup.
+		The tips are displayed randomly from the large collection
+		of information bits on &app;.
+		</para>
+		
+		<tip><para>The <guilabel>Tip of the Day</guilabel> is likely
+		to be useful for new user of &app;.
+		</para></tip>
+		</listitem></varlistentry>
+		
+		</variablelist>
+
+	</listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Dates</guilabel></term>
+
+	<listitem>
+	<para> Select the display format for the dates
+	from the available formats listed in this menu. 
+	</para>
+	
+	<tip><para>Available date display formats are language-specific.
+	Depending on whether or not there is a &app; date displayer 
+	available for your language, you may or may not have a lot of
+	choices.
+	</para></tip>
+	
+	</listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Toolbar and Statusbar</guilabel></term>
+	<listitem>
+
+		<variablelist>
+	
+		<varlistentry><term><guilabel>Toolbar</guilabel></term>
+		<listitem><para> Select the desired appearance of the toolbar
+		icons from the menu. Selecting <guilabel>GNOME
+		Settings</guilabel> will use the overall settings selected
+		for your GNOME desktop.
+		</para></listitem>
+		</varlistentry>
+
+		<varlistentry><term><guilabel>Statusbar</guilabel></term>
+		<listitem><para> Select the desired contents displayed in the 
+		statusbar using the radio buttons. 
+		</para></listitem>
+		</varlistentry>
+
+		</variablelist>
+
+	</listitem>
+	</varlistentry>
+
+	</variablelist>
+    </sect2>
+
+    </sect1>
+    
+    <sect1 id="gramps-prefs-other">
+    <title>Other settings</title>
+    
+    <para>Besides <guilabel>Preferences</guilabel> dialog, there are
+    other settings available in &app;. For various reasons they have been
+    made more readily accessible, as listed below.</para>
+    
+    <variablelist>
+	<varlistentry>
+	<term>Column Editor</term>
+    <listitem>
+    <para>The columns of the list views may be added, removed, or reordered
+    in a <guilabel>Column Editor Dialog</guilabel>,	
+    see <xref linkend="column-editor-fig"/>. Only checked columns will
+    be shown in the view. To change their order, drag any column to its desired place inside
+	the editor. Clicking <guibutton>OK</guibutton> will reflect the changes
+	in the appropriate view. To invoke <guilabel>Column Editor Dialog</guilabel>,
+	choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Column
+	Editor...</guimenuitem></menuchoice>.
+	</para>
+
+	<tip>
+	<para>The <guilabel>Column Editor</guilabel> is available
+	and works in the same way for all list views.
+    Specifically, it is available for People View, Family View (children list).
+    Sources View, Places View, and Media View.</para> </tip>
+
+	</listitem>
+	</varlistentry>
+
+	<varlistentry><term>Setting Home person</term>
+	<listitem><para>The Home person is the person who becomes active
+    when database opened, when <guibutton>Home</guibutton> button is clicked
+    or the <guimenuitem>Home</guimenuitem> menu item is selected from
+    either <guimenu>Go</guimenu> menu or the right-click context menu
+    anywhere.</para>
+    
+    <para>To set Home person, make the desired person active and
+    then choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Set Home
+	person...</guimenuitem></menuchoice>.</para>
+	</listitem>
+	</varlistentry>
+
+
+	<varlistentry><term>Adjusting viewing controls</term>
+	<listitem><para>Whether the toolbar, the sidebar, or the filter (People View
+    only) are displayed in the main window is adjusted through
+    the <guimenu>View</guimenu> menu.
+	</para></listitem>
+	</varlistentry>
+
+  	</variablelist>
+
+    </sect1>
+    
+    <sect1 id="gramps-prefs-adv">
+    <title>Advanced manipulation of settings</title>
+    
+    <warning><para>The contents of this section is outside the scope
+    of interest of a general user of &app;. If you proceed with tweaking
+    the options on the low level you may damage your &app; installation.
+    Be careful. YOU HAVE BEEN WARNED!
+    </para></warning>
+    
+    <para>By default, &app; stores its settings using gconf2 system.
+    All the settings used in this version of &app; are stored in
+    subdirectories under <filename>/apps/gramps/</filename> in the 
+    gconf2 namespace. Accessing the keys can be done either using 
+    <command>gconftool-2</command> command line tool, or the
+    <command>gconf-editor</command> GUI tool.
+    </para>
+    
+    <para>All keys are documented, and the notification mechanisms
+    are used as appropriate. Therefore, updating keys from outside
+    of &app; should lead to updating &app; in real time, without
+    necessarily restarting it.</para>
+    </sect1>
+
+  </chapter>
+
+<appendix id="append-keybind">
+
+      <title>Keybindings reference</title>
+      <para>Most of the standard menu items define equivalent keybindings.
+      These are apparent because they are displayed on the right of
+      the menu item. However, some keybindings are not associated with
+      any items in the menu.  </para>  
+      
+      <para>This appendix contains the list of keybindings that are not 
+      displayed in menus of &app;.
+      </para>
+      
+    	<sect1 id="keybind-lists">
+        <title>List Views</title>
+        <para>The following bindings are available in all list views:
+        People View, Sources View, Places View, and Media View.</para>
+        
+        <informaltable frame="topbot"> 
+        <tgroup cols="2"> 
+        <colspec colname="col1"/> 
+        <colspec colname="col2"/> 
+        <thead> 
+        <row valign="top">
+          <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
+          <entry colname="col2" valign="top"><para>Function</para></entry> 
+        </row> 
+        </thead>
+        <tbody> 
+        <row valign="top"> 
+          <entry><para><keycap>Enter</keycap></para></entry> 
+          <entry><para>Invoke <guilabel>Edit Person</guilabel> dialog 
+          with the selected person.</para></entry> 
+        </row>  
+        </tbody> 
+        </tgroup>
+        </informaltable> 
+
+        </sect1>
+
+
+    	<sect1 id="keybind-family">
+        <title>Family View</title>
+        <para>The bindings available in the Family View depend on where the
+        focus is. The following tables list the bindings for all focus 
+        targets.</para>
+        
+          <variablelist>
+
+          <varlistentry><term>Focus on the Active Person</term>
+          <listitem>
+
+          <informaltable frame="topbot"> 
+          <tgroup cols="2"> 
+          <colspec colname="col1"/> 
+          <colspec colname="col2"/> 
+          <thead> 
+          <row valign="top">
+            <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
+            <entry colname="col2" valign="top"><para>Function</para></entry> 
+          </row> 
+          </thead>
+          <tbody> 
+          <row valign="top"> 
+            <entry><para><keycap>Enter</keycap></para></entry> 
+            <entry><para>Invoke <guilabel>Edit Person</guilabel> dialog with 
+            the active person.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><keycap>Ctrl</keycap>+<keycap>Down</keycap> 
+            or <keycap>Ctrl</keycap>+<keycap>Right</keycap></para></entry> 
+            <entry><para>Swap the Active Person and the selected spouse.
+            Use <keycap>Ctrl</keycap>+<keycap>Down</keycap> in standard Family View and
+            <keycap>Ctrl</keycap>+<keycap>Right</keycap> in alternative Family  
+            View.</para></entry> 
+          </row>  
+          </tbody> 
+          </tgroup>
+          </informaltable> 
+
+          </listitem>
+          </varlistentry>
+
+
+          <varlistentry><term>Focus on the Spouse box</term>
+          <listitem>
+          
+          <informaltable frame="topbot"> 
+          <tgroup cols="2"> 
+          <colspec colname="col1"/> 
+          <colspec colname="col2"/> 
+          <thead> 
+          <row valign="top">
+            <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
+            <entry colname="col2" valign="top"><para>Function</para></entry> 
+          </row> 
+          </thead>
+          <tbody> 
+          <row valign="top"> 
+            <entry><para><keycap>Enter</keycap></para></entry> 
+            <entry><para>Edit relationship between the Active Person and 
+            the selected spouse.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><keycap>Shift</keycap>+<keycap>Enter</keycap></para></entry> 
+            <entry><para>Edit the personal information for the selected
+            spouse.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><keycap>Insert</keycap></para></entry> 
+            <entry><para>Add a person from the database to the spouse 
+            list.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><keycap>Shift</keycap>+<keycap>Insert</keycap></para></entry> 
+            <entry><para>Add a new person to the database and to the spouse 
+            list.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><keycap>Delete</keycap></para></entry> 
+            <entry><para>Delete the selected spouse from the spouse 
+            list. The spouse is not deleted from the database.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><keycap>Ctrl</keycap>+<keycap>Up</keycap> 
+            or <keycap>Ctrl</keycap>+<keycap>Left</keycap></para></entry> 
+            <entry><para>Swap the selected spouse and the Active Person.
+            Use <keycap>Ctrl</keycap>+<keycap>Up</keycap> in standard Family View and
+            <keycap>Ctrl</keycap>+<keycap>Left</keycap> in alternative Family  
+            View.</para></entry> 
+          </row>  
+          </tbody> 
+          </tgroup>
+          </informaltable> 
+          
+          </listitem>
+          </varlistentry>
+
+
+          <varlistentry><term>Focus on the Parents box</term>
+          <listitem>
+          
+          <informaltable frame="topbot"> 
+          <tgroup cols="2"> 
+          <colspec colname="col1"/> 
+          <colspec colname="col2"/> 
+          <thead> 
+          <row valign="top">
+            <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
+            <entry colname="col2" valign="top"><para>Function</para></entry> 
+          </row> 
+          </thead>
+          <tbody> 
+          <row valign="top"> 
+            <entry><para><keycap>Enter</keycap></para></entry> 
+            <entry><para>Edit relationship between the parents and their 
+            child (either the Active Person or the selected spouse, depending 
+            which parents box the focus is in).</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><keycap>Insert</keycap></para></entry> 
+            <entry><para>Add a new set of parents from the database to the 
+            list.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><keycap>Shift</keycap>+<keycap>Insert</keycap></para></entry> 
+            <entry><para>Add a new set of parents to the database and to the 
+            list.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><keycap>Delete</keycap></para></entry> 
+            <entry><para>Delete the selected parents from the list. 
+            The parents are not deleted from the database.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><keycap>Ctrl</keycap>+<keycap>Right</keycap> 
+            or <keycap>Ctrl</keycap>+<keycap>Down</keycap></para></entry> 
+            <entry><para>Make the selected parents the active family.
+            Use <keycap>Ctrl</keycap>+<keycap>Right</keycap> in standard Family View and
+            <keycap>Ctrl</keycap>+<keycap>Down</keycap> in alternative Family  
+            View.</para></entry> 
+          </row>  
+          </tbody> 
+          </tgroup>
+          </informaltable> 
+          
+          </listitem>
+          </varlistentry>
+
+
+          <varlistentry><term>Focus on the Children box</term>
+          <listitem>
+          
+          <informaltable frame="topbot"> 
+          <tgroup cols="2"> 
+          <colspec colname="col1"/> 
+          <colspec colname="col2"/> 
+          <thead> 
+          <row valign="top">
+            <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
+            <entry colname="col2" valign="top"><para>Function</para></entry> 
+          </row> 
+          </thead>
+          <tbody> 
+          <row valign="top"> 
+            <entry><para><keycap>Enter</keycap></para></entry> 
+            <entry><para>Edit relationship between the child and his/her  
+            parents (the Active Person and the selected 
+            spouse).</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><keycap>Shift</keycap>+<keycap>Enter</keycap></para></entry> 
+            <entry><para>Edit the personal information for the selected
+            child.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><keycap>Insert</keycap></para></entry> 
+            <entry><para>Add a new person from the database to the children 
+            list.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><keycap>Shift</keycap>+<keycap>Insert</keycap></para></entry> 
+            <entry><para>Add a new person to the database and to the children
+            list.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><keycap>Delete</keycap></para></entry> 
+            <entry><para>Delete the selected child from the list. 
+            The child is not deleted from the database.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><keycap>Ctrl</keycap>+<keycap>Left</keycap> 
+            or <keycap>Ctrl</keycap>+<keycap>Up</keycap></para></entry> 
+            <entry><para>Make the selected child the Active Person.
+            Use <keycap>Ctrl</keycap>+<keycap>Left</keycap> in standard Family View and
+            <keycap>Ctrl</keycap>+<keycap>Up</keycap> in alternative Family  
+            View.</para></entry> 
+          </row>  
+          </tbody> 
+          </tgroup>
+          </informaltable> 
+          
+          </listitem>
+          </varlistentry>
+
+          </variablelist>
+
+        </sect1>
+
+</appendix>
+
+<appendix id="append-filtref">
+
+      <title>Filter rules reference</title>
+      <para>This appendix lists of all the filter rules currently defined 
+      in &app;. Each of these rules is available for use when creating custom 
+      filters, see <xref linkend="tools-util-cfe"/>. The rules are
+      listed by their categories. 
+      </para>
+
+    	<sect1 id="filtref-general">
+        <title>General filters</title>
+        <para>This category includes the following most general rules:</para>
+        
+          <variablelist>
+
+          <varlistentry><term>Has complete record</term>
+          <listitem><para> This rule matches all people whose records are 
+          marked as complete. Currently, the completeness of personal 
+          information is marked manually, in the <guilabel>Edit Person</guilabel> 
+          dialog. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People with incomplete names</term>
+          <listitem><para> This rule matches all people with either
+          given name or family name missing.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is bookmarked person</term>
+          <listitem><para> This rule matches all people who are on the
+          bookmark list.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Has text matching substring of</term>
+          <listitem><para> This rule matches all people whose records contain
+          specified substring. All textual records are searched. Optionally,
+          the search can be made case sensitive, or a regular expression 
+          match.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Everyone</term>
+          <listitem><para> This rule matches any person in the database.
+          As such it is not very useful on its own except for testing purposes.
+          However, it may be useful in combinations with other rules. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People probably alive</term>
+          <listitem><para> This rule matches all people whose records do
+          not indicate their death and who are not unreasonably old,
+          judging by their available birth data and today's date.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Has a name</term>
+          <listitem><para> This rule matches any person whose name 
+          matches the specified value in full or in part. For example, 
+          Marta Ericsdotter will be matched by the rule using the 
+          value "eric" for the family name. 
+          </para>
+
+          <para> Separate values can be used for Given name, Family name, 
+          Suffix, and the Title. The rule returns a match if, and only if, 
+          all non-empty values are (partially) matched by a person's 
+          name. To use just one value, leave the other values empty. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Has the Id</term>
+          <listitem><para> This rule matches any person with a specified
+          &app; ID. The rule returns a match only if the ID is matched 
+          exactly. 
+          </para>
+
+          <para> You can either enter the ID into a text entry field, or 
+          select a person from the list by clicking 
+          <guibutton>Select...</guibutton> button. In the latter case, the 
+          ID will appear in the text field after the selection was made. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is default person</term>
+          <listitem><para> This rule matches the default (home) person. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People marked private</term>
+          <listitem><para> This rule matches people whose records are marked
+          as private.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is a female</term>
+          <listitem><para> This rule matches any female person. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People who have images</term>
+          <listitem><para> This rule matches people with images in their
+          galleries.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People without a birth date</term>
+          <listitem><para> This rule matches people missing birth date.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is a male</term>
+          <listitem><para> This rule matches any male person. 
+          </para></listitem>
+          </varlistentry>
+
+          </variablelist>
+
+        </sect1> 
+
+    	<sect1 id="filtref-event">
+        <title>Event filters</title>
+        <para>This category includes the following rules that match people
+        based on their recorded events:</para>
+          <variablelist>
+
+          <varlistentry><term>Has the birth</term>
+          <listitem><para> This rule matches people whose birth event 
+          matches specified values for Date, Place, and Description. 
+          The rule returns a match even if the person's birth event matches 
+          the value partially. The matching rules are case-insensitive. 
+          For example, anyone born in Sweden will be matched by the rule 
+          using the value "sw" for the Place. 
+          </para>
+
+          <para> The rule returns a match if, and only if, 
+          all non-empty values are (partially) matched by a person's 
+          birth. To use just one value, leave the other values empty. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Has the death</term>
+          <listitem><para> This rule matches people whose death event 
+          matches specified values for Date, Place, and Description. 
+          The rule returns a match even if the person's death event 
+          matches the value partially. The matching rules are case-insensitive. 
+          For example, anyone who died in Sweden
+          will be matched by the rule using the value "sw" for the Place.
+          </para>
+
+          <para> The rule returns a match if, and only if, 
+          all non-empty values are (partially) matched by a person's 
+          death. To use just one value, leave the other values empty. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Has source of</term>
+          <listitem><para> This rule matches people whose records refer
+          to the specified source.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Has the personal event</term>
+          <listitem><para> This rule matches people that have a personal 
+          event matching specified values for the Event type, Date, Place, 
+          and Description. The rule returns a match even if the person's 
+          event matches the value partially. The matching rules are 
+          case-insensitive. For example, anyone who graduated 
+          in Sweden will be matched by the rule using the Graduation event 
+          and the value "sw" for the Place.
+          </para>
+
+          <para> The personal events should be selected from a pull-down menu. 
+          The rule returns a match if, and only if, all non-empty values 
+          are (partially) matched by the personal event. 
+          To use just one value, leave the other values empty. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Has the family event</term>
+          <listitem><para> This rule matches people that have a family 
+          event matching specified values for the Event type, Date, Place, 
+          and Description. The rule returns a match even if the person's 
+          event matches the value partially. The matching rules are 
+          case-insensitive. For example, anyone who was married in Sweden 
+          will be matched by the rule using the Marriage event and the 
+          value "sw" for the Place. 
+          </para>
+
+          <para> The family events should be selected from a pull-down menu. 
+          The rule returns a match if, and only if, all non-empty values 
+          are (partially) matched by the personal event. 
+          To use just one value, leave the other values empty. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Witness</term>
+          <listitem><para> This rule matches people who are present as
+          a witness in the event. If the personal or family event type is
+          specified, only the events of this type will be searched.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People with incomplete events</term>
+          <listitem><para> This rule matches people missing date or place in
+          any personal event.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Families with incomplete events</term>
+          <listitem><para> This rule matches people missing date or place in
+          any family event of any of their families.
+          </para></listitem>
+          </varlistentry>
+
+          </variablelist>
+        </sect1> 
+
+    	<sect1 id="filtref-family">
+        <title>Family filters</title>
+        <para>This category includes the following rules that match people 
+        based on their family relationships:</para>
+          <variablelist>
+
+          <varlistentry><term>People with children</term>
+          <listitem><para> This rule matches people with children.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People with multiple marriage records</term>
+          <listitem><para> This rule matches people with more than one spouse.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People with no marriage records</term>
+          <listitem><para> This rule matches people with no spouses.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People who were adopted</term>
+          <listitem><para> This rule matches adopted people.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Has the relationships</term>
+          <listitem><para> This rule matches people with a particular 
+          relationship. The relationship must match the type selected from 
+          the menu. Optionally, the number of relationships and the number 
+          of children can be specified. 
+          </para>
+
+          <para> The rule returns a match if, and only if, 
+          all non-empty values are (partially) matched by a person's 
+          relationship. To use just one value, leave the other values empty. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is spouse of filter match</term>
+          <listitem><para> This rule matches people married to someone 
+          who is matched by the specified filter. 
+          The specified filter name should be selected from the menu. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is a child of filter match</term>
+          <listitem><para> This rule matches people for whom either parent  
+          is matched by the specified filter. 
+          The specified filter name should be selected from the menu. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is a parent of filter match</term>
+          <listitem><para> This rule matches people whose child  
+          is matched by the specified filter. 
+          The specified filter name should be selected from the menu. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is a sibling of filter match</term>
+          <listitem><para> This rule matches people whose sibling  
+          is matched by the specified filter. 
+          The specified filter name should be selected from the menu. 
+          </para></listitem>
+          </varlistentry>
+
+          </variablelist>
+        </sect1> 
+
+    	<sect1 id="filtref-ancestral">
+        <title>Ancestral filters</title>
+        <para>This category includes the following rules that match people 
+        based on their ancestral relations to other people:</para>
+          <variablelist>
+
+          <varlistentry><term>Is an ancestor of</term>
+          <listitem><para> This rule matches people who are ancestors of the 
+          specified person. The Inclusive option determines whether the 
+          specified person should be considered his/her own ancestor (useful 
+          for building reports). 
+          </para>
+
+          <para> You can either enter the ID into a text entry field, or 
+          select a person from the list by clicking 
+          <guibutton>Select...</guibutton> button. In the latter case, the 
+          ID will appear in the text field after the selection was made.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is an ancestor of person at 
+          least N generations away</term>
+          <listitem><para> This rule matches people who are ancestors of the 
+          specified person and are at least N generations away from that person 
+          in their lineage. For example, using this rule with the value of 2 
+          for the number of generations will match grandparents, 
+          great-grandparents, etc., but not the parents of the specified 
+          person. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is an ancestor of person not more 
+          than N generations away</term>
+          <listitem><para> This rule matches people who are ancestors of the 
+          specified person and are no more than N generations away from that 
+          person in their lineage. For example, using this rule with the value 
+          of 2 for the number of generations will match parents and 
+          grandparents, but not great-grandparents, etc., of the specified 
+          person. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Has a common ancestor with</term>
+          <listitem><para> This rule matches people who have common ancestors 
+          with the specified person. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Has a common ancestor with filter match</term>
+          <listitem><para> This rule matches people who have common ancestors 
+          with someone who is matched by the specified filter.
+          The specified filter name should be selected from the menu. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is an ancestor of filter match</term>
+          <listitem><para> This rule matches people who are ancestors 
+          of someone who is matched by the specified filter.
+          The specified filter name should be selected from the menu. 
+          </para></listitem>
+          </varlistentry>
+
+          </variablelist>
+        </sect1> 
+
+    	<sect1 id="filtref-descendant">
+        <title>Descendant filters</title>
+        <para>This category includes the following rules that match people 
+        based on their descendant relations to other people:</para>
+          <variablelist>
+
+          <varlistentry><term>Is a descendant of</term>
+          <listitem><para> This rule matches people who are descendants of the 
+          specified person. The Inclusive option determines whether the 
+          specified person should be considered his/her own descendant (useful 
+          for building reports). 
+          </para>
+
+          <para> You can either enter the ID into a text entry field, or 
+          select a person from the list by clicking 
+          <guibutton>Select...</guibutton> button. In the latter case, the 
+          ID will appear in the text field after the selection was made.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is a descendant of person at 
+          least N generations away</term>
+          <listitem><para> This rule matches people who are descendants of the 
+          specified person and are at least N generations away from that person 
+          in their lineage. For example, using this rule with the value of 2 
+          for the number of generations will match grandchildren, 
+          great-grandchildren, etc., but not the children of the specified 
+          person.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is a descendant of person not more 
+          than N generations away</term>
+          <listitem><para> This rule matches people who are descendants of the 
+          specified person and are no more than N generations away from that 
+          person in their lineage. For example, using this rule with the value 
+          of 2 for the number of generations will match children and 
+          grandchildren, but not great-grandchildren, etc., of the specified 
+          person. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is a descendant of filter match</term>
+          <listitem><para> This rule matches people who are descendants 
+          of someone who is matched by the specified filter.
+          The specified filter name should be selected from the menu. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is a descendant family member of</term>
+          <listitem><para> This rule not only matches people who are 
+          descendants of the specified person, but also those descendants' 
+          spouses.
+          </para></listitem>
+          </varlistentry>
+
+          </variablelist>
+        </sect1> 
+
+    	<sect1 id="filtref-relat">
+        <title>Relationship filters</title>
+        <para>This category includes the following rules that match people
+        based on their mutual relationship:</para>
+          <variablelist>
+
+          <varlistentry><term>Relationship path between two people</term>
+          <listitem><para> This rule matches all ancestors of both people
+          back to their common ancestors (if exist). This produces the 
+          &quot;relationship path&quot; between these two people, through
+          their common ancestors. 
+          </para>
+          
+          <para> You can either enter the ID of each person into the 
+          appropriate text entry fields, or select people from the list by 
+          clicking their <guibutton>Select...</guibutton> buttons. In the 
+          latter case, the ID will appear in the text field after the 
+          selection was made.
+          </para>
+          </listitem>
+          </varlistentry>
+
+          </variablelist>
+        </sect1>
+        
+    	<sect1 id="filtref-misc">
+        <title>Miscellaneous filters</title>
+        <para>This category includes the following rules which do not
+        naturally fit into any of the above categories:</para>
+          <variablelist>
+
+          <varlistentry><term>Has the personal attribute</term>
+          <listitem><para> This rule matches people who have the personal 
+          attribute of the specified value. The specified personal attribute
+          name should be selected from the menu. The specified value should 
+          be typed into the text entry field. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Has the family attribute</term>
+          <listitem><para> This rule matches people who have the family 
+          attribute of the specified value. The specified family attribute
+          should be selected from the menu. The specified value should be 
+          typed into the text entry field. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Matches the filter named</term>
+          <listitem><para> This rule matches people who are matched 
+          by the specified filter. 
+          The specified filter name should be selected from the menu. 
+          </para></listitem>
+          </varlistentry>
+
+          </variablelist>
+        </sect1>
+        
+</appendix> 
+
+<!-- &cmdline; -->
+<appendix id="mayapp-bugs">
+
+  <title>Known Bugs and Limitations</title>
+
+<para>The known limitations include the BSDDB performance issues related
+to caching and the memory size. As long as the BSDDB cache fits completely
+into the available memory on the system, the performance should be
+adequate. When the cache size exceeds that of the free memory and
+portions of database cache start to be swapped onto the disk, the performance
+degrades appreciably. This can be solved by adjusting the BSDDB cache
+size for the large databases.
+</para>
+
+</appendix >
+  <appendix id="gramps-about"> 
+
+    <title>About GRAMPS</title> 
+    <para> &app; was written by Donald N. Allingham
+      (<email>don@gramps-project.org</email>).</para>
+      
+      <para>
+      The somewhat incomplete list of contributors includes (in alphabetical order):
+      <itemizedlist>
+
+<listitem><para>Larry Allingham</para></listitem>
+<listitem><para>Larry Allingham, Jr.</para></listitem>
+<listitem><para>Jens Arvidsson</para></listitem>
+<listitem><para>Marcos Bedinelli</para></listitem>
+<listitem><para>Douglas S. Blank</para></listitem>
+<listitem><para>Radu Bogdan Mare</para></listitem>
+<listitem><para>Alexander Bogdashevsky</para></listitem>
+<listitem><para>Richard Bos</para></listitem>
+<listitem><para>Nathan Bullock</para></listitem>
+<listitem><para>Lorenzo Cappelletti</para></listitem>
+<listitem><para>Pier Luigi Cinquantini</para></listitem>
+<listitem><para>Bruce J. DeGrasse</para></listitem>
+<listitem><para>Alexandre Duret-Lutz</para></listitem>
+<listitem><para>Billy C. Earney</para></listitem>
+<listitem><para>Baruch Even</para></listitem>
+<listitem><para>Bernd Felsche</para></listitem>
+<listitem><para>Egyeki Gergely</para></listitem>
+<listitem><para>Michel Guitel</para></listitem>
+<listitem><para>Steve Hall</para></listitem>
+<listitem><para>David R. Hampton</para></listitem>
+<listitem><para>Martin Hawlisch</para></listitem>
+<listitem><para>Anton Huber</para></listitem>
+<listitem><para>Frode Jemtland</para></listitem>
+<listitem><para>Greg Kuperberg</para></listitem>
+<listitem><para>Arkadiusz Lipiec</para></listitem>
+<listitem><para>Lars Kr. Lundin</para></listitem>
+<listitem><para>Radek Malcic</para></listitem>
+<listitem><para>Leonid Mamtchenkov</para></listitem>
+<listitem><para>Tino Meinen</para></listitem>
+<listitem><para>Frederick Noronha</para></listitem>
+<listitem><para>Jeffrey C. Ollie</para></listitem>
+<listitem><para>Donald A. Peterson</para></listitem>
+<listitem><para>Guillaume Pratte</para></listitem>
+<listitem><para>Laurent Protois</para></listitem>
+<listitem><para>Matthieu Pupat</para></listitem>
+<listitem><para>Trevor Rhodes</para></listitem>
+<listitem><para>Alexander Roitman</para></listitem>
+<listitem><para>Jason Salaz</para></listitem>
+<listitem><para>Julio Sanchez</para></listitem>
+<listitem><para>Bernd Schandl</para></listitem>
+<listitem><para>Martin Senftleben</para></listitem>
+<listitem><para>Gary Shao</para></listitem>
+<listitem><para>Jim Smart</para></listitem>
+<listitem><para>Steve Swales</para></listitem>
+<listitem><para>Eero Tamminen</para></listitem>
+<listitem><para>Samuel Tardieu</para></listitem>
+<listitem><para>Richard Taylor</para></listitem>
+<listitem><para>James Treacy</para></listitem>
+<listitem><para>Sebastian Voecking</para></listitem>
+<listitem><para>Xing Wang</para></listitem>
+<listitem><para>Tim Waugh</para></listitem>
+<listitem><para>Jesper Zedlitz</para></listitem>
+      </itemizedlist>
+If you know of somebody else who should be listed here, please let us know.
+      </para>
+      
+      <para>
+      To find more information about &app;, please visit the 
+      <ulink url="http://gramps.sourceforge.net" type="http">GRAMPS Project 
+      Web page</ulink>. </para>
+    <para>
+      To report a bug or make a suggestion regarding this application or
+      this manual, use the help menu in &app;, or follow the directions 
+      on <ulink url="http://gramps.sourceforce.net/contact.html"  type="http">this site.</ulink>
+    </para>
+
+  </appendix>
+      
+</book>

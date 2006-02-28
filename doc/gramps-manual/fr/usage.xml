@@ -2285,7 +2285,119 @@ directement vers n'importe quelle personne sélectionnée récemment.
 	</para>
 
 
-      <!-- =============== Usage Sub-subsection ================ -->
+	<!-- =============== Usage Sub-subsection ================ -->
+	
+	<sect2 id="subst-values">
+		<title>Valeurs de substitution</title>
+		<para>
+			La plupart des rapports graphiques vous permettent de personnaliser les informations affichées. Les variables de substitution sont représentées par des symboles particuliers. Il existe 2 styles de variables 
+			Leurs différences se trouvent dans la gestion des données vides.
+		</para>
+		<para>
+			Le premier style est une variable précédée par '$'. Si cette variable se rapporte à une chaîne vide alors elle sera remplacée par une chaîne vide. Le second style est une variable précédée par '%'. Si cette variable se rapporte à une chaîne vide alors la ligne contenant la variable sera retirée lors de la sortie.
+		</para>
+		<variablelist>
+			<varlistentry>
+				<term>$n/%n</term>
+				<listitem>
+					<para>
+						Affiche le nom de l'individu : Prénom Nom
+					</para>
+				</listitem>
+			</varlistentry>
+			
+			<varlistentry>
+				<term>$N/%N</term>
+				<listitem>
+					<para>
+						Affiche le nom de l'individu : Nom Prénom
+					</para>
+				</listitem>
+			</varlistentry>
+			
+			<varlistentry>
+				<term>$i/%i</term>
+				<listitem>
+					<para>
+						Affiche l'ID GRAMPS associé à l'individu.
+					</para>
+				</listitem>
+			</varlistentry>
+			
+			<varlistentry>
+				<term>$b/%b</term>
+				<listitem>
+					<para>
+						Affiche la date de naissance de l'individu.
+					</para>
+				</listitem>
+			</varlistentry>
+			
+			<varlistentry>
+				<term>$B/%B</term>
+				<listitem>
+					<para>
+						Affiche le lieu de naissance de l'individu.
+					</para>
+				</listitem>
+			</varlistentry>
+			
+			<varlistentry>
+				<term>$d/%d</term>
+				<listitem>
+					<para>
+						Affiche la date de décès de l'individu.
+					</para>
+				</listitem>
+			</varlistentry>
+			
+			<varlistentry>
+				<term>$D/%D</term>
+				<listitem>
+					<para>
+						Affiche le lieu de décès de l'individu.
+					</para>
+				</listitem>
+			</varlistentry>
+			
+			<varlistentry>
+				<term>$s/%s</term>
+				<listitem>
+					<para>
+						Affiche le nom du conjoint préféré : Prénom Nom
+					</para>
+				</listitem>
+			</varlistentry>
+			
+			<varlistentry>
+				<term>$S/%S</term>
+				<listitem>
+					<para>
+						Affiche le nom du conjoint préféré : Nom Prénom
+					</para>
+				</listitem>
+			</varlistentry>
+			
+			<varlistentry>
+				<term>$m/%m</term>
+				<listitem>
+					<para>
+						Affiche la date de marriage de l'individu et de son conjoint préféré.
+					</para>
+				</listitem>
+			</varlistentry>
+			
+			<varlistentry>
+				<term>$M/%M</term>
+				<listitem>
+					<para>
+						Affiche le lieu du marriage de l'individu et de son conjoint préféré.
+					</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</sect2> 
+
       <sect2 id="rep-books"> 
 	<title>Livres</title> 
 	<para>Il n'y a actuellement qu'une seule édition dans cette catégorie : l'édition Livre. </para>
