@@ -49,6 +49,7 @@ import GrampsMime
 import NameDisplay
 import RelLib
 import Errors
+from QuestionDialog import WarningDialog
 
 #-------------------------------------------------------------------------
 #
@@ -1144,6 +1145,7 @@ class ProgressMeter:
         Specify the title and the current pass header.
         """
         self.ptop = gtk.Dialog()
+        self.ptop.connect('delete_event',self.warn)
         self.ptop.set_has_separator(False)
         self.ptop.set_title(title)
         self.ptop.set_border_width(12)
@@ -1192,6 +1194,13 @@ class ProgressMeter:
         self.pbar.set_fraction(val)
         while gtk.events_pending():
             gtk.main_iteration()
+
+    def warn(self,obj,obj2):
+        WarningDialog(
+            _("Attempt to force closing the dialog"),
+            _("Please do not force closing this important dialog."),
+            self.ptop)
+        return True
 
     def close(self):
         """

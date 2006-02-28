@@ -2059,7 +2059,7 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
     name        = _('Ancestors of bookmarked people not more '
                     'than <N> generations away')
     category    = _('Ancestral filters')
-    description = _("Matches ancestors of the people on the bookmark list"
+    description = _("Matches ancestors of the people on the bookmark list "
                     "not more than N generations away")
 
     def prepare(self,db):

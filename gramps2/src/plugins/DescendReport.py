@@ -112,13 +112,15 @@ class DescendantReport(Report.Report):
             if birth:
                 bplace_handle = birth.get_place_handle()
                 if bplace_handle:
-                    birth_place = self.database.get_place_from_handle(bplace_handle).get_title()
+                    birth_place = self.database.get_place_from_handle(
+                        bplace_handle).get_title()
 
             death_place = ""
             if death:
                 dplace_handle = death.get_place_handle()
                 if dplace_handle:
-                    death_place = self.database.get_place_from_handle(dplace_handle).get_title()
+                    death_place = self.database.get_place_from_handle(
+                        dplace_handle).get_title()
 
             if birth_year_valid:
                 if birth_place:
@@ -163,7 +165,6 @@ class DescendantReport(Report.Report):
         if level >= self.max_generations:
             return
         
-        childlist = []
         for family_handle in person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
 
@@ -176,10 +177,9 @@ class DescendantReport(Report.Report):
                 self.dump_dates(spouse)
                 self.doc.end_paragraph()
 
-            for child_handle in family.get_child_handle_list():
-                childlist.append(child_handle)
-
+            childlist = family.get_child_handle_list()[:]
             childlist.sort(self.by_birthdate)
+
             for child_handle in childlist:
                 child = self.database.get_person_from_handle(child_handle)
                 self.dump(level+1,child)
@@ -230,7 +230,8 @@ class DescendantOptions(ReportOptions.ReportOptions):
             p.set_bottom_margin(ReportUtils.pt2cm(f.get_size()*0.125))
             p.set_first_indent(-0.5)
             p.set_left_margin(min(10.0,float(i-0.5)))
-            p.set_description(_("The style used for the level %d display.") % i)
+            p.set_description(_("The style used for the "
+                                "level %d display.") % i)
             default_style.add_style("DR-Level%d" % i,p)
 
             p = BaseDoc.ParagraphStyle()
@@ -238,7 +239,8 @@ class DescendantOptions(ReportOptions.ReportOptions):
             p.set_top_margin(ReportUtils.pt2cm(f.get_size()*0.125))
             p.set_bottom_margin(ReportUtils.pt2cm(f.get_size()*0.125))
             p.set_left_margin(min(10.0,float(i-0.5)))
-            p.set_description(_("The style used for the spouse level %d display.") % i)
+            p.set_description(_("The style used for the "
+                                "spouse level %d display.") % i)
             default_style.add_style("DR-Spouse%d" % i,p)
 
 #------------------------------------------------------------------------

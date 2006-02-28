@@ -101,7 +101,7 @@
 	  immediately applied; this means that clicking
 	  <guibutton>OK</guibutton> in the Person, Family, Source,
 	  Place, Media object, or Event editor immediately records
-	  changes in the database. </para>
+	  changes to the database. </para>
 
 	  <para>In previous versions, you could &quot;quit without
 	  saving.&quot; This option no longer exists per se; however,
@@ -177,7 +177,7 @@
 	    <para>Removal of the Save function and addition of Undo.</para>
 	  </listitem>
 	  <listitem>
-	    <para>Proper window management and removal of most modal windows.</para>
+	    <para>Proper window management.</para>
 	  </listitem>
 	  <listitem>
 	    <para>Support for Tip of the Day.</para>
@@ -229,7 +229,7 @@
 	  </listitem>
 	  <listitem>
 	    <para>It is possible to generate reports from the command
-	    line, without launching the interactive GRAMPS
+	    line, without launching an interactive GRAMPS
 	    session.</para>
 	  </listitem>
 	  <listitem>
