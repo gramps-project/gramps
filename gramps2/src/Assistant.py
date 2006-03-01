@@ -139,6 +139,17 @@ class Assistant(gtk.Object):
 
         self.window.add(vbox)
 
+    def set_busy_cursor(self,value):
+        if value:
+            self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+            self.window.set_sensitive(0)
+        else:
+            self.window.window.set_cursor(None)
+            self.window.set_sensitive(1)
+
+        while gtk.events_pending():
+            gtk.main_iteration()
+
     def do_get_property(self, prop):
         """Return the gproperty's value."""
         raise AttributeError, 'unknown property %s' % prop.name

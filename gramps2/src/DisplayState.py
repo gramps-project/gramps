@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -563,13 +563,14 @@ class DisplayState(GrampsDb.GrampsDBCallback):
     __signals__ = {
         }
 
-    def __init__(self,window,status,warnbtn,uimanager,dbstate):
+    def __init__(self,window,status,progress,warnbtn,uimanager,dbstate):
         self.dbstate = dbstate
         self.uimanager = uimanager
         self.window = window
         GrampsDb.GrampsDBCallback.__init__(self)
         self.status = status
         self.status_id = status.get_context_id('GRAMPS')
+        self.progress = progress
         self.phistory = History()
         self.gwm = GrampsWindowManager(uimanager)
         self.widget = None
@@ -618,6 +619,12 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         while gtk.events_pending():
             gtk.main_iteration()
 
+    def pulse_progressbar(self,value):
+        self.progress.set_fraction(min(value/100.0,1.0))
+        self.progress.set_text("%d%%" % value)
+        while gtk.events_pending():
+            gtk.main_iteration()
+
     def status_text(self,text):
         self.status.pop(self.status_id)
         self.status.push(self.status_id,text)
@@ -633,4 +640,3 @@ if __name__ == "__main__":
     log = logging.getLogger()
     log.setLevel(logging.WARN)
     log.addHandler(rh)
-

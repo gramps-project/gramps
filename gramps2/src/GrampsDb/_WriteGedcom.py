@@ -444,12 +444,18 @@ class GedcomWriterOptionBox:
 
 
 class GedcomWriter:
-    def __init__(self,database,person,cl=0,filename="",option_box=None):
+    def __init__(self,database,person,cl=0,filename="",option_box=None,
+                 callback=None):
         self.db = database
         self.person = person
         self.option_box = option_box
         self.cl = cl
         self.filename = filename
+        self.callback = callback
+        if '__call__' in dir(self.callback): # callback is really callable
+            self.update = self.update_real
+        else:
+            self.update = self.update_empty
 
         self.plist = {}
         self.slist = {}
@@ -490,7 +496,8 @@ class GedcomWriter:
                     self.plist[p] = 1
             else:
                 try:
-                    for p in self.option_box.cfilter.apply(self.db, self.db.get_person_handles(sort_handles=False)):
+                    for p in self.option_box.cfilter.apply(self.db,
+                            self.db.get_person_handles(sort_handles=False)):
                         self.plist[p] = 1
                 except Errors.FilterError, msg:
                     (m1,m2) = msg.messages()
@@ -501,11 +508,23 @@ class GedcomWriter:
             self.slist = {}
             for key in self.plist.keys():
                 p = self.db.get_person_from_handle(key)
-                add_persons_sources(self.db,p,self.slist,self.option_box.private)
+                add_persons_sources(self.db,p,self.slist,
+                                    self.option_box.private)
                 for family_handle in p.get_family_handle_list():
-                    add_familys_sources(self.db,family_handle,self.slist,self.option_box.private)
+                    add_familys_sources(self.db,family_handle,
+                                        self.slist,self.option_box.private)
                     self.flist[family_handle] = 1
     
+    def update_empty(self):
+        pass
+
+    def update_real(self):
+        self.count += 1
+        newval = int(100*self.count/self.total)
+        if newval != self.oldval:
+            self.callback(newval)
+            self.oldval = newval
+
     def cl_setup(self):
         self.restrict = 0
         self.private = 0
@@ -538,7 +557,8 @@ class GedcomWriter:
             p = self.db.get_person_from_handle(key)
             add_persons_sources(self.db,p,self.slist,self.private)
             for family_handle in p.get_family_handle_list():
-                add_familys_sources(self.db,family_handle,self.slist,self.private)
+                add_familys_sources(self.db,family_handle,
+                                    self.slist,self.private)
                 self.flist[family_handle] = 1
 
     def writeln(self,text):
@@ -610,16 +630,20 @@ class GedcomWriter:
             self.writeln('2 CONT Not Provided')
 
         pkeys = self.plist.keys()
+        self.total = len(pkeys) + len(self.flist.keys()) \
+                     + len(self.slist.keys())
+        self.oldval = 0
+        self.count = 0
+        
         sorted = []
         for key in pkeys:
             person = self.db.get_person_from_handle (key)
             data = (person.get_gramps_id (), person)
             sorted.append (data)
         sorted.sort()
-        index = 0.0
         for (gramps_id, person) in sorted:
             self.write_person(person)
-            index = index + 1
+            self.update()
 
         self.write_families()
         if self.source_refs:
@@ -744,6 +768,7 @@ class GedcomWriter:
                     self.write_photo(photo,1)
 
             self.write_change(1,family.get_change_time())
+            self.update()
             
     def write_sources(self):
         index = 0.0
@@ -776,6 +801,7 @@ class GedcomWriter:
                 self.write_long_text("NOTE",1,self.cnvtxt(source.get_note()))
             index = index + 1
             self.write_change(1,source.get_change_time())
+            self.update()
             
     def write_person(self,person):
         self.writeln("0 @%s@ INDI" % person.get_gramps_id())
@@ -1321,7 +1347,7 @@ class GedcomWriter:
 def exportData(database,filename,person,option_box,callback=None):
     ret = 0
     try:
-        gw = GedcomWriter(database,person,0,filename,option_box)
+        gw = GedcomWriter(database,person,0,filename,option_box,callback)
         ret = gw.export_data(filename)
     except Errors.DatabaseError,msg:
         ErrorDialog(_("Export failed"),str(msg))

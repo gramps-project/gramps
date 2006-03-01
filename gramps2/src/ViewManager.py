@@ -223,7 +223,7 @@ class ViewManager:
 
         self.notebook.connect('switch-page',self.change_page)
         self.uistate = DisplayState.DisplayState(self.window, self.statusbar,
-                                                 self.warnbtn,
+                                                 self.progress, self.warnbtn,
                                                  self.uimanager, self.state)
 
         toolbar = self.uimanager.get_widget('/ToolBar')
@@ -760,7 +760,7 @@ class ViewManager:
     def load_database(self,name,callback=None,mode="w"):
         self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         self.progress.show()
-        if not self.state.db.load(name,self.pulse_progressbar,mode):
+        if not self.state.db.load(name,self.uistate.pulse_progressbar,mode):
             return False
         self.progress.hide()
         return self.post_load(name,callback)
@@ -856,12 +856,6 @@ class ViewManager:
         import ScratchPad
         ScratchPad.ScratchPadWindow(self.state, self)
 
-    def pulse_progressbar(self,value):
-        self.progress.set_fraction(min(value/100.0,1.0))
-        self.progress.set_text("%d%%" % value)
-        while gtk.events_pending():
-            gtk.main_iteration()
-
     def undo(self,obj):
         self.state.db.undo()
 
@@ -870,7 +864,7 @@ class ViewManager:
 
     def export_data(self,obj):
         import Exporter
-        Exporter.Exporter(self.state,self.uistate,self.pulse_progressbar)
+        Exporter.Exporter(self.state,self.uistate)
 
     def import_data(self,obj):
         choose = gtk.FileChooserDialog(_('GRAMPS: Import database'),
@@ -961,7 +955,7 @@ class ViewManager:
         dialog.destroy()
         self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         self.progress.show()
-        importer(self.state.db,filename,self.pulse_progressbar)
+        importer(self.state.db,filename,self.uistate.pulse_progressbar)
         self.uistate.clear_history()
         self.progress.hide()
         self.window.window.set_cursor(None)
