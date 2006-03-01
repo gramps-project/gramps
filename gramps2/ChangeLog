@@ -1,4 +1,14 @@
 2006-02-28  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py (ViewManager.import_data): Properly process
+	non-native (plugin) imports; (_do_import): factor common code into
+	the new method.
+	* src/GrampsDb/_ReadXML.py (GrampsParser.__init__): Skip updating
+	if callback is empty (non-callable).
+	* src/docgen/HtmlDoc.py (HtmlDoc.load_tpkg): Use tarfile.
+	* src/ArgHandler.py (ArgHandler.cl_import): Use tarfile.
+	* src/plugins/WritePkg.py (PackageWriter.export): Use tarfile.
+	* src/plugins/ReadPkg.py (impData): Use tarfile module.
+
 	* various: merge changes made in gramps20 up until R2_0_10_real tag.
 
 2006-02-25  Don Allingham  <don@gramps-project.org>

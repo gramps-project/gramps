@@ -29,6 +29,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import tarfile
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -44,9 +45,8 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import ReadXML
+from GrampsDb import gramps_db_reader_factory
 from QuestionDialog import ErrorDialog
-import TarFile
 
 #-------------------------------------------------------------------------
 #
@@ -76,9 +76,10 @@ def impData(database, name,cb=None,cl=0):
             os.remove(os.path.join(tmpdir_path,filename))
 
     try:
-        t = TarFile.ReadTarFile(name,tmpdir_path)
-        t.extract()
-        t.close()
+        archive = tarfile.open(name)
+        for tarinfo in archive:
+            archive.extract(tarinfo,tmpdir_path)
+        archive.close()
     except:
         ErrorDialog(_("Error extracting into %s") % tmpdir_path)
         return
@@ -86,7 +87,8 @@ def impData(database, name,cb=None,cl=0):
     imp_db_name = os.path.join(tmpdir_path,const.xmlFile)  
 
     try:
-        ReadXML.importData(database,imp_db_name,cb)
+        importer = gramps_db_reader_factory(const.app_gramps_xml)
+        importer(database,imp_db_name,cb)
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()

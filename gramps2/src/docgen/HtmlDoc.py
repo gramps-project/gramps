@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import PluginMgr
 import ImgManip
-import TarFile
+import tarfile
 import const
 import Errors
 import BaseDoc
@@ -148,8 +148,10 @@ class HtmlDoc(BaseDoc.BaseDoc):
         stop = re.compile(r"<!--\s*STOP\s*-->")
         top_add = 1
         bottom_add = 0
-        tf = TarFile.ReadTarFile(self.template,None)
-        self.map = tf.extract_files()
+        archive = tarfile.open(self.template)
+        for tarinfo in archive:
+            self.map[tarinfo.name] = archive.extractfile(tarinfo)
+        archive.close()
         templateFile = self.map['template.html']
         while 1:
             line = templateFile.readline()

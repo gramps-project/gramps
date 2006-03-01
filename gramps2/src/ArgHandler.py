@@ -456,12 +456,19 @@ class ArgHandler:
                     os.remove( os.path.join(tmpdir_path,fn) )
 
             try:
-                import TarFile
-                t = TarFile.ReadTarFile(filename,tmpdir_path)
-                t.extract()
-                t.close()
+                import tarfile
+                archive = tarfile.open(filename)
+                for tarinfo in archive:
+                    archive.extract(tarinfo,tmpdir_path)
+                archive.close()
+            except ReadError, msg:
+                print "Error reading archive:", msg
+                os._exit(1)
+            except CompressError, msg:
+                print "Error uncompressing archive:", msg
+                os._exit(1)
             except:
-                print "Error extracting into %s" % tmpdir_path 
+                print "Error extracting into %s" % tmpdir_path
                 os._exit(1)
 
             dbname = os.path.join(tmpdir_path,const.xmlFile)
