@@ -321,6 +321,10 @@ class GrampsParser:
         self.media_file_map = {}
         
         self.callback = callback
+        if '__call__' in dir(self.callback): # callback is really callable
+            self.update = self.update_real
+        else:
+            self.update = self.update_empty
         self.increment = 100
         self.event = None
         self.eventref = None
@@ -1612,7 +1616,10 @@ class GrampsParser:
         if self.func:
             self.tlist.append(data)
 
-    def update(self):
+    def update_empty(self):
+        pass
+
+    def update_real(self):
         line = self.p.CurrentLineNumber
         newval = int(100*line/self.linecount)
         if newval != self.oldval:

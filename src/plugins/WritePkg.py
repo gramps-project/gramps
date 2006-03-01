@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@
 #-------------------------------------------------------------------------
 import time
 import os
+import tarfile
 from cStringIO import StringIO
 from gettext import gettext as _
 
@@ -45,8 +46,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import WriteXML
-import TarFile
+from GrampsDb._WriteXML import XmlWriter
 import Utils
 from QuestionDialog import MissingMediaDialog
 
@@ -140,9 +140,9 @@ class PackageWriter:
             def fs_ok_clicked(obj):
                 name = fs_top.get_filename()
                 if os.path.isfile(name):
-                    g = open(name,"rb")
-                    t.add_file(base,mtime,g)
-                    g.close()
+                    ti = tf.gettarinfo(name,base)
+                    ti.mtime = time.time()
+                    tf.addfile(ti)
 
             fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
             fs_top.hide_fileop_buttons()
@@ -152,8 +152,7 @@ class PackageWriter:
             fs_top.destroy()
         #---------------------------------------------------------------
 
-        t = TarFile.TarFile(self.filename)
-        mtime = time.time()
+        archive = tarfile.open(self.filename,'w:gz')
         
         # Write media files first, since the database may be modified 
         # during the process (i.e. when removing object)
@@ -162,9 +161,9 @@ class PackageWriter:
             oldfile = mobject.get_path()
             base = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
-                g = open(oldfile,"rb")
-                t.add_file(base,mtime,g)
-                g.close()
+                tarinfo = archive.gettarinfo(oldfile,base)
+                tarinfo.mtime = int(time.time())
+                archive.addfile(tarinfo,file(oldfile))
             else:
                 # File is lost => ask what to do
                 if missmedia_action == 0:
@@ -184,14 +183,23 @@ class PackageWriter:
                     select_clicked()
         
         # Write XML now
+        # import tempfile
+        # tempdir = tempfile.mkdtemp('.tmp','gramps-',
+        #                            os.path.dirname(self.filename))
+        # new_xml_file = os.path.join(tempdir,'data.gramps')
         g = StringIO()
-        gfile = WriteXML.XmlWriter(self.db,None,1)
-        gfile.write_handle(g)
-        mtime = time.time()
-        t.add_file("data.gramps",mtime,g)
+        gfile = XmlWriter(self.db,None,1)
+        gfile.write_handle(g) #write(new_xml_file) #write_handle(g)
+        tarinfo = tarfile.TarInfo('data.gramps')
+        tarinfo.size = len(g.getvalue())
+        tarinfo.mtime = time.time()
+        tarinfo.uid = os.getuid()
+        tarinfo.gid = os.getgid()
+        g.seek(0)
+        archive.addfile(tarinfo,g)
+        archive.close()
         g.close()
 
-        t.close()
         return 1
     
 #-------------------------------------------------------------------------

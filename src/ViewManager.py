@@ -929,38 +929,40 @@ class ViewManager:
                         str(msg))
                     return False
                     
-            if filetype == const.app_gramps:
-                choose.destroy()
-                self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-                self.progress.show()
-                GrampsDb.gramps_db_reader_factory(filetype)(self.state.db,filename,self.pulse_progressbar)
-                self.uistate.clear_history()
-                self.progress.hide()
-                self.window.window.set_cursor(None)
-                return True
-            elif filetype == const.app_gramps_xml or filetype == const.app_gedcom:
-                choose.destroy()
-                self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-                self.progress.show()
-                GrampsDb.gramps_db_reader_factory(filetype)(self.state.db,filename,self.pulse_progressbar)
-                self.uistate.clear_history()
-                self.progress.hide()
-                self.window.window.set_cursor(None)
+            # First we try our best formats
+            if filetype in format_list:
+                self._do_import(choose,
+                                GrampsDb.gramps_db_reader_factory(filetype))
                 return True
 
+            # Then we try all the known plugins
             (the_path,the_file) = os.path.split(filename)
             GrampsKeys.save_last_import_dir(the_path)
-            for (importData,mime_filter,mime_type,native_format,format_name) in PluginMgr.import_list:
+            for (importData,mime_filter,mime_type,
+                 native_format,format_name) in PluginMgr.import_list:
                 if filetype == mime_type or the_file == mime_type:
-                    choose.destroy()
-                    importData(self.state.db,filename)
+                    self._do_import(choose,importData)
                     return True
+
+            # Finally, we give up and declare this an unknown format
             QuestionDialog.ErrorDialog(
                 _("Could not open file: %s") % filename,
-                _('File type "%s" is unknown to GRAMPS.\n\nValid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM.') % filetype)
+                _('File type "%s" is unknown to GRAMPS.\n\n'
+                  'Valid types are: GRAMPS database, GRAMPS XML, '
+                  'GRAMPS package, and GEDCOM.') % filetype)
+
         choose.destroy()
         return False
 
+    def _do_import(self,dialog,importer):
+        dialog.destroy()
+        self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.progress.show()
+        GrampsDb.gramps_db_reader_factory(filetype)(
+            self.state.db,filename,self.pulse_progressbar)
+        self.uistate.clear_history()
+        self.progress.hide()
+        self.window.window.set_cursor(None)
 
     def build_tools_menu(self):
         self.toolactions = gtk.ActionGroup('ToolWindow')
