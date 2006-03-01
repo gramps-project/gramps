@@ -131,12 +131,19 @@ class XmlWriter:
 
         db - database to write
         callback - function to provide progress indication
-        strip_photos - remove full paths off of media object paths
+        strip_photos - remove paths off of media object paths
+                       0: do not touch the paths
+                       1: remove everything expect the filename
+                       2: remove leading slash
         compress - attempt to compress the database
         """
         self.compress = compress
         self.db = db
         self.callback = callback
+        if '__call__' in dir(self.callback): # callback is really callable
+            self.update = self.update_real
+        else:
+            self.update = self.update_empty
         self.strip_photos = strip_photos
         
     def write(self,filename):
@@ -212,8 +219,10 @@ class XmlWriter:
         repo_len = len(self.db.get_repository_handles())
         obj_len = len(self.db.get_media_object_handles())
         
-        total = person_len + family_len + event_len + place_len + \
-                source_len + obj_len + repo_len
+        self.total = person_len + family_len + event_len + place_len + \
+                     source_len + obj_len + repo_len
+        self.count = 0
+        self.oldval = 0
 
         self.g.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.g.write('<!DOCTYPE database '
@@ -239,9 +248,6 @@ class XmlWriter:
         self.g.write("    </researcher>\n")
         self.g.write("  </header>\n")
 
-        count = 0
-        delta = max(int(total/50),1)
-
         if event_len > 0:
             self.g.write("  <events>\n")
             sorted_keys = self.db.get_gramps_ids(EVENT_KEY)
@@ -249,9 +255,7 @@ class XmlWriter:
             for gramps_id in sorted_keys:
                 event = self.db.get_event_from_gramps_id(gramps_id)
                 self.write_event(event,2)
-                if self.callback and count % delta == 0:
-                    self.callback(float(count)/float(total))
-                count = count + 1
+                self.update()
             self.g.write("  </events>\n")
 
         if person_len > 0:
@@ -268,9 +272,7 @@ class XmlWriter:
             for gramps_id in sorted_keys:
                 person = self.db.get_person_from_gramps_id(gramps_id)
                 self.write_person(person,2)
-                if self.callback and count % delta == 0:
-                    self.callback(float(count)/float(total))
-                count += 1
+                self.update()
             self.g.write("  </people>\n")
 
         if family_len > 0:
@@ -280,9 +282,7 @@ class XmlWriter:
             for gramps_id in sorted_keys:
                 family = self.db.get_family_from_gramps_id(gramps_id)
                 self.write_family(family,2)
-                if self.callback and count % delta == 0:
-                    self.callback(float(count)/float(total))
-                count = count + 1
+                self.update()
             self.g.write("  </families>\n")
 
         if source_len > 0:
@@ -292,9 +292,6 @@ class XmlWriter:
             for key in keys:
                 source = self.db.get_source_from_gramps_id(key)
                 self.write_source(source,2)
-                if self.callback and count % delta == 0:
-                    self.callback(float(count)/float(total))
-                count = count + 1
             self.g.write("  </sources>\n")
 
         if place_len > 0:
@@ -305,11 +302,7 @@ class XmlWriter:
                 # try:
                 place = self.db.get_place_from_gramps_id(key)
                 self.write_place_obj(place,2)
-                if self.callback and count % delta == 0:
-                    self.callback(float(count)/float(total))
-                # except:
-                #     print "Could not find place %s" % key
-                count = count + 1
+                self.update()
             self.g.write("  </places>\n")
 
         if obj_len > 0:
@@ -319,9 +312,7 @@ class XmlWriter:
             for gramps_id in sorted_keys:
                 obj = self.db.get_object_from_gramps_id(gramps_id)
                 self.write_object(obj,2)
-                if self.callback and count % delta == 0:
-                    self.callback(float(count)/float(total))
-                count += 1
+                self.update()
             self.g.write("  </objects>\n")
 
         if repo_len > 0:
@@ -331,9 +322,7 @@ class XmlWriter:
             for key in keys:
                 repo = self.db.get_repository_from_gramps_id(key)
                 self.write_repository(repo,2)
-                if self.callback and count % delta == 0:
-                    self.callback(float(count)/float(total))
-                count += 1
+                self.update()
             self.g.write("  </repositories>\n")
 
         if len(self.db.get_bookmarks()) > 0:
@@ -350,6 +339,16 @@ class XmlWriter:
             self.g.write('  </groups>\n')
 
         self.g.write("</database>\n")
+
+    def update_empty(self):
+        pass
+
+    def update_real(self):
+        self.count += 1
+        newval = int(100*self.count/self.total)
+        if newval != self.oldval:
+            self.callback(newval)
+            self.oldval = newval
 
     def fix(self,line):
         l = line.strip()
@@ -950,8 +949,11 @@ class XmlWriter:
             desc_text = ' description="%s"' % self.fix(desc)
         else:
             desc_text = ''
-        if self.strip_photos:
+        if self.strip_photos == 1:
             path = os.path.basename(path)
+        elif self.strip_photos == 2 and path[0] == '/':
+            path = path[1:]
+                
         self.g.write('%s<file src="%s" mime="%s"%s/>\n'
                      % ("  "*(index+1),path,mime_type,desc_text))
         self.write_attribute_list(obj.get_attribute_list())

@@ -870,7 +870,7 @@ class ViewManager:
 
     def export_data(self,obj):
         import Exporter
-        Exporter.Exporter(self.state,self.uistate)
+        Exporter.Exporter(self.state,self.uistate,self.pulse_progressbar)
 
     def import_data(self,obj):
         choose = gtk.FileChooserDialog(_('GRAMPS: Import database'),
@@ -930,9 +930,12 @@ class ViewManager:
                     return False
                     
             # First we try our best formats
-            if filetype in format_list:
+            if filetype in (const.app_gramps,
+                            const.app_gramps_xml,
+                            const.app_gedcom):
                 self._do_import(choose,
-                                GrampsDb.gramps_db_reader_factory(filetype))
+                                GrampsDb.gramps_db_reader_factory(filetype),
+                                filename)
                 return True
 
             # Then we try all the known plugins
@@ -941,7 +944,7 @@ class ViewManager:
             for (importData,mime_filter,mime_type,
                  native_format,format_name) in PluginMgr.import_list:
                 if filetype == mime_type or the_file == mime_type:
-                    self._do_import(choose,importData)
+                    self._do_import(choose,importData,filename)
                     return True
 
             # Finally, we give up and declare this an unknown format
@@ -954,12 +957,11 @@ class ViewManager:
         choose.destroy()
         return False
 
-    def _do_import(self,dialog,importer):
+    def _do_import(self,dialog,importer,filename):
         dialog.destroy()
         self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         self.progress.show()
-        GrampsDb.gramps_db_reader_factory(filetype)(
-            self.state.db,filename,self.pulse_progressbar)
+        importer(self.state.db,filename,self.pulse_progressbar)
         self.uistate.clear_history()
         self.progress.hide()
         self.window.window.set_cursor(None)

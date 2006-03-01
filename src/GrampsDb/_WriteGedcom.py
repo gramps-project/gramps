@@ -1318,7 +1318,7 @@ class GedcomWriter:
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database,filename,person,option_box):
+def exportData(database,filename,person,option_box,callback=None):
     ret = 0
     try:
         gw = GedcomWriter(database,person,0,filename,option_box)

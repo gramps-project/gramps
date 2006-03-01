@@ -1,4 +1,12 @@
 2006-02-28  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/WritePkg.py (PackageWriter.export): Add existing
+	image filenames to the archive.
+	* src/GrampsDb/_WriteXML.py: Improve callback use, add another
+	strip_photo option.
+	* src/ViewManager.py: Typos.
+	* src/Exporter.py: Start for callback support.
+	* src/GrampsDb/_WriteGedcom.py: Callback support.
+
 	* src/ViewManager.py (ViewManager.import_data): Properly process
 	non-native (plugin) imports; (_do_import): factor common code into
 	the new method.

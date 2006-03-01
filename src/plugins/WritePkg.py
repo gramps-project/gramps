@@ -140,9 +140,7 @@ class PackageWriter:
             def fs_ok_clicked(obj):
                 name = fs_top.get_filename()
                 if os.path.isfile(name):
-                    ti = tf.gettarinfo(name,base)
-                    ti.mtime = time.time()
-                    tf.addfile(ti)
+                    archive.add(name)
 
             fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
             fs_top.hide_fileop_buttons()
@@ -158,21 +156,21 @@ class PackageWriter:
         # during the process (i.e. when removing object)
         for m_id in self.db.get_media_object_handles():
             mobject = self.db.get_object_from_handle(m_id)
-            oldfile = mobject.get_path()
-            base = os.path.basename(oldfile)
-            if os.path.isfile(oldfile):
-                tarinfo = archive.gettarinfo(oldfile,base)
-                tarinfo.mtime = int(time.time())
-                archive.addfile(tarinfo,file(oldfile))
+            filename = mobject.get_path()
+            if os.path.isfile(filename):
+                archive.add(filename)
             else:
                 # File is lost => ask what to do
                 if missmedia_action == 0:
-                    mmd = MissingMediaDialog(_("Media object could not be found"),
-                    _("%(file_name)s is referenced in the database, but no longer exists. " 
-                            "The file may have been deleted or moved to a different location. " 
-                            "You may choose to either remove the reference from the database, " 
-                            "keep the reference to the missing file, or select a new file." 
-                            ) % { 'file_name' : oldfile },
+                    mmd = MissingMediaDialog(
+                        _("Media object could not be found"),
+                        _("%(file_name)s is referenced in the database, "
+                          "but no longer exists. The file may have been "
+                          "deleted or moved to a different location. " 
+                          "You may choose to either remove the reference "
+                          "from the database, keep the reference to the "
+                          "missing file, or select a new file."
+                          ) % { 'file_name' : filename },
                         remove_clicked, leave_clicked, select_clicked)
                     missmedia_action = mmd.default_action
                 elif missmedia_action == 1:
@@ -183,13 +181,9 @@ class PackageWriter:
                     select_clicked()
         
         # Write XML now
-        # import tempfile
-        # tempdir = tempfile.mkdtemp('.tmp','gramps-',
-        #                            os.path.dirname(self.filename))
-        # new_xml_file = os.path.join(tempdir,'data.gramps')
         g = StringIO()
-        gfile = XmlWriter(self.db,None,1)
-        gfile.write_handle(g) #write(new_xml_file) #write_handle(g)
+        gfile = XmlWriter(self.db,None,2)
+        gfile.write_handle(g)
         tarinfo = tarfile.TarInfo('data.gramps')
         tarinfo.size = len(g.getvalue())
         tarinfo.mtime = time.time()
