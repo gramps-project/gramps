@@ -1,3 +1,8 @@
+2006-03-01  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: fix focus_out_event signal handling
+	* src/DisplayTabs.py: provide double click/edit button handling
+	for back references.
+
 2006-02-28  Alex Roitman  <shura@gramps-project.org>
 	* src/Exporter.py (Exporter): Callback support, busy cursor.
 	* src/ViewManager.py (ViewManager): Move progress bar handling

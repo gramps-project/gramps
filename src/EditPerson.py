@@ -114,8 +114,7 @@ class EditPerson(EditPrimary.EditPrimary):
         self.define_ok_button(self.top.get_widget("ok"), self.save)
         self.define_help_button(self.top.get_widget("button134"),'adv-pers')
 
-#        self.top.get_widget("given_name").connect("focus_out_event",
-#                                                  self.given_focus_out_event)
+        self.given.connect("focus_out_event",self.given_focus_out_event)
         self.top.get_widget("button177").connect("clicked", self.edit_name_clicked)
 
         self.eventbox.connect('button-press-event',self.image_button_press)
@@ -342,9 +341,11 @@ class EditPerson(EditPrimary.EditPrimary):
 
     def given_focus_out_event (self, entry, event):
         if not self.should_guess_gender:
-            return
+            return False
 
-        self.gender.force(self.db.genderStats.guess_gender(self.given.get_value()))
+        gender = self.given.get_value()
+        self.gender.force(self.db.genderStats.guess_gender())
+        return False
 
     def load_photo(self,photo):
         """loads, scales, and displays the person's main photo"""
