@@ -67,7 +67,7 @@ class Exporter:
     name. 
     """
 
-    def __init__(self,dbstate,uistate):
+    def __init__(self,dbstate,uistate,callback=None):
         """
         Set up the window, the druid, and build all the druid's pages. 
         Some page elements are left empty, since their contents depends
@@ -75,6 +75,7 @@ class Exporter:
         """
         self.dbstate = dbstate
         self.uistate = uistate
+        self.callback = callback
         if self.dbstate.active:
             self.person = self.dbstate.active
         else:
@@ -165,10 +166,12 @@ class Exporter:
         if self.exports[ix][3]:
             success = self.exports[ix][0](self.dbstate.db,
                                           filename,self.person,
-                                          self.option_box_instance)
+                                          self.option_box_instance,
+                                          self.callback)
         else:
             success = self.exports[ix][0](self.dbstate.db,
-                                          filename,self.person)
+                                          filename,self.person,
+                                          self.callback)
         return success
 
     def build_conclusion(self,success):
