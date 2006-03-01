@@ -114,8 +114,8 @@ class EditPerson(EditPrimary.EditPrimary):
         self.define_ok_button(self.top.get_widget("ok"), self.save)
         self.define_help_button(self.top.get_widget("button134"),'adv-pers')
 
-        self.top.get_widget("given_name").connect("focus_out_event",
-                                                  self.given_focus_out_event)
+#        self.top.get_widget("given_name").connect("focus_out_event",
+#                                                  self.given_focus_out_event)
         self.top.get_widget("button177").connect("clicked", self.edit_name_clicked)
 
         self.eventbox.connect('button-press-event',self.image_button_press)
