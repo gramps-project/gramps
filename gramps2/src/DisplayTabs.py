@@ -712,10 +712,55 @@ class BackRefList(EmbeddedList):
     def column_order(self):
         return ((1,0),(1,1),(1,2))
 
+    def find_node(self):
+        (model,node) = self.selection.get_selected()
+        try:
+            return (model.get_value(node,0),model.get_value(node,3))
+        except:
+            return (None,None)
+    
     def edit_button_clicked(self,obj):
-        ref = self.get_selected()
-        if ref:
-            print ref
+        (reftype, ref) = self.find_node()
+        if reftype == 'Person':
+            try:
+                import EditPerson
+                
+                person = self.dbstate.db.get_person_from_handle(ref)
+                EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
+            except Errors.WindowActiveError:
+                pass
+        elif reftype == 'Family':
+            try:
+                import EditFamily
+                
+                family = self.dbstate.db.get_family_from_handle(ref)
+                EditFamily.EditFamily(self.dbstate, self.uistate, [], family)
+            except Errors.WindowActiveError:
+                pass
+        elif reftype == 'Source':
+            try:
+                import EditFamily
+                
+                source = self.dbstate.db.get_source_from_handle(ref)
+                EditSource.EditSource(self.dbstate, self.uistate, [], source)
+            except Errors.WindowActiveError:
+                pass
+        elif reftype == 'Place':
+            try:
+                import EditPlace
+                
+                place = self.dbstate.db.get_place_from_handle(ref)
+                EditPlace.EditPlace(self.dbstate,self.uistate,[],place)
+            except Errors.WindowActiveError:
+                pass
+        elif reftype == 'Media':
+            try:
+                import EditMedia
+                
+                obj = self.dbstate.db.get_object_from_handle(ref)
+                EditMedia.EditMedia(self.dbstate,self.uistate, [], obj)
+            except Errors.WindowActiveError:
+                pass
 
 class SourceBackRefList(BackRefList):
 
