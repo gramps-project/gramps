@@ -67,7 +67,7 @@ class Exporter:
     name. 
     """
 
-    def __init__(self,dbstate,uistate,callback=None):
+    def __init__(self,dbstate,uistate):
         """
         Set up the window, the druid, and build all the druid's pages. 
         Some page elements are left empty, since their contents depends
@@ -75,7 +75,7 @@ class Exporter:
         """
         self.dbstate = dbstate
         self.uistate = uistate
-        self.callback = callback
+        self.callback = self.uistate.pulse_progressbar
         if self.dbstate.active:
             self.person = self.dbstate.active
         else:
@@ -163,6 +163,7 @@ class Exporter:
         filename = self.chooser.get_filename()
         GrampsKeys.save_last_export_dir(os.path.split(filename)[0])
         ix = self.get_selected_format_index()
+        self.pre_save()
         if self.exports[ix][3]:
             success = self.exports[ix][0](self.dbstate.db,
                                           filename,self.person,
@@ -172,7 +173,18 @@ class Exporter:
             success = self.exports[ix][0](self.dbstate.db,
                                           filename,self.person,
                                           self.callback)
+        self.post_save()
         return success
+
+    def pre_save(self):
+        self.uistate.set_busy_cursor(1)
+        self.w.set_busy_cursor(1)
+        self.uistate.progress.show()
+
+    def post_save(self):
+        self.uistate.set_busy_cursor(0)
+        self.w.set_busy_cursor(0)
+        self.uistate.progress.hide()
 
     def build_conclusion(self,success):
         if success:

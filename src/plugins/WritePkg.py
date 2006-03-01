@@ -58,7 +58,7 @@ from QuestionDialog import MissingMediaDialog
 def writeData(database,filename,person,callback=None):
     ret = 0
     try:
-        writer = PackageWriter(database,filename)
+        writer = PackageWriter(database,filename,callback)
         ret = writer.export()
 
     except:
@@ -73,8 +73,9 @@ def writeData(database,filename,person,callback=None):
 #-------------------------------------------------------------------------
 class PackageWriter:
 
-    def __init__(self,database,filename):
+    def __init__(self,database,filename,callback):
         self.db = database
+        self.callback = callback
 
         if os.path.splitext(filename)[1] != ".gpkg":
             filename = filename + ".gpkg"
@@ -182,7 +183,7 @@ class PackageWriter:
         
         # Write XML now
         g = StringIO()
-        gfile = XmlWriter(self.db,None,2)
+        gfile = XmlWriter(self.db,self.callback,2)
         gfile.write_handle(g)
         tarinfo = tarfile.TarInfo('data.gramps')
         tarinfo.size = len(g.getvalue())

@@ -1,3 +1,12 @@
+2006-02-28  Alex Roitman  <shura@gramps-project.org>
+	* src/Exporter.py (Exporter): Callback support, busy cursor.
+	* src/ViewManager.py (ViewManager): Move progress bar handling
+	into DisplayState.
+	* src/DisplayState.py (DisplayState): Move progress bar here.
+	* src/Assistant.py (Assistant.set_busy_cursor): Add method.
+	* src/plugins/WritePkg.py: Callback support.
+	* src/GrampsDb/_WriteGedcom.py: Callback support.
+
 2006-02-28  Don Allingham  <don@gramps-project.org>
 	* src/AddrEdit.py: remove already_exist check in favor of exception
 	* src/AttrEdit.py: remove already_exist check in favor of exception
