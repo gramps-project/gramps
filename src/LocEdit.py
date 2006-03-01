@@ -35,7 +35,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-import RelLib
 import GrampsDisplay
 import DisplayState
 

@@ -48,11 +48,7 @@ import GrampsDisplay
 import const
 import Utils
 import RelLib
-import Sources
-import DateEdit
-import DateHandler
 import DisplayState
-import Spell
 
 from DisplayTabs import *
 from GrampsWidgets import *
@@ -81,8 +77,6 @@ class AddressEditor(DisplayState.ManagedWindow):
         self.addr = addr
 
         DisplayState.ManagedWindow.__init__(self, uistate, track, addr)
-        if self.already_exist:
-            return
 
         if not self.addr:
             self.addr = RelLib.Address()

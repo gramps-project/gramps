@@ -25,7 +25,6 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import urlparse
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -44,22 +43,14 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-import GrampsKeys
-import NameDisplay
-import PluginMgr
 import RelLib
-import RelImage
-import ListModel
 import GrampsMime
 import ImgManip
 import DisplayState
 import GrampsDisplay
 
 from QuestionDialog import ErrorDialog
-from DdTargets import DdTargets
 from WindowUtils import GladeIf
-
-import DisplayState
 from DisplayTabs import *
 from GrampsWidgets import *
 
@@ -80,10 +71,7 @@ class EditMediaRef(DisplayState.ManagedWindow):
         self.db = self.state.db
 
         DisplayState.ManagedWindow.__init__(self, uistate, track, media_ref)
-        if self.already_exist:
-            return
 
-        fname = self.media.get_path()
         self.change_dialog = gtk.glade.XML(const.gladeFile,
                                            "change_description","gramps")
 
@@ -135,7 +123,7 @@ class EditMediaRef(DisplayState.ManagedWindow):
 
         self.gladeif = GladeIf(self.change_dialog)
         self.window.connect('delete_event',self.on_delete_event)
-        self.gladeif.connect('button84','clicked',self.close)
+        self.gladeif.connect('button84','clicked',self.close_window)
         self.gladeif.connect('button82','clicked',self.on_ok_clicked)
         self.gladeif.connect('button104','clicked',self.on_help_clicked)
 
@@ -192,10 +180,12 @@ class EditMediaRef(DisplayState.ManagedWindow):
 
     def on_delete_event(self,obj,b):
         self.gladeif.close()
+        self.close()
 
-    def close(self,obj):
+    def close_window(self,obj):
         self.gladeif.close()
         self.window.destroy()
+        self.close()
 
     def on_apply_clicked(self):
 
@@ -226,4 +216,4 @@ class EditMediaRef(DisplayState.ManagedWindow):
         
     def on_ok_clicked(self,obj):
         self.on_apply_clicked()
-        self.close(obj)
+        self.close()

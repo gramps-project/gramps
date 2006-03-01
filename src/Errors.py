@@ -102,3 +102,12 @@ class FileVersionError(Exception):
 
     def __str__(self):
         return self.value
+
+class WindowActiveError(Exception):
+    """Error used to report that the request window is already displayed."""
+    def __init__(self,value):
+        Exception.__init__(self)
+        self.value = value
+
+    def __str__(self):
+        return self.value

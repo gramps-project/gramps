@@ -26,9 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import cPickle as pickle
-import gc
 from gettext import gettext as _
-import sys
 
 import logging
 log = logging.getLogger(".")
@@ -49,15 +47,9 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-import Sources
-import NameDisplay
-import DisplayState
-import Spell
-import GrampsDisplay
 import RelLib
-import ListModel
+import EditPrimary
 
-from DdTargets import DdTargets
 from DisplayTabs import *
 from GrampsWidgets import *
 
@@ -66,50 +58,33 @@ from GrampsWidgets import *
 # EditPlace
 #
 #-------------------------------------------------------------------------
-class EditPlace(DisplayState.ManagedWindow):
+class EditPlace(EditPrimary.EditPrimary):
 
-    def __init__(self,dbstate,uistate,track,place):
-        self.dbstate = dbstate
+    def __init__(self,dbstate,uistate,track,place,callback=None):
+        EditPrimary.EditPrimary.__init__(
+            self, dbstate, uistate, track, place,
+            dbstate.db.get_place_from_handle, callback)
 
-        DisplayState.ManagedWindow.__init__(self, uistate, track, place)
+    def _local_init(self):
+        self.top = gtk.glade.XML(const.gladeFile,"place_editor","gramps")
 
-        self.name_display = NameDisplay.displayer.display
-        self.place = place
-        self.db = dbstate.db
-
-        self.top = gtk.glade.XML(const.gladeFile,"placeEditor","gramps")
-
-        self.window = self.top.get_widget("placeEditor")
-        title_label = self.top.get_widget('title')
-
-        Utils.set_titles(self.window,title_label,_('Place Editor'))
-
-        self.top.get_widget('changed').set_text(place.get_change_display())
-
-        self.notebook = self.top.get_widget('notebook3')
-
-        self._create_tabbed_pages()
-        self._setup_fields()
-        self._connect_signals()
-        self.show()
-
-        self.pdmap = {}
-        self.build_pdmap()
+        self.define_top_level(self.top.get_widget("place_editor"),
+                              self.top.get_widget('title'),
+                              _('Place Editor'))
 
     def _connect_signals(self):
-        self.top.get_widget('placeEditor').connect('delete_event', self.delete_event)
-        self.top.get_widget('button127').connect('clicked', self.close)
-        self.top.get_widget('button135').connect('clicked', self.help_clicked)
-        ok = self.top.get_widget('ok')
-        ok.connect('clicked', self.apply_clicked)
-        ok.set_sensitive(not self.db.readonly)
+        self.define_ok_button(self.top.get_widget('ok'),self.save)
+        self.define_cancel_button(self.top.get_widget('cancel'))
+        self.define_help_button(self.top.get_widget('help'),'adv-plc')
 
     def _setup_fields(self):
-        mloc = self.place.get_main_location()
+        mloc = self.obj.get_main_location()
         
+        self.top.get_widget('changed').set_text(self.obj.get_change_display())
+
         self.title = MonitoredEntry(
             self.top.get_widget("place_title"),
-            self.place.set_title, self.place.get_title,
+            self.obj.set_title, self.obj.get_title,
             self.db.readonly)
         
         self.city = MonitoredEntry(
@@ -142,21 +117,14 @@ class EditPlace(DisplayState.ManagedWindow):
         
         self.longitude = MonitoredEntry(
             self.top.get_widget("longitude"),
-            self.place.set_longitude, self.place.get_longitude,
+            self.obj.set_longitude, self.obj.get_longitude,
             self.db.readonly)
 
         self.latitude = MonitoredEntry(
             self.top.get_widget("latitude"),
-            self.place.set_latitude, self.place.get_latitude,
+            self.obj.set_latitude, self.obj.get_latitude,
             self.db.readonly)
         
-
-    def build_window_key(self,place):
-        if place:
-            return place.get_handle()
-        else:
-            return id(self)
-
     def build_menu_names(self,place):
         win_menu_label = place.get_title()
         if not win_menu_label.strip():
@@ -164,7 +132,7 @@ class EditPlace(DisplayState.ManagedWindow):
         return (win_menu_label, _('Edit Place'))
 
     def build_pdmap(self):
-        self.pdmap.clear()
+        self.pdmap = {}
         cursor = self.db.get_place_cursor()
         data = cursor.next()
         while data:
@@ -173,60 +141,52 @@ class EditPlace(DisplayState.ManagedWindow):
             data = cursor.next()
         cursor.close()
 
-    def _add_page(self,page):
-        self.notebook.insert_page(page)
-        self.notebook.set_tab_label(page,page.get_tab_widget())
-        return page
-
     def _create_tabbed_pages(self):
         """
         Creates the notebook tabs and inserts them into the main
         window.
         
         """
-        self.loc_list = self._add_page(LocationEmbedList(
-            self.dbstate,self.uistate, self.track,
-            self.place.alt_loc))
-        self.srcref_list = self._add_page(SourceEmbedList(
-            self.dbstate,self.uistate, self.track,
-            self.place.source_list))
-        self.note_tab = self._add_page(NoteTab(
-            self.dbstate, self.uistate, self.track,
-            self.place.get_note_object()))
-        self.gallery_tab = self._add_page(GalleryTab(
-            self.dbstate, self.uistate, self.track,
-            self.place.get_media_list()))
-        self.web_list = self._add_page(WebEmbedList(
-            self.dbstate,self.uistate,self.track,
-            self.place.get_url_list()))
-        self.backref_list = self._add_page(PlaceBackRefList(
-            self.dbstate,self.uistate,self.track,
-            self.db.find_backlink_handles(self.place.handle)))
+        notebook = self.top.get_widget('notebook3')
 
-    def delete_event(self,obj,b):
-        self.close()
+        self.loc_list = self._add_tab(
+            notebook,
+            LocationEmbedList(self.dbstate,self.uistate, self.track,
+                              self.obj.alt_loc))
+        
+        self.srcref_list = self._add_tab(
+            notebook,
+            SourceEmbedList(self.dbstate,self.uistate, self.track,
+                            self.obj.source_list))
+        
+        self.note_tab = self._add_tab(
+            notebook,
+            NoteTab(self.dbstate, self.uistate, self.track,
+                    self.obj.get_note_object()))
+        
+        self.gallery_tab = self._add_tab(
+            notebook,
+            GalleryTab(self.dbstate, self.uistate, self.track,
+                       self.obj.get_media_list()))
+        
+        self.web_list = self._add_tab(
+            notebook,
+            WebEmbedList(self.dbstate,self.uistate,self.track,
+                         self.obj.get_url_list()))
+        
+        self.backref_list = self._add_tab(
+            notebook,
+            PlaceBackRefList(self.dbstate,self.uistate,self.track,
+                             self.db.find_backlink_handles(self.obj.handle)))
 
-    def close_window(self,obj):
-        self.close()
-        self.window.destroy()
+    def _cleanup_on_exit(self):
+        self.backref_list.close()
 
-    def help_clicked(self,obj):
-        """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('adv-plc')
+    def save(self,*obj):
+        title = self.obj.get_title()
+        self.build_pdmap()
 
-    def build_columns(self,tree,list):
-        cnum = 0
-        for name in list:
-            renderer = gtk.CellRendererText()
-            column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
-            column.set_min_width(name[1])
-            cnum = cnum + 1
-            tree.append_column(column)
-
-    def apply_clicked(self,obj):
-
-        title = self.place.get_title()
-        if self.pdmap.has_key(title) and self.pdmap[title] != self.place.handle:
+        if self.pdmap.has_key(title) and self.pdmap[title] != self.obj.handle:
             import QuestionDialog
             QuestionDialog.ErrorDialog(
                 _("Place title is already in use"),
@@ -236,12 +196,12 @@ class EditPlace(DisplayState.ManagedWindow):
             return
 
         trans = self.db.transaction_begin()
-        if self.place.get_handle():
-            self.db.commit_place(self.place,trans)
+        if self.obj.get_handle():
+            self.db.commit_place(self.obj,trans)
         else:
-            self.db.add_place(self.place,trans)
+            self.db.add_place(self.obj,trans)
         self.db.transaction_commit(trans,
-                                   _("Edit Place (%s)") % self.place.get_title())
+                                   _("Edit Place (%s)") % self.obj.get_title())
         
         self.close(obj)
 
@@ -254,13 +214,13 @@ class DeletePlaceQuery:
 
     def __init__(self,place,db):
         self.db = db
-        self.place = place
+        self.obj = place
         
     def query_response(self):
         trans = self.db.transaction_begin()
         self.db.disable_signals()
         
-        place_handle = self.place.get_handle()
+        place_handle = self.obj.get_handle()
 
         for handle in self.db.get_person_handles(sort_handles=False):
             person = self.db.get_person_from_handle(handle)
@@ -283,4 +243,4 @@ class DeletePlaceQuery:
         self.db.enable_signals()
         self.db.remove_place(place_handle,trans)
         self.db.transaction_commit(trans,
-                                   _("Delete Place (%s)") % self.place.get_title())
+                                   _("Delete Place (%s)") % self.obj.get_title())

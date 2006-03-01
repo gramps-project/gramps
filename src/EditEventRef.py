@@ -50,12 +50,9 @@ import const
 import Utils
 import AutoComp
 import RelLib
-from DateHandler import displayer as _dd
-import DateEdit
 import DisplayState
 
 from QuestionDialog import WarningDialog, ErrorDialog
-from WindowUtils import GladeIf
 from DisplayTabs import *
 from GrampsWidgets import *
 
@@ -84,8 +81,6 @@ class EditEventRef(DisplayState.ManagedWindow):
         self.event = event
 
         DisplayState.ManagedWindow.__init__(self, uistate, track, event_ref)
-        if self.already_exist:
-            return
 
         self.update = update
 
@@ -187,11 +182,12 @@ class EditEventRef(DisplayState.ManagedWindow):
             dict(total_events),
             RelLib.Event.CUSTOM)
 
-        self.date_check = DateEdit.DateEdit(
-            self.event.get_date_object(),
+        self.date_check = MonitoredDate(
             self.top.get_widget("eer_date"),
             self.top.get_widget("eer_date_stat"),
-            self.window)
+            self.event.get_date_object(),
+            self.window,
+            self.db.readonly)
 
     def _connect_signals(self):
         self.top.get_widget('ok').connect('clicked',self.ok_clicked)

@@ -94,8 +94,7 @@ class PluginDialog(DisplayState.ManagedWindow):
         self.content = content
 
         DisplayState.ManagedWindow.__init__(self, uistate, [], None)
-        if self.already_exist:
-            return
+
         self.state = state
         self.uistate = uistate
         
@@ -315,8 +314,7 @@ class PluginStatus(DisplayState.ManagedWindow):
 
         import cStringIO
         DisplayState.ManagedWindow.__init__(self, uistate, [], None)
-        if self.already_exist:
-            return
+
         self.state = state
         self.uistate = uistate
         

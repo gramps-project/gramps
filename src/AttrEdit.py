@@ -85,8 +85,6 @@ class AttributeEditor(DisplayState.ManagedWindow):
         self.alist = data_list
 
         DisplayState.ManagedWindow.__init__(self, uistate, track, attrib)
-        if self.already_exist:
-            return
 
         if not attrib:
             self.attrib = RelLib.Attribute()

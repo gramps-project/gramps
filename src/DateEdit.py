@@ -100,10 +100,6 @@ class DateEdit:
     """Class that associates a pixmap with a text widget, providing visual
     feedback that indicates if the text widget contains a valid date"""
 
-    good = gtk.gdk.pixbuf_new_from_file(const.good_xpm)
-    bad = gtk.gdk.pixbuf_new_from_file(const.bad_xpm)
-    caution = gtk.gdk.pixbuf_new_from_file(const.caution_xpm)
-    
     def __init__(self,date_obj,text_obj,button_obj,parent_window=None):
         """
         Creates a connection between the date_obj, text_obj and the pixmap_obj.

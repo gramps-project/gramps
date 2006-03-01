@@ -48,6 +48,11 @@ import gtk.gdk
 import gtk
 import gtk.glade
 
+
+# setup import path
+
+sys.path.append(os.path.abspath(os.path.basename(__file__)))
+
 #-------------------------------------------------------------------------
 #
 # Load internationalization setup

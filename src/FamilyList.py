@@ -37,6 +37,7 @@ import PageView
 import DisplayModels
 import const
 import Utils
+import Errors
 from QuestionDialog import QuestionDialog, ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -114,7 +115,10 @@ class FamilyListView(PageView.ListView):
     def add(self,obj):
         import EditFamily
         family = RelLib.Family()
-        EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
+        try:
+            EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
+        except Errors.WindowActiveError:
+            pass
 
     def remove(self,obj):
         return
@@ -126,4 +130,7 @@ class FamilyListView(PageView.ListView):
         for handle in mlist:
             import EditFamily
             family = self.dbstate.db.get_family_from_handle(handle)
-            EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
+            try:
+                EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
+            except Errors.WindowActiveError:
+                pass

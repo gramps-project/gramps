@@ -236,12 +236,12 @@ class MonitoredCheckbox:
         self.obj = obj
         self.set_val = set_val
         self.get_val = get_val
-        self.set_active(get_val())
+        self.obj.set_active(get_val())
 
     def _on_toggle(self,obj):
         self.set_val(obj.get_active())
         if self.on_toggle:
-            self.on_toggle(get_val())
+            self.on_toggle(self.get_val())
         
 class MonitoredEntry:
 
@@ -256,6 +256,9 @@ class MonitoredEntry:
         self.obj.connect('changed', self._on_change)
         self.obj.set_editable(not read_only)
 
+    def connect(self,signal,callback):
+        self.obj.connect(signal,callback)
+
     def _on_change(self,obj):
         self.set_val(unicode(obj.get_text()))
         if self.changed:
@@ -264,9 +267,19 @@ class MonitoredEntry:
     def force_value(self,value):
         self.obj.set_text(value)
 
+    def get_value(self,value):
+        return unicode(self.obj.get_text())
+
     def enable(self,value):
         self.obj.set_sensitive(value)
         self.obj.set_editable(value)
+
+    def grab_focus(self):
+        self.obj.grab_focus()
+
+    def update(self):
+        if self.get_val():
+            self.obj.set_text(self.get_val())
 
 class MonitoredText:
 
@@ -304,6 +317,10 @@ class MonitoredType:
         self.obj.set_sensitive(not readonly)
         self.obj.connect('changed', self.on_change)
 
+    def update(self):
+        if self.get_val():
+            self.sel.set_values(self.get_val())
+
     def on_change(self, obj):
         self.set_val(self.sel.get_values())
 
@@ -321,6 +338,9 @@ class MonitoredMenu:
         self.obj.set_active(get_val())
         self.obj.connect('changed',self.on_change)
         self.obj.set_sensitive(not readonly)
+
+    def force(self,value):
+        self.obj.set_active(value)
 
     def on_change(self, obj):
         self.set_val(self.model.get_value(obj.get_active_iter(),1))

@@ -46,174 +46,130 @@ import const
 import Utils
 import RelLib
 import GrampsMime
-import DateEdit
-import DateHandler
 import ImgManip
-import DisplayState
-import GrampsDisplay
+import EditPrimary
 
+from GrampsWidgets import *
 from QuestionDialog import ErrorDialog
-from DdTargets import DdTargets
-from WindowUtils import GladeIf
 from DisplayTabs import *
-
-_drag_targets = [
-    ('STRING', 0, 0),
-    ('text/plain',0,0),
-    ('text/uri-list',0,2),
-    ('application/x-rootwin-drop',0,1)]
 
 #-------------------------------------------------------------------------
 #
 # EditMedia
 #
 #-------------------------------------------------------------------------
-class EditMedia(DisplayState.ManagedWindow):
+class EditMedia(EditPrimary.EditPrimary):
 
     def __init__(self,state,uistate,track,obj):
-        self.dp = DateHandler.parser
-        self.dd = DateHandler.displayer
 
-        DisplayState.ManagedWindow.__init__(self, uistate, track, obj)
+        EditPrimary.EditPrimary.__init__(self, state, uistate, track, obj,
+                                         state.db.get_object_from_handle)
 
-        if self.already_exist:
-            return
+    def _local_init(self):
+        assert(self.obj)
+        self.glade = gtk.glade.XML(const.gladeFile,
+                                   "change_global","gramps")
+        self.define_top_level(self.glade.get_widget('change_global'),
+                              self.glade.get_widget('title'),     
+                              _('Media Properties Editor'))
 
-        self.state = state
+    def _connect_signals(self):
+        self.define_cancel_button(self.glade.get_widget('button91'))
+        self.define_ok_button(self.glade.get_widget('ok'),self.save)
+        self.define_help_button(self.glade.get_widget('button102'),'adv-media')
 
-        self.pdmap = {}
-        self.obj = obj
-        self.lists_changed = 0
-        self.db = self.state.db
-        self.idle = None
-        if obj:
-            self.date_object = RelLib.Date(self.obj.get_date_object())
-            self.alist = self.obj.get_attribute_list()[:]
-            self.refs = 0
-        else:
-            self.date_object = RelLib.Date()
-            self.alist = []
-            self.refs = 1
+    def _setup_fields(self):
+        self.date_field = MonitoredDate(
+            self.glade.get_widget('date'),
+            self.glade.get_widget("date_edit"),
+            self.obj.get_date_object(),
+            self.window,
+            self.db.readonly)
 
-        self.refmodel = None # this becomes the model for the references
+        self.descr_window = MonitoredEntry(
+            self.glade.get_widget("description"),
+            self.obj.set_description,
+            self.obj.get_description,
+            self.db.readonly)
         
-        self.path = self.db.get_save_path()
-        self.change_dialog = gtk.glade.XML(const.gladeFile,
-                                           "change_global","gramps")
-        self.gladeif = GladeIf(self.change_dialog)
+        self.gid = MonitoredEntry(
+            self.glade.get_widget("gid"),
+            self.obj.set_gramps_id,
+            self.obj.get_gramps_id,
+            self.db.readonly)
 
-        mode = not self.db.readonly
-        
-        title = _('Media Properties Editor')
-
-        self.window = self.change_dialog.get_widget('change_global')
-                            
-        self.date_entry = self.change_dialog.get_widget('date')
-        self.date_entry.set_editable(mode)
-        
-        if self.obj:
-            self.date_entry.set_text(self.dd.display(self.date_object))
-        
-        Utils.set_titles(self.window,
-                         self.change_dialog.get_widget('title'),title)
-        
-        self.descr_window = self.change_dialog.get_widget("description")
-        self.descr_window.set_editable(mode)
-        self.descr_window.set_text(self.obj.get_description())
-        
-        self.date_edit = self.change_dialog.get_widget("date_edit")
-        self.date_edit.set_sensitive(mode)
-        
-        self.date_check = DateEdit.DateEdit(
-            self.date_object, self.date_entry,
-            self.date_edit, self.window)
-        
-        self.pixmap = self.change_dialog.get_widget("pixmap")
+        pixmap = self.glade.get_widget("pixmap")
         
         mtype = self.obj.get_mime_type()
         if mtype:
             pb = ImgManip.get_thumbnail_image(self.obj.get_path(),mtype)
-            self.pixmap.set_from_pixbuf(pb)
+            pixmap.set_from_pixbuf(pb)
             descr = GrampsMime.get_description(mtype)
             if descr:
-                self.change_dialog.get_widget("type").set_text(descr)
+                self.glade.get_widget("type").set_text(descr)
         else:
             pb = GrampsMime.find_mime_type_pixbuf('text/plain')
-            self.pixmap.set_from_pixbuf(pb)
-            self.change_dialog.get_widget("type").set_text(_('Note'))
-
-        self.change_dialog.get_widget("gid").set_text(self.obj.get_gramps_id())
+            pixmap.set_from_pixbuf(pb)
+            self.glade.get_widget("type").set_text(_('Note'))
 
         self.setup_filepath()
         
-        self.gladeif.connect('change_global','delete_event',
-                             self.on_delete_event)
-        self.gladeif.connect('button91','clicked',self.close_window)
-        self.gladeif.connect('ok','clicked',self.on_ok_clicked)
-        self.gladeif.connect('button102','clicked',self.on_help_clicked)
-
-        self._create_tabbed_windows()
-
-        self.show()
-
-    def _create_tabbed_windows(self):
-        self.vbox = self.change_dialog.get_widget('vbox')
-        self.notebook = gtk.Notebook()
-        self.notebook.show()
-        self.vbox.pack_start(self.notebook,True)
-
-        self.attr_list = AttrEmbedList(self.state, self.uistate, self.track,
-                                       self.obj.get_attribute_list())
-        self.note_tab = NoteTab(self.state, self.uistate, self.track,
-                                self.obj.get_note_object())
-        self.src_list = SourceEmbedList(self.state,self.uistate,
-                                        self.track,self.obj.source_list)
+    def _create_tabbed_pages(self):
+        notebook = gtk.Notebook()
 
         if self.obj.get_mime_type():
-            self.notebook.insert_page(self.src_list)
-            self.notebook.insert_page(self.attr_list)
-            self.notebook.insert_page(self.note_tab)
+            self.src_list = self._add_tab(
+                notebook,
+                SourceEmbedList(self.dbstate,self.uistate,
+                                self.track,self.obj.source_list))
+            
+            self.attr_list = self._add_tab(
+                notebook,
+                AttrEmbedList(self.dbstate, self.uistate, self.track,
+                              self.obj.get_attribute_list()))
+            
+            self.note_tab = self._add_tab(
+                notebook,
+                NoteTab(self.dbstate, self.uistate, self.track,
+                        self.obj.get_note_object()))
         else:
-            self.notebook.insert_page(self.note_tab)
-            self.notebook.insert_page(self.src_list)
-            self.notebook.insert_page(self.attr_list)
+            self.note_tab = self._add_tab(
+                notebook,
+                NoteTab(self.dbstate, self.uistate, self.track,
+                        self.obj.get_note_object()))
 
-        self.notebook.set_tab_label(self.src_list,self.src_list.get_tab_widget())
-        self.notebook.set_tab_label(self.note_tab,self.note_tab.get_tab_widget())
-        self.notebook.set_tab_label(self.attr_list,self.attr_list.get_tab_widget())
+            self.src_list = self._add_tab(
+                notebook,
+                SourceEmbedList(self.dbstate,self.uistate,
+                                self.track,self.obj.source_list))
+            
+            self.attr_list = self._add_tab(
+                notebook,
+                AttrEmbedList(self.dbstate, self.uistate, self.track,
+                              self.obj.get_attribute_list()))
 
-        self.backref_list = self._add_page(MediaBackRefList(
-            self.state,self.uistate,self.track,
-            self.db.find_backlink_handles(self.obj.handle)))
+        self.backref_list = self._add_tab(
+            notebook,
+            MediaBackRefList(self.dbstate,self.uistate,self.track,
+                             self.db.find_backlink_handles(self.obj.handle)))
 
-    def _add_page(self,page):
-        self.notebook.insert_page(page)
-        self.notebook.set_tab_label(page,page.get_tab_widget())
-        return page
+        notebook.show_all()
+        self.glade.get_widget('vbox').pack_start(notebook,True)
 
     def build_menu_names(self,person):
         win_menu_label = _("Media Properties")
         return (_('Edit Media Object'),win_menu_label)
 
-    def build_window_key(self,person):
-        if person:
-            return person.get_handle()
-        else:
-            return id(self)
-
-    def on_delete_event(self,obj,b):
-        self.close()
-
     def select_file(self,obj):
-        f = gtk.FileChooserDialog(_('Select Media Object'),
-                                  action=gtk.FILE_CHOOSER_ACTION_OPEN,
-                                  buttons=(gtk.STOCK_CANCEL,
-                                           gtk.RESPONSE_CANCEL,
-                                           gtk.STOCK_OPEN,
-                                           gtk.RESPONSE_OK))
+        f = gtk.FileChooserDialog(
+            _('Select Media Object'),
+            action=gtk.FILE_CHOOSER_ACTION_OPEN,
+            buttons=(gtk.STOCK_CANCEL,
+                     gtk.RESPONSE_CANCEL,
+                     gtk.STOCK_OPEN,
+                     gtk.RESPONSE_OK))
 
         text = self.file_path.get_text()
-        name = os.path.basename(text)
         path = os.path.dirname(text)
 
         f.set_filename(path)
@@ -223,48 +179,31 @@ class EditMedia(DisplayState.ManagedWindow):
             self.file_path.set_text(f.get_filename())
         f.destroy()
         
-    def close_window(self,obj):
-        if self.idle != None:
-            gobject.source_remove(self.idle)
-        self.close()
-
     def setup_filepath(self):
-        self.select = self.change_dialog.get_widget('file_select')
-        self.file_path = self.change_dialog.get_widget("path")
+        self.select = self.glade.get_widget('file_select')
+        self.file_path = self.glade.get_widget("path")
         
         if self.obj.get_mime_type():
             fname = self.obj.get_path()
             self.file_path.set_text(fname)
             self.select.connect('clicked', self.select_file)
         else:
-            self.change_dialog.get_widget('path_label').hide()
+            self.glade.get_widget('path_label').hide()
             self.file_path.hide()
             self.select.hide()
             
-    def on_apply_clicked(self, obj):
-        desc = unicode(self.descr_window.get_text())
-        note = self.obj.get_note()
-        path = self.change_dialog.get_widget('path').get_text()
+    def save(self, *obj):
+        path = self.glade.get_widget('path').get_text()
 
         if path != self.obj.get_path():
             mime = GrampsMime.get_type(path)
             self.obj.set_mime_type(mime)
         self.obj.set_path(path)
 
-        if not self.date_object.is_equal(self.obj.get_date_object()):
-            self.obj.set_date_object(self.date_object)
-
         trans = self.db.transaction_begin()
         self.db.commit_media_object(self.obj,trans)
         self.db.transaction_commit(trans,_("Edit Media Object"))
-
-    def on_help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('adv-media')
-        
-    def on_ok_clicked(self, obj):
-        self.on_apply_clicked(obj)
-        self.close(obj)
+        self.close_window()
 
 class DeleteMediaQuery:
 
@@ -319,12 +258,3 @@ class DeleteMediaQuery:
         self.db.remove_object(self.media_handle,trans)
         self.db.transaction_commit(trans,_("Remove Media Object"))
 
-def build_dropdown(entry,strings):
-    store = gtk.ListStore(str)
-    for value in strings:
-        node = store.append()
-        store.set(node,0,value)
-    completion = gtk.EntryCompletion()
-    completion.set_text_column(0)
-    completion.set_model(store)
-    entry.set_completion(completion)
