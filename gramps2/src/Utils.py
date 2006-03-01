@@ -654,8 +654,9 @@ def set_title_label(xmlobj,t):
     title_label.set_use_markup(True)
 
 def set_titles(window,title,t,msg=None):
-    title.set_text('<span weight="bold" size="larger">%s</span>' % t)
-    title.set_use_markup(True)
+    if title:
+        title.set_text('<span weight="bold" size="larger">%s</span>' % t)
+        title.set_use_markup(True)
     if msg:
         window.set_title('%s - GRAMPS' % msg)
     else:

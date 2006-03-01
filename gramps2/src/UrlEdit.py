@@ -26,7 +26,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import gc
 from cgi import escape
 
 #-------------------------------------------------------------------------
@@ -65,8 +64,6 @@ class UrlEditor(DisplayState.ManagedWindow):
         self.name = name
         
         DisplayState.ManagedWindow.__init__(self, uistate, track, url)
-        if self.already_exist:
-            return
 
         self.url = url
         self.callback = callback

@@ -38,6 +38,7 @@ import EditPlace
 import DisplayModels
 import const
 import Utils
+import Errors
 from QuestionDialog import QuestionDialog, ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -118,10 +119,16 @@ class PlaceView(PageView.ListView):
     def on_double_click(self,obj,event):
         handle = self.first_selected()
         place = self.dbstate.db.get_place_from_handle(handle)
-        EditPlace.EditPlace(self.dbstate,self.uistate,[],place)
+        try:
+            EditPlace.EditPlace(self.dbstate,self.uistate,[],place)
+        except Errors.WindowActiveError:
+            pass
 
     def add(self,obj):
-        EditPlace.EditPlace(self.dbstate,self.uistate,[],RelLib.Place())
+        try:
+            EditPlace.EditPlace(self.dbstate,self.uistate,[],RelLib.Place())
+        except Errors.WindowActiveError:
+            pass
 
     def remove(self,obj):
         for event_handle in self.selected_handles():
@@ -159,5 +166,8 @@ class PlaceView(PageView.ListView):
 
         for handle in mlist:
             place = self.dbstate.db.get_place_from_handle(handle)
-            EditPlace.EditPlace(self.dbstate,self.uistate,[],place)
+            try:
+                EditPlace.EditPlace(self.dbstate,self.uistate,[],place)
+            except Errors.WindowActiveError:
+                pass
 

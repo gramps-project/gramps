@@ -908,7 +908,11 @@ class PedView(PageView.PersonNavView):
     def edit_person_cb(self,obj,person_handle):
         person = self.db.get_person_from_handle(person_handle)
         if person:
-            EditPerson.EditPerson(self.dbstate, self.uistate, [], person, self.person_edited_cb)
+            try:
+                EditPerson.EditPerson(self.dbstate, self.uistate, [], person,
+                                      self.person_edited_cb)
+            except Errors.WindowActiveError:
+                pass
             return True
         return False
 
@@ -929,7 +933,12 @@ class PedView(PageView.PersonNavView):
         if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
             person = self.db.get_person_from_handle(person_handle)
             if person:
-                EditPerson.EditPerson(self.dbstate, self.uistate, [], person, self.person_edited_cb)
+                try:
+                    EditPerson.EditPerson(self.dbstate, self.uistate, [], person,
+                                          self.person_edited_cb)
+                except Errors.WindowActiveError:
+                    pass
+                    
         elif event.button!=1:
             self.build_full_nav_menu_cb(obj,event,person_handle)
         return True

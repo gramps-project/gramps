@@ -53,6 +53,7 @@ import NameDisplay
 import Utils
 import QuestionDialog
 import TreeTips
+import Errors
 
 from DdTargets import DdTargets
 
@@ -349,12 +350,18 @@ class PersonView(PageView.PersonNavView):
 
     def add(self,obj):
         person = RelLib.Person()
-        EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
+        try:
+            EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
+        except Errors.WindowActiveError:
+            pass
 
     def edit(self,obj):
         if self.dbstate.active:
-            EditPerson.EditPerson(self.dbstate, self.uistate, [],
-                                  self.dbstate.active)
+            try:
+                EditPerson.EditPerson(self.dbstate, self.uistate, [],
+                                      self.dbstate.active)
+            except Errors.WindowActiveError:
+                pass
 
     def remove(self,obj):
         mlist = self.get_selected_objects()
@@ -608,7 +615,10 @@ class PersonView(PageView.PersonNavView):
             handle = self.first_selected()
             person = self.dbstate.db.get_person_from_handle(handle)
             if person:
-                EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
+                try:
+                    EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
+                except Errors.WindowActiveError:
+                    pass
                 return True
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             menu = self.uistate.uimanager.get_widget('/Popup')

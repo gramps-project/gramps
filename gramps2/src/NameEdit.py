@@ -43,13 +43,8 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-import AutoComp
-import Sources
 import RelLib
 import NameDisplay
-import DateEdit
-import DateHandler
-import Spell
 import GrampsDisplay
 import DisplayState
 from DisplayTabs import *
@@ -71,8 +66,6 @@ class NameEditor(DisplayState.ManagedWindow):
         self.callback = callback
         
         DisplayState.ManagedWindow.__init__(self, uistate, track, name)
-        if self.already_exist:
-            return
 
         self.name = name
         self.original_group_as = self.name.get_group_as()

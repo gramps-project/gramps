@@ -1,3 +1,33 @@
+2006-02-28  Don Allingham  <don@gramps-project.org>
+	* src/AddrEdit.py: remove already_exist check in favor of exception
+	* src/AttrEdit.py: remove already_exist check in favor of exception
+	* src/DisplayState.py: remove already_exist variable
+	* src/DisplayTabs.py: handle exception
+	* src/EditEventRef.py: remove already_exist check in favor of exception
+	* src/EditFamily.py: update to derive from EditPrimary
+	* src/EditMedia.py: update to derive from EditPrimary
+	* src/EditMediaRef.py: remove already_exist check in favor of exception
+	* src/EditPerson.py: update to derive from EditPrimary
+	* src/EditPlace.py: update to derive from EditPrimary
+	* src/EditRepository.py:update to derive from EditPrimary
+	* src/EditSource.py: update to derive from EditPrimary
+	* src/EditSourceRef.py: remove already_exist check in favor of exception
+	* src/Errors.py: new exception
+	* src/EventEdit.py: update to derive from EditPrimary
+	* src/EventView.py: catch exception of window already exists
+	* src/FamilyList.py: catch exception of window already exists
+	* src/FamilyView.py: catch exception of window already exists
+	* src/GrampsWidgets.py: typos
+	* src/NameEdit.py: remove already_exist check in favor of exception
+	* src/PedView.py: catch exception of window already exists
+	* src/PersonView.py: catch exception of window already exists
+	* src/PlaceView.py: catch exception of window already exists
+	* src/Plugins.py: catch exception of window already exists
+	* src/UrlEdit.py: remove already_exist check in favor of exception
+	* src/const.py.in: dynamically determine path 
+	* src/gramps.glade: name changes
+	* src/gramps.py: set path
+	
 2006-02-28  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/WritePkg.py (PackageWriter.export): Add existing
 	image filenames to the archive.

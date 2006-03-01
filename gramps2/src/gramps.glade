@@ -4,7 +4,7 @@
 <glade-interface>
 <requires lib="gnome"/>
 
-<widget class="GtkDialog" id="sourceEditor">
+<widget class="GtkDialog" id="source_editor">
   <property name="visible">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -68,7 +68,7 @@
 	  </child>
 
 	  <child>
-	    <widget class="GtkButton" id="button166">
+	    <widget class="GtkButton" id="help">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
@@ -492,7 +492,7 @@
   </child>
 </widget>
 
-<widget class="GtkDialog" id="marriageEditor">
+<widget class="GtkDialog" id="family_editor">
   <property name="visible">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -1370,7 +1370,7 @@
   </child>
 </widget>
 
-<widget class="GtkDialog" id="placeEditor">
+<widget class="GtkDialog" id="place_editor">
   <property name="visible">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -1403,7 +1403,7 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
-	    <widget class="GtkButton" id="button127">
+	    <widget class="GtkButton" id="cancel">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
@@ -1432,7 +1432,7 @@
 	  </child>
 
 	  <child>
-	    <widget class="GtkButton" id="button135">
+	    <widget class="GtkButton" id="help">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
@@ -12995,7 +12995,7 @@ Text Beside Icons</property>
   </child>
 </widget>
 
-<widget class="GtkDialog" id="repositoryEditor">
+<widget class="GtkDialog" id="repository_editor">
   <property name="visible">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>

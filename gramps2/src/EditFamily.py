@@ -26,8 +26,6 @@
 #
 #-------------------------------------------------------------------------
 import cPickle as pickle
-import os
-import sys
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -66,16 +64,14 @@ import gtk.glade
 import const
 import Utils
 import NameDisplay
-import DisplayState
+import EditPrimary
 import Spell
 import GrampsDisplay
 import RelLib
 import ReportUtils
 import AutoComp
-import GrampsWidgets
 
 from DdTargets import DdTargets
-from WindowUtils import GladeIf
 from DisplayTabs import *
 from GrampsWidgets import *
 from ObjectSelector import PersonSelector,PersonFilterSpec
@@ -204,40 +200,35 @@ class ChildEmbedList(EmbeddedList):
         handle = self.get_selected()
         if handle:
             import EditPerson
-            person = self.dbstate.db.get_person_from_handle(handle)
-            EditPerson.EditPerson(self.dbstate,self.uistate,self.track,person)
+            try:
+                person = self.dbstate.db.get_person_from_handle(handle)
+                EditPerson.EditPerson(self.dbstate,self.uistate,self.track,person)
+            except Errors.WindowActiveError:
+                pass
 
 #-------------------------------------------------------------------------
 #
 # EditFamily
 #
 #-------------------------------------------------------------------------
-class EditFamily(DisplayState.ManagedWindow):
+class EditFamily(EditPrimary.EditPrimary):
 
     def __init__(self,dbstate,uistate,track,family):
-        self.dbstate = dbstate
-        self.uistate = uistate
-        self.family  = family
+        EditPrimary.EditPrimary.__init__(self, dbstate, uistate, track,
+                                         family, dbstate.db.get_family_from_handle)
 
-        DisplayState.ManagedWindow.__init__(self, uistate, track, family)
-        if self.already_exist:
-            return
-        
+
+    def _local_init(self):
         self.build_interface()
-        self.load_data()
 
         self.mname  = None
         self.fname  = None
 
-        self.signal_keys = []
-        self.signal_keys.append(self.dbstate.db.connect('person-update',
-                                                        self.check_for_change))
-        self.signal_keys.append(self.dbstate.db.connect('person-delete',
-                                                        self.check_for_change))
-        self.signal_keys.append(self.dbstate.db.connect('person-rebuild',
-                                                        self.reload_people))
+        self._add_db_signal('person-update', self.check_for_change)
+        self._add_db_signal('person-delete', self.check_for_change)
+        self._add_db_signal('person-rebuild', self.reload_people)
         
-        self.show()
+        self.load_data()
 
     def check_for_change(self,handles):
         for node in handles:
@@ -246,27 +237,22 @@ class EditFamily(DisplayState.ManagedWindow):
                 break;
 
     def reload_people(self):
-        fhandle = self.family.get_father_handle()
+        fhandle = self.obj.get_father_handle()
         self.update_father(fhandle)
 
-        mhandle = self.family.get_mother_handle()
+        mhandle = self.obj.get_mother_handle()
         self.update_mother(mhandle)
         self.child_list.rebuild()
 
     def build_menu_names(self,obj):
         return ('Edit Family','Undefined Submenu')
 
-    def build_window_key(self,obj):
-        if self.family.handle:
-            return id(self.family.handle)
-        else:
-            return id(self)
-
     def build_interface(self):
 
-        self.top = gtk.glade.XML(const.gladeFile,"marriageEditor","gramps")
-        self.gladeif = GladeIf(self.top)
-        self.window = self.top.get_widget("marriageEditor")
+        self.top = gtk.glade.XML(const.gladeFile,"family_editor","gramps")
+
+        self.define_top_level(self.top.get_widget("family_editor"),
+                              None,_('Family Editor'))
 
         self.fbirth = self.top.get_widget('fbirth')
         self.fdeath = self.top.get_widget('fdeath')
@@ -280,83 +266,79 @@ class EditFamily(DisplayState.ManagedWindow):
         self.mbox   = self.top.get_widget('mbox')
         self.fbox   = self.top.get_widget('fbox')
 
-        self.ok     = self.top.get_widget('ok')
-        self.cancel = self.top.get_widget('cancel')
-
-        self.vbox   = self.top.get_widget('vbox')
         self.child_list = self.top.get_widget('child_list')
 
-        self.notebook = gtk.Notebook()
-        self.notebook.show()
-        self.vbox.pack_start(self.notebook,True)
+    def _connect_signals(self):
+        self.define_ok_button(self.top.get_widget('ok'), self.save)
+        self.define_cancel_button(self.top.get_widget('cancel'))
 
-        self._setup_monitored_values()
-
-        self.cancel.connect('clicked', self.close_window)
-        self.ok.connect('clicked', self.apply_changes)
-
-    def _setup_monitored_values(self):
-        self.private= GrampsWidgets.PrivacyButton(self.top.get_widget('private'),
-                                                  self.family)
-
-        self.gid = GrampsWidgets.MonitoredEntry(self.top.get_widget('gid'),
-                                                self.family.set_gramps_id,
-                                                self.family.get_gramps_id)
+    def _setup_fields(self):
         
-        self.data_type = GrampsWidgets.MonitoredType(
-            self.top.get_widget('marriage_type'), self.family.set_relationship,
-            self.family.get_relationship, dict(Utils.family_relations),
+        self.private= PrivacyButton(
+            self.top.get_widget('private'),
+            self.obj,
+            self.db.readonly)
+
+        self.gid = MonitoredEntry(
+            self.top.get_widget('gid'),
+            self.obj.set_gramps_id,
+            self.obj.get_gramps_id,
+            self.db.readonly)
+        
+        self.data_type = MonitoredType(
+            self.top.get_widget('marriage_type'),
+            self.obj.set_relationship,
+            self.obj.get_relationship,
+            dict(Utils.family_relations),
             RelLib.Family.CUSTOM)
 
     def load_data(self):
-        fhandle = self.family.get_father_handle()
+        fhandle = self.obj.get_father_handle()
         self.update_father(fhandle)
 
-        mhandle = self.family.get_mother_handle()
+        mhandle = self.obj.get_mother_handle()
         self.update_mother(mhandle)
 
-        self.phandles = [mhandle, fhandle] + self.family.get_child_handle_list()
+        self.phandles = [mhandle, fhandle] + self.obj.get_child_handle_list()
         self.phandles = [handle for handle in self.phandles if handle]
 
         self.mbutton.connect('clicked',self.mother_clicked)
         self.fbutton.connect('clicked',self.father_clicked)
 
-        self.child_list = ChildEmbedList(self.dbstate,self.uistate,
-                                         self.track, self.family)
-        self.event_list = EventEmbedList(self.dbstate,self.uistate,
-                                         self.track,self.family)
-        self.src_list = SourceEmbedList(self.dbstate,self.uistate,
-                                        self.track,self.family.source_list)
-        self.attr_list = AttrEmbedList(self.dbstate, self.uistate, self.track,
-                                       self.family.get_attribute_list())
-        self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
-                                self.family.get_note_object())
-        self.gallery_tab = GalleryTab(self.dbstate, self.uistate, self.track,
-                                      self.family.get_media_list())
+    def _create_tabbed_pages(self):
 
-        self.notebook.insert_page(self.child_list)
-        self.notebook.set_tab_label(self.child_list,
-                                    self.child_list.get_tab_widget())
+        notebook = gtk.Notebook()
 
-        self.notebook.insert_page(self.event_list)
-        self.notebook.set_tab_label(self.event_list,
-                                    self.event_list.get_tab_widget())
+        self.child_list = self._add_tab(
+            notebook,
+            ChildEmbedList(self.dbstate,self.uistate, self.track, self.obj))
+        
+        self.event_list = self._add_tab(
+            notebook,
+            EventEmbedList(self.dbstate,self.uistate, self.track,self.obj))
+            
+        self.src_list = self._add_tab(
+            notebook,
+            SourceEmbedList(self.dbstate,self.uistate,
+                            self.track,self.obj.source_list))
+            
+        self.attr_list = self._add_tab(
+            notebook,
+            AttrEmbedList(self.dbstate, self.uistate, self.track,
+                          self.obj.get_attribute_list()))
+            
+        self.note_tab = self._add_tab(
+            notebook,
+            NoteTab(self.dbstate, self.uistate, self.track,
+                    self.obj.get_note_object()))
+            
+        self.gallery_tab = self._add_tab(
+            notebook,
+            GalleryTab(self.dbstate, self.uistate, self.track,
+                       self.obj.get_media_list()))
 
-        self.notebook.insert_page(self.src_list)
-        self.notebook.set_tab_label(self.src_list,
-                                    self.src_list.get_tab_widget())
-
-        self.notebook.insert_page(self.attr_list)
-        self.notebook.set_tab_label(self.attr_list,
-                                    self.attr_list.get_tab_widget())
-
-        self.notebook.insert_page(self.note_tab)
-        self.notebook.set_tab_label(self.note_tab,
-                                    self.note_tab.get_tab_widget())
-
-        self.notebook.insert_page(self.gallery_tab)
-        self.notebook.set_tab_label(self.gallery_tab,
-                                    self.gallery_tab.get_tab_widget())
+        notebook.show_all()
+        self.top.get_widget('vbox').pack_start(notebook,True)
 
     def update_father(self,handle):
         self.load_parent(handle, self.fbox, self.fbirth,
@@ -370,7 +352,7 @@ class EditFamily(DisplayState.ManagedWindow):
         if obj.__class__ == RelLib.Person:
             try:
                 person = obj
-                self.family.set_mother_handle(person.get_handle()) 
+                self.obj.set_mother_handle(person.get_handle()) 
                 self.update_mother(person.get_handle())                    
             except:
                 log.warn(
@@ -388,21 +370,21 @@ class EditFamily(DisplayState.ManagedWindow):
 
             
     def mother_clicked(self,obj):
-        handle = self.family.get_mother_handle()
+        handle = self.obj.get_mother_handle()
         if handle:
-            self.family.set_mother_handle(None)
+            self.obj.set_mother_handle(None)
             self.update_mother(None)
         else:
             filter_spec = PersonFilterSpec()
             filter_spec.set_gender(RelLib.Person.FEMALE)
             
             child_birth_years = []
-            for person_handle in self.family.get_child_handle_list():
-                person = self.dbstate.db.get_person_from_handle(person_handle)
+            for person_handle in self.obj.get_child_handle_list():
+                person = self.db.get_person_from_handle(person_handle)
                 event_ref = person.get_birth_ref()
                 event_handle = event_ref.ref
                 if event_handle:
-                    event = self.dbstate.db.get_event_from_handle(event_handle)
+                    event = self.db.get_event_from_handle(event_handle)
                     child_birth_years.append(event.get_date_object().get_year())
                     
             if len(child_birth_years) > 0:
@@ -419,7 +401,7 @@ class EditFamily(DisplayState.ManagedWindow):
         if  obj.__class__ == RelLib.Person:
             try:
                 person = obj
-                self.family.set_father_handle(person.get_handle()) 
+                self.obj.set_father_handle(person.get_handle()) 
                 self.update_father(person.get_handle())                    
             except:
                 log.warn("Failed to update father: \n"
@@ -436,21 +418,21 @@ class EditFamily(DisplayState.ManagedWindow):
         selector_window.close()
 
     def father_clicked(self,obj):
-        handle = self.family.get_father_handle()
+        handle = self.obj.get_father_handle()
         if handle:
-            self.family.set_father_handle(None)
+            self.obj.set_father_handle(None)
             self.update_father(None)
         else:
             filter_spec = PersonFilterSpec()
             filter_spec.set_gender(RelLib.Person.MALE)
 
             child_birth_years = []
-            for person_handle in self.family.get_child_handle_list():
-                person = self.dbstate.db.get_person_from_handle(person_handle)
+            for person_handle in self.obj.get_child_handle_list():
+                person = self.db.get_person_from_handle(person_handle)
                 event_ref = person.get_birth_ref()
                 event_handle = event_ref.ref
                 if event_handle:
-                    event = self.dbstate.db.get_event_from_handle(event_handle)
+                    event = self.db.get_event_from_handle(event_handle)
                     child_birth_years.append(event.get_date_object().get_year())
                     
             if len(child_birth_years) > 0:
@@ -465,9 +447,12 @@ class EditFamily(DisplayState.ManagedWindow):
     def edit_person(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             import EditPerson
-            person = self.dbstate.db.get_person_from_handle(handle)
-            EditPerson.EditPerson(self.dbstate, self.uistate,
-                                  self.track, person)
+            try:
+                person = self.db.get_person_from_handle(handle)
+                EditPerson.EditPerson(self.dbstate, self.uistate,
+                                      self.track, person)
+            except Errors.WindowActiveError:
+                pass
 
     def load_parent(self,handle,box,birth_obj,death_obj,btn_obj):
 
@@ -479,7 +464,7 @@ class EditFamily(DisplayState.ManagedWindow):
         btn_obj.remove(btn_obj.get_children()[0])
         
         if is_used:
-            db = self.dbstate.db
+            db = self.db
             person = db.get_person_from_handle(handle)
             name = "%s [%s]" % (NameDisplay.displayer.display(person),
                                 person.gramps_id)
@@ -492,9 +477,9 @@ class EditFamily(DisplayState.ManagedWindow):
             del_image.set_from_stock(gtk.STOCK_REMOVE,gtk.ICON_SIZE_BUTTON)
             btn_obj.add(del_image)
 
-            box.pack_start(GrampsWidgets.LinkBox(
-                GrampsWidgets.BasicLabel(name),
-                GrampsWidgets.IconButton(self.edit_person,person.handle)
+            box.pack_start(LinkBox(
+                BasicLabel(name),
+                IconButton(self.edit_person,person.handle)
                 ))
         else:
             name = ""
@@ -512,54 +497,49 @@ class EditFamily(DisplayState.ManagedWindow):
     def fix_parent_handles(self,orig_handle, new_handle, trans):
         if orig_handle != new_handle:
             if orig_handle:
-                person = self.dbstate.db.get_person_from_handle(orig_handle)
-                person.family_list.remove(self.family.handle)
-                self.dbstate.db.commit_person(person,trans)
+                person = self.db.get_person_from_handle(orig_handle)
+                person.family_list.remove(self.obj.handle)
+                self.db.commit_person(person,trans)
             if new_handle:
-                person = self.dbstate.db.get_person_from_handle(orig_handle)
-                if self.family.handle not in self.person.family_list:
-                    person.family_list.append(self.family.handle)
-                self.dbstate.db.commit_person(person,trans)
+                person = self.db.get_person_from_handle(orig_handle)
+                if self.obj.handle not in self.obj.family_list:
+                    person.family_list.append(self.obj.handle)
+                self.db.commit_person(person,trans)
 
-    def apply_changes(self,obj):
-        if self.family.handle:
-            original = self.dbstate.db.get_family_from_handle(self.family.handle)
+    def save(self,obj):
+        if self.obj.handle:
+            original = self.db.get_family_from_handle(self.obj.handle)
         else:
             original = None
 
         if not original:
-            trans = self.dbstate.db.transaction_begin()
-            self.dbstate.db.add_family(self.family,trans)
-            self.dbstate.db.transaction_commit(trans,_("Edit Family"))
-        elif cmp(original.serialize(),self.family.serialize()):
+            trans = self.db.transaction_begin()
+            self.db.add_family(self.obj,trans)
+            self.db.transaction_commit(trans,_("Edit Family"))
+        elif cmp(original.serialize(),self.obj.serialize()):
 
-            trans = self.dbstate.db.transaction_begin()
+            trans = self.db.transaction_begin()
 
             self.fix_parent_handles(original.get_father_handle(),
-                                    self.family.get_father_handle(),trans)
+                                    self.obj.get_father_handle(),trans)
             self.fix_parent_handles(original.get_mother_handle(),
-                                    self.family.get_mother_handle(),trans)
+                                    self.obj.get_mother_handle(),trans)
 
             orig_set = set(original.get_child_handle_list())
-            new_set = set(self.family.get_child_handle_list())
+            new_set = set(self.obj.get_child_handle_list())
 
             # remove the family from children which have been removed
             for handle in orig_set.difference(new_set):
-                person = self.dbstate.db.get_person_from_handle(handle)
-                person.remove_parent_family_handle(self.family.handle)
-                self.dbstate.db.commit_person(person,trans)
+                person = self.db.get_person_from_handle(handle)
+                person.remove_parent_family_handle(self.obj.handle)
+                self.db.commit_person(person,trans)
             
             # add the family from children which have been removed
             for handle in new_set.difference(orig_set):
-                person = self.dbstate.db.get_person_from_handle(handle)
-                #person.remove_parent_family_handle(self.family.handle)
-                #self.dbstate.db.commit_person(person,trans)
+                person = self.db.get_person_from_handle(handle)
+                #person.remove_parent_family_handle(self.obj.handle)
+                #self.db.commit_person(person,trans)
 
-            self.dbstate.db.commit_family(self.family,trans)
-            self.dbstate.db.transaction_commit(trans,_("Edit Family"))
+            self.db.commit_family(self.obj,trans)
+            self.db.transaction_commit(trans,_("Edit Family"))
         self.close_window()
-
-    def close_window(self,*obj):
-        for key in self.signal_keys:
-            self.dbstate.db.disconnect(key)
-        self.close()

@@ -31,6 +31,7 @@ import ImgManip
 import ReportUtils
 import GrampsKeys
 import GrampsWidgets
+import Errors
 
 _GenderCode = {
     RelLib.Person.MALE    : u'\u2642',
@@ -556,24 +557,36 @@ class FamilyView(PageView.PersonNavView):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             import EditPerson
             person = self.dbstate.db.get_person_from_handle(handle)
-            EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
+            try:
+                EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
+            except Errors.WindowActiveError:
+                pass
         
     def edit_person(self,obj,handle):
         import EditPerson
         person = self.dbstate.db.get_person_from_handle(handle)
-        EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
+        try:
+            EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
+        except Errors.WindowActiveError:
+            pass
 
     def edit_family(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             import EditFamily
             family = self.dbstate.db.get_family_from_handle(handle)
-            EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
+            try:
+                EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
+            except Errors.WindowActiveError:
+                pass
 
     def add_family(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             import EditFamily
             family = RelLib.Family()
-            EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
+            try:
+                EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
+            except Errors.WindowActiveError:
+                pass
 
     def delete_family(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:

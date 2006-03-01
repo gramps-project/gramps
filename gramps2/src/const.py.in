@@ -24,20 +24,20 @@
 
 #-------------------------------------------------------------------------
 #
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+import os
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # Standard GRAMPS Websites
 #
 #-------------------------------------------------------------------------
 url_homepage    = "http://gramps-project.org/"
 url_mailinglist = "http://sourceforge.net/mail/?group_id=25770"
 url_burtracker  = "http://sourceforge.net/tracker/?group_id=25770&atid=385137"
-
-#-------------------------------------------------------------------------
-#
-# Standard python modules
-#
-#-------------------------------------------------------------------------
-import os
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -88,14 +88,8 @@ no_gconf = False
 # this one, and that the plugins directory is in a directory below this.
 #
 #-------------------------------------------------------------------------
-if os.environ.has_key('GRAMPSDIR'):
-    rootDir = os.environ['GRAMPSDIR']
-else:
-    rootDir = os.getcwd()
 
-good_xpm       = os.path.join(rootDir,"good.png")
-bad_xpm        = os.path.join(rootDir,"bad.png")
-caution_xpm    = os.path.join(rootDir,"caution.png")
+rootDir = os.path.abspath(os.path.dirname(__file__))
 
 system_filters = os.path.join(rootDir,"system_filters.xml")
 custom_filters = "~/.gramps/custom_filters.xml"

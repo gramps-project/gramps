@@ -26,8 +26,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import gc
-import sys
 
 import logging
 log = logging.getLogger(".")
@@ -51,7 +49,7 @@ import RelLib
 import NameDisplay
 import Spell
 import GrampsDisplay
-import DisplayState
+import EditPrimary
 
 from DisplayTabs import *
 from WindowUtils import GladeIf
@@ -62,104 +60,84 @@ from GrampsWidgets import *
 # Constants
 #
 #-------------------------------------------------------------------------
-class EditSource(DisplayState.ManagedWindow):
+class EditSource(EditPrimary.EditPrimary):
 
-    def __init__(self,dbstate,uistate,track,source,readonly=False):
-        self.dbstate = dbstate
-        self.track = track
-        self.uistate = uistate
+    def __init__(self,dbstate,uistate,track,source):
 
-        self.db = dbstate.db
-        self.name_display = NameDisplay.displayer.display
+        EditPrimary.EditPrimary.__init__(
+            self, dbstate, uistate, track,
+            source, dbstate.db.get_source_from_handle)
 
-        DisplayState.ManagedWindow.__init__(self, uistate, self.track, source)
+    def _local_init(self):
 
-        if source:
-            self.source = source
-        else:
-            self.source = RelLib.Source()
+        assert(self.obj)
+        self.glade = gtk.glade.XML(const.gladeFile,"source_editor","gramps")
 
-        self.glade = gtk.glade.XML(const.gladeFile,"sourceEditor","gramps")
-        self.window = self.glade.get_widget("sourceEditor")
-
-        Utils.set_titles(self.window,self.glade.get_widget('title'),
-                         _('Source Editor'))
+        self.define_top_level(self.glade.get_widget("source_editor"),
+                              self.glade.get_widget('title'),
+                              _('Source Editor'))
                 
-        self.vbox = self.glade.get_widget('vbox')
-
-        self.notebook = gtk.Notebook()
-        self.notebook.show()
-        self.vbox.pack_start(self.notebook,True)
-
-        self._create_tabbed_pages()
-        self._setup_fields()
-        self._connect_signals()
-        self.show()
 
     def _connect_signals(self):
-        self.glade.get_widget('cancel').connect('clicked', self.close_window)
-
-        ok = self.glade.get_widget('ok')
-        ok.set_sensitive(not self.db.readonly)
-        ok.connect('clicked', self.apply_clicked)
+        self.define_ok_button(self.glade.get_widget('ok'),self.save)
+        self.define_cancel_button(self.glade.get_widget('cancel'))
+        self.define_help_button(self.glade.get_widget('help'),'adv-src')
 
     def _setup_fields(self):
         self.author = MonitoredEntry(
             self.glade.get_widget("author"),
-            self.source.set_author,
-            self.source.get_author,
+            self.obj.set_author,
+            self.obj.get_author,
             self.db.readonly)
 
         self.pubinfo = MonitoredEntry(
             self.glade.get_widget("pubinfo"),
-            self.source.set_publication_info,
-            self.source.get_publication_info,
+            self.obj.set_publication_info,
+            self.obj.get_publication_info,
             self.db.readonly)
 
         self.abbrev = MonitoredEntry(
             self.glade.get_widget("abbrev"),
-            self.source.set_abbreviation,
-            self.source.get_abbreviation,
+            self.obj.set_abbreviation,
+            self.obj.get_abbreviation,
             self.db.readonly)
 
         self.title = MonitoredEntry(
             self.glade.get_widget("source_title"),
-            self.source.set_title,
-            self.source.get_title,
+            self.obj.set_title,
+            self.obj.get_title,
             self.db.readonly)
 
-    def _add_page(self,page):
-        self.notebook.insert_page(page)
-        self.notebook.set_tab_label(page,page.get_tab_widget())
-        return page
-
     def _create_tabbed_pages(self):
-        self.note_tab = self._add_page(NoteTab(
-            self.dbstate, self.uistate, self.track,
-            self.source.get_note_object()))
-        
-        self.gallery_tab = self._add_page(GalleryTab(
-            self.dbstate, self.uistate, self.track,
-            self.source.get_media_list()))
-                                          
-        self.data_tab = self._add_page(DataEmbedList(
-            self.dbstate, self.uistate, self.track, self.source))
-                                       
-        self.repo_tab = self._add_page(RepoEmbedList(
-            self.dbstate, self.uistate, self.track,
-            self.source.get_reporef_list()))
-        
-        self.backref_tab = self._add_page(SourceBackRefList(
-            self.dbstate, self.uistate, self.track,
-            self.db.find_backlink_handles(self.source.handle)))
-        
-        self.notebook.show_all()
+        notebook = gtk.Notebook()
 
-    def build_window_key(self,source):
-        if source:
-            return source.get_handle()
-        else:
-            return id(self)
+        self.note_tab = self._add_tab(
+            notebook,
+            NoteTab(self.dbstate, self.uistate, self.track,
+                    self.obj.get_note_object()))
+        
+        self.gallery_tab = self._add_tab(
+            notebook,
+            GalleryTab(self.dbstate, self.uistate, self.track,
+                       self.obj.get_media_list()))
+                                          
+        self.data_tab = self._add_tab(
+            notebook,
+            DataEmbedList(self.dbstate, self.uistate, self.track,
+                          self.obj))
+                                       
+        self.repo_tab = self._add_tab(
+            notebook,
+            RepoEmbedList(self.dbstate, self.uistate, self.track,
+                          self.obj.get_reporef_list()))
+        
+        self.backref_tab = self._add_tab(
+            notebook,
+            SourceBackRefList(self.dbstate, self.uistate, self.track,
+                              self.db.find_backlink_handles(self.obj.handle)))
+        
+        notebook.show_all()
+        self.glade.get_widget('vbox').pack_start(notebook,True)
 
     def build_menu_names(self,source):
         if source:
@@ -168,27 +146,18 @@ class EditSource(DisplayState.ManagedWindow):
             label = "New Source"
         return (label, _('Source Editor'))        
 
-    def on_delete_event(self,obj,b):
+    def _cleanup_on_exit(self):
         self.backref_tab.close()
-        self.close()
 
-    def on_help_clicked(self,obj):
-        """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('adv-src')
-
-    def close_window(self,obj):
-        self.backref_tab.close()
-        self.close()
-
-    def apply_clicked(self,obj):
+    def save(self,*obj):
 
         trans = self.db.transaction_begin()
-        if self.source.get_handle() == None:
-            self.db.add_source(self.source,trans)
+        if self.obj.get_handle() == None:
+            self.db.add_source(self.obj,trans)
         else:
-            self.db.commit_source(self.source,trans)
+            self.db.commit_source(self.obj,trans)
         self.db.transaction_commit(trans,
-                                   _("Edit Source (%s)") % self.source.get_title())
+                                   _("Edit Source (%s)") % self.obj.get_title())
         self.close(obj)
 
 class DelSrcQuery:

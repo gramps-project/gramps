@@ -49,9 +49,8 @@ import const
 import Utils
 import AutoComp
 import RelLib
-import DateEdit
 import GrampsDisplay
-import DisplayState
+import EditPrimary
 
 from QuestionDialog import WarningDialog, ErrorDialog
 from DisplayTabs import *
@@ -72,111 +71,95 @@ for event_type in Utils.family_events.keys():
 # EventEditor class
 #
 #-------------------------------------------------------------------------
-class EventEditor(DisplayState.ManagedWindow):
+class EventEditor(EditPrimary.EditPrimary):
 
     def __init__(self,event,dbstate,uistate,track=[],callback=None):
-        self.db = dbstate.db
-        self.uistate = uistate
-        self.dbstate = dbstate
-        self.track = track
-        self.callback = callback
-        
-        self.event = event
-        self.path = self.db.get_save_path()
-        self.plist = []
-        self.pmap = {}
 
-        DisplayState.ManagedWindow.__init__(self, uistate, self.track, event)
-        if self.already_exist:
-            return
+        EditPrimary.EditPrimary.__init__(self, dbstate, uistate, track,
+                                         event, dbstate.db.get_event_from_handle)
 
-        if not event:
-            self.event = RelLib.Event()
-
+    def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "event_edit","gramps")
-
         self.window = self.top.get_widget("event_edit")
-        title_label = self.top.get_widget('title')
 
         etitle = _('Event Editor')
-        Utils.set_titles(self.window,title_label, etitle,
-                         _('Event Editor'))
-
-        self._create_tabbed_pages()
-        self._setup_fields()
-        self._connect_signals()
-        self.show()
+        Utils.set_titles(self.window, self.top.get_widget('title'),
+                         etitle, etitle)
 
     def _connect_signals(self):
-        self.top.get_widget('button111').connect('clicked',self.close_window)
-        self.top.get_widget('button126').connect('clicked',self.on_help_clicked)
+        self.top.get_widget('button111').connect('clicked',self.delete_event)
+        self.top.get_widget('button126').connect('clicked',self.help_clicked)
 
         ok = self.top.get_widget('ok')
         ok.set_sensitive(not self.db.readonly)
-        ok.connect('clicked',self.on_event_edit_ok_clicked)
+        ok.connect('clicked',self.save)
 
     def _setup_fields(self):
         self.place_field = PlaceEntry(
             self.top.get_widget("eventPlace"),
-            self.event.get_place_handle(),
+            self.obj.get_place_handle(),
             self.dbstate.get_place_completion(),
             self.db.readonly)
         
         self.cause_monitor = MonitoredEntry(
             self.top.get_widget("eventCause"),
-            self.event.set_cause,
-            self.event.get_cause, self.db.readonly)
+            self.obj.set_cause,
+            self.obj.get_cause, self.db.readonly)
 
         self.descr_field = MonitoredEntry(
             self.top.get_widget("event_description"),
-            self.event.set_description,
-            self.event.get_description, self.db.readonly)
+            self.obj.set_description,
+            self.obj.get_description, self.db.readonly)
 
         self.priv = PrivacyButton(
             self.top.get_widget("private"),
-            self.event, self.db.readonly)
+            self.obj, self.db.readonly)
 
         self.event_menu = MonitoredType(
             self.top.get_widget("personal_events"),
-            self.event.set_type,
-            self.event.get_type,
+            self.obj.set_type,
+            self.obj.get_type,
             dict(total_events),
             RelLib.Event.CUSTOM)
 
         self.date_field = MonitoredDate(
             self.top.get_widget("eventDate"),
             self.top.get_widget("date_stat"),
-            self.event.get_date_object(),
+            self.obj.get_date_object(),
             self.window, self.db.readonly)
-
-    def _add_page(self,page):
-        self.notebook.insert_page(page)
-        self.notebook.set_tab_label(page,page.get_tab_widget())
-        return page
 
     def _create_tabbed_pages(self):
         """
         Creates the notebook tabs and inserts them into the main
         window.
         """
-        vbox = self.top.get_widget('vbox')
-        self.notebook = gtk.Notebook()
+        notebook = gtk.Notebook()
+        
+        self.srcref_list = self._add_tab(
+            notebook,
+            SourceEmbedList(self.dbstate,self.uistate, self.track,
+                            self.obj.source_list))
+        
+        self.note_tab = self._add_tab(
+            notebook,
+            NoteTab(self.dbstate, self.uistate, self.track,
+                    self.obj.get_note_object()))
+        
+        self.gallery_tab = self._add_tab(
+            notebook,
+            GalleryTab(self.dbstate, self.uistate, self.track,
+                       self.obj.get_media_list()))
+        
+        self.backref_tab = self._add_tab(
+            notebook,
+            EventBackRefList(self.dbstate, self.uistate, self.track,
+                             self.dbstate.db.find_backlink_handles(self.obj.handle)))
 
-        self.srcref_list = self._add_page(SourceEmbedList(
-            self.dbstate,self.uistate, self.track,
-            self.event.source_list))
-        self.note_tab = self._add_page(NoteTab(
-            self.dbstate, self.uistate, self.track,
-            self.event.get_note_object()))
-        self.gallery_tab = self._add_page(GalleryTab(
-            self.dbstate, self.uistate, self.track,
-            self.event.get_media_list()))
-        self.backref_tab = self._add_page(EventBackRefList(
-            self.dbstate, self.uistate, self.track,
-            self.dbstate.db.find_backlink_handles(self.event.handle)))
+        notebook.show_all()
+        self.top.get_widget('vbox').pack_start(notebook,True)
 
-        self.notebook.show_all()
-        vbox.pack_start(self.notebook,True)
+    def _cleanup_on_exit(self):
+        self.backref_tab.close()
 
     def build_menu_names(self,event):
         if event:
@@ -192,59 +175,52 @@ class EventEditor(DisplayState.ManagedWindow):
             submenu_label = _('New Event')
         return (_('Event Editor'),submenu_label)
 
-    def build_window_key(self,obj):
-        if obj:
-            return obj.get_handle()
-        else:
-            return id(self)
-
-    def on_delete_event(self,obj,b):
-        self.close()
-
-    def close_window(self,obj):
-        self.close()
-        self.window.destroy()
-
-    def on_help_clicked(self,obj):
+    def help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('adv-ev')
 
-    def on_event_edit_ok_clicked(self,obj):
+    def save(self,*obj):
 
         (need_new, handle) = self.place_field.get_place_info()
         if need_new:
             place_obj = RelLib.Place()
             place_obj.set_title(handle)
-            self.event.set_place_handle(place_obj.get_handle())
+            self.obj.set_place_handle(place_obj.get_handle())
         else:
-            self.event.set_place_handle(handle)
+            self.obj.set_place_handle(handle)
             
-        if self.event.handle == None:
+        if self.obj.handle == None:
             trans = self.db.transaction_begin()
             if need_new:
                 self.db.add_place(place_obj,trans)
-            self.db.add_event(self.event,trans)
+            self.db.add_event(self.obj,trans)
             self.db.transaction_commit(trans,_("Add Event"))
         else:
-            orig = self.dbstate.db.get_event_from_handle(self.event.handle)
-            if cmp(self.event.serialize(),orig.serialize()):
+            orig = self.dbstate.db.get_event_from_handle(self.obj.handle)
+            if cmp(self.obj.serialize(),orig.serialize()):
                 trans = self.db.transaction_begin()
                 if need_new:
                     self.db.add_place(place_obj,trans)
-                self.db.commit_event(self.event,trans)
+                self.db.commit_event(self.obj,trans)
                 self.db.transaction_commit(trans,_("Edit Event"))
 
         if self.callback:
-            self.callback(self.event)
+            self.callback(self.obj)
         self.close(obj)
-
-    def commit(self,event,trans):
-        self.db.commit_event(event,trans)
 
     def get_event_names(self):
         data = set(self.db.get_family_event_types())
         data.union(self.db.get_person_event_types())
         return list(data)
+
+    def data_has_changed(self):
+        if self.db.readonly:
+            return False
+        elif self.obj.handle:
+            orig = self.db.get_event_from_handle(self.obj.handle)
+            return cmp(orig.serialize(),self.obj.serialize()) != 0
+        else:
+            return True
 
 #-------------------------------------------------------------------------
 #

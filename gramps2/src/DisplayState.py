@@ -45,6 +45,7 @@ import GrampsKeys
 import NameDisplay
 import GrampsMime
 import const
+import Errors
 
 #-------------------------------------------------------------------------
 #
@@ -453,9 +454,6 @@ class ManagedWindow:
                                                     window_id,
                                                     submenu_label,
                                                     menu_label)
-                if self.already_exist:
-                    return
-                
                 # Proceed with the class.
                 ...
                 
@@ -466,9 +464,8 @@ class ManagedWindow:
             
         if uistate.gwm.get_item_from_id(window_key):
             uistate.gwm.get_item_from_id(window_key).present()
-            self.already_exist = True
+            raise Errors.WindowActiveError('This window is already active')
         else:
-            self.already_exist = False
             self.window_id = window_key
             self.submenu_label = submenu_label
             self.menu_label = menu_label

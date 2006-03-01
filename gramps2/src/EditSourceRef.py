@@ -45,13 +45,10 @@ import gtk.glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import Sources
-import Witness
 import const
 import Utils
 import AutoComp
 import RelLib
-import GrampsDisplay
 import DisplayState
 
 from QuestionDialog import WarningDialog, ErrorDialog
@@ -74,8 +71,6 @@ class EditSourceRef(DisplayState.ManagedWindow):
         self.source = source
 
         DisplayState.ManagedWindow.__init__(self, uistate, track, source_ref)
-        if self.already_exist:
-            return
 
         self.update = update
 
