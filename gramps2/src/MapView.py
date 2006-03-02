@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2005  Donald N. Allingham
+# Copyright (C) 2001-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -396,9 +396,9 @@ class MapView(PageView.PageView):
         no = gtk.Image()
         # The large zoomable map
         self.zoom_map = ZoomMap(
-            gtk.gdk.pixbuf_new_from_file("land_shallow_topo_2048.jpg"),
-            gtk.gdk.pixbuf_new_from_file("bad.png"),
-            gtk.gdk.pixbuf_new_from_file("good.png"))
+            gtk.gdk.pixbuf_new_from_file("images/land_shallow_topo_2048.jpg"),
+            gtk.gdk.pixbuf_new_from_file("images/bad.png"),
+            gtk.gdk.pixbuf_new_from_file("images/good.png"))
         self.zoom_map.set_size_request(300,300)
         hbox.pack_start( self.zoom_map, True, True, 0)
         
@@ -408,7 +408,7 @@ class MapView(PageView.PageView):
         
         # The small guide map
         self.guide_map = GuideMap(
-            gtk.gdk.pixbuf_new_from_file("land_shallow_topo_350.jpg"))
+            gtk.gdk.pixbuf_new_from_file("images/land_shallow_topo_350.jpg"))
         self.guide_map.set_size_request(128,64)
         vbox.pack_start( self.guide_map, False, True, 0)
         

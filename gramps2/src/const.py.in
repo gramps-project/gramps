@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -96,9 +96,9 @@ custom_filters = "~/.gramps/custom_filters.xml"
 report_options = "~/.gramps/report_options.xml"
 tool_options   = "~/.gramps/tool_options.xml"
 bsddbenv_dir   = "~/.gramps/bsddbenv"
-icon           = os.path.join(rootDir,"gramps.png")
-logo           = os.path.join(rootDir,"logo.png")
-splash         = os.path.join(rootDir,"splash.jpg")
+icon           = os.path.join(rootDir,"images/gramps.png")
+logo           = os.path.join(rootDir,"images/logo.png")
+splash         = os.path.join(rootDir,"images/splash.jpg")
 license        = os.path.join(rootDir,"COPYING")
 gladeFile      = os.path.join(rootDir,"gramps.glade")
 editPersonFile = os.path.join(rootDir,"edit_person.glade")
