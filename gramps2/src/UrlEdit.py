@@ -43,9 +43,8 @@ import gtk.glade
 import const
 import Utils
 import RelLib
-import GrampsDisplay
-import DisplayState
-import AutoComp
+import EditSecondary
+
 from GrampsWidgets import *
 
 #-------------------------------------------------------------------------
@@ -53,79 +52,46 @@ from GrampsWidgets import *
 # UrlEditor class
 #
 #-------------------------------------------------------------------------
-class UrlEditor(DisplayState.ManagedWindow):
+class UrlEditor(EditSecondary.EditSecondary):
 
     def __init__(self, dbstate, uistate, track, name, url, callback):
 
-        self.db = dbstate.db
-        self.uistate = uistate
-        self.state = dbstate
-        self.callback = callback
-        self.name = name
-        
-        DisplayState.ManagedWindow.__init__(self, uistate, track, url)
+        EditSecondary.EditSecondary.__init__(self, dbstate, uistate, track,
+                                             url, callback)
 
-        self.url = url
-        self.callback = callback
+    def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "url_edit","gramps")
-        
-        self.window = self.top.get_widget("url_edit")
 
-        title_label = self.top.get_widget("title")
-        if not name or name == ", ":
-            etitle =_('Internet Address Editor')
-        else:
-            etitle =_('Internet Address Editor for %s') % escape(name)
+        self.define_top_level(self.top.get_widget("url_edit"),
+                              self.top.get_widget("title"),
+                              _('Internet Address Editor'))
             
-
-        Utils.set_titles(self.window,title_label, etitle,
-                         _('Internet Address Editor'))
-
-        self._setup_fields()
-        self._connect_signals()
-        self.show()
-
     def _connect_signals(self):
-        self.window.connect('delete_event', self.on_delete_event)
-        self.top.get_widget('button125').connect('clicked', self.close_window)
-        self.top.get_widget('button124').connect('clicked', self.ok_clicked)
-        self.top.get_widget('button130').connect('clicked', self.help_clicked)
+        self.define_cancel_button(self.top.get_widget('button125'))
+        self.define_ok_button(self.top.get_widget('button124'),self.save)
+        self.define_help_button(self.top.get_widget('button130'),'gramps-edit_complete')
         
     def _setup_fields(self):
         self.des  = MonitoredEntry(
-            self.top.get_widget("url_des"), self.url.set_description,
-            self.url.get_description, self.db.readonly)
+            self.top.get_widget("url_des"), self.obj.set_description,
+            self.obj.get_description, self.db.readonly)
 
         self.addr  = MonitoredEntry(
-            self.top.get_widget("url_addr"), self.url.set_path,
-            self.url.get_path, self.db.readonly)
+            self.top.get_widget("url_addr"), self.obj.set_path,
+            self.obj.get_path, self.db.readonly)
         
         self.priv = PrivacyButton(self.top.get_widget("priv"),
-                                  self.url, self.db.readonly)
+                                  self.obj, self.db.readonly)
 
         self.type_sel = MonitoredType(
-            self.top.get_widget("type"), self.url.set_type,
-            self.url.get_type, dict(Utils.web_types), RelLib.Url.CUSTOM)
+            self.top.get_widget("type"), self.obj.set_type,
+            self.obj.get_type, dict(Utils.web_types), RelLib.Url.CUSTOM)
             
-
     def build_menu_names(self,obj):
-        if not self.name or self.name == ", ":
-            etitle =_('Internet Address Editor')
-        else:
-            etitle =_('Internet Address Editor for %s') % escape(self.name)
-        return (etitle, _('Internet Address Editor'))
+        etitle =_('Internet Address Editor')
+        return (etitle, etitle)
 
-    def on_delete_event(self,*obj):
-        self.close()
-
-    def close_window(self,*obj):
-        self.close()
-
-    def help_clicked(self,*obj):
-        """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('gramps-edit-complete')
-
-    def ok_clicked(self,obj):
-        self.callback(self.url)
-        self.close_window(obj)
+    def save(self,*obj):
+        self.callback(self.obj)
+        self.close_window()
 

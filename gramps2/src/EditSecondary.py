@@ -23,29 +23,21 @@
 from gettext import gettext as _
 
 import DisplayState
-import DateHandler
-import NameDisplay
 import GrampsKeys
 import GrampsDisplay
 import Utils
 
-from QuestionDialog import SaveDialog
+class EditSecondary(DisplayState.ManagedWindow):
 
-class EditPrimary(DisplayState.ManagedWindow):
-
-    def __init__(self, state, uistate, track, obj, get_from_handle, callback=None):
+    def __init__(self, state, uistate, track, obj, callback=None):
         """Creates an edit window.  Associates a person with the window."""
 
-        self.dp  = DateHandler.parser
-        self.dd  = DateHandler.displayer
-        self.nd  = NameDisplay.displayer
         self.obj = obj
         self.dbstate = state
         self.uistate = uistate
         self.db = state.db
         self.callback = callback
         self.signal_keys = []
-        self.get_from_handle = get_from_handle
 
         DisplayState.ManagedWindow.__init__(self, uistate, track, obj)
 
@@ -82,10 +74,7 @@ class EditPrimary(DisplayState.ManagedWindow):
         pass
 
     def build_window_key(self,obj):
-        if obj:
-            return obj.get_handle()
-        else:
-            return id(self)
+        return id(obj)
         
     def _add_tab(self,notebook,page):
         notebook.insert_page(page)
@@ -119,26 +108,5 @@ class EditPrimary(DisplayState.ManagedWindow):
     def delete_event(self,*obj):
         """If the data has changed, give the user a chance to cancel
         the close window"""
-        if not GrampsKeys.get_dont_ask() and self.data_has_changed():
-            SaveDialog(
-                _('Save Changes?'),
-                _('If you close without saving, the changes you '
-                  'have made will be lost'),
-                self.close_window,
-                self.save)
-            return True
-        else:
-            self.close_window()
-            return False
+        self.close_window()
 
-    def data_has_changed(self):
-        if self.db.readonly:
-            return False
-        elif self.obj.handle:
-            orig = self.get_from_handle(self.obj.handle)
-            return cmp(orig.serialize(),self.obj.serialize()) != 0
-        else:
-            return True
-
-    def save(self,*obj):
-        pass

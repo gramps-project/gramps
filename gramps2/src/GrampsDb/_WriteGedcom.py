@@ -110,15 +110,17 @@ def add_familys_sources(db,family_handle,slist,private):
         if sbase != None and not slist.has_key(sbase):
             slist[sbase] = 1
         
-    for event_handle in family.get_event_list():
-        if event_handle:
-            event = db.get_event_from_handle(event_handle)
-            if private and event.get_privacy():
-                continue
-            for source_ref in event.get_source_references():
-                sbase = source_ref.get_base_handle()
-                if sbase != None and not slist.has_key(sbase):
-                    slist[sbase] = 1
+    for event_ref in family.get_event_ref_list():
+        if not event_ref:
+            continue
+        event_handle = event_ref.ref
+        event = db.get_event_from_handle(event_handle)
+        if private and event.get_privacy():
+            continue
+        for source_ref in event.get_source_references():
+            sbase = source_ref.get_base_handle()
+            if sbase != None and not slist.has_key(sbase):
+                slist[sbase] = 1
 
     for attr in family.get_attribute_list():
         if private and attr.get_privacy():
@@ -139,12 +141,10 @@ def add_persons_sources(db,person,slist,private):
         if sbase != None and not slist.has_key(sbase):
             slist[sbase] = 1
         
-    elist = person.get_event_list()[:]
-
-    elist.append(person.get_birth_handle())
-    elist.append(person.get_death_handle())
-    for event_handle in elist:
-        if event_handle:
+    for event_ref in person.get_event_ref_list() + [person.get_birth_ref(),
+                      person.get_death_ref()]:
+        if event_ref:
+            event_handle = event_ref.ref
             event = db.get_event_from_handle(event_handle)
             if not event:
                 continue
@@ -709,13 +709,15 @@ class GedcomWriter:
             if not self.restrict or ( not father_alive and not mother_alive ):
                 self.write_ord("SLGS",family.get_lds_sealing(),1,const.lds_ssealing)
 
-                for event_handle in family.get_event_list():
+                for event_ref in family.get_event_ref_list():
+                    event_handle = event_ref.ref
                     event = self.db.get_event_from_handle(event_handle)
                     if not event or self.private and event.get_privacy():
                         continue
-                    name = event.get_name()
+                    (index,name) = event.get_type()
+
                     val = ""
-                    if Utils.familyConstantEvents.has_key(name):
+                    if Utils.familyConstantEvents.has_key(index):
                         val = Utils.familyConstantEvents[name]
                     if val == "":
                         val = self.target_ged.gramps2tag(name)
@@ -837,27 +839,29 @@ class GedcomWriter:
             self.writeln("1 SEX F")
 
         if not restricted:
-            birth_handle = person.get_birth_handle()
-            birth = self.db.get_event_from_handle(birth_handle)
-            if birth_handle and birth and not (self.private and birth.get_privacy()):
-                if not birth.get_date_object().is_empty() or birth.get_place_handle():
-                    self.writeln("1 BIRT")
-                else:
-                    self.writeln("1 BIRT Y")
-                if birth.get_description() != "":
-                    self.writeln("2 TYPE %s" % birth.get_description())
-                self.dump_event_stats(birth)
+            birth_ref = person.get_birth_ref()
+            if birth_ref:
+                birth = self.db.get_event_from_handle(birth_ref.ref)
+                if not (self.private and birth.get_privacy()):
+                    if not birth.get_date_object().is_empty() or birth.get_place_handle():
+                        self.writeln("1 BIRT")
+                    else:
+                        self.writeln("1 BIRT Y")
+                    if birth.get_description() != "":
+                        self.writeln("2 TYPE %s" % birth.get_description())
+                    self.dump_event_stats(birth)
 
-            death_handle = person.get_death_handle()
-            death = self.db.get_event_from_handle(death_handle)
-            if death_handle and death and not (self.private and death.get_privacy()):
-                if not death.get_date_object().is_empty() or death.get_place_handle():
-                    self.writeln("1 DEAT")
-                else:
-                    self.writeln("1 DEAT Y")
-                if death.get_description() != "":
-                    self.writeln("2 TYPE %s" % death.get_description())
-                self.dump_event_stats(death)
+            death_ref = person.get_death_ref()
+            if death_ref:
+                death = self.db.get_event_from_handle(death_ref.ref)
+                if not (self.private and death.get_privacy()):
+                    if not death.get_date_object().is_empty() or death.get_place_handle():
+                        self.writeln("1 DEAT")
+                    else:
+                        self.writeln("1 DEAT Y")
+                    if death.get_description() != "":
+                        self.writeln("2 TYPE %s" % death.get_description())
+                    self.dump_event_stats(death)
 
             ad = 0
 
@@ -865,20 +869,16 @@ class GedcomWriter:
             self.write_ord("ENDL",person.get_lds_endowment(),1,const.lds_baptism)
             self.write_ord("SLGC",person.get_lds_sealing(),1,const.lds_csealing)
             
-            for event_handle in person.get_event_list():
-                if not event_handle:
-                    continue
-                event = self.db.get_event_from_handle(event_handle)
-                if not event:
-                    continue
+            for event_ref in person.get_event_ref_list():
+                event = self.db.get_event_from_handle(event_ref.ref)
                 if self.private and event.get_privacy():
                     continue
-                name = event.get_name()
+                (index,name) = event.get_type()
                 val = ""
-                if Utils.personalConstantEvents.has_key(name):
-                    val = Utils.personalConstantEvents[name]
+                if Utils.personalConstantEvents.has_key(index):
+                    val = Utils.personalConstantEvents[index]
                 if val == "":
-                    val = self.target_ged.gramps2tag(name)
+                    val = self.target_ged.gramps2tag(index)
                         
                 if self.adopt == GedcomInfo.ADOPT_EVENT and val == "ADOP":
                     ad = 1

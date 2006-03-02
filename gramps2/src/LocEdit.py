@@ -35,10 +35,9 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-import GrampsDisplay
-import DisplayState
+import EditSecondary
 
-from WindowUtils import GladeIf
+from GrampsWidgets import *
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -46,87 +45,68 @@ from gettext import gettext as _
 # LocationEditor class
 #
 #-------------------------------------------------------------------------
-class LocationEditor(DisplayState.ManagedWindow):
+class LocationEditor(EditSecondary.EditSecondary):
 
     def __init__(self,dbstate,uistate,track,location,callback):
-        DisplayState.ManagedWindow.__init__(self, uistate, track, location)
+        EditSecondary.EditSecondary.__init__(self, dbstate, uistate, track,
+                                             location, callback)
 
-        self.location = location
+    def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "loc_edit","gramps")
-        self.gladeif = GladeIf(self.top)
+        self.define_top_level(self.top.get_widget("loc_edit"),
+                              self.top.get_widget('title'),
+                              _('Location Editor'))
+
+    def _setup_fields(self):
+        self.city   = MonitoredEntry(
+            self.top.get_widget("city"),
+            self.obj.set_city,
+            self.obj.get_city,
+            self.db.readonly)
         
-        self.window = self.top.get_widget("loc_edit")
-        self.city   = self.top.get_widget("city")
-        self.state  = self.top.get_widget("state")
-        self.postal = self.top.get_widget("postal")
-        self.phone = self.top.get_widget("phone")
-        self.parish = self.top.get_widget("parish")
-        self.county = self.top.get_widget("county")
-        self.country = self.top.get_widget("country")
-        self.callback = callback
-
-        Utils.set_titles(self.window, self.top.get_widget('title'),
-                         _('Location Editor'))
-
-        if location != None:
-            self.city.set_text(location.get_city())
-            self.county.set_text(location.get_county())
-            self.country.set_text(location.get_country())
-            self.state.set_text(location.get_state())
-            self.phone.set_text(location.get_phone())
-            self.postal.set_text(location.get_postal_code())
-            self.parish.set_text(location.get_parish())
-
-        self.gladeif.connect('loc_edit','delete_event',self.on_delete_event)
-        self.gladeif.connect('button119','clicked',self.close_window)
-        self.gladeif.connect('button118','clicked',self.on_ok_clicked)
-        self.gladeif.connect('button128','clicked',self.on_help_clicked)
+        self.state  = MonitoredEntry(
+            self.top.get_widget("state"),
+            self.obj.set_state,
+            self.obj.get_state,
+            self.db.readonly)
         
-        self.show()
-
-    def on_delete_event(self,obj,b):
-        self.gladeif.close()
-        self.close()
-
-    def close_window(self,obj):
-        self.gladeif.close()
-        self.close()
+        self.postal = MonitoredEntry(
+            self.top.get_widget("postal"),
+            self.obj.set_postal_code,
+            self.obj.get_postal_code,
+            self.db.readonly)
         
-    def on_help_clicked(self,obj):
-        """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('gramps-edit-complete')
-
-    def on_ok_clicked(self,obj):
-        city = unicode(self.city.get_text())
-        county = unicode(self.county.get_text())
-        country = unicode(self.country.get_text())
-        state = unicode(self.state.get_text())
-        phone = unicode(self.phone.get_text())
-        postal = unicode(self.postal.get_text())
-        parish = unicode(self.parish.get_text())
+        self.phone = MonitoredEntry(
+            self.top.get_widget("phone"),
+            self.obj.set_phone,
+            self.obj.get_phone,
+            self.db.readonly)
         
-        self.update_location(city,parish,county,state,phone,postal,country)
-        self.callback(self.location)
+        self.parish = MonitoredEntry(
+            self.top.get_widget("parish"),
+            self.obj.set_parish,
+            self.obj.get_parish,
+            self.db.readonly)
+        
+        self.county = MonitoredEntry(
+            self.top.get_widget("county"),
+            self.obj.set_county,
+            self.obj.get_county,
+            self.db.readonly)
+        
+        self.country = MonitoredEntry(
+            self.top.get_widget("country"),
+            self.obj.set_country,
+            self.obj.get_country,
+            self.db.readonly)
+
+    def _connect_signals(self):
+        self.define_cancel_button(self.top.get_widget('button119'))
+        self.define_ok_button(self.top.get_widget('button118'),self.save)
+        self.define_help_button(self.top.get_widget('button128'),'gramps-edit-complete')
+        
+    def save(self,*obj):
+        if self.callback:
+             self.callback(self.obj)
         self.close(obj)
 
-    def update_location(self,city,parish,county,state,phone,postal,country):
-        if self.location.get_city() != city:
-            self.location.set_city(city)
-
-        if self.location.get_parish() != parish:
-            self.location.set_parish(parish)
-
-        if self.location.get_county() != county:
-            self.location.set_county(county)
-
-        if self.location.get_state() != state:
-            self.location.set_state(state)
-
-        if self.location.get_phone() != phone:
-            self.location.set_phone(phone)
-
-        if self.location.get_postal_code() != postal:
-            self.location.set_postal_code(postal)
-
-        if self.location.get_country() != country:
-            self.location.set_country(country)
