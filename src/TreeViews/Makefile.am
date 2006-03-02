@@ -1,4 +1,4 @@
-# This is the src/RelLib level Makefile for Gramps
+# This is the src/TreeViews level Makefile for Gramps
 # We could use GNU make's ':=' syntax for nice wildcard use,
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
@@ -9,8 +9,8 @@ pkgdata_PYTHON = \
 	__init__.py\
 	_PersonTreeView.py
 
-pkgpyexecdir = @pkgpyexecdir@/RelLib
-pkgpythondir = @pkgpythondir@/RelLib
+pkgpyexecdir = @pkgpyexecdir@/TreeViews
+pkgpythondir = @pkgpythondir@/TreeViews
 
 GRAMPS_PY_MODPATH = "../"
 

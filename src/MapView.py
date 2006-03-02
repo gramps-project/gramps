@@ -393,6 +393,7 @@ class MapView(PageView.PageView):
         hbox = gtk.HBox( False, 4)
         hbox.set_border_width( 4)
 
+        no = gtk.Image()
         # The large zoomable map
         self.zoom_map = ZoomMap(
             gtk.gdk.pixbuf_new_from_file("land_shallow_topo_2048.jpg"),
