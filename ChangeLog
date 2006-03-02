@@ -1,3 +1,6 @@
+2006-03-02  Alex Roitman  <shura@gramps-project.org>
+	* .cvsignore: Remove from all directories.
+
 2006-03-02  Don Allingham  <don@gramps-project.org>
 	* src/place.png: fix corruption due to svn conversion
 	* src/sources.png: fix corruption due to svn conversion
