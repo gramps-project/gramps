@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modiy
 # it under the terms of the GNU General Public License as published by
@@ -59,7 +59,7 @@ from DdTargets import DdTargets
 #-------------------------------------------------------------------------
 
 LINK_PIC = gtk.gdk.pixbuf_new_from_file( "%s/%s" % (os.path.dirname(__file__),
-                                                    'stock_link.png'))
+                                                    'images/stock_link.png'))
 BLANK_PIC = gtk.gdk.Pixbuf(0,0,8,1,1)
 
 #-------------------------------------------------------------------------

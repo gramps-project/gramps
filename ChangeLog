@@ -1,5 +1,7 @@
 2006-03-02  Alex Roitman  <shura@gramps-project.org>
 	* calendar, filers: Remove directories.
+	* images: Create directory.
+	* src/*png, src/*jpg: move under images directory.
 
 2006-03-02  Don Allingham  <don@gramps-project.org>
 	* configure.in: make distcheck fixes

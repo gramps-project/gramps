@@ -48,8 +48,8 @@ import const
 # Constants
 #
 #-------------------------------------------------------------------------
-_gramps_png = "%s/gramps.png" % const.rootDir
-_splash_jpg = "%s/splash.jpg" % const.rootDir
+_gramps_png = "%s/images/gramps.png" % const.rootDir
+_splash_jpg = "%s/images/splash.jpg" % const.rootDir
 _format = '<span weight="bold" size="xx-large">%s</span>'
 
 #-------------------------------------------------------------------------

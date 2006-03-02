@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2005  Donald N. Allingham
+# Copyright (C) 2001-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -65,17 +65,26 @@ iconpaths = [".",const.rootDir]
 def register_stock_icons ():
     import os
     items = [
-        ('person.svg',('gramps-person','Person',gtk.gdk.CONTROL_MASK,0,'')),
-        ('relation.svg',('gramps-family','Relationships',gtk.gdk.CONTROL_MASK,0,'')),
-        ('flist.svg',('gramps-family-list','Family List',gtk.gdk.CONTROL_MASK,0,'')),
-        ('media.svg',('gramps-media','Media',gtk.gdk.CONTROL_MASK,0,'')),
-        ('ped24.png',('gramps-pedigree','Pedigree',gtk.gdk.CONTROL_MASK,0,'')),
-        ('repos.png',('gramps-repository','Repositories',
-                      gtk.gdk.CONTROL_MASK,0,'')),
-        ('sources.png',('gramps-source','Sources',gtk.gdk.CONTROL_MASK,0,'')),
-        ('events.png',('gramps-event','Events',gtk.gdk.CONTROL_MASK,0,'')),
-        ('place.png',('gramps-place','Places',gtk.gdk.CONTROL_MASK,0,'')),
-        ('place.png',('gramps-map','Map',gtk.gdk.CONTROL_MASK,0,'')),
+        ('images/person.svg',('gramps-person',
+                              'Person',gtk.gdk.CONTROL_MASK,0,'')),
+        ('images/relation.svg',('gramps-family',
+                                'Relationships',gtk.gdk.CONTROL_MASK,0,'')),
+        ('images/flist.svg',('gramps-family-list',
+                             'Family List',gtk.gdk.CONTROL_MASK,0,'')),
+        ('images/media.svg',('gramps-media',
+                             'Media',gtk.gdk.CONTROL_MASK,0,'')),
+        ('images/ped24.png',('gramps-pedigree',
+                             'Pedigree',gtk.gdk.CONTROL_MASK,0,'')),
+        ('images/repos.png',('gramps-repository',
+                             'Repositories',gtk.gdk.CONTROL_MASK,0,'')),
+        ('images/sources.png',('gramps-source',
+                               'Sources',gtk.gdk.CONTROL_MASK,0,'')),
+        ('images/events.png',('gramps-event',
+                              'Events',gtk.gdk.CONTROL_MASK,0,'')),
+        ('images/place.png',('gramps-place',
+                             'Places',gtk.gdk.CONTROL_MASK,0,'')),
+        ('images/place.png',('gramps-map',
+                             'Map',gtk.gdk.CONTROL_MASK,0,'')),
         ]
     
     # Register our stock items
@@ -92,7 +101,7 @@ def register_stock_icons ():
             if os.path.isfile(icon_file):
                 break
         else:
-            icon_file = os.path.join(iconpaths[0],'gramps.png')
+            icon_file = os.path.join(iconpaths[0],'images/gramps.png')
             
         pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
         pixbuf = pixbuf.add_alpha(True, chr(0xff), chr(0xff), chr(0xff))

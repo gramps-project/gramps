@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -155,7 +155,8 @@ def get_thumbnail_image(path,mtype=None):
         if mtype:
             return GrampsMime.find_mime_type_pixbuf(mtype)
         else:
-            return gtk.gdk.pixbuf_new_from_file(os.path.join(const.dataDir,"document.png"))
+            return gtk.gdk.pixbuf_new_from_file(os.path.join(
+                const.dataDir,"images/document.png"))
 
 def get_thumbnail_path(path,mtype=None):
     filename = _build_thumb_path(path)
