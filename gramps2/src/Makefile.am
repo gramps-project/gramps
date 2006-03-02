@@ -1,7 +1,7 @@
 # $Id$
 
 # This is the src level Makefile for Gramps
-SUBDIRS = docgen plugins dates data po GrampsDb RelLib ObjectSelector GrampsLogger TreeView
+SUBDIRS = docgen plugins dates data po GrampsDb RelLib ObjectSelector GrampsLogger TreeViews
 
 # For intl. support, how do we compile?
 MOSTLYCLEANFILES = 

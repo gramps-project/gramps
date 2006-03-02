@@ -9,7 +9,7 @@ pkgdata_PYTHON = \
 	_ErrorReportAssistant.py\
 	_ErrorView.py\
 	_GtkHandler.py\
-	_init__.py\
+	__init__.py\
 	_RotateHandler.py
 
 pkgpyexecdir = @pkgpyexecdir@/RelLib
