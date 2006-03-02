@@ -6,24 +6,23 @@
 pkgdatadir = $(datadir)/@PACKAGE@/ObjectSelector
 
 pkgdata_PYTHON = \
-	_Constants.py\
 	_Factories.py\
 	_FamilyFilterFrame.py\
 	_FamilyFrame.py\
 	_FamilyPreviewFrame.py\
 	_FamilyTreeFrame.py\
 	_FilterFrameBase.py\
-	_FilterSpec.py\
 	_FilterSpecBase.py\
+	__init__.py\
 	_ObjectFrameBase.py\
-	_ObjectSelectorResult.py\
 	_ObjectSelectorWindow.py\
 	_PersonFilterFrame.py\
 	_PersonFilterSpec.py\
 	_PersonFrame.py\
 	_PersonPreviewFrame.py\
 	_PersonTreeFrame.py\
-	__init__.py
+	_PreviewFrameBase.py\
+	_TreeFrameBase.py
 
 pkgpyexecdir = @pkgpyexecdir@/ObjectSelector
 pkgpythondir = @pkgpythondir@/ObjectSelector

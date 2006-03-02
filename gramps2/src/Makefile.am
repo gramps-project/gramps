@@ -1,7 +1,7 @@
 # $Id$
 
 # This is the src level Makefile for Gramps
-SUBDIRS = docgen plugins dates data po GrampsDb RelLib ObjectSelector
+SUBDIRS = docgen plugins dates data po GrampsDb RelLib ObjectSelector GrampsLogger TreeView
 
 # For intl. support, how do we compile?
 MOSTLYCLEANFILES = 
@@ -23,101 +23,118 @@ docfiles = \
 	GrampsDbBase.py 
 
 gdir_PYTHON = \
-	accent.py \
 	AddMedia.py\
 	AddrEdit.py\
-	AddSpouse.py\
 	ansel_utf8.py\
-	Assistant.py \
+	ArgHandler.py\
+	Assistant.py\
 	AttrEdit.py\
 	AutoComp.py\
 	BaseDoc.py\
 	Bookmarks.py\
-	CalSdn.py\
 	ColumnOrder.py\
-	ChooseParents.py\
-	const.py\
-	DateEdit.py\
-	Date.py\
-	DateParser.py\
-	DateHandler.py\
+	const.py.in\
 	DateDisplay.py\
+	DateEdit.py\
+	DateHandler.py\
+	DateParser.py\
+	Date.py\
 	DdTargets.py\
 	DisplayModels.py\
+	DisplayState.py\
+	DisplayTabs.py\
 	DisplayTrace.py\
+	EditEventRef.py\
+	EditFamily.py\
+	EditMedia.py\
+	EditMediaRef.py\
 	EditPerson.py\
 	EditPlace.py\
+	EditPrimary.py\
+	EditRepository.py\
+	EditSecondary.py\
 	EditSource.py\
+	EditSourceRef.py\
 	Errors.py\
 	EventEdit.py\
+	events24.png\
+	events.png\
+	EventView.py\
+	Exporter.py\
+	FamilyList.py\
 	FamilyView.py\
 	FontScale.py\
 	GenericFilter.py\
 	GnomeMime.py\
 	GrampsCfg.py\
+	GrampsDb\
 	GrampsDisplay.py\
-	GrampsMime.py\
+	GrampsGconfKeys.py\
+	GrampsIniKeys.py\
+	GrampsKeys.py\
+	GrampsLocale.py\
 	gramps_main.py\
+	GrampsMime.py\
 	gramps.py\
-	ImageSelect.py\
+	GrampsWidgets.py\
 	ImgManip.py\
 	latin_ansel.py\
-	ListBox.py\
 	ListModel.py\
 	LocEdit.py\
-	Marriage.py\
+	locked.png\
+	MapView.py\
 	MediaView.py\
 	MergeData.py\
 	MergePeople.py\
 	NameDisplay.py\
 	NameEdit.py\
+	Navigation.py\
 	NoteEdit.py\
+	ObjectSelector\
+	Options.py\
+	PageView.py\
 	PaperMenu.py\
 	PedView.py\
-	PersonView.py\
 	PeopleModel.py\
+	PersonView.py\
 	PlaceView.py\
-	Plugins.py\
 	PluginMgr.py\
+	plugins.glade\
+	Plugins.py\
 	PythonMime.py\
 	QuestionDialog.py\
+	RecentFiles.py\
 	Relationship.py\
 	RelImage.py\
+	ReportOptions.py\
 	Report.py\
 	ReportUtils.py\
+	RepositoryView.py\
 	ScratchPad.py\
 	SelectChild.py\
+	SelectEvent.py\
 	SelectObject.py\
+	SelectPerson.py\
 	Sort.py\
 	soundex.py\
 	Sources.py\
 	SourceView.py\
+	Spell.py\
 	SpreadSheetDoc.py\
 	StartupDialog.py\
+	stock_link.png\
 	StyleEditor.py\
 	SubstKeywords.py\
-	TarFile.py\
 	TipOfDay.py\
-	TransTable.py\
+	Tool.py\
+	ToolTips.py\
+	TransUtils.py\
 	TreeTips.py\
 	UrlEdit.py\
 	Utils.py\
-	Witness.py\
-	SelectPerson.py\
-	ArgHandler.py\
-	Exporter.py\
-	GrampsKeys.py\
-	GrampsIniKeys.py\
-	GrampsGconfKeys.py\
-	RecentFiles.py\
-	ReportOptions.py\
-	EventView.py\
-	SelectEvent.py\
-	Spell.py\
-	Options.py\
-	Tool.py\
-	TransUtils.py\
-	WindowUtils.py
+	ViewManager.py\
+	WindowUtils.py\
+	Witness.py
 
 # Could use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all files individually
@@ -131,17 +148,9 @@ GLADEFILES = \
 	scratchpad.glade
 
 GRAPHICS = \
-	bad.png\
-	caution.png\
-	edit.png\
-	edit_sm.png \
-	family48.png\
-	good.png\
-	home.png\
 	logo.png\
 	gramps.png \
 	media.png\
-	people48.png\
 	place.png\
 	sources.png\
 	splash.jpg\
