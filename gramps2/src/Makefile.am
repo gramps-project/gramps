@@ -33,7 +33,7 @@ gdir_PYTHON = \
 	BaseDoc.py\
 	Bookmarks.py\
 	ColumnOrder.py\
-	const.py.in\
+	const.py\
 	DateDisplay.py\
 	DateEdit.py\
 	DateHandler.py\
@@ -67,7 +67,6 @@ gdir_PYTHON = \
 	GenericFilter.py\
 	GnomeMime.py\
 	GrampsCfg.py\
-	GrampsDb\
 	GrampsDisplay.py\
 	GrampsGconfKeys.py\
 	GrampsIniKeys.py\
@@ -90,7 +89,6 @@ gdir_PYTHON = \
 	NameEdit.py\
 	Navigation.py\
 	NoteEdit.py\
-	ObjectSelector\
 	Options.py\
 	PageView.py\
 	PaperMenu.py\
@@ -149,12 +147,20 @@ GLADEFILES = \
 
 GRAPHICS = \
 	logo.png\
+	bad.png\
+	good.png\
 	gramps.png \
 	media.png\
 	place.png\
 	sources.png\
 	splash.jpg\
-	tools.png
+	tools.png \
+	land_shallow_topo_2048.jpg \
+	land_shallow_topo_350.jpg \
+	flist.svg \
+	media.svg \
+	person.svg \
+	relation.svg 
 
 # Other stuff that we need to install
 dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) 

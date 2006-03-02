@@ -1,3 +1,10 @@
+2006-03-02  Don Allingham  <don@gramps-project.org>
+	* configure.in: make distcheck fixes
+	* src/MapView.py: make distcheck fixes
+	* src/GrampsLogger/Makefile.am: make distcheck fixes
+	* src/Makefile.am: make distcheck fixes
+	* src/TreeViews.am: make distcheck fixes
+
 2006-03-02  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsLogger/Makefile.am (pkgdata_PYTHON): Typo.
 	* configure.in: Generate Makefile-s in new directories.
