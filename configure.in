@@ -231,6 +231,8 @@ src/Makefile
 src/const.py
 src/RelLib/Makefile
 src/ObjectSelector/Makefile
+src/GrampsLogger/Makefile
+src/TreeViews/Makefile
 src/GrampsDb/Makefile
 src/docgen/Makefile
 src/plugins/Makefile

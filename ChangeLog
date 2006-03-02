@@ -1,4 +1,7 @@
 2006-03-02  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsLogger/Makefile.am (pkgdata_PYTHON): Typo.
+	* configure.in: Generate Makefile-s in new directories.
+	* src/Makefile.am (SUBDIRS): Typo.
 	* *png, *jpg: Add proper svn:mime-type, remove mime-type.
 	* .cvsignore: Remove from all directories.
 
