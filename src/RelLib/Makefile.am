@@ -11,6 +11,8 @@ pkgdata_PYTHON = \
 	_AttributeBase.py\
 	_Attribute.py\
 	_BaseObject.py\
+	_CalSdn.py \
+	_Date.py \
 	_DateBase.py\
 	_Event.py\
 	_EventRef.py\
