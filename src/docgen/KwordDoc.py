@@ -31,7 +31,7 @@ import Errors
 from TarFile import TarFile
 import PluginMgr
 import ImgManip
-import GrampsMime
+import Mime
 
 from gettext import gettext as _
 
@@ -263,7 +263,7 @@ class KwordDoc(BaseDoc.BaseDoc):
 
         if self.print_req:
             apptype = 'application/x-kword'
-            app = GrampsMime.get_application(apptype)
+            app = Mime.get_application(apptype)
             os.environ["FILE"] = self.filename
             os.system ('%s "$FILE" &' % app[0])
 
@@ -488,8 +488,8 @@ class KwordDoc(BaseDoc.BaseDoc):
 try:
     import Utils
     
-    prog = GrampsMime.get_application("application/x-kword")
-    mtype = GrampsMime.get_description("application/x-kword")
+    prog = Mime.get_application("application/x-kword")
+    mtype = Mime.get_description("application/x-kword")
     
     if prog and Utils.search_for(prog[0]):
         print_label=_("Open in %s") % prog[1]

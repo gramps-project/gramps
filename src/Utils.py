@@ -45,7 +45,7 @@ import gtk.gdk
 #
 #-------------------------------------------------------------------------
 import const
-import GrampsMime
+import Mime
 import NameDisplay
 import RelLib
 import Errors
@@ -503,7 +503,7 @@ def add_menuitem(menu,msg,obj,func):
 def view_photo(photo):
     mime_type = photo.get_mime_type()
     try:
-        data = GrampsMime.get_application(mime_type)
+        data = Mime.get_application(mime_type)
         prog = data[0]
     except:
         return

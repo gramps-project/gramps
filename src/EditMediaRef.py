@@ -44,7 +44,7 @@ import gtk.glade
 import const
 import Utils
 import RelLib
-import GrampsMime
+import Mime
 import ImgManip
 import DisplayState
 import GrampsDisplay
@@ -115,7 +115,7 @@ class EditMediaRef(DisplayState.ManagedWindow):
             self.media.get_path,
             self.db.readonly)
 
-        mt = GrampsMime.get_description(mtype)
+        mt = Mime.get_description(mtype)
         if mt:
             self.change_dialog.get_widget("type").set_text(mt)
         else:

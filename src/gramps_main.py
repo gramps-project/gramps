@@ -57,7 +57,7 @@ import Errors
 import PluginMgr
 import TipOfDay
 
-from GrampsMime import mime_type_is_defined
+from Mime import mime_type_is_defined
 from QuestionDialog import ErrorDialog
 
 iconpaths = [".",const.image_dir]

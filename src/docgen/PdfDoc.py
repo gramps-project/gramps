@@ -36,7 +36,7 @@ import BaseDoc
 import PluginMgr
 import Errors
 import ImgManip
-import GrampsMime
+import Mime
 
 _H   = 'Helvetica'
 _HB  = 'Helvetica-Bold'
@@ -189,7 +189,7 @@ class PdfDoc(BaseDoc.BaseDoc):
 
         if self.print_req:
             apptype = 'application/pdf'
-            app = GrampsMime.get_application(apptype)
+            app = Mime.get_application(apptype)
             os.environ["FILE"] = self.filename
             os.system ('%s "$FILE" &' % app[0])
 
@@ -631,8 +631,8 @@ print_label = None
 try:
     import Utils
 
-    mprog = GrampsMime.get_application("application/pdf")
-    mtype = GrampsMime.get_description("application/pdf")
+    mprog = Mime.get_application("application/pdf")
+    mtype = Mime.get_description("application/pdf")
     
     if Utils.search_for(mprog[0]):
         print_label=_("Open in %s") % mprog[1]

@@ -45,7 +45,7 @@ import gtk.glade
 import const
 import Utils
 import RelLib
-import GrampsMime
+import Mime
 import ImgManip
 import EditPrimary
 
@@ -104,11 +104,11 @@ class EditMedia(EditPrimary.EditPrimary):
         if mtype:
             pb = ImgManip.get_thumbnail_image(self.obj.get_path(),mtype)
             pixmap.set_from_pixbuf(pb)
-            descr = GrampsMime.get_description(mtype)
+            descr = Mime.get_description(mtype)
             if descr:
                 self.glade.get_widget("type").set_text(descr)
         else:
-            pb = GrampsMime.find_mime_type_pixbuf('text/plain')
+            pb = Mime.find_mime_type_pixbuf('text/plain')
             pixmap.set_from_pixbuf(pb)
             self.glade.get_widget("type").set_text(_('Note'))
 
@@ -196,7 +196,7 @@ class EditMedia(EditPrimary.EditPrimary):
         path = self.glade.get_widget('path').get_text()
 
         if path != self.obj.get_path():
-            mime = GrampsMime.get_type(path)
+            mime = Mime.get_type(path)
             self.obj.set_mime_type(mime)
         self.obj.set_path(path)
 

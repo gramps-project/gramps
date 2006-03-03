@@ -45,7 +45,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from QuestionDialog import ErrorDialog, WarningDialog, MissingMediaDialog
-import GrampsMime
+import Mime
 import RelLib
 import const
 import Utils
@@ -1088,7 +1088,7 @@ class GrampsParser:
                 a.set_type(key)
                 a.set_value(attrs[key])
                 self.photo.add_attribute(a)
-        self.photo.set_mime_type(GrampsMime.get_type(self.photo.get_path()))
+        self.photo.set_mime_type(Mime.get_type(self.photo.get_path()))
         self.db.add_object(self.photo)
         if self.family:
             self.family.add_media_reference(self.pref)

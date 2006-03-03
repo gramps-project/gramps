@@ -36,7 +36,7 @@ from gettext import gettext as _
 import BaseDoc
 import PluginMgr
 import Errors
-import GrampsMime
+import Mime
 
 #------------------------------------------------------------------------
 #
@@ -153,7 +153,7 @@ class AsciiDoc(BaseDoc.BaseDoc):
 
         if self.print_req:
             apptype = 'text/plain'
-            prog = GrampsMime.get_application(apptype)
+            prog = Mime.get_application(apptype)
             os.environ["FILE"] = self.filename
             os.system ('%s "$FILE" &' % prog[0])
 
@@ -383,8 +383,8 @@ print_label = None
 try:
     import Utils
 
-    mprog = GrampsMime.get_application("text/plain")
-    mtype = GrampsMime.get_description('text/plain')
+    mprog = Mime.get_application("text/plain")
+    mtype = Mime.get_description('text/plain')
 
     if Utils.search_for(mprog[0]):
         print_label=_("Open in %s") % mprog[1]

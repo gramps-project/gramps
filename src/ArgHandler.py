@@ -42,7 +42,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import const
 import GrampsDb
-import GrampsMime
+import Mime
 import QuestionDialog
 import Config
 import RecentFiles
@@ -127,7 +127,7 @@ class ArgHandler:
             o,v = options[opt_ix]
             if o in ( '-O', '--open'):
                 fname = v
-                ftype = GrampsMime.get_type(
+                ftype = Mime.get_type(
                     os.path.abspath(os.path.expanduser(fname)))
                 if opt_ix<len(options)-1 \
                             and options[opt_ix+1][0] in ( '-f', '--format'): 
@@ -149,7 +149,7 @@ class ArgHandler:
                 self.open = (fname,format)
             elif o in ( '-i', '--import'):
                 fname = v
-                ftype = GrampsMime.get_type(
+                ftype = Mime.get_type(
                     os.path.abspath(os.path.expanduser(fname)))
                 if opt_ix<len(options)-1 \
                             and options[opt_ix+1][0] in ( '-f', '--format'): 
@@ -227,7 +227,7 @@ class ArgHandler:
     #-------------------------------------------------------------------------
     def auto_save_load(self,filename):
         filename = os.path.normpath(os.path.abspath(filename))
-        filetype = GrampsMime.get_type(filename)
+        filetype = Mime.get_type(filename)
         if filetype in (const.app_gramps,
                         const.app_gramps_xml,
                         const.app_gedcom):
@@ -253,7 +253,7 @@ class ArgHandler:
             # the rest of given arguments.
             success = False
             filename = os.path.abspath(os.path.expanduser(self.open_gui))
-            filetype = GrampsMime.get_type(filename) 
+            filetype = Mime.get_type(filename) 
             if filetype in (const.app_gramps,const.app_gedcom,
                                         const.app_gramps_xml):
                 # Say the type outloud
