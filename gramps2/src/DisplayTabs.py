@@ -926,10 +926,10 @@ class WebEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2))
 
     def add_button_clicked(self,obj):
-        import UrlEdit
+        import EditUrl
         url = RelLib.Url()
         try:
-            UrlEdit.UrlEditor(self.dbstate, self.uistate, self.track,
+            EditUrl.UrlEditor(self.dbstate, self.uistate, self.track,
                               '', url, self.add_callback)
         except Errors.WindowActiveError:
             pass
@@ -941,9 +941,9 @@ class WebEmbedList(EmbeddedList):
     def edit_button_clicked(self,obj):
         url = self.get_selected()
         if url:
-            import UrlEdit
+            import EditUrl
             try:
-                UrlEdit.UrlEditor(self.dbstate, self.uistate, self.track,
+                EditUrl.UrlEditor(self.dbstate, self.uistate, self.track,
                                   '', url, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
