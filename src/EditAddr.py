@@ -21,7 +21,7 @@
 # $Id$
 
 """
-The AddrEdit module provides the AddressEditor class. This provides a
+The EditAddress module provides the EditAddress class. This provides a
 mechanism for the user to edit address information.
 """
 
@@ -52,10 +52,10 @@ from GrampsWidgets import *
 
 #-------------------------------------------------------------------------
 #
-# AddressEditor class
+# EditAddress class
 #
 #-------------------------------------------------------------------------
-class AddressEditor(EditSecondary.EditSecondary):
+class EditAddress(EditSecondary.EditSecondary):
     """
     Displays a dialog that allows the user to edit an address.
     """
