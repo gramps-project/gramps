@@ -21,7 +21,7 @@
 # $Id$ 
 
 """
-The AttrEdit module provides the AttributeEditor class. This provides a
+The EditAttribute module provides the AttributeEditor class. This provides a
 mechanism for the user to edit attribute information.
 """
 
@@ -59,10 +59,10 @@ from GrampsWidgets import *
 
 #-------------------------------------------------------------------------
 #
-# AttributeEditor class
+# EditAttribute class
 #
 #-------------------------------------------------------------------------
-class AttributeEditor(EditSecondary.EditSecondary):
+class EditAttribute(EditSecondary.EditSecondary):
     """
     Displays a dialog that allows the user to edit an attribute.
     """

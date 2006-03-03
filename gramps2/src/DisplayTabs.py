@@ -866,11 +866,11 @@ class AttrEmbedList(EmbeddedList):
         return ((1,0),(1,1))
 
     def add_button_clicked(self,obj):
-        import AttrEdit
+        import EditAttribute
         pname = ''
         attr_list = []
         try:
-            AttrEdit.AttributeEditor(
+            EditAttribute.EditAttribute(
                 self.dbstate, self.uistate, self.track, None,
                 pname, attr_list, self.add_callback)
         except Errors.WindowActiveError:
@@ -884,11 +884,11 @@ class AttrEmbedList(EmbeddedList):
     def edit_button_clicked(self,obj):
         attr = self.get_selected()
         if attr:
-            import AttrEdit
+            import EditAttribute
             pname = ''
             attr_list = []
             try:
-                AttrEdit.AttributeEditor(
+                EditAttribute.EditAttribute(
                     self.dbstate, self.uistate, self.track, attr,
                     pname, attr_list, self.edit_callback)
             except Errors.WindowActiveError:
@@ -1033,11 +1033,11 @@ class AddrEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2),(1,3),(1,4))
 
     def add_button_clicked(self,obj):
-        import AddrEdit
+        import EditAddr
         addr = RelLib.Address()
         try:
-            AddrEdit.AddressEditor(self.dbstate, self.uistate, self.track,
-                                   addr, self.add_callback)
+            EditAddr.EditAddress(self.dbstate, self.uistate, self.track,
+                                 addr, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
@@ -1048,10 +1048,10 @@ class AddrEmbedList(EmbeddedList):
     def edit_button_clicked(self,obj):
         addr = self.get_selected()
         if addr:
-            import AddrEdit
+            import EditAddr
             try:
-                AddrEdit.AddressEditor(self.dbstate, self.uistate, self.track,
-                                       addr, self.edit_callback)
+                EditAddr.EditAddress(self.dbstate, self.uistate, self.track,
+                                     addr, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
