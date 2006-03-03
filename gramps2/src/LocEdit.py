@@ -45,7 +45,7 @@ from gettext import gettext as _
 # LocationEditor class
 #
 #-------------------------------------------------------------------------
-class LocationEditor(EditSecondary.EditSecondary):
+class EditLocation(EditSecondary.EditSecondary):
 
     def __init__(self,dbstate,uistate,track,location,callback):
         EditSecondary.EditSecondary.__init__(self, dbstate, uistate, track,
