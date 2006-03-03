@@ -230,6 +230,8 @@ Makefile
 src/Makefile
 src/const.py
 src/RelLib/Makefile
+src/Config/Makefile
+src/Mime/Makefile
 src/ObjectSelector/Makefile
 src/GrampsLogger/Makefile
 src/TreeViews/Makefile
@@ -238,6 +240,7 @@ src/docgen/Makefile
 src/plugins/Makefile
 src/dates/Makefile
 src/data/Makefile
+src/images/Makefile
 src/data/templates/Makefile
 src/po/Makefile
 doc/Makefile

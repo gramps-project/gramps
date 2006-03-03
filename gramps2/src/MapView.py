@@ -29,6 +29,7 @@ from gettext import gettext as _
 import gc
 import re
 import logging
+import os
 
 log = logging.getLogger(".")
 
@@ -48,6 +49,7 @@ import gtk.gdk
 #-------------------------------------------------------------------------
 import RelLib
 import PageView
+import const
 
 glob_loc_data = [ # (Name, longitude, latitude)
         ("_Center", 0,0),
@@ -396,9 +398,9 @@ class MapView(PageView.PageView):
         no = gtk.Image()
         # The large zoomable map
         self.zoom_map = ZoomMap(
-            gtk.gdk.pixbuf_new_from_file("images/land_shallow_topo_2048.jpg"),
-            gtk.gdk.pixbuf_new_from_file("images/bad.png"),
-            gtk.gdk.pixbuf_new_from_file("images/good.png"))
+            gtk.gdk.pixbuf_new_from_file(os.path.join(const.image_dir,"land_shallow_topo_2048.jpg")),
+            gtk.gdk.pixbuf_new_from_file(os.path.join(const.image_dir,"bad.png")),
+            gtk.gdk.pixbuf_new_from_file(os.path.join(const.image_dir,"good.png")))
         self.zoom_map.set_size_request(300,300)
         hbox.pack_start( self.zoom_map, True, True, 0)
         
@@ -408,7 +410,7 @@ class MapView(PageView.PageView):
         
         # The small guide map
         self.guide_map = GuideMap(
-            gtk.gdk.pixbuf_new_from_file("images/land_shallow_topo_350.jpg"))
+            gtk.gdk.pixbuf_new_from_file(os.path.join(const.image_dir,"land_shallow_topo_350.jpg")))
         self.guide_map.set_size_request(128,64)
         vbox.pack_start( self.guide_map, False, True, 0)
         

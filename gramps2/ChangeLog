@@ -1,3 +1,12 @@
+2006-03-03  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/Makefile.am: install correct files
+	* src/Config/Makefile.am: added
+	* src/MapView.py: fix image paths 
+	* src/Mime/Makefile.am: added
+	* src/images/Makefile: added
+	* src/gramps_main.py: fix image paths
+	* src/Makefile.am: install correct files
+
 2006-03-03  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/Mime/__init__.py: Honour renamed files
 	* src/Makefile.am: Images have been moved into subdir (makes "make" work again)
