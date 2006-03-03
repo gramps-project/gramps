@@ -929,8 +929,8 @@ class WebEmbedList(EmbeddedList):
         import EditUrl
         url = RelLib.Url()
         try:
-            EditUrl.UrlEditor(self.dbstate, self.uistate, self.track,
-                              '', url, self.add_callback)
+            EditUrl.EditUrl(self.dbstate, self.uistate, self.track,
+                            '', url, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
@@ -943,8 +943,8 @@ class WebEmbedList(EmbeddedList):
         if url:
             import EditUrl
             try:
-                EditUrl.UrlEditor(self.dbstate, self.uistate, self.track,
-                                  '', url, self.edit_callback)
+                EditUrl.EditUrl(self.dbstate, self.uistate, self.track,
+                                '', url, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
