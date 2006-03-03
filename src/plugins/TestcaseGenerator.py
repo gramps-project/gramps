@@ -50,6 +50,7 @@ import Errors
 import RelLib
 import Tool
 import const
+import Utils
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
 from DateHandler import displayer as _dd
@@ -79,46 +80,12 @@ class TestcaseGenerator(Tool.Tool):
         self.persons_todo = []
         self.parents_todo = []
         self.person_dates = {}
+        self.generated_repos = []
         self.generated_sources = []
         self.generated_media = []
         self.generated_places = []
         self.generated_events = []
         self.text_serial_number = 1
-        
-        self.random_marrtype_list = (
-            (RelLib.Family.UNMARRIED,''),
-            (RelLib.Family.CIVIL_UNION,''),
-            (RelLib.Family.UNKNOWN,''),
-            (RelLib.Family.CUSTOM,'Custom 123')
-            )
-        self.random_childrel_list = (
-            (RelLib.Person.CHILD_NONE,''),
-            (RelLib.Person.CHILD_ADOPTED,''),
-            (RelLib.Person.CHILD_STEPCHILD,''),
-            (RelLib.Person.CHILD_SPONSORED,''),
-            (RelLib.Person.CHILD_FOSTER,''),
-            (RelLib.Person.CHILD_UNKNOWN,''),
-            (RelLib.Person.CHILD_CUSTOM,'Custom 123'),
-            )
-        self.random_confidence_list = (
-            RelLib.SourceRef.CONF_VERY_LOW,
-            RelLib.SourceRef.CONF_LOW,
-            RelLib.SourceRef.CONF_NORMAL,
-            RelLib.SourceRef.CONF_HIGH,
-            RelLib.SourceRef.CONF_VERY_HIGH
-            )
-        self.random_event_role_list = (
-            (RelLib.EventRef.UNKNOWN,''),
-            (RelLib.EventRef.CUSTOM,'Custom 123'),
-            (RelLib.EventRef.PRIMARY,''),
-            (RelLib.EventRef.CLERGY,''),
-            (RelLib.EventRef.CELEBRANT,''),
-            (RelLib.EventRef.AIDE,''),
-            (RelLib.EventRef.BRIDE,''),
-            (RelLib.EventRef.GROOM,''),
-            (RelLib.EventRef.WITNESS,''),
-            (RelLib.EventRef.FAMILY,'')
-            )
         
         # If an active persons exists the generated tree is connected to that person
         if person:
@@ -355,12 +322,12 @@ class TestcaseGenerator(Tool.Tool):
             print "DONE."
         
         
-        if self.options.handler.options_dict['bugs']\
-            or self.options.handler.options_dict['dates']\
-            or self.options.handler.options_dict['persons']:
-            # bootstrap random source and media
-            self.rand_source()
-            self.rand_media()
+       # if self.options.handler.options_dict['bugs']\
+       #     or self.options.handler.options_dict['dates']\
+       #     or self.options.handler.options_dict['persons']:
+       #     # bootstrap random source and media
+       #     self.rand_source()
+       #     self.rand_media()
             
 
         if self.options.handler.options_dict['bugs']:
@@ -770,15 +737,8 @@ class TestcaseGenerator(Tool.Tool):
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         np = RelLib.Person()
-        np.set_privacy( randint(0,5) == 1)
-        np.set_complete_flag( randint(0,5) == 1)
+        self.fill_object(np)
         
-        self.add_defaults(np)
-        
-        # Note
-        if note:
-            np.set_note(note)
-            
         # Gender
         if gender == None:
             gender = randint(0,1)
@@ -789,17 +749,15 @@ class TestcaseGenerator(Tool.Tool):
         
         # Name
         name = RelLib.Name()
-        name.set_privacy( randint(0,5) == 1)
+        self.fill_object( name)
         (firstname,lastname) = self.rand_name(lastname, gender)
         name.set_first_name(firstname)
         name.set_surname(lastname)
-        name.add_source_reference( self.rand_sourceref())
-        name.set_note( self.rand_text(self.NOTE))
         np.set_primary_name(name)
         
         # generate some slightly different alternate name
         alt_name = RelLib.Name(name)
-        alt_name.set_privacy( randint(0,5) == 1)
+        self.fill_object( alt_name)
         firstname2 = firstname.replace("m", "n").replace("l", "i").replace("b", "d")
         if firstname2 != firstname:
             alt_name.set_first_name( firstname2)
@@ -807,8 +765,6 @@ class TestcaseGenerator(Tool.Tool):
             alt_name.set_patronymic( self.rand_text(self.FIRSTNAME_MALE))
             alt_name.set_surname_prefix( self.rand_text(self.SHORT))
             alt_name.set_suffix( self.rand_text(self.SHORT))
-            alt_name.add_source_reference( self.rand_sourceref())
-            alt_name.set_note( self.rand_text(self.NOTE))
             np.add_alternate_name( alt_name)
         firstname2 = firstname.replace("a", "e").replace("o", "u").replace("r", "p")
         if firstname2 != firstname:
@@ -817,8 +773,6 @@ class TestcaseGenerator(Tool.Tool):
             alt_name.set_patronymic( self.rand_text(self.FIRSTNAME_MALE))
             alt_name.set_surname_prefix( self.rand_text(self.SHORT))
             alt_name.set_suffix( self.rand_text(self.SHORT))
-            alt_name.add_source_reference( self.rand_sourceref())
-            alt_name.set_note( self.rand_text(self.NOTE))
             np.add_alternate_name( alt_name)
 
         if not alive_in_year:
@@ -829,33 +783,39 @@ class TestcaseGenerator(Tool.Tool):
         
         # birth
         if randint(0,1) == 1:
-            (birth_year, eref) = self.rand_event( "Birth", by,by)
+            (birth_year, eref) = self.rand_personal_event( RelLib.Event.BIRTH, by,by)
             np.set_birth_ref(eref)
 
         # baptism
         if randint(0,1) == 1:
-            (bapt_year, eref) = self.rand_event(
-                choice( ("Baptism", "Christening")), by, by+2)
+            (bapt_year, eref) = self.rand_personal_event(
+                choice( (RelLib.Event.BAPTISM, RelLib.Event.CHRISTEN)), by, by+2)
             np.add_event_ref(eref)
 
         # death
         death_year = None
         if randint(0,1) == 1:
-            (death_year, eref) = self.rand_event( "Death", dy,dy)
+            (death_year, eref) = self.rand_personal_event( RelLib.Event.DEATH, dy,dy)
             np.set_death_ref(eref)
 
         # burial
         if randint(0,1) == 1:
-            (bur_year, eref) = self.rand_event(
-                choice( ("Burial", "Cremation")), dy, dy+2)
-            np.add_event_handle(eref)
+            (bur_year, eref) = self.rand_personal_event(
+                choice( (RelLib.Event.BURIAL, RelLib.Event.CREMATION)), dy, dy+2)
+            np.add_event_ref(eref)
         
+        # some other events
+        while randint(0,5) == 1:
+            (birth_year, eref) = self.rand_personal_event( None, by,dy)
+            np.set_birth_ref(eref)
+
         # some shared events
-        if randint(0,5) == 1:
+        while randint(0,5) == 1:
             e_h = choice(self.generated_events)
             ref = RelLib.EventRef()
+            self.fill_object( ref)
             ref.set_reference_handle(e_h)
-            ref.set_role( choice(self.random_event_role_list))
+            ref.set_role( self.rand_type(Utils.event_roles))
         
         #LDS
         if randint(0,1) == 1:
@@ -887,40 +847,50 @@ class TestcaseGenerator(Tool.Tool):
             alive_in_year = min( born+randint(10,50), died + randint(-10,10))
             
         if person1.get_gender() == 1:
-            if alive_in_year:
-                person2_h = self.generate_person(0, alive_in_year = alive_in_year)
+            if randint(0,7)==1:
+                person2_h = None
             else:
-                person2_h = self.generate_person(0)
+                if alive_in_year:
+                    person2_h = self.generate_person(0, alive_in_year = alive_in_year)
+                else:
+                    person2_h = self.generate_person(0)
         else:
             person2_h = person1_h
-            if alive_in_year:
-                person1_h = self.generate_person(1, alive_in_year = alive_in_year)
+            if randint(0,7)==1:
+                person1_h = None
             else:
-                person1_h = self.generate_person(1)
+                if alive_in_year:
+                    person1_h = self.generate_person(1, alive_in_year = alive_in_year)
+                else:
+                    person1_h = self.generate_person(1)
         
-        if randint(0,2) > 0:
+        if person1_h and randint(0,2) > 0:
             self.parents_todo.append(person1_h)
-        if randint(0,2) > 0:
+        if person2_h and randint(0,2) > 0:
             self.parents_todo.append(person2_h)
             
         fam = RelLib.Family()
         self.add_defaults(fam)
-        fam.set_father_handle(person1_h)
-        fam.set_mother_handle(person2_h)
+        if person1_h:
+            fam.set_father_handle(person1_h)
+        if person2_h:
+            fam.set_mother_handle(person2_h)
         if randint(0,2) == 1:
-            fam.set_relationship( choice( self.random_marrtype_list))
+            fam.set_relationship( self.rand_type(Utils.family_relations))
         else:
             fam.set_relationship((RelLib.Family.MARRIED,''))
         lds = self.rand_ldsord( const.lds_ssealing)
         fam.set_lds_sealing( lds)
         fam_h = self.db.add_family(fam,self.trans)
         fam = self.db.commit_family(fam,self.trans)
-        person1 = self.db.get_person_from_handle(person1_h)
-        person1.add_family_handle(fam_h)
-        self.db.commit_person(person1,self.trans)
-        person2 = self.db.get_person_from_handle(person2_h)
-        person2.add_family_handle(fam_h)
-        self.db.commit_person(person2,self.trans)
+        if person1_h:
+            person1 = self.db.get_person_from_handle(person1_h)
+            person1.add_family_handle(fam_h)
+            self.db.commit_person(person1,self.trans)
+        if person2_h:
+            person2 = self.db.get_person_from_handle(person2_h)
+            person2.add_family_handle(fam_h)
+            self.db.commit_person(person2,self.trans)
 
         lastname = person1.get_primary_name().get_surname()     
         
@@ -937,10 +907,10 @@ class TestcaseGenerator(Tool.Tool):
             child = self.db.get_person_from_handle(child_h)
             rel1 = (RelLib.Person.CHILD_BIRTH,'')
             if randint(0,2) == 1:
-                rel1 = choice( self.random_childrel_list)
+                rel1 = self.rand_type(Utils.child_relations)
             rel2 = (RelLib.Person.CHILD_BIRTH,'')
             if randint(0,2) == 1:
-                rel2 = choice( self.random_childrel_list)
+                rel2 = self.rand_type(Utils.child_relations)
             child.add_parent_family_handle(fam_h, rel1, rel2)
             self.db.commit_person(child,self.trans)
             if randint(0,3) > 0:
@@ -973,7 +943,7 @@ class TestcaseGenerator(Tool.Tool):
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
         if randint(0,2) == 1:
-            fam.set_relationship( choice( self.random_marrtype_list))
+            fam.set_relationship( self.rand_type(Utils.family_relations))
         else:
             fam.set_relationship( (RelLib.Family.MARRIED,'') )
         lds = self.rand_ldsord( const.lds_ssealing)
@@ -989,32 +959,16 @@ class TestcaseGenerator(Tool.Tool):
         self.db.commit_person(person2,self.trans)
         rel1 = (RelLib.Person.CHILD_BIRTH,'')
         if randint(0,2) == 1:
-            rel1 = choice( self.random_childrel_list)
+            rel1 = self.rand_type(Utils.child_relations)
         rel2 = (RelLib.Person.CHILD_BIRTH,'')
         if randint(0,2) == 1:
-            rel2 = choice( self.random_childrel_list)
+            rel2 = self.rand_type(Utils.child_relations)
         child.add_parent_family_handle(fam_h, rel1, rel2)
         self.db.commit_person(child,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
-    def add_defaults(self,object,ref_text = ""):
-        while randint(0,1) == 1:
-            object.add_source_reference( self.rand_sourceref())
-        while randint(0,1) == 1:
-            object.add_media_reference( self.rand_mediaref())
-        while randint(0,1) == 1:
-            (year,e) = self.rand_event()
-            object.add_event_ref( e)
-        while randint(0,1) == 1:
-            object.add_attribute( self.rand_attribute())
-        try:
-            while randint(0,1) == 1:
-                object.add_url( self.rand_url())
-            while randint(0,1) == 1:
-                object.add_address( self.rand_address())
-        except AttributeError:
-            pass    # family does not have an url and address
-        object.set_note( self.rand_text(self.NOTE))
+    def add_defaults(self,object):
+        self.fill_object( object)
     
     def rand_name( self, lastname=None, gender=None):
         if gender == RelLib.Person.MALE:
@@ -1077,24 +1031,182 @@ class TestcaseGenerator(Tool.Tool):
                     ndate.set(quality,modifier,calendar,(day,month,year,False),"")
         
         return (year, ndate)
+    
+    def fill_object( self, o):
+    
+        if isinstance(o,RelLib.Address):
+            if randint(0,1) == 1:
+                o.set_street( self.rand_text(self.SHORT))
+
+        if issubclass(o.__class__,RelLib._AddressBase.AddressBase):
+            while randint(0,1) == 1:
+                a = RelLib.Address()
+                self.fill_object(a)
+                o.add_address( a)
+
+        if isinstance(o,RelLib.Attribute) and isinstance(o,RelLib.Person):
+            o.set_type( self.rand_type(Utils.personal_attributes))
+            o.set_value( self.rand_text(self.SHORT))
+
+        if isinstance(o,RelLib.Attribute) and isinstance(o,RelLib.Family):
+            o.set_type( self.rand_type(Utils.family_attributes))
+            o.set_value( self.rand_text(self.SHORT))
+
+        if issubclass(o.__class__,RelLib._AttributeBase.AttributeBase):
+            while randint(0,1) == 1:
+                a = RelLib.Attribute()
+                self.fill_object(a)
+                o.add_attribute( a)
+
+        if issubclass(o.__class__,RelLib._DateBase.DateBase):
+            if randint(0,1) == 1:
+                (y,d) = self.rand_date()
+                o.set_date_object( d)
+
+        if isinstance(o,RelLib.Location):
+            if randint(0,1) == 1:
+                o.set_parish( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_county( self.rand_text(self.SHORT))
+
+        if issubclass(o.__class__,RelLib._LocationBase.LocationBase):
+            if randint(0,1) == 1:
+                o.set_phone( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_city( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_state( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_country( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_postal_code( self.rand_text(self.SHORT))
+
+        if issubclass(o.__class__,RelLib._MediaBase.MediaBase):
+            while randint(0,1) == 1:
+                o.add_media_reference( self.fill_object( RelLib.MediaRef()))
+
+        if isinstance(o,RelLib.MediaObject):
+            o.set_description( self.rand_text(self.SHORT))
+            o.set_path("/tmp/TestcaseGenerator.png")
+            o.set_mime_type("image/png")
+
+        if isinstance(o,RelLib.MediaRef):
+            if not self.generated_media or randint(0,10) == 1:
+                m = RelLib.MediaObject()
+                self.fill_object(m)
+                self.db.add_object( m, self.trans)
+                self.generated_media.append( m.get_handle())
+            o.set_reference_handle( choice( self.generated_media))
+            if randint(0,1) == 1:
+                o.set_rectangle( (randint(0,200),randint(0,200),randint(0,200),randint(0,200)))
         
+        if issubclass(o.__class__,RelLib._NoteBase.NoteBase):
+            o.set_note( self.rand_text(self.NOTE))
+            o.set_note_format( choice( (True,False)))
         
-    def rand_event( self, type=None, start=None, end=None):
+        if isinstance(o,RelLib.Place):
+            o.set_title( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_longitude( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_latitude( self.rand_text(self.SHORT))
+            o.set_main_location( self.fill_object( RelLib.Location()))
+            while randint(0,1) == 1:
+                o.add_alternate_locations( self.fill_object( RelLib.Location()))
+
+        if issubclass(o.__class__,RelLib._PrivacyBase.PrivacyBase):
+            o.set_privacy( randint(0,5) == 1)
+            
+        if issubclass(o.__class__,RelLib.PrimaryObject):
+            o.set_marker( self.rand_type(Utils.marker_types))
+
+        if isinstance(o,RelLib.RepoRef):
+            if not self.generated_repos or randint(0,10) == 1:
+                r = RelLib.Repository()
+                self.fill_object(r)
+                self.db.add_repository( r, self.trans)
+                self.generated_repos.append(r.get_handle())
+            o.set_reference_handle( choice( self.generated_repos))
+            if randint(0,1) == 1:
+                o.set_call_number( self.rand_text(self.SHORT))
+            o.set_media_type( self.rand_type(Utils.source_media_types))
+
+        if isinstance(o,RelLib.Repository):
+            o.set_type( self.rand_type(Utils.repository_types))
+            o.set_name( self.rand_text(self.SHORT))
+
+        if isinstance(o,RelLib.Source):
+            o.set_title( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_author( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_publication_info( self.rand_text(self.LONG))
+            if randint(0,1) == 1:
+                o.set_abbreviation( self.rand_text(self.SHORT))
+            while randint(0,1) == 1:
+                o.set_data_item( self.rand_text(self.SHORT), self.rand_text(self.SHORT))
+            while randint(0,1) == 1:
+                r = RelLib.RepoRef()
+                self.fill_object(r)
+                o.add_repo_reference( r)
+
+        if issubclass(o.__class__,RelLib._SourceNote.SourceNote):
+            while randint(0,1) == 1:
+                s = RelLib.SourceRef()
+                self.fill_object(s)
+                o.add_source_reference( s)
+
+        if isinstance(o,RelLib.SourceRef):
+            if not self.generated_sources or randint(0,10) == 1:
+                s = RelLib.Source()
+                self.fill_object(s)
+                self.db.add_source( s, self.trans)
+                self.generated_sources.append( s.get_handle())
+            o.set_base_handle( choice( self.generated_sources))
+            if randint(0,1) == 1:
+                o.set_page( self.rand_text(self.NUMERIC))
+            if randint(0,1) == 1:
+                o.set_text( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                (year, d) = self.rand_date( )
+                o.set_date_object( d)
+            o.set_confidence_level( self.rand_type(Utils.confidence))
+
+        if issubclass(o.__class__,RelLib._UrlBase.UrlBase):
+            while randint(0,1) == 1:
+                u = RelLib.Url()
+                self.fill_object(u)
+                o.add_url(u)
+        
+        if isinstance(o,RelLib.Url):
+            o.set_path("http://www.gramps-project.org/")
+            o.set_description( self.rand_text(self.SHORT))
+            o.set_type( self.rand_type(Utils.web_types))
+
+        return o
+
+    def rand_personal_event( self, type=None, start=None, end=None):
+        if type:
+            typeval = (type, Utils.personal_events[type])
+        else:
+            typeval = self.rand_type(Utils.personal_events)
+        return self._rand_event( typeval, start, end)
+        
+    def rand_family_event( self, type=None, start=None, end=None):
+        if type:
+            typeval = (type, Utils.family_events[type])
+        else:
+            typeval = self.rand_type(Utils.family_events)
+        return self._rand_event( typeval, start, end)
+    
+    def _rand_event( self, type, start, end):
         e = RelLib.Event()
-        if not type:
-            type = choice( (self.rand_text(self.SHORT),
-                            "Census", "Degree", "Emigration", "Immigration"))
-        e.set_type( (RelLib.Event.CUSTOM,type) )
-        if randint(0,1) == 1:
-            e.set_note( self.rand_text(self.NOTE))
+        self.fill_object(e)
+        e.set_type( type)
         if randint(0,1) == 1:
             e.set_cause( self.rand_text(self.SHORT))
         if randint(0,1) == 1:
             e.set_description( self.rand_text(self.LONG))
-        while randint(0,1) == 1:
-            e.add_source_reference( self.rand_sourceref())
-        while randint(0,1) == 1:
-            e.add_media_reference( self.rand_mediaref())
         if randint(0,1) == 1:
             e.set_place_handle( self.rand_place())
         (year, d) = self.rand_date( start, end)
@@ -1102,174 +1214,36 @@ class TestcaseGenerator(Tool.Tool):
         event_h = self.db.add_event(e, self.trans)
         self.generated_events.append(event_h)
         event_ref = RelLib.EventRef()
+        self.fill_object(event_ref)
         event_ref.set_reference_handle(event_h)
         event_ref.set_role((RelLib.EventRef.PRIMARY,''))
         return (year, event_ref)
     
     def rand_ldsord( self, status_list):
         lds = RelLib.LdsOrd()
+        self.fill_object( lds)
         if randint(0,1) == 1:
             lds.set_status( randint(0,len(status_list)-1))
         if randint(0,1) == 1:
             lds.set_temple( choice( const.lds_temple_to_abrev.keys()))
         if randint(0,1) == 1:
             lds.set_place_handle( self.rand_place())
-        while randint(0,1) == 1:
-            lds.add_source_reference( self.rand_sourceref())
-        if randint(0,1) == 1:
-            lds.set_note( self.rand_text(self.NOTE))
-        if randint(0,1) == 1:
-            (year,d) = self.rand_date( )
-            lds.set_date_object( d)
         return lds
 
-    def rand_source( self):
-        source = RelLib.Source()
-        source.set_title( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            source.set_author( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            source.set_publication_info( self.rand_text(self.LONG))
-        if randint(0,1) == 1:
-            source.set_abbreviation( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            source.set_note( self.rand_text(self.NOTE))
-        while randint(0,1) == 1:
-            source.set_data_item( self.rand_text(self.SHORT), self.rand_text(self.SHORT))
-        while randint(0,1) == 1 and self.generated_media:
-            source.add_media_reference( self.rand_mediaref())
-        self.db.add_source( source, self.trans)
-        self.generated_sources.append( source.get_handle())
-        return source
-    
-    def rand_sourceref( self):
-        if not self.generated_sources or randint(0,10) == 1:
-            self.rand_source()
-        sref = RelLib.SourceRef()
-        sref.set_base_handle( choice( self.generated_sources))
-        if randint(0,1) == 1:
-            sref.set_page( self.rand_text(self.NUMERIC))
-        if randint(0,1) == 1:
-            sref.set_text( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            sref.set_note( self.rand_text(self.NOTE))
-        sref.set_privacy( randint(0,5) == 1)
-        if randint(0,1) == 1:
-            (year, d) = self.rand_date( )
-            sref.set_date_object( d)
-        sref.set_confidence_level( choice( self.random_confidence_list))
-        return sref
-
-    def rand_media( self):
-        media = RelLib.MediaObject()
-        media.set_description( self.rand_text(self.SHORT))
-        media.set_path("/tmp/TestcaseGenerator.png")
-        media.set_mime_type("image/png")
-        if randint(0,1) == 1:
-            media.set_note( self.rand_text(self.NOTE))
-        if randint(0,1) == 1:
-            (year,d) = self.rand_date()
-            media.set_date_object(d)
-        while randint(0,1) == 1:
-            media.add_source_reference( self.rand_sourceref())
-        while randint(0,1) == 1:
-            media.add_attribute( self.rand_attribute())
-        self.db.add_object( media, self.trans)
-        self.generated_media.append( media.get_handle())
-        return media
+    def rand_type( self, list):
+        key = choice(list.keys())
+        value = list[key]
+        if value == _("Custom"):
+            value = self.rand_text(self.SHORT)
+        return( (key,value))
         
-    def rand_mediaref( self):
-        if not self.generated_media or randint(0,10) == 1:
-            self.rand_media()
-        mref = RelLib.MediaRef()
-        mref.set_reference_handle( choice( self.generated_media))
-        if randint(0,1) == 1:
-            mref.set_note( self.rand_text(self.NOTE))
-        while randint(0,1) == 1:
-            mref.add_source_reference( self.rand_sourceref())
-        while randint(0,1) == 1:
-            mref.add_attribute( self.rand_attribute())
-        mref.set_privacy( randint(0,5) == 1)
-        return mref
-
-    def rand_address( self):
-        addr = RelLib.Address()
-        if randint(0,1) == 1:
-            addr.set_street( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            addr.set_phone( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            addr.set_city( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            addr.set_state( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            addr.set_country( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            addr.set_postal_code( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            addr.set_note( self.rand_text(self.NOTE))
-        while randint(0,1) == 1:
-            addr.add_source_reference( self.rand_sourceref())
-        addr.set_privacy( randint(0,5) == 1)
-        return addr
-    
-    def rand_url( self):
-        url = RelLib.Url()
-        url.set_path("http://www.gramps-project.org/")
-        url.set_description( self.rand_text(self.SHORT))
-        url.set_privacy( randint(0,5) == 1)
-        return url
-
-    def rand_attribute( self):
-        attr = RelLib.Attribute()
-        attr.set_type( self.rand_text(self.SHORT))
-        attr.set_value( self.rand_text(self.SHORT))
-        attr.set_note( self.rand_text(self.NOTE))
-        while randint(0,1) == 1:
-            attr.add_source_reference( self.rand_sourceref())
-        attr.set_privacy( randint(0,5) == 1)
-        return attr
-        
-    def rand_location( self):
-        loc = RelLib.Location()
-        if randint(0,1) == 1:
-            loc.set_city( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            loc.set_postal_code( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            loc.set_phone( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            loc.set_parish( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            loc.set_county( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            loc.set_state( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            loc.set_country( self.rand_text(self.SHORT))
-        return loc
-    
     def rand_place( self):
         if not self.generated_places or randint(0,10) == 1:
             place = RelLib.Place()
-            place.set_main_location( self.rand_location())
-            while randint(0,1) == 1:
-                place.add_alternate_locations( self.rand_location())
-            place.set_title( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
-                place.set_note( self.rand_text(self.NOTE))
-            if randint(0,1) == 1:
-                place.set_longitude( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
-                place.set_latitude( self.rand_text(self.SHORT))
-            while randint(0,1) == 1:
-                    place.add_source_reference( self.rand_sourceref())
-            while randint(0,1) == 1:
-                    place.add_media_reference( self.rand_mediaref())
-            if randint(0,1) == 1:
-                place.add_url( self.rand_url())
+            self.fill_object( place)
             self.db.add_place( place, self.trans)
             self.generated_places.append( place.get_handle())
-        return choice( self.generated_places)        
+        return choice( self.generated_places)
         
     def rand_text(self, type=None):
         # for lastnamesnames
