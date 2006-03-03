@@ -50,7 +50,7 @@ import EventView
 import SourceView
 import MediaView
 import ArgHandler
-import GrampsKeys
+import Config
 import GrampsCfg
 import const
 import Errors
@@ -174,26 +174,26 @@ class Gramps:
         # Don't show main window until ArgHandler is done.
         # This prevents a window from annoyingly popping up when
         # the command line args are sufficient to operate without it.
-        GrampsKeys.client.notify_add("/apps/gramps/researcher",
+        Config.client.notify_add("/apps/gramps/researcher",
                                     self.researcher_key_update)
-        GrampsKeys.client.notify_add("/apps/gramps/interface/statusbar",
+        Config.client.notify_add("/apps/gramps/interface/statusbar",
                                     self.statusbar_key_update)
-#        GrampsKeys.client.notify_add("/apps/gramps/interface/toolbar",
+#        Config.client.notify_add("/apps/gramps/interface/toolbar",
 ##                                    self.toolbar_key_update)
-#        GrampsKeys.client.notify_add("/apps/gramps/interface/toolbar-on",
+#        Config.client.notify_add("/apps/gramps/interface/toolbar-on",
 #                                    self.toolbar_on_key_update)
-#        GrampsKeys.client.notify_add("/apps/gramps/interface/filter",
+#        Config.client.notify_add("/apps/gramps/interface/filter",
 #                                    self.filter_key_update)
-#        GrampsKeys.client.notify_add("/apps/gramps/interface/view",
+#        Config.client.notify_add("/apps/gramps/interface/view",
 #                                    self.sidebar_key_update)
-#        GrampsKeys.client.notify_add("/apps/gramps/interface/familyview",
+#        Config.client.notify_add("/apps/gramps/interface/familyview",
 #                                    self.familyview_key_update)
-#        GrampsKeys.client.notify_add("/apps/gramps/preferences/name-format",
+#        Config.client.notify_add("/apps/gramps/preferences/name-format",
 #                                    self.familyview_key_update)
-#        GrampsKeys.client.notify_add("/apps/gramps/preferences/date-format",
+#        Config.client.notify_add("/apps/gramps/preferences/date-format",
 #                                    self.date_format_key_update)
 
-        if GrampsKeys.get_usetips():
+        if Config.get_usetips():
             TipOfDay.TipOfDay(vm.uistate)
 
 ##         # FIXME: THESE will have to be added (ViewManager?)
@@ -203,7 +203,7 @@ class Gramps:
 ##         self.db.connect('person-update',self.on_update_bookmark)
 
     def welcome(self):
-        if GrampsKeys.get_welcome() >= 200:
+        if Config.get_welcome() >= 200:
             return
 
         glade = gtk.glade.XML(const.gladeFile,'scrollmsg')
@@ -243,23 +243,23 @@ class Gramps:
         top.run()
         top.destroy()
 
-        GrampsKeys.save_welcome(200)
-        GrampsKeys.sync()
+        Config.save_welcome(200)
+        Config.sync()
 
     def researcher_key_update(self,client,cnxn_id,entry,data):
         pass
-#         self.db.set_person_id_prefix(GrampsKeys.get_person_id_prefix())
-#         self.db.set_family_id_prefix(GrampsKeys.get_family_id_prefix())
-#         self.db.set_source_id_prefix(GrampsKeys.get_source_id_prefix())
-#         self.db.set_object_id_prefix(GrampsKeys.get_object_id_prefix())
-#         self.db.set_place_id_prefix(GrampsKeys.get_place_id_prefix())
-#         self.db.set_event_id_prefix(GrampsKeys.get_event_id_prefix())
+#         self.db.set_person_id_prefix(Config.get_person_id_prefix())
+#         self.db.set_family_id_prefix(Config.get_family_id_prefix())
+#         self.db.set_source_id_prefix(Config.get_source_id_prefix())
+#         self.db.set_object_id_prefix(Config.get_object_id_prefix())
+#         self.db.set_place_id_prefix(Config.get_place_id_prefix())
+#         self.db.set_event_id_prefix(Config.get_event_id_prefix())
 
     def statusbar_key_update(self,client,cnxn_id,entry,data):
         self.modify_statusbar()
 
     def toolbar_key_update(self,client,cnxn_id,entry,data):
-        the_style = GrampsKeys.get_toolbar()
+        the_style = Config.get_toolbar()
         if the_style == -1:
             self.toolbar.unset_style()
         else:

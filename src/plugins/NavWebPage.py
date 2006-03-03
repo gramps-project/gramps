@@ -913,8 +913,8 @@ class MediaPage(BasePage):
 
     def copy_preview_image(handle,photo):
         base = '/desktop/gnome/thumbnailers/%s' % mtype.replace('/','@')
-        thumbnailer = GrampsKeys.client.get_string(base + '/command')
-        enable = GrampsKeys.client.get_bool(base + '/enable')
+        thumbnailer = Config.client.get_string(base + '/command')
+        enable = Config.client.get_bool(base + '/enable')
         if thumbnailer and enable:
             run_thumbnailer(thumbnailer,path,_build_thumb_path(path),320)
             return path

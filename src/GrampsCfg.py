@@ -43,7 +43,7 @@ import gtk.glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import GrampsKeys
+import Config
 import RelLib
 import const
 import Utils
@@ -84,10 +84,10 @@ panellist = [
 
 def set_calendar_date_format():
     format_list = DateHandler.get_date_formats()
-    DateHandler.set_format(GrampsKeys.get_date_format(format_list))
+    DateHandler.set_format(Config.get_date_format(format_list))
 
 def _update_calendar_date_format(active,dlist):
-    GrampsKeys.save_date_format(active,dlist)
+    Config.save_date_format(active,dlist)
     DateHandler.set_format(active)
 
 #-------------------------------------------------------------------------
@@ -123,14 +123,14 @@ def loadConfig():
 #
 #-------------------------------------------------------------------------
 def get_researcher():
-    n = GrampsKeys.get_researcher_name()
-    a = GrampsKeys.get_researcher_addr()
-    c = GrampsKeys.get_researcher_city()
-    s = GrampsKeys.get_researcher_state()
-    ct = GrampsKeys.get_researcher_country()
-    p = GrampsKeys.get_researcher_postal()
-    ph = GrampsKeys.get_researcher_phone()
-    e = GrampsKeys.get_researcher_email()
+    n = Config.get_researcher_name()
+    a = Config.get_researcher_addr()
+    c = Config.get_researcher_city()
+    s = Config.get_researcher_state()
+    ct = Config.get_researcher_country()
+    p = Config.get_researcher_postal()
+    ph = Config.get_researcher_phone()
+    e = Config.get_researcher_email()
 
     owner = RelLib.Researcher()
     owner.set(n,a,c,s,ct,p,ph,e)
@@ -186,67 +186,67 @@ class GrampsPreferences:
     def build(self):
 
         auto = self.top.get_widget("autoload")
-        auto.set_active(GrampsKeys.get_autoload())
+        auto.set_active(Config.get_autoload())
         auto.connect('toggled',
-                lambda obj: GrampsKeys.save_autoload(obj.get_active()))
+                lambda obj: Config.save_autoload(obj.get_active()))
 
         spell = self.top.get_widget("spellcheck")
-        spell.set_active(GrampsKeys.get_spellcheck())
+        spell.set_active(Config.get_spellcheck())
         spell.connect('toggled',
-                lambda obj: GrampsKeys.save_spellcheck(obj.get_active()))
+                lambda obj: Config.save_spellcheck(obj.get_active()))
 
         lds = self.top.get_widget("uselds")
-        lds.set_active(GrampsKeys.get_uselds())
+        lds.set_active(Config.get_uselds())
         lds.connect('toggled',
-                lambda obj: GrampsKeys.save_uselds(obj.get_active()))
+                lambda obj: Config.save_uselds(obj.get_active()))
 
         self.ipr = self.top.get_widget("iprefix")
-        self.ipr.set_text(GrampsKeys.get_person_id_prefix())
+        self.ipr.set_text(Config.get_person_id_prefix())
         self.opr = self.top.get_widget("oprefix")
-        self.opr.set_text(GrampsKeys.get_object_id_prefix())
+        self.opr.set_text(Config.get_object_id_prefix())
         self.fpr = self.top.get_widget("fprefix")
-        self.fpr.set_text(GrampsKeys.get_family_id_prefix())
+        self.fpr.set_text(Config.get_family_id_prefix())
         self.spr = self.top.get_widget("sprefix")
-        self.spr.set_text(GrampsKeys.get_source_id_prefix())
+        self.spr.set_text(Config.get_source_id_prefix())
         self.ppr = self.top.get_widget("pprefix")
-        self.ppr.set_text(GrampsKeys.get_place_id_prefix())
+        self.ppr.set_text(Config.get_place_id_prefix())
 
         sb2 = self.top.get_widget("stat2")
         sb3 = self.top.get_widget("stat3")
-        if GrampsKeys.get_statusbar() == 0 or GrampsKeys.get_statusbar() == 1:
+        if Config.get_statusbar() == 0 or Config.get_statusbar() == 1:
             sb2.set_active(1)
         else:
             sb3.set_active(1)
         sb2.connect('toggled',
-                lambda obj: GrampsKeys.save_statusbar(2-obj.get_active()))
+                lambda obj: Config.save_statusbar(2-obj.get_active()))
 
         toolbarmenu = self.top.get_widget("tooloptmenu")
-        toolbarmenu.set_active(GrampsKeys.get_toolbar()+1)
+        toolbarmenu.set_active(Config.get_toolbar()+1)
         toolbarmenu.connect('changed',
-                lambda obj: GrampsKeys.save_toolbar(obj.get_active()-1))
+                lambda obj: Config.save_toolbar(obj.get_active()-1))
 
         pvbutton = self.top.get_widget('pvbutton')
         fvbutton = self.top.get_widget('fvbutton')
-        if GrampsKeys.get_default_view() == 0:
+        if Config.get_default_view() == 0:
             pvbutton.set_active(1)
         else:
             fvbutton.set_active(1)
         fvbutton.connect('toggled',
-                lambda obj: GrampsKeys.save_default_view(obj.get_active()))
+                lambda obj: Config.save_default_view(obj.get_active()))
 
         familyview1 = self.top.get_widget('familyview1')
         familyview2 = self.top.get_widget('familyview2')
-        if GrampsKeys.get_family_view() == 0:
+        if Config.get_family_view() == 0:
             familyview1.set_active(1)
         else:
             familyview2.set_active(1)
         familyview2.connect('toggled',
-                lambda obj: GrampsKeys.save_family_view(obj.get_active()))
+                lambda obj: Config.save_family_view(obj.get_active()))
 
         usetips = self.top.get_widget('usetips')
-        usetips.set_active(GrampsKeys.get_usetips())
+        usetips.set_active(Config.get_usetips())
         usetips.connect('toggled',
-                lambda obj: GrampsKeys.save_usetips(obj.get_active()))
+                lambda obj: Config.save_usetips(obj.get_active()))
 
         lastnamegen_obj = self.top.get_widget("lastnamegen")
         cell = gtk.CellRendererText()
@@ -257,10 +257,10 @@ class GrampsPreferences:
         for name in _surname_styles:
             store.append(row=[name])
         lastnamegen_obj.set_model(store)
-        lastnamegen_obj.set_active(GrampsKeys.get_lastnamegen(_surname_styles))
+        lastnamegen_obj.set_active(Config.get_lastnamegen(_surname_styles))
         lastnamegen_obj.connect("changed", 
                 lambda obj: 
-                GrampsKeys.save_lastnamegen(obj.get_active(),_surname_styles)
+                Config.save_lastnamegen(obj.get_active(),_surname_styles)
                 )
 
         date_option = self.top.get_widget("date_format")
@@ -276,7 +276,7 @@ class GrampsPreferences:
         try:
             # Technically, a selected format might be out of range
             # for this locale's format list.
-            date_option.set_active(GrampsKeys.get_date_format(dlist))
+            date_option.set_active(Config.get_date_format(dlist))
         except:
             date_option.set_active(0)
 
@@ -286,37 +286,37 @@ class GrampsPreferences:
                 )
 
         resname = self.top.get_widget("resname")
-        resname.set_text(GrampsKeys.get_researcher_name())
+        resname.set_text(Config.get_researcher_name())
         resname.connect('changed',
-                    lambda obj: GrampsKeys.save_researcher_name(obj.get_text()))
+                    lambda obj: Config.save_researcher_name(obj.get_text()))
         resaddr = self.top.get_widget("resaddr")
-        resaddr.set_text(GrampsKeys.get_researcher_addr())
+        resaddr.set_text(Config.get_researcher_addr())
         resaddr.connect('changed',
-                    lambda obj: GrampsKeys.save_researcher_addr(obj.get_text()))
+                    lambda obj: Config.save_researcher_addr(obj.get_text()))
         rescity = self.top.get_widget("rescity")
-        rescity.set_text(GrampsKeys.get_researcher_city())
+        rescity.set_text(Config.get_researcher_city())
         rescity.connect('changed',
-                    lambda obj: GrampsKeys.save_researcher_city(obj.get_text()))
+                    lambda obj: Config.save_researcher_city(obj.get_text()))
         resstate = self.top.get_widget("resstate")
-        resstate.set_text(GrampsKeys.get_researcher_state())
+        resstate.set_text(Config.get_researcher_state())
         resstate.connect('changed',
-                    lambda obj: GrampsKeys.save_researcher_state(obj.get_text()))
+                    lambda obj: Config.save_researcher_state(obj.get_text()))
         rescountry = self.top.get_widget("rescountry")
-        rescountry.set_text(GrampsKeys.get_researcher_country())
+        rescountry.set_text(Config.get_researcher_country())
         rescountry.connect('changed',
-                    lambda obj: GrampsKeys.save_researcher_country(obj.get_text()))
+                    lambda obj: Config.save_researcher_country(obj.get_text()))
         respostal = self.top.get_widget("respostal")
-        respostal.set_text(GrampsKeys.get_researcher_postal())
+        respostal.set_text(Config.get_researcher_postal())
         respostal.connect('changed',
-                    lambda obj: GrampsKeys.save_researcher_postal(obj.get_text()))
+                    lambda obj: Config.save_researcher_postal(obj.get_text()))
         resphone = self.top.get_widget("resphone")
-        resphone.set_text(GrampsKeys.get_researcher_phone())
+        resphone.set_text(Config.get_researcher_phone())
         resphone.connect('changed',
-                    lambda obj: GrampsKeys.save_researcher_phone(obj.get_text()))
+                    lambda obj: Config.save_researcher_phone(obj.get_text()))
         resemail = self.top.get_widget("resemail")
-        resemail.set_text(GrampsKeys.get_researcher_email())
+        resemail.set_text(Config.get_researcher_email())
         resemail.connect('changed',
-                    lambda obj: GrampsKeys.save_researcher_email(obj.get_text()))
+                    lambda obj: Config.save_researcher_email(obj.get_text()))
                     
     def save_prefix(self):
         """ Validate the GRAMPS ID definitions to be usable"""
@@ -365,11 +365,11 @@ class GrampsPreferences:
                 self.window)
             return False
 
-        GrampsKeys.save_iprefix(ip)
-        GrampsKeys.save_oprefix(op)
-        GrampsKeys.save_fprefix(fp)
-        GrampsKeys.save_sprefix(sp)
-        GrampsKeys.save_pprefix(pp)
+        Config.save_iprefix(ip)
+        Config.save_oprefix(op)
+        Config.save_fprefix(fp)
+        Config.save_sprefix(sp)
+        Config.save_pprefix(pp)
         return True
         
     def select(self,obj):

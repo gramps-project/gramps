@@ -42,7 +42,7 @@ from gtk.gdk import pixbuf_new_from_file
 #
 #-------------------------------------------------------------------------
 import const
-import GrampsKeys
+import Config
 
 try:
     ICON = pixbuf_new_from_file(const.icon)
@@ -74,7 +74,7 @@ class SaveDialog:
         elif response == gtk.RESPONSE_YES:
             self.task2()
 
-        GrampsKeys.save_dont_ask(self.dontask.get_active())
+        Config.save_dont_ask(self.dontask.get_active())
         self.top.destroy()
 
 class QuestionDialog:

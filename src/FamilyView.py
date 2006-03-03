@@ -29,7 +29,7 @@ import Utils
 import DateHandler
 import ImgManip
 import ReportUtils
-import GrampsKeys
+import Config
 import GrampsWidgets
 import Errors
 
@@ -85,10 +85,10 @@ class FamilyView(PageView.PersonNavView):
         PageView.PersonNavView.__init__(self,'Relationship View',dbstate,uistate)
         dbstate.connect('database-changed',self.change_db)
         dbstate.connect('active-changed',self.change_person)
-        self.show_siblings = GrampsKeys.get_family_siblings()
+        self.show_siblings = Config.get_family_siblings()
         if self.show_siblings == None:
             self.show_siblings = True
-        self.show_details = GrampsKeys.get_family_details()
+        self.show_details = Config.get_family_details()
         if self.show_details == None:
             self.show_details = True
 
@@ -159,12 +159,12 @@ class FamilyView(PageView.PersonNavView):
     def siblings_toggle(self,obj):
         self.show_siblings = obj.get_active()
         self.change_person(self.dbstate.active.handle)
-        GrampsKeys.save_family_siblings(self.show_siblings)
+        Config.save_family_siblings(self.show_siblings)
 
     def details_toggle(self,obj):
         self.show_details = obj.get_active()
         self.change_person(self.dbstate.active.handle)
-        GrampsKeys.save_family_details(self.show_details)
+        Config.save_family_details(self.show_details)
 
     def change_db(self,db):
         if self.child:
