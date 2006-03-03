@@ -5,6 +5,8 @@
 	given (e.g. no father in family)
 	* src/plugins/TestcaseGenerator.py: Feed in more data, support Repositories,
 	properly set types as (id,str) tuples instead of custom strings.
+	* src/Makefile.am: More updates to latest file moves/remanes to make
+	"make distcheck" work for me 
 
 2006-03-02  Don Allingham  <don@gramps-project.org>
 	* src/EditUrl.py: renamed from UrlEdit.py

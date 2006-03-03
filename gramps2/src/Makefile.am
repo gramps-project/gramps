@@ -57,30 +57,22 @@ gdir_PYTHON = \
 	EditSourceRef.py\
 	Errors.py\
 	EventEdit.py\
-	events24.png\
-	events.png\
 	EventView.py\
 	Exporter.py\
 	FamilyList.py\
 	FamilyView.py\
 	FontScale.py\
 	GenericFilter.py\
-	GnomeMime.py\
 	GrampsCfg.py\
 	GrampsDisplay.py\
-	GrampsGconfKeys.py\
-	GrampsIniKeys.py\
-	GrampsKeys.py\
 	GrampsLocale.py\
 	gramps_main.py\
-	GrampsMime.py\
 	gramps.py\
 	GrampsWidgets.py\
 	ImgManip.py\
 	latin_ansel.py\
 	ListModel.py\
 	EditLocation.py\
-	locked.png\
 	MapView.py\
 	MediaView.py\
 	MergeData.py\
@@ -96,9 +88,7 @@ gdir_PYTHON = \
 	PersonView.py\
 	PlaceView.py\
 	PluginMgr.py\
-	plugins.glade\
 	Plugins.py\
-	PythonMime.py\
 	QuestionDialog.py\
 	RecentFiles.py\
 	Relationship.py\
@@ -119,7 +109,6 @@ gdir_PYTHON = \
 	Spell.py\
 	SpreadSheetDoc.py\
 	StartupDialog.py\
-	stock_link.png\
 	StyleEditor.py\
 	SubstKeywords.py\
 	TipOfDay.py\
@@ -127,7 +116,7 @@ gdir_PYTHON = \
 	ToolTips.py\
 	TransUtils.py\
 	TreeTips.py\
-	UrlEdit.py\
+	EditUrl.py\
 	Utils.py\
 	ViewManager.py\
 	WindowUtils.py\
