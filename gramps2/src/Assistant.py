@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -48,8 +49,8 @@ import const
 # Constants
 #
 #-------------------------------------------------------------------------
-_gramps_png = "%s/images/gramps.png" % const.rootDir
-_splash_jpg = "%s/images/splash.jpg" % const.rootDir
+_gramps_png = os.path.join(const.image_dir,"gramps.png")
+_splash_jpg = os.path.join(const.image_dir,"splash.jpg")
 _format = '<span weight="bold" size="xx-large">%s</span>'
 
 #-------------------------------------------------------------------------

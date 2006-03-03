@@ -156,8 +156,8 @@ class ObjectSelectorWindow(gtk.Window,ManagedWindow):
                               self.__class__.__default_border_width)
 
         
-        person_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(const.rootDir,"person.svg"))
-        flist_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(const.rootDir,"flist.svg"))
+        person_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(const.image_dir,"person.svg"))
+        flist_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(const.image_dir,"flist.svg"))
 
         self._tool_list = gtk.ListStore(gtk.gdk.Pixbuf, str,int)
 

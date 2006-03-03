@@ -1,3 +1,14 @@
+2006-03-02  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GedcomInfo.py: update to new data path
+	* src/const.py.in: new data, image path defintions
+	* src/gramps_main.py: update to new install paths
+	* src/Assistant.py: update to new install paths
+	* src/ImgManip.py: update to new install paths
+	* src/ObjectSelector/_FamilyPreviewFrame.py: update to new install paths
+	* src/ObjectSelector/_OjbectSelectorWindow.py: update to new install paths
+	* src/ObjectSelector/_PersonPreviewFrame.py: update to new install paths
+	* src/plugins/NavWebPage.py: update to new install paths
+	
 2006-03-02  Alex Roitman  <shura@gramps-project.org>
 	* src/Config/__init__.py: Add new package.
 	* src/GrampsGconfKeys.py, src/GrampsIniKeys.py, src/GrampsKeys.py:

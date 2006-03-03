@@ -60,7 +60,7 @@ import TipOfDay
 from GrampsMime import mime_type_is_defined
 from QuestionDialog import ErrorDialog
 
-iconpaths = [".",const.rootDir]
+iconpaths = [".",const.image_dir]
 
 def register_stock_icons ():
     import os
