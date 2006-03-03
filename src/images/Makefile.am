@@ -1,11 +1,11 @@
-# $Id$
+# $Id: Makefile.am 6057 2006-03-03 12:49:39Z loshawlos $
 
 # This is the src level Makefile for Gramps
-SUBDIRS = docgen plugins dates data po GrampsDb RelLib ObjectSelector GrampsLogger TreeViews Config Mime images
+SUBDIRS = 
 
 # For intl. support, how do we compile?
 MOSTLYCLEANFILES = 
-CLEANFILES = const.pyc const.pyo
+CLEANFILES = 
 
 # What are the PYTHON scripts for this package that need to be handled?
 #
