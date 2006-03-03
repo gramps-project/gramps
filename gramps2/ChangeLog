@@ -10,6 +10,9 @@
 	* src/plugins/NavWebPage.py: update to new install paths
 	
 2006-03-02  Alex Roitman  <shura@gramps-project.org>
+	* src/Mime/__init__.py: Add new package.
+	* src/GrampsMime.py, src/GnomeMime.py, src/PythonMimie.py: Remove
+	(placed under Mime now).
 	* src/Config/__init__.py: Add new package.
 	* src/GrampsGconfKeys.py, src/GrampsIniKeys.py, src/GrampsKeys.py:
 	Remove (placed under Config now).

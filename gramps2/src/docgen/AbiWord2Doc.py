@@ -36,7 +36,7 @@ import BaseDoc
 import Errors
 import PluginMgr
 import ImgManip
-import GrampsMime
+import Mime
 import Utils
 
 from gettext import gettext as _
@@ -179,7 +179,7 @@ class AbiWordDoc(BaseDoc.BaseDoc):
         if self.print_req:
             apptype = 'application/x-abiword'
             try:
-                app = GrampsMime.get_application(apptype)[0]
+                app = Mime.get_application(apptype)[0]
                 os.environ["FILE"] = self.filename
                 os.system ('%s "$FILE" &' % app)
             except:
@@ -326,8 +326,8 @@ class AbiWordDoc(BaseDoc.BaseDoc):
 #--------------------------------------------------------------------------
 
 try:
-    prog = GrampsMime.get_application("application/x-abiword")
-    mtype = GrampsMime.get_description('application/x-abiword')
+    prog = Mime.get_application("application/x-abiword")
+    mtype = Mime.get_description('application/x-abiword')
     
     if Utils.search_for(prog[0]):
         print_label=_("Open in %s") % prog[1]

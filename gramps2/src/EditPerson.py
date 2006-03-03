@@ -47,7 +47,7 @@ import gtk.gdk
 import const
 import Utils
 import Config
-import GrampsMime
+import Mime
 import RelLib
 import DateHandler
 import NameDisplay
@@ -297,7 +297,7 @@ class EditPerson(EditPrimary.EditPrimary):
         menu.set_title(_("Media Object"))
         obj = self.db.get_object_from_handle(photo.get_reference_handle())
         mtype = obj.get_mime_type()
-        progname = GrampsMime.get_application(mtype)
+        progname = Mime.get_application(mtype)
         
         if progname and len(progname) > 1:
             Utils.add_menuitem(menu,_("Open in %s") % progname[1],

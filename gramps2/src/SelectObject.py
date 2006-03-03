@@ -58,7 +58,7 @@ import const
 import Utils
 import ListModel
 import ImgManip
-import GrampsMime
+import Mime
 
 #-------------------------------------------------------------------------
 #
@@ -101,7 +101,7 @@ class SelectObject:
         for key in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(key)
             title = obj.get_description()
-            the_type = GramspMime.get_description(obj.get_mime_type())
+            the_type = Mime.get_description(obj.get_mime_type())
             path = obj.get_path()
             self.object_model.add([title,obj.get_gramps_id(),the_type,path],key)
 
@@ -120,7 +120,7 @@ class SelectObject:
         if the_type and the_type[0:5] == "image":
             image = ImgManip.get_thumbnail_image(path,the_type)
         else:
-            image = GrampsMime.find_mime_type_pixbuf(the_type)
+            image = Mime.find_mime_type_pixbuf(the_type)
         self.preview.set_from_pixbuf(image)
         
         self.object_handle.set_text(obj.get_gramps_id())

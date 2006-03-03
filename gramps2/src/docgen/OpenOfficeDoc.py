@@ -43,7 +43,7 @@ import const
 import PluginMgr
 import ImgManip
 import FontScale
-import GrampsMime
+import Mime
 import Utils
 from ReportUtils import pt2cm
 
@@ -381,7 +381,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self._write_meta_file()
         self._write_zip()
         if self.print_req:
-            app = GrampsMime.get_application(_apptype)
+            app = Mime.get_application(_apptype)
             os.environ["FILE"] = self.filename
             os.system ('%s "$FILE" &' % app[0])
 
@@ -995,8 +995,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 print_label = None
 try:
     
-    mprog = GrampsMime.get_application(_apptype)
-    mtype = GrampsMime.get_description(_apptype)
+    mprog = Mime.get_application(_apptype)
+    mtype = Mime.get_description(_apptype)
 
     if Utils.search_for(mprog[0]):
         print_label = _("Open in OpenOffice.org")

@@ -43,7 +43,7 @@ import gtk
 import GrampsDb
 import Config
 import NameDisplay
-import GrampsMime
+import Mime
 import const
 import Errors
 
@@ -395,7 +395,7 @@ class RecentDocsMenu:
         for item in rfiles:
             try:
                 filename = os.path.basename(item.get_path()).replace('_','__')
-                filetype = GrampsMime.get_type(item.get_path())
+                filetype = Mime.get_type(item.get_path())
                 action_id = "RecentMenu%d" % count
                 f.write('<menuitem action="%s"/>' % action_id)
                 actions.append((action_id,None,filename,None,None,

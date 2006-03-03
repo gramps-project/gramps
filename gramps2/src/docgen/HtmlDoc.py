@@ -42,7 +42,7 @@ import const
 import Errors
 import BaseDoc
 import QuestionDialog
-import GrampsMime
+import Mime
 
 #------------------------------------------------------------------------
 #
@@ -356,7 +356,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
 
         if self.print_req:
             apptype = 'text/html'
-            app = GrampsMime.get_application(apptype)
+            app = Mime.get_application(apptype)
             os.environ["FILE"] = self.filename
             os.system ('%s "$FILE" &' % app[0])
 
@@ -499,8 +499,8 @@ class HtmlDoc(BaseDoc.BaseDoc):
 try:
     import Utils
 
-    prog = GrampsMime.get_application("text/html")
-    mtype = GrampsMime.get_description("text/html")
+    prog = Mime.get_application("text/html")
+    mtype = Mime.get_description("text/html")
     
     if Utils.search_for(prog[0]):
         print_label=_("Open in %s") % prog[1]

@@ -63,7 +63,7 @@ import NameDisplay
 import DisplayTrace
 from ansel_utf8 import ansel_to_utf8
 import Utils
-import GrampsMime
+import Mime
 from bsddb import db
 from _GedcomInfo import *
 from _GedTokens import *
@@ -1283,7 +1283,7 @@ class GedcomParser:
                 photo = RelLib.MediaObject()
                 photo.set_path(path)
                 photo.set_description(title)
-                photo.set_mime_type(GrampsMime.get_type(os.path.abspath(path)))
+                photo.set_mime_type(Mime.get_type(os.path.abspath(path)))
                 self.db.add_object(photo, self.trans)
                 self.media_map[path] = photo.handle
             else:
@@ -1324,7 +1324,7 @@ class GedcomParser:
                 photo = RelLib.MediaObject()
                 photo.set_path(path)
                 photo.set_description(title)
-                photo.set_mime_type(GrampsMime.get_type(os.path.abspath(path)))
+                photo.set_mime_type(Mime.get_type(os.path.abspath(path)))
                 self.db.add_object(photo, self.trans)
                 self.media_map[path] = photo.handle
             else:

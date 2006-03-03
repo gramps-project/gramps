@@ -44,7 +44,7 @@ import const
 import PluginMgr
 import ImgManip
 import FontScale
-import GrampsMime
+import Mime
 from ReportUtils import pt2cm
 
 #-------------------------------------------------------------------------
@@ -417,7 +417,7 @@ class ODFDoc(BaseDoc.BaseDoc):
         self._write_mimetype_file()
         self._write_zip()
         if self.print_req:
-            app = GrampsMime.get_application(_apptype)
+            app = Mime.get_application(_apptype)
             os.environ["FILE"] = self.filename
             os.system ('%s "$FILE" &' % app[0])
 
@@ -1132,8 +1132,8 @@ print_label = None
 try:
     import Utils
     
-    mprog = GrampsMime.get_application(_apptype)
-    mtype = GrampsMime.get_description(_apptype)
+    mprog = Mime.get_application(_apptype)
+    mtype = Mime.get_description(_apptype)
 
     if Utils.search_for(mprog[0]):
         print_label = _("Open in %(program_name)s") % { 'program_name':

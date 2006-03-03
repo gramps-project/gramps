@@ -37,7 +37,7 @@ import BaseDoc
 import PluginMgr
 import ImgManip
 import Errors
-import GrampsMime
+import Mime
 
 #------------------------------------------------------------------------
 #
@@ -127,7 +127,7 @@ class RTFDoc(BaseDoc.BaseDoc):
         if self.print_req:
             apptype = 'application/rtf'
             try:
-                app = GrampsMime.get_application(apptype)[0]
+                app = Mime.get_application(apptype)[0]
                 os.environ["FILE"] = self.filename
                 os.system ('%s "$FILE" &' % app)
             except:
@@ -420,8 +420,8 @@ class RTFDoc(BaseDoc.BaseDoc):
 try:
     import Utils
     
-    mprog = GrampsMime.get_application("application/rtf")
-    mtype = GrampsMime.get_description("application/rtf")
+    mprog = Mime.get_application("application/rtf")
+    mtype = Mime.get_description("application/rtf")
 
     if Utils.search_for(mprog[0]):
         print_label=_("Open in %s") % mprog[1]

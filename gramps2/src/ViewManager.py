@@ -62,7 +62,7 @@ import RecentFiles
 import NameDisplay
 import Tool
 import Report
-import GrampsMime
+import Mime
 import Config
 import GrampsWidgets
 
@@ -570,7 +570,7 @@ class ViewManager:
                 return False
             filetype = type_selector.get_value()
             if filetype == 'auto':
-                filetype = GrampsMime.get_type(filename)
+                filetype = Mime.get_type(filename)
             (the_path,the_file) = os.path.split(filename)
             choose.destroy()
             if filetype in [const.app_gramps,const.app_gramps_xml,
@@ -916,7 +916,7 @@ class ViewManager:
             filetype = type_selector.get_value()
             if filetype == 'auto':
                 try:
-                    filetype = GrampsMime.get_type(filename)
+                    filetype = Mime.get_type(filename)
                 except RuntimeError,msg:
                     QuestionDialog.ErrorDialog(
                         _("Could not open file: %s") % filename,

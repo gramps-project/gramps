@@ -52,7 +52,7 @@ except:
 #-------------------------------------------------------------------------
 import WriteXML
 import Utils
-import GrampsMime
+import Mime
 import const
 import QuestionDialog
 import ImgManip
@@ -226,7 +226,7 @@ class PackageWriter:
                 newfile = fs_top.get_filename()
                 if os.path.isfile(newfile):
                     self.copy_file(newfile,'burn:///%s/%s' % (base,obase))
-                    ntype = GrampsMime.get_type(newfile)
+                    ntype = Mime.get_type(newfile)
                     if ntype and ntype.startswith("image"):
                         self.make_thumbnail(base,obase,newfile)
     
