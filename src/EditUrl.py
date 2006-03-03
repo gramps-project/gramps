@@ -49,10 +49,10 @@ from GrampsWidgets import *
 
 #-------------------------------------------------------------------------
 #
-# UrlEditor class
+# EditUrl class
 #
 #-------------------------------------------------------------------------
-class UrlEditor(EditSecondary.EditSecondary):
+class EditUrl(EditSecondary.EditSecondary):
 
     def __init__(self, dbstate, uistate, track, name, url, callback):
 
