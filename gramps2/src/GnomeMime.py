@@ -24,9 +24,11 @@ import gtk
 import const
 
 try:
-    from gnomevfs import mime_get_short_list_applications, mime_get_description, get_mime_type
+    from gnomevfs import mime_get_short_list_applications, \
+         mime_get_description, get_mime_type
 except:
-    from gnome.vfs import mime_get_short_list_applications, mime_get_description, get_mime_type
+    from gnome.vfs import mime_get_short_list_applications, \
+         mime_get_description, get_mime_type
     
 from gettext import gettext as _
 
@@ -58,7 +60,9 @@ def get_type(file):
         return _('unknown')
 
 def mime_type_is_defined(type):
-    """"Return True if a description for a mime type exists"""
+    """
+    Return True if a description for a mime type exists.
+    """
     try:
         mime_get_description(type)
         return True

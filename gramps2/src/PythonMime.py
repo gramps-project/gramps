@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -57,7 +57,9 @@ def get_type(filename):
         return _('unknown')
     
 def mime_type_is_defined(mime_type):
-    """"Return True if a description for a mime type exists"""
+    """
+    Return True if a description for a mime type exists.
+    """
     return _type_map.has_key(mime_type)
 
 def find_mime_type_pixbuf(mime_type):
