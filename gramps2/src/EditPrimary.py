@@ -25,7 +25,7 @@ from gettext import gettext as _
 import DisplayState
 import DateHandler
 import NameDisplay
-import GrampsKeys
+import Config
 import GrampsDisplay
 import Utils
 
@@ -119,7 +119,7 @@ class EditPrimary(DisplayState.ManagedWindow):
     def delete_event(self,*obj):
         """If the data has changed, give the user a chance to cancel
         the close window"""
-        if not GrampsKeys.get_dont_ask() and self.data_has_changed():
+        if not Config.get_dont_ask() and self.data_has_changed():
             SaveDialog(
                 _('Save Changes?'),
                 _('If you close without saving, the changes you '

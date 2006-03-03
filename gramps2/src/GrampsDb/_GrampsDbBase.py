@@ -47,7 +47,7 @@ log = logging.getLogger(".GrampsDb")
 #
 #-------------------------------------------------------------------------
 from RelLib import *
-import GrampsKeys
+import Config
 from _GrampsDBCallback import GrampsDBCallback
 
 #-------------------------------------------------------------------------
@@ -216,13 +216,13 @@ class GrampsDbBase(GrampsDBCallback):
         self.family_attributes = sets.Set()
         self.marker_names = sets.Set()
 
-        self.set_person_id_prefix(GrampsKeys.get_person_id_prefix())
-        self.set_object_id_prefix(GrampsKeys.get_object_id_prefix())
-        self.set_family_id_prefix(GrampsKeys.get_family_id_prefix())
-        self.set_source_id_prefix(GrampsKeys.get_source_id_prefix())
-        self.set_place_id_prefix(GrampsKeys.get_place_id_prefix())
-        self.set_event_id_prefix(GrampsKeys.get_event_id_prefix())
-        self.set_repository_id_prefix(GrampsKeys.get_repository_id_prefix())
+        self.set_person_id_prefix(Config.get_person_id_prefix())
+        self.set_object_id_prefix(Config.get_object_id_prefix())
+        self.set_family_id_prefix(Config.get_family_id_prefix())
+        self.set_source_id_prefix(Config.get_source_id_prefix())
+        self.set_place_id_prefix(Config.get_place_id_prefix())
+        self.set_event_id_prefix(Config.get_event_id_prefix())
+        self.set_repository_id_prefix(Config.get_repository_id_prefix())
 
         self.open = 0
         self.genderStats = GenderStats()

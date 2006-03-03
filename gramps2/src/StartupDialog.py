@@ -43,7 +43,7 @@ import gtk.glade
 import Assistant
 import const
 
-import GrampsKeys
+import Config
 from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -53,7 +53,7 @@ from QuestionDialog import ErrorDialog
 #-------------------------------------------------------------------------
 
 def need_to_run():
-    val = GrampsKeys.get_startup()
+    val = Config.get_startup()
     if val < const.startup:
         return True
     return False
@@ -68,34 +68,34 @@ def upgrade_prefs():
         client = gconf.client_get_default()
         client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
 
-        GrampsKeys.save_fprefix(client.get_string('/apps/gramps/fprefix'))
-        GrampsKeys.save_sprefix(client.get_string('/apps/gramps/sprefix'))
-        GrampsKeys.save_pprefix(client.get_string('/apps/gramps/pprefix'))
-        GrampsKeys.save_oprefix(client.get_string('/apps/gramps/oprefix'))
-        GrampsKeys.save_iprefix(client.get_string('/apps/gramps/iprefix'))
+        Config.save_fprefix(client.get_string('/apps/gramps/fprefix'))
+        Config.save_sprefix(client.get_string('/apps/gramps/sprefix'))
+        Config.save_pprefix(client.get_string('/apps/gramps/pprefix'))
+        Config.save_oprefix(client.get_string('/apps/gramps/oprefix'))
+        Config.save_iprefix(client.get_string('/apps/gramps/iprefix'))
 
-        GrampsKeys.save_researcher_country(client.get_string('/apps/gramps/researcher-country'))
-        GrampsKeys.save_researcher_email(client.get_string('/apps/gramps/researcher-email'))
-        GrampsKeys.save_researcher_phone(client.get_string('/apps/gramps/researcher-phone'))
-        GrampsKeys.save_researcher_city(client.get_string('/apps/gramps/researcher-city'))
-        GrampsKeys.save_researcher_postal(client.get_string('/apps/gramps/researcher-postal'))
-        GrampsKeys.save_researcher_addr(client.get_string('/apps/gramps/researcher-addr'))
-        GrampsKeys.save_researcher_state(client.get_string('/apps/gramps/researcher-state'))
-        GrampsKeys.save_researcher_name(client.get_string('/apps/gramps/researcher-name'))
+        Config.save_researcher_country(client.get_string('/apps/gramps/researcher-country'))
+        Config.save_researcher_email(client.get_string('/apps/gramps/researcher-email'))
+        Config.save_researcher_phone(client.get_string('/apps/gramps/researcher-phone'))
+        Config.save_researcher_city(client.get_string('/apps/gramps/researcher-city'))
+        Config.save_researcher_postal(client.get_string('/apps/gramps/researcher-postal'))
+        Config.save_researcher_addr(client.get_string('/apps/gramps/researcher-addr'))
+        Config.save_researcher_state(client.get_string('/apps/gramps/researcher-state'))
+        Config.save_researcher_name(client.get_string('/apps/gramps/researcher-name'))
 
-        GrampsKeys.save_family_view(client.get_int('/apps/gramps/familyview'))
-        GrampsKeys.save_default_view(client.get_int('/apps/gramps/defaultview'))
-        GrampsKeys.save_autoload(client.get_bool('/apps/gramps/autoload'))
-        GrampsKeys.save_uselds(client.get_bool('/apps/gramps/use-lds'))
-        GrampsKeys.save_statusbar(client.get_int('/apps/gramps/statusbar'))
-        GrampsKeys.save_view(not client.get_bool('/apps/gramps/view'))
-        GrampsKeys.save_screen_size_checked(client.get_bool('/apps/gramps/screen-size-checked'))
-        GrampsKeys.save_lastnamegen(client.get_int('/apps/gramps/surname-guessing'))
+        Config.save_family_view(client.get_int('/apps/gramps/familyview'))
+        Config.save_default_view(client.get_int('/apps/gramps/defaultview'))
+        Config.save_autoload(client.get_bool('/apps/gramps/autoload'))
+        Config.save_uselds(client.get_bool('/apps/gramps/use-lds'))
+        Config.save_statusbar(client.get_int('/apps/gramps/statusbar'))
+        Config.save_view(not client.get_bool('/apps/gramps/view'))
+        Config.save_screen_size_checked(client.get_bool('/apps/gramps/screen-size-checked'))
+        Config.save_lastnamegen(client.get_int('/apps/gramps/surname-guessing'))
         toolbar = client.get_int('/apps/gramps/toolbar')
         if toolbar == 5:
             toolbar = -1
-        GrampsKeys.save_toolbar(toolbar)
-        GrampsKeys.save_toolbar_on(client.get_bool('/apps/gramps/toolbar-on'))
+        Config.save_toolbar(toolbar)
+        Config.save_toolbar_on(client.get_bool('/apps/gramps/toolbar-on'))
         return True
     except:
         return False
@@ -113,7 +113,7 @@ class StartupDialog:
         self.args = args
 
         if not const.no_gconf and upgrade_prefs():
-            GrampsKeys.save_startup(const.startup)
+            Config.save_startup(const.startup)
             self.close(None)
             return
         self.w = Assistant.Assistant(self.complete)
@@ -149,19 +149,19 @@ class StartupDialog:
         self.task(self.args)
 
     def complete(self):
-        GrampsKeys.save_researcher_name(unicode(self.name.get_text()))
-        GrampsKeys.save_researcher_addr(unicode(self.addr.get_text()))
-        GrampsKeys.save_researcher_city(unicode(self.city.get_text()))
-        GrampsKeys.save_researcher_state(unicode(self.state.get_text()))
-        GrampsKeys.save_researcher_postal(unicode(self.postal.get_text()))
-        GrampsKeys.save_researcher_country(unicode(self.country.get_text()))
-        GrampsKeys.save_researcher_phone(unicode(self.phone.get_text()))
-        GrampsKeys.save_researcher_email(unicode(self.email.get_text()))
+        Config.save_researcher_name(unicode(self.name.get_text()))
+        Config.save_researcher_addr(unicode(self.addr.get_text()))
+        Config.save_researcher_city(unicode(self.city.get_text()))
+        Config.save_researcher_state(unicode(self.state.get_text()))
+        Config.save_researcher_postal(unicode(self.postal.get_text()))
+        Config.save_researcher_country(unicode(self.country.get_text()))
+        Config.save_researcher_phone(unicode(self.phone.get_text()))
+        Config.save_researcher_email(unicode(self.email.get_text()))
 
-        GrampsKeys.save_uselds(self.lds.get_active())
-        GrampsKeys.save_startup(const.startup)
+        Config.save_uselds(self.lds.get_active())
+        Config.save_startup(const.startup)
         self.w.destroy()        
-        GrampsKeys.sync()
+        Config.sync()
         self.task(self.args)
         
     def build_page2(self):
@@ -193,7 +193,7 @@ class StartupDialog:
         box.add(table)
         box.show_all()
 
-        name = GrampsKeys.get_researcher_name()
+        name = Config.get_researcher_name()
         if not name or name.strip() == "":
             try:
                 import pwd
@@ -205,13 +205,13 @@ class StartupDialog:
         self.name.set_text(name)
 
         try:
-            self.addr.set_text(GrampsKeys.get_researcher_addr())
-            self.city.set_text(GrampsKeys.get_researcher_city())
-            self.state.set_text(GrampsKeys.get_researcher_state())
-            self.postal.set_text(GrampsKeys.get_researcher_postal())
-            self.country.set_text(GrampsKeys.get_researcher_country())
-            self.phone.set_text(GrampsKeys.get_researcher_phone())
-            self.email.set_text(GrampsKeys.get_researcher_email())
+            self.addr.set_text(Config.get_researcher_addr())
+            self.city.set_text(Config.get_researcher_city())
+            self.state.set_text(Config.get_researcher_state())
+            self.postal.set_text(Config.get_researcher_postal())
+            self.country.set_text(Config.get_researcher_country())
+            self.phone.set_text(Config.get_researcher_phone())
+            self.email.set_text(Config.get_researcher_email())
         except:
             ErrorDialog(_("Configuration/Installation error"),
                         _("The gconf schemas were not found. First, try "
@@ -244,7 +244,7 @@ class StartupDialog:
         
         self.lds = gtk.CheckButton(label=_("Enable LDS ordinance support"))
 
-        self.lds.set_active(GrampsKeys.get_uselds())
+        self.lds.set_active(Config.get_uselds())
 
         align.add(self.lds)
         

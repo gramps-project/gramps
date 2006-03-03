@@ -23,7 +23,7 @@
 from gettext import gettext as _
 
 import DisplayState
-import GrampsKeys
+import Config
 import GrampsDisplay
 import Utils
 

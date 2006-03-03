@@ -48,7 +48,7 @@ import DisplayState
 import const
 import PluginMgr
 import Plugins
-import GrampsKeys
+import Config
 import GrampsDb
 import GrampsCfg
 import Errors
@@ -63,7 +63,7 @@ import NameDisplay
 import Tool
 import Report
 import GrampsMime
-import GrampsKeys
+import Config
 import GrampsWidgets
 
 #-------------------------------------------------------------------------
@@ -169,8 +169,8 @@ class ViewManager:
         self.window.connect('destroy', self.quit)
 
         try:
-            width = GrampsKeys.get_width()
-            height = GrampsKeys.get_height()
+            width = Config.get_width()
+            height = Config.get_height()
             self.window.set_default_size(width,height)
         except:
             self.window.set_default_size(775,500)
@@ -188,10 +188,10 @@ class ViewManager:
         hbox.pack_start(self.ebox,False)
         hbox.show_all()
 
-        self.show_sidebar = GrampsKeys.get_view()
+        self.show_sidebar = Config.get_view()
         if self.show_sidebar == None:
             self.show_sidebar = True
-        self.show_toolbar = GrampsKeys.get_toolbar()
+        self.show_toolbar = Config.get_toolbar()
         if self.show_toolbar == None:
             self.show_toolbar = True
 
@@ -272,16 +272,16 @@ class ViewManager:
         self.uistate.status_text(_('Loading plugins...'))
         error |= PluginMgr.load_plugins(const.pluginsDir)
         error |= PluginMgr.load_plugins(os.path.expanduser("~/.gramps/plugins"))
-        if GrampsKeys.get_pop_plugin_status() and error:
+        if Config.get_pop_plugin_status() and error:
             Plugins.PluginStatus(self)
         self.uistate.push_message(_('Ready'))
 
     def quit(self,obj=None):
         self.state.db.close()
         (width,height) = self.window.get_size()
-        GrampsKeys.save_width(width)
-        GrampsKeys.save_height(height)
-        GrampsKeys.sync()
+        Config.save_width(width)
+        Config.save_height(height)
+        Config.sync()
         gtk.main_quit()
 
     def build_ui_manager(self):
@@ -419,21 +419,21 @@ class ViewManager:
         if obj.get_active():
             self.ebox.show()
             self.notebook.set_show_tabs(False)
-            GrampsKeys.save_view(True)
+            Config.save_view(True)
         else:
             self.ebox.hide()
             self.notebook.set_show_tabs(True)
-            GrampsKeys.save_view(False)
-        GrampsKeys.sync()
+            Config.save_view(False)
+        Config.sync()
 
     def toolbar_toggle(self,obj):
         if obj.get_active():
             self.toolbar.show()
-            GrampsKeys.save_toolbar(True)
+            Config.save_toolbar(True)
         else:
             self.toolbar.hide()
-            GrampsKeys.save_toolbar(False)
-        GrampsKeys.sync()
+            Config.save_toolbar(False)
+        Config.sync()
 
     def register_view(self, view):
         self.views.append(view)
@@ -554,11 +554,11 @@ class ViewManager:
 
         # Suggested folder: try last open file, last import, last export, 
         # then home.
-        default_dir = os.path.split(GrampsKeys.get_lastfile())[0] + os.path.sep
+        default_dir = os.path.split(Config.get_lastfile())[0] + os.path.sep
         if len(default_dir)<=1:
-            default_dir = GrampsKeys.get_last_import_dir()
+            default_dir = Config.get_last_import_dir()
         if len(default_dir)<=1:
-            default_dir = GrampsKeys.get_last_export_dir()
+            default_dir = Config.get_last_export_dir()
         if len(default_dir)<=1:
             default_dir = '~/'
 
@@ -627,11 +627,11 @@ class ViewManager:
 
         # Suggested folder: try last open file, import, then last export, 
         # then home.
-        default_dir = os.path.split(GrampsKeys.get_lastfile())[0] + os.path.sep
+        default_dir = os.path.split(Config.get_lastfile())[0] + os.path.sep
         if len(default_dir)<=1:
-            default_dir = GrampsKeys.get_last_import_dir()
+            default_dir = Config.get_last_import_dir()
         if len(default_dir)<=1:
-            default_dir = GrampsKeys.get_last_export_dir()
+            default_dir = Config.get_last_export_dir()
         if len(default_dir)<=1:
             default_dir = '~/'
 
@@ -673,7 +673,7 @@ class ViewManager:
         """
         
         (the_path,the_file) = os.path.split(filename)
-        GrampsKeys.save_last_import_dir(the_path)
+        Config.save_last_import_dir(the_path)
         
         success = False
         if filetype == const.app_gramps:
@@ -735,7 +735,7 @@ class ViewManager:
                     msg = "%s - GRAMPS" % name
                     self.uistate.window.set_title(msg)
             else:
-                GrampsKeys.save_last_file("")
+                Config.save_last_file("")
                 QuestionDialog.ErrorDialog(_('Cannot open database'),
                             _('The database file specified could not be opened.'))
                 return False
@@ -789,7 +789,7 @@ class ViewManager:
 
         self.state.db.request_rebuild()
 
-        GrampsKeys.save_last_file(name)
+        Config.save_last_file(name)
     
         self.relationship = self.RelClass(self.state.db)
         self.state.change_active_person(self.state.db.find_initial_person())
@@ -900,12 +900,12 @@ class ViewManager:
 
         # Suggested folder: try last open file, import, then last export, 
         # then home.
-        default_dir = GrampsKeys.get_last_import_dir()
+        default_dir = Config.get_last_import_dir()
         if len(default_dir)<=1:
-            base_path = os.path.split(GrampsKeys.get_lastfile())[0]
+            base_path = os.path.split(Config.get_lastfile())[0]
             default_dir = base_path + os.path.sep
         if len(default_dir)<=1:
-            default_dir = GrampsKeys.get_last_export_dir()
+            default_dir = Config.get_last_export_dir()
         if len(default_dir)<=1:
             default_dir = '~/'
 
@@ -934,7 +934,7 @@ class ViewManager:
 
             # Then we try all the known plugins
             (the_path,the_file) = os.path.split(filename)
-            GrampsKeys.save_last_import_dir(the_path)
+            Config.save_last_import_dir(the_path)
             for (importData,mime_filter,mime_type,
                  native_format,format_name) in PluginMgr.import_list:
                 if filetype == mime_type or the_file == mime_type:

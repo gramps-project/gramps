@@ -46,7 +46,7 @@ import gtk.gdk
 #-------------------------------------------------------------------------
 import const
 import Utils
-import GrampsKeys
+import Config
 import GrampsMime
 import RelLib
 import DateHandler

@@ -44,7 +44,7 @@ import const
 import GrampsDb
 import GrampsMime
 import QuestionDialog
-import GrampsKeys
+import Config
 import RecentFiles
 import PluginMgr
 import Report
@@ -392,8 +392,8 @@ class ArgHandler:
 
         if self.imports:
             self.parent.import_tool_callback()
-        elif GrampsKeys.get_lastfile() and GrampsKeys.get_autoload():
-            self.auto_save_load(GrampsKeys.get_lastfile())
+        elif Config.get_lastfile() and Config.get_autoload():
+            self.auto_save_load(Config.get_lastfile())
 
     #-------------------------------------------------------------------------
     #
@@ -679,11 +679,11 @@ class NewNativeDbPrompter:
 
         # Suggested folder: try last open file, import, then last export, 
         # then home.
-        default_dir = os.path.split(GrampsKeys.get_lastfile())[0] + os.path.sep
+        default_dir = os.path.split(Config.get_lastfile())[0] + os.path.sep
         if len(default_dir)<=1:
-            default_dir = GrampsKeys.get_last_import_dir()
+            default_dir = Config.get_last_import_dir()
         if len(default_dir)<=1:
-            default_dir = GrampsKeys.get_last_export_dir()
+            default_dir = Config.get_last_export_dir()
         if len(default_dir)<=1:
             default_dir = '~/'
 

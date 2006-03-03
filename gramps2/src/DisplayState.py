@@ -41,7 +41,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import GrampsDb
-import GrampsKeys
+import Config
 import NameDisplay
 import GrampsMime
 import const
@@ -609,7 +609,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         if self.dbstate.active == None:
             self.status.push(self.status_id,"")
         else:
-            if GrampsKeys.get_statusbar() <= 1:
+            if Config.get_statusbar() <= 1:
                 pname = NameDisplay.displayer.display(self.dbstate.active)
                 name = "[%s] %s" % (self.dbstate.active.get_gramps_id(),pname)
             else:

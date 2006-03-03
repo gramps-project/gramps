@@ -1,4 +1,7 @@
 2006-03-02  Alex Roitman  <shura@gramps-project.org>
+	* src/Config/__init__.py: Add new package.
+	* src/GrampsGconfKeys.py, src/GrampsIniKeys.py, src/GrampsKeys.py:
+	Remove (placed under Config now).
 	* calendar, filers: Remove directories.
 	* images: Create directory.
 	* src/*png, src/*jpg: move under images directory.

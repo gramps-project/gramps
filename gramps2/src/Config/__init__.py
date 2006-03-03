@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2004-2006 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,8 +18,14 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id: __init__.py 5872 2006-02-03 15:49:59Z hippy $
+
+"""
+This package implements access to GRAMPS configuration.
+It provides the choice between different storage backends.
+"""
 
 try:
-   from GrampsGconfKeys import *
+   from _GrampsGconfKeys import *
 except:
-   from GrampsIniKeys import *
+   from _GrampsIniKeys import *

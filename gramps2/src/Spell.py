@@ -27,7 +27,7 @@ present, we default to no spell checking.
 
 """
 
-import GrampsKeys
+import Config
 
 from gettext import gettext as _
 
@@ -66,7 +66,7 @@ except SystemError,msg:
 class Spell:
 
     def __init__(self,obj):
-        if success and GrampsKeys.get_spellcheck():
+        if success and Config.get_spellcheck():
             self.spell = gtkspell.Spell(obj)
             lang = locale.getlocale()[0]
             self.spell.set_language(lang)

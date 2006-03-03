@@ -126,11 +126,11 @@ except:
     parser = _lang_to_parser["C"]()
 
 try:
-    import GrampsKeys
-    val = GrampsKeys.get_date_format(_lang_to_display[_lang].formats)
+    import Config
+    val = Config.get_date_format(_lang_to_display[_lang].formats)
 except:
     try:
-        val = GrampsKeys.get_date_format(_lang_to_display["C"].formats)
+        val = Config.get_date_format(_lang_to_display["C"].formats)
     except:
         val = 0
 

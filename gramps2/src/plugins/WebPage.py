@@ -49,7 +49,7 @@ import RelLib
 import HtmlDoc
 import BaseDoc
 import const
-import GrampsKeys
+import Config
 import GenericFilter
 import DateHandler
 import Sort

@@ -26,7 +26,7 @@ import gtk
 import gobject
 
 import GrampsMime
-import GrampsKeys
+import Config
 import Utils
 
 class ImgManip:
@@ -112,8 +112,8 @@ def run_thumbnailer(mtype, frm, to, size=const.thumbScale):
         }
 
     base = '/desktop/gnome/thumbnailers/%s' % mtype.replace('/','@')
-    cmd = GrampsKeys.client.get_string(base + '/command')
-    enable = GrampsKeys.client.get_bool(base + '/enable')
+    cmd = Config.client.get_string(base + '/command')
+    enable = Config.client.get_bool(base + '/enable')
 
     if cmd and enable:
         cmdlist = map(lambda x: sublist.get(x,x),cmd.split())

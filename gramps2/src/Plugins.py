@@ -55,7 +55,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import const
 import Utils
-import GrampsKeys
+import Config
 import Errors
 import Report
 import Tool
@@ -323,10 +323,10 @@ class PluginStatus(DisplayState.ManagedWindow):
         self.window.set_title("%s - GRAMPS" % _('Plugin status'))
         window = self.glade.get_widget("text")
         self.pop_button = self.glade.get_widget("pop_button")
-        self.pop_button.set_active(GrampsKeys.get_pop_plugin_status())
+        self.pop_button.set_active(Config.get_pop_plugin_status())
         self.pop_button.connect('toggled',
-            lambda obj: GrampsKeys.save_pop_plugin_status(self.pop_button.get_active()))
-        GrampsKeys.client.notify_add("/apps/gramps/behavior/pop-plugin-status",
+            lambda obj: Config.save_pop_plugin_status(self.pop_button.get_active()))
+        Config.client.notify_add("/apps/gramps/behavior/pop-plugin-status",
                                     self.pop_button_update)
         self.glade.signal_autoconnect({
             'on_close_clicked'  : self.close,
@@ -366,7 +366,7 @@ class PluginStatus(DisplayState.ManagedWindow):
         GrampsDisplay.help('gramps-getting-started')
 
     def pop_button_update(self, client,cnxn_id,entry,data):
-        self.pop_button.set_active(GrampsKeys.get_pop_plugin_status())
+        self.pop_button.set_active(Config.get_pop_plugin_status())
 
 #-------------------------------------------------------------------------
 #
@@ -462,7 +462,7 @@ class GrampsTextFormatComboBox(gtk.ComboBox):
         self.pack_start(cell,True)
         self.add_attribute(cell,'text',0)
 
-        out_pref = GrampsKeys.get_output_preference()
+        out_pref = Config.get_output_preference()
         index = 0
         PluginMgr.textdoc_list.sort()
         active_index = 0
@@ -510,7 +510,7 @@ class GrampsDrawFormatComboBox(gtk.ComboBox):
         self.pack_start(cell,True)
         self.add_attribute(cell,'text',0)
 
-        out_pref = GrampsKeys.get_output_preference()
+        out_pref = Config.get_output_preference()
         index = 0
         PluginMgr.drawdoc_list.sort()
         active_index = 0
@@ -558,7 +558,7 @@ class GrampsBookFormatComboBox(gtk.ComboBox):
         self.pack_start(cell,True)
         self.add_attribute(cell,'text',0)
 
-        out_pref = GrampsKeys.get_output_preference()
+        out_pref = Config.get_output_preference()
         index = 0
         PluginMgr.drawdoc_list.sort()
         active_index = 0
@@ -683,7 +683,7 @@ class Reload(Tool.Tool):
                 except:
                     PluginMgr.failmsg_list.append((filename,sys.exc_info()))
 
-        if GrampsKeys.get_pop_plugin_status() and len(PluginMgr.failmsg_list):
+        if Config.get_pop_plugin_status() and len(PluginMgr.failmsg_list):
             PluginStatus()
         else:
             global status_up
