@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: LocEdit.py 6051 2006-03-03 00:38:41Z dallingham $
 
 #-------------------------------------------------------------------------
 #
