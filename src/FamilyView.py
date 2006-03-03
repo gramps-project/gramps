@@ -442,6 +442,8 @@ class FamilyView(PageView.PersonNavView):
 
     def info_string(self,handle):
         child = self.dbstate.db.get_person_from_handle(handle)
+        if not child:
+            return None
         birth_ref = child.get_birth_ref()
         death_ref = child.get_death_ref()
         value = None
@@ -594,4 +596,3 @@ class FamilyView(PageView.PersonNavView):
 
     def change_to(self,obj,handle):
         self.dbstate.change_active_handle(handle)
-

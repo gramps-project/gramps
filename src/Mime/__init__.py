@@ -19,9 +19,9 @@
 #
 
 try:
-    from GnomeMime import *
+    from _GnomeMime import *
 except:
-    from PythonMime import *
+    from _PythonMime import *
 
 def base_type(val):
     return val.split('/')[0]

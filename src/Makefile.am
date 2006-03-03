@@ -144,25 +144,8 @@ GLADEFILES = \
 	rule.glade\
 	scratchpad.glade
 
-GRAPHICS = \
-	logo.png\
-	bad.png\
-	good.png\
-	gramps.png \
-	media.png\
-	place.png\
-	sources.png\
-	splash.jpg\
-	tools.png \
-	land_shallow_topo_2048.jpg \
-	land_shallow_topo_350.jpg \
-	flist.svg \
-	media.svg \
-	person.svg \
-	relation.svg 
-
 # Other stuff that we need to install
-dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) 
+dist_pkgdata_DATA = $(GLADEFILES)
 
 # In principle the following rule slightly  violates the automake/autoconf 
 # spirit of keeping each subdirectory as a separate entity unto itself. 
