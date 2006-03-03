@@ -1033,11 +1033,11 @@ class AddrEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2),(1,3),(1,4))
 
     def add_button_clicked(self,obj):
-        import EditAddr
+        import EditAddress
         addr = RelLib.Address()
         try:
-            EditAddr.EditAddress(self.dbstate, self.uistate, self.track,
-                                 addr, self.add_callback)
+            EditAddress.EditAddress(self.dbstate, self.uistate, self.track,
+                                    addr, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
@@ -1048,10 +1048,10 @@ class AddrEmbedList(EmbeddedList):
     def edit_button_clicked(self,obj):
         addr = self.get_selected()
         if addr:
-            import EditAddr
+            import EditAddress
             try:
-                EditAddr.EditAddress(self.dbstate, self.uistate, self.track,
-                                     addr, self.edit_callback)
+                EditAddress.EditAddress(self.dbstate, self.uistate, self.track,
+                                        addr, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
