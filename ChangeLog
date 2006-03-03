@@ -1,5 +1,6 @@
 2006-03-02  Don Allingham  <don@gramps-project.org>
 	* src/Makefile.am: adapt to module renames
+	* src/NoteEdit.py: removed
 	* src/EditAttribute.py: renamed from AttrEdit.py
 	* src/EditAddress.py: renamed from AddrEdit.py
 	* src/DisplayTabs.py: adapt to module renames

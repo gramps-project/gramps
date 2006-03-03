@@ -1088,11 +1088,11 @@ class LocationEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2),(1,3),(1,4))
 
     def add_button_clicked(self,obj):
-        import LocEdit
+        import EditLocation
         loc = RelLib.Location()
         try:
-            LocEdit.LocationEditor(self.dbstate, self.uistate, self.track,
-                                   loc, self.add_callback)
+            EditLocation.EditLocation(self.dbstate, self.uistate, self.track,
+                                      loc, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
@@ -1103,10 +1103,10 @@ class LocationEmbedList(EmbeddedList):
     def edit_button_clicked(self,obj):
         loc = self.get_selected()
         if loc:
-            import LocEdit
+            import EditLocation
             try:
-                LocEdit.LocationEditor(self.dbstate, self.uistate, self.track,
-                                       loc, self.edit_callback)
+                EditLocation.EditLocation(self.dbstate, self.uistate, self.track,
+                                          loc, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 

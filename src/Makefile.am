@@ -79,7 +79,7 @@ gdir_PYTHON = \
 	ImgManip.py\
 	latin_ansel.py\
 	ListModel.py\
-	LocEdit.py\
+	EditLocation.py\
 	locked.png\
 	MapView.py\
 	MediaView.py\
@@ -88,7 +88,6 @@ gdir_PYTHON = \
 	NameDisplay.py\
 	NameEdit.py\
 	Navigation.py\
-	NoteEdit.py\
 	Options.py\
 	PageView.py\
 	PaperMenu.py\
