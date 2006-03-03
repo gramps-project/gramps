@@ -430,10 +430,11 @@ class EditFamily(EditPrimary.EditPrimary):
             for person_handle in self.obj.get_child_handle_list():
                 person = self.db.get_person_from_handle(person_handle)
                 event_ref = person.get_birth_ref()
-                event_handle = event_ref.ref
-                if event_handle:
-                    event = self.db.get_event_from_handle(event_handle)
-                    child_birth_years.append(event.get_date_object().get_year())
+                if event_ref:
+                    event_handle = event_ref.ref
+                    if event_handle:
+                        event = self.db.get_event_from_handle(event_handle)
+                        child_birth_years.append(event.get_date_object().get_year())
                     
             if len(child_birth_years) > 0:
                 filter_spec.set_birth_year(min(child_birth_years))
