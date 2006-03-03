@@ -24,11 +24,11 @@ docfiles = \
 
 gdir_PYTHON = \
 	AddMedia.py\
-	AddrEdit.py\
+	EditAddress.py\
 	ansel_utf8.py\
 	ArgHandler.py\
 	Assistant.py\
-	AttrEdit.py\
+	EditAttribute.py\
 	AutoComp.py\
 	BaseDoc.py\
 	Bookmarks.py\
