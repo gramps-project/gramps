@@ -89,32 +89,33 @@ no_gconf = False
 #
 #-------------------------------------------------------------------------
 
-rootDir = os.path.abspath(os.path.dirname(__file__))
+root_dir       = os.path.abspath(os.path.dirname(__file__))
+image_dir      = os.path.join(root_dir,"images")
 
-system_filters = os.path.join(rootDir,"system_filters.xml")
+system_filters = os.path.join(root_dir,"system_filters.xml")
 custom_filters = "~/.gramps/custom_filters.xml"
 report_options = "~/.gramps/report_options.xml"
 tool_options   = "~/.gramps/tool_options.xml"
 bsddbenv_dir   = "~/.gramps/bsddbenv"
-icon           = os.path.join(rootDir,"images/gramps.png")
-logo           = os.path.join(rootDir,"images/logo.png")
-splash         = os.path.join(rootDir,"images/splash.jpg")
-license        = os.path.join(rootDir,"COPYING")
-gladeFile      = os.path.join(rootDir,"gramps.glade")
-editPersonFile = os.path.join(rootDir,"edit_person.glade")
-pluginsFile    = os.path.join(rootDir,"plugins.glade")
-mergeFile      = os.path.join(rootDir,"mergedata.glade")
-merge2File     = os.path.join(rootDir,"merge.glade")
-filterFile     = os.path.join(rootDir,"rule.glade")
+icon           = os.path.join(root_dir,"images","gramps.png")
+logo           = os.path.join(root_dir,"images","logo.png")
+splash         = os.path.join(root_dir,"images","splash.jpg")
+license        = os.path.join(root_dir,"COPYING")
+gladeFile      = os.path.join(root_dir,"gramps.glade")
+editPersonFile = os.path.join(root_dir,"edit_person.glade")
+pluginsFile    = os.path.join(root_dir,"plugins.glade")
+mergeFile      = os.path.join(root_dir,"mergedata.glade")
+merge2File     = os.path.join(root_dir,"merge.glade")
+filterFile     = os.path.join(root_dir,"rule.glade")
 
-pluginsDir     = os.path.join(rootDir,"plugins")
-datesDir       = os.path.join(rootDir,"dates")
-docgenDir      = os.path.join(rootDir,"docgen")
-dataDir        = os.path.join(rootDir,"data")
-template_dir   = os.path.join(dataDir,"templates")
-papersize      = "file:%s/papersize.xml" % dataDir
-tipdata        = os.path.join(dataDir,"tips.xml")
-fdl            = os.path.join(dataDir,"fdl.txt")
+pluginsDir     = os.path.join(root_dir,"plugins")
+datesDir       = os.path.join(root_dir,"dates")
+docgenDir      = os.path.join(root_dir,"docgen")
+data_dir       = os.path.join(root_dir,"data")
+template_dir   = os.path.join(data_dir,"templates")
+papersize      = "file:%s/papersize.xml" % data_dir
+tipdata        = os.path.join(data_dir,"tips.xml")
+fdl            = os.path.join(data_dir,"fdl.txt")
 
 startup        = 1
 dnd_images     = 1

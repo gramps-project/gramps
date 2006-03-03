@@ -895,9 +895,9 @@ class MediaPage(BasePage):
         if photo.get_mime_type():
             from_path = ImgManip.get_thumbnail_path(photo.get_path(),photo.get_mime_type())
             if not os.path.isfile(from_path):
-                from_path = os.path.join(const.dataDir,"document.png")
+                from_path = os.path.join(const.data_dir,"document.png")
         else:
-            from_path = os.path.join(const.dataDir,"document.png")
+            from_path = os.path.join(const.data_dir,"document.png")
             
         if self.archive:
             self.archive.add(from_path,to_path)
