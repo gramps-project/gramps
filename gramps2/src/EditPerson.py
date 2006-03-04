@@ -51,7 +51,7 @@ import Mime
 import RelLib
 import DateHandler
 import NameDisplay
-import NameEdit
+import EditName
 import DisplayState
 import GrampsDisplay
 import GrampsWidgets
