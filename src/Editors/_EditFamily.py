@@ -64,12 +64,12 @@ import gtk.glade
 import const
 import Utils
 import NameDisplay
-import EditPrimary
 import Spell
 import GrampsDisplay
 import RelLib
 import ReportUtils
 import AutoComp
+from _EditPrimary import EditPrimary
 
 from DdTargets import DdTargets
 from DisplayTabs import *
@@ -211,11 +211,11 @@ class ChildEmbedList(EmbeddedList):
 # EditFamily
 #
 #-------------------------------------------------------------------------
-class EditFamily(EditPrimary.EditPrimary):
+class EditFamily(EditPrimary):
 
     def __init__(self,dbstate,uistate,track,family):
-        EditPrimary.EditPrimary.__init__(self, dbstate, uistate, track,
-                                         family, dbstate.db.get_family_from_handle)
+        EditPrimary.__init__(self, dbstate, uistate, track,
+                             family, dbstate.db.get_family_from_handle)
 
 
     def _local_init(self):

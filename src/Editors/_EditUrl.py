@@ -43,7 +43,7 @@ import gtk.glade
 import const
 import Utils
 import RelLib
-import EditSecondary
+from _EditSecondary import EditSecondary
 
 from GrampsWidgets import *
 
@@ -52,12 +52,12 @@ from GrampsWidgets import *
 # EditUrl class
 #
 #-------------------------------------------------------------------------
-class EditUrl(EditSecondary.EditSecondary):
+class EditUrl(EditSecondary):
 
     def __init__(self, dbstate, uistate, track, name, url, callback):
 
-        EditSecondary.EditSecondary.__init__(self, dbstate, uistate, track,
-                                             url, callback)
+        EditSecondary.__init__(self, dbstate, uistate, track,
+                               url, callback)
 
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "url_edit","gramps")

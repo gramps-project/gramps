@@ -49,7 +49,7 @@ import RelLib
 import NameDisplay
 import Spell
 import GrampsDisplay
-import EditPrimary
+from _EditPrimary import EditPrimary
 
 from DisplayTabs import *
 from WindowUtils import GladeIf
@@ -60,13 +60,12 @@ from GrampsWidgets import *
 # Constants
 #
 #-------------------------------------------------------------------------
-class EditSource(EditPrimary.EditPrimary):
+class EditSource(EditPrimary):
 
     def __init__(self,dbstate,uistate,track,source):
 
-        EditPrimary.EditPrimary.__init__(
-            self, dbstate, uistate, track,
-            source, dbstate.db.get_source_from_handle)
+        EditPrimary.__init__(self, dbstate, uistate, track,
+                             source, dbstate.db.get_source_from_handle)
 
     def _local_init(self):
 

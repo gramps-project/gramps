@@ -50,7 +50,7 @@ import Utils
 import AutoComp
 import RelLib
 import GrampsDisplay
-import EditPrimary
+from _EditPrimary import EditPrimary
 
 from QuestionDialog import WarningDialog, ErrorDialog
 from DisplayTabs import *
@@ -71,12 +71,12 @@ for event_type in Utils.family_events.keys():
 # EditEvent class
 #
 #-------------------------------------------------------------------------
-class EditEvent(EditPrimary.EditPrimary):
+class EditEvent(EditPrimary):
 
     def __init__(self,event,dbstate,uistate,track=[],callback=None):
 
-        EditPrimary.EditPrimary.__init__(self, dbstate, uistate, track,
-                                         event, dbstate.db.get_event_from_handle)
+        EditPrimary.__init__(self, dbstate, uistate, track,
+                             event, dbstate.db.get_event_from_handle)
 
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "event_edit","gramps")

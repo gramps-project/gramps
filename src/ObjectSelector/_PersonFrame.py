@@ -28,7 +28,6 @@ import gtk
 import gobject
 
 from RelLib import Person
-from Editors import EditPerson
 from NameDisplay import displayer
 display_name = displayer.display
 
@@ -105,6 +104,8 @@ class PersonFrame(ObjectFrameBase):
                 self.emit('add-object',o)
 
     def new_object(self,button):
+        from Editors import EditPerson
+        
         person = Person()
         EditPerson(self._dbstate,self._uistate,[],person)
         
