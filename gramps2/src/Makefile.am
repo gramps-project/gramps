@@ -56,7 +56,7 @@ gdir_PYTHON = \
 	EditSource.py\
 	EditSourceRef.py\
 	Errors.py\
-	EventEdit.py\
+	EditEvent.py\
 	EventView.py\
 	Exporter.py\
 	FamilyList.py\
@@ -78,7 +78,7 @@ gdir_PYTHON = \
 	MergeData.py\
 	MergePeople.py\
 	NameDisplay.py\
-	NameEdit.py\
+	EditName.py\
 	Navigation.py\
 	Options.py\
 	PageView.py\

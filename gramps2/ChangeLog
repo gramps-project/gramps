@@ -1,4 +1,6 @@
 2006-03-03  Don Allingham  <don@gramps-project.org>
+	* src/Makefile.am: module renames
+	* src/EventView.py: call new module name
 	* src/EditName.py: renamed from NameEdit.py
 	* src/EditEvent.py: renamed from EventEdit.py
 	* src/images/Makefile.am: restore
