@@ -7,16 +7,16 @@ pkgdatadir = $(datadir)/@PACKAGE@/DataViews
 
 pkgdata_PYTHON = \
 	__init__.py\
-	PersonView.py\
-	FamilyView.py\
-	FamilyList.py\
-	PedView.py\
-	EventView.py\
-	SourceView.py\
-	PlaceView.py\
-	MediaView.py\
-	MapView.py\
-	RepositoryView.py
+	_PersonView.py\
+	_FamilyView.py\
+	_FamilyList.py\
+	_PedigreeView.py\
+	_EventView.py\
+	_SourceView.py\
+	_PlaceView.py\
+	_MediaView.py\
+	_MapView.py\
+	_RepositoryView.py
 
 pkgpyexecdir = @pkgpyexecdir@/DataViews
 pkgpythondir = @pkgpythondir@/DataViews

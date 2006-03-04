@@ -9,7 +9,7 @@
 	* src/DataViews/_FamilyList.py: moved to DataViews directory
 	* src/DataViews/_PlaceView.py: moved to DataViews directory
 	* src/DataViews/_PersonView.py: moved to DataViews directory
-	* src/DataViews/_PedView.py: moved to DataViews directory
+	* src/DataViews/_PedigreeView.py: moved to DataViews directory
 	* src/DataViews/_RepositoryView.py: moved to DataViews directory
 	
 2006-03-04  Martin Hawlisch  <Martin.Hawlisch@gmx.de>

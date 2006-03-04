@@ -7,9 +7,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/images
 dist_pkgdata_DATA = \
 	bad.png\
 	caution.png\
-	edit.png\
 	edit_sm.png\
-	events24.png\
 	events.png\
 	flist.svg\
 	good.png\
@@ -18,7 +16,6 @@ dist_pkgdata_DATA = \
 	land_shallow_topo_350.jpg\
 	locked.png\
 	logo.png\
-	media.png\
 	media.svg\
 	ped24.png\
 	person.svg\
