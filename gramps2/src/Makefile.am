@@ -2,21 +2,22 @@
 
 # This is the src level Makefile for Gramps
 SUBDIRS = \
-	docgen \
-	plugins \
-	dates \
-	data \
-	po \
-	GrampsDb \
-	RelLib \
-	ObjectSelector \
-	GrampsLogger \
-	TreeViews \
 	Config \
+	DataViews \
+	Editors \
+	GrampsDb \
+	GrampsLogger \
 	Mime \
 	Models \
+	ObjectSelector \
+	RelLib \
+	TreeViews \
+	data \
+	dates \
+	docgen \
 	images \
-	Editors
+	plugins \
+	po 
 
 # For intl. support, how do we compile?
 MOSTLYCLEANFILES = 
@@ -58,10 +59,7 @@ gdir_PYTHON = \
 	DisplayTabs.py\
 	DisplayTrace.py\
 	Errors.py\
-	EventView.py\
 	Exporter.py\
-	FamilyList.py\
-	FamilyView.py\
 	FontScale.py\
 	GenericFilter.py\
 	GrampsCfg.py\
@@ -73,19 +71,13 @@ gdir_PYTHON = \
 	ImgManip.py\
 	latin_ansel.py\
 	ListModel.py\
-	MapView.py\
-	MediaView.py\
 	MergeData.py\
 	MergePeople.py\
 	NameDisplay.py\
 	Navigation.py\
 	Options.py\
-	PageView.py\
 	PaperMenu.py\
-	PedView.py\
 	PeopleModel.py\
-	PersonView.py\
-	PlaceView.py\
 	PluginMgr.py\
 	Plugins.py\
 	QuestionDialog.py\
@@ -95,7 +87,6 @@ gdir_PYTHON = \
 	ReportOptions.py\
 	Report.py\
 	ReportUtils.py\
-	RepositoryView.py\
 	ScratchPad.py\
 	SelectChild.py\
 	SelectEvent.py\
@@ -104,7 +95,6 @@ gdir_PYTHON = \
 	Sort.py\
 	soundex.py\
 	Sources.py\
-	SourceView.py\
 	Spell.py\
 	SpreadSheetDoc.py\
 	StartupDialog.py\
