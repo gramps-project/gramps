@@ -68,10 +68,10 @@ for event_type in Utils.family_events.keys():
 
 #-------------------------------------------------------------------------
 #
-# EventEditor class
+# EditEvent class
 #
 #-------------------------------------------------------------------------
-class EventEditor(EditPrimary.EditPrimary):
+class EditEvent(EditPrimary.EditPrimary):
 
     def __init__(self,event,dbstate,uistate,track=[],callback=None):
 
