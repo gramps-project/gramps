@@ -14,6 +14,7 @@ SUBDIRS = \
 	TreeViews \
 	Config \
 	Mime \
+	Models \
 	images \
 	Editors
 
@@ -38,11 +39,9 @@ docfiles = \
 
 gdir_PYTHON = \
 	AddMedia.py\
-	EditAddress.py\
 	ansel_utf8.py\
 	ArgHandler.py\
 	Assistant.py\
-	EditAttribute.py\
 	AutoComp.py\
 	BaseDoc.py\
 	Bookmarks.py\
@@ -58,19 +57,7 @@ gdir_PYTHON = \
 	DisplayState.py\
 	DisplayTabs.py\
 	DisplayTrace.py\
-	EditEventRef.py\
-	EditFamily.py\
-	EditMedia.py\
-	EditMediaRef.py\
-	EditPerson.py\
-	EditPlace.py\
-	EditPrimary.py\
-	EditRepository.py\
-	EditSecondary.py\
-	EditSource.py\
-	EditSourceRef.py\
 	Errors.py\
-	EditEvent.py\
 	EventView.py\
 	Exporter.py\
 	FamilyList.py\
@@ -86,13 +73,11 @@ gdir_PYTHON = \
 	ImgManip.py\
 	latin_ansel.py\
 	ListModel.py\
-	EditLocation.py\
 	MapView.py\
 	MediaView.py\
 	MergeData.py\
 	MergePeople.py\
 	NameDisplay.py\
-	EditName.py\
 	Navigation.py\
 	Options.py\
 	PageView.py\
@@ -130,7 +115,6 @@ gdir_PYTHON = \
 	ToolTips.py\
 	TransUtils.py\
 	TreeTips.py\
-	EditUrl.py\
 	Utils.py\
 	ViewManager.py\
 	WindowUtils.py\

@@ -46,14 +46,14 @@ import RelLib
 
 from GrampsWidgets import *
 from DisplayTabs import *
-import EditPrimary
+from _EditPrimary import EditPrimary
 
-class EditRepository(EditPrimary.EditPrimary):
+class EditRepository(EditPrimary):
 
     def __init__(self,dbstate,uistate,track,repository):
 
-        EditPrimary.EditPrimary.__init__(self, dbstate, uistate, track,
-                                         repository, dbstate.db.get_repository_from_handle)
+        EditPrimary.__init__(self, dbstate, uistate, track,
+                             repository, dbstate.db.get_repository_from_handle)
 
     def _local_init(self):
         self.glade = gtk.glade.XML(const.gladeFile,"repository_editor","gramps")

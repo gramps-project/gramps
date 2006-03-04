@@ -51,11 +51,10 @@ import Mime
 import RelLib
 import DateHandler
 import NameDisplay
-import EditName
 import DisplayState
 import GrampsDisplay
 import GrampsWidgets
-import EditPrimary
+from _EditPrimary import EditPrimary
 from DisplayTabs import *
 
 from QuestionDialog import WarningDialog, ErrorDialog, QuestionDialog2
@@ -80,16 +79,15 @@ _use_patronymic = set(["ru","RU","ru_RU","koi8r","ru_koi8r","russian","Russian"]
 # EditPerson class
 #
 #-------------------------------------------------------------------------
-class EditPerson(EditPrimary.EditPrimary):
+class EditPerson(EditPrimary):
 
     use_patronymic = locale.getlocale(locale.LC_TIME)[0] in _use_patronymic
 
     def __init__(self,state,uistate,track,person,callback=None):
         """Creates an edit window.  Associates a person with the window."""
 
-        EditPrimary.EditPrimary.__init__(self, state, uistate, track,
-                                         person, state.db.get_person_from_handle,
-                                         callback)
+        EditPrimary.__init__(self, state, uistate, track, person,
+                             state.db.get_person_from_handle, callback)
 
     def _local_init(self):
         self.pname = self.obj.get_primary_name()

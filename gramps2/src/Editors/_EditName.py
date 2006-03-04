@@ -43,7 +43,7 @@ import const
 import Utils
 import RelLib
 import NameDisplay
-import EditSecondary
+from _EditSecondary import EditSecondary
 
 from DisplayTabs import *
 from GrampsWidgets import *
@@ -53,12 +53,12 @@ from GrampsWidgets import *
 # EditName class
 #
 #-------------------------------------------------------------------------
-class EditName(EditSecondary.EditSecondary):
+class EditName(EditSecondary):
 
     def __init__(self, dbstate, uistate, track, name, callback):
 
-        EditSecondary.EditSecondary.__init__(self, dbstate, uistate,
-                                             track, name, callback)
+        EditSecondary.__init__(self, dbstate, uistate,
+                               track, name, callback)
 
     def _local_init(self):
         

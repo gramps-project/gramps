@@ -45,7 +45,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import EditSecondary
+from _EditSecondary import EditSecondary
 
 from DisplayTabs import *
 from GrampsWidgets import *
@@ -55,7 +55,7 @@ from GrampsWidgets import *
 # EditAddress class
 #
 #-------------------------------------------------------------------------
-class EditAddress(EditSecondary.EditSecondary):
+class EditAddress(EditSecondary):
     """
     Displays a dialog that allows the user to edit an address.
     """
@@ -66,7 +66,7 @@ class EditAddress(EditSecondary.EditSecondary):
         parent - The class that called the Address editor.
         addr - The address that is to be edited
         """
-        EditSecondary.EditSecondary.__init__(self, dbstate, uistate, track, addr)
+        EditSecondary.__init__(self, dbstate, uistate, track, addr)
 
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "addr_edit","gramps")

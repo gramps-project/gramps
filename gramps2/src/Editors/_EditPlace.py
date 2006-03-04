@@ -48,7 +48,7 @@ import gtk.glade
 import const
 import Utils
 import RelLib
-import EditPrimary
+from _EditPrimary import EditPrimary
 
 from DisplayTabs import *
 from GrampsWidgets import *
@@ -58,12 +58,11 @@ from GrampsWidgets import *
 # EditPlace
 #
 #-------------------------------------------------------------------------
-class EditPlace(EditPrimary.EditPrimary):
+class EditPlace(EditPrimary):
 
     def __init__(self,dbstate,uistate,track,place,callback=None):
-        EditPrimary.EditPrimary.__init__(
-            self, dbstate, uistate, track, place,
-            dbstate.db.get_place_from_handle, callback)
+        EditPrimary.__init__(self, dbstate, uistate, track, place,
+                             dbstate.db.get_place_from_handle, callback)
 
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile,"place_editor","gramps")

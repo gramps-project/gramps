@@ -47,7 +47,7 @@ import Utils
 import RelLib
 import Mime
 import ImgManip
-import EditPrimary
+from _EditPrimary import EditPrimary
 
 from GrampsWidgets import *
 from QuestionDialog import ErrorDialog
@@ -58,12 +58,12 @@ from DisplayTabs import *
 # EditMedia
 #
 #-------------------------------------------------------------------------
-class EditMedia(EditPrimary.EditPrimary):
+class EditMedia(EditPrimary):
 
     def __init__(self,state,uistate,track,obj):
 
-        EditPrimary.EditPrimary.__init__(self, state, uistate, track, obj,
-                                         state.db.get_object_from_handle)
+        EditPrimary.__init__(self, state, uistate, track, obj,
+                             state.db.get_object_from_handle)
 
     def _local_init(self):
         assert(self.obj)

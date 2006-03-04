@@ -51,7 +51,7 @@ import const
 import Utils
 import RelLib
 import GrampsDisplay
-import EditSecondary
+from _EditSecondary import EditSecondary
 
 from QuestionDialog import WarningDialog
 from DisplayTabs import *
@@ -62,7 +62,7 @@ from GrampsWidgets import *
 # EditAttribute class
 #
 #-------------------------------------------------------------------------
-class EditAttribute(EditSecondary.EditSecondary):
+class EditAttribute(EditSecondary):
     """
     Displays a dialog that allows the user to edit an attribute.
     """
@@ -76,8 +76,7 @@ class EditAttribute(EditSecondary.EditSecondary):
         list - list of options for the pop down menu
         """
         self.alist = data_list
-        EditSecondary.EditSecondary.__init__(self, state, uistate, track,
-                                             attrib, callback)
+        EditSecondary.__init__(self, state, uistate, track, attrib, callback)
         
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "attr_edit","gramps")
