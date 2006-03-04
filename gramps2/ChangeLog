@@ -1,3 +1,7 @@
+2006-03-03  Don Allingham  <don@gramps-project.org>
+	* src/images/Makefile.am: restore
+	* src/plugins/Makefile.am: remove stock_link.png from dependency list
+
 2006-03-03  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/stock_link.png: Remove (already present in
 	src/images, used by ScratchPad only).
