@@ -58,8 +58,8 @@ from DdTargets import DdTargets
 #
 #-------------------------------------------------------------------------
 
-LINK_PIC = gtk.gdk.pixbuf_new_from_file( "%s/%s" % (os.path.dirname(__file__),
-                                                    'images/stock_link.png'))
+_stock_image = os.path.join(const.image_dir,'stock_link.png')
+LINK_PIC = gtk.gdk.pixbuf_new_from_file(_stock_image)
 BLANK_PIC = gtk.gdk.Pixbuf(0,0,8,1,1)
 
 #-------------------------------------------------------------------------
@@ -811,22 +811,16 @@ class ScratchPadWindow:
         """Initializes the ScratchPad class, and displays the window"""
 
         self.parent = parent
-#         if self.parent.child_windows.has_key(self.__class__):
-#             self.parent.child_windows[self.__class__].present(None)
-#             return
-#         self.win_key = self.__class__
-
 
         self.database_changed(database)
         self.db.connect('database-changed', self.database_changed)
 
-        base = os.path.dirname(__file__)
-        self.glade_file = "%s/%s" % (base,"scratchpad.glade")
+        self.glade_file = os.path.join(const.glade_dir,"scratchpad.glade")
 
         self.top = gtk.glade.XML(self.glade_file,"scratch_pad","gramps")
         self.window = self.top.get_widget("scratch_pad")
-        #FIXME: how do we get the icon now?
-        #self.window.set_icon(self.parent.topWindow.get_icon())
+
+        self.window.set_icon_from_file(const.icon)
         self.clear_all_btn = self.top.get_widget("btn_clear_all")
         self.clear_btn = self.top.get_widget("btn_clear")
         
@@ -938,17 +932,3 @@ def place_title(db,event):
 def ScratchPad(database,person,callback,parent=None):
     ScratchPadWindow(database,parent)
     
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-from PluginMgr import register_tool
-
-register_tool(
-    ScratchPad,
-    _("Scratch Pad"),
-    category=_("Utilities"),
-    description=_("The Scratch Pad provides a temporary note pad to store "
-                  "objects for easy reuse.")
-    )

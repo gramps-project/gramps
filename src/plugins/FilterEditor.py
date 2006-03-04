@@ -321,7 +321,7 @@ class FilterEditor:
         self.filterdb = GenericFilter.GenericFilterList(filterdb)
         self.filterdb.load()
 
-        self.editor = gtk.glade.XML(const.filterFile,'filter_list',"gramps")
+        self.editor = gtk.glade.XML(const.rule_glade,'filter_list',"gramps")
         self.window = self.editor.get_widget('filter_list')
         self.filter_list = self.editor.get_widget('filters')
         self.edit = self.editor.get_widget('edit')
@@ -454,7 +454,7 @@ class EditFilter:
             self.win_key = self.filter
         self.child_windows = {}
 
-        self.glade = gtk.glade.XML(const.filterFile,'define_filter',"gramps")
+        self.glade = gtk.glade.XML(const.rule_glade,'define_filter',"gramps")
         self.window = self.glade.get_widget('define_filter')
         self.define_title = self.glade.get_widget('title')
 
@@ -634,7 +634,7 @@ class EditRule:
             self.pmap[p.get_title()] = p_id
 
         self.active_rule = val
-        self.rule = gtk.glade.XML(const.filterFile,'rule_editor',"gramps")
+        self.rule = gtk.glade.XML(const.rule_glade,'rule_editor',"gramps")
         self.window = self.rule.get_widget('rule_editor')
         self.window.hide()
         self.valuebox = self.rule.get_widget('valuebox')
@@ -869,7 +869,7 @@ class ShowResults:
         self.parent = parent
         self.win_key = self
         self.filtname = filtname
-        self.glade = gtk.glade.XML(const.filterFile,'test',"gramps")
+        self.glade = gtk.glade.XML(const.rule_glade,'test',"gramps")
         self.window = self.glade.get_widget('test')
         text = self.glade.get_widget('text')
 

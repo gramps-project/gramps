@@ -92,26 +92,34 @@ no_gconf = False
 root_dir       = os.path.abspath(os.path.dirname(__file__))
 image_dir      = os.path.join(root_dir,"images")
 
-system_filters = os.path.join(root_dir,"system_filters.xml")
 custom_filters = "~/.gramps/custom_filters.xml"
 report_options = "~/.gramps/report_options.xml"
 tool_options   = "~/.gramps/tool_options.xml"
 bsddbenv_dir   = "~/.gramps/bsddbenv"
+
 icon           = os.path.join(root_dir,"images","gramps.png")
 logo           = os.path.join(root_dir,"images","logo.png")
 splash         = os.path.join(root_dir,"images","splash.jpg")
 license        = os.path.join(root_dir,"COPYING")
-gladeFile      = os.path.join(root_dir,"gramps.glade")
-editPersonFile = os.path.join(root_dir,"edit_person.glade")
+
+#
+# Glade files
+#
+
+glade_dir      = os.path.join(root_dir,"glade")
+gladeFile      = os.path.join(glade_dir,"gramps.glade")
+person_glade   = os.path.join(glade_dir,"edit_person.glade")
 pluginsFile    = os.path.join(root_dir,"plugins.glade")
 mergeFile      = os.path.join(root_dir,"mergedata.glade")
 merge2File     = os.path.join(root_dir,"merge.glade")
 filterFile     = os.path.join(root_dir,"rule.glade")
 
+
 pluginsDir     = os.path.join(root_dir,"plugins")
 datesDir       = os.path.join(root_dir,"dates")
 docgenDir      = os.path.join(root_dir,"docgen")
 data_dir       = os.path.join(root_dir,"data")
+system_filters = os.path.join(data_dir,"system_filters.xml")
 template_dir   = os.path.join(data_dir,"templates")
 papersize      = "file:%s/papersize.xml" % data_dir
 tipdata        = os.path.join(data_dir,"tips.xml")

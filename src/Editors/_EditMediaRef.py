@@ -49,8 +49,6 @@ import ImgManip
 import DisplayState
 import GrampsDisplay
 
-from QuestionDialog import ErrorDialog
-from WindowUtils import GladeIf
 from DisplayTabs import *
 from GrampsWidgets import *
 
@@ -60,8 +58,8 @@ from GrampsWidgets import *
 #
 #-------------------------------------------------------------------------
 class EditMediaRef(DisplayState.ManagedWindow):
-    def __init__(self, state, uistate, track, 
-                 media, media_ref, update):
+    def __init__(self, state, uistate, track, media, media_ref, update):
+
         self.db = state.db
         self.state = state
         self.media_ref = media_ref
@@ -72,67 +70,69 @@ class EditMediaRef(DisplayState.ManagedWindow):
 
         DisplayState.ManagedWindow.__init__(self, uistate, track, media_ref)
 
-        self.change_dialog = gtk.glade.XML(const.gladeFile,
+        self.top = gtk.glade.XML(const.gladeFile,
                                            "change_description","gramps")
 
         title = _('Media Reference Editor')
-        self.window = self.change_dialog.get_widget('change_description')
+        self.window = self.top.get_widget('change_description')
         Utils.set_titles(self.window,
-                         self.change_dialog.get_widget('title'), title)
+                         self.top.get_widget('title'), title)
         
-        self.descr_window = MonitoredEntry(
-            self.change_dialog.get_widget("description"),
-            self.media.set_description,
-            self.media.get_description,
-            self.db.readonly)
-
-        PrivacyButton(self.change_dialog.get_widget("private"),
-                      self.media_ref,self.db.readonly)
-
         mtype = self.media.get_mime_type()
 
         self.pix = ImgManip.get_thumbnail_image(self.media.get_path(),mtype)
-        self.pixmap = self.change_dialog.get_widget("pixmap")
+        self.pixmap = self.top.get_widget("pixmap")
         self.pixmap.set_from_pixbuf(self.pix)
 
         coord = media_ref.get_rectangle()
 
         if coord and type(coord) == tuple:
-            self.change_dialog.get_widget("upperx").set_value(coord[0])
-            self.change_dialog.get_widget("uppery").set_value(coord[1])
-            self.change_dialog.get_widget("lowerx").set_value(coord[2])
-            self.change_dialog.get_widget("lowery").set_value(coord[3])
+            self.top.get_widget("upperx").set_value(coord[0])
+            self.top.get_widget("uppery").set_value(coord[1])
+            self.top.get_widget("lowerx").set_value(coord[2])
+            self.top.get_widget("lowery").set_value(coord[3])
         
+        self.descr_window = MonitoredEntry(
+            self.top.get_widget("description"),
+            self.media.set_description,
+            self.media.get_description,
+            self.db.readonly)
+
+        self.privacy = PrivacyButton(
+            self.top.get_widget("private"),
+            self.media_ref,
+            self.db.readonly)
+
         self.gid = MonitoredEntry(
-            self.change_dialog.get_widget("gid"),
+            self.top.get_widget("gid"),
             self.media.set_gramps_id,
             self.media.get_gramps_id,
             self.db.readonly)
 
         self.path_obj = MonitoredEntry(
-            self.change_dialog.get_widget("path"),
+            self.top.get_widget("path"),
             self.media.set_path,
             self.media.get_path,
             self.db.readonly)
 
         mt = Mime.get_description(mtype)
         if mt:
-            self.change_dialog.get_widget("type").set_text(mt)
+            self.top.get_widget("type").set_text(mt)
         else:
-            self.change_dialog.get_widget("type").set_text("")
+            self.top.get_widget("type").set_text("")
 
-        self.gladeif = GladeIf(self.change_dialog)
-        self.window.connect('delete_event',self.on_delete_event)
-        self.gladeif.connect('button84','clicked',self.close_window)
-        self.gladeif.connect('button82','clicked',self.on_ok_clicked)
-        self.gladeif.connect('button104','clicked',self.on_help_clicked)
-
-        self.notebook_ref = self.change_dialog.get_widget('notebook_ref')
-        self.notebook_src = self.change_dialog.get_widget('notebook_shared')
+        self.notebook_ref = self.top.get_widget('notebook_ref')
+        self.notebook_src = self.top.get_widget('notebook_shared')
 
         self._create_tabbed_pages()
-            
+        self._connect_signals()
         self.show()
+
+    def _connect_signals(self):
+        self.window.connect('delete_event',self.on_delete_event)
+        self.top.get_widget('button84').connect('clicked',self.close_window)
+        self.top.get_widget('button82').connect('clicked',self.on_ok_clicked)
+        self.top.get_widget('button104').connect('clicked',self.on_help_clicked)
 
     def _create_tabbed_pages(self):
         """
@@ -179,21 +179,19 @@ class EditMediaRef(DisplayState.ManagedWindow):
         return page
 
     def on_delete_event(self,obj,b):
-        self.gladeif.close()
         self.close()
 
     def close_window(self,obj):
-        self.gladeif.close()
         self.window.destroy()
         self.close()
 
     def on_apply_clicked(self):
 
         coord = (
-            self.change_dialog.get_widget("upperx").get_value_as_int(),
-            self.change_dialog.get_widget("uppery").get_value_as_int(),
-            self.change_dialog.get_widget("lowerx").get_value_as_int(),
-            self.change_dialog.get_widget("lowery").get_value_as_int(),
+            self.top.get_widget("upperx").get_value_as_int(),
+            self.top.get_widget("uppery").get_value_as_int(),
+            self.top.get_widget("lowerx").get_value_as_int(),
+            self.top.get_widget("lowery").get_value_as_int(),
             )
         if (coord[0] == None and coord[1] == None
             and coord[2] == None and coord[3] == None):

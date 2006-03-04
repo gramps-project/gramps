@@ -98,7 +98,7 @@ class PluginDialog(DisplayState.ManagedWindow):
         self.state = state
         self.uistate = uistate
         
-        self.dialog = gtk.glade.XML(const.pluginsFile,"report","gramps")
+        self.dialog = gtk.glade.XML(const.plugins_glade,"report","gramps")
         self.dialog.signal_autoconnect({
             "on_report_apply_clicked" : self.on_apply_clicked,
             "destroy_passed_object"   : self.close,

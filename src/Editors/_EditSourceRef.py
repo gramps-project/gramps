@@ -47,72 +47,38 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-import AutoComp
 import RelLib
 import DisplayState
 
-from QuestionDialog import WarningDialog, ErrorDialog
-from WindowUtils import GladeIf
 from DisplayTabs import *
 from GrampsWidgets import *
+from _EditReference import EditReference
 
 #-------------------------------------------------------------------------
 #
 # EditSourceRef class
 #
 #-------------------------------------------------------------------------
-class EditSourceRef(DisplayState.ManagedWindow):
-    def __init__(self, state, uistate, track, 
-                 source, source_ref, update):
-        self.db = state.db
-        self.state = state
-        self.uistate = uistate
-        self.source_ref = source_ref
-        self.source = source
+class EditSourceRef(EditReference):
+    def __init__(self, state, uistate, track, source, source_ref, update):
 
-        DisplayState.ManagedWindow.__init__(self, uistate, track, source_ref)
+        EditReference.__init__(self, state, uistate, track, source,
+                               source_ref, update)
 
-        self.update = update
-
-        self.title = _('Source Reference Editor')
-
-        self.top = gtk.glade.XML(const.gladeFile, "source_ref_edit","gramps")
-        self.window = self.top.get_widget('source_ref_edit')
+    def _local_init(self):
         
-        self.notebook_src = self.top.get_widget('notebook_src')
-        self.notebook_ref = self.top.get_widget('notebook_ref')
+        self.top = gtk.glade.XML(const.gladeFile, "source_ref_edit","gramps")
+        
+        self.define_top_level(self.top.get_widget('source_ref_edit'),
+                              self.top.get_widget('source_title'),        
+                              _('Source Reference Editor'))
 
-        expander = self.top.get_widget("src_expander")
-        expander.set_expanded(True)
-
-        warning = self.top.get_widget("warn_box")
-        if self.source.handle:
-            warning.show_all()
-        else:
-            warning.hide()
-
-        if self.source:
-            self.source_added = False
-        else:
-            self.source = RelLib.Source()
-            self.source.set_handle(self.db.create_id())
-            self.source_added = True
-
-        if not self.source_ref:
-            self.source_ref = RelLib.SourceRef()
-            self.source_ref.set_reference_handle(self.source.get_handle())
-
-        Utils.set_titles(self.window, self.top.get_widget('source_title'),
-                         self.title)
-
-        self._create_tabbed_pages()
-        self._setup_fields()
-        self._connect_signals()
-        self.show()
+        self.define_warn_box(self.top.get_widget("warn_box"))
+        self.define_expander(self.top.get_widget("src_expander"))
 
     def _connect_signals(self):
-        self.top.get_widget('ok').connect('clicked',self.ok_clicked)
-        self.top.get_widget('cancel').connect('clicked',self.cancel_clicked)
+        self.define_ok_button(self.top.get_widget('ok'),self.ok_clicked)
+        self.define_cancel_button(self.top.get_widget('cancel'))
         
     def _setup_fields(self):
         self.privacy = PrivacyButton(
@@ -156,19 +122,10 @@ class EditSourceRef(DisplayState.ManagedWindow):
             (_('Very High'), RelLib.SourceRef.CONF_VERY_HIGH)])
 
 
-        self.date = MonitoredDate(self.top.get_widget("date"),
-                                  self.top.get_widget("date_stat"), 
-                                  self.source_ref.get_date_object(),self.window)
-
-    def _add_source_page(self,page):
-        self.notebook_src.insert_page(page)
-        self.notebook_src.set_tab_label(page,page.get_tab_widget())
-        return page
-
-    def _add_ref_page(self,page):
-        self.notebook_ref.insert_page(page)
-        self.notebook_ref.set_tab_label(page,page.get_tab_widget())
-        return page
+        self.date = MonitoredDate(
+            self.top.get_widget("date"),
+            self.top.get_widget("date_stat"), 
+            self.source_ref.get_date_object(),self.window)
 
     def _create_tabbed_pages(self):
         """
@@ -176,19 +133,29 @@ class EditSourceRef(DisplayState.ManagedWindow):
         window.
         
         """
-        self.note_tab = self._add_source_page(NoteTab(
-            self.state, self.uistate, self.track,
-            self.source.get_note_object()))
-        self.gallery_tab = self._add_source_page(GalleryTab(
-            self.state, self.uistate, self.track,
-            self.source.get_media_list()))
-        self.srcref_list = self._add_source_page(SourceBackRefList(
-            self.state,self.uistate, self.track,
-            self.db.find_backlink_handles(self.source.handle)))
 
-        self.comment_tab = self._add_ref_page(NoteTab(
-            self.state, self.uistate, self.track,
-            self.source_ref.get_note_object(),_('Comments')))
+        notebook_src = self.top.get_widget('notebook_src')
+        notebook_ref = self.top.get_widget('notebook_ref')
+
+        self.note_tab = self._add_tab(
+            notebook_src,
+            NoteTab(self.dbstate, self.uistate, self.track,
+                    self.source.get_note_object()))
+        
+        self.gallery_tab = self._add_tab(
+            notebook_src,
+            GalleryTab(self.dbstate, self.uistate, self.track,
+                       self.source.get_media_list()))
+        
+        self.srcref_list = self._add_tab(
+            notebook_src,
+            SourceBackRefList(self.dbstate,self.uistate, self.track,
+                              self.db.find_backlink_handles(self.source.handle)))
+
+        self.comment_tab = self._add_tab(
+            notebook_ref,
+            NoteTab(self.dbstate, self.uistate, self.track,
+                    self.source_ref.get_note_object(),_('Comments')))
 
     def build_menu_names(self,sourceref):
         if self.source:
@@ -198,28 +165,19 @@ class EditSourceRef(DisplayState.ManagedWindow):
             submenu_label = _('New Source')
         return (_('Source Reference Editor'),submenu_label)
         
-    def build_window_key(self,sourceref):
-        if self.source:
-            return self.source.get_handle()
-        else:
-            return id(self)
-
-    def on_help_clicked(self,obj):
-        pass
-
     def ok_clicked(self,obj):
 
         trans = self.db.transaction_begin()
-        self.db.commit_source(self.source,trans)
-        if self.source_added:
-            self.db.transaction_commit(trans,_("Add Source"))
-        else:
+        if self.source.handle:
+            self.db.commit_source(self.source,trans)
             self.db.transaction_commit(trans,_("Modify Source"))
-        self.close(None)
+        else:
+            self.db.add_source(self.source,trans)
+            self.db.transaction_commit(trans,_("Add Source"))
+            self.source_ref.ref = self.source.handle
 
         if self.update:
-            self.update((self.source_ref,self.source))
+            self.update(self.source_ref,self.source)
 
-    def cancel_clicked(self,obj):
-        self.close()
+        self.close_window()
 
