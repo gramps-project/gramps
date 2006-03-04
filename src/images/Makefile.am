@@ -2,21 +2,9 @@
 
 # This is the src level Makefile for Gramps
 SUBDIRS = 
+pkgdatadir = $(datadir)/@PACKAGE@/images
 
-# For intl. support, how do we compile?
-MOSTLYCLEANFILES = 
-CLEANFILES = 
-
-# What are the PYTHON scripts for this package that need to be handled?
-#
-# We only want optimized byte-compiled (.pyo) versions, no .pyc
-# In principle, this is handled by PYCFILES and PYOFILES, but
-# they don't seem to work so we edited the py-compile script instead
-
-# Could use GNU make's ':=' syntax for nice wildcard use.
-# If not using GNU make, then list all files individually
-# The latter is more portable and POSIX-friendly :)
-IMAGEFILES = \
+dist_pkgdata_DATA = \
 	bad.png\
 	caution.png\
 	edit.png\
@@ -45,6 +33,5 @@ IMAGEFILES = \
 	stock_link.png\
 	tools.png
 
-# Other stuff that we need to install
-dist_pkgdata_DATA = $(IMAGEFILES)
+
 
