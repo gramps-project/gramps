@@ -1,3 +1,7 @@
+2006-03-04  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/Models/Makefile.am: Added file
+	* Editors/__init__.py: Added file
+	
 2006-03-03  Don Allingham  <don@gramps-project.org>
 	* src/images/Makefile.am: update path
 	* src/EditPerson.py: handle module rename
