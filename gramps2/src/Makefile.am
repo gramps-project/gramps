@@ -14,6 +14,7 @@ SUBDIRS = \
 	TreeViews \
 	data \
 	dates \
+	glade \
 	docgen \
 	images \
 	plugins \
@@ -113,16 +114,6 @@ gdir_PYTHON = \
 # Could use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all files individually
 # The latter is more portable and POSIX-friendly :)
-GLADEFILES = \
-	gramps.glade\
-	edit_person.glade\
-	mergedata.glade\
-	plugins.glade\
-	rule.glade\
-	scratchpad.glade
-
-# Other stuff that we need to install
-dist_pkgdata_DATA = $(GLADEFILES)
 
 # In principle the following rule slightly  violates the automake/autoconf 
 # spirit of keeping each subdirectory as a separate entity unto itself. 
