@@ -1,4 +1,5 @@
 2006-03-04  Don Allingham  <don@gramps-project.org>
+	* configure.in: use svnversion to get version number
 	* src/DataViews/Makefile.in: added
 	* src/DataViews/__init__.py: added
 	* src/DataViews/_MapView.py: moved to DataViews directory
