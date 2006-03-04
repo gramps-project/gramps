@@ -49,13 +49,13 @@ except:
 #-------------------------------------------------------------------------
 import RelLib
 import PageView
-import EditPerson
 import Relationship
 import NameDisplay
 import Utils
 import DateHandler
 import ImgManip
 import ReportUtils
+from Editors import EditPerson 
 
 #-------------------------------------------------------------------------
 #
@@ -909,8 +909,8 @@ class PedView(PageView.PersonNavView):
         person = self.db.get_person_from_handle(person_handle)
         if person:
             try:
-                EditPerson.EditPerson(self.dbstate, self.uistate, [], person,
-                                      self.person_edited_cb)
+                EditPerson(self.dbstate, self.uistate, [], person,
+                           self.person_edited_cb)
             except Errors.WindowActiveError:
                 pass
             return True
@@ -934,8 +934,8 @@ class PedView(PageView.PersonNavView):
             person = self.db.get_person_from_handle(person_handle)
             if person:
                 try:
-                    EditPerson.EditPerson(self.dbstate, self.uistate, [], person,
-                                          self.person_edited_cb)
+                    EditPerson(self.dbstate, self.uistate, [], person,
+                               self.person_edited_cb)
                 except Errors.WindowActiveError:
                     pass
                     

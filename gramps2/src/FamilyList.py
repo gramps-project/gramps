@@ -113,10 +113,10 @@ class FamilyListView(PageView.ListView):
         return
 
     def add(self,obj):
-        import EditFamily
+        from Editors import EditFamily
         family = RelLib.Family()
         try:
-            EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
+            EditFamily(self.dbstate,self.uistate,[],family)
         except Errors.WindowActiveError:
             pass
 
@@ -128,9 +128,9 @@ class FamilyListView(PageView.ListView):
         self.selection.selected_foreach(self.blist,mlist)
 
         for handle in mlist:
-            import EditFamily
+            from Editors import EditFamily
             family = self.dbstate.db.get_family_from_handle(handle)
             try:
-                EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
+                EditFamily(self.dbstate,self.uistate,[],family)
             except Errors.WindowActiveError:
                 pass

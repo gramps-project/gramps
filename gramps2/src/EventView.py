@@ -34,11 +34,11 @@ import gtk.gdk
 #-------------------------------------------------------------------------
 import RelLib
 import PageView
-import EditEvent
 import DisplayModels
 import const
 import Utils
 from QuestionDialog import QuestionDialog, ErrorDialog
+from Editors import EditEvent, DelEventQuery
 
 #-------------------------------------------------------------------------
 #
@@ -115,13 +115,13 @@ class EventView(PageView.ListView):
         handle = self.first_selected()
         the_event = self.dbstate.db.get_event_from_handle(handle)
         try:
-            EditEvent.EditEvent(the_event,self.dbstate, self.uistate, [])
+            EditEvent(the_event,self.dbstate, self.uistate, [])
         except Errors.WindowActiveError:
             pass
 
     def add(self,obj):
         try:
-            EditEvent.EditEvent(RelLib.Event(),self.dbstate, self.uistate, [])
+            EditEvent(RelLib.Event(),self.dbstate, self.uistate, [])
         except Errors.WindowActiveError:
             pass
 
@@ -137,8 +137,8 @@ class EventView(PageView.ListView):
             
             event = db.get_event_from_handle(event_handle)
 
-            ans = EditEvent.DelEventQuery(event,db,
-                                          person_list,family_list)
+            ans = DelEventQuery(event,db,
+                                person_list,family_list)
 
             if len(person_list) + len(family_list) > 0:
                 msg = _('This event is currently being used. Deleting it '
@@ -162,7 +162,7 @@ class EventView(PageView.ListView):
         for handle in mlist:
             event = self.dbstate.db.get_event_from_handle(handle)
             try:
-                EditEvent.EditEvent(event, self.dbstate, self.uistate)
+                EditEvent(event, self.dbstate, self.uistate)
             except Errors.WindowActiveError:
                 pass
 

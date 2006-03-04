@@ -48,12 +48,12 @@ import RelLib
 import PeopleModel
 import PageView
 import GenericFilter
-import EditPerson
 import NameDisplay
 import Utils
 import QuestionDialog
 import TreeTips
 import Errors
+from Editors import EditPerson
 
 from DdTargets import DdTargets
 
@@ -351,15 +351,15 @@ class PersonView(PageView.PersonNavView):
     def add(self,obj):
         person = RelLib.Person()
         try:
-            EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
+            EditPerson(self.dbstate, self.uistate, [], person)
         except Errors.WindowActiveError:
             pass
 
     def edit(self,obj):
         if self.dbstate.active:
             try:
-                EditPerson.EditPerson(self.dbstate, self.uistate, [],
-                                      self.dbstate.active)
+                EditPerson(self.dbstate, self.uistate, [],
+                           self.dbstate.active)
             except Errors.WindowActiveError:
                 pass
 
@@ -616,7 +616,7 @@ class PersonView(PageView.PersonNavView):
             person = self.dbstate.db.get_person_from_handle(handle)
             if person:
                 try:
-                    EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
+                    EditPerson(self.dbstate, self.uistate, [], person)
                 except Errors.WindowActiveError:
                     pass
                 return True

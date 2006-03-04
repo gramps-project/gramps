@@ -34,10 +34,10 @@ import gtk.gdk
 #-------------------------------------------------------------------------
 import RelLib
 import PageView
-import EditRepository
 import DisplayModels
 import const
 import Utils
+from Editors import EditRepository, DelRepositoryQuery
 
 from QuestionDialog import QuestionDialog, ErrorDialog
 
@@ -122,10 +122,10 @@ class RepositoryView(PageView.ListView):
     def on_double_click(self,obj,event):
         handle = self.first_selected()
         repos = self.dbstate.db.get_repository_from_handle(handle)
-        EditRepository.EditRepository(self.dbstate, self.uistate,[],repos)
+        EditRepository(self.dbstate, self.uistate,[],repos)
 
     def add(self,obj):
-        EditRepository.EditRepository(self.dbstate, self.uistate,[],RelLib.Repository())
+        EditRepository(self.dbstate, self.uistate,[],RelLib.Repository())
 
     def remove(self,obj):
         db = self.dbstate.db
@@ -140,7 +140,7 @@ class RepositoryView(PageView.ListView):
 
             repository = db.get_repository_from_handle(repos_handle)
 
-            ans = EditRepository.DelRepositoryQuery(repository,db,source_list)
+            ans = DelRepositoryQuery(repository,db,source_list)
 
             if len(source_list) > 0:
                 msg = _('This repository is currently being used. Deleting it '
@@ -160,5 +160,5 @@ class RepositoryView(PageView.ListView):
 
         for handle in mlist:
             repos = self.dbstate.db.get_repository_from_handle(handle)
-            EditRepository.EditRepository(self.dbstate, self.uistate, [], repos)
+            EditRepository(self.dbstate, self.uistate, [], repos)
 

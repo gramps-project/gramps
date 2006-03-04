@@ -34,11 +34,11 @@ import gtk.gdk
 #-------------------------------------------------------------------------
 import RelLib
 import PageView
-import EditPlace
 import DisplayModels
 import const
 import Utils
 import Errors
+from Editors import EditPlace, DeletePlaceQuery
 from QuestionDialog import QuestionDialog, ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -120,13 +120,13 @@ class PlaceView(PageView.ListView):
         handle = self.first_selected()
         place = self.dbstate.db.get_place_from_handle(handle)
         try:
-            EditPlace.EditPlace(self.dbstate,self.uistate,[],place)
+            EditPlace(self.dbstate,self.uistate,[],place)
         except Errors.WindowActiveError:
             pass
 
     def add(self,obj):
         try:
-            EditPlace.EditPlace(self.dbstate,self.uistate,[],RelLib.Place())
+            EditPlace(self.dbstate,self.uistate,[],RelLib.Place())
         except Errors.WindowActiveError:
             pass
 
@@ -142,8 +142,8 @@ class PlaceView(PageView.ListView):
             
             event = db.get_event_from_handle(event_handle)
 
-            ans = EditPlace.DelPlaceQuery(event,db,
-                                          person_list,family_list)
+            ans = DeletePlaceQuery(event,db,
+                                   person_list,family_list)
 
             if len(person_list) + len(family_list) > 0:
                 msg = _('This place is currently being used. Deleting it '
@@ -167,7 +167,7 @@ class PlaceView(PageView.ListView):
         for handle in mlist:
             place = self.dbstate.db.get_place_from_handle(handle)
             try:
-                EditPlace.EditPlace(self.dbstate,self.uistate,[],place)
+                EditPlace(self.dbstate,self.uistate,[],place)
             except Errors.WindowActiveError:
                 pass
 

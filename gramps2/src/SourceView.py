@@ -34,10 +34,11 @@ import gtk.gdk
 #-------------------------------------------------------------------------
 import RelLib
 import PageView
-import EditSource
 import DisplayModels
 import const
 import Utils
+from Editors import EditSource, DelSrcQuery
+
 from QuestionDialog import QuestionDialog, ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -113,10 +114,10 @@ class SourceView(PageView.ListView):
     def on_double_click(self,obj,event):
         handle = self.first_selected()
         source = self.dbstate.db.get_source_from_handle(handle)
-        EditSource.EditSource(self.dbstate, self.uistate, [], source)
+        EditSource(self.dbstate, self.uistate, [], source)
 
     def add(self,obj):
-        EditSource.EditSource(self.dbstate, self.uistate, [], RelLib.Source())
+        EditSource(self.dbstate, self.uistate, [], RelLib.Source())
 
     def remove(self,obj):
         for source_handle in self.selected_handles():
@@ -125,7 +126,7 @@ class SourceView(PageView.ListView):
 
             source = db.get_source_from_handle(source_handle)
 
-            ans = EditSource.DelSrcQuery(source,db,the_lists)
+            ans = DelSrcQuery(source,db,the_lists)
 
             if filter(None,the_lists): # quick test for non-emptiness
                 msg = _('This source is currently being used. Deleting it '
@@ -148,5 +149,5 @@ class SourceView(PageView.ListView):
 
         for handle in mlist:
             source = self.dbstate.db.get_source_from_handle(handle)
-            EditSource.EditSource(self.dbstate, self.uistate, [], source)
+            EditSource(self.dbstate, self.uistate, [], source)
 

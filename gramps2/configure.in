@@ -237,6 +237,7 @@ src/GrampsLogger/Makefile
 src/TreeViews/Makefile
 src/GrampsDb/Makefile
 src/docgen/Makefile
+src/Editors/Makefile
 src/plugins/Makefile
 src/dates/Makefile
 src/data/Makefile
