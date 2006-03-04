@@ -978,11 +978,11 @@ class NameEmbedList(EmbeddedList):
         return ((1,0),(1,1))
 
     def add_button_clicked(self,obj):
-        import NameEdit
+        import EditName
         name = RelLib.Name()
         try:
-            NameEdit.NameEditor(self.dbstate, self.uistate, self.track,
-                                name, self.add_callback)
+            EditName.EditName(self.dbstate, self.uistate, self.track,
+                              name, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
@@ -993,10 +993,10 @@ class NameEmbedList(EmbeddedList):
     def edit_button_clicked(self,obj):
         name = self.get_selected()
         if name:
-            import NameEdit
+            import EditName
             try:
-                NameEdit.NameEditor(self.dbstate, self.uistate, self.track,
-                                    name, self.edit_callback)
+                EditName.EditName(self.dbstate, self.uistate, self.track,
+                                  name, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
