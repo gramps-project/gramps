@@ -6,6 +6,7 @@
 pkgdatadir = $(datadir)/@PACKAGE@/ObjectSelector
 
 pkgdata_PYTHON = \
+	_Constants.py\
 	_Factories.py\
 	_FamilyFilterFrame.py\
 	_FamilyFrame.py\
