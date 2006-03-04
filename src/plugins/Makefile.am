@@ -92,8 +92,7 @@ GLADEFILES = \
 	vcalendarexport.glade\
 	checkpoint.glade
 
-GRAPHICS = \
-	stock_link.png
+GRAPHICS = 
 
 DATAFILES = \
 	holidays.xml

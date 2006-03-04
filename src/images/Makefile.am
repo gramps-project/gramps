@@ -13,147 +13,38 @@ CLEANFILES =
 # In principle, this is handled by PYCFILES and PYOFILES, but
 # they don't seem to work so we edited the py-compile script instead
 
-gdirdir=$(prefix)/share/gramps
-
-docfiles = \
-	RelLib.py \
-	Date.py \
-	DateParser.py \
-	DateDisplay.py \
-	GrampsDbBase.py 
-
-gdir_PYTHON = \
-	AddMedia.py\
-	EditAddress.py\
-	ansel_utf8.py\
-	ArgHandler.py\
-	Assistant.py\
-	EditAttribute.py\
-	AutoComp.py\
-	BaseDoc.py\
-	Bookmarks.py\
-	ColumnOrder.py\
-	const.py\
-	DateDisplay.py\
-	DateEdit.py\
-	DateHandler.py\
-	DateParser.py\
-	Date.py\
-	DdTargets.py\
-	DisplayModels.py\
-	DisplayState.py\
-	DisplayTabs.py\
-	DisplayTrace.py\
-	EditEventRef.py\
-	EditFamily.py\
-	EditMedia.py\
-	EditMediaRef.py\
-	EditPerson.py\
-	EditPlace.py\
-	EditPrimary.py\
-	EditRepository.py\
-	EditSecondary.py\
-	EditSource.py\
-	EditSourceRef.py\
-	Errors.py\
-	EventEdit.py\
-	EventView.py\
-	Exporter.py\
-	FamilyList.py\
-	FamilyView.py\
-	FontScale.py\
-	GenericFilter.py\
-	GrampsCfg.py\
-	GrampsDisplay.py\
-	GrampsLocale.py\
-	gramps_main.py\
-	gramps.py\
-	GrampsWidgets.py\
-	ImgManip.py\
-	latin_ansel.py\
-	ListModel.py\
-	EditLocation.py\
-	MapView.py\
-	MediaView.py\
-	MergeData.py\
-	MergePeople.py\
-	NameDisplay.py\
-	NameEdit.py\
-	Navigation.py\
-	Options.py\
-	PageView.py\
-	PaperMenu.py\
-	PedView.py\
-	PeopleModel.py\
-	PersonView.py\
-	PlaceView.py\
-	PluginMgr.py\
-	Plugins.py\
-	QuestionDialog.py\
-	RecentFiles.py\
-	Relationship.py\
-	RelImage.py\
-	ReportOptions.py\
-	Report.py\
-	ReportUtils.py\
-	RepositoryView.py\
-	ScratchPad.py\
-	SelectChild.py\
-	SelectEvent.py\
-	SelectObject.py\
-	SelectPerson.py\
-	Sort.py\
-	soundex.py\
-	Sources.py\
-	SourceView.py\
-	Spell.py\
-	SpreadSheetDoc.py\
-	StartupDialog.py\
-	StyleEditor.py\
-	SubstKeywords.py\
-	TipOfDay.py\
-	Tool.py\
-	ToolTips.py\
-	TransUtils.py\
-	TreeTips.py\
-	EditUrl.py\
-	Utils.py\
-	ViewManager.py\
-	WindowUtils.py\
-	Witness.py
-
 # Could use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all files individually
 # The latter is more portable and POSIX-friendly :)
-GLADEFILES = \
-	gramps.glade\
-	edit_person.glade\
-	mergedata.glade\
-	plugins.glade\
-	rule.glade\
-	scratchpad.glade
+IMAGEFILES = \
+	bad.png\
+	caution.png\
+	edit.png\
+	edit_sm.png\
+	events24.png\
+	events.png\
+	flist.svg\
+	good.png\
+	gramps.png\
+	land_shallow_topo_2048.jpg\
+	land_shallow_topo_350.jpg\
+	locked.png\
+	logo.png\
+	media.png\
+	media.svg\
+	ped24.png\
+	person.svg\
+	place24.png\
+	place.png\
+	relation.svg\
+	repos24.png\
+	repos.png\
+	sources24.png\
+	sources.png\
+	splash.jpg\
+	stock_link.png\
+	tools.png
 
 # Other stuff that we need to install
-dist_pkgdata_DATA = $(GLADEFILES)
+dist_pkgdata_DATA = $(IMAGEFILES)
 
-# In principle the following rule slightly  violates the automake/autoconf 
-# spirit of keeping each subdirectory as a separate entity unto itself. 
-# But, since the template depends on everything from here, we allow this
-# one exception.
-# Build po/template.po.
-.PHONY: trans
-trans:
-	./build_po
-
-pycheck: 
-	for d in $(SUBDIRS) ; do \
-          (cd $$d; make pycheck); \
-	done;
-	pychecker $(gdir_PYTHON)
-
-docs:
-	epydoc -o doc --url http://gramps.sourceforge.net --name GRAMPS --html $(docfiles)
-	epydoc --pdf $(docfiles)
-
-cmdplug:
-	./build_cmdplug
