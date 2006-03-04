@@ -593,7 +593,7 @@ class EventEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2),(1,3),(1,4),(1,5))
 
     def add_button_clicked(self,obj):
-        from EditEventRef import EditEventRef
+        from Editors import EditEventRef
         try:
             EditEventRef(self.dbstate,self.uistate,self.track,
                          None, None, self.obj, self.event_added)
@@ -601,7 +601,7 @@ class EventEmbedList(EmbeddedList):
             pass
 
     def share_button_clicked(self,obj):
-        from EditEventRef import EditEventRef
+        from Editors import EditEventRef
         import SelectEvent
 
         sel = SelectEvent.SelectEvent(self.dbstate.db,"Event Select")
@@ -615,7 +615,7 @@ class EventEmbedList(EmbeddedList):
     def edit_button_clicked(self,obj):
         ref = self.get_selected()
         if ref:
-            from EditEventRef import EditEventRef
+            from Editors import EditEventRef
             event = self.dbstate.db.get_event_from_handle(ref.ref)
             try:
                 EditEventRef(self.dbstate,self.uistate,self.track,
@@ -723,42 +723,42 @@ class BackRefList(EmbeddedList):
         (reftype, ref) = self.find_node()
         if reftype == 'Person':
             try:
-                import EditPerson
+                from Editors import EditPerson
                 
                 person = self.dbstate.db.get_person_from_handle(ref)
-                EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
+                EditPerson(self.dbstate, self.uistate, [], person)
             except Errors.WindowActiveError:
                 pass
         elif reftype == 'Family':
             try:
-                import EditFamily
+                from Editors import EditFamily
                 
                 family = self.dbstate.db.get_family_from_handle(ref)
-                EditFamily.EditFamily(self.dbstate, self.uistate, [], family)
+                EditFamily(self.dbstate, self.uistate, [], family)
             except Errors.WindowActiveError:
                 pass
         elif reftype == 'Source':
             try:
-                import EditFamily
+                from Editors import EditSource
                 
                 source = self.dbstate.db.get_source_from_handle(ref)
-                EditSource.EditSource(self.dbstate, self.uistate, [], source)
+                EditSource(self.dbstate, self.uistate, [], source)
             except Errors.WindowActiveError:
                 pass
         elif reftype == 'Place':
             try:
-                import EditPlace
+                from Editors import EditPlace
                 
                 place = self.dbstate.db.get_place_from_handle(ref)
-                EditPlace.EditPlace(self.dbstate,self.uistate,[],place)
+                EditPlace(self.dbstate,self.uistate,[],place)
             except Errors.WindowActiveError:
                 pass
         elif reftype == 'Media':
             try:
-                import EditMedia
+                from Editors import EditMedia
                 
                 obj = self.dbstate.db.get_object_from_handle(ref)
-                EditMedia.EditMedia(self.dbstate,self.uistate, [], obj)
+                EditMedia(self.dbstate,self.uistate, [], obj)
             except Errors.WindowActiveError:
                 pass
 
@@ -866,11 +866,11 @@ class AttrEmbedList(EmbeddedList):
         return ((1,0),(1,1))
 
     def add_button_clicked(self,obj):
-        import EditAttribute
+        from Editors import EditAttribute
         pname = ''
         attr_list = []
         try:
-            EditAttribute.EditAttribute(
+            EditAttribute(
                 self.dbstate, self.uistate, self.track, None,
                 pname, attr_list, self.add_callback)
         except Errors.WindowActiveError:
@@ -884,11 +884,11 @@ class AttrEmbedList(EmbeddedList):
     def edit_button_clicked(self,obj):
         attr = self.get_selected()
         if attr:
-            import EditAttribute
+            from Editors import EditAttribute
             pname = ''
             attr_list = []
             try:
-                EditAttribute.EditAttribute(
+                EditAttribute(
                     self.dbstate, self.uistate, self.track, attr,
                     pname, attr_list, self.edit_callback)
             except Errors.WindowActiveError:
@@ -926,11 +926,11 @@ class WebEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2))
 
     def add_button_clicked(self,obj):
-        import EditUrl
+        from Editors import EditUrl
         url = RelLib.Url()
         try:
-            EditUrl.EditUrl(self.dbstate, self.uistate, self.track,
-                            '', url, self.add_callback)
+            EditUrl(self.dbstate, self.uistate, self.track,
+                    '', url, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
@@ -941,10 +941,10 @@ class WebEmbedList(EmbeddedList):
     def edit_button_clicked(self,obj):
         url = self.get_selected()
         if url:
-            import EditUrl
+            from Editors import EditUrl
             try:
-                EditUrl.EditUrl(self.dbstate, self.uistate, self.track,
-                                '', url, self.edit_callback)
+                EditUrl(self.dbstate, self.uistate, self.track,
+                        '', url, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
@@ -978,11 +978,11 @@ class NameEmbedList(EmbeddedList):
         return ((1,0),(1,1))
 
     def add_button_clicked(self,obj):
-        import EditName
+        from Editors import EditName
         name = RelLib.Name()
         try:
-            EditName.EditName(self.dbstate, self.uistate, self.track,
-                              name, self.add_callback)
+            EditName(self.dbstate, self.uistate, self.track,
+                     name, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
@@ -993,10 +993,10 @@ class NameEmbedList(EmbeddedList):
     def edit_button_clicked(self,obj):
         name = self.get_selected()
         if name:
-            import EditName
+            from Editors import EditName
             try:
-                EditName.EditName(self.dbstate, self.uistate, self.track,
-                                  name, self.edit_callback)
+                EditName(self.dbstate, self.uistate, self.track,
+                         name, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
@@ -1033,11 +1033,11 @@ class AddrEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2),(1,3),(1,4))
 
     def add_button_clicked(self,obj):
-        import EditAddress
+        from Editors import EditAddress
         addr = RelLib.Address()
         try:
-            EditAddress.EditAddress(self.dbstate, self.uistate, self.track,
-                                    addr, self.add_callback)
+            EditAddress(self.dbstate, self.uistate, self.track,
+                        addr, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
@@ -1048,10 +1048,10 @@ class AddrEmbedList(EmbeddedList):
     def edit_button_clicked(self,obj):
         addr = self.get_selected()
         if addr:
-            import EditAddress
+            from Editors import EditAddress
             try:
-                EditAddress.EditAddress(self.dbstate, self.uistate, self.track,
-                                        addr, self.edit_callback)
+                EditAddress(self.dbstate, self.uistate, self.track,
+                            addr, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
@@ -1088,11 +1088,11 @@ class LocationEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2),(1,3),(1,4))
 
     def add_button_clicked(self,obj):
-        import EditLocation
+        from Editors import EditLocation
         loc = RelLib.Location()
         try:
-            EditLocation.EditLocation(self.dbstate, self.uistate, self.track,
-                                      loc, self.add_callback)
+            EditLocation(self.dbstate, self.uistate, self.track,
+                         loc, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
@@ -1103,10 +1103,10 @@ class LocationEmbedList(EmbeddedList):
     def edit_button_clicked(self,obj):
         loc = self.get_selected()
         if loc:
-            import EditLocation
+            from Editors import EditLocation
             try:
-                EditLocation.EditLocation(self.dbstate, self.uistate, self.track,
-                                          loc, self.edit_callback)
+                EditLocation(self.dbstate, self.uistate, self.track,
+                             loc, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
@@ -1294,7 +1294,7 @@ class GalleryTab(ButtonTab):
         return None
 
     def add_button_clicked(self,obj):
-        from EditMediaRef import EditMediaRef
+        from Editors import EditMediaRef
         
         sref = RelLib.MediaRef()
         src = RelLib.MediaObject()
@@ -1318,7 +1318,7 @@ class GalleryTab(ButtonTab):
     def edit_button_clicked(self,obj):
         ref = self.get_selected()
         if ref:
-            from EditMediaRef import EditMediaRef
+            from Editors import EditMediaRef
 
             obj = self.dbstate.db.get_object_from_handle(ref.get_reference_handle())
             try:
@@ -1363,7 +1363,7 @@ class SourceEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2),(1,3))
 
     def add_button_clicked(self,obj):
-        from EditSourceRef import EditSourceRef
+        from Editors import EditSourceRef
         
         sref = RelLib.SourceRef()
         src = RelLib.Source()
@@ -1379,7 +1379,7 @@ class SourceEmbedList(EmbeddedList):
         self.rebuild()
 
     def edit_button_clicked(self,obj):
-        from EditSourceRef import EditSourceRef
+        from Editors import EditSourceRef
 
         sref = self.get_selected()
         src = self.dbstate.db.get_source_from_handle(sref.ref)
@@ -1426,13 +1426,14 @@ class RepoEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2),(1,3))
 
     def add_button_clicked(self,obj):
-        from EditRepositoryRef import EditRepositoryRef
+        from Editors import EditRepositoryRef
         
         ref = RelLib.RepoRef()
         repo = RelLib.Repository()
         try:
             EditRepositoryRef(
-                self.dbstate, self.uistate, self.track, repo, ref, self.add_callback)
+                self.dbstate, self.uistate, self.track,
+                repo, ref, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
@@ -1443,13 +1444,13 @@ class RepoEmbedList(EmbeddedList):
         self.rebuild()
 
     def edit_button_clicked(self,obj):
-        from EditRepositoryRef import EditRepositoryRef
+        from Editors import EditRepositoryRef
 
         ref = self.get_selected()
         if ref:
             repo = self.dbstate.db.get_repository_from_handle(ref.ref)
             try:
-                EditRepositoryRef.EditRepositoryRef(
+                Editors.EditRepositoryRef(
                     self.dbstate, self.uistate, self.track, repo,
                     ref, self.edit_callback)
             except Errors.WindowActiveError:

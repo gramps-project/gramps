@@ -6,6 +6,33 @@
 	* src/EditEvent.py: renamed from EventEdit.py
 	* src/images/Makefile.am: restore
 	* src/plugins/Makefile.am: remove stock_link.png from dependency list
+	* src/Editors/EditPrimary.py: moved to separate module
+	* src/Editors/EditPlace.py: moved to separate module
+	* src/Editors/EditAddress.py: moved to separate module
+	* src/Editors/EditSecondary.py: moved to separate module
+	* src/Editors/EditSourceRef.py: moved to separate module
+	* src/Editors/EditSource.py: moved to separate module
+	* src/Editors/EditUrl.py: moved to separate module
+	* src/Editors/EditAttribute.py: moved to separate module
+	* src/Editors/EditPerson.py: moved to separate module
+	* src/Editors/EditLocation.py: moved to separate module
+	* src/Editors/EditMediaRef.py: moved to separate module
+	* src/Editors/EditEventRef.py: moved to separate module
+	* src/Editors/EditMedia.py: moved to separate module
+	* src/Editors/EditRepository.py: moved to separate module
+	* src/Editors/EditName.py: moved to separate module
+	* src/Editors/EditEvent.py: moved to separate module
+	* src/Editors/EditFamily.py: moved to separate module
+	* src/DisplayTabs.py: handle noew submodule
+	* src/ObjectSelector/_PersonFrame.py: handle noew submodule
+	* src/MediaView.py: handle noew submodule
+	* src/FamilyList.py: handle noew submodule
+	* src/PlaceView.py: handle noew submodule
+	* src/SourceView.py: handle noew submodule
+	* src/PersonView.py: handle noew submodule
+	* src/FamilyView.py: handle noew submodule
+	* src/EventView.py: handle noew submodule
+	* src/Makefile.am: handle noew submodule
 
 2006-03-03  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/stock_link.png: Remove (already present in

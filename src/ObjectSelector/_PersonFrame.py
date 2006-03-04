@@ -28,7 +28,7 @@ import gtk
 import gobject
 
 from RelLib import Person
-from EditPerson import EditPerson
+from Editors import EditPerson
 from NameDisplay import displayer
 display_name = displayer.display
 

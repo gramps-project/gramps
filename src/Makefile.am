@@ -1,7 +1,21 @@
 # $Id$
 
 # This is the src level Makefile for Gramps
-SUBDIRS = docgen plugins dates data po GrampsDb RelLib ObjectSelector GrampsLogger TreeViews Config Mime images
+SUBDIRS = \
+	docgen \
+	plugins \
+	dates \
+	data \
+	po \
+	GrampsDb \
+	RelLib \
+	ObjectSelector \
+	GrampsLogger \
+	TreeViews \
+	Config \
+	Mime \
+	images \
+	Editors
 
 # For intl. support, how do we compile?
 MOSTLYCLEANFILES = 

@@ -170,8 +170,8 @@ class MediaView(PageView.ListView):
             return
         
         obj = self.dbstate.db.get_object_from_handle(handle)
-        import EditMedia
-        EditMedia.EditMedia(self.dbstate,self.uistate, [], obj)
+        from Editors import EditMedia
+        EditMedia(self.dbstate,self.uistate, [], obj)
 
 class DeleteMediaQuery:
 

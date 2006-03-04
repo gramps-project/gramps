@@ -557,36 +557,36 @@ class FamilyView(PageView.PersonNavView):
 
     def edit_button_press(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
-            import EditPerson
+            from Editors import EditPerson
             person = self.dbstate.db.get_person_from_handle(handle)
             try:
-                EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
+                EditPerson(self.dbstate, self.uistate, [], person)
             except Errors.WindowActiveError:
                 pass
         
     def edit_person(self,obj,handle):
-        import EditPerson
+        from Editors import EditPerson
         person = self.dbstate.db.get_person_from_handle(handle)
         try:
-            EditPerson.EditPerson(self.dbstate, self.uistate, [], person)
+            EditPerson(self.dbstate, self.uistate, [], person)
         except Errors.WindowActiveError:
             pass
 
     def edit_family(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
-            import EditFamily
+            from Editors import EditFamily
             family = self.dbstate.db.get_family_from_handle(handle)
             try:
-                EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
+                EditFamily(self.dbstate,self.uistate,[],family)
             except Errors.WindowActiveError:
                 pass
 
     def add_family(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
-            import EditFamily
+            from Editors import EditFamily
             family = RelLib.Family()
             try:
-                EditFamily.EditFamily(self.dbstate,self.uistate,[],family)
+                EditFamily(self.dbstate,self.uistate,[],family)
             except Errors.WindowActiveError:
                 pass
 
