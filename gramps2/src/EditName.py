@@ -50,10 +50,10 @@ from GrampsWidgets import *
 
 #-------------------------------------------------------------------------
 #
-# NameEditor class
+# EditName class
 #
 #-------------------------------------------------------------------------
-class NameEditor(EditSecondary.EditSecondary):
+class EditName(EditSecondary.EditSecondary):
 
     def __init__(self, dbstate, uistate, track, name, callback):
 
