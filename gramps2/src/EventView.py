@@ -34,7 +34,7 @@ import gtk.gdk
 #-------------------------------------------------------------------------
 import RelLib
 import PageView
-import EventEdit
+import EditEvent
 import DisplayModels
 import const
 import Utils
@@ -115,13 +115,13 @@ class EventView(PageView.ListView):
         handle = self.first_selected()
         the_event = self.dbstate.db.get_event_from_handle(handle)
         try:
-            EventEdit.EventEditor(the_event,self.dbstate, self.uistate, [])
+            EditEvent.EditEvent(the_event,self.dbstate, self.uistate, [])
         except Errors.WindowActiveError:
             pass
 
     def add(self,obj):
         try:
-            EventEdit.EventEditor(RelLib.Event(),self.dbstate, self.uistate, [])
+            EditEvent.EditEvent(RelLib.Event(),self.dbstate, self.uistate, [])
         except Errors.WindowActiveError:
             pass
 
@@ -137,7 +137,7 @@ class EventView(PageView.ListView):
             
             event = db.get_event_from_handle(event_handle)
 
-            ans = EventEdit.DelEventQuery(event,db,
+            ans = EditEvent.DelEventQuery(event,db,
                                           person_list,family_list)
 
             if len(person_list) + len(family_list) > 0:
@@ -162,7 +162,7 @@ class EventView(PageView.ListView):
         for handle in mlist:
             event = self.dbstate.db.get_event_from_handle(handle)
             try:
-                EventEdit.EventEditor(event, self.dbstate, self.uistate)
+                EditEvent.EditEvent(event, self.dbstate, self.uistate)
             except Errors.WindowActiveError:
                 pass
 
