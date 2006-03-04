@@ -52,7 +52,6 @@ import GrampsDisplay
 from _EditPrimary import EditPrimary
 
 from DisplayTabs import *
-from WindowUtils import GladeIf
 from GrampsWidgets import *
 
 #-------------------------------------------------------------------------

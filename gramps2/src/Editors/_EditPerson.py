@@ -96,7 +96,7 @@ class EditPerson(EditPrimary):
                                     RelLib.Person.UNKNOWN)
 
         self.load_obj = None
-        self.top = gtk.glade.XML(const.editPersonFile, "edit_person","gramps")
+        self.top = gtk.glade.XML(const.person_glade, "edit_person","gramps")
         self.define_top_level(self.top.get_widget("edit_person"), None,
                               _('Edit Person'))
         

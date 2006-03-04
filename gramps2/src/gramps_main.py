@@ -57,25 +57,25 @@ def register_stock_icons ():
     import os
     items = [
         (os.path.join(const.image_dir,'person.svg'),
-         ('gramps-person','Person',gtk.gdk.CONTROL_MASK,0,'')),
+         ('gramps-person',_('Person'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'relation.svg'),
-         ('gramps-family','Relationships',gtk.gdk.CONTROL_MASK,0,'')),
+         ('gramps-family',_('Relationships'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'flist.svg'),
-         ('gramps-family-list','Family List',gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'/media.svg'),
-         ('gramps-media','Media',gtk.gdk.CONTROL_MASK,0,'')),
+         ('gramps-family-list',_('Family List'),gtk.gdk.CONTROL_MASK,0,'')),
+        (os.path.join(const.image_dir,'media.svg'),
+         ('gramps-media',_('Media'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'ped24.png'),
-         ('gramps-pedigree','Pedigree',gtk.gdk.CONTROL_MASK,0,'')),
+         ('gramps-pedigree',_('Pedigree'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'repos.png'),
-         ('gramps-repository','Repositories',gtk.gdk.CONTROL_MASK,0,'')),
+         ('gramps-repository',_('Repositories'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'sources.png'),
-         ('gramps-source','Sources',gtk.gdk.CONTROL_MASK,0,'')),
+         ('gramps-source',_('Sources'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'events.png'),
-         ('gramps-event','Events',gtk.gdk.CONTROL_MASK,0,'')),
+         ('gramps-event',_('Events'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'place.png'),
-         ('gramps-place','Places',gtk.gdk.CONTROL_MASK,0,'')),
+         ('gramps-place',_('Places'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'place.png'),
-         ('gramps-map','Map',gtk.gdk.CONTROL_MASK,0,'')),
+         ('gramps-map',_('Map'),gtk.gdk.CONTROL_MASK,0,'')),
         ]
     
     # Register our stock items
@@ -90,19 +90,19 @@ def register_stock_icons ():
         for dirname in iconpaths:
             icon_file = os.path.expanduser(os.path.join(dirname,key))
             if os.path.isfile(icon_file):
-                break
+                try:
+                    pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
+                    break
+                except:
+                    pass
         else:
             icon_file = os.path.join(const.image_dir,'gramps.png')
+            pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
             
-        pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
         pixbuf = pixbuf.add_alpha(True, chr(0xff), chr(0xff), chr(0xff))
 
-        # Register icon to accompany stock item
-        if pixbuf:
-            icon_set = gtk.IconSet (pixbuf)
-            factory.add (data[0], icon_set)
-        else:
-            log.debug('failed to load GTK logo for toolbar')
+        icon_set = gtk.IconSet (pixbuf)
+        factory.add (data[0], icon_set)
 
 class Gramps:
     """

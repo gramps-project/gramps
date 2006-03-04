@@ -661,6 +661,7 @@ def set_titles(window,title,t,msg=None):
         window.set_title('%s - GRAMPS' % msg)
     else:
         window.set_title('%s - GRAMPS' % t)
+    window.set_icon_from_file(const.icon)
 
 def gfloat(val):
     """Converts to floating number, taking care of possible locale differences.

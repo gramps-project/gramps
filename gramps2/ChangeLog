@@ -1,4 +1,14 @@
 2006-03-04  Don Allingham  <don@gramps-project.org>
+	* src/Editors/EditEventRef.py: derive from EditReference
+	* src/const.py.in: change glade file names
+	* src/glade/rule.glade: moved to subdirectory
+	* src/glade/gramps.glade: moved to subdirectory
+	* src/glade/mergedata.glade: moved to subdirectory
+	* src/glade/edit_person.glade: moved to subdirectory
+	* src/glade/scratch_pad.glade: moved to subdirectory
+	* src/glade/plugins.glade: moved to subdirectory
+	* src/ScratchPad.py: fix setting of window icon
+	* src/data/system_filters.xml: moved to data directory
 	* configure.in: use svnversion to get version number
 	* src/DataViews/Makefile.in: added
 	* src/DataViews/__init__.py: added

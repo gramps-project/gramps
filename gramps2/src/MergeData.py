@@ -62,7 +62,7 @@ class MergePlaces:
         self.update = update
         self.trans = self.db.transaction_begin()
 
-        self.glade = gtk.glade.XML(const.mergeFile,"merge_places","gramps")
+        self.glade = gtk.glade.XML(const.merge_glade,"merge_places","gramps")
         self.top = self.glade.get_widget("merge_places")
         Utils.set_titles(self.top,self.glade.get_widget('title'),
                          _("Select title"))
@@ -179,7 +179,7 @@ class MergeSources:
         self.src2 = self.db.get_source_from_handle(self.old_handle)
         self.update = update
 
-        self.glade = gtk.glade.XML(const.mergeFile,"merge_sources","gramps")
+        self.glade = gtk.glade.XML(const.merge_glade,"merge_sources","gramps")
         self.top = self.glade.get_widget("merge_sources")
         Utils.set_titles(self.top,self.glade.get_widget('title'),
                          _("Merge Sources"))

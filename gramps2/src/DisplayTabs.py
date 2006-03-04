@@ -595,8 +595,16 @@ class EventEmbedList(EmbeddedList):
     def add_button_clicked(self,obj):
         from Editors import EditEventRef
         try:
+            ref = RelLib.EventRef()
+            event = RelLib.Event()
+            if self.obj.__class__.__name__ == 'Person':
+                event.set_type((RelLib.Event.BIRTH,''))
+                ref.set_role((RelLib.EventRef.PRIMARY,''))
+            else:
+                event.set_type((RelLib.Event.MARRIAGE,''))
+                ref.set_role((RelLib.EventRef.FAMILY,''))
             EditEventRef(self.dbstate,self.uistate,self.track,
-                         None, None, self.obj, self.event_added)
+                         event, ref, self.obj, self.event_added)
         except Errors.WindowActiveError:
             pass
 
@@ -607,8 +615,13 @@ class EventEmbedList(EmbeddedList):
         sel = SelectEvent.SelectEvent(self.dbstate.db,"Event Select")
         event = sel.run()
         try:
+            ref = RelLib.EventRef()
+            if self.obj.__class__.__name__ == 'Person':
+                ref.set_role((RelLib.EventRef.PRIMARY,''))
+            else:
+                ref.set_role((RelLib.EventRef.FAMILY,''))
             EditEventRef(self.dbstate,self.uistate,self.track,
-                         event, None, self.obj, self.event_added)
+                         event, ref, self.obj, self.event_added)
         except Errors.WindowActiveError:
             pass
 
@@ -623,13 +636,12 @@ class EventEmbedList(EmbeddedList):
             except Errors.WindowActiveError:
                 pass
 
-    def event_updated(self,value):
+    def event_updated(self,ref,event):
         self.changed = True
         self.rebuild()
 
-    def event_added(self,value):
-        value[0].ref = value[1].handle
-        self.get_data().append(value[0])
+    def event_added(self,ref,event):
+        self.get_data().append(ref)
         self.changed = True
         self.rebuild()
 
@@ -1373,8 +1385,8 @@ class SourceEmbedList(EmbeddedList):
         except Errors.WindowActiveError:
             pass
 
-    def add_callback(self,obj):
-        self.get_data().append(obj)
+    def add_callback(self,reference, primary):
+        self.get_data().append(reference)
         self.changed = True
         self.rebuild()
 
@@ -1390,7 +1402,7 @@ class SourceEmbedList(EmbeddedList):
             except Errors.WindowActiveError:
                 pass
 
-    def edit_callback(self,name):
+    def edit_callback(self,refererence,primary):
         self.changed = True
         self.rebuild()
 

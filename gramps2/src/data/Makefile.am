@@ -8,6 +8,7 @@ dist_pkgdata_DATA = \
 	gedcom.xml \
 	somerights20.gif \
 	papersize.xml \
+	system_filters.xml \
 	tips.xml\
 	main1.css\
 	main2.css\
