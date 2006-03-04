@@ -239,6 +239,7 @@ src/GrampsDb/Makefile
 src/docgen/Makefile
 src/Models/Makefile
 src/Editors/Makefile
+src/DataViews/Makefile
 src/plugins/Makefile
 src/dates/Makefile
 src/data/Makefile

@@ -36,19 +36,9 @@ log = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 import ViewManager
-import PersonView
-import FamilyList
-import RepositoryView
 import GrampsDisplay
 import RelLib
 import GrampsDb
-import PedView
-import MapView
-import FamilyView
-import PlaceView
-import EventView
-import SourceView
-import MediaView
 import ArgHandler
 import Config
 import GrampsCfg
@@ -56,6 +46,7 @@ import const
 import Errors
 import PluginMgr
 import TipOfDay
+import DataViews
 
 from Mime import mime_type_is_defined
 from QuestionDialog import ErrorDialog
@@ -154,16 +145,8 @@ class Gramps:
         
         state = GrampsDb.DbState()
         vm = ViewManager.ViewManager(state)
-        vm.register_view(PersonView.PersonView)
-        vm.register_view(FamilyView.FamilyView)
-        vm.register_view(FamilyList.FamilyListView)
-        vm.register_view(PedView.PedView)
-        vm.register_view(EventView.EventView)
-        vm.register_view(SourceView.SourceView)
-        vm.register_view(PlaceView.PlaceView)
-        vm.register_view(MediaView.MediaView)
-        vm.register_view(MapView.MapView)
-        vm.register_view(RepositoryView.RepositoryView)
+        for view in DataViews.get_views():
+            vm.register_view(view)
 
         ArgHandler.ArgHandler(state,vm,args)
 

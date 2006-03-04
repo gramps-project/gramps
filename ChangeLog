@@ -1,3 +1,17 @@
+2006-03-04  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/Makefile.in: added
+	* src/DataViews/__init__.py: added
+	* src/DataViews/_MapView.py: moved to DataViews directory
+	* src/DataViews/_MediaView.py: moved to DataViews directory
+	* src/DataViews/_RepositoryView.py: moved to DataViews directory
+	* src/DataViews/_SourceView.py: moved to DataViews directory
+	* src/DataViews/_FamilyView.py: moved to DataViews directory
+	* src/DataViews/_FamilyList.py: moved to DataViews directory
+	* src/DataViews/_PlaceView.py: moved to DataViews directory
+	* src/DataViews/_PersonView.py: moved to DataViews directory
+	* src/DataViews/_PedView.py: moved to DataViews directory
+	* src/DataViews/_RepositoryView.py: moved to DataViews directory
+	
 2006-03-04  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/Models/Makefile.am: Added file
 	* Editors/__init__.py: Added file
