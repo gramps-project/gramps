@@ -379,7 +379,7 @@ class FormattingHelper:
 # PedigreeView
 #
 #-------------------------------------------------------------------------
-class PedView(PageView.PersonNavView):
+class PedigreeView(PageView.PersonNavView):
 
     def __init__(self,dbstate,uistate):
         PageView.PersonNavView.__init__(self,'Pedigree View',dbstate,uistate)

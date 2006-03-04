@@ -19,18 +19,18 @@
 
 # $Id: __init__.py 6067 2006-03-04 05:24:16Z dallingham $
 
-from PersonView import PersonView
-from FamilyView import FamilyView
-from FamilyList import FamilyListView
-from PedView import PedView
-from EventView import EventView
-from SourceView import SourceView
-from PlaceView import PlaceView
-from MediaView import MediaView
-from MapView import MapView
-from RepositoryView import RepositoryView
+from _PersonView import PersonView
+from _FamilyView import FamilyView
+from _FamilyList import FamilyListView
+from _PedigreeView import PedigreeView
+from _EventView import EventView
+from _SourceView import SourceView
+from _PlaceView import PlaceView
+from _MediaView import MediaView
+from _MapView import MapView
+from _RepositoryView import RepositoryView
 
 def get_views():
-    return [PersonView, FamilyView, FamilyListView, PedView,
+    return [PersonView, FamilyView, FamilyListView, PedigreeView,
             EventView, SourceView, PlaceView, MediaView,
             MapView, RepositoryView]
