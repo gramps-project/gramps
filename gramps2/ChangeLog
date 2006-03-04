@@ -1,3 +1,8 @@
+2006-03-03  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/stock_link.png: Remove (already present in
+	src/images, used by ScratchPad only).
+	* src/Config, src/Mime, src/images: Ignore Makefiles.	
+
 2006-03-03  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/Makefile.am: install correct files
 	* src/Config/Makefile.am: added
