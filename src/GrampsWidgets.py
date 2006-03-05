@@ -22,6 +22,7 @@
 
 import cgi
 import locale
+import os
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -35,6 +36,10 @@ import gtk
 import AutoComp
 import DateHandler
 import DateEdit
+import const
+
+_lock_path = os.path.join(const.image_dir,'stock_lock.png')
+_lock_open_path = os.path.join(const.image_dir,'stock_lock-open.png')
 
 class LinkLabel(gtk.EventBox):
 
@@ -217,11 +222,13 @@ class PrivacyButton:
             obj.remove(child)
         image = gtk.Image()
         if obj.get_active():
-            image.set_from_icon_name('stock_lock',gtk.ICON_SIZE_MENU)
+#            image.set_from_icon_name('stock_lock',gtk.ICON_SIZE_MENU)
+            image.set_from_file(_lock_path)
             self.tooltips.set_tip(obj,_('Record is private'))
             self.obj.set_privacy(True)
         else:
-            image.set_from_icon_name('stock_lock-open',gtk.ICON_SIZE_MENU)
+#            image.set_from_icon_name('stock_lock-open',gtk.ICON_SIZE_MENU)
+            image.set_from_file(_lock_open_path)
             self.tooltips.set_tip(obj,_('Record is public'))
             self.obj.set_privacy(False)
         image.show()
