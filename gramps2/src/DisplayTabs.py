@@ -1316,8 +1316,8 @@ class GalleryTab(ButtonTab):
         except Errors.WindowActiveError:
             pass
 
-    def add_callback(self,name):
-        self.get_data().append(name)
+    def add_callback(self,media_ref, media):
+        self.get_data().append(media_ref)
         self.changed = True
         self.rebuild()
 
@@ -1339,7 +1339,7 @@ class GalleryTab(ButtonTab):
             except Errors.WindowActiveError:
                 pass
 
-    def edit_callback(self, name):
+    def edit_callback(self, media_ref, ref):
         self.changed = True
         self.rebuild()
 

@@ -89,7 +89,6 @@ gdir_PYTHON = \
 	Report.py\
 	ReportUtils.py\
 	ScratchPad.py\
-	SelectChild.py\
 	SelectEvent.py\
 	SelectObject.py\
 	SelectPerson.py\
@@ -108,8 +107,7 @@ gdir_PYTHON = \
 	TreeTips.py\
 	Utils.py\
 	ViewManager.py\
-	WindowUtils.py\
-	Witness.py
+	WindowUtils.py
 
 # Could use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all files individually
