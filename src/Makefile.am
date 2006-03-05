@@ -58,7 +58,6 @@ gdir_PYTHON = \
 	DisplayModels.py\
 	DisplayState.py\
 	DisplayTabs.py\
-	DisplayTrace.py\
 	Errors.py\
 	Exporter.py\
 	FontScale.py\
