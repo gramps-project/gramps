@@ -31,6 +31,14 @@ import gc
 import const
 from gettext import gettext as _
 
+#-------------------------------------------------------------------------
+#
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".ColumnOrder")
+
 class ColumnOrder:
 
     def __init__(self,arglist,column_names,callback):

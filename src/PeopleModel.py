@@ -39,6 +39,14 @@ except:
 
 #-------------------------------------------------------------------------
 #
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".")
+
+#-------------------------------------------------------------------------
+#
 # GTK modules
 #
 #-------------------------------------------------------------------------
@@ -248,7 +256,6 @@ class PeopleModel(gtk.GenericTreeModel):
                     self.prev_handle = node
                 return COLUMN_DEFS[col][COLUMN_DEF_LIST](self,self.prev_data,node)
             except:
-                print "".join(traceback.format_exception(*sys.exc_info()))
                 return u'error'
 
     def on_iter_next(self, node):

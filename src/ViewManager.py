@@ -29,6 +29,12 @@ from gettext import gettext as _
 from bsddb import db
 import os
 from cStringIO import StringIO
+
+#-------------------------------------------------------------------------
+#
+# set up logging
+#
+#-------------------------------------------------------------------------
 import logging
 log = logging.getLogger(".")
 
