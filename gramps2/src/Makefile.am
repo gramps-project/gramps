@@ -76,6 +76,7 @@ gdir_PYTHON = \
 	NameDisplay.py\
 	Navigation.py\
 	Options.py\
+	PageView.py\
 	PaperMenu.py\
 	PeopleModel.py\
 	PluginMgr.py\
