@@ -46,6 +46,15 @@
    
 """
 
+#-------------------------------------------------------------------------
+#
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".DdTargets")
+
+
 class _DdType:
     """Represents the fields needed by a drag and drop traget."""
     

@@ -29,6 +29,14 @@ from cStringIO import StringIO
 
 #-------------------------------------------------------------------------
 #
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".DisplayState")
+
+#-------------------------------------------------------------------------
+#
 # GNOME python modules
 #
 #-------------------------------------------------------------------------
@@ -516,13 +524,6 @@ class ManagedWindow:
         """
         self.window.present()
 
-#-------------------------------------------------------------------------
-#
-# Gramps Display State class
-#
-#-------------------------------------------------------------------------
-
-import logging
 from GrampsLogger import RotateHandler
 
 class WarnHandler(RotateHandler):
