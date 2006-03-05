@@ -19,6 +19,7 @@ pkgdata_PYTHON = \
 	_EditPerson.py \
 	_EditPlace.py \
 	_EditPrimary.py \
+	_EditReference.py \
 	_EditRepository.py \
 	_EditSecondary.py \
 	_EditSource.py \
