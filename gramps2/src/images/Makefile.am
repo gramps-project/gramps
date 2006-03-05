@@ -19,15 +19,17 @@ dist_pkgdata_DATA = \
 	media.svg\
 	ped24.png\
 	person.svg\
-	place24.png\
 	place.png\
+	place24.png\
 	relation.svg\
-	repos24.png\
 	repos.png\
-	sources24.png\
+	repos24.png\
 	sources.png\
+	sources24.png\
 	splash.jpg\
 	stock_link.png\
+	stock_lock-open.png\
+	stock_lock.png\
 	tools.png
 
 
