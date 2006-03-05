@@ -32,7 +32,6 @@ import re
 import string
 import const
 import time
-import logging
 
 from gettext import gettext as _
 
@@ -42,6 +41,13 @@ try:
 except NameError:
     from sets import Set as set
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".GedcomImport")
 
 #-------------------------------------------------------------------------
 #
@@ -60,16 +66,16 @@ import Errors
 import RelLib
 import DateParser
 import NameDisplay
-import DisplayTrace
-from ansel_utf8 import ansel_to_utf8
 import Utils
 import Mime
+import _ConstXML
+
+from ansel_utf8 import ansel_to_utf8
 from bsddb import db
 from _GedcomInfo import *
 from _GedTokens import *
 from QuestionDialog import ErrorDialog, WarningDialog
 from _GrampsDbBase import EVENT_KEY
-import _ConstXML
 
 addr_re  = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)\s+(\d+)\s*(.*)')
 addr2_re = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)\s+(\d+)')
@@ -103,8 +109,6 @@ def latin_to_utf8(s):
 
 def nocnv(s):
     return unicode(s)
-
-log = logging.getLogger('.GEDCOM_import')
 
 #-------------------------------------------------------------------------
 #
@@ -213,9 +217,6 @@ def import2(database, filename, callback, codeset, use_trans):
     except IOError,msg:
         ErrorDialog(_("%s could not be opened\n") % filename,str(msg))
         return
-    except:
-        DisplayTrace.DisplayTrace()
-        return
 
     if database.get_number_of_people() == 0:
         use_trans = False
@@ -236,9 +237,7 @@ def import2(database, filename, callback, codeset, use_trans):
                         'run the Check and Repair Database tool to fix the '
                         'problem.'))
         return
-    except:
-        DisplayTrace.DisplayTrace()
-        return
+
 
 #-------------------------------------------------------------------------
 #

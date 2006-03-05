@@ -109,10 +109,9 @@ license        = os.path.join(root_dir,"COPYING")
 glade_dir      = os.path.join(root_dir,"glade")
 gladeFile      = os.path.join(glade_dir,"gramps.glade")
 person_glade   = os.path.join(glade_dir,"edit_person.glade")
-pluginsFile    = os.path.join(root_dir,"plugins.glade")
-mergeFile      = os.path.join(root_dir,"mergedata.glade")
-merge2File     = os.path.join(root_dir,"merge.glade")
-filterFile     = os.path.join(root_dir,"rule.glade")
+plugins_glade  = os.path.join(glade_dir,"plugins.glade")
+merge_glade    = os.path.join(glade_dir,"mergedata.glade")
+rule_glade     = os.path.join(glade_dir,"rule.glade")
 
 
 pluginsDir     = os.path.join(root_dir,"plugins")

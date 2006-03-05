@@ -31,6 +31,14 @@ import re
 import time
 from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".ImportVCard")
+
 #-------------------------------------------------------------------------
 #
 # GTK/GNOME Modules
@@ -61,11 +69,6 @@ def importData(database, filename, cb=None):
     except IOError,msg:
         ErrorDialog(_("%s could not be opened\n") % filename,str(msg))
         return
-    except:
-        ErrorDialog(_("%s could not be opened\n") % filename)
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
-        return
 
     try:
         status = g.parse_vCard_file()
@@ -73,11 +76,6 @@ def importData(database, filename, cb=None):
         errmsg = _("%s could not be opened\n") % filename
         ErrorDialog(errmsg,str(msg))
         return
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
-        return
-    
 
 #-------------------------------------------------------------------------
 #

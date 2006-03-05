@@ -32,6 +32,14 @@ import os
 import tarfile
 from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".ReadPkg")
+
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK+ modules
@@ -86,12 +94,8 @@ def impData(database, name,cb=None,cl=0):
 
     imp_db_name = os.path.join(tmpdir_path,const.xmlFile)  
 
-    try:
-        importer = gramps_db_reader_factory(const.app_gramps_xml)
-        importer(database,imp_db_name,cb)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+    importer = gramps_db_reader_factory(const.app_gramps_xml)
+    importer(database,imp_db_name,cb)
 
     # Clean up tempdir after ourselves
     #     THIS HAS BEEN CHANGED, because now we want to keep images

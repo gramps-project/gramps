@@ -49,6 +49,14 @@ _TBI = 'Times-BoldItalic'
 
 #------------------------------------------------------------------------
 #
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".PdfDoc")
+
+#------------------------------------------------------------------------
+#
 # ReportLab python/PDF modules
 #
 #------------------------------------------------------------------------
@@ -183,9 +191,6 @@ class PdfDoc(BaseDoc.BaseDoc):
         except IOError,msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise Errors.ReportError(errmsg)
-        except:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
 
         if self.print_req:
             apptype = 'application/pdf'

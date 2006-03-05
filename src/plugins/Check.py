@@ -32,6 +32,14 @@ import cStringIO
 import sets
 from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".CheckRepair")
+
 #-------------------------------------------------------------------------
 #
 # gtk modules
@@ -136,50 +144,46 @@ class Check(Tool.Tool):
         # def runTool(database,active_person,callback,parent=None):
         cli = int(parent == None)
 
-        try:
-            if db.readonly:
-                # TODO: split plugin in a check and repair part to support
-                # checking of a read only database
-                return
+        if db.readonly:
+            # TODO: split plugin in a check and repair part to support
+            # checking of a read only database
+            return
 
-            # The low-level repair is bypassing the transaction mechanism.
-            # As such, we run it before starting the transaction.
-            # We only do this for the BSDDB backend.
-            if db.__class__.__name__ == 'GrampsBSDDB':
-                low_level(db)
+        # The low-level repair is bypassing the transaction mechanism.
+        # As such, we run it before starting the transaction.
+        # We only do this for the BSDDB backend.
+        if db.__class__.__name__ == 'GrampsBSDDB':
+            low_level(db)
         
-            trans = db.transaction_begin("",batch=True)
-            db.disable_signals()
-            checker = CheckIntegrity(db,parent,trans)
-            checker.fix_encoding()
-            checker.cleanup_missing_photos(cli)
+        trans = db.transaction_begin("",batch=True)
+        db.disable_signals()
+        checker = CheckIntegrity(db,parent,trans)
+        checker.fix_encoding()
+        checker.cleanup_missing_photos(cli)
             
-            prev_total = -1
-            total = 0
+        prev_total = -1
+        total = 0
         
-            while prev_total != total:
-                prev_total = total
+        while prev_total != total:
+            prev_total = total
             
-                checker.check_for_broken_family_links()
-                checker.check_parent_relationships()
-                checker.cleanup_empty_families(cli)
-                checker.cleanup_duplicate_spouses()
+            checker.check_for_broken_family_links()
+            checker.check_parent_relationships()
+            checker.cleanup_empty_families(cli)
+            checker.cleanup_duplicate_spouses()
 
-                total = checker.family_errors()
+            total = checker.family_errors()
 
-            checker.check_events()
-            checker.check_place_references()
-            checker.check_source_references()
-            db.transaction_commit(trans, _("Check Integrity"))
-            db.enable_signals()
-            db.request_rebuild()
+        checker.check_events()
+        checker.check_place_references()
+        checker.check_source_references()
+        db.transaction_commit(trans, _("Check Integrity"))
+        db.enable_signals()
+        db.request_rebuild()
 
-            errs = checker.build_report(cli)
-            if errs:
-                Report(checker.text.getvalue(),parent)
-        except:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
+        errs = checker.build_report(cli)
+        if errs:
+            Report(checker.text.getvalue(),parent)
 
 #-------------------------------------------------------------------------
 #

@@ -1,4 +1,25 @@
 2006-03-04  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: use new logging scheme
+	* src/GrampsDb/_ReadXML.py: use new logging scheme
+	* src/GrampsDb/_WriteGedcom.py: use new logging scheme
+	* src/GrampsDb/_WriteXML.py: use new logging scheme
+	* src/plugins/FilterEditor.py: use new logging scheme
+	* src/plugins/WriteCD.py: use new logging scheme
+	* src/plugins/ImportGeneWeb.py: use new logging scheme
+	* src/plugins/BookReport.py: use new logging scheme
+	* src/plugins/WritePkg.py: use new logging scheme
+	* src/plugins/ExportVCard.py: use new logging scheme
+	* src/plugins/Rebuild.py: use new logging scheme
+	* src/plugins/ImportvCard.py: use new logging scheme
+	* src/plugins/GraphViz.py: use new logging scheme
+	* src/plugins/Check.py: use new logging scheme
+	* src/plugins/NavWebPage.py: use new logging scheme
+	* src/plugins/ExportVCalendar.py: use new logging scheme
+	* src/plugins/ReadPkg.py: use new logging scheme
+	* src/plugins/WriteFtree.py: use new logging scheme
+	* src/plugins/WriteGeneWeb.py: use new logging scheme
+	* src/plugins/WebPage.py: removed
+	* src/DisplayTrace.py: removed
 	* src/Editors/EditEventRef.py: derive from EditReference
 	* src/const.py.in: change glade file names
 	* src/glade/rule.glade: moved to subdirectory

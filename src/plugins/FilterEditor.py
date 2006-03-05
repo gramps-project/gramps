@@ -32,6 +32,14 @@ __author__ = "Don Allingham"
 import os
 from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".FilterEdit")
+
 #-------------------------------------------------------------------------
 #
 # GTK/GNOME 
@@ -854,10 +862,6 @@ class EditRule:
             self.window.destroy()
         except KeyError:
             pass
-        except:
-            import DisplayTrace
-            self.window.destroy()
-            DisplayTrace.DisplayTrace()
                                
 #-------------------------------------------------------------------------
 #

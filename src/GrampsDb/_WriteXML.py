@@ -36,6 +36,14 @@ import os
 import codecs
 from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".WriteXML")
+
 #-------------------------------------------------------------------------
 #
 # load gtk libraries
@@ -87,23 +95,9 @@ def exportData(database, filename, person, callback=None):
 
     compress = _gzip_ok == 1
 
-    try:
-        g = XmlWriter(database,callback,0,compress)
-        t = time.time()
-        ret = g.write(filename)
-        print time.time()-t
-    except:
-        import DisplayTrace
-
-        DisplayTrace.DisplayTrace() 
-        ErrorDialog(_("Failure writing %s") % filename,
-                    _("An attempt is being made to recover the original file"))
-        shutil.copyfile(filename + ".bak", filename)
-        try:
-            shutil.copystat(filename + ".bak", filename)
-        except:
-            pass
-    
+    g = XmlWriter(database,callback,0,compress)
+    t = time.time()
+    ret = g.write(filename)
     return ret
 
 #-------------------------------------------------------------------------

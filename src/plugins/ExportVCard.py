@@ -29,6 +29,14 @@
 #-------------------------------------------------------------------------
 import os
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".ExportVCard")
+
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK modules
@@ -220,12 +228,8 @@ class CardWriter:
 #-------------------------------------------------------------------------
 def exportData(database,filename,person,option_box):
     ret = 0
-    try:
-        cw = CardWriter(database,person,0,filename,option_box)
-        ret = cw.export_data(filename)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+    cw = CardWriter(database,person,0,filename,option_box)
+    ret = cw.export_data(filename)
     return ret
 
 #-------------------------------------------------------------------------

@@ -34,6 +34,14 @@ from time import asctime
 
 #------------------------------------------------------------------------
 #
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".GraphViz")
+
+#------------------------------------------------------------------------
+#
 # GNOME/gtk
 #
 #------------------------------------------------------------------------
@@ -894,17 +902,14 @@ class EmptyDoc:
 #------------------------------------------------------------------------
 def cl_report(database,name,category,options_str_dict):
 
-    clr = Report.CommandLineReport(database,name,category,GraphVizOptions,options_str_dict)
+    clr = Report.CommandLineReport(database,name,category,GraphVizOptions,
+                                   options_str_dict)
 
     # Exit here if show option was given
     if clr.show:
         return
 
-    try:
-        GraphViz(database,clr.person,clr.option_class)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+    GraphViz(database,clr.person,clr.option_class)
 
 #------------------------------------------------------------------------
 #
