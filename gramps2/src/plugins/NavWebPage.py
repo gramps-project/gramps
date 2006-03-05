@@ -35,10 +35,22 @@ import time
 import locale
 import shutil
 import codecs
-import sets
 import tarfile
 from gettext import gettext as _
 from cStringIO import StringIO
+
+try:
+    set()
+except:
+    from sets import Set as set
+
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".WebPage")
 
 #------------------------------------------------------------------------
 #
@@ -2148,7 +2160,7 @@ class WebReport(Report.Report):
         ind_list = self.database.get_person_handles(sort_handles=False)
         self.progress.set_pass(_('Filtering'),1)
         ind_list = self.filter.apply(self.database,ind_list)
-        restrict_list = sets.Set()
+        restrict_list = set()
 
         # if private records need to be filtered out, strip out any person
         # that has the private flag set.
@@ -2722,7 +2734,7 @@ class WebReportDialog(Report.ReportDialog):
             ErrorDialog(m1,m2)
 
 def sort_people(db,handle_list):
-    flist = sets.Set(handle_list)
+    flist = set(handle_list)
 
     sname_sub = {}
     sortnames = {}
@@ -2764,18 +2776,15 @@ def sort_people(db,handle_list):
 #------------------------------------------------------------------------
 def cl_report(database,name,category,options_str_dict):
 
-    clr = Report.CommandLineReport(database,name,category,WebReportOptions,options_str_dict)
+    clr = Report.CommandLineReport(database,name,category,WebReportOptions,
+                                   options_str_dict)
 
     # Exit here if show option was given
     if clr.show:
         return
 
-    try:
-        MyReport = WebReport(database,clr.person,clr.option_class)
-        MyReport.write_report()
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+    MyReport = WebReport(database,clr.person,clr.option_class)
+    MyReport.write_report()
 
 #------------------------------------------------------------------------
 #

@@ -141,14 +141,7 @@ def setup_logging():
     
 def run():
 
-    try:        
-        setup_logging()
-    except:
-        # If logging can't be started fall back on
-        # old exception display
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
-    
+    setup_logging()
     
     try:        
         import gnome

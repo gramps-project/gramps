@@ -38,6 +38,14 @@ from gettext import gettext as _
 import gtk
 import gtk.glade
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".WriteGeneWeb")
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -580,12 +588,8 @@ class GeneWebWriter:
 #-------------------------------------------------------------------------
 def exportData(database,filename,person,option_box):
     ret = 0
-    try:
-        gw = GeneWebWriter(database,person,0,filename,option_box)
-        ret = gw.export_data()
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+    gw = GeneWebWriter(database,person,0,filename,option_box)
+    ret = gw.export_data()
     return ret
 
 #-------------------------------------------------------------------------

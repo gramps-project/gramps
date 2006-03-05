@@ -33,6 +33,14 @@ import tarfile
 from cStringIO import StringIO
 from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".WritePkg")
+
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK modules
@@ -57,13 +65,8 @@ from QuestionDialog import MissingMediaDialog
 #-------------------------------------------------------------------------
 def writeData(database,filename,person,callback=None):
     ret = 0
-    try:
-        writer = PackageWriter(database,filename,callback)
-        ret = writer.export()
-
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+    writer = PackageWriter(database,filename,callback)
+    ret = writer.export()
     return ret
     
 #-------------------------------------------------------------------------

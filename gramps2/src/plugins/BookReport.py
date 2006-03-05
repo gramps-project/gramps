@@ -31,6 +31,14 @@
 import os
 from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".BookReport")
+
 #-------------------------------------------------------------------------
 #
 # SAX interface
@@ -1088,27 +1096,23 @@ def cl_report(database,name,category,options_str_dict):
                     this_style_name,style_sheet.get_style(this_style_name))
 
     # write report
-    try:
-        doc = clr.format(selected_style,clr.paper,clr.template_name,clr.orien)
-        rptlist = []
-        newpage = 0
-        for item in book.get_item_list():
-            item.option_class.set_document(doc)
-            item.option_class.set_newpage(newpage)
-            report_class = item.get_write_item()
-            obj = Report.write_book_item(database,clr.person,
-                        report_class,item.option_class)
-            rptlist.append(obj)
-            newpage = 1
-        doc.open(clr.option_class.get_output())
-        doc.init()
-        for item in rptlist:
-            item.begin_report()
-            item.write_report()
-        doc.close()
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+    doc = clr.format(selected_style,clr.paper,clr.template_name,clr.orien)
+    rptlist = []
+    newpage = 0
+    for item in book.get_item_list():
+        item.option_class.set_document(doc)
+        item.option_class.set_newpage(newpage)
+        report_class = item.get_write_item()
+        obj = Report.write_book_item(database,clr.person,
+                                     report_class,item.option_class)
+        rptlist.append(obj)
+        newpage = 1
+    doc.open(clr.option_class.get_output())
+    doc.init()
+    for item in rptlist:
+        item.begin_report()
+        item.write_report()
+    doc.close()
 
 #------------------------------------------------------------------------
 #

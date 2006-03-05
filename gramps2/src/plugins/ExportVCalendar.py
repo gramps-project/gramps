@@ -38,6 +38,14 @@ from time import localtime
 import gtk
 import gtk.glade
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".ExportVCal")
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -301,12 +309,8 @@ class CalendarWriter:
 #-------------------------------------------------------------------------
 def exportData(database,filename,person,option_box):
     ret = 0
-    try:
-        cw = CalendarWriter(database,person,0,filename,option_box)
-        ret = cw.export_data(filename)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+    cw = CalendarWriter(database,person,0,filename,option_box)
+    ret = cw.export_data(filename)
     return ret
 
 #-------------------------------------------------------------------------

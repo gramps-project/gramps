@@ -46,7 +46,6 @@ pkgdata_PYTHON = \
 	Summary.py\
 	TimeLine.py\
 	Verify.py\
-	WebPage.py\
 	WriteFtree.py\
 	WritePkg.py\
 	WriteCD.py\

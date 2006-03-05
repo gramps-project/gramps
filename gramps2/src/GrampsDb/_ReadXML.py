@@ -32,6 +32,14 @@ from xml.parsers.expat import ExpatError, ParserCreate
 from gettext import gettext as _
 import re
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".ReadXML")
+
 #-------------------------------------------------------------------------
 #
 # GTK+ Modules
@@ -154,10 +162,6 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
             import traceback
             traceback.print_exc()
             os._exit(1)
-        else:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
-            return
 
     xml_file.close()
 

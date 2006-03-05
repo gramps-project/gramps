@@ -31,6 +31,14 @@ import os
 from cStringIO import StringIO
 from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".WriteFtree")
+
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK modules
@@ -56,12 +64,8 @@ from QuestionDialog import ErrorDialog
 #-------------------------------------------------------------------------
 def writeData(database,filename,person,option_box):
     ret = 0
-    try:
-        writer = FtreeWriter(database,person,0,filename,option_box)
-        ret = writer.export_data()
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+    writer = FtreeWriter(database,person,0,filename,option_box)
+    ret = writer.export_data()
     return ret
     
 class FtreeWriterOptionBox:

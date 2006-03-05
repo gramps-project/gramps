@@ -31,6 +31,14 @@ import os
 import cStringIO
 from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".Rebuild")
+
 #-------------------------------------------------------------------------
 #
 # gtk modules
@@ -59,32 +67,28 @@ class Rebuild(Tool.Tool):
     def __init__(self,db,person,options_class,name,callback=None,parent=None):
         Tool.Tool.__init__(self,db,person,options_class,name)
 
-        try:
-            if db.readonly:
-                # TODO: split plugin in a check and repair part to support
-                # checking of a read only database
-                return
+        if db.readonly:
+            # TODO: split plugin in a check and repair part to support
+            # checking of a read only database
+            return
 
-            db.disable_signals()
-            if parent:
-                progress = Utils.ProgressMeter(
+        db.disable_signals()
+        if parent:
+            progress = Utils.ProgressMeter(
                     _('Rebuilding Secondary Indices'))
-                # Six indices to rebuild, and the first step is removing
-                # old ones
-                total = 7
-                progress.set_pass('',total)
-                db.rebuild_secondary(progress.step)
-                progress.close()
-                OkDialog(_("Secondary indices rebuilt"),
-                         _('All secondary indices have been rebuilt.'))
-            else:
-                print "Rebuilding Secondary Indices..."
-                db.rebuild_secondary(self.empty)
-                print "All secondary indices have been rebuilt."
-            db.enable_signals()
-        except:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
+            # Six indices to rebuild, and the first step is removing
+            # old ones
+            total = 7
+            progress.set_pass('',total)
+            db.rebuild_secondary(progress.step)
+            progress.close()
+            OkDialog(_("Secondary indices rebuilt"),
+                     _('All secondary indices have been rebuilt.'))
+        else:
+            print "Rebuilding Secondary Indices..."
+            db.rebuild_secondary(self.empty)
+            print "All secondary indices have been rebuilt."
+        db.enable_signals()
 
     def empty(self):
         pass

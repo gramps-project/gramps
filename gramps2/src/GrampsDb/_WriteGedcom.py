@@ -32,6 +32,14 @@ import re
 import shutil
 from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".WriteGedcom")
+
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK modules
@@ -292,11 +300,7 @@ def fmtline(text,limit,level,endl):
 #
 #-------------------------------------------------------------------------
 def writeData(database,person):
-    try:
-        GedcomWriter(database,person)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+    GedcomWriter(database,person)
 
 #-------------------------------------------------------------------------
 #
@@ -1351,9 +1355,6 @@ def exportData(database,filename,person,option_box,callback=None):
         ret = gw.export_data(filename)
     except Errors.DatabaseError,msg:
         ErrorDialog(_("Export failed"),str(msg))
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
     return ret
 
 #-------------------------------------------------------------------------

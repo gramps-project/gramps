@@ -31,6 +31,14 @@ import os
 from cStringIO import StringIO
 from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".WriteCD")
+
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK modules
@@ -66,12 +74,8 @@ _title_string = _("Export to CD")
 #-------------------------------------------------------------------------
 def writeData(database,filename,person,option_box=None):
     ret = 0
-    try:
-        writer = PackageWriter(database,filename)
-        ret = writer.export()
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+    writer = PackageWriter(database,filename)
+    ret = writer.export()
     return ret
     
 #-------------------------------------------------------------------------
