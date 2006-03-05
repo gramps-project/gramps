@@ -95,6 +95,7 @@ class EventView(PageView.ListView):
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
               </placeholder>
+              <menuitem action="ColumnEdit"/>
             </menu>
           </menubar>
           <toolbar name="ToolBar">
@@ -110,6 +111,21 @@ class EventView(PageView.ListView):
             <menuitem action="Remove"/>
           </popup>
         </ui>'''
+
+    def define_actions(self):
+        PageView.ListView.define_actions(self)
+        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
+                        '_Column Editor', callback=self.column_editor),
+
+    def column_editor(self,obj):
+        import ColumnOrder
+
+        ColumnOrder.ColumnOrder(self.dbstate.db.get_event_column_order(),
+                                column_names, self.set_column_order)
+
+    def set_column_order(self,list):
+        self.dbstate.db.set_event_column_order(list)
+        self.build_columns()
 
     def on_double_click(self,obj,event):
         handle = self.first_selected()

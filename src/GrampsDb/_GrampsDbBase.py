@@ -2040,6 +2040,8 @@ class DbState(GrampsDBCallback):
         self.db.connect('place-rebuild',self._place_rebuild)
         self.active = None
         self.open = True
+
+    def signal_change(self):
         self.emit('database-changed',(self.db,))
 
     def no_database(self):

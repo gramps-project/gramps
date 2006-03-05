@@ -94,7 +94,6 @@ gdir_PYTHON = \
 	SelectPerson.py\
 	Sort.py\
 	soundex.py\
-	Sources.py\
 	Spell.py\
 	SpreadSheetDoc.py\
 	StartupDialog.py\

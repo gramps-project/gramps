@@ -2335,9 +2335,8 @@
 			      <property name="spacing">0</property>
 
 			      <child>
-				<widget class="GtkImage" id="pixmap1">
+				<widget class="GtkImage" id="image">
 				  <property name="visible">True</property>
-				  <property name="pixbuf">splash.jpg</property>
 				  <property name="xalign">0.5</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
@@ -4327,7 +4326,8 @@ Text Beside Icons</property>
 		      <child>
 			<widget class="GtkImage" id="image2329">
 			  <property name="visible">True</property>
-			  <property name="pixbuf">images/edit_sm.png</property>
+			  <property name="stock">gtk-edit</property>
+			  <property name="icon_size">4</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
