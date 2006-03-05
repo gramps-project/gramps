@@ -75,6 +75,21 @@ class MediaView(PageView.ListView):
                                    DisplayModels.MediaModel,
                                    signal_map)
 
+    def define_actions(self):
+        PageView.ListView.define_actions(self)
+        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
+                        '_Column Editor', callback=self.column_editor),
+
+    def column_editor(self,obj):
+        import ColumnOrder
+
+        ColumnOrder.ColumnOrder(self.dbstate.db.get_media_column_order(),
+                                column_names, self.set_column_order)
+
+    def set_column_order(self,list):
+        self.dbstate.db.set_media_column_order(list)
+        self.build_columns()
+
     def column_order(self):
         return self.dbstate.db.get_media_column_order()
 
@@ -118,6 +133,7 @@ class MediaView(PageView.ListView):
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
               </placeholder>
+              <menuitem action="ColumnEdit"/>
             </menu>
           </menubar>
           <toolbar name="ToolBar">

@@ -50,7 +50,6 @@ import Utils
 import DateHandler
 import GrampsDisplay
 import QuestionDialog
-from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -146,14 +145,16 @@ class GrampsPreferences:
         self.built = 0
         self.db = db
         self.top = gtk.glade.XML(const.gladeFile,"preferences","gramps")
-        self.gladeif = GladeIf(self.top)
 
-        self.gladeif.connect('button6','clicked',self.on_close_clicked)
-        self.gladeif.connect('button7','clicked',self.on_propertybox_help)
+        self.top.get_widget('button6').connect('clicked',self.on_close_clicked)
+        self.top.get_widget('button7').connect('clicked',self.help_clicked)
         
         self.window = self.top.get_widget("preferences")
         self.window.connect('delete_event',self.on_close_clicked)
         self.tree = self.top.get_widget("tree")
+        self.image = self.top.get_widget('image')
+        self.image.set_from_file(os.path.join(const.image_dir,'splash.jpg'))
+        
         self.store = gtk.TreeStore(gobject.TYPE_STRING)
         self.selection = self.tree.get_selection()
         self.selection.connect('changed',self.select)
@@ -379,13 +380,12 @@ class GrampsPreferences:
         if node and self.imap.has_key(path):
             self.panel.set_current_page(self.imap[path])
         
-    def on_propertybox_help(self,obj):
+    def help_clicked(self,obj):
         GrampsDisplay.help('gramps-prefs')
 
     def on_close_clicked(self,obj=None,dummy=None):
         if not self.save_prefix():
             return False
-        self.gladeif.close()
         self.window.destroy()
     
 #-------------------------------------------------------------------------

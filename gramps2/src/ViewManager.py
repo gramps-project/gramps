@@ -309,7 +309,7 @@ class ViewManager:
             ('OpenRecent', None, 'Open _Recent'),
             ('Quit', gtk.STOCK_QUIT, '_Quit', "<control>q", None, self.quit),
             ('ViewMenu', None, '_View'),
-            ('Preferences', gtk.STOCK_PREFERENCES, '_Preferences'),
+            ('Preferences', gtk.STOCK_PREFERENCES, '_Preferences', None, None, self.preferences_activate),
             ('HelpMenu', None, '_Help'),
             ('HomePage', None, _('GRAMPS _home page'), None, None, self.home_page_activate),
             ('MailingLists', None, _('GRAMPS _mailing lists'), None, None, self.mailing_lists_activate),
@@ -374,6 +374,9 @@ class ViewManager:
 
     def mailing_lists_activate(self,obj):
         GrampsDisplay.url( const.url_mailinglist)
+
+    def preferences_activate(self,obj):
+        GrampsCfg.display_preferences_box(self.state.db)
 
     def report_bug_activate(self,obj):
         GrampsDisplay.url( const.url_bugtracker)
@@ -662,6 +665,7 @@ class ViewManager:
                 self.state.change_database(GrampsDb.gramps_db_factory(const.app_gramps)())
                 self.uistate.clear_history()
                 self.read_file(filename)
+                self.state.signal_change()
                 self.change_page(None,None)
                 # Add the file to the recent items
                 RecentFiles.recent_files(filename,const.app_gramps)
@@ -685,14 +689,17 @@ class ViewManager:
         if filetype == const.app_gramps:
             self.state.change_database(GrampsDb.gramps_db_factory(db_type = const.app_gramps)())
             success = self.read_file(filename) #,update_msg)
+            self.state.signal_change()
             self.change_page(None,None)
         elif filetype == const.app_gramps_xml:
             self.state.change_database(GrampsDb.gramps_db_factory(db_type = const.app_gramps_xml)())
             success = self.read_file(filename)
+            self.state.signal_change()
             self.change_page(None,None)
         elif filetype == const.app_gedcom:
             self.state.change_database(GrampsDb.gramps_db_factory(db_type = const.app_gedcom)())
             success = self.read_file(filename)
+            self.state.signal_change()
             self.change_page(None,None)
 
         if success:

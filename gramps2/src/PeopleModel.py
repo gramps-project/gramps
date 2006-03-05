@@ -256,7 +256,10 @@ class PeopleModel(gtk.GenericTreeModel):
                     self.prev_handle = node
                 return COLUMN_DEFS[col][COLUMN_DEF_LIST](self,self.prev_data,node)
             except:
-                return u'error'
+                if col == _MARKER_COL:
+                    return None
+                else:
+                    return u'error'
 
     def on_iter_next(self, node):
         '''returns the next node at this level of the tree'''

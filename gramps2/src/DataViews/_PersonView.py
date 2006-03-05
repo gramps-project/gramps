@@ -110,6 +110,18 @@ class PersonView(PageView.PersonNavView):
 
         self.add_toggle_action('Filter', None, '_Filter', None, None,
                                self.filter_toggle)
+        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
+                        '_Column Editor', callback=self.column_editor),
+
+    def column_editor(self,obj):
+        import ColumnOrder
+
+        ColumnOrder.ColumnOrder(self.dbstate.db.get_person_column_order(),
+                                column_names, self.set_column_order)
+
+    def set_column_order(self,list):
+        self.dbstate.db.set_person_column_order(list)
+        self.build_columns()
 
     def get_stock(self):
         """
@@ -195,6 +207,7 @@ class PersonView(PageView.PersonNavView):
                 <menuitem action="Remove"/>
               </placeholder>
               <menuitem action="SetActive"/>
+              <menuitem action="ColumnEdit"/>
             </menu>
           </menubar>
           <toolbar name="ToolBar">

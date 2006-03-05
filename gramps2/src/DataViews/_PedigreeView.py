@@ -515,8 +515,9 @@ class PedigreeView(PageView.PersonNavView):
     def goto_active_person(self,handle=None):
         if handle:
             person = self.db.get_person_from_handle(handle)
-            self.rebuild_trees(person)
-            self.handle_history(person.handle)
+            if person:
+                self.rebuild_trees(person)
+                self.handle_history(person.handle)
         else:
             self.rebuild_trees(None)
     

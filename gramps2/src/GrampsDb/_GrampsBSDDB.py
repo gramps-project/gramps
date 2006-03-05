@@ -280,13 +280,13 @@ class GrampsBSDDB(GrampsDbBase):
         self.full_name = os.path.abspath(name)
         self.brief_name = os.path.basename(name)
 
+        self.metadata       = self.open_table(self.full_name, "meta", no_txn=True)
+        
         self.family_map     = self.open_table(self.full_name, "family")
         self.place_map      = self.open_table(self.full_name, "places")
         self.source_map     = self.open_table(self.full_name, "sources")
         self.media_map      = self.open_table(self.full_name, "media")
         self.event_map      = self.open_table(self.full_name, "events")
-        self.metadata       = self.open_table(self.full_name, "meta",
-                                              no_txn=True)
         self.person_map     = self.open_table(self.full_name, "person")
         self.repository_map = self.open_table(self.full_name, "repository")
         self.reference_map  = self.open_table(self.full_name, "reference_map",
