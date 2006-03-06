@@ -11899,9 +11899,8 @@ Text Beside Icons</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkImage" id="image1968">
+	    <widget class="GtkImage" id="image">
 	      <property name="visible">True</property>
-	      <property name="pixbuf">splash.jpg</property>
 	      <property name="xalign">0.5</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>

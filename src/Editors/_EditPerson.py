@@ -340,9 +340,10 @@ class EditPerson(EditPrimary):
     def given_focus_out_event (self, entry, event):
         if not self.should_guess_gender:
             return False
-
-        gender = self.given.get_value()
-        self.gender.force(self.db.genderStats.guess_gender())
+        try:
+            self.gender.force(self.db.genderStats.guess_gender(entry.get_text()))
+        except:
+            return False
         return False
 
     def load_photo(self,photo):

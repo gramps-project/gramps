@@ -28,6 +28,7 @@
 from xml.parsers.expat import ParserCreate
 from random import Random
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -57,6 +58,8 @@ class TipOfDay:
         top = xml.get_widget("tod")
         tip = xml.get_widget("tip")
         use = xml.get_widget('usetips')
+        image = xml.get_widget('image')
+        image.set_from_file(os.path.join(const.image_dir,'splash.jpg'))
 
         alt_title = xml.get_widget("title")
         tmsg = _("GRAMPS' Tip of the Day")
