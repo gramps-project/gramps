@@ -713,7 +713,7 @@ class ViewManager:
     def read_file(self,filename,callback=None):
         mode = "w"
         filename = os.path.normpath(os.path.abspath(filename))
-        
+
         if os.path.isdir(filename):
             ErrorDialog(_('Cannot open database'),
                         _('The selected file is a directory, not '
@@ -735,6 +735,13 @@ class ViewManager:
             os.chdir(os.path.dirname(filename))
         except:
             print "could not change directory"
+
+
+        # emit the database change signal so the that models do not
+        # attempt to update the screen while we are loading the
+        # new data
+        
+        self.state.emit('database-changed',(GrampsDb.GrampsDbBase(),))
 
         try:
             if self.load_database(filename,callback,mode=mode):
