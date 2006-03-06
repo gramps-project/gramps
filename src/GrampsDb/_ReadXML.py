@@ -603,7 +603,7 @@ class GrampsParser:
         self.p.EndElementHandler = self.endElement
         self.p.CharacterDataHandler = self.characters
         self.p.ParseFile(file)
-            
+
         self.db.set_researcher(self.owner)
         if self.home != None:
             person = self.db.find_person_from_handle(self.home,self.trans)
