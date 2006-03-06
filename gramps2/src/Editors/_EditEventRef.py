@@ -202,14 +202,15 @@ class EditEventRef(EditReference):
             self.source.set_place_handle(handle)
 
         trans = self.db.transaction_begin()
-        self.db.commit_event(self.source,trans)
         if self.source.handle:
             if need_new:
                 self.db.add_place(place_obj,trans)
+            self.db.commit_event(self.source,trans)
             self.db.transaction_commit(trans,_("Modify Event"))
         else:
             if need_new:
                 self.db.add_place(place_obj,trans)
+            self.db.add_event(self.source,trans)
             self.db.transaction_commit(trans,_("Add Event"))
             self.source_ref.ref = self.source.handle
         
