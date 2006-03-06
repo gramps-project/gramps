@@ -106,6 +106,35 @@ class ChildEmbedList(EmbeddedList):
         EmbeddedList.__init__(self, dbstate, uistate, track,
                               _('Children'), ChildModel)
 
+    def find_index(self,obj):
+        """
+        returns the index of the object within the associated data
+        """
+        return self.family.get_child_handle_list().index(obj)
+
+    def _find_row(self,x,y):
+        row = self.tree.get_path_at_pos(x,y)
+        if row == None:
+            return len(self.family.get_child_handle_list())
+        else:
+            return row[0][0]
+
+    def _handle_drag(self, row, obj):
+        self.family.get_child_handle_list().insert(row,obj)
+        self.changed = True
+        self.rebuild()
+
+    def _move(self, row_from, row_to, obj):
+        dlist = self.family.get_child_handle_list()
+        if row_from < row_to:
+            dlist.insert(row_to,obj)
+            del dlist[row_from]
+        else:
+            del dlist[row_from]
+            dlist.insert(row_to-1,obj)
+        self.changed = True
+        self.rebuild()
+
     def build_columns(self):
         """
         We can't use the default build_columns in the base class, because
