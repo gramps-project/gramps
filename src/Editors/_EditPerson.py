@@ -381,7 +381,7 @@ class EditPerson(EditPrimary):
     def _check_and_update_id(self):
         original = self.db.get_person_from_handle(self.obj.get_handle())
         
-        if original.get_gramps_id() != self.obj.get_gramps_id():
+        if original and original.get_gramps_id() != self.obj.get_gramps_id():
             idval = self.obj.get_gramps_id()
             person = self.db.get_person_from_gramps_id(idval)
             if person:
