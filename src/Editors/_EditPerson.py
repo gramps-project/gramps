@@ -408,48 +408,49 @@ class EditPerson(EditPrimary):
 
         error = False
         original = self.db.get_person_from_handle(self.obj.handle)
-        
-        (female,male,unknown) = _select_gender[self.obj.get_gender()]
-        if male and original.get_gender() != RelLib.Person.MALE:
-            for temp_family_handle in self.obj.get_family_handle_list():
-                temp_family = self.db.get_family_from_handle(temp_family_handle)
-                if self.obj == temp_family.get_mother_handle():
-                    if temp_family.get_father_handle() != None:
-                        error = True
-                    else:
-                        temp_family.set_mother_handle(None)
-                        temp_family.set_father_handle(self.obj)
-        elif female and original != RelLib.Person.FEMALE:
-            for temp_family_handle in self.obj.get_family_handle_list():
-                temp_family = self.db.get_family_from_handle(temp_family_handle)
-                if self.obj == temp_family.get_father_handle():
-                    if temp_family.get_mother_handle() != None:
-                        error = True
-                    else:
-                        temp_family.set_father_handle(None)
-                        temp_family.set_mother_handle(self.obj)
-        elif unknown and original.get_gender() != RelLib.Person.UNKNOWN:
-            for temp_family_handle in self.obj.get_family_handle_list():
-                temp_family = self.db.get_family_from_handle(temp_family_handle)
-                if self.obj == temp_family.get_father_handle():
-                    if temp_family.get_mother_handle() != None:
-                        error = True
-                    else:
-                        temp_family.set_father_handle(None)
-                        temp_family.set_mother_handle(self.obj)
-                if self.obj == temp_family.get_mother_handle():
-                    if temp_family.get_father_handle() != None:
-                        error = True
-                    else:
-                        temp_family.set_mother_handle(None)
-                        temp_family.set_father_handle(self.obj)
 
-        if error:
-            msg2 = _("Problem changing the gender")
-            msg = _("Changing the gender caused problems "
-                    "with marriage information.\nPlease check "
-                    "the person's marriages.")
-            ErrorDialog(msg)
+        if original:
+            (female,male,unknown) = _select_gender[self.obj.get_gender()]
+            if male and original.get_gender() != RelLib.Person.MALE:
+                for temp_family_handle in self.obj.get_family_handle_list():
+                    temp_family = self.db.get_family_from_handle(temp_family_handle)
+                    if self.obj == temp_family.get_mother_handle():
+                        if temp_family.get_father_handle() != None:
+                            error = True
+                        else:
+                            temp_family.set_mother_handle(None)
+                            temp_family.set_father_handle(self.obj)
+            elif female and original != RelLib.Person.FEMALE:
+                for temp_family_handle in self.obj.get_family_handle_list():
+                    temp_family = self.db.get_family_from_handle(temp_family_handle)
+                    if self.obj == temp_family.get_father_handle():
+                        if temp_family.get_mother_handle() != None:
+                            error = True
+                        else:
+                            temp_family.set_father_handle(None)
+                            temp_family.set_mother_handle(self.obj)
+            elif unknown and original.get_gender() != RelLib.Person.UNKNOWN:
+                for temp_family_handle in self.obj.get_family_handle_list():
+                    temp_family = self.db.get_family_from_handle(temp_family_handle)
+                    if self.obj == temp_family.get_father_handle():
+                        if temp_family.get_mother_handle() != None:
+                            error = True
+                        else:
+                            temp_family.set_father_handle(None)
+                            temp_family.set_mother_handle(self.obj)
+                    if self.obj == temp_family.get_mother_handle():
+                        if temp_family.get_father_handle() != None:
+                            error = True
+                        else:
+                            temp_family.set_mother_handle(None)
+                            temp_family.set_father_handle(self.obj)
+
+            if error:
+                msg2 = _("Problem changing the gender")
+                msg = _("Changing the gender caused problems "
+                        "with marriage information.\nPlease check "
+                        "the person's marriages.")
+                ErrorDialog(msg)
 
     def save(self,*obj):
         """
