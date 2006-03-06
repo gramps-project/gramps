@@ -1162,7 +1162,7 @@ class GrampsDbBase(GrampsDBCallback):
         """
         self.rprefix = self._validated_id_prefix(val,"R")
             
-    def transaction_begin(self,msg="",batch=False):
+    def transaction_begin(self,msg="",batch=False, match=False, no_magic=False):
         """
         Creates a new Transaction tied to the current UNDO database. The
         transaction has no effect until it is committed using the
