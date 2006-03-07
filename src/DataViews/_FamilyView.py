@@ -85,13 +85,21 @@ class FamilyView(PageView.PersonNavView):
         PageView.PersonNavView.__init__(self,'Relationship View',dbstate,uistate)
         dbstate.connect('database-changed',self.change_db)
         dbstate.connect('active-changed',self.change_person)
+        dbstate.db.connect('family-update',self.redraw)
+        dbstate.db.connect('family-add',self.redraw)
+        dbstate.db.connect('family-delete',self.redraw)
+        dbstate.db.connect('person-update',self.redraw)
+        dbstate.db.connect('person-add',self.redraw)
+        dbstate.db.connect('person-delete',self.redraw)
         self.show_siblings = Config.get_family_siblings()
         if self.show_siblings == None:
             self.show_siblings = True
         self.show_details = Config.get_family_details()
         if self.show_details == None:
             self.show_details = True
-
+        self.redrawing = False
+        self.child = None
+            
     def get_stock(self):
         """
         Returns the name of the stock icon to use for the display.
@@ -170,6 +178,12 @@ class FamilyView(PageView.PersonNavView):
         if self.child:
             self.vbox.remove(self.child)
             self.child = None
+        self.dbstate.db.connect('family-update',self.redraw)
+        self.dbstate.db.connect('family-add',self.redraw)
+        self.dbstate.db.connect('family-delete',self.redraw)
+        self.dbstate.db.connect('person-update',self.redraw)
+        self.dbstate.db.connect('person-add',self.redraw)
+        self.dbstate.db.connect('person-delete',self.redraw)
 
     def get_name(self,handle,use_gender=False):
         if handle:
@@ -183,13 +197,22 @@ class FamilyView(PageView.PersonNavView):
         else:
             return (_(u"Unknown"),"")
 
+    def redraw(self,*obj):
+        if self.dbstate.active:
+            self.change_person(self.dbstate.active.handle)
+        
     def change_person(self,obj):
-        if self.child:
-            self.vbox.remove(self.child)
+        if self.redrawing:
+            return
+        self.redrawing = True
+
+        old_child = self.child
         self.attach = AttachList()
 
+        print "PERSON",obj
         person = self.dbstate.db.get_person_from_handle(obj)
         if not person:
+            self.redrawing = False
             return
 
         self.row = 5
@@ -246,7 +269,11 @@ class FamilyView(PageView.PersonNavView):
             self.child.attach(d[0],x0,x1,d[3],d[4],d[5],d[6])
 
         self.child.show_all()
+        if old_child:
+            self.vbox.remove(old_child)
+
         self.vbox.pack_start(self.child,False)
+        self.redrawing = False
 
     def write_title(self,person):
 
