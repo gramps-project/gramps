@@ -544,8 +544,28 @@ class EditFamily(EditPrimary):
 
         if not original:
             trans = self.db.transaction_begin()
+            handle = self.obj.get_father_handle()
+            if handle:
+                parent = self.db.get_person_from_handle(handle)
+                parent.add_family_handle(self.obj.handle)
+                self.db.commit_person(parent,trans)
+
+            handle = self.obj.get_mother_handle()
+            if handle:
+                parent = self.db.get_person_from_handle(handle)
+                parent.add_family_handle(self.obj.handle)
+                self.db.commit_person(parent,trans)
+                
+            for handle in self.obj.get_child_handle_list():
+                child = self.db.get_person_from_handle(handle)
+                # fix
+                child.add_parent_family_handle(handle,
+                                               RelLib.Person.CHILD_BIRTH,
+                                               Rellib,Person.CHILD_BIRTH)
+                self.db.commit_person(child,trans)
+
             self.db.add_family(self.obj,trans)
-            self.db.transaction_commit(trans,_("Edit Family"))
+            self.db.transaction_commit(trans,_("Add Family"))
         elif cmp(original.serialize(),self.obj.serialize()):
 
             trans = self.db.transaction_begin()
