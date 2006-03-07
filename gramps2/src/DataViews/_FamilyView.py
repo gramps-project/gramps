@@ -199,7 +199,7 @@ class FamilyView(PageView.PersonNavView):
                 if family_handle:
                     self.write_parents(family_handle)
         else:
-            self.write_label("%s:" % _('Parents'),None)
+            self.write_label("%s:" % _('Parents'),None,True)
             self.row += 1
                 
         family_handle_list = person.get_family_handle_list()
@@ -208,7 +208,7 @@ class FamilyView(PageView.PersonNavView):
                 if family_handle:
                     self.write_family(family_handle)
         else:
-            self.write_label("%s:" % _('Family'),None)
+            self.write_label("%s:" % _('Family'),None,False)
             self.row += 1
 
         self.row = 1
@@ -336,7 +336,7 @@ class FamilyView(PageView.PersonNavView):
                            self.row,self.row+1)
         self.row += 1
 
-    def write_label(self,title,family):
+    def write_label(self,title,family,is_parent):
         msg = "<i><b>%s</b></i>" % cgi.escape(title)
         self.attach.attach(GrampsWidgets.MarkupLabel(msg),_LABEL_START,_LABEL_STOP,
                            self.row,self.row+1,gtk.SHRINK|gtk.FILL)
@@ -350,12 +350,19 @@ class FamilyView(PageView.PersonNavView):
 
         hbox = gtk.HBox()
         hbox.set_spacing(6)
-        add = GrampsWidgets.IconButton(self.add_family,None,gtk.STOCK_ADD)
+        if is_parent:
+            call_fcn = self.add_parent_family
+        else:
+            call_fcn = self.add_family
+            
+        add = GrampsWidgets.IconButton(call_fcn,None,gtk.STOCK_ADD)
         hbox.pack_start(add,False)
         if family:
-            edit = GrampsWidgets.IconButton(self.edit_family,family.handle,gtk.STOCK_EDIT)
+            edit = GrampsWidgets.IconButton(self.edit_family,family.handle,
+                                            gtk.STOCK_EDIT)
             hbox.pack_start(edit,False)
-            delete = GrampsWidgets.IconButton(self.delete_family,family.handle,gtk.STOCK_REMOVE)
+            delete = GrampsWidgets.IconButton(self.delete_family,family.handle,
+                                              gtk.STOCK_REMOVE)
             hbox.pack_start(delete,False)
         self.attach.attach(hbox,_BTN_START,_BTN_STOP,self.row,self.row+1)
         self.row += 1
@@ -364,7 +371,7 @@ class FamilyView(PageView.PersonNavView):
 
     def write_parents(self,family_handle):
         family = self.dbstate.db.get_family_from_handle(family_handle)
-        self.write_label("%s:" % _('Parents'),family),
+        self.write_label("%s:" % _('Parents'),family,True),
         self.write_person(_('Father'),family.get_father_handle())
         if self.show_details:
             value = self.info_string(family.get_father_handle())
@@ -534,7 +541,7 @@ class FamilyView(PageView.PersonNavView):
         else:
             handle = father_handle
 
-        self.write_label("%s:" % _('Family'),family),
+        self.write_label("%s:" % _('Family'),family,False)
         if handle:
             self.write_person(_('Spouse'),handle)
 
@@ -585,6 +592,26 @@ class FamilyView(PageView.PersonNavView):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             from Editors import EditFamily
             family = RelLib.Family()
+            person = self.dbstate.active
+            
+            if person.gender == RelLib.Person.MALE:
+                family.set_father_handle(person.handle)
+            else:
+                family.set_mother_handle(person.handle)
+                
+            try:
+                EditFamily(self.dbstate,self.uistate,[],family)
+            except Errors.WindowActiveError:
+                pass
+
+    def add_parent_family(self,obj,event,handle):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+            from Editors import EditFamily
+            family = RelLib.Family()
+            person = self.dbstate.active
+            
+            family.add_child_handle(person.handle)
+                
             try:
                 EditFamily(self.dbstate,self.uistate,[],family)
             except Errors.WindowActiveError:

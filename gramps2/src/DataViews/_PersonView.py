@@ -564,7 +564,7 @@ class PersonView(PageView.PersonNavView):
             if oldpath[0] == surname:
                 self.model.build_sub_entry(surname)
             else:
-                self.model.calculate_data(self.DataFilter)
+                self.model.calculate_data()
             
             # find the path of the person in the new data build
             newpath = self.model.temp_iter2path[node]
