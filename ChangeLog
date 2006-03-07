@@ -1,4 +1,7 @@
 2006-03-06  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_FamilyView.py: put the person in the correct spot
+	when adding a new family
+	* src/DataViews/_PersonView.py: remove DataFilter
 	* src/GrampsDb/_GrampsDbBase.py: handle the default argument of
 	no_magic
 	* src/Editors/_EditFamily.py: handle the fact that family
