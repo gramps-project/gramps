@@ -85,21 +85,48 @@ class FamilyView(PageView.PersonNavView):
         PageView.PersonNavView.__init__(self,'Relationship View',dbstate,uistate)
         dbstate.connect('database-changed',self.change_db)
         dbstate.connect('active-changed',self.change_person)
-        dbstate.db.connect('family-update',self.redraw)
-        dbstate.db.connect('family-add',self.redraw)
-        dbstate.db.connect('family-delete',self.redraw)
-        dbstate.db.connect('person-update',self.redraw)
-        dbstate.db.connect('person-add',self.redraw)
-        dbstate.db.connect('person-delete',self.redraw)
         self.show_siblings = Config.get_family_siblings()
         if self.show_siblings == None:
             self.show_siblings = True
         self.show_details = Config.get_family_details()
         if self.show_details == None:
             self.show_details = True
+        self.connect_to_db(dbstate.db)
         self.redrawing = False
         self.child = None
             
+    def connect_to_db(self,db):
+        db.connect('person-update', self.person_update)
+        db.connect('person-rebuild',self.person_rebuild)
+        db.connect('family-update', self.family_update)
+        db.connect('family-add',    self.family_add)
+        db.connect('family-delete', self.family_delete)
+        db.connect('family-rebuild',self.family_rebuild)
+
+    def person_update(self,handle_list):
+        if self.dbstate.active:
+            self.change_person(self.dbstate.active.handle)
+
+    def person_rebuild(self):
+        if self.dbstate.active:
+            self.change_person(self.dbstate.active.handle)
+
+    def family_update(self,handle_list):
+        if self.dbstate.active:
+            self.change_person(self.dbstate.active.handle)
+
+    def family_add(self,handle_list):
+        if self.dbstate.active:
+            self.change_person(self.dbstate.active.handle)
+
+    def family_delete(self,handle_list):
+        if self.dbstate.active:
+            self.change_person(self.dbstate.active.handle)
+
+    def family_rebuild(self):
+        if self.dbstate.active:
+            self.change_person(self.dbstate.active.handle)
+
     def get_stock(self):
         """
         Returns the name of the stock icon to use for the display.
@@ -175,6 +202,7 @@ class FamilyView(PageView.PersonNavView):
         Config.save_family_details(self.show_details)
 
     def change_db(self,db):
+        self.connect_to_db(db)
         if self.child:
             self.vbox.remove(self.child)
             self.child = None
@@ -209,7 +237,6 @@ class FamilyView(PageView.PersonNavView):
         old_child = self.child
         self.attach = AttachList()
 
-        print "PERSON",obj
         person = self.dbstate.db.get_person_from_handle(obj)
         if not person:
             self.redrawing = False

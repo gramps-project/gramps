@@ -257,6 +257,10 @@ class EditFamily(EditPrimary):
         self._add_db_signal('person-delete', self.check_for_change)
         self._add_db_signal('person-rebuild', self.reload_people)
         
+        self.added = self.obj.handle == None
+        if self.added:
+            self.obj.handle = Utils.create_id()
+            
         self.load_data()
 
     def check_for_change(self,handles):
@@ -537,31 +541,35 @@ class EditFamily(EditPrimary):
                 self.db.commit_person(person,trans)
 
     def save(self,obj):
-        if self.obj.handle:
+        if not self.added:
             original = self.db.get_family_from_handle(self.obj.handle)
         else:
             original = None
 
         if not original:
             trans = self.db.transaction_begin()
+
+            # find the father, add the family handle to the father
             handle = self.obj.get_father_handle()
             if handle:
                 parent = self.db.get_person_from_handle(handle)
                 parent.add_family_handle(self.obj.handle)
                 self.db.commit_person(parent,trans)
 
+            # find the mother, add the family handle to the mother
             handle = self.obj.get_mother_handle()
             if handle:
                 parent = self.db.get_person_from_handle(handle)
                 parent.add_family_handle(self.obj.handle)
                 self.db.commit_person(parent,trans)
                 
+            # for each child, add the family handle to the child
             for handle in self.obj.get_child_handle_list():
                 child = self.db.get_person_from_handle(handle)
                 # fix
                 child.add_parent_family_handle(handle,
                                                RelLib.Person.CHILD_BIRTH,
-                                               Rellib,Person.CHILD_BIRTH)
+                                               RelLib.Person.CHILD_BIRTH)
                 self.db.commit_person(child,trans)
 
             self.db.add_family(self.obj,trans)
@@ -584,7 +592,7 @@ class EditFamily(EditPrimary):
                 person.remove_parent_family_handle(self.obj.handle)
                 self.db.commit_person(person,trans)
             
-            # add the family from children which have been removed
+            # add the family from children which have been addedna
             for handle in new_set.difference(orig_set):
                 person = self.db.get_person_from_handle(handle)
                 #person.remove_parent_family_handle(self.obj.handle)
