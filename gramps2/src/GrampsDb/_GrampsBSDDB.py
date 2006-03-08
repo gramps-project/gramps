@@ -679,12 +679,12 @@ class GrampsBSDDB(GrampsDbBase):
         if not self.readonly:
             if transaction.batch:
                 self.reference_map.delete(str(key),txn=txn)#=the_txn)
+                if not self.UseTXN:
+                    self.reference_map.sync()
             else:
                 old_data = self.reference_map.get(str(key),txn=self.txn)
                 transaction.add(REFERENCE_KEY,str(key),old_data,None)
                 transaction.reference_del.append(str(key))
-            if not self.UseTXN:
-                self.reference_map.sync()
 
     def _add_reference(self,key,data,transaction,txn=None):
         """
@@ -698,12 +698,12 @@ class GrampsBSDDB(GrampsDbBase):
         if transaction.batch:
             #the_txn = self.env.txn_begin()
             self.reference_map.put(str(key),data,txn=txn)#=the_txn)
+            if not self.UseTXN:
+                self.reference_map.sync()
             #the_txn.commit()
         else:
             transaction.add(REFERENCE_KEY,str(key),None,data)
             transaction.reference_add.append((str(key),data))
-        if not self.UseTXN:
-            self.reference_map.sync()
 
     def reindex_reference_map(self):
         """Reindex all primary records in the database. This will be a
@@ -835,24 +835,38 @@ class GrampsBSDDB(GrampsDbBase):
 
     def _del_person(self,handle):
         self.person_map.delete(str(handle),txn=self.txn)
+        if not self.UseTXN:
+            self.person_map.sync()
 
     def _del_source(self,handle):
         self.source_map.delete(str(handle),txn=self.txn)
+        if not self.UseTXN:
+            self.source_map.sync()
 
     def _del_repository(self,handle):
         self.repository_map.delete(str(handle),txn=self.txn)
+        if not self.UseTXN:
+            self.repository_map.sync()
 
     def _del_place(self,handle):
         self.place_map.delete(str(handle),txn=self.txn)
+        if not self.UseTXN:
+            self.place_map.sync()
 
     def _del_media(self,handle):
         self.media_map.delete(str(handle),txn=self.txn)
+        if not self.UseTXN:
+            self.media_map.sync()
 
     def _del_family(self,handle):
         self.family_map.delete(str(handle),txn=self.txn)
+        if not self.UseTXN:
+            self.family_map.sync()
 
     def _del_event(self,handle):
         self.event_map.delete(str(handle),txn=self.txn)
+        if not self.UseTXN:
+            self.event_map.sync()
 
     def set_name_group_mapping(self,name,group):
         if not self.readonly:
@@ -955,8 +969,6 @@ class GrampsBSDDB(GrampsDbBase):
             self._update_reference_map(obj,transaction)
             old_data = data_map.get(handle,txn=self.txn)
             new_data = obj.serialize()
-            if not self.UseTXN:
-                data_map.sync()
             transaction.add(key,handle,old_data,new_data)
             if old_data:
                 update_list.append((handle,new_data))
@@ -968,6 +980,8 @@ class GrampsBSDDB(GrampsDbBase):
         retlist = []
         for (handle,data) in add_list:
             db_map.put(handle,data,self.txn)
+            if not self.UseTXN:
+                db_map.sync()
             retlist.append(str(handle))
         return retlist
 
