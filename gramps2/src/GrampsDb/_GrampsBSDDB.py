@@ -1049,6 +1049,10 @@ class GrampsBSDDB(GrampsDbBase):
         for key in transaction.reference_del:
             self.reference_map.delete(str(key),txn=self.txn)
 
+        if (len(transaction.reference_add)+len(transaction.reference_del)) > 0\
+               and not self.UseTXN:
+            self.reference_map.sync()
+
         # Commit BSD DB transaction -- DBTxn
         if self.UseTXN:
             self.txn.commit()

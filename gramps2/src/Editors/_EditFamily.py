@@ -568,8 +568,9 @@ class EditFamily(EditPrimary):
                 child = self.db.get_person_from_handle(handle)
                 # fix
                 child.add_parent_family_handle(handle,
-                                               RelLib.Person.CHILD_BIRTH,
-                                               RelLib.Person.CHILD_BIRTH)
+                                               (RelLib.Person.CHILD_BIRTH,''),
+                                               (RelLib.Person.CHILD_BIRTH,''),
+                                               )
                 self.db.commit_person(child,trans)
 
             self.db.add_family(self.obj,trans)
