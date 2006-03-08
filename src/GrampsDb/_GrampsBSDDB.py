@@ -120,11 +120,19 @@ class GrampsBSDDB(GrampsDbBase):
     """GRAMPS database object. This object is a base class for other
     objects."""
 
+    UseTXN = False
+
     def __init__(self):
         """creates a new GrampsDB"""
         GrampsDbBase.__init__(self)
         self.txn = None
         self.secondary_connected = False
+
+    def open_flags(self):
+        if self.UseTXN:
+            return db.DB_CREATE|db.DB_AUTO_COMMIT
+        else:
+            return db.DB_CREATE
 
     def open_table(self,name,dbname,no_txn=False,dbtype=db.DB_HASH):
         dbmap = dbshelve.DBShelf(self.env)
@@ -134,8 +142,7 @@ class GrampsBSDDB(GrampsDbBase):
         elif no_txn:
             dbmap.open(name, dbname, dbtype, db.DB_CREATE, 0666)
         else:
-            dbmap.open(name, dbname, dbtype,
-                       db.DB_CREATE|db.DB_AUTO_COMMIT, 0666)
+            dbmap.open(name, dbname, dbtype, self.open_flags(), 0666)
         return dbmap
 
     def _all_handles(self,table):
@@ -264,16 +271,22 @@ class GrampsBSDDB(GrampsDbBase):
         self.env.set_lk_max_objects(25000)
         self.env.set_flags(db.DB_LOG_AUTOREMOVE,1)  # clean up unused logs
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
-        env_flags = db.DB_CREATE|db.DB_RECOVER|db.DB_PRIVATE|\
-                    db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
-                    db.DB_INIT_LOG|db.DB_INIT_TXN
+
+        if self.UseTXN:
+            env_flags = db.DB_CREATE|db.DB_RECOVER|db.DB_PRIVATE|\
+                        db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
+                        db.DB_INIT_LOG|db.DB_INIT_TXN
+        else:
+            env_flags = db.DB_CREATE|db.DB_PRIVATE|\
+                        db.DB_INIT_MPOOL|db.DB_INIT_LOG
 
         self.undolog = "%s.undo" % name
         env_name = os.path.expanduser(const.bsddbenv_dir)
         if not os.path.isdir(env_name):
             os.mkdir(env_name)
         self.env.open(env_name,env_flags)
-        self.env.txn_checkpoint()
+        if self.UseTXN:
+            self.env.txn_checkpoint()
 
         callback(25)
 
@@ -349,7 +362,7 @@ class GrampsBSDDB(GrampsDbBase):
         if self.readonly:
             table_flags = db.DB_RDONLY
         else:
-            table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
+            table_flags = self.open_flags()
 
         self.surnames = db.DB(self.env)
         self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
@@ -443,7 +456,7 @@ class GrampsBSDDB(GrampsDbBase):
         if self.readonly:
             return
 
-        table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
+        table_flags = self.open_flags()
 
         # remove existing secondary indices
         self.id_trans.close()
@@ -784,7 +797,8 @@ class GrampsBSDDB(GrampsDbBase):
         self.source_map.close()
         self.media_map.close()
         self.event_map.close()
-        self.env.txn_checkpoint()
+        if self.UseTXN:
+            self.env.txn_checkpoint()
         self.env.close()
 
         if not self.readonly:
@@ -922,10 +936,14 @@ class GrampsBSDDB(GrampsDbBase):
         handle = str(obj.handle)
         
         if transaction.batch:
-            the_txn = self.env.txn_begin()
+            if self.UseTXN:
+                the_txn = self.env.txn_begin()
+            else:
+                the_txn = None
             self._update_reference_map(obj,transaction,txn=the_txn)
             data_map.put(handle,obj.serialize(),txn=the_txn)
-            the_txn.commit()
+            if the_txn:
+                the_txn.commit()
             old_data = None
         else:
             self._update_reference_map(obj,transaction)
@@ -977,7 +995,8 @@ class GrampsBSDDB(GrampsDbBase):
 
         transaction = BdbTransaction(msg,self.undodb,batch,no_magic)
         if transaction.batch:
-            self.env.txn_checkpoint()
+            if self.UseTXN:
+                self.env.txn_checkpoint()
             self.env.set_flags(db.DB_TXN_NOSYNC,1)      # async txn
 
             if self.secondary_connected and not transaction.no_magic:
@@ -995,7 +1014,10 @@ class GrampsBSDDB(GrampsDbBase):
     def transaction_commit(self,transaction,msg):
 
         # Start BSD DB transaction -- DBTxn
-        self.txn = self.env.txn_begin()
+        if self.UseTXN:
+            self.txn = self.env.txn_begin()
+        else:
+            self.txn = None
 
         GrampsDbBase.transaction_commit(self,transaction,msg)
 
@@ -1006,14 +1028,16 @@ class GrampsBSDDB(GrampsDbBase):
             self.reference_map.delete(str(key),txn=self.txn)
 
         # Commit BSD DB transaction -- DBTxn
-        self.txn.commit()
+        if self.UseTXN:
+            self.txn.commit()
         if transaction.batch:
-            self.env.txn_checkpoint()
-            self.env.set_flags(db.DB_TXN_NOSYNC,0)      # sync txn
+            if self.UseTXN:
+                self.env.txn_checkpoint()
+                self.env.set_flags(db.DB_TXN_NOSYNC,0)      # sync txn
 
             if not transaction.no_magic:
                 # create new secondary indices to replace the ones removed
-                open_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
+                open_flags = self.open_flags()
                 dupe_flags = db.DB_DUP|db.DB_DUPSORT
 
                 self.surnames = db.DB(self.env)
@@ -1034,16 +1058,20 @@ class GrampsBSDDB(GrampsDbBase):
 
     def undo(self):
         print "Undoing it"
-        self.txn = self.env.txn_begin()
+        if self.UseTXN:
+            self.txn = self.env.txn_begin()
         GrampsDbBase.undo(self)
-        self.txn.commit()
+        if self.UseTXN:
+            self.txn.commit()
         self.txn = None
 
     def redo(self):
         print "Redoing it"
-        self.txn = self.env.txn_begin()
+        if self.UseTXN:
+            self.txn = self.env.txn_begin()
         GrampsDbBase.redo(self)
-        self.txn.commit()
+        if self.UseTXN:
+            self.txn.commit()
         self.txn = None        
 
     def undo_reference(self,data,handle):
@@ -1151,7 +1179,7 @@ class GrampsBSDDB(GrampsDbBase):
 
         # Create one secondary index for reference_map
         # because every commit will require this to exist
-        table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
+        table_flags = self.open_flags()
         self.reference_map_primary_map = db.DB(self.env)
         self.reference_map_primary_map.set_flags(db.DB_DUP)
         self.reference_map_primary_map.open(self.full_name,
@@ -1372,7 +1400,7 @@ class GrampsBSDDB(GrampsDbBase):
 
         # Turns out that a lof ot events have duplicate gramps IDs
         # We need to fix this
-        table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
+        table_flags = self.open_flags()
         self.eid_trans = db.DB(self.env)
         self.eid_trans.set_flags(db.DB_DUP)
         self.eid_trans.open(self.full_name, "eidtrans",

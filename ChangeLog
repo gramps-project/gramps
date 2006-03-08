@@ -1,3 +1,6 @@
+2006-03-08  Don Allingham  <don@gramps-project.org>
+	* src/GramspDb/_GrampsBSDDB.py: make txn support optional via UseTXN
+
 2006-03-07  Don Allingham  <don@gramps-project.org>
 	* src/AddMedia.py: remove WindowsUtils dependency
 	* src/WindowUtils.py: remove
