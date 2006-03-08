@@ -1,3 +1,7 @@
+2006-03-07  Don Allingham  <don@gramps-project.org>
+	* src/AddMedia.py: remove WindowsUtils dependency
+	* src/WindowUtils.py: remove
+
 2006-03-07  Alex Roitman  <shura@gramps-project.org>
 	* src/DateHadnler: Move all date parsers/displayers into new
 	directory.
