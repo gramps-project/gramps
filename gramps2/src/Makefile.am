@@ -13,7 +13,7 @@ SUBDIRS = \
 	RelLib \
 	TreeViews \
 	data \
-	dates \
+	DateHandler \
 	glade \
 	docgen \
 	images \

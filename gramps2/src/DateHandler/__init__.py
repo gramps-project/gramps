@@ -45,8 +45,8 @@ log = logging.getLogger(".DateHandler")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import DateParser
-import DateDisplay
+from _DateParser import DateParser
+from _DateDisplay import DateDisplay, DateDisplayEn
 
 #-------------------------------------------------------------------------
 #
@@ -60,19 +60,19 @@ else:
     _lang_short = "C"
 
 _lang_to_parser = {
-    'C'      : DateParser.DateParser,
-    'en'     : DateParser.DateParser,
+    'C'      : DateParser,
+    'en'     : DateParser,
     }
 
 _lang_to_display = {
-    'C'      : DateDisplay.DateDisplayEn,
-    'en'     : DateDisplay.DateDisplayEn,
-    'zh_CN'  : DateDisplay.DateDisplay,
-    'zh_TW'  : DateDisplay.DateDisplay,
-    'zh_SG'  : DateDisplay.DateDisplay,
-    'zh_HK'  : DateDisplay.DateDisplay,
-    'ja_JP'  : DateDisplay.DateDisplay,
-    'ko_KR'  : DateDisplay.DateDisplay,
+    'C'      : DateDisplayEn,
+    'en'     : DateDisplayEn,
+    'zh_CN'  : DateDisplay,
+    'zh_TW'  : DateDisplay,
+    'zh_SG'  : DateDisplay,
+    'zh_HK'  : DateDisplay,
+    'ja_JP'  : DateDisplay,
+    'ko_KR'  : DateDisplay,
     }
 
 def get_date_formats():
