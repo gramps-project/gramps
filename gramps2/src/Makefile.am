@@ -49,10 +49,7 @@ gdir_PYTHON = \
 	Bookmarks.py\
 	ColumnOrder.py\
 	const.py\
-	DateDisplay.py\
 	DateEdit.py\
-	DateHandler.py\
-	DateParser.py\
 	Date.py\
 	DdTargets.py\
 	DisplayModels.py\
@@ -69,7 +66,6 @@ gdir_PYTHON = \
 	gramps.py\
 	GrampsWidgets.py\
 	ImgManip.py\
-	latin_ansel.py\
 	ListModel.py\
 	MergeData.py\
 	MergePeople.py\
