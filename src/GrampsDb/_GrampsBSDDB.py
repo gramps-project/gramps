@@ -683,6 +683,8 @@ class GrampsBSDDB(GrampsDbBase):
                 old_data = self.reference_map.get(str(key),txn=self.txn)
                 transaction.add(REFERENCE_KEY,str(key),old_data,None)
                 transaction.reference_del.append(str(key))
+            if not self.UseTXN:
+                self.reference_map.sync()
 
     def _add_reference(self,key,data,transaction,txn=None):
         """
@@ -700,6 +702,8 @@ class GrampsBSDDB(GrampsDbBase):
         else:
             transaction.add(REFERENCE_KEY,str(key),None,data)
             transaction.reference_add.append((str(key),data))
+        if not self.UseTXN:
+            self.reference_map.sync()
 
     def reindex_reference_map(self):
         """Reindex all primary records in the database. This will be a
@@ -942,6 +946,8 @@ class GrampsBSDDB(GrampsDbBase):
                 the_txn = None
             self._update_reference_map(obj,transaction,txn=the_txn)
             data_map.put(handle,obj.serialize(),txn=the_txn)
+            if not self.UseTXN:
+                data_map.sync()
             if the_txn:
                 the_txn.commit()
             old_data = None
@@ -949,6 +955,8 @@ class GrampsBSDDB(GrampsDbBase):
             self._update_reference_map(obj,transaction)
             old_data = data_map.get(handle,txn=self.txn)
             new_data = obj.serialize()
+            if not self.UseTXN:
+                data_map.sync()
             transaction.add(key,handle,old_data,new_data)
             if old_data:
                 update_list.append((handle,new_data))
