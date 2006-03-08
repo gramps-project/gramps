@@ -41,7 +41,7 @@ import BaseDoc
 import Report
 import GenericFilter
 from ReportUtils import pt2cm
-import DateDisplay
+from DateHandler import DateDisplay
 import ReportOptions
 import RelLib
 
@@ -204,7 +204,7 @@ class Calendar(Report.Report):
         self.doc.draw_bar("title", 0, 0, width, header)
         self.doc.draw_line("border", 0, header, width, header)
         year = self["year"]
-        title = "%s %d" % (DateDisplay.DateDisplay._months[month], year)
+        title = "%s %d" % (DateDisplay._months[month], year)
         font_height = pt2cm(1.25 * self["title"].get_size())
         self.doc.center_text("title", title, width/2, font_height + self["offset"]) # 1.0
         cell_width = width / 7

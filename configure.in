@@ -242,7 +242,7 @@ src/Models/Makefile
 src/Editors/Makefile
 src/DataViews/Makefile
 src/plugins/Makefile
-src/dates/Makefile
+src/DateHandler/Makefile
 src/data/Makefile
 src/glade/Makefile
 src/images/Makefile

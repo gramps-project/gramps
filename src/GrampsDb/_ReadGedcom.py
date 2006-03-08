@@ -64,7 +64,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import Errors
 import RelLib
-import DateParser
+from DateHandler import DateParser
 import NameDisplay
 import Utils
 import Mime
@@ -249,7 +249,7 @@ class DateStruct:
         self.date = ""
         self.time = ""
 
-class GedcomDateParser(DateParser.DateParser):
+class GedcomDateParser(DateParser):
 
     month_to_int = {
         'jan' : 1,  'feb' : 2,  'mar' : 3,  'apr' : 4,

@@ -1,22 +1,23 @@
-# This is the src/plugins level Makefile for Gramps
+# This is the src/DateHandler level Makefile for Gramps
 # We could use GNU make's ':=' syntax for nice wildcard use,
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/dates
+pkgdatadir = $(datadir)/@PACKAGE@/DateHandler
 
 pkgdata_PYTHON = \
-	Date_de.py\
-	Date_ru.py\
-	Date_lt.py\
-	Date_fr.py\
-	Date_es.py\
-	Date_fi.py\
-	Date_sv.py\
-	Date_nl.py
+	_Date_de.py\
+	_Date_ru.py\
+	_Date_lt.py\
+	_Date_fr.py\
+	_Date_es.py\
+	_Date_fi.py\
+	_Date_sv.py\
+	_Date_nl.py\
+	__init__.py
 
-pkgpyexecdir = @pkgpyexecdir@/dates
-pkgpythondir = @pkgpythondir@/dates
+pkgpyexecdir = @pkgpyexecdir@/DateHandler
+pkgpythondir = @pkgpythondir@/DateHandler
 
 GRAMPS_PY_MODPATH = ".."
 
