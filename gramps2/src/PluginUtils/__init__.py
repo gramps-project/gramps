@@ -20,6 +20,5 @@
 
 # $Id: Report.py 6044 2006-03-03 00:10:52Z rshura $
 
-from _Report import *
-from _Tool import *
-from _ReportUtils import *
+import Report
+import Tool
