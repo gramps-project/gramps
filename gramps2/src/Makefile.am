@@ -97,8 +97,7 @@ gdir_PYTHON = \
 	TransUtils.py\
 	TreeTips.py\
 	Utils.py\
-	ViewManager.py\
-	WindowUtils.py
+	ViewManager.py
 
 # Could use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all files individually
