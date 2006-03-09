@@ -2622,7 +2622,7 @@ class FilterWidget:
         for f in default_filters:
             all = GenericFilter()
             rule = f[0](f[1])
-            print rule
+            #print rule
             all.set_name( rule.name)
             all.add_rule( rule)
             filter_list.append(all)

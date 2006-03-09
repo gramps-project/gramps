@@ -136,7 +136,10 @@ class EditPrimary(DisplayState.ManagedWindow):
             return False
         elif self.obj.handle:
             orig = self.get_from_handle(self.obj.handle)
-            return cmp(orig.serialize(),self.obj.serialize()) != 0
+            if orig:
+                return cmp(orig.serialize(),self.obj.serialize()) != 0
+            else:
+                return True
         else:
             return True
 

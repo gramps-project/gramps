@@ -1,4 +1,8 @@
 2006-03-08  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_FamilyView.py: fix spacing
+	* src/Editors/_EditPrimary.py: make sure object is valid before
+	compare
+	* src/GenericFilter.py: remove print
 	* src/Editors/_EditFamily.py: fix family selection
 
 2006-03-08  Alex Roitman  <shura@gramps-project.org>

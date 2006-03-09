@@ -283,7 +283,7 @@ class FamilyView(PageView.PersonNavView):
         self.child = gtk.Table(self.attach.max_y,cols)
         self.child.set_border_width(12)
         self.child.set_col_spacings(12)
-        self.child.set_row_spacings(6)
+        self.child.set_row_spacings(9)
 
         for d in self.attach.list:
             x0 = d[1]
@@ -349,7 +349,8 @@ class FamilyView(PageView.PersonNavView):
                 image = gtk.Image()
                 image.set_from_pixbuf(pixbuf)
                 image.show()
-                self.attach.attach(image,end,end+1,0,4,xoptions=gtk.SHRINK|gtk.FILL)
+                self.attach.attach(image,end,end+1,0,4,
+                                   xoptions=gtk.SHRINK|gtk.FILL)
 
         self.attach.attach(sep,0,self.attach.max_x,4,5)
 
@@ -386,24 +387,27 @@ class FamilyView(PageView.PersonNavView):
         self.attach.attach(GrampsWidgets.BasicLabel(title),_ALABEL_START,
                            _ALABEL_STOP,self.row,self.row+1,
                            xoptions=gtk.FILL|gtk.SHRINK)
-        self.attach.attach(GrampsWidgets.BasicLabel(data),_ADATA_START,_ADATA_STOP,
+        self.attach.attach(GrampsWidgets.BasicLabel(data),
+                           _ADATA_START,_ADATA_STOP,
                            self.row,self.row+1)
         self.row += 1
 
     def write_label(self,title,family,is_parent):
         msg = "<i><b>%s</b></i>" % cgi.escape(title)
-        self.attach.attach(GrampsWidgets.MarkupLabel(msg),_LABEL_START,_LABEL_STOP,
+        self.attach.attach(GrampsWidgets.MarkupLabel(msg),
+                           _LABEL_START,_LABEL_STOP,
                            self.row,self.row+1,gtk.SHRINK|gtk.FILL)
 
         if family:
             value = family.gramps_id
         else:
             value = ""
-        self.attach.attach(GrampsWidgets.BasicLabel(value),_DATA_START,_DATA_STOP,
+        self.attach.attach(GrampsWidgets.BasicLabel(value),
+                           _DATA_START,_DATA_STOP,
                            self.row,self.row+1,gtk.SHRINK|gtk.FILL)
 
         hbox = gtk.HBox()
-        hbox.set_spacing(6)
+        hbox.set_spacing(12)
         if is_parent:
             call_fcn = self.add_parent_family
         else:
@@ -550,7 +554,8 @@ class FamilyView(PageView.PersonNavView):
                 value = True
         return value
 
-    def write_event_ref(self, ename, event,start_col=_SDATA_START,stop_col=_SDATA_STOP):
+    def write_event_ref(self, ename, event, start_col=_SDATA_START,
+                        stop_col=_SDATA_STOP):
         if event:
             dobj = event.get_date_object()
             phandle = event.get_place_handle()
