@@ -2,7 +2,7 @@
 # count_anc.py - Ancestor counting plugin for gramps
 #
 # Copyright (C) 2001  Jesper Zedlitz
-# Copyright (C) 2004  Donald Allingham
+# Copyright (C) 2004-2006  Donald Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,7 +45,7 @@ import gtk.glade
 #
 #------------------------------------------------------------------------
 import Utils
-import Report
+from PluginUtils import Report
 
 #------------------------------------------------------------------------
 #

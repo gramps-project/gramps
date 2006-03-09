@@ -241,6 +241,7 @@ src/docgen/Makefile
 src/Models/Makefile
 src/Editors/Makefile
 src/DataViews/Makefile
+src/PluginUtils/Makefile
 src/plugins/Makefile
 src/DateHandler/Makefile
 src/data/Makefile

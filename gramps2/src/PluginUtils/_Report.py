@@ -52,7 +52,6 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import Utils
-import Plugins
 import PluginMgr
 import BaseDoc
 import StyleEditor
@@ -1576,7 +1575,7 @@ class TextReportDialog(ReportDialog):
         """Build a menu of document types that are appropriate for
         this text report.  This menu will be generated based upon
         whether the document requires table support, etc."""
-        self.format_menu = Plugins.GrampsTextFormatComboBox()
+        self.format_menu = GrampsTextFormatComboBox()
         self.format_menu.set(self.doc_uses_tables(),
                              self.doc_type_changed, None, active)
 
@@ -1602,7 +1601,7 @@ class DrawReportDialog(ReportDialog):
     def make_doc_menu(self,active=None):
         """Build a menu of document types that are appropriate for
         this drawing report."""
-        self.format_menu = Plugins.GrampsDrawFormatComboBox()
+        self.format_menu = GrampsDrawFormatComboBox()
         self.format_menu.set(False,self.doc_type_changed, None, active)
 
 
@@ -1940,3 +1939,150 @@ def cl_report(database,name,category,report_class,options_class,options_str_dict
         MyReport.end_report()
     except:
         log.error("Failed to write report.", exc_info=True)
+
+#-------------------------------------------------------------------------
+#
+# get_text_doc_menu
+#
+#-------------------------------------------------------------------------
+class GrampsTextFormatComboBox(gtk.ComboBox):
+
+    def set(self,tables,callback,obj=None,active=None):
+        self.store = gtk.ListStore(str)
+        self.set_model(self.store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell,True)
+        self.add_attribute(cell,'text',0)
+
+        out_pref = Config.get_output_preference()
+        index = 0
+        PluginMgr.textdoc_list.sort()
+        active_index = 0
+        for item in PluginMgr.textdoc_list:
+            if tables and item[2] == 0:
+                continue
+            name = item[0]
+            self.store.append(row=[name])
+            #if callback:
+            #    menuitem.connect("activate",callback)
+            if item[7] == active:
+                active_index = index
+            elif not active and name == out_pref:
+                active_index = index
+            index = index + 1
+        self.set_active(active_index)
+
+    def get_label(self):
+        return PluginMgr.textdoc_list[self.get_active()][0]
+
+    def get_reference(self):
+        return PluginMgr.textdoc_list[self.get_active()][1]
+
+    def get_paper(self):
+        return PluginMgr.textdoc_list[self.get_active()][3]
+
+    def get_styles(self):
+        return PluginMgr.textdoc_list[self.get_active()][4]
+
+    def get_ext(self):
+        return PluginMgr.textdoc_list[self.get_active()][5]
+
+    def get_printable(self):
+        return PluginMgr.textdoc_list[self.get_active()][6]
+
+    def get_clname(self):
+        return PluginMgr.textdoc_list[self.get_active()][7]
+
+class GrampsDrawFormatComboBox(gtk.ComboBox):
+
+    def set(self,tables,callback,obj=None,active=None):
+        self.store = gtk.ListStore(str)
+        self.set_model(self.store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell,True)
+        self.add_attribute(cell,'text',0)
+
+        out_pref = Config.get_output_preference()
+        index = 0
+        PluginMgr.drawdoc_list.sort()
+        active_index = 0
+        for item in PluginMgr.drawdoc_list:
+            if tables and item[2] == 0:
+                continue
+            name = item[0]
+            self.store.append(row=[name])
+            #if callback:
+            #    menuitem.connect("activate",callback)
+            if item[6] == active:
+                active_index = index
+            elif not active and name == out_pref:
+                active_index = index
+            index = index + 1
+        self.set_active(active_index)
+
+    def get_reference(self):
+        return PluginMgr.drawdoc_list[self.get_active()][1]
+
+    def get_label(self):
+        return PluginMgr.drawdoc_list[self.get_active()][0]
+
+    def get_paper(self):
+        return PluginMgr.drawdoc_list[self.get_active()][2]
+
+    def get_styles(self):
+        return PluginMgr.drawdoc_list[self.get_active()][3]
+
+    def get_ext(self):
+        return PluginMgr.drawdoc_list[self.get_active()][4]
+
+    def get_printable(self):
+        return PluginMgr.drawdoc_list[self.get_active()][5]
+
+    def get_clname(self):
+        return PluginMgr.drawdoc_list[self.get_active()][6]
+
+class GrampsBookFormatComboBox(gtk.ComboBox):
+
+    def set(self,tables,callback,obj=None,active=None):
+        self.store = gtk.ListStore(str)
+        self.set_model(self.store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell,True)
+        self.add_attribute(cell,'text',0)
+
+        out_pref = Config.get_output_preference()
+        index = 0
+        PluginMgr.drawdoc_list.sort()
+        active_index = 0
+        self.data = []
+        for item in PluginMgr.bookdoc_list:
+            if tables and item[2] == 0:
+                continue
+            self.data.append(item)
+            name = item[0]
+            self.store.append(row=[name])
+            if item[7] == active:
+                active_index = index
+            elif not active and name == out_pref:
+                active_index = index
+            index += 1
+        self.set_active(active_index)
+
+    def get_reference(self):
+        return self.data[self.get_active()][1]
+
+    def get_label(self):
+        return self.data[self.get_active()][0]
+
+    def get_paper(self):
+        return self.data[self.get_active()][3]
+
+    def get_ext(self):
+        return self.data[self.get_active()][5]
+
+    def get_printable(self):
+        return self.data[self.get_active()][6]
+
+    def get_clname(self):
+        return self.data[self.get_active()][7]
+

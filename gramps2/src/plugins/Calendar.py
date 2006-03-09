@@ -38,11 +38,10 @@ import locale
 #
 #------------------------------------------------------------------------
 import BaseDoc
-import Report
+from PluginUtils import Report, ReportOptions, ReportUtils
+pt2cm = ReportUtils.pt2cm
 import GenericFilter
-from ReportUtils import pt2cm
 from DateHandler import DateDisplay
-import ReportOptions
 import RelLib
 
 # _days could be added to DateDisplay:
