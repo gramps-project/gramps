@@ -1,3 +1,8 @@
+2006-03-09  Don Allingham  <don@gramps-project.org>
+	* src/const.py.in: add use_tips variable
+	* src/PeopleModel.py: use_tips to control tool tips
+	* src/DataModels.py: use_tips to control tool tips
+
 2006-03-08  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_FamilyView.py: fix spacing
 	* src/Editors/_EditPrimary.py: make sure object is valid before

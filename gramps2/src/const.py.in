@@ -126,6 +126,7 @@ fdl            = os.path.join(data_dir,"fdl.txt")
 
 startup        = 1
 dnd_images     = 1
+use_tips       = False
 
 #-------------------------------------------------------------------------
 #
