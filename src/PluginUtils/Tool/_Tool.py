@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2005  Donald N. Allingham
+# Copyright (C) 2005-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ import const
 import Utils
 import GenericFilter
 import NameDisplay
-import Options
+from _Options import *
 
 #-------------------------------------------------------------------------
 #
@@ -240,16 +240,16 @@ def cli_tool(database,name,category,tool_class,options_class,options_str_dict):
 # Class handling options for plugins 
 #
 #-------------------------------------------------------------------------
-class OptionHandler(Options.OptionHandler):
+class OptionHandler(OptionHandler):
     """
     Implements handling of the options for the plugins.
     """
     def __init__(self,module_name,options_dict,person_id=None):
-        Options.OptionHandler.__init__(self,module_name,options_dict,person_id)
+        OptionHandler.__init__(self,module_name,options_dict,person_id)
 
     def init_subclass(self):
-        self.collection_class = Options.OptionListCollection
-        self.list_class = Options.OptionList
+        self.collection_class = OptionListCollection
+        self.list_class = OptionList
         self.filename = const.tool_options
 
 #------------------------------------------------------------------------
@@ -257,7 +257,7 @@ class OptionHandler(Options.OptionHandler):
 # Tool Options class
 #
 #------------------------------------------------------------------------
-class ToolOptions(Options.Options):
+class ToolOptions(Options):
 
     """
     Defines options and provides handling interface.
