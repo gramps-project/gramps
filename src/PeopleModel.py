@@ -476,7 +476,10 @@ class PeopleModel(gtk.GenericTreeModel):
         return None
 
     def column_tooltip(self,data,node):
-        return ToolTips.TipFromFunction(self.db, lambda: self.db.get_person_from_handle(data[0]))
+        if const.use_tips:
+            return ToolTips.TipFromFunction(self.db, lambda: self.db.get_person_from_handle(data[0]))
+        else:
+            return u''
         
 
     def column_int_id(self,data,node):

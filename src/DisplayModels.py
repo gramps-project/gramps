@@ -50,6 +50,7 @@ import RelLib
 import Utils
 import ToolTips
 import GrampsLocale
+import const
 
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
@@ -266,11 +267,15 @@ class SourceModel(BaseModel):
         return time.localtime(data[8])
 
     def column_tooltip(self,data):
-        try:
-            t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_source_from_handle(data[0]))
-        except:
-            log.error("Failed to create tooltip.",exc_info=True)
-        return t
+        if const.use_tips:
+            try:
+                t = ToolTips.TipFromFunction(self.db, lambda:
+                                             self.db.get_source_from_handle(data[0]))
+            except:
+                log.error("Failed to create tooltip.",exc_info=True)
+                return t
+        else:
+            return u''
         
 #-------------------------------------------------------------------------
 #
@@ -375,11 +380,15 @@ class PlaceModel(BaseModel):
                             _codeset)
 
     def column_tooltip(self,data):
-        try:
-            t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_place_from_handle(data[0]))
-        except:
-            log.error("Failed to create tooltip.", exc_info=True)
-        return t
+        if const.use_tips:
+            try:
+                t = ToolTips.TipFromFunction(self.db, lambda:
+                                             self.db.get_place_from_handle(data[0]))
+            except:
+                log.error("Failed to create tooltip.", exc_info=True)
+            return t
+        else:
+            return u''
 
 #-------------------------------------------------------------------------
 #
@@ -464,11 +473,15 @@ class FamilyModel(BaseModel):
                             _codeset)
 
     def column_tooltip(self,data):
-        try:
-            t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_family_from_handle(data[0]))
-        except:
-            log.error("Failed to create tooltip.", exc_info=True)
-        return t
+        if const.use_tips:
+            try:
+                t = ToolTips.TipFromFunction(self.db, lambda:
+                                             self.db.get_family_from_handle(data[0]))
+            except:
+                log.error("Failed to create tooltip.", exc_info=True)
+            return t
+        else:
+            return u''
 
 
 #-------------------------------------------------------------------------
@@ -543,11 +556,15 @@ class MediaModel(BaseModel):
                             _codeset)
 
     def column_tooltip(self,data):
-        try:
-            t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_object_from_handle(data[0]))
-        except:
-            log.error("Failed to create tooltip.", exc_info=True)
-        return t
+        if self.use_tips:
+            try:
+                t = ToolTips.TipFromFunction(self.db, lambda:
+                                             self.db.get_object_from_handle(data[0]))
+            except:
+                log.error("Failed to create tooltip.", exc_info=True)
+            return t
+        else:
+            return u''
 
 #-------------------------------------------------------------------------
 #
