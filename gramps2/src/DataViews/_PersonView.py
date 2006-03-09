@@ -525,22 +525,21 @@ class PersonView(PageView.PersonNavView):
 
     def person_removed(self,handle_list):
         self.model.clear_cache()
-        self.build_tree()
-#         for node in handle_list:
-#             person = self.dbstate.db.get_person_from_handle(node)
-#             top = person.get_primary_name().get_group_name()
-#             mylist = self.model.sname_sub.get(top,[])
-#             self.model.calculate_data()
-#             if mylist:
-#                 try:
-#                     path = self.model.on_get_path(node)
-#                     self.model.row_deleted(path)
-#                     if len(mylist) == 1:
-#                         path = self.model.on_get_path(top)
-#                         self.model.row_deleted(path)
-#                 except KeyError:
-#                     pass
-#             self.model.assign_data()
+        for node in handle_list:
+            person = self.dbstate.db.get_person_from_handle(node)
+            top = person.get_primary_name().get_group_name()
+            mylist = self.model.sname_sub.get(top,[])
+            self.model.calculate_data(skip=set(handle_list))
+            if mylist:
+                try:
+                    path = self.model.on_get_path(node)
+                    self.model.row_deleted(path)
+                    if len(mylist) == 1:
+                        path = self.model.on_get_path(top)
+                        self.model.row_deleted(path)
+                except KeyError:
+                    pass
+            self.model.assign_data()
             
     def person_updated(self,handle_list):
         self.model.clear_cache()

@@ -28,10 +28,10 @@ import NameDisplay
 import Utils
 import DateHandler
 import ImgManip
-import ReportUtils
 import Config
 import GrampsWidgets
 import Errors
+from PluginUtils import ReportUtils
 
 _GenderCode = {
     RelLib.Person.MALE    : u'\u2642',
@@ -105,28 +105,34 @@ class FamilyView(PageView.PersonNavView):
 
     def person_update(self,handle_list):
         if self.dbstate.active:
-            self.change_person(self.dbstate.active.handle)
+            while not self.change_person(self.dbstate.active.handle):
+                pass
 
     def person_rebuild(self):
         if self.dbstate.active:
-            self.change_person(self.dbstate.active.handle)
+            while not self.change_person(self.dbstate.active.handle):
+                pass
 
     def family_update(self,handle_list):
         if self.dbstate.active:
-            self.change_person(self.dbstate.active.handle)
+            while not self.change_person(self.dbstate.active.handle):
+                pass
 
     def family_add(self,handle_list):
         if self.dbstate.active:
-            self.change_person(self.dbstate.active.handle)
+            while not self.change_person(self.dbstate.active.handle):
+                pass
 
     def family_delete(self,handle_list):
         if self.dbstate.active:
-            self.change_person(self.dbstate.active.handle)
+            while not self.change_person(self.dbstate.active.handle):
+                pass
 
     def family_rebuild(self):
         if self.dbstate.active:
-            self.change_person(self.dbstate.active.handle)
-
+            while not self.change_person(self.dbstate.active.handle):
+                pass
+            
     def get_stock(self):
         """
         Returns the name of the stock icon to use for the display.
@@ -231,7 +237,8 @@ class FamilyView(PageView.PersonNavView):
         
     def change_person(self,obj):
         if self.redrawing:
-            return
+            return False
+        print "DRAW"
         self.redrawing = True
 
         old_child = self.child
@@ -244,6 +251,7 @@ class FamilyView(PageView.PersonNavView):
 
         self.row = 5
         family_handle_list = person.get_parent_family_handle_list()
+        print family_handle_list
         if family_handle_list:
             for (family_handle,mrel,frel) in family_handle_list:
                 if family_handle:
@@ -301,6 +309,7 @@ class FamilyView(PageView.PersonNavView):
 
         self.vbox.pack_start(self.child,False)
         self.redrawing = False
+        return True
 
     def write_title(self,person):
 
@@ -429,6 +438,8 @@ class FamilyView(PageView.PersonNavView):
 
     def write_parents(self,family_handle):
         family = self.dbstate.db.get_family_from_handle(family_handle)
+        if not family:
+            return
         self.write_label("%s:" % _('Parents'),family,True),
         self.write_person(_('Father'),family.get_father_handle())
         if self.show_details:

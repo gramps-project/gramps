@@ -127,11 +127,11 @@ class PeopleModel(gtk.GenericTreeModel):
         self.prev_data = None
         self.rebuild_data(data_filter)
 
-    def rebuild_data(self,data_filter=None,skip=None):
-        self.calculate_data(data_filter)
+    def rebuild_data(self,data_filter=None,skip=[]):
+        self.calculate_data(data_filter,skip)
         self.assign_data()
         
-    def calculate_data(self,data_filter=None):
+    def calculate_data(self,data_filter=None,skip=[]):
         if data_filter:
             self.data_filter = data_filter
         self.temp_top_path2iter = []
@@ -159,7 +159,7 @@ class PeopleModel(gtk.GenericTreeModel):
         ngn = NameDisplay.displayer.name_grouping_name
         nsn = NameDisplay.displayer.sorted_name
 
-        flist = set(keys)
+        flist = set([key for key in keys if key not in skip])
         
         while node:
             n,d = node

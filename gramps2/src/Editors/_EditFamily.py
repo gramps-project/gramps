@@ -67,10 +67,10 @@ import NameDisplay
 import Spell
 import GrampsDisplay
 import RelLib
-import ReportUtils
 import AutoComp
 from _EditPrimary import EditPrimary
-
+from PluginUtils import ReportUtils
+ 
 from DdTargets import DdTargets
 from DisplayTabs import *
 from GrampsWidgets import *
@@ -415,9 +415,8 @@ class EditFamily(EditPrimary):
             for person_handle in self.obj.get_child_handle_list():
                 person = self.db.get_person_from_handle(person_handle)
                 event_ref = person.get_birth_ref()
-                event_handle = event_ref.ref
-                if event_handle:
-                    event = self.db.get_event_from_handle(event_handle)
+                if event_ref and event_ref.ref:
+                    event = self.db.get_event_from_handle(event_ref.ref)
                     child_birth_years.append(event.get_date_object().get_year())
                     
             if len(child_birth_years) > 0:
@@ -463,11 +462,9 @@ class EditFamily(EditPrimary):
             for person_handle in self.obj.get_child_handle_list():
                 person = self.db.get_person_from_handle(person_handle)
                 event_ref = person.get_birth_ref()
-                if event_ref:
-                    event_handle = event_ref.ref
-                    if event_handle:
-                        event = self.db.get_event_from_handle(event_handle)
-                        child_birth_years.append(event.get_date_object().get_year())
+                if event_ref and event_ref.ref:
+                    event = self.db.get_event_from_handle(event_ref.ref)
+                    child_birth_years.append(event.get_date_object().get_year())
                     
             if len(child_birth_years) > 0:
                 filter_spec.set_birth_year(min(child_birth_years))
@@ -570,7 +567,7 @@ class EditFamily(EditPrimary):
             for handle in self.obj.get_child_handle_list():
                 child = self.db.get_person_from_handle(handle)
                 # fix - relationships need to be extracted from the list
-                child.add_parent_family_handle(handle,
+                child.add_parent_family_handle(self.obj.handle,
                                                (RelLib.Person.CHILD_BIRTH,''),
                                                (RelLib.Person.CHILD_BIRTH,''),
                                                )
