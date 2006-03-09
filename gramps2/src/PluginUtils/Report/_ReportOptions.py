@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004-2005  Donald N. Allingham
+# Copyright (C) 2004-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,20 +51,20 @@ import const
 import Config
 import Utils
 import BaseDoc
-import Options
+from _Options import *
 
 #-------------------------------------------------------------------------
 #
 # List of options for a single report
 #
 #-------------------------------------------------------------------------
-class OptionList(Options.OptionList):
+class OptionList(OptionList):
     """
     Implements a set of options to parse and store for a given report.
     """
 
     def __init__(self):
-        Options.OptionList.__init__(self)
+        OptionList.__init__(self)
         self.style_name = None
         self.paper_name = None
         self.orientation = None
@@ -158,12 +158,12 @@ class OptionList(Options.OptionList):
 # Collection of option lists
 #
 #-------------------------------------------------------------------------
-class OptionListCollection(Options.OptionListCollection):
+class OptionListCollection(OptionListCollection):
     """
     Implements a collection of option lists.
     """
     def __init__(self,filename):
-        Options.OptionListCollection.__init__(self,filename)
+        OptionListCollection.__init__(self,filename)
 
     def init_common(self):
         # Default values for common options
@@ -285,7 +285,7 @@ class OptionListCollection(Options.OptionListCollection):
 # OptionParser
 #
 #-------------------------------------------------------------------------
-class OptionParser(Options.OptionParser):
+class OptionParser(OptionParser):
     """
     SAX parsing class for the OptionListCollection XML file.
     """
@@ -296,7 +296,7 @@ class OptionParser(Options.OptionParser):
 
         collection:   BookList to be loaded from the file.
         """
-        Options.OptionParser.__init__(self,collection)
+        OptionParser.__init__(self,collection)
         self.common = False
         self.list_class = OptionList
 
@@ -331,7 +331,7 @@ class OptionParser(Options.OptionParser):
                 self.option_list.set_orientation(int(attrs['value']))
         else:
             # Tag is not report-specific, so we let the base class handle it.
-            Options.OptionParser.startElement(self,tag,attrs)
+            OptionParser.startElement(self,tag,attrs)
 
     def endElement(self,tag):
         "Overridden class that handles the end of a XML element"
@@ -340,19 +340,19 @@ class OptionParser(Options.OptionParser):
             self.common = False
         else:
             # Tag is not report-specific, so we let the base class handle it.
-            Options.OptionParser.endElement(self,tag)
+            OptionParser.endElement(self,tag)
 
 #-------------------------------------------------------------------------
 #
 # Class handling options for plugins 
 #
 #-------------------------------------------------------------------------
-class OptionHandler(Options.OptionHandler):
+class OptionHandler(OptionHandler):
     """
     Implements handling of the options for the plugins.
     """
     def __init__(self,module_name,options_dict,person_id=None):
-        Options.OptionHandler.__init__(self,module_name,options_dict,person_id)
+        OptionHandler.__init__(self,module_name,options_dict,person_id)
 
     def init_subclass(self):
         self.collection_class = OptionListCollection
@@ -481,7 +481,7 @@ class OptionHandler(Options.OptionHandler):
 # Base Options class
 #
 #------------------------------------------------------------------------
-class ReportOptions(Options.Options):
+class ReportOptions(Options):
 
     """
     Defines options and provides handling interface.
