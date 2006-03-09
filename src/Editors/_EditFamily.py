@@ -231,7 +231,7 @@ class ChildEmbedList(EmbeddedList):
             from _EditPerson import EditPerson
             try:
                 person = self.dbstate.db.get_person_from_handle(handle)
-                EditPerson.EditPerson(self.dbstate,self.uistate,self.track,person)
+                EditPerson(self.dbstate,self.uistate,self.track,person)
             except Errors.WindowActiveError:
                 pass
 
@@ -483,7 +483,7 @@ class EditFamily(EditPrimary):
             from _EditPerson import EditPerson
             try:
                 person = self.db.get_person_from_handle(handle)
-                EditPerson.EditPerson(self.dbstate, self.uistate,
+                EditPerson(self.dbstate, self.uistate,
                                       self.track, person)
             except Errors.WindowActiveError:
                 pass
