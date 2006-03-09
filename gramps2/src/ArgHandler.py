@@ -47,8 +47,7 @@ import QuestionDialog
 import Config
 import RecentFiles
 import PluginMgr
-import Report
-import Tool
+from PluginUtils import Report, Tool
 
 #-------------------------------------------------------------------------
 #

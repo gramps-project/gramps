@@ -66,8 +66,7 @@ import TipOfDay
 import Bookmarks
 import RecentFiles
 import NameDisplay
-import Tool
-import Report
+from PluginUtils import Report, Tool
 import Mime
 import Config
 import GrampsWidgets
