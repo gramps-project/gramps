@@ -54,7 +54,7 @@ import NameDisplay
 import Utils
 import DateHandler
 import ImgManip
-import ReportUtils
+from PluginUtils import ReportUtils
 from Editors import EditPerson 
 
 #-------------------------------------------------------------------------
