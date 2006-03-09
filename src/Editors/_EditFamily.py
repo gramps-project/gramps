@@ -494,8 +494,11 @@ class EditFamily(EditPrimary):
 
         for i in box.get_children():
             box.remove(i)
-        
-        btn_obj.remove(btn_obj.get_children()[0])
+
+        try:
+            btn_obj.remove(btn_obj.get_children()[0])
+        except IndexError:
+            pass
         
         if is_used:
             db = self.db
@@ -536,7 +539,7 @@ class EditFamily(EditPrimary):
                 self.db.commit_person(person,trans)
             if new_handle:
                 person = self.db.get_person_from_handle(orig_handle)
-                if self.obj.handle not in self.obj.family_list:
+                if self.obj.handle not in person.family_list:
                     person.family_list.append(self.obj.handle)
                 self.db.commit_person(person,trans)
 
@@ -566,7 +569,7 @@ class EditFamily(EditPrimary):
             # for each child, add the family handle to the child
             for handle in self.obj.get_child_handle_list():
                 child = self.db.get_person_from_handle(handle)
-                # fix
+                # fix - relationships need to be extracted from the list
                 child.add_parent_family_handle(handle,
                                                (RelLib.Person.CHILD_BIRTH,''),
                                                (RelLib.Person.CHILD_BIRTH,''),
