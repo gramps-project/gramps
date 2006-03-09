@@ -57,8 +57,7 @@ import const
 import Utils
 import Config
 import Errors
-import Report
-import Tool
+from PluginUtils import Report, Tool
 import PluginMgr
 import GrampsDisplay
 import DisplayState

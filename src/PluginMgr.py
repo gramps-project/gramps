@@ -195,7 +195,7 @@ def register_tool(
     them as needed.
     """
 
-    import Tool
+    from PluginUtils import Tool
     (junk,gui_task) = divmod(modes,2**Tool.MODE_GUI)
     if gui_task:
         _register_gui_tool(tool_class,options_class,translated_name,
@@ -263,7 +263,7 @@ def register_report(
     The low-level functions (starting with '_') should not be used
     on their own. Instead, this function will call them as needed.
     """
-    import Report
+    from PluginUtils import Report
     (junk,standalone_task) = divmod(modes,2**Report.MODE_GUI)
     if standalone_task:
         _register_standalone(report_class,options_class,translated_name,
@@ -292,7 +292,7 @@ def _register_standalone(report_class, options_class, translated_name,
                          ):
     """Register a report with the plugin system"""
 
-    import Report
+    from PluginUtils import Report
     
     del_index = -1
     for i in range(0,len(report_list)):

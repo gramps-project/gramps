@@ -25,6 +25,15 @@
 A collection of utilities to aid in the generation of reports.
 """
 
+#-------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+import time
+import os
+from gettext import gettext as _
+
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -33,11 +42,7 @@ A collection of utilities to aid in the generation of reports.
 import DateHandler
 import RelLib
 from NameDisplay import displayer as _nd
-import DateHandler
 from QuestionDialog import WarningDialog
-import time
-import os
-from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #

@@ -42,7 +42,7 @@ import pango
 #
 #-------------------------------------------------------------------------
 import RelLib
-import ReportUtils
+from PluginUtils import ReportUtils
 import Utils
 import NameDisplay
 import const
