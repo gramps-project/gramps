@@ -228,7 +228,7 @@ class ChildEmbedList(EmbeddedList):
     def edit_button_clicked(self,obj):
         handle = self.get_selected()
         if handle:
-            import EditPerson
+            from _EditPerson import EditPerson
             try:
                 person = self.dbstate.db.get_person_from_handle(handle)
                 EditPerson.EditPerson(self.dbstate,self.uistate,self.track,person)
@@ -480,7 +480,7 @@ class EditFamily(EditPrimary):
 
     def edit_person(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
-            import EditPerson
+            from _EditPerson import EditPerson
             try:
                 person = self.db.get_person_from_handle(handle)
                 EditPerson.EditPerson(self.dbstate, self.uistate,
