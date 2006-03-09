@@ -54,9 +54,9 @@ import const
 import Utils
 import PluginMgr
 import BaseDoc
-import StyleEditor
+from _StyleEditor import StyleListDisplay
 import Config
-import PaperMenu
+import _PaperMenu
 import Errors
 import GenericFilter
 import NameDisplay
@@ -961,8 +961,8 @@ class BareReportDialog:
         style sheet editor object and let them play.  When they are
         done, the previous routine will be called to update the dialog
         menu for selecting a style."""
-        StyleEditor.StyleListDisplay(self.style_sheet_list,self.build_style_menu,
-                                     self.window)
+        StyleListDisplay(self.style_sheet_list,self.build_style_menu,
+                         self.window)
 
     def on_center_person_change_clicked(self,*obj):
         import SelectPerson
@@ -1275,10 +1275,10 @@ class ReportDialog(BareReportDialog):
         self.paper_table.set_row_spacings(6)
         self.paper_table.set_border_width(6)
             
-        self.papersize_menu = PaperMenu.GrampsPaperComboBox()
+        self.papersize_menu = _PaperMenu.GrampsPaperComboBox()
         self.papersize_menu.connect('changed',self.size_changed)
         
-        self.orientation_menu = PaperMenu.GrampsOrientationComboBox()
+        self.orientation_menu = _PaperMenu.GrampsOrientationComboBox()
         l = gtk.Label("%s:" % _("Size"))
         l.set_alignment(0.0,0.5)
         
@@ -1314,7 +1314,7 @@ class ReportDialog(BareReportDialog):
         l.set_alignment(0.0,0.5)
         self.paper_table.attach(l,5,6,1,2,gtk.SHRINK|gtk.FILL)
 
-        self.papersize_menu.set(PaperMenu.paper_sizes,
+        self.papersize_menu.set(_PaperMenu.paper_sizes,
                                 self.options.handler.get_paper_name())
         self.orientation_menu.set(self.options.handler.get_orientation())
 
@@ -1795,12 +1795,12 @@ class CommandLineReport:
         else:
             self.format = None
 
-        for paper in PaperMenu.paper_sizes:
+        for paper in _PaperMenu.paper_sizes:
             if paper.get_name() == self.options_dict['papers']:
                 self.paper = paper
         self.option_class.handler.set_paper(self.paper)
         self.options_help['papers'].append(
-            [ paper.get_name() for paper in PaperMenu.paper_sizes 
+            [ paper.get_name() for paper in _PaperMenu.paper_sizes 
                         if paper.get_name() != 'Custom Size' ] )
         self.options_help['papers'].append(False)
 
