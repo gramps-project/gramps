@@ -1,3 +1,6 @@
+2006-03-08  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamily.py: fix family selection
+
 2006-03-08  Alex Roitman  <shura@gramps-project.org>
 	* src/Editors/_EditFamily.py: Use tuple relations.
 	* src/GramspDb/_GrampsBSDDB.py: Minor fixes.
