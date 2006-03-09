@@ -42,9 +42,8 @@ import gtk
 #
 #------------------------------------------------------------------------
 import RelLib
-import Report
+from PluginUtils import Report, ReportOptions
 import BaseDoc
-import ReportOptions
 import const
 import DateHandler
 

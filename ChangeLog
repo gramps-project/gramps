@@ -1,3 +1,6 @@
+2006-03-09  Alex Roitman  <shura@gramps-project.org>
+	* PluginUtils: Add module with Report and Tool utils.
+
 2006-03-09  Don Allingham  <don@gramps-project.org>
 	* src/const.py.in: add use_tips variable
 	* src/PeopleModel.py: use_tips to control tool tips

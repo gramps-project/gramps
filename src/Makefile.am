@@ -14,6 +14,7 @@ SUBDIRS = \
 	TreeViews \
 	data \
 	DateHandler \
+	PluginUtils \
 	glade \
 	docgen \
 	images \
@@ -71,7 +72,6 @@ gdir_PYTHON = \
 	MergePeople.py\
 	NameDisplay.py\
 	Navigation.py\
-	Options.py\
 	PageView.py\
 	PaperMenu.py\
 	PeopleModel.py\
@@ -81,9 +81,6 @@ gdir_PYTHON = \
 	RecentFiles.py\
 	Relationship.py\
 	RelImage.py\
-	ReportOptions.py\
-	Report.py\
-	ReportUtils.py\
 	ScratchPad.py\
 	SelectEvent.py\
 	SelectObject.py\
@@ -96,7 +93,6 @@ gdir_PYTHON = \
 	StyleEditor.py\
 	SubstKeywords.py\
 	TipOfDay.py\
-	Tool.py\
 	ToolTips.py\
 	TransUtils.py\
 	TreeTips.py\

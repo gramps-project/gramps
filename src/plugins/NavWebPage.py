@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -69,11 +69,9 @@ import const
 from GrampsCfg import get_researcher
 import GenericFilter
 import Sort
-import Report
+from PluginUtils import Report, ReportOptions, ReportUtils
 import Errors
 import Utils
-import ReportOptions
-import ReportUtils
 import ImgManip
 import GrampsLocale
 from QuestionDialog import ErrorDialog, WarningDialog

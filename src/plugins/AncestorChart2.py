@@ -43,8 +43,8 @@ import gtk
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from PluginUtils import Report, ReportOptions, ReportUtils
 from SubstKeywords import SubstKeywords
+from PluginUtils import Report, ReportOptions, ReportUtils
 pt2cm = ReportUtils.pt2cm
 cm2pt = ReportUtils.cm2pt
 

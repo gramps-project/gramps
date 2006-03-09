@@ -44,12 +44,9 @@ import gtk
 #
 #------------------------------------------------------------------------
 import RelLib
-import Report
+from PluginUtils import Report, ReportOptions, ReportUtils
 import BaseDoc
-import ReportOptions
 import const
-import ReportUtils
-
 from QuestionDialog import ErrorDialog
 from DateHandler import displayer as _dd
 from NameDisplay import displayer as _nd
