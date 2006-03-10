@@ -30,7 +30,6 @@ Provides the interface to allow a person to add a media object to the database.
 #
 #-------------------------------------------------------------------------
 import os
-import gc
 
 #-------------------------------------------------------------------------
 #
@@ -109,7 +108,6 @@ class AddMediaObject:
         Callback function called with the save button is pressed.
         A new media object is created, and added to the database.
         """
-
         description = unicode(self.description.get_text())
 
         if self.internal.get_active():
@@ -136,13 +134,13 @@ class AddMediaObject:
                 description = os.path.basename(filename)
 
             mobj = RelLib.MediaObject()
+            mobj.set_handle(Utils.create_id())
             mobj.set_description(description)
             mobj.set_mime_type(mtype)
             name = filename
             mobj.set_path(name)
 
         trans = self.db.transaction_begin()
-        self.db.add_object(mobj,trans)
         self.object = mobj
         self.db.commit_media_object(mobj,trans)
         self.db.transaction_commit(trans,_("Add Media Object"))
@@ -178,12 +176,10 @@ class AddMediaObject:
             if val == gtk.RESPONSE_OK:
                 self.on_savephoto_clicked()
                 self.window.destroy()
-                gc.collect()
                 return self.object
             elif val == gtk.RESPONSE_HELP: 
                 self.on_help_imagesel_clicked(None)
             else:
                 self.window.destroy()
-                gc.collect()
                 return None
         return None
