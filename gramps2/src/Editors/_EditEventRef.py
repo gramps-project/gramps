@@ -196,6 +196,7 @@ class EditEventRef(EditReference):
         (need_new, handle) = self.place_field.get_place_info()
         if need_new:
             place_obj = RelLib.Place()
+            place_obj.set_handle(Utils.create_id())
             place_obj.set_title(handle)
             self.source.set_place_handle(place_obj.get_handle())
         else:
