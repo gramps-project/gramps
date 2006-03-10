@@ -65,8 +65,8 @@ class FamilyListView(PageView.ListView):
 
         signal_map = {
             'family-add'     : self.family_add,
-            'family-update'  : self.row_update,
-            'family-delete'  : self.row_delete,
+            'family-update'  : self.family_update,
+            'family-delete'  : self.family_delete,
             'family-rebuild' : self.build_tree,
             }
 
@@ -122,10 +122,18 @@ class FamilyListView(PageView.ListView):
             pass
 
     def family_add(self,handle_list):
-        while not self.redraw(handle_list):
+        while not self.family_add_loop(handle_list):
             pass
 
-    def redraw(self,handle_list):
+    def family_update(self,handle_list):
+        while not self.family_update_loop(handle_list):
+            pass
+
+    def family_delete(self,handle_list):
+        while not self.family_delete_loop(handle_list):
+            pass
+
+    def family_add_loop(self,handle_list):
         if self.updating:
             return False
         self.updating = True
@@ -133,8 +141,46 @@ class FamilyListView(PageView.ListView):
         self.updating = False
         return True
 
+    def family_update_loop(self,handle_list):
+        if self.updating:
+            return False
+        self.updating = True
+        self.row_update(handle_list)
+        self.updating = False
+        return True
+
+    def family_delete_loop(self,handle_list):
+        if self.updating:
+            return False
+        self.updating = True
+        self.row_delete(handle_list)
+        self.updating = False
+        return True
+
     def remove(self,obj):
-        return
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+
+        for handle in mlist:
+            family = self.dbstate.db.get_family_from_handle(handle)
+
+            trans = self.dbstate.db.transaction_begin()
+
+            for phandle in [ family.get_father_handle(),
+                             family.get_mother_handle()]:
+                if phandle:
+                    person = self.dbstate.db.get_person_from_handle(phandle)
+                    person.remove_family_handle(handle)
+                    self.dbstate.db.commit_person(person,trans)
+
+            for phandle in family.get_child_handle_list():
+                person = self.dbstate.db.get_person_from_handle(phandle)
+                person.remove_parent_family_handle(handle)
+                self.dbstate.db.commit_person(person,trans)
+
+            self.dbstate.db.remove_family(handle,trans)
+            self.dbstate.db.transaction_commit(trans,_("Remove Family"))
+        self.build_tree()
     
     def edit(self,obj):
         mlist = []
