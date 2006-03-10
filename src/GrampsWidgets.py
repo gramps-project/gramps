@@ -93,7 +93,13 @@ class WarnButton(gtk.EventBox):
     def __init__(self):
         gtk.EventBox.__init__(self)
         image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_INFO,gtk.ICON_SIZE_MENU)
+
+        # Some versions of FreeBSD don't seem to have STOCK_INFO
+        try:
+            image.set_from_stock(gtk.STOCK_INFO,gtk.ICON_SIZE_MENU)
+        except:
+            image.set_from_stock(gtk.STOCK_DIALOG_INFO,gtk.ICON_SIZE_MENU)
+            
         image.show()
         self.add(image)
         self.show()

@@ -20,6 +20,7 @@
 
 import mimetypes
 import const
+import gtk
 from gettext import gettext as _
 
 _type_map = {
