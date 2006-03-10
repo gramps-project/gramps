@@ -238,7 +238,6 @@ class FamilyView(PageView.PersonNavView):
     def change_person(self,obj):
         if self.redrawing:
             return False
-        print "DRAW"
         self.redrawing = True
 
         old_child = self.child
@@ -251,7 +250,6 @@ class FamilyView(PageView.PersonNavView):
 
         self.row = 5
         family_handle_list = person.get_parent_family_handle_list()
-        print family_handle_list
         if family_handle_list:
             for (family_handle,mrel,frel) in family_handle_list:
                 if family_handle:
