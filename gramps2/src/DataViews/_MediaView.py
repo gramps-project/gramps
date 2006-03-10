@@ -105,11 +105,6 @@ class MediaView(PageView.ListView):
         self.image = gtk.Image()
         self.image.set_size_request(int(const.thumbScale),
                                     int(const.thumbScale))
-#         label = gtk.Label('<b>%s</b>' % _('Preview'))
-#         label.set_use_markup(True)
-#         frame = gtk.Frame()
-#         frame.set_label_widget(label)
-#         frame.add(self.image)
         vbox.pack_start(self.image,False)
         vbox.pack_start(base,True)
 
@@ -153,8 +148,7 @@ class MediaView(PageView.ListView):
     def on_double_click(self,obj,event):
         handle = self.first_selected()
         if handle:
-            place = self.dbstate.db.get_place_from_handle(handle)
-        #EditPlace.EditPlace(place,self.dbstate, self.uistate)
+            media_obj = self.dbstate.db.get_object_from_handle(handle)
 
     def add(self,obj):
         """Add a new media object to the media list"""
