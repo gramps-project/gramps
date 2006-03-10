@@ -110,9 +110,6 @@ class FamilyListView(PageView.ListView):
           </popup>
         </ui>'''
 
-    def on_double_click(self,obj,event):
-        return
-
     def add(self,obj):
         from Editors import EditFamily
         family = RelLib.Family()
