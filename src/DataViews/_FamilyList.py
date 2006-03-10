@@ -74,6 +74,7 @@ class FamilyListView(PageView.ListView):
                                    column_names,len(column_names),
                                    DisplayModels.FamilyModel,
                                    signal_map)
+        self.updating = False
 
     def column_order(self):
         return self.dbstate.db.get_family_list_column_order()
@@ -121,7 +122,16 @@ class FamilyListView(PageView.ListView):
             pass
 
     def family_add(self,handle_list):
+        while not self.redraw(handle_list):
+            pass
+
+    def redraw(self,handle_list):
+        if self.updating:
+            return False
+        self.updating = True
         self.row_add(handle_list)
+        self.updating = False
+        return True
 
     def remove(self,obj):
         return
