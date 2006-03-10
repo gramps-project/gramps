@@ -64,7 +64,7 @@ class FamilyListView(PageView.ListView):
     def __init__(self,dbstate,uistate):
 
         signal_map = {
-            'family-add'     : self.row_add,
+            'family-add'     : self.family_add,
             'family-update'  : self.row_update,
             'family-delete'  : self.row_delete,
             'family-rebuild' : self.build_tree,
@@ -119,6 +119,9 @@ class FamilyListView(PageView.ListView):
             EditFamily(self.dbstate,self.uistate,[],family)
         except Errors.WindowActiveError:
             pass
+
+    def family_add(self,handle_list):
+        self.row_add(handle_list)
 
     def remove(self,obj):
         return
