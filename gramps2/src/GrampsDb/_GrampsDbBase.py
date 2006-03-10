@@ -2006,7 +2006,7 @@ class DbState(GrampsDBCallback):
     def _place_add(self,handle_list):
         for handle in handle_list:
             place = self.db.get_place_from_handle(handle)
-            self.places[place.get_title()] = handle
+            self.places[handle] = place.get_title()
 
     def _place_update(self,handle_list):
         for handle in handle_list:
