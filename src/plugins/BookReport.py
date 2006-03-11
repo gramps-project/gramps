@@ -66,10 +66,10 @@ from RelLib import Person
 
 import Utils
 import ListModel
-from PluginUtils import Report, ReportOptions, bkitems_list, register_report
+from PluginUtils import Plugins, Report, ReportOptions, \
+     bkitems_list, register_report
 import BaseDoc
 from QuestionDialog import WarningDialog
-import Plugins
 
 #------------------------------------------------------------------------
 #

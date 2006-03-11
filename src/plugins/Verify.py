@@ -47,7 +47,7 @@ import GrampsDisplay
 #------------------------------------------------------------------------
 import RelLib
 import Utils
-from PluginUtils import Tool, register_report
+from PluginUtils import Tool, register_tool
 
 #-------------------------------------------------------------------------
 #

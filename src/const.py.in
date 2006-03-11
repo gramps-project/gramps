@@ -115,7 +115,6 @@ rule_glade     = os.path.join(glade_dir,"rule.glade")
 
 
 pluginsDir     = os.path.join(root_dir,"plugins")
-datesDir       = os.path.join(root_dir,"DateHandler")
 docgenDir      = os.path.join(root_dir,"docgen")
 data_dir       = os.path.join(root_dir,"data")
 system_filters = os.path.join(data_dir,"system_filters.xml")
