@@ -40,7 +40,7 @@ import gtk
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from PluginUtils import Report, ReportOptions, ReportUtils
+from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 from SubstKeywords import SubstKeywords
 pt2cm = ReportUtils.pt2cm
 
@@ -312,7 +312,6 @@ class FanChartOptions(ReportOptions.ReportOptions):
 #
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
 register_report(
     name = 'fan_chart',
     category = Report.CATEGORY_DRAW,

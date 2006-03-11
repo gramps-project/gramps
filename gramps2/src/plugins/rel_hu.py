@@ -32,7 +32,7 @@
 
 import RelLib
 import Relationship
-from PluginMgr import register_relcalc
+from PluginUtils import register_relcalc
 import types
 from gettext import gettext as _
 

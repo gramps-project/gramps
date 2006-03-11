@@ -997,5 +997,5 @@ _description = _('The GRAMPS XML database is a format used by older '
 _config = None
 _filename = 'gramps'
 
-from PluginMgr import register_export
+from PluginUtils import register_export
 register_export(exportData,_title,_description,_config,_filename)

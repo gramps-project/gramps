@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import Utils
 import RelLib
-import Tool
+from PluginUtils import Tool, register_tool
 from QuestionDialog import WarningDialog
 
 _findint = re.compile('^[^\d]*(\d+)[^\d]*')
@@ -197,8 +197,6 @@ class ReorderIdsOptions(Tool.ToolOptions):
 #
 #
 #-------------------------------------------------------------------------
-from PluginMgr import register_tool
-
 register_tool(
     name = 'reorder_ids',
     category = Tool.TOOL_DBPROC,

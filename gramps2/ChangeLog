@@ -1,3 +1,7 @@
+2006-03-10  Alex Roitman  <shura@gramps-project.org>
+	* src/Plugins.py, src/PluginMgr.py: Move to ReportUtils.
+	* various: use ReportUtils instead of PluginMgr.
+
 2006-03-10  Don Allingham  <don@gramps-project.org>
 	* src/Mime/PythonMime.py: import gtk
 	* src/DataViews/_FamilyList.py: family_add explict function added,

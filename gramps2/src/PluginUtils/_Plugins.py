@@ -57,8 +57,9 @@ import const
 import Utils
 import Config
 import Errors
-from PluginUtils import Report, Tool
-import PluginMgr
+import _Report
+import _Tool
+import _PluginMgr
 import GrampsDisplay
 import DisplayState
 
@@ -158,10 +159,10 @@ class PluginDialog(DisplayState.ManagedWindow):
 
         (item_class,options_class,title,category,name) = self.item
         if self.content == REPORTS:
-            Report.report(self.state.db,self.state.active,
+            _Report.report(self.state.db,self.state.active,
                           item_class,options_class,title,name,category)
         else:
-            Tool.gui_tool(self.state.db,self.state.active,
+            _Tool.gui_tool(self.state.db,self.state.active,
                           item_class,options_class,title,name,category,
                           self.state.db.request_rebuild,self.parent)
 
@@ -266,8 +267,8 @@ class ReportPlugins(PluginDialog):
             dbstate,
             uistate,
             track,
-            PluginMgr.report_list,
-            Report.standalone_categories,
+            _PluginMgr.report_list,
+            _Report.standalone_categories,
             _("Report Selection"),
             _("Select a report from those available on the left."),
             _("_Generate"), _("Generate selected report"),
@@ -292,8 +293,8 @@ class ToolPlugins(PluginDialog):
             dbstate,
             uistate,
             track,
-            PluginMgr.tool_list,
-            Tool.tool_categories,
+            _PluginMgr.tool_list,
+            _Tool.tool_categories,
             _("Tool Selection"),
             _("Select a tool from those available on the left."),
             _("_Run"),
@@ -335,16 +336,16 @@ class PluginStatus(DisplayState.ManagedWindow):
 
         info = cStringIO.StringIO()
 
-        if len(PluginMgr.expect_list) + len(PluginMgr.failmsg_list) == 0:
+        if len(_PluginMgr.expect_list) + len(_PluginMgr.failmsg_list) == 0:
             window.get_buffer().set_text(_('All modules were successfully loaded.'))
         else:
             info.write(_("The following modules could not be loaded:"))
             info.write("\n\n")
             
-            for (filename,msg) in PluginMgr.expect_list:
+            for (filename,msg) in _PluginMgr.expect_list:
                 info.write("%s: %s\n\n" % (filename,msg))
 
-            for (filename,msgs) in PluginMgr.failmsg_list:
+            for (filename,msgs) in _PluginMgr.failmsg_list:
                 error = str(msgs[0])
                 if error[0:11] == "exceptions.":
                     error = error[11:]
@@ -373,15 +374,15 @@ class PluginStatus(DisplayState.ManagedWindow):
 #
 #-------------------------------------------------------------------------
 def build_tools_menu(top_menu,callback):
-    build_plugin_menu(PluginMgr.tool_list,
-                      Tool.tool_categories,
-                      Tool.gui_tool,
+    build_plugin_menu(_PluginMgr.tool_list,
+                      _Tool.tool_categories,
+                      _Tool.gui_tool,
                       top_menu,callback)
     
 def build_report_menu(top_menu,callback):
-    build_plugin_menu(PluginMgr.report_list,
-                      Report.standalone_categories,
-                      Report.report,
+    build_plugin_menu(_PluginMgr.report_list,
+                      _Report.standalone_categories,
+                      _Report.report,
                       top_menu,callback)
 
 def build_plugin_menu(item_list,categories,func,top_menu,callback):
@@ -452,9 +453,9 @@ def by_menu_name(a,b):
 # Reload plugins
 #
 #-------------------------------------------------------------------------
-class Reload(Tool.Tool):
+class Reload(_Tool.Tool):
     def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
+        _Tool.Tool.__init__(self,db,person,options_class,name)
 
         """
         Treated as a callback, causes all plugins to get reloaded.
@@ -463,42 +464,42 @@ class Reload(Tool.Tool):
     
         pymod = re.compile(r"^(.*)\.py$")
 
-        oldfailmsg = PluginMgr.failmsg_list[:]
-        PluginMgr.failmsg_list = []
+        oldfailmsg = _PluginMgr.failmsg_list[:]
+        _PluginMgr.failmsg_list = []
 
         # attempt to reload all plugins that have succeeded in the past
-        for plugin in PluginMgr._success_list:
+        for plugin in _PluginMgr._success_list:
             filename = os.path.basename(plugin.__file__)
             filename = filename.replace('pyc','py')
             filename = filename.replace('pyo','py')
             try: 
                 reload(plugin)
             except:
-                PluginMgr.failmsg_list.append((filename,sys.exc_info()))
+                _PluginMgr.failmsg_list.append((filename,sys.exc_info()))
             
         # Remove previously good plugins that are now bad
         # from the registered lists
-        (PluginMgr.export_list,
-         PluginMgr.import_list,
-         PluginMgr.tool_list,
-         PluginMgr.cli_tool_list,
-         PluginMgr.report_list,
-         PluginMgr.bkitems_list,
-         PluginMgr.cl_list,
-         PluginMgr.textdoc_list,
-         PluginMgr.bookdoc_list,
-         PluginMgr.drawdoc_list) = PluginMgr.purge_failed(
-            PluginMgr.failmsg_list,
-            PluginMgr.export_list,
-            PluginMgr.import_list,
-            PluginMgr.tool_list,
-            PluginMgr.cli_tool_list,
-            PluginMgr.report_list,
-            PluginMgr.bkitems_list,
-            PluginMgr.cl_list,
-            PluginMgr.textdoc_list,
-            PluginMgr.bookdoc_list,
-            PluginMgr.drawdoc_list)
+        (_PluginMgr.export_list,
+         _PluginMgr.import_list,
+         _PluginMgr.tool_list,
+         _PluginMgr.cli_tool_list,
+         _PluginMgr.report_list,
+         _PluginMgr.bkitems_list,
+         _PluginMgr.cl_list,
+         _PluginMgr.textdoc_list,
+         _PluginMgr.bookdoc_list,
+         _PluginMgr.drawdoc_list) = _PluginMgr.purge_failed(
+            _PluginMgr.failmsg_list,
+            _PluginMgr.export_list,
+            _PluginMgr.import_list,
+            _PluginMgr.tool_list,
+            _PluginMgr.cli_tool_list,
+            _PluginMgr.report_list,
+            _PluginMgr.bkitems_list,
+            _PluginMgr.cl_list,
+            _PluginMgr.textdoc_list,
+            _PluginMgr.bookdoc_list,
+            _PluginMgr.drawdoc_list)
 
         # attempt to load the plugins that have failed in the past
         for (filename,message) in oldfailmsg:
@@ -506,7 +507,7 @@ class Reload(Tool.Tool):
             match = pymod.match(name[1])
             if not match:
                 continue
-            PluginMgr.attempt_list.append(filename)
+            _PluginMgr.attempt_list.append(filename)
             plugin = match.groups()[0]
             try: 
                 # For some strange reason second importing of a failed plugin
@@ -514,29 +515,29 @@ class Reload(Tool.Tool):
                 # Looks like a bug in Python.
                 a = __import__(plugin)
                 reload(a)
-                PluginMgr._success_list.append(a)
+                _PluginMgr._success_list.append(a)
             except:
-                PluginMgr.failmsg_list.append((filename,sys.exc_info()))
+                _PluginMgr.failmsg_list.append((filename,sys.exc_info()))
 
         # attempt to load any new files found
-        for directory in PluginMgr.loaddir_list:
+        for directory in _PluginMgr.loaddir_list:
             for filename in os.listdir(directory):
                 name = os.path.split(filename)
                 match = pymod.match(name[1])
                 if not match:
                     continue
-                if filename in PluginMgr.attempt_list:
+                if filename in _PluginMgr.attempt_list:
                     continue
-                PluginMgr.attempt_list.append(filename)
+                _PluginMgr.attempt_list.append(filename)
                 plugin = match.groups()[0]
                 try: 
                     a = __import__(plugin)
-                    if a not in PluginMgr._success_list:
-                        PluginMgr._success_list.append(a)
+                    if a not in _PluginMgr._success_list:
+                        _PluginMgr._success_list.append(a)
                 except:
-                    PluginMgr.failmsg_list.append((filename,sys.exc_info()))
+                    _PluginMgr.failmsg_list.append((filename,sys.exc_info()))
 
-        if Config.get_pop_plugin_status() and len(PluginMgr.failmsg_list):
+        if Config.get_pop_plugin_status() and len(_PluginMgr.failmsg_list):
             PluginStatus()
         else:
             global status_up
@@ -547,13 +548,13 @@ class Reload(Tool.Tool):
         # Re-generate tool and report menus
         parent.build_plugin_menus(rebuild=True)
 
-class ReloadOptions(Tool.ToolOptions):
+class ReloadOptions(_Tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+        _Tool.ToolOptions.__init__(self,name,person_id)
 
 #-------------------------------------------------------------------------
 #
@@ -562,12 +563,12 @@ class ReloadOptions(Tool.ToolOptions):
 #-------------------------------------------------------------------------
 
 if __debug__:
-    PluginMgr.register_tool(
+    _PluginMgr.register_tool(
         name = 'reload',
-        category = Tool.TOOL_DEBUG,
+        category = _Tool.TOOL_DEBUG,
         tool_class = Reload,
         options_class = ReloadOptions,
-        modes = Tool.MODE_GUI,
+        modes = _Tool.MODE_GUI,
         translated_name = _("Reload plugins"),
         description=_("Attempt to reload plugins. "
                       "Note: This tool itself is not reloaded!"),

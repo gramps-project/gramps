@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,21 +20,34 @@
 
 # $Id$
 
-import BaseDoc
-
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
 import time
 import cStringIO
 import gzip
 import os
+from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#------------------------------------------------------------------------
+import BaseDoc
 import Errors
 from TarFile import TarFile
-import PluginMgr
+from PluginUtils import register_text_doc
 import ImgManip
 import Mime
 
-from gettext import gettext as _
-
+#------------------------------------------------------------------------
+#
+#
+#
+#------------------------------------------------------------------------
 def points(val):
     inch = float(val)/2.54
     return (int(inch*72))
@@ -495,6 +508,6 @@ try:
         print_label=_("Open in %s") % prog[1]
     else:
         print_label=None
-    PluginMgr.register_text_doc(mtype, KwordDoc, 1, 1, 1, ".kwd", print_label)
+    register_text_doc(mtype, KwordDoc, 1, 1, 1, ".kwd", print_label)
 except:
-    PluginMgr.register_text_doc(_('KWord'), KwordDoc, 1, 1, 1, ".kwd", print_label)
+    register_text_doc(_('KWord'), KwordDoc, 1, 1, 1, ".kwd", print_label)

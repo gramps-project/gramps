@@ -44,10 +44,8 @@ import Config
 import GrampsCfg
 import const
 import Errors
-import PluginMgr
 import TipOfDay
 import DataViews
-
 from Mime import mime_type_is_defined
 from QuestionDialog import ErrorDialog
 

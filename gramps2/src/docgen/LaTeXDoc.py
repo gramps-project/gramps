@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # Modifications and feature additions:
 #               2002-2003  Donald A. Peterson
@@ -41,7 +41,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import BaseDoc
-import PluginMgr
+from PluginUtils import register_text_doc
 import ImgManip
 import Errors
 
@@ -501,7 +501,7 @@ class LaTeXDoc(BaseDoc.BaseDoc):
 # Register the document generator with the system
 #
 #------------------------------------------------------------------------
-PluginMgr.register_text_doc(
+register_text_doc(
     name=_("LaTeX"),
     classref=LaTeXDoc,
     table=1,

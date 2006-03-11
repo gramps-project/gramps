@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import BaseDoc
-import PluginMgr
+from PluginUtils import register_text_doc
 import Errors
 import Mime
 
@@ -391,7 +391,7 @@ try:
     else:
         print_label=None
 
-    PluginMgr.register_text_doc(mtype,AsciiDoc,1,1,1,".txt", print_label)
+    register_text_doc(mtype,AsciiDoc,1,1,1,".txt", print_label)
 except:
-    PluginMgr.register_text_doc(_("Plain Text"),AsciiDoc,1,1,1,".txt", None)
+    register_text_doc(_("Plain Text"),AsciiDoc,1,1,1,".txt", None)
 

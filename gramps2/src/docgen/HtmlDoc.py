@@ -35,7 +35,7 @@ from gettext import gettext as _
 # GRAMPS modules 
 #
 #------------------------------------------------------------------------
-import PluginMgr
+from PluginUtils import register_text_doc
 import ImgManip
 import tarfile
 import const
@@ -506,6 +506,6 @@ try:
         print_label=_("Open in %s") % prog[1]
     else:
         print_label=None
-    PluginMgr.register_text_doc(mtype,HtmlDoc,1,0,1,".html", print_label)
+    register_text_doc(mtype,HtmlDoc,1,0,1,".html", print_label)
 except:
-    PluginMgr.register_text_doc(_('HTML'),HtmlDoc,1,0,1,".html", None)
+    register_text_doc(_('HTML'),HtmlDoc,1,0,1,".html", None)

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,6 +31,8 @@ import time
 import locale
 from cStringIO import StringIO
 from math import pi, cos, sin, fabs
+from gettext import gettext as _
+from xml.sax.saxutils import escape
 
 #-------------------------------------------------------------------------
 #
@@ -40,21 +42,19 @@ from math import pi, cos, sin, fabs
 import Errors
 import BaseDoc
 import const
-import PluginMgr
+from PluginUtils import ReportUtils, \
+     register_text_doc, register_draw_doc, register_book_doc
+pt2cm = ReportUtils.pt2cm     
 import ImgManip
 import FontScale
 import Mime
 import Utils
-from ReportUtils import pt2cm
 
 #-------------------------------------------------------------------------
 #
-# internationalization
+# constants
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
-from xml.sax.saxutils import escape
-
 _apptype = 'application/vnd.sun.xml.writer'
 
 _esc_map = {
@@ -1003,10 +1003,12 @@ try:
     else:
         print_label = None
 
-    PluginMgr.register_text_doc(mtype,OpenOfficeDoc,1,1,1,".sxw",print_label)
-    PluginMgr.register_book_doc(mtype,OpenOfficeDoc,1,1,1,".sxw")
-    PluginMgr.register_draw_doc(mtype,OpenOfficeDoc,1,1,  ".sxw",print_label);
+    register_text_doc(mtype,OpenOfficeDoc,1,1,1,".sxw",print_label)
+    register_book_doc(mtype,OpenOfficeDoc,1,1,1,".sxw")
+    register_draw_doc(mtype,OpenOfficeDoc,1,1,  ".sxw",print_label);
 except:
-    PluginMgr.register_text_doc(_('OpenOffice.org Writer'), OpenOfficeDoc,1,1,1,".sxw", None)
-    PluginMgr.register_book_doc(_("OpenOffice.org Writer"), OpenOfficeDoc,1,1,1,".sxw")
-    PluginMgr.register_draw_doc(_("OpenOffice.org Writer"),   OpenOfficeDoc,1,1,".sxw",None);
+    register_text_doc(_('OpenOffice.org Writer'),
+                      OpenOfficeDoc,1,1,1,".sxw", None)
+    register_book_doc(_("OpenOffice.org Writer"), OpenOfficeDoc,1,1,1,".sxw")
+    register_draw_doc(_("OpenOffice.org Writer"),
+                      OpenOfficeDoc,1,1,".sxw",None);

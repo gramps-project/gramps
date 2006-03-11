@@ -37,7 +37,7 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Report, ReportOptions, ReportUtils
+from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 import BaseDoc
 import RelLib
 import DateHandler
@@ -560,7 +560,6 @@ class FtmDescendantOptions(ReportOptions.ReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
 register_report(
     name = 'ftm_descendant_report',
     category = Report.CATEGORY_TEXT,

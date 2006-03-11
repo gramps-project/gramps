@@ -47,7 +47,7 @@ import GrampsDisplay
 #
 #-------------------------------------------------------------------------
 import Utils
-import Tool
+from PluginUtils import Tool, register_tool
 from QuestionDialog import OkDialog
 
 #-------------------------------------------------------------------------
@@ -359,8 +359,6 @@ class PatchNamesOptions(Tool.ToolOptions):
 #
 #
 #-------------------------------------------------------------------------
-from PluginMgr import register_tool
-
 register_tool(
     name = 'patchnames',
     category = Tool.TOOL_DBPROC,

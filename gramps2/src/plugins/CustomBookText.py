@@ -41,7 +41,7 @@ import gtk
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Report, ReportOptions
+from PluginUtils import Report, ReportOptions, register_report
 import BaseDoc
 
 #------------------------------------------------------------------------
@@ -208,7 +208,6 @@ class CustomTextOptions(ReportOptions.ReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
 register_report(
     name = 'custom_text',
     category = Report.CATEGORY_TEXT,

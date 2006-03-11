@@ -35,7 +35,7 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Report, ReportUtils, ReportOptions
+from PluginUtils import Report, ReportUtils, ReportOptions, register_report
 import BaseDoc
 import Errors
 import NameDisplay
@@ -191,7 +191,6 @@ class AncestorOptions(ReportOptions.ReportOptions):
 # Register the plugin
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
 register_report(
     name = 'ancestor_report',
     category = Report.CATEGORY_TEXT,

@@ -52,7 +52,7 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Report, ReportOptions
+from PluginUtils import Report, ReportOptions, register_report
 import GenericFilter
 import RelLib
 import DateHandler
@@ -961,7 +961,6 @@ def get_description_graphics():
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
 register_report(
     name = 'rel_graph',
     category = Report.CATEGORY_CODE,

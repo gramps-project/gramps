@@ -50,7 +50,7 @@ import soundex
 import NameDisplay
 import ListModel
 import MergePeople
-import Tool
+from PluginUtils import Tool, register_tool
 
 #-------------------------------------------------------------------------
 #
@@ -676,8 +676,6 @@ class MergeOptions(Tool.ToolOptions):
 #
 #
 #-------------------------------------------------------------------------
-from PluginMgr import register_tool
-
 register_tool(
     name = 'dupfind',
     category = Tool.TOOL_DBPROC,

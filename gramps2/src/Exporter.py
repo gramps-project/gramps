@@ -52,7 +52,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import Utils
-import PluginMgr
+from PluginUtils import export_list
 import QuestionDialog
 import Config
 import GrampsDisplay
@@ -368,4 +368,4 @@ class Exporter:
                          native_description,
                          native_config,
                          native_ext)]
-        self.exports = self.exports + [item for item in PluginMgr.export_list]
+        self.exports = self.exports + [item for item in export_list]

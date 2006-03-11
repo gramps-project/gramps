@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,20 +26,24 @@ Provides a BaseDoc based interface to the AbiWord document format.
 
 #-------------------------------------------------------------------------
 #
-# Imported Modules
+# Python Modules
 #
 #-------------------------------------------------------------------------
 import base64
 import os
+from gettext import gettext as _
 
+#-------------------------------------------------------------------------
+#
+# Gramps Modules
+#
+#-------------------------------------------------------------------------
 import BaseDoc
 import Errors
-import PluginMgr
+from PluginUtils import register_text_doc
 import ImgManip
 import Mime
 import Utils
-
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -333,6 +337,6 @@ try:
         print_label=_("Open in %s") % prog[1]
     else:
         print_label=None
-    PluginMgr.register_text_doc(mtype,AbiWordDoc,1,1,1,".abw", print_label)
+    register_text_doc(mtype,AbiWordDoc,1,1,1,".abw", print_label)
 except:
-    PluginMgr.register_text_doc(_('AbiWord document'),AbiWordDoc,1,1,1,".abw", None)
+    register_text_doc(_('AbiWord document'),AbiWordDoc,1,1,1,".abw", None)

@@ -45,7 +45,7 @@ import const
 import BaseDoc
 import GenericFilter
 import DateHandler
-from PluginUtils import Report, ReportOptions, ReportUtils
+from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 
 #------------------------------------------------------------------------
 #
@@ -600,8 +600,6 @@ class IndivCompleteOptions(ReportOptions.ReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
-
 register_report(
     name = 'indiv_complete',
     category = Report.CATEGORY_TEXT,

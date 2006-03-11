@@ -45,7 +45,7 @@ import gtk.glade
 #------------------------------------------------------------------------
 import Utils
 import RelLib
-from PluginUtils import Report
+from PluginUtils import Report, register_report
 import DateHandler
 
 #------------------------------------------------------------------------
@@ -166,8 +166,6 @@ class SummaryReport:
 #
 #
 #-------------------------------------------------------------------------
-from PluginMgr import register_report
-
 register_report(
     name = 'summary',
     category = Report.CATEGORY_VIEW,

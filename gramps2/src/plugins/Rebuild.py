@@ -55,7 +55,7 @@ import gtk.glade
 import RelLib
 import Utils
 import const
-import Tool
+from PluginUtils import Tool, register_tool
 from QuestionDialog import OkDialog
 
 #-------------------------------------------------------------------------
@@ -111,8 +111,6 @@ class RebuildOptions(Tool.ToolOptions):
 #
 #
 #-------------------------------------------------------------------------
-from PluginMgr import register_tool
-
 register_tool(
     name = 'rebuild',
     category = Tool.TOOL_DBFIX,

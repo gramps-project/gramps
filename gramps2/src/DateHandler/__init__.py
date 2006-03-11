@@ -114,7 +114,7 @@ def register_datehandler(locales,parse_class,display_class):
 # Import localized date classes
 #
 #-------------------------------------------------------------------------
-from PluginMgr import load_plugins
+from PluginUtils import load_plugins
 from const import datesDir
 load_plugins(datesDir)
 

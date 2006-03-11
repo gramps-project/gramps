@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,16 +25,15 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-import string
 from math import pi, cos, sin, fabs
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import PluginMgr
-from gettext import gettext as _
+from PluginUtils import register_draw_doc
 import BaseDoc
 import Errors
 
@@ -200,7 +199,7 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         if text != "":
             font = p.get_font()
             font_size = font.get_size()
-            lines = string.split(text,'\n')
+            lines = text.split('\n')
             nlines = len(lines)
             mar = 10/28.35
             fs = (font_size/28.35) * 1.2
@@ -261,4 +260,4 @@ def units(val):
 # Register document generator
 #
 #-------------------------------------------------------------------------
-PluginMgr.register_draw_doc(_("SVG (Scalable Vector Graphics)"),SvgDrawDoc,1,1,".svg");
+register_draw_doc(_("SVG (Scalable Vector Graphics)"),SvgDrawDoc,1,1,".svg");

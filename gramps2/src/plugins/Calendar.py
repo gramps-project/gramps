@@ -38,7 +38,7 @@ import locale
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from PluginUtils import Report, ReportOptions, ReportUtils
+from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 pt2cm = ReportUtils.pt2cm
 import GenericFilter
 from DateHandler import DateDisplay
@@ -927,7 +927,6 @@ class Holidays:
 # Register this plugin
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
 register_report(
     name = 'calendar',
     category = Report.CATEGORY_DRAW,

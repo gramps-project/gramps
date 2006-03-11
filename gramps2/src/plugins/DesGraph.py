@@ -41,7 +41,7 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Report, ReportOptions, ReportUtils
+from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 pt2cm = ReportUtils.pt2cm
 import BaseDoc
 from SubstKeywords import SubstKeywords
@@ -399,7 +399,6 @@ class DescendantGraphOptions(ReportOptions.ReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
 register_report(
     name = 'descendant_graph',
     category = Report.CATEGORY_DRAW,

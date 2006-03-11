@@ -46,8 +46,7 @@ import Mime
 import QuestionDialog
 import Config
 import RecentFiles
-import PluginMgr
-from PluginUtils import Report, Tool
+from PluginUtils import Report, Tool, cl_list, cli_tool_list
 
 #-------------------------------------------------------------------------
 #
@@ -595,7 +594,7 @@ class ArgHandler:
                 print "Report name not given. Please use name=reportname"
                 os._exit(1)
 
-            for item in PluginMgr.cl_list:
+            for item in cl_list:
                 if name == item[0]:
                     category = item[1]
                     report_class = item[2]
@@ -611,7 +610,7 @@ class ArgHandler:
                     return
 
             print "Unknown report name. Available names are:"
-            for item in PluginMgr.cl_list:
+            for item in cl_list:
                 print "   %s" % item[0]
         elif action == "tool":
             try:
@@ -626,7 +625,7 @@ class ArgHandler:
                 print "Tool name not given. Please use name=toolname"
                 os._exit(1)
 
-            for item in PluginMgr.cli_tool_list:
+            for item in cli_tool_list:
                 if name == item[0]:
                     category = item[1]
                     tool_class = item[2]
@@ -636,7 +635,7 @@ class ArgHandler:
                     return
 
             print "Unknown tool name. Available names are:"
-            for item in PluginMgr.cli_tool_list:
+            for item in cli_tool_list:
                 print "   %s" % item[0]
         else:
             print "Unknown action: %s." % action

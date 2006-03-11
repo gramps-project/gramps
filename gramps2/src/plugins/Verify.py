@@ -47,7 +47,7 @@ import GrampsDisplay
 #------------------------------------------------------------------------
 import RelLib
 import Utils
-import Tool
+from PluginUtils import Tool, register_report
 
 #-------------------------------------------------------------------------
 #
@@ -705,8 +705,6 @@ class VerifyOptions(Tool.ToolOptions):
 #
 #
 #-------------------------------------------------------------------------
-from PluginMgr import register_tool
-
 register_tool(
     name = 'verify',
     category = Tool.TOOL_UTILS,

@@ -42,7 +42,7 @@ import gtk
 #
 #------------------------------------------------------------------------
 import RelLib
-from PluginUtils import Report, ReportOptions
+from PluginUtils import Report, ReportOptions, register_report
 import BaseDoc
 import const
 import DateHandler
@@ -737,7 +737,6 @@ class FamilyGroupOptions(ReportOptions.ReportOptions):
 #
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
 register_report(
     name = 'family_group',
     category = Report.CATEGORY_TEXT,

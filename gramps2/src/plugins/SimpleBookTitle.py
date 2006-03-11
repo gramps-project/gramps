@@ -41,7 +41,7 @@ import gtk
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Report, ReportOptions
+from PluginUtils import Report, ReportOptions, register_report
 import BaseDoc
 import SelectObject
 import AddMedia
@@ -290,7 +290,6 @@ class SimpleBookTitleOptions(ReportOptions.ReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
 register_report(
     name = 'simple_book_title',
     category = Report.CATEGORY_TEXT,

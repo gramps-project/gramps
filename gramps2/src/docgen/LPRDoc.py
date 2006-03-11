@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # Modifications and feature additions:
 #               2002  Donald A. Peterson
@@ -61,8 +61,9 @@ else:
 #
 #------------------------------------------------------------------------
 import BaseDoc
-import PluginMgr
-from ReportUtils import rgb_color
+from PluginUtils import ReportUtils, \
+     register_text_doc, register_draw_doc, register_book_doc
+rgb_color = ReportUtils.rgb_color
 
 #------------------------------------------------------------------------
 #
@@ -1245,7 +1246,7 @@ class LPRDoc(BaseDoc.BaseDoc):
 # Register the document generator with the system
 #
 #------------------------------------------------------------------------
-PluginMgr.register_text_doc(
+register_text_doc(
     name=_("Print..."),
     classref=LPRDoc,
     table=1,
@@ -1255,7 +1256,7 @@ PluginMgr.register_text_doc(
     print_report_label=None,
     clname='print')
     
-PluginMgr.register_book_doc(
+register_book_doc(
     _("Print..."),
     LPRDoc,
     1,
@@ -1264,7 +1265,7 @@ PluginMgr.register_book_doc(
     "",
     'print')
 
-PluginMgr.register_draw_doc(
+register_draw_doc(
     _("Print..."),
     LPRDoc,
     1,

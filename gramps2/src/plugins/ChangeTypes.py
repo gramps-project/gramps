@@ -47,7 +47,7 @@ import const
 import Utils
 from QuestionDialog import OkDialog
 import AutoComp
-import Tool
+from PluginUtils import Tool, register_tool
 
 #-------------------------------------------------------------------------
 #
@@ -209,7 +209,6 @@ class ChangeTypesOptions(Tool.ToolOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_tool
 register_tool(
     name = 'chtype',
     category = Tool.TOOL_DBPROC,

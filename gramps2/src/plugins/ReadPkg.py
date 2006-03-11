@@ -55,6 +55,7 @@ import gtk
 import const
 from GrampsDb import gramps_db_reader_factory
 from QuestionDialog import ErrorDialog
+from PluginUtils import register_import
 
 #-------------------------------------------------------------------------
 #
@@ -118,5 +119,4 @@ _filter.set_name(_('GRAMPS packages'))
 _filter.add_mime_type(_mime_type)
 _format_name = _('GRAMPS package')
 
-from PluginMgr import register_import
 register_import(impData,_filter,_mime_type,0,_format_name)

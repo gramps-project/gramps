@@ -20,7 +20,16 @@
 
 # $Id: Report.py 6044 2006-03-03 00:10:52Z rshura $
 
+from _PluginMgr import \
+     register_export, register_import, \
+     register_tool, register_report, \
+     register_relcalc, relationship_class, \
+     textdoc_list, drawdoc_list, bookdoc_list, \
+     bkitems_list, cl_list, cli_tool_list, \
+     load_plugins
+
 import _Report as Report
 import _ReportOptions as ReportOptions
 import _ReportUtils as ReportUtils
 import _Tool as Tool
+import _Plugins as Plugins

@@ -44,7 +44,7 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Report, ReportOptions, ReportUtils
+from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 pt2cm = ReportUtils.pt2cm
 import BaseDoc
 import GenericFilter
@@ -466,8 +466,6 @@ class TimeLineOptions(ReportOptions.ReportOptions):
 #
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
-
 register_report(
     name = 'timeline',
     category = Report.CATEGORY_DRAW,

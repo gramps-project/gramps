@@ -32,7 +32,7 @@ from random import randint
 from tempfile import NamedTemporaryFile
 from tempfile import mkstemp
 from gettext import gettext as _
-
+from PluginUtils import register_tool
 #
 # Interface to phpGedView
 #
@@ -425,8 +425,6 @@ else:
     #
     #
     #-------------------------------------------------------------------------
-    from PluginMgr import register_tool
-    
     def phpGedViewImporterCaller(database,active_person,callback,parent=None):
         phpGedViewImporter(database)
     

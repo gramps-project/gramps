@@ -47,7 +47,7 @@ import gtk.glade
 #
 #------------------------------------------------------------------------
 import Utils
-import Tool
+from PluginUtils import Tool, register_tool
 
 #-------------------------------------------------------------------------
 #
@@ -146,8 +146,6 @@ class EvalOptions(Tool.ToolOptions):
 #------------------------------------------------------------------------
 
 if __debug__:
-    from PluginMgr import register_tool
-
     register_tool(
         name = 'eval',
         category = Tool.TOOL_DEBUG,

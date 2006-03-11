@@ -75,8 +75,6 @@ gdir_PYTHON = \
 	PageView.py\
 	PaperMenu.py\
 	PeopleModel.py\
-	PluginMgr.py\
-	Plugins.py\
 	QuestionDialog.py\
 	RecentFiles.py\
 	Relationship.py\

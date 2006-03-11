@@ -45,7 +45,7 @@ import gtk
 import RelLib
 import const
 import BaseDoc
-from PluginUtils import Report, ReportOptions
+from PluginUtils import Report, ReportOptions, register_report
 import DateHandler
 
 #------------------------------------------------------------------------
@@ -378,8 +378,6 @@ class IndivSummaryOptions(ReportOptions.ReportOptions):
 # Register plugins
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
-
 register_report(
     name = 'individual_summary',
     category = Report.CATEGORY_TEXT,

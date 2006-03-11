@@ -37,9 +37,8 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from PluginUtils import Tool, Report
+from PluginUtils import Tool, Report, cl_list, cli_tool_list, register_tool
 import Utils
-import PluginMgr
 
 #-------------------------------------------------------------------------
 #
@@ -95,12 +94,12 @@ class CmdRef(Tool.Tool):
         f.write('    <title>Reports</title>\n')
 
         # Common report options
-        item = PluginMgr.cl_list[0]
+        item = cl_list[0]
         clr = Report.CommandLineReport(db,item[0],item[1],item[3],{},True)
         self.write_ref(f,clr,level+2,id_counter,True)
         id_counter = id_counter + 1
 
-        for item in PluginMgr.cl_list:
+        for item in cl_list:
             category = item[1]
             if category in (Report.CATEGORY_BOOK,
                             Report.CATEGORY_CODE,
@@ -116,12 +115,12 @@ class CmdRef(Tool.Tool):
         f.write('    <title>Tools</title>\n')
 
         # Common tool options
-        item = PluginMgr.cli_tool_list[0]
+        item = cli_tool_list[0]
         clr = Tool.CommandLineTool(db,item[0],item[1],item[3],{},True)
         self.write_ref(f,clr,level+2,id_counter,True)
         id_counter = id_counter + 1
 
-        for item in PluginMgr.cli_tool_list:
+        for item in cli_tool_list:
             self.write_ref(f,item,level+2,id_counter)
             id_counter = id_counter + 1
         f.write('  </%s>\n' % _tags[level+1] )
@@ -243,8 +242,6 @@ class CmdRefOptions(Tool.ToolOptions):
 #------------------------------------------------------------------------
 
 if __debug__:
-
-    from PluginMgr import register_tool
 
     register_tool(
         name = 'cmdref',

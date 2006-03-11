@@ -53,7 +53,7 @@ import gtk
 from RelLib import Person, Family
 # gender and report type names
 import BaseDoc
-from PluginUtils import Report, ReportOptions, ReportUtils
+from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 import GenericFilter
 import DateHandler
 from Utils import ProgressMeter
@@ -968,8 +968,6 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
 # Register report/options
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
-
 register_report(
     name = 'statistics_chart',
     category = Report.CATEGORY_DRAW,
