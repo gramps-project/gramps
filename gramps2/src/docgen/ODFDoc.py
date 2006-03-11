@@ -41,7 +41,7 @@ from math import pi, cos, sin, fabs
 import Errors
 import BaseDoc
 import const
-import PluginUtils import ReportUtils, \
+from PluginUtils import ReportUtils, \
      register_text_doc, register_draw_doc, register_book_doc
 pt2cm = ReportUtils.pt2cm
 import ImgManip

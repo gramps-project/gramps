@@ -27,7 +27,8 @@ from _PluginMgr import \
      textdoc_list, drawdoc_list, bookdoc_list, \
      bkitems_list, cl_list, cli_tool_list, \
      load_plugins, import_list, export_list,\
-     report_list, tool_list
+     report_list, tool_list, \
+     register_text_doc, register_draw_doc, register_book_doc
 
 import _Report as Report
 import _ReportOptions as ReportOptions
