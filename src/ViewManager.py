@@ -52,8 +52,6 @@ import gtk
 #-------------------------------------------------------------------------
 import DisplayState
 import const
-import PluginMgr
-import Plugins
 import Config
 import GrampsDb
 import GrampsCfg
@@ -66,7 +64,9 @@ import TipOfDay
 import Bookmarks
 import RecentFiles
 import NameDisplay
-from PluginUtils import Report, Tool
+from PluginUtils import Plugins, Report, Tool, \
+     relationship_class, load_plugins, \
+     import_list, tool_list, report_list
 import Mime
 import Config
 import GrampsWidgets
@@ -182,7 +182,7 @@ class ViewManager:
             
         self.statusbar = gtk.Statusbar()
 
-        self.RelClass = PluginMgr.relationship_class
+        self.RelClass = relationship_class
 
         vbox = gtk.VBox()
         self.window.add(vbox)
@@ -264,19 +264,19 @@ class ViewManager:
         self.change_page(None,None)
         self.actiongroup.set_visible(False)
         self.fileactions.set_sensitive(False)
-        self.load_plugins()
+        self.do_load_plugins()
         self.build_tools_menu()
         self.build_report_menu()
         self.fileactions.set_sensitive(True)
         self.uistate.widget.set_sensitive(True)
 
-    def load_plugins(self):
+    def do_load_plugins(self):
         self.uistate.status_text(_('Loading document formats...'))
-        error  = PluginMgr.load_plugins(const.docgenDir)
-        error |= PluginMgr.load_plugins(os.path.expanduser("~/.gramps/docgen"))
+        error  = load_plugins(const.docgenDir)
+        error |= load_plugins(os.path.expanduser("~/.gramps/docgen"))
         self.uistate.status_text(_('Loading plugins...'))
-        error |= PluginMgr.load_plugins(const.pluginsDir)
-        error |= PluginMgr.load_plugins(os.path.expanduser("~/.gramps/plugins"))
+        error |= load_plugins(const.pluginsDir)
+        error |= load_plugins(os.path.expanduser("~/.gramps/plugins"))
         if Config.get_pop_plugin_status() and error:
             Plugins.PluginStatus(self)
         self.uistate.push_message(_('Ready'))
@@ -546,7 +546,7 @@ class ViewManager:
         format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
 
         # Add more data type selections if opening existing db
-        for data in PluginMgr.import_list:
+        for data in import_list:
             mime_filter = data[1]
             mime_type = data[2]
             native_format = data[2]
@@ -597,7 +597,7 @@ class ViewManager:
             # The above native formats did not work, so we need to 
             # look up the importer for this format
             # and create an empty native database to import data in
-#             for (importData,mime_filter,mime_type,native_format,format_name) in PluginMgr.import_list:
+#             for (importData,mime_filter,mime_type,native_format,format_name) in import_list:
 #                 if filetype == mime_type or the_file == mime_type:
 #                     QuestionDialog.OkDialog(
 #                         _("Opening non-native format"), 
@@ -903,7 +903,7 @@ class ViewManager:
         format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
 
         # Add more data type selections if opening existing db
-        for data in PluginMgr.import_list:
+        for data in import_list:
             mime_filter = data[1]
             mime_type = data[2]
             native_format = data[3]
@@ -955,7 +955,7 @@ class ViewManager:
             (the_path,the_file) = os.path.split(filename)
             Config.save_last_import_dir(the_path)
             for (importData,mime_filter,mime_type,
-                 native_format,format_name) in PluginMgr.import_list:
+                 native_format,format_name) in import_list:
                 if filetype == mime_type or the_file == mime_type:
                     self._do_import(choose,importData,filename)
                     return True
@@ -982,7 +982,7 @@ class ViewManager:
     def build_tools_menu(self):
         self.toolactions = gtk.ActionGroup('ToolWindow')
         (ui,actions) = self.build_plugin_menu('ToolsMenu',
-                                              PluginMgr.tool_list,
+                                              tool_list,
                                               Tool.tool_categories,
                                               make_tool_callback)
         self.toolactions.add_actions(actions)
@@ -992,7 +992,7 @@ class ViewManager:
     def build_report_menu(self):
         self.reportactions = gtk.ActionGroup('ReportWindow')
         (ui,actions) = self.build_plugin_menu('ReportsMenu',
-                                              PluginMgr.report_list,
+                                              report_list,
                                               Report.standalone_categories,
                                               make_report_callback)
         self.reportactions.add_actions(actions)

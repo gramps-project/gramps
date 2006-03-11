@@ -195,14 +195,14 @@ def register_tool(
     them as needed.
     """
 
-    from PluginUtils import Tool
-    (junk,gui_task) = divmod(modes,2**Tool.MODE_GUI)
+    import _Tool
+    (junk,gui_task) = divmod(modes,2**_Tool.MODE_GUI)
     if gui_task:
         _register_gui_tool(tool_class,options_class,translated_name,
                            name,category,description,
                            status,author_name,author_email,unsupported)
 
-    (junk,cli_task) = divmod(modes-gui_task,2**Tool.MODE_CLI)
+    (junk,cli_task) = divmod(modes-gui_task,2**_Tool.MODE_CLI)
     if cli_task:
         _register_cli_tool(name,category,tool_class,options_class,
                            translated_name,unsupported)
@@ -263,21 +263,21 @@ def register_report(
     The low-level functions (starting with '_') should not be used
     on their own. Instead, this function will call them as needed.
     """
-    from PluginUtils import Report
-    (junk,standalone_task) = divmod(modes,2**Report.MODE_GUI)
+    import _Report
+    (junk,standalone_task) = divmod(modes,2**_Report.MODE_GUI)
     if standalone_task:
         _register_standalone(report_class,options_class,translated_name,
                         name,category,description,
                         status,author_name,author_email,unsupported)
 
-    (junk,book_item_task) = divmod(modes-standalone_task,2**Report.MODE_BKI)
+    (junk,book_item_task) = divmod(modes-standalone_task,2**_Report.MODE_BKI)
     if book_item_task:
-        book_item_category = Report.book_categories[category]
+        book_item_category = _Report.book_categories[category]
         register_book_item(translated_name,book_item_category,
                     report_class,options_class,name,unsupported)
 
     (junk,command_line_task) = divmod(modes-standalone_task-book_item_task,
-                                        2**Report.MODE_CLI)
+                                        2**_Report.MODE_CLI)
     if command_line_task:
         _register_cl_report(name,category,report_class,options_class,
                             translated_name,unsupported)

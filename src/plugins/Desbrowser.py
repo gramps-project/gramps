@@ -37,7 +37,7 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import Utils
 import NameDisplay
-import Tool
+from PluginUtils import Tool, register_tool
 
 #------------------------------------------------------------------------
 #
@@ -167,8 +167,6 @@ class DesBrowseOptions(Tool.ToolOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_tool
-
 register_tool(
     name = 'dbrowse',
     category = Tool.TOOL_ANAL,

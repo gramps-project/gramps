@@ -66,8 +66,7 @@ from RelLib import Person
 
 import Utils
 import ListModel
-import PluginMgr
-from PluginUtils import Report, ReportOptions
+from PluginUtils import Report, ReportOptions, bkitems_list, register_report
 import BaseDoc
 from QuestionDialog import WarningDialog
 import Plugins
@@ -118,7 +117,7 @@ class BookItem:
         """
 
         self.clear()
-        for item in PluginMgr.bkitems_list:
+        for item in bkitems_list:
             if item[4] == name:
                 self.translated_name = item[0]
                 if item[5]:
@@ -660,10 +659,10 @@ class BookReportSelector:
         The selections are read from the book item registry.
         """
 
-        if not PluginMgr.bkitems_list:
+        if not bkitems_list:
             return
 
-        for book_item in PluginMgr.bkitems_list:
+        for book_item in bkitems_list:
             if book_item[5]:
                 category = Plugins.UNSUPPORTED
             else:
@@ -1118,7 +1117,7 @@ def cl_report(database,name,category,options_str_dict):
 # 
 #
 #------------------------------------------------------------------------
-PluginMgr.register_report(
+register_report(
     name = 'book',
     category = Report.CATEGORY_BOOK,
     report_class = BookReportSelector,

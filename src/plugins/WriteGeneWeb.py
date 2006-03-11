@@ -57,6 +57,7 @@ import const
 import Utils
 import Errors
 from QuestionDialog import ErrorDialog
+from PluginUtils import register_export
 
 #-------------------------------------------------------------------------
 #
@@ -602,5 +603,4 @@ _description = _('GeneWeb is a web based genealogy program.')
 _config = (_('GeneWeb export options'),GeneWebWriterOptionBox)
 _filename = 'gw'
 
-from PluginMgr import register_export
 register_export(exportData,_title,_description,_config,_filename)

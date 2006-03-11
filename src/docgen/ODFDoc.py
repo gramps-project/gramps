@@ -41,11 +41,12 @@ from math import pi, cos, sin, fabs
 import Errors
 import BaseDoc
 import const
-import PluginMgr
+import PluginUtils import ReportUtils, \
+     register_text_doc, register_draw_doc, register_book_doc
+pt2cm = ReportUtils.pt2cm
 import ImgManip
 import FontScale
 import Mime
-from ReportUtils import pt2cm
 
 #-------------------------------------------------------------------------
 #
@@ -1141,13 +1142,10 @@ try:
     else:
         print_label = None
 
-    PluginMgr.register_text_doc(mtype,ODFDoc,1,1,1,".odt",print_label)
-    PluginMgr.register_book_doc(mtype,ODFDoc,1,1,1,".odt")
-    PluginMgr.register_draw_doc(mtype,ODFDoc,1,1,  ".odt",print_label);
+    register_text_doc(mtype,ODFDoc,1,1,1,".odt",print_label)
+    register_book_doc(mtype,ODFDoc,1,1,1,".odt")
+    register_draw_doc(mtype,ODFDoc,1,1,  ".odt",print_label);
 except:
-    PluginMgr.register_text_doc(_('Open Document Text'),
-                                ODFDoc,1,1,1,".odt", None)
-    PluginMgr.register_book_doc(_("Open Document Text"),
-                                ODFDoc,1,1,1,".odt")
-    PluginMgr.register_draw_doc(_("Open Document Text"),
-                                ODFDoc,1,1,".odt",None);
+    register_text_doc(_('Open Document Text'),ODFDoc,1,1,1,".odt", None)
+    register_book_doc(_("Open Document Text"),ODFDoc,1,1,1,".odt")
+    register_draw_doc(_("Open Document Text"),ODFDoc,1,1,".odt",None);

@@ -56,6 +56,7 @@ import Errors
 import RelLib
 import const
 from QuestionDialog import ErrorDialog
+from PluginUtils import register_import
 
 #-------------------------------------------------------------------------
 #
@@ -219,7 +220,6 @@ class VCardParser:
 #
 #
 #-------------------------------------------------------------------------
-from PluginMgr import register_import
 _mime_type = const.app_vcard
 for mime in _mime_type:
     _filter = gtk.FileFilter()

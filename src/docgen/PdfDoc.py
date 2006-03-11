@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import BaseDoc
-import PluginMgr
+from PluginUtils import register_text_doc, register_draw_doc, register_book_doc
 import Errors
 import ImgManip
 import Mime
@@ -643,14 +643,12 @@ try:
         print_label=_("Open in %s") % mprog[1]
     else:
         print_label=None
-    PluginMgr.register_text_doc(mtype, PdfDoc, 1, 1, 1, ".pdf", print_label)
-    PluginMgr.register_draw_doc(mtype, PdfDoc, 1, 1,    ".pdf", print_label)
-    PluginMgr.register_book_doc(mtype,classref=PdfDoc,
-                                table=1,paper=1,style=1,ext=".pdf")
+    register_text_doc(mtype, PdfDoc, 1, 1, 1, ".pdf", print_label)
+    register_draw_doc(mtype, PdfDoc, 1, 1,    ".pdf", print_label)
+    register_book_doc(mtype,classref=PdfDoc,
+                      table=1,paper=1,style=1,ext=".pdf")
 except:
-    PluginMgr.register_text_doc(_('PDF document'), PdfDoc,
-                                1, 1, 1,".pdf", None)
-    PluginMgr.register_draw_doc(_('PDF document'), PdfDoc,
-                                1, 1,   ".pdf", None)
-    PluginMgr.register_book_doc(name=_("PDF document"),classref=PdfDoc,
-                                table=1,paper=1,style=1,ext=".pdf")
+    register_text_doc(_('PDF document'), PdfDoc,1, 1, 1,".pdf", None)
+    register_draw_doc(_('PDF document'), PdfDoc,1, 1,   ".pdf", None)
+    register_book_doc(name=_("PDF document"),classref=PdfDoc,
+                      table=1,paper=1,style=1,ext=".pdf")

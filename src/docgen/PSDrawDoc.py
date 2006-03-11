@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,11 +33,10 @@ from gettext import gettext as _
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import PluginMgr
+from PluginUtils import  register_draw_doc, ReportUtils, Report
+pt2cm, rgb_color = ReportUtils.pt2cm, ReportUtils.rgb_color
 import Errors
 import BaseDoc
-from Report import run_print_dialog
-from ReportUtils import pt2cm, rgb_color
 from Utils import gformat
 
 def lrgb(grp):
@@ -137,7 +136,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('%%EOF\n')
         self.f.close()
         if self.print_req:
-            run_print_dialog (self.filename)
+            Report.run_print_dialog (self.filename)
         
     def write_text(self,text):
         pass
@@ -420,5 +419,5 @@ class PSDrawDoc(BaseDoc.BaseDoc):
                 self.f.write("(%s) show\n" % lines[i])
         self.f.write('grestore\n')
 
-PluginMgr.register_draw_doc(_("PostScript"),PSDrawDoc,1,1,".ps",
+register_draw_doc(_("PostScript"),PSDrawDoc,1,1,".ps",
                           _("Print a copy"));

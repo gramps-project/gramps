@@ -57,6 +57,7 @@ import gtk.glade
 from GrampsDb._WriteXML import XmlWriter
 import Utils
 from QuestionDialog import MissingMediaDialog
+from PluginUtils import register_export
 
 #-------------------------------------------------------------------------
 #
@@ -210,5 +211,4 @@ _description = _('GRAMPS package is an archived XML database together with the m
 _config = None
 _filename = 'gpkg'
 
-from PluginMgr import register_export
 register_export(writeData,_title,_description,_config,_filename)

@@ -69,7 +69,7 @@ import const
 from GrampsCfg import get_researcher
 import GenericFilter
 import Sort
-from PluginUtils import Report, ReportOptions, ReportUtils
+from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 import Errors
 import Utils
 import ImgManip
@@ -2871,7 +2871,6 @@ def sort_nameof(person, private):
 #
 #
 #-------------------------------------------------------------------------
-from PluginMgr import register_report
 register_report(
     name = 'navwebpage',
     category = Report.CATEGORY_WEB,

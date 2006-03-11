@@ -35,7 +35,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Report, ReportOptions, ReportUtils
+from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 import BaseDoc
 import Errors
 import Sort
@@ -246,7 +246,6 @@ class DescendantOptions(ReportOptions.ReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
 register_report(
     name = 'descend_report',
     category = Report.CATEGORY_TEXT,

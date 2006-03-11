@@ -39,7 +39,6 @@ from gettext import gettext as _
 import gobject
 import gtk
 import gtk.glade
-import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -48,7 +47,8 @@ import GrampsDisplay
 #-------------------------------------------------------------------------
 import Utils
 from QuestionDialog import OkDialog
-import Tool
+import GrampsDisplay
+from PluginUtils import Tool, register_tool
 
 #-------------------------------------------------------------------------
 #
@@ -204,8 +204,6 @@ class ChangeNamesOptions(Tool.ToolOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_tool
-
 register_tool(
     name = 'chname',
     category = Tool.TOOL_DBPROC,

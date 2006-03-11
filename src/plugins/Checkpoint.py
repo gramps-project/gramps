@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 from QuestionDialog import OkDialog, ErrorDialog
 import WriteXML
-import Tool
+from PluginUtils import Tool, register_tool
 import Utils
 import GrampsDisplay
 
@@ -418,8 +418,6 @@ class CheckpointOptions(Tool.ToolOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_tool
-
 register_tool(
     name = 'chkpoint',
     category = Tool.TOOL_REVCTL,

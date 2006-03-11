@@ -56,6 +56,7 @@ from RelLib import Date
 import Errors
 from gettext import gettext as _
 from QuestionDialog import ErrorDialog
+from PluginUtils import register_export
 
 #-------------------------------------------------------------------------
 #
@@ -242,5 +243,4 @@ _description = _('vCard is used in many addressbook and pim applications.')
 _config = (_('vCard export options'),CardWriterOptionBox)
 _filename = 'vcf'
 
-from PluginMgr import register_export
 register_export(exportData,_title,_description,_config,_filename)

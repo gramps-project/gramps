@@ -42,10 +42,10 @@ import gtk
 #
 #------------------------------------------------------------------------
 import const
-from PluginUtils import Report, ReportOptions, ReportUtils
+from PluginUtils import Report, ReportOptions, ReportUtils, \
+     register_report, relationship_class
 import BaseDoc
 import RelLib
-import PluginMgr
 from DateHandler import displayer as _dd
 from NameDisplay import displayer as _nd
 
@@ -84,7 +84,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         self.sources = []
         self.sourcerefs = []
-        self.RelClass = PluginMgr.relationship_class
+        self.RelClass = relationship_class
         self.relationship = self.RelClass(database)
 
     def define_table_styles(self):
@@ -957,7 +957,7 @@ class ComprehensiveAncestorsOptions(ReportOptions.ReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-PluginMgr.register_report(
+register_report(
     name = 'ancestors_report',
     category = Report.CATEGORY_TEXT,
     report_class = ComprehensiveAncestorsReport,

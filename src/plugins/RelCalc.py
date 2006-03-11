@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,10 +46,9 @@ import RelLib
 import Utils
 import NameDisplay
 import ListModel
-import PluginMgr
 import DateHandler
 import PeopleModel
-import Tool
+from PluginUtils import Tool, relationship_class, register_tool
 
 column_names = [
     _('Name'),
@@ -78,7 +77,7 @@ class RelCalc(Tool.Tool):
         """
 
         self.person = person
-        self.RelClass = PluginMgr.relationship_class
+        self.RelClass = relationship_class
         self.relationship = self.RelClass(self.db)
         self.parent = parent
         self.win_key = self
@@ -228,7 +227,7 @@ class RelCalcOptions(Tool.ToolOptions):
 #
 #
 #-------------------------------------------------------------------------
-PluginMgr.register_tool(
+register_tool(
     name = 'relcalc',
     category = Tool.TOOL_UTILS,
     tool_class = RelCalc,

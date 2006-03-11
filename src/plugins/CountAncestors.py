@@ -45,7 +45,7 @@ import gtk.glade
 #
 #------------------------------------------------------------------------
 import Utils
-from PluginUtils import Report
+from PluginUtils import Report, register_report
 
 #------------------------------------------------------------------------
 #
@@ -110,7 +110,6 @@ class CountAncestors:
 #
 #
 #-------------------------------------------------------------------------
-from PluginMgr import register_report
 register_report(
     name = 'count_ancestors',
     category = Report.CATEGORY_VIEW,

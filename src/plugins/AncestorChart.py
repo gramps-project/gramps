@@ -42,7 +42,7 @@ import gtk
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from PluginUtils import Report, ReportOptions, ReportUtils
+from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 from SubstKeywords import SubstKeywords
 pt2cm = ReportUtils.pt2cm
 
@@ -260,7 +260,6 @@ class AncestorChartOptions(ReportOptions.ReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
 register_report(
     name = 'ancestor_chart',
     category = Report.CATEGORY_DRAW,

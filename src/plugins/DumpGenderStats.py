@@ -24,7 +24,7 @@
 
 import gtk
 import ListModel
-import Tool
+from PluginUtils import Tool, register_tool
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
 #-------------------------------------------------------------------------
@@ -90,8 +90,6 @@ class DumpGenderStatsOptions(Tool.ToolOptions):
 #-------------------------------------------------------------------------
 
 if __debug__:
-    
-    from PluginMgr import register_tool
     
     register_tool(
         name = 'dgenstats',

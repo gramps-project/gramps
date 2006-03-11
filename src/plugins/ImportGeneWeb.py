@@ -57,6 +57,7 @@ import RelLib
 import const
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
+from PluginUtils import register_import
 from htmlentitydefs import name2codepoint
 
 _date_parse = re.compile('([~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F])?')
@@ -775,5 +776,4 @@ _filter.set_name(_('GeneWeb files'))
 _filter.add_mime_type(_mime_type)
 _format_name = _('GeneWeb')
 
-from PluginMgr import register_import
 register_import(importData,_filter,_mime_type,0,_format_name)

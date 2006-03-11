@@ -56,7 +56,7 @@ import gtk.glade
 import RelLib
 import Utils
 import const
-import Tool
+from PluginUtils import Tool, register_tool
 from QuestionDialog import OkDialog, MissingMediaDialog
 
 
@@ -938,8 +938,6 @@ class CheckOptions(Tool.ToolOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_tool
-
 register_tool(
     name = 'check',
     category = Tool.TOOL_DBFIX,

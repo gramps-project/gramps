@@ -34,6 +34,7 @@ import RelLib
 import Relationship
 import types
 from gettext import gettext as _
+from PluginUtils import register_relcalc
 
 #-------------------------------------------------------------------------
 #
@@ -267,8 +268,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 # Register this class with the Plugins system 
 #
 #-------------------------------------------------------------------------
-from PluginMgr import register_relcalc
-
 register_relcalc(RelationshipCalculator,
     ["nb","nn","no", "nb_NO","nn_NO","no_NO","nb_NO.UTF8","nn_NO.UTF8","no_NO.UTF8",
     "nb_NO.UTF-8","nn_NO.UTF-8","no_NO.UTF-8", 

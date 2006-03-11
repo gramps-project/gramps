@@ -38,7 +38,7 @@ import BaseDoc
 import RelLib
 import DateHandler
 import const
-from PluginUtils import Report, ReportOptions, ReportUtils
+from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 
 #------------------------------------------------------------------------
 #
@@ -411,8 +411,6 @@ class FtmAncestorOptions(ReportOptions.ReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
-
 register_report(
     name = 'ftm_ancestor_report',
     category = Report.CATEGORY_TEXT,

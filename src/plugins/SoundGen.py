@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@ import GrampsDisplay
 import soundex
 import Utils
 import AutoComp
-import Tool
+from PluginUtils import Tool, register_tool
 
 #-------------------------------------------------------------------------
 #
@@ -160,8 +160,6 @@ class SoundGenOptions(Tool.ToolOptions):
 #
 #
 #-------------------------------------------------------------------------
-from PluginMgr import register_tool
-
 register_tool(
     name = 'soundgen',
     category = Tool.TOOL_UTILS,

@@ -45,7 +45,7 @@ import gtk
 #------------------------------------------------------------------------
 import RelLib
 import Errors
-from PluginUtils import Report, ReportOptions, ReportUtils
+from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 import BaseDoc
 import const
 from DateHandler import displayer as _dd
@@ -874,7 +874,6 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
 #
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
 register_report(
     name = 'det_descendant_report',
     category = Report.CATEGORY_TEXT,

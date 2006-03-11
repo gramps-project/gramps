@@ -48,7 +48,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import Errors
 import RelLib
-import Tool
+from PluginUtils import Tool, register_tool
 import const
 import Utils
 from QuestionDialog import ErrorDialog
@@ -1415,8 +1415,6 @@ class TestcaseGeneratorOptions(Tool.ToolOptions):
 #-------------------------------------------------------------------------
 
 if __debug__:
-    from PluginMgr import register_tool
-    
     register_tool(
         name = 'testcasegenerator',
         category = Tool.TOOL_DEBUG,

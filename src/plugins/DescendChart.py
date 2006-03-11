@@ -43,7 +43,7 @@ import gtk
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from PluginUtils import Report, ReportOptions, ReportUtils
+from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 pt2cm = ReportUtils.pt2cm
 cm2pt = ReportUtils.cm2pt
 from SubstKeywords import SubstKeywords
@@ -463,7 +463,6 @@ class DescendChartOptions(ReportOptions.ReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_report
 register_report(
     name = 'descend_chart2',
     category = Report.CATEGORY_DRAW,
