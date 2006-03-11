@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004-2005  Donald N. Allingham
+# Copyright (C) 2004-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,9 +37,10 @@ import re
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Date
-from DateParser import DateParser
-from DateDisplay import DateDisplay
+from RelLib import Date
+from _DateParser import DateParser
+from _DateDisplay import DateDisplay
+from _DateHandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
@@ -145,5 +146,4 @@ class DateDisplayLT(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-from DateHandler import register_datehandler
 register_datehandler(('lt_LT','lt','lithuanian'),DateParserLT, DateDisplayLT)

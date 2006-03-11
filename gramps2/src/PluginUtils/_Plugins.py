@@ -318,7 +318,7 @@ class PluginStatus(DisplayState.ManagedWindow):
         self.state = state
         self.uistate = uistate
         
-        self.glade = gtk.glade.XML(const.pluginsFile,"plugstat","gramps")
+        self.glade = gtk.glade.XML(const.plugins_glade,"plugstat","gramps")
         self.window = self.glade.get_widget("plugstat")
         self.window.set_title("%s - GRAMPS" % _('Plugin status'))
         window = self.glade.get_widget("text")

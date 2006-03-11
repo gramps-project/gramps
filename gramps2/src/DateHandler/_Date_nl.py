@@ -44,8 +44,9 @@ import re
 #
 #-------------------------------------------------------------------------
 from RelLib import Date
-from DateParser import DateParser
-from DateDisplay import DateDisplay
+from _DateParser import DateParser
+from _DateDisplay import DateDisplay
+from _DateHandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
@@ -237,6 +238,5 @@ class DateDisplayNL(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-from DateHandler import register_datehandler
 register_datehandler(('nl_NL','dutch','nl_BE','nl'),
                      DateParserNL, DateDisplayNL)
