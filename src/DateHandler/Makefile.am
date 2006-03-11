@@ -16,6 +16,7 @@ pkgdata_PYTHON = \
 	_Date_nl.py\
 	_DateDisplay.py\
 	_DateParser.py\
+	_DateHandler.py\
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/DateHandler

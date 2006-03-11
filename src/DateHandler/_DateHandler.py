@@ -108,16 +108,6 @@ def register_datehandler(locales,parse_class,display_class):
         _lang_to_parser[lang_str] = parse_class
         _lang_to_display[lang_str] = display_class
     
-
-#-------------------------------------------------------------------------
-#
-# Import localized date classes
-#
-#-------------------------------------------------------------------------
-from PluginUtils import load_plugins
-from const import datesDir
-load_plugins(datesDir)
-
 #-------------------------------------------------------------------------
 #
 # Initialize global parser
