@@ -26,7 +26,8 @@ from _PluginMgr import \
      register_relcalc, relationship_class, \
      textdoc_list, drawdoc_list, bookdoc_list, \
      bkitems_list, cl_list, cli_tool_list, \
-     load_plugins
+     load_plugins, import_list, export_list,\
+     report_list, tool_list
 
 import _Report as Report
 import _ReportOptions as ReportOptions

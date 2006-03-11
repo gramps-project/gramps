@@ -50,6 +50,9 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from PluginUtils import Plugins, Report, Tool, \
+     relationship_class, load_plugins, \
+     import_list, tool_list, report_list
 import DisplayState
 import const
 import Config
@@ -64,9 +67,6 @@ import TipOfDay
 import Bookmarks
 import RecentFiles
 import NameDisplay
-from PluginUtils import Plugins, Report, Tool, \
-     relationship_class, load_plugins, \
-     import_list, tool_list, report_list
 import Mime
 import Config
 import GrampsWidgets
