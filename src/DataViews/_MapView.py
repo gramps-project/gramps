@@ -227,21 +227,24 @@ class ZoomMap( gtk.DrawingArea):
             px = min( px, self.map_pixbuf.get_width()-1-pw/2)
             py = min( py, self.map_pixbuf.get_height()-1-ph/2)
             
-            zoomebuf = self.map_pixbuf.subpixbuf( max(0,int(px-pw/2)),max(0,int(py-ph/2)),
-                                                    min(self.map_pixbuf.get_width(),pw),
-                                                    min(self.map_pixbuf.get_height(),ph))
-            self.backbuf = zoomebuf.scale_simple(self.old_size[0],
+            try:
+                zoomebuf = self.map_pixbuf.subpixbuf( max(0,int(px-pw/2)),max(0,int(py-ph/2)),
+                                                        min(self.map_pixbuf.get_width(),pw),
+                                                        min(self.map_pixbuf.get_height(),ph))
+                self.backbuf = zoomebuf.scale_simple(self.old_size[0],
                                                  self.old_size[1],
                                                  gtk.gdk.INTERP_BILINEAR)
-            gc.collect()
-            mx = 360.0 / self.map_pixbuf.get_width() * (px-pw/2.0) - 180.0
-            my = 90.0 - 180.0 / self.map_pixbuf.get_height() * (py-ph/2.0)
-            mw = 360.0 / self.map_pixbuf.get_width() * pw
-            mh = 180.0 / self.map_pixbuf.get_height() * ph
-            self.current_area = (px-pw/2, py-ph/2, pw,ph)
-            self.current_map_area = (mx, my, mw, mh)
-            if self.guide:
-                self.guide.hightlight_area( (mx,my,mw,mh))
+                gc.collect()
+                mx = 360.0 / self.map_pixbuf.get_width() * (px-pw/2.0) - 180.0
+                my = 90.0 - 180.0 / self.map_pixbuf.get_height() * (py-ph/2.0)
+                mw = 360.0 / self.map_pixbuf.get_width() * pw
+                mh = 180.0 / self.map_pixbuf.get_height() * ph
+                self.current_area = (px-pw/2, py-ph/2, pw,ph)
+                self.current_map_area = (mx, my, mw, mh)
+                if self.guide:
+                    self.guide.hightlight_area( (mx,my,mw,mh))
+            except:
+                pass
 
     # Scroll to requested position
     def scroll_to( self, long, lat):
