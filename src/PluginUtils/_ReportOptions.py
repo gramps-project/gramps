@@ -51,20 +51,20 @@ import const
 import Config
 import Utils
 import BaseDoc
-from _Options import *
+import _Options
 
 #-------------------------------------------------------------------------
 #
 # List of options for a single report
 #
 #-------------------------------------------------------------------------
-class OptionList(OptionList):
+class OptionList(_Options.OptionList):
     """
     Implements a set of options to parse and store for a given report.
     """
 
     def __init__(self):
-        OptionList.__init__(self)
+        _Options.OptionList.__init__(self)
         self.style_name = None
         self.paper_name = None
         self.orientation = None
@@ -158,12 +158,12 @@ class OptionList(OptionList):
 # Collection of option lists
 #
 #-------------------------------------------------------------------------
-class OptionListCollection(OptionListCollection):
+class OptionListCollection(_Options.OptionListCollection):
     """
     Implements a collection of option lists.
     """
     def __init__(self,filename):
-        OptionListCollection.__init__(self,filename)
+        _Options.OptionListCollection.__init__(self,filename)
 
     def init_common(self):
         # Default values for common options
@@ -285,7 +285,7 @@ class OptionListCollection(OptionListCollection):
 # OptionParser
 #
 #-------------------------------------------------------------------------
-class OptionParser(OptionParser):
+class OptionParser(_Options.OptionParser):
     """
     SAX parsing class for the OptionListCollection XML file.
     """
@@ -296,7 +296,7 @@ class OptionParser(OptionParser):
 
         collection:   BookList to be loaded from the file.
         """
-        OptionParser.__init__(self,collection)
+        _Options.OptionParser.__init__(self,collection)
         self.common = False
         self.list_class = OptionList
 
@@ -347,12 +347,12 @@ class OptionParser(OptionParser):
 # Class handling options for plugins 
 #
 #-------------------------------------------------------------------------
-class OptionHandler(OptionHandler):
+class OptionHandler(_Options.OptionHandler):
     """
     Implements handling of the options for the plugins.
     """
     def __init__(self,module_name,options_dict,person_id=None):
-        OptionHandler.__init__(self,module_name,options_dict,person_id)
+        _Options.OptionHandler.__init__(self,module_name,options_dict,person_id)
 
     def init_subclass(self):
         self.collection_class = OptionListCollection
@@ -481,7 +481,7 @@ class OptionHandler(OptionHandler):
 # Base Options class
 #
 #------------------------------------------------------------------------
-class ReportOptions(Options):
+class ReportOptions(_Options.Options):
 
     """
     Defines options and provides handling interface.

@@ -1,3 +1,7 @@
+2006-03-11  Alex Roitman  <shura@gramps-project.org>
+	* src/PluginUtils/_ReportOptions.py: Use correct namespace for the
+	base clases from _Options module.
+
 2006-03-10  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_MapView.py: try to avoid startup traceback
 
