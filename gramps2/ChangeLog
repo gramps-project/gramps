@@ -1,3 +1,7 @@
+2006-03-13  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib/_NoteBase.py (NoteBase.serialize): Work out the case
+	of note being None -- leftover from gramps20.
+
 2006-03-11  Alex Roitman  <shura@gramps-project.org>
 	* src/PluginUtils/_ReportOptions.py: Use correct namespace for the
 	base clases from _Options module.
