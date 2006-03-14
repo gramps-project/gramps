@@ -801,11 +801,6 @@ class ViewManager:
 
         self.setup_bookmarks()
 
-        if self.state.db.need_upgrade():
-            if callback:
-                callback(_('Upgrading database...'))
-            self.state.db.gramps_upgrade()
-
         self.state.db.request_rebuild()
 
         Config.save_last_file(name)
