@@ -330,7 +330,7 @@ class GrampsBSDDB(GrampsDbBase):
         # or rebuilt by upgrade as well. In any case, the
         # self.secondary_connected flag should be set accordingly.
         if self.need_upgrade():
-            self.gramps_upgrade()
+            self.gramps_upgrade(callback)
 
         callback(50)
 
@@ -1119,7 +1119,22 @@ class GrampsBSDDB(GrampsDbBase):
             db_map.put(handle,data,txn=self.txn)
             self.emit(signal,([handle],))
 
-    def gramps_upgrade(self):
+    def update_empty(self,newval):
+        pass
+
+    def update_real(self,newval):
+        if newval != self.oldval:
+            self.callback(newval)
+            self.oldval = newval
+
+    def gramps_upgrade(self,callback=None):
+        self.callback = callback
+        if '__call__' in dir(callback): # callback is really callable
+            self.oldval = 0
+            self.update = self.update_real
+        else:
+            self.update = self.update_empty
+
         child_rel_notrans = [
             "None",      "Birth",  "Adopted", "Stepchild",
             "Sponsored", "Foster", "Unknown", "Other", ]
@@ -1196,7 +1211,7 @@ class GrampsBSDDB(GrampsDbBase):
         print "Upgrading to DB version 9 -- this may take a while"
         # The very very first thing is to check for duplicates in the
         # primary tables and remove them. 
-        low_level_9(self)
+        status,length = low_level_9(self)
 
         # Then we remove the surname secondary index table
         # because its format changed from HASH to DUPSORTed BTREE.
@@ -1227,6 +1242,7 @@ class GrampsBSDDB(GrampsDbBase):
         # The rest of the upgrade deals with real data, not metadata
         # so starting (batch) transaction here.
         trans = self.transaction_begin("",True)
+        current = 0
 
         # This upgrade adds marker to every primary object.
         # We need to extract and commit every primary object
@@ -1247,6 +1263,8 @@ class GrampsBSDDB(GrampsDbBase):
              source.pubinfo, source.note, source.media_list,
              source.abbrev, source.change, source.datamap) = info
             self.commit_source(source,trans)
+            current += 1
+            self.update(100*current/length)
 #            data = cursor.next()
 #        cursor.close()
 
@@ -1328,6 +1346,8 @@ class GrampsBSDDB(GrampsDbBase):
                 convert_url_9(url)
             
             self.commit_person(person,trans)
+            current += 1
+            self.update(100*current/length)
             #data = cursor.next()
         #cursor.close()
 
@@ -1367,6 +1387,8 @@ class GrampsBSDDB(GrampsDbBase):
                 convert_mediaref_9(media_ref)
             
             self.commit_family(family,trans)
+            current += 1
+            self.update(100*current/length)
 #            data = cursor.next()
 #        cursor.close()
         
@@ -1486,6 +1508,8 @@ class GrampsBSDDB(GrampsDbBase):
                     person.event_ref_list.append(event_ref)
                     self.commit_person(person,trans)
             self.commit_event(event,trans)
+            current += 1
+            self.update(100*current/length)
 #            data = cursor.next()
 #        cursor.close()
         self.eid_trans.close()
@@ -1512,6 +1536,8 @@ class GrampsBSDDB(GrampsDbBase):
                 convert_url_9(url)
 
             self.commit_place(place,trans)
+            current += 1
+            self.update(100*current/length)
 #            data = cursor.next()
 #        cursor.close()
 
@@ -1534,6 +1560,8 @@ class GrampsBSDDB(GrampsDbBase):
                 convert_attribute_9(attribute)
 
             self.commit_media_object(media_object,trans)
+            current += 1
+            self.update(100*current/length)
 #            data = cursor.next()
 #        cursor.close()
 
@@ -1595,7 +1623,7 @@ def low_level_9(the_db):
     The boolean status indicates the success of the procedure.
     The name indicates the problematic table (empty if status is True).
     """
-
+    the_length = 0
     for the_map in [('Person',the_db.person_map),
                     ('Family',the_db.family_map),
                     ('Event',the_db.event_map),
@@ -1604,12 +1632,14 @@ def low_level_9(the_db):
                     ('Media',the_db.media_map)]:
 
         print "Low-level repair: table: %s" % the_map[0]
-        if _table_low_level_9(the_db.env,the_map[1]):
+        status,length = _table_low_level_9(the_db.env,the_map[1])
+        if status:
             print "Done."
+            the_length += length
         else:
             print "Low-level repair: Problem with table: %s" % the_map[0]
             return (False,the_map[0])
-    return (True,'')
+    return (True,the_length)
 
 
 def _table_low_level_9(env,table):
@@ -1618,17 +1648,18 @@ def _table_low_level_9(env,table):
     """
     
     handle_list = table.keys()
+    length = len(handle_list)
     dup_handles = sets.Set(
         [ handle for handle in handle_list if handle_list.count(handle) > 1 ]
         )
 
     if not dup_handles:
         print "    No dupes found for this table"
-        return True
+        return (True,length)
 
     the_txn = env.txn_begin()
     table_cursor = GrampsBSDDBDupCursor(table,txn=the_txn)
-    # Dirty hack to prevent records from unpicking by DBShelve
+    # Dirty hack to prevent records from unpickling by DBShelve
     table_cursor._extract = lambda rec: rec
     
     for handle in dup_handles:
@@ -1639,7 +1670,7 @@ def _table_low_level_9(env,table):
             print "    Failed setting initial cursor."
             table_cursor.close()
             the_txn.abort()
-            return False
+            return (False,None)
 
         for count in range(handle_list.count(handle)-1):
             try:
@@ -1649,7 +1680,7 @@ def _table_low_level_9(env,table):
                 print "    Failed deleting dupe."
                 table_cursor.close()
                 the_txn.abort()
-                return False
+                return (False,None)
 
             try:
                 ret = table_cursor.next_dup()
@@ -1657,11 +1688,11 @@ def _table_low_level_9(env,table):
                 print "    Failed moving the cursor."
                 table_cursor.close()
                 the_txn.abort()
-                return False
+                return (False,None)
 
     table_cursor.close()
     the_txn.commit()
-    return True
+    return (True,length)
 
 
 if __name__ == "__main__":
