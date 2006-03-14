@@ -55,6 +55,8 @@ class NoteBase:
         self.note = Note(text)
 
     def serialize(self):
+        if self.note == None:
+            self.note = Note()
         return self.note.serialize()
 
     def unserialize(self,data):
