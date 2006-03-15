@@ -1,0 +1,4028 @@
+# GRAMPS
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GRAMPS VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-03-14 17:54-0800\n"
+"PO-Revision-Date: 2003-03-03 09:54+0100\n"
+"Last-Translator: Radu Bogdan Mare <bogdan_mare@web.de>\n"
+"Language-Team: romanian <ro@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.4\n"
+"X-Generator: KBabel 0.9.6\n"
+
+#: ../src/ViewManager.py:80
+#, fuzzy
+msgid "GRAMPS (grdb)"
+msgstr "ID GRAMPS"
+
+#: ../src/ViewManager.py:81
+#, fuzzy
+msgid "GRAMPS XML"
+msgstr "GRAMPS"
+
+#: ../src/ViewManager.py:82
+#, fuzzy
+msgid "GEDCOM"
+msgstr "Import GEDCOM"
+
+#: ../src/ViewManager.py:274
+#, fuzzy
+msgid "Loading document formats..."
+msgstr "Încarc %s..."
+
+#: ../src/ViewManager.py:277
+#, fuzzy
+msgid "Loading plugins..."
+msgstr "Încarc %s..."
+
+#: ../src/ViewManager.py:282
+msgid "Ready"
+msgstr ""
+
+#: ../src/ViewManager.py:313
+#, fuzzy
+msgid "GRAMPS _home page"
+msgstr "_Pagina de Internet GRAMPS"
+
+#: ../src/ViewManager.py:314
+#, fuzzy
+msgid "GRAMPS _mailing lists"
+msgstr "_Lista de Discuţii GRAMPS"
+
+#: ../src/ViewManager.py:315
+msgid "_Report a bug"
+msgstr "_Anunţă o eroare"
+
+#: ../src/ViewManager.py:388 ../src/ViewManager.py:395
+#, fuzzy
+msgid "Could not open help"
+msgstr "Nu am putut deschide %s"
+
+#: ../src/ViewManager.py:417
+#, fuzzy
+msgid "GRAMPS Homepage"
+msgstr "_Pagina de Internet GRAMPS"
+
+#: ../src/ViewManager.py:532
+#, fuzzy
+msgid "GRAMPS: Open database"
+msgstr "Deschide Bază de Date GRAMPS"
+
+#: ../src/ViewManager.py:591 ../src/ViewManager.py:617
+#: ../src/ViewManager.py:936 ../src/ViewManager.py:960
+#, fuzzy, python-format
+msgid "Could not open file: %s"
+msgstr "Nu am putut deschide %s"
+
+#: ../src/ViewManager.py:618 ../src/ViewManager.py:961
+#, python-format
+msgid ""
+"File type \"%s\" is unknown to GRAMPS.\n"
+"\n"
+"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
+msgstr ""
+
+#: ../src/ViewManager.py:624
+#, fuzzy
+msgid "GRAMPS: Create GRAMPS database"
+msgstr "Deschide Bază de Date GRAMPS"
+
+#: ../src/ViewManager.py:717 ../src/ViewManager.py:723
+#: ../src/ViewManager.py:758 ../src/ViewManager.py:762
+#: ../src/ViewManager.py:765
+#, fuzzy
+msgid "Cannot open database"
+msgstr "Întreaga Bază de Date"
+
+#: ../src/ViewManager.py:718
+#, fuzzy
+msgid ""
+"The selected file is a directory, not a file.\n"
+"A GRAMPS database must be a file."
+msgstr "Fişierul este probabil corupt sau nu e o bază de date GRAMPS validă."
+
+#: ../src/ViewManager.py:724
+#, fuzzy
+msgid "You do not have read access to the selected file."
+msgstr "Adaugă un nou copil la familia selectată"
+
+#: ../src/ViewManager.py:729
+#, fuzzy
+msgid "Read only database"
+msgstr "Verifică şi repară baza de date"
+
+#: ../src/ViewManager.py:730
+#, fuzzy
+msgid "You do not have write access to the selected file."
+msgstr "Adaugă un nou copil la familia selectată"
+
+#: ../src/ViewManager.py:751
+msgid "Read Only"
+msgstr ""
+
+#: ../src/ViewManager.py:759
+#, fuzzy
+msgid "The database file specified could not be opened."
+msgstr "Miniatura %s nu a fost gasită"
+
+#: ../src/ViewManager.py:766
+#, fuzzy, python-format
+msgid "%s could not be opened."
+msgstr "%s nu a putut fi deschis\n"
+
+#: ../src/ViewManager.py:852
+#, python-format
+msgid "%s has been bookmarked"
+msgstr "%s a fost adăugat ca semn de carte"
+
+#: ../src/ViewManager.py:854
+#, fuzzy
+msgid "Could Not Set a Bookmark"
+msgstr "_Mergi la Semn de Carte"
+
+#: ../src/ViewManager.py:855
+#, fuzzy
+msgid "A bookmark could not be set because no one was selected."
+msgstr ""
+"Semnul de carte nu a putut fi definit deoarece nimeni nu a fost selectat"
+
+#: ../src/ViewManager.py:884
+#, fuzzy
+msgid "GRAMPS: Import database"
+msgstr "Deschide Bază de Date GRAMPS"
+
+#: ../src/ViewManager.py:1060
+#, fuzzy
+msgid "All files"
+msgstr "Toate persoanele"
+
+#: ../src/ViewManager.py:1069
+#, fuzzy
+msgid "All GRAMPS files"
+msgstr "Prefixe pentru GRAMPS ID"
+
+#: ../src/ViewManager.py:1080
+#, fuzzy
+msgid "GRAMPS databases"
+msgstr "Deschide Bază de Date GRAMPS"
+
+#: ../src/ViewManager.py:1089
+#, fuzzy
+msgid "GRAMPS XML databases"
+msgstr "Deschide Bază de Date GRAMPS"
+
+#: ../src/ViewManager.py:1098
+#, fuzzy
+msgid "GEDCOM files"
+msgstr "Export fişier GEDCOM"
+
+#: ../src/ViewManager.py:1147
+#, fuzzy
+msgid "Automatically detected"
+msgstr "Încarcă automat ultima bază de date accesată"
+
+#: ../src/ViewManager.py:1156
+msgid "Select file _type:"
+msgstr ""
+
+#~ msgid "%s is not a valid file name or does not exist."
+#~ msgstr "%s: nume de fişier invalid sau fişierul nu existã."
+
+#~ msgid "Name"
+#~ msgstr "Nume"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Birth Date"
+#~ msgstr "Data Naşterii"
+
+#~ msgid "Choose Spouse/Partner of %s"
+#~ msgstr "Alege Soţ(ie)/Partener pentru %s"
+
+#~ msgid "Married"
+#~ msgstr "Căsătorit(ă)"
+
+#~ msgid "Partners"
+#~ msgstr "Parteneri"
+
+#~ msgid "Address Editor for %s"
+#~ msgstr "Editor Adresă pentru %s"
+
+#~ msgid "Attribute Editor for %s"
+#~ msgstr "Editor Atribute pentru %s"
+
+#~ msgid "Edit Bookmarks"
+#~ msgstr "Modifică Semne de Carte"
+
+#~ msgid "abt\\.?"
+#~ msgstr "despre"
+
+#~ msgid "about"
+#~ msgstr "despre"
+
+#~ msgid "est\\.?"
+#~ msgstr "aprox."
+
+#~ msgid "circa"
+#~ msgstr "aprox."
+
+#~ msgid "around"
+#~ msgstr "aprox."
+
+#~ msgid "before"
+#~ msgstr "înainte de"
+
+#~ msgid "after"
+#~ msgstr "după"
+
+#~ msgid "aft\\.?"
+#~ msgstr "după"
+
+#~ msgid "bef\\.?"
+#~ msgstr "înainte de"
+
+#~ msgid "April"
+#~ msgstr "Aprilie"
+
+#~ msgid "February"
+#~ msgstr "Februarie"
+
+#~ msgid "January"
+#~ msgstr "Ianuarie"
+
+#~ msgid "March"
+#~ msgstr "Martie"
+
+#~ msgid "August"
+#~ msgstr "August"
+
+#~ msgid "July"
+#~ msgstr "Iulie"
+
+#~ msgid "June"
+#~ msgstr "Iunie"
+
+#~ msgid "May"
+#~ msgstr "Mai"
+
+#~ msgid "December"
+#~ msgstr "Decembrie"
+
+#~ msgid "November"
+#~ msgstr "Noiembrie"
+
+#~ msgid "October"
+#~ msgstr "Octombrie"
+
+#~ msgid "September"
+#~ msgstr "Septembrie"
+
+#~ msgid "abt"
+#~ msgstr "aprox"
+
+#~ msgid "abt."
+#~ msgstr "aprox."
+
+#~ msgid "est"
+#~ msgstr "aprox"
+
+#~ msgid "est."
+#~ msgstr "aprox."
+
+#~ msgid "bef"
+#~ msgstr "înainte de"
+
+#~ msgid "bef."
+#~ msgstr "înainte de"
+
+#~ msgid "aft."
+#~ msgstr "după"
+
+#~ msgid "aft"
+#~ msgstr "după"
+
+#~ msgid "Undefined Calendar"
+#~ msgstr "Calendar Nedefinit"
+
+#~ msgid "Birth"
+#~ msgstr "Naştere"
+
+#~ msgid "Choose the Parents of %s"
+#~ msgstr "Alege părinţii pentru %s"
+
+#~ msgid "Parent"
+#~ msgstr "Părinte"
+
+#~ msgid "Mother"
+#~ msgstr "Mama"
+
+#~ msgid "Father"
+#~ msgstr "Tata"
+
+#~ msgid "<b>Modify the Parents of %s</b>"
+#~ msgstr "<b> Modifică parinţii pentru %s </b>"
+
+#~ msgid "(from|between|bet|bet.)"
+#~ msgstr "(de la|între)"
+
+#~ msgid "(and|to|-)"
+#~ msgstr "(şi|până la|-)"
+
+#~ msgid "from %(start_date)s to %(stop_date)s"
+#~ msgstr "de la %(start_date)s până la %(stop_date)s"
+
+#~ msgid "No Comment Provided"
+#~ msgstr "Nu Există Comentarii"
+
+#~ msgid ""
+#~ "GRAMPS has encountered an internal error.\n"
+#~ "Please copy the message below and post a bug report\n"
+#~ "at http://sourceforge.net/projects/gramps or send an\n"
+#~ "email message to gramps-bugs@lists.sourceforge.net\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Eroare internă în GRAMPS.\n"
+#~ "Vă rugăm copiaţi mesajul de mai jos si anunţaţi eroarea\n"
+#~ "la http://sourceforge.net/projects/gramps sau trimiteţi un\n"
+#~ "email la gramps-bugs@lists.sourceforge.net\n"
+#~ "\n"
+
+#~ msgid "Internal Error - GRAMPS"
+#~ msgstr "Eroare Internă - GRAMPS"
+
+#~ msgid "Description"
+#~ msgstr "Descriere"
+
+#~ msgid "Event"
+#~ msgstr "Eveniment"
+
+#~ msgid "Date"
+#~ msgstr "Data"
+
+#~ msgid "Place"
+#~ msgstr "Localitatea"
+
+#~ msgid "Value"
+#~ msgstr "Valoare"
+
+#~ msgid "Attribute"
+#~ msgstr "Atribut"
+
+#~ msgid "Address"
+#~ msgstr "Adresa"
+
+#~ msgid "Type"
+#~ msgstr "Tip"
+
+#~ msgid "Path"
+#~ msgstr "Cale"
+
+#~ msgid "None"
+#~ msgstr "Nimic"
+
+#~ msgid "%(father)s and %(mother)s"
+#~ msgstr "%(father)s şi %(mother)s"
+
+#~ msgid "unknown"
+#~ msgstr "necunoscut"
+
+#~ msgid "Abandon Changes"
+#~ msgstr "Abandonează Modificări"
+
+#~ msgid "Are you sure you want to abandon your changes?"
+#~ msgstr "Sunteţi sigur că doriţi să renunţaţi la modificări?"
+
+#~ msgid "Make the selected name the preferred name"
+#~ msgstr "Fă numele selectat ca nume preferat"
+
+#~ msgid "GRAMPS ID value was not changed."
+#~ msgstr "Valoarea GRAMPS ID nu a fost modificată."
+
+#~ msgid "%(grampsid)s is already used by %(person)s"
+#~ msgstr "%(grampsid)s este deja folosit de %(person)s"
+
+#~ msgid ""
+#~ "Changing the gender caused problems with marriage information.\n"
+#~ "Please check the person's marriages."
+#~ msgstr ""
+#~ "Schimbarea sexului a cauzat probleme pentru informaţia despre căsătorie.\n"
+#~ "Va rugăm verificaţi căsătoria persoanei."
+
+#~ msgid "City"
+#~ msgstr "Oraş"
+
+#~ msgid "County"
+#~ msgstr "Regiune"
+
+#~ msgid "State"
+#~ msgstr "Stat"
+
+#~ msgid "Country"
+#~ msgstr "Ţara"
+
+#~ msgid "Internet Address Editor for %s"
+#~ msgstr "Editor Adrese Internet pentru %s"
+
+#~ msgid "Internet Address Editor"
+#~ msgstr "Editor Adrese Internet"
+
+#~ msgid "People"
+#~ msgstr "Persoane"
+
+#~ msgid "%s [%s]: event %s\n"
+#~ msgstr "%s [%s]: eveniment %s\n"
+
+#~ msgid "Families"
+#~ msgstr "Familii"
+
+#~ msgid "Individual Events"
+#~ msgstr "Evenimente pt. Persoana"
+
+#~ msgid "Individual Attributes"
+#~ msgstr "Atribute pt. Persoana"
+
+#~ msgid "Individual Names"
+#~ msgstr "Nume Persoana"
+
+#~ msgid "Family Events"
+#~ msgstr "Evenimente Familie"
+
+#~ msgid "Family Attributes"
+#~ msgstr "Atribute Familie"
+
+#~ msgid "Media Objects"
+#~ msgstr "Obiecte Multimedia"
+
+#~ msgid "Places"
+#~ msgstr "Localităţi"
+
+#~ msgid "Gender"
+#~ msgstr "Sex"
+
+#~ msgid "Status"
+#~ msgstr "Status"
+
+#~ msgid "Delete Spouse"
+#~ msgstr "Şterge Soţ(ie)"
+
+#~ msgid "Do you wish to remove %s as a spouse?"
+#~ msgstr "Doriţi să ştergeţi pe %s ca soţ(ie)?"
+
+#~ msgid ""
+#~ "%s: %s\n"
+#~ "\tRelationship: %s"
+#~ msgstr ""
+#~ "%s: %s\n"
+#~ "\tLegătura: %s"
+
+#~ msgid "%s: unknown"
+#~ msgstr "%s : necunoscut"
+
+#~ msgid "Unknown"
+#~ msgstr "Necunoscut"
+
+#~ msgid "Delete Parents"
+#~ msgstr "Şterge Părinţi"
+
+#~ msgid "Do you wish to remove the selected parents?"
+#~ msgstr "Doriţi să ştergeţi părinţii selectaţi?"
+
+#~ msgid "Invalid move. Children must be ordered by birth date."
+#~ msgstr "Modificare invalidă. Copiii trebuie ordonaţi după data naşterii."
+
+#~ msgid "Qualifier"
+#~ msgstr "Calificator"
+
+#~ msgid "No description"
+#~ msgstr "Fără descriere"
+
+#~ msgid "Failed to load the module: %s"
+#~ msgstr "Modulul nu a putut fi încărcat: %s"
+
+#~ msgid "Find Person"
+#~ msgstr "Caută Persoană"
+
+#~ msgid "Find Place"
+#~ msgstr "Caută Localitate"
+
+#~ msgid "Find Source"
+#~ msgstr "Caută Sursă"
+
+#~ msgid "Find Media Object"
+#~ msgstr "Caută Obiect Multimedia"
+
+#~ msgid "French Republican"
+#~ msgstr "Francez Republican"
+
+#~ msgid "Personal Event"
+#~ msgstr "Eveniment pt. Persoana"
+
+#~ msgid "Family Event"
+#~ msgstr "Eveniment Familie"
+
+#~ msgid "Number of Relationships"
+#~ msgstr "Număr Relaţii"
+
+#~ msgid "Relationship Type"
+#~ msgstr "Tip Relaţie"
+
+#~ msgid "Number of Children"
+#~ msgstr "Număr Copii"
+
+#~ msgid "Personal Attribute"
+#~ msgstr "Atribut Persoană"
+
+#~ msgid "Family Attribute"
+#~ msgstr "Atribut Familie"
+
+#~ msgid "Title"
+#~ msgstr "Titlu"
+
+#~ msgid "Given Name"
+#~ msgstr "Prenume"
+
+#~ msgid "Surname"
+#~ msgstr "Nume"
+
+#~ msgid "Suffix"
+#~ msgstr "Sufix"
+
+#~ msgid "Filter Name"
+#~ msgstr "Nume Filtru"
+
+#~ msgid "Everyone"
+#~ msgstr "Toţi"
+
+#~ msgid "Has the Id"
+#~ msgstr "Are Id-ul"
+
+#~ msgid "Has a name"
+#~ msgstr "Are un nume"
+
+#~ msgid "Has the relationships"
+#~ msgstr "Are relaţiile"
+
+#~ msgid "Has the death"
+#~ msgstr "Are decesul"
+
+#~ msgid "Has the birth"
+#~ msgstr "Are naşterea"
+
+#~ msgid "Is a descendant of"
+#~ msgstr "Este descendent a/al lui"
+
+#~ msgid "Is a descendant family member of"
+#~ msgstr "Este un membru de familie descendent a/al lui"
+
+#~ msgid "Is an ancestor of"
+#~ msgstr "Este un strămoş a/al lui"
+
+#~ msgid "Has a common ancestor with"
+#~ msgstr "Are un strămoş comun cu"
+
+#~ msgid "Is a female"
+#~ msgstr "Este de sex feminin"
+
+#~ msgid "Is a male"
+#~ msgstr "Este de sex masculin"
+
+#~ msgid "Has the personal event"
+#~ msgstr "Are evenimentul personal"
+
+#~ msgid "Has the family event"
+#~ msgstr "Are evenimentul de familie"
+
+#~ msgid "Has the personal attribute"
+#~ msgstr "Are atributul personal"
+
+#~ msgid "Has the family attribute"
+#~ msgstr "Are atributul de familie"
+
+#~ msgid "Matches the filter named"
+#~ msgstr "Se potriveşte cu filtrul numit"
+
+#~ msgid "Local Filters"
+#~ msgstr "Filtre Locale"
+
+#~ msgid "System Filters"
+#~ msgstr "Filtre de Sistem"
+
+#~ msgid "Custom Filters"
+#~ msgstr "Filtre Personalizate"
+
+#~ msgid "Father's surname"
+#~ msgstr "Numele de familie al tatălui"
+
+#~ msgid "Combination of mother's and father's surname"
+#~ msgstr "Combinaţie a numelui de familie a mamei şi tatălui"
+
+#~ msgid "Icelandic style"
+#~ msgstr "Stil islandez"
+
+#~ msgid "Month Day, Year"
+#~ msgstr "Luna Zi, An"
+
+#~ msgid "MON Day, Year"
+#~ msgstr "LUN Zi, An"
+
+#~ msgid "Day MON Year"
+#~ msgstr "Zi, LUN An"
+
+#~ msgid "MM/DD/YYYY"
+#~ msgstr "LL/ZZ/AAAA"
+
+#~ msgid "MM-DD-YYYY"
+#~ msgstr "LL-ZZ-AAAA"
+
+#~ msgid "DD/MM/YYYY"
+#~ msgstr "ZZ/LL/AAAA"
+
+#~ msgid "DD-MM-YYYY"
+#~ msgstr "ZZ-LL-AAAA"
+
+#~ msgid "MM.DD.YYYY"
+#~ msgstr "LL.ZZ.AAAA"
+
+#~ msgid "DD.MM.YYYY"
+#~ msgstr "ZZ.LL.AAAA"
+
+#~ msgid "DD. Month Year"
+#~ msgstr "ZZ.Luna An"
+
+#~ msgid "YYYY/MM/DD"
+#~ msgstr "AAAA/LL/ZZ"
+
+#~ msgid "YYYY-MM-DD"
+#~ msgstr "AAAA-LL-ZZ"
+
+#~ msgid "YYYY.MM.DD"
+#~ msgstr "AAAA.LL.ZZ"
+
+#~ msgid "MM/DD/YYYY, MM.DD.YYYY, or MM-DD-YYYY"
+#~ msgstr "LL/ZZ/AAAA, LL.ZZ.AAAA, sau LL-ZZ-AAAA"
+
+#~ msgid "DD/MM/YYYY, DD.MM.YYYY, or DD-MM-YYYY"
+#~ msgstr "ZZ/LL/AAAA, ZZ.LL.AAAA, sau ZZ-LL-AAAA"
+
+#~ msgid "YYYY/MM/DD, YYYY.MM.DD, or YYYY-MM-DD"
+#~ msgstr "AAAA/LL/ZZ, AAAA.LL.ZZ, sau AAAA-LL-ZZ"
+
+#~ msgid "Firstname Surname"
+#~ msgstr "Prenume Nume"
+
+#~ msgid "Surname, Firstname"
+#~ msgstr "Nume, Prenume"
+
+#~ msgid "Database"
+#~ msgstr "Baza de date"
+
+#~ msgid "General"
+#~ msgstr "General"
+
+#~ msgid "GRAMPS internal IDs"
+#~ msgstr "ID intern GRAMPS"
+
+#~ msgid "Revision Control"
+#~ msgstr "Controlul Reviziei"
+
+#~ msgid "Display"
+#~ msgstr "Afişaj"
+
+#~ msgid "Dates and Calendars"
+#~ msgstr "Date şi Calendar"
+
+#~ msgid "Tool and Status Bars"
+#~ msgstr "Bara de Unelte şi Status"
+
+#~ msgid "Usage"
+#~ msgstr "Mod de folosire"
+
+#~ msgid "Find"
+#~ msgstr "Caută"
+
+#~ msgid "Report Preferences"
+#~ msgstr "Preferinţe pentru Raport"
+
+#~ msgid "Researcher Information"
+#~ msgstr "Informaţii despre Cercetător"
+
+#~ msgid "Data Guessing"
+#~ msgstr "Intuire Date"
+
+#~ msgid "No default format"
+#~ msgstr "Nu există format implicit"
+
+#~ msgid "Gregorian"
+#~ msgstr "Gregorian"
+
+#~ msgid "Hebrew"
+#~ msgstr "Evreu"
+
+#~ msgid "That is not a valid file name."
+#~ msgstr "Acesta nu e un nume valid pentru fişier."
+
+#~ msgid "Could not import %s"
+#~ msgstr "Nu am putut importa %s"
+
+#~ msgid "Media Object"
+#~ msgstr "Obiect Multimedia"
+
+#~ msgid "Open in %s"
+#~ msgstr "Deschide în %s"
+
+#~ msgid "Edit with the GIMP"
+#~ msgstr "Editează cu GIMP"
+
+#~ msgid "Edit Object Properties"
+#~ msgstr "Modifică Propritetăţile Obiectului"
+
+#~ msgid "Convert to local copy"
+#~ msgstr "Converteşte la copia locală"
+
+#~ msgid "Person"
+#~ msgstr "Persoana"
+
+#~ msgid "Family"
+#~ msgstr "Familie"
+
+#~ msgid "Source"
+#~ msgstr "Sursa"
+
+#~ msgid "Julian"
+#~ msgstr "Iulian"
+
+#~ msgid "Location Editor for %s"
+#~ msgstr "Editor Localitate pentru %s"
+
+#~ msgid "Location Editor"
+#~ msgstr "Editor Localitate"
+
+#~ msgid "%s and %s"
+#~ msgstr "%s şi %s"
+
+#~ msgid "Data was modified. Are you sure you want to abandon your changes?"
+#~ msgstr ""
+#~ "Datele au fost modificate. Sunteţi sigur că doriţi să renunţaţi la "
+#~ "modificări?"
+
+#~ msgid "The file no longer exists"
+#~ msgstr "Fişierul nu mai există"
+
+#~ msgid "View in the default viewer"
+#~ msgstr "Vizualizare în viewer-ul standard"
+
+#~ msgid "Delete Object"
+#~ msgstr "Şterge obiect"
+
+#~ msgid "This media object is currently being used. Delete anyway?"
+#~ msgstr ""
+#~ "Acest obiect multimedia e actualmente folosit. Totuşi doriţi ştergerea?"
+
+#~ msgid "Alternate Name Editor for %s"
+#~ msgstr "Editor Nume Alternativ pentru %s"
+
+#~ msgid "Edit Note"
+#~ msgstr "Modifică Nota"
+
+#~ msgid "Portrait"
+#~ msgstr "Portret"
+
+#~ msgid "Landscape"
+#~ msgstr "Peisaj"
+
+#~ msgid "Double clicking will make %s the active person"
+#~ msgstr "Dublu click va face pe %s persoana activă"
+
+#~ msgid "Place Name"
+#~ msgstr "Numele Localităţii"
+
+#~ msgid "Church Parish"
+#~ msgstr "Biserica"
+
+#~ msgid "Exactly two places must be selected to perform a merge"
+#~ msgstr "Exact două localităţi trebuiesc selectate pentru a realiza o uniune"
+
+#~ msgid "Delete Place"
+#~ msgstr "Şterge Localitate"
+
+#~ msgid ""
+#~ "%s is currently being used.\n"
+#~ "Delete anyway?"
+#~ msgstr ""
+#~ "%s este actualmente folosit.\n"
+#~ "Totuşi doriţi ştergerea?"
+
+#~ msgid "No description was provided"
+#~ msgstr "Nu există descriere"
+
+#~ msgid "Report Selection"
+#~ msgstr "Selectare Raport"
+
+#~ msgid "Tool Selection"
+#~ msgstr "Selectare Unealtă"
+
+#~ msgid "The following modules could not be loaded:"
+#~ msgstr "Următoarele module nu au putut fi încărcate"
+
+#~ msgid "Uncategorized"
+#~ msgstr "Necategorisit"
+
+#~ msgid "Error"
+#~ msgstr "Eroare"
+
+#~ msgid "Warning"
+#~ msgstr "Avertisment"
+
+#~ msgid "Error reading %s"
+#~ msgstr "Eroare de citire în %s"
+
+#~ msgid ""
+#~ "Your database has encountered an error in the library that compresses the "
+#~ "data.\n"
+#~ "Your data should be okay, but you may want to consider disabling "
+#~ "compression.\n"
+#~ "This can be disabled in the Properties dialog."
+#~ msgstr ""
+#~ "Baza de date a întâlnit o eroare in librăria ce comprimă datele.\n"
+#~ "Datele ar putea să fie în regulă, ar trebui să consideraţi renunţarea la "
+#~ "compresie.\n"
+#~ "Puteţi face asta în dialogul Proprietăţi."
+
+#~ msgid "%s (revision %s)"
+#~ msgstr "%s (revizia %s)"
+
+#~ msgid ""
+#~ "Could not import %s\n"
+#~ "The file has been moved or deleted"
+#~ msgstr ""
+#~ "Nu am putut importa %s\n"
+#~ "Fişierul a fost mutat sau şters"
+
+#~ msgid "Could not create %s"
+#~ msgstr "Nu am putut crea %s"
+
+#~ msgid "Error creating the thumbnail : %s"
+#~ msgstr "Eroare la crearea miniaturii : %s"
+
+#~ msgid "Error copying %s"
+#~ msgstr "Eroare la copierea %s"
+
+#~ msgid "Could not load image file %s"
+#~ msgstr "Nu am putut încărca imaginea %s"
+
+#~ msgid "Could not replace %s"
+#~ msgstr "Nu am putut să înlocuiesc %s"
+
+#~ msgid ""
+#~ "Could not create a thumbnail for %s\n"
+#~ "The file has been moved or deleted"
+#~ msgstr ""
+#~ "Nu am putut să creez miniatura pentru %s\n"
+#~ "Fişierul a fost mutat sau şters"
+
+#~ msgid "Could not create a thumbnail for %s"
+#~ msgstr "Nu am putut crea miniatura pentru %s"
+
+#~ msgid "Default Template"
+#~ msgstr "Şablon Implicit"
+
+#~ msgid "User Defined Template"
+#~ msgstr "Şablon Personalizat de Utilizator"
+
+#~ msgid "First"
+#~ msgstr "Prima"
+
+#~ msgid "Second"
+#~ msgstr "A Doua"
+
+#~ msgid "Third"
+#~ msgstr "A Treia"
+
+#~ msgid "Fourth"
+#~ msgstr "A Patra"
+
+#~ msgid "Fifth"
+#~ msgstr "A Cincea"
+
+#~ msgid "Sixth"
+#~ msgstr "A Şasea"
+
+#~ msgid "Seventh"
+#~ msgstr "A Şaptea"
+
+#~ msgid "Eighth"
+#~ msgstr "A Opta"
+
+#~ msgid "Ninth"
+#~ msgstr "A Noua"
+
+#~ msgid "Tenth"
+#~ msgstr "A Zecea"
+
+#~ msgid "Eleventh"
+#~ msgstr "A Unsprezecea"
+
+#~ msgid "Twelfth"
+#~ msgstr "A Doisprezecea"
+
+#~ msgid "Thirteenth"
+#~ msgstr "A Treisprezecea"
+
+#~ msgid "Fourteenth"
+#~ msgstr "A Patrusprezecea"
+
+#~ msgid "Fifteenth"
+#~ msgstr "A Cincisprezecea"
+
+#~ msgid "Sixteenth"
+#~ msgstr "A Şaisprezecea"
+
+#~ msgid "Seventeenth"
+#~ msgstr "A Şaptesprezecea"
+
+#~ msgid "Eighteenth"
+#~ msgstr "A Optsprezecea"
+
+#~ msgid "Nineteenth"
+#~ msgstr "A Nouăsprezecea"
+
+#~ msgid "Twentieth"
+#~ msgstr "A Douăzecea"
+
+#~ msgid "Twenty-first"
+#~ msgstr "A Douăzeci-şi-una"
+
+#~ msgid "Twenty-second"
+#~ msgstr "A Douăzeci-şi-doua"
+
+#~ msgid "Twenty-third"
+#~ msgstr "A Douăzeci-şi-treia"
+
+#~ msgid "Twenty-fourth"
+#~ msgstr "A Douăzeci-şi-patra"
+
+#~ msgid "Twenty-fifth"
+#~ msgstr "A Douăzeci-şi-cincea"
+
+#~ msgid "Twenty-sixth"
+#~ msgstr "A Douăzeci-şi-sasea"
+
+#~ msgid "Twenty-seventh"
+#~ msgstr "A Douăzeci-şi-saptea"
+
+#~ msgid "Twenty-eighth"
+#~ msgstr "A Douăzeci-şi-opta"
+
+#~ msgid "Twenty-ninth"
+#~ msgstr "A Douăzeci-şi-noua"
+
+#~ msgid "Progress Report - GRAMPS"
+#~ msgstr "Vizualizare Progres - GRAMPS"
+
+#~ msgid "Working"
+#~ msgstr "Lucrez"
+
+#~ msgid "Base Report - GRAMPS"
+#~ msgstr "Raport de Bază - GRAMPS"
+
+#~ msgid "Save Report As - GRAMPS"
+#~ msgstr "Salvează Raport Ca - GRAMPS"
+
+#~ msgid "Save As"
+#~ msgstr "Salvează Ca"
+
+#~ msgid "Directory"
+#~ msgstr "Director"
+
+#~ msgid "Filename"
+#~ msgstr "Nume Fişier"
+
+#~ msgid "Output Format"
+#~ msgstr "Format de Ieşire"
+
+#~ msgid "Styles"
+#~ msgstr "Stiluri"
+
+#~ msgid "Style Editor"
+#~ msgstr "Editor Stil"
+
+#~ msgid "Paper Options"
+#~ msgstr "Opţiuni Hârtie"
+
+#~ msgid "HTML Options"
+#~ msgstr "Opţiuni HTML"
+
+#~ msgid "Size"
+#~ msgstr "Mărime"
+
+#~ msgid "Orientation"
+#~ msgstr "Orientare"
+
+#~ msgid "Page Count"
+#~ msgstr "Număr Pagini"
+
+#~ msgid "Template"
+#~ msgstr "Şablon"
+
+#~ msgid "User Template"
+#~ msgstr "Şablon Personalizat"
+
+#~ msgid "Choose File"
+#~ msgstr "Alegeţi Fişier"
+
+#~ msgid "Report Options"
+#~ msgstr "Opţiuni Raport"
+
+#~ msgid "Filter"
+#~ msgstr "Filtru"
+
+#~ msgid "Generations"
+#~ msgstr "Generaţii"
+
+#~ msgid "Page break between generations"
+#~ msgstr "Pagină nouă între generaţii"
+
+#~ msgid ""
+#~ "The filename that you gave is a directory.\n"
+#~ "You need to provide a valid filename."
+#~ msgstr ""
+#~ "Numele de fişier introdus este un director.\n"
+#~ "E necesar un nume de fişier valid."
+
+#~ msgid "Relationship to %s"
+#~ msgstr "Relaţia cu %s"
+
+#~ msgid "Author"
+#~ msgstr "Autor"
+
+#~ msgid "Delete Source"
+#~ msgstr "Şterge Sursa"
+
+#~ msgid "This source is currently being used. Delete anyway?"
+#~ msgstr "Sursa este actualmente folosită. Totuşi doriţi ştergerea?"
+
+#~ msgid "Error saving stylesheet"
+#~ msgstr "Eroare la salvarea stilurilor de paginare"
+
+#~ msgid "Note"
+#~ msgstr "Nota"
+
+#~ msgid "Private"
+#~ msgstr "Privat"
+
+#~ msgid "default"
+#~ msgstr "implicit"
+
+#~ msgid "RCS"
+#~ msgstr "RCS"
+
+#~ msgid "Failure writing %s, original file restored"
+#~ msgstr "Eroare la scrierea %s, am revenit la fişierul original"
+
+#~ msgid "Islamic"
+#~ msgstr "Islamic"
+
+#~ msgid "Persian"
+#~ msgstr "Persic"
+
+#~ msgid "Choose Child - GRAMPS"
+#~ msgstr "Selectaţi copil - GRAMPS"
+
+#~ msgid "Choose Child"
+#~ msgstr "Selectaţi copil"
+
+#~ msgid "Getting Started - GRAMPS"
+#~ msgstr "Iniţializare - GRAMPS"
+
+#~ msgid "Getting Started"
+#~ msgstr "Iniţializare"
+
+#~ msgid ""
+#~ "Welcome to GRAMPS, the Genealogical Research\n"
+#~ "and Analysis Management Programming System.\n"
+#~ "\n"
+#~ "Several options and information need to be gathered\n"
+#~ "before GRAMPS is ready to be used. Any of this\n"
+#~ "information can be changed in the future in the \n"
+#~ "Preferences dialog under the Settings menu."
+#~ msgstr ""
+#~ "Bun venit la GRAMPS, (Genealogical Research\n"
+#~ "and Analysis Management Programming System.\n"
+#~ "\n"
+#~ "Câteva opţiuni şi informaţii sunt necesare înainte ca\n"
+#~ "GRAMPS să fie utilizat. Oricare din aceste informaţii\n"
+#~ "pot fi modificate ulterior din dialogul Preferinţe în\n"
+#~ "meniul Setări."
+
+#~ msgid ""
+#~ "In order to create valid GEDCOM files, the following information\n"
+#~ "needs to be entered. If you do not plan to generate GEDCOM \n"
+#~ "files, you may leave it blank."
+#~ msgstr ""
+#~ "Pentru a crea fişiere GEDCOM valide, următoarele informaţii\n"
+#~ "trebuiesc introduse. Dacă nu doriţi generarea de fişiere GEDCOM,\n"
+#~ "puteţi lăsa acest spaţiu liber."
+
+#~ msgid "State/Province"
+#~ msgstr "Stat/Provincie"
+
+#~ msgid "email"
+#~ msgstr "email"
+
+#~ msgid "ZIP/Postal Code"
+#~ msgstr "Cod Poştal"
+
+#~ msgid "Phone"
+#~ msgstr "Telefon"
+
+#~ msgid "Numerical Date Formats"
+#~ msgstr "Formate Date Numerice"
+
+#~ msgid ""
+#~ "There are three common formats for entering dates in a numerical format.\n"
+#~ "Without some type of indication, GRAMPS cannot correctly tell what\n"
+#~ "format you are using. Please indicate your preferred format for entering\n"
+#~ "numerical dates"
+#~ msgstr ""
+#~ "Există trei formate standard pentru introducerea datei in format "
+#~ "numeric.\n"
+#~ "Fără o indicaţie în acest sens, GRAMPS nu poate decide corect ce format\n"
+#~ "folosiţi. Vă rog indicaţi formatul preferat pentru introducerea numerică "
+#~ "a datei."
+
+#~ msgid "MM/DD/YYYY (United States)"
+#~ msgstr "LL/ZZ/AAAA (Statele Unite)"
+
+#~ msgid "DD/MM/YYYY (European)"
+#~ msgstr "ZZ/LL/AAAA (European)"
+
+#~ msgid "YYYY-MM-DD (ISO)"
+#~ msgstr "AAAA-LL-ZZ (ISO)"
+
+#~ msgid "Alternate Calendar Support"
+#~ msgstr "Suport pentru Calendar Alternativ"
+
+#~ msgid ""
+#~ "By default, all dates stored by GRAMPS use the Gregorian calendar. This\n"
+#~ "is normally sufficient for most users. Support may be enabled for the "
+#~ "Julian,\n"
+#~ "French Republican, and Hebrew calendar. If you believe that you will need "
+#~ "one or\n"
+#~ "more of these alternate calendars, enable alternate calendar support."
+#~ msgstr ""
+#~ "Implicit, toate datele stocate de GRAMPS folosesc calendarul Gregorian.\n"
+#~ "Acesta este în mod uzual suficient pentru majoritatea utilizatorilor.\n"
+#~ "Se poate activa suportul pentru calendarul Iulian, Francez Republican "
+#~ "sau\n"
+#~ "Hebrew. Dacă doriţi să utilizaţi vreunul din aceste calendare, activaţi\n"
+#~ "suportul pentru calendare alternative."
+
+#~ msgid "Enable support for alternate calendars"
+#~ msgstr "Activează suport pentru calendare alternative"
+
+#~ msgid "LDS Extensions"
+#~ msgstr "Extensii LDS"
+
+#~ msgid ""
+#~ "GRAMPS has support for LDS Ordinances, which are special\n"
+#~ "event types related to the Church of Jesus Christ of Latter Day Saints.\n"
+#~ "\n"
+#~ "You may choose to either enable or disable this support. You may\n"
+#~ "change this option in the future in the Preferences dialog."
+#~ msgstr ""
+#~ "GRAMPS are suport pentru Ordinanţe LDS, care sunt un tip special\n"
+#~ "de evenimente legate de Biserica lui Isus Hristos a Sfinţilor de Ultima "
+#~ "Zi\n"
+#~ "\n"
+#~ "Puteţi alege să activaţi sau să dezactivaţi acest suport. Puteţi "
+#~ "modifica\n"
+#~ "această opţiune pe viitor din dialogul Preferinţe."
+
+#~ msgid "Enable LDS Ordinance Support"
+#~ msgstr "Activează Suport pentru Ordinanţa LDS"
+
+#~ msgid "Complete"
+#~ msgstr "Complet"
+
+#~ msgid ""
+#~ "GRAMPS is an Open Source project. Its success \n"
+#~ "depends on the users. User feedback is important. \n"
+#~ "Please join the mailing lists, submit bug reports,\n"
+#~ "suggest improvements,  and see how you can \n"
+#~ "contribute.\n"
+#~ "\n"
+#~ "Please enjoy using GRAMPS."
+#~ msgstr ""
+#~ "GRAMPS este un proiect de Sursă Deschisă.\n"
+#~ "Succesul său depinde de utilizatori. Comentariile\n"
+#~ "utilizatorilor sunt importante. Vă invităm să vă înscrieţi\n"
+#~ "pe listele de discuţii, să trimiteţi raportul erorilor, să\n"
+#~ "sugeraţi imbunătăţiri şi să căutaţi moduri de a\n"
+#~ "contribui.\n"
+#~ "\n"
+#~ "Vă dorim utilizare plăcută a programului GRAMPS."
+
+#~ msgid ""
+#~ "GRAMPS (Genealogical Research and Analysis Management Programming System) "
+#~ "is a personal genealogy program."
+#~ msgstr ""
+#~ "GRAMPS (Genealogical Research and Analysis Management Programming System) "
+#~ "este un program de genealogie personală."
+
+#~ msgid "male"
+#~ msgstr "masculin"
+
+#~ msgid "female"
+#~ msgstr "feminin"
+
+#~ msgid "Adopted"
+#~ msgstr "Adoptat"
+
+#~ msgid "Stepchild"
+#~ msgstr "Copil vitreg"
+
+#~ msgid "Sponsored"
+#~ msgstr "Sponsorizat"
+
+#~ msgid "Foster"
+#~ msgstr "Tutore"
+
+#~ msgid "Other"
+#~ msgstr "Altele"
+
+#~ msgid "Very Low"
+#~ msgstr "Foarte scăzut"
+
+#~ msgid "Low"
+#~ msgstr "Scăzut"
+
+#~ msgid "Normal"
+#~ msgstr "Normal"
+
+#~ msgid "High"
+#~ msgstr "Ridicat"
+
+#~ msgid "Very High"
+#~ msgstr "Foarte Ridicat"
+
+#~ msgid "Annulment"
+#~ msgstr "Anulare"
+
+#~ msgid "Divorce Filing"
+#~ msgstr "Introducere divorţ"
+
+#~ msgid "Divorce"
+#~ msgstr "Divorţ"
+
+#~ msgid "Engagement"
+#~ msgstr "Logodnă"
+
+#~ msgid "Marriage Contract"
+#~ msgstr "Contract Căsătorie"
+
+#~ msgid "Marriage License"
+#~ msgstr "Licenţă Căsătorie"
+
+#~ msgid "Marriage Settlement"
+#~ msgstr "Încheiere Căsătorie"
+
+#~ msgid "Marriage"
+#~ msgstr "Căsătorie"
+
+#~ msgid "Alternate Birth"
+#~ msgstr "Naştere Alternativă"
+
+#~ msgid "Alternate Death"
+#~ msgstr "Deces Alternativ"
+
+#~ msgid "Adult Christening"
+#~ msgstr "Botez Adult"
+
+#~ msgid "Baptism"
+#~ msgstr "Botez"
+
+#~ msgid "Bar Mitzvah"
+#~ msgstr "Bar Mitzvah"
+
+#~ msgid "Bas Mitzvah"
+#~ msgstr "Bas Mitzvah"
+
+#~ msgid "Blessing"
+#~ msgstr "Binecuvântare"
+
+#~ msgid "Burial"
+#~ msgstr "Înmormântare"
+
+#~ msgid "Cause Of Death"
+#~ msgstr "Cauza Decesului"
+
+#~ msgid "Census"
+#~ msgstr "Recensământ"
+
+#~ msgid "Christening"
+#~ msgstr "Botez"
+
+#~ msgid "Confirmation"
+#~ msgstr "Confirmare"
+
+#~ msgid "Cremation"
+#~ msgstr "Cremare"
+
+#~ msgid "Degree"
+#~ msgstr "Grad"
+
+#~ msgid "Education"
+#~ msgstr "Educaţie"
+
+#~ msgid "Elected"
+#~ msgstr "Ales"
+
+#~ msgid "Emigration"
+#~ msgstr "Emigrare"
+
+#~ msgid "First Communion"
+#~ msgstr "Prima Comuniune"
+
+#~ msgid "Immigration"
+#~ msgstr "Imigrare"
+
+#~ msgid "Graduation"
+#~ msgstr "Absolvire"
+
+#~ msgid "Medical Information"
+#~ msgstr "Informaţii Medicale"
+
+#~ msgid "Military Service"
+#~ msgstr "Serviciul Militar"
+
+#~ msgid "Naturalization"
+#~ msgstr "Naturalizare"
+
+#~ msgid "Nobility Title"
+#~ msgstr "Titlu de Nobleţe"
+
+#~ msgid "Number of Marriages"
+#~ msgstr "Număr Căsătorii"
+
+#~ msgid "Occupation"
+#~ msgstr "Ocupaţie"
+
+#~ msgid "Ordination"
+#~ msgstr "Ordinare"
+
+#~ msgid "Probate"
+#~ msgstr "Deschidere Testament"
+
+#~ msgid "Property"
+#~ msgstr "Proprietate"
+
+#~ msgid "Religion"
+#~ msgstr "Religie"
+
+#~ msgid "Residence"
+#~ msgstr "Rezidenţa"
+
+#~ msgid "Retirement"
+#~ msgstr "Pensie"
+
+#~ msgid "Will"
+#~ msgstr "Testament"
+
+#~ msgid "Caste"
+#~ msgstr "Castă"
+
+#~ msgid "Identification Number"
+#~ msgstr "Număr de Identificare"
+
+#~ msgid "National Origin"
+#~ msgstr "Naţionalitate de Origine"
+
+#~ msgid "Social Security Number"
+#~ msgstr "Număr de Asigurare Socială"
+
+#~ msgid "A legal or common-law relationship between a husband and wife"
+#~ msgstr "O relaţie legală între soţ si soţie"
+
+#~ msgid "No legal or common-law relationship between man and woman"
+#~ msgstr "Fără o relaţie legală între bărbat şi femeie"
+
+#~ msgid "Unmarried"
+#~ msgstr "Necăsătorit(ă)"
+
+#~ msgid "An established relationship between members of the same sex"
+#~ msgstr "O relaţie între membri de acelaşi sex"
+
+#~ msgid "Unknown relationship between a man and woman"
+#~ msgstr "Relaţie necunoscută între bărbat şi femeie"
+
+#~ msgid "An unspecified relationship between a man and woman"
+#~ msgstr "O relaţie nespecificată între bărbat şi femeie"
+
+#~ msgid "No definition available"
+#~ msgstr "Nu există nici o definiţie disponibilă"
+
+#~ msgid "Also Known As"
+#~ msgstr "Cunsocut şi Ca"
+
+#~ msgid "Birth Name"
+#~ msgstr "Nume Naştere"
+
+#~ msgid "Married Name"
+#~ msgstr "Nume Căsătorie"
+
+#~ msgid "Other Name"
+#~ msgstr "Alt Nume"
+
+#~ msgid "Event Editor - GRAMPS"
+#~ msgstr "Editor eveniment - GRAMPS"
+
+#~ msgid "<b>Event Editor</b>"
+#~ msgstr "<b>Editor Eveniment </b>"
+
+#~ msgid "Event Type"
+#~ msgstr "Tip Eveniment"
+
+#~ msgid "Cause"
+#~ msgstr "Cauza"
+
+#~ msgid "Selects the calendar format for display"
+#~ msgstr "Selectează formatul de afişare a calendarului"
+
+#~ msgid "French"
+#~ msgstr "Franceză"
+
+#~ msgid "Private Record"
+#~ msgstr "Inregistrare Privată"
+
+#~ msgid "<b>General</b>"
+#~ msgstr "<b>General</b>"
+
+#~ msgid "<b>Sources</b>"
+#~ msgstr "<b>Surse </b>"
+
+#~ msgid "<b>Note</b>"
+#~ msgstr "<b>Notă</b>"
+
+#~ msgid "Attribute Editor - GRAMPS"
+#~ msgstr "Editor Atribut - GRAMPS"
+
+#~ msgid "<b>Attribute Editor</b>"
+#~ msgstr "<b>Editor Atribut</b>"
+
+#~ msgid "Address Editor - GRAMPS"
+#~ msgstr "Editor Adresă"
+
+#~ msgid "Accept and close"
+#~ msgstr "Acceptă şi închide"
+
+#~ msgid "<b>Address Editor</b>"
+#~ msgstr "<b>Editor adresă</b>"
+
+#~ msgid "City/County"
+#~ msgstr "Oraş/Regiune"
+
+#~ msgid "Internet Address Editor - GRAMPS"
+#~ msgstr "Editor Adresă Internet - GRAMPS"
+
+#~ msgid "Web Address"
+#~ msgstr "Adresa Internet"
+
+#~ msgid "Alternate Name Editor - GRAMPS"
+#~ msgstr "Editor Nume Alternativ - GRAMPS"
+
+#~ msgid "Reject changes and close"
+#~ msgstr "Renunţă la modificări şi închide"
+
+#~ msgid "<b>Alternate Name Editor</b>"
+#~ msgstr "<b>Editor Nume Alternativ</b>"
+
+#~ msgid "Surname Prefix"
+#~ msgstr "Prefix Nume"
+
+#~ msgid "AbiWord"
+#~ msgstr "AbiWord"
+
+#~ msgid "The marker '<!-- START -->' was not in the template"
+#~ msgstr "Markerul '<!-- START -->' nu a existat în şablon"
+
+#~ msgid ""
+#~ "Could not open %s\n"
+#~ "Using the default template"
+#~ msgstr ""
+#~ "Nu am putut deschide %s\n"
+#~ "Folosesc şablonul implicit"
+
+#~ msgid "HTML"
+#~ msgstr "HTML"
+
+#~ msgid "KWord"
+#~ msgstr "KWord"
+
+#~ msgid "LaTeX"
+#~ msgstr "LaTeX"
+
+#~ msgid "OpenOffice/StarOffice 6"
+#~ msgstr "OpenOffice/StarOffice 6"
+
+#~ msgid "PostScript"
+#~ msgstr "PostScript"
+
+#~ msgid "The ReportLab modules are not installed"
+#~ msgstr "Modulele ReportLab nu sunt instalate"
+
+#~ msgid "PDF"
+#~ msgstr "PDF"
+
+#~ msgid "Rich Text Format (RTF)"
+#~ msgstr "Rich Text Format (RTF)"
+
+#~ msgid "SVG (Scalable Vector Graphics)"
+#~ msgstr "SVG (Scalable Vector Graphics)"
+
+#~ msgid "Edit Person - GRAMPS"
+#~ msgstr "Modifică Persoana - GRAMPS"
+
+#~ msgid "Accept changes and close dialog"
+#~ msgstr "Acceptă modificările şi închide dialogul"
+
+#~ msgid "<b>New Person</b>"
+#~ msgstr "<b>Persoană nouă</b>"
+
+#~ msgid "Invoke birth event editor"
+#~ msgstr "Deschide editor pentru naştere"
+
+#~ msgid "Edit"
+#~ msgstr "Modifică"
+
+#~ msgid "<b>Birth</b>"
+#~ msgstr "<b>Naştere</b>"
+
+#~ msgid "Invoke death event editor"
+#~ msgstr "Deschide editor pentru deces"
+
+#~ msgid "<b>Death</b>"
+#~ msgstr "<b>Deces</b>"
+
+#~ msgid "<b>Gender</b>"
+#~ msgstr "<b>Sex</b>"
+
+#~ msgid "Nick Name"
+#~ msgstr "Porecla"
+
+#~ msgid "Select source for this name information"
+#~ msgstr "Selectaţi sursa pentru această informaţie"
+
+#~ msgid "Enter/modify notes regarding this name"
+#~ msgstr "Introdu/modifcă note legate de acest nume"
+
+#~ msgid "<b>Preferred Name</b>"
+#~ msgstr "<b>Nume Preferat</b>"
+
+#~ msgid "<b>Image</b>"
+#~ msgstr "<b>Imagine</b>"
+
+#~ msgid "<b>Identification</b>"
+#~ msgstr "<b>Identificare</b>"
+
+#~ msgid "Primary Source"
+#~ msgstr "Sursa Primară"
+
+#~ msgid "Confidence"
+#~ msgstr "Confidenţă"
+
+#~ msgid "<b>No Alternate Names</b>"
+#~ msgstr "<b>Fără Nume Alternative</b>"
+
+#~ msgid "Create an alternate name for this person"
+#~ msgstr "Creează un nume alternativ pentru această persoană"
+
+#~ msgid "Delete selected name"
+#~ msgstr "Şterge numele selectat"
+
+#~ msgid "<b>Names</b>"
+#~ msgstr "<b>Nume</b>"
+
+#~ msgid "<b>No Events</b>"
+#~ msgstr "<b>Fără Evenimente</b>"
+
+#~ msgid "Create a new event from the above data"
+#~ msgstr "Creează un nou eveniment cu datele de mai sus"
+
+#~ msgid "Delete the selected event"
+#~ msgstr "Şterge evenimentul selectat"
+
+#~ msgid "<b>Events</b>"
+#~ msgstr "<b>Evenimente</b>"
+
+#~ msgid "<b>No Attributes</b>"
+#~ msgstr "<b>Fără Atribute</b>"
+
+#~ msgid "Create a new attribute from the above data"
+#~ msgstr "Creează un nou atribut cu datele de mai sus"
+
+#~ msgid "Delete the selected attribute"
+#~ msgstr "Şterge atributul selectat"
+
+#~ msgid "<b>Attributes</b>"
+#~ msgstr "<b>Atribute</b>"
+
+#~ msgid "<b>No Addresses</b>"
+#~ msgstr "<b>Fără Adrese</b>"
+
+#~ msgid "Create a new address from the above data"
+#~ msgstr "Creează o nouă adresă cu datele de mai sus"
+
+#~ msgid "Delete the selected address"
+#~ msgstr "Şterge adresa selectată"
+
+#~ msgid "<b>Addresses</b>"
+#~ msgstr "<b>Adrese</b>"
+
+#~ msgid "Enter miscellaneous relevant data and documentation"
+#~ msgstr "Introduceţi diverse informaţii ori documente relevante"
+
+#~ msgid "<b>Notes</b>"
+#~ msgstr "<b>Note</b>"
+
+#~ msgid "Place new media object in this gallery"
+#~ msgstr "Adaugă un nou obiect multimedia la această galerie"
+
+#~ msgid "Remove selected object from this gallery only"
+#~ msgstr "Şterge obiectul selectat doar din această galerie"
+
+#~ msgid "<b>Gallery</b>"
+#~ msgstr "<b>Galerie</b>"
+
+#~ msgid "Go to this web page"
+#~ msgstr "Mergi la această pagină Internet"
+
+#~ msgid "Go"
+#~ msgstr "Mergi"
+
+#~ msgid "<b>Internet Addresses</b>"
+#~ msgstr "<b>Adrese Internet</b>"
+
+#~ msgid "Add an internet reference about this person"
+#~ msgstr "Adaugă o nouă referinţă Internet pentru această persoană"
+
+#~ msgid "Delete selected reference"
+#~ msgstr "Şterge referinţa selectată"
+
+#~ msgid "<b>Internet</b>"
+#~ msgstr "<b>Internet</b>"
+
+#~ msgid "Temple"
+#~ msgstr "Templu"
+
+#~ msgid "Sources"
+#~ msgstr "Surse"
+
+#~ msgid "<b>LDS Baptism</b>"
+#~ msgstr "<b>Botez LDS </b>"
+
+#~ msgid "<b>Endowment</b>"
+#~ msgstr "<b>Aptitudini</b>"
+
+#~ msgid "Parents"
+#~ msgstr "Părinţi"
+
+#~ msgid "<b>Sealed to Parents</b>"
+#~ msgstr "<b>Sigiliat la părinţi</b>"
+
+#~ msgid "<b>LDS</b>"
+#~ msgstr "<b>LDS</b>"
+
+#~ msgid "People with an event after ..."
+#~ msgstr "Persoane cu un eveniment după ..."
+
+#~ msgid "People who were adopted"
+#~ msgstr "Persoane adoptate"
+
+#~ msgid "People with an event before ..."
+#~ msgstr "Persoane cu un eveniment înainte de ..."
+
+#~ msgid "Disconnected individuals"
+#~ msgstr "Persoane fără legături"
+
+#~ msgid "People with an event location of ..."
+#~ msgstr "Persoane cu un eveniment în localitatea ..."
+
+#~ msgid "People who have an event type of ..."
+#~ msgstr "Persoane cu un eveniment de tipul ..."
+
+#~ msgid "Females"
+#~ msgstr "Femei"
+
+#~ msgid "People who have images"
+#~ msgstr "Persoane cu imagini"
+
+#~ msgid "People with incomplete names"
+#~ msgstr "Persoane cu nume incomplete"
+
+#~ msgid "Males"
+#~ msgstr "Bărbaţi"
+
+#~ msgid "Names with same SoundEx code as ..."
+#~ msgstr "Nume cu acelaşi cod SoundEx ca şi ..."
+
+#~ msgid "Names with the specified SoundEx code"
+#~ msgstr "Nume cu codul SoundEx specificat"
+
+#~ msgid "SoundEx Code"
+#~ msgstr "Cod SoundEx"
+
+#~ msgid "People with multiple marriage records"
+#~ msgstr "Persoane cu mai multe căsătorii"
+
+#~ msgid "People with no marriage records"
+#~ msgstr "Persoane fără căsătorii"
+
+#~ msgid "People without a birth date"
+#~ msgstr "Persoane fără dată de naştere"
+
+#~ msgid "People with children"
+#~ msgstr "Persoane cu copii"
+
+#~ msgid "Names that match a regular expression"
+#~ msgstr "Nume ce se potrivesc cu o expresie"
+
+#~ msgid "Text"
+#~ msgstr "Text"
+
+#~ msgid "Names that contain a substring"
+#~ msgstr "Nume ce conţin un şir de litere"
+
+#~ msgid "_File"
+#~ msgstr "_Fişier"
+
+#~ msgid "_New"
+#~ msgstr "_Nou"
+
+#~ msgid "_Revert"
+#~ msgstr "_Revenire"
+
+#~ msgid "_Import"
+#~ msgstr "_Import"
+
+#~ msgid "_Export"
+#~ msgstr "_Export"
+
+#~ msgid "Reload Plugins"
+#~ msgstr "Reîncarcă Module"
+
+#~ msgid "_Edit"
+#~ msgstr "_Modifică"
+
+#~ msgid "Find..."
+#~ msgstr "Caută..."
+
+#~ msgid "_Merge"
+#~ msgstr "_Uneşte"
+
+#~ msgid "_View"
+#~ msgstr "_Vizualizează"
+
+#~ msgid "Sidebar"
+#~ msgstr "Bara laterală"
+
+#~ msgid "_Bookmarks"
+#~ msgstr "_Semne de carte"
+
+#~ msgid "_Add Bookmark"
+#~ msgstr "_Adaugă Semn de Carte"
+
+#~ msgid "_Edit Bookmarks"
+#~ msgstr "_Modifică Semne de Carte"
+
+#~ msgid "_Reports"
+#~ msgstr "_Rapoarte"
+
+#~ msgid "_Tools"
+#~ msgstr "_Unelte"
+
+#~ msgid "_Settings"
+#~ msgstr "_Configurări"
+
+#~ msgid "_Default Person"
+#~ msgstr "_Persoana Implicită"
+
+#~ msgid "_Help"
+#~ msgstr "_Ajutor"
+
+#~ msgid "_User's Manual"
+#~ msgstr "_Manualul Utilizatorului"
+
+#~ msgid "_Writing Extensions"
+#~ msgstr "_Extensii de Scriere"
+
+#~ msgid "_Show Plugin Status"
+#~ msgstr "_Arată statutul modulelor"
+
+#~ msgid "Open File"
+#~ msgstr "Deschide Fişier"
+
+#~ msgid "Open"
+#~ msgstr "Deschide"
+
+#~ msgid "Save File"
+#~ msgstr "Salvează Fişier"
+
+#~ msgid "Save"
+#~ msgstr "Salvează"
+
+#~ msgid "Make the default person the active person"
+#~ msgstr "Fă persoana actuală ca persoană implicită"
+
+#~ msgid "Home"
+#~ msgstr "Acasă"
+
+#~ msgid "Generate reports"
+#~ msgstr "Generează rapoarte"
+
+#~ msgid "Reports"
+#~ msgstr "Rapoarte"
+
+#~ msgid "Run a tool"
+#~ msgstr "Foloseşte o unealtă"
+
+#~ msgid "Tools"
+#~ msgstr "Unelte"
+
+#~ msgid "Add"
+#~ msgstr "Adaugă"
+
+#~ msgid "Remove"
+#~ msgstr "Şterge"
+
+#~ msgid "Pedigree"
+#~ msgstr "Pedigree"
+
+#~ msgid "Media"
+#~ msgstr "Multimedia"
+
+#~ msgid "Show persons that do not match the filtering rule"
+#~ msgstr "Arată persoane ce nu se potrivesc cu regula de filtrare"
+
+#~ msgid "Invert"
+#~ msgstr "Inversează"
+
+#~ msgid "<b>People</b>"
+#~ msgstr "<b>Persoane</b>"
+
+#~ msgid "Double-click to edit the relationship information"
+#~ msgstr "Dublu-click pentru e modifica informaţii despre relaţie"
+
+#~ msgid "<b>Spouse</b>"
+#~ msgstr "<b>Soţ(ie)</b>"
+
+#~ msgid "<b>Active Person</b>"
+#~ msgstr "<b>Persoana Activă</b>"
+
+#~ msgid "Adds a spouse"
+#~ msgstr "Adaugă soţ(ie)"
+
+#~ msgid "Removes the currently selected spouse"
+#~ msgstr "Şterge soţ(ul/ia) selectat(ă)"
+
+#~ msgid "Make the active person's family the active family"
+#~ msgstr "Fă familia persoanei active familia activă"
+
+#~ msgid "Adds a new set of parents to the active person"
+#~ msgstr "Adaugă un nou set de părinţi pentru persoana activă"
+
+#~ msgid "Deletes the selected parents from the active person"
+#~ msgstr "Şterge părinţii selectaţi de la persoana activă"
+
+#~ msgid "Exchange the current spouse with the active person"
+#~ msgstr "Schimbă soţ(ul/ia) curent(ă) cu persoana activă"
+
+#~ msgid "Make the selected spouse's family the active family"
+#~ msgstr "Fă familia soţ(ului/iei) selectat(e) familia activă"
+
+#~ msgid "Adds a new set of parents to the selected spouse"
+#~ msgstr "Adaugă un nou set de părinţi la soţ(ul/ia) selectat(ă)"
+
+#~ msgid "Deletes the selected parents from the selected spouse"
+#~ msgstr "Şterge părinţii selectaţi de la soţ(ul/ia) selectat(ă)"
+
+#~ msgid "Double-click to edit the selected parents"
+#~ msgstr "Dublu-click pentru a modifica părinţii selectaţi"
+
+#~ msgid "<b>Active Person's Parents</b>"
+#~ msgstr "<b>Părinţii Persoanei Active</b>"
+
+#~ msgid "<b>Spouse's Parents</b>"
+#~ msgstr "<b>Părinţii Soţ(ului/iei)</b>"
+
+#~ msgid "<b>Children</b>"
+#~ msgstr "<b>Copii</b>"
+
+#~ msgid "Make the selected child the active person"
+#~ msgstr "Fă copilul selectat persoana activă"
+
+#~ msgid "Deletes the selected child from the selected family"
+#~ msgstr "Şterge copilul selectat de la familia selectată"
+
+#~ msgid "<b>Family</b>"
+#~ msgstr "<b>Familia</b>"
+
+#~ msgid "<b>Pedigree</b>"
+#~ msgstr "<b>Pedigree</b>"
+
+#~ msgid "<b>Places</b>"
+#~ msgstr "<b>Localităţi</b>"
+
+#~ msgid "<b>Preview</b>"
+#~ msgstr "<b>Previzualizare</b>"
+
+#~ msgid "Details"
+#~ msgstr "Detalii"
+
+#~ msgid "<b>Information</b>"
+#~ msgstr "<b>Informaţii</b>"
+
+#~ msgid "<b>Media</b>"
+#~ msgstr "<b>Multimedia</b>"
+
+#~ msgid "Select File - GRAMPS"
+#~ msgstr "Selectaţi Fişier - GRAMPS"
+
+#~ msgid "Choose Spouse - GRAMPS"
+#~ msgstr "Alegeţi Soţ - GRAMPS"
+
+#~ msgid "Choose Spouse/Partner"
+#~ msgstr "Alegeţi Soţ(ie)/Partener"
+
+#~ msgid "Relationship definition"
+#~ msgstr "Definiţia relaţiei"
+
+#~ msgid "Choose Parents - GRAMPS"
+#~ msgstr "Alegeţi Părinţi - GRAMPS"
+
+#~ msgid "Choose Parents"
+#~ msgstr "Alegeţi Părinţi"
+
+#~ msgid "<b>Father</b>"
+#~ msgstr "<b>Tata</b>"
+
+#~ msgid "<b>Mother</b>"
+#~ msgstr "<b>Mama</b>"
+
+#~ msgid "Father's relationship to child"
+#~ msgstr "Relaţia tatălui cu copilul"
+
+#~ msgid "Mother's relationship to child"
+#~ msgstr "Relaţia mamei cu copilul"
+
+#~ msgid "Parents' relationship to each other"
+#~ msgstr "Relaţia între părinţi"
+
+#~ msgid "<b>Relationships</b>"
+#~ msgstr "<b>Relaţii</b>"
+
+#~ msgid "Show all people"
+#~ msgstr "Arată toate persoanele"
+
+#~ msgid "Add New Person"
+#~ msgstr "Adaugă Persoană"
+
+#~ msgid "Add Child - GRAMPS"
+#~ msgstr "Adaugă Copil"
+
+#~ msgid "<b>Add Children</b>"
+#~ msgstr "<b>Adaugă copii</b>"
+
+#~ msgid "Hide people not likely to be a child of this family"
+#~ msgstr "Ascunde persoanele improbabil de a fi copii ai acestei familii"
+
+#~ msgid "Relationship to Father"
+#~ msgstr "Relaţia cu Tatăl"
+
+#~ msgid "Relationship to Mother"
+#~ msgstr "Relaţia cu Mama"
+
+#~ msgid "Marriage Editor - GRAMPS"
+#~ msgstr "Editor Căsătorie - GRAMPS"
+
+#~ msgid "<b>Marriage Editor</b>"
+#~ msgstr "<b>Editor Căsătorie</b>"
+
+#~ msgid "Edit marriage information"
+#~ msgstr "Modifică datele căsătoriei"
+
+#~ msgid "Add a new spouse"
+#~ msgstr "Adaugă nou soţ(ie)"
+
+#~ msgid "Remove current spouse"
+#~ msgstr "Şterge soţ(ia) curent(ă)"
+
+#~ msgid "Source Editor - GRAMPS"
+#~ msgstr "Editor Sursă - GRAMPS"
+
+#~ msgid "<b>Source Editor</b>"
+#~ msgstr "<b>Editor Sursă</b>"
+
+#~ msgid "Publication Info"
+#~ msgstr "Info Publicaţie"
+
+#~ msgid "<b><i>General</i></b>"
+#~ msgstr "<b><i>General</i></b>"
+
+#~ msgid "<b><i>Note</i></b>"
+#~ msgstr "<b><i>Notă</i></b>"
+
+#~ msgid "<b><i>Gallery</i></b>"
+#~ msgstr "<b><i>Galerie</i></b>"
+
+#~ msgid "<b><i>References</i></b>"
+#~ msgstr "<b><i>Referinţe</i></b>"
+
+#~ msgid "Add Person - GRAMPS"
+#~ msgstr "Adaugă Persoană - GRAMPS"
+
+#~ msgid "<b>Add Person</b>"
+#~ msgstr "<b>Adaugă Persoană</b>"
+
+#~ msgid "Open a Database - GRAMPS"
+#~ msgstr "Deschide Bază de Date - GRAMPS"
+
+#~ msgid "<b>Open a Database</b>"
+#~ msgstr "<b>Deschide Bază de Date</b>"
+
+#~ msgid "Open an Existing Database"
+#~ msgstr "Deschide o Bază de Date Existentă"
+
+#~ msgid "Create a New XML Database"
+#~ msgstr "Creează o Nouă Bază de Date XML"
+
+#~ msgid "Create a New ZODB Database"
+#~ msgstr "Creează o Nouă Bază de Date ZODB"
+
+#~ msgid "Question - GRAMPS"
+#~ msgstr "Întrebare - GRAMPS"
+
+#~ msgid "Choose Spouse"
+#~ msgstr "Alegeţi soţ(ie)"
+
+#~ msgid "New Relationship"
+#~ msgstr "Relaţie Nouă"
+
+#~ msgid "Add a Spouse or Create a New Relationship"
+#~ msgstr "Adaugă Soţ(ie) sau Creează o Nouă Relaţie"
+
+#~ msgid ""
+#~ "No spouse has been defined for the current relationship.\n"
+#~ "\n"
+#~ "You can either define the spouse of the current relationship\n"
+#~ "or create a new relationship."
+#~ msgstr ""
+#~ "Pentru relaţia curentă nu a fost definit un/o soţ(ie)\n"
+#~ "\n"
+#~ "Puteţi fie să definiţi soţul/(ia) relaţiei curente sau să creaţi o\n"
+#~ "nouă relaţie."
+
+#~ msgid "Modify Parents - GRAMPS"
+#~ msgstr "Modifică Părinţi - GRAMPS"
+
+#~ msgid "<b>Modify Parents</b>"
+#~ msgstr "<b>Modifică Părinţi</b>"
+
+#~ msgid "Name :"
+#~ msgstr "Nume :"
+
+#~ msgid "Relationship :"
+#~ msgstr "Relaţie :"
+
+#~ msgid "Death Date"
+#~ msgstr "Data Deces"
+
+#~ msgid ""
+#~ "You are running GRAMPS as the 'root' user.\n"
+#~ "This account is not meant for normal application use."
+#~ msgstr ""
+#~ "Rulaţi GRAMPS ca utilizator 'root'\n"
+#~ "Acest cont nu e recomandat utilizării de aplicaţii uzuale."
+
+#~ msgid "Exactly two people must be selected to perform a merge"
+#~ msgstr "Exact două persoane trebuiesc selectate pentru a realiza o uniune"
+
+#~ msgid ""
+#~ "Unsaved changes exist in the current database\n"
+#~ "Do you wish to save the changes?"
+#~ msgstr ""
+#~ "În baza de date curentă există modifcări nesalvate\n"
+#~ "Doriţi să salvaţi modificările?"
+
+#~ msgid "Do you want to close the current database and create a new one?"
+#~ msgstr "Doriţi să închideţi baza de date curentă şi să creaţi una nouă?"
+
+#~ msgid "New Database"
+#~ msgstr "Bază de Date Nouă"
+
+#~ msgid ""
+#~ "An autosave file exists for %s.\n"
+#~ "Should this be loaded instead of the last saved version?"
+#~ msgstr ""
+#~ "Un fişier autosalvat există pentru %s.\n"
+#~ "Să îl încarc pe acesta sau ultima versiune salvată?"
+
+#~ msgid "Autosave File"
+#~ msgstr "Fişier Autosalvat"
+
+#~ msgid "%s is not a directory"
+#~ msgstr "%s nu e un director"
+
+#~ msgid "Loading %s ..."
+#~ msgstr "Încarc %s ..."
+
+#~ msgid "Saving %s ..."
+#~ msgstr "Salvez %s ..."
+
+#~ msgid "autosaving..."
+#~ msgstr "autosalvez..."
+
+#~ msgid "autosave complete"
+#~ msgstr "autosalvare completă"
+
+#~ msgid "autosave failed"
+#~ msgstr "autosalvarea a eşuat"
+
+#~ msgid "Do you really wish to delete %s?"
+#~ msgstr "Chiar doriţi să ştergeţi %s?"
+
+#~ msgid "Delete Person"
+#~ msgstr "Şterge Persoana"
+
+#~ msgid ""
+#~ "Do you wish to abandon your changes and revert to the last saved database?"
+#~ msgstr ""
+#~ "Doriţi să renunţaţi la modificări şi să vă reîntoarceţi la ultima bază de "
+#~ "date salvată?"
+
+#~ msgid "Cannot revert to a previous database, since one does not exist"
+#~ msgstr "Nu am putut sa revin la precedenta bază de date, deoarece nu există"
+
+#~ msgid "No default/Home Person has been set"
+#~ msgstr "Nu a fost definită o persoană implicită"
+
+#~ msgid "Do you wish to set %s as the Home Person?"
+#~ msgstr "Doriţi să definiţi pe %s ca persoană implicită?"
+
+#~ msgid "Set Home Person"
+#~ msgstr "Defineşte Persoana Implicită (Acasă)"
+
+#~ msgid "Select a Media Object - GRAMPS"
+#~ msgstr "Selectează Obiect Multimedia - GRAMPS"
+
+#~ msgid "Select a Media Object"
+#~ msgstr "Selectează Obiect Multimedia"
+
+#~ msgid "Preview"
+#~ msgstr "Previzualizare"
+
+#~ msgid "File"
+#~ msgstr "Fişier"
+
+#~ msgid "Do not make a local copy"
+#~ msgstr "Nu face copie locală"
+
+#~ msgid "Select an image"
+#~ msgstr "Selectaţi o imagine"
+
+#~ msgid "Change Local Media Object Properties - GRAMPS"
+#~ msgstr "Modifică Proprietăţile Obiectului Multimedia Local - GRAMPS"
+
+#~ msgid "Change Local Media Object Properties"
+#~ msgstr "Modifică Proprietăţile Obiectului Multimedia Local"
+
+#~ msgid "Object Type"
+#~ msgstr "Tip Obiect"
+
+#~ msgid "Notes"
+#~ msgstr "Note"
+
+#~ msgid "No Attributes"
+#~ msgstr "Fără Atribute"
+
+#~ msgid "Creates a new object attribute from the above data"
+#~ msgstr "Creează un nou atribut pentru obiect din datele de mai sus"
+
+#~ msgid "Attributes"
+#~ msgstr "Atribute"
+
+#~ msgid "Change Global Media Object Properties - GRAMPS"
+#~ msgstr "Modifică Proprietăţile Obiectului Multimedia Global - GRAMPS"
+
+#~ msgid "Change Global Media Object Properties"
+#~ msgstr "Modifică Proprietăţile Obiectului Multimedia Global"
+
+#~ msgid "General Information"
+#~ msgstr "Informaţii Generale"
+
+#~ msgid "Copies the object into the database"
+#~ msgstr "Copiază obiectul în baza de date"
+
+#~ msgid "Make Local Copy"
+#~ msgstr "Fă Copie Locală"
+
+#~ msgid "Creates a new attribute from the above data"
+#~ msgstr "Creează un nou atribut din datele de mai sus"
+
+#~ msgid "References"
+#~ msgstr "Referinţe"
+
+#~ msgid "Marriage/Relationship Editor - GRAMPS"
+#~ msgstr "Editor Căsătorii/Relaţii - GRAMPS"
+
+#~ msgid "<b>Marriage/Relationship Editor</b>"
+#~ msgstr "<b>Editor Căsătorii/Relaţii</b>"
+
+#~ msgid "Add new event for this marriage"
+#~ msgstr "Adaugă un nou eveniment pentru această căsătorie"
+
+#~ msgid "Delete selected event"
+#~ msgstr "Şterge evenimentul selectat"
+
+#~ msgid "Create a new attribute for this marriage"
+#~ msgstr "Creează un nou atribut pentru această căsătorie"
+
+#~ msgid "<b>Spouse Sealing</b>"
+#~ msgstr "<b>Sigiliarea Soţ(ului/iei)</b>"
+
+#~ msgid "Merge Places - GRAMPS"
+#~ msgstr "Uneşte Localităţi - GRAMPS"
+
+#~ msgid "Select the title for the merged place"
+#~ msgstr "Selectaţi titlul pentru localitatea unită"
+
+#~ msgid "Place 1"
+#~ msgstr "Localitatea 1"
+
+#~ msgid "Place 2"
+#~ msgstr "Localitatea 2"
+
+#~ msgid "Merge People - GRAMPS"
+#~ msgstr "Uneşte Persoane - GRAMPS"
+
+#~ msgid "Merge and Close"
+#~ msgstr "Uneşte şi Închide"
+
+#~ msgid "Merge and Edit"
+#~ msgstr "Uneşte si Modifică"
+
+#~ msgid "Merge People"
+#~ msgstr "Uneşte Persoane"
+
+#~ msgid "Birth Place"
+#~ msgstr "Locul Naşterii"
+
+#~ msgid "Death Place"
+#~ msgstr "Locul Decesului"
+
+#~ msgid "Spouses"
+#~ msgstr "Soţi(i)"
+
+#~ msgid "First Person"
+#~ msgstr "Prima Persoană"
+
+#~ msgid "Second Person"
+#~ msgstr "A Doua Persoană"
+
+#~ msgid "Keep other name as an alternate name"
+#~ msgstr "Păstrează celălalt nume ca nume alternativ"
+
+#~ msgid "Keep other birth event as an alternate birth event"
+#~ msgstr "Păstreaza cealaltă naşterea ca naştere alternativă"
+
+#~ msgid "Keep other death event as an alternate death event"
+#~ msgstr "Păstreaza celălalt deces ca deces alternativ"
+
+#~ msgid "Place Editor - GRAMPS"
+#~ msgstr "Editor Localităţi - GRAMPS"
+
+#~ msgid "Place Editor"
+#~ msgstr "Editor Localităţi"
+
+#~ msgid "Longitude"
+#~ msgstr "Longitudine"
+
+#~ msgid "Latitude"
+#~ msgstr "Latitudine"
+
+#~ msgid "Other Names"
+#~ msgstr "Alte Nume"
+
+#~ msgid "Gallery"
+#~ msgstr "Galerie"
+
+#~ msgid "Internet Addresses"
+#~ msgstr "Adrese Internet"
+
+#~ msgid "Internet"
+#~ msgstr "Internet"
+
+#~ msgid "Report Selection - GRAMPS"
+#~ msgstr "Selectare Raport - GRAMPS"
+
+#~ msgid "Select a report from those available on the left."
+#~ msgstr "Selectaţi un raport din cele disponibile în stânga"
+
+#~ msgid "Author's Email"
+#~ msgstr "Email Autor"
+
+#~ msgid "Plugin Status - GRAMPS"
+#~ msgstr "Status Module - GRAMPS"
+
+#~ msgid "Ancestor Chart"
+#~ msgstr "Harta strămoşilor"
+
+#~ msgid "Graphical Reports"
+#~ msgstr "Rapoarte Grafice"
+
+#~ msgid "Ancestor Chart for %s"
+#~ msgstr "Harta strămoşilor pentru %s"
+
+#~ msgid "Save Ancestor Chart"
+#~ msgstr "Salvează Harta Strămoşilor"
+
+#~ msgid "Display Format"
+#~ msgstr "Format Vizualizare"
+
+#~ msgid "Allows you to customize the data in the boxes in the report"
+#~ msgstr "Vă permite personalizarea datelor din căsuţele raportului"
+
+#~ msgid "Beta"
+#~ msgstr "Beta"
+
+#~ msgid "Produces a graphical ancestral tree graph"
+#~ msgstr "Produce un arbore grafic al strămoşilor"
+
+#~ msgid "Ahnentafel Report for %s"
+#~ msgstr "Raport Ahnentafel pentru %s"
+
+#~ msgid "%s Generation"
+#~ msgstr "Generaţia %s"
+
+#~ msgid "%s was born on %s in %s. "
+#~ msgstr "%s s-a născut pe %s în %s. "
+
+#~ msgid "%s was born on %s. "
+#~ msgstr "%s s-a născut pe %s. "
+
+#~ msgid "%s was born in the year %s in %s. "
+#~ msgstr "%s s-a născut în anul %s în %s"
+
+#~ msgid "%s was born in the year %s. "
+#~ msgstr "%s s-a născut în anul %s. "
+
+#~ msgid "He died on %s in %s"
+#~ msgstr "A decedat pe %s în %s"
+
+#~ msgid "He died on %s"
+#~ msgstr "A decedat pe %s"
+
+#~ msgid "She died on %s in %s"
+#~ msgstr "A decedat pe %s în %s"
+
+#~ msgid "She died on %s"
+#~ msgstr "A decedat pe %s"
+
+#~ msgid "He died in the year %s in %s"
+#~ msgstr "A decedat în anul %s în %s"
+
+#~ msgid "He died in the year %s"
+#~ msgstr "A decedat în anul %s"
+
+#~ msgid "She died in the year %s in %s"
+#~ msgstr "A decedat în anul %s în %s"
+
+#~ msgid "She died in the year %s"
+#~ msgstr "A decedat în anul %s"
+
+#~ msgid ", and was buried on %s in %s."
+#~ msgstr ", şi a fost înmormântat(ă) pe %s în %s. "
+
+#~ msgid ", and was buried on %s."
+#~ msgstr ", şi a fost înmormântat(ă) pe %s. "
+
+#~ msgid ", and was buried in the year %s in %s."
+#~ msgstr ", şi a fost înmormântat(ă) în anul %s în %s. "
+
+#~ msgid ", and was buried in the year %s."
+#~ msgstr ", şi a fost înmormântat(ă) în anul %s."
+
+#~ msgid " and was buried in %s."
+#~ msgstr " şi a fost înmormântat(ă) în %s."
+
+#~ msgid "Ahnentafel Report"
+#~ msgstr "Raport Ahnentafel"
+
+#~ msgid "Text Reports"
+#~ msgstr "Rapoarte Text"
+
+#~ msgid "Save Ancestor Report"
+#~ msgstr "Salvează Raport Strămoşi"
+
+#~ msgid "Produces a textual ancestral report"
+#~ msgstr "Produce un raport textual al strămoşilor"
+
+#~ msgid "1 event record was modified"
+#~ msgstr "1 eveniment a fost modificat"
+
+#~ msgid "%d event records were modified"
+#~ msgstr "%d evenimente au fost modificate"
+
+#~ msgid "Rename personal event types"
+#~ msgstr "Redenumeşte tipurile de evenimente personale"
+
+#~ msgid "Database Processing"
+#~ msgstr "Procesarea Bazei de Date"
+
+#~ msgid "Allows all the events of a certain name to be renamed to a new name"
+#~ msgstr "Permite tuturor evenimentelor cu un anumit nume să fie redenumite."
+
+#~ msgid "No errors were found"
+#~ msgstr "Nu am găsit erori"
+
+#~ msgid "1 broken child/family link was fixed\n"
+#~ msgstr "O legătură întreruptă copil/familie a fost reparată\n"
+
+#~ msgid "%d broken child/family links were found\n"
+#~ msgstr "%d legături întrerupte copil/familie au fost găsite\n"
+
+#~ msgid "%s was removed from the family of %s\n"
+#~ msgstr "%s a fost şters din familia lui %s\n"
+
+#~ msgid "1 broken spouse/family link was fixed\n"
+#~ msgstr "O legătura întreruptă soţ(ie)/familie a fost reparată\n"
+
+#~ msgid "%d broken spouse/family links were found\n"
+#~ msgstr "%d legături întrerupte soţ(ie)/familie au fost găsite\n"
+
+#~ msgid "%s was restored to the family of %s\n"
+#~ msgstr "%s a fost readăugat(ă) la familia lui %s\n"
+
+#~ msgid "1 empty family was found\n"
+#~ msgstr "O familie care nu conţine nimic a fost găsită\n"
+
+#~ msgid "%d empty families were found\n"
+#~ msgstr "%d familii care nu conţin nimic au fost găsite\n"
+
+#~ msgid "1 corrupted family relationship fixed\n"
+#~ msgstr "O relaţie de familie eronată a fost reparată\n"
+
+#~ msgid "%d corrupted family relationship fixed\n"
+#~ msgstr "%d relaţii de familie eronate au fost reparate\n"
+
+#~ msgid "1 media object was referenced, but not found\n"
+#~ msgstr "Un obiect multimedia a fost referenţiat, dar nu a fost găsit\n"
+
+#~ msgid "%d media objects were referenced, but not found\n"
+#~ msgstr "%d obiecte multimedia au fost referenţiate, dar nu au fost găsite\n"
+
+#~ msgid "Check Integrity"
+#~ msgstr "Verifică Integritatea"
+
+#~ msgid ""
+#~ "Checks the database for integrity problems, fixing the problems that it "
+#~ "can"
+#~ msgstr ""
+#~ "Verifică baza de date pentru integritate, reparând problemele dacă e "
+#~ "posibil"
+
+#~ msgid "Descendant Graph"
+#~ msgstr "Grafic Descendenţi"
+
+#~ msgid "Descendant Graph for %s"
+#~ msgstr "Grafic Descendenţi pentru %s"
+
+#~ msgid "Save Descendant Graph"
+#~ msgstr "Salvează Grafic Descendenţi"
+
+#~ msgid "Generates a list of descendants of the active person"
+#~ msgstr "Generează o listă de descendenţi ai persoanei active"
+
+#~ msgid "Alpha"
+#~ msgstr "Alfa"
+
+#~ msgid "Interactive descendant browser"
+#~ msgstr "Navigator interactiv al descendenţilor"
+
+#~ msgid "Analysis and Exploration"
+#~ msgstr "Analiză si Explorare"
+
+#~ msgid "Provides a browsable hierarchy based on the active person"
+#~ msgstr "Realizează o ierarhie navigabilă bazată pe persoana activă"
+
+#~ msgid "Descendants of %s"
+#~ msgstr "Descendenţi pentru %s"
+
+#~ msgid "Descendant Report"
+#~ msgstr "Raport Descendenţi"
+
+#~ msgid "Descendant Report for %s"
+#~ msgstr "Raport Descendenţi pentru %s"
+
+#~ msgid "Save Descendant Report"
+#~ msgstr "Salvează Raport Descendenţi"
+
+#~ msgid "Child of %s and %s is:"
+#~ msgstr "Copilul cuplului %s şi %s este:"
+
+#~ msgid "Children of %s and %s are:"
+#~ msgstr "Copiii cuplului %s şi %s sunt:"
+
+#~ msgid "- %s Born: %s %s Died: %s %s"
+#~ msgstr "- %s Născut(ă): %s %s Decedat(ă): %s %s"
+
+#~ msgid "- %s Born: %s %s Died: %s"
+#~ msgstr "- %s Născut(ă): %s %s Decedat(ă): %s"
+
+#~ msgid "- %s Born: %s %s"
+#~ msgstr "- %s Născut(ă): %s %s "
+
+#~ msgid "- %s Born: %s Died: %s %s"
+#~ msgstr "- %s Născut(ă): %s Decedat(ă): %s %s"
+
+#~ msgid "- %s Born: %s Died: %s"
+#~ msgstr "- %s Născut(ă): %s Decedat(ă): %s"
+
+#~ msgid "- %s Born: %s"
+#~ msgstr "- %s Născut(ă): %s"
+
+#~ msgid "- %s Died: %s %s"
+#~ msgstr "- %s Decedat(ă): %s %s"
+
+#~ msgid "- %s Died: %s"
+#~ msgstr "- %s Decedat(ă): %s"
+
+#~ msgid "- %s"
+#~ msgstr "- %s"
+
+#~ msgid "He"
+#~ msgstr "El"
+
+#~ msgid "She"
+#~ msgstr "Ea"
+
+#~ msgid " is the same person as [%s]."
+#~ msgstr "este una  şi aceeaşi persoană cu [%s]."
+
+#~ msgid "Notes for %s"
+#~ msgstr "Note pentru %s"
+
+#~ msgid " was born on %s in %s."
+#~ msgstr " a fost născut(ă) pe %s în %s."
+
+#~ msgid " was born on %s."
+#~ msgstr " a fost născut(ă) pe %s."
+
+#~ msgid " was born in the year %s in %s."
+#~ msgstr " a fost născut(ă) în anul %s în %s."
+
+#~ msgid " was born in the year %s."
+#~ msgstr " a fost născut(ă) în anul %s."
+
+#~ msgid " in %s."
+#~ msgstr "în %s"
+
+#~ msgid "."
+#~ msgstr "."
+
+#~ msgid "  %s died on %s in %s"
+#~ msgstr "  %s a decedat pe %s în %s"
+
+#~ msgid "  %s died on %s"
+#~ msgstr "  %s a decedat pe %s"
+
+#~ msgid "  %s died in %s in %s"
+#~ msgstr "  %s a decedat în %s în %s"
+
+#~ msgid "  %s died in %s"
+#~ msgstr "  %s a decedat în %s"
+
+#~ msgid "  And %s was buried on %s in %s."
+#~ msgstr "  Şi %s a fost înmormântat(ă) pe %s în %s."
+
+#~ msgid "  And %s was buried on %s."
+#~ msgstr "  Şi %s  fost înmormântat(ă) pe %s."
+
+#~ msgid "  And %s was buried in %s."
+#~ msgstr "  Şi %s a fost înmormântat(ă) în %s."
+
+#~ msgid " %s was the son of %s and %s."
+#~ msgstr " %s a fost fiul cuplului %s şi %s."
+
+#~ msgid " %s was the son of %s."
+#~ msgstr " %s a fost fiul lui %s."
+
+#~ msgid " %s was the daughter of %s and %s."
+#~ msgstr " %s a fost fiica cuplului %s şi %s."
+
+#~ msgid " %s was the daughter of %s."
+#~ msgstr " %s a fost fiica lui %s."
+
+#~ msgid ","
+#~ msgstr ","
+
+#~ msgid "and he"
+#~ msgstr "şi el"
+
+#~ msgid "and she"
+#~ msgstr "şi ea"
+
+#~ msgid "  %s married %s"
+#~ msgstr "  %s căsătorit(ă) %s"
+
+#~ msgid "  %s married %s in %s"
+#~ msgstr "  %s căsătorit(ă) %s în %s"
+
+#~ msgid "  %s married %s on %s"
+#~ msgstr "  %s căsătorit(ă) %s pe %s"
+
+#~ msgid "  %s married %s on %s in %s"
+#~ msgstr "  %s căsătorit(ă) %s pe %s în %s"
+
+#~ msgid "  %s married"
+#~ msgstr "  %s căsătorit(ă)"
+
+#~ msgid "  %s married in %s"
+#~ msgstr "  %s căsătorit(ă) în %s"
+
+#~ msgid "  %s married on %s"
+#~ msgstr "  %s căsătorit(ă) pe %s"
+
+#~ msgid "  %s married on %s in %s"
+#~ msgstr "  %s căsătorit(ă) pe %s în %s"
+
+#~ msgid "Detailed Ancestral Report for %s"
+#~ msgstr "Raport Ancestral Detaliat pentru %s"
+
+#~ msgid "Gramps - Ahnentafel Report"
+#~ msgstr "Gramps - Raport Ahnentafel"
+
+#~ msgid "Detailed Ancestral Report"
+#~ msgstr "Raport Ancestral Detaliat"
+
+#~ msgid "Produces a detailed ancestral report"
+#~ msgstr "Produce un raport ancestral detaliat"
+
+#~ msgid " at the age of %d %s"
+#~ msgstr " la vârsta de %d %s"
+
+#~ msgid "Detailed Descendant Report for %s"
+#~ msgstr "Raport Detaliat Descendenţi pentru %s"
+
+#~ msgid "Use first names instead of pronouns"
+#~ msgstr "Foloseşte prenumele în loc de pronume"
+
+#~ msgid "Use full dates instead of only the year"
+#~ msgstr "Foloseşte data completă, nu doar anul"
+
+#~ msgid "List children"
+#~ msgstr "Afişează copii"
+
+#~ msgid "Detailed Descendant Report"
+#~ msgstr "Raport Detaliat Descendenţi"
+
+#~ msgid "Produces a detailed descendant report"
+#~ msgstr "Produce un raport detaliat al descendenţilor"
+
+#~ msgid "No matches were found"
+#~ msgstr "Căutare fără rezultat"
+
+#~ msgid "Death"
+#~ msgstr "Deces"
+
+#~ msgid "Compare individual events"
+#~ msgstr "Compară evenimente individuale"
+
+#~ msgid ""
+#~ "Aids in the analysis of data by allowing the development of custom "
+#~ "filters that can be applied to the database to find similar events"
+#~ msgstr ""
+#~ "Ajută în analiza datelor, permiţînd realizarea de filtre personalizate ce "
+#~ "pot fi aplicate bazei de date pentru a găsi evenimente similare"
+
+#~ msgid "Family Group Report"
+#~ msgstr "Raport Grup Familie"
+
+#~ msgid "Husband"
+#~ msgstr "Soţ"
+
+#~ msgid "Wife"
+#~ msgstr "Soţie"
+
+#~ msgid "Spouse"
+#~ msgstr "Soţ(ie)"
+
+#~ msgid "Children"
+#~ msgstr "Copii"
+
+#~ msgid "Family Group Report for %s"
+#~ msgstr "Raport Grup Familie pentru %s"
+
+#~ msgid "Save Family Group Report"
+#~ msgstr "Salvează Raportul Grup Familie"
+
+#~ msgid ""
+#~ "Creates a family group report, showing information on a set of parents "
+#~ "and their children."
+#~ msgstr ""
+#~ "Creează un raport grup familie, arătând informaţii despre un set de "
+#~ "părinţi şi copiii lor."
+
+#~ msgid "Comment"
+#~ msgstr "Comentariu"
+
+#~ msgid "Custom Filter Editor"
+#~ msgstr "Editor Filtru Personalizat"
+
+#~ msgid "Utilities"
+#~ msgstr "Utilităţi"
+
+#~ msgid ""
+#~ "The Custom Filter Editor builds custom filters that can be used to select "
+#~ "people included in reports, exports, and other utilities."
+#~ msgstr ""
+#~ "Editorul de Filtru Personalizat construieşte filtre ce pot fi folosite "
+#~ "pentru a selecta persoane incluse în rapoarte, export, sau alte utilităţi."
+
+#~ msgid "System Filter Editor"
+#~ msgstr "Editor Filtru Sistem"
+
+#~ msgid ""
+#~ "The System Filter Editor builds custom filters that can be used by anyone "
+#~ "on the system to select people included in reports, exports, and other "
+#~ "utilities."
+#~ msgstr ""
+#~ "Editorul de Filtru Sistem construieşte filtre ce pot fi folosite de "
+#~ "oricine pentru a selecta persoane incluse în rapoarte, exporturi  sau "
+#~ "alte utilităţi."
+
+#~ msgid "Full Family Chart"
+#~ msgstr "Harta Completă de Familie"
+
+#~ msgid "Full Family Chart for %s"
+#~ msgstr "Harta Completă de Familie pentru %s"
+
+#~ msgid "Save Full Family Chart"
+#~ msgstr "Salvează Harta Completă de Familie"
+
+#~ msgid "Single (scaled)"
+#~ msgstr "Una (scalat)"
+
+#~ msgid "Single"
+#~ msgstr "Una"
+
+#~ msgid "Multiple"
+#~ msgstr "Multiple"
+
+#~ msgid "Relationship Graph"
+#~ msgstr "Grafic Relaţii"
+
+#~ msgid "Graphviz File"
+#~ msgstr "Fişier Graphviz"
+
+#~ msgid "Ancestors of %s"
+#~ msgstr "Strămoşi pentru %s"
+
+#~ msgid "People with common ancestor with %s"
+#~ msgstr "Persoane cu strămoş comun cu %s"
+
+#~ msgid "Descendants <- Ancestors"
+#~ msgstr "Descendenţi <- Strămoşi"
+
+#~ msgid "Descendants -> Ancestors"
+#~ msgstr "Descendenţi -> Strămoşi"
+
+#~ msgid "Descendants <-> Ancestors"
+#~ msgstr "Descendenţi <-> Strămoşi"
+
+#~ msgid "Descendants - Ancestors"
+#~ msgstr "Descendenţi - Strămoşi"
+
+#~ msgid "GraphViz Options"
+#~ msgstr "Opţiuni Graphviz"
+
+#~ msgid "Arrowhead Options"
+#~ msgstr "Opţiuni Săgeţi"
+
+#~ msgid "Choose the direction that the arrows point."
+#~ msgstr "Alegeţi direcţia în care să arate săgeata."
+
+#~ msgid "Include Birth and Death Dates"
+#~ msgstr "Include Date de Naştere şi Deces"
+
+#~ msgid ""
+#~ "Include the years that the individual was born and/or died in the graph "
+#~ "node labels."
+#~ msgstr ""
+#~ "Include anii în care persoana a fost nascută şi/sau a decedat, în "
+#~ "etichetele din nodurile graficului."
+
+#~ msgid "Include URLs"
+#~ msgstr "Include URL"
+
+#~ msgid ""
+#~ "Include a URL in each graph node so that PDF and imagemap files can be "
+#~ "generated that contain active links to the files generated by the "
+#~ "'Generate Web Site' report."
+#~ msgstr ""
+#~ "Include un URL în fiecare nod al graficului astfel ca fişierele PDF şi "
+#~ "imagemap să fie generate cu legături active spre fişierele generate de "
+#~ "raportul 'Generează Pagină Internet'."
+
+#~ msgid "Colorize Graph"
+#~ msgstr "Grafic Colorat"
+
+#~ msgid ""
+#~ "Males will be outlined in blue, females will be outlined in pink.  If the "
+#~ "sex of an individual is unknown it will be outlined in black."
+#~ msgstr ""
+#~ "Persoanele de sex masculin vor fi în căsuţă albastră iar cele de sex "
+#~ "feminin în roz. Dacă sexul unei persoane e necunoscut, căsuţa va fi "
+#~ "neagră."
+
+#~ msgid "Indicate non-birth relationships with dashed lines"
+#~ msgstr "Indică relaţiile non-natale cu linie întreruptă"
+
+#~ msgid "Non-birth relationships will show up as dashed lines in the graph."
+#~ msgstr "Relaţiile non-natale vor fi indicate cu linie întreruptă în grafic."
+
+#~ msgid "Show family nodes"
+#~ msgstr "Arată familiile ca noduri"
+
+#~ msgid "Families will show up as circles, linked to parents and children."
+#~ msgstr ""
+#~ "Familiile vor fi reprezentate ca cercuri, legate de părinţi şi copii."
+
+#~ msgid "Top & Bottom Margins"
+#~ msgstr "Margini Sus & Jos"
+
+#~ msgid "Left & Right Margins"
+#~ msgstr "Margini Stânga & Dreapta"
+
+#~ msgid "Number of Horizontal Pages"
+#~ msgstr "Număr Pagini Orizontale"
+
+#~ msgid ""
+#~ "GraphViz can create very large graphs by spreading the graph across a "
+#~ "rectangular array of pages. This controls the number pages in the array "
+#~ "horizontally."
+#~ msgstr ""
+#~ "GraphViz poate crea grafice foarte mari, împărţind graficul pe zone "
+#~ "rectangulare ale paginilor."
+
+#~ msgid "Number of Vertical Pages"
+#~ msgstr "Număr Pagini Verticale"
+
+#~ msgid ""
+#~ "GraphViz can create very large graphs by spreading the graph across a "
+#~ "rectangular array of pages. This controls the number pages in the array "
+#~ "vertically."
+#~ msgstr ""
+#~ "GraphViz poate crea grafice foarte mari, împărţind graficul pe zone "
+#~ "rectangulare ale paginilor."
+
+#~ msgid ""
+#~ "Generates relationship graphs, currently only in GraphViz format. "
+#~ "GraphViz (dot) can transform the graph into postscript, jpeg, png, vrml, "
+#~ "svg, and many other formats. For more information or to get a copy of "
+#~ "GraphViz, goto http://www.graphviz.org"
+#~ msgstr ""
+#~ "Generează grafice a relaţiilor, actualmente doar în format GraphViz. "
+#~ "GraphViz (dot) poate transforma graficul în postscript, jpeg, png, vrml, "
+#~ "svg şi multe alte formate. Pentru mai multe informaţii sau pentru a "
+#~ "obţine GraphViz, vizitaţi http://www.graphviz.org  "
+
+#~ msgid "%(date)s in %(place)s."
+#~ msgstr "%(date)s în %(place)s."
+
+#~ msgid "Alternate Parents"
+#~ msgstr "Părinţi Alternativi"
+
+#~ msgid "Alternate Names"
+#~ msgstr "Nume Alternative"
+
+#~ msgid "Marriages/Children"
+#~ msgstr "Căsătorii/Copii"
+
+#~ msgid "Individual Facts"
+#~ msgstr "Fapte Personale"
+
+#~ msgid "Summary of %s"
+#~ msgstr "Sumar pentru %s"
+
+#~ msgid "Male"
+#~ msgstr "Masculin"
+
+#~ msgid "Female"
+#~ msgstr "Feminin"
+
+#~ msgid "Include Source Information"
+#~ msgstr "Include Sursa de Informare"
+
+#~ msgid "Complete Individual Report"
+#~ msgstr "Raport Individual Complet"
+
+#~ msgid "Save Complete Individual Report"
+#~ msgstr "Salvează Raport Individual Complet"
+
+#~ msgid "Produces a complete report on the selected people."
+#~ msgstr "Produce un raport complet pentru persoanele selectate."
+
+#~ msgid "Individual Summary"
+#~ msgstr "Sumar Individual"
+
+#~ msgid "Individual Summary for %s"
+#~ msgstr "Sumar Individual pentru %s"
+
+#~ msgid "Save Individual Summary"
+#~ msgstr "Salvează Sumar Individual"
+
+#~ msgid "Produces a detailed report on the selected person."
+#~ msgstr "Produce un raport detaliat pentru persoana selectată"
+
+#~ msgid "Medium"
+#~ msgstr "Mediu"
+
+#~ msgid "Rating"
+#~ msgstr "Calificativ"
+
+#~ msgid "Find possible duplicate people"
+#~ msgstr "Caută posibile persoane duplicate"
+
+#~ msgid ""
+#~ "Searches the entire database, looking for individual entries that may "
+#~ "represent the same person."
+#~ msgstr ""
+#~ "Caută întreaga bază de date pentru înregistrări diferite care ar putea "
+#~ "reprezenta aceeaşi persoană."
+
+#~ msgid "%s will be extracted as a nickname from %s\n"
+#~ msgstr "%s va fi extras ca poreclă de la %s\n"
+
+#~ msgid "%s will be extracted as a title from %s\n"
+#~ msgstr "%s va fi extras ca titlu de la %s\n"
+
+#~ msgid "No titles or nicknames were found"
+#~ msgstr "Nu am găsit titluri sau porecle"
+
+#~ msgid "Extract information from names"
+#~ msgstr "Extrage informaţia din nume"
+
+#~ msgid ""
+#~ "Searches the entire database and attempts to extract titles and nicknames "
+#~ "that may be embedded in a person's given name field."
+#~ msgstr ""
+#~ "Caută întreaga bază de date şi incearcă să extragă titluri şi porecle ce "
+#~ "ar putea fi incluse în numele unei persoane."
+
+#~ msgid "GEDCOM file ended unexpectedly"
+#~ msgstr "Fişierul GEDCOM s-a terminat în mod neaşteptat"
+
+#~ msgid "Warning: line %d was not understood, so it was ignored."
+#~ msgstr "Avertisment: linia %d nu a fost înţeleasă, şi a fost ignorată."
+
+#~ msgid "Import Complete: %d seconds"
+#~ msgstr "Import Complet: %d secunde"
+
+#~ msgid "Import from GEDCOM"
+#~ msgstr "Import din GEDCOM"
+
+#~ msgid "Import from GRAMPS"
+#~ msgstr "Import din GRAMPS"
+
+#~ msgid "%(p1)s is the first cousin of %(p2)s."
+#~ msgstr "%(p1)s este văr primar cu %(p2)s."
+
+#~ msgid "%(p1)s is the first cousin once removed of %(p2)s."
+#~ msgstr "%(p1)s este văr primar de gradul II cu %(p2)s."
+
+#~ msgid "%(p1)s is the first cousin twice removed of %(p2)s."
+#~ msgstr "%(p1)s este văr primar de gradul III cu %(p2)s."
+
+#~ msgid "%(p1)s is the first cousin %(removed)d times removed of %(p2)s."
+#~ msgstr "%(p1)s este văr primar de gradul %(removed)d cu %(p2)s."
+
+#~ msgid "%(p1)s is the second cousin of %(p2)s."
+#~ msgstr "%(p1)s este văr secundar cu %(p2)s."
+
+#~ msgid "%(p1)s is the second cousin once removed of %(p2)s."
+#~ msgstr "%(p1)s este văr secundar de gradul II cu %(p2)s."
+
+#~ msgid "%(p1)s is the second cousin twice removed of %(p2)s."
+#~ msgstr "%(p1)s este văr secundar de gradul III cu %(p2)s."
+
+#~ msgid "%(p1)s is the second cousin %(removed)d times removed of %(p2)s."
+#~ msgstr "%(p1)s este văr secundar de gradul %(removed)d cu %(p2)s."
+
+#~ msgid "%(p1)s is the third cousin of %(p2)s."
+#~ msgstr "%(p1)s este văr terţiar cu %(p2)s."
+
+#~ msgid "%(p1)s is the third cousin once removed of %(p2)s."
+#~ msgstr "%(p1)s este văr terţiar de gradul II cu %(p2)s."
+
+#~ msgid "%(p1)s is the third cousin twice removed of %(p2)s."
+#~ msgstr "%(p1)s este văr terţiar de gradul III cu %(p2)s."
+
+#~ msgid "%(p1)s is the third cousin %(removed)d times removed of %(p2)s."
+#~ msgstr "%(p1)s este văr terţiar de gradul %(removed)d cu %(p2)s."
+
+#~ msgid "%(p1)s is the %(level)dth cousin of %(p2)s."
+#~ msgstr "%(p1)s este văr de-al %(level)dlea cu %(p2)s."
+
+#~ msgid "%(p1)s is the %(level)dth cousin once removed of %(p2)s."
+#~ msgstr "%(p1)s este văr de-al %(level)dlea de gradul II cu %(p2)s."
+
+#~ msgid "%(p1)s is the %(level)dth cousin twice removed of %(p2)s."
+#~ msgstr "%(p1)s este văr de-al %(level)dlea de gradul III cu %(p2)s."
+
+#~ msgid ""
+#~ "%(p1)s is the %(level)dth cousin %(removed)d times removed of %(p2)s."
+#~ msgstr "%(p1)s este văr de-al %(level)dlea de gradul %(removed)d cu %(p2)s."
+
+#~ msgid "%(p1)s is the father of %(p2)s."
+#~ msgstr "%(p1)s este tatăl pentru %(p2)s."
+
+#~ msgid "%(p1)s is the grandfather of %(p2)s."
+#~ msgstr "%(p1)s este bunic pentru %(p2)s."
+
+#~ msgid "%(p1)s is the great grandfather of %(p2)s."
+#~ msgstr "%(p1)s este străbunic pentru %(p2)s."
+
+#~ msgid "%(p1)s is the second great grandfather of %(p2)s."
+#~ msgstr "%(p1)s este stră-străbunic pentru %(p2)s."
+
+#~ msgid "%(p1)s is the third great grandfather of %(p2)s."
+#~ msgstr "%(p1)s este stră-stră-străbunic pentru %(p2)s."
+
+#~ msgid "%(p1)s is the %(level)dth great grandfather of %(p2)s."
+#~ msgstr "%(p1)s este al %(level)dlea străbunic pentru %(p2)s."
+
+#~ msgid "%(p1)s is the son of %(p2)s."
+#~ msgstr "%(p1)s este fiu pentru %(p2)s."
+
+#~ msgid "%(p1)s is the grandson of %(p2)s."
+#~ msgstr "%(p1)s este nepot pentru %(p2)s."
+
+#~ msgid "%(p1)s is the great grandson of %(p2)s."
+#~ msgstr "%(p1)s este strănepot pentru %(p2)s."
+
+#~ msgid "%(p1)s is the second great grandson of %(p2)s."
+#~ msgstr "%(p1)s este stră-strănepot pentru %(p2)s."
+
+#~ msgid "%(p1)s is the third great grandson of %(p2)s."
+#~ msgstr "%(p1)s este stră-stră-strănepot pentru %(p2)s."
+
+#~ msgid "%(p1)s is the %(level)dth great grandson of %(p2)s."
+#~ msgstr "%(p1)s este al %(level)dlea strănepot pentru %(p2)s."
+
+#~ msgid "%(p1)s is the mother of %(p2)s."
+#~ msgstr "%(p1)s este mama pentru %(p2)s."
+
+#~ msgid "%(p1)s is the grandmother of %(p2)s."
+#~ msgstr "%(p1)s este bunica pentru %(p2)s."
+
+#~ msgid "%(p1)s is the great grandmother of %(p2)s."
+#~ msgstr "%(p1)s este străbunica pentru %(p2)s."
+
+#~ msgid "%(p1)s is the second great grandmother of %(p2)s."
+#~ msgstr "%(p1)s este stră-străbunica pentru %(p2)s."
+
+#~ msgid "%(p1)s is the third great grandmother of %(p2)s."
+#~ msgstr "%(p1)s este stră-stră-străbunica pentru %(p2)s."
+
+#~ msgid "%(p1)s is the %(level)dth great grandmother of %(p2)s."
+#~ msgstr "%(p1)s este a %(level)dea străbunică pentru %(p2)s."
+
+#~ msgid "%(p1)s is the daughter of %(p2)s."
+#~ msgstr "%(p1)s este fiică pentru %(p2)s."
+
+#~ msgid "%(p1)s is the granddaughter of %(p2)s."
+#~ msgstr "%(p1)s este nepoată pentru %(p2)s."
+
+#~ msgid "%(p1)s is the great granddaughter of %(p2)s."
+#~ msgstr "%(p1)s este strănepoată pentru %(p2)s."
+
+#~ msgid "%(p1)s is the second great granddaughter of %(p2)s."
+#~ msgstr "%(p1)s este stră-strănepoată pentru %(p2)s."
+
+#~ msgid "%(p1)s is the third great granddaughter of %(p2)s."
+#~ msgstr "%(p1)s este stră-stră-strănepoată pentru %(p2)s."
+
+#~ msgid "%(p1)s is the %(level)dth great granddaughter of %(p2)s."
+#~ msgstr "%(p1)s este a %(level)dea strănepoată pentru %(p2)s."
+
+#~ msgid "%(p1)s is the sister of %(p2)s."
+#~ msgstr "%(p1)s este soră pentru %(p2)s."
+
+#~ msgid "%(p1)s is the aunt of %(p2)s."
+#~ msgstr "%(p1)s este mătuşă pentru %(p2)s."
+
+#~ msgid "%(p1)s is the grandaunt of %(p2)s."
+#~ msgstr "%(p1)s este strămătuşa pentru %(p2)s."
+
+#~ msgid "%(p1)s is the great grandaunt of %(p2)s."
+#~ msgstr "%(p1)s este stră-strămătuşa pentru %(p2)s."
+
+#~ msgid "%(p1)s is the second great grandaunt of %(p2)s."
+#~ msgstr "%(p1)s este stră-strămătuşa de gradul 2 pentru %(p2)s."
+
+#~ msgid "%(p1)s is the third great grandaunt of %(p2)s."
+#~ msgstr "%(p1)s este stră-strămătuşa de gradul 3 pentru %(p2)s."
+
+#~ msgid "%(p1)s is the %(level)dth great grandaunt of %(p2)s."
+#~ msgstr "%(p1)s este stră-strămătuşa de gradul %(level) pentru %(p2)s."
+
+#~ msgid "%(p1)s is the brother of %(p2)s."
+#~ msgstr "%(p1)s este frate pentru %(p2)s."
+
+#~ msgid "%(p1)s is the uncle of %(p2)s."
+#~ msgstr "%(p1)s este unchi pentru %(p2)s."
+
+#~ msgid "%(p1)s is the granduncle of %(p2)s."
+#~ msgstr "%(p1)s este străunchi pentru %(p2)s."
+
+#~ msgid "%(p1)s is the great granduncle of %(p2)s."
+#~ msgstr "%(p1)s este stră-străunchi pentru %(p2)s."
+
+#~ msgid "%(p1)s is the second great granduncle of %(p2)s."
+#~ msgstr "%(p1)s este stră-străunchi de gradul 2 pentru %(p2)s."
+
+#~ msgid "%(p1)s is the third great granduncle of %(p2)s."
+#~ msgstr "%(p1)s este stră-străunchi de gradul 3 pentru %(p2)s."
+
+#~ msgid "%(p1)s is the %(level)dth great granduncle of %(p2)s."
+#~ msgstr "%(p1)s este stră-străunchi de gradul %(level) pentru %(p2)s."
+
+#~ msgid "%(p1)s is the nephew of %(p2)s."
+#~ msgstr "%(p1)s este nepot pentru %(p2)s."
+
+#~ msgid "%(p1)s is the grandnephew of %(p2)s."
+#~ msgstr "%(p1)s este strănepot pentru %(p2)s."
+
+#~ msgid "%(p1)s is the great grandnephew of %(p2)s."
+#~ msgstr "%(p1)s este stră-strănepot pentru %(p2)s."
+
+#~ msgid "%(p1)s is the second great grandnephew of %(p2)s."
+#~ msgstr "%(p1)s este stră-strănepot de gradul 2 pentru %(p2)s."
+
+#~ msgid "%(p1)s is the third great grandnephew of %(p2)s."
+#~ msgstr "%(p1)s este stră-strănepot de gradul 3 pentru %(p2)s."
+
+#~ msgid "%(p1)s is the %(level)dth great grandnephew of %(p2)s."
+#~ msgstr "%(p1)s este stră-strănepot de gradul %(level) pentru %(p2)s."
+
+#~ msgid "%(p1)s is the niece of %(p2)s."
+#~ msgstr "%(p1)s este nepoată pentru %(p2)s."
+
+#~ msgid "%(p1)s is the grandniece of %(p2)s."
+#~ msgstr "%(p1)s este strănepoată pentru %(p2)s."
+
+#~ msgid "%(p1)s is the great grandniece of %(p2)s."
+#~ msgstr "%(p1)s este stră-strănepoată pentru %(p2)s."
+
+#~ msgid "%(p1)s is the second great grandniece of %(p2)s."
+#~ msgstr "%(p1)s este strănepoată de gradul 2 pentru %(p2)s."
+
+#~ msgid "%(p1)s is the third great grandniece of %(p2)s."
+#~ msgstr "%(p1)s este stră-strănepoată de gradul 3 pentru %(p2)s."
+
+#~ msgid "%(p1)s is the %(level)dth great grandniece of %(p2)s."
+#~ msgstr "%(p1)s este stră-strănepoată de gradul %(level) pentru %(p2)s."
+
+#~ msgid "Birthday"
+#~ msgstr "Zi de naştere"
+
+#~ msgid "Their common ancestor is %s."
+#~ msgstr "Strămoşul lor comun este %s."
+
+#~ msgid "Their common ancestors are %s and %s."
+#~ msgstr "Strămoşii lor comuni sunt %s şi %s."
+
+#~ msgid "Their common ancestors are : "
+#~ msgstr "Strămoşii lor comuni sunt : "
+
+#~ msgid "There is no relationship between %s and %s."
+#~ msgstr "Nu există nici o legătură între %s şi %s."
+
+#~ msgid "%s and %s are the same person."
+#~ msgstr "%s şi %s sunt una şi aceeaşi persoană."
+
+#~ msgid "Relationship calculator"
+#~ msgstr "Calculator legături"
+
+#~ msgid "Calculates the relationship between two people"
+#~ msgstr "Calculeaza legătura între două persoane"
+
+#~ msgid "Reorder gramps IDs"
+#~ msgstr "Rearanjează ID-urile gramps"
+
+#~ msgid "Reorders the gramps IDs according to gramps' default rules."
+#~ msgstr "Rearanjează ID-urile gramps după regulile implicite gramps."
+
+#~ msgid "Individuals"
+#~ msgstr "Persoane"
+
+#~ msgid "Number of individuals"
+#~ msgstr "Număr de persoane"
+
+#~ msgid "Individuals with incomplete names"
+#~ msgstr "Persoane cu nume incomplete"
+
+#~ msgid "Individuals missing birth dates"
+#~ msgstr "Persoane fără dată de naştere"
+
+#~ msgid "Family Information"
+#~ msgstr "Informaţii Familie"
+
+#~ msgid "Number of families"
+#~ msgstr "Număr familii"
+
+#~ msgid "Unique surnames"
+#~ msgstr "Nume de familie unice"
+
+#~ msgid "Individuals with media objects"
+#~ msgstr "Persoane cu obiecte multimedia"
+
+#~ msgid "Total number of media object references"
+#~ msgstr "Număr total de referinţe multimedia"
+
+#~ msgid "Number of unique media objects"
+#~ msgstr "Număr de obiecte multimedia unice"
+
+#~ msgid "Total size of media objects"
+#~ msgstr "Mărimea totală a obiectelor multimedia"
+
+#~ msgid "bytes"
+#~ msgstr "bytes"
+
+#~ msgid "Missing Media Objects"
+#~ msgstr "Obiecte Multimedia Lipsă"
+
+#~ msgid "Summary of the database"
+#~ msgstr "Sumarul bazei de date"
+
+#~ msgid "View"
+#~ msgstr "Afişare"
+
+#~ msgid "Provides a summary of the current database"
+#~ msgstr "Furnizează un sumar al bazei de date curente"
+
+#~ msgid "Timeline"
+#~ msgstr "Linia Temporală"
+
+#~ msgid "Timeline File"
+#~ msgstr "Fişier Linie Temporală"
+
+#~ msgid "Sort by"
+#~ msgstr "Sortează după"
+
+#~ msgid "Generates a timeline graph."
+#~ msgstr "Generează un grafic cu linia temporală"
+
+#~ msgid "Timeline Graph"
+#~ msgstr "Grafic Linie Temporală"
+
+#~ msgid "Verify the database"
+#~ msgstr "Verifică baza de date"
+
+#~ msgid "List exceptions to assertions or checks about the database"
+#~ msgstr "Afişează excepţiile aserţiunilor sau verifică baza de date"
+
+#~ msgid "ID Number"
+#~ msgstr "Număr ID"
+
+#~ msgid "Return to the index of people"
+#~ msgstr "Revenire la index persoane"
+
+#~ msgid "Facts and Events"
+#~ msgstr "Fapte şi Evenimente"
+
+#~ msgid "Creating Web Pages"
+#~ msgstr "Creez Pagini Internet"
+
+#~ msgid "Generate HTML reports - GRAMPS"
+#~ msgstr "Generează rapoarte HTML - GRAMPS"
+
+#~ msgid "Family Tree Index"
+#~ msgstr "Index Arbore de Familie"
+
+#~ msgid "%s (continued)"
+#~ msgstr "%s (continuat)"
+
+#~ msgid "Neither %s nor %s are directories"
+#~ msgstr "Nici %s şi nici %s nu sunt directoare"
+
+#~ msgid "Could not create the directory : %s"
+#~ msgstr "Nu am putut crea directorul: %s"
+
+#~ msgid "Include a link to the index page"
+#~ msgstr "Include o legătură spre pagina index"
+
+#~ msgid "Do not include records marked private"
+#~ msgstr "Nu include intrările marcate privat"
+
+#~ msgid "Restrict information on living people"
+#~ msgstr "Restrictează informaţia la persoanele în viaţă"
+
+#~ msgid "Do not use images"
+#~ msgstr "Nu folosi imagini"
+
+#~ msgid "Do not use images for living people"
+#~ msgstr "Nu folosi imagini pentru persoanele în viaţă"
+
+#~ msgid "Do not include comments and text in source information"
+#~ msgstr "Nu include comentarii şi text în informaţiile despre sursă"
+
+#~ msgid "Include the GRAMPS ID in the report"
+#~ msgstr "Include ID GRAMPS în raport"
+
+#~ msgid "Create a GENDEX index"
+#~ msgstr "Creează un index GENDEX"
+
+#~ msgid "Image subdirectory"
+#~ msgstr "Subdirectorul pentru imagini"
+
+#~ msgid "File extension"
+#~ msgstr "Extensie fişier"
+
+#~ msgid "Privacy"
+#~ msgstr "Privat"
+
+#~ msgid "Advanced"
+#~ msgstr "Avansat"
+
+#~ msgid "GRAMPS ID link URL"
+#~ msgstr "Legătură URL pentru GRAMPS ID "
+
+#~ msgid "Generate Web Site"
+#~ msgstr "Generează Pagina Internet"
+
+#~ msgid "Web Page"
+#~ msgstr "Pagina Internet"
+
+#~ msgid "Target Directory"
+#~ msgstr "Directorul Ţintă"
+
+#~ msgid "Direct Descendants of %s"
+#~ msgstr "Descedenţi direcţi pentru %s"
+
+#~ msgid "Descendant Families of %s"
+#~ msgstr "Familii descendente pentru %s"
+
+#~ msgid "Generates web (HTML) pages for individuals, or a set of individuals."
+#~ msgstr "Generează pagini Internet pentru persoane, sau set de persoane."
+
+#~ msgid "Export to GEDCOM"
+#~ msgstr "Export pentru GEDCOM"
+
+#~ msgid "Export to GRAMPS package"
+#~ msgstr "Export pentru pachet GRAMPS"
+
+#~ msgid "Change Event Types - GRAMPS"
+#~ msgstr "Schimbă Tip Eveniment - GRAMPS"
+
+#~ msgid "Change Event Type of"
+#~ msgstr "Schimbă Tip Eveniment pentru"
+
+#~ msgid "to"
+#~ msgstr "în"
+
+#~ msgid "Number of ancestors of \"%s\" by generation"
+#~ msgstr "Număr strămoşi pentru \"%s\" după generaţie"
+
+#~ msgid "Generation %d has 1 individual.\n"
+#~ msgstr "Generaţia %d are o persoană.\n"
+
+#~ msgid "Generation %d has %d individuals.\n"
+#~ msgstr "Generaţia %d are %d persoane.\n"
+
+#~ msgid "Total ancestors in generations %d to -1 is %d .\n"
+#~ msgstr "Număr de strămoşi în generaţiile de la %d la -1 este %d .\n"
+
+#~ msgid "Number of ancestors"
+#~ msgstr "Număr strămoşi"
+
+#~ msgid "Counts number of ancestors of selected person"
+#~ msgstr "Numără strămoşii pentru persoana selectată"
+
+#~ msgid "Descendant Browser - GRAMPS"
+#~ msgstr "Navigator Descendenţi -  GRAMPS"
+
+#~ msgid "Descendant Browser"
+#~ msgstr "Navigator Descendenţi"
+
+#~ msgid "Save as a Spreadsheet - GRAMPS"
+#~ msgstr "Salvează ca Foaie de Calcul - GRAMPS"
+
+#~ msgid "Save data as a spreadsheet"
+#~ msgstr "Salvează datele ca foaie de calcul"
+
+#~ msgid "Save Data"
+#~ msgstr "Salvează Date"
+
+#~ msgid "OpenOffice Spreadsheet"
+#~ msgstr "Foaie de Calcul OpenOffice"
+
+#~ msgid "Choose the HTML template"
+#~ msgstr "Alegeţi şablonul HTML"
+
+#~ msgid "Format"
+#~ msgstr "Format"
+
+#~ msgid "Event Comparison - GRAMPS"
+#~ msgstr "Comparaţie Evenimente - GRAMPS"
+
+#~ msgid "Event Comparison"
+#~ msgstr "Comparaţie Evenimente"
+
+#~ msgid "GEDCOM Export"
+#~ msgstr "Export GEDCOM"
+
+#~ msgid "Export GEDCOM"
+#~ msgstr "Export GEDCOM"
+
+#~ msgid "ANSEL"
+#~ msgstr "ANSEL"
+
+#~ msgid "UNICODE"
+#~ msgstr "UNICODE"
+
+#~ msgid "Encoding"
+#~ msgstr "Codare"
+
+#~ msgid "Copyright"
+#~ msgstr "Copyright"
+
+#~ msgid "Target"
+#~ msgstr "Ţintă"
+
+#~ msgid "Standard GEDCOM 5.5"
+#~ msgstr "Standard GEDCOM 5.5"
+
+#~ msgid "Standard Copyright"
+#~ msgstr "Copyright Standard"
+
+#~ msgid "GNU Free Documentation License"
+#~ msgstr "GNU Free Documentation License"
+
+#~ msgid "No Copyright"
+#~ msgstr "Fără Copyright"
+
+#~ msgid "Restrict data on living people"
+#~ msgstr "Restricteză datele la persoane în viaţă"
+
+#~ msgid "Options"
+#~ msgstr "Opţiuni"
+
+#~ msgid "GEDCOM Import Status"
+#~ msgstr "Status Import GEDCOM"
+
+#~ msgid "Created by"
+#~ msgstr "Creat de "
+
+#~ msgid "Version"
+#~ msgstr "Versiunea"
+
+#~ msgid "Number of Families"
+#~ msgstr "Număr Familii"
+
+#~ msgid "Number of People"
+#~ msgstr "Număr Persoane"
+
+#~ msgid "Number of Errors"
+#~ msgstr "Număr Erori"
+
+#~ msgid "Close window when complete"
+#~ msgstr "Închide fereastra la finalizare"
+
+#~ msgid "Determining Possible Merges"
+#~ msgstr "Determină posibile uniuni"
+
+#~ msgid "Please be patient. This may take a while."
+#~ msgstr "Vă rugăm aveţi răbdare. Ar putea să dureze o vreme."
+
+#~ msgid "Merge List - GRAMPS"
+#~ msgstr "Listă Uniuni Posibile - GRAMPS"
+
+#~ msgid "Merge"
+#~ msgstr "Uneşte"
+
+#~ msgid "Potential Merges"
+#~ msgstr "Uniuni Posibile"
+
+#~ msgid "Match Threshold"
+#~ msgstr "Prag de Similaritate"
+
+#~ msgid "Use SoundEx codes for name matches"
+#~ msgstr "Foloseşte coduri SoundEx pentru potrivire de nume"
+
+#~ msgid "(Recommended only for English)"
+#~ msgstr "(Recomandat doar pentru nume engleze)"
+
+#~ msgid "Export PAF for PalmOS file"
+#~ msgstr "Export PAF pentru fişier PalmOS"
+
+#~ msgid "PAF for PalmOS Export"
+#~ msgstr "Export PAF pentru PalmOS"
+
+#~ msgid "Information"
+#~ msgstr "Informaţii"
+
+#~ msgid "Database name: "
+#~ msgstr "Nume bază de date:"
+
+#~ msgid "Name and Title Extraction Tool - GRAMPS"
+#~ msgstr "Nume şi Titlu pentru Unealta de Extracţie - GRAMPS"
+
+#~ msgid "Name and Title Extraction Tool"
+#~ msgstr "Nume şi Titlu pentru Unealta de Extracţie"
+
+#~ msgid ""
+#~ "Below is a list of the nicknames and titles that GRAMPS can extract from "
+#~ "the \n"
+#~ "current database. If you select 'Yes', GRAMPS will modify your database "
+#~ "as \n"
+#~ "specified below. If you do not approve of these changes, you should "
+#~ "select \n"
+#~ "'No', and your database will not be altered.\n"
+#~ "\n"
+#~ "Should the following changes be made?"
+#~ msgstr ""
+#~ "Mai jos este o listă de porecle şi titluri pe care GRAMPS le poate "
+#~ "extrage din \n"
+#~ "baza de date curentă. Dacă selectaţi 'Da', GRAMPS va modifica baza de "
+#~ "date \n"
+#~ "după cum e specificat mai jos. Dacă nu doriţi să aprobaţi aceste "
+#~ "modificări, \n"
+#~ "selectaţi  'Nu', iar baza de date nu va fi modificată.\n"
+#~ "\n"
+#~ "Doriţi ca modificările următoare să fie făcute?"
+
+#~ msgid "Export GRAMPS package - GRAMPS"
+#~ msgstr "Export pachet GRAMPS - GRAMPS"
+
+#~ msgid "GRAMPS package export"
+#~ msgstr "Export pachet GRAMPS"
+
+#~ msgid "Export GRAMPS package"
+#~ msgstr "Export pachet GRAMPS"
+
+#~ msgid "%P %%"
+#~ msgstr "%P %%"
+
+#~ msgid "GEDCOM Read Progress"
+#~ msgstr "Progres Citire GEDCOM"
+
+#~ msgid "GEDCOM Import Progress"
+#~ msgstr "Progres Import GEDCOM"
+
+#~ msgid "Relationship Calculator - GRAMPS"
+#~ msgstr "Calculator Legături - GRAMPS"
+
+#~ msgid "name"
+#~ msgstr "nume"
+
+#~ msgid "SoundEx Code Generator - GRAMPS"
+#~ msgstr "Generator de Cod SoundEx - GRAMPS"
+
+#~ msgid "Calculate SoundEx code for the name"
+#~ msgstr "Calculează codul SoundEx pentru nume"
+
+#~ msgid "Close Window"
+#~ msgstr "Închide Fereastra"
+
+#~ msgid "SoundEx Code Generator"
+#~ msgstr "Generator de Cod SoundEx"
+
+#~ msgid "Name used to generate SoundEx code"
+#~ msgstr "Nume folosit pentru generarea de cod SoundEx"
+
+#~ msgid "Generate SoundEx codes"
+#~ msgstr "Generează coduri SoundEx"
+
+#~ msgid "Generates SoundEx codes for names"
+#~ msgstr "Generează coduri SoundEx pentru nume"
+
+#~ msgid "Database Summary - GRAMPS"
+#~ msgstr "Sumar Baza de Date - GRAMPS"
+
+#~ msgid "Database Summary"
+#~ msgstr "Sumar Baza de Date"
+
+#~ msgid "Database Verify - GRAMPS"
+#~ msgstr "Verifică Baza de Date - GRAMPS"
+
+#~ msgid "Database Verify"
+#~ msgstr "Verifică Baza de Date"
+
+#~ msgid "Verify - Settings"
+#~ msgstr "Verifică - Configurări"
+
+#~ msgid "Maximum age"
+#~ msgstr "Vârsta maximă"
+
+#~ msgid "Maximum husband-wife age difference"
+#~ msgstr "Diferenţa de vârstă maximă soţ-soţie"
+
+#~ msgid "Minimum age to marry"
+#~ msgstr "Vârsta minimă pentru căsătorie"
+
+#~ msgid "Maximum age to marry"
+#~ msgstr "Vârsta maximă pentru căsătorie"
+
+#~ msgid "Maximum number of spouses for a person"
+#~ msgstr "Numărul maxim de soţi(i) pentru o persoană"
+
+#~ msgid "Maximum number of consecutive years of widowhood"
+#~ msgstr "Numărul maxim de ani consecutivi în văduvie"
+
+#~ msgid "Maximum number of years between children"
+#~ msgstr "Numărul maxim de ani între copii"
+
+#~ msgid "Maximum span of years for all children"
+#~ msgstr "Întinderea maximă pe ani a copiilor"
+
+#~ msgid "Women"
+#~ msgstr "Femei"
+
+#~ msgid "Minimum age to bear a child"
+#~ msgstr "Vârsta minimă pentru a avea un copil"
+
+#~ msgid "Maximum age to bear a child"
+#~ msgstr "Vârsta maximă pentru a avea un copil"
+
+#~ msgid "Maximum number of children"
+#~ msgstr "Număr maxim de copii"
+
+#~ msgid "Men"
+#~ msgstr "Bărbaţi"
+
+#~ msgid "Minimum age to father a child"
+#~ msgstr "Vârsta minimă pentru a avea un copil"
+
+#~ msgid "Maximum age to father a child"
+#~ msgstr "Vârsta maximă pentru a avea un copil"
+
+#~ msgid "Preferences - GRAMPS"
+#~ msgstr "Preferinţe - GRAMPS"
+
+#~ msgid "GRAMPS Preferences"
+#~ msgstr "Preferinţe GRAMPS"
+
+#~ msgid ""
+#~ "To change your preferences, select one of the subcategories in the menu "
+#~ "on the left hand side of the window."
+#~ msgstr ""
+#~ "Pentru a modifica preferinţele, selectaţi una din subcategoriile din "
+#~ "meniului din partea stângă a ferestrei."
+
+#~ msgid "Default database directory"
+#~ msgstr "Directorul pentru baza de date implicită"
+
+#~ msgid "Select default database directory - GRAMPS"
+#~ msgstr "Selectaţi directorul pentru baza de date implicită - GRAMPS"
+
+#~ msgid "The default directory for storing databases"
+#~ msgstr "Directorul implicit pentru baza de date"
+
+#~ msgid "Do not compress XML data file"
+#~ msgstr "Nu compresa fişierul XML"
+
+#~ msgid "Autosave interval (minutes)"
+#~ msgstr "Interval autosalvare (minute)"
+
+#~ msgid "Capitalize surnames"
+#~ msgstr "Transformă numele de familie în litere mari"
+
+#~ msgid "Use Revision Control"
+#~ msgstr "Foloseşte Controlul Reviziei"
+
+#~ msgid "Prompt for comment on save"
+#~ msgstr "Întreabă de comentariu la salvare"
+
+#~ msgid "Revison Control"
+#~ msgstr "Controlul reviziei"
+
+#~ msgid "Enable autocompletion"
+#~ msgstr "Activează autocompletarea"
+
+#~ msgid "Display only icons"
+#~ msgstr "Afişează doar icoane"
+
+#~ msgid "Display only text"
+#~ msgstr "Afişează doar text"
+
+#~ msgid "Display icons and text"
+#~ msgstr "Afişează icoane şi text"
+
+#~ msgid "Toolbar"
+#~ msgstr "Bara de unelte"
+
+#~ msgid "Active person's name only"
+#~ msgstr "Doar numele persoanei active"
+
+#~ msgid "Active person's name and GRAMPS ID"
+#~ msgstr "Numele şi ID GRAMPS pentru persoana activă"
+
+#~ msgid "Status Bar"
+#~ msgstr "Bara de Status"
+
+#~ msgid "Always display the LDS ordinance tabs"
+#~ msgstr "Afişează întotdeauna tab-urile pentru ordinanţe LDS"
+
+#~ msgid "Show index numbers in child list"
+#~ msgstr "Arată numerele de index în lista de copii"
+
+#~ msgid "List display options"
+#~ msgstr "Arată opţiunile de afişare"
+
+#~ msgid "Date Format"
+#~ msgstr "Format Dată"
+
+#~ msgid "Name Format"
+#~ msgstr "Format Nume"
+
+#~ msgid "Display Formats"
+#~ msgstr "Formate Afişare"
+
+#~ msgid "Entry Formats"
+#~ msgstr "Formate Înregistrare"
+
+#~ msgid "Show calendar format selection menu"
+#~ msgstr "Arată meniul de selecţie pentru format calendar"
+
+#~ msgid "Calendars"
+#~ msgstr "Calendare"
+
+#~ msgid "Preferred Text Format"
+#~ msgstr "Format de Text Preferat"
+
+#~ msgid "Preferred Paper Size"
+#~ msgstr "Mărime Hârtie Preferată"
+
+#~ msgid "Default report directory"
+#~ msgstr "Directorul implicit pentru raport"
+
+#~ msgid "Default Web Site directory"
+#~ msgstr "Directorul implicit pentru pagină Internet"
+
+#~ msgid "Select default report directory - GRAMPS"
+#~ msgstr "Alegeţi directorul implicit pentru raport - GRAMPS"
+
+#~ msgid "The default directory for the output of many report generators"
+#~ msgstr "Directorul implicit de ieşire pentru generatoarele de raport"
+
+#~ msgid ""
+#~ "The default directory for the output of the Web Site report generators"
+#~ msgstr "Directorul implicit pentru generatoarele de pagină Internet"
+
+#~ msgid "Letter"
+#~ msgstr "Letter"
+
+#~ msgid "A4"
+#~ msgstr "A4"
+
+#~ msgid "Preferred Graphical Format"
+#~ msgstr "Format Grafic Preferat"
+
+#~ msgid "Make a reference to the object when the object is dropped"
+#~ msgstr "Fă o referinţă spre obiect unde este plasat"
+
+#~ msgid "Make a local copy when the object is dropped"
+#~ msgstr "Fă o copie locală unde fişierul este plasat"
+
+#~ msgid "Display global properties editor when object is dropped"
+#~ msgstr "Afişează editor proprietăţi globale când obiectul este plasat"
+
+#~ msgid "Drag and Drop from an External Source"
+#~ msgstr "Trage şi Plasează dintr-o Sursă Externă"
+
+#~ msgid "Display local properties editor when object is dropped"
+#~ msgstr "Afişeaza editor proprietăţi locale când obiectul este plasat"
+
+#~ msgid "Drag and Drop from an Internal Source"
+#~ msgstr "Trage şi Plasează  dintr-o Sursă Internă"
+
+#~ msgid "I"
+#~ msgstr "I"
+
+#~ msgid "F"
+#~ msgstr "F"
+
+#~ msgid "P"
+#~ msgstr "P"
+
+#~ msgid "S"
+#~ msgstr "S"
+
+#~ msgid "O"
+#~ msgstr "O"
+
+#~ msgid "Allow internal GRAMPS ID numbers to be edited"
+#~ msgstr "Permite numerelor GRAMPS ID interne să fie modificate"
+
+#~ msgid "User Defined IDs"
+#~ msgstr "ID-uri Definite de Utilizator"
+
+#~ msgid "Surname Guessing"
+#~ msgstr "Ghicirea Numelui de Familie"
+
+#~ msgid "Customization"
+#~ msgstr "Personalizare"
+
+#~ msgid "Open a database - GRAMPS"
+#~ msgstr "Deschide bază de date - GRAMPS"
+
+#~ msgid "<b>Open a database</b>"
+#~ msgstr "<b>Deschide bază de date</b>"
+
+#~ msgid "Revert to an older version from revision control"
+#~ msgstr "Revenire la o versiune precedentă din controlul reviziei"
+
+#~ msgid "Select an older revision - GRAMPS"
+#~ msgstr "Selectează o versiune precedentă - GRAMPS"
+
+#~ msgid "Revert to an older revision"
+#~ msgstr "Revenire la o revizie precedentă"
+
+#~ msgid "Revison Control Comment - GRAMPS"
+#~ msgstr "Comentariu pentru Controlul Reviziei - GRAMPS"
+
+#~ msgid "Revision Control Comment"
+#~ msgstr "Comentariu pentru Controlul Reviziei"
+
+#~ msgid "Define Filter - GRAMPS"
+#~ msgstr "Defineşte Filtru - GRAMPS"
+
+#~ msgid "Define Filter"
+#~ msgstr "Defineşte Filtru"
+
+#~ msgid "Exactly one rule must apply"
+#~ msgstr "Exact o regulă trebuie aplicată"
+
+#~ msgid "At least one rule must apply"
+#~ msgstr "Cel puţin o regulă trebuie aplicată"
+
+#~ msgid "All rules must apply"
+#~ msgstr "Toate regulile trebuie aplicate"
+
+#~ msgid "Add Rule - GRAMPS"
+#~ msgstr "Adaugă Regulă - GRAMPS"
+
+#~ msgid "Add Rule"
+#~ msgstr "Adaugă Regulă"
+
+#~ msgid "Rule"
+#~ msgstr "Regulă"
+
+#~ msgid "Values"
+#~ msgstr "Valori"
+
+#~ msgid "User Defined Filters - GRAMPS"
+#~ msgstr "Filtre Definite de Utilizator - GRAMPS"
+
+#~ msgid "User Defined Filters"
+#~ msgstr "Filtre Definite de Utilizator"
+
+#~ msgid "Add a new filter"
+#~ msgstr "Adaugă un nou filtru"
+
+#~ msgid "Edit the selected filter"
+#~ msgstr "Modifică filtrul selectat"
+
+#~ msgid "Delete the selected filter"
+#~ msgstr "Şterge filtrul selectat"
+
+#~ msgid "Display people matching the filter"
+#~ msgstr "Afişează persoanele care se potrivesc cu filtrul"
+
+#~ msgid "Test"
+#~ msgstr "Test"
+
+#~ msgid "Test Filter - GRAMPS"
+#~ msgstr "Testează Filtru - GRAMPS"
+
+#~ msgid "Source Information - GRAMPS"
+#~ msgstr "Informaţii Sursă - GRAMPS"
+
+#~ msgid "<b>Source Information</b>"
+#~ msgstr "<b>Informaţii Sursă</b>"
+
+#~ msgid "Publication Information"
+#~ msgstr "Informaţii Publicare"
+
+#~ msgid "Comments"
+#~ msgstr "Comentarii"
+
+#~ msgid "Volume/Film/Page"
+#~ msgstr "Volum/Film/Pagină"
+
+#~ msgid "Source Reference Selection - GRAMPS"
+#~ msgstr "Selectare Referinţă Sursă - GRAMPS"
+
+#~ msgid "<b>Source Reference Selection</b>"
+#~ msgstr "<b>Selectare Referinţă Sursă</b>"
+
+#~ msgid "Double click will edit the selected source"
+#~ msgstr "Dublu click va modifica sursa selctată"
+
+#~ msgid "Document Styles - GRAMPS"
+#~ msgstr "Stiluri Document - GRAMPS"
+
+#~ msgid "Document Styles"
+#~ msgstr "Stiluri Document"
+
+#~ msgid "Delete"
+#~ msgstr "Şterge"
+
+#~ msgid "Style Editor - GRAMPS"
+#~ msgstr "Editor Stil - GRAMPS"
+
+#~ msgid "Style Name"
+#~ msgstr "Nume Stil"
+
+#~ msgid "Paragraph Style"
+#~ msgstr "Stil Paragraf"
+
+#~ msgid "pt"
+#~ msgstr "pt"
+
+#~ msgid "Color"
+#~ msgstr "Culoare"
+
+#~ msgid "Type Face"
+#~ msgstr "Tip Caracter"
+
+#~ msgid "Bold"
+#~ msgstr "Aldin"
+
+#~ msgid "Italic"
+#~ msgstr "Cursiv"
+
+#~ msgid "Underline"
+#~ msgstr "Subliniat"
+
+#~ msgid "roman (Times)"
+#~ msgstr "roman (Times)"
+
+#~ msgid "swiss (Arial, Helvetica)"
+#~ msgstr "swiss (Arial, Helvetica)"
+
+#~ msgid "Pick a color"
+#~ msgstr "Alegeţi o culoare"
+
+#~ msgid "Font Options"
+#~ msgstr "Opţiuni Font"
+
+#~ msgid "Background"
+#~ msgstr "Fundal"
+
+#~ msgid "Right Margin"
+#~ msgstr "Margine Dreapta"
+
+#~ msgid "Left Margin"
+#~ msgstr "Margine Stânga"
+
+#~ msgid "Padding"
+#~ msgstr "Distanţare"
+
+#~ msgid "cm"
+#~ msgstr "cm"
+
+#~ msgid "Alignment"
+#~ msgstr "Aliniere"
+
+#~ msgid "Borders"
+#~ msgstr "Rame"
+
+#~ msgid "left"
+#~ msgstr "stânga"
+
+#~ msgid "right"
+#~ msgstr "dreapta"
+
+#~ msgid "center"
+#~ msgstr "centru"
+
+#~ msgid "justify"
+#~ msgstr "aliniat"
+
+#~ msgid "top"
+#~ msgstr "sus"
+
+#~ msgid "bottom"
+#~ msgstr "jos"
+
+#~ msgid "Paragraph Options"
+#~ msgstr "Opţiuni Paragraf"

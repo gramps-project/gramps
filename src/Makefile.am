@@ -18,8 +18,7 @@ SUBDIRS = \
 	glade \
 	docgen \
 	images \
-	plugins \
-	po 
+	plugins
 
 # For intl. support, how do we compile?
 MOSTLYCLEANFILES = 
@@ -73,7 +72,6 @@ gdir_PYTHON = \
 	NameDisplay.py\
 	Navigation.py\
 	PageView.py\
-	PaperMenu.py\
 	PeopleModel.py\
 	QuestionDialog.py\
 	RecentFiles.py\
@@ -86,9 +84,7 @@ gdir_PYTHON = \
 	Sort.py\
 	soundex.py\
 	Spell.py\
-	SpreadSheetDoc.py\
 	StartupDialog.py\
-	StyleEditor.py\
 	SubstKeywords.py\
 	TipOfDay.py\
 	ToolTips.py\
@@ -96,19 +92,6 @@ gdir_PYTHON = \
 	TreeTips.py\
 	Utils.py\
 	ViewManager.py
-
-# Could use GNU make's ':=' syntax for nice wildcard use.
-# If not using GNU make, then list all files individually
-# The latter is more portable and POSIX-friendly :)
-
-# In principle the following rule slightly  violates the automake/autoconf 
-# spirit of keeping each subdirectory as a separate entity unto itself. 
-# But, since the template depends on everything from here, we allow this
-# one exception.
-# Build po/template.po.
-.PHONY: trans
-trans:
-	./build_po
 
 pycheck: 
 	for d in $(SUBDIRS) ; do \

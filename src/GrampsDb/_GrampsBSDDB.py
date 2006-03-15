@@ -266,7 +266,7 @@ class GrampsBSDDB(GrampsDbBase):
         callback(12)
 
         self.env = db.DBEnv()
-        self.env.set_cachesize(0,0x2000000)         # 2MB
+        self.env.set_cachesize(0,0x2000000)         # 16MB
         self.env.set_lk_max_locks(25000)
         self.env.set_lk_max_objects(25000)
         self.env.set_flags(db.DB_LOG_AUTOREMOVE,1)  # clean up unused logs
@@ -1140,7 +1140,7 @@ class GrampsBSDDB(GrampsDbBase):
             "Sponsored", "Foster", "Unknown", "Other", ]
         
         version = self.metadata.get('version',_MINVERSION)
-
+        t = time.time()
         if version < 6:
             self.gramps_upgrade_6()
         if version < 7:
@@ -1151,6 +1151,7 @@ class GrampsBSDDB(GrampsDbBase):
             self.gramps_upgrade_9()
         # self.metadata.put('version',_DBVERSION)
         # self.metadata.sync()
+        print "Upgrade time:", int(time.time()-t), "seconds"
 
     def gramps_upgrade_6(self):
         print "Upgrading to DB version 6"

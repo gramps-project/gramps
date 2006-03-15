@@ -1,0 +1,1213 @@
+# GRAMPS
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GRAMPS VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-03-14 17:54-0800\n"
+"PO-Revision-Date: 2003-09-05 22:58+0800\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=GB2312\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.4\n"
+
+#: ../src/ViewManager.py:80
+msgid "GRAMPS (grdb)"
+msgstr ""
+
+#: ../src/ViewManager.py:81
+msgid "GRAMPS XML"
+msgstr ""
+
+#: ../src/ViewManager.py:82
+msgid "GEDCOM"
+msgstr ""
+
+#: ../src/ViewManager.py:274
+msgid "Loading document formats..."
+msgstr ""
+
+#: ../src/ViewManager.py:277
+#, fuzzy
+msgid "Loading plugins..."
+msgstr "重载插件(_L)"
+
+#: ../src/ViewManager.py:282
+msgid "Ready"
+msgstr ""
+
+#: ../src/ViewManager.py:313
+msgid "GRAMPS _home page"
+msgstr "GRAMPS的主页(_H)"
+
+#: ../src/ViewManager.py:314
+msgid "GRAMPS _mailing lists"
+msgstr "GRAMPS的邮件列表(_M)"
+
+#: ../src/ViewManager.py:315
+msgid "_Report a bug"
+msgstr "报告错误(_R)"
+
+#: ../src/ViewManager.py:388 ../src/ViewManager.py:395
+#, fuzzy
+msgid "Could not open help"
+msgstr "无法打开"
+
+#: ../src/ViewManager.py:417
+#, fuzzy
+msgid "GRAMPS Homepage"
+msgstr "GRAMPS的主页(_H)"
+
+#: ../src/ViewManager.py:532
+#, fuzzy
+msgid "GRAMPS: Open database"
+msgstr "打开范例(_O)"
+
+#: ../src/ViewManager.py:591 ../src/ViewManager.py:617
+#: ../src/ViewManager.py:936 ../src/ViewManager.py:960
+#, fuzzy, python-format
+msgid "Could not open file: %s"
+msgstr "无法打开"
+
+#: ../src/ViewManager.py:618 ../src/ViewManager.py:961
+#, python-format
+msgid ""
+"File type \"%s\" is unknown to GRAMPS.\n"
+"\n"
+"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
+msgstr ""
+
+#: ../src/ViewManager.py:624
+msgid "GRAMPS: Create GRAMPS database"
+msgstr ""
+
+#: ../src/ViewManager.py:717 ../src/ViewManager.py:723
+#: ../src/ViewManager.py:758 ../src/ViewManager.py:762
+#: ../src/ViewManager.py:765
+#, fuzzy
+msgid "Cannot open database"
+msgstr "整个数据库"
+
+#: ../src/ViewManager.py:718
+msgid ""
+"The selected file is a directory, not a file.\n"
+"A GRAMPS database must be a file."
+msgstr ""
+
+#: ../src/ViewManager.py:724
+msgid "You do not have read access to the selected file."
+msgstr ""
+
+#: ../src/ViewManager.py:729
+#, fuzzy
+msgid "Read only database"
+msgstr "打开范例(_O)"
+
+#: ../src/ViewManager.py:730
+msgid "You do not have write access to the selected file."
+msgstr ""
+
+#: ../src/ViewManager.py:751
+msgid "Read Only"
+msgstr ""
+
+#: ../src/ViewManager.py:759
+msgid "The database file specified could not be opened."
+msgstr ""
+
+#: ../src/ViewManager.py:766
+#, python-format
+msgid "%s could not be opened."
+msgstr ""
+
+#: ../src/ViewManager.py:852
+#, python-format
+msgid "%s has been bookmarked"
+msgstr ""
+
+#: ../src/ViewManager.py:854
+msgid "Could Not Set a Bookmark"
+msgstr ""
+
+#: ../src/ViewManager.py:855
+msgid "A bookmark could not be set because no one was selected."
+msgstr ""
+
+#: ../src/ViewManager.py:884
+msgid "GRAMPS: Import database"
+msgstr ""
+
+#: ../src/ViewManager.py:1060
+#, fuzzy
+msgid "All files"
+msgstr "所有人"
+
+#: ../src/ViewManager.py:1069
+msgid "All GRAMPS files"
+msgstr ""
+
+#: ../src/ViewManager.py:1080
+msgid "GRAMPS databases"
+msgstr ""
+
+#: ../src/ViewManager.py:1089
+msgid "GRAMPS XML databases"
+msgstr ""
+
+#: ../src/ViewManager.py:1098
+msgid "GEDCOM files"
+msgstr ""
+
+#: ../src/ViewManager.py:1147
+msgid "Automatically detected"
+msgstr ""
+
+#: ../src/ViewManager.py:1156
+msgid "Select file _type:"
+msgstr ""
+
+#~ msgid "Cannot import %s"
+#~ msgstr "无法导入"
+
+#~ msgid "Name"
+#~ msgstr "名字"
+
+#~ msgid "Birth date"
+#~ msgstr "出生日期"
+
+#~ msgid "Choose Spouse/Partner of %s"
+#~ msgstr "选择配偶"
+
+#~ msgid "Married"
+#~ msgstr "已婚"
+
+#~ msgid "April"
+#~ msgstr "四月"
+
+#~ msgid "February"
+#~ msgstr "二月"
+
+#~ msgid "Birth"
+#~ msgstr "亲生"
+
+#~ msgid "Parent"
+#~ msgstr "父母"
+
+#~ msgid "Father"
+#~ msgstr "父亲"
+
+#~ msgid "Mother"
+#~ msgstr "母亲"
+
+#~ msgid "Internal Error"
+#~ msgstr "内部错误"
+
+#~ msgid "Edit Person"
+#~ msgstr "编辑此人"
+
+#~ msgid "Description"
+#~ msgstr "描述"
+
+#~ msgid "Event"
+#~ msgstr "事件"
+
+#~ msgid "Date"
+#~ msgstr "日期"
+
+#~ msgid "Place"
+#~ msgstr "地点"
+
+#~ msgid "Attribute"
+#~ msgstr "属性"
+
+#~ msgid "Address"
+#~ msgstr "地址"
+
+#~ msgid "Type"
+#~ msgstr "类别"
+
+#~ msgid "Path"
+#~ msgstr "路径"
+
+#~ msgid "None"
+#~ msgstr "无"
+
+#~ msgid "unknown"
+#~ msgstr "未知"
+
+#~ msgid "Place Editor"
+#~ msgstr "地点编辑器"
+
+#~ msgid "City"
+#~ msgstr "城市"
+
+#~ msgid "County"
+#~ msgstr "县／郡"
+
+#~ msgid "State"
+#~ msgstr "州／省"
+
+#~ msgid "Country"
+#~ msgstr "国家"
+
+#~ msgid "Internet Address Editor"
+#~ msgstr "因特网址编辑器"
+
+#~ msgid "People"
+#~ msgstr "人"
+
+#~ msgid "Families"
+#~ msgstr "家庭"
+
+#~ msgid "Family Events"
+#~ msgstr "家庭事件"
+
+#~ msgid "Family Attributes"
+#~ msgstr "家庭属性"
+
+#~ msgid "Media Objects"
+#~ msgstr "媒体物件"
+
+#~ msgid "Places"
+#~ msgstr "地点"
+
+#~ msgid "Event Editor"
+#~ msgstr "事件编辑器"
+
+#~ msgid "Event Editor for %s"
+#~ msgstr "%s的事件编辑器"
+
+#~ msgid "b."
+#~ msgstr "生于"
+
+#~ msgid "d."
+#~ msgstr "卒于"
+
+#~ msgid "Gender"
+#~ msgstr "性别"
+
+#~ msgid "Status"
+#~ msgstr "关系"
+
+#~ msgid "_Remove Spouse"
+#~ msgstr "删除配偶(_r)"
+
+#~ msgid ""
+#~ "%s: %s\n"
+#~ "\tRelationship: %s"
+#~ msgstr ""
+#~ "%s: %s\n"
+#~ "\t关系：%s"
+
+#~ msgid "%s: unknown"
+#~ msgstr "%s: 未知"
+
+#~ msgid "Unknown"
+#~ msgstr "未知"
+
+#~ msgid "Date:"
+#~ msgstr "日期"
+
+#~ msgid "Family name:"
+#~ msgstr "姓"
+
+#~ msgid "Given name:"
+#~ msgstr "名"
+
+#~ msgid "Everyone"
+#~ msgstr "所有人"
+
+#~ msgid "Firstname Surname"
+#~ msgstr "名 姓"
+
+#~ msgid "Surname, Firstname"
+#~ msgstr "姓，名"
+
+#~ msgid "Dates and Calendars"
+#~ msgstr "日期和日历"
+
+#~ msgid "Hebrew"
+#~ msgstr "希伯莱"
+
+#~ msgid "Family"
+#~ msgstr "家庭"
+
+#~ msgid "Church Parish"
+#~ msgstr "教区"
+
+#~ msgid "Place Name"
+#~ msgstr "地名"
+
+#~ msgid "Relationship to mother"
+#~ msgstr "与母亲的关系"
+
+#~ msgid "Author"
+#~ msgstr "作者"
+
+#~ msgid "Name:"
+#~ msgstr "名字:"
+
+#~ msgid "Address:"
+#~ msgstr "地址:"
+
+#~ msgid "City:"
+#~ msgstr "城市:"
+
+#~ msgid "State/Province:"
+#~ msgstr "州／省："
+
+#~ msgid "Country:"
+#~ msgstr "国家："
+
+#~ msgid "ZIP/Postal code:"
+#~ msgstr "邮编："
+
+#~ msgid "Phone:"
+#~ msgstr "电话："
+
+#~ msgid "Email:"
+#~ msgstr "电子邮件："
+
+#~ msgid "Numerical date formats"
+#~ msgstr "用数字显示日期的格式"
+
+#~ msgid "Alternate calendar support"
+#~ msgstr "别的日历"
+
+#~ msgid "Islamic"
+#~ msgstr "伊斯兰历"
+
+#~ msgid "Persian"
+#~ msgstr "波斯历"
+
+#~ msgid "female"
+#~ msgstr "女"
+
+#~ msgid "male"
+#~ msgstr "男"
+
+#~ msgid "TRANSLATORS: Translate this to your name in your native language"
+#~ msgstr ""
+#~ "王兴 <wangxing@tsinghua.org.cn>\n"
+#~ "陈栋林 (Donglin Chen)\n"
+#~ "林志远 (Zhiyuan Lin)"
+
+#~ msgid "Stepchild"
+#~ msgstr "继子女"
+
+#~ msgid "Sponsored"
+#~ msgstr "赞助"
+
+#~ msgid "Foster"
+#~ msgstr "收养"
+
+#~ msgid "Other"
+#~ msgstr "其余"
+
+#~ msgid "Very Low"
+#~ msgstr "很低"
+
+#~ msgid "Low"
+#~ msgstr "低"
+
+#~ msgid "Normal"
+#~ msgstr "正常"
+
+#~ msgid "High"
+#~ msgstr "高"
+
+#~ msgid "Very High"
+#~ msgstr "很高"
+
+#~ msgid "Divorce"
+#~ msgstr "离婚"
+
+#~ msgid "Engagement"
+#~ msgstr "订婚"
+
+#~ msgid "Marriage Contract"
+#~ msgstr "婚姻合同"
+
+#~ msgid "Marriage License"
+#~ msgstr "结婚证"
+
+#~ msgid "Marriage"
+#~ msgstr "婚姻"
+
+#~ msgid "Adult Christening"
+#~ msgstr "成年受洗"
+
+#~ msgid "Cause Of Death"
+#~ msgstr "死亡原因"
+
+#~ msgid "Degree"
+#~ msgstr "学位"
+
+#~ msgid "Education"
+#~ msgstr "文化程度"
+
+#~ msgid "Emigration"
+#~ msgstr "移民"
+
+#~ msgid "Military Service"
+#~ msgstr "服兵役"
+
+#~ msgid "Number of Marriages"
+#~ msgstr "结婚次数"
+
+#~ msgid "Occupation"
+#~ msgstr "职业"
+
+#~ msgid "Religion"
+#~ msgstr "宗教信仰"
+
+#~ msgid "Residence"
+#~ msgstr "居住地"
+
+#~ msgid "Retirement"
+#~ msgstr "退休"
+
+#~ msgid "Caste"
+#~ msgstr "种姓"
+
+#~ msgid "Identification Number"
+#~ msgstr "身份证号"
+
+#~ msgid "National Origin"
+#~ msgstr "出生国"
+
+#~ msgid "Social Security Number"
+#~ msgstr "社会安全号"
+
+#~ msgid "Number of Children"
+#~ msgstr "子女数"
+
+#~ msgid "Unmarried"
+#~ msgstr "未婚"
+
+#~ msgid "Also Known As"
+#~ msgstr "又名"
+
+#~ msgid "Birth Name"
+#~ msgstr "出生名"
+
+#~ msgid "Married Name"
+#~ msgstr "婚后名"
+
+#~ msgid "Other Name"
+#~ msgstr "其他名字"
+
+#~ msgid "Close window without changes"
+#~ msgstr "放弃修改并关闭窗口"
+
+#~ msgid "Accept changes and close window"
+#~ msgstr "修改并关闭窗口"
+
+#~ msgid "_Event type:"
+#~ msgstr "事件类型(_E):"
+
+#~ msgid "_Date:"
+#~ msgstr "日期(_D):"
+
+#~ msgid "De_scription:"
+#~ msgstr "描述(_S):"
+
+#~ msgid "_Place:"
+#~ msgstr "地点(_P):"
+
+#~ msgid "_Cause:"
+#~ msgstr "原因(_C):"
+
+#~ msgid "Selects the calendar format for display"
+#~ msgstr "选择用于显示的日期格式"
+
+#~ msgid "_Private record"
+#~ msgstr "私人信息(_P)"
+
+#~ msgid "<b>General</b>"
+#~ msgstr "<b>基本信息</b>"
+
+#~ msgid "_Add..."
+#~ msgstr "添加...(_A)"
+
+#~ msgid "_Edit..."
+#~ msgstr "编辑...(_E)"
+
+#~ msgid "_Delete"
+#~ msgstr "删除(_D)"
+
+#~ msgid "<b>Sources</b>"
+#~ msgstr "<b>来源</b>"
+
+#~ msgid "<b>Note</b>"
+#~ msgstr "<b>注解</b>"
+
+#~ msgid "<b>Witnesses</b>"
+#~ msgstr "<b>证人</b>"
+
+#~ msgid "_Attribute:"
+#~ msgstr "属性(_A):"
+
+#~ msgid "_Value:"
+#~ msgstr "值(_V):"
+
+#~ msgid "_City:"
+#~ msgstr "城市(_C):"
+
+#~ msgid "C_ounty:"
+#~ msgstr "郡/县(_O):"
+
+#~ msgid "Cou_ntry:"
+#~ msgstr "国家(_N):"
+
+#~ msgid "_State:"
+#~ msgstr "州/省(_S):"
+
+#~ msgid "Church _parish:"
+#~ msgstr "教区(_P):"
+
+#~ msgid "Accept and close"
+#~ msgstr "接受并关闭"
+
+#~ msgid "_City/County:"
+#~ msgstr "郡/县(_C):"
+
+#~ msgid "_State/Province"
+#~ msgstr "州/省(_S)"
+
+#~ msgid "_ZIP/Postal code:"
+#~ msgstr "邮编(_Z):"
+
+#~ msgid "_Web address:"
+#~ msgstr "网址(_W):"
+
+#~ msgid "_Description:"
+#~ msgstr "描述(_D):"
+
+#~ msgid "Reject changes and close"
+#~ msgstr "放弃修改并关闭"
+
+#~ msgid "_Given name:"
+#~ msgstr "名"
+
+#~ msgid "_Family name:"
+#~ msgstr "姓"
+
+#~ msgid "Suffi_x:"
+#~ msgstr "后缀"
+
+#~ msgid "T_ype:"
+#~ msgstr "类别"
+
+#~ msgid "_Title:"
+#~ msgstr "称谓(_T):"
+
+#~ msgid "P_rivate record"
+#~ msgstr "私人信息(_R)"
+
+#~ msgid "Family _prefix:"
+#~ msgstr "家族前缀(_P):"
+
+#~ msgid "_Comment:"
+#~ msgstr "注释(_C):"
+
+#~ msgid "_Select"
+#~ msgstr "选择(_S)"
+
+#~ msgid "Abandon changes and close window"
+#~ msgstr "放弃修改并关闭窗口"
+
+#~ msgid "Accept changes and close dialog"
+#~ msgstr "接受修改并关闭窗口"
+
+#~ msgid "_Nickname:"
+#~ msgstr "昵称(_N):"
+
+#~ msgid "T_ype"
+#~ msgstr "类型(_Y)"
+
+#~ msgid "Invoke birth event editor"
+#~ msgstr "打开出生事件编辑器"
+
+#~ msgid "Edit..."
+#~ msgstr "编辑..."
+
+#~ msgid "Source..."
+#~ msgstr "来源..."
+
+#~ msgid "Note..."
+#~ msgstr "注解..."
+
+#~ msgid "<b>Gender</b>"
+#~ msgstr "<b>性别</b>"
+
+#~ msgid "<b>Preferred name</b>"
+#~ msgstr "<b>正式姓名</b>"
+
+#~ msgid "_male"
+#~ msgstr "男(_M)"
+
+#~ msgid "fema_le"
+#~ msgstr "女(_L)"
+
+#~ msgid "_unknown"
+#~ msgstr "未知(_U)"
+
+#~ msgid "<b>Birth</b>"
+#~ msgstr "<b>出生</b>"
+
+#~ msgid "<b>Image</b>"
+#~ msgstr "<b>图像</b>"
+
+#~ msgid "Pla_ce:"
+#~ msgstr "地点(_C)"
+
+#~ msgid "<b>Death</b>"
+#~ msgstr "<b>死亡</b>"
+
+#~ msgid "D_ate:"
+#~ msgstr "日期(_A)"
+
+#~ msgid "Plac_e:"
+#~ msgstr "地点(_E)"
+
+#~ msgid "Invoke death event editor"
+#~ msgstr "打开死亡事件编辑器"
+
+#~ msgid "Confidence:"
+#~ msgstr "可靠程度:"
+
+#~ msgid "Family prefix:"
+#~ msgstr "家族前缀:"
+
+#~ msgid "Type:"
+#~ msgstr "类别:"
+
+#~ msgid "<b>Alternate name</b>"
+#~ msgstr "<b>别名</b>"
+
+#~ msgid "<b>Primary source</b>"
+#~ msgstr "<b>主要信息来源</b>"
+
+#~ msgid "Create an alternate name for this person"
+#~ msgstr "为此人创建一个别名"
+
+#~ msgid "Edit the selected name"
+#~ msgstr "编辑所选名字"
+
+#~ msgid "Delete selected name"
+#~ msgstr "删除所选名字"
+
+#~ msgid "<b>Names</b>"
+#~ msgstr "<b>所有名字</b>"
+
+#~ msgid "<b>Event</b>"
+#~ msgstr "<b>事件</b>"
+
+#~ msgid "Cause:"
+#~ msgstr "原因:"
+
+#~ msgid "Create a new event"
+#~ msgstr "创建一个新事件"
+
+#~ msgid "Edit the selected event"
+#~ msgstr "编辑所选事件"
+
+#~ msgid "Delete the selected event"
+#~ msgstr "删除所选事件"
+
+#~ msgid "<b>Events</b>"
+#~ msgstr "<b>事件</b>"
+
+#~ msgid "<b>Attributes</b>"
+#~ msgstr "<b>属性</b>"
+
+#~ msgid "Create a new attribute"
+#~ msgstr "创建新属性"
+
+#~ msgid "Edit the selected attribute"
+#~ msgstr "编辑所选属性"
+
+#~ msgid "Delete the selected attribute"
+#~ msgstr "删除所选属性"
+
+#~ msgid "City/County:"
+#~ msgstr "城市/郡县:"
+
+#~ msgid "<b>Addresses</b>"
+#~ msgstr "<b>地址</b>"
+
+#~ msgid "Create a new address"
+#~ msgstr "创建新地址"
+
+#~ msgid "Edit the selected address"
+#~ msgstr "编辑所选地址"
+
+#~ msgid "Delete the selected address"
+#~ msgstr "删除所选地址"
+
+#~ msgid "Enter miscellaneous relevant data and documentation"
+#~ msgstr "输入零碎的相关数据和文档"
+
+#~ msgid "<b>Notes</b>"
+#~ msgstr "<b>备注</b>"
+
+#~ msgid "_Remove"
+#~ msgstr "删除(_R)"
+
+#~ msgid "<b>Gallery</b>"
+#~ msgstr "<b>相册</b>"
+
+#~ msgid "Web address:"
+#~ msgstr "网址:"
+
+#~ msgid "<b>Internet addresses</b>"
+#~ msgstr "<b>因特网址</b>"
+
+#~ msgid "<b>Internet</b>"
+#~ msgstr "<b>因特网</b>"
+
+#~ msgid "_File"
+#~ msgstr "文件(_F)"
+
+#~ msgid "_New"
+#~ msgstr "新建(_N)"
+
+#~ msgid "_Open..."
+#~ msgstr "打开(_O)..."
+
+#~ msgid "_Save"
+#~ msgstr "存盘(_S)"
+
+#~ msgid "Save _As..."
+#~ msgstr "另存为(_A)..."
+
+#~ msgid "_Import"
+#~ msgstr "导入(_I)"
+
+#~ msgid "_Export"
+#~ msgstr "导出(_E)"
+
+#~ msgid "_Revert"
+#~ msgstr "恢复(_R)"
+
+#~ msgid "_Quit"
+#~ msgstr "退出(_Q)"
+
+#~ msgid "_Edit"
+#~ msgstr "编辑(_E)"
+
+#~ msgid "_Find..."
+#~ msgstr "查找(_F)"
+
+#~ msgid "_Merge"
+#~ msgstr "合并(_M)"
+
+#~ msgid "_View"
+#~ msgstr "查看(_V)"
+
+#~ msgid "_Sidebar"
+#~ msgstr "侧栏(_S)"
+
+#~ msgid "_Filter"
+#~ msgstr "过滤器(_F)"
+
+#~ msgid "_Bookmarks"
+#~ msgstr "书签(_B)"
+
+#~ msgid "_Add bookmark"
+#~ msgstr "添加书签(_A)"
+
+#~ msgid "_Edit bookmarks"
+#~ msgstr "编辑书签(_E)"
+
+#~ msgid "_Go to bookmark"
+#~ msgstr "跳到(_G)"
+
+#~ msgid "_Reports"
+#~ msgstr "报告(_R)"
+
+#~ msgid "_Tools"
+#~ msgstr "工具(_T)"
+
+#~ msgid "_Settings"
+#~ msgstr "设置(_S)"
+
+#~ msgid "Prefere_nces"
+#~ msgstr "首选项（_N)"
+
+#~ msgid "_Default Person"
+#~ msgstr "默认人(_D)"
+
+#~ msgid "_Help"
+#~ msgstr "帮助(_H)"
+
+#~ msgid "_User manual"
+#~ msgstr "用户手册(_U)"
+
+#~ msgid "_Show plugin status"
+#~ msgstr "显示插件状态(_S)"
+
+#~ msgid "_About"
+#~ msgstr "关于(_A)"
+
+#~ msgid "Open file"
+#~ msgstr "打开文件"
+
+#~ msgid "Open"
+#~ msgstr "打开"
+
+#~ msgid "Save file"
+#~ msgstr "存档"
+
+#~ msgid "Save"
+#~ msgstr "存档"
+
+#~ msgid "Make the Home Person the active person"
+#~ msgstr "选中默认人"
+
+#~ msgid "Home"
+#~ msgstr "首页"
+
+#~ msgid "Generate reports"
+#~ msgstr "产生报告"
+
+#~ msgid "Reports"
+#~ msgstr "报告"
+
+#~ msgid "Run a tool"
+#~ msgstr "运行工具"
+
+#~ msgid "Tools"
+#~ msgstr "工具"
+
+#~ msgid "Add a new item"
+#~ msgstr "新增一项"
+
+#~ msgid "Add"
+#~ msgstr "添加"
+
+#~ msgid "Remove the currently selected item"
+#~ msgstr "删除当前所选项"
+
+#~ msgid "Remove"
+#~ msgstr "删除"
+
+#~ msgid "Edit the selected item"
+#~ msgstr "编辑所选项"
+
+#~ msgid "Edit"
+#~ msgstr "编辑"
+
+#~ msgid "Pedigree"
+#~ msgstr "谱系"
+
+#~ msgid "Sources"
+#~ msgstr "来源"
+
+#~ msgid "Media"
+#~ msgstr "媒体"
+
+#~ msgid "Filter:"
+#~ msgstr "过滤器:"
+
+#~ msgid "Qualifier:"
+#~ msgstr "限制:"
+
+#~ msgid "Show persons that do not match the filtering rule"
+#~ msgstr "显示不符条件的人"
+
+#~ msgid "Invert"
+#~ msgstr "反转"
+
+#~ msgid "_Apply"
+#~ msgstr "应用(_A)"
+
+#~ msgid "<b>People</b>"
+#~ msgstr "<b>人</b>"
+
+#~ msgid "<b>Children</b>"
+#~ msgstr "<b>子女</b>"
+
+#~ msgid "<b>Active person</b>"
+#~ msgstr "<b>当前人</b>"
+
+#~ msgid "<b>Active person's parents</b>"
+#~ msgstr "<b>当前人的父母</b>"
+
+#~ msgid "<b>Relationship</b>"
+#~ msgstr "<b>关系</b>"
+
+#~ msgid "<b>Spouse's parents</b>"
+#~ msgstr "<b>配偶的父母</b>"
+
+#~ msgid "<b>Family</b>"
+#~ msgstr "<b>家庭</b>"
+
+#~ msgid "<b>Pedigree</b>"
+#~ msgstr "<b>谱系</b>"
+
+#~ msgid "<b>Places</b>"
+#~ msgstr "<b>地点</b>"
+
+#~ msgid "<b>Preview</b>"
+#~ msgstr "<b>预览</b>"
+
+#~ msgid "Details:"
+#~ msgstr "细节:"
+
+#~ msgid "Path:"
+#~ msgstr "路径:"
+
+#~ msgid "<b>Information</b>"
+#~ msgstr "<b>信息</b>"
+
+#~ msgid "<b>Media</b>"
+#~ msgstr "<b>媒体</b>"
+
+#~ msgid "_Show all"
+#~ msgstr "显示所有人(_S)"
+
+#~ msgid "_Relationship type:"
+#~ msgstr "关系类型:(_R)"
+
+#~ msgid "Relationship definition\n"
+#~ msgstr "关系定义\n"
+
+#~ msgid "<b>Father</b>"
+#~ msgstr "<b>父亲</b>"
+
+#~ msgid "<b>Mother</b>"
+#~ msgstr "<b>母亲</b>"
+
+#~ msgid "Show _all"
+#~ msgstr "显示所有人(_A)"
+
+#~ msgid "Relationship to father:"
+#~ msgstr "与父亲的关系:"
+
+#~ msgid "Relationship to mother:"
+#~ msgstr "与母亲的关系:"
+
+#~ msgid "_Author:"
+#~ msgstr "作者:(_A)"
+
+#~ msgid "Gender:"
+#~ msgstr "性别:"
+
+#~ msgid "_female"
+#~ msgstr "女(_F)"
+
+#~ msgid "_Relationship:"
+#~ msgstr "关系(_R):"
+
+#~ msgid "Death date"
+#~ msgstr "死亡日期"
+
+#~ msgid "Set %s as the Home Person"
+#~ msgstr "将%s设为默认人"
+
+#~ msgid "_Set Home Person"
+#~ msgstr "设置默认人(_S)"
+
+#~ msgid "_File:"
+#~ msgstr "文件(_F):"
+
+#~ msgid "Select an image"
+#~ msgstr "选择一个图像"
+
+#~ msgid "_Merge and close"
+#~ msgstr "合并且关闭(_M)"
+
+#~ msgid "Merge and _edit"
+#~ msgstr "合并且编辑(_E)"
+
+#~ msgid "<b>Parents</b>"
+#~ msgstr "<b>父母</b>"
+
+#~ msgid "Mother:"
+#~ msgstr "母亲:"
+
+#~ msgid "<b>Spouses</b>"
+#~ msgstr "<b>配偶</b>"
+
+#~ msgid "Father:"
+#~ msgstr "父亲:"
+
+#~ msgid "<b>First person</b>"
+#~ msgstr "<b>第一个人</b>"
+
+#~ msgid "<b>Second person</b>"
+#~ msgstr "<b>第二个人</b>"
+
+#~ msgid "<b>Other names</b>"
+#~ msgstr "<b>其他名字</b>"
+
+#~ msgid "Status:"
+#~ msgstr "状态"
+
+#~ msgid "Author:"
+#~ msgstr "作者:"
+
+#~ msgid "Author's email:"
+#~ msgstr "作者的电邮:"
+
+#~ msgid "Ancestor Chart"
+#~ msgstr "祖先图"
+
+#~ msgid "Graphical Reports"
+#~ msgstr "图表报告"
+
+#~ msgid "Text Reports"
+#~ msgstr "文字报告"
+
+#~ msgid "Books"
+#~ msgstr "书册"
+
+#~ msgid "Database Processing"
+#~ msgstr "处理数据库"
+
+#~ msgid "Descendant Graph"
+#~ msgstr "子孙图"
+
+#~ msgid "Analysis and Exploration"
+#~ msgstr "分析与探索"
+
+#~ msgid " was born on %s in %s."
+#~ msgstr " 生于 %s %s."
+
+#~ msgid " was born in the year %s."
+#~ msgstr " 生于%s年。"
+
+#~ msgid "and he"
+#~ msgstr "和他"
+
+#~ msgid "and she"
+#~ msgstr "和她"
+
+#~ msgid "List children"
+#~ msgstr "子女名单"
+
+#~ msgid "Event Comparison"
+#~ msgstr "比较事件"
+
+#~ msgid "Spouse"
+#~ msgstr "死亡"
+
+#~ msgid "Children"
+#~ msgstr "子女"
+
+#~ msgid "Utilities"
+#~ msgstr "小工具"
+
+#~ msgid "Male"
+#~ msgstr "男"
+
+#~ msgid "Female"
+#~ msgstr "女"
+
+#~ msgid "Birth Date"
+#~ msgstr "出生日期"
+
+#~ msgid "Family Information"
+#~ msgstr "家庭信息"
+
+#~ msgid "Database summary"
+#~ msgstr "数据库概要"
+
+#~ msgid "Summary of the database"
+#~ msgstr "数据库概要"
+
+#~ msgid "View"
+#~ msgstr "查看"
+
+#~ msgid "Timeline"
+#~ msgstr "年谱"
+
+#~ msgid "Database Verify"
+#~ msgstr "检查数据库"
+
+#~ msgid "Husband and wife with the same surname: %s in family %s, and %s.\n"
+#~ msgstr "夫妇同姓: %s in family %s, and %s.\n"
+
+#~ msgid "Verify the database"
+#~ msgstr "检查数据库"
+
+#~ msgid "%s (continued)"
+#~ msgstr "相册"
+
+#~ msgid "Generate Web Site"
+#~ msgstr "生成网站"
+
+#~ msgid "Web Page"
+#~ msgstr "网页"
+
+#~ msgid "Target Directory"
+#~ msgstr "目标目录"
+
+#~ msgid "Number of ancestors"
+#~ msgstr "祖先的数目"
+
+#~ msgid "<b>Output Window</b>"
+#~ msgstr "输出窗口"
+
+#~ msgid "<b>Error Window</b>"
+#~ msgstr "<b>报错窗口</b>"
+
+#~ msgid "Debug"
+#~ msgstr "调试"
+
+#~ msgid "Families:"
+#~ msgstr "家庭:"
+
+#~ msgid "Maximum age"
+#~ msgstr "最大年龄"
+
+#~ msgid "Maximum husband-wife age difference"
+#~ msgstr "最大夫妻相差岁数"
+
+#~ msgid "Minimum age to marry"
+#~ msgstr "最小结婚年龄"
+
+#~ msgid "Maximum age to marry"
+#~ msgstr "最大结婚年龄"
+
+#~ msgid "Maximum number of spouses for a person"
+#~ msgstr "一个人的最大配偶数目"
+
+#~ msgid "Maximum number of consecutive years of widowhood"
+#~ msgstr "最大连续守寡／鳏居年数"
+
+#~ msgid "Maximum number of years between children"
+#~ msgstr "连续两次生育相隔的最大年数"
+
+#~ msgid "Maximum span of years for all children"
+#~ msgstr "首尾两个孩子相隔的最大年数"
+
+#~ msgid "<b>Women</b>"
+#~ msgstr "<b>女</b>"
+
+#~ msgid "Minimum age to bear a child"
+#~ msgstr "最小生育年龄"
+
+#~ msgid "Maximum age to bear a child"
+#~ msgstr "最大生育年龄"
+
+#~ msgid "Maximum number of children"
+#~ msgstr "最大子女数"
+
+#~ msgid "<b>Men</b>"
+#~ msgstr "<b>男</b>"
+
+#~ msgid "Minimum age to father a child"
+#~ msgstr "作爸爸的最小年龄"
+
+#~ msgid "Maximum age to father a child"
+#~ msgstr "作爸爸的最大年龄"
+
+#~ msgid "<b>Database</b>"
+#~ msgstr "<b>数据库</b>"

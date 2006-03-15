@@ -1,0 +1,54 @@
+application/x-gramps:
+	_description=GRAMPS database
+	default_action_type=application
+	short_list_application_ids=gramps
+	short_list_application_ids_for_novice_user_level=gramps
+	short_list_application_ids_for_intermediate_user_level=gramps
+	short_list_application_ids_for_advanced_user_level=gramps
+	category=Documents/Genealogy
+	icon-filename=/usr/share/gramps/gramps.png
+	open=gramps %f
+
+application/x-gramps-package:
+	_description=GRAMPS package
+	default_action_type=application
+	short_list_application_ids=gramps
+	short_list_application_ids_for_novice_user_level=gramps
+	short_list_application_ids_for_intermediate_user_level=gramps
+	short_list_application_ids_for_advanced_user_level=gramps
+	category=Documents/Genealogy
+	icon-filename=/usr/share/gramps/gramps.png
+	open=gramps %f
+
+application/x-gramps-xml:
+	_description=GRAMPS XML database
+	default_action_type=application
+	short_list_application_ids=gramps
+	short_list_application_ids_for_novice_user_level=gramps
+	short_list_application_ids_for_intermediate_user_level=gramps
+	short_list_application_ids_for_advanced_user_level=gramps
+	category=Documents/Genealogy
+	icon-filename=/usr/share/gramps/gramps.png
+	open=gramps %f
+
+application/x-gedcom:
+	_description=GEDCOM
+	default_action_type=application
+	short_list_application_ids=gramps
+	short_list_application_ids_for_novice_user_level=gramps
+	short_list_application_ids_for_intermediate_user_level=gramps
+	short_list_application_ids_for_advanced_user_level=gramps
+	category=Documents/Genealogy
+	icon-filename=/usr/share/gramps/gramps.png
+	open=gramps %f
+
+application/x-geneweb:
+	_description=GeneWeb
+	default_action_type=application
+	short_list_application_ids=gramps
+	short_list_application_ids_for_novice_user_level=gramps
+	short_list_application_ids_for_intermediate_user_level=gramps
+	short_list_application_ids_for_advanced_user_level=gramps
+	category=Documents/Genealogy
+	icon-filename=/usr/share/gramps/gramps.png
+	open=gramps %f

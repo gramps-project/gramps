@@ -13,6 +13,7 @@ docgen_PYTHON = \
 	ODFDoc.py\
 	OpenOfficeDoc.py\
 	OpenSpreadSheet.py\
+	SpreadSheetDoc.py\
 	PdfDoc.py\
 	PSDrawDoc.py\
 	RTFDoc.py\
