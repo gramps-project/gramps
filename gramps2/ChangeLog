@@ -1,3 +1,6 @@
+2006-03-15  Alex Roitman  <shura@gramps-project.org>
+	* various: intltoolize and gettextize properly.
+
 2006-03-14  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (update_empty,update_real): Add
 	functions for updating the display;

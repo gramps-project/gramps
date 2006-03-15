@@ -1,0 +1,1770 @@
+# Copyright (C) 2002-2003 Free Software Foundation, Inc.
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# Aktualn± wersjê tego pliku mo¿esz odnale¼æ w repozytorium cvs.gnome.pl
+# (:pserver:anonymous@cvs.gnome.pl:/home/cvs, puste has³o)
+# Je¶li masz jakiekolwiek uwagi odnosz±ce siê do t³umaczenia lub chcesz
+# pomóc w jego rozwijaniu i pielêgnowaniu, napisz do nas na adres:
+# translators@gnome.pl
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gramps\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-03-14 17:54-0800\n"
+"PO-Revision-Date: 2003-05-07 01:49+0100\n"
+"Last-Translator: Arkadiusz Lipiec <alipiec@elka.pw.edu.pl>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-2\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/ViewManager.py:80
+msgid "GRAMPS (grdb)"
+msgstr ""
+
+#: ../src/ViewManager.py:81
+msgid "GRAMPS XML"
+msgstr ""
+
+#: ../src/ViewManager.py:82
+msgid "GEDCOM"
+msgstr ""
+
+#: ../src/ViewManager.py:274
+msgid "Loading document formats..."
+msgstr ""
+
+#: ../src/ViewManager.py:277
+msgid "Loading plugins..."
+msgstr ""
+
+#: ../src/ViewManager.py:282
+msgid "Ready"
+msgstr ""
+
+#: ../src/ViewManager.py:313
+msgid "GRAMPS _home page"
+msgstr ""
+
+#: ../src/ViewManager.py:314
+msgid "GRAMPS _mailing lists"
+msgstr ""
+
+#: ../src/ViewManager.py:315
+msgid "_Report a bug"
+msgstr ""
+
+#: ../src/ViewManager.py:388 ../src/ViewManager.py:395
+#, fuzzy
+msgid "Could not open help"
+msgstr "Nie mo¿na otworzyæ %s"
+
+#: ../src/ViewManager.py:417
+msgid "GRAMPS Homepage"
+msgstr ""
+
+#: ../src/ViewManager.py:532
+#, fuzzy
+msgid "GRAMPS: Open database"
+msgstr "Otwórz bazê danych"
+
+#: ../src/ViewManager.py:591 ../src/ViewManager.py:617
+#: ../src/ViewManager.py:936 ../src/ViewManager.py:960
+#, fuzzy, python-format
+msgid "Could not open file: %s"
+msgstr "Nie mo¿na zast±piæ %s"
+
+#: ../src/ViewManager.py:618 ../src/ViewManager.py:961
+#, python-format
+msgid ""
+"File type \"%s\" is unknown to GRAMPS.\n"
+"\n"
+"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
+msgstr ""
+
+#: ../src/ViewManager.py:624
+msgid "GRAMPS: Create GRAMPS database"
+msgstr ""
+
+#: ../src/ViewManager.py:717 ../src/ViewManager.py:723
+#: ../src/ViewManager.py:758 ../src/ViewManager.py:762
+#: ../src/ViewManager.py:765
+#, fuzzy
+msgid "Cannot open database"
+msgstr "Otwórz bazê danych"
+
+#: ../src/ViewManager.py:718
+#, fuzzy
+msgid ""
+"The selected file is a directory, not a file.\n"
+"A GRAMPS database must be a file."
+msgstr ""
+"Plik jest prawdopodobnie uszkodzony lub nie jest poprawn± baz± danych GRAMPS."
+
+#: ../src/ViewManager.py:724
+msgid "You do not have read access to the selected file."
+msgstr ""
+
+#: ../src/ViewManager.py:729
+#, fuzzy
+msgid "Read only database"
+msgstr "Otwórz bazê danych"
+
+#: ../src/ViewManager.py:730
+#, fuzzy
+msgid "You do not have write access to the selected file."
+msgstr "Mo¿na wybraæ albo nadpisanie pliku albo zmianê wybranej nazwy pliku."
+
+#: ../src/ViewManager.py:751
+msgid "Read Only"
+msgstr ""
+
+#: ../src/ViewManager.py:759
+#, fuzzy
+msgid "The database file specified could not be opened."
+msgstr "Nie mo¿na znale¼æ pliku o podanej nazwie"
+
+#: ../src/ViewManager.py:766
+#, python-format
+msgid "%s could not be opened."
+msgstr "Nie mo¿na otworzyæ pliku %s."
+
+#: ../src/ViewManager.py:852
+#, python-format
+msgid "%s has been bookmarked"
+msgstr ""
+
+#: ../src/ViewManager.py:854
+msgid "Could Not Set a Bookmark"
+msgstr ""
+
+#: ../src/ViewManager.py:855
+msgid "A bookmark could not be set because no one was selected."
+msgstr ""
+
+#: ../src/ViewManager.py:884
+msgid "GRAMPS: Import database"
+msgstr ""
+
+#: ../src/ViewManager.py:1060
+#, fuzzy
+msgid "All files"
+msgstr "Wszystkie osoby"
+
+#: ../src/ViewManager.py:1069
+msgid "All GRAMPS files"
+msgstr ""
+
+#: ../src/ViewManager.py:1080
+#, fuzzy
+msgid "GRAMPS databases"
+msgstr "Zapisz bazê danych"
+
+#: ../src/ViewManager.py:1089
+#, fuzzy
+msgid "GRAMPS XML databases"
+msgstr "Zapisz bazê danych"
+
+#: ../src/ViewManager.py:1098
+msgid "GEDCOM files"
+msgstr ""
+
+#: ../src/ViewManager.py:1147
+msgid "Automatically detected"
+msgstr ""
+
+#: ../src/ViewManager.py:1156
+#, fuzzy
+msgid "Select file _type:"
+msgstr "Wybierz plik"
+
+#~ msgid "Cannot import %s"
+#~ msgstr "Nie mo¿na zaimportowaæ %s"
+
+#~ msgid "Name"
+#~ msgstr "Imiê"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Birth date"
+#~ msgstr "Data urodzenia"
+
+#~ msgid "Choose Spouse/Partner of %s"
+#~ msgstr "Wybierz ma³¿onka/partnera dla %s"
+
+#~ msgid "Choose Spouse/Partner"
+#~ msgstr "Wybierz ma³¿onka/partnera"
+
+#~ msgid "Married"
+#~ msgstr "Ma³¿eñstwo"
+
+#~ msgid "Partners"
+#~ msgstr "Partnerzy"
+
+#~ msgid "Address Editor for %s"
+#~ msgstr "Edytor adresów dla %s"
+
+#~ msgid "Address Editor"
+#~ msgstr "Edytor adresów"
+
+#~ msgid "Attribute Editor for %s"
+#~ msgstr "Edytor atrybutów dla %s"
+
+#~ msgid "Attribute Editor"
+#~ msgstr "Edytor atrybutów"
+
+#~ msgid "Edit Bookmarks"
+#~ msgstr "Edycja zak³adek"
+
+#~ msgid "about"
+#~ msgstr "informacje o..."
+
+#~ msgid "circa"
+#~ msgstr "circa"
+
+#~ msgid "around"
+#~ msgstr "oko³o"
+
+#~ msgid "before"
+#~ msgstr "przed"
+
+#~ msgid "after"
+#~ msgstr "po"
+
+#~ msgid "aft\\.?"
+#~ msgstr "po\\.?"
+
+#~ msgid "bef\\.?"
+#~ msgstr "prz\\.?"
+
+#~ msgid "April"
+#~ msgstr "Kwiecieñ"
+
+#~ msgid "February"
+#~ msgstr "Luty"
+
+#~ msgid "January"
+#~ msgstr "Styczeñ"
+
+#~ msgid "March"
+#~ msgstr "Marzec"
+
+#~ msgid "August"
+#~ msgstr "Sierpieñ"
+
+#~ msgid "July"
+#~ msgstr "Lipiec"
+
+#~ msgid "June"
+#~ msgstr "Czerwiec"
+
+#~ msgid "May"
+#~ msgstr "Maj"
+
+#~ msgid "December"
+#~ msgstr "Grudzieñ"
+
+#~ msgid "November"
+#~ msgstr "Listopad"
+
+#~ msgid "October"
+#~ msgstr "Pa¼dziernik"
+
+#~ msgid "September"
+#~ msgstr "Wrzesieñ"
+
+#~ msgid "bef"
+#~ msgstr "prz"
+
+#~ msgid "bef."
+#~ msgstr "prz."
+
+#~ msgid "aft."
+#~ msgstr "po"
+
+#~ msgid "aft"
+#~ msgstr "po"
+
+#~ msgid "Undefined Calendar"
+#~ msgstr "Niezdefiniowany kalendarz"
+
+#~ msgid "Choose the Parents of %s"
+#~ msgstr "Wybierz rodziców %s"
+
+#~ msgid "Choose Parents"
+#~ msgstr "Wybierz rodziców"
+
+#~ msgid "Birth"
+#~ msgstr "Urodziny"
+
+#~ msgid "Parent"
+#~ msgstr "Rodzic"
+
+#~ msgid "Father"
+#~ msgstr "Ojciec"
+
+#~ msgid "Mother"
+#~ msgstr "Matka"
+
+#~ msgid "Modify the Parents of %s"
+#~ msgstr "Zmieñ rodziców osoby %s"
+
+#~ msgid "Modify Parents"
+#~ msgstr "Zmieñ rodziców"
+
+#~ msgid "(and|to|-)"
+#~ msgstr "(oraz|do|-)"
+
+#~ msgid "from %(start_date)s to %(stop_date)s"
+#~ msgstr "od %(start_date)s do %(stop_date)s"
+
+#~ msgid "No Comment Provided"
+#~ msgstr "Brak wprowadzonych komentarzy"
+
+#~ msgid ""
+#~ "GRAMPS has encountered an internal error.\n"
+#~ "Please copy the message below and post a bug report\n"
+#~ "at http://sourceforge.net/projects/gramps or send an\n"
+#~ "email message to gramps-bugs@lists.sourceforge.net\n"
+#~ "\n"
+#~ msgstr ""
+#~ "W programie GRAMPS wyst±pi³ b³±d wewnêtrzny.\n"
+#~ "Skopiuj poni¿szy komunikat oraz wy¶lij go na listê b³êdów pod adresem\n"
+#~ "http://sourceforge.net/projects/gramps lub te¿ za po¶rednictwem\n"
+#~ "poczty pod adres gramps-users@lists.sourceforge.net\n"
+#~ "\n"
+
+#~ msgid "Internal Error"
+#~ msgstr "B³±d wewnêtrzny"
+
+#~ msgid "Edit Person"
+#~ msgstr "Modyfikuj osobê"
+
+#~ msgid "Description"
+#~ msgstr "Opis"
+
+#~ msgid "Event"
+#~ msgstr "Zdarzenie"
+
+#~ msgid "Date"
+#~ msgstr "Data"
+
+#~ msgid "Place"
+#~ msgstr "Miejsce"
+
+#~ msgid "Value"
+#~ msgstr "Warto¶æ"
+
+#~ msgid "Attribute"
+#~ msgstr "Atrybut"
+
+#~ msgid "Address"
+#~ msgstr "Adres"
+
+#~ msgid "Type"
+#~ msgstr "Typ"
+
+#~ msgid "Path"
+#~ msgstr "¦cie¿ka"
+
+#~ msgid "None"
+#~ msgstr "Brak"
+
+#~ msgid "%(father)s and %(mother)s"
+#~ msgstr "%(father)s i %(mother)s"
+
+#~ msgid "unknown"
+#~ msgstr "nieznana"
+
+#~ msgid "Save changes to %s?"
+#~ msgstr "Czy chcesz zapisaæ zmiany do %s?"
+
+#~ msgid "If you close without saving, the changes you have made will be lost"
+#~ msgstr ""
+#~ "Je¶li zakoñczysz bez zapisywania, wprowadzone zmiany zostan± utracone"
+
+#~ msgid "Save Changes to %s?"
+#~ msgstr "Czy chcesz zapisaæ zmiany do %s?"
+
+#~ msgid "Make the selected name the preferred name"
+#~ msgstr "Czyni zaznaczone nazwisko preferowanym"
+
+#~ msgid "GRAMPS ID value was not changed."
+#~ msgstr "Warto¶æ identyfikatora GRAMPS nie zosta³a zmieniona."
+
+#~ msgid ""
+#~ "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. "
+#~ "This value is already used by %(person)s."
+#~ msgstr ""
+#~ "Nast±pi³a próba zmiany identyfikatora GRAMS dla warto¶ci %(grampsid)s. Ta "
+#~ "warto¶æ jest ju¿ u¿ywana przez osobê %(person)s."
+
+#~ msgid "Problem changing the gender"
+#~ msgstr "Wyst±pi³ problem podczas zmiany p³ci"
+
+#~ msgid ""
+#~ "Changing the gender caused problems with marriage information.\n"
+#~ "Please check the person's marriages."
+#~ msgstr ""
+#~ "Zmiana p³ci spowodowa³a problemy z informacjami dotycz±cymi ma³¿eñstw.\n"
+#~ "Sprawd¼ ma³¿eñstwa osoby."
+
+#~ msgid "Place Editor"
+#~ msgstr "Edytor miejsc"
+
+#~ msgid "City"
+#~ msgstr "Miasto"
+
+#~ msgid "County"
+#~ msgstr "Region"
+
+#~ msgid "State"
+#~ msgstr "Stan"
+
+#~ msgid "Country"
+#~ msgstr "Kraj"
+
+#~ msgid "Internet Address Editor for %s"
+#~ msgstr "Edytor adresów internetowych dla osoby %s"
+
+#~ msgid "Internet Address Editor"
+#~ msgstr "Edytor adresów internetowych"
+
+#~ msgid "People"
+#~ msgstr "Osoby"
+
+#~ msgid "%s [%s]: event %s\n"
+#~ msgstr "%s [%s]: zdarzenie %s\n"
+
+#~ msgid "Families"
+#~ msgstr "Rodziny"
+
+#~ msgid "Source Editor"
+#~ msgstr "Edytor ¼róde³"
+
+#~ msgid "Object"
+#~ msgstr "Obiekt"
+
+#~ msgid "Source Type"
+#~ msgstr "Typ ¼ród³a"
+
+#~ msgid "Individual Events"
+#~ msgstr "Zdarzenia indywidualne"
+
+#~ msgid "Individual Attributes"
+#~ msgstr "Atrybuty indywidualne"
+
+#~ msgid "Individual Names"
+#~ msgstr "Nazwiska indywidualne"
+
+#~ msgid "Family Events"
+#~ msgstr "Zdarzenia rodzinne"
+
+#~ msgid "Family Attributes"
+#~ msgstr "Atrybuty rodzinne"
+
+#~ msgid "Media Objects"
+#~ msgstr "Obiekty medialne"
+
+#~ msgid "Places"
+#~ msgstr "Miejsca"
+
+#~ msgid "Event Editor for %s"
+#~ msgstr "Edytor zdarzeñ dla %s"
+
+#~ msgid "Event Editor"
+#~ msgstr "Edytor zdarzeñ"
+
+#~ msgid "b."
+#~ msgstr "b."
+
+#~ msgid "d."
+#~ msgstr "d."
+
+#~ msgid "Gender"
+#~ msgstr "P³eæ"
+
+#~ msgid "Status"
+#~ msgstr "Stan"
+
+#~ msgid "Remove %s as a spouse of %s?"
+#~ msgstr "Czy usun±æ osobê %s jako ma³¿onka osoby %s?"
+
+#~ msgid ""
+#~ "Removing a spouse removes the relationship between the spouse and the "
+#~ "active person. It does not remove the spouse from the database"
+#~ msgstr ""
+#~ "Usuniêcie ma³¿onka usunie relacje pomiêdzy ma³¿onkiem i aktywn± osob±. "
+#~ "Nie spowoduje usuniêcie ma³¿onka z bazy danych"
+
+#~ msgid "_Remove Spouse"
+#~ msgstr "_Usuñ ma³¿onka"
+
+#~ msgid ""
+#~ "%s: %s\n"
+#~ "\tRelationship: %s"
+#~ msgstr ""
+#~ "%s: %s\n"
+#~ "\tZwi±zek: %s"
+
+#~ msgid "%s: unknown"
+#~ msgstr "%s: nieznana"
+
+#~ msgid "Unknown"
+#~ msgstr "Nieznane"
+
+#~ msgid "Remove Parents of %s"
+#~ msgstr "Usuñ rodziców osoby %s"
+
+#~ msgid ""
+#~ "Removing the parents of a person removes the person as a child of the "
+#~ "parents. The parents are not removed from the database, and the "
+#~ "relationship between the parents is not removed."
+#~ msgstr ""
+#~ "Usuniêcie rodziców osoby spowoduje usuniêcie osoby jako dziecka rodziców. "
+#~ "Rodzice nie zostan± usuniêci z bazy danych, tak¿e zwiazki pomiêdzy "
+#~ "rodzicami nie zostan± usuniête."
+
+#~ msgid "_Remove Parents"
+#~ msgstr "_Usuñ rodziców"
+
+#~ msgid "Attempt to Reorder Children Failed"
+#~ msgstr "Próba zmiany uporz±dkowania dzieci zakoñczona niepowodzeniem"
+
+#~ msgid "Children must be ordered by their birth dates."
+#~ msgstr "Dzieci musz± byæ uporz±dkowane wed³ug swoich dat urodzin."
+
+#~ msgid "Qualifier"
+#~ msgstr "Kwalifikator"
+
+#~ msgid "No description"
+#~ msgstr "Brak opisu"
+
+#~ msgid "Failed to load the module: %s"
+#~ msgstr "Niepowodzenie przy ³adowaniu modu³u: %s"
+
+#~ msgid "Find Person"
+#~ msgstr "Znajd¼ osobê"
+
+#~ msgid "Find Place"
+#~ msgstr "Znajd¼ miejsce"
+
+#~ msgid "Find Source"
+#~ msgstr "Znajd¼ ¼ród³o"
+
+#~ msgid "Find Media Object"
+#~ msgstr "Znajd¼ obiekt medialny"
+
+#~ msgid "French Republican"
+#~ msgstr "Francuski republikañski"
+
+#~ msgid "ID:"
+#~ msgstr "ID:"
+
+#~ msgid "Loop detected while applying filter"
+#~ msgstr "Wykryto pêtlê podczas stosowaniu filtru"
+
+#~ msgid ""
+#~ "A relationship loop was detected between %s [%s]and %s [%s]. This is "
+#~ "probably due to an error in the database."
+#~ msgstr ""
+#~ "Pêtla zwi±zku zosta³a wykryta pomiêdzy %s [%s] i %s [%s]. Jest to "
+#~ "prawdopodobnie spowodowane b³êdem w bazie danych."
+
+#~ msgid "Description:"
+#~ msgstr "Opis:"
+
+#~ msgid "Place:"
+#~ msgstr "Miejsce:"
+
+#~ msgid "Date:"
+#~ msgstr "Data:"
+
+#~ msgid "Personal event:"
+#~ msgstr "Zdarzenie osobiste:"
+
+#~ msgid "Family event:"
+#~ msgstr "Zdarzenie rodzinne:"
+
+#~ msgid "Number of relationships:"
+#~ msgstr "Liczba zwi±zków:"
+
+#~ msgid "Relationship type:"
+#~ msgstr "Typ zwi±zku:"
+
+#~ msgid "Number of children:"
+#~ msgstr "Liczba dzieci:"
+
+#~ msgid "Value:"
+#~ msgstr "Warto¶æ:"
+
+#~ msgid "Personal attribute:"
+#~ msgstr "Atrybut osobisty:"
+
+#~ msgid "Family attribute:"
+#~ msgstr "Atrybut rodzinny:"
+
+#~ msgid "Suffix:"
+#~ msgstr "Przyrostek:"
+
+#~ msgid "Family name:"
+#~ msgstr "Nazwa rodziny:"
+
+#~ msgid "Given name:"
+#~ msgstr "Nadane imiê:"
+
+#~ msgid "Title:"
+#~ msgstr "Tytu³:"
+
+#~ msgid "Filter name:"
+#~ msgstr "Nazwa filtru:"
+
+#~ msgid "Everyone"
+#~ msgstr "Ka¿dy"
+
+#~ msgid "Has the Id"
+#~ msgstr "Ma identyfikator"
+
+#~ msgid "Has a name"
+#~ msgstr "Ma nazwisko"
+
+#~ msgid "Has the relationships"
+#~ msgstr "Ma zwi±zek"
+
+#~ msgid "Has the death"
+#~ msgstr "Ma datê zgonu"
+
+#~ msgid "Has the birth"
+#~ msgstr "Ma datê urodzin"
+
+#~ msgid "Is a descendant of"
+#~ msgstr "Jest potomkiem dla"
+
+#~ msgid "Is a descendant family member of"
+#~ msgstr "Jest cz³onkiem rodziny potomka dla"
+
+#~ msgid "Is an ancestor of"
+#~ msgstr "Jest przodkiem dla"
+
+#~ msgid "Has a common ancestor with"
+#~ msgstr "Posiada wspólnego przodka z"
+
+#~ msgid "Is a female"
+#~ msgstr "Jest kobiet±"
+
+#~ msgid "Is a male"
+#~ msgstr "Jest mê¿czyzn±"
+
+#~ msgid "Has the personal event"
+#~ msgstr "Ma zdarzenie osobiste"
+
+#~ msgid "Has the family event"
+#~ msgstr "Ma zdarzenie rodzinne"
+
+#~ msgid "Has the personal attribute"
+#~ msgstr "Ma atrybut osobisty"
+
+#~ msgid "Has the family attribute"
+#~ msgstr "Ma atrybut rodzinny"
+
+#~ msgid "Matches the filter named"
+#~ msgstr "Pasuje do filtru o nazwie"
+
+#~ msgid "Father's surname"
+#~ msgstr "Nazwisko ojca"
+
+#~ msgid "Combination of mother's and father's surname"
+#~ msgstr "Kombinacja nazwiska matki i ojca"
+
+#~ msgid "Icelandic style"
+#~ msgstr "Styl islandzki"
+
+#~ msgid "Month Day, Year"
+#~ msgstr "Miesi±c Dzieñ, Rok"
+
+#~ msgid "MON Day, Year"
+#~ msgstr "MIE Dzieñ, Rok"
+
+#~ msgid "Day MON Year"
+#~ msgstr "Dzieñ MIE Rok"
+
+#~ msgid "MM/DD/YYYY"
+#~ msgstr "MM/DD/RRRR"
+
+#~ msgid "MM-DD-YYYY"
+#~ msgstr "MM-DD-RRRR"
+
+#~ msgid "DD/MM/YYYY"
+#~ msgstr "DD/MM/RRRR"
+
+#~ msgid "DD-MM-YYYY"
+#~ msgstr "DD-MM-RRRR"
+
+#~ msgid "MM.DD.YYYY"
+#~ msgstr "MM.DD.RRRR"
+
+#~ msgid "DD.MM.YYYY"
+#~ msgstr "DD.MM.RRRR"
+
+#~ msgid "DD. Month Year"
+#~ msgstr "DD. Miesi±c Rok"
+
+#~ msgid "YYYY/MM/DD"
+#~ msgstr "RRRR/MM/DD"
+
+#~ msgid "YYYY-MM-DD"
+#~ msgstr "RRRR-MM-DD"
+
+#~ msgid "YYYY.MM.DD"
+#~ msgstr "RRRR.MM.DD"
+
+#~ msgid "MM/DD/YYYY, MM.DD.YYYY, or MM-DD-YYYY"
+#~ msgstr "MM/DD/RRRR, MM.DD.RRRR lub MM-DD-RRRR"
+
+#~ msgid "DD/MM/YYYY, DD.MM.YYYY, or DD-MM-YYYY"
+#~ msgstr "DD/MM/RRRR, DD.MM.RRRR lub DD-MM-RRRR"
+
+#~ msgid "YYYY/MM/DD, YYYY.MM.DD, or YYYY-MM-DD"
+#~ msgstr "RRRR/MM/DD, RRRR.MM.DD lub RRRR-MM-DD"
+
+#~ msgid "Firstname Surname"
+#~ msgstr "Imiê Nazwisko"
+
+#~ msgid "Surname, Firstname"
+#~ msgstr "Nazwisko, Imiê"
+
+#~ msgid "Database"
+#~ msgstr "Baza danych"
+
+#~ msgid "General"
+#~ msgstr "Ogólne"
+
+#~ msgid "GRAMPS internal IDs"
+#~ msgstr "Wewnêtrzne ID GRAMPS"
+
+#~ msgid "Revision Control"
+#~ msgstr "Kontrola wydañ"
+
+#~ msgid "Display"
+#~ msgstr "Wy¶wietlanie"
+
+#~ msgid "Dates and Calendars"
+#~ msgstr "Daty i kalendarze"
+
+#~ msgid "Tool and Status Bars"
+#~ msgstr "Pasek narzêdziowy i stanu"
+
+#~ msgid "Usage"
+#~ msgstr "U¿ycie"
+
+#~ msgid "Find"
+#~ msgstr "Wyszukiwanie"
+
+#~ msgid "Report Preferences"
+#~ msgstr "Preferencje raportów"
+
+#~ msgid "Researcher Information"
+#~ msgstr "Informacje o badaczu"
+
+#~ msgid "Data Guessing"
+#~ msgstr "Zgadywanie danych"
+
+#~ msgid "No default format"
+#~ msgstr "Brak domy¶lnego formatu"
+
+#~ msgid "Gregorian"
+#~ msgstr "Gregoriañski"
+
+#~ msgid "Hebrew"
+#~ msgstr "Hebrajski"
+
+#~ msgid "Select a media object"
+#~ msgstr "Wybierz obiekt medialny"
+
+#~ msgid "Thumbnail %s could not be found"
+#~ msgstr "Nie mo¿na znale¼æ miniatury %s"
+
+#~ msgid "Could not import %s"
+#~ msgstr "Nie mo¿na zaimportowaæ %s"
+
+#~ msgid "Media Object"
+#~ msgstr "Obiekt medialny"
+
+#~ msgid "Open in %s"
+#~ msgstr "Otwórz w %s"
+
+#~ msgid "Edit with the GIMP"
+#~ msgstr "Modyfikuj za pomoc± GIMP-a"
+
+#~ msgid "Edit Object Properties"
+#~ msgstr "Modyfikuj w³a¶ciwo¶ci obiektu"
+
+#~ msgid "Convert to local copy"
+#~ msgstr "Skonwertuj do kopii lokalnej"
+
+#~ msgid "Change local media object properties"
+#~ msgstr "Zmiana w³a¶ciwo¶ci lokalnego obiektu medialnego"
+
+#~ msgid "Change global media object properties"
+#~ msgstr "Zmiana w³a¶ciwo¶ci globalnego obiektu medialnego"
+
+#~ msgid "Person"
+#~ msgstr "Osoba"
+
+#~ msgid "Family"
+#~ msgstr "Rodzina"
+
+#~ msgid "Source"
+#~ msgstr "¬ród³o"
+
+#~ msgid "Julian"
+#~ msgstr "Juliañski"
+
+#~ msgid "Location Editor"
+#~ msgstr "Edytor lokalizacji"
+
+#~ msgid "Marriage/Relationship Editor"
+#~ msgstr "Edytor ma³¿eñstw/zwi±zków"
+
+#~ msgid "%s and %s"
+#~ msgstr "%s i %s"
+
+#~ msgid "Save Changes?"
+#~ msgstr "Czy chcesz zapisaæ zmiany?"
+
+#~ msgid ""
+#~ "The GRAMPS ID that you chose for this relationship is already being used."
+#~ msgstr "Wybrany identyfikator GRAMPS dla tego zwi±zku jest ju¿ u¿ywany."
+
+#~ msgid "Title"
+#~ msgstr "Tytu³"
+
+#~ msgid "Thumbnails not available"
+#~ msgstr "Miniatury nie s± dostêpne"
+
+#~ msgid ""
+#~ "There is no suitable tool to generate thumbnails for the images. If you "
+#~ "would like to enable this feature, install Python Imaging Library (PIL), "
+#~ "available at http://www.pythonware.com/products/pil/ or ImageMagick, "
+#~ "available http://www.imagemagick.org/"
+#~ msgstr ""
+#~ "Istnieje odpowiednie narzêdzie do generowania miniatur dla obrazów. Je¶li "
+#~ "chcesz w³±czyæ t± funkcjê, zainstaluj Bibliotekê obrazów Pythona (PIL), "
+#~ "dostêpn± pod adresem http://www.pythonware.com/products/pil lub program "
+#~ "ImageMagic spod adresu http://www.imagemagic.org/"
+
+#~ msgid "The file no longer exists"
+#~ msgstr "Plik ju¿ nie istnieje"
+
+#~ msgid "View in the default viewer"
+#~ msgstr "Obejrzyj w domy¶lnej przegl±darce"
+
+#~ msgid "Delete Media Object?"
+#~ msgstr "Czy chcesz usun±æ obiekt medialny?"
+
+#~ msgid ""
+#~ "This media object is currently being used. If you delete this object, it "
+#~ "will be removed from the database and from all records that reference it."
+#~ msgstr ""
+#~ "Obiekt medialny jest aktualnie u¿ywany. Po jego usuniêciu, zostane on "
+#~ "usuniêty z bazy danych oraz ze wszystkich wpisów, które siê do niego "
+#~ "odwo³uj±."
+
+#~ msgid "_Delete Media Object?"
+#~ msgstr "_Usun±æ obiekt medialny?"
+
+#~ msgid "Image import failed"
+#~ msgstr "Importowanie obrazu zakoñczone niepowodzeniem"
+
+#~ msgid "Merge Places"
+#~ msgstr "£±czenie miejsc"
+
+#~ msgid "Select the title for the merged place"
+#~ msgstr "Wybierz tytu³ dla z³±czonego miejsca"
+
+#~ msgid "Merge %s and %s"
+#~ msgstr "£±czenie %s i %s"
+
+#~ msgid "Merge people"
+#~ msgstr "£±czenie osób"
+
+#~ msgid "Alternate Name Editor for %s"
+#~ msgstr "Edytor alternatywnych nazwisk dla osoby %s"
+
+#~ msgid "Alternate Name Editor"
+#~ msgstr "Edytor alternatywnych nazwisk"
+
+#~ msgid "Edit Note"
+#~ msgstr "Redagowanie notatki"
+
+#~ msgid "Portrait"
+#~ msgstr "Pionowe"
+
+#~ msgid "Landscape"
+#~ msgstr "Poziome"
+
+#~ msgid "Custom Size"
+#~ msgstr "W³asny rozmiar"
+
+#~ msgid "Double clicking will make %s the active person"
+#~ msgstr "Podwójne klikniêcie spowoduje ustawienie osoby %s jako aktywnej"
+
+#~ msgid "Church Parish"
+#~ msgstr "Parafia"
+
+#~ msgid "Place Name"
+#~ msgstr "Nazwa miejsca"
+
+#~ msgid "Cannot merge people."
+#~ msgstr "Nie mo¿na z³±czyæ osób."
+
+#~ msgid "Exactly two people must be selected to perform a merge."
+#~ msgstr ""
+#~ "Nale¿y wybraæ dok³adnie dwie osoby aby przeprowadziæ operacjê z³±czenia."
+
+#~ msgid "Delete %s"
+#~ msgstr "Usuñ %s"
+
+#~ msgid ""
+#~ "This place is currently being used by at least one record in the "
+#~ "database. Deleting it will remove it from the database and remove it from "
+#~ "all records that reference it."
+#~ msgstr ""
+#~ "To miejsce jest aktualnie u¿ywane przez co najmniej jeden wpis w bazie. "
+#~ "Usuniêcie go spowoduje usuniêcie obiektu z bazy, a tak¿e ze wszystkich "
+#~ "wpisów, które siê do niego odwo³uj±."
+
+#~ msgid "_Delete Place"
+#~ msgstr "_Usuñ miejsce"
+
+#~ msgid "No description was provided"
+#~ msgstr "Nie wpisano opisu"
+
+#~ msgid "Report Selection"
+#~ msgstr "Wybór raportów"
+
+#~ msgid "Tool Selection"
+#~ msgstr "Wybór narzêdzi"
+
+#~ msgid "Plugin status"
+#~ msgstr "Stan wtyczek"
+
+#~ msgid "All modules were successfully loaded."
+#~ msgstr "Wszystkie modu³y zosta³y pomy¶lnie za³adowane."
+
+#~ msgid "The following modules could not be loaded:"
+#~ msgstr "Nie mo¿na za³adowaæ poni¿szych modu³ów:"
+
+#~ msgid "Uncategorized"
+#~ msgstr "Nieskategoryzowany"
+
+#~ msgid "Add Person"
+#~ msgstr "Dodaj osobê"
+
+#~ msgid "Error reading %s"
+#~ msgstr "B³±d odczytu %s"
+
+#~ msgid "Media object could not be found"
+#~ msgstr "Nie mo¿na znale¼æ obiektu medialnego"
+
+#~ msgid ""
+#~ "%(file_name)s is referenced in the database, but no longer exists. The "
+#~ "file may have been deleted or moved to a different location. You may "
+#~ "choose to either remove the reference from the database, keep the "
+#~ "reference to the missing file, or select a new file."
+#~ msgstr ""
+#~ "Plik %(file_name)s posiada odwo³ania w bazie danych lecz nie istnieje. "
+#~ "Plik móg³ zostaæ usuniêty lub przeniesiony w inne miejsce. Mo¿na wybraæ "
+#~ "zarówno usuniêcie odwo³ania z bazy danych, utrzymania odwo³ania do "
+#~ "brakuj±cego pliku lub wybranie nowego pliku."
+
+#~ msgid "%s (revision %s)"
+#~ msgstr "%s (wydanie %s)"
+
+#~ msgid "The file has been moved or deleted"
+#~ msgstr "Plik zosta³ przeniesiony lub usuniêty"
+
+#~ msgid "Could not create %s"
+#~ msgstr "Nie mo¿na utworzyæ %s"
+
+#~ msgid "Error creating the thumbnail: %s"
+#~ msgstr "B³±d podczas tworzenia miniatury: %s"
+
+#~ msgid "Error copying %s"
+#~ msgstr "B³±d kopiowania %s"
+
+#~ msgid "Cannot display %s"
+#~ msgstr "Nie mo¿na wy¶wietliæ %s"
+
+#~ msgid ""
+#~ "GRAMPS is not able to display the image file. This may be caused by a "
+#~ "corrupt file."
+#~ msgstr ""
+#~ "Program GRAMPS nie mo¿e wy¶wietliæ pliku obrazu. To mo¿e byæ spowodowane "
+#~ "faktem uszkodzenia pliku."
+
+#~ msgid "Could not create a thumbnail for %s"
+#~ msgstr "Nie mo¿na utworzyæ miniatury dla %s"
+
+#~ msgid "The file has been moved or deleted."
+#~ msgstr "Plik zosta³ przeniesiony lub usuniêty"
+
+#~ msgid "Default Template"
+#~ msgstr "Domy¶lny szablon"
+
+#~ msgid "User Defined Template"
+#~ msgstr "Szablon definiowany przez u¿ytkownika"
+
+#~ msgid "First"
+#~ msgstr "Pierwszy(-a)"
+
+#~ msgid "Second"
+#~ msgstr "Drugi(-a)"
+
+#~ msgid "Fourth"
+#~ msgstr "Czwarty(-a)"
+
+#~ msgid "Third"
+#~ msgstr "Trzeci(-a)"
+
+#~ msgid "Fifth"
+#~ msgstr "Pi±ty(-a)"
+
+#~ msgid "Sixth"
+#~ msgstr "Szósty(-a)"
+
+#~ msgid "Eighth"
+#~ msgstr "Ósmy(-a)"
+
+#~ msgid "Seventh"
+#~ msgstr "Siódmy(-a)"
+
+#~ msgid "Ninth"
+#~ msgstr "Dziewi±ty(-a)"
+
+#~ msgid "Tenth"
+#~ msgstr "Dziesi±ty(-a)"
+
+#~ msgid "Eleventh"
+#~ msgstr "Jedenasty(-a)"
+
+#~ msgid "Twelfth"
+#~ msgstr "Dwunasty(-a)"
+
+#~ msgid "Fourteenth"
+#~ msgstr "Czternasty(-a)"
+
+#~ msgid "Thirteenth"
+#~ msgstr "Trzynasty(-a)"
+
+#~ msgid "Fifteenth"
+#~ msgstr "Piêtnasty(-a)"
+
+#~ msgid "Sixteenth"
+#~ msgstr "Szesnasty(-a)"
+
+#~ msgid "Eighteenth"
+#~ msgstr "Osiemnasty(-a)"
+
+#~ msgid "Seventeenth"
+#~ msgstr "Siedemnasty(-a)"
+
+#~ msgid "Nineteenth"
+#~ msgstr "Dziewiêtnasty(-a)"
+
+#~ msgid "Twentieth"
+#~ msgstr "Dwudziesty(-a)"
+
+#~ msgid "Twenty-first"
+#~ msgstr "Dwudziesty pierwszy(-a)"
+
+#~ msgid "Twenty-second"
+#~ msgstr "Dwudziesty drugi(-a)"
+
+#~ msgid "Twenty-fourth"
+#~ msgstr "Dwudziesty czwarty(-a)"
+
+#~ msgid "Twenty-third"
+#~ msgstr "Dwudziesty trzeci(-a)"
+
+#~ msgid "Twenty-fifth"
+#~ msgstr "Dwudziesty pi±ty(-a)"
+
+#~ msgid "Twenty-sixth"
+#~ msgstr "Dwudziesty szósty(-a)"
+
+#~ msgid "Twenty-eighth"
+#~ msgstr "Dwudziesty ósmy(-a)"
+
+#~ msgid "Twenty-seventh"
+#~ msgstr "Dwudziesty siódmy(-a)"
+
+#~ msgid "Twenty-ninth"
+#~ msgstr "Dwudziesty dziewi±ty(-a)"
+
+#~ msgid "Progress Report"
+#~ msgstr "Raport postêpu"
+
+#~ msgid "Working"
+#~ msgstr "Przetwarzanie"
+
+#~ msgid "Save Report As"
+#~ msgstr "Zapisywanie raportu pod inn± nazw±"
+
+#~ msgid "Document Options"
+#~ msgstr "Opcje dokumentu"
+
+#~ msgid "Save As"
+#~ msgstr "Zapisywanie jako"
+
+#~ msgid "Directory"
+#~ msgstr "Katalog"
+
+#~ msgid "Filename"
+#~ msgstr "Nazwa pliku"
+
+#~ msgid "Output Format"
+#~ msgstr "Format wyj¶cia"
+
+#~ msgid "Styles"
+#~ msgstr "Style"
+
+#~ msgid "Style Editor"
+#~ msgstr "Edytor stylów"
+
+#~ msgid "Paper Options"
+#~ msgstr "Opcje dokumentu"
+
+#~ msgid "Size"
+#~ msgstr "Rozmiar"
+
+#~ msgid "Height"
+#~ msgstr "Wysoko¶æ"
+
+#~ msgid "cm"
+#~ msgstr "cm"
+
+#~ msgid "Orientation"
+#~ msgstr "U³o¿enie"
+
+#~ msgid "Width"
+#~ msgstr "Szeroko¶æ"
+
+#~ msgid "Page Count"
+#~ msgstr "Liczba stron"
+
+#~ msgid "HTML Options"
+#~ msgstr "Opcje HTML"
+
+#~ msgid "Template"
+#~ msgstr "Szablon"
+
+#~ msgid "User Template"
+#~ msgstr "Szablon u¿ytkownika"
+
+#~ msgid "Choose File"
+#~ msgstr "Wybierz plik"
+
+#~ msgid "Report Options"
+#~ msgstr "Opcje raportu"
+
+#~ msgid "Filter"
+#~ msgstr "Filtr"
+
+#~ msgid "Generations"
+#~ msgstr "Generacje"
+
+#~ msgid "Page break between generations"
+#~ msgstr "Rozdzielenie generacji na osobne strony"
+
+#~ msgid "Invalid file name"
+#~ msgstr "Niepoprawna nazwa pliku"
+
+#~ msgid ""
+#~ "The filename that you gave is a directory.\n"
+#~ "You need to provide a valid filename."
+#~ msgstr ""
+#~ "Wprowadzona nazwa pliku jest katalogiem.\n"
+#~ "Nale¿y podaæ poprawn± nazwê."
+
+#~ msgid "File already exists"
+#~ msgstr "Plik ju¿ istnieje"
+
+#~ msgid "_Overwrite"
+#~ msgstr "_Nadpisz"
+
+#~ msgid "_Change filename"
+#~ msgstr "_Zmieñ nazwê pliku"
+
+#~ msgid "Add Children"
+#~ msgstr "Dodaj dzieci"
+
+#~ msgid "Relationship to %s"
+#~ msgstr "Zwi±zek z osob± %s"
+
+#~ msgid "Author"
+#~ msgstr "Autor"
+
+#~ msgid "Delete %s?"
+#~ msgstr "Usun±æ %s?"
+
+#~ msgid ""
+#~ "This source is currently being used. Deleting it will remove it from the "
+#~ "database and from all records that reference it."
+#~ msgstr ""
+#~ "To ¼ród³o jest aktualnie u¿ywane. Usuniêcie go, spowoduje usuniêcie "
+#~ "¼ród³a z bazy danych oraz ze wszystkich wpisów, które siê do niego "
+#~ "odwo³uj±."
+
+#~ msgid "_Delete Source"
+#~ msgstr "_Usuñ ¼ród³o"
+
+#~ msgid "Source Reference Selection"
+#~ msgstr "Wybór odwo³ania do ¼ród³a"
+
+#~ msgid "Source Information"
+#~ msgstr "Informacje ¼ród³owe"
+
+#~ msgid "Getting Started"
+#~ msgstr "Wprowadzenie"
+
+#~ msgid ""
+#~ "Welcome to GRAMPS, the Genealogical Research and Analysis Management "
+#~ "Programming System.\n"
+#~ "Several options and information need to be gathered before GRAMPS is "
+#~ "ready to be used. Any of this information can be changed in the future in "
+#~ "the Preferences dialog under the Settings menu."
+#~ msgstr ""
+#~ "Witaj w programie GRAMPS - systemie badañ\n"
+#~ "genealogicznych i zarz±dzania analizami.\n"
+#~ "\n"
+#~ "Przed rozpoczêciem korzystania z programu GRAMPS nale¿y skonfigurowaæ "
+#~ "kilka opcji. Dowolna z tych informacji bêdzie mog³a zostaæ zmieniona "
+#~ "pó¼niej za pomoc± okna preferencji w menu ustawieñ."
+
+#~ msgid "Complete"
+#~ msgstr "Gotowe"
+
+#~ msgid ""
+#~ "GRAMPS is an Open Source project. Its success depends on the users. User "
+#~ "feedback is important. Please join the mailing lists, submit bug reports, "
+#~ "suggest improvements,  and see how you can contribute.\n"
+#~ "\n"
+#~ "Please enjoy using GRAMPS."
+#~ msgstr ""
+#~ "GRAMPS jest projektem Open Source. Jego sukces zale¿y od u¿ytkowników. "
+#~ "Ich wsparcie jest wa¿ne. Do³±cz do listy dyskusyjnej, wysy³aj raporty o "
+#~ "b³êdach, sugestie dotycz±ce ulepszeñ oraz zobacz w jaki sposób mo¿na "
+#~ "pomóc w projekcie.\n"
+#~ "\n"
+#~ "Przyjemnego korzystania z programu GRAMPS."
+
+#~ msgid ""
+#~ "In order to create valid GEDCOM files, the following information needs to "
+#~ "be entered. If you do not plan to generate GEDCOM files, you may leave "
+#~ "this empty."
+#~ msgstr ""
+#~ "W celu utworzenia poprawnych plików GEDCOM nale¿y podaæ poni¿sze "
+#~ "informacje.Je¶li nie jest planowane tworzenie plików GEDCOM, mo¿na "
+#~ "pozostawiæ pola puste."
+
+#~ msgid "Name:"
+#~ msgstr "Imiê i nazwisko:"
+
+#~ msgid "Address:"
+#~ msgstr "Adres:"
+
+#~ msgid "City:"
+#~ msgstr "Miasto:"
+
+#~ msgid "State/Province:"
+#~ msgstr "Stan/prowincja:"
+
+#~ msgid "Country:"
+#~ msgstr "Kraj:"
+
+#~ msgid "ZIP/Postal code:"
+#~ msgstr "Kod pocztowy:"
+
+#~ msgid "Phone:"
+#~ msgstr "Telefon:"
+
+#~ msgid "Email:"
+#~ msgstr "E-mail:"
+
+#~ msgid "Numerical date formats"
+#~ msgstr "Liczbowe formaty dat"
+
+#~ msgid ""
+#~ "There are three common formats for entering dates in a numerical\n"
+#~ "format. Without some type of indication, GRAMPS cannot correctly\n"
+#~ "tell what format you are using. Please indicate your preferred format\n"
+#~ "for entering numerical dates"
+#~ msgstr ""
+#~ "Mo¿na u¿yæ trzech podstawowych formatów dla wprowadzania dat.\n"
+#~ "Bez wstêpnego okre¶lenia, GRAMPS nie bêdzie móg³ poprawnie\n"
+#~ "stwierdziæ jaki format jest akurat u¿ywany. Wska¿ preferowany\n"
+#~ "format numeryczny dat."
+
+#~ msgid "MM/DD/YYYY (United States)"
+#~ msgstr "MM/DD/RRRR (Stany Zjednoczone)"
+
+#~ msgid "DD/MM/YYYY (European)"
+#~ msgstr "DD/MM/RRRR (Zapis europejski)"
+
+#~ msgid "YYYY-MM-DD (ISO)"
+#~ msgstr "RRRR-MM-DD (ISO)"
+
+#~ msgid "Alternate calendar support"
+#~ msgstr "Obs³uga kalendarzy alternatywnych"
+
+#~ msgid ""
+#~ "By default, all dates stored by GRAMPS use the Gregorian calendar.\n"
+#~ "This is normally sufficient for most users. Support may be enabled\n"
+#~ "for the Julian, French Republican, and Hebrew calendar. If you believe\n"
+#~ "that you will need one or more of these alternate calendars, enable\n"
+#~ "alternate calendar support\n"
+#~ msgstr ""
+#~ "Domy¶lnie wszystkie daty s± przechowywane przez program GRAMPS\n"
+#~ "w formacie kalendarza gregoriañskiego. Dla wiêkszo¶ci u¿ytkowników\n"
+#~ "jest on wystarczaj±cy. Obs³uga mo¿e dotyczyæ tak¿e kalendarza\n"
+#~ "juliañskiego, francuskiego, republikañskiego oraz ¿ydowskiego.\n"
+#~ "Je¶li wiesz, ¿e bêdzie potrzebny jeden z alternatywnych kalendarzy,\n"
+#~ "zaznacz jego obs³ugê.\n"
+
+#~ msgid "Enable support for alternate calendars"
+#~ msgstr "W³±czona obs³uga alternatywnych kalendarzy"
+
+#~ msgid "LDS extensions"
+#~ msgstr "Rozszerzenia LDS"
+
+#~ msgid ""
+#~ "GRAMPS has support for LDS Ordinances, which are special event types\n"
+#~ "related to the Church of Jesus Christ of Latter Day Saints.\n"
+#~ "\n"
+#~ "You may choose to either enable or disable this support. You may\n"
+#~ "change this option in the future in the Preferences dialog."
+#~ msgstr ""
+#~ "GRAMPS mo¿e obs³ugiwaæ dane LDS, czyli specjalnego typu\n"
+#~ "wydarzeñ zwi±zanym z Ko¶cio³em Jezusa Chrystusa i ¦wiêtych\n"
+#~ "Dnia Ostatniego.\n"
+#~ "\n"
+#~ "Mo¿na wybraæ zarówno w³±czenie jak i wy³±czenie tej obs³ugi.\n"
+#~ "Ta opcja mo¿e zostaæ w przysz³o¶ci zmieniona w oknie preferencji."
+
+#~ msgid "Enable LDS ordinance support"
+#~ msgstr "W³±czenie obs³ugi LDS"
+
+#~ msgid "Document Styles"
+#~ msgstr "Style dokumentu"
+
+#~ msgid "Error saving stylesheet"
+#~ msgstr "B³±d podczas zapisu arkusza stylów"
+
+#~ msgid "Style editor"
+#~ msgstr "Edytor stylów"
+
+#~ msgid "Paragraph"
+#~ msgstr "Akapit"
+
+#~ msgid "No description available"
+#~ msgstr "Brak dostêpnego opisu"
+
+#~ msgid "Note"
+#~ msgstr "Uwaga"
+
+#~ msgid "Private"
+#~ msgstr "Poufny"
+
+#~ msgid "default"
+#~ msgstr "domy¶lny"
+
+#~ msgid "Revision control comment"
+#~ msgstr "Komentarz kontroli wydañ"
+
+#~ msgid "Select an older revision"
+#~ msgstr "Wybór starszego wydania"
+
+#~ msgid "RCS"
+#~ msgstr "RCS"
+
+#~ msgid "Witness"
+#~ msgstr "¦wiadek"
+
+#~ msgid "Witness Editor"
+#~ msgstr "Edytor ¶wiadków"
+
+#~ msgid "Failure writing %s"
+#~ msgstr "Niepowodzenie przy zapisywaniu %s"
+
+#~ msgid "An attempt is begin made to recover the original file"
+#~ msgstr "Próba zapocz±tkowania przywrócenia oryginalnego pliku"
+
+#~ msgid "Islamic"
+#~ msgstr "Islamski"
+
+#~ msgid "Persian"
+#~ msgstr "Perski"
+
+#~ msgid "Getting Started - GRAMPS"
+#~ msgstr "Wprowadzenie - GRAMPS"
+
+#~ msgid ""
+#~ "Welcome to GRAMPS, the Genealogical Research\n"
+#~ "and Analysis Management Programming System.\n"
+#~ "\n"
+#~ "Several options and information need to be gathered\n"
+#~ "before GRAMPS is ready to be used. Any of this\n"
+#~ "information can be changed in the future in the \n"
+#~ "Preferences dialog under the Settings menu."
+#~ msgstr ""
+#~ "Witaj w programie GRAMPS - systemie badañ\n"
+#~ "genealogicznych i zarz±dzania analizami.\n"
+#~ "\n"
+#~ "Przed rozpoczêciem korzystania z programu GRAMPS\n"
+#~ "nale¿y skonfigurowaæ kilka opcji. Dowolna z tych\n"
+#~ "informacji bêdzie mog³a byæ zmieniona pó¼niej za\n"
+#~ "pomoc± okna preferencji w menu ustawieñ."
+
+#~ msgid "Researcher information"
+#~ msgstr "Informacje o badaczu"
+
+#~ msgid ""
+#~ "In order to create valid GEDCOM files, the following information\n"
+#~ "needs to be entered. If you do not plan to generate GEDCOM \n"
+#~ "files, you may leave it blank."
+#~ msgstr ""
+#~ "W celu utworzenia poprawnych plików GEDCOM nale¿y podaæ\n"
+#~ "poni¿sze informacji. Je¶li nie planujesz tworzenia plików\n"
+#~ "GEDCOM, mo¿na pozostawiæ pola puste."
+
+#~ msgid ""
+#~ "There are three common formats for entering dates in a numerical format.\n"
+#~ "Without some type of indication, GRAMPS cannot correctly tell what\n"
+#~ "format you are using. Please indicate your preferred format for entering\n"
+#~ "numerical dates"
+#~ msgstr ""
+#~ "Mo¿na u¿yæ trzech podstawowych formatów dla wprowadzania dat.\n"
+#~ "Bez wstêpnego okre¶lenia, GRAMPS nie bêdzie móg³ poprawnie\n"
+#~ "stwierdziæ jaki format jest akurat u¿ywany. Wska¿ preferowany\n"
+#~ "format numeryczny dat."
+
+#~ msgid ""
+#~ "By default, all dates stored by GRAMPS use the Gregorian calendar. This\n"
+#~ "is normally sufficient for most users. Support may be enabled for the "
+#~ "Julian,\n"
+#~ "French Republican, and Hebrew calendar. If you believe that you will need "
+#~ "one or\n"
+#~ "more of these alternate calendars, enable alternate calendar support."
+#~ msgstr ""
+#~ "Domy¶lnie wszystkie daty s± przechowywane przez program GRAMPS\n"
+#~ "w formacie kalendarza gregoriañskiego. Dla wiêkszo¶ci u¿ytkowników\n"
+#~ "jest on wystarczaj±cy. Obs³uga mo¿e dotyczyæ tak¿e kalendarza\n"
+#~ "juliañskiego, francuskiego, republikañskiego oraz ¿ydowskiego. Je¶li "
+#~ "wiesz,\n"
+#~ "¿e bêdzie potrzebny jeden z alternatywnych kalendarzy, zaznacz\n"
+#~ "jego obs³ugê."
+
+#~ msgid ""
+#~ "GRAMPS has support for LDS Ordinances, which are special\n"
+#~ "event types related to the Church of Jesus Christ of Latter Day Saints.\n"
+#~ "\n"
+#~ "You may choose to either enable or disable this support. You may\n"
+#~ "change this option in the future in the Preferences dialog."
+#~ msgstr ""
+#~ "GRAMPS mo¿e obs³ugiwaæ dane LDS, czyli specjalnego typu\n"
+#~ "wydarzeñ zwi±zanym z Ko¶cio³em Jezusa Chrystusa i ¦wiêtych\n"
+#~ "Dnia Ostatniego.\n"
+#~ "\n"
+#~ "Mo¿na wybraæ zarówno w³±czenie jak i wy³±czenie tej obs³ugi.\n"
+#~ "Ta opcja mo¿e zostaæ w przysz³o¶ci zmieniona w oknie preferencji."
+
+#~ msgid ""
+#~ "GRAMPS is an Open Source project. Its success \n"
+#~ "depends on the users. User feedback is important. \n"
+#~ "Please join the mailing lists, submit bug reports,\n"
+#~ "suggest improvements,  and see how you can \n"
+#~ "contribute.\n"
+#~ "\n"
+#~ "Please enjoy using GRAMPS."
+#~ msgstr ""
+#~ "GRAMPS jest projektem Open Source. Jego sukces\n"
+#~ "zale¿y od u¿ytkowników. Ich wsparcie jest wa¿ne.\n"
+#~ "Do³±cz do listy dyskusyjnej, wysy³aj raporty o b³êdach,\n"
+#~ "sugestie dotycz±ce ulepszeñ oraz zobacz jak mo¿na\n"
+#~ "pomóc w projekcie.\n"
+#~ "\n"
+#~ "Przyjemnego korzystania z programu GRAMPS."
+
+#~ msgid "Getting Started with GRAMPS"
+#~ msgstr "Wprowadzenie do programu GRAMPS"
+
+#~ msgid "_MM/DD/YYYY (United States)"
+#~ msgstr "_MM/DD/RRRR (Stany Zjednoczone)"
+
+#~ msgid "_DD/MM/YYYY (European)"
+#~ msgstr "_DD/MM/RRRR (Zapis europejski)"
+
+#~ msgid "_YYYY-MM-DD (ISO)"
+#~ msgstr "_RRRR-MM-DD (ISO)"
+
+#~ msgid "_Enable support for alternate calendars"
+#~ msgstr "_W³±czona obs³uga alternatywnych kalendarzy"
+
+#~ msgid "_Enable LDS ordinance support"
+#~ msgstr "_W³±czona obs³uga LDS"
+
+#~ msgid ""
+#~ "GRAMPS (Genealogical Research and Analysis Management Programming System) "
+#~ "is a personal genealogy program."
+#~ msgstr ""
+#~ "GRAMPS (Badania genealogiczne i system zarz±dzania analizami) to program "
+#~ "do osobistych badañ genealogicznych"
+
+#~ msgid "TRANSLATORS: Translate this to your name in your native language"
+#~ msgstr "Arkadiusz Lipiec"
+
+#~ msgid "male"
+#~ msgstr "mê¿czyzna"
+
+#~ msgid "female"
+#~ msgstr "kobieta"
+
+#~ msgid "Adopted"
+#~ msgstr "Adopcja"
+
+#~ msgid "Stepchild"
+#~ msgstr "Pasierb(ica)"
+
+#~ msgid "Sponsored"
+#~ msgstr "Utrzymanek"
+
+#~ msgid "Foster"
+#~ msgstr "Wychowanek"
+
+#~ msgid "Other"
+#~ msgstr "Inne"
+
+#~ msgid "Very Low"
+#~ msgstr "Bardzo niska"
+
+#~ msgid "Low"
+#~ msgstr "Niska"
+
+#~ msgid "Normal"
+#~ msgstr "Normalna"
+
+#~ msgid "High"
+#~ msgstr "Wysoka"
+
+#~ msgid "Very High"
+#~ msgstr "Bardzo wysoka"
+
+#~ msgid "Annulment"
+#~ msgstr "Zerwanie"
+
+#~ msgid "Divorce Filing"
+#~ msgstr "Wniosek rozwodowy"
+
+#~ msgid "Divorce"
+#~ msgstr "Rozwód"
+
+#~ msgid "Engagement"
+#~ msgstr "Zarêczyny"
+
+#~ msgid "Marriage Contract"
+#~ msgstr "Kontrakt ma³¿eñski"
+
+#~ msgid "Marriage License"
+#~ msgstr "Zezwolenie na ma³¿eñstwo"
+
+#~ msgid "Marriage Settlement"
+#~ msgstr "Zawarcie ma³¿eñstwa"
+
+#~ msgid "Marriage"
+#~ msgstr "Ma³¿eñstwo"
+
+#~ msgid "Alternate Birth"
+#~ msgstr "Alternatywna data urodzenia"
+
+#~ msgid "Alternate Death"
+#~ msgstr "Alternatywna data zgonu"
+
+#~ msgid "Adult Christening"
+#~ msgstr "Chrzest doros³ych"
+
+#~ msgid "Baptism"
+#~ msgstr "Baptyzm"
+
+#~ msgid "Bar Mitzvah"
+#~ msgstr "Bar Mitzvah"
+
+#~ msgid "Bas Mitzvah"
+#~ msgstr "Bas Mitzvah"
+
+#~ msgid "Blessing"
+#~ msgstr "B³ogos³awieñstwo"
+
+#~ msgid "Burial"
+#~ msgstr "Pogrzeb"
+
+#~ msgid "Cause Of Death"
+#~ msgstr "Powód zgonu"
+
+#~ msgid "Census"
+#~ msgstr "Spis"
+
+#~ msgid "Christening"
+#~ msgstr "Chrzest"
+
+#~ msgid "Confirmation"
+#~ msgstr "Potwierdzenie"
+
+#~ msgid "Cremation"
+#~ msgstr "Kremacja"
+
+#~ msgid "Degree"
+#~ msgstr "Stopieñ naukowy"
+
+#~ msgid "Education"
+#~ msgstr "Wykszta³cenie"
+
+#~ msgid "Elected"
+#~ msgstr "Wybór na stanowisko"
+
+#~ msgid "Emigration"
+#~ msgstr "Emigracja"
+
+#~ msgid "First Communion"
+#~ msgstr "Pierwsza komunia"
+
+#~ msgid "Immigration"
+#~ msgstr "Imigracja"
+
+#~ msgid "Graduation"
+#~ msgstr "Wrêczenie dyplomu"
+
+#~ msgid "Medical Information"
+#~ msgstr "Informacje medyczne"
+
+#~ msgid "Military Service"
+#~ msgstr "S³u¿ba wojskowa"
+
+#~ msgid "Naturalization"
+#~ msgstr "Naturalizacja"
+
+#~ msgid "Nobility Title"
+#~ msgstr "Nadanie tytu³u"
+
+#~ msgid "Number of Marriages"
+#~ msgstr "Liczba ma³¿eñstw"
+
+#~ msgid "Occupation"
+#~ msgstr "Zmiana miejsca zamieszkania"
+
+#~ msgid "Ordination"
+#~ msgstr "¦wiêcenie"
+
+#~ msgid "Probate"
+#~ msgstr "Po¶wiadczenie"
+
+#~ msgid "Property"
+#~ msgstr "W³asno¶æ"
+
+#~ msgid "Religion"
+#~ msgstr "Religia"
+
+#~ msgid "Residence"
+#~ msgstr "Zamieszkanie"
+
+#~ msgid "Retirement"
+#~ msgstr "Odej¶cie"
+
+#~ msgid "Will"
+#~ msgstr "Testament"
+
+#~ msgid "Caste"
+#~ msgstr "Kasta"
+
+#~ msgid "Identification Number"
+#~ msgstr "Numer identyfikacyjny"
+
+#~ msgid "National Origin"
+#~ msgstr "Kraj pochodzenia"
+
+#~ msgid "Social Security Number"
+#~ msgstr "Numer ubezpieczenia spo³ecznego"
+
+#~ msgid "Number of Children"
+#~ msgstr "Liczba dzieci"
+
+#~ msgid "A legal or common-law relationship between a husband and wife"
+#~ msgstr "Legalny lub pó³legalny zwi±zek pomiêdzy mê¿em a ¿on±"
+
+#~ msgid "No legal or common-law relationship between man and woman"
+#~ msgstr "Legalny lub pó³legalny zwi±zek pomiêdzy mê¿czyzn± a kobiet±"
+
+#~ msgid "Unmarried"
+#~ msgstr "Bez ¶lubu"
+
+#~ msgid "An established relationship between members of the same sex"
+#~ msgstr "Okre¶lone zwi±zki pomiêdzy osobami tej samej p³ci"
+
+#~ msgid "Unknown relationship between a man and woman"
+#~ msgstr "Nieznany zwi±zek pomiêdzy mê¿czyzn± a kobiet±"
+
+#~ msgid "An unspecified relationship between a man and woman"
+#~ msgstr "Nieokre¶lony zwi±zek pomiêdzy mê¿czyzn± a kobiet±"
+
+#~ msgid "No definition available"
+#~ msgstr "Brak dostêpnej definicji"
+
+#~ msgid "Also Known As"
+#~ msgstr "Osoba tak¿e znana jako"
+
+#~ msgid "Birth Name"
+#~ msgstr "Nazwisko nadane przy urodzeniu"
+
+#~ msgid "Married Name"
+#~ msgstr "Nazwisko po ma³¿eñstwie"
+
+#~ msgid "Other Name"
+#~ msgstr "Inne nazwisko"
+
+#~ msgid "Close window without changes"
+#~ msgstr "Zamknij okno bez wprowadzania zmian"
+
+#~ msgid "Accept changes and close window"
+#~ msgstr "Zaakceptuj zmiany i zamknij okno dialogowe"
+
+#~ msgid "_Event type:"
+#~ msgstr "_Typ zdarzenia"
+
+#~ msgid "_Date:"
+#~ msgstr "_Data:"
+
+#~ msgid "De_scription:"
+#~ msgstr "Opi_s:"
+
+#~ msgid "_Place:"
+#~ msgstr "_Miejsce:"
+
+#~ msgid "_Cause:"
+#~ msgstr "_Powód:"
+
+#~ msgid "Selects the calendar format for display"
+#~ msgstr "Wybiera format kalendarza przy wy¶wietlaniu"
+
+#~ msgid "French"
+#~ msgstr "Francuski"
+
+#~ msgid "_Private record"
+#~ msgstr "P_oufny zapis"
+
+#~ msgid "<b>General</b>"
+#~ msgstr "<b>Ogólne</b>"
+
+#~ msgid "_Add..."
+#~ msgstr "_Dodaj..."

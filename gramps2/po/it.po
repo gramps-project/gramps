@@ -1,0 +1,6332 @@
+# Italian translation for GRAMPS
+# Copyright (C) 2001-2002 the Gramps Project
+# Marco Molteni <molter@gufi.org>, 2001-2002;
+# Lorenzo Cappelletti <lorenzo.cappelletti@email.it>, 2003.
+#
+# Common and noteworthy translations:
+#
+#   alternate              alternativo
+#   ancestor               ascendente
+#   ancestral              ascendenza
+#   autosave               salvataggio automatico
+#   baptism                battesimo
+#   birth                  nascita
+#   christening            battesimo (anachronistic - see gramps-devel ML)
+#   church parish          parrocchia
+#   county                 provincia
+#   country                stato
+#   common-law             (relazione) di fatto
+#   dead                   decedere
+#   death                  decesso
+#   descendant             discendente/discendenza
+#   had a child %(child)s  divenne padre/madre di %(child)s
+#                          (copes with male and femail children)
+#   he was son of          fu figlio di
+#   home person            persona-casa
+#   family (adj)           famigliare
+#   in %(place)s           in quel di (copes with all sort of place names)
+#   location               località
+#   merge, to              fondere
+#   partner                partner
+#   province               provincia, regione
+#   record                 elemento
+#   relationship path      percorso (delle) relazioni
+#   report                 resoconto
+#   state (geog)           regione, stato
+#   thumbnail              anteprima
+#   unmarried              celibe/nubile
+#
+# A special remark are required by some sentences related to reports.
+#
+# * "%s was born on %s"
+#
+#   In Italian, we use a tense equivalent to the English's past simple
+#   for living people, and the equivalent to English's present perfect
+#   for people who died.  Unfortunately, the program cannot distinguish
+#   between these two cases.
+#
+# * ", and was buried on %s."
+#
+#   In Italian, the word for buried declines accordingly to its subject
+#   gender.
+#
+# * "born %(date)s in %(place)s%(endnotes)s"
+#
+#   The same rule as for "buried" applies to born, as well.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gramps 0.9.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-03-14 17:54-0800\n"
+"PO-Revision-Date: 2003-12-06 10:16+0100\n"
+"Last-Translator: Lorenzo Cappelletti <lorenzo.cappelletti@email.it>\n"
+"Language-Team: Italian <tp@lists.linux.it>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/ViewManager.py:80
+#, fuzzy
+msgid "GRAMPS (grdb)"
+msgstr "GRAMPS"
+
+#: ../src/ViewManager.py:81
+#, fuzzy
+msgid "GRAMPS XML"
+msgstr "GRAMPS"
+
+#: ../src/ViewManager.py:82
+#, fuzzy
+msgid "GEDCOM"
+msgstr "Esportazione GEDCOM"
+
+#: ../src/ViewManager.py:274
+#, fuzzy
+msgid "Loading document formats..."
+msgstr "Sto caricando %s..."
+
+#: ../src/ViewManager.py:277
+#, fuzzy
+msgid "Loading plugins..."
+msgstr "Sto caricando %s..."
+
+#: ../src/ViewManager.py:282
+msgid "Ready"
+msgstr ""
+
+#: ../src/ViewManager.py:313
+msgid "GRAMPS _home page"
+msgstr "_Homepage GRAMPS"
+
+#: ../src/ViewManager.py:314
+msgid "GRAMPS _mailing lists"
+msgstr "_Liste distribuzione GRAMPS"
+
+#: ../src/ViewManager.py:315
+msgid "_Report a bug"
+msgstr "_Riporta un baco"
+
+#: ../src/ViewManager.py:388 ../src/ViewManager.py:395
+#, fuzzy
+msgid "Could not open help"
+msgstr "Impossibile aprire %s"
+
+#: ../src/ViewManager.py:417
+#, fuzzy
+msgid "GRAMPS Homepage"
+msgstr "_Homepage GRAMPS"
+
+#: ../src/ViewManager.py:532
+#, fuzzy
+msgid "GRAMPS: Open database"
+msgstr "Apri database"
+
+#: ../src/ViewManager.py:591 ../src/ViewManager.py:617
+#: ../src/ViewManager.py:936 ../src/ViewManager.py:960
+#, fuzzy, python-format
+msgid "Could not open file: %s"
+msgstr "Impossibile aprire %s"
+
+#: ../src/ViewManager.py:618 ../src/ViewManager.py:961
+#, python-format
+msgid ""
+"File type \"%s\" is unknown to GRAMPS.\n"
+"\n"
+"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
+msgstr ""
+
+#: ../src/ViewManager.py:624
+#, fuzzy
+msgid "GRAMPS: Create GRAMPS database"
+msgstr "Crea database"
+
+#: ../src/ViewManager.py:717 ../src/ViewManager.py:723
+#: ../src/ViewManager.py:758 ../src/ViewManager.py:762
+#: ../src/ViewManager.py:765
+#, fuzzy
+msgid "Cannot open database"
+msgstr "Crea database"
+
+#: ../src/ViewManager.py:718
+#, fuzzy
+msgid ""
+"The selected file is a directory, not a file.\n"
+"A GRAMPS database must be a file."
+msgstr "Probabilmente il file è corrotto o non è un database di GRAMPS valido."
+
+#: ../src/ViewManager.py:724
+msgid "You do not have read access to the selected file."
+msgstr ""
+
+#: ../src/ViewManager.py:729
+#, fuzzy
+msgid "Read only database"
+msgstr "Apri database"
+
+#: ../src/ViewManager.py:730
+#, fuzzy
+msgid "You do not have write access to the selected file."
+msgstr ""
+"È possibile scegliere di sovrascrivere il file o di cambiare il nome del "
+"file selezionato."
+
+#: ../src/ViewManager.py:751
+#, fuzzy
+msgid "Read Only"
+msgstr "Solo testo"
+
+#: ../src/ViewManager.py:759
+#, fuzzy
+msgid "The database file specified could not be opened."
+msgstr "Il nome di file fornito non è stato trovato."
+
+#: ../src/ViewManager.py:766
+#, python-format
+msgid "%s could not be opened."
+msgstr "%s non può essere aperto."
+
+#: ../src/ViewManager.py:852
+#, python-format
+msgid "%s has been bookmarked"
+msgstr "Creato segnalibro per %s"
+
+#: ../src/ViewManager.py:854
+msgid "Could Not Set a Bookmark"
+msgstr "Impossibile impostare il segnalibro"
+
+#: ../src/ViewManager.py:855
+msgid "A bookmark could not be set because no one was selected."
+msgstr ""
+"È stato impossibile impostare un segnalibro perché nessuna persona è stata "
+"selezionata."
+
+#: ../src/ViewManager.py:884
+#, fuzzy
+msgid "GRAMPS: Import database"
+msgstr "Importa da database GRAMPS"
+
+#: ../src/ViewManager.py:1060
+#, fuzzy
+msgid "All files"
+msgstr "Tutte le persone"
+
+#: ../src/ViewManager.py:1069
+msgid "All GRAMPS files"
+msgstr ""
+
+#: ../src/ViewManager.py:1080
+#, fuzzy
+msgid "GRAMPS databases"
+msgstr "Importa da database GRAMPS"
+
+#: ../src/ViewManager.py:1089
+#, fuzzy
+msgid "GRAMPS XML databases"
+msgstr "Importa da database GRAMPS"
+
+#: ../src/ViewManager.py:1098
+#, fuzzy
+msgid "GEDCOM files"
+msgstr "Esportazione GEDCOM"
+
+#: ../src/ViewManager.py:1147
+#, fuzzy
+msgid "Automatically detected"
+msgstr "Carica _automaticamente ultimo database"
+
+#: ../src/ViewManager.py:1156
+#, fuzzy
+msgid "Select file _type:"
+msgstr "Selezione file"
+
+#~ msgid "Select a media object"
+#~ msgstr "Selezionare un oggetto multimediale"
+
+#~ msgid "Cannot import %s"
+#~ msgstr "Impossibile importare %s"
+
+#~ msgid "Name"
+#~ msgstr "Nome"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Birth date"
+#~ msgstr "Data di nascita"
+
+#~ msgid "Choose Spouse/Partner of %s"
+#~ msgstr "Scelta del coniuge/partner di %s"
+
+#~ msgid "Choose Spouse/Partner"
+#~ msgstr "Scelta coniuge/partner"
+
+#~ msgid "Married"
+#~ msgstr "Sposato/a"
+
+#~ msgid "Partners"
+#~ msgstr "Partner"
+
+#~ msgid "Address Editor"
+#~ msgstr "Editor indirizzi"
+
+#~ msgid "Address Editor for %s"
+#~ msgstr "Editor indirizzi for %s"
+
+#~ msgid "Attribute Editor"
+#~ msgstr "Editor attributi"
+
+#~ msgid "Attribute Editor for %s"
+#~ msgstr "Editor attributi per %s"
+
+#~ msgid "New attribute type created"
+#~ msgstr "Creato nuovo tipo di attributo"
+
+#~ msgid ""
+#~ "The \"%s\" attribute type has been added to this database.\n"
+#~ "It will now appear in the attribute menus for this database"
+#~ msgstr ""
+#~ "È stato aggiunto a questo database il tipo di attributo «%s».\n"
+#~ "L'attributo sarà ora disponibile nel menù attributi di questo database"
+
+#~ msgid "Edit Bookmarks"
+#~ msgstr "Modifica segnalibri"
+
+#~ msgid "abt\\.?"
+#~ msgstr "ca\\.?"
+
+#~ msgid "about"
+#~ msgstr "ca."
+
+#~ msgid "est\\.?"
+#~ msgstr "app(?:rox)?\\.?"
+
+#~ msgid "circa"
+#~ msgstr "circa il"
+
+#~ msgid "around"
+#~ msgstr "attorno al"
+
+#~ msgid "before"
+#~ msgstr "a."
+
+#~ msgid "after"
+#~ msgstr "p."
+
+#~ msgid "aft\\.?"
+#~ msgstr "(?:p(?:ost)|succ|d)\\.?"
+
+#~ msgid "bef\\.?"
+#~ msgstr "(?:a(?:nt)?e?|pr)\\.?"
+
+#~ msgid "April"
+#~ msgstr "Aprile"
+
+#~ msgid "February"
+#~ msgstr "Febbraio"
+
+#~ msgid "January"
+#~ msgstr "Gennaio"
+
+#~ msgid "March"
+#~ msgstr "Marzo"
+
+#~ msgid "August"
+#~ msgstr "Agosto"
+
+#~ msgid "July"
+#~ msgstr "Luglio"
+
+#~ msgid "June"
+#~ msgstr "Giugno"
+
+#~ msgid "May"
+#~ msgstr "Maggio"
+
+#~ msgid "December"
+#~ msgstr "Dicembre"
+
+#~ msgid "November"
+#~ msgstr "Novembre"
+
+#~ msgid "October"
+#~ msgstr "Ottobre"
+
+#~ msgid "September"
+#~ msgstr "Settembre"
+
+#~ msgid "abt"
+#~ msgstr "circa"
+
+#~ msgid "abt."
+#~ msgstr "ca."
+
+#~ msgid "est"
+#~ msgstr "approx"
+
+#~ msgid "est."
+#~ msgstr "app."
+
+#~ msgid "bef"
+#~ msgstr "ante"
+
+#~ msgid "bef."
+#~ msgstr "a."
+
+#~ msgid "aft."
+#~ msgstr "p."
+
+#~ msgid "aft"
+#~ msgstr "post"
+
+#~ msgid "Undefined Calendar"
+#~ msgstr "Calendario non definito"
+
+#~ msgid "Choose the Parents of %s"
+#~ msgstr "Scelta dei genitori di %s"
+
+#~ msgid "Choose Parents"
+#~ msgstr "Scelta dei genitori"
+
+#~ msgid "Birth"
+#~ msgstr "Nascita"
+
+#~ msgid "Parent"
+#~ msgstr "Genitore"
+
+#~ msgid "Father"
+#~ msgstr "Padre"
+
+#~ msgid "Mother"
+#~ msgstr "Madre"
+
+#~ msgid "Modify the Parents of %s"
+#~ msgstr "Modifica dei genitori di %s"
+
+#~ msgid "Modify Parents"
+#~ msgstr "Modifica genitori"
+
+#~ msgid "(from|between|bet|bet.)"
+#~ msgstr "(dal?|(?:fra|tra)(?: il)?)"
+
+#~ msgid "(and|to|-)"
+#~ msgstr "(al?|e(?: il)?|-)"
+
+#~ msgid "from %(start_date)s to %(stop_date)s"
+#~ msgstr "dal %(start_date)s al %(stop_date)s"
+
+#~ msgid "Open a database"
+#~ msgstr "Apertura di un database"
+
+#~ msgid "Save database"
+#~ msgstr "Salvataggio database"
+
+#~ msgid "No Comment Provided"
+#~ msgstr "Nessun commento fornito"
+
+#~ msgid ""
+#~ "GRAMPS has encountered an internal error.\n"
+#~ "Please copy the message below and post a bug report\n"
+#~ "at http://sourceforge.net/projects/gramps or send an\n"
+#~ "email message to gramps-bugs@lists.sourceforge.net\n"
+#~ "\n"
+#~ msgstr ""
+#~ "GRAMPS ha rilevato un errore interno.\n"
+#~ "Si prega di copiare il messaggio sottostante e di\n"
+#~ "inoltrare un rapporto d'errore visitando l'indirizzo\n"
+#~ "http://sourceforge.net/projects/gramps o inviando un\n"
+#~ "messaggio a gramps-bugs@lists.sourceforge.net\n"
+#~ "\n"
+
+#~ msgid "Internal Error"
+#~ msgstr "Errore interno"
+
+#~ msgid "Edit Person"
+#~ msgstr "Modifica persona"
+
+#~ msgid "Description"
+#~ msgstr "Descrizione"
+
+#~ msgid "Event"
+#~ msgstr "Evento"
+
+#~ msgid "Date"
+#~ msgstr "Data"
+
+#~ msgid "Place"
+#~ msgstr "Luogo"
+
+#~ msgid "Value"
+#~ msgstr "Valore"
+
+#~ msgid "Attribute"
+#~ msgstr "Attributo"
+
+#~ msgid "Address"
+#~ msgstr "Indirizzo"
+
+#~ msgid "Type"
+#~ msgstr "Tipo"
+
+#~ msgid "Path"
+#~ msgstr "Percorso"
+
+#~ msgid "None"
+#~ msgstr "Nessuna"
+
+#~ msgid "%(father)s and %(mother)s"
+#~ msgstr "%(father)s e %(mother)s"
+
+#~ msgid "unknown"
+#~ msgstr "sconosciuto"
+
+#~ msgid "Save changes to %s?"
+#~ msgstr "Salvare le modifiche per %s?"
+
+#~ msgid "If you close without saving, the changes you have made will be lost"
+#~ msgstr ""
+#~ "Se si chiude senza salvare, le modifiche apportate andranno perdute."
+
+#~ msgid "Save Changes to %s?"
+#~ msgstr "Salvare le modifiche su %s?"
+
+#~ msgid "Make the selected name the preferred name"
+#~ msgstr "Rende preferito il nome selezionato"
+
+#~ msgid "GRAMPS ID value was not changed."
+#~ msgstr "Il valore di ID GRAMPS non è stato modificato."
+
+#~ msgid ""
+#~ "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. "
+#~ "This value is already used by %(person)s."
+#~ msgstr ""
+#~ "Si è tentato di modificare l'ID GRAMPS con il valore %(grampsid)s. Questo "
+#~ "valore è già in uso per %(person)s."
+
+#~ msgid "Problem changing the gender"
+#~ msgstr "Problema modifica sesso"
+
+#~ msgid ""
+#~ "Changing the gender caused problems with marriage information.\n"
+#~ "Please check the person's marriages."
+#~ msgstr ""
+#~ "La modifica del sesso ha causato dei problemi con le informazioni sul "
+#~ "matrimonio.\n"
+#~ "Controllare i matrimoni della persona."
+
+#~ msgid "Place Editor"
+#~ msgstr "Editor luoghi"
+
+#~ msgid "City"
+#~ msgstr "Città"
+
+#~ msgid "County"
+#~ msgstr "Provincia"
+
+#~ msgid "State"
+#~ msgstr "Regione"
+
+#~ msgid "Country"
+#~ msgstr "Stato"
+
+#~ msgid "Internet Address Editor for %s"
+#~ msgstr "Editor indirizzi Internet per %s"
+
+#~ msgid "Internet Address Editor"
+#~ msgstr "Editor indirizzi Internet"
+
+#~ msgid "People"
+#~ msgstr "Persone"
+
+#~ msgid "%s [%s]: event %s\n"
+#~ msgstr "%s [%s]: evento %s\n"
+
+#~ msgid "Families"
+#~ msgstr "Famiglie"
+
+#~ msgid "Source Editor"
+#~ msgstr "Editor fonti"
+
+#~ msgid "Object"
+#~ msgstr "Oggetto"
+
+#~ msgid "Source Type"
+#~ msgstr "Tipo fonte"
+
+#~ msgid "Individual Events"
+#~ msgstr "Eventi individuali"
+
+#~ msgid "Individual Attributes"
+#~ msgstr "Attributi individuali"
+
+#~ msgid "Individual Names"
+#~ msgstr "Nomi individuali"
+
+#~ msgid "Family Events"
+#~ msgstr "Eventi famigliari"
+
+#~ msgid "Family Attributes"
+#~ msgstr "Attributi famigliari"
+
+#~ msgid "Media Objects"
+#~ msgstr "Oggetti multimediali"
+
+#~ msgid "Places"
+#~ msgstr "Luoghi"
+
+#~ msgid "Event Editor"
+#~ msgstr "Editor eventi"
+
+#~ msgid "Event Editor for %s"
+#~ msgstr "Editor eventi per %s"
+
+#~ msgid "New event type created"
+#~ msgstr "Creato un nuovo tipo d'evento"
+
+#~ msgid ""
+#~ "The \"%s\" event type has been added to this database.\n"
+#~ "It will now appear in the event menus for this database"
+#~ msgstr ""
+#~ "È stato aggiunto a questo database l'evento di tipo «%s».\n"
+#~ "L'evento apparirà ora nel menù degli eventi di questo database"
+
+#~ msgid "b."
+#~ msgstr "n."
+
+#~ msgid "d."
+#~ msgstr "d."
+
+#~ msgid "Gender"
+#~ msgstr "Sesso"
+
+#~ msgid "Status"
+#~ msgstr "Stato"
+
+#~ msgid "Add Bookmark"
+#~ msgstr "Aggiungi segnalibro"
+
+#~ msgid "People Menu"
+#~ msgstr "Menù persone"
+
+#~ msgid "Add parents"
+#~ msgstr "Aggiungi genitori"
+
+#~ msgid "Child Menu"
+#~ msgstr "Menù figlio"
+
+#~ msgid "Make the selected child an active person"
+#~ msgstr "Rende attivo il figlio selezionato"
+
+#~ msgid "Edit the child/parent relationships"
+#~ msgstr "Modifica la relazione figlio-genitore"
+
+#~ msgid "Edit the selected child"
+#~ msgstr "Modifica il figlio selezionato"
+
+#~ msgid "Remove the selected child"
+#~ msgstr "Elimina il figlio selezionato"
+
+#~ msgid "Spouse Menu"
+#~ msgstr "Menù coniuge"
+
+#~ msgid "Make the selected spouse an active person"
+#~ msgstr "Rende attivo il coniuge selezionato"
+
+#~ msgid "Edit relationship"
+#~ msgstr "Modifica relazione"
+
+#~ msgid "Remove the selected spouse"
+#~ msgstr "Elimina il coniuge selezionato"
+
+#~ msgid "Edit the selected spouse"
+#~ msgstr "Modifica il coniuge selezionato"
+
+#~ msgid "Set the selected spouse as the preferred spouse"
+#~ msgstr "Rende preferito il coniuge selezionato"
+
+#~ msgid "Remove %s as a spouse of %s?"
+#~ msgstr "Eliminare %s quale coniuge di %s?"
+
+#~ msgid ""
+#~ "Removing a spouse removes the relationship between the spouse and the "
+#~ "active person. It does not remove the spouse from the database"
+#~ msgstr ""
+#~ "L'eliminazione del coniuge non comporta la sua rimozione dal database, ma "
+#~ "solo la cancellazione della relazione fra il coniuge e la persona attiva."
+
+#~ msgid "_Remove Spouse"
+#~ msgstr "_Rimuovi coniuge"
+
+#~ msgid ""
+#~ "%s: %s\n"
+#~ "\tRelationship: %s"
+#~ msgstr ""
+#~ "%s: %s\n"
+#~ "\tRelazione: %s"
+
+#~ msgid "%s: unknown"
+#~ msgstr "%s: sconosciuto"
+
+#~ msgid "Unknown"
+#~ msgstr "Sconosciuta"
+
+#~ msgid "Parents Menu"
+#~ msgstr "Menù genitori"
+
+#~ msgid "Make the selected parents the active family"
+#~ msgstr "Rende attiva la famiglia dei genitori selezionati"
+
+#~ msgid "Remove parents"
+#~ msgstr "Elimina genitori"
+
+#~ msgid "Spouse Parents Menu"
+#~ msgstr "Menù genitori coniuge"
+
+#~ msgid "Remove Parents of %s"
+#~ msgstr "Eliminazione genitori di %s"
+
+#~ msgid ""
+#~ "Removing the parents of a person removes the person as a child of the "
+#~ "parents. The parents are not removed from the database, and the "
+#~ "relationship between the parents is not removed."
+#~ msgstr ""
+#~ "L'eliminazione dei genitori di una persona non comporta la cancellazione "
+#~ "dal database dei genitori, né della loro relazione, ma solo "
+#~ "l'eliminazione del legame fra genitori e figlio."
+
+#~ msgid "_Remove Parents"
+#~ msgstr "_Elimina genitori"
+
+#~ msgid "Attempt to Reorder Children Failed"
+#~ msgstr "Tentativo di riordino dei figli fallito"
+
+#~ msgid "Children must be ordered by their birth dates."
+#~ msgstr "I figli devono essere ordinati secondo la loro data di nascita."
+
+#~ msgid "Qualifier"
+#~ msgstr "Qualificatore"
+
+#~ msgid "No description"
+#~ msgstr "Nessuna descrizione"
+
+#~ msgid "Failed to load the module: %s"
+#~ msgstr "Impossibile caricare il modulo: %s"
+
+#~ msgid "Find Person"
+#~ msgstr "Ricerca persona"
+
+#~ msgid "Find Place"
+#~ msgstr "Ricerca luogo"
+
+#~ msgid "Find Source"
+#~ msgstr "Ricerca fonte"
+
+#~ msgid "Find Media Object"
+#~ msgstr "Ricerca oggetto multimediale"
+
+#~ msgid "French Republican"
+#~ msgstr "Repubblicano francese"
+
+#~ msgid "Miscellaneous filters"
+#~ msgstr "Altri filtri"
+
+#~ msgid "General filters"
+#~ msgstr "Filtri generali"
+
+#~ msgid "Matches everyone in the database"
+#~ msgstr "Estrae tutte le persone nel database"
+
+#~ msgid "ID:"
+#~ msgstr "ID:"
+
+#~ msgid "Relationship filters"
+#~ msgstr "Filtri relazione"
+
+#~ msgid ""
+#~ "Matches the ancestors of two people back to a common ancestor, producing "
+#~ "the relationship path between two people."
+#~ msgstr ""
+#~ "Estrae gli ascendenti di due persone fino ad un ascendente comune e "
+#~ "produce un percorso di relazioni fra le due persone."
+
+#~ msgid "Matches the person with a specified GRAMPS ID"
+#~ msgstr "Estrae la persona con un ID GRAMPS specifico"
+
+#~ msgid "Matches all females"
+#~ msgstr "Estrae tutte le femmine"
+
+#~ msgid "Inclusive:"
+#~ msgstr "Inclusivo:"
+
+#~ msgid "Descendant filters"
+#~ msgstr "Filtri discendenza"
+
+#~ msgid "Matches all descendants for the specified person"
+#~ msgstr "Estrae tuttti i discendenti della persona specificata"
+
+#~ msgid "Filter name:"
+#~ msgstr "Nome filtro:"
+
+#~ msgid "Matches people that are descendants of someone matched by a filter"
+#~ msgstr "Estrae le persone discendenti da qualcuno estratto con un filtro"
+
+#~ msgid "Number of generations:"
+#~ msgstr "Numero di generazioni:"
+
+#~ msgid ""
+#~ "Matches people that are descendants of a specified person not more than N "
+#~ "generations away"
+#~ msgstr ""
+#~ "Estrae le persone che discendono da un persona spcificata da non più di N "
+#~ "generazioni"
+
+#~ msgid ""
+#~ "Matches people that are descendants of a specified person at least N "
+#~ "generations away"
+#~ msgstr ""
+#~ "Estrae le persone discendenti da una persona specificata da almeno N "
+#~ "generazioni"
+
+#~ msgid "Matches the person that is a child of someone matched by a filter"
+#~ msgstr "Estrae la persona che è figlio di qualcuno estratto con un filtro"
+
+#~ msgid "Family filters"
+#~ msgstr "Filtri famiglia"
+
+#~ msgid ""
+#~ "Matches people that are descendants or the spouse of a descendant of a "
+#~ "specified person"
+#~ msgstr ""
+#~ "Estrae le persone che discendono o sono coniugati con un discendente di "
+#~ "una persona specificata"
+
+#~ msgid "Matches people that are ancestors of a specified person"
+#~ msgstr "Estrae le persone ascendenti da una persona specificata"
+
+#~ msgid "Ancestral filters"
+#~ msgstr "Filtri ascendenza"
+
+#~ msgid "Matches people that are ancestors of someone matched by a filter"
+#~ msgstr ""
+#~ "Estrae le persone che sono ascendenti di qualcuno estratto con un filtro"
+
+#~ msgid ""
+#~ "Matches people that are ancestors of a specified person not more than N "
+#~ "generations away"
+#~ msgstr ""
+#~ "Estrae le persone che ascendono da una persona specificata da non più di "
+#~ "N generazioni"
+
+#~ msgid ""
+#~ "Matches people that are ancestors of a specified person at least N "
+#~ "generations away"
+#~ msgstr ""
+#~ "Estrae le persone che ascendono da una persona specificata da almeno N "
+#~ "generazioni"
+
+#~ msgid "Matches the person that is a parent of someone matched by a filter"
+#~ msgstr "Estrae la persona genitore di qualcuno estratto con un filtro"
+
+#~ msgid "Matches people that have a common ancestor with a specified person"
+#~ msgstr ""
+#~ "Estrae le persone che possiedono un ascendente comune ad una persona "
+#~ "specificata"
+
+#~ msgid ""
+#~ "Matches people that have a common ancestor with someone matched by a "
+#~ "filter"
+#~ msgstr ""
+#~ "Estrae le persone che possiedono un ascendente comune a qualcuno estratto "
+#~ "con un filtro"
+
+#~ msgid "Matches all males"
+#~ msgstr "Estrae tutti i maschi"
+
+#~ msgid "Description:"
+#~ msgstr "Descrizione:"
+
+#~ msgid "Place:"
+#~ msgstr "Luogo:"
+
+# Data:
+#~ msgid "Date:"
+#~ msgstr "Data:"
+
+#~ msgid "Personal event:"
+#~ msgstr "Evento personale:"
+
+#~ msgid "Matches the person with a personal event of a particular value"
+#~ msgstr ""
+#~ "Estrae la persona che possiede un evento personale con uno specifico "
+#~ "valore"
+
+#~ msgid "Event filters"
+#~ msgstr "Filtri evento"
+
+#~ msgid "Family event:"
+#~ msgstr "Evento famigliare:"
+
+#~ msgid "Matches the person with a family event of a particular value"
+#~ msgstr ""
+#~ "Estrae la persona che possiede un evento famigliare con uno specifico "
+#~ "valore"
+
+#~ msgid "Number of relationships:"
+#~ msgstr "Numero relazioni:"
+
+#~ msgid "Relationship type:"
+#~ msgstr "Tipo relazione:"
+
+#~ msgid "Number of children:"
+#~ msgstr "Numero figli:"
+
+#~ msgid "Matches the person who has a particular relationship"
+#~ msgstr "Estrae la persona che possiede una specifica relazione"
+
+#~ msgid "Matches the person with a birth of a particular value"
+#~ msgstr "Estrae la persona con una nascita di uno specifico valore"
+
+#~ msgid "Matches the person with a death of a particular value"
+#~ msgstr "Estrae la persona con un decesso di uno specifico valore"
+
+#~ msgid "Value:"
+#~ msgstr "Valore:"
+
+#~ msgid "Personal attribute:"
+#~ msgstr "Attributo personale:"
+
+#~ msgid "Family attribute:"
+#~ msgstr "Attributo famiglia:"
+
+#~ msgid "Title:"
+#~ msgstr "Titolo:"
+
+#~ msgid "Suffix:"
+#~ msgstr "Suffisso:"
+
+#~ msgid "Family name:"
+#~ msgstr "Cognome:"
+
+#~ msgid "Given name:"
+#~ msgstr "Nome:"
+
+#~ msgid "Matches the person with a specified (partial) name"
+#~ msgstr "Estrae la persona con un nome (parziale) specificato"
+
+#~ msgid "Matches the person married to someone matching a filter"
+#~ msgstr "Estrae la persona sposata con qualcuno estratto con un filtro"
+
+#~ msgid "Everyone"
+#~ msgstr "Chiunque"
+
+#~ msgid "Has the Id"
+#~ msgstr "Possiede l'ID"
+
+#~ msgid "Has a name"
+#~ msgstr "Si chiama"
+
+#~ msgid "Has the relationships"
+#~ msgstr "Possiede le relazioni"
+
+#~ msgid "Has the death"
+#~ msgstr "È deceduto"
+
+#~ msgid "Has the birth"
+#~ msgstr "È nato"
+
+#~ msgid "Is a descendant of"
+#~ msgstr "È un discendente di"
+
+#~ msgid "Is a descendant family member of"
+#~ msgstr "È un membro della famiglia discendente da"
+
+#~ msgid "Is a descendant of filter match"
+#~ msgstr "È discendente di un estratto"
+
+#~ msgid "Is a descendant of person not more than N generations away"
+#~ msgstr "È un discendente della persona da non più di N generazioni"
+
+#~ msgid "Is a descendant of person at least N generations away"
+#~ msgstr "È un discendente della persona da almeno N generazioni"
+
+#~ msgid "Is a child of filter match"
+#~ msgstr "È figlio di un estratto"
+
+#~ msgid "Is an ancestor of"
+#~ msgstr "È un ascendente di"
+
+#~ msgid "Is an ancestor of filter match"
+#~ msgstr "È ascendente di un estratto"
+
+#~ msgid "Is an ancestor of person not more than N generations away"
+#~ msgstr "È un ascendente della persona da non più di N generazioni"
+
+#~ msgid "Is an ancestor of person at least N generations away"
+#~ msgstr "È un ascendente della persona da almeno N generazioni"
+
+#~ msgid "Is a parent of filter match"
+#~ msgstr "È genitore di un estratto"
+
+#~ msgid "Has a common ancestor with"
+#~ msgstr "Ha un ascendente comune con"
+
+#~ msgid "Has a common ancestor with filter match"
+#~ msgstr "Ha ascendenza comune con un estratto"
+
+#~ msgid "Is a female"
+#~ msgstr "È una femmina"
+
+#~ msgid "Is a male"
+#~ msgstr "È un maschio"
+
+#~ msgid "Has the personal event"
+#~ msgstr "Possiede l'evento personale"
+
+#~ msgid "Has the family event"
+#~ msgstr "Possiede l'evento famigliare"
+
+#~ msgid "Has the personal attribute"
+#~ msgstr "Possiede l'attributo personale"
+
+#~ msgid "Has the family attribute"
+#~ msgstr "Possidede l'attributo famigliare"
+
+#~ msgid "Matches the filter named"
+#~ msgstr "È estratto dal filtro con nome"
+
+#~ msgid "Is spouse of filter match"
+#~ msgstr "È coniuge di un estratto"
+
+#~ msgid "Relationship path between two people"
+#~ msgstr "Percorso relazioni fra due persone"
+
+#~ msgid "Father's surname"
+#~ msgstr "Cognome paterno"
+
+#~ msgid "Combination of mother's and father's surname"
+#~ msgstr "Combinazione del cognome materno e paterno"
+
+#~ msgid "Icelandic style"
+#~ msgstr "Stile islandese"
+
+#~ msgid "Month Day, Year"
+#~ msgstr "Mese Giorno, Anno"
+
+#~ msgid "MON Day, Year"
+#~ msgstr "MES Giorno, Anno"
+
+#~ msgid "Day MON Year"
+#~ msgstr "Giorno MES Anno"
+
+#~ msgid "MM/DD/YYYY"
+#~ msgstr "MM/GG/AAAA"
+
+#~ msgid "MM-DD-YYYY"
+#~ msgstr "MM-GG-AAAA"
+
+#~ msgid "DD/MM/YYYY"
+#~ msgstr "GG/MM/AAAA"
+
+#~ msgid "DD-MM-YYYY"
+#~ msgstr "GG-MM-AAAA"
+
+#~ msgid "MM.DD.YYYY"
+#~ msgstr "MM.GG.AAAA"
+
+#~ msgid "DD.MM.YYYY"
+#~ msgstr "GG.MM.AAAA"
+
+#~ msgid "DD. Month Year"
+#~ msgstr "GG. Mese Anno"
+
+#~ msgid "YYYY/MM/DD"
+#~ msgstr "AAAA/MM/GG"
+
+#~ msgid "YYYY-MM-DD"
+#~ msgstr "AAAA-MM-GG"
+
+#~ msgid "YYYY.MM.DD"
+#~ msgstr "AAAA.MM.GG"
+
+#~ msgid "MM/DD/YYYY, MM.DD.YYYY, or MM-DD-YYYY"
+#~ msgstr "MM/GG/AAAA, MM.GG.AAAA o MM-DD-AAAA"
+
+#~ msgid "DD/MM/YYYY, DD.MM.YYYY, or DD-MM-YYYY"
+#~ msgstr "GG/MM/AAAA, GG.MM.AAAA o GG-MM-AAAA"
+
+#~ msgid "YYYY/MM/DD, YYYY.MM.DD, or YYYY-MM-DD"
+#~ msgstr "AAAA/MM/GG, AAAA.MM.GG o AAAA-MM-GG"
+
+#~ msgid "Firstname Surname"
+#~ msgstr "Nome Cognome"
+
+#~ msgid "Surname, Firstname"
+#~ msgstr "Cognome, Nome"
+
+#~ msgid "Firstname SURNAME"
+#~ msgstr "Nome COGNOME"
+
+#~ msgid "SURNAME, Firstname"
+#~ msgstr "COGNOME, Nome"
+
+#~ msgid "Database"
+#~ msgstr "Database"
+
+#~ msgid "General"
+#~ msgstr "Generale"
+
+#~ msgid "GRAMPS internal IDs"
+#~ msgstr "ID GRAMPS interni"
+
+#~ msgid "Revision Control"
+#~ msgstr "Controllo di revisione"
+
+#~ msgid "Display"
+#~ msgstr "Visualizzazione"
+
+#~ msgid "Dates and Calendars"
+#~ msgstr "Date e calendari"
+
+#~ msgid "Toolbar and Statusbar"
+#~ msgstr "Strumenti e barre di stato"
+
+#~ msgid "Usage"
+#~ msgstr "Uso"
+
+#~ msgid "Find"
+#~ msgstr "Ricerca"
+
+#~ msgid "Report Preferences"
+#~ msgstr "Preferenze resoconti"
+
+#~ msgid "Researcher Information"
+#~ msgstr "Informazioni ricercatore"
+
+#~ msgid "Data Guessing"
+#~ msgstr "Deduzione dati"
+
+#~ msgid "No default format"
+#~ msgstr "Nessun formato predefinito"
+
+#~ msgid "Gregorian"
+#~ msgstr "Gregoriano"
+
+#~ msgid "Hebrew"
+#~ msgstr "Ebreo"
+
+#~ msgid "Thumbnail %s could not be found"
+#~ msgstr "Impossibile trovare l'antemprima %s"
+
+#~ msgid "Could not import %s"
+#~ msgstr "Impossibile importare %s"
+
+#~ msgid "Media Object"
+#~ msgstr "Oggetto multimediale"
+
+#~ msgid "Open in %s"
+#~ msgstr "Apri in %s"
+
+#~ msgid "Edit with the GIMP"
+#~ msgstr "Modifica con GIMP"
+
+#~ msgid "Edit Object Properties"
+#~ msgstr "Modifica proprietà oggetto"
+
+#~ msgid "Convert to local copy"
+#~ msgstr "Converti a copia locale"
+
+#~ msgid "Change local media object properties"
+#~ msgstr "Modifica le proprietà locali dell'oggetto multimediale"
+
+#~ msgid "Change global media object properties"
+#~ msgstr "Modifica proprietà globali oggetto multimediale"
+
+#~ msgid "Person"
+#~ msgstr "Persona"
+
+#~ msgid "Family"
+#~ msgstr "Famiglia"
+
+#~ msgid "Source"
+#~ msgstr "Fonte"
+
+#~ msgid "Julian"
+#~ msgstr "Giuliano"
+
+#~ msgid "Location Editor"
+#~ msgstr "Editor località"
+
+#~ msgid "Marriage/Relationship Editor"
+#~ msgstr "Editor matrimoni/relazioni"
+
+#~ msgid "%s and %s"
+#~ msgstr "%s e %s"
+
+#~ msgid "Save Changes?"
+#~ msgstr "Salvare le modifiche?"
+
+#~ msgid ""
+#~ "The GRAMPS ID that you chose for this relationship is already being used."
+#~ msgstr "L'ID GRAMPS scelto per questa relazione è già in uso."
+
+#~ msgid "Title"
+#~ msgstr "Titolo"
+
+#~ msgid "Thumbnails not available"
+#~ msgstr "Anteprima non disponibile"
+
+#~ msgid ""
+#~ "There is no suitable tool to generate thumbnails for the images. If you "
+#~ "would like to enable this feature, install Python Imaging Library (PIL), "
+#~ "available at http://www.pythonware.com/products/pil/ or ImageMagick, "
+#~ "available at http://www.imagemagick.org/"
+#~ msgstr ""
+#~ "Non c'è nessuno strumento adatto alla generazione delle anteprime delle "
+#~ "immagini. Per abilitare questa caratteristica, installare la Python "
+#~ "Imaging Library (PIL), disponibile su http://www.pythonware.com/products/"
+#~ "pil/, o ImageMagick, disponibile suhttp://www.imagemagick.org/"
+
+#~ msgid "The file no longer exists"
+#~ msgstr "Il file non esiste più"
+
+#~ msgid "View in the default viewer"
+#~ msgstr "Visualizza con il visualizzatore predefinito"
+
+#~ msgid "Edit properties"
+#~ msgstr "Modifica proprietà"
+
+#~ msgid "Delete Media Object?"
+#~ msgstr "Cancellare l'oggetto multimediale?"
+
+#~ msgid ""
+#~ "This media object is currently being used. If you delete this object, it "
+#~ "will be removed from the database and from all records that reference it."
+#~ msgstr ""
+#~ "Questo oggetto multimediale è attualmente in uso. La sua cancellazione ne "
+#~ "provocherà la rimozione dal database e da tutti gli elementi che ne fanno "
+#~ "riferimento."
+
+#~ msgid "_Delete Media Object"
+#~ msgstr "_Cancellare l'oggetto multimediale?"
+
+#~ msgid "Image import failed"
+#~ msgstr "Importazione immagine fallita"
+
+#~ msgid "Merge Places"
+#~ msgstr "Fusione luoghi"
+
+#~ msgid "Select the title for the merged place"
+#~ msgstr "Selezionare il titolo per il luogo fuso"
+
+#~ msgid "Merge %s and %s"
+#~ msgstr "Fusione di %s e %s"
+
+#~ msgid "Merge people"
+#~ msgstr "Fusione persone"
+
+#~ msgid "Alternate Name Editor"
+#~ msgstr "Editor nomi alternativi"
+
+#~ msgid "Alternate Name Editor for %s"
+#~ msgstr "Editor nomi alternativi per %s"
+
+#~ msgid "Edit Note"
+#~ msgstr "Modifica note"
+
+#~ msgid "Portrait"
+#~ msgstr "Verticale"
+
+#~ msgid "Landscape"
+#~ msgstr "Orizzontale"
+
+#~ msgid "Custom Size"
+#~ msgstr "Personalizzato"
+
+#~ msgid "Double clicking will make %s the active person"
+#~ msgstr "Cliccando due volte, %s diventerà la persona attiva"
+
+#~ msgid "Death date"
+#~ msgstr "Data del decesso"
+
+#~ msgid "Updating display..."
+#~ msgstr "Aggiornamento visualizzazione..."
+
+#~ msgid "Edit"
+#~ msgstr "Modifica"
+
+#~ msgid "Church Parish"
+#~ msgstr "Parrocchia"
+
+#~ msgid "Place Name"
+#~ msgstr "Nome luogo"
+
+#~ msgid "Cannot merge places."
+#~ msgstr "Impossibile fondere i luoghi."
+
+#~ msgid ""
+#~ "Exactly two places must be selected to perform a merge. A second place "
+#~ "can be selected by holding down the control key while clicking on the "
+#~ "desired place."
+#~ msgstr ""
+#~ "Devono essere selezionati esattamente due luoghi affinché la fusione sia "
+#~ "possibile. Un secondo luogo può essere selezionato mantenendo premuto il "
+#~ "tasto Ctrl mentre si clicca sul luogo desiderato."
+
+#~ msgid "Source Menu"
+#~ msgstr "Menù fonti"
+
+#~ msgid "Delete %s?"
+#~ msgstr "Cancellare %s?"
+
+#~ msgid ""
+#~ "This place is currently being used by at least one record in the "
+#~ "database. Deleting it will remove it from the database and remove it from "
+#~ "all records that reference it."
+#~ msgstr ""
+#~ "Questo luogo è attualmente usato da almeno un elemento presente nel "
+#~ "database. La sua cancellazione ne provocherà la rimozione dal database e "
+#~ "da tutti gli elementi che ne fanno riferimento."
+
+#~ msgid "_Delete Place"
+#~ msgstr "_Cancella luogo"
+
+#~ msgid "No description was provided"
+#~ msgstr "Non è stata fornita nessuna descrizione"
+
+#~ msgid "_Apply"
+#~ msgstr "_Applica"
+
+#~ msgid "Report Selection"
+#~ msgstr "Selezione resoconti"
+
+#~ msgid "Select a report from those available on the left."
+#~ msgstr "Scegliere un resoconto da quelli disponibili a sinistra."
+
+#~ msgid "Generate selected report"
+#~ msgstr "Genera resoconti selezionati"
+
+#~ msgid "_Generate"
+#~ msgstr "_Genera"
+
+#~ msgid "Tool Selection"
+#~ msgstr "Selezione strumenti"
+
+#~ msgid "Select a tool from those available on the left."
+#~ msgstr "Scegliere uno strumento da quelli disponibili a sinistra."
+
+#~ msgid "Run selected tool"
+#~ msgstr "Esegui lo strumento selezionato"
+
+#~ msgid "_Run"
+#~ msgstr "_Esegui"
+
+#~ msgid "Plugin status"
+#~ msgstr "Stato plugin"
+
+#~ msgid "All modules were successfully loaded."
+#~ msgstr "Tutti i moduli sono stati caricati con successo."
+
+#~ msgid "The following modules could not be loaded:"
+#~ msgstr "Non è stato possibile caricare i moduli seguenti:"
+
+#~ msgid "Uncategorized"
+#~ msgstr "Senza categoria"
+
+#~ msgid "%s could not be opened"
+#~ msgstr "%s non può essere aperto"
+
+#~ msgid "Error reading %s"
+#~ msgstr "Errore nella lettura di %s"
+
+#~ msgid "Media object could not be found"
+#~ msgstr "L'oggetto multimediale non è stato trovato"
+
+#~ msgid ""
+#~ "%(file_name)s is referenced in the database, but no longer exists. The "
+#~ "file may have been deleted or moved to a different location. You may "
+#~ "choose to either remove the reference from the database, keep the "
+#~ "reference to the missing file, or select a new file."
+#~ msgstr ""
+#~ "%(file_name)s possiede un riferimento all'interno del database, ma è più "
+#~ "presente. Il file potrebbe essere stato cancellato o spostato in una "
+#~ "diversa locazione. È possibile scegliere se eliminare il riferimento dal "
+#~ "database, tenere il riferimento al file mancante o selezionare un nuovo "
+#~ "file."
+
+#~ msgid "%s (revision %s)"
+#~ msgstr "%s (revisione %s)"
+
+#~ msgid "The file has been moved or deleted"
+#~ msgstr "Il file è stato spostato o cancellato"
+
+#~ msgid "Could not create %s"
+#~ msgstr "Impossibile creare %s"
+
+#~ msgid "Error creating the thumbnail: %s"
+#~ msgstr "Errore nella creazione dell'anteprima: %s"
+
+#~ msgid "Error copying %s"
+#~ msgstr "Errore durante la copia di %s"
+
+#~ msgid "Cannot display %s"
+#~ msgstr "Impossibile visualizzare %s"
+
+#~ msgid ""
+#~ "GRAMPS is not able to display the image file. This may be caused by a "
+#~ "corrupt file."
+#~ msgstr ""
+#~ "GRAMPS non è in grado di visualizzare il file dell'immagine. Il file "
+#~ "potrebbe essere corrotto."
+
+#~ msgid "Could not replace %s"
+#~ msgstr "Impossibile sostituire %s"
+
+#~ msgid "Could not create a thumbnail for %s"
+#~ msgstr "Impossibile creare un'anteprima per %s"
+
+#~ msgid "The file has been moved or deleted."
+#~ msgstr "Il file è stato rimosso o cancellato."
+
+#~ msgid "Relationship loop detected"
+#~ msgstr "Rilevato un circolo vizioso di relazioni"
+
+#~ msgid "Default Template"
+#~ msgstr "Modello predefinito"
+
+#~ msgid "User Defined Template"
+#~ msgstr "Modello definito dall'utente"
+
+#~ msgid "First"
+#~ msgstr "Prima"
+
+#~ msgid "Second"
+#~ msgstr "Seconda"
+
+#~ msgid "Fourth"
+#~ msgstr "Quarta"
+
+#~ msgid "Third"
+#~ msgstr "Terza"
+
+#~ msgid "Fifth"
+#~ msgstr "Terza"
+
+#~ msgid "Sixth"
+#~ msgstr "Sesta"
+
+#~ msgid "Eighth"
+#~ msgstr "Ottava"
+
+#~ msgid "Seventh"
+#~ msgstr "Settima"
+
+#~ msgid "Ninth"
+#~ msgstr "Nona"
+
+#~ msgid "Tenth"
+#~ msgstr "Decima"
+
+#~ msgid "Eleventh"
+#~ msgstr "Undicesima"
+
+#~ msgid "Twelfth"
+#~ msgstr "Dodicesima"
+
+#~ msgid "Fourteenth"
+#~ msgstr "Quattordicesima"
+
+#~ msgid "Thirteenth"
+#~ msgstr "Tredicesima"
+
+#~ msgid "Fifteenth"
+#~ msgstr "Quindicesima"
+
+#~ msgid "Sixteenth"
+#~ msgstr "Sedicesima"
+
+#~ msgid "Eighteenth"
+#~ msgstr "Diciottesima"
+
+#~ msgid "Seventeenth"
+#~ msgstr "Diciasettesima"
+
+#~ msgid "Nineteenth"
+#~ msgstr "Diciannovesima"
+
+#~ msgid "Twentieth"
+#~ msgstr "Ventesima"
+
+#~ msgid "Twenty-first"
+#~ msgstr "Ventunesima"
+
+#~ msgid "Twenty-second"
+#~ msgstr "Ventiduesima"
+
+#~ msgid "Twenty-fourth"
+#~ msgstr "Ventiquattresima"
+
+#~ msgid "Twenty-third"
+#~ msgstr "Ventitreesima"
+
+#~ msgid "Twenty-fifth"
+#~ msgstr "Venticinquesima"
+
+#~ msgid "Twenty-sixth"
+#~ msgstr "Ventiseiesima"
+
+#~ msgid "Twenty-eighth"
+#~ msgstr "Ventottesima"
+
+#~ msgid "Twenty-seventh"
+#~ msgstr "Ventisettesima"
+
+#~ msgid "Twenty-ninth"
+#~ msgstr "Ventinovesima"
+
+#~ msgid "Progress Report"
+#~ msgstr "Progresso resoconto"
+
+#~ msgid "Working"
+#~ msgstr "Sto lavorando"
+
+#~ msgid "Document Options"
+#~ msgstr "Opzioni documento"
+
+#~ msgid "Center Person"
+#~ msgstr "Persona centrale"
+
+#~ msgid "C_hange"
+#~ msgstr "_Modifica"
+
+#~ msgid "Style"
+#~ msgstr "Stile"
+
+#~ msgid "Style Editor"
+#~ msgstr "Editor stili"
+
+#~ msgid "Report Options"
+#~ msgstr "Opzioni resoconto"
+
+#~ msgid "Filter"
+#~ msgstr "Filtro"
+
+#~ msgid "Generations"
+#~ msgstr "Generazioni"
+
+#~ msgid "Page break between generations"
+#~ msgstr "Interruzioni di pagina tra le generazioni"
+
+#~ msgid "Save Report As"
+#~ msgstr "Salva il resoconto come"
+
+#~ msgid "Print a copy"
+#~ msgstr "Stampa una copia"
+
+#~ msgid "Save As"
+#~ msgstr "Salva come"
+
+#~ msgid "Directory"
+#~ msgstr "Directory"
+
+#~ msgid "Filename"
+#~ msgstr "Nome file"
+
+#~ msgid "Output Format"
+#~ msgstr "Formato"
+
+#~ msgid "Paper Options"
+#~ msgstr "Opzioni foglio"
+
+#~ msgid "Size"
+#~ msgstr "Formato"
+
+#~ msgid "Height"
+#~ msgstr "Altezza"
+
+#~ msgid "cm"
+#~ msgstr "cm"
+
+#~ msgid "Orientation"
+#~ msgstr "Orientamento"
+
+#~ msgid "Width"
+#~ msgstr "Larghezza"
+
+#~ msgid "Page Count"
+#~ msgstr "Conteggio pagine"
+
+#~ msgid "HTML Options"
+#~ msgstr "Opzioni HTML"
+
+#~ msgid "Template"
+#~ msgstr "Modello"
+
+#~ msgid "User Template"
+#~ msgstr "Modello utente"
+
+#~ msgid "Choose File"
+#~ msgstr "Scegliere file"
+
+#~ msgid "Invalid file name"
+#~ msgstr "Nome file non valido"
+
+#~ msgid ""
+#~ "The filename that you gave is a directory.\n"
+#~ "You need to provide a valid filename."
+#~ msgstr ""
+#~ "Il nome di file fornito è una directory.\n"
+#~ "È necessario fornire un nome di file valido."
+
+#~ msgid "File already exists"
+#~ msgstr "Il file esiste già"
+
+#~ msgid "_Overwrite"
+#~ msgstr "_Sovrascrivi"
+
+#~ msgid "_Change filename"
+#~ msgstr "_Cambia nome file"
+
+#~ msgid "Add Child to Family"
+#~ msgstr "Aggiunta figlio alla famiglia"
+
+#~ msgid "Relationship to %(father)s"
+#~ msgstr "Relazione con %(father)s"
+
+#~ msgid "Relationship to %(mother)s"
+#~ msgstr "Relazione con %(mother)s"
+
+#~ msgid "Relationship to %s"
+#~ msgstr "Relazione con %s"
+
+#~ msgid "Relationships of %s"
+#~ msgstr "Relazioni di %s"
+
+#~ msgid "Relationship to father"
+#~ msgstr "Relazione con il padre"
+
+#~ msgid "Relationship to mother"
+#~ msgstr "Relazione con la madre"
+
+#~ msgid "Author"
+#~ msgstr "Autore"
+
+#~ msgid ""
+#~ "This source is currently being used. Deleting it will remove it from the "
+#~ "database and from all records that reference it."
+#~ msgstr ""
+#~ "Questa fonte è attualmente in uso. La sua cancellazione ne provocherà la "
+#~ "rimozione dal database e da tutti gli elementi che ne fanno riferimento."
+
+#~ msgid "_Delete Source"
+#~ msgstr "_Elimina fonte"
+
+#~ msgid "Source Reference Selection"
+#~ msgstr "Selezione riferimento fonte"
+
+#~ msgid "Source Information"
+#~ msgstr "Informazioni fonte"
+
+#~ msgid "Getting Started"
+#~ msgstr "Iniziare"
+
+#~ msgid ""
+#~ "Welcome to GRAMPS, the Genealogical Research and Analysis Management "
+#~ "Programming System.\n"
+#~ "Several options and information need to be gathered before GRAMPS is "
+#~ "ready to be used. Any of this information can be changed in the future in "
+#~ "the Preferences dialog under the Settings menu."
+#~ msgstr ""
+#~ "Benvenuto in GRAMPS, il sistema programmabile per la gestione della "
+#~ "ricerca e dell'analisi genealogica.\n"
+#~ "Prima che GRAMPS sia pronto per l'uso, è necessario raccogliere diverse "
+#~ "opzioni ed informazioni, ognuna delle quali potrà essere modificata "
+#~ "successivamente nella finestra delle Preferenze, sotto il menù "
+#~ "Impostazioni."
+
+#~ msgid "Complete"
+#~ msgstr "Finito"
+
+#~ msgid ""
+#~ "GRAMPS is an Open Source project. Its success depends on the users. User "
+#~ "feedback is important. Please join the mailing lists, submit bug reports, "
+#~ "suggest improvements, and see how you can contribute.\n"
+#~ "\n"
+#~ "Please enjoy using GRAMPS."
+#~ msgstr ""
+#~ "GRAMPS è un progetto a sorgente aperto. Il suo successo dipende dagli "
+#~ "utenti e per questo motivo il loro riscontro è importante. Unisciti alle "
+#~ "liste di distribuzione, invia rapporti d'errore, suggerisci dei "
+#~ "miglioramenti e impara così come puoi anche tu contribuire.\n"
+#~ "\n"
+#~ "Buon divertimento con GRAMPS."
+
+#~ msgid ""
+#~ "In order to create valid GEDCOM files, the following information needs to "
+#~ "be entered. If you do not plan to generate GEDCOM files, you may leave "
+#~ "this empty."
+#~ msgstr ""
+#~ "Al fine di creare dei file GEDCOM validi, è necessario immettere le "
+#~ "seguenti informazioni. Se non è prevista la generazione di file GEDCOM, è "
+#~ "possibile lasciare questi campi vuoti."
+
+#~ msgid "Name:"
+#~ msgstr "Nome:"
+
+#~ msgid "Address:"
+#~ msgstr "Indirizzo:"
+
+#~ msgid "City:"
+#~ msgstr "Città:"
+
+#~ msgid "State/Province:"
+#~ msgstr "Regione/Provincia:"
+
+#~ msgid "Country:"
+#~ msgstr "Stato:"
+
+#~ msgid "ZIP/Postal code:"
+#~ msgstr "CAP:"
+
+#~ msgid "Phone:"
+#~ msgstr "Telefono:"
+
+#~ msgid "Email:"
+#~ msgstr "Email:"
+
+#~ msgid "Numerical date formats"
+#~ msgstr "Formati numerici date"
+
+#~ msgid ""
+#~ "There are three common formats for entering dates in a numerical\n"
+#~ "format. Without some type of indication, GRAMPS cannot correctly\n"
+#~ "tell what format you are using. Please indicate your preferred format\n"
+#~ "for entering numerical dates."
+#~ msgstr ""
+#~ "Sono tre i formati più comuni per l'immissione di date in forma\n"
+#~ "numerica. Senza nessuna indicazione, GRAMPS non è in grado di dire\n"
+#~ "quale formato sarà usato. Indicare il formato preferito per\n"
+#~ "l'immissione delle date."
+
+#~ msgid "MM/DD/YYYY (United States)"
+#~ msgstr "MM/GG/YYYY (statunitense)"
+
+#~ msgid "DD/MM/YYYY (European)"
+#~ msgstr "GG/MM/YYYY (europeo)"
+
+#~ msgid "YYYY-MM-DD (ISO)"
+#~ msgstr "YYYY-MM-GG (ISO)"
+
+#~ msgid "Alternate calendar support"
+#~ msgstr "Supporto caledari alternativi"
+
+#~ msgid ""
+#~ "By default, all dates stored by GRAMPS use the Gregorian calendar.\n"
+#~ "This is normally sufficient for most users. Support may be enabled\n"
+#~ "for the Julian, French Republican, and Hebrew calendar. If you believe\n"
+#~ "that you will need one or more of these alternate calendars, enable\n"
+#~ "alternate calendar support\n"
+#~ msgstr ""
+#~ "Normalmente GRAMPS registra tutte le date usando il calendario\n"
+#~ "gregoriano, sufficiente per la maggior parte degli utenti. È comunque\n"
+#~ "possibile abilitare il supporto per i calendari giuliano, repubblicano\n"
+#~ "francese ed ebreo. Se si pensa di usare uno o più di questi calendari\n"
+#~ "alternativi, abilitarne il supporto.\n"
+
+#~ msgid "Enable support for alternate calendars"
+#~ msgstr "Abilita il supporto ai calendari alternativi"
+
+#~ msgid "LDS extensions"
+#~ msgstr "Estensioni LDS"
+
+#~ msgid ""
+#~ "GRAMPS has support for LDS Ordinances, which are special event types\n"
+#~ "related to the Church of Jesus Christ of Latter Day Saints.\n"
+#~ "\n"
+#~ "You may choose to either enable or disable this support. You may\n"
+#~ "change this option in the future in the Preferences dialog."
+#~ msgstr ""
+#~ "GRAMPS supporta gli ordinamenti LDS (Last Day Saints), tipi di eventi\n"
+#~ "speciali relativi alla Chiesa di Gesù Cristo dei Santi degli Ultimi\n"
+#~ "Giorni (i Mormoni, n.d.t.).\n"
+#~ "\n"
+#~ "È possibile scegliere di abilitare o disabilitare questo supporto. È\n"
+#~ "possibile modificare in futuro questa opzione nella finestra delle\n"
+#~ "Preferenze."
+
+#~ msgid "Enable LDS ordinance support"
+#~ msgstr "Abilita il supporto agli ordinamenti LDS"
+
+#~ msgid "Document Styles"
+#~ msgstr "Stile documenti"
+
+#~ msgid "Error saving stylesheet"
+#~ msgstr "Errore nel salvataggio del foglio di stile"
+
+#~ msgid "Style editor"
+#~ msgstr "Editor stili"
+
+#~ msgid "Paragraph"
+#~ msgstr "Paragrafo"
+
+#~ msgid "No description available"
+#~ msgstr "Nessuna descrizione disponibile"
+
+#~ msgid "Note"
+#~ msgstr "Note"
+
+#~ msgid "Private"
+#~ msgstr "Privato"
+
+#~ msgid "default"
+#~ msgstr "predefinito"
+
+#~ msgid "Revision control comment"
+#~ msgstr "Commento controllo di revisione"
+
+#~ msgid "Select an older revision"
+#~ msgstr "Selezione vecchia revisione"
+
+#~ msgid "Changed by"
+#~ msgstr "Modificato da"
+
+#~ msgid "Revision"
+#~ msgstr "Revisione"
+
+#~ msgid "Comment"
+#~ msgstr "Commento"
+
+#~ msgid "Could not retrieve version"
+#~ msgstr "Impossibile recuperare la versione"
+
+#~ msgid "RCS"
+#~ msgstr "RCS"
+
+#~ msgid "Witness"
+#~ msgstr "Testimone"
+
+#~ msgid "Witness Editor"
+#~ msgstr "Editor testimone"
+
+#~ msgid "Failure writing %s"
+#~ msgstr "Errore durante la scrittura di %s"
+
+#~ msgid "An attempt is being made to recover the original file"
+#~ msgstr "Sarà fatto un tentativo per recuperare il file originale"
+
+#~ msgid "Islamic"
+#~ msgstr "Islamico"
+
+#~ msgid "Persian"
+#~ msgstr "Persiano"
+
+#~ msgid "female"
+#~ msgstr "femmina"
+
+#~ msgid "male"
+#~ msgstr "maschio"
+
+#~ msgid "<b>Preview</b>"
+#~ msgstr "<b>Anteprima</b>"
+
+#~ msgid "Details:"
+#~ msgstr "Dettagli:"
+
+#~ msgid "Path:"
+#~ msgstr "Percorso:"
+
+#~ msgid "Type:"
+#~ msgstr "Tipo:"
+
+#~ msgid "<b>Information</b>"
+#~ msgstr "<b>Informazioni</b>"
+
+#~ msgid ""
+#~ "GRAMPS (Genealogical Research and Analysis Management Programming System) "
+#~ "is a personal genealogy program."
+#~ msgstr ""
+#~ "GRAMPS (Genealogical Research and Analysis Management Programming System) "
+#~ "è un programma di genealogia personale."
+
+#~ msgid "TRANSLATORS: Translate this to your name in your native language"
+#~ msgstr "Lorenzo Cappelletti"
+
+#~ msgid "Adopted"
+#~ msgstr "Adozione"
+
+#~ msgid "Stepchild"
+#~ msgstr "Figliastro"
+
+#~ msgid "Sponsored"
+#~ msgstr "Adozione a distanza"
+
+#~ msgid "Foster"
+#~ msgstr "Affidamento"
+
+#~ msgid "Other"
+#~ msgstr "Altro"
+
+#~ msgid "Very High"
+#~ msgstr "Molto alta"
+
+#~ msgid "High"
+#~ msgstr "Alta"
+
+#~ msgid "Normal"
+#~ msgstr "Normale"
+
+#~ msgid "Low"
+#~ msgstr "Bassa"
+
+#~ msgid "Very Low"
+#~ msgstr "Molto bassa"
+
+#~ msgid "Alternate Marriage"
+#~ msgstr "Matrimonio alternativo"
+
+#~ msgid "Annulment"
+#~ msgstr "Annullamento matrimonio"
+
+#~ msgid "Divorce Filing"
+#~ msgstr "Domanda di divorzio"
+
+#~ msgid "Divorce"
+#~ msgstr "Divorzio"
+
+#~ msgid "Engagement"
+#~ msgstr "Fidanzamento"
+
+#~ msgid "Marriage Contract"
+#~ msgstr "Contratto matrimoniale"
+
+#~ msgid "Marriage License"
+#~ msgstr "Licenza matrimoniale"
+
+#~ msgid "Marriage Settlement"
+#~ msgstr "Accordo matrimoniale"
+
+#~ msgid "Marriage"
+#~ msgstr "Matrimonio"
+
+#~ msgid "Alternate Birth"
+#~ msgstr "Nascita alternativa"
+
+#~ msgid "Alternate Death"
+#~ msgstr "Decesso alternativo"
+
+#~ msgid "Baptism"
+#~ msgstr "Battesimo"
+
+#~ msgid "Bar Mitzvah"
+#~ msgstr "Bar Mitzvah"
+
+#~ msgid "Bas Mitzvah"
+#~ msgstr "Bas Mitzvah"
+
+#~ msgid "Blessing"
+#~ msgstr "Benedizione"
+
+#~ msgid "Burial"
+#~ msgstr "Sepoltura"
+
+#~ msgid "Cause Of Death"
+#~ msgstr "Causa decesso"
+
+#~ msgid "Census"
+#~ msgstr "Censimento"
+
+#~ msgid "Confirmation"
+#~ msgstr "Cresima"
+
+#~ msgid "Cremation"
+#~ msgstr "Cremazione"
+
+#~ msgid "Degree"
+#~ msgstr "Titolo di studio"
+
+#~ msgid "Education"
+#~ msgstr "Istruzione"
+
+#~ msgid "Elected"
+#~ msgstr "Elezione"
+
+#~ msgid "Emigration"
+#~ msgstr "Emigrazione"
+
+#~ msgid "First Communion"
+#~ msgstr "Prima comunione"
+
+#~ msgid "Immigration"
+#~ msgstr "Immigrazione"
+
+#~ msgid "Graduation"
+#~ msgstr "Diploma"
+
+#~ msgid "Medical Information"
+#~ msgstr "Informazioni cliniche"
+
+#~ msgid "Military Service"
+#~ msgstr "Servizio militare"
+
+#~ msgid "Naturalization"
+#~ msgstr "Naturalizzazione"
+
+#~ msgid "Nobility Title"
+#~ msgstr "Titolo nobiliare"
+
+#~ msgid "Number of Marriages"
+#~ msgstr "Numero matrimoni"
+
+#~ msgid "Occupation"
+#~ msgstr "Occupazione"
+
+#~ msgid "Ordination"
+#~ msgstr "Ordinazione"
+
+#~ msgid "Probate"
+#~ msgstr "Omologazione testamento"
+
+#~ msgid "Property"
+#~ msgstr "Proprietà"
+
+#~ msgid "Religion"
+#~ msgstr "Religione"
+
+#~ msgid "Residence"
+#~ msgstr "Residenza"
+
+#~ msgid "Retirement"
+#~ msgstr "Pensionamento"
+
+#~ msgid "Will"
+#~ msgstr "Testamento"
+
+#~ msgid "Caste"
+#~ msgstr "Casta"
+
+#~ msgid "Identification Number"
+#~ msgstr "Numero d'identificazione"
+
+#~ msgid "National Origin"
+#~ msgstr "Nazionalità"
+
+#~ msgid "Social Security Number"
+#~ msgstr "Numero previdenza sociale"
+
+#~ msgid "Number of Children"
+#~ msgstr "Numero figli"
+
+#~ msgid "A legal or common-law relationship between a husband and wife"
+#~ msgstr "Una relazione legale o di fatto tra un uomo e una donna"
+
+#~ msgid "No legal or common-law relationship between man and woman"
+#~ msgstr "Una relazione non legale né di fatto tra un uomo e una donna"
+
+#~ msgid "Unmarried"
+#~ msgstr "Celibe/nubile"
+
+#~ msgid "An established relationship between members of the same sex"
+#~ msgstr "Una relazione stabilita fra i membri dello stesso sesso"
+
+#~ msgid "Unknown relationship between a man and woman"
+#~ msgstr "Relazione sconosciuta tra un uomo e una donna"
+
+#~ msgid "An unspecified relationship between a man and woman"
+#~ msgstr "Una relazione tra un uomo e una donna non meglio specificata"
+
+#~ msgid "No definition available"
+#~ msgstr "Nessuna definizione disponibile"
+
+#~ msgid "Also Known As"
+#~ msgstr "Conosciuto anche come"
+
+#~ msgid "Birth Name"
+#~ msgstr "Nome alla nascita"
+
+#~ msgid "Married Name"
+#~ msgstr "Nome da coniugato/a"
+
+#~ msgid "Other Name"
+#~ msgstr "Altro nome"
+
+#~ msgid "Close window without changes"
+#~ msgstr "Chiude la finestra senza modifiche"
+
+#~ msgid "Accept changes and close window"
+#~ msgstr "Accetta le modifiche e chiude la finestra"
+
+#~ msgid "_Event type:"
+#~ msgstr "_Tipo evento:"
+
+#~ msgid "_Date:"
+#~ msgstr "_Data:"
+
+#~ msgid "De_scription:"
+#~ msgstr "De_scrizione:"
+
+#~ msgid "_Place:"
+#~ msgstr "_Luogo:"
+
+#~ msgid "_Cause:"
+#~ msgstr "_Causa:"
+
+#~ msgid "Selects the calendar format for display"
+#~ msgstr "Seleziona il formato del calendario da visualizzare"
+
+#~ msgid "French"
+#~ msgstr "Francese"
+
+#~ msgid "_Private record"
+#~ msgstr "Elemento _privato"
+
+#~ msgid "<b>General</b>"
+#~ msgstr "<b>Generale</b>"
+
+#~ msgid "_Add..."
+#~ msgstr "_Aggiungi..."
+
+#~ msgid "_Edit..."
+#~ msgstr "_Modifica..."
+
+#~ msgid "_Delete"
+#~ msgstr "_Cancella"
+
+#~ msgid "Sources"
+#~ msgstr "Fonti"
+
+#~ msgid "Witnesses"
+#~ msgstr "Testimoni"
+
+#~ msgid "_Attribute:"
+#~ msgstr "_Attributo:"
+
+#~ msgid "_Value:"
+#~ msgstr "_Valore:"
+
+#~ msgid "_City:"
+#~ msgstr "_Città:"
+
+#~ msgid "C_ounty:"
+#~ msgstr "_Provincia:"
+
+#~ msgid "Cou_ntry:"
+#~ msgstr "_Stato:"
+
+#~ msgid "_State:"
+#~ msgstr "_Regione:"
+
+#~ msgid "Church _parish:"
+#~ msgstr "P_arrocchia:"
+
+#~ msgid "Add_ress:"
+#~ msgstr "Indi_rizzo:"
+
+#~ msgid "_City/County:"
+#~ msgstr "_Città:"
+
+#~ msgid "_State/Province"
+#~ msgstr "_Regione/Provincia:"
+
+#~ msgid "_ZIP/Postal code:"
+#~ msgstr "C_AP:"
+
+#~ msgid "_Web address:"
+#~ msgstr "_Indirizzo web:"
+
+#~ msgid "_Description:"
+#~ msgstr "_Descrizione:"
+
+#~ msgid "Abandon changes and close window"
+#~ msgstr "Abbandona le modifiche e chiude la finestra"
+
+#~ msgid "_Given name:"
+#~ msgstr "_Nome:"
+
+#~ msgid "_Family name:"
+#~ msgstr "_Cognome:"
+
+#~ msgid "Suffi_x:"
+#~ msgstr "S_uffisso:"
+
+#~ msgid "T_ype:"
+#~ msgstr "Ti_po:"
+
+#~ msgid "_Title:"
+#~ msgstr "_Titolo:"
+
+#~ msgid "P_rivate record"
+#~ msgstr "Elemento p_rivato"
+
+#~ msgid "Family _prefix:"
+#~ msgstr "P_refisso famiglia:"
+
+#~ msgid "_Person:"
+#~ msgstr "_Persona:"
+
+#~ msgid "_Comment:"
+#~ msgstr "_Comment:"
+
+#~ msgid "Person is in the _database"
+#~ msgstr "La persona è nel _database"
+
+#~ msgid "Choose a person from the database"
+#~ msgstr "Scegliere una persona dal database"
+
+#~ msgid "_Select"
+#~ msgstr "_Seleziona"
+
+#~ msgid "AbiWord (version 1.9 or greater)"
+#~ msgstr "AbiWord (versione 1.9 o superiore)"
+
+#~ msgid "AbiWord (version 1.0.x)"
+#~ msgstr "AbiWord (versione 1.0.x)"
+
+#~ msgid "The marker '<!-- START -->' was not in the template"
+#~ msgstr "Il marcatore \"<!-- START -->\" non è presente nel modello"
+
+#~ msgid ""
+#~ "Could not open %s\n"
+#~ "Using the default template"
+#~ msgstr ""
+#~ "Impossibile aprire %s\n"
+#~ "Uso il modello predefinito"
+
+#~ msgid "HTML"
+#~ msgstr "HTML"
+
+#~ msgid "KWord"
+#~ msgstr "KWord"
+
+#~ msgid "LaTeX"
+#~ msgstr "LaTeX"
+
+#~ msgid "Open in OpenOffice.org"
+#~ msgstr "Apri in OpenOffice.org"
+
+#~ msgid "OpenOffice.org Writer"
+#~ msgstr "OpenOffice.org Writer"
+
+#~ msgid "OpenOffice.org Draw"
+#~ msgstr "OpenOffice.org Draw"
+
+#~ msgid "PostScript"
+#~ msgstr "PostScript"
+
+#~ msgid "The ReportLab modules are not installed"
+#~ msgstr "I moduli ReportLab non sono installati"
+
+#~ msgid "PDF"
+#~ msgstr "PDF"
+
+#~ msgid "Rich Text Format (RTF)"
+#~ msgstr "RTF (testo arricchito)"
+
+#~ msgid "SVG (Scalable Vector Graphics)"
+#~ msgstr "SVG (Scalable Vector Graphics)"
+
+#~ msgid "_Nickname:"
+#~ msgstr "_Soprannome:"
+
+#~ msgid "Invoke birth event editor"
+#~ msgstr "Invoca l'editor di eventi per la nascita"
+
+#~ msgid "Edit..."
+#~ msgstr "Modifica..."
+
+#~ msgid "Select source for this name information"
+#~ msgstr "Per selezionare la fonte di questa informazione"
+
+#~ msgid "Source..."
+#~ msgstr "Fonte..."
+
+#~ msgid "Enter/modify notes regarding this name"
+#~ msgstr "Per immettere/modificare le note riguardanti questo nome"
+
+#~ msgid "Note..."
+#~ msgstr "Note..."
+
+#~ msgid "The person's given name"
+#~ msgstr "Il nome della persona"
+
+#~ msgid "The surname or last name"
+#~ msgstr "Il cognome della persona"
+
+#~ msgid ""
+#~ "An optional prefix for the family name that is not used in sorting, such "
+#~ "as \"de\" or \"van\""
+#~ msgstr ""
+#~ "Un prefisso facoltativo per il nome della famiglia, come «de» o «van», "
+#~ "non usato per l'ordinamento alfabetico"
+
+#~ msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
+#~ msgstr "Un suffisso facoltativo al nome, come «Jr.» o «III»"
+
+#~ msgid "A title used to refer to the person, such as \"Dr.\" or \"Rev.\""
+#~ msgstr ""
+#~ "Un titolo onorifico usato come appellativo alla persona, ad esempio "
+#~ "«Dott.» o «Rev.»"
+
+#~ msgid "A name that the person was more commonly known by"
+#~ msgstr "Un nome con il quale la persona era più comunemente conosciuta"
+
+#~ msgid "<b>Gender</b>"
+#~ msgstr "<b>Sesso</b>"
+
+#~ msgid "<b>Preferred name</b>"
+#~ msgstr "<b>Nome preferito</b>"
+
+#~ msgid "_male"
+#~ msgstr "_maschio"
+
+#~ msgid "fema_le"
+#~ msgstr "_femmina"
+
+#~ msgid "_unknown"
+#~ msgstr "sconosc_iuto"
+
+#~ msgid "<b>Birth</b>"
+#~ msgstr "<b>Nascita</b>"
+
+#~ msgid "<b>Image</b>"
+#~ msgstr "<b>Immagine</b>"
+
+#~ msgid "<b>Identification</b>"
+#~ msgstr "<b>Identificativo</b>"
+
+#~ msgid "_ID:"
+#~ msgstr "_ID:"
+
+#~ msgid "Pla_ce:"
+#~ msgstr "_Luogo:"
+
+#~ msgid "<b>Death</b>"
+#~ msgstr "<b>Decesso</b>"
+
+#~ msgid "D_ate:"
+#~ msgstr "Dat_a:"
+
+#~ msgid "Plac_e:"
+#~ msgstr "Luo_go:"
+
+#~ msgid "Invoke death event editor"
+#~ msgstr "Invoca l'editor di eventi per il decesso"
+
+#~ msgid "Confidence:"
+#~ msgstr "Confidenza:"
+
+#~ msgid "Family prefix:"
+#~ msgstr "Prefisso famiglia:"
+
+#~ msgid "<b>Alternate name</b>"
+#~ msgstr "<b>Nome alternativo</b>"
+
+#~ msgid "<b>Primary source</b>"
+#~ msgstr "<b>Fonte principale</b>"
+
+#~ msgid "Create an alternate name for this person"
+#~ msgstr "Crea un nome alternativo per questa persona"
+
+#~ msgid "Edit the selected name"
+#~ msgstr "Modifica il nome selezionato"
+
+#~ msgid "Delete selected name"
+#~ msgstr "Cancella il nome selezionato"
+
+#~ msgid "Names"
+#~ msgstr "Nomi"
+
+#~ msgid "<b>Event</b>"
+#~ msgstr "<b>Evento</b>"
+
+#~ msgid "Cause:"
+#~ msgstr "Causa:"
+
+#~ msgid "Create a new event"
+#~ msgstr "Crea un nuovo evento"
+
+#~ msgid "Edit the selected event"
+#~ msgstr "Modifica l'evento selezionato"
+
+#~ msgid "Delete the selected event"
+#~ msgstr "Cancella l'evento selezionato"
+
+#~ msgid "Events"
+#~ msgstr "Eventi"
+
+#~ msgid "<b>Attributes</b>"
+#~ msgstr "<b>Attributi</b>"
+
+#~ msgid "Create a new attribute"
+#~ msgstr "Crea un nuovo attributo"
+
+#~ msgid "Edit the selected attribute"
+#~ msgstr "Modifica l'attributo selezionato"
+
+#~ msgid "Delete the selected attribute"
+#~ msgstr "Cancella l'attributo selezionato"
+
+#~ msgid "Attributes"
+#~ msgstr "Attributi"
+
+#~ msgid "City/County:"
+#~ msgstr "Città:"
+
+#~ msgid "<b>Addresses</b>"
+#~ msgstr "<b>Indirizzi</b>"
+
+#~ msgid "Create a new address"
+#~ msgstr "Crea un nuovo indirizzo"
+
+#~ msgid "Edit the selected address"
+#~ msgstr "Modifica l'indirizzo selezionato"
+
+#~ msgid "Delete the selected address"
+#~ msgstr "Cancella l'indirizzo selezionato"
+
+#~ msgid "Addresses"
+#~ msgstr "Indirizzi"
+
+#~ msgid "Enter miscellaneous relevant data and documentation"
+#~ msgstr "Immettere dati e documenti rilevanti di varia natura"
+
+#~ msgid "Notes"
+#~ msgstr "Note"
+
+#~ msgid "_Delete..."
+#~ msgstr "_Cancella..."
+
+#~ msgid "Place new media object in this gallery"
+#~ msgstr "Aggiunge un nuovo oggetto multimediale a questa galleria"
+
+#~ msgid "Edit the properties of the selected object"
+#~ msgstr "Modifica le proprietà dell'oggetto selezionato"
+
+#~ msgid "Remove selected object from this gallery only"
+#~ msgstr "Rimuove l'oggetto selezionato solo da questa galleria"
+
+#~ msgid "_Remove"
+#~ msgstr "_Rimuovi"
+
+#~ msgid "Gallery"
+#~ msgstr "Galleria"
+
+#~ msgid "Web address:"
+#~ msgstr "Indirizzo web:"
+
+#~ msgid "<b>Internet addresses</b>"
+#~ msgstr "<b>Indirizzi Internet</b>"
+
+#~ msgid "Add an internet reference about this person"
+#~ msgstr "Aggiunge un riferimento Internet su questa persona"
+
+#~ msgid "Go to this web page"
+#~ msgstr "Apre questa pagina web"
+
+#~ msgid "_Go"
+#~ msgstr "_Vai"
+
+#~ msgid "Delete selected reference"
+#~ msgstr "Cancella il riferimento selezionato"
+
+#~ msgid "Internet"
+#~ msgstr "Internet"
+
+#~ msgid "<b>LDS baptism</b>"
+#~ msgstr "<b>Battesimo LDS</b>"
+
+#~ msgid "LDS _temple:"
+#~ msgstr "T_empio LDS:"
+
+#~ msgid "Sources..."
+#~ msgstr "Fonti..."
+
+#~ msgid "LDS te_mple:"
+#~ msgstr "Te_mpio LDS:"
+
+#~ msgid "P_lace:"
+#~ msgstr "L_uogo:"
+
+#~ msgid "Dat_e:"
+#~ msgstr "Da_ta:"
+
+#~ msgid "LD_S temple:"
+#~ msgstr "Tempio LD_S:"
+
+#~ msgid "Pa_rents:"
+#~ msgstr "_Genitori:"
+
+#~ msgid "<b>Sealed to parents</b>"
+#~ msgstr "<b>Sugellamento ai genitori</b>"
+
+#~ msgid "LDS"
+#~ msgstr "LDS"
+
+#~ msgid "Close _without saving"
+#~ msgstr "_Chiudere senza salvare"
+
+#~ msgid "Remove object and all references to it from the database"
+#~ msgstr "Elimina l'oggetto e tutti i suoi riferimenti dal database"
+
+#~ msgid "_Remove Object"
+#~ msgstr "_Rimuovi oggetto"
+
+#~ msgid "Keep reference to the missing file"
+#~ msgstr "Mantiene il riferimento al file mancante"
+
+#~ msgid "_Keep Reference"
+#~ msgstr "_Mantieni riferimento"
+
+#~ msgid "Select replacement for the missing file"
+#~ msgstr "Seleziona il sostituto per il file mancante"
+
+#~ msgid "_Select File"
+#~ msgstr "_Seleziona file"
+
+#~ msgid "People with an event after ..."
+#~ msgstr "Persone con un evento dopo..."
+
+#~ msgid "People who were adopted"
+#~ msgstr "Persone adottate"
+
+#~ msgid "People with an event before ..."
+#~ msgstr "Persone con un evento prima..."
+
+#~ msgid "Disconnected individuals"
+#~ msgstr "Individui senza nessi"
+
+#~ msgid "People with an event location of ..."
+#~ msgstr "Persone con un evento nella località di..."
+
+#~ msgid "People who have an event type of ..."
+#~ msgstr "Persone con un evento del tipo..."
+
+#~ msgid "Females"
+#~ msgstr "Femmine"
+
+#~ msgid "People who have images"
+#~ msgstr "Persone con un'immagine"
+
+#~ msgid "People with incomplete names"
+#~ msgstr "Persone con il nome incompleto"
+
+#~ msgid "Males"
+#~ msgstr "Maschi"
+
+#~ msgid "Names with same SoundEx code as ..."
+#~ msgstr "Nomi con codice SoundEx del tipo..."
+
+#~ msgid "Surname"
+#~ msgstr "Cognome"
+
+#~ msgid "Names with the SoundEx code of ..."
+#~ msgstr "Nomi con codice SoundEx tipo..."
+
+#~ msgid "SoundEx Code"
+#~ msgstr "Codice SoundEx"
+
+#~ msgid "People with multiple marriage records"
+#~ msgstr "Persone con più di un matrimonio"
+
+#~ msgid "People with no marriage records"
+#~ msgstr "Persone senza matrimoni"
+
+#~ msgid "People without a birth date"
+#~ msgstr "Persone senza data di nascita"
+
+#~ msgid "People with children"
+#~ msgstr "Persone con figli"
+
+#~ msgid "Names that match a regular expression of ..."
+#~ msgstr "Nomi che corrispondono all'espressione regolare tipo..."
+
+#~ msgid "Text"
+#~ msgstr "Testo"
+
+#~ msgid "Names that contain a substring of ..."
+#~ msgstr "Nomi che contengono la sotto-stringa tipo..."
+
+#~ msgid "_File"
+#~ msgstr "_File"
+
+#~ msgid "_New"
+#~ msgstr "_Nuovo"
+
+#~ msgid "_Open..."
+#~ msgstr "_Apri..."
+
+#~ msgid "_Save"
+#~ msgstr "_Salva"
+
+#~ msgid "Save _As..."
+#~ msgstr "Salva _come..."
+
+#~ msgid "_Import"
+#~ msgstr "_Importa"
+
+#~ msgid "_Export"
+#~ msgstr "_Esporta"
+
+#~ msgid "_Revert"
+#~ msgstr "_Ripristina"
+
+#~ msgid "Re_load plugins"
+#~ msgstr "Ricarica _plugin"
+
+#~ msgid "_Quit"
+#~ msgstr "_Esci"
+
+#~ msgid "_Edit"
+#~ msgstr "_Modifica"
+
+#~ msgid "Add a new item"
+#~ msgstr "Aggiunge un nuovo elemento"
+
+#~ msgid "Remove the currently selected item"
+#~ msgstr "Elimina l'elemento attualmente selezionato"
+
+#~ msgid "Edit the selected item"
+#~ msgstr "Modifica l'elemento attualmente selezionato"
+
+#~ msgid "E_dit..."
+#~ msgstr "Mo_difica..."
+
+#~ msgid "_Find..."
+#~ msgstr "_Cerca..."
+
+#~ msgid "_Merge..."
+#~ msgstr "_Fondi..."
+
+#~ msgid "Prefere_nces..."
+#~ msgstr "Preferen_ze..."
+
+#~ msgid "Set _Home person..."
+#~ msgstr "Imposta persona-_casa..."
+
+#~ msgid "_View"
+#~ msgstr "_Visualizza"
+
+#~ msgid "_Filter"
+#~ msgstr "_Filtro"
+
+#~ msgid "_Sidebar"
+#~ msgstr "_Barra laterale"
+
+#~ msgid "_Toolbar"
+#~ msgstr "S_trumenti"
+
+#~ msgid "_Bookmarks"
+#~ msgstr "_Segnalibri"
+
+#~ msgid "_Add bookmark"
+#~ msgstr "_Aggiungi segnalibro"
+
+#~ msgid "_Edit bookmarks..."
+#~ msgstr "_Modifica segnalibri..."
+
+#~ msgid "_Go to bookmark"
+#~ msgstr "_Vai al segnalibro"
+
+#~ msgid "_Reports"
+#~ msgstr "_Resoconti"
+
+#~ msgid "_Tools"
+#~ msgstr "S_trumenti"
+
+#~ msgid "_Help"
+#~ msgstr "_Aiuto"
+
+#~ msgid "_User manual"
+#~ msgstr "_Manuale utente"
+
+#~ msgid "_FAQ"
+#~ msgstr "_FAQ"
+
+#~ msgid "_Show plugin status..."
+#~ msgstr "Mostra stato _plugin..."
+
+#~ msgid "_Open example database"
+#~ msgstr "_Apri database d'esempio"
+
+#~ msgid "_About"
+#~ msgstr "_Informazioni su"
+
+#~ msgid "Open"
+#~ msgstr "Apri"
+
+#~ msgid "Save"
+#~ msgstr "Salva"
+
+#~ msgid "Go back in history"
+#~ msgstr "Retrocedi lungo la cronologia"
+
+#~ msgid "Back"
+#~ msgstr "Indietro"
+
+#~ msgid "Go forward in history"
+#~ msgstr "Avanza lungo la cronologia"
+
+#~ msgid "Forward"
+#~ msgstr "Avanti"
+
+#~ msgid "Make the Home Person the active person"
+#~ msgstr "Fa della persona-casa la persona attiva"
+
+#~ msgid "Home"
+#~ msgstr "Casa"
+
+#~ msgid "Generate reports"
+#~ msgstr "Genera i resoconti"
+
+#~ msgid "Reports"
+#~ msgstr "Resoconti"
+
+#~ msgid "Run tools"
+#~ msgstr "Esegui strumenti"
+
+#~ msgid "Tools"
+#~ msgstr "Strumenti"
+
+#~ msgid "Add"
+#~ msgstr "Aggiungi"
+
+#~ msgid "Remove"
+#~ msgstr "Rimuovi"
+
+#~ msgid "Pedigree"
+#~ msgstr "Ascendenza"
+
+#~ msgid "Media"
+#~ msgstr "Multimedia"
+
+#~ msgid "Fi_lter:"
+#~ msgstr "Fi_ltro:"
+
+#~ msgid "Qualifier:"
+#~ msgstr "Qualificatore:"
+
+#~ msgid "Show people that do not match the filtering rule"
+#~ msgstr "Mostra le persone che non corrispondono alle regole di filtraggio"
+
+#~ msgid "_Invert"
+#~ msgstr "_Inverti"
+
+#~ msgid "Apply filter using the selected controls"
+#~ msgstr "Applica il filtro utilizzando i controlli selezionati"
+
+#~ msgid "<b>People</b>"
+#~ msgstr "<b>Persone</b>"
+
+#~ msgid "Exchange the current spouse with the active person"
+#~ msgstr "Scambia il coniuge corrente con la persona attiva"
+
+#~ msgid "Adds a new person to the database and to a new relationship"
+#~ msgstr "Aggiunge una nuova persona al database e ad una nuova relazione"
+
+#~ msgid ""
+#~ "Selects an existing person from the database and adds to a new "
+#~ "relationship"
+#~ msgstr ""
+#~ "Seleziona un persona esistente dal database e la aggiunge ad una nuova "
+#~ "relazione"
+
+#~ msgid "Removes the currently selected spouse"
+#~ msgstr "Rimuove il coniuge attualmente selezionato"
+
+#~ msgid "Make the active person's parents the active family"
+#~ msgstr "Rende attivi come famiglia i genitori della persona attiva"
+
+#~ msgid "Adds a new set of parents to the active person"
+#~ msgstr "Aggiunge una nuova coppia di genitori alla persona attiva"
+
+#~ msgid "Deletes the selected parents from the active person"
+#~ msgstr "Cancella i genitori selezionati dalla persona attiva"
+
+#~ msgid "Double-click to edit the relationship to the selected parents"
+#~ msgstr "Doppio clic per modificare la relazione dei genitori selezionati"
+
+#~ msgid "Make the selected spouse's parents the active family"
+#~ msgstr "Rende attivi come famiglia i genitori del coniuge selezionato"
+
+#~ msgid "Adds a new set of parents to the selected spouse"
+#~ msgstr "Aggiunge una nuova coppia di genitori al coniuge selezionato"
+
+#~ msgid "Deletes the selected parents from the selected spouse"
+#~ msgstr "Cancella i genitori selezionati dal coniuge selezionato"
+
+#~ msgid "<b>_Children</b>"
+#~ msgstr "<b>_Figli</b>"
+
+#~ msgid "<b>_Active person</b>"
+#~ msgstr "<b>Persona _attiva</b>"
+
+#~ msgid "<b>Active person's _parents</b>"
+#~ msgstr "<b>_Genitori persona attiva</b>"
+
+#~ msgid "<b>Relati_onship</b>"
+#~ msgstr "<b>Relazi_one</b>"
+
+#~ msgid "<b>Spo_use's parents</b>"
+#~ msgstr "<b>Genitori _coniuge</b>"
+
+#~ msgid "Double-click to edit the active person"
+#~ msgstr "Doppio clic per modificare la persona attiva"
+
+#~ msgid ""
+#~ "Double-click to edit the relationship information, Shift-click to edit "
+#~ "the person"
+#~ msgstr ""
+#~ "Doppio clic per modificare le informazioni sulla relazione, shift-clic "
+#~ "per modificare la persona"
+
+#~ msgid "Make the selected child the active person"
+#~ msgstr "Rende attivo il figlio selezionato"
+
+#~ msgid "Adds a new child to the database and to the current family"
+#~ msgstr "Aggiunge un nuovo figlio al database e alla famiglia selezionata"
+
+#~ msgid ""
+#~ "Selects an existing person from the database and adds as a child to the "
+#~ "current family"
+#~ msgstr ""
+#~ "Seleziona una persona esistente dal database e la aggiunge come figlio "
+#~ "alla famiglia corrente"
+
+#~ msgid "Deletes the selected child from the selected family"
+#~ msgstr "Cancella il figlio selezionato dalla famiglia selezionata"
+
+#~ msgid "<b>Family</b>"
+#~ msgstr "<b>Famiglia</b>"
+
+#~ msgid "<b>Pedigree</b>"
+#~ msgstr "<b>Ascendenza</b>"
+
+#~ msgid "<b>Sources</b>"
+#~ msgstr "<b>Fonti</b>"
+
+#~ msgid "<b>Places</b>"
+#~ msgstr "<b>Luoghi</b>"
+
+#~ msgid "<b>Media</b>"
+#~ msgstr "<b>Multimedia</b>"
+
+#~ msgid ""
+#~ "Check to show all people in the list.  Uncheck to get the list filtered "
+#~ "by birth and death dates."
+#~ msgstr ""
+#~ "Spuntare per mostrare tutte le persone della lista. Togliere il segno di "
+#~ "spunta per avere la lista filtrata tramite le date di nascita e decesso."
+
+#~ msgid "_Show all"
+#~ msgstr "Mo_stra tutto"
+
+#~ msgid "_Relationship type:"
+#~ msgstr "_Tipo relazione:"
+
+#~ msgid "Relationship definition\n"
+#~ msgstr "Definizione relazione\n"
+
+#~ msgid "_Father's relationship to child:"
+#~ msgstr "Relazione tra _padre e figlio:"
+
+#~ msgid "_Mother's relationship to child:"
+#~ msgstr "Relazione tra _madre e figlio:"
+
+#~ msgid "_Parents' relationship to each other:"
+#~ msgstr "Relazione fra i due _genitori:"
+
+#~ msgid "<b>Father</b>"
+#~ msgstr "<b>Padre</b>"
+
+#~ msgid "<b>Mother</b>"
+#~ msgstr "<b>Madre</b>"
+
+#~ msgid "<b>Relationships</b>"
+#~ msgstr "<b>Relazioni</b>"
+
+#~ msgid "Show _all"
+#~ msgstr "Mostra _tutto"
+
+#~ msgid "Relationship to father:"
+#~ msgstr "Relazione con il padre:"
+
+#~ msgid "Relationship to mother:"
+#~ msgstr "Relazione con la madre:"
+
+#~ msgid "_Author:"
+#~ msgstr "_Autore:"
+
+#~ msgid "_Publication information:"
+#~ msgstr "_Informazioni pubblicazione:"
+
+#~ msgid "References"
+#~ msgstr "Riferimenti"
+
+#~ msgid "Gender:"
+#~ msgstr "Sesso:"
+
+#~ msgid "_female"
+#~ msgstr "_femmina"
+
+#~ msgid "_Open an existing database"
+#~ msgstr "_Apri un database esistente"
+
+#~ msgid "Create a new _XML database"
+#~ msgstr "Crea un nuovo database _XML"
+
+#~ msgid "_Relationship:"
+#~ msgstr "_Relazione:"
+
+#~ msgid "Relation_ship:"
+#~ msgstr "Rela_zione:"
+
+#~ msgid "<b>Preference</b>"
+#~ msgstr "<b>Riferimento</b>"
+
+#~ msgid ""
+#~ "Indicates that the parents should be used as the preferred parents for "
+#~ "reporting and display purposes"
+#~ msgstr ""
+#~ "Indica che i genitori sono quelli preferiti per i resoconti e la "
+#~ "visualizzazione"
+
+#~ msgid "Use as preferred parents"
+#~ msgstr "Usa come genitori preferiti"
+
+#~ msgid "_Text:"
+#~ msgstr "_Testo:"
+
+#~ msgid "FAQ - GRAMPS"
+#~ msgstr "FAQ - GRAMPS"
+
+#~ msgid "GRAMPS is being run as the 'root' user."
+#~ msgstr "GRAMPS sta per essere eseguito come utente «root»."
+
+#~ msgid ""
+#~ "This account is not meant for normal appication use. Running user "
+#~ "applications in the administrative account is rarely a wise idea, and can "
+#~ "open up potential security risks."
+#~ msgstr ""
+#~ "Questo account non è stato pensato per essere usato con applicazioni "
+#~ "normali. Eseguire delle applicazioni utente con l'account di "
+#~ "amministratore è raramente un'idea lungimirante in quanto può far "
+#~ "insorgere dei potenziali rischi in fatto di sicurezza."
+
+#~ msgid "Back Menu"
+#~ msgstr "Menù indietro"
+
+#~ msgid "Forward Menu"
+#~ msgstr "Menù avanti"
+
+#~ msgid "Cannot merge people."
+#~ msgstr "Impossibile fondere le persone."
+
+#~ msgid ""
+#~ "Exactly two people must be selected to perform a merge. A second person "
+#~ "can be selected by holding down the control key while clicking on the "
+#~ "desired person."
+#~ msgstr ""
+#~ "Devono essere selezionate esattamente due persone affinché la fusione sia "
+#~ "possibile. Una seconda persona può essere selezionata mantenendo premuto "
+#~ "il tasto Ctrl mentre si clicca sulla persona desiderata."
+
+#~ msgid "Save Changes Made to the Database?"
+#~ msgstr "Salvare le modifiche apportate al database?"
+
+#~ msgid ""
+#~ "Unsaved changes exist in the current database. If you close without "
+#~ "saving, the changes you have made will be lost."
+#~ msgstr ""
+#~ "Nel database esistono del modifiche non salvate. Se si chiude senza "
+#~ "salvare, le modifiche apportate andranno perse."
+
+#~ msgid "Create a New Database"
+#~ msgstr "Creazione di un nuovo database"
+
+#~ msgid ""
+#~ "Creating a new database will close the existing database, discarding any "
+#~ "unsaved changes. You will then be prompted to create a new database"
+#~ msgstr ""
+#~ "La creazione di un nuovo database provocherà la chiusura del database "
+#~ "esistente, annullando qualsiasi modifica non salvata. Si procederà poi "
+#~ "con le domande per la creazione di un nuovo database."
+
+#~ msgid "_Create New Database"
+#~ msgstr "_Crea nuovo database"
+
+#~ msgid "Updating display - this may take a few seconds..."
+#~ msgstr ""
+#~ "Aggiornamento visualizzazione - possono essere necessari alcuni secondi..."
+
+#~ msgid "An autosave file was detected"
+#~ msgstr "È stato rilevato un file salvato automaticamente"
+
+#~ msgid ""
+#~ "GRAMPS has detected an autosave file for the selected database. This file "
+#~ "is more recent than the last saved database. This typically happens when "
+#~ "GRAMPS was unexpected shutdown before the data was saved. You may load "
+#~ "this file to try to recover any missing data."
+#~ msgstr ""
+#~ "GRAMPS ha rilevato un file di salvataggio automatico per il database "
+#~ "selezionato più recente dell'ultimo salvataggio manuale. Tipicamente ciò "
+#~ "accade in seguito ad una chiusura inaspettata di GRAMPS. È possibile "
+#~ "caricare questo file e provare a recuperare eventuali dati mancanti."
+
+#~ msgid "_Load autosave file"
+#~ msgstr "_Carica file salvataggio automatico"
+
+#~ msgid "Load _saved database"
+#~ msgstr "Carica database _salvato"
+
+#~ msgid "Database could not be opened"
+#~ msgstr "Impossibile aprire il database"
+
+#~ msgid "%s is not a directory."
+#~ msgstr "%s non è una directory."
+
+#~ msgid "You should select a directory that contains a data.gramps file."
+#~ msgstr ""
+#~ "È necessario selezionare una directory che contenga un file data.gramps."
+
+#~ msgid "Saving %s ..."
+#~ msgstr "Sto salvando %s..."
+
+#~ msgid ""
+#~ "An error was detected while attempting to create the file. The operating "
+#~ "system reported \"%s\""
+#~ msgstr ""
+#~ "È stato rilevato un errore nel tentativo di creare il file. Il sistema "
+#~ "operativo ha riportato: «%s»"
+
+#~ msgid "An error was detected while trying to create the file"
+#~ msgstr "È stato rilevato un errore nel tentativo di creare il file"
+
+#~ msgid "autosaving..."
+#~ msgstr "salvataggio automatico..."
+
+#~ msgid "autosave complete"
+#~ msgstr "salvataggio automatico completato"
+
+#~ msgid "autosave failed"
+#~ msgstr "salvataggio automatico fallito"
+
+#~ msgid ""
+#~ "Deleting the person will remove the person from the database. The data "
+#~ "can only be recovered by closing the database without saving changes. "
+#~ "This change will become permanent after you save the database."
+#~ msgstr ""
+#~ "L'eliminazione della persona provocherà la sua rimozione dal database. I "
+#~ "dati potranno essere recuperati solo chiudendo il database senza salvarne "
+#~ "i cambiamenti. Questa modifica sarà definitiva una volta che il database "
+#~ "sarà salvato."
+
+#~ msgid "_Delete Person"
+#~ msgstr "_Elimina persona"
+
+#~ msgid "%(relationship)s of %(person)s"
+#~ msgstr "%(relationship)s di %(person)s"
+
+#~ msgid "Revert to last saved database?"
+#~ msgstr "Ritornare all'ultimo database salvato?"
+
+#~ msgid ""
+#~ "Reverting to the last saved database will cause all unsaved changes to be "
+#~ "lost, and the last saved database will be loaded."
+#~ msgstr ""
+#~ "Ritornando all'ultimo database salvato si perderanno tutte le modifiche "
+#~ "non ancora salvate. Sarà quindi caricato l'ultimo database salvato."
+
+#~ msgid "Could Not Revert to the Previous Database."
+#~ msgstr "Impossibile ritornare al database precedente."
+
+#~ msgid "GRAMPS could not find a previous version of the database"
+#~ msgstr ""
+#~ "GRAMPS non è riuscito a trovare una versione precedente del database"
+
+#~ msgid "No Home Person has been set."
+#~ msgstr "Nessuna persona-casa impostata."
+
+#~ msgid "The Home Person may be set from the Settings menu."
+#~ msgstr "La persona-casa può essere impostata dal menù Impostazioni."
+
+#~ msgid "Could Not Go to a Person"
+#~ msgstr "Impossibile andare alla persona"
+
+#~ msgid "Either stale bookmark or broken history caused by IDs reorder."
+#~ msgstr ""
+#~ "O un segnalibro bloccato o una cronologia corrotta causati da un riordino "
+#~ "degli ID."
+
+#~ msgid "Set %s as the Home Person"
+#~ msgstr "Impostazione %s come persona-casa"
+
+#~ msgid ""
+#~ "Once a Home Person is defined, pressing the Home button on the toolbar "
+#~ "will make the home person the active person."
+#~ msgstr ""
+#~ "Dopo la definizione di una persona-casa, la persona-casa diventerà la "
+#~ "persona attiva premendo il pulsante Casa sulla barra degli strumenti."
+
+#~ msgid "_Set Home Person"
+#~ msgstr "_Imposta persona-casa"
+
+#~ msgid "A person must be selected to export"
+#~ msgstr "Una persona deve essere selezionata per l'esportazione"
+
+#~ msgid ""
+#~ "Exporting requires that an active person be selected. Please select a "
+#~ "person and try again."
+#~ msgstr ""
+#~ "L'esportazione richiede che sia selezionata una persona attiva. "
+#~ "Selezionare una persona e riprovare."
+
+#~ msgid "Could not create database"
+#~ msgstr "Impossibile creare il database"
+
+#~ msgid "The directory ~/.gramps/example could not be created."
+#~ msgstr "Impossibile creare la directory ~/.gramps/example."
+
+#~ msgid "Example database not created"
+#~ msgstr "Database d'esempio non creato"
+
+#~ msgid "_File:"
+#~ msgstr "_File:"
+
+#~ msgid "Select an image"
+#~ msgstr "Selezione immagine"
+
+#~ msgid "_Do not make a local copy"
+#~ msgstr "_Non fare una copia locale"
+
+#~ msgid "Object type:"
+#~ msgstr "Tipo oggetto:"
+
+#~ msgid "<b>Notes</b>"
+#~ msgstr "<b>Note</b>"
+
+#~ msgid "Creates a new object attribute from the above data"
+#~ msgstr "Crea un nuovo attributo dell'oggetto dai dati soprastanti"
+
+#~ msgid "Copies the object into the database"
+#~ msgstr "Copia l'oggetto nel database"
+
+#~ msgid "_Make a local copy"
+#~ msgstr "_Fai una copia locale"
+
+#~ msgid "Creates a new attribute from the above data"
+#~ msgstr "Crea un nuovo attributo dai dati soprastanti"
+
+#~ msgid "_GRAMPS ID:"
+#~ msgstr "ID _GRAMPS:"
+
+#~ msgid "_Information is complete"
+#~ msgstr "Le _informazioni sono complete"
+
+#~ msgid "<b>Events</b>"
+#~ msgstr "<b>Eventi</b>"
+
+#~ msgid "Add new event for this marriage"
+#~ msgstr "Aggiunge un nuovo evento per questo matrimonio"
+
+#~ msgid "Delete selected event"
+#~ msgstr "Elimina l'evento selezionato"
+
+#~ msgid "Create a new attribute for this marriage"
+#~ msgstr "Crea un nuovo attributo per questo matrimonio"
+
+#~ msgid "<b>Sealed to spouse</b>"
+#~ msgstr "<b>Sugellamento al coniuge</b>"
+
+#~ msgid "Temple:"
+#~ msgstr "Tempio:"
+
+#~ msgid "Place 1"
+#~ msgstr "Luogo 1"
+
+#~ msgid "Place 2"
+#~ msgstr "Luogo 2"
+
+#~ msgid "_Merge and close"
+#~ msgstr "_Fondi e chiudi"
+
+#~ msgid "Merge and _edit"
+#~ msgstr "Fondi e _modifica"
+
+#~ msgid "<b>Parents</b>"
+#~ msgstr "<b>Genitori</b>"
+
+#~ msgid "Mother:"
+#~ msgstr "Madre:"
+
+#~ msgid "<b>Spouses</b>"
+#~ msgstr "<b>Coniugi</b>"
+
+#~ msgid "Father:"
+#~ msgstr "Padre:"
+
+#~ msgid "<b>First person</b>"
+#~ msgstr "<b>Prima persona</b>"
+
+#~ msgid "<b>Second person</b>"
+#~ msgstr "<b>Seconda persona</b>"
+
+#~ msgid "Keep other name as an alternate name"
+#~ msgstr "Preserva l'altro nome quale nome alternativo"
+
+#~ msgid "Keep other birth event as an alternate birth event"
+#~ msgstr "Preserva l'altro evento nascita quale evento nascita alternativo"
+
+#~ msgid "Keep other death event as an alternate death event"
+#~ msgstr "Preserva l'altro evento decesso quale evento decesso alternativo"
+
+#~ msgid "C_ity:"
+#~ msgstr "C_ittà:"
+
+#~ msgid "Co_untry:"
+#~ msgstr "_Stato:"
+
+#~ msgid "_Longitude:"
+#~ msgstr "Lon_gitudine:"
+
+#~ msgid "L_atitude:"
+#~ msgstr "Lat_itudine:"
+
+#~ msgid "County:"
+#~ msgstr "Provincia:"
+
+#~ msgid "State:"
+#~ msgstr "Regione:"
+
+#~ msgid "Church parish:"
+#~ msgstr "Parrocchia:"
+
+#~ msgid "<b>Other names</b>"
+#~ msgstr "<b>Altri nomi</b>"
+
+#~ msgid "Other names"
+#~ msgstr "Altri nomi"
+
+#~ msgid "Perform selected action"
+#~ msgstr "Esegui azione selezionata"
+
+#~ msgid "Status:"
+#~ msgstr "Stato:"
+
+#~ msgid "Author:"
+#~ msgstr "Autore:"
+
+#~ msgid "Author's email:"
+#~ msgstr "Email autore:"
+
+#~ msgid "The basic style used for the text display."
+#~ msgstr "Lo stile base usato per la visualizzazione solo testo."
+
+#~ msgid "Ancestor Chart"
+#~ msgstr "Diagramma ascendenti"
+
+#~ msgid "Graphical Reports"
+#~ msgstr "Resoconti grafici"
+
+#~ msgid "Ancestor Chart for %s"
+#~ msgstr "Diagramma ascendenti per %s"
+
+#~ msgid "Save Ancestor Chart"
+#~ msgstr "Salvataggio grafico ascendenti"
+
+#~ msgid "Display Format"
+#~ msgstr ""
+#~ "Formato di\n"
+#~ "visualizzazione"
+
+#~ msgid "Allows you to customize the data in the boxes in the report"
+#~ msgstr "Permette di personalizzare i dati nei riquadri dei rapporti"
+
+#~ msgid "Ancestor Chart for GRAMPS Book"
+#~ msgstr "Diagramma ascendenti per libro GRAMPS"
+
+#~ msgid "Beta"
+#~ msgstr "Beta"
+
+#~ msgid "Produces a graphical ancestral tree graph"
+#~ msgstr "Produce un grafico ad albero dell'ascendenza"
+
+#~ msgid "Graphics"
+#~ msgstr "Grafici"
+
+#~ msgid "Ahnentafel Report for %s"
+#~ msgstr "Resoconto Ahnentafel per %s"
+
+#~ msgid "%s Generation"
+#~ msgstr "%s generazione"
+
+#~ msgid "%s was born on %s in %s. "
+#~ msgstr "%s nacque il %s in quel di %s. "
+
+#~ msgid "%s was born on %s. "
+#~ msgstr "%s nacque il %s. "
+
+#~ msgid "%s was born in the year %s in %s. "
+#~ msgstr "%s nacque nel %s in quel di %s. "
+
+#~ msgid "%s was born in the year %s. "
+#~ msgstr "%s nacque nel %s. "
+
+#~ msgid "He died on %s in %s"
+#~ msgstr "Morì il %s in quel di %s"
+
+#~ msgid "He died on %s"
+#~ msgstr "Morì il %s"
+
+#~ msgid "She died on %s in %s"
+#~ msgstr "Morì il %s in quel di %s"
+
+#~ msgid "She died on %s"
+#~ msgstr "Morì il %s"
+
+#~ msgid "He died in the year %s in %s"
+#~ msgstr "Morì nel %s in quel di %s"
+
+#~ msgid "He died in the year %s"
+#~ msgstr "Morì nel %s"
+
+#~ msgid "She died in the year %s in %s"
+#~ msgstr "Morì nel %s in quel di %s"
+
+#~ msgid "She died in the year %s"
+#~ msgstr "Morì nel %s"
+
+#~ msgid ", and was buried on %s in %s."
+#~ msgstr " e fu sepellito/a il %s in quel di %s."
+
+#~ msgid ", and was buried on %s."
+#~ msgstr " e fu sepellito/a il %s."
+
+#~ msgid ", and was buried in the year %s in %s."
+#~ msgstr " e fu sepellito/a nel %s in quel di %s."
+
+#~ msgid ", and was buried in the year %s."
+#~ msgstr " e fu sepellito/a nel %s."
+
+#~ msgid " and was buried in %s."
+#~ msgstr " e fu sepellito/a in quel di %s."
+
+#~ msgid "Ahnentafel Report"
+#~ msgstr "Resoconto Ahnentafel"
+
+#~ msgid "Text Reports"
+#~ msgstr "Resoconti testuali"
+
+#~ msgid "Save Ahnentafel Report"
+#~ msgstr "Salvataggio resoconto Ahnentafel"
+
+#~ msgid "Ahnentafel Report for GRAMPS Book"
+#~ msgstr "Resoconto Ahnentafel per libro GRAMPS"
+
+#~ msgid "The style used for the title of the page."
+#~ msgstr "Lo stile usato per il titolo della pagina."
+
+#~ msgid "The style used for the generation header."
+#~ msgstr "Lo stile usato per la generazione dell'intestazione."
+
+#~ msgid "Produces a textual ancestral report"
+#~ msgstr "Produce un resoconto dell'ascendenza testuale"
+
+#~ msgid "Ancestors of %s"
+#~ msgstr "Ascendenti di %s"
+
+#~ msgid "Generation 1"
+#~ msgstr "Generazione 1"
+
+#~ msgid "Their children:"
+#~ msgstr "I loro figli:"
+
+#~ msgid "%(name)s's maternal %(grandparents)s"
+#~ msgstr "%(grandparents)s materni di %(name)s"
+
+#~ msgid "%(name)s's %(parents)s"
+#~ msgstr "%(parents)s di %(name)s"
+
+#~ msgid "%(name)s's paternal %(grandparents)s"
+#~ msgstr "%(grandparents)s paterni di %(name)s"
+
+#~ msgid "(no photo)"
+#~ msgstr "(nessuna foto)"
+
+#~ msgid " (mentioned above)."
+#~ msgstr " (citato sopra)."
+
+#~ msgid " on %(specific_date)s"
+#~ msgstr " il %(specific_date)s"
+
+#~ msgid " in %(month_or_year)s"
+#~ msgstr " nel %(month_or_year)s"
+
+#~ msgid " in %(place)s"
+#~ msgstr " in quel di %(place)s"
+
+#~ msgid " b. %(date)s"
+#~ msgstr " n. %(date)s"
+
+#~ msgid " d. %(date)s)"
+#~ msgstr " d. %(date)s)"
+
+#~ msgid "born"
+#~ msgstr "nato"
+
+#~ msgid "died"
+#~ msgstr "morto"
+
+#~ msgid "She is the daughter of "
+#~ msgstr "È figlia di "
+
+#~ msgid "He is the son of "
+#~ msgstr "È figlio di "
+
+#~ msgid "She is the daughter of %(mother)s."
+#~ msgstr "Fu figlia di %(mother)s."
+
+#~ msgid "He is the son of %(mother)s."
+#~ msgstr "È figlio di %(mother)s."
+
+#~ msgid "She is the daughter of %(father)s."
+#~ msgstr "È figlia di %(father)s."
+
+#~ msgid "He is the son of %(father)s."
+#~ msgstr "È figlio di %(father)s."
+
+#~ msgid "She is the daughter of %(father)s and %(mother)s."
+#~ msgstr "È figlia di %(father)s e %(mother)s."
+
+#~ msgid "He is the son of %(father)s and %(mother)s."
+#~ msgstr "È figlio di %(father)s e %(mother)s."
+
+#~ msgid "Mrs."
+#~ msgstr "Sig.ra"
+
+#~ msgid "Miss"
+#~ msgstr "Sig.na"
+
+#~ msgid "Mr."
+#~ msgstr "Sig."
+
+#~ msgid "(gender unknown)"
+#~ msgstr "(sesso sconosciuto)"
+
+#~ msgid " (unknown)"
+#~ msgstr " (sconosciuto)"
+
+#~ msgid ", and they had a child named "
+#~ msgstr " ed ebbero un figlio, "
+
+#~ msgid ", and they had %d children: "
+#~ msgstr " ed ebbero %d figli: "
+
+#~ msgid " and "
+#~ msgstr " e "
+
+#~ msgid "  She later married %(name)s"
+#~ msgstr " Più tardi sposo %(name)s"
+
+#~ msgid "  He later married %(name)s"
+#~ msgstr " Più tardi sposo %(name)s"
+
+#~ msgid "  She married %(name)s"
+#~ msgstr " Sposò %(name)s"
+
+#~ msgid "  He married %(name)s"
+#~ msgstr " Sposò %(name)s"
+
+#~ msgid "  Note about their name: "
+#~ msgstr " Note sul loro nome: "
+
+#~ msgid "More about %(name)s:"
+#~ msgstr "Altre informazioni su %(name)s:"
+
+#~ msgid "Text style for missing photo."
+#~ msgstr "Stile testo per la fotografia mancante."
+
+#~ msgid "Style for details about a person."
+#~ msgstr "Stile per i dettagli di una persona."
+
+#~ msgid "Introduction to the children."
+#~ msgstr "Introduzione ai figli."
+
+#~ msgid "Comprehensive Ancestors Report"
+#~ msgstr "Resoconto ascendenza onnicomprensivo"
+
+#~ msgid "Ancestors for %s"
+#~ msgstr "Ascendenti di %s"
+
+#~ msgid "Save Ancestor Report"
+#~ msgstr "Salvataggio resoconto ascendenza"
+
+#~ msgid "Cite sources"
+#~ msgstr "Fonti citazioni"
+
+#~ msgid "Comprehensive Ancestors Report for GRAMPS Book"
+#~ msgstr "Resoconto ascendenza onnicomprensivo per Libro GRAMPS"
+
+#~ msgid "Produces a detailed ancestral report."
+#~ msgstr "Produce un dettagliato resoconto sull'ascendenza."
+
+#~ msgid "Available Books"
+#~ msgstr "Libri disponibili"
+
+#~ msgid "Book List"
+#~ msgstr "Lista libri"
+
+#~ msgid "Book Report"
+#~ msgstr "Resoconto libro"
+
+#~ msgid "New Book"
+#~ msgstr "Nuovo libro"
+
+#~ msgid "_Available items"
+#~ msgstr "Elementi _disponibili"
+
+#~ msgid "Current _book"
+#~ msgstr "_Libro corrente"
+
+#~ msgid "Item name"
+#~ msgstr "Nome elemento"
+
+#~ msgid "Center person"
+#~ msgstr "Persona centrale"
+
+#~ msgid "Different database"
+#~ msgstr "Altro database"
+
+#~ msgid ""
+#~ "This book was created with the references to database %s.\n"
+#~ "\n"
+#~ "This makes references to the central person saved in the book invalid.\n"
+#~ "\n"
+#~ "Therefore, the central person for each item is being set to the active "
+#~ "person of the currently opened database."
+#~ msgstr ""
+#~ "Questo libro è stato creato con i riferimenti al database %s.\n"
+#~ "\n"
+#~ "Ciò comporta che i riferimenti alla persona centrale salvata non siano "
+#~ "più validi.\n"
+#~ "\n"
+#~ "Perciò, la persona centrale di ogni elemento sarà impostata alla persona "
+#~ "attiva del database attualmente aperto."
+
+#~ msgid "Not Applicable"
+#~ msgstr "Non applicabile"
+
+#~ msgid "Setup"
+#~ msgstr "Impostazioni"
+
+#~ msgid "Book Menu"
+#~ msgstr "Menù libro"
+
+#~ msgid "Available Items Menu"
+#~ msgstr "Menù elementi disponibili"
+
+#~ msgid "GRAMPS Book"
+#~ msgstr "Libro GRAMPS"
+
+#~ msgid "Books"
+#~ msgstr "Libri"
+
+#~ msgid "Unstable"
+#~ msgstr "Instabile"
+
+#~ msgid "Creates a book containing several reports."
+#~ msgstr "Crea un libro contenente diversi resoconti."
+
+#~ msgid "Change event types"
+#~ msgstr "Modifica tipi evento"
+
+#~ msgid "1 event record was modified"
+#~ msgstr "È stato modificato 1 elemento evento"
+
+#~ msgid "%d event records were modified"
+#~ msgstr "Sono stati modificati %d elementi evento"
+
+#~ msgid "Change types"
+#~ msgstr "Tipi modifica"
+
+#~ msgid "Rename personal event types"
+#~ msgstr "Rinomina tipi eventi personali"
+
+#~ msgid "Database Processing"
+#~ msgstr "Elaborazione database"
+
+#~ msgid "Allows all the events of a certain name to be renamed to a new name"
+#~ msgstr ""
+#~ "Permette di rinominare con un nuovo nome tutti gli eventi con un certo "
+#~ "nome"
+
+#~ msgid "No errors were found"
+#~ msgstr "Nessun errore trovato"
+
+#~ msgid "The database has passed internal checks"
+#~ msgstr "Il database ha passato i controlli interni"
+
+#~ msgid "1 broken child/family link was fixed\n"
+#~ msgstr "È stato riparato 1 collegamento non funzionante a figlio/famiglia\n"
+
+#~ msgid "%d broken child/family links were found\n"
+#~ msgstr ""
+#~ "Sono stati riparati %d collegamenti non funzionanti a figli/famiglie\n"
+
+#~ msgid "%s was removed from the family of %s\n"
+#~ msgstr "%s è stato rimosso dalla famiglia di %s\n"
+
+#~ msgid "1 broken spouse/family link was fixed\n"
+#~ msgstr ""
+#~ "È stato riparato 1 collegamento non funzionante a coniuge/famiglia\n"
+
+#~ msgid "%d broken spouse/family links were found\n"
+#~ msgstr ""
+#~ "Sono stati riparati %d collegamenti non funzionanti a coniugi/famiglie\n"
+
+#~ msgid "%s was restored to the family of %s\n"
+#~ msgstr "%s è stato ripristinato nella famiglia di %s\n"
+
+#~ msgid "1 empty family was found\n"
+#~ msgstr "È stata trovata una famiglia vuota\n"
+
+#~ msgid "%d empty families were found\n"
+#~ msgstr "Sono state trovate %d famiglie vuote\n"
+
+#~ msgid "1 corrupted family relationship fixed\n"
+#~ msgstr "È stato riparata una relazione famigliare corrotta\n"
+
+#~ msgid "%d corrupted family relationship fixed\n"
+#~ msgstr "Sono state riparate %d relazioni famigliari corrotte\n"
+
+#~ msgid "1 media object was referenced, but not found\n"
+#~ msgstr "Era presente 1 riferimento ad oggetti multimediali mancanti\n"
+
+#~ msgid "%d media objects were referenced, but not found\n"
+#~ msgstr "Erano presenti %d riferimenti ad oggetti multimediali mancanti\n"
+
+#~ msgid "Reference to 1 missing media object was kept\n"
+#~ msgstr "È stato tenuto il riferimento ad 1 oggetto multimediale mancante\n"
+
+#~ msgid "References to %d media objects were kept\n"
+#~ msgstr "Sono stati tenuti %d riferimenti ad oggetti multimediali\n"
+
+#~ msgid "1 missing media object was replaced\n"
+#~ msgstr "È stato sostituito 1 oggetto multimediale mancante\n"
+
+#~ msgid "%d missing media objects were replaced\n"
+#~ msgstr "Sono stati sostituiti %d oggetti multimediali mancanti\n"
+
+#~ msgid "1 missing media object was removed\n"
+#~ msgstr "È stato rimosso 1 oggetto multimediale mancante\n"
+
+#~ msgid "%d missing media objects were removed\n"
+#~ msgstr "Sono stati rimossi %d oggetti multimediali mancanti\n"
+
+#~ msgid "Check Integrity"
+#~ msgstr "Controllo integrità"
+
+#~ msgid "Check and repair database"
+#~ msgstr "Controlla e ripara database"
+
+#~ msgid ""
+#~ "Checks the database for integrity problems, fixing the problems that it "
+#~ "can"
+#~ msgstr ""
+#~ "Verifica l'integrità del database risolvendone possibilmente i problemi."
+
+#~ msgid "The style used for the first portion of the custom text."
+#~ msgstr "Lo stile usato per la parte iniziale del testo personalizzato."
+
+#~ msgid "The style used for the middle portion of the custom text."
+#~ msgstr ""
+#~ "Lo stile usato per la parte centrale mezzo del testo personalizzato."
+
+#~ msgid "The style used for the last portion of the custom text."
+#~ msgstr "Lo stile usato per la parte finale del testo personalizzato."
+
+#~ msgid "Custom Text"
+#~ msgstr "Testo personalizzato"
+
+#~ msgid "Custom Text for GRAMPS Book"
+#~ msgstr "Testo personalizzato per libro GRAMPS"
+
+#~ msgid "Initial Text"
+#~ msgstr "Testo iniziale"
+
+#~ msgid "Middle Text"
+#~ msgstr "Testo centrale"
+
+#~ msgid "Final Text"
+#~ msgstr "Testo finale"
+
+#~ msgid "Descendant Graph"
+#~ msgstr "Grafico discendenza"
+
+#~ msgid "Descendant Graph for %s"
+#~ msgstr "Grafico discendenza per %s"
+
+#~ msgid "Save Descendant Graph"
+#~ msgstr "Salvataggio grafico discendenza"
+
+#~ msgid "Descendant Graph for GRAMPS Book"
+#~ msgstr "Grafico discendenza per libro GRAMPS"
+
+#~ msgid "Generates a graph of descendants of the active person"
+#~ msgstr "Genera un grafico con i discendenti della persona attiva"
+
+#~ msgid "Alpha"
+#~ msgstr "Alpha"
+
+#~ msgid "Descendant Browser"
+#~ msgstr "Navigatore discendenza"
+
+#~ msgid "Interactive descendant browser"
+#~ msgstr "Navigatore interattivo discendeza"
+
+#~ msgid "Analysis and Exploration"
+#~ msgstr "Analisi ed esplorazione"
+
+#~ msgid "Provides a browsable hierarchy based on the active person"
+#~ msgstr "Fornisce una gerarchia navigabile basata sulla persona attiva"
+
+#~ msgid "Descendants of %s"
+#~ msgstr "Discendenti di %s"
+
+#~ msgid "Descendant Report"
+#~ msgstr "Resoconto discendenza"
+
+#~ msgid "Descendant Report for %s"
+#~ msgstr "Resoconto discendenza per %s"
+
+#~ msgid "Save Descendant Report"
+#~ msgstr "Salvataggio resoconto discendenza"
+
+#~ msgid "Descendant Report for GRAMPS Book"
+#~ msgstr "Resoconto discendenza per libro GRAMPS"
+
+#~ msgid "The style used for the level %d display."
+#~ msgstr "Lo stile usato per la visualizzazione del livello %d."
+
+#~ msgid "Generates a list of descendants of the active person"
+#~ msgstr "Genera una lista di discendenti della persona attiva"
+
+#~ msgid "Child of %s and %s is:"
+#~ msgstr "I figli di %s e %s sono:"
+
+#~ msgid "Children of %s and %s are:"
+#~ msgstr "I figli di %s e %s sono:"
+
+#~ msgid "- %s Born: %s %s Died: %s %s"
+#~ msgstr "- %s, nato/a %s (%s), deceduto/a: %s (%s)"
+
+#~ msgid "- %s Born: %s %s Died: %s"
+#~ msgstr "- %s nato/a %s (%s), deceduto/a %s"
+
+#~ msgid "- %s Born: %s %s"
+#~ msgstr "- %s, nato/a %s (%s)"
+
+#~ msgid "- %s Born: %s Died: %s %s"
+#~ msgstr "- %s, nato/a %s, deceduto/a %s (%s)"
+
+#~ msgid "- %s Born: %s Died: %s"
+#~ msgstr "- %s, nato/a %s, deceduto/a %s"
+
+#~ msgid "- %s Born: %s"
+#~ msgstr "- %s, nato/a %s"
+
+#~ msgid "- %s Died: %s %s"
+#~ msgstr "- %s, deceduto/a %s (%s)"
+
+#~ msgid "- %s Died: %s"
+#~ msgstr "- %s, deceduto/a %s"
+
+#~ msgid "- %s"
+#~ msgstr "- %s"
+
+#~ msgid "He"
+#~ msgstr "Egli"
+
+#~ msgid "She"
+#~ msgstr "Ella"
+
+#~ msgid " is the same person as [%s]."
+#~ msgstr " e [%s] sono la stessa persona."
+
+#~ msgid "Notes for %s"
+#~ msgstr "Note per %s"
+
+#~ msgid " was born on %s in %s."
+#~ msgstr " nacque il %s in quel di %s."
+
+#~ msgid " was born on %s."
+#~ msgstr " nacque il %s."
+
+#~ msgid " was born in the year %s in %s."
+#~ msgstr " nacque nell'anno %s in quel di %s."
+
+#~ msgid " was born in the year %s."
+#~ msgstr " nacque nell'anno %s."
+
+#~ msgid " was born in %s."
+#~ msgstr " nacque in quel di %s."
+
+#~ msgid "."
+#~ msgstr "."
+
+#~ msgid "  %s died on %s in %s"
+#~ msgstr " %s morì il %s in quel di %s"
+
+#~ msgid "  %s died on %s"
+#~ msgstr " %s morì in quel di %s"
+
+#~ msgid "  %s died in %s in %s"
+#~ msgstr " %s morì nel %s in quel di %s"
+
+#~ msgid "  %s died in %s"
+#~ msgstr " %s morì in quel di %s"
+
+#~ msgid "  And %s was buried on %s in %s."
+#~ msgstr " Inoltre %s fu sepellito il %s in quel di %s."
+
+#~ msgid "  And %s was buried on %s."
+#~ msgstr " Inoltre %s fu sepellito il %s."
+
+#~ msgid "  And %s was buried in %s."
+#~ msgstr " Inoltre %s fu sepellito in quel di %s."
+
+#~ msgid " %s was the son of %s and %s."
+#~ msgstr " %s fu figlio di %s e %s."
+
+#~ msgid " %s was the son of %s."
+#~ msgstr " %s fu figlio di %s."
+
+#~ msgid " %s was the daughter of %s and %s."
+#~ msgstr " %s fu figlia di %s e %s."
+
+#~ msgid " %s was the daughter of %s."
+#~ msgstr " %s fu figlia di %s."
+
+#~ msgid ","
+#~ msgstr ","
+
+#~ msgid "and he"
+#~ msgstr "e"
+
+#~ msgid "and she"
+#~ msgstr "e"
+
+#~ msgid "  %s married %s"
+#~ msgstr " %s sposò %s"
+
+#~ msgid "  %s married %s in %s"
+#~ msgstr " %s sposò %s in quel di %s"
+
+#~ msgid "  %s married %s on %s"
+#~ msgstr " %s sposò %s il %s"
+
+#~ msgid "  %s married %s on %s in %s"
+#~ msgstr " %s sposò %s il %s in quel di %s"
+
+#~ msgid "  %s married"
+#~ msgstr " %s si sposò"
+
+#~ msgid "  %s married in %s"
+#~ msgstr " %s si sposò in quel di %s"
+
+#~ msgid "  %s married on %s"
+#~ msgstr " %s si sposò il %s"
+
+#~ msgid "  %s married on %s in %s"
+#~ msgstr " %s si sposò il %s in quel di %s"
+
+#~ msgid "Detailed Ancestral Report for %s"
+#~ msgstr "Resoconto dettagliato ascendenza per %s"
+
+#~ msgid "Gramps - Ahnentafel Report"
+#~ msgstr "Gramps - Resoconto Ahnentafel"
+
+#~ msgid "Use first names instead of pronouns"
+#~ msgstr "Usa i nomi al posto dei pronomi"
+
+#~ msgid "Use full dates instead of only the year"
+#~ msgstr "Usa la data completa e non solo l'anno"
+
+#~ msgid "List children"
+#~ msgstr "Elenca i figli"
+
+#~ msgid "Include notes"
+#~ msgstr "Includi le note"
+
+#~ msgid "Replace Place with ______"
+#~ msgstr "Sostituisci i luoghi con ______"
+
+#~ msgid "Replace Dates with ______"
+#~ msgstr "Sostituisci le date con ______"
+
+#~ msgid "Compute age"
+#~ msgstr "Calcola l'età"
+
+#~ msgid "Omit duplicate ancestors"
+#~ msgstr "Ometti gli ascendenti duplicati"
+
+#~ msgid "Add descendant reference in child list"
+#~ msgstr "Aggiungi un riferimento ai discendenti nell'elenco dei figli"
+
+#~ msgid "Include Photo/Images from Gallery"
+#~ msgstr "Includi le foto/immagini dalla galleria"
+
+#~ msgid "Content"
+#~ msgstr "Indice"
+
+#~ msgid "Detailed Ancestral Report"
+#~ msgstr "Resoconto dettagliato ascendenza"
+
+#~ msgid "Detailed Ancestral Report for GRAMPS Book"
+#~ msgstr "Resoconto dettagliato ascendenza per libro GRAMPS"
+
+#~ msgid "Produces a detailed ancestral report"
+#~ msgstr "Produce un resoconto dettagliato dell'ascendenza"
+
+#~ msgid " at the age of %d days"
+#~ msgstr " all'età di %d giorni"
+
+#~ msgid " at the age of %d months"
+#~ msgstr " all'età di %d mesi"
+
+#~ msgid " at the age of %d years"
+#~ msgstr " all'età di %d anni"
+
+#~ msgid " at the age of %d day"
+#~ msgstr " all'età di %d giorno"
+
+#~ msgid " at the age of %d month"
+#~ msgstr " all'età di %d mese"
+
+#~ msgid " at the age of %d year"
+#~ msgstr " all'età di %d anno"
+
+#~ msgid "Detailed Descendant Report for %s"
+#~ msgstr "Resoconto dettagliato discendeza per %s"
+
+#~ msgid "Omit duplicate people"
+#~ msgstr "Ometti persone duplicate"
+
+#~ msgid "Detailed Descendant Report"
+#~ msgstr "Resoconto dettagliato discendenza"
+
+#~ msgid "Detailed Descendant Report for GRAMPS Book"
+#~ msgstr "Resoconto dettagliato discendeza per libro GRAMPS"
+
+#~ msgid "Produces a detailed descendant report"
+#~ msgstr "Produce un resoconto dettagliato della discendenza"
+
+#~ msgid "Event comparison filter selection"
+#~ msgstr "Selezione filtro confronto eventi"
+
+#~ msgid "Entire Database"
+#~ msgstr "Database completo"
+
+#~ msgid "No matches were found"
+#~ msgstr "Nessuna corrispondenza trovata"
+
+#~ msgid "Event Comparison"
+#~ msgstr "Confronto eventi"
+
+#~ msgid "Death"
+#~ msgstr "Decesso"
+
+#~ msgid "Compare individual events"
+#~ msgstr "Confronta eventi individuali"
+
+#~ msgid ""
+#~ "Aids in the analysis of data by allowing the development of custom "
+#~ "filters that can be applied to the database to find similar events"
+#~ msgstr ""
+#~ "Aiuta nell'analisi dei dati permettendo lo sviluppo di filtri "
+#~ "personalizzati da applicare al databse per trovare eventi simili"
+
+#~ msgid "Husband"
+#~ msgstr "Marito"
+
+#~ msgid "Wife"
+#~ msgstr "Moglie"
+
+#~ msgid "Spouse"
+#~ msgstr "Coniuge"
+
+#~ msgid "Family Group Report"
+#~ msgstr "Resoconto gruppo famigliare"
+
+#~ msgid "Children"
+#~ msgstr "Figli"
+
+#~ msgid "Family Group Report for %s"
+#~ msgstr "Resoconto gruppo famigliare per %s"
+
+#~ msgid "Save Family Group Report"
+#~ msgstr "Salvataggio resoconto gruppo famigliare"
+
+#~ msgid "Family Group Report for GRAMPS Book"
+#~ msgstr "Resoconto gruppo famigliare per libro GRAMPS"
+
+#~ msgid "The style used for the text related to the children."
+#~ msgstr "Lo stile usato per il testo relativo ai figli."
+
+#~ msgid "The style used for the parent's name"
+#~ msgstr "Lo stile usato per il nome del genitore"
+
+#~ msgid ""
+#~ "Creates a family group report, showing information on a set of parents "
+#~ "and their children."
+#~ msgstr ""
+#~ "Crea il resoconto per un gruppo famigliare mostrando le informazioni su "
+#~ "un insieme di genitori ed i loro figli."
+
+#~ msgid "Five Generation Fan Chart for %s"
+#~ msgstr "Grafico a ventaglio di cinque generazioni per %s"
+
+#~ msgid "The style used for the title."
+#~ msgstr "Lo stile usato per i titoli."
+
+#~ msgid "Fan Chart"
+#~ msgstr "Grafico a ventaglio"
+
+#~ msgid "Fan Chart for %s"
+#~ msgstr "Grafico a ventaglio per %s"
+
+#~ msgid "Save Fan Chart"
+#~ msgstr "Salva grafico a ventaglio"
+
+#~ msgid "Fan Chart for GRAMPS Book"
+#~ msgstr "Grafico a ventaglio per libro GRAMPS"
+
+#~ msgid "Produces a five generation fan chart"
+#~ msgstr "Produce un grafico a ventaglio rappresentante cinque generazioni"
+
+#~ msgid "Select..."
+#~ msgstr "Seleziona..."
+
+#~ msgid "Select person from a list"
+#~ msgstr "Selezionare una persona dall'elenco"
+
+#~ msgid "Select Person"
+#~ msgstr "Seleziona persona"
+
+#~ msgid "Not a valid person"
+#~ msgstr "Persona non valida"
+
+#~ msgid "User defined filters"
+#~ msgstr "Filtri definiti dall'utente"
+
+#~ msgid "Define filter"
+#~ msgstr "Definizione filtro"
+
+#~ msgid "Add Rule"
+#~ msgstr "Aggiungi regola"
+
+#~ msgid "Edit Rule"
+#~ msgstr "Modifica regola"
+
+#~ msgid "Include original person"
+#~ msgstr "Includi persona originale"
+
+#~ msgid "Rule Name"
+#~ msgstr "Nome regola"
+
+#~ msgid "No rule selected"
+#~ msgstr "Nessuna regola selezionata"
+
+#~ msgid "Filter Test"
+#~ msgstr "Test filtro"
+
+#~ msgid "Custom Filter Editor"
+#~ msgstr "Editor filtri personalizzati"
+
+#~ msgid "Utilities"
+#~ msgstr "Utilità"
+
+#~ msgid ""
+#~ "The Custom Filter Editor builds custom filters that can be used to select "
+#~ "people included in reports, exports, and other utilities."
+#~ msgstr ""
+#~ "L'editor di filtri personalizzato serve per costruire dei filtri che "
+#~ "possono essere usati per selezionare le persone da comprendere nei "
+#~ "resoconti, nei file esportati e nelle altre utilità."
+
+#~ msgid "System Filter Editor"
+#~ msgstr "Editor filtri di sistema"
+
+#~ msgid ""
+#~ "The System Filter Editor builds custom filters that can be used by anyone "
+#~ "on the system to select people included in reports, exports, and other "
+#~ "utilities."
+#~ msgstr ""
+#~ "L'editor dei filtri di sistema serve per costruire dei filtri che possono "
+#~ "essere usati da qualsiasi persona del sistema per selezionare le persone "
+#~ "da comprendere nei resoconti, nei file esportati e nelle altre utilità."
+
+#~ msgid "Generation No. %d"
+#~ msgstr "Generazione %d"
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
+#~ "(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s nacque il %(birth_date)s in quel di %"
+#~ "(birth_place)s%(birth_endnotes)s e morì il %(death_date)s in quel di %"
+#~ "(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s nacque il %(birth_date)s in quel di %"
+#~ "(birth_place)s%(birth_endnotes)s e morì il %(death_date)s%(death_endnotes)"
+#~ "s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s %"
+#~ "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s nacque il %(birth_date)s in quel di %"
+#~ "(birth_place)s %(birth_endnotes)s e morì in quel di %(death_place)s%"
+#~ "(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s nacque il %(birth_date)s in quel di %"
+#~ "(birth_place)s%(birth_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
+#~ "died %(death_date)s in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s nacque il %(birth_date)s%(birth_endnotes)s e "
+#~ "morì il %(death_date)s in quel di %(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
+#~ "died %(death_date)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s nacque il %(birth_date)s%(birth_endnotes)s e "
+#~ "morì il %(death_date)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
+#~ "died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s nacque %(birth_date)s%(birth_endnotes)s e morì "
+#~ "in quel di%(death_place)s%(death_endnotes)s."
+
+#~ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s nacque il %(birth_date)s%(birth_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
+#~ "and died %(death_date)s in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s nacque in quel di %(birth_place)s%"
+#~ "(birth_endnotes)s e morì il %(death_date)s in quel di %(death_place)s%"
+#~ "(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
+#~ "and died %(death_date)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s nacque in quel di %(birth_place)s%"
+#~ "(birth_endnotes)s e morì il %(death_date)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
+#~ "and died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s nacque in quel di %(birth_place)s%"
+#~ "(birth_endnotes)s e morì in quel di %(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s nacque in quel di %(birth_place)s%"
+#~ "(birth_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
+#~ "(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s morì %(death_date)s in quel di %(death_place)s%"
+#~ "(death_endnotes)s."
+
+#~ msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
+#~ msgstr "%(male_name)s%(endnotes)s morì %(death_date)s%(death_endnotes)s."
+
+#~ msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s morì in quel di %(death_place)s%(death_endnotes)"
+#~ "s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
+#~ "(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s nacque il %(birth_date)s in quel di %"
+#~ "(birth_place)s%(birth_endnotes)s e morì il %(death_date)s in quel di %"
+#~ "(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s nacque il %(birth_date)s in quel di %"
+#~ "(birth_place)s%(birth_endnotes)s e morì il %(death_date)s%(death_endnotes)"
+#~ "s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s nacque il %(birth_date)s in quel di %"
+#~ "(birth_place)s%(birth_endnotes)s e morì in quel di %(death_place)s%"
+#~ "(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s %"
+#~ "(birth_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s nacque il %(birth_date)s in quel di %"
+#~ "(birth_place)s %(birth_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
+#~ "and died %(death_date)s in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s nacque il %(birth_date)s%(birth_endnotes)s e "
+#~ "morì %(death_date)s in quel di %(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
+#~ "and died %(death_date)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s nacque il %(birth_date)s%(birth_endnotes)s e "
+#~ "morì il %(death_date)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
+#~ "and died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s nacque il %(birth_date)s%(birth_endnotes)s e "
+#~ "morì in quel di %(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s nacque il %(birth_date)s%(birth_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
+#~ "s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s nacque in quel di %(birth_place)s%"
+#~ "(birth_endnotes)s e morì il %(death_date)s in quel di %(death_place)s%"
+#~ "(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
+#~ "s, and died %(death_date)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s nacque in quel di %(birth_place)s%"
+#~ "(birth_endnotes)s e morì il %(death_date)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
+#~ "s, and died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s nacque in quel di %(birth_place)s%"
+#~ "(birth_endnotes)s e morì in quel di %(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s nacque in quel di %(birth_place)s%"
+#~ "(birth_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
+#~ "(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s morì il %(death_date)s in quel di %"
+#~ "(death_place)s%(death_endnotes)s."
+
+#~ msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s morì il %(death_date)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s morì in quel di %(death_place)s%"
+#~ "(death_endnotes)s."
+
+#~ msgid "Endnotes"
+#~ msgstr "Note"
+
+#~ msgid "Text:"
+#~ msgstr "Testo:"
+
+#~ msgid "Comments:"
+#~ msgstr "Commenti:"
+
+#~ msgid "Notes for %(person)s:"
+#~ msgstr "Note per %(person)s:"
+
+#~ msgid "More about %(person_name)s:"
+#~ msgstr "Altre informazioni su %(person_name)s:"
+
+#~ msgid "Name %(count)d: %(name)s%(endnotes)s"
+#~ msgstr "Nome %(count)d: %(name)s%(endnotes)s"
+
+#~ msgid "%(event_name)s: %(date)s, %(place)s%(endnotes)s"
+#~ msgstr "%(event_name)s: %(date)s, %(place)s%(endnotes)s"
+
+#~ msgid "%(event_name)s: %(date)s%(endnotes)s"
+#~ msgstr "%(event_name)s: %(date)s%(endnotes)s"
+
+#~ msgid "%(event_name)s: %(place)s%(endnotes)s"
+#~ msgstr "%(event_name)s: %(place)s%(endnotes)s"
+
+#~ msgid "He married %(spouse)s %(date)s in %(place)s%(endnotes)s."
+#~ msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+
+#~ msgid "She married %(spouse)s %(date)s in %(place)s%(endnotes)s."
+#~ msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+
+#~ msgid "He married %(spouse)s %(date)s%(endnotes)s."
+#~ msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+
+#~ msgid "She married %(spouse)s in %(place)s%(endnotes)s."
+#~ msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+
+#~ msgid "He married %(spouse)s in %(place)s%(endnotes)s."
+#~ msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+
+#~ msgid "He married %(spouse)s%(endnotes)s."
+#~ msgstr "Sposò %(spouse)s%(endnotes)s."
+
+#~ msgid "She married %(spouse)s%(endnotes)s."
+#~ msgstr "Sposò %(spouse)s%(endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s nacque il %(birth_date)s in quel di %"
+#~ "(birth_place)s%(birth_endnotes)s e morì in quel di %(death_place)s%"
+#~ "(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s. "
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s nacque il %(birth_date)s in quel di %"
+#~ "(birth_place)s%(birth_endnotes)s. "
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
+#~ msgstr "%(male_name)s%(endnotes)s nacque %(birth_date)s%(birth_endnotes)s. "
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s nacque in quel di %(birth_place)s%"
+#~ "(birth_endnotes)s. "
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s. "
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s nacque il %(birth_date)s in quel di %"
+#~ "(birth_place)s%(birth_endnotes)s. "
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s nacque il %(birth_date)s%(birth_endnotes)s. "
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
+#~ "s. "
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s nacque in quel di %(birth_place)s%"
+#~ "(birth_endnotes)s. "
+
+#~ msgid "He was the son of %(father)s and %(mother)s."
+#~ msgstr "Fu figlio di %(father)s e %(mother)s."
+
+#~ msgid "He was the son of %(mother)s."
+#~ msgstr "Fu figlio di %(mother)s."
+
+#~ msgid "He was the son of %(father)s."
+#~ msgstr "Fu figlio di %(father)s."
+
+#~ msgid "She was the daughter of %(father)s and %(mother)s."
+#~ msgstr "Fu figlia di %(father)s e %(mother)s."
+
+#~ msgid "She was the daughter of %(mother)s."
+#~ msgstr "Fu figlia di %(mother)s."
+
+#~ msgid "She was the daughter of %(father)s."
+#~ msgstr "Fu figlia di %(father)s."
+
+#~ msgid "FTM Style Ancestral Report"
+#~ msgstr "Resoconto ascendenza stile FTM"
+
+#~ msgid "FTM Style Ancestral Report for %s"
+#~ msgstr "Resoconto ascendenza stile FTM per %s"
+
+#~ msgid "FTM Style Ancestor Report"
+#~ msgstr "Resoconto ascendenti stile FTM"
+
+#~ msgid "FTM Style Ancestor Report for GRAMPS Book"
+#~ msgstr "Resoconto ascendenza stile FTM per libro GRAMPS"
+
+#~ msgid "Produces a textual ancestral report similar to Family Tree Maker."
+#~ msgstr ""
+#~ "Produce un resoconto testuale dell'ascendenza simile a quello di Family "
+#~ "Tree Maker."
+
+#~ msgid "More about %(husband)s and %(wife)s:"
+#~ msgstr "Altre informazioni su %(husband)s e %(wife)s:"
+
+#~ msgid "Children of %(person_name)s and %(spouse_name)s are:"
+#~ msgstr "I figli di %(person_name)s e %(spouse_name)s sono:"
+
+#~ msgid "Children of %(person_name)s are:"
+#~ msgstr "I figli di %(person_name)s sono:"
+
+#~ msgid "%(male_name)s%(endnotes)s."
+#~ msgstr "%(male_name)s%(endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s nacque il %(birth_date)s in quel di %"
+#~ "(birth_place)s%(birth_endnotes)s."
+
+#~ msgid "%(female_name)s%(endnotes)s."
+#~ msgstr "%(female_name)s%(endnotes)s."
+
+#~ msgid "FTM Style Descendant Report"
+#~ msgstr "Resoconto discendenza stile FTM"
+
+#~ msgid "FTM Style Descendant Report for %s"
+#~ msgstr "Resoconto discendenza stile FTM per %s"
+
+#~ msgid "Save FTM Style Descendant Report"
+#~ msgstr "Salvataggio resoconto discendenza stile FTM"
+
+#~ msgid "FTM Style Descendant Report for GRAMPS Book"
+#~ msgstr "Resoconto discendenza stile FTM per libro GRAMPS"
+
+#~ msgid "Produces a textual descendant report similar to Family Tree Maker."
+#~ msgstr ""
+#~ "Produce un resoconto testuale della discendeza simile a quello di Family "
+#~ "Tree Maker."
+
+#~ msgid "Single (scaled)"
+#~ msgstr "Singola (scalata)"
+
+#~ msgid "Single"
+#~ msgstr "Singola"
+
+#~ msgid "Multiple"
+#~ msgstr "Multiple"
+
+#~ msgid "Relationship Graph"
+#~ msgstr "Grafico relazioni"
+
+#~ msgid "Graphviz File"
+#~ msgstr "File Graphviz"
+
+#~ msgid "People with common ancestor with %s"
+#~ msgstr "Persone il cui ascendente comune è %s"
+
+#~ msgid "Descendants <- Ancestors"
+#~ msgstr "Discendente <- Ascendente"
+
+#~ msgid "Descendants -> Ancestors"
+#~ msgstr "Discendente -> Ascendente"
+
+#~ msgid "Descendants <-> Ancestors"
+#~ msgstr "Discendente <-> Ascendente"
+
+#~ msgid "Descendants - Ancestors"
+#~ msgstr "Discendente - Ascendente"
+
+#~ msgid "TrueType"
+#~ msgstr "TrueType"
+
+#~ msgid "GraphViz Options"
+#~ msgstr "Opzioni GraphViz"
+
+#~ msgid "Font Options"
+#~ msgstr "Opzioni carattere"
+
+#~ msgid "Choose the font family."
+#~ msgstr "Scegliere la famiglia dei tipi di carattere."
+
+#~ msgid "Arrowhead Options"
+#~ msgstr "Opzioni punta freccia"
+
+#~ msgid "Choose the direction that the arrows point."
+#~ msgstr "Scegliere la direzione puntata dalle frecce."
+
+#~ msgid "Include Birth, Marriage and Death Dates"
+#~ msgstr "Includi date di nascita, matrimonio e decesso"
+
+#~ msgid ""
+#~ "Include the dates that the individual was born, got married and/or died "
+#~ "in the graph labels."
+#~ msgstr ""
+#~ "Include nelle etichette del nodo del grafico la data in cui la persona è "
+#~ "nata, si è sposata ed è deceduta."
+
+#~ msgid "Limit dates to years only"
+#~ msgstr "Limita le date al solo anno"
+
+#~ msgid ""
+#~ "Prints just dates' year, neither month or day nor date approximation or "
+#~ "interval are shown."
+#~ msgstr ""
+#~ "Stampa solo l'anno delle date, senza mostrare né il mese o il giorno, né "
+#~ "l'approssimazione o l'intervallo."
+
+#~ msgid "Include URLs"
+#~ msgstr "Includi URL"
+
+#~ msgid ""
+#~ "Include a URL in each graph node so that PDF and imagemap files can be "
+#~ "generated that contain active links to the files generated by the "
+#~ "'Generate Web Site' report."
+#~ msgstr ""
+#~ "Include, per ogni nodo del grafico, un'URL affinché i file PDF e imagemap "
+#~ "possano essere generati includendo dei collegamenti attivi verso i file "
+#~ "prodotti con il resoconto «Genera sito web»."
+
+#~ msgid "Colorize Graph"
+#~ msgstr "Colora grafico"
+
+#~ msgid ""
+#~ "Males will be outlined in blue, females will be outlined in pink.  If the "
+#~ "sex of an individual is unknown it will be outlined in black."
+#~ msgstr ""
+#~ "I maschi saranno evidenziati con il blu, le femmine con il rosa. Se il "
+#~ "sesso di una persona non è noto, sarà evidenziato con il nero."
+
+#~ msgid "Indicate non-birth relationships with dashed lines"
+#~ msgstr "Indica relazioni non-nascita con tratteggio"
+
+#~ msgid "Non-birth relationships will show up as dashed lines in the graph."
+#~ msgstr ""
+#~ "Le relazioni che non siano di nascita appariranno sul grafico come linee "
+#~ "tratteggiate."
+
+#~ msgid "Show family nodes"
+#~ msgstr "Mostra nodi di famiglia"
+
+#~ msgid "Families will show up as ellipses, linked to parents and children."
+#~ msgstr ""
+#~ "Le famiglie appariranno come ellissi collegati ai genitori ed ai figli."
+
+#~ msgid "Page Options"
+#~ msgstr "Opzioni pagina"
+
+#~ msgid "Top & Bottom Margins"
+#~ msgstr "Margini sup. e inf."
+
+#~ msgid "Left & Right Margins"
+#~ msgstr "Margini des. e sin."
+
+#~ msgid "Number of Horizontal Pages"
+#~ msgstr "Numero pagine oriz."
+
+#~ msgid ""
+#~ "GraphViz can create very large graphs by spreading the graph across a "
+#~ "rectangular array of pages. This controls the number pages in the array "
+#~ "horizontally."
+#~ msgstr ""
+#~ "GraphViz può creare grafici molto grandi distribuendoli su una schiera "
+#~ "rettangolare di pagine. Questo controlla il numero di pagine della "
+#~ "schiera nel senso orizzontale."
+
+#~ msgid "Number of Vertical Pages"
+#~ msgstr "Numero pagine vert."
+
+#~ msgid ""
+#~ "GraphViz can create very large graphs by spreading the graph across a "
+#~ "rectangular array of pages. This controls the number pages in the array "
+#~ "vertically."
+#~ msgstr ""
+#~ "GraphViz può creare grafici molto grandi distribuendoli su una schiera "
+#~ "rettangolare di pagine. Questo controlla il numero di pagine della "
+#~ "schiera nel senso verticale."
+
+#~ msgid "Generate print output"
+#~ msgstr "Genera uscita di stampa"
+
+#~ msgid ""
+#~ "Generates relationship graphs, currently only in GraphViz format. "
+#~ "GraphViz (dot) can transform the graph into postscript, jpeg, png, vrml, "
+#~ "svg, and many other formats. For more information or to get a copy of "
+#~ "GraphViz, goto http://www.graphviz.org"
+#~ msgstr ""
+#~ "Genera dei grafici sulle relazioni, al momento solo in formato Graphviz. "
+#~ "Graphviz (dot) può generare il grafico nei formati postscript, jpeg, png, "
+#~ "vrml, svg e molti altri. Per maggiori informazioni o per ottenere una "
+#~ "copia di Graphviz, vedere http://www.graphviz.org"
+
+#~ msgid "%(date)s in %(place)s."
+#~ msgstr "%(date)s in quel di %(place)s."
+
+#~ msgid "Alternate Parents"
+#~ msgstr "Genitori alternativi"
+
+#~ msgid "Alternate Names"
+#~ msgstr "Nomi alternativi"
+
+#~ msgid "Marriages/Children"
+#~ msgstr "Matrimoni/figli"
+
+#~ msgid "Individual Facts"
+#~ msgstr "Eventi personali"
+
+#~ msgid "Summary of %s"
+#~ msgstr "Riassunto di %s"
+
+#~ msgid "Male"
+#~ msgstr "maschio"
+
+#~ msgid "Female"
+#~ msgstr "femmina"
+
+#~ msgid "Include Source Information"
+#~ msgstr "Includi le informazioni sulle fonti"
+
+#~ msgid "Complete Individual Report"
+#~ msgstr "Resoconto individuale completo"
+
+#~ msgid "Save Complete Individual Report"
+#~ msgstr "Salvataggio resoconto individuale completo"
+
+#~ msgid "Individual Complete"
+#~ msgstr "Resoconto individuale"
+
+#~ msgid "Individual Complete Report for GRAMPS Book"
+#~ msgstr "Resoconto individuale completo per libro GRAMPS"
+
+#~ msgid "The style used for category labels."
+#~ msgstr "Lo stile usato per le etichette delle categorie."
+
+#~ msgid "The style used for the spouse's name."
+#~ msgstr "Lo stile usato per il nome del coniuge."
+
+#~ msgid "Produces a complete report on the selected people."
+#~ msgstr "Produce un resoconto completo delle persone selezionate."
+
+#~ msgid "Individual Summary"
+#~ msgstr "Riassunto individuale"
+
+#~ msgid "Individual Summary for %s"
+#~ msgstr "Riassunto individuale per %s"
+
+#~ msgid "Save Individual Summary"
+#~ msgstr "Salvataggio riassunto individuale"
+
+#~ msgid "Individual Summary Report for GRAMPS Book"
+#~ msgstr "Resoconto riassuntivo individuale per libro GRAMPS"
+
+#~ msgid "Produces a detailed report on the selected person."
+#~ msgstr "Produce un resoconto dettagliato delle persone selezionate."
+
+#~ msgid "Medium"
+#~ msgstr "Media"
+
+#~ msgid "Determining possible merges"
+#~ msgstr "Determinazione possibili fusioni"
+
+#~ msgid "Potential Merges"
+#~ msgstr "Fusioni potenziali"
+
+#~ msgid "First Person"
+#~ msgstr "Prima persona"
+
+#~ msgid "Rating"
+#~ msgstr "Punteggio"
+
+#~ msgid "Second Person"
+#~ msgstr "Seconda persona"
+
+#~ msgid "Find possible duplicate people"
+#~ msgstr "Trova possibili persone duplicate"
+
+#~ msgid ""
+#~ "Searches the entire database, looking for individual entries that may "
+#~ "represent the same person."
+#~ msgstr ""
+#~ "Ricerca nell'intero database degli elementi individuali che possano "
+#~ "rappresentare la stessa persona."
+
+#~ msgid "No modifications made"
+#~ msgstr "Nessuna modifica apportata"
+
+#~ msgid "No titles or nicknames were found"
+#~ msgstr "Non è stato trovato nessun titolo o soprannome"
+
+#~ msgid "Name and title extraction tool"
+#~ msgstr "Strumento di estrazione nomi e titoli"
+
+#~ msgid "Select"
+#~ msgstr "Seleziona"
+
+#~ msgid "Nickname"
+#~ msgstr "Soprannome"
+
+#~ msgid "Extract information from names"
+#~ msgstr "Estrai informazioni dai nomi"
+
+#~ msgid ""
+#~ "Searches the entire database and attempts to extract titles and nicknames "
+#~ "that may be embedded in a person's given name field."
+#~ msgstr ""
+#~ "Esegue una ricerca all'interno dell'intero database nel tentativo di "
+#~ "estrarre i titoli ed i sporannomi che possano essere presenti nel campo "
+#~ "nome di una persona."
+
+#~ msgid "Import from GEDCOM"
+#~ msgstr "Importa da GEDCOM"
+
+#~ msgid "Windows 9x file system"
+#~ msgstr "Filesystem Windows 9x"
+
+#~ msgid "Windows NT file system"
+#~ msgstr "Filesystem Windows NT"
+
+#~ msgid "CD ROM"
+#~ msgstr "CD ROM"
+
+#~ msgid "Networked Windows file system"
+#~ msgstr "Filesystem di rete Windows"
+
+#~ msgid "GEDCOM import status"
+#~ msgstr "Stato importazione GEDCOM"
+
+#~ msgid "%s could not be opened\n"
+#~ msgstr "Impossibile aprire %s\n"
+
+#~ msgid ""
+#~ "Windows style path names for images will use the following mount points "
+#~ "to try to find the images. These paths are based on Windows compatible "
+#~ "file systems available on this system:\n"
+#~ "\n"
+#~ msgstr ""
+#~ "I nomi dei percorsi per le immagini in stile Windows useranno i seguenti "
+#~ "punti di mount per trovare le immagini. Questi percorsi si basano sul "
+#~ "filesystem Windows compatibile disponibile per questo sistema:\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "Images that cannot be found in the specfied path in the GEDCOM file will "
+#~ "be searched for in the same directory in which the GEDCOM file exists (%"
+#~ "s).\n"
+#~ msgstr ""
+#~ "Le immagini non trovate al percorso specificato nel file GEDCOM saranno "
+#~ "cercate all'interno della stessa directory nella quale il file GEDCOM "
+#~ "risiede (%s).\n"
+
+#~ msgid "GEDCOM file ended unexpectedly"
+#~ msgstr "Terminazione inaspettata del file GEDCOM"
+
+#~ msgid "Warning: line %d was not understood, so it was ignored."
+#~ msgstr "Attenzione: la riga %d è stata ignorata perché incomprensibile."
+
+#~ msgid "Import Complete: %d seconds"
+#~ msgstr "Importazione completata: %d secondi"
+
+#~ msgid "Warning: could not import %s"
+#~ msgstr "Attenzione: impossibile importare %s"
+
+#~ msgid ""
+#~ "\tThe following paths were tried:\n"
+#~ "\t\t"
+#~ msgstr ""
+#~ "\tSono stati esaminati i seguenti percorsi:\n"
+#~ "\t\t"
+
+#~ msgid "Import from GRAMPS package"
+#~ msgstr "Importa da pacchetto GRAMPS"
+
+#~ msgid "Could not create temporary directory %s"
+#~ msgstr "Impossibile creare la directory temporanea %s"
+
+#~ msgid "Temporary directory %s is not writable"
+#~ msgstr "La directory temporanea %s non è scrivibile"
+
+#~ msgid "Error extracting into %s"
+#~ msgstr "Errore durante l'estrazione verso %s"
+
+#~ msgid "Relationship calculator"
+#~ msgstr "Calcolatrice relazioni"
+
+#~ msgid "Birth Date"
+#~ msgstr "Data di nascita"
+
+#~ msgid "Their common ancestor is %s."
+#~ msgstr "Il loro ascendente comune è %s."
+
+#~ msgid "Their common ancestors are %s and %s."
+#~ msgstr "I loro ascendenti comuni sono %s e %s."
+
+#~ msgid "Their common ancestors are : "
+#~ msgstr "I loro ascendenti comuni sono: "
+
+#~ msgid "%(person)s and %(active_person)s are not related."
+#~ msgstr "%(person)s e %(active_person)s non sono in relazione."
+
+#~ msgid "%(person)s is the %(relationship)s of %(active_person)s."
+#~ msgstr "%(person)s è %(relationship)s di %(active_person)s."
+
+#~ msgid "Calculates the relationship between two people"
+#~ msgstr "Calcola la relazione fra due persone"
+
+#~ msgid "Descendant family members of %s"
+#~ msgstr "Membri della famiglia discendenti da %s"
+
+#~ msgid "Show family as a stack"
+#~ msgstr "Mostra famiglia come pila"
+
+#~ msgid "The main individual is shown along with their spouses in a stack."
+#~ msgstr ""
+#~ "L'individuo principale è visualizzato assieme al coniuge uno sopra "
+#~ "l'altro."
+
+#~ msgid "Include IDs"
+#~ msgstr "Includi ID"
+
+#~ msgid "Include individual and family IDs."
+#~ msgstr "Include l'ID degli individui e delle famiglie."
+
+#~ msgid "Place/cause when no date"
+#~ msgstr "Luogo/causa se data assente"
+
+#~ msgid ""
+#~ "When no birth, marriage, or death date is available, the correspondent "
+#~ "place field (or cause field when blank) will be used."
+#~ msgstr ""
+#~ "Quando non è disponibile una data di nascita, matrimonio o decesso, sarà "
+#~ "usato il campo luogo (o causa quando vuoto) corrispondente."
+
+#~ msgid "Reorder gramps IDs"
+#~ msgstr "Riordina ID GRAMPS"
+
+#~ msgid "Reorders the gramps IDs according to gramps' default rules."
+#~ msgstr "Riordina gli ID di GRAMPS secondo le regole predefinite in GRAMPS."
+
+#~ msgid "The style used for the subtitle."
+#~ msgstr "Lo stile usato per i sottotitoli."
+
+#~ msgid "The style used for the footer."
+#~ msgstr "Lo stile usato per i pié di pagina."
+
+#~ msgid "Fit page"
+#~ msgstr "Adatta pagina"
+
+#~ msgid "%d cm"
+#~ msgstr "%dcm"
+
+#~ msgid "Title of the Book"
+#~ msgstr "Titolo del libro"
+
+#~ msgid "Subtitle of the Book"
+#~ msgstr "Sottotitolo del libro"
+
+#~ msgid "Copyright %d %s"
+#~ msgstr "Copyright %d %s"
+
+#~ msgid "Simple Book Title"
+#~ msgstr "Titolo libro semplificato"
+
+#~ msgid "Title Page for GRAMPS Book"
+#~ msgstr "Pagina titolo per libro GRAMPS"
+
+#~ msgid "Subtitle"
+#~ msgstr "Sottotitolo"
+
+#~ msgid "Footer"
+#~ msgstr "Pié di pagina"
+
+#~ msgid "From gallery..."
+#~ msgstr "Dalla galleria..."
+
+#~ msgid "From file..."
+#~ msgstr "Dal file..."
+
+#~ msgid "Preview"
+#~ msgstr "Anteprima"
+
+#~ msgid "Image"
+#~ msgstr "Immagine"
+
+#~ msgid "Select an Object"
+#~ msgstr "Selezionare un oggetto"
+
+#~ msgid "Title Page"
+#~ msgstr "Titolo pagina"
+
+#~ msgid "Individuals"
+#~ msgstr "Individui"
+
+#~ msgid "Number of individuals"
+#~ msgstr "Numero di individui"
+
+#~ msgid "Individuals with incomplete names"
+#~ msgstr "Individui con nomi incompleti"
+
+#~ msgid "Individuals missing birth dates"
+#~ msgstr "Individui senza data di nascita"
+
+#~ msgid "Family Information"
+#~ msgstr "Informazioni sulle famiglie"
+
+#~ msgid "Number of families"
+#~ msgstr "Numero di famiglie"
+
+#~ msgid "Unique surnames"
+#~ msgstr "Cognomi univoci"
+
+#~ msgid "Individuals with media objects"
+#~ msgstr "Individui con oggetti multimediali"
+
+#~ msgid "Total number of media object references"
+#~ msgstr "Numero totale di riferimenti ad oggetti multimediali"
+
+#~ msgid "Number of unique media objects"
+#~ msgstr "Numero di oggetti multimediali univoci"
+
+#~ msgid "Total size of media objects"
+#~ msgstr "Dimensione totale degli oggetti multimediali"
+
+#~ msgid "bytes"
+#~ msgstr "byte"
+
+#~ msgid "Missing Media Objects"
+#~ msgstr "Oggetti multimediali mancanti"
+
+#~ msgid "Database summary"
+#~ msgstr "Riassunto database"
+
+#~ msgid "Summary of the database"
+#~ msgstr "Riassunto database"
+
+#~ msgid "View"
+#~ msgstr "Visualizza"
+
+#~ msgid "Provides a summary of the current database"
+#~ msgstr "Fornisce un riassunto del database attuale"
+
+#~ msgid "The style used for the person's name."
+#~ msgstr "Lo stile usato per il nome della persona."
+
+#~ msgid "The style used for the year labels."
+#~ msgstr "Lo stile usato per le etichette degli anni."
+
+#~ msgid "Timeline Graph"
+#~ msgstr "Grafico temporale"
+
+#~ msgid "Timeline Graph for %s"
+#~ msgstr "Grafico temporale per %s"
+
+#~ msgid "Timeline File"
+#~ msgstr "File grafico temporale"
+
+#~ msgid "Sort by"
+#~ msgstr "Ordina per"
+
+#~ msgid "Generates a timeline graph."
+#~ msgstr "Genera un grafico temporale."
+
+#~ msgid "Timeline Graph for GRAMPS Book"
+#~ msgstr "Grafico temporale per libro GRAMPS"
+
+#~ msgid "Database Verify"
+#~ msgstr "Verifica database"
+
+#~ msgid ""
+#~ "Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)"
+#~ "d.\n"
+#~ msgstr ""
+#~ "Battesimo antecedente la nascita: %(male_name)s nato il %(byear)d, "
+#~ "battezzato il %(bapyear)d.\n"
+
+#~ msgid ""
+#~ "Baptized before birth: %(female_name)s born %(byear)d, baptized %(bapyear)"
+#~ "d.\n"
+#~ msgstr ""
+#~ "Battesimo antecedente la nascita: %(female_name)s nata il %(byear)d, "
+#~ "battezzata il %(bapyear)d.\n"
+
+#~ msgid "Baptized late: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
+#~ msgstr ""
+#~ "Battesimo tardivo: %(male_name)s nato il %(byear)d, battezzato il %"
+#~ "(bapyear)d.\n"
+
+#~ msgid ""
+#~ "Baptized late: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n"
+#~ msgstr ""
+#~ "Battesimo tardivo: %(female_name)s nata il %(byear)d, battezzata il %"
+#~ "(bapyear)d.\n"
+
+#~ msgid ""
+#~ "Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
+#~ msgstr ""
+#~ "Sepoltura antecedente il decesso: %(male_name)s deceduto il %(dyear)d, "
+#~ "sepellito il %(buryear)d.\n"
+
+#~ msgid ""
+#~ "Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
+#~ msgstr ""
+#~ "Sepoltura antecedente il decesso: %(female_name)s deceduta il %(dyear)d, "
+#~ "sepellita il %(buryear)d.\n"
+
+#~ msgid "Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
+#~ msgstr ""
+#~ "Tarda sepoltura: %(male_name)s deceduto il %(dyear)d, sepellito il %"
+#~ "(buryear)d.\n"
+
+#~ msgid "Buried late: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
+#~ msgstr ""
+#~ "Tarda sepoltura: %(female_name)s deceduta il %(dyear)d, sepellita il %"
+#~ "(buryear)d.\n"
+
+#~ msgid "Died before birth: %(male_name)s born %(byear)d, died %(dyear)d.\n"
+#~ msgstr ""
+#~ "Decesso antecedente la nascita: %(male_name)s nato il %(byear)d, deceduto "
+#~ "il %(dyear)d.\n"
+
+#~ msgid "Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n"
+#~ msgstr ""
+#~ "Decesso antecedente la nascita: %(female_name)s nata il %(byear)d, "
+#~ "deceduta il %(dyear)d.\n"
+
+#~ msgid ""
+#~ "Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
+#~ msgstr ""
+#~ "Decesso antecedente il battesimo: %(male_name)s batezzato il %(bapyear)d, "
+#~ "deceduto il %(dyear)d.\n"
+
+#~ msgid ""
+#~ "Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)"
+#~ "d.\n"
+#~ msgstr ""
+#~ "Decesso antecedente il battesimo: %(female_name)s batezzata il %(bapyear)"
+#~ "d, deceduta il %(dyear)d.\n"
+
+#~ msgid ""
+#~ "Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
+#~ msgstr ""
+#~ "Sepoltura antecedente la nascita: %(male_name)s nato il %(byear)d, "
+#~ "sepellito il %(buryear)d.\n"
+
+#~ msgid ""
+#~ "Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
+#~ msgstr ""
+#~ "Sepoltura antecedente la nascita: %(female_name)s nata il %(byear)d, "
+#~ "sepellita il %(buryear)d.\n"
+
+#~ msgid ""
+#~ "Buried before baptism: %(male_name)s baptized %(bapyear)d, buried %"
+#~ "(buryear)d.\n"
+#~ msgstr ""
+#~ "Sepolutra antecedente il battesimo: %(male_name)s batezzato il %(bapyear)"
+#~ "d, sepellito il %(buryear)d.\n"
+
+#~ msgid ""
+#~ "Buried before baptism: %(female_name)s baptized %(bapyear)d, buried %"
+#~ "(buryear)d.\n"
+#~ msgstr ""
+#~ "Sepoltura antecedente il battesimo: %(female_name)s batezzata il %"
+#~ "(bapyear)d, sepellita il %(buryear)d.\n"
+
+#~ msgid ""
+#~ "Old age: %(male_name)s born %(byear)d, died %(dyear)d, at the age of %"
+#~ "(ageatdeath)d.\n"
+#~ msgstr ""
+#~ "Ecessiva età: %(male_name)s nato il %(byear)d e deceduto il %(dyear)d "
+#~ "all'età di anni %(ageatdeath)d.\n"
+
+#~ msgid ""
+#~ "Old age: %(female_name)s born %(byear)d, died %(dyear)d, at the age of %"
+#~ "(ageatdeath)d.\n"
+#~ msgstr ""
+#~ "Ecessiva età: %(female_name)s nata il %(byear)d e deceduta il %(dyear)d "
+#~ "all'età di anni %(ageatdeath)d.\n"
+
+#~ msgid "Unknown gender for %s.\n"
+#~ msgstr "Sesso sconosciuto per %s.\n"
+
+#~ msgid "Ambiguous gender for %s.\n"
+#~ msgstr "Sesso ambiguo per %s.\n"
+
+#~ msgid "Multiple parentage for %s.\n"
+#~ msgstr "Troppi genitori per %s.\n"
+
+#~ msgid "Married often: %(male_name)s married %(nfam)d times.\n"
+#~ msgstr "Troppi matrimoni: %(male_name)s sposato %(nfam)d volte.\n"
+
+#~ msgid "Married often: %(female_name)s married %(nfam)d times.\n"
+#~ msgstr "Troppi matrimoni: %(female_name)s sposata %(nfam)d volte.\n"
+
+#~ msgid ""
+#~ "Old and unmarried: %(male_name)s died unmarried, at the age of %"
+#~ "(ageatdeath)d years.\n"
+#~ msgstr ""
+#~ "Anziano e celibe: %(male_name)s morì celibe all'età di anni %(ageatdeath)"
+#~ "d.\n"
+
+#~ msgid ""
+#~ "Old and unmarried: %(female_name)s died unmarried, at the age of %"
+#~ "(ageatdeath)d years.\n"
+#~ msgstr ""
+#~ "Anziana e nubile: %(female_name)s morì nubile all'età di anni %"
+#~ "(ageatdeath)d.\n"
+
+#~ msgid "Homosexual marriage: %s in family %s.\n"
+#~ msgstr "Matrimonio omosessuale: %s appartenente alla famiglia %s.\n"
+
+#~ msgid "Female husband: %s in family %s.\n"
+#~ msgstr "Marito femmina: %s appartenente alla famiglia %s.\n"
+
+#~ msgid "Male wife: %s in family %s.\n"
+#~ msgstr "Moglie maschio: %s appartenente alla famiglia %s.\n"
+
+#~ msgid "Husband and wife with the same surname: %s in family %s, and %s.\n"
+#~ msgstr ""
+#~ "Marito e moglie con lo stesso cognome: %s, appartenente alla famiglia %s, "
+#~ "e %s.\n"
+
+#~ msgid ""
+#~ "Married before birth: %(male_name)s born %(byear)d, married %(maryear)d "
+#~ "to %(spouse)s.\n"
+#~ msgstr ""
+#~ "Matrimonio antecedente alla nascita: %(male_name)s nato il %(byear)d, "
+#~ "sposato il %(maryear)d con %(spouse)s.\n"
+
+#~ msgid ""
+#~ "Married before birth: %(female_name)s born %(byear)d, married %(maryear)d "
+#~ "to %(spouse)s.\n"
+#~ msgstr ""
+#~ "Matrimonio antecedente la nascita: %(female_name)s nata il %(byear)d, "
+#~ "sposata il %(maryear)d con %(spouse)s.\n"
+
+#~ msgid ""
+#~ "Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
+#~ msgstr ""
+#~ "Matrimonio precoce: %(male_name)s sposato all'età di anni %(marage)d con %"
+#~ "(spouse)s.\n"
+
+#~ msgid ""
+#~ "Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+#~ msgstr ""
+#~ "Matrimonio precoce: %(female_name)s sposata all'età di anni %(marage)d "
+#~ "con %(spouse)s.\n"
+
+#~ msgid ""
+#~ "Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
+#~ msgstr ""
+#~ "Matrimonio tardivo: %(male_name)s sposato all'età di anni %(marage)d con %"
+#~ "(spouse)s.\n"
+
+#~ msgid ""
+#~ "Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+#~ msgstr ""
+#~ "Matrimonio tardivo: %(female_name)s sposata all'età di anni %(marage)d "
+#~ "con %(spouse)s.\n"
+
+#~ msgid ""
+#~ "Married after death: %(male_name)s died %(dyear)d, married %(maryear)d to "
+#~ "%(spouse)s.\n"
+#~ msgstr ""
+#~ "Matrimonio successivo il decesso: %(male_name)s deceduto il %(dyear)d e "
+#~ "congiunto il %(maryear)d con %(spouse)s.\n"
+
+#~ msgid ""
+#~ "Married after death: %(female_name)s died %(dyear)d, married %(maryear)d "
+#~ "to %(spouse)s.\n"
+#~ msgstr ""
+#~ "Matrimonio successivo il decesso: %(female_name)s deceduta il %(dyear)d e "
+#~ "congiunta il %(maryear)d con %(spouse)s.\n"
+
+#~ msgid "Long widowhood: %s was a widower %d years before, family %s.\n"
+#~ msgstr ""
+#~ "Lunga vedovanza: %s in precedenza rimase vedovo per %d anni, famiglia %"
+#~ "s.\n"
+
+#~ msgid "Long widowhood: %s was a widow %d years before, family %s.\n"
+#~ msgstr ""
+#~ "Lunga vedovanza: %s in precedenza rimase vedova per %d anni, famiglia %"
+#~ "s.\n"
+
+#~ msgid "Long widowhood: %s was a widower %d years.\n"
+#~ msgstr "Lunga vedovanza: %s rimase vedovo per %d anni.\n"
+
+#~ msgid "Long widowhood: %s was a widow %d years.\n"
+#~ msgstr "Lunga vedovanza: %s rimase vedova per %d anni.\n"
+
+#~ msgid ""
+#~ "Old father: %(male_name)s at age of %(bage)d in family %(fam)s had a "
+#~ "child %(child)s.\n"
+#~ msgstr ""
+#~ "Padre anziano: %(male_name)s, all'età di anni %(bage)d, famiglia %(fam)s, "
+#~ "divenne padre di %(child)s.\n"
+
+#~ msgid ""
+#~ "Old mother: %(female_name)s at age of %(bage)d in family %(fam)s had a "
+#~ "child %(child)s.\n"
+#~ msgstr ""
+#~ "Madre anziana: %(female_name)s, all'età di anni %(bage)d, famiglia %(fam)"
+#~ "s, divenne madre di %(child)s.\n"
+
+#~ msgid ""
+#~ "Unborn father: %(male_name)s born %(byear)d, in family %(fam)s had a "
+#~ "child %(child)s born %(cbyear)d.\n"
+#~ msgstr ""
+#~ "Padre non nato: %(male_name)s, nato nel %(byear)d, famiglia %(fam)s, "
+#~ "divenne padre di %(child)s nel %(cbyear)d.\n"
+
+#~ msgid ""
+#~ "Unborn mother: %(female_name)s born %(byear)d, in family %(fam)s had a "
+#~ "child %(child)s born %(cbyear)d.\n"
+#~ msgstr ""
+#~ "Madre non nata: %(female_name)s, nata nel %(byear)d, famiglia %(fam)s "
+#~ "divenne madre di %(child)s nel %(cbyear)d.\n"
+
+#~ msgid ""
+#~ "Young father: %(male_name)s at the age of %(bage)d in family %(fam)s had "
+#~ "a child %(child)s.\n"
+#~ msgstr ""
+#~ "Padre giovane: %(male_name)s, all'età di %(bage)d anni, famiglia %(fam)s, "
+#~ "divenne padre di %(child)s.\n"
+
+#~ msgid ""
+#~ "Young mother: %(female_name)s at the age of %(bage)d in family %(fam)s "
+#~ "had a child %(child)s.\n"
+#~ msgstr ""
+#~ "Madre giovane: %(female_name)s, all'età di %(bage)d anni, famiglia %(fam)"
+#~ "s, divenne madre di %(child)s.\n"
+
+#~ msgid ""
+#~ "Dead father: %(male_name)s died %(dyear)d, but in family %(fam)s had a "
+#~ "child %(child)s born %(cbyear)d.\n"
+#~ msgstr ""
+#~ "Padre deceduto: %(male_name)s deceduto nel %(dyear)d, famiglia %(fam)s, "
+#~ "divenne padre di %(child)s nel %(cbyear)d.\n"
+
+#~ msgid ""
+#~ "Dead mother: %(female_name)s died %(dyear)d, but in family %(fam)s had a "
+#~ "child %(child)s born %(cbyear)d.\n"
+#~ msgstr ""
+#~ "Madre deceduta: %(female_name)s deceduta nel %(dyear)d, famiglia %(fam)s, "
+#~ "divenne madre di %(child)s nel %(cbyear)d.\n"
+
+#~ msgid "ERRORS:\n"
+#~ msgstr "ERRORI:\n"
+
+#~ msgid "WARNINGS:\n"
+#~ msgstr "AVVERTIMENTI:\n"
+
+#~ msgid "Verify the database"
+#~ msgstr "Verifica database"
+
+#~ msgid "Lists exceptions to assertions or checks about the database"
+#~ msgstr "Elenca le eccezioni alle asserzioni o controlla il database"
+
+#~ msgid "ID Number"
+#~ msgstr "Numero ID"
+
+#~ msgid "Return to the index of people"
+#~ msgstr "Ritorna all'indice delle persone"
+
+#~ msgid "Facts and Events"
+#~ msgstr "Fatti ed eventi"
+
+#~ msgid "Creating Web Pages"
+#~ msgstr "Sto generando le pagine web"
+
+#~ msgid "Generate HTML reports - GRAMPS"
+#~ msgstr "Generazione resoconti HTML - GRAMPS"
+
+#~ msgid "Family Tree Index"
+#~ msgstr "Indice albero genalogico"
+
+#~ msgid "%s (continued)"
+#~ msgstr "%s (continua)"
+
+#~ msgid "Neither %s nor %s are directories"
+#~ msgstr "Né %s né %s sono delle directory"
+
+#~ msgid "Could not create the directory: %s"
+#~ msgstr "Impossibile creare la directory: %s"
+
+#~ msgid "Include a link to the index page"
+#~ msgstr "Includi collegamento alla pagina indice"
+
+#~ msgid "Do not include records marked private"
+#~ msgstr "Non includere gli elementi marcati come privati"
+
+#~ msgid "Restrict information on living people"
+#~ msgstr "Limita le informazioni delle persone in vita"
+
+#~ msgid "Do not use images"
+#~ msgstr "Non usare le immagini"
+
+#~ msgid "Do not use images for living people"
+#~ msgstr "Non usare le immagini per le persone in vita"
+
+#~ msgid "Do not include comments and text in source information"
+#~ msgstr "Non includere commenti e testo nelle informazioni sulle fonti"
+
+#~ msgid "Include the GRAMPS ID in the report"
+#~ msgstr "Includi l'ID di GRAMPS nel resoconto"
+
+#~ msgid "Create a GENDEX index"
+#~ msgstr "Crea un indice GENDEX"
+
+#~ msgid "Image subdirectory"
+#~ msgstr "Sottodirectory immagini"
+
+#~ msgid "File extension"
+#~ msgstr "Estensione file"
+
+#~ msgid "Include short ancestor tree"
+#~ msgstr "Includi un piccolo albero genealogico"
+
+#~ msgid "Privacy"
+#~ msgstr "Privacy"
+
+#~ msgid "Advanced"
+#~ msgstr "Avanzato"
+
+#~ msgid "GRAMPS ID link URL"
+#~ msgstr "URL link ID GRAMPS"
+
+#~ msgid "Generate Web Site"
+#~ msgstr "Genera sito web"
+
+#~ msgid "Web Page"
+#~ msgstr "Pagina web"
+
+#~ msgid "Target Directory"
+#~ msgstr "Directory di destinazione"
+
+#~ msgid "Direct Descendants of %s"
+#~ msgstr "Discendenti diretti di %s"
+
+#~ msgid "Descendant Families of %s"
+#~ msgstr "Famiglie discendenti da %s"
+
+#~ msgid "The style used for the header that identifies facts and events."
+#~ msgstr ""
+#~ "Lo stile usato per l'intestazione che identifica i fatti e gli eventi."
+
+#~ msgid "The style used for the header for the notes section."
+#~ msgstr "Lo stile usato per l'intestazione della sezione «note»."
+
+#~ msgid "The style used for the copyright notice."
+#~ msgstr "Lo stile usato per il copyright."
+
+#~ msgid "The style used for the header for the sources section."
+#~ msgstr "Lo stile usato per l'intestazione della sezione «fonti»."
+
+#~ msgid "The style used on the index page that labels each section."
+#~ msgstr "Lo stile usato nell'indice per etichettare ogni sezione."
+
+#~ msgid "The style used for the header for the image section."
+#~ msgstr "Lo stile usato per l'intestazione della sezione «immagini»."
+
+#~ msgid ""
+#~ "The style used for the header for the marriages and children section."
+#~ msgstr ""
+#~ "Lo stile usato per l'intestazione della sezione «matrimoni e figli»."
+
+#~ msgid "The style used for the general data labels."
+#~ msgstr "Lo stile usato per le etichette di dati generici."
+
+#~ msgid "The style used for the general data."
+#~ msgstr "Lo stile usato per i dati generici."
+
+#~ msgid "The style used for the description of images."
+#~ msgstr "Lo stile usato per la descrizione delle immagini."
+
+#~ msgid "The style used for the notes associated with images."
+#~ msgstr "Lo stile usato per le note associate alle immagini."
+
+#~ msgid "The style used for the source information."
+#~ msgstr "Lo stile usato per le fonti d'informazioni."
+
+#~ msgid "The style used for the note information."
+#~ msgstr "Lo stile usato per le informazioni delle note."
+
+#~ msgid "Generates web (HTML) pages for individuals, or a set of individuals."
+#~ msgstr ""
+#~ "Genera delle pagine web (HTML) per gli individui o un'insieme di "
+#~ "individui."
+
+#~ msgid "Export to CD"
+#~ msgstr "Esporta su CD"
+
+#~ msgid "Export to Web Family Tree"
+#~ msgstr "Esporta in Web Family Tree"
+
+#~ msgid "Export to GEDCOM"
+#~ msgstr "Esporta in GEDCOM"
+
+#~ msgid "Export to GRAMPS package"
+#~ msgstr "Esporta pacchetto GRAMPS"
+
+#~ msgid "Package export"
+#~ msgstr "Esportazione pacchetto"
+
+#~ msgid "Book"
+#~ msgstr "Libro"
+
+#~ msgid "Book _name:"
+#~ msgstr "_Nome libro:"
+
+#~ msgid "Clear the book"
+#~ msgstr "Cancella il libro"
+
+#~ msgid "Save current set of configured selections"
+#~ msgstr "Salva l'insieme attuale delle selezioni configurate"
+
+#~ msgid "Open previously created book"
+#~ msgstr "Apre un libro creato in precedenza"
+
+#~ msgid "Manage previously created books"
+#~ msgstr "Gestisce i libri creati in precedenza"
+
+#~ msgid "Add an item to the book"
+#~ msgstr "Aggiunge un elemento al libro"
+
+#~ msgid "Remove currently selected item from the book"
+#~ msgstr "Rimuove dal libro l'elemento attualmente selezionato"
+
+#~ msgid "Move current selection one step up in the book"
+#~ msgstr "Sposta la selezione attuale in sù di un passo all'interno del libro"
+
+#~ msgid "Move current selection one step down in the book"
+#~ msgstr ""
+#~ "Sposta la selezione attuale in giù di un passo all'interno del libro"
+
+#~ msgid "Configure currently selected item"
+#~ msgstr "Configura l'elemento attualmente selezionato"
+
+#~ msgid "_Export to CD"
+#~ msgstr "_Esporta su CD"
+
+#~ msgid ""
+#~ "Exporting to a CD will not immediately write the CD. It will prepare the "
+#~ "nautilus-cd-burner so that you can burn the CD from nautilus.\n"
+#~ "\n"
+#~ "After exporting, go to the <b>burn:///</b> directory in nautilus and "
+#~ "select the Write to CD button."
+#~ msgstr ""
+#~ "L'esportazione su CD non provocherà l'immediata scrittura del CD, ma "
+#~ "preparerà il nautilus-cd-burner affinché il CD sia scrivibile da "
+#~ "Nautilus.\n"
+#~ "\n"
+#~ "Dopo l'esportazione, aprire con Nautilus la directory <b>burn:///</b> e "
+#~ "selezionare il pulsante «Scrivi su CD»."
+
+#~ msgid ""
+#~ "This tool will rename all events of one type to a different type. Once "
+#~ "completed, this cannot be undone without abandoning all changes since the "
+#~ "last database save."
+#~ msgstr ""
+#~ "Questo strumento rinominerà tutti gli eventi di un tipo in un altro tipo "
+#~ "diverso. Completato il processo, non sarà più possibile ritornare "
+#~ "indietro senza abbandonare tutti i cambiamenti apportati dall'ultimo "
+#~ "salvataggio del database."
+
+#~ msgid "_Original event type:"
+#~ msgstr "Tipo evento _originale:"
+
+#~ msgid "_New event type:"
+#~ msgstr "Tipo evento _nuovo:"
+
+#~ msgid "Number of ancestors of \"%s\" by generation"
+#~ msgstr "Numero di ascendenti per generazione di «%s»"
+
+#~ msgid "Generation %d has 1 individual.\n"
+#~ msgstr "La generazione %d comprende 1 individuo.\n"
+
+#~ msgid "Generation %d has %d individuals.\n"
+#~ msgstr "La generazione %d comprende %d individui.\n"
+
+#~ msgid "Total ancestors in generations %d to -1 is %d .\n"
+#~ msgstr ""
+#~ "Il numero totale di ascendenti dalla generazione %d alla generazione -1 è "
+#~ "%d.\n"
+
+#~ msgid "Number of ancestors"
+#~ msgstr "Numero ascendenti"
+
+#~ msgid "Counts number of ancestors of selected person"
+#~ msgstr "Conta il numero di ascendenti della persona selezionata"
+
+#~ msgid "<b>Evaluation Window</b>"
+#~ msgstr "<b>Finestra di valutazione</b>"
+
+#~ msgid "<b>Output Window</b>"
+#~ msgstr "<b>Finestra di output</b>"
+
+#~ msgid "<b>Error Window</b>"
+#~ msgstr "<b>Finestra d'errore</b>"
+
+#~ msgid "Python Evaluation Window"
+#~ msgstr "Finestra valutazione Python"
+
+#~ msgid "Python evaluation window"
+#~ msgstr "Finestra valutazione Python"
+
+#~ msgid "Debug"
+#~ msgstr "Debug"
+
+#~ msgid "Provides a window that can evaluate python code"
+#~ msgstr "Fornisce una finestra per la valutazione di codice Python"
+
+#~ msgid "Save as a Spreadsheet - GRAMPS"
+#~ msgstr "Salvataggio come foglio di calcolo - GRAMPS"
+
+#~ msgid "Save data as a spreadsheet"
+#~ msgstr "Salvataggio dati come fogli di calcolo"
+
+#~ msgid "Save Data"
+#~ msgstr "Salvataggio dati"
+
+#~ msgid "OpenOffice Spreadsheet"
+#~ msgstr "Foglio di calcolo OpenOffice"
+
+#~ msgid "Choose the HTML template"
+#~ msgstr "Scegliere modello HTML"
+
+#~ msgid "Format"
+#~ msgstr "Formato"
+
+#~ msgid "_Filter:"
+#~ msgstr "_Filtro:"
+
+#~ msgid ""
+#~ "The event comparison utility uses the filters defined in the Custom "
+#~ "Filter Editor."
+#~ msgstr ""
+#~ "L'utilità per il confronto degli eventi fa uso dei filtri definiti con "
+#~ "l'Editor di filtri personalizzati."
+
+#~ msgid "_Custom filter editor"
+#~ msgstr "_Editor filtri personalizzati"
+
+#~ msgid "_Target:"
+#~ msgstr "_Destinazione:"
+
+#~ msgid "Standard GEDCOM 5.5"
+#~ msgstr "GEDCOM 5.5 standard"
+
+#~ msgid "_Copyright:"
+#~ msgstr "_Copyright:"
+
+#~ msgid "Standard Copyright"
+#~ msgstr "Diritto d'autore standard"
+
+#~ msgid "GNU Free Documentation License"
+#~ msgstr "Licenza GFDL (GNU Free Documentation License)"
+
+#~ msgid "No Copyright"
+#~ msgstr "Nessun diritto d'autore"
+
+#~ msgid "<b>Filename</b>"
+#~ msgstr "<b>Nome file</b>"
+
+#~ msgid "<b>Encoding</b>"
+#~ msgstr "<b>Codifica</b>"
+
+#~ msgid "<b>Options</b>"
+#~ msgstr "<b>Opzioni</b>"
+
+#~ msgid "_Do not include records marked private"
+#~ msgstr "_Non includere gli elementi marcati come privati"
+
+#~ msgid "_Restrict data on living people"
+#~ msgstr "_Limita i dati delle persone in vita"
+
+#~ msgid "_ANSEL"
+#~ msgstr "_ANSEL"
+
+#~ msgid "_UNICODE"
+#~ msgstr "_UNICODE"
+
+#~ msgid "AN_SI (ISO-8859-1)"
+#~ msgstr "AN_SI (ISO-8859-1)"
+
+#~ msgid "Use _Living as first name"
+#~ msgstr "Usa «Li_ving» (in vita) come nome"
+
+#~ msgid "Exclude _notes"
+#~ msgstr "Escludi _note"
+
+#~ msgid "Exclude sour_ces"
+#~ msgstr "Escludi _fonti"
+
+#~ msgid "Reference images from path:  "
+#~ msgstr "Immagini di riferimento dal percorso:  "
+
+#~ msgid "media"
+#~ msgstr "multimedia"
+
+#~ msgid "Sources:"
+#~ msgstr "Fonti:"
+
+#~ msgid "Families:"
+#~ msgstr "Famiglie:"
+
+#~ msgid "People:"
+#~ msgstr "Persone:"
+
+#~ msgid "File:"
+#~ msgstr "File:"
+
+#~ msgid "Created by:"
+#~ msgstr "Creato da:"
+
+#~ msgid "<b>Status</b>"
+#~ msgstr "<b>Stato</b>"
+
+#~ msgid "<b>Warning messages</b>"
+#~ msgstr "<b>Messaggi d'avvertimento</b>"
+
+#~ msgid "Encoding:"
+#~ msgstr "Codifica:"
+
+#~ msgid "Version:"
+#~ msgstr "Versione:"
+
+#~ msgid "<b>Uncollected Objects</b>"
+#~ msgstr "<b>Oggetti non raccolti</b>"
+
+#~ msgid "Show uncollected objects"
+#~ msgstr "Mostra oggetti non raccolti"
+
+#~ msgid "Provide a window listing all uncollected objects"
+#~ msgstr "Fornisce una finestra elencante tutti gli oggetto non raccolti"
+
+#~ msgid "Please be patient. This may take a while."
+#~ msgstr "Pazienza. Potrebbe richiedere un po' di tempo."
+
+#~ msgid "_Merge"
+#~ msgstr "_Fondi"
+
+#~ msgid "<b>Match Threshold</b>"
+#~ msgstr "<b>Soglia di corrispondenza</b>"
+
+#~ msgid "Use soundex codes"
+#~ msgstr "Usa codici soundex"
+
+#~ msgid "Export PAF for PalmOS file"
+#~ msgstr "Esportazione file PAF per PalmOS"
+
+#~ msgid "PAF for PalmOS Export"
+#~ msgstr "Esportazione PAF per PalmOS"
+
+#~ msgid "Information"
+#~ msgstr "Informazioni"
+
+#~ msgid "Database name: "
+#~ msgstr "Nome database:"
+
+#~ msgid "Options"
+#~ msgstr "Opzioni"
+
+#~ msgid ""
+#~ "Below is a list of the nicknames and titles that GRAMPS can extract from "
+#~ "the \n"
+#~ "current database. If you accept the changes, GRAMPS will modify the "
+#~ "entries\n"
+#~ "that have been selected."
+#~ msgstr ""
+#~ "Quella sottostante è una lista dei sporannomi e dei titoli che GRAMPS\n"
+#~ "È in grado di estrarre dal database attuale. Accettando i cambiamenti,\n"
+#~ "GRAMPS modificherà gli elementi selezionati."
+
+#~ msgid "_Accept changes and close"
+#~ msgstr "_Accetta modifiche e chiudi"
+
+#~ msgid "Select a person to determine the relationship"
+#~ msgstr "Selezionare una persona per determinarne la relazione"
+
+#~ msgid "Close Window"
+#~ msgstr "Chiude la finestra"
+
+#~ msgid "SoundEx code:"
+#~ msgstr "Codice SoundEx:"
+
+#~ msgid "Name used to generate SoundEx code"
+#~ msgstr "Nome usato per generare il codice SoundEx"
+
+#~ msgid "SoundEx code generator"
+#~ msgstr "Generatore di codici SoundEx"
+
+#~ msgid "Generate SoundEx codes"
+#~ msgstr "Genera codici SoundEx"
+
+#~ msgid "Generates SoundEx codes for names"
+#~ msgstr "Genera codici SoundEx per i nomi"
+
+#~ msgid "Maximum age"
+#~ msgstr "Età massima"
+
+#~ msgid "Maximum husband-wife age difference"
+#~ msgstr "Massima differenza d'eta tra marito e moglie"
+
+#~ msgid "Minimum age to marry"
+#~ msgstr "Età minima per il matrimonio"
+
+#~ msgid "Maximum age to marry"
+#~ msgstr "Età massima per il matrimonio"
+
+#~ msgid "Maximum number of spouses for a person"
+#~ msgstr "Numero massimo di coniugi per persona"
+
+#~ msgid "Maximum number of consecutive years of widowhood"
+#~ msgstr "Numero massimo d'anni consecutivi di vedovanza"
+
+#~ msgid "Maximum number of years between children"
+#~ msgstr "Numero massimo d'anni fra un figlio e l'altro"
+
+#~ msgid "Maximum span of years for all children"
+#~ msgstr "Numero massimo d'anni fra il primo e l'ultimo figlio"
+
+#~ msgid "<b>Women</b>"
+#~ msgstr "<b>Donne</b>"
+
+#~ msgid "Minimum age to bear a child"
+#~ msgstr "Età minima per partonire un figlio"
+
+#~ msgid "Maximum age to bear a child"
+#~ msgstr "Età massima per partorire un figlio"
+
+#~ msgid "Maximum number of children"
+#~ msgstr "Numero massimo di figli"
+
+#~ msgid "<b>Men</b>"
+#~ msgstr "<b>Uomini</b>"
+
+#~ msgid "Minimum age to father a child"
+#~ msgstr "Età minima per avere un figlio"
+
+#~ msgid "Maximum age to father a child"
+#~ msgstr "Età massima per avere un figlio"
+
+#~ msgid "Estimate missing dates"
+#~ msgstr "Stima date mancanti"
+
+#~ msgid "GRAMPS Preferences"
+#~ msgstr "Preferenze GRAMPS"
+
+#~ msgid "<b>Categories:</b>"
+#~ msgstr "<b>Categorie:</b>"
+
+#~ msgid ""
+#~ "To change your preferences, select one of the subcategories in the menu "
+#~ "on the left hand side of the window."
+#~ msgstr ""
+#~ "Per modificare le preferenze, selezionare una delle sottocategorie "
+#~ "presenti nel menù a sinistra."
+
+#~ msgid "A_utosave interval:"
+#~ msgstr "Intervallo auto-_salvataggio:"
+
+#~ msgid "D_efault database directory:"
+#~ msgstr "Directory _database predefinita:"
+
+#~ msgid "minutes"
+#~ msgstr "minuti"
+
+#~ msgid "<b>Database</b>"
+#~ msgstr "<b>Database</b>"
+
+#~ msgid "Select default database directory - GRAMPS"
+#~ msgstr "Selezione directory predefinita database - GRAMPS"
+
+#~ msgid "The default directory for storing databases"
+#~ msgstr "La directory predefinita per il salvataggio dei database"
+
+#~ msgid "_Do not compress XML data file"
+#~ msgstr "Non _comprimere file dati XML"
+
+#~ msgid "<b>Revision control</b>"
+#~ msgstr "<b>Controllo di revisione</b>"
+
+#~ msgid "_Use revision control"
+#~ msgstr "_Usa controllo di revisione"
+
+#~ msgid "_Prompt for comment on save"
+#~ msgstr "_Richiedi commento al salvataggio"
+
+#~ msgid "<b>Find</b>"
+#~ msgstr "<b>Ricerca</b>"
+
+#~ msgid "_Enable autocompletion"
+#~ msgstr "_Abilita auto-completamento"
+
+#~ msgid "<b>Toolbar</b>"
+#~ msgstr "<b>Barra degli strumenti</b>"
+
+#~ msgid "Icons Only"
+#~ msgstr "Solo icone"
+
+#~ msgid "Text Below Icons"
+#~ msgstr "Testo sotto icone"
+
+#~ msgid "Text Beside Icons"
+#~ msgstr "Testo e icone affiancati"
+
+#~ msgid "GNOME Settings"
+#~ msgstr "Impostazioni GNOME"
+
+#~ msgid "Active person's name and _GRAMPS ID"
+#~ msgstr "Nome persona attiva e ID _GRAMPS"
+
+#~ msgid "<b>Statusbar</b>"
+#~ msgstr "<b>Barra di stato</b>"
+
+#~ msgid "_Always display the LDS ordinance tabs"
+#~ msgstr "Mostra _sempre linguette ordinanze LDS"
+
+#~ msgid "_Show index numbers in child list"
+#~ msgstr "_Mostra numeri indice lista figli"
+
+#~ msgid "<b>Display</b>"
+#~ msgstr "<b>Visualizzazione</b>"
+
+#~ msgid "<b>Default view</b>"
+#~ msgstr "<b>Vista predefinita</b>"
+
+#~ msgid "_Person view"
+#~ msgstr "Vista _persona"
+
+#~ msgid "_Family view"
+#~ msgstr "Vista _famiglia"
+
+#~ msgid "<b>Family view style</b>"
+#~ msgstr "<b>Stile vista famiglia</b>"
+
+#~ msgid "Left to right"
+#~ msgstr "Da sinistra a destra"
+
+#~ msgid "Top to bottom"
+#~ msgstr "Dall'alto verso il basso"
+
+#~ msgid "_Date format:"
+#~ msgstr "Formato _data:"
+
+#~ msgid "_Name format:"
+#~ msgstr "Formato _nome:"
+
+#~ msgid "D_ate format:"
+#~ msgstr "Format d_ata:"
+
+#~ msgid "_Show calendar format selection menu"
+#~ msgstr "_Mostra menù selezione formato calendario"
+
+#~ msgid "<b>Display formats</b>"
+#~ msgstr "<b>Formati di visualizzazione</b>"
+
+#~ msgid "<b>Entry formats</b>"
+#~ msgstr "<b>Formati elementi</b>"
+
+#~ msgid "<b>Calendars</b>"
+#~ msgstr "<b>Calendari</b>"
+
+#~ msgid "_Name:"
+#~ msgstr "_Nome:"
+
+#~ msgid "_Address:"
+#~ msgstr "_Indirizzo:"
+
+#~ msgid "_State/Province:"
+#~ msgstr "_Regione:"
+
+#~ msgid "_Country:"
+#~ msgstr "_Stato:"
+
+#~ msgid "_Phone:"
+#~ msgstr "_Telefono:"
+
+#~ msgid "_Email:"
+#~ msgstr "_Email:"
+
+#~ msgid "<b>Researcher information</b>"
+#~ msgstr "<b>Informazioni ricercatore</b>"
+
+#~ msgid "Preferred _text format:"
+#~ msgstr "Formato _testo preferito:"
+
+#~ msgid "Preferred _graphical format:"
+#~ msgstr "Formato _grafico preferito:"
+
+#~ msgid "Preferred _paper size:"
+#~ msgstr "Formato _carta preferito:"
+
+#~ msgid "Letter"
+#~ msgstr "Lettera"
+
+#~ msgid "A4"
+#~ msgstr "A4"
+
+#~ msgid "_Default report directory:"
+#~ msgstr "Directory _resoconti predefinita:"
+
+#~ msgid "Select default report directory - GRAMPS"
+#~ msgstr "Selezione directory predefinita resoconti - GRAMPS"
+
+#~ msgid "The default directory for the output of many report generators"
+#~ msgstr ""
+#~ "La directory predefinita dove salvare la maggior parte dei resoconti"
+
+#~ msgid "Default _web site directory:"
+#~ msgstr "Directory _sito web predefinita:"
+
+#~ msgid ""
+#~ "The default directory for the output of the Web Site report generators"
+#~ msgstr ""
+#~ "La directory predefinita dove salvare il resoconto in formato sito web"
+
+#~ msgid "<b>Report preferences</b>"
+#~ msgstr "<b>Preferenze resoconti</b>"
+
+#~ msgid "Make a _reference to the object when the object is dropped"
+#~ msgstr "Crea un _riferimento all'oggetto quando l'oggetto è rilasciato"
+
+#~ msgid "Make a local _copy when the object is dropped"
+#~ msgstr "Crea una _copia locale quando l'oggetto è rilasciato"
+
+#~ msgid "Display _global properties editor when object is dropped"
+#~ msgstr ""
+#~ "Visualizza l'editor delle proprietà _globali quando l'oggetto è rilasciato"
+
+#~ msgid "Display _local properties editor when object is dropped"
+#~ msgstr ""
+#~ "Visualizza l'editor delle proprietà _locali quando l'oggetto è rilasciato"
+
+#~ msgid "<b>Drag and drop from an external source</b>"
+#~ msgstr "<b>Trascina e rilascia da sorgente esterna</b>"
+
+#~ msgid "<b>Drag and drop from an internal source</b>"
+#~ msgstr "<b>Trascina e rilascia da sorgente interna</b>"
+
+#~ msgid "_Family:"
+#~ msgstr "_Famiglia:"
+
+#~ msgid "_Source:"
+#~ msgstr "Fo_nte:"
+
+#~ msgid "_Media object:"
+#~ msgstr "_Oggetto multimediale:"
+
+#~ msgid "I"
+#~ msgstr "I"
+
+#~ msgid "F"
+#~ msgstr "F"
+
+#~ msgid "P"
+#~ msgstr "P"
+
+#~ msgid "S"
+#~ msgstr "S"
+
+#~ msgid "O"
+#~ msgstr "O"
+
+#~ msgid "<b>User defined IDs</b>"
+#~ msgstr "<b>ID definiti dall'utente</b>"
+
+#~ msgid "<b>GRAMPS ID prefixes</b>"
+#~ msgstr "<b>Prefissi ID GRAMPS</b>"
+
+#~ msgid "_Allow internal GRAMPS ID numbers to be edited"
+#~ msgstr "Permetti la _modifica dei numeri ID di GRAMPS interni"
+
+#~ msgid "_Family name guessing:"
+#~ msgstr "Deduzione _cognome:"
+
+#~ msgid "<b>Customization</b>"
+#~ msgstr "<b>Personalizzazione</b>"
+
+#~ msgid "_Database:"
+#~ msgstr "_Database:"
+
+#~ msgid "_Revert to an older version from revision control"
+#~ msgstr "_Ripristina una vecchia versione tramite il controllo di revisione"
+
+#~ msgid "Comment:"
+#~ msgstr "Comment:"
+
+#~ msgid "<b>Definition</b>"
+#~ msgstr "<b>Definizione</b>"
+
+#~ msgid "<b>Rule List</b>"
+#~ msgstr "<b>Lista regole</b>"
+
+#~ msgid "All _rules must apply"
+#~ msgstr "Applica _tutte le regole"
+
+#~ msgid "At least _one rule must apply"
+#~ msgstr "Applica almeno _una regola"
+
+#~ msgid "E_xactly one rule must apply"
+#~ msgstr "Applica _solo una regola"
+
+#~ msgid "Rule operations:"
+#~ msgstr "Utilizzo regole:"
+
+#~ msgid "_Return values that do not match the filter rules (invert)"
+#~ msgstr ""
+#~ "_Restituisci i valori che non corrispondono alle regole del filtro "
+#~ "(inverti)"
+
+#~ msgid "<b>Values</b>"
+#~ msgstr "<b>Valori</b>"
+
+#~ msgid "<b>Rule</b>"
+#~ msgstr "<b>Regola</b>"
+
+#~ msgid "Add a new filter"
+#~ msgstr "Aggiunge un nuovo filtro"
+
+#~ msgid "Edit the selected filter"
+#~ msgstr "Modifica il filtro selezionato"
+
+#~ msgid "_Test..."
+#~ msgstr "_Test..."
+
+#~ msgid "Delete the selected filter"
+#~ msgstr "Cancella il filtro selezionato"
+
+#~ msgid "<b>Selected Rule</b>"
+#~ msgstr "<b>Regola selezionata</b>"
+
+#~ msgid "<b>Description</b>"
+#~ msgstr "<b>Descrizione</b>"
+
+#~ msgid "_Confidence:"
+#~ msgstr "_Confidenza:"
+
+#~ msgid "_Volume/Film/Page:"
+#~ msgstr "_Volume/Film/Pagina:"
+
+#~ msgid "Te_xt:"
+#~ msgstr "Te_sto:"
+
+#~ msgid "Co_mments:"
+#~ msgstr "Co_mmenti:"
+
+#~ msgid "Publication information:"
+#~ msgstr "Informazioni pubblicazione:"
+
+#~ msgid "Selects an existing source from the Source View"
+#~ msgstr "Seleziona una fonte esistente dalla visualizzazione delle fonti"
+
+#~ msgid "Creates a new source"
+#~ msgstr "Crea una nuova fonte"
+
+#~ msgid "_New..."
+#~ msgstr "_Nuovo..."
+
+#~ msgid "<b>Source selection</b>"
+#~ msgstr "<b>Selezione fonte</b>"
+
+#~ msgid "<b>Source details</b>"
+#~ msgstr "<b>Dettagli fonte</b>"
+
+#~ msgid "Double click will edit the selected source"
+#~ msgstr "Doppio clic per modificare la fonte selezionata"
+
+#~ msgid "Style _name:"
+#~ msgstr "_Nome stile:"
+
+#~ msgid "pt"
+#~ msgstr "pt"
+
+#~ msgid "Pick a color"
+#~ msgstr "Scelta colore"
+
+#~ msgid "_Bold"
+#~ msgstr "_Grassetto"
+
+#~ msgid "_Italic"
+#~ msgstr "_Corsivo"
+
+#~ msgid "_Underline"
+#~ msgstr "_Sottolineato"
+
+#~ msgid "<b>Type face</b>"
+#~ msgstr "<b>Stile</b>"
+
+#~ msgid "<b>Size</b>"
+#~ msgstr "<b>Dimensione</b>"
+
+#~ msgid "<b>Color</b>"
+#~ msgstr "<b>Colore</b>"
+
+#~ msgid "_Roman (Times, serif)"
+#~ msgstr "_Roman (Times, serif)"
+
+#~ msgid "_Swiss (Arial, Helvetica, sans-serif)"
+#~ msgstr "S_wiss (Arial, Helvetica, sans-serif)"
+
+#~ msgid "<b>Font options</b>"
+#~ msgstr "<b>Opzioni carattere</b>"
+
+#~ msgid "R_ight:"
+#~ msgstr "D_estra:"
+
+#~ msgid "L_eft:"
+#~ msgstr "S_inistra:"
+
+#~ msgid "_Padding:"
+#~ msgstr "_Riempimento:"
+
+#~ msgid "_Left"
+#~ msgstr "Si_nistra"
+
+#~ msgid "Le_ft"
+#~ msgstr "Sinist_ra:"
+
+#~ msgid "_Right"
+#~ msgstr "_Destra"
+
+#~ msgid "_Justify"
+#~ msgstr "_Giustificato"
+
+#~ msgid "_Center"
+#~ msgstr "_Centrato"
+
+#~ msgid "Ri_ght"
+#~ msgstr "Destr_a"
+
+#~ msgid "_Bottom"
+#~ msgstr "So_tto"
+
+#~ msgid "_Top"
+#~ msgstr "So_pra"
+
+#~ msgid "<b>Background</b>"
+#~ msgstr "<b>Sfondo</b>"
+
+#~ msgid "<b>Margins</b>"
+#~ msgstr "<b>Margini</b>"
+
+#~ msgid "<b>Borders</b>"
+#~ msgstr "<b>Bordi</b>"
+
+#~ msgid "<b>Alignment</b>"
+#~ msgstr "<b>Allineamento</b>"
+
+#~ msgid "<b>Paragraph options</b>"
+#~ msgstr "<b>Opzioni paragrafo</b>"
+
+#~ msgid "Add Person"
+#~ msgstr "Aggiunta persona"
+
+#~ msgid "<b>Note</b>"
+#~ msgstr "<b>Note</b>"
+
+#~ msgid "<b>Witnesses</b>"
+#~ msgstr "<b>Testimoni</b>"
+
+#~ msgid "<b>Names</b>"
+#~ msgstr "<b>Nomi</b>"
+
+#~ msgid "<b>Gallery</b>"
+#~ msgstr "<b>Galleria</b>"
+
+#~ msgid "<b>Internet</b>"
+#~ msgstr "<b>Internet</b>"
+
+#~ msgid "<b>LDS</b>"
+#~ msgstr "<b>LDS</b>"
+
+#~ msgid "Names with the specified SoundEx code"
+#~ msgstr "Nomi con il codice SoundEx specificato"
+
+#~ msgid "_History"
+#~ msgstr "C_ronologia"
+
+#~ msgid "Open file"
+#~ msgstr "Apre il file"
+
+#~ msgid "Save file"
+#~ msgstr "Salva il file"
+
+#~ msgid "Make the selected spouse's family the active family"
+#~ msgstr "Rende attiva la famiglia del coniuge selezionata"
+
+#~ msgid "Create a new _ZODB database"
+#~ msgstr "Crea nuovo database _ZODB"
+
+#~ msgid ""
+#~ "An autosave file exists for %s.\n"
+#~ "Should this be loaded instead of the last saved version?"
+#~ msgstr ""
+#~ "Esiste un file salvato automaticamente per %s.\n"
+#~ "Deve essere caricato al posto dell'ultimo salvataggio manuale?"
+
+#~ msgid "Perform selected action and close this dialog"
+#~ msgstr "Esegue l'azione selezionata e chiude questo dialogo"
+
+#~ msgid "born %(date)s in %(place)s%(endnotes)s"
+#~ msgstr "nato/a il %(date)s a %(place)s%(endnotes)s"
+
+#~ msgid "born %(date)s%(endnotes)s"
+#~ msgstr "nato/a il %(date)s%(endnotes)s"
+
+#~ msgid "born in %(place)s%(endnotes)s"
+#~ msgstr "nato/a a %(place)s%(endnotes)s"
+
+#~ msgid "died %(date)s in %(place)s%(endnotes)s."
+#~ msgstr ""
+#~ "deceduto/a il %(date)s%(endnotes)s in quel di %(place)s%(endnotes)s."
+
+#~ msgid "died %(date)s%(endnotes)s."
+#~ msgstr "deceduto/a il %(date)s%(endnotes)s."
+
+#~ msgid "died in %(place)s%(endnotes)s."
+#~ msgstr "deceduto/a a %(place)s%(endnotes)s."
+
+#~ msgid "was born %(date)s in %(place)s%(endnotes)s"
+#~ msgstr "nacque il %(date)s in quel di %(place)s%(endnotes)s"
+
+#~ msgid "was born %(date)s%(endnotes)s"
+#~ msgstr "nacque il %(date)s%(endnotes)s"
+
+#~ msgid "was born in %(place)s%(endnotes)s"
+#~ msgstr "nacque in quel di %(place)s%(endnotes)s"
+
+#~ msgid "and died %(date)s in %(place)s%(endnotes)s."
+#~ msgstr "e morì il %(date)s in quel di %(place)s%(endnotes)s."
+
+#~ msgid "and died %(date)s%(endnotes)s."
+#~ msgstr "e morì il %(date)s%(endnotes)s."
+
+#~ msgid "and died in %(place)s%(endnotes)s."
+#~ msgstr "e morì in quel di %(place)s%(endnotes)s."
+
+#~ msgid "Se_tup"
+#~ msgstr "Impos_tazioni"
+
+#~ msgid "_Edit books"
+#~ msgstr "_Modifica libri"
+
+#~ msgid "_Capitalize family names"
+#~ msgstr "Cognomi in _maiuscolo"
+
+#~ msgid "Display only _icons"
+#~ msgstr "Mostra solo _icone"
+
+#~ msgid "Display only _text"
+#~ msgstr "Mostra solo _testo"
+
+#~ msgid "_Display icons and text"
+#~ msgstr "_Mostra icone e testo"
+
+#~ msgid "_Active person's name only"
+#~ msgstr "Solo nome persona _attiva"
+
+#~ msgid "Relationship to %{father}s"
+#~ msgstr "Relazione con %{father}s"
+
+#~ msgid "Relationship to %{mother}s"
+#~ msgstr "Relazione con %{mother}s"
+
+#~ msgid "Accept and close"
+#~ msgstr "Accetta e chiude"
+
+#~ msgid "Reject changes and close"
+#~ msgstr "Rifiuta le modifiche e chiude"
+
+#~ msgid "Accept changes and close dialog"
+#~ msgstr "Accetta le modifiche e chiude il dialogo"
+
+#~ msgid "_Default Person"
+#~ msgstr "_Persona predefinita"
+
+#~ msgid "Ancestors Report"
+#~ msgstr "Resoconto ascendenti"
+
+#~ msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s morì il %(death_date)s%(death_endotes)s."
+
+#~ msgid "Title String"
+#~ msgstr "Stringa titolo"
+
+#~ msgid "Copyright String"
+#~ msgstr "Stringa copyright"
+
+#~ msgid "Timeline"
+#~ msgstr "Grafico temporale"
+
+#~ msgid "Restrict data on living people"
+#~ msgstr "Limita i dati delle persone in vita"
+
+#~ msgid "<b>Rule Modifiers</b>"
+#~ msgstr "<b>Modificatori regole</b>"
+
+#~ msgid "The directory ~/.gramps/example could not be created.\n"
+#~ msgstr "Impossibile creare la directory ~/.gramps/example.\n"
+
+#~ msgid "Delete %s"
+#~ msgstr "Cancellazione %s"
+
+#~ msgid "T_ype"
+#~ msgstr "Ti_po"
+
+#~ msgid ""
+#~ "The file you should attempt to open should be a directory that contains a "
+#~ "data.gramps file or a gramps.zodb file."
+#~ msgstr ""
+#~ "Il file da aprire deve essere una directory che contenga un file data."
+#~ "gramps o gramps.zodb."
+
+#~ msgid "Export to CD (nautilus)"
+#~ msgstr "Esporta su CD (Nautilus)"
+
+#~ msgid "Loop detected while applying filter"
+#~ msgstr "Rilevato loop nell'applicare il filtro"
+
+#~ msgid ""
+#~ "A relationship loop was detected between %s [%s]and %s [%s]. This is "
+#~ "probably due to an error in the database."
+#~ msgstr ""
+#~ "È stato rilevato un circolo vizioso fra %s [%s] e %s [%s]. Il problema è "
+#~ "dovuto probabilmente ad un errore nel database."
+
+#~ msgid "Add Children"
+#~ msgstr "Aggiunta figli"
+
+#~ msgid "OpenOffice/StarOffice 6"
+#~ msgstr "OpenOffice/StarOffice 6"
+
+#~ msgid "Adds a spouse"
+#~ msgstr "Aggiunge un coniuge"

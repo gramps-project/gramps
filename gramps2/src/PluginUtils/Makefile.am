@@ -12,7 +12,9 @@ pkgdata_PYTHON = \
 	_Report.py\
 	_ReportUtils.py\
 	_Tool.py\
+	_StyleEditor.py\
 	_PluginMgr.py\
+	_PaperMenu.py\
 	_Plugins.py
 
 pkgpyexecdir = @pkgpyexecdir@/PluginUtils

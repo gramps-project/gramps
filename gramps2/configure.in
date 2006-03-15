@@ -4,8 +4,8 @@ dnl Process this file with autoconf to produce a configure script.
 dnl May need to run automake && aclocal first
 
 AC_PREREQ(2.57)
-AC_INIT(gramps, 2.1.0, gramps-bugs@lists.sourceforge.net)
-AC_CONFIG_SRCDIR(src/gramps.py)
+AC_INIT(gramps, 2.1.0, [gramps-bugs@lists.sourceforge.net])
+AC_CONFIG_SRCDIR(configure.in)
 AM_INIT_AUTOMAKE(1.6.3)
 
 RELEASE=0.SVN$(svnversion -n .)
@@ -16,6 +16,11 @@ if test x"$RELEASE" != "x"
 then
   VERSIONSTRING="$VERSION-$RELEASE"
 fi
+
+dnl put the ACLOCAL flags in the Makefile
+ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
+
+AC_PROG_INTLTOOL
 
 dnl Checking for gconftool-2
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
@@ -42,18 +47,25 @@ if test x$ICONV = xno; then
   AC_MSG_ERROR(Couldn't find iconv program.)
 fi
 
-LANGUAGES="hu zh_CN cs da de es fr it nb nl no pl pt_BR ro ru sv eo fi lt"
-AC_SUBST(LANGUAGES)
+dnl Add the languages which your application supports here.
+ALL_LINGUAS="hu zh_CN cs da de es fr it nb nl no pl pt_BR ro ru sv eo fi lt"
+GETTEXT_PACKAGE=gramps
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Define to the Gettext package name.])
+AM_GLIB_GNU_GETTEXT
 
-DISTLANGS=
-POFILES=
-MOFILES=
-for lang in $LANGUAGES; do
- POFILES="$POFILES $lang.po"
- MOFILES="$MOFILES $lang.mo"
-done
-AC_SUBST(POFILES)
-AC_SUBST(MOFILES)
+dnl LANGUAGES="hu zh_CN cs da de es fr it nb nl no pl pt_BR ro ru sv eo fi lt"
+dnl AC_SUBST(LANGUAGES)
+dnl 
+dnl DISTLANGS=
+dnl POFILES=
+dnl MOFILES=
+dnl for lang in $LANGUAGES; do
+dnl  POFILES="$POFILES $lang.po"
+dnl  MOFILES="$MOFILES $lang.mo"
+dnl done
+dnl AC_SUBST(POFILES)
+dnl AC_SUBST(MOFILES)
 
 dnl Checks for programs.  
 dnl We first only check for python >= 2.3
@@ -226,10 +238,9 @@ AC_SUBST(SCROLLKEEPER_BUILD_REQUIRED)
 AC_SUBST(GNOMEHELP)
 AC_SUBST(GPREFIX)
 
-AC_CONFIG_FILES([
+AC_CONFIG_FILES([ po/Makefile.in
 Makefile 
 src/Makefile
-src/const.py
 src/RelLib/Makefile
 src/Config/Makefile
 src/Mime/Makefile
@@ -248,7 +259,6 @@ src/data/Makefile
 src/glade/Makefile
 src/images/Makefile
 src/data/templates/Makefile
-src/po/Makefile
 doc/Makefile
 doc/man/Makefile
 doc/man/fr/Makefile
@@ -257,6 +267,10 @@ doc/gramps-manual/C/Makefile
 doc/gramps-manual/fr/Makefile	
 example/Makefile
 example/gramps/Makefile
+])
+
+AC_OUTPUT([
+src/const.py
 gramps.spec
-gramps.sh])
-AC_OUTPUT
+gramps.sh
+])

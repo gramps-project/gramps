@@ -1,0 +1,6331 @@
+# Hungarian translation for GRAMPS
+# translation of template.po to Hungarian hu.po
+# Copyright (C) 2003 the Gramps Project
+# Egyeki Gergely <egeri@elte.hu>, 2003, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-03-14 17:54-0800\n"
+"PO-Revision-Date: 2004-02-12 22:08+0100\n"
+"Last-Translator: Egyeki Gergely <egeri@elte.hu>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.4\n"
+"X-Generator: KBabel 1.0.2\n"
+
+#: ../src/ViewManager.py:80
+#, fuzzy
+msgid "GRAMPS (grdb)"
+msgstr "GRAMPS"
+
+#: ../src/ViewManager.py:81
+#, fuzzy
+msgid "GRAMPS XML"
+msgstr "GRAMPS"
+
+#: ../src/ViewManager.py:82
+#, fuzzy
+msgid "GEDCOM"
+msgstr "Export GEDCOM"
+
+#: ../src/ViewManager.py:274
+#, fuzzy
+msgid "Loading document formats..."
+msgstr "%s betöltése ..."
+
+#: ../src/ViewManager.py:277
+#, fuzzy
+msgid "Loading plugins..."
+msgstr "%s betöltése ..."
+
+#: ../src/ViewManager.py:282
+msgid "Ready"
+msgstr ""
+
+#: ../src/ViewManager.py:313
+msgid "GRAMPS _home page"
+msgstr "GRAMPS _honlap"
+
+#: ../src/ViewManager.py:314
+msgid "GRAMPS _mailing lists"
+msgstr "GRAMPS _levelezőlista"
+
+#: ../src/ViewManager.py:315
+msgid "_Report a bug"
+msgstr "_Hiba jelzése"
+
+#: ../src/ViewManager.py:388 ../src/ViewManager.py:395
+#, fuzzy
+msgid "Could not open help"
+msgstr "%s nem nyitható meg"
+
+#: ../src/ViewManager.py:417
+#, fuzzy
+msgid "GRAMPS Homepage"
+msgstr "GRAMPS _honlap"
+
+#: ../src/ViewManager.py:532
+#, fuzzy
+msgid "GRAMPS: Open database"
+msgstr "Adatbázis megnyitása"
+
+#: ../src/ViewManager.py:591 ../src/ViewManager.py:617
+#: ../src/ViewManager.py:936 ../src/ViewManager.py:960
+#, fuzzy, python-format
+msgid "Could not open file: %s"
+msgstr "%s nem nyitható meg"
+
+#: ../src/ViewManager.py:618 ../src/ViewManager.py:961
+#, python-format
+msgid ""
+"File type \"%s\" is unknown to GRAMPS.\n"
+"\n"
+"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
+msgstr ""
+
+#: ../src/ViewManager.py:624
+#, fuzzy
+msgid "GRAMPS: Create GRAMPS database"
+msgstr "Egy adatbázis létrehozása"
+
+#: ../src/ViewManager.py:717 ../src/ViewManager.py:723
+#: ../src/ViewManager.py:758 ../src/ViewManager.py:762
+#: ../src/ViewManager.py:765
+#, fuzzy
+msgid "Cannot open database"
+msgstr "Egy adatbázis létrehozása"
+
+#: ../src/ViewManager.py:718
+#, fuzzy
+msgid ""
+"The selected file is a directory, not a file.\n"
+"A GRAMPS database must be a file."
+msgstr "A fájl vagy hibás vagy nem egy szabályos GRAMPS adatbázis."
+
+#: ../src/ViewManager.py:724
+msgid "You do not have read access to the selected file."
+msgstr ""
+
+#: ../src/ViewManager.py:729
+#, fuzzy
+msgid "Read only database"
+msgstr "Adatbázis megnyitása"
+
+#: ../src/ViewManager.py:730
+#, fuzzy
+msgid "You do not have write access to the selected file."
+msgstr "Felülírhatod vagy kicserélheted a fájlnevet."
+
+#: ../src/ViewManager.py:751
+#, fuzzy
+msgid "Read Only"
+msgstr "Csak Szöveg"
+
+#: ../src/ViewManager.py:759
+#, fuzzy
+msgid "The database file specified could not be opened."
+msgstr "A kért fájlnév nem található"
+
+#: ../src/ViewManager.py:766
+#, python-format
+msgid "%s could not be opened."
+msgstr "%s nem nyitható meg."
+
+#: ../src/ViewManager.py:852
+#, python-format
+msgid "%s has been bookmarked"
+msgstr "%s be lett rakva a könyvjelzőhöz"
+
+#: ../src/ViewManager.py:854
+msgid "Could Not Set a Bookmark"
+msgstr "Egy könyvjelzőt lehetetlen beállítani"
+
+#: ../src/ViewManager.py:855
+msgid "A bookmark could not be set because no one was selected."
+msgstr "A könyvjelző nem állítható be mert egy sem lett kiválasztva."
+
+#: ../src/ViewManager.py:884
+#, fuzzy
+msgid "GRAMPS: Import database"
+msgstr "Importálás GRAMPS adatbázisból"
+
+#: ../src/ViewManager.py:1060
+#, fuzzy
+msgid "All files"
+msgstr "Minden ember"
+
+#: ../src/ViewManager.py:1069
+msgid "All GRAMPS files"
+msgstr ""
+
+#: ../src/ViewManager.py:1080
+#, fuzzy
+msgid "GRAMPS databases"
+msgstr "Importálás GRAMPS adatbázisból"
+
+#: ../src/ViewManager.py:1089
+#, fuzzy
+msgid "GRAMPS XML databases"
+msgstr "Importálás GRAMPS adatbázisból"
+
+#: ../src/ViewManager.py:1098
+#, fuzzy
+msgid "GEDCOM files"
+msgstr "GEDCOM exportálás"
+
+#: ../src/ViewManager.py:1147
+#, fuzzy
+msgid "Automatically detected"
+msgstr "_Utolsó adatbázis automatikus betöltése"
+
+#: ../src/ViewManager.py:1156
+#, fuzzy
+msgid "Select file _type:"
+msgstr "Fájl kiválasztása"
+
+#~ msgid "Select a media object"
+#~ msgstr "Egy média objektum kiválasztása"
+
+#~ msgid "Cannot import %s"
+#~ msgstr "%s nem importálható"
+
+#~ msgid "Name"
+#~ msgstr "Név"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Birth date"
+#~ msgstr "Születési idő"
+
+#~ msgid "Choose Spouse/Partner of %s"
+#~ msgstr "Válassza ki %s Házastársát/Partnerét"
+
+#~ msgid "Choose Spouse/Partner"
+#~ msgstr "Házastárs/Társ kiválasztása"
+
+#~ msgid "Married"
+#~ msgstr "Házas"
+
+#~ msgid "Partners"
+#~ msgstr "Partnerek"
+
+#~ msgid "Address Editor"
+#~ msgstr "Lakcím szerkesztő"
+
+#~ msgid "Address Editor for %s"
+#~ msgstr "%s lakcím szerkesztője"
+
+#~ msgid "Attribute Editor"
+#~ msgstr "Tulajdonság szerkesztő"
+
+#~ msgid "Attribute Editor for %s"
+#~ msgstr "%s tulajdonság szerkesztője"
+
+#~ msgid "New attribute type created"
+#~ msgstr "Új tulajdonságtípus létrehozva"
+
+#~ msgid ""
+#~ "The \"%s\" attribute type has been added to this database.\n"
+#~ "It will now appear in the attribute menus for this database"
+#~ msgstr ""
+#~ "A(z) \"%s\" tulajdonságtípus az adatbázisba került.\n"
+#~ "Ez a típus a tulajdonságok menüben mostantól elérhető"
+
+#~ msgid "Edit Bookmarks"
+#~ msgstr "Könyvjelzők Szerkesztése"
+
+#~ msgid "abt\\.?"
+#~ msgstr "körülbelül"
+
+#~ msgid "about"
+#~ msgstr "körülbelül"
+
+#~ msgid "est\\.?"
+#~ msgstr "alapított"
+
+#~ msgid "circa"
+#~ msgstr "körülbelül"
+
+#~ msgid "around"
+#~ msgstr "körül"
+
+#~ msgid "before"
+#~ msgstr "korábban mint"
+
+#~ msgid "after"
+#~ msgstr "később mint "
+
+#~ msgid "aft\\.?"
+#~ msgstr "után\\?"
+
+#~ msgid "bef\\.?"
+#~ msgstr "előtt\\?"
+
+#~ msgid "April"
+#~ msgstr "Április"
+
+#~ msgid "February"
+#~ msgstr "Február"
+
+#~ msgid "January"
+#~ msgstr "Január"
+
+#~ msgid "March"
+#~ msgstr "Március"
+
+#~ msgid "August"
+#~ msgstr "Augusztus"
+
+#~ msgid "July"
+#~ msgstr "Július"
+
+#~ msgid "June"
+#~ msgstr "Június"
+
+#~ msgid "May"
+#~ msgstr "Május"
+
+#~ msgid "December"
+#~ msgstr "December"
+
+#~ msgid "November"
+#~ msgstr "November"
+
+#~ msgid "October"
+#~ msgstr "Október"
+
+#~ msgid "September"
+#~ msgstr "Szeptember"
+
+#~ msgid "abt"
+#~ msgstr "körülbelül"
+
+#~ msgid "abt."
+#~ msgstr "körülbelül"
+
+#~ msgid "est"
+#~ msgstr "alapított"
+
+#~ msgid "est."
+#~ msgstr "alapított"
+
+#~ msgid "bef"
+#~ msgstr "előtt"
+
+#~ msgid "bef."
+#~ msgstr "előtt"
+
+#~ msgid "aft."
+#~ msgstr "után"
+
+#~ msgid "aft"
+#~ msgstr "után"
+
+#~ msgid "Undefined Calendar"
+#~ msgstr "Nem meghatározott naptár"
+
+#~ msgid "Choose the Parents of %s"
+#~ msgstr "%s szüleinek választása"
+
+#~ msgid "Choose Parents"
+#~ msgstr "Szülők kiválasztása"
+
+#~ msgid "Birth"
+#~ msgstr "Születés"
+
+#~ msgid "Par_ent"
+#~ msgstr "Szü_lő"
+
+#~ msgid "Fath_er"
+#~ msgstr "Édes_apja"
+
+#~ msgid "Pa_rent"
+#~ msgstr "Szü_lő"
+
+#~ msgid "Mothe_r"
+#~ msgstr "Édesa_nyja"
+
+#~ msgid "Modify the Parents of %s"
+#~ msgstr "%s szüleinek választása"
+
+#~ msgid "Modify Parents"
+#~ msgstr "Szülők módosítása"
+
+#~ msgid "Parent"
+#~ msgstr "Szülő"
+
+#~ msgid "Mother"
+#~ msgstr "Édesanyja"
+
+#~ msgid "Father"
+#~ msgstr "Édesapja"
+
+#~ msgid "(from|between|bet|bet.)"
+#~ msgstr "(-tól|között|köz|köz.)"
+
+#~ msgid "(and|to|-)"
+#~ msgstr "(és|-ig|-)"
+
+#~ msgid "from %(start_date)s to %(stop_date)s"
+#~ msgstr "%(start_date)s -tól %(stop_date)s -ig"
+
+#~ msgid "Open a database"
+#~ msgstr "Adatbázis megnyitása"
+
+#~ msgid "Save database"
+#~ msgstr "Adatbázis mentése"
+
+#~ msgid "No Comment Provided"
+#~ msgstr "Nincs megjegyzés"
+
+#~ msgid ""
+#~ "GRAMPS has encountered an internal error.\n"
+#~ "Please copy the message below and post a bug report\n"
+#~ "at http://sourceforge.net/projects/gramps or send an\n"
+#~ "email message to gramps-bugs@lists.sourceforge.net\n"
+#~ "\n"
+#~ msgstr ""
+#~ "GRAMPS-ben egy belső hiba történt.\n"
+#~ "Kérem mentse az alábbi üzenetet és küldje el a\n"
+#~ "http://sourceforge.net/projects/gramps -ről vagy \n"
+#~ "küldjön email-t a gramps-bugs@lists.sourceforge címre.\n"
+#~ "\n"
+
+#~ msgid "Internal Error"
+#~ msgstr "Belső hiba"
+
+#~ msgid "Edit Person"
+#~ msgstr "Személy Szerkesztése"
+
+#~ msgid "Description"
+#~ msgstr "Leírás"
+
+#~ msgid "Event"
+#~ msgstr "Esemény"
+
+#~ msgid "Date"
+#~ msgstr "Dátum"
+
+#~ msgid "Place"
+#~ msgstr "Hely"
+
+#~ msgid "Value"
+#~ msgstr "Érték"
+
+#~ msgid "Attribute"
+#~ msgstr "Tulajdonság"
+
+#~ msgid "Address"
+#~ msgstr "Lakcím"
+
+#~ msgid "Type"
+#~ msgstr "Típus"
+
+#~ msgid "Path"
+#~ msgstr "Útvonal"
+
+#~ msgid "None"
+#~ msgstr "Nincs"
+
+#~ msgid "%(father)s and %(mother)s"
+#~ msgstr "%(father)s és %(mother)s"
+
+#~ msgid "unknown"
+#~ msgstr "ismeretlen"
+
+#~ msgid "Save changes to %s?"
+#~ msgstr "%s változásait menti?"
+
+#~ msgid "If you close without saving, the changes you have made will be lost"
+#~ msgstr "Ha mentés nélkül lép ki akkor a változtatások elvesznek"
+
+#~ msgid "Save Changes to %s?"
+#~ msgstr "%s fájlba menti a változásokat?"
+
+#~ msgid "Make the selected name the preferred name"
+#~ msgstr "A kiválasztott név kedvenc névvé tétele"
+
+#~ msgid "GRAMPS ID value was not changed."
+#~ msgstr "GRAMPS ID érték nem változott meg"
+
+#~ msgid ""
+#~ "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. "
+#~ "This value is already used by %(person)s."
+#~ msgstr ""
+#~ "GRAMPS ID cseréjét próbálta meg a %(grampsid)s értékre, de ezt az értéket "
+#~ "%(person)s már használja."
+
+#~ msgid "Problem changing the gender"
+#~ msgstr "Probléma a nem megváltoztatásakor"
+
+#~ msgid ""
+#~ "Changing the gender caused problems with marriage information.\n"
+#~ "Please check the person's marriages."
+#~ msgstr ""
+#~ "A nem megváltoztatása problémákat jelent a házassági információban.\n"
+#~ "Kérem ellenőrizze a személy házasságait."
+
+#~ msgid "Place Editor"
+#~ msgstr "Hely szerkesztő"
+
+#~ msgid "City"
+#~ msgstr "Város"
+
+#~ msgid "County"
+#~ msgstr "Megye"
+
+#~ msgid "State"
+#~ msgstr "Állam"
+
+#~ msgid "Country"
+#~ msgstr "Ország"
+
+#~ msgid "Internet Address Editor for %s"
+#~ msgstr "%s Internet cím szerkesztője"
+
+#~ msgid "Internet Address Editor"
+#~ msgstr "Internet cím szerkesztő"
+
+#~ msgid "People"
+#~ msgstr "Emberek"
+
+#~ msgid "%s [%s]: event %s\n"
+#~ msgstr "%s [%s]: esemény %s\n"
+
+#~ msgid "Families"
+#~ msgstr "Családok"
+
+#~ msgid "Source Editor"
+#~ msgstr "Forrás szerkesztő"
+
+#~ msgid "Object"
+#~ msgstr "Objektum"
+
+#~ msgid "Source Type"
+#~ msgstr "Forrás típusa"
+
+#~ msgid "Individual Events"
+#~ msgstr "Egyén események"
+
+#~ msgid "Individual Attributes"
+#~ msgstr "Egyén tulajdonságai"
+
+#~ msgid "Individual Names"
+#~ msgstr "Egyén nevei"
+
+#~ msgid "Family Events"
+#~ msgstr "Családi események"
+
+#~ msgid "Family Attributes"
+#~ msgstr "Család tulajdonságai"
+
+#~ msgid "Media Objects"
+#~ msgstr "Média objektumok"
+
+#~ msgid "Places"
+#~ msgstr "Helyszínek"
+
+#~ msgid "Event Editor"
+#~ msgstr "Esemény szerkesztő"
+
+#~ msgid "Event Editor for %s"
+#~ msgstr "%s esemény szerkesztője"
+
+#~ msgid "New event type created"
+#~ msgstr "Új eseménytípus létrehozva"
+
+#~ msgid ""
+#~ "The \"%s\" event type has been added to this database.\n"
+#~ "It will now appear in the event menus for this database"
+#~ msgstr ""
+#~ "A(z) \"%s\" eseménytípus az adatbázisba került.\n"
+#~ "Ez a típus az események menüben mostantól elérhető"
+
+#~ msgid "b."
+#~ msgstr "születési ideje:"
+
+#~ msgid "d."
+#~ msgstr "halálának ideje:"
+
+#~ msgid "Gender"
+#~ msgstr "Neme"
+
+#~ msgid "Status"
+#~ msgstr "Állapot"
+
+#~ msgid "Home"
+#~ msgstr "Központ"
+
+#~ msgid "Add Bookmark"
+#~ msgstr "Könyvjelzőhöz adás"
+
+#~ msgid "People Menu"
+#~ msgstr "Emberek menü"
+
+#~ msgid "Add parents"
+#~ msgstr "Szülők hozzáadása"
+
+#~ msgid "Child Menu"
+#~ msgstr "Gyermek menü"
+
+#~ msgid "Make the selected child an active person"
+#~ msgstr "A kijelölt gyermek legyen az aktív személy"
+
+#~ msgid "Edit the child/parent relationships"
+#~ msgstr "Gyermek/szülő kapcsolat szerkesztése"
+
+#~ msgid "Edit the selected child"
+#~ msgstr "A kiválasztott gyermek szerkesztése"
+
+#~ msgid "Remove the selected child"
+#~ msgstr "A kiválasztott gyermek törlése"
+
+#~ msgid "Spouse Menu"
+#~ msgstr "Házastárs menü"
+
+#~ msgid "Make the selected spouse an active person"
+#~ msgstr "A kijelölt házastárs legyen az aktív személy"
+
+#~ msgid "Edit relationship"
+#~ msgstr "Kapcsolat szerkesztő"
+
+#~ msgid "Remove the selected spouse"
+#~ msgstr "Kiválasztott házastárs törlése"
+
+#~ msgid "Edit the selected spouse"
+#~ msgstr "A kiválasztott házastárs szerkesztése"
+
+#~ msgid "Set the selected spouse as the preferred spouse"
+#~ msgstr "A kiválasztott házastárs kedvenccé tétele"
+
+#~ msgid "Remove %s as a spouse of %s?"
+#~ msgstr "%s eltávolítása %s házastársaként?"
+
+#~ msgid ""
+#~ "Removing a spouse removes the relationship between the spouse and the "
+#~ "active person. It does not remove the spouse from the database"
+#~ msgstr ""
+#~ "Egy házastárs eltávolítása megszünteti a kapcsolatot a házastárs és a "
+#~ "kijelölt személy között, de nem távolítja el a házastársat az "
+#~ "adatbázisból."
+
+#~ msgid "_Remove Spouse"
+#~ msgstr "_Házastárs törlése"
+
+#~ msgid "<double click to add spouse>"
+#~ msgstr "<házastárs hozzáadásához kattintson duplán>"
+
+#~ msgid ""
+#~ "%s: %s\n"
+#~ "\tRelationship: %s"
+#~ msgstr ""
+#~ "%s: %s\n"
+#~ "\tKapcsolat: %s"
+
+#~ msgid "%s: unknown"
+#~ msgstr "%s: ismeretlen"
+
+#~ msgid "Unknown"
+#~ msgstr "Ismeretlen"
+
+#~ msgid "Parents Menu"
+#~ msgstr "Szülők menü"
+
+#~ msgid "Make the selected parents the active family"
+#~ msgstr "A kijelölt szülők legyenek az aktív családban"
+
+#~ msgid "Remove parents"
+#~ msgstr "Szülők törlése"
+
+#~ msgid "Spouse Parents Menu"
+#~ msgstr "Házasságban élő szülők menü"
+
+#~ msgid "Remove Parents of %s"
+#~ msgstr "%s szüleinek törlése"
+
+#~ msgid ""
+#~ "Removing the parents of a person removes the person as a child of the "
+#~ "parents. The parents are not removed from the database, and the "
+#~ "relationship between the parents is not removed."
+#~ msgstr ""
+#~ "Egy személy szüleinek az eltávolítása eltávolítja a személyt mint a "
+#~ "szülők gyerekét. A szülők nem kerülnek törlésre, a kapcsolat a szülők "
+#~ "között megmarad."
+
+#~ msgid "_Remove Parents"
+#~ msgstr "_Szülők törlése"
+
+#~ msgid "Attempt to Reorder Children Failed"
+#~ msgstr "A gyermekek átrendezése nem sikerült"
+
+#~ msgid "Children must be ordered by their birth dates."
+#~ msgstr "A gyermekeknek születési idő szerint kellene rendezve lenniük."
+
+#~ msgid "Qualifier"
+#~ msgstr "Szűrő"
+
+#~ msgid "No description"
+#~ msgstr "Nincsen leírás"
+
+#~ msgid "Failed to load the module: %s"
+#~ msgstr "A következő modul betöltése nem sikerült: %s"
+
+#~ msgid "Find Person"
+#~ msgstr "Személy keresése"
+
+#~ msgid "Find Place"
+#~ msgstr "Hely keresése"
+
+#~ msgid "Find Source"
+#~ msgstr "Forrás keresése"
+
+#~ msgid "Find Media Object"
+#~ msgstr "Média objektum keresése"
+
+#~ msgid "French Republican"
+#~ msgstr "Francia Köztársaság"
+
+#~ msgid "Miscellaneous filters"
+#~ msgstr "Vegyes szűrők"
+
+#~ msgid "General filters"
+#~ msgstr "Általános szűrők"
+
+#~ msgid "Matches everyone in the database"
+#~ msgstr "Mindenkire illeszkedik az adatbázisból"
+
+#~ msgid "ID:"
+#~ msgstr "ID:"
+
+#~ msgid "Relationship filters"
+#~ msgstr "Kapcsolatok szűrő"
+
+#~ msgid ""
+#~ "Matches the ancestors of two people back to a common ancestor, producing "
+#~ "the relationship path between two people."
+#~ msgstr ""
+#~ "Két személy őseinek vizsgálata egy közös ősig; ezzel megadván a rokonsági "
+#~ "kapcsolatot két ember között."
+
+#~ msgid "Matches the person with a specified GRAMPS ID"
+#~ msgstr "Megadott GRAMPS ID -vel rendelkező személyre illeszkedik"
+
+#~ msgid "Matches all people whose records are complete"
+#~ msgstr "A teljesen megadott információval rendelkező emberekre illeszkedik"
+
+#~ msgid "Matches all females"
+#~ msgstr "Minden nőre illeszkedik"
+
+#~ msgid "Inclusive:"
+#~ msgstr "Hozzávétel:"
+
+#~ msgid "Descendant filters"
+#~ msgstr "Utód szűrők"
+
+#~ msgid "Matches all descendants for the specified person"
+#~ msgstr "A megadott személy utódaira illeszkedik"
+
+#~ msgid "Filter name:"
+#~ msgstr "Szűrő neve:"
+
+#~ msgid "Matches people that are descendants of someone matched by a filter"
+#~ msgstr ""
+#~ "Egy szűrő által megadott személy összes leszármazottjára illeszkedik"
+
+#~ msgid "Number of generations:"
+#~ msgstr "Generációk száma:"
+
+#~ msgid ""
+#~ "Matches people that are descendants of a specified person not more than N "
+#~ "generations away"
+#~ msgstr ""
+#~ "Egy megadott személy összes leszármazottjára illeszkedik nem több mint N "
+#~ "generációs távolságra"
+
+#~ msgid ""
+#~ "Matches people that are descendants of a specified person at least N "
+#~ "generations away"
+#~ msgstr ""
+#~ "Egy megadott személy összes leszármazottjára illeszkedik legalább N "
+#~ "generációs távolságra"
+
+#~ msgid "Matches the person that is a child of someone matched by a filter"
+#~ msgstr "Egy szűrő által megadott személy gyermekére illeszkedik"
+
+#~ msgid "Family filters"
+#~ msgstr "Családi szűrők"
+
+#~ msgid ""
+#~ "Matches people that are descendants or the spouse of a descendant of a "
+#~ "specified person"
+#~ msgstr ""
+#~ "Egy megadott személy összes utódára vagy utódainak a házastársaira "
+#~ "illeszkedik"
+
+#~ msgid "Matches people that are ancestors of a specified person"
+#~ msgstr "A megadott személy őseire illeszkedik"
+
+#~ msgid "Ancestral filters"
+#~ msgstr "Ősök szűrők"
+
+#~ msgid "Matches people that are ancestors of someone matched by a filter"
+#~ msgstr "Egy szűrő által megadott személy őseire illeszkedik"
+
+#~ msgid ""
+#~ "Matches people that are ancestors of a specified person not more than N "
+#~ "generations away"
+#~ msgstr ""
+#~ "Olyan emberekre illeszkedik akik egy megadott személy ősei nem több mint "
+#~ "N generációs távolságra"
+
+#~ msgid ""
+#~ "Matches people that are ancestors of a specified person at least N "
+#~ "generations away"
+#~ msgstr ""
+#~ "Olyan emberekre illeszkedik akik a megadott személy ősei legalább N "
+#~ "generációs távolságra"
+
+#~ msgid "Matches the person that is a parent of someone matched by a filter"
+#~ msgstr "Egy szűrő által megadott személy ősére illeszkedik"
+
+#~ msgid "Matches people that have a common ancestor with a specified person"
+#~ msgstr "A megadott személlyel közös ősű személyekre illeszkedik"
+
+#~ msgid ""
+#~ "Matches people that have a common ancestor with someone matched by a "
+#~ "filter"
+#~ msgstr ""
+#~ "Egy szűrő által megadott személlyel közös ősű emberekre illeszkedik "
+
+#~ msgid "Matches all males"
+#~ msgstr "Összes férfire illeszkedik"
+
+#~ msgid "Description:"
+#~ msgstr "Leírás:"
+
+#~ msgid "Place:"
+#~ msgstr "Hely:"
+
+#~ msgid "Date:"
+#~ msgstr "Dátum:"
+
+#~ msgid "Personal event:"
+#~ msgstr "Személyes esemény:"
+
+#~ msgid "Matches the person with a personal event of a particular value"
+#~ msgstr ""
+#~ "Megadott személyes esményi adatokkal rendelkező személyre illeszkedik"
+
+#~ msgid "Event filters"
+#~ msgstr "Esemény szűrők"
+
+#~ msgid "Family event:"
+#~ msgstr "Családi esemény:"
+
+#~ msgid "Matches the person with a family event of a particular value"
+#~ msgstr "Megadott családi adatokkal rendelkező személyre illeszkedik"
+
+#~ msgid "Number of relationships:"
+#~ msgstr "Kapcsolatok száma:"
+
+#~ msgid "Relationship type:"
+#~ msgstr "Kapcsolatok típusa:"
+
+#~ msgid "Number of children:"
+#~ msgstr "Gyermekek száma:"
+
+#~ msgid "Matches the person who has a particular relationship"
+#~ msgstr "A megadott paraméterű kapcsolattal rendelkező személyre illeszkedik"
+
+#~ msgid "Matches the person with a birth of a particular value"
+#~ msgstr "Megadott születési adatokkal rendelkező személyre illeszkedik"
+
+#~ msgid "Matches the person with a death of a particular value"
+#~ msgstr "A megadott halálozási adatokkal rendelkező személyre illeszkedik"
+
+#~ msgid "Value:"
+#~ msgstr "Érték:"
+
+#~ msgid "Personal attribute:"
+#~ msgstr "Személy tulajdonságok:"
+
+#~ msgid "Family attribute:"
+#~ msgstr "Család tulajdonságok:"
+
+#~ msgid "Title:"
+#~ msgstr "Megnevezés:"
+
+#~ msgid "Suffix:"
+#~ msgstr "Utótag:"
+
+#~ msgid "Family name:"
+#~ msgstr "Családnév:"
+
+#~ msgid "Given name:"
+#~ msgstr "Név:"
+
+#~ msgid "Matches the person with a specified (partial) name"
+#~ msgstr "A megadott névvel rendelkező személyre illeszkedik"
+
+#~ msgid "Matches the person married to someone matching a filter"
+#~ msgstr "Egy szűrő által megadott személyhez házasodottra illeszkedik"
+
+#~ msgid "Everyone"
+#~ msgstr "Mindenki"
+
+#~ msgid "Has the Id"
+#~ msgstr "Megadott Id-vel"
+
+#~ msgid "Has a name"
+#~ msgstr "Neve"
+
+#~ msgid "Has the relationships"
+#~ msgstr "Kapcsolatai"
+
+#~ msgid "Has the death"
+#~ msgstr "Halála"
+
+#~ msgid "Has the birth"
+#~ msgstr "Születése"
+
+#~ msgid "Is a descendant of"
+#~ msgstr "Utódai"
+
+#~ msgid "Is a descendant family member of"
+#~ msgstr "Megadott személyhez tartozó leszármazott családtag"
+
+#~ msgid "Is a descendant of filter match"
+#~ msgstr "Szűrő által megadott személy leszármazottai"
+
+#~ msgid "Is a descendant of person not more than N generations away"
+#~ msgstr "Utód nem több mint N generációs távolságra"
+
+#~ msgid "Is a descendant of person at least N generations away"
+#~ msgstr "Utód legalább N generációs távolságra"
+
+#~ msgid "Is a child of filter match"
+#~ msgstr "Szűrő által megadott személy gyermeke"
+
+#~ msgid "Is an ancestor of"
+#~ msgstr "Ősei"
+
+#~ msgid "Is an ancestor of filter match"
+#~ msgstr "Szűrő által megadott személy ősei"
+
+#~ msgid "Is an ancestor of person not more than N generations away"
+#~ msgstr "Ős nem több mint N generációs távolságra"
+
+#~ msgid "Is an ancestor of person at least N generations away"
+#~ msgstr "Ős legalább N generációs távolságra"
+
+#~ msgid "Is a parent of filter match"
+#~ msgstr "Szűrő által megadott személy szülője"
+
+#~ msgid "Has a common ancestor with"
+#~ msgstr "Megadott személlyel közös ősű"
+
+#~ msgid "Has a common ancestor with filter match"
+#~ msgstr "Szűrő által megadott személlyel közös ősű"
+
+#~ msgid "Is a female"
+#~ msgstr "Nő"
+
+#~ msgid "Is a male"
+#~ msgstr "Férfi"
+
+#~ msgid "Has complete record"
+#~ msgstr "Teljes információ mező bejelölve"
+
+#~ msgid "Has the personal event"
+#~ msgstr "Személyes eseménye"
+
+#~ msgid "Has the family event"
+#~ msgstr "Családi eseménye"
+
+#~ msgid "Has the personal attribute"
+#~ msgstr "Személy tulajdonsága"
+
+#~ msgid "Has the family attribute"
+#~ msgstr "Családi tulajdonsága"
+
+#~ msgid "Matches the filter named"
+#~ msgstr "Megadott szűrővel keresés"
+
+#~ msgid "Is spouse of filter match"
+#~ msgstr "Szűrő által megadott személlyel házas"
+
+#~ msgid "Relationship path between two people"
+#~ msgstr "Kapcsolat útvonala két személy között"
+
+#~ msgid "Father's surname"
+#~ msgstr "Édesapjának a családneve"
+
+#~ msgid "Combination of mother's and father's surname"
+#~ msgstr "Édesanyja és édesapja családnevének kombinációja"
+
+#~ msgid "Icelandic style"
+#~ msgstr "Izlandi stílus"
+
+#~ msgid "Month Day, Year"
+#~ msgstr "Hónap Nap, Év"
+
+#~ msgid "MON Day, Year"
+#~ msgstr "HÓ Nap, Év"
+
+#~ msgid "Day MON Year"
+#~ msgstr "Nap HÓ Év"
+
+#~ msgid "MM/DD/YYYY"
+#~ msgstr "HH/NN/ÉÉÉÉ"
+
+#~ msgid "MM-DD-YYYY"
+#~ msgstr "HH-NN-ÉÉÉÉ"
+
+#~ msgid "DD/MM/YYYY"
+#~ msgstr "NN/HH/ÉÉÉÉ"
+
+#~ msgid "DD-MM-YYYY"
+#~ msgstr "NN-HH-ÉÉÉÉ"
+
+#~ msgid "MM.DD.YYYY"
+#~ msgstr "HH.NN.ÉÉÉÉ"
+
+#~ msgid "DD.MM.YYYY"
+#~ msgstr "NN.HH.ÉÉÉÉ"
+
+#~ msgid "DD. Month Year"
+#~ msgstr "NN. Hónap Év"
+
+#~ msgid "YYYY/MM/DD"
+#~ msgstr "ÉÉÉÉ/HH/NN"
+
+#~ msgid "YYYY-MM-DD"
+#~ msgstr "ÉÉÉÉ-HH-NN"
+
+#~ msgid "YYYY.MM.DD"
+#~ msgstr "ÉÉÉÉ.HH.NN"
+
+#~ msgid "MM/DD/YYYY, MM.DD.YYYY, or MM-DD-YYYY"
+#~ msgstr "HH/NN/ÉÉÉÉ, HH.NN.ÉÉÉÉ, vagy HH-NN-ÉÉÉÉ"
+
+#~ msgid "DD/MM/YYYY, DD.MM.YYYY, or DD-MM-YYYY"
+#~ msgstr "NN/HH/ÉÉÉÉ, NN.HH.ÉÉÉÉ, vagy NN-HH-ÉÉÉÉ"
+
+#~ msgid "YYYY/MM/DD, YYYY.MM.DD, or YYYY-MM-DD"
+#~ msgstr "ÉÉÉÉ/HH/NN, ÉÉÉÉ.HH.NN, vagy ÉÉÉÉ-HH-NN"
+
+#~ msgid "Firstname Surname"
+#~ msgstr "Keresztnév Családnév"
+
+#~ msgid "Surname, Firstname"
+#~ msgstr "Családnév Keresztnév"
+
+#~ msgid "Firstname SURNAME"
+#~ msgstr "Keresztnév CSALÁDNÉV"
+
+#~ msgid "SURNAME, Firstname"
+#~ msgstr "CSALÁDNÉV Keresztnév"
+
+#~ msgid "Database"
+#~ msgstr "Adatbázis"
+
+#~ msgid "General"
+#~ msgstr "Általános"
+
+#~ msgid "GRAMPS internal IDs"
+#~ msgstr "GRAMPS belső ID-k"
+
+#~ msgid "Revision Control"
+#~ msgstr "Biztonsági másolat"
+
+#~ msgid "Display"
+#~ msgstr "Megjelenítés"
+
+#~ msgid "Dates and Calendars"
+#~ msgstr "Dátumok és Naptárak"
+
+#~ msgid "Toolbar and Statusbar"
+#~ msgstr "Eszközök és Állapotjelzők"
+
+#~ msgid "Usage"
+#~ msgstr "Használat"
+
+#~ msgid "Find"
+#~ msgstr "Keresés"
+
+#~ msgid "Report Preferences"
+#~ msgstr "Összesítők tulajdonságai"
+
+#~ msgid "Researcher Information"
+#~ msgstr "Információk a kutatóról"
+
+#~ msgid "Data Guessing"
+#~ msgstr "Adatok következtetése"
+
+#~ msgid "No default format"
+#~ msgstr "Formázatlan"
+
+#~ msgid "Gregorian"
+#~ msgstr "Gregorián"
+
+#~ msgid "Hebrew"
+#~ msgstr "Héber"
+
+#~ msgid "Thumbnail %s could not be found"
+#~ msgstr "%s bélyegkép nem található"
+
+#~ msgid "Could not import %s"
+#~ msgstr "%s nem importálható"
+
+#~ msgid "Select an Object"
+#~ msgstr "Egy objektum kiválasztása"
+
+#~ msgid "Media Object"
+#~ msgstr "Média objektum"
+
+#~ msgid "Open in %s"
+#~ msgstr "%s -ben megnyitás"
+
+#~ msgid "Edit with the GIMP"
+#~ msgstr "Szerkesztés a GIMPpel"
+
+#~ msgid "Edit Object Properties"
+#~ msgstr "Objektum tulajdonságok szerkesztése"
+
+#~ msgid "Convert to local copy"
+#~ msgstr "helyi másolattá alakítása"
+
+#~ msgid "Change local media object properties"
+#~ msgstr "Helyi média objektumok tulajdonságainak a megváltoztatása"
+
+#~ msgid "Change global media object properties"
+#~ msgstr "Globális média objektumok tulajdonságainak a megváltoztatása"
+
+#~ msgid "Person"
+#~ msgstr "Személy"
+
+#~ msgid "Family"
+#~ msgstr "Család"
+
+#~ msgid "Source"
+#~ msgstr "Forrás"
+
+#~ msgid "Julian"
+#~ msgstr "Julián"
+
+#~ msgid "Location Editor"
+#~ msgstr "Helyiség szerkesztő"
+
+#~ msgid "Marriage/Relationship Editor"
+#~ msgstr "Házasság/Kapcsolat szerkesztő"
+
+#~ msgid "%s and %s"
+#~ msgstr "%s és %s"
+
+#~ msgid "Save Changes?"
+#~ msgstr "Változások mentése?"
+
+#~ msgid ""
+#~ "The GRAMPS ID that you chose for this relationship is already being used."
+#~ msgstr "A GRAMPS ID amit választott a kapcsolatnak már használatban van."
+
+#~ msgid "Title"
+#~ msgstr "Megnevezés"
+
+#~ msgid "Thumbnails not available"
+#~ msgstr "Bélyegkép nem elérhető"
+
+#~ msgid ""
+#~ "There is no suitable tool to generate thumbnails for the images. If you "
+#~ "would like to enable this feature, install Python Imaging Library (PIL), "
+#~ "available at http://www.pythonware.com/products/pil/ or ImageMagick, "
+#~ "available at http://www.imagemagick.org/"
+#~ msgstr ""
+#~ "Nincsen megfelelő program a bélyegkép létrehozásához. Ha használni "
+#~ "szeretné ezt a funkciót akkor telepítse a Python Imaging Library -t "
+#~ "(PIL), elérhető a http://www.pythonware.com/products/pil/ címen vagy "
+#~ "használja az ImageMagick-et, letölthető a http://www.imagemagick.org/ "
+#~ "címről."
+
+#~ msgid "The file no longer exists"
+#~ msgstr "A fájl többé nem létezik"
+
+#~ msgid "View in the default viewer"
+#~ msgstr "Megtekintés az alapértelmezett nézőkével"
+
+#~ msgid "Edit properties"
+#~ msgstr "Tulajdonságok Szerkesztése"
+
+#~ msgid "<local copy>"
+#~ msgstr "<helyi másolat>"
+
+#~ msgid "Delete Media Object?"
+#~ msgstr "Törli a Média Objektumot?"
+
+#~ msgid ""
+#~ "This media object is currently being used. If you delete this object, it "
+#~ "will be removed from the database and from all records that reference it."
+#~ msgstr ""
+#~ "Ez a média objektum jelenleg használatban van. Ha törli ezt az objektumot "
+#~ "akkor eltávolítódik az adatbázisból minden hivatkozással együtt."
+
+#~ msgid "_Delete Media Object"
+#~ msgstr "_Média Objektum Eltávolítása"
+
+#~ msgid "Image import failed"
+#~ msgstr "Kép importálása nem sikerült"
+
+#~ msgid "Merge Places"
+#~ msgstr "Helyszínek összevonása"
+
+#~ msgid "Select the title for the merged place"
+#~ msgstr "Válasszon egy címet az összevont helyszínnek"
+
+#~ msgid "Merge %s and %s"
+#~ msgstr "%s és %s összevonása"
+
+#~ msgid "Merge people"
+#~ msgstr "Emberek egyesítése"
+
+#~ msgid "Alternate Name Editor"
+#~ msgstr "Alternatív név szerkesztő"
+
+#~ msgid "Alternate Name Editor for %s"
+#~ msgstr "%s alternatív név szerkesztője"
+
+#~ msgid "Edit Note"
+#~ msgstr "Szerkesztés Megjegyzés"
+
+#~ msgid "Portrait"
+#~ msgstr "Álló"
+
+#~ msgid "Landscape"
+#~ msgstr "Fekvő"
+
+#~ msgid "Custom Size"
+#~ msgstr "Egyéni méret"
+
+#~ msgid "Anchor"
+#~ msgstr "Kapocs"
+
+#~ msgid "Double clicking will make %s the active person"
+#~ msgstr "Duplakattintás kijelöli %s-t"
+
+#~ msgid "Set anchor"
+#~ msgstr "Kapocs bekapcsolása"
+
+#~ msgid "Remove anchor"
+#~ msgstr "Kapocs törlése"
+
+#~ msgid "Death date"
+#~ msgstr "Elhalálozási idő"
+
+#~ msgid "Updating display..."
+#~ msgstr "Megjelenítés frissítése..."
+
+#~ msgid "Edit"
+#~ msgstr "Szerkesztés"
+
+#~ msgid "Church Parish"
+#~ msgstr "Egyház megye"
+
+#~ msgid "Place Name"
+#~ msgstr "Helyiség név"
+
+#~ msgid "Cannot merge places."
+#~ msgstr "Helyszínek nem összevonhatóak"
+
+#~ msgid ""
+#~ "Exactly two places must be selected to perform a merge. A second place "
+#~ "can be selected by holding down the control key while clicking on the "
+#~ "desired place."
+#~ msgstr ""
+#~ "Pontosan két helyet kell kiválasztani az összevonáshoz. A második helyet "
+#~ "a ctrl gomb lenyomásával és a kívánt helyre való kattintással lehet "
+#~ "kiválasztani."
+
+#~ msgid "Source Menu"
+#~ msgstr "Forrás menü"
+
+#~ msgid "Delete %s?"
+#~ msgstr "%s törlése?"
+
+#~ msgid ""
+#~ "This place is currently being used by at least one record in the "
+#~ "database. Deleting it will remove it from the database and remove it from "
+#~ "all records that reference it."
+#~ msgstr ""
+#~ "Erre a helyre legalább egy hivatkozás van az adatbázisból. Törlésével "
+#~ "eltávolítja az adatbázisból az összes hivatkozással együtt."
+
+#~ msgid "_Delete Place"
+#~ msgstr "_Hely Törlése"
+
+#~ msgid "No description was provided"
+#~ msgstr "Leírás nem érhető el"
+
+#~ msgid "_Apply"
+#~ msgstr "_Alkalmazás"
+
+#~ msgid "Report Selection"
+#~ msgstr "Összesítő kiválasztás"
+
+#~ msgid "Select a report from those available on the left."
+#~ msgstr "A bal oldalon lévőkből válasszon ki egy összesítőt"
+
+#~ msgid "Generate selected report"
+#~ msgstr "Kiválasztott összesítő létrehozása"
+
+#~ msgid "_Generate"
+#~ msgstr "_Létrehoz"
+
+#~ msgid "Tool Selection"
+#~ msgstr "Eszköz Kiválasztás"
+
+#~ msgid "Select a tool from those available on the left."
+#~ msgstr "A bal oldalon lévőkből válasszon ki egy eszközt"
+
+#~ msgid "Run selected tool"
+#~ msgstr "Kiválasztott eszköz futtatása"
+
+#~ msgid "_Run"
+#~ msgstr "_Futtatás"
+
+#~ msgid "Plugin status"
+#~ msgstr "Modul állapot"
+
+#~ msgid "All modules were successfully loaded."
+#~ msgstr "Minden modul sikeresen betöltve."
+
+#~ msgid "The following modules could not be loaded:"
+#~ msgstr "A következő modulok nem tölthetőek be:"
+
+#~ msgid "Uncategorized"
+#~ msgstr "Kategorizálatlan"
+
+#~ msgid "%s could not be opened"
+#~ msgstr "%s-t nem lehet megnyitni"
+
+#~ msgid "Error reading %s"
+#~ msgstr "Hiba %s olvasásakor"
+
+#~ msgid "Media object could not be found"
+#~ msgstr "Média objektum nem található"
+
+#~ msgid ""
+#~ "%(file_name)s is referenced in the database, but no longer exists. The "
+#~ "file may have been deleted or moved to a different location. You may "
+#~ "choose to either remove the reference from the database, keep the "
+#~ "reference to the missing file, or select a new file."
+#~ msgstr ""
+#~ "%(file_name)s nyilván van tartva az adatbázisban, de már nem létezik. "
+#~ "Lehet, hogy a fájl le lett törölve vagy át lett helyezve. Az adatbázisból "
+#~ "eltávolíthatja, új fájlt választhat ki vagy megtarthatja a jelenlegi "
+#~ "állapotát."
+
+#~ msgid "%s (revision %s)"
+#~ msgstr "%s (ellenőrzés %s)"
+
+#~ msgid "The file has been moved or deleted"
+#~ msgstr "A fájl át lett helyezve vagy törölve lett"
+
+#~ msgid "Could not create %s"
+#~ msgstr "%s nem hozható létre"
+
+#~ msgid "Error creating the thumbnail: %s"
+#~ msgstr "Bélyegkép létrehozási hiba : %s"
+
+#~ msgid "Error copying %s"
+#~ msgstr "Hiba %s másolása közben"
+
+#~ msgid "Cannot display %s"
+#~ msgstr "%s nem jeleníthető meg"
+
+#~ msgid ""
+#~ "GRAMPS is not able to display the image file. This may be caused by a "
+#~ "corrupt file."
+#~ msgstr ""
+#~ "GRAMPS nem tudja a képet megjeleníteni. Ez lehet, hogy egy hibás fájl "
+#~ "miatt van."
+
+#~ msgid "Could not replace %s"
+#~ msgstr "%s nem helyezhető át"
+
+#~ msgid "Could not create a thumbnail for %s"
+#~ msgstr "Nem lehet létrehozni bélyegképet %s részére"
+
+#~ msgid "The file has been moved or deleted."
+#~ msgstr "A fájl át lett helyezve vagy törölve lett."
+
+#~ msgid "Relationship loop detected"
+#~ msgstr "Valószínüleg körkapcsolat áll fent"
+
+#~ msgid "Reorder gramps IDs"
+#~ msgstr "Gramps ID-k újrarendezése"
+
+#~ msgid "Database Processing"
+#~ msgstr "Adatbázis feldolgozása"
+
+#~ msgid "Reorders the gramps IDs according to gramps' default rules."
+#~ msgstr "Az alapértelmezett szabályok alapján a gramps ID-k újrarendezése."
+
+#~ msgid "Default Template"
+#~ msgstr "Alapértelmezett séma"
+
+#~ msgid "User Defined Template"
+#~ msgstr "Felhasználó által definiált séma"
+
+#~ msgid "First"
+#~ msgstr "Első"
+
+#~ msgid "Second"
+#~ msgstr "Második"
+
+#~ msgid "Fourth"
+#~ msgstr "Negyedik"
+
+#~ msgid "Third"
+#~ msgstr "Harmadik"
+
+#~ msgid "Fifth"
+#~ msgstr "Ötödik"
+
+#~ msgid "Sixth"
+#~ msgstr "Hatodik"
+
+#~ msgid "Eighth"
+#~ msgstr "Nyolcadik"
+
+#~ msgid "Seventh"
+#~ msgstr "Hetedik"
+
+#~ msgid "Ninth"
+#~ msgstr "Kilencedik"
+
+#~ msgid "Tenth"
+#~ msgstr "Tizedik"
+
+#~ msgid "Eleventh"
+#~ msgstr "Tizenegyedik"
+
+#~ msgid "Twelfth"
+#~ msgstr "Tizenkettedik"
+
+#~ msgid "Fourteenth"
+#~ msgstr "Tizennegyedik"
+
+#~ msgid "Thirteenth"
+#~ msgstr "Tizenharmadik"
+
+#~ msgid "Fifteenth"
+#~ msgstr "Tizenötödik"
+
+#~ msgid "Sixteenth"
+#~ msgstr "Tizenhatodik"
+
+#~ msgid "Eighteenth"
+#~ msgstr "Tizennyolcadik"
+
+#~ msgid "Seventeenth"
+#~ msgstr "Tizenhetedik"
+
+#~ msgid "Nineteenth"
+#~ msgstr "Tizenkilencedik"
+
+#~ msgid "Twentieth"
+#~ msgstr "Huszadik"
+
+#~ msgid "Twenty-first"
+#~ msgstr "Huszonegyedik"
+
+#~ msgid "Twenty-second"
+#~ msgstr "Huszonkettedik"
+
+#~ msgid "Twenty-fourth"
+#~ msgstr "Huszonnegyedik"
+
+#~ msgid "Twenty-third"
+#~ msgstr "Huszonharmadik"
+
+#~ msgid "Twenty-fifth"
+#~ msgstr "Huszonötödik"
+
+#~ msgid "Twenty-sixth"
+#~ msgstr "Huszonhatodik"
+
+#~ msgid "Twenty-eighth"
+#~ msgstr "Huszonnyolcadik"
+
+#~ msgid "Twenty-seventh"
+#~ msgstr "Huszonhetedik"
+
+#~ msgid "Twenty-ninth"
+#~ msgstr "Huszonkilencedik"
+
+#~ msgid "Progress Report"
+#~ msgstr "Haladás összesítő"
+
+#~ msgid "Working"
+#~ msgstr "Dolgozom"
+
+#~ msgid "Document Options"
+#~ msgstr "Dokumentum tulajdonságok"
+
+#~ msgid "Center Person"
+#~ msgstr "Középső személy"
+
+#~ msgid "C_hange"
+#~ msgstr "_Módosít"
+
+#~ msgid "Style"
+#~ msgstr "Stílus"
+
+#~ msgid "Style Editor"
+#~ msgstr "Stílus szerkesztő"
+
+#~ msgid "Report Options"
+#~ msgstr "Összesítő tulajdonságok"
+
+#~ msgid "Filter"
+#~ msgstr "Szűrő"
+
+#~ msgid "Generations"
+#~ msgstr "Generációk"
+
+#~ msgid "Page break between generations"
+#~ msgstr "Oldaltörés generációk között"
+
+#~ msgid "Select Person"
+#~ msgstr "Személy kiválasztása"
+
+#~ msgid "Save Report As"
+#~ msgstr "Összesítő mentése másként"
+
+#~ msgid "Print a copy"
+#~ msgstr "Egy másolat nyomtatása"
+
+#~ msgid "Save As"
+#~ msgstr "Mentés másként"
+
+#~ msgid "Directory"
+#~ msgstr "Könyvtár"
+
+#~ msgid "Filename"
+#~ msgstr "Fájlnév"
+
+#~ msgid "Output Format"
+#~ msgstr "Kimeneti formátum"
+
+#~ msgid "Paper Options"
+#~ msgstr "Papír tulajdonságok"
+
+#~ msgid "Size"
+#~ msgstr "Méret"
+
+#~ msgid "Height"
+#~ msgstr "Magas"
+
+#~ msgid "cm"
+#~ msgstr "cm"
+
+#~ msgid "Orientation"
+#~ msgstr "Elrendezés"
+
+#~ msgid "Width"
+#~ msgstr "Szélesség"
+
+#~ msgid "Page Count"
+#~ msgstr "Oldalszám"
+
+#~ msgid "HTML Options"
+#~ msgstr "HTML Tulajdonságok"
+
+#~ msgid "Template"
+#~ msgstr "Séma"
+
+#~ msgid "User Template"
+#~ msgstr "Felhasználói Séma"
+
+#~ msgid "Choose File"
+#~ msgstr "Fájl választás"
+
+#~ msgid "Invalid file name"
+#~ msgstr "Szabálytalan fájlnév"
+
+#~ msgid ""
+#~ "The filename that you gave is a directory.\n"
+#~ "You need to provide a valid filename."
+#~ msgstr ""
+#~ "A fájlnév amit megadott az egy könyvtárnév.\n"
+#~ "Egy szabályos fájlnevet kell megadnia."
+
+#~ msgid "File already exists"
+#~ msgstr "A fájl már létezik"
+
+#~ msgid "_Overwrite"
+#~ msgstr "_Felülírás"
+
+#~ msgid "_Change filename"
+#~ msgstr "_Fájlnév cseréje"
+
+#~ msgid "Add Child to Family"
+#~ msgstr "Gyermek hozzáadása a családhoz"
+
+#~ msgid "Relationship to %(father)s"
+#~ msgstr "%(father)s kapcsolatai"
+
+#~ msgid "Relationship to %(mother)s"
+#~ msgstr "%(mother)s kapcsolatai"
+
+#~ msgid "Relationship to %s"
+#~ msgstr "%s kapcsolatai"
+
+#~ msgid "Relationships of %s"
+#~ msgstr "%s kapcsolatai"
+
+#~ msgid "Relationship to father"
+#~ msgstr "Édesapa kapcsolatai"
+
+#~ msgid "Relationship to mother"
+#~ msgstr "Az édesanya kapcsolatai"
+
+#~ msgid "Author"
+#~ msgstr "Készítő"
+
+#~ msgid ""
+#~ "This source is currently being used. Deleting it will remove it from the "
+#~ "database and from all records that reference it."
+#~ msgstr ""
+#~ "Ez a forrás jelenleg használatban van. Eltávolításával törlődik az "
+#~ "adatbázisból és minden mezőből ami hivatkozik rá."
+
+#~ msgid "_Delete Source"
+#~ msgstr "_Forrás Törlése"
+
+#~ msgid "Source Reference Selection"
+#~ msgstr "Forrás hivatkozás kiválasztása"
+
+#~ msgid "Source Information"
+#~ msgstr "Forrás információ"
+
+#~ msgid "Getting Started"
+#~ msgstr "Felhasználói telepítés"
+
+#~ msgid ""
+#~ "Welcome to GRAMPS, the Genealogical Research and Analysis Management "
+#~ "Programming System.\n"
+#~ "Several options and information need to be gathered before GRAMPS is "
+#~ "ready to be used. Any of this information can be changed in the future in "
+#~ "the Preferences dialog under the Settings menu."
+#~ msgstr ""
+#~ "Üdvözli önt a GRAMPS program, ez egy leszármazáskutató és elemzést segítő "
+#~ "programrendszer.\n"
+#~ "Néhány információt meg kell adnia mielőtt a GRAMPS elindul. Néhány ezek "
+#~ "közül a későbbiekben megváltoztatható a Tulajdonságok dialógus "
+#~ "Beállítások menüjében."
+
+#~ msgid "Complete"
+#~ msgstr "Befejezés"
+
+#~ msgid ""
+#~ "GRAMPS is an Open Source project. Its success depends on the users. User "
+#~ "feedback is important. Please join the mailing lists, submit bug reports, "
+#~ "suggest improvements, and see how you can contribute.\n"
+#~ "\n"
+#~ "Please enjoy using GRAMPS."
+#~ msgstr ""
+#~ "GRAMPS egy szabad forrású projekt. Fejlesztése nagyban függ a "
+#~ "felhasználóktól. A felhasználói visszajelzések nagyon fontosak nekünk. "
+#~ "Kérjük látogassa a levelezőlistánkat, ahol szívesen vesszük a "
+#~ "hibajelzéseit fejlesztési elképzeléseit.\n"
+#~ "\n"
+#~ "Élvezze a GRAMPS használatát!"
+
+#~ msgid ""
+#~ "In order to create valid GEDCOM files, the following information needs to "
+#~ "be entered. If you do not plan to generate GEDCOM files, you may leave "
+#~ "this empty."
+#~ msgstr ""
+#~ "Szabályos GEDCOM fájlok létrehozásához a következő információkra van "
+#~ "szűkség. Ha nem tervezi GEDCOM fájl létrehozását akkor üresen is "
+#~ "hagyhatja ezeket a mezőket."
+
+#~ msgid "Name:"
+#~ msgstr "Név:"
+
+#~ msgid "Address:"
+#~ msgstr "Lakcím:"
+
+#~ msgid "City:"
+#~ msgstr "Város:"
+
+#~ msgid "State/Province:"
+#~ msgstr "Állam/Tartomány:"
+
+#~ msgid "Country:"
+#~ msgstr "Ország:"
+
+#~ msgid "ZIP/Postal code:"
+#~ msgstr "Irányítószám:"
+
+#~ msgid "Phone:"
+#~ msgstr "Telefon:"
+
+#~ msgid "Email:"
+#~ msgstr "Email:"
+
+#~ msgid "Numerical date formats"
+#~ msgstr "Dátum formátumok"
+
+#~ msgid ""
+#~ "There are three common formats for entering dates in a numerical\n"
+#~ "format. Without some type of indication, GRAMPS cannot correctly\n"
+#~ "tell what format you are using. Please indicate your preferred format\n"
+#~ "for entering numerical dates."
+#~ msgstr ""
+#~ "Három általánosan használt formátum van a dátumok megadására.\n"
+#~ "Előzetes információk nélkül a GRAMPS nem tudja eldönteni melyiket "
+#~ "használja.\n"
+#~ "Kérem adja meg az ön által kedvelt formát."
+
+#~ msgid "MM/DD/YYYY (United States)"
+#~ msgstr "HH/NN/ÉÉÉÉ (USA)"
+
+#~ msgid "DD/MM/YYYY (European)"
+#~ msgstr "NN/HH/ÉÉÉÉ (Európai)"
+
+#~ msgid "YYYY-MM-DD (ISO)"
+#~ msgstr "ÉÉÉÉ-HH-NN (ISO)"
+
+#~ msgid "Alternate calendar support"
+#~ msgstr "Alternatív naptárak használata"
+
+#~ msgid ""
+#~ "By default, all dates stored by GRAMPS use the Gregorian calendar.\n"
+#~ "This is normally sufficient for most users. Support may be enabled\n"
+#~ "for the Julian, French Republican, and Hebrew calendar. If you believe\n"
+#~ "that you will need one or more of these alternate calendars, enable\n"
+#~ "alternate calendar support\n"
+#~ msgstr ""
+#~ "Alapbeállításként minden GRAMPS által tárolt dátum a Gregorián naptárat\n"
+#~ "használja. Ez a legtöbb felhasználónak megfelelő. Rendelkezésre áll még \n"
+#~ "Julián, Francia köztársasági és Héber naptár. Ha úgy gondolja, hogy \n"
+#~ "szűksége van ezek használatára akkor engedélyezze az alternatív \n"
+#~ "naptárak használatát.\n"
+
+#~ msgid "Enable support for alternate calendars"
+#~ msgstr "Alternatív naptárak használata"
+
+#~ msgid "LDS extensions"
+#~ msgstr "Mormon modul"
+
+#~ msgid ""
+#~ "GRAMPS has support for LDS Ordinances, which are special event types\n"
+#~ "related to the Church of Jesus Christ of Latter Day Saints.\n"
+#~ "\n"
+#~ "You may choose to either enable or disable this support. You may\n"
+#~ "change this option in the future in the Preferences dialog."
+#~ msgstr ""
+#~ "GRAMPSben nyílván lehet tartani a Mormon \n"
+#~ "(Churc of Jesus Christ of Latter Day Saints) ünnepeket.\n"
+#~ "\n"
+#~ "Engedélyezheti vagy tilthatja ezek használatát. Ezt a beállítást később\n"
+#~ "módosíthatja a Tulajdonságok párbeszédablakban."
+
+#~ msgid "Enable LDS ordinance support"
+#~ msgstr "Mormon ünnepek használata"
+
+#~ msgid "Document Styles"
+#~ msgstr "Dokumentum stílus"
+
+#~ msgid "Error saving stylesheet"
+#~ msgstr "Hiba a stílus mentésekor"
+
+#~ msgid "Style editor"
+#~ msgstr "Stílus szerkesztő"
+
+#~ msgid "Paragraph"
+#~ msgstr "Bekezdés"
+
+#~ msgid "No description available"
+#~ msgstr "Leírás nem érhető el"
+
+#~ msgid "Note"
+#~ msgstr "Megjegyzés"
+
+#~ msgid "Private"
+#~ msgstr "Bizalmas"
+
+#~ msgid "default"
+#~ msgstr "alapérték"
+
+#~ msgid "Revision control comment"
+#~ msgstr "Biztonsági másolat megjegyzés"
+
+#~ msgid "Select an older revision"
+#~ msgstr "Egy régebbi biztonsági másolat kiválasztása"
+
+#~ msgid "Changed by"
+#~ msgstr "Módosította"
+
+#~ msgid "Revision"
+#~ msgstr "Ellenőrzés"
+
+#~ msgid "Comment"
+#~ msgstr "Megjegyzés"
+
+#~ msgid "Could not retrieve version"
+#~ msgstr "A verzió nem állítható vissza"
+
+#~ msgid "RCS"
+#~ msgstr "RCS"
+
+#~ msgid "Witness"
+#~ msgstr "Tanú"
+
+#~ msgid "Witness Editor"
+#~ msgstr "Tanú szerkesztő"
+
+#~ msgid "Failure writing %s"
+#~ msgstr "Hiba %s írásakor"
+
+#~ msgid "An attempt is being made to recover the original file"
+#~ msgstr "Kísérlet az eredeti fájl visszaállítására."
+
+#~ msgid ""
+#~ "The database cannot be saved because you do not have permission to write "
+#~ "to the directory. Please make sure you have write access to the directory "
+#~ "and try again."
+#~ msgstr ""
+#~ "Az adatbázist nem lehet menteni, mivel önnek nincsen jogosultsága a "
+#~ "könytár irásához. Állítsa be a megfelelő jogokat a könyvtárra és próbálja "
+#~ "újra."
+
+#~ msgid ""
+#~ "The database cannot be saved because you do not have permission to write "
+#~ "to the file. Please make sure you have write access to the file and try "
+#~ "again."
+#~ msgstr ""
+#~ "Az adatbázist nem lehet menteni, mivel önnek nincsen jogosultsága a fájl "
+#~ "írásához. Állítsa be a megfelelő jogokat a fájlra és próbálja újra."
+
+#~ msgid "Islamic"
+#~ msgstr "Iszlám"
+
+#~ msgid "Persian"
+#~ msgstr "Perzsa"
+
+#~ msgid "female"
+#~ msgstr "nő"
+
+#~ msgid "male"
+#~ msgstr "férfi"
+
+#~ msgid "<b>Preview</b>"
+#~ msgstr "<b>Előnézet</b>"
+
+#~ msgid "Details:"
+#~ msgstr "Részletek:"
+
+#~ msgid "Path:"
+#~ msgstr "Útvonal:"
+
+#~ msgid "Type:"
+#~ msgstr "Típus:"
+
+#~ msgid "<b>Information</b>"
+#~ msgstr "<b>Információ</b>"
+
+#~ msgid ""
+#~ "GRAMPS (Genealogical Research and Analysis Management Programming System) "
+#~ "is a personal genealogy program."
+#~ msgstr ""
+#~ "GRAMPS (leszármazáskutató és elemző programrendszer) családfakutató "
+#~ "program."
+
+#~ msgid "TRANSLATORS: Translate this to your name in your native language"
+#~ msgstr "Egyeki Gergely"
+
+#~ msgid "Adopted"
+#~ msgstr "Örökbe fogadott"
+
+#~ msgid "Stepchild"
+#~ msgstr "Mostohagyermek"
+
+#~ msgid "Sponsored"
+#~ msgstr "Befogadott"
+
+#~ msgid "Foster"
+#~ msgstr "Fogadott"
+
+#~ msgid "Other"
+#~ msgstr "Egyéb"
+
+#~ msgid "Very High"
+#~ msgstr "Nagyon magas"
+
+#~ msgid "High"
+#~ msgstr "Magas"
+
+#~ msgid "Normal"
+#~ msgstr "Normális"
+
+#~ msgid "Low"
+#~ msgstr "Alacsony"
+
+#~ msgid "Very Low"
+#~ msgstr "Nagyon alacsony"
+
+#~ msgid "Alternate Marriage"
+#~ msgstr "Alternatív házasság"
+
+#~ msgid "Annulment"
+#~ msgstr "Házasság törlése"
+
+#~ msgid "Divorce Filing"
+#~ msgstr "Válási kérelem"
+
+#~ msgid "Divorce"
+#~ msgstr "Válás"
+
+#~ msgid "Engagement"
+#~ msgstr "Eljegyzés ideje:"
+
+#~ msgid "Marriage Contract"
+#~ msgstr "Házassági szerződés"
+
+#~ msgid "Marriage License"
+#~ msgstr "Házassági engedély"
+
+#~ msgid "Marriage Settlement"
+#~ msgstr "Házassági hozomány"
+
+#~ msgid "Marriage"
+#~ msgstr "Házasság ideje és helye:"
+
+#~ msgid "Alternate Birth"
+#~ msgstr "Alternatív születés"
+
+#~ msgid "Alternate Death"
+#~ msgstr "Alternatív halál"
+
+#~ msgid "Adult Christening"
+#~ msgstr "Felnőttkori megkeresztelés"
+
+#~ msgid "Baptism"
+#~ msgstr "Keresztelés"
+
+#~ msgid "Bar Mitzvah"
+#~ msgstr "Bar Mitzvah"
+
+#~ msgid "Bas Mitzvah"
+#~ msgstr "Bas Mitzvah"
+
+#~ msgid "Blessing"
+#~ msgstr "Áldás"
+
+#~ msgid "Burial"
+#~ msgstr "Temetés"
+
+#~ msgid "Cause Of Death"
+#~ msgstr "Halál oka"
+
+#~ msgid "Census"
+#~ msgstr "Népszámlálás"
+
+#~ msgid "Christening"
+#~ msgstr "Keresztelő"
+
+#~ msgid "Confirmation"
+#~ msgstr "Bérmálás/Konfirmáció"
+
+#~ msgid "Cremation"
+#~ msgstr "Hamvasztás"
+
+#~ msgid "Degree"
+#~ msgstr "Képzettség"
+
+#~ msgid "Education"
+#~ msgstr "Tanulmányok"
+
+#~ msgid "Elected"
+#~ msgstr "Megválasztott"
+
+#~ msgid "Emigration"
+#~ msgstr "Emigráció"
+
+#~ msgid "First Communion"
+#~ msgstr "Első áldozás/Első úrvacsora"
+
+#~ msgid "Immigration"
+#~ msgstr "Bevándorlás"
+
+#~ msgid "Graduation"
+#~ msgstr "Diploma"
+
+#~ msgid "Medical Information"
+#~ msgstr "Orvosi információk"
+
+#~ msgid "Military Service"
+#~ msgstr "Katonai szolgálat"
+
+#~ msgid "Naturalization"
+#~ msgstr "Állampolgárságot nyer"
+
+#~ msgid "Nobility Title"
+#~ msgstr "Nemesi megnevezés"
+
+#~ msgid "Number of Marriages"
+#~ msgstr "Házasság száma"
+
+#~ msgid "Occupation"
+#~ msgstr "Foglalkozása"
+
+#~ msgid "Ordination"
+#~ msgstr "Felszentelés"
+
+#~ msgid "Probate"
+#~ msgstr "Hiteles végrendelet"
+
+#~ msgid "Property"
+#~ msgstr "Tulajdonos"
+
+#~ msgid "Religion"
+#~ msgstr "Vallás"
+
+#~ msgid "Residence"
+#~ msgstr "Lakóhely"
+
+#~ msgid "Retirement"
+#~ msgstr "Nyugdíjazás"
+
+#~ msgid "Will"
+#~ msgstr "Végrendelet"
+
+#~ msgid "Caste"
+#~ msgstr "Kaszt"
+
+#~ msgid "Identification Number"
+#~ msgstr "Személyi szám"
+
+#~ msgid "National Origin"
+#~ msgstr "Nemzetisége"
+
+#~ msgid "Social Security Number"
+#~ msgstr "Társadalombiztosítási szám"
+
+#~ msgid "Number of Children"
+#~ msgstr "Gyermekek száma"
+
+#~ msgid "A legal or common-law relationship between a husband and wife"
+#~ msgstr "Törvényes kapcsolat férj és feleség között"
+
+#~ msgid "No legal or common-law relationship between man and woman"
+#~ msgstr "Törvénytelen kapcsolat férfi és nő között"
+
+#~ msgid "Unmarried"
+#~ msgstr "Nőtlen/hajadon"
+
+#~ msgid "An established relationship between members of the same sex"
+#~ msgstr "Azonos neműek közötti kapcsolat"
+
+#~ msgid "Unknown relationship between a man and woman"
+#~ msgstr "Ismeretlen kapcsolat egy férfi és egy nő között"
+
+#~ msgid "An unspecified relationship between a man and woman"
+#~ msgstr "Egy meghatározhatatlan kapcsolat egy férfi és egy nő között"
+
+#~ msgid "No definition available"
+#~ msgstr "Nincsen meghatározás"
+
+#~ msgid "Also Known As"
+#~ msgstr "Így is ismert"
+
+#~ msgid "Birth Name"
+#~ msgstr "Születési név"
+
+#~ msgid "Married Name"
+#~ msgstr "Házassági név"
+
+#~ msgid "Other Name"
+#~ msgstr "Egyéb név"
+
+#~ msgid "Child"
+#~ msgstr "Gyerekek"
+
+#~ msgid "<No Status>"
+#~ msgstr "<Nincsen állapot>"
+
+#~ msgid "Cleared"
+#~ msgstr "Törölve"
+
+#~ msgid "Completed"
+#~ msgstr "Befejezve"
+
+#~ msgid "Infant"
+#~ msgstr "Csecsemő"
+
+#~ msgid "Stillborn"
+#~ msgstr "Halva született"
+
+#~ msgid "Pre-1970"
+#~ msgstr "1970 előtt"
+
+#~ msgid "Qualified"
+#~ msgstr "Képzett"
+
+#~ msgid "Submitted"
+#~ msgstr "Javasolt"
+
+#~ msgid "Uncleared"
+#~ msgstr "Tisztázatlan"
+
+#~ msgid "BIC"
+#~ msgstr "BIC"
+
+#~ msgid "DNS"
+#~ msgstr "DNS"
+
+#~ msgid "Canceled"
+#~ msgstr "Visszavonva"
+
+#~ msgid "DNS/CAN"
+#~ msgstr "DNS/CAN"
+
+#~ msgid "Flowed"
+#~ msgstr "Származtatott"
+
+#~ msgid "Preformatted"
+#~ msgstr "Előformázott"
+
+#~ msgid "Close window without changes"
+#~ msgstr "Ablak becsukása mentés nélkül"
+
+#~ msgid "Accept changes and close window"
+#~ msgstr "Változtatások alkalmazása és az ablak bezárása"
+
+#~ msgid "_Event type:"
+#~ msgstr "_Esemény típusa:"
+
+#~ msgid "_Date:"
+#~ msgstr "_Dátum:"
+
+#~ msgid "De_scription:"
+#~ msgstr "_Leírás:"
+
+#~ msgid "_Place:"
+#~ msgstr "_Hely:"
+
+#~ msgid "_Cause:"
+#~ msgstr "_Ugrás:"
+
+#~ msgid "Selects the calendar format for display"
+#~ msgstr "Válassza ki a használni kívánt naptár formátumot"
+
+#~ msgid "French"
+#~ msgstr "Francia"
+
+#~ msgid "_Private record"
+#~ msgstr "_Bizalmas"
+
+#~ msgid "<b>General</b>"
+#~ msgstr "<b>Általános</b>"
+
+#~ msgid "_Add..."
+#~ msgstr "_Hozzáadás..."
+
+#~ msgid "_Edit..."
+#~ msgstr "S_zerkesztés..."
+
+#~ msgid "_Delete"
+#~ msgstr "_Törlés"
+
+#~ msgid "Sources"
+#~ msgstr "Források"
+
+#~ msgid "<b>Format</b>"
+#~ msgstr "<b>Formátum</b>"
+
+#~ msgid ""
+#~ "Multiple spaces, tabs, and single line breaks are replaced with single "
+#~ "spaces. Two consecutive line breaks mark a new paragraph."
+#~ msgstr ""
+#~ "Szóközök, sorbehúzások és egyszeres újsorok egyetlen szóközzel lesznek "
+#~ "helyettesítve. Két egymásutáni újsor jelent egy új bekezdést."
+
+#~ msgid "_Flowed"
+#~ msgstr "_Származtatott"
+
+#~ msgid ""
+#~ "Formatting is preserved, except for the leading whitespace. Multiple "
+#~ "spaces, tabs, and all line breaks are respected."
+#~ msgstr ""
+#~ "A formátum rögzítve lett, kivéve a sorelejei szóközöket. Többszörös "
+#~ "szóközök sorbehúzások és minden újsor a helyén maradt."
+
+#~ msgid "_Preformatted"
+#~ msgstr "_Előformázott"
+
+#~ msgid "Witnesses"
+#~ msgstr "Tanúk"
+
+#~ msgid "_Attribute:"
+#~ msgstr "_Tulajdonság:"
+
+#~ msgid "_Value:"
+#~ msgstr "_Érték:"
+
+#~ msgid "_City:"
+#~ msgstr "_Város:"
+
+#~ msgid "C_ounty:"
+#~ msgstr "_Megye:"
+
+#~ msgid "Cou_ntry:"
+#~ msgstr "_Ország:"
+
+#~ msgid "_State:"
+#~ msgstr "_Állam:"
+
+#~ msgid "Church _parish:"
+#~ msgstr "Egyházmegye:"
+
+#~ msgid "P_hone:"
+#~ msgstr "_Telefon:"
+
+#~ msgid "_Zip/Postal code:"
+#~ msgstr "_Irányítószám:"
+
+#~ msgid "Add_ress:"
+#~ msgstr "_Lakcím:"
+
+#~ msgid "_City/County:"
+#~ msgstr "_Város/Vidék"
+
+#~ msgid "_State/Province:"
+#~ msgstr "_Állam/Tartomány:"
+
+#~ msgid "_ZIP/Postal code:"
+#~ msgstr "_Irányítószám:"
+
+#~ msgid "_Web address:"
+#~ msgstr "_Web cím:"
+
+#~ msgid "_Description:"
+#~ msgstr "_Leírás:"
+
+#~ msgid "Abandon changes and close window"
+#~ msgstr "Változtatások mellőzése és a párbeszédablak bezárása"
+
+#~ msgid "_Given name:"
+#~ msgstr "_Kereszt név:"
+
+#~ msgid "_Family name:"
+#~ msgstr "_Család név:"
+
+#~ msgid "Suffi_x:"
+#~ msgstr "_Utótag:"
+
+#~ msgid "T_ype:"
+#~ msgstr "_Típus:"
+
+#~ msgid "_Title:"
+#~ msgstr "_Megnevezés:"
+
+#~ msgid "P_rivate record"
+#~ msgstr "_Személyes mező"
+
+#~ msgid "Family _prefix:"
+#~ msgstr "Családi _előtag:"
+
+#~ msgid "_Person:"
+#~ msgstr "_Személy:"
+
+#~ msgid "_Comment:"
+#~ msgstr "_Megjegyzés:"
+
+#~ msgid "Person is in the _database"
+#~ msgstr "Személy az _adatbázisban"
+
+#~ msgid "Choose a person from the database"
+#~ msgstr "Személy kiválasztása az adatbázisból"
+
+#~ msgid "_Select"
+#~ msgstr "_Kiválasztás"
+
+#~ msgid "Open in AbiWord"
+#~ msgstr "Megnyitás AbiWorddel"
+
+#~ msgid "AbiWord"
+#~ msgstr "AbiWord"
+
+#~ msgid "The marker '<!-- START -->' was not in the template"
+#~ msgstr "A '<!-- START -->' szimbólum nincsen a sémában"
+
+#~ msgid ""
+#~ "Could not open %s\n"
+#~ "Using the default template"
+#~ msgstr ""
+#~ "%s nem nyitható meg\n"
+#~ "Alapértelmezett séma használata"
+
+#~ msgid "HTML"
+#~ msgstr "HTML"
+
+#~ msgid "KWord"
+#~ msgstr "KWord"
+
+#~ msgid "LPR"
+#~ msgstr "LPR"
+
+#~ msgid "LaTeX"
+#~ msgstr "LaTeX"
+
+#~ msgid "Open in OpenOffice.org"
+#~ msgstr "Megnyitás OpenOffice.orggal"
+
+#~ msgid "OpenOffice.org Writer"
+#~ msgstr "OpenOffice.org Szövegszerkesztő"
+
+#~ msgid "OpenOffice.org Draw"
+#~ msgstr "OpenOffice.org Rajzoló"
+
+#~ msgid "PostScript"
+#~ msgstr "PostScript"
+
+#~ msgid "The ReportLab modules are not installed"
+#~ msgstr "A ReportLab modulok nincsenek telepítve"
+
+#~ msgid "PDF"
+#~ msgstr "PDF"
+
+#~ msgid "Rich Text Format (RTF)"
+#~ msgstr "Rich Text Format (RTF)"
+
+#~ msgid "SVG (Scalable Vector Graphics)"
+#~ msgstr "SVG (Scalable Vector Graphics)"
+
+#~ msgid "Family prefi_x:"
+#~ msgstr "_Család előtag:"
+
+#~ msgid "S_uffix:"
+#~ msgstr "Utótag:"
+
+#~ msgid "Nic_kname:"
+#~ msgstr "_Becenév:"
+
+#~ msgid "Invoke birth event editor"
+#~ msgstr "Születési események szerkesztő elindítása"
+
+#~ msgid "Edit..."
+#~ msgstr "Szerkesztés..."
+
+#~ msgid "Select source for this name information"
+#~ msgstr "Ehhez a név információhoz válasszon forrást"
+
+#~ msgid "Source..."
+#~ msgstr "Forrás..."
+
+#~ msgid "Enter/modify notes regarding this name"
+#~ msgstr "Bevitele/módosítása a megjegyzéseknek erre a személyre vonatkozóan"
+
+#~ msgid "Note..."
+#~ msgstr "Megjegyzés..."
+
+#~ msgid "The person's given name"
+#~ msgstr "A személy keresztneve"
+
+#~ msgid "The surname or last name"
+#~ msgstr "Családnév vagy vezetéknév"
+
+#~ msgid ""
+#~ "An optional prefix for the family name that is not used in sorting, such "
+#~ "as \"de\" or \"van\""
+#~ msgstr ""
+#~ "Egy választható csalánév előtag ami nem kerül a rendezésekben "
+#~ "felhasználásra, ilyen pl.: \"de\" vagy \"van\""
+
+#~ msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
+#~ msgstr "Egy választható név utótag, mint pl.: \" Jr.\" vagy \"III\""
+
+#~ msgid "A title used to refer to the person, such as \"Dr.\" or \"Rev.\""
+#~ msgstr "Személyre vonatkozó megszólítás, mint pl.: \"Dr.\" vagy \"Rev.\""
+
+#~ msgid "A name that the person was more commonly known by"
+#~ msgstr "Ismertebb neve a személynek"
+
+#~ msgid "<b>Gender</b>"
+#~ msgstr "<b>Nem</b>"
+
+#~ msgid "<b>Preferred name</b>"
+#~ msgstr "<b>Használt Név</b>"
+
+#~ msgid "_male"
+#~ msgstr "_férfi"
+
+#~ msgid "fema_le"
+#~ msgstr "_nő"
+
+#~ msgid "u_nknown"
+#~ msgstr "i_smeretlen"
+
+#~ msgid "<b>Birth</b>"
+#~ msgstr "<b>Születés</b>"
+
+#~ msgid "<b>Image</b>"
+#~ msgstr "<b>Kép</b>"
+
+#~ msgid "<b>Identification</b>"
+#~ msgstr "<b>Azonosító</b>"
+
+#~ msgid "_ID:"
+#~ msgstr "_ID:"
+
+#~ msgid "<b>Death</b>"
+#~ msgstr "<b>Halál</b>"
+
+#~ msgid "D_ate:"
+#~ msgstr "_Dátum:"
+
+#~ msgid "Plac_e:"
+#~ msgstr "_Hely:"
+
+#~ msgid "Invoke death event editor"
+#~ msgstr "Halálozás szerkesztő előhívása"
+
+#~ msgid "Information i_s complete"
+#~ msgstr "Az információ teljes"
+
+#~ msgid "Confidence:"
+#~ msgstr "Bizalmas:"
+
+#~ msgid "Family prefix:"
+#~ msgstr "Család előtag:"
+
+#~ msgid "<b>Alternate name</b>"
+#~ msgstr "<b>Alternatív nevek</b>"
+
+#~ msgid "<b>Primary source</b>"
+#~ msgstr "<b>Fő forrás</b>"
+
+#~ msgid "Create an alternate name for this person"
+#~ msgstr "Egy alternatív név létrehozása ehhez a személyhez"
+
+#~ msgid "Edit the selected name"
+#~ msgstr "A kiválasztott név szerkesztése"
+
+#~ msgid "Delete selected name"
+#~ msgstr "Kiválasztott név törlése"
+
+#~ msgid "Names"
+#~ msgstr "Nevek"
+
+#~ msgid "<b>Event</b>"
+#~ msgstr "<b>Esemény</b>"
+
+#~ msgid "Cause:"
+#~ msgstr "Ugrás:"
+
+#~ msgid "Create a new event"
+#~ msgstr "Egy új esemény létrehozása"
+
+#~ msgid "Edit the selected event"
+#~ msgstr "Kiválasztott esemény szerkesztése"
+
+#~ msgid "Delete the selected event"
+#~ msgstr "Kiválasztott esemény törlése"
+
+#~ msgid "Events"
+#~ msgstr "Események"
+
+#~ msgid "<b>Attributes</b>"
+#~ msgstr "<b>Tulajdonságok</b>"
+
+#~ msgid "Create a new attribute"
+#~ msgstr "Új tulajdonság létrehozása"
+
+#~ msgid "Edit the selected attribute"
+#~ msgstr "A kiválasztott tulajdonság szerkesztése"
+
+#~ msgid "Delete the selected attribute"
+#~ msgstr "Kiválasztott tulajdonság törlése"
+
+#~ msgid "Attributes"
+#~ msgstr "Tulajdonságok"
+
+#~ msgid "City/County:"
+#~ msgstr "Város/Vidék:"
+
+#~ msgid "<b>Addresses</b>"
+#~ msgstr "<b>Lakcímek</b>"
+
+#~ msgid "Create a new address"
+#~ msgstr "Új lakcím létrehozása"
+
+#~ msgid "Edit the selected address"
+#~ msgstr "Kiválasztott lakcím szerkesztése"
+
+#~ msgid "Delete the selected address"
+#~ msgstr "Kiválasztott lakcím törlése"
+
+#~ msgid "Addresses"
+#~ msgstr "Lakcímek"
+
+#~ msgid "Enter miscellaneous relevant data and documentation"
+#~ msgstr "Nevezetes adatok és dokumentumok megadása"
+
+#~ msgid "Notes"
+#~ msgstr "Megjegyzések"
+
+#~ msgid "_Delete..."
+#~ msgstr "_Törlés..."
+
+#~ msgid "Add a new media object to the database and place it in this gallery"
+#~ msgstr ""
+#~ "Új média objektum hozzáadása az adatbázishoz és a galériában való "
+#~ "elhejezése"
+
+#~ msgid "_Add from file..."
+#~ msgstr "Fájlból _hozzáadás..."
+
+#~ msgid ""
+#~ "Select an existing media object from the database and place it in this "
+#~ "gallery"
+#~ msgstr ""
+#~ "Válasszon ki egy létező média objektumot az adatbázisból, hogy hozzáadja "
+#~ "a galériához"
+
+#~ msgid "Add from _database..."
+#~ msgstr "A_datbázisból hozzáadás..."
+
+#~ msgid "Edit the properties of the selected object"
+#~ msgstr "A kiválasztott objektum szerkesztése"
+
+#~ msgid "Remove selected object from this gallery only"
+#~ msgstr "A kiválasztott objektum törlése csak ebből a galériából"
+
+#~ msgid "_Remove"
+#~ msgstr "_Eltávolítás"
+
+#~ msgid "Gallery"
+#~ msgstr "Galéria"
+
+#~ msgid "Web address:"
+#~ msgstr "Web cím:"
+
+#~ msgid "<b>Internet addresses</b>"
+#~ msgstr "<b>Internet címek</b>"
+
+#~ msgid "Add an internet reference about this person"
+#~ msgstr "A személy internet hivatkozásának hozzáadása"
+
+#~ msgid "Go to this web page"
+#~ msgstr "e weboldal megtekintése"
+
+#~ msgid "_Go"
+#~ msgstr "_Ugrás"
+
+#~ msgid "Delete selected reference"
+#~ msgstr "Kiválasztott hivatkozás törlése"
+
+#~ msgid "Internet"
+#~ msgstr "Internet"
+
+#~ msgid "<b>LDS baptism</b>"
+#~ msgstr "<b>Mormon keresztség</b>"
+
+#~ msgid "LDS _temple:"
+#~ msgstr "Mormon _templom:"
+
+#~ msgid "Sources..."
+#~ msgstr "Források..."
+
+#~ msgid "<b>Endowment</b>"
+#~ msgstr "<b>Kiházasítás</b>"
+
+#~ msgid "LDS te_mple:"
+#~ msgstr "Mormon _templom:"
+
+#~ msgid "P_lace:"
+#~ msgstr "_Helyszínek:"
+
+#~ msgid "Dat_e:"
+#~ msgstr "_Dátum:"
+
+#~ msgid "LD_S temple:"
+#~ msgstr "M_ormon templom:"
+
+#~ msgid "Pla_ce:"
+#~ msgstr "_Hely:"
+
+#~ msgid "Pa_rents:"
+#~ msgstr "_Szülők:"
+
+#~ msgid "<b>Sealed to parents</b>"
+#~ msgstr "<b>Szülői hitelesítés</b>"
+
+#~ msgid "LDS"
+#~ msgstr "Mormon"
+
+#~ msgid "Close _without saving"
+#~ msgstr "Bezárás _mentés nélkül"
+
+#~ msgid "Remove object and all references to it from the database"
+#~ msgstr "Objektum és minden hivatkozás eltávolítása az adatbázisból"
+
+#~ msgid "_Remove Object"
+#~ msgstr "_Objektum törlése"
+
+#~ msgid "Keep reference to the missing file"
+#~ msgstr "Hivatkozások megtartása az elveszett fájlhoz"
+
+#~ msgid "_Keep Reference"
+#~ msgstr "_Hivatkozás megtartása"
+
+#~ msgid "Select replacement for the missing file"
+#~ msgstr "Az elveszett fájl áthelyezése"
+
+#~ msgid "_Select File"
+#~ msgstr "Fájl _kiválasztása"
+
+#~ msgid ""
+#~ "If you check this button, all the missing media files will be "
+#~ "automatically treated according to the currently selected option. No "
+#~ "further dialogs will be presented for any missing medial files."
+#~ msgstr ""
+#~ "Ha bejelöli ezt a gombot, akkor minden elveszett média fájl a jelenleg "
+#~ "kiválasztott módon lesz kezelve. További hibaüzenet nem fog megjelenni "
+#~ "egyik elveszett média fájlnál sem."
+
+#~ msgid "_Use this selection for all missing media files"
+#~ msgstr "E kijelölés alkalmazása minden elveszett média fájlra"
+
+#~ msgid "People with an event after ..."
+#~ msgstr "Emberek egy közös eseménnyel a következő időpont után..."
+
+#~ msgid "People who were adopted"
+#~ msgstr "Örökbe fogadott emberek"
+
+#~ msgid "People with an event before ..."
+#~ msgstr "Emberek egy eseménnyel azelőtt, hogy ..."
+
+#~ msgid "People with complete information"
+#~ msgstr "Emberek teljes információval"
+
+#~ msgid "Disconnected individuals"
+#~ msgstr "Kapcsolat nélküli egyének"
+
+#~ msgid "People with an event location of ..."
+#~ msgstr "Emberek a megadott helyen történt eseményekkel"
+
+#~ msgid "People who have an event type of ..."
+#~ msgstr "Emberek akiknek közös eseménye ..."
+
+#~ msgid "Females"
+#~ msgstr "Nők"
+
+#~ msgid "People who have images"
+#~ msgstr "Emberek arcképpel"
+
+#~ msgid "People with incomplete names"
+#~ msgstr "Emberek hiányos nevekkel"
+
+#~ msgid "Males"
+#~ msgstr "Férfiak"
+
+#~ msgid "Names with same SoundEx code as ..."
+#~ msgstr "Nevek ugyanazzal a SoundEX kóddal mint ..."
+
+#~ msgid "Surname"
+#~ msgstr "Családnév"
+
+#~ msgid "Names with the SoundEx code of ..."
+#~ msgstr "Nevek SoundEX kóddal mint ..."
+
+#~ msgid "SoundEx Code"
+#~ msgstr "SoundEX kód"
+
+#~ msgid "People with multiple marriage records"
+#~ msgstr "Emberek több házassági bejegyzéssel"
+
+#~ msgid "People with no marriage records"
+#~ msgstr "Emberek házasság nélküli bejegyzéssel"
+
+#~ msgid "People without a birth date"
+#~ msgstr "Emberek születési dátum nélkül"
+
+#~ msgid "People with children"
+#~ msgstr "Gyermekes emberek"
+
+#~ msgid "Names that match a regular expression of ..."
+#~ msgstr "Nevek amik egy kifejezéssel kereshetőek, mint..."
+
+#~ msgid "Text"
+#~ msgstr "Szöveg"
+
+#~ msgid "Names that contain a substring of ..."
+#~ msgstr "Nevek amik egy szöveg részletet tartalmaznak, mint..."
+
+#~ msgid "_File"
+#~ msgstr "_Fájl"
+
+#~ msgid "_New"
+#~ msgstr "Ú_j"
+
+#~ msgid "_Open..."
+#~ msgstr "_Megnyitás..."
+
+#~ msgid "_Save"
+#~ msgstr "M_entés"
+
+#~ msgid "Save _As..."
+#~ msgstr "Men_tés másként..."
+
+#~ msgid "_Import"
+#~ msgstr "_Importálás"
+
+#~ msgid "_Export"
+#~ msgstr "_Exportálás"
+
+#~ msgid "_Revert"
+#~ msgstr "_Visszaállítás"
+
+#~ msgid "Re_load plugins"
+#~ msgstr "Modulok ú_jrabetöltése"
+
+#~ msgid "_Quit"
+#~ msgstr "_Kilépés"
+
+#~ msgid "_Edit"
+#~ msgstr "S_zerkesztés"
+
+#~ msgid "Add a new item"
+#~ msgstr "Új elem hozzáadása"
+
+#~ msgid "Remove the currently selected item"
+#~ msgstr "Kiválasztott elem eltávolítása"
+
+#~ msgid "Edit the selected item"
+#~ msgstr "A kiválasztott elem szerkesztése"
+
+#~ msgid "E_dit..."
+#~ msgstr "S_zerkesztés..."
+
+#~ msgid "_Find..."
+#~ msgstr "_Keresés..."
+
+#~ msgid "_Merge..."
+#~ msgstr "_Egyesítés..."
+
+#~ msgid "Prefere_nces..."
+#~ msgstr "_Tulajdonságok..."
+
+#~ msgid "Set _Home person..."
+#~ msgstr "_Központi személy kiválasztása..."
+
+#~ msgid "_View"
+#~ msgstr "_Nézet"
+
+#~ msgid "_Filter"
+#~ msgstr "_Szűrő"
+
+#~ msgid "_Sidebar"
+#~ msgstr "_Oldalsó eszköztár"
+
+#~ msgid "_Toolbar"
+#~ msgstr "_Fő eszköztár"
+
+#~ msgid "_Bookmarks"
+#~ msgstr "_Könyvjelzők"
+
+#~ msgid "_Add bookmark"
+#~ msgstr "Könyvjelző hozzá_adása"
+
+#~ msgid "_Edit bookmarks..."
+#~ msgstr "Könyvjelzők s_zerkesztése..."
+
+#~ msgid "_Go to bookmark"
+#~ msgstr "_Könyvjelző elem kiválasztása"
+
+#~ msgid "_Reports"
+#~ msgstr "_Összesítők"
+
+#~ msgid "_Tools"
+#~ msgstr "_Eszközök"
+
+#~ msgid "_Help"
+#~ msgstr "_Súgó"
+
+#~ msgid "_User manual"
+#~ msgstr "_Felhasználói kézikönyv"
+
+#~ msgid "_FAQ"
+#~ msgstr "_GYIK (FAQ)"
+
+#~ msgid "_Show plugin status..."
+#~ msgstr "_Modul állapot megjelenítése..."
+
+#~ msgid "_Open example database"
+#~ msgstr "_Példa adatbázis megnyitása"
+
+#~ msgid "_About"
+#~ msgstr "_Névjegy"
+
+#~ msgid "Open"
+#~ msgstr "Megnyitás"
+
+#~ msgid "Save"
+#~ msgstr "Mentés"
+
+#~ msgid "Go back in history"
+#~ msgstr "Visszalépés a történtekben"
+
+#~ msgid "Back"
+#~ msgstr "Vissza"
+
+#~ msgid "Go forward in history"
+#~ msgstr "Előrelépés a történtekben"
+
+#~ msgid "Forward"
+#~ msgstr "Tovább"
+
+#~ msgid "Make the Home Person the active person"
+#~ msgstr "A központi személy kiválasztása tétele"
+
+#~ msgid "Generate reports"
+#~ msgstr "Összesítők készítése"
+
+#~ msgid "Reports"
+#~ msgstr "Összesítők"
+
+#~ msgid "Run tools"
+#~ msgstr "Eszközök futtatása"
+
+#~ msgid "Tools"
+#~ msgstr "Eszközök"
+
+#~ msgid "Add"
+#~ msgstr "Hozzáadás"
+
+#~ msgid "Remove"
+#~ msgstr "Eltávolítás"
+
+#~ msgid "Pedigree"
+#~ msgstr "Családfa"
+
+#~ msgid "Media"
+#~ msgstr "Média"
+
+#~ msgid "Fi_lter:"
+#~ msgstr "Szű_rő:"
+
+#~ msgid "Qualifier:"
+#~ msgstr "Szűrő:"
+
+#~ msgid "Show people that do not match the filtering rule"
+#~ msgstr ""
+#~ "Azon emberek megjelenítése akik nem felelnek meg a szűrő feltételnek"
+
+#~ msgid "_Invert"
+#~ msgstr "_Ellentett"
+
+#~ msgid "Apply filter using the selected controls"
+#~ msgstr "Szűrő használata a kiválasztott szabályzókkal"
+
+#~ msgid "<b>People</b>"
+#~ msgstr "<b>Emberek</b>"
+
+#~ msgid "Exchange the current spouse with the active person"
+#~ msgstr "Az kijelölt házastárs cseréje a kijelölt személlyel"
+
+#~ msgid "Adds a new person to the database and to a new relationship"
+#~ msgstr "Új személy hozzáadása az adatbázishoz és egy új kapcsolathoz"
+
+#~ msgid ""
+#~ "Selects an existing person from the database and adds to a new "
+#~ "relationship"
+#~ msgstr ""
+#~ "Egy létező személy kiválasztása az adatbázisból és egy új kapcsolathoz "
+#~ "való hozzáadása"
+
+#~ msgid "Removes the currently selected spouse"
+#~ msgstr "A kiválasztott házasok eltávolítása"
+
+#~ msgid "Make the active person's parents the active family"
+#~ msgstr "A kijelölt személy családja legyen a kiválasztott család"
+
+#~ msgid "Adds a new set of parents to the active person"
+#~ msgstr "Új családok hozzáadása a kijelölt személyhez"
+
+#~ msgid "Deletes the selected parents from the active person"
+#~ msgstr "A kiválasztott szülők törlése a kijelölt személytől"
+
+#~ msgid "Double-click to edit the relationship to the selected parents"
+#~ msgstr "Duplakattintás a kiválasztott szülők kapcsolatának szerkesztéséhez"
+
+#~ msgid "Make the selected spouse's parents the active family"
+#~ msgstr "A kijelölt házastárs szülei legyenek az aktív család"
+
+#~ msgid "Adds a new set of parents to the selected spouse"
+#~ msgstr "Új családok hozzáadása a kiválasztott házastárshoz"
+
+#~ msgid "Deletes the selected parents from the selected spouse"
+#~ msgstr "A kiválasztott szülők törlése a kijelölt házasságból"
+
+#~ msgid "<b>_Children</b>"
+#~ msgstr "<b>_Gyerekek</b>"
+
+#~ msgid "<b>_Active person</b>"
+#~ msgstr "<b>_Kijelölt személy</b>"
+
+#~ msgid "<b>Active person's _parents</b>"
+#~ msgstr "<b>Kijelölt személy _szülei</b>"
+
+#~ msgid "<b>Relati_onship</b>"
+#~ msgstr "<b>Kapcs_olat</b>"
+
+#~ msgid "<b>Spo_use's parents</b>"
+#~ msgstr "<b>Ház_astárs szülei</b>"
+
+#~ msgid "Double-click to edit the active person"
+#~ msgstr "Duplakattintás a kijelölt személy szerkesztéséhez"
+
+#~ msgid ""
+#~ "Double-click to edit the relationship information, Shift-click to edit "
+#~ "the person"
+#~ msgstr ""
+#~ "Duplakattintás a kapcsolat- , Shift-kattintás a személy szerkesztéséhez"
+
+#~ msgid "Make the selected child the active person"
+#~ msgstr "A kijelölt gyermek legyen az aktív személy"
+
+#~ msgid "Adds a new child to the database and to the current family"
+#~ msgstr "Új személy hozzáadása az adatbázishoz és a jelenlegi családhoz"
+
+#~ msgid ""
+#~ "Selects an existing person from the database and adds as a child to the "
+#~ "current family"
+#~ msgstr ""
+#~ "Egy létező személy kiválasztása az adatbázisból és gyerekként hozzáadása "
+#~ "a jelenlegi családhoz"
+
+#~ msgid "Deletes the selected child from the selected family"
+#~ msgstr "A kiválasztott gyermek törlése a családból"
+
+#~ msgid "<b>Family</b>"
+#~ msgstr "<b>Család</b>"
+
+#~ msgid "<b>Pedigree</b>"
+#~ msgstr "<b>Családfa</b>"
+
+#~ msgid "<b>Sources</b>"
+#~ msgstr "<b>Források</b>"
+
+#~ msgid "<b>Places</b>"
+#~ msgstr "<b>Helyszínek</b>"
+
+#~ msgid "<b>Media</b>"
+#~ msgstr "<b>Média</b>"
+
+#~ msgid ""
+#~ "Check to show all people in the list.  Uncheck to get the list filtered "
+#~ "by birth and death dates."
+#~ msgstr ""
+#~ "Bejelölve minden ember megjelenik a listán. Bejelöletlenül születési és "
+#~ "halálozási dátum alapján szűrve lesznek az emberek."
+
+#~ msgid "_Show all"
+#~ msgstr "_Mindent megmutat"
+
+#~ msgid "_Relationship type:"
+#~ msgstr "_Kapcsolat típusa"
+
+#~ msgid "Relationship definition\n"
+#~ msgstr "Kapcsolat definíció\n"
+
+#~ msgid "_Father's relationship to child:"
+#~ msgstr "_Apa kapcsolata a gyermekkel:"
+
+#~ msgid "_Mother's relationship to child:"
+#~ msgstr "Anya kapcsolata a gyermekkel:"
+
+#~ msgid "_Parents' relationship to each other:"
+#~ msgstr "_Szülők egymás közötti kapcsolata:"
+
+#~ msgid "<b>Fat_her</b>"
+#~ msgstr "<b>_Apa</b>"
+
+#~ msgid "<b>Moth_er</b>"
+#~ msgstr "<b>A_nya</b>"
+
+#~ msgid "<b>Relationships</b>"
+#~ msgstr "<b>Kapcsolatok</b>"
+
+#~ msgid "Show _all"
+#~ msgstr "_Minden megjelenítése"
+
+#~ msgid "Relationship to father:"
+#~ msgstr "Az édesapa kapcsolatai:"
+
+#~ msgid "Relationship to mother:"
+#~ msgstr "Az édesanya kapcsolatai:"
+
+#~ msgid "_Author:"
+#~ msgstr "_Készítő:"
+
+#~ msgid "_Publication information:"
+#~ msgstr "_Publikációs információ:"
+
+#~ msgid "A_bbreviation:"
+#~ msgstr "_Rövidítés:"
+
+#~ msgid "References"
+#~ msgstr "Hivatkozások"
+
+#~ msgid "Gender:"
+#~ msgstr "Neme:"
+
+#~ msgid "_female"
+#~ msgstr "_nő"
+
+#~ msgid "_Open an existing database"
+#~ msgstr "_Egy létező adatbázis megnyitása"
+
+#~ msgid "Create a new _XML database"
+#~ msgstr "Új _XML adatbázis létrehozása"
+
+#~ msgid "_Relationship:"
+#~ msgstr "_Kapcsolat:"
+
+#~ msgid "Relation_ship:"
+#~ msgstr "_Kapcsolat:"
+
+#~ msgid "<b>Father</b>"
+#~ msgstr "<b>Apa</b>"
+
+#~ msgid "<b>Mother</b>"
+#~ msgstr "<b>Anya</b>"
+
+#~ msgid "<b>Preference</b>"
+#~ msgstr "<b>Tulajdonság</b>"
+
+#~ msgid ""
+#~ "Indicates that the parents should be used as the preferred parents for "
+#~ "reporting and display purposes"
+#~ msgstr ""
+#~ "Jelzi, hogy a szülőket kedvelt szülőként kell felhasználni a "
+#~ "összesítőkhöz és megjelenítésekhez"
+
+#~ msgid "Use as preferred parents"
+#~ msgstr "Kedvelt szülőkként való használatuk"
+
+#~ msgid "_Text:"
+#~ msgstr "_Szöveg:"
+
+#~ msgid "GRAMPS is being run as the 'root' user."
+#~ msgstr "A GRAMPS 'root' felhasználó által fut."
+
+#~ msgid ""
+#~ "This account is not meant for normal appication use. Running user "
+#~ "applications in the administrative account is rarely a wise idea, and can "
+#~ "open up potential security risks."
+#~ msgstr ""
+#~ "Ez az azonosító nem közönséges alkalmazások futtatására való. "
+#~ "Adminisztratív azonosítóval futtatni felhasználói programot rossz ötlet "
+#~ "és biztonsági kockázatot jelent."
+
+#~ msgid "Back Menu"
+#~ msgstr "Vissza menü"
+
+#~ msgid "Forward Menu"
+#~ msgstr "Tovább menü"
+
+#~ msgid "Cannot merge people."
+#~ msgstr "Nem lehet embereket összevonni"
+
+#~ msgid ""
+#~ "Exactly two people must be selected to perform a merge. A second person "
+#~ "can be selected by holding down the control key while clicking on the "
+#~ "desired person."
+#~ msgstr ""
+#~ "Pontosan két embert kell kiválasztani az egyesítéshez. A második embert a "
+#~ "ctrl gomb lenyomásával és a másikra való kattintással választható ki."
+
+#~ msgid "Save Changes Made to the Database?"
+#~ msgstr "Az adatbázis változásainak mentése?"
+
+#~ msgid ""
+#~ "Unsaved changes exist in the current database. If you close without "
+#~ "saving, the changes you have made will be lost."
+#~ msgstr ""
+#~ "Mentetlen adatok vannak az adatbázisban. Ha mentés nélkül bezárja akkor "
+#~ "minden változtatás elveszik."
+
+#~ msgid "Create a New Database"
+#~ msgstr "Új XML adatbázis létrehozása "
+
+#~ msgid ""
+#~ "Creating a new database will close the existing database, discarding any "
+#~ "unsaved changes. You will then be prompted to create a new database"
+#~ msgstr ""
+#~ "Új adatbázis létrehozása bezárja ezt az adatbázist, mentetlenül hagyva a "
+#~ "változtatásokat."
+
+#~ msgid "_Create New Database"
+#~ msgstr "Ú_j adatbázis létrehozása"
+
+#~ msgid "Updating display - this may take a few seconds..."
+#~ msgstr "Megjelenítés frissítése - egy kis időt vehet igénybe..."
+
+#~ msgid "An autosave file was detected"
+#~ msgstr "Egy automentés fájl létezik"
+
+#~ msgid ""
+#~ "GRAMPS has detected an autosave file for the selected database. This file "
+#~ "is more recent than the last saved database. This typically happens when "
+#~ "GRAMPS was unexpected shutdown before the data was saved. You may load "
+#~ "this file to try to recover any missing data."
+#~ msgstr ""
+#~ "GRAMPS egy automentés fájlt talált a kiválasztott adatbázishoz. Ez a fájl "
+#~ "újabb mint az utoljára mentett adatbázis. Ez általában akkor szokot "
+#~ "bekövetkezni mikor a GRAMPS váratlanul áll le mielőtt az adatok mentve "
+#~ "lettek volna. Betöltheti ezt a fájlt az elvesztett adatok "
+#~ "visszanyeréséhez."
+
+#~ msgid "_Load autosave file"
+#~ msgstr "_Automentés fájl betöltése"
+
+#~ msgid "Load _saved database"
+#~ msgstr "Mentett _adatbázis betöltése"
+
+#~ msgid "Database could not be opened"
+#~ msgstr "Az adatbázis nem nyitható meg"
+
+#~ msgid "%s is not a directory."
+#~ msgstr "%s nem egy könyvtár."
+
+#~ msgid "You should select a directory that contains a data.gramps file."
+#~ msgstr "Egy data.gramps fájlt tartalmazó könyvtárat kell kiválasztania."
+
+#~ msgid "Saving %s ..."
+#~ msgstr "%s mentése ..."
+
+#~ msgid ""
+#~ "An error was detected while attempting to create the file. The operating "
+#~ "system reported \"%s\""
+#~ msgstr ""
+#~ "Hiba történt a fájl létrehozása során. Az operációs rendszer jelzése \"%s"
+#~ "\""
+
+#~ msgid "An error was detected while trying to create the file"
+#~ msgstr "Hiba történt a fájl létrehozása során."
+
+#~ msgid "autosaving..."
+#~ msgstr "automentés..."
+
+#~ msgid "autosave complete"
+#~ msgstr "automentés kész"
+
+#~ msgid "autosave failed"
+#~ msgstr "sikertelen automentés"
+
+#~ msgid ""
+#~ "Deleting the person will remove the person from the database. The data "
+#~ "can only be recovered by closing the database without saving changes. "
+#~ "This change will become permanent after you save the database."
+#~ msgstr ""
+#~ "Egy személy törlésekor az adatbázisból is eltávolítódik. Az adat csak "
+#~ "mentés nélküli kilépéssel állítható vissza. Mentés után a változás "
+#~ "visszaállíthatatlan."
+
+#~ msgid "_Delete Person"
+#~ msgstr "_Személy törlése"
+
+#~ msgid "%(relationship)s of %(person)s"
+#~ msgstr "%(person)s  %(relationship)s"
+
+#~ msgid "Revert to last saved database?"
+#~ msgstr "Visszatérés az utolsó mentett adatbázishoz?"
+
+#~ msgid ""
+#~ "Reverting to the last saved database will cause all unsaved changes to be "
+#~ "lost, and the last saved database will be loaded."
+#~ msgstr ""
+#~ "Az utolsó mentett adatbázishoz való visszatéréssel minden eddigi "
+#~ "mentetlen adat elveszik és az utoljára mentett adatbázis kerül "
+#~ "megnyitásra."
+
+#~ msgid "Could Not Revert to the Previous Database."
+#~ msgstr "Nem lehet visszatérni az előző adatbázishoz."
+
+#~ msgid "GRAMPS could not find a previous version of the database"
+#~ msgstr "GRAMPS nem találja az előző verzióját az adatbázisnak"
+
+#~ msgid "No Home Person has been set."
+#~ msgstr "Nincsen központi személy kiválasztva."
+
+#~ msgid "The Home Person may be set from the Settings menu."
+#~ msgstr "A központi személy a Beállítások menüből változtatható meg."
+
+#~ msgid "Could Not Go to a Person"
+#~ msgstr "Nem lehet egy személyt elérni"
+
+#~ msgid "Either stale bookmark or broken history caused by IDs reorder."
+#~ msgstr ""
+#~ "ID-k átrendezéséből könyvjelző vagy eseménylista meghibásodás adódhat."
+
+#~ msgid "Set %s as the Home Person"
+#~ msgstr "%s kiválasztása központi személynek"
+
+#~ msgid ""
+#~ "Once a Home Person is defined, pressing the Home button on the toolbar "
+#~ "will make the home person the active person."
+#~ msgstr ""
+#~ "Ha már van egy központi személy, akkor a Központ gomb lenyomásával "
+#~ "kiválasztható."
+
+#~ msgid "_Set Home Person"
+#~ msgstr "_Központi személy kiválasztása"
+
+#~ msgid "A person must be selected to export"
+#~ msgstr "Exportáláshoz ki kell választani egy személyt"
+
+#~ msgid ""
+#~ "Exporting requires that an active person be selected. Please select a "
+#~ "person and try again."
+#~ msgstr ""
+#~ "Exportáláshoz ki kell választani egy személyt. Kérem válasszon ki egyet "
+#~ "és próbálja újra."
+
+#~ msgid "Could not create database"
+#~ msgstr "Az adatbázis nem hozható létre"
+
+#~ msgid "The directory ~/.gramps/example could not be created."
+#~ msgstr "A ~/.gramps/example nem hozható létre."
+
+#~ msgid "Example database not created"
+#~ msgstr "A példa adatbázis nem jött létre"
+
+#~ msgid "_File:"
+#~ msgstr "_Fájl:"
+
+#~ msgid "Select an image"
+#~ msgstr "Egy kép kiválasztása"
+
+#~ msgid "_Do not make a local copy"
+#~ msgstr "_Ne hozzon létre helyi másolatot"
+
+#~ msgid "Object type:"
+#~ msgstr "Objektum típus:"
+
+#~ msgid "Creates a new object attribute from the above data"
+#~ msgstr "Új objektumtulajdonságok létrehozása a fenti adatokból"
+
+#~ msgid "Copies the object into the database"
+#~ msgstr "Az objektum adatbázisba való másolása"
+
+#~ msgid "_Make a local copy"
+#~ msgstr "_Helyi másolat készítése"
+
+#~ msgid "Creates a new attribute from the above data"
+#~ msgstr "Új tulajdonság létrehozása a fenti adatok alapján"
+
+#~ msgid "_GRAMPS ID:"
+#~ msgstr "_GRAMPS ID:"
+
+#~ msgid "<b>Events</b>"
+#~ msgstr "<b>Események</b>"
+
+#~ msgid "Add new event for this marriage"
+#~ msgstr "Új esemény hozzáadása ehhez a házassághoz"
+
+#~ msgid "Delete selected event"
+#~ msgstr "A kiválasztott esemény törlése"
+
+#~ msgid "Create a new attribute for this marriage"
+#~ msgstr "Új tulajdonság létrehozása ehhez a házassághoz"
+
+#~ msgid "Edit the properties of the selected objects"
+#~ msgstr "A kiválasztott objektumok tulajdonságának a szerkesztése"
+
+#~ msgid "<b>Sealed to spouse</b>"
+#~ msgstr "<b>Házasság hitelesítése</b>"
+
+#~ msgid "Temple:"
+#~ msgstr "Templom:"
+
+#~ msgid "Place 1"
+#~ msgstr "Hely 1"
+
+#~ msgid "Place 2"
+#~ msgstr "Hely 2"
+
+#~ msgid "_Merge and close"
+#~ msgstr "_Összevonás és bezárás"
+
+#~ msgid "Merge and _edit"
+#~ msgstr "Összevonás és _szerkesztés"
+
+#~ msgid "<b>Parents</b>"
+#~ msgstr "<b>Szülők</b>"
+
+#~ msgid "Mother:"
+#~ msgstr "Anya:"
+
+#~ msgid "<b>Spouses</b>"
+#~ msgstr "<b>Házasok</b>"
+
+#~ msgid "Father:"
+#~ msgstr "Apa:"
+
+#~ msgid "<b>First person</b>"
+#~ msgstr "<b>Első személy</b>"
+
+#~ msgid "<b>Second person</b>"
+#~ msgstr "<b>Második személy</b>"
+
+#~ msgid "Keep other name as an alternate name"
+#~ msgstr "A többi név alternatív névként való megtartása"
+
+#~ msgid "Keep other birth event as an alternate birth event"
+#~ msgstr ""
+#~ "A többi születési esemény alternatív születési eseményként való megtartása"
+
+#~ msgid "Keep other death event as an alternate death event"
+#~ msgstr ""
+#~ "A többi halálozási esemény alternatív halálozási eseményként való "
+#~ "megtartása"
+
+#~ msgid "C_ity:"
+#~ msgstr "_Város:"
+
+#~ msgid "Co_untry:"
+#~ msgstr "Or_szág:"
+
+#~ msgid "_Longitude:"
+#~ msgstr "_Hosszúsági fok:"
+
+#~ msgid "L_atitude:"
+#~ msgstr "_Szélességi fok:"
+
+#~ msgid "County:"
+#~ msgstr "Megye:"
+
+#~ msgid "State:"
+#~ msgstr "Állam:"
+
+#~ msgid "Church parish:"
+#~ msgstr "Egyházmegye:"
+
+#~ msgid "Zip/Postal code:"
+#~ msgstr "Irányítószám:"
+
+#~ msgid "<b>Other names</b>"
+#~ msgstr "<b>Más nevek</b>"
+
+#~ msgid "Other names"
+#~ msgstr "Egyéb nevek"
+
+#~ msgid "Perform selected action"
+#~ msgstr "A kiválasztott művelet végrehajtása"
+
+#~ msgid "Status:"
+#~ msgstr "Állapot:"
+
+#~ msgid "Author:"
+#~ msgstr "Készítő:"
+
+#~ msgid "Author's email:"
+#~ msgstr "Készítő email címe:"
+
+#~ msgid "The basic style used for the text display."
+#~ msgstr "A szöveg megjelenítéséhez használt stílus."
+
+#~ msgid "Ancestor Chart"
+#~ msgstr "Ősök grafikonja"
+
+#~ msgid "Graphical Reports"
+#~ msgstr "Grafikus összesítők"
+
+#~ msgid "Ancestor Chart for %s"
+#~ msgstr "%s őseinek grafikonja"
+
+#~ msgid "Save Ancestor Chart"
+#~ msgstr "Ősök grafikonjának mentése"
+
+#~ msgid "Display Format"
+#~ msgstr "Megjelenítési formátum"
+
+#~ msgid "Allows you to customize the data in the boxes in the report"
+#~ msgstr "Az összesítőkben lévő adatok testreszabásának engedélyezése"
+
+#~ msgid "Ancestor Chart for GRAMPS Book"
+#~ msgstr "Ősök grafikonja a GRAMPS könyvbe"
+
+#~ msgid "Beta"
+#~ msgstr "Béta"
+
+#~ msgid "Produces a graphical ancestral tree graph"
+#~ msgstr "Grafikus fa készítése az ősökről"
+
+#~ msgid "Graphics"
+#~ msgstr "Grafikák"
+
+#~ msgid "The basic style used for the title display."
+#~ msgstr "A cím megjelenítéséhez az alapértelmezett stílus lett felhasználva."
+
+#~ msgid "Co_mpress chart"
+#~ msgstr "Grafikon _tömörítése"
+
+#~ msgid "Sc_ale to fit on a single page"
+#~ msgstr "M_egjelenítés egyetlen oldalon"
+
+#~ msgid "Ancestor Chart (Wall Chart)"
+#~ msgstr "Ősök Grafikon (Fal Grafikon)"
+
+#~ msgid "Ahnentafel Report for %s"
+#~ msgstr "%s Ahnentafel összesítője"
+
+#~ msgid "%s Generation"
+#~ msgstr "%s Generáció"
+
+#~ msgid "%s was born on %s in %s. "
+#~ msgstr "%s született %s -ben %s -ben. "
+
+#~ msgid "%s was born on %s. "
+#~ msgstr "%s születési ideje: %s. "
+
+#~ msgid "%s was born in the year %s in %s. "
+#~ msgstr "%s született %s évben %s helyiségben. "
+
+#~ msgid "%s was born in the year %s. "
+#~ msgstr "%s született %s évben."
+
+#~ msgid "He died on %s in %s"
+#~ msgstr "Meghalt %s -ben %s-ben"
+
+#~ msgid "He died on %s"
+#~ msgstr "Halálának ideje: %s"
+
+#~ msgid "She died on %s in %s"
+#~ msgstr "Meghalt %s -ben %s-ben"
+
+#~ msgid "She died on %s"
+#~ msgstr "Halálának ideje: %s"
+
+#~ msgid "He died in the year %s in %s"
+#~ msgstr "Meghalt %s évben %s helyiségben"
+
+#~ msgid "He died in the year %s"
+#~ msgstr "Meghalt %s évben"
+
+#~ msgid "She died in the year %s in %s"
+#~ msgstr "Meghalt %s évben %s helyiségben"
+
+#~ msgid "She died in the year %s"
+#~ msgstr "Meghalt %s évben"
+
+#~ msgid ", and was buried on %s in %s."
+#~ msgstr ", és el lett temetve %s -ben %s helyiségben."
+
+#~ msgid ", and was buried on %s."
+#~ msgstr ", és el lett temetve %s -ben."
+
+#~ msgid ", and was buried in the year %s in %s."
+#~ msgstr ", és el lett temetve %s évben %s helyiségben."
+
+#~ msgid ", and was buried in the year %s."
+#~ msgstr ", és el lett temetve %s évben."
+
+#~ msgid " and was buried in %s."
+#~ msgstr " és el lett temetve %s helyiségben."
+
+#~ msgid "Ahnentafel Report"
+#~ msgstr "Ahnentafel összesítő"
+
+#~ msgid "Text Reports"
+#~ msgstr "Szöveges összesítők"
+
+#~ msgid "Save Ahnentafel Report"
+#~ msgstr "Ahnentafel összesítő mentése"
+
+#~ msgid "Ahnentafel Report for GRAMPS Book"
+#~ msgstr "Ahnentafel összesítő a GRAMPS könyvbe"
+
+#~ msgid "The style used for the title of the page."
+#~ msgstr "Az oldal címének a stílusa"
+
+#~ msgid "The style used for the generation header."
+#~ msgstr "Generációk fejlécének a stílusa"
+
+#~ msgid "Produces a textual ancestral report"
+#~ msgstr "Ősökről szöveges összesítő"
+
+#~ msgid "Ancestors of %s"
+#~ msgstr "%s ősei"
+
+#~ msgid "Generation 1"
+#~ msgstr "Generáció 1"
+
+#~ msgid "Their children:"
+#~ msgstr "Gyermekeik:"
+
+#~ msgid "%(name)s's maternal %(grandparents)s"
+#~ msgstr "anyai %(grandparents)s %(name)s"
+
+#~ msgid "%(name)s's %(parents)s"
+#~ msgstr "%(parents)s %(name)s"
+
+#~ msgid "%(name)s's paternal %(grandparents)s"
+#~ msgstr "apai %(grandparents)s %(name)s"
+
+#~ msgid "(no photo)"
+#~ msgstr "(nincsen fotó)"
+
+#~ msgid " (mentioned above)."
+#~ msgstr " (megemlített)"
+
+#~ msgid " on %(specific_date)s"
+#~ msgstr " %(specific_date)s -ban/-ben"
+
+#~ msgid " in %(month_or_year)s"
+#~ msgstr " %(month_or_year)s -ban/-ben"
+
+#~ msgid " in %(place)s"
+#~ msgstr " %(place)s -on/-en"
+
+#~ msgid " b. %(date)s"
+#~ msgstr " születési ideje: %(date)s"
+
+#~ msgid " d. %(date)s)"
+#~ msgstr " elhunyt: %(date)s)"
+
+#~ msgid "born"
+#~ msgstr "született"
+
+#~ msgid "died"
+#~ msgstr "meghalt"
+
+#~ msgid "She is the daughter of %(mother)s."
+#~ msgstr "%(mother)s lánya."
+
+#~ msgid "He is the son of %(mother)s."
+#~ msgstr "%(mother)s fia."
+
+#~ msgid "She is the daughter of %(father)s."
+#~ msgstr "%(father)s lánya."
+
+#~ msgid "He is the son of %(father)s."
+#~ msgstr "%(father)s gyermeke."
+
+#~ msgid "She is the daughter of %(father)s and %(mother)s."
+#~ msgstr "Aki %(father)s és %(mother)s lánya."
+
+#~ msgid "He is the son of %(father)s and %(mother)s."
+#~ msgstr "Aki %(father)s és %(mother)s fia."
+
+#~ msgid "Mrs."
+#~ msgstr "Asszony"
+
+#~ msgid "Miss"
+#~ msgstr "Hölgy"
+
+#~ msgid "Mr."
+#~ msgstr "Úr"
+
+#~ msgid "(gender unknown)"
+#~ msgstr "(ismeretlen nemű)"
+
+#~ msgid " (unknown)"
+#~ msgstr " (ismeretlen)"
+
+#~ msgid ", and they had a child named "
+#~ msgstr ", és a gyermekük neve"
+
+#~ msgid ", and they had %d children: "
+#~ msgstr ", és %d gyermekük van: "
+
+#~ msgid " and "
+#~ msgstr " és "
+
+#~ msgid "  She later married %(name)s"
+#~ msgstr " később %(name)s -val/-vel megházasodott"
+
+#~ msgid "  He later married %(name)s"
+#~ msgstr " később %(name)s -val/-vel megházasodott"
+
+#~ msgid "  She married %(name)s"
+#~ msgstr " %(name)s -val/-vel megházasodott"
+
+#~ msgid "  He married %(name)s"
+#~ msgstr " %(name)s -val/-vel megházasodott"
+
+#~ msgid "  Note about their name: "
+#~ msgstr "  Megjegyzés a nevekről: "
+
+#~ msgid "More about %(name)s:"
+#~ msgstr "További információk (%(name)s):"
+
+#~ msgid "Text style for missing photo."
+#~ msgstr "Az elveszett kép szöveg stílusa."
+
+#~ msgid "Style for details about a person."
+#~ msgstr "Egy személy részleteinek a stílusa."
+
+#~ msgid "Introduction to the children."
+#~ msgstr "Bevezetés a gyermekekhez."
+
+#~ msgid "Comprehensive Ancestors Report"
+#~ msgstr "Átfogó ősök összesítő"
+
+#~ msgid "Ancestors for %s"
+#~ msgstr "%s ősei"
+
+#~ msgid "Save Ancestor Report"
+#~ msgstr "Ősök összesítő mentése"
+
+#~ msgid "Cite sources"
+#~ msgstr "Város források"
+
+#~ msgid "Comprehensive Ancestors Report for GRAMPS Book"
+#~ msgstr "Átfogó ősök összesítő a GRAMPS könyvbe"
+
+#~ msgid "Produces a detailed ancestral report."
+#~ msgstr "Részletes összesítő létrehozása az ősökről."
+
+#~ msgid "Available Books"
+#~ msgstr "Jelenlegi könyvek"
+
+#~ msgid "Book List"
+#~ msgstr "Könyv lista"
+
+#~ msgid "Book Report"
+#~ msgstr "Összesítőkönyv"
+
+#~ msgid "New Book"
+#~ msgstr "Új könyv"
+
+#~ msgid "_Available items"
+#~ msgstr "_Elérhető elemek"
+
+#~ msgid "Current _book"
+#~ msgstr "Aktuális _könyv"
+
+#~ msgid "Item name"
+#~ msgstr "Elem neve"
+
+#~ msgid "Center person"
+#~ msgstr "Központi személy"
+
+#~ msgid "Different database"
+#~ msgstr "Különböző adatbázis"
+
+#~ msgid ""
+#~ "This book was created with the references to database %s.\n"
+#~ "\n"
+#~ "This makes references to the central person saved in the book invalid.\n"
+#~ "\n"
+#~ "Therefore, the central person for each item is being set to the active "
+#~ "person of the currently opened database."
+#~ msgstr ""
+#~ "Ez a könyv a(z) %s adatbázisra vonatkozó hivatkozásokkal készült.\n"
+#~ "\n"
+#~ "Ez a központi személyre vonatkozó hivatkozásokat szabálytalanná teszi.\n"
+#~ "\n"
+#~ "Ezért a megnyitott adatbázis kijelölt személye lett a központi személy."
+
+#~ msgid "Not Applicable"
+#~ msgstr "Nem elfogadható"
+
+#~ msgid "Setup"
+#~ msgstr "Beállítás"
+
+#~ msgid "Book Menu"
+#~ msgstr "Könyv menü"
+
+#~ msgid "Available Items Menu"
+#~ msgstr "Lehetséges elemek menü"
+
+#~ msgid "GRAMPS Book"
+#~ msgstr "GRAMPS Könyv"
+
+#~ msgid "Books"
+#~ msgstr "Könyvek"
+
+#~ msgid "Unstable"
+#~ msgstr "Bizonytalan"
+
+#~ msgid "Creates a book containing several reports."
+#~ msgstr "Több összesítőt tartalmazó könyv létrehozása."
+
+#~ msgid "Change event types"
+#~ msgstr "Esemé típusának megváltoztatása"
+
+#~ msgid "1 event record was modified"
+#~ msgstr "1 esemény mező módosult"
+
+#~ msgid "%d event records were modified"
+#~ msgstr "%d esemény mezők módosultak"
+
+#~ msgid "Change types"
+#~ msgstr "Típusok megváltoztatása"
+
+#~ msgid "Rename personal event types"
+#~ msgstr "Bizalmas események típusának átnevezése"
+
+#~ msgid "Allows all the events of a certain name to be renamed to a new name"
+#~ msgstr "Bizonyos névhez tartozó minden esemény átnevezésének engedélyezése"
+
+#~ msgid "No errors were found"
+#~ msgstr "Nincsen hiba"
+
+#~ msgid "The database has passed internal checks"
+#~ msgstr "Az adatbázis megfelelt a belső ellenőrzésnek"
+
+#~ msgid "1 broken child/family link was fixed\n"
+#~ msgstr "1 rossz gyermek/család mutató lett kijavítva\n"
+
+#~ msgid "%d broken child/family links were found\n"
+#~ msgstr "%d rossz gyermek/család mutató van\n"
+
+#~ msgid "%s was removed from the family of %s\n"
+#~ msgstr "%s el lett távolítva a %s családból\n"
+
+#~ msgid "1 broken spouse/family link was fixed\n"
+#~ msgstr "1 rossz házastárs/család mutató lett kijavítva\n"
+
+#~ msgid "%d broken spouse/family links were found\n"
+#~ msgstr "%d rossz házastárs/család mutató van\n"
+
+#~ msgid "%s was restored to the family of %s\n"
+#~ msgstr "%s vissza lett helyezve a(z) %s családba\n"
+
+#~ msgid "1 empty family was found\n"
+#~ msgstr "Van 1 üres család\n"
+
+#~ msgid "%d empty families were found\n"
+#~ msgstr "%d üres család van\n"
+
+#~ msgid "1 corrupted family relationship fixed\n"
+#~ msgstr "1 megsérült családi kapcsolat lett kijavítva\n"
+
+#~ msgid "%d corrupted family relationship fixed\n"
+#~ msgstr "%d hibás családi kapcsolat lett kijavítva\n"
+
+#~ msgid "1 media object was referenced, but not found\n"
+#~ msgstr "1 média objektum hivatkozás van, de nem elérhető\n"
+
+#~ msgid "%d media objects were referenced, but not found\n"
+#~ msgstr "%d média objektum hivatkozás van, de nem elérhető\n"
+
+#~ msgid "Reference to 1 missing media object was kept\n"
+#~ msgstr "Hivatkozás 1 elveszett média objektumra lett megtartva\n"
+
+#~ msgid "References to %d media objects were kept\n"
+#~ msgstr "Hivatkozás %d elveszett média objektumra lett megtartva\n"
+
+#~ msgid "1 missing media object was replaced\n"
+#~ msgstr "1 elveszett média objektum lett áthelyezve\n"
+
+#~ msgid "%d missing media objects were replaced\n"
+#~ msgstr "%d elveszett média objektum lett áthelyezve\n"
+
+#~ msgid "1 missing media object was removed\n"
+#~ msgstr "1 elveszett média objektum lett eltávolítva\n"
+
+#~ msgid "%d missing media objects were removed\n"
+#~ msgstr "%d elveszett média objektum lett eltávolítva\n"
+
+#~ msgid "Check Integrity"
+#~ msgstr "Integritás ellenőrzés"
+
+#~ msgid "Check and repair database"
+#~ msgstr "Adatbázis ellenőrzése és rendbehozatala"
+
+#~ msgid ""
+#~ "Checks the database for integrity problems, fixing the problems that it "
+#~ "can"
+#~ msgstr ""
+#~ "Adatbázis ellenőrzése integritásának ellenőrzése és ha lehet a hibák "
+#~ "javítása"
+
+#~ msgid "The style used for the first portion of the custom text."
+#~ msgstr "Az egyéni szöveg első feléhez használt stílus."
+
+#~ msgid "The style used for the middle portion of the custom text."
+#~ msgstr "Az egyéni szöveg középső feléhez használt stílus."
+
+#~ msgid "The style used for the last portion of the custom text."
+#~ msgstr "Az egyéni szöveg végéhez használt stílus."
+
+#~ msgid "Custom Text"
+#~ msgstr "Egyéni szöveg"
+
+#~ msgid "Custom Text for GRAMPS Book"
+#~ msgstr "Egyéni szöveg a GRAMPS könyvbe"
+
+#~ msgid "Initial Text"
+#~ msgstr "Kezdeti szöveg"
+
+#~ msgid "Middle Text"
+#~ msgstr "Középső szöveg"
+
+#~ msgid "Final Text"
+#~ msgstr "Hátulsó szöveg"
+
+#~ msgid "Descendant Graph"
+#~ msgstr "Utód grafikon"
+
+#~ msgid "Descendant Graph for %s"
+#~ msgstr "%s utód grafikonja"
+
+#~ msgid "Save Descendant Graph"
+#~ msgstr "Utód grafikon mentése"
+
+#~ msgid "Descendant Graph for GRAMPS Book"
+#~ msgstr "Utód Grafikon a GRAMPS könyvbe"
+
+#~ msgid "Generates a graph of descendants of the active person"
+#~ msgstr "A kijelölt személy utódgrafikonjának a létrehozása"
+
+#~ msgid "Alpha"
+#~ msgstr "Alfa"
+
+#~ msgid "Descendant Browser"
+#~ msgstr "Utód böngésző"
+
+#~ msgid "Interactive descendant browser"
+#~ msgstr "Utód böngésző"
+
+#~ msgid "Analysis and Exploration"
+#~ msgstr "Elemzés és Felderítés"
+
+#~ msgid "Provides a browsable hierarchy based on the active person"
+#~ msgstr "Böngészhető hierarchia létrehozása a kijelölt személy alapján"
+
+#~ msgid "Descendants of %s"
+#~ msgstr "%s utódai"
+
+#~ msgid "Descendant Report"
+#~ msgstr "Leszármazott összesítő"
+
+#~ msgid "Descendant Report for %s"
+#~ msgstr "%s leszármazotti összesítője"
+
+#~ msgid "Save Descendant Report"
+#~ msgstr "Utódok összesítő mentése"
+
+#~ msgid "Descendant Report for GRAMPS Book"
+#~ msgstr "Utód összesítő a GRAMPS könyvbe"
+
+#~ msgid "The style used for the level %d display."
+#~ msgstr "%d megjelenítési szinthez használt stílus."
+
+#~ msgid "Generates a list of descendants of the active person"
+#~ msgstr "A kijelölt személy utódlistájának a létrahozása"
+
+#~ msgid "Child of %s and %s is:"
+#~ msgstr "%s és %s gyereke:"
+
+#~ msgid "Children of %s and %s are:"
+#~ msgstr "%s és %s gyerekei:"
+
+#~ msgid "- %s Born: %s %s Died: %s %s"
+#~ msgstr "- %s született %s %s Meghalt: %s%s"
+
+#~ msgid "- %s Born: %s %s Died: %s"
+#~ msgstr "- %s született %s %s Meghalt: %s"
+
+#~ msgid "- %s Born: %s %s"
+#~ msgstr "- %s született %s %s"
+
+#~ msgid "- %s Born: %s Died: %s %s"
+#~ msgstr "- %s született %s Meghalt: %s%s"
+
+#~ msgid "- %s Born: %s Died: %s"
+#~ msgstr "- %s született %s Meghalt: %s"
+
+#~ msgid "- %s Born: %s"
+#~ msgstr "- %s született %s"
+
+#~ msgid "- %s Died: %s %s"
+#~ msgstr "- %s Meghalt: %s%s"
+
+#~ msgid "- %s Died: %s"
+#~ msgstr "- %s Meghalt: %s"
+
+#~ msgid "- %s"
+#~ msgstr "- %s"
+
+#~ msgid "He"
+#~ msgstr "Ő"
+
+#~ msgid "She"
+#~ msgstr "Ő"
+
+#~ msgid " is the same person as [%s]."
+#~ msgstr "ugyanaz a személy mint [%s]"
+
+#~ msgid "Notes for %s"
+#~ msgstr "%s - Megjegyzések "
+
+#~ msgid " was born on %s in %s."
+#~ msgstr " született %s -ben %s helyiségben."
+
+#~ msgid " was born on %s."
+#~ msgstr " született %s -ben."
+
+#~ msgid " was born in the year %s in %s."
+#~ msgstr "%s évben %s helyiségben született"
+
+#~ msgid " was born in the year %s."
+#~ msgstr "%s évben született."
+
+#~ msgid " was born in %s."
+#~ msgstr " született %s helyiségben."
+
+#~ msgid "."
+#~ msgstr "."
+
+#~ msgid "  %s died on %s in %s"
+#~ msgstr "  %s meghalt %s -ben %s helységben"
+
+#~ msgid "  %s died on %s"
+#~ msgstr "  %s meghalt %s -ben"
+
+#~ msgid "  %s died in %s in %s"
+#~ msgstr "  %s meghalt %s -ben %s -ben"
+
+#~ msgid "  %s died in %s"
+#~ msgstr "  %s meghalt %s helyiségben"
+
+#~ msgid "  And %s was buried on %s in %s."
+#~ msgstr "  és %s el lett temetve %s -ben %s helyiségben."
+
+#~ msgid "  And %s was buried on %s."
+#~ msgstr "  és %s el lett temetve %s -ben."
+
+#~ msgid "  And %s was buried in %s."
+#~ msgstr "  és %s el lett temetve %s helyiségben."
+
+#~ msgid " %s was the son of %s and %s."
+#~ msgstr " %s szülei %s és %s voltak."
+
+#~ msgid " %s was the son of %s."
+#~ msgstr " %s apja %s volt."
+
+#~ msgid " %s was the daughter of %s and %s."
+#~ msgstr " %s szülei %s és %s voltak."
+
+#~ msgid " %s was the daughter of %s."
+#~ msgstr " %s szülője %s volt."
+
+#~ msgid ","
+#~ msgstr ","
+
+#~ msgid "and he"
+#~ msgstr "és ő"
+
+#~ msgid "and she"
+#~ msgstr "és ő"
+
+#~ msgid "  %s married %s"
+#~ msgstr "  %s és %s összeházasodtak"
+
+#~ msgid "  %s married %s in %s"
+#~ msgstr "  %s és %s összeházasodtak %s -ban/-ben"
+
+#~ msgid "  %s married %s on %s"
+#~ msgstr "  %s és %s összeházasodtak %s -ban/-ben"
+
+#~ msgid "  %s married %s on %s in %s"
+#~ msgstr "  %s és %s összeházasodtak %s -ban/-ben %s-ban/-ben"
+
+#~ msgid "  %s married"
+#~ msgstr "  %s elvette"
+
+#~ msgid "  %s married in %s"
+#~ msgstr "  %s megházasodott %s -ban/-ben"
+
+#~ msgid "  %s married on %s"
+#~ msgstr "  %s megházasodott %s -ban/-ben"
+
+#~ msgid "  %s married on %s in %s"
+#~ msgstr "  %s megházasodott %s -ban/-ben  %s -ban/-ben"
+
+#~ msgid "Detailed Ancestral Report for %s"
+#~ msgstr "%s részére részletes összesítő az ősökről"
+
+#~ msgid "Gramps - Ahnentafel Report"
+#~ msgstr "Gramps - Ahnentafel összesítő"
+
+#~ msgid "Use first names instead of pronouns"
+#~ msgstr "A keresztnevet használja a többi használt név helyett"
+
+#~ msgid "Use full dates instead of only the year"
+#~ msgstr "Év helyett a teljes dátum használata"
+
+#~ msgid "List children"
+#~ msgstr "Gyermekek listázása"
+
+#~ msgid "Include notes"
+#~ msgstr "Megjegyzések hozzáadása"
+
+#~ msgid "Replace Place with ______"
+#~ msgstr "Hely kicserélése _______-val/-vel"
+
+#~ msgid "Replace Dates with ______"
+#~ msgstr "Dátumok kicserélése _______-val/-vel"
+
+#~ msgid "Compute age"
+#~ msgstr "Korszámítás"
+
+#~ msgid "Omit duplicate ancestors"
+#~ msgstr "Kettőződött ősök elhagyása"
+
+#~ msgid "Add descendant reference in child list"
+#~ msgstr "Utódokra hivatkozás hozzáadása a gyermek listában"
+
+#~ msgid "Include Photo/Images from Gallery"
+#~ msgstr "Galériából Fotó/Kép beillesztése"
+
+#~ msgid "Content"
+#~ msgstr "Tartalom"
+
+#~ msgid "Detailed Ancestral Report"
+#~ msgstr "Részletes összesítő az ősökről"
+
+#~ msgid "Detailed Ancestral Report for GRAMPS Book"
+#~ msgstr "Részletes Ősök összesítő a GRAMPS könyvbe"
+
+#~ msgid "Produces a detailed ancestral report"
+#~ msgstr "Részletes összesítő létrehozása az ősökről"
+
+#~ msgid " at the age of %d days"
+#~ msgstr " %d napos korában"
+
+#~ msgid " at the age of %d months"
+#~ msgstr " %d hónapos korában"
+
+#~ msgid " at the age of %d years"
+#~ msgstr " %d éves korában"
+
+#~ msgid " at the age of %d day"
+#~ msgstr " %d naposan"
+
+#~ msgid " at the age of %d month"
+#~ msgstr " %d hónaposan"
+
+#~ msgid " at the age of %d year"
+#~ msgstr " %d évesen"
+
+#~ msgid "Detailed Descendant Report for %s"
+#~ msgstr "%s részletes utódösszesítője"
+
+#~ msgid "Omit duplicate people"
+#~ msgstr "Kettőződött emberek elhagyása"
+
+#~ msgid "Detailed Descendant Report"
+#~ msgstr "Részletes utódösszesítő"
+
+#~ msgid "Detailed Descendant Report for GRAMPS Book"
+#~ msgstr "Részletes utódösszesítő a GRAMPS könyvbe"
+
+#~ msgid "Produces a detailed descendant report"
+#~ msgstr "Részletes utódösszesítő létrehozása"
+
+#~ msgid "Event comparison filter selection"
+#~ msgstr "Esemény összehasonlító szűrő kiválasztása"
+
+#~ msgid "Entire Database"
+#~ msgstr "Teljes adatbázis"
+
+#~ msgid "No matches were found"
+#~ msgstr "Nincsenek egyezések"
+
+#~ msgid "Event Comparison"
+#~ msgstr "Esemény összehasonlítás"
+
+#~ msgid "Death"
+#~ msgstr "Halála:"
+
+#~ msgid "Compare individual events"
+#~ msgstr "Egyéni események összehasonlítása"
+
+#~ msgid ""
+#~ "Aids in the analysis of data by allowing the development of custom "
+#~ "filters that can be applied to the database to find similar events"
+#~ msgstr "Az adatok elemzésében segít a speciális szűrők használta"
+
+#~ msgid "Husband"
+#~ msgstr "Férj"
+
+#~ msgid "Wife"
+#~ msgstr "Feleség"
+
+#~ msgid "Spouse"
+#~ msgstr "Házastárs"
+
+#~ msgid "Family Group Report"
+#~ msgstr "Családi összesítő"
+
+#~ msgid "Children"
+#~ msgstr "Gyerekek:"
+
+#~ msgid "Family Group Report for %s"
+#~ msgstr "%s családi összesítője"
+
+#~ msgid "Save Family Group Report"
+#~ msgstr "Családi összesítő mentése"
+
+#~ msgid "Family Group Report for GRAMPS Book"
+#~ msgstr "Családi összesítő a GRAMPS könyvbe"
+
+#~ msgid "The style used for the text related to the children."
+#~ msgstr "Gyermekekre vonatkozó szöveg stílusa"
+
+#~ msgid "The style used for the parent's name"
+#~ msgstr "Szülők nevének a stílusa"
+
+#~ msgid ""
+#~ "Creates a family group report, showing information on a set of parents "
+#~ "and their children."
+#~ msgstr ""
+#~ "Szülők csoportjának és gyermekeiknek az információit megjelenítő család "
+#~ "összesítő készítése."
+
+#~ msgid "Five Generation Fan Chart for %s"
+#~ msgstr "%s öt generációs legyező grafikonja"
+
+#~ msgid "The style used for the title."
+#~ msgstr "A címhez használt stílus."
+
+#~ msgid "Fan Chart"
+#~ msgstr "Legyező grafikon"
+
+#~ msgid "Fan Chart for %s"
+#~ msgstr "%s legyező grafikonja"
+
+#~ msgid "Save Fan Chart"
+#~ msgstr "Legyező grafikon mentése"
+
+#~ msgid "Fan Chart for GRAMPS Book"
+#~ msgstr "Legyező grafikon a GRAMPS könyvbe"
+
+#~ msgid "Produces a five generation fan chart"
+#~ msgstr "Öt generációs legyező grafikon készítése"
+
+#~ msgid "Select..."
+#~ msgstr "Kiválasztás..."
+
+#~ msgid "Select person from a list"
+#~ msgstr "Személy kiválasztása a listából"
+
+#~ msgid "Not a valid person"
+#~ msgstr "Nem egy érvényes személy"
+
+#~ msgid "User defined filters"
+#~ msgstr "Felhasználó által definiált szűrők"
+
+#~ msgid "Define filter"
+#~ msgstr "Szűrő definiálása"
+
+#~ msgid "Add Rule"
+#~ msgstr "Szabály hozzáadása"
+
+#~ msgid "Edit Rule"
+#~ msgstr "Szabályok szerkesztése"
+
+#~ msgid "Include original person"
+#~ msgstr "Eredeti személlyel együtt"
+
+#~ msgid "Rule Name"
+#~ msgstr "Szabály neve"
+
+#~ msgid "No rule selected"
+#~ msgstr "Nincsen kiválasztott szabály"
+
+#~ msgid "Filter Test"
+#~ msgstr "Szűrő Teszt"
+
+#~ msgid "Custom Filter Editor"
+#~ msgstr "Szűrő szerkesztő"
+
+#~ msgid "Utilities"
+#~ msgstr "Segédeszközök"
+
+#~ msgid ""
+#~ "The Custom Filter Editor builds custom filters that can be used to select "
+#~ "people included in reports, exports, and other utilities."
+#~ msgstr ""
+#~ "A szűrő szerkesztő segítségével új szűrőket hozhat létre melyekkel az "
+#~ "összesítőkben, exportokban, stb. kereshet."
+
+#~ msgid "System Filter Editor"
+#~ msgstr "Rendszer szűrő szerkesztő"
+
+#~ msgid ""
+#~ "The System Filter Editor builds custom filters that can be used by anyone "
+#~ "on the system to select people included in reports, exports, and other "
+#~ "utilities."
+#~ msgstr ""
+#~ "A rendszerszűrő szerkesztő segítségével új szűrőket hozhat létre "
+#~ "melyekkel bárki használhatja az eszközöket az összesítőkben, exportokban, "
+#~ "stb."
+
+#~ msgid "Generation No. %d"
+#~ msgstr "Generáció no. %d"
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
+#~ "(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s Született: %(birth_date)s %(birth_place)s%"
+#~ "(birth_endnotes)s, és meghalt: %(death_date)s %(death_place)s%"
+#~ "(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s született: %(birth_date)s %(birth_place)s%"
+#~ "(birth_endnotes)s, és meghalt: %(death_date)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s %"
+#~ "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s született: %(birth_date)s %(birth_place)s %"
+#~ "(birth_endnotes)s, és meghalt: %(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s született: %(birth_date)s %(birth_place)s%"
+#~ "(birth_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
+#~ "died %(death_date)s in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s született: %(birth_date)s%(birth_endnotes)s, és "
+#~ "meghalt: %(death_date)s %(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
+#~ "died %(death_date)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s született: %(birth_date)s%(birth_endnotes)s, és "
+#~ "meghalt %(death_date)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
+#~ "died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s született: %(birth_date)s%(birth_endnotes)s, és "
+#~ "meghalt: %(death_place)s%(death_endnotes)s."
+
+#~ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s született: %(birth_date)s%(birth_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
+#~ "and died %(death_date)s in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s született: %(birth_place)s%(birth_endnotes)s, "
+#~ "és meghalt: %(death_date)s in %(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
+#~ "and died %(death_date)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s született:%(birth_place)s%(birth_endnotes)s, és "
+#~ "meghalt %(death_date)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
+#~ "and died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s született: %(birth_place)s%(birth_endnotes)s, "
+#~ "és meghalt: %(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s született: %(birth_place)s%(birth_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
+#~ "(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s meghalt: %(death_date)s %(death_place)s%"
+#~ "(death_endnotes)s."
+
+#~ msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s meghalt: %(death_date)s%(death_endnotes)s."
+
+#~ msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s meghalt: %(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
+#~ "(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s született: %(birth_date)s %(birth_place)s%"
+#~ "(birth_endnotes)s, és meghalt: %(death_date)s %(death_place)s%"
+#~ "(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s született: %(birth_date)s %(birth_place)s%"
+#~ "(birth_endnotes)s, és meghalt %(death_date)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s született: %(birth_date)s %(birth_place)s%"
+#~ "(birth_endnotes)s, és meghalt: %(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s %"
+#~ "(birth_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s született: %(birth_date)s %(birth_place)s %"
+#~ "(birth_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
+#~ "and died %(death_date)s in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s született: %(birth_date)s%(birth_endnotes)s, "
+#~ "és meghalt %(death_date)s %(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
+#~ "and died %(death_date)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s született: %(birth_date)s%(birth_endnotes)s, "
+#~ "és meghalt: %(death_date)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
+#~ "and died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s született: %(birth_date)s%(birth_endnotes)s, "
+#~ "és meghalt: %(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s született: %(birth_date)s%(birth_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
+#~ "s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s született: %(birth_place)s%(birth_endnotes)s, "
+#~ "és meghalt %(death_date)s %(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
+#~ "s, and died %(death_date)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s született: %(birth_place)s%(birth_endnotes)s, "
+#~ "és meghalt: %(death_date)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
+#~ "s, and died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s született: %(birth_place)s%(birth_endnotes)s, "
+#~ "és meghalt: %(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s született: %(birth_place)s%(birth_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
+#~ "(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s meghalt: %(death_date)s %(death_place)s%"
+#~ "(death_endnotes)s."
+
+#~ msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s meghalt: %(death_date)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s meghalt: %(death_place)s%(death_endnotes)s."
+
+#~ msgid "Endnotes"
+#~ msgstr "Megjegyzések"
+
+#~ msgid "Text:"
+#~ msgstr "Szöveg:"
+
+#~ msgid "Comments:"
+#~ msgstr "Megjegyzések:"
+
+#~ msgid "Notes for %(person)s:"
+#~ msgstr "Megjegyzések %(person)s részére:"
+
+#~ msgid "More about %(person_name)s:"
+#~ msgstr "%(person_name)s - további információk:"
+
+#~ msgid "Name %(count)d: %(name)s%(endnotes)s"
+#~ msgstr "Név %(count)d: %(name)s%(endnotes)s"
+
+#~ msgid "%(event_name)s: %(date)s, %(place)s%(endnotes)s"
+#~ msgstr "%(event_name)s: %(date)s, %(place)s%(endnotes)s"
+
+#~ msgid "%(event_name)s: %(date)s%(endnotes)s"
+#~ msgstr "%(event_name)s: %(date)s%(endnotes)s"
+
+#~ msgid "%(event_name)s: %(place)s%(endnotes)s"
+#~ msgstr "%(event_name)s: %(place)s%(endnotes)s"
+
+#~ msgid "He married %(spouse)s %(date)s in %(place)s%(endnotes)s."
+#~ msgstr ""
+#~ "Összehásasodott %(spouse)s -val %(date)s %(place)s%(endnotes)s helyen."
+
+#~ msgid "She married %(spouse)s %(date)s in %(place)s%(endnotes)s."
+#~ msgstr ""
+#~ "Összeházasodott %(spouse)s -vel %(date)s időben %(place)s%(endnotes)s "
+#~ "helyen."
+
+#~ msgid "He married %(spouse)s %(date)s%(endnotes)s."
+#~ msgstr "Összeházasodott %(spouse)s -vel %(date)s%(endnotes)s időben."
+
+#~ msgid "She married %(spouse)s in %(place)s%(endnotes)s."
+#~ msgstr "Összeházasodott %(spouse)s -vel %(place)s%(endnotes)s helyen."
+
+#~ msgid "He married %(spouse)s in %(place)s%(endnotes)s."
+#~ msgstr "Összeházasodott %(spouse)s -vel %(place)s%(endnotes)s helyen."
+
+#~ msgid "He married %(spouse)s%(endnotes)s."
+#~ msgstr "Összeházasodott %(spouse)s%(endnotes)s -vel."
+
+#~ msgid "She married %(spouse)s%(endnotes)s."
+#~ msgstr "Összeházasodott %(spouse)s%(endnotes)s -vel."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s született: %(birth_date)s %(birth_place)s%"
+#~ "(birth_endnotes)s, és meghalt: %(death_place)s%(death_endnotes)s."
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s. "
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s született: %(birth_date)s %(birth_place)s%"
+#~ "(birth_endnotes)s. "
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s született: %(birth_date)s%(birth_endnotes)s. "
+
+#~ msgid ""
+#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
+#~ msgstr ""
+#~ "%(male_name)s%(endnotes)s született: %(birth_place)s%(birth_endnotes)s. "
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s. "
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s született: %(birth_date)s %(birth_place)s%"
+#~ "(birth_endnotes)s. "
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s született: %(birth_date)s%(birth_endnotes)s. "
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
+#~ "s. "
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s született: %(birth_place)s%(birth_endnotes)s. "
+
+#~ msgid "He was the son of %(father)s and %(mother)s."
+#~ msgstr "%(father)s és %(mother)s fia volt."
+
+#~ msgid "He was the son of %(mother)s."
+#~ msgstr "%(mother)s fia volt."
+
+#~ msgid "He was the son of %(father)s."
+#~ msgstr "%(father)s fia volt."
+
+#~ msgid "She was the daughter of %(father)s and %(mother)s."
+#~ msgstr "%(father)s és %(mother)s lánya volt."
+
+#~ msgid "She was the daughter of %(mother)s."
+#~ msgstr "%(mother)s lánya volt."
+
+#~ msgid "She was the daughter of %(father)s."
+#~ msgstr "%(father)s lánya volt."
+
+#~ msgid "FTM Style Ancestral Report"
+#~ msgstr "FTM stílusú Ősök összesítő"
+
+#~ msgid "FTM Style Ancestral Report for %s"
+#~ msgstr "%s FTM stílusú Ősök összesítője"
+
+#~ msgid "FTM Style Ancestor Report"
+#~ msgstr "FTM stílusú Ős összesítő"
+
+#~ msgid "FTM Style Ancestor Report for GRAMPS Book"
+#~ msgstr "FTM stílusú Ős összesítő a GRAMPS könyvbe"
+
+#~ msgid "Produces a textual ancestral report similar to Family Tree Maker."
+#~ msgstr "Family Tree Maker-hez hasonló szöveges összesítőt készít"
+
+#~ msgid "More about %(husband)s and %(wife)s:"
+#~ msgstr "%(husband)s és %(wife)s - további információk:"
+
+#~ msgid "Children of %(person_name)s and %(spouse_name)s are:"
+#~ msgstr "%(person_name)s és %(spouse_name)s gyermekei:"
+
+#~ msgid "Children of %(person_name)s are:"
+#~ msgstr "%(person_name)s gyermekei:"
+
+#~ msgid "%(male_name)s%(endnotes)s."
+#~ msgstr "%(male_name)s%(endnotes)s."
+
+#~ msgid ""
+#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
+#~ "(birth_endnotes)s."
+#~ msgstr ""
+#~ "%(female_name)s%(endnotes)s született: %(birth_date)s %(birth_place)s%"
+#~ "(birth_endnotes)s."
+
+#~ msgid "%(female_name)s%(endnotes)s."
+#~ msgstr "%(female_name)s%(endnotes)s."
+
+#~ msgid "FTM Style Descendant Report"
+#~ msgstr "FTM stílusú Utódok összesítő"
+
+#~ msgid "FTM Style Descendant Report for %s"
+#~ msgstr "%s FTM stílusú Utódok összesítője"
+
+#~ msgid "Save FTM Style Descendant Report"
+#~ msgstr "FTM stílusú Utódok összesítő mentése"
+
+#~ msgid "FTM Style Descendant Report for GRAMPS Book"
+#~ msgstr "FTM stílusú Utódok összesítő a GRAMPS könyvbe"
+
+#~ msgid "Produces a textual descendant report similar to Family Tree Maker."
+#~ msgstr "Family Tree Maker-hez hasonó összesítő készítése."
+
+#~ msgid "Single (scaled)"
+#~ msgstr "Egyedülálló"
+
+#~ msgid "Single"
+#~ msgstr "Egyedüli"
+
+#~ msgid "Multiple"
+#~ msgstr "Többes"
+
+#~ msgid "Relationship Graph"
+#~ msgstr "Kapcsolat grafikon"
+
+#~ msgid "Graphviz File"
+#~ msgstr "Graphviz fájl"
+
+#~ msgid "People with common ancestor with %s"
+#~ msgstr "Közös ősök %s személlyel"
+
+#~ msgid "Descendants <- Ancestors"
+#~ msgstr "Utódok <- Ősök"
+
+#~ msgid "Descendants -> Ancestors"
+#~ msgstr "Utódok -> Ősök"
+
+#~ msgid "Descendants <-> Ancestors"
+#~ msgstr "Utódok <-> Ősök"
+
+#~ msgid "Descendants - Ancestors"
+#~ msgstr "Utódok - Ősök"
+
+#~ msgid "TrueType"
+#~ msgstr "TrueType"
+
+#~ msgid "GraphViz Options"
+#~ msgstr "GraphViz tulajdonságok"
+
+#~ msgid "Font Options"
+#~ msgstr "Betűkészlet tulajdonságok"
+
+#~ msgid "Choose the font family."
+#~ msgstr "Szövegcsoport kiválasztása"
+
+#~ msgid "Arrowhead Options"
+#~ msgstr "Nyilhegy beállítás"
+
+#~ msgid "Choose the direction that the arrows point."
+#~ msgstr "Válasszon irányt amerre a nyil mutatni fog."
+
+#~ msgid "Include Birth, Marriage and Death Dates"
+#~ msgstr "Születési, házassági és halálozási időpontok hozzáadása"
+
+#~ msgid ""
+#~ "Include the dates that the individual was born, got married and/or died "
+#~ "in the graph labels."
+#~ msgstr ""
+#~ "A grafikon csomópontba annak azoknak az éveknek a hozzáadása amikor az "
+#~ "egyén született és/vagy meghalt."
+
+#~ msgid "Limit dates to years only"
+#~ msgstr "A dátumokból csak az évek megjelenítése"
+
+#~ msgid ""
+#~ "Prints just dates' year, neither month or day nor date approximation or "
+#~ "interval are shown."
+#~ msgstr "Csak az évek nyomtatása, semmi más nem jelenik meg a dátumokból."
+
+#~ msgid "Include URLs"
+#~ msgstr "URL-ek hozzáadása"
+
+#~ msgid ""
+#~ "Include a URL in each graph node so that PDF and imagemap files can be "
+#~ "generated that contain active links to the files generated by the "
+#~ "'Generate Web Site' report."
+#~ msgstr ""
+#~ "Egy URL hozzáadása mindegyik grafikon elemhez, így a PDF és imgemap "
+#~ "fájlok aktív linkeket tartalmaznak a Web Site Létrehozó által létrejött "
+#~ "fájlokhoz."
+
+#~ msgid "Colorize Graph"
+#~ msgstr "Grafikon kiszínezése"
+
+#~ msgid ""
+#~ "Males will be outlined in blue, females will be outlined in pink.  If the "
+#~ "sex of an individual is unknown it will be outlined in black."
+#~ msgstr ""
+#~ "Férfiak kék színnel, a nők rózsaszínnel vannak aláhúzva. Ha egy egyén "
+#~ "neme ismeretlen akkor feketével."
+
+#~ msgid "Indicate non-birth relationships with dashed lines"
+#~ msgstr "A nem 'édes' szülői kapcsolatok szaggatott vonallal vannak jelezve"
+
+#~ msgid "Non-birth relationships will show up as dashed lines in the graph."
+#~ msgstr ""
+#~ "A nem 'édes' szülői kapcsolatok szaggatott vonallal vannak jelezve a "
+#~ "grafikonon."
+
+#~ msgid "Show family nodes"
+#~ msgstr "Család csomópontok megjelenítése"
+
+#~ msgid "Families will show up as ellipses, linked to parents and children."
+#~ msgstr ""
+#~ "A családok ellipszisként jelennek meg a gyermekeket és szülőket "
+#~ "egybefogva."
+
+#~ msgid "Page Options"
+#~ msgstr "Papír tulajdonságok"
+
+#~ msgid "Top & Bottom Margins"
+#~ msgstr "Felső és alsó margók"
+
+#~ msgid "Left & Right Margins"
+#~ msgstr "Jobb & Bal margók"
+
+#~ msgid "Number of Horizontal Pages"
+#~ msgstr "Vízszintes o9ldalak száma"
+
+#~ msgid ""
+#~ "GraphViz can create very large graphs by spreading the graph across a "
+#~ "rectangular array of pages. This controls the number pages in the array "
+#~ "horizontally."
+#~ msgstr ""
+#~ "GraphViz nagyon széles grafikonokat tud létrehozni a grafikonoknak az "
+#~ "oldalakon túl való rajzolással."
+
+#~ msgid "Number of Vertical Pages"
+#~ msgstr "Függőleges oldalak száma"
+
+#~ msgid ""
+#~ "GraphViz can create very large graphs by spreading the graph across a "
+#~ "rectangular array of pages. This controls the number pages in the array "
+#~ "vertically."
+#~ msgstr ""
+#~ "GraphViz nagyon széles grafikonokat tud létrehozni a grafikonoknak az "
+#~ "oldalakon túl való rajzolással."
+
+#~ msgid "Generate print output"
+#~ msgstr "Nyomtatott végeredmény készítése"
+
+#~ msgid ""
+#~ "Generates relationship graphs, currently only in GraphViz format. "
+#~ "GraphViz (dot) can transform the graph into postscript, jpeg, png, vrml, "
+#~ "svg, and many other formats. For more information or to get a copy of "
+#~ "GraphViz, goto http://www.graphviz.org"
+#~ msgstr ""
+#~ "Kapcsolat grafikon létrehozása, jelenleg csak GraphViz formátumban. "
+#~ "GraphViz átalakítható postscript, jpeg, png, vrml, svg és egyéb "
+#~ "formátumokká. Ha többet szeretne tudni vagy GraphViz programot szeretne "
+#~ "látogassa el a http://www.graphviz.org címre."
+
+#~ msgid "%(date)s in %(place)s."
+#~ msgstr "%(date)s %(place)s helyen."
+
+#~ msgid "Alternate Parents"
+#~ msgstr "Alternatív szülők"
+
+#~ msgid "Alternate Names"
+#~ msgstr "Alternatív nevek"
+
+#~ msgid "Marriages/Children"
+#~ msgstr "Házasságok/Gyermekek"
+
+#~ msgid "Individual Facts"
+#~ msgstr "Egyéni események"
+
+#~ msgid "Summary of %s"
+#~ msgstr "%s oldala"
+
+#~ msgid "Male"
+#~ msgstr "Férfi"
+
+#~ msgid "Female"
+#~ msgstr "Nő"
+
+#~ msgid "Include Source Information"
+#~ msgstr "Forrás információ hozzáadása"
+
+#~ msgid "Complete Individual Report"
+#~ msgstr "Teljes Egyéni összesítő"
+
+#~ msgid "Save Complete Individual Report"
+#~ msgstr "Egyéni összesítő befejezése és mentése"
+
+#~ msgid "Individual Complete"
+#~ msgstr "Egyéni összesítő"
+
+#~ msgid "Individual Complete Report for GRAMPS Book"
+#~ msgstr "Egyéni teljes összesítő hozzáadása a GRAMPS könyvhöz"
+
+#~ msgid "The style used for category labels."
+#~ msgstr "Kategória címkékhez használt stílus."
+
+#~ msgid "The style used for the spouse's name."
+#~ msgstr "Házastársak nevéhez használt stílus."
+
+#~ msgid "Produces a complete report on the selected people."
+#~ msgstr "Egy teljes összesítőt készít a kijelölt emberekről."
+
+#~ msgid "Individual Summary"
+#~ msgstr "Egyéni összesítő"
+
+#~ msgid "Individual Summary for %s"
+#~ msgstr "%s egyéni összesítője"
+
+#~ msgid "Save Individual Summary"
+#~ msgstr "Egyéni összesítő mentése"
+
+#~ msgid "Individual Summary Report for GRAMPS Book"
+#~ msgstr "Egyénekről teljes összesítő a GRAMPS könyvbe"
+
+#~ msgid "Produces a detailed report on the selected person."
+#~ msgstr "A kiválasztott személyről részletes összesítő."
+
+#~ msgid "Medium"
+#~ msgstr "Közepes"
+
+#~ msgid "Determining possible merges"
+#~ msgstr "Lehetséges ismétlődések meghatározása"
+
+#~ msgid "Potential Merges"
+#~ msgstr "Lehetséges ismétlődések"
+
+#~ msgid "First Person"
+#~ msgstr "Első személy"
+
+#~ msgid "Rating"
+#~ msgstr "Értékelés"
+
+#~ msgid "Second Person"
+#~ msgstr "Második személy"
+
+#~ msgid "Find possible duplicate people"
+#~ msgstr "Lehetséges kettőződések megkeresése"
+
+#~ msgid ""
+#~ "Searches the entire database, looking for individual entries that may "
+#~ "represent the same person."
+#~ msgstr ""
+#~ "Az egész adatbázisban keresés olyan egyének bejegyzései után amik "
+#~ "megegyezhetnek."
+
+#~ msgid "Partitions"
+#~ msgstr "Részhalmazok"
+
+#~ msgid "Export"
+#~ msgstr "Exportálás"
+
+#~ msgid ""
+#~ "This program partitions individuals in a database into disjoint "
+#~ "partitions.\n"
+#~ "A partition is composed of people related by one or more multiple "
+#~ "relations.\n"
+#~ "There should be no known relationship between people in different "
+#~ "partitions."
+#~ msgstr ""
+#~ "Ez a program az egyéneket diszjunkt részhalmazokba válogatja szét.\n"
+#~ "Egy halmaz egymással valamilyen kapcsolatban álló emberekből áll.\n"
+#~ "A különböző halmazokban lévők között nincsen ismert kapcsolat."
+
+#~ msgid "No modifications made"
+#~ msgstr "Nem lett módosítva"
+
+#~ msgid "No titles or nicknames were found"
+#~ msgstr "Nincsen se megnevezés, sem becenév."
+
+#~ msgid "Name and title extraction tool"
+#~ msgstr "Név és megnevezés kifejtő eszköz"
+
+#~ msgid "Select"
+#~ msgstr "Kijelölés"
+
+#~ msgid "Nickname"
+#~ msgstr "Becenév"
+
+#~ msgid "Extract information from names"
+#~ msgstr "Információ kivonása a nevekből"
+
+#~ msgid ""
+#~ "Searches the entire database and attempts to extract titles and nicknames "
+#~ "that may be embedded in a person's given name field."
+#~ msgstr ""
+#~ "Becenevek és megnevezések után keresés az egész adatbázisban, hogy ezeket "
+#~ "fel lehessen használni a személyek keresztnevénél."
+
+#~ msgid "Import from GEDCOM"
+#~ msgstr "Importálás GEDCOM fájlból"
+
+#~ msgid "Windows 9x file system"
+#~ msgstr "Windows 9x fájlrendszer"
+
+#~ msgid "Windows NT file system"
+#~ msgstr "Windows NT fájlrendszer"
+
+#~ msgid "CD ROM"
+#~ msgstr "CD ROM"
+
+#~ msgid "Networked Windows file system"
+#~ msgstr "Hálózati Windows fájlrendszer"
+
+#~ msgid "GEDCOM import status"
+#~ msgstr "GEDCOM importálási állapot"
+
+#~ msgid "%s could not be opened\n"
+#~ msgstr "%s-t nem lehet megnyitni\n"
+
+#~ msgid ""
+#~ "Windows style path names for images will use the following mount points "
+#~ "to try to find the images. These paths are based on Windows compatible "
+#~ "file systems available on this system:\n"
+#~ "\n"
+#~ msgstr ""
+#~ "A képek elérési útvonala Windows stílusban a következő helyet használja a "
+#~ "képek megtalálásához. Ezek az útvonalak a gépen lévő Windows fájlrendszere"
+#~ "(ke)n alapulnak:\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "Images that cannot be found in the specfied path in the GEDCOM file will "
+#~ "be searched for in the same directory in which the GEDCOM file exists (%"
+#~ "s).\n"
+#~ msgstr ""
+#~ "A képek amelyek nem találhatók a GEDCOM fájlban megadott elérési "
+#~ "útvonalon azokat a rendszer abban a könyvtárban keresi ahol a GEDCOM fájl "
+#~ "található (%s).\n"
+
+#~ msgid "Warning: line %d was blank, so it was ignored.\n"
+#~ msgstr "Figyelmeztetés: %d sor üres, így elutasítva.\n"
+
+#~ msgid "Warning: line %d was not understood, so it was ignored."
+#~ msgstr "Figyelmeztetés: %d sor nem értelmezhető, így elutasítva."
+
+#~ msgid "Import Complete: %d seconds"
+#~ msgstr "Importálás kész: %d másodperc"
+
+#~ msgid "Warning: could not import %s"
+#~ msgstr "Figyelmeztetés: %s nem importálható"
+
+#~ msgid ""
+#~ "\tThe following paths were tried:\n"
+#~ "\t\t"
+#~ msgstr ""
+#~ "\tA következő útvonal lett kipróbálva:\n"
+#~ "\t\t"
+
+#~ msgid "Import from GRAMPS package"
+#~ msgstr "Importálás GRAMPS csomagból"
+
+#~ msgid "Could not create temporary directory %s"
+#~ msgstr "Nem lehet létrehozni az ideiglenes %s könyvtárat"
+
+#~ msgid "Temporary directory %s is not writable"
+#~ msgstr "Ideiglenes %s könyvtár nem írható"
+
+#~ msgid "Error extracting into %s"
+#~ msgstr "Hiba lépett fel %s fájlba exportáláskor"
+
+#~ msgid "Relationship calculator"
+#~ msgstr "Kapcsolat meghatározó"
+
+#~ msgid "Birth Date"
+#~ msgstr "Születési idő"
+
+#~ msgid "Their common ancestor is %s."
+#~ msgstr "%s a köztes családtag."
+
+#~ msgid "Their common ancestors are %s and %s."
+#~ msgstr "%s és %s a köztes családtagok."
+
+#~ msgid "Their common ancestors are : "
+#~ msgstr "Közös ősök: "
+
+#~ msgid "%(person)s and %(active_person)s are not related."
+#~ msgstr ""
+#~ "%(person)s és %(active_person)s között nem állapítható meg kapcsolat."
+
+#~ msgid "%(person)s is the %(relationship)s of %(active_person)s."
+#~ msgstr "%(person)s %(relationship)s %(active_person)s -nak."
+
+#~ msgid "Calculates the relationship between two people"
+#~ msgstr "Két ember közötti kapcsolat meghatározása"
+
+#~ msgid "Descendant family members of %s"
+#~ msgstr "%s utódai"
+
+#~ msgid "Show family as a stack"
+#~ msgstr "Egy csomóban mutassa a családot"
+
+#~ msgid "The main individual is shown along with their spouses in a stack."
+#~ msgstr "Az egyén a házastársaival jelenik meg egy csoportban."
+
+#~ msgid "Include IDs"
+#~ msgstr "ID-k hozzáadása"
+
+#~ msgid "Include individual and family IDs."
+#~ msgstr "Egyéni és családi ID-k hozzáadása."
+
+#~ msgid "Place/cause when no date"
+#~ msgstr "Dátum nélküli Helyek/okok"
+
+#~ msgid ""
+#~ "When no birth, marriage, or death date is available, the correspondent "
+#~ "place field (or cause field when blank) will be used."
+#~ msgstr ""
+#~ "Amikor nincsen születési házassági halálozási dátum ekkor az ezen "
+#~ "eseményekhez tartozozo helyszínek (vagy az okokhoz tartozó helyszínek) "
+#~ "lesznek felhasználva."
+
+#~ msgid "The style used for the subtitle."
+#~ msgstr "Alcímhez használt stílus."
+
+#~ msgid "The style used for the footer."
+#~ msgstr "Lábléchez használt stílus."
+
+#~ msgid "Fit page"
+#~ msgstr "Oldal illesztése"
+
+#~ msgid "%d cm"
+#~ msgstr "%d cm"
+
+#~ msgid "Title of the Book"
+#~ msgstr "A könyv címe"
+
+#~ msgid "Subtitle of the Book"
+#~ msgstr "A könyv alcíme"
+
+#~ msgid "Copyright %d %s"
+#~ msgstr "Copyright %d %s"
+
+#~ msgid "Title Page"
+#~ msgstr "Címoldal"
+
+#~ msgid "Title Page for GRAMPS Book"
+#~ msgstr "GRAMPS könyv címoldala"
+
+#~ msgid "Subtitle"
+#~ msgstr "Alcím"
+
+#~ msgid "Footer"
+#~ msgstr "Lábléc"
+
+#~ msgid "From gallery..."
+#~ msgstr "Galériából..."
+
+#~ msgid "From file..."
+#~ msgstr "Fájlból..."
+
+#~ msgid "Preview"
+#~ msgstr "Előnézet"
+
+#~ msgid "Image"
+#~ msgstr "Kép"
+
+#~ msgid "Individuals"
+#~ msgstr "Egyének"
+
+#~ msgid "Number of individuals"
+#~ msgstr "Egyének száma"
+
+#~ msgid "Individuals with incomplete names"
+#~ msgstr "Egyének hiányos névvel"
+
+#~ msgid "Individuals missing birth dates"
+#~ msgstr "Egyének hiányzó születési dátummal"
+
+#~ msgid "Family Information"
+#~ msgstr "Család információ"
+
+#~ msgid "Number of families"
+#~ msgstr "Családok száma"
+
+#~ msgid "Unique surnames"
+#~ msgstr "Különböző családnevek"
+
+#~ msgid "Individuals with media objects"
+#~ msgstr "Egyének média objektummal"
+
+#~ msgid "Total number of media object references"
+#~ msgstr "Média objektumokra hivatkozások teljes száma"
+
+#~ msgid "Number of unique media objects"
+#~ msgstr "Különböző média objektumok"
+
+#~ msgid "Total size of media objects"
+#~ msgstr "Média objektumok teljes mérete"
+
+#~ msgid "bytes"
+#~ msgstr "bájt"
+
+#~ msgid "Missing Media Objects"
+#~ msgstr "Eltünt média objektumok"
+
+#~ msgid "Database summary"
+#~ msgstr "Adatbázis összesítő"
+
+#~ msgid "Summary of the database"
+#~ msgstr "Adatbázis összesítő"
+
+#~ msgid "View"
+#~ msgstr "Nézet"
+
+#~ msgid "Provides a summary of the current database"
+#~ msgstr "Összesítőt készít a jelenlegi adatbázisról"
+
+#~ msgid "The style used for the person's name."
+#~ msgstr "Személy nevekhez használt stílus."
+
+#~ msgid "The style used for the year labels."
+#~ msgstr "Év címkékhez használt stílus."
+
+#~ msgid "Timeline Graph"
+#~ msgstr "Idővonalas grafikon"
+
+#~ msgid "Timeline Graph for %s"
+#~ msgstr "%s idővonalas grafikonja"
+
+#~ msgid "Timeline File"
+#~ msgstr "Idővonalas grafikon fájl"
+
+#~ msgid "Sort by"
+#~ msgstr "Következők szerinti rendezés"
+
+#~ msgid "Generates a timeline graph."
+#~ msgstr "Idővonalas grafikon létrahozása."
+
+#~ msgid "Timeline Graph for GRAMPS Book"
+#~ msgstr "Idővonalas grafikon a GRAMPS könyvbe"
+
+#~ msgid "Database Verify"
+#~ msgstr "Adatbázis ellenőrző"
+
+#~ msgid ""
+#~ "Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)"
+#~ "d.\n"
+#~ msgstr ""
+#~ "Születés előtti keresztelés: %(male_name)s született: %(byear)d, "
+#~ "megkeresztelték: %(bapyear)d.\n"
+
+#~ msgid ""
+#~ "Baptized before birth: %(female_name)s born %(byear)d, baptized %(bapyear)"
+#~ "d.\n"
+#~ msgstr ""
+#~ "Születés előtti keresztelés: %(female_name)s született: %(byear)d, "
+#~ "megkeresztelték: %(bapyear)d.\n"
+
+#~ msgid "Baptized late: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
+#~ msgstr ""
+#~ "Utólagos megkeresztelkedés: %(male_name)s született: %(byear)d, "
+#~ "megkeresztelkedett: %(bapyear)d.\n"
+
+#~ msgid ""
+#~ "Baptized late: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n"
+#~ msgstr ""
+#~ "Utólagos megkeresztelkedés: %(female_name)s született: %(byear)d, "
+#~ "Megkeresztelkedett: %(bapyear)d.\n"
+
+#~ msgid ""
+#~ "Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
+#~ msgstr ""
+#~ "Halál előtti eltemetés: %(male_name)s meghalt: %(dyear)d, eltemették: %"
+#~ "(buryear)d.\n"
+
+#~ msgid ""
+#~ "Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
+#~ msgstr ""
+#~ "Halál előtti temetés: %(female_name)s meghalt: %(dyear)d, eltemették: %"
+#~ "(buryear)d.\n"
+
+#~ msgid "Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
+#~ msgstr ""
+#~ "Sokára temetés: %(male_name)s meghalt: %(dyear)d, eltemették: %(buryear)"
+#~ "d.\n"
+
+#~ msgid "Buried late: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
+#~ msgstr ""
+#~ "Sokára temetés: %(female_name)s meghalt: %(dyear)d, eltemették: %(buryear)"
+#~ "d.\n"
+
+#~ msgid "Died before birth: %(male_name)s born %(byear)d, died %(dyear)d.\n"
+#~ msgstr ""
+#~ "Születés előtti halál: %(male_name)s született: %(byear)d, meghalt: %"
+#~ "(dyear)d.\n"
+
+#~ msgid "Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n"
+#~ msgstr ""
+#~ "Születés előtti halál: %(female_name)s született: %(byear)d, meghalt: %"
+#~ "(dyear)d.\n"
+
+#~ msgid ""
+#~ "Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
+#~ msgstr ""
+#~ "Keresztelés halál után: %(male_name)s keresztelték: %(bapyear)d, meghalt: "
+#~ "%(dyear)d.\n"
+
+#~ msgid ""
+#~ "Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)"
+#~ "d.\n"
+#~ msgstr ""
+#~ "Keresztelés halál után: %(female_name)s keresztelték: %(bapyear)d, "
+#~ "meghalt: %(dyear)d.\n"
+
+#~ msgid ""
+#~ "Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
+#~ msgstr ""
+#~ "Születés előtti eltemetés: %(male_name)s született: %(byear)d, "
+#~ "eltemették: %(buryear)d.\n"
+
+#~ msgid ""
+#~ "Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
+#~ msgstr ""
+#~ "Születés előtti eltemetés: %(female_name)s született: %(byear)d, "
+#~ "eltemették: %(buryear)d.\n"
+
+#~ msgid ""
+#~ "Buried before baptism: %(male_name)s baptized %(bapyear)d, buried %"
+#~ "(buryear)d.\n"
+#~ msgstr ""
+#~ "Keresztelés előtti eltemetés: %(male_name)s keresztelték: %(bapyear)d, "
+#~ "eltemették: %(buryear)d.\n"
+
+#~ msgid ""
+#~ "Buried before baptism: %(female_name)s baptized %(bapyear)d, buried %"
+#~ "(buryear)d.\n"
+#~ msgstr ""
+#~ "Keresztelés előtti eltemetés: %(female_name)s keresztelték: %(bapyear)d, "
+#~ "eltemették: %(buryear)d.\n"
+
+#~ msgid ""
+#~ "Old age: %(male_name)s born %(byear)d, died %(dyear)d, at the age of %"
+#~ "(ageatdeath)d.\n"
+#~ msgstr ""
+#~ "Idős korú: %(male_name)s született: %(byear)d, meghalt: %(dyear)d, %"
+#~ "(ageatdeath)d évesen.\n"
+
+#~ msgid ""
+#~ "Old age: %(female_name)s born %(byear)d, died %(dyear)d, at the age of %"
+#~ "(ageatdeath)d.\n"
+#~ msgstr ""
+#~ "Idős korú: %(female_name)s született: %(byear)d, meghalt: %(dyear)d, %"
+#~ "(ageatdeath)d évesen.\n"
+
+#~ msgid "Unknown gender for %s.\n"
+#~ msgstr "Ismeretlen %s neme.\n"
+
+#~ msgid "Ambiguous gender for %s.\n"
+#~ msgstr "%s bizonytalan nemű.\n"
+
+#~ msgid "Multiple parentage for %s.\n"
+#~ msgstr "%s több szülő gyermeke.\n"
+
+#~ msgid "Married often: %(male_name)s married %(nfam)d times.\n"
+#~ msgstr "Gyakran házasodó: %(male_name)s %(nfam)d házasodott.\n"
+
+#~ msgid "Married often: %(female_name)s married %(nfam)d times.\n"
+#~ msgstr "Gyakran házasodó: %(female_name)s %(nfam)d házasodott.\n"
+
+#~ msgid ""
+#~ "Old and unmarried: %(male_name)s died unmarried, at the age of %"
+#~ "(ageatdeath)d years.\n"
+#~ msgstr "Idős nőtlen: %(male_name)s maghalt nőtlenül %(ageatdeath)d évben.\n"
+
+#~ msgid ""
+#~ "Old and unmarried: %(female_name)s died unmarried, at the age of %"
+#~ "(ageatdeath)d years.\n"
+#~ msgstr ""
+#~ "Idős hajadon: %(female_name)s meghalt hajadonon, %(ageatdeath)d évben.\n"
+
+#~ msgid "Homosexual marriage: %s in family %s.\n"
+#~ msgstr "Homoszexuális házasság: %s, %s családban.\n"
+
+#~ msgid "Female husband: %s in family %s.\n"
+#~ msgstr "Női férj: %s, %s családban.\n"
+
+#~ msgid "Male wife: %s in family %s.\n"
+#~ msgstr "Férfi feleség: %s, %s családban.\n"
+
+#~ msgid "Husband and wife with the same surname: %s in family %s, and %s.\n"
+#~ msgstr "Férj és feleség azonos családnévvel: %s, %s családban és %s.\n"
+
+#~ msgid ""
+#~ "Married before birth: %(male_name)s born %(byear)d, married %(maryear)d "
+#~ "to %(spouse)s.\n"
+#~ msgstr ""
+#~ "Születés előtti házasság: %(male_name)s született: %(byear)d, "
+#~ "megházasodott: %(maryear)d évben%(spouse)s személlyel.\n"
+
+#~ msgid ""
+#~ "Married before birth: %(female_name)s born %(byear)d, married %(maryear)d "
+#~ "to %(spouse)s.\n"
+#~ msgstr ""
+#~ "Születés előtti házasság: %(female_name)s született: %(byear)d, "
+#~ "megházasodott: %(maryear)d évben %(spouse)s személlyel.\n"
+
+#~ msgid ""
+#~ "Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
+#~ msgstr ""
+#~ "Korai házasság: %(male_name)s megházasodott %(marage)d évesen %(spouse)s "
+#~ "személlyel.\n"
+
+#~ msgid ""
+#~ "Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+#~ msgstr ""
+#~ "Korai házasság: %(female_name)s megházasodott %(marage)d évesen %(spouse)"
+#~ "s személlyel.\n"
+
+#~ msgid ""
+#~ "Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
+#~ msgstr ""
+#~ "Kései házasság: %(male_name)s házasodott %(marage)d évesen %(spouse)s "
+#~ "személlyel.\n"
+
+#~ msgid ""
+#~ "Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+#~ msgstr ""
+#~ "Kései házasság: %(female_name)s házasodott %(marage)d évesen %(spouse)s "
+#~ "személlyel.\n"
+
+#~ msgid ""
+#~ "Married after death: %(male_name)s died %(dyear)d, married %(maryear)d to "
+#~ "%(spouse)s.\n"
+#~ msgstr ""
+#~ "Halál utáni házasság: %(male_name)s meghalt %(dyear)d évben,  házasodott %"
+#~ "(maryear)d %(spouse)s személlyel.\n"
+
+#~ msgid ""
+#~ "Married after death: %(female_name)s died %(dyear)d, married %(maryear)d "
+#~ "to %(spouse)s.\n"
+#~ msgstr ""
+#~ "Halál utáni házasság: %(female_name)s meghalt %(dyear)d évben,házasodott: "
+#~ "%(maryear)d  %(spouse)s személlyel.\n"
+
+#~ msgid ""
+#~ "Marriage before birth from previous family: %(male_name)s married %"
+#~ "(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
+#~ msgstr ""
+#~ "Házasság a házastárs születése előtt: %(male_name)s házasodott %(maryear)"
+#~ "d évben %(spouse)s személlyel, aki született %(prev_cbyear)d évben.\n"
+
+#~ msgid ""
+#~ "Marriage before birth from previous family: %(female_name)s married %"
+#~ "(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
+#~ msgstr ""
+#~ "Házasság a házastárs születése előtt: %(female_name)s házasodott %"
+#~ "(maryear)d évben %(spouse)s személlyel, aki született %(prev_cbyear)d "
+#~ "évben.\n"
+
+#~ msgid "Long widowhood: %s was a widower %d years before, family %s.\n"
+#~ msgstr ""
+#~ "Hosszú özvegység: %s özvegyember volt %d éven át, %s család előtt.\n"
+
+#~ msgid "Long widowhood: %s was a widow %d years before, family %s.\n"
+#~ msgstr "Hosszú özvegység: %s özvegy volt %d éven át, %s család előtt.\n"
+
+#~ msgid "Long widowhood: %s was a widower %d years.\n"
+#~ msgstr "Hosszú özvegység: %s özvegyember volt %d éven át.\n"
+
+#~ msgid "Long widowhood: %s was a widow %d years.\n"
+#~ msgstr "Hosszú özvegység: %s özvegy volt %d éven át.\n"
+
+#~ msgid ""
+#~ "Old father: %(male_name)s at age of %(bage)d in family %(fam)s had a "
+#~ "child %(child)s.\n"
+#~ msgstr ""
+#~ "Idős apa: %(male_name)s %(bage)d évesen %(fam)s családban %(child)s nevű "
+#~ "gyermeket vállalta.\n"
+
+#~ msgid ""
+#~ "Old mother: %(female_name)s at age of %(bage)d in family %(fam)s had a "
+#~ "child %(child)s.\n"
+#~ msgstr ""
+#~ "Idős anya: %(female_name)s %(bage)d évesen %(fam)s családban %(child)s "
+#~ "nevű gyereket vállalta.\n"
+
+#~ msgid ""
+#~ "Unborn father: %(male_name)s born %(byear)d, in family %(fam)s had a "
+#~ "child %(child)s born %(cbyear)d.\n"
+#~ msgstr ""
+#~ "Halva született apa: %(male_name)s született: %(byear)d, %(fam)s "
+#~ "családban %(child)s gyermekkel aki született %(cbyear)d évben.\n"
+
+#~ msgid ""
+#~ "Unborn mother: %(female_name)s born %(byear)d, in family %(fam)s had a "
+#~ "child %(child)s born %(cbyear)d.\n"
+#~ msgstr ""
+#~ "Halva született anya: %(female_name)s született: %(byear)d, %(fam)s "
+#~ "családban  %(child)s gyermekkel aki született %(cbyear)d évben.\n"
+
+#~ msgid ""
+#~ "Young father: %(male_name)s at the age of %(bage)d in family %(fam)s had "
+#~ "a child %(child)s.\n"
+#~ msgstr ""
+#~ "Fiatal apa: %(male_name)s %(bage)d évesen %(fam)s családban gyermeke: %"
+#~ "(child)s.\n"
+
+#~ msgid ""
+#~ "Young mother: %(female_name)s at the age of %(bage)d in family %(fam)s "
+#~ "had a child %(child)s.\n"
+#~ msgstr ""
+#~ "Fiatal mama: %(female_name)s %(bage)d évesen %(fam)s családban gyermeke: %"
+#~ "(child)s.\n"
+
+#~ msgid ""
+#~ "Dead father: %(male_name)s died %(dyear)d, but in family %(fam)s had a "
+#~ "child %(child)s born %(cbyear)d.\n"
+#~ msgstr ""
+#~ "Apa halála: %(male_name)s meghalt: %(dyear)d, de a családban %(fam)s volt "
+#~ "egy gyermek %(child)s született: %(cbyear)d.\n"
+
+#~ msgid ""
+#~ "Dead mother: %(female_name)s died %(dyear)d, but in family %(fam)s had a "
+#~ "child %(child)s born %(cbyear)d.\n"
+#~ msgstr ""
+#~ "Anya halála: %(female_name)s meghalt: %(dyear)d, de a családban %(fam)s "
+#~ "volt egy gyermek %(child)s született: %(cbyear)d.\n"
+
+#~ msgid "ERRORS:\n"
+#~ msgstr "HIBÁK:\n"
+
+#~ msgid "WARNINGS:\n"
+#~ msgstr "FIGYELMEZTETÉSEK:\n"
+
+#~ msgid "Verify the database"
+#~ msgstr "Adatbázis ellenőrzése"
+
+#~ msgid "Lists exceptions to assertions or checks about the database"
+#~ msgstr "Kivételek listázása a jelentésekhez vagy az adatbázisban ellenőrzés"
+
+#~ msgid "ID Number"
+#~ msgstr "ID szám"
+
+#~ msgid "Return to the index of people"
+#~ msgstr "Vissza a családfa indexhez"
+
+#~ msgid "Facts and Events"
+#~ msgstr "Tények és események"
+
+#~ msgid "Creating Web Pages"
+#~ msgstr "Web oldalak létrehozása"
+
+#~ msgid "Generate HTML reports - GRAMPS"
+#~ msgstr "HTML összesítő készítése - GRAMPS"
+
+#~ msgid "Family Tree Index"
+#~ msgstr "Családfa index"
+
+#~ msgid "%s (continued)"
+#~ msgstr "%s (folytatás)"
+
+#~ msgid "Neither %s nor %s are directories"
+#~ msgstr "Sem %s sem %s nem könyvtár."
+
+#~ msgid "Could not create the directory: %s"
+#~ msgstr "Nem lehet létrehozni a könyvtárat : %s"
+
+#~ msgid "Include a link to the index page"
+#~ msgstr "Főoldalra mutató link hozzáadása"
+
+#~ msgid "Do not include records marked private"
+#~ msgstr "Bizalmas mezők kihagyása"
+
+#~ msgid "Restrict information on living people"
+#~ msgstr "Csak az _élő embereket"
+
+#~ msgid "Do not use images"
+#~ msgstr "Képek kihagyása"
+
+#~ msgid "Do not use images for living people"
+#~ msgstr "Élő személyeknél kép elhagyása"
+
+#~ msgid "Do not include comments and text in source information"
+#~ msgstr "Megjegyzések és szövegek elhagyása a forrás információkból"
+
+#~ msgid "Include the GRAMPS ID in the report"
+#~ msgstr "GRAMPS ID hozzáadása az összesítőhöz"
+
+#~ msgid "Create a GENDEX index"
+#~ msgstr "GENDEX index létrehozása"
+
+#~ msgid "Image subdirectory"
+#~ msgstr "Kép alkönyvtár"
+
+#~ msgid "File extension"
+#~ msgstr "Fájl kiterjesztés"
+
+#~ msgid "Include short ancestor tree"
+#~ msgstr "Kicsinyített családfa hozzáadása"
+
+#~ msgid "Privacy"
+#~ msgstr "Privacy"
+
+#~ msgid "Advanced"
+#~ msgstr "Haladó"
+
+#~ msgid "GRAMPS ID link URL"
+#~ msgstr "GRAMPS ID link URL"
+
+#~ msgid "Generate Web Site"
+#~ msgstr "Web Site létrehozása"
+
+#~ msgid "Web Page"
+#~ msgstr "Web oldal"
+
+#~ msgid "Target Directory"
+#~ msgstr "Célkönyvtár"
+
+#~ msgid "Direct Descendants of %s"
+#~ msgstr "%s egyenes leszármazottai"
+
+#~ msgid "Descendant Families of %s"
+#~ msgstr "%s utódainak a családja"
+
+#~ msgid "The style used for the header that identifies facts and events."
+#~ msgstr "Az események és tények fejlécéhez használt stílus."
+
+#~ msgid "The style used for the header for the notes section."
+#~ msgstr "Megjegyzések részleg fejlécéhez használt stílus."
+
+#~ msgid "The style used for the copyright notice."
+#~ msgstr "Copyright megjegyzésekhez használt stílus."
+
+#~ msgid "The style used for the header for the sources section."
+#~ msgstr "A források fejlécének a szekcióihoz használt stílus."
+
+#~ msgid "The style used on the index page that labels each section."
+#~ msgstr "Az index oldalon lévő szekciók címzéséhez használt stílus."
+
+#~ msgid "The style used for the header for the image section."
+#~ msgstr "Kép részleg fejlécéhez használt stílus."
+
+#~ msgid ""
+#~ "The style used for the header for the marriages and children section."
+#~ msgstr "Házastársak és gyermekek részleg fejlécéhez használt stílus."
+
+#~ msgid "The style used for the general data labels."
+#~ msgstr "Általános adatcímkékhez használt stílus."
+
+#~ msgid "The style used for the general data."
+#~ msgstr "Általános adatokhoz használt stílus."
+
+#~ msgid "The style used for the description of images."
+#~ msgstr "Képek leírásához használt stílus."
+
+#~ msgid "The style used for the notes associated with images."
+#~ msgstr "Képekkel összekapcsolt megjegyzésekhez használt stílus."
+
+#~ msgid "The style used for the source information."
+#~ msgstr "Forrásokhoz használt stílus."
+
+#~ msgid "The style used for the note information."
+#~ msgstr "Megjegyzésekhez használt stílus."
+
+#~ msgid "Generates web (HTML) pages for individuals, or a set of individuals."
+#~ msgstr "web (HTML) oldalak létrehozása egyénről vagy személyekről."
+
+#~ msgid "Export to CD"
+#~ msgstr "Exportálás CD-re"
+
+#~ msgid "Export to Web Family Tree"
+#~ msgstr "Exportálás Web Family Tree formátumba"
+
+#~ msgid "Export to GEDCOM"
+#~ msgstr "Exportálás GEDCOM formátumba"
+
+#~ msgid "Export to GRAMPS package"
+#~ msgstr "Exportálás GRAMPS csomagba"
+
+#~ msgid "Package export"
+#~ msgstr "Exportálás csomagba"
+
+#~ msgid "Book"
+#~ msgstr "Könyv"
+
+#~ msgid "Book _name:"
+#~ msgstr "_Könyv neve:"
+
+#~ msgid "Clear the book"
+#~ msgstr "A könyv kitakarítása"
+
+#~ msgid "Save current set of configured selections"
+#~ msgstr "A beállított kiválasztások mentése"
+
+#~ msgid "Open previously created book"
+#~ msgstr "Korábban létrehozott könyv megnyítása"
+
+#~ msgid "Manage previously created books"
+#~ msgstr "Korábban létrehozott könyvek kezelése"
+
+#~ msgid "Add an item to the book"
+#~ msgstr "Új elem hozzáadása a könyvhöz"
+
+#~ msgid "Remove currently selected item from the book"
+#~ msgstr "A kiválasztott elem eltávolítása a könyvből"
+
+#~ msgid "Move current selection one step up in the book"
+#~ msgstr "A kiválasztás egy lépéssel feljebb vitele a könyvben"
+
+#~ msgid "Move current selection one step down in the book"
+#~ msgstr "A kiválasztás egy lépéssel lejjebb vitele a könyvben"
+
+#~ msgid "Configure currently selected item"
+#~ msgstr "A kiválasztott elem beállítása"
+
+#~ msgid "_Export to CD"
+#~ msgstr "CD-re _exportálás"
+
+#~ msgid ""
+#~ "Exporting to a CD will not immediately write the CD. It will prepare the "
+#~ "nautilus-cd-burner so that you can burn the CD from nautilus.\n"
+#~ "\n"
+#~ "After exporting, go to the <b>burn:///</b> directory in nautilus and "
+#~ "select the Write to CD button."
+#~ msgstr ""
+#~ "CD-re való exportálással nem íródik meg közvetlenül a CD. Csak a nautilus-"
+#~ "cd-író indul el, hogy a nautilus-ból meg lehessen\n"
+#~ "írni a CD-t.\n"
+#~ "\n"
+#~ "Az exportálás után menjen a <b>burn:///</b> könyvtárba a nautilusban és "
+#~ "válassza a CD-re írás gombot."
+
+#~ msgid ""
+#~ "This tool will rename all events of one type to a different type. Once "
+#~ "completed, this cannot be undone without abandoning all changes since the "
+#~ "last database save."
+#~ msgstr ""
+#~ "Ez az eszköz egy típus minden eseményének a típusát nevezi át egy "
+#~ "másikra. Végrehajtás után csak mentés nélküli kilépéssel lehet "
+#~ "visszaállítani a változtatásokat."
+
+#~ msgid "_Original event type:"
+#~ msgstr "_Eredeti esemény típusa:"
+
+#~ msgid "_New event type:"
+#~ msgstr "Ú_j esemény típusa:"
+
+#~ msgid "Number of ancestors of \"%s\" by generation"
+#~ msgstr "\"%s\" ősei generációnként"
+
+#~ msgid "Generation %d has 1 individual.\n"
+#~ msgstr "%d generációban egy 1 személy található.\n"
+
+#~ msgid "Generation %d has %d individuals.\n"
+#~ msgstr "%d generációban %d személy van.\n"
+
+#~ msgid "Total ancestors in generations %d to -1 is %d .\n"
+#~ msgstr "%d -tól -1 -ig lévő generációkban az ősök száma: %d.\n"
+
+#~ msgid "Number of ancestors"
+#~ msgstr "Ősök száma"
+
+#~ msgid "Counts number of ancestors of selected person"
+#~ msgstr "A kiválasztott személy őseinek a megszámolása"
+
+#~ msgid "<b>Evaluation Window</b>"
+#~ msgstr "<b>Értelmező ablak</b>"
+
+#~ msgid "<b>Output Window</b>"
+#~ msgstr "<b>Kimenet ablak</b>"
+
+#~ msgid "<b>Error Window</b>"
+#~ msgstr "<b>Hiba ablak</b>"
+
+#~ msgid "Python Evaluation Window"
+#~ msgstr "Python értelmező ablak"
+
+#~ msgid "Python evaluation window"
+#~ msgstr "Python értelmező ablak"
+
+#~ msgid "Debug"
+#~ msgstr "Nyomkövető"
+
+#~ msgid "Provides a window that can evaluate python code"
+#~ msgstr "Megjelenít egy python kód értelmező ablakot"
+
+#~ msgid "Save as a Spreadsheet - GRAMPS"
+#~ msgstr "Mentés Táblázatként - GRAMPS"
+
+#~ msgid "Save data as a spreadsheet"
+#~ msgstr "Adat mentése táblázatként"
+
+#~ msgid "Save Data"
+#~ msgstr "Adat mentése"
+
+#~ msgid "OpenOffice Spreadsheet"
+#~ msgstr "OpenOffice táblázat"
+
+#~ msgid "Choose the HTML template"
+#~ msgstr "Válasszon HTML sémát"
+
+#~ msgid "Format"
+#~ msgstr "Formátum"
+
+#~ msgid "_Filter:"
+#~ msgstr "_Szűrő:"
+
+#~ msgid ""
+#~ "The event comparison utility uses the filters defined in the Custom "
+#~ "Filter Editor."
+#~ msgstr ""
+#~ "Az esemény összehasonlító az Egyéni szűrők szerkesztő által meghatározott "
+#~ "eszközöket használja."
+
+#~ msgid "_Custom filter editor"
+#~ msgstr "_Egyéni szűrő szerkesztő"
+
+#~ msgid "_Target:"
+#~ msgstr "_Cél:"
+
+#~ msgid "Standard GEDCOM 5.5"
+#~ msgstr "Szabványos GEDCOM 5.5"
+
+#~ msgid "_Copyright:"
+#~ msgstr "_Copyright:"
+
+#~ msgid "Standard Copyright"
+#~ msgstr "Standard Copyright"
+
+#~ msgid "GNU Free Documentation License"
+#~ msgstr "GNU Free Documentation License"
+
+#~ msgid "No Copyright"
+#~ msgstr "No Copyright"
+
+#~ msgid "<b>Filename</b>"
+#~ msgstr "<b>Fájlnév</b>"
+
+#~ msgid "<b>Encoding</b>"
+#~ msgstr "<b>Kódolás</b>"
+
+#~ msgid "<b>Options</b>"
+#~ msgstr "<b>Tulajdonságok</b>"
+
+#~ msgid "_Do not include records marked private"
+#~ msgstr "_Bizalmas mezők kihagyása"
+
+#~ msgid "_Restrict data on living people"
+#~ msgstr "Csak az _élő embereket"
+
+#~ msgid "_ANSEL"
+#~ msgstr "_ANSEL"
+
+#~ msgid "_UNICODE"
+#~ msgstr "_UNICODE"
+
+#~ msgid "AN_SI (ISO-8859-1)"
+#~ msgstr "AN_SI (ISO-8859-1)"
+
+#~ msgid "Use _Living as first name"
+#~ msgstr "Élőknél a _keresztnév használata"
+
+#~ msgid "Exclude _notes"
+#~ msgstr "_Megjegyzések kihagyása"
+
+#~ msgid "Exclude sour_ces"
+#~ msgstr "_Források kihagyása"
+
+#~ msgid "Reference images from path:  "
+#~ msgstr "Képi hivatkozások a következő helyről:  "
+
+#~ msgid "media"
+#~ msgstr "média"
+
+#~ msgid "Sources:"
+#~ msgstr "Források:"
+
+#~ msgid "Families:"
+#~ msgstr "Családok:"
+
+#~ msgid "People:"
+#~ msgstr "Emberek:"
+
+#~ msgid "File:"
+#~ msgstr "Fájl:"
+
+#~ msgid "Created by:"
+#~ msgstr "Létrehozta:"
+
+#~ msgid "<b>Status</b>"
+#~ msgstr "<b>Állapot</b>"
+
+#~ msgid "<b>Warning messages</b>"
+#~ msgstr "<b>Figyelmeztető üzenetek</b>"
+
+#~ msgid "Encoding:"
+#~ msgstr "Kódolás:"
+
+#~ msgid "Version:"
+#~ msgstr "Verzió:"
+
+#~ msgid "<b>Uncollected Objects</b>"
+#~ msgstr "<b>Használaton kívüli objektumok</b>"
+
+#~ msgid "Show uncollected objects"
+#~ msgstr "Használaton kívüli objektumok megjelenítése"
+
+#~ msgid "Provide a window listing all uncollected objects"
+#~ msgstr "Ablak minden használaton kívüli objektum megjelenítésére"
+
+#~ msgid "Please be patient. This may take a while."
+#~ msgstr "Kérem várjon. Egy ideig eltarthat."
+
+#~ msgid "_Merge"
+#~ msgstr "_Egyesítés"
+
+#~ msgid "<b>Match Threshold</b>"
+#~ msgstr "<b>Keresési küszöb</b>"
+
+#~ msgid "Use soundex codes"
+#~ msgstr "Soundex kódok használata"
+
+#~ msgid "Export PAF for PalmOS file"
+#~ msgstr "Export PAF PalmOS fájlba"
+
+#~ msgid "PAF for PalmOS Export"
+#~ msgstr "PAF PalmOS exportra"
+
+#~ msgid "Information"
+#~ msgstr "Információ"
+
+#~ msgid "Database name: "
+#~ msgstr "Adatbázis neve: "
+
+#~ msgid "Options"
+#~ msgstr "Tulajdonságok"
+
+#~ msgid ""
+#~ "Below is a list of the nicknames and titles that GRAMPS can extract from "
+#~ "the \n"
+#~ "current database. If you accept the changes, GRAMPS will modify the "
+#~ "entries\n"
+#~ "that have been selected."
+#~ msgstr ""
+#~ "Lentebb olvashatóak a becenevek és megnevezések amiket a GRAMPS az "
+#~ "adatbázisból ki tudott keresni.\n"
+#~ "Ha elfogadja a változtatásokat, GRAMPS módosítani fogja a kiválasztott\n"
+#~ "mezőket."
+
+#~ msgid "_Accept changes and close"
+#~ msgstr "_Változtatások alkalmazása és a párbeszédablak bezárása"
+
+#~ msgid "Select a person to determine the relationship"
+#~ msgstr "Válasszon ki egy személyt a kapcsolat megállapításához"
+
+#~ msgid "Close Window"
+#~ msgstr "Ablak bezárása"
+
+#~ msgid "SoundEx code:"
+#~ msgstr "SoundEX kód:"
+
+#~ msgid "Name used to generate SoundEx code"
+#~ msgstr "A Név fel lett használva SoundEX kód készítéshez"
+
+#~ msgid "SoundEx code generator"
+#~ msgstr "SoundEX kód generátor"
+
+#~ msgid "Generate SoundEx codes"
+#~ msgstr "SoundEX kódok létrehozása"
+
+#~ msgid "Generates SoundEx codes for names"
+#~ msgstr "A nevek SoundEX kódjának létrehozása"
+
+#~ msgid "Maximum age"
+#~ msgstr "Legnagyobb életkor"
+
+#~ msgid "Maximum husband-wife age difference"
+#~ msgstr "Legnagyobb férj-feleség korkülönbség"
+
+#~ msgid "Minimum age to marry"
+#~ msgstr "A legfiatalabban megházasodott életkora"
+
+#~ msgid "Maximum age to marry"
+#~ msgstr "A legidősebben megházasodott életkora"
+
+#~ msgid "Maximum number of spouses for a person"
+#~ msgstr "A legnagyobb házassággszám"
+
+#~ msgid "Maximum number of consecutive years of widowhood"
+#~ msgstr "A leghosszabb idő amíg valaki özvegy volt"
+
+#~ msgid "Maximum number of years between children"
+#~ msgstr "Legnagyobb korkülönbség a gyerekek között"
+
+#~ msgid "Maximum span of years for all children"
+#~ msgstr "Az összes gyermek életkorának az időintervalluma"
+
+#~ msgid "<b>Women</b>"
+#~ msgstr "<b>Nők</b>"
+
+#~ msgid "Minimum age to bear a child"
+#~ msgstr "A leghamarabb gyermeket vállaló kora"
+
+#~ msgid "Maximum age to bear a child"
+#~ msgstr "A legkésőbb szülő életkora"
+
+#~ msgid "Maximum number of children"
+#~ msgstr "Legtöbb gyermekszám"
+
+#~ msgid "<b>Men</b>"
+#~ msgstr "<b>Férfiak</b>"
+
+#~ msgid "Minimum age to father a child"
+#~ msgstr "A legkorábban apává váló életkora"
+
+#~ msgid "Maximum age to father a child"
+#~ msgstr "A legkésőbb apává váló életkora"
+
+#~ msgid "Estimate missing dates"
+#~ msgstr "Pontatlan dátumok megbecslése"
+
+#~ msgid "GRAMPS Preferences"
+#~ msgstr "GRAMPS Tulajdonságok"
+
+#~ msgid "<b>Categories:</b>"
+#~ msgstr "<b>Kategóriák:</b>"
+
+#~ msgid ""
+#~ "To change your preferences, select one of the subcategories in the menu "
+#~ "on the left hand side of the window."
+#~ msgstr ""
+#~ "A tulajdonságok megváltoztatásához, válasszon ki egy kategóriát a bal "
+#~ "oldali menüből."
+
+#~ msgid "A_utosave interval:"
+#~ msgstr "Automentés gyakorisága:"
+
+#~ msgid "D_efault database directory:"
+#~ msgstr "A_lapértelmezett adatbázis könyvtár:"
+
+#~ msgid "minutes"
+#~ msgstr "percenként"
+
+#~ msgid "<b>Database</b>"
+#~ msgstr "<b>Adatbázis</b>"
+
+#~ msgid "Select default database directory - GRAMPS"
+#~ msgstr "Alapértelmezett könyvtár kiválasztása - GRAMPS"
+
+#~ msgid "The default directory for storing databases"
+#~ msgstr "Az alapértelmezett könyvtár az adatbázisok tárolására"
+
+#~ msgid "_Do not compress XML data file"
+#~ msgstr "_Ne tömörítse az XML adatbázis fájlt"
+
+#~ msgid "<b>Revision control</b>"
+#~ msgstr "<b>Biztonsági másolat</b>"
+
+#~ msgid "_Use revision control"
+#~ msgstr "_Biztonsági másolat engedélyezése"
+
+#~ msgid "_Prompt for comment on save"
+#~ msgstr "Mentéskor megjegyzések hozzáadása"
+
+#~ msgid "<b>Find</b>"
+#~ msgstr "<b>Keresés</b>"
+
+#~ msgid "_Enable autocompletion"
+#~ msgstr "_Automatikus kiegészítés engedélyezése"
+
+#~ msgid "<b>Toolbar</b>"
+#~ msgstr "<b>Eszköztár</b>"
+
+#~ msgid "Icons Only"
+#~ msgstr "Csak Ikonok"
+
+#~ msgid "Text Below Icons"
+#~ msgstr "Szöveg és alatta az Ikonok"
+
+#~ msgid "Text Beside Icons"
+#~ msgstr "Szöveg és mellette az Ikonok"
+
+#~ msgid "GNOME Settings"
+#~ msgstr "GNOME Beállítások"
+
+#~ msgid "Active person's _relationship to Home Person"
+#~ msgstr "A kijelölt személy _kapcsolata a központi személyhez"
+
+#~ msgid "Active person's name and _GRAMPS ID"
+#~ msgstr "Kijelölt személy neve és _GRAMPS ID-je"
+
+#~ msgid "<b>Statusbar</b>"
+#~ msgstr "<b>Állapotjelző</b>"
+
+#~ msgid "_Always display the LDS ordinance tabs"
+#~ msgstr "_Mindig jelenítse meg a Mormon ünnepeket"
+
+#~ msgid "_Show index numbers in child list"
+#~ msgstr "_Gyermekek listájában az indexek feltüntetése"
+
+#~ msgid "<b>Display</b>"
+#~ msgstr "<b>Megjelenítés</b>"
+
+#~ msgid "<b>Default view</b>"
+#~ msgstr "<b>Alapértelmezett nézet</b>"
+
+#~ msgid "_Person view"
+#~ msgstr "_Személynézet"
+
+#~ msgid "_Family view"
+#~ msgstr "_Családnézet"
+
+#~ msgid "<b>Family view style</b>"
+#~ msgstr "<b>Család nézeti stílus</b>"
+
+#~ msgid "Left to right"
+#~ msgstr "Balról jobbra"
+
+#~ msgid "Top to bottom"
+#~ msgstr "Felülről lefelé"
+
+#~ msgid "_Date format:"
+#~ msgstr "_Dátum formátum:"
+
+#~ msgid "_Name format:"
+#~ msgstr "_Név formátum:"
+
+#~ msgid "D_ate format:"
+#~ msgstr "_Dátum formátum:"
+
+#~ msgid "_Show calendar format selection menu"
+#~ msgstr "_Naptárválasztó engedélyezése"
+
+#~ msgid "<b>Display formats</b>"
+#~ msgstr "<b>Megjelenítési formátumok</b>"
+
+#~ msgid "<b>Entry formats</b>"
+#~ msgstr "<b>Beviteli formátumok</b>"
+
+#~ msgid "<b>Calendars</b>"
+#~ msgstr "<b>Naptárak</b>"
+
+#~ msgid "_Name:"
+#~ msgstr "_Név:"
+
+#~ msgid "_Address:"
+#~ msgstr "_Lakcím:"
+
+#~ msgid "_Country:"
+#~ msgstr "_Ország:"
+
+#~ msgid "_Phone:"
+#~ msgstr "_Telefon:"
+
+#~ msgid "_Email:"
+#~ msgstr "_Email:"
+
+#~ msgid "<b>Researcher information</b>"
+#~ msgstr "<b>Kutató információ</b>"
+
+#~ msgid "Preferred _text format:"
+#~ msgstr "Kedvelt _szöveg formátum:"
+
+#~ msgid "Preferred _graphical format:"
+#~ msgstr "Kedvelt _grafikai formátum:"
+
+#~ msgid "Preferred _paper size:"
+#~ msgstr "Kedvelt _papír méret:"
+
+#~ msgid "Letter"
+#~ msgstr "Levél"
+
+#~ msgid "A4"
+#~ msgstr "A4"
+
+#~ msgid "_Default report directory:"
+#~ msgstr "_Alapértelmezett összesítő könyvtár"
+
+#~ msgid "Select default report directory - GRAMPS"
+#~ msgstr "Alapértelmezett összesítő könyvtár kiválasztása - GRAMPS"
+
+#~ msgid "The default directory for the output of many report generators"
+#~ msgstr "Néhány összesítőkészítő kimenetének az alapértelmezett könyvtára"
+
+#~ msgid "Default _web site directory:"
+#~ msgstr "Alapértelmezett _web site könyvtár:"
+
+#~ msgid ""
+#~ "The default directory for the output of the Web Site report generators"
+#~ msgstr ""
+#~ "A Web Site összesítőkészítő kimenetének az alapértelmezett könyvtára"
+
+#~ msgid "<b>Report preferences</b>"
+#~ msgstr "<b>Összeítő Tulajdonságai</b>"
+
+#~ msgid "Make a _reference to the object when the object is dropped"
+#~ msgstr "Egy hivatkozás létrehozása az új objektum használatba vételekor"
+
+#~ msgid "Make a local _copy when the object is dropped"
+#~ msgstr "_Egy helyi másolat készítése az új objektum használatba vételekor"
+
+#~ msgid "Display _global properties editor when object is dropped"
+#~ msgstr ""
+#~ "_Globális tulajdonságszerkesztő megnyitása az új objektum használatba "
+#~ "vételekor"
+
+#~ msgid "Display _local properties editor when object is dropped"
+#~ msgstr ""
+#~ "_Helyi tulajdonságszerkesztő megnyitása az új objektum használatba "
+#~ "vételekor"
+
+#~ msgid "<b>Drag and drop from an external source</b>"
+#~ msgstr "<b>Drag and drop egy külső forrásból</b>"
+
+#~ msgid "<b>Drag and drop from an internal source</b>"
+#~ msgstr "<b>Drag and drop egy belső forrásból</b>"
+
+#~ msgid "_Family:"
+#~ msgstr "_Család:"
+
+#~ msgid "_Source:"
+#~ msgstr "_Forrás:"
+
+#~ msgid "_Media object:"
+#~ msgstr "_Média objektum:"
+
+#~ msgid "I"
+#~ msgstr "SZ"
+
+#~ msgid "F"
+#~ msgstr "CS"
+
+#~ msgid "P"
+#~ msgstr "H"
+
+#~ msgid "S"
+#~ msgstr "F"
+
+#~ msgid "O"
+#~ msgstr "O"
+
+#~ msgid "<b>User defined IDs</b>"
+#~ msgstr "<b>Felhasználó által meghatározott ID-k</b>"
+
+#~ msgid "<b>GRAMPS ID prefixes</b>"
+#~ msgstr "<b>GRAMPS ID előtagok</b>"
+
+#~ msgid "_Allow internal GRAMPS ID numbers to be edited"
+#~ msgstr "_A belső GRAMPS ID-k szerkesztésének engedélyezése"
+
+#~ msgid "_Family name guessing:"
+#~ msgstr "_Valószínűsíthető családnév:"
+
+#~ msgid "<b>Customization</b>"
+#~ msgstr "<b>Testreszabás</b>"
+
+#~ msgid "_Database:"
+#~ msgstr "_Adatbázis:"
+
+#~ msgid "_Revert to an older version from revision control"
+#~ msgstr "_Régebbi biztonsági másolathoz visszatérés"
+
+#~ msgid "Comment:"
+#~ msgstr "Megjegyzés:"
+
+#~ msgid "<b>Definition</b>"
+#~ msgstr "<b>Meghatározás</b>"
+
+#~ msgid "<b>Rule List</b>"
+#~ msgstr "<b>Szabály lista</b>"
+
+#~ msgid "All _rules must apply"
+#~ msgstr "Minden _szabályt el kell fogadni"
+
+#~ msgid "At least _one rule must apply"
+#~ msgstr "Legalább _egy szbályt el kell fogadni"
+
+#~ msgid "E_xactly one rule must apply"
+#~ msgstr "_Pontosan egy szabályt kell elfogadni"
+
+#~ msgid "Rule operations:"
+#~ msgstr "Szabály műveletek:"
+
+#~ msgid "_Return values that do not match the filter rules (invert)"
+#~ msgstr "A szűrő feltételeknek nem megfelelő értékek (megfordítás)"
+
+#~ msgid "<b>Values</b>"
+#~ msgstr "<b>Értékek</b>"
+
+#~ msgid "<b>Rule</b>"
+#~ msgstr "<b>Szabály</b>"
+
+#~ msgid "Add a new filter"
+#~ msgstr "Új szűrő hozzáadása"
+
+#~ msgid "Edit the selected filter"
+#~ msgstr "A kiválasztott szűrő szerkesztése"
+
+#~ msgid "_Test..."
+#~ msgstr "_Tesztelés..."
+
+#~ msgid "Delete the selected filter"
+#~ msgstr "A kiválasztott szűrő törlése"
+
+#~ msgid "<b>Selected Rule</b>"
+#~ msgstr "<b>Kiválasztott szabály</b>"
+
+#~ msgid "<b>Description</b>"
+#~ msgstr "<b>Leírás</b>"
+
+#~ msgid "_Confidence:"
+#~ msgstr "_Megbízhatóság:"
+
+#~ msgid "_Volume/Film/Page:"
+#~ msgstr "_Kötet/Szakasz/Oldal:"
+
+#~ msgid "Te_xt:"
+#~ msgstr "_Szöveg:"
+
+#~ msgid "Co_mments:"
+#~ msgstr "_Megjegyzések:"
+
+#~ msgid "Publication information:"
+#~ msgstr "Publikációs információ:"
+
+#~ msgid "Selects an existing source from the Source View"
+#~ msgstr "Válasszon egy létező forrást a Forrás Nézőből"
+
+#~ msgid "Creates a new source"
+#~ msgstr "Új forrás létrehozása"
+
+#~ msgid "_New..."
+#~ msgstr "Ú_j..."
+
+#~ msgid "<b>Source selection</b>"
+#~ msgstr "<b>Forrás választás</b>"
+
+#~ msgid "<b>Source details</b>"
+#~ msgstr "<b>Forrás részletek</b>"
+
+#~ msgid "Double click will edit the selected source"
+#~ msgstr "Duplakattintással szerkesztheti a kiválasztott forrást"
+
+#~ msgid "Style _name:"
+#~ msgstr "Stílus _név:"
+
+#~ msgid "pt"
+#~ msgstr "pt"
+
+#~ msgid "Pick a color"
+#~ msgstr "Színválasztás"
+
+#~ msgid "_Bold"
+#~ msgstr "_Félkövér"
+
+#~ msgid "_Italic"
+#~ msgstr "_Dölt"
+
+#~ msgid "_Underline"
+#~ msgstr "_Aláhúzott"
+
+#~ msgid "<b>Type face</b>"
+#~ msgstr "<b>Típus kinézet</b>"
+
+#~ msgid "<b>Size</b>"
+#~ msgstr "<b>Méret</b>"
+
+#~ msgid "<b>Color</b>"
+#~ msgstr "<b>Szín</b>"
+
+#~ msgid "_Roman (Times, serif)"
+#~ msgstr "_Roman (Times, serif)"
+
+#~ msgid "_Swiss (Arial, Helvetica, sans-serif)"
+#~ msgstr "_Swiss (Arial, Helvetica, sans-serif)"
+
+#~ msgid "<b>Font options</b>"
+#~ msgstr "<b>Betűkészlet tulajdonságok</b>"
+
+#~ msgid "R_ight:"
+#~ msgstr "_Jobb:"
+
+#~ msgid "L_eft:"
+#~ msgstr "_Bal:"
+
+#~ msgid "_Padding:"
+#~ msgstr "_Kitöltés:"
+
+#~ msgid "_Left"
+#~ msgstr "_Bal"
+
+#~ msgid "Le_ft"
+#~ msgstr "Ba_l"
+
+#~ msgid "_Right"
+#~ msgstr "_Jobb"
+
+#~ msgid "_Justify"
+#~ msgstr "_Felülbírálás"
+
+#~ msgid "_Center"
+#~ msgstr "_Középre"
+
+#~ msgid "Ri_ght"
+#~ msgstr "Job_b"
+
+#~ msgid "_Bottom"
+#~ msgstr "_Lent"
+
+#~ msgid "_Top"
+#~ msgstr "_Fent"
+
+#~ msgid "<b>Background</b>"
+#~ msgstr "<b>Háttér</b>"
+
+#~ msgid "<b>Margins</b>"
+#~ msgstr "<b>Margók</b>"
+
+#~ msgid "<b>Borders</b>"
+#~ msgstr "<b>Szegélyek</b>"
+
+#~ msgid "<b>Alignment</b>"
+#~ msgstr "<b>Elrendezés</b>"
+
+#~ msgid "<b>Paragraph options</b>"
+#~ msgstr "<b>Bekezdés tuladonságok</b>"
+
+#~ msgid "Simple Book Title"
+#~ msgstr "Rövidített könyvcím"
+
+#~ msgid "_State/Province"
+#~ msgstr "_Állam/Tartomány"
+
+#~ msgid "AbiWord (version 1.9 or greater)"
+#~ msgstr "AbiWord (1.9 verzió vagy nagyobb)"
+
+#~ msgid "AbiWord (version 1.0.x)"
+#~ msgstr "AbiWord (1.0.x verzió)"
+
+#~ msgid "_unknown"
+#~ msgstr "_ismeretlen"
+
+#~ msgid "Place new media object in this gallery"
+#~ msgstr "Új média objektum elhelyezése ebben a galériában"
+
+#~ msgid "FAQ - GRAMPS"
+#~ msgstr "GRAMPS - GYÍK"
+
+#~ msgid "<b>Notes</b>"
+#~ msgstr "<b>Megjegyzések</b>"
+
+#~ msgid "She is the daughter of "
+#~ msgstr "A szülője"
+
+#~ msgid "He is the son of "
+#~ msgstr "A szülője"
+
+#~ msgid "GEDCOM file ended unexpectedly"
+#~ msgstr "GEDCOM fájl váratlanul véget ért"
+
+#~ msgid "_Settings"
+#~ msgstr "_Beállítások"
+
+#~ msgid "title"
+#~ msgstr "cím"
+
+#~ msgid "avail_label"
+#~ msgstr "segítő_cím"
+
+#~ msgid "book_label"
+#~ msgstr "kö_nyvcím"
+
+#~ msgid "dialog1"
+#~ msgstr "párbeszéd1"
+
+#~ msgid "label6"
+#~ msgstr "címke6"
+
+#~ msgid "<b>Note</b>"
+#~ msgstr "<b>Megjegyzés</b>"
+
+#~ msgid "<b>Witnesses</b>"
+#~ msgstr "<b>Tanúk</b>"
+
+#~ msgid "<b>Gallery</b>"
+#~ msgstr "<b>Galéria</b>"
+
+#~ msgid "<b>LDS</b>"
+#~ msgstr "<b>LDS</b>"
+
+#~ msgid "<b>Internet</b>"
+#~ msgstr "<b>Internet</b>"
+
+#~ msgid "<b>Names</b>"
+#~ msgstr "<b>Nevek</b>"
+
+#~ msgid "Create a new _ZODB database"
+#~ msgstr "Új _ZODB adatbázis létrehozása"
+
+#: src/data/gramps.desktop.in:4
+msgid "GRAMPS Genealogy System"
+msgstr "GRAMPS"
+
+#: src/data/gramps.desktop.in:5
+msgid "Manage genealogical information, perform genealogical research and analysis"
+msgstr "Örökléskutató és elemző program"
