@@ -1,5 +1,8 @@
 # List of source files which contain translatable strings.
 [encoding: UTF-8]
+#
+# 	Python files
+#
 src/AddMedia.py
 src/ansel_utf8.py
 src/ArgHandler.py
@@ -272,6 +275,9 @@ src/RelLib/_Url.py
 src/RelLib/_Witness.py
 src/TreeViews/__init__.py
 src/TreeViews/_PersonTreeView.py
+#
+#	Glade files
+#
 src/glade/edit_person.glade
 src/glade/gramps.glade
 src/glade/mergedata.glade
@@ -297,8 +303,9 @@ src/plugins/vcalendarexport.glade
 src/plugins/vcardexport.glade
 src/plugins/verify.glade
 src/plugins/writeftree.glade
-src/data/tips.xml
-# files added by intltool-prepare
+#
+#	Files to extract from and then merge into
+#
 src/data/gramps.desktop.in
 src/data/gramps.keys.in
 src/data/gramps.xml.in
