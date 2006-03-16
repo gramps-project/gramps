@@ -225,7 +225,8 @@ AC_SUBST(SCROLLKEEPER_BUILD_REQUIRED)
 AC_SUBST(GNOMEHELP)
 AC_SUBST(GPREFIX)
 
-AC_CONFIG_FILES([ po/Makefile.in
+AC_CONFIG_FILES([
+po/Makefile.in
 Makefile 
 src/Makefile
 src/RelLib/Makefile
