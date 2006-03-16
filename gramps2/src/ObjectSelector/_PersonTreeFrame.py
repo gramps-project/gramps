@@ -20,7 +20,7 @@
 
 # $Id$
 
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 import gtk
 import gobject

@@ -31,7 +31,7 @@ scheme specified in the database's prefix ids
 #
 #------------------------------------------------------------------------
 import re
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
 #

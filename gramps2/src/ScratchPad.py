@@ -28,7 +28,7 @@
 import cPickle as pickle
 import os
 from xml.sax.saxutils import escape
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #

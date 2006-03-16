@@ -27,7 +27,7 @@
 #-------------------------------------------------------------------------
 from xml.parsers.expat import ParserCreate
 from random import Random
-from gettext import gettext as _
+from TransUtils import sgettext as _
 import os
 
 #-------------------------------------------------------------------------

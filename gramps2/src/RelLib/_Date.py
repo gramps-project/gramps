@@ -25,7 +25,7 @@
 __author__ = "Donald N. Allingham"
 __version__ = "$Revision$"
 
-from gettext import gettext as _
+from TransUtils import sgettext as _
 from _CalSdn import *
 
 #-------------------------------------------------------------------------

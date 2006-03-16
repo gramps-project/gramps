@@ -37,7 +37,7 @@ import locale
 import re
 from sys import maxint
 import sets
-from gettext import gettext as _
+from TransUtils import sgettext as _
 import logging
 log = logging.getLogger(".GrampsDb")
 

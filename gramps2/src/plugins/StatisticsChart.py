@@ -34,7 +34,7 @@ Statistics Chart report
 #
 #------------------------------------------------------------------------
 import time
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
 #
@@ -57,7 +57,6 @@ from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 import GenericFilter
 import DateHandler
 from Utils import ProgressMeter
-from TransUtils import strip_context as __
 
 #------------------------------------------------------------------------
 #
@@ -92,7 +91,7 @@ class Extract:
         """Methods for extracting statistical data from the database"""
         # key, non-localized name, localized name, type method, data method
         self.extractors = {
-            'data_title':  ("Title", __("person|Title"),
+            'data_title':  ("Title", _("person|Title"),
                             self.get_person, self.get_title),
             'data_sname':  ("Surname", _("Surname"),
                             self.get_person, self.get_surname),

@@ -30,7 +30,7 @@ import os
 import time
 import re
 import shutil
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
 #

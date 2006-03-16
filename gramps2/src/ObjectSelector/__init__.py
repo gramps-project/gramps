@@ -93,7 +93,7 @@ At runtime Object selector is constructed from these widgets in the following st
 -------------------------------------------------------------------------------
 
 """
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 from _ObjectSelectorWindow import ObjectSelectorWindow
 from _Constants import ObjectTypes

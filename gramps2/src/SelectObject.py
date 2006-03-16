@@ -37,7 +37,7 @@ import gc
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #

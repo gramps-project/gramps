@@ -30,7 +30,7 @@ except:
     from gnome.vfs import mime_get_short_list_applications, \
          mime_get_description, get_mime_type
     
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 def get_application(type):
     """Returns the application command and application name of the

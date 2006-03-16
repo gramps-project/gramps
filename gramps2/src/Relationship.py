@@ -28,8 +28,7 @@
 
 import RelLib
 import types
-from gettext import gettext as _
-from TransUtils import strip_context as __
+from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -279,28 +278,28 @@ class RelationshipCalculator:
                     elif gender == RelLib.Person.FEMALE:
                         return _("wife")
                     else:
-                        return __("gender unknown|spouse")
+                        return _("gender unknown|spouse")
                 elif family_rel == RelLib.Family.UNMARRIED:
                     if gender == RelLib.Person.MALE:
-                        return __("unmarried|husband")
+                        return _("unmarried|husband")
                     elif gender == RelLib.Person.FEMALE:
-                        return __("unmarried|wife")
+                        return _("unmarried|wife")
                     else:
-                        return __("gender unknown,unmarried|spouse")
+                        return _("gender unknown,unmarried|spouse")
                 elif family_rel == RelLib.Family.CIVIL_UNION:
                     if gender == RelLib.Person.MALE:
-                        return __("male,civil union|partner")
+                        return _("male,civil union|partner")
                     elif gender == RelLib.Person.FEMALE:
-                        return __("female,civil union|partner")
+                        return _("female,civil union|partner")
                     else:
-                        return __("gender unknown,civil union|partner")
+                        return _("gender unknown,civil union|partner")
                 else:
                     if gender == RelLib.Person.MALE:
-                        return __("male,unknown relation|partner")
+                        return _("male,unknown relation|partner")
                     elif gender == RelLib.Person.FEMALE:
-                        return __("female,unknown relation|partner")
+                        return _("female,unknown relation|partner")
                     else:
-                        return __("gender unknown,unknown relation|partner")
+                        return _("gender unknown,unknown relation|partner")
             else:
                 return None
         return None

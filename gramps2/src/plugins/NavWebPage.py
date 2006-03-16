@@ -36,7 +36,7 @@ import locale
 import shutil
 import codecs
 import tarfile
-from gettext import gettext as _
+from TransUtils import sgettext as _
 from cStringIO import StringIO
 
 try:

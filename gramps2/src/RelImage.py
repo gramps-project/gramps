@@ -39,7 +39,7 @@ from QuestionDialog import ErrorDialog, WarningDialog
 #
 #-------------------------------------------------------------------------
 import const
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #

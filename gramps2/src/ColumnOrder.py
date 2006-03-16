@@ -29,7 +29,7 @@ import gtk.glade
 import gc
 
 import const
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #

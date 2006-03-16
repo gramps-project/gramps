@@ -29,7 +29,7 @@
 #
 #------------------------------------------------------------------------
 import os
-from gettext import gettext as _
+from TransUtils import sgettext as _
 from sets import Set
 
 #------------------------------------------------------------------------

@@ -30,7 +30,7 @@ __author__ = "Don Allingham"
 #
 #-------------------------------------------------------------------------
 import os
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
 #
