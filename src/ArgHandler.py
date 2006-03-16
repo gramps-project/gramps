@@ -33,7 +33,7 @@ Module responsible for handling the command line arguments for GRAMPS.
 #-------------------------------------------------------------------------
 import os
 import getopt
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #

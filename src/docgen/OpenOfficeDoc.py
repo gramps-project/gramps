@@ -31,7 +31,7 @@ import time
 import locale
 from cStringIO import StringIO
 from math import pi, cos, sin, fabs
-from gettext import gettext as _
+from TransUtils import sgettext as _
 from xml.sax.saxutils import escape
 
 #-------------------------------------------------------------------------

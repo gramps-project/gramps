@@ -26,8 +26,7 @@
 #------------------------------------------------------------------------
 import os
 import time
-from gettext import gettext as _
-from TransUtils import strip_context as __
+from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
 #
@@ -165,7 +164,7 @@ class SimpleBookTitleOptions(ReportOptions.ReportOptions):
         self.footer_entry = gtk.Entry()
         self.footer_entry.set_text(footer_string)
 
-        dialog.add_frame_option(_('Text'),__('book|Title'),self.title_entry)
+        dialog.add_frame_option(_('Text'),_('book|Title'),self.title_entry)
         dialog.add_frame_option(_('Text'),_('Subtitle'),self.subtitle_entry)
         dialog.add_frame_option(_('Text'),_('Footer'),self.footer_entry)
         

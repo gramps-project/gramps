@@ -30,7 +30,7 @@
 import os
 import tempfile
 from cgi import escape
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #

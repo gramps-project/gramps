@@ -29,7 +29,7 @@
 #------------------------------------------------------------------------
 import os
 import posixpath
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
 #

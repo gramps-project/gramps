@@ -29,7 +29,7 @@
 #-------------------------------------------------------------------------
 import re
 import time
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
 #

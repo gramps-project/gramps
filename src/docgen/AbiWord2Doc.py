@@ -31,7 +31,7 @@ Provides a BaseDoc based interface to the AbiWord document format.
 #-------------------------------------------------------------------------
 import base64
 import os
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #

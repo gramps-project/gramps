@@ -30,7 +30,7 @@ Report option handling, including saving and parsing.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #

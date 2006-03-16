@@ -33,7 +33,7 @@ import string
 import const
 import time
 
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 # and module sets for earlier pythons
 try:

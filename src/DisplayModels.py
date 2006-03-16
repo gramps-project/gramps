@@ -25,7 +25,7 @@
 #
 #-------------------------------------------------------------------------
 import time
-from gettext import gettext as _
+from TransUtils import sgettext as _
 import locale
 
 import logging

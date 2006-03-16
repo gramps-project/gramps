@@ -38,7 +38,7 @@ from xml.sax import make_parser,handler,SAXParseException
 #-------------------------------------------------------------------------
 import os
 import sets
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -64,7 +64,6 @@ import const
 import RelLib
 import DateHandler
 import NameDisplay
-from TransUtils import strip_context as __
 from Utils import for_each_ancestor,probably_alive,get_source_referents
 
 #-------------------------------------------------------------------------
@@ -1303,7 +1302,7 @@ class HasNameOf(Rule):
     labels      = [ _('Given name:'),
                     _('Family name:'),
                     _('Suffix:'),
-                    __('person|Title:')]
+                    _('person|Title:')]
     name        = _('People with the <name>')
     description = _("Matches people with a specified (partial) name")
     category    = _('General filters')

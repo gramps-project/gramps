@@ -53,7 +53,7 @@ import Mime
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from TransUtils import sgettext as _
 from xml.sax.saxutils import escape
 
 _apptype = 'application/vnd.oasis.opendocument.text'

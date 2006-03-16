@@ -34,7 +34,7 @@ import time
 import shutil
 import os
 import codecs
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
 #

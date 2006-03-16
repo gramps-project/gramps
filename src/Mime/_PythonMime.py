@@ -21,7 +21,7 @@
 import mimetypes
 import const
 import gtk
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 _type_map = {
     'application/x-gramps' : 'GRAMPS database',

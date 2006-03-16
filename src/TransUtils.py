@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,9 +18,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-from gettext import gettext as _
+# $Id$
 
-def strip_context(msgid,sep='|'):
+from gettext import gettext
+
+def sgettext(msgid,sep='|'):
     """
     Strip the context used for resolving translation ambiguities.
     
@@ -37,8 +39,8 @@ def strip_context(msgid,sep='|'):
     @rtype: unicode
 
     """
-    msgval = _(msgid)
-    sep_idx = msgid.rfind(sep)
-    if msgval == msgid and sep_idx != -1:
+    msgval = gettext(msgid)
+    if msgval == msgid:
+        sep_idx = msgid.rfind(sep)
         msgval = msgid[sep_idx+1:]
     return msgval

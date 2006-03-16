@@ -29,7 +29,7 @@
 #------------------------------------------------------------------------
 import os
 import cStringIO
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
 #

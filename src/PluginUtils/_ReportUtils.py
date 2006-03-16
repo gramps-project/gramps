@@ -32,7 +32,7 @@ A collection of utilities to aid in the generation of reports.
 #-------------------------------------------------------------------------
 import time
 import os
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
 #

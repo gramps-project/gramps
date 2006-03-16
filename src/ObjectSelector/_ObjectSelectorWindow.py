@@ -29,7 +29,7 @@ sys.path.append("ObjectSelector")
 import os.path
 import gtk
 import gobject
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 import _Factories
 from _Constants import ObjectTypes

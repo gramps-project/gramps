@@ -25,7 +25,7 @@ __version__ = "$Revision$"
 # python modules
 #
 #------------------------------------------------------------------------
-from gettext import gettext as _
+from TransUtils import sgettext as _
 import datetime, time
 from xml.parsers import expat
 import const

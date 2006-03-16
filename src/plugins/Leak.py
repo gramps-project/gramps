@@ -30,7 +30,7 @@ Show uncollected objects in a window.
 #
 #------------------------------------------------------------------------
 import os
-from gettext import gettext as _
+from TransUtils import sgettext as _
 from bsddb.db import DBError
 
 #------------------------------------------------------------------------

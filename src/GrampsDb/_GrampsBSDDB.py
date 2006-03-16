@@ -34,7 +34,7 @@ import os
 import time
 import locale
 import sets
-from gettext import gettext as _
+from TransUtils import sgettext as _
 from bsddb import dbshelve, db
 import logging
 log = logging.getLogger(".GrampsDb")
@@ -120,7 +120,7 @@ class GrampsBSDDB(GrampsDbBase):
     """GRAMPS database object. This object is a base class for other
     objects."""
 
-    UseTXN = False
+    UseTXN = True
 
     def __init__(self):
         """creates a new GrampsDB"""

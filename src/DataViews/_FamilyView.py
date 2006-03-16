@@ -3,7 +3,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from TransUtils import sgettext as _
 import gc
 import re
 import cgi
