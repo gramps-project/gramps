@@ -2,13 +2,13 @@
 # Copyright (C) 2002-2005 Free Software Foundation, Inc.
 # Alex Roitman <shura@alex.neuro.umn.edu>, 2002-2006.
 # Alexander Bogdashevsky <sanderb@kezomba.com>, 2004.
-# $Id: ru.po,v 1.35.2.26 2006/02/23 01:13:40 rshura Exp $
+# $Id$
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 2.0.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-15 16:05-0800\n"
+"POT-Creation-Date: 2006-03-16 00:01-0800\n"
 "PO-Revision-Date: 2006-02-22 16:43-0800\n"
 "Last-Translator: Alexander Roitman <shura@gramps-project.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
