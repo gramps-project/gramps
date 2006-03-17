@@ -1,6 +1,6 @@
+# This is the src level Makefile for Gramps
 # $Id$
 
-# This is the src level Makefile for Gramps
 SUBDIRS = \
 	Config \
 	DataViews \

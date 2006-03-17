@@ -1,3 +1,6 @@
+# This is the top level Makefile for Gramps
+# $Id$
+
 EXTRA_DIST = \
 	codeset.m4 \
 	gettext.m4 \
