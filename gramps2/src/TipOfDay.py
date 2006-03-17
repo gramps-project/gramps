@@ -130,12 +130,15 @@ class TipParser:
         """
         if tag == "tip":
             self.tlist = []
+            # Skip all tips with xml:lang attribute, as they are
+            # already in the translation catalog
+            self.skip = attrs.has_key('xml:lang')
         elif tag != "tips":
             # let all the other tags through, except for the "tips" tag
             self.tlist.append("<%s>" % tag)
 
     def endElement(self,tag):
-        if tag == "tip":
+        if tag == "tip" and not self.skip:
             text = self.escape(''.join(self.tlist))
             self.mylist.append(' '.join(text.split()))
         elif tag != "tips":
