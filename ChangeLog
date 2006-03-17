@@ -1,4 +1,6 @@
 2006-03-17  Alex Roitman  <shura@gramps-project.org>
+	* help: add new dir with new gnome-doc-utils infrastructure.
+
 	* configure.in: Multiple improvements.
 	* config.guess, config.sub: newer versions.
 	* autogen.sh: Better gnome-common message.

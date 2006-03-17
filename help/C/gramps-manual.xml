@@ -66,7 +66,11 @@
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
   <bookinfo> 
-    <title>GRAMPS Manual V&manrevision;</title>       
+    <title>GRAMPS Manual V&manrevision;</title> 
+    <abstract role="description"><para>
+    This document describes GRAMPS, the Genealogical Research and
+    Analysis Management Programming System.</para>
+    </abstract>
     <copyright>
       <year>2001</year>
       <holder>Donald N. Allingham</holder>
@@ -103,7 +107,7 @@
 -->
 
     <authorgroup> 
-      <author> 
+      <author role="maintainer"> 
 	<firstname>Alex</firstname> 
 	<surname>Roitman</surname> 
 	<affiliation> 
