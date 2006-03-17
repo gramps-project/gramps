@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2006-03-17 12:18-0800\n"
+"POT-Creation-Date: 2006-03-17 14:29-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -455,7 +455,7 @@ msgstr ""
 msgid "This manual describes version 2.0.0 of GRAMPS."
 msgstr ""
 
-#. $Id: preface.xml 6011 2006-02-28 19:54:35Z rshura $
+#. $Id: preface.xml 6163 2006-03-17 20:41:14Z rshura $
 #: C/gramps-manual.xml:25(title) 
 msgid "Preface"
 msgstr ""
@@ -725,7 +725,7 @@ msgstr ""
 msgid "Finally, there are warnings, notifying you where you should be careful: <warning id=\"example-warning\"><placeholder-1/><placeholder-2/></warning>"
 msgstr ""
 
-#. $Id: getstart.xml 6011 2006-02-28 19:54:35Z rshura $
+#. $Id: getstart.xml 6163 2006-03-17 20:41:14Z rshura $
 #: C/gramps-manual.xml:25(title) 
 msgid "Getting Started"
 msgstr ""
@@ -907,7 +907,7 @@ msgstr ""
 msgid "Select this item to load the example database that is included in your GRAMPS package. This database is composed of fictitious people and serves as a useful example for learning how to work with GRAMPS."
 msgstr ""
 
-#. $Id: mainwin.xml 6011 2006-02-28 19:54:35Z rshura $
+#. $Id: mainwin.xml 6163 2006-03-17 20:41:14Z rshura $
 #: C/gramps-manual.xml:25(title) 
 msgid "Main Window"
 msgstr ""
@@ -3965,7 +3965,7 @@ msgstr ""
 msgid "For example, you may want to make sure that nobody in your database had children at the age of 98. Based on common sense, such a record would indicate an error. However, it is not a consistency error in the database. Besides, someone might have a child at the age of 98 (although this rarely happens). The Verify tool will display everything that violates your criteria so that you can check whether the record is erroneous or not. The ultimate decision is yours."
 msgstr ""
 
-#. $Id: custom.xml 5482 2005-12-06 06:38:09Z rshura $
+#. $Id: custom.xml 6163 2006-03-17 20:41:14Z rshura $
 #: C/gramps-manual.xml:25(title) 
 msgid "Settings"
 msgstr ""
@@ -4447,7 +4447,7 @@ msgstr ""
 msgid "If, however, you would like the GRAMPS project to to adopt your strategy, you would need to convince GRAMPS developers that your strategy is good for GRAMPS and superior to the present development strategy."
 msgstr ""
 
-#. $Id: keybind.xml 4549 2005-05-11 14:04:47Z rshura $
+#. $Id: keybind.xml 6163 2006-03-17 20:41:14Z rshura $
 #: C/gramps-manual.xml:25(title) 
 msgid "Keybindings reference"
 msgstr ""
@@ -4612,7 +4612,7 @@ msgstr ""
 msgid "Make the selected child the Active Person. Use <keycap>Ctrl</keycap>+<keycap>Left</keycap> in standard Family View and <keycap>Ctrl</keycap>+<keycap>Up</keycap> in alternative Family View."
 msgstr ""
 
-#. $Id: filtref.xml 4549 2005-05-11 14:04:47Z rshura $
+#. $Id: filtref.xml 6163 2006-03-17 20:41:14Z rshura $
 #: C/gramps-manual.xml:25(title) 
 msgid "Filter rules reference"
 msgstr ""
@@ -7014,7 +7014,7 @@ msgstr ""
 msgid "gramps"
 msgstr ""
 
-#. $Id: bugs.xml 5482 2005-12-06 06:38:09Z rshura $
+#. $Id: bugs.xml 6163 2006-03-17 20:41:14Z rshura $
 #: C/gramps-manual.xml:25(title) 
 msgid "Known Bugs and Limitations"
 msgstr ""
@@ -7023,7 +7023,7 @@ msgstr ""
 msgid "The known limitations include the BSDDB performance issues related to caching and the memory size. As long as the BSDDB cache fits completely into the available memory on the system, the performance should be adequate. When the cache size exceeds that of the free memory and portions of database cache start to be swapped onto the disk, the performance degrades appreciably. This can be solved by adjusting the BSDDB cache size for the large databases."
 msgstr ""
 
-#. $Id: authors.xml 5482 2005-12-06 06:38:09Z rshura $
+#. $Id: authors.xml 6163 2006-03-17 20:41:14Z rshura $
 #: C/gramps-manual.xml:25(title) 
 msgid "About GRAMPS"
 msgstr ""
