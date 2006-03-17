@@ -1,4 +1,4 @@
-# This is the top level Makefile for Gramps
+# This is the m4 level Makefile for Gramps
 # $Id$
 
 EXTRA_DIST = \
