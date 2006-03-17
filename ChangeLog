@@ -1,3 +1,10 @@
+2006-03-17  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Multiple improvements.
+	* config.guess, config.sub: newer versions.
+	* autogen.sh: Better gnome-common message.
+	* src/TipOfDay.py (TipParser): skip messages with xml:lang
+	attribute, because these are already supplied in the po file.
+
 2006-03-16  Alex Roitman  <shura@gramps-project.org>
 	* various: Use TransUtils.sgettext instead of gettext.gettext to
 	work out stripping the context.

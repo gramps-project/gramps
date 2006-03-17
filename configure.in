@@ -34,19 +34,6 @@ AM_PACKAGER
 AC_SUBST(RELEASE)
 AC_SUBST(VERSIONSTRING)
 
-AC_PATH_PROG(MSGFMT, msgfmt,no)
-if test x$MSGFMT = xno; then
-  AC_MSG_ERROR(Couldn't find msgfmt program. Please install the GNU gettext package.)
-fi
-AC_PATH_PROG(MSGCONV, msgconv,no)
-if test x$MSGCONV = xno; then
-  AC_MSG_ERROR(Couldn't find msgconv program. Please install the GNU gettext package.)
-fi
-AC_PATH_PROG(ICONV, iconv,no)
-if test x$ICONV = xno; then
-  AC_MSG_ERROR(Couldn't find iconv program.)
-fi
-
 dnl Add the languages which your application supports here.
 ALL_LINGUAS="hu zh_CN cs da de es fr it nb nl no pl pt_BR ro ru sv eo fi lt sk"
 GETTEXT_PACKAGE=gramps
@@ -67,9 +54,9 @@ try:
 except ImportError:
     pass
 
-def out(str):
+def out(line):
     f = open('conftest.out', 'w')
-    f.write(str)
+    f.write(line)
     f.close()
 "
 
@@ -80,24 +67,25 @@ try:
     import gobject
     version = gobject.pygtk_version
     if version >= (2,3,4):
-        out("YES")
+        print_version = '.'.join([[str(i) for i in version]])
+        out(print_version)
     else:
-        out("No")
+        out("NO")
 except ImportError:
-    out("No")
+    out("NO")
 except AttributeError:
-    out("No")
+    out("NO")
 EOF
 $PYTHON conftest.py
 has_pygtk=`cat conftest.out`
 rm -f conftest.out conftest.py
-if test YES != "$has_pygtk"
+if test NO = "$has_pygtk"
 then
    AC_MSG_ERROR([
 
 **** The python bindings for gtk 2.4 (pygtk2>=2.3.4) could not be found.])
 fi
-AC_MSG_RESULT(ok)
+AC_MSG_RESULT($has_pygtk)
 
 AC_MSG_CHECKING(Python bindings for gnome)
 cat > conftest.py <<EOF
@@ -108,63 +96,66 @@ try:
     # display cannot be opened.  Just search it.
     import imp
     imp.find_module('gnome/ui')
-    out("YES")
+    out("gnome.ui")
 except ImportError:
     out("NO")
 EOF
 $PYTHON conftest.py
 has_pygnome=`cat conftest.out`
 rm -f conftest.out conftest.py
-if test YES != "$has_pygnome"
+if test NO = "$has_pygnome"
 then
    AC_MSG_ERROR([
-**** The python bindings for gnome 2.0 (gnome-python2) could not be found.])
+**** The python bindings for gnome 2.0 (gnome2-python) could not be found.])
 fi
-AC_MSG_RESULT(ok)
+AC_MSG_RESULT($has_pygnome)
 
 AC_MSG_CHECKING(Python bindings for gconf)
 cat > conftest.py <<EOF
 $pygtk_require
 try:
     import gconf
-    out("YES")
+    out("gconf")
 except ImportError:
     import gnome.gconf
-    out("YES")
+    out("gnome.gconf")
 except ImportError:
     out("NO")
 EOF
 $PYTHON conftest.py
 has_gconf=`cat conftest.out`
 rm -f conftest.out conftest.py
-if test YES != "$has_gconf"
+if test NO = "$has_gconf"
 then
    AC_MSG_ERROR([
-**** The python bindings for gconf (gnome-python2-gconf) could not be found.])
+**** The python bindings for gconf (gnome2-python-gconf) could not be found.])
 fi
-AC_MSG_RESULT(ok)
+AC_MSG_RESULT($has_gconf)
 
 AC_MSG_CHECKING(Python bindings for gnome vfs)
 cat > conftest.py <<EOF
 $pygtk_require
 try:
-    # Do not import gnome.canvas, this can raise a RuntimeError if the
+    # Do not import gnome.vfs, this can raise a RuntimeError if the
     # display cannot be opened.  Just search it.
     import imp
     imp.find_module('gnome/vfs')
-    out("YES")
+    out("gnome.vfs")
 except ImportError:
+    imp.find_module('gnomevfs')
+    out("gnomevfs")
+except:
     out("NO")
 EOF
 $PYTHON conftest.py
 has_vfs=`cat conftest.out`
 rm -f conftest.out conftest.py
-if test YES != "$has_vfs"
+if test NO = "$has_vfs"
 then
    AC_MSG_ERROR([
-**** The python bindings for GNOME VFS (gnome-python2-vfs) could not be found.])
+**** The python bindings for GNOME VFS (gnome2-python-vfs) could not be found.])
 fi
-AC_MSG_RESULT(ok)
+AC_MSG_RESULT($has_vfs)
 
 AC_MSG_CHECKING(Python bindings for glade)
 cat > conftest.py <<EOF
@@ -174,20 +165,20 @@ try:
     # display cannot be opened.  Just search it.
     import imp
     imp.find_module('gtk/glade')
-    out("YES")
+    out("gtk.glade")
 except ImportError:
     out("NO")
 EOF
 $PYTHON conftest.py
-has_pygtk=`cat conftest.out`
+has_pyglade=`cat conftest.out`
 rm -f conftest.out conftest.py
-if test YES != "$has_pygtk"
+if test NO = "$has_pyglade"
 then
    AC_MSG_ERROR([
 
 **** The python bindings for glade (pygtk2-libglade) could not be found.])
 fi
-AC_MSG_RESULT(ok)
+AC_MSG_RESULT($has_pyglade)
 
 dnl Checks for libraries.
 
@@ -228,7 +219,10 @@ AC_SUBST(GPREFIX)
 AC_CONFIG_FILES([
 m4/Makefile
 po/Makefile.in
-Makefile 
+Makefile
+gramps.spec
+gramps.sh
+src/const.py
 src/Makefile
 src/RelLib/Makefile
 src/Config/Makefile
@@ -258,8 +252,4 @@ example/Makefile
 example/gramps/Makefile
 ])
 
-AC_OUTPUT([
-src/const.py
-gramps.spec
-gramps.sh
-])
+AC_OUTPUT
