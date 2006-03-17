@@ -1,4 +1,4 @@
-SUBDIRS = po src doc example
+SUBDIRS = m4 po src doc example
 
 EXTRA_DIST = config.rpath  autogen.sh gramps.spec.in gramps.spec COPYING-DOCS FAQ COPYING intltool-extract.in intltool-merge.in intltool-update.in
 

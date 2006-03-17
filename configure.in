@@ -226,6 +226,7 @@ AC_SUBST(GNOMEHELP)
 AC_SUBST(GPREFIX)
 
 AC_CONFIG_FILES([
+m4/Makefile
 po/Makefile.in
 Makefile 
 src/Makefile
