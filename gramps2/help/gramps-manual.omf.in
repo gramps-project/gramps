@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="no"?>
+
+<!-- This is the OMF template for GRAMPS user manual -->
+<!-- $Id$ -->
+
+<omf>
+  <resource>
+    <subject category="Applications"/>
+    <type>manual</type>
+    <relation seriesid="aa15a444-5ed9-11d7-8329-d7319c90009c"/>
+    <rights type="GNU GPL" license.version="2" 
+            license="http://www.gnu.org/licenses/gpl.html"
+            holder="Alex Roitman"/>
+  </resource>
+</omf>

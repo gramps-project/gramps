@@ -8,6 +8,9 @@ AC_INIT(gramps, 2.1.0, [gramps-bugs@lists.sourceforge.net])
 AC_CONFIG_SRCDIR(configure.in)
 AM_INIT_AUTOMAKE(1.6.3)
 
+AC_CONFIG_MACRO_DIR([m4])
+GNOME_DOC_INIT
+
 RELEASE=0.SVN$(svnversion -n .)
 dnl RELEASE=1
 
@@ -217,11 +220,11 @@ AC_SUBST(GNOMEHELP)
 AC_SUBST(GPREFIX)
 
 AC_CONFIG_FILES([
-m4/Makefile
 po/Makefile.in
 Makefile
 gramps.spec
 gramps.sh
+help/Makefile
 src/const.py
 src/Makefile
 src/RelLib/Makefile
@@ -245,9 +248,6 @@ src/data/templates/Makefile
 doc/Makefile
 doc/man/Makefile
 doc/man/fr/Makefile
-doc/gramps-manual/Makefile
-doc/gramps-manual/C/Makefile	
-doc/gramps-manual/fr/Makefile	
 example/Makefile
 example/gramps/Makefile
 ])

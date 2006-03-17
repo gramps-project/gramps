@@ -1,0 +1,2 @@
+2006-03-17  Alex Roitman  <shura@gramps-project.org>
+	* Makefile.am: Add new help infrastructure.

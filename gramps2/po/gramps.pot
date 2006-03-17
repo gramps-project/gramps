@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-16 00:01-0800\n"
+"POT-Creation-Date: 2006-03-17 12:22-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -136,7 +136,7 @@ msgstr ""
 #: ../src/plugins/IndivComplete.py:412 ../src/plugins/IndivSummary.py:225
 #: ../src/plugins/NavWebPage.py:571 ../src/plugins/NavWebPage.py:631
 #: ../src/plugins/PatchNames.py:208 ../src/plugins/RelCalc.py:54
-#: ../src/plugins/RelCalc.py:105 ../src/plugins/TimeLine.py:430
+#: ../src/plugins/RelCalc.py:105 ../src/plugins/TimeLine.py:429
 #: ../src/TreeViews/_PersonTreeView.py:27
 msgid "Name"
 msgstr ""
@@ -618,613 +618,617 @@ msgid ""
 "Selecting this option will allow you to make a copy of the current database."
 msgstr ""
 
-#: ../src/GenericFilter.py:98
+#: ../src/GenericFilter.py:97
 msgid "Miscellaneous filters"
 msgstr ""
 
-#: ../src/GenericFilter.py:99 ../src/glade/rule.glade.h:20
+#: ../src/GenericFilter.py:98 ../src/glade/rule.glade.h:20
 msgid "No description"
 msgstr ""
 
-#: ../src/GenericFilter.py:144
+#: ../src/GenericFilter.py:143
 msgid "Everyone"
 msgstr ""
 
-#: ../src/GenericFilter.py:145 ../src/GenericFilter.py:163
-#: ../src/GenericFilter.py:279 ../src/GenericFilter.py:293
-#: ../src/GenericFilter.py:316 ../src/GenericFilter.py:339
-#: ../src/GenericFilter.py:354 ../src/GenericFilter.py:369
-#: ../src/GenericFilter.py:999 ../src/GenericFilter.py:1256
-#: ../src/GenericFilter.py:1280 ../src/GenericFilter.py:1309
-#: ../src/GenericFilter.py:1341 ../src/GenericFilter.py:1358
-#: ../src/GenericFilter.py:1379 ../src/GenericFilter.py:1466
-#: ../src/GenericFilter.py:1520 ../src/GenericFilter.py:1582
-#: ../src/GenericFilter.py:1601 ../src/GenericFilter.py:1667
-#: ../src/GenericFilter.py:1847 ../src/GenericFilter.py:1869
-#: ../src/GenericFilter.py:1883
+#: ../src/GenericFilter.py:144 ../src/GenericFilter.py:162
+#: ../src/GenericFilter.py:278 ../src/GenericFilter.py:292
+#: ../src/GenericFilter.py:315 ../src/GenericFilter.py:338
+#: ../src/GenericFilter.py:353 ../src/GenericFilter.py:368
+#: ../src/GenericFilter.py:998 ../src/GenericFilter.py:1255
+#: ../src/GenericFilter.py:1279 ../src/GenericFilter.py:1308
+#: ../src/GenericFilter.py:1340 ../src/GenericFilter.py:1357
+#: ../src/GenericFilter.py:1378 ../src/GenericFilter.py:1465
+#: ../src/GenericFilter.py:1519 ../src/GenericFilter.py:1581
+#: ../src/GenericFilter.py:1600 ../src/GenericFilter.py:1666
+#: ../src/GenericFilter.py:1846 ../src/GenericFilter.py:1868
+#: ../src/GenericFilter.py:1882
 msgid "General filters"
 msgstr ""
 
-#: ../src/GenericFilter.py:146
+#: ../src/GenericFilter.py:145
 msgid "Matches everyone in the database"
 msgstr ""
 
-#: ../src/GenericFilter.py:162
+#: ../src/GenericFilter.py:161
 msgid "Disconnected people"
 msgstr ""
 
-#: ../src/GenericFilter.py:164
+#: ../src/GenericFilter.py:163
 msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
 msgstr ""
 
-#: ../src/GenericFilter.py:180 ../src/GenericFilter.py:276
-#: ../src/GenericFilter.py:384 ../src/GenericFilter.py:475
-#: ../src/GenericFilter.py:518 ../src/GenericFilter.py:639
-#: ../src/GenericFilter.py:686 ../src/GenericFilter.py:784
-#: ../src/GenericFilter.py:836 ../src/GenericFilter.py:923
+#: ../src/GenericFilter.py:179 ../src/GenericFilter.py:275
+#: ../src/GenericFilter.py:383 ../src/GenericFilter.py:474
+#: ../src/GenericFilter.py:517 ../src/GenericFilter.py:638
+#: ../src/GenericFilter.py:685 ../src/GenericFilter.py:783
+#: ../src/GenericFilter.py:835 ../src/GenericFilter.py:922
 #: ../src/plugins/FilterEditor.py:694 ../src/glade/edit_person.glade.h:14
 #: ../src/glade/gramps.glade.h:88
 msgid "ID:"
 msgstr ""
 
-#: ../src/GenericFilter.py:181
+#: ../src/GenericFilter.py:180
 msgid "Relationship path between <persons>"
 msgstr ""
 
-#: ../src/GenericFilter.py:182
+#: ../src/GenericFilter.py:181
 msgid "Relationship filters"
 msgstr ""
 
-#: ../src/GenericFilter.py:183
+#: ../src/GenericFilter.py:182
 msgid ""
 "Matches the ancestors of two persons back to a common ancestor, producing "
 "the relationship path between two persons."
 msgstr ""
 
-#: ../src/GenericFilter.py:277
+#: ../src/GenericFilter.py:276
 msgid "People with <Id>"
 msgstr ""
 
-#: ../src/GenericFilter.py:278
+#: ../src/GenericFilter.py:277
 msgid "Matches people with a specified GRAMPS ID"
 msgstr ""
 
-#: ../src/GenericFilter.py:292
+#: ../src/GenericFilter.py:291
 msgid "Default person"
 msgstr ""
 
-#: ../src/GenericFilter.py:294
+#: ../src/GenericFilter.py:293
 msgid "Matches the default person"
 msgstr ""
 
-#: ../src/GenericFilter.py:315
+#: ../src/GenericFilter.py:314
 msgid "Bookmarked people"
 msgstr ""
 
-#: ../src/GenericFilter.py:317
+#: ../src/GenericFilter.py:316
 msgid "Matches the people on the bookmark list"
 msgstr ""
 
-#: ../src/GenericFilter.py:338
+#: ../src/GenericFilter.py:337
 msgid "People with complete records"
 msgstr ""
 
-#: ../src/GenericFilter.py:340
+#: ../src/GenericFilter.py:339
 msgid "Matches all people whose records are complete"
 msgstr ""
 
-#: ../src/GenericFilter.py:353 ../src/plugins/Summary.py:113
+#: ../src/GenericFilter.py:352 ../src/plugins/Summary.py:113
 msgid "Females"
 msgstr ""
 
-#: ../src/GenericFilter.py:355
+#: ../src/GenericFilter.py:354
 msgid "Matches all females"
 msgstr ""
 
-#: ../src/GenericFilter.py:368
+#: ../src/GenericFilter.py:367
 msgid "People with unknown gender"
 msgstr ""
 
-#: ../src/GenericFilter.py:370
+#: ../src/GenericFilter.py:369
 msgid "Matches all people with unknown gender"
 msgstr ""
 
-#: ../src/GenericFilter.py:384 ../src/GenericFilter.py:686
+#: ../src/GenericFilter.py:383 ../src/GenericFilter.py:685
 #: ../src/plugins/FilterEditor.py:706
 msgid "Inclusive:"
 msgstr ""
 
-#: ../src/GenericFilter.py:385
+#: ../src/GenericFilter.py:384
 msgid "Descendants of <person>"
 msgstr ""
 
-#: ../src/GenericFilter.py:386 ../src/GenericFilter.py:434
-#: ../src/GenericFilter.py:477 ../src/GenericFilter.py:520
-#: ../src/GenericFilter.py:641
+#: ../src/GenericFilter.py:385 ../src/GenericFilter.py:433
+#: ../src/GenericFilter.py:476 ../src/GenericFilter.py:519
+#: ../src/GenericFilter.py:640
 msgid "Descendant filters"
 msgstr ""
 
-#: ../src/GenericFilter.py:387
+#: ../src/GenericFilter.py:386
 msgid "Matches all descendants for the specified person"
 msgstr ""
 
-#: ../src/GenericFilter.py:432 ../src/GenericFilter.py:560
-#: ../src/GenericFilter.py:598 ../src/GenericFilter.py:740
-#: ../src/GenericFilter.py:886 ../src/GenericFilter.py:970
-#: ../src/GenericFilter.py:1376 ../src/GenericFilter.py:1419
+#: ../src/GenericFilter.py:431 ../src/GenericFilter.py:559
+#: ../src/GenericFilter.py:597 ../src/GenericFilter.py:739
+#: ../src/GenericFilter.py:885 ../src/GenericFilter.py:969
+#: ../src/GenericFilter.py:1375 ../src/GenericFilter.py:1418
 #: ../src/plugins/FilterEditor.py:698
 msgid "Filter name:"
 msgstr ""
 
-#: ../src/GenericFilter.py:433
+#: ../src/GenericFilter.py:432
 msgid "Descendants of <filter> match"
 msgstr ""
 
-#: ../src/GenericFilter.py:435
+#: ../src/GenericFilter.py:434
 msgid "Matches people that are descendants of anybody matched by a filter"
 msgstr ""
 
-#: ../src/GenericFilter.py:475 ../src/GenericFilter.py:518
-#: ../src/GenericFilter.py:784 ../src/GenericFilter.py:836
-#: ../src/GenericFilter.py:2066 ../src/GenericFilter.py:2124
+#: ../src/GenericFilter.py:474 ../src/GenericFilter.py:517
+#: ../src/GenericFilter.py:783 ../src/GenericFilter.py:835
+#: ../src/GenericFilter.py:2065 ../src/GenericFilter.py:2123
 #: ../src/plugins/FilterEditor.py:692
 msgid "Number of generations:"
 msgstr ""
 
-#: ../src/GenericFilter.py:476
+#: ../src/GenericFilter.py:475
 msgid "Descendants of <person> not more than <N> generations away"
 msgstr ""
 
-#: ../src/GenericFilter.py:478
+#: ../src/GenericFilter.py:477
 msgid ""
 "Matches people that are descendants of a specified person not more than N "
 "generations away"
 msgstr ""
 
-#: ../src/GenericFilter.py:519
+#: ../src/GenericFilter.py:518
 msgid "Descendants of <person> at least <N> generations away"
 msgstr ""
 
-#: ../src/GenericFilter.py:521
+#: ../src/GenericFilter.py:520
 msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
 msgstr ""
 
-#: ../src/GenericFilter.py:561
+#: ../src/GenericFilter.py:560
 msgid "Children of <filter> match"
 msgstr ""
 
-#: ../src/GenericFilter.py:562 ../src/GenericFilter.py:600
-#: ../src/GenericFilter.py:888 ../src/GenericFilter.py:1121
-#: ../src/GenericFilter.py:1422 ../src/GenericFilter.py:1448
-#: ../src/GenericFilter.py:1479 ../src/GenericFilter.py:1494
-#: ../src/GenericFilter.py:1507
+#: ../src/GenericFilter.py:561 ../src/GenericFilter.py:599
+#: ../src/GenericFilter.py:887 ../src/GenericFilter.py:1120
+#: ../src/GenericFilter.py:1421 ../src/GenericFilter.py:1447
+#: ../src/GenericFilter.py:1478 ../src/GenericFilter.py:1493
+#: ../src/GenericFilter.py:1506
 msgid "Family filters"
 msgstr ""
 
-#: ../src/GenericFilter.py:563
+#: ../src/GenericFilter.py:562
 msgid "Matches children of anybody matched by a filter"
 msgstr ""
 
-#: ../src/GenericFilter.py:599
+#: ../src/GenericFilter.py:598
 msgid "Siblings of <filter> match"
 msgstr ""
 
-#: ../src/GenericFilter.py:601
+#: ../src/GenericFilter.py:600
 msgid "Matches siblings of anybody matched by a filter"
 msgstr ""
 
-#: ../src/GenericFilter.py:640
+#: ../src/GenericFilter.py:639
 msgid "Descendant family members of <person>"
 msgstr ""
 
-#: ../src/GenericFilter.py:642
+#: ../src/GenericFilter.py:641
 msgid ""
 "Matches people that are descendants or the spouse of a descendant of a "
 "specified person"
 msgstr ""
 
-#: ../src/GenericFilter.py:687
+#: ../src/GenericFilter.py:686
 msgid "Ancestors of <person>"
 msgstr ""
 
-#: ../src/GenericFilter.py:688 ../src/GenericFilter.py:742
-#: ../src/GenericFilter.py:786 ../src/GenericFilter.py:838
-#: ../src/GenericFilter.py:925 ../src/GenericFilter.py:974
-#: ../src/GenericFilter.py:2069 ../src/GenericFilter.py:2127
+#: ../src/GenericFilter.py:687 ../src/GenericFilter.py:741
+#: ../src/GenericFilter.py:785 ../src/GenericFilter.py:837
+#: ../src/GenericFilter.py:924 ../src/GenericFilter.py:973
+#: ../src/GenericFilter.py:2068 ../src/GenericFilter.py:2126
 msgid "Ancestral filters"
 msgstr ""
 
-#: ../src/GenericFilter.py:689
+#: ../src/GenericFilter.py:688
 msgid "Matches people that are ancestors of a specified person"
 msgstr ""
 
-#: ../src/GenericFilter.py:741
+#: ../src/GenericFilter.py:740
 msgid "Ancestors of <filter> match"
 msgstr ""
 
-#: ../src/GenericFilter.py:743
+#: ../src/GenericFilter.py:742
 msgid "Matches people that are ancestors of anybody matched by a filter"
 msgstr ""
 
-#: ../src/GenericFilter.py:785
+#: ../src/GenericFilter.py:784
 msgid "Ancestors of <person> not more than <N> generations away"
 msgstr ""
 
-#: ../src/GenericFilter.py:787
+#: ../src/GenericFilter.py:786
 msgid ""
 "Matches people that are ancestors of a specified person not more than N "
 "generations away"
 msgstr ""
 
-#: ../src/GenericFilter.py:837
+#: ../src/GenericFilter.py:836
 msgid "Ancestors of <person> at least <N> generations away"
 msgstr ""
 
-#: ../src/GenericFilter.py:839
+#: ../src/GenericFilter.py:838
 msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
 msgstr ""
 
-#: ../src/GenericFilter.py:887
+#: ../src/GenericFilter.py:886
 msgid "Parents of <filter> match"
 msgstr ""
 
-#: ../src/GenericFilter.py:889
+#: ../src/GenericFilter.py:888
 msgid "Matches parents of anybody matched by a filter"
 msgstr ""
 
-#: ../src/GenericFilter.py:924
+#: ../src/GenericFilter.py:923
 msgid "People with a common ancestor with <person>"
 msgstr ""
 
-#: ../src/GenericFilter.py:926
+#: ../src/GenericFilter.py:925
 msgid "Matches people that have a common ancestor with a specified person"
 msgstr ""
 
-#: ../src/GenericFilter.py:971
+#: ../src/GenericFilter.py:970
 msgid "People with a common ancestor with <filter> match"
 msgstr ""
 
-#: ../src/GenericFilter.py:972
+#: ../src/GenericFilter.py:971
 msgid ""
 "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr ""
 
-#: ../src/GenericFilter.py:998 ../src/plugins/Summary.py:112
+#: ../src/GenericFilter.py:997 ../src/plugins/Summary.py:112
 msgid "Males"
 msgstr ""
 
-#: ../src/GenericFilter.py:1000
+#: ../src/GenericFilter.py:999
 msgid "Matches all males"
 msgstr ""
 
-#: ../src/GenericFilter.py:1013 ../src/GenericFilter.py:1612
+#: ../src/GenericFilter.py:1012 ../src/GenericFilter.py:1611
 #: ../src/plugins/FilterEditor.py:72
 msgid "Personal event:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1014 ../src/GenericFilter.py:1063
-#: ../src/GenericFilter.py:1167 ../src/GenericFilter.py:1210
+#: ../src/GenericFilter.py:1013 ../src/GenericFilter.py:1062
+#: ../src/GenericFilter.py:1166 ../src/GenericFilter.py:1209
 msgid "Date:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1015 ../src/GenericFilter.py:1064
-#: ../src/GenericFilter.py:1167 ../src/GenericFilter.py:1210
+#: ../src/GenericFilter.py:1014 ../src/GenericFilter.py:1063
+#: ../src/GenericFilter.py:1166 ../src/GenericFilter.py:1209
 #: ../src/plugins/FilterEditor.py:690
 msgid "Place:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1016 ../src/GenericFilter.py:1065
-#: ../src/GenericFilter.py:1167 ../src/GenericFilter.py:1210
+#: ../src/GenericFilter.py:1015 ../src/GenericFilter.py:1064
+#: ../src/GenericFilter.py:1166 ../src/GenericFilter.py:1209
 msgid "Description:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1017
+#: ../src/GenericFilter.py:1016
 msgid "People with the personal <event>"
 msgstr ""
 
-#: ../src/GenericFilter.py:1018
+#: ../src/GenericFilter.py:1017
 msgid "Matches people with a personal event of a particular value"
 msgstr ""
 
-#: ../src/GenericFilter.py:1019 ../src/GenericFilter.py:1068
-#: ../src/GenericFilter.py:1170 ../src/GenericFilter.py:1213
-#: ../src/GenericFilter.py:1539 ../src/GenericFilter.py:1559
-#: ../src/GenericFilter.py:1615
+#: ../src/GenericFilter.py:1018 ../src/GenericFilter.py:1067
+#: ../src/GenericFilter.py:1169 ../src/GenericFilter.py:1212
+#: ../src/GenericFilter.py:1538 ../src/GenericFilter.py:1558
+#: ../src/GenericFilter.py:1614
 msgid "Event filters"
 msgstr ""
 
-#: ../src/GenericFilter.py:1062 ../src/GenericFilter.py:1612
+#: ../src/GenericFilter.py:1061 ../src/GenericFilter.py:1611
 #: ../src/plugins/FilterEditor.py:73
 msgid "Family event:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1066
+#: ../src/GenericFilter.py:1065
 msgid "People with the family <event>"
 msgstr ""
 
-#: ../src/GenericFilter.py:1067
+#: ../src/GenericFilter.py:1066
 msgid "Matches people with a family event of a particular value"
 msgstr ""
 
-#: ../src/GenericFilter.py:1116
+#: ../src/GenericFilter.py:1115
 msgid "Number of relationships:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1117 ../src/plugins/FilterEditor.py:79
+#: ../src/GenericFilter.py:1116 ../src/plugins/FilterEditor.py:79
 msgid "Relationship type:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1118
+#: ../src/GenericFilter.py:1117
 msgid "Number of children:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1119
+#: ../src/GenericFilter.py:1118
 msgid "People with the <relationships>"
 msgstr ""
 
-#: ../src/GenericFilter.py:1120
+#: ../src/GenericFilter.py:1119
 msgid "Matches people with a particular relationship"
 msgstr ""
 
-#: ../src/GenericFilter.py:1168
+#: ../src/GenericFilter.py:1167
 msgid "People with the <birth data>"
 msgstr ""
 
-#: ../src/GenericFilter.py:1169
+#: ../src/GenericFilter.py:1168
 msgid "Matches people with birth data of a particular value"
 msgstr ""
 
-#: ../src/GenericFilter.py:1211
+#: ../src/GenericFilter.py:1210
 msgid "People with the <death data>"
 msgstr ""
 
-#: ../src/GenericFilter.py:1212
+#: ../src/GenericFilter.py:1211
 msgid "Matches people with death data of a particular value"
 msgstr ""
 
-#: ../src/GenericFilter.py:1253 ../src/plugins/FilterEditor.py:74
+#: ../src/GenericFilter.py:1252 ../src/plugins/FilterEditor.py:74
 msgid "Personal attribute:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1253 ../src/GenericFilter.py:1277
+#: ../src/GenericFilter.py:1252 ../src/GenericFilter.py:1276
 msgid "Value:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1254
+#: ../src/GenericFilter.py:1253
 msgid "People with the personal <attribute>"
 msgstr ""
 
-#: ../src/GenericFilter.py:1255
+#: ../src/GenericFilter.py:1254
 msgid "Matches people with the personal attribute of a particular value"
 msgstr ""
 
-#: ../src/GenericFilter.py:1277 ../src/plugins/FilterEditor.py:75
+#: ../src/GenericFilter.py:1276 ../src/plugins/FilterEditor.py:75
 msgid "Family attribute:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1278
+#: ../src/GenericFilter.py:1277
 msgid "People with the family <attribute>"
 msgstr ""
 
-#: ../src/GenericFilter.py:1279
+#: ../src/GenericFilter.py:1278
 msgid "Matches people with the family attribute of a particular value"
 msgstr ""
 
-#: ../src/GenericFilter.py:1303
+#: ../src/GenericFilter.py:1302
 msgid "Given name:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1304
+#: ../src/GenericFilter.py:1303
 msgid "Family name:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1305
+#: ../src/GenericFilter.py:1304
 msgid "Suffix:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1307
+#: ../src/GenericFilter.py:1305
+msgid "person|Title:"
+msgstr ""
+
+#: ../src/GenericFilter.py:1306
 msgid "People with the <name>"
 msgstr ""
 
-#: ../src/GenericFilter.py:1308 ../src/GenericFilter.py:1340
+#: ../src/GenericFilter.py:1307 ../src/GenericFilter.py:1339
 msgid "Matches people with a specified (partial) name"
 msgstr ""
 
-#: ../src/GenericFilter.py:1338 ../src/GenericFilter.py:1662
-#: ../src/GenericFilter.py:1880
+#: ../src/GenericFilter.py:1337 ../src/GenericFilter.py:1661
+#: ../src/GenericFilter.py:1879
 msgid "Substring:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1339
+#: ../src/GenericFilter.py:1338
 msgid "People matching the <name>"
 msgstr ""
 
-#: ../src/GenericFilter.py:1356
+#: ../src/GenericFilter.py:1355
 msgid "People with incomplete names"
 msgstr ""
 
-#: ../src/GenericFilter.py:1357
+#: ../src/GenericFilter.py:1356
 msgid "Matches people with firstname or lastname missing"
 msgstr ""
 
-#: ../src/GenericFilter.py:1377
+#: ../src/GenericFilter.py:1376
 msgid "People matching the <filter>"
 msgstr ""
 
-#: ../src/GenericFilter.py:1378
+#: ../src/GenericFilter.py:1377
 msgid "Matches people macthed by the specified filter name"
 msgstr ""
 
-#: ../src/GenericFilter.py:1420
+#: ../src/GenericFilter.py:1419
 msgid "Spouses of <filter> match"
 msgstr ""
 
-#: ../src/GenericFilter.py:1421
+#: ../src/GenericFilter.py:1420
 msgid "Matches people married to anybody matching a filter"
 msgstr ""
 
-#: ../src/GenericFilter.py:1446
+#: ../src/GenericFilter.py:1445
 msgid "Adopted people"
 msgstr ""
 
-#: ../src/GenericFilter.py:1447
+#: ../src/GenericFilter.py:1446
 msgid "Matches people who were adopted"
 msgstr ""
 
-#: ../src/GenericFilter.py:1464
+#: ../src/GenericFilter.py:1463
 msgid "People with images"
 msgstr ""
 
-#: ../src/GenericFilter.py:1465
+#: ../src/GenericFilter.py:1464
 msgid "Matches people with images in the gallery"
 msgstr ""
 
-#: ../src/GenericFilter.py:1477
+#: ../src/GenericFilter.py:1476
 msgid "People with children"
 msgstr ""
 
-#: ../src/GenericFilter.py:1478
+#: ../src/GenericFilter.py:1477
 msgid "Matches people who have children"
 msgstr ""
 
-#: ../src/GenericFilter.py:1492
+#: ../src/GenericFilter.py:1491
 msgid "People with no marriage records"
 msgstr ""
 
-#: ../src/GenericFilter.py:1493
+#: ../src/GenericFilter.py:1492
 msgid "Matches people who have no spouse"
 msgstr ""
 
-#: ../src/GenericFilter.py:1505
+#: ../src/GenericFilter.py:1504
 msgid "People with multiple marriage records"
 msgstr ""
 
-#: ../src/GenericFilter.py:1506
+#: ../src/GenericFilter.py:1505
 msgid "Matches people who have more than one spouse"
 msgstr ""
 
-#: ../src/GenericFilter.py:1518
+#: ../src/GenericFilter.py:1517
 msgid "People without a known birth date"
 msgstr ""
 
-#: ../src/GenericFilter.py:1519
+#: ../src/GenericFilter.py:1518
 msgid "Matches people without a known birthdate"
 msgstr ""
 
-#: ../src/GenericFilter.py:1537
+#: ../src/GenericFilter.py:1536
 msgid "People with incomplete events"
 msgstr ""
 
-#: ../src/GenericFilter.py:1538
+#: ../src/GenericFilter.py:1537
 msgid "Matches people with missing date or place in an event"
 msgstr ""
 
-#: ../src/GenericFilter.py:1557
+#: ../src/GenericFilter.py:1556
 msgid "Families with incomplete events"
 msgstr ""
 
-#: ../src/GenericFilter.py:1558
+#: ../src/GenericFilter.py:1557
 msgid "Matches people with missing date or place in an event of the family"
 msgstr ""
 
-#: ../src/GenericFilter.py:1579
+#: ../src/GenericFilter.py:1578
 msgid "On year:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1580
+#: ../src/GenericFilter.py:1579
 msgid "People probably alive"
 msgstr ""
 
-#: ../src/GenericFilter.py:1581
+#: ../src/GenericFilter.py:1580
 msgid "Matches people without indications of death that are not too old"
 msgstr ""
 
-#: ../src/GenericFilter.py:1599
+#: ../src/GenericFilter.py:1598
 msgid "People marked private"
 msgstr ""
 
-#: ../src/GenericFilter.py:1600
+#: ../src/GenericFilter.py:1599
 msgid "Matches people that are indicated as private"
 msgstr ""
 
-#: ../src/GenericFilter.py:1613
+#: ../src/GenericFilter.py:1612
 msgid "Witnesses"
 msgstr ""
 
-#: ../src/GenericFilter.py:1614
+#: ../src/GenericFilter.py:1613
 msgid "Matches people who are witnesses in any event"
 msgstr ""
 
-#: ../src/GenericFilter.py:1663 ../src/plugins/FilterEditor.py:708
+#: ../src/GenericFilter.py:1662 ../src/plugins/FilterEditor.py:708
 msgid "Case sensitive:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1664 ../src/plugins/FilterEditor.py:710
+#: ../src/GenericFilter.py:1663 ../src/plugins/FilterEditor.py:710
 msgid "Regular-Expression matching:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1665
+#: ../src/GenericFilter.py:1664
 msgid "People with records containing <substring>"
 msgstr ""
 
-#: ../src/GenericFilter.py:1666
+#: ../src/GenericFilter.py:1665
 msgid "Matches people whose records contain text matching a substring"
 msgstr ""
 
-#: ../src/GenericFilter.py:1845 ../src/plugins/FilterEditor.py:696
+#: ../src/GenericFilter.py:1844 ../src/plugins/FilterEditor.py:696
 msgid "Source ID:"
 msgstr ""
 
-#: ../src/GenericFilter.py:1846
+#: ../src/GenericFilter.py:1845
 msgid "People with the <source>"
 msgstr ""
 
-#: ../src/GenericFilter.py:1848
+#: ../src/GenericFilter.py:1847
 msgid "Matches people who have a particular source"
 msgstr ""
 
-#: ../src/GenericFilter.py:1867
+#: ../src/GenericFilter.py:1866
 msgid "People having notes"
 msgstr ""
 
-#: ../src/GenericFilter.py:1868
+#: ../src/GenericFilter.py:1867
 msgid "Matches people that have a note"
 msgstr ""
 
-#: ../src/GenericFilter.py:1881
+#: ../src/GenericFilter.py:1880
 msgid "People having notes containing <subtring>"
 msgstr ""
 
-#: ../src/GenericFilter.py:1882
+#: ../src/GenericFilter.py:1881
 msgid "Matches people whose notes contain text matching a substring"
 msgstr ""
 
-#: ../src/GenericFilter.py:2067
+#: ../src/GenericFilter.py:2066
 msgid "Ancestors of bookmarked people not more than <N> generations away"
 msgstr ""
 
-#: ../src/GenericFilter.py:2070
+#: ../src/GenericFilter.py:2069
 msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
 msgstr ""
 
-#: ../src/GenericFilter.py:2125
+#: ../src/GenericFilter.py:2124
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr ""
 
-#: ../src/GenericFilter.py:2128
+#: ../src/GenericFilter.py:2127
 msgid ""
 "Matches ancestors of the default person not more than N generations away"
 msgstr ""
 
-#: ../src/GenericFilter.py:2664
+#: ../src/GenericFilter.py:2663
 msgid "Updating display..."
 msgstr ""
 
@@ -1450,7 +1454,7 @@ msgstr ""
 #: ../src/ObjectSelector/_PersonTreeFrame.py:37
 #: ../src/plugins/IndivComplete.py:425 ../src/plugins/IndivSummary.py:239
 #: ../src/plugins/NavWebPage.py:1687 ../src/plugins/RelCalc.py:56
-#: ../src/plugins/StatisticsChart.py:101
+#: ../src/plugins/StatisticsChart.py:100
 #: ../src/TreeViews/_PersonTreeView.py:29
 msgid "Gender"
 msgstr ""
@@ -1553,15 +1557,55 @@ msgid ""
 "Instead select one of the available options"
 msgstr ""
 
-#: ../src/Relationship.py:278
+#: ../src/Relationship.py:277
 msgid "husband"
 msgstr ""
 
-#: ../src/Relationship.py:280
+#: ../src/Relationship.py:279
 msgid "wife"
 msgstr ""
 
-#: ../src/Relationship.py:335
+#: ../src/Relationship.py:281
+msgid "gender unknown|spouse"
+msgstr ""
+
+#: ../src/Relationship.py:284
+msgid "unmarried|husband"
+msgstr ""
+
+#: ../src/Relationship.py:286
+msgid "unmarried|wife"
+msgstr ""
+
+#: ../src/Relationship.py:288
+msgid "gender unknown,unmarried|spouse"
+msgstr ""
+
+#: ../src/Relationship.py:291
+msgid "male,civil union|partner"
+msgstr ""
+
+#: ../src/Relationship.py:293
+msgid "female,civil union|partner"
+msgstr ""
+
+#: ../src/Relationship.py:295
+msgid "gender unknown,civil union|partner"
+msgstr ""
+
+#: ../src/Relationship.py:298
+msgid "male,unknown relation|partner"
+msgstr ""
+
+#: ../src/Relationship.py:300
+msgid "female,unknown relation|partner"
+msgstr ""
+
+#: ../src/Relationship.py:302
+msgid "gender unknown,unknown relation|partner"
+msgstr ""
+
+#: ../src/Relationship.py:334
 msgid "Relationship loop detected"
 msgstr ""
 
@@ -1637,8 +1681,8 @@ msgid "SourceRef"
 msgstr ""
 
 #: ../src/ScratchPad.py:375 ../src/ScratchPad.py:424 ../src/ScratchPad.py:432
-#: ../src/plugins/NavWebPage.py:1578 ../src/plugins/SimpleBookTitle.py:168
-#: ../src/plugins/SimpleBookTitle.py:169 ../src/plugins/SimpleBookTitle.py:170
+#: ../src/plugins/NavWebPage.py:1578 ../src/plugins/SimpleBookTitle.py:167
+#: ../src/plugins/SimpleBookTitle.py:168 ../src/plugins/SimpleBookTitle.py:169
 #: ../src/PluginUtils/_Report.py:177 ../src/glade/gramps.glade.h:123
 msgid "Text"
 msgstr ""
@@ -2567,7 +2611,7 @@ msgstr ""
 
 #: ../src/DataViews/_PersonView.py:64 ../src/Editors/_EditFamily.py:95
 #: ../src/ObjectSelector/_PersonTreeFrame.py:38 ../src/plugins/RelCalc.py:57
-#: ../src/plugins/TimeLine.py:429 ../src/TreeViews/_PersonTreeView.py:30
+#: ../src/plugins/TimeLine.py:428 ../src/TreeViews/_PersonTreeView.py:30
 msgid "Birth Date"
 msgstr ""
 
@@ -3276,7 +3320,7 @@ msgstr ""
 #: ../src/plugins/EventCmp.py:160 ../src/plugins/ExportVCalendar.py:88
 #: ../src/plugins/ExportVCard.py:86 ../src/plugins/GraphViz.py:524
 #: ../src/plugins/IndivComplete.py:519 ../src/plugins/NavWebPage.py:2408
-#: ../src/plugins/StatisticsChart.py:844 ../src/plugins/TimeLine.py:410
+#: ../src/plugins/StatisticsChart.py:843 ../src/plugins/TimeLine.py:409
 #: ../src/plugins/WriteFtree.py:90 ../src/plugins/WriteGeneWeb.py:92
 msgid "Entire Database"
 msgstr ""
@@ -3285,8 +3329,8 @@ msgstr ""
 #: ../src/plugins/DescendReport.py:152 ../src/plugins/ExportVCalendar.py:93
 #: ../src/plugins/ExportVCard.py:91 ../src/plugins/FtmStyleDescendants.py:119
 #: ../src/plugins/GraphViz.py:528 ../src/plugins/IndivComplete.py:523
-#: ../src/plugins/NavWebPage.py:2412 ../src/plugins/StatisticsChart.py:848
-#: ../src/plugins/TimeLine.py:414 ../src/plugins/WriteFtree.py:95
+#: ../src/plugins/NavWebPage.py:2412 ../src/plugins/StatisticsChart.py:847
+#: ../src/plugins/TimeLine.py:413 ../src/plugins/WriteFtree.py:95
 #: ../src/plugins/WriteGeneWeb.py:97
 #, python-format
 msgid "Descendants of %s"
@@ -3296,8 +3340,8 @@ msgstr ""
 #: ../src/plugins/Calendar.py:552 ../src/plugins/ExportVCalendar.py:99
 #: ../src/plugins/ExportVCard.py:97 ../src/plugins/FtmStyleAncestors.py:94
 #: ../src/plugins/GraphViz.py:532 ../src/plugins/IndivComplete.py:527
-#: ../src/plugins/NavWebPage.py:2420 ../src/plugins/StatisticsChart.py:852
-#: ../src/plugins/TimeLine.py:418 ../src/plugins/WriteFtree.py:101
+#: ../src/plugins/NavWebPage.py:2420 ../src/plugins/StatisticsChart.py:851
+#: ../src/plugins/TimeLine.py:417 ../src/plugins/WriteFtree.py:101
 #: ../src/plugins/WriteGeneWeb.py:103
 #, python-format
 msgid "Ancestors of %s"
@@ -3306,8 +3350,8 @@ msgstr ""
 #: ../src/GrampsDb/_WriteGedcom.py:360 ../src/plugins/Calendar.py:557
 #: ../src/plugins/ExportVCalendar.py:105 ../src/plugins/ExportVCard.py:103
 #: ../src/plugins/GraphViz.py:536 ../src/plugins/IndivComplete.py:531
-#: ../src/plugins/NavWebPage.py:2424 ../src/plugins/StatisticsChart.py:856
-#: ../src/plugins/TimeLine.py:422 ../src/plugins/WriteFtree.py:107
+#: ../src/plugins/NavWebPage.py:2424 ../src/plugins/StatisticsChart.py:855
+#: ../src/plugins/TimeLine.py:421 ../src/plugins/WriteFtree.py:107
 #: ../src/plugins/WriteGeneWeb.py:109
 #, python-format
 msgid "People with common ancestor with %s"
@@ -3612,7 +3656,7 @@ msgstr ""
 #: ../src/plugins/NavWebPage.py:2881 ../src/plugins/PatchNames.py:369
 #: ../src/plugins/Rebuild.py:121 ../src/plugins/RelCalc.py:237
 #: ../src/plugins/ReorderIds.py:207 ../src/plugins/SoundGen.py:170
-#: ../src/plugins/StatisticsChart.py:978 ../src/plugins/TimeLine.py:476
+#: ../src/plugins/StatisticsChart.py:977 ../src/plugins/TimeLine.py:475
 msgid "Stable"
 msgstr ""
 
@@ -3644,8 +3688,8 @@ msgstr ""
 #: ../src/plugins/FtmStyleAncestors.py:376
 #: ../src/plugins/FtmStyleDescendants.py:520
 #: ../src/plugins/IndivComplete.py:563 ../src/plugins/IndivSummary.py:347
-#: ../src/plugins/SimpleBookTitle.py:265 ../src/plugins/StatisticsChart.py:829
-#: ../src/plugins/TimeLine.py:397
+#: ../src/plugins/SimpleBookTitle.py:264 ../src/plugins/StatisticsChart.py:828
+#: ../src/plugins/TimeLine.py:396
 msgid "The style used for the title of the page."
 msgstr ""
 
@@ -3874,7 +3918,7 @@ msgstr ""
 msgid "Current _book"
 msgstr ""
 
-#: ../src/plugins/BookReport.py:640 ../src/plugins/StatisticsChart.py:75
+#: ../src/plugins/BookReport.py:640 ../src/plugins/StatisticsChart.py:74
 msgid "Item name"
 msgstr ""
 
@@ -4048,7 +4092,7 @@ msgid "Capitalization changes"
 msgstr ""
 
 #: ../src/plugins/ChangeNames.py:109 ../src/plugins/PatchNames.py:196
-#: ../src/plugins/SimpleBookTitle.py:208 ../src/glade/mergedata.glade.h:11
+#: ../src/plugins/SimpleBookTitle.py:207 ../src/glade/mergedata.glade.h:11
 msgid "Select"
 msgstr ""
 
@@ -5619,7 +5663,7 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/NavWebPage.py:570 ../src/plugins/NavWebPage.py:966
-#: ../src/plugins/NavWebPage.py:968 ../src/plugins/StatisticsChart.py:97
+#: ../src/plugins/NavWebPage.py:968 ../src/plugins/StatisticsChart.py:96
 msgid "Surname"
 msgstr ""
 
@@ -6107,61 +6151,65 @@ msgstr ""
 msgid "Reorders the gramps IDs according to gramps' default rules."
 msgstr ""
 
-#: ../src/plugins/SimpleBookTitle.py:127
+#: ../src/plugins/SimpleBookTitle.py:126
 msgid "Title of the Book"
 msgstr ""
 
-#: ../src/plugins/SimpleBookTitle.py:128
+#: ../src/plugins/SimpleBookTitle.py:127
 msgid "Subtitle of the Book"
 msgstr ""
 
-#: ../src/plugins/SimpleBookTitle.py:164
+#: ../src/plugins/SimpleBookTitle.py:163
 #, python-format
 msgid "Copyright %d %s"
 msgstr ""
 
-#: ../src/plugins/SimpleBookTitle.py:169
+#: ../src/plugins/SimpleBookTitle.py:167
+msgid "book|Title"
+msgstr ""
+
+#: ../src/plugins/SimpleBookTitle.py:168
 msgid "Subtitle"
 msgstr ""
 
-#: ../src/plugins/SimpleBookTitle.py:170
+#: ../src/plugins/SimpleBookTitle.py:169
 msgid "Footer"
 msgstr ""
 
-#: ../src/plugins/SimpleBookTitle.py:187
+#: ../src/plugins/SimpleBookTitle.py:186
 msgid "From gallery..."
 msgstr ""
 
-#: ../src/plugins/SimpleBookTitle.py:189
+#: ../src/plugins/SimpleBookTitle.py:188
 msgid "From file..."
 msgstr ""
 
-#: ../src/plugins/SimpleBookTitle.py:207 ../src/plugins/SimpleBookTitle.py:208
-#: ../src/plugins/SimpleBookTitle.py:209
+#: ../src/plugins/SimpleBookTitle.py:206 ../src/plugins/SimpleBookTitle.py:207
+#: ../src/plugins/SimpleBookTitle.py:208
 msgid "Image"
 msgstr ""
 
-#: ../src/plugins/SimpleBookTitle.py:207
+#: ../src/plugins/SimpleBookTitle.py:206
 msgid "Preview"
 msgstr ""
 
-#: ../src/plugins/SimpleBookTitle.py:209 ../src/PluginUtils/_Report.py:1282
+#: ../src/plugins/SimpleBookTitle.py:208 ../src/PluginUtils/_Report.py:1282
 msgid "Size"
 msgstr ""
 
-#: ../src/plugins/SimpleBookTitle.py:236
+#: ../src/plugins/SimpleBookTitle.py:235
 msgid "Select an Object"
 msgstr ""
 
-#: ../src/plugins/SimpleBookTitle.py:275
+#: ../src/plugins/SimpleBookTitle.py:274
 msgid "The style used for the subtitle."
 msgstr ""
 
-#: ../src/plugins/SimpleBookTitle.py:285
+#: ../src/plugins/SimpleBookTitle.py:284
 msgid "The style used for the footer."
 msgstr ""
 
-#: ../src/plugins/SimpleBookTitle.py:299
+#: ../src/plugins/SimpleBookTitle.py:298
 msgid "Title Page"
 msgstr ""
 
@@ -6181,256 +6229,260 @@ msgstr ""
 msgid "Generates SoundEx codes for names"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:74
+#: ../src/plugins/StatisticsChart.py:73
 msgid "Item count"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:78
+#: ../src/plugins/StatisticsChart.py:77
 msgid "Both"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:79 ../src/plugins/StatisticsChart.py:172
-#: ../src/plugins/StatisticsChart.py:500
+#: ../src/plugins/StatisticsChart.py:78 ../src/plugins/StatisticsChart.py:171
+#: ../src/plugins/StatisticsChart.py:499
 msgid "Men"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:80 ../src/plugins/StatisticsChart.py:174
-#: ../src/plugins/StatisticsChart.py:502
+#: ../src/plugins/StatisticsChart.py:79 ../src/plugins/StatisticsChart.py:173
+#: ../src/plugins/StatisticsChart.py:501
 msgid "Women"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:99
+#: ../src/plugins/StatisticsChart.py:94
+msgid "person|Title"
+msgstr ""
+
+#: ../src/plugins/StatisticsChart.py:98
 msgid "Forename"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:103
+#: ../src/plugins/StatisticsChart.py:102
 msgid "Birth year"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:105
+#: ../src/plugins/StatisticsChart.py:104
 msgid "Death year"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:107
+#: ../src/plugins/StatisticsChart.py:106
 msgid "Birth month"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:109
+#: ../src/plugins/StatisticsChart.py:108
 msgid "Death month"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:111
+#: ../src/plugins/StatisticsChart.py:110
 msgid "Cause of death"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:113
+#: ../src/plugins/StatisticsChart.py:112
 msgid "Birth place"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:115
+#: ../src/plugins/StatisticsChart.py:114
 msgid "Death place"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:117
+#: ../src/plugins/StatisticsChart.py:116
 msgid "Marriage place"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:119
+#: ../src/plugins/StatisticsChart.py:118
 msgid "Number of relationships"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:121
+#: ../src/plugins/StatisticsChart.py:120
 msgid "Age when first child born"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:123
+#: ../src/plugins/StatisticsChart.py:122
 msgid "Age when last child born"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:125
+#: ../src/plugins/StatisticsChart.py:124
 msgid "Number of children"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:127
+#: ../src/plugins/StatisticsChart.py:126
 msgid "Age at marriage"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:129
+#: ../src/plugins/StatisticsChart.py:128
 msgid "Age at death"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:131
+#: ../src/plugins/StatisticsChart.py:130
 msgid "Age"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:133
+#: ../src/plugins/StatisticsChart.py:132
 msgid "Event type"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:147
+#: ../src/plugins/StatisticsChart.py:146
 msgid "(Preferred) title missing"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:156
+#: ../src/plugins/StatisticsChart.py:155
 msgid "(Preferred) forename missing"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:165
+#: ../src/plugins/StatisticsChart.py:164
 msgid "(Preferred) surname missing"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:175
+#: ../src/plugins/StatisticsChart.py:174
 msgid "Gender unknown"
 msgstr ""
 
 #. inadequate information
-#: ../src/plugins/StatisticsChart.py:184 ../src/plugins/StatisticsChart.py:193
-#: ../src/plugins/StatisticsChart.py:305
+#: ../src/plugins/StatisticsChart.py:183 ../src/plugins/StatisticsChart.py:192
+#: ../src/plugins/StatisticsChart.py:304
 msgid "Date(s) missing"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:200
+#: ../src/plugins/StatisticsChart.py:199
 msgid "Cause missing"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:209 ../src/plugins/StatisticsChart.py:223
+#: ../src/plugins/StatisticsChart.py:208 ../src/plugins/StatisticsChart.py:222
 msgid "Place missing"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:231
+#: ../src/plugins/StatisticsChart.py:230
 msgid "Already dead"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:238
+#: ../src/plugins/StatisticsChart.py:237
 msgid "Still alive"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:248 ../src/plugins/StatisticsChart.py:259
+#: ../src/plugins/StatisticsChart.py:247 ../src/plugins/StatisticsChart.py:258
 msgid "Events missing"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:267 ../src/plugins/StatisticsChart.py:275
+#: ../src/plugins/StatisticsChart.py:266 ../src/plugins/StatisticsChart.py:274
 msgid "Children missing"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:294
+#: ../src/plugins/StatisticsChart.py:293
 msgid "Birth missing"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:394
+#: ../src/plugins/StatisticsChart.py:393
 msgid "Personal information missing"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:512
+#: ../src/plugins/StatisticsChart.py:511
 msgid "Statistics Charts"
 msgstr ""
 
 #. extract requested items from the database and count them
-#: ../src/plugins/StatisticsChart.py:515
+#: ../src/plugins/StatisticsChart.py:514
 msgid "Collecting data..."
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:520
+#: ../src/plugins/StatisticsChart.py:519
 msgid "Sorting data..."
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:530
+#: ../src/plugins/StatisticsChart.py:529
 #, python-format
 msgid "%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:532
+#: ../src/plugins/StatisticsChart.py:531
 #, python-format
 msgid "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:654
+#: ../src/plugins/StatisticsChart.py:653
 msgid "Saving charts..."
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:694 ../src/plugins/StatisticsChart.py:727
+#: ../src/plugins/StatisticsChart.py:693 ../src/plugins/StatisticsChart.py:726
 #, python-format
 msgid "%s (persons):"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:820
+#: ../src/plugins/StatisticsChart.py:819
 msgid "The style used for the items and values."
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:874
+#: ../src/plugins/StatisticsChart.py:873
 msgid "Select how the statistical data is sorted."
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:875
+#: ../src/plugins/StatisticsChart.py:874
 msgid "Sort chart items by"
 msgstr ""
 
 #. sorting order
-#: ../src/plugins/StatisticsChart.py:878
+#: ../src/plugins/StatisticsChart.py:877
 msgid "Check to reverse the sorting order."
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:879
+#: ../src/plugins/StatisticsChart.py:878
 msgid "Sort in reverse order"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:898
+#: ../src/plugins/StatisticsChart.py:897
 msgid ""
 "Select year range within which people need to be born to be selected for "
 "statistics."
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:899
+#: ../src/plugins/StatisticsChart.py:898
 msgid "People born between"
 msgstr ""
 
 #. include people without known birth year?
-#: ../src/plugins/StatisticsChart.py:903
+#: ../src/plugins/StatisticsChart.py:902
 msgid ""
 "Check this if you want people who have no known birth date or year to be "
 "accounted also in the statistics."
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:904
+#: ../src/plugins/StatisticsChart.py:903
 msgid "Include people without known birth years"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:916
+#: ../src/plugins/StatisticsChart.py:915
 msgid "Select which genders are included into statistics."
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:917
+#: ../src/plugins/StatisticsChart.py:916
 msgid "Genders included"
 msgstr ""
 
 #. max. pie item selection
-#: ../src/plugins/StatisticsChart.py:920
+#: ../src/plugins/StatisticsChart.py:919
 msgid ""
 "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:924
+#: ../src/plugins/StatisticsChart.py:923
 msgid "Max. items for a pie"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:943
+#: ../src/plugins/StatisticsChart.py:942
 msgid "Mark checkboxes to add charts with indicated data"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:944 ../src/plugins/StatisticsChart.py:949
+#: ../src/plugins/StatisticsChart.py:943 ../src/plugins/StatisticsChart.py:948
 msgid "Charts"
 msgstr ""
 
 #. Note about children
-#: ../src/plugins/StatisticsChart.py:948
+#: ../src/plugins/StatisticsChart.py:947
 msgid "Note that both biological and adopted children are taken into account."
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:977
+#: ../src/plugins/StatisticsChart.py:976
 msgid "Statistics Chart"
 msgstr ""
 
-#: ../src/plugins/StatisticsChart.py:981
+#: ../src/plugins/StatisticsChart.py:980
 msgid "Generates statistical bar and pie charts of the people in the database."
 msgstr ""
 
@@ -6502,31 +6554,35 @@ msgstr ""
 msgid "Provides a summary of the current database"
 msgstr ""
 
-#: ../src/plugins/TimeLine.py:167 ../src/PluginUtils/_Report.py:1899
+#: ../src/plugins/TimeLine.py:166 ../src/PluginUtils/_Report.py:1899
 msgid "Report could not be created"
 msgstr ""
 
-#: ../src/plugins/TimeLine.py:168
+#: ../src/plugins/TimeLine.py:167
 msgid "The range of dates chosen was not valid"
 msgstr ""
 
-#: ../src/plugins/TimeLine.py:379
+#: ../src/plugins/TimeLine.py:378
 msgid "The style used for the person's name."
 msgstr ""
 
-#: ../src/plugins/TimeLine.py:388
+#: ../src/plugins/TimeLine.py:387
 msgid "The style used for the year labels."
 msgstr ""
 
-#: ../src/plugins/TimeLine.py:447
+#: ../src/plugins/TimeLine.py:446
 msgid "Sort by"
 msgstr ""
 
-#: ../src/plugins/TimeLine.py:475
+#: ../src/plugins/TimeLine.py:454
+msgid "report|Title"
+msgstr ""
+
+#: ../src/plugins/TimeLine.py:474
 msgid "Timeline Graph"
 msgstr ""
 
-#: ../src/plugins/TimeLine.py:479
+#: ../src/plugins/TimeLine.py:478
 msgid "Generates a timeline graph."
 msgstr ""
 
