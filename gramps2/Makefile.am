@@ -1,13 +1,13 @@
 # This is the top level Makefile for Gramps
 # $Id$
 
-SUBDIRS = po src doc example help
+SUBDIRS = m4 po src doc example help
 
 EXTRA_DIST = \
 	config.rpath autogen.sh gramps.spec.in gramps.spec \
 	COPYING-DOCS FAQ COPYING \
 	intltool-extract.in intltool-merge.in intltool-update.in \
-	config.sub config.guess gnome-doc-utils.make m4
+	config.sub config.guess gnome-doc-utils.make
 
 bin_SCRIPTS = gramps
 
