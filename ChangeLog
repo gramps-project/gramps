@@ -1,4 +1,8 @@
 2006-03-17  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamily.py: convert father to use SelectPerson instead
+	of ObjectSelector
+	* src/PeopleModel.py: add skip capability
+	* src/SelectPerson.py: call person model correctly
 	* src/DataViews/_FamilyView.py: use new Dbutils functions
 	* src/DataViews/_FamilyList.py: use new Dbutils functions
 	* src/GrampsDb/_DbUtils.py: new routines to remove families and

@@ -114,7 +114,7 @@ else:
 #-------------------------------------------------------------------------
 class PeopleModel(gtk.GenericTreeModel):
 
-    def __init__(self,db,data_filter=None,invert_result=False):
+    def __init__(self,db,data_filter=None,invert_result=False,skip=[]):
         gtk.GenericTreeModel.__init__(self)
 
         self.db = db
@@ -125,7 +125,7 @@ class PeopleModel(gtk.GenericTreeModel):
         self.tooltip_column = 12
         self.prev_handle = None
         self.prev_data = None
-        self.rebuild_data(data_filter)
+        self.rebuild_data(data_filter,skip)
 
     def rebuild_data(self,data_filter=None,skip=[]):
         self.calculate_data(data_filter,skip)
