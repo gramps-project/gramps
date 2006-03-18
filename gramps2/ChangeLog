@@ -1,3 +1,9 @@
+2006-03-17  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_FamilyView.py: use new Dbutils functions
+	* src/DataViews/_FamilyList.py: use new Dbutils functions
+	* src/GrampsDb/_DbUtils.py: new routines to remove families and
+	family relationships
+
 2006-03-17  Alex Roitman  <shura@gramps-project.org>
 	* help: add new dir with new gnome-doc-utils infrastructure.
 

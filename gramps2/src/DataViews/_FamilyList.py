@@ -155,28 +155,13 @@ class FamilyListView(PageView.ListView):
         return True
 
     def remove(self,obj):
+        import GrampsDb
+        
         mlist = []
         self.selection.selected_foreach(self.blist,mlist)
 
         for handle in mlist:
-            family = self.dbstate.db.get_family_from_handle(handle)
-
-            trans = self.dbstate.db.transaction_begin()
-
-            for phandle in [ family.get_father_handle(),
-                             family.get_mother_handle()]:
-                if phandle:
-                    person = self.dbstate.db.get_person_from_handle(phandle)
-                    person.remove_family_handle(handle)
-                    self.dbstate.db.commit_person(person,trans)
-
-            for phandle in family.get_child_handle_list():
-                person = self.dbstate.db.get_person_from_handle(phandle)
-                person.remove_parent_family_handle(handle)
-                self.dbstate.db.commit_person(person,trans)
-
-            self.dbstate.db.remove_family(handle,trans)
-            self.dbstate.db.transaction_commit(trans,_("Remove Family"))
+            GrampsDb.remove_family_relationships(handle)
         self.build_tree()
     
     def edit(self,obj):
