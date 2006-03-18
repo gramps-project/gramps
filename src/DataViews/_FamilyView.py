@@ -313,8 +313,8 @@ class FamilyView(PageView.PersonNavView):
 
         # name and edit button
         name = NameDisplay.displayer.display(person)
-        text = '<span size="larger" weight="bold">%s %s</span>' % (cgi.escape(name),
-                                                                   _GenderCode[person.gender])
+        fmt = '<span size="larger" weight="bold">%s %s</span>'
+        text = fmt % (cgi.escape(name),_GenderCode[person.gender])
         label = GrampsWidgets.MarkupLabel(text)
         button = GrampsWidgets.IconButton(self.edit_button_press,person.handle)
 
@@ -417,8 +417,10 @@ class FamilyView(PageView.PersonNavView):
         hbox.set_spacing(12)
         if is_parent:
             call_fcn = self.add_parent_family
+            del_fcn = self.delete_parent_family
         else:
             call_fcn = self.add_family
+            del_fcn = self.delete_family
             
         add = GrampsWidgets.IconButton(call_fcn,None,gtk.STOCK_ADD)
         hbox.pack_start(add,False)
@@ -426,7 +428,7 @@ class FamilyView(PageView.PersonNavView):
             edit = GrampsWidgets.IconButton(self.edit_family,family.handle,
                                             gtk.STOCK_EDIT)
             hbox.pack_start(edit,False)
-            delete = GrampsWidgets.IconButton(self.delete_family,family.handle,
+            delete = GrampsWidgets.IconButton(del_fcn,family.handle,
                                               gtk.STOCK_REMOVE)
             hbox.pack_start(delete,False)
         self.attach.attach(hbox,_BTN_START,_BTN_STOP,self.row,self.row+1)
@@ -473,14 +475,14 @@ class FamilyView(PageView.PersonNavView):
             format = "%s"
 
         label = GrampsWidgets.MarkupLabel(format % cgi.escape(title))
-        self.attach.attach(label,_PLABEL_START,_PLABEL_STOP,self.row,self.row+1,
-                           xoptions=gtk.FILL|gtk.SHRINK)
+        self.attach.attach(label,_PLABEL_START,_PLABEL_STOP,self.row,
+                           self.row+1, xoptions=gtk.FILL|gtk.SHRINK)
 
         link_label = GrampsWidgets.LinkLabel(self.get_name(handle,True),
                                              self.button_press,handle)
         button = GrampsWidgets.IconButton(self.edit_button_press,handle)
-        self.attach.attach(GrampsWidgets.LinkBox(link_label,button),_PDATA_START,
-                           _PDATA_STOP,self.row,self.row+1)
+        self.attach.attach(GrampsWidgets.LinkBox(link_label,button),
+                           _PDATA_START,_PDATA_STOP,self.row,self.row+1)
         self.row += 1
 
     def write_child(self,title,handle):
@@ -490,23 +492,24 @@ class FamilyView(PageView.PersonNavView):
             format = "%s"
 
         label = GrampsWidgets.MarkupLabel(format % cgi.escape(title))
-        self.attach.attach(label,_CLABEL_START,_CLABEL_STOP,self.row,self.row+1,
-                           xoptions=gtk.FILL|gtk.SHRINK)
+        self.attach.attach(label,_CLABEL_START,_CLABEL_STOP,self.row,
+                           self.row+1,xoptions=gtk.FILL|gtk.SHRINK)
 
         link_label = GrampsWidgets.LinkLabel(self.get_name(handle,True),
                                              self.button_press,handle)
         button = GrampsWidgets.IconButton(self.edit_button_press,handle)
-        self.attach.attach(GrampsWidgets.LinkBox(link_label,button),_CDATA_START,
-                           _CDATA_STOP,self.row,self.row+1,
-                          xoptions=gtk.EXPAND|gtk.FILL)
+        self.attach.attach(GrampsWidgets.LinkBox(link_label,button),
+                           _CDATA_START, _CDATA_STOP, self.row, self.row+1,
+                           xoptions=gtk.EXPAND|gtk.FILL)
 
         self.row += 1
 
         if self.show_details:
             value = self.info_string(handle)
             if value:
-                self.attach.attach(GrampsWidgets.BasicLabel(value),_CDTLS_START,
-                                   _CDTLS_STOP,self.row, self.row+1)
+                self.attach.attach(GrampsWidgets.BasicLabel(value),
+                                   _CDTLS_START, _CDTLS_STOP, self.row,
+                                   self.row+1)
                 self.row += 1
         
     def write_data(self,title,start_col=_SDATA_START,stop_col=_SDATA_STOP):
@@ -582,9 +585,7 @@ class FamilyView(PageView.PersonNavView):
         else:
             pname = None
             dobj = None
-            value = {
-                'event_type' : ename,
-                }
+            value = { 'event_type' : ename, }
 
         if dobj:
             if pname:
@@ -615,8 +616,9 @@ class FamilyView(PageView.PersonNavView):
 
             value = self.info_string(handle)
             if value:
-                self.attach.attach(GrampsWidgets.BasicLabel(value),_PDTLS_START,
-                                   _PDTLS_STOP,self.row, self.row+1)
+                self.attach.attach(GrampsWidgets.BasicLabel(value),
+                                   _PDTLS_START, _PDTLS_STOP,
+                                   self.row, self.row+1)
                 self.row += 1
             if not self.write_marriage(family):
                 self.write_relationship(family)
@@ -687,7 +689,18 @@ class FamilyView(PageView.PersonNavView):
 
     def delete_family(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
-            print "Delete Family",handle
+            import GrampsDb
+            GrampsDb.remove_parent_from_family(self.dbstate.db,
+                                               self.dbstate.active.handle,
+                                               handle)
+
+    def delete_parent_family(self,obj,event,handle):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+            import GrampsDb
+            GrampsDb.remove_child_from_family(self.dbstate.db,
+                                              self.dbstate.active.handle,
+                                              handle)
 
     def change_to(self,obj,handle):
         self.dbstate.change_active_handle(handle)
+
