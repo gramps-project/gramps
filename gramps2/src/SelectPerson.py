@@ -26,7 +26,6 @@
 #
 #-------------------------------------------------------------------------
 from TransUtils import sgettext as _
-import gc
 
 #-------------------------------------------------------------------------
 #
@@ -53,7 +52,7 @@ import PeopleModel
 #-------------------------------------------------------------------------
 class SelectPerson:
 
-    def __init__(self,db,title,parent_window=None):
+    def __init__(self, db, title, filter=None, skip=[], parent_window=None):
 
         self.renderer = gtk.CellRendererText()
         self.db = db
@@ -62,11 +61,12 @@ class SelectPerson:
         title_label = self.glade.get_widget('title')
         self.plist =  self.glade.get_widget('plist')
         self.notebook =  self.glade.get_widget('notebook')
-        self.use_filter = 0
 
         Utils.set_titles(self.top,title_label,title)
 
-        self.model = PeopleModel.PeopleModel(self.db)
+        self.model = PeopleModel.PeopleModel(self.db,
+                                             data_filter=filter,
+                                             skip=skip)
 
         self.add_columns(self.plist)
         self.plist.set_model(self.model)
@@ -110,9 +110,7 @@ class SelectPerson:
             else:
                 return_value = None
             self.top.destroy()
-            gc.collect()
 	    return return_value
         else:
             self.top.destroy()
-            gc.collect()
             return None
