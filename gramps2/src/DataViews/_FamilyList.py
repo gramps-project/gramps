@@ -158,10 +158,10 @@ class FamilyListView(PageView.ListView):
         import GrampsDb
         
         mlist = []
-        self.selection.selected_foreach(self.blist,mlist)
+        self.selection.selected_foreach(self.blist, mlist)
 
         for handle in mlist:
-            GrampsDb.remove_family_relationships(handle)
+            GrampsDb.remove_family_relationships(self.dbstate.db, handle)
         self.build_tree()
     
     def edit(self,obj):

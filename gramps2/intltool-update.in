@@ -30,7 +30,7 @@
 
 ## Release information
 my $PROGRAM = "intltool-update";
-my $VERSION = "0.34.2";
+my $VERSION = "0.34.1";
 my $PACKAGE = "intltool";
 
 ## Loaded modules
@@ -80,8 +80,7 @@ my $ini_support =
 "directory(?:\\.in)+|".	# http://www.freedesktop.org/Standards/menu-spec
 "soundlist(?:\\.in)+|".	# GNOME specific
 "keys(?:\\.in)+|".	# GNOME Mime database specific
-"theme(?:\\.in)+|".	# http://www.freedesktop.org/Standards/icon-theme-spec
-"service(?:\\.in)+";    # DBus specific
+"theme(?:\\.in)+";	# http://www.freedesktop.org/Standards/icon-theme-spec
 
 my $buildin_gettext_support = 
 "c|y|cs|cc|cpp|c\\+\\+|h|hh|gob|py";
@@ -611,7 +610,7 @@ sub GenerateHeaders
 #
 sub GeneratePOTemplate
 {
-    my $XGETTEXT = $ENV{"XGETTEXT"} || "@INTLTOOL_XGETTEXT@";
+    my $XGETTEXT = $ENV{"XGETTEXT"} || "/usr/bin/xgettext";
     my $XGETTEXT_ARGS = $ENV{"XGETTEXT_ARGS"} || '';
     chomp $XGETTEXT;
 
@@ -782,7 +781,7 @@ sub POFile_Update
 {
     -f "$MODULE.pot" or die "$PROGRAM: $MODULE.pot does not exist.\n";
 
-    my $MSGMERGE = $ENV{"MSGMERGE"} || "@INTLTOOL_MSGMERGE@";
+    my $MSGMERGE = $ENV{"MSGMERGE"} || "/usr/bin/msgmerge";
     my ($lang, $outfile) = @_;
 
     print "Merging $SRCDIR/$lang.po with $MODULE.pot..." if $VERBOSE;
@@ -825,7 +824,7 @@ sub POFile_GetLanguage ($)
 sub Console_Write_TranslationStatus
 {
     my ($lang, $output_file) = @_;
-    my $MSGFMT = $ENV{"MSGFMT"} || "@INTLTOOL_MSGFMT@";
+    my $MSGFMT = $ENV{"MSGFMT"} || "/usr/bin/msgfmt";
 
     $output_file = "$SRCDIR/$lang.po" if ($output_file eq "");
 
@@ -834,7 +833,7 @@ sub Console_Write_TranslationStatus
 
 sub Console_Write_CoverageReport
 {
-    my $MSGFMT = $ENV{"MSGFMT"} || "@INTLTOOL_MSGFMT@";
+    my $MSGFMT = $ENV{"MSGFMT"} || "/usr/bin/msgfmt";
 
     &GatherPOFiles;
 
@@ -992,9 +991,9 @@ sub FindPackageName
 	($name, $version) = ($1, $2);
 	$name    =~ s/[\[\]\s]//g;
 	$version =~ s/[\[\]\s]//g;
-	$varhash{"PACKAGE_NAME"} = $name;
+	$varhash{"AC_PACKAGE_NAME"} = $name;
 	$varhash{"PACKAGE"} = $name;
-	$varhash{"PACKAGE_VERSION"} = $version;
+	$varhash{"AC_PACKAGE_VERSION"} = $version;
 	$varhash{"VERSION"} = $version;
     }
     
@@ -1003,18 +1002,19 @@ sub FindPackageName
 	($name, $version) = ($1, $2);
 	$name    =~ s/[\[\]\s]//g;
 	$version =~ s/[\[\]\s]//g;
-	$varhash{"PACKAGE_NAME"} = $name;
+	$varhash{"AC_PACKAGE_NAME"} = $name;
 	$varhash{"PACKAGE"} = $name;
-	$varhash{"PACKAGE_VERSION"} = $version;
+	$varhash{"AC_PACKAGE_VERSION"} = $version;
 	$varhash{"VERSION"} = $version;
     }
 
     # \s makes this not work, why?
     $name = $1 if $conf_source =~ /^GETTEXT_PACKAGE=\[?([^\n\]]+)/m;
     
-    # m4 macros AC_PACKAGE_NAME, AC_PACKAGE_VERSION etc. have same value
-    # as corresponding $PACKAGE_NAME, $PACKAGE_VERSION etc. shell variables.
-    $name =~ s/\bAC_PACKAGE_/\$PACKAGE_/g;
+    # prepend '$' to auto* internal variables, usually they are
+    # used in configure.in/ac without the '$'
+    $name =~ s/AC_/\$AC_/g;
+    $name =~ s/\$\$/\$/g;
 
     $name = $domain if $domain;
 

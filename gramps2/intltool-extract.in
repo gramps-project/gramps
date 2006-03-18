@@ -32,7 +32,7 @@
 ## Release information
 my $PROGRAM      = "intltool-extract";
 my $PACKAGE      = "intltool";
-my $VERSION      = "0.34.2";
+my $VERSION      = "0.34.1";
 
 ## Loaded modules
 use strict; 
@@ -485,12 +485,10 @@ sub parseTree
 sub intltool_tree_comment
 {
     my $expat = shift;
-    my $data  = $expat->original_string();
+    my $data  = shift;
     my $clist = $expat->{Curlist};
     my $pos   = $#$clist;
 
-    $data =~ s/^<!--//s;
-    $data =~ s/-->$//s;
     push @$clist, 1 => $data;
 }
 

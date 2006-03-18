@@ -22,7 +22,7 @@
 
 
 def remove_family_relationships(db, family_handle, trans=None):
-    family = db.get_family_from_handle(handle)
+    family = db.get_family_from_handle(family_handle)
 
     if trans == None:
         need_commit = True
@@ -34,18 +34,18 @@ def remove_family_relationships(db, family_handle, trans=None):
                      family.get_mother_handle()]:
         if phandle:
             person = db.get_person_from_handle(phandle)
-            person.remove_family_handle(handle)
-            db.commit_person(person,trans)
+            person.remove_family_handle(family_handle)
+            db.commit_person(person, trans)
 
     for phandle in family.get_child_handle_list():
         person = db.get_person_from_handle(phandle)
-        person.remove_parent_family_handle(handle)
-        db.commit_person(person,trans)
+        person.remove_parent_family_handle(family_handle)
+        db.commit_person(person, trans)
 
-    db.remove_family(handle,trans)
+    db.remove_family(family_handle, trans)
     
     if need_commit:
-        db.transaction_commit(trans,_("Remove Family"))
+        db.transaction_commit(trans, _("Remove Family"))
 
 def remove_parent_from_family(db, person_handle, family_handle, trans=None):
     """
