@@ -9,6 +9,7 @@
 	family relationships
 
 2006-03-17  Alex Roitman  <shura@gramps-project.org>
+	* intltool-*.in: remove from svn.
 	* help: add new dir with new gnome-doc-utils infrastructure.
 
 	* configure.in: Multiple improvements.
