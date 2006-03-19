@@ -76,7 +76,6 @@ gdir_PYTHON = \
 	QuestionDialog.py\
 	RecentFiles.py\
 	Relationship.py\
-	RelImage.py\
 	ScratchPad.py\
 	SelectEvent.py\
 	SelectObject.py\
