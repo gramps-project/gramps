@@ -49,6 +49,14 @@ class NameDisplay:
         @type use_upper: bool
         """
         self.force_upper = use_upper
+        
+        self.fn_array = [
+            self._lnfn, self._lnfn, self._fnln,
+            self._ptfn, self._empty ]
+        
+        self.raw_fn_array = (
+            self._lnfn_raw, self._lnfn_raw, self._fnln_raw,
+            self._ptfn_raw, self._empty_raw )
 
     def use_upper(self,upper):
         """
@@ -87,6 +95,9 @@ class NameDisplay:
     def _empty(self,name):
         return name.first_name
 
+    def _empty_raw(self,raw_data):
+        return raw_data[2]
+
     def _ptfn(self,name):
         """
         Prints the Western style first name, last name style.
@@ -110,6 +121,36 @@ class NameDisplay:
         else:
             if name.prefix:
                 return "%s %s, %s" % (name.prefix, last, first)
+            else:
+                return "%s, %s" % (last, first)
+
+    def _ptfn_raw(self,raw_data):
+        """
+        Prints the Western style first name, last name style.
+        Typically this is::
+
+           SurnamePrefix Patronymic SurnameSuffix, FirstName
+        """
+
+        first = raw_data[2]
+        surname = raw_data[3]
+        suffix = raw_data[4]
+        prefix = raw_data[7]
+        patronymic = raw_data[8]
+
+        if self.force_upper:
+            last = patronymic.upper()
+        else:
+            last = patronymic
+            
+        if suffix:
+            if prefix:
+                return "%s %s %s, %s" % (prefix, last, suffix, first)
+            else:
+                return "%s %s, %s" % (last, suffix, first)
+        else:
+            if name.prefix:
+                return "%s %s, %s" % (prefix, last, first)
             else:
                 return "%s, %s" % (last, first)
         
@@ -141,6 +182,38 @@ class NameDisplay:
             else:
                 return "%s %s" % (first, last)
 
+    def _fnln_raw(self,raw_data):
+        """
+        Prints the Western style first name, last name style.
+        Typically this is::
+
+           FirstName Patronymic SurnamePrefix Surname SurnameSuffix
+        """
+        first = raw_data[2]
+        surname = raw_data[3]
+        suffix = raw_data[4]
+        prefix = raw_data[7]
+        patronymic = raw_data[8]
+
+        if patronymic:
+            first = "%s %s" % (first, patronymic)
+
+        if self.force_upper:
+            last = surname.upper()
+        else:
+            last = surname
+            
+        if suffix:
+            if prefix:
+                return "%s %s %s, %s" % (first, prefix, last, suffix)
+            else:
+                return "%s %s, %s" % (first, last, suffix)
+        else:
+            if prefix:
+                return "%s %s %s" % (first, prefix, last)
+            else:
+                return "%s %s" % (first, last)
+
     def _lnfn(self,name,nickname=u""):
         """
         Prints the Western style last name, first name style.
@@ -158,13 +231,25 @@ class NameDisplay:
 
         return " ".join([x for x in [name.prefix, last, name.first_name,
                                      name.patronymic, name.suffix]])
-    
-    fn_array = { Name.FNLN : _fnln,
-                 Name.PTFN : _ptfn,
-                 Name.FN   : _empty,
-                 Name.LNFN : _lnfn,
-                 }
 
+    def _lnfn_raw(self,raw_data):
+        """
+        Prints the Western style last name, first name style.
+        Typically this is::
+
+            SurnamePrefix Surname, FirstName Patronymic SurnameSuffix
+        """
+        if self.force_upper:
+            last = raw_data[3].upper()
+        else:
+            last = raw_data[3]
+
+        if last:
+            last += ","
+
+        return " ".join([x for x in [raw_data[7], last, raw_data[2],
+                                     raw_data[8], raw_data[4]]])
+    
     def sorted_name(self,name):
         """
         Returns a text string representing the L{Name} instance
@@ -176,7 +261,21 @@ class NameDisplay:
         @returns: Returns the L{Name} string representation
         @rtype: str
         """
-        return self.fn_array.get(name.sort_as,self._lnfn)(name)
+        return self.fn_array[name.sort_as](name)
+        #return self.fn_array.get(name.sort_as,self._lnfn)(name)
+
+    def raw_sorted_name(self,raw_data):
+        """
+        Returns a text string representing the L{Name} instance
+        in a manner that should be used for displaying a sorted
+        name.
+
+        @param name: L{Name} instance that is to be displayed.
+        @type name: L{Name}
+        @returns: Returns the L{Name} string representation
+        @rtype: str
+        """
+        return self.raw_fn_array[raw_data[11]](raw_data)
 
     def display_given(self,person):
         name = person.get_primary_name()

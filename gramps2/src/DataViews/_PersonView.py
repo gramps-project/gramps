@@ -169,7 +169,6 @@ class PersonView(PageView.PersonNavView):
         self.tree.connect('button-press-event', self.button_press)
         self.tree.connect('drag_data_get', self.drag_data_get)
 
-
         self.selection = self.tree.get_selection()
         self.selection.set_mode(gtk.SELECTION_MULTIPLE)
         self.selection.connect('changed',self.row_changed)

@@ -77,6 +77,8 @@ from GrampsWidgets import *
 
 from ObjectSelector import PersonSelector,PersonFilterSpec
 
+from SelectPerson import SelectPerson
+
 class ChildEmbedList(EmbeddedList):
     """
     The child embed list is specific to the Edit Family dialog, so it
@@ -204,7 +206,7 @@ class ChildEmbedList(EmbeddedList):
         sel = SelectPerson(self.dbstate.db, "Select Child",
                            skip=[ x for x in skip if x])
         person = sel.run()
-
+        
         if person:
             self.family.add_child_handle(person.get_handle())
             self.rebuild()
@@ -245,6 +247,10 @@ class ChildEmbedList(EmbeddedList):
 #                 "have been of type %s." % (obj.__class__.__name__,
 #                                            RelLib.Person.__name__))
 #         selector_window.close()
+
+    def run(self,skip):
+        SelectPerson(self.dbstate.db, "Select Child",
+                     skip=[ x for x in skip if x])
 
     def del_button_clicked(self,obj):
         handle = self.get_selected()

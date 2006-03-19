@@ -32,9 +32,9 @@ from TransUtils import sgettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-
 import gtk
 import gtk.glade
+import pango
 
 #-------------------------------------------------------------------------
 #
@@ -55,14 +55,16 @@ class SelectPerson:
     def __init__(self, db, title, filter=None, skip=[], parent_window=None):
 
         self.renderer = gtk.CellRendererText()
+        self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
         self.db = db
         self.glade = gtk.glade.XML(const.gladeFile,"select_person","gramps")
         self.top = self.glade.get_widget('select_person')
-        title_label = self.glade.get_widget('title')
         self.plist =  self.glade.get_widget('plist')
         self.notebook =  self.glade.get_widget('notebook')
 
-        Utils.set_titles(self.top,title_label,title)
+        Utils.set_titles(self.top,
+                         self.glade.get_widget('title'),
+                         title)
 
         self.model = PeopleModel.PeopleModel(self.db,
                                              data_filter=filter,
@@ -78,23 +80,16 @@ class SelectPerson:
     def add_columns(self,tree):
         tree.set_fixed_height_mode(True)
         column = gtk.TreeViewColumn(_('Name'), self.renderer, text=0)
-        column.set_resizable(True)        
-        column.set_clickable(True)
-        column.set_sort_column_id(0)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         column.set_fixed_width(225)
         tree.append_column(column)
 
         column = gtk.TreeViewColumn(_('ID'), self.renderer, text=1)
-        column.set_resizable(True)        
-        column.set_clickable(True)
-        column.set_sort_column_id(1)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         column.set_fixed_width(75)
         tree.append_column(column)
 
         column = gtk.TreeViewColumn(_('Birth date'), self.renderer, text=3)
-        column.set_clickable(True)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         column.set_fixed_width(160)
         tree.append_column(column)
