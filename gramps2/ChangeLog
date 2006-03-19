@@ -1,4 +1,6 @@
 2006-03-18  Don Allingham  <don@gramps-project.org>
+	* src/RelImage.py: removed
+	* src/AddMedia.py: added scale_image function from RelImage
 	* src/DataViews/_PersonView.py: use fixed width/height mode to
 	prevent unnecessary reads during initialization. Prevent double
 	loading of data from filter.

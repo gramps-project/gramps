@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,7 +36,6 @@ import os
 # internationalization
 #
 #-------------------------------------------------------------------------
-
 from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
@@ -44,7 +43,7 @@ from TransUtils import sgettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from QuestionDialog import ErrorDialog
+from QuestionDialog import ErrorDialog, WarningDialog
 import gtk.glade
 
 #-------------------------------------------------------------------------
@@ -54,7 +53,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-import RelImage
 import RelLib
 import Mime
 import GrampsDisplay
@@ -164,7 +162,7 @@ class AddMediaObject:
         if filename:
             mtype = Mime.get_type(filename)
             if mtype and mtype.startswith("image"):
-                image = RelImage.scale_image(filename,const.thumbScale)
+                image = scale_image(filename,const.thumbScale)
             else:
                 image = Mime.find_mime_type_pixbuf(mtype)
             self.image.set_from_pixbuf(image)
@@ -183,3 +181,30 @@ class AddMediaObject:
                 self.window.destroy()
                 return None
         return None
+
+#-------------------------------------------------------------------------
+#
+# scale_image
+#
+#-------------------------------------------------------------------------
+def scale_image(path,size):
+    try:
+        image1 = gtk.gdk.pixbuf_new_from_file(path)
+    except:
+        WarningDialog(_("Cannot display %s") % path,
+                      _('GRAMPS is not able to display the image file. '
+                        'This may be caused by a corrupt file.'))
+        return gtk.gdk.pixbuf_new_from_file(const.icon)
+    
+    width  = image1.get_width()
+    height = image1.get_height()
+
+    scale = size / float(max(width,height))
+    try:
+        return image1.scale_simple(int(scale*width), int(scale*height),
+                                   gtk.gdk.INTERP_BILINEAR)
+    except:
+        WarningDialog(_("Cannot display %s") % path,
+                      _('GRAMPS is not able to display the image file. '
+                        'This may be caused by a corrupt file.'))
+        return gtk.gdk.pixbuf_new_from_file(const.icon)
