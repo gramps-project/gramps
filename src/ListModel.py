@@ -18,8 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-from gobject import TYPE_STRING, TYPE_PYOBJECT, TYPE_OBJECT, TYPE_BOOLEAN
 import gtk
+import pango
 import const
 
 gtk26 = gtk.pygtk_version >= (2,6,0)
@@ -39,15 +39,16 @@ class ListModel:
     def __init__(self,tree,dlist,select_func=None,
                  event_func=None,mode=gtk.SELECTION_SINGLE):
         self.tree = tree
+        self.tree.set_fixed_height_mode(True)
         self.mylist = []
         self.data_index = 0
         for l in dlist:
             if len(l)>3 and l[3] == TOGGLE:
-                self.mylist.append(TYPE_BOOLEAN)
+                self.mylist.append(bool)
             else:
-                self.mylist.append(TYPE_STRING)
+                self.mylist.append(str)
             self.data_index += 1
-        self.mylist.append(TYPE_PYOBJECT)
+        self.mylist.append(object)
 
         self.function = {}
         self.tree.set_rules_hint(True)
@@ -62,6 +63,9 @@ class ListModel:
 
         cnum = 0
         for name in dlist:
+            if not name[2]:
+                continue
+            
             if len(name) == 3:
                 name = (name[0],name[1],name[2],TEXT,False, None)
             elif len(name) == 4:
@@ -73,7 +77,7 @@ class ListModel:
                 column.add_attribute(renderer,'active',cnum)
             elif gtk26 and name[3] == COMBO:
                 store = gtk.ListStore(str)
-                model = gtk.ListStore(str,TYPE_OBJECT)
+                model = gtk.ListStore(str, object)
                 for val in name[4]:
                     model.append((val,store))
                 self.function[cnum] = name[5]
@@ -88,6 +92,7 @@ class ListModel:
             else:
                 renderer = gtk.CellRendererText()
                 renderer.set_fixed_height_from_font(True)
+                renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
                 if name[5]:
                     renderer.set_property('editable',True)
                     renderer.connect('edited',self.edited_cb, cnum)
@@ -107,6 +112,9 @@ class ListModel:
             else:
                 column.set_clickable(True)
                 column.set_sort_column_id(name[1])
+
+            column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+            column.set_fixed_width(name[2])
 
             cnum += 1
             self.cids.append(name[1])
