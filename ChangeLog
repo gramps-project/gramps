@@ -1,3 +1,20 @@
+2006-03-18  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: use fixed width/height mode to
+	prevent unnecessary reads during initialization. Prevent double
+	loading of data from filter.
+	* src/GrampsDb/_GrampsDbBase.py: provide widths for person view columns
+	* src/RelLib/_Name.py: provide fast, shallow initialization of values
+	for quick access when only name functions are needed
+	* src/Editors/_EditFamily.py: Switch from ObjectSelector to SelectPerson
+	until the ObjectSelector cursor issues are resolved
+	* src/PeopleModel.py: Faster access to rebuilding data
+	* src/Utils.py: handle if locale.getpreferredencondings fails
+	* src/NameDisplay.py: speed up name display by using string join
+	* src/GenericFilter.py: provide match function as a temporary fix until
+	filters are redesigned
+	* src/SelectPerson.py: used fixed width/height mode
+	* src/PageView.py: suppress tooltips if requested
+
 2006-03-17  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditFamily.py: convert father to use SelectPerson instead
 	of ObjectSelector

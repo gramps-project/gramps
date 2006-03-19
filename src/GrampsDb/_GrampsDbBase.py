@@ -1708,7 +1708,8 @@ class GrampsDbBase(GrampsDBCallback):
         Returns the Person display common information stored in the
         database's metadata.
         """
-        default = [(1,1),(1,2),(1,3),(0,4),(1,5),(0,6),(0,7),(0,8),(0,9,)]
+        default = [(1,1,100),(1,2,100),(1,3,150),(0,4,150),(1,5,150),
+                   (0,6,150),(0,7,100),(0,8,100),(0,9,100)]
         return self._get_column_order(PERSON_COL_KEY,default)
 
     def _get_columns(self,key,default):

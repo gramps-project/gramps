@@ -32,6 +32,8 @@ import sys
 import traceback
 import locale
 
+import cPickle as pickle
+
 try:
     set()
 except:
@@ -131,9 +133,9 @@ class PeopleModel(gtk.GenericTreeModel):
         self.calculate_data(data_filter,skip)
         self.assign_data()
         
-    def calculate_data(self,data_filter=None,skip=[]):
-        if data_filter:
-            self.data_filter = data_filter
+    def calculate_data(self,dfilter=None,skip=[]):
+        if dfilter:
+            self.dfilter = dfilter
         self.temp_top_path2iter = []
         self.temp_iter2path = {}
         self.temp_path2iter = {}
@@ -142,37 +144,42 @@ class PeopleModel(gtk.GenericTreeModel):
         if not self.db.is_open():
             return
 
-        if data_filter and not data_filter.is_empty():
-            keys = data_filter.apply(self.db)
-            if self.invert_result:
-                handle_list = self.db.get_person_handles(sort_handles=False)
-                #TODO: Could be optimized by using a cursor
-                keys = [k for k in handle_list if k not in keys]
-                del handle_list
-        else:
-            keys = self.db.get_person_handles(sort_handles=False)
-
-        self.sortnames = {}
-        cursor = self.db.get_person_cursor()
-        node = cursor.next()
-
         ngn = NameDisplay.displayer.name_grouping_name
         nsn = NameDisplay.displayer.sorted_name
 
-        flist = set([key for key in keys if key not in skip])
+        flist = set(skip)
+        self.sortnames = {}
+
+        cursor = self.db.surnames.cursor()
+        node = cursor.first()
         
         while node:
             n,d = node
-            if n in flist:
-                primary_name = Name()
-                primary_name.unserialize(d[_NAME_COL])
-                surname = ngn(self.db,primary_name)
-                self.sortnames[n] = nsn(primary_name)
-                try:
-                    self.temp_sname_sub[surname].append(n)
-                except:
-                    self.temp_sname_sub[surname] = [n]
-            node = cursor.next()
+            d = pickle.loads(d)
+            handle = d[0]
+            primary_name = Name(data=d[_NAME_COL])
+            #surname = ngn(self.db,primary_name)
+            surname = n
+
+            if not (handle in skip or (dfilter and not dfilter.match(handle))):
+                self.sortnames[handle] = nsn(primary_name)
+                self.temp_sname_sub[surname] = [handle]
+
+            node = cursor.next_dup()
+            while node:
+                n,d = node
+                d = pickle.loads(d)
+                handle = d[0]
+                primary_name = Name(data=d[_NAME_COL])
+                if not (handle in skip or (dfilter and not dfilter.match(handle))):
+                    self.sortnames[handle] = nsn(primary_name)
+                    try:
+                        self.temp_sname_sub[surname].append(handle)
+                    except:
+                        self.temp_sname_sub[surname] = [handle]
+                node = cursor.next_dup()
+
+            node = cursor.next_nodup()
         cursor.close()
 
         self.temp_top_path2iter = locale_sort(self.temp_sname_sub.keys())
@@ -184,9 +191,10 @@ class PeopleModel(gtk.GenericTreeModel):
         
     def build_sub_entry(self,name):
         self.prev_handle = None
-        slist = map(lambda x: (self.sortnames[x],x),self.temp_sname_sub[name])
-        slist.sort(lambda f,s: locale.strcoll(f[0],s[0]))
-        entries = map(lambda x: x[1], slist)
+        slist = [ (locale.strxfrm(self.sortnames[x]),x) \
+                  for x in self.temp_sname_sub[name] ]
+        slist.sort()
+        entries = [ x[1] for x in slist ]
 
         val = 0
         for person_handle in entries:
@@ -513,12 +521,12 @@ COLUMN_DEFS = [
 
     # these columns are hidden, and must always be last in the list
     (PeopleModel.column_tooltip,    None,                      object),    
-    (PeopleModel.column_sort_name,  None,                      str),
+#    (PeopleModel.column_sort_name,  None,                      str),
     (PeopleModel.column_int_id,     None,                      str),
     ]
 
 # dynamic calculation of column indices, for use by various Views
-COLUMN_INT_ID = 14
+COLUMN_INT_ID = 13
 
 # indices into main column definition table
 COLUMN_DEF_LIST = 0

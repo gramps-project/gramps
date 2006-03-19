@@ -148,6 +148,7 @@ class PersonView(PageView.PersonNavView):
         self.tree = gtk.TreeView()
         self.tree.set_rules_hint(True)
         self.tree.set_headers_visible(True)
+        self.tree.set_fixed_height_mode(True)
         self.tree.connect('key-press-event',self.key_press)
 
         scrollwindow = gtk.ScrolledWindow()
@@ -247,7 +248,7 @@ class PersonView(PageView.PersonNavView):
         db.connect('person-update', self.person_updated)
         db.connect('person-delete', self.person_removed)
         db.connect('person-rebuild', self.build_tree)
-        self.build_tree()
+#        self.build_tree()
         self.generic_filter_widget.apply_filter()
 
     def goto_active_person(self,obj=None):
@@ -349,7 +350,8 @@ class PersonView(PageView.PersonNavView):
             self.tree.set_model(self.model)
 
             if self.model.tooltip_column != None:
-                self.tooltips = TreeTips.TreeTips(self.tree,self.model.tooltip_column,True)
+                self.tooltips = TreeTips.TreeTips(self.tree, self.model.tooltip_column,
+                                                  True)
             self.build_columns()
             self.dirty = False
         else:
@@ -453,8 +455,8 @@ class PersonView(PageView.PersonNavView):
         column.set_resizable(True)
         #column.set_clickable(True)
         #column.connect('clicked',self.sort_clicked)
-        column.set_min_width(225)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        column.set_fixed_width(225)
         self.tree.append_column(column)
         self.columns = [column]
 
@@ -468,8 +470,8 @@ class PersonView(PageView.PersonNavView):
             except AttributeError:
                 column = gtk.TreeViewColumn(name, self.renderer, markup=pair[1])
             column.set_resizable(True)
-            column.set_min_width(60)
-            column.set_sizing(gtk.TREE_VIEW_COLUMN_GROW_ONLY)
+            column.set_fixed_width(pair[2])
+            column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
             self.columns.append(column)
             self.tree.append_column(column)
 

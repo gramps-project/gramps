@@ -31,6 +31,11 @@ import locale
 import sets
 from TransUtils import sgettext as _
 
+try:
+    set()
+except:
+    from sets import Set as set
+
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK
@@ -525,7 +530,7 @@ def find_file( filename):
     
     # Build list of elternate encodings
     encodings = [sys.getfilesystemencoding(), locale.getpreferredencoding(), 'UTF-8', 'ISO-8859-1']
-    encodings = list(sets.Set(encodings))
+    encodings = list(set(encodings))
     for enc in encodings:
         try:
             fname = filename.encode(enc)
@@ -547,8 +552,12 @@ def find_folder( filename):
         pass
     
     # Build list of elternate encodings
-    encodings = [sys.getfilesystemencoding(), locale.getpreferredencoding(), 'UTF-8', 'ISO-8859-1']
-    encodings = list(sets.Set(encodings))
+    try:
+        encodings = [sys.getfilesystemencoding(), locale.getpreferredencoding(),
+                     'UTF-8', 'ISO-8859-1']
+    except:
+        encodings = [sys.getfilesystemencoding(), 'UTF-8', 'ISO-8859-1']
+    encodings = list(set(encodings))
     for enc in encodings:
         try:
             fname = filename.encode(enc)
