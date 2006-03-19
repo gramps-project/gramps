@@ -39,7 +39,6 @@ src/PeopleModel.py
 src/QuestionDialog.py
 src/RecentFiles.py
 src/Relationship.py
-src/RelImage.py
 src/ScratchPad.py
 src/SelectEvent.py
 src/SelectObject.py
