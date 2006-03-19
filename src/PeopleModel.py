@@ -145,7 +145,7 @@ class PeopleModel(gtk.GenericTreeModel):
             return
 
         ngn = NameDisplay.displayer.name_grouping_name
-        nsn = NameDisplay.displayer.sorted_name
+        nsn = NameDisplay.displayer.raw_sorted_name
 
         flist = set(skip)
         self.sortnames = {}
@@ -157,12 +157,10 @@ class PeopleModel(gtk.GenericTreeModel):
             n,d = node
             d = pickle.loads(d)
             handle = d[0]
-            primary_name = Name(data=d[_NAME_COL])
-            #surname = ngn(self.db,primary_name)
             surname = n
 
             if not (handle in skip or (dfilter and not dfilter.match(handle))):
-                self.sortnames[handle] = nsn(primary_name)
+                self.sortnames[handle] = nsn(d[_NAME_COL])
                 self.temp_sname_sub[surname] = [handle]
 
             node = cursor.next_dup()
@@ -170,9 +168,8 @@ class PeopleModel(gtk.GenericTreeModel):
                 n,d = node
                 d = pickle.loads(d)
                 handle = d[0]
-                primary_name = Name(data=d[_NAME_COL])
                 if not (handle in skip or (dfilter and not dfilter.match(handle))):
-                    self.sortnames[handle] = nsn(primary_name)
+                    self.sortnames[handle] = nsn(d[_NAME_COL])
                     try:
                         self.temp_sname_sub[surname].append(handle)
                     except:
@@ -194,10 +191,9 @@ class PeopleModel(gtk.GenericTreeModel):
         slist = [ (locale.strxfrm(self.sortnames[x]),x) \
                   for x in self.temp_sname_sub[name] ]
         slist.sort()
-        entries = [ x[1] for x in slist ]
 
         val = 0
-        for person_handle in entries:
+        for (junk,person_handle) in slist:
             tpl = (name,val)
             self.temp_iter2path[person_handle] = tpl
             self.temp_path2iter[tpl] = person_handle

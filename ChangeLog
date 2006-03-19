@@ -1,3 +1,10 @@
+2006-03-19  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamily.py: select person used for children
+	* src/PeopleModel.py: used raw data functions for name display
+	* src/NameDisplay.py: add raw functions for name display to 
+	avoid the need to create a Name instance
+	* src/SelectPerson.py: fixed widths
+
 2006-03-18  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditFamily.py: add add_person functionality
 	* src/DisplayTabs.py: add share option to sources
