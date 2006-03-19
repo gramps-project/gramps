@@ -42,6 +42,7 @@ import pango
 #----------------------------------------------------------------
 import TreeTips
 import GenericFilter
+import const
 
 NAVIGATION_NONE   = -1
 NAVIGATION_PERSON = 0
@@ -454,7 +455,7 @@ class ListView(PageView):
             self.list.set_model(self.model)
             self.selection = self.list.get_selection()
 
-            if self.model.tooltip_column != None:
+            if const.use_tips and self.model.tooltip_column != None:
                 self.tooltips = TreeTips.TreeTips(self.list,
                                                   self.model.tooltip_column,True)
             self.dirty = False

@@ -102,16 +102,16 @@ class NameDisplay:
         else:
             last = name.patronymic
             
-        if name.suffix == "":
-            if name.prefix:
-                return "%s %s, %s" % (name.prefix, last, first)
-            else:
-                return "%s, %s" % (last, first)
-        else:
+        if name.suffix:
             if name.prefix:
                 return "%s %s %s, %s" % (name.prefix, last, name.suffix, first)
             else:
                 return "%s %s, %s" % (last, name.suffix, first)
+        else:
+            if name.prefix:
+                return "%s %s, %s" % (name.prefix, last, first)
+            else:
+                return "%s, %s" % (last, first)
         
     def _fnln(self,name,nickname=""):
         """
@@ -120,12 +120,8 @@ class NameDisplay:
 
            FirstName Patronymic SurnamePrefix Surname SurnameSuffix
         """
-
         first = name.first_name
 
-        if nickname:
-            first = '%s "%s"' % (first,nickname)
-            
         if name.patronymic:
             first = "%s %s" % (first, name.patronymic)
 
@@ -134,16 +130,16 @@ class NameDisplay:
         else:
             last = name.surname
             
-        if name.suffix == "":
-            if name.prefix:
-                return "%s %s %s" % (first, name.prefix, last)
-            else:
-                return "%s %s" % (first, last)
-        else:
+        if name.suffix:
             if name.prefix:
                 return "%s %s %s, %s" % (first, name.prefix, last, name.suffix)
             else:
                 return "%s %s, %s" % (first, last, name.suffix)
+        else:
+            if name.prefix:
+                return "%s %s %s" % (first, name.prefix, last)
+            else:
+                return "%s %s" % (first, last)
 
     def _lnfn(self,name,nickname=u""):
         """
@@ -152,12 +148,6 @@ class NameDisplay:
 
             SurnamePrefix Surname, FirstName Patronymic SurnameSuffix
         """
-
-        first = name.first_name
-
-        if name.patronymic:
-            first = "%s %s" % (first, name.patronymic)
-
         if self.force_upper:
             last = name.surname.upper()
         else:
@@ -166,20 +156,13 @@ class NameDisplay:
         if last:
             last += ","
 
-        if name.suffix:
-            if name.prefix:
-                return "%s %s %s %s" % (name.prefix, last, first, name.suffix)
-            else:
-                return "%s %s %s" % (last, first, name.suffix)
-        else:
-            if name.prefix:
-                return "%s %s %s" % (name.prefix, last, first)
-            else:
-                return "%s %s" % (last, first)
-
+        return " ".join([x for x in [name.prefix, last, name.first_name,
+                                     name.patronymic, name.suffix]])
+    
     fn_array = { Name.FNLN : _fnln,
                  Name.PTFN : _ptfn,
                  Name.FN   : _empty,
+                 Name.LNFN : _lnfn,
                  }
 
     def sorted_name(self,name):

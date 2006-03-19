@@ -1913,6 +1913,9 @@ class GenericFilter:
             self.logical_op = 'and'
             self.invert = False
 
+    def match(self,handle):
+        return True
+
     def is_empty(self):
         return len(self.flist) == 1 and self.flist[0].is_empty()
 

@@ -63,12 +63,16 @@ class Name(PrivateSourceNote,DateBase):
     BIRTH   = 2
     MARRIED = 3
 
-    def __init__(self,source=None):
+    def __init__(self,source=None,data=None):
         """creates a new Name instance, copying from the source if provided"""
-        PrivateSourceNote.__init__(self,source)
-        DateBase.__init__(self,source)
-
-        if source:
+        if data:
+            (psn,date,
+             self.first_name,self.surname,self.suffix,self.title,
+             self.type,self.prefix,self.patronymic,self.sname,
+             self.group_as,self.sort_as,self.display_as) = data
+        elif source:
+            PrivateSourceNote.__init__(self,source)
+            DateBase.__init__(self,source)
             self.first_name = source.first_name
             self.surname = source.surname
             self.suffix = source.suffix
@@ -81,6 +85,8 @@ class Name(PrivateSourceNote,DateBase):
             self.sort_as = source.sort_as
             self.display_as = source.display_as
         else:
+            PrivateSourceNote.__init__(self,source)
+            DateBase.__init__(self,source)
             self.first_name = ""
             self.surname = ""
             self.suffix = ""

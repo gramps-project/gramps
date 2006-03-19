@@ -76,20 +76,27 @@ class SelectPerson:
             self.top.set_transient_for(parent_window)
 
     def add_columns(self,tree):
-        column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
+        tree.set_fixed_height_mode(True)
+        column = gtk.TreeViewColumn(_('Name'), self.renderer, text=0)
         column.set_resizable(True)        
         column.set_clickable(True)
         column.set_sort_column_id(0)
-        column.set_min_width(225)
+        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        column.set_fixed_width(225)
         tree.append_column(column)
-        column = gtk.TreeViewColumn(_('ID'), self.renderer,text=1)
+
+        column = gtk.TreeViewColumn(_('ID'), self.renderer, text=1)
         column.set_resizable(True)        
         column.set_clickable(True)
         column.set_sort_column_id(1)
-        column.set_min_width(75)
+        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        column.set_fixed_width(75)
         tree.append_column(column)
-        column = gtk.TreeViewColumn(_('Birth date'), self.renderer,text=3)
+
+        column = gtk.TreeViewColumn(_('Birth date'), self.renderer, text=3)
         column.set_clickable(True)
+        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        column.set_fixed_width(160)
         tree.append_column(column)
         
     def select_function(self,store,path,iter,id_list):
