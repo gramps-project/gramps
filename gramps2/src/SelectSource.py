@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: SelectEvent.py 6155 2006-03-16 20:24:27Z rshura $
 
 #-------------------------------------------------------------------------
 #
@@ -52,7 +52,7 @@ import DateHandler
 # SelectEvent
 #
 #-------------------------------------------------------------------------
-class SelectEvent:
+class SelectSource:
 
     def __init__(self,db,title,parent_window=None):
 
@@ -64,8 +64,7 @@ class SelectEvent:
 
         Utils.set_titles(self.top,title_label,title)
 
-        titles = [(_('Description'),4,250), (_('ID'),1,75),
-                  (_('Type'),2,75), (_('Date'),3,150), ('',4,0) ] 
+        titles = [(_('Title'),4,350), (_('ID'),1,50), ('',0,0)]
         self.ncols = len(titles)      
 
         self.model = ListModel.ListModel(self.elist,titles)
@@ -80,25 +79,11 @@ class SelectEvent:
         self.model.clear()
         self.model.new_model()
 
-        for handle in self.db.get_event_handles():
-            event = self.db.get_event_from_handle(handle)
-            desc = event.get_description()
-            etype = event.get_type()
-            if etype[0] == RelLib.Event.CUSTOM \
-                   or not Utils.personal_events.has_key(etype[0]):
-                name = etype[1]
-            else:
-                name = Utils.personal_events[etype[0]]
-            the_id = event.get_gramps_id()
-            place_handle = event.get_place_handle()
-            if place_handle:
-                pname = self.db.get_place_from_handle(place_handle).get_title()
-            else:
-                pname = u''
-            date = DateHandler.get_date(event)
-            cause = event.get_cause()
-            self.model.add([desc,the_id,name,date],handle)
-
+        for handle in self.db.get_source_handles():
+            source = self.db.get_source_from_handle(handle)
+            desc = source.get_title()
+            the_id = source.get_gramps_id()
+            self.model.add([desc,the_id,handle])
         self.model.connect_model()
 
     def run(self):
@@ -108,8 +93,8 @@ class SelectEvent:
             store,node = self.model.get_selected()
             if node:
                 data = self.model.get_data(node,range(self.ncols))
-                handle = data[4]
-                return_value = self.db.get_event_from_handle(handle)
+                handle = data[2]
+                return_value = self.db.get_source_from_handle(handle)
             else:
                 return_value = None
             self.top.destroy()

@@ -622,16 +622,17 @@ class EventEmbedList(EmbeddedList):
 
         sel = SelectEvent.SelectEvent(self.dbstate.db,"Event Select")
         event = sel.run()
-        try:
-            ref = RelLib.EventRef()
-            if self.obj.__class__.__name__ == 'Person':
-                ref.set_role((RelLib.EventRef.PRIMARY,''))
-            else:
-                ref.set_role((RelLib.EventRef.FAMILY,''))
-            EditEventRef(self.dbstate,self.uistate,self.track,
-                         event, ref, self.obj, self.event_added)
-        except Errors.WindowActiveError:
-            pass
+        if event:
+            try:
+                ref = RelLib.EventRef()
+                if self.obj.__class__.__name__ == 'Person':
+                    ref.set_role((RelLib.EventRef.PRIMARY,''))
+                else:
+                    ref.set_role((RelLib.EventRef.FAMILY,''))
+                EditEventRef(self.dbstate,self.uistate,self.track,
+                             event, ref, self.obj, self.event_added)
+            except Errors.WindowActiveError:
+                pass
 
     def edit_button_clicked(self,obj):
         ref = self.get_selected()
@@ -1371,7 +1372,7 @@ class SourceEmbedList(EmbeddedList):
     def __init__(self,dbstate,uistate,track,obj):
         self.obj = obj
         EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _('Sources'), SourceRefModel)
+                              _('Sources'), SourceRefModel, True)
 
     def get_icon_name(self):
         return 'gramps-event'
@@ -1392,6 +1393,21 @@ class SourceEmbedList(EmbeddedList):
                           src, sref, self.add_callback)
         except Errors.WindowActiveError:
             pass
+
+    def share_button_clicked(self,obj):
+        from Editors import EditSourceRef
+        import SelectSource
+
+        sel = SelectSource.SelectSource(self.dbstate.db,"Source Select")
+        src = sel.run()
+        sref = RelLib.SourceRef()
+        if src:
+            try:
+                ref = RelLib.SourceRef()
+                EditSourceRef(self.dbstate,self.uistate,self.track,
+                              src, sref, self.add_callback)
+            except Errors.WindowActiveError:
+                pass
 
     def add_callback(self,reference, primary):
         self.get_data().append(reference)

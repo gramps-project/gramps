@@ -1,3 +1,11 @@
+2006-03-18  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamily.py: add add_person functionality
+	* src/DisplayTabs.py: add share option to sources
+	* src/glade/gramps.glade: change dialog size
+	* src/ListModel.py: fixed column widths, ellipses
+	* src/SelectEvent.py: grab correct field
+	* src/SelectSource.py: added
+
 2006-03-18  Alex Roitman  <shura@gramps-project.org>
 	* configure.in: Remove scrollkeeper checks and other unused
 	statements.

@@ -105,7 +105,7 @@ class ChildEmbedList(EmbeddedList):
         """
         self.family = family
         EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _('Children'), ChildModel)
+                              _('Children'), ChildModel, True)
 
     def find_index(self,obj):
         """
@@ -184,41 +184,67 @@ class ChildEmbedList(EmbeddedList):
         return [(1,0),(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(0,8),(0,9)]
 
     def add_button_clicked(self,obj):
-        # we could workout the death years of the parents here and
-        # set a suitable filter_spec on the PersonSelector
-        # we might also be able to set a filter that only includes
-        # people that are not already listed as children in another
-        # family.
-        selector = PersonSelector(self.dbstate,self.uistate,self.track)
+        from Editors import EditPerson
 
-        # this need the window handle of the main EditFamily window
-        # to make the PersonSelector transient to it. I am not sure
-        # want the best way is to get that handle from here.
-        #selector.set_transient_for(self.window)
+        person = RelLib.Person()
+        EditPerson(self.dbstate,self.uistate,[],person, self.new_child_added)
 
-        # Connect this to the method used to add a new child.
-        #selector.connect('add-object',self.on_add_child)
+    def new_child_added(self, person):
+        self.family.add_child_handle(person.get_handle())
+        self.rebuild()
+
+    def share_button_clicked(self,obj):
+        from SelectPerson import SelectPerson
+
+        # it only makes sense to skip those who are already in the family
         
-        selector.connect('add-object',self.on_change_child)
+        skip = [self.family.get_father_handle(),
+                self.family.get_mother_handle()] + self.family.get_child_handle_list()
 
-    def on_change_child(self, selector_window, obj):
-        if obj.__class__ == RelLib.Person:
-            try:
-                person = obj
-                self.family.add_child_handle(person.get_handle())
-                self.rebuild()
-            except:
-                log.warn(
-                    "Failed to update child: \n"
-                    "obj returned from selector was: %s\n"
-                    % (repr(obj),))
-                raise
-        else:
-            log.warn(
-                "Object selector returned obj.__class__ = %s, it should "
-                "have been of type %s." % (obj.__class__.__name__,
-                                           RelLib.Person.__name__))
-        selector_window.close()
+        sel = SelectPerson(self.dbstate.db, "Select Child",
+                           skip=[ x for x in skip if x])
+        person = sel.run()
+
+        if person:
+            self.family.add_child_handle(person.get_handle())
+            self.rebuild()
+
+#     def add_button_clicked(self,obj):
+#         # we could workout the death years of the parents here and
+#         # set a suitable filter_spec on the PersonSelector
+#         # we might also be able to set a filter that only includes
+#         # people that are not already listed as children in another
+#         # family.
+#         selector = PersonSelector(self.dbstate,self.uistate,self.track)
+
+#         # this need the window handle of the main EditFamily window
+#         # to make the PersonSelector transient to it. I am not sure
+#         # want the best way is to get that handle from here.
+#         #selector.set_transient_for(self.window)
+
+#         # Connect this to the method used to add a new child.
+#         #selector.connect('add-object',self.on_add_child)
+        
+#         selector.connect('add-object',self.on_change_child)
+
+#     def on_change_child(self, selector_window, obj):
+#         if obj.__class__ == RelLib.Person:
+#             try:
+#                 person = obj
+#                 self.family.add_child_handle(person.get_handle())
+#                 self.rebuild()
+#             except:
+#                 log.warn(
+#                     "Failed to update child: \n"
+#                     "obj returned from selector was: %s\n"
+#                     % (repr(obj),))
+#                 raise
+#         else:
+#             log.warn(
+#                 "Object selector returned obj.__class__ = %s, it should "
+#                 "have been of type %s." % (obj.__class__.__name__,
+#                                            RelLib.Person.__name__))
+#         selector_window.close()
 
     def del_button_clicked(self,obj):
         handle = self.get_selected()
