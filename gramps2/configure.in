@@ -183,42 +183,6 @@ then
 fi
 AC_MSG_RESULT($has_pyglade)
 
-dnl Checks for libraries.
-
-dnl Checks for header files.
-
-dnl ====================================
-dnl = Begin tests for scrollkeeper
-dnl ====================================
-AC_PATH_PROG(SK_CONFIG,scrollkeeper-config,no)
-if test x$SK_CONFIG = xno; then
-  AC_MSG_ERROR(Couldn't find scrollkeeper-config. Please install the scrollkeeper package: http://scrollkeeper.sourceforge.net)
-fi
-dnl ====================================
-dnl = End tests for scrollkeeper
-dnl ====================================
-
-dnl ===================================
-dnl Set localstatedir to /var/lib -- this is apparently not used 
-dnl     by anything besides scrollkeeper in our setup
-dnl ==================================
-localstatedir=/var/lib
-
-if test ${prefix} = "NONE" ; then
-   GPREFIX="/usr/local"
-else
-   GPREFIX="${prefix}"
-fi
-
-dnl ======================================================
-dnl == end of modern doc tests
-dnl ======================================================
-SCROLLKEEPER_BUILD_REQUIRED=0.3.5
-AC_SUBST(SCROLLKEEPER_BUILD_REQUIRED)
-
-AC_SUBST(GNOMEHELP)
-AC_SUBST(GPREFIX)
-
 AC_CONFIG_FILES([
 po/Makefile.in
 m4/Makefile
