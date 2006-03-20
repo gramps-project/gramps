@@ -66,6 +66,16 @@ class SelectPerson:
                          self.glade.get_widget('title'),
                          title)
 
+        import hotshot, hotshot.stats
+
+        pr = hotshot.Profile('profile.data')
+        pr.runcall(self.foo)
+        pr.close()
+        stats = hotshot.stats.load('profile.data')
+        stats.strip_dirs()
+        stats.sort_stats('time','calls')
+        stats.print_stats(35)
+        
         self.model = PeopleModel.PeopleModel(self.db,
                                              data_filter=filter,
                                              skip=skip)
@@ -76,6 +86,9 @@ class SelectPerson:
 
         if parent_window:
             self.top.set_transient_for(parent_window)
+
+    def foo(self):
+        PeopleModel.PeopleModel(self.db)
 
     def add_columns(self,tree):
         tree.set_fixed_height_mode(True)
@@ -105,13 +118,12 @@ class SelectPerson:
     def run(self):
         val = self.top.run()
         if val == gtk.RESPONSE_OK:
-
+            self.top.destroy()
             idlist = self.get_selected_ids()
             if idlist and idlist[0]:
                 return_value = self.db.get_person_from_handle(idlist[0])
             else:
                 return_value = None
-            self.top.destroy()
 	    return return_value
         else:
             self.top.destroy()
