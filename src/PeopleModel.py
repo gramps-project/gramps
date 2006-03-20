@@ -149,12 +149,11 @@ class PeopleModel(gtk.GenericTreeModel):
 
         self.sortnames = {}
 
-        cursor = self.db.person_map.db.cursor()
+        cursor = self.db.get_person_cursor()
         node = cursor.first()
         
         while node:
             handle,d = node
-            d = pickle.loads(d)
             if not (handle in skip or (dfilter and not dfilter.match(handle))):
                 name_data = d[_NAME_COL]
                 self.sortnames[handle] = nsn(name_data)
