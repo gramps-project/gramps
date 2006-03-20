@@ -127,6 +127,7 @@ class PeopleModel(gtk.GenericTreeModel):
         self.tooltip_column = 12
         self.prev_handle = None
         self.prev_data = None
+        self.temp_top_path2iter = []
         self.rebuild_data(data_filter,skip)
 
     def rebuild_data(self,data_filter=None,skip=[]):
@@ -136,7 +137,6 @@ class PeopleModel(gtk.GenericTreeModel):
     def calculate_data(self,dfilter=None,skip=[]):
         if dfilter:
             self.dfilter = dfilter
-        self.temp_top_path2iter = []
         self.temp_iter2path = {}
         self.temp_path2iter = {}
         self.temp_sname_sub = {}
@@ -147,36 +147,22 @@ class PeopleModel(gtk.GenericTreeModel):
         ngn = NameDisplay.displayer.name_grouping_name
         nsn = NameDisplay.displayer.raw_sorted_name
 
-        flist = set(skip)
         self.sortnames = {}
 
-        cursor = self.db.surnames.cursor()
+        cursor = self.db.person_map.db.cursor()
         node = cursor.first()
         
         while node:
-            n,d = node
+            handle,d = node
             d = pickle.loads(d)
-            handle = d[0]
-            surname = n
-
             if not (handle in skip or (dfilter and not dfilter.match(handle))):
-                self.sortnames[handle] = nsn(d[_NAME_COL])
-                self.temp_sname_sub[surname] = [handle]
-
-            node = cursor.next_dup()
-            while node:
-                n,d = node
-                d = pickle.loads(d)
-                handle = d[0]
-                if not (handle in skip or (dfilter and not dfilter.match(handle))):
-                    self.sortnames[handle] = nsn(d[_NAME_COL])
-                    try:
-                        self.temp_sname_sub[surname].append(handle)
-                    except:
-                        self.temp_sname_sub[surname] = [handle]
-                node = cursor.next_dup()
-
-            node = cursor.next_nodup()
+                name_data = d[_NAME_COL]
+                self.sortnames[handle] = nsn(name_data)
+                try:
+                    self.temp_sname_sub[name_data[3]].append(handle)
+                except:
+                    self.temp_sname_sub[name_data[3]] = [handle]
+            node = cursor.next()
         cursor.close()
 
         self.temp_top_path2iter = locale_sort(self.temp_sname_sub.keys())
