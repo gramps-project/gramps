@@ -84,16 +84,24 @@ def find_primary_handle(key,data):
 def find_referenced_handle(key,data):
     return str((data)[1][1])
 
+import cPickle as pickle
+
 class GrampsBSDDBCursor(GrampsCursor):
 
     def __init__(self,source,txn=None):
-        self.cursor = source.cursor(txn)
+        self.cursor = source.db.cursor(txn)
         
     def first(self):
-        return self.cursor.first()
+        d = self.cursor.first()
+        if d:
+            return (d[0],pickle.loads(d[1]))
+        return None
 
     def next(self):
-        return self.cursor.next()
+        d = self.cursor.next()
+        if d:
+            return (d[0],pickle.loads(d[1]))
+        return None
 
     def close(self):
         self.cursor.close()
