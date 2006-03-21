@@ -305,7 +305,7 @@ class PeopleModel(gtk.GenericTreeModel):
     def column_sort_name(self,data,node):
         n = Name()
         n.unserialize(data[_NAME_COL])
-        return n.get_sort_name()
+        return NameDisplay.displayer.sort_string(n)
 
     def column_spouse(self,data,node):
         spouses_names = u""

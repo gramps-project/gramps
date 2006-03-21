@@ -50,6 +50,7 @@ import Errors
 import RelLib
 from PluginUtils import Tool, register_tool
 import const
+import lds
 import Utils
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
@@ -819,13 +820,13 @@ class TestcaseGenerator(Tool.Tool):
         
         #LDS
         if randint(0,1) == 1:
-            lds = self.rand_ldsord( const.lds_baptism)
+            lds = self.rand_ldsord( lds.baptism)
             np.set_lds_baptism( lds)
         if randint(0,1) == 1:
-            lds = self.rand_ldsord( const.lds_baptism)
+            lds = self.rand_ldsord( lds.baptism)
             np.set_lds_endowment( lds)
         if randint(0,1) == 1:
-            lds = self.rand_ldsord( const.lds_csealing)
+            lds = self.rand_ldsord( lds.csealing)
             np.set_lds_sealing( lds)
 
         person_handle = self.db.add_person(np,self.trans)
@@ -879,7 +880,7 @@ class TestcaseGenerator(Tool.Tool):
             fam.set_relationship( self.rand_type(Utils.family_relations))
         else:
             fam.set_relationship((RelLib.Family.MARRIED,''))
-        lds = self.rand_ldsord( const.lds_ssealing)
+        lds = self.rand_ldsord( lds.ssealing)
         fam.set_lds_sealing( lds)
         fam_h = self.db.add_family(fam,self.trans)
         fam = self.db.commit_family(fam,self.trans)
@@ -946,7 +947,7 @@ class TestcaseGenerator(Tool.Tool):
             fam.set_relationship( self.rand_type(Utils.family_relations))
         else:
             fam.set_relationship( (RelLib.Family.MARRIED,'') )
-        lds = self.rand_ldsord( const.lds_ssealing)
+        lds = self.rand_ldsord( lds.ssealing)
         fam.set_lds_sealing( lds)
         fam.add_child_handle(child_h)
         fam_h = self.db.add_family(fam,self.trans)
@@ -1225,7 +1226,7 @@ class TestcaseGenerator(Tool.Tool):
         if randint(0,1) == 1:
             lds.set_status( randint(0,len(status_list)-1))
         if randint(0,1) == 1:
-            lds.set_temple( choice( const.lds_temple_to_abrev.keys()))
+            lds.set_temple( choice( lds.temple_to_abrev.keys()))
         if randint(0,1) == 1:
             lds.set_place_handle( self.rand_place())
         return lds

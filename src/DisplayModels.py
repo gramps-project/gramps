@@ -436,7 +436,7 @@ class FamilyModel(BaseModel):
     def sort_father(self,data):
         if data[2]:
             person = self.db.get_person_from_handle(data[2])
-            return person.primary_name.get_sort_name()
+            return NameDisplay.displayer.sort_string(person.primary_name)
         else:
             return u""
 
@@ -450,7 +450,7 @@ class FamilyModel(BaseModel):
     def sort_mother(self,data):
         if data[3]:
             person = self.db.get_person_from_handle(data[3])
-            return person.primary_name.get_sort_name()
+            return NameDisplay.displayer.sort_string(person.primary_name)
         else:
             return u""
 

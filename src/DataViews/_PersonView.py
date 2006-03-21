@@ -53,6 +53,8 @@ import Utils
 import QuestionDialog
 import TreeTips
 import Errors
+import const
+
 from Editors import EditPerson
 
 from DdTargets import DdTargets
@@ -348,8 +350,9 @@ class PersonView(PageView.PersonNavView):
                 self.generic_filter_widget.inverted())
             self.tree.set_model(self.model)
 
-            if self.model.tooltip_column != None:
-                self.tooltips = TreeTips.TreeTips(self.tree, self.model.tooltip_column,
+            if const.use_tips and self.model.tooltip_column != None:
+                self.tooltips = TreeTips.TreeTips(self.tree,
+                                                  self.model.tooltip_column,
                                                   True)
             self.build_columns()
             self.dirty = False

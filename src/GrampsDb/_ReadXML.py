@@ -1368,7 +1368,6 @@ class GrampsParser:
             if self.name.get_type() == "":
                 self.name.set_type("Birth Name")
             self.person.set_primary_name (self.name)
-            self.person.get_primary_name().build_sort_name()
         self.name = None
 
     def stop_rname(self,tag):
