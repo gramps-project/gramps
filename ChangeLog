@@ -1,3 +1,7 @@
+2006-03-20  Don Allingham  <don@gramps-project.org>
+	* src/const.py.in: fix path combination
+	* src/Config/__init__.py: actually pay attention to no_gconf
+
 2006-03-20  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/GrampsDb/_GrampsIniKeys.py: os independent path
 

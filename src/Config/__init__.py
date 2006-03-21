@@ -25,7 +25,12 @@ This package implements access to GRAMPS configuration.
 It provides the choice between different storage backends.
 """
 
-try:
-   from _GrampsGconfKeys import *
-except:
+import const
+
+if const.no_gconf:
    from _GrampsIniKeys import *
+else:
+   try:
+      from _GrampsGconfKeys import *
+   except:
+      from _GrampsIniKeys import *
