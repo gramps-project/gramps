@@ -1,3 +1,7 @@
+2006-03-20  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py: use db.THREAD to avoid 
+	RUNRECOVERY error, fix cursors
+
 2006-03-19  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditFamily.py: select person used for children
 	* src/PeopleModel.py: used raw data functions for name display
