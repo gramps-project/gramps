@@ -480,6 +480,8 @@ class EditPerson(EditPrimary):
 
         self.db.transaction_commit(trans,_("Edit Person (%s)") % self.nd.display(self.obj))
         self.close()
+        if self.callback:
+            self.callback(self.obj)
 
     def edit_name_clicked(self,obj):
         NameEdit.NameEditor(self.dbstate, self.uistate, self.track,

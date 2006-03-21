@@ -66,15 +66,15 @@ class SelectPerson:
                          self.glade.get_widget('title'),
                          title)
 
-        import hotshot, hotshot.stats
+#         import hotshot, hotshot.stats
 
-        pr = hotshot.Profile('profile.data')
-        pr.runcall(self.foo)
-        pr.close()
-        stats = hotshot.stats.load('profile.data')
-        stats.strip_dirs()
-        stats.sort_stats('time','calls')
-        stats.print_stats(35)
+#         pr = hotshot.Profile('profile.data')
+#         pr.runcall(self.foo)
+#         pr.close()
+#         stats = hotshot.stats.load('profile.data')
+#         stats.strip_dirs()
+#         stats.sort_stats('time','calls')
+#         stats.print_stats(35)
         
         self.model = PeopleModel.PeopleModel(self.db,
                                              data_filter=filter,
@@ -118,8 +118,8 @@ class SelectPerson:
     def run(self):
         val = self.top.run()
         if val == gtk.RESPONSE_OK:
-            self.top.destroy()
             idlist = self.get_selected_ids()
+            self.top.destroy()
             if idlist and idlist[0]:
                 return_value = self.db.get_person_from_handle(idlist[0])
             else:
