@@ -18,17 +18,40 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
 import os
-import const
 import signal
 import md5
+
+#-------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+#-------------------------------------------------------------------------
 import gtk
 import gobject
 
+#-------------------------------------------------------------------------
+#
+# gramps modules
+#
+#-------------------------------------------------------------------------
+import const
 import Mime
 import Config
 import Utils
 
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
 class ImgManip:
     def __init__(self,source):
         self.src = source
@@ -43,7 +66,8 @@ class ImgManip:
     def fmt_thumbnail(self,dest,width,height,cnv):
         w = int(width)
         h = int(height)
-        cmd = "%s -geometry %dx%d '%s' '%s:%s'" % (const.convert,w,h,self.src,cnv,dest)
+        cmd = "%s -geometry %dx%d '%s' '%s:%s'" % (const.convert,
+                                                   w,h,self.src,cnv,dest)
         os.system(cmd)
         
     def fmt_convert(self,dest,cnv):
@@ -63,7 +87,8 @@ class ImgManip:
     def fmt_scale_data(self,x,y,cnv):
         import popen2
         
-        cmd = "%s -geometry %dx%d '%s' '%s:-'" % (const.convert,x,y,self.src,cnv)
+        cmd = "%s -geometry %dx%d '%s' '%s:-'" % (const.convert,
+                                                  x,y,self.src,cnv)
         signal.signal (signal.SIGCHLD, signal.SIG_DFL)
         r,w = popen2.popen2(cmd)
         buf = r.read()
