@@ -27,6 +27,7 @@ Low-level handling of .ini keys.
 import os
 import time
 import ConfigParser
+import errno
 
 NL = "\n" # FIX: newlines on Mac/Windows, if different?
 
@@ -134,6 +135,12 @@ class IniKeyClient:
         if not filename:
             filename = self.filename
         if filename:
+            try:
+                head, tail = os.path.split( filename )
+                os.makedirs( head )
+            except OSError, e:
+                if e.errno != errno.EEXIST:
+                    raise
             fp = open(filename, "w")
             fp.write(";; Gramps key file" + NL)
             fp.write((";; Automatically created at %s" % time.strftime("%Y/%m/%d %H:%M:%S")) + NL + NL)
@@ -192,8 +199,7 @@ class IniKeyClient:
     def suggest_sync(self):
         self.save_ini() # save back to default file, if named
 
-# FIX: not OS-path independent:
-client = IniKeyClient(os.path.expanduser("~/.gramps/keys.ini"))
+client = IniKeyClient(os.path.expanduser("~" + os.sep + ".gramps" + os.sep + "keys.ini"))
 
 #-------------------------------------------------------------------------
 #
