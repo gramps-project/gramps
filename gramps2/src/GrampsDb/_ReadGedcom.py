@@ -31,6 +31,7 @@ import os
 import re
 import string
 import const
+import lds
 import time
 
 from TransUtils import sgettext as _
@@ -1430,8 +1431,8 @@ class GedcomParser:
             elif matches[1] == TOKEN_NOTE:
                 note = self.parse_note(matches,lds_ord,level+1,note)
             elif matches[1] == TOKEN_STAT:
-                if const.lds_status.has_key(matches[2]):
-                    lds_ord.set_status(const.lds_status[matches[2]])
+                if lds.status.has_key(matches[2]):
+                    lds_ord.set_status(lds.status[matches[2]])
             else:
                 self.barf(level+1)
 
@@ -2401,11 +2402,11 @@ def load_place_values(place,text):
 #-------------------------------------------------------------------------
 def extract_temple(matches):
     try:
-        if const.lds_temple_to_abrev.has_key(matches[2]):
-            return const.lds_temple_to_abrev[matches[2]]
+        if lds.temple_to_abrev.has_key(matches[2]):
+            return lds.temple_to_abrev[matches[2]]
         else:
             values = matches[2].split()
-            return const.lds_temple_to_abrev[values[0]]
+            return lds.temple_to_abrev[values[0]]
     except:
         return None
 

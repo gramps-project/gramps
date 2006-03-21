@@ -66,6 +66,7 @@ gdir_PYTHON = \
 	gramps.py\
 	GrampsWidgets.py\
 	ImgManip.py\
+	lds.py \
 	ListModel.py\
 	MergeData.py\
 	MergePeople.py\

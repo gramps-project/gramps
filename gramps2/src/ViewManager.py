@@ -406,9 +406,9 @@ class ViewManager:
         about = gtk.AboutDialog()
         about.set_name(const.program_name)
         about.set_version(const.version)
-        about.set_copyright(const.copyright)
+        about.set_copyright(const.copyright_msg)
         try:
-            f = open(const.license,"r")
+            f = open(const.license_file,"r")
             about.set_license(f.read().replace('\x0c',''))
             f.close()
         except:

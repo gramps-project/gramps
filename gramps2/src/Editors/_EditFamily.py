@@ -453,49 +453,49 @@ class EditFamily(EditPrimary):
         selector_window.close()
 
             
-    def mother_clicked(self, obj):
-        handle = self.obj.get_mother_handle()
-        if handle:
-            self.obj.set_mother_handle(None)
-            self.update_mother(None)
-        else:
-            from SelectPerson import SelectPerson
-
-            data_filter = FastFemaleFilter(self.dbstate.db)
-            sel = SelectPerson(self.dbstate.db, "Select Mother",
-                               filter=data_filter,
-                               skip=self.obj.get_child_handle_list())
-            person = sel.run()
-
-            if person:
-                self.obj.set_mother_handle(person.handle) 
-                self.update_mother(person.handle)
-
-#     def mother_clicked(self,obj):
+#     def mother_clicked(self, obj):
 #         handle = self.obj.get_mother_handle()
 #         if handle:
 #             self.obj.set_mother_handle(None)
 #             self.update_mother(None)
 #         else:
-#             filter_spec = PersonFilterSpec()
-#             filter_spec.set_gender(RelLib.Person.FEMALE)
+#             from SelectPerson import SelectPerson
+
+#             data_filter = FastFemaleFilter(self.dbstate.db)
+#             sel = SelectPerson(self.dbstate.db, "Select Mother",
+#                                filter=data_filter,
+#                                skip=self.obj.get_child_handle_list())
+#             person = sel.run()
+
+#             if person:
+#                 self.obj.set_mother_handle(person.handle) 
+#                 self.update_mother(person.handle)
+
+    def mother_clicked(self,obj):
+        handle = self.obj.get_mother_handle()
+        if handle:
+            self.obj.set_mother_handle(None)
+            self.update_mother(None)
+        else:
+            filter_spec = PersonFilterSpec()
+            filter_spec.set_gender(RelLib.Person.FEMALE)
             
-#             child_birth_years = []
-#             for person_handle in self.obj.get_child_handle_list():
-#                 person = self.db.get_person_from_handle(person_handle)
-#                 event_ref = person.get_birth_ref()
-#                 if event_ref and event_ref.ref:
-#                     event = self.db.get_event_from_handle(event_ref.ref)
-#                     child_birth_years.append(event.get_date_object().get_year())
+            child_birth_years = []
+            for person_handle in self.obj.get_child_handle_list():
+                person = self.db.get_person_from_handle(person_handle)
+                event_ref = person.get_birth_ref()
+                if event_ref and event_ref.ref:
+                    event = self.db.get_event_from_handle(event_ref.ref)
+                    child_birth_years.append(event.get_date_object().get_year())
                     
-#             if len(child_birth_years) > 0:
-#                 filter_spec.set_birth_year(min(child_birth_years))
-#                 filter_spec.set_birth_criteria(PersonFilterSpec.BEFORE)
+            if len(child_birth_years) > 0:
+                filter_spec.set_birth_year(min(child_birth_years))
+                filter_spec.set_birth_criteria(PersonFilterSpec.BEFORE)
                 
 
-#             selector = PersonSelector(self.dbstate,self.uistate,
-#                                       self.track,filter_spec=filter_spec)
-#             selector.connect('add-object',self.on_change_mother)
+            selector = PersonSelector(self.dbstate,self.uistate,
+                                      self.track,filter_spec=filter_spec)
+            selector.connect('add-object',self.on_change_mother)
             
     def on_change_father(self, selector_window, obj):
         if  obj.__class__ == RelLib.Person:

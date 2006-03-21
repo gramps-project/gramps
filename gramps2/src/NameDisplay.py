@@ -69,6 +69,9 @@ class NameDisplay:
         """
         self.force_upper = upper
 
+    def sort_string(self,name):
+        return u"%-25s%-30s%s" % (name.surname,name.first_name,name.suffix)
+
     def sorted(self,person):
         """
         Returns a text string representing the L{RelLib.Person} instance's

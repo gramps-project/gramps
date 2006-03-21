@@ -124,8 +124,6 @@ class Name(PrivateSourceNote,DateBase):
         """
         return [self.first_name,self.surname,self.suffix,self.title,
                 self.type[1],self.prefix,self.patronymic]
-        #return [self.first_name,self.surname,self.suffix,self.title,
-        #        self.type[1],self.prefix,self.patronymic,self.get_date()]
 
     def get_text_data_child_list(self):
         """
@@ -237,35 +235,22 @@ class Name(PrivateSourceNote,DateBase):
         """returns the type of the Name instance"""
         return self.type
 
-    def build_sort_name(self):
-        if self.surname:
-            self.sname = "%-25s%-30s%s" % (self.surname,self.first_name,self.suffix)
-        else:
-            self.sname = "@"
-
     def set_first_name(self,name):
         """sets the given name for the Name instance"""
         self.first_name = name
-        self.build_sort_name()
 
     def set_patronymic(self,name):
         """sets the patronymic name for the Name instance"""
         self.patronymic = name
-        self.build_sort_name()
 
     def set_surname(self,name):
         """sets the surname (or last name) for the Name instance"""
         self.surname = name
-        self.build_sort_name()
 
     def set_suffix(self,name):
         """sets the suffix (such as Jr., III, etc.) for the Name instance"""
         self.suffix = name
-        self.build_sort_name()
 
-    def get_sort_name(self):
-        return self.sname
-    
     def get_first_name(self):
         """returns the given name for the Name instance"""
         return self.first_name

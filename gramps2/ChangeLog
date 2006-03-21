@@ -2,6 +2,13 @@
 	* src/GrampsDb/_GrampsIniKeys.py: os independent path
 
 2006-03-20  Don Allingham  <don@gramps-project.org>
+	* src/lds.py: move LDS specific data out of const.py.in
+	* src/const.py.in: remove unused info
+	* src/DataViews.py: allow suppression of tool tips
+	* src/NameDisplay.py: sorted name key generation
+	* src/RelLib/_Name.py: remove sorted name function
+	* src/DisplayTabs.py: assign reference handle to new event_ref
+	* src/DisplayModels.py: new sort function
 	* src/Editors/_EditPerson.py: call the callback if defined
 	* src/SelectPerson.py: take out the profiling code
 	* src/GrampsDb/_GrampsBSDDB.py: use db.THREAD to avoid 

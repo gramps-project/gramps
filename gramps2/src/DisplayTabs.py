@@ -650,6 +650,7 @@ class EventEmbedList(EmbeddedList):
         self.rebuild()
 
     def event_added(self,ref,event):
+        ref.ref = event.handle
         self.get_data().append(ref)
         self.changed = True
         self.rebuild()
@@ -1524,7 +1525,7 @@ class ChildModel(gtk.ListStore):
                              self.column_birth_place(child),
                              self.column_death_place(child),
                              child.get_handle(),
-                             child.get_primary_name().get_sort_name(),
+                             NameDisplay.display.sort_string(child.primary_name),
                              self.column_birth_sort(child),
                              self.column_death_sort(child),
                              ])

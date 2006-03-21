@@ -30,6 +30,12 @@ import os
 import time
 import re
 import shutil
+
+try:
+    set()
+except:
+    from sets import Set as set
+
 from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
@@ -56,6 +62,7 @@ import gtk.glade
 import RelLib
 import GenericFilter
 import const
+import lds
 import _GedcomInfo as GedcomInfo
 import Errors
 import ansel_utf8
@@ -68,6 +75,16 @@ def keep_utf8(s):
 
 def iso8859(s):
     return s.encode('iso-8859-1','replace')
+
+#-------------------------------------------------------------------------
+#
+# GEDCOM tags representing attributes that may take a parameter, value or
+# description on the same line as the tag
+#
+#-------------------------------------------------------------------------
+personalAttributeTakesParam = set(["CAST", "DSCR", "EDUC", "IDNO",
+                                   "NATI", "NCHI", "NMR",  "OCCU",
+                                   "PROP", "RELI", "SSN",  "TITL"])
 
 #-------------------------------------------------------------------------
 #
@@ -711,7 +728,7 @@ class GedcomWriter:
                 mother_alive = Utils.probably_alive(person,self.db)
 
             if not self.restrict or ( not father_alive and not mother_alive ):
-                self.write_ord("SLGS",family.get_lds_sealing(),1,const.lds_ssealing)
+                self.write_ord("SLGS",family.get_lds_sealing(),1,lds.ssealing)
 
                 for event_ref in family.get_event_ref_list():
                     event_handle = event_ref.ref
@@ -869,9 +886,9 @@ class GedcomWriter:
 
             ad = 0
 
-            self.write_ord("BAPL",person.get_lds_baptism(),1,const.lds_baptism)
-            self.write_ord("ENDL",person.get_lds_endowment(),1,const.lds_baptism)
-            self.write_ord("SLGC",person.get_lds_sealing(),1,const.lds_csealing)
+            self.write_ord("BAPL",person.get_lds_baptism(),1,lds.baptism)
+            self.write_ord("ENDL",person.get_lds_endowment(),1,lds.baptism)
+            self.write_ord("SLGC",person.get_lds_sealing(),1,lds.csealing)
             
             for event_ref in person.get_event_ref_list():
                 event = self.db.get_event_from_handle(event_ref.ref)
@@ -904,7 +921,7 @@ class GedcomWriter:
                         else:
                             self.writeln('3 ADOP HUSB')
                 elif val :
-                    if const.personalGedcomAttributeTakesParam.has_key(val):
+                    if val in personalAttributeTakesParam:
                         if event.get_description():
                             self.writeln("1 %s %s" % (self.cnvtxt(val),\
                                                       self.cnvtxt(event.get_description())))
