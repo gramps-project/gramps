@@ -156,7 +156,7 @@ def get_thumbnail_image(path,mtype=None):
             return Mime.find_mime_type_pixbuf(mtype)
         else:
             return gtk.gdk.pixbuf_new_from_file(os.path.join(
-                const.data_dir,"document.png"))
+                const.image_dir,"document.png"))
 
 def get_thumbnail_path(path,mtype=None):
     filename = _build_thumb_path(path)

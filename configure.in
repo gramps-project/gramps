@@ -210,9 +210,9 @@ src/data/Makefile
 src/glade/Makefile
 src/images/Makefile
 src/data/templates/Makefile
-doc/Makefile
-doc/man/Makefile
-doc/man/fr/Makefile
+data/Makefile
+data/man/Makefile
+data/man/fr/Makefile
 example/Makefile
 example/gramps/Makefile
 ])
