@@ -1,4 +1,6 @@
 2006-03-20  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditPerson.py: call the callback if defined
+	* src/SelectPerson.py: take out the profiling code
 	* src/GrampsDb/_GrampsBSDDB.py: use db.THREAD to avoid 
 	RUNRECOVERY error, fix cursors
 
