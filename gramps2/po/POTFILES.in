@@ -305,8 +305,8 @@ src/plugins/writeftree.glade
 #
 #	Files to extract from and then merge into
 #
-src/data/gramps.desktop.in
-src/data/gramps.keys.in
-src/data/gramps.xml.in
-src/data/gramps.schemas.in
+data/gramps.desktop.in
+data/gramps.keys.in
+data/gramps.xml.in
+data/gramps.schemas.in
 src/data/tips.xml.in

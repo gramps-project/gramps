@@ -8,6 +8,6 @@ mandir = @mandir@/fr
 EXTRA_DIST = $(man_MANS) $(man_IN_FILES)
 
 gramps.1: $(top_builddir)/config.status gramps.1.in
-	cd $(top_builddir) && CONFIG_FILES=doc/man/fr/$@ $(SHELL) ./config.status
+	cd $(top_builddir) && CONFIG_FILES=data/man/fr/$@ $(SHELL) ./config.status
 
 CLEANFILES=$(man_MANS)

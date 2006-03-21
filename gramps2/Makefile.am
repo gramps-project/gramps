@@ -1,7 +1,7 @@
 # This is the top level Makefile for Gramps
 # $Id$
 
-SUBDIRS = m4 po src doc example help
+SUBDIRS = m4 po src data example help
 
 EXTRA_DIST = \
 	config.rpath autogen.sh gramps.spec.in gramps.spec \

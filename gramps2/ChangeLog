@@ -1,3 +1,6 @@
+2006-03-21  Alex Roitman  <shura@gramps-project.org>
+	* various: rename doc to data; move most of src/data to data.
+
 2006-03-20  Don Allingham  <don@gramps-project.org>
 	* src/const.py.in: fix path combination
 	* src/Config/__init__.py: actually pay attention to no_gconf
