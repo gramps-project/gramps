@@ -1,3 +1,8 @@
+2006-03-21  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: Send Attribute instead of None for new
+	object
+	* src/Editors/_EditAddress.py: specify callback
+
 2006-03-21  Alex Roitman  <shura@gramps-project.org>
 	* various: rename doc to data; move most of src/data to data.
 

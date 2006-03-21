@@ -66,7 +66,7 @@ class EditAddress(EditSecondary):
         parent - The class that called the Address editor.
         addr - The address that is to be edited
         """
-        EditSecondary.__init__(self, dbstate, uistate, track, addr)
+        EditSecondary.__init__(self, dbstate, uistate, track, addr, callback)
 
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "addr_edit","gramps")
