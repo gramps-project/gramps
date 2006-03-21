@@ -28,6 +28,7 @@ import os
 import time
 import ConfigParser
 import errno
+import const
 
 NL = "\n" # FIX: newlines on Mac/Windows, if different?
 
@@ -199,7 +200,7 @@ class IniKeyClient:
     def suggest_sync(self):
         self.save_ini() # save back to default file, if named
 
-client = IniKeyClient(os.path.expanduser("~" + os.sep + ".gramps" + os.sep + "keys.ini"))
+client = IniKeyClient(os.path.join(const.home_dir,"keys.ini"))
 
 #-------------------------------------------------------------------------
 #
