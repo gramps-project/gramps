@@ -1,3 +1,6 @@
+2006-03-20  Brian Matherly  <pez4brian@users.sourceforge.net>
+	* src/GrampsDb/_GrampsIniKeys.py: os independent path
+
 2006-03-20  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditPerson.py: call the callback if defined
 	* src/SelectPerson.py: take out the profiling code
