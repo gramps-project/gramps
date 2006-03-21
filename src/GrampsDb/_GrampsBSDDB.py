@@ -109,7 +109,30 @@ class GrampsBSDDBCursor(GrampsCursor):
     def delete(self):
         self.cursor.delete()
 
-class GrampsBSDDBDupCursor(GrampsBSDDBCursor):
+class GrampsBSDDBAssocCursor(GrampsCursor):
+
+    def __init__(self,source,txn=None):
+        self.cursor = source.cursor(txn)
+        
+    def first(self):
+        d = self.cursor.first()
+        if d:
+            return (d[0],pickle.loads(d[1]))
+        return None
+
+    def next(self):
+        d = self.cursor.next()
+        if d:
+            return (d[0],pickle.loads(d[1]))
+        return None
+
+    def close(self):
+        self.cursor.close()
+
+    def delete(self):
+        self.cursor.delete()
+
+class GrampsBSDDBDupCursor(GrampsBSDDBAssocCursor):
     """Cursor that includes handling for duplicate keys"""
 
     def set(self,key):
@@ -175,7 +198,7 @@ class GrampsBSDDB(GrampsDbBase):
         return GrampsBSDDBCursor(self.media_map,self.txn)
 
     def get_repository_cursor(self):
-        return GrampsBSDDBCursor(self.repository_map,self.txn)
+        return GrampsBSDDBAssocCursor(self.repository_map,self.txn)
 
     def has_person_handle(self,handle):
         """
@@ -248,7 +271,7 @@ class GrampsBSDDB(GrampsDbBase):
     # the main index is unique, the others allow duplicate entries.
 
     def get_reference_map_cursor(self):
-        return GrampsBSDDBCursor(self.reference_map,self.txn)
+        return GrampsBSDDBAssocCursor(self.reference_map,self.txn)
 
     def get_reference_map_primary_cursor(self):
         return GrampsBSDDBDupCursor(self.reference_map_primary_map,self.txn)
@@ -283,7 +306,7 @@ class GrampsBSDDB(GrampsDbBase):
         if self.UseTXN:
             env_flags = db.DB_CREATE|db.DB_RECOVER|db.DB_PRIVATE|\
                         db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
-                        db.DB_INIT_LOG|db.DB_INIT_TXN
+                        db.DB_INIT_LOG|db.DB_INIT_TXN|db.DB_THREAD
         else:
             env_flags = db.DB_CREATE|db.DB_PRIVATE|\
                         db.DB_INIT_MPOOL|db.DB_INIT_LOG
