@@ -1,4 +1,5 @@
-# Process this file with automake to produce Makefile.in
+# This is the data/man level Makefile for Gramps
+# $Id$
 
 SUBDIRS = fr
 

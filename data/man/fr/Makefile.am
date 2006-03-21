@@ -1,4 +1,5 @@
-# Process this file with automake to produce Makefile.in
+# This is the data/man/fr level Makefile for Gramps
+# $Id$
 
 man_IN_FILES = gramps.1.in
 man_MANS = $(man_IN_FILES:.1.in=.1)
