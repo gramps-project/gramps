@@ -41,7 +41,6 @@ try:
     set()
 except:
     from sets import Set as set
-    print "set not used"
     
 #-------------------------------------------------------------------------
 #
@@ -891,9 +890,10 @@ class AttrEmbedList(EmbeddedList):
         from Editors import EditAttribute
         pname = ''
         attr_list = []
+        attr = RelLib.Attribute()
         try:
             EditAttribute(
-                self.dbstate, self.uistate, self.track, None,
+                self.dbstate, self.uistate, self.track, attr,
                 pname, attr_list, self.add_callback)
         except Errors.WindowActiveError:
             pass
