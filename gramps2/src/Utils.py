@@ -66,6 +66,8 @@ gender = {
     RelLib.Person.FEMALE  : _("female"),
     RelLib.Person.UNKNOWN : _("unknown"),
     }
+def format_gender( type):
+    return gender.get(type[0],_("Invalid"))
 
 child_relations = {
     RelLib.Person.CHILD_NONE      : _("None"),
@@ -77,6 +79,10 @@ child_relations = {
     RelLib.Person.CHILD_UNKNOWN   : _("Unknown"),
     RelLib.Person.CHILD_CUSTOM    : _("Custom"),
     }
+def format_child_relation( type):
+    if type[0] == RelLib.Person.CHILD_CUSTOM:
+        return type[1]
+    return child_relations.get(type[0],_("Invalid id %d ('%s')")%type)
 
 confidence = {
     RelLib.SourceRef.CONF_VERY_HIGH : _("Very High"),
@@ -85,6 +91,8 @@ confidence = {
     RelLib.SourceRef.CONF_LOW       : _("Low"),
     RelLib.SourceRef.CONF_VERY_LOW  : _("Very Low"),
    }
+def format_confidence( type):
+    return confidence.get(type[0],_("Invalid id %d ('%s')")%type)
 
 family_events = {
     RelLib.Event.UNKNOWN    : _("Unknown"),
@@ -100,6 +108,10 @@ family_events = {
     RelLib.Event.ANNULMENT  : _("Annulment"),
     RelLib.Event.MARR_ALT   : _("Alternate Marriage"),
     }
+def format_family_event( type):
+    if type[0] == RelLib.Event.CUSTOM:
+        return type[1]
+    return family_events.get(type[0],_("Invalid id %d ('%s')")%type)
 
 personal_events = {
     RelLib.Event.UNKNOWN         : _("Unknown"),
@@ -140,6 +152,18 @@ personal_events = {
     RelLib.Event.RETIREMENT      : _("Retirement"),
     RelLib.Event.WILL            : _("Will")
     }
+def format_personal_event( type):
+    if type[0] == RelLib.Event.CUSTOM:
+        return type[1]
+    return personal_events.get(type[0],_("Invalid id %d ('%s')")%type)
+
+def format_event( type):
+    if type[0] == RelLib.Event.CUSTOM:
+        return type[1]
+    val = personal_events.get(type[0])
+    if not val:
+        val = family_events.get(type[0],_("Invalid id %d ('%s')")%type)
+    return val
 
 personal_attributes = {
     RelLib.Attribute.UNKNOWN     : _("Unknown"),
@@ -151,12 +175,28 @@ personal_attributes = {
     RelLib.Attribute.NUM_CHILD   : _("Number of Children"),
     RelLib.Attribute.SSN         : _("Social Security Number"),
     }
+def format_personal_attribute( type):
+    if type[0] == RelLib.Attribute.CUSTOM:
+        return type[1]
+    return personal_attributes.get(type[0],_("Invalid id %d ('%s')")%type)
 
 family_attributes = {
     RelLib.Attribute.UNKNOWN     : _("Unknown"),
     RelLib.Attribute.CUSTOM      : _("Custom"),
     RelLib.Attribute.NUM_CHILD   : _("Number of Children"),
     }
+def format_family_attribute( type):
+    if type[0] == RelLib.Attribute.CUSTOM:
+        return type[1]
+    return family_attributes.get(type[0],_("Invalid id %d ('%s')")%type)
+
+def format_attribute( type):
+    if type[0] == RelLib.Attribute.CUSTOM:
+        return type[1]
+    val = personal_attributes.get(type[0])
+    if not val:
+        val = family_attributes.get(type[0],_("Invalid id %d ('%s')")%type)
+    return val
 
 family_relations = {
     RelLib.Family.MARRIED     : _("Married"),
@@ -165,6 +205,10 @@ family_relations = {
     RelLib.Family.UNKNOWN     : _("Unknown"),
     RelLib.Family.CUSTOM      : _("Other"),
     }
+def format_family_relation( type):
+    if type[0] == RelLib.Family.CUSTOM:
+        return type[1]
+    return family_relations.get(type[0],_("Invalid id %d ('%s')")%type)
 
 family_rel_descriptions = {
     RelLib.Family.MARRIED     : _("A legal or common-law relationship "
@@ -186,6 +230,10 @@ name_types = {
     RelLib.Name.BIRTH   : _("Birth Name"),
     RelLib.Name.MARRIED : _("Married Name"),
     }
+def format_name_type( type):
+    if type[0] == RelLib.Name.CUSTOM:
+        return type[1]
+    return name_types.get(type[0],_("Invalid id %d ('%s')")%type)
 
 web_types = {
     RelLib.Url.UNKNOWN    : _("Unknown"),
@@ -195,6 +243,10 @@ web_types = {
     RelLib.Url.WEB_SEARCH : _("Web Search"),
     RelLib.Url.WEB_FTP    : _("FTP"),
     }
+def format_web_type( type):
+    if type[0] == RelLib.Url.CUSTOM:
+        return type[1]
+    return web_types.get(type[0],_("Invalid id %d ('%s')")%type)
 
 source_media_types = {
     RelLib.RepoRef.UNKNOWN    : _("Unknown"),
@@ -213,6 +265,10 @@ source_media_types = {
     RelLib.RepoRef.TOMBSTONE  : _("Tombstone"),
     RelLib.RepoRef.VIDEO      : _("Video"),
     }
+def format_source_media_type( type):
+    if type[0] == RelLib.RepoRef.CUSTOM:
+        return type[1]
+    return source_media_types.get(type[0],_("Invalid id %d ('%s')")%type)
 
 event_roles = {
     RelLib.EventRef.UNKNOWN   : _("Unknown"),
@@ -225,12 +281,28 @@ event_roles = {
     RelLib.EventRef.GROOM     : _("Groom"),
     RelLib.EventRef.WITNESS   : _("Witness"),
     }
+def format_personal_event_role( type):
+    if type[0] == RelLib.EventRef.CUSTOM:
+        return type[1]
+    return event_roles.get(type[0],_("Invalid id %d ('%s')")%type)
 
 family_event_roles = {
     RelLib.EventRef.UNKNOWN   : _("Unknown"),
     RelLib.EventRef.CUSTOM    : _("Custom"),
     RelLib.EventRef.FAMILY    : _("Family"),
     }
+def format_family_event_role( type):
+    if type[0] == RelLib.EventRef.CUSTOM:
+        return type[1]
+    return family_event_roles.get(type[0],_("Invalid id %d ('%s')")%type)
+
+def format_event_role( type):
+    if type[0] == RelLib.EventRef.CUSTOM:
+        return type[1]
+    val = event_roles.get(type[0])
+    if not val:
+        val = family_event_roles.get(type[0],_("Invalid id %d ('%s')")%type)
+    return val
 
 repository_types = {
     RelLib.Repository.UNKNOWN    : _("Unknown"),
@@ -245,6 +317,10 @@ repository_types = {
     RelLib.Repository.COLLECTION : _("Collection"),
     RelLib.Repository.SAFE       : _("Safe"),
     }
+def format_repository_type( type):
+    if type[0] == RelLib.Repository.CUSTOM:
+        return type[1]
+    return repository_types.get(type[0],_("Invalid id %d ('%s')")%type)
 
 
 marker_types = {
@@ -253,6 +329,11 @@ marker_types = {
     RelLib.PrimaryObject.MARKER_COMPLETE    : _("Information is complete"),
     RelLib.PrimaryObject.MARKER_TODO        : _("TODO"),
 }
+def format_marker_type( type):
+    if type[0] == RelLib.PrimaryObject.MARKER_CUSTOM:
+        return type[1]
+    return marker_types.get(type[0],_("Invalid id %d ('%s')")%type)
+
 #-------------------------------------------------------------------------
 #
 # Integer to GEDCOM tag mappings for constants

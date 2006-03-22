@@ -2101,22 +2101,6 @@ def list_person_str(database,person,empty_date="",empty_place=""):
     return text
 
  
-#-------------------------------------------------------------------------
-#
-# relationship_name
-#
-#-------------------------------------------------------------------------
-_rtype = {
-    RelLib.Family.MARRIED       : _("Married"),
-    RelLib.Family.UNMARRIED     : _("Unmarried"),
-    RelLib.Family.CIVIL_UNION   : _("Civil Union"),
-    RelLib.Family.UNKNOWN       : _("Unknown"),
-    RelLib.Family.CUSTOM         : _("Other"),
-    }
-
-def relationship_name(rtype):
-    return _rtype.get(rtype)
-
 def old_calc_age(database,person):
     """
     Calulate age. 
