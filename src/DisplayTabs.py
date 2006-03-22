@@ -1440,6 +1440,7 @@ class SourceEmbedList(EmbeddedList):
                 pass
 
     def add_callback(self,reference, primary):
+        reference.ref = primary.handle
         self.get_data().append(reference)
         self.changed = True
         self.rebuild()
