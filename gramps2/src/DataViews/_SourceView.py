@@ -37,6 +37,7 @@ import PageView
 import DisplayModels
 import const
 import Utils
+from DdTargets import DdTargets
 from Editors import EditSource, DelSrcQuery
 
 from QuestionDialog import QuestionDialog, ErrorDialog
@@ -77,6 +78,9 @@ class SourceView(PageView.ListView):
                                    DisplayModels.SourceModel,
                                    signal_map)
 
+    def drag_info(self):
+        return DdTargets.SOURCE_LINK
+    
     def define_actions(self):
         PageView.ListView.define_actions(self)
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,

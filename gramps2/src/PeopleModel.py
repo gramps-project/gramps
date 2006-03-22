@@ -29,10 +29,7 @@ from TransUtils import sgettext as _
 import time
 import cgi
 import sys
-import traceback
 import locale
-
-import cPickle as pickle
 
 try:
     set()
@@ -52,9 +49,7 @@ log = logging.getLogger(".")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
-import pango
 
 #-------------------------------------------------------------------------
 #
@@ -66,6 +61,8 @@ import NameDisplay
 import DateHandler
 import ToolTips
 import GrampsLocale
+import Utils
+import const
 
 #-------------------------------------------------------------------------
 #

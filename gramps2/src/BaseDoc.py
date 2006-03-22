@@ -1235,7 +1235,6 @@ class BaseDoc:
         self.title = name
 
     def add_draw_style(self,name,style):
-        assert(self.init_called==False)
         self.draw_styles[name] = GraphicsStyle(style)
 
     def get_draw_style(self,name):

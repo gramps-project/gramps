@@ -137,8 +137,9 @@ def run_thumbnailer(mtype, frm, to, size=const.thumbScale):
         }
 
     base = '/desktop/gnome/thumbnailers/%s' % mtype.replace('/','@')
-    cmd = Config.client.get_string(base + '/command')
-    enable = Config.client.get_bool(base + '/enable')
+
+    cmd = Config.get_string(base + '/command')
+    enable = Config.get_bool(base + '/enable')
 
     if cmd and enable:
         cmdlist = map(lambda x: sublist.get(x,x),cmd.split())

@@ -29,6 +29,8 @@ import cPickle as pickle
 import os
 from xml.sax.saxutils import escape
 from TransUtils import sgettext as _
+import Utils
+import RelLib
 
 #-------------------------------------------------------------------------
 #
@@ -105,9 +107,7 @@ class ScratchPadGrampsTypeWrapper(ScratchPadWrapper):
         ScratchPadWrapper.__init__(self,dbstate,obj)
 
         #unpack object
-        exec 'unpack_data = %s' % self._obj
-        exec 'o_type = "%s"' % unpack_data[0]
-        self._obj = pickle.loads(unpack_data[2])
+        (drag_type, idval, self._obj, val) = pickle.loads(obj)
         self._pickle = obj
 
     def pack(self):
@@ -175,45 +175,50 @@ class ScratchPadAddress(ScratchPadGrampsTypeWrapper):
             
         return s
 
-class ScratchPadEvent(ScratchPadGrampsTypeWrapper):
+class ScratchPadEvent(ScratchPadWrapper):
 
     DROP_TARGETS = [DdTargets.EVENT]
     DRAG_TARGET  = DdTargets.EVENT
     ICON         = LINK_PIC
 
     def __init__(self,dbstate,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
+        ScratchPadWrapper.__init__(self,dbstate,obj)
         self._type  = _("Event")
-        self._title = Utils.format_personal_event(self._obj.get_name())
-        self._value = self._obj.get_description()
 
+        (drag_type, idval, handle, val) = pickle.loads(obj)
+
+        value = dbstate.db.get_event_from_handle(handle)
+
+        self._title = Utils.format_personal_event(value.get_type())
+        self._value = value.get_description()
 
     def tooltip(self):
         global escape
+        return ""
         
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n" % (
-            _("Event"),
-            _("Type"),escape(Utils.format_personal_event(self._obj.get_name())),
-            _("Date"),escape(DateHander.get_date(self._obj)),
-            _("Place"),escape(place_title(self._db,self._obj)),
-            _("Cause"),escape(self._obj.get_cause()),
-            _("Description"), escape(self._obj.get_description()))
+#         s = "<big><b>%s</b></big>\n\n"\
+#             "\t<b>%s:</b>\t%s\n"\
+#             "\t<b>%s:</b>\t%s\n"\
+#             "\t<b>%s:</b>\t%s\n"\
+#             "\t<b>%s:</b>\t%s\n"\
+#             "\t<b>%s:</b>\t%s\n" % (
+#             _("Event"),
+#             _("Type"),escape(Utils.format_personal_event(self._obj.get_name())),
+#             _("Date"),escape(DateHander.get_date(self._obj)),
+#             _("Place"),escape(place_title(self._db,self._obj)),
+#             _("Cause"),escape(self._obj.get_cause()),
+#             _("Description"), escape(self._obj.get_description()))
 
-        if len(self._obj.get_source_references()) > 0:
-            psrc_ref = self._obj.get_source_references()[0]
-            psrc_id = psrc_ref.get_base_handle()
-            psrc = self._db.get_source_from_handle(psrc_id)
+#         if len(self._obj.get_source_references()) > 0:
+#             psrc_ref = self._obj.get_source_references()[0]
+#             psrc_id = psrc_ref.get_base_handle()
+#             psrc = self._db.get_source_from_handle(psrc_id)
 
-            s += "\n<big><b>%s</b></big>\n\n"\
-                 "\t<b>%s:</b>\t%s\n" % (
-                _("Primary source"),
-                _("Name"),
-                escape(short(psrc.get_title())))
+#             s += "\n<big><b>%s</b></big>\n\n"\
+#                  "\t<b>%s:</b>\t%s\n" % (
+#                 _("Primary source"),
+#                 _("Name"),
+#                 escape(short(psrc.get_title())))
 
         return s
 
@@ -356,11 +361,11 @@ class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
 
     def __init__(self,dbstate,obj):
         ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
-        self._type  = _("SourceRef")
+        self._type  = _("Source Reference")
 
         base = self._db.get_source_from_handle(self._obj.get_base_handle())
         self._title = base.get_title()
-        self._value = self._obj.get_text(),
+        self._value = self._obj.get_text()
 
     def tooltip(self):
         global escape
@@ -378,6 +383,28 @@ class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
 
         return s
 
+class ScratchPadEventRef(ScratchPadGrampsTypeWrapper):
+
+    DROP_TARGETS = [DdTargets.EVENTREF]
+    DRAG_TARGET  = DdTargets.EVENTREF
+    ICON         = BLANK_PIC
+
+    def __init__(self,dbstate,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
+        self._type  = _("EventRef")
+
+        base = self._db.get_event_from_handle(self._obj.ref)
+        self._title = base.get_description()
+
+        value = base.get_type()
+        if value == RelLib.Event.CUSTOM:
+            self._value = value[1]
+        else:
+            self._value = Utils.personal_events[value[0]]
+
+    def tooltip(self):
+        return ""
+
 class ScratchPadName(ScratchPadGrampsTypeWrapper):
 
     DROP_TARGETS = [DdTargets.NAME]
@@ -388,8 +415,11 @@ class ScratchPadName(ScratchPadGrampsTypeWrapper):
         ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
         self._type  = _("Name")
         self._title = self._obj.get_name()
-        self._value = self._obj.get_type()
-
+        value = self._obj.get_type()
+        if value == RelLib.Name.CUSTOM:
+            self._value = value[1]
+        else:
+            self._value = Utils.name_types[value[0]]
 
     def tooltip(self):
         global escape
@@ -462,10 +492,13 @@ class ScratchPersonLink(ScratchPadWrapper):
         ScratchPadWrapper.__init__(self,dbstate,obj)
         self._type  = _("Person Link")
 
-        person = self._db.get_person_from_handle(self._obj)
+        (drag_type, idval, handle, val) = pickle.loads(obj)
+        
+        person = self._db.get_person_from_handle(handle)
         self._title = person.get_primary_name().get_name()
-        birth_handle = person.get_birth_handle()
-        if birth_handle:
+        birth_ref = person.get_birth_ref()
+        if birth_ref:
+            birth_handle = birth_ref.ref
             birth = self._db.get_event_from_handle(birth_handle)
             date_str = DateHandler.get_date(birth)
             if date_str != "":
@@ -496,6 +529,27 @@ class ScratchPersonLink(ScratchPadWrapper):
                 escape(short(psrc.get_title())))
 
         return s
+
+
+class ScratchSourceLink(ScratchPadWrapper):
+
+    DROP_TARGETS = [DdTargets.SOURCE_LINK]
+    DRAG_TARGET  = DdTargets.SOURCE_LINK
+    ICON         = LINK_PIC
+
+    def __init__(self,dbstate,obj):
+        ScratchPadWrapper.__init__(self,dbstate,obj)
+        self._type  = _("Source Link")
+
+        (drag_type, idval, handle, val) = pickle.loads(obj)
+        
+        source = self._db.get_source_from_handle(handle)
+        self._title = source.get_title()
+        self._value = source.get_gramps_id()
+
+
+    def tooltip(self):
+        return ""
 
 #-------------------------------------------------------------------------
 #
@@ -646,18 +700,19 @@ class ScratchPadListView:
     def register_wrapper_classes(self):
         self.register_wrapper_class(ScratchPadAddress)
         self.register_wrapper_class(ScratchPadEvent)
+        self.register_wrapper_class(ScratchPadEventRef)
+        self.register_wrapper_class(ScratchPadSourceRef)
         self.register_wrapper_class(ScratchPadFamilyEvent)
         self.register_wrapper_class(ScratchPadUrl)
         self.register_wrapper_class(ScratchPadAttribute)
         self.register_wrapper_class(ScratchPadFamilyAttribute)
-        self.register_wrapper_class(ScratchPadSourceRef)
         self.register_wrapper_class(ScratchPadName)
         self.register_wrapper_class(ScratchPadText)
         self.register_wrapper_class(ScratchMediaObj)
+        self.register_wrapper_class(ScratchSourceLink)
         self.register_wrapper_class(ScratchPersonLink)
         self.register_wrapper_class(ScratchPersonLinkList)
         
-
     def register_wrapper_class(self,wrapper_class):
         for drop_target in wrapper_class.DROP_TARGETS:            
             self._target_type_to_wrapper_class_map[drop_target.drag_type] = wrapper_class
@@ -736,6 +791,10 @@ class ScratchPadListView:
         wrapper_class = self._target_type_to_wrapper_class_map[str(possible_wrappers[0])]
 
         o = wrapper_class(self._db,sel_data)
+#         try:
+#             o = wrapper_class(self._db,sel_data)
+#         except:
+#             return
 
         # If the wrapper object is a subclass of ScratchDropList then
         # the drag data was a list of objects and we need to decode

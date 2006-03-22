@@ -26,6 +26,7 @@
 #
 #----------------------------------------------------------------
 from TransUtils import sgettext as _
+import cPickle as pickle
 
 #----------------------------------------------------------------
 #
@@ -34,6 +35,7 @@ from TransUtils import sgettext as _
 #----------------------------------------------------------------
 import gtk
 import pango
+from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 
 #----------------------------------------------------------------
 #
@@ -350,6 +352,9 @@ class ListView(PageView):
         self.signal_map = signal_map
         dbstate.connect('database-changed',self.change_db)
 
+    def drag_info(self):
+        return None
+        
     def column_order(self):
         assert False
  
@@ -373,6 +378,8 @@ class ListView(PageView):
         self.list.set_fixed_height_mode(True)
         self.list.connect('button-press-event',self.button_press)
         self.list.connect('key-press-event',self.key_press)
+        if self.drag_info():
+            self.list.connect('drag_data_get', self.drag_data_get)
 
         scrollwindow = gtk.ScrolledWindow()
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -389,12 +396,33 @@ class ListView(PageView):
         self.columns = []
         self.build_columns()
         self.selection = self.list.get_selection()
-        #self.selection.connect('changed',self.row_changed)
+        self.selection.connect('changed',self.row_changed)
 
         self.setup_filter()
 
         return self.vbox
     
+    def row_changed(self,obj):
+        """Called with a row is changed. Check the selected objects from
+        the person_tree to get the IDs of the selected objects. Set the
+        active person to the first person in the list. If no one is
+        selected, set the active person to None"""
+
+        if self.drag_info():
+            selected_ids = self.selected_handles()
+
+            if len(selected_ids) == 1:
+                self.list.drag_source_set(BUTTON1_MASK,
+                                          [self.drag_info().target()],
+                                          ACTION_COPY)
+        
+    def drag_data_get(self, widget, context, sel_data, info, time):
+        selected_ids = self.selected_handles()
+
+        data = (self.drag_info().drag_type, id(self), selected_ids[0], 0)
+        
+        sel_data.set(sel_data.target, 8 ,pickle.dumps(data))
+
     def setup_filter(self):
         """
         Builds the default filters and add them to the filter menu.

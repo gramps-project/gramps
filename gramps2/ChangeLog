@@ -1,3 +1,29 @@
+2006-03-22  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_SourceView.py: handle drag and drop
+	* src/DataViews/_PersonView.py: handle drag and drop
+	* src/ViewManager.py: pychecker fixes
+	* src/RelLib/_Person.py: pychecker fixes
+	* src/RelLib/_Date.py: pychecker fixes
+	* src/RelLib/_Family.py: pychecker fixes
+	* src/RelLib/_Note.py: pychecker fixes
+	* src/RelLib/_EventRef.py: pychecker fixes
+	* src/PeopleModel.py: pychecker fixes
+	* src/DisplayModels.py: pychecker fixes 
+	* src/DisplayTabs.py: allow a display tab to handle other dnd types other
+	than the default. This allows reference tabs to catch their sources. SourceTab
+	can now handle catching both a sourceref and a source, for example.
+	* src/Utils.py: pychecker
+	* src/NameDisplay.py: pychecker
+	* src/ScratchPad.py: unified dnd handling with rest of system.
+	* src/DdTargets.py: support for new types (refs and handles)
+	* src/DateEdit.py: pychecker
+	* src/ListModel.py: pychecker
+	* src/gramps_main.py: pychecker
+	* src/BaseDoc.py: pychecker
+	* src/SelectSource.py: pychecker
+	* src/ImgManip.py: pychecker
+	* src/PageView.py: drag-n-drop fixes
+
 2006-03-22  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/Utils.py: Add wrappers for displaying the tuple types
 	* src/DataViews/_PedigreeView.py,

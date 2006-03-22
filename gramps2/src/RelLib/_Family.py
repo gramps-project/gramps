@@ -437,7 +437,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
             Person's L{EventRef} list.
         @type event_ref: EventRef
         """
-        if event_ref is not None and not isinstance(event_ref,EventRef):
+        if event_ref and not isinstance(event_ref,EventRef):
             raise ValueError("Expecting EventRef instance")
         self.event_ref_list.append(event_ref)
 

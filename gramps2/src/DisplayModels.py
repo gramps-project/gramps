@@ -36,7 +36,6 @@ log = logging.getLogger(".")
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
 
 #-------------------------------------------------------------------------
@@ -51,8 +50,6 @@ import Utils
 import ToolTips
 import GrampsLocale
 import const
-
-_GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
 #-------------------------------------------------------------------------
 #

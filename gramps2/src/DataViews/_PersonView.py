@@ -493,22 +493,20 @@ class PersonView(PageView.PersonNavView):
 
         if len(selected_ids) == 1:
             self.tree.drag_source_set(BUTTON1_MASK,
-                                             [DdTargets.PERSON_LINK.target()],
-                                             ACTION_COPY)
+                                      [DdTargets.PERSON_LINK.target()],
+                                      ACTION_COPY)
         elif len(selected_ids) > 1:
             self.tree.drag_source_set(BUTTON1_MASK,
-                                             [DdTargets.PERSON_LINK_LIST.target()],
-                                             ACTION_COPY)
+                                      [DdTargets.PERSON_LINK_LIST.target()],
+                                      ACTION_COPY)
         self.uistate.modify_statusbar()
         
     def drag_data_get(self, widget, context, sel_data, info, time):
         selected_ids = self.get_selected_objects()
 
-        if len(selected_ids) == 1:
-            sel_data.set(sel_data.target, 8, selected_ids[0])
-        elif len(selected_ids) > 1:
-            sel_data.set(DdTargets.PERSON_LINK_LIST.drag_type,8,
-                         pickle.dumps(selected_ids))
+        data = (DdTargets.PERSON_LINK.drag_type, id(self), selected_ids[0], 0)
+        
+        sel_data.set(sel_data.target, 8 ,pickle.dumps(data))
 
     def person_added(self,handle_list):
         self.model.clear_cache()

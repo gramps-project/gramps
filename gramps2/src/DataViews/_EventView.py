@@ -37,6 +37,7 @@ import PageView
 import DisplayModels
 import const
 import Utils
+from DdTargets import DdTargets
 from QuestionDialog import QuestionDialog, ErrorDialog
 from Editors import EditEvent, DelEventQuery
 
@@ -76,6 +77,9 @@ class EventView(PageView.ListView):
                                    column_names,len(column_names),
                                    DisplayModels.EventModel,
                                    signal_map)
+
+    def drag_info(self):
+        return DdTargets.EVENT
 
     def column_order(self):
         return self.dbstate.db.get_event_column_order()

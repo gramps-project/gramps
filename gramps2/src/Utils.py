@@ -28,7 +28,9 @@
 import os
 import sys
 import locale
-import sets
+import random
+import time
+
 from TransUtils import sgettext as _
 
 try:
@@ -417,7 +419,6 @@ data_recover_msg = _('The data can only be recovered by Undo operation '
             'or by quitting with abandoning changes.')
 
 def fix_encoding(value):
-    import locale
     if type(value) != unicode:
         try:
             return unicode(value)
@@ -428,8 +429,6 @@ def fix_encoding(value):
             return unicode(value,codeset)
     else:
         return value
-
-import locale
 
 def xml_lang():
     (loc,enc) = locale.getlocale()
@@ -856,14 +855,11 @@ def temp_label(label,widget=None):
 # create_id
 #
 #-------------------------------------------------------------------------
-import random
-import time
-from sys import maxint
 rand = random.Random(time.time())
 
 def create_id():
     return "%08x%08x" % ( int(time.time()*10000),
-                          rand.randint(0,maxint))
+                          rand.randint(0,sys.maxint))
 
 def probably_alive(person,db,current_year=None,limit=0):
     """Returns true if the person may be alive.
@@ -1287,7 +1283,7 @@ class ProgressMeter:
         while gtk.events_pending():
             gtk.main_iteration()
 
-    def warn(self,obj,obj2):
+    def warn(self,*obj):
         WarningDialog(
             _("Attempt to force closing the dialog"),
             _("Please do not force closing this important dialog."),

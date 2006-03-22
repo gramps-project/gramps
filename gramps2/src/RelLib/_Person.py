@@ -245,7 +245,7 @@ class Person(PrimaryObject,SourceNote,
         elif classname == 'Place':
             for ordinance in [self.lds_bapt,self.lds_endow,self.lds_seal]:
                 if ordinance.place in handle_list:
-                    ordinance.place == None
+                    ordinance.place = None
 
     def _replace_handle_reference(self,classname,old_handle,new_handle):
         if classname == 'Event':
@@ -273,7 +273,7 @@ class Person(PrimaryObject,SourceNote,
         elif classname == 'Place':
             for ordinance in [self.lds_bapt,self.lds_endow,self.lds_seal]:
                 if ordinance.place == old_handle:
-                    ordinance.place == new_handle
+                    ordinance.place = new_handle
 
     def get_text_data_list(self):
         """
@@ -456,7 +456,7 @@ class Person(PrimaryObject,SourceNote,
             the Person's birth.
         @type event_handle: EventRef
         """
-        if event_ref is not None and not isinstance(event_ref,EventRef):
+        if event_ref and not isinstance(event_ref,EventRef):
             raise ValueError("Expecting EventRef instance")
         self.birth_ref = event_ref
 
@@ -479,7 +479,7 @@ class Person(PrimaryObject,SourceNote,
             the Person's death.
         @type event_handle: EventRef
         """
-        if event_ref is not None and not isinstance(event_ref,EventRef):
+        if event_ref and not isinstance(event_ref,EventRef):
             raise ValueError("Expecting EventRef instance")
         self.death_ref = event_ref
 
@@ -542,7 +542,7 @@ class Person(PrimaryObject,SourceNote,
             Person's L{EventRef} list.
         @type event_ref: EventRef
         """
-        if event_ref is not None and not isinstance(event_ref,EventRef):
+        if event_ref and not isinstance(event_ref,EventRef):
             raise ValueError("Expecting EventRef instance")
         self.event_ref_list.append(event_ref)
 
