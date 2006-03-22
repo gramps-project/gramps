@@ -346,7 +346,7 @@ class FormattingHelper:
                    return text;
                 break
         if not text:
-            text = ReportUtils.relationship_name(family.get_relationship())
+            text = Utils.format_family_relation(family.get_relationship())
         return text
 
     def get_place_name( self, place_handle):

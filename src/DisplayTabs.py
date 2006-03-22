@@ -1534,31 +1534,18 @@ class ChildModel(gtk.ListStore):
     def get_data(self):
         return self.family.get_child_handle_list()
 
-    def display_rel(self,rtype):
-        if type(rtype) == tuple:
-            rel = rtype[0]
-            val = rtype[1]
-        else:
-            rel = rtype
-            val = "???"
-            
-        if rel == RelLib.Family.CUSTOM:
-            return unicode(val)
-        else:
-            return Utils.child_relations[rel]
-
     def column_father_rel(self,data):
         fhandle = self.family.handle
         for (handle, mrel, frel) in data.get_parent_family_handle_list():
             if handle == fhandle:
-                return self.display_rel(frel)
+                return Utils.format_child_relation(frel)
         return ""
 
     def column_mother_rel(self,data):
         fhandle = self.family.handle
         for (handle, mrel, frel) in data.get_parent_family_handle_list():
             if handle == fhandle:
-                return self.display_rel(mrel)
+                return Utils.format_child_relation(mrel)
         return ""
 
     def column_birth_day(self,data):
@@ -1636,24 +1623,10 @@ class EventRefModel(gtk.ListStore):
                 ])
 
     def column_type(self,event):
-        t,v = event.get_type()
-        if t == RelLib.Event.CUSTOM:
-            return v
-        else:
-            if Utils.personal_events.has_key(t):
-                return Utils.personal_events[t]
-            else:
-                return Utils.family_events[t]
+        return Utils.format_event(event.get_type())
 
     def column_role(self,event_ref):
-        t,v = event_ref.get_role()
-        if t == RelLib.EventRef.CUSTOM:
-            return v
-        else:
-            try:
-                return Utils.event_roles[t]
-            except:
-                return Utils.family_event_roles.get(t,"error %d" % t)
+        return Utils.format_event_role(event_ref.get_role())
 
     def column_date(self,event_ref):
         event = self.db.get_event_from_handle(event_ref.ref)
@@ -1686,13 +1659,7 @@ class AttrModel(gtk.ListStore):
                 ])
 
     def type_name(self, attr):
-        t,v = attr.get_type()
-        if t == RelLib.Attribute.CUSTOM:
-            return v
-        elif Utils.personal_attributes.has_key(t):
-            return Utils.personal_attributes[t]
-        else:
-            return Utils.family_attributes[t]
+        return Utils.format_attribute( attr.get_type())
 
 #-------------------------------------------------------------------------
 #
@@ -1712,11 +1679,7 @@ class NameModel(gtk.ListStore):
                 ])
 
     def type_name(self, obj):
-        t,v = obj.get_type()
-        if t == RelLib.Name.CUSTOM:
-            return v
-        else:
-            return Utils.name_types[t]
+        return Utils.format_name_type(obj.get_type())
 
 #-------------------------------------------------------------------------
 #
@@ -1767,12 +1730,7 @@ class WebModel(gtk.ListStore):
                              obj.path, obj.desc, obj])
 
     def show_type(self,rtype):
-        rel = rtype[0]
-        val = rtype[1]
-        if rel == RelLib.Url.CUSTOM:
-            return val
-        else:
-            return Utils.web_types[rel]
+        return Utils.format_web_type(rtype)
 
 #-------------------------------------------------------------------------
 #
@@ -1818,12 +1776,7 @@ class RepoRefModel(gtk.ListStore):
                              self.type_of(repo), ref,])
 
     def type_of(self,ref):
-        v,s = ref.get_type()
-        
-        if v == RelLib.RepoRef.CUSTOM:
-            return unicode(s)
-        else:
-            return Utils.source_media_types.get(v,"error %s" % v)
+        return Utils.format_source_media_type(ref.get_type())
 
 #-------------------------------------------------------------------------
 #
@@ -1890,5 +1843,3 @@ class BackRefModel(gtk.ListStore):
             self.append(row=[dtype,gid,name,handle])
             yield True
         yield False
-            
-

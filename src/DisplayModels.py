@@ -455,12 +455,7 @@ class FamilyModel(BaseModel):
             return u""
 
     def column_type(self,data):
-        t = data[5]
-        if t[0] == RelLib.Family.CUSTOM:
-            val = t[1]
-        else:
-            val = Utils.family_relations[t[0]]
-        return unicode(val)
+        return Utils.format_family_relation(data[5])
 
     def column_id(self,data):
         return unicode(data[1])
@@ -616,14 +611,7 @@ class EventModel(BaseModel):
             return u''
 
     def column_type(self,data):
-        (code,val) = data[2]
-        if code == RelLib.Event.CUSTOM:
-            return unicode(val)
-        else:
-            val = Utils.personal_events.get(code)
-            if not val:
-                val = Utils.family_events.get(code,_("Unknown"))
-            return val
+        return Utils.format_event(data[2])
 
     def column_id(self,data):
         return unicode(data[1])
@@ -709,12 +697,7 @@ class RepositoryModel(BaseModel):
         return unicode(data[1])
 
     def column_type(self,data):
-        rtype = data[2]
-        if rtype[0] == RelLib.Event.CUSTOM or rtype[0] not in Utils.repository_types:
-            name = rtype[1]
-        else:
-            name = Utils.repository_types[rtype[0]]
-        return unicode(name)
+        return Utils.format_repository_type(data[2])
 
     def column_name(self,data):
         return unicode(data[3])

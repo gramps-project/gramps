@@ -45,6 +45,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 #
 #-------------------------------------------------------------------------
 import const
+import Utils
 import TreeTips
 import DateHandler
 import GrampsDisplay
@@ -183,7 +184,7 @@ class ScratchPadEvent(ScratchPadGrampsTypeWrapper):
     def __init__(self,dbstate,obj):
         ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
         self._type  = _("Event")
-        self._title = const.display_pevent(self._obj.get_name())
+        self._title = Utils.format_personal_event(self._obj.get_name())
         self._value = self._obj.get_description()
 
 
@@ -197,7 +198,7 @@ class ScratchPadEvent(ScratchPadGrampsTypeWrapper):
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s\n" % (
             _("Event"),
-            _("Type"),escape(const.display_pevent(self._obj.get_name())),
+            _("Type"),escape(Utils.format_personal_event(self._obj.get_name())),
             _("Date"),escape(DateHander.get_date(self._obj)),
             _("Place"),escape(place_title(self._db,self._obj)),
             _("Cause"),escape(self._obj.get_cause()),
@@ -225,7 +226,7 @@ class ScratchPadFamilyEvent(ScratchPadGrampsTypeWrapper):
     def __init__(self,dbstate,obj):
         ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
         self._type  = _("Family Event")
-        self._title = const.display_fevent(self._obj.get_name())
+        self._title = Utils.format_family_event(self._obj.get_name())
         self._value = self._obj.get_description()
 
 
@@ -239,7 +240,7 @@ class ScratchPadFamilyEvent(ScratchPadGrampsTypeWrapper):
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s\n" % (
             _("Family Event"),
-            _("Type"),escape(const.display_fevent(self._obj.get_name())),
+            _("Type"),escape(Utils.format_family_event(self._obj.get_name())),
             _("Date"),escape(DateHander.get_date(self._obj)),
             _("Place"),escape(place_title(self.db,self._obj)),
             _("Cause"),escape(self._obj.get_cause()),
@@ -290,7 +291,7 @@ class ScratchPadAttribute(ScratchPadGrampsTypeWrapper):
     def __init__(self,dbstate,obj):
         ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
         self._type  = _("Attribute")
-        self._title = const.display_pattr(self._obj.get_type())
+        self._title = Utils.format_personal_attribute(self._obj.get_type())
         self._value = self._obj.get_value()
 
     def tooltip(self):
@@ -299,7 +300,7 @@ class ScratchPadAttribute(ScratchPadGrampsTypeWrapper):
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s" % (_("Attribute"),
                                   _("Type"),
-                                  escape(const.display_pattr(self._obj.get_type())),
+                                  escape(Utils.format_personal_attribute(self._obj.get_type())),
                                   _("Value"),
                                   escape(self._obj.get_value()))
         
@@ -323,7 +324,7 @@ class ScratchPadFamilyAttribute(ScratchPadGrampsTypeWrapper):
     def __init__(self,dbstate,obj):
         ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
         self._type  = _("Family Attribute")
-        self._title = const.display_fattr(self._obj.get_type())
+        self._title = Utils.format_family_attribute(self._obj.get_type())
         self._value = self._obj.get_value()
 
     def tooltip(self):
@@ -332,7 +333,7 @@ class ScratchPadFamilyAttribute(ScratchPadGrampsTypeWrapper):
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s" % (_("Family Attribute"),
                                   _("Type"),
-                                  escape(const.display_fattr(self._obj.get_type())),
+                                  escape(Utils.format_family_attribute(self._obj.get_type())),
                                   _("Value"),
                                   escape(self._obj.get_value()))
         
@@ -931,4 +932,3 @@ def place_title(db,event):
 #-------------------------------------------------------------------------
 def ScratchPad(database,person,callback,parent=None):
     ScratchPadWindow(database,parent)
-    

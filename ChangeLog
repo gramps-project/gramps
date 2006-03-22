@@ -1,3 +1,11 @@
+2006-03-22  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/Utils.py: Add wrappers for displaying the tuple types
+	* src/DataViews/_PedigreeView.py,
+	* src/PluginUtils/_ReportUtils.py,
+	* src/DisplayModels.py,
+	* src/DisplayTabs.py,
+	* src/ScratchPad.py: Use the new wrapers
+	
 2006-03-21  Don Allingham  <don@gramps-project.org>
 	* src/Config/_GramspGconfKeys.py: family_warn flag
 	* src/Config/_GramspIniKeys.py: family_warn flag
