@@ -260,6 +260,12 @@ def get_dont_ask():
 def save_dont_ask(val):
     set_bool("interface", "dont-ask",val)
 
+def get_family_warn():
+    return get_bool("interface","family-warn")
+
+def save_family_warn(val):
+    set_bool("interface","family-warn",val)
+
 def get_index_visible():
     return get_bool("interface", "index-visible")
 

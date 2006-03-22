@@ -68,6 +68,7 @@ import Spell
 import GrampsDisplay
 import RelLib
 import AutoComp
+import Config
 
 from _EditPrimary import EditPrimary
 from PluginUtils import ReportUtils
@@ -297,6 +298,22 @@ class EditFamily(EditPrimary):
         EditPrimary.__init__(self, dbstate, uistate, track,
                              family, dbstate.db.get_family_from_handle)
 
+        # look for the scenerio of a child and no parents on a new
+        # family
+        
+        if self.added and self.obj.get_father_handle() == None and \
+           self.obj.get_mother_handle() == None and \
+           len(self.obj.get_child_handle_list()) == 1:
+            if not Config.get_family_warn():
+                for i in self.hidden:
+                    i.set_sensitive(False)
+
+                glade = gtk.glade.XML(const.gladeFile,'family_warn')
+                dialog = glade.get_widget('family_warn')
+                dialog.run()
+                if glade.get_widget('dont_show').get_active():
+                    Config.save_family_warn(True)
+                dialog.destroy()
 
     def _local_init(self):
         self.build_interface()
@@ -355,6 +372,9 @@ class EditFamily(EditPrimary):
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'), self.save)
         self.define_cancel_button(self.top.get_widget('cancel'))
+
+    def _can_be_replaced(self):
+        pass
 
     def _setup_fields(self):
         
@@ -422,6 +442,8 @@ class EditFamily(EditPrimary):
                        self.obj.get_media_list()))
 
         notebook.show_all()
+
+        self.hidden = (notebook, self.top.get_widget('info'))
         self.top.get_widget('vbox').pack_start(notebook,True)
 
     def update_father(self,handle):
@@ -453,49 +475,53 @@ class EditFamily(EditPrimary):
         selector_window.close()
 
             
-#     def mother_clicked(self, obj):
+    def mother_clicked(self, obj):
+        for i in self.hidden:
+            i.set_sensitive(True)
+
+        handle = self.obj.get_mother_handle()
+
+        if handle:
+            self.obj.set_mother_handle(None)
+            self.update_mother(None)
+        else:
+            from SelectPerson import SelectPerson
+
+            data_filter = FastFemaleFilter(self.dbstate.db)
+            sel = SelectPerson(self.dbstate.db, "Select Mother",
+                               filter=data_filter,
+                               skip=self.obj.get_child_handle_list())
+            person = sel.run()
+
+            if person:
+                self.obj.set_mother_handle(person.handle) 
+                self.update_mother(person.handle)
+
+#     def mother_clicked(self,obj):
 #         handle = self.obj.get_mother_handle()
 #         if handle:
 #             self.obj.set_mother_handle(None)
 #             self.update_mother(None)
 #         else:
-#             from SelectPerson import SelectPerson
-
-#             data_filter = FastFemaleFilter(self.dbstate.db)
-#             sel = SelectPerson(self.dbstate.db, "Select Mother",
-#                                filter=data_filter,
-#                                skip=self.obj.get_child_handle_list())
-#             person = sel.run()
-
-#             if person:
-#                 self.obj.set_mother_handle(person.handle) 
-#                 self.update_mother(person.handle)
-
-    def mother_clicked(self,obj):
-        handle = self.obj.get_mother_handle()
-        if handle:
-            self.obj.set_mother_handle(None)
-            self.update_mother(None)
-        else:
-            filter_spec = PersonFilterSpec()
-            filter_spec.set_gender(RelLib.Person.FEMALE)
+#             filter_spec = PersonFilterSpec()
+#             filter_spec.set_gender(RelLib.Person.FEMALE)
             
-            child_birth_years = []
-            for person_handle in self.obj.get_child_handle_list():
-                person = self.db.get_person_from_handle(person_handle)
-                event_ref = person.get_birth_ref()
-                if event_ref and event_ref.ref:
-                    event = self.db.get_event_from_handle(event_ref.ref)
-                    child_birth_years.append(event.get_date_object().get_year())
+#             child_birth_years = []
+#             for person_handle in self.obj.get_child_handle_list():
+#                 person = self.db.get_person_from_handle(person_handle)
+#                 event_ref = person.get_birth_ref()
+#                 if event_ref and event_ref.ref:
+#                     event = self.db.get_event_from_handle(event_ref.ref)
+#                     child_birth_years.append(event.get_date_object().get_year())
                     
-            if len(child_birth_years) > 0:
-                filter_spec.set_birth_year(min(child_birth_years))
-                filter_spec.set_birth_criteria(PersonFilterSpec.BEFORE)
+#             if len(child_birth_years) > 0:
+#                 filter_spec.set_birth_year(min(child_birth_years))
+#                 filter_spec.set_birth_criteria(PersonFilterSpec.BEFORE)
                 
 
-            selector = PersonSelector(self.dbstate,self.uistate,
-                                      self.track,filter_spec=filter_spec)
-            selector.connect('add-object',self.on_change_mother)
+#             selector = PersonSelector(self.dbstate,self.uistate,
+#                                       self.track,filter_spec=filter_spec)
+#             selector.connect('add-object',self.on_change_mother)
             
     def on_change_father(self, selector_window, obj):
         if  obj.__class__ == RelLib.Person:
@@ -518,6 +544,9 @@ class EditFamily(EditPrimary):
         selector_window.close()
 
     def father_clicked(self, obj):
+        for i in self.hidden:
+            i.set_sensitive(True)
+            
         handle = self.obj.get_father_handle()
         if handle:
             self.obj.set_father_handle(None)
