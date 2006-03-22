@@ -36,8 +36,6 @@ log = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 import ViewManager
-import GrampsDisplay
-import RelLib
 import GrampsDb
 import ArgHandler
 import Config
@@ -48,6 +46,7 @@ import TipOfDay
 import DataViews
 from Mime import mime_type_is_defined
 from QuestionDialog import ErrorDialog
+from TransUtils import sgettext as _
 
 iconpaths = [const.image_dir,"."]
 

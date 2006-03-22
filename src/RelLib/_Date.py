@@ -512,7 +512,7 @@ class Date:
         if self.is_compound():
             ry = max(self.dateval[Date._POS_RYR],1)
             rm = max(self.dateval[Date._POS_RMON],1)
-            rd = max(self.dateval[_POS_RDAY],1)
+            rd = max(self.dateval[Date._POS_RDAY],1)
             sdn = Date._calendar_convert[self.calendar](ry,rm,rd)
             (ny,nm,nd) = Date._calendar_change[calendar](sdn)
             self.dateval = (d,m,y,self.dateval[Date._POS_SL],

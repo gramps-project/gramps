@@ -44,6 +44,7 @@ log = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 import gtk
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -68,7 +69,6 @@ import Bookmarks
 import RecentFiles
 import NameDisplay
 import Mime
-import Config
 import GrampsWidgets
 
 #-------------------------------------------------------------------------
@@ -369,30 +369,35 @@ class ViewManager:
         self.uimanager.insert_action_group(self.redoactions,1)
 
     def home_page_activate(self,obj):
+        import GrampsDisplay
         GrampsDisplay.url(const.url_homepage)
 
     def mailing_lists_activate(self,obj):
+        import GrampsDisplay
         GrampsDisplay.url( const.url_mailinglist)
 
     def preferences_activate(self,obj):
         GrampsCfg.display_preferences_box(self.state.db)
 
     def report_bug_activate(self,obj):
+        import GrampsDisplay
         GrampsDisplay.url( const.url_bugtracker)
 
     def manual_activate(self,obj):
         """Display the GRAMPS manual"""
         try:
+            import GrampsDisplay
             GrampsDisplay.help('index')
         except gobject.GError, msg:
-            ErrorDialog(_("Could not open help"),str(msg))
+            QuestionDialog.ErrorDialog(_("Could not open help"),str(msg))
 
     def faq_activate(self,obj):
         """Display FAQ"""
         try:
+            import GrampsDisplay
             GrampsDisplay.help('faq')
         except gobject.GError, msg:
-            ErrorDialog(_("Could not open help"),str(msg))
+            QuestionDialog.ErrorDialog(_("Could not open help"),str(msg))
 
     def tip_of_day_activate(self,obj):
         """Display Tip of the day"""
@@ -487,7 +492,7 @@ class ViewManager:
         if num == -1:
             num = self.notebook.get_current_page()
 
-        if self.state.open == True:
+        if self.state.open:
 
             for mergeid in self.merge_ids:
                 self.uimanager.remove_ui(mergeid)
@@ -714,21 +719,24 @@ class ViewManager:
         filename = os.path.normpath(os.path.abspath(filename))
 
         if os.path.isdir(filename):
-            ErrorDialog(_('Cannot open database'),
-                        _('The selected file is a directory, not '
-                          'a file.\nA GRAMPS database must be a file.'))
+            QuestionDialog.ErrorDialog(
+                _('Cannot open database'),
+                _('The selected file is a directory, not '
+                  'a file.\nA GRAMPS database must be a file.'))
             return False
         elif os.path.exists(filename):
             if not os.access(filename,os.R_OK):
-                ErrorDialog(_('Cannot open database'),
-                            _('You do not have read access to the selected '
-                              'file.'))
+                QuestionDialog.ErrorDialog(
+                    _('Cannot open database'),
+                    _('You do not have read access to the selected '
+                      'file.'))
                 return False
             elif not os.access(filename,os.W_OK):
                 mode = "r"
-                QuestionDialog.WarningDialog(_('Read only database'),
-                                             _('You do not have write access '
-                                               'to the selected file.'))
+                QuestionDialog.WarningDialog(
+                    _('Read only database'),
+                    _('You do not have write access '
+                      'to the selected file.'))
 
         try:
             os.chdir(os.path.dirname(filename))
@@ -755,15 +763,17 @@ class ViewManager:
                     self.uistate.window.set_title(msg)
             else:
                 Config.save_last_file("")
-                QuestionDialog.ErrorDialog(_('Cannot open database'),
-                            _('The database file specified could not be opened.'))
+                QuestionDialog.ErrorDialog(
+                    _('Cannot open database'),
+                    _('The database file specified could not be opened.'))
                 return False
         except ( IOError, OSError, Errors.FileVersionError), msg:
             QuestionDialog.ErrorDialog(_('Cannot open database'),str(msg))
             return False
         except (db.DBAccessError,db.DBError), msg:
-            QuestionDialog.ErrorDialog(_('Cannot open database'),
-                        _('%s could not be opened.' % filename) + '\n' + msg[1])
+            QuestionDialog.ErrorDialog(
+                _('Cannot open database'),
+                _('%s could not be opened.' % filename) + '\n' + msg[1])
             return False
         except Exception:
             log.error("Failed to open database.", exc_info=True)
@@ -851,19 +861,18 @@ class ViewManager:
             name = NameDisplay.displayer.display(self.state.active)
             self.uistate.push_message(_("%s has been bookmarked") % name)
         else:
-            WarningDialog(_("Could Not Set a Bookmark"),
-                          _("A bookmark could not be set because "
-                            "no one was selected."))
+            QuestionDialog.WarningDialog(
+                _("Could Not Set a Bookmark"),
+                _("A bookmark could not be set because "
+                  "no one was selected."))
 
     def edit_bookmarks(self,obj):
         self.bookmarks.edit()
 
     def reports_clicked(self,obj):
-        import Plugins
         Plugins.ReportPlugins(self.state,self.uistate,[])
 
     def tools_clicked(self,obj):
-        import Plugins
         Plugins.ToolPlugins(self.state,self.uistate,[])
         
     def scratchpad(self,obj):

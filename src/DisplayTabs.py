@@ -313,6 +313,7 @@ class EmbeddedList(ButtonTab):
     
     _HANDLE_COL = -1
     _DND_TYPE   = None
+    _DND_EXTRA  = None
     
     def __init__(self, dbstate, uistate, track, name, build_model,share=False):
         """
@@ -350,8 +351,13 @@ class EmbeddedList(ButtonTab):
         on the _DND_TYPE. Obviously, this means that there must be a _DND_TYPE
         variable defined that points to an entry in DdTargets.
         """
-        self.tree.drag_dest_set(gtk.DEST_DEFAULT_ALL, [self._DND_TYPE.target()],
-                                ACTION_COPY)
+
+        if self._DND_EXTRA:
+            dnd_types = [ self._DND_TYPE.target(), self._DND_EXTRA.target() ]
+        else:
+            dnd_types = [ self._DND_TYPE.target() ]
+        
+        self.tree.drag_dest_set(gtk.DEST_DEFAULT_ALL, dnd_types, ACTION_COPY)
         self.tree.drag_source_set(BUTTON1_MASK, [self._DND_TYPE.target()], ACTION_COPY)
         self.tree.connect('drag_data_get', self.drag_data_get)
         self.tree.connect('drag_data_received', self.drag_data_received)
@@ -377,8 +383,8 @@ class EmbeddedList(ButtonTab):
             return
 
         # pickle the data, and build the tuple to be passed
-        pickled = pickle.dumps(obj);
-        data = str((self._DND_TYPE.drag_type, id(self), pickled, self.find_index(obj)))
+        value = (self._DND_TYPE.drag_type, id(self), obj,self.find_index(obj))
+        data = pickle.dumps(value)
 
         # pass as a string (8 bits)
         sel_data.set(sel_data.target, 8, data)
@@ -391,10 +397,10 @@ class EmbeddedList(ButtonTab):
         and decide if this is a move or a reorder.
         """
         if sel_data and sel_data.data:
-            exec 'dnddata = %s' % sel_data.data
+            dnddata = pickle.loads(sel_data.data)
             mytype = dnddata[0]
             selfid = dnddata[1]
-            obj = pickle.loads(dnddata[2])
+            obj = dnddata[2]
             row_from = dnddata[3]
 
             # make sure this is the correct DND type for this object
@@ -411,6 +417,11 @@ class EmbeddedList(ButtonTab):
                 else:
                     self._handle_drag(row,obj)
                 self.rebuild()
+            elif self._DND_EXTRA and mytype == self._DND_EXTRA.drag_type:
+                self.handle_extra_type(mytype,obj)
+
+    def handle_extra_type(self, objtype, obj):
+        pass
 
     def _find_row(self,x,y):
         row = self.tree.get_path_at_pos(x,y)
@@ -568,6 +579,7 @@ class EventEmbedList(EmbeddedList):
 
     _HANDLE_COL = 6
     _DND_TYPE   = DdTargets.EVENTREF
+    _DND_EXTRA  = DdTargets.EVENT
 
     _MSG = {
         'add'   : _('Add a new event'),
@@ -598,6 +610,22 @@ class EventEmbedList(EmbeddedList):
 
     def column_order(self):
         return ((1,0),(1,1),(1,2),(1,3),(1,4),(1,5))
+
+    def handle_extra_type(self, objtype, obj):
+        from Editors import EditEventRef
+        try:
+            ref = RelLib.EventRef()
+            event = self.dbstate.db.get_event_from_handle(obj)
+            if self.obj.__class__.__name__ == 'Person':
+                event.set_type((RelLib.Event.BIRTH,''))
+                ref.set_role((RelLib.EventRef.PRIMARY,''))
+            else:
+                event.set_type((RelLib.Event.MARRIAGE,''))
+                ref.set_role((RelLib.EventRef.FAMILY,''))
+            EditEventRef(self.dbstate,self.uistate,self.track,
+                         event, ref, self.obj, self.event_added)
+        except Errors.WindowActiveError:
+            pass
 
     def add_button_clicked(self,obj):
         from Editors import EditEventRef
@@ -1362,6 +1390,7 @@ class SourceEmbedList(EmbeddedList):
 
     _HANDLE_COL = 4
     _DND_TYPE = DdTargets.SOURCEREF
+    _DND_EXTRA = DdTargets.SOURCE_LINK
         
     _column_names = [
         (_('ID'),     0, 75),
@@ -1430,6 +1459,18 @@ class SourceEmbedList(EmbeddedList):
     def edit_callback(self,refererence,primary):
         self.changed = True
         self.rebuild()
+
+    def handle_extra_type(self, objtype, obj):
+        from Editors import EditSourceRef
+        
+        sref = RelLib.SourceRef()
+        src = self.dbstate.db.get_source_from_handle(obj)
+        try:
+            EditSourceRef(self.dbstate, self.uistate, self.track,
+                          src, sref, self.add_callback)
+        except Errors.WindowActiveError:
+            pass
+
 
 #-------------------------------------------------------------------------
 #

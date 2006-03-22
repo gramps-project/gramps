@@ -68,6 +68,7 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
         """
         Creates a new EventRef instance, copying from the source if present.
         """
+        BaseObject.__init__(self)
         PrivacyBase.__init__(self)
         NoteBase.__init__(self)
         if source:

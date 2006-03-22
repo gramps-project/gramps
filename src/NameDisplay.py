@@ -136,7 +136,6 @@ class NameDisplay:
         """
 
         first = raw_data[2]
-        surname = raw_data[3]
         suffix = raw_data[4]
         prefix = raw_data[7]
         patronymic = raw_data[8]
@@ -152,7 +151,7 @@ class NameDisplay:
             else:
                 return "%s %s, %s" % (last, suffix, first)
         else:
-            if name.prefix:
+            if prefix:
                 return "%s %s, %s" % (prefix, last, first)
             else:
                 return "%s, %s" % (last, first)

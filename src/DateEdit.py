@@ -145,7 +145,7 @@ class DateEdit:
                 self.pixmap_obj.render_icon(gtk.STOCK_DIALOG_WARNING,
                                             gtk.ICON_SIZE_MENU))
         
-    def parse_and_check(self,obj,val):
+    def parse_and_check(self,*obj):
         """
         Called with the text box loses focus. Parses the text and calls 
         the check() method ONLY if the text has changed.

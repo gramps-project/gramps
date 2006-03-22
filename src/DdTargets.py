@@ -95,7 +95,7 @@ class _DdTargets(object):
     def __new__(cls):
         """Ensure that we never have more than one instance."""
         
-        if _DdTargets._instance is not None:
+        if _DdTargets._instance:
             return _DdTargets._instance
         _DdTargets._instance = object.__new__(cls)
         return _DdTargets._instance        
@@ -108,7 +108,7 @@ class _DdTargets(object):
         
         self.URL       = _DdType(self,'url')
         self.EVENT     = _DdType(self,'pevent')
-        self.EVENTREF  = _DdType(self,'peventref')
+        self.EVENTREF  = _DdType(self,'eventref')
         self.ATTRIBUTE = _DdType(self,'pattr')
         self.ADDRESS   = _DdType(self,'paddr')
         self.SOURCEREF = _DdType(self,'srcref')
@@ -120,6 +120,8 @@ class _DdTargets(object):
         self.PERSON_LINK  = _DdType(self,'person-link')
         self.PERSON_LINK_LIST  = _DdType(self,'person-link-list')
 
+        self.SOURCE_LINK  = _DdType(self,'source-link')
+
         self.FAMILY_EVENT     = _DdType(self,'fevent')
         self.FAMILY_ATTRIBUTE = _DdType(self,'fattr')
 
@@ -130,14 +132,16 @@ class _DdTargets(object):
                                   self.EVENT,
                                   self.ATTRIBUTE,
                                   self.ADDRESS,
+                                  self.SOURCE_LINK,
                                   self.SOURCEREF,
+                                  self.EVENTREF,
                                   self.NAME,
                                   self.MEDIAOBJ,
                                   self.PERSON_LINK,
                                   self.PERSON_LINK_LIST]
         
         self.CHILD     = _DdType(self,'child')
-        self.SPOUSE    = _DdType(self,'spouce')
+        self.SPOUSE    = _DdType(self,'spouse')
 
         self.TEXT          = _DdType(self,'TEXT',0,1)
         self.TEXT_MIME     = _DdType(self,'text/plain',0,0)

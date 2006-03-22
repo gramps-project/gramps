@@ -20,7 +20,6 @@
 
 import gtk
 import pango
-import const
 
 gtk26 = gtk.pygtk_version >= (2,6,0)
 
