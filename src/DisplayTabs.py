@@ -1525,7 +1525,7 @@ class ChildModel(gtk.ListStore):
                              self.column_birth_place(child),
                              self.column_death_place(child),
                              child.get_handle(),
-                             NameDisplay.display.sort_string(child.primary_name),
+                             NameDisplay.displayer.sort_string(child.primary_name),
                              self.column_birth_sort(child),
                              self.column_death_sort(child),
                              ])
