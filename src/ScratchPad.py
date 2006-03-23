@@ -31,6 +31,7 @@ from xml.sax.saxutils import escape
 from TransUtils import sgettext as _
 import Utils
 import RelLib
+from time import strftime as strftime
 
 #-------------------------------------------------------------------------
 #
@@ -819,10 +820,14 @@ class ScratchPadListView:
         model = widget.get_model()
         sel_data = selection.data
 
+        # In Windows time is always zero. Until that is fixed, use the seconds
+        # of the local time to filter out double drops.
+        realTime = strftime("%S")
+
         # There is a strange bug that means that if there is a selection
         # in the list we get multiple drops of the same object. Luckily
         # the time values are the same so we can drop all but the first.
-        if time == self._previous_drop_time:
+        if realTime == self._previous_drop_time:
             return 
         
         # Find a wrapper class
@@ -865,7 +870,7 @@ class ScratchPadListView:
             
 
         # remember time for double drop workaround.
-        self._previous_drop_time = time
+        self._previous_drop_time = realTime
 
 
     # proxy methods to provide access to the real widget functions.
