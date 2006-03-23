@@ -1,3 +1,6 @@
+2006-03-23  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamily.py: fix arglist to save
+
 2006-03-23  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DdTargets.py,
 	* src/DisplayTabs.py,
