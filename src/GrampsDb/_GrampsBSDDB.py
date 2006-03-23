@@ -198,7 +198,7 @@ class GrampsBSDDB(GrampsDbBase):
         return GrampsBSDDBCursor(self.media_map,self.txn)
 
     def get_repository_cursor(self):
-        return GrampsBSDDBAssocCursor(self.repository_map,self.txn)
+        return GrampsBSDDBCursor(self.repository_map,self.txn)
 
     def has_person_handle(self,handle):
         """

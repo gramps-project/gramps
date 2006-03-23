@@ -183,7 +183,7 @@ class ScratchPadEvent(ScratchPadWrapper):
 
     def __init__(self,dbstate,obj):
         ScratchPadWrapper.__init__(self,dbstate,obj)
-        self._type  = _("Event")
+        self._type  = _("Event Link")
 
         (drag_type, idval, handle, val) = pickle.loads(obj)
 
@@ -383,6 +383,28 @@ class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
 
         return s
 
+class ScratchPadRepoRef(ScratchPadGrampsTypeWrapper):
+
+    DROP_TARGETS = [DdTargets.REPOREF]
+    DRAG_TARGET  = DdTargets.REPOREF
+    ICON         = BLANK_PIC
+
+    def __init__(self,dbstate,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
+        self._type  = _("Repository Reference")
+
+        base = self._db.get_repository_from_handle(self._obj.ref)
+        self._title = base.get_name()
+
+        value = base.get_type()
+        if value == RelLib.Repository.CUSTOM:
+            self._value = value[1]
+        else:
+            self._value = Utils.repository_types[value[0]]
+
+    def tooltip(self):
+        return ""
+
 class ScratchPadEventRef(ScratchPadGrampsTypeWrapper):
 
     DROP_TARGETS = [DdTargets.EVENTREF]
@@ -551,6 +573,29 @@ class ScratchSourceLink(ScratchPadWrapper):
     def tooltip(self):
         return ""
 
+class ScratchRepositoryLink(ScratchPadWrapper):
+
+    DROP_TARGETS = [DdTargets.REPO_LINK]
+    DRAG_TARGET  = DdTargets.REPO_LINK
+    ICON         = LINK_PIC
+
+    def __init__(self,dbstate,obj):
+        ScratchPadWrapper.__init__(self,dbstate,obj)
+        self._type  = _("Repository Link")
+
+        (drag_type, idval, handle, val) = pickle.loads(obj)
+        
+        source = self._db.get_repository_from_handle(handle)
+        self._title = source.get_name()
+        value = source.get_type()
+        if value == RelLib.Repository.CUSTOM:
+            self._value = value[1]
+        else:
+            self._value = Utils.repository_types[value[0]]
+
+    def tooltip(self):
+        return ""
+
 #-------------------------------------------------------------------------
 #
 # Wrapper classes to deal with lists of objects
@@ -707,7 +752,8 @@ class ScratchPadListView:
         self.register_wrapper_class(ScratchPadAttribute)
         self.register_wrapper_class(ScratchPadFamilyAttribute)
         self.register_wrapper_class(ScratchPadName)
-        self.register_wrapper_class(ScratchPadText)
+        self.register_wrapper_class(ScratchPadRepoRef)
+        self.register_wrapper_class(ScratchRepositoryLink)
         self.register_wrapper_class(ScratchMediaObj)
         self.register_wrapper_class(ScratchSourceLink)
         self.register_wrapper_class(ScratchPersonLink)

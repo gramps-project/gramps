@@ -1482,6 +1482,7 @@ class RepoEmbedList(EmbeddedList):
 
     _HANDLE_COL = 4
     _DND_TYPE = DdTargets.REPOREF
+    _DND_EXTRA = DdTargets.REPO_LINK
         
     _column_names = [
         (_('ID'),     0, 75),
@@ -1505,12 +1506,12 @@ class RepoEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2),(1,3))
 
     def add_button_clicked(self,obj):
-        from Editors import EditRepositoryRef
+        from Editors import EditRepoRef
         
         ref = RelLib.RepoRef()
         repo = RelLib.Repository()
         try:
-            EditRepositoryRef(
+            EditRepoRef.EditRepoRef(
                 self.dbstate, self.uistate, self.track,
                 repo, ref, self.add_callback)
         except Errors.WindowActiveError:
