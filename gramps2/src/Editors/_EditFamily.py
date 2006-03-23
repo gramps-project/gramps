@@ -654,7 +654,7 @@ class EditFamily(EditPrimary):
                     person.family_list.append(self.obj.handle)
                 self.db.commit_person(person,trans)
 
-    def save(self,obj):
+    def save(self,*obj):
         if not self.added:
             original = self.db.get_family_from_handle(self.obj.handle)
         else:
