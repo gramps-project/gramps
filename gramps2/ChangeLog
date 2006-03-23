@@ -1,4 +1,6 @@
 2006-03-22  Don Allingham  <don@gramps-project.org>
+	* src/ScratchPad.py: handle repositories
+	* 
 	* src/DataViews/_SourceView.py: handle drag and drop
 	* src/DataViews/_PersonView.py: handle drag and drop
 	* src/ViewManager.py: pychecker fixes

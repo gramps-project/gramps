@@ -38,6 +38,7 @@ import DisplayModels
 import const
 import Utils
 from Editors import EditRepository, DelRepositoryQuery
+from DdTargets import DdTargets
 
 from QuestionDialog import QuestionDialog, ErrorDialog
 
@@ -83,6 +84,8 @@ class RepositoryView(PageView.ListView):
                                    DisplayModels.RepositoryModel,
                                    signal_map)
 
+    def drag_info(self):
+        return DdTargets.REPO_LINK
 
     def define_actions(self):
         PageView.ListView.define_actions(self)

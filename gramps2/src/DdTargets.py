@@ -113,6 +113,7 @@ class _DdTargets(object):
         self.ADDRESS   = _DdType(self,'paddr')
         self.SOURCEREF = _DdType(self,'srcref')
         self.REPOREF   = _DdType(self,'reporef')
+        self.REPO_LINK = _DdType(self,'repo-link')
         self.NAME      = _DdType(self,'name')
         self.MEDIAOBJ  = _DdType(self,'mediaobj')
         self.DATA      = _DdType(self,'data_tuple')
@@ -136,6 +137,8 @@ class _DdTargets(object):
                                   self.SOURCEREF,
                                   self.EVENTREF,
                                   self.NAME,
+                                  self.REPO_LINK,
+                                  self.REPOREF,
                                   self.MEDIAOBJ,
                                   self.PERSON_LINK,
                                   self.PERSON_LINK_LIST]
