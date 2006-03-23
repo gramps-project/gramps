@@ -1505,6 +1505,17 @@ class RepoEmbedList(EmbeddedList):
     def column_order(self):
         return ((1,0),(1,1),(1,2),(1,3))
 
+    def handle_extra_type(self, objtype, obj):
+        from Editors import EditRepoRef
+        try:
+            ref = RelLib.RepoRef()
+            repo = self.dbstate.db.get_repository_from_handle(obj)
+            EditRepoRef.EditRepoRef(
+                self.dbstate,self.uistate,self.track,
+                repo, ref, self.obj, self.add_callback)
+        except Errors.WindowActiveError:
+            pass
+
     def add_button_clicked(self,obj):
         from Editors import EditRepoRef
         
@@ -1524,13 +1535,13 @@ class RepoEmbedList(EmbeddedList):
         self.rebuild()
 
     def edit_button_clicked(self,obj):
-        from Editors import EditRepositoryRef
+        from Editors import EditRepoRef
 
         ref = self.get_selected()
         if ref:
             repo = self.dbstate.db.get_repository_from_handle(ref.ref)
             try:
-                Editors.EditRepositoryRef(
+                Editors.EditRepoRef(
                     self.dbstate, self.uistate, self.track, repo,
                     ref, self.edit_callback)
             except Errors.WindowActiveError:
