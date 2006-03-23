@@ -1116,7 +1116,7 @@ class AddrEmbedList(EmbeddedList):
 class LocationEmbedList(EmbeddedList):
 
     _HANDLE_COL = 5
-    _DND_TYPE   = DdTargets.ADDRESS
+    _DND_TYPE   = DdTargets.LOCATION
 
     _column_names = [
         (_('City'),           0, 150),

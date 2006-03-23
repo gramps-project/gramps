@@ -176,6 +176,38 @@ class ScratchPadAddress(ScratchPadGrampsTypeWrapper):
             
         return s
 
+class ScratchPadLocation(ScratchPadGrampsTypeWrapper):
+
+    DROP_TARGETS = [DdTargets.LOCATION]
+    DRAG_TARGET  = DdTargets.LOCATION
+    ICON         = BLANK_PIC
+    
+    def __init__(self,dbstate,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
+        self._type  = _("Location")
+        self._value = "%s %s %s" % (self._obj.get_city(),
+                                    self._obj.get_state(),self._obj.get_country())
+
+
+    def tooltip(self):
+        global escape
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\n"\
+            "\t\t%s\n"\
+            "\t\t%s\n"\
+            "\t\t%s\n"\
+            "\t\t%s\n"\
+            "\t<b>%s:</b>\t%s\n" % (
+            _("Location"),
+            escape(self._obj.get_city()),
+            escape(self._obj.get_state()),
+            escape(self._obj.get_country()),
+            escape(self._obj.get_postal_code()),
+            _("Telephone"), escape(self._obj.get_phone()))
+
+        return s
+
 class ScratchPadEvent(ScratchPadWrapper):
 
     DROP_TARGETS = [DdTargets.EVENT]
@@ -745,6 +777,7 @@ class ScratchPadListView:
     
     def register_wrapper_classes(self):
         self.register_wrapper_class(ScratchPadAddress)
+        self.register_wrapper_class(ScratchPadLocation)
         self.register_wrapper_class(ScratchPadEvent)
         self.register_wrapper_class(ScratchPadEventRef)
         self.register_wrapper_class(ScratchPadSourceRef)
