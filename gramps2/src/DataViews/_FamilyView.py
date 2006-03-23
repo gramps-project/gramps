@@ -478,11 +478,19 @@ class FamilyView(PageView.PersonNavView):
         self.attach.attach(label,_PLABEL_START,_PLABEL_STOP,self.row,
                            self.row+1, xoptions=gtk.FILL|gtk.SHRINK)
 
-        link_label = GrampsWidgets.LinkLabel(self.get_name(handle,True),
-                                             self.button_press,handle)
-        button = GrampsWidgets.IconButton(self.edit_button_press,handle)
-        self.attach.attach(GrampsWidgets.LinkBox(link_label,button),
-                           _PDATA_START,_PDATA_STOP,self.row,self.row+1)
+        if handle:
+            link_label = GrampsWidgets.LinkLabel(self.get_name(handle,True),
+                                                 self.button_press,handle)
+            button = GrampsWidgets.IconButton(self.edit_button_press,handle)
+            self.attach.attach(GrampsWidgets.LinkBox(link_label,button),
+                               _PDATA_START,_PDATA_STOP,self.row,self.row+1)
+        else:
+            link_label = gtk.Label(_('Unknown'))
+            link_label.set_alignment(0,0.5)
+            link_label.show()
+            self.attach.attach(link_label,
+                               _PDATA_START,_PDATA_STOP,self.row,self.row+1)
+            
         self.row += 1
 
     def write_child(self,title,handle):
