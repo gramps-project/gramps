@@ -111,6 +111,7 @@ class _DdTargets(object):
         self.EVENTREF  = _DdType(self,'eventref')
         self.ATTRIBUTE = _DdType(self,'pattr')
         self.ADDRESS   = _DdType(self,'paddr')
+        self.LOCATION  = _DdType(self,'location')
         self.SOURCEREF = _DdType(self,'srcref')
         self.REPOREF   = _DdType(self,'reporef')
         self.REPO_LINK = _DdType(self,'repo-link')
@@ -133,6 +134,7 @@ class _DdTargets(object):
                                   self.EVENT,
                                   self.ATTRIBUTE,
                                   self.ADDRESS,
+                                  self.LOCATION,
                                   self.SOURCE_LINK,
                                   self.SOURCEREF,
                                   self.EVENTREF,
