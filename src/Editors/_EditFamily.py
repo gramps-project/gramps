@@ -341,7 +341,6 @@ class EditFamily(EditPrimary):
                 break;
 
     def reload_people(self):
-        print "REBUILDING!!!!"
         fhandle = self.obj.get_father_handle()
         self.update_father(fhandle)
 
@@ -584,7 +583,6 @@ class EditFamily(EditPrimary):
                 mother = self.dbstate.db.get_person_from_handle(mother_handle)
                 mfam = set(mother.get_family_handle_list())
                 common = list(mfam.intersection(ffam))
-                print common, self.obj.handle
                 if len(common) > 0:
                     if self.add_parent:
                         clist = self.obj.get_child_handle_list()
@@ -754,8 +752,11 @@ class EditFamily(EditPrimary):
             # add the family from children which have been addedna
             for handle in new_set.difference(orig_set):
                 person = self.db.get_person_from_handle(handle)
-                #person.remove_parent_family_handle(self.obj.handle)
-                #self.db.commit_person(person,trans)
+                person.add_parent_family_handle(self.obj.handle,
+                                               (RelLib.Person.CHILD_BIRTH,''),
+                                               (RelLib.Person.CHILD_BIRTH,''),
+                                               )
+                self.db.commit_person(person,trans)
 
             self.db.commit_family(self.obj,trans)
             self.db.transaction_commit(trans,_("Edit Family"))
