@@ -304,6 +304,7 @@ class EditFamily(EditPrimary):
         if self.added and self.obj.get_father_handle() == None and \
            self.obj.get_mother_handle() == None and \
            len(self.obj.get_child_handle_list()) == 1:
+            self.add_parent = True
             if not Config.get_family_warn():
                 for i in self.hidden:
                     i.set_sensitive(False)
@@ -314,6 +315,8 @@ class EditFamily(EditPrimary):
                 if glade.get_widget('dont_show').get_active():
                     Config.save_family_warn(True)
                 dialog.destroy()
+        else:
+            self.add_parent = False
 
     def _local_init(self):
         self.build_interface()
@@ -338,6 +341,7 @@ class EditFamily(EditPrimary):
                 break;
 
     def reload_people(self):
+        print "REBUILDING!!!!"
         fhandle = self.obj.get_father_handle()
         self.update_father(fhandle)
 
@@ -366,8 +370,6 @@ class EditFamily(EditPrimary):
 
         self.mbox   = self.top.get_widget('mbox')
         self.fbox   = self.top.get_widget('fbox')
-
-        self.child_list = self.top.get_widget('child_list')
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'), self.save)
@@ -494,6 +496,10 @@ class EditFamily(EditPrimary):
             person = sel.run()
 
             if person:
+                self.check_for_existing_family(self.obj.get_father_handle(),
+                                               person.handle,
+                                               self.obj.handle)
+
                 self.obj.set_mother_handle(person.handle) 
                 self.update_mother(person.handle)
 
@@ -546,7 +552,7 @@ class EditFamily(EditPrimary):
     def father_clicked(self, obj):
         for i in self.hidden:
             i.set_sensitive(True)
-            
+
         handle = self.obj.get_father_handle()
         if handle:
             self.obj.set_father_handle(None)
@@ -561,8 +567,46 @@ class EditFamily(EditPrimary):
             person = sel.run()
 
             if person:
+
+                self.check_for_existing_family(person.handle,
+                                               self.obj.get_mother_handle(),
+                                               self.obj.handle)
+            
                 self.obj.set_father_handle(person.handle) 
                 self.update_father(person.handle)
+
+    def check_for_existing_family(self, father_handle, mother_handle,
+                                  family_handle):
+        if father_handle:
+            father = self.dbstate.db.get_person_from_handle(father_handle)
+            ffam = set(father.get_family_handle_list())
+            if mother_handle:
+                mother = self.dbstate.db.get_person_from_handle(mother_handle)
+                mfam = set(mother.get_family_handle_list())
+                common = list(mfam.intersection(ffam))
+                print common, self.obj.handle
+                if len(common) > 0:
+                    if self.add_parent:
+                        clist = self.obj.get_child_handle_list()
+                        self.obj = self.dbstate.db.get_family_from_handle(common[0])
+                        self.obj.add_child_handle(clist[0])
+                        self.close_window()
+                        EditFamily(self.dbstate,self.uistate,[],self.obj)
+                    elif self.obj.handle not in common:
+                        import QuestionDialog
+                        QuestionDialog.WarningDialog(
+                            _('Duplicate Family'),
+                            _('A family with these parents already exists '
+                              'in the database. If you save, you will create '
+                              'a duplicate family.'))
+            else:
+                pass
+        else:
+            if mother_handle:
+                pass
+            else:
+                pass
+
 
 #     def father_clicked(self,obj):
 #         handle = self.obj.get_father_handle()
