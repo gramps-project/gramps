@@ -69,6 +69,7 @@ import GrampsDisplay
 import RelLib
 import AutoComp
 import Config
+import Errors
 
 from _EditPrimary import EditPrimary
 from PluginUtils import ReportUtils
@@ -589,7 +590,10 @@ class EditFamily(EditPrimary):
                         self.obj = self.dbstate.db.get_family_from_handle(common[0])
                         self.obj.add_child_handle(clist[0])
                         self.close_window()
-                        EditFamily(self.dbstate,self.uistate,[],self.obj)
+                        try:
+                            EditFamily(self.dbstate,self.uistate,[],self.obj)
+                        except Errors.WindowActiveError:
+                            pass
                     elif self.obj.handle not in common:
                         import QuestionDialog
                         QuestionDialog.WarningDialog(
