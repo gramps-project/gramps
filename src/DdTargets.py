@@ -135,13 +135,13 @@ class _DdTargets(object):
                                   self.ATTRIBUTE,
                                   self.ADDRESS,
                                   self.LOCATION,
-                                  self.SOURCE_LINK,
                                   self.SOURCEREF,
                                   self.EVENTREF,
                                   self.NAME,
-                                  self.REPO_LINK,
                                   self.REPOREF,
                                   self.MEDIAOBJ,
+                                  self.REPO_LINK,
+                                  self.SOURCE_LINK,
                                   self.PERSON_LINK,
                                   self.PERSON_LINK_LIST]
         

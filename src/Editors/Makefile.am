@@ -21,6 +21,7 @@ pkgdata_PYTHON = \
 	_EditPrimary.py \
 	_EditReference.py \
 	_EditRepository.py \
+	_EditRepoRef.py \
 	_EditSecondary.py \
 	_EditSource.py \
 	_EditSourceRef.py \
