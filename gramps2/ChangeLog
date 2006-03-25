@@ -1,3 +1,7 @@
+2006-03-25  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DataViews/_PedigreeView.py: Add DnD support to the person boxes;
+	copy person data into clipboard
+
 2006-03-24  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditFamily.py: handle single parent families on 
 	family switch with adding parents
