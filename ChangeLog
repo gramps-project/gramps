@@ -1,4 +1,6 @@
 2006-03-24  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamily.py: handle single parent families on 
+	family switch with adding parents
 	* src/Editors/Makefile.am: added _EditRepoRef.py
 	* src/Editors/_EditRepoRef.py: Added
 
