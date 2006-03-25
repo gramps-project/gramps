@@ -54,6 +54,7 @@ import NameDisplay
 import Utils
 import DateHandler
 import ImgManip
+import Errors
 from PluginUtils import ReportUtils
 from Editors import EditPerson 
 from DdTargets import DdTargets
@@ -98,6 +99,7 @@ class _PersonWidget_base:
     def __init__(self, fh, person):
         self.fh = fh
         self.person = person
+        self.force_mouse_over = False
         if self.person:
             self.connect("drag_data_get", self.drag_data_get)
             self.drag_source_set(gtk.gdk.BUTTON1_MASK,
@@ -106,8 +108,6 @@ class _PersonWidget_base:
                                     gtk.gdk.ACTION_COPY)
 
     def drag_data_get(self, widget, context, sel_data, info, time):
-        print( "drag_data_get")
-        print sel_data.target
         if sel_data.target == DdTargets.PERSON_LINK.drag_type:
             data = (DdTargets.PERSON_LINK.drag_type, id(self), self.person.get_handle(), 0)
             sel_data.set(sel_data.target, 8, pickle.dumps(data))
@@ -161,7 +161,7 @@ class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
         self.set_size_request(120,25)
 
     def on_enter_cb(self,widget,event):
-        if self.person:
+        if self.person or self.force_mouse_over:
             self.hightlight = True
             self.queue_draw()
         
@@ -723,6 +723,13 @@ class PedigreeView(PageView.PersonNavView):
                     pw = PersonBoxWidget_cairo( self.format_helper, None, 0, None);
                 else:
                     pw = PersonBoxWidget( self.format_helper, None, 0, None);
+                if i > 0 and lst[((i+1)/2)-1]:
+                    fam_h = None
+                    fam = lst[((i+1)/2)-1][2]
+                    if fam:
+                        fam_h = fam.get_handle()
+                    pw.connect("button-press-event", self.missing_parent_button_press_cb,lst[((i+1)/2)-1][0].get_handle(),fam_h)
+                    pw.force_mouse_over = True
                 if positions[i][0][2] > 1:
                     table_widget.attach(pw,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
                 else:
@@ -939,6 +946,18 @@ class PedigreeView(PageView.PersonNavView):
             return True
         return False
 
+    def add_parents_cb(self,obj,person_handle, family_handle):
+        from Editors import EditFamily
+        if family_handle:   # one parent already exists -> Edit current family
+            family = self.dbstate.db.get_family_from_handle(family_handle)
+        else:   # no parents -> create new family
+            family = RelLib.Family()
+            family.add_child_handle(person_handle)
+        try:
+            EditFamily(self.dbstate,self.uistate,[],family)
+        except Errors.WindowActiveError:
+            pass
+
     def copy_person_to_clipboard_cb(self,obj,person_handle):
         """Renders the person data into some lines of text and puts that into the clipboard"""
         person = self.db.get_person_from_handle(person_handle)
@@ -973,6 +992,13 @@ class PedigreeView(PageView.PersonNavView):
                     
         elif event.button!=1:
             self.build_full_nav_menu_cb(obj,event,person_handle)
+        return True
+
+    def missing_parent_button_press_cb(self,obj,event,person_handle,family_handle):
+        if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
+            self.add_parents_cb(obj,person_handle,family_handle)
+        elif event.button!=1:
+            self.build_missing_parent_nav_menu_cb(obj,event,person_handle,family_handle)
         return True
 
     def on_show_child_menu(self,obj):
@@ -1169,6 +1195,20 @@ class PedigreeView(PageView.PersonNavView):
         item.show()
         menu.append(item)
         
+    def build_missing_parent_nav_menu_cb(self,obj,event,person_handle,family_handle):
+        menu = gtk.Menu()
+        menu.set_title(_('People Menu'))
+
+        add_item = gtk.ImageMenuItem(gtk.STOCK_ADD)
+        add_item.connect("activate",self.add_parents_cb,person_handle,family_handle)
+        add_item.show()
+        menu.append(add_item)
+
+        # Add history-based navigation
+        self.add_nav_portion_to_menu(menu)
+        self.add_settings_to_menu(menu)
+        menu.popup(None,None,None,event.button,event.time)
+        return 1
 
     def build_full_nav_menu_cb(self,obj,event,person_handle):
         """
