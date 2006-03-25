@@ -30,6 +30,7 @@ from _EditName import *
 from _EditPerson import *
 from _EditPlace import *
 from _EditRepository import *
+from _EditRepoRef import *
 from _EditSource import *
 from _EditSourceRef import *
 from _EditUrl import *

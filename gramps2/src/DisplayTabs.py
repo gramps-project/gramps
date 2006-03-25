@@ -1510,9 +1510,9 @@ class RepoEmbedList(EmbeddedList):
         try:
             ref = RelLib.RepoRef()
             repo = self.dbstate.db.get_repository_from_handle(obj)
-            EditRepoRef.EditRepoRef(
+            EditRepoRef(
                 self.dbstate,self.uistate,self.track,
-                repo, ref, self.obj, self.add_callback)
+                repo, ref, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
@@ -1522,7 +1522,7 @@ class RepoEmbedList(EmbeddedList):
         ref = RelLib.RepoRef()
         repo = RelLib.Repository()
         try:
-            EditRepoRef.EditRepoRef(
+            EditRepoRef(
                 self.dbstate, self.uistate, self.track,
                 repo, ref, self.add_callback)
         except Errors.WindowActiveError:
@@ -1541,7 +1541,7 @@ class RepoEmbedList(EmbeddedList):
         if ref:
             repo = self.dbstate.db.get_repository_from_handle(ref.ref)
             try:
-                Editors.EditRepoRef(
+                EditRepoRef(
                     self.dbstate, self.uistate, self.track, repo,
                     ref, self.edit_callback)
             except Errors.WindowActiveError:
