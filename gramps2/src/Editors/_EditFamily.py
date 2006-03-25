@@ -577,6 +577,7 @@ class EditFamily(EditPrimary):
 
     def check_for_existing_family(self, father_handle, mother_handle,
                                   family_handle):
+
         if father_handle:
             father = self.dbstate.db.get_person_from_handle(father_handle)
             ffam = set(father.get_family_handle_list())
@@ -602,12 +603,28 @@ class EditFamily(EditPrimary):
                               'in the database. If you save, you will create '
                               'a duplicate family.'))
             else:
-                pass
-        else:
-            if mother_handle:
-                pass
-            else:
-                pass
+                for fh in father.get_family_handle_list():
+                    fam = self.dbstate.db.get_family_from_handle(fh)
+                    if fam.get_mother_handle() == None:
+                        self.close_window()
+                        try:
+                            clist = self.obj.get_child_handle_list()
+                            fam.add_child_handle(clist[-1])
+                            EditFamily(self.dbstate,self.uistate,[],fam)
+                        except Errors.WindowActiveError:
+                            pass
+        elif mother_handle:
+            mother = self.dbstate.db.get_person_from_handle(mother_handle)
+            for fh in mother.get_family_handle_list():
+                fam = self.dbstate.db.get_family_from_handle(fh)
+                if fam.get_father_handle() == None:
+                    self.close_window()
+                    try:
+                        clist = self.obj.get_child_handle_list()
+                        fam.add_child_handle(clist[-1])
+                        EditFamily(self.dbstate,self.uistate,[],fam)
+                    except Errors.WindowActiveError:
+                        pass
 
 
 #     def father_clicked(self,obj):
