@@ -56,6 +56,9 @@ import DateHandler
 import ImgManip
 from PluginUtils import ReportUtils
 from Editors import EditPerson 
+from DdTargets import DdTargets
+import cPickle as pickle
+
 
 #-------------------------------------------------------------------------
 #
@@ -91,14 +94,34 @@ class PersonBoxWidget_old( gtk.Button):
         self.modify_bg( gtk.STATE_PRELIGHT, white)
         self.modify_bg( gtk.STATE_SELECTED, white)
 
-class PersonBoxWidget_cairo( gtk.DrawingArea):
+class _PersonWidget_base:
+    def __init__(self, fh, person):
+        self.fh = fh
+        self.person = person
+        if self.person:
+            self.connect("drag_data_get", self.drag_data_get)
+            self.drag_source_set(gtk.gdk.BUTTON1_MASK,
+                                    [DdTargets.PERSON_LINK.target()]+
+                                    [t.target() for t in DdTargets._all_text_types],
+                                    gtk.gdk.ACTION_COPY)
+
+    def drag_data_get(self, widget, context, sel_data, info, time):
+        print( "drag_data_get")
+        print sel_data.target
+        if sel_data.target == DdTargets.PERSON_LINK.drag_type:
+            data = (DdTargets.PERSON_LINK.drag_type, id(self), self.person.get_handle(), 0)
+            sel_data.set(sel_data.target, 8, pickle.dumps(data))
+        else:
+            sel_data.set(sel_data.target, 8, self.fh.format_person( self.person,11))
+
+            
+class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
     def __init__(self,fh,person,maxlines,image=None):
         gtk.DrawingArea.__init__(self)
+        _PersonWidget_base.__init__(self,fh,person)
         self.add_events(gtk.gdk.BUTTON_PRESS_MASK)  # Required for popup menu
         self.add_events(gtk.gdk.ENTER_NOTIFY_MASK)  # Required for tooltip and mouse-over
         self.add_events(gtk.gdk.LEAVE_NOTIFY_MASK)  # Required for tooltip and mouse-over
-        self.fh = fh
-        self.person = person
         self.maxlines = maxlines
         self.hightlight = False
         self.connect("expose_event", self.expose)
@@ -229,14 +252,13 @@ class PersonBoxWidget_cairo( gtk.DrawingArea):
         self.context.stroke()
 
 
-class PersonBoxWidget( gtk.DrawingArea):
+class PersonBoxWidget( gtk.DrawingArea, _PersonWidget_base):
     def __init__(self,fh,person,maxlines,image=None):
         gtk.DrawingArea.__init__(self)
+        _PersonWidget_base.__init__(self,fh,person)
         self.add_events(gtk.gdk.BUTTON_PRESS_MASK)  # Required for popup menu
         self.add_events(gtk.gdk.ENTER_NOTIFY_MASK)  # Required for tooltip and mouse-over
         self.add_events(gtk.gdk.LEAVE_NOTIFY_MASK)  # Required for tooltip and mouse-over
-        self.fh = fh
-        self.person = person
         self.maxlines = maxlines
         try:
             self.image = gtk.gdk.pixbuf_new_from_file( image)
@@ -917,6 +939,15 @@ class PedigreeView(PageView.PersonNavView):
             return True
         return False
 
+    def copy_person_to_clipboard_cb(self,obj,person_handle):
+        """Renders the person data into some lines of text and puts that into the clipboard"""
+        person = self.db.get_person_from_handle(person_handle)
+        if person:
+            cb = gtk.clipboard_get(gtk.gdk.SELECTION_CLIPBOARD)
+            cb.set_text( self.format_helper.format_person(person,11))
+            return True
+        return False
+
     def on_show_option_menu_cb(self,obj,data=None):
         myMenu = gtk.Menu()
         self.add_nav_portion_to_menu(myMenu)
@@ -1160,14 +1191,15 @@ class PedigreeView(PageView.PersonNavView):
         go_item.show()
         menu.append(go_item)
 
-        #edit_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
-        #edit_image.show()
         edit_item = gtk.ImageMenuItem(gtk.STOCK_EDIT)
-        #edit_item.set_image(edit_image)
-        edit_item.set_data(_PERSON,person_handle)
-        edit_item.connect("activate",self.edit_person_cb)
+        edit_item.connect("activate",self.edit_person_cb,person_handle)
         edit_item.show()
         menu.append(edit_item)
+
+        clipboard_item = gtk.ImageMenuItem(gtk.STOCK_COPY)
+        clipboard_item.connect("activate",self.copy_person_to_clipboard_cb,person_handle)
+        clipboard_item.show()
+        menu.append(clipboard_item)
 
         # collect all spouses, parents and children
         linked_persons = []
