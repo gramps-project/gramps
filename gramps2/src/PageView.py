@@ -354,6 +354,9 @@ class ListView(PageView):
 
     def drag_info(self):
         return None
+
+    def drag_begin(self, widget, *data):
+        widget.drag_source_set_icon_stock(self.get_stock())
         
     def column_order(self):
         assert False
@@ -380,6 +383,7 @@ class ListView(PageView):
         self.list.connect('key-press-event',self.key_press)
         if self.drag_info():
             self.list.connect('drag_data_get', self.drag_data_get)
+            self.list.connect('drag_begin', self.drag_begin)
 
         scrollwindow = gtk.ScrolledWindow()
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)

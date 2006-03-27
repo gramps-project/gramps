@@ -1,3 +1,8 @@
+2006-03-26  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PedigreeView.py: start of dnd-icon - not working yet
+	* src/DataViews/_PersonView.py: set dnd icon
+	* src/PageView.py: set dnd icon
+
 2006-03-25  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_PedigreeView.py: Add DnD support to the person boxes;
 	copy person data into clipboard; Open FamilyEditor to add missing
