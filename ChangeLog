@@ -1,3 +1,7 @@
+2006-03-27  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DataViews/_PedigreeView.py (_PersonWidget_base): Use other name for
+	the drag_begin callback to not conflict with a gtk.Widget internal method.
+
 2006-03-26  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PedigreeView.py: start of dnd-icon - not working yet
 	* src/DataViews/_PersonView.py: set dnd icon
