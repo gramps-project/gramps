@@ -102,10 +102,14 @@ class _PersonWidget_base:
         self.force_mouse_over = False
         if self.person:
             self.connect("drag_data_get", self.drag_data_get)
+            #self.connect('drag_begin', self.drag_begin)
             self.drag_source_set(gtk.gdk.BUTTON1_MASK,
                                     [DdTargets.PERSON_LINK.target()]+
                                     [t.target() for t in DdTargets._all_text_types],
                                     gtk.gdk.ACTION_COPY)
+
+    def drag_begin(self, widget, context, data):
+        self.drag_source_set_icon_stock('gramps-person')
 
     def drag_data_get(self, widget, context, sel_data, info, time):
         if sel_data.target == DdTargets.PERSON_LINK.drag_type:

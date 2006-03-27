@@ -170,6 +170,7 @@ class PersonView(PageView.PersonNavView):
         self.build_columns()
         self.tree.connect('button-press-event', self.button_press)
         self.tree.connect('drag_data_get', self.drag_data_get)
+        self.tree.connect('drag_begin', self.drag_begin)
 
         self.selection = self.tree.get_selection()
         self.selection.set_mode(gtk.SELECTION_MULTIPLE)
@@ -182,6 +183,9 @@ class PersonView(PageView.PersonNavView):
         self.setup_filter()
         return self.vbox
     
+    def drag_begin(self, widget, *data):
+        widget.drag_source_set_icon_stock(self.get_stock())
+        
     def ui_definition(self):
         """
         Specifies the UIManager XML code that defines the menus and buttons
