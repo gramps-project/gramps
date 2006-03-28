@@ -25,10 +25,10 @@ import const
 
 try:
     from gnomevfs import mime_get_short_list_applications, \
-         mime_get_description, get_mime_type
+         mime_get_description, get_mime_type, mime_get_default_application
 except:
     from gnome.vfs import mime_get_short_list_applications, \
-         mime_get_description, get_mime_type
+         mime_get_description, get_mime_type, mime_get_default_application
     
 from TransUtils import sgettext as _
 
@@ -38,7 +38,7 @@ def get_application(type):
     try:
         applist = mime_get_short_list_applications(type)
         if applist:
-            prog = applist[0]
+            prog = mime_get_default_application(type)
             return (prog[2],prog[1])
         else:
             return None
