@@ -337,9 +337,8 @@ class ArgHandler:
             #self.parent.cl = bool(self.exports or self.actions or self.parent.cl)
 
             # Create dir for imported database(s)
-            self.impdir_path = os.path.expanduser("~/.gramps/import" )
-            self.imp_db_path = os.path.expanduser(
-                "~/.gramps/import/import_db.grdb" )
+            self.impdir_path = os.path.join(const.home_dir,"import" )
+            self.imp_db_path = os.path.join(self.impdir_path, "import_db.grdb" )
             if not os.path.isdir(self.impdir_path):
                 try:
                     os.mkdir(self.impdir_path,0700)
@@ -437,7 +436,7 @@ class ArgHandler:
                 os._exit(1)
         elif format == 'gramps-pkg':
             # Create tempdir, if it does not exist, then check for writability
-            tmpdir_path = os.path.expanduser("~/.gramps/tmp" )
+            tmpdir_path = os.path.join(const.home_dir,"tmp")
             if not os.path.isdir(tmpdir_path):
                 try:
                     os.mkdir(tmpdir_path,0700)

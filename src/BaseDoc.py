@@ -798,7 +798,7 @@ class StyleSheetList:
         """
         defstyle.set_name('default')
         self.map = { "default" : defstyle }
-        self.file = os.path.expanduser("~/.gramps/" + file)
+        self.file = os.path.join(const.home_dir,file)
         self.parse()
 
     def delete_style_sheet(self,name):
