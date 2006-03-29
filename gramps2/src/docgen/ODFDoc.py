@@ -877,7 +877,7 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.meta.write('office:version="1.0">\n');
         self.meta.write('<office:meta>\n')
         self.meta.write('<meta:generator>')
-        self.meta.write(const.progName + ' ' + const.version)
+        self.meta.write(const.program_name + ' ' + const.version)
         self.meta.write('</meta:generator>\n')
         self.meta.write('<dc:title>')
 	# It should be reasonable to have a true document title. but how ?
