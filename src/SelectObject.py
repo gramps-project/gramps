@@ -70,26 +70,21 @@ class SelectObject:
     def __init__(self,db,title):
 
         self.db = db
-        self.glade = gtk.glade.XML(const.gladeFile,"select_object","gramps")
-        self.top = self.glade.get_widget('select_object')
+        self.glade = gtk.glade.XML(const.gladeFile,"select_person","gramps")
+        self.top = self.glade.get_widget('select_person')
         title_label = self.glade.get_widget('object_title')
-        self.object_tree = self.glade.get_widget('object_tree')
-        self.object_handle = self.glade.get_widget('object_id')
-        self.object_type = self.glade.get_widget('object_type')
-        self.object_desc = self.glade.get_widget('object_desc')
-        self.object_path = self.glade.get_widget('object_path')
-        self.preview = self.glade.get_widget('preview')
-        self.object_details = self.glade.get_widget('object_details')
+        self.object_tree = self.glade.get_widget('plist')
 
         Utils.set_titles(self.top,title_label,title)
 
-        titles = [(_('Title'),0,350), (_('ID'),1,50),
-                    (_('Type'),2,70), ('Path',3,150), ('',4,0) ] 
+        titles = [(_('Preview'),0,100,ListModel.IMAGE),
+                  (_('Title'),1,150), (_('ID'),2,50),
+                  (_('Type'),3,70), ('',4,0) ]
+        
         self.ncols = len(titles)      
 
         self.object_model = ListModel.ListModel(self.object_tree,titles)
         self.selection = self.object_tree.get_selection()
-        self.selection.connect('changed',self.on_select_row)
 
         self.redraw()
         self.top.show()
@@ -102,9 +97,8 @@ class SelectObject:
             obj = self.db.get_object_from_handle(key)
             title = obj.get_description()
             the_type = Mime.get_description(obj.get_mime_type())
-            path = obj.get_path()
-            self.object_model.add([title,obj.get_gramps_id(),the_type,path],key)
-
+            pixbuf = ImgManip.get_thumb_from_obj(obj)
+            self.object_model.add([pixbuf,title,obj.get_gramps_id(),the_type],key)
         self.object_model.connect_model()
         
     def on_select_row(self,obj):

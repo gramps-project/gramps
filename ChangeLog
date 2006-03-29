@@ -1,3 +1,9 @@
+2006-03-29  Don Allingham  <don@gramps-project.org>
+	* src/SelectObject.py: Provide images in preview
+	* src/DisplayTabs.py: Add support of SelectObject
+	* src/GenericFilter.py: check for xml file before trying to parse
+	* src/ListModel.py: image support in view
+
 2006-03-28  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PlaceView.py: delete place properly
 	* src/gramps_main.py: remove 2.0.X message
