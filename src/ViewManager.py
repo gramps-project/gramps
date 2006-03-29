@@ -273,10 +273,10 @@ class ViewManager:
     def do_load_plugins(self):
         self.uistate.status_text(_('Loading document formats...'))
         error  = load_plugins(const.docgenDir)
-        error |= load_plugins(os.path.expanduser("~/.gramps/docgen"))
+        error |= load_plugins(os.path.join(const.home_dir,"docgen"))
         self.uistate.status_text(_('Loading plugins...'))
         error |= load_plugins(const.pluginsDir)
-        error |= load_plugins(os.path.expanduser("~/.gramps/plugins"))
+        error |= load_plugins(os.path.join(const.home_dir,"plugins"))
         if Config.get_pop_plugin_status() and error:
             Plugins.PluginStatus(self)
         self.uistate.push_message(_('Ready'))
