@@ -172,7 +172,8 @@ class ViewManager:
         self.window = gtk.Window()
         self.window.set_icon_from_file(const.icon)
         self.window.connect('destroy', self.quit)
-
+        self.file_loaded = False
+        
         try:
             width = Config.get_width()
             height = Config.get_height()
@@ -262,7 +263,8 @@ class ViewManager:
     def init_interface(self):
         self.create_pages()
         self.change_page(None,None)
-        self.actiongroup.set_visible(False)
+        if not self.file_loaded:
+            self.actiongroup.set_visible(False)
         self.fileactions.set_sensitive(False)
         self.do_load_plugins()
         self.build_tools_menu()
@@ -711,6 +713,7 @@ class ViewManager:
             RecentFiles.recent_files(filename,filetype)
             self.recent_manager.build()
 
+        self.actiongroup.set_visible(True)
         self.uistate.clear_history()
         return success
 
@@ -783,6 +786,7 @@ class ViewManager:
         #self.undo_callback(None)
         #self.redo_callback(None)
         #self.goto_active_person()
+        self.file_loaded = True
         self.actiongroup.set_visible(True)
         return True
 

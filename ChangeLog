@@ -1,4 +1,6 @@
 2006-03-29  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: enable actiongroups if file loaded before
+	the interface is initialized (command line or autoload)
 	* src/SelectObject.py: Provide images in preview
 	* src/DisplayTabs.py: Add support of SelectObject
 	* src/GenericFilter.py: check for xml file before trying to parse
