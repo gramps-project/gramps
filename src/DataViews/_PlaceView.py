@@ -147,19 +147,18 @@ class PlaceView(PageView.ListView):
             pass
 
     def remove(self,obj):
-        for event_handle in self.selected_handles():
+        for place_handle in self.selected_handles():
             db = self.dbstate.db
             person_list = [ handle for handle in
                             db.get_person_handles(False)
-                            if db.get_person_from_handle(handle).has_handle_reference('Place',event_handle) ]
+                            if db.get_person_from_handle(handle).has_handle_reference('Place',place_handle) ]
             family_list = [ handle for handle in
                             db.get_family_handles()
-                            if db.get_family_from_handle(handle).has_handle_reference('Place',event_handle) ]
+                            if db.get_family_from_handle(handle).has_handle_reference('Place',place_handle) ]
             
-            event = db.get_event_from_handle(event_handle)
-
-            ans = DeletePlaceQuery(event,db,
-                                   person_list,family_list)
+            place = db.get_place_from_handle(place_handle)
+            
+            ans = DeletePlaceQuery(place,db)
 
             if len(person_list) + len(family_list) > 0:
                 msg = _('This place is currently being used. Deleting it '
@@ -169,9 +168,9 @@ class PlaceView(PageView.ListView):
                 msg = _('Deleting place will remove it from the database.')
             
             msg = "%s %s" % (msg,Utils.data_recover_msg)
-            descr = event.get_description()
+            descr = place.get_title()
             if descr == "":
-                descr = event.get_gramps_id()
+                descr = place.get_gramps_id()
                 
             QuestionDialog(_('Delete %s?') % descr, msg,
                            _('_Delete Place'),ans.query_response)
