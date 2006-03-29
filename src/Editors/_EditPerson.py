@@ -273,7 +273,7 @@ class EditPerson(EditPrimary):
 
             media_list = self.obj.get_media_list()
             if media_list:
-                from EditMediaRef import EditMediaRef
+                from Editors import EditMediaRef
                 
                 media_ref = media_list[0]
                 object_handle = media_ref.get_reference_handle()
@@ -300,9 +300,6 @@ class EditPerson(EditPrimary):
         if progname and len(progname) > 1:
             Utils.add_menuitem(menu,_("Open in %s") % progname[1],
                                photo,self.popup_view_photo)
-        if mtype and mtype.startswith("image"):
-            Utils.add_menuitem(menu,_("Edit with the GIMP"),
-                               photo,self.popup_edit_photo)
         Utils.add_menuitem(menu,_("Edit Object Properties"),photo,
                            self.popup_change_description)
         menu.popup(None,None,None,event.button,event.time)
@@ -315,27 +312,16 @@ class EditPerson(EditPrimary):
             object_handle = ph.get_reference_handle()
             Utils.view_photo(self.db.get_object_from_handle(object_handle))
 
-    def popup_edit_photo(self, obj):
-        """Open this picture in a picture editor"""
-        media_list = self.obj.get_media_list()
-        if media_list:
-            ph = media_list[0]
-            object_handle = ph.get_reference_handle()
-            if os.fork() == 0:
-                obj = self.db.get_object_from_handle(object_handle)
-                os.execvp(const.editor,[const.editor, obj.get_path()])
-
     def popup_change_description(self,obj):
         media_list = self.obj.get_media_list()
         if media_list:
-            from EditMediaRef import EditMediaRef
+            from Editors import EditMediaRef
             
             media_ref = media_list[0]
             object_handle = media_ref.get_reference_handle()
             media_obj = self.db.get_object_from_handle(object_handle)
             EditMediaRef(self.dbstate, self.uistate, self.track,
                          media_obj, media_ref, self.image_callback)
-
 
     def given_focus_out_event (self, entry, event):
         if not self.should_guess_gender:

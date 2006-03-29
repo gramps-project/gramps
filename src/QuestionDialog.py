@@ -160,59 +160,47 @@ class OptionDialog:
     def get_response(self):
         return self.response
 
-class ErrorDialog:
+class ErrorDialog(gtk.MessageDialog):
     def __init__(self,msg1,msg2="",parent=None):
         
-        self.xml = gtk.glade.XML(const.gladeFile,"errdialog","gramps")
-        self.top = self.xml.get_widget('errdialog')
-        self.top.set_icon(ICON)
-        
-        label1 = self.xml.get_widget('label1')
-        label2 = self.xml.get_widget('label2')
-        label1.set_text('<span weight="bold" size="larger">%s</span>' % str(msg1))
-        label1.set_use_markup(True)
-        label2.set_text(str(msg2))
-        self.top.show()
-        if parent:
-            self.top.set_transient_for(parent)
-        self.top.run()
-        self.top.destroy()
+        gtk.MessageDialog.__init__(self, parent,
+                                   flags=gtk.DIALOG_MODAL,
+                                   type=gtk.MESSAGE_ERROR,
+                                   buttons=gtk.BUTTONS_CLOSE)
+        self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
+        self.format_secondary_text(msg2)
+        self.set_icon(ICON)
+        self.show()
+        self.run()
+        self.destroy()
 
-class WarningDialog:
-    def __init__(self,msg1,msg2="",parent=None):
-        
-        self.xml = gtk.glade.XML(const.gladeFile,"warndialog","gramps")
-        self.top = self.xml.get_widget('warndialog')
-        self.top.set_icon(ICON)
-        
-        label1 = self.xml.get_widget('label1')
-        label2 = self.xml.get_widget('label2')
-        label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
-        label1.set_use_markup(True)
-        label2.set_text(msg2)
-        self.top.show()
-        if parent:
-            self.top.set_transient_for(parent)
-        self.top.run()
-        self.top.destroy()
-
-class OkDialog:
+class WarningDialog(gtk.MessageDialog):
     def __init__(self,msg1,msg2="",parent=None):
 
-        self.xml = gtk.glade.XML(const.gladeFile,"okdialog","gramps")
-        self.top = self.xml.get_widget('okdialog')
-        self.top.set_icon(ICON)
+        gtk.MessageDialog.__init__(self, parent,
+                                   flags=gtk.DIALOG_MODAL,
+                                   type=gtk.MESSAGE_WARNING,
+                                   buttons=gtk.BUTTONS_CLOSE)
+        self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
+        self.format_secondary_text(msg2)
+        self.set_icon(ICON)
+        self.show()
+        self.run()
+        self.destroy()
 
-        label1 = self.xml.get_widget('label1')
-        label2 = self.xml.get_widget('label2')
-        label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
-        label1.set_use_markup(True)
-        label2.set_text(msg2)
-        self.top.show()
-        if parent:
-            self.top.set_transient_for(parent)
-        self.top.run()
-        self.top.destroy()
+class OkDialog(gtk.MessageDialog):
+    def __init__(self,msg1,msg2="",parent=None):
+
+        gtk.MessageDialog.__init__(self, parent,
+                                   flags=gtk.DIALOG_MODAL,
+                                   type=gtk.MESSAGE_INFO,
+                                   buttons=gtk.BUTTONS_CLOSE)
+        self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
+        self.format_secondary_text(msg2)
+        self.set_icon(ICON)
+        self.show()
+        self.run()
+        self.destroy()
 
 class MissingMediaDialog:
     def __init__(self,msg1,msg2,task1,task2,task3,parent=None):

@@ -596,8 +596,7 @@ def view_photo(photo):
     args = prog.split()
     args.append(photo.get_path())
     
-    if os.fork() == 0:
-        os.execvp(args[0],args)
+    os.spawnvpe(os.P_NOWAIT, args[0], args, os.environ)
 
 def find_file( filename):
     # try the filename we got

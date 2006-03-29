@@ -1,4 +1,15 @@
 2006-03-29  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditPerson.py: Fix imports of EditMediaRef, remove
+	specific edit image from top image window.
+	* src/glade/gramps.glade: remove unused dialogs, replaced by 
+	gtk.MessageDialog
+	* src/AddMedia.py: clean up scale_image
+	* src/Utils.py: replace fork() with spawn to prevent Xlib async errors
+	* src/GrampsDisplay.py: replace fork() with spawn to prevent Xlib 
+	async errors
+	* src/QuestionDialog.py: Simply some dialogs by using gtk.MessageDialog
+	* src/ImgManip.py: replace fork() with spawn to prevent Xlib async 
+	errors
 	* src/ViewManager.py: enable actiongroups if file loaded before
 	the interface is initialized (command line or autoload)
 	* src/SelectObject.py: Provide images in preview

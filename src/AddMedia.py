@@ -188,23 +188,20 @@ class AddMediaObject:
 #
 #-------------------------------------------------------------------------
 def scale_image(path,size):
+
+    title_msg = _("Cannot display %s") % path
+    detail_msg =  _('GRAMPS is not able to display the image file. '
+                    'This may be caused by a corrupt file.')
+    
     try:
         image1 = gtk.gdk.pixbuf_new_from_file(path)
-    except:
-        WarningDialog(_("Cannot display %s") % path,
-                      _('GRAMPS is not able to display the image file. '
-                        'This may be caused by a corrupt file.'))
-        return gtk.gdk.pixbuf_new_from_file(const.icon)
-    
-    width  = image1.get_width()
-    height = image1.get_height()
-
-    scale = size / float(max(width,height))
-    try:
+        width  = image1.get_width()
+        height = image1.get_height()
+        
+        scale = size / float(max(width,height))
         return image1.scale_simple(int(scale*width), int(scale*height),
                                    gtk.gdk.INTERP_BILINEAR)
     except:
-        WarningDialog(_("Cannot display %s") % path,
-                      _('GRAMPS is not able to display the image file. '
-                        'This may be caused by a corrupt file.'))
+        WarningDialog(title_msg, detail_msg)
         return gtk.gdk.pixbuf_new_from_file(const.icon)
+    

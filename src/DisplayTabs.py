@@ -36,6 +36,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 
 from TransUtils import sgettext as _
 import pickle
+import os
 
 try:
     set()
@@ -62,6 +63,7 @@ import Utils
 import ImgManip
 import Spell
 import Errors
+import Mime
 
 from DdTargets import DdTargets
 from GrampsWidgets import SimpleButton
@@ -241,8 +243,10 @@ class ButtonTab(GrampsTab):
         self.tooltips.set_tip(self.del_btn,  self._MSG['del'])
         
         if share_button:
-            self.share_btn  = SimpleButton(gtk.STOCK_INDEX, self.share_button_clicked)
+            self.share_btn = SimpleButton(gtk.STOCK_INDEX, self.share_button_clicked)
             self.tooltips.set_tip(self.share_btn, self._MSG['share'])
+        else:
+            self.share_btn = None
         
         vbox = gtk.VBox()
         vbox.set_spacing(6)
@@ -335,9 +339,45 @@ class EmbeddedList(ButtonTab):
         if self._DND_TYPE:
             self._set_dnd()
 
+        # set up right click option
+        self.tree.connect('button-press-event',self._on_button_press)
+
         # build the initial data
         self.rebuild()
         self.show_all()
+
+    def _on_button_press(self, obj, event):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            ref = self.get_selected()
+            if ref:
+                self.right_click(obj, event)
+
+    def right_click(self, obj, event):
+
+        if self.share_btn:
+            itemlist = [
+                (True, gtk.STOCK_ADD, self.add_button_clicked),
+                (False,_('Share'), self.edit_button_clicked),
+                (True, gtk.STOCK_EDIT, self.edit_button_clicked),
+                (True, gtk.STOCK_REMOVE, self.del_button_clicked),
+                ]
+        else:
+            itemlist = [
+                (True, gtk.STOCK_ADD, self.add_button_clicked),
+                (True, gtk.STOCK_EDIT, self.edit_button_clicked),
+                (True, gtk.STOCK_REMOVE, self.del_button_clicked),
+            ]
+        
+        menu = gtk.Menu()
+        for (image, title, func) in itemlist:
+            if image:
+                item = gtk.ImageMenuItem(stock_id=title)
+            else:
+                item = gtk.MenuItem(title)
+            item.connect('activate',func)
+            item.show()
+            menu.append(item)
+        menu.popup(None, None, None, event.button, event.time)
 
     def find_index(self,obj):
         """
@@ -1274,7 +1314,48 @@ class GalleryTab(ButtonTab):
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.edit_button_clicked(obj)
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            reflist = self.iconlist.get_selected_items()
+            if len(reflist) == 1:
+                ref = self.media_list[reflist[0][0]]
+                self.right_click(ref, event)
 
+    def right_click(self, obj, event):
+        itemlist = [
+            (True, gtk.STOCK_ADD, self.add_button_clicked),
+            (False,_('Share'), self.edit_button_clicked),
+            (True, gtk.STOCK_EDIT, self.edit_button_clicked),
+            (True, gtk.STOCK_REMOVE, self.del_button_clicked),
+            ]
+
+        menu = gtk.Menu()
+
+        ref_obj = self.dbstate.db.get_object_from_handle(obj.ref)
+        mime_type = ref_obj.get_mime_type()
+        if mime_type:
+            app = Mime.get_application(mime_type)
+            if app:
+                item = gtk.MenuItem(_('Open with %s') % app[1])
+                item.connect('activate',make_launcher(app[0],
+                                                      ref_obj.get_path()))
+                item.show()
+                menu.append(item)
+                item = gtk.SeparatorMenuItem()
+                item.show()
+                menu.append(item)
+        
+        for (image, title, func) in itemlist:
+            if image:
+                item = gtk.ImageMenuItem(stock_id=title)
+            else:
+                item = gtk.MenuItem(title)
+            item.connect('activate',func)
+            item.show()
+            menu.append(item)
+        menu.popup(None, None, None, event.button, event.time)
+
+    
+        
     def get_icon_name(self):
         return 'gramps-media'
 
@@ -1330,7 +1411,8 @@ class GalleryTab(ButtonTab):
         for ref in self.media_list:
             handle = ref.get_reference_handle()
             obj = self.dbstate.db.get_object_from_handle(handle)
-            pixbuf = ImgManip.get_thumb_from_obj(obj)
+            pixbuf = ImgManip.get_thumbnail_image(obj.get_path(),
+                                                  obj.get_mime_type())
             self.iconmodel.append(row=[pixbuf,obj.get_description(),ref])
         self._connect_icon_model()
         self._set_label()
@@ -1918,3 +2000,6 @@ class BackRefModel(gtk.ListStore):
             self.append(row=[dtype,gid,name,handle])
             yield True
         yield False
+
+def make_launcher(prog, path):
+    return lambda x: os.spawnvpe(os.P_NOWAIT, prog, [ prog, path], os.environ)

@@ -44,8 +44,7 @@ def run_browser(url):
         for path in search:
             prog = os.path.join(path,browser)
             if os.path.isfile(prog):
-                if os.fork() == 0:
-                    os.execvp(prog,[prog, url])
+                os.spawnvpe(os.P_NOWAIT, prog, [prog, url], os.environ)
                 return
     
                           
