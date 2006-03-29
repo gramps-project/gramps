@@ -28,6 +28,7 @@
 import os
 import signal
 import md5
+import tempfile
 
 #-------------------------------------------------------------------------
 #
@@ -53,63 +54,46 @@ import Utils
 #
 #-------------------------------------------------------------------------
 class ImgManip:
-    def __init__(self,source):
+    def __init__(self, source):
         self.src = source
-
-    def size(self):
         try:
-            img = gtk.gdk.pixbuf_new_from_file(self.src)
+            self.img = gtk.gdk.pixbuf_new_from_file(self.src)
+            self.width = self.img.get_width()
+            self.height = self.img.get_height()
         except gobject.GError:
             return (0,0)
-        return (img.get_width(),img.get_height())
+
+    def size(self):
+        return (self.width, self.height)
     
     def fmt_thumbnail(self,dest,width,height,cnv):
         w = int(width)
         h = int(height)
-        cmd = "%s -geometry %dx%d '%s' '%s:%s'" % (const.convert,
-                                                   w,h,self.src,cnv,dest)
-        os.system(cmd)
+
+        scaled = self.img.scale_simple(width, height, gtk.gdk.INTERP_BILINEAR)
+        scaled.save(dest,cnv)
         
-    def fmt_convert(self,dest,cnv):
-        cmd = "%s '%s' '%s:%s'" % (const.convert,self.src,cnv,dest)
-        os.system(cmd)
-        
-    def fmt_data(self,cnv):
-        import popen2
-        
-        cmd = "%s '%s' '%s:-'" % (const.convert,self.src,cnv)
-        r,w = popen2.popen2(cmd)
-        buf = r.read()
-        r.close()
-        w.close()
-        return buf
+    def fmt_data(self, cnv):
+        fd, dest = tempfile.mkstemp()
+        self.img.save(dest,cnv)
+        fh = open(dest)
+        data = fh.read()
+        fh.close()
+        os.unlink(dest)
+        return data
 
-    def fmt_scale_data(self,x,y,cnv):
-        import popen2
-        
-        cmd = "%s -geometry %dx%d '%s' '%s:-'" % (const.convert,
-                                                  x,y,self.src,cnv)
-        signal.signal (signal.SIGCHLD, signal.SIG_DFL)
-        r,w = popen2.popen2(cmd)
-        buf = r.read()
-        r.close()
-        w.close()
-        return buf
+    def fmt_scale_data(self, x, y, cnv):
+        fd, dest = tempfile.mkstemp()
+        scaled = self.img.scale_simple(width, height, gtk.gdk.INTERP_BILINEAR)
+        self.img.save(dest,cnv)
+        fh = open(dest)
+        data = fh.read()
+        fh.close()
+        os.unlink(dest)
+        return data
 
-    def jpg_thumbnail(self,dest,width,height):
-        self.fmt_thumbnail(dest,width,height,"jpeg")
-
-    def png_thumbnail(self,dest,width,height):
-        self.fmt_thumbnail(dest,width,height,"png")
-
-    def jpg_convert(self,dest):
-        self.fmt_convert(dest,"jpeg")
-
-    def png_convert(self,dest):
-        self.fmt_convert(dest,"png")
-
-    def eps_convert(self,dest):
-        self.fmt_convert(dest,"eps")
+    def jpg_thumbnail(self, dest, width, height):
+        self.fmt_thumbnail(dest, width, height, "jpeg")
 
     def jpg_data(self):
         return self.fmt_data("jpeg")
@@ -117,39 +101,41 @@ class ImgManip:
     def png_data(self):
         return self.fmt_data("png")
 
-    def jpg_scale_data(self,x,y):
-        return self.fmt_scale_data(x,y,"jpeg")
+    def jpg_scale_data(self, x, y):
+        return self.fmt_scale_data(x, y, "jpeg")
 
     def png_scale_data(self,x,y):
-        return self.fmt_scale_data(x,y,"png")
+        return self.fmt_scale_data(x, y, "png")
 
 
 def _build_thumb_path(path):
-    base = os.path.expanduser('~/.gramps/thumb')
     m = md5.md5(path)
-    return os.path.join(base,m.hexdigest()+'.png')
+    return os.path.join(const.thumb_dir, m.hexdigest()+'.png')
 
 def run_thumbnailer(mtype, frm, to, size=const.thumbScale):
-    sublist = {
-        '%s' : "%dx%d" % (int(size),int(size)),
-        '%u' : frm,
-        '%o' : to,
-        }
+    if const.use_thumbnailer:
+        sublist = {
+            '%s' : "%dx%d" % (int(size),int(size)),
+            '%u' : frm,
+            '%o' : to,
+            }
 
-    base = '/desktop/gnome/thumbnailers/%s' % mtype.replace('/','@')
+        base = '/desktop/gnome/thumbnailers/%s' % mtype.replace('/','@')
 
-    cmd = Config.get_string(base + '/command')
-    enable = Config.get_bool(base + '/enable')
+        cmd = Config.get_string(base + '/command')
+        enable = Config.get_bool(base + '/enable')
 
-    if cmd and enable:
-        cmdlist = map(lambda x: sublist.get(x,x),cmd.split())
-        if os.fork() == 0:
-            os.execvp(cmdlist[0],cmdlist)
-        os.wait()
-        return True
+        if cmd and enable:
+            cmdlist = map(lambda x: sublist.get(x,x),cmd.split())
+            if os.fork() == 0:
+                os.execvp(cmdlist[0],cmdlist)
+            os.wait()
+            return True
+        else:
+            return False
     return False
 
-def set_thumbnail_image(path,mtype=None):
+def set_thumbnail_image(path, mtype=None):
     if mtype and not mtype.startswith('image/'):
         run_thumbnailer(mtype,path,_build_thumb_path(path))
     else:
@@ -167,7 +153,7 @@ def set_thumbnail_image(path,mtype=None):
         except:
             pass
 
-def get_thumbnail_image(path,mtype=None):
+def get_thumbnail_image(path, mtype=None):
     filename = _build_thumb_path(path)
 
     try:
@@ -184,7 +170,7 @@ def get_thumbnail_image(path,mtype=None):
             return gtk.gdk.pixbuf_new_from_file(os.path.join(
                 const.image_dir,"document.png"))
 
-def get_thumbnail_path(path,mtype=None):
+def get_thumbnail_path(path, mtype=None):
     filename = _build_thumb_path(path)
     if not os.path.isfile(filename):
         set_thumbnail_image(path,mtype)
@@ -192,7 +178,7 @@ def get_thumbnail_path(path,mtype=None):
 
 def get_thumb_from_obj(obj):
     mtype = obj.get_mime_type()
-    if mtype[0:5] == "image":
+    if mtype.startswith("image/"):
         image = get_thumbnail_image(obj.get_path())
     else:
         image = Mime.find_mime_type_pixbuf(mtype)

@@ -95,6 +95,7 @@ image_dir      = os.path.join(root_dir,"images")
 custom_filters = os.path.join(home_dir,"custom_filters.xml")
 report_options = os.path.join(home_dir,"report_options.xml")
 tool_options   = os.path.join(home_dir,"tool_options.xml")
+thumb_dir      = os.path.join(home_dir,"thumb")
 bsddbenv_dir   = os.path.join(home_dir,"bsddbenv")
 
 icon           = os.path.join(root_dir,"images","gramps.png")
@@ -127,6 +128,7 @@ papersize      = "file:%s/papersize.xml" % data_dir
 startup        = 1
 dnd_images     = 1
 use_tips       = False
+use_thumbnailer= True
 
 #-------------------------------------------------------------------------
 #

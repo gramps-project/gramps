@@ -10,6 +10,9 @@
 	* src/plugins/FamilyGroup.py: use new functions
 
 2006-03-28  Don Allingham  <don@gramps-project.org>
+	* src/const.py.in: use_thumbnail tag
+	* src/ImgManip.py: use pygtk instead of Imagick for image
+	conversions
 	* src/Mime/_GnomeMime.py: find the default application instead of 
 	using the first returned by mime_get_app_short_list
 
