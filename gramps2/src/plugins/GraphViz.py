@@ -923,7 +923,7 @@ class GraphVizGraphics(Report.Report):
         self.doc = options_class.get_document()
 
         self.user_output = options_class.get_output()
-        self.junk_output = os.path.expanduser("~/.gramps/junk")
+        self.junk_output = os.path.join(const.home_dir,"junk")
         self.the_format = self.options_class.handler.options_dict['gvof']
         self.the_font = self.options_class.handler.options_dict['font']
 

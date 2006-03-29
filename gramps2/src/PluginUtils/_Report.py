@@ -1648,11 +1648,11 @@ try:
     parser = make_parser()
     gspath = const.template_dir
     parser.setContentHandler(TemplateParser(_template_map,gspath))
-    parser.parse("%s/templates.xml" % gspath)
+    parser.parse("file://" + os.path.join(gspath,"templates.xml"))
     parser = make_parser()
-    gspath = os.path.expanduser("~/.gramps/templates")
+    gspath = os.path.join(const.home_dir,"templates")
     parser.setContentHandler(TemplateParser(_template_map,gspath))
-    parser.parse("%s/templates.xml" % gspath)
+    parser.parse("file://" + os.path.join(gspath,"templates.xml"))
 except (IOError,OSError,SAXParseException):
     pass
 
@@ -1766,7 +1766,7 @@ class CommandLineReport:
                         "Any string -- may use keyword substitutions")
 
         self.option_class.handler.output = self.options_dict['of']
-        self.options_help['of'].append(os.path.expanduser("~/whatever_name"))
+        self.options_help['of'].append(os.path.join(const.user_home,"whatever_name"))
                 
         if self.category == CATEGORY_TEXT:
             for item in _PluginMgr.textdoc_list:
@@ -1811,7 +1811,7 @@ class CommandLineReport:
         self.options_help['papero'].append(False)
 
         self.template_name = self.options_dict['template']
-        self.options_help['template'].append(os.path.expanduser("~/whatever_name"))
+        self.options_help['template'].append(os.path.join(const.user_home,"whatever_name"))
 
         if self.category in (CATEGORY_TEXT,CATEGORY_DRAW):
             default_style = BaseDoc.StyleSheet()

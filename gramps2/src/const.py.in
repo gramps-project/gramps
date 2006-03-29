@@ -79,9 +79,11 @@ no_gconf = False
 #
 #-------------------------------------------------------------------------
 if os.environ.has_key('HOME'):
-    home_dir = os.path.join(os.environ['HOME'],'.gramps')
+    user_home = os.environ['HOME'] 
+    home_dir = os.path.join(user_home,'.gramps')
 else:
-    home_dir = os.path.join(os.environ['USERPROFILE'],'gramps')
+    user_home = os.environ['USERPROFILE'] 
+    home_dir = os.path.join(user_home,'gramps')
 
 #-------------------------------------------------------------------------
 #
