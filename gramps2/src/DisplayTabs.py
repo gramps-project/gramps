@@ -1262,7 +1262,7 @@ class NoteTab(GrampsTab):
 class GalleryTab(ButtonTab):
 
     def __init__(self, dbstate, uistate, track,  media_list):
-        ButtonTab.__init__(self, dbstate, uistate, track, _('Gallery'))
+        ButtonTab.__init__(self, dbstate, uistate, track, _('Gallery'), True)
         self.media_list = media_list
         self.rebuild()
         self.show_all()
@@ -1282,7 +1282,6 @@ class GalleryTab(ButtonTab):
         return len(self.media_list)==0
 
     def _build_icon_model(self):
-        # build the list model
         self.iconmodel= gtk.ListStore(gtk.gdk.Pixbuf,str,object)
 
     def _connect_icon_model(self):
@@ -1345,9 +1344,13 @@ class GalleryTab(ButtonTab):
 
     def add_button_clicked(self,obj):
         from Editors import EditMediaRef
-        
+        import AddMedia
+
+        am = AddMedia.AddMediaObject(self.dbstate.db)
+        am.run()
+        src = am.object
+
         sref = RelLib.MediaRef()
-        src = RelLib.MediaObject()
         try:
             EditMediaRef(self.dbstate, self.uistate, self.track,
                          src, sref, self.add_callback)
@@ -1355,9 +1358,27 @@ class GalleryTab(ButtonTab):
             pass
 
     def add_callback(self,media_ref, media):
+        media_ref.ref = media.handle
         self.get_data().append(media_ref)
         self.changed = True
         self.rebuild()
+
+    def share_button_clicked(self,obj):
+        """
+        Function called with the Add button is clicked. This function
+        should be overridden by the derived class.
+        """
+        import SelectObject
+
+        sel = SelectObject.SelectObject(self.dbstate.db,_("Select media"))
+        src = sel.run()
+        if src:
+            sref = RelLib.MediaRef()
+            try:
+                EditMediaRef(self.dbstate, self.uistate, self.track,
+                             src, sref, self.add_callback)
+            except Errors.WindowActiveError:
+                pass
 
     def del_button_clicked(self,obj):
         ref = self.get_selected()

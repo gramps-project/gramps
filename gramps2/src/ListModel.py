@@ -19,13 +19,15 @@
 #
 
 import gtk
+import gtk.gdk
 import pango
-
+import const
 gtk26 = gtk.pygtk_version >= (2,6,0)
 
 TEXT    = 0
 TOGGLE  = 1
 COMBO   = 2
+IMAGE   = 3
 
 NOSORT = -1    
 #-------------------------------------------------------------------------
@@ -42,8 +44,11 @@ class ListModel:
         self.mylist = []
         self.data_index = 0
         for l in dlist:
-            if len(l)>3 and l[3] == TOGGLE:
-                self.mylist.append(bool)
+            if len(l)>3:
+                if l[3] == TOGGLE:
+                    self.mylist.append(bool)
+                elif l[3] == IMAGE:
+                    self.mylist.append(gtk.gdk.Pixbuf)
             else:
                 self.mylist.append(str)
             self.data_index += 1
@@ -74,6 +79,11 @@ class ListModel:
                 renderer = gtk.CellRendererToggle()
                 column = gtk.TreeViewColumn(name[0],renderer)
                 column.add_attribute(renderer,'active',cnum)
+            elif name[0] and name[3] == IMAGE:
+                renderer = gtk.CellRendererPixbuf()
+                column = gtk.TreeViewColumn(name[0],renderer)
+                column.add_attribute(renderer,'pixbuf',cnum)
+                renderer.set_property('height',const.thumbScale)
             elif gtk26 and name[3] == COMBO:
                 store = gtk.ListStore(str)
                 model = gtk.ListStore(str, object)

@@ -2312,9 +2312,10 @@ class GenericFilterList:
         
     def load(self):
        try:
-           parser = make_parser()
-           parser.setContentHandler(FilterParser(self))
-           parser.parse(self.file)
+           if os.path.isfile(self.file):
+               parser = make_parser()
+               parser.setContentHandler(FilterParser(self))
+               parser.parse(self.file)
        except (IOError,OSError):
            pass
        except SAXParseException:
