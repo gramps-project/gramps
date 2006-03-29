@@ -7,6 +7,7 @@
 	* src/GenericFilter.py: Use filename instead of URI for XML parser
 	* src/BaseDoc.py: Use filename instead of URI for XML parser 
 	(works on Windows and Linux)
+	* src/plugins/FamilyGroup.py: use new functions
 
 2006-03-28  Don Allingham  <don@gramps-project.org>
 	* src/Mime/_GnomeMime.py: find the default application instead of 

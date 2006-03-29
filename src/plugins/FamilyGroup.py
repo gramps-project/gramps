@@ -44,8 +44,8 @@ import gtk
 import RelLib
 from PluginUtils import Report, ReportOptions, register_report
 import BaseDoc
-import const
 import DateHandler
+import Utils
 
 #------------------------------------------------------------------------
 #
@@ -164,7 +164,7 @@ class FamilyGroup(Report.Report):
         place = ""
         date = ""
         if event:
-            date = event.get_date()
+            date = DateHandler.get_date(event)
             place_handle = event.get_place_handle()
             if place_handle:
                 place = self.database.get_place_from_handle(place_handle).get_title()
@@ -222,17 +222,17 @@ class FamilyGroup(Report.Report):
         self.doc.end_cell()
         self.doc.end_row()
 
-        birth_handle = person.get_birth_handle()
+        birth_ref = person.get_birth_ref()
         birth = None
-        if birth_handle:
-            birth = self.database.get_event_from_handle(birth_handle)
+        if birth_ref:
+            birth = self.database.get_event_from_handle(birth_ref.ref)
         if birth or self.missingInfo:
             self.dump_parent_event(_("Birth"),birth)
 
-        death_handle = person.get_death_handle()
+        death_ref = person.get_death_ref()
         death = None
-        if death_handle:
-            death = self.database.get_event_from_handle(death_handle)
+        if death_ref:
+            death = self.database.get_event_from_handle(death_ref.ref)
         if death or self.missingInfo:
             self.dump_parent_event(_("Death"),death)
 
@@ -246,30 +246,34 @@ class FamilyGroup(Report.Report):
                 father = self.database.get_person_from_handle(father_handle)
                 father_name = father.get_primary_name().get_regular_name()
                 if self.incRelDates:
-                    birth_handle = father.get_birth_handle()
+                    birth_ref = father.get_birth_ref()
                     birth = "  "
-                    if birth_handle:
-                        birth = self.database.get_event_from_handle(birth_handle).get_date()
-                    death_handle = father.get_death_handle()
+                    if birth_ref:
+                        event = self.database.get_event_from_handle(birth_ref.ref)
+                        birth = DateHandler.get_date( event )
+                    death_ref = father.get_death_ref()
                     death = "  "
-                    if death_handle:
-                        death = self.database.get_event_from_handle(death_handle).get_date()
-                    if birth_handle or death_handle:
+                    if death_ref:
+                        event = self.database.get_event_from_handle(death_ref.ref)
+                        death = DateHandler.get_date( event )
+                    if birth_ref or death_ref:
                         father_name = "%s (%s - %s)" % (father_name,birth,death)
             mother_handle = family.get_mother_handle() 
             if mother_handle:
                 mother = self.database.get_person_from_handle(mother_handle)
                 mother_name = mother.get_primary_name().get_regular_name()
                 if self.incRelDates:
-                    birth_handle = mother.get_birth_handle()
+                    birth_ref = mother.get_birth_ref()
                     birth = "  "
-                    if birth_handle:
-                        birth = self.database.get_event_from_handle(birth_handle).get_date()
-                    death_handle = mother.get_death_handle()
+                    if birth_ref:
+                        event = self.database.get_event_from_handle(birth_ref.ref)
+                        birth = DateHandler.get_date( event )
+                    death_ref = mother.get_death_ref()
                     death = "  "
-                    if death_handle:
-                        death = self.database.get_event_from_handle(death_handle).get_date()
-                    if birth_handle or death_handle:
+                    if death_ref:
+                        event = self.database.get_event_from_handle(birth_ref.ref)
+                        death = DateHandler.get_date( event )
+                    if birth_ref or death_ref:
                         mother_name = "%s (%s - %s)" % (mother_name,birth,death)
 
         if self.missingInfo or father_name != "":
@@ -279,18 +283,20 @@ class FamilyGroup(Report.Report):
             self.dump_parent_line(_("Mother"),mother_name)
 
         if self.incParEvents:
-            for event_handle in person.get_event_list():
-                event = self.database.get_event_from_handle(event_handle)
-                evtName = event.get_name()
-                if (evtName != "Death") and (evtName != "Birth"):
-                    self.dump_parent_event(_(evtName),event)
+            excludeEvts = ( person.get_birth_ref(), person.get_death_ref() )
+            for event_ref in person.get_event_ref_list():
+                if event_ref not in excludeEvts:
+                    event = self.database.get_event_from_handle(event_ref.ref)
+                    evtType = event.get_type()
+                    evtName = Utils.format_event( evtType )
+                    self.dump_parent_event(evtName,event)
 
         if self.incParAddr:
             addrlist = person.get_address_list()[:]
             for addr in addrlist:
                 location = "%s %s %s %s" % (addr.get_street(),addr.get_city(),
                                            addr.get_state(),addr.get_country())
-                date = addr.get_date()
+                date = DateHandler.get_date( addr )
                 
                 self.doc.start_row()
                 self.doc.start_cell("FGR-TextContents")
@@ -315,7 +321,7 @@ class FamilyGroup(Report.Report):
 
         if self.incParNames:
             for alt_name in person.get_alternate_names():
-                type = const.NameTypesMap.find_value(alt_name.get_type())
+                type = Utils.format_name_type( alt_name.get_type() )
                 name = alt_name.get_regular_name()
                 self.dump_parent_line(type,name)
 
@@ -356,14 +362,14 @@ class FamilyGroup(Report.Report):
 
         person = self.database.get_person_from_handle(person_handle)
         families = len(person.get_family_handle_list())
-        birth_handle = person.get_birth_handle()
-        if birth_handle:
-            birth = self.database.get_event_from_handle(birth_handle)
+        birth_ref = person.get_birth_ref()
+        if birth_ref:
+            birth = self.database.get_event_from_handle(birth_ref.ref)
         else:
             birth = None
-        death_handle = person.get_death_handle()
-        if death_handle:
-            death = self.database.get_event_from_handle(death_handle)
+        death_ref = person.get_death_ref()
+        if death_ref:
+            death = self.database.get_event_from_handle(death_ref.ref)
         else:
             death = None
         
@@ -416,10 +422,10 @@ class FamilyGroup(Report.Report):
         for family_handle in person.get_family_handle_list():
             index = index + 1
             family = self.database.get_family_from_handle(family_handle)
-            for event_handle in family.get_event_list():
-                if event_handle:
-                    event = self.database.get_event_from_handle(event_handle)
-                    if event.get_name() == "Marriage":
+            for event_ref in family.get_event_ref_list():
+                if event_ref:
+                    event = self.database.get_event_from_handle(event_ref.ref)
+                    if event.get_type() == RelLib.Event.MARRIAGE:
                         m = event
                         break
             else:
@@ -448,15 +454,17 @@ class FamilyGroup(Report.Report):
                     spouse = self.database.get_person_from_handle(spouse_id)
                     spouse_name = spouse.get_primary_name().get_regular_name()
                     if self.incRelDates:
-                        birth_handle = spouse.get_birth_handle()
                         birth = "  "
-                        if birth_handle:
-                            birth = self.database.get_event_from_handle(birth_handle).get_date()
-                        death_handle = spouse.get_death_handle()
+                        birth_ref = spouse.get_birth_ref()
+                        if birth_ref:
+                            event = self.database.get_event_from_handle(birth_ref.ref)
+                            birth = DateHandler.get_date(event)
                         death = "  "
-                        if death_handle:
-                            death = self.database.get_event_from_handle(death_handle).get_date()
-                        if birth_handle or death_handle:
+                        death_ref = spouse.get_death_ref()
+                        if death_ref:
+                            event = self.database.get_event_from_handle(death_ref.ref)
+                            death = DateHandler.get_date(event)
+                        if birth_ref or death_ref:
                             spouse_name = "%s (%s - %s)" % (spouse_name,birth,death)
                     self.doc.write_text(spouse_name)
                 self.doc.end_paragraph()
