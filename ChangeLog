@@ -1,3 +1,13 @@
+2006-03-28  Brian Matherly  <pez4brian@users.sourceforge.net>
+	* src/PluginUtils/_Options.py: Use filename instead of URI for XML parser
+	* src/PluginUtils/_Report.py: Use filename instead of URI for XML parser
+	* src/PluginUtils/_ReportOptions.py: Use filename instead of URI
+	* src/Plugins/BookReport.py: Use filename instead of URI for XML parser
+	* src/RecentFiles.py: Use filename instead of URI for XML parser
+	* src/GenericFilter.py: Use filename instead of URI for XML parser
+	* src/BaseDoc.py: Use filename instead of URI for XML parser 
+	(works on Windows and Linux)
+
 2006-03-28  Don Allingham  <don@gramps-project.org>
 	* src/Mime/_GnomeMime.py: find the default application instead of 
 	using the first returned by mime_get_app_short_list

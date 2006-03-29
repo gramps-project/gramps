@@ -1648,11 +1648,11 @@ try:
     parser = make_parser()
     gspath = const.template_dir
     parser.setContentHandler(TemplateParser(_template_map,gspath))
-    parser.parse("file://%s/templates.xml" % gspath)
+    parser.parse("%s/templates.xml" % gspath)
     parser = make_parser()
     gspath = os.path.expanduser("~/.gramps/templates")
     parser.setContentHandler(TemplateParser(_template_map,gspath))
-    parser.parse("file://%s/templates.xml" % gspath)
+    parser.parse("%s/templates.xml" % gspath)
 except (IOError,OSError,SAXParseException):
     pass
 
