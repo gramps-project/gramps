@@ -408,7 +408,7 @@ def recent_files(filename,filetype):
     # Add the file to the recent items
     gnome_rf = GnomeRecentFiles()
     gnome_item = GnomeRecentItem(
-        u='file://%s' % filename,
+        u=filename,
         m=filetype,
         t=the_time,
         p=False,

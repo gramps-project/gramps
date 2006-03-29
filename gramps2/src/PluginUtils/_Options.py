@@ -223,7 +223,7 @@ class OptionListCollection:
         try:
             p = make_parser()
             p.setContentHandler(OptionParser(self))
-            p.parse('file://' + self.filename)
+            p.parse(self.filename)
         except (IOError,OSError,SAXParseException):
             pass
 

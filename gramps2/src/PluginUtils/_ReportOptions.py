@@ -276,7 +276,7 @@ class OptionListCollection(_Options.OptionListCollection):
         try:
             p = make_parser()
             p.setContentHandler(OptionParser(self))
-            p.parse('file://' + self.filename)
+            p.parse(self.filename)
         except (IOError,OSError,SAXParseException):
             pass
 
@@ -331,7 +331,7 @@ class OptionParser(_Options.OptionParser):
                 self.option_list.set_orientation(int(attrs['value']))
         else:
             # Tag is not report-specific, so we let the base class handle it.
-            OptionParser.startElement(self,tag,attrs)
+            _Options.OptionParser.startElement(self,tag,attrs)
 
     def endElement(self,tag):
         "Overridden class that handles the end of a XML element"
@@ -340,7 +340,7 @@ class OptionParser(_Options.OptionParser):
             self.common = False
         else:
             # Tag is not report-specific, so we let the base class handle it.
-            OptionParser.endElement(self,tag)
+            _Options.OptionParser.endElement(self,tag)
 
 #-------------------------------------------------------------------------
 #

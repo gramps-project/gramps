@@ -2314,10 +2314,7 @@ class GenericFilterList:
        try:
            parser = make_parser()
            parser.setContentHandler(FilterParser(self))
-           if self.file[0:7] != "file://":
-               parser.parse("file://" + self.file)
-           else:
-               parser.parse(self.file)
+           parser.parse(self.file)
        except (IOError,OSError):
            pass
        except SAXParseException:

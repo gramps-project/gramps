@@ -391,7 +391,7 @@ class BookList:
         try:
             p = make_parser()
             p.setContentHandler(BookParser(self))
-            p.parse('file://' + self.file)
+            p.parse(self.file)
         except (IOError,OSError,SAXParseException):
             pass
 
