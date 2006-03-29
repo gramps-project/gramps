@@ -183,48 +183,7 @@ class Gramps:
 ##         self.db.connect('person-update',self.on_update_bookmark)
 
     def welcome(self):
-        if Config.get_welcome() >= 200:
-            return
-
-        glade = gtk.glade.XML(const.gladeFile,'scrollmsg')
-        top = glade.get_widget('scrollmsg')
-        msg = glade.get_widget('msg')
-        msg.get_buffer().set_text(
-            _("Welcome to the 2.0.x series of GRAMPS!\n"
-              "\n"
-              "This version drastically differs from the 1.0.x branch\n"
-              "in a few ways. Please read carefully, as this may affect\n"
-              "the way you are using the program.\n"
-              "\n"
-              "1. This version works with the Berkeley database backend.\n"
-              "   Because of this, changes are written to disk immediately.\n"
-              "   There is NO Save function anymore!\n"
-              "2. The Media object files are not managed by GRAMPS.\n"
-              "   There is no concept of local objects, all objects\n"
-              "   are external. You are in charge of keeping track of\n"
-              "   your files. If you delete the image file from disk,\n"
-              "   it will be lost!\n"
-              "3. The version control provided by previous GRAMPS\n"
-              "   versions has been removed. You may set up the versioning\n"
-              "   system on your own if you'd like, but it will have to be\n"
-              "   outside of GRAMPS.\n"
-              "4. It is possible to directly open GRAMPS XML databases\n"
-              "   (used by previous versions) as well as GEDCOM files.\n"
-              "   However, any changes will be written to the disk when\n"
-              "   you quit GRAMPS. In case of GEDCOM files, this may lead\n"
-              "   to a data loss because some GEDCOM files contain data\n"
-              "   that does not comply with the GEDCOM standard and cannot\n"
-              "   be parsed by GRAMPS. If unsure, set up an empty grdb\n"
-              "   database (new GRAMPS format) and import GEDCOM into it.\n"
-              "   This will keep the original GEDCOM untouched.\n"
-              "\n"
-              "Enjoy!\n"
-              "The GRAMPS project\n"))
-        top.run()
-        top.destroy()
-
-        Config.save_welcome(200)
-        Config.sync()
+        return
 
     def researcher_key_update(self,client,cnxn_id,entry,data):
         pass
