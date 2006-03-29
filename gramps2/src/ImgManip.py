@@ -127,9 +127,7 @@ def run_thumbnailer(mtype, frm, to, size=const.thumbScale):
 
         if cmd and enable:
             cmdlist = map(lambda x: sublist.get(x,x),cmd.split())
-            if os.fork() == 0:
-                os.execvp(cmdlist[0],cmdlist)
-            os.wait()
+            os.spawnvpe(os.P_WAIT, cmdlist[0], cmdlist, os.environ)
             return True
         else:
             return False
