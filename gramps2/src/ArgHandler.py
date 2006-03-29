@@ -229,7 +229,6 @@ class ArgHandler:
         if filetype in (const.app_gramps,
                         const.app_gramps_xml,
                         const.app_gedcom):
-            print "Here"
             return self.vm.open_native(filename,filetype)
         else:
             return 0
