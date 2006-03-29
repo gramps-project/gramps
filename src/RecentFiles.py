@@ -37,16 +37,17 @@ try:
 except:
     use_lock = False
 
+import const
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-GNOME_FILENAME  = "~/.recently-used"
+GNOME_FILENAME  = os.path.join(const.user_home,".recently-used")
 MAX_GNOME_ITEMS = 500
 
-GRAMPS_FILENAME = "~/.gramps/recent-files.xml"
+GRAMPS_FILENAME = os.path.join(const.home_dir,"recent-files.xml")
 MAX_GRAMPS_ITEMS = 10
 
 #-------------------------------------------------------------------------

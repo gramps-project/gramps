@@ -159,7 +159,7 @@ class Calendar(Report.Report):
     def get_holidays(self, year, country = "US"):
         """ Looks in multiple places for holidays.xml files """
         locations = [const.pluginsDir,
-                     os.path.expanduser("~/.gramps/plugins")]
+                     os.path.join(const.home_dir,"plugins")]
         holiday_file = 'holidays.xml'
         for dir in locations:
             holiday_full_path = os.path.join(dir, holiday_file)
