@@ -308,10 +308,10 @@ class Exporter:
         if len(default_dir)<=1:
             default_dir = Config.get_last_import_dir()
         if len(default_dir)<=1:
-            default_dir = '~/'
+            default_dir = const.user_home
 
         if ext == 'gramps':
-            new_filename = os.path.expanduser(default_dir + 'data.gramps')
+            new_filename = os.path.join(default_dir,'data.gramps')
         elif ext == 'burn':
             new_filename = os.path.basename(self.dbstate.db.get_save_path())
         else:

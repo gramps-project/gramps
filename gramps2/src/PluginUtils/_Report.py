@@ -1645,14 +1645,21 @@ class TemplateParser(handler.ContentHandler):
 #
 #-----------------------------------------------------------------------
 try:
-    parser = make_parser()
     gspath = const.template_dir
-    parser.setContentHandler(TemplateParser(_template_map,gspath))
-    parser.parse("file://" + os.path.join(gspath,"templates.xml"))
-    parser = make_parser()
+    xmlfile = os.path.join(gspath,"templates.xml")
+
+    if os.path.isfile(xmlfile):
+        parser = make_parser()
+        parser.setContentHandler(TemplateParser(_template_map,gspath))
+        parser.parse(xmlfile)
+    
     gspath = os.path.join(const.home_dir,"templates")
-    parser.setContentHandler(TemplateParser(_template_map,gspath))
-    parser.parse("file://" + os.path.join(gspath,"templates.xml"))
+    xmlfile = os.path.join(gspath,"templates.xml")
+    if os.path.isfile(xmlfile):
+        parser = make_parser()
+        parser.setContentHandler(TemplateParser(_template_map,gspath))
+        parser.parse(xmlfile)
+        
 except (IOError,OSError,SAXParseException):
     pass
 

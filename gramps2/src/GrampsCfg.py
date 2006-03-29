@@ -110,11 +110,11 @@ def loadConfig():
     Load preferences on startup. Not much to do, since all the prefs
     are in gconf and can be retrieved any time. 
     """
-    make_path(os.path.expanduser("~/.gramps"))
-    make_path(os.path.expanduser("~/.gramps/filters"))
-    make_path(os.path.expanduser("~/.gramps/plugins"))
-    make_path(os.path.expanduser("~/.gramps/templates"))
-    make_path(os.path.expanduser("~/.gramps/thumb"))
+    make_path(const.home_dir)
+    make_path(os.path.join(const.home_dir,"filters"))
+    make_path(os.path.join(const.home_dir,"plugins"))
+    make_path(os.path.join(const.home_dir,"templates"))
+    make_path(os.path.join(const.home_dir,"thumb"))
     
 #-------------------------------------------------------------------------
 #

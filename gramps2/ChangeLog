@@ -1,4 +1,7 @@
 2006-03-28  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: remove expanduser
+	* src/Exporter.py: remove expanduser
+	* src/plugins/BookReport.py: remove expanduser
 	* src/plugins/Calendar.py: remove expanduser
 	* src/plugins/GrampViz.py: remove expanduser
 	* src/const.py.in: fix home dir.
