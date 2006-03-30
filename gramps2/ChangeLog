@@ -1,3 +1,12 @@
+2006-03-28  Brian Matherly  <pez4brian@users.sourceforge.net>
+	* src/Sort.py: remove use of deprecated functions
+	* src/BaseDoc.py: remove use of deprecated functions
+	* src/PluginUtils/_ReportUtils.py: remove use of deprecated functions
+	* src/plugins/DecendReport.py: remove use of deprecated functions
+	* src/plugins/IndivComplete.py: remove use of deprecated functions
+	* src/plugins/DetDescendantReport.py: remove use of deprecated functions
+	* src/plugins/DetAncestralReport.py: remove use of deprecated functions
+
 2006-03-29  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: fix import
 	* src/Editors/_EditPerson.py: Fix imports of EditMediaRef, remove

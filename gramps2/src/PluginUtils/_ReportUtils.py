@@ -1663,15 +1663,17 @@ def married_rel_str(database,person,family,is_first=True):
         'spouse' :_nd.display(spouse)
         }
     
+    relationship = family.get_relationship()[0]
+    
     if is_first:
-        if family.get_relationship() == RelLib.Family.MARRIED:
+        if relationship == RelLib.Family.MARRIED:
             if person.get_gender() == RelLib.Person.MALE:
                 text = _('He married %(spouse)s.') % values
             elif person.get_gender() == RelLib.Person.FEMALE:
                 text = _('She married %(spouse)s.') % values
             else:
                 text = _('This person married %(spouse)s.') % values
-        elif family.get_relationship() == RelLib.Family.UNMARRIED:
+        elif relationship == RelLib.Family.UNMARRIED:
             if person.get_gender() == RelLib.Person.MALE:
                 text = _('He had an unmarried relationship with %(spouse)s.') % values
             elif person.get_gender() == RelLib.Person.FEMALE:
@@ -1686,14 +1688,14 @@ def married_rel_str(database,person,family,is_first=True):
             else:
                 text = _('This person had relationship with %(spouse)s.') % values
     else:
-        if family.get_relationship() == RelLib.Family.MARRIED:
+        if relationship == RelLib.Family.MARRIED:
             if person.get_gender() == RelLib.Person.MALE:
                 text = _('He also married %(spouse)s.') % values
             elif person.get_gender() == RelLib.Person.FEMALE:
                 text = _('She also married %(spouse)s.') % values
             else:
                 text = _('This person also married %(spouse)s.') % values
-        elif family.get_relationship() == RelLib.Family.UNMARRIED:
+        elif relationship == RelLib.Family.UNMARRIED:
             if person.get_gender() == RelLib.Person.MALE:
                 text = _('He had an unmarried relationship with %(spouse)s.') % values
             elif person.get_gender() == RelLib.Person.FEMALE:
@@ -1781,9 +1783,9 @@ def find_spouse(person,family):
 #
 #-------------------------------------------------------------------------
 def find_marriage(database,family):    
-    for event_handle in family.get_event_list():
-        event = database.get_event_from_handle(event_handle)
-        if event and event.get_name() == "Marriage":
+    for event_ref in family.get_event_ref_list():
+        event = database.get_event_from_handle(event_ref.ref)
+        if event and event.get_type() == RelLib.Event.MARRIAGE:
             return event
     return None
 
@@ -1971,9 +1973,9 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
     bdate_mod = False
     
     burial = None
-    for event_handle in person.get_event_list():
-        event = database.get_event_from_handle(event_handle)
-        if event and event.get_name() == "Burial":
+    for event_ref in person.get_event_ref_list():
+        event = database.get_event_from_handle(event_ref.ref)
+        if event and event.get_type() == RelLib.Event.BURIAL:
             burial = event
             break
 
@@ -2121,15 +2123,15 @@ def old_calc_age(database,person):
     age = 0
     units = 0
 
-    birth_handle = person.get_birth_handle()
-    if birth_handle:
-        birth = database.get_event_from_handle(birth_handle).get_date_object()
+    birth_ref = person.get_birth_ref()
+    if birth_ref:
+        birth = database.get_event_from_handle(birth_ref.ref).get_date_object()
         birth_year_valid = birth.get_year_valid()
     else:
         birth_year_valid = None
-    death_handle = person.get_death_handle()
-    if death_handle:
-        death = database.get_event_from_handle(death_handle).get_date_object()
+    death_ref = person.get_death_ref()
+    if death_ref:
+        death = database.get_event_from_handle(death_ref.ref).get_date_object()
         death_year_valid = death.get_year_valid()
     else:
         death_year_valid = None
