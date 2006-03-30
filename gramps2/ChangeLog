@@ -1,4 +1,4 @@
-2006-03-28  Brian Matherly  <pez4brian@users.sourceforge.net>
+2006-03-29  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/Sort.py: remove use of deprecated functions
 	* src/BaseDoc.py: remove use of deprecated functions
 	* src/PluginUtils/_ReportUtils.py: remove use of deprecated functions
@@ -6,6 +6,7 @@
 	* src/plugins/IndivComplete.py: remove use of deprecated functions
 	* src/plugins/DetDescendantReport.py: remove use of deprecated functions
 	* src/plugins/DetAncestralReport.py: remove use of deprecated functions
+	* src/PluginUtils/_Plugins.py: remove statbox
 
 2006-03-29  Don Allingham  <don@gramps-project.org>
 	* src/Utils.py: provide launch function for spawning processes
