@@ -1294,14 +1294,12 @@ class ProgressMeter:
 def launch(prog_str,path):
 
     subval = {
-        '%i'   : None,
-        '%F'   : (True,path),
-        '%f'   : (True,path),
-        '%u'   : (True,path),
-        '%U'   : (True,path),
-        '%n'   : (True,path),
-        '%N'   : (True,path),
-        '"%c"' : (False,'"%s"' % path),
+        '%F'   : path,
+        '%f'   : path,
+        '%u'   : path,
+        '%U'   : path,
+        '%n'   : path,
+        '%N'   : path,
         }
     
     prog_data = prog_str.split()
@@ -1311,15 +1309,12 @@ def launch(prog_str,path):
 
     if len(prog_data) > 1:
         for item in prog_data:
-            value = subval.get(item,item)
-            if not value:
-                continue
-            if type(value) == tuple:
-                if value[0]:
-                    need_path = False
-                prog_list.append(value[1])
-            elif value[0] != '%':
-                prog_list.append(value)
+            if subval.has_key(item):
+                need_path = False
+                value = subval[item]
+            else:
+                value = item
+            prog_list.append(value)
     else:
         prog_list = [prog_data[0]]
 
