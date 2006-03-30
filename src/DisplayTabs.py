@@ -1457,6 +1457,8 @@ class GalleryTab(ButtonTab):
         if src:
             sref = RelLib.MediaRef()
             try:
+                from Editors import EditMediaRef
+                
                 EditMediaRef(self.dbstate, self.uistate, self.track,
                              src, sref, self.add_callback)
             except Errors.WindowActiveError:
