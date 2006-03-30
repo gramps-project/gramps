@@ -193,17 +193,19 @@ class FanChart(Report.Report):
         person = self.database.get_person_from_handle(person_handle)
         pn = person.get_primary_name()
 
-        birth_handle = person.get_birth_handle()
-        if birth_handle:
-            b = self.database.get_event_from_handle(birth_handle).get_date_object().get_year()
+        birth_ref = person.get_birth_ref()
+        if birth_ref:
+            birth = self.database.get_event_from_handle(birth_ref.ref)
+            b = birth.get_date_object().get_year()
             if b == 0:
                 b = ""
         else:
             b = ""
 
-        death_handle = person.get_death_handle()
-        if death_handle:
-            d = self.database.get_event_from_handle(death_handle).get_date_object().get_year()
+        death_ref = person.get_death_ref()
+        if death_ref:
+            death = self.database.get_event_from_handle(death_ref.ref)
+            d = death.get_date_object().get_year()
             if d == 0:
                 d = ""
         else:

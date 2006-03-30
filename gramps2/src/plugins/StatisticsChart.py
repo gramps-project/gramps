@@ -56,7 +56,7 @@ import BaseDoc
 from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 import GenericFilter
 import DateHandler
-from Utils import ProgressMeter
+from Utils import ProgressMeter, format_event
 
 #------------------------------------------------------------------------
 #
@@ -224,16 +224,16 @@ class Extract:
     
     def get_person_age(self, person):
         "return age for given person, if alive"
-        death_handle = person.get_death_handle()
-        if not death_handle:
+        death_ref = person.get_death_ref()
+        if not death_ref:
             return [self.estimate_age(person)]
         return [_("Already dead")]
 
     def get_death_age(self, person):
         "return age at death for given person, if dead"
-        death_handle = person.get_death_handle()
-        if death_handle:
-            return [self.estimate_age(person, death_handle)]
+        death_ref = person.get_death_ref()
+        if death_ref:
+            return [self.estimate_age(person, death_ref.ref)]
         return [_("Still alive")]
 
     def get_event_ages(self, data):
@@ -252,7 +252,8 @@ class Extract:
         person, event_handles = data
         for event_handle in event_handles:
             event = self.db.get_event_from_handle(event_handle)
-            types.append(event.get_name())
+            evtType = format_event( event.get_type() )
+            types.append(evtType)
         if types:
             return types
         return [_("Events missing")]
@@ -286,9 +287,9 @@ class Extract:
         person, child_handles = data
         for child_handle in child_handles:
             child = self.db.get_person_from_handle(child_handle)
-            birth_handle = child.get_birth_handle()
-            if birth_handle:
-                ages.append(self.estimate_age(person, birth_handle))
+            birth_ref = child.get_birth_ref()
+            if birth_ref:
+                ages.append(self.estimate_age(person, birth_ref.ref))
             else:
                 errors.append(_("Birth missing"))
                 continue
@@ -318,16 +319,16 @@ class Extract:
 
     def get_birth(self, person):
         "return birth event for given person or None"
-        birth_handle = person.get_birth_handle()
-        if birth_handle:
-            return self.db.get_event_from_handle(birth_handle)
+        birth_ref = person.get_birth_ref()
+        if birth_ref:
+            return self.db.get_event_from_handle(birth_ref.ref)
         return None
     
     def get_death(self, person):
         "return death event for given person or None"
-        death_handle = person.get_death_handle()
-        if death_handle:
-            return self.db.get_event_from_handle(death_handle)
+        death_ref = person.get_death_ref()
+        if death_ref:
+            return self.db.get_event_from_handle(death_ref.ref)
         return None
     
     def get_child_handles(self, person):
@@ -370,7 +371,9 @@ class Extract:
 
     def get_event_handles(self, person):
         "return list of event handles for given person or None"
-        events = person.get_event_list()
+        events = []
+        for event_ref in person.get_event_ref_list():
+            events.append( event_ref.get_reference_handle())
 
         if events:
             return (person, events)

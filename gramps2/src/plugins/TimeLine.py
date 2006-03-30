@@ -192,15 +192,17 @@ class TimeLine(Report.Report):
         
         for p_id in self.plist:
             p = self.database.get_person_from_handle(p_id)
-            b_id = p.get_birth_handle()
-            if b_id:
-                b = self.database.get_event_from_handle(b_id).get_date_object().get_year()
+            b_ref = p.get_birth_ref()
+            if b_ref:
+                birth = self.database.get_event_from_handle(b_ref.ref)
+                b = birth.get_date_object().get_year()
             else:
                 b = None
 
-            d_id = p.get_death_handle()
-            if d_id:
-                d = self.database.get_event_from_handle(d_id).get_date_object().get_year()
+            d_ref = p.get_death_ref()
+            if d_ref:
+                death = self.database.get_event_from_handle(d_ref.ref)
+                d = death.get_date_object().get_year()
             else:
                 d = None
 
@@ -289,15 +291,17 @@ class TimeLine(Report.Report):
 
         for p_id in self.plist:
             p = self.database.get_person_from_handle(p_id)
-            b_id = p.get_birth_handle()
-            if b_id:
-                b = self.database.get_event_from_handle(b_id).get_date_object().get_year()
+            b_ref = p.get_birth_ref()
+            if b_ref:
+                birth = self.database.get_event_from_handle(b_ref.ref)
+                b = birth.get_date_object().get_year()
             else:
                 b = None
 
-            d_id = p.get_death_handle()
-            if d_id:
-                d = self.database.get_event_from_handle(d_id).get_date_object().get_year()
+            d_ref = p.get_death_ref()
+            if d_ref:
+                death = self.database.get_event_from_handle(d_ref.ref)
+                d = death.get_date_object().get_year()
             else:
                 d = None
 

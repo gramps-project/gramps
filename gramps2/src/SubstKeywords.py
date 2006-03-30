@@ -43,6 +43,7 @@ __version__ = "$Revision$"
 
 import NameDisplay
 import DateHandler
+import RelLib
 
 #------------------------------------------------------------------------
 #
@@ -82,16 +83,16 @@ class SubstKeywords:
         self.m = ""
         self.M = ""
         
-        birth_handle = person.get_birth_handle()
-        if birth_handle:
-            birth = database.get_event_from_handle(birth_handle)
+        birth_ref = person.get_birth_ref()
+        if birth_ref:
+            birth = database.get_event_from_handle(birth_ref.ref)
             self.b = DateHandler.get_date(birth)
             bplace_handle = birth.get_place_handle()
             if bplace_handle:
                 self.B = database.get_place_from_handle(bplace_handle).get_title()
-        death_handle = person.get_death_handle()
-        if death_handle:
-            death = database.get_event_from_handle(death_handle)
+        death_ref = person.get_death_ref()
+        if death_ref:
+            death = database.get_event_from_handle(death_ref.ref)
             self.d = DateHandler.get_date(death)
             dplace_handle = death.get_place_handle()
             if dplace_handle:
@@ -113,11 +114,11 @@ class SubstKeywords:
                     father = database.get_person_from_handle(father_handle)
                     self.s = NameDisplay.displayer.display(father)
                     self.S = NameDisplay.displayer.sorted(father)
-            for e_id in f.get_event_list():
-                if not e_id:
+            for e_ref in f.get_event_ref_list():
+                if not e_ref:
                     continue
-                e = database.get_event_from_handle(e_id)
-                if e.get_name() == 'Marriage':
+                e = database.get_event_from_handle(e_ref.ref)
+                if e.get_type() == RelLib.Event.MARRIAGE:
                     self.m = DateHandler.get_date(e)
                     mplace_handle = e.get_place_handle()
                     if mplace_handle:
