@@ -38,12 +38,26 @@ def get_application(type):
     try:
         applist = mime_get_short_list_applications(type)
         if applist:
-            prog = mime_get_default_application(type)
-            return (prog[2],prog[1])
+            applist = [mime_get_default_application(type)] + applist
+            for prog in applist:
+                if _is_good_command(prog[2]):
+                    return (prog[2],prog[1])
+            else:
+                return None
         else:
             return None
     except:
         return None
+
+def _is_good_command(cmd):
+    """
+    We don't know what to do with certain substitution values.
+    If we find one, skip the command.
+    """
+    for sub in [ "%m", "%i", "%c" ]:
+        if cmd.find(sub) != -1:
+            return False
+    return True
 
 def get_description(type):
     """Returns the description of the specfied mime type"""
