@@ -476,8 +476,8 @@ class EditPerson(EditPrimary):
                             self.pname, self.update_name)
 
     def update_name(self,name):
-        for obj in (self.suffix, self.prefix, self.given, self.title, self.ntype_field,
-                    self.surname_field):
+        for obj in (self.suffix, self.prefix, self.given, self.title,
+                    self.ntype_field, self.surname_field):
             obj.update()
 
     def load_person_image(self):

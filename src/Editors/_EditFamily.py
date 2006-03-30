@@ -191,6 +191,16 @@ class ChildEmbedList(EmbeddedList):
         from Editors import EditPerson
 
         person = RelLib.Person()
+        autoname = Config.get_lastnamegen()
+        if autoname == 0:
+            name = self.north_american()
+        elif autoname == 2:
+            name = self.latin_american()
+        else:
+            name = self.no_name()
+        person.get_primary_name().set_surname(name[1])
+        person.get_primary_name().set_surname_prefix(name[0])
+
         EditPerson(self.dbstate,self.uistate,[],person, self.new_child_added)
 
     def new_child_added(self, person):
@@ -269,6 +279,36 @@ class ChildEmbedList(EmbeddedList):
                 EditPerson(self.dbstate,self.uistate,self.track,person)
             except Errors.WindowActiveError:
                 pass
+
+    def north_american(self):
+        father_handle = self.family.get_father_handle()
+        if father_handle:
+            father = self.dbstate.db.get_person_from_handle(father_handle)
+            pname = father.get_primary_name()
+            return (pname.get_surname_prefix(),pname.get_surname())
+        return ("","")
+
+    def no_name(self):
+        return ("","")
+
+    def latin_american(self):
+        if self.family:
+            father_handle = self.family.get_father_handle()
+            mother_handle = self.family.get_mother_handle()
+            if not father_handle or not mother_handle:
+                return ("","")
+            father = self.db.db.get_person_from_handle(father_handle)
+            mother = self.db.db.get_person_from_handle(mother_handle)
+            fsn = father.get_primary_name().get_surname()
+            msn = mother.get_primary_name().get_surname()
+            if not father or not mother:
+                return ("","")
+            try:
+                return ("","%s %s" % (fsn.split()[0],msn.split()[0]))
+            except:
+                return ("","")
+        else:
+            return ("","")
 
 class FastMaleFilter:
 
@@ -782,3 +822,4 @@ class EditFamily(EditPrimary):
             self.db.commit_family(self.obj,trans)
             self.db.transaction_commit(trans,_("Edit Family"))
         self.close_window()
+
