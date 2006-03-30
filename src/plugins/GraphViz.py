@@ -247,8 +247,8 @@ class GraphViz:
                 family = self.database.get_family_from_handle(family_handle)
                 father_handle = family.get_father_handle()
                 mother_handle = family.get_mother_handle()
-                fadopted  = frel != RelLib.Person.CHILD_REL_BIRTH
-                madopted  = mrel != RelLib.Person.CHILD_REL_BIRTH
+                fadopted  = frel != RelLib.Person.CHILD_BIRTH
+                madopted  = mrel != RelLib.Person.CHILD_BIRTH
                 famid = family.get_gramps_id().replace('-','_')
                 if (self.show_families and
                     (father_handle and person_dict.has_key(father_handle) or
@@ -299,15 +299,15 @@ class GraphViz:
             if self.includeid:
                 label = label + " (%s)" % the_id
             if self.includedates:
-                birth_handle = person.get_birth_handle()
-                if birth_handle:
-                    birth_event = self.database.get_event_from_handle(birth_handle)
+                birth_ref = person.get_birth_ref()
+                if birth_ref:
+                    birth_event = self.database.get_event_from_handle(birth_ref.ref)
                     birth = self.dump_event(birth_event)
                 else:
                     birth = ''
-                death_handle = person.get_death_handle()
-                if death_handle:
-                    death_event = self.database.get_event_from_handle(death_handle)
+                death_ref = person.get_death_ref()
+                if death_ref:
+                    death_event = self.database.get_event_from_handle(death_ref.ref)
                     death = self.dump_event(death_event)
                 else:
                     death = ''
@@ -347,10 +347,10 @@ class GraphViz:
                             self.f.write('style=filled fillcolor=%s, ' % self.colors['family'])
 
                         marriage = ""
-                        for event_handle in fam.get_event_list():
-                            if event_handle:
-                                event = self.database.get_event_from_handle(event_handle)
-                                if event.get_name() == "Marriage":
+                        for event_ref in fam.get_event_ref_list():
+                            if event_ref:
+                                event = self.database.get_event_from_handle(event_ref.ref)
+                                if event.get_type() == RelLib.Event.MARRIAGE:
                                     m = event
                                     break
                         else:

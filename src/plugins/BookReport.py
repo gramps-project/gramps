@@ -63,7 +63,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 from RelLib import Person
-
+import const
 import Utils
 import ListModel
 from PluginUtils import Plugins, Report, ReportOptions, \
@@ -1026,7 +1026,7 @@ class BookReportDialog(Report.ReportDialog):
         """Build a menu of document types that are appropriate for
         this text report.  This menu will be generated based upon
         whether the document requires table support, etc."""
-        self.format_menu = Plugins.GrampsBookFormatComboBox()
+        self.format_menu = Report.GrampsBookFormatComboBox()
         self.format_menu.set(self.doc_uses_tables(),
                              self.doc_type_changed, None, active)
 

@@ -1004,15 +1004,21 @@ def estimate_age(db, person, end_handle=None, start_handle=None):
     @rtype: tuple
     """
 
+    bhandle = None
     if start_handle:
         bhandle = start_handle
     else:
-        bhandle = person.get_birth_handle()
+        bref = person.get_birth_ref()
+        if bref:
+            bhandle = bref.get_reference_handle()
 
+    dhandle = None
     if end_handle:
         dhandle = end_handle
     else:
-        dhandle = person.get_death_handle()
+        dref = person.get_death_ref()
+        if dref:
+            dhandle = dref.get_reference_handle()
 
     # if either of the events is not defined, return an error message
     if not bhandle:

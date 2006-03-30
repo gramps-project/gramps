@@ -92,9 +92,9 @@ def build_report(database,person):
             incomp_names = incomp_names + 1
         if (not person.get_main_parents_family_handle()) and (not len(person.get_family_handle_list())):
             disconnected = disconnected + 1
-        birth_handle = person.get_birth_handle()
-        if birth_handle:
-            birth = database.get_event_from_handle(birth_handle)
+        birth_ref = person.get_birth_ref()
+        if birth_ref:
+            birth = database.get_event_from_handle(birth_ref.ref)
             if not DateHandler.get_date(birth):
                 missing_bday = missing_bday + 1
         else:
