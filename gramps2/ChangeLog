@@ -4,6 +4,9 @@
 	* src/Editors/_EditPerson.py: setup autocomp list
 	* src/GrampsWidgets.py: enable autocompletion on MonitoredEntry if
 	a list is provided
+	* src/plugins/Check.py: fix event_handle/event_ref conversion
+	* src/PluginUtils/_Options.py: Fix parsing of file if file does not exist
+	* src/PluginUtils/_Tool.py: Fix recursive __init__ in OptionHandler
 
 2006-03-29  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/Sort.py: remove use of deprecated functions
