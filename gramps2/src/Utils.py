@@ -592,11 +592,7 @@ def view_photo(photo):
         prog = data[0]
     except:
         return
-    
-    args = prog.split()
-    args.append(photo.get_path())
-    
-    os.spawnvpe(os.P_NOWAIT, args[0], args, os.environ)
+    launch(prog,photo.get_path())
 
 def find_file( filename):
     # try the filename we got
@@ -1294,3 +1290,39 @@ class ProgressMeter:
         Close the progress meter
         """
         self.ptop.destroy()
+
+def launch(prog_str,path):
+
+    subval = {
+        '%i'   : None,
+        '%F'   : (True,path),
+        '%f'   : (True,path),
+        '%u'   : (True,path),
+        '%U'   : (True,path),
+        '%n'   : (True,path),
+        '%N'   : (True,path),
+        '"%c"' : (False,'"%s"' % path),
+        }
+    
+    prog_data = prog_str.split()
+    prog = prog_data[0]
+    prog_list = []
+    need_path = True
+
+    if len(prog_data) > 1:
+        for item in prog_data:
+            value = subval.get(item,item)
+            if not value:
+                continue
+            if type(value) == tuple:
+                if value[0]:
+                    need_path = False
+                prog_list.append(value[1])
+            elif value[0] != '%':
+                prog_list.append(value)
+    else:
+        prog_list = [prog_data[0]]
+
+    if need_path:
+        prog_list.append(path)
+    os.spawnvpe(os.P_NOWAIT, prog, prog_list, os.environ)

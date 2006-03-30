@@ -8,7 +8,8 @@
 	* src/plugins/DetAncestralReport.py: remove use of deprecated functions
 
 2006-03-29  Don Allingham  <don@gramps-project.org>
-	* src/DisplayTabs.py: fix import
+	* src/Utils.py: provide launch function for spawning processes
+	* src/DisplayTabs.py: fix import, move launch function
 	* src/Editors/_EditPerson.py: Fix imports of EditMediaRef, remove
 	specific edit image from top image window.
 	* src/glade/gramps.glade: remove unused dialogs, replaced by 
