@@ -538,70 +538,72 @@ class CheckIntegrity:
             self.progress.step()
             
             person = self.db.get_person_from_handle(key)
-            birth_handle = person.get_birth_handle()
-            if birth_handle:
+            birth_ref = person.get_birth_ref()
+            if birth_ref:
+                birth_handle = birth_ref.ref
                 birth = self.db.get_event_from_handle(birth_handle)
                 if not birth:
                     # The birth event referenced by the birth handle
                     # does not exist in the database
-                    person.set_birth_handle("")
+                    person.set_birth_ref(None)
                     self.db.commit_person(person,self.trans)
                     self.invalid_events.append(key)
                 else:
-                    if not birth.get_name() == "Birth":
+                    if not birth.get_type()[0] == RelLib.Event.BIRTH:
                         # Birth event was not of the type "Birth"
-                        birth.set_name("Birth");
+                        birth.set_type((RelLib.Event.BIRTH,""))
                         self.db.commit_event(birth,self.trans)
                         self.invalid_birth_events.append(key)
-            death_handle = person.get_death_handle()
-            if death_handle:
+            death_ref = person.get_death_ref()
+            if death_ref:
+                death_handle = death_ref.ref
                 death = self.db.get_event_from_handle(death_handle)
                 if not death:
                     # The death event referenced by the death handle
                     # does not exist in the database
-                    person.set_death_handle("")
+                    person.set_death_ref(None)
                     self.db.commit_person(person,self.trans)
                     self.invalid_events.append(key)
                 else:
-                    if not death.get_name() == "Death":
+                    if not death.get_type()[0] == RelLib.Event.DEATH:
                         # Death event was not of the type "Death"
-                        death.set_name("Death");
+                        death.set_type((RelLib.Event.DEATH,""))
                         self.db.commit_event(death,self.trans)
                         self.invalid_death_events.append(key)
 
-            if person.get_event_list():
-                for event_handle in person.get_event_list():
+            if person.get_event_ref_list():
+                for event_ref in person.get_event_ref_list():
+                    event_handle = event_ref.ref
                     event = self.db.get_event_from_handle(event_handle)
                     if not event:
                         # The event referenced by the person
                         # does not exist in the database
                         #TODO: There is no better way?
-                        person.set_event_list(
-                            person.get_event_list().remove(event_handle))
+                        person.get_event_ref_list().remove(event_ref)
                         self.db.commit_person(person,self.trans)
                         self.invalid_events.append(key)
-            elif type(person.get_event_list()) != list:
+            elif type(person.get_event_ref_list()) != list:
                 # event_list is None or other garbage
-                person.set_event_list([])
+                person.set_event_ref_list([])
                 self.db.commit_person(person,self.trans)
                 self.invalid_events.append(key)
 
         for key in self.db.get_family_handles():
             self.progress.step()
             family = self.db.get_family_from_handle(key)
-            if family.get_event_list():
-                for event_handle in family.get_event_list():
+            if family.get_event_ref_list():
+                for event_ref in family.get_event_ref_list():
+                    event_handle = event_ref.ref
                     event = self.db.get_event_from_handle(event_handle)
                     if not event:
                         # The event referenced by the family
                         # does not exist in the database
-                        family.set_event_list(
-                            family.get_event_list().remove(event_handle))
+                        family.get_event_list().remove(event_ref)
                         self.db.commit_family(family,self.trans)
                         self.invalid_events.append(key)
-            elif type(family.get_event_list()) != list:
+            elif type(family.get_event_ref_list()) != list:
                 # event_list is None or other garbage
-                family.set_event_list([])
+                family.set_event_ref_list([])
                 self.db.commit_family(family,self.trans)
                 self.invalid_events.append(key)
 

@@ -221,9 +221,10 @@ class OptionListCollection:
         Loads the OptionList from the associated file, if it exists.
         """
         try:
-            p = make_parser()
-            p.setContentHandler(OptionParser(self))
-            p.parse(self.filename)
+            if os.path.isfile(self.filename):
+                p = make_parser()
+                p.setContentHandler(OptionParser(self))
+                p.parse(self.filename)
         except (IOError,OSError,SAXParseException):
             pass
 

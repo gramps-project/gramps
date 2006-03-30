@@ -240,7 +240,7 @@ def cli_tool(database,name,category,tool_class,options_class,options_str_dict):
 # Class handling options for plugins 
 #
 #-------------------------------------------------------------------------
-class OptionHandler(OptionHandler):
+class ToolOptionHandler(OptionHandler):
     """
     Implements handling of the options for the plugins.
     """
@@ -276,4 +276,4 @@ class ToolOptions(Options):
 
         if self.enable_dict:
             self.options_dict.update(self.enable_dict)
-        self.handler = OptionHandler(name,self.options_dict,person_id)
+        self.handler = ToolOptionHandler(name,self.options_dict,person_id)
