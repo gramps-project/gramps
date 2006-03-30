@@ -2004,9 +2004,5 @@ class BackRefModel(gtk.ListStore):
             yield True
         yield False
 
-def launch(prog,path):
-    print prog, path
-    os.spawnvpe(os.P_NOWAIT, prog, [ prog, path], os.environ)
-
 def make_launcher(prog, path):
-    return lambda x: launch(prog, path)
+    return lambda x: Utils.launch(prog, path)
