@@ -1,6 +1,9 @@
 2006-03-30  Don Allingham  <don@gramps-project.org>
 	* src/Mime/_GnomeMime.py: filter out bad KDE mime type commands
 	* src/Utils.py: clean up launch routine
+	* src/Editors/_EditPerson.py: setup autocomp list
+	* src/GrampsWidgets.py: enable autocompletion on MonitoredEntry if
+	a list is provided
 
 2006-03-29  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/Sort.py: remove use of deprecated functions

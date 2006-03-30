@@ -258,7 +258,8 @@ class MonitoredCheckbox:
         
 class MonitoredEntry:
 
-    def __init__(self,obj,set_val,get_val,read_only=False, changed=None):
+    def __init__(self,obj,set_val,get_val,read_only=False,
+                 autolist=None, changed=None):
         self.obj = obj
         self.set_val = set_val
         self.get_val = get_val
@@ -268,6 +269,9 @@ class MonitoredEntry:
             self.obj.set_text(get_val())
         self.obj.connect('changed', self._on_change)
         self.obj.set_editable(not read_only)
+
+        if autolist:
+            AutoComp.fill_entry(obj,autolist)
 
     def connect(self,signal,callback):
         self.obj.connect(signal,callback)

@@ -54,6 +54,7 @@ import NameDisplay
 import DisplayState
 import GrampsDisplay
 import GrampsWidgets
+import AutoComp
 from _EditPrimary import EditPrimary
 from DisplayTabs import *
 
@@ -189,7 +190,8 @@ class EditPerson(EditPrimary):
             self.top.get_widget("surname"),
             self.pname.set_surname,
             self.pname.get_surname,
-            self.db.readonly)
+            self.db.readonly,
+            autolist=self.db.get_surname_list())
 
         self.gid = GrampsWidgets.MonitoredEntry(
             self.top.get_widget("gid"),
