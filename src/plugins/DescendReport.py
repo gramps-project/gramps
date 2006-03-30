@@ -85,18 +85,18 @@ class DescendantReport(Report.Report):
         self.by_birthdate = sort.by_birthdate
         
     def dump_dates(self, person):
-        birth_handle = person.get_birth_handle()
-        if birth_handle:
-            birth = self.database.get_event_from_handle(birth_handle)
+        birth_ref = person.get_birth_ref()
+        if birth_ref:
+            birth = self.database.get_event_from_handle(birth_ref.ref)
             birth_date = birth.get_date_object()
             birth_year_valid = birth_date.get_year_valid()
         else:
             birth_year_valid = 0
             birth = None
 
-        death_handle = person.get_death_handle()
-        if death_handle:
-            death = self.database.get_event_from_handle(death_handle)
+        death_ref = person.get_death_ref()
+        if death_ref:
+            death = self.database.get_event_from_handle(death_ref.ref)
             death_date = death.get_date_object()
             death_year_valid = death_date.get_year_valid()
         else:

@@ -256,9 +256,10 @@ class DetDescendantReport(Report.Report):
                                     self.EMPTY_DATE,self.EMPTY_PLACE)
         if text:
             self.doc.write_text(text)
-            birth_handle = person.get_birth_handle()
-            if birth_handle:
-                self.endnotes(self.database.get_event_from_handle(birth_handle))
+            birth_ref = person.get_birth_ref()
+            if birth_ref:
+                birth = self.database.get_event_from_handle(birth_ref.ref)
+                self.endnotes(birth)
             first = 0
 	
 	age,units = self.calc_age(person)
@@ -266,9 +267,10 @@ class DetDescendantReport(Report.Report):
                                     self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
         if text:
             self.doc.write_text(text)
-            death_handle = person.get_birth_handle()
-            if death_handle:
-                self.endnotes(self.database.get_event_from_handle(death_handle))
+            death_ref = person.get_birth_ref()
+            if death_ref:
+                death = self.database.get_event_from_handle(death_ref.ref)
+                self.endnotes(death)
             first = 0
 
 
@@ -372,7 +374,7 @@ class DetDescendantReport(Report.Report):
                 father_name = ""
                 
             text = ReportUtils.child_str(person, father_name, mother_name,
-                                         bool(person.get_death_handle()),
+                                         bool(person.get_death_ref()),
                                          firstName)
             if text:
                 self.doc.write_text(text)

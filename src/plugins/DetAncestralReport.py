@@ -46,9 +46,9 @@ import gtk
 import RelLib
 from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 import BaseDoc
-import const
+import Utils
+import DateHandler
 from QuestionDialog import ErrorDialog
-from DateHandler import displayer as _dd
 from NameDisplay import displayer as _nd
 
 #------------------------------------------------------------------------
@@ -227,9 +227,10 @@ class DetAncestorReport(Report.Report):
                                     self.EMPTY_DATE,self.EMPTY_PLACE)
         if text:
             self.doc.write_text(text)
-            birth_handle = person.get_birth_handle()
-            if birth_handle:
-                self.endnotes(self.database.get_event_from_handle(birth_handle))
+            birth_ref = person.get_birth_ref()
+            if birth_ref:
+                birth = self.database.get_event_from_handle(birth_ref.ref)
+                self.endnotes(birth)
             first = 0
 
         age,units = self.calc_age(person)
@@ -237,9 +238,10 @@ class DetAncestorReport(Report.Report):
                                     self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
         if text:
             self.doc.write_text(text)
-            death_handle = person.get_birth_handle()
-            if death_handle:
-                self.endnotes(self.database.get_event_from_handle(death_handle))
+            death_ref = person.get_birth_ref()
+            if death_ref:
+                death = self.database.get_event_from_handle(death_ref.ref)
+                self.endnotes(death)
             first = 0
 
 
@@ -276,16 +278,16 @@ class DetAncestorReport(Report.Report):
                 atype = alt_name.get_type()
                 self.doc.write_text(
                     _('%(name_kind)s: %(name)s%(endnotes)s') % {
-                    'name_kind' : const.NameTypesMap.find_value(atype),
+                    'name_kind' : Utils.format_name_type( atype ),
                     'name' : alt_name.get_regular_name(),
                     'endnotes' : self.endnotes(alt_name),
                     })
                 self.doc.end_paragraph()
 
         if self.includeEvents:
-            for event_handle in person.get_event_list():
-                event = self.database.get_event_from_handle(event_handle)
-                date = event.get_date()
+            for event_ref in person.get_event_ref_list():
+                event = self.database.get_event_from_handle(event_ref.ref)
+                date = DateHandler.get_date(event)
                 ph = event.get_place_handle()
                 if ph:
                     place = self.database.get_place_from_handle(ph).get_title()
@@ -301,28 +303,29 @@ class DetAncestorReport(Report.Report):
 
 
                 self.doc.start_paragraph('DAR-MoreDetails')
+                evtName = Utils.format_event( event.get_type() )
                 if date and place:
                     self.doc.write_text(
                         _('%(event_name)s: %(date)s, %(place)s%(endnotes)s. ') % {
-                        'event_name' : _(event.get_name()),
+                        'event_name' : _(evtName),
                         'date' : date,
                         'endnotes' : self.endnotes(event),
                         'place' : place })
                 elif date:
                     self.doc.write_text(
                         _('%(event_name)s: %(date)s%(endnotes)s. ') % {
-                        'event_name' : _(event.get_name()),
+                        'event_name' : _(evtName),
                         'endnotes' : self.endnotes(event),
                         'date' : date})
                 elif place:
                     self.doc.write_text(
                         _('%(event_name)s: %(place)s%(endnotes)s. ') % {
-                        'event_name' : _(event.get_name()),
+                        'event_name' : _(evtName),
                         'endnotes' : self.endnotes(event),
                         'place' : place })
                 else:
                     self.doc.write_text(_('%(event_name)s: ') % {
-                        'event_name' : _(event.get_name())})
+                        'event_name' : _(evtName)})
                 if event.get_description():
                     self.doc.write_text(event.get_description())
                 self.doc.end_paragraph()
@@ -347,7 +350,7 @@ class DetAncestorReport(Report.Report):
                 father_name = ""
                 
             text = ReportUtils.child_str(person, father_name, mother_name,
-                                         bool(person.get_death_handle()),
+                                         bool(person.get_death_ref()),
                                          firstName)
             if text:
                 self.doc.write_text(text)

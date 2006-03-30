@@ -42,6 +42,7 @@ import gtk
 #------------------------------------------------------------------------
 import RelLib
 import const
+import Utils
 import BaseDoc
 import GenericFilter
 import DateHandler
@@ -112,7 +113,8 @@ class IndivCompleteReport(Report.Report):
     def write_fact(self,event):
         if event == None:
             return
-        name = _(event.get_name())
+        evtType = event.get_type()
+        name = Utils.format_event( evtType )
         date = DateHandler.get_date(event)
         place_handle = event.get_place_handle()
         if place_handle:
@@ -238,7 +240,7 @@ class IndivCompleteReport(Report.Report):
         self.doc.end_row()
         
         for name in self.start_person.get_alternate_names():
-            type = const.NameTypesMap.find_value(name.get_type())
+            type = Utils.format_name_type( name.get_type() )
             self.doc.start_row()
             self.normal_cell(type)
             text = name.get_regular_name()
@@ -287,9 +289,9 @@ class IndivCompleteReport(Report.Report):
             self.doc.end_cell()
             self.doc.end_row()
             
-            for event_handle in family.get_event_list():
-                if event_handle:
-                    event = self.database.get_event_from_handle(event_handle)
+            for event_ref in family.get_event_ref_list():
+                if event_ref:
+                    event = self.database.get_event_from_handle(event_ref.ref)
                     self.write_fact(event)
 
             child_handle_list = family.get_child_handle_list()
@@ -349,13 +351,12 @@ class IndivCompleteReport(Report.Report):
         self.doc.end_cell()
         self.doc.end_row()
 
-        event_handle_list = [ self.start_person.get_birth_handle(),
-                              self.start_person.get_death_handle() ]
-        event_handle_list = event_handle_list \
-                            + self.start_person.get_event_list()
-        for event_handle in event_handle_list:
-            if event_handle:
-                event = self.database.get_event_from_handle(event_handle)
+        event_ref_list = [ self.start_person.get_birth_ref(),                  \
+                           self.start_person.get_death_ref() ]    +            \
+                           self.start_person.get_event_ref_list()
+        for event_ref in event_ref_list:
+            if event_ref:
+                event = self.database.get_event_from_handle(event_ref.ref)
                 self.write_fact(event)
         self.doc.end_table()
         self.doc.start_paragraph("IDS-Normal")
