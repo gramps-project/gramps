@@ -128,8 +128,6 @@ class PluginDialog(DisplayState.ManagedWindow):
         self.author_name = self.dialog.get_widget("author_name")
         self.author_email = self.dialog.get_widget("author_email")
         
-        self.statbox = self.dialog.get_widget("statbox")
-        
         self.apply_button = self.dialog.get_widget("apply")
         if button_label:
             self.apply_button.set_label(button_label)
@@ -174,9 +172,7 @@ class PluginDialog(DisplayState.ManagedWindow):
         if node:
             path = store.get_path(node)
         if not node or not self.imap.has_key(path):
-            self.statbox.hide()
             return 
-        self.statbox.show()
         data = self.imap[path]
 
         (report_class,options_class,title,category,name,
