@@ -122,6 +122,7 @@ class GrampsTab(gtk.HBox):
         self.label_container = self.build_label_widget()
 
         # build the interface
+        self.share_btn = None
         self.build_interface()
 
     def is_empty(self):
@@ -2003,5 +2004,9 @@ class BackRefModel(gtk.ListStore):
             yield True
         yield False
 
+def launch(prog,path):
+    print prog, path
+    os.spawnvpe(os.P_NOWAIT, prog, [ prog, path], os.environ)
+
 def make_launcher(prog, path):
-    return lambda x: os.spawnvpe(os.P_NOWAIT, prog, [ prog, path], os.environ)
+    return lambda x: launch(prog, path)
