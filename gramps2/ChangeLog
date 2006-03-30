@@ -1,4 +1,5 @@
 2006-03-29  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: fix import
 	* src/Editors/_EditPerson.py: Fix imports of EditMediaRef, remove
 	specific edit image from top image window.
 	* src/glade/gramps.glade: remove unused dialogs, replaced by 
