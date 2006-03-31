@@ -192,6 +192,12 @@ status = {
     "UNCLEARED"   : 9,
     }
 
+baptism = [
+    _("<No Status>"),  _("Child"),     _("Cleared"),    _("Completed"),
+    _("Infant"),       _("Pre-1970"),  _("Qualified"),  _("Stillborn"),
+    _("Submitted"),    _("Uncleared"),
+    ]
+
 csealing = [
     _("<No Status>"),  _("BIC"),       _("Cleared"),    _("Completed"),
     _("DNS"),          _("Pre-1970"),  _("Qualified"),  _("Stillborn"),
