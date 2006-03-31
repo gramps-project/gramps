@@ -1176,10 +1176,10 @@ class HasBirth(Rule):
             self.date = None
         
     def apply(self,db,person):
-        event_handle = person.get_birth_handle()
-        if not event_handle:
+        event_ref = person.get_birth_ref()
+        if not event_ref:
             return False
-        event = db.get_event_from_handle(event_handle)
+        event = db.get_event_from_handle(event_ref.ref)
         ed = event.get_description().upper()
         if self.list[2] \
                and ed.find(self.list[2].upper())==-1:
@@ -1519,10 +1519,10 @@ class NoBirthdate(Rule):
     category    = _('General filters')
 
     def apply(self,db,person):
-        birth_handle = person.get_birth_handle()
-        if not birth_handle:
+        birth_ref = person.get_birth_ref()
+        if not birth_ref:
             return True
-        birth = db.get_event_from_handle(birth_handle)
+        birth = db.get_event_from_handle(birth_ref.ref)
         if not birth.get_date_object():
             return True
         return False
@@ -1538,9 +1538,10 @@ class PersonWithIncompleteEvent(Rule):
     category    = _('Event filters')
 
     def apply(self,db,person):
-        for event_handle in person.get_event_list() + [person.get_birth_handle(), person.get_death_handle()]:
-            event = db.get_event_from_handle(event_handle)
-            if event:
+        for event_ref in person.get_event_ref_list() + \
+                [person.get_birth_ref(), person.get_death_ref()]:
+            if event_ref:
+                event = db.get_event_from_handle(event_ref.ref)
                 if not event.get_place_handle():
                     return True
                 if not event.get_date_object():
@@ -1628,27 +1629,27 @@ class IsWitness(Rule):
         for person_handle in self.db.get_person_handles():
             p = self.db.get_person_from_handle(person_handle)
             self.get_witness_of_events(self.list[0],
-                                       p.get_event_list()+
-                                       [p.get_birth_handle(),
-                                        p.get_death_handle()]
+                                       p.get_event_ref_list()+
+                                       [p.get_birth_ref(),
+                                        p.get_death_ref()]
                                        )
 
         for family_handle in self.db.get_family_handles():
             f = self.db.get_family_from_handle(family_handle)
-            self.get_witness_of_events(self.list[1],f.get_event_list())
+            self.get_witness_of_events(self.list[1],f.get_event_ref_list())
 
     def get_witness_of_events(self, event_type, event_list):
         if not event_list:
             return
-        for event_handle in event_list:
-            event = self.db.get_event_from_handle(event_handle)
-            if event:
+        for event_ref in event_list:
+            if event_reg:
+                event = self.db.get_event_from_handle(event_ref.ref)
                 if event_type and not event.get_name() == event_type:
                     continue
                 wlist = event.get_witness_list()
                 if wlist:
                     for w in wlist:
-                        if w.get_type() == RelLib.Event.ID:
+                        if w.get_type()[0] == RelLib.Event.ID:
                             self.map.append(w.get_value())
 
 
@@ -1705,8 +1706,8 @@ class HasTextMatchingSubstringOf(Rule):
             return self.person_map[person.handle]
         if self.match_object(person):        # first match the person itself
             return True
-        for event_handle in person.get_event_list()+[person.get_birth_handle(), person.get_death_handle()]:
-            if self.search_event(event_handle): # match referenced events
+        for event_ref in person.get_event_ref_list()+[person.get_birth_ref(), person.get_death_ref()]:
+            if self.search_event(event_ref.ref): # match referenced events
                 return True
         for family_handle in person.get_family_handle_list(): # match families
             if self.search_family(family_handle):
@@ -1726,8 +1727,8 @@ class HasTextMatchingSubstringOf(Rule):
             if self.match_object(family):
                 match = 1
             else:
-                for event_handle in family.get_event_list():
-                    if self.search_event(event_handle):
+                for event_ref in family.get_event_ref_list():
+                    if self.search_event(event_ref.ref):
                         match = 1
                         break
                 for media_ref in family.get_media_list(): # match Media object

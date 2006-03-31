@@ -265,32 +265,25 @@ class Calendar(Report.Report):
                                    self.database.get_person_handles(sort_handles=False))
         for person_handle in people:
             person = self.database.get_person_from_handle(person_handle)
-            birth_handle = person.get_birth_handle()
+            birth_ref = person.get_birth_ref()
             birth_date = None
-            if birth_handle:
-                birth_event = self.database.get_event_from_handle(birth_handle)
-                birth_date = birth_event.get_date()
-                if birth_date == "":
-                    birth_date = None
-                else:
-                    birth_date_obj = birth_event.get_date_object()
-            death_handle = person.get_death_handle()
+            if birth_ref:
+                birth_event = self.database.get_event_from_handle(birth_ref.ref)
+                birth_date = birth_event.get_date_object()
+                    
+            death_ref = person.get_death_ref()
             death_date = None
-            if death_handle:
-                death_event = self.database.get_event_from_handle(death_handle)
-                death_date = death_event.get_date()
-                if death_date == "": # BUG: couldn't remove event
-                    death_date = None
-                else:
-                    death_date_obj = death_event.get_date_object()
+            if death_ref:
+                death_event = self.database.get_event_from_handle(death_ref.ref)
+                death_date = death_event.get_date_object()
             if death_date == None:
                 alive = True # well, until we get probably_alive in here
             else:
                 alive = False
             if self["birthdays"] and birth_date != None and ((self["alive"] and alive) or not self["alive"]):
-                year = birth_date_obj.get_year()
-                month = birth_date_obj.get_month()
-                day = birth_date_obj.get_day()
+                year = birth_date.get_year()
+                month = birth_date.get_month()
+                day = birth_date.get_day()
                 age = self["year"] - year
                 # add some things to handle maiden name:
                 father_lastname = None # husband, actually
@@ -325,16 +318,16 @@ class Calendar(Report.Report):
                             spouse_name = self.get_short_name(spouse)
                             short_name = self.get_short_name(person)
                             if self["alive"]:
-                                spouse_death_handle = spouse.get_death_handle()
-                                if spouse_death_handle != None:
+                                spouse_death_ref = spouse.get_death_ref()
+                                if spouse_death_ref:
                                     # there is a death event, maybe empty though
-                                    spouse_death_event = self.database.get_event_from_handle(spouse_death_handle)
+                                    spouse_death_event = self.database.get_event_from_handle(spouse_death_ref.ref)
                                     if spouse_death_event != None:
-                                        spouse_death_date = spouse_death_event.get_date()
-                                        if spouse_death_date != "": # BUG: couldn't remove event
+                                        spouse_death_date = spouse_death_event.get_date_object()
+                                        if spouse_death_date: # BUG: couldn't remove event
                                             continue
-                            for event_handle in fam.get_event_list():
-                                event = self.database.get_event_from_handle(event_handle)
+                            for event_ref in fam.get_event_ref_list():
+                                event = self.database.get_event_from_handle(event_ref.ref)
                                 event_obj = event.get_date_object()
                                 year = event_obj.get_year()
                                 month = event_obj.get_month()

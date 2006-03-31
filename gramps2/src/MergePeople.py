@@ -122,10 +122,12 @@ class Compare:
         self.add(tobj,title,NameDisplay.displayer.display(person))
         self.add(tobj,normal,"%s:\t%s" % (_('ID'),person.get_gramps_id()))
         self.add(tobj,normal,"%s:\t%s" % (_('Gender'),sex[person.get_gender()]))
-        bhandle = person.get_birth_handle()
-        self.add(tobj,normal,"%s:\t%s" % (_('Birth'),self.get_event_info(bhandle)))
-        dhandle = person.get_death_handle()
-        self.add(tobj,normal,"%s:\t%s" % (_('Death'),self.get_event_info(dhandle)))
+        bref = person.get_birth_ref()
+        if bref:
+            self.add(tobj,normal,"%s:\t%s" % (_('Birth'),self.get_event_info(bref.ref)))
+        dref = person.get_death_ref()
+        if dref:
+            self.add(tobj,normal,"%s:\t%s" % (_('Death'),self.get_event_info(dref.ref)))
 
         nlist = person.get_alternate_names()
         if len(nlist) > 0:
@@ -485,13 +487,13 @@ class MergePeople:
         birth event, and the secondary person's birth event is added
         as a 'Alternate Birth' event.
         """
-        handle1 = self.p1.get_birth_handle()
-        handle2 = self.p2.get_birth_handle()
+        ref1 = self.p1.get_birth_ref()
+        ref2 = self.p2.get_birth_ref()
 
-        if handle1:
-            new.set_birth_handle(handle1)
-            if handle2:
-                event = self.db.get_event_from_handle(handle2)
+        if ref1:
+            new.set_birth_handle(ref1.ref)
+            if ref2:
+                event = self.db.get_event_from_handle(ref2.ref)
                 event.set_name('Alternate Birth')
                 self.db.add_event(event,trans)
                 new.add_event_handle(event.get_handle())

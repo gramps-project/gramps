@@ -1133,22 +1133,25 @@ def sanitize_person(db,person):
     new_person.set_complete_flag(person.get_complete_flag())
 
     # copy birth event
-    event_handle = person.get_birth_handle()
-    event = db.get_event_from_handle(event_handle)
-    if event and not event.get_privacy():
-        new_person.set_birth_handle(event_handle)
+    event_ref = person.get_birth_ref()
+    if event_ref:
+        event = db.get_event_from_handle(event_ref.ref)
+        if not event.get_privacy():
+            new_person.set_birth_ref(event_ref)
 
     # copy death event
-    event_handle = person.get_death_handle()
-    event = db.get_event_from_handle(event_handle)
-    if event and not event.get_privacy():
-        new_person.set_death_handle(event_handle)
+    event_ref = person.get_death_ref()
+    if event_ref:
+        event = db.get_event_from_handle(event_ref.ref)
+        if not event.get_privacy():
+            new_person.set_death_ref(event_ref)
 
     # copy event list
-    for event_handle in person.get_event_list():
-        event = db.get_event_from_handle(event_handle)
-        if event and not event.get_privacy():
-            new_person.add_event_handle(event_handle)
+    for event_ref in person.get_event_ref_list():
+        if event_ref:
+            event = db.get_event_from_handle(event_ref.ref)
+            if not event.get_privacy():
+                new_person.add_event_handle(event_ref)
 
     # copy address list
     for address in person.get_address_list():
@@ -1317,9 +1320,8 @@ def get_birth_death_strings(database,person,empty_date="",empty_place=""):
 
     birth_ref = person.get_birth_ref()
     if birth_ref and birth_ref.ref:
-        birth_handle = birth_ref.ref
-        birth = database.get_event_from_handle(birth_handle)
-        if birth:
+        if birth_ref:
+            birth = database.get_event_from_handle(birth_ref.ref)
             bdate = DateHandler.get_date(birth)
             bplace_handle = birth.get_place_handle()
             if bplace_handle:
@@ -1330,8 +1332,7 @@ def get_birth_death_strings(database,person,empty_date="",empty_place=""):
 
     death_ref = person.get_death_ref()
     if death_ref and death_ref.ref:
-        death_handle = death_ref.ref
-        death = database.get_event_from_handle(death_handle)
+        death = database.get_event_from_handle(death_ref.ref)
         if death:
             ddate = DateHandler.get_date(death)
             dplace_handle = death.get_place_handle()
@@ -1385,8 +1386,15 @@ def born_died_str(database,person,endnotes=None,name_object=None,person_name=Non
     bdate,bplace,bdate_full,bdate_mod,ddate,dplace,ddate_full,ddate_mod = \
                             get_birth_death_strings(database,person)
 
-    birth = database.get_event_from_handle(person.get_birth_handle())
-    death = database.get_event_from_handle(person.get_death_handle())
+    birth = None
+    birth_ref = person.get_birth_ref()
+    if birth_ref:
+        birth = database.get_event_from_handle(birth_ref.ref)
+
+    death = None
+    death_ref = person.get_death_ref()
+    if death_ref:
+        death = database.get_event_from_handle(death_ref.ref)
 
     values = {
         'unknown_gender_name' : person_name,

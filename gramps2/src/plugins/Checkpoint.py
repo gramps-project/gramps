@@ -47,7 +47,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 from QuestionDialog import OkDialog, ErrorDialog
-import WriteXML
+import GrampsDb
 from PluginUtils import Tool, register_tool
 import Utils
 import GrampsDisplay
@@ -245,7 +245,7 @@ class Checkpoint(Tool.Tool):
         """
         proc = popen2.Popen3(cmd, True)
         if checkin:
-            xmlwrite = WriteXML.XmlWriter(self.db,self.callback,False,False)
+            xmlwrite = GrampsDb.XmlWriter(self.db,self.callback,False,False)
             xmlwrite.write_handle(proc.tochild)
         else:
             pass

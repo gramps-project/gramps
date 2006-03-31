@@ -1338,9 +1338,9 @@ class ContactPage(BasePage):
 class IndividualPage(BasePage):
 
     gender_map = {
-        RelLib.Person.MALE    : const.male,
-        RelLib.Person.FEMALE  : const.female,
-        RelLib.Person.UNKNOWN : const.unknown,
+        RelLib.Person.MALE    : _('male'),
+        RelLib.Person.FEMALE  : _('female'),
+        RelLib.Person.UNKNOWN : _('unknown'),
         }
     
     def __init__(self, db, person, title, ind_list, restrict_list,

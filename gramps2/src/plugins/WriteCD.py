@@ -58,7 +58,7 @@ except:
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import WriteXML
+import GrampsDb
 import Utils
 import Mime
 import const
@@ -136,7 +136,7 @@ class PackageWriter:
             
         # Write XML now
         g = create('burn:///%s/data.gramps' % base,OPEN_WRITE )
-        gfile = WriteXML.XmlWriter(self.db,None,1)
+        gfile = GrampsDb.XmlWriter(self.db,None,1)
         gfile.write_handle(g)
         g.close()
 

@@ -206,10 +206,9 @@ class CalendarWriter:
     def write_family(self,family_handle):
         family = self.db.get_family_from_handle(family_handle)
         if family:
-            event_list = family.get_event_list()
-            for event_handle in event_list:
-                event = self.db.get_event_from_handle(event_handle)
-                if event.get_name() == "Marriage":
+            for event_ref in family.get_event_ref_list():
+                event = self.db.get_event_from_handle(event_ref.ref)
+                if event.get_type()[0] == RelLib.Event.MARRIAGE:
                     m_date = event.get_date_object()
                     place_handle = event.get_place_handle()
                     text = _("Marriage of %s") % Utils.family_name(family,self.db)
@@ -222,9 +221,9 @@ class CalendarWriter:
     def write_person(self, person_handle):
         person = self.db.get_person_from_handle(person_handle)
         if person:
-            birth_handle = person.get_birth_handle()
-            if birth_handle:
-                birth = self.db.get_event_from_handle(birth_handle)
+            birth_ref = person.get_birth_ref()
+            if birth_ref:
+                birth = self.db.get_event_from_handle(birth_ref.ref)
                 if birth:
                     b_date = birth.get_date_object()
                     place_handle = birth.get_place_handle()
@@ -233,9 +232,10 @@ class CalendarWriter:
                         self.write_vevent(_("Birth of %s") % person.get_primary_name().get_name(), b_date, place.get_title())
                     else:
                         self.write_vevent(_("Birth of %s") % person.get_primary_name().get_name(), b_date)
-            death_handle = person.get_death_handle()
-            if death_handle:
-                death = self.db.get_event_from_handle(death_handle)
+                        
+            death_ref = person.get_death_ref()
+            if death_ref:
+                death = self.db.get_event_from_handle(death_ref.ref)
                 if death:
                     d_date = death.get_date_object()
                     place_handle = death.get_place_handle()

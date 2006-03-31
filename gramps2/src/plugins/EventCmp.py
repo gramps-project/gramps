@@ -332,35 +332,34 @@ class DisplayChart:
         for individual_id in self.my_list:
             individual = self.db.get_person_from_handle(individual_id)
             name = individual.get_primary_name().get_name()
-            birth_handle = individual.get_birth_handle()
+            birth_ref = individual.get_birth_ref()
             bdate = ""
             bplace = ""
-            if birth_handle:
-                birth = self.db.get_event_from_handle(birth_handle)
+            if birth_ref:
+                birth = self.db.get_event_from_handle(birth_ref.ref)
                 bdate = DateHandler.get_date(birth)
                 bplace_handle = birth.get_place_handle()
                 if bplace_handle:
                     bplace = self.db.get_place_from_handle(bplace_handle).get_title()
-            death_handle = individual.get_death_handle()
+            death_ref = individual.get_death_ref()
             ddate = ""
             dplace = ""
-            if death_handle:
-                death = self.db.get_event_from_handle(death_handle)
+            if death_ref:
+                death = self.db.get_event_from_handle(death_ref.ref)
                 ddate = DateHandler.get_date(death)
                 dplace_handle = death.get_place_handle()
                 if dplace_handle:
                     dplace = self.db.get_place_from_handle(dplace_handle).get_title()
             map = {}
-            elist = individual.get_event_list()[:]
-            for ievent_handle in elist:
-                if not ievent_handle:
+            for ievent_ref in individual.get_event_ref_list():
+                if not ievent_ref:
                     continue
-                ievent = self.db.get_event_from_handle(ievent_handle)
+                ievent = self.db.get_event_from_handle(ievent_ref.ref)
                 event_name = ievent.get_name()
                 if map.has_key(event_name):
-                    map[event_name].append(ievent_handle)
+                    map[event_name].append(ievent_ref.ref)
                 else:
-                    map[event_name] = [ievent_handle]
+                    map[event_name] = [ievent_ref.ref]
 
             first = 1
             done = 0
@@ -403,11 +402,10 @@ class DisplayChart:
         map = {}
         for individual_id in self.my_list:
             individual = self.db.get_person_from_handle(individual_id)
-            elist = individual.get_event_list()
-            for event_handle in elist:
-                if not event_handle:
+            for event_ref in individual.get_event_list():
+                if not event_ref:
                     continue
-                event = self.db.get_event_from_handle(event_handle)
+                event = self.db.get_event_from_handle(event_ref.ref)
                 name = event.get_name()
                 if not name:
                     break
