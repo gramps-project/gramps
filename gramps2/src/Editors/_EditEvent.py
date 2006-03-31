@@ -78,6 +78,9 @@ class EditEvent(EditPrimary):
         EditPrimary.__init__(self, dbstate, uistate, track,
                              event, dbstate.db.get_event_from_handle)
 
+    def empty_object(self):
+        return RelLib.Event()
+
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "event_edit","gramps")
         self.window = self.top.get_widget("event_edit")
@@ -180,6 +183,11 @@ class EditEvent(EditPrimary):
         GrampsDisplay.help('adv-ev')
 
     def save(self,*obj):
+        if self.object_is_empty():
+            ErrorDialog(_("Cannot save event"),
+                        _("No data exists for this event. Please "
+                          "enter data or cancel the edit."))
+            return
 
         (need_new, handle) = self.place_field.get_place_info()
         if need_new:

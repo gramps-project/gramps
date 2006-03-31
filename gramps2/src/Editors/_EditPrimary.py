@@ -95,6 +95,10 @@ class EditPrimary(DisplayState.ManagedWindow):
     def _cleanup_on_exit(self):
         pass
 
+    def object_is_empty(self):
+        return cmp(self.obj.serialize()[1:],
+                   self.empty_object().serialize()[1:]) == 0
+
     def define_ok_button(self,button,function):
         button.connect('clicked',function)
         button.set_sensitive(not self.db.readonly)
@@ -131,17 +135,24 @@ class EditPrimary(DisplayState.ManagedWindow):
             self.close_window()
             return False
 
+    def empty_object(self):
+        return None
+
     def data_has_changed(self):
         if self.db.readonly:
             return False
         elif self.obj.handle:
             orig = self.get_from_handle(self.obj.handle)
             if orig:
-                return cmp(orig.serialize(),self.obj.serialize()) != 0
+                cmp_obj = orig
             else:
-                return True
+                cmp_obj = self.empty_object()
+            return cmp(cmp_obj.serialize()[1:],
+                       self.obj.serialize()[1:]) != 0
         else:
-            return True
+            cmp_obj = self.empty_object()
+            return cmp(cmp_obj.serialize()[1:],
+                       self.obj.serialize()[1:]) != 0
 
     def save(self,*obj):
         pass

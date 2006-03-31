@@ -64,6 +64,9 @@ class EditPlace(EditPrimary):
         EditPrimary.__init__(self, dbstate, uistate, track, place,
                              dbstate.db.get_place_from_handle, callback)
 
+    def empty_object(self):
+        return RelLib.Place()
+
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile,"place_editor","gramps")
 
