@@ -331,6 +331,7 @@ class MonitoredType:
         self.sel = AutoComp.StandardCustomSelector(
             mapping, obj, custom, default)
 
+        self.set_val(self.sel.get_values())
         self.obj.set_sensitive(not readonly)
         self.obj.connect('changed', self.on_change)
 
