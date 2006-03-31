@@ -69,14 +69,14 @@ from PluginUtils import Tool, register_tool
 #
 #-------------------------------------------------------------------------
 _name2list = {
-    _('Personal event:')     : const.personal_events,
-    _('Family event:')       : const.family_events,
-    _('Personal attribute:') : const.personal_attributes,
-    _('Family attribute:')   : const.family_attributes,
+    _('Personal event:')     : Utils.personal_events.values(),
+    _('Family event:')       : Utils.family_events.values(),
+    _('Personal attribute:') : Utils.personal_attributes.values(),
+    _('Family attribute:')   : Utils.family_attributes.values(),
 }
 
 _menulist = {
-    _('Relationship type:')  : const.family_relations,
+    _('Relationship type:')  : Utils.family_relations.values(),
     }
 
 #-------------------------------------------------------------------------

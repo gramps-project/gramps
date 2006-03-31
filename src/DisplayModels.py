@@ -548,7 +548,7 @@ class MediaModel(BaseModel):
                             _codeset)
 
     def column_tooltip(self,data):
-        if self.use_tips:
+        if const.use_tips:
             try:
                 t = ToolTips.TipFromFunction(self.db, lambda:
                                              self.db.get_object_from_handle(data[0]))

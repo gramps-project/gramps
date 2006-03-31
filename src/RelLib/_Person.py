@@ -483,14 +483,14 @@ class Person(PrimaryObject,SourceNote,
             raise ValueError("Expecting EventRef instance")
         self.death_ref = event_ref
 
-    def get_birth_handle(self):
-        warn( "Use get_birth_ref instead of get_birth_handle", DeprecationWarning, 2)
-        # Wrapper for old API
-        # remove when transitition done.
-        event_ref = self.get_birth_ref()
-        if event_ref:
-            return event_ref.get_reference_handle()
-        return ""
+#    def get_birth_handle(self):
+#        warn( "Use get_birth_ref instead of get_birth_handle", DeprecationWarning, 2)
+#        # Wrapper for old API
+#        # remove when transitition done.
+#        event_ref = self.get_birth_ref()
+#        if event_ref:
+#            return event_ref.get_reference_handle()
+#        return ""
 
     def get_birth_ref(self):
         """
@@ -503,14 +503,14 @@ class Person(PrimaryObject,SourceNote,
         """
         return self.birth_ref
 
-    def get_death_handle(self):
-        warn( "Use get_death_ref instead of get_death_handle", DeprecationWarning, 2)
-        # Wrapper for old API
-        # remove when transitition done.
-        event_ref = self.get_death_ref()
-        if event_ref:
-            return event_ref.get_reference_handle()
-        return ""
+#     def get_death_handle(self):
+#         warn( "Use get_death_ref instead of get_death_handle", DeprecationWarning, 2)
+#         # Wrapper for old API
+#         # remove when transitition done.
+#         event_ref = self.get_death_ref()
+#         if event_ref:
+#             return event_ref.get_reference_handle()
+#         return ""
 
     def get_death_ref(self):
         """

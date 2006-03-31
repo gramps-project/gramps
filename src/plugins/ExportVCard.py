@@ -186,9 +186,9 @@ class CardWriter:
             if prname.get_title():
                 self.writeln("TITLE:%s" % prname.get_title())
                 
-            birth_handle = person.get_birth_handle()
-            if birth_handle:
-                birth = self.db.get_event_from_handle(birth_handle)
+            birth_ref = person.get_birth_ref()
+            if birth_ref:
+                birth = self.db.get_event_from_handle(birth_ref.ref)
                 if birth:
                     b_date = birth.get_date_object()
                     mod = b_date.get_modifier()

@@ -36,7 +36,6 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 
 from TransUtils import sgettext as _
 import pickle
-import os
 
 try:
     set()
@@ -73,7 +72,6 @@ from GrampsWidgets import SimpleButton
 # constants
 #
 #-------------------------------------------------------------------------
-dnddata = None
 
 #-------------------------------------------------------------------------
 #
@@ -124,6 +122,9 @@ class GrampsTab(gtk.HBox):
         # build the interface
         self.share_btn = None
         self.build_interface()
+
+    def get_selected(self):
+        return None
 
     def is_empty(self):
         """
@@ -438,11 +439,7 @@ class EmbeddedList(ButtonTab):
         and decide if this is a move or a reorder.
         """
         if sel_data and sel_data.data:
-            dnddata = pickle.loads(sel_data.data)
-            mytype = dnddata[0]
-            selfid = dnddata[1]
-            obj = dnddata[2]
-            row_from = dnddata[3]
+            (mytype, selfid, obj, row_from) = pickle.loads(sel_data.data)
 
             # make sure this is the correct DND type for this object
             if mytype == self._DND_TYPE.drag_type:
@@ -1536,12 +1533,11 @@ class SourceEmbedList(EmbeddedList):
 
         sel = SelectSource.SelectSource(self.dbstate.db,"Source Select")
         src = sel.run()
-        sref = RelLib.SourceRef()
         if src:
             try:
                 ref = RelLib.SourceRef()
                 EditSourceRef(self.dbstate,self.uistate,self.track,
-                              src, sref, self.add_callback)
+                              src, ref, self.add_callback)
             except Errors.WindowActiveError:
                 pass
 

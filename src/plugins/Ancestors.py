@@ -517,17 +517,17 @@ class ComprehensiveAncestorsReport (Report.Report):
     def abbrev_born_died (self, person):
         ret = ''
 
-        birth_handle = person.get_birth_handle ()
-        if birth_handle:
-            birth = self.database.get_event_from_handle(birth_handle)
+        birth_ref = person.get_birth_ref()
+        if birth_ref:
+            birth = self.database.get_event_from_handle(birth_ref.ref)
             date = birth.get_date ()
             if date:
                 ret += _(" b. %(birth_date)s") % {'birth_date': date}
                 ret += self.cite_sources (birth.get_source_references ())
 
-        death_handle = person.get_death_handle ()
-        if death_handle:
-            death = self.database.get_event_from_handle(death_handle)
+        death_ref = person.get_death_ref()
+        if death_ref:
+            death = self.database.get_event_from_handle(death_ref.ref)
             date = death.get_date ()
             if date:
                 ret += _(" d. %(death_date)s") % {'death_date': date}
@@ -538,16 +538,16 @@ class ComprehensiveAncestorsReport (Report.Report):
     def long_born_died (self, person):
         ret = ''
         born_info = None
-        birth_handle = person.get_birth_handle ()
-        if birth_handle:
-            birth = self.database.get_event_from_handle(birth_handle)
+        birth_ref = person.get_birth_ref()
+        if birth_ref:
+            birth = self.database.get_event_from_handle(birth_ref.ref)
             born_info = self.event_info (birth)
             if born_info:
                 ret = ", " + _("born") + born_info
 
-        death_handle = person.get_death_handle()
-        if death_handle:
-            death = self.database.get_event_from_handle(death_handle)
+        death_ref = person.get_death_ref()
+        if death_ref:
+            death = self.database.get_event_from_handle(death_ref.ref)
             died_info = self.event_info (death)
             if died_info:
                 if born_info:
@@ -803,7 +803,7 @@ class ComprehensiveAncestorsReport (Report.Report):
             paras = []
 
         names = person.get_alternate_names ()
-        event_handles = person.get_event_list ()
+        event_ref = person.get_event_ref_list ()
         addresses = person.get_address_list ()
         if (len (event_handles) + len (addresses) + len (names)) > 0:
             paras.append ((self.doc.start_paragraph, ['AR-SubEntry']))
@@ -819,20 +819,20 @@ class ComprehensiveAncestorsReport (Report.Report):
                             ': ' + name.get_regular_name ()]))
             paras.append ((self.doc.end_paragraph, []))
 
-        for event_handle in [person.get_birth_handle (), person.get_death_handle ()]:
-            if not event_handle:
+        for event_ref in [person.get_birth_ref(), person.get_death_ref()]:
+            if not event_ref:
                 continue
-            event = self.database.get_event_from_handle(event_handle)
+            event = self.database.get_event_from_handle(event_ref.ref)
             note = event.get_note ()
             note_format = event.get_note_format ()
             if note and (note_format != 0):
                 paras.append ((self.doc.write_note, [note, format,
                                                      'AR-Details']))
 
-        for event_handle in event_handles:
-            if not event_handle:
+        for event_ref in event_refs:
+            if not event_ref:
                 continue
-            event = self.database.get_event_from_handle(event_handle)
+            event = self.database.get_event_from_handle(event_ref.ref)
             paras.append ((self.doc.start_paragraph, ['AR-Details']))
             paras.append ((self.doc.write_text, [self.event_info (event)]))
             paras.append ((self.doc.end_paragraph, []))
