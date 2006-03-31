@@ -738,8 +738,8 @@ class GedcomWriter:
                     (index,name) = event.get_type()
 
                     val = ""
-                    if Utils.familyConstantEvents.has_key(index):
-                        val = Utils.familyConstantEvents[name]
+                    if Utils.family_events.has_key(index):
+                        val = Utils.family_events[name]
                     if val == "":
                         val = self.target_ged.gramps2tag(name)
 
@@ -896,8 +896,8 @@ class GedcomWriter:
                     continue
                 (index,name) = event.get_type()
                 val = ""
-                if Utils.personalConstantEvents.has_key(index):
-                    val = Utils.personalConstantEvents[index]
+                if Utils.personal_events.has_key(index):
+                    val = Utils.personal_events[index]
                 if val == "":
                     val = self.target_ged.gramps2tag(index)
                         
@@ -974,8 +974,8 @@ class GedcomWriter:
                     self.writeln("1 %s %s" % ( name, attr.get_value()))
                     continue
                 
-                if Utils.personalConstantAttributes.has_key(name):
-                    val = Utils.personalConstantAttributes[name]
+                if Utils.personal_attributes.has_key(name):
+                    val = Utils.personal_attributes[name]
                 else:
                     val = ""
                 value = self.cnvtxt(attr.get_value()).replace('\r',' ')
