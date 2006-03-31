@@ -70,11 +70,10 @@ for event_type in Utils.family_events.keys():
 #
 #-------------------------------------------------------------------------
 class EditEventRef(EditReference):
-    def __init__(self, state, uistate, track, event, event_ref, referent, update):
-        self.referent = referent
-
+    def __init__(self, state, uistate, track, event, event_ref, update):
         EditReference.__init__(self, state, uistate, track, event, event_ref,
                                update)
+        self._init_event()
 
     def _local_init(self):
 
@@ -85,10 +84,18 @@ class EditEventRef(EditReference):
         self.define_warn_box(self.top.get_widget("eer_warning"))
         self.define_expander(self.top.get_widget("eer_expander"))
                               
-        if self.referent.__class__.__name__ == 'Person':
-            self.role_dict = Utils.event_roles
-        elif self.referent.__class__.__name__ == 'Family':
-            self.role_dict = Utils.family_event_roles
+    def _init_event(self):
+        self.commit_event = self.db.commit_personal_event
+        self.add_event = self.db.add_person_event
+
+    def get_roles(self):
+        return Utils.event_roles
+    
+    def get_event_types(self):
+        return Utils.personal_events
+
+    def get_custom_events(self):
+        return [ (RelLib.Event.CUSTOM,val) for val in self.dbstate.db.get_person_event_types()]
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'),self.ok_clicked)
@@ -126,15 +133,16 @@ class EditEventRef(EditReference):
             self.top.get_widget('eer_role_combo'),
             self.source_ref.set_role,
             self.source_ref.get_role,
-            self.role_dict,
+            self.get_roles(),
             RelLib.EventRef.CUSTOM)
 
         self.event_menu = MonitoredType(
             self.top.get_widget("eer_type_combo"),
             self.source.set_type,
             self.source.get_type,
-            dict(total_events),
-            RelLib.Event.CUSTOM)
+            self.get_event_types(),
+            RelLib.Event.CUSTOM,
+            custom_values=self.get_custom_events())
 
         self.date_check = MonitoredDate(
             self.top.get_widget("eer_date"),
@@ -206,12 +214,12 @@ class EditEventRef(EditReference):
         if self.source.handle:
             if need_new:
                 self.db.add_place(place_obj,trans)
-            self.db.commit_event(self.source,trans)
+            self.commit_event(self.source,trans)
             self.db.transaction_commit(trans,_("Modify Event"))
         else:
             if need_new:
                 self.db.add_place(place_obj,trans)
-            self.db.add_event(self.source,trans)
+            self.add_event(self.source,trans)
             self.db.transaction_commit(trans,_("Add Event"))
             self.source_ref.ref = self.source.handle
         
@@ -220,6 +228,26 @@ class EditEventRef(EditReference):
 
         self.close_window(None)
 
+class EditFamilyEventRef(EditEventRef):
+
+    def __init__(self, state, uistate, track, event, event_ref, update):
+        
+        EditEventRef.__init__(self, state, uistate, track, event,
+                              event_ref, update)
+        
+    def _init_event(self):
+        self.commit_event = self.db.commit_family_event
+        self.add_event = self.db.add_family_event
+
+    def get_roles(self):
+        return Utils.event_roles
+
+    def get_event_types(self):
+        return Utils.family_events
+
+    def get_custom_events(self):
+        return [ (RelLib.Event.CUSTOM,val) for val in self.dbstate.db.get_family_event_types()]
+        
 
 #-------------------------------------------------------------------------
 #

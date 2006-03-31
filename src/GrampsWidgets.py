@@ -316,7 +316,8 @@ class MonitoredText:
 
 class MonitoredType:
 
-    def __init__(self,obj,set_val,get_val,mapping,custom,readonly=False):
+    def __init__(self,obj,set_val,get_val,mapping,custom,readonly=False,
+                 custom_values=None):
         self.set_val = set_val
         self.get_val = get_val
 
@@ -327,9 +328,9 @@ class MonitoredType:
             default = val[0]
         else:
             default = None
-            
+
         self.sel = AutoComp.StandardCustomSelector(
-            mapping, obj, custom, default)
+            mapping, obj, custom, default, additional=custom_values)
 
         self.set_val(self.sel.get_values())
         self.obj.set_sensitive(not readonly)

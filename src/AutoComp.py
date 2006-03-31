@@ -117,7 +117,8 @@ class StandardCustomSelector:
     (active_key,mapping[active_key]) tuple.
         
     """
-    def __init__(self,mapping,cbe=None,custom_key=None,active_key=None):
+    def __init__(self,mapping,cbe=None,custom_key=None,active_key=None,
+                 additional=None):
         """
         Constructor for the StandardCustomSelector class.
 
@@ -136,7 +137,7 @@ class StandardCustomSelector:
         self.custom_key = custom_key
         self.active_key = active_key
         self.active_index = 0
-
+        self.additional = additional
         # make model
         self.store = gtk.ListStore(int,str)
 
@@ -167,6 +168,13 @@ class StandardCustomSelector:
         for key in keys:
             if key != self.custom_key:
                 self.store.append(row=[key,self.mapping[key]])
+                if key == self.active_key:
+                    self.active_index = index
+                index = index + 1
+
+        if self.additional:
+            for (value,data) in self.additional:
+                self.store.append(row=[value,data])
                 if key == self.active_key:
                     self.active_index = index
                 index = index + 1

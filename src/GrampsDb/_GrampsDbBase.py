@@ -403,7 +403,7 @@ class GrampsDbBase(GrampsDBCallback):
 
         for attr in person.attribute_list:
             self.individual_attributes.add(attr.type)
-            
+
         self.marker_names.add(person.marker[1])
             
     def commit_media_object(self,obj,transaction,change_time=None):
@@ -858,6 +858,24 @@ class GrampsDbBase(GrampsDBCallback):
         return self._add_object(event,transaction,
                                 self.find_next_event_gramps_id,
                                 self.commit_event)
+
+    def add_person_event(self,event,transaction):
+        """
+        Adds an Event to the database, assigning internal IDs if they have
+        not already been defined.
+        """
+        if event.type[0] == Event.CUSTOM:
+            self.individual_event_names.add(event.type[1])
+        return self.add_event(event,transaction)
+
+    def add_family_event(self,event,transaction):
+        """
+        Adds an Event to the database, assigning internal IDs if they have
+        not already been defined.
+        """
+        if event.type[0] == Event.CUSTOM:
+            self.family_event_names.add(event.type[1])
+        return self.add_event(event,transaction)
 
     def add_place(self,place,transaction):
         """
