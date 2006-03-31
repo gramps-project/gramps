@@ -66,6 +66,9 @@ class EditSource(EditPrimary):
         EditPrimary.__init__(self, dbstate, uistate, track,
                              source, dbstate.db.get_source_from_handle)
 
+    def empty_object(self):
+        return RelLib.Source()
+
     def _local_init(self):
 
         assert(self.obj)
@@ -148,6 +151,11 @@ class EditSource(EditPrimary):
         self.backref_tab.close()
 
     def save(self,*obj):
+        if self.object_is_empty():
+            ErrorDialog(_("Cannot save source"),
+                        _("No data exists for this source. Please "
+                          "enter data or cancel the edit."))
+            return
 
         trans = self.db.transaction_begin()
         if self.obj.get_handle() == None:

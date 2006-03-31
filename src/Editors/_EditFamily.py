@@ -359,6 +359,9 @@ class EditFamily(EditPrimary):
         else:
             self.add_parent = False
 
+    def empty_object(self):
+        return RelLib.Family()
+
     def _local_init(self):
         self.build_interface()
 
@@ -763,7 +766,8 @@ class EditFamily(EditPrimary):
         else:
             original = None
 
-        if not original:
+        if not original and not self.object_is_empty():
+            print self.obj.serialize()
             trans = self.db.transaction_begin()
 
             # find the father, add the family handle to the father
@@ -792,6 +796,12 @@ class EditFamily(EditPrimary):
 
             self.db.add_family(self.obj,trans)
             self.db.transaction_commit(trans,_("Add Family"))
+        elif not original and self.object_is_empty():
+            from QuestionDialog import ErrorDialog
+            ErrorDialog(_("Cannot save family"),
+                        _("No data exists for this family. Please "
+                          "enter data or cancel the edit."))
+            return
         elif cmp(original.serialize(),self.obj.serialize()):
 
             trans = self.db.transaction_begin()
@@ -819,7 +829,10 @@ class EditFamily(EditPrimary):
                                                )
                 self.db.commit_person(person,trans)
 
-            self.db.commit_family(self.obj,trans)
+            if self.object_is_empty():
+                self.db.remove_family(self.obj.handle,trans)
+            else:
+                self.db.commit_family(self.obj,trans)
             self.db.transaction_commit(trans,_("Edit Family"))
         self.close_window()
 

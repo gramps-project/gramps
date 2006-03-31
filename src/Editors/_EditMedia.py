@@ -65,6 +65,9 @@ class EditMedia(EditPrimary):
         EditPrimary.__init__(self, state, uistate, track, obj,
                              state.db.get_object_from_handle)
 
+    def empty_object(self):
+        return RelLib.MediaObject()
+
     def _local_init(self):
         assert(self.obj)
         self.glade = gtk.glade.XML(const.gladeFile,

@@ -55,6 +55,9 @@ class EditRepository(EditPrimary):
         EditPrimary.__init__(self, dbstate, uistate, track,
                              repository, dbstate.db.get_repository_from_handle)
 
+    def empty_object(self):
+        return RelLib.Repository()
+
     def _local_init(self):
         self.glade = gtk.glade.XML(const.gladeFile,"repository_editor","gramps")
         self.define_top_level(self.glade.get_widget("repository_editor"),
@@ -115,6 +118,13 @@ class EditRepository(EditPrimary):
         self.define_ok_button(self.glade.get_widget('ok'), self.save)
 
     def save(self,*obj):
+        if self.object_is_empty():
+            from QuestionDialog import ErrorDialog
+            ErrorDialog(_("Cannot save repository"),
+                        _("No data exists for this repository. Please "
+                          "enter data or cancel the edit."))
+            return
+
         trans = self.db.transaction_begin()
         if self.obj.get_handle() == None:
             handle = self.db.add_repository(self.obj,trans)

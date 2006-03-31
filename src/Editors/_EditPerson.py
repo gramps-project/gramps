@@ -90,6 +90,9 @@ class EditPerson(EditPrimary):
         EditPrimary.__init__(self, state, uistate, track, person,
                              state.db.get_person_from_handle, callback)
 
+    def empty_object(self):
+        return RelLib.Person()
+
     def _local_init(self):
         self.pname = self.obj.get_primary_name()
         self.should_guess_gender = (not self.obj.get_gramps_id() and
@@ -444,6 +447,13 @@ class EditPerson(EditPrimary):
         """
         Save the data.
         """
+
+        if self.object_is_empty():
+            ErrorDialog(_("Cannot save person"),
+                        _("No data exists for this person. Please "
+                          "enter data or cancel the edit."))
+            return
+        
         if self._check_for_unknown_gender():
             return
 
