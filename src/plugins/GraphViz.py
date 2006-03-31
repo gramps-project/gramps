@@ -56,6 +56,7 @@ from PluginUtils import Report, ReportOptions, register_report
 import GenericFilter
 import RelLib
 import DateHandler
+import const
 from BaseDoc import PAPER_LANDSCAPE
 from QuestionDialog import ErrorDialog
 
