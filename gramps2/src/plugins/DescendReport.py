@@ -41,6 +41,7 @@ import Errors
 import Sort
 from QuestionDialog import ErrorDialog
 import NameDisplay
+import DateHandler
 
 #------------------------------------------------------------------------
 #
@@ -88,22 +89,18 @@ class DescendantReport(Report.Report):
         birth_ref = person.get_birth_ref()
         if birth_ref:
             birth = self.database.get_event_from_handle(birth_ref.ref)
-            birth_date = birth.get_date_object()
-            birth_year_valid = birth_date.get_year_valid()
+            birth_date = DateHandler.get_date(birth)
         else:
-            birth_year_valid = 0
             birth = None
 
         death_ref = person.get_death_ref()
         if death_ref:
             death = self.database.get_event_from_handle(death_ref.ref)
-            death_date = death.get_date_object()
-            death_year_valid = death_date.get_year_valid()
+            death_date = DateHandler.get_date(death)
         else:
             death = None
-            death_year_valid = 0
 
-        if birth_year_valid or death_year_valid:
+        if birth or death:
             self.doc.write_text(' (')
 
             birth_place = ""
@@ -120,28 +117,28 @@ class DescendantReport(Report.Report):
                     death_place = self.database.get_place_from_handle(
                         dplace_handle).get_title()
 
-            if birth_year_valid:
+            if birth:
                 if birth_place:
-                    self.doc.write_text(_("b. %(birth_year)d - %(place)s") % {
-                        'birth_year' : birth_date.get_year(),
+                    self.doc.write_text(_("b. %(birth_date)s - %(place)s") % {
+                        'birth_date' : birth_date,
                         'place' : birth_place,
                         })
                 else:
-                    self.doc.write_text(_("b. %(birth_year)d") % {
-                        'birth_year' : birth_date.get_year()
+                    self.doc.write_text(_("b. %(birth_date)s") % {
+                        'birth_date' : birth_date
                         })
 
-            if death_year_valid:
-                if birth_year_valid:
+            if death:
+                if birth:
                     self.doc.write_text(', ')
                 if death_place:
-                    self.doc.write_text(_("d. %(death_year)d - %(place)s") % {
-                        'death_year' : death_date.get_year(),
+                    self.doc.write_text(_("d. %(death_date)s - %(place)s") % {
+                        'death_date' : death,
                         'place' : death_place,
                         })
                 else:
-                    self.doc.write_text(_("d. %(death_year)d") % {
-                        'death_year' : death_date.get_year()
+                    self.doc.write_text(_("d. %(death_date)s") % {
+                        'death_date' : death
                         })
 
             self.doc.write_text(')')
