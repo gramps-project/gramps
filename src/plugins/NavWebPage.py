@@ -595,10 +595,10 @@ class IndividualListPage(BasePage):
                 if person.handle in restrict_list:
                     of.write(_('restricted'))
                 else:
-                    birth_handle = person.get_birth_handle()
-                    if birth_handle:
-                        birth = db.get_event_from_handle(birth_handle)
-                        of.write(birth.get_date())
+                    birth_ref = person.get_birth_ref()
+                    if birth_ref:
+                        birth = db.get_event_from_handle(birth_ref.ref)
+                        of.write(_dd.display(birth.get_date_object()))
                 of.write('</td></tr>\n')
                 first = False
             
@@ -1652,7 +1652,8 @@ class IndividualPage(BasePage):
         # Names [and their sources]
         for name in [self.person.get_primary_name(),]+self.person.get_alternate_names():
             pname = name_nameof(name,self.exclude_private)
-            of.write('<tr><td class="field">%s</td>\n' % _(name.get_type()))
+            type = Utils.format_name_type( name.get_type() )
+            of.write('<tr><td class="field">%s</td>\n' % _(type))
             of.write('<td class="data">%s' % pname)
             if not self.restrict:
                 nshl = []
@@ -1690,10 +1691,13 @@ class IndividualPage(BasePage):
         of.write('</tr>\n</table>\n</div>\n')
 
     def display_ind_events(self,of):
-        all_events = [handle for handle in [self.person.get_birth_handle(),
-                                            self.person.get_death_handle()]
-                      if handle] + self.person.get_event_list()
-        if not all_events or self.restrict:
+        birth_ref = self.person.get_birth_ref()
+        death_ref = self.person.get_death_ref()
+        evt_ref_list = self.person.get_event_ref_list()
+        
+        if not birth_ref and not death_ref and not evt_ref_list:
+            return
+        if self.restrict:
             return
         
         of.write('<div id="events">\n')
@@ -1701,24 +1705,22 @@ class IndividualPage(BasePage):
         of.write('<table class="infolist">\n')
 
         # Birth
-        handle = self.person.get_birth_handle()
-        if handle:
-            event = self.db.get_event_from_handle(handle)
+
+        if birth_ref:
+            event = self.db.get_event_from_handle(birth_ref.ref)
             of.write('<tr><td class="field">%s</td>\n' % _('Birth'))
             of.write('<td class="data">%s</td>\n' % self.format_event(event))
             of.write('</tr>\n')
 
         # Death
-        handle = self.person.get_death_handle()
-        if handle:
-            event = self.db.get_event_from_handle(handle)
+        if death_ref:
+            event = self.db.get_event_from_handle(death_ref.ref)
             of.write('<tr><td class="field">%s</td>\n' % _('Death'))
             of.write('<td class="data">%s</td>\n' % self.format_event(event))
             of.write('</tr>\n')
 
-        for event_id in self.person.get_event_list():
-            event = self.db.get_event_from_handle(event_id)
-
+        for event_ref in evt_ref_list:
+            event = self.db.get_event_from_handle(evt_ref.ref)
             of.write('<tr><td class="field">%s</td>\n' % _(event.get_name()))
             of.write('<td class="data">\n')
             of.write(self.format_event(event))
@@ -2119,11 +2121,11 @@ class WebReport(Report.Report):
         # Copy the Creative Commons icon if the a Creative Commons
         # license is requested
         if 0 < self.copyright < 7:
-            from_path = os.path.join(const.dataDir,"somerights20.gif")
+            from_path = os.path.join(const.image_dir,"somerights20.gif")
             to_path = os.path.join("images","somerights20.gif")
             self.store_file(archive,self.target_path,from_path,to_path)
 
-        from_path = os.path.join(const.dataDir,"document.png")
+        from_path = os.path.join(const.image_dir,"document.png")
         to_path = os.path.join("images","document.png")
         self.store_file(archive,self.target_path,from_path,to_path)
 
@@ -2193,10 +2195,10 @@ class WebReport(Report.Report):
         Copy the CSS file to the destination.
         """
         if archive:
-            fname = os.path.join(const.dataDir,css_file)
+            fname = os.path.join(const.data_dir,css_file)
             archive.add(fname,_NARRATIVE)
         else:
-            shutil.copyfile(os.path.join(const.dataDir,css_file),
+            shutil.copyfile(os.path.join(const.data_dir,css_file),
                             os.path.join(html_dir,_NARRATIVE))
 
     def person_pages(self, ind_list, restrict_list, place_list, source_list, archive):
@@ -2740,7 +2742,8 @@ def sort_people(db,handle_list):
     node = cursor.first()
     while node:
         if node[0] in flist:
-            primary_name = node[1][_NAME_COL]
+            primary_name = RelLib.Name()
+            primary_name.unserialize(node[1][_NAME_COL])
             if primary_name.private:
                 surname = _('Private')
                 sortnames[node[0]] = _('Private')
