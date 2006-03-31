@@ -739,7 +739,7 @@ class GedcomWriter:
 
                     val = ""
                     if Utils.family_events.has_key(index):
-                        val = Utils.family_events[name]
+                        val = Utils.family_events[index]
                     if val == "":
                         val = self.target_ged.gramps2tag(name)
 
