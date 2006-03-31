@@ -53,7 +53,6 @@ import RelLib
 import GrampsDisplay
 from _EditSecondary import EditSecondary
 
-from QuestionDialog import WarningDialog
 from DisplayTabs import *
 from GrampsWidgets import *
 
@@ -77,6 +76,9 @@ class EditAttribute(EditSecondary):
         """
         self.alist = data_list
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
+
+    def attribute_list(self):
+        return Utils.personal_attributes
         
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "attr_edit","gramps")
@@ -101,9 +103,12 @@ class EditAttribute(EditSecondary):
 
         self.type_selector = MonitoredType(
             self.top.get_widget("attr_menu"),
-            self.obj.set_type, self.obj.get_type,
-            dict(Utils.personal_attributes),
-            RelLib.Attribute.CUSTOM)
+            self.obj.set_type,
+            self.obj.get_type,
+            self.attribute_list(),
+            RelLib.Attribute.CUSTOM,
+            custom_values=self.alist,
+            )
 
     def _create_tabbed_pages(self):
         notebook = gtk.Notebook()
@@ -135,18 +140,32 @@ class EditAttribute(EditSecondary):
         Called when the OK button is pressed. Gets data from the
         form and updates the Attribute data structure.
         """
-
-        attr_data = self.obj.get_type()
-        if (attr_data[0] == RelLib.Attribute.CUSTOM and
-            not attr_data[1] in self.alist):
-            WarningDialog(
-                _('New attribute type created'),
-                _('The "%s" attribute type has been added to this database.\n'
-                  'It will now appear in the attribute menus for this database') % attr_data[1])
-            self.alist.append(attr_data[1])
-            self.alist.sort()
-
         if self.callback:
             self.callback(self.obj)
         self.close_window(obj)
 
+
+#-------------------------------------------------------------------------
+#
+# EditAttribute class
+#
+#-------------------------------------------------------------------------
+class EditFamilyAttribute(EditAttribute):
+    """
+    Displays a dialog that allows the user to edit an attribute.
+    """
+    def __init__(self, state, uistate, track, attrib, title, data_list, callback):
+        """
+        Displays the dialog box.
+
+        parent - The class that called the Address editor.
+        attrib - The attribute that is to be edited
+        title - The title of the dialog box
+        list - list of options for the pop down menu
+        """
+        EditAttribute.__init__(self, state, uistate, track, attrib, title,
+                               data_list, callback)
+
+    def attribute_list(self):
+        return Utils.family_attributes
+        

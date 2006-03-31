@@ -473,8 +473,8 @@ class EditFamily(EditPrimary):
             
         self.attr_list = self._add_tab(
             notebook,
-            AttrEmbedList(self.dbstate, self.uistate, self.track,
-                          self.obj.get_attribute_list()))
+            FamilyAttrEmbedList(self.dbstate, self.uistate, self.track,
+                                self.obj.get_attribute_list()))
             
         self.note_tab = self._add_tab(
             notebook,

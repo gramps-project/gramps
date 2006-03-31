@@ -61,10 +61,6 @@ from GrampsWidgets import *
 # Constants
 #
 #-------------------------------------------------------------------------
-total_events = dict(Utils.personal_events)
-for event_type in Utils.family_events.keys():
-    if not total_events.has_key(event_type):
-        total_events[event_type] = Utils.family_events[event_type]
 
 #-------------------------------------------------------------------------
 #
@@ -78,8 +74,25 @@ class EditEvent(EditPrimary):
         EditPrimary.__init__(self, dbstate, uistate, track,
                              event, dbstate.db.get_event_from_handle)
 
+        self._init_event()
+
+    def _init_event(self):
+        self.commit_event = self.db.commit_event
+
     def empty_object(self):
         return RelLib.Event()
+
+    def get_base_events(self):
+        new_batch = {}
+        for key in Utils.personal_events:
+            new_batch[key] = Utils.personal_events[key]
+        for key in Utils.family_events:
+            new_batch[key] = Utils.family_events[key]
+        return new_batch
+
+    def get_custom_events(self):
+        return self.dbstate.db.get_person_event_type_list() + \
+               self.dbstate.db.get_family_event_types()
 
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "event_edit","gramps")
@@ -122,8 +135,9 @@ class EditEvent(EditPrimary):
             self.top.get_widget("personal_events"),
             self.obj.set_type,
             self.obj.get_type,
-            dict(total_events),
-            RelLib.Event.CUSTOM)
+            self.get_base_events(),
+            RelLib.Event.CUSTOM,
+            custom_values=self.get_custom_events())
 
         self.date_field = MonitoredDate(
             self.top.get_widget("eventDate"),
@@ -209,17 +223,12 @@ class EditEvent(EditPrimary):
                 trans = self.db.transaction_begin()
                 if need_new:
                     self.db.add_place(place_obj,trans)
-                self.db.commit_event(self.obj,trans)
+                self.commit_event(self.obj,trans)
                 self.db.transaction_commit(trans,_("Edit Event"))
 
         if self.callback:
             self.callback(self.obj)
         self.close(obj)
-
-    def get_event_names(self):
-        data = set(self.db.get_family_event_types())
-        data.union(self.db.get_person_event_types())
-        return list(data)
 
     def data_has_changed(self):
         if self.db.readonly:
@@ -229,6 +238,36 @@ class EditEvent(EditPrimary):
             return cmp(orig.serialize(),self.obj.serialize()) != 0
         else:
             return True
+
+class EditPersonEvent(EditEvent):
+
+    def __init__(self, event, dbstate, uistate, track=[], callback=None):
+        EditEvent.__init__(self, event, dbstate, uistate, track,
+                           callback)
+
+    def _init_event(self):
+        self.commit_event = self.db.commit_personal_event
+
+    def get_base_events(self):
+        return Utils.personal_events
+
+    def get_custom_events(self):
+        return self.dbstate.db.get_person_event_type_list()
+
+class EditFamilyEvent(EditEvent):
+
+    def __init__(self, event, dbstate, uistate, track=[], callback=None):
+        EditEvent.__init__(self, event, dbstate, uistate, track,
+                           callback)
+
+    def _init_event(self):
+        self.commit_event = self.db.commit_family_event
+
+    def get_base_events(self):
+        return Utils.family_events
+
+    def get_custom_events(self):
+        return self.dbstate.db.get_family_event_types()
 
 #-------------------------------------------------------------------------
 #
@@ -262,3 +301,4 @@ class DelEventQuery:
         self.db.remove_event(self.event.get_handle(),trans)
         self.db.transaction_commit(
             trans,_("Delete Event (%s)") % self.event.get_gramps_id())
+
