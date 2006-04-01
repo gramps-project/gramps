@@ -443,7 +443,8 @@ class BasePage:
         of.write('<table class="infolist">\n')
 
         for attr in attrlist:
-            of.write('<tr><td class="field">%s</td>' % _(attr.get_type()))
+            atType = Utils.format_personal_attribute( attr.get_type() )
+            of.write('<tr><td class="field">%s</td>' % atType)
             of.write('<td class="data">%s</td></tr>\n' % attr.get_value())
         of.write('</table>\n')
         of.write('</div>\n')
@@ -645,10 +646,11 @@ class SurnamePage(BasePage):
             if person.handle in restrict_list:
                 of.write(_('restricted'))
             else:
-                birth_handle = person.get_birth_handle()
-                if birth_handle:
-                    birth = db.get_event_from_handle(birth_handle)
-                    of.write(birth.get_date())
+                birth_ref = person.get_birth_ref()
+                if birth_ref:
+                    birth = db.get_event_from_handle(birth_ref.ref)
+                    birth_date = _dd.display(birth.get_date_object())
+                    of.write(birth_date)
             of.write('</td></tr>\n')
         of.write('<tbody>\n</table>\n')
         self.display_footer(of,db)
@@ -1376,10 +1378,12 @@ class IndividualPage(BasePage):
                 family = self.db.get_family_from_handle(handle)
                 media_list += ReportUtils.sanitize_list(family.get_media_list(),
                                                     self.exclude_private)
-            for handle in self.person.get_event_list():
-                event = self.db.get_event_from_handle(handle)
-                media_list += ReportUtils.sanitize_list(event.get_media_list(),
-                                                        self.exclude_private)
+            for evt_ref in self.person.get_event_ref_list():
+                event = self.db.get_event_from_handle(evt_ref.ref)
+                if event:
+                    media_list += ReportUtils.sanitize_list(
+                                                        event.get_media_list(),
+                                                        self.exclude_private   )
 
             self.display_additional_images_as_gallery(of, db, media_list)
             
@@ -1574,7 +1578,7 @@ class IndividualPage(BasePage):
             self.source_link(of,source.handle,title,source.gramps_id,True)
             tmp = []
             for (label,data) in [(_('Page'),sref.page),
-                                 (_('Confidence'),const.confidence[sref.confidence]),
+                                 (_('Confidence'),Utils.confidence[sref.confidence]),
                                  (_('Text'),sref.text)]:
                 if data:
                     tmp.append("%s: %s" % (label,data))
@@ -1705,7 +1709,6 @@ class IndividualPage(BasePage):
         of.write('<table class="infolist">\n')
 
         # Birth
-
         if birth_ref:
             event = self.db.get_event_from_handle(birth_ref.ref)
             of.write('<tr><td class="field">%s</td>\n' % _('Birth'))
@@ -1720,12 +1723,14 @@ class IndividualPage(BasePage):
             of.write('</tr>\n')
 
         for event_ref in evt_ref_list:
-            event = self.db.get_event_from_handle(evt_ref.ref)
-            of.write('<tr><td class="field">%s</td>\n' % _(event.get_name()))
-            of.write('<td class="data">\n')
-            of.write(self.format_event(event))
-            of.write('</td>\n')
-            of.write('</tr>\n')
+            event = self.db.get_event_from_handle(event_ref.ref)
+            if event:
+                evt_name = Utils.format_event(event.get_type())
+                of.write('<tr><td class="field">%s</td>\n' % evt_name)
+                of.write('<td class="data">\n')
+                of.write(self.format_event(event))
+                of.write('</td>\n')
+                of.write('</tr>\n')
         of.write('</table>\n')
         of.write('</div>\n')
 
@@ -1759,8 +1764,8 @@ class IndividualPage(BasePage):
                              val)
         else:
             of.write(nameof(person,self.exclude_private))
-        if rel != RelLib.Person.CHILD_REL_BIRTH:
-            of.write('&nbsp;&nbsp;&nbsp;(%s)' % const.child_rel_list[rel])
+        if rel != RelLib.Person.CHILD_BIRTH:
+            of.write('&nbsp;&nbsp;&nbsp;(%s)' % Utils.format_child_relation(rel))
         of.write('</td>\n')
 
     def display_ind_parents(self,of):
@@ -1836,7 +1841,7 @@ class IndividualPage(BasePage):
         gender = self.person.get_gender()
         reltype = family.get_relationship()
 
-        if reltype == RelLib.Family.MARRIED:
+        if reltype[0] == RelLib.Family.MARRIED:
             if gender == RelLib.Person.FEMALE:
                 relstr = _("Husband")
             elif gender == RelLib.Person.MALE:
@@ -1856,7 +1861,7 @@ class IndividualPage(BasePage):
             name = _("unknown")
         if not first:
             of.write('<tr><td colspan="3">&nbsp;</td></tr>\n')
-        rtype = const.family_relations[family.get_relationship()][0]
+        rtype = Utils.format_family_relation(family.get_relationship())
         of.write('<tr><td class="category">%s</td>\n' % rtype)
         of.write('<td class="field">%s</td>\n' % relstr)
         of.write('<td class="data">')
@@ -1875,34 +1880,37 @@ class IndividualPage(BasePage):
         if self.restrict:
             return
         
-        for event_id in family.get_event_list():
-            event = self.db.get_event_from_handle(event_id)
+        for event_ref in family.get_event_ref_list():
+            event = self.db.get_event_from_handle(event_ref.ref)
             if self.exclude_private and event.private:
                 continue
 
+            evtType = Utils.format_event(event.get_type())
             of.write('<tr><td>&nbsp;</td>\n')
-            of.write('<td class="field">%s</td>\n' % _(event.get_name()))
+            of.write('<td class="field">%s</td>\n' % evtType)
             of.write('<td class="data">\n')
             of.write(self.format_event(event))
             of.write('</td>\n</tr>\n')
         for attr in family.get_attribute_list():
             if self.exclude_private and attr.private:
                 continue
+            attrType = Utils.format_family_attribute(attr.get_type())
             of.write('<tr><td>&nbsp;</td>\n')
-            of.write('<td class="field">%s</td>' % _(attr.get_type()))
+            of.write('<td class="field">%s</td>' % attrType)
             of.write('<td class="data">%s</td>\n</tr>\n' % attr.get_value())
         nobj = family.get_note_object()
         if nobj:
-            of.write('<tr><td>&nbsp;</td>\n')
-            of.write('<td class="field">%s</td>\n' % _('Narrative'))
-            of.write('<td class="data">\n')
-            format = nobj.get_format()
             text = nobj.get()
-            if format:
-                of.write( u"<pre>%s</pre>" % text )
-            else:
-                of.write( u"</p><p>".join(text.split("\n")))
-            of.write('</td>\n</tr>\n')
+            format = nobj.get_format()
+            if text:
+                of.write('<tr><td>&nbsp;</td>\n')
+                of.write('<td class="field">%s</td>\n' % _('Narrative'))
+                of.write('<td class="data">\n')
+                if format:
+                    of.write( u"<pre>%s</pre>" % text )
+                else:
+                    of.write( u"</p><p>".join(text.split("\n")))
+                of.write('</td>\n</tr>\n')
             
     def pedigree_person(self,of,person,is_spouse=False):
         person_link = person.handle in self.ind_list
@@ -2855,7 +2863,7 @@ def nameof(person,private):
     if person.private and private:
         return _("Private")
     else:
-        return _nd.display_with_nick(person)
+        return _nd.display(person)
 
 def name_nameof(name,private):
     if name.private and private:

@@ -1130,7 +1130,7 @@ def sanitize_person(db,person):
             new_person.add_alternate_name(name)
 
     # set complete flag
-    new_person.set_complete_flag(person.get_complete_flag())
+    new_person.set_marker(person.get_marker())
 
     # copy birth event
     event_ref = person.get_birth_ref()
@@ -1151,7 +1151,7 @@ def sanitize_person(db,person):
         if event_ref:
             event = db.get_event_from_handle(event_ref.ref)
             if not event.get_privacy():
-                new_person.add_event_handle(event_ref)
+                new_person.add_event_ref(event_ref)
 
     # copy address list
     for address in person.get_address_list():
