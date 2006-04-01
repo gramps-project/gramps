@@ -540,18 +540,22 @@ class PedigreeView(PageView.PersonNavView):
  
     def goto_active_person(self,handle=None):
         if handle:
-            person = self.db.get_person_from_handle(handle)
-            if person:
-                self.rebuild_trees(person)
-                self.handle_history(person.handle)
+            self.rebuild_trees(handle)
+            self.handle_history(handle)
         else:
             self.rebuild_trees(None)
     
     def person_updated_cb(self,handle_list):
-        self.rebuild_trees(self.dbstate.active)
+        if self.dbstate.active:
+            self.rebuild_trees(self.dbstate.active.handle)
+        else:
+            self.rebuild_trees(None)
 
     def person_rebuild(self):
-        self.rebuild_trees(self.dbstate.active)
+        if self.dbstate.active:
+            self.rebuild_trees(self.dbstate.active.handle)
+        else:
+            self.rebuild_trees(None)
 
     def person_edited_cb(self, p1=None, p2=None):
         pass
@@ -572,7 +576,8 @@ class PedigreeView(PageView.PersonNavView):
         else:
             self.notebook.set_current_page(self.force_size-2)
 
-    def rebuild_trees(self,person):
+    def rebuild_trees(self,person_handle):
+        person = self.dbstate.db.get_person_from_handle( person_handle)
         if self.tree_style == 1:
             # format of the definition is:
             # ((each box of the pedigree has a node here),
@@ -1055,15 +1060,24 @@ class PedigreeView(PageView.PersonNavView):
         if data in [0,1]:
             if self.tree_style != data:
                 self.tree_style = data
-                self.rebuild_trees(self.dbstate.active) # Rebuild using new style
+                if self.dbstate.active:
+                    self.rebuild_trees(self.dbstate.active.handle) # Rebuild using new style
+                else:
+                    self.rebuild_trees(None)
 
     def change_show_images_cb(self,event):
         self.show_images = not self.show_images
-        self.rebuild_trees(self.dbstate.active) # Rebuild using new style
+        if self.dbstate.active:
+            self.rebuild_trees(self.dbstate.active.handle) # Rebuild using new style
+        else:
+            self.rebuild_trees(None)
 
     def change_show_marriage_cb(self,event):
         self.show_marriage_data = not self.show_marriage_data
-        self.rebuild_trees(self.dbstate.active) # Rebuild using new style
+        if self.dbstate.active:
+            self.rebuild_trees(self.dbstate.active.handle) # Rebuild using new style
+        else:
+            self.rebuild_trees(None)
 
     def find_tree(self,person,index,depth,lst,val=0):
         """Recursively build a list of ancestors"""
