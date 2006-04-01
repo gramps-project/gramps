@@ -22,7 +22,7 @@
 
 from TransUtils import sgettext as _
 
-import DisplayState
+import ManagedWindow
 import DateHandler
 import NameDisplay
 import Config
@@ -31,7 +31,7 @@ import Utils
 
 from QuestionDialog import SaveDialog
 
-class EditPrimary(DisplayState.ManagedWindow):
+class EditPrimary(ManagedWindow.ManagedWindow):
 
     def __init__(self, state, uistate, track, obj, get_from_handle, callback=None):
         """Creates an edit window.  Associates a person with the window."""
@@ -47,7 +47,7 @@ class EditPrimary(DisplayState.ManagedWindow):
         self.signal_keys = []
         self.get_from_handle = get_from_handle
 
-        DisplayState.ManagedWindow.__init__(self, uistate, track, obj)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, obj)
 
         self._local_init()
 

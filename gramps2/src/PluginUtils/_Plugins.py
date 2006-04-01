@@ -61,7 +61,7 @@ import _Report
 import _Tool
 import _PluginMgr
 import GrampsDisplay
-import DisplayState
+import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
@@ -78,7 +78,7 @@ UNSUPPORTED = _("Unsupported")
 #
 #-------------------------------------------------------------------------
 
-class PluginDialog(DisplayState.ManagedWindow):
+class PluginDialog(ManagedWindow.ManagedWindow):
     """Displays the dialog box that allows the user to select the
     report that is desired."""
 
@@ -93,7 +93,7 @@ class PluginDialog(DisplayState.ManagedWindow):
         self.msg = msg
         self.content = content
 
-        DisplayState.ManagedWindow.__init__(self, uistate, [], None)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], None)
 
         self.state = state
         self.uistate = uistate
@@ -303,13 +303,13 @@ class ToolPlugins(PluginDialog):
 #
 #-------------------------------------------------------------------------
 
-class PluginStatus(DisplayState.ManagedWindow):
+class PluginStatus(ManagedWindow.ManagedWindow):
     """Displays a dialog showing the status of loaded plugins"""
     
     def __init__(self,state,uistate,track):
 
         import cStringIO
-        DisplayState.ManagedWindow.__init__(self, uistate, [], None)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], None)
 
         self.state = state
         self.uistate = uistate
