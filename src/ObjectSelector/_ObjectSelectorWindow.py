@@ -34,7 +34,7 @@ from TransUtils import sgettext as _
 import _Factories
 from _Constants import ObjectTypes
 
-from DisplayState import ManagedWindow
+from ManagedWindow import ManagedWindow
 import const
 
 class _ObjectTypeWidgets(object):

@@ -48,7 +48,7 @@ import gtk.glade
 import const
 import Utils
 import RelLib
-import DisplayState
+import ManagedWindow
 
 from QuestionDialog import WarningDialog, ErrorDialog
 from DisplayTabs import *
@@ -59,7 +59,7 @@ from GrampsWidgets import *
 # EditReference class
 #
 #-------------------------------------------------------------------------
-class EditReference(DisplayState.ManagedWindow):
+class EditReference(ManagedWindow.ManagedWindow):
     def __init__(self, state, uistate, track, source, source_ref, update):
         self.db = state.db
         self.dbstate = state
@@ -71,7 +71,7 @@ class EditReference(DisplayState.ManagedWindow):
         self.signal_keys = []
         self.warn_box = None
 
-        DisplayState.ManagedWindow.__init__(self, uistate, track, source_ref)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, source_ref)
 
         self._local_init()
         self._setup_warnbox()

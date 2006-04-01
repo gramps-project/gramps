@@ -1,4 +1,11 @@
 2006-03-31  Don Allingham  <don@gramps-project.org>
+	* src/ManagedWindow.py: added
+	* src/DisplayState.py: break out managed window stuff
+	* src/Editors/_EditPrimary.py: use ManagedWindow
+	* src/Editors/_EditSecondary.py: use ManagedWindow
+	* src/Editors/_EditReference.py: use ManagedWindow
+	* src/ObjectSelector/_ObjectSelectorWindow.py: use ManagedWindow
+	* src/PluginUtils/_Plugins.py: use ManagedWindow
 	* src/GrampsDb/_GrampsDbBase.py: handle saving of custom 
 	attributes and event types for use in menus
 	* src/Editors/_EditAttribute.py: support for family vs. person

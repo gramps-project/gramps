@@ -22,12 +22,12 @@
 
 from TransUtils import sgettext as _
 
-import DisplayState
+import ManagedWindow
 import Config
 import GrampsDisplay
 import Utils
 
-class EditSecondary(DisplayState.ManagedWindow):
+class EditSecondary(ManagedWindow.ManagedWindow):
 
     def __init__(self, state, uistate, track, obj, callback=None):
         """Creates an edit window.  Associates a person with the window."""
@@ -39,7 +39,7 @@ class EditSecondary(DisplayState.ManagedWindow):
         self.callback = callback
         self.signal_keys = []
 
-        DisplayState.ManagedWindow.__init__(self, uistate, track, obj)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, obj)
 
         self._local_init()
 
