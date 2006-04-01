@@ -705,7 +705,7 @@ class EventEmbedList(EmbeddedList):
             try:
                 self.get_ref_editor()(
                     self.dbstate,self.uistate,self.track,
-                    event, ref, self.obj, self.event_updated)
+                    event, ref, self.event_updated)
             except Errors.WindowActiveError:
                 pass
 

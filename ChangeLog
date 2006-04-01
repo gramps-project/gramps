@@ -1,6 +1,8 @@
 2006-04-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_PedigreeView.py: Work around the bug of
 	dbstate.active not being updated when the active person was edited.
+	* src/DisplayTabs.py (EventEmbedList.edit_button_clicked): Fix params
+	of EditEventRef call
 
 2006-03-31  Don Allingham  <don@gramps-project.org>
 	* src/ManagedWindow.py: added
