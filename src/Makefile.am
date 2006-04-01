@@ -68,6 +68,7 @@ gdir_PYTHON = \
 	ImgManip.py\
 	lds.py \
 	ListModel.py\
+	ManagedWindow.py\
 	MergeData.py\
 	MergePeople.py\
 	NameDisplay.py\
