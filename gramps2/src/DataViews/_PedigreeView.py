@@ -577,7 +577,9 @@ class PedigreeView(PageView.PersonNavView):
             self.notebook.set_current_page(self.force_size-2)
 
     def rebuild_trees(self,person_handle):
-        person = self.dbstate.db.get_person_from_handle( person_handle)
+        person = None
+        if person_handle:
+            person = self.dbstate.db.get_person_from_handle( person_handle)
         if self.tree_style == 1:
             # format of the definition is:
             # ((each box of the pedigree has a node here),
