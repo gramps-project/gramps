@@ -12,6 +12,7 @@
 2006-04-01  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/PluginUtils/_ReportUtils.py: remove use of deprecated functions
 	* src/plugins/NavWebPage.py: various fixes - should work now
+	* src/plugins/FamilyGroup.py: various fixes, add Marriage info
 
 2006-04-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_PedigreeView.py: Work around the bug of

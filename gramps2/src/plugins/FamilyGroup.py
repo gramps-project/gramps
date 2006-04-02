@@ -95,7 +95,9 @@ class FamilyGroup(Report.Report):
         self.incParAddr    = options_class.handler.options_dict['incParAddr']
         self.incParNotes   = options_class.handler.options_dict['incParNotes']
         self.incParNames   = options_class.handler.options_dict['incParNames']
+        self.incParMar     = options_class.handler.options_dict['incParMar']
         self.incRelDates   = options_class.handler.options_dict['incRelDates']
+        self.incChiMar     = options_class.handler.options_dict['incChiMar']
 
     def define_table_styles(self):
         """
@@ -200,23 +202,20 @@ class FamilyGroup(Report.Report):
         self.doc.end_cell()
         self.doc.end_row()
             
-    def dump_parent(self,person_handle):
+    def dump_parent(self,title,person_handle):
 
-        if not person_handle:
+        if not person_handle and not self.missingInfo:
             return
-
-        person = self.database.get_person_from_handle(person_handle)
-
-        if person.get_gender() == RelLib.Person.MALE:
-            the_id = _("Husband")
+        elif not person_handle:
+            person = RelLib.Person()
         else:
-            the_id = _("Wife")
+            person = self.database.get_person_from_handle(person_handle)
 
-        self.doc.start_table(the_id,'FGR-ParentTable')
+        self.doc.start_table(title,'FGR-ParentTable')
         self.doc.start_row()
         self.doc.start_cell('FGR-ParentHead',3)
         self.doc.start_paragraph('FGR-ParentName')
-        self.doc.write_text(the_id + ': ')
+        self.doc.write_text(title + ': ')
         self.doc.write_text(person.get_primary_name().get_regular_name())
         self.doc.end_paragraph()
         self.doc.end_cell()
@@ -224,17 +223,19 @@ class FamilyGroup(Report.Report):
 
         birth_ref = person.get_birth_ref()
         birth = None
+        evtName = Utils.personal_events[RelLib.Event.BIRTH]
         if birth_ref:
             birth = self.database.get_event_from_handle(birth_ref.ref)
         if birth or self.missingInfo:
-            self.dump_parent_event(_("Birth"),birth)
+            self.dump_parent_event(evtName,birth)
 
         death_ref = person.get_death_ref()
         death = None
+        evtName = Utils.personal_events[RelLib.Event.DEATH]
         if death_ref:
             death = self.database.get_event_from_handle(death_ref.ref)
         if death or self.missingInfo:
-            self.dump_parent_event(_("Death"),death)
+            self.dump_parent_event(evtName,death)
 
         family_handle = person.get_main_parents_family_handle()
         father_name = ""
@@ -271,7 +272,7 @@ class FamilyGroup(Report.Report):
                     death_ref = mother.get_death_ref()
                     death = "  "
                     if death_ref:
-                        event = self.database.get_event_from_handle(birth_ref.ref)
+                        event = self.database.get_event_from_handle(death_ref.ref)
                         death = DateHandler.get_date( event )
                     if birth_ref or death_ref:
                         mother_name = "%s (%s - %s)" % (mother_name,birth,death)
@@ -283,13 +284,11 @@ class FamilyGroup(Report.Report):
             self.dump_parent_line(_("Mother"),mother_name)
 
         if self.incParEvents:
-            excludeEvts = ( person.get_birth_ref(), person.get_death_ref() )
             for event_ref in person.get_event_ref_list():
-                if event_ref not in excludeEvts:
-                    event = self.database.get_event_from_handle(event_ref.ref)
-                    evtType = event.get_type()
-                    evtName = Utils.format_event( evtType )
-                    self.dump_parent_event(evtName,event)
+                event = self.database.get_event_from_handle(event_ref.ref)
+                evtType = event.get_type()
+                name = Utils.format_event( evtType )
+                self.dump_parent_event(name,event)
 
         if self.incParAddr:
             addrlist = person.get_address_list()[:]
@@ -326,6 +325,41 @@ class FamilyGroup(Report.Report):
                 self.dump_parent_line(type,name)
 
         self.doc.end_table()
+
+    def dump_marriage(self,family):
+        if not family:
+            return
+        m = None
+        family_ref_list = family.get_event_ref_list()
+        for event_ref in family_ref_list:
+            if event_ref:
+                event = self.database.get_event_from_handle(event_ref.ref)
+                if event.get_type()[0] == RelLib.Event.MARRIAGE:
+                    m = event
+                    break
+
+        if m or self.missingInfo:
+            self.doc.start_table(_("MarriageInfo"),'FGR-ParentTable')
+            self.doc.start_row()
+            self.doc.start_cell('FGR-ParentHead',3)
+            self.doc.start_paragraph('FGR-ParentName')
+            self.doc.write_text(_("Marriage:"))
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.end_row()
+        
+            evtName = Utils.family_events[RelLib.Event.MARRIAGE]
+            self.dump_parent_event(evtName,m)
+            
+            for event_ref in family_ref_list:
+                if event_ref:
+                    event = self.database.get_event_from_handle(event_ref.ref)
+                    evtType = event.get_type()
+                    if evtType[0] != RelLib.Event.MARRIAGE:
+                        name = Utils.format_event( evtType )
+                        self.dump_parent_event(name,event)
+            
+            self.doc.end_table()
 
     def dump_child_event(self,text,name,event):
         date = ""
@@ -373,16 +407,17 @@ class FamilyGroup(Report.Report):
         else:
             death = None
         
-        spouse_count = 0;    
-        for family_handle in person.get_family_handle_list():
-            family = self.database.get_family_from_handle(family_handle)
-            spouse_id = None
-            if person_handle == family.get_father_handle():
-                spouse_id = family.get_mother_handle()
-            else:
-                spouse_id = family.get_father_handle()
-            if spouse_id:
-                spouse_count = spouse_count + 1
+        spouse_count = 0; 
+        if self.incChiMar:   
+            for family_handle in person.get_family_handle_list():
+                family = self.database.get_family_from_handle(family_handle)
+                spouse_id = None
+                if person_handle == family.get_father_handle():
+                    spouse_id = family.get_mother_handle()
+                else:
+                    spouse_id = family.get_father_handle()
+                if spouse_id:
+                    spouse_count = spouse_count + 1
 
         self.doc.start_row()
         if spouse_count != 0 or self.missingInfo or death != None or birth != None:
@@ -391,11 +426,11 @@ class FamilyGroup(Report.Report):
             self.doc.start_cell('FGR-TextChild2')
         self.doc.start_paragraph('FGR-ChildText')
         if person.get_gender() == RelLib.Person.MALE:
-            self.doc.write_text("%dM" % index)
+            self.doc.write_text(_("%dM") % index)
         elif person.get_gender() == RelLib.Person.FEMALE:
-            self.doc.write_text("%dF" % index)
+            self.doc.write_text(_("%dF") % index)
         else:
-            self.doc.write_text("%dU" % index)
+            self.doc.write_text(_("%dU") % index)
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.start_cell('FGR-ChildName',3)
@@ -411,46 +446,50 @@ class FamilyGroup(Report.Report):
             else:
                 self.dump_child_event('FGR-TextChild2',_('Birth'),birth)
                 
-
         if self.missingInfo or death != None:
-            if spouse_count == 0:
+            if spouse_count == 0 or not self.incChiMar:
                 self.dump_child_event('FGR-TextChild2',_('Death'),death)
             else:
                 self.dump_child_event('FGR-TextChild1',_('Death'),death)
-            
-        index = 0
-        for family_handle in person.get_family_handle_list():
-            index = index + 1
-            family = self.database.get_family_from_handle(family_handle)
-            for event_ref in family.get_event_ref_list():
-                if event_ref:
-                    event = self.database.get_event_from_handle(event_ref.ref)
-                    if event.get_type() == RelLib.Event.MARRIAGE:
-                        m = event
-                        break
-            else:
-                m = None
 
-            spouse_id = None
-            if person_handle == family.get_father_handle():
-                spouse_id = family.get_mother_handle()
-            else:
-                spouse_id = family.get_father_handle()
-	    
-            if spouse_id:
-                self.doc.start_row()
-                self.doc.start_cell('FGR-TextChild1')
-                self.doc.start_paragraph('FGR-Normal')
-                self.doc.end_paragraph()
-                self.doc.end_cell()
-                self.doc.start_cell('FGR-TextContents')
-                self.doc.start_paragraph('FGR-Normal')
-                self.doc.write_text(_("Spouse"))
-                self.doc.end_paragraph()
-                self.doc.end_cell()
-                self.doc.start_cell('FGR-TextContentsEnd',2)
-                self.doc.start_paragraph('FGR-Normal')
+        if self.incChiMar:
+            index = 0
+            for family_handle in person.get_family_handle_list():
+                m = None
+                index = index + 1
+                family = self.database.get_family_from_handle(family_handle)
+
+                for event_ref in family.get_event_ref_list():
+                    if event_ref:
+                        event = self.database.get_event_from_handle(event_ref.ref)
+                        if event.get_type()[0] == RelLib.Event.MARRIAGE:
+                            m = event
+                            break  
+                
+                spouse_id = None
+
+                if person_handle == family.get_father_handle():
+                    spouse_id = family.get_mother_handle()
+                else:
+                    spouse_id = family.get_father_handle()
+    	    
                 if spouse_id:
+                    self.doc.start_row()
+                    if m or index != families:
+                        self.doc.start_cell('FGR-TextChild1')
+                    else:
+                        self.doc.start_cell('FGR-TextChild2')
+                    self.doc.start_paragraph('FGR-Normal')
+                    self.doc.end_paragraph()
+                    self.doc.end_cell()
+                    self.doc.start_cell('FGR-TextContents')
+                    self.doc.start_paragraph('FGR-Normal')
+                    self.doc.write_text(_("Spouse"))
+                    self.doc.end_paragraph()
+                    self.doc.end_cell()
+                    self.doc.start_cell('FGR-TextContentsEnd',2)
+                    self.doc.start_paragraph('FGR-Normal')
+
                     spouse = self.database.get_person_from_handle(spouse_id)
                     spouse_name = spouse.get_primary_name().get_regular_name()
                     if self.incRelDates:
@@ -467,15 +506,16 @@ class FamilyGroup(Report.Report):
                         if birth_ref or death_ref:
                             spouse_name = "%s (%s - %s)" % (spouse_name,birth,death)
                     self.doc.write_text(spouse_name)
-                self.doc.end_paragraph()
-                self.doc.end_cell()
-                self.doc.end_row()
-
-            if m:
-                if index == families:
-                    self.dump_child_event('FGR-TextChild2',_("Married"),m)
-                else:
-                    self.dump_child_event('FGR-TextChild1',_("Married"),m)
+                    self.doc.end_paragraph()
+                    self.doc.end_cell()
+                    self.doc.end_row()
+                  
+                if m:
+                    evtName = Utils.family_events[RelLib.Event.MARRIAGE]
+                    if index == families:
+                        self.dump_child_event('FGR-TextChild2',evtName,m)
+                    else:
+                        self.dump_child_event('FGR-TextChild1',evtName,m)
             
     def dump_family(self,family_handle,generation):
         self.doc.start_paragraph('FGR-Title')
@@ -487,10 +527,16 @@ class FamilyGroup(Report.Report):
 	
         family = self.database.get_family_from_handle(family_handle)
 
-        self.dump_parent(family.get_father_handle())
+        self.dump_parent(_("Husband"),family.get_father_handle())
         self.doc.start_paragraph("FGR-blank")
         self.doc.end_paragraph()
-        self.dump_parent(family.get_mother_handle())
+        
+        if self.incParMar:
+            self.dump_marriage(family)
+            self.doc.start_paragraph("FGR-blank")
+            self.doc.end_paragraph()
+
+        self.dump_parent(_("Wife"),family.get_mother_handle())
 
         length = len(family.get_child_handle_list())
         if length > 0:
@@ -551,6 +597,8 @@ class FamilyGroupOptions(ReportOptions.ReportOptions):
             'incParAddr'   : 0,
             'incParNotes'  : 0,
             'incParNames'  : 0,
+            'incParMar'    : 0,
+            'incChiMar'    : 1,            
             'incRelDates'  : 0,
         }
 
@@ -588,6 +636,14 @@ class FamilyGroupOptions(ReportOptions.ReportOptions):
                             ["Do not include parental names","Include parental names"],
                             True),
                             
+            'incParMar'    : ("=0/1","Whether to include marriage information for parents.",
+                            ["Do not include parental marriage info","Include parental marriage info"],
+                            False),
+                            
+            'incChiMar'    : ("=0/1","Whether to include marriage information for children.",
+                            ["Do not include children marriage info","Include children marriage info"],
+                            True),
+
             'incRelDates'  : ("=0/1","Whether to include dates for relatives.",
                             ["Do not include dates of relatives","Include dates of relatives"],
                             True),
@@ -664,9 +720,17 @@ class FamilyGroupOptions(ReportOptions.ReportOptions):
         self.include_par_names_option = gtk.CheckButton(_("Alternate Parent Names"))
         self.include_par_names_option.set_active(self.options_dict['incParNames'])
         
+        # Parental Marriage
+        self.include_par_marriage_option = gtk.CheckButton(_("Parent Marriage"))
+        self.include_par_marriage_option.set_active(self.options_dict['incParMar'])
+        
         # Relatives Dates
         self.include_rel_dates_option = gtk.CheckButton(_("Dates of Relatives (father, mother, spouse)"))
         self.include_rel_dates_option.set_active(self.options_dict['incRelDates'])
+
+        # Children Marriages
+        self.include_chi_marriage_option = gtk.CheckButton(_("Children Marriages"))
+        self.include_chi_marriage_option.set_active(self.options_dict['incChiMar'])
 
         dialog.add_option(_("Spouse"),self.spouse_menu)
         dialog.add_option(_("Recursive"),self.recursive_option)
@@ -675,6 +739,8 @@ class FamilyGroupOptions(ReportOptions.ReportOptions):
         dialog.add_frame_option(_('Include'),'',self.include_par_addr_option)
         dialog.add_frame_option(_('Include'),'',self.include_par_notes_option)
         dialog.add_frame_option(_('Include'),'',self.include_par_names_option)
+        dialog.add_frame_option(_('Include'),'',self.include_par_marriage_option)
+        dialog.add_frame_option(_('Include'),'',self.include_chi_marriage_option)
         dialog.add_frame_option(_('Include'),'',self.include_rel_dates_option)
         dialog.add_frame_option(_('Missing Information'),'',self.missing_info_option)
 
@@ -694,6 +760,8 @@ class FamilyGroupOptions(ReportOptions.ReportOptions):
         self.options_dict['incParAddr']   = int(self.include_par_addr_option.get_active())
         self.options_dict['incParNotes']  = int(self.include_par_notes_option.get_active())
         self.options_dict['incParNames']  = int(self.include_par_names_option.get_active())
+        self.options_dict['incParMar']    = int(self.include_par_marriage_option.get_active())
+        self.options_dict['incChiMar']    = int(self.include_chi_marriage_option.get_active())
         self.options_dict['incRelDates']  = int(self.include_rel_dates_option.get_active())
 
     def make_default_style(self,default_style):
