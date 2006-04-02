@@ -280,7 +280,7 @@ class ViewManager:
         error |= load_plugins(const.pluginsDir)
         error |= load_plugins(os.path.join(const.home_dir,"plugins"))
         if Config.get_pop_plugin_status() and error:
-            Plugins.PluginStatus(self)
+            Plugins.PluginStatus(self.state, self.uistate, [])
         self.uistate.push_message(_('Ready'))
 
     def quit(self,obj=None):
