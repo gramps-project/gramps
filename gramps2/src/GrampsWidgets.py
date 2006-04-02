@@ -393,10 +393,11 @@ class PlaceEntry:
             self.obj.set_editable(True)
             
             store = gtk.ListStore(str)
-            foo = self.places.values()
-            foo.sort(locale.strcoll)
+            foo = [ (locale.strxfrm(self.places[v]),v) \
+                    for v in self.places.keys()]
+            foo.sort()
             for val in foo:
-                store.append(row=[val[0]])
+                store.append(row=[self.places[val[1]]])
             completion = gtk.EntryCompletion()
             completion.set_text_column(0)
             completion.set_model(store)
