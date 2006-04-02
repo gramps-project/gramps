@@ -18,4 +18,4 @@ which gnome-autogen.sh || {
     echo "You need to install gnome-common package."
     exit 1
 }
-REQUIRED_AUTOMAKE_VERSION=1.6 USE_GNOME2_MACROS=1 . gnome-autogen.sh
+REQUIRED_AUTOMAKE_VERSION=1.9 USE_GNOME2_MACROS=1 . gnome-autogen.sh

@@ -66,48 +66,6 @@ class DateBase:
         else:
             self.date = Date().unserialize(data)
 
-#     def set_date(self, date) :
-#         """
-#         Sets the date of the DateBase instance.
-        
-#         The date is parsed into a L{Date} instance.
-
-#         @param date: String representation of a date. The locale specific
-#             L{DateParser} is used to parse the string into a GRAMPS L{Date}
-#             object.
-#         @type date: str
-#         """
-#         self.date = DateHandler.parser.parse(date)
-
-#     def get_date(self) :
-#         """
-#         Returns a string representation of the date of the DateBase instance.
-        
-#         This representation is based off the default date display format
-#         determined by the locale's L{DateDisplay} instance.
-
-#         @return: Returns a string representing the DateBase date
-#         @rtype: str
-#         """
-#         if self.date:
-#             return DateHandler.displayer.display(self.date)
-#         return u""
-
-#     def get_quote_date(self) :
-#         """
-#         Returns a string representation of the date of the DateBase instance.
-        
-#         This representation is based off the default date display format
-#         determined by the locale's L{DateDisplay} instance. The date is
-#         enclosed in quotes if the L{Date} is not a valid date.
-
-#         @return: Returns a string representing the DateBase date
-#         @rtype: str
-#         """
-#         if self.date:
-#             return DateHandler.displayer.quote_display(self.date)
-#         return u""
-
     def get_date_object(self):
         """
         Returns the L{Date} object associated with the DateBase.

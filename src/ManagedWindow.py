@@ -278,7 +278,6 @@ class ManagedWindow:
                 ...
                 
         """
-
         window_key = self.build_window_key(obj)
         menu_label,submenu_label = self.build_menu_names(obj)
             
@@ -312,6 +311,9 @@ class ManagedWindow:
                 # On the top level: we use gramps top window
                 self.parent_window = self.uistate.window
 
+    def set_window(self, window):
+        self.window = window
+
     def build_menu_names(self,obj):
         return ('Undefined Menu','Undefined Submenu')
 
@@ -319,6 +321,7 @@ class ManagedWindow:
         return id(self)
 
     def show(self):
+        assert(self.window)
         self.window.set_transient_for(self.parent_window)
         self.window.show()
 
@@ -334,4 +337,5 @@ class ManagedWindow:
         """
         Present window (unroll/unminimize/bring to top).
         """
+        assert(self.window)
         self.window.present()

@@ -1113,11 +1113,11 @@ def add_gedcom_filter(chooser):
     chooser.add_filter(mime_filter)
 
 def make_report_callback(lst,dbstate):
-    return lambda x: Report.report(dbstate.db,dbstate.active,
+    return lambda x: Report.report(dbstate.db,dbstate.get_active_person(),
                                    lst[0],lst[1],lst[2],lst[3],lst[4])
 
 def make_tool_callback(lst,dbstate):
-    return lambda x: Tool.gui_tool(dbstate.db,dbstate.active,
+    return lambda x: Tool.gui_tool(dbstate.db,dbstate.get_active_person(),
                                    lst[0],lst[1],lst[2],lst[3],lst[4],
                                    dbstate.db.request_rebuild,None)
 
