@@ -1320,8 +1320,8 @@ def get_birth_death_strings(database,person,empty_date="",empty_place=""):
 
     birth_ref = person.get_birth_ref()
     if birth_ref and birth_ref.ref:
-        if birth_ref:
-            birth = database.get_event_from_handle(birth_ref.ref)
+        birth = database.get_event_from_handle(birth_ref.ref)
+        if birth:
             bdate = DateHandler.get_date(birth)
             bplace_handle = birth.get_place_handle()
             if bplace_handle:

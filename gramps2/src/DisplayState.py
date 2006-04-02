@@ -301,8 +301,9 @@ class DisplayState(GrampsDb.GrampsDBCallback):
             self.status.push(self.status_id,"")
         else:
             if Config.get_statusbar() <= 1:
-                pname = NameDisplay.displayer.display(self.dbstate.active)
-                name = "[%s] %s" % (self.dbstate.active.get_gramps_id(),pname)
+                person = self.dbstate.get_active_person()
+                pname = NameDisplay.displayer.display(person)
+                name = "[%s] %s" % (person.get_gramps_id(),pname)
             else:
                 name = "" #self.display_relationship()
             self.status.push(self.status_id,name)

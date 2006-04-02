@@ -85,7 +85,7 @@ class Exporter:
         self.uistate = uistate
         self.callback = self.uistate.pulse_progressbar
         if self.dbstate.active:
-            self.person = self.dbstate.active
+            self.person = self.dbstate.get_active_person()
         else:
             self.person = self.dbstate.db.find_initial_person()
 

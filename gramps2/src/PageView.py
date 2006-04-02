@@ -279,9 +279,8 @@ class PersonNavView(PageView):
         if not hobj.at_end():
             try:
                 handle = hobj.forward()
-                self.dbstate.active = self.dbstate.db.get_person_from_handle(handle)
-                self.uistate.modify_statusbar()
                 self.dbstate.change_active_handle(handle)
+                self.uistate.modify_statusbar()
                 hobj.mhistory.append(hobj.history[hobj.index])
                 #self.redraw_histmenu()
                 self.fwd_action.set_sensitive(not hobj.at_end())

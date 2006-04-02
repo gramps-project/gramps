@@ -2048,6 +2048,7 @@ class DbState(GrampsDBCallback):
         self.change_active_person(self.db.get_person_from_handle(handle))
 
     def get_active_person(self):
+        self.active = self.db.get_person_from_handle(self.active.handle)
         return self.active
 
     def change_database(self,db):
