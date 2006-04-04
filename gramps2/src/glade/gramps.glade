@@ -15283,7 +15283,7 @@ You should select parents before adding any new information. If you select paren
   </child>
 </widget>
 
-<widget class="GtkDialog" id="dialog1">
+<widget class="GtkDialog" id="lds_person_edit">
   <property name="visible">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -15315,7 +15315,7 @@ You should select parents before adding any new information. If you select paren
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
-	    <widget class="GtkButton" id="button180">
+	    <widget class="GtkButton" id="cancel">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
@@ -15329,7 +15329,7 @@ You should select parents before adding any new information. If you select paren
 	  </child>
 
 	  <child>
-	    <widget class="GtkButton" id="button181">
+	    <widget class="GtkButton" id="ok">
 	      <property name="visible">True</property>
 	      <property name="tooltip" translatable="yes">Accept changes and close window</property>
 	      <property name="can_default">True</property>
@@ -15345,7 +15345,7 @@ You should select parents before adding any new information. If you select paren
 	  </child>
 
 	  <child>
-	    <widget class="GtkButton" id="button182">
+	    <widget class="GtkButton" id="help">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
@@ -15367,13 +15367,13 @@ You should select parents before adding any new information. If you select paren
       </child>
 
       <child>
-	<widget class="GtkVBox" id="vbox124">
+	<widget class="GtkVBox" id="vbox">
 	  <property name="visible">True</property>
 	  <property name="homogeneous">False</property>
 	  <property name="spacing">0</property>
 
 	  <child>
-	    <widget class="GtkLabel" id="label637">
+	    <widget class="GtkLabel" id="title">
 	      <property name="visible">True</property>
 	      <property name="label" translatable="yes"></property>
 	      <property name="use_underline">False</property>
@@ -15401,7 +15401,7 @@ You should select parents before adding any new information. If you select paren
 	    <widget class="GtkTable" id="table72">
 	      <property name="border_width">12</property>
 	      <property name="visible">True</property>
-	      <property name="n_rows">4</property>
+	      <property name="n_rows">5</property>
 	      <property name="n_columns">3</property>
 	      <property name="homogeneous">False</property>
 	      <property name="row_spacing">6</property>
@@ -15420,6 +15420,7 @@ You should select parents before adding any new information. If you select paren
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">date</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -15448,6 +15449,7 @@ You should select parents before adding any new information. If you select paren
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">place</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -15464,7 +15466,7 @@ You should select parents before adding any new information. If you select paren
 	      </child>
 
 	      <child>
-		<widget class="GtkEntry" id="entry4">
+		<widget class="GtkEntry" id="date">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
 		  <property name="has_focus">True</property>
@@ -15486,7 +15488,7 @@ You should select parents before adding any new information. If you select paren
 	      </child>
 
 	      <child>
-		<widget class="GtkEntry" id="entry7">
+		<widget class="GtkEntry" id="place">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
 		  <property name="editable">True</property>
@@ -15507,7 +15509,7 @@ You should select parents before adding any new information. If you select paren
 	      </child>
 
 	      <child>
-		<widget class="GtkToggleButton" id="togglebutton1">
+		<widget class="GtkToggleButton" id="private">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
 		  <property name="relief">GTK_RELIEF_NONE</property>
@@ -15538,7 +15540,7 @@ You should select parents before adding any new information. If you select paren
 	      </child>
 
 	      <child>
-		<widget class="GtkButton" id="button183">
+		<widget class="GtkButton" id="date_stat">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
 		  <property name="relief">GTK_RELIEF_NONE</property>
@@ -15621,7 +15623,7 @@ You should select parents before adding any new information. If you select paren
 	      </child>
 
 	      <child>
-		<widget class="GtkComboBox" id="combobox1">
+		<widget class="GtkComboBox" id="type">
 		  <property name="visible">True</property>
 		  <property name="add_tearoffs">False</property>
 		  <property name="focus_on_click">True</property>
@@ -15637,7 +15639,7 @@ You should select parents before adding any new information. If you select paren
 	      </child>
 
 	      <child>
-		<widget class="GtkComboBox" id="combobox2">
+		<widget class="GtkComboBox" id="temple">
 		  <property name="visible">True</property>
 		  <property name="add_tearoffs">False</property>
 		  <property name="focus_on_click">True</property>
@@ -15649,6 +15651,88 @@ You should select parents before adding any new information. If you select paren
 		  <property name="bottom_attach">2</property>
 		  <property name="x_options">fill</property>
 		  <property name="y_options">fill</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkLabel" id="parents_label">
+		  <property name="label" translatable="yes">Parents:</property>
+		  <property name="use_underline">False</property>
+		  <property name="use_markup">False</property>
+		  <property name="justify">GTK_JUSTIFY_LEFT</property>
+		  <property name="wrap">False</property>
+		  <property name="selectable">False</property>
+		  <property name="xalign">0</property>
+		  <property name="yalign">0.5</property>
+		  <property name="xpad">0</property>
+		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		  <property name="width_chars">-1</property>
+		  <property name="single_line_mode">False</property>
+		  <property name="angle">0</property>
+		</widget>
+		<packing>
+		  <property name="left_attach">0</property>
+		  <property name="right_attach">1</property>
+		  <property name="top_attach">4</property>
+		  <property name="bottom_attach">5</property>
+		  <property name="x_options">fill</property>
+		  <property name="y_options"></property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkLabel" id="parents">
+		  <property name="label" translatable="yes"></property>
+		  <property name="use_underline">False</property>
+		  <property name="use_markup">False</property>
+		  <property name="justify">GTK_JUSTIFY_LEFT</property>
+		  <property name="wrap">False</property>
+		  <property name="selectable">False</property>
+		  <property name="xalign">0</property>
+		  <property name="yalign">0.5</property>
+		  <property name="xpad">0</property>
+		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		  <property name="width_chars">-1</property>
+		  <property name="single_line_mode">False</property>
+		  <property name="angle">0</property>
+		</widget>
+		<packing>
+		  <property name="left_attach">1</property>
+		  <property name="right_attach">2</property>
+		  <property name="top_attach">4</property>
+		  <property name="bottom_attach">5</property>
+		  <property name="x_options">fill</property>
+		  <property name="y_options"></property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkButton" id="parent_select">
+		  <property name="can_focus">True</property>
+		  <property name="relief">GTK_RELIEF_NONE</property>
+		  <property name="focus_on_click">True</property>
+
+		  <child>
+		    <widget class="GtkImage" id="image2693">
+		      <property name="visible">True</property>
+		      <property name="stock">gtk-index</property>
+		      <property name="icon_size">4</property>
+		      <property name="xalign">0.5</property>
+		      <property name="yalign">0.5</property>
+		      <property name="xpad">0</property>
+		      <property name="ypad">0</property>
+		    </widget>
+		  </child>
+		</widget>
+		<packing>
+		  <property name="left_attach">2</property>
+		  <property name="right_attach">3</property>
+		  <property name="top_attach">4</property>
+		  <property name="bottom_attach">5</property>
+		  <property name="x_options">fill</property>
+		  <property name="y_options"></property>
 		</packing>
 	      </child>
 	    </widget>

@@ -42,7 +42,7 @@ from TransUtils import sgettext as _
 #Last update: 1/12/02
 #
 
-lds_temple_codes = {
+temple_codes = {
     "Aba, Nigeria"               : "ABA",   #1 Added
     "Accra, Ghana"               : "ACCRA", #2 Added
     "Adelaide, Australia"        : "ADELA", #3 Added
@@ -180,9 +180,16 @@ lds_temple_codes = {
 
 }
 
-lds_temple_to_abrev = {}
-for (name,abbr) in lds_temple_codes.iteritems():
-    lds_temple_to_abrev[abbr] = name
+temple_to_abrev = {}
+for (name,abbr) in temple_codes.iteritems():
+    temple_to_abrev[abbr] = name
+
+ord_type = {
+    0 : _('Baptism'),
+    1 : _('Endowment'),
+    2 : _('Sealed to Parents'),
+    3 : _('Sealed to Spouse'),
+    }
 
 status = {
     "BIC"         : 1,    "CANCELED"    : 1,    "CHILD"       : 1,

@@ -12,6 +12,7 @@ pkgdata_PYTHON = \
 	_EditEvent.py \
 	_EditEventRef.py \
 	_EditFamily.py \
+	_EditLdsOrd.py \
 	_EditLocation.py \
 	_EditMedia.py \
 	_EditMediaRef.py \

@@ -41,13 +41,14 @@ from _SourceNote import SourceNote
 from _MediaBase import MediaBase
 from _AttributeBase import AttributeBase
 from _EventRef import EventRef
+from _LdsOrdBase import LdsOrdBase
 
 #-------------------------------------------------------------------------
 #
 # Family class
 #
 #-------------------------------------------------------------------------
-class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
+class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase,LdsOrdBase):
     """
     Introduction
     ============
@@ -85,6 +86,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         SourceNote.__init__(self)
         MediaBase.__init__(self)
         AttributeBase.__init__(self)
+        LdsOrdBase.__init__(self)
         self.father_handle = None
         self.mother_handle = None
         self.child_list = []
@@ -118,7 +120,8 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
                 [er.serialize() for er in self.event_ref_list],
                 MediaBase.serialize(self),
                 AttributeBase.serialize(self),
-                lds_seal,SourceNote.serialize(self),
+                LdsOrdBase.serialize(self),
+                SourceNote.serialize(self),
                 self.change, self.marker, self.private)
 
     def unserialize(self, data):
@@ -128,7 +131,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         """
         (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
          self.child_list, self.type,
-         event_ref_list, media_list, attribute_list, lds_seal, sn,
+         event_ref_list, media_list, attribute_list, lds_seal_list, sn,
          self.change,self.marker, self.private) = data
 
         self.event_ref_list = [EventRef().unserialize(er)
@@ -136,6 +139,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         MediaBase.unserialize(self,media_list)
         AttributeBase.unserialize(self,attribute_list)
         SourceNote.unserialize(self,sn)
+        LdsOrdBase.unserialize(self,lds_seal_list)
 
     def _has_handle_reference(self,classname,handle):
         if classname == 'Event':
@@ -143,7 +147,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         elif classname == 'Person':
             return handle in self.child_list + [self.father_handle,self.mother_handle]
         elif classname == 'Place':
-            return bool(self.lds_seal) and self.lds_seal.place == handle
+            return handle in [ x.place for x in self.lds_ord_list ]
         return False
 
     def _remove_handle_references(self,classname,handle_list):
@@ -160,8 +164,9 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
             if self.mother_handle in handle_list:
                 self.mother_handle = None
         elif classname == 'Place':
-            if self.lds_seal and self.lds_seal.place in handle_list:
-                self.lds_seal.place = None
+            for x in self.lds_ord_list:
+                if x.place in handle_list:
+                    x.place = None
 
     def _replace_handle_reference(self,classname,old_handle,new_handle):
         if classname == 'Event':
@@ -179,8 +184,9 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
             if self.mother_handle == old_handle:
                 self.mother_handle = new_handle
         elif classname == 'Place':
-            if self.lds_seal and self.lds_seal.place == old_handle:
-                self.lds_seal.place = new_handle
+            for x in self.lds_ord_list:
+                if x.place == old_handle:
+                    x.place = new_handle
 
     def get_text_data_list(self):
         """
@@ -198,7 +204,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = [self.lds_seal,self.note]
+        check_list = self.lds_ord_list + [self.note]
         add_list = [item for item in check_list if item]
         return self.media_list + self.attribute_list + \
                 self.source_list + add_list
@@ -210,9 +216,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         @return: Returns the list of child secondary child objects that may refer sources.
         @rtype: list
         """
-        check_list = self.media_list + self.attribute_list
-        if self.lds_seal:
-            check_list.append(self.lds_seal)
+        check_list = self.media_list + self.attribute_list + self.lds_ord_list
         return check_list
 
     def get_referenced_handles(self):
@@ -261,26 +265,6 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         @rtype: bool
         """
         return self.complete
-
-    def set_lds_sealing(self,lds_ord):
-        """
-        Sets the LDS Sealing ordinance. An ordinance can be removed
-        by assigning to None.
-
-        @param lds_ord: L{LdsOrd} to assign as the LDS Sealing ordinance.
-        @type lds_ord: L{LdsOrd}
-        """
-        self.lds_seal = lds_ord
-
-    def get_lds_sealing(self):
-        """
-        Returns the LDS Sealing ordinance.
-
-        @returns: returns the L{LdsOrd} instance assigned as the LDS
-        Sealing ordinance, or None if no ordinance has been assigned.
-        @rtype: L{LdsOrd}
-        """
-        return self.lds_seal
 
     def set_relationship(self,relationship_type):
         """

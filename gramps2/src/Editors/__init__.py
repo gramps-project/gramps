@@ -23,6 +23,7 @@ from _EditAttribute import *
 from _EditEvent import *
 from _EditEventRef import *
 from _EditFamily import *
+from _EditLdsOrd import *
 from _EditLocation import *
 from _EditMedia import *
 from _EditMediaRef import *

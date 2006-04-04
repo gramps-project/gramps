@@ -1181,6 +1181,63 @@ class AddrEmbedList(EmbeddedList):
     def edit_callback(self,name):
         self.rebuild()
 
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+class LdsEmbedList(EmbeddedList):
+
+    _HANDLE_COL = 5
+    _DND_TYPE   = DdTargets.ADDRESS
+
+    _column_names = [
+        (_('Type'),    0, 150),
+        (_('Date'),    1, 150),
+        (_('Temple'),  2, 225),
+        (_('Place'),   3, 100),
+        ]
+    
+    def __init__(self,dbstate,uistate,track,data):
+        self.data = data
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('LDS'), LdsModel)
+
+    def get_data(self):
+        return self.data
+
+    def column_order(self):
+        return ((1,0),(1,1),(1,2),(1,3))
+
+    def add_button_clicked(self,obj):
+        lds = RelLib.LdsOrd()
+        try:
+            from Editors import EditLdsOrd
+            
+            EditLdsOrd(self.dbstate, self.uistate, self.track,
+                       lds, self.add_callback)
+        except Errors.WindowActiveError:
+            pass
+
+    def add_callback(self,name):
+        self.get_data().append(name)
+        self.rebuild()
+
+    def edit_button_clicked(self,obj):
+        lds = self.get_selected()
+        if lds:
+            try:
+                from Editors import EditLdsOrd
+                
+                EditLdsOrd(self.dbstate, self.uistate, self.track,
+                           lds, self.edit_callback)
+            except Errors.WindowActiveError:
+                pass
+
+    def edit_callback(self,name):
+        self.rebuild()
+
 #-------------------------------------------------------------------------
 #
 # 
@@ -1856,6 +1913,38 @@ class AttrModel(gtk.ListStore):
 
     def type_name(self, attr):
         return Utils.format_attribute( attr.get_type())
+
+#-------------------------------------------------------------------------
+#
+# LdsModel
+#
+#-------------------------------------------------------------------------
+class LdsModel(gtk.ListStore):
+
+    _HANDLE_COL = 5
+
+    def __init__(self,lds_list,db):
+        gtk.ListStore.__init__(self, str, str, str, str, str, object)
+
+        import lds
+        
+        self.db = db
+        for lds_ord in lds_list:
+            self.append(row=[
+                lds.ord_type[lds_ord.get_type()],
+                DateHandler.get_date(lds_ord),
+                lds_ord.get_status(),
+                lds_ord.get_temple(),
+                self.column_place(lds_ord),
+                lds_ord,
+                ])
+
+    def column_place(self, lds_ord):
+        if lds_ord:
+            place_handle = lds_ord.get_place_handle()
+            if place_handle:
+                return self.db.get_place_from_handle(place_handle).get_title()
+        return u""
 
 #-------------------------------------------------------------------------
 #

@@ -32,13 +32,14 @@ LDS Ordinance class for GRAMPS
 from _SourceNote import SourceNote
 from _DateBase import DateBase
 from _PlaceBase import PlaceBase
+from _PrivacyBase import PrivacyBase
 
 #-------------------------------------------------------------------------
 #
 # LDS Ordinance class
 #
 #-------------------------------------------------------------------------
-class LdsOrd(SourceNote,DateBase,PlaceBase):
+class LdsOrd(SourceNote,DateBase,PlaceBase,PrivacyBase):
     """
     Class that contains information about LDS Ordinances. LDS
     ordinances are similar to events, but have very specific additional
@@ -46,17 +47,26 @@ class LdsOrd(SourceNote,DateBase,PlaceBase):
     of Latter Day Saints (Morman church). The LDS church is the largest
     source of genealogical information in the United States.
     """
+
+    BAPTISM = 0
+    ENDOWMENT = 1
+    SEAL_TO_PARENTS = 2
+    SEAL_TO_SPOUSE = 3
+    
     def __init__(self,source=None):
         """Creates a LDS Ordinance instance"""
         SourceNote.__init__(self,source)
         DateBase.__init__(self,source)
         PlaceBase.__init__(self,source)
+        PrivacyBase.__init__(self,source)
         
         if source:
+            self.type = source.type
             self.famc = source.famc
             self.temple = source.temple
             self.status = source.status
         else:
+            self.type = self.BAPTISM
             self.famc = None
             self.temple = ""
             self.status = 0
@@ -116,6 +126,12 @@ class LdsOrd(SourceNote,DateBase,PlaceBase):
         @rtype: list
         """
         return self.source_list
+
+    def get_type(self):
+        return self.type
+
+    def set_type(self, ord_type):
+        self.type = ord_type
 
     def set_family_handle(self,family):
         """Sets the Family database handle associated with the LDS ordinance"""
