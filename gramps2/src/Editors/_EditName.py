@@ -87,24 +87,28 @@ class EditName(EditSecondary):
 
     def _setup_fields(self):
         self.group_as = MonitoredEntry(
-            self.top.get_widget("group_as"), self.obj.set_group_as,
-            self.obj.get_group_as, self.db.readonly)
+            self.top.get_widget("group_as"),
+            self.obj.set_group_as,
+            self.obj.get_group_as,
+            self.db.readonly)
 
         if not self.original_group_as:
             self.group_as.force_value(self.obj.get_surname())
             
         self.sort_as = MonitoredMenu(
-            self.top.get_widget('sort_as'),self.obj.set_sort_as,
+            self.top.get_widget('sort_as'),
+            self.obj.set_sort_as,
             self.obj.get_sort_as,
-            [(_('Default (based on locale'),RelLib.Name.DEF),
+            [(_('Default (based on locale)'),RelLib.Name.DEF),
              (_('Given name Family name'), RelLib.Name.FNLN),
              (_('Family name Given Name'), RelLib.Name.LNFN)],
             self.db.readonly)
 
         self.display_as = MonitoredMenu(
             self.top.get_widget('display_as'),
-            self.obj.set_display_as, self.obj.get_display_as,
-            [(_('Default (based on locale'),RelLib.Name.DEF),
+            self.obj.set_display_as,
+            self.obj.get_display_as,
+            [(_('Default (based on locale)'),RelLib.Name.DEF),
              (_('Given name Family name'), RelLib.Name.FNLN),
              (_('Family name Given Name'), RelLib.Name.LNFN)],
             self.db.readonly)
@@ -126,9 +130,11 @@ class EditName(EditSecondary):
             self.obj.get_patronymic, self.db.readonly)
 
         self.surname_field = MonitoredEntry(
-            self.top.get_widget("alt_surname"), self.obj.set_surname,
-            self.obj.get_surname, self.db.readonly,
-            self.update_group_as)
+            self.top.get_widget("alt_surname"),
+            self.obj.set_surname,
+            self.obj.get_surname,
+            self.db.readonly,
+            changed=self.update_group_as)
 
         self.prefix_field = MonitoredEntry(
             self.top.get_widget("alt_prefix"), self.obj.set_surname_prefix,

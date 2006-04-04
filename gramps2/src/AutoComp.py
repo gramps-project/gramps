@@ -59,6 +59,7 @@ def fill_combo(combo,data_list):
 
 def fill_entry(entry,data_list):
     store = gtk.ListStore(str)
+
     for data in data_list:
         if data:
             store.append(row=[data])
