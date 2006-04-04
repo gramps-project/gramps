@@ -44,11 +44,12 @@ import gtk
 #
 #------------------------------------------------------------------------
 import RelLib
+import Utils
 import Errors
 from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 import BaseDoc
 import const
-from DateHandler import displayer as _dd
+import DateHandler
 from NameDisplay import displayer as _nd
 from QuestionDialog import ErrorDialog
 
@@ -305,17 +306,20 @@ class DetDescendantReport(Report.Report):
                     self.doc.end_paragraph()
                     first = False
                 self.doc.start_paragraph('DDR-MoreDetails')
+                atype = Utils.format_name_type( alt_name.get_type() )
+                aname = alt_name.get_regular_name()
                 self.doc.write_text(_('%(name_kind)s: %(name)s%(endnotes)s') % {
-                    'name_kind' : const.NameTypesMap.find_value(alt_name.get_type()),
-                    'name' : alt_name.get_regular_name(),
+                    'name_kind' : atype,
+                    'name' : aname,
                     'endnotes' : self.endnotes(alt_name),
                     })
                 self.doc.end_paragraph()
 
         if self.includeEvents:
-            for event_handle in person.get_event_list():
-                event = self.database.get_event_from_handle(event_handle)
-                date = event.get_date()
+            for event_ref in person.get_event_ref_list():
+                event = self.database.get_event_from_handle(event_ref.ref)
+                date = DateHandler.get_date(event)
+                ename = Utils.format_event( event.get_type() )
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = self.database.get_place_from_handle(place_handle).get_title()
@@ -333,23 +337,23 @@ class DetDescendantReport(Report.Report):
                 self.doc.start_paragraph('DDR-MoreDetails')
                 if date and place:
                     self.doc.write_text(_('%(event_name)s: %(date)s, %(place)s%(endnotes)s. ') % {
-                        'event_name' : _(event.get_name()),
+                        'event_name' : ename,
                         'date' : date,
                         'endnotes' : self.endnotes(event),
                         'place' : place })
                 elif date:
                     self.doc.write_text(_('%(event_name)s: %(date)s%(endnotes)s. ') % {
-                        'event_name' : _(event.get_name()),
+                        'event_name' : ename,
                         'endnotes' : self.endnotes(event),
                         'date' : date})
                 elif place:
                     self.doc.write_text(_('%(event_name)s: %(place)s%(endnotes)s. ') % {
-                        'event_name' : _(event.get_name()),
+                        'event_name' : ename,
                         'endnotes' : self.endnotes(event),
                         'place' : place })
                 else:
                     self.doc.write_text(_('%(event_name)s: ') % {
-                        'event_name' : _(event.get_name())})
+                        'event_name' : ename})
                 if event.get_description():
                     self.doc.write_text(event.get_description())
                 self.doc.end_paragraph()

@@ -1,3 +1,8 @@
+2006-04-03  Brian Matherly  <pez4brian@users.sourceforge.net>
+	* src/_ImgManip.py: fix typo
+	* src/plugins/DetDescendantReport.py: remove use of deprecated functions
+	* src/plugins/DescendReport.py: fix death dates
+
 2006-04-02  Don Allingham  <don@gramps-project.org>
 	* src/GrampsWidgets.py: Fix place autocompletion
 	* src/glade/gramps.glade: start of LDS Ord editor

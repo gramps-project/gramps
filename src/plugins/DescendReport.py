@@ -86,6 +86,7 @@ class DescendantReport(Report.Report):
         self.by_birthdate = sort.by_birthdate
         
     def dump_dates(self, person):
+        birth_date = ""
         birth_ref = person.get_birth_ref()
         if birth_ref:
             birth = self.database.get_event_from_handle(birth_ref.ref)
@@ -93,6 +94,7 @@ class DescendantReport(Report.Report):
         else:
             birth = None
 
+        death_date = ""
         death_ref = person.get_death_ref()
         if death_ref:
             death = self.database.get_event_from_handle(death_ref.ref)
@@ -133,12 +135,12 @@ class DescendantReport(Report.Report):
                     self.doc.write_text(', ')
                 if death_place:
                     self.doc.write_text(_("d. %(death_date)s - %(place)s") % {
-                        'death_date' : death,
+                        'death_date' : death_date,
                         'place' : death_place,
                         })
                 else:
                     self.doc.write_text(_("d. %(death_date)s") % {
-                        'death_date' : death
+                        'death_date' : death_date
                         })
 
             self.doc.write_text(')')
