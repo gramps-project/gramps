@@ -1,3 +1,6 @@
+2006-04-04  Alex Roitman  <shura@gramps-project.org>
+	* README, INSTALL: update.
+
 2006-04-04  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py: new upgrade for LDS change
 	* src/Editors/_EditLdsOrd.py: addedn
