@@ -41,6 +41,7 @@ from _SourceNote import SourceNote
 from _MediaBase import MediaBase
 from _AttributeBase import AttributeBase
 from _AddressBase import AddressBase
+from _LdsOrdBase import LdsOrdBase
 from _UrlBase import UrlBase
 from _Name import Name
 from _EventRef import EventRef
@@ -52,7 +53,7 @@ from _LdsOrd import LdsOrd
 #
 #-------------------------------------------------------------------------
 class Person(PrimaryObject,SourceNote,
-             MediaBase,AttributeBase,AddressBase,UrlBase):
+             MediaBase,AttributeBase,AddressBase,UrlBase,LdsOrdBase):
     """
     Introduction
     ============
@@ -101,6 +102,7 @@ class Person(PrimaryObject,SourceNote,
         AttributeBase.__init__(self)
         AddressBase.__init__(self)
         UrlBase.__init__(self)
+        LdsOrdBase.__init__(self)
         self.primary_name = Name()
         self.event_ref_list = []
         self.family_list = []
@@ -110,9 +112,6 @@ class Person(PrimaryObject,SourceNote,
         self.gender = Person.UNKNOWN
         self.death_ref = None
         self.birth_ref = None
-        self.lds_bapt = None
-        self.lds_endow = None
-        self.lds_seal = None
 
         if data:
             self.unserialize(data)
@@ -145,32 +144,26 @@ class Person(PrimaryObject,SourceNote,
             death_ref = None
         else:
             death_ref = self.death_ref.serialize()
-        if self.lds_bapt == None:
-            lds_bapt = None
-        else:
-            lds_bapt = self.lds_bapt.serialize()
-        if self.lds_endow == None:
-            lds_endow = None
-        else:
-            lds_endow = self.lds_endow.serialize()
-        if self.lds_seal == None:
-            lds_seal = None
-        else:
-            lds_seal = self.lds_seal.serialize()
 
-        return (self.handle, self.gramps_id, self.gender, 
+        return (self.handle,
+                self.gramps_id,
+                self.gender, 
                 self.primary_name.serialize(),
                 [name.serialize() for name in self.alternate_names],
-                unicode(self.nickname), death_ref, birth_ref,
+                unicode(self.nickname),
+                death_ref,
+                birth_ref,
                 [er.serialize() for er in self.event_ref_list],
-                self.family_list,self.parent_family_list,
+                self.family_list,
+                self.parent_family_list,
                 MediaBase.serialize(self),
                 AddressBase.serialize(self),
                 AttributeBase.serialize(self),
                 UrlBase.serialize(self),
-                lds_bapt, lds_endow, lds_seal,
+                LdsOrdBase.serialize(self),
                 SourceNote.serialize(self),
-                self.change, self.marker,
+                self.change,
+                self.marker,
                 self.private)
 
     def unserialize(self,data):
@@ -182,30 +175,38 @@ class Person(PrimaryObject,SourceNote,
             Person object
         @type data: tuple
         """
-        (self.handle, self.gramps_id, self.gender, primary_name,
-         alternate_names, self.nickname, death_ref,
-         birth_ref, event_ref_list, self.family_list,
-         self.parent_family_list, media_list, address_list,
-         attribute_list, urls, lds_bapt, lds_endow,
-         lds_seal, sn, self.change,
-         self.marker, self.private) = (data + (False,))[0:22]
+        (self.handle,
+         self.gramps_id,
+         self.gender,
+         primary_name,
+         alternate_names,
+         self.nickname,
+         death_ref,
+         birth_ref,
+         event_ref_list,
+         self.family_list,
+         self.parent_family_list,
+         media_list,
+         address_list,
+         attribute_list,
+         urls,
+         lds_ord_list,
+         sn,
+         self.change,
+         self.marker,
+         self.private) = data
 
         self.primary_name.unserialize(primary_name)
         if death_ref:
             self.death_ref = EventRef().unserialize(death_ref)
         if birth_ref:
             self.birth_ref = EventRef().unserialize(birth_ref)
-        if lds_bapt:
-            self.lds_bapt = LdsOrd().unserialize(lds_bapt)
-        if lds_endow:
-            self.lds_endow = LdsOrd().unserialize(lds_endow)
-        if lds_seal:
-            self.lds_seal = LdsOrd().unserialize(lds_seal)
         self.alternate_names = [Name().unserialize(name)
                                 for name in alternate_names]
         self.event_ref_list = [EventRef().unserialize(er)
                                for er in event_ref_list]
         MediaBase.unserialize(self,media_list)
+        LdsOrdBase.unserialize(self,lds_ord_list)
         AddressBase.unserialize(self,address_list)
         AttributeBase.unserialize(self,attribute_list)
         UrlBase.unserialize(self,urls)
@@ -221,9 +222,7 @@ class Person(PrimaryObject,SourceNote,
             return handle in self.family_list + \
                         [item[0] for item in self.parent_family_list ]
         elif classname == 'Place':
-            return handle in [ordinance.place 
-                for ordinance in [self.lds_bapt,self.lds_endow,self.lds_seal]
-                if ordinance]
+            return handle in self.lds_ord_list
         return False
 
     def _remove_handle_references(self,classname,handle_list):
@@ -243,7 +242,7 @@ class Person(PrimaryObject,SourceNote,
                                         if item[0] not in handle_list ]
             self.parent_family_list = new_list
         elif classname == 'Place':
-            for ordinance in [self.lds_bapt,self.lds_endow,self.lds_seal]:
+            for ordinance in self.lds_ord_list:
                 if ordinance.place in handle_list:
                     ordinance.place = None
 
@@ -271,7 +270,7 @@ class Person(PrimaryObject,SourceNote,
                     new_list.append(item)
             self.parent_family_list = new_list
         elif classname == 'Place':
-            for ordinance in [self.lds_bapt,self.lds_endow,self.lds_seal]:
+            for ordinance in self.lds_ord_list:
                 if ordinance.place == old_handle:
                     ordinance.place = new_handle
 
@@ -291,7 +290,7 @@ class Person(PrimaryObject,SourceNote,
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = [self.lds_bapt,self.lds_endow,self.lds_seal,self.note]
+        check_list = self.lds_ord_list + [self.note]
         add_list = [item for item in check_list if item]
         return [self.primary_name] + self.media_list + \
                     self.alternate_names + self.address_list + \
@@ -305,11 +304,9 @@ class Person(PrimaryObject,SourceNote,
         @return: Returns the list of child secondary child objects that may refer sources.
         @rtype: list
         """
-        lds_list = [self.lds_bapt,self.lds_endow,self.lds_seal]
-        lds_check_list = [item for item in lds_list if item]
         return [self.primary_name] + self.media_list + \
                     self.alternate_names + self.address_list + \
-                    self.attribute_list + lds_check_list
+                    self.attribute_list + self.lds_ord_list
 
     def get_referenced_handles(self):
         """
@@ -825,63 +822,3 @@ class Person(PrimaryObject,SourceNote,
             return None
         else:
             return self.parent_family_list[0][0]
-
-    def set_lds_baptism(self,lds_ord):
-        """
-        Sets the LDS Baptism ordinance. An ordinance can be removed
-        by assigning to None.
-
-        @param lds_ord: L{LdsOrd} to assign as the LDS Baptism ordinance.
-        @type lds_ord: L{LdsOrd}
-        """
-        self.lds_bapt = lds_ord
-
-    def get_lds_baptism(self):
-        """
-        Returns the LDS Baptism ordinance.
-
-        @returns: returns the L{LdsOrd} instance assigned as the LDS
-        Baptism ordinance, or None if no ordinance has been assigned.
-        @rtype: L{LdsOrd}
-        """
-        return self.lds_bapt
-
-    def set_lds_endowment(self,lds_ord):
-        """
-        Sets the LDS Endowment ordinance. An ordinance can be removed
-        by assigning to None.
-
-        @param lds_ord: L{LdsOrd} to assign as the LDS Endowment ordinance.
-        @type lds_ord: L{LdsOrd}
-        """
-        self.lds_endow = lds_ord
-
-    def get_lds_endowment(self):
-        """
-        Returns the LDS Endowment ordinance.
-
-        @returns: returns the L{LdsOrd} instance assigned as the LDS
-        Endowment ordinance, or None if no ordinance has been assigned.
-        @rtype: L{LdsOrd}
-        """
-        return self.lds_endow
-
-    def set_lds_sealing(self,lds_ord):
-        """
-        Sets the LDS Sealing ordinance. An ordinance can be removed
-        by assigning to None.
-
-        @param lds_ord: L{LdsOrd} to assign as the LDS Sealing ordinance.
-        @type lds_ord: L{LdsOrd}
-        """
-        self.lds_seal = lds_ord
-
-    def get_lds_sealing(self):
-        """
-        Returns the LDS Sealing ordinance.
-
-        @returns: returns the L{LdsOrd} instance assigned as the LDS
-        Sealing ordinance, or None if no ordinance has been assigned.
-        @rtype: L{LdsOrd}
-        """
-        return self.lds_seal

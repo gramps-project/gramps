@@ -1,3 +1,17 @@
+2006-04-04  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py: new upgrade for LDS change
+	* src/Editors/_EditLdsOrd.py: addedn
+	* src/Editors/__init__.py: add EditLdsOrd
+	* src/Editors/_EditPerson.py: LDS support
+	* src/RelLib/_LdsOrdBase.py: added
+	* src/RelLib/_Person.py: use a list of LdsOrds
+	* src/RelLib/_Family.py: use a list of LdsOrds
+	* src/RelLib/_LdsOrd.py: add type field
+	* src/DisplayTabs.py: lds tab
+	* src/GrampsWidgets.py: menus
+	* src/glade/gramps.glade: lds support
+	* src/lds.py: additional support
+
 2006-04-04  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/TestcaseGenerator.py: Fix lds ord; Add new option
 	to put a linebreak into each textfield
@@ -8,6 +22,7 @@
 	* src/plugins/DescendReport.py: fix death dates
 
 2006-04-02  Don Allingham  <don@gramps-project.org>
+	* src/PluginUtils/Plugins.py: Fix args
 	* src/GrampsWidgets.py: Fix place autocompletion
 	* src/glade/gramps.glade: start of LDS Ord editor
 

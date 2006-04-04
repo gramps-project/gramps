@@ -363,6 +363,13 @@ class MonitoredMenu:
 
     def on_change(self, obj):
         self.set_val(self.model.get_value(obj.get_active_iter(),1))
+
+    def force(self,value):
+        self.obj.set_active(self.data.index(value))
+
+    def on_change(self, obj):
+        value = self.data[self.model.get_value(obj.get_active_iter(),1)]
+        self.set_val(value)
         
 class MonitoredDate:
 

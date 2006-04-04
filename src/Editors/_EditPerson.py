@@ -250,6 +250,11 @@ class EditPerson(EditPrimary):
             WebEmbedList(self.dbstate,self.uistate,self.track,
                          self.obj.get_url_list()))
 
+        self.lds_list = self._add_tab(
+            notebook,
+            LdsEmbedList(self.dbstate,self.uistate,self.track,
+                         self.obj.get_lds_ord_list()))
+
         notebook.show_all()
         self.top.get_widget('vbox').pack_start(notebook,True)
 

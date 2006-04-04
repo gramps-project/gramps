@@ -56,7 +56,7 @@ from _GrampsDbBase import *
 import const
 
 _MINVERSION = 5
-_DBVERSION = 9
+_DBVERSION = 10
 
 def find_surname(key,data):
     return str(data[3][3])
@@ -1180,6 +1180,8 @@ class GrampsBSDDB(GrampsDbBase):
             self.gramps_upgrade_8()
         if version < 9:
             self.gramps_upgrade_9()
+        if version < 10:
+            self.gramps_upgrade_10()
         # self.metadata.put('version',_DBVERSION)
         # self.metadata.sync()
         print "Upgrade time:", int(time.time()-t), "seconds"
@@ -1603,6 +1605,45 @@ class GrampsBSDDB(GrampsDbBase):
         self.metadata.put('version',9)
         self.metadata.sync()
         print "Done upgrading to DB version 9"
+
+    def gramps_upgrade_10(self):
+        print "Upgrading to DB version 10"
+
+        table_flags = self.open_flags()
+        self.reference_map_primary_map = db.DB(self.env)
+        self.reference_map_primary_map.set_flags(db.DB_DUP)
+        self.reference_map_primary_map.open(self.full_name,
+                                            "reference_map_primary_map",
+                                            db.DB_BTREE, flags=table_flags)
+        self.reference_map.associate(self.reference_map_primary_map,
+                                     find_primary_handle,
+                                     table_flags)
+
+        trans = self.transaction_begin("",True)
+        
+        for handle in self.person_map.keys():
+            val = list(self.get_raw_person_data(handle))
+            lds_list = [ x for x in [val[15],val[16],val[17]] if x ]
+            data=tuple(val[:15]) + (lds_list,) + tuple(val[18:])
+            p = Person(data=data)
+            self.commit_person(p,trans)
+
+        for handle in self.family_map.keys():
+            val = list(self.get_raw_family_data(handle))
+            if val[9]:
+                data = tuple(val[:9]) + (val[9],) + tuple(val[10:])
+            else:
+                data = tuple(val[:9]) + ([],) + tuple(val[10:])
+            p = Family()
+            p.unserialize(data)
+            self.commit_family(p,trans)
+
+        self.transaction_commit(trans,"Upgrade to DB version 10")
+
+        self.reference_map_primary_map.close()
+
+        self.metadata.put('version',10)
+        self.metadata.sync()
 
 
 class BdbTransaction(Transaction):

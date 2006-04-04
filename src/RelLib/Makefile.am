@@ -19,6 +19,7 @@ pkgdata_PYTHON = \
 	_Family.py\
 	_GenderStats.py\
 	__init__.py\
+	_LdsOrdBase.py\
 	_LdsOrd.py\
 	_LocationBase.py\
 	_Location.py\
