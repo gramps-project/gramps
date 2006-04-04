@@ -20,33 +20,20 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
 
 Documentation
 ---------------------------------
-Gramps documentation is supplied in the form of XML files, which will be
-installed in the GNOME help path(*).  Gnome help browser (Yelp) uses these 
-(properly installed) XML files to display the documentation.
+The User Manual is now maintained, built and installed using gnome-doc-utils.
+Please see the documentation for the gnome-doc-utils package to learn
+how this works.
 
-Of course, current HTML documentation can also be found on the gramps website,
+Current HTML documentation can also be found on the gramps website,
 http://gramps-project.org/index.php?module=pagemaster&PAGE_user_op=view_page&PAGE_id=7
 
-(*) More precisely, they are installed 
-in ${prefix}/share/gramps/gnome/help/gramps, 
-where ${prefix} is given by the --prefix= option 
-to configure (defaults to /usr).  
 
 
 Building on non-Linux systems: i18n support and GNU make
 --------------------------------------------------------
+If make fails, use gmake (the name FreeBSD gives to GNU make) instead.
 
-Linux has libintl (GNU gettext) built-in the C library. Other systems
-are likely to have libintl as a separate or optional library. Also,
-other systems may have a different make utility.
 
-On those systems, like FreeBSD, you must tell configure where to find
-the libintl library and the libintl.h include file:
-
-CPPFLAGS="-I/usr/local/include -L/usr/local/lib" ./configure --prefix=/usr/local
-
-Once you have done this, if make fails, use gmake (the name FreeBSD
-gives to GNU make) instead.
 
 --------------------------------
 Donald Allingham
