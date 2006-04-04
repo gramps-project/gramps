@@ -109,6 +109,15 @@ class EditLdsOrd(EditSecondary):
             self.dbstate.get_place_completion(),
             self.db.readonly)
 
+        self.type_menu = MonitoredMenu(
+            self.top.get_widget('type'),
+            self.obj.set_type,
+            self.obj.get_type,
+            [(_('Baptism'),RelLib.LdsOrd.BAPTISM),
+             (_('Endowment'),RelLib.LdsOrd.ENDOWMENT),
+             (_('Sealed to Parents'),RelLib.LdsOrd.SEAL_TO_PARENTS)],
+            self.db.readonly)
+
         temple_list = []
         for val in lds.temple_codes.keys():
             temple_list.append((lds.temple_codes[val],val))
