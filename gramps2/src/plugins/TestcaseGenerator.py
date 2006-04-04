@@ -159,6 +159,10 @@ class TestcaseGenerator(Tool.Tool):
         self.check_serial.set_active( self.options.handler.options_dict['add_serial'])
         self.top.vbox.pack_start(self.check_serial,0,0,5)
 
+        self.check_linebreak = gtk.CheckButton( _("Add line break"))
+        self.check_linebreak.set_active( self.options.handler.options_dict['add_linebreak'])
+        self.top.vbox.pack_start(self.check_linebreak,0,0,5)
+
         self.entry_count = gtk.Entry()
         self.entry_count.set_text( unicode( self.options.handler.options_dict['person_count']))
         self.top.vbox.pack_start(self.entry_count,0,0,5)
@@ -183,6 +187,8 @@ class TestcaseGenerator(Tool.Tool):
             self.check_specialchars.get_active())
         self.options.handler.options_dict['add_serial']  = int(
             self.check_serial.get_active())
+        self.options.handler.options_dict['add_linebreak']  = int(
+            self.check_linebreak.get_active())
         self.options.handler.options_dict['person_count']  = int(
             self.entry_count.get_text())
         self.top.destroy()
@@ -820,14 +826,14 @@ class TestcaseGenerator(Tool.Tool):
         
         #LDS
         if randint(0,1) == 1:
-            lds = self.rand_ldsord( lds.baptism)
-            np.set_lds_baptism( lds)
+            ldsord = self.rand_ldsord( lds.baptism)
+            np.set_lds_baptism( ldsord)
         if randint(0,1) == 1:
-            lds = self.rand_ldsord( lds.baptism)
-            np.set_lds_endowment( lds)
+            ldsord = self.rand_ldsord( lds.baptism)
+            np.set_lds_endowment( ldsord)
         if randint(0,1) == 1:
-            lds = self.rand_ldsord( lds.csealing)
-            np.set_lds_sealing( lds)
+            ldsord = self.rand_ldsord( lds.csealing)
+            np.set_lds_sealing( ldsord)
 
         person_handle = self.db.add_person(np,self.trans)
         
@@ -880,8 +886,8 @@ class TestcaseGenerator(Tool.Tool):
             fam.set_relationship( self.rand_type(Utils.family_relations))
         else:
             fam.set_relationship((RelLib.Family.MARRIED,''))
-        lds = self.rand_ldsord( lds.ssealing)
-        fam.set_lds_sealing( lds)
+        ldsord = self.rand_ldsord( lds.ssealing)
+        fam.set_lds_sealing( ldsord)
         fam_h = self.db.add_family(fam,self.trans)
         fam = self.db.commit_family(fam,self.trans)
         if person1_h:
@@ -947,8 +953,8 @@ class TestcaseGenerator(Tool.Tool):
             fam.set_relationship( self.rand_type(Utils.family_relations))
         else:
             fam.set_relationship( (RelLib.Family.MARRIED,'') )
-        lds = self.rand_ldsord( lds.ssealing)
-        fam.set_lds_sealing( lds)
+        ldsord = self.rand_ldsord( lds.ssealing)
+        fam.set_lds_sealing( ldsord)
         fam.add_child_handle(child_h)
         fam_h = self.db.add_family(fam,self.trans)
         fam = self.db.commit_family(fam,self.trans)
@@ -1221,15 +1227,15 @@ class TestcaseGenerator(Tool.Tool):
         return (year, event_ref)
     
     def rand_ldsord( self, status_list):
-        lds = RelLib.LdsOrd()
-        self.fill_object( lds)
+        ldsord = RelLib.LdsOrd()
+        self.fill_object( ldsord)
         if randint(0,1) == 1:
-            lds.set_status( randint(0,len(status_list)-1))
+            ldsord.set_status( randint(0,len(status_list)-1))
         if randint(0,1) == 1:
-            lds.set_temple( choice( lds.temple_to_abrev.keys()))
+            ldsord.set_temple( choice( lds.lds_temple_to_abrev.keys()))
         if randint(0,1) == 1:
-            lds.set_place_handle( self.rand_place())
-        return lds
+            ldsord.set_place_handle( self.rand_place())
+        return ldsord
 
     def rand_type( self, list):
         key = choice(list.keys())
@@ -1340,7 +1346,10 @@ class TestcaseGenerator(Tool.Tool):
                 result = result.title()
             elif n == 1:
                 result = result.upper()
-        
+
+        if self.options.handler.options_dict['add_linebreak']:
+            result = result + u"\nNEWLINE"
+
         return result
     
     def commit_transaction(self):
@@ -1374,6 +1383,7 @@ class TestcaseGeneratorOptions(Tool.ToolOptions):
             'long_names'    : 0,
             'specialchars'  : 0,
             'add_serial'    : 0,
+            'add_linebreak' : 0,
         }
         self.options_help = {
             'bugs'          : ("=0/1",
@@ -1406,6 +1416,10 @@ class TestcaseGeneratorOptions(Tool.ToolOptions):
             'add_serial'    : ("=0/1",
                                 "Wheter to add a serial number to every text field",
                                 ["No serial","Add serial number"],
+                                True),
+            'add_linebreak' : ("=0/1",
+                                "Wheter to add a line break to every text field",
+                                ["No linebreak","Add line break"],
                                 True),
         }
 
