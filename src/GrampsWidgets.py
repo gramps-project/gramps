@@ -350,10 +350,6 @@ class MonitoredMenu:
         self.get_val = get_val
 
         self.obj = obj
-        cell = gtk.CellRendererText()
-        self.obj.pack_start(cell, True)
-        self.obj.add_attribute(cell, 'text', 0)
-
         self.model = gtk.ListStore(str,int)
         for t,v in mapping:
             self.model.append(row=[t,v])
@@ -366,9 +362,6 @@ class MonitoredMenu:
         self.obj.set_active(value)
 
     def on_change(self, obj):
-        print obj
-        print obj.get_active_iter()
-        print self.model.get_value(obj.get_active_iter(),1)
         self.set_val(self.model.get_value(obj.get_active_iter(),1))
 
 class MonitoredStrMenu:
@@ -379,10 +372,6 @@ class MonitoredStrMenu:
 
         self.obj = obj
         self.model = gtk.ListStore(str)
-
-        cell = gtk.CellRendererText()
-        self.obj.pack_start(cell, True)
-        self.obj.add_attribute(cell, 'text', 0)
         
         if len(mapping) > 20:
             self.obj.set_wrap_width(3)
