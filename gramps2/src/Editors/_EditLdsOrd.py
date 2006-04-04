@@ -122,6 +122,13 @@ class EditLdsOrd(EditSecondary):
         for val in lds.temple_codes.keys():
             temple_list.append((lds.temple_codes[val],val))
 
+        self.type_menu = MonitoredStrMenu(
+            self.top.get_widget('temple'),
+            self.obj.set_temple,
+            self.obj.get_temple,
+            temple_list,
+            self.db.readonly)
+
     def _create_tabbed_pages(self):
         notebook = gtk.Notebook()
         self.srcref_list = self._add_tab(

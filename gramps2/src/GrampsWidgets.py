@@ -362,15 +362,41 @@ class MonitoredMenu:
         self.obj.set_active(value)
 
     def on_change(self, obj):
+        print obj
+        print obj.get_active_iter()
+        print self.model.get_value(obj.get_active_iter(),1)
         self.set_val(self.model.get_value(obj.get_active_iter(),1))
 
-    def force(self,value):
-        self.obj.set_active(self.data.index(value))
+class MonitoredStrMenu:
+
+    def __init__(self,obj,set_val,get_val,mapping,readonly=False):
+        self.set_val = set_val
+        self.get_val = get_val
+
+        self.obj = obj
+        self.model = gtk.ListStore(str,int)
+        self.model.append(row=['',0])
+        index = 0
+        self.data = ['']
+
+        default = get_val()
+        active = 0
+        
+        for t,v in mapping:
+            self.model.append(row=[t,index])
+            self.data.append(v)
+            if v == default:
+                active = index
+            index += 1
+            
+        self.obj.set_model(self.model)
+        self.obj.set_active(index)
+        self.obj.connect('changed',self.on_change)
+        self.obj.set_sensitive(not readonly)
 
     def on_change(self, obj):
-        value = self.data[self.model.get_value(obj.get_active_iter(),1)]
-        self.set_val(value)
-        
+        self.set_val(self.data[obj.get_active()])
+
 class MonitoredDate:
 
     def __init__(self,field,button,value,window, readonly=False):
