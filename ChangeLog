@@ -1,3 +1,7 @@
+2006-04-04  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/TestcaseGenerator.py: Fix lds ord; Add new option
+	to put a linebreak into each textfield
+
 2006-04-03  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/_ImgManip.py: fix typo
 	* src/plugins/DetDescendantReport.py: remove use of deprecated functions
