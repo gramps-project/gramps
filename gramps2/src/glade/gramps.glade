@@ -15625,6 +15625,8 @@ You should select parents before adding any new information. If you select paren
 	      <child>
 		<widget class="GtkComboBox" id="type">
 		  <property name="visible">True</property>
+		  <property name="items" translatable="yes">
+</property>
 		  <property name="add_tearoffs">False</property>
 		  <property name="focus_on_click">True</property>
 		</widget>
@@ -15641,6 +15643,8 @@ You should select parents before adding any new information. If you select paren
 	      <child>
 		<widget class="GtkComboBox" id="temple">
 		  <property name="visible">True</property>
+		  <property name="items" translatable="yes">
+</property>
 		  <property name="add_tearoffs">False</property>
 		  <property name="focus_on_click">True</property>
 		</widget>

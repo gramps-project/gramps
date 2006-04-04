@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,8 +21,8 @@
 # $Id: _EditAttribute.py 6248 2006-03-31 23:46:34Z dallingham $ 
 
 """
-The EditAttribute module provides the AttributeEditor class. This provides a
-mechanism for the user to edit attribute information.
+The EditLdsOrd module provides the EditLdsOrd class. This provides a
+mechanism for the user to edit personal LDS information.
 """
 
 __author__ = "Donald N. Allingham"
@@ -78,9 +78,6 @@ class EditLdsOrd(EditSecondary):
         """
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
 
-    def attribute_list(self):
-        return Utils.personal_attributes
-        
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "lds_person_edit","gramps")
         self.define_top_level(self.top.get_widget("lds_person_edit"),
@@ -122,7 +119,7 @@ class EditLdsOrd(EditSecondary):
         for val in lds.temple_codes.keys():
             temple_list.append((lds.temple_codes[val],val))
 
-        self.type_menu = MonitoredStrMenu(
+        self.temple_menu = MonitoredStrMenu(
             self.top.get_widget('temple'),
             self.obj.set_temple,
             self.obj.get_temple,
@@ -156,4 +153,3 @@ class EditLdsOrd(EditSecondary):
         if self.callback:
             self.callback(self.obj)
         self.close_window(obj)
-
