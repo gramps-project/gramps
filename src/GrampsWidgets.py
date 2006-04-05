@@ -38,12 +38,12 @@ import DateHandler
 import DateEdit
 import const
 
-_lock_path = os.path.join(const.image_dir,'stock_lock.png')
-_lock_open_path = os.path.join(const.image_dir,'stock_lock-open.png')
+_lock_path = os.path.join(const.image_dir, 'stock_lock.png')
+_lock_open_path = os.path.join(const.image_dir, 'stock_lock-open.png')
 
 class LinkLabel(gtk.EventBox):
 
-    def __init__(self,label,func,handle):
+    def __init__(self, label, func, handle):
         gtk.EventBox.__init__(self)
         self.orig_text = cgi.escape(label[0])
         self.gender = label[1]
@@ -53,23 +53,23 @@ class LinkLabel(gtk.EventBox):
         
         self.label = gtk.Label(text)
         self.label.set_use_markup(True)
-        self.label.set_alignment(0,0.5)
+        self.label.set_alignment(0, 0.5)
 
         self.add(self.label)
         self.set_visible_window(False)
 
-        self.connect('button-press-event',func,handle)
-        self.connect('enter-notify-event',self.enter_text,handle)
-        self.connect('leave-notify-event',self.leave_text,handle)
+        self.connect('button-press-event', func, handle)
+        self.connect('enter-notify-event', self.enter_text, handle)
+        self.connect('leave-notify-event', self.leave_text, handle)
         
-    def enter_text(self,obj,event,handle):
+    def enter_text(self, obj, event, handle):
         text = '<span foreground="blue" underline="single">%s</span>' % self.orig_text
         if self.gender:
             text += u" %s" % self.gender
         self.label.set_text(text)
         self.label.set_use_markup(True)
 
-    def leave_text(self,obj,event,handle):
+    def leave_text(self, obj, event, handle):
         text = '<span underline="single">%s</span>' % self.orig_text
         if self.gender:
             text += u" %s" % self.gender
@@ -78,16 +78,16 @@ class LinkLabel(gtk.EventBox):
 
 class IconButton(gtk.EventBox):
 
-    def __init__(self,func,handle,icon=gtk.STOCK_EDIT,size=gtk.ICON_SIZE_MENU):
+    def __init__(self, func, handle, icon=gtk.STOCK_EDIT, size=gtk.ICON_SIZE_MENU):
         gtk.EventBox.__init__(self)
         image = gtk.Image()
-        image.set_from_stock(icon,size)
+        image.set_from_stock(icon, size)
         image.show()
         self.add(image)
         self.show()
 
         if func:
-            self.connect('button-press-event',func,handle)
+            self.connect('button-press-event', func, handle)
 
 class WarnButton(gtk.EventBox):
     def __init__(self):
@@ -96,9 +96,9 @@ class WarnButton(gtk.EventBox):
 
         # Some versions of FreeBSD don't seem to have STOCK_INFO
         try:
-            image.set_from_stock(gtk.STOCK_INFO,gtk.ICON_SIZE_MENU)
+            image.set_from_stock(gtk.STOCK_INFO, gtk.ICON_SIZE_MENU)
         except:
-            image.set_from_stock(gtk.STOCK_DIALOG_INFO,gtk.ICON_SIZE_MENU)
+            image.set_from_stock(gtk.STOCK_DIALOG_INFO, gtk.ICON_SIZE_MENU)
             
         image.show()
         self.add(image)
@@ -106,57 +106,57 @@ class WarnButton(gtk.EventBox):
         self.func = None
         self.hide()
 
-    def on_clicked(self,func):
-        self.connect('button-press-event',self._button_press)
+    def on_clicked(self, func):
+        self.connect('button-press-event', self._button_press)
         self.func = func
 
-    def _button_press(self,obj,event):
+    def _button_press(self, obj, event):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             self.func(obj)
 
 class SimpleButton(gtk.Button):
 
-    def __init__(self,image,func):
+    def __init__(self, image, func):
         gtk.Button.__init__(self)
         self.set_relief(gtk.RELIEF_NONE)
-        self.add(gtk.image_new_from_stock(image,gtk.ICON_SIZE_BUTTON))
-        self.connect('clicked',func)
+        self.add(gtk.image_new_from_stock(image, gtk.ICON_SIZE_BUTTON))
+        self.connect('clicked', func)
         self.show()
         
 class LinkBox(gtk.HBox):
 
-    def __init__(self,link,button):
+    def __init__(self, link, button):
         gtk.HBox.__init__(self)
         self.set_spacing(6)
-        self.pack_start(link,False)
-        self.pack_start(button,False)
+        self.pack_start(link, False)
+        self.pack_start(button, False)
         self.show()
 
 class EditLabel(gtk.HBox):
-    def __init__(self,text):
+    def __init__(self, text):
         gtk.HBox.__init__(self)
         label = BasicLabel(text)
-        self.pack_start(label,False)
-        self.pack_start(gtk.image_new_from_stock(gtk.STOCK_EDIT,
-                                                 gtk.ICON_SIZE_MENU),False)
+        self.pack_start(label, False)
+        self.pack_start(gtk.image_new_from_stock(gtk.STOCK_EDIT, 
+                                                 gtk.ICON_SIZE_MENU), False)
         self.set_spacing(4)
 #        self.tooltip = gtk.Tooltips()
-#        self.tooltip.set_tip(label,_('Click in the cell to change the value'))
+#        self.tooltip.set_tip(label, _('Click in the cell to change the value'))
 #        self.tooltip.enable()
         self.show_all()
 
 class BasicLabel(gtk.Label):
 
-    def __init__(self,text):
-        gtk.Label.__init__(self,text)
-        self.set_alignment(0,0.5)
+    def __init__(self, text):
+        gtk.Label.__init__(self, text)
+        self.set_alignment(0, 0.5)
         self.show()
 
 class MarkupLabel(gtk.Label):
 
-    def __init__(self,text):
-        gtk.Label.__init__(self,text)
-        self.set_alignment(0,0.5)
+    def __init__(self, text):
+        gtk.Label.__init__(self, text)
+        self.set_alignment(0, 0.5)
         self.set_use_markup(True)
         self.show()
         
@@ -192,73 +192,73 @@ class IntEdit(gtk.Entry):
 
 class TypeCellRenderer(gtk.CellRendererCombo):
 
-    def __init__(self,values):
+    def __init__(self, values):
         gtk.CellRendererCombo.__init__(self)
 
-        model = gtk.ListStore(str,int)
+        model = gtk.ListStore(str, int)
         for key in values:
-            model.append(row=[values[key],key])
-        self.set_property('editable',True)
-        self.set_property('model',model)
-        self.set_property('text-column',0)
+            model.append(row=[values[key], key])
+        self.set_property('editable', True)
+        self.set_property('model', model)
+        self.set_property('text-column', 0)
 
 class PrivacyButton:
 
-    def __init__(self,button,obj,readonly=False):
+    def __init__(self, button, obj, readonly=False):
         self.button = button
-        self.button.connect('toggled',self._on_toggle)
+        self.button.connect('toggled', self._on_toggle)
         self.tooltips = gtk.Tooltips()
         self.obj = obj
         self.set_active(obj.get_privacy())
         self.button.set_sensitive(not readonly)
 
-    def set_sensitive(self,val):
+    def set_sensitive(self, val):
         self.button.set_sensitive(val)
 
-    def set_active(self,val):
+    def set_active(self, val):
         self.button.set_active(val)
         self._on_toggle(self.button)
 
     def get_active(self):
         return self.button.get_active()
 
-    def _on_toggle(self,obj):
+    def _on_toggle(self, obj):
         child = obj.child
         if child:
             obj.remove(child)
         image = gtk.Image()
         if obj.get_active():
-#            image.set_from_icon_name('stock_lock',gtk.ICON_SIZE_MENU)
+#            image.set_from_icon_name('stock_lock', gtk.ICON_SIZE_MENU)
             image.set_from_file(_lock_path)
-            self.tooltips.set_tip(obj,_('Record is private'))
+            self.tooltips.set_tip(obj, _('Record is private'))
             self.obj.set_privacy(True)
         else:
-#            image.set_from_icon_name('stock_lock-open',gtk.ICON_SIZE_MENU)
+#            image.set_from_icon_name('stock_lock-open', gtk.ICON_SIZE_MENU)
             image.set_from_file(_lock_open_path)
-            self.tooltips.set_tip(obj,_('Record is public'))
+            self.tooltips.set_tip(obj, _('Record is public'))
             self.obj.set_privacy(False)
         image.show()
         obj.add(image)
 
 class MonitoredCheckbox:
 
-    def __init__(self,obj,button,set_val,get_val,on_toggle=None):
+    def __init__(self, obj, button, set_val, get_val, on_toggle=None):
         self.button = button
-        self.button.connect('toggled',self._on_toggle)
+        self.button.connect('toggled', self._on_toggle)
         self.on_toggle = on_toggle
         self.obj = obj
         self.set_val = set_val
         self.get_val = get_val
         self.obj.set_active(get_val())
 
-    def _on_toggle(self,obj):
+    def _on_toggle(self, obj):
         self.set_val(obj.get_active())
         if self.on_toggle:
             self.on_toggle(self.get_val())
         
 class MonitoredEntry:
 
-    def __init__(self,obj,set_val,get_val,read_only=False,
+    def __init__(self, obj, set_val, get_val, read_only=False,
                  autolist=None, changed=None):
         self.obj = obj
         self.set_val = set_val
@@ -273,21 +273,21 @@ class MonitoredEntry:
         if autolist:
             AutoComp.fill_entry(obj,autolist)
 
-    def connect(self,signal,callback):
-        self.obj.connect(signal,callback)
+    def connect(self, signal, callback):
+        self.obj.connect(signal, callback)
 
-    def _on_change(self,obj):
+    def _on_change(self, obj):
         self.set_val(unicode(obj.get_text()))
         if self.changed:
             self.changed(obj)
 
-    def force_value(self,value):
+    def force_value(self, value):
         self.obj.set_text(value)
 
-    def get_value(self,value):
+    def get_value(self, value):
         return unicode(self.obj.get_text())
 
-    def enable(self,value):
+    def enable(self, value):
         self.obj.set_sensitive(value)
         self.obj.set_editable(value)
 
@@ -300,7 +300,7 @@ class MonitoredEntry:
 
 class MonitoredText:
 
-    def __init__(self,obj,set_val,get_val,read_only=False):
+    def __init__(self, obj, set_val, get_val, read_only=False):
         self.buf = obj.get_buffer()
         self.set_val = set_val
         self.get_val = get_val
@@ -310,13 +310,13 @@ class MonitoredText:
         self.buf.connect('changed', self.on_change)
         obj.set_editable(not read_only)
 
-    def on_change(self,obj):
-        s,e = self.buf.get_bounds()
-        self.set_val(unicode(self.buf.get_text(s,e,False)))
+    def on_change(self, obj):
+        s, e = self.buf.get_bounds()
+        self.set_val(unicode(self.buf.get_text(s, e, False)))
 
 class MonitoredType:
 
-    def __init__(self,obj,set_val,get_val,mapping,custom,readonly=False,
+    def __init__(self, obj, set_val, get_val, mapping, custom, readonly=False,
                  custom_values=None):
         self.set_val = set_val
         self.get_val = get_val
@@ -345,46 +345,46 @@ class MonitoredType:
 
 class MonitoredMenu:
 
-    def __init__(self,obj,set_val,get_val,mapping,readonly=False,changed=None):
+    def __init__(self, obj, set_val, get_val, mapping, readonly=False, changed=None):
         self.set_val = set_val
         self.get_val = get_val
 
         self.changed = changed
         self.obj = obj
-        self.model = gtk.ListStore(str,int)
+        self.model = gtk.ListStore(str, int)
         self.data = {}
 
         index = 0
-        for t,v in mapping:
-            self.model.append(row=[t,v])
+        for t, v in mapping:
+            self.model.append(row=[t, v])
             self.data[v] = index
             index += 1
             
         self.obj.set_model(self.model)
         self.obj.set_active(self.data[get_val()])
-        self.obj.connect('changed',self.on_change)
+        self.obj.connect('changed', self.on_change)
         self.obj.set_sensitive(not readonly)
 
-    def force(self,value):
+    def force(self, value):
         self.obj.set_active(value)
 
     def change_menu(self, mapping):
-        self.model = gtk.ListStore(str,int)
-        for t,v in mapping:
-            self.model.append(row=[t,v])
+        self.model = gtk.ListStore(str, int)
+        for t, v in mapping:
+            self.model.append(row=[t, v])
         self.obj.set_model(self.model)
         self.obj.set_active(0)
 
     def on_change(self, obj):
         print "ON CHANGE"
-        self.set_val(self.model.get_value(obj.get_active_iter(),1))
+        self.set_val(self.model.get_value(obj.get_active_iter(), 1))
         if self.changed:
             print "CALL"
             self.changed()
 
 class MonitoredStrMenu:
 
-    def __init__(self,obj,set_val,get_val,mapping,readonly=False):
+    def __init__(self, obj, set_val, get_val, mapping, readonly=False):
         self.set_val = set_val
         self.get_val = get_val
 
@@ -401,16 +401,16 @@ class MonitoredStrMenu:
         default = get_val()
         active = 0
         
-        for t,v in mapping:
+        for t, v in mapping:
             self.model.append(row=[v])
             self.data.append(t)
-            if v == default:
-                active = index
             index += 1
+            if t == default:
+                active = index
             
         self.obj.set_model(self.model)
         self.obj.set_active(active)
-        self.obj.connect('changed',self.on_change)
+        self.obj.connect('changed', self.on_change)
         self.obj.set_sensitive(not readonly)
 
     def on_change(self, obj):
@@ -418,7 +418,7 @@ class MonitoredStrMenu:
 
 class MonitoredDate:
 
-    def __init__(self,field,button,value,window, readonly=False):
+    def __init__(self, field, button, value, window, readonly=False):
         self.date = value
         self.date_check = DateEdit.DateEdit(
             self.date, field, button, window)
@@ -445,7 +445,7 @@ class PlaceEntry:
             self.obj.set_editable(True)
             
             store = gtk.ListStore(str)
-            foo = [ (locale.strxfrm(self.places[v]),v) \
+            foo = [ (locale.strxfrm(self.places[v]), v) \
                     for v in self.places.keys()]
             foo.sort()
             for val in foo:
@@ -462,8 +462,8 @@ class PlaceEntry:
         if text:
             for key in self.places.keys():
                 if text == self.places[key]:
-                    return (False,key)
-            return (True,text)
+                    return (False, key)
+            return (True, text)
         else:
-            return (False,u"")
+            return (False, u"")
     

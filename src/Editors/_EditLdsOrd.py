@@ -215,6 +215,19 @@ class EditLdsOrd(EditSecondary):
         Called when the OK button is pressed. Gets data from the
         form and updates the Attribute data structure.
         """
+
+        (need_new, handle) = self.place_field.get_place_info()
+        if need_new:
+            place_obj = RelLib.Place()
+            place_obj.set_title(handle)
+            trans = self.db.transaction_begin()
+            self.db.add_place(place_obj,trans)
+            self.db.transaction_commit(trans,_("Add Place"))
+            self.obj.set_place_handle(place_obj.get_handle())
+        else:
+            self.obj.set_place_handle(handle)
+
+        print self.obj.get_place_handle()
         if self.callback:
             self.callback(self.obj)
         self.close_window(obj)

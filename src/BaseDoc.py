@@ -91,9 +91,9 @@ log = logging.getLogger(".BaseDoc")
 #
 #-------------------------------------------------------------------------
 try:
-    from xml.sax import make_parser,handler,SAXParseException
+    from xml.sax import make_parser, handler, SAXParseException
 except:
-    from _xmlplus.sax import make_parser,handler,SAXParseException
+    from _xmlplus.sax import make_parser, handler, SAXParseException
 
 #-------------------------------------------------------------------------
 #
@@ -140,10 +140,10 @@ def cnv2color(text):
     converts a hex value in the form of #XXXXXX into a tuple of integers
     representing the RGB values
     """
-    c0 = int(text[1:3],16)
-    c1 = int(text[3:5],16)
-    c2 = int(text[5:7],16)
-    return (c0,c1,c2)
+    c0 = int(text[1:3], 16)
+    c1 = int(text[3:5], 16)
+    c2 = int(text[5:7], 16)
+    return (c0, c1, c2)
 
 #------------------------------------------------------------------------
 #
@@ -155,7 +155,7 @@ class PaperStyle:
     Defines the dimensions of a sheet of paper. All dimensions are in
     centimeters.
     """
-    def __init__(self,name,height,width):
+    def __init__(self, name, height, width):
         """
         Creates a new paper style with.
 
@@ -176,7 +176,7 @@ class PaperStyle:
         "Returns the page orientation (PAPER_PORTRAIT or PAPER_LANDSCAPE)"
         return self.orientation
 
-    def set_orientation(self,val):
+    def set_orientation(self, val):
         """
         Sets the page orientation.
 
@@ -189,7 +189,7 @@ class PaperStyle:
         "Returns the page height in cm"
         return self.height
 
-    def set_height(self,height):
+    def set_height(self, height):
         "Sets the page height in cm"
         self.height = height
 
@@ -197,7 +197,7 @@ class PaperStyle:
         "Returns the page width in cm"
         return self.width
 
-    def set_width(self,width):
+    def set_width(self, width):
         "Sets the page width in cm"
         self.width = width
 
@@ -245,10 +245,11 @@ class FontStyle:
             self.size   = 12
             self.italic = 0
             self.bold   = 0
-            self.color  = (0,0,0)
+            self.color  = (0, 0, 0)
             self.under  = 0
             
-    def set(self,face=None,size=None,italic=None,bold=None,underline=None,color=None):
+    def set(self, face=None, size=None, italic=None, bold=None,
+            underline=None, color=None):
         """
         Sets font characteristics.
 
@@ -274,7 +275,7 @@ class FontStyle:
         if color != None:
             self.set_color(color)
 
-    def set_italic(self,val):
+    def set_italic(self, val):
         "0 disables italics, 1 enables italics"
         self.italic = val
 
@@ -282,7 +283,7 @@ class FontStyle:
         "1 indicates use italics"
         return self.italic
 
-    def set_bold(self,val):
+    def set_bold(self, val):
         "0 disables bold face, 1 enables bold face"
         self.bold = val
 
@@ -290,7 +291,7 @@ class FontStyle:
         "1 indicates use bold face"
         return self.bold
 
-    def set_color(self,val):
+    def set_color(self, val):
         "sets the color using an RGB color tuple"
         self.color = val
 
@@ -298,7 +299,7 @@ class FontStyle:
         "Returns an RGB color tuple"
         return self.color
 
-    def set_size(self,val):
+    def set_size(self, val):
         "sets font size in points"
         self.size = val
 
@@ -306,7 +307,7 @@ class FontStyle:
         "returns font size in points"
         return self.size
 
-    def set_type_face(self,val):
+    def set_type_face(self, val):
         "sets the font face type"
         self.face = val
 
@@ -314,7 +315,7 @@ class FontStyle:
         "returns the font face type"
         return self.face
 
-    def set_underline(self,val):
+    def set_underline(self, val):
         "1 enables underlining"
         self.under = val
 
@@ -334,7 +335,7 @@ class TableStyle:
     number of columns, and the width of each column as a percentage of the
     width of the table.
     """
-    def __init__(self,obj=None):
+    def __init__(self, obj=None):
         """
         Creates a new TableStyle object, with the values initialized to
         empty, with allocating space for up to 100 columns.
@@ -351,7 +352,7 @@ class TableStyle:
             self.columns = 0
             self.colwid = [ 0 ] * 100
 
-    def set_width(self,width):
+    def set_width(self, width):
         """
         Sets the width of the table in terms of percent of the available
         width
@@ -364,7 +365,7 @@ class TableStyle:
         """
         return self.width
 
-    def set_columns(self,columns):
+    def set_columns(self, columns):
         """
         Sets the number of columns.
 
@@ -378,16 +379,16 @@ class TableStyle:
         """
         return self.columns 
 
-    def set_column_widths(self, list):
+    def set_column_widths(self, clist):
         """
         Sets the width of all the columns at once, taking the percentages
         from the passed list.
         """
-        self.columns = len(list)
+        self.columns = len(clist)
         for i in range(self.columns):
-            self.colwid[i] = list[i]
+            self.colwid[i] = clist[i]
 
-    def set_column_width(self,index,width):
+    def set_column_width(self, index, width):
         """
         Sets the width of a specified column to the specified width.
 
@@ -396,7 +397,7 @@ class TableStyle:
         """
         self.colwid[index] = width
 
-    def get_column_width(self,index):
+    def get_column_width(self, index):
         """
         Returns the column width of the specified column as a percentage of
         the entire table width.
@@ -415,7 +416,7 @@ class TableCellStyle:
     Defines the style of a particular table cell. Characteristics are:
     right border, left border, top border, bottom border, and padding.
     """
-    def __init__(self,obj=None):
+    def __init__(self, obj=None):
         """
         Creates a new TableCellStyle instance.
 
@@ -437,11 +438,11 @@ class TableCellStyle:
             self.padding = 0
             self.longlist = 0
     
-    def set_padding(self,val):
+    def set_padding(self, val):
         "Returns the cell padding in centimeters"
         self.padding = val
 
-    def set_right_border(self,val):
+    def set_right_border(self, val):
         """
         Defines if a right border in used
 
@@ -449,7 +450,7 @@ class TableCellStyle:
         """
         self.rborder = val
 
-    def set_left_border(self,val):
+    def set_left_border(self, val):
         """
         Defines if a left border in used
 
@@ -457,7 +458,7 @@ class TableCellStyle:
         """
         self.lborder = val
 
-    def set_top_border(self,val):
+    def set_top_border(self, val):
         """
         Defines if a top border in used
 
@@ -465,7 +466,7 @@ class TableCellStyle:
         """
         self.tborder = val
 
-    def set_bottom_border(self,val):
+    def set_bottom_border(self, val):
         """
         Defines if a bottom border in used
 
@@ -473,7 +474,7 @@ class TableCellStyle:
         """
         self.bborder = val
 
-    def set_longlist(self,val):
+    def set_longlist(self, val):
         self.longlist = val
 
     def get_padding(self):
@@ -512,7 +513,7 @@ class ParagraphStyle:
     right border, left border, padding, and background color.
 
     """
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         @param source: if not None, then the ParagraphStyle is created
             using the values of the source instead of the default values.
@@ -550,16 +551,16 @@ class ParagraphStyle:
             self.bgcolor = (255,255,255)
             self.description = ""
 
-    def set_description(self,text):
+    def set_description(self, text):
         self.description = text
 
     def get_description(self):
         return self.description
 
-    def set(self,rmargin=None,lmargin=None,first_indent=None,
-            tmargin=None,bmargin=None,align=None,
-            tborder=None,bborder=None,rborder=None,lborder=None,pad=None,
-            bgcolor=None,font=None):
+    def set(self, rmargin=None, lmargin=None, first_indent=None,
+            tmargin=None, bmargin=None, align=None,
+            tborder=None, bborder=None, rborder=None, lborder=None,
+            pad=None, bgcolor=None, font=None):
         """
         Allows the values of the object to be set.
 
@@ -604,7 +605,7 @@ class ParagraphStyle:
         if bmargin != None:
             self.set_bottom_margin(bmargin)
             
-    def set_header_level(self,level):
+    def set_header_level(self, level):
         """
         Sets the header level for the paragraph. This is useful for
         numbered paragraphs. A value of 1 indicates a header level
@@ -617,7 +618,7 @@ class ParagraphStyle:
         "Returns the header level of the paragraph"
         return self.level
 
-    def set_font(self,font):
+    def set_font(self, font):
         """
         Sets the font style of the paragraph.
 
@@ -629,7 +630,7 @@ class ParagraphStyle:
         "Returns the FontStyle of the paragraph"
         return self.font
 
-    def set_padding(self,val):
+    def set_padding(self, val):
         """
         Sets the paragraph padding in centimeters
 
@@ -641,7 +642,7 @@ class ParagraphStyle:
         """Returns a the padding of the paragraph"""
         return self.pad
 
-    def set_top_border(self,val):
+    def set_top_border(self, val):
         """
         Sets the presence or absence of top border.
 
@@ -654,7 +655,7 @@ class ParagraphStyle:
         "Returns 1 if a top border is specified"
         return self.top_border
 
-    def set_bottom_border(self,val):
+    def set_bottom_border(self, val):
         """
         Sets the presence or absence of bottom border.
 
@@ -667,7 +668,7 @@ class ParagraphStyle:
         "Returns 1 if a bottom border is specified"
         return self.bottom_border
 
-    def set_left_border(self,val):
+    def set_left_border(self, val):
         """
         Sets the presence or absence of left border.
 
@@ -680,7 +681,7 @@ class ParagraphStyle:
         "Returns 1 if a left border is specified"
         return self.left_border
 
-    def set_right_border(self,val):
+    def set_right_border(self ,val):
         """
         Sets the presence or absence of rigth border.
 
@@ -700,7 +701,7 @@ class ParagraphStyle:
         """
         return self.bgcolor
 
-    def set_background_color(self,color):
+    def set_background_color(self, color):
         """
         Sets the background color of the paragraph.
 
@@ -709,7 +710,7 @@ class ParagraphStyle:
         """
         self.bgcolor = color
 
-    def set_alignment(self,align):
+    def set_alignment(self, align):
         """
         Sets the paragraph alignment.
 
@@ -737,23 +738,23 @@ class ParagraphStyle:
             return "justify"
         return "unknown"
 
-    def set_left_margin(self,value):
+    def set_left_margin(self, value):
         "sets the left indent in centimeters"
         self.lmargin = value
 
-    def set_right_margin(self,value):
+    def set_right_margin(self, value):
         "sets the right indent in centimeters"
         self.rmargin = value
 
-    def set_first_indent(self,value):
+    def set_first_indent(self, value):
         "sets the first line indent in centimeters"
         self.first_indent = value
 
-    def set_top_margin(self,value):
+    def set_top_margin(self, value):
         "sets the space above paragraph in centimeters"
         self.tmargin = value
 
-    def set_bottom_margin(self,value):
+    def set_bottom_margin(self, value):
         "sets the space below paragraph in centimeters"
         self.bmargin = value
 
@@ -789,7 +790,7 @@ class StyleSheetList:
     styles are loaded from a specified XML file if it exists.
     """
     
-    def __init__(self,file,defstyle):
+    def __init__(self, filename, defstyle):
         """
         Creates a new StyleSheetList from the specified default style and
         any other styles that may be defined in the specified file.
@@ -799,10 +800,10 @@ class StyleSheetList:
         """
         defstyle.set_name('default')
         self.map = { "default" : defstyle }
-        self.file = os.path.join(const.home_dir,file)
+        self.file = os.path.join(const.home_dir,filename)
         self.parse()
 
-    def delete_style_sheet(self,name):
+    def delete_style_sheet(self, name):
         """
         Removes a style from the list. Since each style must have a
         unique name, the name is used to delete the stylesheet.
@@ -817,7 +818,7 @@ class StyleSheetList:
         """
         return self.map
 
-    def get_style_sheet(self,name):
+    def get_style_sheet(self, name):
         """
         Returns the StyleSheet associated with the name
 
@@ -829,7 +830,7 @@ class StyleSheetList:
         "Returns a list of all the style names in the StyleSheetList"
         return self.map.keys()
 
-    def set_style_sheet(self,name,style):
+    def set_style_sheet(self, name, style):
         """
         Adds or replaces a StyleSheet in the StyleSheetList. The
         default style may not be replaced.
@@ -924,7 +925,7 @@ class StyleSheet:
                 style = obj.style_list[style_name]
                 self.style_list[style_name] = ParagraphStyle(style)
 
-    def set_name(self,name):
+    def set_name(self, name):
         self.name = name
 
     def get_name(self):
@@ -934,7 +935,7 @@ class StyleSheet:
         "Removes all paragraph styles from the StyleSheet"
         self.style_list = {}
 
-    def add_style(self,name,style):
+    def add_style(self, name, style):
         """
         Adds a paragraph style to the style sheet.
 
@@ -951,7 +952,7 @@ class StyleSheet:
         "Returns the paragraph name/ParagraphStyle map"
         return self.style_list
 
-    def get_style(self,name):
+    def get_style(self, name):
         """
         Returns the ParagraphStyle associated with the name
 
@@ -969,7 +970,7 @@ class SheetParser(handler.ContentHandler):
     SAX parsing class for the StyleSheetList XML file.
     """
     
-    def __init__(self,sheetlist):
+    def __init__(self, sheetlist):
         """
         Creates a SheetParser class that populates the passed StyleSheetList
         class.
@@ -984,7 +985,7 @@ class SheetParser(handler.ContentHandler):
         self.sname = None
         self.pname = None
         
-    def startElement(self,tag,attrs):
+    def startElement(self, tag, attrs):
         """
         Overridden class that handles the start of a XML element
         """
@@ -1022,7 +1023,7 @@ class SheetParser(handler.ContentHandler):
             self.p = ParagraphStyle()
             self.pname = attrs['name']
 
-    def endElement(self,tag):
+    def endElement(self, tag):
         "Overridden class that handles the start of a XML element"
         if tag == "style":
             self.p.set_font(self.f)
@@ -1036,7 +1037,7 @@ class SheetParser(handler.ContentHandler):
 #
 #------------------------------------------------------------------------
 class GraphicsStyle:
-    def __init__(self,obj=None):
+    def __init__(self, obj=None):
         if obj:
             self.height = obj.height
             self.width = obj.width
@@ -1058,7 +1059,7 @@ class GraphicsStyle:
             self.fill_color = (255,255,255)
             self.lstyle = SOLID
 
-    def set_line_width(self,val):
+    def set_line_width(self, val):
         self.lwidth = val
 
     def get_line_width(self):
@@ -1067,29 +1068,29 @@ class GraphicsStyle:
     def get_line_style(self):
         return self.lstyle
 
-    def set_line_style(self,val):
+    def set_line_style(self, val):
         self.lstyle = val
 
-    def set_height(self,val):
+    def set_height(self, val):
         self.height = val
 
-    def set_width(self,val):
+    def set_width(self, val):
         self.width = val
 
-    def set_paragraph_style(self,val):
+    def set_paragraph_style(self, val):
         self.para_name = val
 
-    def set_shadow(self,val,space=0.2):
+    def set_shadow(self, val, space=0.2):
         self.shadow = val
         self.shadow_space = space
 
     def get_shadow_space(self):
         return self.shadow_space
 
-    def set_color(self,val):
+    def set_color(self, val):
         self.color = val
 
-    def set_fill_color(self,val):
+    def set_fill_color(self, val):
         self.fill_color = val
 
     def get_height(self):
@@ -1121,7 +1122,8 @@ class BaseDoc:
     such as OpenOffice, AbiWord, and LaTeX are derived from this base
     class, providing a common interface to all document generators.
     """
-    def __init__(self,styles,paper_type,template,orientation=PAPER_PORTRAIT):
+    def __init__(self, styles, paper_type ,template,
+                 orientation=PAPER_PORTRAIT):
         """
         Creates a BaseDoc instance, which provides a document generation
         interface. This class should never be instantiated directly, but
@@ -1175,7 +1177,7 @@ class BaseDoc:
     def end_page(self):
         pass
         
-    def print_requested (self):
+    def print_requested(self):
         self.print_req = 1
 
     def set_owner(self,owner):
@@ -1186,7 +1188,7 @@ class BaseDoc:
         """
         self.owner = owner
         
-    def add_media_object(self,name,align,w_cm,h_cm):
+    def add_media_object(self, name, align, w_cm, h_cm):
         """
         Adds a photo of the specified width (in centimeters)
 
@@ -1228,7 +1230,7 @@ class BaseDoc:
         "Returns the owner name"
         self.name = name
 
-    def set_title(self,name):
+    def set_title(self, name):
         """
         Sets the title of the document.
 
@@ -1236,16 +1238,16 @@ class BaseDoc:
         """
         self.title = name
 
-    def add_draw_style(self,name,style):
+    def add_draw_style(self, name, style):
         self.draw_styles[name] = GraphicsStyle(style)
 
-    def get_draw_style(self,name):
+    def get_draw_style(self, name):
         return self.draw_styles[name]
 
-    def get_style(self,name):
+    def get_style(self, name):
         return self.style_list[name]
 
-    def add_table_style(self,name,style):
+    def add_table_style(self, name, style):
         """
         Adds the TableStyle with the specfied name.
 
@@ -1254,7 +1256,7 @@ class BaseDoc:
         """
         self.table_styles[name] = TableStyle(style)
 
-    def add_cell_style(self,name,style):
+    def add_cell_style(self, name, style):
         """
         Adds the TableCellStyle with the specfied name.
 
@@ -1263,7 +1265,7 @@ class BaseDoc:
         """
         self.cell_styles[name] = TableCellStyle(style)
 
-    def open(self,filename):
+    def open(self, filename):
         """
         Opens the document.
 
@@ -1275,7 +1277,7 @@ class BaseDoc:
         "Closes the document"
         pass
 
-    def string_width(self,fontstyle,text):
+    def string_width(self, fontstyle, text):
         "Determine the width need for text in given font"
         return FontScale.string_width(fontstyle,text)
 
@@ -1299,7 +1301,7 @@ class BaseDoc:
     def end_superscript(self):
         pass
 
-    def start_listing(self,style_name):
+    def start_listing(self, style_name):
         """
         Starts a new listing block, using the specified style name.
 
@@ -1310,7 +1312,7 @@ class BaseDoc:
     def end_listing(self):
         pass
 
-    def start_paragraph(self,style_name,leader=None):
+    def start_paragraph(self, style_name, leader=None):
         """
         Starts a new paragraph, using the specified style name.
 
@@ -1325,7 +1327,7 @@ class BaseDoc:
         "Ends the current parsgraph"
         pass
 
-    def start_table(self,name,style_name):
+    def start_table(self, name, style_name):
         """
         Starts a new table.
 
@@ -1346,7 +1348,7 @@ class BaseDoc:
         "Ends the current row on the current table"
         pass
 
-    def start_cell(self,style_name,span=1):
+    def start_cell(self, style_name, span=1):
         """
         Starts a new table cell, using the paragraph style specified.
 
@@ -1363,7 +1365,7 @@ class BaseDoc:
         "Creates a horizontal line"
         pass
 
-    def write_note(self,text,format,style_name):
+    def write_note(self, text, format, style_name):
         """
         Writes the note's text and take care of paragraphs, 
         depending on the format. 
@@ -1374,7 +1376,7 @@ class BaseDoc:
         """
         pass
 
-    def write_text(self,text):
+    def write_text(self, text):
         """
         Writes the text in the current paragraph. Should only be used after a
         start_paragraph and before an end_paragraph.
@@ -1383,7 +1385,7 @@ class BaseDoc:
         """
         pass
 
-    def write_cmdstr(self,text):
+    def write_cmdstr(self, text):
         """
         Writes the text in the current paragraph. Should only be used after a
         start_paragraph and before an end_paragraph.
@@ -1392,35 +1394,35 @@ class BaseDoc:
         """
         pass
 
-    def draw_arc(self,style,x1,y1,x2,y2,angle,extent):
+    def draw_arc(self, style, x1, y1, x2, y2, angle, extent):
         pass
 
-    def draw_path(self,style,path):
+    def draw_path(self, style, path):
         pass
     
-    def draw_box(self,style,text,x,y):
+    def draw_box(self, style, text, x, y):
         pass
 
-    def write_at(self,style,text,x,y):
+    def write_at(self, style, text, x, y):
         pass
 
-    def draw_bar(self,style,x1,y1,x2,y2):
+    def draw_bar(self, style, x1, y1, x2, y2):
         pass
 
-    def draw_text(self,style,text,x1,y1):
+    def draw_text(self, style, text, x1, y1):
         pass
 
-    def center_text(self,style,text,x1,y1):
+    def center_text(self, style, text, x1, y1):
         pass
 
-    def rotate_text(self,style,text,x,y,angle):
+    def rotate_text(self, style, text, x, y, angle):
         pass
     
-    def draw_line(self,style,x1,y1,x2,y2):
+    def draw_line(self, style, x1, y1, x2, y2):
         pass
 
-    def draw_wedge(self, style, centerx, centery, radius, start_angle,
-                   end_angle, short_radius=0):
+    def draw_wedge(self,  style,  centerx,  centery,  radius,  start_angle, 
+                   end_angle,  short_radius=0):
 
         assert(self.init_called)
         while end_angle < start_angle:
@@ -1437,7 +1439,7 @@ class BaseDoc:
         angle = sangle
 
         if short_radius == 0:
-            p.append((centerx,centery))
+            p.append((centerx, centery))
         else:
             origx = (centerx + cos(angle)*short_radius)
             origy = (centery + sin(angle)*short_radius)
@@ -1446,24 +1448,24 @@ class BaseDoc:
         while angle<eangle:
             x = centerx + cos(angle)*radius
             y = centery + sin(angle)*radius
-            p.append((x,y))
+            p.append((x, y))
             angle = angle+radiansdelta
         x = centerx + cos(eangle)*radius
         y = centery + sin(eangle)*radius
-        p.append((x,y))
+        p.append((x, y))
 
         if short_radius:
             x = centerx + cos(eangle)*short_radius
             y = centery + sin(eangle)*short_radius
-            p.append((x,y))
+            p.append((x, y))
 
             angle = eangle
             while angle>=sangle:
                 x = centerx + cos(angle)*short_radius
                 y = centery + sin(angle)*short_radius
-                p.append((x,y))
+                p.append((x, y))
                 angle = angle-radiansdelta
-        self.draw_path(style,p)
+        self.draw_path(style, p)
 
         delta = (eangle - sangle)/2.0
         rad = short_radius + (radius-short_radius)/2.0
@@ -1471,13 +1473,13 @@ class BaseDoc:
         return ( (centerx + cos(sangle+delta) * rad),
                  (centery + sin(sangle+delta) * rad))
     
-    def start_path(self,style,x,y):
+    def start_path(self, style, x, y):
         pass
 
-    def line_to(self,x,y):
+    def line_to(self, x, y):
         pass
 
-    def arc_to(self,x,y,angle,extent):
+    def arc_to(self, x, y, angle, extent):
         pass
 
     def end_path(self):

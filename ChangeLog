@@ -1,4 +1,7 @@
 2006-04-05  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditLdsOrd.py: save place information
+	* src/GrampsWidgets.py: select default value in menu
+	* src/BaseDoc.py: pylint
 	* src/DisplayTabs.py: handle temple not set for LdsOrd
 	* src/RelLib/_LdsOrd.py: unserialize returns self
 	* src/RelLib/_LdsOrdBase.py: variable name change
