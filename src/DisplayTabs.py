@@ -1190,12 +1190,13 @@ class AddrEmbedList(EmbeddedList):
 class LdsEmbedList(EmbeddedList):
 
     _HANDLE_COL = 5
-    _DND_TYPE   = DdTargets.ADDRESS
+#    _DND_TYPE   = DdTargets.ADDRESS
 
     _column_names = [
         (_('Type'),    0, 150),
         (_('Date'),    1, 150),
-        (_('Temple'),  2, 225),
+        (_('Status'),  3, 75),
+        (_('Temple'),  2, 200),
         (_('Place'),   3, 100),
         ]
     
@@ -1208,7 +1209,7 @@ class LdsEmbedList(EmbeddedList):
         return self.data
 
     def column_order(self):
-        return ((1,0),(1,1),(1,2),(1,3))
+        return ((1,0),(1,1),(1,2),(1,3),(1,4))
 
     def add_button_clicked(self,obj):
         lds = RelLib.LdsOrd()
@@ -1930,14 +1931,17 @@ class LdsModel(gtk.ListStore):
         
         self.db = db
         for lds_ord in lds_list:
-            self.append(row=[
-                lds.ord_type[lds_ord.get_type()],
-                DateHandler.get_date(lds_ord),
-                lds_ord.get_status(),
-                lds_ord.get_temple(),
-                self.column_place(lds_ord),
-                lds_ord,
-                ])
+            if not lds_ord:
+                print "BARF"
+            else:
+                self.append(row=[
+                    lds.ord_type[lds_ord.get_type()],
+                    DateHandler.get_date(lds_ord),
+                    lds.ord_status[lds_ord.get_status()],
+                    lds.temple_to_abrev[lds_ord.get_temple()],
+                    self.column_place(lds_ord),
+                    lds_ord,
+                    ])
 
     def column_place(self, lds_ord):
         if lds_ord:

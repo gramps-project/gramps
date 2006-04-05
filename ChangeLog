@@ -1,3 +1,11 @@
+2006-04-04  Don Allingham  <don@gramps-project.org>
+	* src/RelLib/_LdsOrd.py: lds status changes
+	* src/Editors/_EditLdsOrd.py: lds status changes
+	* src/DisplayTabs.py: lds status changes
+	* src/GrampsWidgets.py: lds status changes
+	* src/glade/gramps.glade: lds status changes
+	* src/lds.py: lds status changes
+
 2006-04-04  Alex Roitman  <shura@gramps-project.org>
 	* README, INSTALL: update.
 
