@@ -486,6 +486,11 @@ class EditFamily(EditPrimary):
             GalleryTab(self.dbstate, self.uistate, self.track,
                        self.obj.get_media_list()))
 
+        self.lds_list = self._add_tab(
+            notebook,
+            FamilyLdsEmbedList(self.dbstate,self.uistate,self.track,
+                               self.obj.get_lds_ord_list()))
+
         notebook.show_all()
 
         self.hidden = (notebook, self.top.get_widget('info'))
@@ -767,7 +772,6 @@ class EditFamily(EditPrimary):
             original = None
 
         if not original and not self.object_is_empty():
-            print self.obj.serialize()
             trans = self.db.transaction_begin()
 
             # find the father, add the family handle to the father

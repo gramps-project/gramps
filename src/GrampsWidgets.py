@@ -376,10 +376,8 @@ class MonitoredMenu:
         self.obj.set_active(0)
 
     def on_change(self, obj):
-        print "ON CHANGE"
         self.set_val(self.model.get_value(obj.get_active_iter(), 1))
         if self.changed:
-            print "CALL"
             self.changed()
 
 class MonitoredStrMenu:
