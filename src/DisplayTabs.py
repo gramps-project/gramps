@@ -1931,17 +1931,14 @@ class LdsModel(gtk.ListStore):
         
         self.db = db
         for lds_ord in lds_list:
-            if not lds_ord:
-                print "BARF"
-            else:
-                self.append(row=[
-                    lds.ord_type[lds_ord.get_type()],
-                    DateHandler.get_date(lds_ord),
-                    lds.ord_status[lds_ord.get_status()],
-                    lds.temple_to_abrev[lds_ord.get_temple()],
-                    self.column_place(lds_ord),
-                    lds_ord,
-                    ])
+            self.append(row=[
+                lds.ord_type[lds_ord.get_type()],
+                DateHandler.get_date(lds_ord),
+                lds.ord_status[lds_ord.get_status()],
+                lds.temple_to_abrev.get(lds_ord.get_temple(),_("unknown")),
+                self.column_place(lds_ord),
+                lds_ord,
+                ])
 
     def column_place(self, lds_ord):
         if lds_ord:
