@@ -88,11 +88,12 @@ class LdsOrd(SourceNote,DateBase,PlaceBase,PrivacyBase):
 
     def serialize(self):
         return (SourceNote.serialize(self),
-                DateBase.serialize(self),self.place,
+                DateBase.serialize(self),
+                self.type,self.place,
                 self.famc,self.temple,self.status)
 
     def unserialize(self,data):
-        (sn,date,self.place,
+        (sn,date,self.type,self.place,
          self.famc,self.temple,self.status) = data
         SourceNote.unserialize(self,sn)
         DateBase.unserialize(self,date)

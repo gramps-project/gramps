@@ -60,7 +60,7 @@ from GrampsWidgets import *
 
 #-------------------------------------------------------------------------
 #
-# EditAttribute class
+# EditLdsOrd class
 #
 #-------------------------------------------------------------------------
 class EditLdsOrd(EditSecondary):
@@ -213,7 +213,7 @@ class EditLdsOrd(EditSecondary):
     def save(self,*obj):
         """
         Called when the OK button is pressed. Gets data from the
-        form and updates the Attribute data structure.
+        form and updates the LdsOrd data structure.
         """
 
         (need_new, handle) = self.place_field.get_place_info()
@@ -227,7 +227,134 @@ class EditLdsOrd(EditSecondary):
         else:
             self.obj.set_place_handle(handle)
 
-        print self.obj.get_place_handle()
+        if self.callback:
+            self.callback(self.obj)
+        self.close_window(obj)
+
+#-------------------------------------------------------------------------
+#
+# EditFamilyLdsOrd
+#
+#-------------------------------------------------------------------------
+class EditFamilyLdsOrd(EditSecondary):
+    """
+    Displays a dialog that allows the user to edit an attribute.
+    """
+
+    def __init__(self, state, uistate, track, attrib, callback):
+        """
+        Displays the dialog box.
+
+        parent - The class that called the Address editor.
+        attrib - The attribute that is to be edited
+        title - The title of the dialog box
+        list - list of options for the pop down menu
+        """
+        EditSecondary.__init__(self, state, uistate, track, attrib, callback)
+
+    def _local_init(self):
+        self.top = gtk.glade.XML(const.gladeFile, "lds_person_edit","gramps")
+        self.define_top_level(self.top.get_widget("lds_person_edit"),
+                              self.top.get_widget('title'),
+                              _('LDS Ordinance Editor'))
+
+    def _connect_signals(self):
+        self.define_cancel_button(self.top.get_widget('cancel'))
+        self.define_help_button(self.top.get_widget('help'),'adv-at')
+        self.define_ok_button(self.top.get_widget('ok'),self.save)
+
+    def _setup_fields(self):
+
+        self.parents_label = self.top.get_widget('parents_label')
+        self.parents = self.top.get_widget('parents')
+        self.parents_select = self.top.get_widget('parents_select')
+
+        self.priv = PrivacyButton(
+            self.top.get_widget("private"),
+            self.obj)
+
+        self.date_field = MonitoredDate(
+            self.top.get_widget("date"),
+            self.top.get_widget("date_stat"),
+            self.obj.get_date_object(),
+            self.window, self.db.readonly)
+
+        self.place_field = PlaceEntry(
+            self.top.get_widget("place"),
+            self.obj.get_place_handle(),
+            self.dbstate.get_place_completion(),
+            self.db.readonly)
+
+        self.type_menu = MonitoredMenu(
+            self.top.get_widget('type'),
+            self.obj.set_type,
+            self.obj.get_type,
+            [(_('Sealed to Spouse'),RelLib.LdsOrd.SEAL_TO_SPOUSE)],
+            self.db.readonly)
+
+        temple_list = []
+        for val in lds.temple_codes.keys():
+            temple_list.append((lds.temple_codes[val],val))
+
+        self.temple_menu = MonitoredStrMenu(
+            self.top.get_widget('temple'),
+            self.obj.set_temple,
+            self.obj.get_temple,
+            temple_list,
+            self.db.readonly)
+
+        self.status_menu = MonitoredMenu(
+            self.top.get_widget('status'),
+            self.obj.set_status,
+            self.obj.get_status,
+            [(_('<No Status>'), RelLib.LdsOrd.STATUS_NONE),
+             (_('Canceled'), RelLib.LdsOrd.STATUS_CANCELED),
+             (_("Cleared"), RelLib.LdsOrd.STATUS_CLEARED),
+             (_("Completed"), RelLib.LdsOrd.STATUS_COMPLETED),
+             (_("DNS"), RelLib.LdsOrd.STATUS_DNS),
+             (_("Pre-1970"), RelLib.LdsOrd.STATUS_PRE_1970),
+             (_("Qualified"), RelLib.LdsOrd.STATUS_QUALIFIED),
+             (_("DNS/CAN"), RelLib.LdsOrd.STATUS_DNS_CAN),
+             (_("Submitted"), RelLib.LdsOrd.STATUS_SUBMITTED),
+             (_("Uncleared"), RelLib.LdsOrd.STATUS_UNCLEARED),],
+            self.db.readonly)
+
+    def _create_tabbed_pages(self):
+        notebook = gtk.Notebook()
+        self.srcref_list = self._add_tab(
+            notebook,
+            SourceEmbedList(self.dbstate,self.uistate, self.track,
+                            self.obj.source_list))
+        
+        self.note_tab = self._add_tab(
+            notebook,
+            NoteTab(self.dbstate, self.uistate, self.track,
+                    self.obj.get_note_object()))
+        
+        notebook.show_all()
+        vbox = self.top.get_widget('vbox').pack_start(notebook,True)
+
+    def build_menu_names(self, attrib):
+        label = _("LDS Ordinance")
+        return (label, _('LDS Ordinance Editor'))
+
+    def save(self,*obj):
+        """
+        Called when the OK button is pressed. Gets data from the
+        form and updates the LdsOrd data structure.
+        """
+
+        (need_new, handle) = self.place_field.get_place_info()
+        if need_new:
+            place_obj = RelLib.Place()
+            place_obj.set_title(handle)
+            trans = self.db.transaction_begin()
+            self.db.add_place(place_obj,trans)
+            self.db.transaction_commit(trans,_("Add Place"))
+            self.obj.set_place_handle(place_obj.get_handle())
+        else:
+            self.obj.set_place_handle(handle)
+
         if self.callback:
             self.callback(self.obj)
         self.close_window(obj)

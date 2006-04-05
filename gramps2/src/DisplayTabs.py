@@ -1205,6 +1205,13 @@ class LdsEmbedList(EmbeddedList):
         EmbeddedList.__init__(self, dbstate, uistate, track,
                               _('LDS'), LdsModel)
 
+    def get_editor(self):
+        from Editors import EditLdsOrd
+        return EditLdsOrd
+
+    def new_data(self):
+        return RelLib.LdsOrd()
+    
     def get_data(self):
         return self.data
 
@@ -1212,12 +1219,9 @@ class LdsEmbedList(EmbeddedList):
         return ((1,0),(1,1),(1,2),(1,3),(1,4))
 
     def add_button_clicked(self,obj):
-        lds = RelLib.LdsOrd()
         try:
-            from Editors import EditLdsOrd
-            
-            EditLdsOrd(self.dbstate, self.uistate, self.track,
-                       lds, self.add_callback)
+            self.get_editor()(self.dbstate, self.uistate, self.track,
+                              self.new_data(), self.add_callback)
         except Errors.WindowActiveError:
             pass
 
@@ -1229,15 +1233,44 @@ class LdsEmbedList(EmbeddedList):
         lds = self.get_selected()
         if lds:
             try:
-                from Editors import EditLdsOrd
-                
-                EditLdsOrd(self.dbstate, self.uistate, self.track,
-                           lds, self.edit_callback)
+                self.get_editor()(self.dbstate, self.uistate, self.track,
+                                  lds, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
     def edit_callback(self,name):
         self.rebuild()
+
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+class FamilyLdsEmbedList(LdsEmbedList):
+
+    _HANDLE_COL = 5
+#    _DND_TYPE   = DdTargets.ADDRESS
+
+    _column_names = [
+        (_('Type'),    0, 150),
+        (_('Date'),    1, 150),
+        (_('Status'),  3, 75),
+        (_('Temple'),  2, 200),
+        (_('Place'),   3, 100),
+        ]
+    
+    def __init__(self,dbstate,uistate,track,data):
+        LdsEmbedList.__init__(self, dbstate, uistate, track, data)
+
+    def get_editor(self):
+        from Editors import EditFamilyLdsOrd
+        return EditFamilyLdsOrd
+    
+    def new_data(self):
+        lds = RelLib.LdsOrd()
+        lds.set_type(RelLib.LdsOrd.SEAL_TO_SPOUSE)
+        return lds
 
 #-------------------------------------------------------------------------
 #
