@@ -67,6 +67,43 @@ class EditLdsOrd(EditSecondary):
     """
     Displays a dialog that allows the user to edit an attribute.
     """
+
+    _data_map = {
+        RelLib.LdsOrd.BAPTISM : [(_("<No Status>"), RelLib.LdsOrd.STATUS_NONE),
+                                 (_("Child"), RelLib.LdsOrd.STATUS_CHILD),
+                                 (_("Cleared"), RelLib.LdsOrd.STATUS_CLEARED),
+                                 (_("Completed"), RelLib.LdsOrd.STATUS_COMPLETED),
+                                 (_("Infant"), RelLib.LdsOrd.STATUS_INFANT),
+                                 (_("Pre-1970"), RelLib.LdsOrd.STATUS_PRE_1970),
+                                 (_("Qualified"), RelLib.LdsOrd.STATUS_QUALIFIED),
+                                 (_("Stillborn"), RelLib.LdsOrd.STATUS_STILLBORN),
+                                 (_("Submitted"), RelLib.LdsOrd.STATUS_SUBMITTED),
+                                 (_("Uncleared"), RelLib.LdsOrd.STATUS_UNCLEARED),
+                                 ],
+        RelLib.LdsOrd.ENDOWMENT: [(_("<No Status>"), RelLib.LdsOrd.STATUS_NONE),
+                                  (_("Child"), RelLib.LdsOrd.STATUS_CHILD),
+                                  (_("Cleared"), RelLib.LdsOrd.STATUS_CLEARED),
+                                  (_("Completed"), RelLib.LdsOrd.STATUS_COMPLETED),
+                                  (_("Infant"), RelLib.LdsOrd.STATUS_INFANT),
+                                  (_("Pre-1970"), RelLib.LdsOrd.STATUS_PRE_1970),
+                                  (_("Qualified"), RelLib.LdsOrd.STATUS_QUALIFIED),
+                                  (_("Stillborn"), RelLib.LdsOrd.STATUS_STILLBORN),
+                                  (_("Submitted"), RelLib.LdsOrd.STATUS_SUBMITTED),
+                                  (_("Uncleared"), RelLib.LdsOrd.STATUS_UNCLEARED),
+                                  ],
+        RelLib.LdsOrd.SEAL_TO_PARENTS:[(_("<No Status>"), RelLib.LdsOrd.STATUS_NONE),
+                                       (_("BIC"), RelLib.LdsOrd.STATUS_BIC),
+                                       (_("Cleared"), RelLib.LdsOrd.STATUS_CLEARED),
+                                       (_("Completed"), RelLib.LdsOrd.STATUS_COMPLETED),
+                                       (_("DNS"), RelLib.LdsOrd.STATUS_DNS),
+                                       (_("Pre-1970"), RelLib.LdsOrd.STATUS_PRE_1970),
+                                       (_("Qualified"), RelLib.LdsOrd.STATUS_QUALIFIED),
+                                       (_("Stillborn"), RelLib.LdsOrd.STATUS_STILLBORN),
+                                       (_("Submitted"), RelLib.LdsOrd.STATUS_SUBMITTED),
+                                       (_("Uncleared"), RelLib.LdsOrd.STATUS_UNCLEARED),
+                                       ],
+        }
+    
     def __init__(self, state, uistate, track, attrib, callback):
         """
         Displays the dialog box.
@@ -90,6 +127,11 @@ class EditLdsOrd(EditSecondary):
         self.define_ok_button(self.top.get_widget('ok'),self.save)
 
     def _setup_fields(self):
+
+        self.parents_label = self.top.get_widget('parents_label')
+        self.parents = self.top.get_widget('parents')
+        self.parents_select = self.top.get_widget('parents_select')
+
         self.priv = PrivacyButton(
             self.top.get_widget("private"),
             self.obj)
@@ -113,7 +155,8 @@ class EditLdsOrd(EditSecondary):
             [(_('Baptism'),RelLib.LdsOrd.BAPTISM),
              (_('Endowment'),RelLib.LdsOrd.ENDOWMENT),
              (_('Sealed to Parents'),RelLib.LdsOrd.SEAL_TO_PARENTS)],
-            self.db.readonly)
+            self.db.readonly,
+            changed=self.ord_type_changed)
 
         temple_list = []
         for val in lds.temple_codes.keys():
@@ -125,6 +168,28 @@ class EditLdsOrd(EditSecondary):
             self.obj.get_temple,
             temple_list,
             self.db.readonly)
+
+        self.status_menu = MonitoredMenu(
+            self.top.get_widget('status'),
+            self.obj.set_status,
+            self.obj.get_status,
+            self._data_map[self.obj.get_type()],
+            self.db.readonly)
+
+    def ord_type_changed(self):
+        if self.obj.get_type() == RelLib.LdsOrd.BAPTISM:
+            self.parents.hide()
+            self.parents_label.hide()
+            self.parents_select.hide()
+        elif self.obj.get_type() == RelLib.LdsOrd.ENDOWMENT:
+            self.parents.hide()
+            self.parents_label.hide()
+            self.parents_select.hide()
+        elif self.obj.get_type() == RelLib.LdsOrd.SEAL_TO_PARENTS:
+            self.parents.show()
+            self.parents_label.show()
+            self.parents_select.show()
+        self.status_menu.change_menu(self._data_map[self.obj.get_type()])
 
     def _create_tabbed_pages(self):
         notebook = gtk.Notebook()

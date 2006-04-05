@@ -52,6 +52,21 @@ class LdsOrd(SourceNote,DateBase,PlaceBase,PrivacyBase):
     ENDOWMENT = 1
     SEAL_TO_PARENTS = 2
     SEAL_TO_SPOUSE = 3
+
+    STATUS_NONE = 0
+    STATUS_BIC  = 1
+    STATUS_CANCELED = 2
+    STATUS_CHILD = 3
+    STATUS_CLEARED = 4
+    STATUS_COMPLETED = 5
+    STATUS_DNS = 6
+    STATUS_INFANT = 7
+    STATUS_PRE_1970 = 8
+    STATUS_QUALIFIED = 9
+    STATUS_DNS_CAN = 10
+    STATUS_STILLBORN = 11
+    STATUS_SUBMITTED = 12
+    STATUS_UNCLEARED = 13
     
     def __init__(self,source=None):
         """Creates a LDS Ordinance instance"""

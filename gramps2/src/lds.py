@@ -191,6 +191,23 @@ ord_type = {
     3 : _('Sealed to Spouse'),
     }
 
+ord_status = [
+    _("<No Status>"),
+    _("BIC"),
+    _("Canceled"),
+    _("Child"),
+    _("Cleared"),
+    _("Completed"),
+    _("DNS"),
+    _("Infant"),
+    _("Pre-1970"),
+    _("Qualified"),
+    _("DNS/CAN"),
+    _("Stillborn"),
+    _("Submitted"),
+    _("Uncleared"),
+    ]
+
 status = {
     "BIC"         : 1,    "CANCELED"    : 1,    "CHILD"       : 1,
     "CLEARED"     : 2,    "COMPLETED"   : 3,    "DNS"         : 4,
