@@ -495,7 +495,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         
         for image in self.media_list:
             try:
-                ifile = open(image[0])
+                ifile = open(image[0],mode='rb')
                 base = os.path.basename(image[0])
                 self._add_zip(zfile,"Pictures/%s" % base, ifile.read(),t)
                 ifile.close()

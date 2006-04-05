@@ -450,23 +450,24 @@ class ODFDoc(BaseDoc.BaseDoc):
         if self.new_cell:
             self.cntnt.write('<text:p>')
         if pos == "left":
-            self.cntnt.write('<draw:image draw:style-name="Left" ')
+            self.cntnt.write('<draw:frame draw:style-name="Left" ')
         elif pos == "right":
-            self.cntnt.write('<draw:image draw:style-name="Right" ')
+            self.cntnt.write('<draw:frame draw:style-name="Right" ')
         elif pos == "single":
-            self.cntnt.write('<draw:image draw:style-name="Single" ')
+            self.cntnt.write('<draw:frame draw:style-name="Single" ')
         else:
-            self.cntnt.write('<draw:image draw:style-name="Row" ')
+            self.cntnt.write('<draw:frame draw:style-name="Row" ')
 
         self.cntnt.write('draw:name="%s" ' % tag)
         self.cntnt.write('text:anchor-type="paragraph" ')
         self.cntnt.write('svg:width="%.2fcm" ' % act_width)
         self.cntnt.write('svg:height="%.2fcm" ' % act_height)
-        self.cntnt.write('draw:z-index="0" ')
-        self.cntnt.write('xlink:href="#Pictures/')
+        self.cntnt.write('draw:z-index="0" >')
+        self.cntnt.write('<draw:image xlink:href="Pictures/')
         self.cntnt.write(base)
         self.cntnt.write('" xlink:type="simple" xlink:show="embed" ')
         self.cntnt.write('xlink:actuate="onLoad"/>\n')
+        self.cntnt.write('</draw:frame>\n')
         if self.new_cell:
             self.cntnt.write('</text:p>\n')
 
@@ -534,7 +535,7 @@ class ODFDoc(BaseDoc.BaseDoc):
         
         for image in self.media_list:
             try:
-                ifile = open(image[0])
+                ifile = open(image[0],mode='rb')
                 base = os.path.basename(image[0])
                 self._add_zip(zfile,"Pictures/%s" % base, ifile.read(),t)
                 ifile.close()
