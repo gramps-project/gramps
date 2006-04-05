@@ -76,20 +76,26 @@ class ImgManip:
     def fmt_data(self, cnv):
         fd, dest = tempfile.mkstemp()
         self.img.save(dest,cnv)
-        fh = open(dest)
+        fh = open(dest,mode='rb')
         data = fh.read()
         fh.close()
-        os.unlink(dest)
+        try:
+            os.unlink(dest)
+        except:
+            pass
         return data
 
     def fmt_scale_data(self, x, y, cnv):
         fd, dest = tempfile.mkstemp()
         scaled = self.img.scale_simple(x, y, gtk.gdk.INTERP_BILINEAR)
-        self.img.save(dest,cnv)
-        fh = open(dest)
+        scaled.save(dest,cnv)
+        fh = open(dest,mode='rb')
         data = fh.read()
         fh.close()
-        os.unlink(dest)
+        try:
+            os.unlink(dest)
+        except:
+            pass
         return data
 
     def jpg_thumbnail(self, dest, width, height):

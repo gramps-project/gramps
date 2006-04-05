@@ -1,3 +1,8 @@
+2006-04-04  Brian Matherly  <pez4brian@users.sourceforge.net>
+	* src/_ImgManip.py: open images as binary
+	* src/docgen/ODFDoc.py: open images as binary, fix image embedding
+	* src/docgen/OpenOfficeDoc.py: open images as binary
+
 2006-04-04  Don Allingham  <don@gramps-project.org>
 	* src/RelLib/_LdsOrd.py: lds status changes
 	* src/Editors/_EditLdsOrd.py: lds status changes
