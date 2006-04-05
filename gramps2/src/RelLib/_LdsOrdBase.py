@@ -57,7 +57,7 @@ class LdsOrdBase:
             self.lds_ord_list = []
 
     def serialize(self):
-        return [addr.serialize() for addr in self.lds_ord_list]
+        return [lds_ord.serialize() for lds_ord in self.lds_ord_list]
 
     def unserialize(self,data):
         self.lds_ord_list = [LdsOrd().unserialize(item) for item in data]

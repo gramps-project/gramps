@@ -1,3 +1,7 @@
+2006-04-05  Don Allingham  <don@gramps-project.org>
+	* src/RelLib/_LdsOrd.py: unserialize returns self
+	* src/RelLib/_LdsOrdBase.py: variable name change
+
 2006-04-04  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/_ImgManip.py: open images as binary
 	* src/docgen/ODFDoc.py: open images as binary, fix image embedding
