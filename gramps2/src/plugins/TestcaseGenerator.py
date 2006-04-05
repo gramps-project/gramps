@@ -86,6 +86,7 @@ class TestcaseGenerator(Tool.Tool):
         self.generated_media = []
         self.generated_places = []
         self.generated_events = []
+        self.generated_families = []
         self.text_serial_number = 1
         
         # If an active persons exists the generated tree is connected to that person
@@ -824,17 +825,6 @@ class TestcaseGenerator(Tool.Tool):
             ref.set_reference_handle(e_h)
             ref.set_role( self.rand_type(Utils.event_roles))
         
-        #LDS
-        if randint(0,1) == 1:
-            ldsord = self.rand_ldsord( lds.baptism)
-            np.set_lds_baptism( ldsord)
-        if randint(0,1) == 1:
-            ldsord = self.rand_ldsord( lds.baptism)
-            np.set_lds_endowment( ldsord)
-        if randint(0,1) == 1:
-            ldsord = self.rand_ldsord( lds.csealing)
-            np.set_lds_sealing( ldsord)
-
         person_handle = self.db.add_person(np,self.trans)
         
         self.person_count = self.person_count+1
@@ -886,9 +876,8 @@ class TestcaseGenerator(Tool.Tool):
             fam.set_relationship( self.rand_type(Utils.family_relations))
         else:
             fam.set_relationship((RelLib.Family.MARRIED,''))
-        ldsord = self.rand_ldsord( lds.ssealing)
-        fam.set_lds_sealing( ldsord)
         fam_h = self.db.add_family(fam,self.trans)
+        self.generated_families.append(fam_h)
         fam = self.db.commit_family(fam,self.trans)
         if person1_h:
             person1 = self.db.get_person_from_handle(person1_h)
@@ -953,10 +942,9 @@ class TestcaseGenerator(Tool.Tool):
             fam.set_relationship( self.rand_type(Utils.family_relations))
         else:
             fam.set_relationship( (RelLib.Family.MARRIED,'') )
-        ldsord = self.rand_ldsord( lds.ssealing)
-        fam.set_lds_sealing( ldsord)
         fam.add_child_handle(child_h)
         fam_h = self.db.add_family(fam,self.trans)
+        self.generated_families.append(fam_h)
         fam = self.db.commit_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
         person1.add_family_handle(fam_h)
@@ -1069,6 +1057,23 @@ class TestcaseGenerator(Tool.Tool):
             if randint(0,1) == 1:
                 (y,d) = self.rand_date()
                 o.set_date_object( d)
+
+        if isinstance(o,RelLib.LdsOrd):
+            if randint(0,1) == 1:
+                o.set_temple( choice( lds.temple_to_abrev.keys()))
+
+        if issubclass(o.__class__,RelLib._LdsOrdBase.LdsOrdBase):
+            while randint(0,1) == 1:
+                ldsord = RelLib.LdsOrd()
+                self.fill_object( ldsord)
+                # TODO: adapt type and status to family/person
+                #if isinstance(o,RelLib.Person):
+                #if isinstance(o,RelLib.Family):
+                ldsord.set_type( choice( lds.ord_type.keys()))
+                ldsord.set_status( randint(0,len(lds.ord_status)-1))
+                if self.generated_families:
+                    ldsord.set_family_handle( choice(self.generated_families))
+                o.add_lds_ord( ldsord)
 
         if isinstance(o,RelLib.Location):
             if randint(0,1) == 1:
@@ -1226,17 +1231,6 @@ class TestcaseGenerator(Tool.Tool):
         event_ref.set_role((RelLib.EventRef.PRIMARY,''))
         return (year, event_ref)
     
-    def rand_ldsord( self, status_list):
-        ldsord = RelLib.LdsOrd()
-        self.fill_object( ldsord)
-        if randint(0,1) == 1:
-            ldsord.set_status( randint(0,len(status_list)-1))
-        if randint(0,1) == 1:
-            ldsord.set_temple( choice( lds.lds_temple_to_abrev.keys()))
-        if randint(0,1) == 1:
-            ldsord.set_place_handle( self.rand_place())
-        return ldsord
-
     def rand_type( self, list):
         key = choice(list.keys())
         value = list[key]
