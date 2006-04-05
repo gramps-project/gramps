@@ -96,6 +96,7 @@ class LdsOrd(SourceNote,DateBase,PlaceBase,PrivacyBase):
          self.famc,self.temple,self.status) = data
         SourceNote.unserialize(self,sn)
         DateBase.unserialize(self,date)
+        return self
 
     def get_text_data_list(self):
         """
