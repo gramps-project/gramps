@@ -1,9 +1,11 @@
 2006-04-05  Don Allingham  <don@gramps-project.org>
+	* src/SelectFamily.py: added
 	* src/GrampsDb/_ReadXML.py: support new lds stuff
 	* src/GrampsDb/_WriteXML.py: support new lds stuff
 	* src/GrampsDb/_ReadGedcom.py: support new lds stuff
 	* src/GrampsDb/_WriteGedcom.py: support new lds stuff
-	* src/Editors/_EditLdsOrd.py: save place information
+	* src/Editors/_EditLdsOrd.py: save place information, connect
+	family dialog (SelectFamily)
 	* src/GrampsWidgets.py: select default value in menu
 	* src/BaseDoc.py: pylint
 	* src/DisplayTabs.py: handle temple not set for LdsOrd
