@@ -1,4 +1,10 @@
+2006-04-06  Don Allingham  <don@gramps-project.org>
+	* src/RecentFiles.py: check for a files' existence before adding
+	to the list.
+
 2006-04-05  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamily.py: add lds tab
+	* src/Editors/_EditLdsOrd.py: save place information, family support
 	* src/SelectFamily.py: added
 	* src/GrampsDb/_ReadXML.py: support new lds stuff
 	* src/GrampsDb/_WriteXML.py: support new lds stuff
@@ -10,7 +16,7 @@
 	* src/BaseDoc.py: pylint
 	* src/DisplayTabs.py: handle temple not set for LdsOrd, provide list of
 	default types
-	* src/RelLib/_LdsOrd.py: unserialize returns self
+	* src/RelLib/_LdsOrd.py: unserialize returns self, fix serialize
 	* src/RelLib/_LdsOrdBase.py: variable name change
 
 2006-04-04  Brian Matherly  <pez4brian@users.sourceforge.net>

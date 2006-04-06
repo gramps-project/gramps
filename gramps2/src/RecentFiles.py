@@ -384,7 +384,8 @@ class GrampsRecentParser:
         text = ''.join(self.tlist)
 
         if tag == "RecentItem":
-            self.recent_files.append(self.item)
+            if os.path.isfile(self.item.get_path()):
+                self.recent_files.append(self.item)
         elif tag == "Path":
             self.item.set_path(text)
         elif tag == "Mime-Type":
