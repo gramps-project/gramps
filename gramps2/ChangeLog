@@ -1,4 +1,5 @@
 2006-04-06  Alex Roitman  <shura@gramps-project.org>
+	* src/Makefile.am (gdir_PYTHON): Add new files to the list.
 	* src/Editors/_EditLdsOrd.py (EditLdsOrd): Formatting.
 	* src/GrampsWidgets.py (MonitoredMenu): Factor out commong code.
 

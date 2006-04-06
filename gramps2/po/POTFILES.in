@@ -43,6 +43,8 @@ src/ScratchPad.py
 src/SelectEvent.py
 src/SelectObject.py
 src/SelectPerson.py
+src/SelectFamily.py
+src/SelectSource.py
 src/Sort.py
 src/soundex.py
 src/Spell.py
@@ -54,6 +56,7 @@ src/TransUtils.py
 src/TreeTips.py
 src/Utils.py
 src/ViewManager.py
+src/ManagedWindow.py
 src/Config/_GrampsGconfKeys.py
 src/Config/_GrampsIniKeys.py
 src/Config/__init__.py
@@ -108,10 +111,12 @@ src/Editors/_EditPlace.py
 src/Editors/_EditPrimary.py
 src/Editors/_EditReference.py
 src/Editors/_EditRepository.py
+src/Editors/_EditRepoRef.py
 src/Editors/_EditSecondary.py
 src/Editors/_EditSource.py
 src/Editors/_EditSourceRef.py
 src/Editors/_EditUrl.py
+src/Editors/_EditLdsOrd.py
 src/Editors/__init__.py
 src/GrampsDb/_ConstXML.py
 src/GrampsDb/_GedcomInfo.py
@@ -249,6 +254,7 @@ src/RelLib/_Family.py
 src/RelLib/_GenderStats.py
 src/RelLib/__init__.py
 src/RelLib/_LdsOrd.py
+src/RelLib/_LdsOrdBase.py
 src/RelLib/_LocationBase.py
 src/RelLib/_Location.py
 src/RelLib/_MediaBase.py

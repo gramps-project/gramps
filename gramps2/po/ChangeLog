@@ -1,3 +1,7 @@
+2006-04-06  Alex Roitman  <shura@gramps-project.org>
+	* POTFILES.in: Add new files to the list.
+	* gramps.pot: regenerate the template.
+
 2006-03-18  Alex Roitman  <shura@gramps-project.org>
 	* POTFILES.in: Remove RelImage.py from the list.
 
