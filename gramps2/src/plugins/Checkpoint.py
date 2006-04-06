@@ -31,7 +31,7 @@ import os
 import popen2
 import locale
 import time
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

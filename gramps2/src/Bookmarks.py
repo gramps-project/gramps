@@ -30,7 +30,7 @@ __version__ = "$Revision$"
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from TransUtils import sgettext as _
+from gettext import gettext as _
 from cStringIO import StringIO
 
 #-------------------------------------------------------------------------

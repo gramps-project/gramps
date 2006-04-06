@@ -22,7 +22,7 @@
 
 import gtk
 import gobject
-from TransUtils import sgettext as _
+from gettext import gettext as _
 from logging import getLogger
 
 log = getLogger(".ObjectSelector")

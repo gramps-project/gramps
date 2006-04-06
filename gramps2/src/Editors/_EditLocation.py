@@ -38,7 +38,7 @@ import Utils
 from _EditSecondary import EditSecondary
 
 from GrampsWidgets import *
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

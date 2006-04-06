@@ -33,7 +33,7 @@ __version__ = "$Revision$"
 # python modules
 #
 #-------------------------------------------------------------------------
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

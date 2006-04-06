@@ -34,7 +34,7 @@ import RelLib
 import Relationship
 from PluginUtils import register_relcalc
 import types
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

@@ -56,7 +56,7 @@ import const
 import Utils
 from RelLib import Date
 import Errors
-from TransUtils import sgettext as _
+from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 from PluginUtils import register_export
 

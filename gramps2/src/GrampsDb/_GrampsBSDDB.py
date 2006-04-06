@@ -34,7 +34,7 @@ import os
 import time
 import locale
 import sets
-from TransUtils import sgettext as _
+from gettext import gettext as _
 from bsddb import dbshelve, db
 import logging
 log = logging.getLogger(".GrampsDb")

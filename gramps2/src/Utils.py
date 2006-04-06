@@ -31,7 +31,7 @@ import locale
 import random
 import time
 
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 try:
     set()

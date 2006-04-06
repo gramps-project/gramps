@@ -27,7 +27,7 @@
 #-------------------------------------------------------------------------
 import os
 import locale
-from TransUtils import sgettext as _
+from gettext import gettext as _
 from cgi import escape
 
 #-------------------------------------------------------------------------

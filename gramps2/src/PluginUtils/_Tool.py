@@ -31,7 +31,7 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from types import ClassType, InstanceType
-from TransUtils import sgettext as _
+from gettext import gettext as _
 import logging
 log = logging.getLogger(".")
 

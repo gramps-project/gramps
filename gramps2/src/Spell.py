@@ -29,7 +29,7 @@ present, we default to no spell checking.
 
 import Config
 
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #-----------------------------------------------------------
 #

@@ -29,7 +29,7 @@ import os
 import sets
 import shutil
 from xml.parsers.expat import ExpatError, ParserCreate
-from TransUtils import sgettext as _
+from gettext import gettext as _
 import re
 
 #------------------------------------------------------------------------

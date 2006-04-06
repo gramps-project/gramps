@@ -28,7 +28,7 @@
 import os
 import tempfile
 import zipfile
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

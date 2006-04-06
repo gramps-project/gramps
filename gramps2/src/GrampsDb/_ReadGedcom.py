@@ -34,7 +34,7 @@ import const
 import lds
 import time
 
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 # and module sets for earlier pythons
 try:

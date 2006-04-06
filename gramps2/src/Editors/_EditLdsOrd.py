@@ -33,7 +33,7 @@ __version__ = "$Revision: 6248 $"
 # Python modules
 #
 #-------------------------------------------------------------------------
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

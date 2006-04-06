@@ -28,7 +28,7 @@
 import cPickle as pickle
 import os
 from xml.sax.saxutils import escape
-from TransUtils import sgettext as _
+from gettext import gettext as _
 import Utils
 import RelLib
 from time import strftime as strftime

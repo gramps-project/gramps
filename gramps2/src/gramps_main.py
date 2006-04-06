@@ -46,7 +46,7 @@ import TipOfDay
 import DataViews
 from Mime import mime_type_is_defined
 from QuestionDialog import ErrorDialog
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 iconpaths = [const.image_dir,"."]
 
