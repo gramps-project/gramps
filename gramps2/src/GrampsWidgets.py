@@ -345,23 +345,15 @@ class MonitoredType:
 
 class MonitoredMenu:
 
-    def __init__(self, obj, set_val, get_val, mapping, readonly=False, changed=None):
+    def __init__(self, obj, set_val, get_val, mapping,
+                 readonly=False, changed=None):
         self.set_val = set_val
         self.get_val = get_val
 
         self.changed = changed
         self.obj = obj
-        self.model = gtk.ListStore(str, int)
-        self.data = {}
 
-        index = 0
-        for t, v in mapping:
-            self.model.append(row=[t, v])
-            self.data[v] = index
-            index += 1
-            
-        self.obj.set_model(self.model)
-        self.obj.set_active(self.data[get_val()])
+        self.change_menu(mapping)
         self.obj.connect('changed', self.on_change)
         self.obj.set_sensitive(not readonly)
 
@@ -369,11 +361,15 @@ class MonitoredMenu:
         self.obj.set_active(value)
 
     def change_menu(self, mapping):
+        self.data = {}
         self.model = gtk.ListStore(str, int)
+        index = 0
         for t, v in mapping:
             self.model.append(row=[t, v])
+            self.data[v] = index
+            index += 1
         self.obj.set_model(self.model)
-        self.obj.set_active(0)
+        self.obj.set_active(self.data.get(self.get_val(),0))
 
     def on_change(self, obj):
         self.set_val(self.model.get_value(obj.get_active_iter(), 1))

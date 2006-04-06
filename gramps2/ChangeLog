@@ -1,3 +1,7 @@
+2006-04-06  Alex Roitman  <shura@gramps-project.org>
+	* src/Editors/_EditLdsOrd.py (EditLdsOrd): Formatting.
+	* src/GrampsWidgets.py (MonitoredMenu): Factor out commong code.
+
 2006-04-06  Don Allingham  <don@gramps-project.org>
 	* src/RecentFiles.py: check for a files' existence before adding
 	to the list.
