@@ -32,7 +32,7 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 import os
-from TransUtils import sgettext as _
+from gettext import gettext as _
 from types import ClassType, InstanceType
 import logging
 

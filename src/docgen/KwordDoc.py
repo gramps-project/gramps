@@ -29,7 +29,7 @@ import time
 import cStringIO
 import gzip
 import os
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #

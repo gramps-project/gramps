@@ -31,7 +31,7 @@ Provides a python evaluation window
 import os
 import cStringIO
 import sys
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #

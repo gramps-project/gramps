@@ -30,7 +30,7 @@ mechanism for the user to edit address information.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

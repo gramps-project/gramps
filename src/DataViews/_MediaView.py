@@ -44,7 +44,7 @@ from QuestionDialog import QuestionDialog, ErrorDialog
 # internationalization
 #
 #-------------------------------------------------------------------------
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 column_names = [
     _('Title'),

@@ -34,7 +34,7 @@
 #
 #------------------------------------------------------------------------
 from string import punctuation
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #

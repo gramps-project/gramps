@@ -46,7 +46,7 @@ from Editors import EditEvent, DelEventQuery
 # internationalization
 #
 #-------------------------------------------------------------------------
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 column_names = [
     _('Description'),

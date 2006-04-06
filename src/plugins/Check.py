@@ -30,7 +30,7 @@
 import os
 import cStringIO
 import sets
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #

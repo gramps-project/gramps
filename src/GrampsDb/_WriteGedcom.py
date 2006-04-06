@@ -36,7 +36,7 @@ try:
 except:
     from sets import Set as set
 
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #

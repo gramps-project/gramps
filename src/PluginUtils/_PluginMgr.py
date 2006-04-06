@@ -36,7 +36,7 @@ importers, exporters, and document generators.
 import os
 import sys
 import re
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

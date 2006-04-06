@@ -31,7 +31,7 @@ import os
 from random import randint
 from tempfile import NamedTemporaryFile
 from tempfile import mkstemp
-from TransUtils import sgettext as _
+from gettext import gettext as _
 from PluginUtils import register_tool
 #
 # Interface to phpGedView

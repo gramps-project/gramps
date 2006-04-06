@@ -31,7 +31,7 @@ import time
 import os
 import tarfile
 from cStringIO import StringIO
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #

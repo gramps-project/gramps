@@ -31,7 +31,7 @@
 import traceback
 import sys
 from random import randint,choice
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

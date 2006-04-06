@@ -30,7 +30,7 @@
 import RelLib
 import Relationship
 import types
-from TransUtils import sgettext as _
+from gettext import gettext as _
 from PluginUtils import register_relcalc
 
 #-------------------------------------------------------------------------

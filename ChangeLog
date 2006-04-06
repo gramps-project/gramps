@@ -1,4 +1,6 @@
 2006-04-06  Alex Roitman  <shura@gramps-project.org>
+	* various: Revert back to using gettext except for the modules
+	that need context -- those will use TransUtils.sgettext
 	* src/Makefile.am (gdir_PYTHON): Add new files to the list.
 	* src/Editors/_EditLdsOrd.py (EditLdsOrd): Formatting.
 	* src/GrampsWidgets.py (MonitoredMenu): Factor out commong code.

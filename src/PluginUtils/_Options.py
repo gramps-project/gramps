@@ -31,7 +31,7 @@ General option handling, including saving and parsing.
 #
 #-------------------------------------------------------------------------
 import os
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

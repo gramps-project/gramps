@@ -34,7 +34,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 #
 #-------------------------------------------------------------------------
 
-from TransUtils import sgettext as _
+from gettext import gettext as _
 import pickle
 
 try:

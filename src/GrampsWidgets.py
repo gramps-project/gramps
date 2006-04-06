@@ -23,7 +23,7 @@
 import cgi
 import locale
 import os
-from TransUtils import sgettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
