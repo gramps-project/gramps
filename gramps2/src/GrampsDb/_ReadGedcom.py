@@ -140,6 +140,23 @@ pedi_type = {
     'foster' : (RelLib.Person.CHILD_FOSTER,''),
     }
 
+lds_status = {
+    "BIC"      : RelLib.LdsOrd.STATUS_BIC,
+    "CANCELED" : RelLib.LdsOrd.STATUS_CANCELED,
+    "CHILD"    : RelLib.LdsOrd.STATUS_CHILD,
+    "CLEARED"  : RelLib.LdsOrd.STATUS_CLEARED,
+    "COMPLETED": RelLib.LdsOrd.STATUS_COMPLETED,
+    "DNS"      : RelLib.LdsOrd.STATUS_DNS,
+    "INFANT"   : RelLib.LdsOrd.STATUS_INFANT,
+    "PRE-1970" : RelLib.LdsOrd.STATUS_PRE_1970,
+    "QUALIFIED": RelLib.LdsOrd.STATUS_QUALIFIED,
+    "DNS/CAN"  : RelLib.LdsOrd.STATUS_DNS_CAN,
+    "STILLBORN": RelLib.LdsOrd.STATUS_STILLBORN,
+    "SUBMITTED": RelLib.LdsOrd.STATUS_SUBMITTED,
+    "UNCLEARED": RelLib.LdsOrd.STATUS_UNCLEARED,
+    }
+
+
 _event_family_str = _("%(event_name)s of %(family)s")
 _event_person_str = _("%(event_name)s of %(person)s")
 
@@ -1076,7 +1093,8 @@ class GedcomParser:
                 self.ignore_sub_junk(2)
             elif matches[1] == TOKEN_SLGS:
                 lds_ord = RelLib.LdsOrd()
-                self.family.set_lds_sealing(lds_ord)
+                lds_org.set_type(RelLib.LdsOrd.SEAL_TO_SPOUSE)
+                self.family.lds_ord_list.append(lds_ord)
                 self.parse_ord(lds_ord,2)
             elif matches[1] == TOKEN_ADDR:
                 self.addr = RelLib.Address()
@@ -1431,8 +1449,7 @@ class GedcomParser:
             elif matches[1] == TOKEN_NOTE:
                 note = self.parse_note(matches,lds_ord,level+1,note)
             elif matches[1] == TOKEN_STAT:
-                if lds.status.has_key(matches[2]):
-                    lds_ord.set_status(lds.status[matches[2]])
+                lds_ord.set_status(lds_status.get(matches[2],RelLib.LdsOrd.STATUS_NONE))
             else:
                 self.barf(level+1)
 
@@ -2055,17 +2072,20 @@ class GedcomParser:
 
     def func_person_bapl(self,matches,state):
         lds_ord = RelLib.LdsOrd()
-        state.person.set_lds_baptism(lds_ord)
+        lds_ord.set_type(RelLib.LdsOrd.BAPTISM)
+        state.person.lds_ord_list.append(lds_ord)
         self.parse_ord(lds_ord,2)
 
     def func_person_endl(self,matches,state):
         lds_ord = RelLib.LdsOrd()
-        state.person.set_lds_endowment(lds_ord)
+        lds_ord.set_type(RelLib.LdsOrd.ENDOWMENT)
+        state.person.lds_ord_list.append(lds_ord)
         self.parse_ord(lds_ord,2)
 
     def func_person_slgc(self,matches,state):
         lds_ord = RelLib.LdsOrd()
-        state.person.set_lds_sealing(lds_ord)
+        lds_ord.set_type(RelLib.LdsOrd.SEAL_TO_PARENTS)
+        state.person.lds_ord_list.append(lds_ord)
         self.parse_ord(lds_ord,2)
 
     def func_person_fams(self,matches,state):
@@ -2403,7 +2423,9 @@ def load_place_values(place,text):
 def extract_temple(matches):
     try:
         if lds.temple_to_abrev.has_key(matches[2]):
-            return lds.temple_to_abrev[matches[2]]
+            return matches[2]
+        elif lds.temple_codes.has_key(matches[2]):
+            return lds.temple_codes[2]
         else:
             values = matches[2].split()
             return lds.temple_to_abrev[values[0]]

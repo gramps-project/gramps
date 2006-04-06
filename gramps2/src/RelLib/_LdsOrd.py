@@ -67,7 +67,7 @@ class LdsOrd(SourceNote,DateBase,PlaceBase,PrivacyBase):
     STATUS_STILLBORN = 11
     STATUS_SUBMITTED = 12
     STATUS_UNCLEARED = 13
-    
+
     def __init__(self,source=None):
         """Creates a LDS Ordinance instance"""
         SourceNote.__init__(self,source)
