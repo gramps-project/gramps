@@ -79,6 +79,13 @@ except:
 
 _xml_version = "1.1.0"
 
+lds_map = {
+    RelLib.LdsOrd.BAPTISM : 'baptism',
+    RelLib.LdsOrd.ENDOWMENT : 'endowment',
+    RelLib.LdsOrd.SEAL_TO_PARENTS : 'sealed_to_parents',
+    RelLib.LdsOrd.SEAL_TO_SPOUSE : 'sealed_to_spouse',
+    }
+
 #-------------------------------------------------------------------------
 #
 #
@@ -397,10 +404,8 @@ class XmlWriter:
         for event_ref in person.get_event_ref_list():
             self.dump_event_ref(event_ref,index+1)
 
-        self.dump_ordinance("baptism",person.get_lds_baptism(),index+1)
-        self.dump_ordinance("endowment",person.get_lds_endowment(),index+1)
-        self.dump_ordinance("sealed_to_parents",
-                            person.get_lds_sealing(),index+1)
+        for lds_ord in person.lds_ord_list:
+            self.dump_ordinance(lds_ord,index+1)
 
         self.write_media_list(person.get_media_list(),index+1)
 
@@ -441,8 +446,8 @@ class XmlWriter:
             self.write_ref("mother",mhandle,index+1)
         for event_ref in family.get_event_ref_list():
             self.dump_event_ref(event_ref,3)
-        self.dump_ordinance("sealed_to_spouse",
-                            family.get_lds_sealing(),index+1)
+        for lds_ord in family.lds_ord_list:
+            self.dump_ordinance(lds_ord,index+1)
 
         self.write_media_list(family.get_media_list(),index+1)
 
@@ -545,9 +550,9 @@ class XmlWriter:
         self.write_media_list(event.get_media_list(),index+1)
         self.g.write("%s</event>\n" % sp)
 
-    def dump_ordinance(self,name,ord,index=1):
-        if not ord:
-            return
+    def dump_ordinance(self,ord,index=1):
+
+        name = lds_map[ord.get_type()]
 
         sp = "  " * index
         sp2 = "  " * (index+1)

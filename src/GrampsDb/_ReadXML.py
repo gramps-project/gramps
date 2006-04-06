@@ -628,14 +628,16 @@ class GrampsParser:
         self.ord = RelLib.LdsOrd()
         if self.person:
             if atype == "baptism":
-                self.person.set_lds_baptism(self.ord)
+                self.ord.set_type(RelLib.LdsOrd.BAPTISM)
             elif atype == "endowment":
-                self.person.set_lds_endowment(self.ord)
+                self.ord.set_type(RelLib.LdsOrd.ENDOWMENT)
             elif atype == "sealed_to_parents":
-                self.person.set_lds_sealing(self.ord)
+                self.ord.set_type(RelLib.LdsOrd.SEAL_TO_PARENTS)
+            self.person.lds_ord_list.append(self.ord)
         elif self.family:
             if atype == "sealed_to_spouse":
-                self.family.set_lds_sealing(self.ord)
+                self.ord.set_type(RelLib.LdsOrd.SEAL_TO_SPOUSES)
+                self.family.lds_ord_list.append(self.ord)
 
     def start_temple(self,attrs):
         self.ord.set_temple(attrs['val'])
