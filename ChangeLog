@@ -8,7 +8,8 @@
 	family dialog (SelectFamily)
 	* src/GrampsWidgets.py: select default value in menu
 	* src/BaseDoc.py: pylint
-	* src/DisplayTabs.py: handle temple not set for LdsOrd
+	* src/DisplayTabs.py: handle temple not set for LdsOrd, provide list of
+	default types
 	* src/RelLib/_LdsOrd.py: unserialize returns self
 	* src/RelLib/_LdsOrdBase.py: variable name change
 
