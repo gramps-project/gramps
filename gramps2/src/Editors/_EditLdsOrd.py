@@ -51,6 +51,7 @@ import const
 import Utils
 import RelLib
 import GrampsDisplay
+import NameDisplay
 import lds
 
 from _EditSecondary import EditSecondary
@@ -122,6 +123,7 @@ class EditLdsOrd(EditSecondary):
                               _('LDS Ordinance Editor'))
 
     def _connect_signals(self):
+        self.parents_select.connect('clicked',self.select_parents_clicked)
         self.define_cancel_button(self.top.get_widget('cancel'))
         self.define_help_button(self.top.get_widget('help'),'adv-at')
         self.define_ok_button(self.top.get_widget('ok'),self.save)
@@ -176,6 +178,9 @@ class EditLdsOrd(EditSecondary):
             self._data_map[self.obj.get_type()],
             self.db.readonly)
 
+        self.ord_type_changed()
+        self.update_parent_label()
+
     def ord_type_changed(self):
         if self.obj.get_type() == RelLib.LdsOrd.BAPTISM:
             self.parents.hide()
@@ -205,6 +210,46 @@ class EditLdsOrd(EditSecondary):
         
         notebook.show_all()
         vbox = self.top.get_widget('vbox').pack_start(notebook,True)
+
+    def select_parents_clicked(self, obj):
+        from SelectFamily import SelectFamily
+
+        dialog = SelectFamily(self.dbstate.db, _('Select Family'))
+        family = dialog.run()
+        if family:
+            self.obj.set_family_handle(family.handle)
+        self.update_parent_label()
+
+    def update_parent_label(self):
+        handle = self.obj.get_family_handle()
+        if handle:
+            family = self.dbstate.db.get_family_from_handle(handle)
+            f = self.dbstate.db.get_person_from_handle(family.get_father_handle())
+            m = self.dbstate.db.get_person_from_handle(family.get_mother_handle())
+            if f and m:
+                label = _("%(father)s and %(mother)s [%(gramps_id)s]") % {
+                    'father' : NameDisplay.displayer.display(f),
+                    'mother' : NameDisplay.displayer.display(m),
+                    'gramps_id' : family.gramps_id,
+                    }
+            elif f:
+                label = _("%(father)s [%(gramps_id)s]") % {
+                    'father' : NameDisplay.displayer.display(f),
+                    'gramps_id' : family.gramps_id,
+                    }
+            elif m:
+                label = _("%(mother)s [%(gramps_id)s]") % {
+                    'mother' : NameDisplay.displayer.display(m),
+                    'gramps_id' : family.gramps_id,
+                    }
+            else:
+                label = _("[%(gramps_id)s]") % {
+                    'gramps_id' : family.gramps_id,
+                    }
+        else:
+            label = ""
+
+        self.parents.set_text(label)
 
     def build_menu_names(self, attrib):
         label = _("LDS Ordinance")
