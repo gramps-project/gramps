@@ -208,29 +208,3 @@ ord_status = [
     _("Uncleared"),
     ]
 
-status = {
-    "BIC"         : 1,    "CANCELED"    : 1,    "CHILD"       : 1,
-    "CLEARED"     : 2,    "COMPLETED"   : 3,    "DNS"         : 4,
-    "INFANT"      : 4,    "PRE-1970"    : 5,    "QUALIFIED"   : 6,
-    "DNS/CAN"     : 7,    "STILLBORN"   : 7,    "SUBMITTED"   : 8,
-    "UNCLEARED"   : 9,
-    }
-
-baptism = [
-    _("<No Status>"),  _("Child"),     _("Cleared"),    _("Completed"),
-    _("Infant"),       _("Pre-1970"),  _("Qualified"),  _("Stillborn"),
-    _("Submitted"),    _("Uncleared"),
-    ]
-
-csealing = [
-    _("<No Status>"),  _("BIC"),       _("Cleared"),    _("Completed"),
-    _("DNS"),          _("Pre-1970"),  _("Qualified"),  _("Stillborn"),
-    _("Submitted"),    _("Uncleared"),
-    ]
-
-ssealing = [
-    _("<No Status>"),  _("Canceled"),  _("Cleared"),    _("Completed"),
-    _("DNS"),          _("Pre-1970"),  _("Qualified"),  _("DNS/CAN"),
-    _("Submitted"),    _("Uncleared"),
-    ]
-    

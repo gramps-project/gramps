@@ -116,6 +116,30 @@ _caldef = {
     RelLib.Date.MOD_AFTER : "AFT",
     }
 
+
+lds_ord_name = {
+    RelLib.LdsOrd.BAPTISM         : 'BAPL',
+    RelLib.LdsOrd.ENDOWMENT       : 'ENDL',
+    RelLib.LdsOrd.SEAL_TO_PARENTS : 'SLGC',
+    RelLib.LdsOrd.SEAL_TO_SPOUSE  : 'SGLS',
+    }
+
+lds_status = {
+    RelLib.LdsOrd.STATUS_BIC        : "BIC",
+    RelLib.LdsOrd.STATUS_CANCELED   : "CANCELED",
+    RelLib.LdsOrd.STATUS_CHILD      : "CHILD",
+    RelLib.LdsOrd.STATUS_CLEARED    : "CLEARED",
+    RelLib.LdsOrd.STATUS_COMPLETED  : "COMPLETED",
+    RelLib.LdsOrd.STATUS_DNS        : "DNS",
+    RelLib.LdsOrd.STATUS_INFANT     : "INFANT",
+    RelLib.LdsOrd.STATUS_PRE_1970   : "PRE-1970",
+    RelLib.LdsOrd.STATUS_QUALIFIED  : "QUALIFIED",
+    RelLib.LdsOrd.STATUS_DNS_CAN    : "DNS/CAN",
+    RelLib.LdsOrd.STATUS_STILLBORN  : "STILLBORN",
+    RelLib.LdsOrd.STATUS_SUBMITTED  : "SUBMITTED" ,
+    RelLib.LdsOrd.STATUS_UNCLEARED  : "UNCLEARED",
+    }
+
 #-------------------------------------------------------------------------
 #
 #
@@ -728,7 +752,8 @@ class GedcomWriter:
                 mother_alive = Utils.probably_alive(person,self.db)
 
             if not self.restrict or ( not father_alive and not mother_alive ):
-                self.write_ord("SLGS",family.get_lds_sealing(),1,lds.ssealing)
+                for lds in family.get_lds_ord_list():
+                    self.write_ord(lds,1)
 
                 for event_ref in family.get_event_ref_list():
                     event_handle = event_ref.ref
@@ -886,9 +911,8 @@ class GedcomWriter:
 
             ad = 0
 
-            self.write_ord("BAPL",person.get_lds_baptism(),1,lds.baptism)
-            self.write_ord("ENDL",person.get_lds_endowment(),1,lds.baptism)
-            self.write_ord("SLGC",person.get_lds_sealing(),1,lds.csealing)
+            for lds_ord in person.get_lds_ord_list():
+                self.write_ord(lds_ord,1)
             
             for event_ref in person.get_event_ref_list():
                 event = self.db.get_event_from_handle(event_ref.ref)
@@ -1165,10 +1189,8 @@ class GedcomWriter:
                         continue
                     self.write_photo(photo,2)
 
-    def write_ord(self,name,ord,index,statlist):
-        if ord == None:
-            return
-        self.writeln('%d %s' % (index,name))
+    def write_ord(self, ord, index):
+        self.writeln('%d %s' % (index, lds_ord_name[ord.get_type()]))
         self.print_date("%d DATE" % (index + 1), ord.get_date_object())
         if ord.get_family_handle():
             family_id = ord.get_family_handle()
@@ -1179,8 +1201,8 @@ class GedcomWriter:
             self.writeln('%d TEMP %s' % (index+1,ord.get_temple()))
         if ord.get_place_handle():
             self.write_place(self.db.get_place_from_handle(ord.get_place_handle()),2)
-        if ord.get_status() != 0:
-            self.writeln("2 STAT %s" % self.cnvtxt(statlist[ord.get_status()]))
+        if ord.get_status() != RelLib.LdsOrd.STATUS_NONE:
+            self.writeln("2 STAT %s" % self.cnvtxt(lds_status[ord.get_status()]))
         if ord.get_note():
             self.write_long_text("NOTE",index+1,self.cnvtxt(ord.get_note()))
         for srcref in ord.get_source_references():
