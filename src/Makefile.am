@@ -92,7 +92,9 @@ gdir_PYTHON = \
 	TransUtils.py\
 	TreeTips.py\
 	Utils.py\
-	ViewManager.py
+	ViewManager.py\
+	SelectFamily.py\
+	SelectSource.py
 
 pycheck: 
 	for d in $(SUBDIRS) ; do \
