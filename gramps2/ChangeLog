@@ -1,3 +1,6 @@
+2006-04-06  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_FamilyView.py: add select parents function
+
 2006-04-06  Alex Roitman  <shura@gramps-project.org>
 	* various: Revert back to using gettext except for the modules
 	that need context -- those will use TransUtils.sgettext

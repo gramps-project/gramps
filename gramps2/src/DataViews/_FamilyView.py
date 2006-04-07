@@ -424,6 +424,11 @@ class FamilyView(PageView.PersonNavView):
             
         add = GrampsWidgets.IconButton(call_fcn,None,gtk.STOCK_ADD)
         hbox.pack_start(add,False)
+
+        if is_parent:
+            add = GrampsWidgets.IconButton(self.select_family,None,gtk.STOCK_INDEX)
+            hbox.pack_start(add,False)
+
         if family:
             edit = GrampsWidgets.IconButton(self.edit_family,family.handle,
                                             gtk.STOCK_EDIT)
@@ -682,6 +687,27 @@ class FamilyView(PageView.PersonNavView):
             except Errors.WindowActiveError:
                 pass
 
+    def select_family(self, obj, event, handle):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+            from SelectFamily import SelectFamily
+
+            dialog = SelectFamily(self.dbstate.db, _('Select Family'))
+            family = dialog.run()
+
+            person = self.dbstate.db.get_person_from_handle(self.dbstate.active.handle)
+
+            family.add_child_handle(person.handle)
+            
+            person.add_parent_family_handle(
+                family.handle,
+                (RelLib.Person.CHILD_BIRTH,''),
+                (RelLib.Person.CHILD_BIRTH,''))
+
+            trans = self.dbstate.db.transaction_begin()
+            self.dbstate.db.commit_person(person,trans)
+            self.dbstate.db.commit_family(family,trans)
+            self.dbstate.db.transaction_commit(trans,_("Add Family"))
+            
     def add_parent_family(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             from Editors import EditFamily
