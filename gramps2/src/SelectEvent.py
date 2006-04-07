@@ -53,22 +53,29 @@ import DateHandler
 #
 #-------------------------------------------------------------------------
 class SelectEvent:
+    """
+    Selects an event from the list of available events
+    """
 
-    def __init__(self,db,title,parent_window=None):
+    def __init__(self, database, title, parent_window=None):
+        """
+        Create an Event Selector, allowing the user to select on of the
+        events in the event list.
+        """
 
-        self.db = db
-        self.glade = gtk.glade.XML(const.gladeFile,"select_person","gramps")
+        self.db = database
+        self.glade = gtk.glade.XML(const.gladeFile, "select_person", "gramps")
         self.top = self.glade.get_widget('select_person')
         title_label = self.glade.get_widget('title')
         self.elist =  self.glade.get_widget('plist')
 
-        Utils.set_titles(self.top,title_label,title)
+        Utils.set_titles(self.top, title_label, title)
 
-        titles = [(_('Description'),4,250), (_('ID'),1,75),
-                  (_('Type'),2,75), (_('Date'),3,150), ('',4,0) ] 
+        titles = [(_('Description'), 4, 250), (_('ID'), 1, 75),
+                  (_('Type'), 2, 75), (_('Date'), 3, 150), ('', 4, 0) ] 
         self.ncols = len(titles)      
 
-        self.model = ListModel.ListModel(self.elist,titles)
+        self.model = ListModel.ListModel(self.elist, titles)
 
         self.redraw()
         self.top.show()
@@ -77,6 +84,10 @@ class SelectEvent:
             self.top.set_transient_for(parent_window)
 
     def redraw(self):
+        """
+        Redraws the event list
+        """
+        
         self.model.clear()
         self.model.new_model()
 
@@ -90,24 +101,22 @@ class SelectEvent:
             else:
                 name = Utils.personal_events[etype[0]]
             the_id = event.get_gramps_id()
-            place_handle = event.get_place_handle()
-            if place_handle:
-                pname = self.db.get_place_from_handle(place_handle).get_title()
-            else:
-                pname = u''
             date = DateHandler.get_date(event)
-            cause = event.get_cause()
-            self.model.add([desc,the_id,name,date],handle)
+            self.model.add([desc, the_id, name, date], handle)
 
         self.model.connect_model()
 
     def run(self):
+        """
+        Runs te dialog, returning None if the event was not selected,
+        or the event that was selected.
+        """
         val = self.top.run()
 
         if val == gtk.RESPONSE_OK:
-            store,node = self.model.get_selected()
+            store, node = self.model.get_selected()
             if node:
-                data = self.model.get_data(node,range(self.ncols))
+                data = self.model.get_data(node, range(self.ncols))
                 handle = data[4]
                 return_value = self.db.get_event_from_handle(handle)
             else:
