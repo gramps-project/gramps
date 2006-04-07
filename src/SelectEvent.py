@@ -20,6 +20,11 @@
 
 # $Id$
 
+
+__author__ = "Donald N. Allingham"
+__revision__ = "$Revision$"
+
+
 #-------------------------------------------------------------------------
 #
 # internationalization
