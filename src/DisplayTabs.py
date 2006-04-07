@@ -89,7 +89,7 @@ class GrampsTab(gtk.HBox):
     All tab classes should inherit from GrampsTab
     """
 
-    def __init__(self,dbstate,uistate,track,name):
+    def __init__(self, dbstate, uistate, track, name):
         """
         @param dbstate: The database state. Contains a reference to
         the database, along with other state information. The GrampsTab
@@ -209,7 +209,7 @@ class ButtonTab(GrampsTab):
         'share' : _('Share'),
         }
 
-    def __init__(self,dbstate,uistate,track,name,share_button=False):
+    def __init__(self, dbstate, uistate, track, name, share_button=False):
         """
         Similar to the base class, except after Build
         @param dbstate: The database state. Contains a reference to
@@ -226,11 +226,11 @@ class ButtonTab(GrampsTab):
         @param name: Notebook label name
         @type name: str/unicode
         """
-        GrampsTab.__init__(self,dbstate,uistate,track,name)
+        GrampsTab.__init__(self,dbstate, uistate, track, name)
         self.tooltips = gtk.Tooltips()
         self.create_buttons(share_button)
 
-    def create_buttons(self,share_button=False):
+    def create_buttons(self, share_button=False):
         """
         Creates a button box consisting of three buttons, one for Add,
         one for Edit, and one for Delete. This button box is then appended
@@ -240,9 +240,9 @@ class ButtonTab(GrampsTab):
         self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
         self.del_btn  = SimpleButton(gtk.STOCK_REMOVE, self.del_button_clicked)
 
-        self.tooltips.set_tip(self.add_btn,  self._MSG['add'])
+        self.tooltips.set_tip(self.add_btn, self._MSG['add'])
         self.tooltips.set_tip(self.edit_btn, self._MSG['edit'])
-        self.tooltips.set_tip(self.del_btn,  self._MSG['del'])
+        self.tooltips.set_tip(self.del_btn, self._MSG['del'])
         
         if share_button:
             self.share_btn = SimpleButton(gtk.STOCK_INDEX, self.share_button_clicked)
@@ -252,13 +252,13 @@ class ButtonTab(GrampsTab):
         
         vbox = gtk.VBox()
         vbox.set_spacing(6)
-        vbox.pack_start(self.add_btn,False)
+        vbox.pack_start(self.add_btn, False)
         if share_button:
-            vbox.pack_start(self.share_btn,False)
-        vbox.pack_start(self.edit_btn,False)
-        vbox.pack_start(self.del_btn,False)
+            vbox.pack_start(self.share_btn, False)
+        vbox.pack_start(self.edit_btn, False)
+        vbox.pack_start(self.del_btn, False)
         vbox.show_all()
-        self.pack_start(vbox,False)
+        self.pack_start(vbox, False)
 
     def double_click(self, obj, event):
         """
@@ -268,28 +268,28 @@ class ButtonTab(GrampsTab):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.edit_button_clicked(obj)
 
-    def add_button_clicked(self,obj):
+    def add_button_clicked(self, obj):
         """
         Function called with the Add button is clicked. This function
         should be overridden by the derived class.
         """
         print "Uncaught Add clicked"
 
-    def share_button_clicked(self,obj):
+    def share_button_clicked(self, obj):
         """
         Function called with the Add button is clicked. This function
         should be overridden by the derived class.
         """
         print "Uncaught Share clicked"
 
-    def del_button_clicked(self,obj):
+    def del_button_clicked(self, obj):
         """
         Function called with the Delete button is clicked. This function
         should be overridden by the derived class.
         """
         print "Uncaught Delete clicked"
 
-    def edit_button_clicked(self,obj):
+    def edit_button_clicked(self, obj):
         """
         Function called with the Edit button is clicked or the double
         click is caught. This function should be overridden by the derived
@@ -297,7 +297,7 @@ class ButtonTab(GrampsTab):
         """
         print "Uncaught Edit clicked"
 
-    def _selection_changed(self,obj=None):
+    def _selection_changed(self, obj=None):
         """
         Attached to the selection's 'changed' signal. Checks
         to see if anything is selected. If it is, the edit and
@@ -332,7 +332,7 @@ class EmbeddedList(ButtonTab):
 
         # handle the selection
         self.selection = self.tree.get_selection()
-        self.selection.connect('changed',self._selection_changed)
+        self.selection.connect('changed', self._selection_changed)
 
         # build the columns
         self.columns = []
@@ -342,7 +342,7 @@ class EmbeddedList(ButtonTab):
             self._set_dnd()
 
         # set up right click option
-        self.tree.connect('button-press-event',self._on_button_press)
+        self.tree.connect('button-press-event', self._on_button_press)
 
         # build the initial data
         self.rebuild()
@@ -359,7 +359,7 @@ class EmbeddedList(ButtonTab):
         if self.share_btn:
             itemlist = [
                 (True, gtk.STOCK_ADD, self.add_button_clicked),
-                (False,_('Share'), self.edit_button_clicked),
+                (False, _('Share'), self.edit_button_clicked),
                 (True, gtk.STOCK_EDIT, self.edit_button_clicked),
                 (True, gtk.STOCK_REMOVE, self.del_button_clicked),
                 ]
@@ -376,12 +376,12 @@ class EmbeddedList(ButtonTab):
                 item = gtk.ImageMenuItem(stock_id=title)
             else:
                 item = gtk.MenuItem(title)
-            item.connect('activate',func)
+            item.connect('activate', func)
             item.show()
             menu.append(item)
         menu.popup(None, None, None, event.button, event.time)
 
-    def find_index(self,obj):
+    def find_index(self, obj):
         """
         returns the index of the object within the associated data
         """
@@ -404,7 +404,7 @@ class EmbeddedList(ButtonTab):
         self.tree.connect('drag_data_get', self.drag_data_get)
         self.tree.connect('drag_data_received', self.drag_data_received)
         
-    def drag_data_get(self,widget, context, sel_data, info, time):
+    def drag_data_get(self, widget, context, sel_data, info, time):
         """
         Provide the drag_data_get function, which passes a tuple consisting of:
 
@@ -431,7 +431,7 @@ class EmbeddedList(ButtonTab):
         # pass as a string (8 bits)
         sel_data.set(sel_data.target, 8, data)
 
-    def drag_data_received(self,widget,context,x,y,sel_data,info,time):
+    def drag_data_received(self, widget, context, x, y, sel_data, info, time):
         """
         Handle the standard gtk interface for drag_data_received.
 
@@ -445,42 +445,42 @@ class EmbeddedList(ButtonTab):
             if mytype == self._DND_TYPE.drag_type:
                 
                 # determine the destination row
-                row = self._find_row(x,y)
+                row = self._find_row(x, y)
 
                 # if the is same object, we have a move, otherwise,
                 # it is a standard drag-n-drop
                 
                 if id(self) == selfid:
-                    self._move(row_from,row,obj)
+                    self._move(row_from, row, obj)
                 else:
-                    self._handle_drag(row,obj)
+                    self._handle_drag(row, obj)
                 self.rebuild()
             elif self._DND_EXTRA and mytype == self._DND_EXTRA.drag_type:
-                self.handle_extra_type(mytype,obj)
+                self.handle_extra_type(mytype, obj)
 
     def handle_extra_type(self, objtype, obj):
         pass
 
-    def _find_row(self,x,y):
-        row = self.tree.get_path_at_pos(x,y)
+    def _find_row(self, x, y):
+        row = self.tree.get_path_at_pos(x, y)
         if row == None:
             return len(self.get_data())
         else:
             return row[0][0]
 
     def _handle_drag(self, row, obj):
-        self.get_data().insert(row,obj)
+        self.get_data().insert(row, obj)
         self.changed = True
         self.rebuild()
 
     def _move(self, row_from, row_to, obj):
         dlist = self.get_data()
         if row_from < row_to:
-            dlist.insert(row_to,obj)
+            dlist.insert(row_to, obj)
             del dlist[row_from]
         else:
             del dlist[row_from]
-            dlist.insert(row_to-1,obj)
+            dlist.insert(row_to-1, obj)
         self.changed = True
         self.rebuild()
 
@@ -493,7 +493,7 @@ class EmbeddedList(ButtonTab):
         """
         return gtk.STOCK_JUSTIFY_FILL
 
-    def del_button_clicked(self,obj):
+    def del_button_clicked(self, obj):
         ref = self.get_selected()
         if ref:
             ref_list = self.get_data()
@@ -513,14 +513,14 @@ class EmbeddedList(ButtonTab):
         self.tree = gtk.TreeView()
         self.tree.set_reorderable(True)
         self.tree.set_rules_hint(True)
-        self.tree.connect('button_press_event',self.double_click)
+        self.tree.connect('button_press_event', self.double_click)
 
         # create the scrolled window, and attach the treeview
         scroll = gtk.ScrolledWindow()
         scroll.set_shadow_type(gtk.SHADOW_IN)
-        scroll.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         scroll.add(self.tree)
-        self.pack_start(scroll,True)
+        self.pack_start(scroll, True)
 
     def get_selected(self):
         """
@@ -529,9 +529,9 @@ class EmbeddedList(ButtonTab):
         to indicate what the returned value should be. If no selection
         has been made, None is returned.
         """
-        (model,node) = self.selection.get_selected()
+        (model, node) = self.selection.get_selected()
         if node:
-            return model.get_value(node,self._HANDLE_COL)
+            return model.get_value(node, self._HANDLE_COL)
         return None
 
     def is_empty(self):
@@ -588,7 +588,7 @@ class EmbeddedList(ButtonTab):
             # from the model column specified in pair[1]
             name = self._column_names[pair[1]][0]
             renderer = gtk.CellRendererText()
-            renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
+            renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
             column = gtk.TreeViewColumn(name, renderer, text=pair[1])
 
             # insert the colum into the tree
@@ -603,7 +603,7 @@ class EmbeddedList(ButtonTab):
         Rebuilds the data in the database by creating a new model,
         using the build_model function passed at creation time.
         """
-        self.model = self.build_model(self.get_data(),self.dbstate.db)
+        self.model = self.build_model(self.get_data(), self.dbstate.db)
         self.tree.set_model(self.model)
         self._set_label()
         self._selection_changed()
@@ -627,15 +627,15 @@ class EventEmbedList(EmbeddedList):
         }
 
     _column_names = [
-        (_('Type'),0,100),
-        (_('Description'),1,175),
-        (_('ID'),2, 60),
-        (_('Date'),3, 150),
-        (_('Place'),4, 140),
-        (_('Role'),5, 80),
+        (_('Type'), 0, 100), 
+        (_('Description'), 1, 175), 
+        (_('ID'), 2, 60), 
+        (_('Date'), 3, 150), 
+        (_('Place'), 4, 140), 
+        (_('Role'), 5, 80),
         ]
     
-    def __init__(self,dbstate,uistate,track,obj):
+    def __init__(self, dbstate, uistate, track, obj):
         self.obj = obj
         EmbeddedList.__init__(self, dbstate, uistate, track,
                               _('Events'), EventRefModel, True)
@@ -651,7 +651,7 @@ class EventEmbedList(EmbeddedList):
         return self.obj.get_event_ref_list()
 
     def column_order(self):
-        return ((1,0),(1,1),(1,2),(1,3),(1,4),(1,5))
+        return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5))
 
     def handle_extra_type(self, objtype, obj):
         try:
@@ -660,60 +660,60 @@ class EventEmbedList(EmbeddedList):
             event.set_type(self.default_type())
             ref.set_role(self.default_role())
             self.get_ref_editor()(
-                self.dbstate,self.uistate,self.track,
+                self.dbstate, self.uistate, self.track,
                 event, ref, self.event_added)
         except Errors.WindowActiveError:
             pass
 
     def default_type(self):
-        return (RelLib.EventRef.FAMILY,'')
+        return (RelLib.EventRef.FAMILY, '')
 
     def default_role(self):
-        return (RelLib.Event.MARRIAGE,'')
+        return (RelLib.Event.MARRIAGE, '')
 
-    def add_button_clicked(self,obj):
+    def add_button_clicked(self, obj):
         try:
             ref = RelLib.EventRef()
             event = RelLib.Event()
             ref.set_role(self.default_role())
             event.set_type(self.default_type())
             self.get_ref_editor()(
-                self.dbstate,self.uistate,self.track,
+                self.dbstate, self.uistate, self.track,
                 event, ref, self.event_added)
         except Errors.WindowActiveError:
             pass
 
-    def share_button_clicked(self,obj):
+    def share_button_clicked(self, obj):
         import SelectEvent
 
-        sel = SelectEvent.SelectEvent(self.dbstate.db,"Event Select")
+        sel = SelectEvent.SelectEvent(self.dbstate.db, "Event Select")
         event = sel.run()
         if event:
             try:
                 ref = RelLib.EventRef()
                 ref.set_role(self.default_role())
                 self.get_ref_editor()(
-                    self.dbstate,self.uistate,self.track,
+                    self.dbstate, self.uistate, self.track,
                     event, ref, self.event_added)
             except Errors.WindowActiveError:
                 pass
 
-    def edit_button_clicked(self,obj):
+    def edit_button_clicked(self, obj):
         ref = self.get_selected()
         if ref:
             event = self.dbstate.db.get_event_from_handle(ref.ref)
             try:
                 self.get_ref_editor()(
-                    self.dbstate,self.uistate,self.track,
+                    self.dbstate, self.uistate, self.track,
                     event, ref, self.event_updated)
             except Errors.WindowActiveError:
                 pass
 
-    def event_updated(self,ref,event):
+    def event_updated(self, ref, event):
         self.changed = True
         self.rebuild()
 
-    def event_added(self,ref,event):
+    def event_added(self, ref, event):
         ref.ref = event.handle
         self.get_data().append(ref)
         self.changed = True
@@ -721,7 +721,7 @@ class EventEmbedList(EmbeddedList):
 
 class PersonEventEmbedList(EventEmbedList):
 
-    def __init__(self,dbstate,uistate,track,obj):        
+    def __init__(self, dbstate, uistate, track, obj):        
         self.orig_data = [ data for data in [ obj.get_birth_ref(), \
                                               obj.get_death_ref()] + \
                             obj.get_event_ref_list() \
@@ -732,7 +732,7 @@ class PersonEventEmbedList(EventEmbedList):
         return self.orig_data
 
     def default_role(self):
-        return (RelLib.EventRef.PRIMARY,'')
+        return (RelLib.EventRef.PRIMARY, '')
 
     def default_type(self):
         type_list = []
@@ -745,9 +745,9 @@ class PersonEventEmbedList(EventEmbedList):
 
         for etype in [RelLib.Event.BIRTH, RelLib.Event.DEATH]:
             if etype not in type_list:
-                return (etype,'')
+                return (etype, '')
         else:
-            return (RelLib.Event.BIRTH,'')
+            return (RelLib.Event.BIRTH, '')
 
     def get_ref_editor(self):
         from Editors import EditEventRef
@@ -778,18 +778,18 @@ class BackRefList(EmbeddedList):
     _HANDLE_COL = 3
 
     _column_names = [
-        (_('Type'),0, 100),
-        (_('ID'),  1,  75),
-        (_('Name'),2, 250),
+        (_('Type'), 0, 100),
+        (_('ID'),  1,  75), 
+        (_('Name'), 2, 250), 
         ]
     
-    def __init__(self,dbstate,uistate,track,obj,refmodel):
+    def __init__(self, dbstate, uistate, track, obj, refmodel):
         self.obj = obj
-        EmbeddedList.__init__(self, dbstate, uistate, track,
+        EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('References'), refmodel)
-        self.model.connect('row-inserted',self.update_label)
+        self.model.connect('row-inserted', self.update_label)
 
-    def update_label(self,*obj):
+    def update_label(self, *obj):
         if not self.model.empty:
             self._set_label()
 
@@ -799,16 +799,16 @@ class BackRefList(EmbeddedList):
     def is_empty(self):
         return self.model.empty
 
-    def create_buttons(self,share=False):
+    def create_buttons(self, share=False):
         self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
 
         vbox = gtk.VBox()
         vbox.set_spacing(6)
-        vbox.pack_start(self.edit_btn,False)
+        vbox.pack_start(self.edit_btn, False)
         vbox.show_all()
-        self.pack_start(vbox,False)
+        self.pack_start(vbox, False)
 
-    def _selection_changed(self,obj=None):
+    def _selection_changed(self, obj=None):
         if self.get_selected():
             self.edit_btn.set_sensitive(True)
         else:
@@ -818,16 +818,16 @@ class BackRefList(EmbeddedList):
         return self.obj
 
     def column_order(self):
-        return ((1,0),(1,1),(1,2))
+        return ((1, 0), (1, 1), (1, 2))
 
     def find_node(self):
-        (model,node) = self.selection.get_selected()
+        (model, node) = self.selection.get_selected()
         try:
-            return (model.get_value(node,0),model.get_value(node,3))
+            return (model.get_value(node, 0), model.get_value(node, 3))
         except:
-            return (None,None)
+            return (None, None)
     
-    def edit_button_clicked(self,obj):
+    def edit_button_clicked(self, obj):
         (reftype, ref) = self.find_node()
         if reftype == 'Person':
             try:
@@ -858,7 +858,7 @@ class BackRefList(EmbeddedList):
                 from Editors import EditPlace
                 
                 place = self.dbstate.db.get_place_from_handle(ref)
-                EditPlace(self.dbstate,self.uistate,[],place)
+                EditPlace(self.dbstate, self.uistate, [], place)
             except Errors.WindowActiveError:
                 pass
         elif reftype == 'Media':
@@ -866,14 +866,14 @@ class BackRefList(EmbeddedList):
                 from Editors import EditMedia
                 
                 obj = self.dbstate.db.get_object_from_handle(ref)
-                EditMedia(self.dbstate,self.uistate, [], obj)
+                EditMedia(self.dbstate, self.uistate, [], obj)
             except Errors.WindowActiveError:
                 pass
 
 class SourceBackRefList(BackRefList):
 
-    def __init__(self,dbstate,uistate,track,obj):
-        BackRefList.__init__(self, dbstate, uistate, track, obj,
+    def __init__(self, dbstate, uistate, track, obj):
+        BackRefList.__init__(self, dbstate, uistate, track, obj, 
                              BackRefModel)
 
     def get_icon_name(self):
@@ -881,8 +881,8 @@ class SourceBackRefList(BackRefList):
 
 class EventBackRefList(BackRefList):
 
-    def __init__(self,dbstate,uistate,track,obj):
-        BackRefList.__init__(self, dbstate, uistate, track, obj,
+    def __init__(self, dbstate, uistate, track, obj):
+        BackRefList.__init__(self, dbstate, uistate, track, obj, 
                              BackRefModel)
 
     def get_icon_name(self):
@@ -890,8 +890,8 @@ class EventBackRefList(BackRefList):
 
 class MediaBackRefList(BackRefList):
 
-    def __init__(self,dbstate,uistate,track,obj):
-        BackRefList.__init__(self, dbstate, uistate, track, obj,
+    def __init__(self, dbstate, uistate, track, obj):
+        BackRefList.__init__(self, dbstate, uistate, track, obj, 
                              BackRefModel)
 
     def get_icon_name(self):
@@ -899,8 +899,8 @@ class MediaBackRefList(BackRefList):
 
 class PlaceBackRefList(BackRefList):
 
-    def __init__(self,dbstate,uistate,track,obj):
-        BackRefList.__init__(self, dbstate, uistate, track, obj,
+    def __init__(self, dbstate, uistate, track, obj):
+        BackRefList.__init__(self, dbstate, uistate, track, obj, 
                              BackRefModel)
 
     def get_icon_name(self):
@@ -916,33 +916,33 @@ class DataEmbedList(EmbeddedList):
 
     _DND_TYPE   = DdTargets.DATA
     _column_names = [
-        (_('Key'),0,150),
-        (_('Value'),1,250),
+        (_('Key'), 0, 150), 
+        (_('Value'), 1, 250), 
         ]
     
-    def __init__(self,dbstate,uistate,track,obj):
+    def __init__(self, dbstate, uistate, track, obj):
         self.obj = obj
         
-        EmbeddedList.__init__(self, dbstate, uistate, track,
+        EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('Data'), DataModel)
 
     def get_data(self):
         return self.obj.get_data_map()
 
     def column_order(self):
-        return ((1,0),(1,1))
+        return ((1, 0), (1, 1))
 
-    def add_button_clicked(self,obj):
+    def add_button_clicked(self, obj):
         pass
 
-    def del_button_clicked(self,obj):
+    def del_button_clicked(self, obj):
         ref = self.get_selected()
         if ref:
             ref_list = self.obj.get_data_map()
             ref_list.remove(ref)
             self.rebuild()
 
-    def edit_button_clicked(self,obj):
+    def edit_button_clicked(self, obj):
         ref = self.get_selected()
         if ref:
             print ref
@@ -958,13 +958,13 @@ class AttrEmbedList(EmbeddedList):
     _DND_TYPE   = DdTargets.ATTRIBUTE
 
     _column_names = [
-        (_('Type'),0,250),
-        (_('Value'),1,200),
+        (_('Type'), 0, 250), 
+        (_('Value'), 1, 200), 
         ]
     
-    def __init__(self,dbstate,uistate,track,data):
+    def __init__(self, dbstate, uistate, track, data):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track,
+        EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('Attributes'), AttrModel)
 
     def get_editor(self):
@@ -978,35 +978,35 @@ class AttrEmbedList(EmbeddedList):
         return self.data
 
     def column_order(self):
-        return ((1,0),(1,1))
+        return ((1, 0), (1, 1))
 
-    def add_button_clicked(self,obj):
+    def add_button_clicked(self, obj):
         pname = ''
         attr = RelLib.Attribute()
         try:
             self.get_editor()(
-                self.dbstate, self.uistate, self.track, attr,
+                self.dbstate, self.uistate, self.track, attr, 
                 pname, self.get_user_values(), self.add_callback)
         except Errors.WindowActiveError:
             pass
 
-    def add_callback(self,name):
+    def add_callback(self, name):
         self.get_data().append(name)
         self.changed = True
         self.rebuild()
 
-    def edit_button_clicked(self,obj):
+    def edit_button_clicked(self, obj):
         attr = self.get_selected()
         if attr:
             pname = ''
             try:
                 self.get_editor()(
-                    self.dbstate, self.uistate, self.track, attr,
+                    self.dbstate, self.uistate, self.track, attr, 
                     pname, self.get_user_values(), self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
-    def edit_callback(self,name):
+    def edit_callback(self, name):
         self.changed = True
         self.rebuild()
 
@@ -1017,7 +1017,7 @@ class AttrEmbedList(EmbeddedList):
 #-------------------------------------------------------------------------
 class FamilyAttrEmbedList(AttrEmbedList):
 
-    def __init__(self,dbstate,uistate,track,data):
+    def __init__(self, dbstate, uistate, track, data):
         AttrEmbedList.__init__(self, dbstate, uistate, track, data)
 
     def get_editor(self):
@@ -1038,48 +1038,48 @@ class WebEmbedList(EmbeddedList):
     _DND_TYPE   = DdTargets.URL
 
     _column_names = [
-        (_('Type')       ,0, 100),
-        (_('Path')       ,1, 200),
-        (_('Description'),2, 150),
+        (_('Type')       , 0, 100), 
+        (_('Path')       , 1, 200), 
+        (_('Description'), 2, 150), 
         ]
     
-    def __init__(self,dbstate,uistate,track,data):
+    def __init__(self, dbstate, uistate, track, data):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track,
+        EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('Internet'), WebModel)
 
     def get_data(self):
         return self.data
 
     def column_order(self):
-        return ((1,0),(1,1),(1,2))
+        return ((1, 0), (1, 1), (1, 2))
 
-    def add_button_clicked(self,obj):
+    def add_button_clicked(self, obj):
         url = RelLib.Url()
         try:
             from Editors import EditUrl
             
-            EditUrl(self.dbstate, self.uistate, self.track,
+            EditUrl(self.dbstate, self.uistate, self.track, 
                     '', url, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
-    def add_callback(self,url):
+    def add_callback(self, url):
         self.get_data().append(url)
         self.rebuild()
 
-    def edit_button_clicked(self,obj):
+    def edit_button_clicked(self, obj):
         url = self.get_selected()
         if url:
             try:
                 from Editors import EditUrl
                 
-                EditUrl(self.dbstate, self.uistate, self.track,
+                EditUrl(self.dbstate, self.uistate, self.track, 
                         '', url, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
-    def edit_callback(self,url):
+    def edit_callback(self, url):
         self.rebuild()
 
 #-------------------------------------------------------------------------
@@ -1093,47 +1093,47 @@ class NameEmbedList(EmbeddedList):
     _DND_TYPE   = DdTargets.NAME
 
     _column_names = [
-        (_('Name'),0, 250),
-        (_('Type'),1, 100),
+        (_('Name'), 0, 250), 
+        (_('Type'), 1, 100), 
         ]
     
-    def __init__(self,dbstate,uistate,track,data):
+    def __init__(self, dbstate, uistate, track, data):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track,
+        EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('Names'), NameModel)
 
     def get_data(self):
         return self.data
 
     def column_order(self):
-        return ((1,0),(1,1))
+        return ((1, 0), (1, 1))
 
-    def add_button_clicked(self,obj):
+    def add_button_clicked(self, obj):
         name = RelLib.Name()
         try:
             from Editors import EditName
             
-            EditName(self.dbstate, self.uistate, self.track,
+            EditName(self.dbstate, self.uistate, self.track, 
                      name, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
-    def add_callback(self,name):
+    def add_callback(self, name):
         self.get_data().append(name)
         self.rebuild()
 
-    def edit_button_clicked(self,obj):
+    def edit_button_clicked(self, obj):
         name = self.get_selected()
         if name:
             try:
                 from Editors import EditName
                 
-                EditName(self.dbstate, self.uistate, self.track,
+                EditName(self.dbstate, self.uistate, self.track, 
                          name, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
-    def edit_callback(self,name):
+    def edit_callback(self, name):
         self.rebuild()
 
 #-------------------------------------------------------------------------
@@ -1147,50 +1147,50 @@ class AddrEmbedList(EmbeddedList):
     _DND_TYPE   = DdTargets.ADDRESS
 
     _column_names = [
-        (_('Date'),    0, 150),
-        (_('Street'),  1, 225),
-        (_('State'),   2, 100),
-        (_('City'),    3, 100),
-        (_('Country'), 4, 75),
+        (_('Date'),    0, 150), 
+        (_('Street'),  1, 225), 
+        (_('State'),   2, 100), 
+        (_('City'),    3, 100), 
+        (_('Country'), 4, 75), 
         ]
     
-    def __init__(self,dbstate,uistate,track,data):
+    def __init__(self, dbstate, uistate, track, data):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track,
+        EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('Addresses'), AddressModel)
 
     def get_data(self):
         return self.data
 
     def column_order(self):
-        return ((1,0),(1,1),(1,2),(1,3),(1,4))
+        return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4))
 
-    def add_button_clicked(self,obj):
+    def add_button_clicked(self, obj):
         addr = RelLib.Address()
         try:
             from Editors import EditAddress
             
-            EditAddress(self.dbstate, self.uistate, self.track,
+            EditAddress(self.dbstate, self.uistate, self.track, 
                         addr, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
-    def add_callback(self,name):
+    def add_callback(self, name):
         self.get_data().append(name)
         self.rebuild()
 
-    def edit_button_clicked(self,obj):
+    def edit_button_clicked(self, obj):
         addr = self.get_selected()
         if addr:
             try:
                 from Editors import EditAddress
                 
-                EditAddress(self.dbstate, self.uistate, self.track,
+                EditAddress(self.dbstate, self.uistate, self.track, 
                             addr, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
-    def edit_callback(self,name):
+    def edit_callback(self, name):
         self.rebuild()
 
 
@@ -1205,16 +1205,16 @@ class LdsEmbedList(EmbeddedList):
 #    _DND_TYPE   = DdTargets.ADDRESS
 
     _column_names = [
-        (_('Type'),    0, 150),
-        (_('Date'),    1, 150),
-        (_('Status'),  3, 75),
-        (_('Temple'),  2, 200),
-        (_('Place'),   3, 100),
+        (_('Type'),    0, 150), 
+        (_('Date'),    1, 150), 
+        (_('Status'),  3, 75), 
+        (_('Temple'),  2, 200), 
+        (_('Place'),   3, 100), 
         ]
     
-    def __init__(self,dbstate,uistate,track,data):
+    def __init__(self, dbstate, uistate, track, data):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track,
+        EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('LDS'), LdsModel)
 
     def get_editor(self):
@@ -1228,29 +1228,29 @@ class LdsEmbedList(EmbeddedList):
         return self.data
 
     def column_order(self):
-        return ((1,0),(1,1),(1,2),(1,3),(1,4))
+        return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4))
 
-    def add_button_clicked(self,obj):
+    def add_button_clicked(self, obj):
         try:
-            self.get_editor()(self.dbstate, self.uistate, self.track,
+            self.get_editor()(self.dbstate, self.uistate, self.track, 
                               self.new_data(), self.add_callback)
         except Errors.WindowActiveError:
             pass
 
-    def add_callback(self,name):
+    def add_callback(self, name):
         self.get_data().append(name)
         self.rebuild()
 
-    def edit_button_clicked(self,obj):
+    def edit_button_clicked(self, obj):
         lds = self.get_selected()
         if lds:
             try:
-                self.get_editor()(self.dbstate, self.uistate, self.track,
+                self.get_editor()(self.dbstate, self.uistate, self.track, 
                                   lds, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
-    def edit_callback(self,name):
+    def edit_callback(self, name):
         self.rebuild()
 
 
@@ -1265,14 +1265,14 @@ class FamilyLdsEmbedList(LdsEmbedList):
 #    _DND_TYPE   = DdTargets.ADDRESS
 
     _column_names = [
-        (_('Type'),    0, 150),
-        (_('Date'),    1, 150),
-        (_('Status'),  3, 75),
-        (_('Temple'),  2, 200),
-        (_('Place'),   3, 100),
+        (_('Type'),    0, 150), 
+        (_('Date'),    1, 150), 
+        (_('Status'),  3, 75), 
+        (_('Temple'),  2, 200), 
+        (_('Place'),   3, 100), 
         ]
     
-    def __init__(self,dbstate,uistate,track,data):
+    def __init__(self, dbstate, uistate, track, data):
         LdsEmbedList.__init__(self, dbstate, uistate, track, data)
 
     def get_editor(self):
@@ -1295,50 +1295,50 @@ class LocationEmbedList(EmbeddedList):
     _DND_TYPE   = DdTargets.LOCATION
 
     _column_names = [
-        (_('City'),           0, 150),
-        (_('County'),         1, 100),
-        (_('Church Parish'),  2, 100),
-        (_('State/Province'), 3, 100),
-        (_('Country'),        4, 75),
+        (_('City'),           0, 150), 
+        (_('County'),         1, 100), 
+        (_('Church Parish'),  2, 100), 
+        (_('State/Province'), 3, 100), 
+        (_('Country'),        4, 75), 
         ]
     
-    def __init__(self,dbstate,uistate,track,data):
+    def __init__(self, dbstate, uistate, track, data):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track,
+        EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('Alternate Locations'), LocationModel)
 
     def get_data(self):
         return self.data
 
     def column_order(self):
-        return ((1,0),(1,1),(1,2),(1,3),(1,4))
+        return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4))
 
-    def add_button_clicked(self,obj):
+    def add_button_clicked(self, obj):
         loc = RelLib.Location()
         try:
             from Editors import EditLocation
             
-            EditLocation(self.dbstate, self.uistate, self.track,
+            EditLocation(self.dbstate, self.uistate, self.track, 
                          loc, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
-    def add_callback(self,name):
+    def add_callback(self, name):
         self.get_data().append(name)
         self.rebuild()
 
-    def edit_button_clicked(self,obj):
+    def edit_button_clicked(self, obj):
         loc = self.get_selected()
         if loc:
             try:
                 from Editors import EditLocation
                 
-                EditLocation(self.dbstate, self.uistate, self.track,
+                EditLocation(self.dbstate, self.uistate, self.track, 
                              loc, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
-    def edit_callback(self,name):
+    def edit_callback(self, name):
         self.rebuild()
 
 #-------------------------------------------------------------------------
@@ -1348,12 +1348,12 @@ class LocationEmbedList(EmbeddedList):
 #-------------------------------------------------------------------------
 class NoteTab(GrampsTab):
 
-    def __init__(self, dbstate, uistate, track, note_obj,title=_('Note')):
+    def __init__(self, dbstate, uistate, track, note_obj, title=_('Note')):
         self.note_obj = note_obj        
         GrampsTab.__init__(self, dbstate, uistate, track, title)
         self.show_all()
 
-    def _update_label(self,*obj):
+    def _update_label(self, *obj):
         cc = self.buf.get_char_count()
         if cc == 0 and not self.empty:
             self.empty = True
@@ -1373,8 +1373,8 @@ class NoteTab(GrampsTab):
         vbox = gtk.VBox()
         
         self.text = gtk.TextView()
-        self.flowed = gtk.RadioButton(None,_('Flowed'))
-        self.format = gtk.RadioButton(self.flowed,_('Formatted'))
+        self.flowed = gtk.RadioButton(None, _('Flowed'))
+        self.format = gtk.RadioButton(self.flowed, _('Formatted'))
 
         if self.note_obj and self.note_obj.get_format():
             self.format.set_active(True)
@@ -1384,24 +1384,24 @@ class NoteTab(GrampsTab):
             self.text.set_wrap_mode(gtk.WRAP_WORD)
         self.spellcheck = Spell.Spell(self.text)
 
-        self.flowed.connect('toggled',self.flow_changed)
+        self.flowed.connect('toggled', self.flow_changed)
 
         scroll = gtk.ScrolledWindow()
-        scroll.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         scroll.add_with_viewport(self.text)
-        scroll.connect('focus-out-event',self.update)
+        scroll.connect('focus-out-event', self.update)
 
-        vbox.pack_start(scroll,True)
+        vbox.pack_start(scroll, True)
         vbox.set_spacing(6)
 
         hbox = gtk.HBox()
         hbox.set_spacing(6)
-        hbox.pack_start(self.flowed,False)
-        hbox.pack_start(self.format,False)
+        hbox.pack_start(self.flowed, False)
+        hbox.pack_start(self.format, False)
 
-        vbox.pack_start(hbox,False)
+        vbox.pack_start(hbox, False)
         
-        self.pack_start(vbox,True)
+        self.pack_start(vbox, True)
         self.buf = self.text.get_buffer()
         if self.note_obj:
             self.empty = False
@@ -1409,21 +1409,21 @@ class NoteTab(GrampsTab):
         else:
             self.empty = True
             
-        self.buf.connect('changed',self.update)
+        self.buf.connect('changed', self.update)
         self.rebuild()
 
-    def update(self,obj):
+    def update(self, obj):
         if self.note_obj:
             start = self.buf.get_start_iter()
             stop = self.buf.get_end_iter()
-            text = self.buf.get_text(start,stop)
+            text = self.buf.get_text(start, stop)
             self.note_obj.set(text)
         else:
             print "NOTE OBJ DOES NOT EXIST"
         self._update_label(obj)
         return False
 
-    def flow_changed(self,obj):
+    def flow_changed(self, obj):
         if obj.get_active():
             self.text.set_wrap_mode(gtk.WRAP_WORD)
         else:
@@ -1447,7 +1447,7 @@ class GalleryTab(ButtonTab):
 
     def double_click(self, obj, event):
         """
-        Handles the double click on list. If the double click occurs,
+        Handles the double click on list. If the double click occurs, 
         the Edit button handler is called
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -1460,10 +1460,10 @@ class GalleryTab(ButtonTab):
 
     def right_click(self, obj, event):
         itemlist = [
-            (True, gtk.STOCK_ADD, self.add_button_clicked),
-            (False,_('Share'), self.edit_button_clicked),
-            (True, gtk.STOCK_EDIT, self.edit_button_clicked),
-            (True, gtk.STOCK_REMOVE, self.del_button_clicked),
+            (True, gtk.STOCK_ADD, self.add_button_clicked), 
+            (False, _('Share'), self.edit_button_clicked), 
+            (True, gtk.STOCK_EDIT, self.edit_button_clicked), 
+            (True, gtk.STOCK_REMOVE, self.del_button_clicked), 
             ]
 
         menu = gtk.Menu()
@@ -1474,7 +1474,7 @@ class GalleryTab(ButtonTab):
             app = Mime.get_application(mime_type)
             if app:
                 item = gtk.MenuItem(_('Open with %s') % app[1])
-                item.connect('activate',make_launcher(app[0],
+                item.connect('activate', make_launcher(app[0], 
                                                       ref_obj.get_path()))
                 item.show()
                 menu.append(item)
@@ -1487,7 +1487,7 @@ class GalleryTab(ButtonTab):
                 item = gtk.ImageMenuItem(stock_id=title)
             else:
                 item = gtk.MenuItem(title)
-            item.connect('activate',func)
+            item.connect('activate', func)
             item.show()
             menu.append(item)
         menu.popup(None, None, None, event.button, event.time)
@@ -1501,12 +1501,12 @@ class GalleryTab(ButtonTab):
         return len(self.media_list)==0
 
     def _build_icon_model(self):
-        self.iconmodel= gtk.ListStore(gtk.gdk.Pixbuf,str,object)
+        self.iconmodel= gtk.ListStore(gtk.gdk.Pixbuf, str, object)
 
     def _connect_icon_model(self):
         self.iconlist.set_model(self.iconmodel)
-        self.iconmodel.connect_after('row-inserted',self._update_internal_list)
-        self.iconmodel.connect_after('row-deleted',self._update_internal_list)
+        self.iconmodel.connect_after('row-inserted', self._update_internal_list)
+        self.iconmodel.connect_after('row-deleted', self._update_internal_list)
 
     def build_interface(self):
 
@@ -1520,20 +1520,20 @@ class GalleryTab(ButtonTab):
         self.iconlist.set_item_width(125)
         self.iconlist.set_spacing(24)
         self.iconlist.set_selection_mode(gtk.SELECTION_SINGLE)
-        self.iconlist.connect('selection-changed',self._selection_changed)
-        self.iconlist.connect('button_press_event',self.double_click)
+        self.iconlist.connect('selection-changed', self._selection_changed)
+        self.iconlist.connect('button_press_event', self.double_click)
         self._connect_icon_model()
         
         scroll = gtk.ScrolledWindow()
-        scroll.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         scroll.add_with_viewport(self.iconlist)
-        self.pack_start(scroll,True)
+        self.pack_start(scroll, True)
 
     def _update_internal_list(self, *obj):
         node = self.iconmodel.get_iter_first()
         newlist = []
         while node != None:
-            newlist.append(self.iconmodel.get_value(node,2))
+            newlist.append(self.iconmodel.get_value(node, 2))
             node = self.iconmodel.iter_next(node)
         for i in xrange(len(self.media_list)):
             self.media_list.pop()
@@ -1549,9 +1549,9 @@ class GalleryTab(ButtonTab):
         for ref in self.media_list:
             handle = ref.get_reference_handle()
             obj = self.dbstate.db.get_object_from_handle(handle)
-            pixbuf = ImgManip.get_thumbnail_image(obj.get_path(),
+            pixbuf = ImgManip.get_thumbnail_image(obj.get_path(), 
                                                   obj.get_mime_type())
-            self.iconmodel.append(row=[pixbuf,obj.get_description(),ref])
+            self.iconmodel.append(row=[pixbuf, obj.get_description(), ref])
         self._connect_icon_model()
         self._set_label()
         self._selection_changed()
@@ -1562,7 +1562,7 @@ class GalleryTab(ButtonTab):
             return self.media_list[node[0][0]]
         return None
 
-    def add_button_clicked(self,obj):
+    def add_button_clicked(self, obj):
         import AddMedia
 
         am = AddMedia.AddMediaObject(self.dbstate.db)
@@ -1573,50 +1573,50 @@ class GalleryTab(ButtonTab):
         try:
             from Editors import EditMediaRef
             
-            EditMediaRef(self.dbstate, self.uistate, self.track,
+            EditMediaRef(self.dbstate, self.uistate, self.track, 
                          src, sref, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
-    def add_callback(self,media_ref, media):
+    def add_callback(self, media_ref, media):
         media_ref.ref = media.handle
         self.get_data().append(media_ref)
         self.changed = True
         self.rebuild()
 
-    def share_button_clicked(self,obj):
+    def share_button_clicked(self, obj):
         """
         Function called with the Add button is clicked. This function
         should be overridden by the derived class.
         """
         import SelectObject
 
-        sel = SelectObject.SelectObject(self.dbstate.db,_("Select media"))
+        sel = SelectObject.SelectObject(self.dbstate.db, _("Select media"))
         src = sel.run()
         if src:
             sref = RelLib.MediaRef()
             try:
                 from Editors import EditMediaRef
                 
-                EditMediaRef(self.dbstate, self.uistate, self.track,
+                EditMediaRef(self.dbstate, self.uistate, self.track, 
                              src, sref, self.add_callback)
             except Errors.WindowActiveError:
                 pass
 
-    def del_button_clicked(self,obj):
+    def del_button_clicked(self, obj):
         ref = self.get_selected()
         if ref:
             self.media_list.remove(ref)
             self.rebuild()
 
-    def edit_button_clicked(self,obj):
+    def edit_button_clicked(self, obj):
         ref = self.get_selected()
         if ref:
             obj = self.dbstate.db.get_object_from_handle(ref.get_reference_handle())
             try:
                 from Editors import EditMediaRef
                 
-                EditMediaRef(self.dbstate, self.uistate, self.track,
+                EditMediaRef(self.dbstate, self.uistate, self.track, 
                              obj, ref, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
@@ -1637,15 +1637,15 @@ class SourceEmbedList(EmbeddedList):
     _DND_EXTRA = DdTargets.SOURCE_LINK
         
     _column_names = [
-        (_('ID'),     0, 75),
-        (_('Title'),  1, 200),
-        (_('Author'), 2, 125),
-        (_('Page'),   3, 100),
+        (_('ID'),     0, 75), 
+        (_('Title'),  1, 200), 
+        (_('Author'), 2, 125), 
+        (_('Page'),   3, 100), 
         ]
     
-    def __init__(self,dbstate,uistate,track,obj):
+    def __init__(self, dbstate, uistate, track, obj):
         self.obj = obj
-        EmbeddedList.__init__(self, dbstate, uistate, track,
+        EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('Sources'), SourceRefModel, True)
 
     def get_icon_name(self):
@@ -1655,53 +1655,53 @@ class SourceEmbedList(EmbeddedList):
         return self.obj
 
     def column_order(self):
-        return ((1,0),(1,1),(1,2),(1,3))
+        return ((1, 0), (1, 1), (1, 2), (1, 3))
 
-    def add_button_clicked(self,obj):
+    def add_button_clicked(self, obj):
         sref = RelLib.SourceRef()
         src = RelLib.Source()
         try:
             from Editors import EditSourceRef
             
-            EditSourceRef(self.dbstate, self.uistate, self.track,
+            EditSourceRef(self.dbstate, self.uistate, self.track, 
                           src, sref, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
-    def share_button_clicked(self,obj):
+    def share_button_clicked(self, obj):
         import SelectSource
 
-        sel = SelectSource.SelectSource(self.dbstate.db,"Source Select")
+        sel = SelectSource.SelectSource(self.dbstate.db, "Source Select")
         src = sel.run()
         if src:
             try:
                 from Editors import EditSourceRef
                 
                 ref = RelLib.SourceRef()
-                EditSourceRef(self.dbstate,self.uistate,self.track,
+                EditSourceRef(self.dbstate, self.uistate, self.track, 
                               src, ref, self.add_callback)
             except Errors.WindowActiveError:
                 pass
 
-    def add_callback(self,reference, primary):
+    def add_callback(self, reference, primary):
         reference.ref = primary.handle
         self.get_data().append(reference)
         self.changed = True
         self.rebuild()
 
-    def edit_button_clicked(self,obj):
+    def edit_button_clicked(self, obj):
         sref = self.get_selected()
         src = self.dbstate.db.get_source_from_handle(sref.ref)
         if sref:
             try:
                 from Editors import EditSourceRef
                 
-                EditSourceRef(self.dbstate, self.uistate, self.track,
+                EditSourceRef(self.dbstate, self.uistate, self.track, 
                               src, sref, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
-    def edit_callback(self,refererence,primary):
+    def edit_callback(self, refererence, primary):
         self.changed = True
         self.rebuild()
 
@@ -1711,7 +1711,7 @@ class SourceEmbedList(EmbeddedList):
         try:
             from Editors import EditSourceRef
             
-            EditSourceRef(self.dbstate, self.uistate, self.track,
+            EditSourceRef(self.dbstate, self.uistate, self.track, 
                           src, sref, self.add_callback)
         except Errors.WindowActiveError:
             pass
@@ -1729,15 +1729,15 @@ class RepoEmbedList(EmbeddedList):
     _DND_EXTRA = DdTargets.REPO_LINK
         
     _column_names = [
-        (_('ID'),     0, 75),
-        (_('Title'),  1, 200),
-        (_('Call Number'), 2, 125),
-        (_('Type'),   3, 100),
+        (_('ID'),     0, 75), 
+        (_('Title'),  1, 200), 
+        (_('Call Number'), 2, 125), 
+        (_('Type'),   3, 100), 
         ]
     
-    def __init__(self,dbstate,uistate,track,obj):
+    def __init__(self, dbstate, uistate, track, obj):
         self.obj = obj
-        EmbeddedList.__init__(self, dbstate, uistate, track,
+        EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('Repositories'), RepoRefModel)
 
     def get_icon_name(self):
@@ -1747,7 +1747,7 @@ class RepoEmbedList(EmbeddedList):
         return self.obj
 
     def column_order(self):
-        return ((1,0),(1,1),(1,2),(1,3))
+        return ((1, 0), (1, 1), (1, 2), (1, 3))
 
     def handle_extra_type(self, objtype, obj):
         try:
@@ -1756,30 +1756,30 @@ class RepoEmbedList(EmbeddedList):
             ref = RelLib.RepoRef()
             repo = self.dbstate.db.get_repository_from_handle(obj)
             EditRepoRef(
-                self.dbstate,self.uistate,self.track,
+                self.dbstate, self.uistate, self.track, 
                 repo, ref, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
-    def add_button_clicked(self,obj):
+    def add_button_clicked(self, obj):
         ref = RelLib.RepoRef()
         repo = RelLib.Repository()
         try:
             from Editors import EditRepoRef
             
             EditRepoRef(
-                self.dbstate, self.uistate, self.track,
+                self.dbstate, self.uistate, self.track, 
                 repo, ref, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
-    def add_callback(self,value):
+    def add_callback(self, value):
         value[0].ref = value[1].handle
         self.get_data().append(value[0])
         self.changed = True
         self.rebuild()
 
-    def edit_button_clicked(self,obj):
+    def edit_button_clicked(self, obj):
         ref = self.get_selected()
         if ref:
             repo = self.dbstate.db.get_repository_from_handle(ref.ref)
@@ -1787,12 +1787,12 @@ class RepoEmbedList(EmbeddedList):
                 from Editors import EditRepoRef
                 
                 EditRepoRef(
-                    self.dbstate, self.uistate, self.track, repo,
+                    self.dbstate, self.uistate, self.track, repo, 
                     ref, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
-    def edit_callback(self,name):
+    def edit_callback(self, name):
         self.changed = True
         self.rebuild()
 
@@ -1807,47 +1807,47 @@ class ChildModel(gtk.ListStore):
     
     def __init__(self, family, db):
         self.family = family
-        gtk.ListStore.__init__(self,int,str,str,str,str,str,
-                               str,str,str,str,str,str,int,int)
+        gtk.ListStore.__init__(self, int, str, str, str, str, str, 
+                               str, str, str, str, str, str, int, int)
         self.db = db
         index = 1
         for child_handle in self.get_data():
             child = db.get_person_from_handle(child_handle)
-            self.append(row=[index,
-                             child.get_gramps_id(),
-                             NameDisplay.displayer.display(child),
-                             Utils.gender[child.get_gender()],
-                             self.column_father_rel(child),
-                             self.column_mother_rel(child),
-                             self.column_birth_day(child),
-                             self.column_death_day(child),
-                             self.column_birth_place(child),
-                             self.column_death_place(child),
-                             child.get_handle(),
-                             NameDisplay.displayer.sort_string(child.primary_name),
-                             self.column_birth_sort(child),
-                             self.column_death_sort(child),
+            self.append(row=[index, 
+                             child.get_gramps_id(), 
+                             NameDisplay.displayer.display(child), 
+                             Utils.gender[child.get_gender()], 
+                             self.column_father_rel(child), 
+                             self.column_mother_rel(child), 
+                             self.column_birth_day(child), 
+                             self.column_death_day(child), 
+                             self.column_birth_place(child), 
+                             self.column_death_place(child), 
+                             child.get_handle(), 
+                             NameDisplay.displayer.sort_string(child.primary_name), 
+                             self.column_birth_sort(child), 
+                             self.column_death_sort(child), 
                              ])
             index += 1
 
     def get_data(self):
         return self.family.get_child_handle_list()
 
-    def column_father_rel(self,data):
+    def column_father_rel(self, data):
         fhandle = self.family.handle
         for (handle, mrel, frel) in data.get_parent_family_handle_list():
             if handle == fhandle:
                 return Utils.format_child_relation(frel)
         return ""
 
-    def column_mother_rel(self,data):
+    def column_mother_rel(self, data):
         fhandle = self.family.handle
         for (handle, mrel, frel) in data.get_parent_family_handle_list():
             if handle == fhandle:
                 return Utils.format_child_relation(mrel)
         return ""
 
-    def column_birth_day(self,data):
+    def column_birth_day(self, data):
         event_ref = data.get_birth_ref()
         if event_ref and event_ref.ref:
             event = self.db.get_event_from_handle(event_ref.ref)
@@ -1855,7 +1855,7 @@ class ChildModel(gtk.ListStore):
         else:
             return u""
 
-    def column_birth_sort(self,data):
+    def column_birth_sort(self, data):
         event_ref = data.get_birth_ref()
         if event_ref and event_ref.ref:
             event = self.db.get_event_from_handle(event_ref.ref)
@@ -1863,7 +1863,7 @@ class ChildModel(gtk.ListStore):
         else:
             return 0
 
-    def column_death_day(self,data):
+    def column_death_day(self, data):
         event_ref = data.get_death_ref()
         if event_ref and event_ref.ref:
             event = self.db.get_event_from_handle(event_ref.ref)
@@ -1871,7 +1871,7 @@ class ChildModel(gtk.ListStore):
         else:
             return u""
 
-    def column_death_sort(self,data):
+    def column_death_sort(self, data):
         event_ref = data.get_death_ref()
         if event_ref and event_ref.ref:
             event = self.db.get_event_from_handle(event_ref.ref)
@@ -1879,7 +1879,7 @@ class ChildModel(gtk.ListStore):
         else:
             return 0
         
-    def column_birth_place(self,data):
+    def column_birth_place(self, data):
         event_ref = data.get_birth_ref()
         if event_ref and event_ref.ref:
             event = self.db.get_event_from_handle(event_ref.ref)
@@ -1889,7 +1889,7 @@ class ChildModel(gtk.ListStore):
                     return self.db.get_place_from_handle(place_handle).get_title()
         return u""
 
-    def column_death_place(self,data):
+    def column_death_place(self, data):
         event_ref = data.get_death_ref()
         if event_ref and event_ref.ref:
             event = self.db.get_event_from_handle(event_ref.ref)
@@ -1906,32 +1906,32 @@ class ChildModel(gtk.ListStore):
 #-------------------------------------------------------------------------
 class EventRefModel(gtk.ListStore):
 
-    def __init__(self,event_list,db):
-        gtk.ListStore.__init__(self,str,str,str,str,str,str,object)
+    def __init__(self, event_list, db):
+        gtk.ListStore.__init__(self, str, str, str, str, str, str, object)
         self.db = db
         for event_ref in event_list:
             event = db.get_event_from_handle(event_ref.ref)
             self.append(row=[
-                self.column_type(event),
-                event.get_description(),
-                event.get_gramps_id(),
-                self.column_date(event_ref),
-                self.column_place(event_ref),
-                self.column_role(event_ref),
+                self.column_type(event), 
+                event.get_description(), 
+                event.get_gramps_id(), 
+                self.column_date(event_ref), 
+                self.column_place(event_ref), 
+                self.column_role(event_ref), 
                 event_ref
                 ])
 
-    def column_type(self,event):
+    def column_type(self, event):
         return Utils.format_event(event.get_type())
 
-    def column_role(self,event_ref):
+    def column_role(self, event_ref):
         return Utils.format_event_role(event_ref.get_role())
 
-    def column_date(self,event_ref):
+    def column_date(self, event_ref):
         event = self.db.get_event_from_handle(event_ref.ref)
         return DateHandler.get_date(event)
 
-    def column_place(self,event_ref):
+    def column_place(self, event_ref):
         if event_ref and event_ref.ref:
             event = self.db.get_event_from_handle(event_ref.ref)
             if event:
@@ -1947,14 +1947,14 @@ class EventRefModel(gtk.ListStore):
 #-------------------------------------------------------------------------
 class AttrModel(gtk.ListStore):
 
-    def __init__(self,attr_list,db):
-        gtk.ListStore.__init__(self,str,str,object)
+    def __init__(self, attr_list, db):
+        gtk.ListStore.__init__(self, str, str, object)
         self.db = db
         for attr in attr_list:
             self.append(row=[
-                self.type_name(attr),
-                attr.get_value(),
-                attr,
+                self.type_name(attr), 
+                attr.get_value(), 
+                attr, 
                 ])
 
     def type_name(self, attr):
@@ -1969,7 +1969,7 @@ class LdsModel(gtk.ListStore):
 
     _HANDLE_COL = 5
 
-    def __init__(self,lds_list,db):
+    def __init__(self, lds_list, db):
         gtk.ListStore.__init__(self, str, str, str, str, str, object)
 
         import lds
@@ -1977,12 +1977,12 @@ class LdsModel(gtk.ListStore):
         self.db = db
         for lds_ord in lds_list:
             self.append(row=[
-                lds.ord_type[lds_ord.get_type()],
-                DateHandler.get_date(lds_ord),
-                lds.ord_status[lds_ord.get_status()],
-                lds.temple_to_abrev.get(lds_ord.get_temple(),_("unknown")),
-                self.column_place(lds_ord),
-                lds_ord,
+                lds.ord_type[lds_ord.get_type()], 
+                DateHandler.get_date(lds_ord), 
+                lds.ord_status[lds_ord.get_status()], 
+                lds.temple_to_abrev.get(lds_ord.get_temple(), _("unknown")), 
+                self.column_place(lds_ord), 
+                lds_ord, 
                 ])
 
     def column_place(self, lds_ord):
@@ -1999,14 +1999,14 @@ class LdsModel(gtk.ListStore):
 #-------------------------------------------------------------------------
 class NameModel(gtk.ListStore):
 
-    def __init__(self,obj_list,db):
-        gtk.ListStore.__init__(self,str,str,object)
+    def __init__(self, obj_list, db):
+        gtk.ListStore.__init__(self, str, str, object)
         self.db = db
         for obj in obj_list:
             self.append(row=[
-                NameDisplay.displayer.display_name(obj),
-                self.type_name(obj),
-                obj,
+                NameDisplay.displayer.display_name(obj), 
+                self.type_name(obj), 
+                obj, 
                 ])
 
     def type_name(self, obj):
@@ -2019,17 +2019,17 @@ class NameModel(gtk.ListStore):
 #-------------------------------------------------------------------------
 class AddressModel(gtk.ListStore):
 
-    def __init__(self,obj_list,db):
-        gtk.ListStore.__init__(self,str,str,str,str,str,object)
+    def __init__(self, obj_list, db):
+        gtk.ListStore.__init__(self, str, str, str, str, str, object)
         self.db = db
         for obj in obj_list:
             self.append(row=[
-                DateHandler.get_date(obj),
-                obj.street,
-                obj.city,
-                obj.state,
-                obj.country,
-                obj,
+                DateHandler.get_date(obj), 
+                obj.street, 
+                obj.city, 
+                obj.state, 
+                obj.country, 
+                obj, 
                 ])
 
 #-------------------------------------------------------------------------
@@ -2039,11 +2039,11 @@ class AddressModel(gtk.ListStore):
 #-------------------------------------------------------------------------
 class LocationModel(gtk.ListStore):
 
-    def __init__(self,obj_list,db):
-        gtk.ListStore.__init__(self,str,str,str,str,str,object)
+    def __init__(self, obj_list, db):
+        gtk.ListStore.__init__(self, str, str, str, str, str, object)
         self.db = db
         for obj in obj_list:
-            self.append(row=[obj.city, obj.county, obj.parish,
+            self.append(row=[obj.city, obj.county, obj.parish, 
                              obj.state, obj.country, obj, ])
 
 #-------------------------------------------------------------------------
@@ -2053,14 +2053,14 @@ class LocationModel(gtk.ListStore):
 #-------------------------------------------------------------------------
 class WebModel(gtk.ListStore):
 
-    def __init__(self,obj_list,db):
-        gtk.ListStore.__init__(self,str,str,str,object)
+    def __init__(self, obj_list, db):
+        gtk.ListStore.__init__(self, str, str, str, object)
         self.db = db
         for obj in obj_list:
-            self.append(row=[self.show_type(obj.type),
+            self.append(row=[self.show_type(obj.type), 
                              obj.path, obj.desc, obj])
 
-    def show_type(self,rtype):
+    def show_type(self, rtype):
         return Utils.format_web_type(rtype)
 
 #-------------------------------------------------------------------------
@@ -2070,8 +2070,8 @@ class WebModel(gtk.ListStore):
 #-------------------------------------------------------------------------
 class DataModel(gtk.ListStore):
 
-    def __init__(self,attr_list,db):
-        gtk.ListStore.__init__(self,str,str)
+    def __init__(self, attr_list, db):
+        gtk.ListStore.__init__(self, str, str)
         self.db = db
         for attr in attr_list.keys():
             self.append(row=[attr, attr_list[attr] ])
@@ -2083,12 +2083,12 @@ class DataModel(gtk.ListStore):
 #-------------------------------------------------------------------------
 class SourceRefModel(gtk.ListStore):
 
-    def __init__(self,sref_list,db):
-        gtk.ListStore.__init__(self,str,str,str,str,object)
+    def __init__(self, sref_list, db):
+        gtk.ListStore.__init__(self, str, str, str, str, object)
         self.db = db
         for sref in sref_list:
             src = self.db.get_source_from_handle(sref.ref)
-            self.append(row=[src.gramps_id, src.title, src.author,
+            self.append(row=[src.gramps_id, src.title, src.author, 
                              sref.page, sref, ])
 
 #-------------------------------------------------------------------------
@@ -2098,15 +2098,15 @@ class SourceRefModel(gtk.ListStore):
 #-------------------------------------------------------------------------
 class RepoRefModel(gtk.ListStore):
 
-    def __init__(self,ref_list,db):
-        gtk.ListStore.__init__(self,str,str,str,str,object)
+    def __init__(self, ref_list, db):
+        gtk.ListStore.__init__(self, str, str, str, str, object)
         self.db = db
         for ref in ref_list:
             repo = self.db.get_repository_from_handle(ref.ref)
-            self.append(row=[repo.gramps_id, repo.name, ref.call_number,
-                             self.type_of(repo), ref,])
+            self.append(row=[repo.gramps_id, repo.name, ref.call_number, 
+                             self.type_of(repo), ref, ])
 
-    def type_of(self,ref):
+    def type_of(self, ref):
         return Utils.format_source_media_type(ref.get_type())
 
 #-------------------------------------------------------------------------
@@ -2116,8 +2116,8 @@ class RepoRefModel(gtk.ListStore):
 #-------------------------------------------------------------------------
 class BackRefModel(gtk.ListStore):
 
-    def __init__(self,sref_list,db):
-        gtk.ListStore.__init__(self,str,str,str,str)
+    def __init__(self, sref_list, db):
+        gtk.ListStore.__init__(self, str, str, str, str)
         self.db = db
         self.sref_list = sref_list
         self.idle = 0
@@ -2141,7 +2141,7 @@ class BackRefModel(gtk.ListStore):
                 p = self.db.get_family_from_handle(ref[1])
                 gid = p.gramps_id
                 handle = p.handle
-                name = Utils.family_name(p,self.db)
+                name = Utils.family_name(p, self.db)
             elif dtype == 'Source':
                 p = self.db.get_source_from_handle(ref[1])
                 gid = p.gramps_id
@@ -2171,7 +2171,7 @@ class BackRefModel(gtk.ListStore):
                 gid = p.gramps_id
                 handle = p.handle
 
-            self.append(row=[dtype,gid,name,handle])
+            self.append(row=[dtype, gid, name, handle])
             yield True
         yield False
 

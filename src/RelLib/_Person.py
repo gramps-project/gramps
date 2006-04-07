@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -52,8 +52,8 @@ from _LdsOrd import LdsOrd
 # Person class
 #
 #-------------------------------------------------------------------------
-class Person(PrimaryObject,SourceNote,
-             MediaBase,AttributeBase,AddressBase,UrlBase,LdsOrdBase):
+class Person(PrimaryObject, SourceNote, 
+             MediaBase, AttributeBase, AddressBase, UrlBase, LdsOrdBase):
     """
     Introduction
     ============
@@ -71,7 +71,7 @@ class Person(PrimaryObject,SourceNote,
          handle.
 
     Once a Person object has been modified, it must be committed
-    to the database using the database object's commit_person function,
+    to the database using the database object's commit_person function, 
     or the changes will be lost.
 
     @sort: serialize, unserialize, get_*, set_*, add_*, remove_*
@@ -90,7 +90,7 @@ class Person(PrimaryObject,SourceNote,
     CHILD_UNKNOWN   = 6
     CHILD_CUSTOM    = 7
 
-    def __init__(self,data=None):
+    def __init__(self, data=None):
         """
         Creates a new Person instance. After initialization, most
         data items have empty or null values, including the database
@@ -126,7 +126,7 @@ class Person(PrimaryObject,SourceNote,
         represents all the data elements. This method is used to convert
         the object into a form that can easily be saved to a database.
 
-        These elements may be primative Python types (string, integers),
+        These elements may be primative Python types (string, integers), 
         complex Python types (lists or tuples, or Python objects. If the
         target database cannot handle complex types (such as objectes or
         lists), the database is responsible for converting the data into
@@ -145,28 +145,28 @@ class Person(PrimaryObject,SourceNote,
         else:
             death_ref = self.death_ref.serialize()
 
-        return (self.handle,
-                self.gramps_id,
+        return (self.handle, 
+                self.gramps_id, 
                 self.gender, 
-                self.primary_name.serialize(),
-                [name.serialize() for name in self.alternate_names],
-                unicode(self.nickname),
-                death_ref,
-                birth_ref,
-                [er.serialize() for er in self.event_ref_list],
-                self.family_list,
-                self.parent_family_list,
-                MediaBase.serialize(self),
-                AddressBase.serialize(self),
-                AttributeBase.serialize(self),
-                UrlBase.serialize(self),
-                LdsOrdBase.serialize(self),
-                SourceNote.serialize(self),
-                self.change,
-                self.marker,
+                self.primary_name.serialize(), 
+                [name.serialize() for name in self.alternate_names], 
+                unicode(self.nickname), 
+                death_ref, 
+                birth_ref, 
+                [er.serialize() for er in self.event_ref_list], 
+                self.family_list, 
+                self.parent_family_list, 
+                MediaBase.serialize(self), 
+                AddressBase.serialize(self), 
+                AttributeBase.serialize(self), 
+                UrlBase.serialize(self), 
+                LdsOrdBase.serialize(self), 
+                SourceNote.serialize(self), 
+                self.change, 
+                self.marker, 
                 self.private)
 
-    def unserialize(self,data):
+    def unserialize(self, data):
         """
         Converts the data held in a tuple created by the serialize method
         back into the data in a Person object.
@@ -175,25 +175,25 @@ class Person(PrimaryObject,SourceNote,
             Person object
         @type data: tuple
         """
-        (self.handle,
-         self.gramps_id,
-         self.gender,
-         primary_name,
-         alternate_names,
-         self.nickname,
-         death_ref,
-         birth_ref,
-         event_ref_list,
-         self.family_list,
-         self.parent_family_list,
-         media_list,
-         address_list,
-         attribute_list,
-         urls,
-         lds_ord_list,
-         sn,
-         self.change,
-         self.marker,
+        (self.handle, 
+         self.gramps_id, 
+         self.gender, 
+         primary_name, 
+         alternate_names, 
+         self.nickname, 
+         death_ref, 
+         birth_ref, 
+         event_ref_list, 
+         self.family_list, 
+         self.parent_family_list, 
+         media_list, 
+         address_list, 
+         attribute_list, 
+         urls, 
+         lds_ord_list, 
+         sn, 
+         self.change, 
+         self.marker, 
          self.private) = data
 
         self.primary_name.unserialize(primary_name)
@@ -205,17 +205,17 @@ class Person(PrimaryObject,SourceNote,
                                 for name in alternate_names]
         self.event_ref_list = [EventRef().unserialize(er)
                                for er in event_ref_list]
-        MediaBase.unserialize(self,media_list)
-        LdsOrdBase.unserialize(self,lds_ord_list)
-        AddressBase.unserialize(self,address_list)
-        AttributeBase.unserialize(self,attribute_list)
-        UrlBase.unserialize(self,urls)
-        SourceNote.unserialize(self,sn)
+        MediaBase.unserialize(self, media_list)
+        LdsOrdBase.unserialize(self, lds_ord_list)
+        AddressBase.unserialize(self, address_list)
+        AttributeBase.unserialize(self, attribute_list)
+        UrlBase.unserialize(self, urls)
+        SourceNote.unserialize(self, sn)
             
-    def _has_handle_reference(self,classname,handle):
+    def _has_handle_reference(self, classname, handle):
         if classname == 'Event':
             return handle in [ref.ref for ref in
-                              self.event_ref_list + [self.birth_ref,
+                              self.event_ref_list + [self.birth_ref, 
                                                      self.death_ref]
                               if ref]
         elif classname == 'Family':
@@ -225,7 +225,7 @@ class Person(PrimaryObject,SourceNote,
             return handle in self.lds_ord_list
         return False
 
-    def _remove_handle_references(self,classname,handle_list):
+    def _remove_handle_references(self, classname, handle_list):
         if classname == 'Event':
             new_list = [ ref for ref in self.event_ref_list \
                                         if ref and ref.ref not in handle_list ]
@@ -246,7 +246,7 @@ class Person(PrimaryObject,SourceNote,
                 if ordinance.place in handle_list:
                     ordinance.place = None
 
-    def _replace_handle_reference(self,classname,old_handle,new_handle):
+    def _replace_handle_reference(self, classname, old_handle, new_handle):
         if classname == 'Event':
             handle_list = [ref.ref for ref in self.event_ref_list]
             while old_handle in handle_list:
@@ -265,7 +265,7 @@ class Person(PrimaryObject,SourceNote,
             new_list = []
             for item in self.parent_family_list:
                 if item[0] == old_handle:
-                    new_list.append((new_handle,item[1],item[2]))
+                    new_list.append((new_handle, item[1], item[2]))
                 else:
                     new_list.append(item)
             self.parent_family_list = new_list
@@ -281,7 +281,7 @@ class Person(PrimaryObject,SourceNote,
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.nickname,self.gramps_id]
+        return [self.nickname, self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -310,13 +310,13 @@ class Person(PrimaryObject,SourceNote,
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Returns the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @return: Returns the list of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
-        return [('Family',handle) for handle in self.family_list 
+        return [('Family', handle) for handle in self.family_list 
                         + [item[0] for item in self.parent_family_list]]
 
     def get_handle_referents(self):
@@ -327,26 +327,18 @@ class Person(PrimaryObject,SourceNote,
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
         """
-        birth_death = [i for i in [self.birth_ref,self.death_ref] if i]
+        birth_death = [i for i in [self.birth_ref, self.death_ref] if i]
         return self.get_sourcref_child_list() + self.source_list \
                + self.event_ref_list + birth_death
 
-    def set_complete_flag(self,val):
-        warn( "Use set_marker instead of set_complete_flag", DeprecationWarning, 2)
-        # Wrapper for old API
-        # remove when transitition done.
-        if val:
-            self.marker = (PrimaryObject.MARKER_COMPLETE, "")
-        else:
-            self.marker = (PrimaryObject.MARKER_NONE, "")
-
     def get_complete_flag(self):
-        warn( "Use get_marker instead of get_complete_flag", DeprecationWarning, 2)
+        warn( "Use get_marker instead of get_complete_flag",
+              DeprecationWarning, 2)
         # Wrapper for old API
         # remove when transitition done.
         return self.marker[0] == PrimaryObject.MARKER_COMPLETE
 
-    def set_primary_name(self,name):
+    def set_primary_name(self, name):
         """
         Sets the primary name of the Person to the specified
         L{Name} instance
@@ -374,7 +366,7 @@ class Person(PrimaryObject,SourceNote,
         """
         return self.alternate_names
 
-    def set_alternate_names(self,alt_name_list):
+    def set_alternate_names(self, alt_name_list):
         """
         Changes the list of alternate names to the passed list. 
         @param alt_name_list: List of L{Name} instances
@@ -382,7 +374,7 @@ class Person(PrimaryObject,SourceNote,
         """
         self.alternate_names = alt_name_list
 
-    def add_alternate_name(self,name):
+    def add_alternate_name(self, name):
         """
         Adds a L{Name} instance to the list of alternative names
 
@@ -391,7 +383,7 @@ class Person(PrimaryObject,SourceNote,
         """
         self.alternate_names.append(name)
 
-    def set_nick_name(self,name):
+    def set_nick_name(self, name):
         """
         Sets the nickname field for the Person
 
@@ -409,7 +401,7 @@ class Person(PrimaryObject,SourceNote,
         """
         return self.nickname
 
-    def set_gender(self,gender) :
+    def set_gender(self, gender) :
         """
         Sets the gender of the Person.
 
@@ -434,16 +426,17 @@ class Person(PrimaryObject,SourceNote,
         """
         return self.gender
 
-    def set_birth_handle(self,event_handle):
-        warn( "Use set_birth_ref instead of set_birth_handle", DeprecationWarning, 2)
+    def set_birth_handle(self, event_handle):
+        warn( "Use set_birth_ref instead of set_birth_handle",
+              DeprecationWarning, 2)
         # Wrapper for old API
         # remove when transitition done.
         event_ref = EventRef()
         event_ref.set_reference_handle(event_handle)
-        event_ref.set_role((EventRef.PRIMARY,''))
+        event_ref.set_role((EventRef.PRIMARY, ''))
         self.set_birth_ref( event_ref)
 
-    def set_birth_ref(self,event_ref):
+    def set_birth_ref(self, event_ref):
         """
         Assigns the birth event to the Person object. This is accomplished
         by assigning the L{EventRef} of the birth event in the current
@@ -453,20 +446,21 @@ class Person(PrimaryObject,SourceNote,
             the Person's birth.
         @type event_handle: EventRef
         """
-        if event_ref and not isinstance(event_ref,EventRef):
+        if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
         self.birth_ref = event_ref
 
-    def set_death_handle(self,event_handle):
-        warn( "Use set_death_ref instead of set_death_handle", DeprecationWarning, 2)
+    def set_death_handle(self, event_handle):
+        warn( "Use set_death_ref instead of set_death_handle",
+              DeprecationWarning, 2)
         # Wrapper for old API
         # remove when transitition done.
         event_ref = EventRef()
         event_ref.set_reference_handle(event_handle)
-        event_ref.set_role((EventRef.PRIMARY,''))
+        event_ref.set_role((EventRef.PRIMARY, ''))
         self.set_death_ref( event_ref)
 
-    def set_death_ref(self,event_ref):
+    def set_death_ref(self, event_ref):
         """
         Assigns the death event to the Person object. This is accomplished
         by assigning the L{EventRef} of the death event in the current
@@ -476,18 +470,9 @@ class Person(PrimaryObject,SourceNote,
             the Person's death.
         @type event_handle: EventRef
         """
-        if event_ref and not isinstance(event_ref,EventRef):
+        if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
         self.death_ref = event_ref
-
-#    def get_birth_handle(self):
-#        warn( "Use get_birth_ref instead of get_birth_handle", DeprecationWarning, 2)
-#        # Wrapper for old API
-#        # remove when transitition done.
-#        event_ref = self.get_birth_ref()
-#        if event_ref:
-#            return event_ref.get_reference_handle()
-#        return ""
 
     def get_birth_ref(self):
         """
@@ -500,15 +485,6 @@ class Person(PrimaryObject,SourceNote,
         """
         return self.birth_ref
 
-#     def get_death_handle(self):
-#         warn( "Use get_death_ref instead of get_death_handle", DeprecationWarning, 2)
-#         # Wrapper for old API
-#         # remove when transitition done.
-#         event_ref = self.get_death_ref()
-#         if event_ref:
-#             return event_ref.get_reference_handle()
-#         return ""
-
     def get_death_ref(self):
         """
         Returns the L{EventRef} for the Person's death event. This
@@ -520,16 +496,17 @@ class Person(PrimaryObject,SourceNote,
         """
         return self.death_ref
 
-    def add_event_handle(self,event_handle):
-        warn( "Use add_event_ref instead of add_event_handle", DeprecationWarning, 2)
+    def add_event_handle(self, event_handle):
+        warn( "Use add_event_ref instead of add_event_handle",
+              DeprecationWarning, 2)
         # Wrapper for old API
         # remove when transitition done.
         event_ref = EventRef()
         event_ref.set_reference_handle(event_handle)
-        event_ref.set_role((EventRef.PRIMARY,''))
+        event_ref.set_role((EventRef.PRIMARY, ''))
         self.add_event_ref( event_ref)
 
-    def add_event_ref(self,event_ref):
+    def add_event_ref(self, event_ref):
         """
         Adds the L{EventRef} to the Person instance's L{EventRef} list.
         This is accomplished by assigning the L{EventRef} of a valid
@@ -539,12 +516,13 @@ class Person(PrimaryObject,SourceNote,
             Person's L{EventRef} list.
         @type event_ref: EventRef
         """
-        if event_ref and not isinstance(event_ref,EventRef):
+        if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
         self.event_ref_list.append(event_ref)
 
     def get_event_list(self):
-        warn( "Use get_event_ref_list instead of get_event_list", DeprecationWarning, 2)
+        warn( "Use get_event_ref_list instead of get_event_list",
+              DeprecationWarning, 2)
         # Wrapper for old API
         # remove when transitition done.
         event_handle_list = []
@@ -563,19 +541,20 @@ class Person(PrimaryObject,SourceNote,
         """
         return self.event_ref_list
 
-    def set_event_list(self,event_list):
-        warn( "Use set_event_ref_list instead of set_event_list", DeprecationWarning, 2)
+    def set_event_list(self, event_list):
+        warn( "Use set_event_ref_list instead of set_event_list",
+              DeprecationWarning, 2)
         # Wrapper for old API
         # remove when transitition done.
         event_ref_list = []
         for event_handle in event_list:
             event_ref = EventRef()
             event_ref.set_reference_handle(event_handle)
-            event_ref.set_role((EventRef.PRIMARY,''))
+            event_ref.set_role((EventRef.PRIMARY, ''))
             event_ref_list.append( event_ref)
         self.set_event_ref_list(event_ref_list)
 
-    def set_event_ref_list(self,event_ref_list):
+    def set_event_ref_list(self, event_ref_list):
         """
         Sets the Person instance's L{EventRef} list to the passed list.
 
@@ -584,7 +563,7 @@ class Person(PrimaryObject,SourceNote,
         """
         self.event_ref_list = event_ref_list
 
-    def add_family_handle(self,family_handle):
+    def add_family_handle(self, family_handle):
         """
         Adds the L{Family} handle to the Person instance's L{Family} list.
         This is accomplished by assigning the handle of a valid L{Family}
@@ -601,7 +580,7 @@ class Person(PrimaryObject,SourceNote,
         """
         self.family_list.append(family_handle)
 
-    def set_preferred_family_handle(self,family_handle):
+    def set_preferred_family_handle(self, family_handle):
         """
         Sets the family_handle specified to be the preferred L{Family}.
         The preferred L{Family} is determined by the first L{Family} in the
@@ -636,7 +615,7 @@ class Person(PrimaryObject,SourceNote,
         """
         return self.family_list
 
-    def set_family_handle_list(self,family_list) :
+    def set_family_handle_list(self, family_list) :
         """
         Assigns the passed list to the Person's list of families in
         which it is a parent or spouse.
@@ -653,7 +632,7 @@ class Person(PrimaryObject,SourceNote,
         """
         self.family_list = []
 
-    def remove_family_handle(self,family_handle):
+    def remove_family_handle(self, family_handle):
         """
         Removes the specified L{Family} handle from the list
         of marriages/partnerships. If the handle does not
@@ -683,7 +662,7 @@ class Person(PrimaryObject,SourceNote,
         """
         return self.parent_family_list
 
-    def add_parent_family_handle(self,family_handle,mrel,frel):
+    def add_parent_family_handle(self, family_handle, mrel, frel):
         """
         Adds the L{Family} handle to the Person instance's list of
         families in which it is a child. This is accomplished by
@@ -703,22 +682,24 @@ class Person(PrimaryObject,SourceNote,
         @type frel: tuple
         """
         if not type(mrel) == tuple:
-            if mrel in range(0,8):
-                warn( "add_parent_family_handle now takes a tuple", DeprecationWarning, 2)
+            if mrel in range(0, 8):
+                warn( "add_parent_family_handle now takes a tuple",
+                      DeprecationWarning, 2)
                 # Wrapper for old API
                 # remove when transitition done.
-                mrel = (mrel,'')
+                mrel = (mrel, '')
             else:
                 assert type(mrel) == tuple
         if not type(frel) == tuple:
-            if frel in range(0,8):
-                warn( "add_parent_family_handle now takes a tuple", DeprecationWarning, 2)
+            if frel in range(0, 8):
+                warn( "add_parent_family_handle now takes a tuple",
+                      DeprecationWarning, 2)
                 # Wrapper for old API
                 # remove when transitition done.
-                frel = (frel,'')
+                frel = (frel, '')
             else:
                 assert type(frel) == tuple
-        self.parent_family_list.append((family_handle,mrel,frel))
+        self.parent_family_list.append((family_handle, mrel, frel))
 
     def clear_parent_family_handle_list(self):
         """
@@ -726,7 +707,7 @@ class Person(PrimaryObject,SourceNote,
         """
         self.parent_family_list = []
 
-    def remove_parent_family_handle(self,family_handle):
+    def remove_parent_family_handle(self, family_handle):
         """
         Removes the specified L{Family} handle from the list of parent
         families (families in which the parent is a child). If the
@@ -748,7 +729,7 @@ class Person(PrimaryObject,SourceNote,
         else:
             return None
 
-    def change_parent_family_handle(self,family_handle,mrel,frel):
+    def change_parent_family_handle(self, family_handle, mrel, frel):
         """
         Changes the relationships of the L{Family} handle in the Person
         instance's list of families in which it is a child. The handle
@@ -765,12 +746,12 @@ class Person(PrimaryObject,SourceNote,
         index=0
         for f in self.parent_family_list[:]:
             if f[0] == family_handle:
-                self.parent_family_list[index] = (family_handle,mrel,frel)
+                self.parent_family_list[index] = (family_handle, mrel, frel)
                 return True
             index += 1
         return False
     
-    def get_parent_family(self,family_handle):
+    def get_parent_family(self, family_handle):
         """
         Finds the L{Family} and relationships associated with passed
         family_handle.
@@ -788,7 +769,7 @@ class Person(PrimaryObject,SourceNote,
         else:
             return None
 
-    def set_main_parent_family_handle(self,family_handle):
+    def set_main_parent_family_handle(self, family_handle):
         """
         Sets the main L{Family} in which the Person is a child. The
         main L{Family} is the L{Family} typically used for reports and
@@ -814,7 +795,7 @@ class Person(PrimaryObject,SourceNote,
         Returns the handle of the L{Family} considered to be the main
         L{Family} in which the Person is a child.
 
-        @return: Returns the family_handle if a family_handle exists,
+        @return: Returns the family_handle if a family_handle exists, 
             If no L{Family} is assigned, None is returned
         @rtype: str
         """
