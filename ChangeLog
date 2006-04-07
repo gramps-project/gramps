@@ -1,3 +1,6 @@
+2006-04-07  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: Fix call to EditName, pylint fixes
+
 2006-04-06  Don Allingham  <don@gramps-project.org>
 	* src/glade/gramps.glade: restored addr_edit
 	* src/DataViews/_FamilyView.py: add select parents function
