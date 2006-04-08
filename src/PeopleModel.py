@@ -5,20 +5,27 @@
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License,or
+# the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program; if not,write to the Free Software
-# Foundation,Inc.,59 Temple Place,Suite 330,Boston,MA  02111-1307  USA
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
 # $Id$
+
+"""
+TreeModel for the GRAMPS Person tree.
+"""
+
+__author__ = "Donald N. Allingham"
+__revision__ = "$Revision:$"
 
 #-------------------------------------------------------------------------
 #
@@ -77,32 +84,38 @@ _codeset = GrampsLocale.codeset
 #
 #-------------------------------------------------------------------------
 
-_ID_COL    = 1
-_GENDER_COL= 2
-_NAME_COL  = 3
-_DEATH_COL = 6
-_BIRTH_COL = 7
-_EVENT_COL = 8
-_FAMILY_COL= 9
-_CHANGE_COL= 19
-_MARKER_COL= 20
+_ID_COL     = 1
+_GENDER_COL = 2
+_NAME_COL   = 3
+_DEATH_COL  = 6
+_BIRTH_COL  = 7
+_EVENT_COL  = 8
+_FAMILY_COL = 9
+_CHANGE_COL = 19
+_MARKER_COL = 20
 
 #-------------------------------------------------------------------------
 #
 # python 2.3 has a bug in the unicode sorting using locale.strcoll. Seems
 # to have a buffer overrun. We can convince it to do the right thing by
-# forcing the string to be nul terminated,sorting,then stripping off the
+# forcing the string to be nul terminated, sorting, then stripping off the
 # nul.
 #
 #-------------------------------------------------------------------------
 
 if sys.version_info[0:2] == (2, 3):
     def locale_sort(mylist):
-        mylist = map(lambda x: x + "\x00",mylist)
+        """
+        Sort version to get around a python2.3 bug with unicode strings
+        """
+        mylist = [ value + "\x00" for value in mylist ]
         mylist.sort(locale.strcoll)
-        return map(lambda x: x[:-1],mylist)
+        return [ value[:-1] for value in mylist ]
 else:
     def locale_sort(mylist):
+        """
+        Normal sort routine
+        """
         mylist.sort(locale.strcoll)
         return mylist
 
@@ -112,8 +125,15 @@ else:
 #
 #-------------------------------------------------------------------------
 class PeopleModel(gtk.GenericTreeModel):
+    """
+    Basic GenericTreeModel interface to handle the Tree interface for
+    the PersonView
+    """
 
     def __init__(self, db, data_filter=None, invert_result=False, skip=[]):
+        """
+        Initialize the model building the initial data
+        """
         gtk.GenericTreeModel.__init__(self)
 
         self.db = db
@@ -128,10 +148,16 @@ class PeopleModel(gtk.GenericTreeModel):
         self.rebuild_data(data_filter, skip)
 
     def rebuild_data(self, data_filter=None, skip=[]):
+        """
+        Convience function that calculates the new data and assigns it.
+        """
         self.calculate_data(data_filter, skip)
         self.assign_data()
         
     def calculate_data(self, dfilter=None, skip=[]):
+        """
+        Calculates the new path to node values for the model.
+        """
         if dfilter:
             self.dfilter = dfilter
         self.temp_iter2path = {}
@@ -194,7 +220,7 @@ class PeopleModel(gtk.GenericTreeModel):
     def on_get_n_columns(self):
         return len(COLUMN_DEFS)
 
-    def on_get_path(self,node):
+    def on_get_path(self,  node):
         '''returns the tree path (a tuple of indices at the various
         levels) for a particular node.'''
         try:
@@ -209,7 +235,7 @@ class PeopleModel(gtk.GenericTreeModel):
     def on_get_column_type(self, index):
         return COLUMN_DEFS[index][COLUMN_DEF_TYPE]
 
-    def on_get_iter(self,path):
+    def on_get_iter(self, path):
         try:
             if len(path)==1: # Top Level
                 return self.top_path2iter[path[0]]
@@ -223,23 +249,23 @@ class PeopleModel(gtk.GenericTreeModel):
         # test for header or data row-type
         if self.sname_sub.has_key(node):
             # Header rows dont get the background color set
-            if col==self.marker_color_column:
+            if col == self.marker_color_column:
                 return None
             # test for 'header' column being empty (most are)
             if not COLUMN_DEFS[col][COLUMN_DEF_HEADER]:
                 return u''
-            # return values for 'header' row,calling a function
+            # return values for 'header' row, calling a function
             # according to column_defs table
             val = COLUMN_DEFS[col][COLUMN_DEF_HEADER](self, node)
             return val
         else:
-            # return values for 'data' row,calling a function
+            # return values for 'data' row, calling a function
             # according to column_defs table
             try:
                 if node != self.prev_handle:
                     self.prev_data = self.db.get_raw_person_data(str(node))
                     self.prev_handle = node
-                return COLUMN_DEFS[col][COLUMN_DEF_LIST](self, 
+                return COLUMN_DEFS[col][COLUMN_DEF_LIST](self,
                                                          self.prev_data, node)
             except:
                 if col == _MARKER_COL:
@@ -247,7 +273,7 @@ class PeopleModel(gtk.GenericTreeModel):
                 else:
                     return u'error'
 
-    def on_iter_next(self,node):
+    def on_iter_next(self,  node):
         '''returns the next node at this level of the tree'''
         try:
             path = self.top_path2iter.index(node)
@@ -265,7 +291,7 @@ class PeopleModel(gtk.GenericTreeModel):
         else:
             return self.path2iter.get((node, 0))
 
-    def on_iter_has_child(self,node):
+    def on_iter_has_child(self, node):
         '''returns true if this node has children'''
         if node == None:
             return len(self.sname_sub)
@@ -292,7 +318,7 @@ class PeopleModel(gtk.GenericTreeModel):
         except IndexError:
             return None
 
-    def on_iter_parent(self,node):
+    def on_iter_parent(self, node):
         '''returns the parent of this node'''
         path = self.iter2path.get(node)
         if path:
@@ -309,7 +335,7 @@ class PeopleModel(gtk.GenericTreeModel):
         handle = data[0]
         for family_handle in data[_FAMILY_COL]:
             family = self.db.get_family_from_handle(family_handle)
-            for spouse_id in [family.get_father_handle(), 
+            for spouse_id in [family.get_father_handle(),
                               family.get_mother_handle()]:
                 if not spouse_id:
                     continue
@@ -317,7 +343,7 @@ class PeopleModel(gtk.GenericTreeModel):
                     continue
                 spouse = self.db.get_person_from_handle(spouse_id)
                 if len(spouses_names) > 0:
-                    spouses_names += ","
+                    spouses_names += ", "
                 spouses_names += NameDisplay.displayer.display(spouse)
         return spouses_names
 
@@ -330,15 +356,16 @@ class PeopleModel(gtk.GenericTreeModel):
         return data[_ID_COL]
 
     def column_change(self, data, node):
-        return unicode(time.strftime('%x %X', time.localtime(data[_CHANGE_COL])), 
-                            _codeset)
+        return unicode(
+            time.strftime('%x %X', time.localtime(data[_CHANGE_COL])),
+            _codeset)
 
     def column_gender(self, data, node):
         return _GENDER[data[_GENDER_COL]]
 
     def column_birth_day(self, data, node):
         if data[_BIRTH_COL]:
-            b=EventRef()
+            b = EventRef()
             b.unserialize(data[_BIRTH_COL])
             birth = self.db.get_event_from_handle(b.ref)
             date_str = DateHandler.get_date(birth)
@@ -351,7 +378,7 @@ class PeopleModel(gtk.GenericTreeModel):
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()[0]
             date_str = DateHandler.get_date(event)
-            if (etype in [Event.BAPTISM,Event.CHRISTEN]
+            if (etype in [Event.BAPTISM, Event.CHRISTEN]
                 and date_str != ""):
                 return "<i>" + cgi.escape(date_str) + "</i>"
         
@@ -372,7 +399,7 @@ class PeopleModel(gtk.GenericTreeModel):
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()[0]
             date_str = DateHandler.get_date(event)
-            if (etype in [Event.BURIAL,Event.CREMATION]
+            if (etype in [Event.BURIAL, Event.CREMATION]
                 and date_str != ""):
                 return "<i>" + cgi.escape(date_str) + "</i>"
         
@@ -404,7 +431,7 @@ class PeopleModel(gtk.GenericTreeModel):
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()[0]
-            if etype in [Event.BAPTISM,Event.CHRISTEN]:
+            if etype in [Event.BAPTISM, Event.CHRISTEN]:
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = self.db.get_place_from_handle(place_handle)
@@ -422,7 +449,8 @@ class PeopleModel(gtk.GenericTreeModel):
             if event:
                 place_handle = event.get_place_handle()
                 if place_handle:
-                    place_title = self.db.get_place_from_handle(place_handle).get_title()
+                    place = self.db.get_place_from_handle(place_handle)
+                    place_title = place.get_title()
                     if place_title != "":
                         return cgi.escape(place_title)
         
@@ -431,10 +459,11 @@ class PeopleModel(gtk.GenericTreeModel):
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()[0]
-            if etype in [Event.BURIAL,Event.CREMATION]:
+            if etype in [Event.BURIAL, Event.CREMATION]:
                 place_handle = event.get_place_handle()
                 if place_handle:
-                    place_title = self.db.get_place_from_handle(place_handle).get_title()
+                    place = self.db.get_place_from_handle(place_handle)
+                    place_title = place.get_title()
                     if place_title != "":
                         return "<i>" + cgi.escape(place_title) + "</i>"
         
@@ -466,7 +495,10 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_tooltip(self, data, node):
         if const.use_tips:
-            return ToolTips.TipFromFunction(self.db,lambda: self.db.get_person_from_handle(data[0]))
+            return ToolTips.TipFromFunction(
+                self.db,
+                lambda: self.db.get_person_from_handle(data[0])
+                )
         else:
             return u''
         
@@ -480,32 +512,32 @@ class PeopleModel(gtk.GenericTreeModel):
     def column_header_view(self, node):
         return True
 
-_GENDER = [ _(u'female'),_(u'male'),_(u'unknown') ]
+_GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
 # table of column definitions
-# (unless this is declared after the PeopleModel class,an error is thrown)
+# (unless this is declared after the PeopleModel class, an error is thrown)
+
 COLUMN_DEFS = [
-    # data column (method)          header column (method)         column data type 
-    (PeopleModel.column_name,           PeopleModel.column_header, str), 
-    (PeopleModel.column_id,             None,                      str), 
-    (PeopleModel.column_gender,         None,                      str), 
-    (PeopleModel.column_birth_day,      None,                      str), 
-    (PeopleModel.column_birth_place,    None,                      str), 
-    (PeopleModel.column_death_day,      None,                      str), 
-    (PeopleModel.column_death_place,    None,                      str), 
-    (PeopleModel.column_spouse,         None,                      str), 
-    (PeopleModel.column_change,         None,                      str), 
-    (PeopleModel.column_cause_of_death, None,                      str), 
-    (PeopleModel.column_marker_text,    None,                      str), 
-    (PeopleModel.column_marker_color,   None,                      str), 
+    (PeopleModel.column_name,           PeopleModel.column_header, str),
+    (PeopleModel.column_id,             None,                      str),
+    (PeopleModel.column_gender,         None,                      str),
+    (PeopleModel.column_birth_day,      None,                      str),
+    (PeopleModel.column_birth_place,    None,                      str),
+    (PeopleModel.column_death_day,      None,                      str),
+    (PeopleModel.column_death_place,    None,                      str),
+    (PeopleModel.column_spouse,         None,                      str),
+    (PeopleModel.column_change,         None,                      str),
+    (PeopleModel.column_cause_of_death, None,                      str),
+    (PeopleModel.column_marker_text,    None,                      str),
+    (PeopleModel.column_marker_color,   None,                      str),
     # the order of the above columns must match PeopleView.column_names
 
-    # these columns are hidden,and must always be last in the list
-    (PeopleModel.column_tooltip,        None,                      object),   
-    (PeopleModel.column_int_id,         None,                      str), 
+    # these columns are hidden, and must always be last in the list
+    (PeopleModel.column_tooltip,        None,                      object),  
+    (PeopleModel.column_int_id,         None,                      str),
     ]
 
-# dynamic calculation of column indices,for use by various Views
+# dynamic calculation of column indices, for use by various Views
 COLUMN_INT_ID = 13
 
 # indices into main column definition table
