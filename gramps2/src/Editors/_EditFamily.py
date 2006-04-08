@@ -335,7 +335,8 @@ class FastFemaleFilter:
 #-------------------------------------------------------------------------
 class EditFamily(EditPrimary):
 
-    def __init__(self,dbstate,uistate,track,family):
+    def __init__(self,dbstate, uistate, track, family):
+        
         EditPrimary.__init__(self, dbstate, uistate, track,
                              family, dbstate.db.get_family_from_handle)
 
@@ -765,7 +766,13 @@ class EditFamily(EditPrimary):
                     person.family_list.append(self.obj.handle)
                 self.db.commit_person(person,trans)
 
+    def object_is_empty(self):
+        return self.obj.get_father_handle() == None and \
+               self.obj.get_mother_handle() == None and \
+               len(self.obj.get_child_handle_list()) == 0
+
     def save(self,*obj):
+
         if not self.added:
             original = self.db.get_family_from_handle(self.obj.handle)
         else:
@@ -806,6 +813,10 @@ class EditFamily(EditPrimary):
                         _("No data exists for this family. Please "
                           "enter data or cancel the edit."))
             return
+        elif original and self.object_is_empty():
+            trans = self.db.transaction_begin()
+            self.db.remove_family(self.obj.handle,trans)
+            self.db.transaction_commit(trans,_("Remove Family"))
         elif cmp(original.serialize(),self.obj.serialize()):
 
             trans = self.db.transaction_begin()
@@ -838,5 +849,6 @@ class EditFamily(EditPrimary):
             else:
                 self.db.commit_family(self.obj,trans)
             self.db.transaction_commit(trans,_("Edit Family"))
+
         self.close_window()
 
