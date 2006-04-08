@@ -243,6 +243,13 @@ class PdfDoc(BaseDoc.BaseDoc):
         self.text = ""
 
     def end_table(self):
+        # Calculate optimal widths
+        self.cur_table_cols = []
+        width = float(self.cur_table.get_width()/100.0) * self.get_usable_width()
+        for val in range(self.cur_table.get_columns()):
+            percent = float(self.cur_table.get_column_width(val))/100.0
+            self.cur_table_cols.append(int(width * percent * cm))
+
         ts = reportlab.platypus.tables.TableStyle(self.tblstyle)
         tbl = reportlab.platypus.tables.Table(data=self.table_data,
                                               colWidths=self.cur_table_cols,
@@ -255,10 +262,6 @@ class PdfDoc(BaseDoc.BaseDoc):
         self.col = 0
         self.cur_row = []
         self.cur_table_cols = []
-        width = float(self.cur_table.get_width()/100.0) * self.get_usable_width()
-        for val in range(self.cur_table.get_columns()):
-            percent = float(self.cur_table.get_column_width(val))/100.0
-            self.cur_table_cols.append(int(width * percent * cm))
 
     def end_row(self):
         self.table_data.append(self.cur_row)
@@ -274,12 +277,9 @@ class PdfDoc(BaseDoc.BaseDoc):
         else:
             self.cur_row.append("")
         
-        the_width = self.cur_table_cols[self.col]
+        # Fill in cells that this cell spans over
         for val in range(1,self.span):
             self.cur_row.append("")
-            the_width += self.cur_table_cols[self.col+val]
-            self.cur_table_cols[self.col+val] = 0
-        self.cur_table_cols[self.col] = the_width
 
         p = self.my_para
         f = p.get_font()
@@ -317,6 +317,14 @@ class PdfDoc(BaseDoc.BaseDoc):
                 self.tblstyle.append(('ALIGN', loc, loc, 'CENTER'))
             self.tblstyle.append(('VALIGN', loc, loc, 'TOP'))
 
+        # The following lines will enable the span feature. 
+        # This is nice, except when spanning, lines that would have overfilled 
+        # their cells still increase the height of the cell to make room for the
+        # wrapped text (even though the text does not actually wrap because it 
+        # is spanned)
+        #if self.span != 1: 
+        #    self.tblstyle.append(('SPAN', (self.col, self.row), (self.col + self.span - 1, self.row ) ))
+
         self.col = self.col + self.span
         self.text = ""
 
@@ -327,6 +335,9 @@ class PdfDoc(BaseDoc.BaseDoc):
             return
         
         x,y = img.size()
+
+        if (x,y) == (0,0):
+            return
 
         ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
 
