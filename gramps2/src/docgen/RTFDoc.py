@@ -349,6 +349,9 @@ class RTFDoc(BaseDoc.BaseDoc):
         
         nx,ny = im.size()
 
+        if (nx,ny) == (0,0):
+            return
+
         ratio = float(x_cm)*float(ny)/(float(y_cm)*float(nx))
 
         if ratio < 1:
