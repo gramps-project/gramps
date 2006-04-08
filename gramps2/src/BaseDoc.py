@@ -58,7 +58,7 @@ interfaces should be derived from the core classes.
 """
 
 __author__ = "Donald N. Allingham"
-__version__ = "Revision:$Id$"
+__revision__ = "Revision:$Id$"
 
 #-------------------------------------------------------------------------
 #
@@ -101,33 +101,41 @@ except:
 #
 #-------------------------------------------------------------------------
 FONT_SANS_SERIF = 0
-FONT_SERIF = 1
-FONT_MONOSPACE = 2
+FONT_SERIF      = 1
+FONT_MONOSPACE  = 2
 
+#-------------------------------------------------------------------------
 #
 # Page orientation
 #
+#-------------------------------------------------------------------------
 PAPER_PORTRAIT  = 0
 PAPER_LANDSCAPE = 1
 
+#-------------------------------------------------------------------------
 #
 # Paragraph alignment
 #
-PARA_ALIGN_CENTER = 0
-PARA_ALIGN_LEFT   = 1 
-PARA_ALIGN_RIGHT  = 2
-PARA_ALIGN_JUSTIFY= 3
+#-------------------------------------------------------------------------
+PARA_ALIGN_CENTER  = 0
+PARA_ALIGN_LEFT    = 1 
+PARA_ALIGN_RIGHT   = 2
+PARA_ALIGN_JUSTIFY = 3
 
+#-------------------------------------------------------------------------
 #
 # Text vs. Graphics mode
 #
-TEXT_MODE = 0
+#-------------------------------------------------------------------------
+TEXT_MODE     = 0
 GRAPHICS_MODE = 1
 
+#-------------------------------------------------------------------------
 #
 # Line style
 #
-SOLID = 0
+#-------------------------------------------------------------------------
+SOLID  = 0
 DASHED = 1
 
 #------------------------------------------------------------------------
@@ -140,10 +148,7 @@ def cnv2color(text):
     converts a hex value in the form of #XXXXXX into a tuple of integers
     representing the RGB values
     """
-    c0 = int(text[1:3], 16)
-    c1 = int(text[3:5], 16)
-    c2 = int(text[5:7], 16)
-    return (c0, c1, c2)
+    return (int(text[1:3], 16), int(text[3:5], 16), int(text[5:7], 16))
 
 #------------------------------------------------------------------------
 #
@@ -548,13 +553,19 @@ class ParagraphStyle:
             self.right_border = 0
             self.left_border = 0
             self.pad = 0
-            self.bgcolor = (255,255,255)
+            self.bgcolor = (255, 255, 255)
             self.description = ""
 
     def set_description(self, text):
+        """
+        Sets the desciption of the paragraph
+        """
         self.description = text
 
     def get_description(self):
+        """
+        Returns the desciption of the paragraph
+        """
         return self.description
 
     def set(self, rmargin=None, lmargin=None, first_indent=None,
@@ -681,7 +692,7 @@ class ParagraphStyle:
         "Returns 1 if a left border is specified"
         return self.left_border
 
-    def set_right_border(self ,val):
+    def set_right_border(self, val):
         """
         Sets the presence or absence of rigth border.
 
@@ -800,7 +811,7 @@ class StyleSheetList:
         """
         defstyle.set_name('default')
         self.map = { "default" : defstyle }
-        self.file = os.path.join(const.home_dir,filename)
+        self.file = os.path.join(const.home_dir, filename)
         self.parse()
 
     def delete_style_sheet(self, name):
@@ -846,48 +857,49 @@ class StyleSheetList:
         """
         Saves the current StyleSheet definitions to the associated file.
         """
-        f = open(self.file,"w")
-        f.write("<?xml version=\"1.0\"?>\n")
-        f.write('<stylelist>\n')
+        xml_file = open(self.file,"w")
+        xml_file.write("<?xml version=\"1.0\"?>\n")
+        xml_file.write('<stylelist>\n')
         for name in self.map.keys():
             if name == "default":
                 continue
             sheet = self.map[name]
-            f.write('<sheet name="%s">\n' % name)
+            xml_file.write('<sheet name="%s">\n' % name)
             for p_name in sheet.get_names():
-                p = sheet.get_style(p_name)
-                f.write('<style name="%s">\n' % p_name)
-                font = p.get_font()
-                f.write('<font face="%d" ' % font.get_type_face())
-                f.write('size="%d" ' % font.get_size())
-                f.write('italic="%d" ' % font.get_italic())
-                f.write('bold="%d" ' % font.get_bold())
-                f.write('underline="%d" ' % font.get_underline())
-                f.write('color="#%02x%02x%02x"/>\n' % font.get_color())
-                f.write('<para ')
-                rm = float(p.get_right_margin())
-                lm = float(p.get_left_margin())
-                fi = float(p.get_first_indent())
-                tm = float(p.get_top_margin())
-                bm = float(p.get_bottom_margin())
-                pa = float(p.get_padding())
-                f.write('rmargin="%s" ' % Utils.gformat(rm))
-                f.write('lmargin="%s" ' % Utils.gformat(lm))
-                f.write('first="%s" ' % Utils.gformat(fi))
-                f.write('tmargin="%s" ' % Utils.gformat(tm))
-                f.write('bmargin="%s" ' % Utils.gformat(bm))
-                f.write('pad="%s" ' % Utils.gformat(pa))
-                f.write('bgcolor="#%02x%02x%02x" ' % p.get_background_color())
-                f.write('level="%d" ' % p.get_header_level())
-                f.write('align="%d" ' % p.get_alignment())
-                f.write('tborder="%d" ' % p.get_top_border())
-                f.write('lborder="%d" ' % p.get_left_border())
-                f.write('rborder="%d" ' % p.get_right_border())
-                f.write('bborder="%d"/>\n' % p.get_bottom_border())
-                f.write('</style>\n')
-            f.write('</sheet>\n')
-        f.write('</stylelist>\n')
-        f.close()
+                para = sheet.get_style(p_name)
+                xml_file.write('<style name="%s">\n' % p_name)
+                font = para.get_font()
+                xml_file.write('<font face="%d" ' % font.get_type_face())
+                xml_file.write('size="%d" ' % font.get_size())
+                xml_file.write('italic="%d" ' % font.get_italic())
+                xml_file.write('bold="%d" ' % font.get_bold())
+                xml_file.write('underline="%d" ' % font.get_underline())
+                xml_file.write('color="#%02x%02x%02x"/>\n' % font.get_color())
+                xml_file.write('<para ')
+                rmargin = float(para.get_right_margin())
+                lmargin = float(para.get_left_margin())
+                findent = float(para.get_first_indent())
+                tmargin = float(para.get_top_margin())
+                bmargin = float(para.get_bottom_margin())
+                padding = float(para.get_padding())
+                xml_file.write('rmargin="%s" ' % Utils.gformat(rmargin))
+                xml_file.write('lmargin="%s" ' % Utils.gformat(lmargin))
+                xml_file.write('first="%s" ' % Utils.gformat(findent))
+                xml_file.write('tmargin="%s" ' % Utils.gformat(tmargin))
+                xml_file.write('bmargin="%s" ' % Utils.gformat(bmargin))
+                xml_file.write('pad="%s" ' % Utils.gformat(padding))
+                bg_color = para.get_background_color()
+                xml_file.write('bgcolor="#%02x%02x%02x" ' % bg_color)
+                xml_file.write('level="%d" ' % para.get_header_level())
+                xml_file.write('align="%d" ' % para.get_alignment())
+                xml_file.write('tborder="%d" ' % para.get_top_border())
+                xml_file.write('lborder="%d" ' % para.get_left_border())
+                xml_file.write('rborder="%d" ' % para.get_right_border())
+                xml_file.write('bborder="%d"/>\n' % para.get_bottom_border())
+                xml_file.write('</style>\n')
+            xml_file.write('</sheet>\n')
+        xml_file.write('</stylelist>\n')
+        xml_file.close()
             
     def parse(self):
         """
@@ -895,9 +907,9 @@ class StyleSheetList:
         """
         try:
             if os.path.isfile(self.file):
-                p = make_parser()
-                p.setContentHandler(SheetParser(self))
-                p.parse(self.file)
+                parser = make_parser()
+                parser.setContentHandler(SheetParser(self))
+                parser.parse(self.file)
         except (IOError,OSError,SAXParseException):
             pass
         
@@ -911,7 +923,7 @@ class StyleSheet:
     A collection of named paragraph styles.
     """
     
-    def __init__(self,obj=None):
+    def __init__(self, obj=None):
         """
         Creates a new empty StyleSheet.
 
@@ -926,9 +938,15 @@ class StyleSheet:
                 self.style_list[style_name] = ParagraphStyle(style)
 
     def set_name(self, name):
+        """
+        Sets the name of the StyleSheet
+        """
         self.name = name
 
     def get_name(self):
+        """
+        Returns the name of the StyleSheet
+        """
         return self.name
 
     def clear(self):
@@ -1027,9 +1045,9 @@ class SheetParser(handler.ContentHandler):
         "Overridden class that handles the start of a XML element"
         if tag == "style":
             self.p.set_font(self.f)
-            self.s.add_style(self.pname,self.p)
+            self.s.add_style(self.pname, self.p)
         elif tag == "sheet":
-            self.sheetlist.set_style_sheet(self.sname,self.s)
+            self.sheetlist.set_style_sheet(self.sname, self.s)
 
 #------------------------------------------------------------------------
 #
@@ -1037,7 +1055,16 @@ class SheetParser(handler.ContentHandler):
 #
 #------------------------------------------------------------------------
 class GraphicsStyle:
+    """
+    Defines the properties of graphics objects, such as line width,
+    color, fill, ect.
+    """
     def __init__(self, obj=None):
+        """
+        Initialize the object with default values, unless a source
+        object is specified. In that case, make a copy of the source
+        object.
+        """
         if obj:
             self.height = obj.height
             self.width = obj.width
@@ -1055,14 +1082,20 @@ class GraphicsStyle:
             self.shadow = 0
             self.shadow_space = 0.2
             self.lwidth = 0.5
-            self.color = (0,0,0)
-            self.fill_color = (255,255,255)
+            self.color = (0, 0, 0)
+            self.fill_color = (255, 255, 255)
             self.lstyle = SOLID
 
     def set_line_width(self, val):
+        """
+        sets the line width
+        """
         self.lwidth = val
 
     def get_line_width(self):
+        """
+        Returns the name of the StyleSheet
+        """
         return self.lwidth
 
     def get_line_style(self):
@@ -1122,7 +1155,7 @@ class BaseDoc:
     such as OpenOffice, AbiWord, and LaTeX are derived from this base
     class, providing a common interface to all document generators.
     """
-    def __init__(self, styles, paper_type ,template,
+    def __init__(self, styles, paper_type, template,
                  orientation=PAPER_PORTRAIT):
         """
         Creates a BaseDoc instance, which provides a document generation
@@ -1180,7 +1213,7 @@ class BaseDoc:
     def print_requested(self):
         self.print_req = 1
 
-    def set_owner(self,owner):
+    def set_owner(self, owner):
         """
         Sets the name of the owner of the document.
 
@@ -1226,7 +1259,7 @@ class BaseDoc:
     def get_bottom_margin(self):
         return self.bmargin
 
-    def creator(self,name):
+    def creator(self, name):
         "Returns the owner name"
         self.name = name
 
@@ -1279,7 +1312,7 @@ class BaseDoc:
 
     def string_width(self, fontstyle, text):
         "Determine the width need for text in given font"
-        return FontScale.string_width(fontstyle,text)
+        return FontScale.string_width(fontstyle, text)
 
     def line_break(self):
         "Forces a line break within a paragraph"
@@ -1430,48 +1463,48 @@ class BaseDoc:
 
         p = []
         
-        degreestoradians = pi/180.0
-        radiansdelta = degreestoradians/2
-        sangle = start_angle*degreestoradians
-        eangle = end_angle*degreestoradians
-        while eangle<sangle:
-            eangle = eangle+2*pi
+        degreestoradians = pi / 180.0
+        radiansdelta = degreestoradians / 2
+        sangle = start_angle * degreestoradians
+        eangle = end_angle * degreestoradians
+        while eangle < sangle:
+            eangle = eangle + 2 * pi
         angle = sangle
 
         if short_radius == 0:
             p.append((centerx, centery))
         else:
-            origx = (centerx + cos(angle)*short_radius)
-            origy = (centery + sin(angle)*short_radius)
+            origx = (centerx + cos(angle) * short_radius)
+            origy = (centery + sin(angle) * short_radius)
             p.append((origx, origy))
             
-        while angle<eangle:
-            x = centerx + cos(angle)*radius
-            y = centery + sin(angle)*radius
+        while angle < eangle:
+            x = centerx + cos(angle) * radius
+            y = centery + sin(angle) * radius
             p.append((x, y))
-            angle = angle+radiansdelta
-        x = centerx + cos(eangle)*radius
-        y = centery + sin(eangle)*radius
+            angle = angle + radiansdelta
+        x = centerx + cos(eangle) * radius
+        y = centery + sin(eangle) * radius
         p.append((x, y))
 
         if short_radius:
-            x = centerx + cos(eangle)*short_radius
-            y = centery + sin(eangle)*short_radius
+            x = centerx + cos(eangle) * short_radius
+            y = centery + sin(eangle) * short_radius
             p.append((x, y))
 
             angle = eangle
-            while angle>=sangle:
-                x = centerx + cos(angle)*short_radius
-                y = centery + sin(angle)*short_radius
+            while angle >= sangle:
+                x = centerx + cos(angle) * short_radius
+                y = centery + sin(angle) * short_radius
                 p.append((x, y))
-                angle = angle-radiansdelta
+                angle = angle - radiansdelta
         self.draw_path(style, p)
 
-        delta = (eangle - sangle)/2.0
-        rad = short_radius + (radius-short_radius)/2.0
+        delta = (eangle - sangle) / 2.0
+        rad = short_radius + (radius - short_radius) / 2.0
 
-        return ( (centerx + cos(sangle+delta) * rad),
-                 (centery + sin(sangle+delta) * rad))
+        return ( (centerx + cos(sangle + delta) * rad),
+                 (centery + sin(sangle + delta) * rad))
     
     def start_path(self, style, x, y):
         pass
