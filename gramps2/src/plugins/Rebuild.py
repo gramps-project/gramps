@@ -64,31 +64,33 @@ from QuestionDialog import OkDialog
 #
 #-------------------------------------------------------------------------
 class Rebuild(Tool.Tool):
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
 
-        if db.readonly:
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        
+        Tool.Tool.__init__(self, dbstate, options_class, name)
+
+        if self.db.readonly:
             # TODO: split plugin in a check and repair part to support
             # checking of a read only database
             return
 
-        db.disable_signals()
-        if parent:
+        self.db.disable_signals()
+        if uistate:
             progress = Utils.ProgressMeter(
                     _('Rebuilding Secondary Indices'))
             # Six indices to rebuild, and the first step is removing
             # old ones
             total = 7
             progress.set_pass('',total)
-            db.rebuild_secondary(progress.step)
+            self.db.rebuild_secondary(progress.step)
             progress.close()
             OkDialog(_("Secondary indices rebuilt"),
                      _('All secondary indices have been rebuilt.'))
         else:
             print "Rebuilding Secondary Indices..."
-            db.rebuild_secondary(self.empty)
+            self.db.rebuild_secondary(self.empty)
             print "All secondary indices have been rebuilt."
-        db.enable_signals()
+        self.db.enable_signals()
 
     def empty(self):
         pass

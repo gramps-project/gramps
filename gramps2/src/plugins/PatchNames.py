@@ -47,6 +47,8 @@ import GrampsDisplay
 #
 #-------------------------------------------------------------------------
 import Utils
+import ManagedWindow
+
 from PluginUtils import Tool, register_tool
 from QuestionDialog import OkDialog
 
@@ -84,18 +86,13 @@ _sn_prefix_re = re.compile("^\s*(%s)\s+(.*)" % '|'.join(prefix_list),
 # PatchNames
 #
 #-------------------------------------------------------------------------
-class PatchNames(Tool.Tool):
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
+class PatchNames(Tool.Tool, ManagedWindow.ManagedWindow):
+    
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        Tool.Tool.__init__(self, dbstate, options_class, name)
 
         self.cb = callback
-        self.db = db
-        self.parent = parent
-        if self.parent.child_windows.has_key(self.__class__):
-            self.parent.child_windows[self.__class__].present(None)
-            return
-        self.win_key = self.__class__
-        self.trans = db.transaction_begin()
+        self.trans = self.db.transaction_begin()
         self.title_list = []
         self.nick_list = []
         self.prefix1_list = []
@@ -176,7 +173,6 @@ class PatchNames(Tool.Tool):
         
         self.top = gtk.glade.XML(glade_file,"top","gramps")
         self.window = self.top.get_widget('top')
-        self.window.set_icon(self.parent.topWindow.get_icon())
         self.top.signal_autoconnect({
             "destroy_passed_object" : self.close,
             "on_ok_clicked" : self.on_ok_clicked,
@@ -268,34 +264,18 @@ class PatchNames(Tool.Tool):
             self.progress.step()
 
         self.progress.close()
-        self.add_itself_to_menu()
-        self.window.show()
+        self.show()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-db')
 
     def on_delete_event(self,obj,b):
-        self.remove_itself_from_menu()
+        pass
 
     def close(self,obj):
-        self.remove_itself_from_menu()
         self.window.destroy()
 
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(self.label)
-        self.parent_menu_item.connect("activate",self.present)
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
-                
     def on_ok_clicked(self,obj):
         for grp in self.nick_list:
             handle = self.nick_hash[grp[0]]

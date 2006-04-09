@@ -2336,6 +2336,7 @@ class GenericFilterList:
         f.write('<filters>\n')
         for namespace in self.filter_list:
             f.write('<object "%s">\n' % "person")
+            print namespace
             for i in namespace:
                 f.write('  <filter name="%s"' % self.fix(i.get_name()))
                 if i.get_invert():

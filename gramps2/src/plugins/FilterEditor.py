@@ -61,6 +61,8 @@ import AutoComp
 import ListModel
 import Utils
 import SelectPerson
+import ManagedWindow
+
 from PluginUtils import Tool, register_tool
 
 #-------------------------------------------------------------------------
@@ -316,28 +318,25 @@ class MyEntry(gtk.Entry):
 #
 #
 #-------------------------------------------------------------------------
-class FilterEditor:
-    def __init__(self,filterdb,db,parent):
-        self.parent = parent
-        if self.parent.child_windows.has_key(self.__class__):
-            self.parent.child_windows[self.__class__].present(None)
-            return
-        self.win_key = self.__class__
-        self.child_windows = {}
+class FilterEditor(ManagedWindow.ManagedWindow):
+    def __init__(self, filterdb, db, uistate):
 
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [],
+                                             FilterEditor)
+        
         self.db = db
         self.filterdb = GenericFilter.GenericFilterList(filterdb)
         self.filterdb.load()
 
         self.editor = gtk.glade.XML(const.rule_glade,'filter_list',"gramps")
-        self.window = self.editor.get_widget('filter_list')
         self.filter_list = self.editor.get_widget('filters')
         self.edit = self.editor.get_widget('edit')
         self.delete = self.editor.get_widget('delete')
         self.test = self.editor.get_widget('test')
 
-        Utils.set_titles(self.window,self.editor.get_widget('title'),
-                         _('User defined filters'))
+        self.define_top_level(self.editor.get_widget('filter_list'),
+                              self.editor.get_widget('title'),
+                              _('User defined filters'))
 
         self.editor.signal_autoconnect({
             'on_add_clicked' : self.add_new_filter,
@@ -354,25 +353,26 @@ class FilterEditor:
                                          self.filter_select_row,
                                          self.edit_filter)
         self.draw_filters()
-        self.add_itself_to_menu()
-        self.window.show()
+        self.show()
 
+    def build_menu_names(self, obj):
+        return (_("Custom Filter Editor"),_("Custom Filter Editor"))
+        
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-util-cfe')
 
+    def define_top_level(self,window,title,text):
+        self.window = window
+        self.window.connect('delete-event',self.on_delete_event)
+        Utils.set_titles(window,title,text)
+
     def on_delete_event(self,obj,b):
         self.filterdb.save()
-        self.close_child_windows()
         self.remove_itself_from_menu()
         GenericFilter.reload_custom_filters()
         GenericFilter.reload_system_filters()
-        self.parent.init_filters()
-
-    def close_child_windows(self):
-        for child_window in self.child_windows.values():
-            child_window.close(None)
-        self.child_windows = {}
+#        self.parent.init_filters()
 
     def add_itself_to_menu(self):
         self.parent.child_windows[self.win_key] = self
@@ -408,12 +408,10 @@ class FilterEditor:
     
     def close_filter_editor(self,obj):
         self.filterdb.save()
-        self.close_child_windows()
-        self.remove_itself_from_menu()
         self.window.destroy()
         GenericFilter.reload_custom_filters()
         GenericFilter.reload_system_filters()
-        self.parent.init_filters()
+#        self.parent.init_filters()
         
     def draw_filters(self):
         self.clist.clear()
@@ -515,46 +513,10 @@ class EditFilter:
         help_display('gramps-manual','tools-util-cfe')
 
     def on_delete_event(self,obj,b):
-        self.close_child_windows()
-        self.remove_itself_from_menu()
+        pass
 
     def close(self,obj):
-        self.close_child_windows()
-        self.remove_itself_from_menu()
         self.window.destroy()
-
-    def close_child_windows(self):
-        for child_window in self.child_windows.values():
-            child_window.close(None)
-        self.child_windows = {}
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        if not self.filter.get_name():
-            label = _("New Filter")
-        else:
-            label = self.filter.get_name()
-        if not label.strip():
-            label = _("New Filter")
-        label = "%s: %s" % (_('Filter'),label)
-        self.parent_menu_item = gtk.MenuItem(label)
-        self.parent_menu_item.set_submenu(gtk.Menu())
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-        self.winsmenu = self.parent_menu_item.get_submenu()
-        self.menu_item = gtk.MenuItem(_('Define Filter'))
-        self.menu_item.connect("activate",self.present)
-        self.menu_item.show()
-        self.winsmenu.append(self.menu_item)
-        
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.menu_item.destroy()
-        self.winsmenu.destroy()
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
 
     def filter_name_changed(self,obj):
         name = unicode(self.fname.get_text())
@@ -927,10 +889,11 @@ class ShowResults:
 #
 #-------------------------------------------------------------------------
 class CustomFilterEditor(Tool.Tool):
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        
+        Tool.Tool.__init__(self, dbstate, options_class, name)
 
-        FilterEditor(const.custom_filters,db,parent)
+        FilterEditor(const.custom_filters, dbstate.db, uistate)
 
 #-------------------------------------------------------------------------
 #
@@ -938,10 +901,11 @@ class CustomFilterEditor(Tool.Tool):
 #
 #-------------------------------------------------------------------------
 class SystemFilterEditor(Tool.Tool):
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
+    def __init__(self, dbstate, uistate, options_class, name,callback=None):
 
-        FilterEditor(const.system_filters,db,parent)
+        Tool.Tool.__init__(self, dbstate,  options_class, name)
+
+        FilterEditor(const.system_filters, dbstate.db, uistate)
 
 #------------------------------------------------------------------------
 #
@@ -954,7 +918,7 @@ class FilterEditorOptions(Tool.ToolOptions):
     """
 
     def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+        Tool.ToolOptions.__init__(self, name, person_id)
 
 #-------------------------------------------------------------------------
 #

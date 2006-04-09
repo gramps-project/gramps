@@ -83,7 +83,9 @@ class FamilyView(PageView.PersonNavView):
 
     def __init__(self, dbstate, uistate):
         
-        PageView.PersonNavView.__init__(self, 'Relationship View', dbstate, uistate)
+        PageView.PersonNavView.__init__(self, 'Relationship View',
+                                        dbstate, uistate)
+        
         dbstate.connect('database-changed', self.change_db)
         dbstate.connect('active-changed', self.change_person)
         self.show_siblings = Config.get_family_siblings()
@@ -697,18 +699,8 @@ class FamilyView(PageView.PersonNavView):
 
             if family:
                 person = self.dbstate.db.get_person_from_handle(self.dbstate.active.handle)
-
-                family.add_child_handle(person.handle)
-                
-                person.add_parent_family_handle(
-                    family.handle, 
-                    (RelLib.Person.CHILD_BIRTH, ''), 
-                    (RelLib.Person.CHILD_BIRTH, ''))
-                
-                trans = self.dbstate.db.transaction_begin()
-                self.dbstate.db.commit_person(person, trans)
-                self.dbstate.db.commit_family(family, trans)
-                self.dbstate.db.transaction_commit(trans, _("Add Family"))
+                GrampsDb.add_child_to_family(family, child, (RelLib.Person.CHILD_BIRTH,'')
+                                             (RelLib.Person.CHILD_BIRTH,''))
             
     def add_parent_family(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:

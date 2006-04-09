@@ -38,7 +38,6 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import gtk
 import gtk.glade 
-import GrampsDisplay
 
 #------------------------------------------------------------------------
 #
@@ -47,6 +46,9 @@ import GrampsDisplay
 #------------------------------------------------------------------------
 import RelLib
 import Utils
+import GrampsDisplay
+import ManagedWindow
+
 from PluginUtils import Tool, register_tool
 
 #-------------------------------------------------------------------------
@@ -54,25 +56,21 @@ from PluginUtils import Tool, register_tool
 # Actual tool
 #
 #-------------------------------------------------------------------------
-class Verify(Tool.Tool):
+class Verify(Tool.Tool, ManagedWindow.ManagedWindow):
 
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
+    def __init__(self, dbstate, uistate, options_class, name,callback=None):
 
-        if parent:
-            self.init_gui(parent)
+        Tool.Tool.__init__(self, dbstate, options_class, name)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], Verify)
+
+        if uistate:
+            self.init_gui()
         else:
             err_text,warn_text = self.run_tool(cli=True)
             self.print_results(err_text,warn_text)
 
-    def init_gui(self,parent):
+    def init_gui(self):
         # Draw dialog and make it handle everything
-        self.parent = parent
-        if self.parent.child_windows.has_key(self.__class__):
-            self.parent.child_windows[self.__class__].present(None)
-            return
-        self.win_key = self.__class__
-
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "verify.glade"
 
@@ -85,7 +83,6 @@ class Verify(Tool.Tool):
         })
 
         self.window = self.top.get_widget('verify_settings')
-        self.window.set_icon(self.parent.topWindow.get_icon())
         Utils.set_titles(self.window,
                          self.top.get_widget('title'),
                          _('Database Verify'))
@@ -121,29 +118,13 @@ class Verify(Tool.Tool):
         self.top.get_widget("estimate").set_active(
             self.options.handler.options_dict['estimate_age'])
                                                           
-        self.add_itself_to_menu()
-        self.window.show()
+        self.show()
 
     def on_delete_event(self,obj,b):
-        self.remove_itself_from_menu()
+        pass
 
     def close(self,obj):
-        self.remove_itself_from_menu()
         self.window.destroy()
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(_('Database Verify'))
-        self.parent_menu_item.connect("activate",self.present)
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -201,7 +182,7 @@ class Verify(Tool.Tool):
         err_text,warn_text = self.run_tool(cli=False)
         # Save options
         self.options.handler.save_options()
-        VerifyResults(err_text,warn_text,self.parent)
+        VerifyResults(err_text, warn_text, self.uistate)
 
     def run_tool(self,cli=False):
 
@@ -241,18 +222,32 @@ class Verify(Tool.Tool):
             # individual checks
             total_children = 0
             ageatdeath = 0
-            byear = self.get_year( person.get_birth_handle() )
+
+            birth_ref = person.get_birth_ref()
+            if birth_ref:
+                birth_handle = birth_ref.ref
+            else:
+                birth_ref = None
+
+            death_ref = person.get_death_ref()
+            if death_ref:
+                death_handle = death_ref.ref
+            else:
+                death_ref = None
+                
+            byear = self.get_year( birth_handle )
             bapyear = 0
-            dyear = self.get_year( person.get_death_handle() )
+            dyear = self.get_year( birth_handle )
             buryear = 0
 
-            for event_handle in person.get_event_list():
-                if event_handle:
+            for event_ref in person.get_event_ref_list():
+                if event_ref:
+                    event_handle = event_ref.ref
                     event = self.db.get_event_from_handle(event_handle)
-                    event_name = event.get_name().lower()
-                    if event.get_name() == "burial":
+                    event_name = event.get_type()[0]
+                    if event_name == RelLib.Event.BURIAL:
                         buryear = self.get_year( event.get_handle() )
-                    elif event_name == "baptism":
+                    elif event_name == RelLib.Event.BAPTISM:
                         bapyear = self.get_year( event.get_handle() )
 
             if byear>0 and bapyear>0:
@@ -398,8 +393,22 @@ class Verify(Tool.Tool):
                            person.get_primary_name().get_surname() == spouse.get_primary_name().get_surname():
                         warn.write( _("Husband and wife with the same surname: %s in family %s, and %s.\n") % (
                             idstr,family.get_gramps_id(), spouse.get_primary_name().get_name() ) )
-                    sdyear = self.get_year( spouse.get_death_handle() )
-                    sbyear = self.get_year( spouse.get_birth_handle() )
+
+
+                    death_ref = spouse.get_death_ref()
+                    if death_ref:
+                        death_handle = death_ref.ref
+                    else:
+                        death_handle = None
+
+                    birth_ref = spouse.get_birth_ref()
+                    if birth_ref:
+                        birth_handle = birth_ref.ref
+                    else:
+                        birth_handle = None
+                        
+                    sdyear = self.get_year( death_handle )
+                    sbyear = self.get_year( birth_handle )
                     if sbyear != 0 and byear != 0 and abs(sbyear-byear) > hwdif:
                         warn.write( _("Large age difference between husband and wife: %s in family %s, and %s.\n") % (
                             idstr,family.get_gramps_id(), spouse.get_primary_name().get_name() ) )
@@ -407,8 +416,9 @@ class Verify(Tool.Tool):
                     if sdyear == 0:
                         sdyear = 0  # burial year
 
-                    for event_handle in family.get_event_list():
-                        if event_handle:
+                    for event_ref in family.get_event_ref_list():
+                        if event_ref:
+                            event_handle = event_ref.ref
                             event = self.db.get_event_from_handle(event_handle)
                             if event.get_name() == "Marriage":
                                 marriage_id = event_handle
@@ -494,7 +504,13 @@ class Verify(Tool.Tool):
                     for child_handle in family.get_child_handle_list():
                         nkids = nkids+1
                         child = self.db.get_person_from_handle(child_handle)
-                        cbyear = self.get_year( child.get_birth_handle() )
+                        birth_ref = child.get_birth_ref()
+                        if birth_ref:
+                            birth_handle = birth_ref.ref
+                        else:
+                            birth_handle = None
+                            
+                        cbyear = self.get_year( birth_handle )
                         if cbyear:
                             cbyears.append(cbyear)
 
@@ -582,13 +598,13 @@ class Verify(Tool.Tool):
 # Display the results
 #
 #-------------------------------------------------------------------------
-class VerifyResults:
-    def __init__(self,err_text,warn_text,parent):
-        self.parent = parent
+class VerifyResults(ManagedWindow.ManagedWindow):
+    def __init__(self, err_text, warn_text, uistate):
+
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], VerifyResults)
+
         self.err_text = err_text
         self.warn_text = warn_text
-
-        self.win_key = self
 
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "verify.glade"
@@ -601,39 +617,18 @@ class VerifyResults:
     
         self.top.signal_autoconnect({
             "destroy_passed_object"  : self.close_result,
-            "on_result_delete_event" : self.on_result_delete_event,
         })
     
         self.window = self.top.get_widget("verify_result")
-        self.window.set_icon(self.parent.topWindow.get_icon())
         err_window = self.top.get_widget("err_window")
         warn_window = self.top.get_widget("warn_window")
         err_window.get_buffer().set_text(self.err_text)
         warn_window.get_buffer().set_text(self.warn_text)
         
-        self.add_result_to_menu()
-        self.window.show()
+        self.show()
     
-    def on_result_delete_event(self,obj,b):
-        self.remove_result_from_menu()
-
     def close_result(self,obj):
-        self.remove_result_from_menu()
         self.window.destroy()
-
-    def add_result_to_menu(self):
-        self.parent.child_windows[self.win_key] = self.window
-        self.result_parent_menu_item = gtk.MenuItem(self.title)
-        self.result_parent_menu_item.connect("activate",self.present_result)
-        self.result_parent_menu_item.show()
-        self.parent.winsmenu.append(self.result_parent_menu_item)
-
-    def remove_result_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.result_parent_menu_item.destroy()
-
-    def present_result(self,obj):
-        self.window.present()
 
 #------------------------------------------------------------------------
 #

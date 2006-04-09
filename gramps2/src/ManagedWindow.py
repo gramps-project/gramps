@@ -254,7 +254,7 @@ class ManagedWindow:
     event, and presenting itself when selected or attempted to create again.
     """
 
-    def __init__(self,uistate,track,obj):
+    def __init__(self, uistate, track, obj):
         """
         Create child windows and add itself to menu, if not there already.
         

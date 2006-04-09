@@ -56,9 +56,10 @@ import gtk.glade
 import RelLib
 import Utils
 import const
+import ManagedWindow
+
 from PluginUtils import Tool, register_tool
 from QuestionDialog import OkDialog, MissingMediaDialog
-
 
 #-------------------------------------------------------------------------
 #
@@ -138,13 +139,14 @@ def _table_low_level(db,table):
 #
 #-------------------------------------------------------------------------
 class Check(Tool.Tool):
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+
+        Tool.Tool.__init__(self, dbstate, options_class, name)
 
         # def runTool(database,active_person,callback,parent=None):
-        cli = int(parent == None)
+        cli = uistate == None
 
-        if db.readonly:
+        if self.db.readonly:
             # TODO: split plugin in a check and repair part to support
             # checking of a read only database
             return
@@ -152,12 +154,12 @@ class Check(Tool.Tool):
         # The low-level repair is bypassing the transaction mechanism.
         # As such, we run it before starting the transaction.
         # We only do this for the BSDDB backend.
-        if db.__class__.__name__ == 'GrampsBSDDB':
-            low_level(db)
+        if self.db.__class__.__name__ == 'GrampsBSDDB':
+            low_level(self.db)
         
-        trans = db.transaction_begin("",batch=True)
-        db.disable_signals()
-        checker = CheckIntegrity(db,parent,trans)
+        trans = self.db.transaction_begin("",batch=True)
+        self.db.disable_signals()
+        checker = CheckIntegrity(dbstate, uistate, trans)
         checker.fix_encoding()
         checker.cleanup_missing_photos(cli)
             
@@ -177,13 +179,13 @@ class Check(Tool.Tool):
         checker.check_events()
         checker.check_place_references()
         checker.check_source_references()
-        db.transaction_commit(trans, _("Check Integrity"))
-        db.enable_signals()
-        db.request_rebuild()
+        self.db.transaction_commit(trans, _("Check Integrity"))
+        self.db.enable_signals()
+        self.db.request_rebuild()
 
         errs = checker.build_report(cli)
         if errs:
-            Report(checker.text.getvalue(),parent)
+            Report(uistate, checker.text.getvalue(),parent)
 
 #-------------------------------------------------------------------------
 #
@@ -192,10 +194,9 @@ class Check(Tool.Tool):
 #-------------------------------------------------------------------------
 class CheckIntegrity:
     
-    def __init__(self,db,parent,trans):
-        self.db = db
+    def __init__(self, dbstate, uistate, trans):
+        self.db = dbstate.db
         self.trans = trans
-        self.parent = parent
         self.bad_photo = []
         self.replaced_photo = []
         self.removed_photo = []
@@ -757,8 +758,7 @@ class CheckIntegrity:
                 print "No errors were found: the database has passed internal checks."
             else:
                 OkDialog(_("No errors were found"),
-                         _('The database has passed internal checks'),
-                         self.parent.topWindow)
+                         _('The database has passed internal checks'))
             return 0
 
         self.text = cStringIO.StringIO()
@@ -872,55 +872,30 @@ class CheckIntegrity:
 # Display the results
 #
 #-------------------------------------------------------------------------
-class Report:
-    def __init__(self,text,parent,cl=0):
+class Report(ManagedWindow.ManagedWindow):
+    
+    def __init__(self, uistate, text, cl=0):
         if cl:
             print text
             return
-        self.text = text
-        self.parent = parent
 
-        self.win_key = self
-
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+        
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "summary.glade"
         topDialog = gtk.glade.XML(glade_file,"summary","gramps")
-        topDialog.signal_autoconnect({
-            "destroy_passed_object"  : self.close_result,
-            "on_result_delete_event" : self.on_result_delete_event,
-        })
-        
-        self.title = _("Integrity Check Results")
-        self.window = topDialog.get_widget("summary")
-        self.window.set_icon(self.parent.topWindow.get_icon())
+
         textwindow = topDialog.get_widget("textwindow")
-        textwindow.get_buffer().set_text(self.text)
+        textwindow.get_buffer().set_text(text)
 
-        Utils.set_titles(self.window,topDialog.get_widget("title"),self.title)
+        Utils.set_titles(topDialog.get_widget("summary"),
+                         topDialog.get_widget("title"),
+                         _("Integrity Check Results"))
 
-        self.add_result_to_menu()
-        self.window.show()
+        self.show()
 
-    def on_result_delete_event(self,obj,b):
-        self.remove_result_from_menu()
-
-    def close_result(self,obj):
-        self.remove_result_from_menu()
-        self.window.destroy()
-
-    def add_result_to_menu(self):
-        self.parent.child_windows[self.win_key] = self.window
-        self.result_parent_menu_item = gtk.MenuItem(self.title)
-        self.result_parent_menu_item.connect("activate",self.present_result)
-        self.result_parent_menu_item.show()
-        self.parent.winsmenu.append(self.result_parent_menu_item)
-
-    def remove_result_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.result_parent_menu_item.destroy()
-
-    def present_result(self,obj):
-        self.window.present()
+    def build_menu_names(self, obj):
+        return (_('Check and Repair'),_('Check and Repair'))
 
 #------------------------------------------------------------------------
 #

@@ -133,6 +133,7 @@ class FamilyListView(PageView.ListView):
     def family_add_loop(self,handle_list):
         if self.updating:
             return False
+        print handle_list
         self.updating = True
         self.row_add(handle_list)
         self.updating = False

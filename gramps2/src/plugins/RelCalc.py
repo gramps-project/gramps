@@ -45,9 +45,12 @@ import gtk.glade
 import RelLib
 import Utils
 import NameDisplay
+import ManagedWindow
 import ListModel
 import DateHandler
 import PeopleModel
+
+from QuestionDialog import ErrorDialog
 from PluginUtils import Tool, relationship_class, register_tool
 
 column_names = [
@@ -68,19 +71,25 @@ column_names = [
 #
 #
 #-------------------------------------------------------------------------
-class RelCalc(Tool.Tool):
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
-
+class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
+    
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
         """
         Relationship calculator class.
         """
+        
+        Tool.Tool.__init__(self, dbstate, options_class, name)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [],
+                                             RelCalc)
 
-        self.person = person
+        if not self.person:
+            ErrorDialog(_('Active person has not been set'),
+                        _('You must select an active person for this '
+                          'tool to work properly.'))
+            return
+        
         self.RelClass = relationship_class
         self.relationship = self.RelClass(self.db)
-        self.parent = parent
-        self.win_key = self
 
         base = os.path.dirname(__file__)
         glade_file = "%s/relcalc.glade" % base
@@ -90,7 +99,6 @@ class RelCalc(Tool.Tool):
         self.title = _('Relationship calculator: %(person_name)s') % { 
                                         'person_name' : name }
         self.window = self.glade.get_widget('relcalc')
-        self.window.set_icon(self.parent.topWindow.get_icon())
         Utils.set_titles(self.window,
                          self.glade.get_widget('title'),
                          _('Relationship to %(person_name)s') % { 
@@ -127,29 +135,13 @@ class RelCalc(Tool.Tool):
             "on_delete_event"  : self.on_delete_event,
             })
 
-        self.add_itself_to_menu()
-        self.window.show()
+        self.show()
 
     def on_delete_event(self,obj,b):
-        self.remove_itself_from_menu()
+        pass
 
     def close(self,obj):
-        self.remove_itself_from_menu()
         self.window.destroy()
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(self.title)
-        self.parent_menu_item.connect("activate",self.present)
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
 
     def on_apply_clicked(self,obj):
         model,node = self.tree.get_selection().get_selected()

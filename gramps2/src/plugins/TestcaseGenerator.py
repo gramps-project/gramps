@@ -71,11 +71,11 @@ class TestcaseGenerator(Tool.Tool):
     SHORT = 6
     LONG = 7
 
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        if db.readonly:
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        if dbstate.db.readonly:
             return
-        
-        Tool.Tool.__init__(self,db,person,options_class,name)
+
+        Tool.Tool.__init__(self, dbstate, options_class, name)
 
         self.person_count = 0
         self.persons_todo = []
@@ -90,17 +90,17 @@ class TestcaseGenerator(Tool.Tool):
         self.text_serial_number = 1
         
         # If an active persons exists the generated tree is connected to that person
-        if person:
+        if self.person:
             # try to get birth and death year
             try:
-                bh = person.get_birth_handle()
+                bh = self.person.get_birth_handle()
                 b = self.db.get_event_from_handle( bh)
                 do = b.get_date_object()
                 birth = do.get_year()
             except AttributeError:
                 birth = None
             try:
-                dh = person.get_death_handle()
+                dh = self.person.get_death_handle()
                 b = self.db.get_event_from_handle( dh)
                 do = b.get_date_object()
                 death = do.get_year()
@@ -112,17 +112,17 @@ class TestcaseGenerator(Tool.Tool):
                 death = birth + randint(20,90)
             if death and not birth:
                 birth = death - randint(20,90)
-            self.person_dates[person.get_handle()] = (birth,death)
+            self.person_dates[self.person.get_handle()] = (birth,death)
             
-            self.persons_todo.append(person.get_handle())
-            self.parents_todo.append(person.get_handle())
+            self.persons_todo.append(self.person.get_handle())
+            self.parents_todo.append(self.person.get_handle())
 
-        if parent:
-            self.init_gui(parent)
+        if uistate:
+            self.init_gui(uistate)
         else:
             self.run_tool(cli=True)
 
-    def init_gui(self,parent):
+    def init_gui(self,uistate):
         title = "%s - GRAMPS" % _("Generate testcases")
         self.top = gtk.Dialog(title)
         self.top.set_default_size(400,150)

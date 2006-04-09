@@ -37,8 +37,6 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import GrampsDisplay
-
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -46,23 +44,24 @@ import GrampsDisplay
 #------------------------------------------------------------------------
 import soundex
 import Utils
+import GrampsDisplay
+import ManagedWindow
 import AutoComp
+
 from PluginUtils import Tool, register_tool
 
 #-------------------------------------------------------------------------
 #
 #
 #-------------------------------------------------------------------------
-class SoundGen(Tool.Tool):
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
+class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
 
-        self.parent = parent
-        if self.parent.child_windows.has_key(self.__class__):
-            self.parent.child_windows[self.__class__].present(None)
-            return
-        self.win_key = self.__class__
-        
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+
+        Tool.Tool.__init__(self, dbstate, options_class, name)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [],
+                                             SoundGen)
+
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "soundex.glade"
 
@@ -74,7 +73,6 @@ class SoundGen(Tool.Tool):
         })
 
         self.window = self.glade.get_widget("soundEx")
-        self.window.set_icon(self.parent.topWindow.get_icon())
         Utils.set_titles(self.window,
                          self.glade.get_widget('title'),
                          _('SoundEx code generator'))
@@ -107,33 +105,21 @@ class SoundGen(Tool.Tool):
         else:
             self.name.set_text("")
             
-        self.add_itself_to_menu()
-        self.window.show()
+        self.show()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-util-other')
 
     def on_delete_event(self,obj,b):
-        self.remove_itself_from_menu()
+        pass
 
     def close(self,obj):
-        self.remove_itself_from_menu()
         self.window.destroy()
 
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(_('SoundEx code generator tool'))
-        self.parent_menu_item.connect("activate",self.present)
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
+    def build_menu_names(self, obj):
+        return (_('SoundEx code generator tool'),
+                _('SoundEx code generator tool'))
 
     def on_apply_clicked(self,obj):
         try:

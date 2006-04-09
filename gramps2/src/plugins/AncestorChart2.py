@@ -148,7 +148,6 @@ class GenChart:
     def display(self):
         index = 0
         for i in self.array:
-            print "%04d" % index,i
             index=index+1
 
     def not_blank(self,line):
