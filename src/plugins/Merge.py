@@ -37,7 +37,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk 
 import gtk.glade
-import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -50,6 +49,9 @@ import soundex
 import NameDisplay
 import ListModel
 import MergePeople
+import GrampsDisplay
+import ManagedWindow
+
 from PluginUtils import Tool, register_tool
 
 #-------------------------------------------------------------------------
@@ -83,14 +85,11 @@ def is_initial(name):
 #
 #-------------------------------------------------------------------------
 class Merge(Tool.Tool):
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
+    
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        
+        Tool.Tool.__init__(self, dbstate, options_class, name)
 
-        self.parent = parent
-        if self.parent.child_windows.has_key(self.__class__):
-            self.parent.child_windows[self.__class__].present(None)
-            return
-        self.win_key = self.__class__
         self.map = {}
         self.list = []
         self.index = 0
@@ -129,7 +128,6 @@ class Merge(Tool.Tool):
         self.menu.set_menu(my_menu)
 
         self.window = top.get_widget('dialog')
-        self.window.set_icon(self.parent.topWindow.get_icon())
         Utils.set_titles(self.window, top.get_widget('title'),
                          _('Merge people'))
 
@@ -139,33 +137,18 @@ class Merge(Tool.Tool):
             "on_help_clicked"       : self.on_help_clicked,
             "on_delete_merge_event" : self.on_delete_event,
             })
-        self.add_itself_to_menu()
-        self.window.show()
+
+        self.show()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-db')
 
     def on_delete_event(self,obj,b):
-        self.remove_itself_from_menu()
+        pass
 
     def close(self,obj):
-        self.remove_itself_from_menu()
         self.window.destroy()
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(_('Merge people'))
-        self.parent_menu_item.connect("activate",self.present)
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
 
     def ancestors_of(self,p1_id,id_list):
         if (not p1_id) or (p1_id in id_list):
@@ -265,9 +248,9 @@ class Merge(Tool.Tool):
         self.dellist = {}
 
     def show(self):
+
         top = gtk.glade.XML(self.glade_file,"mergelist","gramps")
         self.window = top.get_widget("mergelist")
-        self.window.set_icon(self.parent.topWindow.get_icon())
 
         Utils.set_titles(self.window, top.get_widget('title'),
                          _('Potential Merges'))
@@ -286,7 +269,6 @@ class Merge(Tool.Tool):
                                         event_func=self.on_do_merge_clicked)
         
         self.redraw()
-        self.add_itself_to_menu()
         self.window.show()
 
     def redraw(self):

@@ -25,7 +25,7 @@ Manages the main window and the pluggable views
 """
 
 __author__ = "Donald N. Allingham"
-__revision__ = "$Revision:$"
+__revision__ = "$Revision$"
 
 #-------------------------------------------------------------------------
 #
@@ -1076,7 +1076,7 @@ class ViewManager:
                 new_key = name[2].replace(' ', '-')
                 f.write('<menuitem action="%s"/>' % new_key)
                 actions.append((new_key, None, name[2], None, None, 
-                                func(name, self.state)))
+                                func(name, self.state, self.uistate)))
             f.write('</menu>')
 
         # If there are any unsupported items we add separator
@@ -1091,7 +1091,7 @@ class ViewManager:
                 new_key = name[2].replace(' ', '-')
                 f.write('<menuitem action="%s"/>' % new_key)
                 actions.append((new_key, None, name[2], None, None, 
-                                func(name, self.state)))
+                                func(name, self.state, self.uistate)))
             f.write('</menu>')
 
         f.write('</menu></menubar></ui>')
@@ -1147,14 +1147,14 @@ def add_gedcom_filter(chooser):
     mime_filter.add_mime_type(const.app_gedcom)
     chooser.add_filter(mime_filter)
 
-def make_report_callback(lst, dbstate):
+def make_report_callback(lst, dbstate, uistate):
     return lambda x: Report.report(dbstate.db, dbstate.get_active_person(), 
                                    lst[0], lst[1], lst[2], lst[3], lst[4])
 
-def make_tool_callback(lst, dbstate):
-    return lambda x: Tool.gui_tool(dbstate.db, dbstate.get_active_person(), 
+def make_tool_callback(lst, dbstate, uistate):
+    return lambda x: Tool.gui_tool(dbstate, uistate,  
                                    lst[0], lst[1], lst[2], lst[3], lst[4], 
-                                   dbstate.db.request_rebuild, None)
+                                   dbstate.db.request_rebuild)
 
 #-------------------------------------------------------------------------
 #

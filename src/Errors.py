@@ -33,8 +33,17 @@ class FilterError(Exception):
     def messages(self):
         return (self.value,self.value2)
 
-class DatabaseError(Exception):
+class DateError(Exception):
     """Error used to report Date errors"""
+    def __init__(self,value=""):
+        Exception.__init__(self)
+        self.value = value
+
+    def __str__(self):
+        return self.value
+
+class DatabaseError(Exception):
+    """Error used to report database errors"""
     def __init__(self,value=""):
         Exception.__init__(self)
         self.value = value

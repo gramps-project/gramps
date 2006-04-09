@@ -21,6 +21,8 @@
 # $Id: __init__.py 6086 2006-03-06 03:54:58Z dallingham $
 
 
+import RelLib
+
 def remove_family_relationships(db, family_handle, trans=None):
     family = db.get_family_from_handle(family_handle)
 
@@ -104,3 +106,24 @@ def remove_child_from_family(db, person_handle, family_handle, trans=None):
     
     if need_commit:
         db.transaction_commit(trans,_("Remove child from family"))
+
+
+def add_child_to_family(db, family, child, mrel=(RelLib.Person.CHILD_BIRTH,''),
+                        frel=(RelLib.Person.CHILD_BIRTH,''), trans=None):
+
+    family.add_child_handle(child.handle)
+    child.add_parent_family_handle(family.handle, mrel, frel )
+
+    if trans == None:
+        need_commit = True
+        trans = db.transaction_begin()
+    else:
+        need_commit = False
+
+    db.commit_family(family,trans)
+    db.commit_person(person,trans)
+
+    if need_commit:
+        db.transaction_commit(trans, _('Add child to family') )
+    
+    

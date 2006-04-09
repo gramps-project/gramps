@@ -84,9 +84,9 @@ class Tool:
     sub-classed to create a functional tool.
     """
 
-    def __init__(self,database,person,options_class,name):
-        self.db = database
-        self.person = person
+    def __init__(self, dbstate, options_class, name):
+        self.db = dbstate.db
+        self.person = dbstate.active
         if type(options_class) == ClassType:
             self.options = options_class(name)
         elif type(options_class) == InstanceType:
@@ -206,8 +206,9 @@ class CommandLineTool:
 #
 #------------------------------------------------------------------------
 # Standard GUI tool generic task
-def gui_tool(database,person,tool_class,options_class,translated_name,
-             name,category,callback,parent):
+
+def gui_tool(dbstate, uistate, tool_class, options_class, translated_name,
+             name, category, callback):
     """
     tool - task starts the report. The plugin system requires that the
     task be in the format of task that takes a database and a person as
@@ -215,12 +216,12 @@ def gui_tool(database,person,tool_class,options_class,translated_name,
     """
 
     try:
-        tool_class(database,person,options_class,name,callback,parent)
+        tool_class(dbstate, uistate, options_class, name, callback)
     except:
         log.error("Failed to start tool.", exc_info=True)
 
 # Command-line generic task
-def cli_tool(database,name,category,tool_class,options_class,options_str_dict):
+def cli_tool( database,name,category,tool_class,options_class,options_str_dict):
     
     clt = CommandLineTool(database,name,category,
                           options_class,options_str_dict)

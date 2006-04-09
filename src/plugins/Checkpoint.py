@@ -46,11 +46,13 @@ import gtk.glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from QuestionDialog import OkDialog, ErrorDialog
 import GrampsDb
-from PluginUtils import Tool, register_tool
 import Utils
 import GrampsDisplay
+import ManagedWindow
+
+from QuestionDialog import OkDialog, ErrorDialog
+from PluginUtils import Tool, register_tool
 
 #-------------------------------------------------------------------------
 #
@@ -103,25 +105,23 @@ retrieve_success_msg = [
 # Checkpoint class
 #
 #-------------------------------------------------------------------------
-class Checkpoint(Tool.Tool):
+class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
 
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
 
-        if parent:
+        Tool.Tool.__init__(self, dbstate, options_class, name)
+
+        if uistate:
+            ManagedWindow.ManagedWindow.__init__(self, uistate, [],
+                                                 Checkpoint)
             self.callback = self.callback_real
-            self.init_gui(parent)
+            self.init_gui()
         else:
             self.callback = lambda a: None
             self.run_tool(cli=True)
 
-    def init_gui(self,parent):
+    def init_gui(self):
         # Draw dialog and make it handle everything
-        self.parent = parent
-        if self.parent.child_windows.has_key(self.__class__):
-            self.parent.child_windows[self.__class__].present(None)
-            return
-        self.win_key = self.__class__
 
         base = os.path.dirname(__file__)
         glade_file = "%s/%s" % (base,"checkpoint.glade")
@@ -150,7 +150,6 @@ class Checkpoint(Tool.Tool):
 
         self.title = _("Checkpoint Data")
         self.window = self.glade.get_widget('top')
-        self.window.set_icon(self.parent.topWindow.get_icon())
         Utils.set_titles(self.window,
                          self.glade.get_widget('title'),
                          self.title)
@@ -163,8 +162,7 @@ class Checkpoint(Tool.Tool):
             "on_help_clicked"  : self.on_help_clicked,
             })
 
-        self.add_itself_to_menu()
-        self.window.show()
+        self.show()
 
     def rcs_toggled(self,obj):
         self.cust_arch_cb.set_sensitive(not obj.get_active())
@@ -178,22 +176,7 @@ class Checkpoint(Tool.Tool):
         self.remove_itself_from_menu()
 
     def close(self,obj):
-        self.remove_itself_from_menu()
         self.window.destroy()
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(self.title)
-        self.parent_menu_item.connect("activate",self.present)
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
 
     def on_archive_clicked(self,obj):
         self.options.handler.options_dict['cacmd'] = unicode(
@@ -223,7 +206,7 @@ class Checkpoint(Tool.Tool):
         communication.
         """
         if not cli:
-            self.parent.status_text(_("Checkpointing database..."))
+            self.uistate.status_text(_("Checkpointing database..."))
 
         if self.options.handler.options_dict['rcs']:
             self.rcs(archive,cli)
@@ -233,8 +216,8 @@ class Checkpoint(Tool.Tool):
             self.custom(self.options.handler.options_dict['crcmd'],False,cli)
         
         if not cli:
-            self.parent.progress.set_fraction(0)
-            self.parent.modify_statusbar()
+            self.uistate.pulse_progressbar(0)
+            self.uistate.modify_statusbar()
 
     def timestamp(self):
         return unicode(time.strftime('%x %X',time.localtime(time.time())))
@@ -321,7 +304,7 @@ class Checkpoint(Tool.Tool):
 
         if checkin:
             # At this point, we have an existing archive file
-            xmlwrite = WriteXML.XmlWriter(self.db,self.callback,False,False)
+            xmlwrite = GrampsDb.XmlWriter(self.db,self.callback,False,False)
             xmlwrite.write(archive_base)
 
             proc = popen2.Popen3("ci %s" % archive_base,True)
@@ -373,7 +356,7 @@ class Checkpoint(Tool.Tool):
         Call back function for the WriteXML function that updates the
         status progress bar.
         """
-        self.parent.progress.set_fraction(value)
+        self.uistate.pulse_progressbar(value)
         while(gtk.events_pending()):
             gtk.main_iteration()
         

@@ -45,8 +45,10 @@ import gtk.glade
 #------------------------------------------------------------------------
 import const
 import Utils
-from QuestionDialog import OkDialog
+import ManagedWindow
 import AutoComp
+
+from QuestionDialog import OkDialog
 from PluginUtils import Tool, register_tool
 
 #-------------------------------------------------------------------------
@@ -54,22 +56,20 @@ from PluginUtils import Tool, register_tool
 #
 #
 #-------------------------------------------------------------------------
-class ChangeTypes(Tool.Tool):
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
+class ChangeTypes(Tool.Tool, ManagedWindow.ManagedWindow):
 
-        if parent:
-            self.init_gui(parent)
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+
+        Tool.Tool.__init__(self, dbstate, options_class, name)
+
+        if uistate:
+            ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+            self.init_gui()
         else:
             self.run_tool(cli=True)
 
-    def init_gui(self,parent):
+    def init_gui(self):
         # Draw dialog and make it handle everything
-        self.parent = parent
-        if self.parent.child_windows.has_key(self.__class__):
-            self.parent.child_windows[self.__class__].present(None)
-            return
-        self.win_key = self.__class__
         
         base = os.path.dirname(__file__)
         glade_file = "%s/%s" % (base,"changetype.glade")
@@ -88,7 +88,6 @@ class ChangeTypes(Tool.Tool):
 
         self.title = _('Change Event Types')
         self.window = self.glade.get_widget('top')
-        self.window.set_icon(self.parent.topWindow.get_icon())
         Utils.set_titles(self.window,
                          self.glade.get_widget('title'),
                          self.title)
@@ -99,8 +98,7 @@ class ChangeTypes(Tool.Tool):
             "on_apply_clicked"  : self.on_apply_clicked,
             })
             
-        self.add_itself_to_menu()
-        self.window.show()
+        self.show()
 
     def run_tool(self,cli=False):
         # Run tool and return results
@@ -143,25 +141,7 @@ class ChangeTypes(Tool.Tool):
         return (bool(modified),msg)
 
     def on_delete_event(self,obj,b):
-        self.remove_itself_from_menu()
-
-    def close(self,obj):
-        self.remove_itself_from_menu()
-        self.window.destroy()
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(self.title)
-        self.parent_menu_item.connect("activate",self.present)
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
+        pass
 
     def on_apply_clicked(self,obj):
         # Need to store English names for later comparison
