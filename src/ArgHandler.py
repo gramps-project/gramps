@@ -252,7 +252,7 @@ class ArgHandler:
             filename = os.path.abspath(os.path.expanduser(self.open_gui))
             filetype = Mime.get_type(filename) 
             if filetype in (const.app_gramps,const.app_gedcom,
-                                        const.app_gramps_xml):
+                            const.app_gramps_xml):
                 # Say the type outloud
                 if filetype == const.app_gramps:
                     print "Type: GRAMPS database"
@@ -272,18 +272,18 @@ class ArgHandler:
                                       "when opening non-native formats. The "
                                       "following dialog will let you select "
                                       "the new database."),
-                                    self.parent.topWindow)
-                prompter = NewNativeDbPrompter(self.parent)
+                                    self.vm.window)
+                prompter = NewNativeDbPrompter(self.vm,self.state)
                 if not prompter.chooser():
                     QuestionDialog.ErrorDialog( 
                         _("New GRAMPS database was not set up"),
                         _('GRAMPS cannot open non-native data '
                           'without setting up new GRAMPS database.'))
-                    print "Cannot continue without native database. Exiting..." 
+                    print "Cannot continue without native database. Exiting..."
                     os._exit(1)
                 elif filetype == const.app_gramps_package:
                     print "Type: GRAMPS package"
-                    self.parent.read_pkg(filename)
+                    self.read_pkg(filename)
                 success = True
             else:
                 print "Unknown file type: %s" % filetype
@@ -297,7 +297,6 @@ class ArgHandler:
             if success:
                 # Add the file to the recent items
                 RecentFiles.recent_files(filename,filetype)
-                self.parent.build_recent_menu()
             else:
                 os._exit(1)
             return
@@ -307,7 +306,7 @@ class ArgHandler:
             # the InMem formats, without setting up a new database. Then
             # go on and process the rest of the command line arguments.
 
-            #self.parent.cl = bool(self.exports or self.actions)
+            self.cl = bool(self.exports or self.actions)
 
             name,format = self.open
             success = False
@@ -333,11 +332,11 @@ class ArgHandler:
                 os._exit(1)
 
         if self.imports:
-            #self.parent.cl = bool(self.exports or self.actions or self.parent.cl)
+            self.cl = bool(self.exports or self.actions or self.cl)
 
             # Create dir for imported database(s)
-            self.impdir_path = os.path.join(const.home_dir,"import" )
-            self.imp_db_path = os.path.join(self.impdir_path, "import_db.grdb" )
+            self.impdir_path = os.path.join(const.home_dir,"import")
+            self.imp_db_path = os.path.join(self.impdir_path,"import_db.grdb")
             if not os.path.isdir(self.impdir_path):
                 try:
                     os.mkdir(self.impdir_path,0700)
@@ -355,7 +354,7 @@ class ArgHandler:
                 if os.path.isfile(os.path.join(self.impdir_path,fn)):
                     os.remove(os.path.join(self.impdir_path,fn))
 
-            self.parent.load_database(self.imp_db_path)
+            self.vm.load_database(self.imp_db_path)
 
             for imp in self.imports:
                 print "Importing: file %s, format %s." % imp
@@ -367,27 +366,27 @@ class ArgHandler:
                 "supply at least one input file to process."
             print "Launching interactive session..."
 
-#         if self.parent.cl:
-#             for (action,options_str) in self.actions:
-#                 print "Performing action: %s." % action
-#                 if options_str:
-#                     print "Using options string: %s" % options_str
-#                 self.cl_action(action,options_str)
+        if self.cl:
+            for (action,options_str) in self.actions:
+                print "Performing action: %s." % action
+                if options_str:
+                    print "Using options string: %s" % options_str
+                self.cl_action(action,options_str)
 
-#             for expt in self.exports:
-#                 print "Exporting: file %s, format %s." % expt
-#                 self.cl_export(expt[0],expt[1])
+            for expt in self.exports:
+                print "Exporting: file %s, format %s." % expt
+                self.cl_export(expt[0],expt[1])
 
-#             print "Cleaning up."
-#             # remove import db after use
-#             self.parent.db.close()
-#             if self.imports:
-#                 os.remove(self.imp_db_path)
-#             print "Exiting."
-#             os._exit(0)
+            print "Cleaning up."
+            # remove import db after use
+            self.state.db.close()
+            if self.imports:
+                os.remove(self.imp_db_path)
+            print "Exiting."
+            os._exit(0)
 
-        if self.imports:
-            self.parent.import_tool_callback()
+##         if self.imports:
+##             self.parent.import_tool_callback()
         elif Config.get_lastfile() and Config.get_autoload():
             self.auto_save_load(Config.get_lastfile())
 
@@ -404,7 +403,8 @@ class ArgHandler:
         if format == 'grdb':
             filename = os.path.normpath(os.path.abspath(filename))
             try:
-                GrampsDb.gramps_db_reader_factory(const.app_gramps)(self.parent.db,filename,None)
+                GrampsDb.gramps_db_reader_factory(const.app_gramps)(
+                    self.state.db,filename,None)
             except:
                 print "Error importing %s" % filename
                 os._exit(1)
@@ -412,7 +412,7 @@ class ArgHandler:
             from GrampsDb import GedcomParser
             filename = os.path.normpath(os.path.abspath(filename))
             try:
-                g = GedcomParser(self.parent.db,filename,None)
+                g = GedcomParser(self.state.db,filename,None)
                 g.parse_gedcom_file()
                 g.resolve_refns()
                 del g
@@ -421,7 +421,8 @@ class ArgHandler:
                 os._exit(1)
         elif format == 'gramps-xml':
             try:
-                GrampsDb.gramps_db_reader_factory(const.app_gramps_xml)(self.parent.db,filename,None,self.parent.cl)
+                GrampsDb.gramps_db_reader_factory(const.app_gramps_xml)(
+                    self.state.db,filename,None,self.cl)
             except:
                 print "Error importing %s" % filename
                 os._exit(1)
@@ -429,7 +430,7 @@ class ArgHandler:
             import ImportGeneWeb
             filename = os.path.normpath(os.path.abspath(filename))
             try:
-                ImportGeneWeb.importData(self.parent.db,filename,None)
+                ImportGeneWeb.importData(self.state.db,filename,None)
             except:
                 print "Error importing %s" % filename
                 os._exit(1)
@@ -470,7 +471,8 @@ class ArgHandler:
             dbname = os.path.join(tmpdir_path,const.xmlFile)
 
             try:
-                GrampsDb.gramps_db_reader_factory(const.app_gramps_xml)(self.parent.db,dbname,None)
+                GrampsDb.gramps_db_reader_factory(const.app_gramps_xml)(
+                    self.state.db,dbname,None)
             except:
                 print "Error importing %s" % filename
                 os._exit(1)
@@ -482,8 +484,8 @@ class ArgHandler:
         else:
             print "Invalid format:  %s" % format
             os._exit(1)
-        if not self.parent.cl:
-            return self.parent.post_load(self.imp_db_path)
+        if not self.cl:
+            return self.vm.post_load(self.imp_db_path)
 
     #-------------------------------------------------------------------------
     #
@@ -498,13 +500,14 @@ class ArgHandler:
         """
         if format == 'grdb':
             try:
-                GrampsDb.gramps_db_writer_factory(const.app_gramps)(self.parent.db,filename)
+                GrampsDb.gramps_db_writer_factory(const.app_gramps)(
+                    self.state.db,filename)
             except:
                 print "Error exporting %s" % filename
                 os._exit(1)
         elif format == 'gedcom':
             try:
-                gw = GrampsDb.GedcomWriter(self.parent.db,None,1,filename)
+                gw = GrampsDb.GedcomWriter(self.state.db,None,1,filename)
                 ret = gw.export_data(filename)
             except:
                 print "Error exporting %s" % filename
@@ -513,7 +516,7 @@ class ArgHandler:
             filename = os.path.normpath(os.path.abspath(filename))
             if filename:
                 try:
-                    g = GrampsDb.XmlWriter(self.parent.db,None,0,1)
+                    g = GrampsDb.XmlWriter(self.state.db,None,0,1)
                     ret = g.write(filename)
                 except:
                     print "Error exporting %s" % filename
@@ -521,7 +524,7 @@ class ArgHandler:
         elif format == 'gramps-pkg':
             try:
                 import WritePkg
-                writer = WritePkg.PackageWriter(self.parent.db,filename)
+                writer = WritePkg.PackageWriter(self.state.db,filename)
                 ret = writer.export()
             except:
                 print "Error creating %s" % filename
@@ -529,7 +532,7 @@ class ArgHandler:
         elif format == 'iso':
             import WriteCD
             try:
-                writer = WriteCD.PackageWriter(self.parent.db,filename,1)
+                writer = WriteCD.PackageWriter(self.state.db,filename,1)
                 ret = writer.export()
             except:
                 print "Error exporting %s" % filename
@@ -537,7 +540,7 @@ class ArgHandler:
         elif format == 'wft':
             import WriteFtree
             try:
-                writer = WriteFtree.FtreeWriter(self.parent.db,None,1,filename)
+                writer = WriteFtree.FtreeWriter(self.state.db,None,1,filename)
                 ret = writer.export_data()
             except:
                 print "Error exporting %s" % filename
@@ -545,7 +548,7 @@ class ArgHandler:
         elif format == 'geneweb':
             import WriteGeneWeb
             try:
-                writer = WriteGeneWeb.GeneWebWriter(self.parent.db,
+                writer = WriteGeneWeb.GeneWebWriter(self.state.db,
                                                     None,1,filename)
                 ret = writer.export_data()
             except:
@@ -567,7 +570,7 @@ class ArgHandler:
         """
         if action == 'check':
             import Check
-            checker = Check.CheckIntegrity(self.parent.db,None,None)
+            checker = Check.CheckIntegrity(self.state.db,None,None)
             checker.check_for_broken_family_links()
             checker.cleanup_missing_photos(1)
             checker.check_parent_relationships()
@@ -577,7 +580,7 @@ class ArgHandler:
                 checker.report(1)
         elif action == 'summary':
             import Summary
-            text = Summary.build_report(self.parent.db,None)
+            text = Summary.build_report(self.state.db,None)
             print text
         elif action == "report":
             try:
@@ -599,10 +602,10 @@ class ArgHandler:
                     options_class = item[3]
                     if category in (Report.CATEGORY_BOOK,Report.CATEGORY_CODE,
                                     Report.CATEGORY_WEB):
-                        options_class(self.parent.db,name,
+                        options_class(self.state.db,name,
                                       category,options_str_dict)
                     else:
-                        Report.cl_report(self.parent.db,name,category,
+                        Report.cl_report(self.state.db,name,category,
                                          report_class,options_class,
                                          options_str_dict)
                     return
@@ -628,7 +631,7 @@ class ArgHandler:
                     category = item[1]
                     tool_class = item[2]
                     options_class = item[3]
-                    Tool.cli_tool(self.parent.db,name,category,
+                    Tool.cli_tool(self.state.db,name,category,
                                   tool_class,options_class,options_str_dict)
                     return
 
@@ -651,9 +654,9 @@ class NewNativeDbPrompter:
     it is appended. 
     """
     
-    def __init__(self,parent,parent_window=None):
-        self.parent = parent
-        self.parent_window = parent_window
+    def __init__(self,vm,state):
+        self.vm = vm
+        self.state = state
 
     def chooser(self):
         """
@@ -661,13 +664,13 @@ class NewNativeDbPrompter:
         Return 1 when selection is made and 0 otherwise.
         """
         choose = gtk.FileChooserDialog(_('GRAMPS: Create GRAMPS database'),
-                                           self.parent_window,
-                                           gtk.FILE_CHOOSER_ACTION_SAVE,
-                                           (gtk.STOCK_CANCEL,
-                                            gtk.RESPONSE_CANCEL,
-                                            gtk.STOCK_OPEN,
-                                            gtk.RESPONSE_OK))
-        self.parent.clear_database()
+                                       self.vm.window,
+                                       gtk.FILE_CHOOSER_ACTION_SAVE,
+                                       (gtk.STOCK_CANCEL,
+                                        gtk.RESPONSE_CANCEL,
+                                        gtk.STOCK_OPEN,
+                                        gtk.RESPONSE_OK))
+        self.state.db.close()
 
         # Always add automatic (macth all files) filter
         add_all_files_filter(choose)
@@ -697,11 +700,12 @@ class NewNativeDbPrompter:
                 if os.path.splitext(filename)[1] != ".grdb":
                     filename = filename + ".grdb"
                 choose.destroy()
-                self.parent.db = GrampsDb.gramps_db_factory(const.app_gramps)()
-                self.parent.read_file(filename)
+                self.state.db = GrampsDb.gramps_db_factory(const.app_gramps)()
+                self.vm.read_file(filename)
+                self.state.signal_change()
+                self.change_page(None, None)
                 # Add the file to the recent items
                 RecentFiles.recent_files(filename,const.app_gramps)
-                self.parent.build_recent_menu()
                 return True
             else:
                 choose.destroy()
@@ -726,3 +730,6 @@ def add_grdb_filter(chooser):
     mime_filter.set_name(_('GRAMPS databases'))
     mime_filter.add_mime_type(const.app_gramps)
     chooser.add_filter(mime_filter)
+
+def read_pkg(filename):
+    print "FIXME: This is not re-implemented yet."

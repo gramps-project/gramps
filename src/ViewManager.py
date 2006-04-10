@@ -958,7 +958,7 @@ class ViewManager:
         add_xml_filter(choose)
         add_gedcom_filter(choose)
 
-        format_list = [const.app_gramps, const.app_gramps_xml, const.app_gedcom]
+        format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
 
         # Add more data type selections if opening existing db
         for data in import_list:
