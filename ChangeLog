@@ -1,4 +1,9 @@
 2006-04-09  Alex Roitman  <shura@gramps-project.org>
+	(GrampsBSDDB._delete_primary_from_reference_map): Accept txn
+	argument; pass it on to self._remove_reference().
+	* src/GrampsDb/_GrampsBSDDB.py (GrampsBSDDB._do_remove_object):
+	Work out both regular and batch transactions.
+
 	* src/Makefile.am: Clean byte-compiled files.
 	* src/DataViews/Makefile.am: Clean byte-compiled files.
 	* src/GrampsDb/Makefile.am: Clean byte-compiled files.

@@ -587,7 +587,7 @@ class GrampsBSDDB(GrampsDbBase):
 
         return 
 
-    def _delete_primary_from_reference_map(self, handle, transaction):
+    def _delete_primary_from_reference_map(self,handle,transaction,txn=None):
         """Remove all references to the primary object from the reference_map"""
 
         primary_cur = self.get_reference_map_primary_cursor()
@@ -609,7 +609,7 @@ class GrampsBSDDB(GrampsDbBase):
 
             main_key = (handle, cPickle.loads(data)[1][1])
 
-            self._remove_reference(main_key,transaction)
+            self._remove_reference(main_key,transaction,txn)
             
             ret = primary_cur.next_dup()
 
@@ -855,13 +855,27 @@ class GrampsBSDDB(GrampsDbBase):
         self.metadata       = None
         self.db_is_open     = False
 
-    def _do_remove_object(self,handle,trans,dmap,key,del_list):
-        self._delete_primary_from_reference_map(handle,trans)
-        if not self.readonly:
-            handle = str(handle)
-            if not trans.batch:
-                old_data = dmap.get(handle,txn=self.txn)
-                trans.add(key,handle,old_data,None)
+    def _do_remove_object(self,handle,transaction,data_map,key,del_list):
+        if self.readonly or not handle:
+            return
+
+        handle = str(handle)
+        if transaction.batch:
+            if self.UseTXN:
+                the_txn = self.env.txn_begin()
+            else:
+                the_txn = None
+            self._delete_primary_from_reference_map(handle,transaction,
+                                                    txn=the_txn)
+            data_map.delete(handle,txn=the_txn)
+            if not self.UseTXN:
+                data_map.sync()
+            if the_txn:
+                the_txn.commit()
+        else:
+            self._delete_primary_from_reference_map(handle,transaction)
+            old_data = data_map.get(handle,txn=self.txn)
+            transaction.add(key,handle,old_data,None)
             del_list.append(handle)
 
     def _del_person(self,handle):
