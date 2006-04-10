@@ -415,11 +415,12 @@ class Reader:
         while len(self.current_list) < 5:
             line = self.f.readline()
             self.index += 1
+            line = line.strip('\r\n')
             if line == "":
                 self.f.close()
                 self.eof = True
                 break
-            line = line.rstrip('\r\n').split(None,2) + ['']
+            line = line.split(None,2) + ['']
 
             val = line[2].translate(self.transtable,self.delc)
             try:
@@ -1093,7 +1094,7 @@ class GedcomParser:
                 self.ignore_sub_junk(2)
             elif matches[1] == TOKEN_SLGS:
                 lds_ord = RelLib.LdsOrd()
-                lds_org.set_type(RelLib.LdsOrd.SEAL_TO_SPOUSE)
+                lds_ord.set_type(RelLib.LdsOrd.SEAL_TO_SPOUSE)
                 self.family.lds_ord_list.append(lds_ord)
                 self.parse_ord(lds_ord,2)
             elif matches[1] == TOKEN_ADDR:
@@ -1427,7 +1428,7 @@ class GedcomParser:
                 self.backup()
                 break
             elif matches[1] == TOKEN_TEMP:
-                value = extract_temple(matches)
+                value = self.extract_temple(matches)
                 if value:
                     lds_ord.set_temple(value)
             elif matches[1] == TOKEN_DATE:
@@ -2396,6 +2397,25 @@ class GedcomParser:
     def skip_record(self,matches,state):
         self.ignore_sub_junk(2)
 
+    def extract_temple(self, matches):
+        def get_code(code):
+            if lds.temple_to_abrev.has_key(code):
+                return code
+            elif lds.temple_codes.has_key(code):
+                return lds.temple_codes[code]
+        
+        c = get_code(matches[2])
+        if c: return c
+        
+        ## Not sure why we do this. Kind of ugly.
+        c = get_code(matches[2].split()[0])
+        if c: return c
+
+        ## Okay we have no clue which temple this is.
+        ## We should tell the user and store it anyway.
+        self.warn("Invalid temple code '%s'" % (matches[2],))
+        return matches[2]
+
 def person_event_name(event,person):
     if event.get_type()[0] != RelLib.Event.CUSTOM:
         if not event.get_description():
@@ -2420,17 +2440,6 @@ def load_place_values(place,text):
 #
 #
 #-------------------------------------------------------------------------
-def extract_temple(matches):
-    try:
-        if lds.temple_to_abrev.has_key(matches[2]):
-            return matches[2]
-        elif lds.temple_codes.has_key(matches[2]):
-            return lds.temple_codes[2]
-        else:
-            values = matches[2].split()
-            return lds.temple_to_abrev[values[0]]
-    except:
-        return None
 
 def create_id():
     return Utils.create_id()

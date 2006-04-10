@@ -164,8 +164,8 @@ class EditLdsOrd(EditSecondary):
             changed=self.ord_type_changed)
 
         temple_list = []
-        for val in lds.temple_codes.keys():
-            temple_list.append((lds.temple_codes[val],val))
+        for val in lds.temples:
+            temple_list.append((val[1],val[0]))
 
         self.temple_menu = MonitoredStrMenu(
             self.top.get_widget('temple'),
@@ -341,8 +341,8 @@ class EditFamilyLdsOrd(EditSecondary):
             self.db.readonly)
 
         temple_list = []
-        for val in lds.temple_codes.keys():
-            temple_list.append((lds.temple_codes[val],val))
+        for val in lds.temples:
+            temple_list.append((val[1],val[0]))
 
         self.temple_menu = MonitoredStrMenu(
             self.top.get_widget('temple'),
