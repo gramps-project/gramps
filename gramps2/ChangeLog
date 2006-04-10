@@ -1,3 +1,6 @@
+2006-04-10  Alex Roitman  <shura@gramps-project.org>
+	* src/ArgHandler.py: Get rid of obsolete self.parent.
+
 2006-04-10  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditFamily.py: Fix adding of spouse after family
 	has been created
