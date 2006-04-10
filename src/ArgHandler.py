@@ -89,6 +89,7 @@ class ArgHandler:
 
         self.open_gui = None
         self.open = None
+        self.cl = 0
         self.exports = []
         self.actions = []
         self.imports = []
