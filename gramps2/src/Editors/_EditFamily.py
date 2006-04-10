@@ -761,7 +761,7 @@ class EditFamily(EditPrimary):
                 person.family_list.remove(self.obj.handle)
                 self.db.commit_person(person,trans)
             if new_handle:
-                person = self.db.get_person_from_handle(orig_handle)
+                person = self.db.get_person_from_handle(new_handle)
                 if self.obj.handle not in person.family_list:
                     person.family_list.append(self.obj.handle)
                 self.db.commit_person(person,trans)
