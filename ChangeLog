@@ -1,7 +1,7 @@
 2006-04-09  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/docgen/ODFDoc.py: Improve graphic alignment (Bug 1370498)
 	* src/docgen/OpenOfficeDoc.py: Improve graphic alignment (Bug 1370498)
-	* src/plugins.FamilyGroup.py: Fix traceback when no spouse exists.
+	* src/plugins/FamilyGroup.py: Fix traceback when no spouse exists.
 
 2006-04-09  Alex Roitman  <shura@gramps-project.org>
 	(GrampsBSDDB._delete_primary_from_reference_map): Accept txn
