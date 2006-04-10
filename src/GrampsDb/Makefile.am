@@ -35,6 +35,9 @@ GLADEFILES = \
 
 dist_pkgdata_DATA = $(GLADEFILES) 
 
+# Clean up all the byte-compiled files
+MOSTLYCLEANFILES = *pyc *pyo
+
 GRAMPS_PY_MODPATH = "../"
 
 pycheck: 

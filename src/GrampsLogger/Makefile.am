@@ -15,6 +15,9 @@ pkgdata_PYTHON = \
 pkgpyexecdir = @pkgpyexecdir@/GrampsLogger
 pkgpythondir = @pkgpythondir@/GrampsLogger
 
+# Clean up all the byte-compiled files
+MOSTLYCLEANFILES = *pyc *pyo
+
 GRAMPS_PY_MODPATH = "../"
 
 pycheck: 

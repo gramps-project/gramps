@@ -31,6 +31,9 @@ pkgdata_PYTHON = \
 pkgpyexecdir = @pkgpyexecdir@/Editors
 pkgpythondir = @pkgpythondir@/Editors
 
+# Clean up all the byte-compiled files
+MOSTLYCLEANFILES = *pyc *pyo
+
 GRAMPS_PY_MODPATH = "../"
 
 pycheck: 

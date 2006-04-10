@@ -20,6 +20,9 @@ docgen_PYTHON = \
 	SvgDrawDoc.py\
 	LPRDoc.py
 
+# Clean up all the byte-compiled files
+MOSTLYCLEANFILES = *pyc *pyo
+
 GRAMPS_PY_MODPATH = "../"
 
 pycheck: 

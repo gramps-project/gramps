@@ -1,3 +1,20 @@
+2006-04-09  Alex Roitman  <shura@gramps-project.org>
+	* src/Makefile.am: Clean byte-compiled files.
+	* src/DataViews/Makefile.am: Clean byte-compiled files.
+	* src/GrampsDb/Makefile.am: Clean byte-compiled files.
+	* src/Config/Makefile.am: Clean byte-compiled files.
+	* src/RelLib/Makefile.am: Clean byte-compiled files.
+	* src/Editors/Makefile.am: Clean byte-compiled files.
+	* src/plugins/Makefile.am: Clean byte-compiled files.
+	* src/ObjectSelector/Makefile.am: Clean byte-compiled files.
+	* src/TreeViews/Makefile.am: Clean byte-compiled files.
+	* src/Models/Makefile.am: Clean byte-compiled files.
+	* src/Mime/Makefile.am: Clean byte-compiled files.
+	* src/GrampsLogger/Makefile.am: Clean byte-compiled files.
+	* src/PluginUtils/Makefile.am: Clean byte-compiled files.
+	* src/docgen/Makefile.am: Clean byte-compiled files.
+	* src/DateHandler/Makefile.am: Clean byte-compiled files.
+
 2006-04-09  Don Allingham  <don@gramps-project.org>
 	* src/plugins/*: bring up to ManagedWindow
 
