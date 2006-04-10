@@ -363,7 +363,7 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('<style:style style:name="Right" style:family="graphic"')
         self.cntnt.write(' style:parent-style-name="photo">')
         self.cntnt.write('<style:graphic-properties style:run-through="foreground"')
-        self.cntnt.write(' style:wrap="parallel"')
+        self.cntnt.write(' style:wrap="dynamic"')
         self.cntnt.write(' style:number-wrapped-paragraphs="no-limit"')
         self.cntnt.write(' style:wrap-contour="false" style:vertical-pos="from-top"')
         self.cntnt.write(' style:vertical-rel="paragraph-content"')

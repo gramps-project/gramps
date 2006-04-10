@@ -657,6 +657,7 @@ class FamilyGroupOptions(ReportOptions.ReportOptions):
         will return a placebo label and disable the OK button.
         """
         spouses = []
+        spouse_id = None
         family_list = person.get_family_handle_list()
         for family_handle in family_list:
             family = database.get_family_from_handle(family_handle)
