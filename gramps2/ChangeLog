@@ -1,3 +1,8 @@
+2006-04-10  Nathan Bullock <nathanbullock@gmail.com>
+	* src/GrampsDb/_ReadGedcom.py: LDS fixes.
+	* src/Editors/_EditLdsOrd.py: LDS fixes.
+	* src/lds.py: LDS fixes.
+
 2006-04-10  Alex Roitman  <shura@gramps-project.org>
 	* src/ArgHandler.py: Get rid of obsolete self.parent.
 

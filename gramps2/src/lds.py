@@ -30,159 +30,157 @@
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-
-#
 #Updated LDS Temple Codes from:
 #http://www.geocities.com/rgpassey/temple/abclist.htm
 #Confirmed against Temple Codes list recieved from Raliegh Temple
 #Last update: 1/12/02
-#
+#-------------------------------------------------------------------------
+temples = (
+    # Temple Name                 , Code   , [Old Codes...]
+    ("Aba, Nigeria"               , "ABA",   ),
+    ("Accra, Ghana"               , "ACCRA", ),
+    ("Adelaide, Australia"        , "ADELA", ),
+    ("Albuquerque, New Mexico"    , "ALBUQ", ),
+    ("Anchorage, Alaska"          , "ANCHO", ),
+    ("Apia, Samoa"                , "APIA",  "AP"),
+    ("Asuncion, Paraguay"         , "ASUNC", ),
+    ("Atlanta, Georgia"           , "ATLAN", "AT"),
+    ("Baton Rouge, Louisiana"     , "BROUG", ),
+    ("Bern, Switzerland"          , "SWISS", "SW"),
+    ("Billings, Montana"          , "BILLI", ),
+    ("Birmingham, Alabama"        , "BIRMI", ),
+    ("Bismarck, North Dakota"     , "BISMA", ),
+    ("Bogota, Columbia"           , "BOGOT", "BG"),
+    ("Boise, Idaho"               , "BOISE", "BO"),
+    ("Boston, Massachusetts"      , "BOSTO", ),
+    ("Bountiful, Utah"            , "BOUNT", ),
+    ("Brisban, Australia"         , "BRISB", ),
+    ("Buenos Aires, Argentina"    , "BAIRE", "BA"),
+    ("Campinas, Brazil"           , "CAMPI", ),
+    ("Caracas, Venezuela"         , "CARAC", ),
+    ("Cardston, Alberta"          , "ALBER", "AL", "ALBR"),
+    ("Chicago, Illinois"          , "CHICA", "CH"),
+    ("Ciudad Juarez, Chihuahua"   , "CIUJU", ),
+    ("Cochabamba, Boliva"         , "COCHA", ),
+    ("Colonia Juarez, Chihuahua"  , "COLJU", ),
+    ("Columbia, South Carolina"   , "COLSC", ),
+    ("Columbia River, Washington" , "CRIVE", ),
+    ("Columbus, Ohio"             , "COLUM", ),
+    ("Copenhagen, Denmark"        , "COPEN", ),
+    ("Curitiba, Brazil"           , "CURIT", ),
+    ("Manhattan, New York"        , "MANHA", ),
+    ("Panama City, Panama"        , "PCITY", ),
+    ("Dallas, Texas"              , "DALLA", "DA"),
+    ("Denver, Colorado"           , "DENVE", "DV"),
+    ("Detroit, Michigan"          , "DETRO", ),
+    ("Edmonton, Alberta"          , "EDMON", ),
+    ("Frankfurt, Germany"         , "FRANK", "FR"),
+    ("Fresno, California"         , "FRESN", ),
+    ("Freiberg, Germany"          , "FREIB", "FD"),
+    ("Fukuoka, Japan"             , "FUKUO", ),
+    ("Guadalajara, Jalisco"       , "GUADA", ),
+    ("Guatamala City, Guatamala"  , "GUATE", "GA"),
+    ("Guayaquil, Ecuador"         , "GUAYA", "GY"),
+    ("Halifax, Noca Scotia"       , "HALIF", ),
+    ("Hamilton, New Zealand"      , "NZEAL", "NZ"),
+    ("Harrison, New York"         , "NYORK", ),
+    ("Hartford, Connecticut"      , "HARTF", ),
+    ("Helsinki, Finland"          , "HELSI", ),
+    ("Hermosillo, Sonora"         , "HERMO", ),
+    ("Hong Kong, China"           , "HKONG", ),
+    ("Houston, Texas"             , "HOUST", ),
+    ("Idaho Falls, Idaho"         , "IFALL", ),
+    ("Johannesburg, South Africa" , "JOHAN", "JO"),
+    ("Jordan River, Utah"         , "JRIVE", "JR"),
+    ("Kialua Kona, Hawaii"        , "KONA",  ),
+    ("Kiev, Ukraine"              , "KIEV",  ),
+    ("Laie, Hawaii"               , "HAWAI", "HA"),
+    ("Las Vegas, Nevada"          , "LVEGA", "LV"),
+    ("Lima, Peru"                 , "LIMA" , "LI"),
+    ("Logan, Utah"                , "LOGAN", "LG"),
+    ("London, England"            , "LONDO", "LD"),
+    ("Los Angeles, California"    , "LANGE", "LA"),
+    ("Louisville, Kentucky"       , "LOUIS", ),
+    ("Lubbock, Texas"             , "LUBBO", ),
+    ("Madrid, Spain"              , "MADRI", ),
+    ("Manila, Philippines"        , "MANIL", "MA"),
+    ("Manti, Utah"                , "MANTI", "MT"),
+    ("Medford, Oregon"            , "MEDFO", ),
+    ("Melbourne, Australia"       , "MELBO", ),
+    ("Melphis, Tennessee"         , "MEMPH", ),
+    ("Merida, Yucatan"            , "MERID", ),
+    ("Mesa, Arizona"              , "ARIZO", "AZ"),
+    ("Mexico City, Mexico"        , "MEXIC", "MX"),
+    ("Monterrey, Nuevo Leon"      , "MONTE", ),
+    ("Montevideo, Uruguay"        , "MNTVD", ),
+    ("Monticello, Utah"           , "MONTI", ),
+    ("Montreal, Quebec"           , "MONTR", ),
+    ("Mt. Timpanogos, Utah"       , "MTIMP", ),
+    ("Nashville, Tennessee"       , "NASHV", ),
+    ("Nauvoo, Illinois"           , "NAUVO", ),
+    ("Nauvoo, Illinois (New),"     , "NAUV2", ),
+    ("Newport Beach, California"  , "NBEAC", ),
+    ("Nuku'alofa, Tonga"          , "NUKUA", "TG"),
+    ("Oakland, California"        , "OAKLA", "OK"),
+    ("Oaxaca, Oaxaca"             , "OAKAC", ),
+    ("Ogden, Utah"                , "OGDEN", "OG"),
+    ("Oklahoma City, Oklahoma"    , "OKLAH", ),
+    ("Orlando, Florida"           , "ORLAN", ),
+    ("Palmayra, New York"         , "PALMY", ),
+    ("Papeete, Tahiti"            , "PAPEE", "TA"),
+    ("Perth, Australia"           , "PERTH", ),
+    ("Portland, Oregon"           , "PORTL", "PT"),
+    ("Porto Alegre, Brazil"       , "PALEG", ),
+    ("Preston, England"           , "PREST", ),
+    ("Provo, Utah"                , "PROVO", "PV"),
+    ("Raleigh, North Carolina"    , "RALEI", ),
+    ("Recife, Brazil"             , "RECIF", ),
+    ("Redlands, California"       , "REDLA", ),
+    ("Regina, Saskatchewan"       , "REGIN", ),
+    ("Reno, Nevada"               , "RENO",  ),
+    ("Sacramento, California"     , "SACRA", ),
+    ("St. George, Utah"           , "SGEOR", "SG"),
+    ("St. Louis, Missouri"        , "SLOUI", ),
+    ("St. Paul, Minnesota"        , "SPMIN", ),
+    ("Salt Lake City, Utah"       , "SLAKE", "SL"),
+    ("San Diego, California"      , "SDIEG", "SA"),
+    ("San Antonio, Texas"         , "ANTON", ),
+    ("San Jose, Costa Rica"       , "SJOSE", ),
+    ("Santiago, Chile"            , "SANTI", "SN"),
+    ("Santo Domingo, Dominican Republic" , "SDOMI", ),
+    ("Sao Paulo, Brazil"          , "SPAUL", "SP"),
+    ("Seattle, Washington"        , "SEATT", "SE"),
+    ("Seoul, South Korea"         , "SEOUL", "SO"),
+    ("Snowflake, Arizona"         , "SNOWF", ),
+    ("Spokane, Washington"        , "SPOKA", ),
+    ("Stockholm, Sweden"          , "STOCK", "ST"),
+    ("Suva, Fiji"                 , "SUVA",  ),
+    ("Sydney, Australia"          , "SYDNE", "SD"),
+    ("Taipei, Taiwan"             , "TAIPE", "TP"),
+    ("Tampico, Tamaulipas"        , "TAMPI", ),
+    ("The Hague, Netherlands"     , "HAGUE", ),
+    ("Tokyo, Japan"               , "TOKYO", "TK"),
+    ("Toronto, Ontario"           , "TORNO", "TR"),
+    ("Tuxtla Gutierrez, Chiapas"  , "TGUTI", ),
+    ("Vera Cruz, Vera Cruz"       , "VERAC", ),
+    ("Vernal, Utah"               , "VERNA", ),
+    ("Villahermosa, Tabasco"      , "VILLA", ),
+    ("Washington, D.C."           , "WASHI", "WA"),
+    ("Winter Quarters, Nebraska"  , "WINTE", ),
 
-temple_codes = {
-    "Aba, Nigeria"               : "ABA",   #1 Added
-    "Accra, Ghana"               : "ACCRA", #2 Added
-    "Adelaide, Australia"        : "ADELA", #3 Added
-    "Albuquerque, New Mexico"    : "ALBUQ", #4 Added
-    "Anchorage, Alaska"          : "ANCHO", #6 Added
-    "Apia, Samoa"                : "APIA",  #7
-    "Asuncion, Paraguay"         : "ASUNC", #8 Added
-    "Atlanta, Georgia"           : "ATLAN", #9
-    "Baton Rouge, Louisiana"     : "BROUG", #10 Added
-    "Bern, Switzerland"          : "SWISS", #11
-    "Billings, Montana"          : "BILLI", #12 Added
-    "Birmingham, Alabama"        : "BIRMI", #13 Added
-    "Bismarck, North Dakota"     : "BISMA", #14 Added
-    "Bogota, Columbia"           : "BOGOT", #15
-    "Boise, Idaho"               : "BOISE", #16
-    "Boston, Massachusetts"      : "BOSTO", #17 Added
-    "Bountiful, Utah"            : "BOUNT", #18
-    "Brisban, Australia"         : "BRISB", #19 Added
-    "Buenos Aires, Argentina"    : "BAIRE", #20
-    "Campinas, Brazil"           : "CAMPI", #21 Added
-    "Caracas, Venezuela"         : "CARAC", #22 Added
-    "Cardston, Alberta"          : "ALBER", #23
-    "Chicago, Illinois"          : "CHICA", #24
-    "Ciudad Juarez, Chihuahua"   : "CIUJU", #25 Added
-    "Cochabamba, Boliva"         : "COCHA", #26
-    "Colonia Juarez, Chihuahua"  : "COLJU", #27 Added
-    "Columbia, South Carolina"   : "COLSC", #28 Added
-    "Columbia River, Washington" : "CRIVE", #121 Added
-    "Columbus, Ohio"             : "COLUM", #29 Added
-    "Copenhagen, Denmark"        : "COPEN", #30 Added
-    "Curitiba, Brazil"           : "CURIT",
-    "Manhattan, New York"        : "MANHA",
-    "Panama City, Panama"        : "PCITY",
-    "Dallas, Texas"              : "DALLA", #31
-    "Denver, Colorado"           : "DENVE", #32
-    "Detroit, Michigan"          : "DETRO", #33 Added
-    "Edmonton, Alberta"          : "EDMON", #34 Added
-    "Frankfurt, Germany"         : "FRANK", #35
-    "Fresno, California"         : "FRESN", #36 Added
-    "Freiberg, Germany"          : "FREIB", #37
-    "Fukuoka, Japan"             : "FUKUO", #38 Added
-    "Guadalajara, Jalisco"       : "GUADA", #39 Added
-    "Guatamala City, Guatamala"  : "GUATE", #40
-    "Guayaquil, Ecuador"         : "GUAYA", #41
-    "Halifax, Noca Scotia"       : "HALIF", #42 Added
-    "Hamilton, New Zealand"      : "NZEAL", #43
-    "Harrison, New York"         : "NYORK", #44 Added
-    "Hartford, Connecticut"      : "HARTF", #Can not find in list used. ?
-    "Helsinki, Finland"          : "HELSI", #45 Added
-    "Hermosillo, Sonora"         : "HERMO", #46 Added
-    "Hong Kong, China"           : "HKONG", #47
-    "Houston, Texas"             : "HOUST", #48 Added
-    "Idaho Falls, Idaho"         : "IFALL", #49
-    "Johannesburg, South Africa" : "JOHAN", #50
-    "Jordan River, Utah"         : "JRIVE", #111
-    "Kialua Kona, Hawaii"        : "KONA",  #51 Added
-    "Kiev, Ukraine"              : "KIEV",  #52 Added
-    "Laie, Hawaii"               : "HAWAI", #54
-    "Las Vegas, Nevada"          : "LVEGA", #55
-    "Lima, Peru"                 : "LIMA" , #56
-    "Logan, Utah"                : "LOGAN", #57
-    "London, England"            : "LONDO", #58
-    "Los Angeles, California"    : "LANGE", #59
-    "Louisville, Kentucky"       : "LOUIS", #60 Added
-    "Lubbock, Texas"             : "LUBBO", #61 Added
-    "Madrid, Spain"              : "MADRI", #62
-    "Manila, Philippines"        : "MANIL", #63
-    "Manti, Utah"                : "MANTI", #64
-    "Medford, Oregon"            : "MEDFO", #65 Added
-    "Melbourne, Australia"       : "MELBO", #66 Added
-    "Melphis, Tennessee"         : "MEMPH", #67 Added
-    "Merida, Yucatan"            : "MERID", #68 Added
-    "Mesa, Arizona"              : "ARIZO", #69
-    "Mexico City, Mexico"        : "MEXIC", #70
-    "Monterrey, Nuevo Leon"      : "MONTE", #71 Added
-    "Montevideo, Uruguay"        : "MNTVD", #72
-    "Monticello, Utah"           : "MONTI", #73 Added
-    "Montreal, Quebec"           : "MONTR", #74 Added
-    "Mt. Timpanogos, Utah"       : "MTIMP", #5
-    "Nashville, Tennessee"       : "NASHV", #75
-    "Nauvoo, Illinois"           : "NAUVO", #76
-    "Nauvoo, Illinois (New)"     : "NAUV2", #Rebuilt Added
-    "Newport Beach, California"  : "NBEAC", #77 Added
-    "Nuku'alofa, Tonga"          : "NUKUA", #78
-    "Oakland, California"        : "OAKLA", #79
-    "Oaxaca, Oaxaca"             : "OAKAC", #80 Added
-    "Ogden, Utah"                : "OGDEN", #81
-    "Oklahoma City, Oklahoma"    : "OKLAH", #82 Added
-    "Orlando, Florida"           : "ORLAN", #84
-    "Palmayra, New York"         : "PALMY", #85 Added
-    "Papeete, Tahiti"            : "PAPEE", #86
-    "Perth, Australia"           : "PERTH", #87 Added
-    "Portland, Oregon"           : "PORTL", #88
-    "Porto Alegre, Brazil"       : "PALEG", #89 Added
-    "Preston, England"           : "PREST", #90
-    "Provo, Utah"                : "PROVO", #91
-    "Raleigh, North Carolina"    : "RALEI", #92 Added
-    "Recife, Brazil"             : "RECIF", #93
-    "Redlands, California"       : "REDLA", #94 Added
-    "Regina, Saskatchewan"       : "REGIN", #95 Added
-    "Reno, Nevada"               : "RENO",  #96 Added
-    "Sacramento, California"     : "SACRA", #97 Added
-    "St. George, Utah"           : "SGEOR", #98
-    "St. Louis, Missouri"        : "SLOUI", #99
-    "St. Paul, Minnesota"        : "SPMIN", #100 Added
-    "Salt Lake City, Utah"       : "SLAKE", #101
-    "San Diego, California"      : "SDIEG", #102
-    "San Antonio, Texas"         : "ANTON", #103 Added
-    "San Jose, Costa Rica"       : "SJOSE", #104 Added
-    "Santiago, Chile"            : "SANTI", #105
-    "Santo Domingo, Dominican Republic" : "SDOMI", #106
-    "Sao Paulo, Brazil"          : "SPAUL", #107
-    "Seattle, Washington"        : "SEATT", #108
-    "Seoul, South Korea"         : "SEOUL", #109
-    "Snowflake, Arizona"         : "SNOWF", #110 Added
-    "Spokane, Washington"        : "SPOKA", #112
-    "Stockholm, Sweden"          : "STOCK", #113
-    "Suva, Fiji"                 : "SUVA",  #114 Added
-    "Sydney, Australia"          : "SYDNE", #115
-    "Taipei, Taiwan"             : "TAIPE", #116
-    "Tampico, Tamaulipas"        : "TAMPI", #117 Added
-    "The Hague, Netherlands"     : "HAGUE", #118 Added
-    "Tokyo, Japan"               : "TOKYO", #119
-    "Toronto, Ontario"           : "TORNO", #120
-    "Tuxtla Gutierrez, Chiapas"  : "TGUTI", #122 Added
-    "Vera Cruz, Vera Cruz"       : "VERAC", #123 Added
-    "Vernal, Utah"               : "VERNA", #124
-    "Villahermosa, Tabasco"      : "VILLA", #125 Added
-    "Washington, D.C."           : "WASHI", #126
-    "Winter Quarters, Nebraska"  : "WINTE", #83 Added
-#Other Places
-    "Endowment House"            : "EHOUS", #Not a temple per se
-    "President's Office"         : "POFFI", #Not a temple per se
+#Other Places, Not temples.
+    ("Endowment House"            , "EHOUS", "EH"),
+    ("President's Office"         , "POFFI", ),
+)
 
-
-}
+temple_codes = {}
+for x in temples:
+    temple_codes[x[0]] = x[1]
 
 temple_to_abrev = {}
-for (name,abbr) in temple_codes.iteritems():
-    temple_to_abrev[abbr] = name
+for x in temples:
+    for y in x[1:]:
+        temple_to_abrev[y] = x[0]
 
 ord_type = {
     0 : _('Baptism'),
@@ -207,4 +205,3 @@ ord_status = [
     _("Submitted"),
     _("Uncleared"),
     ]
-
