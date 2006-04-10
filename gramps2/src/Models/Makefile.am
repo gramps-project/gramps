@@ -18,6 +18,9 @@ pkgdata_PYTHON = \
 pkgpyexecdir = @pkgpyexecdir@/Models
 pkgpythondir = @pkgpythondir@/Models
 
+# Clean up all the byte-compiled files
+MOSTLYCLEANFILES = *pyc *pyo
+
 GRAMPS_PY_MODPATH = "../"
 
 pycheck: 

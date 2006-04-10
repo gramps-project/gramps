@@ -20,24 +20,7 @@ SUBDIRS = \
 	images \
 	plugins
 
-# For intl. support, how do we compile?
-MOSTLYCLEANFILES = 
-CLEANFILES = const.pyc const.pyo
-
-# What are the PYTHON scripts for this package that need to be handled?
-#
-# We only want optimized byte-compiled (.pyo) versions, no .pyc
-# In principle, this is handled by PYCFILES and PYOFILES, but
-# they don't seem to work so we edited the py-compile script instead
-
 gdirdir=$(prefix)/share/gramps
-
-docfiles = \
-	RelLib.py \
-	Date.py \
-	DateParser.py \
-	DateDisplay.py \
-	GrampsDbBase.py 
 
 gdir_PYTHON = \
 	AddMedia.py\
@@ -96,6 +79,12 @@ gdir_PYTHON = \
 	SelectFamily.py\
 	SelectSource.py
 
+# Clean up all the byte-compiled files
+MOSTLYCLEANFILES = *pyc *pyo
+
+# Which modules to document
+docmodules = RelLib DateHandler GrampsDb
+
 pycheck: 
 	for d in $(SUBDIRS) ; do \
           (cd $$d; make pycheck); \
@@ -103,8 +92,8 @@ pycheck:
 	pychecker $(gdir_PYTHON)
 
 docs:
-	epydoc -o doc --url http://gramps.sourceforge.net --name GRAMPS --html $(docfiles)
-	epydoc --pdf $(docfiles)
+	epydoc -o doc --url http://gramps.sourceforge.net --name GRAMPS --html $(docmodules)
+	epydoc --pdf $(docmodules)
 
 cmdplug:
 	./build_cmdplug

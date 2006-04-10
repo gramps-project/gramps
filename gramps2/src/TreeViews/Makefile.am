@@ -12,6 +12,9 @@ pkgdata_PYTHON = \
 pkgpyexecdir = @pkgpyexecdir@/TreeViews
 pkgpythondir = @pkgpythondir@/TreeViews
 
+# Clean up all the byte-compiled files
+MOSTLYCLEANFILES = *pyc *pyo
+
 GRAMPS_PY_MODPATH = "../"
 
 pycheck: 
