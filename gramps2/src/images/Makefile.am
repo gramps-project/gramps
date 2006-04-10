@@ -12,8 +12,6 @@ dist_pkgdata_DATA = \
 	flist.svg\
 	good.png\
 	gramps.png\
-	land_shallow_topo_2048.jpg\
-	land_shallow_topo_350.jpg\
 	locked.png\
 	logo.png\
 	media.svg\
@@ -32,6 +30,55 @@ dist_pkgdata_DATA = \
 	stock_lock.png\
 	tools.png\
 	somerights20.gif \
-	document.png
+	document.png\
+	world.topo.200407.3x128x60.jpg\
+	world.topo.200407.3x400x200.jpg\
+	world.topo.200407.3x800x400.jpg\
+	world.topo.200407.3x1600x800_tile_0_0.jpg\
+	world.topo.200407.3x1600x800_tile_0_1.jpg\
+	world.topo.200407.3x1600x800_tile_0_2.jpg\
+	world.topo.200407.3x1600x800_tile_0_3.jpg\
+	world.topo.200407.3x1600x800_tile_1_0.jpg\
+	world.topo.200407.3x1600x800_tile_1_1.jpg\
+	world.topo.200407.3x1600x800_tile_1_2.jpg\
+	world.topo.200407.3x1600x800_tile_1_3.jpg\
+	world.topo.200407.3x3200x1600_tile_0_0.jpg\
+	world.topo.200407.3x3200x1600_tile_0_1.jpg\
+	world.topo.200407.3x3200x1600_tile_0_2.jpg\
+	world.topo.200407.3x3200x1600_tile_0_3.jpg\
+	world.topo.200407.3x3200x1600_tile_0_4.jpg\
+	world.topo.200407.3x3200x1600_tile_0_5.jpg\
+	world.topo.200407.3x3200x1600_tile_0_6.jpg\
+	world.topo.200407.3x3200x1600_tile_0_7.jpg\
+	world.topo.200407.3x3200x1600_tile_1_0.jpg\
+	world.topo.200407.3x3200x1600_tile_1_1.jpg\
+	world.topo.200407.3x3200x1600_tile_1_2.jpg\
+	world.topo.200407.3x3200x1600_tile_1_3.jpg\
+	world.topo.200407.3x3200x1600_tile_1_4.jpg\
+	world.topo.200407.3x3200x1600_tile_1_5.jpg\
+	world.topo.200407.3x3200x1600_tile_1_6.jpg\
+	world.topo.200407.3x3200x1600_tile_1_7.jpg\
+	world.topo.200407.3x3200x1600_tile_2_0.jpg\
+	world.topo.200407.3x3200x1600_tile_2_1.jpg\
+	world.topo.200407.3x3200x1600_tile_2_2.jpg\
+	world.topo.200407.3x3200x1600_tile_2_3.jpg\
+	world.topo.200407.3x3200x1600_tile_2_4.jpg\
+	world.topo.200407.3x3200x1600_tile_2_5.jpg\
+	world.topo.200407.3x3200x1600_tile_2_6.jpg\
+	world.topo.200407.3x3200x1600_tile_2_7.jpg\
+	world.topo.200407.3x3200x1600_tile_3_0.jpg\
+	world.topo.200407.3x3200x1600_tile_3_1.jpg\
+	world.topo.200407.3x3200x1600_tile_3_2.jpg\
+	world.topo.200407.3x3200x1600_tile_3_3.jpg\
+	world.topo.200407.3x3200x1600_tile_3_4.jpg\
+	world.topo.200407.3x3200x1600_tile_3_5.jpg\
+	world.topo.200407.3x3200x1600_tile_3_6.jpg\
+	world.topo.200407.3x3200x1600_tile_3_7.jpg
+	
+	
 
 EXTRA_DIST = gramps.svg 
+
+world.topo.200407.3x800x400.jpg: mk_blue_marble.py
+	python mk_blue_marble.py
+

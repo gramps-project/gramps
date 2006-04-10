@@ -1,3 +1,11 @@
+2006-04-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DataViews/_MapView.py: Reworked to display multiple smaller
+	tiled map images
+	* src/images/mk_blue_marble.py: Script to create the map tiles out of
+	the nasa blue marble image
+	* src/images/Makefile.am: Add map tile images and bootstrap them using
+	mk_blue_marble.py
+
 2006-04-10  Nathan Bullock <nathanbullock@gmail.com>
 	* src/GrampsDb/_ReadGedcom.py: LDS fixes.
 	* src/Editors/_EditLdsOrd.py: LDS fixes.
