@@ -202,6 +202,7 @@ class ViewManager:
         hbox = gtk.HBox()
         self.ebox = gtk.EventBox()
         self.bbox = gtk.VBox()
+        self.buttons = []
         self.ebox.add(self.bbox)
         hbox.pack_start(self.ebox, False)
         hbox.show_all()
@@ -512,13 +513,15 @@ class ViewManager:
         index = 0
         for page_def in self.views:
             page = page_def(self.state, self.uistate)
+            page_title = page.get_title()
+            page_stock = page.get_stock()
 
             # create icon/label for notebook
             hbox = gtk.HBox()
             image = gtk.Image()
-            image.set_from_stock(page.get_stock(), gtk.ICON_SIZE_MENU)
+            image.set_from_stock(page_stock, gtk.ICON_SIZE_MENU)
             hbox.pack_start(image, False)
-            hbox.add(gtk.Label(page.get_title()))
+            hbox.add(gtk.Label(page_title))
             hbox.show_all()
 
             # create notebook page and add to notebook
@@ -528,18 +531,26 @@ class ViewManager:
             self.notebook.append_page(page_display, hbox)
             self.pages.append(page)
 
-            # create the button add it to the sidebar
-            button = gtk.Button(stock=page.get_stock(), label=page.get_title())
+            # create the button and add it to the sidebar
+            button = gtk.ToggleButton()
+            if page_stock:
+                button.set_use_stock(True)
+                button.set_label(page_stock)
+            else:
+                button.set_label(page_title)
             button.set_border_width(4)
             button.set_relief(gtk.RELIEF_NONE)
             button.set_alignment(0, 0.5)
-            button.connect('clicked', 
-                           lambda x, y : self.notebook.set_current_page(y), index)
+            button.connect('clicked',
+                           lambda x, y : self.notebook.set_current_page(y),
+                           index)
             button.show()
             index += 1
             self.bbox.pack_start(button, False)
+            self.buttons.append(button)
 
         self.active_page = self.pages[0]
+        self.buttons[0].set_active(True)
         self.active_page.set_active()
 
     def change_page(self, obj, page, num=-1):
@@ -547,6 +558,10 @@ class ViewManager:
             num = self.notebook.get_current_page()
 
         if self.state.open:
+
+            for ix in range(len(self.buttons)):
+                if ix != num and self.buttons[ix].get_active():
+                    self.buttons[ix].set_active(False)
 
             for mergeid in self.merge_ids:
                 self.uimanager.remove_ui(mergeid)
