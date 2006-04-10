@@ -73,7 +73,6 @@ class PageView:
         self.active = False
 
     def set_active(self):
-        print self, self.active, self.dirty
         self.active = True
         if self.dirty:
             self.uistate.set_busy_cursor(True)
