@@ -4,33 +4,7 @@
 SUBDIRS = 
 pkgdatadir = $(datadir)/@PACKAGE@/images
 
-dist_pkgdata_DATA = \
-	bad.png\
-	caution.png\
-	edit_sm.png\
-	events.png\
-	flist.svg\
-	good.png\
-	gramps.png\
-	locked.png\
-	logo.png\
-	media.svg\
-	ped24.png\
-	person.svg\
-	place.png\
-	place24.png\
-	relation.svg\
-	repos.png\
-	repos24.png\
-	sources.png\
-	sources24.png\
-	splash.jpg\
-	stock_link.png\
-	stock_lock-open.png\
-	stock_lock.png\
-	tools.png\
-	somerights20.gif \
-	document.png\
+map_tile_images = \
 	world.topo.200407.3x128x60.jpg\
 	world.topo.200407.3x400x200.jpg\
 	world.topo.200407.3x800x400.jpg\
@@ -77,8 +51,43 @@ dist_pkgdata_DATA = \
 	
 	
 
+dist_pkgdata_DATA = \
+	bad.png\
+	caution.png\
+	edit_sm.png\
+	events.png\
+	flist.svg\
+	good.png\
+	gramps.png\
+	locked.png\
+	logo.png\
+	media.svg\
+	ped24.png\
+	person.svg\
+	place.png\
+	place24.png\
+	relation.svg\
+	repos.png\
+	repos24.png\
+	sources.png\
+	sources24.png\
+	splash.jpg\
+	stock_link.png\
+	stock_lock-open.png\
+	stock_lock.png\
+	tools.png\
+	somerights20.gif \
+	document.png\
+	$(map_tile_images)
+
 EXTRA_DIST = gramps.svg 
 
-world.topo.200407.3x800x400.jpg: mk_blue_marble.py
+DISTCLEANFILES = $(map_tile_images)\
+	world.topo.200407.3x1600x800.jpg\
+	world.topo.200407.3x3200x1600.jpg\
+	world.topo.200407.3x5400x2700.jpg
+
+	
+world.topo.200407%: mk_blue_marble.py
 	python mk_blue_marble.py
 
