@@ -48,8 +48,6 @@ map_tile_images = \
 	world.topo.200407.3x3200x1600_tile_3_5.jpg\
 	world.topo.200407.3x3200x1600_tile_3_6.jpg\
 	world.topo.200407.3x3200x1600_tile_3_7.jpg
-	
-	
 
 dist_pkgdata_DATA = \
 	bad.png\
@@ -82,12 +80,10 @@ dist_pkgdata_DATA = \
 
 EXTRA_DIST = gramps.svg 
 
-DISTCLEANFILES = $(map_tile_images)\
+CLEANFILES = $(map_tile_images)\
 	world.topo.200407.3x1600x800.jpg\
 	world.topo.200407.3x3200x1600.jpg\
 	world.topo.200407.3x5400x2700.jpg
 
-	
 world.topo.200407%: mk_blue_marble.py
 	python mk_blue_marble.py
-
