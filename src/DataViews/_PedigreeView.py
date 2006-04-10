@@ -522,6 +522,18 @@ class PedigreeView(PageView.PersonNavView):
         PageView.PersonNavView.define_actions(self)
         self.add_action('HomePerson',gtk.STOCK_HOME,  "_Home",  callback=self.home)
 
+    def build_tree(self):
+        """
+        This is called by the parent class when the view becomes visible. Since
+        all handling of visibility is now in rebuild_trees, see that for more
+        information.
+        """
+        active = self.dbstate.get_active_person()
+        if active:
+            self.rebuild_trees(active.handle)
+        else:
+            self.rebuild_trees(None)
+
     def change_db(self,db):
         """
         Callback associated with DbState. Whenenver the database
@@ -539,6 +551,7 @@ class PedigreeView(PageView.PersonNavView):
         self.rebuild_trees(None)
  
     def goto_active_person(self,handle=None):
+        self.dirty = True
         if handle:
             self.rebuild_trees(handle)
             self.handle_history(handle)
@@ -546,18 +559,21 @@ class PedigreeView(PageView.PersonNavView):
             self.rebuild_trees(None)
     
     def person_updated_cb(self,handle_list):
+        self.dirty = True
         if self.dbstate.active:
             self.rebuild_trees(self.dbstate.active.handle)
         else:
             self.rebuild_trees(None)
 
     def person_rebuild(self):
+        self.dirty = True
         if self.dbstate.active:
             self.rebuild_trees(self.dbstate.active.handle)
         else:
             self.rebuild_trees(None)
 
     def person_edited_cb(self, p1=None, p2=None):
+        self.dirty = True
         pass
 
     def request_resize(self):
@@ -580,6 +596,17 @@ class PedigreeView(PageView.PersonNavView):
         person = None
         if person_handle:
             person = self.dbstate.db.get_person_from_handle( person_handle)
+
+        # Eliminate unnecessary redraws. If the window is active, clear the
+        # dirty flag, and redraw. If we are not begin displayed, set the dirty
+        # flag and do nothing.
+        
+        if not self.active or not self.dirty:
+            self.dirty = True
+            return
+        else:
+            self.dirty = False
+
         if self.tree_style == 1:
             # format of the definition is:
             # ((each box of the pedigree has a node here),

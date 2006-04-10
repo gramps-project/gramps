@@ -253,13 +253,9 @@ class PersonView(PageView.PersonNavView):
         db.connect('person-update', self.person_updated)
         db.connect('person-delete', self.person_removed)
         db.connect('person-rebuild', self.build_tree)
-#        self.build_tree()
         self.generic_filter_widget.apply_filter()
 
     def goto_active_person(self,obj=None):
-        self.goto_active_person_2(None)
-
-    def goto_active_person_2(self,obj=None):
         """
         Callback (and usable function) that selects the active person
         in the display tree.
@@ -359,6 +355,7 @@ class PersonView(PageView.PersonNavView):
                                                   self.model.tooltip_column,
                                                   True)
             self.build_columns()
+            self.goto_active_person()
             self.dirty = False
         else:
             self.dirty = True

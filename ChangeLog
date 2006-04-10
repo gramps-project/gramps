@@ -7,6 +7,10 @@
 	* src/ArgHandler.py: Get rid of obsolete self.parent.
 
 2006-04-10  Don Allingham  <don@gramps-project.org>
+	* src/DateViews/_PersonView.py: goto active person after a redraw.
+	* src/DataViews/_PedigreeViews.py: optimize the screen draws,
+	redrawing only when the view is displayed and when the data needs
+	to be updated.
 	* src/Editors/_EditFamily.py: Fix adding of spouse after family
 	has been created
 
