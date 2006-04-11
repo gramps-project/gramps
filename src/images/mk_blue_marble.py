@@ -29,7 +29,12 @@ def process_file( imagefile, image_width, image_height, map_x, map_y, map_width,
 					(tile_size,tile_size,x*tile_size,y*tile_size,outfile,imagefile)
 				print cmd
 				if os.system( cmd):
-					sys.exit("ERROR, image crop using jpegtran (part of libjpeg-progs) failed.")
+					print("WARNING: lossless crop using jpegtran (part of libjpeg-progs) failed. Trying lossy fallback")
+					cmd = "convert %s -crop %dx%d+%d+%d %s" %\
+						(imagefile,tile_size,tile_size,x*tile_size,y*tile_size,outfile)
+					print cmd
+					if os.system( cmd):
+						sys.exit("ERROR, image crop using jpegtran (part of libjpeg-progs) and imagemagick failed.")
 			else:
 				print "tile %s already exists" % outfile
 			tile_width = map_width/(image_width/tile_size)

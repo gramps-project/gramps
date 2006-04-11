@@ -1,6 +1,6 @@
 2006-04-11  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/images/mk_blue_marble.py: Properly exit on error to let `make`
-	stop in that case.
+	stop in that case; Provide fallback if jpegtrans does not work/exist.
 
 2006-04-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_MapView.py: Reworked to display multiple smaller
