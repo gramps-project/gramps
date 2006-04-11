@@ -14,6 +14,7 @@
 # This images are public domain.
 
 import os
+import sys
 
 tile_defines = []
 
@@ -28,7 +29,7 @@ def process_file( imagefile, image_width, image_height, map_x, map_y, map_width,
 					(tile_size,tile_size,x*tile_size,y*tile_size,outfile,imagefile)
 				print cmd
 				if os.system( cmd):
-					print "ERROR"
+					sys.exit("ERROR, image crop using jpegtran (part of libjpeg-progs) failed.")
 			else:
 				print "tile %s already exists" % outfile
 			tile_width = map_width/(image_width/tile_size)
@@ -46,7 +47,7 @@ def scale_down( infile, outfile, new_width):
 		cmd = "convert %s -resize %d %s" % (infile,new_width,outfile)
 		print cmd
 		if os.system( cmd):
-			print "ERROR"
+			sys.exit("ERROR. Scaling down using imagemagick failed.")
 	else:
 		print "scaled down image %s already exists" % outfile
 
@@ -56,8 +57,7 @@ def fetch_image( server, filename):
 		cmd = "wget -v %s/%s" % (server, sourcemap_midres)
 		print cmd
 		if os.system( cmd):
-			print "ERROR"
-
+			sys.exit("ERROR, image download using wget failed.")
 	else:
 		print "mapfile %s already downloaded" % filename
 	
