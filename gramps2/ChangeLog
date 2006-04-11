@@ -1,3 +1,7 @@
+2006-04-11  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py (ViewManager.change_page): Always toggle the
+	sidebar buttons, even if no data is loaded.
+
 2006-04-11  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/images/mk_blue_marble.py: Properly exit on error to let `make`
 	stop in that case; Provide fallback if jpegtrans does not work/exist.
