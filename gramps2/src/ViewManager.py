@@ -557,11 +557,11 @@ class ViewManager:
         if num == -1:
             num = self.notebook.get_current_page()
 
-        if self.state.open:
+        for ix in range(len(self.buttons)):
+            if ix != num and self.buttons[ix].get_active():
+                self.buttons[ix].set_active(False)
 
-            for ix in range(len(self.buttons)):
-                if ix != num and self.buttons[ix].get_active():
-                    self.buttons[ix].set_active(False)
+        if self.state.open:
 
             for mergeid in self.merge_ids:
                 self.uimanager.remove_ui(mergeid)
