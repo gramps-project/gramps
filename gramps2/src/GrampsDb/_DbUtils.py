@@ -102,9 +102,14 @@ def remove_child_from_family(db, person_handle, family_handle, trans=None):
     else:
         need_commit = False
         
+    child_list = family.get_child_handle_list()
     if (not family.get_father_handle() and not family.get_mother_handle() and
-        len(family.get_child_handle_list()) <= 1):
+        len(child_list) <= 1):
         db.remove_family(family_handle, trans)
+        if child_list:
+            child = db.get_person_from_handle(child_list[0])
+            child.remove_parent_family_handle(family_handle)
+            db.commit_person(child, trans)
     else:
         db.commit_family(family, trans)
     db.commit_person(person, trans)
@@ -130,5 +135,3 @@ def add_child_to_family(db, family, child, mrel=(RelLib.Person.CHILD_BIRTH,''),
 
     if need_commit:
         db.transaction_commit(trans, _('Add child to family') )
-    
-    
