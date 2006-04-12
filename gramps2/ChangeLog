@@ -1,3 +1,6 @@
+2006-04-12  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Check.py (Check.__init__): Typo.
+
 2006-04-11  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_DbUtils.py (remove_parent_from_family): If
 	removing family, also remove it from the child's

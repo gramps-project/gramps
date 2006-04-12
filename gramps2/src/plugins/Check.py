@@ -185,7 +185,7 @@ class Check(Tool.Tool):
 
         errs = checker.build_report(cli)
         if errs:
-            Report(uistate, checker.text.getvalue(),parent)
+            Report(uistate, checker.text.getvalue(),cli)
 
 #-------------------------------------------------------------------------
 #
