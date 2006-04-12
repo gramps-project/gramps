@@ -30,6 +30,7 @@ pkgdata_PYTHON = \
 	_NoteBase.py\
 	_Note.py\
 	_Person.py\
+	_PersonRef.py\
 	_PlaceBase.py\
 	_Place.py\
 	_PrimaryObject.py\
