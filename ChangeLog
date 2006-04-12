@@ -1,4 +1,7 @@
 2006-04-11  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_DbUtils.py (remove_parent_from_family): If
+	removing family, also remove it from the child's
+	parent_family_list.
 	* src/ViewManager.py (ViewManager.change_page): Always toggle the
 	sidebar buttons, even if no data is loaded.
 
