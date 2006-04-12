@@ -5,6 +5,11 @@
 	* src/ViewManager.py (ViewManager.change_page): Always toggle the
 	sidebar buttons, even if no data is loaded.
 
+	* src/RelLib/_PersonRef.py: Add to repository.
+	* src/RelLib/Makefile.am: Ship new file.
+	* src/RelLib/_Person.py: Add person_ref_list to store person-to-
+	person references.
+
 2006-04-11  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/images/mk_blue_marble.py: Properly exit on error to let `make`
 	stop in that case; Provide fallback if jpegtrans does not work/exist.

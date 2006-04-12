@@ -46,7 +46,7 @@ from _UrlBase import UrlBase
 from _Name import Name
 from _EventRef import EventRef
 from _LdsOrd import LdsOrd
-
+from _PersonRef import PersonRef
 #-------------------------------------------------------------------------
 #
 # Person class
@@ -109,6 +109,7 @@ class Person(PrimaryObject, SourceNote,
         self.parent_family_list = []
         self.nickname = ""
         self.alternate_names = []
+        self.person_ref_list = []
         self.gender = Person.UNKNOWN
         self.death_ref = None
         self.birth_ref = None
@@ -145,26 +146,29 @@ class Person(PrimaryObject, SourceNote,
         else:
             death_ref = self.death_ref.serialize()
 
-        return (self.handle, 
-                self.gramps_id, 
-                self.gender, 
-                self.primary_name.serialize(), 
-                [name.serialize() for name in self.alternate_names], 
-                unicode(self.nickname), 
-                death_ref, 
-                birth_ref, 
-                [er.serialize() for er in self.event_ref_list], 
-                self.family_list, 
-                self.parent_family_list, 
-                MediaBase.serialize(self), 
-                AddressBase.serialize(self), 
-                AttributeBase.serialize(self), 
-                UrlBase.serialize(self), 
-                LdsOrdBase.serialize(self), 
-                SourceNote.serialize(self), 
-                self.change, 
-                self.marker, 
-                self.private)
+        return (
+            self.handle,                                         #  0
+            self.gramps_id,                                      #  1
+            self.gender,                                         #  2
+            self.primary_name.serialize(),                       #  3
+            [name.serialize() for name in self.alternate_names], #  4
+            unicode(self.nickname),                              #  5
+            death_ref,                                           #  6
+            birth_ref,                                           #  7
+            [er.serialize() for er in self.event_ref_list],      #  8
+            self.family_list,                                    #  9
+            self.parent_family_list,                             # 10
+            MediaBase.serialize(self),                           # 11
+            AddressBase.serialize(self),                         # 12
+            AttributeBase.serialize(self),                       # 13
+            UrlBase.serialize(self),                             # 14
+            LdsOrdBase.serialize(self),                          # 15
+            SourceNote.serialize(self),                          # 16
+            self.change,                                         # 17
+            self.marker,                                         # 18
+            self.private,                                        # 19
+            [pr.serialize() for pr in self.person_ref_list]      # 20
+            )
 
     def unserialize(self, data):
         """
@@ -175,26 +179,29 @@ class Person(PrimaryObject, SourceNote,
             Person object
         @type data: tuple
         """
-        (self.handle, 
-         self.gramps_id, 
-         self.gender, 
-         primary_name, 
-         alternate_names, 
-         self.nickname, 
-         death_ref, 
-         birth_ref, 
-         event_ref_list, 
-         self.family_list, 
-         self.parent_family_list, 
-         media_list, 
-         address_list, 
-         attribute_list, 
-         urls, 
-         lds_ord_list, 
-         sn, 
-         self.change, 
-         self.marker, 
-         self.private) = data
+        (
+            self.handle,             #  0
+            self.gramps_id,          #  1
+            self.gender,             #  2
+            primary_name,            #  3
+            alternate_names,         #  4
+            self.nickname,           #  5
+            death_ref,               #  6
+            birth_ref,               #  7
+            event_ref_list,          #  8
+            self.family_list,        #  9
+            self.parent_family_list, # 10
+            media_list,              # 11
+            address_list,            # 12
+            attribute_list,          # 13
+            urls,                    # 14
+            lds_ord_list,            # 15
+            sn,                      # 16
+            self.change,             # 17
+            self.marker,             # 18
+            self.private,            # 19
+            person_ref_list,         # 20
+            ) = data
 
         self.primary_name.unserialize(primary_name)
         if death_ref:
@@ -205,6 +212,8 @@ class Person(PrimaryObject, SourceNote,
                                 for name in alternate_names]
         self.event_ref_list = [EventRef().unserialize(er)
                                for er in event_ref_list]
+        self.person_ref_list = [PersonRef().unserialize(pr)
+                                for pr in person_ref_list]
         MediaBase.unserialize(self, media_list)
         LdsOrdBase.unserialize(self, lds_ord_list)
         AddressBase.unserialize(self, address_list)
@@ -218,6 +227,8 @@ class Person(PrimaryObject, SourceNote,
                               self.event_ref_list + [self.birth_ref, 
                                                      self.death_ref]
                               if ref]
+        elif classname == 'Person':
+            return handle in [ref.ref for ref in self.person_ref_list]
         elif classname == 'Family':
             return handle in self.family_list + \
                         [item[0] for item in self.parent_family_list ]
@@ -234,6 +245,10 @@ class Person(PrimaryObject, SourceNote,
                 self.death_ref = None
             if self.birth_ref and self.birth_ref.ref in handle_list:
                 self.birth_ref = None
+        elif classname == 'Person':
+            new_list = [ref for ref in self.person_ref_list \
+                                       if ref not in handle_list]
+            self.person_ref_list = new_list
         elif classname == 'Family':
             new_list = [ handle for handle in self.family_list \
                                         if handle not in handle_list ]
@@ -257,6 +272,12 @@ class Person(PrimaryObject, SourceNote,
                 self.death_ref.ref = new_handle
             if self.birth_ref and self.birth_ref.ref == old_handle:
                 self.birth_ref.ref = new_handle
+        elif classname == 'Person':
+            handle_list = [ref.ref for ref in self.person_ref_list]
+            while old_handle in handle_list:
+                ix = handle_list.index(old_handle)
+                self.person_ref_list[ix].ref = new_handle
+                handle_list[ix] = ''
         elif classname == 'Family':
             while old_handle in self.family_list:
                 ix = self.family_list.index(old_handle)
@@ -295,7 +316,8 @@ class Person(PrimaryObject, SourceNote,
         return [self.primary_name] + self.media_list + \
                     self.alternate_names + self.address_list + \
                     self.attribute_list + self.urls + \
-                    self.source_list + self.event_ref_list + add_list
+                    self.source_list + self.event_ref_list + add_list + \
+                    self.person_ref_list
 
     def get_sourcref_child_list(self):
         """
@@ -329,7 +351,7 @@ class Person(PrimaryObject, SourceNote,
         """
         birth_death = [i for i in [self.birth_ref, self.death_ref] if i]
         return self.get_sourcref_child_list() + self.source_list \
-               + self.event_ref_list + birth_death
+               + self.event_ref_list + birth_death + self.person_ref_list
 
     def get_complete_flag(self):
         warn( "Use get_marker instead of get_complete_flag",
@@ -803,3 +825,33 @@ class Person(PrimaryObject, SourceNote,
             return None
         else:
             return self.parent_family_list[0][0]
+
+    def add_person_ref(self,person_ref):
+        """
+        Adds the L{PersonRef} to the Person instance's L{PersonRef} list.
+        
+        @param person_ref: the L{PersonRef} to be added to the
+            Person's L{PersonRef} list.
+        @type person_ref: PersonRef
+        """
+        if person_ref and not isinstance(person_ref, PersonRef):
+            raise ValueError("Expecting PersonRef instance")
+        self.person_ref_list.append(person_ref)
+
+    def get_person_ref_list(self):
+        """
+        Returns the list of L{PersonRef} objects.
+
+        @returns: Returns the list of L{PersonRef} objects.
+        @rtype: list
+        """
+        return self.person_ref_list
+
+    def set_person_ref_list(self, person_ref_list):
+        """
+        Sets the Person instance's L{PersonRef} list to the passed list.
+
+        @param event_ref_list: List of valid L{PersonRef} objects
+        @type event_ref_list: list
+        """
+        self.person_ref_list = person_ref_list
