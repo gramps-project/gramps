@@ -263,7 +263,10 @@ class GeneWebParser:
                 if child:
                     self.current_family.add_child_handle(child.get_handle())
                     self.db.commit_family(self.current_family,self.trans)
-                    child.add_parent_family_handle(self.current_family.get_handle(),RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
+                    child.add_parent_family_handle(
+                        self.current_family.get_handle(),
+                        RelLib.ChildRef.CHILD_REL_BIRTH,
+                        RelLib.ChildRef.CHILD_REL_BIRTH)
                     if self.current_child_birthplace_handle:
                         birth_handle = child.get_birth_handle()
                         birth = self.db.get_event_from_handle(birth_handle)

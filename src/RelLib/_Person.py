@@ -37,7 +37,8 @@ from warnings import warn
 #
 #-------------------------------------------------------------------------
 from _PrimaryObject import PrimaryObject
-from _SourceNote import SourceNote
+from _SourceBase import SourceBase
+from _NoteBase import NoteBase
 from _MediaBase import MediaBase
 from _AttributeBase import AttributeBase
 from _AddressBase import AddressBase
@@ -52,8 +53,8 @@ from _PersonRef import PersonRef
 # Person class
 #
 #-------------------------------------------------------------------------
-class Person(PrimaryObject, SourceNote, 
-             MediaBase, AttributeBase, AddressBase, UrlBase, LdsOrdBase):
+class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
+             AttributeBase,AddressBase,UrlBase,LdsOrdBase):
     """
     Introduction
     ============
@@ -81,15 +82,6 @@ class Person(PrimaryObject, SourceNote,
     MALE    = 1
     FEMALE  = 0
     
-    CHILD_NONE      = 0
-    CHILD_BIRTH     = 1
-    CHILD_ADOPTED   = 2
-    CHILD_STEPCHILD = 3
-    CHILD_SPONSORED = 4
-    CHILD_FOSTER    = 5
-    CHILD_UNKNOWN   = 6
-    CHILD_CUSTOM    = 7
-
     def __init__(self, data=None):
         """
         Creates a new Person instance. After initialization, most
@@ -97,7 +89,8 @@ class Person(PrimaryObject, SourceNote,
         handle.
         """
         PrimaryObject.__init__(self)
-        SourceNote.__init__(self)
+        SourceBase.__init__(self)
+        NoteBase.__init__(self)
         MediaBase.__init__(self)
         AttributeBase.__init__(self)
         AddressBase.__init__(self)
@@ -163,11 +156,12 @@ class Person(PrimaryObject, SourceNote,
             AttributeBase.serialize(self),                       # 13
             UrlBase.serialize(self),                             # 14
             LdsOrdBase.serialize(self),                          # 15
-            SourceNote.serialize(self),                          # 16
-            self.change,                                         # 17
-            self.marker,                                         # 18
-            self.private,                                        # 19
-            [pr.serialize() for pr in self.person_ref_list]      # 20
+            SourceBase.serialize(self),                          # 16
+            NoteBase.serialize(self),                            # 17
+            self.change,                                         # 18
+            self.marker,                                         # 19
+            self.private,                                        # 20
+            [pr.serialize() for pr in self.person_ref_list]      # 21
             )
 
     def unserialize(self, data):
@@ -196,11 +190,12 @@ class Person(PrimaryObject, SourceNote,
             attribute_list,          # 13
             urls,                    # 14
             lds_ord_list,            # 15
-            sn,                      # 16
-            self.change,             # 17
-            self.marker,             # 18
-            self.private,            # 19
-            person_ref_list,         # 20
+            source_list,             # 16
+            note,                    # 17
+            self.change,             # 18
+            self.marker,             # 19
+            self.private,            # 20
+            person_ref_list,         # 21
             ) = data
 
         self.primary_name.unserialize(primary_name)
@@ -219,7 +214,8 @@ class Person(PrimaryObject, SourceNote,
         AddressBase.unserialize(self, address_list)
         AttributeBase.unserialize(self, attribute_list)
         UrlBase.unserialize(self, urls)
-        SourceNote.unserialize(self, sn)
+        SourceBase.unserialize(self, source_list)
+        NoteBase.unserialize(self, note)
             
     def _has_handle_reference(self, classname, handle):
         if classname == 'Event':
@@ -230,8 +226,7 @@ class Person(PrimaryObject, SourceNote,
         elif classname == 'Person':
             return handle in [ref.ref for ref in self.person_ref_list]
         elif classname == 'Family':
-            return handle in self.family_list + \
-                        [item[0] for item in self.parent_family_list ]
+            return handle in (self.family_list + self.parent_family_list)
         elif classname == 'Place':
             return handle in self.lds_ord_list
         return False
@@ -253,8 +248,8 @@ class Person(PrimaryObject, SourceNote,
             new_list = [ handle for handle in self.family_list \
                                         if handle not in handle_list ]
             self.family_list = new_list
-            new_list = [ item for item in self.parent_family_list \
-                                        if item[0] not in handle_list ]
+            new_list = [ handle for handle in self.parent_family_list \
+                                        if handle not in handle_list ]
             self.parent_family_list = new_list
         elif classname == 'Place':
             for ordinance in self.lds_ord_list:
@@ -283,13 +278,9 @@ class Person(PrimaryObject, SourceNote,
                 ix = self.family_list.index(old_handle)
                 self.family_list[ix] = new_handle
 
-            new_list = []
-            for item in self.parent_family_list:
-                if item[0] == old_handle:
-                    new_list.append((new_handle, item[1], item[2]))
-                else:
-                    new_list.append(item)
-            self.parent_family_list = new_list
+            while old_handle in self.parent_family_list:
+                ix = self.parent_family_list.index(old_handle)
+                self.parent_family_list[ix] = new_handle
         elif classname == 'Place':
             for ordinance in self.lds_ord_list:
                 if ordinance.place == old_handle:
@@ -338,8 +329,8 @@ class Person(PrimaryObject, SourceNote,
         @return: Returns the list of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
-        return [('Family', handle) for handle in self.family_list 
-                        + [item[0] for item in self.parent_family_list]]
+        return [('Family', handle) for handle in
+                (self.family_list + self.parent_family_list)]
 
     def get_handle_referents(self):
         """
@@ -684,7 +675,7 @@ class Person(PrimaryObject, SourceNote,
         """
         return self.parent_family_list
 
-    def add_parent_family_handle(self, family_handle, mrel, frel):
+    def add_parent_family_handle(self, family_handle):
         """
         Adds the L{Family} handle to the Person instance's list of
         families in which it is a child. This is accomplished by
@@ -698,29 +689,7 @@ class Person(PrimaryObject, SourceNote,
         @param family_handle: handle of the L{Family} to be added to the
             Person's L{Family} list.
         @type family_handle: str
-        @param mrel: relationship between the Person and its mother
-        @type mrel: tuple
-        @param frel: relationship between the Person and its father
-        @type frel: tuple
         """
-        if not type(mrel) == tuple:
-            if mrel in range(0, 8):
-                warn( "add_parent_family_handle now takes a tuple",
-                      DeprecationWarning, 2)
-                # Wrapper for old API
-                # remove when transitition done.
-                mrel = (mrel, '')
-            else:
-                assert type(mrel) == tuple
-        if not type(frel) == tuple:
-            if frel in range(0, 8):
-                warn( "add_parent_family_handle now takes a tuple",
-                      DeprecationWarning, 2)
-                # Wrapper for old API
-                # remove when transitition done.
-                frel = (frel, '')
-            else:
-                assert type(frel) == tuple
         self.parent_family_list.append((family_handle, mrel, frel))
 
     def clear_parent_family_handle_list(self):
@@ -744,52 +713,11 @@ class Person(PrimaryObject, SourceNote,
             list.
         @rtype: tuple
         """
-        for f in self.parent_family_list[:]:
-            if f[0] == family_handle:
-                self.parent_family_list.remove(f)
-                return f
+        if family_handle in self.parent_family_list:
+            self.parent_family_list.remove(family_handle)
+            return True
         else:
-            return None
-
-    def change_parent_family_handle(self, family_handle, mrel, frel):
-        """
-        Changes the relationships of the L{Family} handle in the Person
-        instance's list of families in which it is a child. The handle
-        is assumed to already be in the list.
-        
-        @param family_handle: handle of the L{Family} to be added to the
-            Person's L{Family} list.
-        @type family_handle: str
-        @param mrel: relationship between the Person and its mother
-        @type mrel: tuple
-        @param frel: relationship between the Person and its father
-        @type frel: tuple
-        """
-        index=0
-        for f in self.parent_family_list[:]:
-            if f[0] == family_handle:
-                self.parent_family_list[index] = (family_handle, mrel, frel)
-                return True
-            index += 1
-        return False
-    
-    def get_parent_family(self, family_handle):
-        """
-        Finds the L{Family} and relationships associated with passed
-        family_handle.
-
-        @param family_handle: L{Family} handle used to search the parent
-            family list.
-        @type family_handle: str
-        @return: Returns a tuple consisting of the L{Family} handle, the
-            mother relationship, and father relationship
-        @rtype: tuple
-        """
-        for f in self.parent_family_list:
-            if f[0] == family_handle:
-                return f
-        else:
-            return None
+            return False
 
     def set_main_parent_family_handle(self, family_handle):
         """
@@ -805,9 +733,9 @@ class Person(PrimaryObject, SourceNote,
         @return: Returns True if the assignment has successful
         @rtype: bool
         """
-        f = self.remove_parent_family_handle(family_handle)
-        if f:
-            self.parent_family_list = [f] + self.parent_family_list
+        if family_handle in self.parent_family_list:
+            self.parent_family_list.remove(family_handle)
+            self.parent_family_list = [family_handle] + self.parent_family_list
             return True
         else:
             return False
@@ -824,7 +752,7 @@ class Person(PrimaryObject, SourceNote,
         if len(self.parent_family_list) == 0:
             return None
         else:
-            return self.parent_family_list[0][0]
+            return self.parent_family_list[0]
 
     def add_person_ref(self,person_ref):
         """

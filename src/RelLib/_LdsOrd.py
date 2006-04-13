@@ -29,7 +29,8 @@ LDS Ordinance class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _SourceNote import SourceNote
+from _SourceBase import SourceBase
+from _NoteBase import NoteBase
 from _DateBase import DateBase
 from _PlaceBase import PlaceBase
 from _PrivacyBase import PrivacyBase
@@ -39,7 +40,7 @@ from _PrivacyBase import PrivacyBase
 # LDS Ordinance class
 #
 #-------------------------------------------------------------------------
-class LdsOrd(SourceNote,DateBase,PlaceBase,PrivacyBase):
+class LdsOrd(SourceBase,NoteBase,DateBase,PlaceBase,PrivacyBase):
     """
     Class that contains information about LDS Ordinances. LDS
     ordinances are similar to events, but have very specific additional
@@ -70,7 +71,8 @@ class LdsOrd(SourceNote,DateBase,PlaceBase,PrivacyBase):
 
     def __init__(self,source=None):
         """Creates a LDS Ordinance instance"""
-        SourceNote.__init__(self,source)
+        SourceBase.__init__(self,source)
+        NoteBase.__init__(self,source)
         DateBase.__init__(self,source)
         PlaceBase.__init__(self,source)
         PrivacyBase.__init__(self,source)
@@ -87,15 +89,17 @@ class LdsOrd(SourceNote,DateBase,PlaceBase,PrivacyBase):
             self.status = 0
 
     def serialize(self):
-        return (SourceNote.serialize(self),
+        return (SourceBase.serialize(self),
+                NoteBase.serialize(self),
                 DateBase.serialize(self),
                 self.type,self.place,
                 self.famc,self.temple,self.status)
 
     def unserialize(self,data):
-        (sn,date,self.type,self.place,
+        (source_list,note,date,self.type,self.place,
          self.famc,self.temple,self.status) = data
-        SourceNote.unserialize(self,sn)
+        SourceBase.unserialize(self,source_list)
+        NoteBase.unserialize(self,note)
         DateBase.unserialize(self,date)
         return self
 

@@ -1121,8 +1121,8 @@ class PedigreeView(PageView.PersonNavView):
         else:
             return
         if family_handle:
-            mrel = m != RelLib.Person.CHILD_BIRTH
-            frel = f != RelLib.Person.CHILD_BIRTH
+            mrel = m != RelLib.ChildRef.CHILD_BIRTH
+            frel = f != RelLib.ChildRef.CHILD_BIRTH
 
         family = self.db.get_family_from_handle(family_handle)
         if family != None:

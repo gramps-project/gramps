@@ -39,13 +39,14 @@ from warnings import warn
 from _BaseObject import BaseObject
 from _PrivacyBase import PrivacyBase
 from _NoteBase import NoteBase
+from _RefBase import RefBase
 
 #-------------------------------------------------------------------------
 #
 # Event References for Person/Family
 #
 #-------------------------------------------------------------------------
-class EventRef(BaseObject,PrivacyBase,NoteBase):
+class EventRef(BaseObject,PrivacyBase,NoteBase,RefBase):
     """
     Event reference class.
 
@@ -71,19 +72,25 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
         BaseObject.__init__(self)
         PrivacyBase.__init__(self)
         NoteBase.__init__(self)
+        RefBase.__init__(self)
         if source:
-            self.ref = source.ref
-            self.role = source.role_int
+            self.role = source.role
         else:
-            self.ref = None
             self.role = (EventRef.CUSTOM,"")
 
     def serialize(self):
-        return (self.private,NoteBase.serialize(self),self.ref,self.role)
+        return (
+            PrivacyBase.serialize(self),
+            NoteBase.serialize(self),
+            Refbase.serialize(self),
+            self.role
+            )
 
     def unserialize(self,data):
-        (self.private,nb,self.ref,self.role) = data
-        NoteBase.unserialize(self,nb)
+        (privacy,note,ref,self.role) = data
+        PrivacyBase.unserialize(self,privacy)
+        NoteBase.unserialize(self,note)
+        RefBase.unserialize(self,ref)
         return self
 
     def get_text_data_list(self):
@@ -118,18 +125,6 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
             return [('Event',self.ref)]
         else:
             return []
-
-    def get_reference_handle(self):
-        """
-        Returns the handle of the referred Event object.
-        """
-        return self.ref
-
-    def set_reference_handle(self,handle):
-        """
-        Sets the handle of the referred Event object.
-        """
-        self.ref = handle
 
     def get_role(self):
         """

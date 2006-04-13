@@ -128,16 +128,16 @@ file_systems = {
     "SMBFS"   : _('Networked Windows file system')
     }
 
-rel_types = ((RelLib.Person.CHILD_BIRTH,''),
-             (RelLib.Person.CHILD_UNKNOWN,''),
-             (RelLib.Person.CHILD_NONE,''))
+rel_types = ((RelLib.ChildRef.CHILD_BIRTH,''),
+             (RelLib.ChildRef.CHILD_UNKNOWN,''),
+             (RelLib.ChildRef.CHILD_NONE,''))
 
 pedi_type = {
-    'birth'  : (RelLib.Person.CHILD_BIRTH,''),
-    'natural': (RelLib.Person.CHILD_BIRTH,''),
-    'step'   : (RelLib.Person.CHILD_ADOPTED,''),
-    'adopted': (RelLib.Person.CHILD_ADOPTED,''),
-    'foster' : (RelLib.Person.CHILD_FOSTER,''),
+    'birth'  : (RelLib.ChildRef.CHILD_BIRTH,''),
+    'natural': (RelLib.ChildRef.CHILD_BIRTH,''),
+    'step'   : (RelLib.ChildRef.CHILD_ADOPTED,''),
+    'adopted': (RelLib.ChildRef.CHILD_ADOPTED,''),
+    'foster' : (RelLib.ChildRef.CHILD_FOSTER,''),
     }
 
 lds_status = {
@@ -1045,8 +1045,8 @@ class GedcomParser:
                 self.barf(level+1)
 
     def parse_ftw_relations(self,level):
-        mrel = (RelLib.Person.CHILD_BIRTH,'')
-        frel = (RelLib.Person.CHILD_BIRTH,'')
+        mrel = (RelLib.ChildRef.CHILD_BIRTH,'')
+        frel = (RelLib.ChildRef.CHILD_BIRTH,'')
         
         while True:
             matches = self.get_next()
@@ -1055,17 +1055,17 @@ class GedcomParser:
                 return (mrel,frel)
             # FTW
             elif matches[1] == TOKEN__FREL:
-                frel = pedi_type.get(matches[2].lower(),(RelLib.Person.CHILD_BIRTH,''))
+                frel = pedi_type.get(matches[2].lower(),(RelLib.ChildRef.CHILD_BIRTH,''))
             # FTW
             elif matches[1] == TOKEN__MREL:
-                mrel = pedi_type.get(matches[2].lower(),(RelLib.Person.CHILD_BIRTH,''))
+                mrel = pedi_type.get(matches[2].lower(),(RelLib.ChildRef.CHILD_BIRTH,''))
             elif matches[1] == TOKEN_ADOP:
-                mrel = (RelLib.Person.CHILD_ADOPTED,'')
-                frel = (RelLib.Person.CHILD_ADOPTED,'')
+                mrel = (RelLib.ChildRef.CHILD_ADOPTED,'')
+                frel = (RelLib.ChildRef.CHILD_ADOPTED,'')
             # Legacy
             elif matches[1] == TOKEN__STAT:
-                mrel = (RelLib.Person.CHILD_BIRTH,'')
-                frel = (RelLib.Person.CHILD_BIRTH,'')
+                mrel = (RelLib.ChildRef.CHILD_BIRTH,'')
+                frel = (RelLib.ChildRef.CHILD_BIRTH,'')
             # Legacy _PREF
             elif matches[1][0] == TOKEN_UNKNOWN:
                 pass
@@ -1239,7 +1239,7 @@ class GedcomParser:
         return None
         
     def parse_famc_type(self,level,person):
-        ftype = (RelLib.Person.CHILD_BIRTH,'')
+        ftype = (RelLib.ChildRef.CHILD_BIRTH,'')
         note = ""
         while True:
             matches = self.get_next()
@@ -1566,8 +1566,8 @@ class GedcomParser:
                 self.barf(level+1)
 
     def parse_adopt_famc(self,level):
-        mrel = RelLib.Person.CHILD_ADOPTED
-        frel = RelLib.Person.CHILD_ADOPTED
+        mrel = RelLib.ChildRef.CHILD_ADOPTED
+        frel = RelLib.ChildRef.CHILD_ADOPTED
         while True:
             matches = self.get_next()
             if int(matches[0]) < level:
@@ -1575,9 +1575,9 @@ class GedcomParser:
                 return (mrel,frel)
             elif matches[1] == TOKEN_ADOP:
                 if matches[2] == "HUSB":
-                    mrel = RelLib.Person.CHILD_BIRTH
+                    mrel = RelLib.ChildRef.CHILD_BIRTH
                 elif matches[2] == "WIFE":
-                    frel = RelLib.Person.CHILD_BIRTH
+                    frel = RelLib.ChildRef.CHILD_BIRTH
             else:
                 self.barf(level+1)
         return None
@@ -2104,8 +2104,8 @@ class GedcomParser:
         else:
             if ftype in rel_types:
                 state.person.add_parent_family_handle(
-                    handle, (RelLib.Person.CHILD_BIRTH,''),
-                    (RelLib.Person.CHILD_BIRTH,''))
+                    handle, (RelLib.ChildRef.CHILD_BIRTH,''),
+                    (RelLib.ChildRef.CHILD_BIRTH,''))
             else:
                 if state.person.get_main_parents_family_handle() == handle:
                     state.person.set_main_parent_family_handle(None)

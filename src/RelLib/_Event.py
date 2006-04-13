@@ -37,7 +37,8 @@ from warnings import warn
 #
 #-------------------------------------------------------------------------
 from _PrimaryObject import PrimaryObject
-from _SourceNote import SourceNote
+from _SourceBase import SourceBase
+from _NoteBase import NoteBase
 from _MediaBase import MediaBase
 from _DateBase import DateBase
 from _PlaceBase import PlaceBase
@@ -47,7 +48,7 @@ from _PlaceBase import PlaceBase
 # Event class
 #
 #-------------------------------------------------------------------------
-class Event(PrimaryObject,SourceNote,MediaBase,DateBase,PlaceBase):
+class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
     """
     Introduction
     ============
@@ -112,7 +113,8 @@ class Event(PrimaryObject,SourceNote,MediaBase,DateBase,PlaceBase):
         """
 
         PrimaryObject.__init__(self,source)
-        SourceNote.__init__(self,source)
+        SourceBase.__init__(self,source)
+        NoteBase.__init__(self,source)
         MediaBase.__init__(self,source)
         DateBase.__init__(self,source)
         PlaceBase.__init__(self,source)
@@ -145,7 +147,8 @@ class Event(PrimaryObject,SourceNote,MediaBase,DateBase,PlaceBase):
         return (self.handle, self.gramps_id, self.type,
                 DateBase.serialize(self),
                 self.description, self.place, self.cause,
-                SourceNote.serialize(self),
+                SourceBase.serialize(self),
+                NoteBase.serialize(self),
                 MediaBase.serialize(self),
                 self.change, self.marker, self.private)
 
@@ -159,12 +162,13 @@ class Event(PrimaryObject,SourceNote,MediaBase,DateBase,PlaceBase):
         @type data: tuple
         """
         (self.handle, self.gramps_id, self.type, date,
-         self.description, self.place, self.cause, sn,
+         self.description, self.place, self.cause, source_list, note,
          media_list, self.change, self.marker, self.private) = data
 
         DateBase.unserialize(self,date)
         MediaBase.unserialize(self,media_list)
-        SourceNote.unserialize(self,sn)        
+        SourceBase.unserialize(self,source_list)
+        Note.unserialize(self,note)        
 
     def _has_handle_reference(self,classname,handle):
         if classname == 'Place':

@@ -37,7 +37,8 @@ from warnings import warn
 #
 #-------------------------------------------------------------------------
 from _PrimaryObject import PrimaryObject
-from _SourceNote import SourceNote
+from _SourceBase import SourceBase
+from _NoteBase import NoteBase
 from _MediaBase import MediaBase
 from _AttributeBase import AttributeBase
 from _EventRef import EventRef
@@ -48,7 +49,8 @@ from _LdsOrdBase import LdsOrdBase
 # Family class
 #
 #-------------------------------------------------------------------------
-class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase,LdsOrdBase):
+class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
+             LdsOrdBase):
     """
     Introduction
     ============
@@ -83,7 +85,8 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase,LdsOrdBase):
         handle.
         """
         PrimaryObject.__init__(self)
-        SourceNote.__init__(self)
+        SourceBase.__init__(self)
+        NoteBase.__init__(self)
         MediaBase.__init__(self)
         AttributeBase.__init__(self)
         LdsOrdBase.__init__(self)
@@ -121,7 +124,8 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase,LdsOrdBase):
                 MediaBase.serialize(self),
                 AttributeBase.serialize(self),
                 LdsOrdBase.serialize(self),
-                SourceNote.serialize(self),
+                SourceBase.serialize(self),
+                NoteBase.serialize(self),
                 self.change, self.marker, self.private)
 
     def unserialize(self, data):
@@ -130,15 +134,16 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase,LdsOrdBase):
         back into the data in a Family structure.
         """
         (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
-         self.child_list, self.type,
-         event_ref_list, media_list, attribute_list, lds_seal_list, sn,
-         self.change,self.marker, self.private) = data
+         self.child_list, self.type, event_ref_list, media_list,
+         attribute_list, lds_seal_list, source_list, note,
+         self.change, self.marker, self.private) = data
 
         self.event_ref_list = [EventRef().unserialize(er)
                                for er in event_ref_list]
         MediaBase.unserialize(self,media_list)
         AttributeBase.unserialize(self,attribute_list)
-        SourceNote.unserialize(self,sn)
+        SourceBase.unserialize(self,source_list)
+        NoteBase.unserialize(self,note)
         LdsOrdBase.unserialize(self,lds_seal_list)
 
     def _has_handle_reference(self,classname,handle):

@@ -414,12 +414,12 @@ class XmlWriter:
         self.write_url_list(person.get_url_list(),index+1)
 
         for alt in person.get_parent_family_handle_list():
-            if alt[1][0] != RelLib.Person.CHILD_BIRTH:
+            if alt[1][0] != RelLib.ChildRef.CHILD_BIRTH:
                 mrel=' mrel="%s"' % _ConstXML.str_for_xml(
                     _ConstXML.child_relations,alt[1])
             else:
                 mrel=''
-            if alt[2][0] != RelLib.Person.CHILD_BIRTH:
+            if alt[2][0] != RelLib.ChildRef.CHILD_BIRTH:
                 frel=' frel="%s"' % _ConstXML.str_for_xml(
                     _ConstXML.child_relations,alt[2])
             else:

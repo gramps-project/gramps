@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004-2005 Donald N. Allingham
+# Copyright (C) 2004-2006 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -118,8 +118,10 @@ def remove_child_from_family(db, person_handle, family_handle, trans=None):
         db.transaction_commit(trans,_("Remove child from family"))
 
 
-def add_child_to_family(db, family, child, mrel=(RelLib.Person.CHILD_BIRTH,''),
-                        frel=(RelLib.Person.CHILD_BIRTH,''), trans=None):
+def add_child_to_family(db, family, child,
+                        mrel=(RelLib.ChildRef.CHILD_BIRTH,''),
+                        frel=(RelLib.ChildRef.CHILD_BIRTH,''),
+                        trans=None):
 
     family.add_child_handle(child.handle)
     child.add_parent_family_handle(family.handle, mrel, frel )

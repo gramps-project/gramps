@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -799,10 +799,11 @@ class EditFamily(EditPrimary):
             for handle in self.obj.get_child_handle_list():
                 child = self.db.get_person_from_handle(handle)
                 # fix - relationships need to be extracted from the list
-                child.add_parent_family_handle(self.obj.handle,
-                                               (RelLib.Person.CHILD_BIRTH,''),
-                                               (RelLib.Person.CHILD_BIRTH,''),
-                                               )
+                child.add_parent_family_handle(
+                    self.obj.handle,
+                    (RelLib.ChildRef.CHILD_BIRTH,''),
+                    (RelLib.ChildRef.CHILD_BIRTH,''),
+                    )
                 self.db.commit_person(child,trans)
 
             self.db.add_family(self.obj,trans)
@@ -838,10 +839,11 @@ class EditFamily(EditPrimary):
             # add the family from children which have been addedna
             for handle in new_set.difference(orig_set):
                 person = self.db.get_person_from_handle(handle)
-                person.add_parent_family_handle(self.obj.handle,
-                                               (RelLib.Person.CHILD_BIRTH,''),
-                                               (RelLib.Person.CHILD_BIRTH,''),
-                                               )
+                person.add_parent_family_handle(
+                    self.obj.handle,
+                    (RelLib.ChildRef.CHILD_BIRTH,''),
+                    (RelLib.ChildRef.CHILD_BIRTH,''),
+                    )
                 self.db.commit_person(person,trans)
 
             if self.object_is_empty():

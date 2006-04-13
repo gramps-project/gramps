@@ -520,7 +520,7 @@ class TestcaseGenerator(Tool.Tool):
         person2.add_family_handle(fam_h)
         self.db.commit_person(person2,self.trans)
         child = self.db.get_person_from_handle(child_h)
-        child.add_parent_family_handle(fam_h,(RelLib.Person.CHILD_BIRTH,''),(RelLib.Person.CHILD_BIRTH,''))
+        child.add_parent_family_handle(fam_h,(RelLib.ChildRef.CHILD_BIRTH,''),(RelLib.ChildRef.CHILD_BIRTH,''))
         self.db.commit_person(child,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
@@ -901,10 +901,10 @@ class TestcaseGenerator(Tool.Tool):
             fam.add_child_handle(child_h)
             self.db.commit_family(fam,self.trans)
             child = self.db.get_person_from_handle(child_h)
-            rel1 = (RelLib.Person.CHILD_BIRTH,'')
+            rel1 = (RelLib.ChildRef.CHILD_BIRTH,'')
             if randint(0,2) == 1:
                 rel1 = self.rand_type(Utils.child_relations)
-            rel2 = (RelLib.Person.CHILD_BIRTH,'')
+            rel2 = (RelLib.ChildRef.CHILD_BIRTH,'')
             if randint(0,2) == 1:
                 rel2 = self.rand_type(Utils.child_relations)
             child.add_parent_family_handle(fam_h, rel1, rel2)
@@ -952,10 +952,10 @@ class TestcaseGenerator(Tool.Tool):
         person2 = self.db.get_person_from_handle(person2_h)
         person2.add_family_handle(fam_h)
         self.db.commit_person(person2,self.trans)
-        rel1 = (RelLib.Person.CHILD_BIRTH,'')
+        rel1 = (RelLib.ChildRef.CHILD_BIRTH,'')
         if randint(0,2) == 1:
             rel1 = self.rand_type(Utils.child_relations)
-        rel2 = (RelLib.Person.CHILD_BIRTH,'')
+        rel2 = (RelLib.ChildRef.CHILD_BIRTH,'')
         if randint(0,2) == 1:
             rel2 = self.rand_type(Utils.child_relations)
         child.add_parent_family_handle(fam_h, rel1, rel2)

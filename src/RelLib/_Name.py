@@ -36,7 +36,9 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _PrivateSourceNote import PrivateSourceNote
+from _PrivacyBase import PrivacyBase
+from _SourceBase import SourceBase
+from _NoteBase import NoteBase
 from _DateBase import DateBase
 
 #-------------------------------------------------------------------------
@@ -44,7 +46,7 @@ from _DateBase import DateBase
 # Personal Name
 #
 #-------------------------------------------------------------------------
-class Name(PrivateSourceNote,DateBase):
+class Name(PrivacyBase,SourceBase,NoteBase,DateBase):
     """
     Provides name information about a person.
 
@@ -66,12 +68,18 @@ class Name(PrivateSourceNote,DateBase):
     def __init__(self,source=None,data=None):
         """creates a new Name instance, copying from the source if provided"""
         if data:
-            (psn,date,
+            (privacy,source_list,note,date,
              self.first_name,self.surname,self.suffix,self.title,
              self.type,self.prefix,self.patronymic,self.sname,
              self.group_as,self.sort_as,self.display_as) = data
+            PrivateBase.unserialize(self,privacy)
+            SourceBase.unserialize(self,source_list)
+            NoteBase.unserialize(self,note)
+            DateBase.unserialize(self,date)
         elif source:
-            PrivateSourceNote.__init__(self,source)
+            PrivacyBase.__init__(self,source)
+            SourceBase.__init__(self,source)
+            NoteBase.__init__(self,source)
             DateBase.__init__(self,source)
             self.first_name = source.first_name
             self.surname = source.surname
@@ -85,7 +93,9 @@ class Name(PrivateSourceNote,DateBase):
             self.sort_as = source.sort_as
             self.display_as = source.display_as
         else:
-            PrivateSourceNote.__init__(self,source)
+            PrivacyBase.__init__(self,source)
+            SourceBase.__init__(self,source)
+            NoteBase.__init__(self,source)
             DateBase.__init__(self,source)
             self.first_name = ""
             self.surname = ""
@@ -100,18 +110,22 @@ class Name(PrivateSourceNote,DateBase):
             self.display_as = self.DEF
 
     def serialize(self):
-        return (PrivateSourceNote.serialize(self),
+        return (PrivacyBase.serialize(self),
+                SourceBase.serialize(self),
+                NoteBase.serialize(self),
                 DateBase.serialize(self),
                 self.first_name,self.surname,self.suffix,self.title,
                 self.type,self.prefix,self.patronymic,self.sname,
                 self.group_as,self.sort_as,self.display_as)
 
     def unserialize(self,data):
-        (psn,date,
+        (privacy,source_list,note,date,
          self.first_name,self.surname,self.suffix,self.title,
          self.type,self.prefix,self.patronymic,self.sname,
          self.group_as,self.sort_as,self.display_as) = data
-        PrivateSourceNote.unserialize(self,psn)
+        PrivateBase.unserialize(self,privacy)
+        SourceBase.unserialize(self,source_list)
+        NoteBase.unserialize(self,note)
         DateBase.unserialize(self,date)
         return self
 

@@ -37,7 +37,8 @@ import os
 #
 #-------------------------------------------------------------------------
 from _PrimaryObject import PrimaryObject
-from _SourceNote import SourceNote
+from _SourceBase import SourceBase
+from _NoteBase import NoteBase
 from _DateBase import DateBase
 from _AttributeBase import AttributeBase
 
@@ -46,7 +47,7 @@ from _AttributeBase import AttributeBase
 # MediaObject class
 #
 #-------------------------------------------------------------------------
-class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
+class MediaObject(PrimaryObject,SourceBase,NoteBase,DateBase,AttributeBase):
     """
     Containter for information about an image file, including location,
     description and privacy
@@ -61,7 +62,8 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         @type source: MediaObject
         """
         PrimaryObject.__init__(self,source)
-        SourceNote.__init__(self,source)
+        SourceBase.__init__(self,source)
+        NoteBase.__init__(self,source)
         DateBase.__init__(self,source)
         AttributeBase.__init__(self,source)
 
@@ -96,7 +98,8 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         """
         return (self.handle, self.gramps_id, self.path, self.mime, self.desc,
                 AttributeBase.serialize(self),
-                SourceNote.serialize(self),
+                SourceBase.serialize(self),
+                NoteBase.serialize(self),
                 self.change,
                 DateBase.serialize(self), self.marker, self.private)
 
@@ -109,11 +112,12 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         @type data: tuple
         """
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
-         attribute_list, sn, self.change,
+         attribute_list, source_list, note, self.change,
          date, self.marker, self.private) = data
 
         AttributeBase.unserialize(self,attribute_list)
-        SourceNote.unserialize(self,sn)
+        SourceBase.unserialize(self,source_list)
+        NoteBase.unserialize(self,note)
         DateBase.unserialize(self,date)
 
     def get_text_data_list(self):
