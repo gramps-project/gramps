@@ -1,3 +1,6 @@
+2006-04-13  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_FamilyView.py: remove bad tab
+
 2006-04-13  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py: Upgrade path to new RelLib.
 	* src/RelLib/_Family.py: Require non-empty child_ref.

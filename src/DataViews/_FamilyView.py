@@ -467,17 +467,12 @@ class FamilyView(PageView.PersonNavView):
         if self.show_siblings:
             active = self.dbstate.active.handle
 
-            print family.get_child_ref_list()
-            
             child_list = [ref.ref for ref in family.get_child_ref_list()\
                           if ref.ref != active]
 
-            print child_list
-            
             label = _("Siblings")
             if child_list:
                 for child_handle in child_list:
-                    print child_handle
                     self.write_child(label, child_handle)
                     label = u""
         self.row += 1
