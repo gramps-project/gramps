@@ -72,7 +72,7 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase,RefBase):
                 PrivacyBase.serialize(self),
                 NoteBase.serialize(self),
                 self.confidence,
-                Refbase.serialize(self),
+                RefBase.serialize(self),
                 self.page,self.text)
 
     def unserialize(self,data):

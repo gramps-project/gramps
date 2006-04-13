@@ -74,7 +74,7 @@ class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
              self.first_name,self.surname,self.suffix,self.title,
              self.type,self.prefix,self.patronymic,self.sname,
              self.group_as,self.sort_as,self.display_as) = data
-            PrivateBase.unserialize(self,privacy)
+            PrivacyBase.unserialize(self,privacy)
             SourceBase.unserialize(self,source_list)
             NoteBase.unserialize(self,note)
             DateBase.unserialize(self,date)

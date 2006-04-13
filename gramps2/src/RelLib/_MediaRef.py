@@ -63,12 +63,12 @@ class MediaRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase,
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
                 AttributeBase.serialize(self),
-                Refbase.serialize(self),
+                RefBase.serialize(self),
                 self.rect)
 
     def unserialize(self,data):
         (privacy,source_list,note,attribute_list,ref,self.rect) = data
-        PrivateBase.unserialize(self,privacy)
+        PrivacyBase.unserialize(self,privacy)
         SourceBase.unserialize(self,source_list)
         NoteBase.unserialize(self,note)
         AttributeBase.unserialize(self,attribute_list)

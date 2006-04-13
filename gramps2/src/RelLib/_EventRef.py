@@ -82,7 +82,7 @@ class EventRef(BaseObject,PrivacyBase,NoteBase,RefBase):
         return (
             PrivacyBase.serialize(self),
             NoteBase.serialize(self),
-            Refbase.serialize(self),
+            RefBase.serialize(self),
             self.role
             )
 
