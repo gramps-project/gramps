@@ -1,4 +1,6 @@
 2006-04-13  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py: Upgrade path to new RelLib.
+	* src/RelLib/_Family.py: Require non-empty child_ref.
 	* src/Editors/_EditPerson.py (reorder_child_ref_list): Use
 	child_ref_list. 
 	* src/RelLib/_ChildRef.py (serialize): Typo.

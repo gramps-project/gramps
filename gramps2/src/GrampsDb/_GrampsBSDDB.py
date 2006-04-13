@@ -56,7 +56,7 @@ from _GrampsDbBase import *
 import const
 
 _MINVERSION = 5
-_DBVERSION = 10
+_DBVERSION = 9
 
 def find_surname(key,data):
     return str(data[3][3])
@@ -1194,8 +1194,6 @@ class GrampsBSDDB(GrampsDbBase):
             self.gramps_upgrade_8()
         if version < 9:
             self.gramps_upgrade_9()
-        if version < 10:
-            self.gramps_upgrade_10()
         # self.metadata.put('version',_DBVERSION)
         # self.metadata.sync()
         print "Upgrade time:", int(time.time()-t), "seconds"
@@ -1292,15 +1290,13 @@ class GrampsBSDDB(GrampsDbBase):
         trans = self.transaction_begin("",True)
         current = 0
 
-        # This upgrade adds marker to every primary object.
-        # We need to extract and commit every primary object
-        # even if no other changes are made.
+        # Numerous changes were made between dbversions 8 and 9.
+        # If nothing else, we switched from storing pickled gramps classes
+        # to storing builting objects, via running serialize() recursively
+        # until the very bottom. Every stored objects needs to be
+        # re-committed here.
 
         # Change every Source to have reporef_list
-#        cursor = self.get_source_cursor()
-#        data = cursor.first()
-#        while data:
-#            handle,info = data
         for handle in self.source_map.keys():
             info = self.source_map[handle]        
             source = Source()
@@ -1313,13 +1309,59 @@ class GrampsBSDDB(GrampsDbBase):
             self.commit_source(source,trans)
             current += 1
             self.update(100*current/length)
-#            data = cursor.next()
-#        cursor.close()
 
-        #cursor = self.get_person_cursor()
-        #data = cursor.first()
-        #while data:
-        #    handle,info = data
+        # Family upgrade
+        for handle in self.family_map.keys():
+            info = self.family_map[handle]
+            family = Family()
+            family.handle = handle
+            # Restore data from dbversion 8 (gramps 2.0.9)
+            (junk_handle, family.gramps_id, family.father_handle,
+             family.mother_handle, child_list, family.type,
+             event_list, family.media_list, family.attribute_list,
+             lds_seal, complete, family.source_list,
+             family.note, family.change) = info
+
+            if complete:
+                family.marker = (PrimaryObject.MARKER_COMPLETE,"")
+                
+            # Change every event handle to the EventRef
+            for event_handle in event_list:
+                event_ref = EventRef()
+                event_ref.ref = event_handle
+                event_ref.role = (EventRef.PRIMARY,'')
+                family.event_ref_list.append(event_ref)
+
+            # Change child_list into child_ref_list
+            for child_handle in child_list:
+                child_ref = ChildRef()
+                child_ref.ref = child_handle
+                family.child_ref_list.append(child_ref)
+
+            # Change relationship type from int to tuple
+            family.type = (family.type,'')
+
+            # In all Attributes, convert type from string to a tuple
+            for attribute in family.attribute_list:
+                convert_attribute_9(attribute)
+            # Cover attributes contained in MediaRefs
+            for media_ref in family.media_list:
+                convert_mediaref_9(media_ref)
+            
+            # Switch from fixed lds ords to a list
+            if lds_seal:
+                family.lds_ord_list = [lds_seal]
+
+            self.commit_family(family,trans)
+            current += 1
+            self.update(100*current/length)
+
+        # Person upgrade
+        # Needs to be run after the family upgrade completed.
+        dummy_child_ref = ChildRef()
+        default_frel = dummy_child_ref.frel
+        default_mrel = dummy_child_ref.mrel
+
         for handle in self.person_map.keys():
             info = self.person_map[handle]
             person = Person()
@@ -1328,9 +1370,9 @@ class GrampsBSDDB(GrampsDbBase):
             (junk_handle, person.gramps_id, person.gender,
              person.primary_name, person.alternate_names, person.nickname,
              death_handle, birth_handle, event_list,
-             person.family_list, person.parent_family_list,
+             person.family_list, parent_family_list,
              person.media_list, person.address_list, person.attribute_list,
-             person.urls, person.lds_bapt, person.lds_endow, person.lds_seal,
+             person.urls, lds_bapt, lds_endow, lds_seal,
              complete, person.source_list, person.note,
              person.change, person.private) = (info + (False,))[0:23]
 
@@ -1375,12 +1417,24 @@ class GrampsBSDDB(GrampsDbBase):
                     new_type = (Name.UNKNOWN,"")
                 name.type = new_type
 
-            # In all parent family instances, convert relationships from
-            # string to a tuple.
-            new_parent_family_list = [ (family_handle,(mrel,''),(frel,''))
-                                      for (family_handle,mrel,frel)
-                                      in person.parent_family_list[:] ]
-            person.parent_family_list = new_parent_family_list
+            # Change parent_family_list into list of handles
+            # and transfer the relationship info into the family's
+            # child_ref (in family.child_ref_list) as tuples.
+            for (family_handle,mrel,frel) in parent_family_list:
+                person.parent_family_list.append(family_handle)
+                # Only change family is the relations are non-default
+                if (mrel,frel) != (default_mrel[0],default_frel[0]):
+                    family = self.get_family_from_handle(family_handle)
+                    child_handle_list = [ref.ref for ref in
+                                         family.child_ref_list]
+                    try:
+                        index = child_handle_list.index(person.handle)
+                    except:
+                        print child_handle_list, person.handle
+                    child_ref = family.child_ref_list[index]
+                    child_ref.frel = (frel,'')
+                    child_ref.mrel = (mrel,'')
+                    self.commit_family(family,trans)
 
             # In all Attributes, convert type from string to a tuple
             for attribute in person.attribute_list:
@@ -1392,54 +1446,16 @@ class GrampsBSDDB(GrampsDbBase):
             # In all Urls, add type attribute
             for url in person.urls:
                 convert_url_9(url)
+
+            # Switch from fixed lds ords to a list
+            person.lds_ord_list = [item for item
+                                   in [lds_bapt,lds_endow,lds_seal] if item]
             
             self.commit_person(person,trans)
             current += 1
             self.update(100*current/length)
-            #data = cursor.next()
-        #cursor.close()
 
-        #cursor = self.get_family_cursor()
-        #data = cursor.first()
-        #while data:
-        #    handle,info = data
-        for handle in self.family_map.keys():
-            info = self.family_map[handle]
-            family = Family()
-            family.handle = handle
-            # Restore data from dbversion 8 (gramps 2.0.9)
-            (junk_handle, family.gramps_id, family.father_handle,
-             family.mother_handle, family.child_list, family.type,
-             event_list, family.media_list, family.attribute_list,
-             family.lds_seal, complete, family.source_list,
-             family.note, family.change) = info
-
-            if complete:
-                family.marker = (PrimaryObject.MARKER_COMPLETE,"")
-                
-            # Change every event handle to the EventRef
-            for event_handle in event_list:
-                event_ref = EventRef()
-                event_ref.ref = event_handle
-                event_ref.role = (EventRef.PRIMARY,'')
-                family.event_ref_list.append(event_ref)
-
-            # Change relationship type from int to tuple
-            family.type = (family.type,'')
-
-            # In all Attributes, convert type from string to a tuple
-            for attribute in family.attribute_list:
-                convert_attribute_9(attribute)
-            # Cover attributes contained in MediaRefs
-            for media_ref in family.media_list:
-                convert_mediaref_9(media_ref)
-            
-            self.commit_family(family,trans)
-            current += 1
-            self.update(100*current/length)
-#            data = cursor.next()
-#        cursor.close()
-        
+        # Event upgrade
         event_conversion = {
             "Alternate Marriage"  : (Event.MARR_ALT,""),
             "Annulment"           : (Event.ANNULMENT,""),
@@ -1488,11 +1504,6 @@ class GrampsBSDDB(GrampsDbBase):
             "Retirement"          : (Event.RETIREMENT,""),
             "Will"                : (Event.WILL,""),
             }
-
-#        cursor = self.get_event_cursor()
-#        data = cursor.first()
-#        while data:
-        #    handle,info = data
 
         # Turns out that a lof ot events have duplicate gramps IDs
         # We need to fix this
@@ -1558,15 +1569,9 @@ class GrampsBSDDB(GrampsDbBase):
             self.commit_event(event,trans)
             current += 1
             self.update(100*current/length)
-#            data = cursor.next()
-#        cursor.close()
         self.eid_trans.close()
         
-        # Work out marker addition to the Place
-#        cursor = self.get_place_cursor()
-#        data = cursor.first()
-#        while data:
-#            handle,info = data
+        # Place upgrade
         for handle in self.place_map.keys():
             info = self.place_map[handle]        
             place = Place()
@@ -1586,14 +1591,8 @@ class GrampsBSDDB(GrampsDbBase):
             self.commit_place(place,trans)
             current += 1
             self.update(100*current/length)
-#            data = cursor.next()
-#        cursor.close()
 
-        # Work out marker addition to the Media
-#        cursor = self.get_media_cursor()
-#        data = cursor.first()
-#        while data:
-#            handle,info = data
+        # Media upgrade
         for handle in self.media_map.keys():
             info = self.media_map[handle]        
             media_object = MediaObject()
@@ -1610,8 +1609,6 @@ class GrampsBSDDB(GrampsDbBase):
             self.commit_media_object(media_object,trans)
             current += 1
             self.update(100*current/length)
-#            data = cursor.next()
-#        cursor.close()
 
         self.transaction_commit(trans,"Upgrade to DB version 9")
         # Close secodnary index
@@ -1619,46 +1616,6 @@ class GrampsBSDDB(GrampsDbBase):
         self.metadata.put('version',9)
         self.metadata.sync()
         print "Done upgrading to DB version 9"
-
-    def gramps_upgrade_10(self):
-        print "Upgrading to DB version 10"
-
-        table_flags = self.open_flags()
-        self.reference_map_primary_map = db.DB(self.env)
-        self.reference_map_primary_map.set_flags(db.DB_DUP)
-        self.reference_map_primary_map.open(self.full_name,
-                                            "reference_map_primary_map",
-                                            db.DB_BTREE, flags=table_flags)
-        self.reference_map.associate(self.reference_map_primary_map,
-                                     find_primary_handle,
-                                     table_flags)
-
-        trans = self.transaction_begin("",True)
-        
-        for handle in self.person_map.keys():
-            val = list(self.get_raw_person_data(handle))
-            lds_list = [ x for x in [val[15],val[16],val[17]] if x ]
-            data=tuple(val[:15]) + (lds_list,) + tuple(val[18:])
-            p = Person(data=data)
-            self.commit_person(p,trans)
-
-        for handle in self.family_map.keys():
-            val = list(self.get_raw_family_data(handle))
-            if val[9]:
-                data = tuple(val[:9]) + (val[9],) + tuple(val[10:])
-            else:
-                data = tuple(val[:9]) + ([],) + tuple(val[10:])
-            p = Family()
-            p.unserialize(data)
-            self.commit_family(p,trans)
-
-        self.transaction_commit(trans,"Upgrade to DB version 10")
-
-        self.reference_map_primary_map.close()
-
-        self.metadata.put('version',10)
-        self.metadata.sync()
-
 
 class BdbTransaction(Transaction):
     def __init__(self,msg,db,batch=False,no_magic=False):
