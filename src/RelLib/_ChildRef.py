@@ -75,7 +75,7 @@ class ChildRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase):
         return (PrivacyBase.serialize(self),
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
-                RefBase.__init__(self),
+                RefBase.serialize(self),
                 self.frel,self.mrel)
 
     def unserialize(self,data):
