@@ -1,4 +1,7 @@
 2006-04-13  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: handle ASSO tag
+	* src/GrampsDb/_GedTokens.py: handle ASSO tag
+	* example/gedcom/sample.ged: add ASSO tag
 	* src/GrampsDb/_WriteXML.py: write old style XML.
 	* src/Editors/_EditPersonRef.py: display person correctly in label
 	* src/Editors/_EditFamily.py: comment out unused tab
