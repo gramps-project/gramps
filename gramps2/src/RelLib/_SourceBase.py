@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _SourceNote.py 5875 2006-02-03 22:03:53Z rshura $
+# $Id$
 
 """
 SourceBase class for GRAMPS
