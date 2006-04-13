@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -586,7 +586,6 @@ class EditPerson(EditPrimary):
         inorder = True
         prev_date = 0
         handle_list = [ref.ref for ref in child_ref_list]
-        print handle_list
         for i in range(len(handle_list)):
             child_handle = handle_list[i]
             child = self.db.get_person_from_handle(child_handle)
