@@ -29,14 +29,18 @@ Person Reference class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _PrivateSourceNote import PrivateSourceNote
+from _BaseObject import BaseObject
+from _PrivacyBase import PrivacyBase
+from _SourceBase import SourceBase
+from _NoteBase import NoteBase
+from _RefBase import RefBase
 
 #-------------------------------------------------------------------------
 #
 # Person References for Person/Family
 #
 #-------------------------------------------------------------------------
-class PersonRef(PrivateSourceNote):
+class PersonRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase):
     """
     Person reference class.
 
@@ -46,20 +50,29 @@ class PersonRef(PrivateSourceNote):
     """
 
     def __init__(self,source=None):
-        PrivateSourceNote.__init__(self,source)
+        BaseObject.__init__(self)
+        PrivacyBase.__init__(self,source)
+        SourceBase.__init__(self,source)
+        NoteBase.__init__(self,source)
+        RefBase.__init__(self)
         if source:
-            self.ref = source.ref
             self.rel = source.rel
         else:
-            self.ref = None
             self.rel = ''
 
     def serialize(self):
-        return (PrivateSourceNote.serialize(self),self.ref,self.rel)
+        return (PrivacyBase.serialize(self),
+                SourceBase.serialize(self),
+                NoteBase.serialize(self),
+                RefBase.__init__(self),
+                self.rel)
 
     def unserialize(self,data):
-        (psn,self.ref,self.rel) = data
-        PrivateSourceNote.unserialize(self,psn)
+        (privacy,source_list,note,ref,self.rel) = data
+        PrivateBase.unserialize(self,privacy)
+        SourceBase.unserialize(self,source_list)
+        NoteBase.unserialize(self,note)
+        RefBase.unserialize(self,ref)
         return self
 
     def get_text_data_list(self):
@@ -113,9 +126,3 @@ class PersonRef(PrivateSourceNote):
     def get_relation(self):
         """Returns the relation to a person"""
         return self.rel
-
-    def set_reference_handle(self,obj_id):
-        self.ref = obj_id
-
-    def get_reference_handle(self):
-        return self.ref

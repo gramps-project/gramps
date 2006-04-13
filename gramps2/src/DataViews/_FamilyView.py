@@ -699,8 +699,9 @@ class FamilyView(PageView.PersonNavView):
 
             if family:
                 person = self.dbstate.db.get_person_from_handle(self.dbstate.active.handle)
-                GrampsDb.add_child_to_family(family, child, (RelLib.Person.CHILD_BIRTH,'')
-                                             (RelLib.Person.CHILD_BIRTH,''))
+                GrampsDb.add_child_to_family(family, child,
+                                             (RelLib.ChildRef.CHILD_BIRTH,'')
+                                             (RelLib.ChildRef.CHILD_BIRTH,''))
             
     def add_parent_family(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:

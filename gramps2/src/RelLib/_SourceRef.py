@@ -33,6 +33,7 @@ from _BaseObject import BaseObject
 from _DateBase import DateBase
 from _PrivacyBase import PrivacyBase
 from _NoteBase import NoteBase
+from _RefBase import RefBase
 from _Note import Note
 
 #-------------------------------------------------------------------------
@@ -40,7 +41,7 @@ from _Note import Note
 # Source References for all primary objects
 #
 #-------------------------------------------------------------------------
-class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
+class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase,RefBase):
     """Source reference, containing detailed information about how a
     referenced source relates to it"""
     
@@ -56,28 +57,31 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
         DateBase.__init__(self,source)
         PrivacyBase.__init__(self,source)
         NoteBase.__init__(self,source)
+        RefBase.__init__(self)
         if source:
             self.confidence = source.confidence
-            self.ref = source.ref
             self.page = source.page
             self.text = source.text
         else:
             self.confidence = SourceRef.CONF_NORMAL
-            self.ref = None
             self.page = ""
-            self.note = Note()
             self.text = ""
 
     def serialize(self):
-        return (DateBase.serialize(self),self.private,
+        return (DateBase.serialize(self),
+                PrivacyBase.serialize(self),
                 NoteBase.serialize(self),
-                self.confidence,self.ref,self.page,self.text)
+                self.confidence,
+                Refbase.serialize(self),
+                self.page,self.text)
 
     def unserialize(self,data):
-        (date,self.private,nb,
-         self.confidence,self.ref,self.page,self.text) = data
+        (date,privacy,note,
+         self.confidence,ref,self.page,self.text) = data
         DateBase.unserialize(self,date)
-        NoteBase.unserialize(self,nb)
+        PrivacyBase.unserialize(self,privacy)
+        NoteBase.unserialize(self,note)
+        RefBase.unserialize(self,ref)
         return self
 
     def get_text_data_list(self):

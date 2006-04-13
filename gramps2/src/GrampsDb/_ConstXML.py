@@ -33,12 +33,12 @@ import RelLib
 #
 #-------------------------------------------------------------------------
 child_relations = (
-    (RelLib.Person.CHILD_BIRTH     , "Birth"),
-    (RelLib.Person.CHILD_ADOPTED   , "Adopted"),
-    (RelLib.Person.CHILD_STEPCHILD , "Stepchild"),
-    (RelLib.Person.CHILD_SPONSORED , "Sponsored"),
-    (RelLib.Person.CHILD_FOSTER    , "Foster"),
-    (RelLib.Person.CHILD_UNKNOWN   , "Unknown"),
+    (RelLib.ChildRef.CHILD_BIRTH     , "Birth"),
+    (RelLib.ChildRef.CHILD_ADOPTED   , "Adopted"),
+    (RelLib.ChildRef.CHILD_STEPCHILD , "Stepchild"),
+    (RelLib.ChildRef.CHILD_SPONSORED , "Sponsored"),
+    (RelLib.ChildRef.CHILD_FOSTER    , "Foster"),
+    (RelLib.ChildRef.CHILD_UNKNOWN   , "Unknown"),
     )
 
 events = (
@@ -175,7 +175,7 @@ url_types = (
 
 # mapping from the tuple collection to the appropriate CUSTOM integer
 custom_types = {
-    child_relations    : RelLib.Person.CHILD_CUSTOM,
+    child_relations    : RelLib.ChildRef.CHILD_CUSTOM,
     events             : RelLib.Event.CUSTOM,
     attributes         : RelLib.Attribute.CUSTOM,
     family_relations   : RelLib.Family.CUSTOM,

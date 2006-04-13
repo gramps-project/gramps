@@ -36,14 +36,16 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _PrivateSourceNote import PrivateSourceNote
+from _PrivacyBase import PrivacyBase
+from _SourceBase import SourceBase
+from _NoteBase import NoteBase
 
 #-------------------------------------------------------------------------
 #
 # Attribute for Person/Family/MediaObject/MediaRef
 #
 #-------------------------------------------------------------------------
-class Attribute(PrivateSourceNote):
+class Attribute(PrivacyBase,SourceBase,NoteBase):
     """Provides a simple key/value pair for describing properties. Used
     by the Person and Family objects to store descriptive information."""
     
@@ -57,8 +59,12 @@ class Attribute(PrivateSourceNote):
     SSN         = 6
 
     def __init__(self,source=None):
-        """creates a new Attribute object, copying from the source if provided"""
-        PrivateSourceNote.__init__(self,source)
+        """
+        Creates a new Attribute object, copying from the source if provided.
+        """
+        PrivacyBase.__init__(self,source)
+        SourceBase.__init__(self,source)
+        NoteBase.__init__(self,source)
         
         if source:
             self.type = source.type
@@ -68,12 +74,16 @@ class Attribute(PrivateSourceNote):
             self.value = ""
 
     def serialize(self):
-        return (PrivateSourceNote.serialize(self),
+        return (PrivacyBase.serialize(self),
+                SourceBase.serialize(self),
+                NoteBase.serialize(self),
                 self.type,self.value)
 
     def unserialize(self,data):
-        (psn,self.type,self.value) = data
-        PrivateSourceNote.unserialize(self,psn)
+        (privacy,source_list,note,self.type,self.value) = data
+        PrivateBase.unserialize(self,privacy)
+        SourceBase.unserialize(self,source_list)
+        NoteBase.unserialize(self,note)
         return self
 
     def get_text_data_list(self):

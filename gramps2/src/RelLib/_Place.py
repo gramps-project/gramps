@@ -30,7 +30,8 @@ Place object for GRAMPS
 #
 #-------------------------------------------------------------------------
 from _PrimaryObject import PrimaryObject
-from _SourceNote import SourceNote
+from _SourceBase import SourceBase
+from _NoteBase import NoteBase
 from _MediaBase import MediaBase
 from _UrlBase import UrlBase
 from _Location import Location
@@ -40,7 +41,7 @@ from _Location import Location
 # Place class
 #
 #-------------------------------------------------------------------------
-class Place(PrimaryObject,SourceNote,MediaBase,UrlBase):
+class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
     """
     Contains information related to a place, including multiple address
     information (since place names can change with time), longitude, latitude,
@@ -55,7 +56,8 @@ class Place(PrimaryObject,SourceNote,MediaBase,UrlBase):
         @type source: Place
         """
         PrimaryObject.__init__(self,source)
-        SourceNote.__init__(self,source)
+        SourceBase.__init__(self,source)
+        NoteBase.__init__(self,source)
         MediaBase.__init__(self,source)
         UrlBase.__init__(self,source)
         if source:
@@ -96,7 +98,8 @@ class Place(PrimaryObject,SourceNote,MediaBase,UrlBase):
                 main_loc, [al.serialize() for al in self.alt_loc],
                 UrlBase.serialize(self),
                 MediaBase.serialize(self),
-                SourceNote.serialize(self),
+                SourceBase.serialize(self),
+                NoteBase.serialize(self),
                 self.change, self.marker,self.private)
 
     def unserialize(self,data):
@@ -109,7 +112,7 @@ class Place(PrimaryObject,SourceNote,MediaBase,UrlBase):
         @type data: tuple
         """
         (self.handle, self.gramps_id, self.title, self.long, self.lat,
-         main_loc, alt_loc, urls, media_list, sn,
+         main_loc, alt_loc, urls, media_list, source_list, note,
          self.change, self.marker, self.private) = data
 
         if main_loc == None:
@@ -119,7 +122,8 @@ class Place(PrimaryObject,SourceNote,MediaBase,UrlBase):
         self.alt_loc = [Location().unserialize(al) for al in alt_loc]
         UrlBase.unserialize(self,urls)
         MediaBase.unserialize(self,media_list)
-        SourceNote.unserialize(self,sn)
+        SourceBase.unserialize(self,source_list)
+        NoteBase.unserialize(self,note)
 
     def get_text_data_list(self):
         """

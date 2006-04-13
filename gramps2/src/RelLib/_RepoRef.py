@@ -31,13 +31,14 @@ Repository Reference class for GRAMPS
 #-------------------------------------------------------------------------
 from _BaseObject import BaseObject
 from _NoteBase import NoteBase
+from _RefBase import RefBase
 
 #-------------------------------------------------------------------------
 #
 # Repository Reference for Sources
 #
 #-------------------------------------------------------------------------
-class RepoRef(BaseObject,NoteBase):
+class RepoRef(BaseObject,NoteBase,RefBase):
     """
     Repository reference class.
     """
@@ -59,23 +60,26 @@ class RepoRef(BaseObject,NoteBase):
     VIDEO      = 13
 
     def __init__(self,source=None):
+        BaseObject.__init__(self)
         NoteBase.__init__(self)
+        RefBase.__init__(self)
         if source:
-            self.ref = source.ref
             self.call_number = source.call_number
             self.media_type = source.media_type
         else:
-            self.ref = None
             self.call_number = ""
             self.media_type = (RepoRef.CUSTOM,"")
 
     def serialize(self):
-        return (NoteBase.serialize(self),
-                self.ref,self.call_number,self.media_type)
+        return (
+            NoteBase.serialize(self),
+            Refbase.serialize(self),
+            self.call_number,self.media_type)
 
     def unserialize(self,data):
-        (note,self.ref,self.call_number,self.media_type) = data
+        (note,ref,self.call_number,self.media_type) = data
         NoteBase.unserialize(self,note)
+        RefBase.unserialize(self,ref)
         return self
 
     def get_text_data_list(self):
@@ -110,12 +114,6 @@ class RepoRef(BaseObject,NoteBase):
             return [('Repository',self.ref)]
         else:
             return []
-
-    def set_reference_handle(self,ref):
-        self.ref = ref
-
-    def get_reference_handle(self):
-        return self.ref
 
     def set_call_number(self,number):
         self.call_number = number

@@ -1448,8 +1448,8 @@ class HaveAltFamilies(Rule):
 
     def apply(self,db,person):
         for (fam,rel1,rel2) in person.get_parent_family_handle_list():
-            if rel1 == RelLib.Person.CHILD_ADOPTED \
-                   or rel2 == RelLib.Person.CHILD_ADOPTED:
+            if rel1 == RelLib.ChildRef.CHILD_ADOPTED \
+                   or rel2 == RelLib.ChildRef.CHILD_ADOPTED:
                 return True
         return False
 

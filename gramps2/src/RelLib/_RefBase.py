@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,58 +18,49 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: _EventRef.py 6194 2006-03-22 23:03:57Z dallingham $
 
 """
-PrivacyBase Object class for GRAMPS
+Base Reference class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
 #
-# PrivacyBase Object
+# RefBase class
 #
 #-------------------------------------------------------------------------
-class PrivacyBase:
+class RefBase:
     """
-    Base class for privacy-aware objects.
+    Base reference class to manage references to other objects.
+
+    Any *Ref class should derive from this class.
     """
 
     def __init__(self,source=None):
-        """
-        Initialize a PrivacyBase. If the source is not None, then object
-        is initialized from values of the source object.
-
-        @param source: Object used to initialize the new object
-        @type source: PrivacyBase
-        """
-        
         if source:
-            self.private = source.private
+            self.ref = source.ref
         else:
-            self.private = False
+            self.ref = None
 
     def serialize(self):
-        return self.private
+        return self.ref
 
     def unserialize(self,data):
-        self.private = data
+        self.ref = str(data)
         return self
 
-    def set_privacy(self,val):
+    def get_referenced_handles(self):
         """
-        Sets or clears the privacy flag of the data
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        assert False, "Must be overridden in the derived class"
 
-        @param val: value to assign to the privacy flag. True indicates that the
-           record is private, False indicates that it is public.
-        @type val: bool
-        """
-        self.private = val
+    def set_reference_handle(self,val):
+        self.ref = val
 
-    def get_privacy(self):
-        """
-        Returns the privacy level of the data. 
-
-        @returns: True indicates that the record is private
-        @rtype: bool
-        """
-        return self.private
+    def get_reference_handle(self):
+        return self.ref

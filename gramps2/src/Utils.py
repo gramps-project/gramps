@@ -72,17 +72,17 @@ def format_gender( type):
     return gender.get(type[0],_("Invalid"))
 
 child_relations = {
-    RelLib.Person.CHILD_NONE      : _("None"),
-    RelLib.Person.CHILD_BIRTH     : _("Birth"),
-    RelLib.Person.CHILD_ADOPTED   : _("Adopted"),
-    RelLib.Person.CHILD_STEPCHILD : _("Stepchild"),
-    RelLib.Person.CHILD_SPONSORED : _("Sponsored"),
-    RelLib.Person.CHILD_FOSTER    : _("Foster"),
-    RelLib.Person.CHILD_UNKNOWN   : _("Unknown"),
-    RelLib.Person.CHILD_CUSTOM    : _("Custom"),
+    RelLib.ChildRef.CHILD_NONE      : _("None"),
+    RelLib.ChildRef.CHILD_BIRTH     : _("Birth"),
+    RelLib.ChildRef.CHILD_ADOPTED   : _("Adopted"),
+    RelLib.ChildRef.CHILD_STEPCHILD : _("Stepchild"),
+    RelLib.ChildRef.CHILD_SPONSORED : _("Sponsored"),
+    RelLib.ChildRef.CHILD_FOSTER    : _("Foster"),
+    RelLib.ChildRef.CHILD_UNKNOWN   : _("Unknown"),
+    RelLib.ChildRef.CHILD_CUSTOM    : _("Custom"),
     }
 def format_child_relation( type):
-    if type[0] == RelLib.Person.CHILD_CUSTOM:
+    if type[0] == RelLib.ChildRef.CHILD_CUSTOM:
         return type[1]
     return child_relations.get(type[0],_("Invalid id %d ('%s')")%type)
 

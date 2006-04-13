@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,10 +18,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: _EventRef.py 6194 2006-03-22 23:03:57Z dallingham $
 
 """
-Address class for GRAMPS
+Child Reference class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -29,49 +29,61 @@ Address class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from _BaseObject import BaseObject
 from _PrivacyBase import PrivacyBase
 from _SourceBase import SourceBase
 from _NoteBase import NoteBase
-from _DateBase import DateBase
-from _LocationBase import LocationBase
+from _RefBase import RefBase
 
 #-------------------------------------------------------------------------
 #
-# Address for Person/Repository
+# Person References for Person/Family
 #
 #-------------------------------------------------------------------------
-class Address(PrivacyBase,SourceBase,NoteBase,DateBase,LocationBase):
-    """Provides address information."""
+class ChildRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase):
+    """
+    Person reference class.
+
+    This class is for keeping information about how the person relates
+    to another person from the database, if not through family.
+    Examples would be: godparent, friend, etc.
+    """
+
+    CHILD_NONE      = 0
+    CHILD_BIRTH     = 1
+    CHILD_ADOPTED   = 2
+    CHILD_STEPCHILD = 3
+    CHILD_SPONSORED = 4
+    CHILD_FOSTER    = 5
+    CHILD_UNKNOWN   = 6
+    CHILD_CUSTOM    = 7
 
     def __init__(self,source=None):
-        """Creates a new Address instance, copying from the source
-        if provided"""
+        BaseObject.__init__(self)
         PrivacyBase.__init__(self,source)
         SourceBase.__init__(self,source)
         NoteBase.__init__(self,source)
-        DateBase.__init__(self,source)
-        LocationBase.__init__(self,source)
-
+        RefBase.__init__(self)
         if source:
-            self.street = source.street
+            self.frel = source.frel
+            self.mrel = source.mrel
         else:
-            self.street = ""
+            self.frel = (ChildRef.CHILD_BIRTH,'')
+            self.mrel = (ChildRef.CHILD_BIRTH,'')
 
     def serialize(self):
         return (PrivacyBase.serialize(self),
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
-                DateBase.serialize(self),
-                self.city,self.state,
-                self.country,self.postal,self.phone,self.street)
+                RefBase.__init__(self),
+                self.frel,self.mrel)
 
     def unserialize(self,data):
-        (privacy,source_list,note,date,self.city,self.state,
-         self.country,self.postal,self.phone,self.street) = data
-        PrivacyBase.unserialize(self,privacy)
+        (privacy,source_list,note,ref,self.frel,self.mrel) = data
+        PrivateBase.unserialize(self,privacy)
         SourceBase.unserialize(self,source_list)
         NoteBase.unserialize(self,note)
-        DateBase.unserialize(self,date)
+        RefBase.unserialize(self,ref)
         return self
 
     def get_text_data_list(self):
@@ -81,9 +93,7 @@ class Address(PrivacyBase,SourceBase,NoteBase,DateBase,LocationBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.street] + LocationBase.get_text_data_list()
-        #return [self.street,self.city,self.state,self.country,
-        #        self.postal,self.phone,self.get_date()]
+        return [self.rel]
 
     def get_text_data_child_list(self):
         """
@@ -97,20 +107,41 @@ class Address(PrivacyBase,SourceBase,NoteBase,DateBase,LocationBase):
             check_list.append(self.note)
         return check_list
 
+    def get_referenced_handles(self):
+        """
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        if self.ref:
+            return [('Person',self.ref)]
+        else:
+            return []
+
     def get_handle_referents(self):
         """
         Returns the list of child objects which may, directly or through
-        their children, reference primary objects.
+        their children, reference primary objects..
         
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
         """
         return self.source_list
 
-    def set_street(self,val):
-        """sets the street portion of the Address"""
-        self.street = val
+    def set_mother_relation(self,rel):
+        """Sets relation between the person and mother"""
+        self.mrel = rel
 
-    def get_street(self):
-        """returns the street portion of the Address"""
-        return self.street
+    def get_mother_relation(self):
+        """Returns the relation between the person and mother"""
+        return self.mrel
+
+    def set_father_relation(self,frel):
+        """Sets relation between the person and father"""
+        self.fmrel = rel
+
+    def get_father_relation(self):
+        """Returns the relation between the person and father"""
+        return self.frel

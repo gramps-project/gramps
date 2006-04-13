@@ -26,35 +26,10 @@ PrivateSourceNote class for GRAMPS
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
-#
-#-------------------------------------------------------------------------
-from _SourceNote import SourceNote
-from _PrivacyBase import PrivacyBase
-
-#-------------------------------------------------------------------------
-#
 # PrivateSourceNote class
 #
 #-------------------------------------------------------------------------
 class PrivateSourceNote(SourceNote,PrivacyBase):
-    """
-    Same as SourceNote, plus the privacy capabilities.
-    """
-    def __init__(self,source=None):
-        """
-        Initialize a PrivateSourceNote. If the source is not None, then object
-        is initialized from values of the source object.
-
-        @param source: Object used to initialize the new object
-        @type source: PrivateSourceNote
-        """
-        SourceNote.__init__(self,source)
-        PrivacyBase.__init__(self,source)
-
-    def serialize(self):
-        return (self.private,SourceNote.serialize(self))
-
-    def unserialize(self,data):
-        (self.private,sn) = data
-        SourceNote.unserialize(self,sn)
+    # FIXME: this class is only present to enable db upgrade
+    def __init__(self):
+        pass

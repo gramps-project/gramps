@@ -2,6 +2,7 @@
 	* src/plugins/GraphViz.py: Add graph preview based on mime (Bug 1449796)
 
 2006-04-12  Alex Roitman  <shura@gramps-project.org>
+	* various: Add ChildRef class, reorganize RelLib.
 	* src/plugins/Check.py (Check.__init__): Typo.
 
 2006-04-11  Alex Roitman  <shura@gramps-project.org>

@@ -39,7 +39,7 @@ import GrampsLocale
 #-------------------------------------------------------------------------
 from _BaseObject import BaseObject
 from _PrivacyBase import PrivacyBase
-from _SourceNote import SourceNote
+from _SourceBase import SourceBase
 from _MediaBase import MediaBase
 
 #-------------------------------------------------------------------------
@@ -163,7 +163,7 @@ class PrimaryObject(BaseObject,PrivacyBase):
         @return: Returns whether the object has reference to this handle of this object type.
         @rtype: bool
         """
-        if classname == 'Source' and isinstance(self,SourceNote):
+        if classname == 'Source' and isinstance(self,SourceBase):
             return self.has_source_reference(handle)
         elif classname == 'MediaObject' and isinstance(self,MediaBase):
             return self.has_media_reference(handle)
@@ -179,7 +179,7 @@ class PrimaryObject(BaseObject,PrivacyBase):
         @param handle_list: The list of handles to be removed.
         @type handle_list: str
         """
-        if classname == 'Source' and isinstance(self,SourceNote):
+        if classname == 'Source' and isinstance(self,SourceBase):
             self.remove_source_references(handle_list)
         elif classname == 'MediaObject' and isinstance(self,MediaBase):
             self.remove_media_references(handle_list)
@@ -197,7 +197,7 @@ class PrimaryObject(BaseObject,PrivacyBase):
         @param new_handle: The handle to replace the old one with.
         @type new_handle: str
         """
-        if classname == 'Source' and isinstance(self,SourceNote):
+        if classname == 'Source' and isinstance(self,SourceBase):
             self.replace_source_references(old_handle,new_handle)
         elif classname == 'MediaObject' and isinstance(self,MediaBase):
             self.replace_media_references(old_handle,new_handle)

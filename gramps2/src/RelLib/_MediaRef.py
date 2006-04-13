@@ -29,7 +29,11 @@ Media Reference class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _PrivateSourceNote import PrivateSourceNote
+from _BaseObject import BaseObject
+from _PrivacyBase import PrivacyBase
+from _SourceBase import SourceBase
+from _NoteBase import NoteBase
+from _RefBase import RefBase
 from _AttributeBase import AttributeBase
 
 #-------------------------------------------------------------------------
@@ -37,29 +41,38 @@ from _AttributeBase import AttributeBase
 # MediaObject References for Person/Place/Source
 #
 #-------------------------------------------------------------------------
-class MediaRef(PrivateSourceNote,AttributeBase):
+class MediaRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase,
+               AttributeBase):
     """Media reference class"""
     def __init__(self,source=None):
 
-        PrivateSourceNote.__init__(self,source)
+        BaseObject.__init__(self)
+        PrivacyBase.__init__(self,source)
+        SourceBase.__init__(self,source)
+        NoteBase.__init__(self,source)
+        RefBase.__init__(self)
         AttributeBase.__init__(self,source)
 
         if source:
-            self.ref = source.ref
             self.rect = source.rect
         else:
-            self.ref = None
             self.rect = None
 
     def serialize(self):
-        return (PrivateSourceNote.serialize(self),
+        return (PrivacyBase.serialize(self),
+                SourceBase.serialize(self),
+                NoteBase.serialize(self),
                 AttributeBase.serialize(self),
-                self.ref,self.rect)
+                Refbase.serialize(self),
+                self.rect)
 
     def unserialize(self,data):
-        (psn,attribute_list,self.ref,self.rect) = data
-        PrivateSourceNote.unserialize(self,psn)
+        (privacy,source_list,note,attribute_list,ref,self.rect) = data
+        PrivateBase.unserialize(self,privacy)
+        SourceBase.unserialize(self,source_list)
+        NoteBase.unserialize(self,note)
         AttributeBase.unserialize(self,attribute_list)
+        RefBase.unserialize(self,ref)
         return self
 
     def get_text_data_child_list(self):
@@ -113,9 +126,3 @@ class MediaRef(PrivateSourceNote,AttributeBase):
     def get_rectangle(self):
         """Returns the subsection of an image"""
         return self.rect
-
-    def set_reference_handle(self,obj_id):
-        self.ref = obj_id
-
-    def get_reference_handle(self):
-        return self.ref
