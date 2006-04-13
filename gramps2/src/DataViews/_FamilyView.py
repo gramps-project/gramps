@@ -466,13 +466,19 @@ class FamilyView(PageView.PersonNavView):
 
         if self.show_siblings:
             active = self.dbstate.active.handle
-        
-            child_list = [handle for handle in family.get_child_handle_list()\
-                          if handle != active]
+
+            print family.get_child_ref_list()
+            
+            child_list = [ref.ref for ref in family.get_child_ref_list()\
+                          if ref.ref != active]
+
+            print child_list
+            
             label = _("Siblings")
             if child_list:
-                for child in child_list:
-                    self.write_child(label, child)
+                for child_handle in child_list:
+                    print child_handle
+                    self.write_child(label, child_handle)
                     label = u""
         self.row += 1
 
@@ -708,8 +714,10 @@ class FamilyView(PageView.PersonNavView):
             from Editors import EditFamily
             family = RelLib.Family()
             person = self.dbstate.active
-            
-            family.add_child_handle(person.handle)
+
+            ref = RelLib.ChildRef()
+            ref.ref = person.handle
+            family.add_child_ref(ref)
                 
             try:
                 EditFamily(self.dbstate, self.uistate, [], family)

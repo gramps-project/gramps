@@ -1,3 +1,6 @@
+2006-04-13  Don Allingham  <don@gramps-project.org>
+	* various: start childref conversion
+
 2006-04-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/RelLib/*: fix different typos.
 	* src/DataViews/_FamilyView.py: adapt changes in RelLib

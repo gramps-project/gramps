@@ -140,7 +140,7 @@ class ChildRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase):
 
     def set_father_relation(self,frel):
         """Sets relation between the person and father"""
-        self.fmrel = rel
+        self.frel = frel
 
     def get_father_relation(self):
         """Returns the relation between the person and father"""

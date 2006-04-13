@@ -281,6 +281,11 @@ class EditPerson(EditPrimary):
             WebEmbedList(self.dbstate, self.uistate, self.track, 
                          self.obj.get_url_list()))
 
+        self.pref_list = self._add_tab(
+            notebook, 
+            PersonRefEmbedList(self.dbstate, self.uistate, self.track, 
+                               self.obj.get_person_ref_list()))
+
         self.lds_list = self._add_tab(
             notebook, 
             LdsEmbedList(self.dbstate, self.uistate, self.track, 

@@ -377,6 +377,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         """
         if child_ref and not isinstance(child_ref,ChildRef):
             raise ValueError("expecting ChildRef instance")
+        assert(child_ref.ref)
         self.child_ref_list.append(child_ref)
             
     def remove_child_ref(self,child_ref):

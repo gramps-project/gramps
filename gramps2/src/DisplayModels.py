@@ -779,3 +779,4 @@ class RepositoryModel(BaseModel):
 #         except:
 #             log.error("Failed to create tooltip.", exc_info=True)
 #         return t
+

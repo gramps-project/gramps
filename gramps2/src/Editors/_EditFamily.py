@@ -115,22 +115,22 @@ class ChildEmbedList(EmbeddedList):
         """
         returns the index of the object within the associated data
         """
-        return self.family.get_child_handle_list().index(obj)
+        return self.family.get_child_ref_list().index(obj)
 
     def _find_row(self,x,y):
         row = self.tree.get_path_at_pos(x,y)
         if row == None:
-            return len(self.family.get_child_handle_list())
+            return len(self.family.get_child_ref_list())
         else:
             return row[0][0]
 
     def _handle_drag(self, row, obj):
-        self.family.get_child_handle_list().insert(row,obj)
+        self.family.get_child_ref_list().insert(row,obj)
         self.changed = True
         self.rebuild()
 
     def _move(self, row_from, row_to, obj):
-        dlist = self.family.get_child_handle_list()
+        dlist = self.family.get_child_ref_list()
         if row_from < row_to:
             dlist.insert(row_to,obj)
             del dlist[row_from]
@@ -175,7 +175,7 @@ class ChildEmbedList(EmbeddedList):
         """
         The list is considered empty if the child list is empty.
         """
-        return len(self.family.get_child_handle_list()) == 0
+        return len(self.family.get_child_ref_list()) == 0
 
     def get_data(self):
         """
@@ -204,7 +204,9 @@ class ChildEmbedList(EmbeddedList):
         EditPerson(self.dbstate,self.uistate,[],person, self.new_child_added)
 
     def new_child_added(self, person):
-        self.family.add_child_handle(person.get_handle())
+        ref = RelLib.ChildRef()
+        ref.ref = person.get_handle()
+        self.family.add_child_ref(ref)
         self.rebuild()
 
     def share_button_clicked(self,obj):
@@ -212,15 +214,17 @@ class ChildEmbedList(EmbeddedList):
 
         # it only makes sense to skip those who are already in the family
         
-        skip = [self.family.get_father_handle(),
-                self.family.get_mother_handle()] + self.family.get_child_handle_list()
+        skip = [self.family.get_father_handle(), self.family.get_mother_handle()] + \
+               [x.ref for x in self.family.get_child_ref_list() ]
 
         sel = SelectPerson(self.dbstate.db, "Select Child",
                            skip=[ x for x in skip if x])
         person = sel.run()
         
         if person:
-            self.family.add_child_handle(person.get_handle())
+            ref = RelLib.ChildRef()
+            ref.ref = person.get_handle()
+            self.family.add_child_ref(ref)
             self.rebuild()
 
 #     def add_button_clicked(self,obj):
@@ -265,9 +269,9 @@ class ChildEmbedList(EmbeddedList):
                      skip=[ x for x in skip if x])
 
     def del_button_clicked(self,obj):
-        handle = self.get_selected()
-        if handle:
-            self.family.remove_child_handle(handle)
+        ref = self.get_selected()
+        if ref:
+            self.family.remove_child_ref(ref)
             self.rebuild()
 
     def edit_button_clicked(self,obj):
@@ -345,7 +349,7 @@ class EditFamily(EditPrimary):
         
         if self.added and self.obj.get_father_handle() == None and \
            self.obj.get_mother_handle() == None and \
-           len(self.obj.get_child_handle_list()) == 1:
+           len(self.obj.get_child_ref_list()) == 1:
             self.add_parent = True
             if not Config.get_family_warn():
                 for i in self.hidden:
@@ -449,7 +453,9 @@ class EditFamily(EditPrimary):
         mhandle = self.obj.get_mother_handle()
         self.update_mother(mhandle)
 
-        self.phandles = [mhandle, fhandle] + self.obj.get_child_handle_list()
+        self.phandles = [mhandle, fhandle] + \
+                        [ x.ref for x in self.obj.get_child_ref_list()]
+        
         self.phandles = [handle for handle in self.phandles if handle]
 
         self.mbutton.connect('clicked',self.mother_clicked)
@@ -486,6 +492,11 @@ class EditFamily(EditPrimary):
             notebook,
             GalleryTab(self.dbstate, self.uistate, self.track,
                        self.obj.get_media_list()))
+
+        self.pref_list = self._add_tab(
+            notebook, 
+            PersonRefEmbedList(self.dbstate, self.uistate, self.track, 
+                               self.obj.child_ref_list))
 
         self.lds_list = self._add_tab(
             notebook,
@@ -541,7 +552,7 @@ class EditFamily(EditPrimary):
             data_filter = FastFemaleFilter(self.dbstate.db)
             sel = SelectPerson(self.dbstate.db, "Select Mother",
                                filter=data_filter,
-                               skip=self.obj.get_child_handle_list())
+                               skip=[x.ref for x in self.obj.get_child_ref_list()])
             person = sel.run()
 
             if person:
@@ -612,7 +623,7 @@ class EditFamily(EditPrimary):
             data_filter = FastMaleFilter(self.dbstate.db)
             sel = SelectPerson(self.dbstate.db, "Select Father",
                                filter=data_filter,
-                               skip=self.obj.get_child_handle_list())
+                               skip=[x.ref for x in self.obj.get_child_ref_list()])
             person = sel.run()
 
             if person:
@@ -636,9 +647,9 @@ class EditFamily(EditPrimary):
                 common = list(mfam.intersection(ffam))
                 if len(common) > 0:
                     if self.add_parent:
-                        clist = self.obj.get_child_handle_list()
+                        clist = self.obj.get_child_ref_list()
                         self.obj = self.dbstate.db.get_family_from_handle(common[0])
-                        self.obj.add_child_handle(clist[0])
+                        self.obj.add_child_ref(clist[0])
                         self.close_window()
                         try:
                             EditFamily(self.dbstate,self.uistate,[],self.obj)
@@ -657,8 +668,8 @@ class EditFamily(EditPrimary):
                     if fam.get_mother_handle() == None:
                         self.close_window()
                         try:
-                            clist = self.obj.get_child_handle_list()
-                            fam.add_child_handle(clist[-1])
+                            clist = self.obj.get_child_ref_list()
+                            fam.add_child_ref(clist[-1])
                             EditFamily(self.dbstate,self.uistate,[],fam)
                         except Errors.WindowActiveError:
                             pass
@@ -669,8 +680,8 @@ class EditFamily(EditPrimary):
                 if fam.get_father_handle() == None:
                     self.close_window()
                     try:
-                        clist = self.obj.get_child_handle_list()
-                        fam.add_child_handle(clist[-1])
+                        clist = self.obj.get_child_ref_list()
+                        fam.add_child_ref(clist[-1])
                         EditFamily(self.dbstate,self.uistate,[],fam)
                     except Errors.WindowActiveError:
                         pass
@@ -769,7 +780,7 @@ class EditFamily(EditPrimary):
     def object_is_empty(self):
         return self.obj.get_father_handle() == None and \
                self.obj.get_mother_handle() == None and \
-               len(self.obj.get_child_handle_list()) == 0
+               len(self.obj.get_child_ref_list()) == 0
 
     def save(self,*obj):
 
@@ -796,14 +807,10 @@ class EditFamily(EditPrimary):
                 self.db.commit_person(parent,trans)
                 
             # for each child, add the family handle to the child
-            for handle in self.obj.get_child_handle_list():
+            for ref in self.obj.get_child_ref_list():
                 child = self.db.get_person_from_handle(handle)
                 # fix - relationships need to be extracted from the list
-                child.add_parent_family_handle(
-                    self.obj.handle,
-                    (RelLib.ChildRef.CHILD_BIRTH,''),
-                    (RelLib.ChildRef.CHILD_BIRTH,''),
-                    )
+                child.add_parent_family_ref(ref)
                 self.db.commit_person(child,trans)
 
             self.db.add_family(self.obj,trans)
@@ -827,8 +834,8 @@ class EditFamily(EditPrimary):
             self.fix_parent_handles(original.get_mother_handle(),
                                     self.obj.get_mother_handle(),trans)
 
-            orig_set = set(original.get_child_handle_list())
-            new_set = set(self.obj.get_child_handle_list())
+            orig_set = set(original.get_child_ref_list())
+            new_set = set(self.obj.get_child_ref_list())
 
             # remove the family from children which have been removed
             for handle in orig_set.difference(new_set):
