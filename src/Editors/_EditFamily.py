@@ -493,10 +493,10 @@ class EditFamily(EditPrimary):
             GalleryTab(self.dbstate, self.uistate, self.track,
                        self.obj.get_media_list()))
 
-        self.pref_list = self._add_tab(
-            notebook, 
-            PersonRefEmbedList(self.dbstate, self.uistate, self.track, 
-                               self.obj.child_ref_list))
+#         self.pref_list = self._add_tab(
+#             notebook, 
+#             PersonRefEmbedList(self.dbstate, self.uistate, self.track, 
+#                                self.obj.child_ref_list))
 
         self.lds_list = self._add_tab(
             notebook,

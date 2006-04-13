@@ -78,6 +78,10 @@ class EditPersonRef(EditSecondary):
 
     def _setup_fields(self):
 
+        if self.obj.ref:
+            p = self.dbstate.db.get_person_from_handle(self.obj.ref)
+            self.person_label.set_text(NameDisplay.displayer.display(p))
+        
         self.street = MonitoredEntry(
             self.top.get_widget("relationship"),
             self.obj.set_relation,
@@ -135,8 +139,6 @@ class EditPersonRef(EditSecondary):
         form and updates the Address data structure.
         """
 
-        print self, self.obj, self.obj.ref
-        
         if self.obj.ref:
             if self.callback:
                 self.callback(self.obj)

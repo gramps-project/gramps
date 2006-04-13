@@ -288,7 +288,8 @@ class CheckIntegrity:
                 self.broken_parent_links.append((mother_handle,family_handle))
                 mother.add_family_handle(family_handle)
                 self.db.commit_person(mother,self.trans)
-            for child_handle in family.get_child_handle_list():
+            for child_ref in family.get_child_ref_list():
+                child_handle = child_ref.ref
                 child = self.db.get_person_from_handle(child_handle)
                 if child:
                     if family_handle == child.get_main_parents_family_handle():
@@ -298,12 +299,12 @@ class CheckIntegrity:
                             break
                     else:
                         # The referenced child has no reference back to the family
-                        family.remove_child_handle(child_handle)
+                        family.remove_child_ref(child_ref)
                         self.db.commit_family(family,self.trans)
                         self.broken_links.append((child_handle,family_handle))
                 else:
                     # The person referenced by the child handle does not exist in the database
-                    family.remove_child_handle(child_handle)
+                    family.remove_child_ref(child_ref)
                     self.db.commit_family(family,self.trans)
                     self.broken_links.append((child_handle,family_handle))
             self.progress.step()
@@ -317,7 +318,7 @@ class CheckIntegrity:
                     person.remove_parent_family_handle(family_type[0])
                     self.db.commit_person(person,self.trans)
                     continue
-                for child_handle in family.get_child_handle_list():
+                for child_handle in [x.ref for x in family.get_child_ref_list()]:
                     if child_handle == person_handle:
                         break
                 else:
@@ -456,14 +457,14 @@ class CheckIntegrity:
                 self.empty_family.append(family_handle)
                 self.delete_empty_family(family_handle)
                 continue
-            elif not father_handle and len(family.get_child_handle_list()) == 0:
+            elif not father_handle and len(family.get_child_ref_list()) == 0:
                 person = self.db.get_person_from_handle(mother_handle)
                 person.remove_family_handle(family_handle)
                 self.db.commit_person(person,self.trans)
                 self.db.remove_family(family_handle,self.trans)
                 self.empty_family.append(family_handle)
                 continue
-            elif not mother_handle and len(family.get_child_handle_list()) == 0:
+            elif not mother_handle and len(family.get_child_ref_list()) == 0:
                 person = self.db.get_person_from_handle(father_handle)
                 person.remove_family_handle(family_handle)
                 self.db.commit_person(person,self.trans)
