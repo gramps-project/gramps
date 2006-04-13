@@ -69,7 +69,7 @@ class PersonRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase):
 
     def unserialize(self,data):
         (privacy,source_list,note,ref,self.rel) = data
-        PrivateBase.unserialize(self,privacy)
+        PrivacyBase.unserialize(self,privacy)
         SourceBase.unserialize(self,source_list)
         NoteBase.unserialize(self,note)
         RefBase.unserialize(self,ref)

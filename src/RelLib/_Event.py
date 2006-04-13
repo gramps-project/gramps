@@ -168,7 +168,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         DateBase.unserialize(self,date)
         MediaBase.unserialize(self,media_list)
         SourceBase.unserialize(self,source_list)
-        Note.unserialize(self,note)        
+        NoteBase.unserialize(self,note)        
 
     def _has_handle_reference(self,classname,handle):
         if classname == 'Place':

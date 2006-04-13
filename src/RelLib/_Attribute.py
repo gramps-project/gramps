@@ -83,7 +83,7 @@ class Attribute(BaseObject,PrivacyBase,SourceBase,NoteBase):
 
     def unserialize(self,data):
         (privacy,source_list,note,self.type,self.value) = data
-        PrivateBase.unserialize(self,privacy)
+        PrivacyBase.unserialize(self,privacy)
         SourceBase.unserialize(self,source_list)
         NoteBase.unserialize(self,note)
         return self

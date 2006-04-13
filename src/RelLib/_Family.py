@@ -121,7 +121,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
             lds_seal = self.lds_seal.serialize()
         return (self.handle, self.gramps_id, self.father_handle,
                 self.mother_handle,
-                [cr.serialize for cr in self.child_ref_list],
+                [cr.serialize() for cr in self.child_ref_list],
                 self.type,
                 [er.serialize() for er in self.event_ref_list],
                 MediaBase.serialize(self),
@@ -375,7 +375,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         @param person_handle: L{Person} database handle
         @type person_handle: str
         """
-        if child_ref and not isinstance(childref,ChildRef):
+        if child_ref and not isinstance(child_ref,ChildRef):
             raise ValueError("expecting ChildRef instance")
         self.child_ref_list.append(child_ref)
             

@@ -1,3 +1,7 @@
+2006-04-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/RelLib/*: fix different typos.
+	* src/DataViews/_FamilyView.py: adapt changes in RelLib
+
 2006-04-12  Alex Roitman  <shura@gramps-project.org>
 	* src/NameDisplay.py: Add constants to number name components.
 	* src/PeopleModel.py: Correct constants.

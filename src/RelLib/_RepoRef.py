@@ -73,7 +73,7 @@ class RepoRef(BaseObject,NoteBase,RefBase):
     def serialize(self):
         return (
             NoteBase.serialize(self),
-            Refbase.serialize(self),
+            RefBase.serialize(self),
             self.call_number,self.media_type)
 
     def unserialize(self,data):

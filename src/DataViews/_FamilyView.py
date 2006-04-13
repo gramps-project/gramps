@@ -254,7 +254,7 @@ class FamilyView(PageView.PersonNavView):
         self.row = 5
         family_handle_list = person.get_parent_family_handle_list()
         if family_handle_list:
-            for (family_handle, mrel, frel) in family_handle_list:
+            for family_handle in family_handle_list:
                 if family_handle:
                     self.write_parents(family_handle)
         else:
@@ -639,11 +639,11 @@ class FamilyView(PageView.PersonNavView):
             if not self.write_marriage(family):
                 self.write_relationship(family)
         
-        child_list = family.get_child_handle_list()
+        child_list = family.get_child_ref_list()
         label = _("Children")
         if child_list:
-            for child in child_list:
-                self.write_child(label, child)
+            for child_ref in child_list:
+                self.write_child(label, child_ref.ref)
                 label = u""
 
         self.row += 1
@@ -732,4 +732,3 @@ class FamilyView(PageView.PersonNavView):
 
     def change_to(self, obj, handle):
         self.dbstate.change_active_handle(handle)
-
