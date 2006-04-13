@@ -18,6 +18,7 @@ pkgdata_PYTHON = \
 	_EditMediaRef.py \
 	_EditName.py \
 	_EditPerson.py \
+	_EditPersonRef.py \
 	_EditPlace.py \
 	_EditPrimary.py \
 	_EditReference.py \
