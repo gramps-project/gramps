@@ -58,6 +58,10 @@
 1 NAME Edwin Michael /Smith/
 2 NOTE This is a note attached to a name
 2 SOUR @S1600@
+1 ASSO @I07@
+2 RELA SomeRelationship
+2 NOTE This is a note for the ASSOC import
+2 SOUR @S1600@
 1 SEX M
 1 TITL Grand Poobah
 1 OBJE
@@ -516,6 +520,7 @@
 2 DATE 26 JUN 34 B.C.
 2 PLAC Hayward, Alameda Co., CA
 0 @F01@ FAM
+1 HUSB @IC3a2b1@
 1 WIFE @I40@
 1 CHIL @I42@
 2 _FREL Adopted

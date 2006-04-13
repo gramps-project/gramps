@@ -123,6 +123,7 @@ TOKEN__WTN = 103
 TOKEN_HEAD = 105
 TOKEN_CALN = 106
 TOKEN_MEDI = 107
+TOKEN_RELA = 108
 
 tokens = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
@@ -208,5 +209,5 @@ tokens = {
     "_UID"           : TOKEN__UID,  "VERS"          : TOKEN_VERS,
     "VERSION"        : TOKEN_VERS,  "WIFE"          : TOKEN_WIFE,
     "_WITN"          : TOKEN__WITN, "_WTN"          : TOKEN__WTN,
-    "_CHUR"          : TOKEN_IGNORE,
+    "_CHUR"          : TOKEN_IGNORE,"RELA"          : TOKEN_RELA,
 }

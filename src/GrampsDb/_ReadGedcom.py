@@ -541,7 +541,7 @@ class GedcomParser:
             TOKEN_RFN   : self.func_person_attr,
             TOKEN__UID  : self.func_person_attr,
             TOKEN_CHAN  : self.skip_record,
-            TOKEN_ASSO  : self.skip_record,
+            TOKEN_ASSO  : self.func_person_asso,
             TOKEN_ANCI  : self.skip_record,
             TOKEN_DESI  : self.skip_record,
             TOKEN_RIN   : self.skip_record,
@@ -808,7 +808,8 @@ class GedcomParser:
                     if mother:
                         mother.add_address(self.addr)
                         self.db.commit_person(mother, self.trans)
-                    for child_handle in self.family.get_child_handle_list():
+                    for child_ref in self.family.get_child_ref_list():
+                        child_handle = child_ref.ref
                         child = self.db.get_person_from_handle(child_handle)
                         if child:
                             child.add_address(self.addr)
@@ -1105,26 +1106,12 @@ class GedcomParser:
                 mrel,frel = self.parse_ftw_relations(2)
                 gid = matches[2]
                 child = self.find_or_create_person(self.map_gid(gid[1:-1]))
-                self.family.add_child_handle(child.handle)
 
-                change = False
-
-                for f in child.get_parent_family_handle_list():
-                    if f[0] == self.family.handle:
-                        if (mrel != f[1] or frel != f[2]):
-                            change = True
-                            child.change_parent_family_handle(self.family.handle,
-                                                              mrel, frel)
-                        break
-                else:
-                    change = True
-                    if mrel in rel_types and frel in rel_types:
-                        child.set_main_parent_family_handle(self.family.handle)
-                    else:
-                        if child.get_main_parents_family_handle() == self.family.handle:
-                            child.set_main_parent_family_handle(None)
-                if change:
-                    self.db.commit_person(child, self.trans)
+                ref = RelLib.ChildRef()
+                ref.ref = child.handle
+                ref.set_father_relation(frel)
+                ref.set_mother_relation(mrel)
+                self.family.add_child_ref(ref)
             elif matches[1] == TOKEN_NCHI:
                 a = RelLib.Attribute()
                 a.set_type((RelLib.Attribute.NUM_CHILD,''))
@@ -1540,7 +1527,9 @@ class GedcomParser:
                 mrel,frel = self.parse_adopt_famc(level+1);
                 if self.person.get_main_parents_family_handle() == handle:
                     self.person.set_main_parent_family_handle(None)
-                self.person.add_parent_family_handle(handle,mrel,frel)
+                self.person.add_parent_family_handle(handle)
+                if mrel[0] != RelLib.ChildRef.BIRTH or frel[0] != RelLib.ChildRef.BIRTH:
+                    print "NOT FIXED YET"
             elif matches[1] == TOKEN_PLAC:
                 val = matches[2]
                 place = self.find_or_create_place(val)
@@ -2038,6 +2027,32 @@ class GedcomParser:
         state.name_cnt += 1
         self.parse_name(name,2,state)
 
+    def func_person_asso(self, matches, state):
+        print matches
+        gid = matches[2]
+        handle = self.find_person_handle(self.map_gid(gid[1:-1]))
+        ref = RelLib.PersonRef()
+        print handle
+        ref.ref = handle
+
+        self.person.add_person_ref(ref)
+        
+        while True:
+            matches = self.get_next()
+
+            if int(matches[0]) < 2:
+                self.backup()
+                return
+            elif matches[1] == TOKEN_RELA:
+                ref.rel = matches[2]
+            elif matches[1] == TOKEN_SOUR:
+                ref.add_source_reference(self.handle_source(matches,2))
+            elif matches[1] == TOKEN_NOTE:
+                note = self.parse_note(matches,ref,2,"")
+                ref.set_note(note)
+            else:
+                self.barf(2)
+
     def func_person_alt_name(self,matches,state):
         aka = RelLib.Name()
         try:
@@ -2107,7 +2122,8 @@ class GedcomParser:
             else:
                 if state.person.get_main_parents_family_handle() == handle:
                     state.person.set_main_parent_family_handle(None)
-                state.person.add_parent_family_handle(handle,ftype,ftype)
+                state.person.add_parent_family_handle(handle)
+                print "NEED TO CHANGE CHILDREF TO",ftype,ftype
 
     def func_person_resi(self,matches,state):
         addr = RelLib.Address()
