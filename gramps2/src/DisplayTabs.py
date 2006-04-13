@@ -1232,8 +1232,8 @@ class PersonRefEmbedList(EmbeddedList):
         except Errors.WindowActiveError:
             pass
 
-    def add_callback(self, name):
-        self.get_data().append(name)
+    def add_callback(self, obj):
+        self.get_data().append(obj)
         self.rebuild()
 
     def edit_button_clicked(self, obj):
@@ -1247,9 +1247,8 @@ class PersonRefEmbedList(EmbeddedList):
         except Errors.WindowActiveError:
             pass
 
-    def edit_callback(self, name):
+    def edit_callback(self, obj):
         self.rebuild()
-
 
 #-------------------------------------------------------------------------
 #
@@ -1869,7 +1868,6 @@ class ChildModel(gtk.ListStore):
         self.db = db
         index = 1
         for child_ref in self.get_data():
-            print child_ref, child_ref.ref
             child = db.get_person_from_handle(child_ref.ref)
             self.append(row=[index, 
                              child.get_gramps_id(), 

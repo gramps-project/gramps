@@ -413,19 +413,29 @@ class XmlWriter:
         self.write_attribute_list(person.get_attribute_list())
         self.write_url_list(person.get_url_list(),index+1)
 
-        for alt in person.get_parent_family_handle_list():
-            if alt[1][0] != RelLib.ChildRef.CHILD_BIRTH:
+        for family_handle in person.get_parent_family_handle_list():
+
+            family = self.db.get_family_from_handle(family_handle)
+            for child_ref in family.get_child_ref_list():
+                if child_ref.ref == person.handle:
+                    mval = child_ref.get_mother_relation()
+                    fval = child_ref.get_father_relation()
+                    break
+            else:
+                continue
+            
+            if mval[0] != RelLib.ChildRef.CHILD_BIRTH:
                 mrel=' mrel="%s"' % _ConstXML.str_for_xml(
-                    _ConstXML.child_relations,alt[1])
+                    _ConstXML.child_relations,mval)
             else:
                 mrel=''
-            if alt[2][0] != RelLib.ChildRef.CHILD_BIRTH:
+            if fval[0] != RelLib.ChildRef.CHILD_BIRTH:
                 frel=' frel="%s"' % _ConstXML.str_for_xml(
-                    _ConstXML.child_relations,alt[2])
+                    _ConstXML.child_relations,fval)
             else:
                 frel=''
             self.g.write('  %s<childof hlink="_%s"%s%s/>\n' % \
-                    (sp,alt[0], mrel, frel))
+                    (sp,family_handle, mrel, frel))
 
         for family_handle in person.get_family_handle_list():
             self.write_ref("parentin",family_handle,index+1)
@@ -451,9 +461,9 @@ class XmlWriter:
 
         self.write_media_list(family.get_media_list(),index+1)
 
-        if len(family.get_child_handle_list()) > 0:
-            for person_handle in family.get_child_handle_list():
-                self.write_ref("child",person_handle,index+1)
+        if len(family.get_child_ref_list()) > 0:
+            for child_ref in family.get_child_ref_list():
+                self.write_ref("child",child_ref.ref,index+1)
         self.write_attribute_list(family.get_attribute_list())
         self.write_note("note",family.get_note_object(),index+1)
         for s in family.get_source_references():
