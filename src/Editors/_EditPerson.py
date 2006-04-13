@@ -448,13 +448,13 @@ class EditPerson(EditPrimary):
         family = self.obj.get_main_parents_family_handle()
         if (family):
             f = self.db.find_family_from_handle(family, trans)
-            new_order = self.reorder_child_list(self.obj,
-                                                f.get_child_handle_list())
+            new_order = self.reorder_child_ref_list(self.obj,
+                                                f.get_child_ref_list())
             f.set_child_handle_list(new_order)
         for (family, rel1, rel2) in self.obj.get_parent_family_handle_list():
             f = self.db.find_family_from_handle(family, trans)
-            new_order = self.reorder_child_list(self.obj,
-                                                f.get_child_handle_list())
+            new_order = self.reorder_child_ref_list(self.obj,
+                                                f.get_child_ref_list())
             f.set_child_handle_list(new_order)
 
         error = False
@@ -580,13 +580,14 @@ class EditPerson(EditPrimary):
         else:
             self.load_photo(None)
 
-    def birth_dates_in_order(self, child_list):
+    def birth_dates_in_order(self, child_ref_list):
         """Check any *valid* birthdates in the list to insure that they are in
         numerically increasing order."""
         inorder = True
         prev_date = 0
-        for i in range(len(child_list)):
-            child_handle = child_list[i]
+        handle_list = [ref.ref for ref in child_ref_list]
+        for i in range(len(handle_list)):
+            child_handle = handle_list[i]
             child = self.db.get_person_from_handle(child_handle)
             if child.get_birth_ref():
                 event_handle = child.get_birth_ref().ref
@@ -600,13 +601,13 @@ class EditPerson(EditPrimary):
                 inorder = False
         return inorder
 
-    def reorder_child_list(self, person, child_list):
+    def reorder_child_ref_list(self, person, child_ref_list):
         """Reorder the child list to put the specified person in his/her
         correct birth order.  Only check *valid* birthdates.  Move the person
         as short a distance as possible."""
 
-        if self.birth_dates_in_order(child_list):
-            return(child_list)
+        if self.birth_dates_in_order(child_ref_list):
+            return(child_ref_list)
 
         # Build the person's date string once
         event_ref = person.get_birth_ref()
@@ -617,11 +618,12 @@ class EditPerson(EditPrimary):
             person_bday = 0
 
         # First, see if the person needs to be moved forward in the list
+        handle_list = [ref.ref for ref in child_ref_list]
 
-        index = child_list.index(person.get_handle())
+        index = handle_list.index(person.get_handle())
         target = index
         for i in range(index-1, -1, -1):
-            other = self.db.get_person_from_handle(child_list[i])
+            other = self.db.get_person_from_handle(handle_list[i])
             event_ref = other.get_birth_ref()
             if event_ref:
                 event = self.db.get_event_from_handle(event_ref.ref)
@@ -635,8 +637,8 @@ class EditPerson(EditPrimary):
 
         # Now try moving to a later position in the list
         if (target == index):
-            for i in range(index, len(child_list)):
-                other = self.db.get_person_from_handle(child_list[i])
+            for i in range(index, len(handle_list)):
+                other = self.db.get_person_from_handle(handle_list[i])
                 event_ref = other.get_birth_ref()
                 if event_ref:
                     event = self.db.get_event_from_handle(event_ref.ref)
@@ -650,7 +652,7 @@ class EditPerson(EditPrimary):
 
         # Actually need to move?  Do it now.
         if (target != index):
-            child_list.remove(person.get_handle())
-            child_list.insert(target, person.get_handle())
-        return child_list
+            ref = child_ref_list.pop(index)
+            child_ref_list.insert(target, ref)
+        return child_ref_list
 
