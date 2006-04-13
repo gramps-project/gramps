@@ -69,12 +69,12 @@ from QuestionDialog import ErrorDialog
 class _options:
     # internal ID, english option name (for cli), localized option name (for gui)
     formats = (
-        ("ps", "Postscript", _("Postscript")),
-        ("svg", "Structured Vector Graphics (SVG)", _("Structured Vector Graphics (SVG)")),
-        ("svgz", "Compressed Structured Vector Graphics (SVG)", _("Compressed Structured Vector Graphics (SVG)")),
-        ("png", "PNG image", _("PNG image")),
-        ("jpg", "JPEG image", _("JPEG image")),
-        ("gif", "GIF image", _("GIF image")),
+        ("ps", "Postscript", _("Postscript"), "application/postscript"),
+        ("svg", "Structured Vector Graphics (SVG)", _("Structured Vector Graphics (SVG)"), "image/svg"),
+        ("svgz", "Compressed Structured Vector Graphics (SVG)", _("Compressed Structured Vector Graphs (SVG)"), "image/svgz"),
+        ("png", "PNG image", _("PNG image"), "image/png"),
+        ("jpg", "JPEG image", _("JPEG image"), "image/jpeg"),
+        ("gif", "GIF image", _("GIF image"), "image/gif"),
     )
     fonts = (
         # Last items tells whether strings need to be converted to Latin1
@@ -878,7 +878,20 @@ class GraphicsFormatComboBox(gtk.ComboBox):
         return _options.formats[self.get_active()][0]
 
     def get_printable(self):
-        return None
+        _apptype = _options.formats[self.get_active()][3]
+        print_label = None
+        try:
+            import Utils
+            import GrampsMime
+            mprog = GrampsMime.get_application(_apptype)
+            if Utils.search_for(mprog[0]):
+                print_label = _("Open in %(program_name)s") % { 'program_name':
+                                                        mprog[1]}
+            else:
+                print_label = None
+        except:
+            print_label = None
+        return print_label
 
     def get_clname(self):
         return 'print'
@@ -890,10 +903,14 @@ class GraphicsFormatComboBox(gtk.ComboBox):
 #------------------------------------------------------------------------
 class EmptyDoc:
     def __init__(self,styles,type,template,orientation,source=None):
+        self.print_req = 0
         pass
 
     def init(self):
         pass
+    
+    def print_requested(self):
+        self.print_req = 1
 
 #------------------------------------------------------------------------
 #
@@ -938,6 +955,22 @@ class GraphVizGraphics(Report.Report):
         os.system('dot -T%s -o%s %s ; rm %s' %
                     (self.the_format,self.user_output,
                     self.junk_output,self.junk_output))
+
+        if self.doc.print_req:
+            _apptype = None
+            for format in _options.formats:
+                if format[0] == self.the_format:
+                    _apptype = format[3]
+                    break
+            if _apptype:
+                try:
+                    import Utils
+                    import GrampsMime
+                    app = GrampsMime.get_application(_apptype)
+                    os.environ["FILE"] = self.user_output
+                    os.system ('%s "$FILE" &' % app[0])
+                except:
+                    pass
 
 #------------------------------------------------------------------------
 #
