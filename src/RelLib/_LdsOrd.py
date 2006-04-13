@@ -29,6 +29,7 @@ LDS Ordinance class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from _BaseObject import BaseObject
 from _SourceBase import SourceBase
 from _NoteBase import NoteBase
 from _DateBase import DateBase
@@ -40,7 +41,7 @@ from _PrivacyBase import PrivacyBase
 # LDS Ordinance class
 #
 #-------------------------------------------------------------------------
-class LdsOrd(SourceBase,NoteBase,DateBase,PlaceBase,PrivacyBase):
+class LdsOrd(BaseObject,SourceBase,NoteBase,DateBase,PlaceBase,PrivacyBase):
     """
     Class that contains information about LDS Ordinances. LDS
     ordinances are similar to events, but have very specific additional
@@ -71,6 +72,7 @@ class LdsOrd(SourceBase,NoteBase,DateBase,PlaceBase,PrivacyBase):
 
     def __init__(self,source=None):
         """Creates a LDS Ordinance instance"""
+        BaseObject.__init__(self)
         SourceBase.__init__(self,source)
         NoteBase.__init__(self,source)
         DateBase.__init__(self,source)
