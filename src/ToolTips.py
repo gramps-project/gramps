@@ -231,8 +231,8 @@ class FamilyTip:
             s +="\n   <span weight=\"bold\">%s:</span> %s" % (
                 _("Mother"),escape(mother.get_primary_name().get_name()))
 
-        for chandle in self._obj.get_child_handle_list():
-            child =  self._db.get_person_from_handle(chandle)
+        for cref in self._obj.get_child_ref_list():
+            child =  self._db.get_person_from_handle(cref.ref)
             s +="\n   <span weight=\"bold\">%s:</span> %s" % (
                 _("Child"),escape(child.get_primary_name().get_name()))
 
@@ -246,4 +246,3 @@ CLASS_MAP = {
     RelLib.Person     : PersonTip,
     RelLib.Family     : FamilyTip
     }
-
