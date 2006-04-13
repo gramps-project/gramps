@@ -450,12 +450,12 @@ class EditPerson(EditPrimary):
             f = self.db.find_family_from_handle(family, trans)
             new_order = self.reorder_child_ref_list(self.obj,
                                                 f.get_child_ref_list())
-            f.set_child_handle_list(new_order)
-        for (family, rel1, rel2) in self.obj.get_parent_family_handle_list():
+            f.set_child_ref_list(new_order)
+        for family in self.obj.get_parent_family_handle_list():
             f = self.db.find_family_from_handle(family, trans)
             new_order = self.reorder_child_ref_list(self.obj,
                                                 f.get_child_ref_list())
-            f.set_child_handle_list(new_order)
+            f.set_child_ref_list(new_order)
 
         error = False
         original = self.db.get_person_from_handle(self.obj.handle)
@@ -586,6 +586,7 @@ class EditPerson(EditPrimary):
         inorder = True
         prev_date = 0
         handle_list = [ref.ref for ref in child_ref_list]
+        print handle_list
         for i in range(len(handle_list)):
             child_handle = handle_list[i]
             child = self.db.get_person_from_handle(child_handle)
