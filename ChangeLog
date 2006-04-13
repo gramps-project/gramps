@@ -1,3 +1,7 @@
+2006-04-12  Alex Roitman  <shura@gramps-project.org>
+	* src/NameDisplay.py: Add constants to number name components.
+	* src/PeopleModel.py: Correct constants.
+
 2006-04-12  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/plugins/GraphViz.py: Add graph preview based on mime (Bug 1449796)
 
