@@ -375,9 +375,8 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         @param person_handle: L{Person} database handle
         @type person_handle: str
         """
-        if child_ref and not isinstance(child_ref,ChildRef):
+        if not isinstance(child_ref,ChildRef):
             raise ValueError("expecting ChildRef instance")
-        assert(child_ref.ref)
         self.child_ref_list.append(child_ref)
             
     def remove_child_ref(self,child_ref):
@@ -391,7 +390,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
             in the list.
         @rtype: bool
         """
-        if child_ref and not isinstance(childref,ChildRef):
+        if not isinstance(childref,ChildRef):
             raise ValueError("expecting ChildRef instance")
         new_list = [ref for ref in self.child_ref_list
                     if ref.ref != child_ref.ref ]
