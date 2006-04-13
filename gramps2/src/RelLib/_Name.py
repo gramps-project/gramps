@@ -36,6 +36,7 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from _BaseObject import BaseObject
 from _PrivacyBase import PrivacyBase
 from _SourceBase import SourceBase
 from _NoteBase import NoteBase
@@ -46,7 +47,7 @@ from _DateBase import DateBase
 # Personal Name
 #
 #-------------------------------------------------------------------------
-class Name(PrivacyBase,SourceBase,NoteBase,DateBase):
+class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
     """
     Provides name information about a person.
 
@@ -67,6 +68,7 @@ class Name(PrivacyBase,SourceBase,NoteBase,DateBase):
 
     def __init__(self,source=None,data=None):
         """creates a new Name instance, copying from the source if provided"""
+        BaseObject.__init__(self)
         if data:
             (privacy,source_list,note,date,
              self.first_name,self.surname,self.suffix,self.title,
@@ -123,7 +125,7 @@ class Name(PrivacyBase,SourceBase,NoteBase,DateBase):
          self.first_name,self.surname,self.suffix,self.title,
          self.type,self.prefix,self.patronymic,self.sname,
          self.group_as,self.sort_as,self.display_as) = data
-        PrivateBase.unserialize(self,privacy)
+        PrivacyBase.unserialize(self,privacy)
         SourceBase.unserialize(self,source_list)
         NoteBase.unserialize(self,note)
         DateBase.unserialize(self,date)
