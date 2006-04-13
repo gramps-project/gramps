@@ -818,12 +818,13 @@ class TestcaseGenerator(Tool.Tool):
             np.set_birth_ref(eref)
 
         # some shared events
-        while randint(0,5) == 1:
-            e_h = choice(self.generated_events)
-            ref = RelLib.EventRef()
-            self.fill_object( ref)
-            ref.set_reference_handle(e_h)
-            ref.set_role( self.rand_type(Utils.event_roles))
+        if self.generated_events:
+            while randint(0,5) == 1:
+                e_h = choice(self.generated_events)
+                ref = RelLib.EventRef()
+                self.fill_object( ref)
+                ref.set_reference_handle(e_h)
+                ref.set_role( self.rand_type(Utils.event_roles))
         
         person_handle = self.db.add_person(np,self.trans)
         
@@ -898,16 +899,13 @@ class TestcaseGenerator(Tool.Tool):
                 (born,died) = self.person_dates[child_h]
                 alive_in_year = born
             fam = self.db.get_family_from_handle(fam_h)
-            fam.add_child_handle(child_h)
+            child_ref = RelLib.ChildRef()
+            child_ref.set_reference_handle(child_h)
+            self.fill_object(child_ref)
+            fam.add_child_ref(child_ref)
             self.db.commit_family(fam,self.trans)
             child = self.db.get_person_from_handle(child_h)
-            rel1 = (RelLib.ChildRef.CHILD_BIRTH,'')
-            if randint(0,2) == 1:
-                rel1 = self.rand_type(Utils.child_relations)
-            rel2 = (RelLib.ChildRef.CHILD_BIRTH,'')
-            if randint(0,2) == 1:
-                rel2 = self.rand_type(Utils.child_relations)
-            child.add_parent_family_handle(fam_h, rel1, rel2)
+            child.add_parent_family_handle(fam_h)
             self.db.commit_person(child,self.trans)
             if randint(0,3) > 0:
                 self.persons_todo.append(child_h)
@@ -942,7 +940,10 @@ class TestcaseGenerator(Tool.Tool):
             fam.set_relationship( self.rand_type(Utils.family_relations))
         else:
             fam.set_relationship( (RelLib.Family.MARRIED,'') )
-        fam.add_child_handle(child_h)
+        child_ref = RelLib.ChildRef()
+        child_ref.set_reference_handle(child_h)
+        self.fill_object(child_ref)
+        fam.add_child_ref(child_ref)
         fam_h = self.db.add_family(fam,self.trans)
         self.generated_families.append(fam_h)
         fam = self.db.commit_family(fam,self.trans)
@@ -952,13 +953,7 @@ class TestcaseGenerator(Tool.Tool):
         person2 = self.db.get_person_from_handle(person2_h)
         person2.add_family_handle(fam_h)
         self.db.commit_person(person2,self.trans)
-        rel1 = (RelLib.ChildRef.CHILD_BIRTH,'')
-        if randint(0,2) == 1:
-            rel1 = self.rand_type(Utils.child_relations)
-        rel2 = (RelLib.ChildRef.CHILD_BIRTH,'')
-        if randint(0,2) == 1:
-            rel2 = self.rand_type(Utils.child_relations)
-        child.add_parent_family_handle(fam_h, rel1, rel2)
+        child.add_parent_family_handle(fam_h)
         self.db.commit_person(child,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
@@ -1052,6 +1047,12 @@ class TestcaseGenerator(Tool.Tool):
                 a = RelLib.Attribute()
                 self.fill_object(a)
                 o.add_attribute( a)
+
+        if isinstance(o,RelLib.ChildRef):
+            if randint(0,3) == 1:
+                o.set_mother_relation( self.rand_type( Utils.child_relations))
+            if randint(0,3) == 1:
+                o.set_father_relation( self.rand_type( Utils.child_relations))
 
         if issubclass(o.__class__,RelLib._DateBase.DateBase):
             if randint(0,1) == 1:
@@ -1162,7 +1163,7 @@ class TestcaseGenerator(Tool.Tool):
                 self.fill_object(r)
                 o.add_repo_reference( r)
 
-        if issubclass(o.__class__,RelLib._SourceNote.SourceNote):
+        if issubclass(o.__class__,RelLib._SourceBase.SourceBase):
             while randint(0,1) == 1:
                 s = RelLib.SourceRef()
                 self.fill_object(s)

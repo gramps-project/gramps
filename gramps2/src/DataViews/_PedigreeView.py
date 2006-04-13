@@ -1117,24 +1117,28 @@ class PedigreeView(PageView.PersonNavView):
 
         parent_families = person.get_parent_family_handle_list()
         if parent_families:
-            (family_handle,m,f) = parent_families[0]
+            family_handle = parent_families[0]
         else:
             return
-        if family_handle:
-            mrel = m != RelLib.ChildRef.CHILD_BIRTH
-            frel = f != RelLib.ChildRef.CHILD_BIRTH
-
+        
+        mrel = True
+        frel = True
         family = self.db.get_family_from_handle(family_handle)
         if family != None:
-            lst[index] = (person,val,family)
-            father_handle = family.get_father_handle()
-            if father_handle != None:
-                father = self.db.get_person_from_handle(father_handle)
-                self.find_tree(father,(2*index)+1,depth+1,lst,frel)
-            mother_handle = family.get_mother_handle()
-            if mother_handle != None:
-                mother = self.db.get_person_from_handle(mother_handle)
-                self.find_tree(mother,(2*index)+2,depth+1,lst,mrel)
+            for child_ref in family.get_child_ref_list():
+                if child_ref.ref == person.handle:
+                    mrel = child_ref.mrel != RelLib.ChildRef.CHILD_BIRTH
+                    frel = child_ref.frel != RelLib.ChildRef.CHILD_BIRTH
+            
+                    lst[index] = (person,val,family)
+                    father_handle = family.get_father_handle()
+                    if father_handle != None:
+                        father = self.db.get_person_from_handle(father_handle)
+                        self.find_tree(father,(2*index)+1,depth+1,lst,frel)
+                    mother_handle = family.get_mother_handle()
+                    if mother_handle != None:
+                        mother = self.db.get_person_from_handle(mother_handle)
+                        self.find_tree(mother,(2*index)+2,depth+1,lst,mrel)
 
     def add_nav_portion_to_menu(self,menu):
         """
@@ -1329,10 +1333,11 @@ class PedigreeView(PageView.PersonNavView):
         item = gtk.MenuItem(_("Siblings"))
         pfam_list = person.get_parent_family_handle_list()
         no_siblings = 1
-        for (f,mrel,frel) in pfam_list:
+        for f in pfam_list:
             fam = self.db.get_family_from_handle(f)
-            sib_list = fam.get_child_handle_list()
-            for sib_id in sib_list:
+            sib_list = fam.get_child_ref_list()
+            for sib_ref in sib_list:
+                sib_id = sib_ref.ref
                 if sib_id == person.get_handle():
                     continue
                 sib = self.db.get_person_from_handle(sib_id)
@@ -1501,8 +1506,8 @@ def find_children(db,p):
     childlist = []
     for family_handle in p.get_family_handle_list():
         family = db.get_family_from_handle(family_handle)
-        for child_handle in family.get_child_handle_list():
-            childlist.append(child_handle)
+        for child_ref in family.get_child_ref_list():
+            childlist.append(child_ref.ref)
     return childlist
 
 #-------------------------------------------------------------------------
@@ -1515,7 +1520,7 @@ def find_parents(db,p):
     Returns the unique list of all parents' IDs for a person.
     """
     parentlist = []
-    for (f,mrel,frel) in p.get_parent_family_handle_list():
+    for f in p.get_parent_family_handle_list():
         family = db.get_family_from_handle(f)
         father_handle = family.get_father_handle()
         mother_handle = family.get_mother_handle()
