@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _EventRef.py 6194 2006-03-22 23:03:57Z dallingham $
+# $Id$
 
 """
 Child Reference class for GRAMPS.
