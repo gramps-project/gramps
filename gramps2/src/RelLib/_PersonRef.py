@@ -64,7 +64,7 @@ class PersonRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase):
         return (PrivacyBase.serialize(self),
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
-                RefBase.__init__(self),
+                RefBase.serialize(self),
                 self.rel)
 
     def unserialize(self,data):
