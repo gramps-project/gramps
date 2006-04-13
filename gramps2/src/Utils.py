@@ -720,7 +720,7 @@ def for_each_ancestor(db, start, func, data):
         doneIds[p_handle] = 1
         if func(data,p_handle):
             return 1
-        for fam_handle, mrel, frel in p.get_parent_family_handle_list():
+        for fam_handle in p.get_parent_family_handle_list():
             fam = db.get_family_from_handle(fam_handle)
             if fam:
                 f_handle = fam.get_father_handle()
@@ -924,7 +924,8 @@ def probably_alive(person,db,current_year=None,limit=0):
         for family_handle in person.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
             
-            for child_handle in family.get_child_handle_list():
+            for child_ref in family.get_child_ref_list():
+                child_handle = child_ref.ref
                 child = db.get_person_from_handle(child_handle)
                 if child.birth_ref:
                     child_birth = db.get_event_from_handle(child.birth_ref.ref)

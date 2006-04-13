@@ -1,6 +1,7 @@
 2006-04-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_PedigreeView.py: Adapt to changes in RelLib
 	* src/plugins/TestcaseGenerator.py: Adapt to changes in RelLib
+	* src/Utils.py: Adapt to changes in RelLib
 
 2006-04-13  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_FamilyView.py: remove bad tab
