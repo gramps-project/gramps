@@ -33,6 +33,23 @@ from RelLib import Name
 
 #-------------------------------------------------------------------------
 #
+# Constants
+#
+#-------------------------------------------------------------------------
+_FIRSTNAME = 4
+_SURNAME   = 5
+_SUFFIX    = 6
+_TITLE     = 7
+_TYPE      = 8
+_PREFIX    = 9
+_PATRONYM  = 10
+_SNAME     = 11
+_GROUP     = 12
+_SORT      = 13
+_DISPLAY   = 14
+
+#-------------------------------------------------------------------------
+#
 # NameDisplay class
 #
 #-------------------------------------------------------------------------
@@ -99,7 +116,7 @@ class NameDisplay:
         return name.first_name
 
     def _empty_raw(self,raw_data):
-        return raw_data[2]
+        return raw_data[_FIRSTNAME]
 
     def _ptfn(self,name):
         """
@@ -135,10 +152,10 @@ class NameDisplay:
            SurnamePrefix Patronymic SurnameSuffix, FirstName
         """
 
-        first = raw_data[2]
-        suffix = raw_data[4]
-        prefix = raw_data[7]
-        patronymic = raw_data[8]
+        first = raw_data[_FIRSTNAME]
+        suffix = raw_data[_SUFFIX]
+        prefix = raw_data[_PREFIX]
+        patronymic = raw_data[_PATRONYM]
 
         if self.force_upper:
             last = patronymic.upper()
@@ -191,11 +208,11 @@ class NameDisplay:
 
            FirstName Patronymic SurnamePrefix Surname SurnameSuffix
         """
-        first = raw_data[2]
-        surname = raw_data[3]
-        suffix = raw_data[4]
-        prefix = raw_data[7]
-        patronymic = raw_data[8]
+        first = raw_data[_FIRSTNAME]
+        surname = raw_data[_SURNAME]
+        suffix = raw_data[_SUFFIX]
+        prefix = raw_data[_PREFIX]
+        patronymic = raw_data[_PATRONYM]
 
         if patronymic:
             first = "%s %s" % (first, patronymic)
@@ -242,15 +259,16 @@ class NameDisplay:
             SurnamePrefix Surname, FirstName Patronymic SurnameSuffix
         """
         if self.force_upper:
-            last = raw_data[3].upper()
+            last = raw_data[_SURNAME].upper()
         else:
-            last = raw_data[3]
+            last = raw_data[_SURNAME]
 
         if last:
             last += ","
 
-        return " ".join([x for x in [raw_data[7], last, raw_data[2],
-                                     raw_data[8], raw_data[4]]])
+        return " ".join([x for x in
+                         [raw_data[_PREFIX], last, raw_data[_FIRSTNAME],
+                          raw_data[_PATRONYM], raw_data[_SUFFIX]]])
     
     def sorted_name(self,name):
         """
@@ -277,7 +295,7 @@ class NameDisplay:
         @returns: Returns the L{Name} string representation
         @rtype: str
         """
-        return self.raw_fn_array[raw_data[11]](raw_data)
+        return self.raw_fn_array[raw_data[_SORT]](raw_data)
 
     def display_given(self,person):
         name = person.get_primary_name()

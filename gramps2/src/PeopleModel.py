@@ -25,7 +25,7 @@ TreeModel for the GRAMPS Person tree.
 """
 
 __author__ = "Donald N. Allingham"
-__revision__ = "$Revision:$"
+__revision__ = "$Revision$"
 
 #-------------------------------------------------------------------------
 #
@@ -91,8 +91,8 @@ _DEATH_COL  = 6
 _BIRTH_COL  = 7
 _EVENT_COL  = 8
 _FAMILY_COL = 9
-_CHANGE_COL = 19
-_MARKER_COL = 20
+_CHANGE_COL = 18
+_MARKER_COL = 19
 
 #-------------------------------------------------------------------------
 #
@@ -181,9 +181,9 @@ class PeopleModel(gtk.GenericTreeModel):
                 name_data = d[_NAME_COL]
                 self.sortnames[handle] = nsn(name_data)
                 try:
-                    self.temp_sname_sub[name_data[3]].append(handle)
+                    self.temp_sname_sub[name_data[5]].append(handle)
                 except:
-                    self.temp_sname_sub[name_data[3]] = [handle]
+                    self.temp_sname_sub[name_data[5]] = [handle]
             node = cursor.next()
         cursor.close()
 
