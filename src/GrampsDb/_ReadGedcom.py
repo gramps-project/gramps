@@ -2103,9 +2103,7 @@ class GedcomParser:
                 break
         else:
             if ftype in rel_types:
-                state.person.add_parent_family_handle(
-                    handle, (RelLib.ChildRef.CHILD_BIRTH,''),
-                    (RelLib.ChildRef.CHILD_BIRTH,''))
+                state.person.add_parent_family_handle(handle)
             else:
                 if state.person.get_main_parents_family_handle() == handle:
                     state.person.set_main_parent_family_handle(None)

@@ -1193,6 +1193,63 @@ class AddrEmbedList(EmbeddedList):
     def edit_callback(self, name):
         self.rebuild()
 
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+class PersonRefEmbedList(EmbeddedList):
+
+    _HANDLE_COL = 3
+    _DND_TYPE   = DdTargets.ADDRESS
+
+    _column_names = [
+        (_('Name'),    0, 250), 
+        (_('ID'),  1, 100), 
+        (_('Relationship'),   2, 100), 
+        ]
+    
+    def __init__(self, dbstate, uistate, track, data):
+        self.data = data
+        EmbeddedList.__init__(self, dbstate, uistate, track, 
+                              _('Relationships'), PersonRefModel)
+
+    def get_data(self):
+        return self.data
+
+    def column_order(self):
+        return ((1, 0), (1, 1), (1, 2))
+
+    def add_button_clicked(self, obj):
+        from Editors import EditPersonRef
+
+        try:
+            ref = RelLib.PersonRef()
+            ref.rel = _('Godfather')
+            EditPersonRef(
+                self.dbstate, self.uistate, self.track,
+                ref, self.add_callback)
+        except Errors.WindowActiveError:
+            pass
+
+    def add_callback(self, name):
+        self.get_data().append(name)
+        self.rebuild()
+
+    def edit_button_clicked(self, obj):
+        from Editors import EditPersonRef
+
+        try:
+            ref = self.get_selected()
+            EditPersonRef(
+                self.dbstate, self.uistate, self.track,
+                ref, self.edit_callback)
+        except Errors.WindowActiveError:
+            pass
+
+    def edit_callback(self, name):
+        self.rebuild()
+
 
 #-------------------------------------------------------------------------
 #
@@ -1811,14 +1868,15 @@ class ChildModel(gtk.ListStore):
                                str, str, str, str, str, str, int, int)
         self.db = db
         index = 1
-        for child_handle in self.get_data():
-            child = db.get_person_from_handle(child_handle)
+        for child_ref in self.get_data():
+            print child_ref, child_ref.ref
+            child = db.get_person_from_handle(child_ref.ref)
             self.append(row=[index, 
                              child.get_gramps_id(), 
                              NameDisplay.displayer.display(child), 
                              Utils.gender[child.get_gender()], 
-                             self.column_father_rel(child), 
-                             self.column_mother_rel(child), 
+                             self.column_father_rel(child_ref), 
+                             self.column_mother_rel(child_ref), 
                              self.column_birth_day(child), 
                              self.column_death_day(child), 
                              self.column_birth_place(child), 
@@ -1831,21 +1889,13 @@ class ChildModel(gtk.ListStore):
             index += 1
 
     def get_data(self):
-        return self.family.get_child_handle_list()
+        return self.family.get_child_ref_list()
 
     def column_father_rel(self, data):
-        fhandle = self.family.handle
-        for (handle, mrel, frel) in data.get_parent_family_handle_list():
-            if handle == fhandle:
-                return Utils.format_child_relation(frel)
-        return ""
+        return Utils.format_child_relation(data.get_father_relation())
 
     def column_mother_rel(self, data):
-        fhandle = self.family.handle
-        for (handle, mrel, frel) in data.get_parent_family_handle_list():
-            if handle == fhandle:
-                return Utils.format_child_relation(mrel)
-        return ""
+        return Utils.format_child_relation(data.get_mother_relation())
 
     def column_birth_day(self, data):
         event_ref = data.get_birth_ref()
@@ -2031,6 +2081,24 @@ class AddressModel(gtk.ListStore):
                 obj.country, 
                 obj, 
                 ])
+
+#-------------------------------------------------------------------------
+#
+# PersonRefModel
+#
+#-------------------------------------------------------------------------
+class PersonRefModel(gtk.ListStore):
+
+    def __init__(self, obj_list, db):
+        gtk.ListStore.__init__(self, str, str, str, object)
+        self.db = db
+        for obj in obj_list:
+            p = self.db.get_person_from_handle(obj.ref)
+            if p:
+                data = [NameDisplay.displayer.display(p), p.gramps_id, obj.rel, obj]
+            else:
+                data = ['unknown','unknown',obj.rel,obj]
+            self.append(row=data)
 
 #-------------------------------------------------------------------------
 #

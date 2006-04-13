@@ -46,6 +46,7 @@ from _ChildRef import ChildRef
 # Primary objects
 from _PrimaryObject import PrimaryObject
 from _Person import Person
+from _PersonRef import PersonRef
 from _Family import Family
 from _Event import Event
 from _Place import Place

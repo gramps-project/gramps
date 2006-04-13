@@ -157,11 +157,11 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
             ErrorDialog(_("Error reading %s") % filename,
                         _("The file is probably either corrupt or not a valid GRAMPS database."))
             return
-    except:
-        if cl:
-            import traceback
-            traceback.print_exc()
-            os._exit(1)
+#    except:
+#        if cl:
+#            import traceback
+#            traceback.print_exc()
+#            os._exit(1)
 
     xml_file.close()
 
@@ -274,6 +274,7 @@ class GrampsParser:
         self.gid2oid = {}
         self.gid2sid = {}
         self.gid2rid = {}
+        self.childref_map = {}
         self.change = change
         self.dp = DateHandler.parser
         self.place_names = sets.Set()
@@ -846,7 +847,13 @@ class GrampsParser:
         except KeyError:
             person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
             handle = person_handle
-        self.family.add_child_handle(handle)
+            
+        if self.childref_map.has_key((self.family.handle,handle)):
+            self.family.add_child_ref(self.childref_map[(self.family.handle,handle)])
+        else:
+            ref = RelLib.ChildRef()
+            ref.ref = handle
+            self.family.add_child_ref(ref)
 
     def start_url(self,attrs):
         if not attrs.has_key("href"):
@@ -904,12 +911,20 @@ class GrampsParser:
         except KeyError:
             family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
             handle = family.handle
-            
+
         mrel = _ConstXML.tuple_from_xml(_ConstXML.child_relations,
                                         attrs.get('mrel','Birth'))
         frel = _ConstXML.tuple_from_xml(_ConstXML.child_relations,
                                         attrs.get('frel','Birth'))
-        self.person.add_parent_family_handle(handle,mrel,frel)
+
+        if mrel[0] != RelLib.ChildRef.CHILD_BIRTH or \
+           frel[0] != RelLib.ChildRef.CHILD_BIRTH:
+            childref = RelLib.ChildRef()
+            childref.ref = self.person.handle
+            childref.set_mother_relation(mrel)
+            childref.set_father_relation(frel)
+            self.childref_map[(handle,self.person.handle)] = childref
+        self.person.add_parent_family_handle(handle)
 
     def start_parentin(self,attrs):
         try:

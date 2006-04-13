@@ -35,4 +35,5 @@ from _EditRepoRef import *
 from _EditSource import *
 from _EditSourceRef import *
 from _EditUrl import *
+from _EditPersonRef import *
 

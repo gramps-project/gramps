@@ -143,7 +143,6 @@ class Check(Tool.Tool):
 
         Tool.Tool.__init__(self, dbstate, options_class, name)
 
-        # def runTool(database,active_person,callback,parent=None):
         cli = uistate == None
 
         if self.db.readonly:
@@ -213,7 +212,10 @@ class CheckIntegrity:
         self.progress = Utils.ProgressMeter(_('Checking database'),'')
 
     def family_errors(self):
-        return len(self.broken_parent_links) + len(self.broken_links) + len(self.empty_family) + len(self.duplicate_links)
+        return len(self.broken_parent_links) + \
+               len(self.broken_links) + \
+               len(self.empty_family) + \
+               len(self.duplicate_links)
 
     def cleanup_duplicate_spouses(self):
 
@@ -885,10 +887,11 @@ class Report(ManagedWindow.ManagedWindow):
         glade_file = base + os.sep + "summary.glade"
         topDialog = gtk.glade.XML(glade_file,"summary","gramps")
 
+        self.window = topDialog.get_widget("summary")
         textwindow = topDialog.get_widget("textwindow")
         textwindow.get_buffer().set_text(text)
 
-        Utils.set_titles(topDialog.get_widget("summary"),
+        Utils.set_titles(self.window,
                          topDialog.get_widget("title"),
                          _("Integrity Check Results"))
 
