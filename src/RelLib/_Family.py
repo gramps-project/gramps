@@ -43,6 +43,7 @@ from _MediaBase import MediaBase
 from _AttributeBase import AttributeBase
 from _EventRef import EventRef
 from _LdsOrdBase import LdsOrdBase
+from _ChildRef import ChildRef
 
 #-------------------------------------------------------------------------
 #
@@ -92,7 +93,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         LdsOrdBase.__init__(self)
         self.father_handle = None
         self.mother_handle = None
-        self.child_list = []
+        self.child_ref_list = []
         self.type = (Family.MARRIED,'')
         self.event_ref_list = []
         self.lds_seal = None
@@ -119,7 +120,9 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         else:
             lds_seal = self.lds_seal.serialize()
         return (self.handle, self.gramps_id, self.father_handle,
-                self.mother_handle,self.child_list, self.type,
+                self.mother_handle,
+                [cr.serialize for cr in self.child_ref_list],
+                self.type,
                 [er.serialize() for er in self.event_ref_list],
                 MediaBase.serialize(self),
                 AttributeBase.serialize(self),
@@ -134,12 +137,14 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         back into the data in a Family structure.
         """
         (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
-         self.child_list, self.type, event_ref_list, media_list,
+         child_ref_list, self.type, event_ref_list, media_list,
          attribute_list, lds_seal_list, source_list, note,
          self.change, self.marker, self.private) = data
 
         self.event_ref_list = [EventRef().unserialize(er)
                                for er in event_ref_list]
+        self.child_ref_list = [ChildRef().unserialize(cr)
+                               for cr in child_ref_list]
         MediaBase.unserialize(self,media_list)
         AttributeBase.unserialize(self,attribute_list)
         SourceBase.unserialize(self,source_list)
@@ -150,7 +155,8 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         if classname == 'Event':
             return handle in [ref.ref for ref in self.event_ref_list]
         elif classname == 'Person':
-            return handle in self.child_list + [self.father_handle,self.mother_handle]
+            return handle in ([ref.ref for ref in self.child_list]
+                              + [self.father_handle,self.mother_handle])
         elif classname == 'Place':
             return handle in [ x.place for x in self.lds_ord_list ]
         return False
@@ -161,9 +167,9 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
                                         if ref.ref not in handle_list ]
             self.event_ref_list = new_list
         elif classname == 'Person':
-            new_list = [ handle for handle in self.child_list \
-                                        if handle not in handle_list ]
-            self.child_list = new_list
+            new_list = [ ref for ref in self.child_ref_list \
+                                        if ref.ref not in handle_list ]
+            self.child_ref_list = new_list
             if self.father_handle in handle_list:
                 self.father_handle = None
             if self.mother_handle in handle_list:
@@ -177,13 +183,15 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         if classname == 'Event':
             handle_list = [ref.ref for ref in self.event_ref_list]
             while old_handle in handle_list:
-                ix = handle_list(old_handle)
+                ix = handle_list.index(old_handle)
                 self.event_ref_list[ix].ref = new_handle
                 handle_list[ix] = ''
         elif classname == 'Person':
-            while old_handle in self.child_list:
-                ix = self.child_list.index(old_handle)
-                self.child_list[ix] = new_handle
+            handle_list = [ref.ref for ref in self.child_ref_list]
+            while old_handle in handle_list:
+                ix = handle_list.index(old_handle)
+                self.child_ref_list[ix].ref = new_handle
+                handle_list[ix] = ''
             if self.father_handle == old_handle:
                 self.father_handle = new_handle
             if self.mother_handle == old_handle:
@@ -234,9 +242,10 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         """
         ret = []
         ret += [('Event',ref.ref) for ref in self.event_ref_list]
-        ret += [('Person',handle) for handle in 
-                    self.child_list + [self.father_handle,self.mother_handle]
-                    if handle]
+        ret += [('Person',handle) for handle
+                in ([ref.ref for ref in self.child_ref_list] +
+                    [self.father_handle,self.mother_handle])
+                if handle]
         return ret
 
     def get_handle_referents(self):
@@ -358,7 +367,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         """
         return self.mother_handle
 
-    def add_child_handle(self,person_handle):
+    def add_child_ref(self,child_ref):
         """
         Adds the database handle for L{Person} to the Family's list
         of children.
@@ -366,10 +375,11 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         @param person_handle: L{Person} database handle
         @type person_handle: str
         """
-        if person_handle not in self.child_list:
-            self.child_list.append(person_handle)
+        if child_ref and not isinstance(childref,ChildRef):
+            raise ValueError("expecting ChildRef instance")
+        self.child_ref_list.append(child_ref)
             
-    def remove_child_handle(self,person_handle):
+    def remove_child_ref(self,child_ref):
         """
         Removes the database handle for L{Person} to the Family's list
         of children if the L{Person} is already in the list.
@@ -380,13 +390,13 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
             in the list.
         @rtype: bool
         """
-        if person_handle in self.child_list:
-            self.child_list.remove(person_handle)
-            return True
-        else:
-            return False
+        if child_ref and not isinstance(childref,ChildRef):
+            raise ValueError("expecting ChildRef instance")
+        new_list = [ref for ref in self.child_ref_list
+                    if ref.ref != child_ref.ref ]
+        self.child_ref_list = new_list
 
-    def get_child_handle_list(self):
+    def get_child_ref_list(self):
         """
         Returns the list of L{Person} handles identifying the children
         of the Family.
@@ -395,9 +405,9 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
             the Family.
         @rtype: list
         """
-        return self.child_list
+        return self.child_ref_list
 
-    def set_child_handle_list(self, child_list):
+    def set_child_ref_list(self, child_ref_list):
         """
         Assigns the passed list to the Family's list children.
 
@@ -405,7 +415,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
             as the Family's list of children.
         @type child_list: list of L{Person} handles
         """
-        self.child_list = child_list
+        self.child_ref_list = child_ref_list
 
     def add_event_handle(self,event_handle):
         warn( "Use add_event_ref instead of add_event_handle", DeprecationWarning, 2)
