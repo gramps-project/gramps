@@ -77,6 +77,15 @@ except:
 
 personRE = re.compile(r"\s*\<person\s(.*)$")
 
+crel_map = {
+    "Birth"     : RelLib.ChildRefType(RelLib.ChildRefType.BIRTH),
+    "Adopted"   : RelLib.ChildRefType(RelLib.ChildRefType.ADOPTED),
+    "Stepchild" : RelLib.ChildRefType(RelLib.ChildRefType.STEPCHILD),
+    "Sponsored" : RelLib.ChildRefType(RelLib.ChildRefType.SPONSORED),
+    "Foster"    : RelLib.ChildRefType(RelLib.ChildRefType.FOSTER),
+    "Unknown"   : RelLib.ChildRefType(RelLib.ChildRefType.UNKNOWN),
+    }
+
 #-------------------------------------------------------------------------
 #
 # Importing data into the currently open database. 
@@ -912,13 +921,11 @@ class GrampsParser:
             family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
             handle = family.handle
 
-        mrel = _ConstXML.tuple_from_xml(_ConstXML.child_relations,
-                                        attrs.get('mrel','Birth'))
-        frel = _ConstXML.tuple_from_xml(_ConstXML.child_relations,
-                                        attrs.get('frel','Birth'))
+        mrel = crel_map.get(attrs.get('mrel'),RelLib.ChildRefType())
+        frel = crel_map.get(attrs.get('frel'),RelLib.ChildRefType())
 
-        if mrel != RelLib.ChildRefType.CHILD_BIRTH or \
-               frel != RelLib.ChildRefType.CHILD_BIRTH:
+        if mrel != RelLib.ChildRefType.BIRTH or \
+               frel != RelLib.ChildRefType.BIRTH:
             childref = RelLib.ChildRef()
             childref.ref = self.person.handle
             childref.set_mother_relation(mrel)
@@ -938,8 +945,8 @@ class GrampsParser:
     def start_name(self,attrs):
         if not self.in_witness:
             self.name = RelLib.Name()
-            self.name.type =_ConstXML.tuple_from_xml(
-                _ConstXML.name_types,attrs.get('type','Birth Name'))
+            self.name.type.set(_ConstXML.tuple_from_xml(
+                _ConstXML.name_types,attrs.get('type','Birth Name')))
             self.name.sort_as = int(attrs.get("sort",RelLib.Name.DEF))
             self.name.display_as = int(attrs.get("display",RelLib.Name.DEF))
             self.name.conf = int(attrs.get("conf",2))
