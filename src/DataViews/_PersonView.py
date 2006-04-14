@@ -30,6 +30,11 @@
 from gettext import gettext as _
 import cPickle as pickle
 
+try:
+    set()
+except:
+    from sets import Set as set
+
 #-------------------------------------------------------------------------
 #
 # gtk
@@ -431,7 +436,7 @@ class PersonView(PageView.PersonNavView):
             else:
                 self.dbstate.db.commit_family(family,trans)
 
-        for (family_handle,mrel,frel) in self.active_person.get_parent_family_handle_list():
+        for family_handle in self.active_person.get_parent_family_handle_list():
             if family_handle:
                 family = self.dbstate.db.get_family_from_handle(family_handle)
                 family.remove_child_handle(self.active_person.get_handle())
@@ -504,10 +509,10 @@ class PersonView(PageView.PersonNavView):
         
     def drag_data_get(self, widget, context, sel_data, info, time):
         selected_ids = self.get_selected_objects()
-
-        data = (DdTargets.PERSON_LINK.drag_type, id(self), selected_ids[0], 0)
-        
-        sel_data.set(sel_data.target, 8 ,pickle.dumps(data))
+        nonempty_ids = [h for h in selected_ids if h]
+        if nonempty_ids:
+            data = (DdTargets.PERSON_LINK.drag_type, id(self), nonempty_ids[0], 0)
+            sel_data.set(sel_data.target, 8 ,pickle.dumps(data))
 
     def person_added(self,handle_list):
         self.model.clear_cache()

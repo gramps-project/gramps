@@ -26,7 +26,7 @@ from this class.
 """
 
 __author__ = "Donald N. Allingham"
-__revision__ = "$Revision:$"
+__revision__ = "$Revision$"
 
 #-------------------------------------------------------------------------
 #
@@ -2072,7 +2072,8 @@ class DbState(GrampsDBCallback):
         self.change_active_person(self.db.get_person_from_handle(handle))
 
     def get_active_person(self):
-        self.active = self.db.get_person_from_handle(self.active.handle)
+        if self.active: # Fetch a fresh version from DB to not return a stale one
+            self.active = self.db.get_person_from_handle(self.active.handle)
         return self.active
 
     def change_database(self, database):
@@ -2097,4 +2098,3 @@ class DbState(GrampsDBCallback):
 
     def get_place_completion(self):
         return self.places
-
