@@ -1,4 +1,4 @@
-2006-04-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+2006-04-14  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_PedigreeView.py: Fix ChildRef, Show person references
 	* src/Editors/_EditFamily.py: Typo
 	* src/GrampsDb/_GrampsDbBase.py (get_active_person): Handle case of no
