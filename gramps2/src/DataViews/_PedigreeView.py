@@ -990,7 +990,9 @@ class PedigreeView(PageView.PersonNavView):
             family = self.dbstate.db.get_family_from_handle(family_handle)
         else:   # no parents -> create new family
             family = RelLib.Family()
-            family.add_child_handle(person_handle)
+            childref = RelLib.ChildRef()
+            childref.set_reference_handle(person_handle)
+            family.add_child_ref(childref)
         try:
             EditFamily(self.dbstate,self.uistate,[],family)
         except Errors.WindowActiveError:
@@ -1540,23 +1542,26 @@ def find_witnessed_people(db,p):
     people = []
     for event_ref in p.get_event_ref_list():
         for l in db.find_backlink_handles( event_ref.ref):
-            if l[0] == 'Person' and l[1] != p.get_handle():
+            if l[0] == 'Person' and l[1] != p.get_handle() and l[1] not in people:
                 people.append(l[1])
             if l[0] == 'Family':
                 fam = db.get_family_from_handle(l[1])
                 if fam:
                     father_handle = fam.get_father_handle()
-                    if father_handle and father_handle != p.get_handle():
+                    if father_handle and father_handle != p.get_handle() and father_handle not in people:
                         people.append(father_handle)
                     mother_handle = fam.get_mother_handle()
-                    if mother_handle and mother_handle != p.get_handle():
+                    if mother_handle and mother_handle != p.get_handle() and mother_handle not in people:
                         people.append(mother_handle)
     for f in p.get_family_handle_list():
         family = db.get_family_from_handle(f)
         for event_ref in family.get_event_ref_list():
             for l in db.find_backlink_handles( event_ref.ref):
-                if l[0] == 'Person' and l[1] != p.get_handle():
+                if l[0] == 'Person' and l[1] != p.get_handle() and l[1] not in people:
                     people.append(l[1])
+    for pref in p.get_person_ref_list():
+        if pref.ref != p.get_handle and pref.ref not in people:
+            people.append(pref.ref)
     return people
 
 #-------------------------------------------------------------------------

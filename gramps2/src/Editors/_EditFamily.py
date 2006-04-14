@@ -826,9 +826,9 @@ class EditFamily(EditPrimary):
                 
             # for each child, add the family handle to the child
             for ref in self.obj.get_child_ref_list():
-                child = self.db.get_person_from_handle(handle)
+                child = self.db.get_person_from_handle(ref.ref)
                 # fix - relationships need to be extracted from the list
-                child.add_parent_family_ref(ref)
+                child.add_parent_family_handle(self.obj.handle)
                 self.db.commit_person(child,trans)
 
             self.db.add_family(self.obj,trans)
@@ -878,4 +878,3 @@ class EditFamily(EditPrimary):
             self.db.transaction_commit(trans,_("Edit Family"))
 
         self.close_window()
-

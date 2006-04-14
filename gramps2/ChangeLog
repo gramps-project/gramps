@@ -1,3 +1,13 @@
+2006-04-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DataViews/_PedigreeView.py: Fix ChildRef, Show person references
+	* src/Editors/_EditFamily.py: Typo
+	* src/GrampsDb/_GrampsDbBase.py (get_active_person): Handle case of no
+	active person
+	* src/plugins/TestcaseGenerator.py: really generate shared events; use
+	new GrampsType; randomize name type
+	* src/DataViews/_PersonView.py: DnD only for lines of persons; Fix set
+	for python 2.3; fix get_parent_family_handle_list usage
+	
 2006-04-13  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_FamilyView.py: Type class support
 	* src/DataViews/_PedigreeView.py: Type class support
