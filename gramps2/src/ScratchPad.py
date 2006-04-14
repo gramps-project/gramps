@@ -470,11 +470,7 @@ class ScratchPadName(ScratchPadGrampsTypeWrapper):
         ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
         self._type  = _("Name")
         self._title = self._obj.get_name()
-        value = self._obj.get_type()
-        if value == RelLib.Name.CUSTOM:
-            self._value = value[1]
-        else:
-            self._value = Utils.name_types[value[0]]
+        self._value = str(self._obj.get_type())
 
     def tooltip(self):
         global escape

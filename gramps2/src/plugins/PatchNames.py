@@ -89,7 +89,9 @@ _sn_prefix_re = re.compile("^\s*(%s)\s+(.*)" % '|'.join(prefix_list),
 class PatchNames(Tool.Tool, ManagedWindow.ManagedWindow):
     
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        
         Tool.Tool.__init__(self, dbstate, options_class, name)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
         self.cb = callback
         self.trans = self.db.transaction_begin()

@@ -1890,10 +1890,10 @@ class ChildModel(gtk.ListStore):
         return self.family.get_child_ref_list()
 
     def column_father_rel(self, data):
-        return Utils.format_child_relation(data.get_father_relation())
+        return str(data.get_father_relation())
 
     def column_mother_rel(self, data):
-        return Utils.format_child_relation(data.get_mother_relation())
+        return str(data.get_mother_relation())
 
     def column_birth_day(self, data):
         event_ref = data.get_birth_ref()
@@ -2053,12 +2053,9 @@ class NameModel(gtk.ListStore):
         for obj in obj_list:
             self.append(row=[
                 NameDisplay.displayer.display_name(obj), 
-                self.type_name(obj), 
+                str(obj.get_type()),
                 obj, 
                 ])
-
-    def type_name(self, obj):
-        return Utils.format_name_type(obj.get_type())
 
 #-------------------------------------------------------------------------
 #

@@ -1127,8 +1127,8 @@ class PedigreeView(PageView.PersonNavView):
         if family != None:
             for child_ref in family.get_child_ref_list():
                 if child_ref.ref == person.handle:
-                    mrel = child_ref.mrel != RelLib.ChildRef.CHILD_BIRTH
-                    frel = child_ref.frel != RelLib.ChildRef.CHILD_BIRTH
+                    mrel = child_ref.mrel != RelLib.ChildRefType.BIRTH
+                    frel = child_ref.frel != RelLib.ChildRefType.BIRTH
             
                     lst[index] = (person,val,family)
                     father_handle = family.get_father_handle()

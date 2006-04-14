@@ -169,12 +169,10 @@ class EditPerson(EditPrimary):
             ), 
             self.db.readonly)
 
-        self.ntype_field = GrampsWidgets.MonitoredType(
+        self.ntype_field = GrampsWidgets.MonitoredDataType(
             self.top.get_widget("ntype"), 
             self.pname.set_type, 
             self.pname.get_type, 
-            dict(Utils.name_types), 
-            RelLib.Name.CUSTOM, 
             self.db.readonly)
 
         self.marker = GrampsWidgets.MonitoredType(

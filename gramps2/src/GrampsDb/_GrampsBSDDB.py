@@ -1401,20 +1401,20 @@ class GrampsBSDDB(GrampsDbBase):
 
             # In all Name instances, convert type from string to a tuple
             name_conversion = {
-                "Also Known As" : (Name.AKA,""),
-                "Birth Name"    : (Name.BIRTH,""),
-                "Married Name"  : (Name.MARRIED,""),
-                "Other Name"    : (Name.CUSTOM,_("Other Name")),
+                "Also Known As" : (NameType.AKA,""),
+                "Birth Name"    : (NameType.BIRTH,""),
+                "Married Name"  : (NameType.MARRIED,""),
+                "Other Name"    : (NameType.CUSTOM,_("Other Name")),
                 }
             for name in [person.primary_name] + person.alternate_names:
                 old_type = name.type
                 if old_type:
                     if name_conversion.has_key(old_type):
-                        new_type = name_conversion[old_type]
+                        new_type = NameType(name_conversion[old_type])
                     else:
-                        new_type = (Name.CUSTOM,old_type)
+                        new_type = NameType((NameType.CUSTOM,old_type))
                 else:
-                    new_type = (Name.UNKNOWN,"")
+                    new_type = NameType((NameType.UNKNOWN,""))
                 name.type = new_type
 
             # Change parent_family_list into list of handles

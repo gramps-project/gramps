@@ -41,6 +41,7 @@ from _PrivacyBase import PrivacyBase
 from _SourceBase import SourceBase
 from _NoteBase import NoteBase
 from _DateBase import DateBase
+from _NameType import NameType
 
 #-------------------------------------------------------------------------
 #
@@ -60,20 +61,15 @@ class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
     PTFN = 3  # patronymic last name
     FN   = 4  # first name
     
-    UNKNOWN = -1
-    CUSTOM  = 0
-    AKA     = 1
-    BIRTH   = 2
-    MARRIED = 3
-
     def __init__(self,source=None,data=None):
         """creates a new Name instance, copying from the source if provided"""
         BaseObject.__init__(self)
         if data:
             (privacy,source_list,note,date,
              self.first_name,self.surname,self.suffix,self.title,
-             self.type,self.prefix,self.patronymic,self.sname,
+             name_type,self.prefix,self.patronymic,self.sname,
              self.group_as,self.sort_as,self.display_as) = data
+            self.type = NameType(name_type)
             PrivacyBase.unserialize(self,privacy)
             SourceBase.unserialize(self,source_list)
             NoteBase.unserialize(self,note)
@@ -103,7 +99,7 @@ class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
             self.surname = ""
             self.suffix = ""
             self.title = ""
-            self.type = (Name.BIRTH,"")
+            self.type = NameType()
             self.prefix = ""
             self.patronymic = ""
             self.sname = '@'
@@ -117,14 +113,15 @@ class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
                 NoteBase.serialize(self),
                 DateBase.serialize(self),
                 self.first_name,self.surname,self.suffix,self.title,
-                self.type,self.prefix,self.patronymic,self.sname,
+                self.type.serialize(),self.prefix,self.patronymic,self.sname,
                 self.group_as,self.sort_as,self.display_as)
 
     def unserialize(self,data):
         (privacy,source_list,note,date,
          self.first_name,self.surname,self.suffix,self.title,
-         self.type,self.prefix,self.patronymic,self.sname,
+         name_type,self.prefix,self.patronymic,self.sname,
          self.group_as,self.sort_as,self.display_as) = data
+        self.type = NameType(name_type)
         PrivacyBase.unserialize(self,privacy)
         SourceBase.unserialize(self,source_list)
         NoteBase.unserialize(self,note)
@@ -139,7 +136,7 @@ class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
         @rtype: list
         """
         return [self.first_name,self.surname,self.suffix,self.title,
-                self.type[1],self.prefix,self.patronymic]
+                str(self.type),self.prefix,self.patronymic]
 
     def get_text_data_child_list(self):
         """
@@ -237,15 +234,10 @@ class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
 
     def set_type(self,the_type):
         """sets the type of the Name instance"""
-        if not type(the_type) == tuple:
-            if the_type in [self.UNKNOWN,self.CUSTOM,self.AKA,self.BIRTH,self.MARRIED]:
-                warn( "set_type now takes a tuple", DeprecationWarning, 2)
-                # Wrapper for old API
-                # remove when transitition done.
-                the_type = (the_type,'')
-            else:
-                assert type(the_type) == tuple
-        self.type = the_type
+        if type(the_type) == tuple:
+            self.type = NameType(the_type)
+        else:
+            self.type = the_type
 
     def get_type(self):
         """returns the type of the Name instance"""

@@ -1,4 +1,36 @@
 2006-04-13  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_FamilyView.py: Type class support
+	* src/DataViews/_PedigreeView.py: Type class support
+	* src/GrampsDb/_ReadGedcom.py: Type class support
+	* src/GrampsDb/_ReadXML.py: Type class support
+	* src/GrampsDb/_DbUtils.py: Type class support
+	* src/GrampsDb/_ConstXML.py: Type class support
+	* src/GrampsDb/_WriteXML.py: Type class support
+	* src/GrampsDb/_GrampsBSDDB.py: Type class support
+	* src/RelLib/__init__.py: Type class support
+	* src/RelLib/_Person.py: Type class support
+	* src/RelLib/_ChildRef.py: Type class support
+	* src/RelLib/_Name.py: Type class support
+	* src/Editors/_EditPerson.py: Type class support
+	* src/Editors/_EditName.py: Type class support
+	* src/Editors/_EditFamily.py: Type class support
+	* src/plugins/DumpGenderStats.py: Type class support
+	* src/plugins/ChangeNames.py: Type class support
+	* src/plugins/TestcaseGenerator.py: Type class support
+	* src/plugins/GraphViz.py: Type class support
+	* src/plugins/Check.py: Type class support
+	* src/plugins/NavWebPage.py: Type class support
+	* src/plugins/ChangeTypes.py: Type class support
+	* src/plugins/summary.glade: Type class support
+	* src/plugins/PatchNames.py: Type class support
+	* src/DisplayTabs.py: Type class support
+	* src/GrampsWidgets.py: Type class support
+	* src/Utils.py: Type class support
+	* src/ScratchPad.py: Type class support
+	* src/GenericFilter.py: Type class support
+	* src/RelLib/ChildRefType.py: Type class support
+	* src/RelLib/GrampsType.py: Type class support
+	* src/RelLib/NameType.py: Type class support
 	* src/GrampsDb/_ReadGedcom.py: handle ASSO tag
 	* src/GrampsDb/_GedTokens.py: handle ASSO tag
 	* example/gedcom/sample.ged: add ASSO tag

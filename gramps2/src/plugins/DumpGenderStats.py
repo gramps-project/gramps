@@ -24,6 +24,8 @@
 
 import gtk
 import ListModel
+import ManagedWindow
+
 from PluginUtils import Tool, register_tool
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
@@ -32,20 +34,24 @@ _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 #
 #
 #-------------------------------------------------------------------------
-class DumpGenderStats(Tool.Tool):
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
+class DumpGenderStats(Tool.Tool, ManagedWindow.ManagedWindow):
+    
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        
+        Tool.Tool.__init__(self, dbstate, options_class, name)
+        
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
         stats_list = []
 
-        for name in db.genderStats.stats.keys():
+        for name in dbstate.db.genderStats.stats.keys():
             stats_list.append(
                 (name,)
-                + db.genderStats.stats[name]
-                + (_GENDER[db.genderStats.guess_gender(name)],)
+                + dbstate.db.genderStats.stats[name]
+                + (_GENDER[dbstate.db.genderStats.guess_gender(name)],)
                 )
 
-        if parent:
+        if uistate:
             titles = [
                 (_('Name'),1,100), (_('Male'),2,70),
                 (_('Female'),3,70), (_('Unknown'),4,70),
@@ -56,14 +62,14 @@ class DumpGenderStats(Tool.Tool):
             model = ListModel.ListModel(treeview,titles)
             for entry in stats_list:
                 model.add(entry,entry[0])
-            w = gtk.Window()
-            w.set_transient_for(parent.topWindow)
-            w.set_position(gtk.WIN_POS_MOUSE)
-            w.set_default_size(400,300)
+                
+            self.window = gtk.Window()
+            self.window.set_default_size(400,300)
             s = gtk.ScrolledWindow()
             s.add(treeview)
-            w.add(s)
-            w.show_all()
+            self.window.add(s)
+            self.window.show_all()
+            
         else:
             print "\t%s\t%s\t%s\t%s\t%s\n" % (
                 'Name','Male','Female','Unknown','Guess')

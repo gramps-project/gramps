@@ -78,8 +78,8 @@ class ChangeTypes(Tool.Tool, ManagedWindow.ManagedWindow):
         self.auto1 = self.glade.get_widget("original")
         self.auto2 = self.glade.get_widget("new")
             
-        AutoComp.fill_combo(self.auto1,const.personalEvents)
-        AutoComp.fill_combo(self.auto2,const.personalEvents)
+        AutoComp.fill_combo(self.auto1,Utils.personal_events)
+        AutoComp.fill_combo(self.auto2,Utils.personal_events)
         # Need to display localized event names
         self.auto1.child.set_text(const.display_event(
             self.options.handler.options_dict['fromtype']))

@@ -119,8 +119,8 @@ def remove_child_from_family(db, person_handle, family_handle, trans=None):
 
 
 def add_child_to_family(db, family, child,
-                        mrel=(RelLib.ChildRef.CHILD_BIRTH,''),
-                        frel=(RelLib.ChildRef.CHILD_BIRTH,''),
+                        mrel=RelLib.ChildRefType(),
+                        frel=RelLib.ChildRefType(),
                         trans=None):
 
     family.add_child_handle(child.handle)

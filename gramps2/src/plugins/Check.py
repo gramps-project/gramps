@@ -236,7 +236,6 @@ class CheckIntegrity:
                 self.db.commit_person(p,self.trans)
             self.progress.step()
 
-
     def fix_encoding(self):
         self.progress.set_pass(_('Looking for character encoding errors'),
                                self.db.get_number_of_media_objects())
@@ -887,6 +886,7 @@ class Report(ManagedWindow.ManagedWindow):
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "summary.glade"
         topDialog = gtk.glade.XML(glade_file,"summary","gramps")
+        topDialog.get_widget("close").connect('clicked',self.close)
 
         self.window = topDialog.get_widget("summary")
         textwindow = topDialog.get_widget("textwindow")
