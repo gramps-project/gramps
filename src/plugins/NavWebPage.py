@@ -1764,7 +1764,7 @@ class IndividualPage(BasePage):
                              val)
         else:
             of.write(nameof(person,self.exclude_private))
-        if rel != RelLib.ChildRef.CHILD_BIRTH:
+        if rel != RelLib.ChildRefType.BIRTH:
             of.write('&nbsp;&nbsp;&nbsp;(%s)' % Utils.format_child_relation(rel))
         of.write('</td>\n')
 

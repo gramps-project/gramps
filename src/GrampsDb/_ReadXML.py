@@ -917,8 +917,8 @@ class GrampsParser:
         frel = _ConstXML.tuple_from_xml(_ConstXML.child_relations,
                                         attrs.get('frel','Birth'))
 
-        if mrel[0] != RelLib.ChildRef.CHILD_BIRTH or \
-           frel[0] != RelLib.ChildRef.CHILD_BIRTH:
+        if mrel != RelLib.ChildRefType.CHILD_BIRTH or \
+               frel != RelLib.ChildRefType.CHILD_BIRTH:
             childref = RelLib.ChildRef()
             childref.ref = self.person.handle
             childref.set_mother_relation(mrel)

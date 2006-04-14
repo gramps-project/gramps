@@ -424,12 +424,12 @@ class XmlWriter:
             else:
                 continue
             
-            if mval[0] != RelLib.ChildRef.CHILD_BIRTH:
+            if mval != RelLib.ChildRefType.BIRTH:
                 mrel=' mrel="%s"' % _ConstXML.str_for_xml(
                     _ConstXML.child_relations,mval)
             else:
                 mrel=''
-            if fval[0] != RelLib.ChildRef.CHILD_BIRTH:
+            if fval != RelLib.ChildRefType.BIRTH:
                 frel=' frel="%s"' % _ConstXML.str_for_xml(
                     _ConstXML.child_relations,fval)
             else:

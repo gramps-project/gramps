@@ -155,15 +155,22 @@ class ChildEmbedList(EmbeddedList):
             if not pair[0]:
                 continue
             name = self._column_names[pair[1]][0]
-            if pair[1] == 4 or pair[1] == 5:
-                render = TypeCellRenderer(Utils.child_relations)
+            if pair[1] == 4:
+                render = TypeCellRenderer(RelLib.ChildRefType().get_map())
+                render.connect('edited',self.frel_edited)
                 column = gtk.TreeViewColumn(name, render, text=pair[1])
+                column.set_min_width(100)
+            elif pair[1] == 5:
+                render = TypeCellRenderer(RelLib.ChildRefType().get_map())
+                render.connect('edited',self.mrel_edited)
+                column = gtk.TreeViewColumn(name, render, text=pair[1])
+                column.set_min_width(100)
             else:
                 render = gtk.CellRendererText()
                 column = gtk.TreeViewColumn(name, render, text=pair[1])
+                column.set_min_width(50)
 
             column.set_resizable(True)
-            column.set_min_width(40)
             column.set_sort_column_id(self._column_names[pair[1]][1])
             self.columns.append(column)
             self.tree.append_column(column)
@@ -176,6 +183,17 @@ class ChildEmbedList(EmbeddedList):
         The list is considered empty if the child list is empty.
         """
         return len(self.family.get_child_ref_list()) == 0
+
+    def mrel_edited(self, renderer, index, value):
+        ref = self.family.get_child_ref_list()[int(index)]
+        new_type = RelLib.ChildRefType(value)
+        print "Before", str(new_type)
+        ref.set_mother_relation(new_type)
+        print "After", str(ref.get_mother_relation())
+
+    def frel_edited(self, renderer, index, value):
+        ref = self.family.get_child_ref_list()[int(index)]
+        ref.set_father_relation(RelLib.ChildRefType(value))
 
     def get_data(self):
         """
@@ -848,8 +866,8 @@ class EditFamily(EditPrimary):
                 person = self.db.get_person_from_handle(handle)
                 person.add_parent_family_handle(
                     self.obj.handle,
-                    (RelLib.ChildRef.CHILD_BIRTH,''),
-                    (RelLib.ChildRef.CHILD_BIRTH,''),
+                    RelLib.ChildRefType(),
+                    RelLib.ChildRefType(),
                     )
                 self.db.commit_person(person,trans)
 

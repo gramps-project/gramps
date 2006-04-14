@@ -343,6 +343,39 @@ class MonitoredType:
     def on_change(self, obj):
         self.set_val(self.sel.get_values())
 
+class MonitoredDataType:
+
+    def __init__(self, obj, set_val, get_val, readonly=False, custom_values=None):
+        
+        self.set_val = set_val
+        self.get_val = get_val
+
+        self.obj = obj
+
+        val = get_val()
+        if val:
+            default = int(val)
+        else:
+            default = None
+
+        self.sel = AutoComp.StandardCustomSelector(
+            get_val().get_map(),
+            obj,
+            get_val().get_custom(),
+            default,
+            additional=custom_values)
+
+        self.set_val(self.sel.get_values())
+        self.obj.set_sensitive(not readonly)
+        self.obj.connect('changed', self.on_change)
+
+    def update(self):
+        if self.get_val():
+            self.sel.set_values(self.get_val())
+
+    def on_change(self, obj):
+        self.set_val(self.sel.get_values())
+
 class MonitoredMenu:
 
     def __init__(self, obj, set_val, get_val, mapping,

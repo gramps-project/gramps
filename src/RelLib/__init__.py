@@ -36,12 +36,14 @@ from _EventRef import EventRef
 from _LdsOrd import LdsOrd
 from _MediaRef import MediaRef 
 from _Name import Name
+from _NameType import NameType
 from _Note import Note
 from _RepoRef import RepoRef
 from _SourceRef import SourceRef
 from _Url import Url
 from _Witness import Witness
 from _ChildRef import ChildRef
+from _ChildRefType import ChildRefType
 
 # Primary objects
 from _PrimaryObject import PrimaryObject
@@ -57,3 +59,7 @@ from _Repository import Repository
 # These are actually metadata
 from _GenderStats import GenderStats
 from _Researcher import Researcher
+
+# Type classes
+from _GrampsType import GrampsType
+from _EventType import PersonEventType

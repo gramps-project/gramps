@@ -34,6 +34,7 @@ from _PrivacyBase import PrivacyBase
 from _SourceBase import SourceBase
 from _NoteBase import NoteBase
 from _RefBase import RefBase
+from _ChildRefType import ChildRefType
 
 #-------------------------------------------------------------------------
 #
@@ -49,15 +50,6 @@ class ChildRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase):
     Examples would be: godparent, friend, etc.
     """
 
-    CHILD_NONE      = 0
-    CHILD_BIRTH     = 1
-    CHILD_ADOPTED   = 2
-    CHILD_STEPCHILD = 3
-    CHILD_SPONSORED = 4
-    CHILD_FOSTER    = 5
-    CHILD_UNKNOWN   = 6
-    CHILD_CUSTOM    = 7
-
     def __init__(self,source=None):
         BaseObject.__init__(self)
         PrivacyBase.__init__(self,source)
@@ -68,22 +60,25 @@ class ChildRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase):
             self.frel = source.frel
             self.mrel = source.mrel
         else:
-            self.frel = (ChildRef.CHILD_BIRTH,'')
-            self.mrel = (ChildRef.CHILD_BIRTH,'')
+            self.frel = ChildRefType()
+            self.mrel = ChildRefType()
 
     def serialize(self):
         return (PrivacyBase.serialize(self),
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
                 RefBase.serialize(self),
-                self.frel,self.mrel)
+                self.frel.serialize(),
+                self.mrel.serialize())
 
     def unserialize(self,data):
-        (privacy,source_list,note,ref,self.frel,self.mrel) = data
+        (privacy,source_list,note,ref,frel,mrel) = data
         PrivacyBase.unserialize(self,privacy)
         SourceBase.unserialize(self,source_list)
         NoteBase.unserialize(self,note)
         RefBase.unserialize(self,ref)
+        self.frel.unserialize(frel)
+        self.mrel.unserialize(mrel)
         return self
 
     def get_text_data_list(self):
@@ -93,7 +88,7 @@ class ChildRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.rel]
+        return [self.rel, str(self.frel), str(mrel)]
 
     def get_text_data_child_list(self):
         """
@@ -132,6 +127,7 @@ class ChildRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase):
 
     def set_mother_relation(self,rel):
         """Sets relation between the person and mother"""
+        assert(isinstance(rel,ChildRefType))
         self.mrel = rel
 
     def get_mother_relation(self):
@@ -140,6 +136,7 @@ class ChildRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase):
 
     def set_father_relation(self,frel):
         """Sets relation between the person and father"""
+        assert(isinstance(frel,ChildRefType))
         self.frel = frel
 
     def get_father_relation(self):

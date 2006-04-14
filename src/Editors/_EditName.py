@@ -144,9 +144,10 @@ class EditName(EditSecondary):
                                   self.top.get_widget("date_stat"), 
                                   self.obj.get_date_object(),self.window)
 
-        self.obj_combo = MonitoredType(
-            self.top.get_widget("name_type"), self.obj.set_type,
-            self.obj.get_type, dict(Utils.name_types), RelLib.Name.CUSTOM)
+        self.obj_combo = MonitoredDataType(
+            self.top.get_widget("name_type"),
+            self.obj.set_type,
+            self.obj.get_type)
         
         self.privacy = PrivacyButton(
             self.top.get_widget("priv"), self.obj)

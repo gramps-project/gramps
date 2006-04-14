@@ -33,12 +33,12 @@ import RelLib
 #
 #-------------------------------------------------------------------------
 child_relations = (
-    (RelLib.ChildRef.CHILD_BIRTH     , "Birth"),
-    (RelLib.ChildRef.CHILD_ADOPTED   , "Adopted"),
-    (RelLib.ChildRef.CHILD_STEPCHILD , "Stepchild"),
-    (RelLib.ChildRef.CHILD_SPONSORED , "Sponsored"),
-    (RelLib.ChildRef.CHILD_FOSTER    , "Foster"),
-    (RelLib.ChildRef.CHILD_UNKNOWN   , "Unknown"),
+    (RelLib.ChildRefType.BIRTH     , "Birth"),
+    (RelLib.ChildRefType.ADOPTED   , "Adopted"),
+    (RelLib.ChildRefType.STEPCHILD , "Stepchild"),
+    (RelLib.ChildRefType.SPONSORED , "Sponsored"),
+    (RelLib.ChildRefType.FOSTER    , "Foster"),
+    (RelLib.ChildRefType.UNKNOWN   , "Unknown"),
     )
 
 events = (
@@ -111,10 +111,10 @@ family_relations = (
     )
 
 name_types = (
-    (RelLib.Name.UNKNOWN , "Unknown"),
-    (RelLib.Name.AKA     , "Also Known As"),
-    (RelLib.Name.BIRTH   , "Birth Name"),
-    (RelLib.Name.MARRIED , "Married Name"),
+    (RelLib.NameType.UNKNOWN , "Unknown"),
+    (RelLib.NameType.AKA     , "Also Known As"),
+    (RelLib.NameType.BIRTH   , "Birth Name"),
+    (RelLib.NameType.MARRIED , "Married Name"),
     )
 
 source_media_types = (
@@ -175,11 +175,11 @@ url_types = (
 
 # mapping from the tuple collection to the appropriate CUSTOM integer
 custom_types = {
-    child_relations    : RelLib.ChildRef.CHILD_CUSTOM,
+    child_relations    : RelLib.ChildRefType.CUSTOM,
     events             : RelLib.Event.CUSTOM,
     attributes         : RelLib.Attribute.CUSTOM,
     family_relations   : RelLib.Family.CUSTOM,
-    name_types         : RelLib.Name.CUSTOM,
+    name_types         : RelLib.NameType.CUSTOM,
     source_media_types : RelLib.RepoRef.CUSTOM,
     event_roles        : RelLib.EventRef.CUSTOM,
     repository_types   : RelLib.Repository.CUSTOM,

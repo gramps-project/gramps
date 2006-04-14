@@ -248,8 +248,8 @@ class GraphViz:
                 family = self.database.get_family_from_handle(family_handle)
                 father_handle = family.get_father_handle()
                 mother_handle = family.get_mother_handle()
-                fadopted  = frel != RelLib.ChildRef.CHILD_BIRTH
-                madopted  = mrel != RelLib.ChildRef.CHILD_BIRTH
+                fadopted  = frel != RelLib.ChildRefType.BIRTH
+                madopted  = mrel != RelLib.ChildRefType.BIRTH
                 famid = family.get_gramps_id().replace('-','_')
                 if (self.show_families and
                     (father_handle and person_dict.has_key(father_handle) or

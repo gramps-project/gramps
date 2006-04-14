@@ -18,6 +18,7 @@ pkgdata_PYTHON = \
 	_EventRef.py\
 	_Family.py\
 	_GenderStats.py\
+	_GrampsType.py\
 	__init__.py\
 	_LdsOrdBase.py\
 	_LdsOrd.py\
@@ -27,6 +28,7 @@ pkgdata_PYTHON = \
 	_MediaObject.py\
 	_MediaRef.py\
 	_Name.py\
+	_NameType.py\
 	_NoteBase.py\
 	_Note.py\
 	_Person.py\
@@ -47,7 +49,8 @@ pkgdata_PYTHON = \
 	_Witness.py\
 	_SourceBase.py\
 	_RefBase.py\
-	_ChildRef.py
+	_ChildRef.py\
+	_ChildRefType.py
 
 pkgpyexecdir = @pkgpyexecdir@/RelLib
 pkgpythondir = @pkgpythondir@/RelLib

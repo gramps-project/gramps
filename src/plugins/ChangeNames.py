@@ -57,12 +57,12 @@ from PluginUtils import Tool, register_tool
 # ChangeNames
 #
 #-------------------------------------------------------------------------
-class ChangeNames(Tool.Tool, ManagedWindow,ManagedWindow):
+class ChangeNames(Tool.Tool, ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         
         Tool.Tool.__init__(self, dbstate, options_class, name)
-        ManagedWindow.ManagedWindow.__init__(self, uistate, []. self)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
         self.cb = callback
 
@@ -167,7 +167,7 @@ class ChangeNames(Tool.Tool, ManagedWindow,ManagedWindow):
         self.db.request_rebuild()
         self.parent.bookmarks.redraw()
         self.close(obj)
-        self.cb(None,1)
+        self.cb()
         
 #------------------------------------------------------------------------
 #

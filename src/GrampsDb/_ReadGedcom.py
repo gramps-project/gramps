@@ -120,6 +120,10 @@ ANSEL = 1
 UNICODE = 2
 UPDATE = 25
 
+_TYPE_BIRTH  = RelLib.ChildRefType()
+_TYPE_ADOPT  = RelLib.ChildRefType(RelLib.ChildRefType.ADOPTED)
+_TYPE_FOSTER = RelLib.ChildRefType(RelLib.ChildRefType.FOSTER)
+
 file_systems = {
     'VFAT'    : _('Windows 9x file system'),
     'FAT'     : _('Windows 9x file system'),
@@ -128,16 +132,17 @@ file_systems = {
     "SMBFS"   : _('Networked Windows file system')
     }
 
-rel_types = ((RelLib.ChildRef.CHILD_BIRTH,''),
-             (RelLib.ChildRef.CHILD_UNKNOWN,''),
-             (RelLib.ChildRef.CHILD_NONE,''))
+rel_types = (RelLib.ChildRefType.BIRTH,
+             RelLib.ChildRefType.UNKNOWN,
+             RelLib.ChildRefType.NONE,
+             )
 
 pedi_type = {
-    'birth'  : (RelLib.ChildRef.CHILD_BIRTH,''),
-    'natural': (RelLib.ChildRef.CHILD_BIRTH,''),
-    'step'   : (RelLib.ChildRef.CHILD_ADOPTED,''),
-    'adopted': (RelLib.ChildRef.CHILD_ADOPTED,''),
-    'foster' : (RelLib.ChildRef.CHILD_FOSTER,''),
+    'birth'  : RelLib.ChildRefType(),
+    'natural': RelLib.ChildRefType(),
+    'step'   : _TYPE_ADOPT,
+    'adopted': _TYPE_ADOPT,
+    'foster' : _TYPE_FOSTER,
     }
 
 lds_status = {
@@ -1046,8 +1051,8 @@ class GedcomParser:
                 self.barf(level+1)
 
     def parse_ftw_relations(self,level):
-        mrel = (RelLib.ChildRef.CHILD_BIRTH,'')
-        frel = (RelLib.ChildRef.CHILD_BIRTH,'')
+        mrel = RelLib.ChildRefType()
+        frel = RelLib.ChildRefType()
         
         while True:
             matches = self.get_next()
@@ -1056,17 +1061,17 @@ class GedcomParser:
                 return (mrel,frel)
             # FTW
             elif matches[1] == TOKEN__FREL:
-                frel = pedi_type.get(matches[2].lower(),(RelLib.ChildRef.CHILD_BIRTH,''))
+                frel = pedi_type.get(matches[2].lower(),_TYPE_BIRTH)
             # FTW
             elif matches[1] == TOKEN__MREL:
-                mrel = pedi_type.get(matches[2].lower(),(RelLib.ChildRef.CHILD_BIRTH,''))
+                mrel = pedi_type.get(matches[2].lower(),_TYPE_BIRTH)
             elif matches[1] == TOKEN_ADOP:
-                mrel = (RelLib.ChildRef.CHILD_ADOPTED,'')
-                frel = (RelLib.ChildRef.CHILD_ADOPTED,'')
+                mrel = _TYPE_ADOPT
+                frel = _TYPE_ADOPT
             # Legacy
             elif matches[1] == TOKEN__STAT:
-                mrel = (RelLib.ChildRef.CHILD_BIRTH,'')
-                frel = (RelLib.ChildRef.CHILD_BIRTH,'')
+                mrel = _TYPE_BIRTH
+                frel = _TYPE_BIRTH
             # Legacy _PREF
             elif matches[1][0] == TOKEN_UNKNOWN:
                 pass
@@ -1226,7 +1231,7 @@ class GedcomParser:
         return None
         
     def parse_famc_type(self,level,person):
-        ftype = (RelLib.ChildRef.CHILD_BIRTH,'')
+        ftype = _TYPE_BIRTH
         note = ""
         while True:
             matches = self.get_next()
@@ -1528,7 +1533,7 @@ class GedcomParser:
                 if self.person.get_main_parents_family_handle() == handle:
                     self.person.set_main_parent_family_handle(None)
                 self.person.add_parent_family_handle(handle)
-                if mrel[0] != RelLib.ChildRef.BIRTH or frel[0] != RelLib.ChildRef.BIRTH:
+                if mrel != RelLib.ChildRefType.BIRTH or frel != RelLib.ChildRefType.BIRTH:
                     print "NOT FIXED YET"
             elif matches[1] == TOKEN_PLAC:
                 val = matches[2]
@@ -1555,8 +1560,8 @@ class GedcomParser:
                 self.barf(level+1)
 
     def parse_adopt_famc(self,level):
-        mrel = RelLib.ChildRef.CHILD_ADOPTED
-        frel = RelLib.ChildRef.CHILD_ADOPTED
+        mrel = _TYPE_ADOPT
+        frel = _TYPE_ADOPT
         while True:
             matches = self.get_next()
             if int(matches[0]) < level:
@@ -1564,9 +1569,9 @@ class GedcomParser:
                 return (mrel,frel)
             elif matches[1] == TOKEN_ADOP:
                 if matches[2] == "HUSB":
-                    mrel = RelLib.ChildRef.CHILD_BIRTH
+                    mrel = _TYPE_BIRTH
                 elif matches[2] == "WIFE":
-                    frel = RelLib.ChildRef.CHILD_BIRTH
+                    frel = _TYPE_BIRTH
             else:
                 self.barf(level+1)
         return None
@@ -2117,7 +2122,7 @@ class GedcomParser:
             if f[0] == handle:
                 break
         else:
-            if ftype in rel_types:
+            if int(ftype) in rel_types:
                 state.person.add_parent_family_handle(handle)
             else:
                 if state.person.get_main_parents_family_handle() == handle:

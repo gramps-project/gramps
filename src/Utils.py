@@ -71,20 +71,20 @@ gender = {
 def format_gender( type):
     return gender.get(type[0],_("Invalid"))
 
-child_relations = {
-    RelLib.ChildRef.CHILD_NONE      : _("None"),
-    RelLib.ChildRef.CHILD_BIRTH     : _("Birth"),
-    RelLib.ChildRef.CHILD_ADOPTED   : _("Adopted"),
-    RelLib.ChildRef.CHILD_STEPCHILD : _("Stepchild"),
-    RelLib.ChildRef.CHILD_SPONSORED : _("Sponsored"),
-    RelLib.ChildRef.CHILD_FOSTER    : _("Foster"),
-    RelLib.ChildRef.CHILD_UNKNOWN   : _("Unknown"),
-    RelLib.ChildRef.CHILD_CUSTOM    : _("Custom"),
-    }
-def format_child_relation( type):
-    if type[0] == RelLib.ChildRef.CHILD_CUSTOM:
-        return type[1]
-    return child_relations.get(type[0],_("Invalid id %d ('%s')")%type)
+# child_relations = {
+#     RelLib.ChildRef.CHILD_NONE      : _("None"),
+#     RelLib.ChildRef.CHILD_BIRTH     : _("Birth"),
+#     RelLib.ChildRef.CHILD_ADOPTED   : _("Adopted"),
+#     RelLib.ChildRef.CHILD_STEPCHILD : _("Stepchild"),
+#     RelLib.ChildRef.CHILD_SPONSORED : _("Sponsored"),
+#     RelLib.ChildRef.CHILD_FOSTER    : _("Foster"),
+#     RelLib.ChildRef.CHILD_UNKNOWN   : _("Unknown"),
+#     RelLib.ChildRef.CHILD_CUSTOM    : _("Custom"),
+#     }
+# def format_child_relation( type):
+#     if type[0] == RelLib.ChildRef.CHILD_CUSTOM:
+#         return type[1]
+#     return child_relations.get(type[0],_("Invalid id %d ('%s')")%type)
 
 confidence = {
     RelLib.SourceRef.CONF_VERY_HIGH : _("Very High"),
@@ -225,17 +225,18 @@ family_rel_descriptions = {
                                   "a man and woman"),
     }
 
-name_types = {
-    RelLib.Name.UNKNOWN : _("Unknown"),
-    RelLib.Name.CUSTOM  : _("Custom"),
-    RelLib.Name.AKA     : _("Also Known As"),
-    RelLib.Name.BIRTH   : _("Birth Name"),
-    RelLib.Name.MARRIED : _("Married Name"),
-    }
-def format_name_type( type):
-    if type[0] == RelLib.Name.CUSTOM:
-        return type[1]
-    return name_types.get(type[0],_("Invalid id %d ('%s')")%type)
+# name_types = {
+#     RelLib.NameType.UNKNOWN : _("Unknown"),
+#     RelLib.NameType.CUSTOM  : _("Custom"),
+#     RelLib.NameType.AKA     : _("Also Known As"),
+#     RelLib.NameType.BIRTH   : _("Birth Name"),
+#     RelLib.NameType.MARRIED : _("Married Name"),
+#     }
+# def format_name_type( type):
+#     assert(False)
+#     if type[0] == RelLib.Name.CUSTOM:
+#         return type[1]
+#     return name_types.get(type[0],_("Invalid id %d ('%s')")%type)
 
 web_types = {
     RelLib.Url.UNKNOWN    : _("Unknown"),
@@ -1228,6 +1229,7 @@ class ProgressMeter:
         """
         Specify the title and the current pass header.
         """
+        self.old_val = -1
         self.ptop = gtk.Dialog()
         self.ptop.connect('delete_event',self.warn)
         self.ptop.set_has_separator(False)
@@ -1272,10 +1274,12 @@ class ProgressMeter:
         if (self.pbar_index > self.pbar_max):
             self.pbar_index = self.pbar_max
 
-        val = self.pbar_index/self.pbar_max
-        
-        self.pbar.set_text("%d of %d (%.1f%%)" % (self.pbar_index,self.pbar_max,(val*100)))
-        self.pbar.set_fraction(val)
+        val = int(100*self.pbar_index/self.pbar_max)
+
+        if val != self.old_val:
+            self.pbar.set_text("%d%%" % val)
+            self.pbar.set_fraction(val/100.0)
+            self.old_val = val
         while gtk.events_pending():
             gtk.main_iteration()
 

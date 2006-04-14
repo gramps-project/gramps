@@ -520,7 +520,7 @@ class TestcaseGenerator(Tool.Tool):
         person2.add_family_handle(fam_h)
         self.db.commit_person(person2,self.trans)
         child = self.db.get_person_from_handle(child_h)
-        child.add_parent_family_handle(fam_h,(RelLib.ChildRef.CHILD_BIRTH,''),(RelLib.ChildRef.CHILD_BIRTH,''))
+        child.add_parent_family_handle(fam_h,RelLib.ChildRefType(),RelLib.ChildRefType())
         self.db.commit_person(child,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
