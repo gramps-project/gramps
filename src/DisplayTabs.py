@@ -1237,15 +1237,15 @@ class PersonRefEmbedList(EmbeddedList):
         self.rebuild()
 
     def edit_button_clicked(self, obj):
-        from Editors import EditPersonRef
-
-        try:
-            ref = self.get_selected()
-            EditPersonRef(
-                self.dbstate, self.uistate, self.track,
-                ref, self.edit_callback)
-        except Errors.WindowActiveError:
-            pass
+        ref = self.get_selected()
+        if ref:
+            try:
+                from Editors import EditPersonRef
+                EditPersonRef(
+                    self.dbstate, self.uistate, self.track,
+                    ref, self.edit_callback)
+            except Errors.WindowActiveError:
+                pass
 
     def edit_callback(self, obj):
         self.rebuild()
