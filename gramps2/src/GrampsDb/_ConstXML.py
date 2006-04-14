@@ -32,15 +32,6 @@ import RelLib
 # Collection of standard types for various kinds of objects
 #
 #-------------------------------------------------------------------------
-child_relations = (
-    (RelLib.ChildRefType.BIRTH     , "Birth"),
-    (RelLib.ChildRefType.ADOPTED   , "Adopted"),
-    (RelLib.ChildRefType.STEPCHILD , "Stepchild"),
-    (RelLib.ChildRefType.SPONSORED , "Sponsored"),
-    (RelLib.ChildRefType.FOSTER    , "Foster"),
-    (RelLib.ChildRefType.UNKNOWN   , "Unknown"),
-    )
-
 events = (
     # Family events
     (RelLib.Event.UNKNOWN    , "Unknown"),
@@ -175,7 +166,6 @@ url_types = (
 
 # mapping from the tuple collection to the appropriate CUSTOM integer
 custom_types = {
-    child_relations    : RelLib.ChildRefType.CUSTOM,
     events             : RelLib.Event.CUSTOM,
     attributes         : RelLib.Attribute.CUSTOM,
     family_relations   : RelLib.Family.CUSTOM,
