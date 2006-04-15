@@ -1358,10 +1358,7 @@ class GrampsBSDDB(GrampsDbBase):
 
         # Person upgrade
         # Needs to be run after the family upgrade completed.
-        dummy_child_ref = ChildRef()
-        default_frel = dummy_child_ref.frel
-        default_mrel = dummy_child_ref.mrel
-
+        def_rel = ChildRefType._DEFAULT
         for handle in self.person_map.keys():
             info = self.person_map[handle]
             person = Person()
@@ -1423,7 +1420,7 @@ class GrampsBSDDB(GrampsDbBase):
             for (family_handle,mrel,frel) in parent_family_list:
                 person.parent_family_list.append(family_handle)
                 # Only change family is the relations are non-default
-                if (mrel,frel) != (default_mrel[0],default_frel[0]):
+                if (mrel,frel) != (def_rel,def_rel):
                     family = self.get_family_from_handle(family_handle)
                     child_handle_list = [ref.ref for ref in
                                          family.child_ref_list]
