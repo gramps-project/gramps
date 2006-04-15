@@ -1424,13 +1424,10 @@ class GrampsBSDDB(GrampsDbBase):
                     family = self.get_family_from_handle(family_handle)
                     child_handle_list = [ref.ref for ref in
                                          family.child_ref_list]
-                    try:
-                        index = child_handle_list.index(person.handle)
-                    except:
-                        print child_handle_list, person.handle
+                    index = child_handle_list.index(person.handle)
                     child_ref = family.child_ref_list[index]
-                    child_ref.frel = (frel,'')
-                    child_ref.mrel = (mrel,'')
+                    child_ref.frel.set(frel)
+                    child_ref.mrel.set(mrel)
                     self.commit_family(family,trans)
 
             # In all Attributes, convert type from string to a tuple
