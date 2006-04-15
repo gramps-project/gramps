@@ -1,3 +1,7 @@
+2006-04-15  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs.py: handle child type callback
+	* src/Editors/_EditFamily.py: handle child type callback
+
 2006-04-14  Alex Roitman  <shura@gramps-project.org>
 	* src/DisplayTabs.py (edit_button_clicked): Proceed only if
 	selection exists.
