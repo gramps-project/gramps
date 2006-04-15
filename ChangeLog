@@ -1,3 +1,7 @@
+2006-04-15  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Adapt to 
+	ChildRefType.
+
 2006-04-15  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs.py: handle child type callback
 	* src/Editors/_EditFamily.py: handle child type callback
