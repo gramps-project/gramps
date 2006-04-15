@@ -1869,31 +1869,26 @@ class ChildModel(gtk.ListStore):
         index = 1
         for child_ref in self.get_data():
             child = db.get_person_from_handle(child_ref.ref)
-            self.append(row=[index, 
-                             child.get_gramps_id(), 
-                             NameDisplay.displayer.display(child), 
-                             Utils.gender[child.get_gender()], 
-                             self.column_father_rel(child_ref), 
-                             self.column_mother_rel(child_ref), 
-                             self.column_birth_day(child), 
-                             self.column_death_day(child), 
-                             self.column_birth_place(child), 
-                             self.column_death_place(child), 
-                             child.get_handle(), 
-                             NameDisplay.displayer.sort_string(child.primary_name), 
-                             self.column_birth_sort(child), 
-                             self.column_death_sort(child), 
-                             ])
+            self.append(row=[
+                index, 
+                child.get_gramps_id(), 
+                NameDisplay.displayer.display(child), 
+                Utils.gender[child.get_gender()], 
+                str(child_ref.get_father_relation()), 
+                str(child_ref.get_mother_relation()),
+                self.column_birth_day(child), 
+                self.column_death_day(child), 
+                self.column_birth_place(child), 
+                self.column_death_place(child), 
+                child.get_handle(), 
+                NameDisplay.displayer.sort_string(child.primary_name), 
+                self.column_birth_sort(child), 
+                self.column_death_sort(child), 
+                ])
             index += 1
 
     def get_data(self):
         return self.family.get_child_ref_list()
-
-    def column_father_rel(self, data):
-        return str(data.get_father_relation())
-
-    def column_mother_rel(self, data):
-        return str(data.get_mother_relation())
 
     def column_birth_day(self, data):
         event_ref = data.get_birth_ref()

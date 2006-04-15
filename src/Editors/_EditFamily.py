@@ -185,15 +185,18 @@ class ChildEmbedList(EmbeddedList):
         return len(self.family.get_child_ref_list()) == 0
 
     def mrel_edited(self, renderer, index, value):
-        ref = self.family.get_child_ref_list()[int(index)]
-        new_type = RelLib.ChildRefType(value)
-        print "Before", str(new_type)
-        ref.set_mother_relation(new_type)
-        print "After", str(ref.get_mother_relation())
+        row = int(index)
+        ref = self.family.get_child_ref_list()[row]
+        ref.set_mother_relation(RelLib.ChildRefType(value))
+        node = self.model.get_iter((row,))
+        self.model.set_value(node, 5, value)
 
     def frel_edited(self, renderer, index, value):
-        ref = self.family.get_child_ref_list()[int(index)]
+        row = int(index)
+        ref = self.family.get_child_ref_list()[row]
         ref.set_father_relation(RelLib.ChildRefType(value))
+        node = self.model.get_iter((row,))
+        self.model.set_value(node, 4, value)
 
     def get_data(self):
         """
@@ -856,19 +859,15 @@ class EditFamily(EditPrimary):
             new_set = set(self.obj.get_child_ref_list())
 
             # remove the family from children which have been removed
-            for handle in orig_set.difference(new_set):
-                person = self.db.get_person_from_handle(handle)
+            for ref in orig_set.difference(new_set):
+                person = self.db.get_person_from_handle(ref.ref)
                 person.remove_parent_family_handle(self.obj.handle)
                 self.db.commit_person(person,trans)
             
             # add the family from children which have been addedna
-            for handle in new_set.difference(orig_set):
-                person = self.db.get_person_from_handle(handle)
-                person.add_parent_family_handle(
-                    self.obj.handle,
-                    RelLib.ChildRefType(),
-                    RelLib.ChildRefType(),
-                    )
+            for ref in new_set.difference(orig_set):
+                person = self.db.get_person_from_handle(ref.ref)
+                person.add_parent_family_handle(self.obj.handle)
                 self.db.commit_person(person,trans)
 
             if self.object_is_empty():
