@@ -86,6 +86,9 @@ crel_map = {
     "Unknown"   : RelLib.ChildRefType(RelLib.ChildRefType.UNKNOWN),
     }
 
+_event_family_str = _("%(event_name)s of %(family)s")
+_event_person_str = _("%(event_name)s of %(person)s")
+
 #-------------------------------------------------------------------------
 #
 # Importing data into the currently open database. 
@@ -1374,6 +1377,21 @@ class GrampsParser:
                 self.person.death_ref = ref
             else:
                 self.person.add_event_ref(ref)
+
+        if self.event.get_description() == "" and \
+               self.event.get_type()[0] != RelLib.Event.CUSTOM:
+            if self.family:
+                text = _event_family_str % {
+                    'event_name' : Utils.family_events[self.event.get_type()[0]],
+                    'family' : Utils.family_name(self.family,self.db),
+                    }
+            else:
+                text = _event_person_str % {
+                    'event_name' : Utils.personal_events[self.event.get_type()[0]],
+                    'person' : NameDisplay.displayer.display(self.person),
+                    }
+            self.event.set_description(text)
+
         self.db.commit_event(self.event,self.trans,self.change)
         self.event = None
 
