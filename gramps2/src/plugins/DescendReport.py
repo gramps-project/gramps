@@ -174,11 +174,9 @@ class DescendantReport(Report.Report):
                 self.dump_dates(spouse)
                 self.doc.end_paragraph()
 
-            childlist = family.get_child_handle_list()[:]
-            childlist.sort(self.by_birthdate)
-
-            for child_handle in childlist:
-                child = self.database.get_person_from_handle(child_handle)
+            childlist = family.get_child_ref_list()[:]
+            for child_ref in childlist:
+                child = self.database.get_person_from_handle(child_ref.ref)
                 self.dump(level+1,child)
 
 #------------------------------------------------------------------------
