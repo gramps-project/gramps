@@ -1,3 +1,6 @@
+2006-04-16  Brian Matherly  <pez4brian@users.sourceforge.net>
+	* src/plugins/DescendReport.py: Don't sort children (Bug #1453010)
+
 2006-04-15  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadXML.py: provide an event description if one does 
 	not exist.
