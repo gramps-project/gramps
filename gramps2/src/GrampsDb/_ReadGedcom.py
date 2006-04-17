@@ -1766,7 +1766,9 @@ class GedcomParser:
                 self.def_src.set_title(_("Import from %s") % filename)
             elif matches[1] == TOKEN_COPR:
                 self.def_src.set_publication_info(matches[2])
-            elif matches[1] in (TOKEN_CORP,TOKEN_DATA,TOKEN_SUBM,TOKEN_SUBN,TOKEN_LANG):
+            elif matches[1] ==  TOKEN_SUBM:
+                self.parse_subm(1)
+            elif matches[1] in (TOKEN_CORP,TOKEN_DATA,TOKEN_SUBN,TOKEN_LANG):
                 self.ignore_sub_junk(2)
             elif matches[1] == TOKEN_DEST:
                 if genby == "GRAMPS":
@@ -1794,6 +1796,18 @@ class GedcomParser:
                 self.ignore_sub_junk(2)
             else:
                 self.barf(2)
+
+    def parse_subm(self, level):
+        while True:
+            matches = self.get_next()
+
+            if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == TOKEN_NAME:
+                self.def_src.set_author(matches[2])
+            else:
+                self.ignore_sub_junk(2)
 
     def parse_ftw_schema(self,level):
         while True:
