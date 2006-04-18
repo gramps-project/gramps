@@ -365,16 +365,23 @@ class MonitoredDataType:
             default,
             additional=custom_values)
 
-        self.set_val(self.sel.get_values())
+        value = self.sel.get_values()
+        self.set_val(self.fix_value(value))
         self.obj.set_sensitive(not readonly)
         self.obj.connect('changed', self.on_change)
+
+    def fix_value(self, value):
+        if value[0] == self.get_val().get_custom():
+            return value
+        else:
+            return (value[0],'')
 
     def update(self):
         if self.get_val():
             self.sel.set_values(self.get_val())
 
     def on_change(self, obj):
-        self.set_val(self.sel.get_values())
+        self.set_val(self.fix_value(self.sel.get_values()))
 
 class MonitoredMenu:
 
