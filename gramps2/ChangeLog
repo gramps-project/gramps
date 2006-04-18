@@ -1,4 +1,6 @@
 2006-04-18  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: removal of inversion
+	* src/GenericFilter.py: Interface changes for filtering
 	* src/Editors/__init__.py: added EditChildRef
 	* src/Editors/Makefile.am: added EditChildRef
 	* src/Editors/_EditChildRef.py: added
