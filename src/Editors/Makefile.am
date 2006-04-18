@@ -9,6 +9,7 @@ pkgdata_PYTHON = \
 	__init__.py\
 	_EditAddress.py \
 	_EditAttribute.py \
+	_EditChildRef.py \
 	_EditEvent.py \
 	_EditEventRef.py \
 	_EditFamily.py \

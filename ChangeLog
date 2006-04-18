@@ -1,4 +1,10 @@
 2006-04-18  Don Allingham  <don@gramps-project.org>
+	* src/Editors/__init__.py: added EditChildRef
+	* src/Editors/Makefile.am: added EditChildRef
+	* src/Editors/_EditChildRef.py: added
+	* src/Editors/_EditFamily.py: add child reference editor
+	* src/DisplayTabs.py: add optional properties button
+	* src/glade/gramps.glade: add child reference editor
 	* src/plugins/Desbrowser.py: bring up to speed with ManagedWindow
 	* src/GrampsWidgets.py: fix the type return value 
 
