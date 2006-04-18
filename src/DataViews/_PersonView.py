@@ -355,7 +355,7 @@ class PersonView(PageView.PersonNavView):
         if self.active:
             self.model = PeopleModel.PeopleModel(
                 self.dbstate.db, self.generic_filter_widget.get_filter(),
-                self.generic_filter_widget.inverted())
+                False)
             self.tree.set_model(self.model)
 
             if const.use_tips and self.model.tooltip_column != None:

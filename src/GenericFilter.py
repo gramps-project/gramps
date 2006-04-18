@@ -1905,14 +1905,12 @@ class GenericFilter:
             self.name = source.name
             self.comment = source.comment
             self.logical_op = source.logical_op
-            self.invert = source.invert
         else:
             self.need_param = 0
             self.flist = []
             self.name = ''
             self.comment = ''
             self.logical_op = 'and'
-            self.invert = False
 
     def match(self,handle):
         return True
@@ -1929,12 +1927,6 @@ class GenericFilter:
     def get_logical_op(self):
         return self.logical_op
 
-    def set_invert(self, val):
-        self.invert = not not val
-
-    def get_invert(self):
-        return self.invert
-    
     def get_name(self):
         return self.name
     
@@ -1968,13 +1960,13 @@ class GenericFilter:
             while data:
                 person = RelLib.Person()
                 person.unserialize(data[1])
-                if self.invert ^ task(db,person):
+                if not task(db,person):
                     final_list.append(data[0])
                 data = cursor.next()
         else:
             for handle in id_list:
                 person = db.get_person_from_handle(handle)
-                if self.invert ^ task(db,person):
+                if not task(db,person):
                     final_list.append(handle)
         return final_list
 
@@ -1984,7 +1976,6 @@ class GenericFilter:
     def check_and(self,db,id_list):
         final_list = []
         flist = self.flist
-        invert = self.invert
         if id_list == None:
             cursor = db.get_person_cursor()
             data = cursor.next()
@@ -1996,7 +1987,7 @@ class GenericFilter:
                     if not rule.apply(db,person):
                         val = False
                         break
-                if invert ^ val:
+                if not val:
                     final_list.append(data[0])
                 data = cursor.next()
         else:
@@ -2006,7 +1997,7 @@ class GenericFilter:
                 for rule in flist:
                     if not rule.apply(db,person):
                         val = False
-                if invert ^ val:
+                if not val:
                     final_list.append(handle)
         return final_list
 
@@ -2339,8 +2330,6 @@ class GenericFilterList:
             print namespace
             for i in namespace:
                 f.write('  <filter name="%s"' % self.fix(i.get_name()))
-                if i.get_invert():
-                    f.write(' invert="1"')
                 f.write(' function="%s"' % i.get_logical_op())
                 comment = i.get_comment()
                 if comment:
@@ -2399,11 +2388,6 @@ class FilterParser(handler.ContentHandler):
                 self.f.set_logical_op(op)
             if attrs.has_key('comment'):
                 self.f.set_comment(attrs['comment'])
-            if attrs.has_key('invert'):
-                try:
-                    self.f.set_invert(int(attrs['invert']))
-                except ValueError:
-                    pass
             self.gfilter_list.add(self.namespace,self.f)
         elif tag == "rule":
             save_name = attrs['class']
@@ -2598,18 +2582,14 @@ class FilterWidget:
         self.filterbar = gtk.HBox()
         self.filterbar.set_spacing(4)
         self.filter_text = gtk.Entry()
-        self.filter_label = gtk.Label('Label:')
         self.filter_list = gtk.ComboBox()
-        self.filter_invert = gtk.CheckButton('Invert')
-        self.filter_button = gtk.Button('Apply')
+        self.filter_button = gtk.Button(stock=gtk.STOCK_FIND)
         self.filter_button.connect( 'clicked',self.apply_filter_clicked)
         self.filterbar.pack_start(self.filter_list,False)
-        self.filterbar.pack_start(self.filter_label,False)
         self.filterbar.pack_start(self.filter_text,True)
-        self.filterbar.pack_start(self.filter_invert,False)
         self.filterbar.pack_end(self.filter_button,False)
 
-        self.filter_text.set_sensitive(False)
+#        self.filter_text.set_sensitive(False)
 
         return self.filterbar
         
@@ -2633,7 +2613,7 @@ class FilterWidget:
         self.filter_list.set_model(self.filter_model)
         self.filter_list.set_active(self.filter_model.default_index())
         self.filter_list.connect('changed',self.on_filter_name_changed)
-        self.filter_text.set_sensitive(False)
+#        self.filter_text.set_sensitive(False)
         self.DataFilter = filter_list[self.filter_model.default_index()]
         
     def apply_filter_clicked(self,ev=None):
@@ -2652,15 +2632,12 @@ class FilterWidget:
         index = self.filter_list.get_active()
         mime_filter = self.filter_model.get_filter(index)
         qual = mime_filter.need_param
-        if qual:
-            self.filter_text.show()
-            self.filter_text.set_sensitive(True)
-            self.filter_label.show()
-            self.filter_label.set_text(mime_filter.get_rules()[0].labels[0])
-        else:
-            self.filter_text.hide()
-            self.filter_text.set_sensitive(False)
-            self.filter_label.hide()
+#        if qual:
+#            self.filter_text.show()
+#            self.filter_text.set_sensitive(True)
+#        else:
+#            self.filter_text.hide()
+#            self.filter_text.set_sensitive(False)
 
     def apply_filter(self,current_model=None):
         self.uistate.status_text(_('Updating display...'))
@@ -2672,9 +2649,6 @@ class FilterWidget:
         #print self.DataFilter.flist[0]
         return self.DataFilter
         
-    def inverted( self):
-        return self.filter_invert.get_active()
-
     def show( self):
         self.filterbar.show()
 
