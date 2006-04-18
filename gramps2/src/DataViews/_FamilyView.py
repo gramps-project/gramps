@@ -97,6 +97,13 @@ class FamilyView(PageView.PersonNavView):
         self.connect_to_db(dbstate.db)
         self.redrawing = False
         self.child = None
+
+    def build_tree(self):
+        if self.active:
+            self.redraw()
+            self.dirty = False
+        else:
+            self.dirty = True
             
     def connect_to_db(self, db):
         db.connect('person-update', self.person_update)
@@ -110,31 +117,49 @@ class FamilyView(PageView.PersonNavView):
         if self.dbstate.active:
             while not self.change_person(self.dbstate.active.handle):
                 pass
+            self.dirty = False
+        else:
+            self.dirty = True
 
     def person_rebuild(self):
         if self.dbstate.active:
             while not self.change_person(self.dbstate.active.handle):
                 pass
+            self.dirty = False
+        else:
+            self.dirty = True
 
     def family_update(self, handle_list):
         if self.dbstate.active:
             while not self.change_person(self.dbstate.active.handle):
                 pass
+            self.dirty = False
+        else:
+            self.dirty = True
 
     def family_add(self, handle_list):
         if self.dbstate.active:
             while not self.change_person(self.dbstate.active.handle):
                 pass
+            self.dirty = False
+        else:
+            self.dirty = True
 
     def family_delete(self, handle_list):
         if self.dbstate.active:
             while not self.change_person(self.dbstate.active.handle):
                 pass
+            self.dirty = False
+        else:
+            self.dirty = True
 
     def family_rebuild(self):
         if self.dbstate.active:
             while not self.change_person(self.dbstate.active.handle):
                 pass
+            self.dirty = False
+        else:
+            self.dirty = True
             
     def get_stock(self):
         """

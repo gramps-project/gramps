@@ -83,7 +83,7 @@ class ListModel:
                 renderer = gtk.CellRendererPixbuf()
                 column = gtk.TreeViewColumn(name[0],renderer)
                 column.add_attribute(renderer,'pixbuf',cnum)
-                renderer.set_property('height',const.thumbScale)
+                renderer.set_property('height',const.thumbScale/2)
             elif gtk26 and name[3] == COMBO:
                 store = gtk.ListStore(str)
                 model = gtk.ListStore(str, object)

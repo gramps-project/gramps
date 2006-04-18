@@ -1,4 +1,8 @@
 2006-04-17  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_FamilyView.py: handle the dirty flag for updates
+	* src/DataViews/_PersonView.py: goto active person properly
+	* src/SelectObject.py: scale thumbnails to 1/2 size
+	* src/ListModel.py: reduce size of thumbnails
 	* src/GrampsDb/_ReadGedcom.py: set author properly for GEDCOM name
 	on default source
 
