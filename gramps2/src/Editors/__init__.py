@@ -36,4 +36,5 @@ from _EditSource import *
 from _EditSourceRef import *
 from _EditUrl import *
 from _EditPersonRef import *
+from _EditChildRef import *
 

@@ -121,6 +121,7 @@ class GrampsTab(gtk.HBox):
 
         # build the interface
         self.share_btn = None
+        self.prop_btn = None
         self.build_interface()
 
     def get_selected(self):
@@ -207,9 +208,11 @@ class ButtonTab(GrampsTab):
         'del'   : _('Remove'),
         'edit'  : _('Edit'),
         'share' : _('Share'),
+        'prop'  : _('Properties'),
         }
 
-    def __init__(self, dbstate, uistate, track, name, share_button=False):
+    def __init__(self, dbstate, uistate, track, name, share_button=False,
+                 prop_button=False):
         """
         Similar to the base class, except after Build
         @param dbstate: The database state. Contains a reference to
@@ -228,9 +231,9 @@ class ButtonTab(GrampsTab):
         """
         GrampsTab.__init__(self,dbstate, uistate, track, name)
         self.tooltips = gtk.Tooltips()
-        self.create_buttons(share_button)
+        self.create_buttons(share_button, prop_button)
 
-    def create_buttons(self, share_button=False):
+    def create_buttons(self, share_button=False, prop_button=False):
         """
         Creates a button box consisting of three buttons, one for Add,
         one for Edit, and one for Delete. This button box is then appended
@@ -249,6 +252,13 @@ class ButtonTab(GrampsTab):
             self.tooltips.set_tip(self.share_btn, self._MSG['share'])
         else:
             self.share_btn = None
+
+        if prop_button:
+            self.prop_btn = SimpleButton(gtk.STOCK_PROPERTIES,
+                                         self.prop_button_clicked)
+            self.tooltips.set_tip(self.prop_btn, self._MSG['prop'])
+        else:
+            self.prop_btn = None
         
         vbox = gtk.VBox()
         vbox.set_spacing(6)
@@ -257,6 +267,8 @@ class ButtonTab(GrampsTab):
             vbox.pack_start(self.share_btn, False)
         vbox.pack_start(self.edit_btn, False)
         vbox.pack_start(self.del_btn, False)
+        if prop_button:
+            vbox.pack_start(self.prop_btn, False)
         vbox.show_all()
         self.pack_start(vbox, False)
 
@@ -282,6 +294,13 @@ class ButtonTab(GrampsTab):
         """
         print "Uncaught Share clicked"
 
+    def prop_button_clicked(self, obj):
+        """
+        Function called with the Add button is clicked. This function
+        should be overridden by the derived class.
+        """
+        print "Uncaught Properties clicked"
+
     def del_button_clicked(self, obj):
         """
         Function called with the Delete button is clicked. This function
@@ -306,9 +325,13 @@ class ButtonTab(GrampsTab):
         if self.get_selected():
             self.edit_btn.set_sensitive(True)
             self.del_btn.set_sensitive(True)
+            if self.prop_btn:
+                self.prop_btn.set_sensitive(True)
         else:
             self.edit_btn.set_sensitive(False)
             self.del_btn.set_sensitive(False)
+            if self.prop_btn:
+                self.prop_btn.set_sensitive(False)
 
 class EmbeddedList(ButtonTab):
     """
@@ -321,12 +344,15 @@ class EmbeddedList(ButtonTab):
     _DND_TYPE   = None
     _DND_EXTRA  = None
     
-    def __init__(self, dbstate, uistate, track, name, build_model,share=False):
+    def __init__(self, dbstate, uistate, track, name, build_model,
+                 share=False, properties=False):
         """
         Creates a new list, using the passed build_model to
         populate the list.
         """
-        ButtonTab.__init__(self, dbstate, uistate, track, name, share)
+        ButtonTab.__init__(self, dbstate, uistate, track, name, share,
+                           properties)
+        
         self.changed = False
         self.build_model = build_model
 
@@ -369,6 +395,10 @@ class EmbeddedList(ButtonTab):
                 (True, gtk.STOCK_EDIT, self.edit_button_clicked),
                 (True, gtk.STOCK_REMOVE, self.del_button_clicked),
             ]
+
+        if self.prop_btn:
+            itemlist.append((True, gtk.STOCK_PROPERTIES,
+                             self.prop_button_clicked))
         
         menu = gtk.Menu()
         for (image, title, func) in itemlist:
@@ -1883,7 +1913,7 @@ class ChildModel(gtk.ListStore):
                 child.get_handle(), 
                 NameDisplay.displayer.sort_string(child.primary_name), 
                 self.column_birth_sort(child), 
-                self.column_death_sort(child), 
+                self.column_death_sort(child),
                 ])
             index += 1
 

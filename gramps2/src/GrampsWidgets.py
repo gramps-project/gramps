@@ -37,6 +37,7 @@ import AutoComp
 import DateHandler
 import DateEdit
 import const
+from RelLib import ChildRefType
 
 _lock_path = os.path.join(const.image_dir, 'stock_lock.png')
 _lock_open_path = os.path.join(const.image_dir, 'stock_lock-open.png')
@@ -372,9 +373,9 @@ class MonitoredDataType:
 
     def fix_value(self, value):
         if value[0] == self.get_val().get_custom():
-            return value
+            return ChildRefType(value)
         else:
-            return (value[0],'')
+            return ChildRefType((value[0],''))
 
     def update(self):
         if self.get_val():

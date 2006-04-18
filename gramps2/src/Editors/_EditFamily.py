@@ -109,7 +109,7 @@ class ChildEmbedList(EmbeddedList):
         """
         self.family = family
         EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _('Children'), ChildModel, True)
+                              _('Children'), ChildModel, True, True)
 
     def find_index(self,obj):
         """
@@ -155,20 +155,9 @@ class ChildEmbedList(EmbeddedList):
             if not pair[0]:
                 continue
             name = self._column_names[pair[1]][0]
-            if pair[1] == 4:
-                render = TypeCellRenderer(RelLib.ChildRefType().get_map())
-                render.connect('edited',self.frel_edited)
-                column = gtk.TreeViewColumn(name, render, text=pair[1])
-                column.set_min_width(100)
-            elif pair[1] == 5:
-                render = TypeCellRenderer(RelLib.ChildRefType().get_map())
-                render.connect('edited',self.mrel_edited)
-                column = gtk.TreeViewColumn(name, render, text=pair[1])
-                column.set_min_width(100)
-            else:
-                render = gtk.CellRendererText()
-                column = gtk.TreeViewColumn(name, render, text=pair[1])
-                column.set_min_width(50)
+            render = gtk.CellRendererText()
+            column = gtk.TreeViewColumn(name, render, text=pair[1])
+            column.set_min_width(50)
 
             column.set_resizable(True)
             column.set_sort_column_id(self._column_names[pair[1]][1])
@@ -183,20 +172,6 @@ class ChildEmbedList(EmbeddedList):
         The list is considered empty if the child list is empty.
         """
         return len(self.family.get_child_ref_list()) == 0
-
-    def mrel_edited(self, renderer, index, value):
-        row = int(index)
-        ref = self.family.get_child_ref_list()[row]
-        ref.set_mother_relation(RelLib.ChildRefType(value))
-        node = self.model.get_iter((row,))
-        self.model.set_value(node, 5, value)
-
-    def frel_edited(self, renderer, index, value):
-        row = int(index)
-        ref = self.family.get_child_ref_list()[row]
-        ref.set_father_relation(RelLib.ChildRefType(value))
-        node = self.model.get_iter((row,))
-        self.model.set_value(node, 4, value)
 
     def get_data(self):
         """
@@ -228,6 +203,20 @@ class ChildEmbedList(EmbeddedList):
         ref = RelLib.ChildRef()
         ref.ref = person.get_handle()
         self.family.add_child_ref(ref)
+        self.rebuild()
+
+    def prop_button_clicked(self,obj):
+        handle = self.get_selected()
+        if handle:
+            from Editors import EditChildRef
+
+            for ref in self.family.get_child_ref_list():
+                if ref.ref == handle:
+                    EditChildRef(self.dbstate, self.uistate, self.track,
+                                 ref, self.child_ref_edited)
+                    break
+
+    def child_ref_edited(self, person):
         self.rebuild()
 
     def share_button_clicked(self,obj):
