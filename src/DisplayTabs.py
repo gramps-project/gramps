@@ -829,7 +829,7 @@ class BackRefList(EmbeddedList):
     def is_empty(self):
         return self.model.empty
 
-    def create_buttons(self, share=False):
+    def create_buttons(self, share=False, prop_button=False):
         self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
 
         vbox = gtk.VBox()
