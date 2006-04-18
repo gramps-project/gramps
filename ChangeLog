@@ -1,3 +1,7 @@
+2006-04-18  Don Allingham  <don@gramps-project.org>
+	* src/plugins/Desbrowser.py: bring up to speed with ManagedWindow
+	* src/GrampsWidgets.py: fix the type return value 
+
 2006-04-17  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_FamilyView.py: handle the dirty flag for updates
 	* src/DataViews/_PersonView.py: goto active person properly
