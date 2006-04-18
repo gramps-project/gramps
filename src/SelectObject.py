@@ -77,9 +77,13 @@ class SelectObject:
 
         Utils.set_titles(self.top,title_label,title)
 
-        titles = [(_('Preview'),0,100,ListModel.IMAGE),
-                  (_('Title'),1,150), (_('ID'),2,50),
-                  (_('Type'),3,70), ('',4,0) ]
+        titles = [
+            (_('Preview'),0,50,ListModel.IMAGE),
+            (_('Title'),1,150),
+            (_('ID'),2,50),
+            (_('Type'),3,70),
+            ('',4,0)
+            ]
         
         self.ncols = len(titles)      
 
@@ -98,6 +102,9 @@ class SelectObject:
             title = obj.get_description()
             the_type = Mime.get_description(obj.get_mime_type())
             pixbuf = ImgManip.get_thumb_from_obj(obj)
+            pixbuf = pixbuf.scale_simple(pixbuf.get_width()/2,
+                                         pixbuf.get_height()/2,
+                                         gtk.gdk.INTERP_BILINEAR)
             self.object_model.add([pixbuf,title,obj.get_gramps_id(),the_type],key)
         self.object_model.connect_model()
         
@@ -111,7 +118,7 @@ class SelectObject:
         the_type = obj.get_mime_type()
         path = obj.get_path()
 
-        if the_type and the_type[0:5] == "image":
+        if the_type and the_type.startswith("image/"):
             image = ImgManip.get_thumbnail_image(path,the_type)
         else:
             image = Mime.find_mime_type_pixbuf(the_type)

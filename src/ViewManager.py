@@ -835,7 +835,6 @@ class ViewManager:
         # Undo/Redo always start with standard labels and insensitive state
         #self.undo_callback(None)
         #self.redo_callback(None)
-        #self.goto_active_person()
         self.file_loaded = True
         self.actiongroup.set_visible(True)
         return True

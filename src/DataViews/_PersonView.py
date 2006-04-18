@@ -88,7 +88,8 @@ class PersonView(PageView.PersonNavView):
         self.handle_col = PeopleModel.COLUMN_INT_ID
         
     def change_page(self):
-        self.generic_filter_widget.on_filter_name_changed(None)
+        pass
+        #self.generic_filter_widget.on_filter_name_changed(None)
         
     def define_actions(self):
         """
@@ -259,6 +260,8 @@ class PersonView(PageView.PersonNavView):
         db.connect('person-delete', self.person_removed)
         db.connect('person-rebuild', self.build_tree)
         self.generic_filter_widget.apply_filter()
+        self.goto_active_person()
+
 
     def goto_active_person(self,obj=None):
         """
@@ -495,7 +498,8 @@ class PersonView(PageView.PersonNavView):
                 person = self.dbstate.db.get_person_from_handle(selected_ids[0])
                 self.dbstate.change_active_person(person)
             except:
-                self.dbstate.change_active_person(None)
+                pass
+            #self.dbstate.change_active_person(None)
 
         if len(selected_ids) == 1:
             self.tree.drag_source_set(BUTTON1_MASK,
