@@ -121,7 +121,6 @@ class GrampsTab(gtk.HBox):
 
         # build the interface
         self.share_btn = None
-        self.prop_btn = None
         self.build_interface()
 
     def get_selected(self):
@@ -208,11 +207,9 @@ class ButtonTab(GrampsTab):
         'del'   : _('Remove'),
         'edit'  : _('Edit'),
         'share' : _('Share'),
-        'prop'  : _('Properties'),
         }
 
-    def __init__(self, dbstate, uistate, track, name, share_button=False,
-                 prop_button=False):
+    def __init__(self, dbstate, uistate, track, name, share_button=False):
         """
         Similar to the base class, except after Build
         @param dbstate: The database state. Contains a reference to
@@ -231,9 +228,9 @@ class ButtonTab(GrampsTab):
         """
         GrampsTab.__init__(self,dbstate, uistate, track, name)
         self.tooltips = gtk.Tooltips()
-        self.create_buttons(share_button, prop_button)
+        self.create_buttons(share_button)
 
-    def create_buttons(self, share_button=False, prop_button=False):
+    def create_buttons(self, share_button=False):
         """
         Creates a button box consisting of three buttons, one for Add,
         one for Edit, and one for Delete. This button box is then appended
@@ -253,13 +250,6 @@ class ButtonTab(GrampsTab):
         else:
             self.share_btn = None
 
-        if prop_button:
-            self.prop_btn = SimpleButton(gtk.STOCK_PROPERTIES,
-                                         self.prop_button_clicked)
-            self.tooltips.set_tip(self.prop_btn, self._MSG['prop'])
-        else:
-            self.prop_btn = None
-        
         vbox = gtk.VBox()
         vbox.set_spacing(6)
         vbox.pack_start(self.add_btn, False)
@@ -267,8 +257,6 @@ class ButtonTab(GrampsTab):
             vbox.pack_start(self.share_btn, False)
         vbox.pack_start(self.edit_btn, False)
         vbox.pack_start(self.del_btn, False)
-        if prop_button:
-            vbox.pack_start(self.prop_btn, False)
         vbox.show_all()
         self.pack_start(vbox, False)
 
@@ -294,13 +282,6 @@ class ButtonTab(GrampsTab):
         """
         print "Uncaught Share clicked"
 
-    def prop_button_clicked(self, obj):
-        """
-        Function called with the Add button is clicked. This function
-        should be overridden by the derived class.
-        """
-        print "Uncaught Properties clicked"
-
     def del_button_clicked(self, obj):
         """
         Function called with the Delete button is clicked. This function
@@ -325,13 +306,9 @@ class ButtonTab(GrampsTab):
         if self.get_selected():
             self.edit_btn.set_sensitive(True)
             self.del_btn.set_sensitive(True)
-            if self.prop_btn:
-                self.prop_btn.set_sensitive(True)
         else:
             self.edit_btn.set_sensitive(False)
             self.del_btn.set_sensitive(False)
-            if self.prop_btn:
-                self.prop_btn.set_sensitive(False)
 
 class EmbeddedList(ButtonTab):
     """
@@ -345,13 +322,13 @@ class EmbeddedList(ButtonTab):
     _DND_EXTRA  = None
     
     def __init__(self, dbstate, uistate, track, name, build_model,
-                 share=False, properties=False):
+                 share=False):
         """
         Creates a new list, using the passed build_model to
         populate the list.
         """
-        ButtonTab.__init__(self, dbstate, uistate, track, name, share,
-                           properties)
+        ButtonTab.__init__(self, dbstate, uistate, track, name, share)
+
         
         self.changed = False
         self.build_model = build_model
@@ -396,10 +373,6 @@ class EmbeddedList(ButtonTab):
                 (True, gtk.STOCK_REMOVE, self.del_button_clicked),
             ]
 
-        if self.prop_btn:
-            itemlist.append((True, gtk.STOCK_PROPERTIES,
-                             self.prop_button_clicked))
-        
         menu = gtk.Menu()
         for (image, title, func) in itemlist:
             if image:
@@ -829,7 +802,7 @@ class BackRefList(EmbeddedList):
     def is_empty(self):
         return self.model.empty
 
-    def create_buttons(self, share=False, prop_button=False):
+    def create_buttons(self, share=False):
         self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
 
         vbox = gtk.VBox()
@@ -1722,6 +1695,13 @@ class SourceEmbedList(EmbeddedList):
     _DND_TYPE = DdTargets.SOURCEREF
     _DND_EXTRA = DdTargets.SOURCE_LINK
         
+    _MSG = {
+        'add'   : _('Create and add a new source'),
+        'del'   : _('Remove the existing source'),
+        'edit'  : _('Edit the selected source'),
+        'share' : _('Add an existing source'),
+        }
+
     _column_names = [
         (_('ID'),     0, 75), 
         (_('Title'),  1, 200), 

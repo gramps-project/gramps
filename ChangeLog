@@ -1,3 +1,7 @@
+2006-04-18  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamily.py: button messages
+	* src/DisplayTabs.py: remove property button stuff
+
 2006-04-18  Alex Roitman  <shura@gramps-project.org>
 	* src/DisplayTabs.py (BackRefList.create_buttons): Allow an
 	additional argument to keep the caller happy.
