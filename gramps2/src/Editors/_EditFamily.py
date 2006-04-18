@@ -90,6 +90,13 @@ class ChildEmbedList(EmbeddedList):
     _HANDLE_COL = 10
     _DND_TYPE = DdTargets.PERSON_LINK
 
+    _MSG = {
+        'add'   : _('Create a new person and add the child to the family'),
+        'del'   : _('Remove the child from the family'),
+        'edit'  : _('Edit the child/family relationship'),
+        'share' : _('Add an existing person as a child of the family'),
+        }
+
     _column_names = [
         (_('#'),0) ,
         (_('ID'),1) ,
@@ -109,7 +116,7 @@ class ChildEmbedList(EmbeddedList):
         """
         self.family = family
         EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _('Children'), ChildModel, True, True)
+                              _('Children'), ChildModel, True)
 
     def find_index(self,obj):
         """
@@ -205,17 +212,6 @@ class ChildEmbedList(EmbeddedList):
         self.family.add_child_ref(ref)
         self.rebuild()
 
-    def prop_button_clicked(self,obj):
-        handle = self.get_selected()
-        if handle:
-            from Editors import EditChildRef
-
-            for ref in self.family.get_child_ref_list():
-                if ref.ref == handle:
-                    EditChildRef(self.dbstate, self.uistate, self.track,
-                                 ref, self.child_ref_edited)
-                    break
-
     def child_ref_edited(self, person):
         self.rebuild()
 
@@ -237,43 +233,6 @@ class ChildEmbedList(EmbeddedList):
             self.family.add_child_ref(ref)
             self.rebuild()
 
-#     def add_button_clicked(self,obj):
-#         # we could workout the death years of the parents here and
-#         # set a suitable filter_spec on the PersonSelector
-#         # we might also be able to set a filter that only includes
-#         # people that are not already listed as children in another
-#         # family.
-#         selector = PersonSelector(self.dbstate,self.uistate,self.track)
-
-#         # this need the window handle of the main EditFamily window
-#         # to make the PersonSelector transient to it. I am not sure
-#         # want the best way is to get that handle from here.
-#         #selector.set_transient_for(self.window)
-
-#         # Connect this to the method used to add a new child.
-#         #selector.connect('add-object',self.on_add_child)
-        
-#         selector.connect('add-object',self.on_change_child)
-
-#     def on_change_child(self, selector_window, obj):
-#         if obj.__class__ == RelLib.Person:
-#             try:
-#                 person = obj
-#                 self.family.add_child_handle(person.get_handle())
-#                 self.rebuild()
-#             except:
-#                 log.warn(
-#                     "Failed to update child: \n"
-#                     "obj returned from selector was: %s\n"
-#                     % (repr(obj),))
-#                 raise
-#         else:
-#             log.warn(
-#                 "Object selector returned obj.__class__ = %s, it should "
-#                 "have been of type %s." % (obj.__class__.__name__,
-#                                            RelLib.Person.__name__))
-#         selector_window.close()
-
     def run(self,skip):
         SelectPerson(self.dbstate.db, "Select Child",
                      skip=[ x for x in skip if x])
@@ -287,12 +246,13 @@ class ChildEmbedList(EmbeddedList):
     def edit_button_clicked(self,obj):
         handle = self.get_selected()
         if handle:
-            from _EditPerson import EditPerson
-            try:
-                person = self.dbstate.db.get_person_from_handle(handle)
-                EditPerson(self.dbstate,self.uistate,self.track,person)
-            except Errors.WindowActiveError:
-                pass
+            from Editors import EditChildRef
+
+            for ref in self.family.get_child_ref_list():
+                if ref.ref == handle:
+                    EditChildRef(self.dbstate, self.uistate, self.track,
+                                 ref, self.child_ref_edited)
+                    break
 
     def north_american(self):
         father_handle = self.family.get_father_handle()
