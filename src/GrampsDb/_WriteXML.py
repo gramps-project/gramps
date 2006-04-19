@@ -535,10 +535,10 @@ class XmlWriter:
         sreflist = childref.get_source_references()
         if (len(sreflist) == 0) and childref.get_note() =="":
             self.write_ref('childref',childref.ref,index,close=True,
-                           extra_text=priv_text+frel_text+mrel_text)
+                           extra_text=priv_text+mrel_text+frel_text)
         else:
             self.write_ref('childref',childref.ref,index,close=False,
-                           extra_text=priv_text+frel_text+mrel_text)
+                           extra_text=priv_text+mrel_text+frel_text)
             for sref in sreflist:
                 self.dump_source_ref(sref,index+1)
             self.write_note("note",childref.get_note_object(),index+1)
@@ -759,8 +759,7 @@ class XmlWriter:
 
     def dump_name(self,name,alternative=False,index=1):
         sp = "  "*index
-        name_type = _ConstXML.str_for_xml(_ConstXML.name_types,
-                                          name.get_type())
+        name_type = name.get_type().xml_str()
         self.g.write('%s<name' % sp)
         if alternative:
             self.g.write(' alt="1"')
@@ -923,8 +922,7 @@ class XmlWriter:
     def write_url_list(self,list,index=1):
         sp = "  "*index
         for url in list:
-            url_type = _ConstXML.str_for_xml(_ConstXML.url_types,
-                                             url.get_type())
+            url_type = url.get_type().xml_str()
             if url_type:
                 type_text = ' type="%s"' % url_type
             else:

@@ -956,14 +956,13 @@ class GrampsParser:
         mrel = RelLib.ChildRefType().set_from_xml_str(attrs.get('mrel'))
         frel = RelLib.ChildRefType().set_from_xml_str(attrs.get('frel'))
 
-        # Only need to worry about this if there are non-default rels
-        # Otherwise, if both are default, the family's child tag will do
-        if not ( mrel.is_default() and frel.is_default() ):
-            childref = RelLib.ChildRef()
-            childref.ref = self.person.handle
+        childref = RelLib.ChildRef()
+        childref.ref = self.person.handle
+        if not mrel.is_default():
             childref.set_mother_relation(mrel)
+        if not frel.is_default():
             childref.set_father_relation(frel)
-            self.childref_map[(handle,self.person.handle)] = childref
+        self.childref_map[(handle,self.person.handle)] = childref
         self.person.add_parent_family_handle(handle)
 
     def start_parentin(self,attrs):
@@ -979,8 +978,6 @@ class GrampsParser:
         if not self.in_witness:
             self.name = RelLib.Name()
             self.name.type.set_from_xml_str(attrs.get('type'))
-##                 (_ConstXML.tuple_from_xml(
-##                 _ConstXML.name_types,attrs.get('type','Birth Name')))
             self.name.sort_as = int(attrs.get("sort",RelLib.Name.DEF))
             self.name.display_as = int(attrs.get("display",RelLib.Name.DEF))
             self.name.conf = int(attrs.get("conf",2))

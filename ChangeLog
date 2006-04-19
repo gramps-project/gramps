@@ -33,6 +33,8 @@
 	* src/DisplayTabs.py: remove property button stuff
 
 2006-04-18  Alex Roitman  <shura@gramps-project.org>
+	* data/grampsxml.dtd: Update.
+	* data/grampsxml.rng: Update.
 	* src/GrampsDb/_ReadXML.py: Parse old and new XML.
 	* src/GrampsDb/_WriteXML.py (dump_child_ref, dump_person_ref): Add
 	methods.

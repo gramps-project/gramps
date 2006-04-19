@@ -153,15 +153,16 @@
     </element></zeroOrMore>
     <zeroOrMore><element name="childof">
         <attribute name="hlink"><data type="IDREF"/></attribute>
-        <optional><attribute name="mrel">
-            <ref name="child-rel"/>
-        </attribute></optional>
-        <optional><attribute name="frel">
-            <ref name="child-rel"/>
-        </attribute></optional>
     </element></zeroOrMore>
     <zeroOrMore><element name="parentin">
         <attribute name="hlink"><data type="IDREF"/></attribute>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="personref">
+        <attribute name="hlink"><data type="IDREF"/></attribute>
+        <optional><attribute name="priv">
+            <ref name="priv-content"/>
+        </attribute></optional>
+        <attribute name="rel"><text/></attribute>
     </element></zeroOrMore>
     <optional><element name="note">
         <ref name="note-content"/>
@@ -287,8 +288,17 @@
     <zeroOrMore><element name="objref">
         <ref name="objref-content"/>
     </element></zeroOrMore>
-    <zeroOrMore><element name="child">
+    <zeroOrMore><element name="childref">
         <attribute name="hlink"><data type="IDREF"/></attribute>
+        <optional><attribute name="priv">
+            <ref name="priv-content"/>
+        </attribute></optional>
+        <optional><attribute name="mrel">
+            <ref name="child-rel"/>
+        </attribute></optional>
+        <optional><attribute name="frel">
+            <ref name="child-rel"/>
+        </attribute></optional>
     </element></zeroOrMore>
     <zeroOrMore><element name="attribute">
         <ref name="attribute-content"/>
