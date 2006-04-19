@@ -874,10 +874,6 @@ class TestcaseGenerator(Tool.Tool):
             fam.set_father_handle(person1_h)
         if person2_h:
             fam.set_mother_handle(person2_h)
-        if randint(0,2) == 1:
-            fam.set_relationship( self.rand_type(Utils.family_relations))
-        else:
-            fam.set_relationship((RelLib.Family.MARRIED,''))
         fam_h = self.db.add_family(fam,self.trans)
         self.generated_families.append(fam_h)
         fam = self.db.commit_family(fam,self.trans)
@@ -937,10 +933,6 @@ class TestcaseGenerator(Tool.Tool):
         self.add_defaults(fam)
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        if randint(0,2) == 1:
-            fam.set_relationship( self.rand_type(Utils.family_relations))
-        else:
-            fam.set_relationship( (RelLib.Family.MARRIED,'') )
         child_ref = RelLib.ChildRef()
         child_ref.set_reference_handle(child_h)
         self.fill_object(child_ref)
@@ -1060,6 +1052,12 @@ class TestcaseGenerator(Tool.Tool):
                 (y,d) = self.rand_date()
                 o.set_date_object( d)
 
+        if isinstance(o,RelLib.Family):
+            if randint(0,2) == 1:
+                o.set_relationship( self.rand_type(RelLib.FamilyRelType()))
+            else:
+                o.set_relationship(RelLib.FamilyRelType(RelLib.FamilyRelType.MARRIED))
+
         if isinstance(o,RelLib.LdsOrd):
             if randint(0,1) == 1:
                 o.set_temple( choice( lds.temple_to_abrev.keys()))
@@ -1149,7 +1147,7 @@ class TestcaseGenerator(Tool.Tool):
             o.set_media_type( self.rand_type(Utils.source_media_types))
 
         if isinstance(o,RelLib.Repository):
-            o.set_type( self.rand_type(Utils.repository_types))
+            o.set_type( self.rand_type(RelLib.RepositoryType()))
             o.set_name( self.rand_text(self.SHORT))
 
         if isinstance(o,RelLib.Source):
@@ -1198,7 +1196,7 @@ class TestcaseGenerator(Tool.Tool):
         if isinstance(o,RelLib.Url):
             o.set_path("http://www.gramps-project.org/")
             o.set_description( self.rand_text(self.SHORT))
-            o.set_type( self.rand_type(Utils.web_types))
+            o.set_type( self.rand_type(RelLib.UrlType()))
 
         return o
 
