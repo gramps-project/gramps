@@ -65,4 +65,4 @@ from _UrlType import UrlType
 from _ChildRefType import ChildRefType
 from _RepositoryType import RepositoryType
 from _EventType import EventType
-
+from _FamilyRelType import FamilyRelType

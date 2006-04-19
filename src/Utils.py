@@ -185,29 +185,29 @@ def format_attribute( type):
         val = family_attributes.get(type[0],_("Invalid id %d ('%s')")%type)
     return val
 
-family_relations = {
-    RelLib.Family.MARRIED     : _("Married"),
-    RelLib.Family.UNMARRIED   : _("Unmarried"),
-    RelLib.Family.CIVIL_UNION : _("Civil Union"),
-    RelLib.Family.UNKNOWN     : _("Unknown"),
-    RelLib.Family.CUSTOM      : _("Other"),
-    }
-def format_family_relation( type):
-    if type[0] == RelLib.Family.CUSTOM:
-        return type[1]
-    return family_relations.get(type[0],_("Invalid id %d ('%s')")%type)
+## family_relations = {
+##     RelLib.Family.MARRIED     : _("Married"),
+##     RelLib.Family.UNMARRIED   : _("Unmarried"),
+##     RelLib.Family.CIVIL_UNION : _("Civil Union"),
+##     RelLib.Family.UNKNOWN     : _("Unknown"),
+##     RelLib.Family.CUSTOM      : _("Other"),
+##     }
+## def format_family_relation( type):
+##     if type[0] == RelLib.Family.CUSTOM:
+##         return type[1]
+##     return family_relations.get(type[0],_("Invalid id %d ('%s')")%type)
 
 family_rel_descriptions = {
-    RelLib.Family.MARRIED     : _("A legal or common-law relationship "
-                                  "between a husband and wife"),
-    RelLib.Family.UNMARRIED   : _("No legal or common-law relationship "
-                                  "between man and woman"),
-    RelLib.Family.CIVIL_UNION : _("An established relationship between "
-                                  "members of the same sex"),
-    RelLib.Family.UNKNOWN     : _("Unknown relationship between a man "
-                                  "and woman"),
-    RelLib.Family.CUSTOM      : _("An unspecified relationship "
-                                  "a man and woman"),
+    RelLib.FamilyRelType.MARRIED     : _("A legal or common-law relationship "
+                                         "between a husband and wife"),
+    RelLib.FamilyRelType.UNMARRIED   : _("No legal or common-law relationship "
+                                         "between man and woman"),
+    RelLib.FamilyRelType.CIVIL_UNION : _("An established relationship between "
+                                         "members of the same sex"),
+    RelLib.FamilyRelType.UNKNOWN     : _("Unknown relationship between a man "
+                                         "and woman"),
+    RelLib.FamilyRelType.CUSTOM      : _("An unspecified relationship "
+                                         "a man and woman"),
     }
 
 source_media_types = {

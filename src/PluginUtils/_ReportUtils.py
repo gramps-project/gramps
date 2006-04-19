@@ -815,10 +815,10 @@ child_mother = {
 #
 #-------------------------------------------------------------------------
 _rtype = {
-    RelLib.Family.UNMARRIED     : _("unmarried"),
-    RelLib.Family.CIVIL_UNION   : _("civil union"),
-    RelLib.Family.UNKNOWN       : _("Unknown"),
-    RelLib.Family.CUSTOM        : _("Other"),
+    RelLib.FamilyRelType.UNMARRIED     : _("unmarried"),
+    RelLib.FamilyRelType.CIVIL_UNION   : _("civil union"),
+    RelLib.FamilyRelType.UNKNOWN       : _("Unknown"),
+    RelLib.FamilyRelType.CUSTOM        : _("Other"),
     }
    
 #-------------------------------------------------------------------------
@@ -1680,14 +1680,14 @@ def married_rel_str(database,person,family,is_first=True):
     relationship = family.get_relationship()[0]
     
     if is_first:
-        if relationship == RelLib.Family.MARRIED:
+        if relationship == RelLib.FamilyRelType.MARRIED:
             if person.get_gender() == RelLib.Person.MALE:
                 text = _('He married %(spouse)s.') % values
             elif person.get_gender() == RelLib.Person.FEMALE:
                 text = _('She married %(spouse)s.') % values
             else:
                 text = _('This person married %(spouse)s.') % values
-        elif relationship == RelLib.Family.UNMARRIED:
+        elif relationship == RelLib.FamilyRelType.UNMARRIED:
             if person.get_gender() == RelLib.Person.MALE:
                 text = _('He had an unmarried relationship with %(spouse)s.') % values
             elif person.get_gender() == RelLib.Person.FEMALE:
@@ -1702,14 +1702,14 @@ def married_rel_str(database,person,family,is_first=True):
             else:
                 text = _('This person had relationship with %(spouse)s.') % values
     else:
-        if relationship == RelLib.Family.MARRIED:
+        if relationship == RelLib.FamilyRelType.MARRIED:
             if person.get_gender() == RelLib.Person.MALE:
                 text = _('He also married %(spouse)s.') % values
             elif person.get_gender() == RelLib.Person.FEMALE:
                 text = _('She also married %(spouse)s.') % values
             else:
                 text = _('This person also married %(spouse)s.') % values
-        elif relationship == RelLib.Family.UNMARRIED:
+        elif relationship == RelLib.FamilyRelType.UNMARRIED:
             if person.get_gender() == RelLib.Person.MALE:
                 text = _('He had an unmarried relationship with %(spouse)s.') % values
             elif person.get_gender() == RelLib.Person.FEMALE:

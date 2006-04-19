@@ -44,6 +44,7 @@ from _AttributeBase import AttributeBase
 from _EventRef import EventRef
 from _LdsOrdBase import LdsOrdBase
 from _ChildRef import ChildRef
+from _FamilyRelType import FamilyRelType
 
 #-------------------------------------------------------------------------
 #
@@ -73,12 +74,6 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
     or the changes will be lost.
     """
 
-    MARRIED     = 0
-    UNMARRIED   = 1
-    CIVIL_UNION = 2
-    UNKNOWN     = 3
-    CUSTOM      = 4
-
     def __init__(self):
         """
         Creates a new Family instance. After initialization, most
@@ -94,7 +89,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         self.father_handle = None
         self.mother_handle = None
         self.child_ref_list = []
-        self.type = (Family.MARRIED,'')
+        self.type = (FamilyRelType.MARRIED,'')
         self.event_ref_list = []
         self.lds_seal = None
         self.complete = 0
@@ -287,17 +282,17 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         first item is an integer constant and whose second item is
         the string. The valid values are:
 
-            - C{Family.MARRIED} : indicates a legally recognized married
+            - C{FamilyRelType.MARRIED} : indicates a legally recognized married
                 relationship between two individuals. This may be either
                 an opposite or a same sex relationship.
-            - C{Family.UNMARRIED} : indicates a relationship between two
+            - C{FamilyRelType.UNMARRIED} : indicates a relationship between two
                 individuals that is not a legally recognized relationship.
-            - C{Family.CIVIL_UNION} : indicates a legally recongnized,
+            - C{FamilyRelType.CIVIL_UNION} : indicates a legally recongnized,
                 non-married relationship between two individuals of the
                 same sex.
-            - C{Family.UNKNOWN} : indicates that the type of relationship
+            - C{FamilyRelType.UNKNOWN} : indicates that the type of relationship
                 between the two individuals is not know.
-            - C{Family.CUSTOM} : indicates that the type of relationship
+            - C{FamilyRelType.CUSTOM} : indicates that the type of relationship
                 between the two individuals does not match any of the
                 other types.
 
@@ -305,15 +300,17 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
             between the father and mother of the relationship.
         @type relationship_type: tuple
         """
-        if not type(relationship_type) == tuple:
-            if relationship_type in [Family.MARRIED,Family.UNMARRIED,
-                                     Family.CIVIL_UNION,Family.UNKNOWN,
-                                     Family.CUSTOM]:
-                warn( "set_relationship now takes a tuple",
+        if not isinstance(relationship_type,FamilyRelType):
+            if relationship_type in [FamilyRelType.MARRIED,
+                                     FamilyRelType.UNMARRIED,
+                                     FamilyRelType.CIVIL_UNION,
+                                     FamilyRelType.UNKNOWN,
+                                     FamilyRelType.CUSTOM]:
+                warn( "set_relationship now takes a FamilyRelType instance",
                       DeprecationWarning, 2)
                 # Wrapper for old API
                 # remove when transitition done.
-                relationship_type = (relationship_type,'')
+                relationship_type = FamilyRelType(relationship_type)
             else:
                 assert type(relationship_type) == tuple
         self.type = relationship_type
