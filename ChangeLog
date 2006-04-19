@@ -1,3 +1,6 @@
+2006-04-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/TestcaseGenerator.py: Use the new types
+
 2006-04-19  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib/Makefile.am: Ship new file.
 	* src/PluginUtils/_ReportUtils.py: Use fam relations from new module.
