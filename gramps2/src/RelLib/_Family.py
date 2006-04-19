@@ -89,7 +89,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         self.father_handle = None
         self.mother_handle = None
         self.child_ref_list = []
-        self.type = (FamilyRelType.MARRIED,'')
+        self.type = FamilyRelType(FamilyRelType.MARRIED)
         self.event_ref_list = []
         self.lds_seal = None
         self.complete = 0
@@ -117,7 +117,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         return (self.handle, self.gramps_id, self.father_handle,
                 self.mother_handle,
                 [cr.serialize() for cr in self.child_ref_list],
-                self.type,
+                self.type.serialize(),
                 [er.serialize() for er in self.event_ref_list],
                 MediaBase.serialize(self),
                 AttributeBase.serialize(self),
@@ -132,10 +132,11 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         back into the data in a Family structure.
         """
         (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
-         child_ref_list, self.type, event_ref_list, media_list,
+         child_ref_list, the_type, event_ref_list, media_list,
          attribute_list, lds_seal_list, source_list, note,
          self.change, self.marker, self.private) = data
 
+        self.type.unserialize(the_type)
         self.event_ref_list = [EventRef().unserialize(er)
                                for er in event_ref_list]
         self.child_ref_list = [ChildRef().unserialize(cr)
@@ -300,20 +301,11 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
             between the father and mother of the relationship.
         @type relationship_type: tuple
         """
-        if not isinstance(relationship_type,FamilyRelType):
-            if relationship_type in [FamilyRelType.MARRIED,
-                                     FamilyRelType.UNMARRIED,
-                                     FamilyRelType.CIVIL_UNION,
-                                     FamilyRelType.UNKNOWN,
-                                     FamilyRelType.CUSTOM]:
-                warn( "set_relationship now takes a FamilyRelType instance",
-                      DeprecationWarning, 2)
-                # Wrapper for old API
-                # remove when transitition done.
-                relationship_type = FamilyRelType(relationship_type)
-            else:
-                assert type(relationship_type) == tuple
-        self.type = relationship_type
+        if type(relationship_type) == tuple:
+            self.type = FamilyRelType(relationship_type)
+        else:
+            self.type = relationship_type
+        return
 
     def get_relationship(self):
         """

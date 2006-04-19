@@ -1799,7 +1799,7 @@ def find_spouse(person,family):
 def find_marriage(database,family):    
     for event_ref in family.get_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
-        if event and event.get_type() == RelLib.Event.MARRIAGE:
+        if event and int(event.get_type()) == RelLib.EventType.MARRIAGE:
             return event
     return None
 
@@ -1989,7 +1989,7 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
     burial = None
     for event_ref in person.get_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
-        if event and event.get_type() == RelLib.Event.BURIAL:
+        if event and int(event.get_type()) == RelLib.Event.BURIAL:
             burial = event
             break
 

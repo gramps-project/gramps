@@ -602,8 +602,7 @@ class FamilyView(PageView.PersonNavView):
         for event_ref in family.get_event_ref_list():
             handle = event_ref.ref
             event = self.dbstate.db.get_event_from_handle(handle)
-            etype = event.get_type()
-            if etype[0] == RelLib.Event.MARRIAGE:
+            if int(event.get_type()) == RelLib.EventType.MARRIAGE:
                 self.write_event_ref(_('Marriage'), event)
                 value = True
         return value

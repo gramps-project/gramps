@@ -208,7 +208,7 @@ class CalendarWriter:
         if family:
             for event_ref in family.get_event_ref_list():
                 event = self.db.get_event_from_handle(event_ref.ref)
-                if event.get_type()[0] == RelLib.Event.MARRIAGE:
+                if int(event.get_type()) == RelLib.EventType.MARRIAGE:
                     m_date = event.get_date_object()
                     place_handle = event.get_place_handle()
                     text = _("Marriage of %s") % Utils.family_name(family,self.db)

@@ -358,7 +358,7 @@ class FormattingHelper:
         text = ""
         for event_ref in family.get_event_ref_list():
             event = self.db.get_event_from_handle(event_ref.ref)
-            if event and event.get_type()[0] == RelLib.Event.MARRIAGE:
+            if event and int(event.get_type) == RelLib.EventType.MARRIAGE:
                 if line_count < 3:
                     return DateHandler.get_date(event)
                 (i,s) = event.get_type()
@@ -1599,10 +1599,10 @@ def build_detail_string(db,person):
     else:
         for event_ref in person.get_event_ref_list():
             event = db.get_event_from_handle(event_ref.ref)
-            if event and event.get_type()[0] == RelLib.Event.BAPTISM:
+            if event and int(event.get_type()) == RelLib.EventType.BAPTISM:
                 detail_text += format_event(db, _BAPT, event)
                 break
-            if event and event.get_type()[0] == RelLib.Event.CHRISTEN:
+            if event and int(event.get_type()) == RelLib.EventType.CHRISTEN:
                 detail_text += format_event(db, _CHRI, event)
                 break
 
@@ -1613,10 +1613,10 @@ def build_detail_string(db,person):
     else:
         for event_ref in person.get_event_ref_list():
             event = db.get_event_from_handle(event_ref.ref)
-            if event and event.get_type()[0] == RelLib.Event.BURIAL:
+            if event and int(event.get_type()) == RelLib.EventType.BURIAL:
                 detail_text += format_event(db, _BURI, event)
                 break
-            if event and event.get_type()[0] == RelLib.Event.CREMATION:
+            if event and int(event.get_type()) == RelLib.EventType.CREMATION:
                 detail_text += format_event(db, _CREM, event)
                 break
 

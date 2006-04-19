@@ -445,13 +445,13 @@ class GrampsDbBase(GrampsDBCallback):
                           transaction, change_time)
 
     def commit_personal_event(self, event, transaction, change_time=None):
-        if event.type[0] == Event.CUSTOM:
-            self.individual_event_names.add(event.type[1])
+        if event.type.is_custom():
+            self.individual_event_names.add(str(event.type))
         self.commit_event(event, transaction, change_time)
 
     def commit_family_event(self, event, transaction, change_time=None):
-        if event.type[0] == Event.CUSTOM:
-            self.family_event_names.add(event.type[1])
+        if event.type.is_custom():
+            self.family_event_names.add(str(event.type))
         self.commit_event(event, transaction, change_time)
 
     def commit_event(self, event, transaction, change_time=None):
@@ -875,8 +875,8 @@ class GrampsDbBase(GrampsDBCallback):
         Adds an Event to the database, assigning internal IDs if they have
         not already been defined.
         """
-        if event.type[0] == Event.CUSTOM:
-            self.individual_event_names.add(event.type[1])
+        if event.type.is_custom():
+            self.individual_event_names.add(str(event.type))
         return self.add_event(event, transaction)
 
     def add_family_event(self, event, transaction):
@@ -884,8 +884,8 @@ class GrampsDbBase(GrampsDBCallback):
         Adds an Event to the database, assigning internal IDs if they have
         not already been defined.
         """
-        if event.type[0] == Event.CUSTOM:
-            self.family_event_names.add(event.type[1])
+        if event.type.is_custom():
+            self.family_event_names.add(str(event.type))
         return self.add_event(event, transaction)
 
     def add_place(self, place, transaction):

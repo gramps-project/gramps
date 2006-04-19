@@ -450,12 +450,7 @@ class ScratchPadEventRef(ScratchPadGrampsTypeWrapper):
 
         base = self._db.get_event_from_handle(self._obj.ref)
         self._title = base.get_description()
-
-        value = base.get_type()
-        if value == RelLib.Event.CUSTOM:
-            self._value = value[1]
-        else:
-            self._value = Utils.personal_events[value[0]]
+        self._value = str(base.get_type())
 
     def tooltip(self):
         return ""

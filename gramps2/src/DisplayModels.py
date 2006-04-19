@@ -452,7 +452,7 @@ class FamilyModel(BaseModel):
             return u""
 
     def column_type(self,data):
-        return Utils.format_family_relation(data[5])
+        return str(RelLib.FamilyRelType(data[5]))
 
     def column_id(self,data):
         return unicode(data[1])
@@ -608,7 +608,7 @@ class EventModel(BaseModel):
             return u''
 
     def column_type(self,data):
-        return Utils.format_event(data[2])
+        return str(RelLib.EventType(data[2]))
 
     def column_id(self,data):
         return unicode(data[1])

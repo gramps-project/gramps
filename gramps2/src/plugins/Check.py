@@ -552,9 +552,9 @@ class CheckIntegrity:
                     self.db.commit_person(person,self.trans)
                     self.invalid_events.append(key)
                 else:
-                    if not birth.get_type()[0] == RelLib.Event.BIRTH:
+                    if int(birth.get_type()) != RelLib.EventType.BIRTH:
                         # Birth event was not of the type "Birth"
-                        birth.set_type((RelLib.Event.BIRTH,""))
+                        birth.set_type(RelLib.EventType(RelLib.EventType.BIRTH))
                         self.db.commit_event(birth,self.trans)
                         self.invalid_birth_events.append(key)
             death_ref = person.get_death_ref()
@@ -568,9 +568,9 @@ class CheckIntegrity:
                     self.db.commit_person(person,self.trans)
                     self.invalid_events.append(key)
                 else:
-                    if not death.get_type()[0] == RelLib.Event.DEATH:
+                    if int(death.get_type()) != RelLib.EventType.DEATH:
                         # Death event was not of the type "Death"
-                        death.set_type((RelLib.Event.DEATH,""))
+                        death.set_type(RelLib.EventType(RelLib.EventType.DEATH))
                         self.db.commit_event(death,self.trans)
                         self.invalid_death_events.append(key)
 

@@ -1,3 +1,32 @@
+2006-04-19  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_FamilyView.py: GrampsType support
+	* src/DataViews/_PedigreeView.py: GrampsType support
+	* src/GrampsDb/_ReadGedcom.py: GrampsType support
+	* src/GrampsDb/_GrampsDbBase.py: GrampsType support
+	* src/GrampsDb/_ReadXML.py: GrampsType support
+	* src/GrampsDb/_ConstXML.py: GrampsType support
+	* src/GrampsDb/_GrampsBSDDB.py: GrampsType support
+	* src/RelLib/_Family.py: GrampsType support
+	* src/RelLib/_Event.py: GrampsType support
+	* src/Editors/_EditEventRef.py: GrampsType support
+	* src/Editors/_EditFamily.py: GrampsType support
+	* src/Editors/_EditEvent.py: GrampsType support
+	* src/plugins/ImportvCard.py: GrampsType support
+	* src/plugins/GraphViz.py: GrampsType support
+	* src/plugins/Check.py: GrampsType support
+	* src/plugins/FamilyGroup.py: GrampsType support
+	* src/plugins/ExportVCalendar.py: GrampsType support
+	* src/plugins/Verify.py: GrampsType support
+	* src/DisplayModels.py: GrampsType support
+	* src/DisplayTabs.py: GrampsType support
+	* src/GrampsWidgets.py: GrampsType support
+	* src/SubstKeywords.py: GrampsType support
+	* src/Utils.py: GrampsType support
+	* src/ScratchPad.py: GrampsType support
+	* src/GenericFilter.py: GrampsType support
+	* src/PluginUtils/_ReportUtils.py: GrampsType support
+	* src/SelectEvent.py: GrampsType support
+
 2006-04-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/TestcaseGenerator.py: Use the new types
 

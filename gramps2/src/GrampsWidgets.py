@@ -356,6 +356,7 @@ class MonitoredDataType:
         val = get_val()
         if val:
             default = int(val)
+            print val, default
         else:
             default = None
 
@@ -382,7 +383,9 @@ class MonitoredDataType:
             self.sel.set_values(self.get_val())
 
     def on_change(self, obj):
-        self.set_val(self.fix_value(self.sel.get_values()))
+        value = self.fix_value(self.sel.get_values())
+        self.set_val(value)
+        print value, self.get_val()
 
 class MonitoredMenu:
 

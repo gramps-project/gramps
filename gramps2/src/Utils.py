@@ -81,76 +81,76 @@ confidence = {
 def format_confidence( type):
     return confidence.get(type[0],_("Invalid id %d ('%s')")%type)
 
-family_events = {
-    RelLib.Event.UNKNOWN    : _("Unknown"),
-    RelLib.Event.CUSTOM     : _("Custom"),
-    RelLib.Event.MARRIAGE   : _("Marriage"),
-    RelLib.Event.MARR_SETTL : _("Marriage Settlement"),
-    RelLib.Event.MARR_LIC   : _("Marriage License"),
-    RelLib.Event.MARR_CONTR : _("Marriage Contract"),
-    RelLib.Event.MARR_BANNS : _("Marriage Banns"),
-    RelLib.Event.ENGAGEMENT : _("Engagement"),
-    RelLib.Event.DIVORCE    : _("Divorce"),
-    RelLib.Event.DIV_FILING : _("Divorce Filing"),
-    RelLib.Event.ANNULMENT  : _("Annulment"),
-    RelLib.Event.MARR_ALT   : _("Alternate Marriage"),
-    }
-def format_family_event( type):
-    if type[0] == RelLib.Event.CUSTOM:
-        return type[1]
-    return family_events.get(type[0],_("Invalid id %d ('%s')")%type)
+# family_events = {
+#     RelLib.Event.UNKNOWN    : _("Unknown"),
+#     RelLib.Event.CUSTOM     : _("Custom"),
+#     RelLib.Event.MARRIAGE   : _("Marriage"),
+#     RelLib.Event.MARR_SETTL : _("Marriage Settlement"),
+#     RelLib.Event.MARR_LIC   : _("Marriage License"),
+#     RelLib.Event.MARR_CONTR : _("Marriage Contract"),
+#     RelLib.Event.MARR_BANNS : _("Marriage Banns"),
+#     RelLib.Event.ENGAGEMENT : _("Engagement"),
+#     RelLib.Event.DIVORCE    : _("Divorce"),
+#     RelLib.Event.DIV_FILING : _("Divorce Filing"),
+#     RelLib.Event.ANNULMENT  : _("Annulment"),
+#     RelLib.Event.MARR_ALT   : _("Alternate Marriage"),
+#     }
+# def format_family_event( type):
+#     if type[0] == RelLib.Event.CUSTOM:
+#         return type[1]
+#     return family_events.get(type[0],_("Invalid id %d ('%s')")%type)
 
-personal_events = {
-    RelLib.Event.UNKNOWN         : _("Unknown"),
-    RelLib.Event.CUSTOM          : _("Custom"),
-    RelLib.Event.ADOPT           : _("Adopted"),
-    RelLib.Event.BIRTH           : _("Birth"),
-    RelLib.Event.DEATH           : _("Death"),
-    RelLib.Event.ADULT_CHRISTEN  : _("Adult Christening"),
-    RelLib.Event.BAPTISM         : _("Baptism"),
-    RelLib.Event.BAR_MITZVAH     : _("Bar Mitzvah"),
-    RelLib.Event.BAS_MITZVAH     : _("Bas Mitzvah"),
-    RelLib.Event.BLESS           : _("Blessing"),
-    RelLib.Event.BURIAL          : _("Burial"),
-    RelLib.Event.CAUSE_DEATH     : _("Cause Of Death"),
-    RelLib.Event.CENSUS          : _("Census"),
-    RelLib.Event.CHRISTEN        : _("Christening"),
-    RelLib.Event.CONFIRMATION    : _("Confirmation"),
-    RelLib.Event.CREMATION       : _("Cremation"),
-    RelLib.Event.DEGREE          : _("Degree"),
-    RelLib.Event.DIV_FILING      : _("Divorce Filing"),
-    RelLib.Event.EDUCATION       : _("Education"),
-    RelLib.Event.ELECTED         : _("Elected"),
-    RelLib.Event.EMIGRATION      : _("Emigration"),
-    RelLib.Event.FIRST_COMMUN    : _("First Communion"),
-    RelLib.Event.IMMIGRATION     : _("Immigration"),
-    RelLib.Event.GRADUATION      : _("Graduation"),
-    RelLib.Event.MED_INFO        : _("Medical Information"),
-    RelLib.Event.MILITARY_SERV   : _("Military Service"), 
-    RelLib.Event.NATURALIZATION  : _("Naturalization"),
-    RelLib.Event.NOB_TITLE       : _("Nobility Title"),
-    RelLib.Event.NUM_MARRIAGES   : _("Number of Marriages"),
-    RelLib.Event.OCCUPATION      : _("Occupation"),
-    RelLib.Event.ORDINATION      : _("Ordination"),
-    RelLib.Event.PROBATE         : _("Probate"),
-    RelLib.Event.PROPERTY        : _("Property"),
-    RelLib.Event.RELIGION        : _("Religion"),
-    RelLib.Event.RESIDENCE       : _("Residence"),
-    RelLib.Event.RETIREMENT      : _("Retirement"),
-    RelLib.Event.WILL            : _("Will")
-    }
-def format_personal_event( type):
-    if type[0] == RelLib.Event.CUSTOM:
-        return type[1]
-    return personal_events.get(type[0],_("Invalid id %d ('%s')")%type)
+# personal_events = {
+#     RelLib.Event.UNKNOWN         : _("Unknown"),
+#     RelLib.Event.CUSTOM          : _("Custom"),
+#     RelLib.Event.ADOPT           : _("Adopted"),
+#     RelLib.Event.BIRTH           : _("Birth"),
+#     RelLib.Event.DEATH           : _("Death"),
+#     RelLib.Event.ADULT_CHRISTEN  : _("Adult Christening"),
+#     RelLib.Event.BAPTISM         : _("Baptism"),
+#     RelLib.Event.BAR_MITZVAH     : _("Bar Mitzvah"),
+#     RelLib.Event.BAS_MITZVAH     : _("Bas Mitzvah"),
+#     RelLib.Event.BLESS           : _("Blessing"),
+#     RelLib.Event.BURIAL          : _("Burial"),
+#     RelLib.Event.CAUSE_DEATH     : _("Cause Of Death"),
+#     RelLib.Event.CENSUS          : _("Census"),
+#     RelLib.Event.CHRISTEN        : _("Christening"),
+#     RelLib.Event.CONFIRMATION    : _("Confirmation"),
+#     RelLib.Event.CREMATION       : _("Cremation"),
+#     RelLib.Event.DEGREE          : _("Degree"),
+#     RelLib.Event.DIV_FILING      : _("Divorce Filing"),
+#     RelLib.Event.EDUCATION       : _("Education"),
+#     RelLib.Event.ELECTED         : _("Elected"),
+#     RelLib.Event.EMIGRATION      : _("Emigration"),
+#     RelLib.Event.FIRST_COMMUN    : _("First Communion"),
+#     RelLib.Event.IMMIGRATION     : _("Immigration"),
+#     RelLib.Event.GRADUATION      : _("Graduation"),
+#     RelLib.Event.MED_INFO        : _("Medical Information"),
+#     RelLib.Event.MILITARY_SERV   : _("Military Service"), 
+#     RelLib.Event.NATURALIZATION  : _("Naturalization"),
+#     RelLib.Event.NOB_TITLE       : _("Nobility Title"),
+#     RelLib.Event.NUM_MARRIAGES   : _("Number of Marriages"),
+#     RelLib.Event.OCCUPATION      : _("Occupation"),
+#     RelLib.Event.ORDINATION      : _("Ordination"),
+#     RelLib.Event.PROBATE         : _("Probate"),
+#     RelLib.Event.PROPERTY        : _("Property"),
+#     RelLib.Event.RELIGION        : _("Religion"),
+#     RelLib.Event.RESIDENCE       : _("Residence"),
+#     RelLib.Event.RETIREMENT      : _("Retirement"),
+#     RelLib.Event.WILL            : _("Will")
+#     }
+# def format_personal_event( type):
+#     if type[0] == RelLib.Event.CUSTOM:
+#         return type[1]
+#     return personal_events.get(type[0],_("Invalid id %d ('%s')")%type)
 
-def format_event( type):
-    if type[0] == RelLib.Event.CUSTOM:
-        return type[1]
-    val = personal_events.get(type[0])
-    if not val:
-        val = family_events.get(type[0],_("Invalid id %d ('%s')")%type)
-    return val
+# def format_event( type):
+#     if type[0] == RelLib.Event.CUSTOM:
+#         return type[1]
+#     val = personal_events.get(type[0])
+#     if not val:
+#         val = family_events.get(type[0],_("Invalid id %d ('%s')")%type)
+#     return val
 
 personal_attributes = {
     RelLib.Attribute.UNKNOWN     : _("Unknown"),
@@ -302,53 +302,53 @@ def format_marker_type( type):
 #
 #-------------------------------------------------------------------------
 familyConstantEvents = {
-    RelLib.Event.ANNULMENT  : "ANUL",
-    RelLib.Event.DIV_FILING : "DIVF",
-    RelLib.Event.DIVORCE    : "DIV",
-    RelLib.Event.ENGAGEMENT : "ENGA",
-    RelLib.Event.MARR_BANNS : "MARB",
-    RelLib.Event.MARR_CONTR : "MARC",
-    RelLib.Event.MARR_LIC   : "MARL",
-    RelLib.Event.MARR_SETTL : "MARS",
-    RelLib.Event.MARRIAGE   : "MARR"
+    RelLib.EventType.ANNULMENT  : "ANUL",
+    RelLib.EventType.DIV_FILING : "DIVF",
+    RelLib.EventType.DIVORCE    : "DIV",
+    RelLib.EventType.ENGAGEMENT : "ENGA",
+    RelLib.EventType.MARR_BANNS : "MARB",
+    RelLib.EventType.MARR_CONTR : "MARC",
+    RelLib.EventType.MARR_LIC   : "MARL",
+    RelLib.EventType.MARR_SETTL : "MARS",
+    RelLib.EventType.MARRIAGE   : "MARR"
     }
 
 personalConstantEvents = {
-    RelLib.Event.ADOPT            : "ADOP",
-    RelLib.Event.ADULT_CHRISTEN   : "CHRA",
-    RelLib.Event.BIRTH            : "BIRT",
-    RelLib.Event.DEATH            : "DEAT",
-    RelLib.Event.BAPTISM          : "BAPM",
-    RelLib.Event.BAR_MITZVAH      : "BARM",
-    RelLib.Event.BAS_MITZVAH      : "BASM",
-    RelLib.Event.BLESS            : "BLES",
-    RelLib.Event.BURIAL           : "BURI",
-    RelLib.Event.CAUSE_DEATH      : "CAUS",
-    RelLib.Event.ORDINATION       : "ORDI",
-    RelLib.Event.CENSUS           : "CENS",
-    RelLib.Event.CHRISTEN         : "CHR" ,
-    RelLib.Event.CONFIRMATION     : "CONF",
-    RelLib.Event.CREMATION        : "CREM",
-    RelLib.Event.DEGREE           : "_DEG", 
-    RelLib.Event.DIV_FILING       : "DIVF",
-    RelLib.Event.EDUCATION        : "EDUC",
-    RelLib.Event.ELECTED          : "",
-    RelLib.Event.EMIGRATION       : "EMIG",
-    RelLib.Event.FIRST_COMMUN     : "FCOM",
-    RelLib.Event.GRADUATION       : "GRAD",
-    RelLib.Event.MED_INFO         : "_MDCL", 
-    RelLib.Event.MILITARY_SERV    : "_MILT", 
-    RelLib.Event.NATURALIZATION   : "NATU",
-    RelLib.Event.NOB_TITLE        : "TITL",
-    RelLib.Event.NUM_MARRIAGES    : "NMR",
-    RelLib.Event.IMMIGRATION      : "IMMI",
-    RelLib.Event.OCCUPATION       : "OCCU",
-    RelLib.Event.PROBATE          : "PROB",
-    RelLib.Event.PROPERTY         : "PROP",
-    RelLib.Event.RELIGION         : "RELI",
-    RelLib.Event.RESIDENCE        : "RESI", 
-    RelLib.Event.RETIREMENT       : "RETI",
-    RelLib.Event.WILL             : "WILL",
+    RelLib.EventType.ADOPT            : "ADOP",
+    RelLib.EventType.ADULT_CHRISTEN   : "CHRA",
+    RelLib.EventType.BIRTH            : "BIRT",
+    RelLib.EventType.DEATH            : "DEAT",
+    RelLib.EventType.BAPTISM          : "BAPM",
+    RelLib.EventType.BAR_MITZVAH      : "BARM",
+    RelLib.EventType.BAS_MITZVAH      : "BASM",
+    RelLib.EventType.BLESS            : "BLES",
+    RelLib.EventType.BURIAL           : "BURI",
+    RelLib.EventType.CAUSE_DEATH      : "CAUS",
+    RelLib.EventType.ORDINATION       : "ORDI",
+    RelLib.EventType.CENSUS           : "CENS",
+    RelLib.EventType.CHRISTEN         : "CHR" ,
+    RelLib.EventType.CONFIRMATION     : "CONF",
+    RelLib.EventType.CREMATION        : "CREM",
+    RelLib.EventType.DEGREE           : "_DEG", 
+    RelLib.EventType.DIV_FILING       : "DIVF",
+    RelLib.EventType.EDUCATION        : "EDUC",
+    RelLib.EventType.ELECTED          : "",
+    RelLib.EventType.EMIGRATION       : "EMIG",
+    RelLib.EventType.FIRST_COMMUN     : "FCOM",
+    RelLib.EventType.GRADUATION       : "GRAD",
+    RelLib.EventType.MED_INFO         : "_MDCL", 
+    RelLib.EventType.MILITARY_SERV    : "_MILT", 
+    RelLib.EventType.NATURALIZATION   : "NATU",
+    RelLib.EventType.NOB_TITLE        : "TITL",
+    RelLib.EventType.NUM_MARRIAGES    : "NMR",
+    RelLib.EventType.IMMIGRATION      : "IMMI",
+    RelLib.EventType.OCCUPATION       : "OCCU",
+    RelLib.EventType.PROBATE          : "PROB",
+    RelLib.EventType.PROPERTY         : "PROP",
+    RelLib.EventType.RELIGION         : "RELI",
+    RelLib.EventType.RESIDENCE        : "RESI", 
+    RelLib.EventType.RETIREMENT       : "RETI",
+    RelLib.EventType.WILL             : "WILL",
     }
 
 familyConstantAttributes = {
@@ -843,8 +843,9 @@ def probably_alive(person,db,current_year=None,limit=0):
     # These are fairly good indications that someone's not alive.
     for ev_ref in person.event_ref_list:
         ev = db.get_event_from_handle(ev_ref.ref)
-        if ev and ev.get_type()[0] in [RelLib.Event.CAUSE_DEATH, RelLib.Event.BURIAL,
-                                       RelLib.Event.CREMATION]:
+        if ev and int(ev.get_type())in [RelLib.EventType.CAUSE_DEATH,
+                                        RelLib.EventType.BURIAL,
+                                        RelLib.EventType.CREMATION]:
             if not death_year:
                 death_year = ev.get_date_object().get_year()
             if ev.get_date_object().get_start_date() != RelLib.Date.EMPTY:

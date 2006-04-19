@@ -42,6 +42,7 @@ from _NoteBase import NoteBase
 from _MediaBase import MediaBase
 from _DateBase import DateBase
 from _PlaceBase import PlaceBase
+from _EventType import EventType
 
 #-------------------------------------------------------------------------
 #
@@ -56,53 +57,6 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
     action that occurred at a particular place at a particular time,
     such as a birth, death, or marriage.
     """
-
-    UNKNOWN        = -1
-    CUSTOM         = 0
-    MARRIAGE       = 1
-    MARR_SETTL     = 2
-    MARR_LIC       = 3
-    MARR_CONTR     = 4
-    MARR_BANNS     = 5
-    ENGAGEMENT     = 6
-    DIVORCE        = 7
-    DIV_FILING     = 8
-    ANNULMENT      = 9
-    MARR_ALT       = 10
-    ADOPT          = 11
-    BIRTH          = 12
-    DEATH          = 13
-    ADULT_CHRISTEN = 14
-    BAPTISM        = 15
-    BAR_MITZVAH    = 16
-    BAS_MITZVAH    = 17
-    BLESS          = 18
-    BURIAL         = 19
-    CAUSE_DEATH    = 20
-    CENSUS         = 21
-    CHRISTEN       = 22
-    CONFIRMATION   = 23
-    CREMATION      = 24
-    DEGREE         = 25
-    EDUCATION      = 26
-    ELECTED        = 27
-    EMIGRATION     = 28
-    FIRST_COMMUN   = 29
-    IMMIGRATION    = 30
-    GRADUATION     = 31
-    MED_INFO       = 32
-    MILITARY_SERV  = 33
-    NATURALIZATION = 34
-    NOB_TITLE      = 35
-    NUM_MARRIAGES  = 36
-    OCCUPATION     = 37
-    ORDINATION     = 38
-    PROBATE        = 39
-    PROPERTY       = 40
-    RELIGION       = 41
-    RESIDENCE      = 42
-    RETIREMENT     = 43
-    WILL           = 44
 
     def __init__(self,source=None):
         """
@@ -125,7 +79,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
             self.cause = source.cause
         else:
             self.description = ""
-            self.type = (Event.CUSTOM,"")
+            self.type = EventType()
             self.cause = ""
 
     def serialize(self):
@@ -144,7 +98,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
             be considered persistent.
         @rtype: tuple
         """
-        return (self.handle, self.gramps_id, self.type,
+        return (self.handle, self.gramps_id, self.type.serialize(),
                 DateBase.serialize(self),
                 self.description, self.place, self.cause,
                 SourceBase.serialize(self),
@@ -161,11 +115,12 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
             Person object
         @type data: tuple
         """
-        (self.handle, self.gramps_id, self.type, date,
+        (self.handle, self.gramps_id, the_type, date,
          self.description, self.place, self.cause,
          source_list, note, media_list,
          self.change, self.marker, self.private) = data
 
+        self.type.unserialize(the_type)
         DateBase.unserialize(self,date)
         MediaBase.unserialize(self,media_list)
         SourceBase.unserialize(self,source_list)
@@ -191,7 +146,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.description,self.type[1],self.cause,self.gramps_id]
+        return [self.description,str(self.type),self.cause,self.gramps_id]
         #return [self.description,self.type[1],self.cause,
         #        self.get_date(),self.gramps_id]
 
@@ -251,7 +206,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         description = self.description
         cause = self.cause
         the_type = self.type
-        return (the_type == (Event.CUSTOM,"") and date.is_empty()
+        return (the_type == Event.CUSTOM and date.is_empty()
                 and not place and not description and not cause) 
 
     def are_equal(self,other):
@@ -266,8 +221,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         if other == None:
             other = Event (None)
 
-        if self.type[0] != other.type[0] or \
-           (self.type[0] == Event.CUSTOM and self.type[1] != other.type[1]) or\
+        if self.type != other.type or \
            ((self.place or other.place) and (self.place != other.place)) or \
            self.description != other.description or self.cause != other.cause \
            or self.private != other.private or \
@@ -308,17 +262,10 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         @param the_type: Type to assign to the Event
         @type the_type: tuple
         """
-        if not type(the_type) == tuple:
-            warn( "set_type now takes a tuple", DeprecationWarning, 2)
-            # Wrapper for old API
-            # remove when transitition done.
-            if the_type in range(-1,45):
-                the_type = (the_type,'')
-            else:
-                the_type = (Event.CUSTOM,the_type)
-        assert(type(the_type[0]) == int)
-        assert(type(the_type[1]) == unicode or type(the_type[1]) == str)
-        self.type = the_type
+        if type(the_type) == tuple:
+            self.type = EventType(the_type)
+        else:
+            self.type = the_type
 
     def get_type(self):
         """
