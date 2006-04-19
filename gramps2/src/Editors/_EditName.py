@@ -150,7 +150,6 @@ class EditName(EditSecondary):
             self.top.get_widget("name_type"),
             self.obj.set_type,
             self.obj.get_type,
-            RelLib.Name,
             )
         
         self.privacy = PrivacyButton(
