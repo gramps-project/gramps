@@ -320,7 +320,7 @@ class FamilyGroup(Report.Report):
 
         if self.incParNames:
             for alt_name in person.get_alternate_names():
-                type = Utils.format_name_type( alt_name.get_type() )
+                type = str( alt_name.get_type() )
                 name = alt_name.get_regular_name()
                 self.dump_parent_line(type,name)
 
@@ -538,7 +538,7 @@ class FamilyGroup(Report.Report):
 
         self.dump_parent(_("Wife"),family.get_mother_handle())
 
-        length = len(family.get_child_handle_list())
+        length = len(family.get_child_ref_list())
         if length > 0:
             self.doc.start_paragraph("FGR-blank")
             self.doc.end_paragraph()
@@ -551,14 +551,14 @@ class FamilyGroup(Report.Report):
             self.doc.end_cell()
             self.doc.end_row()
             index = 1
-            for child_handle in family.get_child_handle_list():
-                self.dump_child(index,child_handle)
+            for child_ref in family.get_child_ref_list():
+                self.dump_child(index,child_ref.ref)
                 index = index + 1
             self.doc.end_table()
 
         if self.recursive:
-            for child_handle in family.get_child_handle_list():
-                child = self.database.get_person_from_handle(child_handle)
+            for child_ref in family.get_child_ref_list():
+                child = self.database.get_person_from_handle(child_ref.ref)
                 for child_family_handle in child.get_family_handle_list():
                     if child_family_handle != family_handle:
                         self.doc.page_break()

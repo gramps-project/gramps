@@ -1,3 +1,7 @@
+2006-04-18  Brian Matherly  <pez4brian@users.sourceforge.net>
+	* src/plugins/FamilyGroup.py: update for RelLib changes
+	* src/plugins/IndivComplete.py: update for RelLib changes
+
 2006-04-18  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadXML.py: new types
 	* src/GrampsDb/_ConstXML.py: new types

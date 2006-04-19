@@ -196,18 +196,28 @@ class IndivCompleteReport(Report.Report):
         self.doc.end_cell()
         self.doc.end_row()
         
-        for (family_handle,mrel,frel) \
-                in self.start_person.get_parent_family_handle_list():
+        family_handle_list = self.start_person.get_parent_family_handle_list()
+        for family_handle in family_handle_list:
             if family_handle == \
                    self.start_person.get_main_parents_family_handle():
                 continue
             
             family = self.database.get_family_from_handle(family_handle)
+            
+            # Get the mother and father relationships
+            frel = ""
+            mrel = ""
+            child_handle = self.start_person.get_handle()
+            child_ref_list = family.get_child_ref_list()
+            for child_ref in child_ref_list:
+                if child_ref.ref == child_handle:
+                    frel = str(child_ref.get_father_relation())
+                    mrel = str(child_ref.get_mother_relation())
+            
             father_handle = family.get_father_handle()
             if father_handle:
                 father = self.database.get_person_from_handle(father_handle)
                 fname = father.get_primary_name().get_regular_name()
-                frel = const.child_relations.find_value(frel)
                 self.write_p_entry(_('Father'),fname,frel)
             else:
                 self.write_p_entry(_('Father'),'','')
@@ -216,7 +226,6 @@ class IndivCompleteReport(Report.Report):
             if mother_handle:
                 mother = self.database.get_person_from_handle(mother_handle)
                 fname = mother.get_primary_name().get_regular_name()
-                frel = const.child_relations.find_value(frel)
                 self.write_p_entry(_('Mother'),fname,frel)
             else:
                 self.write_p_entry(_('Mother'),'','')
@@ -240,7 +249,7 @@ class IndivCompleteReport(Report.Report):
         self.doc.end_row()
         
         for name in self.start_person.get_alternate_names():
-            type = Utils.format_name_type( name.get_type() )
+            type = str( name.get_type() )
             self.doc.start_row()
             self.normal_cell(type)
             text = name.get_regular_name()
@@ -294,8 +303,8 @@ class IndivCompleteReport(Report.Report):
                     event = self.database.get_event_from_handle(event_ref.ref)
                     self.write_fact(event)
 
-            child_handle_list = family.get_child_handle_list()
-            if len(child_handle_list):
+            child_ref_list = family.get_child_ref_list()
+            if len(child_ref_list):
                 self.doc.start_row()
                 self.normal_cell(_("Children"))
 
@@ -303,12 +312,12 @@ class IndivCompleteReport(Report.Report):
                 self.doc.start_paragraph("IDS-Normal")
                 
                 first = 1
-                for child_handle in child_handle_list:
+                for child_ref in child_ref_list:
                     if first == 1:
                         first = 0
                     else:
                         self.doc.write_text('\n')
-                    child = self.database.get_person_from_handle(child_handle)
+                    child = self.database.get_person_from_handle(child_ref.ref)
                     self.doc.write_text(
                         child.get_primary_name().get_regular_name())
                 self.doc.end_paragraph()
