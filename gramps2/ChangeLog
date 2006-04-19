@@ -1,5 +1,6 @@
 2006-04-19  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib/_Event.py: Add "personal" attribute to events.
+	* src/RelLib/_Event.py: Revert this change.
 
 2006-04-18  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditName.py: fix call for MonitoredDataType
