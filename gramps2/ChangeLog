@@ -1,3 +1,8 @@
+2006-04-18  Don Allingham  <don@gramps-project.org>
+	* src/RelLib/__init__.py: added _EventType
+	* src/RelLib/_EventType.py: added
+	* src/RelLIb/Makefile.am: added _EventType.py
+
 2006-04-18  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/plugins/FamilyGroup.py: update for RelLib changes
 	* src/plugins/IndivComplete.py: update for RelLib changes

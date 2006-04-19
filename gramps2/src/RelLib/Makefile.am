@@ -15,6 +15,7 @@ pkgdata_PYTHON = \
 	_Date.py \
 	_DateBase.py\
 	_Event.py\
+	_EventType.py\
 	_EventRef.py\
 	_Family.py\
 	_GenderStats.py\

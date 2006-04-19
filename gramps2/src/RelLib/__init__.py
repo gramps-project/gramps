@@ -64,4 +64,5 @@ from _NameType import NameType
 from _UrlType import UrlType
 from _ChildRefType import ChildRefType
 from _RepositoryType import RepositoryType
+from _EventType import EventType
 
