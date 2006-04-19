@@ -40,7 +40,10 @@ class GrampsType:
         self.set(value)
 
     def set(self, value):
-        if type(value) == tuple:
+        if isinstance(value,self.__class__):
+            self.val = value.val
+            self.string = value.string
+        elif type(value) == tuple:
             self.val = value[0]
             self.string = value[1]
         elif type(value) == int:
@@ -68,11 +71,32 @@ class GrampsType:
         else:
             return self._I2SMAP.get(self.val,_('UNKNOWN'))
 
+    def xml_str(self):
+        """
+        This method returns an untranslated string for non-custom values,
+        or the value, if it is custom.
+        """
+        # FIXME: this needs to be fixed.
+        return self.string
+
+    def set_from_xml_str(self,the_str):
+        """
+        This method sets the type instance based on the untranslated
+        string (obtained e.g. from XML).
+        """
+        return self
+
     def __int__(self):
         return self.val
 
     def get_map(self):
         return self._I2SMAP
+
+    def is_custom(self):
+        return self.val == self._CUSTOM
+
+    def is_default(self):
+        return self.val == self._DEFAULT
 
     def get_custom(self):
         return self._CUSTOM
@@ -92,5 +116,3 @@ class GrampsType:
                 return cmp(self.string,value.string)
             else:
                 return cmp(self.val,value.val)
-        
-    
