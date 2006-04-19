@@ -59,10 +59,6 @@ from _EditReference import EditReference
 # Constants
 #
 #-------------------------------------------------------------------------
-total_events = dict(Utils.personal_events)
-for event_type in Utils.family_events.keys():
-    if not total_events.has_key(event_type):
-        total_events[event_type] = Utils.family_events[event_type]
 
 #-------------------------------------------------------------------------
 #
@@ -95,7 +91,8 @@ class EditEventRef(EditReference):
         return Utils.personal_events
 
     def get_custom_events(self):
-        return [ (RelLib.Event.CUSTOM,val) for val in self.dbstate.db.get_person_event_types()]
+        return [ (RelLib.EventType.CUSTOM,val) \
+                 for val in self.dbstate.db.get_person_event_types()]
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'),self.ok_clicked)
@@ -136,12 +133,10 @@ class EditEventRef(EditReference):
             self.get_roles(),
             RelLib.EventRef.CUSTOM)
 
-        self.event_menu = MonitoredType(
+        self.event_menu = MonitoredDataType(
             self.top.get_widget("eer_type_combo"),
             self.source.set_type,
             self.source.get_type,
-            self.get_event_types(),
-            RelLib.Event.CUSTOM,
             custom_values=self.get_custom_events())
 
         self.date_check = MonitoredDate(
@@ -187,13 +182,7 @@ class EditEventRef(EditReference):
 
     def build_menu_names(self,eventref):
         if self.source:
-            if self.source.get_type()[0] == RelLib.Event.CUSTOM:
-                event_name = self.source.get_type()[1]
-            else:
-                try:
-                    event_name = Utils.personal_events[self.source.get_type()[0]]
-                except:
-                    event_name = Utils.family_events[self.source.get_type()[0]]
+            event_name = str(self.source.get_type())
             submenu_label = _('Event: %s')  % event_name
         else:
             submenu_label = _('New Event')
@@ -246,7 +235,7 @@ class EditFamilyEventRef(EditEventRef):
         return Utils.family_events
 
     def get_custom_events(self):
-        return [ (RelLib.Event.CUSTOM,val) for val in self.dbstate.db.get_family_event_types()]
+        return [ RelLib.EventType((RelLib.EventType.CUSTOM,val)) for val in self.dbstate.db.get_family_event_types()]
         
 
 #-------------------------------------------------------------------------

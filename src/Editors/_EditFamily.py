@@ -409,12 +409,11 @@ class EditFamily(EditPrimary):
             self.obj.get_gramps_id,
             self.db.readonly)
         
-        self.data_type = MonitoredType(
+        self.data_type = MonitoredDataType(
             self.top.get_widget('marriage_type'),
             self.obj.set_relationship,
             self.obj.get_relationship,
-            dict(Utils.family_relations),
-            RelLib.Family.CUSTOM)
+            )
 
     def load_data(self):
         fhandle = self.obj.get_father_handle()

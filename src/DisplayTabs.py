@@ -669,10 +669,10 @@ class EventEmbedList(EmbeddedList):
             pass
 
     def default_type(self):
-        return (RelLib.EventRef.FAMILY, '')
+        return RelLib.EventType(RelLib.EventType.MARRIAGE)
 
     def default_role(self):
-        return (RelLib.Event.MARRIAGE, '')
+        return (RelLib.EventRef.FAMILY, '')
 
     def add_button_clicked(self, obj):
         try:
@@ -744,13 +744,14 @@ class PersonEventEmbedList(EventEmbedList):
         
         for event_ref in ref_list:
             event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-            type_list.append(event.get_type()[0])
+            type_list.append(int(event.get_type()))
 
-        for etype in [RelLib.Event.BIRTH, RelLib.Event.DEATH]:
+        etype = event.get_type()
+        for etype in [RelLib.EventType.BIRTH, RelLib.EventType.DEATH]:
             if etype not in type_list:
-                return (etype, '')
+                return RelLib.EventType(etype)
         else:
-            return (RelLib.Event.BIRTH, '')
+            return RelLib.EventType(RelLib.EventType.BIRTH)
 
     def get_ref_editor(self):
         from Editors import EditEventRef
@@ -763,9 +764,9 @@ class PersonEventEmbedList(EventEmbedList):
         
         for ref in self.orig_data:
             event = self.dbstate.db.get_event_from_handle(ref.ref)
-            if birth_ref == None and event.get_type()[0] == RelLib.Event.BIRTH:
+            if birth_ref == None and int(event.get_type()) == RelLib.EventType.BIRTH:
                 birth_ref = ref
-            elif death_ref == None and event.get_type()[0] == RelLib.Event.DEATH:
+            elif death_ref == None and int(event.get_type()) == RelLib.EventType.DEATH:
                 death_ref = ref
             else:
                 new_list.append(ref)
@@ -1965,7 +1966,7 @@ class EventRefModel(gtk.ListStore):
         for event_ref in event_list:
             event = db.get_event_from_handle(event_ref.ref)
             self.append(row=[
-                self.column_type(event), 
+                str(event.get_type()), 
                 event.get_description(), 
                 event.get_gramps_id(), 
                 self.column_date(event_ref), 
@@ -1973,9 +1974,6 @@ class EventRefModel(gtk.ListStore):
                 self.column_role(event_ref), 
                 event_ref
                 ])
-
-    def column_type(self, event):
-        return Utils.format_event(event.get_type())
 
     def column_role(self, event_ref):
         return Utils.format_event_role(event_ref.get_role())
@@ -2217,13 +2215,7 @@ class BackRefModel(gtk.ListStore):
                 name = p.get_description()
                 handle = p.handle
                 if not name:
-                    etype = p.get_type()
-                    if etype[0] == RelLib.Event.CUSTOM:
-                        name = etype[1]
-                    elif Utils.personal_events.has_key(etype[0]):
-                        name = Utils.personal_events[etype[0]]
-                    else:
-                        name = Utils.family_events[etype[0]]
+                    name = str(p.get_type())
             elif dtype == 'Place':
                 p = self.db.get_place_from_handle(ref[1])
                 name = p.get_title()

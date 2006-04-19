@@ -747,8 +747,8 @@ class GrampsParser:
             # person or family objects.
             self.event = RelLib.Event()
             self.event.handle = Utils.create_id()
-            self.event.type = _ConstXML.tuple_from_xml(_ConstXML.events,
-                                                       attrs['type'])
+            self.event.type = RelLib.EventType()
+            self.event.type.set_from_xml_str(attrs['type'])
             self.db.add_event(self.event,self.trans)
         else:
             # This is new event, with ID and handle already existing
@@ -777,9 +777,9 @@ class GrampsParser:
             self.family.add_event_ref(self.eventref)
         elif self.person:
             event.personal = True
-            if event.type[0] == RelLib.Event.BIRTH:
+            if int(event.type) == RelLib.EventType.BIRTH:
                 self.person.birth_ref = self.eventref
-            elif event.type[0] == RelLib.Event.DEATH:
+            elif int(event.type) == RelLib.EventType.DEATH:
                 self.person.death_ref = self.eventref
             else:
                 self.person.add_event_ref(self.eventref)
@@ -1412,9 +1412,9 @@ class GrampsParser:
             ref.ref = self.event.handle
             ref.private = self.event.private
             ref.role = (RelLib.EventRef.PRIMARY,'')
-            if self.event.type[0] == RelLib.Event.BIRTH:
+            if int(self.event.type) == RelLib.EventType.BIRTH:
                 self.person.birth_ref = ref
-            elif self.event.type[0] == RelLib.Event.DEATH:
+            elif int(self.event.type) == RelLib.EventType.DEATH:
                 self.person.death_ref = ref
             else:
                 self.person.add_event_ref(ref)

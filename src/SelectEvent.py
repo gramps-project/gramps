@@ -99,12 +99,7 @@ class SelectEvent:
         for handle in self.db.get_event_handles():
             event = self.db.get_event_from_handle(handle)
             desc = event.get_description()
-            etype = event.get_type()
-            if etype[0] == RelLib.Event.CUSTOM \
-                   or not Utils.personal_events.has_key(etype[0]):
-                name = etype[1]
-            else:
-                name = Utils.personal_events[etype[0]]
+            name = str(event.get_type())
             the_id = event.get_gramps_id()
             date = DateHandler.get_date(event)
             self.model.add([desc, the_id, name, date], handle)

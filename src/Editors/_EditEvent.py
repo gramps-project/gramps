@@ -131,12 +131,10 @@ class EditEvent(EditPrimary):
             self.top.get_widget("private"),
             self.obj, self.db.readonly)
 
-        self.event_menu = MonitoredType(
+        self.event_menu = MonitoredDataType(
             self.top.get_widget("personal_events"),
             self.obj.set_type,
             self.obj.get_type,
-            self.get_base_events(),
-            RelLib.Event.CUSTOM,
             custom_values=self.get_custom_events())
 
         self.date_field = MonitoredDate(
@@ -180,13 +178,7 @@ class EditEvent(EditPrimary):
 
     def build_menu_names(self,event):
         if event:
-            if event.get_type()[0] == RelLib.Event.CUSTOM:
-                event_name = event.get_type()[1]
-            else:
-                try:
-                    event_name = Utils.personal_events[event.get_type()[0]]
-                except:
-                    event_name = Utils.family_events[event.get_type()[0]]
+            event_name = str(event.get_type())
             submenu_label = _('Event: %s')  % event_name
         else:
             submenu_label = _('New Event')

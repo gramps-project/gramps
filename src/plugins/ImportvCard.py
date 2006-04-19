@@ -173,7 +173,7 @@ class VCardParser:
     def add_name(self, fields, data):
         data_fields = data.split(";")
         name = RelLib.Name()
-        name.set_type("Also Known As")
+        name.set_type(RelLib.NameType(RelLib.NameType.AKA))
         name.set_surname(data_fields[0])
         name.set_first_name(data_fields[1])
         if data_fields[2]:
@@ -185,7 +185,7 @@ class VCardParser:
 
     def add_title(self, fields, data):
         name = RelLib.Name()
-        name.set_type("Also Known As")
+        name.set_type(RelLib.NameType(RelLib.NameType.AKA))
         name.set_title(data)
         self.person.add_alternate_name(name)
 
@@ -206,7 +206,7 @@ class VCardParser:
 
     def add_birthday(self, fields, data):
         event = RelLib.Event()
-        event.set_name("Birth")
+        event.set_type(RelLib.EventType(RelLib.EventType.BIRTH))
         self.db.add_event(event,self.trans)
         self.person.set_birth_handle(event.get_handle())
 

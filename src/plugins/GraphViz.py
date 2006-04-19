@@ -351,7 +351,7 @@ class GraphViz:
                         for event_ref in fam.get_event_ref_list():
                             if event_ref:
                                 event = self.database.get_event_from_handle(event_ref.ref)
-                                if event.get_type() == RelLib.Event.MARRIAGE:
+                                if int(event.get_type()) == RelLib.EventType.MARRIAGE:
                                     m = event
                                     break
                         else:

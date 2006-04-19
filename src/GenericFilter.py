@@ -1649,7 +1649,7 @@ class IsWitness(Rule):
                 wlist = event.get_witness_list()
                 if wlist:
                     for w in wlist:
-                        if w.get_type()[0] == RelLib.Event.ID:
+                        if int(w.get_type()) == RelLib.Event.ID:
                             self.map.append(w.get_value())
 
 
