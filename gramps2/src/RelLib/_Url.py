@@ -38,6 +38,7 @@ from warnings import warn
 #-------------------------------------------------------------------------
 from _BaseObject import BaseObject
 from _PrivacyBase import PrivacyBase
+from _UrlType import UrlType
 
 #-------------------------------------------------------------------------
 #
@@ -48,13 +49,6 @@ class Url(BaseObject,PrivacyBase):
     """Contains information related to internet Uniform Resource Locators,
     allowing gramps to store information about internet resources"""
 
-    UNKNOWN    = -1
-    CUSTOM     = 0
-    EMAIL      = 1
-    WEB_HOME   = 2
-    WEB_SEARCH = 3
-    WEB_FTP    = 4
-    
     def __init__(self,source=None):
         """creates a new URL instance, copying from the source if present"""
         BaseObject.__init__(self)
@@ -66,13 +60,14 @@ class Url(BaseObject,PrivacyBase):
         else:
             self.path = ""
             self.desc = ""
-            self.type = (Url.CUSTOM,"")
+            self.type = UrlType()
 
     def serialize(self):
-        return (self.private,self.path,self.desc,self.type)
+        return (self.private,self.path,self.desc,self.type.serialize())
 
     def unserialize(self,data):
-        (self.private,self.path,self.desc,self.type) = data
+        (self.private,self.path,self.desc,type_value) = data
+        self.type.unserialize(type_value)
         return self
 
     def get_text_data_list(self):
@@ -105,15 +100,12 @@ class Url(BaseObject,PrivacyBase):
         @param type: descriptive type of the Url
         @type type: str
         """
-        if not type(the_type) == tuple:
-            warn( "set_type now takes a tuple", DeprecationWarning, 2)
-            # Wrapper for old API
-            # remove when transitition done.
-            if the_type in range(-1,5):
-                the_type = (the_type,'')
-            else:
-                the_type = (Url.CUSTOM,the_type)
-        self.type = the_type
+        if type(the_type) == tuple:
+            self.type = UrlType(the_type)
+        else:
+            print the_type
+            assert(isinstance(the_type,UrlType))
+            self.type = the_type
 
     def get_type(self):
         """

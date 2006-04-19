@@ -71,21 +71,6 @@ gender = {
 def format_gender( type):
     return gender.get(type[0],_("Invalid"))
 
-# child_relations = {
-#     RelLib.ChildRef.CHILD_NONE      : _("None"),
-#     RelLib.ChildRef.CHILD_BIRTH     : _("Birth"),
-#     RelLib.ChildRef.CHILD_ADOPTED   : _("Adopted"),
-#     RelLib.ChildRef.CHILD_STEPCHILD : _("Stepchild"),
-#     RelLib.ChildRef.CHILD_SPONSORED : _("Sponsored"),
-#     RelLib.ChildRef.CHILD_FOSTER    : _("Foster"),
-#     RelLib.ChildRef.CHILD_UNKNOWN   : _("Unknown"),
-#     RelLib.ChildRef.CHILD_CUSTOM    : _("Custom"),
-#     }
-# def format_child_relation( type):
-#     if type[0] == RelLib.ChildRef.CHILD_CUSTOM:
-#         return type[1]
-#     return child_relations.get(type[0],_("Invalid id %d ('%s')")%type)
-
 confidence = {
     RelLib.SourceRef.CONF_VERY_HIGH : _("Very High"),
     RelLib.SourceRef.CONF_HIGH      : _("High"),
@@ -225,32 +210,6 @@ family_rel_descriptions = {
                                   "a man and woman"),
     }
 
-# name_types = {
-#     RelLib.NameType.UNKNOWN : _("Unknown"),
-#     RelLib.NameType.CUSTOM  : _("Custom"),
-#     RelLib.NameType.AKA     : _("Also Known As"),
-#     RelLib.NameType.BIRTH   : _("Birth Name"),
-#     RelLib.NameType.MARRIED : _("Married Name"),
-#     }
-# def format_name_type( type):
-#     assert(False)
-#     if type[0] == RelLib.Name.CUSTOM:
-#         return type[1]
-#     return name_types.get(type[0],_("Invalid id %d ('%s')")%type)
-
-web_types = {
-    RelLib.Url.UNKNOWN    : _("Unknown"),
-    RelLib.Url.CUSTOM     : _("Custom"),
-    RelLib.Url.EMAIL      : _("E-mail"),
-    RelLib.Url.WEB_HOME   : _("Web Home"),
-    RelLib.Url.WEB_SEARCH : _("Web Search"),
-    RelLib.Url.WEB_FTP    : _("FTP"),
-    }
-def format_web_type( type):
-    if type[0] == RelLib.Url.CUSTOM:
-        return type[1]
-    return web_types.get(type[0],_("Invalid id %d ('%s')")%type)
-
 source_media_types = {
     RelLib.RepoRef.UNKNOWN    : _("Unknown"),
     RelLib.RepoRef.CUSTOM     : _("Custom"),
@@ -307,23 +266,23 @@ def format_event_role( type):
         val = family_event_roles.get(type[0],_("Invalid id %d ('%s')")%type)
     return val
 
-repository_types = {
-    RelLib.Repository.UNKNOWN    : _("Unknown"),
-    RelLib.Repository.CUSTOM     : _("Custom"),
-    RelLib.Repository.LIBRARY    : _("Library"),
-    RelLib.Repository.CEMETERY   : _("Cemetery"),
-    RelLib.Repository.CHURCH     : _("Church"),
-    RelLib.Repository.ARCHIVE    : _("Archive"),
-    RelLib.Repository.ALBUM      : _("Album"),
-    RelLib.Repository.WEBSITE    : _("Web site"),
-    RelLib.Repository.BOOKSTORE  : _("Bookstore"),
-    RelLib.Repository.COLLECTION : _("Collection"),
-    RelLib.Repository.SAFE       : _("Safe"),
-    }
-def format_repository_type( type):
-    if type[0] == RelLib.Repository.CUSTOM:
-        return type[1]
-    return repository_types.get(type[0],_("Invalid id %d ('%s')")%type)
+# repository_types = {
+#     RelLib.Repository.UNKNOWN    : _("Unknown"),
+#     RelLib.Repository.CUSTOM     : _("Custom"),
+#     RelLib.Repository.LIBRARY    : _("Library"),
+#     RelLib.Repository.CEMETERY   : _("Cemetery"),
+#     RelLib.Repository.CHURCH     : _("Church"),
+#     RelLib.Repository.ARCHIVE    : _("Archive"),
+#     RelLib.Repository.ALBUM      : _("Album"),
+#     RelLib.Repository.WEBSITE    : _("Web site"),
+#     RelLib.Repository.BOOKSTORE  : _("Bookstore"),
+#     RelLib.Repository.COLLECTION : _("Collection"),
+#     RelLib.Repository.SAFE       : _("Safe"),
+#     }
+# def format_repository_type( type):
+#     if type[0] == RelLib.Repository.CUSTOM:
+#         return type[1]
+#     return repository_types.get(type[0],_("Invalid id %d ('%s')")%type)
 
 
 marker_types = {

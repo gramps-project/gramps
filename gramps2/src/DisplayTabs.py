@@ -2125,11 +2125,7 @@ class WebModel(gtk.ListStore):
         gtk.ListStore.__init__(self, str, str, str, object)
         self.db = db
         for obj in obj_list:
-            self.append(row=[self.show_type(obj.type), 
-                             obj.path, obj.desc, obj])
-
-    def show_type(self, rtype):
-        return Utils.format_web_type(rtype)
+            self.append(row=[str(obj.type), obj.path, obj.desc, obj])
 
 #-------------------------------------------------------------------------
 #

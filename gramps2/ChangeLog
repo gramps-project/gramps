@@ -1,4 +1,23 @@
 2006-04-18  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadXML.py: new types
+	* src/GrampsDb/_ConstXML.py: new types
+	* src/GrampsDb/_WriteXML.py: new types
+	* src/Editors/_EditUrl.py: new types
+	* src/Editors/_EditPerson.py: new types
+	* src/Editors/_EditRepository.py: new types
+	* src/Editors/_EditName.py: new types
+	* src/Editors/_EditChildRef.py: new types
+	* src/RelLib/__init__.py: new types
+	* src/RelLib/_Url.py: new types
+	* src/RelLib/_RepositoryType.py: new types
+	* src/RelLib/_GrampsType.py: new types
+	* src/RelLib/_UrlType.py: new types
+	* src/RelLib/_Repository.py: new types
+	* src/RelLib/_NameType.py: new types
+	* src/RelLib/_ChildRefType.py: new types
+	* src/DisplayTabs.py: new types
+	* src/GrampsWidgets.py: new types
+	* src/Utils.py: new types
 	* src/Editors/_EditFamily.py: button messages
 	* src/DisplayTabs.py: remove property button stuff
 

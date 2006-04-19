@@ -23,29 +23,35 @@
 from _GrampsType import GrampsType, init_map
 from gettext import gettext as _
 
-class ChildRefType(GrampsType):
+class RepositoryType(GrampsType):
 
-    NONE      = 0
-    BIRTH     = 1
-    ADOPTED   = 2
-    STEPCHILD = 3
-    SPONSORED = 4
-    FOSTER    = 5
-    UNKNOWN   = 6
-    CUSTOM    = 7
+    UNKNOWN    = -1
+    CUSTOM     = 0
+    LIBRARY    = 1
+    CEMETERY   = 2
+    CHURCH     = 3
+    ARCHIVE    = 4
+    ALBUM      = 5
+    WEBSITE    = 6
+    BOOKSTORE  = 7
+    COLLECTION = 8
+    SAFE       = 9
 
     _CUSTOM = CUSTOM
-    _DEFAULT = BIRTH
+    _DEFAULT = LIBRARY
 
     _DATAMAP = [
-        (NONE,      _("None"),      "None"),
-        (BIRTH,     _("Birth"),     "Birth"),
-        (ADOPTED,   _("Adopted"),   "Adopted"),
-        (STEPCHILD, _("Stepchild"), "Stepchild"),
-        (SPONSORED, _("Sponsored"), "Sponsored"),
-        (FOSTER,    _("Foster"),    "Foster"),
-        (UNKNOWN,   _("Unknown"),   "Unknown"),
-        (CUSTOM,    _("Custom"),    "Custom"),
+        (UNKNOWN,    _("Unknown"),    "Unknown"),
+        (CUSTOM,     _("Custom"),     "Custom"),
+        (LIBRARY,    _("Library"),    "Library"),
+        (CEMETERY,   _("Cemetery"),   "Cemetery"),
+        (CHURCH,     _("Church"),     "Church"),
+        (ARCHIVE,    _("Archive"),    "Archive"),
+        (ALBUM,      _("Album"),      "Album"),
+        (WEBSITE,    _("Web site"),   "Web site"),
+        (BOOKSTORE,  _("Bookstore"),  "Bookstore"),
+        (COLLECTION, _("Collection"), "Collection"),
+        (SAFE,       _("Safe"),       "Safe"),
         ]
 
     _I2SMAP = init_map(_DATAMAP, 0, 1)
@@ -56,5 +62,3 @@ class ChildRefType(GrampsType):
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
 
-        
-        

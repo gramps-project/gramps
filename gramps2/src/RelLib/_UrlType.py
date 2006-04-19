@@ -23,29 +23,25 @@
 from _GrampsType import GrampsType, init_map
 from gettext import gettext as _
 
-class ChildRefType(GrampsType):
+class UrlType(GrampsType):
 
-    NONE      = 0
-    BIRTH     = 1
-    ADOPTED   = 2
-    STEPCHILD = 3
-    SPONSORED = 4
-    FOSTER    = 5
-    UNKNOWN   = 6
-    CUSTOM    = 7
+    UNKNOWN    = -1
+    CUSTOM     = 0
+    EMAIL      = 1
+    WEB_HOME   = 2
+    WEB_SEARCH = 3
+    WEB_FTP    = 4
 
     _CUSTOM = CUSTOM
-    _DEFAULT = BIRTH
+    _DEFAULT = UNKNOWN
 
     _DATAMAP = [
-        (NONE,      _("None"),      "None"),
-        (BIRTH,     _("Birth"),     "Birth"),
-        (ADOPTED,   _("Adopted"),   "Adopted"),
-        (STEPCHILD, _("Stepchild"), "Stepchild"),
-        (SPONSORED, _("Sponsored"), "Sponsored"),
-        (FOSTER,    _("Foster"),    "Foster"),
-        (UNKNOWN,   _("Unknown"),   "Unknown"),
-        (CUSTOM,    _("Custom"),    "Custom"),
+        (UNKNOWN,    _("Unknown"),    "Unknown"),
+        (CUSTOM,     _("Custom"),     "Custom"),
+        (EMAIL,      _("E-mail"),     "E-mail"),
+        (WEB_HOME,   _("Web Home"),   "Web Home"),
+        (WEB_SEARCH, _("Web Search"), "Web Search"),
+        (WEB_FTP,    _("FTP"),        "FTP"),
         ]
 
     _I2SMAP = init_map(_DATAMAP, 0, 1)
@@ -56,5 +52,5 @@ class ChildRefType(GrampsType):
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
 
-        
+
         

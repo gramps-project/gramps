@@ -101,12 +101,12 @@ family_relations = (
     (RelLib.Family.UNKNOWN     , "Unknown"),
     )
 
-name_types = (
-    (RelLib.NameType.UNKNOWN , "Unknown"),
-    (RelLib.NameType.AKA     , "Also Known As"),
-    (RelLib.NameType.BIRTH   , "Birth Name"),
-    (RelLib.NameType.MARRIED , "Married Name"),
-    )
+# name_types = (
+#     (RelLib.NameType.UNKNOWN , "Unknown"),
+#     (RelLib.NameType.AKA     , "Also Known As"),
+#     (RelLib.NameType.BIRTH   , "Birth Name"),
+#     (RelLib.NameType.MARRIED , "Married Name"),
+#     )
 
 source_media_types = (
     (RelLib.RepoRef.UNKNOWN    , "Unknown"),
@@ -137,18 +137,18 @@ event_roles = (
     (RelLib.EventRef.FAMILY    , "Family"),
     )
 
-repository_types = (
-    (RelLib.Repository.UNKNOWN    , "Unknown"),
-    (RelLib.Repository.LIBRARY    , "Library"),
-    (RelLib.Repository.CEMETERY   , "Cemetery"),
-    (RelLib.Repository.CHURCH     , "Church"),
-    (RelLib.Repository.ARCHIVE    , "Archive"),
-    (RelLib.Repository.ALBUM      , "Album"),
-    (RelLib.Repository.WEBSITE    , "Web site"),
-    (RelLib.Repository.BOOKSTORE  , "Bookstore"),
-    (RelLib.Repository.COLLECTION , "Collection"),
-    (RelLib.Repository.SAFE       , "Safe"),
-    )
+# repository_types = (
+#     (RelLib.Repository.UNKNOWN    , "Unknown"),
+#     (RelLib.Repository.LIBRARY    , "Library"),
+#     (RelLib.Repository.CEMETERY   , "Cemetery"),
+#     (RelLib.Repository.CHURCH     , "Church"),
+#     (RelLib.Repository.ARCHIVE    , "Archive"),
+#     (RelLib.Repository.ALBUM      , "Album"),
+#     (RelLib.Repository.WEBSITE    , "Web site"),
+#     (RelLib.Repository.BOOKSTORE  , "Bookstore"),
+#     (RelLib.Repository.COLLECTION , "Collection"),
+#     (RelLib.Repository.SAFE       , "Safe"),
+#     )
 
 marker_types = (
     (RelLib.PrimaryObject.MARKER_NONE     , ""),
@@ -156,25 +156,25 @@ marker_types = (
     (RelLib.PrimaryObject.MARKER_TODO     , "todo"),
     )
 
-url_types = (
-    (RelLib.Url.UNKNOWN    , "Unknown"),
-    (RelLib.Url.EMAIL      , "Email"),
-    (RelLib.Url.WEB_HOME   , "Home"),
-    (RelLib.Url.WEB_SEARCH , "Search"),
-    (RelLib.Url.WEB_FTP    , "FTP"),
-    )
+# url_types = (
+#     (RelLib.Url.UNKNOWN    , "Unknown"),
+#     (RelLib.Url.EMAIL      , "Email"),
+#     (RelLib.Url.WEB_HOME   , "Home"),
+#     (RelLib.Url.WEB_SEARCH , "Search"),
+#     (RelLib.Url.WEB_FTP    , "FTP"),
+#     )
 
 # mapping from the tuple collection to the appropriate CUSTOM integer
 custom_types = {
     events             : RelLib.Event.CUSTOM,
     attributes         : RelLib.Attribute.CUSTOM,
     family_relations   : RelLib.Family.CUSTOM,
-    name_types         : RelLib.NameType.CUSTOM,
+#    name_types         : RelLib.NameType.CUSTOM,
     source_media_types : RelLib.RepoRef.CUSTOM,
     event_roles        : RelLib.EventRef.CUSTOM,
-    repository_types   : RelLib.Repository.CUSTOM,
+#    repository_types   : RelLib.Repository.CUSTOM,
     marker_types       : RelLib.PrimaryObject.MARKER_CUSTOM,
-    url_types          : RelLib.Url.CUSTOM,
+#    url_types          : RelLib.Url.CUSTOM,
     }
 
 def str_for_xml(tuples,the_tuple):

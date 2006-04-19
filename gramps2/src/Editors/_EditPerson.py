@@ -172,7 +172,7 @@ class EditPerson(EditPrimary):
         self.ntype_field = GrampsWidgets.MonitoredDataType(
             self.top.get_widget("ntype"), 
             self.pname.set_type, 
-            self.pname.get_type, 
+            self.pname.get_type,
             self.db.readonly)
 
         self.marker = GrampsWidgets.MonitoredType(
