@@ -93,7 +93,7 @@ PEOPLE
 
 <!ELEMENT person (gender, name*, nick?, eventref*, lds_ord*,
                   objref*, address*, attribute*, url*,
-                  childof*,  parentin*, note?, sourceref*)>
+                  childof*,  parentin*, personref*, note?, sourceref*)>
 <!ATTLIST person
         id        CDATA #REQUIRED
         handle    ID    #REQUIRED
@@ -130,14 +130,18 @@ GENDER has values of M, F, or U.
 <!ELEMENT nick      (#PCDATA)>
 
 <!ELEMENT childof EMPTY>
-<!ATTLIST childof
-  hlink IDREF  #REQUIRED
-  mrel  (None|Birth|Adopted|Stepchild|Sponsored|Foster|Other|Unknown) #IMPLIED
-  frel  (None|Birth|Adopted|Stepchild|Sponsored|Foster|Other|Unknown) #IMPLIED
+<!ATTLIST childof hlink IDREF  #REQUIRED
 >
 
 <!ELEMENT parentin EMPTY>
 <!ATTLIST parentin hlink IDREF #REQUIRED>
+
+<!ELEMENT personref (sourceref*,note?)>
+<!ATTLIST personref 
+  hlink IDREF #REQUIRED
+  priv  (0|1) #IMPLIED
+  rel   CDATA #REQUIRED
+>
 
 <!ELEMENT address ((daterange|dateval|datestr)?,street?,city?,state?,
                    country?,postal?,phone?,note?,sourceref?)>
@@ -159,7 +163,7 @@ FAMILY
 <!ELEMENT families (family)*>
 
 <!ELEMENT family (rel?,father?,mother?,eventref*,lds_ord*,
-                  objref*,child*,attribute*,note?,sourceref*)>
+                  objref*,childref*,attribute*,note?,sourceref*)>
 <!ATTLIST family
         id        CDATA #REQUIRED
         handle    ID    #REQUIRED
@@ -174,8 +178,13 @@ FAMILY
 <!ELEMENT mother EMPTY>
 <!ATTLIST mother hlink IDREF #REQUIRED>
 
-<!ELEMENT child EMPTY>
-<!ATTLIST child hlink IDREF #REQUIRED>
+<!ELEMENT childref (sourceref*,note?)>
+<!ATTLIST childref
+  hlink IDREF #REQUIRED
+  priv  (0|1) #IMPLIED
+  mrel  (None|Birth|Adopted|Stepchild|Sponsored|Foster|Other|Unknown) #IMPLIED
+  frel  (None|Birth|Adopted|Stepchild|Sponsored|Foster|Other|Unknown) #IMPLIED
+>
 
 <!ELEMENT type (#PCDATA)>
 
