@@ -123,10 +123,12 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
             self.description = source.description
             self.type = source.type
             self.cause = source.cause
+            self.personal = source.personal
         else:
             self.description = ""
             self.type = (Event.CUSTOM,"")
             self.cause = ""
+            self.personal = True
 
     def serialize(self):
         """
@@ -150,7 +152,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
                 MediaBase.serialize(self),
-                self.change, self.marker, self.private)
+                self.change, self.marker, self.private, self.personal)
 
     def unserialize(self,data):
         """
@@ -162,8 +164,9 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         @type data: tuple
         """
         (self.handle, self.gramps_id, self.type, date,
-         self.description, self.place, self.cause, source_list, note,
-         media_list, self.change, self.marker, self.private) = data
+         self.description, self.place, self.cause,
+         source_list, note, media_list,
+         self.change, self.marker, self.private, self.personal) = data
 
         DateBase.unserialize(self,date)
         MediaBase.unserialize(self,media_list)
