@@ -73,19 +73,25 @@ class EditUrl(EditSecondary):
         
     def _setup_fields(self):
         self.des  = MonitoredEntry(
-            self.top.get_widget("url_des"), self.obj.set_description,
-            self.obj.get_description, self.db.readonly)
+            self.top.get_widget("url_des"),
+            self.obj.set_description,
+            self.obj.get_description,
+            self.db.readonly)
 
         self.addr  = MonitoredEntry(
-            self.top.get_widget("url_addr"), self.obj.set_path,
-            self.obj.get_path, self.db.readonly)
+            self.top.get_widget("url_addr"),
+            self.obj.set_path,
+            self.obj.get_path,
+            self.db.readonly)
         
         self.priv = PrivacyButton(self.top.get_widget("priv"),
                                   self.obj, self.db.readonly)
 
-        self.type_sel = MonitoredType(
-            self.top.get_widget("type"), self.obj.set_type,
-            self.obj.get_type, dict(Utils.web_types), RelLib.Url.CUSTOM)
+        self.type_sel = MonitoredDataType(
+            self.top.get_widget("type"),
+            self.obj.set_type,
+            self.obj.get_type,
+            )
             
     def build_menu_names(self,obj):
         etitle =_('Internet Address Editor')

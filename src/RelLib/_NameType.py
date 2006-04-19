@@ -20,7 +20,7 @@
 
 # $Id: _Name.py 6326 2006-04-13 11:21:33Z loshawlos $
 
-from _GrampsType import GrampsType
+from _GrampsType import GrampsType, init_map
 from gettext import gettext as _
 
 class NameType(GrampsType):
@@ -34,15 +34,19 @@ class NameType(GrampsType):
     _CUSTOM = CUSTOM
     _DEFAULT = BIRTH
 
-    _I2SMAP = {
-        UNKNOWN : _("Unknown"),
-        CUSTOM  : _("Custom"),
-        AKA     : _("Also Known As"),
-        BIRTH   : _("Birth Name"),
-        MARRIED : _("Married Name"),
-        }
+    _DATAMAP = [
+        (UNKNOWN, _("Unknown"),       "Unknown"),
+        (CUSTOM,  _("Custom"),        "Custom"),
+        (AKA,     _("Also Known As"), "Also Known As"),
+        (BIRTH,   _("Birth Name"),    "Birth Name"),
+        (MARRIED, _("Married Name"),  "Married Name"),
+        ]
+
+    _I2SMAP = init_map(_DATAMAP, 0, 1)
+    _S2IMAP = init_map(_DATAMAP, 1, 0)
+    _I2EMAP = init_map(_DATAMAP, 0, 2)
+    _E2IMAP = init_map(_DATAMAP, 2, 0)
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
-        
-        
+

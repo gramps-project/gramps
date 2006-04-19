@@ -45,6 +45,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
+import RelLib
 from _EditSecondary import EditSecondary
 
 from DisplayTabs import *
@@ -81,12 +82,14 @@ class EditChildRef(EditSecondary):
             self.top.get_widget('frel'),
             self.obj.set_father_relation,
             self.obj.get_father_relation,
+            RelLib.ChildRefType,
             )
 
         self.mrel = MonitoredDataType(
             self.top.get_widget('mrel'),
             self.obj.set_mother_relation,
             self.obj.get_mother_relation,
+            RelLib.ChildRefType,
             )
             
         self.priv = PrivacyButton(

@@ -470,7 +470,7 @@ class XmlWriter:
         self.write_primary_tag("repository",repo,index)
         #name
         self.write_line('rname',repo.name,index+1)
-        rtype = _ConstXML.str_for_xml(_ConstXML.repository_types,repo.type)
+        rtype = repo.type.xml_str()
         if rtype:
             self.write_line('type',rtype,index+1)
         #address list

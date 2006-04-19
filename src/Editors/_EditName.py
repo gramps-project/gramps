@@ -140,14 +140,18 @@ class EditName(EditSecondary):
             self.top.get_widget("alt_prefix"), self.obj.set_surname_prefix,
             self.obj.get_surname_prefix, self.db.readonly)
             
-        self.date = MonitoredDate(self.top.get_widget("date"),
-                                  self.top.get_widget("date_stat"), 
-                                  self.obj.get_date_object(),self.window)
+        self.date = MonitoredDate(
+            self.top.get_widget("date"),
+            self.top.get_widget("date_stat"), 
+            self.obj.get_date_object(),
+            self.window)
 
         self.obj_combo = MonitoredDataType(
             self.top.get_widget("name_type"),
             self.obj.set_type,
-            self.obj.get_type)
+            self.obj.get_type,
+            RelLib.Name,
+            )
         
         self.privacy = PrivacyButton(
             self.top.get_widget("priv"), self.obj)

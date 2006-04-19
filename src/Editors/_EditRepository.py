@@ -72,12 +72,11 @@ class EditRepository(EditPrimary):
             self.obj.get_name,
             self.db.readonly)
 
-        self.type = MonitoredType(
+        self.type = MonitoredDataType(
             self.glade.get_widget("repository_type"),
             self.obj.set_type,
-            self.obj.get_type,
-            dict(Utils.repository_types),
-            RelLib.Repository.CUSTOM)
+            self.obj.get_type
+            )
 
         self.call_number = MonitoredEntry(
             self.glade.get_widget('gid'),

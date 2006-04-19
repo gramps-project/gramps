@@ -882,7 +882,7 @@ class GrampsParser:
 
         if not mrel.is_default():
             self.childref.set_mother_relation(mrel)
-        if not frel.is_default() ):
+        if not frel.is_default():
             self.childref.set_father_relation(frel)
         self.family.add_child_reference(self.childref)
 
@@ -1386,8 +1386,8 @@ class GrampsParser:
             self.event.type = _ConstXML.tuple_from_xml(_ConstXML.events,tag)
         elif self.repo:
             # Repository type
-            self.repo.type = _ConstXML.tuple_from_xml(
-                _ConstXML.repository_types,tag)
+            self.repo.type = RelLib.RepositoryType()
+            self.repo.type.set_from_xml_str(tag)
 
     def stop_childref(self,tag):
         self.childref = None

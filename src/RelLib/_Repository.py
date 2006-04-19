@@ -40,6 +40,7 @@ from _PrimaryObject import PrimaryObject
 from _NoteBase import NoteBase
 from _AddressBase import AddressBase
 from _UrlBase import UrlBase
+from _RepositoryType import RepositoryType
 
 #-------------------------------------------------------------------------
 #
@@ -49,29 +50,18 @@ from _UrlBase import UrlBase
 class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
     """A location where collections of Sources are found"""
     
-    UNKNOWN    = -1
-    CUSTOM     = 0
-    LIBRARY    = 1
-    CEMETERY   = 2
-    CHURCH     = 3
-    ARCHIVE    = 4
-    ALBUM      = 5
-    WEBSITE    = 6
-    BOOKSTORE  = 7
-    COLLECTION = 8
-    SAFE       = 9
-    
     def __init__(self):
         """creates a new Repository instance"""
         PrimaryObject.__init__(self)
         NoteBase.__init__(self)
         AddressBase.__init__(self)
         UrlBase.__init__(self)
-        self.type = (Repository.LIBRARY,"")
+        self.type = RepositoryType()
         self.name = ""
 
     def serialize(self):
-        return (self.handle, self.gramps_id, self.type, unicode(self.name),
+        return (self.handle, self.gramps_id, self.type.serialize(),
+                unicode(self.name),
                 NoteBase.serialize(self),
                 AddressBase.serialize(self),
                 UrlBase.serialize(self),
@@ -82,9 +72,10 @@ class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
         Converts the data held in a tuple created by the serialize method
         back into the data in an Repository structure.
         """
-        (self.handle, self.gramps_id, self.type, self.name, note,
+        (self.handle, self.gramps_id, the_type, self.name, note,
          address_list, urls ,self.marker, self.private) = data
 
+        self.type = RepositoryType(the_type)
         NoteBase.unserialize(self,note)
         AddressBase.unserialize(self,address_list)
         UrlBase.unserialize(self,urls)
@@ -96,7 +87,7 @@ class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.name,self.type[1]]
+        return [self.name,str(self.type)]
 
     def get_text_data_child_list(self):
         """
@@ -149,15 +140,10 @@ class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
         @param type: descriptive type of the Repository
         @type type: str
         """
-        if not type(the_type) == tuple:
-            warn( "set_type now takes a tuple", DeprecationWarning, 2)
-            # Wrapper for old API
-            # remove when transitition done.
-            if the_type in range(-1,10):
-                the_type = (the_type,'')
-            else:
-                the_type = (Repository.CUSTOM,the_type)
-        self.type = the_type
+        if type(the_type) == tuple:
+            self.type = NameType(the_type)
+        else:
+            self.type = the_type
 
     def get_type(self):
         """

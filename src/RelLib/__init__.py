@@ -61,5 +61,7 @@ from _Researcher import Researcher
 # Type classes
 from _GrampsType import GrampsType
 from _NameType import NameType
+from _UrlType import UrlType
 from _ChildRefType import ChildRefType
+from _RepositoryType import RepositoryType
 
