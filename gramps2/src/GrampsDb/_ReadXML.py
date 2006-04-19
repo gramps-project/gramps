@@ -769,18 +769,21 @@ class GrampsParser:
         self.eventref.private = bool(attrs.get('priv'))
         self.eventref.role = _ConstXML.tuple_from_xml(_ConstXML.event_roles,
                                             attrs.get('role',''))
+        # We count here on events being already parsed prior to parsing
+        # people or families. This code will fail if this is not true.
+        event = self.db.get_event_from_handle(self.eventref.ref)
         if self.family:
+            event.personal = False
             self.family.add_event_ref(self.eventref)
         elif self.person:
-            # We count here on events being already parsed prior
-            # to parsing people. This will fail if this is not true.
-            event = self.db.get_event_from_handle(self.eventref.ref)
+            event.personal = True
             if event.type[0] == RelLib.Event.BIRTH:
                 self.person.birth_ref = self.eventref
             elif event.type[0] == RelLib.Event.DEATH:
                 self.person.death_ref = self.eventref
             else:
                 self.person.add_event_ref(self.eventref)
+        
 
     def start_attribute(self,attrs):
         self.attribute = RelLib.Attribute()
@@ -919,8 +922,8 @@ class GrampsParser:
             self.family = self.find_family_by_gramps_id(gramps_id)
         # GRAMPS LEGACY: the type now belongs to <rel> tag
         # Here we need to support old format of <family type="Married">
-        self.family.type = _ConstXML.tuple_from_xml(
-            _ConstXML.family_relations,attrs.get("type",'Unknown'))
+        self.family.type = RelLib.FamilyRelType().set_from_xml_str(
+            attrs.get("type",'Unknown'))
                 
         # Old and new markers: complete=1 and marker=word both have to work
         if attrs.get('complete'): # this is only true for complete=1
@@ -930,8 +933,8 @@ class GrampsParser:
                 _ConstXML.marker_types,attrs.get("marker",''))
 
     def start_rel(self,attrs):
-        self.family.type = _ConstXML.tuple_from_xml(
-            _ConstXML.family_relations,attrs.get("type",'Unknown'))
+        self.family.type = RelLib.FamilyRelType().set_from_xml_str(
+            attrs.get("type",'Unknown'))
 
     def start_file(self,attrs):
         self.object.mime = attrs['mime']

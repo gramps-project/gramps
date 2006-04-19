@@ -280,6 +280,10 @@ src/RelLib/_Url.py
 src/RelLib/_Witness.py
 src/TreeViews/__init__.py
 src/TreeViews/_PersonTreeView.py
+src/RelLib/_FamilyRelType.py
+src/RelLib/_UrlType.py
+src/RelLib/_NameType.py
+src/RelLib/_ChildRefType.py
 #
 #	Glade files
 #

@@ -1,4 +1,13 @@
 2006-04-19  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib/Makefile.am: Ship new file.
+	* src/PluginUtils/_ReportUtils.py: Use fam relations from new module.
+	* src/Relationship.py: Use family relations from new module.
+	* src/Utils.py: Remove family relations.
+	* src/RelLib/__init__.py: Expose new module.
+	* src/RelLib/_Family.py: Adapt to new types.
+	* src/GrampsDb/_ReadXML.py: Adapt to new types.
+	* src/GrampsDb/_ConstXML.py: Remove family relations.
+	* src/RelLib/_FamilyRelType.py: Add new class
 	* src/RelLib/_Event.py: Add "personal" attribute to events.
 	* src/RelLib/_Event.py: Revert this change.
 

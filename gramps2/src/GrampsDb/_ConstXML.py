@@ -94,12 +94,12 @@ attributes = (
     (RelLib.Attribute.SSN         , "Social Security Number"),
     )
 
-family_relations = (
-    (RelLib.Family.MARRIED     , "Married"),
-    (RelLib.Family.UNMARRIED   , "Unmarried"),
-    (RelLib.Family.CIVIL_UNION , "Civil Union"),
-    (RelLib.Family.UNKNOWN     , "Unknown"),
-    )
+## family_relations = (
+##     (RelLib.Family.MARRIED     , "Married"),
+##     (RelLib.Family.UNMARRIED   , "Unmarried"),
+##     (RelLib.Family.CIVIL_UNION , "Civil Union"),
+##     (RelLib.Family.UNKNOWN     , "Unknown"),
+##     )
 
 # name_types = (
 #     (RelLib.NameType.UNKNOWN , "Unknown"),
@@ -168,7 +168,7 @@ marker_types = (
 custom_types = {
     events             : RelLib.Event.CUSTOM,
     attributes         : RelLib.Attribute.CUSTOM,
-    family_relations   : RelLib.Family.CUSTOM,
+#    family_relations   : RelLib.Family.CUSTOM,
 #    name_types         : RelLib.NameType.CUSTOM,
     source_media_types : RelLib.RepoRef.CUSTOM,
     event_roles        : RelLib.EventRef.CUSTOM,

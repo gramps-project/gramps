@@ -260,33 +260,33 @@ class RelationshipCalculator:
                     gender = RelLib.Person.FEMALE
                 # Person's gender is unknown, try guessing from spouse's
                 elif orig.get_gender() == RelLib.Person.MALE:
-                    if family_rel == RelLib.Family.CIVIL_UNION:
+                    if family_rel == RelLib.FamilyRelType.CIVIL_UNION:
                         gender = RelLib.Person.MALE
                     else:
                         gender = RelLib.Person.FEMALE
                 elif orig.get_gender() == RelLib.Person.FEMALE:
-                    if family_rel == RelLib.Family.CIVIL_UNION:
+                    if family_rel == RelLib.FamilyRelType.CIVIL_UNION:
                         gender = RelLib.Person.FEMALE
                     else:
                         gender = RelLib.Person.MALE
                 else:
                     gender = RelLib.Person.UNKNOWN
 
-                if family_rel == RelLib.Family.MARRIED:
+                if family_rel == RelLib.FamilyRelType.MARRIED:
                     if gender == RelLib.Person.MALE:
                         return _("husband")
                     elif gender == RelLib.Person.FEMALE:
                         return _("wife")
                     else:
                         return _("gender unknown|spouse")
-                elif family_rel == RelLib.Family.UNMARRIED:
+                elif family_rel == RelLib.FamilyRelType.UNMARRIED:
                     if gender == RelLib.Person.MALE:
                         return _("unmarried|husband")
                     elif gender == RelLib.Person.FEMALE:
                         return _("unmarried|wife")
                     else:
                         return _("gender unknown,unmarried|spouse")
-                elif family_rel == RelLib.Family.CIVIL_UNION:
+                elif family_rel == RelLib.FamilyRelType.CIVIL_UNION:
                     if gender == RelLib.Person.MALE:
                         return _("male,civil union|partner")
                     elif gender == RelLib.Person.FEMALE:
