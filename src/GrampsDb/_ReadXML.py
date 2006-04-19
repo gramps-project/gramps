@@ -376,6 +376,7 @@ class GrampsParser:
             "child"      : (self.start_child,None),
             "childof"    : (self.start_childof,None),
             "childref"   : (self.start_childref,self.stop_childref),
+            "personref"  : (self.start_personref,self.stop_personref),
             "city"       : (None, self.stop_city),
             "country"    : (None, self.stop_country),
             "comment"    : (None, self.stop_comment),
@@ -872,18 +873,25 @@ class GrampsParser:
     def start_childref(self,attrs):
         # Here we are handling the new XML, in which frel and mrel
         # belong to the "child" tag under family.
-        childref = RelLib.ChildRef()
-        childref.ref = attrs['hlink'].replace('_','')
+        self.childref = RelLib.ChildRef()
+        self.childref.ref = attrs['hlink'].replace('_','')
         self.childref.private = bool(attrs.get('priv'))
 
         mrel = RelLib.ChildRefType().set_from_xml_str(attrs.get('mrel'))
         frel = RelLib.ChildRefType().set_from_xml_str(attrs.get('frel'))
 
         if not mrel.is_default():
-            childref.set_mother_relation(mrel)
+            self.childref.set_mother_relation(mrel)
         if not frel.is_default() ):
-            childref.set_father_relation(frel)
+            self.childref.set_father_relation(frel)
         self.family.add_child_reference(self.childref)
+
+    def start_personref(self,attrs):
+        self.personref = RelLib.PersonRef()
+        self.personref.ref = attrs['hlink'].replace('_','')
+        self.personref.private = bool(attrs.get('priv'))
+        self.personref.rel = attrs['rel']
+        self.person.add_person_ref(self.personref)
 
     def start_url(self,attrs):
         if not attrs.has_key("href"):
@@ -1019,6 +1027,8 @@ class GrampsParser:
             self.childref.add_source_reference(self.source_ref)
         elif self.family:
             self.family.add_source_reference(self.source_ref)
+        elif self.personref:
+            self.personref.add_source_reference(self.source_ref)
         elif self.person:
             self.person.add_source_reference(self.source_ref)
 
@@ -1382,6 +1392,9 @@ class GrampsParser:
     def stop_childref(self,tag):
         self.childref = None
 
+    def stop_personref(self,tag):
+        self.personref = None
+
     def stop_eventref(self,tag):
         self.eventref = None
 
@@ -1607,6 +1620,8 @@ class GrampsParser:
             self.source.set_note_object(self.note)
         elif self.event:
             self.event.set_note_object(self.note)
+        elif self.personref:
+            self.personref.set_note_object(self.note)
         elif self.person:
             self.person.set_note_object(self.note)
         elif self.childref:
