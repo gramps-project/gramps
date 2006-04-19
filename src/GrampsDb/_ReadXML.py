@@ -346,6 +346,7 @@ class GrampsParser:
         self.event = None
         self.eventref = None
         self.childref = None
+        self.personref = None
         self.name = None
         self.tempDefault = None
         self.home = None
@@ -977,8 +978,9 @@ class GrampsParser:
     def start_name(self,attrs):
         if not self.in_witness:
             self.name = RelLib.Name()
-            self.name.type.set(_ConstXML.tuple_from_xml(
-                _ConstXML.name_types,attrs.get('type','Birth Name')))
+            self.name.type.set_from_xml_str(attrs.get('type'))
+##                 (_ConstXML.tuple_from_xml(
+##                 _ConstXML.name_types,attrs.get('type','Birth Name')))
             self.name.sort_as = int(attrs.get("sort",RelLib.Name.DEF))
             self.name.display_as = int(attrs.get("display",RelLib.Name.DEF))
             self.name.conf = int(attrs.get("conf",2))
@@ -1417,19 +1419,20 @@ class GrampsParser:
             else:
                 self.person.add_event_ref(ref)
 
-        if self.event.get_description() == "" and \
-               self.event.get_type()[0] != RelLib.Event.CUSTOM:
-            if self.family:
-                text = _event_family_str % {
-                    'event_name' : Utils.family_events[self.event.get_type()[0]],
-                    'family' : Utils.family_name(self.family,self.db),
-                    }
-            else:
-                text = _event_person_str % {
-                    'event_name' : Utils.personal_events[self.event.get_type()[0]],
-                    'person' : NameDisplay.displayer.display(self.person),
-                    }
-            self.event.set_description(text)
+##         # FIXME: re-enable when event types are fixed.
+##         if self.event.get_description() == "" and \
+##                self.event.get_type()[0] != RelLib.Event.CUSTOM:
+##             if self.family:
+##                 text = _event_family_str % {
+##                     'event_name' : Utils.family_events[self.event.get_type()[0]],
+##                     'family' : Utils.family_name(self.family,self.db),
+##                     }
+##             else:
+##                 text = _event_person_str % {
+##                     'event_name' : Utils.personal_events[self.event.get_type()[0]],
+##                     'person' : NameDisplay.displayer.display(self.person),
+##                     }
+##             self.event.set_description(text)
 
         self.db.commit_event(self.event,self.trans,self.change)
         self.event = None
