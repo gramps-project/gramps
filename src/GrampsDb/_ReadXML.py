@@ -345,6 +345,7 @@ class GrampsParser:
         self.increment = 100
         self.event = None
         self.eventref = None
+        self.childref = None
         self.name = None
         self.tempDefault = None
         self.home = None
@@ -374,6 +375,7 @@ class GrampsParser:
             "bookmarks"  : (None, None),
             "child"      : (self.start_child,None),
             "childof"    : (self.start_childof,None),
+            "childref"   : (self.start_childref,self.stop_childref),
             "city"       : (None, self.stop_city),
             "country"    : (None, self.stop_country),
             "comment"    : (None, self.stop_comment),
@@ -859,13 +861,29 @@ class GrampsParser:
         except KeyError:
             person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
             handle = person_handle
-            
+
+        # Here we are handling the old XML, in which
+        # frel and mrel belonged to the "childof" tag
+        # If that were the case then childref_map has the childref ready
         if self.childref_map.has_key((self.family.handle,handle)):
-            self.family.add_child_ref(self.childref_map[(self.family.handle,handle)])
-        else:
-            ref = RelLib.ChildRef()
-            ref.ref = handle
-            self.family.add_child_ref(ref)
+            self.family.add_child_ref(
+                self.childref_map[(self.family.handle,handle)])
+
+    def start_childref(self,attrs):
+        # Here we are handling the new XML, in which frel and mrel
+        # belong to the "child" tag under family.
+        childref = RelLib.ChildRef()
+        childref.ref = attrs['hlink'].replace('_','')
+        self.childref.private = bool(attrs.get('priv'))
+
+        mrel = RelLib.ChildRefType().set_from_xml_str(attrs.get('mrel'))
+        frel = RelLib.ChildRefType().set_from_xml_str(attrs.get('frel'))
+
+        if not mrel.is_default():
+            childref.set_mother_relation(mrel)
+        if not frel.is_default() ):
+            childref.set_father_relation(frel)
+        self.family.add_child_reference(self.childref)
 
     def start_url(self,attrs):
         if not attrs.has_key("href"):
@@ -924,11 +942,14 @@ class GrampsParser:
             family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
             handle = family.handle
 
-        mrel = crel_map.get(attrs.get('mrel'),RelLib.ChildRefType())
-        frel = crel_map.get(attrs.get('frel'),RelLib.ChildRefType())
+        # Here we are handling the old XML, in which
+        # frel and mrel belonged to the "childof" tag
+        mrel = RelLib.ChildRefType().set_from_xml_str(attrs.get('mrel'))
+        frel = RelLib.ChildRefType().set_from_xml_str(attrs.get('frel'))
 
-        if mrel != RelLib.ChildRefType.BIRTH or \
-               frel != RelLib.ChildRefType.BIRTH:
+        # Only need to worry about this if there are non-default rels
+        # Otherwise, if both are default, the family's child tag will do
+        if not ( mrel.is_default() and frel.is_default() ):
             childref = RelLib.ChildRef()
             childref.ref = self.person.handle
             childref.set_mother_relation(mrel)
@@ -994,6 +1015,8 @@ class GrampsParser:
             self.name.add_source_reference(self.source_ref)
         elif self.placeobj:
             self.placeobj.add_source_reference(self.source_ref)
+        elif self.childref:
+            self.childref.add_source_reference(self.source_ref)
         elif self.family:
             self.family.add_source_reference(self.source_ref)
         elif self.person:
@@ -1356,6 +1379,9 @@ class GrampsParser:
             self.repo.type = _ConstXML.tuple_from_xml(
                 _ConstXML.repository_types,tag)
 
+    def stop_childref(self,tag):
+        self.childref = None
+
     def stop_eventref(self,tag):
         self.eventref = None
 
@@ -1583,6 +1609,8 @@ class GrampsParser:
             self.event.set_note_object(self.note)
         elif self.person:
             self.person.set_note_object(self.note)
+        elif self.childref:
+            self.childref.set_note_object(self.note)
         elif self.family:
             self.family.set_note_object(self.note)
         elif self.placeobj:

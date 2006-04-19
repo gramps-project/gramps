@@ -414,31 +414,13 @@ class XmlWriter:
         self.write_url_list(person.get_url_list(),index+1)
 
         for family_handle in person.get_parent_family_handle_list():
-
-            family = self.db.get_family_from_handle(family_handle)
-            for child_ref in family.get_child_ref_list():
-                if child_ref.ref == person.handle:
-                    mval = child_ref.get_mother_relation()
-                    fval = child_ref.get_father_relation()
-                    break
-            else:
-                continue
-            
-            if mval != RelLib.ChildRefType.BIRTH:
-                mrel=' mrel="%s"' % _ConstXML.str_for_xml(
-                    _ConstXML.child_relations,mval)
-            else:
-                mrel=''
-            if fval != RelLib.ChildRefType.BIRTH:
-                frel=' frel="%s"' % _ConstXML.str_for_xml(
-                    _ConstXML.child_relations,fval)
-            else:
-                frel=''
-            self.g.write('  %s<childof hlink="_%s"%s%s/>\n' % \
-                    (sp,family_handle, mrel, frel))
+            self.write_ref("childof",family_handle,index+1)
 
         for family_handle in person.get_family_handle_list():
             self.write_ref("parentin",family_handle,index+1)
+
+        for person_ref in person.get_person_ref_list():
+            self.dump_person_ref(person_ref,index+1)
 
         self.write_note("note",person.get_note_object(),index+1)
         for s in person.get_source_references():
@@ -461,9 +443,8 @@ class XmlWriter:
 
         self.write_media_list(family.get_media_list(),index+1)
 
-        if len(family.get_child_ref_list()) > 0:
-            for child_ref in family.get_child_ref_list():
-                self.write_ref("child",child_ref.ref,index+1)
+        for child_ref in family.get_child_ref_list():
+            self.dump_child_ref(child_ref,index+1)
         self.write_attribute_list(family.get_attribute_list())
         self.write_note("note",family.get_note_object(),index+1)
         for s in family.get_source_references():
@@ -519,6 +500,50 @@ class XmlWriter:
                 self.dump_source_ref(s,index+2)
             self.g.write('%s</address>\n' % sp)
 
+    def dump_person_ref(self,personref,index=1):
+        if not personref or not personref.ref:
+            return
+        sp = "  "*index
+        priv_text = conf_priv(personref)
+        rel_text = ' rel="%s"'
+
+        sreflist = personref.get_source_references()
+        if (len(sreflist) == 0) and personref.get_note() =="":
+            self.write_ref('personref',personref.ref,index,close=True,
+                           extra_text=priv_text+rel_text)
+        else:
+            self.write_ref('personref',personref.ref,index,close=False,
+                           extra_text=priv_text+rel_text)
+            for sref in sreflist:
+                self.dump_source_ref(sref,index+1)
+            self.write_note("note",personref.get_note_object(),index+1)
+            self.g.write('%s</personref>\n' % sp)
+
+    def dump_child_ref(self,childref,index=1):
+        if not childref or not childref.ref:
+            return
+        sp = "  "*index
+        priv_text = conf_priv(childref)
+        if childref.frel.is_default():
+            frel_text = ''
+        else:
+            frel_text = ' frel="%s"' % childref.frel.xml_str()
+        if childref.mrel.is_default():
+            mrel_text = ''
+        else:
+            mrel_text = ' mrel="%s"' % childref.mrel.xml_str()
+        sreflist = childref.get_source_references()
+        if (len(sreflist) == 0) and childref.get_note() =="":
+            self.write_ref('childref',childref.ref,index,close=True,
+                           extra_text=priv_text+frel_text+mrel_text)
+        else:
+            self.write_ref('childref',childref.ref,index,close=False,
+                           extra_text=priv_text+frel_text+mrel_text)
+            for sref in sreflist:
+                self.dump_source_ref(sref,index+1)
+            self.write_note("note",childref.get_note_object(),index+1)
+            self.g.write('%s</childref>\n' % sp)
+        
     def dump_event_ref(self,eventref,index=1):
         if not eventref or not eventref.ref:
             return

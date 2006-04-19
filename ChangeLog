@@ -3,6 +3,15 @@
 	* src/DisplayTabs.py: remove property button stuff
 
 2006-04-18  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_ReadXML.py: Parse old and new XML.
+	* src/GrampsDb/_WriteXML.py (dump_child_ref, dump_person_ref): Add
+	methods.
+	* src/RelLib/_ChildRef.py (ChildRef.set_mother_relation): Adapt to
+	new types;
+	(ChildRef.set_father_relation): Adapt to new types.
+	* src/RelLib/_GrampsType.py (GrampsType.get_custom): Add method.
+	(GrampsType.set): Allow setting from the same class instance.
+	(GrampsType.is_default): Add method.
 	* src/DisplayTabs.py (BackRefList.create_buttons): Allow an
 	additional argument to keep the caller happy.
 

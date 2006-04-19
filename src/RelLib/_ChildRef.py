@@ -127,8 +127,7 @@ class ChildRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase):
 
     def set_mother_relation(self,rel):
         """Sets relation between the person and mother"""
-        assert(isinstance(rel,ChildRefType))
-        self.mrel = rel
+        self.mrel.set(rel)
 
     def get_mother_relation(self):
         """Returns the relation between the person and mother"""
@@ -136,8 +135,7 @@ class ChildRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase):
 
     def set_father_relation(self,frel):
         """Sets relation between the person and father"""
-        assert(isinstance(frel,ChildRefType))
-        self.frel = frel
+        self.frel.set(frel)
 
     def get_father_relation(self):
         """Returns the relation between the person and father"""
