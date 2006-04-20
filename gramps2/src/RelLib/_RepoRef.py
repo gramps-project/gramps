@@ -32,6 +32,7 @@ Repository Reference class for GRAMPS
 from _BaseObject import BaseObject
 from _NoteBase import NoteBase
 from _RefBase import RefBase
+from _SourceMediaType import SourceMediaType
 
 #-------------------------------------------------------------------------
 #
@@ -43,22 +44,6 @@ class RepoRef(BaseObject,NoteBase,RefBase):
     Repository reference class.
     """
 
-    UNKNOWN    = -1
-    CUSTOM     = 0
-    AUDIO      = 1
-    BOOK       = 2
-    CARD       = 3
-    ELECTRONIC = 4
-    FICHE      = 5
-    FILM       = 6
-    MAGAZINE   = 7
-    MANUSCRIPT = 8
-    MAP        = 9
-    NEWSPAPER  = 10
-    PHOTO      = 11
-    TOMBSTONE  = 12
-    VIDEO      = 13
-
     def __init__(self,source=None):
         BaseObject.__init__(self)
         NoteBase.__init__(self)
@@ -68,16 +53,17 @@ class RepoRef(BaseObject,NoteBase,RefBase):
             self.media_type = source.media_type
         else:
             self.call_number = ""
-            self.media_type = (RepoRef.CUSTOM,"")
+            self.media_type = SourceMediaType()
 
     def serialize(self):
         return (
             NoteBase.serialize(self),
             RefBase.serialize(self),
-            self.call_number,self.media_type)
+            self.call_number,self.media_type.serialize())
 
     def unserialize(self,data):
-        (note,ref,self.call_number,self.media_type) = data
+        (note,ref,self.call_number,media_type) = data
+        self.media_type = SourceMediaType(media_type)
         NoteBase.unserialize(self,note)
         RefBase.unserialize(self,ref)
         return self
@@ -89,7 +75,7 @@ class RepoRef(BaseObject,NoteBase,RefBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.call_number,self.media_type[1]]
+        return [self.call_number,str(self.media_type)]
 
     def get_text_data_child_list(self):
         """
@@ -125,4 +111,7 @@ class RepoRef(BaseObject,NoteBase,RefBase):
         return self.media_type
 
     def set_media_type(self,media_type):
-        self.media_type = media_type
+        if type(media_type) == tuple:
+            self.media_type = SourceMediaType(media_type)
+        else:
+            self.media_type = media_type

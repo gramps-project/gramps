@@ -733,7 +733,7 @@ class GrampsParser:
         # to this event using ROLE_WITNESS role
         event_ref = RelLib.EventRef()
         event_ref.ref = self.event.handle
-        event_ref.role = (RelLib.EventRef.WITNESS,'')
+        event_ref.role.set(RelLib.EventRoleType.WITNESS)
         person.event_ref_list.append(event_ref)
         self.db.commit_person(person,self.trans,self.change)
         
@@ -767,8 +767,7 @@ class GrampsParser:
         self.eventref = RelLib.EventRef()
         self.eventref.ref = attrs['hlink'].replace('_','')
         self.eventref.private = bool(attrs.get('priv'))
-        self.eventref.role = _ConstXML.tuple_from_xml(_ConstXML.event_roles,
-                                            attrs.get('role',''))
+        self.eventref.role.set_from_xml_str(attrs.get('role'))
         # We count here on events being already parsed prior to parsing
         # people or families. This code will fail if this is not true.
         event = self.db.get_event_from_handle(self.eventref.ref)
@@ -830,10 +829,9 @@ class GrampsParser:
 
         # Old and new markers: complete=1 and marker=word both have to work
         if attrs.get('complete'): # this is only true for complete=1
-            self.person.marker = (RelLib.PrimaryObject.MARKER_COMPLETE,"")
+            self.person.marker.set(RelLib.MarkerType.COMPLETE)
         else:
-            self.person.marker = _ConstXML.tuple_from_xml(
-                _ConstXML.marker_types,attrs.get("marker",''))
+            self.person.marker.set_from_xml_str(attrs.get("marker",''))
 
     def start_people(self,attrs):
         if attrs.has_key('home'):
@@ -927,10 +925,9 @@ class GrampsParser:
                 
         # Old and new markers: complete=1 and marker=word both have to work
         if attrs.get('complete'): # this is only true for complete=1
-            self.family.marker = (RelLib.PrimaryObject.MARKER_COMPLETE,"")
+            self.family.marker.set(RelLib.MarkerType.COMPLETE)
         else:
-            self.family.marker = _ConstXML.tuple_from_xml(
-                _ConstXML.marker_types,attrs.get("marker",''))
+            self.family.marker.set_from_xml_str(attrs.get("marker",''))
 
     def start_rel(self,attrs):
         self.family.type = RelLib.FamilyRelType().set_from_xml_str(
@@ -1055,8 +1052,8 @@ class GrampsParser:
         
         self.reporef.ref = handle
         self.reporef.call_number = attrs.get('callno','')
-        self.reporef.media_type = _ConstXML.tuple_from_xml(
-            _ConstXML.source_media_types,attrs.get('medium',"Unknown"))
+        self.reporef.media_type = RelLib.SourceMediaType().set_from_xml_str(
+            attrs.get('medium'))
         # we count here on self.source being available
         # reporefs can only be found within source
         self.source.add_repo_reference(self.reporef)
@@ -1385,7 +1382,7 @@ class GrampsParser:
     def stop_type(self,tag):
         if self.event:
             # Event type
-            self.event.type = _ConstXML.tuple_from_xml(_ConstXML.events,tag)
+            self.event.type.set_from_xml_str(tag)
         elif self.repo:
             # Repository type
             self.repo.type = RelLib.RepositoryType()
@@ -1405,13 +1402,13 @@ class GrampsParser:
             ref = RelLib.EventRef()
             ref.ref = self.event.handle
             ref.private = self.event.private
-            ref.role = (RelLib.EventRef.FAMILY,'')
+            ref.role.set(RelLib.EventRoleType.FAMILY)
             self.family.add_event_ref(ref)
         elif self.person:
             ref = RelLib.EventRef()
             ref.ref = self.event.handle
             ref.private = self.event.private
-            ref.role = (RelLib.EventRef.PRIMARY,'')
+            ref.role.set(RelLib.EventRoleType.PRIMARY)
             if int(self.event.type) == RelLib.EventType.BIRTH:
                 self.person.birth_ref = ref
             elif int(self.event.type) == RelLib.EventType.DEATH:
@@ -1465,7 +1462,7 @@ class GrampsParser:
         # to this event using ROLE_WITNESS role
         event_ref = RelLib.EventRef()
         event_ref.ref = self.event.handle
-        event_ref.role = (RelLib.EventRef.WITNESS,'')
+        event_ref.role.set(RelLib.EventRoleType.WITNESS)
         person.event_ref_list.append(event_ref)
         self.db.commit_person(person,self.trans,self.change)
 

@@ -1323,13 +1323,13 @@ class GrampsBSDDB(GrampsDbBase):
              family.note, family.change) = info
 
             if complete:
-                family.marker = (PrimaryObject.MARKER_COMPLETE,"")
+                family.marker.set(MarkerType.COMPLETE)
                 
             # Change every event handle to the EventRef
             for event_handle in event_list:
                 event_ref = EventRef()
                 event_ref.ref = event_handle
-                event_ref.role = (EventRef.PRIMARY,'')
+                event_ref.role.set(EventRoleType.FAMILY)
                 family.event_ref_list.append(event_ref)
 
             # Change child_list into child_ref_list
@@ -1375,25 +1375,22 @@ class GrampsBSDDB(GrampsDbBase):
 
             # Convert complete flag into marker
             if complete:
-                person.marker = (PrimaryObject.MARKER_COMPLETE,"")
+                person.marker.set(MarkerType.COMPLETE)
             
             # Change every event handle to the EventRef
             if birth_handle:
                 event_ref = EventRef()
                 event_ref.ref = birth_handle
-                event_ref.role = (EventRef.PRIMARY,'')
                 person.birth_ref = event_ref
 
             if death_handle:
                 event_ref = EventRef()
                 event_ref.ref = death_handle
-                event_ref.role = (EventRef.PRIMARY,'')
                 person.death_ref = event_ref
 
             for event_handle in event_list:
                 event_ref = EventRef()
                 event_ref.ref = event_handle
-                event_ref.role = (EventRef.PRIMARY,'')
                 person.event_ref_list.append(event_ref)
 
             # In all Name instances, convert type from string to a tuple
@@ -1552,7 +1549,7 @@ class GrampsBSDDB(GrampsDbBase):
                     # to this event using ROLE_WITNESS role
                     event_ref = EventRef()
                     event_ref.ref = event.handle
-                    event_ref.role = (EventRef.WITNESS,'')
+                    event_ref.role.set(EventRoleType.WITNESS)
                     # Add privacy and comment
                     event_ref.private = witness.private
                     if witness.comment:

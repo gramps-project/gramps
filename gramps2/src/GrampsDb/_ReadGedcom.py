@@ -1166,7 +1166,7 @@ class GedcomParser:
 
                 event_ref = RelLib.EventRef()
                 event_ref.set_reference_handle(event.handle)
-                event_ref.set_role((RelLib.EventRef.PRIMARY,''))
+                event_ref.set_role(RelLib.EventRoleType.FAMILY)
                 self.family.add_event_ref(event_ref)
                 del event
 
@@ -2174,7 +2174,6 @@ class GedcomParser:
 
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event.handle)
-        event_ref.set_role((RelLib.EventRef.PRIMARY,''))
 
         if state.person.get_birth_ref():
             state.person.add_event_ref(event_ref)
@@ -2191,7 +2190,6 @@ class GedcomParser:
 
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event.handle)
-        event_ref.set_role((RelLib.EventRef.PRIMARY,''))
         state.person.add_event_ref(event_ref)
 
     def func_person_deat(self,matches,state):
@@ -2207,7 +2205,6 @@ class GedcomParser:
 
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event.handle)
-        event_ref.set_role((RelLib.EventRef.PRIMARY,''))
 
         if state.person.get_death_ref():
             state.person.add_event_ref(event_ref)
@@ -2230,7 +2227,6 @@ class GedcomParser:
             self.db.add_event(event, self.trans)
             event_ref = RelLib.EventRef()
             event_ref.set_reference_handle(event.handle)
-            event_ref.set_role((RelLib.EventRef.PRIMARY,''))
             state.person.add_event_ref(event_ref)
 
     def func_person_sour(self,matches,state):
@@ -2286,7 +2282,6 @@ class GedcomParser:
 
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event.handle)
-        event_ref.set_role((RelLib.EventRef.PRIMARY,''))
         state.person.add_event_ref(event_ref)
 
     #-------------------------------------------------------------------------

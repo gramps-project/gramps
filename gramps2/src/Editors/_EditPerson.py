@@ -180,7 +180,7 @@ class EditPerson(EditPrimary):
             self.obj.set_marker, 
             self.obj.get_marker, 
             dict(Utils.marker_types), 
-            RelLib.PrimaryObject.MARKER_CUSTOM, 
+            RelLib.MarkerType.CUSTOM, 
             self.db.readonly)
         
         if self.use_patronymic:

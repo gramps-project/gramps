@@ -1,3 +1,27 @@
+2006-04-19  Alex Roitman  <shura@gramps-project.org>
+	* src/Utils.py: Remove obsolete code.
+	* src/DisplayTabs.py (EventRefModel.column_role): Adapt to new types.
+	* src/PeopleModel.py: Adapt to new types.
+	* src/plugins/TestcaseGenerator.py: Adapt to new types.
+	* src/RelLib/Makefile.am: Ship new files.
+	* src/RelLib/_EventRef.py: Adapt to new types.
+	* src/RelLib/_PrimaryObject.py: Adapt to new types.
+	* src/RelLib/_EventRoleType.py: Add new module.
+	* src/RelLib/_RepoRef.py: Adapt to new types.
+	* src/RelLib/_MarkerType.py: Add new module.
+	* src/RelLib/_Family.py: Adapt to new types.
+	* src/RelLib/_Person.py: Adapt to new types.
+	* src/RelLib/_SourceMediaType.py: Add new module.
+	* src/RelLib/__init__.py: Expose new modules.
+	* src/Editors/_EditPerson.py: Use new type.
+	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Adapt to new types.
+	* src/GrampsDb/_ConstXML.py: Comment out obsolete code.
+	* src/GrampsDb/_ReadXML.py: Adapt to new types.
+	* src/GrampsDb/_GrampsDbBase.py (commit_person): Properly use marker.
+	* src/GrampsDb/_ReadGedcom.py: Adapt to new types.
+	* src/DataViews/_FamilyView.py (write_relationship): Use new type.
+	* src/DataViews/_PedigreeView.py (format_relation): Use new type.
+
 2006-04-19  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_FamilyView.py: GrampsType support
 	* src/DataViews/_PedigreeView.py: GrampsType support

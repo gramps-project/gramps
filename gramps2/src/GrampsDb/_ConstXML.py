@@ -108,34 +108,34 @@ attributes = (
 #     (RelLib.NameType.MARRIED , "Married Name"),
 #     )
 
-source_media_types = (
-    (RelLib.RepoRef.UNKNOWN    , "Unknown"),
-    (RelLib.RepoRef.AUDIO      , "Audio"),
-    (RelLib.RepoRef.BOOK       , "Book"),
-    (RelLib.RepoRef.CARD       , "Card"),
-    (RelLib.RepoRef.ELECTRONIC , "Electronic"),
-    (RelLib.RepoRef.FICHE      , "Fiche"),
-    (RelLib.RepoRef.FILM       , "Film"),
-    (RelLib.RepoRef.MAGAZINE   , "Magazine"),
-    (RelLib.RepoRef.MANUSCRIPT , "Manuscript"),
-    (RelLib.RepoRef.MAP        , "Map"),
-    (RelLib.RepoRef.NEWSPAPER  , "Newspaper"),
-    (RelLib.RepoRef.PHOTO      , "Photo"),
-    (RelLib.RepoRef.TOMBSTONE  , "Tombstone"),
-    (RelLib.RepoRef.VIDEO      , "Video"),
-    )
+## source_media_types = (
+##     (RelLib.RepoRef.UNKNOWN    , "Unknown"),
+##     (RelLib.RepoRef.AUDIO      , "Audio"),
+##     (RelLib.RepoRef.BOOK       , "Book"),
+##     (RelLib.RepoRef.CARD       , "Card"),
+##     (RelLib.RepoRef.ELECTRONIC , "Electronic"),
+##     (RelLib.RepoRef.FICHE      , "Fiche"),
+##     (RelLib.RepoRef.FILM       , "Film"),
+##     (RelLib.RepoRef.MAGAZINE   , "Magazine"),
+##     (RelLib.RepoRef.MANUSCRIPT , "Manuscript"),
+##     (RelLib.RepoRef.MAP        , "Map"),
+##     (RelLib.RepoRef.NEWSPAPER  , "Newspaper"),
+##     (RelLib.RepoRef.PHOTO      , "Photo"),
+##     (RelLib.RepoRef.TOMBSTONE  , "Tombstone"),
+##     (RelLib.RepoRef.VIDEO      , "Video"),
+##     )
 
-event_roles = (
-    (RelLib.EventRef.UNKNOWN   , "Unknown"),
-    (RelLib.EventRef.PRIMARY   , "Primary"),
-    (RelLib.EventRef.CLERGY    , "Clergy"),
-    (RelLib.EventRef.CELEBRANT , "Celebrant"),
-    (RelLib.EventRef.AIDE      , "Aide"),
-    (RelLib.EventRef.BRIDE     , "Bride"),
-    (RelLib.EventRef.GROOM     , "Groom"),
-    (RelLib.EventRef.WITNESS   , "Witness"),
-    (RelLib.EventRef.FAMILY    , "Family"),
-    )
+## event_roles = (
+##     (RelLib.EventRef.UNKNOWN   , "Unknown"),
+##     (RelLib.EventRef.PRIMARY   , "Primary"),
+##     (RelLib.EventRef.CLERGY    , "Clergy"),
+##     (RelLib.EventRef.CELEBRANT , "Celebrant"),
+##     (RelLib.EventRef.AIDE      , "Aide"),
+##     (RelLib.EventRef.BRIDE     , "Bride"),
+##     (RelLib.EventRef.GROOM     , "Groom"),
+##     (RelLib.EventRef.WITNESS   , "Witness"),
+##     (RelLib.EventRef.FAMILY    , "Family"),
+##     )
 
 # repository_types = (
 #     (RelLib.Repository.UNKNOWN    , "Unknown"),
@@ -150,11 +150,11 @@ event_roles = (
 #     (RelLib.Repository.SAFE       , "Safe"),
 #     )
 
-marker_types = (
-    (RelLib.PrimaryObject.MARKER_NONE     , ""),
-    (RelLib.PrimaryObject.MARKER_COMPLETE , "complete"),
-    (RelLib.PrimaryObject.MARKER_TODO     , "todo"),
-    )
+## marker_types = (
+##     (RelLib.PrimaryObject.MARKER_NONE     , ""),
+##     (RelLib.PrimaryObject.MARKER_COMPLETE , "complete"),
+##     (RelLib.PrimaryObject.MARKER_TODO     , "todo"),
+##     )
 
 # url_types = (
 #     (RelLib.Url.UNKNOWN    , "Unknown"),
@@ -170,10 +170,10 @@ custom_types = {
     attributes         : RelLib.Attribute.CUSTOM,
 #    family_relations   : RelLib.Family.CUSTOM,
 #    name_types         : RelLib.NameType.CUSTOM,
-    source_media_types : RelLib.RepoRef.CUSTOM,
-    event_roles        : RelLib.EventRef.CUSTOM,
+#    source_media_types : RelLib.RepoRef.CUSTOM,
+#    event_roles        : RelLib.EventRef.CUSTOM,
 #    repository_types   : RelLib.Repository.CUSTOM,
-    marker_types       : RelLib.PrimaryObject.MARKER_CUSTOM,
+#    marker_types       : RelLib.PrimaryObject.MARKER_CUSTOM,
 #    url_types          : RelLib.Url.CUSTOM,
     }
 

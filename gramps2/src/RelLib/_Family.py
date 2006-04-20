@@ -45,6 +45,7 @@ from _EventRef import EventRef
 from _LdsOrdBase import LdsOrdBase
 from _ChildRef import ChildRef
 from _FamilyRelType import FamilyRelType
+from _MarkerType import MarkerType
 
 #-------------------------------------------------------------------------
 #
@@ -89,7 +90,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         self.father_handle = None
         self.mother_handle = None
         self.child_ref_list = []
-        self.type = FamilyRelType(FamilyRelType.MARRIED)
+        self.type = FamilyRelType()
         self.event_ref_list = []
         self.lds_seal = None
         self.complete = 0
@@ -124,7 +125,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
                 LdsOrdBase.serialize(self),
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
-                self.change, self.marker, self.private)
+                self.change, self.marker.serialize(), self.private)
 
     def unserialize(self, data):
         """
@@ -134,8 +135,9 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
          child_ref_list, the_type, event_ref_list, media_list,
          attribute_list, lds_seal_list, source_list, note,
-         self.change, self.marker, self.private) = data
+         self.change, marker, self.private) = data
 
+        self.marker.unserialize(marker)
         self.type.unserialize(the_type)
         self.event_ref_list = [EventRef().unserialize(er)
                                for er in event_ref_list]
@@ -412,7 +414,6 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         # remove when transitition done.
         event_ref = EventRef()
         event_ref.set_reference_handle(event_handle)
-        event_ref.set_role((EventRef.PRIMARY,''))
         self.add_event_ref(event_ref)
 
     def add_event_ref(self,event_ref):
@@ -457,7 +458,6 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         for event_handle in event_list:
             event_ref = EventRef()
             event_ref.set_reference_handle(event_handle)
-            event_ref.set_role((EventRef.PRIMARY,''))
             event_ref_list.append( event_ref)
         self.set_event_ref_list(event_ref_list)
 

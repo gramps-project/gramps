@@ -210,61 +210,61 @@ family_rel_descriptions = {
                                          "a man and woman"),
     }
 
-source_media_types = {
-    RelLib.RepoRef.UNKNOWN    : _("Unknown"),
-    RelLib.RepoRef.CUSTOM     : _("Custom"),
-    RelLib.RepoRef.AUDIO      : _("Audio"),
-    RelLib.RepoRef.BOOK       : _("Book"),
-    RelLib.RepoRef.CARD       : _("Card"),
-    RelLib.RepoRef.ELECTRONIC : _("Electronic"),
-    RelLib.RepoRef.FICHE      : _("Fiche"),
-    RelLib.RepoRef.FILM       : _("Film"),
-    RelLib.RepoRef.MAGAZINE   : _("Magazine"),
-    RelLib.RepoRef.MANUSCRIPT : _("Manuscript"),
-    RelLib.RepoRef.MAP        : _("Map"),
-    RelLib.RepoRef.NEWSPAPER  : _("Newspaper"),
-    RelLib.RepoRef.PHOTO      : _("Photo"),
-    RelLib.RepoRef.TOMBSTONE  : _("Tombstone"),
-    RelLib.RepoRef.VIDEO      : _("Video"),
-    }
-def format_source_media_type( type):
-    if type[0] == RelLib.RepoRef.CUSTOM:
-        return type[1]
-    return source_media_types.get(type[0],_("Invalid id %d ('%s')")%type)
+## source_media_types = {
+##     RelLib.RepoRef.UNKNOWN    : _("Unknown"),
+##     RelLib.RepoRef.CUSTOM     : _("Custom"),
+##     RelLib.RepoRef.AUDIO      : _("Audio"),
+##     RelLib.RepoRef.BOOK       : _("Book"),
+##     RelLib.RepoRef.CARD       : _("Card"),
+##     RelLib.RepoRef.ELECTRONIC : _("Electronic"),
+##     RelLib.RepoRef.FICHE      : _("Fiche"),
+##     RelLib.RepoRef.FILM       : _("Film"),
+##     RelLib.RepoRef.MAGAZINE   : _("Magazine"),
+##     RelLib.RepoRef.MANUSCRIPT : _("Manuscript"),
+##     RelLib.RepoRef.MAP        : _("Map"),
+##     RelLib.RepoRef.NEWSPAPER  : _("Newspaper"),
+##     RelLib.RepoRef.PHOTO      : _("Photo"),
+##     RelLib.RepoRef.TOMBSTONE  : _("Tombstone"),
+##     RelLib.RepoRef.VIDEO      : _("Video"),
+##     }
+## def format_source_media_type( type):
+##     if type[0] == RelLib.RepoRef.CUSTOM:
+##         return type[1]
+##     return source_media_types.get(type[0],_("Invalid id %d ('%s')")%type)
 
-event_roles = {
-    RelLib.EventRef.UNKNOWN   : _("Unknown"),
-    RelLib.EventRef.CUSTOM    : _("Custom"),
-    RelLib.EventRef.PRIMARY   : _("Primary"),
-    RelLib.EventRef.CLERGY    : _("Clergy"),
-    RelLib.EventRef.CELEBRANT : _("Celebrant"),
-    RelLib.EventRef.AIDE      : _("Aide"),
-    RelLib.EventRef.BRIDE     : _("Bride"),
-    RelLib.EventRef.GROOM     : _("Groom"),
-    RelLib.EventRef.WITNESS   : _("Witness"),
-    }
-def format_personal_event_role( type):
-    if type[0] == RelLib.EventRef.CUSTOM:
-        return type[1]
-    return event_roles.get(type[0],_("Invalid id %d ('%s')")%type)
+## event_roles = {
+##     RelLib.EventRef.UNKNOWN   : _("Unknown"),
+##     RelLib.EventRef.CUSTOM    : _("Custom"),
+##     RelLib.EventRef.PRIMARY   : _("Primary"),
+##     RelLib.EventRef.CLERGY    : _("Clergy"),
+##     RelLib.EventRef.CELEBRANT : _("Celebrant"),
+##     RelLib.EventRef.AIDE      : _("Aide"),
+##     RelLib.EventRef.BRIDE     : _("Bride"),
+##     RelLib.EventRef.GROOM     : _("Groom"),
+##     RelLib.EventRef.WITNESS   : _("Witness"),
+##     }
+## def format_personal_event_role( type):
+##     if type[0] == RelLib.EventRef.CUSTOM:
+##         return type[1]
+##     return event_roles.get(type[0],_("Invalid id %d ('%s')")%type)
 
-family_event_roles = {
-    RelLib.EventRef.UNKNOWN   : _("Unknown"),
-    RelLib.EventRef.CUSTOM    : _("Custom"),
-    RelLib.EventRef.FAMILY    : _("Family"),
-    }
-def format_family_event_role( type):
-    if type[0] == RelLib.EventRef.CUSTOM:
-        return type[1]
-    return family_event_roles.get(type[0],_("Invalid id %d ('%s')")%type)
+## family_event_roles = {
+##     RelLib.EventRef.UNKNOWN   : _("Unknown"),
+##     RelLib.EventRef.CUSTOM    : _("Custom"),
+##     RelLib.EventRef.FAMILY    : _("Family"),
+##     }
+## def format_family_event_role( type):
+##     if type[0] == RelLib.EventRef.CUSTOM:
+##         return type[1]
+##     return family_event_roles.get(type[0],_("Invalid id %d ('%s')")%type)
 
-def format_event_role( type):
-    if type[0] == RelLib.EventRef.CUSTOM:
-        return type[1]
-    val = event_roles.get(type[0])
-    if not val:
-        val = family_event_roles.get(type[0],_("Invalid id %d ('%s')")%type)
-    return val
+## def format_event_role( type):
+##     if type[0] == RelLib.EventRef.CUSTOM:
+##         return type[1]
+##     val = event_roles.get(type[0])
+##     if not val:
+##         val = family_event_roles.get(type[0],_("Invalid id %d ('%s')")%type)
+##     return val
 
 # repository_types = {
 #     RelLib.Repository.UNKNOWN    : _("Unknown"),
@@ -285,16 +285,16 @@ def format_event_role( type):
 #     return repository_types.get(type[0],_("Invalid id %d ('%s')")%type)
 
 
-marker_types = {
-    RelLib.PrimaryObject.MARKER_NONE        : "",
-    RelLib.PrimaryObject.MARKER_CUSTOM      : _("Custom"),
-    RelLib.PrimaryObject.MARKER_COMPLETE    : _("Information is complete"),
-    RelLib.PrimaryObject.MARKER_TODO        : _("TODO"),
-}
-def format_marker_type( type):
-    if type[0] == RelLib.PrimaryObject.MARKER_CUSTOM:
-        return type[1]
-    return marker_types.get(type[0],_("Invalid id %d ('%s')")%type)
+## marker_types = {
+##     RelLib.PrimaryObject.MARKER_NONE        : "",
+##     RelLib.PrimaryObject.MARKER_CUSTOM      : _("Custom"),
+##     RelLib.PrimaryObject.MARKER_COMPLETE    : _("Information is complete"),
+##     RelLib.PrimaryObject.MARKER_TODO        : _("TODO"),
+## }
+## def format_marker_type( type):
+##     if type[0] == RelLib.PrimaryObject.MARKER_CUSTOM:
+##         return type[1]
+##     return marker_types.get(type[0],_("Invalid id %d ('%s')")%type)
 
 #-------------------------------------------------------------------------
 #

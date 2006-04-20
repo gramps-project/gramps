@@ -672,7 +672,7 @@ class EventEmbedList(EmbeddedList):
         return RelLib.EventType(RelLib.EventType.MARRIAGE)
 
     def default_role(self):
-        return (RelLib.EventRef.FAMILY, '')
+        return (RelLib.EventRoleType.FAMILY, '')
 
     def add_button_clicked(self, obj):
         try:
@@ -735,7 +735,7 @@ class PersonEventEmbedList(EventEmbedList):
         return self.orig_data
 
     def default_role(self):
-        return (RelLib.EventRef.PRIMARY, '')
+        return (RelLib.EventRoleType.PRIMARY, '')
 
     def default_type(self):
         type_list = []
@@ -1976,7 +1976,7 @@ class EventRefModel(gtk.ListStore):
                 ])
 
     def column_role(self, event_ref):
-        return Utils.format_event_role(event_ref.get_role())
+        return str(event_ref.get_role())
 
     def column_date(self, event_ref):
         event = self.db.get_event_from_handle(event_ref.ref)
