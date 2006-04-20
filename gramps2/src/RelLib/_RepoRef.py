@@ -63,7 +63,7 @@ class RepoRef(BaseObject,NoteBase,RefBase):
 
     def unserialize(self,data):
         (note,ref,self.call_number,media_type) = data
-        self.media_type = SourceMediaType(media_type)
+        self.media_type.unserialize(media_type)
         NoteBase.unserialize(self,note)
         RefBase.unserialize(self,ref)
         return self

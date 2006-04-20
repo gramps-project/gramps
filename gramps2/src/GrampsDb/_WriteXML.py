@@ -549,7 +549,7 @@ class XmlWriter:
             return
         sp = "  "*index
         priv_text = conf_priv(eventref)
-        role = _ConstXML.str_for_xml(_ConstXML.event_roles,eventref.role)
+        role = eventref.role.xml_str()
         if role:
             role_text = ' role="%s"' % role
         else:
@@ -571,7 +571,7 @@ class XmlWriter:
         self.write_primary_tag("event",event,2)
 
         sp = "  " * index
-        etype = _ConstXML.str_for_xml(_ConstXML.events,event.get_type())
+        etype = event.get_type().xml_str()
         self.g.write('  %s<type>%s</type>\n' % (sp,self.fix(etype)) )
         self.write_date(event.get_date_object(),index+1)
         self.write_ref("place",event.get_place_handle(),index+1)
@@ -645,8 +645,7 @@ class XmlWriter:
         if not obj:
             return
         sp = "  "*index
-        marker = _ConstXML.str_for_xml(_ConstXML.marker_types,
-                                       obj.get_marker())
+        marker = obj.get_marker().xml_str()
         if marker:
             marker_text = ' marker="%s"' % marker
         else:
@@ -663,8 +662,7 @@ class XmlWriter:
         sp = "  "*index
         self.write_primary_tag('family',family,index)
         if family:
-            rel = _ConstXML.str_for_xml(_ConstXML.family_relations,
-                                        family.get_relationship())
+            rel = family.get_relationship().xml_str()
             if rel != "":
                 self.g.write('  %s<rel type="%s"/>\n' % (sp,rel) )
 
@@ -902,8 +900,7 @@ class XmlWriter:
             else:
                 callno_text = ' callno="%s"' % reporef.call_number
                 
-            mtype = _ConstXML.str_for_xml(_ConstXML.source_media_types,
-                                         reporef.media_type)
+            mtype = reporef.media_type.xml_str()
             if mtype:
                 type_text = ' medium="%s"' % mtype
             else:

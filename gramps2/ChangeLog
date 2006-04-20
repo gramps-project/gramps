@@ -1,3 +1,11 @@
+2006-04-20  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib/_EventRef.py (unserialize): Avoid class constructor.
+	* src/RelLib/_Person.py (unserialize): Avoid class constructor.
+	* src/RelLib/_Name.py (unserialize): Avoid class constructor.
+	* src/RelLib/_Repository.py (unserialize): Avoid class constructor.
+	* src/RelLib/_RepoRef.py (unserialize): Avoid class constructor.
+	* src/GrampsDb/_WriteXML.py: Update to export new types.
+
 2006-04-19  Alex Roitman  <shura@gramps-project.org>
 	* src/Editors/_EditPrimary.py (EditPrimary.build_window_key):
 	Always have a window key, even if there is no handle.
