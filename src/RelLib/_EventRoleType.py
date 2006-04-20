@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id: _Name.py 6326 2006-04-13 11:21:33Z loshawlos $
+# $Id$
 
 from _GrampsType import GrampsType, init_map
 from gettext import gettext as _
