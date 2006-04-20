@@ -788,10 +788,10 @@ class ODFDoc(BaseDoc.BaseDoc):
         else:
             self.cntnt.write('<text:h text:style-name="')
             self.cntnt.write(name)
-            self.cntnt.write('" text:outline-level="' + str(self.level) + '">\n')
+            self.cntnt.write('" text:outline-level="' + str(self.level) + '">')
         if leader != None:
             self.cntnt.write(leader)
-            self.cntnt.write('<text:tab/>\n')
+            self.cntnt.write('<text:tab/>')
         self.new_cell = 0
 
     def end_paragraph(self):
