@@ -1,3 +1,10 @@
+2006-04-19  Alex Roitman  <shura@gramps-project.org>
+	* src/Editors/_EditPrimary.py (EditPrimary.build_window_key):
+	Always have a window key, even if there is no handle.
+	* src/Editors/_EditFamily.py (EditFamily.build_menu_names):
+	Properly set up menu labels.
+	* src/Utils.py (family_name): Add optional argument.
+
 2006-04-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/ImportGeneWeb.py: Use new type classes;
 	Start of parsing relationships (unfinished)
