@@ -170,7 +170,8 @@ class EditEventRef(EditReference):
         self.backref_tab = self._add_tab(
             notebook,
             EventBackRefList(self.dbstate, self.uistate, self.track,
-                             self.db.find_backlink_handles(self.source.handle)))
+                             self.db.find_backlink_handles(self.source.handle),
+                             self.enable_warnbox))
 
     def build_menu_names(self,eventref):
         if self.source:

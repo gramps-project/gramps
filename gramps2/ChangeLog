@@ -1,3 +1,15 @@
+2006-04-20  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditPlace.py: fix display of shared info warning box
+	* src/Editors/_EditSourceRef.py: fix display of shared info warning box
+	* src/Editors/_EditReference.py: fix display of shared info warning box
+	* src/Editors/_EditSource.py: fix display of shared info warning box
+	* src/Editors/_EditMediaRef.py: fix display of shared info warning box
+	* src/Editors/_EditEventRef.py: fix display of shared info warning box
+	* src/Editors/_EditRepository.py: fix display of shared info warning box
+	* src/Editors/_EditMedia.py: fix display of shared info warning box
+	* src/Editors/_EditEvent.py: fix display of shared info warning box
+	* src/DisplayTabs.py: fix display of shared info warning box
+
 2006-04-20  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib/_EventRef.py (unserialize): Avoid class constructor.
 	* src/RelLib/_Person.py (unserialize): Avoid class constructor.

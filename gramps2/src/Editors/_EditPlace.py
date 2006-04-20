@@ -179,7 +179,9 @@ class EditPlace(EditPrimary):
         self.backref_list = self._add_tab(
             notebook,
             PlaceBackRefList(self.dbstate,self.uistate,self.track,
-                             self.db.find_backlink_handles(self.obj.handle)))
+                             self.db.find_backlink_handles(self.obj.handle),
+                             self.enable_warnbox
+                             ))
 
     def _cleanup_on_exit(self):
         self.backref_list.close()
