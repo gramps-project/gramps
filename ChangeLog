@@ -1,4 +1,5 @@
 2006-04-19  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_DbUtils.py: fix handle vs. ref issues
 	* src/RelLib/_Family.py: add remove_child_handle
 	* src/DataViews/_EventView.py: more GrampsTypes changes
 	* src/DataViews/_PedigreeView.py: more GrampsTypes changes
