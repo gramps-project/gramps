@@ -75,6 +75,8 @@ _cal_map = {
     'F' : RelLib.Date.CAL_FRENCH,
     }
 
+enable_debug = False
+
 #-------------------------------------------------------------------------
 #
 #
@@ -148,9 +150,13 @@ class GeneWebParser:
                 
                 fields = line.split(" ")
             
-                #print "LINE: %s" %line
+                self.debug("LINE: %s" %line)
                 if fields[0] == "fam":
+                    self.current_mode = "fam"
                     self.read_family_line(line,fields)
+                elif fields[0] == "rel":
+                    self.current_mode = "rel"
+                    self.read_relationship_person(line,fields)
                 elif fields[0] == "src":
                     self.read_source_line(line,fields)
                 elif fields[0] == "wit":
@@ -159,8 +165,10 @@ class GeneWebParser:
                     self.read_children_birthplace_line(line,fields)
                 elif fields[0] == "csrc":
                     self.read_children_source_line(line,fields)
-                elif fields[0] == "beg":
+                elif fields[0] == "beg" and self.current_mode == "fam":
                     self.read_children_lines()
+                elif fields[0] == "beg" and self.current_mode == "rel":
+                    self.read_relation_lines()
                 elif fields[0] == "comm":
                     self.read_family_comment(line,fields)
                 elif fields[0] == "notes":
@@ -190,11 +198,11 @@ class GeneWebParser:
         self.current_child_source_handle = None
         self.current_family = RelLib.Family()
         self.db.add_family(self.current_family,self.trans)
-        self.db.commit_family(self.current_family,self.trans)
+        #self.db.commit_family(self.current_family,self.trans)
         self.fkeys.append(self.current_family.get_handle())
         idx = 1;
         
-        #print "\nHusband:"
+        self.debug("\nHusband:")
         (idx,husband) = self.parse_person(fields,idx,RelLib.Person.MALE,None)
         if husband:
             self.current_husband_handle = husband.get_handle()
@@ -202,9 +210,9 @@ class GeneWebParser:
             self.db.commit_family(self.current_family,self.trans)
             husband.add_family_handle(self.current_family.get_handle())
             self.db.commit_person(husband,self.trans)
-        #print "Marriage:"
+        self.debug("Marriage:")
         idx = self.parse_marriage(fields,idx)
-        #print "Wife:"
+        self.debug("Wife:")
         (idx,wife) = self.parse_person(fields,idx,RelLib.Person.FEMALE,None)
         if wife:
             self.current_family.set_mother_handle(wife.get_handle())
@@ -212,7 +220,43 @@ class GeneWebParser:
             wife.add_family_handle(self.current_family.get_handle())
             self.db.commit_person(wife,self.trans)
         return None
-    
+
+    def read_relationship_person(self,line,fields):
+        self.debug("\Relationships:")
+        (idx,person) = self.parse_person(fields,1,RelLib.Person.UNKNOWN,None)
+        if person:
+            self.current_relationship_person_handle = person.get_handle()
+
+    def read_relation_lines(self):
+        if not self.current_relationship_person_handle:
+            print "Unknown person for relationship in line %d!" % self.lineno
+            return None
+        rel_person = self.db.get_person_from_handle(self.current_relationship_person_handle)
+        while 1:
+            line = self.get_next_line()
+            if line == None or line == "end":
+                break
+            if line == "":
+                continue
+
+            # match relationship type and related person
+            line_re = re.compile("^- ([^:]+): (.*)$")
+            matches = line_re.match(line)
+            if matches:
+                #split related person into fields
+                fields = matches.groups()[1].split(" ")
+                if fields:
+                    (idx,asso_p) = self.parse_person(fields,0,RelLib.Person.UNKNOWN,None)
+                else:
+                    print "Invalid name of person in line %d" % self.lineno
+            else:
+                print "Invalid relationship in line %d" % self.lineno
+                break
+        self.current_mode = None
+        return None
+
+
+
     def read_source_line(self,line,fields):
         if not self.current_family:
             print "Unknown family of child in line %d!" % self.lineno
@@ -223,7 +267,8 @@ class GeneWebParser:
         return None
     
     def read_witness_line(self,line,fields):
-        #print "Witness:"
+        self.debug("Witness:")
+        print "TODO: Connect witnesses to family"
         if fields[1] == "m:":
             self.parse_person(fields,2,RelLib.Person.MALE,None)
         elif fields[1] == "f:":
@@ -251,7 +296,7 @@ class GeneWebParser:
 
             fields = line.split(" ")
             if fields[0] == "-":
-                #print "Child:"
+                self.debug("Child:")
                 child = None
                 if fields[1] == "h":
                     (idx,child) = self.parse_person(fields,2,RelLib.Person.MALE,father_surname)
@@ -261,18 +306,21 @@ class GeneWebParser:
                     (idx,child) = self.parse_person(fields,1,RelLib.Person.UNKNOWN,father_surname)
 
                 if child:
-                    self.current_family.add_child_handle(child.get_handle())
+                    childref = RelLib.ChildRef()
+                    childref.set_reference_handle(child.get_handle())
+                    self.current_family.add_child_ref( childref)
                     self.db.commit_family(self.current_family,self.trans)
-                    child.add_parent_family_handle(
-                        self.current_family.get_handle(),
-                        RelLib.ChildRef.CHILD_REL_BIRTH,
-                        RelLib.ChildRef.CHILD_REL_BIRTH)
+                    child.add_parent_family_handle( self.current_family.get_handle())
                     if self.current_child_birthplace_handle:
-                        birth_handle = child.get_birth_handle()
-                        birth = self.db.get_event_from_handle(birth_handle)
+                        birth = None
+                        birth_ref = child.get_birth_ref()
+                        if birth_ref:
+                            birth = self.db.get_event_from_handle(birth_ref.ref)
                         if not birth:
-                            birth = self.create_event("Birth")
-                            child.set_birth_handle(birth.get_handle())
+                            birth = self.create_event(RelLib.EventType.BIRTH)
+                            birth_ref = RelLib.EventRef()
+                            birth_ref.set_reference_handle(birth.get_handle())
+                            child.set_birth_ref(birth_ref)
                         birth.set_place_handle(self.current_child_birthplace_handle)
                         self.db.commit_event(birth,self.trans)
                     if self.current_child_source_handle:
@@ -280,6 +328,7 @@ class GeneWebParser:
                     self.db.commit_person(child,self.trans)
             else:
                 break
+        self.current_mode = None
         return None
             
 
@@ -349,33 +398,33 @@ class GeneWebParser:
         while idx < len(fields) and mariageDataRe.match(fields[idx]):
             if fields[idx][0] == "+":
                 mar_date = self.parse_date(self.decode(fields[idx]))
-                #print " Married at: %s" % fields[idx]
+                self.debug(" Married at: %s" % fields[idx])
                 idx = idx + 1
             elif fields[idx][0] == "-":
                 div_date = self.parse_date(self.decode(fields[idx]))
-                #print " Div at: %s" % fields[idx]
+                self.debug(" Div at: %s" % fields[idx])
                 idx = idx + 1
             elif fields[idx] == "#mp":
                 idx = idx + 1
                 mar_place = self.get_or_create_place(self.decode(fields[idx]))
-                #print " Marriage place: %s" % fields[idx]
+                self.debug(" Marriage place: %s" % fields[idx])
                 idx = idx + 1
             elif fields[idx] == "#ms":
                 idx = idx + 1
                 mar_source = self.get_or_create_source(self.decode(fields[idx]))
-                #print " Marriage source: %s" % fields[idx]
+                self.debug(" Marriage source: %s" % fields[idx])
                 idx = idx + 1
             elif fields[idx] == "#sep":
                 idx = idx + 1
                 sep_date = self.parse_date(self.decode(fields[idx]))
-                #print " Seperated since: %s" % fields[idx]
+                self.debug(" Seperated since: %s" % fields[idx])
                 idx = idx + 1
             elif fields[idx] == "#nm":
-                #print " Are not married."
+                self.debug(" Are not married.")
                 married = 0
                 idx = idx + 1
             elif fields[idx] == "#eng":
-                #print " Are engaged."
+                self.debug(" Are engaged.")
                 engaged = 1
                 idx = idx + 1
             else:
@@ -383,19 +432,25 @@ class GeneWebParser:
                 idx = idx + 1
 
         if mar_date or mar_place or mar_source:
-            mar = self.create_event("Marriage", None, mar_date, mar_place, mar_source)
-            self.current_family.add_event_handle(mar.get_handle())
+            mar = self.create_event(RelLib.EventType.MARRIAGE, None, mar_date, mar_place, mar_source)
+            mar_ref = RelLib.EventRef()
+            mar_ref.set_reference_handle(mar.get_handle())
+            self.current_family.add_event_ref(mar_ref)
 
         if div_date:
-            div = self.create_event("Divorce", None, div_date, None, None)
-            self.current_family.add_event_handle(div.get_handle())
+            div = self.create_event(RelLib.EventType.DIVORCE, None, div_date, None, None)
+            div_ref = RelLib.EventRef()
+            div_ref.set_reference_handle(div.get_handle())
+            self.current_family.add_event_ref(div_ref)
 
         if sep_date or engaged:
-            sep = self.create_event("Engagement", None, sep_date, None, None)
-            self.current_family.add_event_handle(sep.get_handle())
+            sep = self.create_event(RelLib.EventType.ENGAGEMENT, None, sep_date, None, None)
+            sep_ref = RelLib.EventRef()
+            sep_ref.set_reference_handle(sep.get_handle())
+            self.current_family.add_event_ref(sep_ref)
 
         if not married:
-            self.current_family.set_relationship(RelLib.Family.UNMARRIED)
+            self.current_family.set_relationship(RelLib.FamilyRelType(RelLib.FamilyRelType.UNMARRIED))
             
         self.db.commit_family(self.current_family,self.trans)
         return idx
@@ -424,10 +479,10 @@ class GeneWebParser:
                 surname = self.decode(fields[idx])
                 idx = idx + 1
 
-        #print "Person: %s %s" % (firstname, surname)
+        self.debug("Person: %s %s" % (firstname, surname))
         person = self.get_or_create_person(firstname,surname)
         name = RelLib.Name()
-        name.set_type("Birth Name")
+        name.set_type( RelLib.NameType(RelLib.NameType.BIRTH))
         name.set_first_name(firstname)
         name.set_surname(surname)
         person.set_primary_name(name)
@@ -463,11 +518,11 @@ class GeneWebParser:
         
         while idx < len(fields) and personDataRe.match(fields[idx]):
             if fields[idx][0] == '(':
-                #print "Public Name: %s" % fields[idx]
+                self.debug("Public Name: %s" % fields[idx])
                 public_name = self.decode(fields[idx][1:-1])
                 idx += 1
             elif fields[idx][0] == '{':
-                #print "Firstsname Alias: %s" % fields[idx]
+                self.debug("Firstsname Alias: %s" % fields[idx])
                 firstname_aliases.append(self.decode(fields[idx][1:-1]))
                 idx += 1
             elif fields[idx][0] == '[':
@@ -475,71 +530,73 @@ class GeneWebParser:
                 idx += 1
             elif fields[idx] == '#nick':
                 idx += 1
-                #print "Nick Name: %s" % fields[idx]
+                self.debug("Nick Name: %s" % fields[idx])
                 nick_names.append(self.decode(fields[idx]))
                 idx += 1
             elif fields[idx] == '#occu':
                 idx += 1
-                #print "Occupation: %s" % fields[idx]
-                occu = self.create_event("Occupation",self.decode(fields[idx]))
-                person.add_event_handle(occu.get_handle())
+                self.debug("Occupation: %s" % fields[idx])
+                occu = self.create_event(RelLib.EventType.OCCUPATION,self.decode(fields[idx]))
+                occu_ref = RelLib.EventRef()
+                occu_ref.set_reference_handle(occu.get_handle())
+                person.add_event_handle(occu_ref)
                 idx += 1
             elif fields[idx] == '#alias':
                 idx += 1
-                #print "Name Alias: %s" % fields[idx]
+                self.debug("Name Alias: %s" % fields[idx])
                 name_aliases.append(self.decode(fields[idx]))
                 idx += 1
             elif fields[idx] == '#salias':
                 idx += 1
-                #print "Surname Alias: %s" % fields[idx]
+                self.debug("Surname Alias: %s" % fields[idx])
                 surname_aliases.append(self.decode(fields[idx]))
                 idx += 1
             elif fields[idx] == '#image':
                 idx += 1
-                #print "Image: %s" % fields[idx]
+                self.debug("Image: %s" % fields[idx])
                 idx += 1
             elif fields[idx] == '#src':
                 idx += 1
-                #print "Source: %s" % fields[idx]
+                self.debug("Source: %s" % fields[idx])
                 source = self.get_or_create_source(self.decode(fields[idx]))
                 idx += 1
             elif fields[idx] == '#bs':
                 idx += 1
-                #print "Birth Source: %s" % fields[idx]
+                self.debug("Birth Source: %s" % fields[idx])
                 birth_source = self.get_or_create_source(self.decode(fields[idx]))
                 idx += 1
             elif fields[idx][0] == '!':
-                #print "Baptize at: %s" % fields[idx]
+                self.debug("Baptize at: %s" % fields[idx])
                 bapt_date = self.parse_date(self.decode(fields[idx]))
                 idx += 1
             elif fields[idx] == '#bp':
                 idx += 1
-                #print "Birth Place: %s" % fields[idx]
+                self.debug("Birth Place: %s" % fields[idx])
                 birth_place = self.get_or_create_place(self.decode(fields[idx]))
                 idx += 1
             elif fields[idx] == '#pp':
                 idx += 1
-                #print "Baptize Place: %s" % fields[idx]
+                self.debug("Baptize Place: %s" % fields[idx])
                 bapt_place = self.get_or_create_place(self.decode(fields[idx]))
                 idx += 1
             elif fields[idx] == '#ps':
                 idx += 1
-                #print "Baptize Source: %s" % fields[idx]
+                self.debug("Baptize Source: %s" % fields[idx])
                 bapt_source = self.get_or_create_source(self.decode(fields[idx]))
                 idx += 1
             elif fields[idx] == '#dp':
                 idx += 1
-                #print "Death Place: %s" % fields[idx]
+                self.debug("Death Place: %s" % fields[idx])
                 death_place = self.get_or_create_place(self.decode(fields[idx]))
                 idx += 1
             elif fields[idx] == '#ds':
                 idx += 1
-                #print "Death Source: %s" % fields[idx]
+                self.debug("Death Source: %s" % fields[idx])
                 death_source = self.get_or_create_source(self.decode(fields[idx]))
                 idx += 1
             elif fields[idx] == '#buri':
                 idx += 1
-                #print "Burial Date: %s" % fields[idx]
+                self.debug("Burial Date: %s" % fields[idx])
                 try:
                     bur_date = self.parse_date(self.decode(fields[idx]))
                 except IndexError:
@@ -547,31 +604,31 @@ class GeneWebParser:
                 idx += 1
             elif fields[idx] == '#crem':
                 idx += 1
-                #print "Cremention Date: %s" % fields[idx]
+                self.debug("Cremention Date: %s" % fields[idx])
                 crem_date = self.parse_date(self.decode(fields[idx]))
                 idx += 1
             elif fields[idx] == '#rp':
                 idx += 1
-                #print "Burial Place: %s" % fields[idx]
+                self.debug("Burial Place: %s" % fields[idx])
                 bur_place = self.get_or_create_place(self.decode(fields[idx]))
                 idx += 1
             elif fields[idx] == '#rs':
                 idx += 1
-                #print "Burial Source: %s" % fields[idx]
+                self.debug("Burial Source: %s" % fields[idx])
                 bur_source = self.get_or_create_source(self.decode(fields[idx]))
                 idx += 1
             elif fields[idx] == '#apubl':
-                #print "This is a public record"
+                self.debug("This is a public record")
                 idx += 1
             elif fields[idx] == '#apriv':
-                #print "This is a private record"
+                self.debug("This is a private record")
                 idx += 1
             elif dateRe.match( fields[idx]):
                 if not birth_date:
-                    #print "Birth Date: %s" % fields[idx]
+                    self.debug("Birth Date: %s" % fields[idx])
                     birth_date = self.parse_date(self.decode(fields[idx]))
                 else:
-                    #print "Death Date: %s" % fields[idx]
+                    self.debug("Death Date: %s" % fields[idx])
                     death_date = self.parse_date(self.decode(fields[idx]))
                 idx += 1
             else:
@@ -580,10 +637,10 @@ class GeneWebParser:
         
         if public_name:
             name = person.get_primary_name()
-            name.set_type("Birth Name")
+            name.set_type(RelLib.NameType(RelLib.NameType.BIRTH))
             person.add_alternate_name(name)
             name = RelLib.Name()
-            name.set_type("Also Known As")
+            name.set_type(RelLib.NameType(RelLib.NameType.AKA))
             name.set_first_name(public_name)
             name.set_surname(surname)
             person.set_primary_name(name)
@@ -594,7 +651,7 @@ class GeneWebParser:
                 person.set_nick_name(aka)
             else:
                 name = RelLib.Name()
-                name.set_type("Also Known As")
+                name.set_type(RelLib.NameType(RelLib.NameType.AKA))
                 name.set_first_name(aka)
                 name.set_surname(surname)
                 person.add_alternate_name(name)
@@ -602,21 +659,21 @@ class GeneWebParser:
 
         for aka in firstname_aliases:
             name = RelLib.Name()
-            name.set_type("Also Known As")
+            name.set_type(RelLib.NameType(RelLib.NameType.AKA))
             name.set_first_name(aka)
             name.set_surname(surname)
             person.add_alternate_name(name)
 
         for aka in name_aliases:
             name = RelLib.Name()
-            name.set_type("Also Known As")
+            name.set_type(RelLib.NameType(RelLib.NameType.AKA))
             name.set_first_name(aka)
             name.set_surname(surname)
             person.add_alternate_name(name)
 
         for aka in surname_aliases:
             name = RelLib.Name()
-            name.set_type("Also Known As")
+            name.set_type(RelLib.NameType(RelLib.NameType.AKA))
             if public_name:
                 name.set_first_name(public_name)
             else:
@@ -628,24 +685,34 @@ class GeneWebParser:
             person.add_source_reference(source)
 
         if birth_date or birth_place or birth_source:
-            birth = self.create_event("Birth", None, birth_date, birth_place, birth_source)
-            person.set_birth_handle(birth.get_handle())
+            birth = self.create_event(RelLib.EventType.BIRTH, None, birth_date, birth_place, birth_source)
+            birth_ref = RelLib.EventRef()
+            birth_ref.set_reference_handle( birth.get_handle())
+            person.set_birth_ref( birth_ref)
 
         if bapt_date or bapt_place or bapt_source:
-            babt = self.create_event("Baptism", None, bapt_date, bapt_place, bapt_source)
-            person.add_event_handle(babt.get_handle())
+            babt = self.create_event(RelLib.EventType.BAPTISM, None, bapt_date, bapt_place, bapt_source)
+            babt_ref = RelLib.EventRef()
+            babt_ref.set_reference_handle( babt.get_handle())
+            person.add_event_ref( babt_ref)
 
         if death_date or death_place or death_source:
-            babt = self.create_event("Death", None, death_date, death_place, death_source)
-            person.set_death_handle(babt.get_handle())
+            death = self.create_event(RelLib.EventType.DEATH, None, death_date, death_place, death_source)
+            death_ref = RelLib.EventRef()
+            death_ref.set_reference_handle( death.get_handle())
+            person.set_death_ref( death_ref)
 
         if bur_date:
-            babt = self.create_event("Burial", None, bur_date, bur_place, bur_source)
-            person.add_event_handle(babt.get_handle())
+            bur = self.create_event(RelLib.EventType.BURIAL, None, bur_date, bur_place, bur_source)
+            bur_ref = RelLib.EventRef()
+            bur_ref.set_reference_handle( bur.get_handle())
+            person.add_event_ref( bur_ref)
 
         if crem_date:
-            babt = self.create_event("Cremation", None, crem_date, bur_place, bur_source)
-            person.add_event_handle(babt.get_handle())
+            crem = self.create_event(RelLib.EventType.CREMATION, None, crem_date, bur_place, bur_source)
+            crem_ref = RelLib.EventRef()
+            crem_ref.set_reference_handle( crem.get_handle())
+            person.add_event_ref(crem_ref)
 
         self.db.commit_person(person,self.trans)
 
@@ -692,7 +759,7 @@ class GeneWebParser:
     def create_event(self,type,desc=None,date=None,place=None,source=None):
         event = RelLib.Event()
         if type:
-            event.set_name(type)
+            event.set_type(RelLib.EventType(type))
         if desc:
             event.set_description(desc)
         if date:
@@ -768,6 +835,9 @@ class GeneWebParser:
         
         return( s)
 
+    def debug( self, txt):
+        if enable_debug:
+            print txt
 #-------------------------------------------------------------------------
 #
 #
