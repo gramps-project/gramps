@@ -66,3 +66,6 @@ from _ChildRefType import ChildRefType
 from _RepositoryType import RepositoryType
 from _EventType import EventType
 from _FamilyRelType import FamilyRelType
+from _SourceMediaType import SourceMediaType
+from _EventRoleType import EventRoleType
+from _MarkerType import MarkerType

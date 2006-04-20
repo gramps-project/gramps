@@ -529,7 +529,6 @@ class TestcaseGenerator(Tool.Tool):
         person = self.db.get_person_from_handle(person_h)
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle("InvalidHandle4")
-        event_ref.set_role((RelLib.EventRef.PRIMARY,''))
         person.set_birth_ref(event_ref)
         self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
@@ -539,7 +538,6 @@ class TestcaseGenerator(Tool.Tool):
         person = self.db.get_person_from_handle(person_h)
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle("InvalidHandle5")
-        event_ref.set_role((RelLib.EventRef.PRIMARY,''))
         person.set_death_ref(event_ref)
         self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
@@ -549,7 +547,6 @@ class TestcaseGenerator(Tool.Tool):
         person = self.db.get_person_from_handle(person_h)
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle("InvalidHandle6")
-        event_ref.set_role((RelLib.EventRef.PRIMARY,''))
         person.add_event_ref(event_ref)
         self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
@@ -561,7 +558,6 @@ class TestcaseGenerator(Tool.Tool):
         event_h = self.db.add_event(event,self.trans)
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event_h)
-        event_ref.set_role((RelLib.EventRef.PRIMARY,''))
         person = self.db.get_person_from_handle(person_h)
         person.set_birth_ref(event_ref)
         self.db.commit_person(person,self.trans)
@@ -574,7 +570,6 @@ class TestcaseGenerator(Tool.Tool):
         event_h = self.db.add_event(event,self.trans)
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event_h)
-        event_ref.set_role((RelLib.EventRef.PRIMARY,''))
         person = self.db.get_person_from_handle(person_h)
         person.set_death_ref(event_ref)
         self.db.commit_person(person,self.trans)
@@ -587,7 +582,6 @@ class TestcaseGenerator(Tool.Tool):
         event_h = self.db.add_event(event,self.trans)
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event_h)
-        event_ref.set_role((RelLib.EventRef.PRIMARY,''))
         person = self.db.get_person_from_handle(person_h)
         person.add_event_ref(event_ref)
         self.db.commit_person(person,self.trans)
@@ -697,7 +691,6 @@ class TestcaseGenerator(Tool.Tool):
             self.generated_events.append(bevent_h)
             bevent_ref = RelLib.EventRef()
             bevent_ref.set_reference_handle(bevent_h)
-            bevent_ref.set_role((RelLib.EventRef.PRIMARY,''))
             # for the death event display the date as text and parse it back to a new date
             ndate = None
             try:
@@ -727,7 +720,6 @@ class TestcaseGenerator(Tool.Tool):
             self.generated_events.append(devent_h)
             devent_ref = RelLib.EventRef()
             devent_ref.set_reference_handle(devent_h)
-            devent_ref.set_role((RelLib.EventRef.PRIMARY,''))
             person_h = self.generate_person(None, "DateTest")
             person = self.db.get_person_from_handle(person_h)
             person.set_birth_ref(bevent_ref)
@@ -824,7 +816,7 @@ class TestcaseGenerator(Tool.Tool):
                 eref = RelLib.EventRef()
                 self.fill_object( eref)
                 eref.set_reference_handle(e_h)
-                eref.set_role( self.rand_type(Utils.event_roles))
+                eref.set_role( self.rand_type(RelLib.EventRoleType()))
                 np.add_event_ref(eref)
         
         person_handle = self.db.add_person(np,self.trans)
@@ -1231,7 +1223,6 @@ class TestcaseGenerator(Tool.Tool):
         event_ref = RelLib.EventRef()
         self.fill_object(event_ref)
         event_ref.set_reference_handle(event_h)
-        event_ref.set_role((RelLib.EventRef.PRIMARY,''))
         return (year, event_ref)
     
     def rand_type( self, list):

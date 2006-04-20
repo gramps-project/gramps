@@ -40,6 +40,7 @@ from _BaseObject import BaseObject
 from _PrivacyBase import PrivacyBase
 from _NoteBase import NoteBase
 from _RefBase import RefBase
+from _EventRoleType import EventRoleType
 
 #-------------------------------------------------------------------------
 #
@@ -54,17 +55,6 @@ class EventRef(BaseObject,PrivacyBase,NoteBase,RefBase):
     to the refereneced event.
     """
 
-    UNKNOWN   = -1
-    CUSTOM    = 0
-    PRIMARY   = 1
-    CLERGY    = 2
-    CELEBRANT = 3
-    AIDE      = 4
-    BRIDE     = 5
-    GROOM     = 6
-    WITNESS   = 7
-    FAMILY    = 8
-
     def __init__(self,source=None):
         """
         Creates a new EventRef instance, copying from the source if present.
@@ -76,21 +66,22 @@ class EventRef(BaseObject,PrivacyBase,NoteBase,RefBase):
         if source:
             self.role = source.role
         else:
-            self.role = (EventRef.CUSTOM,"")
+            self.role = EventRoleType()
 
     def serialize(self):
         return (
             PrivacyBase.serialize(self),
             NoteBase.serialize(self),
             RefBase.serialize(self),
-            self.role
+            self.role.serialize()
             )
 
     def unserialize(self,data):
-        (privacy,note,ref,self.role) = data
+        (privacy,note,ref,role) = data
         PrivacyBase.unserialize(self,privacy)
         NoteBase.unserialize(self,note)
         RefBase.unserialize(self,ref)
+        self.role = EventRoleType(role)
         return self
 
     def get_text_data_list(self):
@@ -100,7 +91,7 @@ class EventRef(BaseObject,PrivacyBase,NoteBase,RefBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.role_str]
+        return [str(self.role)]
 
     def get_text_data_child_list(self):
         """
@@ -136,12 +127,7 @@ class EventRef(BaseObject,PrivacyBase,NoteBase,RefBase):
         """
         Sets the role according to the given argument.
         """
-        if not type(role) == tuple:
-            if role in range(-1,9):
-                warn( "set_role now takes a tuple", DeprecationWarning, 2)
-                # Wrapper for old API
-                # remove when transitition done.
-                role = (role,'')
-            else:
-                assert type(role) == tuple
-        self.role = role
+        if type(role) == tuple:
+            self.role = EventRoleType(role)
+        else:
+            self.role = role

@@ -41,6 +41,7 @@ from _BaseObject import BaseObject
 from _PrivacyBase import PrivacyBase
 from _SourceBase import SourceBase
 from _MediaBase import MediaBase
+from _MarkerType import MarkerType
 
 #-------------------------------------------------------------------------
 #
@@ -63,11 +64,6 @@ class PrimaryObject(BaseObject,PrivacyBase):
     ID is the user visible version.
     """
     
-    MARKER_NONE = -1
-    MARKER_CUSTOM = 0
-    MARKER_COMPLETE = 1
-    MARKER_TODO = 2
-
     def __init__(self,source=None):
         """
         Initialize a PrimaryObject. If source is None, both the ID and handle
@@ -88,7 +84,7 @@ class PrimaryObject(BaseObject,PrivacyBase):
             self.gramps_id = None
             self.handle = None
             self.change = 0
-            self.marker = (PrimaryObject.MARKER_NONE,"")
+            self.marker = MarkerType()
 
     def get_change_time(self):
         """
@@ -214,7 +210,10 @@ class PrimaryObject(BaseObject,PrivacyBase):
         pass
         
     def set_marker(self,marker):
-        self.marker = marker
+        if type(marker) == tuple:
+            self.marker = MarkerType(marker)
+        else:
+            self.marker = marker
     
     def get_marker(self):
         return self.marker

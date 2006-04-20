@@ -52,7 +52,10 @@ pkgdata_PYTHON = \
 	_RefBase.py\
 	_ChildRef.py\
 	_ChildRefType.py\
-	_FamilyRelType.py
+	_FamilyRelType.py\
+	_SourceMediaType.py\
+	_MarkerType.py\
+	_EventRoleType.py
 
 pkgpyexecdir = @pkgpyexecdir@/RelLib
 pkgpythondir = @pkgpythondir@/RelLib

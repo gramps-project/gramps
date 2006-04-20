@@ -412,7 +412,7 @@ class GrampsDbBase(GrampsDBCallback):
         for attr in person.attribute_list:
             self.individual_attributes.add(attr.type)
 
-        self.marker_names.add(person.marker[1])
+        self.marker_names.add(str(person.marker))
             
     def commit_media_object(self, obj, transaction, change_time=None):
         """

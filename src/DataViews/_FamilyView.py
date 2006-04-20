@@ -583,15 +583,8 @@ class FamilyView(PageView.PersonNavView):
             self.dbstate.change_active_handle(handle)
 
     def write_relationship(self, family):
-        rtype = family.get_relationship()
-        if type(rtype) == tuple:
-            if rtype[0] == RelLib.Family.CUSTOM:
-                rel_text = rtype[1]
-            else:
-                rel_text = Utils.family_relations[rtype[0]]
-        else:
-            rel_text = Utils.family_relations[rtype]
-        self.write_data(_('Relationship type: %s') % rel_text)
+        self.write_data(_('Relationship type: %s') %
+                        str(family.get_relationship()))
 
     def place_name(self, handle):
         p = self.dbstate.db.get_place_from_handle(handle)

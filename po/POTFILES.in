@@ -284,6 +284,10 @@ src/RelLib/_FamilyRelType.py
 src/RelLib/_UrlType.py
 src/RelLib/_NameType.py
 src/RelLib/_ChildRefType.py
+src/RelLib/_SourceMediaType.py
+src/RelLib/_MarkerType.py
+src/RelLib/_EventRoleType.py
+src/RelLib/_EventType.py
 #
 #	Glade files
 #

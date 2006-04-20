@@ -358,10 +358,11 @@ class FormattingHelper:
         text = ""
         for event_ref in family.get_event_ref_list():
             event = self.db.get_event_from_handle(event_ref.ref)
-            if event and int(event.get_type) == RelLib.EventType.MARRIAGE:
+            if event and int(event.get_type()) == RelLib.EventType.MARRIAGE:
                 if line_count < 3:
                     return DateHandler.get_date(event)
-                (i,s) = event.get_type()
+                i = int(event.get_type())
+                s = str(even.get_type())
                 name = Utils.family_events.get(i)
                 text += name
                 text += "\n"
@@ -372,7 +373,7 @@ class FormattingHelper:
                    return text;
                 break
         if not text:
-            text = Utils.format_family_relation(family.get_relationship())
+            text = str(family.get_relationship())
         return text
 
     def get_place_name( self, place_handle):
