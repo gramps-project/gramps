@@ -353,7 +353,7 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
               DeprecationWarning, 2)
         # Wrapper for old API
         # remove when transitition done.
-        return int(self.marker) == MarkerType.COMPLETE
+        return self.marker == MarkerType.COMPLETE
 
     def set_primary_name(self, name):
         """

@@ -118,7 +118,7 @@ class SubstKeywords:
                 if not e_ref:
                     continue
                 e = database.get_event_from_handle(e_ref.ref)
-                if int(e.get_type()) == RelLib.EventType.MARRIAGE:
+                if e.get_type() == RelLib.EventType.MARRIAGE:
                     self.m = DateHandler.get_date(e)
                     mplace_handle = e.get_place_handle()
                     if mplace_handle:

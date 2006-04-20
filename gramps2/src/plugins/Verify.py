@@ -244,9 +244,9 @@ class Verify(Tool.Tool, ManagedWindow.ManagedWindow):
                 if event_ref:
                     event_handle = event_ref.ref
                     event = self.db.get_event_from_handle(event_handle)
-                    if int(event.get_type()) == RelLib.EventType.BURIAL:
+                    if event.get_type() == RelLib.EventType.BURIAL:
                         buryear = self.get_year( event.get_handle() )
-                    elif int(event.get_type()) == RelLib.EventType.BAPTISM:
+                    elif event.get_type() == RelLib.EventType.BAPTISM:
                         bapyear = self.get_year( event.get_handle() )
 
             if byear>0 and bapyear>0:

@@ -676,9 +676,9 @@ def probably_alive(person,db,current_year=None,limit=0):
     # These are fairly good indications that someone's not alive.
     for ev_ref in person.event_ref_list:
         ev = db.get_event_from_handle(ev_ref.ref)
-        if ev and int(ev.get_type())in [RelLib.EventType.CAUSE_DEATH,
-                                        RelLib.EventType.BURIAL,
-                                        RelLib.EventType.CREMATION]:
+        if ev and int(ev.get_type()) in [RelLib.EventType.CAUSE_DEATH,
+                                         RelLib.EventType.BURIAL,
+                                         RelLib.EventType.CREMATION]:
             if not death_year:
                 death_year = ev.get_date_object().get_year()
             if ev.get_date_object().get_start_date() != RelLib.Date.EMPTY:

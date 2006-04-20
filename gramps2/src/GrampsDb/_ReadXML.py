@@ -776,9 +776,9 @@ class GrampsParser:
             self.family.add_event_ref(self.eventref)
         elif self.person:
             event.personal = True
-            if int(event.type) == RelLib.EventType.BIRTH:
+            if event.type == RelLib.EventType.BIRTH:
                 self.person.birth_ref = self.eventref
-            elif int(event.type) == RelLib.EventType.DEATH:
+            elif event.type == RelLib.EventType.DEATH:
                 self.person.death_ref = self.eventref
             else:
                 self.person.add_event_ref(self.eventref)
@@ -1409,9 +1409,9 @@ class GrampsParser:
             ref.ref = self.event.handle
             ref.private = self.event.private
             ref.role.set(RelLib.EventRoleType.PRIMARY)
-            if int(self.event.type) == RelLib.EventType.BIRTH:
+            if self.event.type == RelLib.EventType.BIRTH:
                 self.person.birth_ref = ref
-            elif int(self.event.type) == RelLib.EventType.DEATH:
+            elif self.event.type == RelLib.EventType.DEATH:
                 self.person.death_ref = ref
             else:
                 self.person.add_event_ref(ref)
