@@ -1,4 +1,8 @@
 2006-04-19  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py: use correct field for building
+	surname key
+
+2006-04-19  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_DbUtils.py: fix handle vs. ref issues
 	* src/RelLib/_Family.py: add remove_child_handle
 	* src/DataViews/_EventView.py: more GrampsTypes changes
