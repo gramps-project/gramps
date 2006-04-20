@@ -68,7 +68,6 @@ import NameDisplay
 import DateHandler
 import ToolTips
 import GrampsLocale
-import Utils
 import const
 
 #-------------------------------------------------------------------------
@@ -268,10 +267,7 @@ class PeopleModel(gtk.GenericTreeModel):
                 return COLUMN_DEFS[col][COLUMN_DEF_LIST](self,
                                                          self.prev_data, node)
             except:
-                if col == _MARKER_COL:
-                    return None
-                else:
-                    return u'error'
+                return None
 
     def on_iter_next(self,  node):
         '''returns the next node at this level of the tree'''
@@ -378,7 +374,7 @@ class PeopleModel(gtk.GenericTreeModel):
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()[0]
             date_str = DateHandler.get_date(event)
-            if (etype in [Event.BAPTISM, Event.CHRISTEN]
+            if (etype in [EventType.BAPTISM, EventType.CHRISTEN]
                 and date_str != ""):
                 return "<i>" + cgi.escape(date_str) + "</i>"
         
@@ -399,7 +395,7 @@ class PeopleModel(gtk.GenericTreeModel):
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()[0]
             date_str = DateHandler.get_date(event)
-            if (etype in [Event.BURIAL, Event.CREMATION]
+            if (etype in [EventType.BURIAL, EventType.CREMATION]
                 and date_str != ""):
                 return "<i>" + cgi.escape(date_str) + "</i>"
         
@@ -431,7 +427,7 @@ class PeopleModel(gtk.GenericTreeModel):
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()[0]
-            if etype in [Event.BAPTISM, Event.CHRISTEN]:
+            if etype in [EventType.BAPTISM, EventType.CHRISTEN]:
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = self.db.get_place_from_handle(place_handle)
@@ -459,7 +455,7 @@ class PeopleModel(gtk.GenericTreeModel):
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()[0]
-            if etype in [Event.BURIAL, Event.CREMATION]:
+            if etype in [EventType.BURIAL, EventType.CREMATION]:
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = self.db.get_place_from_handle(place_handle)

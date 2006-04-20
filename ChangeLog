@@ -1,3 +1,19 @@
+2006-04-19  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_EventView.py: more GrampsTypes changes
+	* src/DataViews/_PedigreeView.py: more GrampsTypes changes
+	* src/RelLib/_ChildRef.py: more GrampsTypes changes
+	* src/RelLib/_Family.py: more GrampsTypes changes
+	* src/RelLib/_Repository.py: more GrampsTypes changes
+	* src/RelLib/_Event.py: more GrampsTypes changes
+	* src/Editors/_EditPerson.py: more GrampsTypes changes
+	* src/Editors/_EditEventRef.py: more GrampsTypes changes
+	* src/Editors/_EditEvent.py: more GrampsTypes changes
+	* src/PeopleModel.py: more GrampsTypes changes
+	* src/DisplayTabs.py: more GrampsTypes changes
+	* src/GrampsWidgets.py: more GrampsTypes changes
+	* src/Utils.py: more GrampsTypes changes
+	* src/PageView.py: more GrampsTypes changes
+
 2006-04-19  Alex Roitman  <shura@gramps-project.org>
 	* src/Utils.py: Remove obsolete code.
 	* src/DisplayTabs.py (EventRefModel.column_role): Adapt to new types.

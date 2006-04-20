@@ -81,76 +81,6 @@ confidence = {
 def format_confidence( type):
     return confidence.get(type[0],_("Invalid id %d ('%s')")%type)
 
-# family_events = {
-#     RelLib.Event.UNKNOWN    : _("Unknown"),
-#     RelLib.Event.CUSTOM     : _("Custom"),
-#     RelLib.Event.MARRIAGE   : _("Marriage"),
-#     RelLib.Event.MARR_SETTL : _("Marriage Settlement"),
-#     RelLib.Event.MARR_LIC   : _("Marriage License"),
-#     RelLib.Event.MARR_CONTR : _("Marriage Contract"),
-#     RelLib.Event.MARR_BANNS : _("Marriage Banns"),
-#     RelLib.Event.ENGAGEMENT : _("Engagement"),
-#     RelLib.Event.DIVORCE    : _("Divorce"),
-#     RelLib.Event.DIV_FILING : _("Divorce Filing"),
-#     RelLib.Event.ANNULMENT  : _("Annulment"),
-#     RelLib.Event.MARR_ALT   : _("Alternate Marriage"),
-#     }
-# def format_family_event( type):
-#     if type[0] == RelLib.Event.CUSTOM:
-#         return type[1]
-#     return family_events.get(type[0],_("Invalid id %d ('%s')")%type)
-
-# personal_events = {
-#     RelLib.Event.UNKNOWN         : _("Unknown"),
-#     RelLib.Event.CUSTOM          : _("Custom"),
-#     RelLib.Event.ADOPT           : _("Adopted"),
-#     RelLib.Event.BIRTH           : _("Birth"),
-#     RelLib.Event.DEATH           : _("Death"),
-#     RelLib.Event.ADULT_CHRISTEN  : _("Adult Christening"),
-#     RelLib.Event.BAPTISM         : _("Baptism"),
-#     RelLib.Event.BAR_MITZVAH     : _("Bar Mitzvah"),
-#     RelLib.Event.BAS_MITZVAH     : _("Bas Mitzvah"),
-#     RelLib.Event.BLESS           : _("Blessing"),
-#     RelLib.Event.BURIAL          : _("Burial"),
-#     RelLib.Event.CAUSE_DEATH     : _("Cause Of Death"),
-#     RelLib.Event.CENSUS          : _("Census"),
-#     RelLib.Event.CHRISTEN        : _("Christening"),
-#     RelLib.Event.CONFIRMATION    : _("Confirmation"),
-#     RelLib.Event.CREMATION       : _("Cremation"),
-#     RelLib.Event.DEGREE          : _("Degree"),
-#     RelLib.Event.DIV_FILING      : _("Divorce Filing"),
-#     RelLib.Event.EDUCATION       : _("Education"),
-#     RelLib.Event.ELECTED         : _("Elected"),
-#     RelLib.Event.EMIGRATION      : _("Emigration"),
-#     RelLib.Event.FIRST_COMMUN    : _("First Communion"),
-#     RelLib.Event.IMMIGRATION     : _("Immigration"),
-#     RelLib.Event.GRADUATION      : _("Graduation"),
-#     RelLib.Event.MED_INFO        : _("Medical Information"),
-#     RelLib.Event.MILITARY_SERV   : _("Military Service"), 
-#     RelLib.Event.NATURALIZATION  : _("Naturalization"),
-#     RelLib.Event.NOB_TITLE       : _("Nobility Title"),
-#     RelLib.Event.NUM_MARRIAGES   : _("Number of Marriages"),
-#     RelLib.Event.OCCUPATION      : _("Occupation"),
-#     RelLib.Event.ORDINATION      : _("Ordination"),
-#     RelLib.Event.PROBATE         : _("Probate"),
-#     RelLib.Event.PROPERTY        : _("Property"),
-#     RelLib.Event.RELIGION        : _("Religion"),
-#     RelLib.Event.RESIDENCE       : _("Residence"),
-#     RelLib.Event.RETIREMENT      : _("Retirement"),
-#     RelLib.Event.WILL            : _("Will")
-#     }
-# def format_personal_event( type):
-#     if type[0] == RelLib.Event.CUSTOM:
-#         return type[1]
-#     return personal_events.get(type[0],_("Invalid id %d ('%s')")%type)
-
-# def format_event( type):
-#     if type[0] == RelLib.Event.CUSTOM:
-#         return type[1]
-#     val = personal_events.get(type[0])
-#     if not val:
-#         val = family_events.get(type[0],_("Invalid id %d ('%s')")%type)
-#     return val
 
 personal_attributes = {
     RelLib.Attribute.UNKNOWN     : _("Unknown"),
@@ -185,18 +115,6 @@ def format_attribute( type):
         val = family_attributes.get(type[0],_("Invalid id %d ('%s')")%type)
     return val
 
-## family_relations = {
-##     RelLib.Family.MARRIED     : _("Married"),
-##     RelLib.Family.UNMARRIED   : _("Unmarried"),
-##     RelLib.Family.CIVIL_UNION : _("Civil Union"),
-##     RelLib.Family.UNKNOWN     : _("Unknown"),
-##     RelLib.Family.CUSTOM      : _("Other"),
-##     }
-## def format_family_relation( type):
-##     if type[0] == RelLib.Family.CUSTOM:
-##         return type[1]
-##     return family_relations.get(type[0],_("Invalid id %d ('%s')")%type)
-
 family_rel_descriptions = {
     RelLib.FamilyRelType.MARRIED     : _("A legal or common-law relationship "
                                          "between a husband and wife"),
@@ -210,91 +128,6 @@ family_rel_descriptions = {
                                          "a man and woman"),
     }
 
-## source_media_types = {
-##     RelLib.RepoRef.UNKNOWN    : _("Unknown"),
-##     RelLib.RepoRef.CUSTOM     : _("Custom"),
-##     RelLib.RepoRef.AUDIO      : _("Audio"),
-##     RelLib.RepoRef.BOOK       : _("Book"),
-##     RelLib.RepoRef.CARD       : _("Card"),
-##     RelLib.RepoRef.ELECTRONIC : _("Electronic"),
-##     RelLib.RepoRef.FICHE      : _("Fiche"),
-##     RelLib.RepoRef.FILM       : _("Film"),
-##     RelLib.RepoRef.MAGAZINE   : _("Magazine"),
-##     RelLib.RepoRef.MANUSCRIPT : _("Manuscript"),
-##     RelLib.RepoRef.MAP        : _("Map"),
-##     RelLib.RepoRef.NEWSPAPER  : _("Newspaper"),
-##     RelLib.RepoRef.PHOTO      : _("Photo"),
-##     RelLib.RepoRef.TOMBSTONE  : _("Tombstone"),
-##     RelLib.RepoRef.VIDEO      : _("Video"),
-##     }
-## def format_source_media_type( type):
-##     if type[0] == RelLib.RepoRef.CUSTOM:
-##         return type[1]
-##     return source_media_types.get(type[0],_("Invalid id %d ('%s')")%type)
-
-## event_roles = {
-##     RelLib.EventRef.UNKNOWN   : _("Unknown"),
-##     RelLib.EventRef.CUSTOM    : _("Custom"),
-##     RelLib.EventRef.PRIMARY   : _("Primary"),
-##     RelLib.EventRef.CLERGY    : _("Clergy"),
-##     RelLib.EventRef.CELEBRANT : _("Celebrant"),
-##     RelLib.EventRef.AIDE      : _("Aide"),
-##     RelLib.EventRef.BRIDE     : _("Bride"),
-##     RelLib.EventRef.GROOM     : _("Groom"),
-##     RelLib.EventRef.WITNESS   : _("Witness"),
-##     }
-## def format_personal_event_role( type):
-##     if type[0] == RelLib.EventRef.CUSTOM:
-##         return type[1]
-##     return event_roles.get(type[0],_("Invalid id %d ('%s')")%type)
-
-## family_event_roles = {
-##     RelLib.EventRef.UNKNOWN   : _("Unknown"),
-##     RelLib.EventRef.CUSTOM    : _("Custom"),
-##     RelLib.EventRef.FAMILY    : _("Family"),
-##     }
-## def format_family_event_role( type):
-##     if type[0] == RelLib.EventRef.CUSTOM:
-##         return type[1]
-##     return family_event_roles.get(type[0],_("Invalid id %d ('%s')")%type)
-
-## def format_event_role( type):
-##     if type[0] == RelLib.EventRef.CUSTOM:
-##         return type[1]
-##     val = event_roles.get(type[0])
-##     if not val:
-##         val = family_event_roles.get(type[0],_("Invalid id %d ('%s')")%type)
-##     return val
-
-# repository_types = {
-#     RelLib.Repository.UNKNOWN    : _("Unknown"),
-#     RelLib.Repository.CUSTOM     : _("Custom"),
-#     RelLib.Repository.LIBRARY    : _("Library"),
-#     RelLib.Repository.CEMETERY   : _("Cemetery"),
-#     RelLib.Repository.CHURCH     : _("Church"),
-#     RelLib.Repository.ARCHIVE    : _("Archive"),
-#     RelLib.Repository.ALBUM      : _("Album"),
-#     RelLib.Repository.WEBSITE    : _("Web site"),
-#     RelLib.Repository.BOOKSTORE  : _("Bookstore"),
-#     RelLib.Repository.COLLECTION : _("Collection"),
-#     RelLib.Repository.SAFE       : _("Safe"),
-#     }
-# def format_repository_type( type):
-#     if type[0] == RelLib.Repository.CUSTOM:
-#         return type[1]
-#     return repository_types.get(type[0],_("Invalid id %d ('%s')")%type)
-
-
-## marker_types = {
-##     RelLib.PrimaryObject.MARKER_NONE        : "",
-##     RelLib.PrimaryObject.MARKER_CUSTOM      : _("Custom"),
-##     RelLib.PrimaryObject.MARKER_COMPLETE    : _("Information is complete"),
-##     RelLib.PrimaryObject.MARKER_TODO        : _("TODO"),
-## }
-## def format_marker_type( type):
-##     if type[0] == RelLib.PrimaryObject.MARKER_CUSTOM:
-##         return type[1]
-##     return marker_types.get(type[0],_("Invalid id %d ('%s')")%type)
 
 #-------------------------------------------------------------------------
 #

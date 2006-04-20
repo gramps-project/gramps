@@ -206,7 +206,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         description = self.description
         cause = self.cause
         the_type = self.type
-        return (the_type == Event.CUSTOM and date.is_empty()
+        return (the_type == EventType.CUSTOM and date.is_empty()
                 and not place and not description and not cause) 
 
     def are_equal(self,other):
@@ -237,23 +237,6 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
             index += 1
 
         return True
-        
-    def set_name(self,name):
-        warn( "Use set_type instead of set_name", DeprecationWarning, 2)
-        # INCOMPLETE Wrapper for old API
-        # remove when transitition done.
-        if name in range(-1,45):
-            the_type = (name,'')
-        else:
-            the_type = (Event.CUSTOM,name)
-        self.set_type(the_type)
-
-    def get_name(self):
-        warn( "Use get_type instead of get_name", DeprecationWarning, 2)
-        # INCOMPLETE Wrapper for old API
-        # remove when transitition done.
-        type = self.get_type()
-        return type[1]
         
     def set_type(self,the_type):
         """

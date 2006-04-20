@@ -175,12 +175,10 @@ class EditPerson(EditPrimary):
             self.pname.get_type,
             self.db.readonly)
 
-        self.marker = GrampsWidgets.MonitoredType(
+        self.marker = GrampsWidgets.MonitoredDataType(
             self.top.get_widget('marker'), 
             self.obj.set_marker, 
             self.obj.get_marker, 
-            dict(Utils.marker_types), 
-            RelLib.MarkerType.CUSTOM, 
             self.db.readonly)
         
         if self.use_patronymic:

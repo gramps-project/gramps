@@ -33,7 +33,6 @@ from cgi import escape
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
 import gtk.gdk
 try:
@@ -49,7 +48,6 @@ except:
 #-------------------------------------------------------------------------
 import RelLib
 import PageView
-import Relationship
 import NameDisplay
 import Utils
 import DateHandler
@@ -361,9 +359,7 @@ class FormattingHelper:
             if event and int(event.get_type()) == RelLib.EventType.MARRIAGE:
                 if line_count < 3:
                     return DateHandler.get_date(event)
-                i = int(event.get_type())
-                s = str(even.get_type())
-                name = Utils.family_events.get(i)
+                name = str(event.get_type())
                 text += name
                 text += "\n"
                 text += DateHandler.get_date(event)
@@ -732,9 +728,6 @@ class PedigreeView(PageView.PersonNavView):
         self.rebuild( self.table_4, pos_4, person)
         self.rebuild( self.table_5, pos_5, person)
         
-        #gobject.idle_add(self.request_resize)
-
-
     def rebuild( self, table_widget, positions, active_person):
         # Build ancestor tree
         lst = [None]*31
