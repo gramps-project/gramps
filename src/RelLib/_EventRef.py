@@ -81,7 +81,7 @@ class EventRef(BaseObject,PrivacyBase,NoteBase,RefBase):
         PrivacyBase.unserialize(self,privacy)
         NoteBase.unserialize(self,note)
         RefBase.unserialize(self,ref)
-        self.role = EventRoleType(role)
+        self.role.unserialize(role)
         return self
 
     def get_text_data_list(self):

@@ -201,7 +201,7 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
             person_ref_list,         # 21
             ) = data
 
-        self.marker = MarkerType(marker)
+        self.marker.unserialize(marker)
         self.primary_name.unserialize(primary_name)
         if death_ref:
             self.death_ref = EventRef().unserialize(death_ref)
