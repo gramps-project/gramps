@@ -141,7 +141,7 @@ class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
         @type type: str
         """
         if type(the_type) == tuple:
-            self.type = NameType(the_type)
+            self.type = RepositoryType(the_type)
         else:
             self.type = the_type
 

@@ -150,6 +150,15 @@ class PageView:
     def change_page(self):
         pass
 
+    def edit(self,obj):
+        pass
+
+    def remove(self,obj):
+        pass
+
+    def add(self,obj):
+        pass
+    
     def key_press(self,obj,event):
         ret_key = gtk.gdk.keyval_from_name("Return")
         if event.keyval == ret_key and not event.state:

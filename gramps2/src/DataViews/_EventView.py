@@ -37,6 +37,8 @@ import PageView
 import DisplayModels
 import const
 import Utils
+import Errors
+
 from DdTargets import DdTargets
 from QuestionDialog import QuestionDialog, ErrorDialog
 from Editors import EditEvent, DelEventQuery

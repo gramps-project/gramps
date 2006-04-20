@@ -48,7 +48,6 @@ import gtk.glade
 import const
 import Utils
 import RelLib
-import DisplayState
 
 from DisplayTabs import *
 from GrampsWidgets import *
@@ -83,12 +82,6 @@ class EditEventRef(EditReference):
     def _init_event(self):
         self.commit_event = self.db.commit_personal_event
         self.add_event = self.db.add_person_event
-
-    def get_roles(self):
-        return Utils.event_roles
-    
-    def get_event_types(self):
-        return Utils.personal_events
 
     def get_custom_events(self):
         return [ (RelLib.EventType.CUSTOM,val) \
@@ -126,12 +119,11 @@ class EditEventRef(EditReference):
             self.top.get_widget("eer_ev_priv"),
             self.source)
                 
-        self.role_selector = MonitoredType(
+        self.role_selector = MonitoredDataType(
             self.top.get_widget('eer_role_combo'),
             self.source_ref.set_role,
             self.source_ref.get_role,
-            self.get_roles(),
-            RelLib.EventRef.CUSTOM)
+            )
 
         self.event_menu = MonitoredDataType(
             self.top.get_widget("eer_type_combo"),
@@ -174,7 +166,7 @@ class EditEventRef(EditReference):
             notebook,
             GalleryTab(self.dbstate, self.uistate, self.track,
                        self.source.get_media_list()))
-        
+
         self.backref_tab = self._add_tab(
             notebook,
             EventBackRefList(self.dbstate, self.uistate, self.track,
@@ -231,11 +223,9 @@ class EditFamilyEventRef(EditEventRef):
     def get_roles(self):
         return Utils.event_roles
 
-    def get_event_types(self):
-        return Utils.family_events
-
     def get_custom_events(self):
-        return [ RelLib.EventType((RelLib.EventType.CUSTOM,val)) for val in self.dbstate.db.get_family_event_types()]
+        return [ RelLib.EventType((RelLib.EventType.CUSTOM,val)) \
+                 for val in self.dbstate.db.get_family_event_types()]
         
 
 #-------------------------------------------------------------------------

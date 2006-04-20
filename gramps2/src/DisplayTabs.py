@@ -672,7 +672,7 @@ class EventEmbedList(EmbeddedList):
         return RelLib.EventType(RelLib.EventType.MARRIAGE)
 
     def default_role(self):
-        return (RelLib.EventRoleType.FAMILY, '')
+        return RelLib.EventRoleType(RelLib.EventRoleType.FAMILY)
 
     def add_button_clicked(self, obj):
         try:
@@ -735,7 +735,7 @@ class PersonEventEmbedList(EventEmbedList):
         return self.orig_data
 
     def default_role(self):
-        return (RelLib.EventRoleType.PRIMARY, '')
+        return RelLib.EventRoleType(RelLib.EventRoleType.PRIMARY)
 
     def default_type(self):
         type_list = []

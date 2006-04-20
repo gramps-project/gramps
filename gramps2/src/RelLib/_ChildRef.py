@@ -88,7 +88,7 @@ class ChildRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.rel, str(self.frel), str(mrel)]
+        return [str(self.frel), str(self.mrel)]
 
     def get_text_data_child_list(self):
         """

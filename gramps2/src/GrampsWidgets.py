@@ -354,9 +354,9 @@ class MonitoredDataType:
         self.obj = obj
 
         val = get_val()
+
         if val:
             default = int(val)
-            print val, default
         else:
             default = None
 
@@ -369,6 +369,10 @@ class MonitoredDataType:
 
         value = self.sel.get_values()
         self.set_val(self.fix_value(value))
+
+        if val.is_custom():
+            obj.child.set_text(str(val))
+            
         self.obj.set_sensitive(not readonly)
         self.obj.connect('changed', self.on_change)
 

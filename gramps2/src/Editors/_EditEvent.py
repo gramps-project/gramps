@@ -82,14 +82,6 @@ class EditEvent(EditPrimary):
     def empty_object(self):
         return RelLib.Event()
 
-    def get_base_events(self):
-        new_batch = {}
-        for key in Utils.personal_events:
-            new_batch[key] = Utils.personal_events[key]
-        for key in Utils.family_events:
-            new_batch[key] = Utils.family_events[key]
-        return new_batch
-
     def get_custom_events(self):
         return self.dbstate.db.get_person_event_type_list() + \
                self.dbstate.db.get_family_event_types()
@@ -240,9 +232,6 @@ class EditPersonEvent(EditEvent):
     def _init_event(self):
         self.commit_event = self.db.commit_personal_event
 
-    def get_base_events(self):
-        return Utils.personal_events
-
     def get_custom_events(self):
         return self.dbstate.db.get_person_event_type_list()
 
@@ -254,9 +243,6 @@ class EditFamilyEvent(EditEvent):
 
     def _init_event(self):
         self.commit_event = self.db.commit_family_event
-
-    def get_base_events(self):
-        return Utils.family_events
 
     def get_custom_events(self):
         return self.dbstate.db.get_family_event_types()

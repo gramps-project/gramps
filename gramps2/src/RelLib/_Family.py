@@ -92,7 +92,6 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         self.child_ref_list = []
         self.type = FamilyRelType()
         self.event_ref_list = []
-        self.lds_seal = None
         self.complete = 0
 
     def serialize(self):
@@ -111,10 +110,6 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
             be considered persistent.
         @rtype: tuple
         """
-        if self.lds_seal == None:
-            lds_seal = None
-        else:
-            lds_seal = self.lds_seal.serialize()
         return (self.handle, self.gramps_id, self.father_handle,
                 self.mother_handle,
                 [cr.serialize() for cr in self.child_ref_list],
@@ -153,7 +148,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         if classname == 'Event':
             return handle in [ref.ref for ref in self.event_ref_list]
         elif classname == 'Person':
-            return handle in ([ref.ref for ref in self.child_list]
+            return handle in ([ref.ref for ref in self.child_ref_list]
                               + [self.father_handle,self.mother_handle])
         elif classname == 'Place':
             return handle in [ x.place for x in self.lds_ord_list ]
@@ -381,7 +376,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
             in the list.
         @rtype: bool
         """
-        if not isinstance(childref,ChildRef):
+        if not isinstance(child_ref,ChildRef):
             raise ValueError("expecting ChildRef instance")
         new_list = [ref for ref in self.child_ref_list
                     if ref.ref != child_ref.ref ]
