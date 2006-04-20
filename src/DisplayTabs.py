@@ -764,9 +764,9 @@ class PersonEventEmbedList(EventEmbedList):
         
         for ref in self.orig_data:
             event = self.dbstate.db.get_event_from_handle(ref.ref)
-            if birth_ref == None and int(event.get_type()) == RelLib.EventType.BIRTH:
+            if birth_ref == None and event.get_type() == RelLib.EventType.BIRTH:
                 birth_ref = ref
-            elif death_ref == None and int(event.get_type()) == RelLib.EventType.DEATH:
+            elif death_ref == None and event.get_type() == RelLib.EventType.DEATH:
                 death_ref = ref
             else:
                 new_list.append(ref)

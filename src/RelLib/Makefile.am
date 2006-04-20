@@ -41,6 +41,7 @@ pkgdata_PYTHON = \
 	_PrivateSourceNote.py\
 	_RepoRef.py\
 	_Repository.py\
+	_RepositoryType.py\
 	_Researcher.py\
 	_SourceNote.py\
 	_Source.py\
