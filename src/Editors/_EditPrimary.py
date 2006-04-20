@@ -82,7 +82,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         pass
 
     def build_window_key(self,obj):
-        if obj:
+        if obj and obj.get_handle():
             return obj.get_handle()
         else:
             return id(self)

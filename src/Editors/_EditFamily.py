@@ -320,8 +320,8 @@ class EditFamily(EditPrimary):
         # family
         
         if self.added and self.obj.get_father_handle() == None and \
-           self.obj.get_mother_handle() == None and \
-           len(self.obj.get_child_ref_list()) == 1:
+               self.obj.get_mother_handle() == None and \
+               len(self.obj.get_child_ref_list()) == 1:
             self.add_parent = True
             if not Config.get_family_warn():
                 for i in self.hidden:
@@ -369,8 +369,11 @@ class EditFamily(EditPrimary):
         self.update_mother(mhandle)
         self.child_list.rebuild()
 
-    def build_menu_names(self,obj):
-        return ('Edit Family','Undefined Submenu')
+    def build_menu_names(self,family):
+        win_menu_label = Utils.family_name(family,self.db,_("New Family"))
+        if not win_menu_label.strip():
+            win_menu_label = _("New Family")
+        return (_('Edit Family'), win_menu_label)
 
     def build_interface(self):
 
