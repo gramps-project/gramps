@@ -154,7 +154,9 @@ class EditMedia(EditPrimary):
         self.backref_list = self._add_tab(
             notebook,
             MediaBackRefList(self.dbstate,self.uistate,self.track,
-                             self.db.find_backlink_handles(self.obj.handle)))
+                             self.db.find_backlink_handles(self.obj.handle),
+                             self.enable_warnbox
+                             ))
 
         notebook.show_all()
         self.glade.get_widget('vbox').pack_start(notebook,True)

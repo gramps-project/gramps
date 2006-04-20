@@ -150,7 +150,9 @@ class EditSourceRef(EditReference):
         self.srcref_list = self._add_tab(
             notebook_src,
             SourceBackRefList(self.dbstate,self.uistate, self.track,
-                              self.db.find_backlink_handles(self.source.handle)))
+                              self.db.find_backlink_handles(self.source.handle),
+                              self.enable_warnbox
+                              ))
 
         self.comment_tab = self._add_tab(
             notebook_ref,

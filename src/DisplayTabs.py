@@ -787,21 +787,24 @@ class BackRefList(EmbeddedList):
         (_('Name'), 2, 250), 
         ]
     
-    def __init__(self, dbstate, uistate, track, obj, refmodel):
+    def __init__(self, dbstate, uistate, track, obj, refmodel, callback=None):
         self.obj = obj
         EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('References'), refmodel)
+        self._callback = callback
         self.model.connect('row-inserted', self.update_label)
 
     def update_label(self, *obj):
-        if not self.model.empty:
+        if self.model.count > 0:
             self._set_label()
+        if self._callback and self.model.count > 1:
+            self._callback()
 
     def close(self):
         self.model.close()
 
     def is_empty(self):
-        return self.model.empty
+        return self.model.count == 0
 
     def create_buttons(self, share=False):
         self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
@@ -876,36 +879,36 @@ class BackRefList(EmbeddedList):
 
 class SourceBackRefList(BackRefList):
 
-    def __init__(self, dbstate, uistate, track, obj):
+    def __init__(self, dbstate, uistate, track, obj, callback=None):
         BackRefList.__init__(self, dbstate, uistate, track, obj, 
-                             BackRefModel)
+                             BackRefModel, callback=callback)
 
     def get_icon_name(self):
         return 'gramps-source'
 
 class EventBackRefList(BackRefList):
 
-    def __init__(self, dbstate, uistate, track, obj):
+    def __init__(self, dbstate, uistate, track, obj, callback=None):
         BackRefList.__init__(self, dbstate, uistate, track, obj, 
-                             BackRefModel)
+                             BackRefModel, callback)
 
     def get_icon_name(self):
         return 'gramps-event'
 
 class MediaBackRefList(BackRefList):
 
-    def __init__(self, dbstate, uistate, track, obj):
+    def __init__(self, dbstate, uistate, track, obj, callback=None):
         BackRefList.__init__(self, dbstate, uistate, track, obj, 
-                             BackRefModel)
+                             BackRefModel, callback=callback)
 
     def get_icon_name(self):
         return 'gramps-media'
 
 class PlaceBackRefList(BackRefList):
 
-    def __init__(self, dbstate, uistate, track, obj):
+    def __init__(self, dbstate, uistate, track, obj, callback=None):
         BackRefList.__init__(self, dbstate, uistate, track, obj, 
-                             BackRefModel)
+                             BackRefModel, callback=callback)
 
     def get_icon_name(self):
         return 'gramps-place'
@@ -2183,16 +2186,16 @@ class BackRefModel(gtk.ListStore):
         self.db = db
         self.sref_list = sref_list
         self.idle = 0
-        self.empty = True
+        self.count = 0
         self.idle = gobject.idle_add(self.load_model().next)
 
     def close(self):
         gobject.source_remove(self.idle)
 
     def load_model(self):
-        self.empty = True
+        self.count = 0
         for ref in self.sref_list:
-            self.empty = False
+            self.count += 1
             dtype = ref[0]
             if dtype == 'Person':
                 p = self.db.get_person_from_handle(ref[1])

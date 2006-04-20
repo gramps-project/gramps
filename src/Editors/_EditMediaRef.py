@@ -144,7 +144,9 @@ class EditMediaRef(EditReference):
         self.backref_list = self._add_tab(
             notebook_src,
             MediaBackRefList(self.dbstate,self.uistate,self.track,
-                             self.db.find_backlink_handles(self.source.handle)))
+                             self.db.find_backlink_handles(self.source.handle),
+                             self.enable_warnbox
+                             ))
 
         self.note_ref_tab = self._add_tab(
             notebook_ref,
