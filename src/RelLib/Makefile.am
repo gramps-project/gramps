@@ -46,6 +46,7 @@ pkgdata_PYTHON = \
 	_Source.py\
 	_SourceRef.py\
 	_UrlBase.py\
+	_UrlType.py\
 	_Url.py\
 	_Witness.py\
 	_SourceBase.py\
