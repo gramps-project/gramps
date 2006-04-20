@@ -238,9 +238,11 @@ class ChildEmbedList(EmbeddedList):
                      skip=[ x for x in skip if x])
 
     def del_button_clicked(self,obj):
-        ref = self.get_selected()
-        if ref:
-            self.family.remove_child_ref(ref)
+        handle = self.get_selected()
+        if handle:
+            for ref in self.family.get_child_ref_list():
+                if ref.ref == handle:
+                    self.family.remove_child_ref(ref)
             self.rebuild()
 
     def edit_button_clicked(self,obj):

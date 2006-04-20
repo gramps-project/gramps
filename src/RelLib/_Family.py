@@ -382,6 +382,21 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
                     if ref.ref != child_ref.ref ]
         self.child_ref_list = new_list
 
+    def remove_child_handle(self,child_handle):
+        """
+        Removes the database handle for L{Person} to the Family's list
+        of children if the L{Person} is already in the list.
+
+        @param person_handle: L{Person} database handle
+        @type person_handle: str
+        @return: True if the handle was removed, False if it was not
+            in the list.
+        @rtype: bool
+        """
+        new_list = [ref for ref in self.child_ref_list
+                    if ref.ref != child_handle ]
+        self.child_ref_list = new_list
+
     def get_child_ref_list(self):
         """
         Returns the list of L{Person} handles identifying the children
