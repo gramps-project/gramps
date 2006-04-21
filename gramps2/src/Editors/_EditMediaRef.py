@@ -72,6 +72,7 @@ class EditMediaRef(EditReference):
         self.define_top_level(self.top.get_widget('change_description'),
                               self.top.get_widget('title'),
                               _('Media Reference Editor'))
+        self.define_warn_box(self.top.get_widget("warn_box"))
         
     def _setup_fields(self):
         
