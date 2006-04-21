@@ -65,7 +65,7 @@ bkitems_list = []
 cl_list = []
 cli_tool_list = []
 
-_success_list = []
+success_list = []
 
 #-------------------------------------------------------------------------
 #
@@ -90,11 +90,11 @@ _unavailable = _("No description was provided"),
 def load_plugins(direct):
     """Searches the specified directory, and attempts to load any python
     modules that it finds, adding name to the attempt_lists list. If the module
-    successfully loads, it is added to the _success_list list. Each plugin is
+    successfully loads, it is added to the success_list list. Each plugin is
     responsible for registering itself in the correct manner. No attempt
     is done in this routine to register the tasks."""
     
-    global _success_list,attempt_list,loaddir_list,failmsg_list
+    global success_list,attempt_list,loaddir_list,failmsg_list
 
     # if the directory does not exist, do nothing
     if not os.path.isdir(direct):
@@ -113,7 +113,7 @@ def load_plugins(direct):
 
     # loop through each file in the directory, looking for files that
     # have a .py extention, and attempt to load the file. If it succeeds,
-    # add it to the _success_list list. If it fails, add it to the _failure
+    # add it to the success_list list. If it fails, add it to the _failure
     # list
     
     for filename in os.listdir(direct):
@@ -125,7 +125,7 @@ def load_plugins(direct):
         plugin = match.groups()[0]
         try: 
             a = __import__(plugin)
-            _success_list.append(a)
+            success_list.append((filename,a))
         except Errors.PluginError, msg:
             expect_list.append((filename,str(msg)))
         except:
