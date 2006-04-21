@@ -210,10 +210,7 @@ class PrimaryObject(BaseObject,PrivacyBase):
         pass
         
     def set_marker(self,marker):
-        if type(marker) == tuple:
-            self.marker = MarkerType(marker)
-        else:
-            self.marker = marker
+        self.marker.set(marker)
     
     def get_marker(self):
         return self.marker

@@ -234,10 +234,7 @@ class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
 
     def set_type(self,the_type):
         """sets the type of the Name instance"""
-        if type(the_type) == tuple:
-            self.type = NameType(the_type)
-        else:
-            self.type = the_type
+        self.type(the_type)
 
     def get_type(self):
         """returns the type of the Name instance"""

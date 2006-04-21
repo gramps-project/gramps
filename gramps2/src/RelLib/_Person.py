@@ -45,7 +45,6 @@ from _AddressBase import AddressBase
 from _LdsOrdBase import LdsOrdBase
 from _UrlBase import UrlBase
 from _Name import Name
-from _NameType import NameType
 from _EventRef import EventRef
 from _LdsOrd import LdsOrd
 from _PersonRef import PersonRef

@@ -111,7 +111,4 @@ class RepoRef(BaseObject,NoteBase,RefBase):
         return self.media_type
 
     def set_media_type(self,media_type):
-        if type(media_type) == tuple:
-            self.media_type = SourceMediaType(media_type)
-        else:
-            self.media_type = media_type
+        self.media_type.set(media_type)

@@ -1317,7 +1317,7 @@ class GrampsBSDDB(GrampsDbBase):
             family.handle = handle
             # Restore data from dbversion 8 (gramps 2.0.9)
             (junk_handle, family.gramps_id, family.father_handle,
-             family.mother_handle, child_list, family.type,
+             family.mother_handle, child_list, the_type,
              event_list, family.media_list, family.attribute_list,
              lds_seal, complete, family.source_list,
              family.note, family.change) = info
@@ -1339,7 +1339,7 @@ class GrampsBSDDB(GrampsDbBase):
                 family.child_ref_list.append(child_ref)
 
             # Change relationship type from int to tuple
-            family.type = (family.type,'')
+            family.type.set(the_type)
 
             # In all Attributes, convert type from string to a tuple
             for attribute in family.attribute_list:
@@ -1369,7 +1369,7 @@ class GrampsBSDDB(GrampsDbBase):
              death_handle, birth_handle, event_list,
              person.family_list, parent_family_list,
              person.media_list, person.address_list, person.attribute_list,
-             person.urls, lds_bapt, lds_endow, lds_seal,
+             urls, lds_bapt, lds_endow, lds_seal,
              complete, person.source_list, person.note,
              person.change, person.private) = (info + (False,))[0:23]
 
@@ -1435,8 +1435,7 @@ class GrampsBSDDB(GrampsDbBase):
                 convert_mediaref_9(media_ref)
 
             # In all Urls, add type attribute
-            for url in person.urls:
-                convert_url_9(url)
+            person.urls = [convert_url_9(url) for url in urls]
 
             # Switch from fixed lds ords to a list
             person.lds_ord_list = [item for item
@@ -1447,55 +1446,6 @@ class GrampsBSDDB(GrampsDbBase):
             self.update(100*current/length)
 
         # Event upgrade
-        event_conversion = {
-            "Alternate Marriage"  : (EventType.MARR_ALT,""),
-            "Annulment"           : (EventType.ANNULMENT,""),
-            "Divorce"             : (EventType.DIVORCE,""),
-            "Engagement"          : (EventType.ENGAGEMENT,""),
-            "Marriage Banns"      : (EventType.MARR_BANNS,""),
-            "Marriage Contract"   : (EventType.MARR_CONTR,""),
-            "Marriage License"    : (EventType.MARR_LIC,""),
-            "Marriage Settlement" : (EventType.MARR_SETTL,""),
-            "Marriage"            : (EventType.MARRIAGE,""),
-            "Adopted"             : (EventType.ADOPT,""),
-            "Birth"               : (EventType.BIRTH,""),
-            "Alternate Birth"     : (EventType.BIRTH,""),
-            "Death"               : (EventType.DEATH,""),
-            "Alternate Death"     : (EventType.DEATH,""),
-            "Adult Christening"   : (EventType.ADULT_CHRISTEN,""),
-            "Baptism"             : (EventType.BAPTISM,""),
-            "Bar Mitzvah"         : (EventType.BAR_MITZVAH,""),
-            "Bas Mitzvah"         : (EventType.BAS_MITZVAH,""),
-            "Blessing"            : (EventType.BLESS,""),
-            "Burial"              : (EventType.BURIAL,""),
-            "Cause Of Death"      : (EventType.CAUSE_DEATH,""),
-            "Census"              : (EventType.CENSUS,""),
-            "Christening"         : (EventType.CHRISTEN,""),
-            "Confirmation"        : (EventType.CONFIRMATION,""),
-            "Cremation"           : (EventType.CREMATION,""),
-            "Degree"              : (EventType.DEGREE,""),
-            "Divorce Filing"      : (EventType.DIV_FILING,""),
-            "Education"           : (EventType.EDUCATION,""),
-            "Elected"             : (EventType.ELECTED,""),
-            "Emigration"          : (EventType.EMIGRATION,""),
-            "First Communion"     : (EventType.FIRST_COMMUN,""),
-            "Immigration"         : (EventType.IMMIGRATION,""),
-            "Graduation"          : (EventType.GRADUATION,""),
-            "Medical Information" : (EventType.MED_INFO,""),
-            "Military Service"    : (EventType.MILITARY_SERV,""),
-            "Naturalization"      : (EventType.NATURALIZATION,""),
-            "Nobility Title"      : (EventType.NOB_TITLE,""),
-            "Number of Marriages" : (EventType.NUM_MARRIAGES,""),
-            "Occupation"          : (EventType.OCCUPATION,""),
-            "Ordination"          : (EventType.ORDINATION,""),
-            "Probate"             : (EventType.PROBATE,""),
-            "Property"            : (EventType.PROPERTY,""),
-            "Religion"            : (EventType.RELIGION,""),
-            "Residence"           : (EventType.RESIDENCE,""),
-            "Retirement"          : (EventType.RETIREMENT,""),
-            "Will"                : (EventType.WILL,""),
-            }
-
         # Turns out that a lof ot events have duplicate gramps IDs
         # We need to fix this
         table_flags = self.open_flags()
@@ -1519,14 +1469,7 @@ class GrampsBSDDB(GrampsDbBase):
             if event.gramps_id in dup_ids:
                 event.gramps_id = self.find_next_event_gramps_id()
 
-            if old_type:
-                if event_conversion.has_key(old_type):
-                    new_type = event_conversion[old_type]
-                else:
-                    new_type = (EventType.CUSTOM,old_type)
-            else:
-                new_type = (EventType.UNKNOWN,"")
-            event.type = new_type
+            event.type.set_from_xml_str(old_type)
             
             # Cover attributes contained in MediaRefs
             for media_ref in event.media_list:
@@ -1568,7 +1511,7 @@ class GrampsBSDDB(GrampsDbBase):
             place = Place()
             place.handle = handle
             (junk_handle, place.gramps_id, place.title, place.long, place.lat,
-             place.main_loc, place.alt_loc, place.urls, place.media_list,
+             place.main_loc, place.alt_loc, urls, place.media_list,
              place.source_list, place.note, place.change) = info
 
             # Cover attributes contained in MediaRefs
@@ -1576,8 +1519,7 @@ class GrampsBSDDB(GrampsDbBase):
                 convert_mediaref_9(media_ref)
 
             # In all Urls, add type attribute
-            for url in place.urls:
-                convert_url_9(url)
+            place.urls = [convert_url_9(url) for url in urls]
 
             self.commit_place(place,trans)
             current += 1
@@ -1640,14 +1582,20 @@ def convert_mediaref_9(media_ref):
 
 def convert_url_9(url):
     path = url.path.strip()
-    if path.find('mailto:') == 0 or url.path.find('@') != -1:
-        url.type = (Url.EMAIL,'')
+    if (path.find('mailto:') == 0) or (url.path.find('@') != -1):
+        new_type = UrlType.EMAIL
     elif path.find('http://') == 0:
-        url.type = (Url.WEB_HOME,'')
+        new_type = UrlType.WEB_HOME
     elif path.find('ftp://') == 0:
-        url.type = (Url.WEB_FTP,'')
+        new_type = UrlType.WEB_FTP
     else:
-        url.type = (Url.CUSTOM,'')
+        new_type = UrlType.CUSTOM
+    new_url = Url()
+    new_url.type.set(new_type)
+    new_url.path = url.path
+    new_url.desc = url.desc
+    new_url.private = url.private
+    return new_url
     
 def low_level_9(the_db):
     """

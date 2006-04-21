@@ -140,10 +140,7 @@ class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
         @param type: descriptive type of the Repository
         @type type: str
         """
-        if type(the_type) == tuple:
-            self.type = RepositoryType(the_type)
-        else:
-            self.type = the_type
+        self.type.set(the_type)
 
     def get_type(self):
         """
