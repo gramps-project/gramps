@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import gtk
+import traceback
 
 #-------------------------------------------------------------------------
 #
@@ -44,7 +45,7 @@ import _PluginMgr as PluginMgr
 class PluginStatus(ManagedWindow.ManagedWindow):
     """Displays a dialog showing the status of loaded plugins"""
     
-    def __init__(self,state,uistate,track=[]):
+    def __init__(self, state, uistate, track=[]):
 
         self.title = _("Plugin Status")
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
@@ -58,12 +59,16 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         )
         self.window.set_size_request(600,400)
         self.window.connect('delete-event',self.close)
-
+        self.window.connect('response', self.close)
+        
         scrolled_window = gtk.ScrolledWindow()
         self.list = gtk.TreeView()
-        self.model = gtk.ListStore(str, str, str)
+        self.model = gtk.ListStore(str, str, str, object)
+        self.selection = self.list.get_selection()
+        
         self.list.set_model(self.model)
-
+        self.list.set_rules_hint(True)
+        self.list.connect('button-press-event', self.button_press)
         self.list.append_column(
             gtk.TreeViewColumn(_('Status'), gtk.CellRendererText(),
                                markup=0))
@@ -81,22 +86,61 @@ class PluginStatus(ManagedWindow.ManagedWindow):
 
         for i in PluginMgr.failmsg_list:
             err = i[1][0]
+            
             if err == Errors.UnavailableError:
                 self.model.append(row=[
                     '<span color="blue">%s</span>' % _('Unavailable'),
-                    i[0], str(i[1][1])])
+                    i[0], str(i[1][1]), None])
             else:
                 self.model.append(row=[
                     '<span weight="bold" color="red">%s</span>' % _('Fail'),
-                    i[0], str(i[1][1])])
+                    i[0], str(i[1][1]), i[1]])
 
         for i in PluginMgr.success_list:
             self.model.append(row=[
                 '<span weight="bold" color="#267726">%s</span>' % _("OK"),
-                i[0], ''])
+                i[0], '', None])
 
-        self.window.run()
-        self.window.destroy()
+
+    def button_press(self, obj, event):
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            model, node = self.selection.get_selected()
+            data = model.get_value(node, 3)
+            if data:
+                PluginTrace(self.uistate, self.track, data)
+                
+    def build_menu_names(self,obj):
+        return (self.title, _('Tracebacks'))
+
+class PluginTrace(ManagedWindow.ManagedWindow):
+    """Displays a dialog showing the status of loaded plugins"""
+    
+    def __init__(self, uistate, track, data):
+
+        self.title = _("Plugin Status Details")
+        print uistate, track, data
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+
+        self.set_window(
+            gtk.Dialog("%s - GRAMPS" % self.title,
+                       uistate.window,
+                       gtk.DIALOG_DESTROY_WITH_PARENT,
+                       (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
+            )
+        )
+        self.window.set_size_request(600,400)
+        self.window.connect('delete-event',self.close)
+        self.window.connect('response', self.close)
+        
+        scrolled_window = gtk.ScrolledWindow()
+        self.text = gtk.TextView()
+        scrolled_window.add(self.text)
+        self.text.get_buffer().set_text(
+            "".join(traceback.format_exception(data[0],data[1],data[2])))
+
+        self.window.vbox.add(scrolled_window)
+        self.window.show_all()
 
     def build_menu_names(self,obj):
-        return (self.title,None)
+        return (self.title, None)
+

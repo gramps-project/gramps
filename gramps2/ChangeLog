@@ -1,3 +1,8 @@
+2006-04-21  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditSource.py: remove warnbox
+	* src/Editors/_EditMedia.py: remove warnbox
+	* src/PluginUtils/_PluginStatus.py: add viewing of exceptions
+
 2006-04-21  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_PedigreeView.py: Set dirty flag to force redrawing
 	when changing tree style
