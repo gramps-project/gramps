@@ -81,40 +81,6 @@ confidence = {
 def format_confidence( type):
     return confidence.get(type[0],_("Invalid id %d ('%s')")%type)
 
-
-personal_attributes = {
-    RelLib.Attribute.UNKNOWN     : _("Unknown"),
-    RelLib.Attribute.CUSTOM      : _("Custom"),
-    RelLib.Attribute.CASTE       : _("Caste"),
-    RelLib.Attribute.DESCRIPTION : _("Description"),
-    RelLib.Attribute.ID          : _("Identification Number"),
-    RelLib.Attribute.NATIONAL    : _("National Origin"),
-    RelLib.Attribute.NUM_CHILD   : _("Number of Children"),
-    RelLib.Attribute.SSN         : _("Social Security Number"),
-    }
-def format_personal_attribute( type):
-    if type[0] == RelLib.Attribute.CUSTOM:
-        return type[1]
-    return personal_attributes.get(type[0],_("Invalid id %d ('%s')")%type)
-
-family_attributes = {
-    RelLib.Attribute.UNKNOWN     : _("Unknown"),
-    RelLib.Attribute.CUSTOM      : _("Custom"),
-    RelLib.Attribute.NUM_CHILD   : _("Number of Children"),
-    }
-def format_family_attribute( type):
-    if type[0] == RelLib.Attribute.CUSTOM:
-        return type[1]
-    return family_attributes.get(type[0],_("Invalid id %d ('%s')")%type)
-
-def format_attribute( type):
-    if type[0] == RelLib.Attribute.CUSTOM:
-        return type[1]
-    val = personal_attributes.get(type[0])
-    if not val:
-        val = family_attributes.get(type[0],_("Invalid id %d ('%s')")%type)
-    return val
-
 family_rel_descriptions = {
     RelLib.FamilyRelType.MARRIED     : _("A legal or common-law relationship "
                                          "between a husband and wife"),
@@ -185,16 +151,16 @@ personalConstantEvents = {
     }
 
 familyConstantAttributes = {
-    RelLib.Attribute.NUM_CHILD   : "NCHI",
+    RelLib.AttributeType.NUM_CHILD   : "NCHI",
     }
 
 personalConstantAttributes = {
-    RelLib.Attribute.CASTE       : "CAST",
-    RelLib.Attribute.DESCRIPTION : "DSCR",
-    RelLib.Attribute.ID          : "IDNO",
-    RelLib.Attribute.NATIONAL    : "NATI",
-    RelLib.Attribute.NUM_CHILD   : "NCHI",
-    RelLib.Attribute.SSN         : "SSN",
+    RelLib.AttributeType.CASTE       : "CAST",
+    RelLib.AttributeType.DESCRIPTION : "DSCR",
+    RelLib.AttributeType.ID          : "IDNO",
+    RelLib.AttributeType.NATIONAL    : "NATI",
+    RelLib.AttributeType.NUM_CHILD   : "NCHI",
+    RelLib.AttributeType.SSN         : "SSN",
     }
 
 #-------------------------------------------------------------------------

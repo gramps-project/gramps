@@ -59,7 +59,6 @@ import const
 import Utils
 import DateHandler
 import NameDisplay
-import _ConstXML
 from _GrampsDbBase import \
      PERSON_KEY,FAMILY_KEY,SOURCE_KEY,EVENT_KEY,\
      MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY
@@ -788,8 +787,8 @@ class GrampsParser:
         self.attribute = RelLib.Attribute()
         self.attribute.conf = int(attrs.get("conf",2))
         self.attribute.private = bool(attrs.get("priv"))
-        self.attribute.type = _ConstXML.tuple_from_xml(_ConstXML.attributes,
-                                                       attrs.get("type",''))
+        self.attribute.type = RelLib.AttributeType()
+        self.attribute.type.set_from_xml_str(attrs.get("type",''))
         self.attribute.value = attrs.get("value",'')
         if self.photo:
             self.photo.add_attribute(self.attribute)

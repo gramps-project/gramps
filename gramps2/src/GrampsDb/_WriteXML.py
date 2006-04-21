@@ -59,7 +59,6 @@ import gtk
 import const
 import RelLib 
 from QuestionDialog import ErrorDialog
-import _ConstXML
 from _GrampsDbBase import \
      PERSON_KEY,FAMILY_KEY,SOURCE_KEY,EVENT_KEY,\
      MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY
@@ -845,10 +844,7 @@ class XmlWriter:
         sp = '  ' * indent
         for attr in list:
             self.g.write('%s<attribute%s type="%s" value="%s"' % \
-                         (sp,conf_priv(attr),
-                          _ConstXML.str_for_xml(_ConstXML.attributes,
-                                                attr.get_type()),
-                          #const.save_attr(attr.get_type()),
+                         (sp,conf_priv(attr),attr.get_type().xml_str(),
                          self.fix(attr.get_value())))
             slist = attr.get_source_references()
             note = attr.get_note()

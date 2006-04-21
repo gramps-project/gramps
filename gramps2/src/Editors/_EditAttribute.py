@@ -101,13 +101,10 @@ class EditAttribute(EditSecondary):
             self.top.get_widget("private"),
             self.obj)
 
-        self.type_selector = MonitoredType(
+        self.type_selector = MonitoredDataType(
             self.top.get_widget("attr_menu"),
             self.obj.set_type,
             self.obj.get_type,
-            self.attribute_list(),
-            RelLib.Attribute.CUSTOM,
-            custom_values=self.alist,
             )
 
     def _create_tabbed_pages(self):
@@ -129,7 +126,7 @@ class EditAttribute(EditSecondary):
         if not attrib:
             label = _("New Attribute")
         else:
-            label = attrib.get_type()[1]
+            label = str(attrib.get_type())
         if not label.strip():
             label = _("New Attribute")
         label = "%s: %s" % (_('Attribute'),label)

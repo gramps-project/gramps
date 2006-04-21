@@ -410,7 +410,7 @@ class GrampsDbBase(GrampsDBCallback):
             self.genderStats.count_person(person, self)
 
         for attr in person.attribute_list:
-            self.individual_attributes.add(attr.type)
+            self.individual_attributes.add(str(attr.type))
 
         self.marker_names.add(str(person.marker))
             
@@ -475,7 +475,7 @@ class GrampsDbBase(GrampsDBCallback):
                           transaction, change_time)
 
         for attr in family.attribute_list:
-            self.family_attributes.add(attr.type)
+            self.family_attributes.add(str(attr.type))
 
     def commit_repository(self, repository, transaction, change_time=None):
         """
