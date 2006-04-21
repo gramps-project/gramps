@@ -137,7 +137,7 @@ class EditRepoRef(EditReference):
         self.backref_tab = self._add_tab(
             notebook_src,
             SourceBackRefList(self.dbstate, self.uistate, self.track,
-                              self.db.find_backlink_handles(self.obj.handle),
+                              self.db.find_backlink_handles(self.source.handle),
                               self.enable_warnbox))
 
     def build_menu_names(self,sourceref):

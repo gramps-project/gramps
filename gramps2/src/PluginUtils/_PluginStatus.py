@@ -97,10 +97,11 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                     i[0], str(i[1][1]), i[1]])
 
         for i in PluginMgr.success_list:
+            modname = i[1].__name__
+            descr = PluginMgr.mod2text.get(modname,'')
             self.model.append(row=[
                 '<span weight="bold" color="#267726">%s</span>' % _("OK"),
-                i[0], '', None])
-
+                i[0], descr, None])
 
     def button_press(self, obj, event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -118,7 +119,6 @@ class PluginTrace(ManagedWindow.ManagedWindow):
     def __init__(self, uistate, track, data):
 
         self.title = _("Plugin Status Details")
-        print uistate, track, data
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
         self.set_window(

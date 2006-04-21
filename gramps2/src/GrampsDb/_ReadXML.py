@@ -652,7 +652,7 @@ class GrampsParser:
             self.person.lds_ord_list.append(self.ord)
         elif self.family:
             if atype == "sealed_to_spouse":
-                self.ord.set_type(RelLib.LdsOrd.SEAL_TO_SPOUSES)
+                self.ord.set_type(RelLib.LdsOrd.SEAL_TO_SPOUSE)
                 self.family.lds_ord_list.append(self.ord)
 
     def start_temple(self,attrs):
@@ -704,7 +704,7 @@ class GrampsParser:
         loc.postal = attrs.get('postal','')
         loc.city = attrs.get('city','')
         loc.parish = attrs.get('parish','')
-        loc.state = attrs.bet('state','')
+        loc.state = attrs.get('state','')
         loc.county = attrs.get('county','')
         loc.country = attrs.get('country','')
         if self.locations > 0:
@@ -919,8 +919,7 @@ class GrampsParser:
             self.family = self.find_family_by_gramps_id(gramps_id)
         # GRAMPS LEGACY: the type now belongs to <rel> tag
         # Here we need to support old format of <family type="Married">
-        self.family.type = RelLib.FamilyRelType().set_from_xml_str(
-            attrs.get("type",'Unknown'))
+        self.family.type.set_from_xml_str(attrs.get("type",'Unknown'))
                 
         # Old and new markers: complete=1 and marker=word both have to work
         if attrs.get('complete'): # this is only true for complete=1
@@ -952,8 +951,12 @@ class GrampsParser:
 
         # Here we are handling the old XML, in which
         # frel and mrel belonged to the "childof" tag
-        mrel = RelLib.ChildRefType().set_from_xml_str(attrs.get('mrel'))
-        frel = RelLib.ChildRefType().set_from_xml_str(attrs.get('frel'))
+        mrel = RelLib.ChildRefType()
+        frel = RelLib.ChildRefType()
+        if attrs.get('mrel'):
+            mrel.set_from_xml_str(attrs['mrel'])
+        if attrs.get('frel'):
+            frel.set_from_xml_str(attrs['frel'])
 
         childref = RelLib.ChildRef()
         childref.ref = self.person.handle
