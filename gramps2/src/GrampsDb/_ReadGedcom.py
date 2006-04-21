@@ -1590,7 +1590,7 @@ class GedcomParser:
                             name = val
                         else:
                             name = matches[2]
-                    attr.set_name(name)
+                    attr.set_type(name)
             elif matches[1] in (TOKEN_CAUS,TOKEN_DATE,TOKEN_TIME,TOKEN_ADDR,
                                 TOKEN_IGNORE,TOKEN_STAT,TOKEN_TEMP,TOKEN_OBJE):
                 self.ignore_sub_junk(level+1)
