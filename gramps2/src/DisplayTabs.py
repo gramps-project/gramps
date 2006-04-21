@@ -2006,13 +2006,10 @@ class AttrModel(gtk.ListStore):
         self.db = db
         for attr in attr_list:
             self.append(row=[
-                self.type_name(attr), 
+                str(attr.get_type()), 
                 attr.get_value(), 
                 attr, 
                 ])
-
-    def type_name(self, attr):
-        return Utils.format_attribute( attr.get_type())
 
 #-------------------------------------------------------------------------
 #
@@ -2168,11 +2165,12 @@ class RepoRefModel(gtk.ListStore):
         self.db = db
         for ref in ref_list:
             repo = self.db.get_repository_from_handle(ref.ref)
-            self.append(row=[repo.gramps_id, repo.name, ref.call_number, 
-                             self.type_of(repo), ref, ])
-
-    def type_of(self, ref):
-        return Utils.format_source_media_type(ref.get_type())
+            self.append(row=[
+                repo.gramps_id,
+                repo.name,
+                ref.call_number, 
+                str(repo.get_type()),
+                ref, ])
 
 #-------------------------------------------------------------------------
 #

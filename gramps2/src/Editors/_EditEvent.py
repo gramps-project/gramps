@@ -160,10 +160,8 @@ class EditEvent(EditPrimary):
         self.backref_tab = self._add_tab(
             notebook,
             EventBackRefList(self.dbstate, self.uistate, self.track,
-                             self.dbstate.db.find_backlink_handles(self.obj.handle),
-                             self.enable_warnbox
-                             ))
-
+                             self.dbstate.db.find_backlink_handles(self.obj.handle)))
+        
         notebook.show_all()
         self.top.get_widget('vbox').pack_start(notebook,True)
 

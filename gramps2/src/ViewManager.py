@@ -930,7 +930,7 @@ class ViewManager:
         
     def scratchpad(self, obj):
         import ScratchPad
-        ScratchPad.ScratchPadWindow(self.state, self)
+        ScratchPad.ScratchPadWindow(self.state, self.uistate)
 
     def undo(self, obj):
         self.state.db.undo()

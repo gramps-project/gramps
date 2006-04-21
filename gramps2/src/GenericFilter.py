@@ -1642,7 +1642,7 @@ class IsWitness(Rule):
         if not event_list:
             return
         for event_ref in event_list:
-            if event_reg:
+            if event_ref:
                 event = self.db.get_event_from_handle(event_ref.ref)
                 if event_type and not event.get_name() == event_type:
                     continue
@@ -2630,8 +2630,8 @@ class FilterWidget:
     def on_filter_name_changed(self,obj):
         print "on_filter_name_changed"
         index = self.filter_list.get_active()
-        mime_filter = self.filter_model.get_filter(index)
-        qual = mime_filter.need_param
+#        mime_filter = self.filter_model.get_filter(index)
+#        qual = mime_filter.need_param
 #        if qual:
 #            self.filter_text.show()
 #            self.filter_text.set_sensitive(True)

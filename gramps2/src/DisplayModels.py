@@ -46,7 +46,6 @@ import gtk
 import NameDisplay
 import DateHandler
 import RelLib
-import Utils
 import ToolTips
 import GrampsLocale
 import const
@@ -694,7 +693,7 @@ class RepositoryModel(BaseModel):
         return unicode(data[1])
 
     def column_type(self,data):
-        return Utils.format_repository_type(data[2])
+        return str(RelLib.RepositoryType(data[2]))
 
     def column_name(self,data):
         return unicode(data[3])
