@@ -35,3 +35,4 @@ import _ReportOptions as ReportOptions
 import _ReportUtils as ReportUtils
 import _Tool as Tool
 import _Plugins as Plugins
+import _PluginStatus as PluginStatus

@@ -73,8 +73,9 @@ try:
     for faceName in reportlab.pdfbase.pdfmetrics.standardFonts:
         reportlab.pdfbase.pdfmetrics.registerTypeFace(
             reportlab.pdfbase.pdfmetrics.TypeFace(faceName))
+
 except ImportError:
-    raise Errors.PluginError( _("The ReportLab modules are not installed"))
+    raise Errors.UnavailableError(_("Cannot be loaded because ReportLab is not installed"))
 
 #------------------------------------------------------------------------
 #

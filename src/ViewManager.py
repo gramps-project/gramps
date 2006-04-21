@@ -59,7 +59,7 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from PluginUtils import Plugins, Report, Tool, \
+from PluginUtils import Plugins, Report, Tool, PluginStatus, \
      relationship_class, load_plugins, \
      import_list, tool_list, report_list
 import DisplayState
@@ -383,7 +383,7 @@ class ViewManager:
         error |= load_plugins(const.pluginsDir)
         error |= load_plugins(os.path.join(const.home_dir, "plugins"))
         if Config.get_pop_plugin_status() and error:
-            Plugins.PluginStatus(self.state, self.uistate, [])
+            PluginStatus.PluginStatus(self.state, self.uistate, [])
         self.uistate.push_message(_('Ready'))
 
     def quit(self, obj=None):
@@ -460,7 +460,7 @@ class ViewManager:
 
     def plugin_status(self, obj):
         """Display Tip of the day"""
-        Plugins.PluginStatus(self.state, self.uistate, [])
+        PluginStatus.PluginStatus(self.state, self.uistate, [])
 
     def about(self, obj):
         about = gtk.AboutDialog()

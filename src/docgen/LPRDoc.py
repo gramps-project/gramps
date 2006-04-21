@@ -42,7 +42,12 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gtk.gdk
-import gnomeprint, gnomeprint.ui
+
+
+try:
+    import gnomeprint, gnomeprint.ui
+except ImportError:
+    raise Errors.UnavailableError(_("Cannot be loaded because python bindinds for GNOME print are not installed"))
 
 ### FIXME ###
 if gnomeprint.Context.__dict__.has_key('grestore'):

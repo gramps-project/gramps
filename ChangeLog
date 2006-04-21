@@ -1,3 +1,12 @@
+2006-04-21  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: start of cleaned up plugin manager
+	* src/Errors.py: warning error for unavailable plugin
+	* src/PluginUtils/__init__.py: start of cleaned up plugin manager
+	* src/PluginUtils/_Plugins.py: start of cleaned up plugin manager
+	* src/PluginUtils/_PluginMgr.py: start of cleaned up plugin manager
+	* src/docgen/PdfDoc.py: Issue unavailable error on reportlab failure
+	* src/docgen/LPRDoc.py: Issue unavailable error on gnomeprint failure
+
 2006-04-20  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_EventView.py: pychecker fixes
 	* src/ViewManager.py: call scratchpad properly
