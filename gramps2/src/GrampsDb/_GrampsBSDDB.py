@@ -1344,6 +1344,7 @@ class GrampsBSDDB(GrampsDbBase):
             # In all Attributes, convert type from string to a tuple
             for attribute in family.attribute_list:
                 convert_attribute_9(attribute)
+
             # Cover attributes contained in MediaRefs
             for media_ref in family.media_list:
                 convert_mediaref_9(media_ref)
@@ -1369,7 +1370,7 @@ class GrampsBSDDB(GrampsDbBase):
              death_handle, birth_handle, event_list,
              person.family_list, parent_family_list,
              person.media_list, person.address_list, person.attribute_list,
-             urls, lds_bapt, lds_endow, lds_seal,
+             person.urls, lds_bapt, lds_endow, lds_seal,
              complete, person.source_list, person.note,
              person.change, person.private) = (info + (False,))[0:23]
 
@@ -1394,21 +1395,10 @@ class GrampsBSDDB(GrampsDbBase):
                 person.event_ref_list.append(event_ref)
 
             # In all Name instances, convert type from string to a tuple
-            name_conversion = {
-                "Also Known As" : (NameType.AKA,""),
-                "Birth Name"    : (NameType.BIRTH,""),
-                "Married Name"  : (NameType.MARRIED,""),
-                "Other Name"    : (NameType.CUSTOM,_("Other Name")),
-                }
             for name in [person.primary_name] + person.alternate_names:
                 old_type = name.type
-                if old_type:
-                    if name_conversion.has_key(old_type):
-                        new_type = NameType(name_conversion[old_type])
-                    else:
-                        new_type = NameType((NameType.CUSTOM,old_type))
-                else:
-                    new_type = NameType((NameType.UNKNOWN,""))
+                new_type = NameType()
+                new_type.set_from_xml_str(old_type)
                 name.type = new_type
 
             # Change parent_family_list into list of handles
@@ -1430,12 +1420,14 @@ class GrampsBSDDB(GrampsDbBase):
             # In all Attributes, convert type from string to a tuple
             for attribute in person.attribute_list:
                 convert_attribute_9(attribute)
+
             # Cover attributes contained in MediaRefs
             for media_ref in person.media_list:
                 convert_mediaref_9(media_ref)
 
             # In all Urls, add type attribute
-            person.urls = [convert_url_9(url) for url in urls]
+            for url in person.urls:
+                convert_url_9(url)
 
             # Switch from fixed lds ords to a list
             person.lds_ord_list = [item for item
@@ -1511,7 +1503,7 @@ class GrampsBSDDB(GrampsDbBase):
             place = Place()
             place.handle = handle
             (junk_handle, place.gramps_id, place.title, place.long, place.lat,
-             place.main_loc, place.alt_loc, urls, place.media_list,
+             place.main_loc, place.alt_loc, place.urls, place.media_list,
              place.source_list, place.note, place.change) = info
 
             # Cover attributes contained in MediaRefs
@@ -1519,7 +1511,8 @@ class GrampsBSDDB(GrampsDbBase):
                 convert_mediaref_9(media_ref)
 
             # In all Urls, add type attribute
-            place.urls = [convert_url_9(url) for url in urls]
+            for url in place.urls:
+                convert_url_9(url)
 
             self.commit_place(place,trans)
             current += 1
@@ -1556,25 +1549,11 @@ class BdbTransaction(Transaction):
         self.reference_del = []
         self.reference_add = []
 
-_attribute_conversion_9 = {
-    "Caste"                  : AttributeType.CASTE,
-    "Description"            : AttributeType.DESCRIPTION,
-    "Identification Number"  : AttributeType.ID,
-    "National Origin"        : AttributeType.NATIONAL,
-    "Number of Children"     : AttributeType.NUM_CHILD,
-    "Social Security Number" : AttributeType.SSN,
-    }
-
 def convert_attribute_9(attribute):
     old_type = attribute.type
-    if old_type:
-        if _attribute_conversion_9.has_key(old_type):
-            new_type = _attribute_conversion_9[old_type]
-        else:
-            new_type = (Attribute.CUSTOM,old_type)
-    else:
-        new_type = Attribute.UNKNOWN
-    attribute.type.set_type(new_type)
+    new_type = AttributeType()
+    new_type.set_from_xml_str(old_type)
+    attribute.type = new_type
 
 def convert_mediaref_9(media_ref):
     for attribute in media_ref.attribute_list:
@@ -1590,12 +1569,7 @@ def convert_url_9(url):
         new_type = UrlType.WEB_FTP
     else:
         new_type = UrlType.CUSTOM
-    new_url = Url()
-    new_url.type.set(new_type)
-    new_url.path = url.path
-    new_url.desc = url.desc
-    new_url.private = url.private
-    return new_url
+    url.type = UrlType(new_type)
     
 def low_level_9(the_db):
     """
