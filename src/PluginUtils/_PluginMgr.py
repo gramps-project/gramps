@@ -54,7 +54,6 @@ report_list = []
 tool_list   = []
 import_list = []
 export_list = []
-expect_list  = []
 attempt_list = []
 loaddir_list = []
 textdoc_list = []
@@ -64,8 +63,9 @@ failmsg_list = []
 bkitems_list = []
 cl_list = []
 cli_tool_list = []
-
 success_list = []
+
+mod2text = {}
 
 #-------------------------------------------------------------------------
 #
@@ -126,12 +126,10 @@ def load_plugins(direct):
         try: 
             a = __import__(plugin)
             success_list.append((filename,a))
-        except Errors.PluginError, msg:
-            expect_list.append((filename,str(msg)))
         except:
             failmsg_list.append((filename,sys.exc_info()))
 
-    if len(expect_list)+len(failmsg_list):
+    if len(failmsg_list):
         return False
     else:
         return True
@@ -155,6 +153,7 @@ def register_export(exportData,title,description='',config=None,filename=''):
             del export_list[del_index]
 
         export_list.append((exportData,title,description,config,filename))
+        mod2text[exportData.__module__] = description
 
 def register_import(task, ffilter, mime=None, native_format=0, format_name=""):
     """Register an import filter, taking the task and file filter"""
@@ -167,6 +166,7 @@ def register_import(task, ffilter, mime=None, native_format=0, format_name=""):
             del import_list[del_index]
 
         import_list.append((task, ffilter, mime, native_format, format_name))
+        mod2text[task.__module__] = format_name
 
 #-------------------------------------------------------------------------
 #
@@ -196,6 +196,7 @@ def register_tool(
     """
 
     import _Tool
+
     (junk,gui_task) = divmod(modes,2**_Tool.MODE_GUI)
     if gui_task:
         _register_gui_tool(tool_class,options_class,translated_name,
@@ -221,6 +222,7 @@ def _register_gui_tool(tool_class,options_class,translated_name,
             del_index = i
     if del_index != -1:
         del tool_list[del_index]
+    mod2text[tool_class.__module__] = description
     tool_list.append((tool_class,options_class,translated_name,
                       category,name,description,status,
                       author_name,author_email,unsupported))
@@ -305,6 +307,7 @@ def _register_standalone(report_class, options_class, translated_name,
     report_list.append((report_class, options_class, translated_name, 
                         category, name, description, status,
                         author_name, author_email, unsupported))
+    mod2text[report_class.__module__] = description
 
 def register_book_item(translated_name, category, report_class,
                         option_class, name, unsupported):
@@ -355,6 +358,7 @@ def register_text_doc(name,classref, table, paper, style, ext,
     textdoc_list.append(
         (name, classref, table, paper, style,
          ext, print_report_label, clname))
+    mod2text[classref.__module__] = name
 
 #-------------------------------------------------------------------------
 #
@@ -394,6 +398,7 @@ def register_draw_doc(name,classref,paper,style, ext,
         clname = ext[1:]
     drawdoc_list.append((name, classref, paper,style, ext,
                          print_report_label, clname))
+    mod2text[classref.__module__] = name
 
 #-------------------------------------------------------------------------
 #

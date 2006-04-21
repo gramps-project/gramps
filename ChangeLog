@@ -1,4 +1,7 @@
 2006-04-21  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadXML.py: fix typos
+	* src/PluginUtils/_PluginMgr.py: handle module to description mapping
+	* src/Editors/_EditRepoRef.py: fix typos
 	* src/Editors/_EditMediaRef.py: define warnbox
 	* src/GrampsDb/_DbUtils.py: fix old call to get_child_handle_list
 	* src/Editors/_EditSource.py: remove warnbox
