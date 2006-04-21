@@ -245,10 +245,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         @param the_type: Type to assign to the Event
         @type the_type: tuple
         """
-        if type(the_type) == tuple:
-            self.type = EventType(the_type)
-        else:
-            self.type = the_type
+        self.type.set(the_type)
 
     def get_type(self):
         """

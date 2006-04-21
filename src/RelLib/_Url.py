@@ -100,12 +100,7 @@ class Url(BaseObject,PrivacyBase):
         @param type: descriptive type of the Url
         @type type: str
         """
-        if type(the_type) == tuple:
-            self.type = UrlType(the_type)
-        else:
-            print the_type
-            assert(isinstance(the_type,UrlType))
-            self.type = the_type
+        self.type.set(the_type)
 
     def get_type(self):
         """

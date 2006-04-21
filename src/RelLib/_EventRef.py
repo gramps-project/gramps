@@ -127,7 +127,4 @@ class EventRef(BaseObject,PrivacyBase,NoteBase,RefBase):
         """
         Sets the role according to the given argument.
         """
-        if type(role) == tuple:
-            self.role = EventRoleType(role)
-        else:
-            self.role = role
+        self.role.set(role)

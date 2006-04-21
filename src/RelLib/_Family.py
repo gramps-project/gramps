@@ -45,7 +45,6 @@ from _EventRef import EventRef
 from _LdsOrdBase import LdsOrdBase
 from _ChildRef import ChildRef
 from _FamilyRelType import FamilyRelType
-from _MarkerType import MarkerType
 
 #-------------------------------------------------------------------------
 #
@@ -298,11 +297,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
             between the father and mother of the relationship.
         @type relationship_type: tuple
         """
-        if type(relationship_type) == tuple:
-            self.type = FamilyRelType(relationship_type)
-        else:
-            self.type = relationship_type
-        return
+        self.type.set(relationship_type)
 
     def get_relationship(self):
         """

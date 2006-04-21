@@ -69,7 +69,6 @@ from DateHandler import DateParser
 import NameDisplay
 import Utils
 import Mime
-import _ConstXML
 
 from ansel_utf8 import ansel_to_utf8
 from bsddb import db
@@ -1031,9 +1030,7 @@ class GedcomParser:
                 self.backup()
                 return
             elif matches[1] == TOKEN_MEDI:
-                media_type = _ConstXML.tuple_from_xml(
-                    _ConstXML.source_media_types,matches[2])
-                reporef.set_media_type(media_type)
+                reporef.media_type.set(matches[2])
             else:
                 self.barf(1)
                 
@@ -1154,11 +1151,11 @@ class GedcomParser:
                         event.set_description(matches[2])
                 self.parse_family_event(event,2)
                 if int(event.get_type()) == RelLib.EventType.MARRIAGE:
-                    self.family.set_relationship((RelLib.Family.MARRIED,''))
+                    self.family.type.set(RelLib.FamilyRelType.MARRIED)
                 if int(event.get_type()) != RelLib.EventType.CUSTOM:
                     if not event.get_description():
                         text = _event_family_str % {
-                            'event_name' : Utils.family_events[event.get_type()[0]],
+                            'event_name' : str(event.get_type()),
                             'family' : Utils.family_name(self.family,self.db),
                             }
                         event.set_description(text)
@@ -2197,7 +2194,7 @@ class GedcomParser:
         event.set_gramps_id(self.emapper.find_next())
         if matches[2]:
             event.set_description(matches[2])
-        event.set_type(RelLib.EventTypeType.DEATH)
+        event.type.set(RelLib.EventType.DEATH)
         self.parse_person_event(event,2)
 
         person_event_name(event,state.person)
@@ -2217,8 +2214,9 @@ class GedcomParser:
         if matches[2]:
             event.set_description(matches[2])
         self.parse_person_event(event,2)
-        (t,n) = event.get_type()
-        if t == RelLib.EventType.CUSTOM and n in self.attrs:
+        the_type = event.get_type()
+        if int(the_type) == RelLib.EventType.CUSTOM \
+               and str(the_type) in self.attrs:
             attr = RelLib.Attribute()
             attr.set_type((RelLib.EventType.CUSTOM,self.gedattr[n]))
             attr.set_value(event.get_description())
