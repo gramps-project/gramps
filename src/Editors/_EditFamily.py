@@ -414,6 +414,12 @@ class EditFamily(EditPrimary):
             self.obj.get_gramps_id,
             self.db.readonly)
         
+        self.marker = MonitoredDataType(
+            self.top.get_widget('marker'), 
+            self.obj.set_marker, 
+            self.obj.get_marker, 
+            self.db.readonly)
+
         self.data_type = MonitoredDataType(
             self.top.get_widget('marriage_type'),
             self.obj.set_relationship,
@@ -466,11 +472,6 @@ class EditFamily(EditPrimary):
             notebook,
             GalleryTab(self.dbstate, self.uistate, self.track,
                        self.obj.get_media_list()))
-
-#         self.pref_list = self._add_tab(
-#             notebook, 
-#             PersonRefEmbedList(self.dbstate, self.uistate, self.track, 
-#                                self.obj.child_ref_list))
 
         self.lds_list = self._add_tab(
             notebook,
@@ -659,7 +660,6 @@ class EditFamily(EditPrimary):
                         EditFamily(self.dbstate,self.uistate,[],fam)
                     except Errors.WindowActiveError:
                         pass
-
 
 #     def father_clicked(self,obj):
 #         handle = self.obj.get_father_handle()

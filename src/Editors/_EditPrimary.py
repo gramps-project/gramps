@@ -139,6 +139,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         return None
 
     def data_has_changed(self):
+
         if self.db.readonly:
             return False
         elif self.obj.handle:
