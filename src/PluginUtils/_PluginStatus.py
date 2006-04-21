@@ -22,57 +22,78 @@
 
 #-------------------------------------------------------------------------
 #
-# PluginStatus
+# GTK modules
 #
 #-------------------------------------------------------------------------
-
 import gtk
 
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
 import ManagedWindow
 import Errors
 import _PluginMgr as PluginMgr
 
+#-------------------------------------------------------------------------
+#
+# PluginStatus
+#
+#-------------------------------------------------------------------------
 class PluginStatus(ManagedWindow.ManagedWindow):
     """Displays a dialog showing the status of loaded plugins"""
     
-    def __init__(self,state,uistate,track):
+    def __init__(self,state,uistate,track=[]):
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+        self.title = _("Plugin Status")
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
-        self.set_window(gtk.Window())
+        self.set_window(
+            gtk.Dialog("%s - GRAMPS" % self.title,
+                       uistate.window,
+                       gtk.DIALOG_DESTROY_WITH_PARENT,
+                       (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
+            )
+        )
         self.window.set_size_request(600,400)
+        self.window.connect('delete-event',self.close)
 
         scrolled_window = gtk.ScrolledWindow()
         self.list = gtk.TreeView()
         self.model = gtk.ListStore(str, str, str)
         self.list.set_model(self.model)
 
-        self.list.append_column(gtk.TreeViewColumn(_('Status'), gtk.CellRendererText(),
+        self.list.append_column(gtk.TreeViewColumn(_('Status'),
+                                                   gtk.CellRendererText(),
                                                    markup=0))
-        self.list.append_column(gtk.TreeViewColumn(_('File'), gtk.CellRendererText(),
+        self.list.append_column(gtk.TreeViewColumn(_('File'),
+                                                   gtk.CellRendererText(),
                                                    text=1))
-        self.list.append_column(gtk.TreeViewColumn(_('Message'), gtk.CellRendererText(),
+        self.list.append_column(gtk.TreeViewColumn(_('Message'),
+                                                   gtk.CellRendererText(),
                                                    text=2))
 
         scrolled_window.add(self.list)
-        self.window.add(scrolled_window)
+        self.window.vbox.add(scrolled_window)
+        self.window.connect
         self.window.show_all()
 
         for i in PluginMgr.failmsg_list:
             err = i[1][0]
             if err == Errors.UnavailableError:
-                self.model.append(row=['<span color="blue">%s</span>' % _('Unavailable'), i[0], str(i[1][1])])
+                self.model.append(row=[
+                    '<span color="blue">%s</span>' % _('Unavailable'),
+                    i[0], str(i[1][1])])
             else:
-                self.model.append(row=['<span weight="bold" color="red">%s</span>' % _('Fail'), i[0], str(i[1][1])])
+                self.model.append(row=[
+                    '<span weight="bold" color="red">%s</span>' % _('Fail'),
+                    i[0], str(i[1][1])])
 
         for i in PluginMgr.success_list:
-            self.model.append(row=[_("OK"), i[0], ''])
-            
-#         print PluginMgr.expect_list;
-#         print PluginMgr.attempt_list;
-#         print PluginMgr.failmsg_list;
-#         print PluginMgr.bkitems_list;
-#         print PluginMgr.cl_list;
-#         print PluginMgr.cli_tool_list;
-#         print PluginMgr._success_list;
+            self.model.append(row=[
+                '<span weight="bold" color="green">%s</span>' % _("OK"),
+                i[0], ''])
 
+    def build_menu_names(self,obj):
+        return (self.title,None)

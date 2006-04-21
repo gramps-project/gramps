@@ -200,16 +200,21 @@ class GrampsWindowManager:
         return str(item.window_id)
 
     def display_menu_list(self,data,action_data,mlist):
-        i = mlist[0]
-        idval = self.generate_id(i)
-        data.write('<menu action="M:%s">' % idval)
-        data.write('<menuitem action="%s"/>' % idval)
+        if type(mlist) in (list,tuple):
+            i = mlist[0]
+            idval = self.generate_id(i)
+            data.write('<menu action="M:%s">' % idval)
+            action_data.append(("M:"+idval,None,i.submenu_label,
+                                None,None,None))
+        else:
+            i = mlist
+            idval = self.generate_id(i)
 
-        action_data.append(("M:"+idval,None,i.submenu_label,None,None,None))
+        data.write('<menuitem action="%s"/>' % idval)
         action_data.append((idval,None,i.menu_label,None,None,
                             self.call_back_factory(i)))
 
-        if len(mlist) > 1:
+        if (type(mlist) in (list,tuple)) and (len(mlist) > 1):
             for i in mlist[1:]:
                 if type(i) == list:
                     self.display_menu_list(data,action_data,i)
@@ -219,7 +224,8 @@ class GrampsWindowManager:
                                % self.generate_id(i))        
                     action_data.append((idval,None,i.menu_label,None,None,
                                         self.call_back_factory(i)))
-        data.write('</menu>')
+        if type(mlist) in (list,tuple):
+            data.write('</menu>')
         
     def build_windows_menu(self):
         if self.active != DISABLED:
