@@ -64,15 +64,15 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         self.model = gtk.ListStore(str, str, str)
         self.list.set_model(self.model)
 
-        self.list.append_column(gtk.TreeViewColumn(_('Status'),
-                                                   gtk.CellRendererText(),
-                                                   markup=0))
-        self.list.append_column(gtk.TreeViewColumn(_('File'),
-                                                   gtk.CellRendererText(),
-                                                   text=1))
-        self.list.append_column(gtk.TreeViewColumn(_('Message'),
-                                                   gtk.CellRendererText(),
-                                                   text=2))
+        self.list.append_column(
+            gtk.TreeViewColumn(_('Status'), gtk.CellRendererText(),
+                               markup=0))
+        self.list.append_column(
+            gtk.TreeViewColumn(_('File'), gtk.CellRendererText(),
+                               text=1))
+        self.list.append_column(
+            gtk.TreeViewColumn(_('Message'), gtk.CellRendererText(),
+                               text=2))
 
         scrolled_window.add(self.list)
         self.window.vbox.add(scrolled_window)
@@ -92,8 +92,11 @@ class PluginStatus(ManagedWindow.ManagedWindow):
 
         for i in PluginMgr.success_list:
             self.model.append(row=[
-                '<span weight="bold" color="green">%s</span>' % _("OK"),
+                '<span weight="bold" color="#267726">%s</span>' % _("OK"),
                 i[0], ''])
+
+        self.window.run()
+        self.window.destroy()
 
     def build_menu_names(self,obj):
         return (self.title,None)
