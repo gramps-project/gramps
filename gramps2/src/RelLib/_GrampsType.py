@@ -76,6 +76,10 @@ class GrampsType:
             self.string = value
 
     def xml_str(self):
+        """
+        This method returns the untranslated string (e.g. suitable for XML)
+        corresponding to the type.
+        """
         if self.val == self._CUSTOM:
             return self.string
         else:
@@ -92,9 +96,6 @@ class GrampsType:
             return self.string
         else:
             return self._I2SMAP.get(self.val,_('Unknown'))
-
-    def set_from_xml_str(self,the_str):
-        return self
 
     def __int__(self):
         return self.val
