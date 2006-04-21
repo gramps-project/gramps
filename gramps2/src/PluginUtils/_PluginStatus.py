@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,11 +22,18 @@
 
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+import traceback
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GTK modules
 #
 #-------------------------------------------------------------------------
 import gtk
-import traceback
 
 #-------------------------------------------------------------------------
 #
@@ -39,7 +46,7 @@ import _PluginMgr as PluginMgr
 
 #-------------------------------------------------------------------------
 #
-# PluginStatus
+# PluginStatus: overview of all plugins
 #
 #-------------------------------------------------------------------------
 class PluginStatus(ManagedWindow.ManagedWindow):
@@ -107,22 +114,28 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             model, node = self.selection.get_selected()
             data = model.get_value(node, 3)
+            name = model.get_value(node, 1)
             if data:
-                PluginTrace(self.uistate, self.track, data)
+                PluginTrace(self.uistate, self.track, data, name)
                 
     def build_menu_names(self,obj):
-        return (self.title, _('Tracebacks'))
+        return ( _('Summary'),self.title)
 
+#-------------------------------------------------------------------------
+#
+# Details for an individual plugin that failed
+#
+#-------------------------------------------------------------------------
 class PluginTrace(ManagedWindow.ManagedWindow):
     """Displays a dialog showing the status of loaded plugins"""
     
-    def __init__(self, uistate, track, data):
-
-        self.title = _("Plugin Status Details")
+    def __init__(self, uistate, track, data, name):
+        self.name = name
+        title = "%s: %s" % (_("Plugin Status"),name)
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
         self.set_window(
-            gtk.Dialog("%s - GRAMPS" % self.title,
+            gtk.Dialog("%s - GRAMPS" % title,
                        uistate.window,
                        gtk.DIALOG_DESTROY_WITH_PARENT,
                        (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
@@ -142,5 +155,4 @@ class PluginTrace(ManagedWindow.ManagedWindow):
         self.window.show_all()
 
     def build_menu_names(self,obj):
-        return (self.title, None)
-
+        return (self.name, None)
