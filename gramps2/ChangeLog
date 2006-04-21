@@ -1,3 +1,8 @@
+2006-04-21  Alex Roitman  <shura@gramps-project.org>
+	* src/PluginUtils/_PluginStatus.py: Many small fixes.
+	* src/ManagedWindow.py (GrampsWindowManager.display_menu_list):
+	Fix building the menu for child-less windows.
+
 2006-04-21  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsDbBase.py: AttributeType changes
 	* src/GrampsDb/_ReadGedcom.py: AttributeType changes
