@@ -26,7 +26,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-import signal
 import md5
 import tempfile
 
@@ -61,7 +60,8 @@ class ImgManip:
             self.width = self.img.get_width()
             self.height = self.img.get_height()
         except gobject.GError:
-            return (0,0)
+            self.width = 0
+            self.height = 0
 
     def size(self):
         return (self.width, self.height)

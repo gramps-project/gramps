@@ -71,6 +71,8 @@ class PageView:
         self.dbstate.connect('database-changed',self.enable_action_group)
         self.dirty = True
         self.active = False
+        self.handle_col = 0
+        self.selection = None
 
     def set_active(self):
         self.active = True

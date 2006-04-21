@@ -46,7 +46,6 @@ import gtk.glade
 import Config
 import RelLib
 import const
-import Utils
 import DateHandler
 import GrampsDisplay
 import QuestionDialog

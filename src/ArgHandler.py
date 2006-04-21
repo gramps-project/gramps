@@ -28,6 +28,13 @@ Module responsible for handling the command line arguments for GRAMPS.
 
 #-------------------------------------------------------------------------
 #
+# GNOME/GTK
+#
+#-------------------------------------------------------------------------
+import gtk
+
+#-------------------------------------------------------------------------
+#
 # Standard python modules
 #
 #-------------------------------------------------------------------------
@@ -46,6 +53,8 @@ import Mime
 import QuestionDialog
 import Config
 import RecentFiles
+import Utils
+
 from PluginUtils import Report, Tool, cl_list, cli_tool_list
 
 #-------------------------------------------------------------------------

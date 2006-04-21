@@ -1,4 +1,15 @@
 2006-04-20  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_EventView.py: pychecker fixes
+	* src/ViewManager.py: call scratchpad properly
+	* src/GrampsCfg.py: pychecker fixes
+	* src/Editors/_EditEvent.py
+	* src/DisplayModels.py:pychecker fixes
+	* src/DisplayTabs.py: pychecker fixes
+	* src/ScratchPad.py: use ManagedWindow
+	* src/GenericFilter.py: pychecker fixes
+	* src/ImgManip.py: pychecker fixes
+	* src/PageView.py: pychecker fixes
+	* src/ArgHandler.py: pychecker fixes
 	* src/Editors/_EditFamily.py: Handle marker type in UI
 	* src/DataViews/_FamilyViews.py: clean up
 	* src/DataViews/_PedigreeViews.py: clean up
