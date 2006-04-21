@@ -783,25 +783,25 @@ class TestcaseGenerator(Tool.Tool):
         
         # birth
         if randint(0,1) == 1:
-            (birth_year, eref) = self.rand_personal_event( RelLib.Event.BIRTH, by,by)
+            (birth_year, eref) = self.rand_personal_event( RelLib.EventType.BIRTH, by,by)
             np.set_birth_ref(eref)
 
         # baptism
         if randint(0,1) == 1:
             (bapt_year, eref) = self.rand_personal_event(
-                choice( (RelLib.Event.BAPTISM, RelLib.Event.CHRISTEN)), by, by+2)
+                choice( (RelLib.EventType.BAPTISM, RelLib.EventType.CHRISTEN)), by, by+2)
             np.add_event_ref(eref)
 
         # death
         death_year = None
         if randint(0,1) == 1:
-            (death_year, eref) = self.rand_personal_event( RelLib.Event.DEATH, dy,dy)
+            (death_year, eref) = self.rand_personal_event( RelLib.EventType.DEATH, dy,dy)
             np.set_death_ref(eref)
 
         # burial
         if randint(0,1) == 1:
             (bur_year, eref) = self.rand_personal_event(
-                choice( (RelLib.Event.BURIAL, RelLib.Event.CREMATION)), dy, dy+2)
+                choice( (RelLib.EventType.BURIAL, RelLib.EventType.CREMATION)), dy, dy+2)
             np.add_event_ref(eref)
         
         # some other events
@@ -829,9 +829,9 @@ class TestcaseGenerator(Tool.Tool):
         return( person_handle)
         
     def generate_family(self,person1_h):
-        if not person1_h:
-            return
         person1 = self.db.get_person_from_handle(person1_h)
+        if not person1:
+            return
         alive_in_year = None
         if person1_h in self.person_dates:
             (born, died) = self.person_dates[person1_h]
@@ -1019,12 +1019,8 @@ class TestcaseGenerator(Tool.Tool):
                 self.fill_object(a)
                 o.add_address( a)
 
-        if isinstance(o,RelLib.Attribute) and isinstance(o,RelLib.Person):
-            o.set_type( self.rand_type(Utils.personal_attributes))
-            o.set_value( self.rand_text(self.SHORT))
-
-        if isinstance(o,RelLib.Attribute) and isinstance(o,RelLib.Family):
-            o.set_type( self.rand_type(Utils.family_attributes))
+        if isinstance(o,RelLib.Attribute):
+            o.set_type( self.rand_type(RelLib.AttributeType()))
             o.set_value( self.rand_text(self.SHORT))
 
         if issubclass(o.__class__,RelLib._AttributeBase.AttributeBase):
@@ -1125,7 +1121,7 @@ class TestcaseGenerator(Tool.Tool):
             o.set_privacy( randint(0,5) == 1)
             
         if issubclass(o.__class__,RelLib.PrimaryObject):
-            o.set_marker( self.rand_type(Utils.marker_types))
+            o.set_marker( self.rand_type(RelLib.MarkerType()))
 
         if isinstance(o,RelLib.RepoRef):
             if not self.generated_repos or randint(0,10) == 1:
@@ -1136,7 +1132,7 @@ class TestcaseGenerator(Tool.Tool):
             o.set_reference_handle( choice( self.generated_repos))
             if randint(0,1) == 1:
                 o.set_call_number( self.rand_text(self.SHORT))
-            o.set_media_type( self.rand_type(Utils.source_media_types))
+            o.set_media_type( self.rand_type(RelLib.SourceMediaType()))
 
         if isinstance(o,RelLib.Repository):
             o.set_type( self.rand_type(RelLib.RepositoryType()))
@@ -1194,16 +1190,16 @@ class TestcaseGenerator(Tool.Tool):
 
     def rand_personal_event( self, type=None, start=None, end=None):
         if type:
-            typeval = (type, Utils.personal_events[type])
+            typeval = RelLib.EventType(type)
         else:
-            typeval = self.rand_type(Utils.personal_events)
+            typeval = self.rand_type(RelLib.EventType())
         return self._rand_event( typeval, start, end)
         
     def rand_family_event( self, type=None, start=None, end=None):
         if type:
-            typeval = (type, Utils.family_events[type])
+            typeval = RelLib.EventType(type)
         else:
-            typeval = self.rand_type(Utils.family_events)
+            typeval = self.rand_type(RelLib.EventType())
         return self._rand_event( typeval, start, end)
     
     def _rand_event( self, type, start, end):
