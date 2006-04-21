@@ -118,7 +118,6 @@ src/Editors/_EditSourceRef.py
 src/Editors/_EditUrl.py
 src/Editors/_EditLdsOrd.py
 src/Editors/__init__.py
-src/GrampsDb/_ConstXML.py
 src/GrampsDb/_GedcomInfo.py
 src/GrampsDb/_GedTokens.py
 src/GrampsDb/_GrampsBSDDB.py
