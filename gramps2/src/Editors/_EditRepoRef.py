@@ -135,7 +135,7 @@ class EditRepoRef(EditReference):
                          self.source.get_url_list()))
 
         self.backref_tab = self._add_tab(
-            notebook,
+            notebook_src,
             SourceBackRefList(self.dbstate, self.uistate, self.track,
                               self.db.find_backlink_handles(self.obj.handle),
                               self.enable_warnbox))
