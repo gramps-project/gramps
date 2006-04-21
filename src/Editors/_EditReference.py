@@ -74,7 +74,6 @@ class EditReference(ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, source_ref)
 
         self._local_init()
-        self._setup_warnbox()
         self._create_tabbed_pages()
         self._setup_fields()
         self._connect_signals()
@@ -89,9 +88,6 @@ class EditReference(ManagedWindow.ManagedWindow):
 
     def define_warn_box(self,box):
         self.warn_box = box
-
-    def _setup_warnbox(self):
-        pass
 
     def enable_warnbox(self):
         self.warn_box.show_all()

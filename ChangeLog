@@ -1,4 +1,5 @@
 2006-04-21  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditMediaRef.py: define warnbox
 	* src/GrampsDb/_DbUtils.py: fix old call to get_child_handle_list
 	* src/Editors/_EditSource.py: remove warnbox
 	* src/Editors/_EditMedia.py: remove warnbox
