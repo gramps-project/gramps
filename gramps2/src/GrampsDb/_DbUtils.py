@@ -39,7 +39,8 @@ def remove_family_relationships(db, family_handle, trans=None):
             person.remove_family_handle(family_handle)
             db.commit_person(person, trans)
 
-    for phandle in family.get_child_handle_list():
+    for ref in family.get_child_ref_list():
+        phandle = ref.ref
         person = db.get_person_from_handle(phandle)
         person.remove_parent_family_handle(family_handle)
         db.commit_person(person, trans)
