@@ -84,15 +84,15 @@ import RelLib
 #     (RelLib.Event.WILL            , "Will"),
 #     )
 
-attributes = (
-    (RelLib.Attribute.UNKNOWN     , "Unknown"),
-    (RelLib.Attribute.CASTE       , "Caste"),
-    (RelLib.Attribute.DESCRIPTION , "Description"),
-    (RelLib.Attribute.ID          , "Identification Number"),
-    (RelLib.Attribute.NATIONAL    , "National Origin"),
-    (RelLib.Attribute.NUM_CHILD   , "Number of Children"),
-    (RelLib.Attribute.SSN         , "Social Security Number"),
-    )
+# attributes = (
+#     (RelLib.Attribute.UNKNOWN     , "Unknown"),
+#     (RelLib.Attribute.CASTE       , "Caste"),
+#     (RelLib.Attribute.DESCRIPTION , "Description"),
+#     (RelLib.Attribute.ID          , "Identification Number"),
+#     (RelLib.Attribute.NATIONAL    , "National Origin"),
+#     (RelLib.Attribute.NUM_CHILD   , "Number of Children"),
+#     (RelLib.Attribute.SSN         , "Social Security Number"),
+#     )
 
 ## family_relations = (
 ##     (RelLib.Family.MARRIED     , "Married"),
@@ -165,9 +165,9 @@ attributes = (
 #     )
 
 # mapping from the tuple collection to the appropriate CUSTOM integer
-custom_types = {
+#custom_types = {
 #    events             : RelLib.Event.CUSTOM,
-    attributes         : RelLib.Attribute.CUSTOM,
+#    attributes         : RelLib.Attribute.CUSTOM,
 #    family_relations   : RelLib.Family.CUSTOM,
 #    name_types         : RelLib.NameType.CUSTOM,
 #    source_media_types : RelLib.RepoRef.CUSTOM,
@@ -175,42 +175,42 @@ custom_types = {
 #    repository_types   : RelLib.Repository.CUSTOM,
 #    marker_types       : RelLib.PrimaryObject.MARKER_CUSTOM,
 #    url_types          : RelLib.Url.CUSTOM,
-    }
+#    }
 
-def str_for_xml(tuples,the_tuple):
-    """
-    This function checks the_tuple against the collection of tuples
-    and returns the string to store in the XML file.
-    """
+# def str_for_xml(tuples,the_tuple):
+#     """
+#     This function checks the_tuple against the collection of tuples
+#     and returns the string to store in the XML file.
+#     """
 
-    # use list comprehension to quickly find a match, if any
-    match_list = [ item for item in tuples if item[0] == the_tuple[0] ]
+#     # use list comprehension to quickly find a match, if any
+#     match_list = [ item for item in tuples if item[0] == the_tuple[0] ]
 
-    # If match_list is not empty, then we have got a match,
-    # so we simply return the string of that standard item
-    if match_list:
-        return match_list[0][1]
+#     # If match_list is not empty, then we have got a match,
+#     # so we simply return the string of that standard item
+#     if match_list:
+#         return match_list[0][1]
 
-    # empty match_list means there's nothing with that integer,
-    # so we simply return the string from the_tuple
-    else:
-        return the_tuple[1]
+#     # empty match_list means there's nothing with that integer,
+#     # so we simply return the string from the_tuple
+#     else:
+#         return the_tuple[1]
 
-def tuple_from_xml(tuples,the_str):
-    """
-    This function checks the_str against the collection of tuples
-    and returns the tuple to use for the type internally.
-    """
+# def tuple_from_xml(tuples,the_str):
+#     """
+#     This function checks the_str against the collection of tuples
+#     and returns the tuple to use for the type internally.
+#     """
 
-    # use list comprehension to quickly find a match, if any
-    match_list = [ item for item in tuples if item[1] == the_str ]
+#     # use list comprehension to quickly find a match, if any
+#     match_list = [ item for item in tuples if item[1] == the_str ]
     
-    # If match_list is not empty, then we have got a match,
-    # so we return the tuple made from the only item in the list.
-    if match_list:
-        return (match_list[0][0],'')
+#     # If match_list is not empty, then we have got a match,
+#     # so we return the tuple made from the only item in the list.
+#     if match_list:
+#         return (match_list[0][0],'')
 
-    # empty match_list means there's nothing with that string,
-    # so we return the tuple of custom type and the original string
-    else:
-        return (custom_types[tuples],the_str)
+#     # empty match_list means there's nothing with that string,
+#     # so we return the tuple of custom type and the original string
+#     else:
+#         return (custom_types[tuples],the_str)

@@ -40,6 +40,7 @@ from _BaseObject import BaseObject
 from _PrivacyBase import PrivacyBase
 from _SourceBase import SourceBase
 from _NoteBase import NoteBase
+from _AttributeType import AttributeType
 
 #-------------------------------------------------------------------------
 #
@@ -50,15 +51,6 @@ class Attribute(BaseObject,PrivacyBase,SourceBase,NoteBase):
     """Provides a simple key/value pair for describing properties. Used
     by the Person and Family objects to store descriptive information."""
     
-    UNKNOWN     = -1
-    CUSTOM      = 0
-    CASTE       = 1
-    DESCRIPTION = 2
-    ID          = 3
-    NATIONAL    = 4
-    NUM_CHILD   = 5
-    SSN         = 6
-
     def __init__(self,source=None):
         """
         Creates a new Attribute object, copying from the source if provided.
@@ -72,20 +64,21 @@ class Attribute(BaseObject,PrivacyBase,SourceBase,NoteBase):
             self.type = source.type
             self.value = source.value
         else:
-            self.type = (Attribute.CUSTOM,"")
+            self.type = AttributeType()
             self.value = ""
 
     def serialize(self):
         return (PrivacyBase.serialize(self),
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
-                self.type,self.value)
+                self.type.serialize(),self.value)
 
     def unserialize(self,data):
-        (privacy,source_list,note,self.type,self.value) = data
+        (privacy,source_list,note,the_type,self.value) = data
         PrivacyBase.unserialize(self,privacy)
         SourceBase.unserialize(self,source_list)
         NoteBase.unserialize(self,note)
+        self.type.unserialize(the_type)
         return self
 
     def get_text_data_list(self):
@@ -121,15 +114,7 @@ class Attribute(BaseObject,PrivacyBase,SourceBase,NoteBase):
 
     def set_type(self,val):
         """sets the type (or key) of the Attribute instance"""
-        if not type(val) == tuple:
-            warn( "set_type now takes a tuple", DeprecationWarning, 2)
-            # Wrapper for old API
-            # remove when transitition done.
-            if val in range(-1,7):
-                val = (val,'')
-            else:
-                val = (Attribute.CUSTOM,val)
-        self.type = val
+        self.type.set(val)
 
     def get_type(self):
         """returns the type (or key) or the Attribute instance"""

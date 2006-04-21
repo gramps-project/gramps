@@ -1557,12 +1557,12 @@ class BdbTransaction(Transaction):
         self.reference_add = []
 
 _attribute_conversion_9 = {
-    "Caste"                  : (Attribute.CASTE,""),
-    "Description"            : (Attribute.DESCRIPTION,""),
-    "Identification Number"  : (Attribute.ID,""),
-    "National Origin"        : (Attribute.NATIONAL,""),
-    "Number of Children"     : (Attribute.NUM_CHILD,""),
-    "Social Security Number" : (Attribute.SSN,""),
+    "Caste"                  : AttributeType.CASTE,
+    "Description"            : AttributeType.DESCRIPTION,
+    "Identification Number"  : AttributeType.ID,
+    "National Origin"        : AttributeType.NATIONAL,
+    "Number of Children"     : AttributeType.NUM_CHILD,
+    "Social Security Number" : AttributeType.SSN,
     }
 
 def convert_attribute_9(attribute):
@@ -1573,8 +1573,8 @@ def convert_attribute_9(attribute):
         else:
             new_type = (Attribute.CUSTOM,old_type)
     else:
-        new_type = (Attribute.UNKNOWN,"")
-    attribute.type = new_type
+        new_type = Attribute.UNKNOWN
+    attribute.type.set_type(new_type)
 
 def convert_mediaref_9(media_ref):
     for attribute in media_ref.attribute_list:

@@ -1116,7 +1116,7 @@ class GedcomParser:
                 self.family.add_child_ref(ref)
             elif matches[1] == TOKEN_NCHI:
                 a = RelLib.Attribute()
-                a.set_type((RelLib.Attribute.NUM_CHILD,''))
+                a.set_type(RelLib.Attribute.NUM_CHILD)
                 a.set_value(matches[2])
                 self.family.add_attribute(a)
             elif matches[1] == TOKEN_SOUR:
@@ -2245,7 +2245,7 @@ class GedcomParser:
         if atype == RelLib.Attribute.CUSTOM:
             attr.set_type((atype,n))
         else:
-            attr.set_type((atype,''))
+            attr.set_type(atype)
 
         attr.set_value(matches[2])
         state.person.add_attribute(attr)

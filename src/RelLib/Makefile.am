@@ -53,6 +53,7 @@ pkgdata_PYTHON = \
 	_SourceBase.py\
 	_RefBase.py\
 	_ChildRef.py\
+	_AttributeType.py\
 	_ChildRefType.py\
 	_FamilyRelType.py\
 	_SourceMediaType.py\

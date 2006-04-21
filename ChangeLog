@@ -1,4 +1,16 @@
 2006-04-21  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py: AttributeType changes
+	* src/GrampsDb/_ReadGedcom.py: AttributeType changes
+	* src/GrampsDb/_ReadXML.py: AttributeType changes
+	* src/GrampsDb/_ConstXML.py: AttributeType changes
+	* src/GrampsDb/_WriteXML.py: AttributeType changes
+	* src/GrampsDb/_GrampsBSDDB.py: AttributeType changes
+	* src/RelLib/__init__.py: AttributeType changes
+	* src/RelLib/_AttributeType.py: AttributeType changes
+	* src/RelLib/_Attribute.py: AttributeType changes
+	* src/RelLib/Makefile.am: AttributeType changes
+	* src/Editors/_EditAttribute.py: AttributeType changes
+	* src/Utils.py: AttributeType changes
 	* src/ViewManager.py: start of cleaned up plugin manager
 	* src/Errors.py: warning error for unavailable plugin
 	* src/PluginUtils/__init__.py: start of cleaned up plugin manager
