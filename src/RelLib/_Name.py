@@ -234,7 +234,7 @@ class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
 
     def set_type(self,the_type):
         """sets the type of the Name instance"""
-        self.type(the_type)
+        self.type.set(the_type)
 
     def get_type(self):
         """returns the type of the Name instance"""
