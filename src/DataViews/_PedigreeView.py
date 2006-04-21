@@ -1079,11 +1079,13 @@ class PedigreeView(PageView.PersonNavView):
     def change_force_size_cb(self,event,data):
         if data in [0,2,3,4,5]:
             self.force_size = data
+            self.dirty = True
             self.size_request_cb(self.notebook.parent,None) # switch to matching size
 
     def change_tree_style_cb(self,event,data):
         if data in [0,1]:
             if self.tree_style != data:
+                self.dirty = True
                 self.tree_style = data
                 if self.dbstate.active:
                     self.rebuild_trees(self.dbstate.active.handle) # Rebuild using new style
@@ -1092,6 +1094,7 @@ class PedigreeView(PageView.PersonNavView):
 
     def change_show_images_cb(self,event):
         self.show_images = not self.show_images
+        self.dirty = True
         if self.dbstate.active:
             self.rebuild_trees(self.dbstate.active.handle) # Rebuild using new style
         else:
@@ -1099,6 +1102,7 @@ class PedigreeView(PageView.PersonNavView):
 
     def change_show_marriage_cb(self,event):
         self.show_marriage_data = not self.show_marriage_data
+        self.dirty = True
         if self.dbstate.active:
             self.rebuild_trees(self.dbstate.active.handle) # Rebuild using new style
         else:
