@@ -134,6 +134,12 @@ class EditRepoRef(EditReference):
             WebEmbedList(self.dbstate,self.uistate,self.track,
                          self.source.get_url_list()))
 
+        self.backref_tab = self._add_tab(
+            notebook,
+            SourceBackRefList(self.dbstate, self.uistate, self.track,
+                              self.db.find_backlink_handles(self.obj.handle),
+                              self.enable_warnbox))
+
     def build_menu_names(self,sourceref):
         if self.source:
             source_name = self.source.get_name()
