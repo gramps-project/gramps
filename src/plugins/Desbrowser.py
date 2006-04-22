@@ -65,6 +65,12 @@ class DesBrowse(Tool.Tool, ManagedWindow.ManagedWindow):
         self.active = dbstate.get_active_person()
         self.callback = callback
 
+        if not self.active:
+            ErrorDialog(_('Active person has not been set'),
+                        _('You must select an active person for this '
+                          'tool to work properly.'))
+            return
+
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "desbrowse.glade"
 
