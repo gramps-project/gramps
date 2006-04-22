@@ -48,7 +48,6 @@ import gtk.glade
 import const
 import Utils
 import RelLib
-import DisplayState
 
 from DisplayTabs import *
 from GrampsWidgets import *
@@ -86,24 +85,29 @@ class EditRepoRef(EditReference):
             self.source_ref.get_call_number, False)
         
         self.gid = MonitoredEntry(
-            self.top.get_widget('gid'), self.source.set_gramps_id,
-            self.source.get_gramps_id,False)
+            self.top.get_widget('gid'),
+            self.source.set_gramps_id,
+            self.source.get_gramps_id,
+            False)
         
         self.title = MonitoredEntry(
-            self.top.get_widget('repo_name'), self.source.set_name,
-            self.source.get_name,False)
+            self.top.get_widget('repo_name'),
+            self.source.set_name,
+            self.source.get_name,
+            False)
         
         self.type_selector = MonitoredType(
             self.top.get_widget("media_type"),
-            self.source_ref.set_media_type, self.source_ref.get_media_type,
+            self.source_ref.set_media_type,
+            self.source_ref.get_media_type,
             dict(Utils.source_media_types),
             RelLib.RepoRef.CUSTOM)
 
-        self.media_type_selector = MonitoredType(
+        self.media_type_selector = MonitoredDataType(
             self.top.get_widget("repo_type"),
-            self.source.set_type, self.source.get_type,
-            dict(Utils.repository_types),
-            RelLib.Repository.CUSTOM)
+            self.source.set_type,
+            self.source.get_type
+            )
 
     def _create_tabbed_pages(self):
         """

@@ -46,7 +46,6 @@ import Utils
 import RelLib
 import Mime
 import ImgManip
-import DisplayState
 import GrampsDisplay
 
 from DisplayTabs import *

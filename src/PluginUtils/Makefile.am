@@ -15,6 +15,7 @@ pkgdata_PYTHON = \
 	_StyleEditor.py\
 	_PluginMgr.py\
 	_PaperMenu.py\
+	_PluginStatus.py\
 	_Plugins.py
 
 pkgpyexecdir = @pkgpyexecdir@/PluginUtils

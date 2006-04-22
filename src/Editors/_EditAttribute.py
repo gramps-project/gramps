@@ -77,9 +77,6 @@ class EditAttribute(EditSecondary):
         self.alist = data_list
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
 
-    def attribute_list(self):
-        return Utils.personal_attributes
-        
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "attr_edit","gramps")
         self.define_top_level(self.top.get_widget("attr_edit"),
@@ -120,8 +117,8 @@ class EditAttribute(EditSecondary):
                     self.obj.get_note_object()))
         
         notebook.show_all()
-        vbox = self.top.get_widget('vbox').pack_start(notebook,True)
-
+        self.top.get_widget('vbox').pack_start(notebook,True)
+        
     def build_menu_names(self, attrib):
         if not attrib:
             label = _("New Attribute")
@@ -162,7 +159,4 @@ class EditFamilyAttribute(EditAttribute):
         """
         EditAttribute.__init__(self, state, uistate, track, attrib, title,
                                data_list, callback)
-
-    def attribute_list(self):
-        return Utils.family_attributes
         

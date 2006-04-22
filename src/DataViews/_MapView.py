@@ -27,7 +27,6 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import gc
-import re
 import logging
 import os
 import math
@@ -48,7 +47,6 @@ import gtk.gdk
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import RelLib
 import PageView
 import const
 

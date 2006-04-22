@@ -84,7 +84,7 @@ class SourceView(PageView.ListView):
     def define_actions(self):
         PageView.ListView.define_actions(self)
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        '_Column Editor', callback=self.column_editor),
+                        '_Column Editor', callback=self.column_editor)
 
     def column_editor(self,obj):
         import ColumnOrder

@@ -331,7 +331,7 @@ class ManagedWindow:
         self.window.set_transient_for(self.parent_window)
         self.window.show()
 
-    def close(self,obj=None,obj2=None):
+    def close(self):
         """
         Close itself.
 

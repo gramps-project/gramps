@@ -221,9 +221,6 @@ class EditFamilyEventRef(EditEventRef):
         self.commit_event = self.db.commit_family_event
         self.add_event = self.db.add_family_event
 
-    def get_roles(self):
-        return Utils.event_roles
-
     def get_custom_events(self):
         return [ RelLib.EventType((RelLib.EventType.CUSTOM,val)) \
                  for val in self.dbstate.db.get_family_event_types()]

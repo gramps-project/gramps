@@ -42,7 +42,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-import RelLib
 from _EditSecondary import EditSecondary
 
 from GrampsWidgets import *

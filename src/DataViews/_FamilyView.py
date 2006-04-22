@@ -4,8 +4,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import gc
-import re
 import cgi
 
 #-------------------------------------------------------------------------
@@ -13,9 +11,7 @@ import cgi
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
-import pango
 
 #-------------------------------------------------------------------------
 #
@@ -25,12 +21,13 @@ import pango
 import RelLib
 import PageView
 import NameDisplay
-import Utils
 import DateHandler
 import ImgManip
 import Config
 import GrampsWidgets
 import Errors
+import GrampsDb
+
 from PluginUtils import ReportUtils
 
 _GenderCode = {
@@ -397,7 +394,6 @@ class FamilyView(PageView.PersonNavView):
                 pname = self.place_name(phandle)
             else:
                 pname = None
-            date_str = DateHandler.displayer.display(dobj)
 
             value = {
                 'date' : DateHandler.displayer.display(dobj), 
@@ -473,7 +469,7 @@ class FamilyView(PageView.PersonNavView):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         if not family:
             return
-        self.write_label("%s:" % _('Parents'), family, True), 
+        self.write_label("%s:" % _('Parents'), family, True)
         self.write_person(_('Father'), family.get_father_handle())
         if self.show_details:
             value = self.info_string(family.get_father_handle())
@@ -609,7 +605,6 @@ class FamilyView(PageView.PersonNavView):
                 pname = self.place_name(phandle)
             else:
                 pname = None
-            date_str = DateHandler.displayer.display(dobj)
 
             value = {
                 'date' : DateHandler.displayer.display(dobj), 
@@ -716,7 +711,8 @@ class FamilyView(PageView.PersonNavView):
             family = dialog.run()
 
             if family:
-                person = self.dbstate.db.get_person_from_handle(self.dbstate.active.handle)
+                active_handle = self.dbstate.active.handle
+                child = self.dbstate.db.get_person_from_handle(active_handle)
                 GrampsDb.add_child_to_family(family, child,
                                              RelLib.ChildRef(),
                                              RelLib.ChildRef())
@@ -738,14 +734,12 @@ class FamilyView(PageView.PersonNavView):
 
     def delete_family(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
-            import GrampsDb
             GrampsDb.remove_parent_from_family(self.dbstate.db, 
                                                self.dbstate.active.handle, 
                                                handle)
 
     def delete_parent_family(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
-            import GrampsDb
             GrampsDb.remove_child_from_family(self.dbstate.db, 
                                               self.dbstate.active.handle, 
                                               handle)
