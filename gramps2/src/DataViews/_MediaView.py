@@ -78,7 +78,7 @@ class MediaView(PageView.ListView):
     def define_actions(self):
         PageView.ListView.define_actions(self)
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        '_Column Editor', callback=self.column_editor),
+                        '_Column Editor', callback=self.column_editor)
 
     def column_editor(self,obj):
         import ColumnOrder
@@ -144,11 +144,6 @@ class MediaView(PageView.ListView):
             <menuitem action="Remove"/>
           </popup>
         </ui>'''
-
-    def on_double_click(self,obj,event):
-        handle = self.first_selected()
-        if handle:
-            media_obj = self.dbstate.db.get_object_from_handle(handle)
 
     def add(self,obj):
         """Add a new media object to the media list"""

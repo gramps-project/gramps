@@ -205,7 +205,7 @@ class EditPlace(EditPrimary):
         self.db.transaction_commit(trans,
                                    _("Edit Place (%s)") % self.obj.get_title())
         
-        self.close(obj)
+        self.close()
 
 #-------------------------------------------------------------------------
 #

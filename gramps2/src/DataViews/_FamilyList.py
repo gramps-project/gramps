@@ -36,7 +36,6 @@ import RelLib
 import PageView
 import DisplayModels
 import const
-import Utils
 import Errors
 from QuestionDialog import QuestionDialog, ErrorDialog
 

@@ -119,7 +119,7 @@ class PersonView(PageView.PersonNavView):
         self.add_toggle_action('Filter', None, '_Filter', None, None,
                                self.filter_toggle)
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        '_Column Editor', callback=self.column_editor),
+                        '_Column Editor', callback=self.column_editor)
 
     def column_editor(self,obj):
         import ColumnOrder

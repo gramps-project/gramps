@@ -126,13 +126,12 @@ class EditRepository(EditPrimary):
 
         trans = self.db.transaction_begin()
         if self.obj.get_handle() == None:
-            handle = self.db.add_repository(self.obj,trans)
+            self.db.add_repository(self.obj,trans)
         else:
             self.db.commit_repository(self.obj,trans)
-            handle = self.obj.get_handle()
         msg = _("Edit Repository (%s)") % self.obj.get_name()
         self.db.transaction_commit(trans,msg)
-        self.close(obj)
+        self.close()
 
 class DelRepositoryQuery:
     def __init__(self,repository,db,sources):

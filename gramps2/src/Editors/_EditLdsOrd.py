@@ -212,7 +212,7 @@ class EditLdsOrd(EditSecondary):
                     self.obj.get_note_object()))
         
         notebook.show_all()
-        vbox = self.top.get_widget('vbox').pack_start(notebook,True)
+        self.top.get_widget('vbox').pack_start(notebook,True)
 
     def select_parents_clicked(self, obj):
         from SelectFamily import SelectFamily
@@ -380,7 +380,7 @@ class EditFamilyLdsOrd(EditSecondary):
                     self.obj.get_note_object()))
         
         notebook.show_all()
-        vbox = self.top.get_widget('vbox').pack_start(notebook,True)
+        self.top.get_widget('vbox').pack_start(notebook,True)
 
     def build_menu_names(self, attrib):
         label = _("LDS Ordinance")

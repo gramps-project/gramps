@@ -152,6 +152,8 @@ class EditSource(EditPrimary):
 
     def save(self,*obj):
         if self.object_is_empty():
+            from QuestionDialog import ErrorDialog
+            
             ErrorDialog(_("Cannot save source"),
                         _("No data exists for this source. Please "
                           "enter data or cancel the edit."))
@@ -164,7 +166,7 @@ class EditSource(EditPrimary):
             self.db.commit_source(self.obj,trans)
         self.db.transaction_commit(trans,
                                    _("Edit Source (%s)") % self.obj.get_title())
-        self.close(obj)
+        self.close()
 
 class DelSrcQuery:
     def __init__(self,source,db,the_lists):

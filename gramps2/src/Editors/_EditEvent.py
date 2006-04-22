@@ -212,7 +212,7 @@ class EditEvent(EditPrimary):
 
         if self.callback:
             self.callback(self.obj)
-        self.close(obj)
+        self.close()
 
     def data_has_changed(self):
         if self.db.readonly:
