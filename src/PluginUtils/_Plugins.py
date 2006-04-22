@@ -101,8 +101,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         self.dialog = gtk.glade.XML(const.plugins_glade,"report","gramps")
         self.dialog.signal_autoconnect({
             "on_report_apply_clicked" : self.on_apply_clicked,
-            "destroy_passed_object"   : self.close,
-            "on_delete_event"         : self.on_delete_event,
+            "destroy_passed_object"   : self.close_window,
             })
 
         self.tree = self.dialog.get_widget("tree")
@@ -146,11 +145,8 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         self.build_plugin_tree(item_list,categories)
         self.window.show()
 
-    def on_delete_event(self,obj,b):
-        pass
-
-    def close(self,ok=0):
-        self.window.destroy()
+    def close_window(self, obj):
+        self.close()
 
     def on_apply_clicked(self,obj):
         """Execute the selected report"""

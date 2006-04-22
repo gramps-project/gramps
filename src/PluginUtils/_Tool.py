@@ -96,6 +96,28 @@ class Tool:
         pass
 
 
+class ActivePersonTool(Tool):
+    """
+    The Tool base class.  This is a base class for generating
+    customized tools.  It cannot be used as is, but it can be easily
+    sub-classed to create a functional tool.
+    """
+
+    def __init__(self, dbstate, options_class, name):
+        
+        if not dbstate.get_active_person():
+            from QuestionDialog import ErrorDialog
+            
+            ErrorDialog(_('Active person has not been set'),
+                        _('You must select an active person for this '
+                          'tool to work properly.'))
+            self.fail = True
+            return
+
+        Tool.__init__(self, dbstate, options_class, name)
+        self.fail = False
+
+
 #------------------------------------------------------------------------
 #
 # Command-line tool

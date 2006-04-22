@@ -44,7 +44,6 @@ from PluginUtils import Tool, register_tool
 # GTK/GNOME modules
 #
 #------------------------------------------------------------------------
-import gobject
 import gtk
 import gtk.glade
 import GrampsDisplay
@@ -55,28 +54,26 @@ import ManagedWindow
 # 
 #
 #------------------------------------------------------------------------
-class DesBrowse(Tool.Tool, ManagedWindow.ManagedWindow):
+class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
 
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        Tool.ActivePersonTool.__init__(self, dbstate, options_class, name)
+        if self.fail:
+            return
+        
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
+        self.dbstate = dbstate
         self.active = dbstate.get_active_person()
         self.callback = callback
-
-        if not self.active:
-            ErrorDialog(_('Active person has not been set'),
-                        _('You must select an active person for this '
-                          'tool to work properly.'))
-            return
 
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "desbrowse.glade"
 
         self.glade = gtk.glade.XML(glade_file,"top","gramps")
         self.glade.signal_autoconnect({
-            "destroy_passed_object" : self.close,
+            "destroy_passed_object" : self.close_window,
             "on_help_clicked"       : self.on_help_clicked,
             })
         self.window = self.glade.get_widget("top")
@@ -95,6 +92,9 @@ class DesBrowse(Tool.Tool, ManagedWindow.ManagedWindow):
         self.make_new_model()
 
         self.window.show()
+
+    def close_window(self,obj):
+        self.close()
 
     def make_new_model(self):
         self.model = gtk.TreeStore(str, object)
@@ -129,7 +129,8 @@ class DesBrowse(Tool.Tool, ManagedWindow.ManagedWindow):
             if iter:
                 person_handle = store.get_value(node, 1)
                 person = self.db.get_person_from_handle(person_handle)
-                EditPerson(self.parent, person, self.db, self.this_callback)
+                EditPerson(self.dbstate, self.uistate, self.track, person,
+                           self.this_callback)
 
     def this_callback(self, epo, val):
         self.callback(epo, val)

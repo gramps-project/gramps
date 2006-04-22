@@ -114,7 +114,7 @@ class StartupDialog:
 
         if not const.no_gconf and upgrade_prefs():
             Config.save_startup(const.startup)
-            self.close(None)
+            self.close()
             return
         self.w = Assistant.Assistant(self.complete)
         self.w.add_text_page(
