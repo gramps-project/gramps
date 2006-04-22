@@ -766,7 +766,8 @@ class GrampsParser:
         self.eventref = RelLib.EventRef()
         self.eventref.ref = attrs['hlink'].replace('_','')
         self.eventref.private = bool(attrs.get('priv'))
-        self.eventref.role.set_from_xml_str(attrs.get('role'))
+        if attrs.has_key('role'):
+            self.eventref.role.set_from_xml_str(attrs['role'])
         # We count here on events being already parsed prior to parsing
         # people or families. This code will fail if this is not true.
         event = self.db.get_event_from_handle(self.eventref.ref)
@@ -788,7 +789,8 @@ class GrampsParser:
         self.attribute.conf = int(attrs.get("conf",2))
         self.attribute.private = bool(attrs.get("priv"))
         self.attribute.type = RelLib.AttributeType()
-        self.attribute.type.set_from_xml_str(attrs.get("type",''))
+        if attrs.has_key('type'):
+            self.attribute.type.set_from_xml_str(attrs["type"])
         self.attribute.value = attrs.get("value",'')
         if self.photo:
             self.photo.add_attribute(self.attribute)
@@ -878,8 +880,12 @@ class GrampsParser:
         self.childref.ref = attrs['hlink'].replace('_','')
         self.childref.private = bool(attrs.get('priv'))
 
-        mrel = RelLib.ChildRefType().set_from_xml_str(attrs.get('mrel'))
-        frel = RelLib.ChildRefType().set_from_xml_str(attrs.get('frel'))
+        mrel = RelLib.ChildRefType()
+        if attrs.get('mrel'):
+            mrel.set_from_xml_str(attrs['mrel'])
+        frel = RelLib.ChildRefType()
+        if attrs.get('mrel'):
+            frel.set_from_xml_str(attrs['frel'])
 
         if not mrel.is_default():
             self.childref.set_mother_relation(mrel)
@@ -919,7 +925,8 @@ class GrampsParser:
             self.family = self.find_family_by_gramps_id(gramps_id)
         # GRAMPS LEGACY: the type now belongs to <rel> tag
         # Here we need to support old format of <family type="Married">
-        self.family.type.set_from_xml_str(attrs.get("type",'Unknown'))
+        if attrs.has_key('type'):
+            self.family.type.set_from_xml_str(attrs["type"])
                 
         # Old and new markers: complete=1 and marker=word both have to work
         if attrs.get('complete'): # this is only true for complete=1
@@ -928,8 +935,8 @@ class GrampsParser:
             self.family.marker.set_from_xml_str(attrs.get("marker",''))
 
     def start_rel(self,attrs):
-        self.family.type = RelLib.FamilyRelType().set_from_xml_str(
-            attrs.get("type",'Unknown'))
+        if attrs.has_key('type'):
+            self.family.type.set_from_xml_str(attrs["type"])
 
     def start_file(self,attrs):
         self.object.mime = attrs['mime']
@@ -953,9 +960,9 @@ class GrampsParser:
         # frel and mrel belonged to the "childof" tag
         mrel = RelLib.ChildRefType()
         frel = RelLib.ChildRefType()
-        if attrs.get('mrel'):
+        if attrs.has_key('mrel'):
             mrel.set_from_xml_str(attrs['mrel'])
-        if attrs.get('frel'):
+        if attrs.has_key('frel'):
             frel.set_from_xml_str(attrs['frel'])
 
         childref = RelLib.ChildRef()
@@ -979,7 +986,7 @@ class GrampsParser:
     def start_name(self,attrs):
         if not self.in_witness:
             self.name = RelLib.Name()
-            self.name.type.set_from_xml_str(attrs.get('type'))
+            self.name.type.set_from_xml_str(attrs['type'])
             self.name.sort_as = int(attrs.get("sort",RelLib.Name.DEF))
             self.name.display_as = int(attrs.get("display",RelLib.Name.DEF))
             self.name.conf = int(attrs.get("conf",2))
@@ -1054,8 +1061,7 @@ class GrampsParser:
         
         self.reporef.ref = handle
         self.reporef.call_number = attrs.get('callno','')
-        self.reporef.media_type = RelLib.SourceMediaType().set_from_xml_str(
-            attrs.get('medium'))
+        self.reporef.media_type.set_from_xml_str(attrs['medium'])
         # we count here on self.source being available
         # reporefs can only be found within source
         self.source.add_repo_reference(self.reporef)
@@ -1387,7 +1393,6 @@ class GrampsParser:
             self.event.type.set_from_xml_str(tag)
         elif self.repo:
             # Repository type
-            self.repo.type = RelLib.RepositoryType()
             self.repo.type.set_from_xml_str(tag)
 
     def stop_childref(self,tag):
