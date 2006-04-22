@@ -69,10 +69,11 @@ class FamilyListView(PageView.ListView):
             'family-rebuild' : self.build_tree,
             }
 
-        PageView.ListView.__init__(self,'Family List View',dbstate,uistate,
-                                   column_names,len(column_names),
-                                   DisplayModels.FamilyModel,
-                                   signal_map)
+        PageView.ListView.__init__(
+            self, _('Family List'), dbstate, uistate,
+            column_names, len(column_names), DisplayModels.FamilyModel,
+            signal_map)
+        
         self.updating = False
 
     def column_order(self):

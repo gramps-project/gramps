@@ -73,10 +73,9 @@ class SourceView(PageView.ListView):
             'source-rebuild' : self.build_tree,
             }
 
-        PageView.ListView.__init__(self,'Source View',dbstate,uistate,
-                                   column_names,len(column_names),
-                                   DisplayModels.SourceModel,
-                                   signal_map)
+        PageView.ListView.__init__(
+            self, _('Sources'), dbstate, uistate, column_names,
+            len(column_names), DisplayModels.SourceModel, signal_map)
 
     def drag_info(self):
         return DdTargets.SOURCE_LINK

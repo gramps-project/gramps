@@ -75,10 +75,10 @@ class EventView(PageView.ListView):
             'event-rebuild' : self.build_tree,
             }
 
-        PageView.ListView.__init__(self,'Event View',dbstate,uistate,
-                                   column_names,len(column_names),
-                                   DisplayModels.EventModel,
-                                   signal_map)
+        PageView.ListView.__init__(
+            self, _('Events'), dbstate, uistate,
+            column_names, len(column_names), DisplayModels.EventModel,
+            signal_map)
 
     def drag_info(self):
         return DdTargets.EVENT

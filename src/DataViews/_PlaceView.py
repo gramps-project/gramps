@@ -77,10 +77,9 @@ class PlaceView(PageView.ListView):
             'place-rebuild' : self.build_tree,
             }
 
-        PageView.ListView.__init__(self,'Place View',dbstate,uistate,
-                                   column_names,len(column_names),
-                                   DisplayModels.PlaceModel,
-                                   signal_map)
+        PageView.ListView.__init__(
+            self, _('Places'), dbstate, uistate, column_names,
+            len(column_names), DisplayModels.PlaceModel, signal_map)
 
     def define_actions(self):
         PageView.ListView.define_actions(self)
