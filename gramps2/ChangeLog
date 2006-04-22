@@ -1,3 +1,6 @@
+2006-04-22  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadXML.py: fix Type str_from_xml calls
+
 2006-04-21  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/PluginUtils/_ReportUtils.py: keep up with RelLib changes
 	* src/plugins/DetDescendantReport.py: keep up with RelLib changes
