@@ -65,8 +65,8 @@ class PluginStatus(ManagedWindow.ManagedWindow):
             )
         )
         self.window.set_size_request(600,400)
-        self.window.connect('delete-event',self.close)
-        self.window.connect('response', self.close)
+        self.window.connect('delete-event',self.close_window)
+        self.window.connect('response', self.close_window)
         
         scrolled_window = gtk.ScrolledWindow()
         self.list = gtk.TreeView()
@@ -109,6 +109,9 @@ class PluginStatus(ManagedWindow.ManagedWindow):
             self.model.append(row=[
                 '<span weight="bold" color="#267726">%s</span>' % _("OK"),
                 i[0], descr, None])
+
+    def close_window(self, *obj):
+        self.close()
 
     def button_press(self, obj, event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
