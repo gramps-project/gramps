@@ -141,13 +141,13 @@ class Gramps:
         register_stock_icons()
         
         state = GrampsDb.DbState()
-        vm = ViewManager.ViewManager(state)
+        self.vm = ViewManager.ViewManager(state)
         for view in DataViews.get_views():
-            vm.register_view(view)
+            self.vm.register_view(view)
 
-        ArgHandler.ArgHandler(state,vm,args)
+        ArgHandler.ArgHandler(state,self.vm,args)
 
-        vm.init_interface()
+        self.vm.init_interface()
         state.db.request_rebuild()
         state.change_active_person(state.db.get_default_person())
         
@@ -155,26 +155,24 @@ class Gramps:
         # This prevents a window from annoyingly popping up when
         # the command line args are sufficient to operate without it.
         Config.client.notify_add("/apps/gramps/researcher",
-                                    self.researcher_key_update)
+                                 self.researcher_key_update)
         Config.client.notify_add("/apps/gramps/interface/statusbar",
-                                    self.statusbar_key_update)
-#        Config.client.notify_add("/apps/gramps/interface/toolbar",
-##                                    self.toolbar_key_update)
+                                 self.statusbar_key_update)
+        Config.client.notify_add("/apps/gramps/interface/toolbar",
+                                 self.toolbar_key_update)
 #        Config.client.notify_add("/apps/gramps/interface/toolbar-on",
-#                                    self.toolbar_on_key_update)
+#                                 self.toolbar_on_key_update)
 #        Config.client.notify_add("/apps/gramps/interface/filter",
 #                                    self.filter_key_update)
 #        Config.client.notify_add("/apps/gramps/interface/view",
 #                                    self.sidebar_key_update)
-#        Config.client.notify_add("/apps/gramps/interface/familyview",
-#                                    self.familyview_key_update)
 #        Config.client.notify_add("/apps/gramps/preferences/name-format",
 #                                    self.familyview_key_update)
 #        Config.client.notify_add("/apps/gramps/preferences/date-format",
 #                                    self.date_format_key_update)
 
         if Config.get_usetips():
-            TipOfDay.TipOfDay(vm.uistate)
+            TipOfDay.TipOfDay(self.vm.uistate)
 
 ##         # FIXME: THESE will have to be added (ViewManager?)
 ##         # once bookmarks work again
@@ -195,11 +193,15 @@ class Gramps:
 #         self.db.set_event_id_prefix(Config.get_event_id_prefix())
 
     def statusbar_key_update(self,client,cnxn_id,entry,data):
-        self.modify_statusbar()
+        self.vm.uistate.modify_statusbar()
 
     def toolbar_key_update(self,client,cnxn_id,entry,data):
         the_style = Config.get_toolbar()
         if the_style == -1:
-            self.toolbar.unset_style()
+            self.vm.toolbar.unset_style()
         else:
-            self.toolbar.set_style(the_style)
+            self.vm.toolbar.set_style(the_style)
+
+#     def toolbar_on_key_update(self,client,cnxn_id,entry,data):
+#         is_on = COnfig.get_toolbar_on()
+#         self.enable_toolbar(is_on)

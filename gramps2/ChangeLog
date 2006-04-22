@@ -1,5 +1,17 @@
 2006-04-22  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadXML.py: fix Type str_from_xml calls
+	* src/DataViews/_MediaView.py: Shorten tab name
+	* src/DataViews/_RepositoryView.py: Shorten tab name
+	* src/DataViews/_SourceView.py: Shorten tab name
+	* src/DataViews/_EventView.py: Shorten tab name
+	* src/DataViews/_FamilyView.py: Shorten tab name
+	* src/DataViews/_FamilyList.py: Shorten tab name
+	* src/DataViews/_PedigreeView.py: Shorten tab name
+	* src/DataViews/_PlaceView.py: Shorten tab name
+	* src/DataViews/_PersonView.py: Shorten tab name
+	* src/DataViews/_MapView.py: Shorten tab name
+	* src/glade/gramps.glade: remove unused option
+	* src/const.py.in: bugtracker address fix
 
 2006-04-21  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/PluginUtils/_ReportUtils.py: keep up with RelLib changes

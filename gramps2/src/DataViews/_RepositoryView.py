@@ -79,10 +79,10 @@ class RepositoryView(PageView.ListView):
             'repository-rebuild' : self.build_tree,
             }
         
-        PageView.ListView.__init__(self,'Repository View',dbstate,uistate,
-                                   column_names,len(column_names),
-                                   DisplayModels.RepositoryModel,
-                                   signal_map)
+        PageView.ListView.__init__(
+            self, _('Repositories'), dbstate, uistate,
+            column_names, len(column_names),
+            DisplayModels.RepositoryModel, signal_map)
 
     def drag_info(self):
         return DdTargets.REPO_LINK

@@ -81,7 +81,8 @@ column_names = [
 class PersonView(PageView.PersonNavView):
 
     def __init__(self,dbstate,uistate):
-        PageView.PersonNavView.__init__(self,'Person View',dbstate,uistate)
+        PageView.PersonNavView.__init__(self, _('People'), dbstate, uistate)
+        
         self.inactive = False
         dbstate.connect('database-changed',self.change_db)
         dbstate.connect('active-changed',self.goto_active_person)

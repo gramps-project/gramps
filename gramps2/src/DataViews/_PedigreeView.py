@@ -405,7 +405,8 @@ class FormattingHelper:
 class PedigreeView(PageView.PersonNavView):
 
     def __init__(self,dbstate,uistate):
-        PageView.PersonNavView.__init__(self,'Pedigree View',dbstate,uistate)
+        PageView.PersonNavView.__init__(self, _('Pedigree'), dbstate, uistate)
+        
         dbstate.connect('database-changed',self.change_db)
         dbstate.connect('active-changed',self.goto_active_person)
         self.force_size = 0 # Automatic resize

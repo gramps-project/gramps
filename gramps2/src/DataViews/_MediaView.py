@@ -70,10 +70,10 @@ class MediaView(PageView.ListView):
             'media-rebuild' : self.build_tree,
             }
 
-        PageView.ListView.__init__(self,'Media View',dbstate,uistate,
-                                   column_names,len(column_names),
-                                   DisplayModels.MediaModel,
-                                   signal_map)
+        PageView.ListView.__init__(
+            self, _('Media'), dbstate, uistate,
+            column_names,len(column_names), DisplayModels.MediaModel,
+            signal_map)
 
     def define_actions(self):
         PageView.ListView.define_actions(self)
