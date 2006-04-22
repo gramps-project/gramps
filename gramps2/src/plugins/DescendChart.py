@@ -179,8 +179,8 @@ class DescendChart(Report.Report):
             
             family = self.database.get_family_from_handle(family_handle)
 
-            for child_handle in family.get_child_handle_list():
-                sub = self.apply_filter(child_handle, x+2, new_y)
+            for child_ref in family.get_child_ref_list():
+                sub = self.apply_filter(child_ref.ref, x+2, new_y)
                 index += sub
                 new_y += sub
 
