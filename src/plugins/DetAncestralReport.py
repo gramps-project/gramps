@@ -275,10 +275,10 @@ class DetAncestorReport(Report.Report):
                     self.doc.end_paragraph()
                     first = False
                 self.doc.start_paragraph('DAR-MoreDetails')
-                atype = alt_name.get_type()
+                atype = str( alt_name.get_type() )
                 self.doc.write_text(
                     _('%(name_kind)s: %(name)s%(endnotes)s') % {
-                    'name_kind' : Utils.format_name_type( atype ),
+                    'name_kind' : atype,
                     'name' : alt_name.get_regular_name(),
                     'endnotes' : self.endnotes(alt_name),
                     })
@@ -303,7 +303,7 @@ class DetAncestorReport(Report.Report):
 
 
                 self.doc.start_paragraph('DAR-MoreDetails')
-                evtName = Utils.format_event( event.get_type() )
+                evtName = str( event.get_type() )
                 if date and place:
                     self.doc.write_text(
                         _('%(event_name)s: %(date)s, %(place)s%(endnotes)s. ') % {

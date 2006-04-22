@@ -1677,7 +1677,7 @@ def married_rel_str(database,person,family,is_first=True):
         'spouse' :_nd.display(spouse)
         }
     
-    relationship = family.get_relationship()[0]
+    relationship = family.get_relationship()
     
     if is_first:
         if relationship == RelLib.FamilyRelType.MARRIED:

@@ -1,3 +1,9 @@
+2006-04-21  Brian Matherly  <pez4brian@users.sourceforge.net>
+	* src/PluginUtils/_ReportUtils.py: keep up with RelLib changes
+	* src/plugins/DetDescendantReport.py: keep up with RelLib changes
+	* src/plugins/DescendChart.py: keep up with RelLib changes
+	* src/plugins/DetAncestralReport.py: keep up with RelLib changes
+
 2006-04-21  Alex Roitman  <shura@gramps-project.org>
 	* src/PluginUtils/_ReportUtils.py (buried_str): Typo.
 	* src/plugins/DetDescendantReport.py (write_children): Use child_refs.

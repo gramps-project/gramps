@@ -306,7 +306,7 @@ class DetDescendantReport(Report.Report):
                     self.doc.end_paragraph()
                     first = False
                 self.doc.start_paragraph('DDR-MoreDetails')
-                atype = Utils.format_name_type( alt_name.get_type() )
+                atype = str( alt_name.get_type() )
                 aname = alt_name.get_regular_name()
                 self.doc.write_text(_('%(name_kind)s: %(name)s%(endnotes)s') % {
                     'name_kind' : atype,
@@ -319,7 +319,7 @@ class DetDescendantReport(Report.Report):
             for event_ref in person.get_event_ref_list():
                 event = self.database.get_event_from_handle(event_ref.ref)
                 date = DateHandler.get_date(event)
-                ename = Utils.format_event( event.get_type() )
+                ename = str( event.get_type() )
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = self.database.get_place_from_handle(place_handle).get_title()
