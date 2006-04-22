@@ -382,7 +382,7 @@ class DetAncestorReport(Report.Report):
         """ List children.
         """
 
-        if not family.get_child_handle_list():
+        if not family.get_child_ref_list():
             return
 
         mother_handle = family.get_mother_handle()
@@ -405,7 +405,8 @@ class DetAncestorReport(Report.Report):
         self.doc.end_paragraph()
 
         cnt = 1
-        for child_handle in family.get_child_handle_list():
+        for child_ref in family.get_child_ref_list():
+            child_handle = child_ref.ref
             child = self.database.get_person_from_handle(child_handle)
             child_name = _nd.display(child)
 

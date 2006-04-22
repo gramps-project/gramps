@@ -1,3 +1,10 @@
+2006-04-21  Alex Roitman  <shura@gramps-project.org>
+	* src/PluginUtils/_ReportUtils.py (buried_str): Typo.
+	* src/plugins/DetDescendantReport.py (write_children): Use child_refs.
+	* src/plugins/DetAncestralReport.py (write_children): Use child_refs.
+	* src/plugins/IndivComplete.py (write_fact): Use new event type.
+	* src/docgen/KwordDoc.py (KwordDoc.close): Use tarile.
+
 2006-04-21  Don Allingham  <don@gramps-project.org>
 	* src/StartupDialog.py: fix close
 	* src/plugins/Desbrowser.py: Use ActivPersonTool
