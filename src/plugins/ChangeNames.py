@@ -166,7 +166,7 @@ class ChangeNames(Tool.Tool, ManagedWindow.ManagedWindow):
         self.db.enable_signals()
         self.db.request_rebuild()
         self.parent.bookmarks.redraw()
-        self.close(obj)
+        self.close()
         self.cb()
         
 #------------------------------------------------------------------------

@@ -1,4 +1,9 @@
 2006-04-21  Don Allingham  <don@gramps-project.org>
+	* src/plugins/FilterEditor.py: fix close arguments
+	* src/plugins/ChangeNames.py: fix close arguments
+	* src/plugins/Merge.py: fix close arguments
+	* src/plugins/ChangeTypes.py: fix close arguments
+	* src/plugins/PatchNames.py: fix close arguments
 	* src/plugins/Desbrowser.py: check for active person
 	* src/GrampsDb/_ReadXML.py: fix typos
 	* src/PluginUtils/_PluginMgr.py: handle module to description mapping
