@@ -88,7 +88,6 @@ class PluginStatus(ManagedWindow.ManagedWindow):
 
         scrolled_window.add(self.list)
         self.window.vbox.add(scrolled_window)
-        self.window.connect
         self.window.show_all()
 
         for i in PluginMgr.failmsg_list:
