@@ -320,7 +320,7 @@ class PatchNames(Tool.Tool, ManagedWindow.ManagedWindow):
                 self.db.commit_person(p,self.trans)
 
         self.db.transaction_commit(self.trans,_("Extract information from names"))
-        self.close(obj)
+        self.close()
         self.cb(None,1)
         
 #------------------------------------------------------------------------

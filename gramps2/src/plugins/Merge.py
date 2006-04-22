@@ -164,7 +164,7 @@ class Merge(Tool.Tool):
     def on_merge_ok_clicked(self,obj):
         threshold = self.menu.get_menu().get_active().get_data("v")
         self.use_soundex = int(self.soundex_obj.get_active())
-        self.close(obj)
+        self.close()
         self.find_potentials(threshold)
 
         self.options.handler.options_dict['threshold'] = threshold

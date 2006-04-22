@@ -156,7 +156,7 @@ class ChangeTypes(Tool.Tool, ManagedWindow.ManagedWindow):
         # Save options
         self.options.handler.save_options()
         
-        self.close(None)
+        self.close()
 
 #------------------------------------------------------------------------
 #

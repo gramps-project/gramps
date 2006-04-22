@@ -556,7 +556,7 @@ class EditFilter:
         self.filter.set_logical_op(op)
         self.filterdb.add(self.filter)
         self.parent.draw_filters()
-        self.close(obj)
+        self.close()
         
     def on_add_clicked(self,obj):
         EditRule(self,None,_('Add Rule'))
