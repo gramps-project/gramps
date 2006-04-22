@@ -113,8 +113,7 @@ class IndivCompleteReport(Report.Report):
     def write_fact(self,event):
         if event == None:
             return
-        evtType = event.get_type()
-        name = Utils.format_event( evtType )
+        name = str(event.get_type())
         date = DateHandler.get_date(event)
         place_handle = event.get_place_handle()
         if place_handle:

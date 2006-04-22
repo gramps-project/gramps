@@ -150,10 +150,10 @@ class DetDescendantReport(Report.Report):
         index = 0
         for family_handle in person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
-            for child_handle in family.get_child_handle_list():
-                child = self.database.get_family_from_handle(child_handle)
+            for child_ref in family.get_child_ref_list():
+                child = self.database.get_family_from_handle(child_ref.ref)
                 ix = max(self.map.keys())
-                self.apply_filter(child_handle, ix+1,
+                self.apply_filter(child_ref.ref, ix+1,
                                   pid+HENRY[index], cur_gen+1)
                 index += 1
 
@@ -410,7 +410,7 @@ class DetDescendantReport(Report.Report):
         """ List children.
         """
 
-        if not family.get_child_handle_list():
+        if not family.get_child_ref_list():
             return
 
         mother_handle = family.get_mother_handle()
@@ -433,7 +433,8 @@ class DetDescendantReport(Report.Report):
         self.doc.end_paragraph()
 
         cnt = 1
-        for child_handle in family.get_child_handle_list():
+        for child_ref in family.get_child_ref_list():
+            child_handle = child_ref.ref
             child = self.database.get_person_from_handle(child_handle)
             child_name = _nd.display(child)
 

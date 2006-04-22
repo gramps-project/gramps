@@ -27,8 +27,8 @@
 #------------------------------------------------------------------------
 import time
 import cStringIO
-import gzip
 import os
+import tarfile
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -38,7 +38,6 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import BaseDoc
 import Errors
-from TarFile import TarFile
 from PluginUtils import register_text_doc
 import ImgManip
 import Mime
@@ -254,7 +253,7 @@ class KwordDoc(BaseDoc.BaseDoc):
         self.f.write('</DOC>\n')
 
         try:
-            tar = TarFile(self.filename)
+            archive = tarfile.open(self.filename,'w:gz')
         except IOError, msg:
             text = _("Could not open %s") % self.filename
             Errors.ReportError(text + "\n" + str(msg))
@@ -262,15 +261,27 @@ class KwordDoc(BaseDoc.BaseDoc):
         except:
             Errors.ReportError(_("Could not open %s") % self.filename)
             return
-            
-        tar.add_file("documentinfo.xml",self.mtime,self.m)
-        tar.add_file("maindoc.xml",self.mtime,self.f)
-        for filedata in self.media_list:
-            f = open(filedata[0],"r")
-            tar.add_file(filedata[1],self.mtime,f)
-            f.close()
-        tar.close()
 
+        tarinfo = tarfile.TarInfo('documentinfo.xml')
+        tarinfo.size = len(self.m.getvalue())
+        tarinfo.mtime = self.mtime
+        tarinfo.uid = os.getuid()
+        tarinfo.gid = os.getgid()
+        self.m.seek(0)
+        archive.addfile(tarinfo,self.m)
+
+        tarinfo = tarfile.TarInfo('maindoc.xml')
+        tarinfo.size = len(self.f.getvalue())
+        tarinfo.mtime = self.mtime
+        tarinfo.uid = os.getuid()
+        tarinfo.gid = os.getgid()
+        self.f.seek(0)
+        archive.addfile(tarinfo,self.f)
+
+        for filedata in self.media_list:
+            archive.add(filedata[0])
+
+        archive.close()
         self.f.close()
         self.m.close()
 
