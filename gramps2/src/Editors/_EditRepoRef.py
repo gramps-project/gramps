@@ -96,12 +96,11 @@ class EditRepoRef(EditReference):
             self.source.get_name,
             False)
         
-        self.type_selector = MonitoredType(
+        self.type_selector = MonitoredDataType(
             self.top.get_widget("media_type"),
             self.source_ref.set_media_type,
-            self.source_ref.get_media_type,
-            dict(Utils.source_media_types),
-            RelLib.RepoRef.CUSTOM)
+            self.source_ref.get_media_type
+            )
 
         self.media_type_selector = MonitoredDataType(
             self.top.get_widget("repo_type"),

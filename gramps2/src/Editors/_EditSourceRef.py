@@ -48,7 +48,6 @@ import gtk.glade
 import const
 import Utils
 import RelLib
-import DisplayState
 
 from DisplayTabs import *
 from GrampsWidgets import *

@@ -77,7 +77,7 @@ from DdTargets import DdTargets
 from DisplayTabs import *
 from GrampsWidgets import *
 
-from ObjectSelector import PersonSelector,PersonFilterSpec
+#from ObjectSelector import PersonSelector,PersonFilterSpec
 
 from SelectPerson import SelectPerson
 
@@ -110,7 +110,7 @@ class ChildEmbedList(EmbeddedList):
         (_('Death Place'),7),
         ]
     
-    def __init__(self,dbstate,uistate,track,family):
+    def __init__(self, dbstate, uistate, track, family):
         """
         Create the object, storing the passed family value
         """
@@ -216,15 +216,12 @@ class ChildEmbedList(EmbeddedList):
         self.rebuild()
 
     def share_button_clicked(self,obj):
-        from SelectPerson import SelectPerson
-
         # it only makes sense to skip those who are already in the family
         
-        skip = [self.family.get_father_handle(), self.family.get_mother_handle()] + \
-               [x.ref for x in self.family.get_child_ref_list() ]
+        skip_list = [self.family.get_father_handle(), self.family.get_mother_handle()] + \
+                    [x.ref for x in self.family.get_child_ref_list() ]
 
-        sel = SelectPerson(self.dbstate.db, "Select Child",
-                           skip=[ x for x in skip if x])
+        sel = SelectPerson(self.dbstate.db, "Select Child", skip=skip_list)
         person = sel.run()
         
         if person:
@@ -234,8 +231,8 @@ class ChildEmbedList(EmbeddedList):
             self.rebuild()
 
     def run(self,skip):
-        SelectPerson(self.dbstate.db, "Select Child",
-                     skip=[ x for x in skip if x])
+        skip_list = [ x for x in skip if x]
+        SelectPerson(self.dbstate.db, "Select Child", skip=skip_list)
 
     def del_button_clicked(self,obj):
         handle = self.get_selected()
@@ -273,8 +270,8 @@ class ChildEmbedList(EmbeddedList):
             mother_handle = self.family.get_mother_handle()
             if not father_handle or not mother_handle:
                 return ("","")
-            father = self.db.db.get_person_from_handle(father_handle)
-            mother = self.db.db.get_person_from_handle(mother_handle)
+            father = self.dbstate.db.get_person_from_handle(father_handle)
+            mother = self.dbstate.db.get_person_from_handle(mother_handle)
             fsn = father.get_primary_name().get_surname()
             msn = mother.get_primary_name().get_surname()
             if not father or not mother:
@@ -522,8 +519,6 @@ class EditFamily(EditPrimary):
             self.obj.set_mother_handle(None)
             self.update_mother(None)
         else:
-            from SelectPerson import SelectPerson
-
             data_filter = FastFemaleFilter(self.dbstate.db)
             sel = SelectPerson(self.dbstate.db, "Select Mother",
                                filter=data_filter,
@@ -593,8 +588,6 @@ class EditFamily(EditPrimary):
             self.obj.set_father_handle(None)
             self.update_father(None)
         else:
-            from SelectPerson import SelectPerson
-
             data_filter = FastMaleFilter(self.dbstate.db)
             sel = SelectPerson(self.dbstate.db, "Select Father",
                                filter=data_filter,

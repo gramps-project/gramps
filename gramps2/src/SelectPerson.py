@@ -52,7 +52,7 @@ import PeopleModel
 #-------------------------------------------------------------------------
 class SelectPerson:
 
-    def __init__(self, db, title, filter=None, skip=[], parent_window=None):
+    def __init__(self, db, title, filter=None, skip=[]):
 
         self.renderer = gtk.CellRendererText()
         self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
@@ -83,9 +83,6 @@ class SelectPerson:
         self.add_columns(self.plist)
         self.plist.set_model(self.model)
         self.top.show()
-
-        if parent_window:
-            self.top.set_transient_for(parent_window)
 
     def foo(self):
         PeopleModel.PeopleModel(self.db)
