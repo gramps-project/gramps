@@ -334,9 +334,9 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         self.delete = self.editor.get_widget('delete')
         self.test = self.editor.get_widget('test')
 
-        self.define_top_level(self.editor.get_widget('filter_list'),
-                              self.editor.get_widget('title'),
-                              _('User defined filters'))
+        self.set_window(self.editor.get_widget('filter_list'),
+                        self.editor.get_widget('title'),
+                        _('User defined filters'))
 
         self.editor.signal_autoconnect({
             'on_add_clicked' : self.add_new_filter,
@@ -362,9 +362,8 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-util-cfe')
 
-    def define_top_level(self,window,title,text):
-        self.window = window
-        self.window.connect('delete-event',self.on_delete_event)
+    def set_window(self,window,title,text):
+        ManagedWindow.ManagedWindow.set_window(self,window)
         Utils.set_titles(window,title,text)
 
     def on_delete_event(self,obj,b):

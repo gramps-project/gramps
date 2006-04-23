@@ -46,7 +46,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
 import RelLib
 import ManagedWindow
 
@@ -128,11 +127,6 @@ class EditReference(ManagedWindow.ManagedWindow):
         button.connect('clicked',function)
         button.set_sensitive(not self.db.readonly)
 
-    def define_top_level(self,window,title,text):
-        self.window = window
-        self.window.connect('delete-event',self.close_window)
-        Utils.set_titles(window,title,text)
-        
     def define_cancel_button(self,button):
         button.connect('clicked',self.close_window)
 

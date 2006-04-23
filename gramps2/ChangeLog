@@ -1,3 +1,10 @@
+2006-04-23  Alex Roitman  <shura@gramps-project.org>
+	* src/Utils.py: Make set_titles call ManagedWindow.set_titles
+	with warning.
+	* src/ManagedWindow.py: move set_titles here.
+	* src/plugins/FilterEditor.py: Use new set_window method.
+	* src/Editors/_Edit*.py: new set_window method.
+
 2006-04-23  Don Allingham  <don@gramps-project.org>
 	* src/ColumnOrder.py: use ManagedWindow
 	* src/DataViews/_MediaView.py: ColumnOrder update

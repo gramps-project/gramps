@@ -115,8 +115,8 @@ class EditPerson(EditPrimary):
 
         self.load_obj = None
         self.top = gtk.glade.XML(const.person_glade, "edit_person", "gramps")
-        self.define_top_level(self.top.get_widget("edit_person"), None, 
-                              _('Edit Person'))
+        self.set_window(self.top.get_widget("edit_person"), None, 
+                        _('Edit Person'))
         
         self.obj_photo = self.top.get_widget("personPix")
         self.eventbox = self.top.get_widget("eventbox1")

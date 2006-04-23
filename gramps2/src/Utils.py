@@ -496,15 +496,10 @@ def set_title_label(xmlobj,t):
     title_label.set_text('<span weight="bold" size="larger">%s</span>' % t)
     title_label.set_use_markup(True)
 
+from ManagedWindow import set_titles as _set_titles
+from warnings import warn
 def set_titles(window,title,t,msg=None):
-    if title:
-        title.set_text('<span weight="bold" size="larger">%s</span>' % t)
-        title.set_use_markup(True)
-    if msg:
-        window.set_title('%s - GRAMPS' % msg)
-    else:
-        window.set_title('%s - GRAMPS' % t)
-    window.set_icon_from_file(const.icon)
+    warn('The Utils.set_titles is deprecated. Use ManagedWindow methods')
 
 def gfloat(val):
     """Converts to floating number, taking care of possible locale differences.

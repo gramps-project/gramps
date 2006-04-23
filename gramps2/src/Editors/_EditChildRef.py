@@ -72,9 +72,9 @@ class EditChildRef(EditSecondary):
 
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "cref_edit","gramps")
-        self.define_top_level(self.top.get_widget("cref_edit"),
-                              self.top.get_widget("title"),
-                              _('Child Reference Editor'))
+        self.set_window(self.top.get_widget("cref_edit"),
+                        self.top.get_widget("title"),
+                        _('Child Reference Editor'))
 
     def _setup_fields(self):
 

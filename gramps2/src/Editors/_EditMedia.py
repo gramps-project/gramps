@@ -72,9 +72,9 @@ class EditMedia(EditPrimary):
         assert(self.obj)
         self.glade = gtk.glade.XML(const.gladeFile,
                                    "change_global","gramps")
-        self.define_top_level(self.glade.get_widget('change_global'),
-                              self.glade.get_widget('title'),     
-                              _('Media Properties Editor'))
+        self.set_window(self.glade.get_widget('change_global'),
+                        self.glade.get_widget('title'),     
+                        _('Media Properties Editor'))
 
     def _connect_signals(self):
         self.define_cancel_button(self.glade.get_widget('button91'))

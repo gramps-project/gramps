@@ -68,9 +68,9 @@ class EditRepoRef(EditReference):
         
         self.top = gtk.glade.XML(const.gladeFile, "repository_ref_edit","gramps")
         
-        self.define_top_level(self.top.get_widget('repository_ref_edit'),
-                              self.top.get_widget('repo_title'),        
-                              _('Repository Reference Editor'))
+        self.set_window(self.top.get_widget('repository_ref_edit'),
+                        self.top.get_widget('repo_title'),        
+                        _('Repository Reference Editor'))
 
         self.define_warn_box(self.top.get_widget("warn_box"))
         self.define_expander(self.top.get_widget("src_expander"))

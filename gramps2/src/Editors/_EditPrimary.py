@@ -27,8 +27,6 @@ import DateHandler
 import NameDisplay
 import Config
 import GrampsDisplay
-import Utils
-
 from QuestionDialog import SaveDialog
 
 class EditPrimary(ManagedWindow.ManagedWindow):
@@ -103,11 +101,6 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         button.connect('clicked',function)
         button.set_sensitive(not self.db.readonly)
 
-    def define_top_level(self,window,title,text):
-        self.window = window
-        self.window.connect('delete-event',self.delete_event)
-        Utils.set_titles(window,title,text)
-        
     def define_cancel_button(self,button):
         button.connect('clicked',self.delete_event)
 
