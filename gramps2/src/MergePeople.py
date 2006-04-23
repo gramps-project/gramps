@@ -55,7 +55,7 @@ sex = ( _("female"), _("male"), _("unknown"))
 class Compare:
 
     def __init__(self, db, person1, person2, update) :
-        self.glade = gtk.glade.XML(const.mergeFile,"merge")
+        self.glade = gtk.glade.XML(const.merge_glade, "merge")
         self.top = self.glade.get_widget('merge')
         self.text1 = self.glade.get_widget('text1')
         self.text2 = self.glade.get_widget('text2')
@@ -166,7 +166,7 @@ class Compare:
                 if spouse_id:
                     spouse = self.db.get_person_from_handle(spouse_id)
                     self.add(tobj,indent,"%s:\t%s" % (_('Spouse'),name_of(spouse)))
-                relstr = const.family_relations[family.get_relationship()][0]
+                relstr = str(family.get_relationship())
                 self.add(tobj,indent,"%s:\t%s" % (_('Type'),relstr))
                 event = ReportUtils.find_marriage(self.db,family)
                 if event:
@@ -256,7 +256,7 @@ def check_for_child(p1, p2):
 class MergePeopleUI:
 
     def __init__(self,db,person1,person2,update):
-        glade = gtk.glade.XML(const.mergeFile,'merge_people')
+        glade = gtk.glade.XML(const.merge_glade, 'merge_people')
         top = glade.get_widget('merge_people')
         p1 = glade.get_widget('person1')
         p2 = glade.get_widget('person2')
@@ -572,7 +572,7 @@ class MergePeople:
         # of the families, and adding the families to the merged
         # person
         
-        for (family_handle,mrel,frel) in parent_list:
+        for family_handle in parent_list:
             self.convert_child_ids(family_handle, self.new_handle,
                                    self.old_handle, trans)
             new.add_parent_family_handle(family_handle, mrel, frel)
@@ -584,13 +584,14 @@ class MergePeople:
         """
         family = self.db.get_family_from_handle(fhandle)
         new_child_list = []
-        orig_list = family.get_child_handle_list()
+        orig_list = family.get_child_ref_list()
 
         # loop through original child list. If a handle matches the
         # old handle, replace it with the new handle if the new handle
         # is not already in the list
-        for child_id in orig_list:
-            if child_id == old_handle:
+
+        for child_ref in orig_list:
+            if child_ref.ref == old_handle:
                 if new_handle not in new_child_list:
                     new_child_list.append(new_handle)
             elif child_id not in new_child_list:
@@ -599,7 +600,7 @@ class MergePeople:
         # compare the new list with the original list. If this list
         # is different, we need to save the changes to the database.
         if new_child_list != orig_list:
-            family.set_child_handle_list(new_child_list)
+            family.set_child_ref_list(new_child_list)
             self.db.commit_family(family,trans)
     
     def merge_relationships(self,new,trans):

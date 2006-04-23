@@ -3,6 +3,19 @@
 	* src/plugins/NavWebPage.py: keep up with RelLib changes
 
 2006-04-22  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py: pychecker
+	* src/GrampsDb/_GrampsBSDDB.py: pychecker
+	* src/RelLib/_CalSdn.py: pychecker
+	* src/RelLib/_PrivateSourceNote.py: pychecker
+	* src/RelLib/_GenderStats.py: pychecker
+	* src/MergePeople.py: pychecker
+	* src/SelectObject.py: pychecker
+	* src/ScratchPad.py: pychecker
+	* src/ImgManip.py: pychecker
+	* src/docgen/ODFDoc.py: pychecker
+	* src/docgen/OpenOfficeDoc.py: pychecker
+	* src/docgen/LPRDoc.py: pychecker
+	* src/SelectEvent.py: pychecker
 	* src/GrampsDb/_ReadXML.py: fix Type str_from_xml calls
 	* src/DataViews/_MediaView.py: Shorten tab name
 	* src/DataViews/_RepositoryView.py: Shorten tab name

@@ -67,9 +67,6 @@ class ImgManip:
         return (self.width, self.height)
     
     def fmt_thumbnail(self,dest,width,height,cnv):
-        w = int(width)
-        h = int(height)
-
         scaled = self.img.scale_simple(width, height, gtk.gdk.INTERP_BILINEAR)
         scaled.save(dest,cnv)
         

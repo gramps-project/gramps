@@ -1217,7 +1217,7 @@ class GrampsBSDDB(GrampsDbBase):
         while data:
             handle,val = data
             p = Person(val)
-            self.genderStats.count_person(p,self)
+            self.genderStats.count_person(p)
             data = cursor.next()
         cursor.close()
         self.metadata.put('version',7)

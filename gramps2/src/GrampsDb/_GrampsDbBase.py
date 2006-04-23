@@ -405,9 +405,9 @@ class GrampsDbBase(GrampsDBCallback):
             if (old_data[2] != person.gender or
                 old_data[3][2]!= person.primary_name.first_name):
                 self.genderStats.uncount_person(old_person)
-                self.genderStats.count_person(person, self)
+                self.genderStats.count_person(person)
         else:
-            self.genderStats.count_person(person, self)
+            self.genderStats.count_person(person)
 
         for attr in person.attribute_list:
             self.individual_attributes.add(str(attr.type))
@@ -831,7 +831,7 @@ class GrampsDbBase(GrampsDBCallback):
             obj.handle = self.create_id()
         commit_func(obj, transaction)
         if obj.__class__.__name__ == 'Person':
-            self.genderStats.count_person (obj, self)
+            self.genderStats.count_person (obj)
         return obj.handle
 
     def add_person(self, person, transaction):

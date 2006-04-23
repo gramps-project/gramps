@@ -25,7 +25,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-import cmath
+import math
 
 #-------------------------------------------------------------------------
 #
@@ -482,24 +482,24 @@ def persian_sdn(year, month, day):
         v1 = (month - 1) * 31
     else:
         v1 = ((month - 1) * 30) + 6
-    v2 = cmath.floor(((epyear * 682) - 110) / 2816)
+    v2 = math.floor(((epyear * 682) - 110) / 2816)
     v3 = (epyear - 1) * 365 + day
-    v4 = cmath.floor(epbase / 2820) * 1029983
+    v4 = math.floor(epbase / 2820) * 1029983
         
-    return int(cmath.ceil(v1 + v2 + v3 + v4 + _PRS_EPOCH - 1))
+    return int(math.ceil(v1 + v2 + v3 + v4 + _PRS_EPOCH - 1))
 
 def persian_ymd(sdn):
-    sdn = cmath.floor(sdn) + 0.5
+    sdn = math.floor(sdn) + 0.5
         
     depoch = sdn - 2121446
-    cycle = cmath.floor(depoch / 1029983)
+    cycle = math.floor(depoch / 1029983)
     cyear = depoch % 1029983
     if cyear == 1029982:
         ycycle = 2820
     else:
-        aux1 = cmath.floor(cyear / 366)
+        aux1 = math.floor(cyear / 366)
         aux2 = cyear % 366
-        ycycle = cmath.floor(((2134*aux1)+(2816*aux2)+2815)/1028522) + aux1 + 1
+        ycycle = math.floor(((2134*aux1)+(2816*aux2)+2815)/1028522) + aux1 + 1
             
     year = ycycle + (2820 * cycle) + 474
     if year <= 0:
@@ -507,22 +507,22 @@ def persian_ymd(sdn):
 
     yday = sdn - persian_sdn(year, 1, 1) + 1
     if yday < 186:
-        month = cmath.ceil(yday / 31)
+        month = math.ceil(yday / 31)
     else:
-        month = cmath.ceil((yday - 6) / 30)
+        month = math.ceil((yday - 6) / 30)
     day = (sdn - persian_sdn(year, month, 1)) + 1
     return (int(year), int(month), int(day))
 
 def islamic_sdn(year, month, day):
-    v1 = cmath.ceil(29.5 * (month - 1))
+    v1 = math.ceil(29.5 * (month - 1))
     v2 = (year - 1) * 354
-    v3 = cmath.floor((3 + (11 *year)) / 30)
+    v3 = math.floor((3 + (11 *year)) / 30)
 
-    return int(cmath.ceil((day + v1 + v2 + v3 + _ISM_EPOCH) - 1))
+    return int(math.ceil((day + v1 + v2 + v3 + _ISM_EPOCH) - 1))
 
 def islamic_ymd(sdn):
-    sdn = cmath.floor(sdn) + 0.5
-    year = int(cmath.floor(((30*(sdn-_ISM_EPOCH))+10646)/10631))
-    month = int(min(12, cmath.ceil((sdn-(29+islamic_sdn(year,1,1)))/29.5) + 1))
+    sdn = math.floor(sdn) + 0.5
+    year = int(math.floor(((30*(sdn-_ISM_EPOCH))+10646)/10631))
+    month = int(min(12, math.ceil((sdn-(29+islamic_sdn(year,1,1)))/29.5) + 1))
     day = int((sdn - islamic_sdn(year,month,1)) + 1)
     return (year,month,day)
