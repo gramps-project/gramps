@@ -1120,7 +1120,7 @@ def sanitize_person(db,person):
 
     # copy Family reference list
     for item in person.get_parent_family_handle_list():
-        new_person.add_parent_family_handle(item[0],item[1],item[2])
+        new_person.add_parent_family_handle(item)
 
     if person.get_privacy():
         return new_person
@@ -1179,17 +1179,13 @@ def sanitize_person(db,person):
             new_person.add_media_reference(RelLib.MediaRef(obj))
 
     # LDS ordinances
-    ordinance = person.get_lds_baptism()
-    if ordinance:
-        new_person.set_lds_baptism(ordinance)
-
-    ordinance = person.get_lds_endowment()
-    if ordinance:
-        new_person.set_lds_endowment(ordinance)
-
-    ordinance = person.get_lds_sealing()
-    if ordinance:
-        new_person.set_lds_sealing(ordinance)
+    for lds_ord in person.get_lds_ord_list():
+        lds_type = lds_ord.get_type()
+        if lds_type == RelLib.LdsOrd.BAPTISM           or       \
+           lds_type == RelLib.LdsOrd.ENDOWMENT         or       \
+           lds_type == RelLib.LdsOrd.SEAL_TO_PARENTS   or       \
+           lds_type == RelLib.LdsOrd.SEAL_TO_SPOUSE             :
+               new_person.add_lds_ord( lds_ord )
 
     new_person.set_note(person.get_note())
     
