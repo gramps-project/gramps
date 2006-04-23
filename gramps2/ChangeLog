@@ -1,4 +1,4 @@
-2006-04-21  Brian Matherly  <pez4brian@users.sourceforge.net>
+2006-04-22  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/PluginUtils/_ReportUtils.py: keep up with RelLib changes
 	* src/plugins/NavWebPage.py: keep up with RelLib changes
 
