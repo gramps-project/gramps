@@ -136,8 +136,7 @@ class EditAttribute(EditSecondary):
         """
         if self.callback:
             self.callback(self.obj)
-        self.close_window(obj)
-
+        self.close()
 
 #-------------------------------------------------------------------------
 #
@@ -159,4 +158,3 @@ class EditFamilyAttribute(EditAttribute):
         """
         EditAttribute.__init__(self, state, uistate, track, attrib, title,
                                data_list, callback)
-        

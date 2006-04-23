@@ -618,7 +618,7 @@ class EditFamily(EditPrimary):
                         clist = self.obj.get_child_ref_list()
                         self.obj = self.dbstate.db.get_family_from_handle(common[0])
                         self.obj.add_child_ref(clist[0])
-                        self.close_window()
+                        self.close()
                         try:
                             EditFamily(self.dbstate,self.uistate,[],self.obj)
                         except Errors.WindowActiveError:
@@ -634,7 +634,7 @@ class EditFamily(EditPrimary):
                 for fh in father.get_family_handle_list():
                     fam = self.dbstate.db.get_family_from_handle(fh)
                     if fam.get_mother_handle() == None:
-                        self.close_window()
+                        self.close()
                         try:
                             clist = self.obj.get_child_ref_list()
                             fam.add_child_ref(clist[-1])
@@ -646,7 +646,7 @@ class EditFamily(EditPrimary):
             for fh in mother.get_family_handle_list():
                 fam = self.dbstate.db.get_family_from_handle(fh)
                 if fam.get_father_handle() == None:
-                    self.close_window()
+                    self.close()
                     try:
                         clist = self.obj.get_child_ref_list()
                         fam.add_child_ref(clist[-1])
@@ -822,4 +822,4 @@ class EditFamily(EditPrimary):
                 self.db.commit_family(self.obj,trans)
             self.db.transaction_commit(trans,_("Edit Family"))
 
-        self.close_window()
+        self.close()

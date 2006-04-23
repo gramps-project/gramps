@@ -338,7 +338,7 @@ class ManagedWindow:
     def set_window(self,window,title,text,msg=None):
         set_titles(window,title,text,msg)
         self.window = window
-        self.window.connect('delete-event',self.delete_event)
+        self.window.connect('delete-event',self.close)
 
     def build_menu_names(self,obj):
         return ('Undefined Menu','Undefined Submenu')
@@ -351,7 +351,7 @@ class ManagedWindow:
         self.window.set_transient_for(self.parent_window)
         self.window.show()
 
-    def close(self):
+    def close(self,*obj):
         """
         Close itself.
 

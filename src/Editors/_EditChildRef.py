@@ -131,5 +131,4 @@ class EditChildRef(EditSecondary):
         """
         if self.callback:
             self.callback(self.obj)
-        self.close_window(obj)
-
+        self.close()

@@ -98,5 +98,4 @@ class EditUrl(EditSecondary):
 
     def save(self,*obj):
         self.callback(self.obj)
-        self.close_window()
-
+        self.close()

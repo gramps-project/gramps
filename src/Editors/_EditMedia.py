@@ -206,7 +206,7 @@ class EditMedia(EditPrimary):
         trans = self.db.transaction_begin()
         self.db.commit_media_object(self.obj,trans)
         self.db.transaction_commit(trans,_("Edit Media Object"))
-        self.close_window()
+        self.close()
 
 class DeleteMediaQuery:
 
