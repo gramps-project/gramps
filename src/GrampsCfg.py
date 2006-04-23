@@ -234,15 +234,6 @@ class GrampsPreferences:
         fvbutton.connect('toggled',
                 lambda obj: Config.save_default_view(obj.get_active()))
 
-        familyview1 = self.top.get_widget('familyview1')
-        familyview2 = self.top.get_widget('familyview2')
-        if Config.get_family_view() == 0:
-            familyview1.set_active(1)
-        else:
-            familyview2.set_active(1)
-        familyview2.connect('toggled',
-                lambda obj: Config.save_family_view(obj.get_active()))
-
         usetips = self.top.get_widget('usetips')
         usetips.set_active(Config.get_usetips())
         usetips.connect('toggled',
