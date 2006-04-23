@@ -685,7 +685,7 @@ class TestcaseGenerator(Tool.Tool):
         # now add them as birth to new persons
         for dateval in dates:
             bevent = RelLib.Event()
-            bevent.set_type((RelLib.Event.BIRTH, "Birth"))
+            bevent.set_type(RelLib.EventType.BIRTH)
             bevent.set_date_object(dateval)
             bevent_h = self.db.add_event(bevent,self.trans)
             self.generated_events.append(bevent_h)
@@ -714,7 +714,7 @@ class TestcaseGenerator(Tool.Tool):
                 
             
             devent = RelLib.Event()
-            devent.set_type((RelLib.Event.DEATH,"Death"))
+            devent.set_type(RelLib.EventType.DEATH)
             devent.set_date_object(ndate)
             devent_h = self.db.add_event(devent,self.trans)
             self.generated_events.append(devent_h)
