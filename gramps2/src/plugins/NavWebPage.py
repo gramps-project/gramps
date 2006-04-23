@@ -443,7 +443,7 @@ class BasePage:
         of.write('<table class="infolist">\n')
 
         for attr in attrlist:
-            atType = Utils.format_personal_attribute( attr.get_type() )
+            atType = str( attr.get_type() )
             of.write('<tr><td class="field">%s</td>' % atType)
             of.write('<td class="data">%s</td></tr>\n' % attr.get_value())
         of.write('</table>\n')
@@ -1563,7 +1563,9 @@ class IndividualPage(BasePage):
         index = 1
         for sref in sreflist:
             lnk = (self.cur_name, self.page_title, self.gid)
-            shandle = sref.get_base_handle()
+            shandle = sref.get_reference_handle()
+            if not shandle:
+                continue
             if self.src_list.has_key(shandle):
                 if lnk not in self.src_list[shandle]:
                     self.src_list[shandle].append(lnk)
@@ -1593,7 +1595,7 @@ class IndividualPage(BasePage):
 
         parent_handle_list = self.person.get_parent_family_handle_list()
         if parent_handle_list:
-            (parent_handle, mrel,frel) = parent_handle_list[0]
+            parent_handle = parent_handle_list[0]
             family = self.db.get_family_from_handle(parent_handle)
             father_id = family.get_father_handle()
             mother_id = family.get_mother_handle()
@@ -1619,7 +1621,8 @@ class IndividualPage(BasePage):
                 self.pedigree_person(of,mother,True)
         of.write('<div class="pedigreegen">\n')
         if family:
-            for child_handle in family.get_child_handle_list():
+            for child_ref in family.get_child_ref_list():
+                child_handle = child_ref.ref
                 if child_handle == self.person.handle:
                     of.write('<span class="thisperson">%s</span><br />\n' % self.name)
                     self.pedigree_family(of)
@@ -1656,7 +1659,7 @@ class IndividualPage(BasePage):
         # Names [and their sources]
         for name in [self.person.get_primary_name(),]+self.person.get_alternate_names():
             pname = name_nameof(name,self.exclude_private)
-            type = Utils.format_name_type( name.get_type() )
+            type = str( name.get_type() )
             of.write('<tr><td class="field">%s</td>\n' % _(type))
             of.write('<td class="data">%s' % pname)
             if not self.restrict:
@@ -1725,7 +1728,7 @@ class IndividualPage(BasePage):
         for event_ref in evt_ref_list:
             event = self.db.get_event_from_handle(event_ref.ref)
             if event:
-                evt_name = Utils.format_event(event.get_type())
+                evt_name = str(event.get_type())
                 of.write('<tr><td class="field">%s</td>\n' % evt_name)
                 of.write('<td class="data">\n')
                 of.write(self.format_event(event))
@@ -1765,7 +1768,7 @@ class IndividualPage(BasePage):
         else:
             of.write(nameof(person,self.exclude_private))
         if rel != RelLib.ChildRefType.BIRTH:
-            of.write('&nbsp;&nbsp;&nbsp;(%s)' % Utils.format_child_relation(rel))
+            of.write('&nbsp;&nbsp;&nbsp;(%s)' % str(rel))
         of.write('</td>\n')
 
     def display_ind_parents(self,of):
@@ -1780,8 +1783,18 @@ class IndividualPage(BasePage):
 
         first = True
         if parent_list:
-            for (family_handle,mrel,frel) in parent_list:
+            for family_handle in parent_list:
                 family = self.db.get_family_from_handle(family_handle)
+                
+                # Get the mother and father relationships
+                frel = ""
+                mrel = ""
+                child_handle = self.person.get_handle()
+                child_ref_list = family.get_child_ref_list()
+                for child_ref in child_ref_list:
+                    if child_ref.ref == child_handle:
+                        frel = str(child_ref.get_father_relation())
+                        mrel = str(child_ref.get_mother_relation())
 
                 if not first:
                     of.write('<tr><td colspan="2">&nbsp;</td></tr>\n')
@@ -1799,12 +1812,13 @@ class IndividualPage(BasePage):
                     self.display_parent(of,mother_handle,_('Mother'),mrel)
                     of.write('</tr>\n')
                 first = False
-                childlist = family.get_child_handle_list()
+                childlist = family.get_child_ref_list()
                 if len(childlist) > 1:
                     of.write('<tr>\n')
                     of.write('<td class="field">%s</td>\n' % _("Siblings"))
                     of.write('<td class="data">\n')
-                    for child_handle in childlist:
+                    for child_ref in childlist:
+                        child_handle = child_ref.ref
                         if child_handle != self.person.handle:
                             self.display_child_link(of,child_handle)
                     of.write('</td>\n</tr>\n')
@@ -1826,13 +1840,13 @@ class IndividualPage(BasePage):
             family = self.db.get_family_from_handle(family_handle)
             self.display_spouse(of,family,first)
             first = False
-            childlist = family.get_child_handle_list()
+            childlist = family.get_child_ref_list()
             if childlist:
                 of.write('<tr><td>&nbsp;</td>\n')
                 of.write('<td class="field">%s</td>\n' % _("Children"))
                 of.write('<td class="data">\n')
-                for child_handle in childlist:
-                    self.display_child_link(of,child_handle)
+                for child_ref in childlist:
+                    self.display_child_link(of,child_ref.ref)
                 of.write('</td>\n</tr>\n')
         of.write('</table>\n')
         of.write('</div>\n')
@@ -1841,7 +1855,7 @@ class IndividualPage(BasePage):
         gender = self.person.get_gender()
         reltype = family.get_relationship()
 
-        if reltype[0] == RelLib.Family.MARRIED:
+        if reltype == RelLib.FamilyRelType.MARRIED:
             if gender == RelLib.Person.FEMALE:
                 relstr = _("Husband")
             elif gender == RelLib.Person.MALE:
@@ -1861,7 +1875,7 @@ class IndividualPage(BasePage):
             name = _("unknown")
         if not first:
             of.write('<tr><td colspan="3">&nbsp;</td></tr>\n')
-        rtype = Utils.format_family_relation(family.get_relationship())
+        rtype = str(family.get_relationship())
         of.write('<tr><td class="category">%s</td>\n' % rtype)
         of.write('<td class="field">%s</td>\n' % relstr)
         of.write('<td class="data">')
@@ -1885,7 +1899,7 @@ class IndividualPage(BasePage):
             if self.exclude_private and event.private:
                 continue
 
-            evtType = Utils.format_event(event.get_type())
+            evtType = str(event.get_type())
             of.write('<tr><td>&nbsp;</td>\n')
             of.write('<td class="field">%s</td>\n' % evtType)
             of.write('<td class="data">\n')
@@ -1894,7 +1908,7 @@ class IndividualPage(BasePage):
         for attr in family.get_attribute_list():
             if self.exclude_private and attr.private:
                 continue
-            attrType = Utils.format_family_attribute(attr.get_type())
+            attrType = str(attr.get_type())
             of.write('<tr><td>&nbsp;</td>\n')
             of.write('<td class="field">%s</td>' % attrType)
             of.write('<td class="data">%s</td>\n</tr>\n' % attr.get_value())
@@ -1936,11 +1950,11 @@ class IndividualPage(BasePage):
                 if self.exclude_private:
                     spouse = ReportUtils.sanitize_person( self.db, spouse)
                 self.pedigree_person(of,spouse,True)
-            childlist = rel_family.get_child_handle_list()
+            childlist = rel_family.get_child_ref_list()
             if childlist:
                 of.write('<div class="pedigreegen">\n')
-                for child_handle in childlist:
-                    child = self.db.get_person_from_handle(child_handle)
+                for child_ref in childlist:
+                    child = self.db.get_person_from_handle(child_ref.ref)
                     if self.exclude_private:
                         child = ReportUtils.sanitize_person( self.db, child)
                     self.pedigree_person(of,child)
