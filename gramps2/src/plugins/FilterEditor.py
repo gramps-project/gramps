@@ -362,10 +362,6 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-util-cfe')
 
-    def set_window(self,window,title,text):
-        ManagedWindow.ManagedWindow.set_window(self,window)
-        Utils.set_titles(window,title,text)
-
     def on_delete_event(self,obj,b):
         self.filterdb.save()
         self.remove_itself_from_menu()
