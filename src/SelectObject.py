@@ -108,36 +108,6 @@ class SelectObject:
             self.object_model.add([pixbuf,title,obj.get_gramps_id(),the_type],key)
         self.object_model.connect_model()
         
-    def on_select_row(self,obj):
-        store,node = self.object_model.get_selected()
-        if not node:
-            return
-        data = self.object_model.get_data(node,range(self.ncols))
-        handle = data[4]
-        obj = self.db.get_object_from_handle(handle)
-        the_type = obj.get_mime_type()
-        path = obj.get_path()
-
-        if the_type and the_type.startswith("image/"):
-            image = ImgManip.get_thumbnail_image(path,the_type)
-        else:
-            image = Mime.find_mime_type_pixbuf(the_type)
-        self.preview.set_from_pixbuf(image)
-        
-        self.object_handle.set_text(obj.get_gramps_id())
-        if the_type:
-            self.object_type.set_text(the_type)
-        else:
-            self.object_type.set_text("")
-        self.object_desc.set_text(obj.get_description())
-        if len(path) == 0:
-            self.object_path.set_text(_("The file no longer exists"))
-        elif path[0] == "/":
-            self.object_path.set_text(path)
-        else:
-            self.object_path.set_text("<local>")
-        self.object_details.set_text(Utils.get_detail_text(obj,0))
-
     def run(self):
         val = self.top.run()
 

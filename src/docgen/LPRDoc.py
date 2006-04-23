@@ -60,6 +60,8 @@ else:
     print "        or wait for the next gnome-python release."
 ### end FIXME ###
 
+import Errors
+
 #------------------------------------------------------------------------
 #
 # gramps modules 
@@ -773,7 +775,6 @@ class LPRDoc(BaseDoc.BaseDoc):
                                 photo.get_rowstride())
 
         self.gpc.grestore()
-        x = x
         y = y - height
         return (x,y)
                                                                                 

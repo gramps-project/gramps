@@ -63,7 +63,7 @@ class GenderStats:
             return self.stats[name]
         return (0, 0, 0)
 
-    def count_person (self, person, db, undo = 0):
+    def count_person (self, person, undo = 0):
         if not person:
             return
         # Let the Person do their own counting later
@@ -90,7 +90,7 @@ class GenderStats:
         return
 
     def uncount_person (self, person):
-        return self.count_person (person, None, undo = 1)
+        return self.count_person (person, undo = 1)
 
     def guess_gender (self, name):
         name = self._get_key_from_name (name)

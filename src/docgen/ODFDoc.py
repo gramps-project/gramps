@@ -38,7 +38,6 @@ from math import pi, cos, sin, fabs
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import Errors
 import BaseDoc
 import const
 from PluginUtils import ReportUtils, \

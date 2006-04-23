@@ -49,7 +49,6 @@ import gtk.glade
 import const
 import Utils
 import ListModel
-import RelLib
 import DateHandler
 
 #-------------------------------------------------------------------------

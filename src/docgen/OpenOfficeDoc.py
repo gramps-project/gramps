@@ -28,7 +28,6 @@
 import os
 import zipfile
 import time
-import locale
 from cStringIO import StringIO
 from math import pi, cos, sin, fabs
 from gettext import gettext as _
@@ -39,7 +38,6 @@ from xml.sax.saxutils import escape
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import Errors
 import BaseDoc
 import const
 from PluginUtils import ReportUtils, \

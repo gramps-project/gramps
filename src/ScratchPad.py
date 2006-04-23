@@ -29,7 +29,6 @@ import cPickle as pickle
 import os
 from xml.sax.saxutils import escape
 from gettext import gettext as _
-import Utils
 from time import strftime as strftime
 
 #-------------------------------------------------------------------------
@@ -193,9 +192,6 @@ class ScratchPadLocation(ScratchPadGrampsTypeWrapper):
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\n"\
             "\t\t%s\n"\
-            "\t\t%s\n"\
-            "\t\t%s\n"\
-            "\t\t%s\n"\
             "\t<b>%s:</b>\t%s\n" % (
             _("Location"),
             escape(self._obj.get_city()),
@@ -259,8 +255,8 @@ class ScratchPadFamilyEvent(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.FAMILY_EVENT
     ICON         = BLANK_PIC
     
-    def __init__(self,db,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+    def __init__(self, dbstate, obj):
+        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Family Event")
         self._title = str(self._obj.get_type())
         self._value = self._obj.get_description()
@@ -277,7 +273,7 @@ class ScratchPadFamilyEvent(ScratchPadGrampsTypeWrapper):
             _("Family Event"),
             _("Type"),escape(str(self._obj.get_type())),
             _("Date"),escape(DateHandler.get_date(self._obj)),
-            _("Place"),escape(place_title(self.db,self._obj)),
+            _("Place"),escape(place_title(self._db, self._obj)),
             _("Cause"),escape(self._obj.get_cause()),
             _("Description"), escape(self._obj.get_description()))
 
@@ -325,7 +321,7 @@ class ScratchPadAttribute(ScratchPadGrampsTypeWrapper):
     def __init__(self, db, obj):
         ScratchPadGrampsTypeWrapper.__init__(self, db, obj)
         self._type  = _("Attribute")
-        self._title = Utils.format_personal_attribute(self._obj.get_type())
+        self._title = str(self._obj.get_type())
         self._value = self._obj.get_value()
 
     def tooltip(self):
@@ -334,7 +330,7 @@ class ScratchPadAttribute(ScratchPadGrampsTypeWrapper):
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s" % (_("Attribute"),
                                   _("Type"),
-                                  escape(Utils.format_personal_attribute(self._obj.get_type())),
+                                  escape(str(self._obj.get_type())),
                                   _("Value"),
                                   escape(self._obj.get_value()))
         
@@ -358,7 +354,7 @@ class ScratchPadFamilyAttribute(ScratchPadGrampsTypeWrapper):
     def __init__(self, db, obj):
         ScratchPadGrampsTypeWrapper.__init__(self, db, obj)
         self._type  = _("Family Attribute")
-        self._title = Utils.format_family_attribute(self._obj.get_type())
+        self._title = str(self._obj.get_type())
         self._value = self._obj.get_value()
 
     def tooltip(self):
@@ -367,7 +363,7 @@ class ScratchPadFamilyAttribute(ScratchPadGrampsTypeWrapper):
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s" % (_("Family Attribute"),
                                   _("Type"),
-                                  escape(Utils.format_family_attribute(self._obj.get_type())),
+                                  escape(str(self._obj.get_type())),
                                   _("Value"),
                                   escape(self._obj.get_value()))
         
@@ -506,7 +502,7 @@ class ScratchMediaObj(ScratchPadWrapper):
     DRAG_TARGET  = DdTargets.MEDIAOBJ
     ICON         = LINK_PIC
 
-    def __init__(self, db, nobj):
+    def __init__(self, db, obj):
         ScratchPadWrapper.__init__(self, db, obj)
         self._type  = _("Media Object")
 
