@@ -20,9 +20,27 @@
 
 # $Id: DisplayState.py 6085 2006-03-05 23:39:20Z dallingham $
 
-import Errors
-import gtk
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
 from cStringIO import StringIO
+
+#-------------------------------------------------------------------------
+#
+# GNOME/GTK
+#
+#-------------------------------------------------------------------------
+import gtk
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+import const
+import Errors
 
 #-------------------------------------------------------------------------
 #
@@ -317,8 +335,10 @@ class ManagedWindow:
                 # On the top level: we use gramps top window
                 self.parent_window = self.uistate.window
 
-    def set_window(self, window):
+    def set_window(self,window,title,text,msg=None):
+        set_titles(window,title,text,msg)
         self.window = window
+        self.window.connect('delete-event',self.delete_event)
 
     def build_menu_names(self,obj):
         return ('Undefined Menu','Undefined Submenu')
@@ -327,7 +347,7 @@ class ManagedWindow:
         return id(self)
 
     def show(self):
-        assert(self.window)
+        assert self.window, "ManagedWindow: self.window does not exist!"
         self.window.set_transient_for(self.parent_window)
         self.window.show()
 
@@ -343,5 +363,20 @@ class ManagedWindow:
         """
         Present window (unroll/unminimize/bring to top).
         """
-        assert(self.window)
+        assert self.window, "ManagedWindow: self.window does not exist!"
         self.window.present()
+
+#-------------------------------------------------------------------------
+#
+# Helper functions
+#
+#-------------------------------------------------------------------------
+def set_titles(window,title,t,msg=None):
+    if title:
+        title.set_text('<span weight="bold" size="larger">%s</span>' % t)
+        title.set_use_markup(True)
+    if msg:
+        window.set_title('%s - GRAMPS' % msg)
+    else:
+        window.set_title('%s - GRAMPS' % t)
+    window.set_icon_from_file(const.icon)

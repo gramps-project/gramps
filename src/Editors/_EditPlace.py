@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -70,9 +70,9 @@ class EditPlace(EditPrimary):
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile,"place_editor","gramps")
 
-        self.define_top_level(self.top.get_widget("place_editor"),
-                              self.top.get_widget('title'),
-                              _('Place Editor'))
+        self.set_window(self.top.get_widget("place_editor"),
+                        self.top.get_widget('title'),
+                        _('Place Editor'))
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'),self.save)

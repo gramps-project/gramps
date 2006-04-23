@@ -376,8 +376,8 @@ class EditFamily(EditPrimary):
 
         self.top = gtk.glade.XML(const.gladeFile,"family_editor","gramps")
 
-        self.define_top_level(self.top.get_widget("family_editor"),
-                              None,_('Family Editor'))
+        self.set_window(self.top.get_widget("family_editor"),
+                        None,_('Family Editor'))
 
         self.fbirth = self.top.get_widget('fbirth')
         self.fdeath = self.top.get_widget('fdeath')

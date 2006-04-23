@@ -73,9 +73,9 @@ class EditEventRef(EditReference):
     def _local_init(self):
 
         self.top = gtk.glade.XML(const.gladeFile, "event_eref_edit","gramps")
-        self.define_top_level(self.top.get_widget('event_eref_edit'),
-                              self.top.get_widget('eer_title'),
-                              _('Event Reference Editor'))
+        self.set_window(self.top.get_widget('event_eref_edit'),
+                        self.top.get_widget('eer_title'),
+                        _('Event Reference Editor'))
         self.define_warn_box(self.top.get_widget("eer_warning"))
         self.define_expander(self.top.get_widget("eer_expander"))
                               

@@ -71,9 +71,9 @@ class EditPersonRef(EditSecondary):
 
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "pref_edit","gramps")
-        self.define_top_level(self.top.get_widget("pref_edit"),
-                              self.top.get_widget("title"),
-                              _('Person Reference Editor'))
+        self.set_window(self.top.get_widget("pref_edit"),
+                        self.top.get_widget("title"),
+                        _('Person Reference Editor'))
         self.person_label = self.top.get_widget('person')
 
     def _setup_fields(self):

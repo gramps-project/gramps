@@ -70,9 +70,9 @@ class EditAddress(EditSecondary):
 
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "addr_edit","gramps")
-        self.define_top_level(self.top.get_widget("addr_edit"),
-                              self.top.get_widget("title"),
-                              _('Address Editor'))
+        self.set_window(self.top.get_widget("addr_edit"),
+                        self.top.get_widget("title"),
+                        _('Address Editor'))
 
     def _setup_fields(self):
         self.addr_start = MonitoredDate(

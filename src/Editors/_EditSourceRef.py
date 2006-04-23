@@ -68,9 +68,9 @@ class EditSourceRef(EditReference):
         
         self.top = gtk.glade.XML(const.gladeFile, "source_ref_edit","gramps")
         
-        self.define_top_level(self.top.get_widget('source_ref_edit'),
-                              self.top.get_widget('source_title'),        
-                              _('Source Reference Editor'))
+        self.set_window(self.top.get_widget('source_ref_edit'),
+                        self.top.get_widget('source_title'),        
+                        _('Source Reference Editor'))
 
         self.define_warn_box(self.top.get_widget("warn_box"))
         self.define_expander(self.top.get_widget("src_expander"))

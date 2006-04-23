@@ -67,9 +67,9 @@ class EditMediaRef(EditReference):
         self.top = gtk.glade.XML(const.gladeFile,
                                  "change_description","gramps")
 
-        self.define_top_level(self.top.get_widget('change_description'),
-                              self.top.get_widget('title'),
-                              _('Media Reference Editor'))
+        self.set_window(self.top.get_widget('change_description'),
+                        self.top.get_widget('title'),
+                        _('Media Reference Editor'))
         self.define_warn_box(self.top.get_widget("warn_box"))
         
     def _setup_fields(self):

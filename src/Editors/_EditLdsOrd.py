@@ -121,9 +121,9 @@ class EditLdsOrd(EditSecondary):
 
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "lds_person_edit","gramps")
-        self.define_top_level(self.top.get_widget("lds_person_edit"),
-                              self.top.get_widget('title'),
-                              _('LDS Ordinance Editor'))
+        self.set_window(self.top.get_widget("lds_person_edit"),
+                        self.top.get_widget('title'),
+                        _('LDS Ordinance Editor'))
 
     def _connect_signals(self):
         self.parents_select.connect('clicked',self.select_parents_clicked)
@@ -302,9 +302,9 @@ class EditFamilyLdsOrd(EditSecondary):
 
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "lds_person_edit","gramps")
-        self.define_top_level(self.top.get_widget("lds_person_edit"),
-                              self.top.get_widget('title'),
-                              _('LDS Ordinance Editor'))
+        self.set_window(self.top.get_widget("lds_person_edit"),
+                        self.top.get_widget('title'),
+                        _('LDS Ordinance Editor'))
 
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_widget('cancel'))

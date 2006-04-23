@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,6 @@ from gettext import gettext as _
 import ManagedWindow
 import Config
 import GrampsDisplay
-import Utils
 
 class EditSecondary(ManagedWindow.ManagedWindow):
 
@@ -88,11 +87,6 @@ class EditSecondary(ManagedWindow.ManagedWindow):
         button.connect('clicked',function)
         button.set_sensitive(not self.db.readonly)
 
-    def define_top_level(self,window,title,text):
-        self.window = window
-        self.window.connect('delete-event',self.delete_event)
-        Utils.set_titles(window,title,text)
-        
     def define_cancel_button(self,button):
         button.connect('clicked',self.delete_event)
 
