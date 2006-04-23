@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,14 +45,12 @@ class ColumnOrder(ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         
         self.glade = gtk.glade.XML(const.gladeFile,"columns","gramps")
-
-        self.set_window(self.glade.get_widget('columns'))
+        self.set_window(self.glade.get_widget('columns'),None,
+                       _('Select Columns'))
 
         self.tree = self.glade.get_widget('list')
         self.arglist = arglist
         self.callback = callback
-
-        self.window.set_title("%s - GRAMPS" % _('Select Columns'))
 
         self.model = gtk.ListStore( bool , str , int , object )
         
@@ -84,7 +82,7 @@ class ColumnOrder(ManagedWindow.ManagedWindow):
                            3, item)
 
     def build_menu_names(self,obj):
-        return (_('Column Editor'), _('Column Editor'))
+        return (_('Column Editor'), None)
 
     def ok_clicked(self,obj):
         newlist = []
