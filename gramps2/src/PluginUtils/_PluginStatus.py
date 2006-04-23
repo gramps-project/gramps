@@ -144,10 +144,11 @@ class PluginTrace(ManagedWindow.ManagedWindow):
             )
         )
         self.window.set_size_request(600,400)
-        self.window.connect('delete-event',self.close)
-        self.window.connect('response', self.close)
+        self.window.connect('delete-event',self.close_window)
+        self.window.connect('response', self.close_window)
         
         scrolled_window = gtk.ScrolledWindow()
+        scrolled_window.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         self.text = gtk.TextView()
         scrolled_window.add(self.text)
         self.text.get_buffer().set_text(
@@ -158,3 +159,6 @@ class PluginTrace(ManagedWindow.ManagedWindow):
 
     def build_menu_names(self,obj):
         return (self.name, None)
+
+    def close_window(self, *obj):
+        self.close()
