@@ -277,7 +277,7 @@ class EditLdsOrd(EditSecondary):
 
         if self.callback:
             self.callback(self.obj)
-        self.close_window(obj)
+        self.close()
 
 #-------------------------------------------------------------------------
 #
@@ -405,4 +405,4 @@ class EditFamilyLdsOrd(EditSecondary):
 
         if self.callback:
             self.callback(self.obj)
-        self.close_window(obj)
+        self.close()

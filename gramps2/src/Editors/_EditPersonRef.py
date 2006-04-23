@@ -142,7 +142,7 @@ class EditPersonRef(EditSecondary):
         if self.obj.ref:
             if self.callback:
                 self.callback(self.obj)
-            self.close_window(obj)
+            self.close()
         else:
             from QuestionDialog import ErrorDialog
 

@@ -208,7 +208,7 @@ class EditEventRef(EditReference):
         if self.update:
             self.update(self.source_ref,self.source)
 
-        self.close_window(None)
+        self.close()
 
 class EditFamilyEventRef(EditEventRef):
 

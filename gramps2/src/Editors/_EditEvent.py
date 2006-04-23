@@ -95,7 +95,7 @@ class EditEvent(EditPrimary):
                          etitle, etitle)
 
     def _connect_signals(self):
-        self.top.get_widget('button111').connect('clicked',self.delete_event)
+        self.top.get_widget('button111').connect('clicked',self.close)
         self.top.get_widget('button126').connect('clicked',self.help_clicked)
 
         ok = self.top.get_widget('ok')

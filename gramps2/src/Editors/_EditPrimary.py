@@ -102,18 +102,18 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         button.set_sensitive(not self.db.readonly)
 
     def define_cancel_button(self,button):
-        button.connect('clicked',self.delete_event)
+        button.connect('clicked',self.close)
 
     def define_help_button(self,button,tag):
         button.connect('clicked', lambda x: GrampsDisplay.help(tag))
 
-    def close_window(self,*obj):
+    def _do_close(self,*obj):
         for key in self.signal_keys:
             self.db.disconnect(key)
         self._cleanup_on_exit()
-        self.close()
+        ManagedWindow.ManagedWindow.close(self)
 
-    def delete_event(self,*obj):
+    def close(self,*obj):
         """If the data has changed, give the user a chance to cancel
         the close window"""
         if not Config.get_dont_ask() and self.data_has_changed():
@@ -121,11 +121,11 @@ class EditPrimary(ManagedWindow.ManagedWindow):
                 _('Save Changes?'),
                 _('If you close without saving, the changes you '
                   'have made will be lost'),
-                self.close_window,
+                self._do_close,
                 self.save)
             return True
         else:
-            self.close_window()
+            self._do_close()
             return False
 
     def empty_object(self):
