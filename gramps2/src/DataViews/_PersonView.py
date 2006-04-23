@@ -125,8 +125,11 @@ class PersonView(PageView.PersonNavView):
     def column_editor(self,obj):
         import ColumnOrder
 
-        ColumnOrder.ColumnOrder(self.dbstate.db.get_person_column_order(),
-                                column_names, self.set_column_order)
+        ColumnOrder.ColumnOrder(
+            self.uistate,
+            self.dbstate.db.get_person_column_order(),
+            column_names,
+            self.set_column_order)
 
     def set_column_order(self, column_list):
         self.dbstate.db.set_person_column_order(column_list)
