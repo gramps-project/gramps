@@ -3,6 +3,8 @@
 	* src/plugins/TestcaseGenerator.py: fix BIRTH, DEATH constants
 
 2006-04-23  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Delete column
+	metadata.
 	* src/PluginUtils/_PluginStatus.py (PluginTrace.__init__): Set
 	scrolling policy to auto;
 	(PluginTrace.close_window): Add method.

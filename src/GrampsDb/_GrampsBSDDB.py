@@ -1259,6 +1259,15 @@ class GrampsBSDDB(GrampsDbBase):
         # primary tables and remove them. 
         status,length = low_level_9(self)
 
+        # Remove column metadata, since columns have changed.
+        # This will reset all columns to defaults
+        for name in (PERSON_COL_KEY,CHILD_COL_KEY,PLACE_COL_KEY,SOURCE_COL_KEY,
+                     MEDIA_COL_KEY,EVENT_COL_KEY,FAMILY_COL_KEY):
+            try:
+                self.metadata.delete(name)
+            except KeyError:
+                pass
+
         # Then we remove the surname secondary index table
         # because its format changed from HASH to DUPSORTed BTREE.
         junk = db.DB(self.env)
