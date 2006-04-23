@@ -89,8 +89,11 @@ class PlaceView(PageView.ListView):
     def column_editor(self,obj):
         import ColumnOrder
 
-        ColumnOrder.ColumnOrder(self.dbstate.db.get_place_column_order(),
-                                column_names, self.set_column_order)
+        ColumnOrder.ColumnOrder(
+            self.uistate,
+            self.dbstate.db.get_place_column_order(),
+            column_names,
+            self.set_column_order)
 
     def set_column_order(self,list):
         self.dbstate.db.set_place_column_order(list)

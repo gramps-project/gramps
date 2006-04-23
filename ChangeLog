@@ -1,4 +1,11 @@
 2006-04-23  Don Allingham  <don@gramps-project.org>
+	* src/ColumnOrder.py: use ManagedWindow
+	* src/DataViews/_MediaView.py: ColumnOrder update
+	* src/DataViews/_RepositoryView.py: ColumnOrder update
+	* src/DataViews/_SourceView.py: ColumnOrder update
+	* src/DataViews/_EventView.py: ColumnOrder update
+	* src/DataViews/_PlaceView.py: ColumnOrder update
+	* src/DataViews/_PersonView.py: ColumnOrder update
 	* src/ColumnOrder.py: preserved column width
 	* src/GrampsCfg.py: remove familyview stuff
 	* src/plugins/TestcaseGenerator.py: fix BIRTH, DEATH constants

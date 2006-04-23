@@ -23,11 +23,12 @@
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk.glade
 
 import const
 from gettext import gettext as _
+
+import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
@@ -37,16 +38,21 @@ from gettext import gettext as _
 import logging
 log = logging.getLogger(".ColumnOrder")
 
-class ColumnOrder:
+class ColumnOrder(ManagedWindow.ManagedWindow):
 
-    def __init__(self,arglist,column_names,callback):
+    def __init__(self, uistate, arglist, column_names, callback):
+
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+        
         self.glade = gtk.glade.XML(const.gladeFile,"columns","gramps")
-        self.top = self.glade.get_widget('columns')
+
+        self.set_window(self.glade.get_widget('columns'))
+
         self.tree = self.glade.get_widget('list')
         self.arglist = arglist
         self.callback = callback
 
-        self.top.set_title("%s - GRAMPS" % _('Select Columns'))
+        self.window.set_title("%s - GRAMPS" % _('Select Columns'))
 
         self.model = gtk.ListStore( bool , str , int , object )
         
@@ -77,6 +83,9 @@ class ColumnOrder:
                            2, item[1],
                            3, item)
 
+    def build_menu_names(self,obj):
+        return (_('Column Editor'), _('Column Editor'))
+
     def ok_clicked(self,obj):
         newlist = []
         for i in range(0,len(self.arglist)):
@@ -87,10 +96,10 @@ class ColumnOrder:
             newlist.append((enable, index, value[2]))
 
         self.callback(newlist)
-        self.top.destroy()
+        self.close()
 
     def cancel_clicked(self,obj):
-        self.top.destroy()
+        self.close()
 
     def toggled(self, cell, path, model):
         node = model.get_iter((int(path),))
