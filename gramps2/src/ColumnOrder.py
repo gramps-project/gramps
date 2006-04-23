@@ -26,8 +26,6 @@
 import gobject
 import gtk.glade
 
-import gc
-
 import const
 from gettext import gettext as _
 
@@ -50,9 +48,7 @@ class ColumnOrder:
 
         self.top.set_title("%s - GRAMPS" % _('Select Columns'))
 
-        self.model = gtk.ListStore(gobject.TYPE_BOOLEAN,
-                                   gobject.TYPE_STRING,
-                                   gobject.TYPE_INT)
+        self.model = gtk.ListStore( bool , str , int , object )
         
         self.tree.set_model(self.model)
 
@@ -68,26 +64,33 @@ class ColumnOrder:
         column_n.set_min_width(225)
         self.tree.append_column(column_n)
 
-        self.glade.get_widget('okbutton').connect('clicked',self.ok_clicked)
-        self.glade.get_widget('cancelbutton').connect('clicked',self.cancel_clicked)
+        self.glade.get_widget('okbutton').connect('clicked',
+                                                  self.ok_clicked)
+        self.glade.get_widget('cancelbutton').connect('clicked',
+                                                      self.cancel_clicked)
 
         for item in self.arglist:
             node = self.model.append()
-            self.model.set(node,0,item[0],1,column_names[item[1]],2,item[1])
+            self.model.set(node,
+                           0, item[0],
+                           1, column_names[item[1]],
+                           2, item[1],
+                           3, item)
 
     def ok_clicked(self,obj):
         newlist = []
         for i in range(0,len(self.arglist)):
             node = self.model.get_iter((int(i),))
-            newlist.append((self.model.get_value(node,0),
-                            self.model.get_value(node,2)))
+            enable = self.model.get_value(node, 0)
+            index = self.model.get_value(node, 2)
+            value = self.model.get_value(node,3)
+            newlist.append((enable, index, value[2]))
+
         self.callback(newlist)
         self.top.destroy()
-        gc.collect()
 
     def cancel_clicked(self,obj):
         self.top.destroy()
-        gc.collect()
 
     def toggled(self, cell, path, model):
         node = model.get_iter((int(path),))

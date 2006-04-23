@@ -128,8 +128,8 @@ class PersonView(PageView.PersonNavView):
         ColumnOrder.ColumnOrder(self.dbstate.db.get_person_column_order(),
                                 column_names, self.set_column_order)
 
-    def set_column_order(self,list):
-        self.dbstate.db.set_person_column_order(list)
+    def set_column_order(self, column_list):
+        self.dbstate.db.set_person_column_order(column_list)
         self.build_columns()
 
     def get_stock(self):
@@ -460,10 +460,14 @@ class PersonView(PageView.PersonNavView):
         for column in self.columns:
             self.tree.remove_column(column)
         try:
-            column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0,
-                                        background=self.model.marker_color_column)
+            column = gtk.TreeViewColumn(
+                _('Name'),
+                self.renderer,text=0,
+                background=self.model.marker_color_column)
+            
         except AttributeError:
             column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
+            
         column.set_resizable(True)
         #column.set_clickable(True)
         #column.connect('clicked',self.sort_clicked)
