@@ -90,6 +90,7 @@ class PlaceView(PageView.ListView):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
+            _('Select Place Columns'),
             self.uistate,
             self.dbstate.db.get_place_column_order(),
             column_names,

@@ -124,8 +124,13 @@ def add_child_to_family(db, family, child,
                         frel=RelLib.ChildRefType(),
                         trans=None):
 
-    family.add_child_handle(child.handle)
-    child.add_parent_family_handle(family.handle, mrel, frel )
+    cref = RelLib.ChildRef()
+    cref.ref = child.handle
+    cref.set_father_relation(frel)
+    cref.set_mother_relation(mrel)
+    
+    family.add_child_ref(cref)
+    child.add_parent_family_handle(family.handle)
 
     if trans == None:
         need_commit = True
@@ -134,7 +139,7 @@ def add_child_to_family(db, family, child,
         need_commit = False
 
     db.commit_family(family,trans)
-    db.commit_person(person,trans)
+    db.commit_person(child,trans)
 
     if need_commit:
         db.transaction_commit(trans, _('Add child to family') )

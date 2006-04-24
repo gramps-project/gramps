@@ -1,3 +1,16 @@
+2006-04-23  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_MediaView.py: Column editor changes
+	* src/DataViews/_RepositoryView.py: Column editor changes
+	* src/DataViews/_SourceView.py: Column editor changes
+	* src/DataViews/_EventView.py: Column editor changes
+	* src/DataViews/_FamilyView.py: Column editor changes
+	* src/DataViews/_PlaceView.py: Column editor changes
+	* src/DataViews/_PersonView.py: Column editor changes
+	* src/GrampsDb/_DbUtils.py: fix add_child_to_family to handle refs
+	* src/ColumnOrder.py: format changes
+	* src/glade/gramps.glade: format changes
+	* src/SelectFamily.py: ManagedWindow support
+
 2006-04-23  Alex Roitman  <shura@gramps-project.org>
 	* src/Utils.py: Make set_titles call ManagedWindow.set_titles
 	with warning.
