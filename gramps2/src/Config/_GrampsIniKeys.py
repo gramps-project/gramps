@@ -163,19 +163,19 @@ client = IniKeyClient(os.path.join(const.home_dir,"keys.ini"))
 
 
 def get_date_format(_date_format_list=[]):
-    return get_int(Config.DATE_FORMAT,
+    return get_int(DATE_FORMAT,
                    range(len(_date_format_list)))
 
 def save_date_format(val,_date_format_list=[]):
-    set_int(Config.DATE_FORMAT, val,
+    set_int(DATE_FORMAT, val,
             range(len(_date_format_list)))
 
 def get_name_format(_name_format_list):
-    return get_int(Config.NAME_FORMAT,
+    return get_int(NAME_FORMAT,
                    range(len(_name_format_list)))
 
 def save_name_format(val,_name_format_list):
-    set_int(Config.NAME_FORMAT, val,
+    set_int(NAME_FORMAT, val,
             range(len(_name_format_list)))
 
 
