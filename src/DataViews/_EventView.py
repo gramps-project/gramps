@@ -127,6 +127,7 @@ class EventView(PageView.ListView):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
+            _('Select Event Columns'),
             self.uistate,
             self.dbstate.db.get_event_column_order(),
             column_names,

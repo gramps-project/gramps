@@ -84,6 +84,7 @@ class MediaView(PageView.ListView):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
+            _('Select Media Columns'),
             self.uistate,
             self.dbstate.db.get_media_column_order(),
             column_names,

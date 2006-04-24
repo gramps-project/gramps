@@ -96,6 +96,7 @@ class RepositoryView(PageView.ListView):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
+            _('Select Repository Columns'),
             self.uistate,
             self.dbstate.db.get_repository_column_order(),
             column_names,

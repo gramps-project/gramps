@@ -707,15 +707,17 @@ class FamilyView(PageView.PersonNavView):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             from SelectFamily import SelectFamily
 
-            dialog = SelectFamily(self.dbstate.db, _('Select Family'))
+            dialog = SelectFamily(self.dbstate, self.uistate)
             family = dialog.run()
 
             if family:
                 active_handle = self.dbstate.active.handle
                 child = self.dbstate.db.get_person_from_handle(active_handle)
-                GrampsDb.add_child_to_family(family, child,
-                                             RelLib.ChildRef(),
-                                             RelLib.ChildRef())
+
+                GrampsDb.add_child_to_family(
+                    self.dbstate.db,
+                    family,
+                    child)
             
     def add_parent_family(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:

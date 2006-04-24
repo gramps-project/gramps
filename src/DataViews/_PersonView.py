@@ -126,6 +126,7 @@ class PersonView(PageView.PersonNavView):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
+            _('Select Person Columns'),
             self.uistate,
             self.dbstate.db.get_person_column_order(),
             column_names,

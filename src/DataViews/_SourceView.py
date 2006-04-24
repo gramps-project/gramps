@@ -89,6 +89,7 @@ class SourceView(PageView.ListView):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
+            _('Select Source Columns'),
             self.uistate,
             self.dbstate.db.get_source_column_order(),
             column_names,
