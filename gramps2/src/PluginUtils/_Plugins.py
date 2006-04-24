@@ -462,7 +462,7 @@ class Reload(_Tool.Tool):
                 except:
                     _PluginMgr.failmsg_list.append((filename,sys.exc_info()))
 
-        if Config.get_pop_plugin_status() and len(_PluginMgr.failmsg_list):
+        if Config.get(Config.POP_PLUGIN_STATUS) and len(_PluginMgr.failmsg_list):
             PluginStatus()
         else:
             global status_up

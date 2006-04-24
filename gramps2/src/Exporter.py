@@ -169,7 +169,7 @@ class Exporter:
         Depending on the success status, set the text for the final page.
         """
         filename = self.chooser.get_filename()
-        Config.save_last_export_dir(os.path.split(filename)[0])
+        Config.set(Config.RECENT_EXPORT_DIR,os.path.split(filename)[0])
         ix = self.get_selected_format_index()
         self.pre_save()
         if self.exports[ix][3]:
@@ -304,9 +304,9 @@ class Exporter:
         ext = self.exports[ix][4]
         
         # Suggested folder: try last export, then last import, then home.
-        default_dir = Config.get_last_export_dir()
+        default_dir = Config.get(Config.RECENT_EXPORT_DIR)
         if len(default_dir)<=1:
-            default_dir = Config.get_last_import_dir()
+            default_dir = Config.get(Config.RECENT_IMPORT_DIR)
         if len(default_dir)<=1:
             default_dir = const.user_home
 

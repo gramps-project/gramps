@@ -26,11 +26,16 @@ It provides the choice between different storage backends.
 """
 
 import const
+from _GrampsConfigKeys import *
 
-if const.no_gconf:
+#if const.no_gconf:
+if True:
    from _GrampsIniKeys import *
 else:
    try:
       from _GrampsGconfKeys import *
    except:
       from _GrampsIniKeys import *
+
+
+   

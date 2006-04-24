@@ -67,7 +67,7 @@ class TipOfDay:
         
         tp = TipParser()
         tip_list = tp.get()
-        use.set_active(Config.get_usetips())
+        use.set_active(Config.get(Config.USE_TIPS))
 
         new_index = range(len(tip_list))
         Random().shuffle(new_index)
@@ -85,7 +85,7 @@ class TipOfDay:
             else:
                 index += 1
         
-        Config.save_usetips(use.get_active())
+        Config.set(Config.USE_TIPS,use.get_active())
         top.destroy()
 
 #-------------------------------------------------------------------------

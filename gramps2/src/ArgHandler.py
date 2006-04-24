@@ -397,8 +397,8 @@ class ArgHandler:
 
 ##         if self.imports:
 ##             self.parent.import_tool_callback()
-        elif Config.get_lastfile() and Config.get_autoload():
-            self.auto_save_load(Config.get_lastfile())
+        elif Config.get(Config.RECENT_FILE) and Config.get(Config.AUTOLOAD):
+            self.auto_save_load(Config.get(Config.RECENT_FILE))
 
     #-------------------------------------------------------------------------
     #
@@ -688,11 +688,11 @@ class NewNativeDbPrompter:
 
         # Suggested folder: try last open file, import, then last export, 
         # then home.
-        default_dir = os.path.split(Config.get_lastfile())[0] + os.path.sep
+        default_dir = os.path.split(Config.get(Config.RECENT_FILE))[0] + os.path.sep
         if len(default_dir)<=1:
-            default_dir = Config.get_last_import_dir()
+            default_dir = Config.get(Config.RECENT_IMPORT_DIR)
         if len(default_dir)<=1:
-            default_dir = Config.get_last_export_dir()
+            default_dir = Config.get(Config.RECENT_EXPORT_DIR)
         if len(default_dir)<=1:
             default_dir = '~/'
 

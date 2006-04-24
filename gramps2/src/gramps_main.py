@@ -171,7 +171,7 @@ class Gramps:
 #        Config.client.notify_add("/apps/gramps/preferences/date-format",
 #                                    self.date_format_key_update)
 
-        if Config.get_usetips():
+        if Config.get(Config.USE_TIPS):
             TipOfDay.TipOfDay(self.vm.uistate)
 
 ##         # FIXME: THESE will have to be added (ViewManager?)
@@ -185,18 +185,18 @@ class Gramps:
 
     def researcher_key_update(self,client,cnxn_id,entry,data):
         pass
-#         self.db.set_person_id_prefix(Config.get_person_id_prefix())
-#         self.db.set_family_id_prefix(Config.get_family_id_prefix())
-#         self.db.set_source_id_prefix(Config.get_source_id_prefix())
-#         self.db.set_object_id_prefix(Config.get_object_id_prefix())
-#         self.db.set_place_id_prefix(Config.get_place_id_prefix())
-#         self.db.set_event_id_prefix(Config.get_event_id_prefix())
+#         self.db.set_person_id_prefix(Config.get(Config.IPREFIX))
+#         self.db.set_family_id_prefix(Config.get(Config.FPREFIX))
+#         self.db.set_source_id_prefix(Config.get(Config.SPREFIX))
+#         self.db.set_object_id_prefix(Config.get(Config.OPREFIX))
+#         self.db.set_place_id_prefix(Config.get(Config.PPREFIX))
+#         self.db.set_event_id_prefix(Config.get(Config.EPREFIX))
 
     def statusbar_key_update(self,client,cnxn_id,entry,data):
         self.vm.uistate.modify_statusbar()
 
     def toolbar_key_update(self,client,cnxn_id,entry,data):
-        the_style = Config.get_toolbar()
+        the_style = Config.get(Config.TOOLBAR)
         if the_style == -1:
             self.vm.toolbar.unset_style()
         else:

@@ -121,14 +121,14 @@ def loadConfig():
 #
 #-------------------------------------------------------------------------
 def get_researcher():
-    n = Config.get_researcher_name()
-    a = Config.get_researcher_addr()
-    c = Config.get_researcher_city()
-    s = Config.get_researcher_state()
-    ct = Config.get_researcher_country()
-    p = Config.get_researcher_postal()
-    ph = Config.get_researcher_phone()
-    e = Config.get_researcher_email()
+    n  = Config.get(Config.RESEARCHER_NAME)
+    a  = Config.get(Config.RESEARCHER_ADDR)
+    c  = Config.get(Config.RESEARCHER_CITY)
+    s  = Config.get(Config.RESEARCHER_STATE)
+    ct = Config.get(Config.RESEARCHER_COUNTRY)
+    p  = Config.get(Config.RESEARCHER_POSTAL)
+    ph = Config.get(Config.RESEARCHER_PHONE)
+    e  = Config.get(Config.RESEARCHER_EMAIL)
 
     owner = RelLib.Researcher()
     owner.set(n,a,c,s,ct,p,ph,e)
@@ -186,58 +186,58 @@ class GrampsPreferences:
     def build(self):
 
         auto = self.top.get_widget("autoload")
-        auto.set_active(Config.get_autoload())
+        auto.set_active(Config.get(Config.AUTOLOAD))
         auto.connect('toggled',
-                lambda obj: Config.save_autoload(obj.get_active()))
+                lambda obj: Config.set(Config.AUTOLOAD,obj.get_active()))
 
         spell = self.top.get_widget("spellcheck")
-        spell.set_active(Config.get_spellcheck())
+        spell.set_active(Config.get(Config.SPELLCHECK))
         spell.connect('toggled',
-                lambda obj: Config.save_spellcheck(obj.get_active()))
+                lambda obj: Config.set(Config.SPELLCHECK))
 
         lds = self.top.get_widget("uselds")
-        lds.set_active(Config.get_uselds())
+        lds.set_active(Config.get(Config.USE_LDS))
         lds.connect('toggled',
-                lambda obj: Config.save_uselds(obj.get_active()))
+                lambda obj: Config.set(Config.USE_LDS,obj.get_active()))
 
         self.ipr = self.top.get_widget("iprefix")
-        self.ipr.set_text(Config.get_person_id_prefix())
+        self.ipr.set_text(Config.get(Config.IPREFIX))
         self.opr = self.top.get_widget("oprefix")
-        self.opr.set_text(Config.get_object_id_prefix())
+        self.opr.set_text(Config.get(Config.OPREFIX))
         self.fpr = self.top.get_widget("fprefix")
-        self.fpr.set_text(Config.get_family_id_prefix())
+        self.fpr.set_text(Config.get(Config.FPREFIX))
         self.spr = self.top.get_widget("sprefix")
-        self.spr.set_text(Config.get_source_id_prefix())
+        self.spr.set_text(Config.get(Config.SPREFIX))
         self.ppr = self.top.get_widget("pprefix")
-        self.ppr.set_text(Config.get_place_id_prefix())
+        self.ppr.set_text(Config.get(Config.PPREFIX))
 
         sb2 = self.top.get_widget("stat2")
         sb3 = self.top.get_widget("stat3")
-        if Config.get_statusbar() == 0 or Config.get_statusbar() == 1:
+        if Config.get(Config.STATUSBAR) == 0 or Config.get(Config.STATUSBAR) == 1:
             sb2.set_active(1)
         else:
             sb3.set_active(1)
         sb2.connect('toggled',
-                lambda obj: Config.save_statusbar(2-obj.get_active()))
+                lambda obj: Config.set(Config.STATUSBAR,(2-obj.get_active())))
 
         toolbarmenu = self.top.get_widget("tooloptmenu")
-        toolbarmenu.set_active(Config.get_toolbar()+1)
+        toolbarmenu.set_active(Config.get(Config.TOOLBAR)+1)
         toolbarmenu.connect('changed',
-                lambda obj: Config.save_toolbar(obj.get_active()-1))
+                lambda obj: Config.set(Config.TOOLBAR,obj.get_active()-1))
 
         pvbutton = self.top.get_widget('pvbutton')
         fvbutton = self.top.get_widget('fvbutton')
-        if Config.get_default_view() == 0:
+        if Config.get(Config.DEFAULT_VIEW) == 0:
             pvbutton.set_active(1)
         else:
             fvbutton.set_active(1)
         fvbutton.connect('toggled',
-                lambda obj: Config.save_default_view(obj.get_active()))
+                lambda obj: Config.set(Config.DEFAULT_VIEW,(obj.get_active())))
 
         usetips = self.top.get_widget('usetips')
-        usetips.set_active(Config.get_usetips())
+        usetips.set_active(Config.get(Config.USE_TIPS))
         usetips.connect('toggled',
-                lambda obj: Config.save_usetips(obj.get_active()))
+                lambda obj: Config.set(Config.USE_TIPS,obj.get_active()))
 
         lastnamegen_obj = self.top.get_widget("lastnamegen")
         cell = gtk.CellRendererText()
@@ -248,10 +248,14 @@ class GrampsPreferences:
         for name in _surname_styles:
             store.append(row=[name])
         lastnamegen_obj.set_model(store)
-        lastnamegen_obj.set_active(Config.get_lastnamegen(_surname_styles))
+        guess = Config.get(Config.SURNAME_GUESSING)
+        if guess not in _surname_styles:
+            guess = Config.default_value[Config.SURNAME_GUESSING]
+            
+        lastnamegen_obj.set_active(guess)
         lastnamegen_obj.connect("changed", 
                 lambda obj: 
-                Config.save_lastnamegen(obj.get_active(),_surname_styles)
+                Config.set(Config.SURNAME_GUESSING,obj.get_active())
                 )
 
         date_option = self.top.get_widget("date_format")
@@ -277,37 +281,37 @@ class GrampsPreferences:
                 )
 
         resname = self.top.get_widget("resname")
-        resname.set_text(Config.get_researcher_name())
+        resname.set_text(Config.get(Config.RESEARCHER_NAME))
         resname.connect('changed',
-                    lambda obj: Config.save_researcher_name(obj.get_text()))
+                    lambda obj: Config.set(Config.RESEARCHER_NAME,obj.get_text()))
         resaddr = self.top.get_widget("resaddr")
-        resaddr.set_text(Config.get_researcher_addr())
+        resaddr.set_text(Config.get(Config.RESEARCHER_ADDR))
         resaddr.connect('changed',
-                    lambda obj: Config.save_researcher_addr(obj.get_text()))
+                    lambda obj: Config.set(Config.RESEARCHER_ADDR,obj.get_text()))
         rescity = self.top.get_widget("rescity")
-        rescity.set_text(Config.get_researcher_city())
+        rescity.set_text(Config.get(Config.RESEARCHER_CITY))
         rescity.connect('changed',
-                    lambda obj: Config.save_researcher_city(obj.get_text()))
+                    lambda obj: Config.set(Config.RESEARCHER_CITY,obj.get_text()))
         resstate = self.top.get_widget("resstate")
-        resstate.set_text(Config.get_researcher_state())
+        resstate.set_text(Config.get(Config.RESEARCHER_STATE))
         resstate.connect('changed',
-                    lambda obj: Config.save_researcher_state(obj.get_text()))
+                    lambda obj: Config.set(Config.RESEARCHER_STATE,obj.get_text()))
         rescountry = self.top.get_widget("rescountry")
-        rescountry.set_text(Config.get_researcher_country())
+        rescountry.set_text(Config.get(Config.RESEARCHER_COUNTRY))
         rescountry.connect('changed',
-                    lambda obj: Config.save_researcher_country(obj.get_text()))
+                    lambda obj: Config.set(Config.RESEARCHER_COUNTRY,obj.get_text()))
         respostal = self.top.get_widget("respostal")
-        respostal.set_text(Config.get_researcher_postal())
+        respostal.set_text(Config.get(Config.RESEARCHER_POSTAL))
         respostal.connect('changed',
-                    lambda obj: Config.save_researcher_postal(obj.get_text()))
+                    lambda obj: Config.set(Config.RESEARCHER_POSTAL,obj.get_text()))
         resphone = self.top.get_widget("resphone")
-        resphone.set_text(Config.get_researcher_phone())
+        resphone.set_text(Config.get(Config.RESEARCHER_PHONE))
         resphone.connect('changed',
-                    lambda obj: Config.save_researcher_phone(obj.get_text()))
+                    lambda obj: Config.set(Config.RESEARCHER_PHONE,obj.get_text()))
         resemail = self.top.get_widget("resemail")
-        resemail.set_text(Config.get_researcher_email())
+        resemail.set_text(Config.get(Config.RESEARCHER_EMAIL))
         resemail.connect('changed',
-                    lambda obj: Config.save_researcher_email(obj.get_text()))
+                    lambda obj: Config.set(Config.RESEARCHER_EMAIL,obj.get_text()))
                     
     def save_prefix(self):
         """ Validate the GRAMPS ID definitions to be usable"""
@@ -356,11 +360,11 @@ class GrampsPreferences:
                 self.window)
             return False
 
-        Config.save_iprefix(ip)
-        Config.save_oprefix(op)
-        Config.save_fprefix(fp)
-        Config.save_sprefix(sp)
-        Config.save_pprefix(pp)
+        Config.set(Config.IPREFIX,ip)
+        Config.set(Config.OPREFIX,op)
+        Config.set(Config.FPREFIX,fp)
+        Config.set(Config.SPREFIX,sp)
+        Config.set(Config.PPREFIX,pp)
         return True
         
     def select(self,obj):
