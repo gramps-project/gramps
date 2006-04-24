@@ -8,6 +8,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/Config
 pkgdata_PYTHON = \
 	__init__.py\
 	_GrampsGconfKeys.py\
+	_GrampsConfigKeys.py\
 	_GrampsIniKeys.py
 
 pkgpyexecdir = @pkgpyexecdir@/Config

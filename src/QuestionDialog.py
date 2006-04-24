@@ -74,7 +74,7 @@ class SaveDialog:
         elif response == gtk.RESPONSE_YES:
             self.task2()
 
-        Config.save_dont_ask(self.dontask.get_active())
+        Config.set(Config.DONT_ASK,self.dontask.get_active())
         self.top.destroy()
 
 class QuestionDialog:

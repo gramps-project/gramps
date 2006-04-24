@@ -85,12 +85,8 @@ class FamilyView(PageView.PersonNavView):
         
         dbstate.connect('database-changed', self.change_db)
         dbstate.connect('active-changed', self.change_person)
-        self.show_siblings = Config.get_family_siblings()
-        if self.show_siblings == None:
-            self.show_siblings = True
-        self.show_details = Config.get_family_details()
-        if self.show_details == None:
-            self.show_details = True
+        self.show_siblings = Config.get(Config.FAMILY_SIBLINGS)
+        self.show_details = Config.get(Config.FAMILY_DETAILS)
         self.connect_to_db(dbstate.db)
         self.redrawing = False
         self.child = None
@@ -225,12 +221,12 @@ class FamilyView(PageView.PersonNavView):
     def siblings_toggle(self, obj):
         self.show_siblings = obj.get_active()
         self.change_person(self.dbstate.active.handle)
-        Config.save_family_siblings(self.show_siblings)
+        Config.set(Config.FAMILY_SIBLINGS,self.show_siblings)
 
     def details_toggle(self, obj):
         self.show_details = obj.get_active()
         self.change_person(self.dbstate.active.handle)
-        Config.save_family_details(self.show_details)
+        Config.set(Config.FAMILY_DETAILS,self.show_details)
 
     def change_db(self, db):
         self.connect_to_db(db)

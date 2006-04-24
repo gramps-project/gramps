@@ -66,7 +66,7 @@ except SystemError,msg:
 class Spell:
 
     def __init__(self,obj):
-        if success and Config.get_spellcheck():
+        if success and Config.get(Config.SPELLCHECK):
             self.spell = gtkspell.Spell(obj)
             lang = locale.getlocale()[0]
             self.spell.set_language(lang)

@@ -1085,7 +1085,7 @@ class ReportDialog(BareReportDialog):
         """Get the name of the directory to which the target dialog
         box should default.  This value can be set in the preferences
         panel."""
-        return Config.get_report_dir()
+        return Config.get(Config.REPORT_DIRECTORY)
 
     def set_default_directory(self, value):
         """Save the name of the current directory, so that any future
@@ -1095,7 +1095,7 @@ class ReportDialog(BareReportDialog):
         This means that the last directory used will only be
         remembered for this session of gramps unless the user saves
         his/her preferences."""
-        Config.save_report_dir(value)
+        Config.set(Config.REPORT_DIRECTORY,value)
 
     #------------------------------------------------------------------------
     #
@@ -1961,7 +1961,7 @@ class GrampsTextFormatComboBox(gtk.ComboBox):
         self.pack_start(cell,True)
         self.add_attribute(cell,'text',0)
 
-        out_pref = Config.get_output_preference()
+        out_pref = Config.get(Config.OUTPUT_PREFERENCE)
         index = 0
         _PluginMgr.textdoc_list.sort()
         active_index = 0
@@ -2009,7 +2009,7 @@ class GrampsDrawFormatComboBox(gtk.ComboBox):
         self.pack_start(cell,True)
         self.add_attribute(cell,'text',0)
 
-        out_pref = Config.get_output_preference()
+        out_pref = Config.get(Config.OUTPUT_PREFERENCE)
         index = 0
         _PluginMgr.drawdoc_list.sort()
         active_index = 0
@@ -2057,7 +2057,7 @@ class GrampsBookFormatComboBox(gtk.ComboBox):
         self.pack_start(cell,True)
         self.add_attribute(cell,'text',0)
 
-        out_pref = Config.get_output_preference()
+        out_pref = Config.get(Config.OUTPUT_PREFERENCE)
         index = 0
         _PluginMgr.drawdoc_list.sort()
         active_index = 0

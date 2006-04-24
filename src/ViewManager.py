@@ -182,13 +182,11 @@ class ViewManager:
         """
         Builds the GTK interface
         """
-        try:
-            width = Config.get_width()
-            height = Config.get_height()
-        except:
-            width = 775
-            height = 500
+        width = Config.get(Config.WIDTH)
+        height = Config.get(Config.HEIGHT)
 
+        print width, height, type(width), type(height)
+        
         self.window = gtk.Window()
         self.window.set_icon_from_file(const.icon)
         self.window.set_default_size(width, height)
@@ -207,12 +205,8 @@ class ViewManager:
         hbox.pack_start(self.ebox, False)
         hbox.show_all()
 
-        self.show_sidebar = Config.get_view()
-        if self.show_sidebar == None:
-            self.show_sidebar = True
-        self.show_toolbar = Config.get_toolbar()
-        if self.show_toolbar == None:
-            self.show_toolbar = True
+        self.show_sidebar = Config.get(Config.VIEW)
+        self.show_toolbar = Config.get(Config.TOOLBAR)
 
         self.notebook = gtk.Notebook()
         self.notebook.set_show_tabs(False)
@@ -382,15 +376,15 @@ class ViewManager:
         self.uistate.status_text(_('Loading plugins...'))
         error |= load_plugins(const.pluginsDir)
         error |= load_plugins(os.path.join(const.home_dir, "plugins"))
-        if Config.get_pop_plugin_status() and error:
+        if Config.get(Config.POP_PLUGIN_STATUS) and error:
             PluginStatus.PluginStatus(self.state, self.uistate, [])
         self.uistate.push_message(_('Ready'))
 
     def quit(self, obj=None):
         self.state.db.close()
         (width, height) = self.window.get_size()
-        Config.save_width(width)
-        Config.save_height(height)
+        Config.set(Config.WIDTH, width)
+        Config.set(Config.HEIGHT, height)
         Config.sync()
         gtk.main_quit()
 
@@ -487,20 +481,20 @@ class ViewManager:
         if obj.get_active():
             self.ebox.show()
             self.notebook.set_show_tabs(False)
-            Config.save_view(True)
+            Config.set(Config.VIEW)
         else:
             self.ebox.hide()
             self.notebook.set_show_tabs(True)
-            Config.save_view(False)
+            Config.set(Config.VIEW)
         Config.sync()
 
     def toolbar_toggle(self, obj):
         if obj.get_active():
             self.toolbar.show()
-            Config.save_toolbar(True)
+            Config.set(Config.TOOLBAR)
         else:
             self.toolbar.hide()
-            Config.save_toolbar(False)
+            Config.set(Config.TOOLBAR)
         Config.sync()
 
     def register_view(self, view):
@@ -635,11 +629,11 @@ class ViewManager:
 
         # Suggested folder: try last open file, last import, last export, 
         # then home.
-        default_dir = os.path.split(Config.get_lastfile())[0] + os.path.sep
+        default_dir = os.path.split(Config.get(Config.RECENT_FILE))[0] + os.path.sep
         if len(default_dir)<=1:
-            default_dir = Config.get_last_import_dir()
+            default_dir = Config.get(Config.RECENT_IMPORT_DIR)
         if len(default_dir)<=1:
-            default_dir = Config.get_last_export_dir()
+            default_dir = Config.get(Config.RECENT_EXPORT_DIR)
         if len(default_dir)<=1:
             default_dir = '~/'
 
@@ -690,11 +684,11 @@ class ViewManager:
 
         # Suggested folder: try last open file, import, then last export, 
         # then home.
-        default_dir = os.path.split(Config.get_lastfile())[0] + os.path.sep
+        default_dir = os.path.split(Config.get(Config.RECENT_FILE))[0] + os.path.sep
         if len(default_dir)<=1:
-            default_dir = Config.get_last_import_dir()
+            default_dir = Config.get(Config.RECENT_IMPORT_DIR)
         if len(default_dir)<=1:
-            default_dir = Config.get_last_export_dir()
+            default_dir = Config.get(Config.RECENT_EXPORT_DIR)
         if len(default_dir)<=1:
             default_dir = '~/'
 
@@ -738,7 +732,7 @@ class ViewManager:
         """
         
         (the_path, the_file) = os.path.split(filename)
-        Config.save_last_import_dir(the_path)
+        Config.set(Config.RECENT_IMPORT_DIR,the_path)
         
         factory = GrampsDb.gramps_db_factory
         success = False
@@ -815,7 +809,7 @@ class ViewManager:
                     msg = "%s - GRAMPS" % name
                     self.uistate.window.set_title(msg)
             else:
-                Config.save_last_file("")
+                Config.set(Config.RECENT_FILE,"")
                 QuestionDialog.ErrorDialog(
                     _('Cannot open database'), 
                     _('The database file specified could not be opened.'))
@@ -866,7 +860,7 @@ class ViewManager:
 
         self.state.db.request_rebuild()
 
-        Config.save_last_file(name)
+        Config.set(Config.RECENT_FILE,name)
     
         self.relationship = self.RelClass(self.state.db)
         self.state.change_active_person(self.state.db.find_initial_person())
@@ -976,12 +970,12 @@ class ViewManager:
 
         # Suggested folder: try last open file, import, then last export, 
         # then home.
-        default_dir = Config.get_last_import_dir()
+        default_dir = Config.get(Config.RECENT_IMPORT_DIR)
         if len(default_dir)<=1:
-            base_path = os.path.split(Config.get_lastfile())[0]
+            base_path = os.path.split(Config.get(Config.RECENT_FILE))[0]
             default_dir = base_path + os.path.sep
         if len(default_dir)<=1:
-            default_dir = Config.get_last_export_dir()
+            default_dir = Config.get(Config.RECENT_EXPORT_DIR)
         if len(default_dir)<=1:
             default_dir = '~/'
 
@@ -1010,7 +1004,7 @@ class ViewManager:
 
             # Then we try all the known plugins
             (the_path, the_file) = os.path.split(filename)
-            Config.save_last_import_dir(the_path)
+            Config.set(Config.RECENT_IMPORT_DIR,the_path)
             for (importData, mime_filter, mime_type, 
                  native_format, format_name) in import_list:
                 if filetype == mime_type or the_file == mime_type:

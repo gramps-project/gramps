@@ -194,7 +194,7 @@ class ChildEmbedList(EmbeddedList):
         from Editors import EditPerson
 
         person = RelLib.Person()
-        autoname = Config.get_lastnamegen()
+        autoname = Config.get(Config.SURNAME_GUESSING)
         if autoname == 0:
             name = self.north_american()
         elif autoname == 2:
@@ -320,7 +320,7 @@ class EditFamily(EditPrimary):
                self.obj.get_mother_handle() == None and \
                len(self.obj.get_child_ref_list()) == 1:
             self.add_parent = True
-            if not Config.get_family_warn():
+            if not Config.get(Config.FAMILY_WARN):
                 for i in self.hidden:
                     i.set_sensitive(False)
 
@@ -328,7 +328,7 @@ class EditFamily(EditPrimary):
                 dialog = glade.get_widget('family_warn')
                 dialog.run()
                 if glade.get_widget('dont_show').get_active():
-                    Config.save_family_warn(True)
+                    Config.set(Config.FAMILY_WARN,True)
                 dialog.destroy()
         else:
             self.add_parent = False

@@ -53,7 +53,7 @@ from QuestionDialog import ErrorDialog
 #-------------------------------------------------------------------------
 
 def need_to_run():
-    val = Config.get_startup()
+    val = Config.get(Config.STARTUP)
     if val < const.startup:
         return True
     return False
@@ -68,34 +68,50 @@ def upgrade_prefs():
         client = gconf.client_get_default()
         client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
 
-        Config.save_fprefix(client.get_string('/apps/gramps/fprefix'))
-        Config.save_sprefix(client.get_string('/apps/gramps/sprefix'))
-        Config.save_pprefix(client.get_string('/apps/gramps/pprefix'))
-        Config.save_oprefix(client.get_string('/apps/gramps/oprefix'))
-        Config.save_iprefix(client.get_string('/apps/gramps/iprefix'))
+        Config.set(Config.FPREFIX,client.get_string('/apps/gramps/fprefix'))
+        Config.set(Config.SPREFIX,client.get_string('/apps/gramps/sprefix'))
+        Config.set(Config.PPREFIX,client.get_string('/apps/gramps/pprefix'))
+        Config.set(Config.OPREFIX,client.get_string('/apps/gramps/oprefix'))
+        Config.set(Config.IPREFIX,client.get_string('/apps/gramps/iprefix'))
 
-        Config.save_researcher_country(client.get_string('/apps/gramps/researcher-country'))
-        Config.save_researcher_email(client.get_string('/apps/gramps/researcher-email'))
-        Config.save_researcher_phone(client.get_string('/apps/gramps/researcher-phone'))
-        Config.save_researcher_city(client.get_string('/apps/gramps/researcher-city'))
-        Config.save_researcher_postal(client.get_string('/apps/gramps/researcher-postal'))
-        Config.save_researcher_addr(client.get_string('/apps/gramps/researcher-addr'))
-        Config.save_researcher_state(client.get_string('/apps/gramps/researcher-state'))
-        Config.save_researcher_name(client.get_string('/apps/gramps/researcher-name'))
+        Config.set(Config.RESEARCHER_COUNTRY,
+                   client.get_string('/apps/gramps/researcher-country'))
+        
+        Config.set(Config.RESEARCHER_EMAIL,
+                   client.get_string('/apps/gramps/researcher-email'))
+        Config.set(Config.RESEARCHER_PHONE,
+                   client.get_string('/apps/gramps/researcher-phone'))
+        Config.set(Config.RESEARCHER_CITY,
+                   client.get_string('/apps/gramps/researcher-city'))
+        Config.set(Config.RESEARCHER_POSTAL,
+                   client.get_string('/apps/gramps/researcher-postal'))
+        Config.set(Config.RESEARCHER_ADDR,
+                   client.get_string('/apps/gramps/researcher-addr'))
+        Config.set(Config.RESEARCHER_STATE,
+                   client.get_string('/apps/gramps/researcher-state'))
+        Config.set(Config.RESEARCHER_NAME,
+                   client.get_string('/apps/gramps/researcher-name'))
 
-        Config.save_family_view(client.get_int('/apps/gramps/familyview'))
-        Config.save_default_view(client.get_int('/apps/gramps/defaultview'))
-        Config.save_autoload(client.get_bool('/apps/gramps/autoload'))
-        Config.save_uselds(client.get_bool('/apps/gramps/use-lds'))
-        Config.save_statusbar(client.get_int('/apps/gramps/statusbar'))
-        Config.save_view(not client.get_bool('/apps/gramps/view'))
-        Config.save_screen_size_checked(client.get_bool('/apps/gramps/screen-size-checked'))
-        Config.save_lastnamegen(client.get_int('/apps/gramps/surname-guessing'))
+        Config.set(Config.DEFAULTVIEW,
+                   client.get_int('/apps/gramps/defaultview'))
+        Config.set(Config.AUTOLOAD,
+                   client.get_bool('/apps/gramps/autoload'))
+        Config.set(Config.USE_LDS,
+                   client.get_bool('/apps/gramps/use-lds'))
+        Config.set(Config.STATUSBAR,
+                   client.get_int('/apps/gramps/statusbar'))
+        Config.set(Config.VIEW,
+                   not client.get_bool('/apps/gramps/view'))
+        Config.set(Config.SIZE_CHECKED,
+                   client.get_bool('/apps/gramps/screen-size-checked'))
+        Config.set(Config.SURNAME_GUESSING,
+                   client.get_int('/apps/gramps/surname-guessing'))
         toolbar = client.get_int('/apps/gramps/toolbar')
         if toolbar == 5:
             toolbar = -1
-        Config.save_toolbar(toolbar)
-        Config.save_toolbar_on(client.get_bool('/apps/gramps/toolbar-on'))
+        Config.set(Config.TOOLBAR,toolbar)
+        Config.set(Config.TOOLBAR_ON,
+                   client.get_bool('/apps/gramps/toolbar-on'))
         return True
     except:
         return False
@@ -113,7 +129,7 @@ class StartupDialog:
         self.args = args
 
         if not const.no_gconf and upgrade_prefs():
-            Config.save_startup(const.startup)
+            Config.set(Config.STARTUP,const.startup)
             self.close()
             return
         self.w = Assistant.Assistant(self.complete)
@@ -128,7 +144,7 @@ class StartupDialog:
         try:
             self.w.add_page(_('Researcher information'),self.build_page2())
             self.w.add_page(_('LDS support'), self.build_page5())
-        except:
+        except IndexError:
             ErrorDialog(_("Configuration error"),
                         _("\n\nPossibly the installation of GRAMPS was incomplete."
                           " Make sure the GConf schema of GRAMPS is properly installed."))
@@ -149,17 +165,27 @@ class StartupDialog:
         self.task(self.args)
 
     def complete(self):
-        Config.save_researcher_name(unicode(self.name.get_text()))
-        Config.save_researcher_addr(unicode(self.addr.get_text()))
-        Config.save_researcher_city(unicode(self.city.get_text()))
-        Config.save_researcher_state(unicode(self.state.get_text()))
-        Config.save_researcher_postal(unicode(self.postal.get_text()))
-        Config.save_researcher_country(unicode(self.country.get_text()))
-        Config.save_researcher_phone(unicode(self.phone.get_text()))
-        Config.save_researcher_email(unicode(self.email.get_text()))
+        Config.set(Config.RESEARCHER_NAME,
+                   unicode(self.name.get_text()))
+        Config.set(Config.RESEARCHER_ADDR,
+                   unicode(self.addr.get_text()))
+        Config.set(Config.RESEARCHER_CITY,
+                   unicode(self.city.get_text()))
+        Config.set(Config.RESEARCHER_STATE,
+                   unicode(self.state.get_text()))
+        Config.set(Config.RESEARCHER_POSTAL,
+                   unicode(self.postal.get_text()))
+        Config.set(Config.RESEARCHER_COUNTRY,
+                   unicode(self.country.get_text()))
+        Config.set(Config.RESEARCHER_PHONE,
+                   unicode(self.phone.get_text()))
+        Config.set(Config.RESEARCHER_EMAIL,
+                   unicode(self.email.get_text()))
 
-        Config.save_uselds(self.lds.get_active())
-        Config.save_startup(const.startup)
+        Config.set(Config.USE_LDS,
+                   self.lds.get_active())
+        Config.set(Config.STARTUP,
+                   const.startup)
         self.w.destroy()        
         Config.sync()
         self.task(self.args)
@@ -193,7 +219,7 @@ class StartupDialog:
         box.add(table)
         box.show_all()
 
-        name = Config.get_researcher_name()
+        name = Config.get(Config.RESEARCHER_NAME)
         if not name or name.strip() == "":
             try:
                 import pwd
@@ -205,13 +231,13 @@ class StartupDialog:
         self.name.set_text(name)
 
         try:
-            self.addr.set_text(Config.get_researcher_addr())
-            self.city.set_text(Config.get_researcher_city())
-            self.state.set_text(Config.get_researcher_state())
-            self.postal.set_text(Config.get_researcher_postal())
-            self.country.set_text(Config.get_researcher_country())
-            self.phone.set_text(Config.get_researcher_phone())
-            self.email.set_text(Config.get_researcher_email())
+            self.addr.set_text(Config.get(Config.RESEARCHER_ADDR))
+            self.city.set_text(Config.get(Config.RESEARCHER_CITY))
+            self.state.set_text(Config.get(Config.RESEARCHER_STATE))
+            self.postal.set_text(Config.get(Config.RESEARCHER_POSTAL))
+            self.country.set_text(Config.get(Config.RESEARCHER_COUNTRY))
+            self.phone.set_text(Config.get(Config.RESEARCHER_PHONE))
+            self.email.set_text(Config.get(Config.RESEARCHER_EMAIL))
         except:
             ErrorDialog(_("Configuration/Installation error"),
                         _("The gconf schemas were not found. First, try "
@@ -244,7 +270,7 @@ class StartupDialog:
         
         self.lds = gtk.CheckButton(label=_("Enable LDS ordinance support"))
 
-        self.lds.set_active(Config.get_uselds())
+        self.lds.set_active(Config.get(Config.USE_LDS))
 
         align.add(self.lds)
         

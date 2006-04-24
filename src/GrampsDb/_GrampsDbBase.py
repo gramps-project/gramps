@@ -224,13 +224,13 @@ class GrampsDbBase(GrampsDBCallback):
         self.family_attributes = set()
         self.marker_names = set()
 
-        self.set_person_id_prefix(Config.get_person_id_prefix())
-        self.set_object_id_prefix(Config.get_object_id_prefix())
-        self.set_family_id_prefix(Config.get_family_id_prefix())
-        self.set_source_id_prefix(Config.get_source_id_prefix())
-        self.set_place_id_prefix(Config.get_place_id_prefix())
-        self.set_event_id_prefix(Config.get_event_id_prefix())
-        self.set_repository_id_prefix(Config.get_repository_id_prefix())
+        self.set_person_id_prefix(Config.get(Config.IPREFIX))
+        self.set_object_id_prefix(Config.get(Config.OPREFIX))
+        self.set_family_id_prefix(Config.get(Config.FPREFIX))
+        self.set_source_id_prefix(Config.get(Config.SPREFIX))
+        self.set_place_id_prefix(Config.get(Config.PPREFIX))
+        self.set_event_id_prefix(Config.get(Config.EPREFIX))
+        self.set_repository_id_prefix(Config.get(Config.RPREFIX))
 
         self.open = 0
         self.genderStats = GenderStats()
