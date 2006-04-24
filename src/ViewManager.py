@@ -185,8 +185,6 @@ class ViewManager:
         width = Config.get(Config.WIDTH)
         height = Config.get(Config.HEIGHT)
 
-        print width, height, type(width), type(height)
-        
         self.window = gtk.Window()
         self.window.set_icon_from_file(const.icon)
         self.window.set_default_size(width, height)

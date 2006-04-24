@@ -26,6 +26,7 @@ It provides the choice between different storage backends.
 """
 
 import const
+
 from _GrampsConfigKeys import *
 
 if const.no_gconf:
