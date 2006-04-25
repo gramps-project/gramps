@@ -1,4 +1,5 @@
 2006-04-25  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Desbrowser.py: Window Management fixes.
 	* src/Bookmarks.py: Redraw "Go to bookmark" menu if changes were
 	made in the bookmard editor; Use fixed column widths in editor.
 
