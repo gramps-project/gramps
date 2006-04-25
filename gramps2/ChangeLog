@@ -1,4 +1,7 @@
 2006-04-25  Alex Roitman  <shura@gramps-project.org>
+	* src/Bookmarks.py: Redraw "Go to bookmark" menu if changes were
+	made in the bookmard editor; Use fixed column widths in editor.
+
 	* src/plugins/EventCmp.py: Adapt to RelLib changes.
 	* src/GenericFilter.py (GenericFilter.check_and): Correct logic.
 	* src/PluginUtils/_PluginStatus.py: Use new set_window.

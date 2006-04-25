@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@ DISABLED = -1
 class Bookmarks :
     "Handle the bookmarks interface for Gramps"
     
-    def __init__(self,dbstate,uimanager,bookmarks):
+    def __init__(self,dbstate,uistate,bookmarks):
         """
         Creates a the bookmark editor.
 
@@ -80,7 +80,7 @@ class Bookmarks :
         callback - task to connect to the menu item as a callback
         """
         self.dbstate = dbstate
-        self.uimanager = uimanager
+        self.uistate = uistate
         self.bookmarks = bookmarks
         self.active = DISABLED
         self.action_group = gtk.ActionGroup('Bookmarks')
@@ -93,8 +93,8 @@ class Bookmarks :
 
         count = 0
         if self.active != DISABLED:
-            self.uimanager.remove_ui(self.active)
-            self.uimanager.remove_action_group(self.action_group)
+            self.uistate.uimanager.remove_ui(self.active)
+            self.uistate.uimanager.remove_action_group(self.action_group)
             self.active = DISABLED
             
         actions = []
@@ -109,8 +109,8 @@ class Bookmarks :
             count +=1
         f.write(_btm)
         self.action_group.add_actions(actions)
-        self.uimanager.insert_action_group(self.action_group,1)
-        self.active = self.uimanager.add_ui_from_string(f.getvalue())
+        self.uistate.uimanager.insert_action_group(self.action_group,1)
+        self.active = self.uistate.uimanager.add_ui_from_string(f.getvalue())
         f.close()
 
     def add(self,person_handle):
@@ -148,7 +148,7 @@ class Bookmarks :
         box = gtk.HBox()
         self.top.vbox.pack_start(box,1,1,5)
         
-        name_titles = [(_('Name'),-1,-1),(_('ID'),-1,-1),('',-1,0)]
+        name_titles = [(_('Name'),-1,200),(_('ID'),-1,50),('',-1,0)]
         self.namelist = gtk.TreeView()
         self.namemodel = ListModel.ListModel(self.namelist,name_titles)
         self.namemodel_cols = len(name_titles)
@@ -192,9 +192,12 @@ class Bookmarks :
                 self.namemodel.add([name,gramps_id,person_handle])
         self.namemodel.connect_model()
 
+        self.modified = False
         self.response = self.top.run()
         if self.response == gtk.RESPONSE_HELP:
             self.help_clicked()
+        if self.modified:
+            self.redraw()
         self.top.destroy()
 
     def delete_clicked(self,obj):
@@ -205,6 +208,7 @@ class Bookmarks :
         row = self.namemodel.get_selected_row()
         self.bookmarks.pop(row)
         self.namemodel.remove(the_iter)
+        self.modified = True
 
     def up_clicked(self,obj):
         """Moves the current selection up one row"""
@@ -217,6 +221,7 @@ class Bookmarks :
         self.namemodel.insert(row-1,data,None,1)
         handle = self.bookmarks.pop(row)
         self.bookmarks.insert(row-1,handle)
+        self.modified = True
 
     def down_clicked(self,obj):
         """Moves the current selection down one row"""
@@ -229,6 +234,7 @@ class Bookmarks :
         self.namemodel.insert(row+1,data,None,1)
         handle = self.bookmarks.pop(row)
         self.bookmarks.insert(row+1,handle)
+        self.modified = True
 
     def help_clicked(self):
         """Display the relevant portion of GRAMPS manual"""
