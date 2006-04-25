@@ -1035,7 +1035,10 @@ class GrampsBSDDB(GrampsDbBase):
             data = data_map.get(str(handle),txn=self.txn)
         except:
             data = None
-            log.error("Failed to get from handle",exc_info=True)
+            # under certain circumstances during a database reload,
+            # data_map can be none. If so, then don't report an error
+            if data_map:
+                log.error("Failed to get from handle",exc_info=True)
         if data:
             newobj = class_type()
             newobj.unserialize(data)
