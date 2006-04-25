@@ -25,15 +25,16 @@ def help(target):
     try:
         import gnome
         gnome.help_display('gramps-manual',target)
-    except gobject.GError, msg:
+    except:
         url('http://gramps-project.org/gramps-manual/gramps-manual-en/index.html')
         
 def url(target):
     try:
         import gnome
         gnome.url_show(target)
-    except gobject.GError, msg:
+    except:
         run_browser(target)
+        
 
 def run_browser(url):
     import os
@@ -46,7 +47,12 @@ def run_browser(url):
             if os.path.isfile(prog):
                 os.spawnvpe(os.P_NOWAIT, prog, [prog, url], os.environ)
                 return
-    
+
+    # If we did not find a browser in the path, try this
+    try:
+        os.startfile(url)
+    except:
+        pass
                           
     
 

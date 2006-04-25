@@ -1,3 +1,6 @@
+2006-04-24  Brian Matherly  <pez4brian@users.sourceforge.net>
+	* src/GrampsDisplay.py: make manual work in Windows
+
 2006-04-24  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py: handle data_map during
 	reload of the database
