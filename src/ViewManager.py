@@ -897,7 +897,7 @@ class ViewManager:
         self.uimanager.insert_action_group(self.redoactions, 1)
 
     def setup_bookmarks(self):
-        self.bookmarks = Bookmarks.Bookmarks(self.state, self.uimanager, 
+        self.bookmarks = Bookmarks.Bookmarks(self.state, self.uistate, 
                                              self.state.db.get_bookmarks())
 
     def add_bookmark(self, obj):
