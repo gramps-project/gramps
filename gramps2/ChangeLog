@@ -1,4 +1,8 @@
 2006-04-25  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/EventCmp.py: Adapt to RelLib changes.
+	* src/GenericFilter.py (GenericFilter.check_and): Correct logic.
+	* src/PluginUtils/_PluginStatus.py: Use new set_window.
+
 	* src/Makefile.am: Include BaseDoc in the docmodules list.
 	* src/GrampsDb/_GrampsBSDDB.py: Different order of closing.
 

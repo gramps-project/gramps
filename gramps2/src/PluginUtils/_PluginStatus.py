@@ -57,13 +57,10 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         self.title = _("Plugin Status")
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
-        self.set_window(
-            gtk.Dialog("%s - GRAMPS" % self.title,
-                       uistate.window,
-                       gtk.DIALOG_DESTROY_WITH_PARENT,
-                       (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
-            )
-        )
+        self.set_window(gtk.Dialog("",uistate.window,
+                                   gtk.DIALOG_DESTROY_WITH_PARENT,
+                                   (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
+                        None, self.title)
         self.window.set_size_request(600,400)
         self.window.connect('delete-event',self.close_window)
         self.window.connect('response', self.close_window)
@@ -136,13 +133,10 @@ class PluginTrace(ManagedWindow.ManagedWindow):
         title = "%s: %s" % (_("Plugin Status"),name)
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
-        self.set_window(
-            gtk.Dialog("%s - GRAMPS" % title,
-                       uistate.window,
-                       gtk.DIALOG_DESTROY_WITH_PARENT,
-                       (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
-            )
-        )
+        self.set_window(gtk.Dialog("",uistate.window,
+                                   gtk.DIALOG_DESTROY_WITH_PARENT,
+                                   (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
+                        None, title)
         self.window.set_size_request(600,400)
         self.window.connect('delete-event',self.close_window)
         self.window.connect('response', self.close_window)
