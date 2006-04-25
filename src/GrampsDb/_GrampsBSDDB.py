@@ -800,7 +800,6 @@ class GrampsBSDDB(GrampsDbBase):
     def close(self):
         if not self.db_is_open:
             return
-        self.name_group.close()
         if not self.readonly:
             self.metadata['bookmarks'] = self.bookmarks
             self.metadata['gender_stats'] = self.genderStats.save_stats()
@@ -808,7 +807,10 @@ class GrampsBSDDB(GrampsDbBase):
             self.metadata['pevent_names'] = list(self.individual_event_names)
             self.metadata['fattr_names'] = list(self.family_attributes)
             self.metadata['pattr_names'] = list(self.individual_attributes)
+        if self.UseTXN:
+            self.env.txn_checkpoint()
         self.metadata.close()
+        self.name_group.close()
         self.surnames.close()
         self.eventnames.close()
         self.repository_types.close()
@@ -832,8 +834,6 @@ class GrampsBSDDB(GrampsDbBase):
         self.source_map.close()
         self.media_map.close()
         self.event_map.close()
-        if self.UseTXN:
-            self.env.txn_checkpoint()
         self.env.close()
 
         if not self.readonly:

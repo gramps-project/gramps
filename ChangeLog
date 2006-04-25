@@ -1,3 +1,7 @@
+2006-04-25  Alex Roitman  <shura@gramps-project.org>
+	* src/Makefile.am: Include BaseDoc in the docmodules list.
+	* src/GrampsDb/_GrampsBSDDB.py: Different order of closing.
+
 2006-04-24  Brian Matherly  <pez4brian@users.sourceforge.net>
 	* src/GrampsDisplay.py: make manual work in Windows
 
