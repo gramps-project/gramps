@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,20 +32,19 @@ from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
-# GRAMPS modules
-#
-#------------------------------------------------------------------------
-import Utils
-import NameDisplay
-from PluginUtils import Tool, register_tool
-
-#------------------------------------------------------------------------
-#
 # GTK/GNOME modules
 #
 #------------------------------------------------------------------------
 import gtk
 import gtk.glade
+
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+import NameDisplay
+from PluginUtils import Tool, register_tool
 import GrampsDisplay
 import ManagedWindow
 
@@ -62,26 +61,26 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
         if self.fail:
             return
         
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
-
         self.dbstate = dbstate
         self.active = dbstate.get_active_person()
         self.callback = callback
+        self.active_name = _("Descendant Browser: %s") \
+                           % NameDisplay.displayer.display(self.active)
+
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "desbrowse.glade"
 
         self.glade = gtk.glade.XML(glade_file,"top","gramps")
         self.glade.signal_autoconnect({
-            "destroy_passed_object" : self.close_window,
+            "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
             })
-        self.window = self.glade.get_widget("top")
 
-        self.active_name = _("Descendant Browser: %s") \
-                        % NameDisplay.displayer.display(self.active)
-        Utils.set_titles(self.window,self.glade.get_widget('title'),
-                         self.active_name)
+        window = self.glade.get_widget("top")
+        self.set_window(window,self.glade.get_widget('title'),
+                        self.active_name)
         
         self.tree = self.glade.get_widget("tree1")
         col = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
@@ -91,10 +90,10 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
         self.tree.connect('event',self.button_press_event)
         self.make_new_model()
 
-        self.window.show()
+        self.show()
 
-    def close_window(self,obj):
-        self.close()
+    def build_menu_names(self,obj):
+        return (self.active_name,_("Descendant Browser tool"))
 
     def make_new_model(self):
         self.model = gtk.TreeStore(str, object)
@@ -107,13 +106,11 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
         GrampsDisplay.help('tools-ae')
 
     def add_to_tree(self, parent_id, sib_id, person_handle):
-        
         item_id = self.model.insert_after(parent_id, sib_id)
         person = self.db.get_person_from_handle(person_handle)
         
         self.model.set(item_id, 0, NameDisplay.displayer.display(person))
         self.model.set(item_id, 1, person_handle)
-        
         prev_id = None
         for family_handle in person.get_family_handle_list():
             family = self.db.get_family_from_handle(family_handle)
