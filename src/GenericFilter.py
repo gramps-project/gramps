@@ -1997,7 +1997,8 @@ class GenericFilter:
                 for rule in flist:
                     if not rule.apply(db,person):
                         val = False
-                if not val:
+                        break
+                if val:
                     final_list.append(handle)
         return final_list
 

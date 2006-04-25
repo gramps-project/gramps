@@ -37,7 +37,6 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import GrampsDisplay
 
 #------------------------------------------------------------------------
 #
@@ -54,6 +53,8 @@ import const
 import DateHandler
 from QuestionDialog import WarningDialog
 from PluginUtils import Tool, register_tool
+from GrampsDisplay import help
+import ManagedWindow
 
 #------------------------------------------------------------------------
 #
@@ -124,15 +125,13 @@ class TableReport:
 # 
 #
 #------------------------------------------------------------------------
-class EventComparison(Tool.Tool):
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
-
-        self.parent = parent
-        if self.parent.child_windows.has_key(self.__class__):
-            self.parent.child_windows[self.__class__].present(None)
-            return
-        self.win_key = self.__class__
+class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        self.dbstate = dbstate
+        self.uistate = uistate
+        
+        Tool.Tool.__init__(self,dbstate,options_class,name)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "eventcmp.glade"
@@ -142,18 +141,15 @@ class EventComparison(Tool.Tool):
         self.filterDialog.signal_autoconnect({
             "on_apply_clicked"       : self.on_apply_clicked,
             "on_editor_clicked"      : self.filter_editor_clicked,
-##             "on_filter_list_enter"   : self.filter_list_enter,
-            "on_filters_delete_event": self.on_delete_event,
+            "on_filters_delete_event": self.close,
             "on_help_clicked"        : self.on_help_clicked,
             "destroy_passed_object"  : self.close
             })
     
-        self.window = self.filterDialog.get_widget("filters")
-        self.window.set_icon(self.parent.topWindow.get_icon())
+        window = self.filterDialog.get_widget("filters")
         self.filters = self.filterDialog.get_widget("filter_list")
         self.label = _('Event comparison filter selection')
-
-        Utils.set_titles(self.window,self.filterDialog.get_widget('title'),
+        self.set_window(window,self.filterDialog.get_widget('title'),
                         self.label)
 
         self.all = GenericFilter.GenericFilter()
@@ -166,42 +162,19 @@ class EventComparison(Tool.Tool):
         self.filter_menu.show()
         self.filters.set_menu(self.filter_menu)
 
-        self.add_itself_to_menu()
-        self.window.show()
+        self.show()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-util')
+        help('tools-util')
 
-    def on_delete_event(self,obj,b):
-        self.remove_itself_from_menu()
-
-    def close(self,obj):
-        self.remove_itself_from_menu()
-        self.window.destroy()
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(_("Event Comparison tool"))
-        self.parent_menu_item.connect("activate",self.present)
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
+    def build_menu_names(self,obj):
+        return (_("Filter selection"),_("Event Comparison tool"))
 
     def filter_editor_clicked(self,obj):
         import FilterEditor
         FilterEditor.FilterEditor(const.custom_filters,self.db,self.parent)
 
-##     def filter_list_enter(self,obj):
-##         self.filter_menu = GenericFilter.build_filter_menu([self.all])
-##         self.filters.set_menu(self.filter_menu)
-        
     def on_apply_clicked(self,obj):
         cfilter = self.filter_menu.get_active().get_data("filter")
 
@@ -210,6 +183,7 @@ class EventComparison(Tool.Tool):
 
         plist = cfilter.apply(self.db,
                               self.db.get_person_handles(sort_handles=False))
+
         progress_bar.step()
         progress_bar.close()
         self.options.handler.set_filter_number(self.filters.get_history())
@@ -219,7 +193,7 @@ class EventComparison(Tool.Tool):
         if len(plist) == 0:
             WarningDialog(_("No matches were found"))
         else:
-            DisplayChart(self.db,plist,self.parent)
+            DisplayChart(self.dbstate,self.uistate,plist,self.track)
 
 #-------------------------------------------------------------------------
 #
@@ -243,13 +217,16 @@ def fix(line):
 #
 #
 #-------------------------------------------------------------------------
-class DisplayChart:
-    def __init__(self,database,people_list,parent):
-        self.db = database
+class DisplayChart(ManagedWindow.ManagedWindow):
+    def __init__(self,dbstate,uistate,people_list,track):
+        self.dbstate = dbstate
+        self.uistate = uistate
+
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+
+        self.db = dbstate.db
         self.my_list = people_list
         self.row_data = []
-        self.parent = parent
-        self.win_key = self
         self.save_form = None
         
         base = os.path.dirname(__file__)
@@ -260,61 +237,35 @@ class DisplayChart:
             "on_write_table"        : self.on_write_table,
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
-            "on_view_delete_event"  : self.on_delete_event,
+            "on_view_delete_event"  : self.close,
             })
 
-        self.window = self.topDialog.get_widget("view")
-        self.window.set_icon(self.parent.topWindow.get_icon())
+        window = self.topDialog.get_widget("view")
+        self.set_window(window, self.topDialog.get_widget('title'),
+                        _('Event Comparison Results'))
+                        
         self.eventlist = self.topDialog.get_widget('treeview')
-
-        Utils.set_titles(self.window, self.topDialog.get_widget('title'),
-                         _('Event Comparison Results'))
-    
         self.sort = Sort.Sort(self.db)
         self.my_list.sort(self.sort.by_last_name)
 
         self.event_titles = self.make_event_titles()
         self.build_row_data()
         self.draw_clist_display()
-        self.add_itself_to_menu()
-        self.window.show()
+        self.show()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','tools-ae')
+        help('gramps-manual','tools-ae')
 
-    def on_delete_event(self,obj,b):
-        self.remove_itself_from_menu()
-        if self.save_form:
-            self.save_form.destroy()
-
-    def close(self,obj):
-        self.remove_itself_from_menu()
-        if self.save_form:
-            self.save_form.destroy()
-        self.window.destroy()
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(_("Event Comparison Results"))
-        self.parent_menu_item.connect("activate",self.present)
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
+    def build_menu_names(self,obj):
+        return (_("Event Comparison Results"),None)
 
     def draw_clist_display(self):
 
         titles = []
         index = 0
         for event_name in self.event_titles:
-            # Need to display localized event names
-            titles.append((const.display_event(event_name),index,150))
+            titles.append((event_name,index,150))
             index = index + 1
             
         self.list = ListModel.ListModel(self.eventlist,titles)
@@ -352,10 +303,8 @@ class DisplayChart:
                     dplace = self.db.get_place_from_handle(dplace_handle).get_title()
             map = {}
             for ievent_ref in individual.get_event_ref_list():
-                if not ievent_ref:
-                    continue
                 ievent = self.db.get_event_from_handle(ievent_ref.ref)
-                event_name = ievent.get_name()
+                event_name = str(ievent.get_type())
                 if map.has_key(event_name):
                     map[event_name].append(ievent_ref.ref)
                 else:
@@ -397,16 +346,17 @@ class DisplayChart:
             self.progress_bar.step()
 
     def make_event_titles(self):
-        """Creates the list of unique event types, along with the person's
-        name, birth, and death. This should be the column titles of the report"""
+        """
+        Creates the list of unique event types, along with the person's
+        name, birth, and death.
+        This should be the column titles of the report.
+        """
         map = {}
         for individual_id in self.my_list:
             individual = self.db.get_person_from_handle(individual_id)
-            for event_ref in individual.get_event_list():
-                if not event_ref:
-                    continue
+            for event_ref in individual.get_event_ref_list():
                 event = self.db.get_event_from_handle(event_ref.ref)
-                name = event.get_name()
+                name = str(event.get_type())
                 if not name:
                     break
                 if map.has_key(name):
@@ -424,7 +374,7 @@ class DisplayChart:
         self.form = gtk.glade.XML(self.glade_file,"dialog1","gramps")
         self.form.signal_autoconnect({
             "on_save_clicked"       : self.on_save_clicked,
-            "destroy_passed_object" : Utils.destroy_passed_object
+            "destroy_passed_object" : self.close,
             })
         self.save_form = self.form.get_widget("dialog1")
         self.save_form.show_all()
@@ -439,8 +389,7 @@ class DisplayChart:
         spreadsheet = TableReport(name,doc)
         spreadsheet.initialize(len(self.event_titles))
 
-        spreadsheet.write_table_head([const.display_event(event_name)
-                                      for event_name in self.event_titles])
+        spreadsheet.write_table_head(self.event_titles)
 
         index = 0
         for top in self.row_data:
