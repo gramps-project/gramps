@@ -83,7 +83,7 @@ gdir_PYTHON = \
 MOSTLYCLEANFILES = *pyc *pyo
 
 # Which modules to document
-docmodules = RelLib DateHandler GrampsDb
+docmodules = RelLib DateHandler GrampsDb BaseDoc
 
 pycheck: 
 	for d in $(SUBDIRS) ; do \
