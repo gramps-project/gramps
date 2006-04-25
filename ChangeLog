@@ -1,4 +1,6 @@
 2006-04-24  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py: handle data_map during
+	reload of the database
 	* src/DataViews/_FamilyView.py: Config changes
 	* src/ViewManager.py: Config changes
 	* src/GrampsDb/_GrampsDbBase.py: Config changes
