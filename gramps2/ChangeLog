@@ -1,3 +1,7 @@
+2006-04-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DataViews/_MapView.py: First badly hacked version of online map
+	downloading.
+
 2006-04-25  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsCfg.py (build_window_key): Remove, as there's no need
 	to override the base class anymore.
