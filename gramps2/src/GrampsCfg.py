@@ -102,16 +102,16 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.window.vbox.pack_start(tlabel, padding=12)
         self.window.vbox.add(panel)
         self.window.connect('response',self.done)
-        panel.append_page(self.add_researcher_panel(),
-                          MarkupLabel("<b>%s</b>" % _('Researcher')))
-        panel.append_page(self.add_formats_panel(),
-                          MarkupLabel("<b>%s</b>" % _('Formats')))
         panel.append_page(self.add_behavior_panel(),
-                          MarkupLabel("<b>%s</b>" % _('Behavior')))
+                          MarkupLabel("<b>%s</b>" % _('General')))
+        panel.append_page(self.add_formats_panel(),
+                          MarkupLabel("<b>%s</b>" % _('Display')))
         panel.append_page(self.add_prefix_panel(),
                           MarkupLabel("<b>%s</b>" % _('ID Prefixes')))
         panel.append_page(self.add_advanced_panel(),
-                          MarkupLabel("<b>%s</b>" % _('Advanced')))
+                          MarkupLabel("<b>%s</b>" % _('Warnings')))
+        panel.append_page(self.add_researcher_panel(),
+                          MarkupLabel("<b>%s</b>" % _('Researcher')))
 
         self.window.show_all()
         self.show()
