@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@ import GrampsDisplay
 #-------------------------------------------------------------------------
 import Utils
 import ManagedWindow
-
+import Errors
 from PluginUtils import Tool, register_tool
 from QuestionDialog import OkDialog
 
@@ -91,7 +91,9 @@ class PatchNames(Tool.Tool, ManagedWindow.ManagedWindow):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         
         Tool.Tool.__init__(self, dbstate, options_class, name)
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+        self.label = _('Name and title extraction tool')
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [],
+                                                 self.__class__)
 
         self.cb = callback
         self.trans = self.db.transaction_begin()
@@ -162,6 +164,9 @@ class PatchNames(Tool.Tool, ManagedWindow.ManagedWindow):
             OkDialog(_('No modifications made'),
                      _("No titles or nicknames were found"))
 
+    def build_menu_names(self,obj):
+        return (self.label,None)
+
     def toggled(self,cell,path_string):
         path = tuple([int (i) for i in path_string.split(':')])
         row = self.model[path]
@@ -174,16 +179,14 @@ class PatchNames(Tool.Tool, ManagedWindow.ManagedWindow):
         glade_file = base + os.sep + "patchnames.glade"
         
         self.top = gtk.glade.XML(glade_file,"top","gramps")
-        self.window = self.top.get_widget('top')
+        window = self.top.get_widget('top')
         self.top.signal_autoconnect({
             "destroy_passed_object" : self.close,
             "on_ok_clicked" : self.on_ok_clicked,
             "on_help_clicked"       : self.on_help_clicked,
-            "on_delete_event" : self.on_delete_event
             })
         self.list = self.top.get_widget("list")
-        self.label = _('Name and title extraction tool')
-        Utils.set_titles(self.window,self.top.get_widget('title'),self.label)
+        self.set_window(window,self.top.get_widget('title'),self.label)
 
         self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING,
                                    gobject.TYPE_STRING, gobject.TYPE_STRING,
@@ -271,12 +274,6 @@ class PatchNames(Tool.Tool, ManagedWindow.ManagedWindow):
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-db')
-
-    def on_delete_event(self,obj,b):
-        pass
-
-    def close(self,obj):
-        self.window.destroy()
 
     def on_ok_clicked(self,obj):
         for grp in self.nick_list:
