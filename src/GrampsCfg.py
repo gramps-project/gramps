@@ -255,10 +255,6 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
     def build_menu_names(self,obj):
         return (_('Preferences'),None)
 
-    def build_window_key(self,obj):
-        return id(GrampsPreferences)
-
-
 if __name__ == "__main__":
     GrampsPreferences(None,None)
     gtk.main()

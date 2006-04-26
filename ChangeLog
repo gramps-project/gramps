@@ -1,4 +1,6 @@
 2006-04-25  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsCfg.py (build_window_key): Remove, as there's no need
+	to override the base class anymore.
 	* src/plugins/PatchNames.py: Adapt to new wm.
 	* src/PluginUtils/_Tool.py (gui_tool): handle exception.
 	* src/plugins/EventCmp.py (DisplayChart.on_write_table): Use
