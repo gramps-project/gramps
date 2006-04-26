@@ -194,9 +194,12 @@ class BookMarkView(PageView):
         self.bm_type = bm_type
         self.setup_bookmarks(bookmarks)
 
+    def goto_handle(self, obj):
+        pass
+
     def setup_bookmarks(self, bookmarks):
         self.bookmarks = self.bm_type(
-            self.dbstate, self.uistate, bookmarks)
+            self.dbstate, self.uistate, bookmarks, self.goto_handle)
 
     def add_bookmark(self, obj):
         import NameDisplay
@@ -248,7 +251,7 @@ class BookMarkView(PageView):
 #----------------------------------------------------------------
 class PersonNavView(BookMarkView):
 
-    def __init__(self,title,dbstate,uistate):
+    def __init__(self,title,dbstate,uistate, callback=None):
         BookMarkView.__init__(self, title, dbstate, uistate,
                               dbstate.db.get_bookmarks(),
                               Bookmarks.Bookmarks)
@@ -524,6 +527,27 @@ class ListView(BookMarkView):
             [GenericFilter.PeoplePrivate, []],
             ]
         self.generic_filter_widget.setup_filter( default_filters)        
+
+    def goto_handle(self, handle):
+        if not self.dbstate.active or self.inactive:
+            return
+
+        # mark inactive to prevent recusion
+        self.inactive = True
+
+        # select the active person in the person view
+
+        try:
+            path = self.model.on_get_path(handle)
+            self.selection.unselect_all()
+            self.selection.select_path(path)
+            self.list.scroll_to_cell(path,None,1,0.5,0)
+        except KeyError:
+            self.selection.unselect_all()
+
+        # disable the inactive flag
+        self.inactive = False
+
 
     def column_clicked(self,obj,data):
         if self.sort_col != data:
