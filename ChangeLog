@@ -1,3 +1,6 @@
+2006-04-26  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Check.py: Adapt to new family relation types.
+
 2006-04-26  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: force uimanager updates
 	* src/Bookmarks.py: force uimanager updates
