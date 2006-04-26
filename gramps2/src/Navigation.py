@@ -26,7 +26,7 @@ the history changes, the UI XML string and the action groups are updated.
 """
 
 __author__ = "Donald N. Allingham"
-__revision__ = "$Revision:$"
+__revision__ = "$Revision$"
 
 
 #-------------------------------------------------------------------
@@ -107,6 +107,7 @@ class BaseNavigation:
         if self.active == DISABLED:
             self.uistate.uimanager.insert_action_group(self.action_group, 1)
             self.active = self.uistate.uimanager.add_ui_from_string(self.ui)
+            self.uistate.uimanager.ensure_update()
 
     def build_item_name(self, handle):
         """

@@ -1,7 +1,12 @@
 2006-04-26  Don Allingham  <don@gramps-project.org>
-	* src/DataViews/_MediaView.py:
-	* src/DataViews/_RepositoryView.py
-	* src/DataViews/_SourceView.py:
+	* src/ViewManager.py: force uimanager updates
+	* src/Bookmarks.py: force uimanager updates
+	* src/DisplayState.py: force uimanager updates
+	* src/Navigation.py: force uimanager updates
+	* src/ManagedWindow.py: force uimanager updates
+	* src/DataViews/_MediaView.py: multiple bookmark lists
+	* src/DataViews/_RepositoryView.py: multiple bookmark lists
+	* src/DataViews/_SourceView.py: multiple bookmark lists
 	* src/DataViews/_EventView.py: multiple bookmark lists
 	* src/DataViews/_FamilyView.py: multiple bookmark lists
 	* src/DataViews/_FamilyList.py: multiple bookmark lists

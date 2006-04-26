@@ -410,6 +410,7 @@ class ViewManager:
         self.uimanager.insert_action_group(self.actiongroup, 1)
         self.uimanager.insert_action_group(self.undoactions, 1)
         self.uimanager.insert_action_group(self.redoactions, 1)
+        self.uimanager.ensure_update()
 
     def home_page_activate(self, obj):
         import GrampsDisplay
@@ -587,6 +588,7 @@ class ViewManager:
                 for ui in self.active_page.additional_ui_definitions():
                     mergeid = self.uimanager.add_ui_from_string(ui)
                     self.merge_ids.append(mergeid)
+                self.uimanager.ensure_update()
                 while gtk.events_pending():
                     gtk.main_iteration()
 
@@ -1036,6 +1038,7 @@ class ViewManager:
         self.toolactions.add_actions(actions)
         self.uistate.uimanager.add_ui_from_string(ui)
         self.uimanager.insert_action_group(self.toolactions, 1)
+        self.uistate.uimanager.ensure_update()
     
     def build_report_menu(self):
         self.reportactions = gtk.ActionGroup('ReportWindow')
@@ -1046,6 +1049,7 @@ class ViewManager:
         self.reportactions.add_actions(actions)
         self.uistate.uimanager.add_ui_from_string(ui)
         self.uimanager.insert_action_group(self.reportactions, 1)
+        self.uistate.uimanager.ensure_update()
 
     def build_plugin_menu(self, text, item_list, categories, func):
         actions = []

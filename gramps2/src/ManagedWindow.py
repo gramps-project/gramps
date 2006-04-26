@@ -101,6 +101,7 @@ class GrampsWindowManager:
         """
         self.uimanager.insert_action_group(self.action_group, 1)
         self.active = self.uimanager.add_ui_from_string(self.ui)
+        self.uimanager.ensure_update()
 
     def get_item_from_track(self,track):
         # Recursively find an item given track sequence
