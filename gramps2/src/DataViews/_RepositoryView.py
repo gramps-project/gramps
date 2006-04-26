@@ -37,6 +37,8 @@ import PageView
 import DisplayModels
 import const
 import Utils
+import Bookmarks
+
 from Editors import EditRepository, DelRepositoryQuery
 from DdTargets import DdTargets
 
@@ -82,7 +84,12 @@ class RepositoryView(PageView.ListView):
         PageView.ListView.__init__(
             self, _('Repositories'), dbstate, uistate,
             column_names, len(column_names),
-            DisplayModels.RepositoryModel, signal_map)
+            DisplayModels.RepositoryModel, signal_map,
+            dbstate.db.get_repo_bookmarks(),
+            Bookmarks.RepoBookmarks)
+
+    def get_bookmarks(self):
+        return self.dbstate.db.get_repo_bookmarks()
 
     def drag_info(self):
         return DdTargets.REPO_LINK
@@ -117,6 +124,12 @@ class RepositoryView(PageView.ListView):
           <menubar name="MenuBar">
             <menu action="ViewMenu">
               <menuitem action="Filter"/>
+            </menu>
+            <menu action="BookMenu">
+              <placeholder name="AddEditBook">
+                <menuitem action="AddBook"/>
+                <menuitem action="EditBook"/>
+              </placeholder>
             </menu>
             <menu action="EditMenu">
               <placeholder name="CommonEdit">

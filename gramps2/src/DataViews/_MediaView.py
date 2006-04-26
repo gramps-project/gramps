@@ -37,6 +37,8 @@ import DisplayModels
 import ImgManip
 import const
 import Utils
+import Bookmarks
+
 from QuestionDialog import QuestionDialog, ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -73,12 +75,17 @@ class MediaView(PageView.ListView):
         PageView.ListView.__init__(
             self, _('Media'), dbstate, uistate,
             column_names,len(column_names), DisplayModels.MediaModel,
-            signal_map)
+            signal_map, dbstate.db.get_media_bookmarks(),
+            Bookmarks.MediaBookmarks)
+
+    def get_bookmarks(self):
+        return self.dbstate.db.get_media_bookmarks()
 
     def define_actions(self):
         PageView.ListView.define_actions(self)
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                         '_Column Editor', callback=self.column_editor)
+                        
 
     def column_editor(self,obj):
         import ColumnOrder
@@ -133,6 +140,12 @@ class MediaView(PageView.ListView):
                 <menuitem action="Remove"/>
               </placeholder>
               <menuitem action="ColumnEdit"/>
+            </menu>
+            <menu action="BookMenu">
+              <placeholder name="AddEditBook">
+                <menuitem action="AddBook"/>
+                <menuitem action="EditBook"/>
+              </placeholder>
             </menu>
           </menubar>
           <toolbar name="ToolBar">

@@ -38,6 +38,8 @@ import DisplayModels
 import const
 import Utils
 import Errors
+import Bookmarks
+
 from Editors import EditPlace, DeletePlaceQuery
 from QuestionDialog import QuestionDialog, ErrorDialog
 
@@ -79,7 +81,12 @@ class PlaceView(PageView.ListView):
 
         PageView.ListView.__init__(
             self, _('Places'), dbstate, uistate, column_names,
-            len(column_names), DisplayModels.PlaceModel, signal_map)
+            len(column_names), DisplayModels.PlaceModel, signal_map,
+            dbstate.db.get_place_bookmarks(),
+            Bookmarks.PlaceBookmarks)
+
+    def get_bookmarks(self):
+        return self.dbstate.db.get_place_bookmarks()
 
     def define_actions(self):
         PageView.ListView.define_actions(self)
@@ -111,6 +118,12 @@ class PlaceView(PageView.ListView):
           <menubar name="MenuBar">
             <menu action="ViewMenu">
               <menuitem action="Filter"/>
+            </menu>
+            <menu action="BookMenu">
+              <placeholder name="AddEditBook">
+                <menuitem action="AddBook"/>
+                <menuitem action="EditBook"/>
+              </placeholder>
             </menu>
             <menu action="EditMenu">
               <placeholder name="CommonEdit">

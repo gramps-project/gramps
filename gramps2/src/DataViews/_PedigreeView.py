@@ -493,6 +493,12 @@ class PedigreeView(PageView.PersonNavView):
                 <separator/>
               </placeholder>
             </menu>
+            <menu action="BookMenu">
+              <placeholder name="AddEditBook">
+                <menuitem action="AddBook"/>
+                <menuitem action="EditBook"/>
+              </placeholder>
+            </menu>
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
@@ -546,6 +552,10 @@ class PedigreeView(PageView.PersonNavView):
         db.connect('person-update', self.person_updated_cb)
         db.connect('person-delete', self.person_updated_cb)
         db.connect('person-rebuild', self.person_rebuild)
+        self.bookmarks.update_bookmarks(db.get_bookmarks())
+        if self.active:
+            self.bookmarks.redraw()
+
         self.rebuild_trees(None)
  
     def goto_active_person(self,handle=None):

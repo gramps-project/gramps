@@ -156,6 +156,8 @@ class Gramps:
         
         state = GrampsDb.DbState()
         self.vm = ViewManager.ViewManager(state)
+#        self.vm.register_view(DataViews._PersonView.PersonView)
+#        self.vm.register_view(DataViews._FamilyList.FamilyListView)
         for view in DataViews.get_views():
             self.vm.register_view(view)
 

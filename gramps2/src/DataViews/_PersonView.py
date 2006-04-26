@@ -208,6 +208,12 @@ class PersonView(PageView.PersonNavView):
             <menu action="ViewMenu">
               <menuitem action="Filter"/>
             </menu>
+            <menu action="BookMenu">
+              <placeholder name="AddEditBook">
+                <menuitem action="AddBook"/>
+                <menuitem action="EditBook"/>
+              </placeholder>
+            </menu>
             <menu action="GoMenu">
               <placeholder name="CommonGo">
                 <menuitem action="Back"/>
@@ -266,7 +272,9 @@ class PersonView(PageView.PersonNavView):
         db.connect('person-rebuild', self.build_tree)
         self.generic_filter_widget.apply_filter()
         self.goto_active_person()
-
+        self.bookmarks.update_bookmarks(db.get_bookmarks())
+        if self.active:
+            self.bookmarks.redraw()
 
     def goto_active_person(self,obj=None):
         """

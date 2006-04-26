@@ -56,6 +56,7 @@ import gtk
 import GrampsDisplay
 import NameDisplay
 import ListModel
+import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -84,39 +85,52 @@ class Bookmarks :
         self.bookmarks = bookmarks
         self.active = DISABLED
         self.action_group = gtk.ActionGroup('Bookmarks')
+
+    def update_bookmarks(self, bookmarks):
+        self.bookmarks = bookmarks
+
+    def display(self):
         self.redraw()
+
+    def undisplay(self):
+        if self.active != DISABLED:
+            self.uistate.uimanager.remove_ui(self.active)
+            self.uistate.uimanager.remove_action_group(self.action_group)
+            self.active = DISABLED
 
     def redraw(self):
         """Create the pulldown menu"""
         f = StringIO()
         f.write(_top)
 
-        count = 0
-        if self.active != DISABLED:
-            self.uistate.uimanager.remove_ui(self.active)
-            self.uistate.uimanager.remove_action_group(self.action_group)
-            self.active = DISABLED
-            
+        self.undisplay()
+        
         actions = []
+        count = 0
 
         if len(self.bookmarks) > 0:
             f.write('<placeholder name="GoToBook">')
             for item in self.bookmarks:
-                person = self.dbstate.db.get_person_from_handle(item)
-                name = NameDisplay.displayer.display(person)
+                label, obj = self.make_label(item)
+                func = self.callback(item)
                 action_id = "BM:%s" % item
-                f.write('<menuitem action="%s"/>' % action_id)
-                label = "%s [%s]" % (name,person.gramps_id)
-                func = make_callback(item,self.dbstate.change_active_handle)
                 actions.append((action_id,None,label,None,None,func))
+                f.write('<menuitem action="%s"/>' % action_id)
                 count +=1
             f.write('</placeholder>')
         f.write(_btm)
         self.action_group.add_actions(actions)
         self.uistate.uimanager.insert_action_group(self.action_group,1)
-        print f.getvalue()
         self.active = self.uistate.uimanager.add_ui_from_string(f.getvalue())
         f.close()
+
+    def make_label(self,handle):
+        person = self.dbstate.db.get_person_from_handle(handle)
+        name = NameDisplay.displayer.display(person)
+        return ("%s [%s]" % (name,person.gramps_id), person)
+
+    def callback(self, handle):
+        return make_callback(handle, self.dbstate.change_active_handle)
 
     def add(self,person_handle):
         """appends the person to the bottom of the bookmarks"""
@@ -189,12 +203,11 @@ class Bookmarks :
         list is not empty, or -1 if it is.
         """
         self.draw_window()
-        for person_handle in self.bookmarks:
-            person = self.dbstate.db.get_person_from_handle(person_handle)
-            if person:
-                name = NameDisplay.displayer.display(person)
-                gramps_id = person.get_gramps_id()
-                self.namemodel.add([name,gramps_id,person_handle])
+        for handle in self.bookmarks:
+            name, obj = self.make_label(handle)
+            if obj:
+                gramps_id = obj.get_gramps_id()
+                self.namemodel.add([name,gramps_id,handle])
         self.namemodel.connect_model()
 
         self.modified = False
@@ -245,6 +258,111 @@ class Bookmarks :
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('gramps-nav')
         self.response = self.top.run()
+
+class FamilyBookmarks(Bookmarks) :
+    "Handle the bookmarks interface for Gramps"
+    
+    def __init__(self,dbstate,uistate,bookmarks):
+        Bookmarks.__init__(self, dbstate, uistate, bookmarks)
+        
+    def make_label(self,handle):
+        obj = self.dbstate.db.get_family_from_handle(handle)
+        name = Utils.family_name(obj, self.dbstate.db)
+        return ("%s [%s]" % (name, obj.gramps_id), obj)
+
+    def callback(self, handle):
+        return make_callback(handle, self.do_nothing)
+
+    def do_nothing(self, handle):
+        print handle
+
+class EventBookmarks(Bookmarks) :
+    "Handle the bookmarks interface for Gramps"
+    
+    def __init__(self,dbstate,uistate,bookmarks):
+        Bookmarks.__init__(self, dbstate, uistate, bookmarks)
+        
+    def make_label(self,handle):
+        obj = self.dbstate.db.get_event_from_handle(handle)
+        if obj.get_description() == "":
+            name = str(obj.get_type())
+        else:
+            name = obj.get_description()
+        return ("%s [%s]" % (name, obj.gramps_id), obj)
+
+    def callback(self, handle):
+        return make_callback(handle, self.do_nothing)
+
+    def do_nothing(self, handle):
+        print handle
+
+class SourceBookmarks(Bookmarks) :
+    "Handle the bookmarks interface for Gramps"
+    
+    def __init__(self,dbstate,uistate,bookmarks):
+        Bookmarks.__init__(self, dbstate, uistate, bookmarks)
+        
+    def make_label(self,handle):
+        obj = self.dbstate.db.get_source_from_handle(handle)
+        name = obj.get_title()
+        return ("%s [%s]" % (name, obj.gramps_id), obj)
+
+    def callback(self, handle):
+        return make_callback(handle, self.do_nothing)
+
+    def do_nothing(self, handle):
+        print handle
+
+class MediaBookmarks(Bookmarks) :
+    "Handle the bookmarks interface for Gramps"
+    
+    def __init__(self,dbstate,uistate,bookmarks):
+        Bookmarks.__init__(self, dbstate, uistate, bookmarks)
+        
+    def make_label(self,handle):
+        obj = self.dbstate.db.get_object_from_handle(handle)
+        name = obj.get_description()
+        return ("%s [%s]" % (name, obj.gramps_id), obj)
+
+    def callback(self, handle):
+        return make_callback(handle, self.do_nothing)
+
+    def do_nothing(self, handle):
+        print handle
+
+class RepoBookmarks(Bookmarks) :
+    "Handle the bookmarks interface for Gramps"
+    
+    def __init__(self,dbstate,uistate,bookmarks):
+        Bookmarks.__init__(self, dbstate, uistate, bookmarks)
+        
+    def make_label(self,handle):
+        obj = self.dbstate.db.get_repository_from_handle(handle)
+        name = obj.get_name()
+        return ("%s [%s]" % (name, obj.gramps_id), obj)
+
+    def callback(self, handle):
+        return make_callback(handle, self.do_nothing)
+
+    def do_nothing(self, handle):
+        print handle
+
+class PlaceBookmarks(Bookmarks) :
+    "Handle the bookmarks interface for Gramps"
+    
+    def __init__(self,dbstate,uistate,bookmarks):
+        Bookmarks.__init__(self, dbstate, uistate, bookmarks)
+        
+    def make_label(self,handle):
+        obj = self.dbstate.db.get_place_from_handle(handle)
+        name = obj.get_title()
+        return ("%s [%s]" % (name, obj.gramps_id), obj)
+
+    def callback(self, handle):
+        return make_callback(handle, self.do_nothing)
+
+    def do_nothing(self, handle):
+        print handle
 
 def make_callback(n,f):
     return lambda x: f(n)

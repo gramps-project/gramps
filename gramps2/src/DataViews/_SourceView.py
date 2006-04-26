@@ -37,9 +37,10 @@ import PageView
 import DisplayModels
 import const
 import Utils
+import Bookmarks
+
 from DdTargets import DdTargets
 from Editors import EditSource, DelSrcQuery
-
 from QuestionDialog import QuestionDialog, ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -75,7 +76,12 @@ class SourceView(PageView.ListView):
 
         PageView.ListView.__init__(
             self, _('Sources'), dbstate, uistate, column_names,
-            len(column_names), DisplayModels.SourceModel, signal_map)
+            len(column_names), DisplayModels.SourceModel, signal_map,
+            dbstate.db.get_source_bookmarks(),
+            Bookmarks.SourceBookmarks)
+
+    def get_bookmarks(self):
+        return self.dbstate.db.get_source_bookmarks()
 
     def drag_info(self):
         return DdTargets.SOURCE_LINK
@@ -110,6 +116,12 @@ class SourceView(PageView.ListView):
           <menubar name="MenuBar">
             <menu action="ViewMenu">
               <menuitem action="Filter"/>
+            </menu>
+            <menu action="BookMenu">
+              <placeholder name="AddEditBook">
+                <menuitem action="AddBook"/>
+                <menuitem action="EditBook"/>
+              </placeholder>
             </menu>
             <menu action="EditMenu">
               <placeholder name="CommonEdit">
