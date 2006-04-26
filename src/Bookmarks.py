@@ -122,6 +122,7 @@ class Bookmarks :
         self.action_group.add_actions(actions)
         self.uistate.uimanager.insert_action_group(self.action_group,1)
         self.active = self.uistate.uimanager.add_ui_from_string(f.getvalue())
+        self.uistate.uimanager.ensure_update()
         f.close()
 
     def make_label(self,handle):
