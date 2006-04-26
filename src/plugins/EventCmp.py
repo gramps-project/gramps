@@ -371,34 +371,35 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         return [_("Person"),_("Birth"),_("Death")] + sort_list
 
     def on_write_table(self,obj):
-        self.form = gtk.glade.XML(self.glade_file,"dialog1","gramps")
-        self.form.signal_autoconnect({
-            "on_save_clicked"       : self.on_save_clicked,
-            "destroy_passed_object" : self.close,
-            })
-        self.save_form = self.form.get_widget("dialog1")
-        self.save_form.show_all()
+        f = gtk.FileChooserDialog(_("Select filename"),
+                                  action=gtk.FILE_CHOOSER_ACTION_SAVE,
+                                  buttons=(gtk.STOCK_CANCEL,
+                                           gtk.RESPONSE_CANCEL,
+                                           gtk.STOCK_OPEN,
+                                           gtk.RESPONSE_OK))
 
-    def on_save_clicked(self,obj):
-        
-        name = unicode(self.form.get_widget("filename").get_text())
+        f.set_current_folder(os.getcwd())
+        status = f.run()
+        name = unicode(f.get_filename())
+        f.destroy()
 
-        pstyle = BaseDoc.PaperStyle("junk",10,10)
-        doc = OpenSpreadSheet.OpenSpreadSheet(pstyle,BaseDoc.PAPER_PORTRAIT)
-        doc.creator(self.db.get_researcher().get_name())
-        spreadsheet = TableReport(name,doc)
-        spreadsheet.initialize(len(self.event_titles))
+        if status == gtk.RESPONSE_OK:
+            pstyle = BaseDoc.PaperStyle("junk",10,10)
+            doc = OpenSpreadSheet.OpenSpreadSheet(pstyle,
+                                                  BaseDoc.PAPER_PORTRAIT)
+            doc.creator(self.db.get_researcher().get_name())
+            spreadsheet = TableReport(name,doc)
+            spreadsheet.initialize(len(self.event_titles))
 
-        spreadsheet.write_table_head(self.event_titles)
+            spreadsheet.write_table_head(self.event_titles)
 
-        index = 0
-        for top in self.row_data:
-            spreadsheet.set_row(index%2)
-            index = index + 1
-            spreadsheet.write_table_data(top)
+            index = 0
+            for top in self.row_data:
+                spreadsheet.set_row(index%2)
+                index = index + 1
+                spreadsheet.write_table_data(top)
 
-        spreadsheet.finalize()
-        Utils.destroy_passed_object(obj)
+            spreadsheet.finalize()
 
 #------------------------------------------------------------------------
 #
