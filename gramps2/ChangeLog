@@ -1,3 +1,8 @@
+2006-04-25  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/EventCmp.py (DisplayChart.on_write_table): Use
+	FileChooser dialog.
+	* src/plugins/eventcmp.glade: remove unused dialog.
+
 2006-04-25  Don Allingham  <don@gramps-project.org>
 	* src/Bookmarks.py: Don't use goto submenu
 	* src/GrampsCfg/py: move and rename tabs, change Prefixes for Formats
