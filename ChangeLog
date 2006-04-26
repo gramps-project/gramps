@@ -1,4 +1,8 @@
 2006-04-26  Alex Roitman  <shura@gramps-project.org>
+	* src/MergePeople.py: Adapt to RelLib changes.
+	* src/plugins/Merge.py: Properly call MergePeople; properly call
+	update; set dbstate and uistate as instance attributes.
+
 	* src/plugins/Check.py: Adapt to new family relation types.
 
 2006-04-26  Don Allingham  <don@gramps-project.org>
