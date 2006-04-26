@@ -1,6 +1,7 @@
 2006-04-25  Don Allingham  <don@gramps-project.org>
 	* src/GrampsCfg/py: move and rename tabs, change Prefixes for Formats
-	* src/ViewManager.py: new config changes, handle exception
+	* src/ViewManager.py: new config changes, handle exception, enable Edit button
+	by default
 	* src/GrampsCfg.py: new config changes
 	* src/Config/gen_schema_keys.py: new config changes
 	* src/gramps_main.py: new config changes

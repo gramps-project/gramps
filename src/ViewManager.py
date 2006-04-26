@@ -284,6 +284,7 @@ class ViewManager:
             ('OpenRecent', None, 'Open _Recent'), 
             ('Quit', gtk.STOCK_QUIT, '_Quit', "<control>q", None, self.quit), 
             ('ViewMenu', None, '_View'), 
+            ('EditMenu', None, '_Edit'), 
             ('Preferences', gtk.STOCK_PREFERENCES, '_Preferences', None, None,
              self.preferences_activate), 
             ('HelpMenu', None, '_Help'), 
