@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,39 +43,40 @@ import pango
 #-------------------------------------------------------------------------
 import RelLib
 from PluginUtils import ReportUtils
-import Utils
 import NameDisplay
 import const
 import DateHandler
 import QuestionDialog
 import GrampsDisplay
+import ManagedWindow
+import Utils
 
 sex = ( _("female"), _("male"), _("unknown"))
 
-class Compare:
+class Compare(ManagedWindow.ManagedWindow):
 
-    def __init__(self, db, person1, person2, update) :
+    def __init__(self, dbstate, uistate, person1, person2, update) :
+
+        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+
         self.glade = gtk.glade.XML(const.merge_glade, "merge")
-        self.top = self.glade.get_widget('merge')
+        window = self.glade.get_widget('merge')
         self.text1 = self.glade.get_widget('text1')
         self.text2 = self.glade.get_widget('text2')
-        self.db = db
+        self.db = dbstate.db
 
         self.p1 = person1
         self.p2 = person2
         self.update = update
         
-        Utils.set_titles(self.top,self.glade.get_widget('title'),
-                         _("Compare People"))
+        self.set_window(window,self.glade.get_widget('title'),
+                        _("Compare People"))
         self.display(self.text1.get_buffer(), person1)
         self.display(self.text2.get_buffer(), person2)
 
-        self.glade.get_widget('cancel').connect('clicked',self.cancel)
+        self.glade.get_widget('cancel').connect('clicked',self.close)
         self.glade.get_widget('close').connect('clicked',self.merge)
         self.glade.get_widget('help').connect('clicked',self.help)
-
-    def cancel(self,obj):
-        self.top.destroy()
 
     def help(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -99,7 +100,7 @@ class Compare:
                 merge = MergePeople(self.db,self.p1,self.p2)
             else:
                 merge = MergePeople(self.db,self.p2,self.p1)
-            self.top.destroy()
+            self.close()
             merge.merge()
             self.update()
 
@@ -135,18 +136,20 @@ class Compare:
             for name in nlist:
                 self.add(tobj,normal,NameDisplay.displayer.display_name(name))
 
-        elist = person.get_event_list()
+        elist = person.get_event_ref_list()
         if len(elist) > 0:
             self.add(tobj,title,_("Events"))
-            for event_handle in person.get_event_list():
-                name = self.db.get_event_from_handle(event_handle).get_name()
+            for event_ref in person.get_event_ref_list():
+                event_handle = event_ref.ref
+                name = str(
+                    self.db.get_event_from_handle(event_handle).get_type())
                 self.add(tobj,normal,"%s:\t%s" % (name,self.get_event_info(event_handle)))
         plist = person.get_parent_family_handle_list()
 
         if len(plist) > 0:
             self.add(tobj,title,_("Parents"))
             for fid in person.get_parent_family_handle_list():
-                (fn,mn,gid) = self.get_parent_info(fid[0])
+                (fn,mn,gid) = self.get_parent_info(fid)
                 self.add(tobj,normal,"%s:\t%s" % (_('Family ID'),gid))
                 if fn:
                     self.add(tobj,indent,"%s:\t%s" % (_('Father'),fn))
@@ -172,8 +175,8 @@ class Compare:
                 if event:
                     self.add(tobj,indent,"%s:\t%s" % (
                         _('Marriage'), self.get_event_info(event.get_handle())))
-                for child_id in family.get_child_handle_list():
-                    child = self.db.get_person_from_handle(child_id)
+                for child_ref in family.get_child_ref_list():
+                    child = self.db.get_person_from_handle(child_ref.ref)
                     self.add(tobj,indent,"%s:\t%s" % (_('Child'),name_of(child)))
         else:
             self.add(tobj,normal,_("No spouses or children found"))
@@ -257,7 +260,7 @@ class MergePeopleUI:
 
     def __init__(self,db,person1,person2,update):
         glade = gtk.glade.XML(const.merge_glade, 'merge_people')
-        top = glade.get_widget('merge_people')
+        window = glade.get_widget('merge_people')
         p1 = glade.get_widget('person1')
         p2 = glade.get_widget('person2')
         n1 = name_of(person1)
@@ -336,7 +339,7 @@ class MergePeople:
                 fam = self.db.get_family_from_handle(h)
                 print " - family %s has father: %s, mother: %s" % \
                       (h,fam.get_father_handle(),fam.get_mother_handle())
-            for h,m1,m2 in person.get_parent_family_handle_list():
+            for h in person.get_parent_family_handle_list():
                 print " - parent family %s" % h
 
     def merge(self):
@@ -491,14 +494,16 @@ class MergePeople:
         ref2 = self.p2.get_birth_ref()
 
         if ref1:
-            new.set_birth_handle(ref1.ref)
+            new.set_birth_ref(ref1)
             if ref2:
                 event = self.db.get_event_from_handle(ref2.ref)
                 event.set_name('Alternate Birth')
                 self.db.add_event(event,trans)
-                new.add_event_handle(event.get_handle())
-        elif not handle1 and handle2:
-            new.set_birth_handle(handle2)
+                event_ref = RelLib.EventRef()
+                event_ref.ref = event.get_handle()
+                new.add_event_ref(event_ref)
+        elif not ref1 and ref2:
+            new.set_birth_ref(ref2)
 
     def merge_death(self, new, trans):
         """
@@ -509,33 +514,37 @@ class MergePeople:
         death event, and the secondary person's death event is added
         as a 'Alternate Death' event.
         """
-        handle1 = self.p1.get_death_handle()
-        handle2 = self.p2.get_death_handle()
+        ref1 = self.p1.get_death_ref()
+        ref2 = self.p2.get_death_ref()
 
-        if handle1:
-            new.set_death_handle(handle1)
-            if handle2:
-                event = self.db.get_event_from_handle(handle2)
+        if ref1:
+            new.set_death_ref(ref1)
+            if ref2:
+                event = self.db.get_event_from_handle(ref2)
                 event.set_handle(Utils.create_id())
                 event.set_name('Alternate Death')
-                new.add_event_handle(event.get_handle())
+                event_ref = RelLib.EventRef()
+                event_ref.ref = event.get_handle()
+                new.add_event_ref(event_ref)
                 self.db.add_event(event,trans)
-        elif not handle1 and handle2:
-            new.set_death_handle(handle2)
+        elif not ref1 and ref2:
+            new.set_death_ref(ref2)
 
     def merge_event_lists(self, new):
         """
         Merges the events from the two people into the destination
         person.  Duplicates are not transferred.
         """
-        data_list = new.get_event_list()
-        for handle in self.p1.get_event_list():
-            if handle not in data_list:
-                data_list.append(handle)
-        for handle in self.p2.get_event_list():
-            if handle not in data_list:
-                data_list.append(handle)
-        new.set_event_list(data_list)
+        data_list = new.get_event_ref_list()
+        data_handle_list = [ref.ref for ref in data_list]
+
+        add_ref_list1 = [ref for ref in self.p1.get_event_ref_list()
+                         if ref.ref not in data_handle_list]
+
+        add_ref_list2 = [ref for ref in self.p2.get_event_ref_list()
+                         if ref.ref not in data_handle_list]
+
+        new.set_event_ref_list(data_list+add_ref_list1+add_ref_list2)
 
     def merge_family_information(self, new, trans):
         """
@@ -575,32 +584,35 @@ class MergePeople:
         for family_handle in parent_list:
             self.convert_child_ids(family_handle, self.new_handle,
                                    self.old_handle, trans)
-            new.add_parent_family_handle(family_handle, mrel, frel)
+            new.add_parent_family_handle(family_handle)
                     
     def convert_child_ids(self, fhandle, new_handle, old_handle, trans):
         """
-        Search the family associated with fhandle, and replace all
-        child handles that match old_handle with new_handle.
+        Search the family associated with fhandle, and replace 
+        old handle with the new handle in all child references.
         """
         family = self.db.get_family_from_handle(fhandle)
-        new_child_list = []
-        orig_list = family.get_child_ref_list()
+        orig_ref_list = family.get_child_ref_list()
+        new_ref_list = []
 
         # loop through original child list. If a handle matches the
         # old handle, replace it with the new handle if the new handle
         # is not already in the list
 
-        for child_ref in orig_list:
+        for child_ref in orig_ref_list:
             if child_ref.ref == old_handle:
-                if new_handle not in new_child_list:
-                    new_child_list.append(new_handle)
-            elif child_id not in new_child_list:
-                new_child_list.append(child_id)
+                if new_handle not in [ref.ref for ref in new_ref_list]:
+                    new_ref = RelLib.ChildRef()
+                    new_ref.ref = new_handle
+                    new_ref_list.append(new_ref)
+            elif child_ref.ref not in [ref.ref for ref in new_ref_list]:
+                new_ref_list.append(child_ref)
 
         # compare the new list with the original list. If this list
         # is different, we need to save the changes to the database.
-        if new_child_list != orig_list:
-            family.set_child_ref_list(new_child_list)
+        if [ref.ref for ref in new_ref_list] \
+               != [ref.ref for ref in orig_ref_list]:
+            family.set_child_ref_list(new_ref_list)
             self.db.commit_family(family,trans)
     
     def merge_relationships(self,new,trans):
@@ -668,21 +680,21 @@ class MergePeople:
 
         # a little debugging here
 
-        cursor = self.db.get_family_cursor()
-        data = cursor.first()
-        while data:
-            fam = RelLib.Family()
-            fam.unserialize(data[1])
-            if self.p2 in fam.get_child_handle_list():
-                fam.remove_child_handle(self.p2)
-                fam.add_child_handle(self.p1)
-            if self.p2 == fam.get_father_handle():
-                fam.set_father_handle(self.p1)
-            if self.p2 == fam.get_mother_handle():
-                fam.set_mother_handle(self.p1)
-            if fam.get_father_handle() == None and fam.get_mother_handle() == None:
-                self.delete_empty_family(fam,trans)
-            data = cursor.next()
+##         cursor = self.db.get_family_cursor()
+##         data = cursor.first()
+##         while data:
+##             fam = RelLib.Family()
+##             fam.unserialize(data[1])
+##             if self.p2 in [ref.ref for ref in fam.get_child_ref_list()]:
+##                 fam.remove_child_ref(self.p2)
+##                 fam.add_child_ref(self.p1)
+##             if self.p2 == fam.get_father_handle():
+##                 fam.set_father_handle(self.p1)
+##             if self.p2 == fam.get_mother_handle():
+##                 fam.set_mother_handle(self.p1)
+##             if fam.get_father_handle() == None and fam.get_mother_handle() == None:
+##                 self.delete_empty_family(fam,trans)
+##             data = cursor.next()
 
     def find_modified_family(self,family):
         """
@@ -795,10 +807,13 @@ class MergePeople:
 
         # merge family events
 
-        elist = tgt_family.get_event_list()[:]
-        for event_id in src_family.get_event_list():
-            if event_id not in elist:
-                tgt_family.add_event_handle(event_id)
+        ereflist = tgt_family.get_event_ref_list()
+        eref_handle_list = [ref.ref for ref in ereflist]
+
+        add_ref_list = [ref for ref in src_family.get_event_ref_list()
+                        if ref.ref not in eref_handle_list]
+        tgt_family.set_event_ref_list(ereflist+add_ref_list)
+        
 
         # merge family attributes
 

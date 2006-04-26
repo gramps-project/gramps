@@ -545,6 +545,8 @@ class ShowMatches(ManagedWindow.ManagedWindow):
         self.length = len(self.list)
         self.update = callback
         self.db = dbstate.db
+        self.dbstate = dbstate
+        self.uistate = uistate
         
         base = os.path.dirname(__file__)
         self.glade_file = "%s/%s" % (base,"merge.glade")
@@ -607,14 +609,14 @@ class ShowMatches(ManagedWindow.ManagedWindow):
         pn1 = self.db.get_person_from_handle(self.p1)
         pn2 = self.db.get_person_from_handle(self.p2)
 
-        MergePeople.Compare(self.db,pn1,pn2,self.on_update)
+        MergePeople.Compare(self.dbstate,self.uistate,pn1,pn2,self.on_update)
 
     def on_update(self):
         self.dellist[self.p2] = self.p1
         for key in self.dellist.keys():
             if self.dellist[key] == self.p2:
                 self.dellist[key] = self.p1
-        self.update(None,None)
+        self.update()
         self.redraw()
         
     def update_and_destroy(self,obj):
