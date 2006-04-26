@@ -1423,20 +1423,23 @@ class GrampsParser:
             else:
                 self.person.add_event_ref(ref)
 
-##         # FIXME: re-enable when event types are fixed.
-##         if self.event.get_description() == "" and \
-##                self.event.get_type()[0] != RelLib.Event.CUSTOM:
-##             if self.family:
-##                 text = _event_family_str % {
-##                     'event_name' : Utils.family_events[self.event.get_type()[0]],
-##                     'family' : Utils.family_name(self.family,self.db),
-##                     }
-##             else:
-##                 text = _event_person_str % {
-##                     'event_name' : Utils.personal_events[self.event.get_type()[0]],
-##                     'person' : NameDisplay.displayer.display(self.person),
-##                     }
-##             self.event.set_description(text)
+        # FIXME: re-enable when event types are fixed.
+
+        if self.event.get_description() == "" and \
+               self.event.get_type() != RelLib.EventType.CUSTOM:
+            if self.family:
+                text = _event_family_str % {
+                    'event_name' : str(self.event.get_type()),
+                    'family' : Utils.family_name(self.family,self.db),
+                    }
+            elif self.person:
+                text = _event_person_str % {
+                    'event_name' : str(self.event.get_type()),
+                    'person' : NameDisplay.displayer.display(self.person),
+                    }
+            else:
+                text = u''
+            self.event.set_description(text)
 
         self.db.commit_event(self.event,self.trans,self.change)
         self.event = None

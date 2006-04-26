@@ -24,26 +24,40 @@ from xml.parsers.expat import ExpatError, ParserCreate
 class SchemaHandler:
 
     def __init__(self):
+        self.list = []
+        self.clean()
+
+    def clean(self):
         self.tlist = []
         self.type = ""
         self.default = ""
         self.key = ""
+        self.include = False
         self.short = ""
-        self.list = []
+        self.long = ""
         
     def startElement(self,tag,attrs):
-        self.tlist = []
+        pass
 
     def endElement(self,tag):
-        data = ''.join(self.tlist)
+        data = ''.join(self.tlist).strip()
         if tag == "type":
             self.type = data
         elif tag == "default":
             self.default = data
+        elif tag == "include":
+            self.include = int(data)
+        elif tag == "short":
+            self.short = data
+        elif tag == "long":
+            self.long = data.replace('\n','')
         elif tag == "applyto":
             self.key = data
         elif tag == "schema":
-            self.list.append((self.key, self.type, self.default))
+            self.list.append((self.key, self.type, self.default,
+                              self.long, self.short, self.include))
+            self.clean()
+        self.tlist = []
 
     def characters(self, data):
         self.tlist.append(data)
@@ -66,35 +80,70 @@ if __name__ == "__main__":
 
     type_map = { 'bool' : 0, 'int' : 1 , 'string' : 2 }
 
-    print copy
-    
     parser = SchemaHandler()
     parser.parse(sys.argv[1])
-    for (key, key_type, default) in parser.list:
+
+    f = open("_GrampsConfigKeys","w")
+    
+    for (key, key_type, default, long, short, include) in parser.list:
         data = key.split('/')
         category = data[3]
         token = data[4]
+        tkey = token.upper().replace('-','_')
+        tmap = type_map[key_type]
 
-        print "%-20s = ('%s','%s', %d)" % (token.upper().replace('-','_'),
-                                          category,
-                                          token,
-                                          type_map[key_type])
+        f.write("%-20s = ('%s','%s', %d)\n" % (tkey,
+                                               category,
+                                               token,
+                                               tmap))
 
-    print '\n\ndefault_value = {'
-    for (key, key_type, default) in parser.list:
+    f.write('\n\ndefault_value = {\n')
+    for (key, key_type, default, long, short, include) in parser.list:
         data = key.split('/')
         category = data[3]
         token = data[4]
         tkey = token.upper().replace('-','_')
         if key_type == 'bool':
             if default == "1":
-                print "    %-20s : True," % tkey
+                f.write("    %-20s : True,\n" % tkey)
             else:
-                print "    %-20s : False," % tkey
+                f.write("    %-20s : False,\n" % tkey)
         elif key_type == "int":
-            print "    %-20s : %s," % (tkey,default)
+            f.write("    %-20s : %s,\n" % (tkey,default))
         else:
-            print "    %-20s : '%s'," % (tkey,default)
+            f.write("    %-20s : '%s',\n" % (tkey,default))
             
-    print '}'    
-        
+    f.write('}\n')
+    f.close()
+
+    f = open("schema.xml.in","w")
+    
+    f.write('<gconfschemafile>\n')
+    f.write('  <schemalist>\n')
+    for (key, key_type, default, long, short, include) in parser.list:
+        f.write('    <schema>\n')
+        f.write('      <key>/schemas%s</key>\n' % key)
+        f.write('      <applyto>/schemas%s</applyto>\n' % key)
+        f.write('      <owner>gramps</owner>\n')
+        f.write('      <type>%s</owner>\n' % type)
+        f.write('      <default>%s</default>\n' % default)
+        f.write('      <locale name="C">\n')
+        f.write('        <short>%s</short>\n' % short)
+        f.write('        <long>%s</long>\n' % long)
+        f.write('      </locale>\n')
+        f.write('    </schema>\n')
+    f.write('  </schemalist>\n')
+    f.write('</gconfschemafile>\n')
+    f.close()
+
+    f = open("ConfigInterface.py","w")
+    for (key, key_type, default, long, short, include) in parser.list:
+        if not include:
+            continue
+        data = key.split('/')
+        category = data[3]
+        token = data[4]
+        tkey = token.upper().replace('-','_')
+        if key_type == "bool":
+            f.write("GrampsConfigCheckBox(_('%s'),Config.%s)\n" % (short,tkey))
+    f.close()

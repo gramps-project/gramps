@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 import gtk
 import logging
+import os
 
 log = logging.getLogger(".")
 
@@ -101,6 +102,19 @@ def register_stock_icons ():
         icon_set = gtk.IconSet (pixbuf)
         factory.add (data[0], icon_set)
 
+
+def build_user_paths():
+    user_paths = [const.home_dir,
+                  os.path.join(const.home_dir,"filters"),
+                  os.path.join(const.home_dir,"plugins"),
+                  os.path.join(const.home_dir,"templates"),
+                  os.path.join(const.home_dir,"thumb")]
+    
+    for path in user_paths:
+        if not os.path.isdir(path):
+            os.mkdir(path)
+
+
 class Gramps:
     """
     Main class corresponding to a running gramps process.
@@ -111,7 +125,7 @@ class Gramps:
 
     def __init__(self,args):
         try:
-            GrampsCfg.loadConfig()
+            build_user_paths()
             self.welcome()    
         except OSError, msg:
             ErrorDialog(_("Configuration error"),str(msg))

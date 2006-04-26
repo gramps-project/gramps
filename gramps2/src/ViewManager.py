@@ -424,7 +424,7 @@ class ViewManager:
         GrampsDisplay.url( const.url_mailinglist)
 
     def preferences_activate(self, obj):
-        GrampsCfg.display_preferences_box(self.state.db)
+        GrampsCfg.GrampsPreferences(self.uistate)
 
     def report_bug_activate(self, obj):
         import GrampsDisplay
