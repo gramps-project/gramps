@@ -344,7 +344,7 @@ class ManagedWindow:
         return ('Undefined Menu','Undefined Submenu')
 
     def build_window_key(self,obj):
-        return id(self)
+        return id(obj)
 
     def show(self):
         assert self.window, "ManagedWindow: self.window does not exist!"
