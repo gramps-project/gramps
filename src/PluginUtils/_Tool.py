@@ -44,6 +44,7 @@ import const
 import Utils
 import GenericFilter
 import NameDisplay
+import Errors
 from _Options import *
 
 #-------------------------------------------------------------------------
@@ -239,6 +240,8 @@ def gui_tool(dbstate, uistate, tool_class, options_class, translated_name,
 
     try:
         tool_class(dbstate, uistate, options_class, name, callback)
+    except Errors.WindowActiveError:
+        pass
     except:
         log.error("Failed to start tool.", exc_info=True)
 
