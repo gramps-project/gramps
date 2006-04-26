@@ -30,6 +30,12 @@ import gc
 import logging
 import os
 import math
+import urllib
+import urllib2
+import tempfile
+from xml.dom.minidom import parseString as xmlStringParser
+
+use_online_map = False
 
 log = logging.getLogger(".")
 
@@ -72,7 +78,7 @@ glob_loc_data = [ # (Name, longitude, latitude)
         ("Mannheim-Neckarau",8.48,49.45),
         ("Gorxheimertal",8.73,49.53)]
 
-enable_debug = False
+enable_debug = True
 
 
 # Draws a map image and tries to allocate space in the correct aspect ratio
@@ -220,8 +226,95 @@ class MapTile:
     def free(self):
         self.scale = None
         self.scaled_pixbuf = None
+
+class WMSMapTile:
+    def __init__(self,capabilities):
+        self.scaled_pixbuf = None
+        self.capabilities_url = capabilities
+        u_reader = urllib2.urlopen(self.capabilities_url)
+        response_body = u_reader.read()
+        u_reader.close()
+        xml_doc = xmlStringParser( response_body)
+        # validate name of root element
+        e = xml_doc.documentElement
+        if e.nodeName != "WMT_MS_Capabilities":
+            print "unsupported Document type '%s'" % e.nodeName
+            return None
+        self.map_request_params = {}
+        self.map_request_params["VERSION"] = e.getAttribute("version")
+        self.map_request_params["REQUEST"] = "GetMap"
+        self.map_request_params["SERVICE"] = "WMS"
+        self.map_request_params["REQUEST"] = "GetMap"
+        self.map_request_params["REQUEST"] = "GetMap"
+        self.map_request_params["FORMAT"] = "image/png"
+        self.map_request_params["SRS"] = "epsg:4326"
+        self.map_request_params["LAYERS"] = ""
+        # Child-nodes of root element
+        for n in e.childNodes:
+            if n.nodeName == "Service":
+                # Parse Service header
+                map_title = n.getElementsByTagName("Title")[0].firstChild.data
+                print " MAP Title: %s" % map_title
+                try:
+                    map_fees = e.getElementsByTagName("Fees")[0].firstChild.data
+                except IndexError:
+                    map_fees = "-"
+                print " MAP Fees: %s" % map_fees
+                try:
+                    map_access_constraints = e.getElementsByTagName("AccessConstraints")[0].firstChild.data
+                except IndexError:
+                    map_access_constraints = "-"
+                print " MAP AccessConstraints: %s" % map_access_constraints
+    
+            elif n.nodeName == "Capability":
+                # Parse Capabilities
+                for n2 in n.childNodes:
+                    if n2.nodeName == "Request":
+                        t1 = n2.getElementsByTagName("GetMap")[0]
+                        t2 = t1.getElementsByTagName("DCPType")[0]
+                        t3 = t2.getElementsByTagName("HTTP")[0]
+                        t4 = t3.getElementsByTagName("Get")[0]
+                        t5 = t4.getElementsByTagName("OnlineResource")[0]
+                        self.map_get_url = t5.getAttribute("xlink:href")
+                        print(" Map Tile base url: %s" % self.map_get_url)
+                    elif n2.nodeName == "Layer":
+                        # parse Layers
+                        if not self._srs_is_supported(n2.getElementsByTagName("SRS")[0].firstChild.data):
+                            print "Layer coordinates not supported :-("
+                            return None
+                        layer_title = n2.getElementsByTagName("Title")[0].firstChild.data
+                        print " Layer: %s" % layer_title
+                        for n3 in n2.childNodes:
+                            if n3.nodeName == "Layer":
+                                # parse Layers
+                                layer_title = n3.getElementsByTagName("Title")[0].firstChild.data
+                                print "   - Layer: %s" % layer_title
+                                if self.map_request_params["LAYERS"]:
+                                    self.map_request_params["LAYERS"] += ","
+                                self.map_request_params["LAYERS"] += layer_title
+    def _srs_is_supported( self, srs_string):
+        list = srs_string.lower().split()
+        if "epsg:4326" in list:
+            return True
+        return False
         
-        
+    def set_viewport( self, target_scale, x_in, y_in, w_in, h_in):
+        self.scaled_map_x = x_in
+        self.scaled_map_y = y_in
+        self.scaled_map_pixel_w = int(w_in*target_scale)
+        self.scaled_map_pixel_h = int(h_in*target_scale)
+        self.map_request_params["BBOX"] = "%f,%f,%f,%f" % (x_in,y_in-h_in,x_in+w_in,y_in) # Neds to be set for request
+        self.map_request_params["WIDTH"] = int(w_in*target_scale)
+        self.map_request_params["HEIGHT"] = int(h_in*target_scale)
+        params = urllib.urlencode(self.map_request_params)
+        f = tempfile.NamedTemporaryFile()
+        f_name = f.name
+        urllib.urlretrieve(self.map_get_url+params,f_name)
+        self.scaled_pixbuf = gtk.gdk.pixbuf_new_from_file(f_name)
+
+    def free(self):
+        pass
+
 # Zoomable map image
 class ZoomMap( gtk.DrawingArea):
     def __init__( self, place_marker_pixbuf, hightlight_marker_pixbuf):
@@ -241,6 +334,9 @@ class ZoomMap( gtk.DrawingArea):
         self.textlayout = self.create_pango_layout("")
         self.map_sources = {}
         self.initial_exposed = False
+        if use_online_map:
+            self.map_sources[0.0] = []
+            self.map_sources[0.0].append(WMSMapTile("http://www2.demis.nl/wms/wms.asp?wms=WorldMap&VERSION=1.1.1&REQUEST=GetCapabilities"))
 
     def add_map_source( self,filename, x, y, w, h,pw,ph):
         tile = MapTile( filename, x, y, w, h, pw, ph)
@@ -411,7 +507,7 @@ class ZoomMap( gtk.DrawingArea):
         self.queue_draw()
     
     def zoom_in(self):
-        self.magnifer = min( 500.0, self.magnifer * 1.5)
+        self.magnifer = min( 1000.0, self.magnifer * 1.5)
         self.backbuf = None
         self.queue_draw()
     
@@ -557,51 +653,51 @@ class MapView(PageView.PageView):
         self.zoom_map = ZoomMap( 
             gtk.gdk.pixbuf_new_from_file(os.path.join(const.image_dir,"bad.png")),
             gtk.gdk.pixbuf_new_from_file(os.path.join(const.image_dir,"good.png")))
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_0.jpg', -180,90, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_1.jpg', -135,90, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_2.jpg', -90,90, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_3.jpg', -45,90, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_4.jpg', 0,90, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_5.jpg', 45,90, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_6.jpg', 90,90, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_7.jpg', 135,90, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_1_0.jpg', -180,45, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_1_1.jpg', -135,45, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_1_2.jpg', -90,45, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_1_3.jpg', -45,45, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_1_4.jpg', 0,45, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_1_5.jpg', 45,45, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_1_6.jpg', 90,45, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_1_7.jpg', 135,45, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_2_0.jpg', -180,0, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_2_1.jpg', -135,0, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_2_2.jpg', -90,0, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_2_3.jpg', -45,0, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_2_4.jpg', 0,0, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_2_5.jpg', 45,0, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_2_6.jpg', 90,0, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_2_7.jpg', 135,0, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_3_0.jpg', -180,-45, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_3_1.jpg', -135,-45, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_3_2.jpg', -90,-45, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_3_3.jpg', -45,-45, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_3_4.jpg', 0,-45, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_3_5.jpg', 45,-45, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_3_6.jpg', 90,-45, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_3_7.jpg', 135,-45, 45,45, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x1600x800_tile_0_0.jpg', -180,90, 90,90, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x1600x800_tile_0_1.jpg', -90,90, 90,90, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x1600x800_tile_0_2.jpg', 0,90, 90,90, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x1600x800_tile_0_3.jpg', 90,90, 90,90, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x1600x800_tile_1_0.jpg', -180,0, 90,90, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x1600x800_tile_1_1.jpg', -90,0, 90,90, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x1600x800_tile_1_2.jpg', 0,0, 90,90, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x1600x800_tile_1_3.jpg', 90,0, 90,90, 400,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x800x400.jpg', -180,90, 360,180, 800,400)
-        self.zoom_map.add_map_source('world.topo.200407.3x400x200.jpg', -180,90, 360,180, 400,200)
-        self.zoom_map.add_map_source('world.topo.200407.3x128x60.jpg', -180,90, 360,180, 128,60)
+        if not use_online_map:
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_0.jpg', -180,90, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_1.jpg', -135,90, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_2.jpg', -90,90, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_3.jpg', -45,90, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_4.jpg', 0,90, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_5.jpg', 45,90, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_6.jpg', 90,90, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_7.jpg', 135,90, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_1_0.jpg', -180,45, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_1_1.jpg', -135,45, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_1_2.jpg', -90,45, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_1_3.jpg', -45,45, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_1_4.jpg', 0,45, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_1_5.jpg', 45,45, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_1_6.jpg', 90,45, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_1_7.jpg', 135,45, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_2_0.jpg', -180,0, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_2_1.jpg', -135,0, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_2_2.jpg', -90,0, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_2_3.jpg', -45,0, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_2_4.jpg', 0,0, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_2_5.jpg', 45,0, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_2_6.jpg', 90,0, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_2_7.jpg', 135,0, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_3_0.jpg', -180,-45, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_3_1.jpg', -135,-45, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_3_2.jpg', -90,-45, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_3_3.jpg', -45,-45, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_3_4.jpg', 0,-45, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_3_5.jpg', 45,-45, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_3_6.jpg', 90,-45, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_3_7.jpg', 135,-45, 45,45, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x1600x800_tile_0_0.jpg', -180,90, 90,90, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x1600x800_tile_0_1.jpg', -90,90, 90,90, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x1600x800_tile_0_2.jpg', 0,90, 90,90, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x1600x800_tile_0_3.jpg', 90,90, 90,90, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x1600x800_tile_1_0.jpg', -180,0, 90,90, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x1600x800_tile_1_1.jpg', -90,0, 90,90, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x1600x800_tile_1_2.jpg', 0,0, 90,90, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x1600x800_tile_1_3.jpg', 90,0, 90,90, 400,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x800x400.jpg', -180,90, 360,180, 800,400)
+            self.zoom_map.add_map_source('world.topo.200407.3x400x200.jpg', -180,90, 360,180, 400,200)
+            self.zoom_map.add_map_source('world.topo.200407.3x128x60.jpg', -180,90, 360,180, 128,60)
 
-        #self.zoom_map.add_map_source("europe_2_0.jpg",0,90,90,90,1024,1024)
         self.zoom_map.set_size_request(300,300)
         hbox.pack_start( self.zoom_map, True, True, 0)
         
