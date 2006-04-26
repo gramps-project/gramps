@@ -514,9 +514,9 @@ class CheckIntegrity:
             else:
                 fgender = father.get_gender()
                 mgender = mother.get_gender()
-                if rel_type != RelLib.Family.CIVIL_UNION:
+                if rel_type != RelLib.FamilyRelType.CIVIL_UNION:
                     if fgender == mgender and fgender != RelLib.Person.UNKNOWN:
-                        family.set_relationship(RelLib.Family.CIVIL_UNION)
+                        family.set_relationship(RelLib.FamilyRelType.CIVIL_UNION)
                         self.fam_rel.append(family_handle)
                         self.db.commit_family(family,self.trans)
                     elif fgender == RelLib.Person.FEMALE or mgender == RelLib.Person.MALE:
@@ -525,7 +525,7 @@ class CheckIntegrity:
                         self.fam_rel.append(family_handle)
                         self.db.commit_family(family,self.trans)
                 elif fgender != mgender:
-                    family.set_relationship(RelLib.Family.UNKNOWN)
+                    family.set_relationship(RelLib.FamilyRelType.UNKNOWN)
                     self.fam_rel.append(family_handle)
                     if fgender == RelLib.Person.FEMALE or mgender == RelLib.Person.MALE:
                         family.set_father_handle(mother_handle)
@@ -888,18 +888,18 @@ class Report(ManagedWindow.ManagedWindow):
         topDialog = gtk.glade.XML(glade_file,"summary","gramps")
         topDialog.get_widget("close").connect('clicked',self.close)
 
-        self.window = topDialog.get_widget("summary")
+        window = topDialog.get_widget("summary")
         textwindow = topDialog.get_widget("textwindow")
         textwindow.get_buffer().set_text(text)
 
-        Utils.set_titles(self.window,
-                         topDialog.get_widget("title"),
-                         _("Integrity Check Results"))
+        self.set_window(window,
+                        topDialog.get_widget("title"),
+                        _("Integrity Check Results"))
 
         self.show()
 
     def build_menu_names(self, obj):
-        return (_('Check and Repair'),_('Check and Repair'))
+        return (_('Check and Repair'),None)
 
 #------------------------------------------------------------------------
 #
