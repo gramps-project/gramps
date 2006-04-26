@@ -107,7 +107,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         panel.append_page(self.add_formats_panel(),
                           MarkupLabel("<b>%s</b>" % _('Display')))
         panel.append_page(self.add_prefix_panel(),
-                          MarkupLabel("<b>%s</b>" % _('ID Prefixes')))
+                          MarkupLabel("<b>%s</b>" % _('ID Formats')))
         panel.append_page(self.add_advanced_panel(),
                           MarkupLabel("<b>%s</b>" % _('Warnings')))
         panel.append_page(self.add_researcher_panel(),
