@@ -106,19 +106,6 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/interface/defaultview</key>
-        <applyto>/apps/gramps/interface/defaultview</applyto>
-        <owner>gramps</owner>
-        <type>int</type>
-        <default>0</default>
-        <locale name="C">
-          <short>Default view on a startup</short>
-          <long>This key determines which view will be presented when GRAMPS
-          starts. Use 0 for People View and 1 for Family View.</long>
-        </locale>
-      </schema>
-
-      <schema>
         <key>/schemas/apps/gramps/interface/height</key>
         <applyto>/apps/gramps/interface/height</applyto>
         <owner>gramps</owner>
@@ -139,19 +126,6 @@
         <locale name="C">
           <short>Width of the interface.</short>
           <long>Specifies the width of the interface when GRAMPS starts.</long>
-        </locale>
-      </schema>
-
-      <schema>
-        <key>/schemas/apps/gramps/interface/familyview</key>
-        <applyto>/apps/gramps/interface/familyview</applyto>
-        <owner>gramps</owner>
-        <type>int</type>
-        <default>0</default>
-        <locale name="C">
-          <short>Family View style</short>
-          <long>This key determines style of the Family View. 
-          Use 0 for "Left-to-right" style and 1 for "Top-to-bottom" style.</long>
         </locale>
       </schema>
 
@@ -189,6 +163,19 @@
         <locale name="C">
           <short>Default event GRAMPS ID pattern</short>
           <long>The new GRAMPS IDs for the events are generated according
+          to this format string.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/preferences/rprefix</key>
+        <applyto>/apps/gramps/preferences/rprefix</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>E%04d</default>
+        <locale name="C">
+          <short>Default repository GRAMPS ID pattern</short>
+          <long>The new GRAMPS IDs for the repositories are generated according
           to this format string.</long>
         </locale>
       </schema>
@@ -282,30 +269,6 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/index-visible</key>
-        <applyto>/apps/gramps/index-visible</applyto>
-        <owner>gramps</owner>
-        <type>bool</type>
-        <default>0</default>
-        <locale name="C">
-          <short>Allow editing GRAMPS IDs</short>
-          <long>If set to 1, GRAMPS IDs are user-editable.</long>
-        </locale>
-      </schema>
-
-      <schema>
-        <key>/schemas/apps/gramps/interface/index-visible</key>
-        <applyto>/apps/gramps/interface/index-visible</applyto>
-        <owner>gramps</owner>
-        <type>bool</type>
-        <default>0</default>
-        <locale name="C">
-          <short>Show index numbers in children list</short>
-          <long>If set to 1, the index numbers will be shown in children list.</long>
-        </locale>
-      </schema>
-
-      <schema>
         <key>/schemas/apps/gramps/paths/recent-file</key>
         <applyto>/apps/gramps/paths/recent-file</applyto>
         <owner>gramps</owner>
@@ -338,48 +301,6 @@
         <locale name="C">
           <short>Last directory into which the export was made</short>
           <long>Full pathname of the directory into which GRAMPS has last exported data.</long>
-        </locale>
-      </schema>
-
-      <schema>
-        <key>/schemas/apps/gramps/behavior/make-reference</key>
-        <applyto>/apps/gramps/behavior/make-reference</applyto>
-        <owner>gramps</owner>
-        <type>bool</type>
-        <default>1</default>
-        <locale name="C">
-          <short>Make a reference to the dropped object</short>
-          <long>If set to 1, dropping the object into the gallery will 
-          make a reference to the object. If set to 0, the copy of the 
-          object will be made instead of a reference.</long>
-        </locale>
-      </schema>
-
-      <schema>
-        <key>/schemas/apps/gramps/behavior/media-global</key>
-        <applyto>/apps/gramps/behavior/media-global</applyto>
-        <owner>gramps</owner>
-        <type>bool</type>
-        <default>1</default>
-        <locale name="C">
-          <short>Display global properties editor when object 
-          is dropped from external source</short>
-          <long>If set to 1, dropping the object from an external source
-          into the gallery will invoke the global properties editor.</long>
-        </locale>
-      </schema>
-
-      <schema>
-        <key>/schemas/apps/gramps/behavior/media-local</key>
-        <applyto>/apps/gramps/behavior/media-local</applyto>
-        <owner>gramps</owner>
-        <type>bool</type>
-        <default>1</default>
-        <locale name="C">
-          <short>Display local properties editor when object 
-          is dropped from internal source</short>
-          <long>If set to 1, dropping the object from an internal source
-          into the gallery will invoke the local properties editor.</long>
         </locale>
       </schema>
 
@@ -502,19 +423,6 @@
         <locale name="C">
           <short>Researcher state</short>
           <long>Researcher state.</long>
-        </locale>
-      </schema>
-
-      <schema>
-        <key>/schemas/apps/gramps/behavior/show-calendar</key>
-        <applyto>/apps/gramps/behavior/show-calendar</applyto>
-        <owner>gramps</owner>
-        <type>bool</type>
-        <default>0</default>
-        <locale name="C">
-          <short>Show alternate calndar options</short>
-          <long>If set to 1, the alternate calendar menus will be shown
-          in date editing dialogs.</long>
         </locale>
       </schema>
 

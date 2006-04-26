@@ -1,3 +1,9 @@
+2006-04-25  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: new config changes
+	* src/GrampsCfg.py: new config changes
+	* src/Config/gen_schema_keys.py: new config changes
+	* src/gramps_main.py: new config changes
+
 2006-04-25  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/Desbrowser.py: Window Management fixes.
 	* src/Bookmarks.py: Redraw "Go to bookmark" menu if changes were
