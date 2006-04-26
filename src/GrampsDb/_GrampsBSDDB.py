@@ -337,7 +337,13 @@ class GrampsBSDDB(GrampsDbBase):
                                               dbtype=db.DB_BTREE)
         callback(37)
 
-        self.bookmarks = self.metadata.get('bookmarks')
+        self.bookmarks = self.metadata.get('bookmarks',[])
+        self.family_bookmarks = self.metadata.get('family_bookmarks',[])
+        self.event_bookmarks = self.metadata.get('event_bookmarks',[])
+        self.source_bookmarks = self.metadata.get('source_bookmarks',[])
+        self.repo_bookmarks = self.metadata.get('repo_bookmarks',[])
+        self.media_bookmarks = self.metadata.get('media_bookmarks',[])
+        self.place_bookmarks = self.metadata.get('place_bookmarks',[])
         self.family_event_names = set(self.metadata.get('fevent_names',[]))
         self.individual_event_names = set(self.metadata.get('pevent_names',[]))
         self.family_attributes = set(self.metadata.get('fattr_names',[]))
@@ -350,9 +356,6 @@ class GrampsBSDDB(GrampsDbBase):
                 self.metadata['version'] = _DBVERSION
             elif not self.metadata.has_key('version'):
                 self.metadata['version'] = 0
-
-        if self.bookmarks == None:
-            self.bookmarks = []
 
         self.genderStats = GenderStats(gstats)
 
@@ -802,6 +805,12 @@ class GrampsBSDDB(GrampsDbBase):
             return
         if not self.readonly:
             self.metadata['bookmarks'] = self.bookmarks
+            self.metadata['family_bookmarks'] = self.family_bookmarks
+            self.metadata['event_bookmarks'] = self.event_bookmarks
+            self.metadata['source_bookmarks'] = self.source_bookmarks
+            self.metadata['place_bookmarks'] = self.place_bookmarks
+            self.metadata['repo_bookmarks'] = self.repo_bookmarks
+            self.metadata['media_bookmarks'] = self.media_bookmarks
             self.metadata['gender_stats'] = self.genderStats.save_stats()
             self.metadata['fevent_names'] = list(self.family_event_names)
             self.metadata['pevent_names'] = list(self.individual_event_names)

@@ -188,6 +188,12 @@ class FamilyView(PageView.PersonNavView):
                 <separator/>
               </placeholder>
             </menu>
+            <menu action="BookMenu">
+              <placeholder name="AddEditBook">
+                <menuitem action="AddBook"/>
+                <menuitem action="EditBook"/>
+              </placeholder>
+            </menu>
             <menu action="ViewMenu">
               <menuitem action="Siblings"/>
               <menuitem action="Details"/>
@@ -239,6 +245,9 @@ class FamilyView(PageView.PersonNavView):
         self.dbstate.db.connect('person-update', self.redraw)
         self.dbstate.db.connect('person-add', self.redraw)
         self.dbstate.db.connect('person-delete', self.redraw)
+        self.bookmarks.update_bookmarks(db.get_bookmarks())
+        if self.active:
+            self.bookmarks.redraw()
 
     def get_name(self, handle, use_gender=False):
         if handle:

@@ -43,6 +43,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 #
 #----------------------------------------------------------------
 import TreeTips
+import Bookmarks
 import GenericFilter
 import const
 
@@ -185,21 +186,80 @@ class PageView:
         else:
             return None
 
+
+class BookMarkView(PageView):
+
+    def __init__(self, title, state, uistate, bookmarks, bm_type):
+        PageView.__init__(self, title, state, uistate)
+        self.bm_type = bm_type
+        self.setup_bookmarks(bookmarks)
+
+    def setup_bookmarks(self, bookmarks):
+        self.bookmarks = self.bm_type(
+            self.dbstate, self.uistate, bookmarks)
+
+    def add_bookmark(self, obj):
+        import NameDisplay
+        
+        if self.dbstate.active:
+            self.bookmarks.add(self.dbstate.active.get_handle())
+            name = NameDisplay.displayer.display(self.dbstate.active)
+            self.uistate.push_message(_("%s has been bookmarked") % name)
+        else:
+            from QuestionDialog import WarningDialog
+            WarningDialog(
+                _("Could Not Set a Bookmark"), 
+                _("A bookmark could not be set because "
+                  "no one was selected."))
+
+    def set_active(self):
+        PageView.set_active(self)
+        self.bookmarks.display()
+
+    def set_inactive(self):
+        PageView.set_inactive(self)
+        self.bookmarks.undisplay()
+
+    def edit_bookmarks(self, obj):
+        self.bookmarks.edit()
+
+    def enable_action_group(self, obj):
+        PageView.enable_action_group(self, obj)
+
+    def disable_action_group(self, obj):
+        PageView.disable_action_group(self)
+
+    def define_actions(self):
+        self.book_action = gtk.ActionGroup(self.title + '/Bookmark')
+        self.book_action.add_actions([
+            ('AddBook', gtk.STOCK_INDEX, '_Add bookmark', '<control>d', None,
+             self.add_bookmark), 
+            ('EditBook', None, '_Edit bookmarks', '<control>b', None,
+             self.edit_bookmarks),
+            ])
+
+        self.add_action_group(self.book_action)
+        
+
 #----------------------------------------------------------------
 #
 # PersonNavView
 #
 #----------------------------------------------------------------
-class PersonNavView(PageView):
+class PersonNavView(BookMarkView):
 
     def __init__(self,title,dbstate,uistate):
-        PageView.__init__(self,title,dbstate,uistate)
+        BookMarkView.__init__(self, title, dbstate, uistate,
+                              dbstate.db.get_bookmarks(),
+                              Bookmarks.Bookmarks)
 
     def navigation_type(self):
         return NAVIGATION_PERSON
 
     def define_actions(self):
         # add the Forward action group to handle the Forward button
+
+        BookMarkView.define_actions(self)
 
         self.fwd_action = gtk.ActionGroup(self.title + '/Forward')
         self.fwd_action.add_actions([
@@ -226,7 +286,7 @@ class PersonNavView(PageView):
         in this case, we have additional action groups that need to be
         handled correctly.
         """
-        PageView.disable_action_group(self)
+        BookMarkView.disable_action_group(self)
         
         self.fwd_action.set_visible(False)
         self.back_action.set_visible(False)
@@ -237,7 +297,7 @@ class PersonNavView(PageView):
         in this case, we have additional action groups that need to be
         handled correctly.
         """
-        PageView.enable_action_group(self,obj)
+        BookMarkView.enable_action_group(self,obj)
         
         self.fwd_action.set_visible(True)
         self.back_action.set_visible(True)
@@ -347,11 +407,14 @@ class PersonNavView(PageView):
 # ListView
 #
 #----------------------------------------------------------------
-class ListView(PageView):
+class ListView(BookMarkView):
 
     def __init__(self, title, dbstate, uistate, columns, handle_col,
-                 make_model, signal_map):
-        PageView.__init__(self, title, dbstate, uistate)
+                 make_model, signal_map, get_bookmarks, bm_type):
+
+        BookMarkView.__init__(self, title, dbstate, uistate,
+                              get_bookmarks, bm_type)
+        
         self.renderer = gtk.CellRendererText()
         self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
         self.sort_col = 0
@@ -361,6 +424,19 @@ class ListView(PageView):
         self.make_model = make_model
         self.signal_map = signal_map
         dbstate.connect('database-changed',self.change_db)
+
+    def add_bookmark(self, obj):
+        mlist = []
+        self.selection.selected_foreach(self.blist, mlist)
+
+        if mlist:
+            self.bookmarks.add(mlist[0])
+        else:
+            from QuestionDialog import WarningDialog
+            WarningDialog(
+                _("Could Not Set a Bookmark"), 
+                _("A bookmark could not be set because "
+                  "nothing was selected."))
 
     def drag_info(self):
         return None
@@ -510,8 +586,10 @@ class ListView(PageView):
         self.model = self.make_model(self.dbstate.db,0)
         self.list.set_model(self.model)
         self.build_columns()
+        self.bookmarks.update_bookmarks(self.get_bookmarks())
         if self.active:
             self.build_tree()
+            self.bookmarks.redraw()
         else:
             self.dirty = True
 
@@ -537,6 +615,8 @@ class ListView(PageView):
         since we want to have more than one action group for the PersonView.
         Most PageViews really won't care about this.
         """
+        
+        BookMarkView.define_actions(self)
 
         self.add_action('Add',   gtk.STOCK_ADD,   "_Add",   callback=self.add)
         self.add_action('Edit',  gtk.STOCK_EDIT,  "_Edit",  callback=self.edit)
@@ -570,3 +650,4 @@ class ListView(PageView):
             self.generic_filter_widget.show()
         else:
             self.generic_filter_widget.hide()
+

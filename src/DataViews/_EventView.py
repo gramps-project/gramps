@@ -38,6 +38,7 @@ import DisplayModels
 import const
 import Utils
 import Errors
+import Bookmarks
 
 from DdTargets import DdTargets
 from QuestionDialog import QuestionDialog, ErrorDialog
@@ -78,7 +79,11 @@ class EventView(PageView.ListView):
         PageView.ListView.__init__(
             self, _('Events'), dbstate, uistate,
             column_names, len(column_names), DisplayModels.EventModel,
-            signal_map)
+            signal_map, dbstate.db.get_event_bookmarks(),
+            Bookmarks.EventBookmarks)
+
+    def get_bookmarks(self):
+        return self.dbstate.db.get_event_bookmarks()
 
     def drag_info(self):
         return DdTargets.EVENT
@@ -94,6 +99,12 @@ class EventView(PageView.ListView):
           <menubar name="MenuBar">
             <menu action="ViewMenu">
               <menuitem action="Filter"/>
+            </menu>
+            <menu action="BookMenu">
+              <placeholder name="AddEditBook">
+                <menuitem action="AddBook"/>
+                <menuitem action="EditBook"/>
+              </placeholder>
             </menu>
             <menu action="EditMenu">
               <placeholder name="CommonEdit">

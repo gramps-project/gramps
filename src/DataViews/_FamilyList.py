@@ -35,6 +35,7 @@ import gtk.gdk
 import RelLib
 import PageView
 import DisplayModels
+import Bookmarks
 import const
 import Errors
 from QuestionDialog import QuestionDialog, ErrorDialog
@@ -72,16 +73,32 @@ class FamilyListView(PageView.ListView):
         PageView.ListView.__init__(
             self, _('Family List'), dbstate, uistate,
             column_names, len(column_names), DisplayModels.FamilyModel,
-            signal_map)
+            signal_map, dbstate.db.get_family_bookmarks(),
+            Bookmarks.FamilyBookmarks)
         
         self.updating = False
+
+    def add_bookmark(self, obj):
+        mlist = []
+        self.selection.selected_foreach(self.blist, mlist)
+
+        if mlist:
+            self.bookmarks.add(mlist[0])
+        else:
+            from QuestionDialog import WarningDialog
+            WarningDialog(
+                _("Could Not Set a Bookmark"), 
+                _("A bookmark could not be set because "
+                  "no one was selected."))
+        
+    def get_bookmarks(self):
+        return self.dbstate.db.get_family_bookmarks()
 
     def column_order(self):
         return self.dbstate.db.get_family_list_column_order()
 
     def get_stock(self):
         return 'gramps-family-list'
-
     def ui_definition(self):
         return '''<ui>
           <menubar name="MenuBar">
@@ -95,6 +112,12 @@ class FamilyListView(PageView.ListView):
             <menu action="ViewMenu">
               <menuitem action="Filter"/>
             </menu>
+           <menu action="BookMenu">
+              <placeholder name="AddEditBook">
+                <menuitem action="AddBook"/>
+                <menuitem action="EditBook"/>
+              </placeholder>
+           </menu>
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonEdit">
@@ -133,7 +156,6 @@ class FamilyListView(PageView.ListView):
     def family_add_loop(self,handle_list):
         if self.updating:
             return False
-        print handle_list
         self.updating = True
         self.row_add(handle_list)
         self.updating = False

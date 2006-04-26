@@ -126,8 +126,7 @@ uidefault = '''<ui>
     <placeholder name="CommonHistory"/>
   </menu>
   <menu action="BookMenu">
-    <menuitem action="AddBook"/>
-    <menuitem action="EditBook"/>
+    <placeholder name="AddEditBook"/>
     <separator/>
     <placeholder name="GoToBook"/>
   </menu>
@@ -324,10 +323,6 @@ class ViewManager:
             ('ColumnEdit', gtk.STOCK_PROPERTIES, '_Column Editor'), 
             ('GoMenu', None, '_Go'), 
             ('BookMenu', None, '_Bookmarks'), 
-            ('AddBook', gtk.STOCK_INDEX, '_Add bookmark', '<control>d', None,
-             self.add_bookmark), 
-            ('EditBook', None, '_Edit bookmarks', '<control>b', None,
-             self.edit_bookmarks),
             ('ReportsMenu', None, '_Reports'), 
             ('ToolsMenu', None, '_Tools'), 
             ('WindowsMenu', None, '_Windows'), 

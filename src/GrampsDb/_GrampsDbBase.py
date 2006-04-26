@@ -262,6 +262,12 @@ class GrampsDbBase(GrampsDBCallback):
         self.default = None
         self.owner = Researcher()
         self.bookmarks = []
+        self.family_bookmarks = []
+        self.event_bookmarks = []
+        self.place_bookmarks = []
+        self.source_bookmarks = []
+        self.repo_bookmarks = []
+        self.media_bookmarks = []
         self.path = ""
         self.place2title = {}
         self.name_group = {}
@@ -1429,6 +1435,30 @@ class GrampsDbBase(GrampsDBCallback):
     def get_bookmarks(self):
         """returns the list of Person handles in the bookmarks"""
         return self.bookmarks
+
+    def get_family_bookmarks(self):
+        """returns the list of Person handles in the bookmarks"""
+        return self.family_bookmarks
+
+    def get_event_bookmarks(self):
+        """returns the list of Person handles in the bookmarks"""
+        return self.event_bookmarks
+
+    def get_place_bookmarks(self):
+        """returns the list of Person handles in the bookmarks"""
+        return self.place_bookmarks
+
+    def get_source_bookmarks(self):
+        """returns the list of Person handles in the bookmarks"""
+        return self.source_bookmarks
+
+    def get_media_bookmarks(self):
+        """returns the list of Person handles in the bookmarks"""
+        return self.media_bookmarks
+
+    def get_repo_bookmarks(self):
+        """returns the list of Person handles in the bookmarks"""
+        return self.repo_bookmarks
 
     def set_researcher(self, owner):
         """sets the information about the owner of the database"""

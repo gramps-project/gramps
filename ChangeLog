@@ -1,3 +1,20 @@
+2006-04-26  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_MediaView.py:
+	* src/DataViews/_RepositoryView.py
+	* src/DataViews/_SourceView.py:
+	* src/DataViews/_EventView.py: multiple bookmark lists
+	* src/DataViews/_FamilyView.py: multiple bookmark lists
+	* src/DataViews/_FamilyList.py: multiple bookmark lists
+	* src/DataViews/_PedigreeView.py: multiple bookmark lists
+	* src/DataViews/_PlaceView.py: multiple bookmark lists
+	* src/DataViews/_PersonView.py: multiple bookmark lists
+	* src/ViewManager.py: multiple bookmark lists
+	* src/GrampsDb/_GrampsDbBase.py: multiple bookmark lists
+	* src/GrampsDb/_GrampsBSDDB.py: multiple bookmark lists
+	* src/Bookmarks.py: multiple bookmark lists
+	* src/gramps_main.py: multiple bookmark lists
+	* src/PageView.py: multiple bookmark lists
+
 2006-04-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_MapView.py: First badly hacked version of online map
 	downloading.
