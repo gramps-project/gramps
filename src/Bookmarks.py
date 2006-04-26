@@ -63,8 +63,8 @@ import ListModel
 #
 #-------------------------------------------------------------------------
 
-_top = '''<ui><menubar name="MenuBar"><menu action="BookMenu"><menu action="GoToBook">'''
-_btm = '''</menu></menu></menubar></ui>'''
+_top = '''<ui><menubar name="MenuBar"><menu action="BookMenu">'''
+_btm = '''</menu></menubar></ui>'''
 
 DISABLED = -1
 
@@ -98,18 +98,23 @@ class Bookmarks :
             self.active = DISABLED
             
         actions = []
-        for item in self.bookmarks:
-            person = self.dbstate.db.get_person_from_handle(item)
-            name = NameDisplay.displayer.display(person)
-            action_id = "BM:%s" % item
-            f.write('<menuitem action="%s"/>' % action_id)
-            label = "%s [%s]" % (name,person.gramps_id)
-            func = make_callback(item,self.dbstate.change_active_handle)
-            actions.append((action_id,None,label,None,None,func))
-            count +=1
+
+        if len(self.bookmarks) > 0:
+            f.write('<placeholder name="GoToBook">')
+            for item in self.bookmarks:
+                person = self.dbstate.db.get_person_from_handle(item)
+                name = NameDisplay.displayer.display(person)
+                action_id = "BM:%s" % item
+                f.write('<menuitem action="%s"/>' % action_id)
+                label = "%s [%s]" % (name,person.gramps_id)
+                func = make_callback(item,self.dbstate.change_active_handle)
+                actions.append((action_id,None,label,None,None,func))
+                count +=1
+            f.write('</placeholder>')
         f.write(_btm)
         self.action_group.add_actions(actions)
         self.uistate.uimanager.insert_action_group(self.action_group,1)
+        print f.getvalue()
         self.active = self.uistate.uimanager.add_ui_from_string(f.getvalue())
         f.close()
 
