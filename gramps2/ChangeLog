@@ -1,4 +1,5 @@
 2006-04-25  Don Allingham  <don@gramps-project.org>
+	* src/Bookmarks.py: Don't use goto submenu
 	* src/GrampsCfg/py: move and rename tabs, change Prefixes for Formats
 	* src/ViewManager.py: new config changes, handle exception, enable Edit button
 	by default

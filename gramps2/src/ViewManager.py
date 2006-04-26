@@ -128,7 +128,8 @@ uidefault = '''<ui>
   <menu action="BookMenu">
     <menuitem action="AddBook"/>
     <menuitem action="EditBook"/>
-    <menu action="GoToBook"/>
+    <separator/>
+    <placeholder name="GoToBook"/>
   </menu>
   <menu action="ReportsMenu">
   </menu>
@@ -327,7 +328,6 @@ class ViewManager:
              self.add_bookmark), 
             ('EditBook', None, '_Edit bookmarks', '<control>b', None,
              self.edit_bookmarks),
-            ('GoToBook', gtk.STOCK_JUMP_TO, '_Go to bookmark'), 
             ('ReportsMenu', None, '_Reports'), 
             ('ToolsMenu', None, '_Tools'), 
             ('WindowsMenu', None, '_Windows'), 
