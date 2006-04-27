@@ -1593,15 +1593,17 @@ class GalleryTab(ButtonTab):
         self.pack_start(scroll, True)
 
     def _update_internal_list(self, *obj):
-        node = self.iconmodel.get_iter_first()
         newlist = []
+        node = self.iconmodel.get_iter_first()
         while node != None:
             newlist.append(self.iconmodel.get_value(node, 2))
             node = self.iconmodel.iter_next(node)
         for i in xrange(len(self.media_list)):
             self.media_list.pop()
         for i in newlist:
-            self.media_list.append(i)
+            if i:
+                self.media_list.append(i)
+
         if self.update:
             self.update()
         self.changed = True
