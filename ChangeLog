@@ -1,4 +1,7 @@
 2006-04-26  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Verify.py: Fix wm.
+	* src/plugins/RelCalc.py: Fix wm.
+	* src/plugins/SoundGen.py: Fix wm.
 	* src/plugins/Checkpoint.py: Fix wm.
 	* src/plugins/ReorderIds.py: Adapt to new API; rebuild for Events
 	and Repositories.
