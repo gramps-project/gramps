@@ -60,9 +60,10 @@ from PluginUtils import Tool, register_tool
 class ChangeNames(Tool.Tool, ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        self.label = _('Capitalization changes')
         
         Tool.Tool.__init__(self, dbstate, options_class, name)
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
 
         self.cb = callback
 
@@ -90,16 +91,14 @@ class ChangeNames(Tool.Tool, ManagedWindow.ManagedWindow):
         glade_file = base + os.sep + "patchnames.glade"
         
         self.top = gtk.glade.XML(glade_file,"top","gramps")
-        self.window = self.top.get_widget('top')
+        window = self.top.get_widget('top')
         self.top.signal_autoconnect({
             "destroy_passed_object" : self.close,
             "on_ok_clicked" : self.on_ok_clicked,
             "on_help_clicked"       : self.on_help_clicked,
-            "on_delete_event" : self.on_delete_event
             })
         self.list = self.top.get_widget("list")
-        self.label = _('Capitalization changes')
-        Utils.set_titles(self.window,self.top.get_widget('title'),self.label)
+        self.set_window(window,self.top.get_widget('title'),self.label)
 
         self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING,
                                    gobject.TYPE_STRING)
@@ -131,15 +130,12 @@ class ChangeNames(Tool.Tool, ManagedWindow.ManagedWindow):
             
         self.show()
 
+    def build_menu_names(self,obj):
+        return (self.label,None)
+
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-db')
-
-    def on_delete_event(self,obj,b):
-        pass
-
-    def close(self,obj):
-        self.window.destroy()
 
     def on_ok_clicked(self,obj):
         self.trans = self.db.transaction_begin("",batch=True)
@@ -165,7 +161,9 @@ class ChangeNames(Tool.Tool, ManagedWindow.ManagedWindow):
         self.db.transaction_commit(self.trans,_("Capitalization changes"))
         self.db.enable_signals()
         self.db.request_rebuild()
-        self.parent.bookmarks.redraw()
+        # FIXME: this probably needs to be removed, and bookmarks
+        # should always be rebuilt on a commit_person via signals
+        # self.parent.bookmarks.redraw()
         self.close()
         self.cb()
         

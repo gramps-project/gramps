@@ -47,7 +47,7 @@ import const
 import Utils
 import ManagedWindow
 import AutoComp
-
+from RelLib import EventType
 from QuestionDialog import OkDialog
 from PluginUtils import Tool, register_tool
 
@@ -63,7 +63,9 @@ class ChangeTypes(Tool.Tool, ManagedWindow.ManagedWindow):
         Tool.Tool.__init__(self, dbstate, options_class, name)
 
         if uistate:
-            ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+            self.title = _('Change Event Types')
+            ManagedWindow.ManagedWindow.__init__(self,uistate,[],
+                                                 self.__class__)
             self.init_gui()
         else:
             self.run_tool(cli=True)
@@ -77,28 +79,28 @@ class ChangeTypes(Tool.Tool, ManagedWindow.ManagedWindow):
             
         self.auto1 = self.glade.get_widget("original")
         self.auto2 = self.glade.get_widget("new")
-            
-        AutoComp.fill_combo(self.auto1,Utils.personal_events)
-        AutoComp.fill_combo(self.auto2,Utils.personal_events)
+        event_names = [item[1] for item in EventType._DATAMAP
+                       if item[0] > 0 ]
+        AutoComp.fill_combo(self.auto1,event_names)
+        AutoComp.fill_combo(self.auto2,event_names)
         # Need to display localized event names
-        self.auto1.child.set_text(const.display_event(
-            self.options.handler.options_dict['fromtype']))
-        self.auto2.child.set_text(const.display_event(
-            self.options.handler.options_dict['totype']))
+        self.auto1.child.set_text(
+            _(self.options.handler.options_dict['fromtype']))
+        self.auto2.child.set_text(
+            _(self.options.handler.options_dict['totype']))
 
-        self.title = _('Change Event Types')
-        self.window = self.glade.get_widget('top')
-        Utils.set_titles(self.window,
-                         self.glade.get_widget('title'),
-                         self.title)
+        window = self.glade.get_widget('top')
+        self.set_window(window,self.glade.get_widget('title'),self.title)
 
         self.glade.signal_autoconnect({
             "on_close_clicked"  : self.close,
-            "on_delete_event"   : self.on_delete_event,
             "on_apply_clicked"  : self.on_apply_clicked,
             })
             
         self.show()
+
+    def build_menu_names(self,obj):
+        return (self.title,None)
 
     def run_tool(self,cli=False):
         # Run tool and return results
@@ -115,12 +117,12 @@ class ChangeTypes(Tool.Tool, ManagedWindow.ManagedWindow):
             
         for person_handle in self.db.get_person_handles(sort_handles=False):
             person = self.db.get_person_from_handle(person_handle)
-            for event_handle in person.get_event_list():
-                if not event_handle:
+            for event_ref in person.get_event_ref_list():
+                if not event_ref.ref:
                     continue
-                event = self.db.get_event_from_handle(event_handle)
-                if event.get_name() == fromtype:
-                    event.set_name(totype)
+                event = self.db.get_event_from_handle(event_ref.ref)
+                if str(event.get_type()) == fromtype:
+                    event.set_type(totype)
                     modified = modified + 1
                     self.db.commit_event(event,self.trans)
             if not cli:
@@ -140,18 +142,15 @@ class ChangeTypes(Tool.Tool, ManagedWindow.ManagedWindow):
             print "Done: ", msg
         return (bool(modified),msg)
 
-    def on_delete_event(self,obj,b):
-        pass
-
     def on_apply_clicked(self,obj):
         # Need to store English names for later comparison
-        self.options.handler.options_dict['fromtype'] = const.save_event(
-            unicode(self.auto1.child.get_text()))
-        self.options.handler.options_dict['totype']   = const.save_event(
-            unicode(self.auto2.child.get_text()))
+        self.options.handler.options_dict['fromtype'] = EventType._I2EMAP[
+            EventType._S2IMAP[unicode(self.auto1.child.get_text())]]
+        self.options.handler.options_dict['totype']   = EventType._I2EMAP[
+            EventType._S2IMAP[unicode(self.auto2.child.get_text())]]
         
         modified,msg = self.run_tool(cli=False)
-        OkDialog(_('Change types'),msg,self.parent.topWindow)
+        OkDialog(_('Change types'),msg,self.window)
 
         # Save options
         self.options.handler.save_options()
