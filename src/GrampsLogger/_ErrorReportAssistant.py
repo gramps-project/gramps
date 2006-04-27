@@ -83,10 +83,12 @@ class ErrorReportAssistant:
     def _get_sys_information(self):
         return "Python version: %s \n"\
                "Gramps version: %s \n"\
+               "LANG: %s\n"\
                "OS: %s\n"\
                "Distribution: %s\n"\
                % (str(sys.version).replace('\n',''),
                   str(const.version),
+                  os.environ.get('LANG',''),
                   os.uname()[0],
                   os.uname()[2])
 
