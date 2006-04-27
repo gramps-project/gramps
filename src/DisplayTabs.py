@@ -741,17 +741,18 @@ class PersonEventEmbedList(EventEmbedList):
         type_list = []
         ref_list = [ e for e in [self.obj.get_birth_ref(), self.obj.get_death_ref()] + \
                      self.obj.get_event_ref_list() if e ]
-        
+
+        event = None
         for event_ref in ref_list:
             event = self.dbstate.db.get_event_from_handle(event_ref.ref)
             type_list.append(int(event.get_type()))
 
-        etype = event.get_type()
-        for etype in [RelLib.EventType.BIRTH, RelLib.EventType.DEATH]:
-            if etype not in type_list:
-                return RelLib.EventType(etype)
-        else:
-            return RelLib.EventType(RelLib.EventType.BIRTH)
+        if event:
+            etype = event.get_type()
+            for etype in [RelLib.EventType.BIRTH, RelLib.EventType.DEATH]:
+                if etype not in type_list:
+                    return RelLib.EventType(etype)
+        return RelLib.EventType(RelLib.EventType.BIRTH)
 
     def get_ref_editor(self):
         from Editors import EditEventRef
