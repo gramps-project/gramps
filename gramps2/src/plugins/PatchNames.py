@@ -316,9 +316,10 @@ class PatchNames(Tool.Tool, ManagedWindow.ManagedWindow):
                 name.set_surname_prefix(grp[2].strip())
                 self.db.commit_person(p,self.trans)
 
-        self.db.transaction_commit(self.trans,_("Extract information from names"))
+        self.db.transaction_commit(self.trans,
+                                   _("Extract information from names"))
         self.close()
-        self.cb(None,1)
+        self.cb()
         
 #------------------------------------------------------------------------
 #
