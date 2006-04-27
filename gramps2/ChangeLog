@@ -1,3 +1,9 @@
+2006-04-27  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py (reports_clicked, tools_clicked): handle
+	exception.
+	* src/PluginUtils/_Plugins.py (PluginDialog.on_apply_clicked):
+	Correctly call gui_tool, fix wm.	
+
 2006-04-27  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: fix top on Config.set calls
 	* data/gramps.schemas.in: remove toolbar, now unused

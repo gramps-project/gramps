@@ -945,10 +945,16 @@ class ViewManager:
         self.bookmarks.edit()
 
     def reports_clicked(self, obj):
-        Plugins.ReportPlugins(self.state, self.uistate, [])
+        try:
+            Plugins.ReportPlugins(self.state, self.uistate, [])
+        except Errors.WindowActiveError:
+            pass            
 
     def tools_clicked(self, obj):
-        Plugins.ToolPlugins(self.state, self.uistate, [])
+        try:
+            Plugins.ToolPlugins(self.state, self.uistate, [])
+        except Errors.WindowActiveError:
+            pass            
         
     def scratchpad(self, obj):
         import ScratchPad
@@ -1133,7 +1139,7 @@ class ViewManager:
             f.write('</menu>')
 
         f.write('</menu></menubar></ui>')
-        return (unicode(f.getvalue()), actions)
+        return (f.getvalue(), actions)
 
 def by_menu_name(a, b):
     return cmp(a[2], b[2])
