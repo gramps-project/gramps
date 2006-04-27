@@ -149,20 +149,20 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         self.rcs_rb.connect('toggled',self.rcs_toggled)
 
         self.title = _("Checkpoint Data")
-        self.window = self.glade.get_widget('top')
-        Utils.set_titles(self.window,
-                         self.glade.get_widget('title'),
-                         self.title)
+        window = self.glade.get_widget('top')
+        self.set_window(window,self.glade.get_widget('title'),self.title)
 
         self.glade.signal_autoconnect({
             "on_close_clicked" : self.close,
-            "on_delete_event"  : self.on_delete_event,
             "on_arch_clicked"  : self.on_archive_clicked,
             "on_ret_clicked"   : self.on_retrieve_clicked,
             "on_help_clicked"  : self.on_help_clicked,
             })
 
         self.show()
+
+    def build_menu_names(self,obj):
+        return (_("Checkpoint tool"),None)
 
     def rcs_toggled(self,obj):
         self.cust_arch_cb.set_sensitive(not obj.get_active())
@@ -171,12 +171,6 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('index')
-
-    def on_delete_event(self,obj,b):
-        self.remove_itself_from_menu()
-
-    def close(self,obj):
-        self.window.destroy()
 
     def on_archive_clicked(self,obj):
         self.options.handler.options_dict['cacmd'] = unicode(
