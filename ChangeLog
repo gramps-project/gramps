@@ -1,5 +1,6 @@
 2006-04-26  Alex Roitman  <shura@gramps-project.org>
-
+	* src/plugins/ReorderIds.py: Adapt to new API; rebuild for Events
+	and Repositories.
 	* src/GrampsLogger/_ErrorReportAssistant.py
 	(ErrorReportAssistant._get_sys_information): Add LANG to report.
 

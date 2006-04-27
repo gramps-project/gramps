@@ -51,18 +51,19 @@ _findint = re.compile('^[^\d]*(\d+)[^\d]*')
 #
 #-------------------------------------------------------------------------
 class ReorderIds(Tool.Tool):
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
+    def __init__(self,dbstate,uistate,options_class,name,callback=None):
+        Tool.Tool.__init__(self,dbstate,options_class,name)
 
-        self.parent = parent
-        if parent:
+        db = dbstate.db
+        self.uistate = uistate
+        if uistate:
             self.progress = Utils.ProgressMeter(_('Reordering GRAMPS IDs'),'')
         else:
             print "Reordering GRAMPS IDs..."
-                                            
+
         self.trans = db.transaction_begin()
 
-        if parent:
+        if uistate:
             self.progress.set_pass(_('Reordering People IDs'),
                                    db.get_number_of_people())
         self.reorder(RelLib.Person,
@@ -73,7 +74,7 @@ class ReorderIds(Tool.Tool):
                      db.commit_person,
                      db.iprefix)
 
-        if parent:
+        if uistate:
             self.progress.set_pass(_('Reordering Family IDs'),
                                    db.get_number_of_families())
         self.reorder(RelLib.Family,
@@ -83,7 +84,17 @@ class ReorderIds(Tool.Tool):
                      db.get_family_cursor,
                      db.commit_family,
                      db.fprefix)
-        if parent:
+        if uistate:
+            self.progress.set_pass(_('Reordering Event IDs'),
+                                   db.get_number_of_events())
+        self.reorder(RelLib.Event,
+                     db.get_event_from_gramps_id,
+                     db.get_event_from_handle,
+                     db.find_next_event_gramps_id,
+                     db.get_event_cursor,
+                     db.commit_event,
+                     db.eprefix)
+        if uistate:
             self.progress.set_pass(_('Reordering Media Object IDs'),
                                    db.get_number_of_media_objects())
         self.reorder(RelLib.MediaObject,
@@ -93,7 +104,7 @@ class ReorderIds(Tool.Tool):
                      db.get_media_cursor,
                      db.commit_media_object,
                      db.oprefix)
-        if parent:
+        if uistate:
             self.progress.set_pass(_('Reordering Source IDs'),
                                    db.get_number_of_sources())
         self.reorder(RelLib.Source,
@@ -103,7 +114,7 @@ class ReorderIds(Tool.Tool):
                      db.get_source_cursor,
                      db.commit_source,
                      db.sprefix)
-        if parent:
+        if uistate:
             self.progress.set_pass(_('Reordering Place IDs'),
                                    db.get_number_of_places())
         self.reorder(RelLib.Place,
@@ -113,7 +124,18 @@ class ReorderIds(Tool.Tool):
                      db.get_place_cursor,
                      db.commit_place,
                      db.pprefix)
-        if parent:
+        if uistate:
+            self.progress.set_pass(_('Reordering Repository IDs'),
+                                   db.get_number_of_repositories())
+        self.reorder(RelLib.Place,
+                     db.get_repository_from_gramps_id,
+                     db.get_repository_from_handle,
+                     db.find_next_repository_gramps_id,
+                     db.get_repository_cursor,
+                     db.commit_repository,
+                     db.rprefix)
+
+        if uistate:
             self.progress.close()
         else:
             print "Done."
@@ -131,7 +153,7 @@ class ReorderIds(Tool.Tool):
         cursor = get_cursor()
         data = cursor.first()
         while data:
-            if self.parent:
+            if self.uistate:
                 self.progress.step()
             (handle,sdata) = data
 
@@ -169,11 +191,11 @@ class ReorderIds(Tool.Tool):
         # go through the duplicates, looking for the first availble
         # handle that matches the new scheme.
     
-        if self.parent:
+        if self.uistate:
             self.progress.set_pass(_('Finding and assigning unused IDs'),
                                    len(dups))
         for handle in dups:
-            if self.parent:
+            if self.uistate:
                 self.progress.step()
             obj = find_from_handle(handle)
             obj.set_gramps_id(find_next_id())
