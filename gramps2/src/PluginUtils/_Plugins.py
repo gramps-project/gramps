@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,6 +60,7 @@ import Errors
 import _Report
 import _Tool
 import _PluginMgr
+import _PluginStatus
 import GrampsDisplay
 import ManagedWindow
 
@@ -379,8 +380,8 @@ def by_menu_name(a,b):
 #
 #-------------------------------------------------------------------------
 class Reload(_Tool.Tool):
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        _Tool.Tool.__init__(self,db,person,options_class,name)
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        _Tool.Tool.__init__(self,dbstate,options_class,name)
 
         """
         Treated as a callback, causes all plugins to get reloaded.
@@ -393,12 +394,12 @@ class Reload(_Tool.Tool):
         _PluginMgr.failmsg_list = []
 
         # attempt to reload all plugins that have succeeded in the past
-        for plugin in _PluginMgr._success_list:
-            filename = os.path.basename(plugin.__file__)
+        for plugin in _PluginMgr.success_list:
+            filename = plugin[0]
             filename = filename.replace('pyc','py')
             filename = filename.replace('pyo','py')
             try: 
-                reload(plugin)
+                reload(plugin[1])
             except:
                 _PluginMgr.failmsg_list.append((filename,sys.exc_info()))
             
@@ -440,7 +441,7 @@ class Reload(_Tool.Tool):
                 # Looks like a bug in Python.
                 a = __import__(plugin)
                 reload(a)
-                _PluginMgr._success_list.append(a)
+                _PluginMgr.success_list.append((filename,a))
             except:
                 _PluginMgr.failmsg_list.append((filename,sys.exc_info()))
 
@@ -457,21 +458,25 @@ class Reload(_Tool.Tool):
                 plugin = match.groups()[0]
                 try: 
                     a = __import__(plugin)
-                    if a not in _PluginMgr._success_list:
-                        _PluginMgr._success_list.append(a)
+                    if a not in [plugin[1]
+                                 for plugin in _PluginMgr.success_list]:
+                        _PluginMgr.success_list.append((filename,a))
                 except:
                     _PluginMgr.failmsg_list.append((filename,sys.exc_info()))
 
-        if Config.get(Config.POP_PLUGIN_STATUS) and len(_PluginMgr.failmsg_list):
-            PluginStatus()
-        else:
-            global status_up
-            if status_up:
-                status_up.close(None)
-            status_up = None
+        if Config.get(Config.POP_PLUGIN_STATUS) \
+               and len(_PluginMgr.failmsg_list):
+            try:
+                _PluginStatus.PluginStatus(dbstate,uistate)
+            except Errors.WindowActiveError:
+                old_win = uistate.gwm.get_item_from_id(
+                    _PluginStatus.PluginStatus)
+                old_win.close()
+                _PluginStatus.PluginStatus(dbstate,uistate)
 
         # Re-generate tool and report menus
-        parent.build_plugin_menus(rebuild=True)
+        # FIXME: This needs to be fixed!
+        # build_plugin_menus(rebuild=True)
 
 class ReloadOptions(_Tool.ToolOptions):
     """

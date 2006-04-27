@@ -42,7 +42,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gtk.gdk
-
+import Errors
 
 try:
     import gnomeprint, gnomeprint.ui
@@ -59,8 +59,6 @@ else:
     print "        Get gnome-python from CVS" 
     print "        or wait for the next gnome-python release."
 ### end FIXME ###
-
-import Errors
 
 #------------------------------------------------------------------------
 #

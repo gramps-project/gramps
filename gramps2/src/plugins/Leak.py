@@ -49,66 +49,39 @@ import gc
 #------------------------------------------------------------------------
 import Utils
 from PluginUtils import Tool, register_tool
+import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
 # Actual tool
 #
 #-------------------------------------------------------------------------
-class Leak(Tool.Tool):
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
+class Leak(Tool.Tool,ManagedWindow.ManagedWindow):
+    def __init__(self,dbstate, uistate, options_class, name, callback=None):
+        self.title = _('Uncollected Objects Tool')
 
-        self.parent = parent
-        if self.parent.child_windows.has_key(self.__class__):
-            self.parent.child_windows[self.__class__].present(None)
-            return
-        self.win_key = self.__class__
+        Tool.Tool.__init__(self,dbstate, options_class, name)
+        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         glade_file = "%s/%s" % (os.path.dirname(__file__),"leak.glade")
         self.glade = gtk.glade.XML(glade_file,"top","gramps")
 
-        self.top = self.glade.get_widget("top")
-        self.top.set_icon(self.parent.topWindow.get_icon())
+        window = self.glade.get_widget("top")
         self.eval = self.glade.get_widget("eval")
         self.ebuf = self.eval.get_buffer()
-        gc.set_debug(gc.DEBUG_UNCOLLECTABLE | gc.DEBUG_OBJECTS | gc.DEBUG_SAVEALL)
+        gc.set_debug(gc.DEBUG_UNCOLLECTABLE|gc.DEBUG_OBJECTS|gc.DEBUG_SAVEALL)
 
-        self.title = _('Uncollected Objects Tool')
-        Utils.set_titles(self.top,
-                     self.glade.get_widget('title'),
-                     self.title)
+        self.set_window(window,self.glade.get_widget('title'),self.title)
 
         self.glade.signal_autoconnect({
             "on_apply_clicked" : self.apply_clicked,
-            "on_delete_event"  : self.on_delete_event,
-            "on_close_clicked" : self.close_clicked,
+            "on_close_clicked" : self.close,
             })
         self.display()
+        self.show()
 
-        self.add_itself_to_menu()
-        self.top.show()
-
-    def on_delete_event(self,obj,b):
-        self.remove_itself_from_menu()
-
-    def close_clicked(self,obj):
-        self.remove_itself_from_menu()
-        self.top.destroy()
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(self.title)
-        self.parent_menu_item.connect("activate",self.present)
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.top.present()
+    def build_menu_names(self,obj):
+        return (self.title,None)
 
     def display(self):
         gc.collect()

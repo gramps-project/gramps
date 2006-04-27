@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Martin Hawlisch, Donald N. Allingham
+# Copyright (C) 2000-2006  Martin Hawlisch, Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,10 +37,9 @@ _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 class DumpGenderStats(Tool.Tool, ManagedWindow.ManagedWindow):
     
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
-        
+        self.label = _("Gender Statistics tool")
         Tool.Tool.__init__(self, dbstate, options_class, name)
-        
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         stats_list = []
 
@@ -63,18 +62,23 @@ class DumpGenderStats(Tool.Tool, ManagedWindow.ManagedWindow):
             for entry in stats_list:
                 model.add(entry,entry[0])
                 
-            self.window = gtk.Window()
-            self.window.set_default_size(400,300)
+            window = gtk.Window()
+            window.set_default_size(400,300)
             s = gtk.ScrolledWindow()
             s.add(treeview)
-            self.window.add(s)
-            self.window.show_all()
+            window.add(s)
+            window.show_all()
+            self.set_window(window,None,self.label)
+            self.show()
             
         else:
             print "\t%s\t%s\t%s\t%s\t%s\n" % (
                 'Name','Male','Female','Unknown','Guess')
             for entry in stats_list:
                 print "\t%s\t%s\t%s\t%s\t%s" % entry
+
+    def build_menu_names(self,obj):
+        return (self.label,None)
             
 #------------------------------------------------------------------------
 #

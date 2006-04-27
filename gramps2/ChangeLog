@@ -1,3 +1,11 @@
+2006-04-27  Alex Roitman  <shura@gramps-project.org>
+	* src/PluginUtils/_PluginStatus.py: Fix wm.
+	* src/PluginUtils/_Plugins.py: Fix Reload tool. The re-building of
+	the menus still needs to be fixed.
+	* src/plugins/Leak.py: Fix wm.
+	* src/docgen/LPRDoc.py: Import Errors module before it is called.
+	* src/plugins/DumpGenderStats.py: Fix wm.
+
 2006-04-27  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels.py: flush cache on row update
 	* src/DisplayTabs.py: check of event==None when determining default type
