@@ -1,4 +1,5 @@
 2006-04-27  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/CmdRef.py: Fix tool.
 	* src/PluginUtils/_PluginStatus.py: Fix wm.
 	* src/PluginUtils/_Plugins.py: Fix Reload tool. The re-building of
 	the menus still needs to be fixed.
