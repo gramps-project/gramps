@@ -43,7 +43,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import RelLib
-import Utils
 import NameDisplay
 import ManagedWindow
 import ListModel
@@ -79,8 +78,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         """
         
         Tool.Tool.__init__(self, dbstate, options_class, name)
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [],
-                                             RelCalc)
+        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         if not self.person:
             ErrorDialog(_('Active person has not been set'),
@@ -98,12 +96,11 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         name = self.person.get_primary_name().get_regular_name()
         self.title = _('Relationship calculator: %(person_name)s') % { 
                                         'person_name' : name }
-        self.window = self.glade.get_widget('relcalc')
-        Utils.set_titles(self.window,
-                         self.glade.get_widget('title'),
-                         _('Relationship to %(person_name)s') % { 
-                                        'person_name' : name },
-                         self.title)
+        window = self.glade.get_widget('relcalc')
+        self.set_window(window,self.glade.get_widget('title'),
+                        _('Relationship to %(person_name)s') \
+                        % {'person_name' : name },
+                        self.title)
     
         self.tree = self.glade.get_widget("peopleList")
         
@@ -132,16 +129,12 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
             
         self.glade.signal_autoconnect({
             "on_close_clicked" : self.close,
-            "on_delete_event"  : self.on_delete_event,
             })
 
         self.show()
 
-    def on_delete_event(self,obj,b):
-        pass
-
-    def close(self,obj):
-        self.window.destroy()
+    def build_menu_names(self,obj):
+        return (_("Relationship Calculator tool"),None)
 
     def on_apply_clicked(self,obj):
         model,node = self.tree.get_selection().get_selected()

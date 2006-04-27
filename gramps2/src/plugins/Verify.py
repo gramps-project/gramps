@@ -59,9 +59,9 @@ from PluginUtils import Tool, register_tool
 class Verify(Tool.Tool, ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name,callback=None):
-
+        self.label = _('Database Verify tool')
         Tool.Tool.__init__(self, dbstate, options_class, name)
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], Verify)
+        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         if uistate:
             self.init_gui()
@@ -77,15 +77,12 @@ class Verify(Tool.Tool, ManagedWindow.ManagedWindow):
         self.top = gtk.glade.XML(self.glade_file,"verify_settings","gramps")
         self.top.signal_autoconnect({
             "destroy_passed_object" : self.close,
-            "on_verify_delete_event": self.on_delete_event,
             "on_help_clicked"       : self.on_help_clicked,
             "on_verify_ok_clicked"  : self.on_apply_clicked
         })
 
-        self.window = self.top.get_widget('verify_settings')
-        Utils.set_titles(self.window,
-                         self.top.get_widget('title'),
-                         _('Database Verify'))
+        window = self.top.get_widget('verify_settings')
+        self.set_window(window,self.top.get_widget('title'),self.label)
 
         self.top.get_widget("oldage").set_value(
             self.options.handler.options_dict['oldage'])
@@ -120,11 +117,8 @@ class Verify(Tool.Tool, ManagedWindow.ManagedWindow):
                                                           
         self.show()
 
-    def on_delete_event(self,obj,b):
-        pass
-
-    def close(self,obj):
-        self.window.destroy()
+    def build_menu_names(self,obj):
+        return (_("Tool settings"),self.label)
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -182,7 +176,7 @@ class Verify(Tool.Tool, ManagedWindow.ManagedWindow):
         err_text,warn_text = self.run_tool(cli=False)
         # Save options
         self.options.handler.save_options()
-        VerifyResults(err_text, warn_text, self.uistate)
+        VerifyResults(err_text, warn_text, self.uistate, self.track)
 
     def run_tool(self,cli=False):
 
@@ -419,7 +413,7 @@ class Verify(Tool.Tool, ManagedWindow.ManagedWindow):
                         if event_ref:
                             event_handle = event_ref.ref
                             event = self.db.get_event_from_handle(event_handle)
-                            if event.get_name() == "Marriage":
+                            if event.get_type().xml_str() == "Marriage":
                                 marriage_id = event_handle
                                 break
                     else:
@@ -429,11 +423,15 @@ class Verify(Tool.Tool, ManagedWindow.ManagedWindow):
 
                     if maryear == 0 and estimate_age:   #  estimate marriage year
                         cnum=0
-                        for child_handle in family.get_child_handle_list():
+                        for child_ref in family.get_child_ref_list():
                             cnum = cnum + 1
                             if maryear == 0:
-                                child = self.db.get_person_from_handle(child_handle)
-                                birthyear = self.get_year( child.get_birth_handle() )
+                                child = self.db.get_person_from_handle(child_ref.ref)
+                                birth_ref = child.get_birth_ref()
+                                if birth_ref:
+                                    birthyear = self.get_year(birth_ref.ref)
+                                else:
+                                    birthyear = 0
                             if birthyear > 0:
                                 maryear = birthyear-cnum
 
@@ -499,10 +497,10 @@ class Verify(Tool.Tool, ManagedWindow.ManagedWindow):
                     nkids = 0
                     cbyears = []
                     
-                    total_children = total_children + len(family.get_child_handle_list())
-                    for child_handle in family.get_child_handle_list():
+                    total_children = total_children + len(family.get_child_ref_list())
+                    for child_ref in family.get_child_ref_list():
                         nkids = nkids+1
-                        child = self.db.get_person_from_handle(child_handle)
+                        child = self.db.get_person_from_handle(child_ref.ref)
                         birth_ref = child.get_birth_ref()
                         if birth_ref:
                             birth_handle = birth_ref.ref
@@ -598,9 +596,10 @@ class Verify(Tool.Tool, ManagedWindow.ManagedWindow):
 #
 #-------------------------------------------------------------------------
 class VerifyResults(ManagedWindow.ManagedWindow):
-    def __init__(self, err_text, warn_text, uistate):
+    def __init__(self,err_text,warn_text,uistate,track):
+        self.title = _('Database Verification Results')
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], VerifyResults)
+        ManagedWindow.ManagedWindow.__init__(self,uistate,track,self.__class__)
 
         self.err_text = err_text
         self.warn_text = warn_text
@@ -609,25 +608,22 @@ class VerifyResults(ManagedWindow.ManagedWindow):
         self.glade_file = base + os.sep + "verify.glade"
 
         self.top = gtk.glade.XML(self.glade_file,"verify_result","gramps")
-        self.title = _('Database Verification Results')
-        Utils.set_titles(self.top.get_widget('verify_result'),
-                     self.top.get_widget('title'),
-                     self.title)
+        window = self.top.get_widget("verify_result")
+        self.set_window(window,self.top.get_widget('title'),self.title)
     
         self.top.signal_autoconnect({
-            "destroy_passed_object"  : self.close_result,
-        })
-    
-        self.window = self.top.get_widget("verify_result")
+            "destroy_passed_object"  : self.close,
+            })
+
         err_window = self.top.get_widget("err_window")
         warn_window = self.top.get_widget("warn_window")
         err_window.get_buffer().set_text(self.err_text)
         warn_window.get_buffer().set_text(self.warn_text)
         
         self.show()
-    
-    def close_result(self,obj):
-        self.window.destroy()
+
+    def build_menu_names(self,obj):
+        return (self.title,None)
 
 #------------------------------------------------------------------------
 #

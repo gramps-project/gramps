@@ -57,10 +57,9 @@ from PluginUtils import Tool, register_tool
 class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
-
+        self.label = _('SoundEx code generator')
         Tool.Tool.__init__(self, dbstate, options_class, name)
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [],
-                                             SoundGen)
+        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "soundex.glade"
@@ -72,10 +71,8 @@ class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
             "on_delete_event"       : self.on_delete_event,
         })
 
-        self.window = self.glade.get_widget("soundEx")
-        Utils.set_titles(self.window,
-                         self.glade.get_widget('title'),
-                         _('SoundEx code generator'))
+        window = self.glade.get_widget("soundEx")
+        self.set_window(window,self.glade.get_widget('title'),self.label)
 
         self.value = self.glade.get_widget("value")
         self.autocomp = self.glade.get_widget("name_list")
@@ -118,8 +115,7 @@ class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
         self.window.destroy()
 
     def build_menu_names(self, obj):
-        return (_('SoundEx code generator tool'),
-                _('SoundEx code generator tool'))
+        return (self.label,None)
 
     def on_apply_clicked(self,obj):
         try:
