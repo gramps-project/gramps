@@ -1,4 +1,6 @@
 2006-04-27  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: fix top on Config.set calls
+	* data/gramps.schemas.in: remove toolbar, now unused
 	* src/TipOfDay.py (TipOfDay.__init__): switch to ManagedWindow
 	* src/Editors/_EditFamily.py: provide add new parent option
 	* src/Editors/_EditEvent.py: used set_window

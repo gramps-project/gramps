@@ -484,20 +484,6 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/interface/toolbar</key>
-        <applyto>/apps/gramps/interface/toolbar</applyto>
-        <owner>gramps</owner>
-        <type>int</type>
-        <default>-1</default>
-        <locale name="C">
-          <short>Default toolbar style</short>
-          <long>This key determines the style of the toolbar.
-          Use 0 for icons only, 1 for text only, 2 for text below images, 
-          3 for text beside images, and -1 for the current GNOME style.</long>
-        </locale>
-      </schema>
-
-      <schema>
         <key>/schemas/apps/gramps/interface/toolbar-on</key>
         <applyto>/apps/gramps/interface/toolbar-on</applyto>
         <owner>gramps</owner>
