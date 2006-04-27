@@ -58,8 +58,9 @@ _tags = [
 #
 #-------------------------------------------------------------------------
 class CmdRef(Tool.Tool):
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
+    def __init__(self,dbstate, uistate, options_class, name, callback=None):
+        Tool.Tool.__init__(self,dbstate,options_class,name)
+        db = dbstate.db
 
         # retrieve options
         include = self.options.handler.options_dict['include']
@@ -70,7 +71,7 @@ class CmdRef(Tool.Tool):
         else:
             level = 0
 
-        cli = int(parent == None)
+        cli = int(uistate == None)
 
         f = tempfile.NamedTemporaryFile()
         fname = f.name
