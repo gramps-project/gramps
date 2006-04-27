@@ -215,7 +215,7 @@ class ViewManager:
         hbox.show_all()
 
         self.show_sidebar = Config.get(Config.VIEW)
-        self.show_toolbar = Config.get(Config.TOOLBAR)
+        self.show_toolbar = Config.get(Config.TOOLBAR_ON)
 
         self.notebook = gtk.Notebook()
         self.notebook.set_show_tabs(False)
@@ -508,20 +508,20 @@ class ViewManager:
         if obj.get_active():
             self.ebox.show()
             self.notebook.set_show_tabs(False)
-            Config.set(Config.VIEW)
+            Config.set(Config.VIEW, True)
         else:
             self.ebox.hide()
             self.notebook.set_show_tabs(True)
-            Config.set(Config.VIEW)
+            Config.set(Config.VIEW, False)
         Config.sync()
 
     def toolbar_toggle(self, obj):
         if obj.get_active():
             self.toolbar.show()
-            Config.set(Config.TOOLBAR)
+            Config.set(Config.TOOLBAR_ON, True)
         else:
             self.toolbar.hide()
-            Config.set(Config.TOOLBAR)
+            Config.set(Config.TOOLBAR_ON, False)
         Config.sync()
 
     def register_view(self, view):
