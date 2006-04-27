@@ -161,6 +161,16 @@ uidefault = '''<ui>
   <separator/>
   <placeholder name="CommonEdit"/>
 </toolbar>
+<accelerator action="F2"/>
+<accelerator action="F3"/>
+<accelerator action="F4"/>
+<accelerator action="F5"/>
+<accelerator action="F6"/>
+<accelerator action="F7"/>
+<accelerator action="F8"/>
+<accelerator action="F9"/>
+<accelerator action="F11"/>
+<accelerator action="F12"/>
 </ui>
 '''
 
@@ -174,6 +184,7 @@ class ViewManager:
         self.active_page = None
         self.views = []
         self.pages = []
+        self.keypress_function = {}
         self.file_loaded = False
         self._build_main_window()
         self._connect_signals()
@@ -325,7 +336,17 @@ class ViewManager:
             ('BookMenu', None, '_Bookmarks'), 
             ('ReportsMenu', None, '_Reports'), 
             ('ToolsMenu', None, '_Tools'), 
-            ('WindowsMenu', None, '_Windows'), 
+            ('WindowsMenu', None, '_Windows'),
+            ('F2', None, None, "F2", None, self.keypress),
+            ('F3', None, None, "F3", None, self.keypress),
+            ('F4', None, None, "F4", None, self.keypress),
+            ('F5', None, None, "F5", None, self.keypress),
+            ('F6', None, None, "F6", None, self.keypress),
+            ('F7', None, None, "F7", None, self.keypress),
+            ('F8', None, None, "F8", None, self.keypress),
+            ('F9', None, None, "F9", None, self.keypress),
+            ('F11', None, None, "F11", None, self.keypress),
+            ('F12', None, None, "F12", None, self.keypress),
             ]
 
         self._file_toggle_action_list = [
@@ -348,6 +369,14 @@ class ViewManager:
             PageView.NAVIGATION_NONE: (None, None), 
             PageView.NAVIGATION_PERSON: (None, None), 
             }
+
+    def keypress(self, action):
+        name = action.get_name()
+        func = self.keypress_function.get(name)
+        if func:
+            func()
+        else:
+            self.uistate.push_message(_("Key %s is not bound") % name)
 
     def init_interface(self):
         self._init_lists()
