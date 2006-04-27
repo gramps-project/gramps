@@ -623,6 +623,7 @@ class ListView(BookMarkView):
                 self.model.add_row_by_handle(handle)
 
     def row_update(self,handle_list):
+        self.model.prev_handle = None
         if self.active:
             for handle in handle_list:
                 self.model.update_row_by_handle(handle)
