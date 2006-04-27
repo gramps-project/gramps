@@ -1133,7 +1133,7 @@ class ViewManager:
             f.write('</menu>')
 
         f.write('</menu></menubar></ui>')
-        return (f.getvalue(), actions)
+        return (unicode(f.getvalue()), actions)
 
 def by_menu_name(a, b):
     return cmp(a[2], b[2])
