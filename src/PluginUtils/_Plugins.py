@@ -83,8 +83,8 @@ class PluginDialog(ManagedWindow.ManagedWindow):
     """Displays the dialog box that allows the user to select the
     report that is desired."""
 
-    def __init__(self,state, uistate, track, item_list,categories,msg,label=None,
-                 button_label=None,tool_tip=None,content=REPORTS):
+    def __init__(self,state, uistate, track, item_list,categories,msg,
+                 label=None,button_label=None,tool_tip=None,content=REPORTS):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
@@ -94,7 +94,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         self.msg = msg
         self.content = content
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], None)
+        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         self.state = state
         self.uistate = uistate
@@ -102,14 +102,14 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         self.dialog = gtk.glade.XML(const.plugins_glade,"report","gramps")
         self.dialog.signal_autoconnect({
             "on_report_apply_clicked" : self.on_apply_clicked,
-            "destroy_passed_object"   : self.close_window,
+            "destroy_passed_object"   : self.close,
             })
 
         self.tree = self.dialog.get_widget("tree")
-        self.window = self.dialog.get_widget("report")
+        window = self.dialog.get_widget("report")
         self.title = self.dialog.get_widget("title")
 
-        Utils.set_titles(self.window, self.title, msg )
+        self.set_window(window, self.title, msg )
 
         self.store = gtk.TreeStore(gobject.TYPE_STRING)
         self.selection = self.tree.get_selection()
@@ -122,8 +122,6 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         if label:
             self.description.set_text(label)
         self.status = self.dialog.get_widget("report_status")
-
-        Utils.set_title_label(self.dialog,msg)
         
         self.author_name = self.dialog.get_widget("author_name")
         self.author_email = self.dialog.get_widget("author_email")
@@ -144,10 +142,10 @@ class PluginDialog(ManagedWindow.ManagedWindow):
 
         self.item = None
         self.build_plugin_tree(item_list,categories)
-        self.window.show()
+        self.show()
 
-    def close_window(self, obj):
-        self.close()
+    def build_menu_names(self,obj):
+        return (self.msg,None)
 
     def on_apply_clicked(self,obj):
         """Execute the selected report"""
@@ -157,9 +155,9 @@ class PluginDialog(ManagedWindow.ManagedWindow):
             _Report.report(self.state.db,self.state.active,
                           item_class,options_class,title,name,category)
         else:
-            _Tool.gui_tool(self.state.db,self.state.active,
+            _Tool.gui_tool(self.state,self.uistate, 
                           item_class,options_class,title,name,category,
-                          self.state.db.request_rebuild,self.parent)
+                          self.state.db.request_rebuild)
 
     def on_node_selected(self,obj):
         """Updates the informational display on the right hand side of
@@ -255,6 +253,7 @@ class ReportPlugins(PluginDialog):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
+
         PluginDialog.__init__(
             self,
             dbstate,
