@@ -1,4 +1,8 @@
 2006-04-26  Alex Roitman  <shura@gramps-project.org>
+
+	* src/GrampsLogger/_ErrorReportAssistant.py
+	(ErrorReportAssistant._get_sys_information): Add LANG to report.
+
 	* src/plugins/ChangeTypes.py: Fix wm; adapt to RelLib changes.
 	* src/plugins/ChangeNames.py: Fix wm.
 	* src/MergePeople.py: Adapt to RelLib changes.
