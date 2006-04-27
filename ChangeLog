@@ -1,4 +1,6 @@
 2006-04-26  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/PatchNames.py (PatchNames.on_ok_clicked): Properly
+	call update.
 	* src/plugins/Verify.py: Fix wm.
 	* src/plugins/RelCalc.py: Fix wm.
 	* src/plugins/SoundGen.py: Fix wm.
