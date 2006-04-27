@@ -1,4 +1,6 @@
 2006-04-26  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/ChangeTypes.py: Fix wm; adapt to RelLib changes.
+	* src/plugins/ChangeNames.py: Fix wm.
 	* src/MergePeople.py: Adapt to RelLib changes.
 	* src/plugins/Merge.py: Properly call MergePeople; properly call
 	update; set dbstate and uistate as instance attributes.
