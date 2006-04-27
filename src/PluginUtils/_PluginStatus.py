@@ -55,15 +55,14 @@ class PluginStatus(ManagedWindow.ManagedWindow):
     def __init__(self, state, uistate, track=[]):
 
         self.title = _("Plugin Status")
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+        ManagedWindow.ManagedWindow.__init__(self,uistate,track,self.__class__)
 
         self.set_window(gtk.Dialog("",uistate.window,
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
                                    (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
                         None, self.title)
         self.window.set_size_request(600,400)
-        self.window.connect('delete-event',self.close_window)
-        self.window.connect('response', self.close_window)
+        self.window.connect('response', self.close)
         
         scrolled_window = gtk.ScrolledWindow()
         self.list = gtk.TreeView()
@@ -106,9 +105,6 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                 '<span weight="bold" color="#267726">%s</span>' % _("OK"),
                 i[0], descr, None])
 
-    def close_window(self, *obj):
-        self.close()
-
     def button_press(self, obj, event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             model, node = self.selection.get_selected()
@@ -138,8 +134,7 @@ class PluginTrace(ManagedWindow.ManagedWindow):
                                    (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
                         None, title)
         self.window.set_size_request(600,400)
-        self.window.connect('delete-event',self.close_window)
-        self.window.connect('response', self.close_window)
+        self.window.connect('response', self.close)
         
         scrolled_window = gtk.ScrolledWindow()
         scrolled_window.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
@@ -153,6 +148,3 @@ class PluginTrace(ManagedWindow.ManagedWindow):
 
     def build_menu_names(self,obj):
         return (self.name, None)
-
-    def close_window(self, *obj):
-        self.close()
