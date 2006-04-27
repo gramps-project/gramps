@@ -270,7 +270,8 @@ class EditPerson(EditPrimary):
         self.gallery_tab = self._add_tab(
             notebook, 
             GalleryTab(self.dbstate, self.uistate, self.track, 
-                       self.obj.get_media_list()))
+                       self.obj.get_media_list(),
+                       self.load_person_image))
         
         self.web_list = self._add_tab(
             notebook, 
@@ -563,10 +564,12 @@ class EditPerson(EditPrimary):
         Loads the primary image into the main form if it exists.
         """
         media_list = self.obj.get_media_list()
+        print media_list
         if media_list:
             photo = media_list[0]
             object_handle = photo.get_reference_handle()
             obj = self.db.get_object_from_handle(object_handle)
+            print photo, obj.get_path()
             if self.load_obj != obj.get_path():
                 mime_type = obj.get_mime_type()
                 if mime_type and mime_type.startswith("image"):

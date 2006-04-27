@@ -1503,9 +1503,10 @@ class NoteTab(GrampsTab):
 #-------------------------------------------------------------------------
 class GalleryTab(ButtonTab):
 
-    def __init__(self, dbstate, uistate, track,  media_list):
+    def __init__(self, dbstate, uistate, track,  media_list, update=None):
         ButtonTab.__init__(self, dbstate, uistate, track, _('Gallery'), True)
         self.media_list = media_list
+        self.update = update
         self.rebuild()
         self.show_all()
 
@@ -1555,8 +1556,6 @@ class GalleryTab(ButtonTab):
             item.show()
             menu.append(item)
         menu.popup(None, None, None, event.button, event.time)
-
-    
         
     def get_icon_name(self):
         return 'gramps-media'
@@ -1603,6 +1602,8 @@ class GalleryTab(ButtonTab):
             self.media_list.pop()
         for i in newlist:
             self.media_list.append(i)
+        if self.update:
+            self.update()
         self.changed = True
 
     def get_data(self):
@@ -1619,6 +1620,7 @@ class GalleryTab(ButtonTab):
         self._connect_icon_model()
         self._set_label()
         self._selection_changed()
+        self.update()
         
     def get_selected(self):
         node = self.iconlist.get_selected_items()
