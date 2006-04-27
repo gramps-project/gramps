@@ -47,10 +47,9 @@ import GrampsDisplay
 #
 #-------------------------------------------------------------------------
 import Utils
-import ManagedWindow
-import Errors
 from PluginUtils import Tool, register_tool
 from QuestionDialog import OkDialog
+import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
@@ -89,11 +88,10 @@ _sn_prefix_re = re.compile("^\s*(%s)\s+(.*)" % '|'.join(prefix_list),
 class PatchNames(Tool.Tool, ManagedWindow.ManagedWindow):
     
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        self.label = _('Name and title extraction tool')
         
         Tool.Tool.__init__(self, dbstate, options_class, name)
-        self.label = _('Name and title extraction tool')
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [],
-                                                 self.__class__)
+        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         self.cb = callback
         self.trans = self.db.transaction_begin()
