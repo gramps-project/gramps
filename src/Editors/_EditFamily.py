@@ -218,7 +218,8 @@ class ChildEmbedList(EmbeddedList):
     def share_button_clicked(self,obj):
         # it only makes sense to skip those who are already in the family
         
-        skip_list = [self.family.get_father_handle(), self.family.get_mother_handle()] + \
+        skip_list = [self.family.get_father_handle(), \
+                     self.family.get_mother_handle()] + \
                     [x.ref for x in self.family.get_child_ref_list() ]
 
         sel = SelectPerson(self.dbstate.db, "Select Child", skip=skip_list)
@@ -379,17 +380,19 @@ class EditFamily(EditPrimary):
         self.set_window(self.top.get_widget("family_editor"),
                         None,_('Family Editor'))
 
-        self.fbirth = self.top.get_widget('fbirth')
-        self.fdeath = self.top.get_widget('fdeath')
+        self.fbirth  = self.top.get_widget('fbirth')
+        self.fdeath  = self.top.get_widget('fdeath')
         
-        self.mbirth = self.top.get_widget('mbirth')
-        self.mdeath = self.top.get_widget('mdeath')
+        self.mbirth  = self.top.get_widget('mbirth')
+        self.mdeath  = self.top.get_widget('mdeath')
 
-        self.mbutton= self.top.get_widget('mbutton')
-        self.fbutton= self.top.get_widget('fbutton')
+        self.mbutton = self.top.get_widget('mbutton')
+        self.mbutton2= self.top.get_widget('mbutton2')
+        self.fbutton = self.top.get_widget('fbutton')
+        self.fbutton2= self.top.get_widget('fbutton2')
 
-        self.mbox   = self.top.get_widget('mbox')
-        self.fbox   = self.top.get_widget('fbox')
+        self.mbox    = self.top.get_widget('mbox')
+        self.fbox    = self.top.get_widget('fbox')
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'), self.save)
@@ -436,7 +439,9 @@ class EditFamily(EditPrimary):
         self.phandles = [handle for handle in self.phandles if handle]
 
         self.mbutton.connect('clicked',self.mother_clicked)
+        self.mbutton2.connect('clicked',self.add_mother_clicked)
         self.fbutton.connect('clicked',self.father_clicked)
+        self.fbutton2.connect('clicked',self.add_father_clicked)
 
     def _create_tabbed_pages(self):
 
@@ -482,33 +487,32 @@ class EditFamily(EditPrimary):
 
     def update_father(self,handle):
         self.load_parent(handle, self.fbox, self.fbirth,
-                         self.fdeath, self.fbutton)
+                         self.fdeath, self.fbutton, self.fbutton2)
 
     def update_mother(self,handle):
         self.load_parent(handle, self.mbox, self.mbirth,
-                         self.mdeath, self.mbutton)
+                         self.mdeath, self.mbutton, self.mbutton2)
 
-    def on_change_mother(self, selector_window, obj):
-        if obj.__class__ == RelLib.Person:
-            try:
-                person = obj
-                self.obj.set_mother_handle(person.get_handle()) 
-                self.update_mother(person.get_handle())                    
-            except:
-                log.warn(
-                    "Failed to update mother: \n"
-                    "obj returned from selector was: %s\n"
-                    % (repr(obj),))
-                raise
-        else:
-            log.warn(
-                "Object selector returned obj.__class__ = %s, it should "
-                "have been of type %s." % (obj.__class__.__name__,
-                                           RelLib.Person.__name__))
-            
-        selector_window.close()
+    def add_mother_clicked(self, obj):
+        from Editors import EditPerson
+        person = RelLib.Person()
+        person.set_gender(RelLib.Person.FEMALE)
+        EditPerson(self.dbstate,self.uistate,[],person, self.new_mother_added)
 
-            
+    def add_father_clicked(self, obj):
+        from Editors import EditPerson
+        person = RelLib.Person()
+        person.set_gender(RelLib.Person.MALE)
+        EditPerson(self.dbstate,self.uistate,[],person, self.new_father_added)
+
+    def new_mother_added(self, person):
+        self.obj.set_mother_handle(person.handle) 
+        self.update_mother(person.handle)
+
+    def new_father_added(self, person):
+        self.obj.set_father_handle(person.handle) 
+        self.update_father(person.handle)
+
     def mother_clicked(self, obj):
         for i in self.hidden:
             i.set_sensitive(True)
@@ -533,32 +537,6 @@ class EditFamily(EditPrimary):
                 self.obj.set_mother_handle(person.handle) 
                 self.update_mother(person.handle)
 
-#     def mother_clicked(self,obj):
-#         handle = self.obj.get_mother_handle()
-#         if handle:
-#             self.obj.set_mother_handle(None)
-#             self.update_mother(None)
-#         else:
-#             filter_spec = PersonFilterSpec()
-#             filter_spec.set_gender(RelLib.Person.FEMALE)
-            
-#             child_birth_years = []
-#             for person_handle in self.obj.get_child_handle_list():
-#                 person = self.db.get_person_from_handle(person_handle)
-#                 event_ref = person.get_birth_ref()
-#                 if event_ref and event_ref.ref:
-#                     event = self.db.get_event_from_handle(event_ref.ref)
-#                     child_birth_years.append(event.get_date_object().get_year())
-                    
-#             if len(child_birth_years) > 0:
-#                 filter_spec.set_birth_year(min(child_birth_years))
-#                 filter_spec.set_birth_criteria(PersonFilterSpec.BEFORE)
-                
-
-#             selector = PersonSelector(self.dbstate,self.uistate,
-#                                       self.track,filter_spec=filter_spec)
-#             selector.connect('add-object',self.on_change_mother)
-            
     def on_change_father(self, selector_window, obj):
         if  obj.__class__ == RelLib.Person:
             try:
@@ -654,31 +632,6 @@ class EditFamily(EditPrimary):
                     except Errors.WindowActiveError:
                         pass
 
-#     def father_clicked(self,obj):
-#         handle = self.obj.get_father_handle()
-#         if handle:
-#             self.obj.set_father_handle(None)
-#             self.update_father(None)
-#         else:
-#             filter_spec = PersonFilterSpec()
-#             filter_spec.set_gender(RelLib.Person.MALE)
-
-#             child_birth_years = []
-#             for person_handle in self.obj.get_child_handle_list():
-#                 person = self.db.get_person_from_handle(person_handle)
-#                 event_ref = person.get_birth_ref()
-#                 if event_ref and event_ref.ref:
-#                     event = self.db.get_event_from_handle(event_ref.ref)
-#                     child_birth_years.append(event.get_date_object().get_year())
-                    
-#             if len(child_birth_years) > 0:
-#                 filter_spec.set_birth_year(min(child_birth_years))
-#                 filter_spec.set_birth_criteria(PersonFilterSpec.BEFORE)
-                
-#             selector = PersonSelector(self.dbstate,self.uistate,
-#                                       self.track,filter_spec=filter_spec)
-#             selector.connect('add-object',self.on_change_father)
-
     def edit_person(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             from _EditPerson import EditPerson
@@ -689,7 +642,8 @@ class EditFamily(EditPrimary):
             except Errors.WindowActiveError:
                 pass
 
-    def load_parent(self,handle,box,birth_obj,death_obj,btn_obj):
+    def load_parent(self, handle, box, birth_obj, death_obj,
+                    btn_obj, btn2_obj):
 
         is_used = handle != None
 
@@ -702,6 +656,7 @@ class EditFamily(EditPrimary):
             pass
         
         if is_used:
+            btn2_obj.hide()
             db = self.db
             person = db.get_person_from_handle(handle)
             name = "%s [%s]" % (NameDisplay.displayer.display(person),
@@ -720,13 +675,14 @@ class EditFamily(EditPrimary):
                 IconButton(self.edit_person,person.handle)
                 ))
         else:
+            btn2_obj.show()
             name = ""
             birth = ""
             death = ""
 
             add_image = gtk.Image()
             add_image.show()
-            add_image.set_from_stock(gtk.STOCK_ADD,gtk.ICON_SIZE_BUTTON)
+            add_image.set_from_stock(gtk.STOCK_INDEX,gtk.ICON_SIZE_BUTTON)
             btn_obj.add(add_image)
 
         birth_obj.set_text(birth)

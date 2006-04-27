@@ -88,11 +88,10 @@ class EditEvent(EditPrimary):
 
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "event_edit","gramps")
-        self.window = self.top.get_widget("event_edit")
 
-        etitle = _('Event Editor')
-        Utils.set_titles(self.window, self.top.get_widget('title'),
-                         etitle, etitle)
+        self.set_window(self.top.get_widget("event_edit"),
+                        self.top.get_widget('title'),
+                        _('Event Editor'))
 
     def _connect_signals(self):
         self.top.get_widget('button111').connect('clicked',self.close)
