@@ -244,12 +244,16 @@ class GraphViz:
         for person_handle in self.ind_list:
             person = self.database.get_person_from_handle(person_handle)
             pid = person.get_gramps_id().replace('-','_')
-            for family_handle, mrel, frel in person.get_parent_family_handle_list():
+            for family_handle in person.get_parent_family_handle_list():
                 family = self.database.get_family_from_handle(family_handle)
+                madopted = False
+                fadopted = False
+                for child_ref in family.get_child_ref_list():
+                    if child_ref.ref == person_handle:
+                        fadopted  = child_ref.frel != RelLib.ChildRefType.BIRTH
+                        madopted  = child_ref.mrel != RelLib.ChildRefType.BIRTH
                 father_handle = family.get_father_handle()
                 mother_handle = family.get_mother_handle()
-                fadopted  = frel != RelLib.ChildRefType.BIRTH
-                madopted  = mrel != RelLib.ChildRefType.BIRTH
                 famid = family.get_gramps_id().replace('-','_')
                 if (self.show_families and
                     (father_handle and person_dict.has_key(father_handle) or
@@ -765,7 +769,6 @@ class GraphVizDialog(Report.ReportDialog):
         self.category = Report.CATEGORY_CODE
         Report.ReportDialog.__init__(self,database,person,self.options_class,
                                     name,translated_name)
-
         response = self.window.run()
         if response == gtk.RESPONSE_OK:
             try:

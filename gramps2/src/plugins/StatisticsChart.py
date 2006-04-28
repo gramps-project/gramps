@@ -50,13 +50,13 @@ import gtk
 #------------------------------------------------------------------------
 
 # Person and relation types
-from RelLib import Person, Family
+from RelLib import Person, FamilyRelType, EventType
 # gender and report type names
 import BaseDoc
 from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 import GenericFilter
 import DateHandler
-from Utils import ProgressMeter, format_event
+from Utils import ProgressMeter
 
 #------------------------------------------------------------------------
 #
@@ -252,7 +252,7 @@ class Extract:
         person, event_handles = data
         for event_handle in event_handles:
             event = self.db.get_event_from_handle(event_handle)
-            evtType = format_event( event.get_type() )
+            evtType = str(event.get_type())
             types.append(evtType)
         if types:
             return types
@@ -336,8 +336,8 @@ class Extract:
         children = []
         for fam_handle in person.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_handle)
-            for child_handle in fam.get_child_handle_list():
-                children.append(child_handle)
+            for child_ref in fam.get_child_ref_list():
+                children.append(child_ref.ref)
         # TODO: it would be good to return only biological children,
         # but GRAMPS doesn't offer any efficient way to check that
         # (I don't want to check each children's parent family mother
@@ -351,12 +351,11 @@ class Extract:
         marriages = []
         for family_handle in person.get_family_handle_list():
             family = self.db.get_family_from_handle(family_handle)
-            if family.get_relationship() == Family.MARRIED:
-                for event_handle in family.get_event_list():
-                    if event_handle:
-                        event = self.db.get_event_from_handle(event_handle)
-                        if event.get_name() == "Marriage":
-                            marriages.append(event_handle)
+            if int(family.get_relationship()) == FamilyRelType.MARRIED:
+                for event_ref in family.get_event_ref_list():
+                    event = self.db.get_event_from_handle(event_ref.ref)
+                    if int(event.get_type()) == EventType.MARRIAGE:
+                        marriages.append(event_ref.ref)
         if marriages:
             return (person, marriages)
         return None
@@ -373,7 +372,7 @@ class Extract:
         "return list of event handles for given person or None"
         events = []
         for event_ref in person.get_event_ref_list():
-            events.append( event_ref.get_reference_handle())
+            events.append(event_ref.ref)
 
         if events:
             return (person, events)

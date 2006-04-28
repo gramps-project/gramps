@@ -1,3 +1,15 @@
+2006-04-27  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py (ViewManager.build_plugin_menu): Use unique
+	command-line name for action menu.
+	* src/plugins/GraphViz.py: Fix report.
+	* src/PluginUtils/_PluginMgr.py (_register_standalone): Remove
+	unneeded import.
+	* src/PluginUtils/_Plugins.py (build_tools_menu, build_report_menu,
+	build_plugin_menu, by_menu_name): Remove functions already
+	re-implemented in ViewManager.
+	* src/plugins/EventCmp.py: Correct button label.
+	* src/plugins/StatisticsChart.py: Fix report.
+
 2006-04-27  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsDbBase.py: fix custom event storing
 	* src/GrampsDb/_GrampsBSDDB.py: fix custom event storing

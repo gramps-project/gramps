@@ -237,7 +237,6 @@ class DisplayChart(ManagedWindow.ManagedWindow):
             "on_write_table"        : self.on_write_table,
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
-            "on_view_delete_event"  : self.close,
             })
 
         window = self.topDialog.get_widget("view")
@@ -375,7 +374,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
                                   action=gtk.FILE_CHOOSER_ACTION_SAVE,
                                   buttons=(gtk.STOCK_CANCEL,
                                            gtk.RESPONSE_CANCEL,
-                                           gtk.STOCK_OPEN,
+                                           gtk.STOCK_SAVE,
                                            gtk.RESPONSE_OK))
 
         f.set_current_folder(os.getcwd())
