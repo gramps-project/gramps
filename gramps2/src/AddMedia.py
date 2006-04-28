@@ -56,27 +56,36 @@ import Utils
 import RelLib
 import Mime
 import GrampsDisplay
+import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
 # AddMediaObject
 #
 #-------------------------------------------------------------------------
-class AddMediaObject:
+class AddMediaObject(ManagedWindow.ManagedWindow):
     """
     Displays the Add Media Dialog window, allowing the user to select
     a media object from the file system, while providing a description.
     """
     
-    def __init__(self,db):
+    def __init__(self,dbstate, uistate, track):
         """
         Creates and displays the dialog box
 
         db - the database in which the new object is to be stored
         """
-        self.db = db
+
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+        
+        self.db = dbstate.db
         self.glade = gtk.glade.XML(const.gladeFile,"imageSelect","gramps")
-        self.window = self.glade.get_widget("imageSelect")
+        
+        self.set_window(
+            self.glade.get_widget("imageSelect"),
+            self.glade.get_widget('title'),
+            _('Select a media object'))
+            
         self.description = self.glade.get_widget("photoDescription")
         self.image = self.glade.get_widget("image")
         self.file_text = self.glade.get_widget("fname")
@@ -86,12 +95,12 @@ class AddMediaObject:
         self.temp_name = ""
         self.object = None
 
-        Utils.set_titles(self.window,self.glade.get_widget('title'),
-                         _('Select a media object'))
-
         self.glade.get_widget('fname').connect('update_preview',
                                                self.on_name_changed)
-        self.window.show()
+        self.show()
+
+    def build_menu_names(self, obj):
+        return(_('Select media object'),None)
 
     def internal_toggled(self, obj):
         self.file_text.set_sensitive(not obj.get_active())
@@ -173,12 +182,12 @@ class AddMediaObject:
 
             if val == gtk.RESPONSE_OK:
                 self.on_savephoto_clicked()
-                self.window.destroy()
+                self.close()
                 return self.object
             elif val == gtk.RESPONSE_HELP: 
                 self.on_help_imagesel_clicked(None)
             else:
-                self.window.destroy()
+                self.close()
                 return None
         return None
 
