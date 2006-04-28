@@ -317,7 +317,7 @@ class ViewManager:
 
         self._action_action_list = [
             ('SaveAs', gtk.STOCK_SAVE_AS, _('_Save As')), 
-            ('Export', gtk.STOCK_SAVE_AS, _('_Export')), "<control>e", None,
+            ('Export', gtk.STOCK_SAVE_AS, _('_Export'), "<control>e", None,
              self.export_data), 
             ('Abandon', gtk.STOCK_REVERT_TO_SAVED,
              _('_Abandon changes and quit')), 
