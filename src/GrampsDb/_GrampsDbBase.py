@@ -465,7 +465,6 @@ class GrampsDbBase(GrampsDBCallback):
         Commits the specified Event to the database, storing the changes
         as part of the transaction.
         """
-        
         self._commit_base(event, self.event_map, EVENT_KEY, 
                           transaction.event_update, transaction.event_add, 
                           transaction, change_time)

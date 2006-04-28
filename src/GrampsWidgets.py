@@ -389,7 +389,6 @@ class MonitoredDataType:
     def on_change(self, obj):
         value = self.fix_value(self.sel.get_values())
         self.set_val(value)
-        print value, self.get_val()
 
 class MonitoredMenu:
 
