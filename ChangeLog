@@ -2,6 +2,7 @@
 	* src/ScratchPad.py (ScratchPadWindow.__init__): Allow only one
 	instance; translate label; remove unneeded event handlers.
 	* src/ViewManager.py (ViewManager.scratchpad): Catch exception.
+	(ViewManager._init_lists): Translate menu labels.
 
 2006-04-27  Alex Roitman  <shura@gramps-project.org>
 	* src/ViewManager.py (ViewManager.build_plugin_menu): Use unique
