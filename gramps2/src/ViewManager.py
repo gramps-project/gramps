@@ -1122,6 +1122,7 @@ class ViewManager:
                 f.write('<menuitem action="%s"/>' % new_key)
                 actions.append((new_key, None, name[2], None, None, 
                                 func(name, self.state, self.uistate)))
+                print func, name
             f.write('</menu>')
 
         # If there are any unsupported items we add separator
@@ -1130,13 +1131,14 @@ class ViewManager:
             f.write('<separator/>')
             f.write('<menu action="%s">' % Plugins.UNSUPPORTED)
             actions.append((Plugins.UNSUPPORTED, None, Plugins.UNSUPPORTED))
-            lst = hash_data[key]
+            lst = hash_data[Plugins.UNSUPPORTED]
             lst.sort(by_menu_name)
             for name in lst:
                 new_key = name[3].replace(' ', '-')
                 f.write('<menuitem action="%s"/>' % new_key)
                 actions.append((new_key, None, name[2], None, None, 
                                 func(name, self.state, self.uistate)))
+                print func, name
             f.write('</menu>')
 
         f.write('</menu></menubar></ui>')
