@@ -1,3 +1,9 @@
+2006-04-28  Don Allingham  <don@gramps-project.org>
+	* src/AutoComp.py (StandardCustomSelector.fill): handle unicode
+	in addition to str
+	* src/ScratchPad.py (ScratchPadWindow.__init__): fix call to
+	set_window, passing proper arguments
+
 2006-04-28  Alex Roitman  <shura@gramps-project.org>
 	* src/ScratchPad.py (ScratchPadWindow.__init__): Allow only one
 	instance; translate label; remove unneeded event handlers.
