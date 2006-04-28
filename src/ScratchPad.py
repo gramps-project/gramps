@@ -928,7 +928,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
     def __init__(self, dbstate, uistate):
         """Initializes the ScratchPad class, and displays the window"""
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
         self.db = dbstate.db
 
         self.database_changed(self.db)
@@ -962,11 +962,9 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         self.object_list.set_model(ScratchPadWindow.otree)
         
         self.top.signal_autoconnect({
-            "on_close_scratchpad" : self.on_close_scratchpad,
+            "on_close_scratchpad" : self.close,
             "on_clear_clicked": self.on_clear_clicked,
             "on_help_clicked": self.on_help_clicked,
-            "on_objectlist_delete_event": self.close,
-            "on_scratch_pad_delete_event": self.close,
             })
 
         self.clear_all_btn.connect_object('clicked', gtk.ListStore.clear,
@@ -976,7 +974,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         self.show()
 
     def build_menu_names(self,obj):
-        return ('ScratchPad',None)
+        return (_('ScratchPad'),None)
 
     def database_changed(self,database):
         self.db = database
@@ -997,9 +995,6 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-util-scratch-pad')
-
-    def on_close_scratchpad(self,obj):
-        self.close()
 
     def on_clear_clicked(self,obj):
         """Deletes the selected object from the object list"""

@@ -1,3 +1,8 @@
+2006-04-28  Alex Roitman  <shura@gramps-project.org>
+	* src/ScratchPad.py (ScratchPadWindow.__init__): Allow only one
+	instance; translate label; remove unneeded event handlers.
+	* src/ViewManager.py (ViewManager.scratchpad): Catch exception.
+
 2006-04-27  Alex Roitman  <shura@gramps-project.org>
 	* src/ViewManager.py (ViewManager.build_plugin_menu): Use unique
 	command-line name for action menu.
