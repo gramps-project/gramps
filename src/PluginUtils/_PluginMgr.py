@@ -293,8 +293,6 @@ def _register_standalone(report_class, options_class, translated_name,
                          unsupported=False
                          ):
     """Register a report with the plugin system"""
-
-    from PluginUtils import Report
     
     del_index = -1
     for i in range(0,len(report_list)):

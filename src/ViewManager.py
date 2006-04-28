@@ -1108,7 +1108,8 @@ class ViewManager:
                     (item[0], item[1], item[2], item[4], item[3])]
                 
         # Sort categories, skipping the unsupported
-        catlist = [item for item in hash_data.keys() if item != Plugins.UNSUPPORTED]
+        catlist = [item for item in hash_data.keys()
+                   if item != Plugins.UNSUPPORTED]
         catlist.sort()
         for key in catlist:
             new_key = key.replace(' ', '-')
@@ -1117,7 +1118,7 @@ class ViewManager:
             lst = hash_data[key]
             lst.sort(by_menu_name)
             for name in lst:
-                new_key = name[2].replace(' ', '-')
+                new_key = name[3].replace(' ', '-')
                 f.write('<menuitem action="%s"/>' % new_key)
                 actions.append((new_key, None, name[2], None, None, 
                                 func(name, self.state, self.uistate)))
@@ -1132,7 +1133,7 @@ class ViewManager:
             lst = hash_data[key]
             lst.sort(by_menu_name)
             for name in lst:
-                new_key = name[2].replace(' ', '-')
+                new_key = name[3].replace(' ', '-')
                 f.write('<menuitem action="%s"/>' % new_key)
                 actions.append((new_key, None, name[2], None, None, 
                                 func(name, self.state, self.uistate)))
