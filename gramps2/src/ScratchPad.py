@@ -937,7 +937,8 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         self.glade_file = os.path.join(const.glade_dir,"scratchpad.glade")
 
         self.top = gtk.glade.XML(self.glade_file,"scratch_pad","gramps")
-        self.set_window(self.top.get_widget("scratch_pad"))
+        self.set_window(self.top.get_widget("scratch_pad"),
+                        None, None, msg=_("Scratch Pad"))
 
         self.clear_all_btn = self.top.get_widget("btn_clear_all")
         self.clear_btn = self.top.get_widget("btn_clear")
@@ -975,7 +976,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         self.show()
 
     def build_menu_names(self,obj):
-        return ('ScratchPad','ScratchPad')
+        return ('ScratchPad',None)
 
     def database_changed(self,database):
         self.db = database
