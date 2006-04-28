@@ -89,7 +89,7 @@ class EditReference(ManagedWindow.ManagedWindow):
         self.warn_box = box
 
     def enable_warnbox(self):
-        self.warn_box.show_all()
+        self.warn_box.show()
 
     def define_expander(self,expander):
         expander.set_expanded(True)

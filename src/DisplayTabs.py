@@ -1622,7 +1622,8 @@ class GalleryTab(ButtonTab):
         self._connect_icon_model()
         self._set_label()
         self._selection_changed()
-        self.update()
+        if self.update:
+            self.update()
         
     def get_selected(self):
         node = self.iconlist.get_selected_items()
@@ -1633,18 +1634,19 @@ class GalleryTab(ButtonTab):
     def add_button_clicked(self, obj):
         import AddMedia
 
-        am = AddMedia.AddMediaObject(self.dbstate.db)
+        am = AddMedia.AddMediaObject(self.dbstate, self.uistate, self.track)
         am.run()
         src = am.object
 
-        sref = RelLib.MediaRef()
-        try:
-            from Editors import EditMediaRef
-            
-            EditMediaRef(self.dbstate, self.uistate, self.track, 
-                         src, sref, self.add_callback)
-        except Errors.WindowActiveError:
-            pass
+        if src:
+            sref = RelLib.MediaRef()
+            try:
+                from Editors import EditMediaRef
+                
+                EditMediaRef(self.dbstate, self.uistate, self.track, 
+                             src, sref, self.add_callback)
+            except Errors.WindowActiveError:
+                pass
 
     def add_callback(self, media_ref, media):
         media_ref.ref = media.handle

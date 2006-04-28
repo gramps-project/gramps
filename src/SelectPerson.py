@@ -44,37 +44,30 @@ import pango
 import const
 import Utils
 import PeopleModel
+import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
 # SelectPerson
 #
 #-------------------------------------------------------------------------
-class SelectPerson:
+class SelectPerson(ManagedWindow.ManagedWindow):
 
-    def __init__(self, db, title, filter=None, skip=[]):
+    def __init__(self, dbstate, uistate, title, filter=None, skip=[]):
+
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
         self.renderer = gtk.CellRendererText()
         self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
-        self.db = db
+        self.db = dbstate.db
         self.glade = gtk.glade.XML(const.gladeFile,"select_person","gramps")
-        self.top = self.glade.get_widget('select_person')
         self.plist =  self.glade.get_widget('plist')
         self.notebook =  self.glade.get_widget('notebook')
 
-        Utils.set_titles(self.top,
-                         self.glade.get_widget('title'),
-                         title)
-
-#         import hotshot, hotshot.stats
-
-#         pr = hotshot.Profile('profile.data')
-#         pr.runcall(self.foo)
-#         pr.close()
-#         stats = hotshot.stats.load('profile.data')
-#         stats.strip_dirs()
-#         stats.sort_stats('time','calls')
-#         stats.print_stats(35)
+        self.set_window(
+            self.glade.get_widget('select_person'),
+            self.glade.get_widget('title'),
+            title)
         
         self.model = PeopleModel.PeopleModel(self.db,
                                              data_filter=filter,
@@ -82,10 +75,10 @@ class SelectPerson:
 
         self.add_columns(self.plist)
         self.plist.set_model(self.model)
-        self.top.show()
+        self.show()
 
-    def foo(self):
-        PeopleModel.PeopleModel(self.db)
+    def build_menu_names(self,obj):
+        return (_('Select Person'), None)
 
     def add_columns(self,tree):
         tree.set_fixed_height_mode(True)
@@ -113,15 +106,15 @@ class SelectPerson:
         return mlist
 
     def run(self):
-        val = self.top.run()
+        val = self.window.run()
         if val == gtk.RESPONSE_OK:
             idlist = self.get_selected_ids()
-            self.top.destroy()
+            self.close()
             if idlist and idlist[0]:
                 return_value = self.db.get_person_from_handle(idlist[0])
             else:
                 return_value = None
 	    return return_value
         else:
-            self.top.destroy()
+            self.close()
             return None
