@@ -1,3 +1,6 @@
+2006-04-27  Brian Matherly  <brian@gramps-project.org>
+	* src/docgen/OpenSpreadSheet.py: fix manifest so files open in calc
+
 2006-04-27  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditReference.py: fix warn_box call
 	* src/DisplayTabs.py: handle canceled edit box for media
