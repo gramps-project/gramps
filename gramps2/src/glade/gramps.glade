@@ -834,7 +834,6 @@
 		      <child>
 			<widget class="GtkButton" id="fbutton">
 			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Remove selected event reference</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NONE</property>
 			  <property name="focus_on_click">True</property>
@@ -862,7 +861,6 @@
 		      <child>
 			<widget class="GtkButton" id="fbutton2">
 			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Remove selected event reference</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NONE</property>
 			  <property name="focus_on_click">True</property>
@@ -1120,7 +1118,6 @@
 		      <child>
 			<widget class="GtkButton" id="mbutton">
 			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Remove selected event reference</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NONE</property>
 			  <property name="focus_on_click">True</property>
@@ -1148,7 +1145,6 @@
 		      <child>
 			<widget class="GtkButton" id="mbutton2">
 			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Remove selected event reference</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NONE</property>
 			  <property name="focus_on_click">True</property>
