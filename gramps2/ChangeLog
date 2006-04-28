@@ -1,4 +1,7 @@
 2006-04-28  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: add ScratchPad to the View menu
+	* src/Editors/_EditFamily.py: Fix tooltips
+	* src/glade/gramps.glade: remove predefined tooltips
 	* src/AutoComp.py (StandardCustomSelector.fill): handle unicode
 	in addition to str
 	* src/ScratchPad.py (ScratchPadWindow.__init__): fix call to

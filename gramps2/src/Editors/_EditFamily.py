@@ -500,8 +500,8 @@ class EditFamily(EditPrimary):
     def update_mother(self,handle):
         self.load_parent(handle, self.mbox, self.mbirth,
                          self.mdeath, self.mbutton, self.mbutton2,
-                         _("Select a person as the father"),
-                         _("Remove the person as the father"))
+                         _("Select a person as the mother"),
+                         _("Remove the person as the mother"))
 
     def add_mother_clicked(self, obj):
         from Editors import EditPerson
