@@ -411,7 +411,7 @@ class OpenSpreadSheet(SpreadSheetDoc):
 	self.f.write('<manifest:manifest ')
         self.f.write('xmlns:manifest="http://openoffice.org/2001/manifest">')
 	self.f.write('<manifest:file-entry ')
-        self.f.write('manifest:media-type="application/vnd.sun.xml.writer" ')
+        self.f.write('manifest:media-type="application/vnd.sun.xml.calc" ')
 	self.f.write('manifest:full-path="/"/>')
         self.f.write('<manifest:file-entry manifest:media-type="" ')
 	self.f.write('manifest:full-path="Pictures/"/>')
