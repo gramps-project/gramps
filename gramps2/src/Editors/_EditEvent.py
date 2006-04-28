@@ -101,6 +101,10 @@ class EditEvent(EditPrimary):
         ok.set_sensitive(not self.db.readonly)
         ok.connect('clicked',self.save)
 
+    def get_custom_events(self):
+        return self.dbstate.db.get_person_event_type_list() + \
+               self.dbstate.db.get_family_event_types()
+    
     def _setup_fields(self):
         self.place_field = PlaceEntry(
             self.top.get_widget("eventPlace"),

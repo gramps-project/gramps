@@ -84,8 +84,7 @@ class EditEventRef(EditReference):
         self.add_event = self.db.add_person_event
 
     def get_custom_events(self):
-        return [ (RelLib.EventType.CUSTOM,val) \
-                 for val in self.dbstate.db.get_person_event_types()]
+        return self.db.get_person_event_type_list()
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'),self.ok_clicked)

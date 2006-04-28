@@ -938,11 +938,6 @@ class GrampsBSDDB(GrampsDbBase):
         vals.sort()
         return [item[1] for item in vals]
 
-    def get_person_event_type_list(self):
-        vals = [ unicode(val) for val in set(self.eventnames.keys()) ]
-        vals.sort(locale.strcoll)
-        return vals
-
     def get_repository_type_list(self):
         vals = list(set(self.repository_types.keys()))
         vals.sort(locale.strcoll)

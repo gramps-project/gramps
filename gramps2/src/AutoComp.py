@@ -174,8 +174,13 @@ class StandardCustomSelector:
                 index = index + 1
 
         if self.additional:
-            for (value,data) in self.additional:
-                self.store.append(row=[value,data])
+            for event_type in self.additional:
+                if type(event_type) == str:
+                    self.store.append(row=[self.custom_key, event_type])
+                elif type(event_type) == str:
+                    self.store.append(row=[event_type[0], event_type[1]])
+                else:
+                    self.store.append(row=[int(event_type), str(event_type[1])])
                 if key == self.active_key:
                     self.active_index = index
                 index = index + 1
