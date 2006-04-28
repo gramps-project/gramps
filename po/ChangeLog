@@ -1,3 +1,13 @@
+2006-04-27  Alex Roitman  <shura@gramps-project.org>
+	* pt_BR.po: Convert to utf8 encoding.
+	* zh_CN.po: Convert to utf8 encoding.
+	* pl.po: Convert to utf8 encoding.
+	* no.po: Convert to utf8 encoding.
+	* it.po: Convert to utf8 encoding.
+	* sk.po: Convert to utf8 encoding.
+	* da.po: Convert to utf8 encoding.
+	* nb.po: Convert to utf8 encoding.
+
 2006-04-21  Alex Roitman  <shura@gramps-project.org>
 	* POTFILES.in: Remove obsolete file.
 

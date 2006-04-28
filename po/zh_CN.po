@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=GB2312\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.4\n"
 
@@ -22,7 +22,7 @@ msgstr ""
 #: ../src/AddMedia.py:127
 #, fuzzy, python-format
 msgid "Cannot import %s"
-msgstr "ÎŞ·¨µ¼Èë"
+msgstr "æ— æ³•å¯¼å…¥"
 
 #: ../src/AddMedia.py:128
 msgid "The filename supplied could not be found."
@@ -31,7 +31,7 @@ msgstr ""
 #: ../src/AddMedia.py:146
 #, fuzzy
 msgid "Add Media Object"
-msgstr "Ã½ÌåÎï¼ş"
+msgstr "åª’ä½“ç‰©ä»¶"
 
 #: ../src/ArgHandler.py:271
 msgid "Opening non-native format"
@@ -57,7 +57,7 @@ msgstr ""
 #: ../src/ViewManager.py:960
 #, fuzzy, python-format
 msgid "Could not open file: %s"
-msgstr "ÎŞ·¨´ò¿ª"
+msgstr "æ— æ³•æ‰“å¼€"
 
 #: ../src/ArgHandler.py:293 ../src/ViewManager.py:618
 #: ../src/ViewManager.py:961
@@ -75,7 +75,7 @@ msgstr ""
 #: ../src/ArgHandler.py:719 ../src/ViewManager.py:1060
 #, fuzzy
 msgid "All files"
-msgstr "ËùÓĞÈË"
+msgstr "æ‰€æœ‰äºº"
 
 #: ../src/ArgHandler.py:728 ../src/ViewManager.py:1080
 msgid "GRAMPS databases"
@@ -84,37 +84,37 @@ msgstr ""
 #: ../src/Assistant.py:324 ../src/StartupDialog.py:184
 #: ../src/glade/gramps.glade.h:103 ../src/plugins/soundex.glade.h:2
 msgid "Name:"
-msgstr "Ãû×Ö:"
+msgstr "åå­—:"
 
 #: ../src/Assistant.py:325 ../src/StartupDialog.py:185
 #: ../src/plugins/Ancestors.py:504
 msgid "Address:"
-msgstr "µØÖ·:"
+msgstr "åœ°å€:"
 
 #: ../src/Assistant.py:326 ../src/StartupDialog.py:186
 msgid "City:"
-msgstr "³ÇÊĞ:"
+msgstr "åŸå¸‚:"
 
 #: ../src/Assistant.py:327 ../src/StartupDialog.py:187
 msgid "State/Province:"
-msgstr "Öİ£¯Ê¡£º"
+msgstr "å·ï¼çœï¼š"
 
 #: ../src/Assistant.py:328 ../src/StartupDialog.py:188
 #: ../src/glade/gramps.glade.h:69
 msgid "Country:"
-msgstr "¹ú¼Ò£º"
+msgstr "å›½å®¶ï¼š"
 
 #: ../src/Assistant.py:329 ../src/StartupDialog.py:189
 msgid "ZIP/Postal code:"
-msgstr "ÓÊ±à£º"
+msgstr "é‚®ç¼–ï¼š"
 
 #: ../src/Assistant.py:330 ../src/StartupDialog.py:190
 msgid "Phone:"
-msgstr "µç»°£º"
+msgstr "ç”µè¯ï¼š"
 
 #: ../src/Assistant.py:331 ../src/StartupDialog.py:191
 msgid "Email:"
-msgstr "µç×ÓÓÊ¼ş£º"
+msgstr "ç”µå­é‚®ä»¶ï¼š"
 
 #: ../src/Bookmarks.py:139 ../src/Bookmarks.py:145
 msgid "Edit Bookmarks"
@@ -140,7 +140,7 @@ msgstr ""
 #: ../src/plugins/RelCalc.py:105 ../src/plugins/TimeLine.py:430
 #: ../src/TreeViews/_PersonTreeView.py:27
 msgid "Name"
-msgstr "Ãû×Ö"
+msgstr "åå­—"
 
 #: ../src/Bookmarks.py:151 ../src/DisplayTabs.py:583 ../src/DisplayTabs.py:694
 #: ../src/DisplayTabs.py:1365 ../src/DisplayTabs.py:1428
@@ -178,19 +178,19 @@ msgstr ""
 #: ../src/const.py:155
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
-"ÍõĞË <wangxing@tsinghua.org.cn>\n"
-"³Â¶°ÁÖ (Donglin Chen)\n"
-"ÁÖÖ¾Ô¶ (Zhiyuan Lin)"
+"ç‹å…´ <wangxing@tsinghua.org.cn>\n"
+"é™ˆæ ‹æ— (Donglin Chen)\n"
+"æ—å¿—è¿œ (Zhiyuan Lin)"
 
 #: ../src/const.py:408 ../src/const.py:414 ../src/const.py:420
 #, fuzzy
 msgid "<No Status>"
-msgstr "¹ØÏµ"
+msgstr "å…³ç³»"
 
 #: ../src/const.py:408 ../src/MergePeople.py:175 ../src/ToolTips.py:237
 #, fuzzy
 msgid "Child"
-msgstr "×ÓÅ®"
+msgstr "å­å¥³"
 
 #: ../src/const.py:408 ../src/const.py:414 ../src/const.py:420
 msgid "Cleared"
@@ -211,7 +211,7 @@ msgstr ""
 #: ../src/const.py:409 ../src/const.py:415 ../src/const.py:421
 #, fuzzy
 msgid "Qualified"
-msgstr "ÏŞÖÆ:"
+msgstr "é™åˆ¶:"
 
 #: ../src/const.py:409 ../src/const.py:415
 msgid "Stillborn"
@@ -224,7 +224,7 @@ msgstr ""
 #: ../src/const.py:410 ../src/const.py:416 ../src/const.py:422
 #, fuzzy
 msgid "Uncleared"
-msgstr "Î´»é"
+msgstr "æœªå©š"
 
 #: ../src/const.py:414
 msgid "BIC"
@@ -261,12 +261,12 @@ msgstr ""
 #: ../src/DateEdit.py:83
 #, fuzzy
 msgid "After"
-msgstr "ÆäÓà"
+msgstr "å…¶ä½™"
 
 #: ../src/DateEdit.py:84
 #, fuzzy
 msgid "About"
-msgstr "¹ØÓÚ(_A)"
+msgstr "å…³äº(_A)"
 
 #: ../src/DateEdit.py:85
 msgid "Range"
@@ -291,19 +291,19 @@ msgstr ""
 #: ../src/DateEdit.py:203
 #, fuzzy
 msgid "Date selection"
-msgstr "É¾³ıËùÑ¡Ãû×Ö"
+msgstr "åˆ é™¤æ‰€é€‰åå­—"
 
 #: ../src/DisplayModels.py:55 ../src/MergePeople.py:53
 #: ../src/PeopleModel.py:494 ../src/Utils.py:61
 #: ../src/Editors/_EditPerson.py:131
 msgid "female"
-msgstr "Å®"
+msgstr "å¥³"
 
 #: ../src/DisplayModels.py:55 ../src/MergePeople.py:53
 #: ../src/PeopleModel.py:494 ../src/Utils.py:60
 #: ../src/Editors/_EditPerson.py:132
 msgid "male"
-msgstr "ÄĞ"
+msgstr "ç”·"
 
 #: ../src/DisplayModels.py:55 ../src/MergePeople.py:53
 #: ../src/PeopleModel.py:494 ../src/Utils.py:62 ../src/Utils.py:403
@@ -316,7 +316,7 @@ msgstr "ÄĞ"
 #: ../src/plugins/IndivComplete.py:284 ../src/plugins/IndivSummary.py:164
 #: ../src/plugins/NavWebPage.py:1854
 msgid "unknown"
-msgstr "Î´Öª"
+msgstr "æœªçŸ¥"
 
 #: ../src/DisplayModels.py:538 ../src/DisplayTabs.py:1143
 #: ../src/ToolTips.py:153 ../src/Utils.py:440 ../src/Editors/_EditMedia.py:113
@@ -338,38 +338,38 @@ msgstr ""
 #: ../src/PluginUtils/_ReportUtils.py:820
 #: ../src/PluginUtils/_ReportUtils.py:2113
 msgid "Unknown"
-msgstr "Î´Öª"
+msgstr "æœªçŸ¥"
 
 #: ../src/DisplayTabs.py:203
 msgid "Add"
-msgstr "Ìí¼Ó"
+msgstr "æ·»åŠ "
 
 #: ../src/DisplayTabs.py:204
 msgid "Remove"
-msgstr "É¾³ı"
+msgstr "åˆ é™¤"
 
 #: ../src/DisplayTabs.py:205 ../src/plugins/BookReport.py:845
 msgid "Edit"
-msgstr "±à¼­"
+msgstr "ç¼–è¾‘"
 
 #: ../src/DisplayTabs.py:206
 #, fuzzy
 msgid "Share"
-msgstr "´æµµ"
+msgstr "å­˜æ¡£"
 
 #: ../src/DisplayTabs.py:574
 #, fuzzy
 msgid "Add a new event"
-msgstr "ĞÂÔöÒ»Ïî"
+msgstr "æ–°å¢ä¸€é¡¹"
 
 #: ../src/DisplayTabs.py:575
 #, fuzzy
 msgid "Remove the selected event"
-msgstr "É¾³ıËùÑ¡ÊÂ¼ş"
+msgstr "åˆ é™¤æ‰€é€‰äº‹ä»¶"
 
 #: ../src/DisplayTabs.py:576
 msgid "Edit the selected event"
-msgstr "±à¼­ËùÑ¡ÊÂ¼ş"
+msgstr "ç¼–è¾‘æ‰€é€‰äº‹ä»¶"
 
 #: ../src/DisplayTabs.py:577
 msgid "Share an exisiting event"
@@ -388,43 +388,43 @@ msgstr ""
 #: ../src/plugins/BookReport.py:639 ../src/plugins/BookReport.py:640
 #: ../src/plugins/PatchNames.py:202
 msgid "Type"
-msgstr "Àà±ğ"
+msgstr "ç±»åˆ«"
 
 #: ../src/DisplayTabs.py:582 ../src/DisplayTabs.py:934
 #: ../src/ScratchPad.py:204 ../src/ScratchPad.py:246 ../src/ScratchPad.py:281
 #: ../src/SelectEvent.py:67 ../src/Utils.py:143
 #: ../src/DataViews/_EventView.py:51
 msgid "Description"
-msgstr "ÃèÊö"
+msgstr "æè¿°"
 
 #: ../src/DisplayTabs.py:584 ../src/DisplayTabs.py:1037
 #: ../src/ScratchPad.py:157 ../src/ScratchPad.py:201 ../src/ScratchPad.py:243
 #: ../src/SelectEvent.py:68 ../src/DataViews/_EventView.py:54
 #: ../src/DataViews/_MediaView.py:55
 msgid "Date"
-msgstr "ÈÕÆÚ"
+msgstr "æ—¥æœŸ"
 
 #: ../src/DisplayTabs.py:585 ../src/ScratchPad.py:202 ../src/ScratchPad.py:244
 #: ../src/SelectEvent.py:68 ../src/DataViews/_EventView.py:55
 #: ../src/plugins/NavWebPage.py:680
 msgid "Place"
-msgstr "µØµã"
+msgstr "åœ°ç‚¹"
 
 #: ../src/DisplayTabs.py:586
 #, fuzzy
 msgid "Role"
-msgstr "É¾³ı"
+msgstr "åˆ é™¤"
 
 #: ../src/DisplayTabs.py:592 ../src/gramps_main.py:72
 #: ../src/MergePeople.py:138 ../src/plugins/NavWebPage.py:1700
 #, fuzzy
 msgid "Events"
-msgstr "ÊÂ¼ş"
+msgstr "äº‹ä»¶"
 
 #: ../src/DisplayTabs.py:701 ../src/plugins/NavWebPage.py:455
 #, fuzzy
 msgid "References"
-msgstr "Ê×Ñ¡Ïî£¨_N)"
+msgstr "é¦–é€‰é¡¹ï¼ˆ_N)"
 
 #: ../src/DisplayTabs.py:831
 msgid "Key"
@@ -440,74 +440,74 @@ msgstr ""
 #: ../src/DisplayTabs.py:839
 #, fuzzy
 msgid "Data"
-msgstr "ÈÕÆÚ"
+msgstr "æ—¥æœŸ"
 
 #: ../src/DisplayTabs.py:880 ../src/plugins/NavWebPage.py:442
 #, fuzzy
 msgid "Attributes"
-msgstr "ÊôĞÔ"
+msgstr "å±æ€§"
 
 #: ../src/DisplayTabs.py:933 ../src/ScratchPad.py:279
 #: ../src/DataViews/_MediaView.py:53
 msgid "Path"
-msgstr "Â·¾¶"
+msgstr "è·¯å¾„"
 
 #: ../src/DisplayTabs.py:940
 #, fuzzy
 msgid "Internet"
-msgstr "·´×ª"
+msgstr "åè½¬"
 
 #: ../src/DisplayTabs.py:992
 #, fuzzy
 msgid "Names"
-msgstr "Ãû×Ö"
+msgstr "åå­—"
 
 #: ../src/DisplayTabs.py:1038 ../src/DataViews/_RepositoryView.py:56
 #, fuzzy
 msgid "Street"
-msgstr "ÍËĞİ"
+msgstr "é€€ä¼‘"
 
 #: ../src/DisplayTabs.py:1039 ../src/DataViews/_PlaceView.py:58
 #: ../src/DataViews/_RepositoryView.py:60
 msgid "State"
-msgstr "Öİ£¯Ê¡"
+msgstr "å·ï¼çœ"
 
 #: ../src/DisplayTabs.py:1040 ../src/DisplayTabs.py:1092
 #: ../src/DataViews/_PlaceView.py:56 ../src/DataViews/_RepositoryView.py:58
 #: ../src/plugins/NavWebPage.py:746
 msgid "City"
-msgstr "³ÇÊĞ"
+msgstr "åŸå¸‚"
 
 #: ../src/DisplayTabs.py:1041 ../src/DisplayTabs.py:1096
 #: ../src/DataViews/_PlaceView.py:59 ../src/DataViews/_RepositoryView.py:61
 #: ../src/plugins/NavWebPage.py:748
 msgid "Country"
-msgstr "¹ú¼Ò"
+msgstr "å›½å®¶"
 
 #: ../src/DisplayTabs.py:1047 ../src/MergePeople.py:181
 #, fuzzy
 msgid "Addresses"
-msgstr "µØÖ·"
+msgstr "åœ°å€"
 
 #: ../src/DisplayTabs.py:1093 ../src/DataViews/_PlaceView.py:57
 #: ../src/DataViews/_RepositoryView.py:59 ../src/plugins/NavWebPage.py:747
 msgid "County"
-msgstr "ÏØ£¯¿¤"
+msgstr "å¿ï¼éƒ¡"
 
 #: ../src/DisplayTabs.py:1094 ../src/DataViews/_PlaceView.py:54
 #: ../src/plugins/NavWebPage.py:746
 msgid "Church Parish"
-msgstr "½ÌÇø"
+msgstr "æ•™åŒº"
 
 #: ../src/DisplayTabs.py:1095 ../src/plugins/NavWebPage.py:747
 #, fuzzy
 msgid "State/Province"
-msgstr "Öİ£¯Ê¡£º"
+msgstr "å·ï¼çœï¼š"
 
 #: ../src/DisplayTabs.py:1102
 #, fuzzy
 msgid "Alternate Locations"
-msgstr "±ğµÄÈÕÀú"
+msgstr "åˆ«çš„æ—¥å†"
 
 #: ../src/DisplayTabs.py:1169
 msgid "Formatted"
@@ -531,13 +531,13 @@ msgstr ""
 #: ../src/DisplayTabs.py:1367 ../src/DataViews/_SourceView.py:54
 #: ../src/plugins/NavWebPage.py:1173
 msgid "Author"
-msgstr "×÷Õß"
+msgstr "ä½œè€…"
 
 #: ../src/DisplayTabs.py:1368 ../src/ScratchPad.py:374
 #: ../src/plugins/NavWebPage.py:1576
 #, fuzzy
 msgid "Page"
-msgstr "ÍøÒ³"
+msgstr "ç½‘é¡µ"
 
 #: ../src/DisplayTabs.py:1374 ../src/gramps_main.py:70
 #: ../src/ScratchPad.py:172 ../src/ScratchPad.py:312 ../src/ScratchPad.py:345
@@ -545,7 +545,7 @@ msgstr "ÍøÒ³"
 #: ../src/plugins/NavWebPage.py:325 ../src/plugins/NavWebPage.py:1121
 #: ../src/plugins/NavWebPage.py:1129 ../src/plugins/NavWebPage.py:1161
 msgid "Sources"
-msgstr "À´Ô´"
+msgstr "æ¥æº"
 
 #: ../src/DisplayTabs.py:1430
 msgid "Call Number"
@@ -554,7 +554,7 @@ msgstr ""
 #: ../src/DisplayTabs.py:1437 ../src/gramps_main.py:68
 #, fuzzy
 msgid "Repositories"
-msgstr "±¨¸æ"
+msgstr "æŠ¥å‘Š"
 
 #: ../src/Exporter.py:97
 msgid "Saving your data"
@@ -567,7 +567,7 @@ msgstr ""
 #: ../src/Exporter.py:102
 #, fuzzy
 msgid "Selecting the file name"
-msgstr "É¾³ıËùÑ¡Ãû×Ö"
+msgstr "åˆ é™¤æ‰€é€‰åå­—"
 
 #: ../src/Exporter.py:132
 msgid ""
@@ -598,7 +598,7 @@ msgstr ""
 #: ../src/Exporter.py:162
 #, fuzzy
 msgid "Final confirmation"
-msgstr "¼ÒÍ¥ĞÅÏ¢"
+msgstr "å®¶åº­ä¿¡æ¯"
 
 #: ../src/Exporter.py:199
 msgid "Your data has been saved"
@@ -617,7 +617,7 @@ msgstr ""
 #: ../src/Exporter.py:209
 #, fuzzy
 msgid "Saving failed"
-msgstr "´æµµ"
+msgstr "å­˜æ¡£"
 
 #: ../src/Exporter.py:211
 msgid ""
@@ -631,7 +631,7 @@ msgstr ""
 #: ../src/Exporter.py:347
 #, fuzzy, python-format
 msgid "Could not write file: %s"
-msgstr "ÎŞ·¨´ò¿ª"
+msgstr "æ— æ³•æ‰“å¼€"
 
 #: ../src/Exporter.py:348
 #, python-format
@@ -658,7 +658,7 @@ msgstr ""
 
 #: ../src/GenericFilter.py:144
 msgid "Everyone"
-msgstr "ËùÓĞÈË"
+msgstr "æ‰€æœ‰äºº"
 
 #: ../src/GenericFilter.py:145 ../src/GenericFilter.py:163
 #: ../src/GenericFilter.py:279 ../src/GenericFilter.py:293
@@ -674,12 +674,12 @@ msgstr "ËùÓĞÈË"
 #: ../src/GenericFilter.py:1883
 #, fuzzy
 msgid "General filters"
-msgstr "²úÉú±¨¸æ"
+msgstr "äº§ç”ŸæŠ¥å‘Š"
 
 #: ../src/GenericFilter.py:146
 #, fuzzy
 msgid "Matches everyone in the database"
-msgstr "¼ì²éÊı¾İ¿â"
+msgstr "æ£€æŸ¥æ•°æ®åº“"
 
 #: ../src/GenericFilter.py:162
 msgid "Disconnected people"
@@ -704,12 +704,12 @@ msgstr ""
 #: ../src/GenericFilter.py:181
 #, fuzzy
 msgid "Relationship path between <persons>"
-msgstr "ÓëÄ¸Ç×µÄ¹ØÏµ"
+msgstr "ä¸æ¯äº²çš„å…³ç³»"
 
 #: ../src/GenericFilter.py:182
 #, fuzzy
 msgid "Relationship filters"
-msgstr "Óë¸¸Ç×µÄ¹ØÏµ:"
+msgstr "ä¸çˆ¶äº²çš„å…³ç³»:"
 
 #: ../src/GenericFilter.py:183
 msgid ""
@@ -728,12 +728,12 @@ msgstr ""
 #: ../src/GenericFilter.py:292
 #, fuzzy
 msgid "Default person"
-msgstr "Ä¬ÈÏÈË(_D)"
+msgstr "é»˜è®¤äºº(_D)"
 
 #: ../src/GenericFilter.py:294
 #, fuzzy
 msgid "Matches the default person"
-msgstr "Ñ¡ÖĞÄ¬ÈÏÈË"
+msgstr "é€‰ä¸­é»˜è®¤äºº"
 
 #: ../src/GenericFilter.py:315
 msgid "Bookmarked people"
@@ -775,14 +775,14 @@ msgstr ""
 #: ../src/GenericFilter.py:385
 #, fuzzy
 msgid "Descendants of <person>"
-msgstr "×ÓËïÍ¼"
+msgstr "å­å­™å›¾"
 
 #: ../src/GenericFilter.py:386 ../src/GenericFilter.py:434
 #: ../src/GenericFilter.py:477 ../src/GenericFilter.py:520
 #: ../src/GenericFilter.py:641
 #, fuzzy
 msgid "Descendant filters"
-msgstr "×ÓËïÍ¼"
+msgstr "å­å­™å›¾"
 
 #: ../src/GenericFilter.py:387
 msgid "Matches all descendants for the specified person"
@@ -799,7 +799,7 @@ msgstr ""
 #: ../src/GenericFilter.py:433
 #, fuzzy
 msgid "Descendants of <filter> match"
-msgstr "×ÓËïÍ¼"
+msgstr "å­å­™å›¾"
 
 #: ../src/GenericFilter.py:435
 msgid "Matches people that are descendants of anybody matched by a filter"
@@ -811,7 +811,7 @@ msgstr ""
 #: ../src/plugins/FilterEditor.py:692
 #, fuzzy
 msgid "Number of generations:"
-msgstr "×æÏÈµÄÊıÄ¿"
+msgstr "ç¥–å…ˆçš„æ•°ç›®"
 
 #: ../src/GenericFilter.py:476
 msgid "Descendants of <person> not more than <N> generations away"
@@ -844,7 +844,7 @@ msgstr ""
 #: ../src/GenericFilter.py:1507
 #, fuzzy
 msgid "Family filters"
-msgstr "¼ÒÍ¥"
+msgstr "å®¶åº­"
 
 #: ../src/GenericFilter.py:563
 msgid "Matches children of anybody matched by a filter"
@@ -943,7 +943,7 @@ msgstr ""
 #: ../src/GenericFilter.py:1000
 #, fuzzy
 msgid "Matches all males"
-msgstr "ÈÕÆÚºÍÈÕÀú"
+msgstr "æ—¥æœŸå’Œæ—¥å†"
 
 #: ../src/GenericFilter.py:1013 ../src/GenericFilter.py:1612
 #: ../src/plugins/FilterEditor.py:72
@@ -953,7 +953,7 @@ msgstr ""
 #: ../src/GenericFilter.py:1014 ../src/GenericFilter.py:1063
 #: ../src/GenericFilter.py:1167 ../src/GenericFilter.py:1210
 msgid "Date:"
-msgstr "ÈÕÆÚ"
+msgstr "æ—¥æœŸ"
 
 #: ../src/GenericFilter.py:1015 ../src/GenericFilter.py:1064
 #: ../src/GenericFilter.py:1167 ../src/GenericFilter.py:1210
@@ -980,7 +980,7 @@ msgstr ""
 #: ../src/GenericFilter.py:1615
 #, fuzzy
 msgid "Event filters"
-msgstr "ÊÂ¼ş±à¼­Æ÷"
+msgstr "äº‹ä»¶ç¼–è¾‘å™¨"
 
 #: ../src/GenericFilter.py:1062 ../src/GenericFilter.py:1612
 #: ../src/plugins/FilterEditor.py:73
@@ -1042,7 +1042,7 @@ msgstr ""
 #: ../src/GenericFilter.py:1254
 #, fuzzy
 msgid "People with the personal <attribute>"
-msgstr "É¾³ıËùÑ¡ÊôĞÔ"
+msgstr "åˆ é™¤æ‰€é€‰å±æ€§"
 
 #: ../src/GenericFilter.py:1255
 msgid "Matches people with the personal attribute of a particular value"
@@ -1055,7 +1055,7 @@ msgstr ""
 #: ../src/GenericFilter.py:1278
 #, fuzzy
 msgid "People with the family <attribute>"
-msgstr "É¾³ıËùÑ¡ÊôĞÔ"
+msgstr "åˆ é™¤æ‰€é€‰å±æ€§"
 
 #: ../src/GenericFilter.py:1279
 msgid "Matches people with the family attribute of a particular value"
@@ -1063,11 +1063,11 @@ msgstr ""
 
 #: ../src/GenericFilter.py:1303
 msgid "Given name:"
-msgstr "Ãû"
+msgstr "å"
 
 #: ../src/GenericFilter.py:1304
 msgid "Family name:"
-msgstr "ĞÕ"
+msgstr "å§“"
 
 #: ../src/GenericFilter.py:1305
 msgid "Suffix:"
@@ -1117,7 +1117,7 @@ msgstr ""
 #: ../src/GenericFilter.py:1446
 #, fuzzy
 msgid "Adopted people"
-msgstr "ËùÓĞÈË"
+msgstr "æ‰€æœ‰äºº"
 
 #: ../src/GenericFilter.py:1447
 msgid "Matches people who were adopted"
@@ -1126,7 +1126,7 @@ msgstr ""
 #: ../src/GenericFilter.py:1464
 #, fuzzy
 msgid "People with images"
-msgstr "Ñ¡ÔñÒ»¸öÍ¼Ïñ"
+msgstr "é€‰æ‹©ä¸€ä¸ªå›¾åƒ"
 
 #: ../src/GenericFilter.py:1465
 msgid "Matches people with images in the gallery"
@@ -1167,7 +1167,7 @@ msgstr ""
 #: ../src/GenericFilter.py:1537
 #, fuzzy
 msgid "People with incomplete events"
-msgstr "É¾³ıËùÑ¡ÊÂ¼ş"
+msgstr "åˆ é™¤æ‰€é€‰äº‹ä»¶"
 
 #: ../src/GenericFilter.py:1538
 msgid "Matches people with missing date or place in an event"
@@ -1204,7 +1204,7 @@ msgstr ""
 #: ../src/GenericFilter.py:1613
 #, fuzzy
 msgid "Witnesses"
-msgstr "<b>Ö¤ÈË</b>"
+msgstr "<b>è¯äºº</b>"
 
 #: ../src/GenericFilter.py:1614
 msgid "Matches people who are witnesses in any event"
@@ -1229,7 +1229,7 @@ msgstr ""
 #: ../src/GenericFilter.py:1845 ../src/plugins/FilterEditor.py:696
 #, fuzzy
 msgid "Source ID:"
-msgstr "À´Ô´"
+msgstr "æ¥æº"
 
 #: ../src/GenericFilter.py:1846
 msgid "People with the <source>"
@@ -1284,7 +1284,7 @@ msgstr ""
 
 #: ../src/GrampsCfg.py:65 ../src/Utils.py:66 ../src/plugins/Check.py:816
 msgid "None"
-msgstr "ÎŞ"
+msgstr "æ— "
 
 #: ../src/GrampsCfg.py:66
 msgid "Combination of mother's and father's surname"
@@ -1302,7 +1302,7 @@ msgstr ""
 #: ../src/GrampsCfg.py:73
 #, fuzzy
 msgid "Dates"
-msgstr "ÈÕÆÚ"
+msgstr "æ—¥æœŸ"
 
 #: ../src/GrampsCfg.py:74
 msgid "Toolbar and Statusbar"
@@ -1375,26 +1375,26 @@ msgstr ""
 #: ../src/gramps_main.py:60
 #, fuzzy
 msgid "Relationships"
-msgstr "¹ØÏµ(_R):"
+msgstr "å…³ç³»(_R):"
 
 #: ../src/gramps_main.py:62
 #, fuzzy
 msgid "Family List"
-msgstr "¼ÒÍ¥"
+msgstr "å®¶åº­"
 
 #: ../src/gramps_main.py:64
 msgid "Media"
-msgstr "Ã½Ìå"
+msgstr "åª’ä½“"
 
 #: ../src/gramps_main.py:66 ../src/plugins/NavWebPage.py:1608
 msgid "Pedigree"
-msgstr "Æ×Ïµ"
+msgstr "è°±ç³»"
 
 #: ../src/gramps_main.py:74 ../src/plugins/NavWebPage.py:326
 #: ../src/plugins/NavWebPage.py:668 ../src/plugins/NavWebPage.py:675
 #: ../src/plugins/NavWebPage.py:728
 msgid "Places"
-msgstr "µØµã"
+msgstr "åœ°ç‚¹"
 
 #: ../src/gramps_main.py:76 ../src/Utils.py:205
 msgid "Map"
@@ -1467,7 +1467,7 @@ msgstr ""
 #: ../src/MergeData.py:68
 #, fuzzy
 msgid "Select title"
-msgstr "Ñ¡ÔñÒ»¸öÍ¼Ïñ"
+msgstr "é€‰æ‹©ä¸€ä¸ªå›¾åƒ"
 
 #: ../src/MergeData.py:160
 msgid "Merge Places"
@@ -1476,12 +1476,12 @@ msgstr ""
 #: ../src/MergeData.py:185 ../src/MergeData.py:317
 #, fuzzy
 msgid "Merge Sources"
-msgstr "À´Ô´"
+msgstr "æ¥æº"
 
 #: ../src/MergePeople.py:69
 #, fuzzy
 msgid "Compare People"
-msgstr "ÈË"
+msgstr "äºº"
 
 #: ../src/MergePeople.py:88 ../src/MergePeople.py:93 ../src/MergePeople.py:277
 #: ../src/MergePeople.py:282
@@ -1509,7 +1509,7 @@ msgstr ""
 #: ../src/plugins/StatisticsChart.py:101
 #: ../src/TreeViews/_PersonTreeView.py:29
 msgid "Gender"
-msgstr "ĞÔ±ğ"
+msgstr "æ€§åˆ«"
 
 #: ../src/MergePeople.py:126 ../src/ScratchPad.py:484 ../src/ToolTips.py:194
 #: ../src/Utils.py:67 ../src/Utils.py:103 ../src/DataViews/_FamilyView.py:335
@@ -1518,7 +1518,7 @@ msgstr "ĞÔ±ğ"
 #: ../src/plugins/FamilyGroup.py:404 ../src/plugins/FamilyGroup.py:406
 #: ../src/plugins/NavWebPage.py:1707
 msgid "Birth"
-msgstr "Ç×Éú"
+msgstr "äº²ç”Ÿ"
 
 #: ../src/MergePeople.py:128 ../src/Utils.py:104
 #: ../src/DataViews/_FamilyView.py:342
@@ -1539,12 +1539,12 @@ msgstr ""
 #: ../src/plugins/NavWebPage.py:1771
 #, fuzzy
 msgid "Parents"
-msgstr "¸¸Ä¸"
+msgstr "çˆ¶æ¯"
 
 #: ../src/MergePeople.py:148 ../src/MergePeople.py:162
 #, fuzzy
 msgid "Family ID"
-msgstr "¼ÒÍ¥"
+msgstr "å®¶åº­"
 
 #: ../src/MergePeople.py:150 ../src/ToolTips.py:227
 #: ../src/DataViews/_FamilyList.py:52 ../src/DataViews/_FamilyView.py:442
@@ -1552,7 +1552,7 @@ msgstr "¼ÒÍ¥"
 #: ../src/plugins/IndivComplete.py:211 ../src/plugins/IndivComplete.py:454
 #: ../src/plugins/IndivSummary.py:275 ../src/plugins/NavWebPage.py:1787
 msgid "Father"
-msgstr "¸¸Ç×"
+msgstr "çˆ¶äº²"
 
 #: ../src/MergePeople.py:152 ../src/ToolTips.py:232
 #: ../src/DataViews/_FamilyList.py:53 ../src/DataViews/_FamilyView.py:449
@@ -1560,7 +1560,7 @@ msgstr "¸¸Ç×"
 #: ../src/plugins/IndivComplete.py:220 ../src/plugins/IndivComplete.py:459
 #: ../src/plugins/IndivSummary.py:289 ../src/plugins/NavWebPage.py:1792
 msgid "Mother"
-msgstr "Ä¸Ç×"
+msgstr "æ¯äº²"
 
 #: ../src/MergePeople.py:154
 msgid "No parents found"
@@ -1570,7 +1570,7 @@ msgstr ""
 #: ../src/MergePeople.py:156 ../src/DataViews/_PedigreeView.py:1176
 #, fuzzy
 msgid "Spouses"
-msgstr "ËÀÍö"
+msgstr "æ­»äº¡"
 
 #: ../src/MergePeople.py:166 ../src/DataViews/_FamilyView.py:614
 #: ../src/DataViews/_PersonView.py:68
@@ -1578,12 +1578,12 @@ msgstr "ËÀÍö"
 #: ../src/plugins/FamilyGroup.py:442 ../src/plugins/FamilyGroup.py:663
 #: ../src/plugins/RelCalc.py:61 ../src/TreeViews/_PersonTreeView.py:34
 msgid "Spouse"
-msgstr "ËÀÍö"
+msgstr "æ­»äº¡"
 
 #: ../src/MergePeople.py:172 ../src/Utils.py:87
 #: ../src/DataViews/_FamilyView.py:562
 msgid "Marriage"
-msgstr "»éÒö"
+msgstr "å©šå§»"
 
 #: ../src/MergePeople.py:177
 msgid "No spouses or children found"
@@ -1592,7 +1592,7 @@ msgstr ""
 #: ../src/MergePeople.py:266
 #, fuzzy
 msgid "Merge People"
-msgstr "ÈË"
+msgstr "äºº"
 
 #: ../src/PageView.py:245 ../src/PageView.py:248
 msgid "Jump to by GRAMPS ID"
@@ -1606,7 +1606,7 @@ msgstr ""
 #: ../src/QuestionDialog.py:263 ../src/Utils.py:1202
 #, fuzzy
 msgid "Attempt to force closing the dialog"
-msgstr "½ÓÊÜĞŞ¸Ä²¢¹Ø±Õ´°¿Ú"
+msgstr "æ¥å—ä¿®æ”¹å¹¶å…³é—­çª—å£"
 
 #: ../src/QuestionDialog.py:264
 msgid ""
@@ -1625,7 +1625,7 @@ msgstr ""
 #: ../src/Relationship.py:335
 #, fuzzy
 msgid "Relationship loop detected"
-msgstr "ÓëÄ¸Ç×µÄ¹ØÏµ"
+msgstr "ä¸æ¯äº²çš„å…³ç³»"
 
 #: ../src/RelImage.py:51 ../src/GrampsDb/_ReadGedcom.py:1278
 #: ../src/GrampsDb/_ReadGedcom.py:1319
@@ -1652,12 +1652,12 @@ msgstr ""
 #: ../src/ScratchPad.py:139 ../src/ScratchPad.py:156
 #: ../src/Editors/_EditAddress.py:138 ../src/plugins/FamilyGroup.py:298
 msgid "Address"
-msgstr "µØÖ·"
+msgstr "åœ°å€"
 
 #: ../src/ScratchPad.py:158 ../src/ToolTips.py:142
 #, fuzzy
 msgid "Location"
-msgstr "ÎÄ»¯³Ì¶È"
+msgstr "æ–‡åŒ–ç¨‹åº¦"
 
 #: ../src/ScratchPad.py:164 ../src/ToolTips.py:149
 msgid "Telephone"
@@ -1665,25 +1665,25 @@ msgstr ""
 
 #: ../src/ScratchPad.py:185 ../src/ScratchPad.py:199
 msgid "Event"
-msgstr "ÊÂ¼ş"
+msgstr "äº‹ä»¶"
 
 #: ../src/ScratchPad.py:203 ../src/ScratchPad.py:245 ../src/SelectEvent.py:69
 #: ../src/DataViews/_EventView.py:56
 #, fuzzy
 msgid "Cause"
-msgstr "Ô­Òò:"
+msgstr "åŸå› :"
 
 #: ../src/ScratchPad.py:213 ../src/ScratchPad.py:255 ../src/ScratchPad.py:410
 #: ../src/ScratchPad.py:493 ../src/ToolTips.py:203
 #: ../src/ObjectSelector/_PersonPreviewFrame.py:130
 #, fuzzy
 msgid "Primary source"
-msgstr "<b>Ö÷ÒªĞÅÏ¢À´Ô´</b>"
+msgstr "<b>ä¸»è¦ä¿¡æ¯æ¥æº</b>"
 
 #: ../src/ScratchPad.py:227 ../src/ScratchPad.py:241
 #, fuzzy
 msgid "Family Event"
-msgstr "¼ÒÍ¥ÊÂ¼ş"
+msgstr "å®¶åº­äº‹ä»¶"
 
 #: ../src/ScratchPad.py:269 ../src/ScratchPad.py:278
 msgid "Url"
@@ -1692,17 +1692,17 @@ msgstr ""
 #: ../src/ScratchPad.py:292 ../src/ScratchPad.py:300
 #: ../src/Editors/_EditAttribute.py:130
 msgid "Attribute"
-msgstr "ÊôĞÔ"
+msgstr "å±æ€§"
 
 #: ../src/ScratchPad.py:325 ../src/ScratchPad.py:333
 #, fuzzy
 msgid "Family Attribute"
-msgstr "¼ÒÍ¥ÊôĞÔ"
+msgstr "å®¶åº­å±æ€§"
 
 #: ../src/ScratchPad.py:358 ../src/ScratchPad.py:372
 #, fuzzy
 msgid "SourceRef"
-msgstr "À´Ô´"
+msgstr "æ¥æº"
 
 #: ../src/ScratchPad.py:375 ../src/ScratchPad.py:424 ../src/ScratchPad.py:432
 #: ../src/plugins/NavWebPage.py:1578 ../src/plugins/SimpleBookTitle.py:168
@@ -1723,7 +1723,7 @@ msgstr ""
 #: ../src/ScratchPad.py:462 ../src/ScratchPad.py:482
 #, fuzzy
 msgid "Person Link"
-msgstr "²¨Ë¹Àú"
+msgstr "æ³¢æ–¯å†"
 
 #: ../src/ScratchPad.py:881 ../src/glade/scratchpad.glade.h:2
 msgid "Scratch Pad"
@@ -1736,7 +1736,7 @@ msgstr ""
 #: ../src/SelectPerson.py:91 ../src/plugins/NavWebPage.py:572
 #: ../src/plugins/NavWebPage.py:632
 msgid "Birth date"
-msgstr "³öÉúÈÕÆÚ"
+msgstr "å‡ºç”Ÿæ—¥æœŸ"
 
 #: ../src/Spell.py:53
 msgid "Spelling checker is not installed"
@@ -1763,7 +1763,7 @@ msgstr ""
 #: ../src/StartupDialog.py:129
 #, fuzzy
 msgid "Researcher information"
-msgstr "¼ÒÍ¥ĞÅÏ¢"
+msgstr "å®¶åº­ä¿¡æ¯"
 
 #: ../src/StartupDialog.py:130
 msgid "LDS support"
@@ -1830,7 +1830,7 @@ msgstr ""
 #: ../src/ToolTips.py:150 ../src/DataViews/_RepositoryView.py:62
 #, fuzzy
 msgid "Email"
-msgstr "µç×ÓÓÊ¼ş£º"
+msgstr "ç”µå­é‚®ä»¶ï¼š"
 
 #: ../src/ToolTips.py:151
 msgid "Search Url"
@@ -1839,7 +1839,7 @@ msgstr ""
 #: ../src/ToolTips.py:152
 #, fuzzy
 msgid "Home Url"
-msgstr "Ê×Ò³"
+msgstr "é¦–é¡µ"
 
 #: ../src/ToolTips.py:162
 msgid "Sources in repository"
@@ -1848,7 +1848,7 @@ msgstr ""
 #: ../src/ToolTips.py:222 ../src/Utils.py:227
 #: ../src/DataViews/_FamilyView.py:267 ../src/DataViews/_FamilyView.py:612
 msgid "Family"
-msgstr "¼ÒÍ¥"
+msgstr "å®¶åº­"
 
 #: ../src/Utils.py:68 ../src/Utils.py:102
 msgid "Adopted"
@@ -1856,15 +1856,15 @@ msgstr ""
 
 #: ../src/Utils.py:69
 msgid "Stepchild"
-msgstr "¼Ì×ÓÅ®"
+msgstr "ç»§å­å¥³"
 
 #: ../src/Utils.py:70
 msgid "Sponsored"
-msgstr "ÔŞÖú"
+msgstr "èµåŠ©"
 
 #: ../src/Utils.py:71
 msgid "Foster"
-msgstr "ÊÕÑø"
+msgstr "æ”¶å…»"
 
 #: ../src/Utils.py:73 ../src/Utils.py:86 ../src/Utils.py:101
 #: ../src/Utils.py:141 ../src/Utils.py:152 ../src/Utils.py:179
@@ -1875,25 +1875,25 @@ msgstr ""
 
 #: ../src/Utils.py:77 ../src/Editors/_EditSourceRef.py:122
 msgid "Very High"
-msgstr "ºÜ¸ß"
+msgstr "å¾ˆé«˜"
 
 #: ../src/Utils.py:78 ../src/Editors/_EditSourceRef.py:121
 #: ../src/plugins/Merge.py:63
 msgid "High"
-msgstr "¸ß"
+msgstr "é«˜"
 
 #: ../src/Utils.py:79 ../src/Editors/_EditSourceRef.py:120
 msgid "Normal"
-msgstr "Õı³£"
+msgstr "æ­£å¸¸"
 
 #: ../src/Utils.py:80 ../src/Editors/_EditSourceRef.py:119
 #: ../src/plugins/Merge.py:61
 msgid "Low"
-msgstr "µÍ"
+msgstr "ä½"
 
 #: ../src/Utils.py:81 ../src/Editors/_EditSourceRef.py:118
 msgid "Very Low"
-msgstr "ºÜµÍ"
+msgstr "å¾ˆä½"
 
 #: ../src/Utils.py:88
 msgid "Marriage Settlement"
@@ -1901,24 +1901,24 @@ msgstr ""
 
 #: ../src/Utils.py:89
 msgid "Marriage License"
-msgstr "½á»éÖ¤"
+msgstr "ç»“å©šè¯"
 
 #: ../src/Utils.py:90
 msgid "Marriage Contract"
-msgstr "»éÒöºÏÍ¬"
+msgstr "å©šå§»åˆåŒ"
 
 #: ../src/Utils.py:91
 #, fuzzy
 msgid "Marriage Banns"
-msgstr "½á»éÖ¤"
+msgstr "ç»“å©šè¯"
 
 #: ../src/Utils.py:92
 msgid "Engagement"
-msgstr "¶©»é"
+msgstr "è®¢å©š"
 
 #: ../src/Utils.py:93
 msgid "Divorce"
-msgstr "Àë»é"
+msgstr "ç¦»å©š"
 
 #: ../src/Utils.py:94 ../src/Utils.py:117
 msgid "Divorce Filing"
@@ -1931,11 +1931,11 @@ msgstr ""
 #: ../src/Utils.py:96
 #, fuzzy
 msgid "Alternate Marriage"
-msgstr "»éÒö"
+msgstr "å©šå§»"
 
 #: ../src/Utils.py:105
 msgid "Adult Christening"
-msgstr "³ÉÄêÊÜÏ´"
+msgstr "æˆå¹´å—æ´—"
 
 #: ../src/Utils.py:106
 msgid "Baptism"
@@ -1959,7 +1959,7 @@ msgstr ""
 
 #: ../src/Utils.py:111
 msgid "Cause Of Death"
-msgstr "ËÀÍöÔ­Òò"
+msgstr "æ­»äº¡åŸå› "
 
 #: ../src/Utils.py:112
 msgid "Census"
@@ -1979,11 +1979,11 @@ msgstr ""
 
 #: ../src/Utils.py:116
 msgid "Degree"
-msgstr "Ñ§Î»"
+msgstr "å­¦ä½"
 
 #: ../src/Utils.py:118
 msgid "Education"
-msgstr "ÎÄ»¯³Ì¶È"
+msgstr "æ–‡åŒ–ç¨‹åº¦"
 
 #: ../src/Utils.py:119
 msgid "Elected"
@@ -1991,7 +1991,7 @@ msgstr ""
 
 #: ../src/Utils.py:120
 msgid "Emigration"
-msgstr "ÒÆÃñ"
+msgstr "ç§»æ°‘"
 
 #: ../src/Utils.py:121
 msgid "First Communion"
@@ -2011,7 +2011,7 @@ msgstr ""
 
 #: ../src/Utils.py:125
 msgid "Military Service"
-msgstr "·ş±øÒÛ"
+msgstr "æœå…µå½¹"
 
 #: ../src/Utils.py:126
 msgid "Naturalization"
@@ -2023,11 +2023,11 @@ msgstr ""
 
 #: ../src/Utils.py:128
 msgid "Number of Marriages"
-msgstr "½á»é´ÎÊı"
+msgstr "ç»“å©šæ¬¡æ•°"
 
 #: ../src/Utils.py:129
 msgid "Occupation"
-msgstr "Ö°Òµ"
+msgstr "èŒä¸š"
 
 #: ../src/Utils.py:130
 msgid "Ordination"
@@ -2043,15 +2043,15 @@ msgstr ""
 
 #: ../src/Utils.py:133
 msgid "Religion"
-msgstr "×Ú½ÌĞÅÑö"
+msgstr "å®—æ•™ä¿¡ä»°"
 
 #: ../src/Utils.py:134
 msgid "Residence"
-msgstr "¾Ó×¡µØ"
+msgstr "å±…ä½åœ°"
 
 #: ../src/Utils.py:135
 msgid "Retirement"
-msgstr "ÍËĞİ"
+msgstr "é€€ä¼‘"
 
 #: ../src/Utils.py:136
 msgid "Will"
@@ -2059,32 +2059,32 @@ msgstr ""
 
 #: ../src/Utils.py:142
 msgid "Caste"
-msgstr "ÖÖĞÕ"
+msgstr "ç§å§“"
 
 #: ../src/Utils.py:144
 msgid "Identification Number"
-msgstr "Éí·İÖ¤ºÅ"
+msgstr "èº«ä»½è¯å·"
 
 #: ../src/Utils.py:145
 msgid "National Origin"
-msgstr "³öÉú¹ú"
+msgstr "å‡ºç”Ÿå›½"
 
 #: ../src/Utils.py:146 ../src/Utils.py:153
 msgid "Number of Children"
-msgstr "×ÓÅ®Êı"
+msgstr "å­å¥³æ•°"
 
 #: ../src/Utils.py:147
 msgid "Social Security Number"
-msgstr "Éç»á°²È«ºÅ"
+msgstr "ç¤¾ä¼šå®‰å…¨å·"
 
 #: ../src/Utils.py:157 ../src/plugins/FamilyGroup.py:468
 #: ../src/plugins/FamilyGroup.py:470 ../src/PluginUtils/_ReportUtils.py:2110
 msgid "Married"
-msgstr "ÒÑ»é"
+msgstr "å·²å©š"
 
 #: ../src/Utils.py:158 ../src/PluginUtils/_ReportUtils.py:2111
 msgid "Unmarried"
-msgstr "Î´»é"
+msgstr "æœªå©š"
 
 #: ../src/Utils.py:159 ../src/PluginUtils/_ReportUtils.py:2112
 msgid "Civil Union"
@@ -2093,7 +2093,7 @@ msgstr ""
 #: ../src/Utils.py:161 ../src/PluginUtils/_ReportUtils.py:821
 #: ../src/PluginUtils/_ReportUtils.py:2114 ../src/glade/mergedata.glade.h:7
 msgid "Other"
-msgstr "ÆäÓà"
+msgstr "å…¶ä½™"
 
 #: ../src/Utils.py:165
 msgid "A legal or common-law relationship between a husband and wife"
@@ -2117,25 +2117,25 @@ msgstr ""
 
 #: ../src/Utils.py:180
 msgid "Also Known As"
-msgstr "ÓÖÃû"
+msgstr "åˆå"
 
 #: ../src/Utils.py:181
 msgid "Birth Name"
-msgstr "³öÉúÃû"
+msgstr "å‡ºç”Ÿå"
 
 #: ../src/Utils.py:182
 msgid "Married Name"
-msgstr "»éºóÃû"
+msgstr "å©šåå"
 
 #: ../src/Utils.py:188
 #, fuzzy
 msgid "E-mail"
-msgstr "µç×ÓÓÊ¼ş£º"
+msgstr "ç”µå­é‚®ä»¶ï¼š"
 
 #: ../src/Utils.py:189
 #, fuzzy
 msgid "Web Home"
-msgstr "Ê×Ò³"
+msgstr "é¦–é¡µ"
 
 #: ../src/Utils.py:190
 msgid "Web Search"
@@ -2152,7 +2152,7 @@ msgstr ""
 #: ../src/Utils.py:198 ../src/plugins/book.glade.h:3
 #, fuzzy
 msgid "Book"
-msgstr "Êé²á"
+msgstr "ä¹¦å†Œ"
 
 #: ../src/Utils.py:199
 msgid "Card"
@@ -2165,12 +2165,12 @@ msgstr ""
 #: ../src/Utils.py:201
 #, fuzzy
 msgid "Fiche"
-msgstr "ÎÄ¼ş(_F)"
+msgstr "æ–‡ä»¶(_F)"
 
 #: ../src/Utils.py:202
 #, fuzzy
 msgid "Film"
-msgstr "ÎÄ¼ş(_F)"
+msgstr "æ–‡ä»¶(_F)"
 
 #: ../src/Utils.py:203
 msgid "Magazine"
@@ -2195,7 +2195,7 @@ msgstr ""
 #: ../src/Utils.py:209
 #, fuzzy
 msgid "Video"
-msgstr "²é¿´"
+msgstr "æŸ¥çœ‹"
 
 #: ../src/Utils.py:215
 msgid "Primary"
@@ -2228,7 +2228,7 @@ msgstr ""
 #: ../src/Utils.py:233
 #, fuzzy
 msgid "Library"
-msgstr "¶şÔÂ"
+msgstr "äºŒæœˆ"
 
 #: ../src/Utils.py:234
 msgid "Cemetery"
@@ -2237,7 +2237,7 @@ msgstr ""
 #: ../src/Utils.py:235
 #, fuzzy
 msgid "Church"
-msgstr "½ÌÇø"
+msgstr "æ•™åŒº"
 
 #: ../src/Utils.py:236
 msgid "Archive"
@@ -2250,12 +2250,12 @@ msgstr ""
 #: ../src/Utils.py:238
 #, fuzzy
 msgid "Web site"
-msgstr "ÍøÒ³"
+msgstr "ç½‘é¡µ"
 
 #: ../src/Utils.py:239
 #, fuzzy
 msgid "Bookstore"
-msgstr "Êé²á"
+msgstr "ä¹¦å†Œ"
 
 #: ../src/Utils.py:240
 msgid "Collection"
@@ -2264,7 +2264,7 @@ msgstr ""
 #: ../src/Utils.py:241
 #, fuzzy
 msgid "Safe"
-msgstr "´æµµ"
+msgstr "å­˜æ¡£"
 
 #: ../src/Utils.py:248
 msgid "Information is complete"
@@ -2336,7 +2336,7 @@ msgstr ""
 #: ../src/ViewManager.py:277
 #, fuzzy
 msgid "Loading plugins..."
-msgstr "ÖØÔØ²å¼ş(_L)"
+msgstr "é‡è½½æ’ä»¶(_L)"
 
 #: ../src/ViewManager.py:282
 msgid "Ready"
@@ -2344,37 +2344,37 @@ msgstr ""
 
 #: ../src/ViewManager.py:313
 msgid "GRAMPS _home page"
-msgstr "GRAMPSµÄÖ÷Ò³(_H)"
+msgstr "GRAMPSçš„ä¸»é¡µ(_H)"
 
 #: ../src/ViewManager.py:314
 msgid "GRAMPS _mailing lists"
-msgstr "GRAMPSµÄÓÊ¼şÁĞ±í(_M)"
+msgstr "GRAMPSçš„é‚®ä»¶åˆ—è¡¨(_M)"
 
 #: ../src/ViewManager.py:315
 msgid "_Report a bug"
-msgstr "±¨¸æ´íÎó(_R)"
+msgstr "æŠ¥å‘Šé”™è¯¯(_R)"
 
 #: ../src/ViewManager.py:388 ../src/ViewManager.py:395
 #, fuzzy
 msgid "Could not open help"
-msgstr "ÎŞ·¨´ò¿ª"
+msgstr "æ— æ³•æ‰“å¼€"
 
 #: ../src/ViewManager.py:417
 #, fuzzy
 msgid "GRAMPS Homepage"
-msgstr "GRAMPSµÄÖ÷Ò³(_H)"
+msgstr "GRAMPSçš„ä¸»é¡µ(_H)"
 
 #: ../src/ViewManager.py:532
 #, fuzzy
 msgid "GRAMPS: Open database"
-msgstr "´ò¿ª·¶Àı(_O)"
+msgstr "æ‰“å¼€èŒƒä¾‹(_O)"
 
 #: ../src/ViewManager.py:717 ../src/ViewManager.py:723
 #: ../src/ViewManager.py:758 ../src/ViewManager.py:762
 #: ../src/ViewManager.py:765
 #, fuzzy
 msgid "Cannot open database"
-msgstr "Õû¸öÊı¾İ¿â"
+msgstr "æ•´ä¸ªæ•°æ®åº“"
 
 #: ../src/ViewManager.py:718
 msgid ""
@@ -2389,7 +2389,7 @@ msgstr ""
 #: ../src/ViewManager.py:729
 #, fuzzy
 msgid "Read only database"
-msgstr "´ò¿ª·¶Àı(_O)"
+msgstr "æ‰“å¼€èŒƒä¾‹(_O)"
 
 #: ../src/ViewManager.py:730
 msgid "You do not have write access to the selected file."
@@ -2471,22 +2471,22 @@ msgstr ""
 #: ../src/DataViews/_EventView.py:172
 #, fuzzy
 msgid "_Delete Event"
-msgstr "É¾³ı(_D)"
+msgstr "åˆ é™¤(_D)"
 
 #: ../src/DataViews/_FamilyList.py:54
 #, fuzzy
 msgid "Relationship"
-msgstr "¹ØÏµ(_R):"
+msgstr "å…³ç³»(_R):"
 
 #: ../src/DataViews/_FamilyList.py:179
 #, fuzzy
 msgid "Remove Family"
-msgstr "É¾³ı"
+msgstr "åˆ é™¤"
 
 #: ../src/DataViews/_FamilyView.py:193
 #, fuzzy
 msgid "Show details"
-msgstr "ÏÔÊ¾ËùÓĞÈË(_A)"
+msgstr "æ˜¾ç¤ºæ‰€æœ‰äºº(_A)"
 
 #: ../src/DataViews/_FamilyView.py:196
 msgid "Show siblings"
@@ -2521,7 +2521,7 @@ msgstr ""
 #: ../src/DataViews/_FamilyView.py:549
 #, fuzzy, python-format
 msgid "Relationship type: %s"
-msgstr "¹ØÏµÀàĞÍ:(_R)"
+msgstr "å…³ç³»ç±»å‹:(_R)"
 
 #: ../src/DataViews/_FamilyView.py:591
 #, python-format
@@ -2541,7 +2541,7 @@ msgstr ""
 #: ../src/DataViews/_FamilyView.py:600
 #, fuzzy, python-format
 msgid "%(event_type)s:"
-msgstr "ÊÂ¼şÀàĞÍ(_E):"
+msgstr "äº‹ä»¶ç±»å‹(_E):"
 
 #. Go over children and build their menu
 #: ../src/DataViews/_FamilyView.py:625 ../src/DataViews/_PedigreeView.py:1252
@@ -2549,7 +2549,7 @@ msgstr "ÊÂ¼şÀàĞÍ(_E):"
 #: ../src/plugins/IndivComplete.py:298 ../src/plugins/IndivSummary.py:178
 #: ../src/plugins/NavWebPage.py:1825
 msgid "Children"
-msgstr "×ÓÅ®"
+msgstr "å­å¥³"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/_MediaView.py:167
@@ -2569,12 +2569,12 @@ msgstr ""
 #: ../src/DataViews/_MediaView.py:175
 #, fuzzy
 msgid "_Delete Media Object"
-msgstr "Ã½ÌåÎï¼ş"
+msgstr "åª’ä½“ç‰©ä»¶"
 
 #: ../src/DataViews/_MediaView.py:237 ../src/Editors/_EditMedia.py:259
 #, fuzzy
 msgid "Remove Media Object"
-msgstr "Ã½ÌåÎï¼ş"
+msgstr "åª’ä½“ç‰©ä»¶"
 
 #. ------------------------------------------------------------------------
 #.
@@ -2585,18 +2585,18 @@ msgstr "Ã½ÌåÎï¼ş"
 #: ../src/plugins/AncestorChart.py:54 ../src/plugins/DescendChart.py:57
 #: ../src/plugins/DescendReport.py:52 ../src/plugins/DesGraph.py:54
 msgid "b."
-msgstr "ÉúÓÚ"
+msgstr "ç”Ÿäº"
 
 #: ../src/DataViews/_PedigreeView.py:67 ../src/plugins/AncestorChart2.py:57
 #: ../src/plugins/AncestorChart.py:55 ../src/plugins/DescendChart.py:58
 #: ../src/plugins/DescendReport.py:53 ../src/plugins/DesGraph.py:55
 msgid "d."
-msgstr "×äÓÚ"
+msgstr "å’äº"
 
 #: ../src/DataViews/_PedigreeView.py:68
 #, fuzzy
 msgid "bap."
-msgstr "ÉúÓÚ"
+msgstr "ç”Ÿäº"
 
 #: ../src/DataViews/_PedigreeView.py:69
 msgid "chr."
@@ -2605,7 +2605,7 @@ msgstr ""
 #: ../src/DataViews/_PedigreeView.py:70
 #, fuzzy
 msgid "bur."
-msgstr "ÉúÓÚ"
+msgstr "ç”Ÿäº"
 
 #: ../src/DataViews/_PedigreeView.py:71
 msgid "crem."
@@ -2620,12 +2620,12 @@ msgstr ""
 #: ../src/DataViews/_PedigreeView.py:1057 ../src/plugins/NavWebPage.py:320
 #: ../src/plugins/NavWebPage.py:1075 ../src/plugins/NavWebPage.py:1077
 msgid "Home"
-msgstr "Ê×Ò³"
+msgstr "é¦–é¡µ"
 
 #: ../src/DataViews/_PedigreeView.py:1071
 #, fuzzy
 msgid "Show images"
-msgstr "ÏÔÊ¾ËùÓĞÈË(_A)"
+msgstr "æ˜¾ç¤ºæ‰€æœ‰äºº(_A)"
 
 #: ../src/DataViews/_PedigreeView.py:1080
 msgid "Show marriage data"
@@ -2638,12 +2638,12 @@ msgstr ""
 #: ../src/DataViews/_PedigreeView.py:1096
 #, fuzzy
 msgid "Version A"
-msgstr "²¨Ë¹Àú"
+msgstr "æ³¢æ–¯å†"
 
 #: ../src/DataViews/_PedigreeView.py:1103
 #, fuzzy
 msgid "Version B"
-msgstr "²¨Ë¹Àú"
+msgstr "æ³¢æ–¯å†"
 
 #: ../src/DataViews/_PedigreeView.py:1115
 msgid "Tree size"
@@ -2661,7 +2661,7 @@ msgstr ""
 #: ../src/DataViews/_PedigreeView.py:1149
 #, fuzzy
 msgid "People Menu"
-msgstr "ÈË"
+msgstr "äºº"
 
 #. Go over parents and build their menu
 #: ../src/DataViews/_PedigreeView.py:1326
@@ -2672,28 +2672,28 @@ msgstr ""
 #: ../src/ObjectSelector/_PersonTreeFrame.py:38 ../src/plugins/RelCalc.py:57
 #: ../src/plugins/TimeLine.py:429 ../src/TreeViews/_PersonTreeView.py:30
 msgid "Birth Date"
-msgstr "³öÉúÈÕÆÚ"
+msgstr "å‡ºç”Ÿæ—¥æœŸ"
 
 #: ../src/DataViews/_PersonView.py:65 ../src/Editors/_EditFamily.py:97
 #: ../src/ObjectSelector/_PersonTreeFrame.py:39 ../src/plugins/RelCalc.py:58
 #: ../src/TreeViews/_PersonTreeView.py:31
 #, fuzzy
 msgid "Birth Place"
-msgstr "³öÉúÈÕÆÚ"
+msgstr "å‡ºç”Ÿæ—¥æœŸ"
 
 #: ../src/DataViews/_PersonView.py:66 ../src/Editors/_EditFamily.py:96
 #: ../src/ObjectSelector/_PersonTreeFrame.py:40 ../src/plugins/RelCalc.py:59
 #: ../src/TreeViews/_PersonTreeView.py:32
 #, fuzzy
 msgid "Death Date"
-msgstr "ËÀÍöÈÕÆÚ"
+msgstr "æ­»äº¡æ—¥æœŸ"
 
 #: ../src/DataViews/_PersonView.py:67 ../src/Editors/_EditFamily.py:98
 #: ../src/ObjectSelector/_PersonTreeFrame.py:41 ../src/plugins/RelCalc.py:60
 #: ../src/TreeViews/_PersonTreeView.py:33
 #, fuzzy
 msgid "Death Place"
-msgstr "ËÀÍöÈÕÆÚ"
+msgstr "æ­»äº¡æ—¥æœŸ"
 
 #: ../src/DataViews/_PersonView.py:69
 #: ../src/ObjectSelector/_PersonTreeFrame.py:43 ../src/plugins/RelCalc.py:62
@@ -2706,12 +2706,12 @@ msgstr ""
 #: ../src/TreeViews/_PersonTreeView.py:36
 #, fuzzy
 msgid "Cause of Death"
-msgstr "ËÀÍöÔ­Òò"
+msgstr "æ­»äº¡åŸå› "
 
 #: ../src/DataViews/_PersonView.py:300
 #, fuzzy
 msgid "Active person not visible"
-msgstr "<b>µ±Ç°ÈËµÄ¸¸Ä¸</b>"
+msgstr "<b>å½“å‰äººçš„çˆ¶æ¯</b>"
 
 #: ../src/DataViews/_PersonView.py:389
 msgid "Deleting the person will remove the person from the database."
@@ -2724,16 +2724,16 @@ msgstr ""
 #: ../src/DataViews/_PersonView.py:443
 #, fuzzy, python-format
 msgid "Delete Person (%s)"
-msgstr "Ä¬ÈÏÈË(_D)"
+msgstr "é»˜è®¤äºº(_D)"
 
 #: ../src/DataViews/_PlaceView.py:52
 msgid "Place Name"
-msgstr "µØÃû"
+msgstr "åœ°å"
 
 #: ../src/DataViews/_PlaceView.py:55 ../src/DataViews/_RepositoryView.py:57
 #, fuzzy
 msgid "ZIP/Postal Code"
-msgstr "ÓÊ±à£º"
+msgstr "é‚®ç¼–ï¼š"
 
 #: ../src/DataViews/_PlaceView.py:60 ../src/plugins/NavWebPage.py:755
 msgid "Longitude"
@@ -2760,7 +2760,7 @@ msgstr ""
 #: ../src/DataViews/_RepositoryView.py:55
 #, fuzzy
 msgid "Home URL"
-msgstr "Ê×Ò³"
+msgstr "é¦–é¡µ"
 
 #: ../src/DataViews/_RepositoryView.py:63
 msgid "Search URL"
@@ -2787,7 +2787,7 @@ msgstr ""
 #: ../src/DataViews/_SourceView.py:56
 #, fuzzy
 msgid "Publication Information"
-msgstr "¼ÒÍ¥ĞÅÏ¢"
+msgstr "å®¶åº­ä¿¡æ¯"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/_SourceView.py:148
@@ -2865,7 +2865,7 @@ msgstr ""
 #: ../src/docgen/KwordDoc.py:259 ../src/docgen/KwordDoc.py:263
 #, fuzzy, python-format
 msgid "Could not open %s"
-msgstr "ÎŞ·¨´ò¿ª"
+msgstr "æ— æ³•æ‰“å¼€"
 
 #: ../src/docgen/KwordDoc.py:513
 msgid "KWord"
@@ -2883,7 +2883,7 @@ msgstr ""
 #: ../src/docgen/LPRDoc.py:1260 ../src/docgen/LPRDoc.py:1269
 #, fuzzy
 msgid "Print..."
-msgstr "±à¼­..."
+msgstr "ç¼–è¾‘..."
 
 #: ../src/docgen/ODFDoc.py:1140
 #, python-format
@@ -2946,7 +2946,7 @@ msgstr ""
 #: ../src/Editors/_EditAttribute.py:125 ../src/Editors/_EditAttribute.py:129
 #, fuzzy
 msgid "New Attribute"
-msgstr "ÊôĞÔ"
+msgstr "å±æ€§"
 
 #: ../src/Editors/_EditAttribute.py:143
 msgid "New attribute type created"
@@ -2961,27 +2961,27 @@ msgstr ""
 
 #: ../src/Editors/_EditEvent.py:85 ../src/Editors/_EditEvent.py:176
 msgid "Event Editor"
-msgstr "ÊÂ¼ş±à¼­Æ÷"
+msgstr "äº‹ä»¶ç¼–è¾‘å™¨"
 
 #: ../src/Editors/_EditEvent.py:173 ../src/Editors/_EditEventRef.py:189
 #, fuzzy, python-format
 msgid "Event: %s"
-msgstr "ÊÂ¼ş"
+msgstr "äº‹ä»¶"
 
 #: ../src/Editors/_EditEvent.py:175 ../src/Editors/_EditEventRef.py:191
 #, fuzzy
 msgid "New Event"
-msgstr "ÊÂ¼ş"
+msgstr "äº‹ä»¶"
 
 #: ../src/Editors/_EditEvent.py:197 ../src/Editors/_EditEventRef.py:215
 #, fuzzy
 msgid "Add Event"
-msgstr "ÊÂ¼ş"
+msgstr "äº‹ä»¶"
 
 #: ../src/Editors/_EditEvent.py:205
 #, fuzzy
 msgid "Edit Event"
-msgstr "ÊÂ¼ş"
+msgstr "äº‹ä»¶"
 
 #: ../src/Editors/_EditEvent.py:256 ../src/Editors/_EditEventRef.py:255
 #, python-format
@@ -2991,12 +2991,12 @@ msgstr ""
 #: ../src/Editors/_EditEventRef.py:84 ../src/Editors/_EditEventRef.py:192
 #, fuzzy
 msgid "Event Reference Editor"
-msgstr "ÊÂ¼ş±à¼­Æ÷"
+msgstr "äº‹ä»¶ç¼–è¾‘å™¨"
 
 #: ../src/Editors/_EditEventRef.py:210
 #, fuzzy
 msgid "Modify Event"
-msgstr "¼ÒÍ¥ÊÂ¼ş"
+msgstr "å®¶åº­äº‹ä»¶"
 
 #: ../src/Editors/_EditFamily.py:89
 msgid "#"
@@ -3013,17 +3013,17 @@ msgstr ""
 #: ../src/Editors/_EditFamily.py:288
 #, fuzzy
 msgid "Family Editor"
-msgstr "¼ÒÍ¥ÊÂ¼ş"
+msgstr "å®¶åº­äº‹ä»¶"
 
 #: ../src/Editors/_EditFamily.py:577
 #, fuzzy
 msgid "Add Family"
-msgstr "¼ÒÍ¥"
+msgstr "å®¶åº­"
 
 #: ../src/Editors/_EditFamily.py:603
 #, fuzzy
 msgid "Edit Family"
-msgstr "¼ÒÍ¥"
+msgstr "å®¶åº­"
 
 #: ../src/Editors/_EditLocation.py:58
 msgid "Location Editor"
@@ -3036,18 +3036,18 @@ msgstr ""
 #: ../src/Editors/_EditMedia.py:160
 #, fuzzy
 msgid "Media Properties"
-msgstr "Ã½ÌåÎï¼ş"
+msgstr "åª’ä½“ç‰©ä»¶"
 
 #: ../src/Editors/_EditMedia.py:161 ../src/Editors/_EditMedia.py:205
 #: ../src/Editors/_EditMediaRef.py:189
 #, fuzzy
 msgid "Edit Media Object"
-msgstr "Ã½ÌåÎï¼ş"
+msgstr "åª’ä½“ç‰©ä»¶"
 
 #: ../src/Editors/_EditMedia.py:165
 #, fuzzy
 msgid "Select Media Object"
-msgstr "Ã½ÌåÎï¼ş"
+msgstr "åª’ä½“ç‰©ä»¶"
 
 #: ../src/Editors/_EditMediaRef.py:74
 msgid "Media Reference Editor"
@@ -3056,7 +3056,7 @@ msgstr ""
 #: ../src/Editors/_EditName.py:68 ../src/Editors/_EditName.py:168
 #, fuzzy
 msgid "Name Editor"
-msgstr "µØµã±à¼­Æ÷"
+msgstr "åœ°ç‚¹ç¼–è¾‘å™¨"
 
 #: ../src/Editors/_EditName.py:99 ../src/Editors/_EditName.py:107
 msgid "Default (based on locale"
@@ -3065,12 +3065,12 @@ msgstr ""
 #: ../src/Editors/_EditName.py:100 ../src/Editors/_EditName.py:108
 #, fuzzy
 msgid "Given name Family name"
-msgstr "ĞÕ"
+msgstr "å§“"
 
 #: ../src/Editors/_EditName.py:101 ../src/Editors/_EditName.py:109
 #, fuzzy
 msgid "Family name Given Name"
-msgstr "ĞÕ"
+msgstr "å§“"
 
 #: ../src/Editors/_EditName.py:165
 #, python-format
@@ -3080,7 +3080,7 @@ msgstr ""
 #: ../src/Editors/_EditName.py:167
 #, fuzzy
 msgid "New Name"
-msgstr "ÆäËûÃû×Ö"
+msgstr "å…¶ä»–åå­—"
 
 #: ../src/Editors/_EditName.py:200
 msgid "Group all people with the same name?"
@@ -3103,7 +3103,7 @@ msgstr ""
 
 #: ../src/Editors/_EditPerson.py:101 ../src/Editors/_EditPerson.py:255
 msgid "Edit Person"
-msgstr "±à¼­´ËÈË"
+msgstr "ç¼–è¾‘æ­¤äºº"
 
 #: ../src/Editors/_EditPerson.py:161
 msgid "Patronymic:"
@@ -3112,7 +3112,7 @@ msgstr ""
 #: ../src/Editors/_EditPerson.py:254
 #, fuzzy
 msgid "New Person"
-msgstr "±à¼­´ËÈË"
+msgstr "ç¼–è¾‘æ­¤äºº"
 
 #: ../src/Editors/_EditPerson.py:304
 msgid "Edit with the GIMP"
@@ -3165,21 +3165,21 @@ msgstr ""
 #: ../src/Editors/_EditPerson.py:481
 #, fuzzy, python-format
 msgid "Edit Person (%s)"
-msgstr "±à¼­´ËÈË"
+msgstr "ç¼–è¾‘æ­¤äºº"
 
 #: ../src/Editors/_EditPlace.py:72
 msgid "Place Editor"
-msgstr "µØµã±à¼­Æ÷"
+msgstr "åœ°ç‚¹ç¼–è¾‘å™¨"
 
 #: ../src/Editors/_EditPlace.py:130
 #, fuzzy
 msgid "New Place"
-msgstr "µØµã"
+msgstr "åœ°ç‚¹"
 
 #: ../src/Editors/_EditPlace.py:131
 #, fuzzy
 msgid "Edit Place"
-msgstr "µØµã"
+msgstr "åœ°ç‚¹"
 
 #: ../src/Editors/_EditPlace.py:191
 msgid "Place title is already in use"
@@ -3194,7 +3194,7 @@ msgstr ""
 #: ../src/Editors/_EditPlace.py:203
 #, fuzzy, python-format
 msgid "Edit Place (%s)"
-msgstr "±à¼­´ËÈË"
+msgstr "ç¼–è¾‘æ­¤äºº"
 
 #: ../src/Editors/_EditPlace.py:245
 #, python-format
@@ -3212,7 +3212,7 @@ msgstr ""
 #: ../src/Editors/_EditRepository.py:62
 #, fuzzy
 msgid "Repository Editor"
-msgstr "ÊÂ¼ş±à¼­Æ÷"
+msgstr "äº‹ä»¶ç¼–è¾‘å™¨"
 
 #: ../src/Editors/_EditRepository.py:124
 #, python-format
@@ -3231,7 +3231,7 @@ msgstr ""
 #: ../src/Editors/_EditSource.py:158
 #, fuzzy, python-format
 msgid "Edit Source (%s)"
-msgstr "À´Ô´"
+msgstr "æ¥æº"
 
 #: ../src/Editors/_EditSource.py:209
 #, python-format
@@ -3245,35 +3245,35 @@ msgstr ""
 #: ../src/Editors/_EditSourceRef.py:158
 #, fuzzy
 msgid "Comments"
-msgstr "×¢ÊÍ(_C):"
+msgstr "æ³¨é‡Š(_C):"
 
 #: ../src/Editors/_EditSourceRef.py:163
 #, fuzzy, python-format
 msgid "Source: %s"
-msgstr "À´Ô´"
+msgstr "æ¥æº"
 
 #: ../src/Editors/_EditSourceRef.py:165
 #, fuzzy
 msgid "New Source"
-msgstr "À´Ô´"
+msgstr "æ¥æº"
 
 #: ../src/Editors/_EditSourceRef.py:173
 #, fuzzy
 msgid "Modify Source"
-msgstr "À´Ô´"
+msgstr "æ¥æº"
 
 #: ../src/Editors/_EditSourceRef.py:176
 #, fuzzy
 msgid "Add Source"
-msgstr "À´Ô´"
+msgstr "æ¥æº"
 
 #: ../src/Editors/_EditUrl.py:67 ../src/Editors/_EditUrl.py:91
 msgid "Internet Address Editor"
-msgstr "ÒòÌØÍøÖ·±à¼­Æ÷"
+msgstr "å› ç‰¹ç½‘å€ç¼–è¾‘å™¨"
 
 #: ../src/GrampsDb/_GrampsBSDDB.py:1318
 msgid "Other Name"
-msgstr "ÆäËûÃû×Ö"
+msgstr "å…¶ä»–åå­—"
 
 #. witness name recorded
 #. Add name and comment to the event note
@@ -3299,7 +3299,7 @@ msgstr ""
 #: ../src/GrampsDb/_GrampsDbBase.py:1301 ../src/GrampsDb/_GrampsDbBase.py:1342
 #, fuzzy, python-format
 msgid "_Redo %s"
-msgstr "±¨¸æ(_R)"
+msgstr "æŠ¥å‘Š(_R)"
 
 #: ../src/GrampsDb/_ReadGedcom.py:123 ../src/GrampsDb/_ReadGedcom.py:124
 msgid "Windows 9x file system"
@@ -3390,7 +3390,7 @@ msgstr ""
 #: ../src/GrampsDb/_ReadGrdb.py:190
 #, fuzzy
 msgid "Import database"
-msgstr "¼ì²éÊı¾İ¿â"
+msgstr "æ£€æŸ¥æ•°æ®åº“"
 
 #: ../src/GrampsDb/_ReadXML.py:147 ../src/GrampsDb/_ReadXML.py:157
 #, python-format
@@ -3404,7 +3404,7 @@ msgstr ""
 #: ../src/GrampsDb/_ReadXML.py:195
 #, fuzzy
 msgid "Could not copy file"
-msgstr "ÎŞ·¨´ò¿ª"
+msgstr "æ— æ³•æ‰“å¼€"
 
 #: ../src/GrampsDb/_ReadXML.py:622
 msgid "GRAMPS XML import"
@@ -3417,7 +3417,7 @@ msgstr ""
 #: ../src/plugins/StatisticsChart.py:844 ../src/plugins/TimeLine.py:410
 #: ../src/plugins/WriteFtree.py:90 ../src/plugins/WriteGeneWeb.py:92
 msgid "Entire Database"
-msgstr "Õû¸öÊı¾İ¿â"
+msgstr "æ•´ä¸ªæ•°æ®åº“"
 
 #: ../src/GrampsDb/_WriteGedcom.py:348 ../src/plugins/Calendar.py:542
 #: ../src/plugins/DescendReport.py:152 ../src/plugins/ExportVCalendar.py:93
@@ -3454,7 +3454,7 @@ msgstr ""
 #: ../src/GrampsDb/_WriteGedcom.py:1357
 #, fuzzy
 msgid "Export failed"
-msgstr "µ¼³ö(_E)"
+msgstr "å¯¼å‡º(_E)"
 
 #. -------------------------------------------------------------------------
 #.
@@ -3512,7 +3512,7 @@ msgstr ""
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:23
 #, fuzzy
 msgid "Report a bug"
-msgstr "±¨¸æ´íÎó(_R)"
+msgstr "æŠ¥å‘Šé”™è¯¯(_R)"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:24
 msgid ""
@@ -3530,27 +3530,27 @@ msgstr ""
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:37
 #, fuzzy
 msgid "Report a bug: Step 1 of 5"
-msgstr "±¨¸æ´íÎó(_R)"
+msgstr "æŠ¥å‘Šé”™è¯¯(_R)"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:38
 #, fuzzy
 msgid "Report a bug: Step 2 of 5"
-msgstr "±¨¸æ´íÎó(_R)"
+msgstr "æŠ¥å‘Šé”™è¯¯(_R)"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:39
 #, fuzzy
 msgid "Report a bug: Step 3 of 5"
-msgstr "±¨¸æ´íÎó(_R)"
+msgstr "æŠ¥å‘Šé”™è¯¯(_R)"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:42
 #, fuzzy
 msgid "Report a bug: Step 4 of 5"
-msgstr "±¨¸æ´íÎó(_R)"
+msgstr "æŠ¥å‘Šé”™è¯¯(_R)"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:44
 #, fuzzy
 msgid "Report a bug: Step 5 of 5"
-msgstr "±¨¸æ´íÎó(_R)"
+msgstr "æŠ¥å‘Šé”™è¯¯(_R)"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:48
 msgid ""
@@ -3567,7 +3567,7 @@ msgstr ""
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:164
 #, fuzzy
 msgid "Error Details"
-msgstr "Ï¸½Ú:"
+msgstr "ç»†èŠ‚:"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:169
 msgid ""
@@ -3586,7 +3586,7 @@ msgstr ""
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:234
 #, fuzzy
 msgid "System Information"
-msgstr "¼ÒÍ¥ĞÅÏ¢"
+msgstr "å®¶åº­ä¿¡æ¯"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:239
 msgid ""
@@ -3603,7 +3603,7 @@ msgstr ""
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:296
 #, fuzzy
 msgid "Further Information"
-msgstr "¼ÒÍ¥ĞÅÏ¢"
+msgstr "å®¶åº­ä¿¡æ¯"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:301
 msgid ""
@@ -3661,7 +3661,7 @@ msgstr ""
 #: ../src/GrampsLogger/_ErrorView.py:33
 #, fuzzy
 msgid "Error Report"
-msgstr "±¨¸æ"
+msgstr "æŠ¥å‘Š"
 
 #: ../src/GrampsLogger/_ErrorView.py:44
 msgid "GRAMPS has experienced an unexpected error"
@@ -3678,33 +3678,33 @@ msgstr ""
 #: ../src/GrampsLogger/_ErrorView.py:62 ../src/GrampsLogger/_ErrorView.py:75
 #, fuzzy
 msgid "Error Detail"
-msgstr "Ï¸½Ú:"
+msgstr "ç»†èŠ‚:"
 
 #: ../src/GrampsLogger/_ErrorView.py:83
 #, fuzzy
 msgid "Report"
-msgstr "±¨¸æ"
+msgstr "æŠ¥å‘Š"
 
 #: ../src/ObjectSelector/__init__.py:105 ../src/plugins/FilterEditor.py:233
 #: ../src/PluginUtils/_Report.py:969
 #, fuzzy
 msgid "Select Person"
-msgstr "Ä¬ÈÏÈË(_D)"
+msgstr "é»˜è®¤äºº(_D)"
 
 #: ../src/ObjectSelector/_ObjectSelectorWindow.py:84
 #, fuzzy
 msgid "Select Object"
-msgstr "Ã½ÌåÎï¼ş"
+msgstr "åª’ä½“ç‰©ä»¶"
 
 #: ../src/ObjectSelector/_PersonFilterFrame.py:79
 #: ../src/plugins/IndivComplete.py:427 ../src/plugins/IndivSummary.py:246
 msgid "Male"
-msgstr "ÄĞ"
+msgstr "ç”·"
 
 #: ../src/ObjectSelector/_PersonFilterFrame.py:80
 #: ../src/plugins/IndivComplete.py:429 ../src/plugins/IndivSummary.py:248
 msgid "Female"
-msgstr "Å®"
+msgstr "å¥³"
 
 #: ../src/plugins/AncestorChart2.py:458 ../src/plugins/AncestorChart.py:248
 #: ../src/plugins/DescendChart.py:407 ../src/plugins/DesGraph.py:377
@@ -3749,7 +3749,7 @@ msgstr ""
 #: ../src/plugins/AncestorChart2.py:521
 #, fuzzy
 msgid "Ancestor Graph"
-msgstr "×æÏÈÍ¼"
+msgstr "ç¥–å…ˆå›¾"
 
 #: ../src/plugins/AncestorChart2.py:522 ../src/plugins/AncestorChart.py:270
 #: ../src/plugins/AncestorReport.py:201 ../src/plugins/BookReport.py:1127
@@ -3769,7 +3769,7 @@ msgstr "×æÏÈÍ¼"
 #: ../src/plugins/StatisticsChart.py:978 ../src/plugins/TimeLine.py:476
 #, fuzzy
 msgid "Stable"
-msgstr "Öİ£¯Ê¡"
+msgstr "å·ï¼çœ"
 
 #: ../src/plugins/AncestorChart2.py:525 ../src/plugins/AncestorChart.py:273
 msgid "Produces a graphical ancestral tree graph"
@@ -3777,7 +3777,7 @@ msgstr ""
 
 #: ../src/plugins/AncestorChart.py:269
 msgid "Ancestor Chart"
-msgstr "×æÏÈÍ¼"
+msgstr "ç¥–å…ˆå›¾"
 
 #: ../src/plugins/AncestorReport.py:100
 #, python-format
@@ -3830,7 +3830,7 @@ msgstr ""
 #: ../src/plugins/Ancestors.py:227
 #, fuzzy
 msgid "Their children:"
-msgstr "×ÓÅ®Ãûµ¥"
+msgstr "å­å¥³åå•"
 
 #: ../src/plugins/Ancestors.py:256
 #, python-format
@@ -3899,12 +3899,12 @@ msgstr ""
 #: ../src/plugins/Ancestors.py:610
 #, fuzzy
 msgid "(gender unknown)"
-msgstr "Î´Öª"
+msgstr "æœªçŸ¥"
 
 #: ../src/plugins/Ancestors.py:664
 #, fuzzy
 msgid " (unknown)"
-msgstr "Î´Öª"
+msgstr "æœªçŸ¥"
 
 #: ../src/plugins/Ancestors.py:698
 msgid ", and they had a child named "
@@ -3918,7 +3918,7 @@ msgstr ""
 #: ../src/plugins/Ancestors.py:713
 #, fuzzy
 msgid " and "
-msgstr "ºÍËû"
+msgstr "å’Œä»–"
 
 #: ../src/plugins/Ancestors.py:729
 #, python-format
@@ -3938,7 +3938,7 @@ msgstr ""
 #: ../src/plugins/Ancestors.py:742
 #, fuzzy, python-format
 msgid "  He married %(name)s"
-msgstr "»éºóÃû"
+msgstr "å©šåå"
 
 #: ../src/plugins/Ancestors.py:750
 #, python-format
@@ -4095,7 +4095,7 @@ msgstr ""
 #: ../src/plugins/Calendar.py:562
 #, fuzzy
 msgid "People with a Calendar attribute"
-msgstr "É¾³ıËùÑ¡ÊôĞÔ"
+msgstr "åˆ é™¤æ‰€é€‰å±æ€§"
 
 #: ../src/plugins/Calendar.py:611 ../src/plugins/FilterEditor.py:353
 #: ../src/plugins/FilterEditor.py:539 ../src/PluginUtils/_Report.py:745
@@ -4110,7 +4110,7 @@ msgstr ""
 #: ../src/plugins/Calendar.py:633
 #, fuzzy
 msgid "Text Options"
-msgstr "ÎÄ×Ö±¨¸æ"
+msgstr "æ–‡å­—æŠ¥å‘Š"
 
 #: ../src/plugins/Calendar.py:621
 msgid "Text 2"
@@ -4191,7 +4191,7 @@ msgstr ""
 #: ../src/plugins/ChangeNames.py:70
 #, fuzzy
 msgid "Checking family names"
-msgstr "ĞÕ"
+msgstr "å§“"
 
 #: ../src/plugins/ChangeNames.py:71
 msgid "Searching family names"
@@ -4217,7 +4217,7 @@ msgstr ""
 #: ../src/plugins/ChangeNames.py:112
 #, fuzzy
 msgid "Original Name"
-msgstr "ÆäËûÃû×Ö"
+msgstr "å…¶ä»–åå­—"
 
 #: ../src/plugins/ChangeNames.py:116
 msgid "Capitalization Change"
@@ -4239,12 +4239,12 @@ msgstr ""
 #: ../src/plugins/ChangeTypes.py:89
 #, fuzzy
 msgid "Change Event Types"
-msgstr "ÊÂ¼şÀàĞÍ(_E):"
+msgstr "äº‹ä»¶ç±»å‹(_E):"
 
 #: ../src/plugins/ChangeTypes.py:115
 #, fuzzy
 msgid "Analyzing events"
-msgstr "¼ÒÍ¥ÊÂ¼ş"
+msgstr "å®¶åº­äº‹ä»¶"
 
 #: ../src/plugins/ChangeTypes.py:132 ../src/plugins/ChangeTypes.py:174
 msgid "Change types"
@@ -4341,7 +4341,7 @@ msgstr ""
 #: ../src/plugins/Checkpoint.py:427
 #, fuzzy
 msgid "Checkpoint the database"
-msgstr "¼ì²éÊı¾İ¿â"
+msgstr "æ£€æŸ¥æ•°æ®åº“"
 
 #: ../src/plugins/Checkpoint.py:431
 msgid "Store a snapshot of the current database into a revision control system"
@@ -4354,7 +4354,7 @@ msgstr ""
 #: ../src/plugins/Check.py:212
 #, fuzzy
 msgid "Checking database"
-msgstr "¼ì²éÊı¾İ¿â"
+msgstr "æ£€æŸ¥æ•°æ®åº“"
 
 #: ../src/plugins/Check.py:219
 msgid "Looking for duplicate spouses"
@@ -4600,7 +4600,7 @@ msgstr ""
 
 #: ../src/plugins/CountAncestors.py:119
 msgid "Number of ancestors"
-msgstr "×æÏÈµÄÊıÄ¿"
+msgstr "ç¥–å…ˆçš„æ•°ç›®"
 
 #: ../src/plugins/CountAncestors.py:121
 msgid "Counts number of ancestors of selected person"
@@ -4637,7 +4637,7 @@ msgstr ""
 #: ../src/plugins/Desbrowser.py:79
 #, fuzzy, python-format
 msgid "Descendant Browser: %s"
-msgstr "×ÓËïÍ¼"
+msgstr "å­å­™å›¾"
 
 #: ../src/plugins/Desbrowser.py:176
 msgid "Interactive descendant browser"
@@ -4653,7 +4653,7 @@ msgstr ""
 
 #: ../src/plugins/DescendChart.py:472 ../src/plugins/DesGraph.py:408
 msgid "Descendant Graph"
-msgstr "×ÓËïÍ¼"
+msgstr "å­å­™å›¾"
 
 #: ../src/plugins/DescendChart.py:476
 msgid "Produces a graphical descendant tree graph"
@@ -4705,7 +4705,7 @@ msgstr ""
 #: ../src/plugins/DesGraph.py:412
 #, fuzzy
 msgid "Generates a graph of descendants of the active person"
-msgstr "Ñ¡ÖĞÄ¬ÈÏÈË"
+msgstr "é€‰ä¸­é»˜è®¤äºº"
 
 #: ../src/plugins/DetAncestralReport.py:148
 #, python-format
@@ -4816,7 +4816,7 @@ msgstr ""
 #: ../src/plugins/DetAncestralReport.py:753
 #: ../src/plugins/DetDescendantReport.py:784
 msgid "List children"
-msgstr "×ÓÅ®Ãûµ¥"
+msgstr "å­å¥³åå•"
 
 #. Print notes
 #: ../src/plugins/DetAncestralReport.py:757
@@ -4901,7 +4901,7 @@ msgstr ""
 #: ../src/plugins/DetDescendantReport.py:844
 #, fuzzy
 msgid "Content"
-msgstr "×¢ÊÍ(_C):"
+msgstr "æ³¨é‡Š(_C):"
 
 #: ../src/plugins/DetAncestralReport.py:810
 #: ../src/plugins/DetAncestralReport.py:811
@@ -4925,7 +4925,7 @@ msgstr ""
 #: ../src/plugins/DetDescendantReport.py:851
 #, fuzzy
 msgid "Missing information"
-msgstr "¼ÒÍ¥ĞÅÏ¢"
+msgstr "å®¶åº­ä¿¡æ¯"
 
 #: ../src/plugins/DetAncestralReport.py:848
 msgid "Detailed Ancestral Report"
@@ -4969,7 +4969,7 @@ msgstr ""
 #: ../src/plugins/EventCmp.py:185
 #, fuzzy
 msgid "Event Comparison tool"
-msgstr "±È½ÏÊÂ¼ş"
+msgstr "æ¯”è¾ƒäº‹ä»¶"
 
 #: ../src/plugins/EventCmp.py:208 ../src/plugins/EventCmp.py:329
 msgid "Comparing events"
@@ -4978,7 +4978,7 @@ msgstr ""
 #: ../src/plugins/EventCmp.py:209
 #, fuzzy
 msgid "Selecting people"
-msgstr "ËùÓĞÈË"
+msgstr "æ‰€æœ‰äºº"
 
 #: ../src/plugins/EventCmp.py:220
 msgid "No matches were found"
@@ -4987,7 +4987,7 @@ msgstr ""
 #: ../src/plugins/EventCmp.py:271 ../src/plugins/EventCmp.py:299
 #, fuzzy
 msgid "Event Comparison Results"
-msgstr "±È½ÏÊÂ¼ş"
+msgstr "æ¯”è¾ƒäº‹ä»¶"
 
 #: ../src/plugins/EventCmp.py:330
 msgid "Building data"
@@ -5006,12 +5006,12 @@ msgstr ""
 #: ../src/plugins/ExportVCalendar.py:215
 #, fuzzy, python-format
 msgid "Marriage of %s"
-msgstr "»éÒö"
+msgstr "å©šå§»"
 
 #: ../src/plugins/ExportVCalendar.py:233 ../src/plugins/ExportVCalendar.py:235
 #, fuzzy, python-format
 msgid "Birth of %s"
-msgstr "Ç×Éú"
+msgstr "äº²ç”Ÿ"
 
 #: ../src/plugins/ExportVCalendar.py:244 ../src/plugins/ExportVCalendar.py:246
 #, python-format
@@ -5093,25 +5093,25 @@ msgstr ""
 #: ../src/plugins/FamilyGroup.py:644
 #, fuzzy
 msgid "Parent Events"
-msgstr "¸¸Ä¸"
+msgstr "çˆ¶æ¯"
 
 #. Parental Addresses
 #: ../src/plugins/FamilyGroup.py:648
 #, fuzzy
 msgid "Parent Addresses"
-msgstr "µØÖ·"
+msgstr "åœ°å€"
 
 #. Parental Notes
 #: ../src/plugins/FamilyGroup.py:652
 #, fuzzy
 msgid "Parent Notes"
-msgstr "¸¸Ä¸"
+msgstr "çˆ¶æ¯"
 
 #. Parental Names
 #: ../src/plugins/FamilyGroup.py:656
 #, fuzzy
 msgid "Alternate Parent Names"
-msgstr "<b>±ğÃû</b>"
+msgstr "<b>åˆ«å</b>"
 
 #. Relatives Dates
 #: ../src/plugins/FamilyGroup.py:660
@@ -5125,7 +5125,7 @@ msgstr ""
 #: ../src/plugins/FamilyGroup.py:671
 #, fuzzy
 msgid "Missing Information"
-msgstr "¼ÒÍ¥ĞÅÏ¢"
+msgstr "å®¶åº­ä¿¡æ¯"
 
 #: ../src/plugins/FamilyGroup.py:723
 msgid "The style used for the text related to the children."
@@ -5161,7 +5161,7 @@ msgstr ""
 #: ../src/plugins/FilterEditor.py:221
 #, fuzzy
 msgid "Select..."
-msgstr "Ñ¡Ôñ(_S)"
+msgstr "é€‰æ‹©(_S)"
 
 #: ../src/plugins/FilterEditor.py:227
 msgid "Select person from a list"
@@ -5178,12 +5178,12 @@ msgstr ""
 #: ../src/plugins/FilterEditor.py:379
 #, fuzzy
 msgid "Filter Editor tool"
-msgstr "µØµã±à¼­Æ÷"
+msgstr "åœ°ç‚¹ç¼–è¾‘å™¨"
 
 #: ../src/plugins/FilterEditor.py:384
 #, fuzzy
 msgid "Filter List"
-msgstr "¹ıÂËÆ÷:"
+msgstr "è¿‡æ»¤å™¨:"
 
 #: ../src/plugins/FilterEditor.py:469
 msgid "Define filter"
@@ -5192,12 +5192,12 @@ msgstr ""
 #: ../src/plugins/FilterEditor.py:534 ../src/plugins/FilterEditor.py:538
 #, fuzzy
 msgid "New Filter"
-msgstr "¹ıÂËÆ÷(_F)"
+msgstr "è¿‡æ»¤å™¨(_F)"
 
 #: ../src/plugins/FilterEditor.py:545
 #, fuzzy
 msgid "Define Filter"
-msgstr "¹ıÂËÆ÷:"
+msgstr "è¿‡æ»¤å™¨:"
 
 #: ../src/plugins/FilterEditor.py:600
 msgid "Add Rule"
@@ -5206,7 +5206,7 @@ msgstr ""
 #: ../src/plugins/FilterEditor.py:606
 #, fuzzy
 msgid "Edit Rule"
-msgstr "±à¼­"
+msgstr "ç¼–è¾‘"
 
 #: ../src/plugins/FilterEditor.py:707
 msgid "Include original person"
@@ -5223,7 +5223,7 @@ msgstr ""
 #: ../src/plugins/FilterEditor.py:724
 #, fuzzy
 msgid "Rule Name"
-msgstr "µØÃû"
+msgstr "åœ°å"
 
 #: ../src/plugins/FilterEditor.py:810
 msgid "New Rule"
@@ -5237,7 +5237,7 @@ msgstr ""
 #: ../src/glade/rule.glade.h:21
 #, fuzzy
 msgid "No rule selected"
-msgstr "É¾³ıËùÑ¡Ãû×Ö"
+msgstr "åˆ é™¤æ‰€é€‰åå­—"
 
 #: ../src/plugins/FilterEditor.py:881
 msgid "Filter Test"
@@ -5359,7 +5359,7 @@ msgstr ""
 #: ../src/plugins/GraphViz.py:80
 #, fuzzy
 msgid "Default"
-msgstr "Ä¬ÈÏÈË(_D)"
+msgstr "é»˜è®¤äºº(_D)"
 
 #: ../src/plugins/GraphViz.py:81
 msgid "Postscript / Helvetica"
@@ -5490,7 +5490,7 @@ msgstr ""
 #: ../src/plugins/GraphViz.py:668
 #, fuzzy
 msgid "Font family"
-msgstr "¼ÒÍ¥"
+msgstr "å®¶åº­"
 
 #: ../src/plugins/GraphViz.py:670
 msgid ""
@@ -5569,27 +5569,27 @@ msgstr ""
 #: ../src/plugins/ImportGeneWeb.py:178
 #, fuzzy
 msgid "GeneWeb import"
-msgstr "²úÉú±¨¸æ"
+msgstr "äº§ç”ŸæŠ¥å‘Š"
 
 #: ../src/plugins/ImportGeneWeb.py:775
 #, fuzzy
 msgid "GeneWeb files"
-msgstr "Éú³ÉÍøÕ¾"
+msgstr "ç”Ÿæˆç½‘ç«™"
 
 #: ../src/plugins/ImportGeneWeb.py:777 ../src/data/gramps.keys.in.h:5
 #, fuzzy
 msgid "GeneWeb"
-msgstr "ĞÔ±ğ"
+msgstr "æ€§åˆ«"
 
 #: ../src/plugins/ImportvCard.py:154
 #, fuzzy
 msgid "vCard import"
-msgstr "ÎŞ·¨µ¼Èë"
+msgstr "æ— æ³•å¯¼å…¥"
 
 #: ../src/plugins/ImportvCard.py:226
 #, fuzzy
 msgid "vCard files"
-msgstr "´æµµ"
+msgstr "å­˜æ¡£"
 
 #: ../src/plugins/IndivComplete.py:133 ../src/plugins/IndivSummary.py:114
 #, python-format
@@ -5724,7 +5724,7 @@ msgstr ""
 #: ../src/plugins/NavWebPage.py:97
 #, fuzzy
 msgid "Modern"
-msgstr "Ä¸Ç×"
+msgstr "æ¯äº²"
 
 #: ../src/plugins/NavWebPage.py:98
 msgid "Business"
@@ -5737,7 +5737,7 @@ msgstr ""
 #: ../src/plugins/NavWebPage.py:100
 #, fuzzy
 msgid "Antique"
-msgstr "ÊôĞÔ"
+msgstr "å±æ€§"
 
 #: ../src/plugins/NavWebPage.py:101
 msgid "Tranquil"
@@ -5770,13 +5770,13 @@ msgstr ""
 #: ../src/plugins/NavWebPage.py:1030
 #, fuzzy
 msgid "Introduction"
-msgstr "ÎÄ»¯³Ì¶È"
+msgstr "æ–‡åŒ–ç¨‹åº¦"
 
 #: ../src/plugins/NavWebPage.py:323 ../src/plugins/NavWebPage.py:948
 #: ../src/plugins/NavWebPage.py:949
 #, fuzzy
 msgid "Surnames"
-msgstr "À´Ô´"
+msgstr "æ¥æº"
 
 #: ../src/plugins/NavWebPage.py:324 ../src/plugins/NavWebPage.py:560
 #: ../src/plugins/NavWebPage.py:567 ../src/plugins/Summary.py:109
@@ -5792,7 +5792,7 @@ msgstr ""
 #: ../src/plugins/NavWebPage.py:1271
 #, fuzzy
 msgid "Contact"
-msgstr "ÏØ£¯¿¤"
+msgstr "å¿ï¼éƒ¡"
 
 #: ../src/plugins/NavWebPage.py:358 ../src/plugins/NavWebPage.py:388
 #: ../src/plugins/NavWebPage.py:400 ../src/plugins/NavWebPage.py:1047
@@ -5804,7 +5804,7 @@ msgstr ""
 #: ../src/plugins/NavWebPage.py:412 ../src/plugins/NavWebPage.py:1895
 #, fuzzy
 msgid "Narrative"
-msgstr "ÒÑ»é"
+msgstr "å·²å©š"
 
 #: ../src/plugins/NavWebPage.py:424
 msgid "Weblinks"
@@ -5852,7 +5852,7 @@ msgstr ""
 #: ../src/plugins/NavWebPage.py:748
 #, fuzzy
 msgid "Postal Code"
-msgstr "ÓÊ±à£º"
+msgstr "é‚®ç¼–ï¼š"
 
 #: ../src/plugins/NavWebPage.py:812
 msgid "Previous"
@@ -5874,7 +5874,7 @@ msgstr ""
 #: ../src/plugins/NavWebPage.py:898
 #, fuzzy
 msgid "Missing media object"
-msgstr "Ã½ÌåÎï¼ş"
+msgstr "åª’ä½“ç‰©ä»¶"
 
 #: ../src/plugins/NavWebPage.py:952 ../src/plugins/NavWebPage.py:954
 msgid "Surnames by person count"
@@ -5890,7 +5890,7 @@ msgstr ""
 #: ../src/plugins/NavWebPage.py:970
 #, fuzzy
 msgid "Number of people"
-msgstr "×ÓÅ®Êı"
+msgstr "å­å¥³æ•°"
 
 #: ../src/plugins/NavWebPage.py:1125
 msgid ""
@@ -5902,7 +5902,7 @@ msgstr ""
 #: ../src/plugins/NavWebPage.py:1174
 #, fuzzy
 msgid "Publication information"
-msgstr "¼ÒÍ¥ĞÅÏ¢"
+msgstr "å®¶åº­ä¿¡æ¯"
 
 #: ../src/plugins/NavWebPage.py:1205
 msgid ""
@@ -5914,17 +5914,17 @@ msgstr ""
 #: ../src/plugins/NavWebPage.py:1453
 #, fuzzy
 msgid "Ancestors"
-msgstr "×æÏÈÍ¼"
+msgstr "ç¥–å…ˆå›¾"
 
 #: ../src/plugins/NavWebPage.py:1556
 #, fuzzy
 msgid "Source References"
-msgstr "Ê×Ñ¡Ïî£¨_N)"
+msgstr "é¦–é€‰é¡¹ï¼ˆ_N)"
 
 #: ../src/plugins/NavWebPage.py:1577
 #, fuzzy
 msgid "Confidence"
-msgstr "¿É¿¿³Ì¶È:"
+msgstr "å¯é ç¨‹åº¦:"
 
 #: ../src/plugins/NavWebPage.py:1682 ../src/plugins/PatchNames.py:228
 msgid "Nickname"
@@ -5932,12 +5932,12 @@ msgstr ""
 
 #: ../src/plugins/NavWebPage.py:1814
 msgid "Families"
-msgstr "¼ÒÍ¥"
+msgstr "å®¶åº­"
 
 #: ../src/plugins/NavWebPage.py:1843 ../src/plugins/NavWebPage.py:1845
 #, fuzzy
 msgid "Partner"
-msgstr "¸¸Ä¸"
+msgstr "çˆ¶æ¯"
 
 #: ../src/plugins/NavWebPage.py:1975
 #, python-format
@@ -5976,12 +5976,12 @@ msgstr ""
 #: ../src/plugins/NavWebPage.py:2110
 #, fuzzy
 msgid "Generate HTML reports"
-msgstr "²úÉú±¨¸æ"
+msgstr "äº§ç”ŸæŠ¥å‘Š"
 
 #: ../src/plugins/NavWebPage.py:2159
 #, fuzzy
 msgid "Filtering"
-msgstr "¹ıÂËÆ÷(_F)"
+msgstr "è¿‡æ»¤å™¨(_F)"
 
 #: ../src/plugins/NavWebPage.py:2166
 msgid "Applying privacy filter"
@@ -6006,7 +6006,7 @@ msgstr ""
 #: ../src/plugins/NavWebPage.py:2263
 #, fuzzy
 msgid "Creating place pages"
-msgstr "´´½¨ĞÂµØÖ·"
+msgstr "åˆ›å»ºæ–°åœ°å€"
 
 #: ../src/plugins/NavWebPage.py:2277
 msgid "Creating media pages"
@@ -6015,7 +6015,7 @@ msgstr ""
 #: ../src/plugins/NavWebPage.py:2380
 #, fuzzy
 msgid "My Family Tree"
-msgstr "¼Ò×åÇ°×º:"
+msgstr "å®¶æ—å‰ç¼€:"
 
 #: ../src/plugins/NavWebPage.py:2430
 msgid "Do not include records marked private"
@@ -6064,7 +6064,7 @@ msgstr ""
 #: ../src/plugins/NavWebPage.py:2488
 #, fuzzy
 msgid "Creative Commons - By attribution"
-msgstr "´´½¨ĞÂÊôĞÔ"
+msgstr "åˆ›å»ºæ–°å±æ€§"
 
 #: ../src/plugins/NavWebPage.py:2489
 msgid "Creative Commons - By attribution, No derivations"
@@ -6128,7 +6128,7 @@ msgstr ""
 
 #: ../src/plugins/NavWebPage.py:2627 ../src/plugins/NavWebPage.py:2687
 msgid "Generate Web Site"
-msgstr "Éú³ÉÍøÕ¾"
+msgstr "ç”Ÿæˆç½‘ç«™"
 
 #: ../src/plugins/NavWebPage.py:2655
 msgid "Store web pages in .tar.gz archive"
@@ -6144,16 +6144,16 @@ msgstr ""
 
 #: ../src/plugins/NavWebPage.py:2687 ../src/PluginUtils/_Report.py:171
 msgid "Web Page"
-msgstr "ÍøÒ³"
+msgstr "ç½‘é¡µ"
 
 #: ../src/plugins/NavWebPage.py:2692
 msgid "Target Directory"
-msgstr "Ä¿±êÄ¿Â¼"
+msgstr "ç›®æ ‡ç›®å½•"
 
 #: ../src/plugins/NavWebPage.py:2880
 #, fuzzy
 msgid "Narrative Web Site"
-msgstr "Éú³ÉÍøÕ¾"
+msgstr "ç”Ÿæˆç½‘ç«™"
 
 #: ../src/plugins/NavWebPage.py:2884
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
@@ -6211,13 +6211,13 @@ msgstr ""
 #: ../src/plugins/ReadPkg.py:118
 #, fuzzy
 msgid "GRAMPS packages"
-msgstr "GRAMPSµÄÖ÷Ò³(_H)"
+msgstr "GRAMPSçš„ä¸»é¡µ(_H)"
 
 #: ../src/plugins/ReadPkg.py:120 ../src/data/gramps.keys.in.h:4
 #: ../src/data/gramps.xml.in.h:4
 #, fuzzy
 msgid "GRAMPS package"
-msgstr "GRAMPSµÄÖ÷Ò³(_H)"
+msgstr "GRAMPSçš„ä¸»é¡µ(_H)"
 
 #: ../src/plugins/Rebuild.py:78
 msgid "Rebuilding Secondary Indices"
@@ -6247,7 +6247,7 @@ msgstr ""
 #: ../src/plugins/RelCalc.py:96
 #, fuzzy, python-format
 msgid "Relationship to %(person_name)s"
-msgstr "ÓëÄ¸Ç×µÄ¹ØÏµ"
+msgstr "ä¸æ¯äº²çš„å…³ç³»"
 
 #: ../src/plugins/RelCalc.py:173
 #, python-format
@@ -6266,7 +6266,7 @@ msgstr ""
 #: ../src/plugins/RelCalc.py:202
 #, fuzzy, python-format
 msgid "%s and %s are the same person."
-msgstr "½«%sÉèÎªÄ¬ÈÏÈË"
+msgstr "å°†%sè®¾ä¸ºé»˜è®¤äºº"
 
 #: ../src/plugins/RelCalc.py:204
 #, python-format
@@ -6301,7 +6301,7 @@ msgstr ""
 #: ../src/plugins/ReorderIds.py:87
 #, fuzzy
 msgid "Reordering Media Object IDs"
-msgstr "Ã½ÌåÎï¼ş"
+msgstr "åª’ä½“ç‰©ä»¶"
 
 #: ../src/plugins/ReorderIds.py:97
 msgid "Reordering Source IDs"
@@ -6339,12 +6339,12 @@ msgstr ""
 #: ../src/plugins/SimpleBookTitle.py:169
 #, fuzzy
 msgid "Subtitle"
-msgstr "Öİ£¯Ê¡"
+msgstr "å·ï¼çœ"
 
 #: ../src/plugins/SimpleBookTitle.py:170
 #, fuzzy
 msgid "Footer"
-msgstr "ÊÕÑø"
+msgstr "æ”¶å…»"
 
 #: ../src/plugins/SimpleBookTitle.py:187
 msgid "From gallery..."
@@ -6358,12 +6358,12 @@ msgstr ""
 #: ../src/plugins/SimpleBookTitle.py:209
 #, fuzzy
 msgid "Image"
-msgstr "ÄĞ"
+msgstr "ç”·"
 
 #: ../src/plugins/SimpleBookTitle.py:207
 #, fuzzy
 msgid "Preview"
-msgstr "<b>Ô¤ÀÀ</b>"
+msgstr "<b>é¢„è§ˆ</b>"
 
 #: ../src/plugins/SimpleBookTitle.py:209 ../src/PluginUtils/_Report.py:1282
 msgid "Size"
@@ -6372,7 +6372,7 @@ msgstr ""
 #: ../src/plugins/SimpleBookTitle.py:236
 #, fuzzy
 msgid "Select an Object"
-msgstr "Ñ¡ÔñÒ»¸öÍ¼Ïñ"
+msgstr "é€‰æ‹©ä¸€ä¸ªå›¾åƒ"
 
 #: ../src/plugins/SimpleBookTitle.py:275
 msgid "The style used for the subtitle."
@@ -6385,7 +6385,7 @@ msgstr ""
 #: ../src/plugins/SimpleBookTitle.py:299
 #, fuzzy
 msgid "Title Page"
-msgstr "ÍøÒ³"
+msgstr "ç½‘é¡µ"
 
 #: ../src/plugins/SoundGen.py:80
 msgid "SoundEx code generator"
@@ -6410,7 +6410,7 @@ msgstr ""
 #: ../src/plugins/StatisticsChart.py:78
 #, fuzzy
 msgid "Both"
-msgstr "Ç×Éú"
+msgstr "äº²ç”Ÿ"
 
 #: ../src/plugins/StatisticsChart.py:79 ../src/plugins/StatisticsChart.py:172
 #: ../src/plugins/StatisticsChart.py:500
@@ -6421,7 +6421,7 @@ msgstr ""
 #: ../src/plugins/StatisticsChart.py:502
 #, fuzzy
 msgid "Women"
-msgstr "Ê×Ò³"
+msgstr "é¦–é¡µ"
 
 #: ../src/plugins/StatisticsChart.py:99
 msgid "Forename"
@@ -6430,47 +6430,47 @@ msgstr ""
 #: ../src/plugins/StatisticsChart.py:103
 #, fuzzy
 msgid "Birth year"
-msgstr "³öÉúÈÕÆÚ"
+msgstr "å‡ºç”Ÿæ—¥æœŸ"
 
 #: ../src/plugins/StatisticsChart.py:105
 #, fuzzy
 msgid "Death year"
-msgstr "ËÀÍöÈÕÆÚ"
+msgstr "æ­»äº¡æ—¥æœŸ"
 
 #: ../src/plugins/StatisticsChart.py:107
 #, fuzzy
 msgid "Birth month"
-msgstr "³öÉúÈÕÆÚ"
+msgstr "å‡ºç”Ÿæ—¥æœŸ"
 
 #: ../src/plugins/StatisticsChart.py:109
 #, fuzzy
 msgid "Death month"
-msgstr "ËÀÍöÈÕÆÚ"
+msgstr "æ­»äº¡æ—¥æœŸ"
 
 #: ../src/plugins/StatisticsChart.py:111
 #, fuzzy
 msgid "Cause of death"
-msgstr "ËÀÍöÔ­Òò"
+msgstr "æ­»äº¡åŸå› "
 
 #: ../src/plugins/StatisticsChart.py:113
 #, fuzzy
 msgid "Birth place"
-msgstr "³öÉúÈÕÆÚ"
+msgstr "å‡ºç”Ÿæ—¥æœŸ"
 
 #: ../src/plugins/StatisticsChart.py:115
 #, fuzzy
 msgid "Death place"
-msgstr "ËÀÍöÈÕÆÚ"
+msgstr "æ­»äº¡æ—¥æœŸ"
 
 #: ../src/plugins/StatisticsChart.py:117
 #, fuzzy
 msgid "Marriage place"
-msgstr "½á»éÖ¤"
+msgstr "ç»“å©šè¯"
 
 #: ../src/plugins/StatisticsChart.py:119
 #, fuzzy
 msgid "Number of relationships"
-msgstr "×æÏÈµÄÊıÄ¿"
+msgstr "ç¥–å…ˆçš„æ•°ç›®"
 
 #: ../src/plugins/StatisticsChart.py:121
 msgid "Age when first child born"
@@ -6483,17 +6483,17 @@ msgstr ""
 #: ../src/plugins/StatisticsChart.py:125
 #, fuzzy
 msgid "Number of children"
-msgstr "×ÓÅ®Êı"
+msgstr "å­å¥³æ•°"
 
 #: ../src/plugins/StatisticsChart.py:127
 #, fuzzy
 msgid "Age at marriage"
-msgstr "»éÒö"
+msgstr "å©šå§»"
 
 #: ../src/plugins/StatisticsChart.py:129
 #, fuzzy
 msgid "Age at death"
-msgstr "ËÀÍöÈÕÆÚ"
+msgstr "æ­»äº¡æ—¥æœŸ"
 
 #: ../src/plugins/StatisticsChart.py:131
 msgid "Age"
@@ -6502,7 +6502,7 @@ msgstr ""
 #: ../src/plugins/StatisticsChart.py:133
 #, fuzzy
 msgid "Event type"
-msgstr "ÊÂ¼şÀàĞÍ(_E):"
+msgstr "äº‹ä»¶ç±»å‹(_E):"
 
 #: ../src/plugins/StatisticsChart.py:147
 msgid "(Preferred) title missing"
@@ -6519,7 +6519,7 @@ msgstr ""
 #: ../src/plugins/StatisticsChart.py:175
 #, fuzzy
 msgid "Gender unknown"
-msgstr "Î´Öª"
+msgstr "æœªçŸ¥"
 
 #. inadequate information
 #: ../src/plugins/StatisticsChart.py:184 ../src/plugins/StatisticsChart.py:193
@@ -6534,7 +6534,7 @@ msgstr ""
 #: ../src/plugins/StatisticsChart.py:209 ../src/plugins/StatisticsChart.py:223
 #, fuzzy
 msgid "Place missing"
-msgstr "µØµã"
+msgstr "åœ°ç‚¹"
 
 #: ../src/plugins/StatisticsChart.py:231
 msgid "Already dead"
@@ -6547,17 +6547,17 @@ msgstr ""
 #: ../src/plugins/StatisticsChart.py:248 ../src/plugins/StatisticsChart.py:259
 #, fuzzy
 msgid "Events missing"
-msgstr "±È½ÏÊÂ¼ş"
+msgstr "æ¯”è¾ƒäº‹ä»¶"
 
 #: ../src/plugins/StatisticsChart.py:267 ../src/plugins/StatisticsChart.py:275
 #, fuzzy
 msgid "Children missing"
-msgstr "×ÓÅ®"
+msgstr "å­å¥³"
 
 #: ../src/plugins/StatisticsChart.py:294
 #, fuzzy
 msgid "Birth missing"
-msgstr "³öÉúÃû"
+msgstr "å‡ºç”Ÿå"
 
 #: ../src/plugins/StatisticsChart.py:394
 msgid "Personal information missing"
@@ -6694,7 +6694,7 @@ msgstr ""
 
 #: ../src/plugins/Summary.py:117
 msgid "Family Information"
-msgstr "¼ÒÍ¥ĞÅÏ¢"
+msgstr "å®¶åº­ä¿¡æ¯"
 
 #: ../src/plugins/Summary.py:119
 msgid "Number of families"
@@ -6706,7 +6706,7 @@ msgstr ""
 
 #: ../src/plugins/Summary.py:121
 msgid "Media Objects"
-msgstr "Ã½ÌåÎï¼ş"
+msgstr "åª’ä½“ç‰©ä»¶"
 
 #: ../src/plugins/Summary.py:123
 msgid "Individuals with media objects"
@@ -6734,11 +6734,11 @@ msgstr ""
 
 #: ../src/plugins/Summary.py:156
 msgid "Database summary"
-msgstr "Êı¾İ¿â¸ÅÒª"
+msgstr "æ•°æ®åº“æ¦‚è¦"
 
 #: ../src/plugins/Summary.py:175
 msgid "Summary of the database"
-msgstr "Êı¾İ¿â¸ÅÒª"
+msgstr "æ•°æ®åº“æ¦‚è¦"
 
 #: ../src/plugins/Summary.py:177
 msgid "Provides a summary of the current database"
@@ -6774,11 +6774,11 @@ msgstr ""
 
 #: ../src/plugins/Verify.py:91 ../src/plugins/Verify.py:136
 msgid "Database Verify"
-msgstr "¼ì²éÊı¾İ¿â"
+msgstr "æ£€æŸ¥æ•°æ®åº“"
 
 #: ../src/plugins/Verify.py:233 ../src/plugins/Verify.py:714
 msgid "Verify the database"
-msgstr "¼ì²éÊı¾İ¿â"
+msgstr "æ£€æŸ¥æ•°æ®åº“"
 
 #: ../src/plugins/Verify.py:234
 msgid "Checking data"
@@ -6948,13 +6948,13 @@ msgstr ""
 #: ../src/plugins/Verify.py:399
 #, python-format
 msgid "Husband and wife with the same surname: %s in family %s, and %s.\n"
-msgstr "·ò¸¾Í¬ĞÕ: %s in family %s, and %s.\n"
+msgstr "å¤«å¦‡åŒå§“: %s in family %s, and %s.\n"
 
 #: ../src/plugins/Verify.py:404
 #, fuzzy, python-format
 msgid ""
 "Large age difference between husband and wife: %s in family %s, and %s.\n"
-msgstr "·ò¸¾Í¬ĞÕ: %s in family %s, and %s.\n"
+msgstr "å¤«å¦‡åŒå§“: %s in family %s, and %s.\n"
 
 #: ../src/plugins/Verify.py:436
 #, python-format
@@ -7115,7 +7115,7 @@ msgstr ""
 #: ../src/plugins/Verify.py:597
 #, fuzzy
 msgid "Database Verification Results"
-msgstr "¼ì²éÊı¾İ¿â"
+msgstr "æ£€æŸ¥æ•°æ®åº“"
 
 #: ../src/plugins/Verify.py:715
 msgid "Lists exceptions to assertions or checks about the database"
@@ -7163,12 +7163,12 @@ msgstr ""
 #: ../src/plugins/WriteFtree.py:285
 #, fuzzy
 msgid "_Web Family Tree"
-msgstr "ĞÕ"
+msgstr "å§“"
 
 #: ../src/plugins/WriteFtree.py:286
 #, fuzzy
 msgid "Web Family Tree format."
-msgstr "¼ÒÍ¥ĞÅÏ¢"
+msgstr "å®¶åº­ä¿¡æ¯"
 
 #: ../src/plugins/WriteFtree.py:287
 msgid "Web Family Tree export options"
@@ -7177,7 +7177,7 @@ msgstr ""
 #: ../src/plugins/WriteGeneWeb.py:245
 #, fuzzy
 msgid "No families matched by selected filter"
-msgstr "±à¼­ËùÑ¡Ïî"
+msgstr "ç¼–è¾‘æ‰€é€‰é¡¹"
 
 #. -------------------------------------------------------------------------
 #.
@@ -7195,7 +7195,7 @@ msgstr ""
 #: ../src/plugins/WriteGeneWeb.py:603
 #, fuzzy
 msgid "GeneWeb export options"
-msgstr "²úÉú±¨¸æ"
+msgstr "äº§ç”ŸæŠ¥å‘Š"
 
 #. -------------------------------------------------------------------------
 #.
@@ -7236,11 +7236,11 @@ msgstr ""
 #: ../src/PluginUtils/_Plugins.py:73
 #, fuzzy
 msgid "Unsupported"
-msgstr "ÔŞÖú"
+msgstr "èµåŠ©"
 
 #: ../src/PluginUtils/_Plugins.py:137
 msgid "_Apply"
-msgstr "Ó¦ÓÃ(_A)"
+msgstr "åº”ç”¨(_A)"
 
 #: ../src/PluginUtils/_Plugins.py:272
 msgid "Report Selection"
@@ -7253,12 +7253,12 @@ msgstr ""
 #: ../src/PluginUtils/_Plugins.py:274
 #, fuzzy
 msgid "_Generate"
-msgstr "ĞÔ±ğ"
+msgstr "æ€§åˆ«"
 
 #: ../src/PluginUtils/_Plugins.py:274
 #, fuzzy
 msgid "Generate selected report"
-msgstr "²úÉú±¨¸æ"
+msgstr "äº§ç”ŸæŠ¥å‘Š"
 
 #: ../src/PluginUtils/_Plugins.py:298
 msgid "Tool Selection"
@@ -7275,7 +7275,7 @@ msgstr ""
 #: ../src/PluginUtils/_Plugins.py:301
 #, fuzzy
 msgid "Run selected tool"
-msgstr "ÔËĞĞ¹¤¾ß"
+msgstr "è¿è¡Œå·¥å…·"
 
 #: ../src/PluginUtils/_Plugins.py:323
 msgid "Plugin status"
@@ -7292,7 +7292,7 @@ msgstr ""
 #: ../src/PluginUtils/_Plugins.py:572
 #, fuzzy
 msgid "Reload plugins"
-msgstr "ÖØÔØ²å¼ş(_L)"
+msgstr "é‡è½½æ’ä»¶(_L)"
 
 #: ../src/PluginUtils/_Plugins.py:573
 msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
@@ -7313,29 +7313,29 @@ msgstr ""
 
 #: ../src/PluginUtils/_Report.py:168
 msgid "Text Reports"
-msgstr "ÎÄ×Ö±¨¸æ"
+msgstr "æ–‡å­—æŠ¥å‘Š"
 
 #: ../src/PluginUtils/_Report.py:169
 msgid "Graphical Reports"
-msgstr "Í¼±í±¨¸æ"
+msgstr "å›¾è¡¨æŠ¥å‘Š"
 
 #: ../src/PluginUtils/_Report.py:170
 #, fuzzy
 msgid "Code Generators"
-msgstr "²úÉú±¨¸æ"
+msgstr "äº§ç”ŸæŠ¥å‘Š"
 
 #: ../src/PluginUtils/_Report.py:172
 msgid "View"
-msgstr "²é¿´"
+msgstr "æŸ¥çœ‹"
 
 #: ../src/PluginUtils/_Report.py:173
 msgid "Books"
-msgstr "Êé²á"
+msgstr "ä¹¦å†Œ"
 
 #: ../src/PluginUtils/_Report.py:178
 #, fuzzy
 msgid "Graphics"
-msgstr "Í¼±í±¨¸æ"
+msgstr "å›¾è¡¨æŠ¥å‘Š"
 
 #: ../src/PluginUtils/_Report.py:325
 msgid "Progress Report"
@@ -7367,7 +7367,7 @@ msgstr ""
 #: ../src/PluginUtils/_Report.py:673
 #, fuzzy
 msgid "Style"
-msgstr "Öİ£¯Ê¡"
+msgstr "å·ï¼çœ"
 
 #: ../src/PluginUtils/_Report.py:677 ../src/PluginUtils/_StyleEditor.py:97
 msgid "Style Editor"
@@ -7481,12 +7481,12 @@ msgstr ""
 #: ../src/PluginUtils/_ReportUtils.py:56
 #, fuzzy, python-format
 msgid "He was born on %(birth_date)s in %(birth_place)s."
-msgstr " ÉúÓÚ %s %s."
+msgstr " ç”Ÿäº %s %s."
 
 #: ../src/PluginUtils/_ReportUtils.py:57
 #, fuzzy, python-format
 msgid "She was born on %(birth_date)s in %(birth_place)s."
-msgstr " ÉúÓÚ %s %s."
+msgstr " ç”Ÿäº %s %s."
 
 #: ../src/PluginUtils/_ReportUtils.py:60
 #, python-format
@@ -7541,12 +7541,12 @@ msgstr ""
 #: ../src/PluginUtils/_ReportUtils.py:82
 #, fuzzy, python-format
 msgid "He was born on %(birth_date)s."
-msgstr " ÉúÓÚ %s %s."
+msgstr " ç”Ÿäº %s %s."
 
 #: ../src/PluginUtils/_ReportUtils.py:83
 #, fuzzy, python-format
 msgid "She was born on %(birth_date)s."
-msgstr " ÉúÓÚ %s %s."
+msgstr " ç”Ÿäº %s %s."
 
 #: ../src/PluginUtils/_ReportUtils.py:86
 #, python-format
@@ -7601,12 +7601,12 @@ msgstr ""
 #: ../src/PluginUtils/_ReportUtils.py:108
 #, fuzzy, python-format
 msgid "He was born in %(month_year)s in %(birth_place)s."
-msgstr " ÉúÓÚ%sÄê¡£"
+msgstr " ç”Ÿäº%så¹´ã€‚"
 
 #: ../src/PluginUtils/_ReportUtils.py:109
 #, fuzzy, python-format
 msgid "She was born in %(month_year)s in %(birth_place)s."
-msgstr " ÉúÓÚ%sÄê¡£"
+msgstr " ç”Ÿäº%så¹´ã€‚"
 
 #: ../src/PluginUtils/_ReportUtils.py:112
 #, python-format
@@ -7626,17 +7626,17 @@ msgstr ""
 #: ../src/PluginUtils/_ReportUtils.py:120
 #, fuzzy, python-format
 msgid "This person was born in %(month_year)s."
-msgstr " ÉúÓÚ%sÄê¡£"
+msgstr " ç”Ÿäº%så¹´ã€‚"
 
 #: ../src/PluginUtils/_ReportUtils.py:121
 #, fuzzy, python-format
 msgid "He was born in %(month_year)s."
-msgstr " ÉúÓÚ%sÄê¡£"
+msgstr " ç”Ÿäº%så¹´ã€‚"
 
 #: ../src/PluginUtils/_ReportUtils.py:122
 #, fuzzy, python-format
 msgid "She was born in %(month_year)s."
-msgstr " ÉúÓÚ%sÄê¡£"
+msgstr " ç”Ÿäº%så¹´ã€‚"
 
 #: ../src/PluginUtils/_ReportUtils.py:125
 #, python-format
@@ -7646,12 +7646,12 @@ msgstr ""
 #: ../src/PluginUtils/_ReportUtils.py:126
 #, fuzzy, python-format
 msgid "%(male_name)s was born in %(month_year)s."
-msgstr " ÉúÓÚ%sÄê¡£"
+msgstr " ç”Ÿäº%så¹´ã€‚"
 
 #: ../src/PluginUtils/_ReportUtils.py:127
 #, fuzzy, python-format
 msgid "%(female_name)s was born in %(month_year)s."
-msgstr " ÉúÓÚ%sÄê¡£"
+msgstr " ç”Ÿäº%så¹´ã€‚"
 
 #: ../src/PluginUtils/_ReportUtils.py:133
 #, python-format
@@ -7661,12 +7661,12 @@ msgstr ""
 #: ../src/PluginUtils/_ReportUtils.py:134
 #, fuzzy, python-format
 msgid "He was born in %(birth_place)s."
-msgstr " ÉúÓÚ%sÄê¡£"
+msgstr " ç”Ÿäº%så¹´ã€‚"
 
 #: ../src/PluginUtils/_ReportUtils.py:135
 #, fuzzy, python-format
 msgid "She was born in %(birth_place)s."
-msgstr " ÉúÓÚ%sÄê¡£"
+msgstr " ç”Ÿäº%så¹´ã€‚"
 
 #: ../src/PluginUtils/_ReportUtils.py:138
 #, python-format
@@ -8809,7 +8809,7 @@ msgstr ""
 #: ../src/PluginUtils/_ReportUtils.py:533
 #, fuzzy, python-format
 msgid "He was buried in %(month_year)s."
-msgstr " ÉúÓÚ%sÄê¡£"
+msgstr " ç”Ÿäº%så¹´ã€‚"
 
 #: ../src/PluginUtils/_ReportUtils.py:536
 #, python-format
@@ -8819,7 +8819,7 @@ msgstr ""
 #: ../src/PluginUtils/_ReportUtils.py:537
 #, fuzzy, python-format
 msgid "She was buried in %(month_year)s."
-msgstr " ÉúÓÚ%sÄê¡£"
+msgstr " ç”Ÿäº%så¹´ã€‚"
 
 #: ../src/PluginUtils/_ReportUtils.py:540
 #, python-format
@@ -9359,7 +9359,7 @@ msgstr ""
 #: ../src/PluginUtils/_ReportUtils.py:818
 #, fuzzy
 msgid "unmarried"
-msgstr "Î´»é"
+msgstr "æœªå©š"
 
 #: ../src/PluginUtils/_ReportUtils.py:819
 msgid "civil union"
@@ -9761,20 +9761,20 @@ msgstr ""
 
 #: ../src/PluginUtils/_Tool.py:67
 msgid "Debug"
-msgstr "µ÷ÊÔ"
+msgstr "è°ƒè¯•"
 
 #: ../src/PluginUtils/_Tool.py:68
 msgid "Analysis and Exploration"
-msgstr "·ÖÎöÓëÌ½Ë÷"
+msgstr "åˆ†æä¸æ¢ç´¢"
 
 #: ../src/PluginUtils/_Tool.py:69
 msgid "Database Processing"
-msgstr "´¦ÀíÊı¾İ¿â"
+msgstr "å¤„ç†æ•°æ®åº“"
 
 #: ../src/PluginUtils/_Tool.py:70
 #, fuzzy
 msgid "Database Repair"
-msgstr "¼ì²éÊı¾İ¿â"
+msgstr "æ£€æŸ¥æ•°æ®åº“"
 
 #: ../src/PluginUtils/_Tool.py:71
 msgid "Revision Control"
@@ -9782,7 +9782,7 @@ msgstr ""
 
 #: ../src/PluginUtils/_Tool.py:72
 msgid "Utilities"
-msgstr "Ğ¡¹¤¾ß"
+msgstr "å°å·¥å…·"
 
 #: ../src/RelLib/_Date.py:112
 msgid "Gregorian"
@@ -9794,7 +9794,7 @@ msgstr ""
 
 #: ../src/RelLib/_Date.py:114
 msgid "Hebrew"
-msgstr "Ï£²®À³"
+msgstr "å¸Œä¼¯è±"
 
 #: ../src/RelLib/_Date.py:115
 msgid "French Republican"
@@ -9802,24 +9802,24 @@ msgstr ""
 
 #: ../src/RelLib/_Date.py:116
 msgid "Persian"
-msgstr "²¨Ë¹Àú"
+msgstr "æ³¢æ–¯å†"
 
 #: ../src/RelLib/_Date.py:117
 msgid "Islamic"
-msgstr "ÒÁË¹À¼Àú"
+msgstr "ä¼Šæ–¯å…°å†"
 
 #: ../src/glade/edit_person.glade.h:1 ../src/glade/gramps.glade.h:19
 #: ../src/plugins/verify.glade.h:2
 msgid "<b>General</b>"
-msgstr "<b>»ù±¾ĞÅÏ¢</b>"
+msgstr "<b>åŸºæœ¬ä¿¡æ¯</b>"
 
 #: ../src/glade/edit_person.glade.h:2
 msgid "<b>Image</b>"
-msgstr "<b>Í¼Ïñ</b>"
+msgstr "<b>å›¾åƒ</b>"
 
 #: ../src/glade/edit_person.glade.h:3
 msgid "<b>Preferred name</b>"
-msgstr "<b>ÕıÊ½ĞÕÃû</b>"
+msgstr "<b>æ­£å¼å§“å</b>"
 
 #: ../src/glade/edit_person.glade.h:4
 msgid "A title used to refer to the person, such as \"Dr.\" or \"Rev.\""
@@ -9827,11 +9827,11 @@ msgstr ""
 
 #: ../src/glade/edit_person.glade.h:5 ../src/glade/gramps.glade.h:48
 msgid "Abandon changes and close window"
-msgstr "·ÅÆúĞŞ¸Ä²¢¹Ø±Õ´°¿Ú"
+msgstr "æ”¾å¼ƒä¿®æ”¹å¹¶å…³é—­çª—å£"
 
 #: ../src/glade/edit_person.glade.h:6 ../src/glade/gramps.glade.h:51
 msgid "Accept changes and close window"
-msgstr "ĞŞ¸Ä²¢¹Ø±Õ´°¿Ú"
+msgstr "ä¿®æ”¹å¹¶å…³é—­çª—å£"
 
 #: ../src/glade/edit_person.glade.h:7
 msgid ""
@@ -9846,7 +9846,7 @@ msgstr ""
 #: ../src/glade/edit_person.glade.h:9
 #, fuzzy
 msgid "Edit the preferred name"
-msgstr "±à¼­ËùÑ¡Ãû×Ö"
+msgstr "ç¼–è¾‘æ‰€é€‰åå­—"
 
 #: ../src/glade/edit_person.glade.h:10
 msgid ""
@@ -9857,7 +9857,7 @@ msgstr ""
 
 #: ../src/glade/edit_person.glade.h:13
 msgid "Gender:"
-msgstr "ĞÔ±ğ:"
+msgstr "æ€§åˆ«:"
 
 #: ../src/glade/edit_person.glade.h:15 ../src/glade/gramps.glade.h:90
 msgid "Indicates if the record is private"
@@ -9874,11 +9874,11 @@ msgstr ""
 #: ../src/glade/edit_person.glade.h:18
 #, fuzzy
 msgid "S_uffix:"
-msgstr "ºó×º"
+msgstr "åç¼€"
 
 #: ../src/glade/edit_person.glade.h:19 ../src/glade/gramps.glade.h:121
 msgid "T_ype:"
-msgstr "Àà±ğ"
+msgstr "ç±»åˆ«"
 
 #: ../src/glade/edit_person.glade.h:20
 msgid "The person's given name"
@@ -9891,11 +9891,11 @@ msgstr ""
 #: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:161
 #, fuzzy
 msgid "_Given:"
-msgstr "Ãû"
+msgstr "å"
 
 #: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:190
 msgid "_Title:"
-msgstr "³ÆÎ½(_T):"
+msgstr "ç§°è°“(_T):"
 
 #: ../src/glade/gramps.glade.h:1
 msgid "\n"
@@ -9908,7 +9908,7 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:4
 #, fuzzy
 msgid "<b>Background color</b>"
-msgstr "<b>µÚ¶ş¸öÈË</b>"
+msgstr "<b>ç¬¬äºŒä¸ªäºº</b>"
 
 #: ../src/glade/gramps.glade.h:5
 msgid "<b>Borders</b>"
@@ -9917,7 +9917,7 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:6
 #, fuzzy
 msgid "<b>Categories:</b>"
-msgstr "<b>¸¸Ç×</b>"
+msgstr "<b>çˆ¶äº²</b>"
 
 #: ../src/glade/gramps.glade.h:7
 msgid "<b>Color</b>"
@@ -9925,17 +9925,17 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:8
 msgid "<b>Database</b>"
-msgstr "<b>Êı¾İ¿â</b>"
+msgstr "<b>æ•°æ®åº“</b>"
 
 #: ../src/glade/gramps.glade.h:9
 #, fuzzy
 msgid "<b>Date</b>"
-msgstr "<b>ËÀÍö</b>"
+msgstr "<b>æ­»äº¡</b>"
 
 #: ../src/glade/gramps.glade.h:10
 #, fuzzy
 msgid "<b>Default view</b>"
-msgstr "<b>Ô¤ÀÀ</b>"
+msgstr "<b>é¢„è§ˆ</b>"
 
 #: ../src/glade/gramps.glade.h:11 ../src/glade/rule.glade.h:2
 msgid "<b>Description</b>"
@@ -9952,16 +9952,16 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:14
 #, fuzzy
 msgid "<b>Family name guessing</b>"
-msgstr "<b>¼ÒÍ¥</b>"
+msgstr "<b>å®¶åº­</b>"
 
 #: ../src/glade/gramps.glade.h:15
 #, fuzzy
 msgid "<b>Family view style</b>"
-msgstr "<b>¼ÒÍ¥</b>"
+msgstr "<b>å®¶åº­</b>"
 
 #: ../src/glade/gramps.glade.h:16
 msgid "<b>Father</b>"
-msgstr "<b>¸¸Ç×</b>"
+msgstr "<b>çˆ¶äº²</b>"
 
 #: ../src/glade/gramps.glade.h:17
 msgid "<b>Font options</b>"
@@ -9974,16 +9974,16 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:20
 #, fuzzy
 msgid "<b>Indentation</b>"
-msgstr "<b>ĞÅÏ¢</b>"
+msgstr "<b>ä¿¡æ¯</b>"
 
 #: ../src/glade/gramps.glade.h:21
 #, fuzzy
 msgid "<b>Location</b>"
-msgstr "<b>ĞÅÏ¢</b>"
+msgstr "<b>ä¿¡æ¯</b>"
 
 #: ../src/glade/gramps.glade.h:22
 msgid "<b>Mother</b>"
-msgstr "<b>Ä¸Ç×</b>"
+msgstr "<b>æ¯äº²</b>"
 
 #: ../src/glade/gramps.glade.h:23
 msgid ""
@@ -10016,22 +10016,22 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:28
 msgid "<b>Preview</b>"
-msgstr "<b>Ô¤ÀÀ</b>"
+msgstr "<b>é¢„è§ˆ</b>"
 
 #: ../src/glade/gramps.glade.h:29
 #, fuzzy
 msgid "<b>Q_uality</b>"
-msgstr "<b>¼ÒÍ¥</b>"
+msgstr "<b>å®¶åº­</b>"
 
 #: ../src/glade/gramps.glade.h:30
 #, fuzzy
 msgid "<b>Reference information</b>"
-msgstr "<b>ĞÅÏ¢</b>"
+msgstr "<b>ä¿¡æ¯</b>"
 
 #: ../src/glade/gramps.glade.h:31
 #, fuzzy
 msgid "<b>Relationship Information</b>"
-msgstr "<b>¹ØÏµ</b>"
+msgstr "<b>å…³ç³»</b>"
 
 #: ../src/glade/gramps.glade.h:32
 msgid "<b>Researcher information</b>"
@@ -10040,27 +10040,27 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:33
 #, fuzzy
 msgid "<b>Second date</b>"
-msgstr "<b>µÚ¶ş¸öÈË</b>"
+msgstr "<b>ç¬¬äºŒä¸ªäºº</b>"
 
 #: ../src/glade/gramps.glade.h:34
 #, fuzzy
 msgid "<b>Select columns</b>"
-msgstr "<b>¹ØÏµ</b>"
+msgstr "<b>å…³ç³»</b>"
 
 #: ../src/glade/gramps.glade.h:35
 #, fuzzy
 msgid "<b>Shared Information</b>"
-msgstr "<b>ĞÅÏ¢</b>"
+msgstr "<b>ä¿¡æ¯</b>"
 
 #: ../src/glade/gramps.glade.h:36
 #, fuzzy
 msgid "<b>Shared event information</b>"
-msgstr "<b>ĞÅÏ¢</b>"
+msgstr "<b>ä¿¡æ¯</b>"
 
 #: ../src/glade/gramps.glade.h:37
 #, fuzzy
 msgid "<b>Shared information</b>"
-msgstr "<b>ĞÅÏ¢</b>"
+msgstr "<b>ä¿¡æ¯</b>"
 
 #: ../src/glade/gramps.glade.h:38
 msgid "<b>Size</b>"
@@ -10069,22 +10069,22 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:39
 #, fuzzy
 msgid "<b>Spacing</b>"
-msgstr "<b>Í¼Ïñ</b>"
+msgstr "<b>å›¾åƒ</b>"
 
 #: ../src/glade/gramps.glade.h:40
 #, fuzzy
 msgid "<b>Spelling checker</b>"
-msgstr "<b>Æ×Ïµ</b>"
+msgstr "<b>è°±ç³»</b>"
 
 #: ../src/glade/gramps.glade.h:41
 #, fuzzy
 msgid "<b>Statusbar</b>"
-msgstr "<b>Êı¾İ¿â</b>"
+msgstr "<b>æ•°æ®åº“</b>"
 
 #: ../src/glade/gramps.glade.h:42
 #, fuzzy
 msgid "<b>Subsection</b>"
-msgstr "<b>ÅäÅ¼</b>"
+msgstr "<b>é…å¶</b>"
 
 #: ../src/glade/gramps.glade.h:43
 msgid "<b>Toolbar</b>"
@@ -10097,7 +10097,7 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:45
 #, fuzzy
 msgid "<b>_Type</b>"
-msgstr "<b>ÄĞ</b>"
+msgstr "<b>ç”·</b>"
 
 #: ../src/glade/gramps.glade.h:46
 msgid "<span size=\"larger\" weight=\"bold\">Family Editor</span>"
@@ -10126,12 +10126,12 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:54
 #, fuzzy
 msgid "Add_ress:"
-msgstr "µØÖ·:"
+msgstr "åœ°å€:"
 
 #: ../src/glade/gramps.glade.h:55 ../src/glade/mergedata.glade.h:4
 #: ../src/glade/plugins.glade.h:2
 msgid "Author:"
-msgstr "×÷Õß:"
+msgstr "ä½œè€…:"
 
 #: ../src/glade/gramps.glade.h:56
 msgid "Belo_w:"
@@ -10140,16 +10140,16 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:57
 #, fuzzy
 msgid "Birth:"
-msgstr "Ç×Éú"
+msgstr "äº²ç”Ÿ"
 
 #: ../src/glade/gramps.glade.h:58
 #, fuzzy
 msgid "C_ity:"
-msgstr "³ÇÊĞ:"
+msgstr "åŸå¸‚:"
 
 #: ../src/glade/gramps.glade.h:59
 msgid "C_ounty:"
-msgstr "¿¤/ÏØ(_O):"
+msgstr "éƒ¡/å¿(_O):"
 
 #: ../src/glade/gramps.glade.h:60
 msgid "Calenda_r:"
@@ -10158,11 +10158,11 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:61
 #, fuzzy
 msgid "Church Parish:"
-msgstr "½ÌÇø"
+msgstr "æ•™åŒº"
 
 #: ../src/glade/gramps.glade.h:62
 msgid "Church _parish:"
-msgstr "½ÌÇø(_P):"
+msgstr "æ•™åŒº(_P):"
 
 #: ../src/glade/gramps.glade.h:63
 msgid "Close _without saving"
@@ -10170,12 +10170,12 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:64
 msgid "Close window without changes"
-msgstr "·ÅÆúĞŞ¸Ä²¢¹Ø±Õ´°¿Ú"
+msgstr "æ”¾å¼ƒä¿®æ”¹å¹¶å…³é—­çª—å£"
 
 #: ../src/glade/gramps.glade.h:65
 #, fuzzy
 msgid "Co_unty:"
-msgstr "¹ú¼Ò£º"
+msgstr "å›½å®¶ï¼š"
 
 #: ../src/glade/gramps.glade.h:66
 msgid "Convert to a relative path"
@@ -10183,17 +10183,17 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:67
 msgid "Cou_ntry:"
-msgstr "¹ú¼Ò(_N):"
+msgstr "å›½å®¶(_N):"
 
 #: ../src/glade/gramps.glade.h:68
 #, fuzzy
 msgid "Count_ry:"
-msgstr "¹ú¼Ò£º"
+msgstr "å›½å®¶ï¼š"
 
 #: ../src/glade/gramps.glade.h:70
 #, fuzzy
 msgid "D_ay"
-msgstr "ÈÕÆÚ(_A)"
+msgstr "æ—¥æœŸ(_A)"
 
 #: ../src/glade/gramps.glade.h:71
 msgid "Dat_e:"
@@ -10201,12 +10201,12 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:72
 msgid "De_scription:"
-msgstr "ÃèÊö(_S):"
+msgstr "æè¿°(_S):"
 
 #: ../src/glade/gramps.glade.h:73
 #, fuzzy
 msgid "Death:"
-msgstr "ÈÕÆÚ"
+msgstr "æ—¥æœŸ"
 
 #: ../src/glade/gramps.glade.h:74
 msgid "Do not ask again"
@@ -10259,12 +10259,12 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:91
 #, fuzzy
 msgid "Internal note"
-msgstr "ÄÚ²¿´íÎó"
+msgstr "å†…éƒ¨é”™è¯¯"
 
 #: ../src/glade/gramps.glade.h:92
 #, fuzzy
 msgid "Invoke date editor"
-msgstr "´ò¿ªËÀÍöÊÂ¼ş±à¼­Æ÷"
+msgstr "æ‰“å¼€æ­»äº¡äº‹ä»¶ç¼–è¾‘å™¨"
 
 #: ../src/glade/gramps.glade.h:93
 msgid "Keep reference to the missing file"
@@ -10301,7 +10301,7 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:102
 #, fuzzy
 msgid "Mo_nth"
-msgstr "Ä¸Ç×"
+msgstr "æ¯äº²"
 
 #: ../src/glade/gramps.glade.h:104
 msgid "O"
@@ -10318,7 +10318,7 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:107
 #, fuzzy
 msgid "P_hone:"
-msgstr "µç»°£º"
+msgstr "ç”µè¯ï¼š"
 
 #: ../src/glade/gramps.glade.h:108
 msgid "P_lace:"
@@ -10326,17 +10326,17 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:109
 msgid "Path:"
-msgstr "Â·¾¶:"
+msgstr "è·¯å¾„:"
 
 #: ../src/glade/gramps.glade.h:110
 #, fuzzy
 msgid "Phon_e:"
-msgstr "µç»°£º"
+msgstr "ç”µè¯ï¼š"
 
 #: ../src/glade/gramps.glade.h:111
 #, fuzzy
 msgid "Publication Information:"
-msgstr "¼ÒÍ¥ĞÅÏ¢"
+msgstr "å®¶åº­ä¿¡æ¯"
 
 #: ../src/glade/gramps.glade.h:112
 msgid "R_ight:"
@@ -10349,7 +10349,7 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:114
 #, fuzzy
 msgid "Remove selected event reference"
-msgstr "É¾³ıËùÑ¡ÊÂ¼ş"
+msgstr "åˆ é™¤æ‰€é€‰äº‹ä»¶"
 
 #: ../src/glade/gramps.glade.h:115
 msgid "Ri_ght"
@@ -10370,16 +10370,16 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:119
 #, fuzzy
 msgid "Style n_ame:"
-msgstr "Ãû"
+msgstr "å"
 
 #: ../src/glade/gramps.glade.h:120
 msgid "Suffi_x:"
-msgstr "ºó×º"
+msgstr "åç¼€"
 
 #: ../src/glade/gramps.glade.h:122
 #, fuzzy
 msgid "Te_xt comment:"
-msgstr "×¢ÊÍ(_C):"
+msgstr "æ³¨é‡Š(_C):"
 
 #: ../src/glade/gramps.glade.h:124 ../src/glade/mergedata.glade.h:13
 msgid "Title:"
@@ -10394,11 +10394,11 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:126
 #, fuzzy
 msgid "Top to bottom"
-msgstr "Ìøµ½(_G)"
+msgstr "è·³åˆ°(_G)"
 
 #: ../src/glade/gramps.glade.h:127
 msgid "Type:"
-msgstr "Àà±ğ:"
+msgstr "ç±»åˆ«:"
 
 #: ../src/glade/gramps.glade.h:128
 msgid "Upper X:"
@@ -10420,7 +10420,7 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:135
 #, fuzzy
 msgid "Y_ear"
-msgstr "²àÀ¸(_S)"
+msgstr "ä¾§æ (_S)"
 
 #: ../src/glade/gramps.glade.h:136
 msgid "_Address:"
@@ -10432,11 +10432,11 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:138
 msgid "_Attribute:"
-msgstr "ÊôĞÔ(_A):"
+msgstr "å±æ€§(_A):"
 
 #: ../src/glade/gramps.glade.h:139
 msgid "_Author:"
-msgstr "×÷Õß:(_A)"
+msgstr "ä½œè€…:(_A)"
 
 #: ../src/glade/gramps.glade.h:140
 msgid "_Automatically load last database"
@@ -10453,11 +10453,11 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:143
 #, fuzzy
 msgid "_Call number:"
-msgstr "ĞÕ"
+msgstr "å§“"
 
 #: ../src/glade/gramps.glade.h:144
 msgid "_Cause:"
-msgstr "Ô­Òò(_C):"
+msgstr "åŸå› (_C):"
 
 #: ../src/glade/gramps.glade.h:145
 msgid "_Center"
@@ -10465,11 +10465,11 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:146
 msgid "_City/County:"
-msgstr "¿¤/ÏØ(_C):"
+msgstr "éƒ¡/å¿(_C):"
 
 #: ../src/glade/gramps.glade.h:147
 msgid "_City:"
-msgstr "³ÇÊĞ(_C):"
+msgstr "åŸå¸‚(_C):"
 
 #: ../src/glade/gramps.glade.h:148
 msgid "_Confidence:"
@@ -10485,16 +10485,16 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:151
 msgid "_Date:"
-msgstr "ÈÕÆÚ(_D):"
+msgstr "æ—¥æœŸ(_D):"
 
 #: ../src/glade/gramps.glade.h:152
 #, fuzzy
 msgid "_Day"
-msgstr "ÈÕÆÚ(_D):"
+msgstr "æ—¥æœŸ(_D):"
 
 #: ../src/glade/gramps.glade.h:153
 msgid "_Description:"
-msgstr "ÃèÊö(_D):"
+msgstr "æè¿°(_D):"
 
 #: ../src/glade/gramps.glade.h:154
 msgid "_Display Tip of the Day"
@@ -10514,12 +10514,12 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:158
 msgid "_Event type:"
-msgstr "ÊÂ¼şÀàĞÍ(_E):"
+msgstr "äº‹ä»¶ç±»å‹(_E):"
 
 #: ../src/glade/gramps.glade.h:159
 #, fuzzy
 msgid "_Family view"
-msgstr "ĞÕ"
+msgstr "å§“"
 
 #: ../src/glade/gramps.glade.h:162
 msgid "_Italic"
@@ -10552,7 +10552,7 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:169
 #, fuzzy
 msgid "_Month"
-msgstr "Ä¸Ç×"
+msgstr "æ¯äº²"
 
 #: ../src/glade/gramps.glade.h:170 ../src/glade/rule.glade.h:27
 msgid "_Name:"
@@ -10561,7 +10561,7 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:171
 #, fuzzy
 msgid "_Next"
-msgstr "ĞÂ½¨(_N)"
+msgstr "æ–°å»º(_N)"
 
 #: ../src/glade/gramps.glade.h:172
 msgid "_Override"
@@ -10585,12 +10585,12 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:177
 msgid "_Place:"
-msgstr "µØµã(_P):"
+msgstr "åœ°ç‚¹(_P):"
 
 #: ../src/glade/gramps.glade.h:178
 #, fuzzy
 msgid "_Prefix:"
-msgstr "¼Ò×åÇ°×º(_P):"
+msgstr "å®¶æ—å‰ç¼€(_P):"
 
 #: ../src/glade/gramps.glade.h:179
 msgid "_Publication information:"
@@ -10607,7 +10607,7 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:182
 #, fuzzy
 msgid "_Role:"
-msgstr "ÎÄ¼ş(_F):"
+msgstr "æ–‡ä»¶(_F):"
 
 #: ../src/glade/gramps.glade.h:183
 msgid "_Roman (Times, serif)"
@@ -10620,7 +10620,7 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:185
 #, fuzzy
 msgid "_Sort as:"
-msgstr "Öİ/Ê¡(_S):"
+msgstr "å·/çœ(_S):"
 
 #: ../src/glade/gramps.glade.h:186
 msgid "_Source:"
@@ -10632,7 +10632,7 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:188
 msgid "_State:"
-msgstr "Öİ/Ê¡(_S):"
+msgstr "å·/çœ(_S):"
 
 #: ../src/glade/gramps.glade.h:189
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
@@ -10645,7 +10645,7 @@ msgstr ""
 #: ../src/glade/gramps.glade.h:192
 #, fuzzy
 msgid "_Type:"
-msgstr "Àà±ğ:"
+msgstr "ç±»åˆ«:"
 
 #: ../src/glade/gramps.glade.h:193
 msgid "_Underline"
@@ -10657,30 +10657,30 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:195
 msgid "_Value:"
-msgstr "Öµ(_V):"
+msgstr "å€¼(_V):"
 
 #: ../src/glade/gramps.glade.h:196
 #, fuzzy
 msgid "_Volume/Page:"
-msgstr "Öµ(_V):"
+msgstr "å€¼(_V):"
 
 #: ../src/glade/gramps.glade.h:197
 msgid "_Web address:"
-msgstr "ÍøÖ·(_W):"
+msgstr "ç½‘å€(_W):"
 
 #: ../src/glade/gramps.glade.h:198
 #, fuzzy
 msgid "_Year"
-msgstr "²àÀ¸(_S)"
+msgstr "ä¾§æ (_S)"
 
 #: ../src/glade/gramps.glade.h:199
 msgid "_ZIP/Postal code:"
-msgstr "ÓÊ±à(_Z):"
+msgstr "é‚®ç¼–(_Z):"
 
 #: ../src/glade/gramps.glade.h:200
 #, fuzzy
 msgid "_Zip/Postal code:"
-msgstr "ÓÊ±à(_Z):"
+msgstr "é‚®ç¼–(_Z):"
 
 #: ../src/glade/gramps.glade.h:202
 msgid "pt"
@@ -10689,12 +10689,12 @@ msgstr ""
 #: ../src/glade/mergedata.glade.h:1
 #, fuzzy
 msgid "<b>Source 1</b>"
-msgstr "<b>À´Ô´</b>"
+msgstr "<b>æ¥æº</b>"
 
 #: ../src/glade/mergedata.glade.h:2
 #, fuzzy
 msgid "<b>Source 2</b>"
-msgstr "<b>À´Ô´</b>"
+msgstr "<b>æ¥æº</b>"
 
 #: ../src/glade/mergedata.glade.h:5
 msgid "GRAMPS ID:"
@@ -10702,7 +10702,7 @@ msgstr ""
 
 #: ../src/glade/mergedata.glade.h:6
 msgid "Merge and _edit"
-msgstr "ºÏ²¢ÇÒ±à¼­(_E)"
+msgstr "åˆå¹¶ä¸”ç¼–è¾‘(_E)"
 
 #: ../src/glade/mergedata.glade.h:8
 msgid "Place 1"
@@ -10715,7 +10715,7 @@ msgstr ""
 #: ../src/glade/mergedata.glade.h:10
 #, fuzzy
 msgid "Publication:"
-msgstr "ÎÄ»¯³Ì¶È"
+msgstr "æ–‡åŒ–ç¨‹åº¦"
 
 #: ../src/glade/mergedata.glade.h:12
 msgid ""
@@ -10724,11 +10724,11 @@ msgstr ""
 
 #: ../src/glade/mergedata.glade.h:14
 msgid "_Merge and close"
-msgstr "ºÏ²¢ÇÒ¹Ø±Õ(_M)"
+msgstr "åˆå¹¶ä¸”å…³é—­(_M)"
 
 #: ../src/glade/plugins.glade.h:1
 msgid "Author's email:"
-msgstr "×÷ÕßµÄµçÓÊ:"
+msgstr "ä½œè€…çš„ç”µé‚®:"
 
 #: ../src/glade/plugins.glade.h:3
 msgid "Perform selected action"
@@ -10736,7 +10736,7 @@ msgstr ""
 
 #: ../src/glade/plugins.glade.h:5
 msgid "Status:"
-msgstr "×´Ì¬"
+msgstr "çŠ¶æ€"
 
 #: ../src/glade/plugins.glade.h:6
 msgid "_Automatically pop out when problems are detected"
@@ -10749,22 +10749,22 @@ msgstr ""
 #: ../src/glade/rule.glade.h:3
 #, fuzzy
 msgid "<b>Filter inversion</b>"
-msgstr "<b>µÚÒ»¸öÈË</b>"
+msgstr "<b>ç¬¬ä¸€ä¸ªäºº</b>"
 
 #: ../src/glade/rule.glade.h:4
 #, fuzzy
 msgid "<b>Rule list</b>"
-msgstr "<b>µØµã</b>"
+msgstr "<b>åœ°ç‚¹</b>"
 
 #: ../src/glade/rule.glade.h:5
 #, fuzzy
 msgid "<b>Rule options</b>"
-msgstr "<b>¹ØÏµ</b>"
+msgstr "<b>å…³ç³»</b>"
 
 #: ../src/glade/rule.glade.h:6
 #, fuzzy
 msgid "<b>Selected Rule</b>"
-msgstr "<b>µÚ¶ş¸öÈË</b>"
+msgstr "<b>ç¬¬äºŒä¸ªäºº</b>"
 
 #: ../src/glade/rule.glade.h:7
 msgid "<b>Values</b>"
@@ -10789,7 +10789,7 @@ msgstr ""
 #: ../src/glade/rule.glade.h:12
 #, fuzzy
 msgid "Apply and close"
-msgstr "½ÓÊÜ²¢¹Ø±Õ"
+msgstr "æ¥å—å¹¶å…³é—­"
 
 #: ../src/glade/rule.glade.h:13
 msgid "At lea_st one rule must apply"
@@ -10798,7 +10798,7 @@ msgstr ""
 #: ../src/glade/rule.glade.h:14
 #, fuzzy
 msgid "Co_mment:"
-msgstr "×¢ÊÍ(_C):"
+msgstr "æ³¨é‡Š(_C):"
 
 #: ../src/glade/rule.glade.h:15
 msgid "Delete the selected filter"
@@ -10807,7 +10807,7 @@ msgstr ""
 #: ../src/glade/rule.glade.h:16
 #, fuzzy
 msgid "Delete the selected rule"
-msgstr "É¾³ıËùÑ¡ÊôĞÔ"
+msgstr "åˆ é™¤æ‰€é€‰å±æ€§"
 
 #: ../src/glade/rule.glade.h:17
 msgid "E_xactly one rule must apply"
@@ -10820,29 +10820,29 @@ msgstr ""
 #: ../src/glade/rule.glade.h:19
 #, fuzzy
 msgid "Edit the selected rule"
-msgstr "±à¼­ËùÑ¡Ãû×Ö"
+msgstr "ç¼–è¾‘æ‰€é€‰åå­—"
 
 #: ../src/glade/rule.glade.h:22
 #, fuzzy
 msgid "Return values that do no_t match the filter rules"
-msgstr "ÏÔÊ¾²»·ûÌõ¼şµÄÈË"
+msgstr "æ˜¾ç¤ºä¸ç¬¦æ¡ä»¶çš„äºº"
 
 #: ../src/glade/rule.glade.h:23
 #, fuzzy
 msgid "Test the selected filter"
-msgstr "±à¼­ËùÑ¡Ïî"
+msgstr "ç¼–è¾‘æ‰€é€‰é¡¹"
 
 #: ../src/glade/rule.glade.h:24
 msgid "_Add..."
-msgstr "Ìí¼Ó...(_A)"
+msgstr "æ·»åŠ ...(_A)"
 
 #: ../src/glade/rule.glade.h:25
 msgid "_Delete"
-msgstr "É¾³ı(_D)"
+msgstr "åˆ é™¤(_D)"
 
 #: ../src/glade/rule.glade.h:26
 msgid "_Edit..."
-msgstr "±à¼­...(_E)"
+msgstr "ç¼–è¾‘...(_E)"
 
 #: ../src/glade/rule.glade.h:28
 msgid "_Test..."
@@ -10951,7 +10951,7 @@ msgstr ""
 #: ../src/plugins/checkpoint.glade.h:5
 #, fuzzy
 msgid "R_etrieve"
-msgstr "ÍËĞİ"
+msgstr "é€€ä¼‘"
 
 #: ../src/plugins/checkpoint.glade.h:6
 msgid "Retrieval:"
@@ -10977,7 +10977,7 @@ msgstr ""
 
 #: ../src/plugins/eval.glade.h:1
 msgid "<b>Error Window</b>"
-msgstr "<b>±¨´í´°¿Ú</b>"
+msgstr "<b>æŠ¥é”™çª—å£</b>"
 
 #: ../src/plugins/eval.glade.h:2
 msgid "<b>Evaluation Window</b>"
@@ -10985,12 +10985,12 @@ msgstr ""
 
 #: ../src/plugins/eval.glade.h:3
 msgid "<b>Output Window</b>"
-msgstr "Êä³ö´°¿Ú"
+msgstr "è¾“å‡ºçª—å£"
 
 #: ../src/plugins/eventcmp.glade.h:1
 #, fuzzy
 msgid "<b>_File name</b>"
-msgstr "<b>ÆäËûÃû×Ö</b>"
+msgstr "<b>å…¶ä»–åå­—</b>"
 
 #: ../src/plugins/eventcmp.glade.h:2
 msgid "Save Data"
@@ -11047,7 +11047,7 @@ msgstr ""
 #: ../src/plugins/genewebexport.glade.h:10
 #, fuzzy
 msgid "media"
-msgstr "Ã½Ìå"
+msgstr "åª’ä½“"
 
 #: ../src/plugins/leak.glade.h:1
 msgid "<b>Uncollected Objects</b>"
@@ -11067,7 +11067,7 @@ msgstr ""
 
 #: ../src/plugins/merge.glade.h:5
 msgid "_Merge"
-msgstr "ºÏ²¢(_M)"
+msgstr "åˆå¹¶(_M)"
 
 #: ../src/plugins/patchnames.glade.h:1
 msgid ""
@@ -11080,7 +11080,7 @@ msgstr ""
 #: ../src/plugins/patchnames.glade.h:4
 #, fuzzy
 msgid "_Accept and close"
-msgstr "½ÓÊÜ²¢¹Ø±Õ"
+msgstr "æ¥å—å¹¶å…³é—­"
 
 #: ../src/plugins/relcalc.glade.h:1
 msgid "Select a person to determine the relationship"
@@ -11097,85 +11097,85 @@ msgstr ""
 #: ../src/plugins/verify.glade.h:1
 #, fuzzy
 msgid "<b>Errors:</b>"
-msgstr "<b>±¨´í´°¿Ú</b>"
+msgstr "<b>æŠ¥é”™çª—å£</b>"
 
 #: ../src/plugins/verify.glade.h:3
 msgid "<b>Men</b>"
-msgstr "<b>ÄĞ</b>"
+msgstr "<b>ç”·</b>"
 
 #: ../src/plugins/verify.glade.h:4
 #, fuzzy
 msgid "<b>Warnings:</b>"
-msgstr "<b>¸¸Ä¸</b>"
+msgstr "<b>çˆ¶æ¯</b>"
 
 #: ../src/plugins/verify.glade.h:5
 msgid "<b>Women</b>"
-msgstr "<b>Å®</b>"
+msgstr "<b>å¥³</b>"
 
 #: ../src/plugins/verify.glade.h:6
 #, fuzzy
 msgid "Ma_ximum age to bear a child"
-msgstr "×î´óÉúÓıÄêÁä"
+msgstr "æœ€å¤§ç”Ÿè‚²å¹´é¾„"
 
 #: ../src/plugins/verify.glade.h:7
 #, fuzzy
 msgid "Ma_ximum age to father a child"
-msgstr "×÷°Ö°ÖµÄ×î´óÄêÁä"
+msgstr "ä½œçˆ¸çˆ¸çš„æœ€å¤§å¹´é¾„"
 
 #: ../src/plugins/verify.glade.h:8
 #, fuzzy
 msgid "Ma_ximum age to marry"
-msgstr "×î´ó½á»éÄêÁä"
+msgstr "æœ€å¤§ç»“å©šå¹´é¾„"
 
 #: ../src/plugins/verify.glade.h:9
 #, fuzzy
 msgid "Maximum _age"
-msgstr "×î´óÄêÁä"
+msgstr "æœ€å¤§å¹´é¾„"
 
 #: ../src/plugins/verify.glade.h:10
 #, fuzzy
 msgid "Maximum husband-wife age _difference"
-msgstr "×î´ó·òÆŞÏà²îËêÊı"
+msgstr "æœ€å¤§å¤«å¦»ç›¸å·®å²æ•°"
 
 #: ../src/plugins/verify.glade.h:11
 #, fuzzy
 msgid "Maximum number of _spouses for a person"
-msgstr "Ò»¸öÈËµÄ×î´óÅäÅ¼ÊıÄ¿"
+msgstr "ä¸€ä¸ªäººçš„æœ€å¤§é…å¶æ•°ç›®"
 
 #: ../src/plugins/verify.glade.h:12
 #, fuzzy
 msgid "Maximum number of c_hildren"
-msgstr "×î´ó×ÓÅ®Êı"
+msgstr "æœ€å¤§å­å¥³æ•°"
 
 #: ../src/plugins/verify.glade.h:13
 #, fuzzy
 msgid "Maximum number of consecutive years of _widowhood"
-msgstr "×î´óÁ¬ĞøÊØ¹Ñ£¯÷¤¾ÓÄêÊı"
+msgstr "æœ€å¤§è¿ç»­å®ˆå¯¡ï¼é³å±…å¹´æ•°"
 
 #: ../src/plugins/verify.glade.h:14
 #, fuzzy
 msgid "Maximum number of years _between children"
-msgstr "Á¬ĞøÁ½´ÎÉúÓıÏà¸ôµÄ×î´óÄêÊı"
+msgstr "è¿ç»­ä¸¤æ¬¡ç”Ÿè‚²ç›¸éš”çš„æœ€å¤§å¹´æ•°"
 
 #: ../src/plugins/verify.glade.h:15
 #, fuzzy
 msgid "Maximum span _of years for all children"
-msgstr "Ê×Î²Á½¸öº¢×ÓÏà¸ôµÄ×î´óÄêÊı"
+msgstr "é¦–å°¾ä¸¤ä¸ªå­©å­ç›¸éš”çš„æœ€å¤§å¹´æ•°"
 
 #: ../src/plugins/verify.glade.h:16
 #, fuzzy
 msgid "Mi_nimum age to bear a child"
-msgstr "×îĞ¡ÉúÓıÄêÁä"
+msgstr "æœ€å°ç”Ÿè‚²å¹´é¾„"
 
 #: ../src/plugins/verify.glade.h:17
 #, fuzzy
 msgid "Mi_nimum age to father a child"
-msgstr "×÷°Ö°ÖµÄ×îĞ¡ÄêÁä"
+msgstr "ä½œçˆ¸çˆ¸çš„æœ€å°å¹´é¾„"
 
 #: ../src/plugins/verify.glade.h:18
 #, fuzzy
 msgid "Mi_nimum age to marry"
-msgstr "×îĞ¡½á»éÄêÁä"
+msgstr "æœ€å°ç»“å©šå¹´é¾„"
 
 #: ../src/plugins/verify.glade.h:19
 msgid "_Estimate missing dates"
@@ -11237,7 +11237,7 @@ msgstr ""
 #: ../src/data/gramps.schemas.in.h:9
 #, fuzzy
 msgid "Default report directory"
-msgstr "Ä¿±êÄ¿Â¼"
+msgstr "ç›®æ ‡ç›®å½•"
 
 #: ../src/data/gramps.schemas.in.h:10
 msgid "Default source GRAMPS ID pattern"
@@ -11288,7 +11288,7 @@ msgstr ""
 #: ../src/data/gramps.schemas.in.h:21
 #, fuzzy
 msgid "Family View style"
-msgstr "¼ÒÍ¥"
+msgstr "å®¶åº­"
 
 #: ../src/data/gramps.schemas.in.h:22
 msgid "Full pathname of the default report directory."
@@ -11451,7 +11451,7 @@ msgstr ""
 #: ../src/data/gramps.schemas.in.h:55
 #, fuzzy
 msgid "Name display format"
-msgstr "¼ÒÍ¥ĞÅÏ¢"
+msgstr "å®¶åº­ä¿¡æ¯"
 
 #: ../src/data/gramps.schemas.in.h:56
 msgid "Preferred format for graphical reports"
@@ -11472,7 +11472,7 @@ msgstr ""
 #: ../src/data/gramps.schemas.in.h:60
 #, fuzzy
 msgid "Preferred page size"
-msgstr "<b>ÕıÊ½ĞÕÃû</b>"
+msgstr "<b>æ­£å¼å§“å</b>"
 
 #: ../src/data/gramps.schemas.in.h:61
 msgid "Preferred page size."
@@ -11537,12 +11537,12 @@ msgstr ""
 #: ../src/data/gramps.schemas.in.h:76
 #, fuzzy
 msgid "Researcher street address"
-msgstr "É¾³ıËùÑ¡µØÖ·"
+msgstr "åˆ é™¤æ‰€é€‰åœ°å€"
 
 #: ../src/data/gramps.schemas.in.h:77
 #, fuzzy
 msgid "Researcher stret address."
-msgstr "É¾³ıËùÑ¡µØÖ·"
+msgstr "åˆ é™¤æ‰€é€‰åœ°å€"
 
 #: ../src/data/gramps.schemas.in.h:78
 msgid "Screen size has been checked"
@@ -11551,7 +11551,7 @@ msgstr ""
 #: ../src/data/gramps.schemas.in.h:79
 #, fuzzy
 msgid "Show alternate calndar options"
-msgstr "±ğµÄÈÕÀú"
+msgstr "åˆ«çš„æ—¥å†"
 
 #: ../src/data/gramps.schemas.in.h:80
 msgid "Show event details on the Family View"
@@ -11572,7 +11572,7 @@ msgstr ""
 #: ../src/data/gramps.schemas.in.h:84
 #, fuzzy
 msgid "Sidebar View"
-msgstr "²àÀ¸(_S)"
+msgstr "ä¾§æ (_S)"
 
 #: ../src/data/gramps.schemas.in.h:85
 msgid "Specifies the height of the interface when GRAMPS starts."
@@ -12257,248 +12257,248 @@ msgid ""
 msgstr ""
 
 #~ msgid "Choose Spouse/Partner of %s"
-#~ msgstr "Ñ¡ÔñÅäÅ¼"
+#~ msgstr "é€‰æ‹©é…å¶"
 
 #~ msgid "April"
-#~ msgstr "ËÄÔÂ"
+#~ msgstr "å››æœˆ"
 
 #~ msgid "Event Editor for %s"
-#~ msgstr "%sµÄÊÂ¼ş±à¼­Æ÷"
+#~ msgstr "%sçš„äº‹ä»¶ç¼–è¾‘å™¨"
 
 #~ msgid "_Remove Spouse"
-#~ msgstr "É¾³ıÅäÅ¼(_r)"
+#~ msgstr "åˆ é™¤é…å¶(_r)"
 
 #~ msgid ""
 #~ "%s: %s\n"
 #~ "\tRelationship: %s"
 #~ msgstr ""
 #~ "%s: %s\n"
-#~ "\t¹ØÏµ£º%s"
+#~ "\tå…³ç³»ï¼š%s"
 
 #~ msgid "%s: unknown"
-#~ msgstr "%s: Î´Öª"
+#~ msgstr "%s: æœªçŸ¥"
 
 #~ msgid "Firstname Surname"
-#~ msgstr "Ãû ĞÕ"
+#~ msgstr "å å§“"
 
 #~ msgid "Surname, Firstname"
-#~ msgstr "ĞÕ£¬Ãû"
+#~ msgstr "å§“ï¼Œå"
 
 #~ msgid "Numerical date formats"
-#~ msgstr "ÓÃÊı×ÖÏÔÊ¾ÈÕÆÚµÄ¸ñÊ½"
+#~ msgstr "ç”¨æ•°å­—æ˜¾ç¤ºæ—¥æœŸçš„æ ¼å¼"
 
 #~ msgid "Selects the calendar format for display"
-#~ msgstr "Ñ¡ÔñÓÃÓÚÏÔÊ¾µÄÈÕÆÚ¸ñÊ½"
+#~ msgstr "é€‰æ‹©ç”¨äºæ˜¾ç¤ºçš„æ—¥æœŸæ ¼å¼"
 
 #~ msgid "_Private record"
-#~ msgstr "Ë½ÈËĞÅÏ¢(_P)"
+#~ msgstr "ç§äººä¿¡æ¯(_P)"
 
 #~ msgid "<b>Note</b>"
-#~ msgstr "<b>×¢½â</b>"
+#~ msgstr "<b>æ³¨è§£</b>"
 
 #~ msgid "_State/Province"
-#~ msgstr "Öİ/Ê¡(_S)"
+#~ msgstr "å·/çœ(_S)"
 
 #~ msgid "Reject changes and close"
-#~ msgstr "·ÅÆúĞŞ¸Ä²¢¹Ø±Õ"
+#~ msgstr "æ”¾å¼ƒä¿®æ”¹å¹¶å…³é—­"
 
 #~ msgid "P_rivate record"
-#~ msgstr "Ë½ÈËĞÅÏ¢(_R)"
+#~ msgstr "ç§äººä¿¡æ¯(_R)"
 
 #~ msgid "_Nickname:"
-#~ msgstr "êÇ³Æ(_N):"
+#~ msgstr "æ˜µç§°(_N):"
 
 #~ msgid "T_ype"
-#~ msgstr "ÀàĞÍ(_Y)"
+#~ msgstr "ç±»å‹(_Y)"
 
 #~ msgid "Invoke birth event editor"
-#~ msgstr "´ò¿ª³öÉúÊÂ¼ş±à¼­Æ÷"
+#~ msgstr "æ‰“å¼€å‡ºç”Ÿäº‹ä»¶ç¼–è¾‘å™¨"
 
 #~ msgid "Source..."
-#~ msgstr "À´Ô´..."
+#~ msgstr "æ¥æº..."
 
 #~ msgid "Note..."
-#~ msgstr "×¢½â..."
+#~ msgstr "æ³¨è§£..."
 
 #~ msgid "<b>Gender</b>"
-#~ msgstr "<b>ĞÔ±ğ</b>"
+#~ msgstr "<b>æ€§åˆ«</b>"
 
 #~ msgid "_male"
-#~ msgstr "ÄĞ(_M)"
+#~ msgstr "ç”·(_M)"
 
 #~ msgid "fema_le"
-#~ msgstr "Å®(_L)"
+#~ msgstr "å¥³(_L)"
 
 #~ msgid "_unknown"
-#~ msgstr "Î´Öª(_U)"
+#~ msgstr "æœªçŸ¥(_U)"
 
 #~ msgid "<b>Birth</b>"
-#~ msgstr "<b>³öÉú</b>"
+#~ msgstr "<b>å‡ºç”Ÿ</b>"
 
 #~ msgid "Pla_ce:"
-#~ msgstr "µØµã(_C)"
+#~ msgstr "åœ°ç‚¹(_C)"
 
 #~ msgid "Plac_e:"
-#~ msgstr "µØµã(_E)"
+#~ msgstr "åœ°ç‚¹(_E)"
 
 #~ msgid "Create an alternate name for this person"
-#~ msgstr "Îª´ËÈË´´½¨Ò»¸ö±ğÃû"
+#~ msgstr "ä¸ºæ­¤äººåˆ›å»ºä¸€ä¸ªåˆ«å"
 
 #~ msgid "<b>Names</b>"
-#~ msgstr "<b>ËùÓĞÃû×Ö</b>"
+#~ msgstr "<b>æ‰€æœ‰åå­—</b>"
 
 #~ msgid "<b>Event</b>"
-#~ msgstr "<b>ÊÂ¼ş</b>"
+#~ msgstr "<b>äº‹ä»¶</b>"
 
 #~ msgid "Create a new event"
-#~ msgstr "´´½¨Ò»¸öĞÂÊÂ¼ş"
+#~ msgstr "åˆ›å»ºä¸€ä¸ªæ–°äº‹ä»¶"
 
 #~ msgid "<b>Events</b>"
-#~ msgstr "<b>ÊÂ¼ş</b>"
+#~ msgstr "<b>äº‹ä»¶</b>"
 
 #~ msgid "<b>Attributes</b>"
-#~ msgstr "<b>ÊôĞÔ</b>"
+#~ msgstr "<b>å±æ€§</b>"
 
 #~ msgid "Edit the selected attribute"
-#~ msgstr "±à¼­ËùÑ¡ÊôĞÔ"
+#~ msgstr "ç¼–è¾‘æ‰€é€‰å±æ€§"
 
 #~ msgid "City/County:"
-#~ msgstr "³ÇÊĞ/¿¤ÏØ:"
+#~ msgstr "åŸå¸‚/éƒ¡å¿:"
 
 #~ msgid "<b>Addresses</b>"
-#~ msgstr "<b>µØÖ·</b>"
+#~ msgstr "<b>åœ°å€</b>"
 
 #~ msgid "Edit the selected address"
-#~ msgstr "±à¼­ËùÑ¡µØÖ·"
+#~ msgstr "ç¼–è¾‘æ‰€é€‰åœ°å€"
 
 #~ msgid "Enter miscellaneous relevant data and documentation"
-#~ msgstr "ÊäÈëÁãËéµÄÏà¹ØÊı¾İºÍÎÄµµ"
+#~ msgstr "è¾“å…¥é›¶ç¢çš„ç›¸å…³æ•°æ®å’Œæ–‡æ¡£"
 
 #~ msgid "<b>Notes</b>"
-#~ msgstr "<b>±¸×¢</b>"
+#~ msgstr "<b>å¤‡æ³¨</b>"
 
 #~ msgid "_Remove"
-#~ msgstr "É¾³ı(_R)"
+#~ msgstr "åˆ é™¤(_R)"
 
 #~ msgid "<b>Gallery</b>"
-#~ msgstr "<b>Ïà²á</b>"
+#~ msgstr "<b>ç›¸å†Œ</b>"
 
 #~ msgid "Web address:"
-#~ msgstr "ÍøÖ·:"
+#~ msgstr "ç½‘å€:"
 
 #~ msgid "<b>Internet addresses</b>"
-#~ msgstr "<b>ÒòÌØÍøÖ·</b>"
+#~ msgstr "<b>å› ç‰¹ç½‘å€</b>"
 
 #~ msgid "<b>Internet</b>"
-#~ msgstr "<b>ÒòÌØÍø</b>"
+#~ msgstr "<b>å› ç‰¹ç½‘</b>"
 
 #~ msgid "_Open..."
-#~ msgstr "´ò¿ª(_O)..."
+#~ msgstr "æ‰“å¼€(_O)..."
 
 #~ msgid "_Save"
-#~ msgstr "´æÅÌ(_S)"
+#~ msgstr "å­˜ç›˜(_S)"
 
 #~ msgid "Save _As..."
-#~ msgstr "Áí´æÎª(_A)..."
+#~ msgstr "å¦å­˜ä¸º(_A)..."
 
 #~ msgid "_Import"
-#~ msgstr "µ¼Èë(_I)"
+#~ msgstr "å¯¼å…¥(_I)"
 
 #~ msgid "_Revert"
-#~ msgstr "»Ö¸´(_R)"
+#~ msgstr "æ¢å¤(_R)"
 
 #~ msgid "_Quit"
-#~ msgstr "ÍË³ö(_Q)"
+#~ msgstr "é€€å‡º(_Q)"
 
 #~ msgid "_Edit"
-#~ msgstr "±à¼­(_E)"
+#~ msgstr "ç¼–è¾‘(_E)"
 
 #~ msgid "_Find..."
-#~ msgstr "²éÕÒ(_F)"
+#~ msgstr "æŸ¥æ‰¾(_F)"
 
 #~ msgid "_View"
-#~ msgstr "²é¿´(_V)"
+#~ msgstr "æŸ¥çœ‹(_V)"
 
 #~ msgid "_Bookmarks"
-#~ msgstr "ÊéÇ©(_B)"
+#~ msgstr "ä¹¦ç­¾(_B)"
 
 #~ msgid "_Add bookmark"
-#~ msgstr "Ìí¼ÓÊéÇ©(_A)"
+#~ msgstr "æ·»åŠ ä¹¦ç­¾(_A)"
 
 #~ msgid "_Edit bookmarks"
-#~ msgstr "±à¼­ÊéÇ©(_E)"
+#~ msgstr "ç¼–è¾‘ä¹¦ç­¾(_E)"
 
 #~ msgid "_Tools"
-#~ msgstr "¹¤¾ß(_T)"
+#~ msgstr "å·¥å…·(_T)"
 
 #~ msgid "_Settings"
-#~ msgstr "ÉèÖÃ(_S)"
+#~ msgstr "è®¾ç½®(_S)"
 
 #~ msgid "_Help"
-#~ msgstr "°ïÖú(_H)"
+#~ msgstr "å¸®åŠ©(_H)"
 
 #~ msgid "_User manual"
-#~ msgstr "ÓÃ»§ÊÖ²á(_U)"
+#~ msgstr "ç”¨æˆ·æ‰‹å†Œ(_U)"
 
 #~ msgid "_Show plugin status"
-#~ msgstr "ÏÔÊ¾²å¼ş×´Ì¬(_S)"
+#~ msgstr "æ˜¾ç¤ºæ’ä»¶çŠ¶æ€(_S)"
 
 #~ msgid "Open file"
-#~ msgstr "´ò¿ªÎÄ¼ş"
+#~ msgstr "æ‰“å¼€æ–‡ä»¶"
 
 #~ msgid "Open"
-#~ msgstr "´ò¿ª"
+#~ msgstr "æ‰“å¼€"
 
 #~ msgid "Tools"
-#~ msgstr "¹¤¾ß"
+#~ msgstr "å·¥å…·"
 
 #~ msgid "Remove the currently selected item"
-#~ msgstr "É¾³ıµ±Ç°ËùÑ¡Ïî"
+#~ msgstr "åˆ é™¤å½“å‰æ‰€é€‰é¡¹"
 
 #~ msgid "<b>People</b>"
-#~ msgstr "<b>ÈË</b>"
+#~ msgstr "<b>äºº</b>"
 
 #~ msgid "<b>Children</b>"
-#~ msgstr "<b>×ÓÅ®</b>"
+#~ msgstr "<b>å­å¥³</b>"
 
 #~ msgid "<b>Active person</b>"
-#~ msgstr "<b>µ±Ç°ÈË</b>"
+#~ msgstr "<b>å½“å‰äºº</b>"
 
 #~ msgid "<b>Spouse's parents</b>"
-#~ msgstr "<b>ÅäÅ¼µÄ¸¸Ä¸</b>"
+#~ msgstr "<b>é…å¶çš„çˆ¶æ¯</b>"
 
 #~ msgid "<b>Media</b>"
-#~ msgstr "<b>Ã½Ìå</b>"
+#~ msgstr "<b>åª’ä½“</b>"
 
 #~ msgid "_Show all"
-#~ msgstr "ÏÔÊ¾ËùÓĞÈË(_S)"
+#~ msgstr "æ˜¾ç¤ºæ‰€æœ‰äºº(_S)"
 
 #~ msgid "Relationship definition\n"
-#~ msgstr "¹ØÏµ¶¨Òå\n"
+#~ msgstr "å…³ç³»å®šä¹‰\n"
 
 #~ msgid "Relationship to mother:"
-#~ msgstr "ÓëÄ¸Ç×µÄ¹ØÏµ:"
+#~ msgstr "ä¸æ¯äº²çš„å…³ç³»:"
 
 #~ msgid "_female"
-#~ msgstr "Å®(_F)"
+#~ msgstr "å¥³(_F)"
 
 #~ msgid "_Set Home Person"
-#~ msgstr "ÉèÖÃÄ¬ÈÏÈË(_S)"
+#~ msgstr "è®¾ç½®é»˜è®¤äºº(_S)"
 
 #~ msgid "Mother:"
-#~ msgstr "Ä¸Ç×:"
+#~ msgstr "æ¯äº²:"
 
 #~ msgid "Father:"
-#~ msgstr "¸¸Ç×:"
+#~ msgstr "çˆ¶äº²:"
 
 #~ msgid "and she"
-#~ msgstr "ºÍËı"
+#~ msgstr "å’Œå¥¹"
 
 #~ msgid "Timeline"
-#~ msgstr "ÄêÆ×"
+#~ msgstr "å¹´è°±"
 
 #~ msgid "%s (continued)"
-#~ msgstr "Ïà²á"
+#~ msgstr "ç›¸å†Œ"
 
 #~ msgid "Families:"
-#~ msgstr "¼ÒÍ¥:"
+#~ msgstr "å®¶åº­:"
