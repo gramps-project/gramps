@@ -958,7 +958,10 @@ class ViewManager:
         
     def scratchpad(self, obj):
         import ScratchPad
-        ScratchPad.ScratchPadWindow(self.state, self.uistate)
+        try:
+            ScratchPad.ScratchPadWindow(self.state, self.uistate)
+        except Errors.WindowActiveError:
+            pass            
 
     def undo(self, obj):
         self.state.db.undo()
