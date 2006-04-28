@@ -1,3 +1,7 @@
+2006-04-28  Brian Matherly  <brian@gramps-project.org>
+	* src/docgen/ODSDoc.py: Add Open Document Spreadsheet document
+	* src/plugins/EventCmp.py: Use ODSDoc instead of OpenSpreadSheet
+
 2006-04-28  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_MediaView.py (MediaView.add): Fix call to AddMedia
 	* src/ViewManager.py: add ScratchPad to the View menu

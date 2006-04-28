@@ -48,7 +48,7 @@ import ListModel
 import Sort
 import Utils
 import BaseDoc
-import OpenSpreadSheet
+import ODSDoc
 import const
 import DateHandler
 from QuestionDialog import WarningDialog
@@ -384,8 +384,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
 
         if status == gtk.RESPONSE_OK:
             pstyle = BaseDoc.PaperStyle("junk",10,10)
-            doc = OpenSpreadSheet.OpenSpreadSheet(pstyle,
-                                                  BaseDoc.PAPER_PORTRAIT)
+            doc = ODSDoc.ODSDoc(pstyle,BaseDoc.PAPER_PORTRAIT)
             doc.creator(self.db.get_researcher().get_name())
             spreadsheet = TableReport(name,doc)
             spreadsheet.initialize(len(self.event_titles))
