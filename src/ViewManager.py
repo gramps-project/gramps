@@ -1122,7 +1122,6 @@ class ViewManager:
                 f.write('<menuitem action="%s"/>' % new_key)
                 actions.append((new_key, None, name[2], None, None, 
                                 func(name, self.state, self.uistate)))
-                print func, name
             f.write('</menu>')
 
         # If there are any unsupported items we add separator
@@ -1138,7 +1137,6 @@ class ViewManager:
                 f.write('<menuitem action="%s"/>' % new_key)
                 actions.append((new_key, None, name[2], None, None, 
                                 func(name, self.state, self.uistate)))
-                print func, name
             f.write('</menu>')
 
         f.write('</menu></menubar></ui>')
