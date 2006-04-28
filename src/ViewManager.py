@@ -119,6 +119,7 @@ uidefault = '''<ui>
   <menu action="ViewMenu">
     <menuitem action="Sidebar"/>
     <menuitem action="Toolbar"/>    
+    <menuitem action="ScratchPad"/>  
     <separator/>
   </menu>
   <menu action="GoMenu">
@@ -323,7 +324,7 @@ class ViewManager:
              _('_Abandon changes and quit')), 
             ('CmpMerge', None, _('_Compare and merge')), 
             ('FastMerge', None, _('_Fast merge')), 
-            ('ScratchPad', gtk.STOCK_PASTE, _('_ScratchPad'), None, None,
+            ('ScratchPad', gtk.STOCK_PASTE, _('_ScratchPad'), "", None,
              self.scratchpad), 
             ('Import', gtk.STOCK_CONVERT, _('_Import'), "<control>i", None,
              self.import_data), 

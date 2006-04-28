@@ -311,6 +311,7 @@ class EditFamily(EditPrimary):
 
     def __init__(self,dbstate, uistate, track, family):
         
+        self.tooltips = gtk.Tooltips()
         EditPrimary.__init__(self, dbstate, uistate, track,
                              family, dbstate.db.get_family_from_handle)
 
@@ -390,6 +391,11 @@ class EditFamily(EditPrimary):
         self.mbutton2= self.top.get_widget('mbutton2')
         self.fbutton = self.top.get_widget('fbutton')
         self.fbutton2= self.top.get_widget('fbutton2')
+
+        self.tooltips.set_tip(self.mbutton2,
+                              _("Add a new person as the mother"))
+        self.tooltips.set_tip(self.fbutton2,
+                              _("Add a new person as the father"))
 
         self.mbox    = self.top.get_widget('mbox')
         self.fbox    = self.top.get_widget('fbox')
@@ -487,11 +493,15 @@ class EditFamily(EditPrimary):
 
     def update_father(self,handle):
         self.load_parent(handle, self.fbox, self.fbirth,
-                         self.fdeath, self.fbutton, self.fbutton2)
+                         self.fdeath, self.fbutton, self.fbutton2,
+                         _("Select a person as the father"),
+                         _("Remove the person as the father"))
 
     def update_mother(self,handle):
         self.load_parent(handle, self.mbox, self.mbirth,
-                         self.mdeath, self.mbutton, self.mbutton2)
+                         self.mdeath, self.mbutton, self.mbutton2,
+                         _("Select a person as the father"),
+                         _("Remove the person as the father"))
 
     def add_mother_clicked(self, obj):
         from Editors import EditPerson
@@ -643,7 +653,7 @@ class EditFamily(EditPrimary):
                 pass
 
     def load_parent(self, handle, box, birth_obj, death_obj,
-                    btn_obj, btn2_obj):
+                    btn_obj, btn2_obj, add_msg, del_msg):
 
         is_used = handle != None
 
@@ -668,6 +678,7 @@ class EditFamily(EditPrimary):
             del_image = gtk.Image()
             del_image.show()
             del_image.set_from_stock(gtk.STOCK_REMOVE,gtk.ICON_SIZE_BUTTON)
+            self.tooltips.set_tip(btn_obj, del_msg)
             btn_obj.add(del_image)
 
             box.pack_start(LinkBox(
@@ -683,6 +694,7 @@ class EditFamily(EditPrimary):
             add_image = gtk.Image()
             add_image.show()
             add_image.set_from_stock(gtk.STOCK_INDEX,gtk.ICON_SIZE_BUTTON)
+            self.tooltips.set_tip(btn_obj, add_msg)
             btn_obj.add(add_image)
 
         birth_obj.set_text(birth)
