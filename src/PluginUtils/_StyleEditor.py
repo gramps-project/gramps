@@ -43,6 +43,7 @@ log = logging.getLogger(".")
 #
 #------------------------------------------------------------------------
 import gtk
+from gtk.gdk import Color
 import gtk.glade
 
 #------------------------------------------------------------------------
@@ -255,20 +256,25 @@ class StyleEditor:
         self.top.get_widget("lborder").set_active(p.get_left_border())
         self.top.get_widget("rborder").set_active(p.get_right_border())
         self.top.get_widget("bborder").set_active(p.get_bottom_border())
+
         self.fg_color = font.get_color()
-        self.top.get_widget("color").set_i8(self.fg_color[0],self.fg_color[1],self.fg_color[2],0)
+        c = Color(self.fg_color[0],self.fg_color[1],self.fg_color[2])
+        self.top.get_widget("color").set_color(c)
         self.top.get_widget('color_code').set_text("#%02X%02X%02X" % self.fg_color)
-        
+
         self.bg_color = p.get_background_color()
-        self.top.get_widget("bgcolor").set_i8(self.bg_color[0],self.bg_color[1],self.bg_color[2],0)
+        c = Color(self.bg_color[0],self.bg_color[1],self.bg_color[2])
+        self.top.get_widget("bgcolor").set_color(c)
         self.top.get_widget('bgcolor_code').set_text("#%02X%02X%02X" % self.bg_color)
 
-    def bg_color_set(self,x,r,g,b,a):
-        self.bg_color = (r >> 8, g >> 8, b >> 8)
+    def bg_color_set(self,x):
+        c = x.get_color()
+        self.bg_color = (c.red >> 8, c.green >> 8, c.blue >> 8)
         self.top.get_widget('bgcolor_code').set_text("#%02X%02X%02X" % self.bg_color)
 
-    def fg_color_set(self,x,r,g,b,a):
-        self.fg_color = (r >> 8, g >> 8, b >> 8)
+    def fg_color_set(self,x):
+        c = x.get_color()
+        self.fg_color = (c.red >> 8, c.green >> 8, c.blue >> 8)
         self.top.get_widget('color_code').set_text("#%02X%02X%02X" % self.fg_color)
         
     def save_paragraph(self,p):

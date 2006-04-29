@@ -4971,7 +4971,7 @@ Text Beside Icons</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkColorButton" id="colorbutton1">
+			<widget class="GtkColorButton" id="color">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
 			  <property name="use_alpha">False</property>
@@ -5843,7 +5843,7 @@ Text Beside Icons</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkColorButton" id="colorbutton2">
+			<widget class="GtkColorButton" id="bgcolor">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
 			  <property name="use_alpha">False</property>
