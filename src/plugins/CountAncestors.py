@@ -31,6 +31,7 @@
 import os
 from gettext import gettext as _
 from sets import Set
+from math import pow
 
 #------------------------------------------------------------------------
 #
@@ -65,6 +66,7 @@ class CountAncestors:
         thisgen = Set()
         all = Set()
         allgen = 0
+        total_theoretical = 0
         thisgen.add(person.get_handle())
         
         title = _("Number of ancestors of \"%s\" by generation") % person.get_primary_name().get_name()
@@ -76,10 +78,13 @@ class CountAncestors:
             if thisgen:
                 thisgensize = len( thisgen )
                 gen -= 1
+                theoretical = pow(2, ( gen * -1 ) )
+                total_theoretical += theoretical
+                percent = ( thisgensize / theoretical ) * 100
                 if thisgensize == 1 :
-                    text += _("Generation %d has 1 individual.\n") % (gen)
+                    text += _("Generation %d has 1 individual. (%3.2f%%)\n") % (gen,percent)
                 else:
-                    text += _("Generation %d has %d individuals.\n") % (gen, thisgensize)
+                    text += _("Generation %d has %d individuals. (%3.2f%%)\n") % (gen,thisgensize,percent)
             temp = thisgen
             thisgen = Set()
             for person_handle in temp:
@@ -96,8 +101,13 @@ class CountAncestors:
                         thisgen.add(mother_handle)
                         all.add(mother_handle)
             allgen += len(thisgen)
-	  
-        text += _("Total ancestors in generations %d to -1 is %d.\n") % (gen, allgen)
+
+        if( total_theoretical != 1 ):
+            percent = ( (allgen) / (total_theoretical-1) ) * 100
+        else:
+            percent = 0
+
+        text += _("Total ancestors in generations %d to -1 is %d. (%3.2f%%)\n") % (gen,allgen,percent)
 
         top = topDialog.get_widget("summary")
         textwindow = topDialog.get_widget("textwindow")
