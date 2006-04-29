@@ -110,7 +110,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         GrampsDisplay.help('gramps-edit-quick')
         self.val = self.window.run()
 
-    def on_savephoto_clicked(self):
+    def save(self):
         """
         Callback function called with the save button is pressed.
         A new media object is created, and added to the database.
@@ -120,6 +120,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         if self.internal.get_active():
             mobj = RelLib.MediaObject()
             mobj.set_description(description)
+            mobj.set_handle(Utils.create_id())
             mobj.set_mime_type(None)
         else:
             filename = self.file_text.get_filename()
@@ -141,12 +142,14 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
                 description = os.path.basename(filename)
 
             mobj = RelLib.MediaObject()
-            mobj.set_handle(Utils.create_id())
             mobj.set_description(description)
             mobj.set_mime_type(mtype)
             name = filename
             mobj.set_path(name)
 
+        mobj.set_handle(Utils.create_id())
+        if not mobj.get_gramps_id():
+            mobj.set_gramps_id(self.db.find_next_object_gramps_id())
         trans = self.db.transaction_begin()
         self.object = mobj
         self.db.commit_media_object(mobj,trans)
@@ -181,7 +184,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
             val = self.window.run()
 
             if val == gtk.RESPONSE_OK:
-                self.on_savephoto_clicked()
+                self.save()
                 self.close()
                 return self.object
             elif val == gtk.RESPONSE_HELP: 
