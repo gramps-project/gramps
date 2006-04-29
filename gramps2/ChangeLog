@@ -1,3 +1,6 @@
+2006-04-29  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/CountAncestors.py: Add percent of theoretical ancestors
+
 2006-04-28  Don Allingham  <don@gramps-project.org>
 	* src/AddMedia.py: assign handle to notes
 
