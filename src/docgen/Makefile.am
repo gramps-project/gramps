@@ -11,6 +11,7 @@ docgen_PYTHON = \
 	KwordDoc.py\
 	LaTeXDoc.py\
 	ODFDoc.py\
+	ODSDoc.py\
 	OpenOfficeDoc.py\
 	OpenSpreadSheet.py\
 	SpreadSheetDoc.py\

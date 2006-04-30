@@ -89,6 +89,7 @@ src/docgen/HtmlDoc.py
 src/docgen/KwordDoc.py
 src/docgen/LaTeXDoc.py
 src/docgen/LPRDoc.py
+src/docgen/ODSDoc.py
 src/docgen/ODFDoc.py
 src/docgen/OpenOfficeDoc.py
 src/docgen/OpenSpreadSheet.py
