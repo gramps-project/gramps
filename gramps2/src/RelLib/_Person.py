@@ -590,7 +590,8 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
             Person's L{Family} list.
         @type family_handle: str
         """
-        self.family_list.append(family_handle)
+        if family_handle not in self.family_list:
+            self.family_list.append(family_handle)
 
     def set_preferred_family_handle(self, family_handle):
         """
@@ -691,7 +692,8 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         """
         if type(family_handle) not in (str ,unicode ):
             raise ValueError("expecting handle")
-        self.parent_family_list.append(family_handle)
+        if family_handle not in self.parent_family_list:
+            self.parent_family_list.append(family_handle)
 
     def clear_parent_family_handle_list(self):
         """
