@@ -1,3 +1,6 @@
+2006-04-30  Don Allingham  <don@gramps-project.org>
+	* src/RelLib/_Person.py: prevent duplicate entries in family lists
+
 2006-04-29  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditFamily.py: fix Select Person calls
 	* src/docgen/Makefile.am: add ODSDoc.py
