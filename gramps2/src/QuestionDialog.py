@@ -182,7 +182,7 @@ class WarningDialog(gtk.MessageDialog):
                                    type=gtk.MESSAGE_WARNING,
                                    buttons=gtk.BUTTONS_CLOSE)
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
-        self.format_secondary_text(msg2)
+        self.format_secondary_markup(msg2)
         self.set_icon(ICON)
         self.show()
         self.run()
