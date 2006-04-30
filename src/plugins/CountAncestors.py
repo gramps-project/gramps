@@ -72,13 +72,13 @@ class CountAncestors:
         title = _("Number of ancestors of \"%s\" by generation") % person.get_primary_name().get_name()
         text += title + ':\n'
         thisgensize = 1
-        gen = 1
+        gen = 0
         while thisgensize > 0:
             thisgensize = 0
             if thisgen:
                 thisgensize = len( thisgen )
-                gen -= 1
-                theoretical = pow(2, ( gen * -1 ) )
+                gen += 1
+                theoretical = pow(2, ( gen - 1 ) )
                 total_theoretical += theoretical
                 percent = ( thisgensize / theoretical ) * 100
                 if thisgensize == 1 :
@@ -107,7 +107,7 @@ class CountAncestors:
         else:
             percent = 0
 
-        text += _("Total ancestors in generations %d to -1 is %d. (%3.2f%%)\n") % (gen,allgen,percent)
+        text += _("Total ancestors in generations 2 to %d is %d. (%3.2f%%)\n") % (gen,allgen,percent)
 
         top = topDialog.get_widget("summary")
         textwindow = topDialog.get_widget("textwindow")
