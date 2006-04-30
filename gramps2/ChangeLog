@@ -1,4 +1,7 @@
 2006-04-29  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamily.py: fix Select Person calls
+	* src/docgen/Makefile.am: add ODSDoc.py
+	* po/POTFILES.in: add ODSDoc.py
 	* src/NEWS: Updated for 2.1.0 release
 
 2006-04-29  Brian Matherly  <brian@gramps-project.org>
