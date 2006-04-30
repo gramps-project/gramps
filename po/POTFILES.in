@@ -203,7 +203,7 @@ src/plugins/IndivComplete.py
 src/plugins/IndivSummary.py
 src/plugins/Leak.py
 src/plugins/Merge.py
-src/plugins/NavWebPage.py
+src/plugins/NarrativeWeb.py
 src/plugins/PatchNames.py
 src/plugins/ReadPkg.py
 src/plugins/Rebuild.py

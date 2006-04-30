@@ -35,7 +35,7 @@ pkgdata_PYTHON = \
 	IndivSummary.py\
 	ImportvCard.py\
 	Merge.py\
-	NavWebPage.py\
+	NarrativeWeb.py\
 	PatchNames.py\
 	ReadPkg.py\
 	Rebuild.py\
