@@ -1,3 +1,7 @@
+2006-04-30  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/CountAncestors.py: Use positive numbers for generations to be 
+	  consistent with the rest of GRAMPS
+
 2006-04-30  Don Allingham  <don@gramps-project.org>
 	* src/RelLib/_Person.py: prevent duplicate entries in family lists
 
