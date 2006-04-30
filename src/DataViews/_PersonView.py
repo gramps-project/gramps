@@ -638,7 +638,8 @@ class PersonView(PageView.PersonNavView):
         for path in paths:
             node = self.model.on_get_iter(path)
             handle = self.model.on_get_value(node, PeopleModel.COLUMN_INT_ID)
-            mlist.append(handle)
+            if handle:
+                mlist.append(handle)
         return mlist
 
     def remove_from_person_list(self,person):

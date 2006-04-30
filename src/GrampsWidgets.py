@@ -384,8 +384,11 @@ class MonitoredDataType:
             return (value[0],'')
 
     def update(self):
-        if self.get_val():
-            self.sel.set_values(self.get_val())
+        val = self.get_val()
+        if type(val) == tuple :
+            self.sel.set_values(val)
+        else:
+            self.sel.set_values((int(val),str(val)))
 
     def on_change(self, obj):
         value = self.fix_value(self.sel.get_values())
