@@ -102,7 +102,7 @@ class EditPersonRef(EditSecondary):
     def _select_person(self, obj):
         from SelectPerson import SelectPerson
 
-        sel = SelectPerson(self.dbstate.db, "Select Person")
+        sel = SelectPerson(self.dbstate, self.uistate, "Select Person")
         person = sel.run()
 
         if person:
