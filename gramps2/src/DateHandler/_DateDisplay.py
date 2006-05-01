@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*- 
+# -*- coding: utf-8 -*- 
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -70,20 +70,20 @@ class DateDisplay:
         )
     
     _french = (
-        '',
-        unicode("Vendémiaire",'latin-1'),
-        'Brumaire',
-        'Frimaire',
-        unicode("Nivôse",'latin-1'),
-        unicode("Pluviôse",'latin-1'),
-        unicode("Ventôse",'latin-1'),
-        'Germinal',
-        unicode("Floréal",'latin-1'),
-        'Prairial',
-        'Messidor',
-        'Thermidor',
-        'Fructidor',
-        'Extra'
+        u'',
+        u"VendÃ©miaire",
+        u'Brumaire',
+        u'Frimaire',
+        u"NivÃ´se",
+        u"PluviÃ´se",
+        u"VentÃ´se",
+        u'Germinal',
+        u"FlorÃ©al",
+        u'Prairial',
+        u'Messidor',
+        u'Thermidor',
+        u'Fructidor',
+        u'Extra',
         )
     
     _persian = (
@@ -162,10 +162,6 @@ class DateDisplay:
             d1 = self.display_iso(start)
             d2 = self.display_iso(date.get_stop_date())
             return "%s %s - %s%s" % (qual_str,d1,d2,self.calendar[cal])
-        elif mod == Date.MOD_RANGE:
-            d1 = self.display_iso(start)
-            d2 = self.display_iso(date.get_stop_date())
-            return "%s %s - %s%s" % (qual_str,d1,d2,self.calendar[cal])
         else:
             text = self.display_iso(start)
             return "%s%s%s%s" % (qual_str,self._mod_str[mod],text,self.calendar[cal])
@@ -175,7 +171,12 @@ class DateDisplay:
             val = - val
             
         if slash:
-            year = "%d/%d" % (val,(val%10)+1)
+            if val % 100 == 99:
+                year = "%d/%d" % (val,(val%1000)+1)
+            elif val % 10 == 9:
+                year = "%d/%d" % (val,(val%100)+1)
+            else:
+                year = "%d/%d" % (val,(val%10)+1)
         else:
             year = "%d" % (val)
         
@@ -184,7 +185,8 @@ class DateDisplay:
     def display_iso(self,date_val):
         # YYYY-MM-DD (ISO)
         year = self._slash_year(date_val[2],date_val[3])
-        if date_val[0] == 0:
+        # FIXME: This prodices 1789-11-00 and 1789-00-00 for incomplete dates.
+        if False:#date_val[0] == 0:
             if date_val[1] == 0:
                 value = year
             else:
@@ -209,13 +211,16 @@ class DateDisplay:
         if self.format == 0:
             return self.display_iso(date_val)
         elif self.format == 1:
-            if date_val[0] == 0 and date_val[1] == 0:
-                value = str(date_val[2])
+            if date_val[3]:
+                return self.display_iso(date_val)
             else:
-                value = self._tformat.replace('%m',str(date_val[1]))
-                value = value.replace('%d',str(date_val[0]))
-                value = value.replace('%Y',str(abs(date_val[2])))
-                value = value.replace('-','/')
+                if date_val[0] == 0 and date_val[1] == 0:
+                    value = str(date_val[2])
+                else:
+                    value = self._tformat.replace('%m',str(date_val[1]))
+                    value = value.replace('%d',str(date_val[0]))
+                    value = value.replace('%Y',str(abs(date_val[2])))
+                    value = value.replace('-','/')
         elif self.format == 2:
             # Month Day, Year
             if date_val[0] == 0:

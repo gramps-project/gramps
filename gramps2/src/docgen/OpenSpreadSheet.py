@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -204,12 +204,12 @@ class OpenSpreadSheet(SpreadSheetDoc):
 
     def _write_zip(self):
         
-        file = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)
-        file.write(self.manifest_xml,str("META-INF/manifest.xml"))
-        file.write(self.content_xml,str("content.xml"))
-        file.write(self.meta_xml,str("meta.xml"))
-        file.write(self.styles_xml,str("styles.xml"))
-        file.close()
+        the_file = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)
+        the_file.write(self.manifest_xml,str("META-INF/manifest.xml"))
+        the_file.write(self.content_xml,str("content.xml"))
+        the_file.write(self.meta_xml,str("meta.xml"))
+        the_file.write(self.styles_xml,str("styles.xml"))
+        the_file.close()
 
         os.unlink(self.manifest_xml)
         os.unlink(self.content_xml)

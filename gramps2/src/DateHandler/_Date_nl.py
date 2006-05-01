@@ -92,17 +92,17 @@ class DateParserNL(DateParser):
         }
 
     calendar_to_int = {
-        u'Gregoriaans'    : Date.CAL_GREGORIAN,
-        u'Greg.'          : Date.CAL_GREGORIAN,
-        u'Juliaans'       : Date.CAL_JULIAN,
-        u'Jul.'           : Date.CAL_JULIAN,
-        u'Hebreeuws'      : Date.CAL_HEBREW,
-        u'Hebr.'          : Date.CAL_HEBREW,
-        u'Islamitisch'      : Date.CAL_ISLAMIC,
-        u'Isl.'           : Date.CAL_ISLAMIC,
-        u'Franse republiek': Date.CAL_FRENCH,
-        u'Fran.'         : Date.CAL_FRENCH,
-        u'Persisch'       : Date.CAL_PERSIAN,
+        u'gregoriaans'    : Date.CAL_GREGORIAN,
+        u'greg.'          : Date.CAL_GREGORIAN,
+        u'juliaans'       : Date.CAL_JULIAN,
+        u'jul.'           : Date.CAL_JULIAN,
+        u'hebreeuws'      : Date.CAL_HEBREW,
+        u'hebr.'          : Date.CAL_HEBREW,
+        u'islamitisch'      : Date.CAL_ISLAMIC,
+        u'isl.'           : Date.CAL_ISLAMIC,
+        u'franse republiek': Date.CAL_FRENCH,
+        u'fran.'         : Date.CAL_FRENCH,
+        u'persisch'       : Date.CAL_PERSIAN,
         }
 
     quality_to_int = {
@@ -112,9 +112,7 @@ class DateParserNL(DateParser):
         u'ber.'      : Date.QUAL_CALCULATED,
         }
 
-    bce = DateParser.bce + ["voor onze tijdrekening",
-                            "voor Christus",
-                            "v\. Chr\."]
+    bce = ["voor onze tijdrekening","voor Christus","v. Chr."] + DateParser.bce
     
     def init_strings(self):
         DateParser.init_strings(self)
@@ -137,8 +135,8 @@ class DateParserNL(DateParser):
 class DateDisplayNL(DateDisplay):
 
     calendar = (
-        "", u" (Juliaans)", u" (Hebreeuws)", 
-        u" (Franse Republiek)", u" (Persisch)", u" (Islamitisch)"
+        "", u" (juliaans)", u" (hebreeuws)", 
+        u" (franse republiek)", u" (persisch)", u" (islamitisch)"
         )
 
     _mod_str = ("",u"voor ",u"na ",u"rond ","","","")
@@ -157,14 +155,17 @@ class DateDisplayNL(DateDisplay):
         if self.format == 0:
             return self.display_iso(date_val)
         elif self.format == 1:
-	    # Numeric
-            if date_val[0] == 0 and date_val[1] == 0:
-                value = str(date_val[2])
+            if date_val[3]:
+                return self.display_iso(date_val)
             else:
-                value = self._tformat.replace('%m',str(date_val[1]))
-                value = value.replace('%d',str(date_val[0]))
-                value = value.replace('%Y',str(abs(date_val[2])))
-		value = value.replace('-','/')
+                # Numeric
+                if date_val[0] == 0 and date_val[1] == 0:
+                    value = str(date_val[2])
+                else:
+                    value = self._tformat.replace('%m',str(date_val[1]))
+                    value = value.replace('%d',str(date_val[0]))
+                    value = value.replace('%Y',str(abs(date_val[2])))
+                    value = value.replace('-','/')
         elif self.format == 2:
             # Month Day, Year
             if date_val[0] == 0:

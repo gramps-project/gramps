@@ -81,6 +81,7 @@ src/DateHandler/_Date_lt.py
 src/DateHandler/_Date_nl.py
 src/DateHandler/_DateParser.py
 src/DateHandler/_Date_ru.py
+src/DateHandler/_Date_sk.py
 src/DateHandler/_Date_sv.py
 src/DateHandler/__init__.py
 src/docgen/AbiWord2Doc.py
@@ -218,6 +219,7 @@ src/plugins/rel_hu.py
 src/plugins/rel_it.py
 src/plugins/rel_no.py
 src/plugins/rel_ru.py
+src/plugins/rel_sk.py
 src/plugins/rel_sv.py
 src/plugins/ReorderIds.py
 src/plugins/SimpleBookTitle.py

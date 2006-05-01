@@ -99,7 +99,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 
     def init(self):
 
-        assert(self.init_called==False)
+        assert (not self.init_called)
         self.init_called = True
         
         self.lang = Utils.xml_lang()
@@ -314,7 +314,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('<style:style style:name="Left" style:family="graphics"')
         self.cntnt.write(' style:parent-style-name="photo">')
         self.cntnt.write('<style:properties style:run-through="foreground"')
-        self.cntnt.write(' style:wrap="parallel"')
+        self.cntnt.write(' style:wrap="dynamic"')
         self.cntnt.write(' style:number-wrapped-paragraphs="no-limit"')
         self.cntnt.write(' style:wrap-contour="false" style:vertical-pos="from-top"')
         self.cntnt.write(' style:vertical-rel="paragraph-content"')

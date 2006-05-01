@@ -24,13 +24,6 @@
 
 #------------------------------------------------------------------------
 #
-# python modules
-#
-#------------------------------------------------------------------------
-from gettext import gettext as _
-
-#------------------------------------------------------------------------
-#
 # Gnome/GTK modules
 #
 #------------------------------------------------------------------------
@@ -46,6 +39,7 @@ from PluginUtils import Report, ReportOptions, register_report
 import BaseDoc
 import DateHandler
 import Utils
+from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
 #
@@ -361,6 +355,42 @@ class FamilyGroup(Report.Report):
             
             self.doc.end_table()
 
+    def dump_marriage(self,family):
+
+        if not family:
+            return
+
+        m = None
+        family_list = family.get_event_list()
+        for event_handle in family_list:
+            if event_handle:
+                event = self.database.get_event_from_handle(event_handle)
+                if event.get_name() == "Marriage":
+                    m = event
+                    break
+
+        if len(family_list) > 0 or self.missingInfo:
+            
+            
+            self.doc.start_table(("MarriageInfo"),'FGR-ParentTable')
+            self.doc.start_row()
+            self.doc.start_cell('FGR-ParentHead',3)
+            self.doc.start_paragraph('FGR-ParentName')
+            self.doc.write_text(_("Marriage:"))
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.end_row()
+
+            self.dump_parent_event(_("Marriage"),m)
+            
+            for event_handle in family_list:
+                if event_handle:
+                    event = self.database.get_event_from_handle(event_handle)
+                    if event.get_name() != "Marriage":
+                        self.dump_parent_event(event.get_name(),event)
+            
+            self.doc.end_table()
+
     def dump_child_event(self,text,name,event):
         date = ""
         place = ""
@@ -425,10 +455,11 @@ class FamilyGroup(Report.Report):
         else:
             self.doc.start_cell('FGR-TextChild2')
         self.doc.start_paragraph('FGR-ChildText')
+        index_str = ("%d" % index)
         if person.get_gender() == RelLib.Person.MALE:
-            self.doc.write_text(_("%dM") % index)
+            self.doc.write_text(index_str + _("acronym for male|M"))
         elif person.get_gender() == RelLib.Person.FEMALE:
-            self.doc.write_text(_("%dF") % index)
+            self.doc.write_text(index_str + _("acronym for female|F"))
         else:
             self.doc.write_text(_("%dU") % index)
         self.doc.end_paragraph()

@@ -45,6 +45,8 @@ from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 pt2cm = ReportUtils.pt2cm
 import BaseDoc
 from SubstKeywords import SubstKeywords
+import Errors
+import NameDisplay
 
 #------------------------------------------------------------------------
 #

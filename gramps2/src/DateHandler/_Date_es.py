@@ -97,7 +97,7 @@ class DateParserES(DateParser):
         DateParser.init_strings(self)
         _span_1 = [u'de']
         _span_2 = [u'a']
-        _range_1 = [u'ent.',u'ent',u'entre']
+        _range_1 = [u'entre',u'ent\.',u'ent']
         _range_2 = [u'y']
         self._span     = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
                                    ('|'.join(_span_1),'|'.join(_span_2)),

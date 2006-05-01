@@ -88,17 +88,17 @@ class DateParserDE(DateParser):
         }
 
     calendar_to_int = {
-        u'Gregorianisch'  : Date.CAL_GREGORIAN,
-        u'Greg.'          : Date.CAL_GREGORIAN,
-        u'Julianisch'     : Date.CAL_JULIAN,
-        u'Jul.'           : Date.CAL_JULIAN,
-        u'Hebräisch'      : Date.CAL_HEBREW,
-        u'Hebr.'          : Date.CAL_HEBREW,
-        u'Islamisch'      : Date.CAL_ISLAMIC,
-        u'Isl.'           : Date.CAL_ISLAMIC,
-        u'Französisch Republikanisch': Date.CAL_FRENCH,
-        u'Franz.'         : Date.CAL_FRENCH,
-        u'Persisch'       : Date.CAL_PERSIAN,
+        u'gregorianisch'  : Date.CAL_GREGORIAN,
+        u'greg.'          : Date.CAL_GREGORIAN,
+        u'julianisch'     : Date.CAL_JULIAN,
+        u'jul.'           : Date.CAL_JULIAN,
+        u'hebräisch'      : Date.CAL_HEBREW,
+        u'hebr.'          : Date.CAL_HEBREW,
+        u'islamisch'      : Date.CAL_ISLAMIC,
+        u'isl.'           : Date.CAL_ISLAMIC,
+        u'französisch republikanisch': Date.CAL_FRENCH,
+        u'franz.'         : Date.CAL_FRENCH,
+        u'persisch'       : Date.CAL_PERSIAN,
         }
 
     quality_to_int = {
@@ -109,7 +109,10 @@ class DateParserDE(DateParser):
         u'ber.'      : Date.QUAL_CALCULATED,
         }
 
-    bce = DateParser.bce + ["vor (unserer|der) Zeit(rechnung)?", "v\. (u|d)\. Z\.", "vor Christus", "vor Christi Geburt", "v\. Chr\."]
+    bce = ["vor unserer Zeitrechnung", "vor unserer Zeit",
+           "vor der Zeitrechnung", "vor der Zeit",
+           "v. u. Z.", "v. d. Z.", "v.u.Z.", "v.d.Z.", 
+           "vor Christi Geburt", "vor Christus", "v. Chr."] + DateParser.bce
     
     def init_strings(self):
         DateParser.init_strings(self)
@@ -128,8 +131,8 @@ class DateParserDE(DateParser):
 class DateDisplayDE(DateDisplay):
 
     calendar = (
-        "", u" (Julianisch)", u" (Hebräisch)", 
-        u" (Französisch Republikanisch)", u" (Persisch)", u" (Islamisch)"
+        "", u" (julianisch)", u" (hebräisch)", 
+        u" (französisch republikanisch)", u" (persisch)", u" (islamisch)"
         )
 
     _mod_str = ("",u"vor ",u"nach ",u"etwa ","","","")
@@ -146,14 +149,17 @@ class DateDisplayDE(DateDisplay):
     def _display_gregorian(self,date_val):
         year = self._slash_year(date_val[2],date_val[3])
         if self.format == 0:
-            value = self.display_iso(date_val)
+            return self.display_iso(date_val)
         elif self.format == 1:
-            if date_val[0] == 0 and date_val[1] == 0:
-                value = str(date_val[2])
+            if date_val[3]:
+                return self.display_iso(date_val)
             else:
-                value = self._tformat.replace('%m',str(date_val[1]))
-                value = value.replace('%d',str(date_val[0]))
-                value = value.replace('%Y',str(date_val[2]))
+                if date_val[0] == 0 and date_val[1] == 0:
+                    value = str(date_val[2])
+                else:
+                    value = self._tformat.replace('%m',str(date_val[1]))
+                    value = value.replace('%d',str(date_val[0]))
+                    value = value.replace('%Y',str(date_val[2]))
         elif self.format == 2:
             # Month Day, Year
             if date_val[0] == 0:
@@ -190,7 +196,10 @@ class DateDisplayDE(DateDisplay):
                     value = "%s %s" % (self._MONS[date_val[1]],year)
             else:
                 value = "%d. %s %s" % (date_val[0],self._MONS[date_val[1]],year)
-        return value
+        if date_val[2] < 0:
+            return self._bce_str % value
+        else:
+            return value
 
     def display(self,date):
         """

@@ -231,7 +231,8 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         elif classname == 'Family':
             return handle in (self.family_list + self.parent_family_list)
         elif classname == 'Place':
-            return handle in self.lds_ord_list
+            return handle in [ordinance.place for ordinance
+                              in self.lds_ord_list]
         return False
 
     def _remove_handle_references(self, classname, handle_list):
@@ -255,9 +256,9 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
                                         if handle not in handle_list ]
             self.parent_family_list = new_list
         elif classname == 'Place':
-            for ordinance in self.lds_ord_list:
-                if ordinance.place in handle_list:
-                    ordinance.place = None
+            new_list = [ordinance for ordinance in self.lds_ord_list
+                        if ordinance.place not in handle_list]
+            self.lds_ord_list = new_list
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
         if classname == 'Event':
@@ -285,9 +286,11 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
                 ix = self.parent_family_list.index(old_handle)
                 self.parent_family_list[ix] = new_handle
         elif classname == 'Place':
-            for ordinance in self.lds_ord_list:
-                if ordinance.place == old_handle:
-                    ordinance.place = new_handle
+            handle_list = [ordinance.place for ordinance in self.lds_ord_list]
+            while old_handle in handle_list:
+                ix = handle_list.index(old_handle)
+                self.lds_ord_list[ix].place = new_handle
+                handle_list[ix] = ''
 
     def get_text_data_list(self):
         """

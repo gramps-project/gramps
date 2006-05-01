@@ -153,6 +153,7 @@ class BasePage:
         self.exclude_private = not options.handler.options_dict['NWEBincpriv']
         self.usegraph = options.handler.options_dict['NWEBgraph']
         self.use_home = self.options.handler.options_dict['NWEBhomenote'] != ""
+        self.page_title = ""
 
     def store_file(self,archive,html_dir,from_path,to_path):
         if archive:
@@ -901,7 +902,6 @@ class MediaPage(BasePage):
             return None
 
     def copy_thumbnail(self,handle,photo):
-        ext = os.path.splitext(photo.get_path())[1]
         to_dir = self.build_path(handle,'thumb')
         to_path = os.path.join(to_dir,handle+".png")
         if photo.get_mime_type():
@@ -923,16 +923,6 @@ class MediaPage(BasePage):
             except IOError:
                 print "Could not copy file"
 
-    def copy_preview_image(handle,photo):
-        base = '/desktop/gnome/thumbnailers/%s' % mtype.replace('/','@')
-        thumbnailer = Config.client.get_string(base + '/command')
-        enable = Config.client.get_bool(base + '/enable')
-        if thumbnailer and enable:
-            run_thumbnailer(thumbnailer,path,_build_thumb_path(path),320)
-            return path
-        else:
-            return None
-        
 #------------------------------------------------------------------------
 #
 # 
@@ -1283,8 +1273,6 @@ class ContactPage(BasePage):
                     (newpath,thumb_path) = self.copy_media(obj,False)
                     self.store_file(archive,self.html_dir,obj.get_path(),
                                     newpath)
-
-                    dirpath = self.build_path(note_id,'img')
 
                     of.write('<div class="rightwrap">\n')
                     of.write('<table><tr>')
@@ -2050,6 +2038,7 @@ class WebReport(Report.Report):
         NWEBhomenote
         NWEBnoid
         """
+        
         self.database = database
         self.start_person = person
         self.options = options
@@ -2196,7 +2185,6 @@ class WebReport(Report.Report):
         # people rule
         if self.restrict:
             self.progress.set_pass(_('Filtering living people'),len(ind_list))
-            new_list = []
             for key in ind_list:
                 self.progress.step()
                 p = self.database.get_person_from_handle(key)
@@ -2332,19 +2320,6 @@ class WebReport(Report.Report):
     def base_pages(self, photo_list, archive):
 
         if self.use_home:
-            index_page = "index"
-            surname_page = "surnames"
-            intro_page = "introduction"
-        elif self.use_intro:
-            index_page = ""
-            surname_page = "surnames"
-            intro_page = "index"
-        else:
-            index_page = ""
-            surname_page = "index"
-            intro_page = ""
-
-        if self.use_home:
             HomePage(self.database, self.title, self.options, archive, photo_list)
 
         if self.inc_contact:
@@ -2380,7 +2355,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,database,person_id=None):
+    def __init__(self,name,database=None,person_id=None):
         ReportOptions.ReportOptions.__init__(self,name,person_id)
         self.db = database
         
@@ -2556,18 +2531,21 @@ class WebReportOptions(ReportOptions.ReportOptions):
 
         title = _("Page Generation")
 
-        cursor = self.db.get_media_cursor()
+
         media_list = [['','']]
         html_list = [['','']]
-        data = cursor.first()
-        while data:
-            (handle, value) = data
-            if value[3]:
-                media_list.append([value[4],handle])
-            else:
-                html_list.append([value[4],handle])
-            data = cursor.next()
-        cursor.close()
+        
+        if self.db:
+            cursor = self.db.get_media_cursor()
+            data = cursor.first()
+            while data:
+                (handle, value) = data
+                if value[3]:
+                    media_list.append([value[4],handle])
+                else:
+                    html_list.append([value[4],handle])
+                data = cursor.next()
+            cursor.close()
         media_list.sort()
         html_list.sort()
 
@@ -2901,7 +2879,7 @@ register_report(
     category = Report.CATEGORY_WEB,
     report_class = WebReportDialog,
     options_class = cl_report,
-    modes = Report.MODE_GUI,
+    modes = Report.MODE_GUI | Report.MODE_CLI,
     translated_name = _("Narrative Web Site"),
     status = _("Stable"),
     author_name="Donald N. Allingham",

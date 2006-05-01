@@ -101,7 +101,7 @@ class ODFDoc(BaseDoc.BaseDoc):
 
     def init(self):
 
-        assert(self.init_called==False)
+        assert (not self.init_called)
         self.init_called = True
         
         current_locale = locale.getlocale()
@@ -164,8 +164,6 @@ class ODFDoc(BaseDoc.BaseDoc):
             self.cntnt.write(' >\n')
             self.cntnt.write('<style:graphic-properties ')
                 
-            print(" get_line_width donne %.5f " % style.get_line_width()  )
-            print(" pour le style %s" % style_name )
             if style.get_line_width():
                 self.cntnt.write('svg:stroke-width="%.2f" ' % (style.get_line_width()*10))
                 self.cntnt.write('draw:marker-start="" ')
@@ -175,7 +173,6 @@ class ODFDoc(BaseDoc.BaseDoc):
                 self.cntnt.write('draw:textarea-horizontal-align="center" ')
                 self.cntnt.write('draw:textarea-vertical-align="middle" ')
             else:
-                print(" get_line_width non defini : style %s" % style_name )
                 self.cntnt.write('draw:stroke="none" ')
                 self.cntnt.write('draw:stroke-color="#000000" ')
 
@@ -346,7 +343,7 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('<style:style style:name="Left" style:family="graphic"')
         self.cntnt.write(' style:parent-style-name="photo">')
         self.cntnt.write('<style:graphic-properties style:run-through="foreground"')
-        self.cntnt.write(' style:wrap="parallel"')
+        self.cntnt.write(' style:wrap="dynamic"')
         self.cntnt.write(' style:number-wrapped-paragraphs="no-limit"')
         self.cntnt.write(' style:wrap-contour="false" style:vertical-pos="from-top"')
         self.cntnt.write(' style:vertical-rel="paragraph-content"')
@@ -461,7 +458,7 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('text:anchor-type="paragraph" ')
         self.cntnt.write('svg:width="%.2fcm" ' % act_width)
         self.cntnt.write('svg:height="%.2fcm" ' % act_height)
-        self.cntnt.write('draw:z-index="0" >')
+        self.cntnt.write('draw:z-index="1" >')
         self.cntnt.write('<draw:image xlink:href="Pictures/')
         self.cntnt.write(base)
         self.cntnt.write('" xlink:type="simple" xlink:show="embed" ')

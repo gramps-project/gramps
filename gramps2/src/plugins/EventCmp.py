@@ -254,7 +254,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help('gramps-manual','tools-ae')
+        help('tools-ae')
 
     def build_menu_names(self,obj):
         return (_("Event Comparison Results"),None)

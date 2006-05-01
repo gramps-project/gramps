@@ -661,7 +661,7 @@ class CalendarOptions(NewReportOptions):
                         help = "Include holidays",
                         valid_text = "Select to include holidays",
                         ),
-            NumberWidget(self, label = "Offset",
+            NumberWidget(self, label = _("Offset"),
                         name  = "offset",
                         value = -0.5,
                         help  = "Distance to move text on page",

@@ -630,7 +630,7 @@ def probably_alive(person,db,current_year=None,limit=0):
         death = db.get_event_from_handle(person.death_ref.ref)
         if death.get_date_object().get_start_date() != RelLib.Date.EMPTY:
             death_year = death.get_date_object().get_year()
-            if death_year - limit < current_year:
+            if death_year + limit < current_year:
                 return False
 
     # Look for Cause Of Death, Burial or Cremation events.
@@ -643,7 +643,7 @@ def probably_alive(person,db,current_year=None,limit=0):
             if not death_year:
                 death_year = ev.get_date_object().get_year()
             if ev.get_date_object().get_start_date() != RelLib.Date.EMPTY:
-                if ev.get_date_object().get_year() - limit < current_year:
+                if ev.get_date_object().get_year() + limit < current_year:
                     return False
         # For any other event of this person, check whether it happened
         # too long ago. If so then the person is likely dead now.
