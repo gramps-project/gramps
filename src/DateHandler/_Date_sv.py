@@ -145,7 +145,7 @@ class DateDisplaySv(DateDisplay):
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
         elif start == Date.EMPTY:
-            return ""
+            return u""
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
@@ -157,7 +157,7 @@ class DateDisplaySv(DateDisplay):
                                               self.calendar[cal])
         else:
             text = self.display_cal[date.get_calendar()](start)
-            return "%s%s%s%s" % (qual_str,self._mod_str[mod],
+            return u"%s%s%s%s" % (qual_str,self._mod_str[mod],
                                  text,self.calendar[cal])
 
 #-------------------------------------------------------------------------

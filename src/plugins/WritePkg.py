@@ -80,10 +80,6 @@ class PackageWriter:
     def __init__(self,database,filename,callback):
         self.db = database
         self.callback = callback
-
-        if os.path.splitext(filename)[1] != ".gpkg":
-            filename = filename + ".gpkg"
-
         self.filename = filename
             
     def export(self):

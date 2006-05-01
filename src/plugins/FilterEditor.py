@@ -505,7 +505,7 @@ class EditFilter:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','tools-util-cfe')
+        GrampsDisplay.help('tools-util-cfe')
 
     def on_delete_event(self,obj,b):
         pass
@@ -748,7 +748,7 @@ class EditRule:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','append-filtref')
+        GrampsDisplay.help('append-filtref')
 
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()

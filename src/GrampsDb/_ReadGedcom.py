@@ -164,6 +164,10 @@ lds_status = {
 _event_family_str = _("%(event_name)s of %(family)s")
 _event_person_str = _("%(event_name)s of %(person)s")
 
+_transtable = string.maketrans('','')
+_delc = _transtable[0:31]
+_transtable2 = _transtable[0:128] + ('?' * 128)
+
 #-------------------------------------------------------------------------
 #
 # GEDCOM events to GRAMPS events conversion
@@ -233,7 +237,7 @@ def importData(database, filename, callback=None, use_trans=False):
 def import2(database, filename, callback, codeset, use_trans):
     # add some checking here
     try:
-        np = NoteParser(filename, False)
+        np = NoteParser(filename, False, codeset)
         g = GedcomParser(database,filename, callback, codeset, np.get_map(),
                          np.get_lines(),np.get_persons())
     except IOError,msg:
@@ -334,43 +338,73 @@ class CurrentState:
 #
 #-------------------------------------------------------------------------
 class NoteParser:
-    def __init__(self, filename,broken):
-        self.name_map = {}
+    def __init__(self, filename,broken,override):
+       if override:
+           if override == 1:
+               self.cnv = ansel_to_utf8
+           elif override == 2:
+               self.cnv = latin_to_utf8
+           else:
+               self.cnv = nocnv
+       else:
+           f = open(filename,"rU")
+           for index in range(50):
+               line = f.readline().split()
+               if len(line) > 2 and line[1] == 'CHAR':
+                   if line[2] == "ANSEL":
+                       self.cnv = ansel_to_utf8
+                   elif line[2] in ["UNICODE","UTF-8","UTF8"]:
+                       self.cnv = nocnv
+                   else:
+                       self.cnv = latin_to_utf8
+           f.close()
 
-        self.count = 0
-        self.person_count = 0
-        f = open(filename,"rU")
-        innote = False
+       self.name_map = {}
+
+       self.count = 0
+       self.person_count = 0
+       f = open(filename,"rU")
+       innote = False
         
-        for line in f:
+       for line in f:
+           try:
+               text = string.translate(line,_transtable,_delc)
+           except:
+               text = line
 
-            self.count += 1
-            if innote:
-                match = contRE.match(line)
-                if match:
-                    noteobj.append("\n" + match.groups()[0])
-                    continue
+           try:
+               text = self.cnv(text)
+           except:
+               text = string.translate(text,_transtable2)
 
-                match = concRE.match(line)
-                if match:
-                    if broken:
-                        noteobj.append(" " + match.groups()[0])
-                    else:
-                        noteobj.append(match.groups()[0])
-                    continue
-                innote = False
-            else:
-                match = noteRE.match(line)
-                if match:
-                    data = match.groups()[0]
-                    noteobj = RelLib.Note()
-                    self.name_map["@%s@" % data] = noteobj
-                    noteobj.append(match.groups()[1])
-                    innote = True
-                elif personRE.match(line):
-                    self.person_count += 1
-                
-        f.close()
+           self.count += 1
+           if innote:
+               match = contRE.match(text)
+               if match:
+                   noteobj.append("\n" + match.groups()[0])
+                   continue
+
+               match = concRE.match(text)
+               if match:
+                   if broken:
+                       noteobj.append(" " + match.groups()[0])
+                   else:
+                       noteobj.append(match.groups()[0])
+                   continue
+               # Here we have finished parsing CONT/CONC tags for the NOTE
+               # and ignored the rest of the tags (SOUR,CHAN,REFN,RIN).
+               innote = False
+           match = noteRE.match(text)
+           if match:
+               data = match.groups()[0]
+               noteobj = RelLib.Note()
+               self.name_map["@%s@" % data] = noteobj
+               noteobj.append(match.groups()[1])
+               innote = True
+           elif personRE.match(line):
+               self.person_count += 1
+               
+       f.close()
 
     def get_map(self):
         return self.name_map
@@ -392,9 +426,6 @@ class Reader:
         self.f = open(name,'rU')
         self.current_list = []
         self.eof = False
-        self.transtable = string.maketrans('','')
-        self.delc = self.transtable[0:31]
-        self.transtable2 = self.transtable[0:128] + ('?' * 128)
         self.cnv = lambda s: unicode(s)
         self.broken_conc = False
         self.cnt = 0
@@ -426,11 +457,11 @@ class Reader:
                 break
             line = line.split(None,2) + ['']
 
-            val = line[2].translate(self.transtable,self.delc)
+            val = line[2].translate(_transtable,_delc)
             try:
                 val = self.cnv(val)
             except:
-                val = self.cnv(val.translate(self.transtable2))
+                val = self.cnv(val.translate(_transtable2))
 
             try:
                 level = int(line[0])
@@ -1168,23 +1199,21 @@ class GedcomParser:
                 del event
 
     def parse_note_base(self,matches,obj,level,old_note,task):
-        note = old_note
-        if matches[2] and matches[2][0] == "@":  # reference to a named note defined elsewhere
+        # reference to a named note defined elsewhere
+        if matches[2] and matches[2][0] == "@":
             note_obj = self.note_map.get(matches[2])
             if note_obj:
-                return note_obj.get()
+                new_note = note_obj.get()
             else:
-                return u""
+                new_note = u""
         else:
-            if old_note:
-                note = u"%s\n%s" % (old_note,matches[2])
-            else:
-                note = matches[2]
-            if type(note) != unicode:
-                print type(note),type(matches[2])
-                
-            task(note)
+            new_note = matches[2] + self.parse_continue_data(level)
             self.ignore_sub_junk(level+1)
+        if old_note:
+            note = u"%s\n%s" % (old_note,matches[2])
+        else:
+            note = new_note
+        task(note)
         return note
         
     def parse_note(self,matches,obj,level,old_note):
@@ -1489,7 +1518,7 @@ class GedcomParser:
                 event.set_cause(info)
                 self.parse_cause(event,level+1)
             elif matches[1] in (TOKEN_NOTE,TOKEN_OFFI):
-                info = matches[2]
+                info = self.parse_note(matches,event,level+1,note)
                 if note == "":
                     note = info
                 else:
@@ -1548,7 +1577,7 @@ class GedcomParser:
                 event.set_cause(info)
                 self.parse_cause(event,level+1)
             elif matches[1] == TOKEN_NOTE:
-                info = matches[2]
+                info = self.parse_note(matches,event,level+1,note)
                 if note == "":
                     note = info
                 else:
@@ -1604,7 +1633,7 @@ class GedcomParser:
             elif matches[1] == TOKEN_DATE:
                 note = "%s\n\n" % ("Date : %s" % matches[2])
             elif matches[1] == TOKEN_NOTE:
-                info = matches[2]
+                info = self.parse_note(matches,attr,level+1,note)
                 if note == "":
                     note = info
                 else:
@@ -1741,6 +1770,7 @@ class GedcomParser:
 
     def parse_header_source(self):
         genby = ""
+        note = ""
         while True:
             matches = self.get_next()
             if int(matches[0]) < 1:
@@ -1788,7 +1818,7 @@ class GedcomParser:
                 date.date = matches[2]
                 self.def_src.set_data_item('Creation date',matches[2])
             elif matches[1] == TOKEN_NOTE:
-                note = matches[2]
+                note = self.parse_note(matches,self.def_src,2,note)
             elif matches[1] == TOKEN_UNKNOWN:
                 self.ignore_sub_junk(2)
             else:
@@ -2126,7 +2156,7 @@ class GedcomParser:
         state.add_to_note(self.parse_optional_note(2))
 
     def func_person_famc(self,matches,state):
-        ftype,note = self.parse_famc_type(2,state.person)
+        ftype,famc_note = self.parse_famc_type(2,state.person)
         handle = self.find_family_handle(matches[2][1:-1])
                 
         for f in self.person.get_parent_family_handle_list():

@@ -69,7 +69,7 @@ import ListModel
 from PluginUtils import Plugins, Report, ReportOptions, \
      bkitems_list, register_report
 import BaseDoc
-from QuestionDialog import WarningDialog
+from QuestionDialog import WarningDialog, ErrorDialog
 
 #------------------------------------------------------------------------
 #
@@ -710,7 +710,7 @@ class BookReportSelector:
             self.book.append_item(item)
             
             data = [ item.get_translated_name(), item.get_category(), item.get_name() ]
-            if data[2] == 'simple_book_title':
+            if data[2] in ('simple_book_title','custom_text'):
                 data.append(_("Not Applicable"))
             else:
                 pname = self.db.get_person_from_gramps_id(person_id)
@@ -727,7 +727,7 @@ class BookReportSelector:
         if not the_iter:
             return
         data = self.av_model.get_data(the_iter,range(self.av_ncols))
-        if data[2] == 'simple_book_title':
+        if data[2] in ('simple_book_title','custom_text'):
             data.append(_("Not Applicable"))
         else:
             data.append(self.person.get_primary_name().get_regular_name())

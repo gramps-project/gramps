@@ -325,16 +325,6 @@ def make_date(subdate,calendar,mode):
 #
 #
 #-------------------------------------------------------------------------
-def fmtline(text,limit,level,endl):
-    new_text = []
-    while len(text) > limit:
-        new_text.append(text[0:limit-1])
-        text = text[limit:]
-    if len(text) > 0:
-        new_text.append(text)
-    app = "%s%d CONC " % (endl,level+1)
-    return app.join(new_text)
-
 #-------------------------------------------------------------------------
 #
 #
@@ -782,6 +772,36 @@ class GedcomWriter:
 
                     self.dump_event_stats(event)
 
+            for attr in family.get_attribute_list():
+                if self.private and attr.get_privacy():
+                    continue
+                name = attr.get_type()
+ 
+                if name in ["AFN", "RFN", "_UID"]:
+                    self.writeln("1 %s %s" % ( name, attr.get_value()))
+                    continue
+                
+                if Utils.personal_attributes.has_key(name):
+                    val = Utils.personal_attributes[name]
+                else:
+                    val = ""
+                value = self.cnvtxt(attr.get_value()).replace('\r',' ')
+                if val:
+                    if value:
+                        self.writeln("1 %s %s" % (val, value))
+                    else:
+                        self.writeln("1 %s" % val)
+                else:
+                    self.writeln("1 EVEN")
+                    if value:
+                        self.writeln("2 TYPE %s %s" % (self.cnvtxt(name), value))
+                    else:
+                        self.writeln("2 TYPE %s" % self.cnvtxt(name))
+                if attr.get_note():
+                    self.write_long_text("NOTE",2,self.cnvtxt(attr.get_note()))
+                for srcref in attr.get_source_references():
+                    self.write_source_ref(2,srcref)
+
             for person_handle in family.get_child_handle_list():
                 if not self.plist.has_key(person_handle):
                     continue
@@ -815,6 +835,9 @@ class GedcomWriter:
                         continue
                     self.write_photo(photo,1)
 
+            if family.get_note():
+                self.write_long_text("NOTE",1,self.cnvtxt(family.get_note()))
+
             self.write_change(1,family.get_change_time())
             self.update()
             
@@ -831,11 +854,17 @@ class GedcomWriter:
         for (source_id, source) in sorted:
             self.writeln("0 @%s@ SOUR" % source_id)
             if source.get_title():
-                self.writeln("1 TITL %s" % fmtline(self.cnvtxt(source.get_title()),248,1,self.nl))
+                self.write_long_text('TITL',1,
+                                     "%s" % self.cnvtxt(source.get_title()))
+
             if source.get_author():
-                self.writeln("1 AUTH %s" % self.cnvtxt(source.get_author()))
+                self.write_long_text("AUTH", 1,
+                                     "%s" % self.cnvtxt(source.get_author()))
+
             if source.get_publication_info():
-                self.writeln("1 PUBL %s" % self.cnvtxt(source.get_publication_info()))
+                self.write_long_text("PUBL", 1,"%s" % self.cnvtxt(
+                    source.get_publication_info()))
+
             if source.get_abbreviation():
                 self.writeln("1 ABBR %s" % self.cnvtxt(source.get_abbreviation()))
             if self.images:
@@ -1113,6 +1142,10 @@ class GedcomWriter:
         else:
             for line in textlines:
                 ll = len(line)
+                if ll == 0:
+                    self.writeln("%s " % prefix)
+                    prefix = "%d CONT" % (level+1)
+                    continue
                 while ll > 0:
                     brkpt = 70
                     if ll > brkpt:
@@ -1142,6 +1175,10 @@ class GedcomWriter:
         else:
             for line in textlines:
                 ll = len(line)
+                if ll == 0:
+                    self.writeln("%s " % prefix)
+                    prefix = "%d CONT" % (level+1)
+                    continue
                 while ll > 0:
                     brkpt = 70
                     if ll > brkpt:

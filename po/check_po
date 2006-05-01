@@ -1,0 +1,216 @@
+#! /usr/bin/env python
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2000-2006  Donald N. Allingham
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+# $Id: check_po,v 1.1.2.6 2006/04/22 18:30:33 rshura Exp $
+
+import sys
+import re
+
+f = open('template.po')
+template_total = 0
+for line in f.xreadlines():
+    try:
+        if (line.split()[0] == 'msgid'):
+            template_total += 1
+    except:
+        pass
+f.close()
+
+NONE   = 0
+MSGID  = 1
+MSGSTR = 2
+
+all_total = {}
+all_fuzzy = {}
+all_untranslated = {}
+all_percent_s = {}
+all_named_s = {}
+all_bnamed_s = {}
+all_context = {}
+all_coverage = {}
+all_template_coverage = {}
+
+
+def strip_quotes(st):
+    if len(st.strip()) > 2:
+        return st.strip()[1:-1]
+    else:
+        return ""
+
+args = sys.argv
+while len(args) > 1:
+    args = args[1:]
+
+    f = open(args[0],"r")
+    
+    mode = NONE
+    fuzzy = False
+    fuzzy_count = 0
+    string_map = {}
+    current_msgid = ""
+    current_msgstr = ""
+    
+    for line in f.xreadlines():
+        data = line.split(None,1)
+        if mode == NONE:
+            if len(data) > 0 and data[0] == "msgid":
+                mode = MSGID
+                if len(data) > 1:
+                    current_msgid = strip_quotes(data[1])
+            elif (len(data) > 0) and (data[0] == "#,") \
+                     and (data[1] == 'fuzzy\n'):
+                fuzzy = True
+        elif mode == MSGID:
+            if data[0][0] == '"':
+                current_msgid += strip_quotes(line)
+            elif data[0] == "msgstr":
+                mode = MSGSTR
+                if len(data) > 1:
+                    current_msgstr = strip_quotes(data[1])
+        elif mode == MSGSTR:
+            if line == "" or line[0] == "#":
+                mode = NONE
+                if fuzzy:
+                    fuzzy = False
+                    fuzzy_count += 1
+                else:
+                    string_map[current_msgid] = current_msgstr
+            elif len(data) > 0 and data[0][0] == '"':
+                current_msgstr += strip_quotes(line)
+    
+    f.close()
+    
+    named = re.compile('%\((\w+)\)\d*s')
+    bnamed = re.compile('%\((\w+)\)\d*[^sd]')
+    
+    total = len(string_map) + fuzzy_count
+    untranslated = 0
+    percent_s = 0
+    percent_s_list = []
+    named_s = 0
+    named_s_list = []
+    bnamed_s = 0
+    bnamed_s_list = []
+    context = 0
+    context_list = []
+    
+    for (msgid,msgstr) in string_map.items():
+        if msgstr == "":
+            untranslated += 1
+            continue
+    
+        cnt1 = msgid.count('%s')
+        cnt2 = msgstr.count('%s')
+        if cnt1 != cnt2:
+            percent_s += 1
+            percent_s_list.append(msgid)
+    
+        list1 = named.findall(msgid)
+        list2 = named.findall(msgstr)
+        if len(list1) != len(list2):
+            percent_s += 1
+            percent_s_list.append(msgid)
+    
+        list1.sort()
+        list2.sort()
+        if list1 != list2:
+            named_s += 1
+            named_s_list.append(msgid)
+    
+        match = bnamed.match(msgstr)
+        if match:
+            bnamed_s +=1
+            bnamed_s_list.append(msgstr)
+
+        has_context1 = (msgid.count('|') > 0)
+        has_context2 = (msgstr.count('|') > 0)
+        if has_context1 and has_context2 and (msgid != msgstr):
+            context += 1
+            context_list.append(msgid)
+        
+    
+    coverage = (1.0 - (float(untranslated)/float(total))) * 100
+    template_coverage = coverage * float(total) / float(template_total)
+    
+    print "File:            %s" % args[0]
+    print "Template total:  %d" % template_total
+    print "PO total:        %d" % total
+    all_total[args[0]] = total
+    print "Fuzzy:           %d" % fuzzy_count
+    all_fuzzy[args[0]] = fuzzy_count
+    print "Untranslated:    %d" % untranslated
+    all_untranslated[args[0]] = untranslated
+    print "%%s mismatches:   %d" % percent_s
+    all_percent_s[args[0]] = percent_s
+    print "%%()s mismatches: %d" % named_s
+    all_named_s[args[0]] = named_s
+    print "%%() missing s/d: %d" % bnamed_s
+    all_bnamed_s[args[0]] = bnamed_s
+    print "Runaway context: %d" % context
+    all_context[args[0]] = context
+    print "PO Coverage:     %5.2f%%" % coverage
+    all_coverage[args[0]] = coverage
+    print "Template Coverage:  %5.2f%%" % template_coverage
+    all_template_coverage[args[0]] = coverage
+    
+    if percent_s:
+        print "\n-------- %s mismatches --------------"
+        for i in percent_s_list:
+            print "'%s' : '%s'" % (i, string_map[i])
+    
+    if named_s:
+        print "\n-------- %()s mismatches ------------"
+        for i in named_s_list:
+            print "'%s' : '%s'" % (i, string_map[i])
+    
+    if bnamed_s:
+        print "\n-------- %() missing s or d ---------"
+        for i in bnamed_s_list:
+            print "'%s' : '%s'" % (i, string_map[i])
+
+    if context:
+        print "\n-------- Runaway context in translation  ---------"
+        for i in context_list:
+            print "'%s' : '%s'" % (i, string_map[i])
+    print ""
+    
+
+if len(sys.argv) > 2:
+    print "\n\nFile \tTotal \tFuzzy \tUntranslated \t%s mismatch \t%()s mismatch \tmissing s/d \tcontext \tCoverage"
+    for pofile in sys.argv[1:]:
+        print "%s \t%5d \t%7d \t%7d \t%7d \t%7d \t%7d \t%7d \t%3.2f%% \t%3.2f%%" %\
+           (pofile,
+            all_total[pofile],
+            all_fuzzy[pofile],
+            all_untranslated[pofile],
+            all_percent_s[pofile],
+            all_named_s[pofile],
+            all_bnamed_s[pofile],
+            all_context[pofile],
+            all_coverage[pofile],
+            all_template_coverage[pofile]
+            )
+
+f = open("used_strings.txt","w")
+keys = string_map.keys()
+keys.sort()
+for i in keys:
+    f.write(i + "\n")
+f.close()

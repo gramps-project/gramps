@@ -90,7 +90,6 @@ class DateParserFR(DateParser):
     modifier_to_int = {
         u'avant'  : Date.MOD_BEFORE,
         u'av.'    : Date.MOD_BEFORE,
-        u'av'     : Date.MOD_BEFORE,
         u'après'  : Date.MOD_AFTER,
         u'ap.'    : Date.MOD_AFTER,
         u'ap'     : Date.MOD_AFTER,
@@ -134,8 +133,11 @@ class DateParserFR(DateParser):
 
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span     =  re.compile("(de)\s+(?P<start>.+)\s+(à)\s+(?P<stop>.+)",re.IGNORECASE)
-        self._range    = re.compile("(entre|ent|ent.)\s+(?P<start>.+)\s+(et)\s+(?P<stop>.+)",re.IGNORECASE)
+        # This self._numeric is different from the base
+        # by allowing space after the slash/dot
+        self._numeric  = re.compile("((\d+)[/\. ])?\s*((\d+)[/\.])?\s*(\d+)\s*$")
+        self._span     =  re.compile(u"(de)\s+(?P<start>.+)\s+(Ã )\s+(?P<stop>.+)",re.IGNORECASE)
+        self._range    = re.compile(u"(entre|ent\.|ent)\s+(?P<start>.+)\s+(et)\s+(?P<stop>.+)",re.IGNORECASE)
 	self._text2 =re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
 				re.IGNORECASE)
 	self._jtext2 =re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
@@ -155,24 +157,27 @@ class DateDisplayFR(DateDisplay):
 
     _mod_str = ("",u"avant ",u"après ",u"vers ","","","")
     
-    _qual_str = ("","estimée ","calculée ","")
+    _qual_str = ("",u"estimée ",u"calculée ","")
 
     formats = (
-        "AAAA-MM-DD (ISO)", "Numérique", "Mois Jour, Année",
-        "MOI Jour, Année", "Jour Mois, Année", "Jour MOIS Année"
+        "AAAA-MM-JJ (ISO)", "Numérique", "Mois Jour, Année",
+        "MOI Jour, Année", "Jour Mois, Année", "Jour MOI Année"
         )
 
     def _display_gregorian(self,date_val):
         year = self._slash_year(date_val[2],date_val[3])
         if self.format == 0:
-            value = self.display_iso(date_val)
+            return self.display_iso(date_val)
         elif self.format == 1:
-            if date_val[0] == 0 and date_val[1] == 0:
-                value = str(date_val[2])
+            if date_val[3]:
+                return self.display_iso(date_val)
             else:
-                value = self._tformat.replace('%m',str(date_val[1]))
-                value = value.replace('%d',str(date_val[0]))
-                value = value.replace('%Y',str(date_val[2]))
+                if date_val[0] == 0 and date_val[1] == 0:
+                    value = str(date_val[2])
+                else:
+                    value = self._tformat.replace('%m',str(date_val[1]))
+                    value = value.replace('%d',str(date_val[0]))
+                    value = value.replace('%Y',str(date_val[2]))
         elif self.format == 2:
             # Month Day, Year
             if date_val[0] == 0:
@@ -209,7 +214,11 @@ class DateDisplayFR(DateDisplay):
                     value = "%s %s" % (self._MONS[date_val[1]],year)
             else:
                 value = "%d. %s %s" % (date_val[0],self._MONS[date_val[1]],year)
-        return value
+        if date_val[2] < 0:
+            return self._bce_str % value
+        else:
+            return value
+  
 
     def display(self,date):
         """
@@ -243,5 +252,6 @@ class DateDisplayFR(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('fr_FR','fr','french','fr_CA','fr_BE','fr_CH'),
-                     DateParserFR,DateDisplayFR)
+register_datehandler(
+    ('fr_FR','fr','french','fr_CA','fr_BE','fr_CH','fr_LU'),
+    DateParserFR,DateDisplayFR)

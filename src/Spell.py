@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2005  Donald N. Allingham
+# Copyright (C) 2005-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,11 +46,16 @@ try:
     import locale
 
     lang = locale.getlocale()[0]
-    gtkspell.Spell(gtk.TextView()).set_language(lang)
-    success = True
-
+    if lang == None:
+        print _("Spelling checker cannot be used without language set.")
+        print _("Set your locale appropriately to use spelling checker.")
+    else:
+        gtkspell.Spell(gtk.TextView()).set_language(lang)
+        success = True
 except ImportError, msg:
     print _("Spelling checker is not installed")
+except TypeError,msg:
+    print "Spell.py: ", msg
 except RuntimeError,msg:
     print "Spell.py: ", msg
 except SystemError,msg:

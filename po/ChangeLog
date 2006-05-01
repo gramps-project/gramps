@@ -1,3 +1,6 @@
+2006-05-01  Alex Roitman  <shura@gramps-project.org>
+	* POTFILES.in: Add new file.
+
 2006-04-27  Alex Roitman  <shura@gramps-project.org>
 	* pt_BR.po: Convert to utf8 encoding.
 	* zh_CN.po: Convert to utf8 encoding.

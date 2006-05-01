@@ -1,8 +1,13 @@
 #! /bin/sh
 #
-# Import/export test for GRAMPS: Import example XML data and create GRDB,
-# check data for integrity, output in all formats, check resulting XML for
-# well-formedness and validate it against DTD and RelaxNG schema.
+# Import/export test for GRAMPS:
+#   o Import example XML data and create GRDB
+#   o Open produced GRDB, then
+#     * check data for integrity
+#     * output in all formats
+#   o Check resulting XML for well-formedness and validate it
+#     against DTD and RelaxNG schema.
+#   o Import ever file produced and run summary on it.
 
 # $Id$
 
@@ -13,6 +18,7 @@ PRG="python gramps.py"
 EXAMPLE_XML=$TOP_DIR/example/gramps/example.gramps
 
 OUT_FMT="gedcom gramps-xml gramps-pkg wft geneweb"
+IN_FMT="gedcom gramps-xml gramps-pkg"
 DATA_DIR=$TEST_DIR/data
 mkdir -p $DATA_DIR
 if [ -f $DATA_DIR/example.grdb ]; then
@@ -53,3 +59,12 @@ echo "* Post-parsing DTD validation"
 xmllint --noout --postvalid $DATA_DIR/example.gramps-xml
 echo "* Validate against RelaxNG schema"
 xmllint --noout --relaxng $TOP_DIR/doc/grampsxml.rng $DATA_DIR/example.gramps-xml
+
+echo ""
+echo "+--------------------------------------------------------------"
+echo "| Import all produced files and print summary"
+echo "+--------------------------------------------------------------"
+for fmt in $IN_FMT; do
+    OPTS="-i $DATA_DIR/example.$fmt -f $fmt -a summary"
+    (cd $SRC_DIR; $PRG $OPTS)
+done

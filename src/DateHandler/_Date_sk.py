@@ -19,10 +19,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: Date_sk.py,v 1.1.2.4 2006/04/16 03:20:06 rshura Exp $
 
 """
-Lithuanian-specific classes for parsing and displaying dates.
+Slovak-specific classes for parsing and displaying dates.
 """
 
 #-------------------------------------------------------------------------
@@ -37,50 +37,54 @@ import re
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from RelLib import Date
-from _DateParser import DateParser
-from _DateDisplay import DateDisplay
-from _DateHandler import register_datehandler
+import Date
+from DateParser import DateParser
+from DateDisplay import DateDisplay
 
 #-------------------------------------------------------------------------
 #
-# Lithuanian parser
+# Slovak parser
 #
 #-------------------------------------------------------------------------
-class DateParserLT(DateParser):
+class DateParserSK(DateParser):
 
     modifier_to_int = {
-        u'prieš'    : Date.MOD_BEFORE, 
+        u'pred'    : Date.MOD_BEFORE, 
+        u'do'      : Date.MOD_BEFORE, 
         u'po' : Date.MOD_AFTER,
-        u'apie' : Date.MOD_ABOUT,
+        u'asi'   : Date.MOD_ABOUT,
+        u'okolo'    : Date.MOD_ABOUT,
+        u'pribl.'  : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
-        u'grigaliaus'   : Date.CAL_GREGORIAN,
-        u'g'                 : Date.CAL_GREGORIAN,
-        u'julijaus'            : Date.CAL_JULIAN,
-        u'j'                 : Date.CAL_JULIAN,
-        u'hebrajų'         : Date.CAL_HEBREW,
-        u'h'         : Date.CAL_HEBREW,
-        u'islamo'         : Date.CAL_ISLAMIC,
-        u'i'                 : Date.CAL_ISLAMIC,
-        u'prancuzų respublikos': Date.CAL_FRENCH,
-        u'r'                 : Date.CAL_FRENCH,
-        u'persų'             : Date.CAL_PERSIAN,
-        u'p'             : Date.CAL_PERSIAN,
+        u'gregoriánsky'      : Date.CAL_GREGORIAN,
+        u'g'                     : Date.CAL_GREGORIAN,
+        u'juliánský'                : Date.CAL_JULIAN,
+        u'j'                     : Date.CAL_JULIAN,
+        u'hebrejský'         : Date.CAL_HEBREW,
+        u'h'                     : Date.CAL_HEBREW,
+        u'islamský'             : Date.CAL_ISLAMIC,
+        u'i'                     : Date.CAL_ISLAMIC,
+        u'republikánsky': Date.CAL_FRENCH,
+        u'r'                     : Date.CAL_FRENCH,
+        u'perzský'                 : Date.CAL_PERSIAN,
+        u'p'                     : Date.CAL_PERSIAN,
         }
 
     quality_to_int = {
-        u'apytikriai'  : Date.QUAL_ESTIMATED,
-        u'apskaičiuota'      : Date.QUAL_CALCULATED,
+        u'odhadovaný'  : Date.QUAL_ESTIMATED,
+        u'odh.'    : Date.QUAL_ESTIMATED,
+        u'vypočítaný'   : Date.QUAL_CALCULATED,
+        u'vyp.'      : Date.QUAL_CALCULATED,
         }
 
     def init_strings(self):
         DateParser.init_strings(self)
-        _span_1 = [u'nuo']
-        _span_2 = [u'iki']
-        _range_1 = [u'tarp']
-        _range_2 = [u'ir']
+        _span_1 = [u'od']
+        _span_2 = [u'do']
+        _range_1 = [u'medzi']
+        _range_2 = [u'a']
         self._span     = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
                                    ('|'.join(_span_1),'|'.join(_span_2)),
                            re.IGNORECASE)
@@ -90,30 +94,23 @@ class DateParserLT(DateParser):
 
 #-------------------------------------------------------------------------
 #
-# Lithuanian displayer
+# Slovak display
 #
 #-------------------------------------------------------------------------
-class DateDisplayLT(DateDisplay):
+class DateDisplaySK(DateDisplay):
 
     calendar = (
-        u"", u" (julijaus)", 
-        u" (hebrajų)", 
-        u" (prancuzų respublikos)", 
-        u" (persų)", 
-        u" (islamo)"
+        "", u" (juliánský)", u" (hebrejský)", 
+        u" (republikánsky)", u" (perzský)", u" (islamský)"
         )
 
-    _mod_str = (u"",
-        u"prieš ",
-        u"po ",
-        u"apie ",
-        u"",u"",u"")
+    _mod_str = ("",u"pred ",u"po ",u"okolo ","","","")
     
-    _qual_str = (u"",u"apytikriai ",u"apskaičiuota ")
+    _qual_str = ("","odh. ","vyp. ")
 
     formats = (
-        "YYYY-MM-DD (ISO)", "Skaitmeninis", "Mėnuo Diena, Metai",
-        "Mėn DD, YYYY", "Diena Mėnuo Metai", "DD Mėn YYYY"
+        "RRRR-MM-DD (ISO)", "numerický", "Mesiac Deň, Rok",
+        "MES Deň, Rok", "Deň, Mesiac, Rok", "Deň MES Rok"
         )
 
     def display(self,date):
@@ -134,11 +131,11 @@ class DateDisplayLT(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%s%s %s %s %s%s" % (qual_str,u'nuo',d1,u'iki',d2,self.calendar[cal])
+            return "%s%s %s %s %s%s" % (qual_str,u'od',d1,u'do',d2,self.calendar[cal])
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%s%s %s %s %s%s" % (qual_str,u'tarp',d1,u'ir',d2,self.calendar[cal])
+            return "%s%s %s %s %s%s" % (qual_str,u'medzi',d1,u'a',d2,self.calendar[cal])
         else:
             text = self.display_cal[date.get_calendar()](start)
             return "%s%s%s%s" % (qual_str,self._mod_str[mod],text,self.calendar[cal])
@@ -148,4 +145,5 @@ class DateDisplayLT(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('lt_LT','lt','lithuanian'),DateParserLT, DateDisplayLT)
+from DateHandler import register_datehandler
+register_datehandler(('sk_SK','sk','SK'),DateParserSK, DateDisplaySK)

@@ -47,7 +47,7 @@ import Config
 try:
     ICON = pixbuf_new_from_file(const.icon)
 except:
-    pass
+    ICON = None
 
 class SaveDialog:
     def __init__(self,msg1,msg2,task1,task2,parent=None):

@@ -310,6 +310,8 @@ class PdfDoc(BaseDoc.BaseDoc):
                 self.tblstyle.append(('LINEABOVE', loc, loc, 1, black))
             if self.my_table_style.get_bottom_border():
                 self.tblstyle.append(('LINEBELOW', loc, loc, 1, black))
+
+            # Set the alignment
             if p.get_alignment() == BaseDoc.PARA_ALIGN_LEFT:
                 self.tblstyle.append(('ALIGN', loc, loc, 'LEFT'))
             elif p.get_alignment() == BaseDoc.PARA_ALIGN_RIGHT:
@@ -326,6 +328,13 @@ class PdfDoc(BaseDoc.BaseDoc):
         #if self.span != 1: 
         #    self.tblstyle.append(('SPAN', (self.col, self.row), (self.col + self.span - 1, self.row ) ))
 
+        # The following lines will enable the span feature. 
+        # This is nice, except when spanning, lines that would have overfilled 
+        # their cells still increase the height of the cell to make room for the
+        # wrapped text (even though the text does not actually wrap because it is spanned)
+        #if self.span != 1: 
+        #    self.tblstyle.append(('SPAN', (self.col, self.row), (self.col + self.span - 1, self.row ) ))
+
         self.col = self.col + self.span
         self.text = ""
 
@@ -336,6 +345,9 @@ class PdfDoc(BaseDoc.BaseDoc):
             return
         
         x,y = img.size()
+        
+        if (x,y) == (0,0):
+            return
 
         if (x,y) == (0,0):
             return

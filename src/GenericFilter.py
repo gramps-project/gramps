@@ -2126,14 +2126,13 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
     def prepare(self,db):
 	self.db = db
 	p = db.get_default_person()
-        if p == 0:
-            self.apply = lambda db,p: False
-        else:
+        if p:
             self.def_handle = p.get_handle()
             self.apply = self.apply_real
             self.map = {}
             self.init_ancestor_list(self.def_handle, 1)
-
+        else:
+            self.apply = lambda db,p: False
 
     def init_ancestor_list(self,handle,gen):
 #        if self.map.has_key(p.get_handle()) == 1:

@@ -78,18 +78,38 @@ class _options:
     )
     fonts = (
         # Last items tells whether strings need to be converted to Latin1
-        ("", "Default", _("Default"), 1),
-        ("Helvetica", "Postscript / Helvetica", _("Postscript / Helvetica"), 1),
-        ("FreeSans", "Truetype / FreeSans", _("Truetype / FreeSans"), 0),
+        ("", "Default", _("Default")),
+        ("Helvetica", "Postscript / Helvetica", _("Postscript / Helvetica")),
+        ("FreeSans", "Truetype / FreeSans", _("Truetype / FreeSans")),
     )
     colors = (
         ("outline", "B&W Outline", _("B&W outline")),
         ("colored", "Colored outline", _("Colored outline")),
         ("filled", "Color fill", _("Color fill")),
     )
+    ratio = (
+        ("compress", "Minimal size", _("Minimal size")),
+        ("fill", "Fill the given area", _("Fill the given area")),
+        ("expand", "Automatically use optimal number of pages",
+         _("Automatically use optimal number of pages"))
+    )
     rankdir = (
+        ("TB", "Vertical", _("Vertical")),
         ("LR", "Horizontal", _("Horizontal")),
-        ("RL", "Vertical", _("Vertical")),
+    )
+    pagedir = (
+        ("BL", "Bottom, left",  _("Bottom, left")),
+        ("BR", "Bottom, right", _("Bottom, right")),
+        ("TL", "Top, left",     _("Top, left")),
+        ("TR", "Top, right",    _("Top, Right")),
+        ("RB", "Right, bottom", _("Right, bottom")),
+        ("RT", "Right, top",    _("Right, top")), 
+        ("LB", "Left, bottom",  _("Left, bottom")),
+        ("LT", "Left, top",     _("Left, top")),
+    )
+    noteloc = (
+        ("t", "Top", _("Top")),
+        ("b", "Bottom", _("Bottom")),
     )
     arrowstyles = (
         ('d', "Descendants <- Ancestors",  _("Descendants <- Ancestors")),
@@ -98,7 +118,11 @@ class _options:
         ('',  "Descendants - Ancestors",    _("Descendants - Ancestors")),
     )
 
-dot_found = os.system("dot -V 2>/dev/null") == 0
+_dot_found = os.system("dot -V 2>/dev/null") == 0
+
+if os.system("which epstopdf >/dev/null 2>&1") == 0:
+    _options.formats += (("pdf", "PDF", _("PDF"), "application/pdf"),)
+    _pdf_pipe = 'epstopdf -f -o=%s'
 
 #------------------------------------------------------------------------
 #
@@ -124,7 +148,7 @@ class GraphViz:
                      The option class carries its number, and the function
                      returning the list of filters.
         font       - Font to use.
-        latin      - Set if font supports only Latin1
+        latin      - Set if text needs to be converted to latin-1
         arrow      - Arrow styles for heads and tails.
         showfamily - Whether to show family nodes.
         incid      - Whether to include IDs.
@@ -132,12 +156,17 @@ class GraphViz:
         justyears  - Use years only.
         placecause - Whether to replace missing dates with place or cause
         url        - Whether to include URLs.
-        rankdir    - Graph direction
+        rankdir    - Graph direction, LR or RL
+        ratio      - Output aspect ration, fill/compress/auto
         color      - Whether to use outline, colored outline or filled color in graph
         dashedl    - Whether to use dashed lines for non-birth relationships.
         margin     - Margins, in cm.
         pagesh     - Number of pages in horizontal direction.
         pagesv     - Number of pages in vertical direction.
+        pagedir    - Paging direction
+        note       - Note to add to the graph
+        notesize   - Note font size (in points)
+        noteloc    - Note location t/b
         """
         colored = {
             'male': 'dodgerblue4',
@@ -160,11 +189,14 @@ class GraphViz:
         self.height = self.paper.get_height_inches()
 
         options = options_class.handler.options_dict
+        self.pagedir = options['pagedir']
         self.hpages = options['pagesh']
         self.vpages = options['pagesv']
         margin_cm = options['margin']
         self.margin = round(margin_cm/2.54,2)
         if margin_cm > 0.1:
+            # GraphViz has rounding errors so have to make the real
+            # margins slightly smaller than (page - content size)
             self.margin_small = round((margin_cm-0.1)/2.54,2)
         else:
             self.margin_small = 0
@@ -176,8 +208,8 @@ class GraphViz:
         self.just_years = options['justyears']
         self.placecause = options['placecause']
         self.rankdir = options['rankdir']
+        self.ratio = options['ratio']
         self.fontname = options['font']
-        self.latin = options['latin']
         self.colorize = options['color']
         if self.colorize == 'colored':
             self.colors = colored
@@ -193,189 +225,295 @@ class GraphViz:
         else:
             self.arrowtailstyle = 'none'
 
+        self.latin = options['latin']
+        self.noteloc = options['noteloc']
+        self.notesize = options['notesize']
+        self.note = options['note']
+
         filter_num = options_class.get_filter_number()
         filters = options_class.get_report_filters(person)
         filters.extend(GenericFilter.CustomFilters.get_filters())
         self.filter = filters[filter_num]
 
-        self.f = open(options_class.get_output(),'w')
-        self.write_report()
+        the_buffer = self.get_report()
+        if self.latin:
+            self.f.write(the_buffer.encode('iso-8859-1'))
+        else:
+            self.f.write(the_buffer)
         self.f.close()
 
-    def write_report(self):
-
-        self.ind_list = self.filter.apply(self.database,
+    def get_report(self):
+        "return string of the .dot file contents"
+        self.person_handles = self.filter.apply(self.database,
                     self.database.get_person_handles(sort_handles=False))
         
-        self.write_header()
-        self.f.write("digraph GRAMPS_relationship_graph {\n")
-        self.f.write("bgcolor=white;\n")
-        self.f.write("rankdir=%s;\n" % self.rankdir)
-        self.f.write("center=1;\n")
-        self.f.write("margin=%3.2f;\n" % self.margin_small)
-        self.f.write("ratio=fill;\n")
+        # graph size
         if self.orient == PAPER_LANDSCAPE:
-            self.f.write("size=\"%3.2f,%3.2f\";\n" % (
-                (self.height-self.margin*2)*self.hpages,
-                (self.width-self.margin*2)*self.vpages
-                ))
+            rotate = 90
+            sizew = (self.height - self.margin*2) * self.hpages
+            sizeh = (self.width - self.margin*2) * self.vpages
         else:
-            self.f.write("size=\"%3.2f,%3.2f\";\n" % (
-                (self.width-self.margin*2)*self.hpages,
-                (self.height-self.margin*2)*self.vpages
-                ))
-        self.f.write("page=\"%3.2f,%3.2f\";\n" % (self.width,self.height))
+            rotate = 0
+            sizew = (self.width - self.margin*2) * self.hpages
+            sizeh = (self.height - self.margin*2) * self.vpages
+        
+        
+        buffer = self.get_comment_header()
+        buffer += """
+digraph GRAMPS_relationship_graph {
+/* whole graph attributes */
+bgcolor=white;
+center=1;
+ratio=%s;
+rankdir=%s;
+mclimit=2.0;
+margin="%3.2f";
+pagedir="%s";
+page="%3.2f,%3.2f";
+size="%3.2f,%3.2f";
+rotate=%d;
+/* default node and edge attributes */
+nodesep=0.25;
+edge [syle=solid, arrowhead=%s arrowtail=%s];
+""" %   (
+        self.ratio,
+        self.rankdir,
+        self.margin_small,
+        self.pagedir,
+        self.width, self.height,
+        sizew, sizeh,
+        rotate,
+        self.arrowheadstyle,
+        self.arrowtailstyle
+        )
 
-        if self.orient == PAPER_LANDSCAPE:
-            self.f.write("rotate=90;\n")
+        if self.fontname:
+            font = 'fontname="%s"' % self.fontname
+        else:
+            font = ''
+        if self.colorize == 'filled':
+            buffer += 'node [style=filled %s];\n' % font
+        else:
+            buffer += 'node [%s];\n' % font
+        if self.latin:
+            # GraphViz default is UTF-8
+            buffer += 'charset="iso-8859-1";\n'
+        
+        if len(self.person_handles) > 1:
+            buffer += "/* persons and their families */\n"
+            buffer += self.get_persons_and_families()
+            buffer += "/* link children to families */\n"
+            buffer += self.get_child_links_to_families()
 
-        if len(self.ind_list) > 1:
-            self.dump_index()
-            self.dump_person()
+        if self.note:
+            buffer += 'labelloc="%s";\n' % self.noteloc
+            buffer += 'label="%s";\n' % self.note.replace('\n', '\\n').replace('"', '\\\"')
+            buffer += 'fontsize="%d";\n' % self.notesize # in points
 
-        self.f.write("}\n")
+        return buffer + "}\n"
 
-    def dump_person(self):
-        # Hash people in a dictionary for faster inclusion checking.
+    
+    def get_comment_header(self):
+        "return comment of Gramps options which are not Graphviz options"
+        return """/*
+GRAMPS - Relationship graph
+
+Generated on %s.
+
+Report content options:
+  include URLs       : %s
+          IDs        : %s
+          dates      : %s
+  just year          : %s
+  place or cause     : %s
+  colorize           : %s
+  dotted adoptions   : %s
+  show family nodes  : %s
+  pages horizontal   : %s
+        vertical     : %s
+
+For other options, see graph settings below.
+
+If you need to switch between iso-8859-1 and utf-8 text encodings,
+e.g. because you're using different font or -T output format,
+just use iconv:
+        iconv -f iso-8859-1 -t utf-8 old.dot > new.dot
+        iconv -t utf-8 -f iso-8859-1 old.dot > new.dot
+*/
+""" %   (
+        asctime(),
+        bool(self.includeurl),
+        bool(self.includeid),
+        bool(self.includedates),
+        bool(self.just_years),
+        bool(self.placecause),
+        bool(self.colorize),
+        bool(self.adoptionsdashed),
+        bool(self.show_families),
+        self.hpages, self.vpages
+        )
+        
+
+    def get_child_links_to_families(self):
+        "returns string of GraphViz edges linking parents to families or children"
         person_dict = {}
-        for p_id in self.ind_list:
-            person_dict[p_id] = 1
-
-        for person_handle in self.ind_list:
+        # Hash people in a dictionary for faster inclusion checking
+        for person_handle in self.person_handles:
+            person_dict[person_handle] = 1
+        the_buffer = ""
+        for person_handle in self.person_handles:
             person = self.database.get_person_from_handle(person_handle)
-            pid = person.get_gramps_id().replace('-','_')
-            for family_handle in person.get_parent_family_handle_list():
-                family = self.database.get_family_from_handle(family_handle)
-                madopted = False
-                fadopted = False
-                for child_ref in family.get_child_ref_list():
-                    if child_ref.ref == person_handle:
-                        fadopted  = child_ref.frel != RelLib.ChildRefType.BIRTH
-                        madopted  = child_ref.mrel != RelLib.ChildRefType.BIRTH
+            p_id = person.get_gramps_id()
+            for fam_handle in person.get_parent_family_handle_list():
+                family = self.database.get_family_from_handle(fam_handle)
                 father_handle = family.get_father_handle()
                 mother_handle = family.get_mother_handle()
-                famid = family.get_gramps_id().replace('-','_')
+                for child_ref in family.get_child_ref_list():
+                    if child_ref.ref == person_handle:
+                        frel = child_ref.frel
+                        mrel = child_ref.mrel
+                        break
                 if (self.show_families and
-                    (father_handle and person_dict.has_key(father_handle) or
-                     mother_handle and person_dict.has_key(mother_handle))):
-                    # Link to the family node.
-                    self.f.write('p%s -> f%s ['  % (pid, famid))
-                    self.f.write('arrowhead=%s, arrowtail=%s, ' %
-                           (self.arrowheadstyle, self.arrowtailstyle))
-                    if self.adoptionsdashed and (fadopted or madopted):
-                        self.f.write('style=dotted')
-                    else:
-                        self.f.write('style=solid')
-                    self.f.write('];\n')
+                    ((father_handle and father_handle in person_dict) or
+                     (mother_handle and mother_handle in person_dict))):
+                    # Link to the family node if either parent is in graph
+                    the_buffer += self.get_family_link(p_id,family,frel,mrel)
                 else:
-                    # Link to the parents' nodes directly.
-                    if father_handle and person_dict.has_key(father_handle):
-                        father = self.database.get_person_from_handle(father_handle)
-                        fid = father.get_gramps_id().replace('-','_')
-                        self.f.write('p%s -> p%s ['  % (pid, fid))
-                        self.f.write('arrowhead=%s, arrowtail=%s, ' %
-                                   (self.arrowheadstyle, self.arrowtailstyle))
-                        if self.adoptionsdashed and fadopted:
-                            self.f.write('style=dotted')
-                        else:
-                            self.f.write('style=solid')
-                        self.f.write('];\n')
-                    if mother_handle and person_dict.has_key(mother_handle):
-                        mother = self.database.get_person_from_handle(mother_handle)
-                        mid = mother.get_gramps_id().replace('-','_')
-                        self.f.write('p%s -> p%s ['  % (pid, mid))
-                        self.f.write('arrowhead=%s, arrowtail=%s, ' %
-                                   (self.arrowheadstyle, self.arrowtailstyle))
-                        if self.adoptionsdashed and madopted:
-                            self.f.write('style=dotted')
-                        else:
-                            self.f.write('style=solid')
-                        self.f.write('];\n')
-    
-    def dump_index(self):
-        # The list of families for which we have output the node, so we
-        # don't do it twice.
-        families_done = []
-        for person_handle in self.ind_list:
-            person = self.database.get_person_from_handle(person_handle)
-            # Output the person's node.
-            label = person.get_primary_name().get_name()
-            the_id = person.get_gramps_id().replace('-','_')
-            if self.includeid:
-                label = label + " (%s)" % the_id
-            if self.includedates:
-                birth_ref = person.get_birth_ref()
-                if birth_ref:
-                    birth_event = self.database.get_event_from_handle(birth_ref.ref)
-                    birth = self.dump_event(birth_event)
-                else:
-                    birth = ''
-                death_ref = person.get_death_ref()
-                if death_ref:
-                    death_event = self.database.get_event_from_handle(death_ref.ref)
-                    death = self.dump_event(death_event)
-                else:
-                    death = ''
-                label = label + '\\n(%s - %s)' % (birth, death)
-            self.f.write('p%s [shape=box, ' % the_id)
-            if self.includeurl:
-                h = person.get_handle()
-                self.f.write('URL="ppl/%s/%s/%s.html", ' % (h[0],h[1],h))
-            if self.colorize != 'outline':
-                if self.colorize == 'filled':
-                    style = 'style=filled, fillcolor'
-                else:
-                    style = 'color'
-                gender = person.get_gender()
-                if gender == person.MALE:
-                    self.f.write('%s=%s, ' % (style, self.colors['male']))
-                elif gender == person.FEMALE:
-                    self.f.write('%s=%s, ' % (style, self.colors['female']))
-                else:
-                    self.f.write('%s=%s, ' % (style, self.colors['unknown']))
-            if self.latin:
-                label = label.encode('iso-8859-1')
-            self.f.write('fontname="%s", label="%s"];\n' % (self.fontname,label))
+                    # Link to the parents' nodes directly, if they are in graph
+                    if father_handle and father_handle in person_dict:
+                        the_buffer += self.get_parent_link(p_id,father_handle,frel)
+                    if mother_handle and mother_handle in person_dict:
+                        the_buffer += self.get_parent_link(p_id,mother_handle,mrel)
+        return the_buffer
 
-            # Output families's nodes.
+    def get_family_link(self, p_id, family, frel, mrel):
+        "returns string of GraphViz edge linking child to family"
+        style = ''
+        adopted = ((int(frel) != RelLib.ChildRefType.BIRTH) or
+                   (int(mrel) != RelLib.ChildRefType.BIRTH))
+        if adopted and self.adoptionsdashed:
+            style = 'style=dotted'
+        return '"p%s" -> "f%s" [%s];\n' % (p_id,
+                family.get_gramps_id(), style)
+
+    def get_parent_link(self, p_id, parent_handle, rel):
+        "returns string of GraphViz edge linking child to parent"
+        style = ''
+        if (int(rel) != RelLib.ChildRefType.BIRTH) and self.adoptionsdashed:
+            style = 'style=dotted'
+        parent = self.database.get_person_from_handle(parent_handle)
+        return '"p%s" -> "p%s" [%s];\n' % (p_id, parent.get_gramps_id(), style)
+        
+    def get_persons_and_families(self):
+        "returns string of GraphViz nodes for persons and their families"
+        # The list of families for which we have output the node,
+        # so we don't do it twice
+        buffer = ""
+        families_done = {}
+        for person_handle in self.person_handles:
+            person = self.database.get_person_from_handle(person_handle)
+            p_id = person.get_gramps_id()
+            # Output the person's node
+            label = self.get_person_label(person)
+            style = self.get_gender_style(person)
+            url = ""
+            if self.includeurl:
+                h = person_handle
+                url = ', URL="ppl/%s/%s/%s.html", ' % (h[0],h[1],h)
+            buffer += '"p%s" [label="%s", %s%s];\n' % (p_id, label, style, url)
+  
+            # Output families where person is a parent
             if self.show_families:
                 family_list = person.get_family_handle_list()
                 for fam_handle in family_list:
                     fam = self.database.get_family_from_handle(fam_handle)
-                    fid = fam.get_gramps_id().replace('-','_')
+                    fam_id = fam.get_gramps_id()
                     if fam_handle not in families_done:
-                        families_done.append(fam_handle)
-                        self.f.write('f%s [shape=ellipse, ' % fid)
-                        if self.colorize == 'colored':
-                            self.f.write('color=%s, ' % self.colors['family'])
-                        elif self.colorize == 'filled':
-                            self.f.write('style=filled fillcolor=%s, ' % self.colors['family'])
-
-                        marriage = ""
+                        families_done[fam_handle] = 1
+                        label = ""
                         for event_ref in fam.get_event_ref_list():
-                            if event_ref:
-                                event = self.database.get_event_from_handle(event_ref.ref)
-                                if int(event.get_type()) == RelLib.EventType.MARRIAGE:
-                                    m = event
-                                    break
-                        else:
-                            m = None
-    
-                        if m:
-                            marriage = self.dump_event(m)
+                            event = self.database.get_event_from_handle(
+                                event_ref.ref)
+                            if int(event.get_type()) == RelLib.EventType.MARRIAGE:
+                                label = self.get_event_string(event)
+                                break
                         if self.includeid:
-                            marriage = marriage + " (%s)" % fid
-                        self.f.write('fontname="%s", label="%s"];\n' 
-                                    % (self.fontname,marriage))
+                            label = "%s (%s)" % (label, fam_id)
+                        color = ""
+                        if self.colorize == 'colored':
+                            color = ', color="%s"' % self.colors['family']
+                        elif self.colorize == 'filled':
+                            color = ', fillcolor="%s"' % self.colors['family']
+                        buffer += '"f%s" [shape=ellipse, label="%s"%s];\n' % (fam_id, label, color)
                     # Link this person to all his/her families.
-                    self.f.write('f%s -> p%s [' % (fid, the_id))
-                    self.f.write('arrowhead=%s, arrowtail=%s, ' %
-                               (self.arrowheadstyle, self.arrowtailstyle))
-                    self.f.write('style=solid];\n')
+                    buffer += '"f%s" -> "p%s";\n' % (fam_id, p_id)
+        return buffer
+
+    def get_gender_style(self, person):
+        "return gender specific person style"
+        gender = person.get_gender()
+        if gender == person.MALE:
+            shape = 'shape="box"'
+        elif gender == person.FEMALE:
+            shape = 'shape="box", style="rounded"'
+        else:
+            shape = 'shape="hexagon"'
+        if self.colorize == 'outline':
+            return shape
+        else:
+            if gender == person.MALE:
+                color = self.colors['male']
+            elif gender == person.FEMALE:
+                color = self.colors['female']
+            else:
+                color = self.colors['unknown']
+            if self.colorize == 'filled':
+                # In current GraphViz boxes cannot be both rounded and filled
+                return 'shape="box", fillcolor="%s"' % color
+            else:
+                return '%s, color="%s"' % (shape, color)
+
+    def get_person_label(self, person):
+        "return person label string"
+        label = person.get_primary_name().get_name()
+        p_id = person.get_gramps_id()
+        if self.includeid:
+            label = label + " (%s)" % p_id
+        if self.includedates:
+            birth, death = self.get_date_strings(person)
+            label = label + '\\n(%s - %s)' % (birth, death)
+        return label.replace('"', '\\\"')
     
-    def dump_event(self,event):
+    def get_date_strings(self, person):
+        "returns tuple of birth/christening and death/burying date strings"
+        birth_ref = person.get_birth_ref()
+        if birth_ref:
+            birth_event = self.database.get_event_from_handle(birth_ref.ref)
+            birth = self.get_event_string(birth_event)
+        else:
+            birth = ''
+        death_ref = person.get_death_ref()
+        if death_ref:
+            death_event = self.database.get_event_from_handle(death_ref)
+            death = self.get_event_string(death_event)
+        else:
+            death = ''
+        if birth and death:
+            return (birth, death)
+        # missing info, use (first) christening/burial instead
+        for event_ref in person.get_event_ref_list():
+            event = self.database.get_event_from_handle(event_ref.ref)
+            if int(event.get_type()) == RelLib.EventType.CHRISTEN:
+                if not birth:
+                    birth = self.get_event_string(event)
+            elif int(event.get_type()) ==  RelLib.EventType.BURIAL:
+                if not death:
+                    death = self.get_event_string(event)
+        return (birth, death)
+
+    def get_event_string(self, event):
         """
-        Compile an event label.
+        return string for for an event label.
         
         Based on the data availability and preferences, we select one
         of the following for a given event:
@@ -399,33 +537,6 @@ class GraphViz:
                 return event.get_cause()
         return ''
 
-    def write_header(self):
-        """
-        Write header listing the options used.
-        """
-        self.f.write("/* GRAMPS - Relationship graph\n")
-        self.f.write(" *\n")
-        self.f.write(" * Report options:\n")
-        self.f.write(" *   font style         : %s\n" % self.fontname)
-        self.f.write(" *   style arrow head   : %s\n" % self.arrowheadstyle)
-        self.f.write(" *               tail   : %s\n" % self.arrowtailstyle)
-        self.f.write(" *   graph direction    : %s\n" % self.rankdir)
-        self.f.write(" *   include URLs       : %s\n" % bool(self.includeurl))
-        self.f.write(" *           IDs        : %s\n" % bool(self.includeid))
-        self.f.write(" *           dates      : %s\n" % bool(self.includedates))
-        self.f.write(" *   just year          : %s\n" % bool(self.just_years))
-        self.f.write(" *   place or cause     : %s\n" % bool(self.placecause))
-        self.f.write(" *   colorize           : %s\n" % bool(self.colorize))
-        self.f.write(" *   dotted adoptions   : %s\n" % bool(self.adoptionsdashed))
-        self.f.write(" *   show family nodes  : %s\n" % bool(self.show_families))
-        self.f.write(" *   margin             : %3.2fin\n" % self.margin_small)
-        self.f.write(" *   pages horizontal   : %s\n" % self.hpages)
-        self.f.write(" *         vertical     : %s\n" % self.vpages)
-        self.f.write(" *   page width         : %3.2fin\n" % self.width)
-        self.f.write(" *        height        : %3.2fin\n" % self.height)
-        self.f.write(" *\n")
-        self.f.write(" * Generated on %s by GRAMPS\n" % asctime())
-        self.f.write(" */\n\n")
 
 #------------------------------------------------------------------------
 #
@@ -453,12 +564,17 @@ class GraphVizOptions(ReportOptions.ReportOptions):
             'justyears'  : 0,
             'placecause' : 1,
             'url'        : 1,
+            'ratio'      : "compress",
             'rankdir'    : "LR",
             'color'      : "filled",
             'dashedl'    : 1,
             'margin'     : 1.0,
+            'pagedir'    : 'BL',
             'pagesh'     : 1,
             'pagesv'     : 1,
+            'note'       : '',
+            'noteloc'    : 'b',
+            'notesize'   : 32,
             'gvof'       : 'ps',
         }
 
@@ -490,7 +606,10 @@ class GraphVizOptions(ReportOptions.ReportOptions):
             'url'       : ("=0/1","Whether to include URLs.",
                             ["Do not include URLs","Include URLs"],
                             True),
-            'rankdir'      : ("=str","Graph direction.",
+            'ratio'     : ("=str","Graph aspect ratio.",
+                            [ "%s\t%s" % (item[0],item[1]) for item in _options.ratio ],
+                            False),
+            'rankdir'   : ("=str","Graph direction.",
                             [ "%s\t%s" % (item[0],item[1]) for item in _options.rankdir ],
                             False),
             'color'     : ("=str","Whether and how to colorize graph.",
@@ -501,10 +620,20 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                             True),
             'margin'    : ("=num","Margin size.",
                             "Floating point value, in cm"),
+            'pagedir'   : ("=str","Paging direction.",
+                            [ "%s\t%s" % (item[0],item[1]) for item in _options.pagedir ],
+                            False),
             'pagesh'    : ("=num","Number of pages in horizontal direction.",
                             "Integer values"),
             'pagesv'    : ("=num","Number of pages in vertical direction.",
                             "Integer values"),
+            'note'      : ("=str","Note to add to the graph.",
+                            "Text"),
+            'notesize'  : ("=num","Note size (in points).",
+                            "Integer values"),
+            'noteloc'   : ("=str","Note location.",
+                            [ "%s\t%s" % (item[0],item[1]) for item in _options.noteloc ],
+                            False),
             'gvof'      : ("=str","Output format to convert dot file into.",
                             [ "%s\t%s" % (item[0],item[1]) for item in _options.formats ],
                             False),
@@ -546,6 +675,22 @@ class GraphVizOptions(ReportOptions.ReportOptions):
     def make_doc_menu(self,dialog,active=None):
         pass
 
+    def add_list(self, options, default):
+        "returns compobox of given options and default value"
+        box = gtk.ComboBox()
+        store = gtk.ListStore(str)
+        box.set_model(store)
+        cell = gtk.CellRendererText()
+        box.pack_start(cell,True)
+        box.add_attribute(cell,'text',0)
+        index = 0
+        for item in options:
+            store.append(row=[item[2]])
+            if item[0] == default:
+                box.set_active(index)
+            index = index + 1
+        return box
+    
     def add_user_options(self,dialog):
         if self.handler.module_name == "rel_graph2":
             dialog.make_doc_menu = self.make_doc_menu
@@ -599,36 +744,8 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                         _("Include individual and family IDs."))
 
         # GraphViz output options tab
-        self.rank_box = gtk.ComboBox()
-        store = gtk.ListStore(str)
-        self.rank_box.set_model(store)
-        cell = gtk.CellRendererText()
-        self.rank_box.pack_start(cell,True)
-        self.rank_box.add_attribute(cell,'text',0)
-        index = 0
-        for item in _options.rankdir:
-            store.append(row=[item[2]])
-            if item[0] == self.options_dict['rankdir']:
-                self.rank_box.set_active(index)
-            index = index + 1
-        dialog.add_frame_option(_("GraphViz Options"),
-                              _("Graph direction"),
-                              self.rank_box,
-                              _("Whether generations go from top to bottom "
-                                "or left to right."))
-
-        self.color_box = gtk.ComboBox()
-        store = gtk.ListStore(str)
-        self.color_box.set_model(store)
-        cell = gtk.CellRendererText()
-        self.color_box.pack_start(cell,True)
-        self.color_box.add_attribute(cell,'text',0)
-        index = 0
-        for item in _options.colors:
-            store.append(row=[item[2]])
-            if item[0] == self.options_dict['color']:
-                self.color_box.set_active(index)
-            index = index + 1
+        self.color_box = self.add_list(_options.colors,
+                                        self.options_dict['color'])
         dialog.add_frame_option(_("GraphViz Options"),
                               _("Graph coloring"),
                               self.color_box,
@@ -636,39 +753,15 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                                 "with red.  If the sex of an individual "
                                 "is unknown it will be shown with gray."))
 
-        self.arrowstyle_box = gtk.ComboBox()
-        store = gtk.ListStore(str)
-        self.arrowstyle_box.set_model(store)
-        cell = gtk.CellRendererText()
-        self.arrowstyle_box.pack_start(cell,True)
-        self.arrowstyle_box.add_attribute(cell,'text',0)
-        index = 0
-        for item in _options.arrowstyles:
-            store.append(row=[item[2]])
-            if item[0] == self.options_dict['arrow']:
-                self.arrowstyle_box.set_active(index)
-            index = index + 1
+        self.arrowstyle_box = self.add_list(_options.arrowstyles,
+                                        self.options_dict['arrow'])
         dialog.add_frame_option(_("GraphViz Options"),
                                 _("Arrowhead direction"),
                                 self.arrowstyle_box,
                                 _("Choose the direction that the arrows point."))
 
-        self.font_box = gtk.ComboBox()
-        store = gtk.ListStore(str)
-        self.font_box.set_model(store)
-        cell = gtk.CellRendererText()
-        self.font_box.pack_start(cell,True)
-        self.font_box.add_attribute(cell,'text',0)
-        index = 0
-        for item in _options.fonts:
-            if item[3]:
-                name = "%s (iso-latin1 font)" % item[2]
-            else:
-                name = item[2]
-            store.append(row=[name])
-            if item[0] == self.options_dict['font']:
-                self.font_box.set_active(index)
-            index = index + 1
+        self.font_box = self.add_list(_options.fonts,
+                                        self.options_dict['font'])
         dialog.add_frame_option(_("GraphViz Options"),
                               _("Font family"),
                               self.font_box,
@@ -676,6 +769,13 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                                 "characters don't show, use FreeSans font. "
                                 "FreeSans is available from: "
                                 "http://www.nongnu.org/freefont/"))
+
+        self.latin_cb = gtk.CheckButton(_("Output format/font requires text as latin-1"))
+        self.latin_cb.set_active(self.options_dict['latin'])
+        dialog.add_frame_option(_("GraphViz Options"), '',
+                              self.latin_cb,
+                              _("If text doesn't show correctly in report, use this. "
+                                "Required e.g. for default font with PS output."))
 
         self.adoptionsdashed_cb = gtk.CheckButton(_("Indicate non-birth relationships with dotted lines"))
         self.adoptionsdashed_cb.set_active(self.options_dict['dashedl'])
@@ -691,13 +791,30 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                               _("Families will show up as ellipses, linked "
                                 "to parents and children."))
 
-        # Page options tab
+        # Page/layout options tab
+        self.rank_box = self.add_list(_options.rankdir,
+                                        self.options_dict['rankdir'])
+        dialog.add_frame_option(_("Layout Options"),
+                              _("Graph direction"),
+                              self.rank_box,
+                              _("Whether generations go from top to bottom "
+                                "or left to right."))
+
+        self.ratio_box = self.add_list(_options.ratio,
+                                        self.options_dict['ratio'])
+        dialog.add_frame_option(_("Layout Options"),
+                              _("Aspect ratio"),
+                              self.ratio_box,
+                              _("Affects greatly how the graph is layed out "
+                                "on the page. Multiple pages overrides the "
+                                "pages settings below."))
+
         margin_adj = gtk.Adjustment(value=self.options_dict['margin'],
                         lower=0.0, upper=10.0, step_incr=1.0)
 
         self.margin_sb = gtk.SpinButton(adjustment=margin_adj, digits=1)
 
-        dialog.add_frame_option(_("Page Options"),
+        dialog.add_frame_option(_("Layout Options"),
                               _("Margin size"),
                               self.margin_sb)
 
@@ -709,14 +826,14 @@ class GraphVizOptions(ReportOptions.ReportOptions):
         self.hpages_sb = gtk.SpinButton(adjustment=hpages_adj, digits=0)
         self.vpages_sb = gtk.SpinButton(adjustment=vpages_adj, digits=0)
 
-        dialog.add_frame_option(_("Page Options"),
+        dialog.add_frame_option(_("Layout Options"),
                               _("Number of Horizontal Pages"),
                               self.hpages_sb,
                               _("GraphViz can create very large graphs by "
                                 "spreading the graph across a rectangular "
                                 "array of pages. This controls the number "
                                 "pages in the array horizontally."))
-        dialog.add_frame_option(_("Page Options"),
+        dialog.add_frame_option(_("Layout Options"),
                               _("Number of Vertical Pages"),
                               self.vpages_sb,
                               _("GraphViz can create very large graphs "
@@ -724,6 +841,41 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                                 "rectangular array of pages. This "
                                 "controls the number pages in the array "
                                 "vertically."))
+        self.pagedir_box = self.add_list(_options.pagedir,
+                                        self.options_dict['pagedir'])
+        dialog.add_frame_option(_("Layout Options"),
+                              _("Paging direction"),
+                              self.pagedir_box,
+                              _("The order in which the graph pages are output."))
+
+        # Notes tab
+        self.textbox = gtk.TextView()
+        self.textbox.get_buffer().set_text(self.options_dict['note'])
+        self.textbox.set_editable(1)
+        swin = gtk.ScrolledWindow()
+        swin.set_shadow_type(gtk.SHADOW_IN)
+        swin.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        swin.add(self.textbox)
+        dialog.add_frame_option(_("Notes"),
+                              _("Note to add to the graph"),
+                              swin,
+                              _("This text will be added to the graph."))
+        self.noteloc_box = self.add_list(_options.noteloc,
+                                        self.options_dict['noteloc'])
+        dialog.add_frame_option(_("Notes"),
+                              _("Note location"),
+                              self.noteloc_box,
+                              _("Whether note will appear on top "
+                                "or bottom of the page."))
+
+	notesize_adj = gtk.Adjustment(value=self.options_dict['notesize'],
+                    lower=8, upper=128, step_incr=1)
+        self.notesize_sb = gtk.SpinButton(adjustment=notesize_adj, digits=0)
+        dialog.add_frame_option(_("Notes"),
+                              _("Note size (in points)"),
+                              self.notesize_sb,
+                              _("The size of note text, in points."))
+
 
     def toggle_date(self, obj):
         self.just_years_cb.set_sensitive(self.includedates_cb.get_active())
@@ -740,6 +892,8 @@ class GraphVizOptions(ReportOptions.ReportOptions):
         self.options_dict['incid'] = int(self.includeid_cb.get_active())
         self.options_dict['justyears'] = int(self.just_years_cb.get_active())
         self.options_dict['placecause'] = int(self.place_cause_cb.get_active())
+        self.options_dict['ratio'] = \
+                _options.ratio[self.ratio_box.get_active()][0]
         self.options_dict['rankdir'] = \
                 _options.rankdir[self.rank_box.get_active()][0]
         self.options_dict['color'] = \
@@ -748,8 +902,15 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                 _options.arrowstyles[self.arrowstyle_box.get_active()][0]
         self.options_dict['font'] = \
                 _options.fonts[self.font_box.get_active()][0]
-        self.options_dict['latin'] = \
-                _options.fonts[self.font_box.get_active()][3]
+        self.options_dict['pagedir'] = \
+                _options.pagedir[self.pagedir_box.get_active()][0]
+        self.options_dict['noteloc'] = \
+                _options.noteloc[self.noteloc_box.get_active()][0]
+        self.options_dict['notesize'] = self.notesize_sb.get_value_as_int()
+        b = self.textbox.get_buffer()
+        self.options_dict['note'] = \
+                b.get_text(b.get_start_iter(), b.get_end_iter(), False)
+
         if self.handler.module_name == "rel_graph2":
             self.options_dict['gvof'] = dialog.format_menu.get_format_str()
 
@@ -837,7 +998,24 @@ class FormatComboBox(gtk.ComboBox):
         return '.dot'
 
     def get_printable(self):
-        return None
+        _apptype = _options.formats[self.get_active()][3]
+        print_label = None
+
+        try:
+            import Utils
+            import GrampsMime
+    
+            mprog = GrampsMime.get_application(_apptype)
+    
+            if Utils.search_for(mprog[0]):
+                print_label = _("Open in %(program_name)s") % { 'program_name':
+                                                        mprog[1]}
+            else:
+                print_label = None
+        except:
+            print_label = None
+
+        return print_label
 
     def get_clname(self):
         return 'dot'
@@ -907,7 +1085,6 @@ class GraphicsFormatComboBox(gtk.ComboBox):
 class EmptyDoc:
     def __init__(self,styles,type,template,orientation,source=None):
         self.print_req = 0
-        pass
 
     def init(self):
         pass
@@ -955,9 +1132,31 @@ class GraphVizGraphics(Report.Report):
         GraphViz(self.database,self.start_person,self.options_class)
 
     def end_report(self):
-        os.system('dot -T%s -o%s %s ; rm %s' %
-                    (self.the_format,self.user_output,
-                    self.junk_output,self.junk_output))
+    	if self.the_format == "pdf":
+            command = ('dot -Tps %s | ' + _pdf_pipe + ' ; rm %s') % \
+                      (self.junk_output,self.user_output,self.junk_output)
+    	    os.system(command)
+    	else:
+    	    os.system('dot -T%s -o%s %s ; rm %s' %
+    	    	(self.the_format,self.user_output,
+    		self.junk_output,self.junk_output))
+
+        if self.doc.print_req:
+            _apptype = None
+            for format in _options.formats:
+                if format[0] == self.the_format:
+                    _apptype = format[3]
+                    break
+            if _apptype:
+                try:
+                    import Utils
+                    import GrampsMime
+            
+                    app = GrampsMime.get_application(_apptype)
+                    os.environ["FILE"] = self.user_output
+                    os.system ('%s "$FILE" &' % app[0])
+                except:
+                    pass
 
         if self.doc.print_req:
             _apptype = None
@@ -1011,7 +1210,7 @@ register_report(
     author_email="don@gramps-project.org"
     )
 
-if dot_found:
+if _dot_found:
     register_report(
         name = 'rel_graph2',
         category = Report.CATEGORY_DRAW,

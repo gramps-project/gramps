@@ -135,8 +135,11 @@ class ArgHandler:
             o,v = options[opt_ix]
             if o in ( '-O', '--open'):
                 fname = v
-                ftype = Mime.get_type(
-                    os.path.abspath(os.path.expanduser(fname)))
+                fullpath = os.path.abspath(os.path.expanduser(fname))
+                if not os.path.exists(fullpath):
+                    print "Input file does not exist:  %s" % fullpath
+                    continue
+                ftype = Mime.get_type(fullpath)
                 if opt_ix<len(options)-1 \
                             and options[opt_ix+1][0] in ( '-f', '--format'): 
                     format = options[opt_ix+1][1]
@@ -151,14 +154,19 @@ class ArgHandler:
                 elif ftype == const.app_gramps:
                     format = 'grdb'
                 else:
-                    print "Unrecognized format for input file %s" % fname
+                    print 'Unrecognized type: "%s" for input file: %s' \
+                          % (ftype,fname)
                     print "Ignoring input file:  %s" % fname
                     continue
                 self.open = (fname,format)
             elif o in ( '-i', '--import'):
                 fname = v
-                ftype = Mime.get_type(
-                    os.path.abspath(os.path.expanduser(fname)))
+                fullpath = os.path.abspath(os.path.expanduser(fname))
+                if not os.path.exists(fullpath):
+                    print "Input file does not exist:  %s" % fullpath
+                    continue
+                ftype = Mime.get_type(fullpath)
+
                 if opt_ix<len(options)-1 \
                             and options[opt_ix+1][0] in ( '-f', '--format'): 
                     format = options[opt_ix+1][1]
@@ -181,12 +189,25 @@ class ArgHandler:
                 elif ftype == const.app_geneweb:
                     format = 'geneweb'
                 else:
-                    print "Unrecognized format for input file %s" % fname
+                    print 'Unrecognized type: "%s" for input file: %s' \
+                          % (ftype,fname)
                     print "Ignoring input file:  %s" % fname
                     continue
                 self.imports.append((fname,format))
             elif o in ( '-o', '--output' ):
                 outfname = v
+                fullpath = os.path.abspath(os.path.expanduser(outfname))
+                if os.path.exists(fullpath):
+                    print "WARNING: Output file already exist!"
+                    print "WARNING: It will be overwritten:\n   %s" % fullpath
+                    answer = None
+                    while not answer:
+                        answer = raw_input('OK to overwrite?  ')
+                    if answer.upper() in ('Y','YES'):
+                        print "Will overwrite the existing file: %s" % fullpath
+                    else:
+                        print "Will skip the output file: %s" % fullpath
+                        continue
                 if opt_ix<len(options)-1 \
                             and options[opt_ix+1][0] in ( '-f', '--format'): 
                     outformat = options[opt_ix+1][1]
@@ -422,9 +443,11 @@ class ArgHandler:
             from GrampsDb import GedcomParser
             filename = os.path.normpath(os.path.abspath(filename))
             try:
+                np = ReadGedcom.NoteParser(filename, False, None)
+                g = ReadGedcom.GedcomParser(self.parent.db,filename,None,None,
+                                            np.get_map(),np.get_lines())
                 g = GedcomParser(self.state.db,filename,None)
                 g.parse_gedcom_file()
-                g.resolve_refns()
                 del g
             except:
                 print "Error importing %s" % filename
@@ -487,10 +510,13 @@ class ArgHandler:
                 print "Error importing %s" % filename
                 os._exit(1)
             # Clean up tempdir after ourselves
-            files = os.listdir(tmpdir_path) 
-            for fn in files:
-                os.remove(os.path.join(tmpdir_path,fn))
-            os.rmdir(tmpdir_path)
+            #     THIS HAS BEEN CHANGED, because now we want to keep images
+            #     stay after the import is over. Just delete the XML file.
+            os.remove(dbname)
+##             files = os.listdir(tmpdir_path) 
+##             for fn in files:
+##                 os.remove(os.path.join(tmpdir_path,fn))
+##             os.rmdir(tmpdir_path)
         else:
             print "Invalid format:  %s" % format
             os._exit(1)

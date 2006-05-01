@@ -154,7 +154,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         other_birth_event = other_person.get_birth()
         other_birth_date = other_birth_event.get_date_object()
         if (orig_birth_date == "")or(other_birth_date == "") :return 0
-        else  :return RelLib.Date.compare_dates(orig_birth_date,other_birth_date)
+        else  :return orig_birth_date>other_birth_date
           
 
     def get_age_brother (self,level):
@@ -203,7 +203,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     family = self.db.get_family_from_handle(g)
                     if family:
                         if sp_id in family.get_child_handle_list(): 
-                            return [sp]
+                            return [sp_id]
         return []
 
     #------------------------------------------------------------------------
@@ -246,7 +246,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 if family:
                     c = family.get_child_handle_list()
                 if (other.get_handle() in c) and (sp_id in c): 
-                    return [sp]
+                    return [sp_id]
         return []
 
     #-------------------------------------------------------------------------
