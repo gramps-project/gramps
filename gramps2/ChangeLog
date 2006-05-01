@@ -1,3 +1,7 @@
+2006-05-01  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py (PersonView.define_actions): add
+	expand and collapse all node menu entries
+
 2006-05-01  Alex Roitman  <shura@gramps-project.org>
 	* various: merge changes from gramps20.
 
