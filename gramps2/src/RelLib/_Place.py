@@ -100,7 +100,7 @@ class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
                 MediaBase.serialize(self),
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
-                self.change, self.marker,self.private)
+                self.change, self.marker.serialize() ,self.private)
 
     def unserialize(self,data):
         """
@@ -113,13 +113,14 @@ class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
         """
         (self.handle, self.gramps_id, self.title, self.long, self.lat,
          main_loc, alt_loc, urls, media_list, source_list, note,
-         self.change, self.marker, self.private) = data
+         self.change, marker, self.private) = data
 
         if main_loc == None:
             self.main_loc = None
         else:
             self.main_loc = Location().unserialize(main_loc)
         self.alt_loc = [Location().unserialize(al) for al in alt_loc]
+        self.marker.unserialize(marker)
         UrlBase.unserialize(self,urls)
         MediaBase.unserialize(self,media_list)
         SourceBase.unserialize(self,source_list)

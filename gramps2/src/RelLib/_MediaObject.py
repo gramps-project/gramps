@@ -101,7 +101,9 @@ class MediaObject(PrimaryObject,SourceBase,NoteBase,DateBase,AttributeBase):
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
                 self.change,
-                DateBase.serialize(self), self.marker, self.private)
+                DateBase.serialize(self),
+                self.marker.serialize(),
+                self.private)
 
     def unserialize(self,data):
         """
@@ -113,8 +115,9 @@ class MediaObject(PrimaryObject,SourceBase,NoteBase,DateBase,AttributeBase):
         """
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
          attribute_list, source_list, note, self.change,
-         date, self.marker, self.private) = data
+         date, marker, self.private) = data
 
+        self.marker.unserialize(marker)
         AttributeBase.unserialize(self,attribute_list)
         SourceBase.unserialize(self,source_list)
         NoteBase.unserialize(self,note)

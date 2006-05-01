@@ -104,7 +104,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
                 MediaBase.serialize(self),
-                self.change, self.marker, self.private)
+                self.change, self.marker.serialize(), self.private)
 
     def unserialize(self,data):
         """
@@ -118,8 +118,9 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         (self.handle, self.gramps_id, the_type, date,
          self.description, self.place, self.cause,
          source_list, note, media_list,
-         self.change, self.marker, self.private) = data
+         self.change, marker, self.private) = data
 
+        self.marker.unserialize(marker)
         self.type.unserialize(the_type)
         DateBase.unserialize(self,date)
         MediaBase.unserialize(self,media_list)
