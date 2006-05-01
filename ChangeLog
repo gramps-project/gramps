@@ -5,6 +5,18 @@
 	expand and collapse all node menu entries
 
 2006-05-01  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py (find_backlink_handles): Correctly
+	loop over all primary classes looking for a given handle.
+	* src/RelLib/_Source.py (serialize, unserialize): properly save
+	and restore marker.
+	* src/RelLib/_MediaObject.py (serialize, unserialize): properly
+	save and restore marker.
+	* src/RelLib/_Place.py (serialize, unserialize): properly save and
+	restore marker.
+	* src/RelLib/_Repository.py (serialize, unserialize): properly
+	save and restore marker.
+	* src/RelLib/_Event.py (serialize, unserialize): properly save and
+	restore marker.
 	* various: merge changes from gramps20.
 
 2006-04-30  Alex Roitman  <shura@gramps-project.org>

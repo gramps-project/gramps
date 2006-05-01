@@ -63,7 +63,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
                 MediaBase.serialize(self), unicode(self.abbrev),
                 self.change,self.datamap,
                 [rr.serialize() for rr in self.reporef_list],
-                self.marker,self.private)
+                self.marker.serialize(),self.private)
 
     def unserialize(self,data):
         """
@@ -73,8 +73,9 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         (self.handle, self.gramps_id, self.title, self.author,
          self.pubinfo, note, media_list,
          self.abbrev, self.change, self.datamap, reporef_list,
-         self.marker, self.private) = data
+         marker, self.private) = data
 
+        self.marker.unserialize(marker)
         NoteBase.unserialize(self,note)
         MediaBase.unserialize(self,media_list)
         self.reporef_list = [RepoRef().unserialize(rr) for rr in reporef_list]

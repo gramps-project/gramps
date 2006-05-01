@@ -1905,26 +1905,28 @@ class GrampsDbBase(GrampsDBCallback):
 
 
         # Now we use the functions and classes defined above to loop through
-        # each of the primary object tables that have been requests in the
-        #include_classes list.
+        # each of the existing primary object tables
         for primary_table_name in primary_tables.keys():
-            
-            if include_classes == None or primary_table_name in include_classes:
-                
-                cursor = primary_tables[primary_table_name]['cursor_func']()
-                data = cursor.first()
+            cursor = primary_tables[primary_table_name]['cursor_func']()
+            data = cursor.first()
 
-                # Grap the real object class here so that the lookup does
-                # not happen inside the main loop.
-                class_func = primary_tables[primary_table_name]['class_func']
+            # Grab the real object class here so that the lookup does
+            # not happen inside the main loop.
+            class_func = primary_tables[primary_table_name]['class_func']
+
+            while data:
+                found_handle, val = data
+                obj = class_func()
+                obj.unserialize(val)
+
+                # Now we need to loop over all object types
+                # that have been requests in the include_classes list
+                for classname in primary_tables.keys():
+                    if (include_classes == None) \
+                           or (classname in include_classes):
                 
-                while data:
-                    found_handle, val = data
-                    obj = class_func()
-                    obj.unserialize(val)
-                    
-                    if obj.has_source_reference(handle):
-                        yield (primary_table_name, found_handle)
+                        if obj.has_handle_reference(classname,handle):
+                            yield (primary_table_name, found_handle)
                         
                     data = cursor.next()
                     
