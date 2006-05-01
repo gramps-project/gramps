@@ -1,3 +1,6 @@
+2006-04-30  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Verify.py (Verify.run_tool): Typo.
+	
 2006-04-30  Don Allingham  <don@gramps-project.org>
 	* src/DataViews.py/_PersonView.py: don't add handles of top level
 	objects

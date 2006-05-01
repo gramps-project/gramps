@@ -221,17 +221,17 @@ class Verify(Tool.Tool, ManagedWindow.ManagedWindow):
             if birth_ref:
                 birth_handle = birth_ref.ref
             else:
-                birth_ref = None
+                birth_handle = None
 
             death_ref = person.get_death_ref()
             if death_ref:
                 death_handle = death_ref.ref
             else:
-                death_ref = None
+                death_handle = None
                 
             byear = self.get_year( birth_handle )
             bapyear = 0
-            dyear = self.get_year( birth_handle )
+            dyear = self.get_year( death_handle )
             buryear = 0
 
             for event_ref in person.get_event_ref_list():
