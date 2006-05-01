@@ -114,6 +114,10 @@ class PersonView(PageView.PersonNavView):
                         callback=self.edit)
         self.add_action('Remove', gtk.STOCK_REMOVE, "_Remove",
                         callback=self.remove)
+        self.add_action('OpenAllNodes', None, "Expand all nodes",
+                        callback=self.open_all_nodes)
+        self.add_action('CloseAllNodes', None, "Close all nodes",
+                        callback=self.close_all_nodes)
         self.add_action('Jump', None, "_Jump",
                         accel="<control>j",callback=self.jumpto)
 
@@ -249,6 +253,9 @@ class PersonView(PageView.PersonNavView):
             <menuitem action="Back"/>
             <menuitem action="Forward"/>
             <menuitem action="HomePerson"/>
+            <separator/>
+            <menuitem action="OpenAllNodes"/>
+            <menuitem action="CloseAllNodes"/>
             <separator/>
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
@@ -401,6 +408,12 @@ class PersonView(PageView.PersonNavView):
                            self.dbstate.active)
             except Errors.WindowActiveError:
                 pass
+
+    def open_all_nodes(self,obj):
+        self.tree.expand_all()
+
+    def close_all_nodes(self,obj):
+        self.tree.collapse_all()
 
     def remove(self,obj):
         mlist = self.get_selected_objects()
