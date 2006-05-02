@@ -270,7 +270,7 @@ class PersonNavView(BookMarkView):
 
         self.fwd_action = gtk.ActionGroup(self.title + '/Forward')
         self.fwd_action.add_actions([
-            ('Forward',gtk.STOCK_GO_FORWARD,)("_Forward"),
+            ('Forward',gtk.STOCK_GO_FORWARD,_("_Forward"),
             None, None, self.fwd_clicked)
             ])
 
