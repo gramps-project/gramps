@@ -524,7 +524,8 @@ class PedigreeView(PageView.PersonNavView):
         """
 
         PageView.PersonNavView.define_actions(self)
-        self.add_action('HomePerson',gtk.STOCK_HOME,  "_Home",  callback=self.home)
+        self.add_action('HomePerson',gtk.STOCK_HOME,_("_Home"),
+                        callback=self.home)
 
     def build_tree(self):
         """

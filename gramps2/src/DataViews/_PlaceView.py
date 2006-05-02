@@ -1,6 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2005  Donald N. Allingham
+# Copyright (C) 2001-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -91,7 +91,7 @@ class PlaceView(PageView.ListView):
     def define_actions(self):
         PageView.ListView.define_actions(self)
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        '_Column Editor', callback=self.column_editor)
+                        _('_Column Editor'), callback=self.column_editor)
 
     def column_editor(self,obj):
         import ColumnOrder
