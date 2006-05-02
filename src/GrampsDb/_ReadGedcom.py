@@ -1207,7 +1207,7 @@ class GedcomParser:
             else:
                 new_note = u""
         else:
-            new_note = matches[2] + self.parse_continue_data(level)
+            new_note = matches[2]
             self.ignore_sub_junk(level+1)
         if old_note:
             note = u"%s\n%s" % (old_note,matches[2])
