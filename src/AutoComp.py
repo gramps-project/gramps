@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2005  Donald N. Allingham
+# Copyright (C) 2002-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -180,7 +180,7 @@ class StandardCustomSelector:
                 elif type(event_type) == tuple:
                     self.store.append(row=[event_type[0], event_type[1]])
                 else:
-                    self.store.append(row=[int(event_type), str(event_type[1])])
+                    self.store.append(row=[int(event_type), str(event_type)])
                 if key == self.active_key:
                     self.active_index = index
                 index = index + 1
