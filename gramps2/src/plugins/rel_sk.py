@@ -31,7 +31,7 @@
 import RelLib
 import Relationship
 import types
-from gettext import gettext as _
+from PluginUtils import register_relcalc
 
 #-------------------------------------------------------------------------
 #
@@ -225,7 +225,5 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 # Register this class with the Plugins system 
 #
 #-------------------------------------------------------------------------
-from PluginMgr import register_relcalc
-
 register_relcalc(RelationshipCalculator,
     ["sk", "SK", "sk_SK", "slovensky", "slovak", "Slovak", "sk_SK.UTF8", "sk_SK.UTF-8", "sk_SK.utf-8", "sk_SK.utf8"])
