@@ -1496,18 +1496,19 @@ class GrampsBSDDB(GrampsDbBase):
                                      % witness.comment
                     event.set_note(note_text)
                 elif witness.type == 1:   # witness ID recorded
-                    # Add an EventRef from that person
-                    # to this event using ROLE_WITNESS role
-                    event_ref = EventRef()
-                    event_ref.ref = event.handle
-                    event_ref.role.set(EventRoleType.WITNESS)
-                    # Add privacy and comment
-                    event_ref.private = witness.private
-                    if witness.comment:
-                        event_ref.set_note(witness.comment)
                     person = self.get_person_from_handle(witness.val)
-                    person.event_ref_list.append(event_ref)
-                    self.commit_person(person,trans)
+                    if person:
+                        # Add an EventRef from that person
+                        # to this event using ROLE_WITNESS role
+                        event_ref = EventRef()
+                        event_ref.ref = event.handle
+                        event_ref.role.set(EventRoleType.WITNESS)
+                        # Add privacy and comment
+                        event_ref.private = witness.private
+                        if witness.comment:
+                            event_ref.set_note(witness.comment)
+                        person.event_ref_list.append(event_ref)
+                        self.commit_person(person,trans)
             self.commit_event(event,trans)
             current += 1
             self.update(100*current/length)
