@@ -1509,6 +1509,14 @@ class GrampsBSDDB(GrampsDbBase):
                             event_ref.set_note(witness.comment)
                         person.event_ref_list.append(event_ref)
                         self.commit_person(person,trans)
+                    else:
+                        # Broken witness: dangling witness handle
+                        # with no corresponding person in the db
+                        note_text = event.get_note() + "\n" + \
+                                    _("Broken witness reference detected "
+                                      "while upgrading database to version 9.")
+                        event.set_note(note_text)
+                         
             self.commit_event(event,trans)
             current += 1
             self.update(100*current/length)

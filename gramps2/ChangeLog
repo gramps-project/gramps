@@ -1,3 +1,7 @@
+2006-05-02  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Add broken
+	witness note.
+
 2006-05-01  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py: view specific key mapping support
 	* src/ViewManager.py: remember last View
