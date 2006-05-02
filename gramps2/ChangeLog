@@ -1,4 +1,6 @@
 2006-05-02  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib/_BaseObject.py (PrivacyBase): Remove class, as it
+	already has its own module.
 	* src/AutoComp.py (StandardCustomSelector.fill): Adapt to new types.
 	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Add broken
 	witness note.
