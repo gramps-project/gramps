@@ -16,6 +16,18 @@
       </schema>
 
       <schema>
+        <key>/schemas/apps/gramps/preferences/family-warn</key>
+        <applyto>/apps/gramps/preferences/family-warn</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>1</default>
+        <locale name="C">
+          <short>Warn when adding parents in a way that may cause duplicate families.</short>
+          <long>If set to True, a warning dialog will be displayed whenever the user is a risk of creating a duplicate family when adding parents to a person.</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/preferences/last-view</key>
         <applyto>/apps/gramps/preferences/last-view</applyto>
         <owner>gramps</owner>

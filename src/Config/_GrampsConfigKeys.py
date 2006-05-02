@@ -1,4 +1,5 @@
 FAMILY_DETAILS       = ('preferences','family-details', 0)
+FAMILY_WARN          = ('preferences','family-warn', 0)
 LAST_VIEW            = ('preferences','last-view', 1)
 FAMILY_SIBLINGS      = ('preferences','family-siblings', 0)
 AUTOLOAD             = ('behavior','autoload', 0)
@@ -47,6 +48,7 @@ WEBSITE_DIRECTORY    = ('paths','website-directory', 2)
 
 default_value = {
     FAMILY_DETAILS       : True,
+    FAMILY_WARN          : True,
     LAST_VIEW            : 0,
     FAMILY_SIBLINGS      : True,
     AUTOLOAD             : False,
