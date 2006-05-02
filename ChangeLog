@@ -10,6 +10,7 @@
 	expand and collapse all node menu entries
 
 2006-05-01  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/rel_sk.py: Typo.
 	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Skip broken witness.
 	* src/GrampsDb/_GrampsDbBase.py (find_backlink_handles): Correctly
 	loop over all primary classes looking for a given handle.
