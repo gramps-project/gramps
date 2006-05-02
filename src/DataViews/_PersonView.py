@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -114,23 +114,23 @@ class PersonView(PageView.PersonNavView):
 
         PageView.PersonNavView.define_actions(self)
         
-        self.add_action('Add', gtk.STOCK_ADD, "_Add",
+        self.add_action('Add', gtk.STOCK_ADD, _("_Add"),
                         callback=self.add)
-        self.add_action('Edit', gtk.STOCK_EDIT, "_Edit",
+        self.add_action('Edit', gtk.STOCK_EDIT, _("_Edit"),
                         callback=self.edit)
-        self.add_action('Remove', gtk.STOCK_REMOVE, "_Remove",
+        self.add_action('Remove', gtk.STOCK_REMOVE, _("_Remove"),
                         callback=self.remove)
-        self.add_action('OpenAllNodes', None, "Expand all nodes",
+        self.add_action('OpenAllNodes', None, _("Expand all nodes"),
                         callback=self.open_all_nodes)
-        self.add_action('CloseAllNodes', None, "Close all nodes",
+        self.add_action('CloseAllNodes', None, _("Close all nodes"),
                         callback=self.close_all_nodes)
-        self.add_action('Jump', None, "_Jump",
+        self.add_action('Jump', None, _("_Jump"),
                         accel="<control>j",callback=self.jumpto)
 
-        self.add_toggle_action('Filter', None, '_Filter', None, None,
+        self.add_toggle_action('Filter', None, _('_Filter'), None, None,
                                self.filter_toggle)
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        '_Column Editor', callback=self.column_editor)
+                        _('_Column Editor'), callback=self.column_editor)
 
     def column_editor(self,obj):
         import ColumnOrder

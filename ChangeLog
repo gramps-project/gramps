@@ -10,6 +10,18 @@
 	expand and collapse all node menu entries
 
 2006-05-01  Alex Roitman  <shura@gramps-project.org>
+	* src/DataViews/_PedigreeView.py (define_actions): Translate labels.
+	* src/DataViews/_SourceView.py (define_actions): Translate labels.
+	* src/DataViews/_PlaceView.py (define_actions): Translate labels.
+	* src/DataViews/_MediaView.py (define_actions): Translate labels.
+	* src/DataViews/_RepositoryView.py (define_actions): Translate labels.
+	* src/DataViews/_MapView.py (define_actions): Translate labels.
+	* src/DataViews/_EventView.py (define_actions): Translate labels.
+	* src/DataViews/_PersonView.py (define_actions) Translate labels.
+	* src/PageView.py (BookMarkView.define_actions,
+	PersonNavView.define_actions, ListView.define_actions): Translate
+	labels.
+
 	* src/plugins/rel_sk.py: Typo.
 	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Skip broken witness.
 	* src/GrampsDb/_GrampsDbBase.py (find_backlink_handles): Correctly

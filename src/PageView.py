@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2005  Donald N. Allingham
+# Copyright (C) 2001-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -239,9 +239,9 @@ class BookMarkView(PageView):
     def define_actions(self):
         self.book_action = gtk.ActionGroup(self.title + '/Bookmark')
         self.book_action.add_actions([
-            ('AddBook', gtk.STOCK_INDEX, '_Add bookmark', '<control>d', None,
+            ('AddBook',gtk.STOCK_INDEX,_('_Add bookmark'),'<control>d',None,
              self.add_bookmark), 
-            ('EditBook', None, '_Edit bookmarks', '<control>b', None,
+            ('EditBook',None,_('_Edit bookmarks'),'<control>b',None,
              self.edit_bookmarks),
             ])
 
@@ -270,18 +270,20 @@ class PersonNavView(BookMarkView):
 
         self.fwd_action = gtk.ActionGroup(self.title + '/Forward')
         self.fwd_action.add_actions([
-            ('Forward',gtk.STOCK_GO_FORWARD,"_Forward", None, None, self.fwd_clicked)
+            ('Forward',gtk.STOCK_GO_FORWARD,)("_Forward"),
+            None, None, self.fwd_clicked)
             ])
 
         # add the Backward action group to handle the Forward button
         self.back_action = gtk.ActionGroup(self.title + '/Backward')
         self.back_action.add_actions([
-            ('Back',gtk.STOCK_GO_BACK,"_Back", None, None, self.back_clicked)
+            ('Back',gtk.STOCK_GO_BACK,_("_Back"),
+             None, None, self.back_clicked)
             ])
 
-        self.add_action('HomePerson', gtk.STOCK_HOME, "_Home",
+        self.add_action('HomePerson', gtk.STOCK_HOME, _("_Home"),
                         callback=self.home)
-        self.add_action('SetActive', gtk.STOCK_HOME, "Set _Home Person",
+        self.add_action('SetActive', gtk.STOCK_HOME, _("Set _Home Person"),
                         callback=self.set_default_person)
 
         self.add_action_group(self.back_action)
@@ -647,10 +649,11 @@ class ListView(BookMarkView):
         
         BookMarkView.define_actions(self)
 
-        self.add_action('Add',   gtk.STOCK_ADD,   "_Add",   callback=self.add)
-        self.add_action('Edit',  gtk.STOCK_EDIT,  "_Edit",  callback=self.edit)
-        self.add_action('Remove',gtk.STOCK_REMOVE,"_Remove",callback=self.remove)
-        self.add_toggle_action('Filter', None, '_Filter',
+        self.add_action('Add', gtk.STOCK_ADD, _("_Add"),   callback=self.add)
+        self.add_action('Edit', gtk.STOCK_EDIT,_("_Edit"), callback=self.edit)
+        self.add_action('Remove',gtk.STOCK_REMOVE,_("_Remove"),
+                        callback=self.remove)
+        self.add_toggle_action('Filter', None, _('_Filter'),
                                callback=self.filter_toggle)
 
     def button_press(self,obj,event):

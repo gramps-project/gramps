@@ -572,13 +572,13 @@ class MapView(PageView.PageView):
 
     def define_actions(self):
         self.add_action('ZoomIn',gtk.STOCK_ZOOM_IN,
-                        "Zoom _In",callback=self.zoom_in_cb)
+                        _("Zoom _In"),callback=self.zoom_in_cb)
         self.add_action('ZoomOut',gtk.STOCK_ZOOM_OUT,
-                        "Zoom _Out",callback=self.zoom_out_cb)
+                        _("Zoom _Out"),callback=self.zoom_out_cb)
         self.add_action('ZoomNormal',gtk.STOCK_ZOOM_100,
-                        "_Normal Size", callback=self.zoom_100_cb)
+                        _("_Normal Size"), callback=self.zoom_100_cb)
         self.add_action('ZoomFit',gtk.STOCK_ZOOM_FIT,
-                        "Best _Fit",callback=self.zoom_fit_cb)
+                        _("Best _Fit"),callback=self.zoom_fit_cb)
 
     def get_stock(self):
         """
