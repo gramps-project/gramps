@@ -87,6 +87,12 @@ class PersonView(PageView.PersonNavView):
         dbstate.connect('database-changed',self.change_db)
         dbstate.connect('active-changed',self.goto_active_person)
         self.handle_col = PeopleModel.COLUMN_INT_ID
+        self.model = None
+
+        self.func_list = {
+            'F2' : self.key_goto_home_person,
+            'F3' : self.key_edit_selected_person,
+            }
         
     def change_page(self):
         pass
@@ -313,18 +319,19 @@ class PersonView(PageView.PersonNavView):
         # select the active person in the person view
         p = self.dbstate.active
         try:
-            path = self.model.on_get_path(p.get_handle())
-            group_name = p.get_primary_name().get_group_name()
-            top_name = self.dbstate.db.get_name_group_mapping(group_name)
-            top_path = self.model.on_get_path(top_name)
-            self.tree.expand_row(top_path,0)
+            if self.model:
+                path = self.model.on_get_path(p.get_handle())
+                group_name = p.get_primary_name().get_group_name()
+                top_name = self.dbstate.db.get_name_group_mapping(group_name)
+                top_path = self.model.on_get_path(top_name)
+                self.tree.expand_row(top_path,0)
 
-            current = self.model.on_get_iter(path)
-            selected = self.selection.path_is_selected(path)
-            if current != p.get_handle() or not selected:
-                self.selection.unselect_all()
-                self.selection.select_path(path)
-                self.tree.scroll_to_cell(path,None,1,0.5,0)
+                current = self.model.on_get_iter(path)
+                selected = self.selection.path_is_selected(path)
+                if current != p.get_handle() or not selected:
+                    self.selection.unselect_all()
+                    self.selection.select_path(path)
+                    self.tree.scroll_to_cell(path,None,1,0.5,0)
         except KeyError:
             self.selection.unselect_all()
             self.uistate.push_message(_("Active person not visible"))
@@ -681,3 +688,11 @@ class PersonView(PageView.PersonNavView):
                 menu.popup(None,None,None,event.button,event.time)
                 return True
         return False
+
+    def key_goto_home_person(self):
+        self.home(None)
+        self.uistate.push_message(_("Go to default person"))
+
+    def key_edit_selected_person(self):
+        self.edit(None)
+        self.uistate.push_message(_("Edit selected person"))

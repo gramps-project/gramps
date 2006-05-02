@@ -185,7 +185,6 @@ class ViewManager:
         self.active_page = None
         self.views = []
         self.pages = []
-        self.keypress_function = {}
         self.file_loaded = False
         self._build_main_window()
         self._connect_signals()
@@ -339,16 +338,16 @@ class ViewManager:
             ('ReportsMenu', None, _('_Reports')), 
             ('ToolsMenu', None, _('_Tools')), 
             ('WindowsMenu', None, _('_Windows')),
-            ('F2', None, None, "F2", None, self.keypress),
-            ('F3', None, None, "F3", None, self.keypress),
-            ('F4', None, None, "F4", None, self.keypress),
-            ('F5', None, None, "F5", None, self.keypress),
-            ('F6', None, None, "F6", None, self.keypress),
-            ('F7', None, None, "F7", None, self.keypress),
-            ('F8', None, None, "F8", None, self.keypress),
-            ('F9', None, None, "F9", None, self.keypress),
-            ('F11', None, None, "F11", None, self.keypress),
-            ('F12', None, None, "F12", None, self.keypress),
+            ('F2', None, 'F2', "F2", None, self.keypress),
+            ('F3', None, 'F3', "F3", None, self.keypress),
+            ('F4', None, 'F4', "F4", None, self.keypress),
+            ('F5', None, 'F5', "F5", None, self.keypress),
+            ('F6', None, 'F6', "F6", None, self.keypress),
+            ('F7', None, 'F7', "F7", None, self.keypress),
+            ('F8', None, 'F9', "F8", None, self.keypress),
+            ('F9', None, 'F9', "F9", None, self.keypress),
+            ('F11', None, 'F11', "F11", None, self.keypress),
+            ('F12', None, 'F12', "F12", None, self.keypress),
             ]
 
         self._file_toggle_action_list = [
@@ -374,17 +373,15 @@ class ViewManager:
 
     def keypress(self, action):
         name = action.get_name()
-        func = self.keypress_function.get(name)
-        if func:
-            func()
-        else:
+        try:
+            self.active_page.call_function(name)
+        except:
             self.uistate.push_message(_("Key %s is not bound") % name)
 
     def init_interface(self):
         self._init_lists()
 
         self.create_pages()
-        self.change_page(None, None)
         if not self.file_loaded:
             self.actiongroup.set_visible(False)
         self.fileactions.set_sensitive(False)
@@ -572,14 +569,19 @@ class ViewManager:
             self.bbox.pack_start(button, False)
             self.buttons.append(button)
 
-        self.active_page = self.pages[0]
-        self.buttons[0].set_active(True)
+        current = Config.get(Config.LAST_VIEW)
+        if current > len(self.pages):
+            current = 0
+
+        self.active_page = self.pages[current]
+        self.buttons[current].set_active(True)
         self.active_page.set_active()
+        self.notebook.set_current_page(current)
 
     def change_page(self, obj, page, num=-1):
         if num == -1:
             num = self.notebook.get_current_page()
-
+        
         for ix in range(len(self.buttons)):
             if ix != num and self.buttons[ix].get_active():
                 self.buttons[ix].set_active(False)
@@ -599,6 +601,9 @@ class ViewManager:
             if len(self.pages) > 0:
                 self.active_page = self.pages[num]
                 self.active_page.set_active()
+                Config.set(Config.LAST_VIEW,num)
+                Config.sync()
+                print "Saved as",Config.get(Config.LAST_VIEW)
                 
                 old_nav = self._navigation_type[self.prev_nav]
                 if old_nav[0] != None:

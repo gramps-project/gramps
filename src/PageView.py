@@ -74,6 +74,10 @@ class PageView:
         self.active = False
         self.handle_col = 0
         self.selection = None
+        self.func_list = {}
+
+    def call_function(self, key):
+        self.func_list.get(key)()
 
     def set_active(self):
         self.active = True

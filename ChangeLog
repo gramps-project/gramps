@@ -1,4 +1,9 @@
 2006-05-01  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: view specific key mapping support
+	* src/ViewManager.py: remember last View
+	* src/Config/GrampsConfigKeys.py: LAST_VIEW key
+	* src/PageView.py: key binding support
+	* data/gramps.schemas.in: LAST_VIEW key
 	* src/Editors/_EditPersonRef.py (EditPersonRef._select_person): fix
 	call to SelectPerson
 	* src/DataViews/_PersonView.py (PersonView.define_actions): add
