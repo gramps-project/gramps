@@ -1928,9 +1928,9 @@ class GrampsDbBase(GrampsDBCallback):
                         if obj.has_handle_reference(classname,handle):
                             yield (primary_table_name, found_handle)
                         
-                    data = cursor.next()
+                data = cursor.next()
                     
-                cursor.close()
+            cursor.close()
 
         return
         
