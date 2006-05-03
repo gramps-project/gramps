@@ -29,7 +29,7 @@ log = getLogger(".ObjectSelector")
 
 from GrampsWidgets import IntEdit
 from _FilterFrameBase import FilterFrameBase
-import GenericFilter
+from Filters import GenericFilter, Rules
 import RelLib
 
 class PersonFilterFrame(FilterFrameBase):
@@ -157,29 +157,29 @@ class PersonFilterFrame(FilterFrameBase):
         filter_label.set_alignment(xalign=0,yalign=0.5)
 
         default_filters = [
-            GenericFilter.Everyone,
-            GenericFilter.IsFemale,
-            GenericFilter.IsMale,
-            GenericFilter.HasUnknownGender,
-            GenericFilter.Disconnected,
-            GenericFilter.SearchName,
-            GenericFilter.HaveAltFamilies,
-            GenericFilter.HavePhotos,
-            GenericFilter.IncompleteNames,
-            GenericFilter.HaveChildren,
-            GenericFilter.NeverMarried,
-            GenericFilter.MultipleMarriages,
-            GenericFilter.NoBirthdate,
-            GenericFilter.PersonWithIncompleteEvent,
-            GenericFilter.FamilyWithIncompleteEvent,
-            GenericFilter.ProbablyAlive,
-            GenericFilter.PeoplePrivate,
-            GenericFilter.IsWitness, 
-            GenericFilter.HasTextMatchingSubstringOf, 
-            GenericFilter.HasTextMatchingRegexpOf, 
-            GenericFilter.HasNote, 
-            GenericFilter.HasNoteMatchingSubstringOf, 
-            GenericFilter.IsFemale,
+            Rules.Everyone,
+            Rules.IsFemale,
+            Rules.IsMale,
+            Rules.HasUnknownGender,
+            Rules.Disconnected,
+            Rules.SearchName,
+            Rules.HaveAltFamilies,
+            Rules.HavePhotos,
+            Rules.IncompleteNames,
+            Rules.HaveChildren,
+            Rules.NeverMarried,
+            Rules.MultipleMarriages,
+            Rules.NoBirthdate,
+            Rules.PersonWithIncompleteEvent,
+            Rules.FamilyWithIncompleteEvent,
+            Rules.ProbablyAlive,
+            Rules.PeoplePrivate,
+            Rules.IsWitness, 
+            Rules.HasTextMatchingSubstringOf, 
+            Rules.HasTextMatchingRegexpOf, 
+            Rules.HasNote, 
+            Rules.HasNoteMatchingSubstringOf, 
+            Rules.IsFemale,
             ]
 
         self._filter_list = gtk.ListStore(object,str)
@@ -362,22 +362,22 @@ class PersonFilterFrame(FilterFrameBase):
         self.emit('clear-filter')
 
     def on_apply(self,button=None):
-        filter = GenericFilter.GenericFilter()
+        filter = GenericFilter()
         
         if self._id_check.get_active():
-            filter.add_rule(GenericFilter.HasIdOf([self._id_edit.get_text()]))
+            filter.add_rule(Rules.HasIdOf([self._id_edit.get_text()]))
 
         if self._name_check.get_active():
-            filter.add_rule(GenericFilter.SearchName([self._name_edit.get_text()]))
+            filter.add_rule(Rules.SearchName([self._name_edit.get_text()]))
 
         if self._gender_check.get_active():
             gender = self._gender_list.get_value(self._gender_combo.get_active_iter(),1)
             if gender == RelLib.Person.MALE:
-                filter.add_rule(GenericFilter.IsMale([]))
+                filter.add_rule(Rules.IsMale([]))
             elif gender == RelLib.Person.FEMALE:
-                filter.add_rule(GenericFilter.IsFemale([]))
+                filter.add_rule(Rules.IsFemale([]))
             elif gender == RelLib.Person.UNKNOWN:
-                filter.add_rule(GenericFilter.HasUnknownGender([]))
+                filter.add_rule(Rules.HasUnknownGender([]))
             else:
                 log.warn("Received unknown gender from filter widget")
 
@@ -389,7 +389,7 @@ class PersonFilterFrame(FilterFrameBase):
                 date = "after " + self._b_edit.get_text()
             else:
                 log.warn("neither before or after is selected, this should not happen")
-            filter.add_rule(GenericFilter.HasBirth([date,'','']))
+            filter.add_rule(Rules.HasBirth([date,'','']))
                 
         if self._death_check.get_active():
             date = ""
@@ -399,7 +399,7 @@ class PersonFilterFrame(FilterFrameBase):
                 date = "after " + self._d_edit.get_text()
             else:
                 log.warn("neither before or after is selected, this should not happen")
-            filter.add_rule(GenericFilter.HasDeath([date,'','']))
+            filter.add_rule(Rules.HasDeath([date,'','']))
 
 
         if self._filter_check.get_active():

@@ -44,7 +44,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 #----------------------------------------------------------------
 import TreeTips
 import Bookmarks
-import GenericFilter
+from Filters import FilterWidget, Rules
 import const
 
 NAVIGATION_NONE   = -1
@@ -466,7 +466,7 @@ class ListView(BookMarkView):
         self.vbox.set_border_width(0)
         self.vbox.set_spacing(4)
         
-        self.generic_filter_widget = GenericFilter.FilterWidget( self.uistate, self.build_tree)
+        self.generic_filter_widget = FilterWidget( self.uistate, self.build_tree)
         filter_box = self.generic_filter_widget.build()
 
         self.list = gtk.TreeView()
@@ -527,10 +527,10 @@ class ListView(BookMarkView):
         Builds the default filters and add them to the filter menu.
         """
         default_filters = [
-            [GenericFilter.Everyone, []],
-            [GenericFilter.HasTextMatchingSubstringOf, ['',0,0]],
-            [GenericFilter.HasTextMatchingRegexpOf, ['',0,1]],
-            [GenericFilter.PeoplePrivate, []],
+            [Rules.Everyone, []],
+            [Rules.HasTextMatchingSubstringOf, ['',0,0]],
+            [Rules.HasTextMatchingRegexpOf, ['',0,1]],
+            [Rules.PeoplePrivate, []],
             ]
         self.generic_filter_widget.setup_filter( default_filters)        
 

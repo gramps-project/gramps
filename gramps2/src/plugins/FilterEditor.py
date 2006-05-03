@@ -20,7 +20,9 @@
 
 # $Id$
 
-"""Generic Filtering Routines"""
+"""
+Custom Filter Editor tool.
+"""
 
 __author__ = "Don Allingham"
 
@@ -56,7 +58,8 @@ import GrampsDisplay
 #
 #-------------------------------------------------------------------------
 import const
-import GenericFilter
+from Filters import GenericFilter, FilterList, Rules, \
+     reload_custom_filters, reload_system_filters
 import AutoComp
 import ListModel
 import Utils
@@ -325,7 +328,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
                                              FilterEditor)
         
         self.db = db
-        self.filterdb = GenericFilter.GenericFilterList(filterdb)
+        self.filterdb = FilterList(filterdb)
         self.filterdb.load()
 
         self.editor = gtk.glade.XML(const.rule_glade,'filter_list',"gramps")
@@ -365,8 +368,8 @@ class FilterEditor(ManagedWindow.ManagedWindow):
     def on_delete_event(self,obj,b):
         self.filterdb.save()
         self.remove_itself_from_menu()
-        GenericFilter.reload_custom_filters()
-        GenericFilter.reload_system_filters()
+        reload_custom_filters()
+        reload_system_filters()
 #        self.parent.init_filters()
 
     def add_itself_to_menu(self):
@@ -404,8 +407,8 @@ class FilterEditor(ManagedWindow.ManagedWindow):
     def close_filter_editor(self,obj):
         self.filterdb.save()
         self.window.destroy()
-        GenericFilter.reload_custom_filters()
-        GenericFilter.reload_system_filters()
+        reload_custom_filters()
+        reload_system_filters()
 #        self.parent.init_filters()
         
     def draw_filters(self):
@@ -414,8 +417,8 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             self.clist.add([f.get_name(),f.get_comment()],f)
 
     def add_new_filter(self,obj):
-        filter = GenericFilter.GenericFilter()
-        EditFilter(self,filter)
+        the_filter = GenericFilter()
+        EditFilter(self,the_filter)
 
     def edit_filter(self,obj):
         store,iter = self.clist.get_selected()
@@ -617,7 +620,7 @@ class EditRule:
         self.page = []
         self.class2page = {}
         the_map = {}
-        for class_obj in GenericFilter.editor_rule_list:
+        for class_obj in Rules.editor_rule_list:
             arglist = class_obj.labels
             vallist = []
             tlist = []

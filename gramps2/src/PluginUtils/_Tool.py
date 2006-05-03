@@ -42,7 +42,7 @@ log = logging.getLogger(".")
 #-------------------------------------------------------------------------
 import const
 import Utils
-import GenericFilter
+from Filters import CustomFilters
 import NameDisplay
 import Errors
 from _Options import *
@@ -191,7 +191,7 @@ class CommandLineTool:
             
             filt_list = [ filt.get_name() for filt in self.filters ]
             cust_filt_list = [ filt2.get_name() for filt2 in 
-                                GenericFilter.CustomFilters.get_filters() ]
+                               CustomFilters.get_filters() ]
             filt_list.extend(cust_filt_list)
             self.options_help['filter'].append(filt_list)
             self.options_help['filter'].append(True)

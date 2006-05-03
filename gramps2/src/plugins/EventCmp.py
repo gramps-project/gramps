@@ -43,7 +43,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import GenericFilter
+from Filters import GenericFilter, build_filter_menu, Rules
 import ListModel
 import Sort
 import Utils
@@ -152,11 +152,11 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
         self.set_window(window,self.filterDialog.get_widget('title'),
                         self.label)
 
-        self.all = GenericFilter.GenericFilter()
+        self.all = GenericFilter()
         self.all.set_name(_("Entire Database"))
-        self.all.add_rule(GenericFilter.Everyone([]))
+        self.all.add_rule(Rules.Everyone([]))
 
-        self.filter_menu = GenericFilter.build_filter_menu([self.all])
+        self.filter_menu = build_filter_menu([self.all])
         filter_num = self.options.handler.get_filter_number()
         self.filter_menu.set_active(filter_num)
         self.filter_menu.show()

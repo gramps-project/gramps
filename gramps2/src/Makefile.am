@@ -5,6 +5,7 @@ SUBDIRS = \
 	Config \
 	DataViews \
 	Editors \
+	Filters \
 	GrampsDb \
 	GrampsLogger \
 	Mime \
@@ -41,7 +42,6 @@ gdir_PYTHON = \
 	Errors.py\
 	Exporter.py\
 	FontScale.py\
-	GenericFilter.py\
 	GrampsCfg.py\
 	GrampsDisplay.py\
 	GrampsLocale.py\
@@ -83,7 +83,7 @@ gdir_PYTHON = \
 MOSTLYCLEANFILES = *pyc *pyo
 
 # Which modules to document
-docmodules = RelLib DateHandler GrampsDb BaseDoc
+docmodules = RelLib DateHandler GrampsDb Filters BaseDoc
 
 pycheck: 
 	for d in $(SUBDIRS) ; do \

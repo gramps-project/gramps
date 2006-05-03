@@ -24,7 +24,7 @@ import gtk
 import gobject
 
 from GrampsWidgets import IntEdit
-import GenericFilter
+from Filters import GenericFilter
 
 class FilterFrameBase(gtk.Frame):
     
