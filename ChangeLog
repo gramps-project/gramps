@@ -4,6 +4,7 @@
 	
 2006-05-02  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsWidgets.py (IconButton): Replace event box with button.
+	* src/GrampsWidgets.py (WarnButton.__init__): 
 
 	* configure.in: Generate new Makefiles.
 	* src/GenericFilters.py: Remove.

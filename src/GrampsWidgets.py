@@ -91,9 +91,9 @@ class IconButton(gtk.Button):
         if func:
             self.connect('button-press-event', func, handle)
 
-class WarnButton(gtk.EventBox):
+class WarnButton(gtk.Button):
     def __init__(self):
-        gtk.EventBox.__init__(self)
+        gtk.Button.__init__(self)
         image = gtk.Image()
 
         # Some versions of FreeBSD don't seem to have STOCK_INFO
@@ -104,6 +104,7 @@ class WarnButton(gtk.EventBox):
             
         image.show()
         self.add(image)
+        self.set_relief(gtk.RELIEF_NONE)
         self.show()
         self.func = None
         self.hide()
