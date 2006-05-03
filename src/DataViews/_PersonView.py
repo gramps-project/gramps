@@ -122,7 +122,7 @@ class PersonView(PageView.PersonNavView):
                         callback=self.remove)
         self.add_action('OpenAllNodes', None, _("Expand all nodes"),
                         callback=self.open_all_nodes)
-        self.add_action('CloseAllNodes', None, _("Close all nodes"),
+        self.add_action('CloseAllNodes', None, _("Collapse all nodes"),
                         callback=self.close_all_nodes)
         self.add_action('Jump', None, _("_Jump"),
                         accel="<control>j",callback=self.jumpto)
