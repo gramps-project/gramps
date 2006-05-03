@@ -420,10 +420,10 @@ class ViewManager:
             self.quit()
         else:
             QuestionDialog.WarningDialog(
-                _('Cannot cleanly abandon changes'),
-                _('Changes cannot be abandoned because the number of '
-                  'changes made exceeded the limit.'))
-
+                _("Cannot abandon session's changes"),
+                _('Changes cannot be completely abandoned because the '
+                  'number of changes made in the session exceeded the '
+                  'limit.'))
 
     def _build_ui_manager(self):
         self.merge_ids = []
