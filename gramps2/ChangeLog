@@ -1,4 +1,11 @@
 2006-05-03  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsInMemDB.py (abort_changes): Remove method.
+	* src/GrampsDb/_GrampsDbBase.py (abort_changes): Remove method.
+	* src/GrampsDb/_GrampsBSDDB.py (undo,redo): Use the status from
+	GrampsDbBase undo/redo;
+	(abort_changes): Remove method.
+	* src/ViewManager.py (abort): Add method for abandoning changes.
+
 	* configure.in: Set release to 0.SVN.
 	* src/DataViews/_PersonView.py (define_actions): Change label.
 

@@ -259,6 +259,7 @@ class GrampsDbBase(GrampsDBCallback):
 
         self.undoindex  = -1
         self.translist  = [None] * _UNDO_SIZE
+        self.abort_possible = True
         self.default = None
         self.owner = Researcher()
         self.bookmarks = []
@@ -345,9 +346,6 @@ class GrampsDbBase(GrampsDBCallback):
         """
         pass
         
-    def abort_changes(self):
-        pass
-    
     def is_open(self):
         """
         Returns 1 if the database has been opened.
@@ -1221,6 +1219,9 @@ class GrampsDbBase(GrampsDBCallback):
         transaction.set_description(msg)
         self.undoindex += 1                    
         if self.undoindex >= _UNDO_SIZE:
+            # We overran the undo size.
+            # Aborting the session completely will become impossible.
+            self.abort_possible = False
             self.translist = self.translist[0:-1] + [ transaction ]
         else:
             self.translist[self.undoindex] = transaction
@@ -1229,32 +1230,29 @@ class GrampsDbBase(GrampsDBCallback):
             for index in range(self.undoindex+1, _UNDO_SIZE):
                 self.translist[index] = None
 
-        person_add      = self._do_commit(transaction.person_add, 
-                                          self.person_map)
-        family_add      = self._do_commit(transaction.family_add, 
-                                          self.family_map)
-        source_add      = self._do_commit(transaction.source_add, 
-                                          self.source_map)
-        place_add       = self._do_commit(transaction.place_add, self.place_map)
-        media_add       = self._do_commit(transaction.media_add, self.media_map)
-        event_add       = self._do_commit(transaction.event_add, self.event_map)
-        repository_add  = self._do_commit(transaction.repository_add, 
+        person_add    = self._do_commit(transaction.person_add,self.person_map)
+        family_add    = self._do_commit(transaction.family_add,self.family_map)
+        source_add    = self._do_commit(transaction.source_add,self.source_map)
+        place_add     = self._do_commit(transaction.place_add, self.place_map)
+        media_add     = self._do_commit(transaction.media_add, self.media_map)
+        event_add     = self._do_commit(transaction.event_add, self.event_map)
+        repository_add= self._do_commit(transaction.repository_add, 
                                           self.repository_map)
 
-        person_upd      = self._do_commit(transaction.person_update, 
-                                          self.person_map)
-        family_upd      = self._do_commit(transaction.family_update, 
-                                          self.family_map)
-        source_upd      = self._do_commit(transaction.source_update, 
-                                          self.source_map)
-        place_upd       = self._do_commit(transaction.place_update, 
+        person_upd    = self._do_commit(transaction.person_update, 
+                                        self.person_map)
+        family_upd    = self._do_commit(transaction.family_update, 
+                                        self.family_map)
+        source_upd    = self._do_commit(transaction.source_update, 
+                                        self.source_map)
+        place_upd     = self._do_commit(transaction.place_update, 
                                           self.place_map)
-        media_upd       = self._do_commit(transaction.media_update, 
-                                          self.media_map)
-        event_upd       = self._do_commit(transaction.event_update, 
-                                          self.event_map)
-        repository_upd  = self._do_commit(transaction.repository_update, 
-                                          self.repository_map)
+        media_upd     = self._do_commit(transaction.media_update, 
+                                        self.media_map)
+        event_upd     = self._do_commit(transaction.event_update, 
+                                        self.event_map)
+        repository_upd= self._do_commit(transaction.repository_update, 
+                                        self.repository_map)
 
         self._do_emit('person', person_add, person_upd, transaction.person_del)
         self._do_emit('family', family_add, family_upd, transaction.family_del)

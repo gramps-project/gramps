@@ -795,11 +795,6 @@ class GrampsBSDDB(GrampsDbBase):
 
         return
         
-    def abort_changes(self):
-        while self.undo():
-            pass
-        self.close()
-
     def close(self):
         if not self.db_is_open:
             return
@@ -1138,19 +1133,27 @@ class GrampsBSDDB(GrampsDbBase):
         print "Undoing it"
         if self.UseTXN:
             self.txn = self.env.txn_begin()
-        GrampsDbBase.undo(self)
+        status = GrampsDbBase.undo(self)
         if self.UseTXN:
-            self.txn.commit()
+            if status:
+                self.txn.commit()
+            else:
+                self.txn.abort()
         self.txn = None
+        return status
 
     def redo(self):
         print "Redoing it"
         if self.UseTXN:
             self.txn = self.env.txn_begin()
-        GrampsDbBase.redo(self)
+        status = GrampsDbBase.redo(self)
         if self.UseTXN:
-            self.txn.commit()
-        self.txn = None        
+            if status:
+                self.txn.commit()
+            else:
+                self.txn.abort()
+        self.txn = None
+        return status
 
     def undo_reference(self,data,handle):
         if data == None:
