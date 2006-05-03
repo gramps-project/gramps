@@ -3,6 +3,8 @@
 	* data/gramps.schemas.in: add family-warn back in
 	
 2006-05-02  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/*: Add object-specific rules.
+
 	* src/GrampsWidgets.py (IconButton): Replace event box with button.
 	* src/GrampsWidgets.py (WarnButton): Replace event box with button.
 

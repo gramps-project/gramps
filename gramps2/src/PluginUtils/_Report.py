@@ -912,7 +912,7 @@ class BareReportDialog:
                 self.options.handler.set_filter_number(active)
             except:
                 print "Error setting filter. Proceeding with 'Everyone'"
-                self.filter = Rules.Everyone([])
+                self.filter = Rules.Person.Everyone([])
         else:
             self.filter = None
 

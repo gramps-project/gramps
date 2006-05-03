@@ -157,29 +157,29 @@ class PersonFilterFrame(FilterFrameBase):
         filter_label.set_alignment(xalign=0,yalign=0.5)
 
         default_filters = [
-            Rules.Everyone,
-            Rules.IsFemale,
-            Rules.IsMale,
-            Rules.HasUnknownGender,
-            Rules.Disconnected,
-            Rules.SearchName,
-            Rules.HaveAltFamilies,
-            Rules.HavePhotos,
-            Rules.IncompleteNames,
-            Rules.HaveChildren,
-            Rules.NeverMarried,
-            Rules.MultipleMarriages,
-            Rules.NoBirthdate,
-            Rules.PersonWithIncompleteEvent,
-            Rules.FamilyWithIncompleteEvent,
-            Rules.ProbablyAlive,
-            Rules.PeoplePrivate,
-            Rules.IsWitness, 
-            Rules.HasTextMatchingSubstringOf, 
-            Rules.HasTextMatchingRegexpOf, 
-            Rules.HasNote, 
-            Rules.HasNoteMatchingSubstringOf, 
-            Rules.IsFemale,
+            Rules.Person.Everyone,
+            Rules.Person.IsFemale,
+            Rules.Person.IsMale,
+            Rules.Person.HasUnknownGender,
+            Rules.Person.Disconnected,
+            Rules.Person.SearchName,
+            Rules.Person.HaveAltFamilies,
+            Rules.Person.HavePhotos,
+            Rules.Person.IncompleteNames,
+            Rules.Person.HaveChildren,
+            Rules.Person.NeverMarried,
+            Rules.Person.MultipleMarriages,
+            Rules.Person.NoBirthdate,
+            Rules.Person.PersonWithIncompleteEvent,
+            Rules.Person.FamilyWithIncompleteEvent,
+            Rules.Person.ProbablyAlive,
+            Rules.Person.PeoplePrivate,
+            Rules.Person.IsWitness, 
+            Rules.Person.HasTextMatchingSubstringOf, 
+            Rules.Person.HasTextMatchingRegexpOf, 
+            Rules.Person.HasNote, 
+            Rules.Person.HasNoteMatchingSubstringOf, 
+            Rules.Person.IsFemale,
             ]
 
         self._filter_list = gtk.ListStore(object,str)
@@ -365,19 +365,19 @@ class PersonFilterFrame(FilterFrameBase):
         filter = GenericFilter()
         
         if self._id_check.get_active():
-            filter.add_rule(Rules.HasIdOf([self._id_edit.get_text()]))
+            filter.add_rule(Rules.Person.HasIdOf([self._id_edit.get_text()]))
 
         if self._name_check.get_active():
-            filter.add_rule(Rules.SearchName([self._name_edit.get_text()]))
+            filter.add_rule(Rules.Person.SearchName([self._name_edit.get_text()]))
 
         if self._gender_check.get_active():
             gender = self._gender_list.get_value(self._gender_combo.get_active_iter(),1)
             if gender == RelLib.Person.MALE:
-                filter.add_rule(Rules.IsMale([]))
+                filter.add_rule(Rules.Person.IsMale([]))
             elif gender == RelLib.Person.FEMALE:
-                filter.add_rule(Rules.IsFemale([]))
+                filter.add_rule(Rules.Person.IsFemale([]))
             elif gender == RelLib.Person.UNKNOWN:
-                filter.add_rule(Rules.HasUnknownGender([]))
+                filter.add_rule(Rules.Person.HasUnknownGender([]))
             else:
                 log.warn("Received unknown gender from filter widget")
 
@@ -389,7 +389,7 @@ class PersonFilterFrame(FilterFrameBase):
                 date = "after " + self._b_edit.get_text()
             else:
                 log.warn("neither before or after is selected, this should not happen")
-            filter.add_rule(Rules.HasBirth([date,'','']))
+            filter.add_rule(Rules.Person.HasBirth([date,'','']))
                 
         if self._death_check.get_active():
             date = ""
@@ -399,7 +399,7 @@ class PersonFilterFrame(FilterFrameBase):
                 date = "after " + self._d_edit.get_text()
             else:
                 log.warn("neither before or after is selected, this should not happen")
-            filter.add_rule(Rules.HasDeath([date,'','']))
+            filter.add_rule(Rules.Person.HasDeath([date,'','']))
 
 
         if self._filter_check.get_active():

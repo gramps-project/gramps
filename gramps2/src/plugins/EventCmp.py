@@ -154,7 +154,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
 
         self.all = GenericFilter()
         self.all.set_name(_("Entire Database"))
-        self.all.add_rule(Rules.Everyone([]))
+        self.all.add_rule(Rules.Person.Everyone([]))
 
         self.filter_menu = build_filter_menu([self.all])
         filter_num = self.options.handler.get_filter_number()

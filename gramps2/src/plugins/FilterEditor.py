@@ -620,7 +620,7 @@ class EditRule:
         self.page = []
         self.class2page = {}
         the_map = {}
-        for class_obj in Rules.editor_rule_list:
+        for class_obj in Rules.Person.editor_rule_list:
             arglist = class_obj.labels
             vallist = []
             tlist = []
