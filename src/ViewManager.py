@@ -319,7 +319,7 @@ class ViewManager:
             ('Export', gtk.STOCK_SAVE_AS, _('_Export'), "<control>e", None,
              self.export_data), 
             ('Abandon', gtk.STOCK_REVERT_TO_SAVED,
-             _('_Abandon changes and quit')), 
+             _('_Abandon changes and quit'), None, None, self.abort), 
             ('CmpMerge', None, _('_Compare and merge')), 
             ('FastMerge', None, _('_Fast merge')), 
             ('ScratchPad', gtk.STOCK_PASTE, _('_ScratchPad'), "", None,
@@ -408,6 +408,22 @@ class ViewManager:
         Config.set(Config.HEIGHT, height)
         Config.sync()
         gtk.main_quit()
+
+    def abort(self,obj=None):
+        """
+        Abandon changes and quit.
+        """
+        if self.state.db.abort_possible:
+            self.state.db.disable_signals()
+            while self.state.db.undo():
+                pass
+            self.quit()
+        else:
+            QuestionDialog.WarningDialog(
+                _('Cannot cleanly abandon changes'),
+                _('Changes cannot be abandoned because the number of '
+                  'changes made exceeded the limit.'))
+
 
     def _build_ui_manager(self):
         self.merge_ids = []

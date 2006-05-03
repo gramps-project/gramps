@@ -137,9 +137,6 @@ class GrampsInMemDB(GrampsDbBase):
             except:
                 pass
 
-    def abort_changes(self):
-        pass
-    
     def set_name_group_mapping(self,name,group):
         if group == None and self.name_group.has_key(name):
             del self.name_group[name]
