@@ -1,3 +1,7 @@
+2006-05-03  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Set release to 0.SVN.
+	* src/DataViews/_PersonView.py (define_actions): Change label.
+
 2006-05-03  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: Optionally exclude text from buttons
 	* src/GrampsCfg.py: add SIDEBAR_TEXT option
