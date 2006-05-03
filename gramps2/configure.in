@@ -203,6 +203,13 @@ src/Models/Makefile
 src/Editors/Makefile
 src/Filters/Makefile
 src/Filters/Rules/Makefile
+src/Filters/Rules/Person/Makefile
+src/Filters/Rules/Family/Makefile
+src/Filters/Rules/Event/Makefile
+src/Filters/Rules/Source/Makefile
+src/Filters/Rules/Place/Makefile
+src/Filters/Rules/Media/Makefile
+src/Filters/Rules/Repository/Makefile
 src/DataViews/Makefile
 src/PluginUtils/Makefile
 src/plugins/Makefile
