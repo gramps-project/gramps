@@ -115,7 +115,7 @@ class EditPlace(EditPrimary):
 
         self.country = MonitoredEntry(
             self.top.get_widget("country"),
-            mloc.set_country, mloc.get_county, self.db.readonly)
+            mloc.set_country, mloc.get_country, self.db.readonly)
         
         self.longitude = MonitoredEntry(
             self.top.get_widget("longitude"),
