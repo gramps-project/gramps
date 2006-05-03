@@ -114,7 +114,6 @@ uidefault = '''<ui>
     <menuitem action="FastMerge"/>
     <separator/>
     <menuitem action="Preferences"/>
-    <menuitem action="ColumnEdit"/>
   </menu>
   <menu action="ViewMenu">
     <menuitem action="Sidebar"/>
