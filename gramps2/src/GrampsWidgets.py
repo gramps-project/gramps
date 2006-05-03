@@ -76,15 +76,16 @@ class LinkLabel(gtk.EventBox):
         self.label.set_text(text)
         self.label.set_use_markup(True)
 
-class IconButton(gtk.EventBox):
+class IconButton(gtk.Button):
 
     def __init__(self, func, handle, icon=gtk.STOCK_EDIT,
                  size=gtk.ICON_SIZE_MENU):
-        gtk.EventBox.__init__(self)
+        gtk.Button.__init__(self)
         image = gtk.Image()
         image.set_from_stock(icon, size)
         image.show()
         self.add(image)
+        self.set_relief(gtk.RELIEF_NONE)
         self.show()
 
         if func:
