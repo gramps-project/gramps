@@ -50,7 +50,7 @@ class FilterParser(handler.ContentHandler):
         self.r = None
         self.a = []
         self.cname = None
-        self.namespace = "person"
+        self.namespace = "Person"
         
     def setDocumentLocator(self,locator):
         self.locator = locator
@@ -84,13 +84,15 @@ class FilterParser(handler.ContentHandler):
                 try:
                     # First try to use fully qualified name
                     exec 'self.r = %s' % save_name
-                except (ImportError,NameError,AttributeError):
-                    # Now try to use name from Rules
+                except (ImportError, NameError, AttributeError ):
+                    # Now try to use name from Rules.Namespace
                     mc_match = save_name.split('.')
                     try:
-                        exec 'self.r = Rules.%s' % mc_match[-1]
-                    except (ImportError,NameError):
-                        print "ERROR: Filter rule '%s' in filter '%s' not found!"\
+                        exec 'self.r = Rules.%s.%s' % (
+                            self.namespace,mc_match[-1])
+                    except (ImportError, NameError ):
+                        print "ERROR: Filter rule '%s' in "\
+                              "filter '%s' not found!"\
                               % (save_name,self.f.get_name())
                         self.r = None
                         return
@@ -124,56 +126,58 @@ class FilterParser(handler.ContentHandler):
 # This dict is mapping from old names to new names, so that the existing
 # custom_filters.xml will continue working
 old_names_2_class = {
-    "Everyone"                      : Rules.Everyone,
-    "Is default person"             : Rules.IsDefaultPerson,
-    "Is bookmarked person"          : Rules.IsBookmarked,
-    "Has the Id"                    : Rules.HasIdOf,
-    "Has a name"                    : Rules.HasNameOf,
-    "Has the relationships"         : Rules.HasRelationship,
-    "Has the death"                 : Rules.HasDeath,
-    "Has the birth"                 : Rules.HasBirth,
-    "Is a descendant of"            : Rules.IsDescendantOf,
-    "Is a descendant family member of" : Rules.IsDescendantFamilyOf,
-    "Is a descendant of filter match": Rules.IsDescendantOfFilterMatch,
+    "Everyone"                      : Rules.Person.Everyone,
+    "Is default person"             : Rules.Person.IsDefaultPerson,
+    "Is bookmarked person"          : Rules.Person.IsBookmarked,
+    "Has the Id"                    : Rules.Person.HasIdOf,
+    "Has a name"                    : Rules.Person.HasNameOf,
+    "Has the relationships"         : Rules.Person.HasRelationship,
+    "Has the death"                 : Rules.Person.HasDeath,
+    "Has the birth"                 : Rules.Person.HasBirth,
+    "Is a descendant of"            : Rules.Person.IsDescendantOf,
+    "Is a descendant family member of" : Rules.Person.IsDescendantFamilyOf,
+    "Is a descendant of filter match": Rules.Person.IsDescendantOfFilterMatch,
     "Is a descendant of person not more than N generations away":
-                                Rules.IsLessThanNthGenerationDescendantOf,
+        Rules.Person.IsLessThanNthGenerationDescendantOf,
     "Is a descendant of person at least N generations away":
-                                Rules.IsMoreThanNthGenerationDescendantOf,
+        Rules.Person.IsMoreThanNthGenerationDescendantOf,
     "Is an descendant of person at least N generations away" :
-                                Rules.IsMoreThanNthGenerationDescendantOf,
-    "Is a child of filter match"    : Rules.IsChildOfFilterMatch,
-    "Is an ancestor of"             : Rules.IsAncestorOf,
-    "Is an ancestor of filter match": Rules.IsAncestorOfFilterMatch,
+        Rules.Person.IsMoreThanNthGenerationDescendantOf,
+    "Is a child of filter match"    : Rules.Person.IsChildOfFilterMatch,
+    "Is an ancestor of"             : Rules.Person.IsAncestorOf,
+    "Is an ancestor of filter match": Rules.Person.IsAncestorOfFilterMatch,
     "Is an ancestor of person not more than N generations away" : 
-                                Rules.IsLessThanNthGenerationAncestorOf,
+        Rules.Person.IsLessThanNthGenerationAncestorOf,
     "Is an ancestor of person at least N generations away":
-                                Rules.IsMoreThanNthGenerationAncestorOf,
-    "Is a parent of filter match"   : Rules.IsParentOfFilterMatch,
-    "Has a common ancestor with"    : Rules.HasCommonAncestorWith,
-    "Has a common ancestor with filter match" :Rules.HasCommonAncestorWithFilterMatch,
-    "Is a female"                   : Rules.IsFemale,
-    "Is a male"                     : Rules.IsMale,
-    "Has complete record"           : Rules.HasCompleteRecord,
-    "Has the personal event"        : Rules.HasEvent,
-    "Has the family event"          : Rules.HasFamilyEvent,
-    "Has the personal attribute"    : Rules.HasAttribute,
-    "Has the family attribute"      : Rules.HasFamilyAttribute,
-    "Has source of"                 : Rules.HasSourceOf,
-    "Matches the filter named"      : Rules.HasSourceOf,
-    "Is spouse of filter match"     : Rules.IsSpouseOfFilterMatch,
-    "Is a sibling of filter match"  : Rules.IsSiblingOfFilterMatch,
-    "Relationship path between two people" : Rules.RelationshipPathBetween,
-    "People who were adopted"       : Rules.HaveAltFamilies,
-    "People who have images"        : Rules.HavePhotos,
-    "People with children"          : Rules.HaveChildren,
-    "People with incomplete names"  : Rules.IncompleteNames,
-    "People with no marriage records" : Rules.NeverMarried,
-    "People with multiple marriage records": Rules.MultipleMarriages,
-    "People without a birth date"   : Rules.NoBirthdate,
-    "People with incomplete events" : Rules.PersonWithIncompleteEvent,
-    "Families with incomplete events" :Rules.FamilyWithIncompleteEvent,
-    "People probably alive"         : Rules.ProbablyAlive,
-    "People marked private"         : Rules.PeoplePrivate,
-    "Witnesses"                     : Rules.IsWitness,
-    "Has text matching substring of": Rules.HasTextMatchingSubstringOf,
+        Rules.Person.IsMoreThanNthGenerationAncestorOf,
+    "Is a parent of filter match"   : Rules.Person.IsParentOfFilterMatch,
+    "Has a common ancestor with"    : Rules.Person.HasCommonAncestorWith,
+    "Has a common ancestor with filter match" :
+        Rules.Person.HasCommonAncestorWithFilterMatch,
+    "Is a female"                   : Rules.Person.IsFemale,
+    "Is a male"                     : Rules.Person.IsMale,
+    "Has complete record"           : Rules.Person.HasCompleteRecord,
+    "Has the personal event"        : Rules.Person.HasEvent,
+    "Has the family event"          : Rules.Person.HasFamilyEvent,
+    "Has the personal attribute"    : Rules.Person.HasAttribute,
+    "Has the family attribute"      : Rules.Person.HasFamilyAttribute,
+    "Has source of"                 : Rules.Person.HasSourceOf,
+    "Matches the filter named"      : Rules.Person.HasSourceOf,
+    "Is spouse of filter match"     : Rules.Person.IsSpouseOfFilterMatch,
+    "Is a sibling of filter match"  : Rules.Person.IsSiblingOfFilterMatch,
+    "Relationship path between two people" :
+        Rules.Person.RelationshipPathBetween,
+    "People who were adopted"       : Rules.Person.HaveAltFamilies,
+    "People who have images"        : Rules.Person.HavePhotos,
+    "People with children"          : Rules.Person.HaveChildren,
+    "People with incomplete names"  : Rules.Person.IncompleteNames,
+    "People with no marriage records" : Rules.Person.NeverMarried,
+    "People with multiple marriage records": Rules.Person.MultipleMarriages,
+    "People without a birth date"   : Rules.Person.NoBirthdate,
+    "People with incomplete events" : Rules.Person.PersonWithIncompleteEvent,
+    "Families with incomplete events" :Rules.Person.FamilyWithIncompleteEvent,
+    "People probably alive"         : Rules.Person.ProbablyAlive,
+    "People marked private"         : Rules.Person.PeoplePrivate,
+    "Witnesses"                     : Rules.Person.IsWitness,
+    "Has text matching substring of": Rules.Person.HasTextMatchingSubstringOf,
 }

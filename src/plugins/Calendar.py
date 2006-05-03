@@ -1,4 +1,3 @@
-#
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
@@ -528,32 +527,32 @@ class FilterWidget(Widget):
             if filter in ["everyone", "all filters"]:
                 f = GenericFilter()
                 f.set_name(_("Entire Database"))
-                f.add_rule(Rules.Everyone([]))
+                f.add_rule(Rules.Person.Everyone([]))
                 retval.append(f)
             if filter in ["descendants", "all filters"]:
                 f = GenericFilter()
                 f.set_name(_("Descendants of %s") % name)
-                f.add_rule(Rules.IsDescendantOf([gramps_id,1]))
+                f.add_rule(Rules.Person.IsDescendantOf([gramps_id,1]))
                 retval.append(f)
             if filter in ["descendant families", "all filters"]:
                 f = GenericFilter()
                 f.set_name(_("Descendant Families of %s") % name)
-                f.add_rule(Rules.IsDescendantFamilyOf([gramps_id]))
+                f.add_rule(Rules.Person.IsDescendantFamilyOf([gramps_id]))
                 retval.append(f)
             if filter in ["ancestors", "all filters"]:
                 f = GenericFilter()
                 f.set_name(_("Ancestors of %s") % name)
-                f.add_rule(Rules.IsAncestorOf([gramps_id,1]))
+                f.add_rule(Rules.Person.IsAncestorOf([gramps_id,1]))
                 retval.append(f)
             if filter in ["common ancestors", "all filters"]:
                 f = GenericFilter()
                 f.set_name(_("People with common ancestor with %s") % name)
-                f.add_rule(Rules.HasCommonAncestorWith([gramps_id]))
+                f.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
                 retval.append(f)
             if filter in ["calendar attribute", "all filters"]:
                 f = ParamFilter()
                 f.set_name(_("People with a Calendar attribute"))
-                f.add_rule(Rules.HasTextMatchingSubstringOf(['Calendar',0,0]))
+                f.add_rule(Rules.Person.HasTextMatchingSubstringOf(['Calendar',0,0]))
                 retval.append(f)
         return retval
 

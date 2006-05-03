@@ -42,15 +42,5 @@ class HasTextMatchingRegexpOf(HasTextMatchingSubstringOf):
     def __init__(self,list):
         HasTextMatchingSubstringOf.__init__(self,list)
 
-    def prepare(self,db):
-        self.db = db
-        self.person_map = {}
-        self.event_map = {}
-        self.source_map = {}
-        self.repo_map = {}
-        self.family_map = {}
-        self.place_map = {}
-        self.media_map = {}
-        self.case_sensitive = False
-        self.regexp_match = True
-        self.cache_sources()
+    # FIXME: This needs to be written for an arbitrary object
+    # if possible

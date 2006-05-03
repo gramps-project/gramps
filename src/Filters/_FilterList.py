@@ -88,16 +88,15 @@ class FilterList:
             f.write('<object type="%s">\n' % namespace)
             filter_list = self.filter_namespaces[namespace]
             for the_filter in filter_list:
-                f.write('  <filter name="%s"' % self.fix(the_filter.get_name()))
+                f.write('  <filter name="%s"' %self.fix(the_filter.get_name()))
                 f.write(' function="%s"' % the_filter.get_logical_op())
                 comment = the_filter.get_comment()
                 if comment:
                     f.write(' comment="%s"' % self.fix(comment))
                 f.write('>\n')
                 for rule in the_filter.get_rules():
-                    rule_class_name = rule.__class__.__name__
-                    rule_save_name = "Filters.Rules.%s" % rule_class_name
-                    f.write('    <rule class="%s">\n' % rule_save_name)
+                    f.write('    <rule class="%s">\n'
+                            % rule.__class__.__name__)
                     for v in rule.values():
                         f.write('      <arg value="%s"/>\n' % self.fix(v))
                     f.write('    </rule>\n')

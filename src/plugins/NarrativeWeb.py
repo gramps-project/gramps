@@ -2405,23 +2405,23 @@ class WebReportOptions(ReportOptions.ReportOptions):
 
         all = GenericFilter()
         all.set_name(_("Entire Database"))
-        all.add_rule(Rules.Everyone([]))
+        all.add_rule(Rules.Person.Everyone([]))
 
         des = GenericFilter()
         des.set_name(_("Descendants of %s") % name)
-        des.add_rule(Rules.IsDescendantOf([gramps_id,1]))
+        des.add_rule(Rules.Person.IsDescendantOf([gramps_id,1]))
 
         df = GenericFilter()
         df.set_name(_("Descendant Families of %s") % name)
-        df.add_rule(Rules.IsDescendantFamilyOf([gramps_id]))
+        df.add_rule(Rules.Person.IsDescendantFamilyOf([gramps_id]))
 
         ans = GenericFilter()
         ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(Rules.IsAncestorOf([gramps_id,1]))
+        ans.add_rule(Rules.Person.IsAncestorOf([gramps_id,1]))
 
         com = GenericFilter()
         com.set_name(_("People with common ancestor with %s") % name)
-        com.add_rule(Rules.HasCommonAncestorWith([gramps_id]))
+        com.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
 
         return [all,des,df,ans,com]
 

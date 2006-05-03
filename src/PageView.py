@@ -527,10 +527,10 @@ class ListView(BookMarkView):
         Builds the default filters and add them to the filter menu.
         """
         default_filters = [
-            [Rules.Everyone, []],
+            [Rules.Everything, []],
             [Rules.HasTextMatchingSubstringOf, ['',0,0]],
             [Rules.HasTextMatchingRegexpOf, ['',0,1]],
-            [Rules.PeoplePrivate, []],
+            [Rules.IsPrivate, []],
             ]
         self.generic_filter_widget.setup_filter( default_filters)        
 
