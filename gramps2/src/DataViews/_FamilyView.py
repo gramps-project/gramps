@@ -84,7 +84,7 @@ class FamilyView(PageView.PersonNavView):
             self, _('Relationships'), dbstate, uistate)
         
         dbstate.connect('database-changed', self.change_db)
-        dbstate.connect('active-changed', self.change_person)
+        dbstate.connect('active-changed', self.redraw)
         self.show_siblings = Config.get(Config.FAMILY_SIBLINGS)
         self.show_details = Config.get(Config.FAMILY_DETAILS)
         self.connect_to_db(dbstate.db)
@@ -248,6 +248,7 @@ class FamilyView(PageView.PersonNavView):
         self.bookmarks.update_bookmarks(db.get_bookmarks())
         if self.active:
             self.bookmarks.redraw()
+            self.redraw()
 
     def get_name(self, handle, use_gender=False):
         if handle:
