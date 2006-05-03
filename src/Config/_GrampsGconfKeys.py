@@ -92,7 +92,7 @@ def get(key):
         val = get_int(token)
     else:
         val = get_string(token)
-    if not val:
+    if val == None:
         val = default_value[key]
     return val
 

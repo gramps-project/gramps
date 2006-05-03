@@ -528,6 +528,8 @@ class ViewManager:
     def create_pages(self):
         self.pages = []
         self.prev_nav = PageView.NAVIGATION_NONE
+
+        use_text = Config.get(Config.SIDEBAR_TEXT)
         
         index = 0
         for page_def in self.views:
@@ -552,11 +554,17 @@ class ViewManager:
 
             # create the button and add it to the sidebar
             button = gtk.ToggleButton()
-            if page_stock:
-                button.set_use_stock(True)
-                button.set_label(page_stock)
+            if use_text:
+                if page_stock:
+                    button.set_use_stock(True)
+                    button.set_label(page_stock)
+                else:
+                    button.set_label(page_title)
             else:
-                button.set_label(page_title)
+                image = gtk.Image()
+                image.set_from_stock(page_stock, gtk.ICON_SIZE_LARGE_TOOLBAR)
+                image.show()
+                button.add(image)
             button.set_border_width(4)
             button.set_relief(gtk.RELIEF_NONE)
             button.set_alignment(0, 0.5)
@@ -602,7 +610,6 @@ class ViewManager:
                 self.active_page.set_active()
                 Config.set(Config.LAST_VIEW,num)
                 Config.sync()
-                print "Saved as",Config.get(Config.LAST_VIEW)
                 
                 old_nav = self._navigation_type[self.prev_nav]
                 if old_nav[0] != None:

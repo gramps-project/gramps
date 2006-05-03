@@ -205,6 +205,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         for item in formats:
             obox.append_text(item)
         active = Config.get(Config.STATUSBAR)
+        
         if active < 2:
             obox.set_active(0)
         else:
@@ -215,6 +216,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         lwidget = BasicLabel("%s: " % _('Status bar'))
         table.attach(lwidget, 0, 1, 2, 3, yoptions=0)
         table.attach(obox, 1, 3, 2, 3, yoptions=0)
+
+        self.add_checkbox(table, _("Show text in sidebar buttons (takes effect on restart)"),
+                          4, Config.SIDEBAR_TEXT)
                      
         return table
 

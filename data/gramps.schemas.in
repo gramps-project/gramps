@@ -571,6 +571,18 @@
       </schema>
 
       <schema>
+        <key>/schemas/apps/gramps/interface/sidebar-text</key>
+        <applyto>/apps/gramps/interface/sidebar-text</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>1</default>
+        <locale name="C">
+          <short>Include text on sidebar buttons</short>
+          <long>If set to True, the Sidebar buttons will contain a text description of the view, otherwise it will only display the button.</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/paths/website-directory</key>
         <applyto>/apps/gramps/paths/website-directory</applyto>
         <owner>gramps</owner>

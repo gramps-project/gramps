@@ -1,4 +1,10 @@
 2006-05-03  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: Optionally exclude text from buttons
+	* src/GrampsCfg.py: add SIDEBAR_TEXT option
+	* src/GrampsConfigKeys.py: add SIDEBAR_TEXT option
+	* data/gramps.schemas.in: add SIDEBAR_TEXT option
+	* src/GrampsGconfKeys.py: handle None returned by routines properly
+	* src/Filters/Rules/Person/Makefile.am: remove unused files
 	* src/DataViews/_FamilyView.py: update on db change
 	* src/DataViews/_FamilyList.py: Move ColumnEdit local
 	* src/ViewManager.py: remove ColumnEdit, make local
