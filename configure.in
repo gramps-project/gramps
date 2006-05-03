@@ -201,6 +201,8 @@ src/GrampsDb/Makefile
 src/docgen/Makefile
 src/Models/Makefile
 src/Editors/Makefile
+src/Filters/Makefile
+src/Filters/Rules/Makefile
 src/DataViews/Makefile
 src/PluginUtils/Makefile
 src/plugins/Makefile
