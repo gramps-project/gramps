@@ -44,8 +44,8 @@ class HasTextMatchingSubstringOf(Rule):
     labels      = [ _('Substring:'),
                     _('Case sensitive:'), 
                     _('Regular-Expression matching:')]
-    name        = _('People with records containing <substring>')
-    description = _("Matches people whose records contain text "
+    name        = _('Objects with records containing <substring>')
+    description = _("Matches objects whose records contain text "
                     "matching a substring")
     category    = _('General filters')
 
