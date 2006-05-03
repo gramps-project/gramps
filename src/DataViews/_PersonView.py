@@ -52,7 +52,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 import RelLib
 import PeopleModel
 import PageView
-import GenericFilter
+from Filters import FilterWidget, Rules
 import NameDisplay
 import Utils
 import QuestionDialog
@@ -164,7 +164,7 @@ class PersonView(PageView.PersonNavView):
         self.vbox.set_border_width(4)
         self.vbox.set_spacing(4)
         
-        self.generic_filter_widget = GenericFilter.FilterWidget( self.uistate, self.build_tree, self.goto_active_person)
+        self.generic_filter_widget = FilterWidget( self.uistate, self.build_tree, self.goto_active_person)
         filter_box = self.generic_filter_widget.build()
         
 
@@ -348,29 +348,29 @@ class PersonView(PageView.PersonNavView):
         Builds the default filters and add them to the filter menu.
         """
         default_filters = [
-            [GenericFilter.Everyone, []],
-            [GenericFilter.IsFemale, []],
-            [GenericFilter.IsMale, []],
-            [GenericFilter.HasUnknownGender, []],
-            [GenericFilter.Disconnected, []],
-            [GenericFilter.SearchName, ['']],
-            [GenericFilter.HaveAltFamilies, []],
-            [GenericFilter.HavePhotos, []],
-            [GenericFilter.IncompleteNames, []],
-            [GenericFilter.HaveChildren, []],
-            [GenericFilter.NeverMarried, []],
-            [GenericFilter.MultipleMarriages, []],
-            [GenericFilter.NoBirthdate, []],
-            [GenericFilter.PersonWithIncompleteEvent, []],
-            [GenericFilter.FamilyWithIncompleteEvent, []],
-            [GenericFilter.ProbablyAlive, ['']],
-            [GenericFilter.PeoplePrivate, []],
-            [GenericFilter.IsWitness, ['','']],
-            [GenericFilter.HasTextMatchingSubstringOf, ['',0,0]],
-            [GenericFilter.HasTextMatchingRegexpOf, ['',0,1]],
-            [GenericFilter.HasNote, []],
-            [GenericFilter.HasNoteMatchingSubstringOf, ['']],
-            [GenericFilter.IsFemale, []],
+            [Rules.Everyone, []],
+            [Rules.IsFemale, []],
+            [Rules.IsMale, []],
+            [Rules.HasUnknownGender, []],
+            [Rules.Disconnected, []],
+            [Rules.SearchName, ['']],
+            [Rules.HaveAltFamilies, []],
+            [Rules.HavePhotos, []],
+            [Rules.IncompleteNames, []],
+            [Rules.HaveChildren, []],
+            [Rules.NeverMarried, []],
+            [Rules.MultipleMarriages, []],
+            [Rules.NoBirthdate, []],
+            [Rules.PersonWithIncompleteEvent, []],
+            [Rules.FamilyWithIncompleteEvent, []],
+            [Rules.ProbablyAlive, ['']],
+            [Rules.PeoplePrivate, []],
+            [Rules.IsWitness, ['','']],
+            [Rules.HasTextMatchingSubstringOf, ['',0,0]],
+            [Rules.HasTextMatchingRegexpOf, ['',0,1]],
+            [Rules.HasNote, []],
+            [Rules.HasNoteMatchingSubstringOf, ['']],
+            [Rules.IsFemale, []],
             ]
         self.generic_filter_widget.setup_filter( default_filters, "person")        
 

@@ -40,7 +40,7 @@ import locale
 import BaseDoc
 from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 pt2cm = ReportUtils.pt2cm
-import GenericFilter
+from Filters import CustomFilters, GenericFilter, ParamFilter, Rules
 from DateHandler import DateDisplay
 import RelLib
 
@@ -259,7 +259,7 @@ class Calendar(Report.Report):
         """
         filter_num = self.options_class.get_filter_number()
         filters = self.options_class.get_report_filters(self.start_person)
-        filters.extend(GenericFilter.CustomFilters.get_filters())
+        filters.extend(CustomFilters.get_filters())
         self.filter = filters[filter_num]
         people = self.filter.apply(self.database,
                                    self.database.get_person_handles(sort_handles=False))
@@ -526,34 +526,34 @@ class FilterWidget(Widget):
         retval = []
         for filter in self["filters"]:
             if filter in ["everyone", "all filters"]:
-                f = GenericFilter.GenericFilter()
+                f = GenericFilter()
                 f.set_name(_("Entire Database"))
-                f.add_rule(GenericFilter.Everyone([]))
+                f.add_rule(Rules.Everyone([]))
                 retval.append(f)
             if filter in ["descendants", "all filters"]:
-                f = GenericFilter.GenericFilter()
+                f = GenericFilter()
                 f.set_name(_("Descendants of %s") % name)
-                f.add_rule(GenericFilter.IsDescendantOf([gramps_id,1]))
+                f.add_rule(Rules.IsDescendantOf([gramps_id,1]))
                 retval.append(f)
             if filter in ["descendant families", "all filters"]:
-                f = GenericFilter.GenericFilter()
+                f = GenericFilter()
                 f.set_name(_("Descendant Families of %s") % name)
-                f.add_rule(GenericFilter.IsDescendantFamilyOf([gramps_id]))
+                f.add_rule(Rules.IsDescendantFamilyOf([gramps_id]))
                 retval.append(f)
             if filter in ["ancestors", "all filters"]:
-                f = GenericFilter.GenericFilter()
+                f = GenericFilter()
                 f.set_name(_("Ancestors of %s") % name)
-                f.add_rule(GenericFilter.IsAncestorOf([gramps_id,1]))
+                f.add_rule(Rules.IsAncestorOf([gramps_id,1]))
                 retval.append(f)
             if filter in ["common ancestors", "all filters"]:
-                f = GenericFilter.GenericFilter()
+                f = GenericFilter()
                 f.set_name(_("People with common ancestor with %s") % name)
-                f.add_rule(GenericFilter.HasCommonAncestorWith([gramps_id]))
+                f.add_rule(Rules.HasCommonAncestorWith([gramps_id]))
                 retval.append(f)
             if filter in ["calendar attribute", "all filters"]:
-                f = GenericFilter.ParamFilter()
+                f = ParamFilter()
                 f.set_name(_("People with a Calendar attribute"))
-                f.add_rule(GenericFilter.HasTextMatchingSubstringOf(['Calendar',0,0]))
+                f.add_rule(Rules.HasTextMatchingSubstringOf(['Calendar',0,0]))
                 retval.append(f)
         return retval
 

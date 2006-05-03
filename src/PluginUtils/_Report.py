@@ -58,7 +58,7 @@ from _StyleEditor import StyleListDisplay
 import Config
 import _PaperMenu
 import Errors
-import GenericFilter
+from Filters import FilterComboBox, Rules, CustomFilters
 import NameDisplay
 from QuestionDialog import  ErrorDialog, OptionDialog
 
@@ -741,7 +741,7 @@ class BareReportDialog:
         row += 1
 
         if len(self.local_filters):
-            self.filter_combo = GenericFilter.GrampsFilterComboBox()
+            self.filter_combo = FilterComboBox()
             label = gtk.Label("%s:" % _("Filter"))
             label.set_alignment(0.0,0.5)
             table.attach(label, 1, 2, row, row+1, gtk.SHRINK|gtk.FILL,
@@ -912,7 +912,7 @@ class BareReportDialog:
                 self.options.handler.set_filter_number(active)
             except:
                 print "Error setting filter. Proceeding with 'Everyone'"
-                self.filter = GenericFilter.Everyone([])
+                self.filter = Rules.Everyone([])
         else:
             self.filter = None
 
@@ -1750,7 +1750,7 @@ class CommandLineReport:
             
             filt_list = [ filt.get_name() for filt in self.filters ]
             cust_filt_list = [ filt2.get_name() for filt2 in 
-                                GenericFilter.CustomFilters.get_filters() ]
+                               CustomFilters.get_filters() ]
             filt_list.extend(cust_filt_list)
             self.options_help['filter'].append(filt_list)
             self.options_help['filter'].append(True)

@@ -50,7 +50,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import GenericFilter
+from Filters import GenericFilter, Rules, build_filter_menu
 import const
 from RelLib import Date
 import Errors
@@ -82,33 +82,33 @@ class CardWriterOptionBox:
         filter_obj = self.topDialog.get_widget("filter")
         self.copy = 0
 
-        all = GenericFilter.GenericFilter()
+        all = GenericFilter()
         all.set_name(_("Entire Database"))
-        all.add_rule(GenericFilter.Everyone([]))
+        all.add_rule(Rules.Everyone([]))
 
         if self.person:
-            des = GenericFilter.GenericFilter()
+            des = GenericFilter()
             des.set_name(_("Descendants of %s") %
                          self.person.get_primary_name().get_name())
-            des.add_rule(GenericFilter.IsDescendantOf(
+            des.add_rule(Rules.IsDescendantOf(
                 [self.person.get_gramps_id(),1]))
 
-            ans = GenericFilter.GenericFilter()
+            ans = GenericFilter()
             ans.set_name(_("Ancestors of %s") %
                          self.person.get_primary_name().get_name())
-            ans.add_rule(GenericFilter.IsAncestorOf(
+            ans.add_rule(Rules.IsAncestorOf(
                 [self.person.get_gramps_id(),1]))
 
-            com = GenericFilter.GenericFilter()
+            com = GenericFilter()
             com.set_name(_("People with common ancestor with %s") %
                          self.person.get_primary_name().get_name())
-            com.add_rule(GenericFilter.HasCommonAncestorWith(
+            com.add_rule(Rules.HasCommonAncestorWith(
                 [self.person.get_gramps_id()]))
 
-            self.filter_menu = GenericFilter.build_filter_menu(
+            self.filter_menu = build_filter_menu(
                 [all,des,ans,com])
         else:
-            self.filter_menu = GenericFilter.build_filter_menu([all])
+            self.filter_menu = build_filter_menu([all])
         filter_obj.set_menu(self.filter_menu)
 
         the_box = self.topDialog.get_widget('vbox1')

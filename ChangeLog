@@ -3,6 +3,9 @@
 	* data/gramps.schemas.in: add family-warn back in
 	
 2006-05-02  Alex Roitman  <shura@gramps-project.org>
+	* src/GenericFilters.py: Remove.
+	* src/Filters: Move filtering to its own package.
+	
 	* src/RelLib/_BaseObject.py (PrivacyBase): Remove class, as it
 	already has its own module.
 	* src/AutoComp.py (StandardCustomSelector.fill): Adapt to new types.

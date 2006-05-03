@@ -67,7 +67,7 @@ import gtk
 import RelLib
 import const
 from GrampsCfg import get_researcher
-import GenericFilter
+from Filters import GenericFilter, Rules, CustomFilters
 import Sort
 from PluginUtils import Report, ReportOptions, ReportUtils, register_report
 import Errors
@@ -2045,7 +2045,7 @@ class WebReport(Report.Report):
 
         filter_num = options.get_filter_number()
         filters = options.get_report_filters(person)
-        filters.extend(GenericFilter.CustomFilters.get_filters())
+        filters.extend(CustomFilters.get_filters())
         self.filter = filters[filter_num]
 
         self.target_path = options.handler.options_dict['NWEBod']
@@ -2403,25 +2403,25 @@ class WebReportOptions(ReportOptions.ReportOptions):
             name = 'PERSON'
             gramps_id = ''
 
-        all = GenericFilter.GenericFilter()
+        all = GenericFilter()
         all.set_name(_("Entire Database"))
-        all.add_rule(GenericFilter.Everyone([]))
+        all.add_rule(Rules.Everyone([]))
 
-        des = GenericFilter.GenericFilter()
+        des = GenericFilter()
         des.set_name(_("Descendants of %s") % name)
-        des.add_rule(GenericFilter.IsDescendantOf([gramps_id,1]))
+        des.add_rule(Rules.IsDescendantOf([gramps_id,1]))
 
-        df = GenericFilter.GenericFilter()
+        df = GenericFilter()
         df.set_name(_("Descendant Families of %s") % name)
-        df.add_rule(GenericFilter.IsDescendantFamilyOf([gramps_id]))
+        df.add_rule(Rules.IsDescendantFamilyOf([gramps_id]))
 
-        ans = GenericFilter.GenericFilter()
+        ans = GenericFilter()
         ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(GenericFilter.IsAncestorOf([gramps_id,1]))
+        ans.add_rule(Rules.IsAncestorOf([gramps_id,1]))
 
-        com = GenericFilter.GenericFilter()
+        com = GenericFilter()
         com.set_name(_("People with common ancestor with %s") % name)
-        com.add_rule(GenericFilter.HasCommonAncestorWith([gramps_id]))
+        com.add_rule(Rules.HasCommonAncestorWith([gramps_id]))
 
         return [all,des,df,ans,com]
 
