@@ -108,6 +108,7 @@ class FamilyListView(PageView.ListView):
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
               </placeholder>
+              <menuitem action="ColumnEdit"/>
             </menu>
             <menu action="ViewMenu">
               <menuitem action="Filter"/>
