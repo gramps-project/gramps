@@ -1062,6 +1062,10 @@ class GrampsBSDDB(GrampsDbBase):
         transaction_commit function of the this database object.
         """
 
+        if batch:
+            # A batch transaction does not store the commits
+            # Aborting the session completely will become impossible.
+            self.abort_possible = False
         transaction = BdbTransaction(msg,self.undodb,batch,no_magic)
         if transaction.batch:
             if self.UseTXN:

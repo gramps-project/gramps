@@ -1204,6 +1204,10 @@ class GrampsDbBase(GrampsDBCallback):
         if self.__LOG_ALL:
             log.debug("%s: Transaction begin '%s'\n"
                       % (self.__class__.__name__, str(msg)))
+        if batch:
+            # A batch transaction does not store the commits
+            # Aborting the session completely will become impossible.
+            self.abort_possible = False
         return Transaction(msg, self.undodb, batch)
 
     def transaction_commit(self, transaction, msg):
