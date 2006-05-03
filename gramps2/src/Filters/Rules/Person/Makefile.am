@@ -56,8 +56,6 @@ pkgdata_PYTHON = \
 	_PersonWithIncompleteEvent.py \
 	_ProbablyAlive.py \
 	_RelationshipPathBetween.py \
-	_Rule.py \
-	_RuleUtils.py \
 	_SearchName.py \
 	__init__.py
 

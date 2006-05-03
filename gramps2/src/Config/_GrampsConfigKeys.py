@@ -43,6 +43,7 @@ USE_LDS              = ('behavior','use-lds', 0)
 USE_TIPS             = ('behavior','use-tips', 0)
 POP_PLUGIN_STATUS    = ('behavior','pop-plugin-status', 0)
 VIEW                 = ('interface','view', 0)
+SIDEBAR_TEXT         = ('interface','sidebar-text', 0)
 WEBSITE_DIRECTORY    = ('paths','website-directory', 2)
 
 
@@ -92,5 +93,6 @@ default_value = {
     USE_TIPS             : False,
     POP_PLUGIN_STATUS    : False,
     VIEW                 : True,
+    SIDEBAR_TEXT         : True,
     WEBSITE_DIRECTORY    : './',
 }

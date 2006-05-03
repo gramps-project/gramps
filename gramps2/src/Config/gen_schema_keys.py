@@ -83,7 +83,7 @@ if __name__ == "__main__":
     parser = SchemaHandler()
     parser.parse(sys.argv[1])
 
-    f = open("_GrampsConfigKeys","w")
+    f = open("_GrampsConfigKeys.py","w")
     
     for (key, key_type, default, long, short, include) in parser.list:
         data = key.split('/')
