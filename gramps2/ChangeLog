@@ -3,6 +3,7 @@
 	* data/gramps.schemas.in: add family-warn back in
 	
 2006-05-02  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Generate new Makefiles.
 	* src/GenericFilters.py: Remove.
 	* src/Filters: Move filtering to its own package.
 	
