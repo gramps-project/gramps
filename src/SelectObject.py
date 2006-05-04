@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2004  Donald N. Allingham
+# Copyright (C) 2003-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,27 +55,29 @@ import gtk.gdk
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
 import ListModel
 import ImgManip
 import Mime
+import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
 # SelectPerson
 #
 #-------------------------------------------------------------------------
-class SelectObject:
+class SelectObject(ManagedWindow.ManagedWindow):
 
-    def __init__(self,db,title):
+    def __init__(self, dbstate, uistate, track, title):
+        self.title = title
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
-        self.db = db
+        self.db = dbstate.db
         self.glade = gtk.glade.XML(const.gladeFile,"select_person","gramps")
-        self.top = self.glade.get_widget('select_person')
+        window = self.glade.get_widget('select_person')
         title_label = self.glade.get_widget('object_title')
         self.object_tree = self.glade.get_widget('plist')
 
-        Utils.set_titles(self.top,title_label,title)
+        self.set_window(window,title_label,self.title)
 
         titles = [
             (_('Preview'),0,50,ListModel.IMAGE),
@@ -91,7 +93,10 @@ class SelectObject:
         self.selection = self.object_tree.get_selection()
 
         self.redraw()
-        self.top.show()
+        self.show()
+
+    def build_menu_names(self,obj):
+        return (self.title, None)
 
     def redraw(self):
         self.object_model.clear()
@@ -109,7 +114,7 @@ class SelectObject:
         self.object_model.connect_model()
         
     def run(self):
-        val = self.top.run()
+        val = self.window.run()
 
         if val == gtk.RESPONSE_OK:
             store,node = self.object_model.get_selected()
@@ -119,10 +124,10 @@ class SelectObject:
                 return_value = self.db.get_object_from_handle(handle)
             else:
                 return_value = None
-            self.top.destroy()
+            self.close()
             gc.collect()
 	    return return_value
         else:
-            self.top.destroy()
+            self.close()
             gc.collect()
             return None

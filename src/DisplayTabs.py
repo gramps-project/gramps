@@ -689,7 +689,8 @@ class EventEmbedList(EmbeddedList):
     def share_button_clicked(self, obj):
         import SelectEvent
 
-        sel = SelectEvent.SelectEvent(self.dbstate.db, "Event Select")
+        sel = SelectEvent.SelectEvent(self.dbstate,self.uistate,self.track,
+                                      _("Select event"))
         event = sel.run()
         if event:
             try:
@@ -1663,7 +1664,8 @@ class GalleryTab(ButtonTab):
         """
         import SelectObject
 
-        sel = SelectObject.SelectObject(self.dbstate.db, _("Select media"))
+        sel = SelectObject.SelectObject(self.dbstate,self.uistate,self.track,
+                                        _("Select media"))
         src = sel.run()
         if src:
             sref = RelLib.MediaRef()
@@ -1750,7 +1752,8 @@ class SourceEmbedList(EmbeddedList):
     def share_button_clicked(self, obj):
         import SelectSource
 
-        sel = SelectSource.SelectSource(self.dbstate.db, "Source Select")
+        sel = SelectSource.SelectSource(self.dbstate,self.uistate,self.track,
+                                        _("Select source"))
         src = sel.run()
         if src:
             try:

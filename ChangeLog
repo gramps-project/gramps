@@ -1,3 +1,9 @@
+2006-05-04  Alex Roitman  <shura@gramps-project.org>
+	* src/SelectObject.py: Convert to managed window.
+	* src/SelectEvent.py: Convert to managed window.
+	* src/SelectSource.py: Convert to managed window.
+	* src/DisplayTabs.py: Properly call selectors.
+
 2006-05-03  Alex Roitman  <shura@gramps-project.org>
 	* src/DisplayTabs.py (NoteTab.build_interface): Add spacing to
 	radiobuttons.
