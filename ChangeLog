@@ -1,3 +1,7 @@
+2006-05-03  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/ReorderIds.py (ReorderIds.reorder): Switch from
+	cursors to keys iteration.
+
 2006-05-03  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: do a better job of building the buttons.
 
