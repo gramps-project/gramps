@@ -570,18 +570,24 @@ class ViewManager:
 
             # create the button and add it to the sidebar
             button = gtk.ToggleButton()
+            hbox = gtk.HBox()
+            hbox.show()
+            image = gtk.Image()
             if use_text:
-                if page_stock:
-                    button.set_use_stock(True)
-                    button.set_label(page_stock)
-                else:
-                    button.set_label(page_title)
+                image.set_from_stock(page_stock, gtk.ICON_SIZE_BUTTON)
             else:
-                image = gtk.Image()
                 image.set_from_stock(page_stock, gtk.ICON_SIZE_LARGE_TOOLBAR)
-                image.show()
-                button.add(image)
-            button.set_border_width(4)
+            image.show()
+            hbox.pack_start(image,False,False)
+            hbox.set_spacing(4)
+
+            print use_text
+            if use_text:
+                label = gtk.Label(page_title)
+                label.show()
+                hbox.pack_start(label,False,True)
+
+            button.add(hbox)
             button.set_relief(gtk.RELIEF_NONE)
             button.set_alignment(0, 0.5)
             button.connect('clicked',
