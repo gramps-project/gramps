@@ -1208,6 +1208,8 @@ class GrampsDbBase(GrampsDBCallback):
             # A batch transaction does not store the commits
             # Aborting the session completely will become impossible.
             self.abort_possible = False
+            # Undo is also impossible after batch transaction
+            self.undoindex = -1
         return Transaction(msg, self.undodb, batch)
 
     def transaction_commit(self, transaction, msg):
