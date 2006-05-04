@@ -1,3 +1,6 @@
+2006-05-03  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: do a better job of building the buttons.
+
 2006-05-03  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsInMemDB.py (abort_changes): Remove method.
 	* src/GrampsDb/_GrampsDbBase.py (abort_changes): Remove method.
