@@ -42,7 +42,6 @@ import pango
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
 import PeopleModel
 import ManagedWindow
 

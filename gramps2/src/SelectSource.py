@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2005  Donald N. Allingham
+# Copyright (C) 2003-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,25 +42,27 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
 import ListModel
+import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
 # SelectEvent
 #
 #-------------------------------------------------------------------------
-class SelectSource:
+class SelectSource(ManagedWindow.ManagedWindow):
 
-    def __init__(self,db,title,parent_window=None):
+    def __init__(self, dbstate, uistate, track, title):
+        self.title = title
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
-        self.db = db
+        self.db = dbstate.db
         self.glade = gtk.glade.XML(const.gladeFile,"select_person","gramps")
-        self.top = self.glade.get_widget('select_person')
+        window = self.glade.get_widget('select_person')
         title_label = self.glade.get_widget('title')
         self.elist =  self.glade.get_widget('plist')
 
-        Utils.set_titles(self.top,title_label,title)
+        self.set_window(window,title_label,self.title)
 
         titles = [(_('Title'),4,350), (_('ID'),1,50), ('',0,0)]
         self.ncols = len(titles)      
@@ -68,10 +70,10 @@ class SelectSource:
         self.model = ListModel.ListModel(self.elist,titles)
 
         self.redraw()
-        self.top.show()
+        self.show()
 
-        if parent_window:
-            self.top.set_transient_for(parent_window)
+    def build_menu_names(self,obj):
+        return (self.title, None)
 
     def redraw(self):
         self.model.clear()
@@ -85,7 +87,7 @@ class SelectSource:
         self.model.connect_model()
 
     def run(self):
-        val = self.top.run()
+        val = self.window.run()
 
         if val == gtk.RESPONSE_OK:
             store,node = self.model.get_selected()
@@ -95,8 +97,8 @@ class SelectSource:
                 return_value = self.db.get_source_from_handle(handle)
             else:
                 return_value = None
-            self.top.destroy()
+            self.close()
 	    return return_value
         else:
-            self.top.destroy()
+            self.close()
             return None
