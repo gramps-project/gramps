@@ -53,11 +53,13 @@ import RelLib
 import PeopleModel
 import PageView
 from Filters import FilterWidget, Rules
+import GrampsWidgets
 import NameDisplay
 import Utils
 import QuestionDialog
 import TreeTips
 import Errors
+import Config
 import const
 
 from Editors import EditPerson
@@ -127,10 +129,10 @@ class PersonView(PageView.PersonNavView):
         self.add_action('Jump', None, _("_Jump"),
                         accel="<control>j",callback=self.jumpto)
 
-        self.add_toggle_action('Filter', None, _('_Filter'), None, None,
-                               self.filter_toggle)
+        self.add_toggle_action('Filter', None, _('_Hide Filters'), None, None,
+                               self.filter_toggle, Config.get(Config.FILTER))
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        _('_Column Editor'), callback=self.column_editor)
+                        _('_Column Editor'), callback=self.column_editor,)
 
     def column_editor(self,obj):
         import ColumnOrder
@@ -160,14 +162,15 @@ class PersonView(PageView.PersonNavView):
         contains the interface. This containter will be inserted into
         a gtk.Notebook page.
         """
+        hpaned = gtk.HPaned()
         self.vbox = gtk.VBox()
         self.vbox.set_border_width(4)
         self.vbox.set_spacing(4)
         
-        self.generic_filter_widget = FilterWidget( self.uistate, self.build_tree, self.goto_active_person)
+        self.generic_filter_widget = FilterWidget( self.uistate, self.build_tree,
+                                                   self.goto_active_person)
         filter_box = self.generic_filter_widget.build()
         
-
         self.tree = gtk.TreeView()
         self.tree.set_rules_hint(True)
         self.tree.set_headers_visible(True)
@@ -197,12 +200,54 @@ class PersonView(PageView.PersonNavView):
         self.selection.set_mode(gtk.SELECTION_MULTIPLE)
         self.selection.connect('changed',self.row_changed)
 
-        #self.vbox.set_focus_chain([self.tree, self.filter_list,
-        #                           self.filter_text, self.filter_invert,
-        #                           self.filter_button])
-
         self.setup_filter()
-        return self.vbox
+
+        self.filter_pane = self.build_filter_sidebar()
+
+        hpaned.pack1(self.vbox,True,False)
+        hpaned.pack2(self.filter_pane)
+        
+        return hpaned
+
+    def build_filter_sidebar(self):
+        table = gtk.Table(3,8)
+        table.set_border_width(6)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+
+        self.filter_name = gtk.Entry()
+        self.filter_id = gtk.Entry()
+        self.filter_birth = gtk.Entry()
+        self.filter_death = gtk.Entry()
+        self.apply_btn = gtk.Button(stock=gtk.STOCK_FIND)
+        
+        table.attach(GrampsWidgets.MarkupLabel(_('<b>Filter</b>')),
+                     0, 3, 0, 1, xoptions=gtk.FILL, yoptions=0)
+        
+        table.attach(GrampsWidgets.BasicLabel(_('Name')),
+                     1, 2, 1, 2, xoptions=gtk.FILL, yoptions=0)
+        table.attach(self.filter_name, 2, 3, 1, 2,
+                     xoptions=gtk.FILL, yoptions=0)
+
+        table.attach(GrampsWidgets.BasicLabel(_('ID')),
+                     1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
+        table.attach(self.filter_id, 2, 3, 2, 3,
+                     xoptions=gtk.FILL, yoptions=0)
+
+        table.attach(GrampsWidgets.BasicLabel(_('Birth')),
+                     1,2,3,4, xoptions=gtk.FILL, yoptions=0)
+        table.attach(self.filter_birth, 2, 3, 3, 4,
+                     xoptions=gtk.FILL, yoptions=0)
+
+        table.attach(GrampsWidgets.BasicLabel(_('Death')),
+                     1, 2, 4, 5, xoptions=gtk.FILL, yoptions=0)
+        table.attach(self.filter_death, 2, 3, 4, 5,
+                     xoptions=gtk.FILL, yoptions=0)
+
+        table.attach(self.apply_btn, 2, 3, 5, 6, xoptions=gtk.FILL,
+                     yoptions=0)
+
+        return table
     
     def drag_begin(self, widget, *data):
         widget.drag_source_set_icon_stock(self.get_stock())
@@ -395,11 +440,20 @@ class PersonView(PageView.PersonNavView):
         else:
             self.dirty = True
 
+        if Config.get(Config.FILTER):
+            self.generic_filter_widget.show()
+            self.filter_pane.hide()
+        else:
+            self.generic_filter_widget.hide()
+            self.filter_pane.show()
+
     def filter_toggle(self,obj):
         if obj.get_active():
             self.generic_filter_widget.show()
+            self.filter_pane.hide()
         else:
             self.generic_filter_widget.hide()
+            self.filter_pane.show()
 
     def add(self,obj):
         person = RelLib.Person()
