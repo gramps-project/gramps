@@ -3,6 +3,7 @@
 	* src/SelectEvent.py: Convert to managed window.
 	* src/SelectSource.py: Convert to managed window.
 	* src/DisplayTabs.py: Properly call selectors.
+	(DataEmbedList): Hook up data map for sources.
 
 2006-05-03  Alex Roitman  <shura@gramps-project.org>
 	* src/DisplayTabs.py (NoteTab.build_interface): Add spacing to

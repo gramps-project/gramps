@@ -303,7 +303,9 @@ class ButtonTab(GrampsTab):
         to see if anything is selected. If it is, the edit and
         delete buttons are enabled, otherwise the are disabled.
         """
-        if self.get_selected():
+        # Comparing to None is important, as empty strings
+        # and 0 can be returned
+        if self.get_selected() != None:
             self.edit_btn.set_sensitive(True)
             self.del_btn.set_sensitive(True)
         else:
@@ -923,6 +925,7 @@ class PlaceBackRefList(BackRefList):
 #-------------------------------------------------------------------------
 class DataEmbedList(EmbeddedList):
 
+    _HANDLE_COL = 0
     _DND_TYPE   = DdTargets.DATA
     _column_names = [
         (_('Key'), 0, 150), 
@@ -935,26 +938,68 @@ class DataEmbedList(EmbeddedList):
         EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('Data'), DataModel)
 
+    def build_columns(self):
+        EmbeddedList.build_columns(self)
+
+        # Need to add attributes to renderers
+        # and connect renderers to the 'edited' signal
+        for colno in range(len(self.columns)):
+            for renderer in self.columns[colno].get_cell_renderers():
+                renderer.set_property('editable',True)
+                renderer.connect('edited',self.edit_inline,colno)
+
     def get_data(self):
         return self.obj.get_data_map()
+
+    def is_empty(self):
+        return len(self.model)==0
+
+    def _get_map_from_model(self):
+        new_map = {}
+        for idx in range(len(self.model)):
+            node = self.model.get_iter(idx)
+            key = unicode(self.model.get_value(node,0))
+            value = unicode(self.model.get_value(node,1))
+            if key.strip():
+                new_map[key] = value
+        return new_map
+        
+    def update(self):
+        new_map = self._get_map_from_model()
+        self.obj.set_data_map(new_map)
+        self._set_label()
 
     def column_order(self):
         return ((1, 0), (1, 1))
 
     def add_button_clicked(self, obj):
-        pass
+        node = self.model.append(row=['',''])
+        self.selection.select_iter(node)
+        path = self.model.get_path(node)
+        self.tree.set_cursor_on_cell(path,
+                                     focus_column=self.columns[0],
+                                     focus_cell=None,
+                                     start_editing=True)
 
     def del_button_clicked(self, obj):
-        ref = self.get_selected()
-        if ref:
-            ref_list = self.obj.get_data_map()
-            ref_list.remove(ref)
-            self.rebuild()
+        (model,node) = self.selection.get_selected()
+        if node:
+            self.model.remove(node)
+            self.update()
 
+    def edit_inline(self, cell, path, new_text, data):
+        node = self.model.get_iter(path)
+        self.model.set_value(node,data,new_text)
+        self.update()
+            
     def edit_button_clicked(self, obj):
-        ref = self.get_selected()
-        if ref:
-            print ref
+        (model,node) = self.selection.get_selected()
+        if node:
+            path = self.model.get_path(node)
+            self.tree.set_cursor_on_cell(path,
+                                         focus_column=self.columns[0],
+                                         focus_cell=None,
+                                         start_editing=True)
 
 #-------------------------------------------------------------------------
 #
@@ -2147,8 +2192,9 @@ class DataModel(gtk.ListStore):
     def __init__(self, attr_list, db):
         gtk.ListStore.__init__(self, str, str)
         self.db = db
-        for attr in attr_list.keys():
-            self.append(row=[attr, attr_list[attr] ])
+
+        for key,value in attr_list.items():
+            self.append(row=[key,value])
 
 #-------------------------------------------------------------------------
 #
