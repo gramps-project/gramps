@@ -50,9 +50,11 @@ _findint = re.compile('^[^\d]*(\d+)[^\d]*')
 # Actual tool
 #
 #-------------------------------------------------------------------------
-class ReorderIds(Tool.Tool):
+class ReorderIds(Tool.BatchTool):
     def __init__(self,dbstate,uistate,options_class,name,callback=None):
-        Tool.Tool.__init__(self,dbstate,options_class,name)
+        Tool.BatchTool.__init__(self,dbstate,options_class,name)
+        if self.fail:
+            return
 
         db = dbstate.db
         self.uistate = uistate
@@ -61,7 +63,7 @@ class ReorderIds(Tool.Tool):
         else:
             print "Reordering GRAMPS IDs..."
 
-        self.trans = db.transaction_begin()
+        self.trans = db.transaction_begin("",batch=True)
 
         if uistate:
             self.progress.set_pass(_('Reordering People IDs'),

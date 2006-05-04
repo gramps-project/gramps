@@ -56,11 +56,13 @@ from PluginUtils import Tool, register_tool
 #
 #
 #-------------------------------------------------------------------------
-class ChangeTypes(Tool.Tool, ManagedWindow.ManagedWindow):
+class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
 
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        Tool.BatchTool.__init__(self, dbstate, options_class, name)
+        if self.fail:
+            return
 
         if uistate:
             self.title = _('Change Event Types')
@@ -110,7 +112,7 @@ class ChangeTypes(Tool.Tool, ManagedWindow.ManagedWindow):
 
         modified = 0
 
-        self.trans = self.db.transaction_begin()
+        self.trans = self.db.transaction_begin("",batch=True)
         if not cli:
             progress = Utils.ProgressMeter(_('Analyzing events'),'')
             progress.set_pass('',self.db.get_number_of_people())

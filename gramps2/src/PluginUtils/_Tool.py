@@ -75,7 +75,7 @@ tool_categories = {
 
 #-------------------------------------------------------------------------
 #
-# Report
+# Tool
 #
 #-------------------------------------------------------------------------
 class Tool:
@@ -97,11 +97,39 @@ class Tool:
         pass
 
 
+class BatchTool(Tool):
+    """
+    Same as Tool, except the warning is displayed about the potential
+    loss of undo history. Should be used for tools using batch transactions.
+
+    """
+
+    def __init__(self, dbstate, options_class, name):
+        from QuestionDialog import QuestionDialog2
+        warn_dialog = QuestionDialog2(
+            _('Undo history warning'),
+            _('Proceeding with this tool will erase the undo history '
+              'for this session. In particular, you will not be able '
+              'to revert the changes made by this tool or any changes '
+              'made prior to it.\n\n'
+              'If you think you may want to revert running this tool, '
+              'please stop here and backup your database.'),
+            _('_Proceed with the tool'), _('_Stop'))
+        if not warn_dialog.run():
+            self.fail = True
+            return
+
+        Tool.__init__(self, dbstate, options_class, name)
+        self.fail = False
+
+    def run_tool(self): pass
+
+
 class ActivePersonTool(Tool):
     """
-    The Tool base class.  This is a base class for generating
-    customized tools.  It cannot be used as is, but it can be easily
-    sub-classed to create a functional tool.
+    Same as Tool , except the existence of the active person is checked
+    and the tool is aborted if no active person exists. Should be used
+    for tools that depend on active person.
     """
 
     def __init__(self, dbstate, options_class, name):
@@ -117,7 +145,6 @@ class ActivePersonTool(Tool):
 
         Tool.__init__(self, dbstate, options_class, name)
         self.fail = False
-
 
 #------------------------------------------------------------------------
 #
