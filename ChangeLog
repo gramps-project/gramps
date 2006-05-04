@@ -1,4 +1,6 @@
 2006-05-03  Alex Roitman  <shura@gramps-project.org>
+	* src/DisplayTabs.py (NoteTab.build_interface): Add spacing to
+	radiobuttons.
 	* src/plugins/ReorderIds.py (ReorderIds.reorder): Switch from
 	cursors to keys iteration.
 
