@@ -57,12 +57,14 @@ from PluginUtils import Tool, register_tool
 # ChangeNames
 #
 #-------------------------------------------------------------------------
-class ChangeNames(Tool.Tool, ManagedWindow.ManagedWindow):
+class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('Capitalization changes')
         
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        Tool.BatchTool.__init__(self, dbstate, options_class, name)
+        if self.fail:
+            return
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
 
         self.cb = callback

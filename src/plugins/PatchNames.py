@@ -85,16 +85,18 @@ _sn_prefix_re = re.compile("^\s*(%s)\s+(.*)" % '|'.join(prefix_list),
 # PatchNames
 #
 #-------------------------------------------------------------------------
-class PatchNames(Tool.Tool, ManagedWindow.ManagedWindow):
+class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
     
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('Name and title extraction tool')
         
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        Tool.BatchTool.__init__(self, dbstate, options_class, name)
+        if self.fail:
+            return
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         self.cb = callback
-        self.trans = self.db.transaction_begin()
+        self.trans = self.db.transaction_begin("",batch=True)
         self.title_list = []
         self.nick_list = []
         self.prefix1_list = []

@@ -1009,13 +1009,27 @@ class ViewManager:
         Exporter.Exporter(self.state, self.uistate)
 
     def import_data(self, obj):
+        # First thing first: import is a batch transaction
+        # so we will lose the undo history. Warn the user.
+        warn_dialog = QuestionDialog.QuestionDialog2(
+            _('Undo history warning'),
+            _('Proceeding with import will erase the undo history '
+              'for this session. In particular, you will not be able '
+              'to revert the import or any changes made prior to it.\n\n'
+              'If you think you may want to revert the import, '
+              'please stop here and backup your database.'),
+            _('_Proceed with import'), _('_Stop'),
+            self.window)
+        if not warn_dialog.run():
+            return False
+        
         choose = gtk.FileChooserDialog(_('GRAMPS: Import database'), 
-                                           self.uistate.window, 
-                                           gtk.FILE_CHOOSER_ACTION_OPEN, 
-                                           (gtk.STOCK_CANCEL, 
-                                            gtk.RESPONSE_CANCEL, 
-                                            gtk.STOCK_OPEN, 
-                                            gtk.RESPONSE_OK))
+                                       self.uistate.window, 
+                                       gtk.FILE_CHOOSER_ACTION_OPEN, 
+                                       (gtk.STOCK_CANCEL, 
+                                        gtk.RESPONSE_CANCEL, 
+                                        gtk.STOCK_OPEN, 
+                                        gtk.RESPONSE_OK))
         choose.set_local_only(False)
         # Always add automatic (macth all files) filter
         add_all_files_filter(choose)

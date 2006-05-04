@@ -138,10 +138,12 @@ def _table_low_level(db,table):
 # runTool
 #
 #-------------------------------------------------------------------------
-class Check(Tool.Tool):
+class Check(Tool.BatchTool):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
 
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        Tool.BatchTool.__init__(self, dbstate, options_class, name)
+        if self.fail:
+            return
 
         cli = uistate == None
 
