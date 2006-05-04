@@ -1457,9 +1457,11 @@ class NoteTab(GrampsTab):
 
         vbox.pack_start(scroll, True)
         vbox.set_spacing(6)
+        vbox.set_border_width(6)
 
         hbox = gtk.HBox()
-        hbox.set_spacing(6)
+        hbox.set_spacing(12)
+        hbox.set_border_width(6)
         hbox.pack_start(self.flowed, False)
         hbox.pack_start(self.format, False)
 
