@@ -41,7 +41,6 @@ from gettext import gettext as _
 import Utils
 import RelLib
 from PluginUtils import Tool, register_tool
-from QuestionDialog import WarningDialog
 
 _findint = re.compile('^[^\d]*(\d+)[^\d]*')
 
@@ -72,7 +71,7 @@ class ReorderIds(Tool.BatchTool):
                      db.get_person_from_gramps_id,
                      db.get_person_from_handle,
                      db.find_next_person_gramps_id,
-                     db.get_person_cursor,
+                     db.person_map,
                      db.commit_person,
                      db.iprefix)
 
@@ -83,7 +82,7 @@ class ReorderIds(Tool.BatchTool):
                      db.get_family_from_gramps_id,
                      db.get_family_from_handle,
                      db.find_next_family_gramps_id,
-                     db.get_family_cursor,
+                     db.family_map,
                      db.commit_family,
                      db.fprefix)
         if uistate:
@@ -93,7 +92,7 @@ class ReorderIds(Tool.BatchTool):
                      db.get_event_from_gramps_id,
                      db.get_event_from_handle,
                      db.find_next_event_gramps_id,
-                     db.get_event_cursor,
+                     db.event_map,
                      db.commit_event,
                      db.eprefix)
         if uistate:
@@ -103,7 +102,7 @@ class ReorderIds(Tool.BatchTool):
                      db.get_object_from_gramps_id,
                      db.get_object_from_handle,
                      db.find_next_object_gramps_id,
-                     db.get_media_cursor,
+                     db.media_map,
                      db.commit_media_object,
                      db.oprefix)
         if uistate:
@@ -113,7 +112,7 @@ class ReorderIds(Tool.BatchTool):
                      db.get_source_from_gramps_id,
                      db.get_source_from_handle,
                      db.find_next_source_gramps_id,
-                     db.get_source_cursor,
+                     db.source_map,
                      db.commit_source,
                      db.sprefix)
         if uistate:
@@ -123,17 +122,17 @@ class ReorderIds(Tool.BatchTool):
                      db.get_place_from_gramps_id,
                      db.get_place_from_handle,
                      db.find_next_place_gramps_id,
-                     db.get_place_cursor,
+                     db.place_map,
                      db.commit_place,
                      db.pprefix)
         if uistate:
             self.progress.set_pass(_('Reordering Repository IDs'),
                                    db.get_number_of_repositories())
-        self.reorder(RelLib.Place,
+        self.reorder(RelLib.Repository,
                      db.get_repository_from_gramps_id,
                      db.get_repository_from_handle,
                      db.find_next_repository_gramps_id,
-                     db.get_repository_cursor,
+                     db.repository_map,
                      db.commit_repository,
                      db.rprefix)
 
@@ -145,19 +144,16 @@ class ReorderIds(Tool.BatchTool):
         db.transaction_commit(self.trans,_("Reorder GRAMPS IDs"))
         
     def reorder(self, class_type, find_from_id, find_from_handle,
-                find_next_id, get_cursor, commit, prefix):
+                find_next_id, table, commit, prefix):
         dups = []
         newids = {}
         key_list = []
 
-        # search all ids in the map
-
-        cursor = get_cursor()
-        data = cursor.first()
-        while data:
+        for handle in table.keys():
             if self.uistate:
                 self.progress.step()
-            (handle,sdata) = data
+
+            sdata = table[handle]
 
             obj = class_type()
             obj.unserialize(sdata)
@@ -187,9 +183,6 @@ class ReorderIds(Tool.BatchTool):
             else:
                 dups.append(handle)
 
-            data = cursor.next()
-        cursor.close()
-            
         # go through the duplicates, looking for the first availble
         # handle that matches the new scheme.
     
