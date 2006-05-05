@@ -1,3 +1,6 @@
+2006-05-05  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: Add undo history menu entry
+
 2006-05-04  Alex Roitman  <shura@gramps-project.org>
 
 	* src/Makefile.am (gdir_PYTHON): Remove DisplayTabs.py.
