@@ -456,11 +456,6 @@ class MergePeople:
         The other person's name is stored as an alternate name if it is
         not entirely identical to the destination person's primary name.
 
-        In the current implementation, If only one person has a
-        nickname, it is assigned as the merged person's nickname. If
-        both people have nicknames, then the nickname of the second
-        person is lost.
-
         Remaining alternate names are then added to the merged
         person's alternate names.
         """
@@ -471,11 +466,6 @@ class MergePeople:
         if not p2_name.is_equal(p1_name):
             new.add_alternate_name(p2_name)
             
-        if self.p1.get_nick_name() == "":
-            new.set_nick_name(self.p2.get_nick_name())
-        else:
-            new.set_nick_name(self.p1.get_nick_name())
-
         for name in self.p1.get_alternate_names():
             new.add_alternate_name(name)
         for name in self.p2.get_alternate_names():

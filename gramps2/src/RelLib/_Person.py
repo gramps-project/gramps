@@ -49,6 +49,7 @@ from _EventRef import EventRef
 from _LdsOrd import LdsOrd
 from _PersonRef import PersonRef
 from _MarkerType import MarkerType
+from _AttributeType import AttributeType
 
 #-------------------------------------------------------------------------
 #
@@ -102,7 +103,6 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         self.event_ref_list = []
         self.family_list = []
         self.parent_family_list = []
-        self.nickname = ""
         self.alternate_names = []
         self.person_ref_list = []
         self.gender = Person.UNKNOWN
@@ -147,23 +147,22 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
             self.gender,                                         #  2
             self.primary_name.serialize(),                       #  3
             [name.serialize() for name in self.alternate_names], #  4
-            unicode(self.nickname),                              #  5
-            death_ref,                                           #  6
-            birth_ref,                                           #  7
-            [er.serialize() for er in self.event_ref_list],      #  8
-            self.family_list,                                    #  9
-            self.parent_family_list,                             # 10
-            MediaBase.serialize(self),                           # 11
-            AddressBase.serialize(self),                         # 12
-            AttributeBase.serialize(self),                       # 13
-            UrlBase.serialize(self),                             # 14
-            LdsOrdBase.serialize(self),                          # 15
-            SourceBase.serialize(self),                          # 16
-            NoteBase.serialize(self),                            # 17
-            self.change,                                         # 18
-            self.marker.serialize(),                             # 19
-            self.private,                                        # 20
-            [pr.serialize() for pr in self.person_ref_list]      # 21
+            death_ref,                                           #  5
+            birth_ref,                                           #  6
+            [er.serialize() for er in self.event_ref_list],      #  7
+            self.family_list,                                    #  8
+            self.parent_family_list,                             #  9
+            MediaBase.serialize(self),                           # 10
+            AddressBase.serialize(self),                         # 11
+            AttributeBase.serialize(self),                       # 12
+            UrlBase.serialize(self),                             # 13
+            LdsOrdBase.serialize(self),                          # 14
+            SourceBase.serialize(self),                          # 15
+            NoteBase.serialize(self),                            # 16
+            self.change,                                         # 17
+            self.marker.serialize(),                             # 18
+            self.private,                                        # 19
+            [pr.serialize() for pr in self.person_ref_list]      # 20
             )
 
     def unserialize(self, data):
@@ -181,23 +180,22 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
             self.gender,             #  2
             primary_name,            #  3
             alternate_names,         #  4
-            self.nickname,           #  5
-            death_ref,               #  6
-            birth_ref,               #  7
-            event_ref_list,          #  8
-            self.family_list,        #  9
-            self.parent_family_list, # 10
-            media_list,              # 11
-            address_list,            # 12
-            attribute_list,          # 13
-            urls,                    # 14
-            lds_ord_list,            # 15
-            source_list,             # 16
-            note,                    # 17
-            self.change,             # 18
-            marker,                  # 19
-            self.private,            # 20
-            person_ref_list,         # 21
+            death_ref,               #  5
+            birth_ref,               #  6
+            event_ref_list,          #  7
+            self.family_list,        #  8
+            self.parent_family_list, #  9
+            media_list,              # 10
+            address_list,            # 11
+            attribute_list,          # 12
+            urls,                    # 13
+            lds_ord_list,            # 14
+            source_list,             # 15
+            note,                    # 16
+            self.change,             # 17
+            marker,                  # 18
+            self.private,            # 19
+            person_ref_list,         # 20
             ) = data
 
         self.marker.unserialize(marker)
@@ -299,7 +297,7 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.nickname, self.gramps_id]
+        return [self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -402,23 +400,13 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         """
         self.alternate_names.append(name)
 
-    def set_nick_name(self, name):
-        """
-        Sets the nickname field for the Person
-
-        @param name: Nickname to be assigned
-        @type name: str
-        """
-        self.nickname = name
-
-    def get_nick_name(self) :
-        """
-        Returns the nickname for the Person
-
-        @returns: Returns the nickname associated with the Person
-        @rtype str
-        """
-        return self.nickname
+    def get_nick_name(self):
+        nicks = [ attr for attr in self.attribute_list \
+                  if int(attr.type) == AttributeType.NICKNAME ]
+        if len(nicks) == 0:
+            return u''
+        else:
+            return nicks[0].get_value()
 
     def set_gender(self, gender) :
         """

@@ -33,6 +33,7 @@ class AttributeType(GrampsType):
     NATIONAL    = 4
     NUM_CHILD   = 5
     SSN         = 6
+    NICKNAME    = 7
 
     _CUSTOM = CUSTOM
     _DEFAULT = ID
@@ -47,6 +48,7 @@ class AttributeType(GrampsType):
         (NUM_CHILD   , _("Number of Children"), "Number of Children"),
         (SSN         , _("Social Security Number"), "Social Security Number"),
         (NUM_CHILD   , _("Number of Children"), "Number of Children"),
+        (NICKNAME    , _("Nickname"), "Nickname"),
         ]
 
     _I2SMAP = init_map(_DATAMAP, 0, 1)

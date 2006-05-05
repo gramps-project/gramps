@@ -1,3 +1,15 @@
+2006-05-05  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: nickname changes
+	* src/GrampsDb/_ReadXML.py: nickname changes
+	* src/GrampsDb/_WriteGedcom.py: nickname changes
+	* src/GrampsDb/_WriteXML.py: nickname changes
+	* src/Editors/_EditPerson.py: nickname/call name changes
+	* src/Editors/_EditName.py: nickname/call name changes
+	* src/RelLib/_AttributeType.py: nickname changes
+	* src/RelLib/_Name.py: call name changes
+	* src/RelLib/_Person.py: nickname changes
+	* src/MergePeople.py: nickname elimination
+
 2006-05-05  Alex Roitman  <shura@gramps-project.org>
 	* src/DisplayTabs/_MediaBackRefList.py: Import model.
 

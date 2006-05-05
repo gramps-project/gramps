@@ -397,7 +397,6 @@ class XmlWriter:
         for name in person.get_alternate_names():
             self.dump_name(name,True,index+1)
 
-        self.write_line("nick",person.get_nick_name(),index+1)
         self.dump_event_ref(person.birth_ref,index+1)
         self.dump_event_ref(person.death_ref,index+1)
         for event_ref in person.get_event_ref_list():

@@ -1601,7 +1601,10 @@ class GrampsParser:
 
     def stop_nick(self,tag):
         if self.person:
-            self.person.set_nick_name(tag)
+            attr = RelLib.Attribute()
+            attr.set_type(RelLib.AttributeType.NICKNAME)
+            attr.set_value(tag)
+            self.person.add_attribute(attr)
 
     def stop_note(self,tag):
         self.in_note = 0
