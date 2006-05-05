@@ -1135,11 +1135,11 @@ class GrampsBSDDB(GrampsDbBase):
                                              find_referenced_handle,open_flags)
         self.txn = None
 
-    def undo(self):
+    def undo(self,update_history=True):
         print "Undoing it"
         if self.UseTXN:
             self.txn = self.env.txn_begin()
-        status = GrampsDbBase.undo(self)
+        status = GrampsDbBase.undo(self,update_history)
         if self.UseTXN:
             if status:
                 self.txn.commit()
@@ -1148,11 +1148,11 @@ class GrampsBSDDB(GrampsDbBase):
         self.txn = None
         return status
 
-    def redo(self):
+    def redo(self,update_history=True):
         print "Redoing it"
         if self.UseTXN:
             self.txn = self.env.txn_begin()
-        status = GrampsDbBase.redo(self)
+        status = GrampsDbBase.redo(self,update_history)
         if self.UseTXN:
             if status:
                 self.txn.commit()
@@ -1391,7 +1391,7 @@ class GrampsBSDDB(GrampsDbBase):
             person.handle = handle
             # Restore data from dbversion 8 (gramps 2.0.9)
             (junk_handle, person.gramps_id, person.gender,
-             person.primary_name, person.alternate_names, person.nickname,
+             person.primary_name, person.alternate_names, nickname,
              death_handle, birth_handle, event_list,
              person.family_list, parent_family_list,
              person.media_list, person.address_list, person.attribute_list,
@@ -1445,6 +1445,13 @@ class GrampsBSDDB(GrampsDbBase):
             # In all Attributes, convert type from string to a tuple
             for attribute in person.attribute_list:
                 convert_attribute_9(attribute)
+
+            # Nickname becomes an attribute
+            if nickname.strip():
+                attr = Attribute()
+                attr.set_type(AttributeType.NICKNAME)
+                attr.set_value(nickname)
+                person.attribute_list.append(attr)
 
             # Cover attributes contained in MediaRefs
             for media_ref in person.media_list:
