@@ -51,7 +51,8 @@ import Spell
 import GrampsDisplay
 from _EditPrimary import EditPrimary
 
-from DisplayTabs import *
+from DisplayTabs import \
+     NoteTab,GalleryTab,DataEmbedList,SourceBackRefList,RepoEmbedList
 from GrampsWidgets import *
 
 #-------------------------------------------------------------------------

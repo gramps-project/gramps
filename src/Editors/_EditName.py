@@ -45,7 +45,7 @@ import RelLib
 import NameDisplay
 from _EditSecondary import EditSecondary
 
-from DisplayTabs import *
+from DisplayTabs import SourceEmbedList,NoteTab
 from GrampsWidgets import *
 
 #-------------------------------------------------------------------------

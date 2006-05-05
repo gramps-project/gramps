@@ -53,7 +53,7 @@ import GrampsDisplay
 from _EditPrimary import EditPrimary
 
 from QuestionDialog import WarningDialog, ErrorDialog
-from DisplayTabs import *
+from DisplayTabs import SourceEmbedList, NoteTab, GalleryTab, EventBackRefList
 from GrampsWidgets import *
 
 #-------------------------------------------------------------------------

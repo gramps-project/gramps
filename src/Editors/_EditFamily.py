@@ -74,7 +74,9 @@ import Errors
 from _EditPrimary import EditPrimary
 from PluginUtils import ReportUtils
 from DdTargets import DdTargets
-from DisplayTabs import *
+from DisplayTabs import \
+     EmbeddedList,EventEmbedList,SourceEmbedList,FamilyAttrEmbedList,\
+     NoteTab,GalleryTab,FamilyLdsEmbedList
 from GrampsWidgets import *
 
 #from ObjectSelector import PersonSelector,PersonFilterSpec

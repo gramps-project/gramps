@@ -63,7 +63,10 @@ import GrampsWidgets
 
 from _EditPrimary import EditPrimary
 from QuestionDialog import WarningDialog, ErrorDialog, QuestionDialog2
-from DisplayTabs import *
+from DisplayTabs import \
+     PersonEventEmbedList,NameEmbedList,SourceEmbedList,AttrEmbedList,\
+     AddrEmbedList,NoteTab,GalleryTab,WebEmbedList,PersonRefEmbedList, \
+     LdsEmbedList
     
 #-------------------------------------------------------------------------
 #

@@ -47,7 +47,8 @@ import RelLib
 import Mime
 import ImgManip
 
-from DisplayTabs import *
+from DisplayTabs import \
+     SourceEmbedList,AttrEmbedList,MediaBackRefList,NoteTab
 from GrampsWidgets import *
 from _EditReference import EditReference
 

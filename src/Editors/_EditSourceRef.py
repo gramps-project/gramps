@@ -49,7 +49,7 @@ import const
 import Utils
 import RelLib
 
-from DisplayTabs import *
+from DisplayTabs import NoteTab,GalleryTab,SourceBackRefList
 from GrampsWidgets import *
 from _EditReference import EditReference
 

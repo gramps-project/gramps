@@ -51,7 +51,7 @@ from _EditPrimary import EditPrimary
 
 from GrampsWidgets import *
 from QuestionDialog import ErrorDialog
-from DisplayTabs import *
+from DisplayTabs import SourceEmbedList,AttrEmbedList,NoteTab,MediaBackRefList
 
 #-------------------------------------------------------------------------
 #
