@@ -108,6 +108,12 @@ class EditEventRef(EditReference):
             self.source.get_description,
             self.db.readonly)
 
+        self.gid = MonitoredEntry(
+            self.top.get_widget("gid"),
+            self.source.set_gramps_id,
+            self.source.get_gramps_id,
+            self.db.readonly)
+
         self.place_field = PlaceEntry(
             self.top.get_widget("eer_place"),
             self.source.get_place_handle(),

@@ -97,6 +97,12 @@ class EditSource(EditPrimary):
             self.obj.get_publication_info,
             self.db.readonly)
 
+        self.gid = MonitoredEntry(
+            self.glade.get_widget("gid"),
+            self.obj.set_gramps_id,
+            self.obj.get_gramps_id,
+            self.db.readonly)
+
         self.abbrev = MonitoredEntry(
             self.glade.get_widget("abbrev"),
             self.obj.set_abbreviation,

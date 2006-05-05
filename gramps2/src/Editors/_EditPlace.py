@@ -82,8 +82,6 @@ class EditPlace(EditPrimary):
     def _setup_fields(self):
         mloc = self.obj.get_main_location()
         
-        self.top.get_widget('changed').set_text(self.obj.get_change_display())
-
         self.title = MonitoredEntry(
             self.top.get_widget("place_title"),
             self.obj.set_title, self.obj.get_title,
@@ -92,6 +90,11 @@ class EditPlace(EditPrimary):
         self.city = MonitoredEntry(
             self.top.get_widget("city"),
             mloc.set_city, mloc.get_city, self.db.readonly)
+        
+        self.gid = MonitoredEntry(
+            self.top.get_widget("gid"),
+            self.obj.set_gramps_id,
+            self.obj.get_gramps_id, self.db.readonly)
         
         self.parish = MonitoredEntry(
             self.top.get_widget("parish"),

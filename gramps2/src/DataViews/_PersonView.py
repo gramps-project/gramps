@@ -162,7 +162,7 @@ class PersonView(PageView.PersonNavView):
         contains the interface. This containter will be inserted into
         a gtk.Notebook page.
         """
-        hpaned = gtk.HPaned()
+        hpaned = gtk.HBox()
         self.vbox = gtk.VBox()
         self.vbox.set_border_width(4)
         self.vbox.set_spacing(4)
@@ -204,8 +204,8 @@ class PersonView(PageView.PersonNavView):
 
         self.filter_pane = self.build_filter_sidebar()
 
-        hpaned.pack1(self.vbox,True,False)
-        hpaned.pack2(self.filter_pane)
+        hpaned.pack_start(self.vbox, True, True)
+        hpaned.pack_end(self.filter_pane, False, False)
         
         return hpaned
 
@@ -393,29 +393,10 @@ class PersonView(PageView.PersonNavView):
         Builds the default filters and add them to the filter menu.
         """
         default_filters = [
-            [Rules.Person.Everyone, []],
-            [Rules.Person.IsFemale, []],
-            [Rules.Person.IsMale, []],
-            [Rules.Person.HasUnknownGender, []],
-            [Rules.Person.Disconnected, []],
             [Rules.Person.SearchName, ['']],
-            [Rules.Person.HaveAltFamilies, []],
-            [Rules.Person.HavePhotos, []],
-            [Rules.Person.IncompleteNames, []],
-            [Rules.Person.HaveChildren, []],
-            [Rules.Person.NeverMarried, []],
-            [Rules.Person.MultipleMarriages, []],
-            [Rules.Person.NoBirthdate, []],
-            [Rules.Person.PersonWithIncompleteEvent, []],
-            [Rules.Person.FamilyWithIncompleteEvent, []],
-            [Rules.Person.ProbablyAlive, ['']],
-            [Rules.Person.PeoplePrivate, []],
-            [Rules.Person.IsWitness, ['','']],
             [Rules.Person.HasTextMatchingSubstringOf, ['',0,0]],
             [Rules.Person.HasTextMatchingRegexpOf, ['',0,1]],
-            [Rules.Person.HasNote, []],
             [Rules.Person.HasNoteMatchingSubstringOf, ['']],
-            [Rules.Person.IsFemale, []],
             ]
         self.generic_filter_widget.setup_filter( default_filters, "person")        
 
