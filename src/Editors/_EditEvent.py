@@ -122,6 +122,12 @@ class EditEvent(EditPrimary):
             self.obj.set_description,
             self.obj.get_description, self.db.readonly)
 
+        self.gid = MonitoredEntry(
+            self.top.get_widget("gid"),
+            self.obj.set_gramps_id,
+            self.obj.get_gramps_id,
+            self.db.readonly)
+
         self.priv = PrivacyButton(
             self.top.get_widget("private"),
             self.obj, self.db.readonly)

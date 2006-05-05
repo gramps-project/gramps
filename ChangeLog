@@ -8,7 +8,14 @@
 	* src/DisplayTabs: Add package.
 
 2006-05-04  Don Allingham  <don@gramps-project.org>
-	* src/DataViews/_PersonView.py: start of filter sidebar
+	* src/glade/gramps.glade: add call name field, add id fields
+	* src/glade/edit_person.glade: add call name field
+	* src/DataViews/_PersonView.py: start of filter sidebar,
+	use hbox instead of hpaned
+	* src/Editors/_EditPlace.py: add ID field
+	* src/Editors/_EditSource.py: add ID field
+	* src/Editors/_EditEventRef.py: add ID field
+	* src/Editors/_EditEvent.py: add ID field
 
 2006-05-04  Alex Roitman  <shura@gramps-project.org>
 	* src/SelectObject.py: Convert to managed window.
