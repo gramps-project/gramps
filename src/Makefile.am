@@ -77,7 +77,8 @@ gdir_PYTHON = \
 	Utils.py\
 	ViewManager.py\
 	SelectFamily.py\
-	SelectSource.py
+	SelectSource.py\
+	UndoHistory.py
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

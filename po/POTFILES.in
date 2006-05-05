@@ -53,6 +53,7 @@ src/ToolTips.py
 src/TransUtils.py
 src/TreeTips.py
 src/Utils.py
+src/UndoHistory.py
 src/ViewManager.py
 src/ManagedWindow.py
 src/Config/_GrampsGconfKeys.py

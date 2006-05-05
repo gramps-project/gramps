@@ -78,6 +78,7 @@ import RecentFiles
 import NameDisplay
 import Mime
 import GrampsWidgets
+import UndoHistory
 
 #-------------------------------------------------------------------------
 #
@@ -107,8 +108,8 @@ uidefault = '''<ui>
   </menu>
   <menu action="EditMenu">
     <menuitem action="Undo"/>
-    <menuitem action="UndoHistory"/>
     <menuitem action="Redo"/>
+    <menuitem action="UndoHistory"/>
     <separator/>
     <placeholder name="CommonEdit"/>
     <menuitem action="CmpMerge"/>
@@ -359,12 +360,16 @@ class ViewManager:
 
         self._undo_action_list = [
             ('Undo', gtk.STOCK_UNDO, _('_Undo'),'<control>z', None, self.undo),
-            ('UndoHistory', 'stock_undo-history', _('_Undo History'), None, None, self.undo_history),
             ]
 
         self._redo_action_list = [
             ('Redo', gtk.STOCK_REDO,_('_Redo'), '<shift><control>z', None,
              self.redo),
+            ]
+
+        self._undo_history_action_list = [
+            ('UndoHistory', 'stock_undo-history',
+             _('Undo History'), None, None, self.undo_history),
             ]
 
         self._navigation_type = {
@@ -438,6 +443,7 @@ class ViewManager:
         self.fileactions = gtk.ActionGroup('FileWindow')
         self.undoactions = gtk.ActionGroup('Undo')
         self.redoactions = gtk.ActionGroup('Redo')
+        self.undohistoryactions = gtk.ActionGroup('UndoHistory')
 
         self.fileactions.add_actions(self._file_action_list)
         self.actiongroup.add_actions(self._action_action_list)
@@ -449,12 +455,15 @@ class ViewManager:
         self.redoactions.add_actions(self._redo_action_list)
         self.redoactions.set_sensitive(False)
 
+        self.undohistoryactions.add_actions(self._undo_history_action_list)
+
         merge_id = self.uimanager.add_ui_from_string(uidefault)
         
         self.uimanager.insert_action_group(self.fileactions, 1)
         self.uimanager.insert_action_group(self.actiongroup, 1)
         self.uimanager.insert_action_group(self.undoactions, 1)
         self.uimanager.insert_action_group(self.redoactions, 1)
+        self.uimanager.insert_action_group(self.undohistoryactions, 1)
         self.uimanager.ensure_update()
 
     def home_page_activate(self, obj):
@@ -891,9 +900,6 @@ class ViewManager:
             log.error("Failed to open database.", exc_info=True)
             return False
         
-        # Undo/Redo always start with standard labels and insensitive state
-        #self.undo_callback(None)
-        #self.redo_callback(None)
         self.file_loaded = True
         self.actiongroup.set_visible(True)
         return True
@@ -932,6 +938,7 @@ class ViewManager:
         self.change_page(None, None)
         self.state.db.undo_callback = self.change_undo_label
         self.state.db.redo_callback = self.change_redo_label
+        self.state.db.undo_history_callback = self.undo_history_update
         self.actiongroup.set_visible(True)
         self.window.window.set_cursor(None)
         return True
@@ -941,7 +948,7 @@ class ViewManager:
         self.undoactions = gtk.ActionGroup('Undo')
         if label:
             self.undoactions.add_actions([
-                ('Undo', gtk.STOCK_UNDO, label, '<control>z', None, self.undo)])
+                ('Undo',gtk.STOCK_UNDO,label,'<control>z',None,self.undo)])
         else:
             self.undoactions.add_actions([
                 ('Undo', gtk.STOCK_UNDO, '_Undo', 
@@ -962,6 +969,19 @@ class ViewManager:
                  '<shift><control>z', None, self.redo)])
             self.redoactions.set_sensitive(False)
         self.uimanager.insert_action_group(self.redoactions, 1)
+
+    def undo_history_update(self):
+        """
+        This function is called to update both the state of
+        the Undo History menu item (enable/disable) and
+        the contents of the Undo History window.
+        """
+        try:
+            # Try updating undo history window if it exists
+            self.undo_history_window.update()
+        except AttributeError:
+            # Let it go: history window does not exist
+            pass
 
     def setup_bookmarks(self):
         self.bookmarks = Bookmarks.Bookmarks(self.state, self.uistate, 
@@ -1007,7 +1027,11 @@ class ViewManager:
         self.state.db.redo()
 
     def undo_history(self, obj):
-        print "UNDO HISTORY"
+        try:
+            self.undo_history_window = UndoHistory.UndoHistory(self.state,
+                                                               self.uistate)
+        except Errors.WindowActiveError:
+            pass
 
     def export_data(self, obj):
         import Exporter

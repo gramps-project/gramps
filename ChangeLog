@@ -1,3 +1,15 @@
+2006-05-05  Alex Roitman  <shura@gramps-project.org>
+	* src/UndoHistory.py: Add new file.
+	* src/ViewManager.py: undo history support.
+	* src/GrampsDb/_GrampsDbBase.py (Transaction.__init__): Add
+	timestamp to the transaction.
+	(GrampsDbBase.redo): Update undo history window.
+	(GrampsDbBase.undo): Update undo history window.
+	(GrampsDbBase.transaction_commit): Update undo history window.
+	(GrampsDbBase.transaction_commit): Set transaction timestamp.
+	(GrampsDbBase.__init__): Define undo_history_callback.
+	* src/Makefile.am (gdir_PYTHON): Ship new file.
+
 2006-05-05  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py: nickname changes
 	* src/GrampsDb/_ReadXML.py: nickname changes

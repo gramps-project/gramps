@@ -255,6 +255,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.name_group = None
         self.undo_callback = None
         self.redo_callback = None
+        self.undo_history_callback = None
         self.modified   = 0
 
         self.undoindex  = -1
@@ -1223,6 +1224,7 @@ class GrampsDbBase(GrampsDBCallback):
         if not len(transaction) or self.readonly:
             return
         transaction.set_description(msg)
+        transaction.timestamp = time.time()
         self.undoindex += 1                    
         if self.undoindex >= _UNDO_SIZE:
             # We overran the undo size.
@@ -1281,6 +1283,8 @@ class GrampsDbBase(GrampsDBCallback):
             self.undo_callback(_("_Undo %s") % transaction.get_description())
         if self.redo_callback:
             self.redo_callback(None)
+        if self.undo_history_callback:
+            self.undo_history_callback()
 
     def _do_emit(self, objtype, add_list, upd_list, del_list):
         if add_list:
@@ -1302,7 +1306,7 @@ class GrampsDbBase(GrampsDBCallback):
             retlist.append(str(handle))
         return retlist
 
-    def undo(self):
+    def undo(self,update_history=True):
         """
         Accesses the last committed transaction, and reverts the data to
         the state before the transaction was committed.
@@ -1319,7 +1323,7 @@ class GrampsDbBase(GrampsDBCallback):
         subitems = transaction.get_recnos()
         subitems.reverse()
         for record_id in subitems:
-            (key, handle, old_data, new_data) = transaction.get_record(record_id)
+            (key,handle,old_data,new_data) = transaction.get_record(record_id)
             if key == REFERENCE_KEY:
                 self.undo_reference(old_data, handle)
             else:
@@ -1340,9 +1344,11 @@ class GrampsDbBase(GrampsDBCallback):
                 self.redo_callback(_("_Redo %s")
                                    % transaction.get_description())
 
+        if update_history and self.undo_history_callback:
+            self.undo_history_callback()
         return True
 
-    def redo(self):
+    def redo(self,update_history=True):
         """
         Accesses the last undone transaction, and reverts the data to
         the state before the transaction was undone.
@@ -1360,7 +1366,7 @@ class GrampsDbBase(GrampsDBCallback):
 
         subitems = transaction.get_recnos()
         for record_id in subitems:
-            (key, handle, old_data, new_data) = transaction.get_record(record_id)
+            (key,handle,old_data,new_data) = transaction.get_record(record_id)
             if key == REFERENCE_KEY:
                 self.undo_reference(new_data, handle)
             else:
@@ -1388,6 +1394,8 @@ class GrampsDbBase(GrampsDBCallback):
                 self.undo_callback(_("_Undo %s")
                                    % transaction.get_description())
 
+        if update_history and self.undo_history_callback:
+            self.undo_history_callback()
         return True
 
     def undo_reference(self, data, handle):
@@ -1967,6 +1975,7 @@ class Transaction:
         self.batch = batch
         self.no_magic = no_magic
         self.length = 0
+        self.timestamp = 0
 
         self.person_add = []
         self.person_del = []
