@@ -45,7 +45,7 @@ import Utils
 import RelLib
 
 from GrampsWidgets import *
-from DisplayTabs import *
+from DisplayTabs import AddrEmbedList,WebEmbedList,NoteTab,SourceBackRefList
 from _EditPrimary import EditPrimary
 
 class EditRepository(EditPrimary):

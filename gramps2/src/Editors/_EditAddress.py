@@ -47,7 +47,7 @@ import gtk.glade
 import const
 from _EditSecondary import EditSecondary
 
-from DisplayTabs import *
+from DisplayTabs import SourceEmbedList, NoteTab
 from GrampsWidgets import *
 
 #-------------------------------------------------------------------------

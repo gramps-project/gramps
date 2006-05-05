@@ -50,7 +50,6 @@ import RelLib
 import ManagedWindow
 
 from QuestionDialog import WarningDialog, ErrorDialog
-from DisplayTabs import *
 from GrampsWidgets import *
 
 #-------------------------------------------------------------------------

@@ -194,6 +194,7 @@ src/Makefile
 src/RelLib/Makefile
 src/Config/Makefile
 src/Mime/Makefile
+src/DisplayTabs/Makefile
 src/ObjectSelector/Makefile
 src/GrampsLogger/Makefile
 src/TreeViews/Makefile
