@@ -32,6 +32,7 @@ from gettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
+from _BackRefModel import BackRefModel
 from _BackRefList import BackRefList
 
 class MediaBackRefList(BackRefList):
