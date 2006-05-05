@@ -885,13 +885,14 @@ class GedcomWriter:
         restricted = self.restrict and Utils.probably_alive (person,self.db)
         self.prefn(person)
         primaryname = person.get_primary_name ()
+        nickname = ""
         if restricted and self.living:
             primaryname = RelLib.Name (primaryname)
             primaryname.set_first_name ("Living")
-            nickname = ""
+            #nickname = ""
         else:
             primaryname = person.get_primary_name ()
-            nickname = person.get_nick_name ()
+            #nickname = person.get_nick_name ()
            
         if restricted and self.exclnotes:
             primaryname = RelLib.Name (primaryname)

@@ -68,7 +68,7 @@ class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
             (privacy,source_list,note,date,
              self.first_name,self.surname,self.suffix,self.title,
              name_type,self.prefix,self.patronymic,self.sname,
-             self.group_as,self.sort_as,self.display_as) = data
+             self.group_as,self.sort_as,self.display_as,self.call) = data
             self.type = NameType(name_type)
             PrivacyBase.unserialize(self,privacy)
             SourceBase.unserialize(self,source_list)
@@ -90,6 +90,7 @@ class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
             self.group_as = source.group_as
             self.sort_as = source.sort_as
             self.display_as = source.display_as
+            self.call = source.call
         else:
             PrivacyBase.__init__(self,source)
             SourceBase.__init__(self,source)
@@ -106,6 +107,7 @@ class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
             self.group_as = ""
             self.sort_as = self.DEF
             self.display_as = self.DEF
+            self.call = ''
 
     def serialize(self):
         return (PrivacyBase.serialize(self),
@@ -114,13 +116,13 @@ class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
                 DateBase.serialize(self),
                 self.first_name,self.surname,self.suffix,self.title,
                 self.type.serialize(),self.prefix,self.patronymic,self.sname,
-                self.group_as,self.sort_as,self.display_as)
+                self.group_as,self.sort_as,self.display_as,self.call)
 
     def unserialize(self,data):
         (privacy,source_list,note,date,
          self.first_name,self.surname,self.suffix,self.title,
          name_type,self.prefix,self.patronymic,self.sname,
-         self.group_as,self.sort_as,self.display_as) = data
+         self.group_as,self.sort_as,self.display_as,self.call) = data
         self.type.unserialize(name_type)
         PrivacyBase.unserialize(self,privacy)
         SourceBase.unserialize(self,source_list)
@@ -136,7 +138,7 @@ class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
         @rtype: list
         """
         return [self.first_name,self.surname,self.suffix,self.title,
-                str(self.type),self.prefix,self.patronymic]
+                str(self.type),self.prefix,self.patronymic, self.call]
 
     def get_text_data_child_list(self):
         """
@@ -217,6 +219,20 @@ class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
         or FNLN (first name, last name).
         """
         return self.display_as
+
+    def get_call_name(self):
+        """
+        Returns the call name. The call name's exact definition is not predetermined,
+        and may be locale specific.
+        """
+        return self.call
+
+    def set_call_name(self,val):
+        """
+        Returns the call name. The call name's exact definition is not predetermined,
+        and may be locale specific.
+        """
+        self.call = val
 
     def get_surname_prefix(self):
         """

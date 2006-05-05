@@ -2379,13 +2379,19 @@ class GedcomParser:
             state.name.set_suffix(matches[2])
 
     def func_name_nick(self,matches,state):
-        state.person.set_nick_name(matches[2])
+        attr = RelLib.Attribute()
+        attr.set_type(RelLib.AttributeType.NICKNAME)
+        attr.set_value(matches[2])
+        state.person.add_attribute(attr)
 
     def func_name_aka(self,matches,state):
         lname = matches[2].split()
         l = len(lname)
         if l == 1:
-            state.person.set_nick_name(matches[2])
+            attr = RelLib.Attribute()
+            attr.set_type(RelLib.AttributeType.NICKNAME)
+            attr.set_value(matches[2])
+            state.person.add_attribute(attr)
         else:
             name = RelLib.Name()
             name.set_surname(lname[-1])

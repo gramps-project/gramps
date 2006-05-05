@@ -114,20 +114,34 @@ class EditName(EditSecondary):
             self.db.readonly)
 
         self.given_field = MonitoredEntry(
-            self.top.get_widget("alt_given"), self.obj.set_first_name,
-            self.obj.get_first_name, self.db.readonly)
+            self.top.get_widget("alt_given"),
+            self.obj.set_first_name,
+            self.obj.get_first_name,
+            self.db.readonly)
+
+        self.call_field = MonitoredEntry(
+            self.top.get_widget("call"),
+            self.obj.set_call_name,
+            self.obj.get_call_name,
+            self.db.readonly)
 
         self.title_field = MonitoredEntry(
-            self.top.get_widget("alt_title"), self.obj.set_title,
-            self.obj.get_title, self.db.readonly)
+            self.top.get_widget("alt_title"),
+            self.obj.set_title,
+            self.obj.get_title,
+            self.db.readonly)
 
         self.suffix_field = MonitoredEntry(
-            self.top.get_widget("alt_suffix"), self.obj.set_suffix,
-            self.obj.get_suffix, self.db.readonly)
+            self.top.get_widget("alt_suffix"),
+            self.obj.set_suffix,
+            self.obj.get_suffix,
+            self.db.readonly)
 
         self.patronymic_field = MonitoredEntry(
-            self.top.get_widget("patronymic"), self.obj.set_patronymic,
-            self.obj.get_patronymic, self.db.readonly)
+            self.top.get_widget("patronymic"),
+            self.obj.set_patronymic,
+            self.obj.get_patronymic,
+            self.db.readonly)
 
         self.surname_field = MonitoredEntry(
             self.top.get_widget("alt_surname"),
@@ -137,8 +151,10 @@ class EditName(EditSecondary):
             changed=self.update_group_as)
 
         self.prefix_field = MonitoredEntry(
-            self.top.get_widget("alt_prefix"), self.obj.set_surname_prefix,
-            self.obj.get_surname_prefix, self.db.readonly)
+            self.top.get_widget("alt_prefix"),
+            self.obj.set_surname_prefix,
+            self.obj.get_surname_prefix,
+            self.db.readonly)
             
         self.date = MonitoredDate(
             self.top.get_widget("date"),

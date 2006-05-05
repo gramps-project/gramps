@@ -207,6 +207,12 @@ class EditPerson(EditPrimary):
             self.pname.get_suffix, 
             self.db.readonly)
 
+        self.call = GrampsWidgets.MonitoredEntry(
+            self.top.get_widget("call"), 
+            self.pname.set_call_name, 
+            self.pname.get_call_name, 
+            self.db.readonly)
+
         self.given = GrampsWidgets.MonitoredEntry(
             self.top.get_widget("given_name"), 
             self.pname.set_first_name, 
@@ -559,7 +565,7 @@ class EditPerson(EditPrimary):
         any changes.
         """
         for obj in (self.suffix, self.prefix, self.given, self.title, 
-                    self.ntype_field, self.surname_field):
+                    self.ntype_field, self.surname_field, self.call):
             obj.update()
 
     def load_person_image(self):
