@@ -107,6 +107,7 @@ uidefault = '''<ui>
   </menu>
   <menu action="EditMenu">
     <menuitem action="Undo"/>
+    <menuitem action="UndoHistory"/>
     <menuitem action="Redo"/>
     <separator/>
     <placeholder name="CommonEdit"/>
@@ -358,6 +359,7 @@ class ViewManager:
 
         self._undo_action_list = [
             ('Undo', gtk.STOCK_UNDO, _('_Undo'),'<control>z', None, self.undo),
+            ('UndoHistory', 'stock_undo-history', _('_Undo History'), None, None, self.undo_history),
             ]
 
         self._redo_action_list = [
@@ -1003,6 +1005,9 @@ class ViewManager:
 
     def redo(self, obj):
         self.state.db.redo()
+
+    def undo_history(self, obj):
+        print "UNDO HISTORY"
 
     def export_data(self, obj):
         import Exporter
