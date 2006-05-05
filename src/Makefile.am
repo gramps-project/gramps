@@ -7,6 +7,7 @@ SUBDIRS = \
 	Editors \
 	Filters \
 	GrampsDb \
+	DisplayTabs \
 	GrampsLogger \
 	Mime \
 	Models \
