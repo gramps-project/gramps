@@ -17,7 +17,6 @@ src/Date.py
 src/DdTargets.py
 src/DisplayModels.py
 src/DisplayState.py
-src/DisplayTabs.py
 src/Errors.py
 src/Exporter.py
 src/FontScale.py
@@ -396,8 +395,6 @@ src/Filters/Rules/Person/_PeoplePrivate.py
 src/Filters/Rules/Person/_PersonWithIncompleteEvent.py
 src/Filters/Rules/Person/_ProbablyAlive.py
 src/Filters/Rules/Person/_RelationshipPathBetween.py
-src/Filters/Rules/Person/_Rule.py
-src/Filters/Rules/Person/_RuleUtils.py
 src/Filters/Rules/Person/_SearchName.py
 src/Filters/Rules/Person/__init__.py
 src/Filters/Rules/Family/__init__.py

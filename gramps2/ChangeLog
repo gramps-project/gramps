@@ -1,4 +1,8 @@
 2006-05-04  Alex Roitman  <shura@gramps-project.org>
+
+	* src/Makefile.am (gdir_PYTHON): Remove DisplayTabs.py.
+	* src/plugins/Makefile.am (pkgdata_PYTHON): Ship rel_sk.py.
+
 	* src/Filters/Rules/Makefile.am (pkgdata_PYTHON): Add mising files.
 	* src/DisplayTabs.py: remove file.
 	* src/DisplayTabs: Add package.

@@ -62,6 +62,7 @@ pkgdata_PYTHON = \
 	rel_fr.py\
 	rel_no.py\
 	rel_sv.py\
+	rel_sk.py\
 	ImportGeneWeb.py\
 	WriteGeneWeb.py\
 	rel_es.py\
