@@ -39,7 +39,6 @@ gdir_PYTHON = \
 	DdTargets.py\
 	DisplayModels.py\
 	DisplayState.py\
-	DisplayTabs.py\
 	Errors.py\
 	Exporter.py\
 	FontScale.py\
