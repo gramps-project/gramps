@@ -147,3 +147,11 @@ class BackRefList(EmbeddedList):
                 EditMedia(self.dbstate, self.uistate, [], obj)
             except Errors.WindowActiveError:
                 pass
+        elif reftype == 'Event':
+            try:
+                from Editors import EditEvent
+                
+                obj = self.dbstate.db.get_event_from_handle(ref)
+                EditEvent(obj, self.dbstate, self.uistate, [])
+            except Errors.WindowActiveError:
+                pass

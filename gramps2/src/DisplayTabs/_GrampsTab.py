@@ -95,8 +95,19 @@ class GrampsTab(gtk.HBox):
         @rtype: gtk.HBox
         """
         hbox = gtk.HBox()
-        self.tab_image = gtk.image_new_from_stock(self.get_icon_name(),
-                                                  gtk.ICON_SIZE_MENU)
+        icon = self.get_icon_name()
+
+        if type(icon) == tuple:
+            if icon[0] == 0:
+                func = gtk.image_new_from_icon_name
+            else:
+                func = gtk.image_new_from_stock
+            name = icon[1]
+        else:
+            func = gtk.image_new_from_stock
+            name = icon
+        
+        self.tab_image = func(name, gtk.ICON_SIZE_MENU)
         self.label = gtk.Label(self.tab_name)
         hbox.pack_start(self.tab_image)
         hbox.set_spacing(6)
