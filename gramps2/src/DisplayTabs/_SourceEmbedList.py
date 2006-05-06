@@ -69,7 +69,7 @@ class SourceEmbedList(EmbeddedList):
                               _('Sources'), SourceRefModel, True)
 
     def get_icon_name(self):
-        return 'gramps-event'
+        return 'gramps-source'
 
     def get_data(self):
         return self.obj
@@ -83,24 +83,39 @@ class SourceEmbedList(EmbeddedList):
         try:
             from Editors import EditSourceRef
             
-            EditSourceRef(self.dbstate, self.uistate, self.track, 
-                          src, sref, self.add_callback)
+            EditSourceRef(
+                self.dbstate,
+                self.uistate,
+                self.track, 
+                src,
+                sref,
+                self.add_callback)
+            
         except Errors.WindowActiveError:
             pass
 
     def share_button_clicked(self, obj):
         import SelectSource
 
-        sel = SelectSource.SelectSource(self.dbstate,self.uistate,self.track,
-                                        _("Select source"))
+        sel = SelectSource.SelectSource(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            _("Select source"))
+        
         src = sel.run()
         if src:
             try:
                 from Editors import EditSourceRef
                 
                 ref = RelLib.SourceRef()
-                EditSourceRef(self.dbstate, self.uistate, self.track, 
-                              src, ref, self.add_callback)
+                EditSourceRef(self.dbstate,
+                              self.uistate,
+                              self.track, 
+                              src,
+                              ref,
+                              self.add_callback)
+                
             except Errors.WindowActiveError:
                 pass
 
