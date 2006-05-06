@@ -1,3 +1,6 @@
+2006-05-05  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamily.py: import ChildModel
+
 2006-05-05  Alex Roitman  <shura@gramps-project.org>
 	* src/UndoHistory.py: Add new file.
 	* src/ViewManager.py: undo history support.
