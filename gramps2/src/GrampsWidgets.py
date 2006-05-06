@@ -465,10 +465,10 @@ class MonitoredStrMenu:
 
 class MonitoredDate:
 
-    def __init__(self, field, button, value, window, readonly=False):
+    def __init__(self, field, button, value, uistate, track, readonly=False):
         self.date = value
         self.date_check = DateEdit.DateEdit(
-            self.date, field, button, window)
+            self.date, field, button, uistate, track)
         field.set_editable(not readonly)
         button.set_sensitive(not readonly)
             

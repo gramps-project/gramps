@@ -112,7 +112,8 @@ class EditSourceRef(EditReference):
             self.source_ref.get_text,False)
 
         self.type_mon = MonitoredMenu(
-            self.top.get_widget('confidence'), self.source_ref.set_confidence_level,
+            self.top.get_widget('confidence'),
+            self.source_ref.set_confidence_level,
             self.source_ref.get_confidence_level, [
             (_('Very Low'), RelLib.SourceRef.CONF_VERY_LOW),
             (_('Low'), RelLib.SourceRef.CONF_LOW),
@@ -124,7 +125,10 @@ class EditSourceRef(EditReference):
         self.date = MonitoredDate(
             self.top.get_widget("date"),
             self.top.get_widget("date_stat"), 
-            self.source_ref.get_date_object(),self.window)
+            self.source_ref.get_date_object(),
+            self.uistate,
+            self.track,
+            self.db.readonly)
 
     def _create_tabbed_pages(self):
         """

@@ -142,7 +142,9 @@ class EditEvent(EditPrimary):
             self.top.get_widget("eventDate"),
             self.top.get_widget("date_stat"),
             self.obj.get_date_object(),
-            self.window, self.db.readonly)
+            self.uistate,
+            self.track,
+            self.db.readonly)
 
     def _create_tabbed_pages(self):
         """

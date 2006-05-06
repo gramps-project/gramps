@@ -86,7 +86,8 @@ class EditMedia(EditPrimary):
             self.glade.get_widget('date'),
             self.glade.get_widget("date_edit"),
             self.obj.get_date_object(),
-            self.window,
+            self.uistate,
+            self.track,
             self.db.readonly)
 
         self.descr_window = MonitoredEntry(
