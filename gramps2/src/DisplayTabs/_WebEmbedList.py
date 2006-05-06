@@ -59,6 +59,9 @@ class WebEmbedList(EmbeddedList):
         EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('Internet'), WebModel)
 
+    def get_icon_name(self):
+        return (0,'stock_insert-url')
+
     def get_data(self):
         return self.data
 

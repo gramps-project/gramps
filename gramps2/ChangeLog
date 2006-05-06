@@ -1,3 +1,6 @@
+2006-05-05  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs/_WebEmbedList.py: new icon
+
 2006-05-05  Alex Roitman  <shura@gramps-project.org>
 	* src/glade/gramps.glade: typo.
 	* src/Editors/_EditSourceRef.py (_create_tabbed_pages): Add data
