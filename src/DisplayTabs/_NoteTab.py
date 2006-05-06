@@ -54,6 +54,9 @@ class NoteTab(GrampsTab):
         GrampsTab.__init__(self, dbstate, uistate, track, title)
         self.show_all()
 
+    def get_icon_name(self):
+        return (0,'stock_notes')
+
     def _update_label(self, *obj):
         cc = self.buf.get_char_count()
         if cc == 0 and not self.empty:

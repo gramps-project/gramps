@@ -287,7 +287,7 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
                 break
             else:
                 break
-        self.window.destroy()
+        self.close()
 
     def build_menu_names(self, obj):
         return (_("Date selection"), None)

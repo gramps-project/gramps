@@ -3,6 +3,10 @@
 	to the tuple of tables.
 
 2006-05-05  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs/_BackRefList.py: handle edit of events
+	* src/DisplayTabs/_NoteTab.py: stock_notes icon
+	* src/DisplayTabs/_GrampsTab.py: handle named icons
+	* src/glade/gramps.glade: hide date edit by default
 	* src/DateEdit.py: ManagedWindow
 	* src/Editors/_EditAddress.py: new DateEdit interface
 	* src/Editors/_EditLdsOrd.py: new DateEdit interface
