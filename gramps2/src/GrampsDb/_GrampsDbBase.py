@@ -1317,7 +1317,8 @@ class GrampsDbBase(GrampsDBCallback):
         transaction = self.translist[self.undoindex]
 
         mapbase = (self.person_map, self.family_map, self.source_map, 
-                   self.event_map, self.media_map, self.place_map)
+                   self.event_map, self.media_map, self.place_map,
+                   self.repository_map)
 
         self.undoindex -= 1
         subitems = transaction.get_recnos()
@@ -1362,7 +1363,8 @@ class GrampsDbBase(GrampsDBCallback):
 
         self.undoindex += 1
         mapbase = (self.person_map, self.family_map, self.source_map, 
-                   self.event_map, self.media_map, self.place_map)
+                   self.event_map, self.media_map, self.place_map,
+                   self.repository_map)
 
         subitems = transaction.get_recnos()
         for record_id in subitems:

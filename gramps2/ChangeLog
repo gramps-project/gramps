@@ -1,3 +1,7 @@
+2006-05-05  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py (undo, redo): Add repository map
+	to the tuple of tables.
+
 2006-05-05  Don Allingham  <don@gramps-project.org>
 	* src/DateEdit.py: ManagedWindow
 	* src/Editors/_EditAddress.py: new DateEdit interface
