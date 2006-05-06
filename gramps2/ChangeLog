@@ -1,4 +1,6 @@
 2006-05-05  Alex Roitman  <shura@gramps-project.org>
+	* src/Editors/_EditSourceRef.py (_create_tabbed_pages): Add data
+	and repository tabs.
 	* src/GrampsDb/_GrampsDbBase.py (undo, redo): Add repository map
 	to the tuple of tables.
 
