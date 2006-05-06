@@ -140,7 +140,8 @@ class EditEventRef(EditReference):
             self.top.get_widget("eer_date"),
             self.top.get_widget("eer_date_stat"),
             self.source.get_date_object(),
-            self.window,
+            self.uistate,
+            self.track,
             self.db.readonly)
 
     def _create_tabbed_pages(self):

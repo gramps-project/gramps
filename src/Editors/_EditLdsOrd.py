@@ -145,7 +145,9 @@ class EditLdsOrd(EditSecondary):
             self.top.get_widget("date"),
             self.top.get_widget("date_stat"),
             self.obj.get_date_object(),
-            self.window, self.db.readonly)
+            self.uistate,
+            self.track,
+            self.db.readonly)
 
         self.place_field = PlaceEntry(
             self.top.get_widget("place"),
@@ -325,7 +327,9 @@ class EditFamilyLdsOrd(EditSecondary):
             self.top.get_widget("date"),
             self.top.get_widget("date_stat"),
             self.obj.get_date_object(),
-            self.window, self.db.readonly)
+            self.uistate,
+            self.track,
+            self.db.readonly)
 
         self.place_field = PlaceEntry(
             self.top.get_widget("place"),

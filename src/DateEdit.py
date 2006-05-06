@@ -42,7 +42,6 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import gc
 
 #-------------------------------------------------------------------------
 #
@@ -71,6 +70,7 @@ import DateHandler
 import const
 import Utils
 import GrampsDisplay
+import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
@@ -108,18 +108,18 @@ class DateEdit:
     """Class that associates a pixmap with a text widget, providing visual
     feedback that indicates if the text widget contains a valid date"""
 
-    def __init__(self,date_obj,text_obj,button_obj,parent_window=None):
+    def __init__(self, date_obj, text_obj, button_obj, uistate, track):
         """
         Creates a connection between the date_obj, text_obj and the pixmap_obj.
         Assigns callbacks to parse and change date when the text
         in text_obj is changed, and to invoke Date Editor when the LED
         button_obj is pressed. 
         """
-
+        self.uistate = uistate
+        self.track = track
         self.date_obj = date_obj
         self.text_obj = text_obj
         self.button_obj = button_obj
-        self.parent_window = parent_window
 
         self.pixmap_obj = button_obj.get_child()
         
@@ -164,7 +164,7 @@ class DateEdit:
         If date was in fact built, sets the date_obj to the newly built
         date.
         """
-        date_dialog = DateEditorDialog(self.date_obj,self.parent_window)
+        date_dialog = DateEditorDialog(self.date_obj, self.uistate, self.track)
         the_date = date_dialog.return_date
         self.update_after_editor(the_date)
 
@@ -182,29 +182,33 @@ class DateEdit:
 # DateEditorDialog
 #
 #-------------------------------------------------------------------------
-class DateEditorDialog:
+class DateEditorDialog(ManagedWindow.ManagedWindow):
     """
     Dialog allowing to build the date precisely, to correct possible 
     limitations of parsing and/or underlying structure of Date.
     """
 
-    def __init__(self,date,parent_window=None):
+    def __init__(self, date, uistate, track):
         """
         Initiate and display the dialog.
         """
 
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+        
         # Create self.date as a copy of the given Date object.
         self.date = Date(date)
 
         self.top = gtk.glade.XML(const.gladeFile, "date_edit","gramps" )
-        self.top_window = self.top.get_widget('date_edit')
-        self.top_window.hide()
-        title = self.top.get_widget('title')
-        Utils.set_titles(self.top_window,title,_('Date selection'))
 
+        self.set_window(
+            self.top.get_widget('date_edit'),
+            self.top.get_widget('title'),
+            _('Date selection'))            
+            
         self.calendar_box = self.top.get_widget('calendar_box')
         for name in Date.ui_calendar_names:
             self.calendar_box.append_text(name)
+
         self.calendar_box.set_active(self.date.get_calendar())
         self.calendar_box.connect('changed',self.switch_calendar)
 
@@ -260,12 +264,13 @@ class DateEditorDialog:
         # The dialog is modal -- since dates don't have names, we don't
         # want to have several open dialogs, since then the user will
         # loose track of which is which. Much like opening files.
-        if parent_window:
-            self.top_window.set_transient_for(parent_window)
         
         self.return_date = None
-        while 1:
-            response = self.top_window.run()
+
+        self.show()
+        
+        while True:
+            response = self.window.run()
             if response == gtk.RESPONSE_HELP:
                 GrampsDisplay.help('adv-dates')
 
@@ -282,8 +287,10 @@ class DateEditorDialog:
                 break
             else:
                 break
-        self.top_window.destroy()
-        gc.collect()
+        self.window.destroy()
+
+    def build_menu_names(self, obj):
+        return (_("Date selection"), None)
 
     def build_date_from_ui(self):
         """

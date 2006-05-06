@@ -160,7 +160,9 @@ class EditName(EditSecondary):
             self.top.get_widget("date"),
             self.top.get_widget("date_stat"), 
             self.obj.get_date_object(),
-            self.window)
+            self.uistate,
+            self.track,
+            self.db.readonly)
 
         self.obj_combo = MonitoredDataType(
             self.top.get_widget("name_type"),

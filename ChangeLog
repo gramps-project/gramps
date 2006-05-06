@@ -1,4 +1,13 @@
 2006-05-05  Don Allingham  <don@gramps-project.org>
+	* src/DateEdit.py: ManagedWindow
+	* src/Editors/_EditAddress.py: new DateEdit interface
+	* src/Editors/_EditLdsOrd.py: new DateEdit interface
+	* src/Editors/_EditSourceRef.py: new DateEdit interface
+	* src/Editors/_EditEventRef.py: new DateEdit interface
+	* src/Editors/_EditMedia.py: new DateEdit interface
+	* src/Editors/_EditName.py: new DateEdit interface
+	* src/Editors/_EditEvent.py: new DateEdit interface
+	* src/GrampsWidgets.py: new DateEdit interface
 	* src/Editors/_EditFamily.py: import ChildModel
 
 2006-05-05  Alex Roitman  <shura@gramps-project.org>

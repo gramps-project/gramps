@@ -79,7 +79,9 @@ class EditAddress(EditSecondary):
             self.top.get_widget("address_start"), 
             self.top.get_widget("date_stat"), 
             self.obj.get_date_object(),
-            self.window, self.db.readonly)
+            self.uistate,
+            self.track,
+            self.db.readonly)
             
         self.street = MonitoredEntry(
             self.top.get_widget("street"), self.obj.set_street,
