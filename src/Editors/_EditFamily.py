@@ -76,7 +76,7 @@ from PluginUtils import ReportUtils
 from DdTargets import DdTargets
 from DisplayTabs import \
      EmbeddedList,EventEmbedList,SourceEmbedList,FamilyAttrEmbedList,\
-     NoteTab,GalleryTab,FamilyLdsEmbedList
+     NoteTab,GalleryTab,FamilyLdsEmbedList, ChildModel
 from GrampsWidgets import *
 
 #from ObjectSelector import PersonSelector,PersonFilterSpec
