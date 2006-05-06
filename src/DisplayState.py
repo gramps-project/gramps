@@ -255,7 +255,8 @@ class DisplayState(GrampsDb.GrampsDBCallback):
     __signals__ = {
         }
 
-    def __init__(self,window,status,progress,warnbtn,uimanager,dbstate):
+    def __init__(self, window, status, progress, warnbtn, uimanager, dbstate):
+        
         self.dbstate = dbstate
         self.uimanager = uimanager
         self.window = window
@@ -274,6 +275,29 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.log = logging.getLogger()
         self.log.setLevel(logging.WARN)
         self.log.addHandler(self.rh)
+        self.dbstate.connect('database-changed', self.db_changed)
+        
+    def db_changed(self, db):
+        from PluginUtils import _PluginMgr
+        self.relationship = _PluginMgr.relationship_class(db)
+
+    def display_relationship(self):
+        default_person = self.dbstate.db.get_default_person()
+        active = self.dbstate.get_active_person()
+        if default_person == None or active == None:
+            return u''
+
+        pname = NameDisplay.displayer.display(default_person)
+        (name,plist) = self.relationship.get_relationship(
+            default_person,active)
+
+        if name:
+            if plist == None:
+                return name
+            return _("%(relationship)s of %(person)s") % {
+                'relationship' : name, 'person' : pname }
+        else:
+            return u""
 
     def clear_history(self):
         self.phistory.clear()
@@ -306,7 +330,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
                 pname = NameDisplay.displayer.display(person)
                 name = "[%s] %s" % (person.get_gramps_id(),pname)
             else:
-                name = "" #self.display_relationship()
+                name = self.display_relationship()
             self.status.push(self.status_id,name)
 
         while gtk.events_pending():
