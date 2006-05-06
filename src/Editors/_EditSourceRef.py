@@ -49,7 +49,8 @@ import const
 import Utils
 import RelLib
 
-from DisplayTabs import NoteTab,GalleryTab,SourceBackRefList
+from DisplayTabs import \
+     NoteTab,GalleryTab,SourceBackRefList,DataEmbedList,RepoEmbedList
 from GrampsWidgets import *
 from _EditReference import EditReference
 
@@ -149,6 +150,16 @@ class EditSourceRef(EditReference):
             notebook_src,
             GalleryTab(self.dbstate, self.uistate, self.track,
                        self.source.get_media_list()))
+        
+        self.data_tab = self._add_tab(
+            notebook_src,
+            DataEmbedList(self.dbstate, self.uistate, self.track,
+                          self.source))
+                                       
+        self.repo_tab = self._add_tab(
+            notebook_src,
+            RepoEmbedList(self.dbstate, self.uistate, self.track,
+                          self.source.get_reporef_list()))
         
         self.srcref_list = self._add_tab(
             notebook_src,
