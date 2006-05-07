@@ -129,7 +129,7 @@ class PersonView(PageView.PersonNavView):
         self.add_action('Jump', None, _("_Jump"),
                         accel="<control>j",callback=self.jumpto)
 
-        self.add_toggle_action('Filter', None, _('_Hide Filters'), None, None,
+        self.add_toggle_action('Filter', None, _('_Show filter sidebar'), None, None,
                                self.filter_toggle, Config.get(Config.FILTER))
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                         _('_Column Editor'), callback=self.column_editor,)
@@ -422,19 +422,22 @@ class PersonView(PageView.PersonNavView):
             self.dirty = True
 
         if Config.get(Config.FILTER):
-            self.generic_filter_widget.show()
-            self.filter_pane.hide()
-        else:
             self.generic_filter_widget.hide()
             self.filter_pane.show()
+        else:
+            self.generic_filter_widget.show()
+            self.filter_pane.hide()
 
     def filter_toggle(self,obj):
         if obj.get_active():
-            self.generic_filter_widget.show()
-            self.filter_pane.hide()
-        else:
             self.generic_filter_widget.hide()
             self.filter_pane.show()
+            active = True
+        else:
+            self.generic_filter_widget.show()
+            self.filter_pane.hide()
+            active = False
+        Config.set(Config.FILTER, active)
 
     def add(self,obj):
         person = RelLib.Person()
