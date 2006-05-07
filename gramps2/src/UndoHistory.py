@@ -62,18 +62,22 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         self.title = _("Undo History")
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
         self.db = dbstate.db
+        self.dbstate = dbstate
 
-        self.set_window(
-            gtk.Dialog("",uistate.window,
-                       gtk.DIALOG_DESTROY_WITH_PARENT,
-                       (gtk.STOCK_UNDO,gtk.RESPONSE_REJECT,
-                        gtk.STOCK_REDO,gtk.RESPONSE_ACCEPT,
-                        gtk.STOCK_CLEAR,gtk.RESPONSE_APPLY,
-                        gtk.STOCK_CLOSE,gtk.RESPONSE_CLOSE,
-                        )
-                       ),
-            None, self.title)
-        self.window.set_size_request(600,400)
+        window = gtk.Dialog("",uistate.window,
+                            gtk.DIALOG_DESTROY_WITH_PARENT,None)
+
+        self.undo_button = window.add_button(gtk.STOCK_UNDO,
+                                             gtk.RESPONSE_REJECT)
+        self.redo_button = window.add_button(gtk.STOCK_REDO,
+                                             gtk.RESPONSE_ACCEPT)
+        self.clear_button = window.add_button(gtk.STOCK_CLEAR,
+                                              gtk.RESPONSE_APPLY)
+        self.close_button = window.add_button(gtk.STOCK_CLOSE,
+                                              gtk.RESPONSE_CLOSE)
+     
+        self.set_window(window, None, self.title)
+        self.window.set_size_request(400,200)
         self.window.connect('response', self._response)
 
         scrolled_window = gtk.ScrolledWindow()
@@ -88,7 +92,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
             gtk.TreeViewColumn(_('Original time'), gtk.CellRendererText(),
                                text=0))
         self.list.append_column(
-            gtk.TreeViewColumn(_('Modification'), gtk.CellRendererText(),
+            gtk.TreeViewColumn(_('Action'), gtk.CellRendererText(),
                                text=1))
 
         scrolled_window.add(self.list)
@@ -96,9 +100,21 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         self.window.show_all()
 
         self._build_model()
+        self._update_ui()
+        
+        self.db_change_key = dbstate.connect('database-changed',self._close)
+        self.selection.connect('changed',self._selection_changed)
+        self.show()
 
-        self.db.connect('database-changed',self.clear)
-        self.selection.connect('changed',self._move)
+    def _close(self,obj):
+        self.dbstate.disconnect(self.db_change_key)
+        self.close()
+
+    def _selection_changed(self,obj):
+        (model,node) = self.selection.get_selected()
+        if node:
+            path = self.model.get_path(node)
+            self._move(path[0]-self.db.undoindex-1)
 
     def _response(self,obj,response_id):
         if response_id == gtk.RESPONSE_CLOSE:
@@ -123,33 +139,50 @@ class UndoHistory(ManagedWindow.ManagedWindow):
     def clear(self):
         self.db.undoindex = -1
         self.db.translist = [None] * len(self.db.translist)
+        self.db.abort_possible = False
         self.update()
         if self.db.undo_callback:
             self.db.undo_callback(None)
         if self.db.redo_callback:
             self.db.redo_callback(None)
 
-    def _move(self,obj,steps=-1):
-        self._update_ui()
+    def _move(self,steps=-1):
+        if steps == 0 :
+            return
+        elif steps < 0:
+            func = self.db.undo
+        elif steps > 0:
+            func = self.db.redo
+
+        for step in range(abs(steps)):
+            func(False)
+        self.update()
 
     def _update_ui(self):
-        pass
+        self.undo_button.set_sensitive(self.db.undo_available())
+        self.redo_button.set_sensitive(self.db.redo_available())
+        self.clear_button.set_sensitive(
+            self.db.undo_available() or self.db.redo_available() )
 
     def _build_model(self):
         self.model.clear()
+
+        if self.db.abort_possible:
+            mod_text = _('Database opened')
+        else:
+            mod_text = _('History cleared')
+        time_text = time.ctime(self.db.undo_history_timestamp)
+        self.model.append(row=[time_text,mod_text])
+
         # Get the not-None portion of transaction list
         translist = [item for item in self.db.translist if item]
-        translist.reverse()
         for transaction in translist:
             time_text = time.ctime(transaction.timestamp)
             mod_text = transaction.get_description()
             self.model.append(row=[time_text,mod_text])
-        if self.db.undoindex < 0:
-            self.selection.unselect_all()
-        else:
-            path = (self.db.undoindex,)
-            self.selection.select_path(path)
-        
+        path = (self.db.undoindex+1,)
+        self.selection.select_path(path)
+
     def update(self):
         self._build_model()
         self._update_ui()

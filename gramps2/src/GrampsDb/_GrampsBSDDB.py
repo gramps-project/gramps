@@ -311,7 +311,6 @@ class GrampsBSDDB(GrampsDbBase):
             env_flags = db.DB_CREATE|db.DB_PRIVATE|\
                         db.DB_INIT_MPOOL|db.DB_INIT_LOG
 
-        self.undolog = "%s.undo" % name
         env_name = os.path.expanduser(const.bsddbenv_dir)
         if not os.path.isdir(env_name):
             os.mkdir(env_name)
@@ -373,12 +372,16 @@ class GrampsBSDDB(GrampsDbBase):
 
         callback(75)
 
-        if not self.readonly:
-            self.undodb = db.DB()
-            self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
+        self.open_undodb()
         self.db_is_open = True
 
         callback(87)
+        
+        # Re-set the undo history to a fresh session start
+        self.undoindex = -1
+        self.translist = [None] * len(self.translist)
+        self.abort_possible = True
+        self.undo_history_timestamp = time.time()
 
         return 1
 
@@ -840,13 +843,8 @@ class GrampsBSDDB(GrampsDbBase):
         self.event_map.close()
         self.env.close()
 
-        if not self.readonly:
-            self.undodb.close()
-            try:
-                os.remove(self.undolog)
-            except:
-                pass
-        
+        self.close_undodb()
+
         self.person_map     = None
         self.family_map     = None
         self.repository_map = None
