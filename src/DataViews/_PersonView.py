@@ -660,34 +660,7 @@ class PersonView(PageView.PersonNavView):
             if oldpath == newpath:
                 self.model.row_changed(pathval,pnode)
             else:
-                # paths different, get the new surname list
-                
-                mylist = self.model.temp_sname_sub.get(oldpath[0],[])
-                path = self.model.on_get_path(node)
-                
-                # delete original
-                self.model.row_deleted(pathval)
-                
-                # delete top node of original if necessar
-                if len(mylist)==0:
-                    self.model.row_deleted(pathval[0])
-                    
-                # determine if we need to insert a new top node',
-                insert = not self.model.sname_sub.has_key(newpath[0])
-
-                # assign new data
-                self.model.assign_data()
-                
-                # insert new row if needed
-                if insert:
-                    path = self.model.on_get_path(newpath[0])
-                    pnode = self.model.get_iter(path)
-                    self.model.row_inserted(path,pnode)
-
-                # insert new person
-                path = self.model.on_get_path(node)
-                pnode = self.model.get_iter(path)
-                self.model.row_inserted(path,pnode)
+                self.rebuild_tree()
         self.goto_active_person()
 
     def get_selected_objects(self):
