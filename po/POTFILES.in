@@ -279,6 +279,7 @@ src/PluginUtils/_Report.py
 src/PluginUtils/_ReportUtils.py
 src/PluginUtils/_StyleEditor.py
 src/PluginUtils/_Tool.py
+src/PluginUtils/_PluginStatus.py
 src/RelLib/_AddressBase.py
 src/RelLib/_Address.py
 src/RelLib/_AttributeBase.py
