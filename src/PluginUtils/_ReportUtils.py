@@ -1110,8 +1110,6 @@ def sanitize_person(db,person):
     if name.get_privacy() or person.get_privacy():
         name = RelLib.Name()
         name.set_surname(_('Private'))
-    else:
-        new_person.set_nick_name(person.get_nick_name())
 
     new_person.set_primary_name(name)
     # copy Family reference list
