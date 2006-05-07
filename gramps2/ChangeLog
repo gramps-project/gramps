@@ -1,3 +1,8 @@
+2006-05-07  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: rebuild tree on surname change,
+	don't attempt to delete/insert, since this can cause things to
+	hang.
+
 2006-05-06  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (load): Use common undodb
 	methods; reset undo history.
