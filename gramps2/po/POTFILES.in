@@ -283,6 +283,7 @@ src/RelLib/_AddressBase.py
 src/RelLib/_Address.py
 src/RelLib/_AttributeBase.py
 src/RelLib/_Attribute.py
+src/RelLib/_AttributeType.py
 src/RelLib/_BaseObject.py
 src/RelLib/_CalSdn.py
 src/RelLib/_DateBase.py
@@ -310,6 +311,7 @@ src/RelLib/_PrivacyBase.py
 src/RelLib/_PrivateSourceNote.py
 src/RelLib/_RepoRef.py
 src/RelLib/_Repository.py
+src/RelLib/_RepositoryType.py
 src/RelLib/_Researcher.py
 src/RelLib/_SourceNote.py
 src/RelLib/_Source.py
