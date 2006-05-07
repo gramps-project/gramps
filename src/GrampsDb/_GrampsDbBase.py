@@ -39,6 +39,7 @@ import random
 import locale
 import os
 from sys import maxint
+from bsddb import db
 from gettext import gettext as _
 
 try:
@@ -261,6 +262,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.undoindex  = -1
         self.translist  = [None] * _UNDO_SIZE
         self.abort_possible = True
+        self.undo_history_timestamp = 0
         self.default = None
         self.owner = Researcher()
         self.bookmarks = []
@@ -332,6 +334,20 @@ class GrampsDbBase(GrampsDBCallback):
 
     def get_repository_cursor(self):
         assert False, "Needs to be overridden in the derived class"
+
+    def open_undodb(self):
+        if not self.readonly:
+            self.undolog = "%s.undo" % self.full_name
+            self.undodb = db.DB()
+            self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
+
+    def close_undodb(self):
+        if not self.readonly:
+            self.undodb.close()
+            try:
+                os.remove(self.undolog)
+            except:
+                pass
 
     def load(self, name, callback, mode="w"):
         """
@@ -1209,6 +1225,7 @@ class GrampsDbBase(GrampsDBCallback):
             # A batch transaction does not store the commits
             # Aborting the session completely will become impossible.
             self.abort_possible = False
+            self.undo_history_timestamp = time.time()
             # Undo is also impossible after batch transaction
             self.undoindex = -1
         return Transaction(msg, self.undodb, batch)
@@ -1230,6 +1247,7 @@ class GrampsDbBase(GrampsDBCallback):
             # We overran the undo size.
             # Aborting the session completely will become impossible.
             self.abort_possible = False
+            self.undo_history_timestamp = time.time()            
             self.translist = self.translist[0:-1] + [ transaction ]
         else:
             self.translist[self.undoindex] = transaction
@@ -1306,12 +1324,29 @@ class GrampsDbBase(GrampsDBCallback):
             retlist.append(str(handle))
         return retlist
 
+    def undo_available(self):
+        # returns boolean of whether or not there's a possibility of undo
+        if self.undoindex == -1 or self.readonly:
+            return False
+
+        return True
+        
+    def redo_available(self):
+        # returns boolean of whether or not there's a possibility of redo
+        if self.undoindex >= _UNDO_SIZE or self.readonly:
+            return False
+
+        if self.translist[self.undoindex+1] == None:
+            return False
+
+        return True
+        
     def undo(self,update_history=True):
         """
         Accesses the last committed transaction, and reverts the data to
         the state before the transaction was committed.
         """
-        if self.undoindex == -1 or self.readonly:
+        if not self.undo_available():
             return False
 
         transaction = self.translist[self.undoindex]
@@ -1331,19 +1366,19 @@ class GrampsDbBase(GrampsDBCallback):
                 self.undo_data(old_data, handle, mapbase[key], _sigbase[key])
 
         if self.undo_callback:
-            if self.undoindex == -1:
-                self.undo_callback(None)
-            else:
+            if self.undo_available():
                 new_transaction = self.translist[self.undoindex]
                 self.undo_callback(_("_Undo %s")
                                    % new_transaction.get_description())
-        if self.redo_callback:
-            if self.undoindex >= _UNDO_SIZE \
-                   or self.translist[self.undoindex+1]==None:
-                self.redo_callback(None)
             else:
+                self.undo_callback(None)
+
+        if self.redo_callback:
+            if self. redo_available():
                 self.redo_callback(_("_Redo %s")
                                    % transaction.get_description())
+            else:
+                self.redo_callback(None)
 
         if update_history and self.undo_history_callback:
             self.undo_history_callback()
@@ -1354,14 +1389,12 @@ class GrampsDbBase(GrampsDBCallback):
         Accesses the last undone transaction, and reverts the data to
         the state before the transaction was undone.
         """
-        if self.undoindex >= _UNDO_SIZE or self.readonly:
-            return False
 
-        transaction = self.translist[self.undoindex+1]
-        if transaction == None:
+        if not self.redo_available():
             return False
 
         self.undoindex += 1
+        transaction = self.translist[self.undoindex]
         mapbase = (self.person_map, self.family_map, self.source_map, 
                    self.event_map, self.media_map, self.place_map,
                    self.repository_map)
@@ -1375,26 +1408,19 @@ class GrampsDbBase(GrampsDBCallback):
                 self.undo_data(new_data, handle, mapbase[key], _sigbase[key])
 
         if self.undo_callback:
-            if self.undoindex == -1:
-                self.undo_callback(None)
-            else:
+            if self.undo_available():
                 self.undo_callback(_("_Undo %s")
                                    % transaction.get_description())
-        if self.redo_callback:
-            if self.undoindex >= _UNDO_SIZE \
-                   or self.translist[self.undoindex+1]==None:
-                self.redo_callback(None)
             else:
+                self.undo_callback(None)
+
+        if self.redo_callback:
+            if self.redo_available():
                 new_transaction = self.translist[self.undoindex+1]
                 self.redo_callback(_("_Redo %s")
                                    % new_transaction.get_description())
-
-        if self.undo_callback:
-            if self.undoindex == _UNDO_SIZE:
-                self.undo_callback(None)
             else:
-                self.undo_callback(_("_Undo %s")
-                                   % transaction.get_description())
+                self.redo_callback(None)
 
         if update_history and self.undo_history_callback:
             self.undo_history_callback()

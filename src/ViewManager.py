@@ -938,6 +938,8 @@ class ViewManager:
         self.change_page(None, None)
         self.state.db.undo_callback = self.change_undo_label
         self.state.db.redo_callback = self.change_redo_label
+        self.change_undo_label(None)
+        self.change_redo_label(None)
         self.state.db.undo_history_callback = self.undo_history_update
         self.actiongroup.set_visible(True)
         self.window.window.set_cursor(None)

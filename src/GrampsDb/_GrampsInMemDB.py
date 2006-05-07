@@ -30,8 +30,8 @@ must hold all of their data in memory.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from bsddb import dbshelve, db
 import sets
+import time
 
 #-------------------------------------------------------------------------
 #
@@ -99,11 +99,15 @@ class GrampsInMemDB(GrampsDbBase):
         self.undodb           = []
 
     def load(self,name,callback,mode="w"):
-        self.undolog = "%s.log" % name
-        self.undodb = db.DB()
-        self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
-        self.filename = name
+        self.open_undodb()
+        self.full_name = name
         self.readonly = mode == "r"
+
+        # Re-set the undo history to a fresh session start
+        self.undoindex = -1
+        self.translist = [None] * len(self.state.db.translist)
+        self.abort_possible = True
+        self.undo_history_timestamp = time.time()
 
     def get_person_cursor(self):
         return GrampsInMemCursor(self.person_map)
@@ -130,12 +134,7 @@ class GrampsInMemDB(GrampsDbBase):
         return GrampsInMemCursor(self.event_map)
 
     def close(self):
-        if not self.readonly:
-            self.undodb.close()
-            try:
-                os.remove(self.undolog)
-            except:
-                pass
+        self.close_undodb()
 
     def set_name_group_mapping(self,name,group):
         if group == None and self.name_group.has_key(name):
