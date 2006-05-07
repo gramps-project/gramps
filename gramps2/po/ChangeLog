@@ -1,3 +1,6 @@
+2006-05-07  Alex Roitman  <shura@gramps-project.org>
+	* POTFILES.in: Add missing file.
+
 2006-05-06  Alex Roitman  <shura@gramps-project.org>
 	* gramps.pot: Update template.
 	* POTFILES.in: Add missing files from RelLib.
