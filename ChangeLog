@@ -1,3 +1,7 @@
+2006-05-08  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsInMemDB.py (load): Define self.full_name
+	prior to calling open_undodb().
+
 2006-05-07  Don Allingham  <don@gramps-project.org>
 	* configure.in: set for 2.1.1
 	* src/GrampsDb/_ReadXML.py: call name support

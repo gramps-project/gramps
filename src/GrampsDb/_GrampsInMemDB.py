@@ -99,9 +99,9 @@ class GrampsInMemDB(GrampsDbBase):
         self.undodb           = []
 
     def load(self,name,callback,mode="w"):
-        self.open_undodb()
         self.full_name = name
         self.readonly = mode == "r"
+        self.open_undodb()
 
         # Re-set the undo history to a fresh session start
         self.undoindex = -1
