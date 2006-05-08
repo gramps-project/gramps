@@ -325,12 +325,14 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         if self.dbstate.active == None:
             self.status.push(self.status_id,"")
         else:
-            if Config.get(Config.STATUSBAR) <= 1:
-                person = self.dbstate.get_active_person()
-                pname = NameDisplay.displayer.display(person)
-                name = "[%s] %s" % (person.get_gramps_id(),pname)
-            else:
-                name = self.display_relationship()
+            person = self.dbstate.get_active_person()
+            pname = NameDisplay.displayer.display(person)
+            name = "[%s] %s" % (person.get_gramps_id(),pname)
+            if Config.get(Config.STATUSBAR) > 1:
+                if person.handle != self.dbstate.db.get_default_person().handle:
+                    msg = self.display_relationship()
+                    if msg:
+                        name = "%s (%s)" % (name,msg)
             self.status.push(self.status_id,name)
 
         while gtk.events_pending():
