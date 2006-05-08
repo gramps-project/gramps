@@ -1,4 +1,5 @@
 2006-05-08  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_ReadXML.py (start_childref): Typo.
 	* src/GrampsDb/_GrampsInMemDB.py (load): Define self.full_name
 	prior to calling open_undodb().
 
