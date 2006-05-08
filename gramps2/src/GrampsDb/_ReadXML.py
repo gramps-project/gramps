@@ -892,7 +892,7 @@ class GrampsParser:
             self.childref.set_mother_relation(mrel)
         if not frel.is_default():
             self.childref.set_father_relation(frel)
-        self.family.add_child_reference(self.childref)
+        self.family.add_child_ref(self.childref)
 
     def start_personref(self,attrs):
         self.personref = RelLib.PersonRef()
