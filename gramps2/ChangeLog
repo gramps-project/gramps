@@ -1,4 +1,5 @@
 2006-05-07  Don Allingham  <don@gramps-project.org>
+	* src/DisplayState.py: include name and relationship on statusbar
 	* src/DataViews/_MediaView.py: tool tips
 	* src/DataViews/_RepositoryView.py: tool tips
 	* src/DataViews/_SourceView.py: tool tips
