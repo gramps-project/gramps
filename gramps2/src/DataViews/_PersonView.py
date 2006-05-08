@@ -505,8 +505,8 @@ class PersonView(PageView.PersonNavView):
                 else:
                     family_to_remove = True
             if family_to_remove:
-                for child_handle in family.get_child_handle_list():
-                    child = self.dbstate.db.get_person_from_handle(child_handle)
+                for child_ref in family.get_child_ref_list():
+                    child = self.dbstate.db.get_person_from_handle(child_ref.ref)
                     child.remove_parent_family_handle(family_handle)
                     self.dbstate.db.commit_person(child,trans)
                 self.dbstate.db.remove_family(family_handle,trans)
