@@ -65,6 +65,11 @@ column_names = [
 #
 #-------------------------------------------------------------------------
 class SourceView(PageView.ListView):
+
+    ADD_MSG = _("Add a new source")
+    EDIT_MSG = _("Edit the selected source")
+    DEL_MSG = _("Delete the selected source")
+
     def __init__(self,dbstate,uistate):
 
         signal_map = {

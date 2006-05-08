@@ -63,6 +63,11 @@ column_names = [
 #
 #-------------------------------------------------------------------------
 class MediaView(PageView.ListView):
+    
+    ADD_MSG = _("Add a new media object")
+    EDIT_MSG = _("Edit the selected media object")
+    DEL_MSG = _("Delete the selected media object")
+
     def __init__(self,dbstate,uistate):
 
         signal_map = {

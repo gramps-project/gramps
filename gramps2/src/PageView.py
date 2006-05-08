@@ -271,18 +271,20 @@ class PersonNavView(BookMarkView):
         self.fwd_action = gtk.ActionGroup(self.title + '/Forward')
         self.fwd_action.add_actions([
             ('Forward',gtk.STOCK_GO_FORWARD,_("_Forward"),
-            None, None, self.fwd_clicked)
+             None, _("Go to the next person in the history"),
+             self.fwd_clicked)
             ])
 
         # add the Backward action group to handle the Forward button
         self.back_action = gtk.ActionGroup(self.title + '/Backward')
         self.back_action.add_actions([
             ('Back',gtk.STOCK_GO_BACK,_("_Back"),
-             None, None, self.back_clicked)
+             None, _("Go to the previous person in the history"),
+             self.back_clicked)
             ])
 
         self.add_action('HomePerson', gtk.STOCK_HOME, _("_Home"),
-                        callback=self.home)
+                        tip=_("Go to the default person"), callback=self.home)
         self.add_action('SetActive', gtk.STOCK_HOME, _("Set _Home Person"),
                         callback=self.set_default_person)
 
@@ -417,6 +419,10 @@ class PersonNavView(BookMarkView):
 #
 #----------------------------------------------------------------
 class ListView(BookMarkView):
+
+    ADD_MSG = ""
+    EDIT_MSG = ""
+    DEL_MSG = ""
 
     def __init__(self, title, dbstate, uistate, columns, handle_col,
                  make_model, signal_map, get_bookmarks, bm_type):
@@ -649,10 +655,13 @@ class ListView(BookMarkView):
         
         BookMarkView.define_actions(self)
 
-        self.add_action('Add', gtk.STOCK_ADD, _("_Add"),   callback=self.add)
-        self.add_action('Edit', gtk.STOCK_EDIT,_("_Edit"), callback=self.edit)
+        self.add_action('Add', gtk.STOCK_ADD, _("_Add"), tip=self.ADD_MSG,
+                        callback=self.add)
+        self.add_action('Edit', gtk.STOCK_EDIT,_("_Edit"), tip=self.EDIT_MSG,
+                        callback=self.edit)
         self.add_action('Remove',gtk.STOCK_REMOVE,_("_Remove"),
-                        callback=self.remove)
+                        tip=self.DEL_MSG, callback=self.remove)
+        
         self.add_toggle_action('Filter', None, _('_Filter'),
                                callback=self.filter_toggle)
 
