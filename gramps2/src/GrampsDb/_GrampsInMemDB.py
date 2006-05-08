@@ -171,32 +171,39 @@ class GrampsInMemDB(GrampsDbBase):
 
 
     def _del_person(self,handle):
-        person = self.person_map.pop(str(handle))
+        person = self.get_person_from_handle(str(handle))
         del self.id_trans[person.get_gramps_id()]
+        del self.person_map[str(handle)]
 
     def _del_source(self,handle):
-        source = self.source_map.pop(str(handle))
+        source = self.get_source_from_handle(str(handle))
         del self.sid_trans[source.get_gramps_id()]
+        del self.source_map[str(handle)]
 
     def _del_repository(self,handle):
-        repository = self.repository_map.pop(str(handle))
+        repository = self.get_repository_from_handle(str(handle))
         del self.rid_trans[repository.get_gramps_id()]
+        del self.repository_map[str(handle)]
 
     def _del_place(self,handle):
-        place = self.place_map.pop(str(handle))
+        place = self.get_place_from_handle(str(handle))
         del self.pid_trans[place.get_gramps_id()]
+        del self.place_map[str(handle)]
 
     def _del_media(self,handle):
-        obj = self.media_map.pop(str(handle))
+        obj = self.get_object_from_handle(str(handle))
         del self.oid_trans[obj.get_gramps_id()]
+        del self.media_map[str(handle)]
 
     def _del_family(self,handle):
-        family = self.family_map.pop(str(handle))
+        family = self.get_family_from_handle(str(handle))
         del self.fid_trans[family.get_gramps_id()]
+        del self.family_map[str(handle)]
 
     def _del_event(self,handle):
-        event = self.event_map.pop(str(handle))
+        event = self.get_event_from_handle(str(handle))
         del self.eid_trans[event.get_gramps_id()]
+        del self.event_map[str(handle)]
 
     def commit_person(self,person,transaction,change_time=None):
         if self.readonly or not person.get_handle():
