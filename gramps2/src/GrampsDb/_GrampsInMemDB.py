@@ -105,7 +105,7 @@ class GrampsInMemDB(GrampsDbBase):
 
         # Re-set the undo history to a fresh session start
         self.undoindex = -1
-        self.translist = [None] * len(self.state.db.translist)
+        self.translist = [None] * len(self.translist)
         self.abort_possible = True
         self.undo_history_timestamp = time.time()
 
