@@ -6,7 +6,7 @@
 	* src/GrampsDb/_ReadXML.py (start_childref): Typo.
 	* src/GrampsDb/_GrampsInMemDB.py (load): Define self.full_name
 	prior to calling open_undodb().
-	(GrampsInMemDB._del_family): Remove obsolete code.
+	(GrampsInMemDB._del_*): Prpoper deletes.
 
 2006-05-07  Don Allingham  <don@gramps-project.org>
 	* configure.in: set for 2.1.1
