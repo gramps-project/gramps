@@ -397,6 +397,7 @@ class GrampsParser:
             "rel"        : (self.start_rel, None),
             "father"     : (self.start_father, None),
             "first"      : (None, self.stop_first),
+            "call"       : (None, self.stop_call),
             "gender"     : (None, self.stop_gender),
             "header"     : (None, None),
             "last"       : (self.start_last, self.stop_last),
@@ -1501,6 +1502,9 @@ class GrampsParser:
 
     def stop_first(self,tag):
         self.name.set_first_name(tag)
+
+    def stop_call(self,tag):
+        self.name.set_call_name(tag)
 
     def stop_families(self,*tag):
         self.family = None
