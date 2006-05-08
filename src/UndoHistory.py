@@ -82,20 +82,20 @@ class UndoHistory(ManagedWindow.ManagedWindow):
 
         scrolled_window = gtk.ScrolledWindow()
         scrolled_window.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
-        self.list = gtk.TreeView()
+        self.tree = gtk.TreeView()
         self.model = gtk.ListStore(str, str)
-        self.selection = self.list.get_selection()
+        self.selection = self.tree.get_selection()
 
-        self.list.set_model(self.model)
-        self.list.set_rules_hint(True)
-        self.list.append_column(
+        self.tree.set_model(self.model)
+        self.tree.set_rules_hint(True)
+        self.tree.append_column(
             gtk.TreeViewColumn(_('Original time'), gtk.CellRendererText(),
                                text=0))
-        self.list.append_column(
+        self.tree.append_column(
             gtk.TreeViewColumn(_('Action'), gtk.CellRendererText(),
                                text=1))
 
-        scrolled_window.add(self.list)
+        scrolled_window.add(self.tree)
         self.window.vbox.add(scrolled_window)
         self.window.show_all()
 

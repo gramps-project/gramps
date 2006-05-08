@@ -1,4 +1,7 @@
 2006-05-08  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (load): Better non-TXN support.
+	* src/UndoHistory.py (__init__): Rename list to tree.
+
 	* src/DataViews/_PersonView.py (delete_person_response): Use child_ref.
 	* src/plugins/Leak.py: Typo.
 	* src/plugins/Eval.py: Convert to ManagedWindow.
