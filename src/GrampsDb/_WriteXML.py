@@ -769,6 +769,7 @@ class XmlWriter:
             self.g.write(' display="%d"' % name.get_display_as())
         self.g.write('>\n')
         self.write_line("first",name.get_first_name(),index+1)
+        self.write_line("call",name.get_call_name(),index+1)
         self.write_last(name,index+1)
         self.write_line("suffix",name.get_suffix(),index+1)
         self.write_line("patronymic",name.get_patronymic(),index+1)

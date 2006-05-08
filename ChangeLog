@@ -1,4 +1,7 @@
 2006-05-07  Don Allingham  <don@gramps-project.org>
+	* configure.in: set for 2.1.1
+	* src/GrampsDb/_ReadXML.py: call name support
+	* src/GrampsDb/_WriteXML.py: call name support
 	* src/DisplayState.py: include name and relationship on statusbar
 	* src/DataViews/_MediaView.py: tool tips
 	* src/DataViews/_RepositoryView.py: tool tips
