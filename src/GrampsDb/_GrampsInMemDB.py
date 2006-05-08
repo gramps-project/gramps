@@ -170,17 +170,7 @@ class GrampsInMemDB(GrampsDbBase):
         return vals
 
 
-    #FIXME: WHICH one to keep?
     def _del_person(self,handle):
-    #def remove_person(self,handle,transaction):
-        if self.readonly or not handle or str(handle) not in self.person_map:
-            return
-        person = self.get_person_from_handle(handle)
-        self.genderStats.uncount_person (person)
-        if transaction != None:
-            old_data = self.person_map.get(handle)
-            transaction.add(PERSON_KEY,handle,old_data)
-        self.emit('person-delete',([handle],))
         del self.id_trans[person.get_gramps_id()]
         del self.person_map[handle]
 
