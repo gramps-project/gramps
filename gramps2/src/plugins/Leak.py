@@ -122,7 +122,7 @@ class LeakOptions(Tool.ToolOptions):
 
 if __debug__:
     register_tool(
-        name = 'eval',
+        name = 'leak',
         category = Tool.TOOL_DEBUG,
         tool_class = Leak,
         options_class = LeakOptions,
