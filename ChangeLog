@@ -1,4 +1,6 @@
 2006-05-08  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Leak.py: Typo.
+	* src/plugins/Eval.py: Convert to ManagedWindow.
 	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Add callname to
 	names during upgrade.
 	* src/GrampsDb/_ReadXML.py (start_childref): Typo.

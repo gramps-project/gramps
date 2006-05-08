@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2005  Donald N. Allingham
+# Copyright (C) 2003-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,70 +46,44 @@ import gtk.glade
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import Utils
 from PluginUtils import Tool, register_tool
+import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
 # Actual tool
 #
 #-------------------------------------------------------------------------
-class Eval(Tool.Tool):
-    def __init__(self,db,person,options_class,name,callback=None,parent=None):
-        Tool.Tool.__init__(self,db,person,options_class,name)
+class Eval(Tool.Tool,ManagedWindow.ManagedWindow):
+    def __init__(self,dbstate, uistate, options_class, name, callback=None):
+        self.title =  _("Python evaluation window")
 
-        self.parent = parent
-        if self.parent.child_windows.has_key(self.__class__):
-            self.parent.child_windows[self.__class__].present(None)
-            return
-        self.win_key = self.__class__
+        Tool.Tool.__init__(self,dbstate, options_class, name)
+        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         glade_file = "%s/%s" % (os.path.dirname(__file__),"eval.glade")
         self.glade = gtk.glade.XML(glade_file,"top","gramps")
 
-        self.top = self.glade.get_widget("top")
-        self.top.set_icon(self.parent.topWindow.get_icon())
+        window = self.glade.get_widget("top")
         self.dbuf = self.glade.get_widget("display").get_buffer()
         self.ebuf = self.glade.get_widget("eval").get_buffer()
         self.error = self.glade.get_widget("error").get_buffer()
 
         self.glade.signal_autoconnect({
             "on_apply_clicked" : self.apply_clicked,
-            "on_close_clicked" : self.close_clicked,
-            "on_delete_event"  : self.on_delete_event,
+            "on_close_clicked" : self.close,
             "on_clear_clicked" : self.clear_clicked,
             })
 
-        Utils.set_titles(self.top,self.glade.get_widget('title'),
-                         _("Python evaluation window"))
+        self.set_window(window,self.glade.get_widget('title'),self.title)
+        self.show()
 
-        self.add_itself_to_menu()
-        self.top.show()
-
-    def on_delete_event(self,obj,b):
-        self.remove_itself_from_menu()
-
-    def close_clicked(self,obj):
-        self.remove_itself_from_menu()
-        self.top.destroy()
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(_('Python evaluation window'))
-        self.parent_menu_item.connect("activate",self.present)
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.top.present()
+    def build_menu_names(self,obj):
+        return (self.title,None)
 
     def apply_clicked(self,obj):
         text = unicode(self.ebuf.get_text(self.ebuf.get_start_iter(),
-                                  self.ebuf.get_end_iter(),False))
+                                          self.ebuf.get_end_iter(),False))
 
         outtext = cStringIO.StringIO()
         errtext = cStringIO.StringIO()
