@@ -1423,6 +1423,7 @@ class GrampsBSDDB(GrampsDbBase):
                 new_type = NameType()
                 new_type.set_from_xml_str(old_type)
                 name.type = new_type
+                name.call = ''
 
             # Change parent_family_list into list of handles
             # and transfer the relationship info into the family's
