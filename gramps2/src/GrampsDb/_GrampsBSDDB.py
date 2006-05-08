@@ -296,6 +296,9 @@ class GrampsBSDDB(GrampsDbBase):
 
         callback(12)
 
+        self.full_name = os.path.abspath(name)
+        self.brief_name = os.path.basename(name)
+
         self.env = db.DBEnv()
         self.env.set_cachesize(0,0x2000000)         # 16MB
         self.env.set_lk_max_locks(25000)
@@ -307,23 +310,21 @@ class GrampsBSDDB(GrampsDbBase):
             env_flags = db.DB_CREATE|db.DB_RECOVER|db.DB_PRIVATE|\
                         db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
                         db.DB_INIT_LOG|db.DB_INIT_TXN|db.DB_THREAD
+            env_name = os.path.expanduser(const.bsddbenv_dir)
+            if not os.path.isdir(env_name):
+                os.mkdir(env_name)
         else:
             env_flags = db.DB_CREATE|db.DB_PRIVATE|\
                         db.DB_INIT_MPOOL|db.DB_INIT_LOG
+            env_name = self.brief_name
 
-        env_name = os.path.expanduser(const.bsddbenv_dir)
-        if not os.path.isdir(env_name):
-            os.mkdir(env_name)
         self.env.open(env_name,env_flags)
         if self.UseTXN:
             self.env.txn_checkpoint()
 
         callback(25)
 
-        self.full_name = os.path.abspath(name)
-        self.brief_name = os.path.basename(name)
-
-        self.metadata       = self.open_table(self.full_name, "meta", no_txn=True)
+        self.metadata       =self.open_table(self.full_name,"meta",no_txn=True)
         
         self.family_map     = self.open_table(self.full_name, "family")
         self.place_map      = self.open_table(self.full_name, "places")
