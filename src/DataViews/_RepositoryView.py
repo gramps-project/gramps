@@ -72,6 +72,11 @@ column_names = [
 #
 #-------------------------------------------------------------------------
 class RepositoryView(PageView.ListView):
+    
+    ADD_MSG = _("Add a new repository")
+    EDIT_MSG = _("Edit the selected repository")
+    DEL_MSG = _("Delete the selected repository")
+
     def __init__(self,dbstate,uistate):
 
         signal_map = {

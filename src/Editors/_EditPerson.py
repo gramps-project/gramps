@@ -60,9 +60,10 @@ import Utils
 import Mime
 import RelLib
 import GrampsWidgets
+import Config
 
 from _EditPrimary import EditPrimary
-from QuestionDialog import WarningDialog, ErrorDialog, QuestionDialog2
+from QuestionDialog import *
 from DisplayTabs import \
      PersonEventEmbedList,NameEmbedList,SourceEmbedList,AttrEmbedList,\
      AddrEmbedList,NoteTab,GalleryTab,WebEmbedList,PersonRefEmbedList, \
@@ -133,6 +134,16 @@ class EditPerson(EditPrimary):
         """
         self.load_person_image()
         self.surname_field.grab_focus()
+
+#         if not Config.get(Config.HIDE_EP_MSG):
+#             MessageHideDialog(
+#                 _('Editing a person'),
+#                 _('This window allows you to enter information about '
+#                   'a person. You can add events, including birth and '
+#                   'death information under the Events tab. Similarly, '
+#                   'you can add additional information, such as sources, '
+#                   'names, and images on other tabs.'),
+#                 Config.HIDE_EP_MSG)
 
     def _connect_signals(self):
         """

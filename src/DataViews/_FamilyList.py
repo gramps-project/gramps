@@ -61,6 +61,11 @@ column_names = [
 #
 #-------------------------------------------------------------------------
 class FamilyListView(PageView.ListView):
+
+    ADD_MSG = _("Add a new family")
+    EDIT_MSG = _("Edit the selected family")
+    DEL_MSG = _("Delete the selected family")
+    
     def __init__(self,dbstate,uistate):
 
         signal_map = {

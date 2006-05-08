@@ -117,10 +117,11 @@ class PersonView(PageView.PersonNavView):
         PageView.PersonNavView.define_actions(self)
         
         self.add_action('Add', gtk.STOCK_ADD, _("_Add"),
-                        callback=self.add)
+                        tip=_("Add a new person"), callback=self.add)
         self.add_action('Edit', gtk.STOCK_EDIT, _("_Edit"),
-                        callback=self.edit)
+                        tip=_("Edit the selected person"), callback=self.edit)
         self.add_action('Remove', gtk.STOCK_REMOVE, _("_Remove"),
+                        tip=_("Remove the selected person"),
                         callback=self.remove)
         self.add_action('OpenAllNodes', None, _("Expand all nodes"),
                         callback=self.open_all_nodes)
@@ -129,8 +130,10 @@ class PersonView(PageView.PersonNavView):
         self.add_action('Jump', None, _("_Jump"),
                         accel="<control>j",callback=self.jumpto)
 
-        self.add_toggle_action('Filter', None, _('_Show filter sidebar'), None, None,
+        self.add_toggle_action('Filter', None, _('_Show filter sidebar'),
+                               None, None,
                                self.filter_toggle, Config.get(Config.FILTER))
+        
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                         _('_Column Editor'), callback=self.column_editor,)
 

@@ -70,6 +70,11 @@ column_names = [
 #
 #-------------------------------------------------------------------------
 class PlaceView(PageView.ListView):
+
+    ADD_MSG = _("Add a new place")
+    EDIT_MSG = _("Edit the selected place")
+    DEL_MSG = _("Delete the selected place")
+
     def __init__(self,dbstate,uistate):
 
         signal_map = {

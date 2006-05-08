@@ -67,6 +67,11 @@ column_names = [
 #
 #-------------------------------------------------------------------------
 class EventView(PageView.ListView):
+
+    ADD_MSG = _("Add a new event")
+    EDIT_MSG = _("Edit the selected event")
+    DEL_MSG = _("Delete the selected event")
+
     def __init__(self,dbstate,uistate):
 
         signal_map = {

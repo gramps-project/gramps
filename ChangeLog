@@ -1,4 +1,14 @@
 2006-05-07  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_MediaView.py: tool tips
+	* src/DataViews/_RepositoryView.py: tool tips
+	* src/DataViews/_SourceView.py: tool tips
+	* src/DataViews/_EventView.py: tool tips
+	* src/DataViews/_PedigreeView.py: tool tips
+	* src/DataViews/_PlaceView.py: tool tips
+	* src/DataViews/_PersonView.py: tool tips
+	* src/ViewManager.py: tool tips
+	* src/QuestionDialog.py: add info dialog
+	* src/PageView.py: tool tips
 	* src/DataViews/_PersonView.py: rebuild tree on surname change,
 	don't attempt to delete/insert, since this can cause things to
 	hang.
