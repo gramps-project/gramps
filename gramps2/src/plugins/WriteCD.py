@@ -58,8 +58,7 @@ except:
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import GrampsDb
-import Utils
+from GrampsDb import XmlWriter
 import Mime
 import const
 import QuestionDialog
@@ -73,9 +72,9 @@ _title_string = _("Export to CD")
 # writeData
 #
 #-------------------------------------------------------------------------
-def writeData(database,filename,person,option_box=None):
+def writeData(database,filename,person,option_box=None,callback=None):
     ret = 0
-    writer = PackageWriter(database,filename)
+    writer = PackageWriter(database,filename,callback)
     ret = writer.export()
     return ret
     
@@ -86,10 +85,11 @@ def writeData(database,filename,person,option_box=None):
 #-------------------------------------------------------------------------
 class PackageWriter:
 
-    def __init__(self,database,filename="",cl=0):
+    def __init__(self,database,filename="",cl=0,callback=None):
         self.db = database
         self.cl = cl
         self.filename = filename
+        self.callback = callback
 
     def export(self):
         if self.cl:
@@ -136,14 +136,13 @@ class PackageWriter:
             
         # Write XML now
         g = create('burn:///%s/data.gramps' % base,OPEN_WRITE )
-        gfile = GrampsDb.XmlWriter(self.db,None,1)
+        gfile = XmlWriter(self.db,None,2)
         gfile.write_handle(g)
         g.close()
 
     def gui_run(self):
         missmedia_action = 0
 
-#        base = os.path.basename(self.db.get_save_path())
         base = os.path.basename(self.filename)
 
         try:
@@ -277,7 +276,7 @@ class PackageWriter:
 
         # Write XML now
         g = create('burn:///%s/data.gramps' % base,OPEN_WRITE )
-        gfile = WriteXML.XmlWriter(self.db,None,1)
+        gfile = XmlWriter(self.db,self.callback,2)
         gfile.write_handle(g)
         g.close()
         os.system("nautilus --no-desktop burn:///")
