@@ -1518,16 +1518,11 @@ class GrampsDbBase(GrampsDBCallback):
 
     def get_default_person(self):
         """returns the default Person of the database"""
-        if self.metadata:
-            key = self.metadata.get('default')
-            data = self.person_map.get(key)
-            if data:
-                person = Person()
-                person.unserialize(data)
-                return person
-            elif not self.readonly:
-                self.metadata['default'] = None
-                return None
+        person = self.get_person_from_handle(self.get_default_handle())
+        if person:
+            return person
+        elif (self.metadata) and (not self.readonly):
+            self.metadata['default'] = None
         return None
 
     def get_default_handle(self):
