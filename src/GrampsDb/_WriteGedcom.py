@@ -750,11 +750,8 @@ class GedcomWriter:
                     event = self.db.get_event_from_handle(event_handle)
                     if not event or self.private and event.get_privacy():
                         continue
-                    (index,name) = event.get_type()
-
-                    val = ""
-                    if Utils.family_events.has_key(index):
-                        val = Utils.family_events[index]
+                    index = int(event.get_type())
+                    val = event.get_type().xml_str()
                     if val == "":
                         val = self.target_ged.gramps2tag(name)
 
@@ -767,45 +764,43 @@ class GedcomWriter:
                             self.writeln("2 TYPE %s" % event.get_description())
                     else:
                         self.writeln("1 EVEN")
-                        self.writeln("2 TYPE %s" % ' '.join([self.cnvtxt(name),
-                                                             event.get_description()]))
+                        self.writeln("2 TYPE %s" % ' '.join(
+                            [self.cnvtxt(val),
+                             self.cnvtxt(event.get_description())]))
 
                     self.dump_event_stats(event)
 
             for attr in family.get_attribute_list():
                 if self.private and attr.get_privacy():
                     continue
-                name = attr.get_type()
+                name = attr.get_type().xml_str()
+                value = self.cnvtxt(attr.get_value()).replace('\r',' ')
  
                 if name in ["AFN", "RFN", "_UID"]:
-                    self.writeln("1 %s %s" % ( name, attr.get_value()))
+                    self.writeln("1 %s %s" % (name,value))
                     continue
                 
-                if Utils.personal_attributes.has_key(name):
-                    val = Utils.personal_attributes[name]
-                else:
-                    val = ""
-                value = self.cnvtxt(attr.get_value()).replace('\r',' ')
-                if val:
-                    if value:
-                        self.writeln("1 %s %s" % (val, value))
-                    else:
-                        self.writeln("1 %s" % val)
-                else:
+                if attr.get_type().is_custom():
                     self.writeln("1 EVEN")
                     if value:
-                        self.writeln("2 TYPE %s %s" % (self.cnvtxt(name), value))
+                        self.writeln("2 TYPE %s %s" %(self.cnvtxt(name),value))
                     else:
                         self.writeln("2 TYPE %s" % self.cnvtxt(name))
+                else:
+                    if value:
+                        self.writeln("1 %s %s" % (name, value))
+                    else:
+                        self.writeln("1 %s" % name)
+
                 if attr.get_note():
                     self.write_long_text("NOTE",2,self.cnvtxt(attr.get_note()))
                 for srcref in attr.get_source_references():
                     self.write_source_ref(2,srcref)
 
-            for person_handle in family.get_child_handle_list():
-                if not self.plist.has_key(person_handle):
+            for child_ref in family.get_child_ref_list():
+                if not self.plist.has_key(child_ref.ref):
                     continue
-                person = self.db.get_person_from_handle(person_handle)
+                person = self.db.get_person_from_handle(child_ref.ref)
                 if not person:
                     continue
                 self.writeln("1 CHIL @%s@" % person.get_gramps_id())
@@ -814,16 +809,19 @@ class GedcomWriter:
                         self.writeln('2 _FREL Natural')
                         self.writeln('2 _MREL Natural')
                     else:
-                        for f in person.get_parent_family_handle_list():
-                            if f[0] == family.get_handle():
-                                self.writeln('2 _FREL %s' % f[2])
-                                self.writeln('2 _MREL %s' % f[1])
-                                break
+                        if family.get_handle() in \
+                               person.get_parent_family_handle_list():
+                            for child_ref in family.get_child_ref_list():
+                                if child_ref.ref == person.handle:
+                                    self.writeln('2 _FREL %s' %
+                                                 child_ref.frel.xml_str())
+                                    self.writeln('2 _MREL %s' %
+                                                 child_ref.mrel.xml_str())
+                                    break
                 if self.adopt == GedcomInfo.ADOPT_LEGACY:
-                    for f in person.get_parent_family_handle_list():
-                       if f[0] == family.get_handle():
-                           self.writeln('2 _STAT %s' % f[2])
-                           break
+                    if family.get_handle() in \
+                           person.get_parent_family_handle_list():
+                        self.writeln('2 _STAT %s' % f[2])
 
             for srcref in family.get_source_references():
                 self.write_source_ref(1,srcref)
@@ -948,10 +946,8 @@ class GedcomWriter:
                 event = self.db.get_event_from_handle(event_ref.ref)
                 if self.private and event.get_privacy():
                     continue
-                (index,name) = event.get_type()
-                val = ""
-                if Utils.personal_events.has_key(index):
-                    val = Utils.personal_events[index]
+                index = int(event.get_type())
+                val = event.get_type().xml_str()
                 if val == "":
                     val = self.target_ged.gramps2tag(index)
                         
@@ -959,18 +955,25 @@ class GedcomWriter:
                     ad = 1
                     self.writeln('1 ADOP')
                     fam = None
-                    for f in person.get_parent_family_handle_list():
-                        mrel = f[1]
-                        frel = f[2]
-                        if (mrel == RelLib.ChildRef.CHILD_ADOPTED or
-                            frel == RelLib.ChildRef.CHILD_ADOPTED):
-                            fam = f[0]
-                            break
+                    for fh in person.get_parent_family_handle_list():
+                        family = self.db.get_family_from_handle(fh)
+                        for child_ref in family.get_child_ref_list():
+                            if child_ref.ref == person.handle:
+                                if \
+                                       child_ref.mrel == \
+                                       RelLib.ChildRefType.ADOPTED \
+                                       or child_ref.frel == \
+                                       RelLib.ChildRefType.ADOPTED:
+                                    frel = child_ref.frel
+                                    mrel = child_ref.mrel
+                                    fam = family
+                                    break
                     if fam:
-                        self.writeln('2 FAMC @%s@' % self.fid(fam.get_gramps_id()))
+                        self.writeln('2 FAMC @%s@' %
+                                     self.fid(fam.get_gramps_id()))
                         if mrel == frel:
                             self.writeln('3 ADOP BOTH')
-                        elif mrel == "adopted":
+                        elif mrel == RelLib.ChildRefType.ADOPTED:
                             self.writeln('3 ADOP WIFE')
                         else:
                             self.writeln('3 ADOP HUSB')
@@ -993,28 +996,35 @@ class GedcomWriter:
                     # after EVEN on the same line, possibly an option is
                     # needed on how to handle this
                     if event.get_description() != "":
-                        self.writeln("1 EVEN %s" % event.get_description())
+                        self.writeln("1 EVEN %s" %
+                                     self.snvtxt(event.get_description()))
                     else:
                         self.writeln("1 EVEN")
-                    self.writeln("2 TYPE %s" % self.cnvtxt(name))
+                    self.writeln("2 TYPE %s" % self.cnvtxt(val))
 
                 self.dump_event_stats(event)
 
             if self.adopt == GedcomInfo.ADOPT_EVENT and ad == 0 and len(person.get_parent_family_handle_list()) != 0:
                 self.writeln('1 ADOP')
                 fam = None
-                for f in person.get_parent_family_handle_list():
-                    mrel = f[1]
-                    frel = f[2]
-                    if (mrel == RelLib.ChildRef.CHILD_ADOPTED or
-                        frel == RelLib.ChildRef.CHILD_ADOPTED):
-                        fam = f[0]
-                        break
+                for fh in person.get_parent_family_handle_list():
+                    family = self.db.get_family_from_handle(fh)
+                    for child_ref in family.get_child_ref_list():
+                        if child_ref.ref == person.handle:
+                                if \
+                                       child_ref.mrel == \
+                                       RelLib.ChildRefType.ADOPTED \
+                                       or child_ref.frel == \
+                                       RelLib.ChildRefType.ADOPTED:
+                                    frel = child_ref.frel
+                                    mrel = child_ref.mrel
+                                    fam = family
+                                    break
                 if fam:
                     self.writeln('2 FAMC @%s@' % self.fid(fam.get_gramps_id()))
                     if mrel == frel:
                         self.writeln('3 ADOP BOTH')
-                    elif mrel == "adopted":
+                    elif mrel == RelLib.ChildRefType.ADOPTED:
                         self.writeln('3 ADOP WIFE')
                     else:
                         self.writeln('3 ADOP HUSB')
@@ -1022,28 +1032,25 @@ class GedcomWriter:
             for attr in person.get_attribute_list():
                 if self.private and attr.get_privacy():
                     continue
-                name = attr.get_type()
- 
+                name = attr.get_type().xml_str()
+                value = self.cnvtxt(attr.get_value()).replace('\r',' ')
+
                 if name in ["AFN", "RFN", "_UID"]:
-                    self.writeln("1 %s %s" % ( name, attr.get_value()))
+                    self.writeln("1 %s %s" % (name,value))
                     continue
                 
-                if Utils.personal_attributes.has_key(name):
-                    val = Utils.personal_attributes[name]
-                else:
-                    val = ""
-                value = self.cnvtxt(attr.get_value()).replace('\r',' ')
-                if val:
-                    if value:
-                        self.writeln("1 %s %s" % (val, value))
-                    else:
-                        self.writeln("1 %s" % val)
-                else:
+                if attr.get_type().is_custom():
                     self.writeln("1 EVEN")
                     if value:
-                        self.writeln("2 TYPE %s %s" % (self.cnvtxt(name), value))
+                        self.writeln("2 TYPE %s %s" %(self.cnvtxt(name),value))
                     else:
                         self.writeln("2 TYPE %s" % self.cnvtxt(name))
+                else:
+                    if value:
+                        self.writeln("1 %s %s" % (name,value))
+                    else:
+                        self.writeln("1 %s" % name)
+
                 if attr.get_note():
                     self.write_long_text("NOTE",2,self.cnvtxt(attr.get_note()))
                 for srcref in attr.get_source_references():
