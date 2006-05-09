@@ -63,9 +63,9 @@ from PluginUtils import register_export
 # writeData
 #
 #-------------------------------------------------------------------------
-def writeData(database,filename,person,option_box):
+def writeData(database,filename,person,option_box,callback=None):
     ret = 0
-    writer = FtreeWriter(database,person,0,filename,option_box)
+    writer = FtreeWriter(database,person,0,filename,option_box,callback)
     ret = writer.export_data()
     return ret
     
@@ -131,12 +131,18 @@ class FtreeWriterOptionBox:
 #-------------------------------------------------------------------------
 class FtreeWriter:
 
-    def __init__(self,database,person,cl=0,filename="",option_box=None):
+    def __init__(self,database,person,cl=0,filename="",
+                 option_box=None,callback = None):
         self.db = database
         self.person = person
         self.option_box = option_box
         self.cl = cl
         self.filename = filename
+        self.callback = callback
+        if '__call__' in dir(self.callback): # callback is really callable
+            self.update = self.update_real
+        else:
+            self.update = self.update_empty
 
         self.plist = {}
 
@@ -158,6 +164,16 @@ class FtreeWriter:
                     ErrorDialog(m1,m2)
                     return
 
+    def update_empty(self):
+        pass
+
+    def update_real(self):
+        self.count += 1
+        newval = int(100*self.count/self.total)
+        if newval != self.oldval:
+            self.callback(newval)
+            self.oldval = newval
+
     def cl_setup(self):
         self.restrict = True
         for p in self.db.get_person_handles(sort_handles=False):
@@ -167,7 +183,12 @@ class FtreeWriter:
         name_map = {}
         id_map = {}
         id_name = {}
+        self.count = 0
+        self.oldval = 0
+        self.total = 2*len(self.plist)
+
         for key in self.plist:
+            self.update()
             pn = self.db.get_person_from_handle(key).get_primary_name()
             sn = pn.get_surname()
             items = pn.get_first_name().split()
@@ -194,6 +215,7 @@ class FtreeWriter:
         f = open(self.filename,"w")
 
         for key in self.plist:
+            self.update()
             p = self.db.get_person_from_handle(key)
             name = id_name[key]
             father = ""
@@ -212,15 +234,15 @@ class FtreeWriter:
             #
             # Calculate Date
             #
-            birth_handle = p.get_birth_handle()
-            death_handle = p.get_death_handle()
-            if birth_handle:
-                birth_event = self.db.get_event_from_handle(birth_handle)
+            birth_ref = p.get_birth_ref()
+            death_ref = p.get_death_ref()
+            if birth_ref:
+                birth_event = self.db.get_event_from_handle(birth_ref.ref)
                 birth = birth_event.get_date_object()
             else:
                 birth = None
-            if death_handle:
-                death_event = self.db.get_event_from_handle(death_handle)
+            if death_ref:
+                death_event = self.db.get_event_from_handle(death_ref.ref)
                 death = death_event.get_date_object()
             else:
                 death = None
