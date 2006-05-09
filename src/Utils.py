@@ -905,13 +905,14 @@ def get_media_referents(media_handle,db):
 # 
 #
 #-------------------------------------------------------------------------
-_NEW_NAME_PATTERN = '%sUntitled_%d.%s'
+_NEW_NAME_PATTERN = '%s%sUntitled_%d.%s'
 
 def get_new_filename(ext,folder='~/'):
     ix = 1
-    while os.path.isfile(os.path.expanduser(_NEW_NAME_PATTERN % (folder,ix,ext) )):
+    while os.path.isfile(os.path.expanduser(_NEW_NAME_PATTERN %
+                                            (folder,os.path.sep,ix,ext))):
         ix = ix + 1
-    return os.path.expanduser(_NEW_NAME_PATTERN % (folder,ix,ext))
+    return os.path.expanduser(_NEW_NAME_PATTERN % (folder,os.path.sep,ix,ext))
 
 def get_type_converter(val):
     """

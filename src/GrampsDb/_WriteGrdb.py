@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2005  Donald N. Allingham
+# Copyright (C) 2005-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,8 +45,25 @@ from QuestionDialog import ErrorDialog
 #-------------------------------------------------------------------------
 def exportData(database, filename, person=None, callback=None, cl=False):
 
-    filename = os.path.normpath(filename)
+    if '__call__' in dir(callback): # callback is really callable
+        update = update_real
 
+        # Prepare length for the callback
+        person_len = database.get_number_of_people()
+        family_len = database.get_number_of_families()
+        event_len = database.get_number_of_events()
+        source_len = database.get_number_of_sources()
+        place_len = database.get_number_of_places()
+        repo_len = database.get_number_of_repositories()
+        obj_len = database.get_number_of_media_objects()
+        
+        total = person_len + family_len + event_len + place_len + \
+                source_len + obj_len + repo_len
+    else:
+        update = update_empty
+        total = 0
+
+    filename = os.path.normpath(filename)
     new_database = GrampsBSDDB()
     try:
         new_database.load(filename,callback)
@@ -57,28 +74,70 @@ def exportData(database, filename, person=None, callback=None, cl=False):
             ErrorDialog(_("%s could not be opened") % filename)
         return
     
-    # copy all data from new_database to database,
+    # copy all data from new_database to database
 
-    for handle in database.person_map.keys():
-        new_database.person_map.put(handle,
-                database.person_map.get(handle))
-    for handle in database.family_map.keys():
-        new_database.family_map.put(handle,
-                database.family_map.get(handle))
-    for handle in database.place_map.keys():
-        new_database.place_map.put(handle,
-                database.place_map.get(handle))
-    for handle in database.source_map.keys():
-        new_database.source_map.put(handle,
-                database.source_map.get(handle))
-    for handle in database.media_map.keys():
-        new_database.media_map.put(handle,
-                database.media_map.get(handle))
-    for handle in database.event_map.keys():
-        new_database.event_map.put(handle,
-                database.event_map.get(handle))
+    # Need different adders depending on whether the new db is transactional
+    if new_database.UseTXN:
+        add_data = add_data_txn
+    else:
+        add_data = add_data_notxn
+
+    primary_tables = {
+        'Person': {'cursor_func': database.get_person_cursor,
+                   'new_table': new_database.person_map },
+        'Family': {'cursor_func': database.get_family_cursor,
+                   'new_table': new_database.family_map },
+        'Event': {'cursor_func': database.get_event_cursor,
+                  'new_table': new_database.event_map },
+        'Place': {'cursor_func': database.get_place_cursor,
+                  'new_table': new_database.place_map },
+        'Source': {'cursor_func': database.get_source_cursor,
+                   'new_table': new_database.source_map },
+        'MediaObject': {'cursor_func': database.get_media_cursor,
+                        'new_table': new_database.media_map },
+        'Repository': {'cursor_func': database.get_repository_cursor,
+                       'new_table': new_database.repository_map },
+        }
+
+    count = 0
+    oldval = 0
+
+    for table_name in primary_tables.keys():
+        cursor_func = primary_tables[table_name]['cursor_func']
+        new_table = primary_tables[table_name]['new_table']
+
+        cursor = cursor_func()
+        item = cursor.first()
+        while item:
+            (handle,data) = item
+            add_data(new_database,new_table,handle,data)
+            item = cursor.next()
+            count,oldval = update(callback,count,oldval,total)
+        cursor.close()
+
+    # The metadata is always transactionless,
+    # and the table is small, so using key iteration is OK here.
     for handle in database.metadata.keys():
-        new_database.metadata.put(handle,
-                database.metadata.get(handle))
+        new_database.metadata.put(handle,database.metadata.get(handle))
 
     new_database.close()
+
+
+def add_data_txn(db,table,handle,data):
+    the_txn = db.env.txn_begin()
+    table.put(handle,data,txn=the_txn)
+    the_txn.commit()
+
+def add_data_notxn(db,table,handle,data):
+    table.put(handle,data)
+
+def update_empty(callback,count,oldval,total):
+    pass
+
+def update_real(callback,count,oldval,total):
+    count += 1
+    newval = int(100.0*count/total)
+    if newval != oldval:
+        callback(newval)
+        oldval = newval
+    return count,oldval

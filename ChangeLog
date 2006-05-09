@@ -1,4 +1,8 @@
 2006-05-09  Alex Roitman  <shura@gramps-project.org>
+	* src/Exporter.py (Exporter.native_export): Use callback.
+	* src/Utils.py (get_new_filename): Add path separator.
+	* src/GrampsDb/_WriteGrdb.py: Proper export of tables with and
+	without transaction support, add callback.
 	* src/plugins/WriteCD.py: Correctly import XmlWriter.
 	* src/GrampsDb/_WriteXML.py (write_object): Check whether path is
 	empty before removing leading slash.
