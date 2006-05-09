@@ -1,4 +1,5 @@
 2006-05-09  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/FamilyGroup.py: Use triple quotes.
 	* src/Exporter.py (Exporter.native_export): Use callback.
 	* src/Utils.py (get_new_filename): Add path separator.
 	* src/GrampsDb/_WriteGrdb.py: Proper export of tables with and
