@@ -251,12 +251,23 @@ class ViewManager:
 
         toolbar = self.uimanager.get_widget('/ToolBar')
         openbtn = gtk.MenuToolButton(gtk.STOCK_OPEN)
-        openbtn.show()
         openbtn.connect('clicked', self.open_activate)
         openbtn.set_sensitive(False)
+
         self.uistate.set_open_widget(openbtn)
         toolbar.insert(openbtn, 1)
 
+        self.open_tips = gtk.Tooltips()
+        openbtn.set_arrow_tooltip(self.open_tips,
+                                  _("Open a recently opened database"),
+                                  _("Open a recently opened database"))
+        
+        openbtn.set_tooltip(self.open_tips,
+                            _("Open an existing database"),
+                            _("Open an existing database")
+                            )
+        openbtn.show()
+        
         self.person_nav = Navigation.PersonNavigation(self.uistate)
         self._navigation_type[PageView.NAVIGATION_PERSON] = (self.person_nav,
                                                              None)
