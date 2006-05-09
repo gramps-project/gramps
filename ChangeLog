@@ -1,4 +1,5 @@
 2006-05-09  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/WriteCD.py: Correctly import XmlWriter.
 	* src/GrampsDb/_WriteXML.py (write_object): Check whether path is
 	empty before removing leading slash.
 	* src/GrampsDb/_WriteGedcom.py: Bring to new API.
