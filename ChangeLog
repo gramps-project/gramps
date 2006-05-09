@@ -1,4 +1,5 @@
 2006-05-09  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/WriteFtree.py: Bring to new API.
 	* src/Filters/_FilterMenu.py (build_filter_menu): Return the menu.
 	* src/plugins/WriteGeneWeb.py: Bring to new API.
 

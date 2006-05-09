@@ -261,6 +261,7 @@ class GeneWebWriter:
             return 0
         
         self.count = 0
+        self.oldval = 0
         self.total = len(self.flist)
         for key in self.flist:
             self.write_family(key)
@@ -611,7 +612,7 @@ class GeneWebWriter:
 #-------------------------------------------------------------------------
 def exportData(database,filename,person,option_box,callback=None):
     ret = 0
-    gw = GeneWebWriter(database,person,0,filename,option_box)
+    gw = GeneWebWriter(database,person,0,filename,option_box,callback)
     ret = gw.export_data()
     return ret
 
