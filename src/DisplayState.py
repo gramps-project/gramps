@@ -329,7 +329,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
             pname = NameDisplay.displayer.display(person)
             name = "[%s] %s" % (person.get_gramps_id(),pname)
             if Config.get(Config.STATUSBAR) > 1:
-                if person.handle != self.dbstate.db.get_default_person().handle:
+                if person.handle != self.dbstate.db.get_default_handle():
                     msg = self.display_relationship()
                     if msg:
                         name = "%s (%s)" % (name,msg)
