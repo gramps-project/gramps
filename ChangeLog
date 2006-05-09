@@ -1,4 +1,6 @@
 2006-05-09  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_WriteXML.py (write_object): Check whether path is
+	empty before removing leading slash.
 	* src/GrampsDb/_WriteGedcom.py: Bring to new API.
 	* src/plugins/ExportVCard.py: Bring to new API.
 	* src/plugins/ExportVCalendar.py: Bring to new API.

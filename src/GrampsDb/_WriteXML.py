@@ -976,7 +976,7 @@ class XmlWriter:
             desc_text = ''
         if self.strip_photos == 1:
             path = os.path.basename(path)
-        elif self.strip_photos == 2 and path[0] == '/':
+        elif self.strip_photos == 2 and (len(path)>0 and path[0]) == '/':
             path = path[1:]
                 
         self.g.write('%s<file src="%s" mime="%s"%s/>\n'
