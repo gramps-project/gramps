@@ -1530,6 +1530,12 @@ class GrampsDbBase(GrampsDBCallback):
                 return None
         return None
 
+    def get_default_handle(self):
+        """returns the default Person of the database"""
+        if self.metadata:
+            return self.metadata.get('default')
+        return None
+
     def get_save_path(self):
         """returns the save path of the file, or "" if one does not exist"""
         return self.path

@@ -1,3 +1,7 @@
+2006-05-08  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py: get_default_handle()
+	* src/DisplayState.py: use get_default_handle, fix race condition 
+
 2006-05-08  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (load): Better non-TXN support.
 	* src/UndoHistory.py (__init__): Rename list to tree.
