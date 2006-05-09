@@ -29,6 +29,7 @@
 #-------------------------------------------------------------------------
 import os
 from time import localtime
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -54,9 +55,8 @@ log = logging.getLogger(".ExportVCal")
 from Filters import GenericFilter, Rules, build_filter_menu
 import const
 import Utils
-from RelLib import Date
+from RelLib import Date, EventType
 import Errors
-from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 from PluginUtils import register_export
 
@@ -124,12 +124,18 @@ class CalendarWriterOptionBox:
 
 
 class CalendarWriter:
-    def __init__(self,database,person,cl=0,filename="",option_box=None):
+    def __init__(self,database,person,cl=0,filename="",
+                 option_box=None,callback=None):
         self.db = database
         self.person = person
         self.option_box = option_box
         self.cl = cl
         self.filename = filename
+        self.callback = callback
+        if '__call__' in dir(self.callback): # callback is really callable
+            self.update = self.update_real
+        else:
+            self.update = self.update_empty
 
         self.plist = {}
         self.flist = {}
@@ -161,6 +167,16 @@ class CalendarWriter:
                 for family_handle in p.get_family_handle_list():
                     self.flist[family_handle] = 1
  
+    def update_empty(self):
+        pass
+
+    def update_real(self):
+        self.count += 1
+        newval = int(100*self.count/self.total)
+        if newval != self.oldval:
+            self.callback(newval)
+            self.oldval = newval
+
     def cl_setup(self):
         for p in self.db.get_person_handles(sort_handles=False):
             self.plist[p] = 1
@@ -191,11 +207,17 @@ class CalendarWriter:
         self.writeln("BEGIN:VCALENDAR");
         self.writeln("PRODID:-//GNU//Gramps//EN");
         self.writeln("VERSION:1.0");
+
+        self.count = 0
+        self.oldval = 0
+        self.total = len(self.plist) + len(self.flist)
         for key in self.plist:
             self.write_person(key)
+            self.update()
 
         for key in self.flist:
             self.write_family(key)
+            self.update()
 
         self.writeln("");
         self.writeln("END:VCALENDAR");
@@ -208,7 +230,7 @@ class CalendarWriter:
         if family:
             for event_ref in family.get_event_ref_list():
                 event = self.db.get_event_from_handle(event_ref.ref)
-                if int(event.get_type()) == RelLib.EventType.MARRIAGE:
+                if event.get_type() == EventType.MARRIAGE:
                     m_date = event.get_date_object()
                     place_handle = event.get_place_handle()
                     text = _("Marriage of %s") % Utils.family_name(family,self.db)
@@ -308,9 +330,9 @@ class CalendarWriter:
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database,filename,person,option_box):
+def exportData(database,filename,person,option_box,callback=None):
     ret = 0
-    cw = CalendarWriter(database,person,0,filename,option_box)
+    cw = CalendarWriter(database,person,0,filename,option_box,callback)
     ret = cw.export_data(filename)
     return ret
 
