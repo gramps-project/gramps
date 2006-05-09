@@ -1,3 +1,7 @@
+2006-05-09  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_MapView.py: add tool tips to tool buttons
+	* src/ViewManager.py: add tool tips to Open button
+
 2006-05-08  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsDbBase.py (get_default_person): Use proper
 	way of getting person from the handle.
