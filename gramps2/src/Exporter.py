@@ -331,7 +331,7 @@ class Exporter:
         else:
             return 0
     
-    def native_export(self,database,filename,person):
+    def native_export(self,database,filename,person,callback=None):
         """
         Native database export.
         
@@ -340,7 +340,8 @@ class Exporter:
         try:
             gramps_db_writer_factory(const.app_gramps)(database,
                                                        filename,
-                                                       person)
+                                                       person,
+                                                       callback)
             return 1
         except IOError, msg:
             QuestionDialog.ErrorDialog(
