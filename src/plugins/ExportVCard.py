@@ -28,6 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -54,7 +55,6 @@ from Filters import GenericFilter, Rules, build_filter_menu
 import const
 from RelLib import Date
 import Errors
-from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 from PluginUtils import register_export
 
@@ -121,12 +121,18 @@ class CardWriterOptionBox:
         self.cfilter = self.filter_menu.get_active().get_data("filter")
 
 class CardWriter:
-    def __init__(self,database,person,cl=0,filename="",option_box=None):
+    def __init__(self,database,person,cl=0,filename="",
+                 option_box=None,callback=None):
         self.db = database
         self.person = person
         self.option_box = option_box
         self.cl = cl
         self.filename = filename
+        self.callback = callback
+        if '__call__' in dir(self.callback): # callback is really callable
+            self.update = self.update_real
+        else:
+            self.update = self.update_empty
 
         self.plist = {}
         
@@ -147,7 +153,16 @@ class CardWriter:
                     ErrorDialog(m1,m2)
                     return
 
- 
+    def update_empty(self):
+        pass
+
+    def update_real(self):
+        self.count += 1
+        newval = int(100*self.count/self.total)
+        if newval != self.oldval:
+            self.callback(newval)
+            self.oldval = newval
+
     def cl_setup(self):
         for p in self.db.get_person_handles(sort_handles=False):
             self.plist[p] = 1
@@ -168,12 +183,15 @@ class CardWriter:
             ErrorDialog(_("Could not create %s") % filename)
             return 0
 
+        self.count = 0
+        self.oldval = 0
+        self.total = len(self.plist)
         for key in self.plist:
             self.write_person(key)
+            self.update()
 
         self.g.close()
-        return 1
-    
+        return 1   
                     
     def write_person(self, person_handle):
         person = self.db.get_person_from_handle(person_handle)
@@ -227,9 +245,9 @@ class CardWriter:
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database,filename,person,option_box):
+def exportData(database,filename,person,option_box,callback=None):
     ret = 0
-    cw = CardWriter(database,person,0,filename,option_box)
+    cw = CardWriter(database,person,0,filename,option_box,callback)
     ret = cw.export_data(filename)
     return ret
 
