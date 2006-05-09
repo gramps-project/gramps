@@ -663,7 +663,9 @@ class PersonView(PageView.PersonNavView):
             if oldpath == newpath:
                 self.model.row_changed(pathval,pnode)
             else:
-                self.rebuild_tree()
+                self.build_tree()
+                break
+            
         self.goto_active_person()
 
     def get_selected_objects(self):
