@@ -52,7 +52,7 @@ log = logging.getLogger(".WriteGeneWeb")
 #
 #-------------------------------------------------------------------------
 import RelLib
-from Filters import GenericFilter, build_filter_menu
+from Filters import GenericFilter, Rules, build_filter_menu
 import const
 import Utils
 import Errors
@@ -149,12 +149,18 @@ class GeneWebWriterOptionBox:
             self.images_path = ""
 
 class GeneWebWriter:
-    def __init__(self,database,person,cl=0,filename="",option_box=None):
+    def __init__(self,database,person,cl=0,filename="",
+                 option_box=None,callback=None):
         self.db = database
         self.person = person
         self.option_box = option_box
         self.cl = cl
         self.filename = filename
+        self.callback = callback
+        if '__call__' in dir(self.callback): # callback is really callable
+            self.update = self.update_real
+        else:
+            self.update = self.update_empty
 
         self.plist = {}
         self.flist = {}
@@ -208,6 +214,16 @@ class GeneWebWriter:
                     self.flist[family_handle] = 1
 
 
+    def update_empty(self):
+        pass
+
+    def update_real(self):
+        self.count += 1
+        newval = int(100*self.count/self.total)
+        if newval != self.oldval:
+            self.callback(newval)
+            self.oldval = newval
+
     def cl_setup(self):
         self.restrict = 0
         self.private = 0
@@ -244,6 +260,8 @@ class GeneWebWriter:
             ErrorDialog(_("No families matched by selected filter"))
             return 0
         
+        self.count = 0
+        self.total = len(self.flist)
         for key in self.flist:
             self.write_family(key)
             self.writeln("")
@@ -254,6 +272,7 @@ class GeneWebWriter:
     def write_family(self,family_handle):
         family = self.db.get_family_from_handle(family_handle)
         if family:
+            self.update()
             father_handle = family.get_father_handle()
             if father_handle:
                 father = self.db.get_person_from_handle(father_handle)
@@ -275,12 +294,15 @@ class GeneWebWriter:
                             self.writeln("comm %s" % note)
                     
     def write_witness(self,family):
+        # FIXME: witnesses are not in events anymore
+        return
+        
         if self.restrict:
             return
-        event_list = family.get_event_list()
-        for event_handle in event_list:
-            event = self.db.get_event_from_handle(event_handle)
-            if event.get_name() == "Marriage":
+        event_ref_list = family.get_event_ref_list()
+        for event_ref in event_ref:
+            event = self.db.get_event_from_handle(event_ref.ref)
+            if int(event.get_type()) == RelLib.EventType.MARRIAGE:
                 w_list = event.get_witness_list()
                 if w_list:
                     for witness in w_list:
@@ -309,11 +331,11 @@ class GeneWebWriter:
 
     def write_children(self,family, father):
         father_lastname = father.get_primary_name().get_surname()
-        child_list = family.get_child_handle_list()
-        if child_list:
+        child_ref_list = family.get_child_ref_list()
+        if child_ref_list:
             self.writeln("beg")
-            for child_handle in child_list:
-                child = self.db.get_person_from_handle(child_handle)
+            for child_ref in child_ref_list:
+                child = self.db.get_person_from_handle(child_ref.ref)
                 if child:
                     gender = ""
                     if child.get_gender() == RelLib.Person.MALE:
@@ -329,23 +351,24 @@ class GeneWebWriter:
             
         self.write_note_of_person(father)
         self.write_note_of_person(mother)
-        child_list = family.get_child_handle_list()
-        if child_list:
-            for child_handle in child_list:
-                child = self.db.get_person_from_handle(child_handle)
+        child_ref_list = family.get_child_ref_list()
+        if child_ref_list:
+            for child_ref in child_ref_list:
+                child = self.db.get_person_from_handle(child_ref.ref)
                 if child:
                     self.write_note_of_person(child)
-        event_list = family.get_event_list()
-        for event_handle in event_list:
-            event = self.db.get_event_from_handle(event_handle)
-            if event.get_name() == "Marriage":
-                w_list = event.get_witness_list()
-                if w_list:
-                    for witness in w_list:
-                        if witness and witness.type == RelLib.Event.ID:
-                            person = self.db.get_person_from_handle(witness.get_value())
-                            if person:
-                                self.write_note_of_person(person)
+        # FIXME: witnesses do not exist in events anymore
+##         event_ref_list = family.get_event_ref_list()
+##         for event_ref in event_ref_list:
+##             event = self.db.get_event_from_handle(event_ref.ref)
+##             if int(event.get_type()) == RelLib.EventType.MARRIAGE:
+##                 w_list = event.get_witness_list()
+##                 if w_list:
+##                     for witness in w_list:
+##                         if witness and witness.type == RelLib.Event.ID:
+##                             person = self.db.get_person_from_handle(witness.get_value())
+##                             if person:
+##                                 self.write_note_of_person(person)
 
     def write_note_of_person(self,person):
         if self.persons_notes_done.count(person.get_handle()) == 0:
@@ -366,9 +389,9 @@ class GeneWebWriter:
 
         b_date = "0"
         b_place = ""
-        birth_handle = person.get_birth_handle()
-        if birth_handle:
-            birth = self.db.get_event_from_handle(birth_handle)
+        birth_ref = person.get_birth_ref()
+        if birth_ref:
+            birth = self.db.get_event_from_handle(birth_ref.ref)
             if birth:
                 b_date = self.format_date( birth.get_date_object())
                 place_handle = birth.get_place_handle()
@@ -381,9 +404,9 @@ class GeneWebWriter:
         else:
             d_date = "0"
         d_place = ""
-        death_handle = person.get_death_handle()
-        if death_handle:
-            death = self.db.get_event_from_handle(death_handle)
+        death_ref = person.get_death_ref()
+        if death_ref:
+            death = self.db.get_event_from_handle(death_ref.ref)
             if death:
                 d_date = self.format_date( death.get_date_object())
                 place_handle = death.get_place_handle()
@@ -406,7 +429,7 @@ class GeneWebWriter:
             is_child = 0
             pf_list = person.get_parent_family_handle_list()
             if pf_list:
-                for (family_handle,mrel,frel) in pf_list:
+                for family_handle in pf_list:
                     if self.flist.has_key(family_handle):
                         is_child = 1
             if is_child == 0:
@@ -451,7 +474,7 @@ class GeneWebWriter:
 
     def get_wedding_data(self,family):
         ret = "";
-        event_list = family.get_event_list()
+        event_ref_list = family.get_event_ref_list()
         m_date = ""
         m_place = ""
         m_source = ""
@@ -459,12 +482,12 @@ class GeneWebWriter:
         eng_date = ""
         eng_place = ""
         eng_source = ""
-        engagend = 0
+        engaged = 0
         div_date = ""
         divorced = 0
-        for event_handle in event_list:
-            event = self.db.get_event_from_handle(event_handle)
-            if event.get_name() == "Marriage":
+        for event_ref in event_ref_list:
+            event = self.db.get_event_from_handle(event_ref.ref)
+            if event.get_type() == RelLib.EventType.MARRIAGE:
                 married = 1
                 m_date = self.format_date( event.get_date_object())
                 place_handle = event.get_place_handle()
@@ -472,15 +495,15 @@ class GeneWebWriter:
                     place = self.db.get_place_from_handle(place_handle)
                     m_place = place.get_title()
                 m_source = self.get_primary_source( event.get_source_references())
-            if event.get_name() == "Engagement":
-                engagend = 1
+            if event.get_type() == RelLib.EventType.ENGAGEMENT:
+                engaged = 1
                 eng_date = self.format_date( event.get_date_object())
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = self.db.get_place_from_handle(place_handle)
                     eng_place = place.get_title()
                 eng_source = self.get_primary_source( event.get_source_references())
-            if event.get_name() == "Divorce":
+            if event.get_type() == RelLib.EventType.DIVORCE:
                 divorced = 1
                 div_date = self.format_date( event.get_date_object())
         if married == 1:
@@ -493,7 +516,7 @@ class GeneWebWriter:
             
             if m_source != "":
                 ret = ret + "#ms %s " % self.rem_spaces( m_source)
-        elif engagend == 1:
+        elif engaged == 1:
             """Geneweb only supports either Marriage or engagement"""
             if eng_date != "":
                 ret = ret + eng_date
@@ -505,7 +528,7 @@ class GeneWebWriter:
             if eng_source != "":
                 ret = ret + "#ms %s " % self.rem_spaces( m_source)
         else:
-            if family.get_relationship() != RelLib.Family.MARRIED:
+            if family.get_relationship() != RelLib.FamilyRelType.MARRIED:
                 """Not married or engaged"""
                 ret = ret + " #nm "
 
@@ -586,7 +609,7 @@ class GeneWebWriter:
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database,filename,person,option_box):
+def exportData(database,filename,person,option_box,callback=None):
     ret = 0
     gw = GeneWebWriter(database,person,0,filename,option_box)
     ret = gw.export_data()

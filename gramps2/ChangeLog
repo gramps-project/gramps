@@ -1,3 +1,7 @@
+2006-05-09  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/_FilterMenu.py (build_filter_menu): Return the menu.
+	* src/plugins/WriteGeneWeb.py: Bring to new API.
+
 2006-05-09  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_MapView.py: add tool tips to tool buttons
 	* src/ViewManager.py: add tool tips to Open button

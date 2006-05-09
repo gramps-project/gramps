@@ -70,3 +70,5 @@ def build_filter_menu(local_filters = [], default=""):
         if default != "" and default == filt.get_name():
             active = cnt
         cnt += 1
+
+    return menu
