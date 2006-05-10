@@ -3,8 +3,9 @@
 	* src/PeopleModel.py: use SearchFilter
 	* src/DisplayModels.py: handle search filter
 	* src/PageView.py: search bar support
-	* src/Filters/_SearchBar.py: added
-	* src/Filters/_SearchFilter.py: remove SearchFilter to separate file
+	* src/Filters/_SearchBar.py: remove SearchFilter to separate file, 
+	fix status bar message
+	* src/Filters/_SearchFilter.py: added
 	* src/Filters/__init__.py: added SearchBar
 
 2006-05-10  Alex Roitman  <shura@gramps-project.org>
