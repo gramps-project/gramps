@@ -2271,8 +2271,8 @@ class GedcomParser:
     def func_person_attr(self,matches,state):
         attr = RelLib.Attribute()
         n = matches[3]
-        atype = self.gedattr.get(n,RelLib.Attribute.CUSTOM)
-        if atype == RelLib.Attribute.CUSTOM:
+        atype = self.gedattr.get(n,RelLib.AttributeType.CUSTOM)
+        if atype == RelLib.AttributeType.CUSTOM:
             attr.set_type((atype,n))
         else:
             attr.set_type(atype)
