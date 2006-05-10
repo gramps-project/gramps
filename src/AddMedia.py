@@ -58,6 +58,8 @@ import Mime
 import GrampsDisplay
 import ManagedWindow
 
+_last_directory = None
+
 #-------------------------------------------------------------------------
 #
 # AddMediaObject
@@ -77,7 +79,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         """
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
-        
+
         self.db = dbstate.db
         self.glade = gtk.glade.XML(const.gladeFile,"imageSelect","gramps")
         
@@ -89,6 +91,9 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         self.description = self.glade.get_widget("photoDescription")
         self.image = self.glade.get_widget("image")
         self.file_text = self.glade.get_widget("fname")
+        if _last_directory and os.path.isdir(_last_directory):
+            self.file_text.set_current_folder(_last_directory)
+            
         self.internal = self.glade.get_widget('internal')
         self.internal.connect('toggled',self.internal_toggled)
         self.relpath = self.glade.get_widget('relpath')
@@ -115,6 +120,8 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         Callback function called with the save button is pressed.
         A new media object is created, and added to the database.
         """
+        global _last_directory
+        
         description = unicode(self.description.get_text())
 
         if self.internal.get_active():
@@ -146,6 +153,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
             mobj.set_mime_type(mtype)
             name = filename
             mobj.set_path(name)
+            _last_directory = os.path.dirname(filename)
 
         mobj.set_handle(Utils.create_id())
         if not mobj.get_gramps_id():
@@ -154,6 +162,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         self.object = mobj
         self.db.commit_media_object(mobj,trans)
         self.db.transaction_commit(trans,_("Add Media Object"))
+
         
     def on_name_changed(self,*obj):
         """

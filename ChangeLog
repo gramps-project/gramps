@@ -1,3 +1,7 @@
+2006-05-09  Don Allingham  <don@gramps-project.org>
+	* src/AddMedia.py: remember last directory for images for 
+	the session
+
 2006-05-09  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/FamilyGroup.py: Use triple quotes.
 	* src/Exporter.py (Exporter.native_export): Use callback.
