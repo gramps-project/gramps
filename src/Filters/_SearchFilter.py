@@ -25,10 +25,11 @@ Package providing filtering framework for GRAMPS.
 """
 
 class SearchFilter:
-    def __init__(self, func, text):
+    def __init__(self, func, text, invert):
         self.func = func
         self.text = text.upper()
+        self.invert = invert
 
     def match(self, handle):
-        return self.func(handle).upper().find(self.text) != -1
+        return self.invert ^ (self.func(handle).upper().find(self.text) != -1)
     

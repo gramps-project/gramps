@@ -1,3 +1,11 @@
+2006-05-10  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: support for inverted searchs
+	* src/PeopleModel.py: support for inverted searchs
+	* src/DisplayModel.py: support for inverted searchs
+	* src/PageView.py: support for inverted searchs, correct col index
+	* src/Filters/_SearchBar.py: support for inverted searchs
+	* src/Filters/_SearchFilter.py: support for inverted searchs
+
 2006-05-10  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py (func_person_attr): Typos.
 
@@ -7,7 +15,7 @@
 	* src/DisplayModels.py: handle search filter
 	* src/PageView.py: search bar support
 	* src/Filters/_SearchBar.py: remove SearchFilter to separate file, 
-	fix status bar message
+	fix status bar message, improved buttons.
 	* src/Filters/_SearchFilter.py: added
 	* src/Filters/__init__.py: added SearchBar
 

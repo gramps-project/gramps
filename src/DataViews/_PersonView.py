@@ -333,7 +333,6 @@ class PersonView(PageView.PersonNavView):
         db.connect('person-delete', self.person_removed)
         db.connect('person-rebuild', self.build_tree)
         self.build_tree()
-        #self.search_bar.apply_filter()
         self.goto_active_person()
         self.bookmarks.update_bookmarks(db.get_bookmarks())
         if self.active:
@@ -399,11 +398,11 @@ class PersonView(PageView.PersonNavView):
         """
 
         cols = []
-        cols.append(_("Name"))
+        cols.append((_("Name"),0))
         for pair in self.dbstate.db.get_person_column_order():
             if not pair[0]:
                 continue
-            cols.append(column_names[pair[1]])
+            cols.append((column_names[pair[1]],pair[1]))
 
         self.search_bar.setup_filter(cols)
 
@@ -415,7 +414,7 @@ class PersonView(PageView.PersonNavView):
         if self.active:
 
             if Config.get(Config.FILTER):
-                search = (0, '')
+                search = (0, '', False)
             else:
                 search = self.search_bar.get_value()
             

@@ -81,8 +81,9 @@ class BaseModel(gtk.GenericTreeModel):
         if search:
             col = search[0]
             text = search[1]
-            func = lambda x: self.on_get_value(x, col)
-            self.search = SearchFilter(func, text)
+            inv = search[2]
+            func = lambda x: self.on_get_value(x, col) or u""
+            self.search = SearchFilter(func, text, inv)
         else:
             self.search = None
             
