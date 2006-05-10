@@ -1,4 +1,9 @@
 2006-05-09  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: search bar implementation
+	* src/PeopleModel.py: search bar implementation
+	* src/PageView.py: search bar implementation
+	* src/Filters/_SearchBar.py: search bar functionality
+	* src/Filters/__init__.py: search bar functionality
 	* src/AddMedia.py: remember last directory for images for 
 	the session
 

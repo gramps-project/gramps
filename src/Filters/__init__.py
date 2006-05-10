@@ -55,3 +55,4 @@ from _FilterWidget import FilterWidget
 from _FilterComboBox import FilterComboBox
 from _FilterMenu import build_filter_menu
 from _FilterStore import FilterStore
+from _SearchBar import SearchBar
