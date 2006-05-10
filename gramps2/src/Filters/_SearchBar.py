@@ -78,11 +78,11 @@ class SearchBar:
 
     def key_press(self, obj, event):
         if event.keyval == _RETURN and not event.state:
-            self.on_apply_callback()
+            self.apply_filter()
         return False
         
     def apply_filter_clicked(self, obj):
-        self.on_apply_callback()
+        self.apply_filter()
 
     def get_value(self):
         text = self.filter_text.get_text().strip()
