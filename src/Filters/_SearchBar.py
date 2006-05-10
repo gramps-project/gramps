@@ -43,6 +43,7 @@ class SearchBar:
         self.on_apply_callback = on_apply
         self.apply_done_callback = apply_done
         self.uistate = uistate
+        self.apply_text = ''
         
     def build( self):
         self.filterbar = gtk.HBox()
@@ -51,13 +52,20 @@ class SearchBar:
 
         self.filter_text = gtk.Entry()
         self.filter_text.connect('key-press-event',self.key_press)
+        self.filter_text.connect('changed',self.text_changed)
 
         self.filter_button = gtk.Button(stock=gtk.STOCK_FIND)
         self.filter_button.connect( 'clicked',self.apply_filter_clicked)
+        self.filter_button.set_sensitive(False)
+
+        self.clear_button = gtk.Button(stock=gtk.STOCK_CLEAR)
+        self.clear_button.connect( 'clicked',self.apply_clear)
+        self.clear_button.set_sensitive(False)
 
         self.filterbar.pack_start(self.filter_list,False)
         self.filterbar.pack_start(self.filter_text,True)
         self.filterbar.pack_end(self.filter_button,False)
+        self.filterbar.pack_end(self.clear_button,False)
 
         return self.filterbar
         
@@ -76,12 +84,30 @@ class SearchBar:
         self.filter_list.set_model(self.filter_model)
         self.filter_list.set_active(0)
 
+    def text_changed(self, obj):
+        text = obj.get_text()
+        if self.apply_text == '' and text == '':
+            self.filter_button.set_sensitive(False)
+            self.clear_button.set_sensitive(False)
+        elif self.apply_text == text:
+            self.filter_button.set_sensitive(False)
+            self.clear_button.set_sensitive(True)
+        else:
+            self.filter_button.set_sensitive(True)
+            self.clear_button.set_sensitive(True)
+
     def key_press(self, obj, event):
         if event.keyval == _RETURN and not event.state:
+            self.filter_button.set_sensitive(False)
+            self.clear_button.set_sensitive(True)
             self.apply_filter()
         return False
         
     def apply_filter_clicked(self, obj):
+        self.apply_filter()
+
+    def apply_clear(self, obj):
+        self.filter_text.set_text('')
         self.apply_filter()
 
     def get_value(self):
@@ -90,6 +116,8 @@ class SearchBar:
         return (index, text)
         
     def apply_filter(self,current_model=None):
+        self.apply_text = self.filter_text.get_text()
+        self.filter_button.set_sensitive(False)
         self.uistate.status_text(_('Updating display...'))
         self.on_apply_callback()
         self.uistate.modify_statusbar()
