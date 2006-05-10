@@ -329,7 +329,8 @@ class ViewManager:
             ]
 
         self._action_action_list = [
-            ('SaveAs', gtk.STOCK_SAVE_AS, _('_Save As')), 
+            ('SaveAs', gtk.STOCK_SAVE_AS, _('_Save As'),"<control><shift>s",
+             None, self.save_as_activate), 
             ('Export', gtk.STOCK_SAVE_AS, _('_Export'), "<control>e", None,
              self.export_data), 
             ('Abandon', gtk.STOCK_REVERT_TO_SAVED,
@@ -755,6 +756,79 @@ class ViewManager:
         choose.destroy()
         return False
 
+    def save_as_activate(self,obj):
+        choose = gtk.FileChooserDialog(
+            _('GRAMPS: Create GRAMPS database'), 
+            self.uistate.window, 
+            gtk.FILE_CHOOSER_ACTION_SAVE, 
+            (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
+             gtk.STOCK_OPEN, gtk.RESPONSE_OK))
+
+        # Always add automatic (macth all files) filter
+        add_all_files_filter(choose)
+        add_gramps_files_filter(choose)
+        add_grdb_filter(choose)
+        add_xml_filter(choose)
+        add_gedcom_filter(choose)
+
+        format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
+        (box, type_selector) = format_maker(format_list)
+        choose.set_extra_widget(box)
+
+        # Suggested folder: try last open file, import, then last export, 
+        # then home.
+        default_dir = os.path.split(Config.get(Config.RECENT_FILE))[0] \
+                      + os.path.sep
+        if len(default_dir)<=1:
+            default_dir = Config.get(Config.RECENT_IMPORT_DIR)
+        if len(default_dir)<=1:
+            default_dir = Config.get(Config.RECENT_EXPORT_DIR)
+        if len(default_dir)<=1:
+            default_dir = '~/'
+
+        new_filename = Utils.get_new_filename('grdb', default_dir)
+        
+        choose.set_current_folder(default_dir)
+        choose.set_current_name(os.path.split(new_filename)[1])
+
+        response = choose.run()
+        if response == gtk.RESPONSE_OK:
+            filename = choose.get_filename()
+            if filename == None:
+                choose.destroy()
+                return False
+
+            filetype = type_selector.get_value()
+            if filetype == 'auto':
+                try:
+                    the_file = open(filename,'wb')
+                    the_file.close()
+                    filetype = Mime.get_type(filename)
+                    os.remove(filename)
+                except RuntimeError, msg:
+                    QuestionDialog.ErrorDialog(
+                        _("Could not open file: %s") % filename, 
+                        str(msg))
+                    return False
+            # First we try our best formats
+            if filetype not in (const.app_gramps, 
+                                const.app_gramps_xml, 
+                                const.app_gedcom):
+                QuestionDialog.ErrorDialog(
+                    _("Could not open file: %s") % filename,
+                    _("Unknown type: %s") % filetype
+                    )
+                return False
+            choose.destroy()
+            try:
+                return self.open_saved_as(filename,filetype)
+            except:
+                log.error("Failed to save as", exc_info=True)
+                return False
+        else:
+            choose.destroy()
+            return False
+
     def new_activate(self, obj):
 
         choose = gtk.FileChooserDialog(
@@ -1158,6 +1232,66 @@ class ViewManager:
         self.uistate.clear_history()
         self.progress.hide()
         self.window.window.set_cursor(None)
+
+    def open_saved_as(self, filename, filetype):
+        (the_path, the_file) = os.path.split(filename)
+        Config.set(Config.RECENT_IMPORT_DIR,the_path)
+
+        dbclass = GrampsDb.gramps_db_factory(filetype)
+        success = self.do_save_as(filename,dbclass)
+        self.state.signal_change()
+        self.change_page(None, None)
+
+        if success:
+            # Add the file to the recent items
+            RecentFiles.recent_files(filename, filetype)
+            self.recent_manager.build()
+        self.actiongroup.set_visible(True)
+        self.uistate.clear_history()
+        return success
+
+    def do_save_as(self,filename,dbclass):
+        # FIXME: error checking on filename here
+        self.state.emit('database-changed', (GrampsDb.GrampsDbBase(), ))
+        try:
+            if self._do_copy(filename,dbclass):
+                if filename[-1] == '/':
+                    filename = filename[:-1]
+                name = os.path.basename(filename)
+                msg = "%s - GRAMPS" % name
+                self.uistate.window.set_title(msg)
+            else:
+                Config.set(Config.RECENT_FILE,"")
+                QuestionDialog.ErrorDialog(
+                    _('Cannot save a copy of the database'), 
+                    _('The database copy could not be saved.'))
+                return False
+        except (IOError,OSError), msg:
+            QuestionDialog.ErrorDialog(_('Cannot save database'), str(msg))
+            return False
+        except (db.DBAccessError, db.DBError), msg:
+            QuestionDialog.ErrorDialog(
+                _('Cannot save database'), 
+                _('%s could not be saved.' % filename) + '\n' + msg[1])
+            return False
+        except Exception:
+            log.error("Failed to open database.", exc_info=True)
+            return False
+        self.file_loaded = True
+        self.actiongroup.set_visible(True)
+        return True
+
+    def _do_copy(self,filename,dbclass):
+        self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.progress.show()
+        new_database = dbclass()
+        if not new_database.load_from(self.state.db,filename,
+                                      self.uistate.pulse_progressbar):
+            return False
+        self.progress.hide()
+        self.state.db.close()
+        self.state.change_database(new_database)
+        return self.post_load(filename,self.uistate.pulse_progressbar)
 
     def build_tools_menu(self):
         self.toolactions = gtk.ActionGroup('ToolWindow')

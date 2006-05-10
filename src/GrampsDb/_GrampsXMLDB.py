@@ -30,6 +30,7 @@ from _GrampsInMemDB import *
 
 import _ReadXML as ReadXML
 import _WriteXML as WriteXML
+from _DbUtils import db_copy
 
 #-------------------------------------------------------------------------
 #
@@ -56,6 +57,17 @@ class GrampsXMLDB(GrampsInMemDB):
         if self.bookmarks == None:
             self.bookmarks = []
         self.db_is_open = True
+        return 1
+
+    def load_from(self, other_database, filename, callback):
+        self.id_trans = {}
+        db_copy(other_database,self,callback)
+        GrampsInMemDB.load(self,filename,callback)
+        self.bookmarks = self.metadata.get('bookmarks')
+        if self.bookmarks == None:
+            self.bookmarks = []
+        self.db_is_open = True
+        WriteXML.quick_write(self,self.full_name)
         return 1
 
     def close(self):

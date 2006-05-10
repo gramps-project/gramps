@@ -78,7 +78,7 @@ glob_loc_data = [ # (Name, longitude, latitude)
         ("Mannheim-Neckarau",8.48,49.45),
         ("Gorxheimertal",8.73,49.53)]
 
-enable_debug = True
+enable_debug = False
 
 
 # Draws a map image and tries to allocate space in the correct aspect ratio

@@ -143,3 +143,95 @@ def add_child_to_family(db, family, child,
 
     if need_commit:
         db.transaction_commit(trans, _('Add child to family') )
+
+
+def db_copy(from_db,to_db,callback):
+    if '__call__' in dir(callback): # callback is really callable
+        update = update_real
+
+        # Prepare length for the callback
+        person_len = from_db.get_number_of_people()
+        family_len = from_db.get_number_of_families()
+        event_len = from_db.get_number_of_events()
+        source_len = from_db.get_number_of_sources()
+        place_len = from_db.get_number_of_places()
+        repo_len = from_db.get_number_of_repositories()
+        obj_len = from_db.get_number_of_media_objects()
+        
+        total = person_len + family_len + event_len + place_len + \
+                source_len + obj_len + repo_len
+    else:
+        update = update_empty
+        total = 0
+
+    primary_tables = {
+        'Person': {'cursor_func': from_db.get_person_cursor,
+                   'table': to_db.person_map },
+        'Family': {'cursor_func': from_db.get_family_cursor,
+                   'table': to_db.family_map },
+        'Event': {'cursor_func': from_db.get_event_cursor,
+                  'table': to_db.event_map },
+        'Place': {'cursor_func': from_db.get_place_cursor,
+                  'table': to_db.place_map },
+        'Source': {'cursor_func': from_db.get_source_cursor,
+                   'table': to_db.source_map },
+        'MediaObject': {'cursor_func': from_db.get_media_cursor,
+                        'table': to_db.media_map },
+        'Repository': {'cursor_func': from_db.get_repository_cursor,
+                       'table': to_db.repository_map },
+        }
+
+
+    if to_db.__class__.__name__ == 'GrampsBSDDB':
+        if to_db.UseTXN:
+            add_data = add_data_txn
+        else:
+            add_data = add_data_notxn
+    else:
+        add_data = add_data_dict
+
+    oldval = 0
+    count = 0
+
+    for table_name in primary_tables.keys():
+        cursor_func = primary_tables[table_name]['cursor_func']
+        table = primary_tables[table_name]['table']
+
+        cursor = cursor_func()
+        item = cursor.first()
+        while item:
+            (handle,data) = item
+            add_data(to_db,table,handle,data)
+            item = cursor.next()
+            count,oldval = update(callback,count,oldval,total)
+            update(callback,count,oldval,total)
+        cursor.close()
+
+    # The metadata is always transactionless,
+    # and the table is small, so using key iteration is OK here.
+    for handle in from_db.metadata.keys():
+        data = from_db.metadata.get(handle)
+        to_db.metadata[handle] = data
+
+
+def add_data_txn(db,table,handle,data):
+    the_txn = db.env.txn_begin()
+    table.put(handle,data,txn=the_txn)
+    the_txn.commit()
+
+def add_data_notxn(db,table,handle,data):
+    table.put(handle,data)
+
+def add_data_dict(db,table,handle,data):
+    table[handle] = data
+
+def update_empty(callback,count,oldval,total):
+    pass
+
+def update_real(callback,count,oldval,total):
+    count += 1
+    newval = int(100.0*count/total)
+    if newval != oldval:
+        callback(newval)
+        oldval = newval
+    return count,oldval
