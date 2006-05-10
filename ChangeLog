@@ -1,3 +1,6 @@
+2006-05-10  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/SoundGen.py: Fix WM.
+
 2006-05-10  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py: support for inverted searchs
 	* src/PeopleModel.py: support for inverted searchs
