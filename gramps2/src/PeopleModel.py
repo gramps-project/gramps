@@ -151,8 +151,9 @@ class PeopleModel(gtk.GenericTreeModel):
         if search:
             col = search[0]
             text = search[1]
-            func = lambda x: self.on_get_value(x, col)
-            data_filter = SearchFilter(func, text)
+            inv = search[2]
+            func = lambda x: self.on_get_value(x, col) or u""
+            data_filter = SearchFilter(func, text, inv)
         self.rebuild_data(data_filter, skip)
 
     def rebuild_data(self, data_filter=None, skip=[]):

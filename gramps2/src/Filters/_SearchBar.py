@@ -49,6 +49,7 @@ class SearchBar:
         self.filterbar = gtk.HBox()
         self.filterbar.set_spacing(4)
         self.filter_list = gtk.ComboBox()
+        self.filter_list.connect('changed', self.filter_changed)
 
         self.filter_text = gtk.Entry()
         self.filter_text.connect('key-press-event',self.key_press)
@@ -69,20 +70,34 @@ class SearchBar:
 
         return self.filterbar
         
-    def setup_filter( self, column_names ):
+    def setup_filter( self, column_data ):
+        old_value = self.filter_list.get_active()
+        
         cell = gtk.CellRendererText()
         self.filter_list.clear()
         self.filter_list.pack_start(cell,True)
         self.filter_list.add_attribute(cell,'text',0)
 
-        self.filter_model = gtk.ListStore(str)
-        
-        for col in column_names:
-            rule = _("Search %s") % col
-            self.filter_model.append(row=[rule])
+        self.filter_model = gtk.ListStore(str, int, bool)
+
+        maxval = 0
+        for col,index in column_data:
+            rule = _("%s contains") % col
+            self.filter_model.append(row=[rule,index,False])
+            maxval += 1
+            rule = _("%s does not contain") % col
+            self.filter_model.append(row=[rule,index,True])
+            maxval += 1
             
         self.filter_list.set_model(self.filter_model)
-        self.filter_list.set_active(0)
+        if old_value == -1 or old_value >= maxval:
+            self.filter_list.set_active(0)
+        else:
+            self.filter_list.set_active(old_value)
+
+    def filter_changed(self, obj):
+        self.filter_button.set_sensitive(True)
+        self.clear_button.set_sensitive(True)
 
     def text_changed(self, obj):
         text = obj.get_text()
@@ -112,8 +127,10 @@ class SearchBar:
 
     def get_value(self):
         text = self.filter_text.get_text().strip()
-        index = self.filter_list.get_active()
-        return (index, text)
+        node = self.filter_list.get_active_iter()
+        index = self.filter_model.get_value(node,1)
+        inv = self.filter_model.get_value(node,2)
+        return (index, text, inv)
         
     def apply_filter(self,current_model=None):
         self.apply_text = self.filter_text.get_text()

@@ -534,7 +534,7 @@ class ListView(BookMarkView):
         """
         cols = []
         for pair in [pair for pair in self.column_order() if pair[0]]:
-            cols.append(self.colinfo[pair[1]])
+            cols.append((self.colinfo[pair[1]],pair[1]))
         self.search_bar.setup_filter(cols)
 
     def goto_handle(self, handle):
@@ -570,7 +570,7 @@ class ListView(BookMarkView):
         handle = self.first_selected()
 
         if Config.get(Config.FILTER):
-            search = (0, '')
+            search = (0, '', False)
         else:
             search = self.search_bar.get_value()
             
