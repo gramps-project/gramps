@@ -42,9 +42,10 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 # GRAMPS 
 #
 #----------------------------------------------------------------
+import Config
 import TreeTips
 import Bookmarks
-from Filters import FilterWidget, Rules
+from Filters import SearchBar
 import const
 
 NAVIGATION_NONE   = -1
@@ -471,8 +472,8 @@ class ListView(BookMarkView):
         self.vbox.set_border_width(0)
         self.vbox.set_spacing(4)
         
-        self.generic_filter_widget = FilterWidget( self.uistate, self.build_tree)
-        filter_box = self.generic_filter_widget.build()
+        self.search_bar = SearchBar(self.uistate, self.build_tree)
+        filter_box = self.search_bar.build()
 
         self.list = gtk.TreeView()
         self.list.set_rules_hint(True)
@@ -531,13 +532,10 @@ class ListView(BookMarkView):
         """
         Builds the default filters and add them to the filter menu.
         """
-        default_filters = [
-            [Rules.Everything, []],
-            [Rules.HasTextMatchingSubstringOf, ['',0,0]],
-            [Rules.HasTextMatchingRegexpOf, ['',0,1]],
-            [Rules.IsPrivate, []],
-            ]
-        self.generic_filter_widget.setup_filter( default_filters)        
+        cols = []
+        for pair in [pair for pair in self.column_order() if pair[0]]:
+            cols.append(self.colinfo[pair[1]])
+        self.search_bar.setup_filter(cols)
 
     def goto_handle(self, handle):
         if not self.dbstate.active or self.inactive:
@@ -559,7 +557,6 @@ class ListView(BookMarkView):
         # disable the inactive flag
         self.inactive = False
 
-
     def column_clicked(self,obj,data):
         if self.sort_col != data:
             order = gtk.SORT_ASCENDING
@@ -571,7 +568,14 @@ class ListView(BookMarkView):
                 order = gtk.SORT_DESCENDING
         self.sort_col = data
         handle = self.first_selected()
-        self.model = self.make_model(self.dbstate.db, self.sort_col,order)
+
+        if Config.get(Config.FILTER):
+            search = (0, '')
+        else:
+            search = self.search_bar.get_value()
+            
+        self.model = self.make_model(self.dbstate.db, self.sort_col, order,
+                                     search=search)
         self.list.set_model(self.model)
         colmap = self.column_order()
 
@@ -604,7 +608,14 @@ class ListView(BookMarkView):
 
     def build_tree(self):
         if self.active:
-            self.model = self.make_model(self.dbstate.db,self.sort_col)
+
+            if Config.get(Config.FILTER):
+                search = (0, '')
+            else:
+                search = self.search_bar.get_value()
+
+            self.model = self.make_model(self.dbstate.db,self.sort_col,
+                                         search=search)
             self.list.set_model(self.model)
             self.selection = self.list.get_selection()
 
@@ -618,7 +629,14 @@ class ListView(BookMarkView):
     def change_db(self,db):
         for sig in self.signal_map:
             db.connect(sig, self.signal_map[sig])
-        self.model = self.make_model(self.dbstate.db,0)
+
+        if Config.get(Config.FILTER):
+            search = (0, '')
+        else:
+            search = self.search_bar.get_value()
+            
+        self.model = self.make_model(self.dbstate.db, 0, search=search)
+        
         self.list.set_model(self.model)
         self.build_columns()
         self.bookmarks.update_bookmarks(self.get_bookmarks())
@@ -687,7 +705,7 @@ class ListView(BookMarkView):
 
     def filter_toggle(self,obj):
         if obj.get_active():
-            self.generic_filter_widget.show()
+            self.search_bar.show()
         else:
-            self.generic_filter_widget.hide()
+            self.search_bar.hide()
 

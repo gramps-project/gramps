@@ -63,12 +63,13 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+import const
 from RelLib import *
 import NameDisplay
 import DateHandler
 import ToolTips
 import GrampsLocale
-import const
+from Filters import SearchFilter
 
 #-------------------------------------------------------------------------
 #
@@ -119,14 +120,6 @@ else:
         return mylist
 
 
-class Search:
-    def __init__(self, func, text):
-        self.func = func
-        self.text = text
-
-    def match(self, handle):
-        return self.func(handle).find(self.text) != -1
-    
 #-------------------------------------------------------------------------
 #
 # PeopleModel
@@ -159,7 +152,7 @@ class PeopleModel(gtk.GenericTreeModel):
             col = search[0]
             text = search[1]
             func = lambda x: self.on_get_value(x, col)
-            data_filter = Search(func, text)
+            data_filter = SearchFilter(func, text)
         self.rebuild_data(data_filter, skip)
 
     def rebuild_data(self, data_filter=None, skip=[]):

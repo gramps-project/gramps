@@ -18,42 +18,17 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:$
 
 """
 Package providing filtering framework for GRAMPS.
 """
 
-__author__ = "Don Allingham"
+class SearchFilter:
+    def __init__(self, func, text):
+        self.func = func
+        self.text = text.upper()
 
-SystemFilters = None
-CustomFilters = None
-
-from const import system_filters, custom_filters
-from _FilterList import FilterList
-from _GenericFilter import GenericFilter
-from _ParamFilter import ParamFilter
-import Rules
-
-def reload_system_filters():
-    global SystemFilters
-    SystemFilters = FilterList(system_filters)
-    SystemFilters.load()
+    def match(self, handle):
+        return self.func(handle).upper().find(self.text) != -1
     
-def reload_custom_filters():
-    global CustomFilters
-    CustomFilters = FilterList(custom_filters)
-    CustomFilters.load()
-    
-if not SystemFilters:
-    reload_system_filters()
-
-if not CustomFilters:
-    reload_custom_filters()
-
-from _FilterWidget import FilterWidget
-from _FilterComboBox import FilterComboBox
-from _FilterMenu import build_filter_menu
-from _FilterStore import FilterStore
-from _SearchBar import SearchBar
-from _SearchFilter import SearchFilter

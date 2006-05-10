@@ -49,6 +49,7 @@ import RelLib
 import ToolTips
 import GrampsLocale
 import const
+from Filters import SearchFilter
 
 #-------------------------------------------------------------------------
 #
@@ -67,7 +68,8 @@ def sfunc(a,b):
 #-------------------------------------------------------------------------
 class BaseModel(gtk.GenericTreeModel):
 
-    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING,tooltip_column=None):
+    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING,
+                 tooltip_column=None, search=None):
         gtk.GenericTreeModel.__init__(self)
         self.prev_handle = None
         self.prev_data = None
@@ -75,6 +77,15 @@ class BaseModel(gtk.GenericTreeModel):
         self.db = db
         self.sort_func = self.smap[scol]
         self.sort_col = scol
+
+        if search:
+            col = search[0]
+            text = search[1]
+            func = lambda x: self.on_get_value(x, col)
+            self.search = SearchFilter(func, text)
+        else:
+            self.search = None
+            
         self.reverse = (order == gtk.SORT_DESCENDING)
         self.tooltip_column = tooltip_column
         self.rebuild_data()
@@ -101,7 +112,11 @@ class BaseModel(gtk.GenericTreeModel):
 
     def rebuild_data(self):
         if self.db.is_open():
-            self.datalist = self.sort_keys()
+            if self.search:
+                self.datalist = [h for h in self.sort_keys()\
+                                 if self.search.match(h)]
+            else:
+                self.datalist = self.sort_keys()
             i = 0
             self.indexlist = {}
             for key in self.datalist:
@@ -211,7 +226,7 @@ class BaseModel(gtk.GenericTreeModel):
 #-------------------------------------------------------------------------
 class SourceModel(BaseModel):
 
-    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
+    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING,search=None):
         self.map = db.get_raw_source_data
         self.gen_cursor = db.get_source_cursor
         self.fmap = [
@@ -232,7 +247,7 @@ class SourceModel(BaseModel):
             self.column_pubinfo,
             self.sort_change,
             ]
-        BaseModel.__init__(self,db,scol,order,tooltip_column=7)
+        BaseModel.__init__(self,db,scol,order,tooltip_column=7,search=search)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
@@ -280,7 +295,7 @@ class SourceModel(BaseModel):
 #-------------------------------------------------------------------------
 class PlaceModel(BaseModel):
 
-    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
+    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING,search=None):
         self.gen_cursor = db.get_place_cursor
         self.map = db.get_raw_place_data
         self.fmap = [
@@ -312,7 +327,8 @@ class PlaceModel(BaseModel):
             self.column_change,
             self.column_handle,
             ]
-        BaseModel.__init__(self,db,scol,order,tooltip_column=12)
+        BaseModel.__init__(self, db, scol, order, tooltip_column=12,
+                           search=search)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
@@ -393,7 +409,7 @@ class PlaceModel(BaseModel):
 #-------------------------------------------------------------------------
 class FamilyModel(BaseModel):
 
-    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
+    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None):
         self.gen_cursor = db.get_family_cursor
         self.map = db.get_raw_family_data
         self.fmap = [
@@ -414,7 +430,8 @@ class FamilyModel(BaseModel):
             self.column_handle,
             self.column_tooltip
             ]
-        BaseModel.__init__(self,db,scol,order,tooltip_column=6)
+        BaseModel.__init__(self, db, scol, order, tooltip_column=6,
+                           search=search)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
@@ -482,7 +499,7 @@ class FamilyModel(BaseModel):
 #-------------------------------------------------------------------------
 class MediaModel(BaseModel):
 
-    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
+    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None):
         self.gen_cursor = db.get_media_cursor
         self.map = db.get_raw_object_data
         
@@ -505,7 +522,8 @@ class MediaModel(BaseModel):
             self.column_date,
             self.column_handle,
             ]
-        BaseModel.__init__(self,db,scol,order,tooltip_column=7)
+        BaseModel.__init__(self, db, scol, order, tooltip_column=7,
+                           search=search)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
@@ -564,7 +582,7 @@ class MediaModel(BaseModel):
 #-------------------------------------------------------------------------
 class EventModel(BaseModel):
 
-    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
+    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None):
         self.gen_cursor = db.get_event_cursor
         self.map = db.get_raw_event_data
         
@@ -589,7 +607,8 @@ class EventModel(BaseModel):
             self.sort_change,
             self.column_handle,
             ]
-        BaseModel.__init__(self,db,scol,order,tooltip_column=8)
+        BaseModel.__init__(self, db, scol, order, tooltip_column=8,
+                           search=search)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
@@ -644,7 +663,7 @@ class EventModel(BaseModel):
 #-------------------------------------------------------------------------
 class RepositoryModel(BaseModel):
 
-    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
+    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None):
         self.gen_cursor = db.get_repository_cursor
         self.get_handles = db.get_repository_handles
         self.map = db.get_raw_repository_data
@@ -681,7 +700,8 @@ class RepositoryModel(BaseModel):
             self.column_handle,            
             ]
         
-        BaseModel.__init__(self,db,scol,order,tooltip_column=12)
+        BaseModel.__init__(self, db, scol, order, tooltip_column=12,
+                           search=search)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1

@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _FilterWidget.py 6521 2006-05-03 01:02:54Z rshura $
+# $Id:$
 
 """
 Package providing filtering framework for GRAMPS.
@@ -31,15 +31,11 @@ Package providing filtering framework for GRAMPS.
 #-------------------------------------------------------------------------
 import gtk
 
-#-------------------------------------------------------------------------
-#
-# GRAMPS modules
-#
-#-------------------------------------------------------------------------
+_RETURN = gtk.gdk.keyval_from_name("Return")
 
 #-------------------------------------------------------------------------
 #
-# FilterWidget
+# SearchBar
 #
 #-------------------------------------------------------------------------
 class SearchBar:
@@ -51,10 +47,14 @@ class SearchBar:
     def build( self):
         self.filterbar = gtk.HBox()
         self.filterbar.set_spacing(4)
-        self.filter_text = gtk.Entry()
         self.filter_list = gtk.ComboBox()
+
+        self.filter_text = gtk.Entry()
+        self.filter_text.connect('key-press-event',self.key_press)
+
         self.filter_button = gtk.Button(stock=gtk.STOCK_FIND)
         self.filter_button.connect( 'clicked',self.apply_filter_clicked)
+
         self.filterbar.pack_start(self.filter_list,False)
         self.filterbar.pack_start(self.filter_text,True)
         self.filterbar.pack_end(self.filter_button,False)
@@ -75,11 +75,13 @@ class SearchBar:
             
         self.filter_list.set_model(self.filter_model)
         self.filter_list.set_active(0)
-        self.filter_list.connect('changed',self.on_filter_name_changed)
+
+    def key_press(self, obj, event):
+        if event.keyval == _RETURN and not event.state:
+            self.on_apply_callback()
+        return False
         
     def apply_filter_clicked(self, obj):
-        print "apply_filter_clicked"
-        print self.on_apply_callback
         self.on_apply_callback()
 
     def get_value(self):
@@ -87,20 +89,13 @@ class SearchBar:
         index = self.filter_list.get_active()
         return (index, text)
         
-    def on_filter_name_changed(self,obj):
-        pass
-
     def apply_filter(self,current_model=None):
         self.uistate.status_text(_('Updating display...'))
         self.on_apply_callback()
         self.uistate.modify_statusbar()
 
-    def get_filter( self):
-        print "get_filter"
-        return None
-        
-    def show( self):
+    def show(self):
         self.filterbar.show()
 
-    def hide( self):
+    def hide(self):
         self.filterbar.hide()
