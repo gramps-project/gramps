@@ -43,7 +43,6 @@ import gtk.glade
 #
 #------------------------------------------------------------------------
 import soundex
-import Utils
 import GrampsDisplay
 import ManagedWindow
 import AutoComp
@@ -68,7 +67,6 @@ class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
         self.glade.signal_autoconnect({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
-            "on_delete_event"       : self.on_delete_event,
         })
 
         window = self.glade.get_widget("soundEx")
@@ -107,12 +105,6 @@ class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-util-other')
-
-    def on_delete_event(self,obj,b):
-        pass
-
-    def close(self,obj):
-        self.window.destroy()
 
     def build_menu_names(self, obj):
         return (self.label,None)
