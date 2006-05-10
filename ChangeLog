@@ -3,7 +3,8 @@
 	* src/PeopleModel.py: support for inverted searchs
 	* src/DisplayModel.py: support for inverted searchs
 	* src/PageView.py: support for inverted searchs, correct col index
-	* src/Filters/_SearchBar.py: support for inverted searchs
+	* src/Filters/_SearchBar.py: support for inverted searchs, change
+	button order
 	* src/Filters/_SearchFilter.py: support for inverted searchs
 
 2006-05-10  Alex Roitman  <shura@gramps-project.org>

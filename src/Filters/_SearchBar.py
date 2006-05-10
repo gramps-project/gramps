@@ -65,8 +65,8 @@ class SearchBar:
 
         self.filterbar.pack_start(self.filter_list,False)
         self.filterbar.pack_start(self.filter_text,True)
-        self.filterbar.pack_end(self.filter_button,False)
         self.filterbar.pack_end(self.clear_button,False)
+        self.filterbar.pack_end(self.filter_button,False)
 
         return self.filterbar
         
