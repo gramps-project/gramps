@@ -352,7 +352,8 @@ class PersonNavView(BookMarkView):
             if person:
                 self.dbstate.change_active_person(person)
             else:
-                self.uistate.push_message(_("Error: %s is not a valid GRAMPS ID") % gid)
+                self.uistate.push_message(
+                    _("Error: %s is not a valid GRAMPS ID") % gid)
         dialog.destroy()
 
     def fwd_clicked(self,obj,step=1):
@@ -364,7 +365,6 @@ class PersonNavView(BookMarkView):
                 self.dbstate.change_active_handle(handle)
                 self.uistate.modify_statusbar()
                 hobj.mhistory.append(hobj.history[hobj.index])
-                #self.redraw_histmenu()
                 self.fwd_action.set_sensitive(not hobj.at_end())
                 self.back_action.set_sensitive(True)
             except:
@@ -404,7 +404,6 @@ class PersonNavView(BookMarkView):
         hobj = self.uistate.phistory
         if handle and not hobj.lock:
             hobj.push(handle)
-            #self.redraw_histmenu()
             self.fwd_action.set_sensitive(not hobj.at_end())
             self.back_action.set_sensitive(not hobj.at_front())
 

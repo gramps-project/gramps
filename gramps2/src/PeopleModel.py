@@ -118,6 +118,15 @@ else:
         mylist.sort(locale.strcoll)
         return mylist
 
+
+class Search:
+    def __init__(self, func, text):
+        self.func = func
+        self.text = text
+
+    def match(self, handle):
+        return self.func(handle).find(self.text) != -1
+    
 #-------------------------------------------------------------------------
 #
 # PeopleModel
@@ -129,7 +138,7 @@ class PeopleModel(gtk.GenericTreeModel):
     the PersonView
     """
 
-    def __init__(self, db, data_filter=None, invert_result=False, skip=[]):
+    def __init__(self, db, data_filter=None, search=None, skip=[]):
         """
         Initialize the model building the initial data
         """
@@ -137,13 +146,20 @@ class PeopleModel(gtk.GenericTreeModel):
 
         self.db = db
 
-        self.invert_result = invert_result
         self.sortnames = {}
         self.marker_color_column = 11
         self.tooltip_column = 12
         self.prev_handle = None
         self.prev_data = None
         self.temp_top_path2iter = []
+        self.iter2path = {}
+        self.path2iter = {}
+        self.sname_sub = {}
+        if search:
+            col = search[0]
+            text = search[1]
+            func = lambda x: self.on_get_value(x, col)
+            data_filter = Search(func, text)
         self.rebuild_data(data_filter, skip)
 
     def rebuild_data(self, data_filter=None, skip=[]):
@@ -157,6 +173,7 @@ class PeopleModel(gtk.GenericTreeModel):
         """
         Calculates the new path to node values for the model.
         """
+
         if dfilter:
             self.dfilter = dfilter
         self.temp_iter2path = {}
@@ -173,7 +190,7 @@ class PeopleModel(gtk.GenericTreeModel):
 
         cursor = self.db.get_person_cursor()
         node = cursor.first()
-        
+
         while node:
             handle, d = node
             if not (handle in skip or (dfilter and not dfilter.match(handle))):

@@ -52,7 +52,6 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 import RelLib
 import PeopleModel
 import PageView
-from Filters import FilterWidget, Rules
 import GrampsWidgets
 import NameDisplay
 import Utils
@@ -63,7 +62,7 @@ import Config
 import const
 
 from Editors import EditPerson
-
+from Filters import SearchBar
 from DdTargets import DdTargets
 
 column_names = [
@@ -98,7 +97,6 @@ class PersonView(PageView.PersonNavView):
         
     def change_page(self):
         pass
-        #self.generic_filter_widget.on_filter_name_changed(None)
         
     def define_actions(self):
         """
@@ -150,6 +148,7 @@ class PersonView(PageView.PersonNavView):
     def set_column_order(self, column_list):
         self.dbstate.db.set_person_column_order(column_list)
         self.build_columns()
+        self.setup_filter()
 
     def get_stock(self):
         """
@@ -170,9 +169,9 @@ class PersonView(PageView.PersonNavView):
         self.vbox.set_border_width(4)
         self.vbox.set_spacing(4)
         
-        self.generic_filter_widget = FilterWidget( self.uistate, self.build_tree,
-                                                   self.goto_active_person)
-        filter_box = self.generic_filter_widget.build()
+        self.search_bar = SearchBar(
+            self.uistate, self.build_tree, self.goto_active_person)
+        filter_box = self.search_bar.build()
         
         self.tree = gtk.TreeView()
         self.tree.set_rules_hint(True)
@@ -194,6 +193,8 @@ class PersonView(PageView.PersonNavView):
         self.inactive = False
 
         self.columns = []
+
+        self.setup_filter()
         self.build_columns()
         self.tree.connect('button-press-event', self.button_press)
         self.tree.connect('drag_data_get', self.drag_data_get)
@@ -203,7 +204,6 @@ class PersonView(PageView.PersonNavView):
         self.selection.set_mode(gtk.SELECTION_MULTIPLE)
         self.selection.connect('changed',self.row_changed)
 
-        self.setup_filter()
 
         self.filter_pane = self.build_filter_sidebar()
 
@@ -326,12 +326,14 @@ class PersonView(PageView.PersonNavView):
         from self.state.db
         """
         self.build_columns()
+        self.setup_filter()
         self.db = db
         db.connect('person-add', self.person_added)
         db.connect('person-update', self.person_updated)
         db.connect('person-delete', self.person_removed)
         db.connect('person-rebuild', self.build_tree)
-        self.generic_filter_widget.apply_filter()
+        self.build_tree()
+        #self.search_bar.apply_filter()
         self.goto_active_person()
         self.bookmarks.update_bookmarks(db.get_bookmarks())
         if self.active:
@@ -395,13 +397,15 @@ class PersonView(PageView.PersonNavView):
         """
         Builds the default filters and add them to the filter menu.
         """
-        default_filters = [
-            [Rules.Person.SearchName, ['']],
-            [Rules.Person.HasTextMatchingSubstringOf, ['',0,0]],
-            [Rules.Person.HasTextMatchingRegexpOf, ['',0,1]],
-            [Rules.Person.HasNoteMatchingSubstringOf, ['']],
-            ]
-        self.generic_filter_widget.setup_filter( default_filters, "person")        
+
+        cols = []
+        cols.append(_("Name"))
+        for pair in self.dbstate.db.get_person_column_order():
+            if not pair[0]:
+                continue
+            cols.append(column_names[pair[1]])
+
+        self.search_bar.setup_filter(cols)
 
     def build_tree(self):
         """
@@ -409,9 +413,15 @@ class PersonView(PageView.PersonNavView):
         rebuild of the data.
         """
         if self.active:
+
+            if Config.get(Config.FILTER):
+                search = (0, '')
+            else:
+                search = self.search_bar.get_value()
+            
             self.model = PeopleModel.PeopleModel(
-                self.dbstate.db, self.generic_filter_widget.get_filter(),
-                False)
+                self.dbstate.db, None, search)
+
             self.tree.set_model(self.model)
 
             if const.use_tips and self.model.tooltip_column != None:
@@ -419,25 +429,26 @@ class PersonView(PageView.PersonNavView):
                                                   self.model.tooltip_column,
                                                   True)
             self.build_columns()
+            self.setup_filter()
             self.goto_active_person()
             self.dirty = False
         else:
             self.dirty = True
 
         if Config.get(Config.FILTER):
-            self.generic_filter_widget.hide()
+            self.search_bar.hide()
             self.filter_pane.show()
         else:
-            self.generic_filter_widget.show()
+            self.search_bar.show()
             self.filter_pane.hide()
 
     def filter_toggle(self,obj):
         if obj.get_active():
-            self.generic_filter_widget.hide()
+            self.search_bar.hide()
             self.filter_pane.show()
             active = True
         else:
-            self.generic_filter_widget.show()
+            self.search_bar.show()
             self.filter_pane.hide()
             active = False
         Config.set(Config.FILTER, active)
