@@ -1,3 +1,12 @@
+2006-05-10  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: remove debug statement
+	* src/PeopleModel.py: use SearchFilter
+	* src/DisplayModels.py: handle search filter
+	* src/PageView.py: search bar support
+	* src/Filters/_SearchBar.py: added
+	* src/Filters/_SearchFilter.py: remove SearchFilter to separate file
+	* src/Filters/__init__.py: added SearchBar
+
 2006-05-10  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_DbUtils.py (db_copy): Use batch transaction.
 	* src/GrampsDb/_GrampsBSDDB.py (transaction_begin): Proper indentation.

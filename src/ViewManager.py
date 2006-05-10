@@ -605,7 +605,6 @@ class ViewManager:
             hbox.pack_start(image,False,False)
             hbox.set_spacing(4)
 
-            print use_text
             if use_text:
                 label = gtk.Label(page_title)
                 label.show()
