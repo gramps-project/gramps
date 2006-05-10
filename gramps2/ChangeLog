@@ -1,3 +1,7 @@
+2006-05-10  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_DbUtils.py (db_copy): Use batch transaction.
+	* src/GrampsDb/_GrampsBSDDB.py (transaction_begin): Proper indentation.
+
 2006-05-09  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py: search bar implementation
 	* src/PeopleModel.py: search bar implementation

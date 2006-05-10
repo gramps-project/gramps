@@ -1076,7 +1076,7 @@ class GrampsBSDDB(GrampsDbBase):
         if transaction.batch:
             if self.UseTXN:
                 self.env.txn_checkpoint()
-            self.env.set_flags(db.DB_TXN_NOSYNC,1)      # async txn
+                self.env.set_flags(db.DB_TXN_NOSYNC,1)      # async txn
 
             if self.secondary_connected and not transaction.no_magic:
                 # Disconnect unneeded secondary indices
