@@ -53,6 +53,7 @@ except NameError:
 #-------------------------------------------------------------------------
 from RelLib import *
 from _GrampsDbBase import *
+from _DbUtils import db_copy
 import const
 
 _MINVERSION = 5
@@ -316,15 +317,14 @@ class GrampsBSDDB(GrampsDbBase):
         else:
             env_flags = db.DB_CREATE|db.DB_PRIVATE|\
                         db.DB_INIT_MPOOL|db.DB_INIT_LOG
-            env_name = self.brief_name
+            env_name = os.path.expanduser('~')
 
         self.env.open(env_name,env_flags)
         if self.UseTXN:
             self.env.txn_checkpoint()
 
         callback(25)
-
-        self.metadata       =self.open_table(self.full_name,"meta",no_txn=True)
+        self.metadata     = self.open_table(self.full_name,"meta",no_txn=True)
         
         self.family_map     = self.open_table(self.full_name, "family")
         self.place_map      = self.open_table(self.full_name, "places")
@@ -384,6 +384,11 @@ class GrampsBSDDB(GrampsDbBase):
         self.abort_possible = True
         self.undo_history_timestamp = time.time()
 
+        return 1
+
+    def load_from(self, other_database, filename, callback):
+        self.load(filename,callback)
+        db_copy(other_database,self,callback)
         return 1
 
     def connect_secondary(self):

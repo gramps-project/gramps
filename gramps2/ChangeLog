@@ -8,6 +8,16 @@
 	the session
 
 2006-05-09  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (load_from): Add method.
+	* src/GrampsDb/_GrampsXMLDB.py (load_from): Add method.
+	* src/GrampsDb/_GrampsGEDDB.py (load_from): Add method.
+	* src/GrampsDb/_GrampsDbBase.py (load_from): Add method.
+	* src/GrampsDb/_WriteGrdb.py: Use db_copy.
+	* src/GrampsDb/_DbUtils.py (db_copy): Add function.
+	* src/ViewManager.py: Save as support.
+	* src/DataViews/_MapView.py (enable_debug): Set to False to be
+	able to see the output besides MapView.
+
 	* src/plugins/FamilyGroup.py: Use triple quotes.
 	* src/Exporter.py (Exporter.native_export): Use callback.
 	* src/Utils.py (get_new_filename): Add path separator.

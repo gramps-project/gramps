@@ -356,6 +356,14 @@ class GrampsDbBase(GrampsDBCallback):
         """
         assert False, "Needs to be overridden in the derived class"
 
+    def load_from(self, other_database, filename, callback):
+        """
+        Loads data from the other database into itself.
+        The filename is the name of the file for the newly created database.
+        The method needs to be overridden in the derived class.
+        """
+        assert False, "Needs to be overridden in the derived class"
+
     def close(self):
         """
         Closes the specified database. The method needs to be overridden
