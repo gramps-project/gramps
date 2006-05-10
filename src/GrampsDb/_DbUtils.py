@@ -193,6 +193,9 @@ def db_copy(from_db,to_db,callback):
     oldval = 0
     count = 0
 
+    # Start batch transaction to use async TXN and other tricks
+    trans = to_db.transaction_begin("",batch=True)
+
     for table_name in primary_tables.keys():
         cursor_func = primary_tables[table_name]['cursor_func']
         table = primary_tables[table_name]['table']
@@ -206,6 +209,9 @@ def db_copy(from_db,to_db,callback):
             count,oldval = update(callback,count,oldval,total)
             update(callback,count,oldval,total)
         cursor.close()
+
+    # Commit batch transaction: does nothing, except undoing the tricks
+    to_db.transaction_commit(trans,"")
 
     # The metadata is always transactionless,
     # and the table is small, so using key iteration is OK here.
