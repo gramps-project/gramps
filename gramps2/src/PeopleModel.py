@@ -487,12 +487,12 @@ class PeopleModel(gtk.GenericTreeModel):
     def column_marker_color(self, data, node):
         try:
             if data[_MARKER_COL]:
-                if int(data[_MARKER_COL]) == MarkerType.COMPLETE:
+                if data[_MARKER_COL][0] == MarkerType.COMPLETE:
                     return u"#46a046"   # green
-                if int(data[_MARKER_COL]) == MarkerType.TODO:
+                if data[_MARKER_COL][0] == MarkerType.TODO:
                     return u"#df421e"   # red
-                if int(data[_MARKER_COL]) == MarkerType.CUSTOM:
-                    return u"#eed680"  # blue
+                if data[_MARKER_COL][0] == MarkerType.CUSTOM:
+                    return u"#eed680"  # ligh brown
         except IndexError:
             pass
         return None

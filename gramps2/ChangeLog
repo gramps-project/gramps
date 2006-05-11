@@ -1,5 +1,6 @@
 2006-05-11  Alex Roitman  <shura@gramps-project.org>
 	* src/PeopleModel.py (_MARKER_COL): Correct column numbers.
+	(PeopleModel.column_marker_color): properly access marker value.
 
 2006-05-10  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_ReadXML.py (GrampsParser): Use UpdateCallback.
