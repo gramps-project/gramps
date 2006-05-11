@@ -39,7 +39,6 @@ from gettext import gettext as _
 import gobject
 import gtk
 import gtk.glade
-import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -50,6 +49,8 @@ import Utils
 from PluginUtils import Tool, register_tool
 from QuestionDialog import OkDialog
 import ManagedWindow
+import GrampsDisplay
+import RelLib
 
 #-------------------------------------------------------------------------
 #
@@ -96,7 +97,6 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         self.cb = callback
-        self.trans = self.db.transaction_begin("",batch=True)
         self.title_list = []
         self.nick_list = []
         self.prefix1_list = []
@@ -276,6 +276,8 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         GrampsDisplay.help('tools-db')
 
     def on_ok_clicked(self,obj):
+        self.trans = self.db.transaction_begin("",batch=True)
+        self.db.disable_signals()
         for grp in self.nick_list:
             handle = self.nick_hash[grp[0]]
             val = self.model.get_value(handle,0)
@@ -283,7 +285,11 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
                 p = self.db.get_person_from_handle(grp[0])
                 name = p.get_primary_name()
                 name.set_first_name(grp[1].strip())
-                p.set_nick_name(grp[2].strip())
+                nick_name = grp[2].strip()
+                attr = RelLib.Attribute()
+                attr.set_type(RelLib.AttributeType.NICKNAME)
+                attr.set_value(nick_name)
+                p.add_attribute(attr)
                 self.db.commit_person(p,self.trans)
 
         for grp in self.title_list:
@@ -318,6 +324,8 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
         self.db.transaction_commit(self.trans,
                                    _("Extract information from names"))
+        self.db.enable_signals()
+        self.db.request_rebuild()
         self.close()
         self.cb()
         
