@@ -22,6 +22,7 @@
 
 
 import RelLib
+import BasicUtils
 
 def remove_family_relationships(db, family_handle, trans=None):
     family = db.get_family_from_handle(family_handle)
@@ -145,25 +146,27 @@ def add_child_to_family(db, family, child,
         db.transaction_commit(trans, _('Add child to family') )
 
 
-def db_copy(from_db,to_db,callback):
-    if '__call__' in dir(callback): # callback is really callable
-        update = update_real
+class DbUpdateCallback(BasicUtils.UpdateCallback):
+    def __init__(self,db,callback,interval=1):
+        self.db = db
+        BasicUtils.UpdateCallback.__init__(self,callback,interval)
 
-        # Prepare length for the callback
-        person_len = from_db.get_number_of_people()
-        family_len = from_db.get_number_of_families()
-        event_len = from_db.get_number_of_events()
-        source_len = from_db.get_number_of_sources()
-        place_len = from_db.get_number_of_places()
-        repo_len = from_db.get_number_of_repositories()
-        obj_len = from_db.get_number_of_media_objects()
+    def get_total(self):
+        person_len = self.db.get_number_of_people()
+        family_len = self.db.get_number_of_families()
+        event_len = self.db.get_number_of_events()
+        source_len = self.db.get_number_of_sources()
+        place_len = self.db.get_number_of_places()
+        repo_len = self.db.get_number_of_repositories()
+        obj_len = self.db.get_number_of_media_objects()
         
-        total = person_len + family_len + event_len + place_len + \
-                source_len + obj_len + repo_len
-    else:
-        update = update_empty
-        total = 0
+        return person_len + family_len + event_len + \
+               place_len + source_len + obj_len + repo_len
+        
 
+def db_copy(from_db,to_db,callback):
+    uc = DbUpdateCallback(from_db,callback)
+    
     primary_tables = {
         'Person': {'cursor_func': from_db.get_person_cursor,
                    'table': to_db.person_map },
@@ -190,9 +193,6 @@ def db_copy(from_db,to_db,callback):
     else:
         add_data = add_data_dict
 
-    oldval = 0
-    count = 0
-
     # Start batch transaction to use async TXN and other tricks
     trans = to_db.transaction_begin("",batch=True)
 
@@ -206,8 +206,7 @@ def db_copy(from_db,to_db,callback):
             (handle,data) = item
             add_data(to_db,table,handle,data)
             item = cursor.next()
-            count,oldval = update(callback,count,oldval,total)
-            update(callback,count,oldval,total)
+            uc.update()
         cursor.close()
 
     # Commit batch transaction: does nothing, except undoing the tricks
@@ -219,7 +218,6 @@ def db_copy(from_db,to_db,callback):
         data = from_db.metadata.get(handle)
         to_db.metadata[handle] = data
 
-
 def add_data_txn(db,table,handle,data):
     the_txn = db.env.txn_begin()
     table.put(handle,data,txn=the_txn)
@@ -230,14 +228,3 @@ def add_data_notxn(db,table,handle,data):
 
 def add_data_dict(db,table,handle,data):
     table[handle] = data
-
-def update_empty(callback,count,oldval,total):
-    pass
-
-def update_real(callback,count,oldval,total):
-    count += 1
-    newval = int(100.0*count/total)
-    if newval != oldval:
-        callback(newval)
-        oldval = newval
-    return count,oldval

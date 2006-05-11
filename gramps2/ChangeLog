@@ -1,4 +1,7 @@
 2006-05-10  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_DbUtils.py (db_copy): Use UpdateCallback class.
+	* src/BasicUtils.py: Add module.
+	* src/Makefile.am (gdir_PYTHON): Add new file.
 	* src/DataViews/_MediaView.py (edit): Handle the exception.
 	* src/plugins/BookReport.py (__init__): Fix url.
 	* src/plugins/ChangeTypes.py (run_tool): Disable/enable signals.
