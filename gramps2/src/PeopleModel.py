@@ -87,12 +87,12 @@ _codeset = GrampsLocale.codeset
 _ID_COL     = 1
 _GENDER_COL = 2
 _NAME_COL   = 3
-_DEATH_COL  = 6
-_BIRTH_COL  = 7
-_EVENT_COL  = 8
-_FAMILY_COL = 9
-_CHANGE_COL = 18
-_MARKER_COL = 19
+_DEATH_COL  = 5
+_BIRTH_COL  = 6
+_EVENT_COL  = 7
+_FAMILY_COL = 8
+_CHANGE_COL = 17
+_MARKER_COL = 18
 
 #-------------------------------------------------------------------------
 #
