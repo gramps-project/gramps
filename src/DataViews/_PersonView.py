@@ -462,8 +462,9 @@ class PersonView(PageView.PersonNavView):
     def edit(self,obj):
         if self.dbstate.active:
             try:
-                EditPerson(self.dbstate, self.uistate, [],
-                           self.dbstate.active)
+                handle = self.dbstate.active.handle
+                person = self.dbstate.db.get_person_from_handle(handle)
+                EditPerson(self.dbstate, self.uistate, [], person)
             except Errors.WindowActiveError:
                 pass
 
