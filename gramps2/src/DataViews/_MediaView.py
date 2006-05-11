@@ -38,7 +38,8 @@ import ImgManip
 import const
 import Utils
 import Bookmarks
-
+from Editors import EditMedia
+import Errors
 from QuestionDialog import QuestionDialog, ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -197,8 +198,10 @@ class MediaView(PageView.ListView):
             return
         
         obj = self.dbstate.db.get_object_from_handle(handle)
-        from Editors import EditMedia
-        EditMedia(self.dbstate,self.uistate, [], obj)
+        try:
+            EditMedia(self.dbstate,self.uistate, [], obj)
+        except Errors.WindowActiveError:
+            pass
 
 class DeleteMediaQuery:
 
