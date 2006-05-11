@@ -1,4 +1,6 @@
 2006-05-11  Alex Roitman  <shura@gramps-project.org>
+	* src/UndoHistory.py: Paint all rows in a selected block; Require
+	exploicit button click on any action.
 	* src/PeopleModel.py (_MARKER_COL): Correct column numbers.
 	(PeopleModel.column_marker_color): properly access marker value.
 

@@ -83,17 +83,18 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         scrolled_window = gtk.ScrolledWindow()
         scrolled_window.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         self.tree = gtk.TreeView()
-        self.model = gtk.ListStore(str, str)
+        self.model = gtk.ListStore(str,str,str,str)
         self.selection = self.tree.get_selection()
 
+        self.renderer = gtk.CellRendererText()
         self.tree.set_model(self.model)
         self.tree.set_rules_hint(True)
         self.tree.append_column(
-            gtk.TreeViewColumn(_('Original time'), gtk.CellRendererText(),
-                               text=0))
+            gtk.TreeViewColumn(_('Original time'), self.renderer,
+                               text=0,foreground=2,background=3))
         self.tree.append_column(
-            gtk.TreeViewColumn(_('Action'), gtk.CellRendererText(),
-                               text=1))
+            gtk.TreeViewColumn(_('Action'), self.renderer,
+                               text=1,foreground=2,background=3))
 
         scrolled_window.add(self.tree)
         self.window.vbox.add(scrolled_window)
@@ -112,17 +113,50 @@ class UndoHistory(ManagedWindow.ManagedWindow):
 
     def _selection_changed(self,obj):
         (model,node) = self.selection.get_selected()
-        if node:
-            path = self.model.get_path(node)
-            self._move(path[0]-self.db.undoindex-1)
+        if not node:
+            return
+        path = self.model.get_path(node)
 
+        start = min(path[0],self.db.undoindex+1)
+        end = max(path[0],self.db.undoindex+1)
+
+        self._paint_rows(0,len(self.model)-1,False)
+        self._paint_rows(start,end,True)
+
+    def _paint_rows(self,start,end,selected=False):
+        if selected:
+            (fg,bg) = get_colors(self.tree,gtk.STATE_SELECTED)
+        else:
+            fg = bg = None
+
+        for idx in range(start,end+1):
+            the_iter = self.model.get_iter( (idx,) )
+            self.model.set(the_iter,2,fg)
+            self.model.set(the_iter,3,bg)
+            
     def _response(self,obj,response_id):
         if response_id == gtk.RESPONSE_CLOSE:
             self.close()
         elif response_id == gtk.RESPONSE_REJECT:
-            self._move(-1)
+            (model,node) = self.selection.get_selected()
+            if not node:
+                return
+            path = self.model.get_path(node)
+            nsteps = path[0]-self.db.undoindex-1
+            if nsteps == 0:
+                self._move(-1)
+            else:
+                self._move(nsteps)
         elif response_id == gtk.RESPONSE_ACCEPT:
-            self._move(1)
+            (model,node) = self.selection.get_selected()
+            if not node:
+                return
+            path = self.model.get_path(node)
+            nsteps = path[0]-self.db.undoindex-1
+            if nsteps == 0:
+                self._move(1)
+            else:
+                self._move(nsteps)
         elif response_id == gtk.RESPONSE_APPLY:
             self._clear_clicked()
 
@@ -159,6 +193,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         self.update()
 
     def _update_ui(self):
+        self._paint_rows(0,len(self.model)-1,False)
         self.undo_button.set_sensitive(self.db.undo_available())
         self.redo_button.set_sensitive(self.db.redo_available())
         self.clear_button.set_sensitive(
@@ -172,17 +207,35 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         else:
             mod_text = _('History cleared')
         time_text = time.ctime(self.db.undo_history_timestamp)
-        self.model.append(row=[time_text,mod_text])
+
+        fg = bg = None
+        self.model.append(row=[time_text,mod_text,fg,bg])
 
         # Get the not-None portion of transaction list
         translist = [item for item in self.db.translist if item]
         for transaction in translist:
             time_text = time.ctime(transaction.timestamp)
             mod_text = transaction.get_description()
-            self.model.append(row=[time_text,mod_text])
+            self.model.append(row=[time_text,mod_text,fg,bg])
         path = (self.db.undoindex+1,)
         self.selection.select_path(path)
 
     def update(self):
         self._build_model()
         self._update_ui()
+
+def gtk_color_to_str(color):
+    r = hex(256*color.red/65535).replace('0x','')
+    g = hex(256*color.green/65535).replace('0x','')
+    b = hex(256*color.blue/65535).replace('0x','')
+    color_str =u'#%s%s%s' % (r,g,b)
+    return color_str
+
+def get_colors(obj,state):
+    fg_color = obj.style.fg[state]
+    bg_color = obj.style.bg[state]
+
+    fg_color_str = gtk_color_to_str(fg_color)
+    bg_color_str = gtk_color_to_str(bg_color)
+
+    return (fg_color_str,bg_color_str)
