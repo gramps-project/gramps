@@ -113,6 +113,7 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
         modified = 0
 
         self.trans = self.db.transaction_begin("",batch=True)
+        self.db.disable_signals()
         if not cli:
             progress = Utils.ProgressMeter(_('Analyzing events'),'')
             progress.set_pass('',self.db.get_number_of_people())
@@ -132,6 +133,8 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
         if not cli:
             progress.close()
         self.db.transaction_commit(self.trans,_('Change types'))
+        self.db.enable_signals()
+        self.db.request_rebuild()
 
         if modified == 0:
             msg = _("No event record was modified.")

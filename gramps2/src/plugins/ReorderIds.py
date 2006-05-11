@@ -63,6 +63,7 @@ class ReorderIds(Tool.BatchTool):
             print "Reordering GRAMPS IDs..."
 
         self.trans = db.transaction_begin("",batch=True)
+        db.disable_signals()
 
         if uistate:
             self.progress.set_pass(_('Reordering People IDs'),
@@ -142,6 +143,8 @@ class ReorderIds(Tool.BatchTool):
             print "Done."
 
         db.transaction_commit(self.trans,_("Reorder GRAMPS IDs"))
+        db.enable_signals()
+        db.request_rebuild()
         
     def reorder(self, class_type, find_from_id, find_from_handle,
                 find_next_id, table, commit, prefix):

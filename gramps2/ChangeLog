@@ -1,4 +1,8 @@
 2006-05-10  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/ChangeTypes.py (run_tool): Disable/enable signals.
+	* src/plugins/ReorderIds.py (__init__): Disable/enable signals.
+	* src/plugins/PatchNames.py (on_ok_clicked): Start transaction
+	only if doing the changes; disable/enable signals.
 	* src/plugins/SoundGen.py: Fix WM.
 
 2006-05-10  Don Allingham  <don@gramps-project.org>
