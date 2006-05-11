@@ -60,20 +60,21 @@ class UpdateCallback:
             self.count = 0
             self.oldval = 0
             self.oldtime = 0
-            self.total = self.get_total()
             self.interval = interval
         else:
             self.update = self.update_empty
 
-    def get_total(self):
-        assert False, "Needs to be defined in the derived class"
+    def set_total(self,total):
+        self.total = total
 
     def update_empty(self):
         pass
 
-    def update_real(self):
+    def update_real(self,count=None):
         self.count += 1
-        newval = int(100.0*self.count/self.total)
+        if not count:
+            count = self.count
+        newval = int(100*count/self.total)
         newtime = time.time()
         time_has_come = self.interval and (newtime-self.oldtime>self.interval)
         value_changed = newval!=self.oldval

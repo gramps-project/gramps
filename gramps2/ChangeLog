@@ -1,6 +1,11 @@
 2006-05-10  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_ReadXML.py (GrampsParser): Use UpdateCallback.
+	* src/GrampsDb/_ReadGedcom.py (GedcomParser): Use UpdateCallback.
 	* src/GrampsDb/_DbUtils.py (db_copy): Use UpdateCallback class.
+	(get_total): Add function, remove unneeded class.
 	* src/BasicUtils.py: Add module.
+	(UpdateCallback.update_real): Allow optional argument; 
+	(UpdateCallback.set_total): Add method.
 	* src/Makefile.am (gdir_PYTHON): Add new file.
 	* src/DataViews/_MediaView.py (edit): Handle the exception.
 	* src/plugins/BookReport.py (__init__): Fix url.

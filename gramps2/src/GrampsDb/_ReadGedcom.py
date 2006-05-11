@@ -76,6 +76,7 @@ from _GedcomInfo import *
 from _GedTokens import *
 from QuestionDialog import ErrorDialog, WarningDialog
 from _GrampsDbBase import EVENT_KEY
+from BasicUtils import UpdateCallback
 
 addr_re  = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)\s+(\d+)\s*(.*)')
 addr2_re = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)\s+(\d+)')
@@ -489,18 +490,16 @@ class Reader:
 #
 #
 #-------------------------------------------------------------------------
-class GedcomParser:
+class GedcomParser(UpdateCallback):
 
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
 
     def __init__(self,dbase,filename,callback,codeset,note_map,lines,people):
+        UpdateCallback.__init__(self,callback)
+        self.set_total(lines)
 
-        self.maxlines = lines
         self.maxpeople = people
-        self.interval = lines/100
-        self.percent = 0
-        self.callback = callback
         self.dp = GedcomDateParser()
         self.db = dbase
         self.emapper = IdFinder(dbase.get_gramps_ids(EVENT_KEY),
@@ -668,19 +667,10 @@ class GedcomParser:
         else:
             return (0,tries)
 
-    def track_lines(self):
-        if self.current == 1:
-            self.current = self.interval
-            self.percent += 1
-            if self.callback:
-                self.callback(self.percent)
-        else:
-            self.current -= 1
-
     def get_next(self):
         if self.backoff == False:
             self.groups = self.lexer.read()
-            self.track_lines()
+            self.update()
             
             # EOF ?
             if not self.groups:
