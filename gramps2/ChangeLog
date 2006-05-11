@@ -1,4 +1,5 @@
 2006-05-10  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/BookReport.py (__init__): Fix url.
 	* src/plugins/ChangeTypes.py (run_tool): Disable/enable signals.
 	* src/plugins/ReorderIds.py (__init__): Disable/enable signals.
 	* src/plugins/PatchNames.py (on_ok_clicked): Start transaction
