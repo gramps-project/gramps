@@ -146,26 +146,21 @@ def add_child_to_family(db, family, child,
         db.transaction_commit(trans, _('Add child to family') )
 
 
-class DbUpdateCallback(BasicUtils.UpdateCallback):
-    def __init__(self,db,callback,interval=1):
-        self.db = db
-        BasicUtils.UpdateCallback.__init__(self,callback,interval)
-
-    def get_total(self):
-        person_len = self.db.get_number_of_people()
-        family_len = self.db.get_number_of_families()
-        event_len = self.db.get_number_of_events()
-        source_len = self.db.get_number_of_sources()
-        place_len = self.db.get_number_of_places()
-        repo_len = self.db.get_number_of_repositories()
-        obj_len = self.db.get_number_of_media_objects()
+def get_total(db):
+    person_len = db.get_number_of_people()
+    family_len = db.get_number_of_families()
+    event_len = db.get_number_of_events()
+    source_len = db.get_number_of_sources()
+    place_len = db.get_number_of_places()
+    repo_len = db.get_number_of_repositories()
+    obj_len = db.get_number_of_media_objects()
         
-        return person_len + family_len + event_len + \
-               place_len + source_len + obj_len + repo_len
+    return person_len + family_len + event_len + \
+           place_len + source_len + obj_len + repo_len
         
-
 def db_copy(from_db,to_db,callback):
-    uc = DbUpdateCallback(from_db,callback)
+    uc = UpdateCallback(from_db,callback)
+    uc.set_total(get_total(from_db))
     
     primary_tables = {
         'Person': {'cursor_func': from_db.get_person_cursor,

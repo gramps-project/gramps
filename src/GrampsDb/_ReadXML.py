@@ -62,6 +62,7 @@ import NameDisplay
 from _GrampsDbBase import \
      PERSON_KEY,FAMILY_KEY,SOURCE_KEY,EVENT_KEY,\
      MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY
+from BasicUtils import UpdateCallback
 
 #-------------------------------------------------------------------------
 #
@@ -268,14 +269,14 @@ class LineParser:
 # Gramps database parsing class.  Derived from SAX XML parser
 #
 #-------------------------------------------------------------------------
-class GrampsParser:
+class GrampsParser(UpdateCallback):
 
     def __init__(self,database,callback,base,change,filename):
+        UpdateCallback.__init__(self,callback)
         self.filename = filename
         self.stext_list = []
         self.scomments_list = []
         self.note_list = []
-        self.oldval = 0
         self.tlist = []
         self.conf = 2
         self.gid2id = {}
@@ -336,12 +337,6 @@ class GrampsParser:
         self.lmap = {}
         self.media_file_map = {}
         
-        self.callback = callback
-        if '__call__' in dir(self.callback): # callback is really callable
-            self.update = self.update_real
-        else:
-            self.update = self.update_empty
-        self.increment = 100
         self.event = None
         self.eventref = None
         self.childref = None
@@ -611,7 +606,7 @@ class GrampsParser:
         else:
             no_magic = False
         self.trans = self.db.transaction_begin("",batch=True,no_magic=no_magic)
-        self.linecount = linecount
+        self.set_total(linecount)
 
         self.db.disable_signals()
 
@@ -694,7 +689,7 @@ class GrampsParser:
         # GRAMPS LEGACY: title in the placeobj tag
         self.placeobj.title = attrs.get('title','')
         self.locations = 0
-        self.update()
+        self.update(self.p.CurrentLineNumber)
             
     def start_location(self,attrs):
         """Bypass the function calls for this one, since it appears to
@@ -752,7 +747,7 @@ class GrampsParser:
             self.db.add_event(self.event,self.trans)
         else:
             # This is new event, with ID and handle already existing
-            self.update()
+            self.update(self.p.CurrentLineNumber)
             gramps_id = self.map_eid(attrs["id"])
             try:
                 self.event = self.db.find_event_from_handle(
@@ -820,7 +815,7 @@ class GrampsParser:
         self.db.bookmarks.append(handle)
 
     def start_person(self,attrs):
-        self.update()
+        self.update(self.p.CurrentLineNumber)
         new_id = self.map_gid(attrs['id'])
         try:
             self.person = self.db.find_person_from_handle(
@@ -916,7 +911,7 @@ class GrampsParser:
             self.repo.add_url(url)
 
     def start_family(self,attrs):
-        self.update()
+        self.update(self.p.CurrentLineNumber)
         gramps_id = self.map_fid(attrs["id"])
         try:
             self.family = self.db.find_family_from_handle(
@@ -1042,7 +1037,7 @@ class GrampsParser:
             self.person.add_source_reference(self.source_ref)
 
     def start_source(self,attrs):
-        self.update()
+        self.update(self.p.CurrentLineNumber)
         gramps_id = self.map_sid(attrs["id"])
         try:
             self.source = self.db.find_source_from_handle(
@@ -1123,7 +1118,7 @@ class GrampsParser:
         pass
 
     def stop_database(self,*tag):
-        self.update()
+        self.update(self.p.CurrentLineNumber)
 
     def stop_object(self,*tag):
         self.db.commit_media_object(self.object,self.trans,self.change)
@@ -1721,15 +1716,6 @@ class GrampsParser:
         if self.func:
             self.tlist.append(data)
 
-    def update_empty(self):
-        pass
-
-    def update_real(self):
-        line = self.p.CurrentLineNumber
-        newval = int(100*line/self.linecount)
-        if newval != self.oldval:
-            self.callback(newval)
-            self.oldval = newval
 
 def append_value(orig,val):
     if orig:
