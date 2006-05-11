@@ -9,6 +9,7 @@ src/ArgHandler.py
 src/Assistant.py
 src/AutoComp.py
 src/BaseDoc.py
+src/BasicUtils.py
 src/Bookmarks.py
 src/ColumnOrder.py
 src/const.py
