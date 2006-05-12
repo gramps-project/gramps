@@ -1,3 +1,7 @@
+2006-04-26  Martin wlisch  <Martin.Hawlisch@gmx.de>
+	* data/gramps.schemas.in: Swap colors for ToDo and complete. Using
+	green is more obvious for complete records.
+
 2006-05-12  Alex Roitman  <shura@gramps-project.org>
 	* src/UndoHistory.py (gtk_color_to_str): Better color to str.
 	* src/QuestionDialog.py (QuestionDialog2.__init__): Use the
@@ -527,7 +531,7 @@
 	* src/gramps_main.py: multiple bookmark lists
 	* src/PageView.py: multiple bookmark lists
 
-2006-04-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+2006-04-26  Martin wlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_MapView.py: First badly hacked version of online map
 	downloading.
 
