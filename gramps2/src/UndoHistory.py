@@ -123,6 +123,16 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         self._paint_rows(0,len(self.model)-1,False)
         self._paint_rows(start,end,True)
 
+        if path[0] < self.db.undoindex+1:
+            self.redo_button.set_sensitive(False)
+            self.undo_button.set_sensitive(self.db.undo_available())
+        if path[0] > self.db.undoindex+1:
+            self.undo_button.set_sensitive(False)
+            self.redo_button.set_sensitive(self.db.redo_available())
+        if path[0] == self.db.undoindex+1:
+            self.undo_button.set_sensitive(self.db.undo_available())
+            self.redo_button.set_sensitive(self.db.redo_available())
+
     def _paint_rows(self,start,end,selected=False):
         if selected:
             (fg,bg) = get_colors(self.tree,gtk.STATE_SELECTED)
