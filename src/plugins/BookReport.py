@@ -306,7 +306,7 @@ class BookList:
         """
 
         self.bookmap = {}
-        self.file = os.path.join('file:',const.home_dir,filename)
+        self.file = os.path.join(const.home_dir,filename)
         self.parse()
     
     def delete_book(self,name):
@@ -391,7 +391,7 @@ class BookList:
         try:
             p = make_parser()
             p.setContentHandler(BookParser(self))
-            p.parse(self.file)
+            p.parse("file://" + self.file)
         except (IOError,OSError,SAXParseException):
             pass
 

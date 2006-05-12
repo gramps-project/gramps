@@ -1,5 +1,6 @@
 2006-05-12  Don Allingham  <don@gramps-project.org>
 	* src/GrampsWidgets.py: fix MonitoredDataType initialization
+	* plugins/BookReport.py: append "file://" properly
 	
 2006-05-12  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/Makefile.am (pkgdata_PYTHON): Add new files.
