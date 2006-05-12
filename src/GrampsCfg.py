@@ -59,7 +59,8 @@ _surname_styles = [
     _("Combination of mother's and father's surname"),
     _("Icelandic style"),
     ]
-    
+
+_pallette = "#fce94f:#edd400:#c4a000:#facf3e:#f57900:#ce5c00:#e9b96e:#c17d11:#8f5902:#8ae234:#73d216:#4e9a06:#729fcf:#3465a4:#204a87:#ad7fa8:#7ff07b:#5c3566:#ef2929:#cc0000:#a40000"
 
 def set_calendar_date_format():
     format_list = DateHandler.get_date_formats()
