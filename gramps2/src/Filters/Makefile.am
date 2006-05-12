@@ -13,7 +13,10 @@ pkgdata_PYTHON = \
 	_FilterWidget.py \
 	_GenericFilter.py \
 	_ParamFilter.py \
-	__init__.py
+	__init__.py \
+	_SearchBar.py \
+	_SearchFilter.py
+
 
 pkgpyexecdir = @pkgpyexecdir@/Filters
 pkgpythondir = @pkgpythondir@/Filters

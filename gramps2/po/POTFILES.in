@@ -340,6 +340,8 @@ src/Filters/_FilterWidget.py
 src/Filters/_GenericFilter.py
 src/Filters/_ParamFilter.py
 src/Filters/__init__.py
+src/Filters/_SearchBar.py
+src/Filters/_SearchFilter.py
 src/Filters/Rules/_Everything.py
 src/Filters/Rules/_HasTextMatchingRegexpOf.py
 src/Filters/Rules/_HasTextMatchingSubstringOf.py
