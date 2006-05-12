@@ -235,10 +235,9 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         self._update_ui()
 
 def gtk_color_to_str(color):
-    r = hex(255*color.red/65535).replace('0x','')
-    g = hex(255*color.green/65535).replace('0x','')
-    b = hex(255*color.blue/65535).replace('0x','')
-    color_str =u'#%s%s%s' % (r,g,b)
+    color_str = u"#%02x%02x%02x" % (color.red/256,
+                                    color.green/256,
+                                    color.blue/256)
     return color_str
 
 def get_colors(obj,state):

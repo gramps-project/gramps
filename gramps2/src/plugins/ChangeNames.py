@@ -61,13 +61,14 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('Capitalization changes')
+        self.cb = callback
         
+        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+        self.set_window(gtk.Window(),gtk.Label(),'')
+
         Tool.BatchTool.__init__(self, dbstate, options_class, name)
         if self.fail:
             return
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
-
-        self.cb = callback
 
         self.progress = Utils.ProgressMeter(_('Checking family names'),'')
         self.progress.set_pass(_('Searching family names'),
@@ -84,6 +85,7 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             self.display()
         else:
             self.progress.close()
+            self.close()
             OkDialog(_('No modifications made'),
                      _("No capitalization changes were detected."))
 

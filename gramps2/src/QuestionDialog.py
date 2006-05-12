@@ -118,7 +118,9 @@ class QuestionDialog2:
         label2.set_use_markup(True)
 
         self.xml.get_widget('okbutton').set_label(label_msg1)
+        self.xml.get_widget('okbutton').set_use_underline(True)
         self.xml.get_widget('no').set_label(label_msg2)
+        self.xml.get_widget('no').set_use_underline(True)
         self.top.show()
         if parent:
             self.top.set_transient_for(parent)
