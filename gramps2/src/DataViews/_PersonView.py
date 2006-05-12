@@ -62,7 +62,9 @@ import Config
 import const
 
 from Editors import EditPerson
-from Filters import SearchBar
+from Filters import SearchBar, GenericFilter
+from Filters.Rules.Person import *
+
 from DdTargets import DdTargets
 
 column_names = [
@@ -89,6 +91,7 @@ class PersonView(PageView.PersonNavView):
         dbstate.connect('active-changed',self.goto_active_person)
         self.handle_col = PeopleModel.COLUMN_INT_ID
         self.model = None
+        self.generic_filter = None
 
         self.func_list = {
             'F2' : self.key_goto_home_person,
@@ -213,44 +216,99 @@ class PersonView(PageView.PersonNavView):
         return hpaned
 
     def build_filter_sidebar(self):
-        table = gtk.Table(3,8)
+        table = gtk.Table(3,10)
         table.set_border_width(6)
-        table.set_col_spacings(6)
         table.set_row_spacings(6)
 
         self.filter_name = gtk.Entry()
         self.filter_id = gtk.Entry()
         self.filter_birth = gtk.Entry()
         self.filter_death = gtk.Entry()
+        self.filter_event = gtk.Entry()
+        self.filter_source = gtk.Entry()
+        self.filter_note = gtk.Entry()
+        self.filter_gender = gtk.Entry()
+        self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
+        
         self.apply_btn = gtk.Button(stock=gtk.STOCK_FIND)
+        self.apply_btn.connect('clicked', self.filter_clicked)
+
+        table.set_col_spacing(0,6)
+        table.set_col_spacing(1,6)
         
         table.attach(GrampsWidgets.MarkupLabel(_('<b>Filter</b>')),
                      0, 3, 0, 1, xoptions=gtk.FILL, yoptions=0)
         
         table.attach(GrampsWidgets.BasicLabel(_('Name')),
                      1, 2, 1, 2, xoptions=gtk.FILL, yoptions=0)
+                     
         table.attach(self.filter_name, 2, 3, 1, 2,
                      xoptions=gtk.FILL, yoptions=0)
 
         table.attach(GrampsWidgets.BasicLabel(_('ID')),
                      1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
+                     
         table.attach(self.filter_id, 2, 3, 2, 3,
                      xoptions=gtk.FILL, yoptions=0)
 
         table.attach(GrampsWidgets.BasicLabel(_('Birth')),
-                     1,2,3,4, xoptions=gtk.FILL, yoptions=0)
+                     1, 2, 3, 4, xoptions=gtk.FILL, yoptions=0)
+                     
         table.attach(self.filter_birth, 2, 3, 3, 4,
                      xoptions=gtk.FILL, yoptions=0)
 
         table.attach(GrampsWidgets.BasicLabel(_('Death')),
                      1, 2, 4, 5, xoptions=gtk.FILL, yoptions=0)
+                     
         table.attach(self.filter_death, 2, 3, 4, 5,
                      xoptions=gtk.FILL, yoptions=0)
 
-        table.attach(self.apply_btn, 2, 3, 5, 6, xoptions=gtk.FILL,
+        table.attach(GrampsWidgets.BasicLabel(_('Event')),
+                     1, 2, 5, 6, xoptions=gtk.FILL, yoptions=0)
+                     
+        table.attach(self.filter_event, 2, 3, 5, 6,
+                     xoptions=gtk.FILL, yoptions=0)
+
+        table.attach(GrampsWidgets.BasicLabel(_('Source')),
+                     1, 2, 6, 7, xoptions=gtk.FILL, yoptions=0)
+                     
+        table.attach(self.filter_source, 2, 3, 6, 7,
+                     xoptions=gtk.FILL, yoptions=0)
+
+        table.attach(GrampsWidgets.BasicLabel(_('Note')),
+                     1, 2, 7, 8, xoptions=gtk.FILL, yoptions=0)
+                     
+        table.attach(self.filter_note, 2, 3, 7, 8,
+                     xoptions=gtk.FILL, yoptions=0)
+
+        table.attach(self.filter_regex, 2, 3, 8, 9, xoptions=gtk.FILL,
+                     yoptions=0)
+        table.attach(self.apply_btn, 2, 3, 9, 10, xoptions=0,
                      yoptions=0)
 
         return table
+
+    def filter_clicked(self, obj):
+        name = self.filter_name.get_text().strip()
+        gid = self.filter_id.get_text().strip()
+        birth = self.filter_birth.get_text().strip()
+        death = self.filter_death.get_text().strip()
+        event = self.filter_event.get_text().strip()
+        source = self.filter_source.get_text().strip()
+        note = self.filter_note.get_text().strip()
+        gender = self.filter_gender.get_text().strip()
+        regex = self.filter_regex.get_active()
+
+        if not name and not gid and not death and not event and \
+           not source and not note and not gender:
+            self.generic_filter = None
+        else:
+            self.generic_filter = GenericFilter()
+            if name:
+                rule = SearchName([name])
+                self.generic_filter.add_rule(rule)
+            self.build_tree()
+            print self.generic_filter
     
     def drag_begin(self, widget, *data):
         widget.drag_source_set_icon_stock(self.get_stock())
@@ -417,9 +475,10 @@ class PersonView(PageView.PersonNavView):
                 search = (0, '', False)
             else:
                 search = self.search_bar.get_value()
+                self.generic_filter = None
             
             self.model = PeopleModel.PeopleModel(
-                self.dbstate.db, None, search)
+                self.dbstate.db, self.generic_filter, search)
 
             self.tree.set_model(self.model)
 
@@ -565,10 +624,13 @@ class PersonView(PageView.PersonNavView):
                 continue
             name = column_names[pair[1]]
             try:
-                column = gtk.TreeViewColumn(name, self.renderer, markup=pair[1],
-                                            background=self.model.marker_color_column)
+                column = gtk.TreeViewColumn(
+                    name, self.renderer, markup=pair[1],
+                    background=self.model.marker_color_column)
             except AttributeError:
-                column = gtk.TreeViewColumn(name, self.renderer, markup=pair[1])
+                column = gtk.TreeViewColumn(
+                    name, self.renderer, markup=pair[1])
+                
             column.set_resizable(True)
             column.set_fixed_width(pair[2])
             column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
@@ -584,11 +646,11 @@ class PersonView(PageView.PersonNavView):
         selected_ids = self.get_selected_objects()
         if not self.inactive:
             try:
-                person = self.dbstate.db.get_person_from_handle(selected_ids[0])
+                handle = selected_ids[0]
+                person = self.dbstate.db.get_person_from_handle(handle)
                 self.dbstate.change_active_person(person)
             except:
                 pass
-            #self.dbstate.change_active_person(None)
 
         if len(selected_ids) == 1:
             self.tree.drag_source_set(BUTTON1_MASK,
@@ -604,7 +666,8 @@ class PersonView(PageView.PersonNavView):
         selected_ids = self.get_selected_objects()
         nonempty_ids = [h for h in selected_ids if h]
         if nonempty_ids:
-            data = (DdTargets.PERSON_LINK.drag_type, id(self), nonempty_ids[0], 0)
+            data = (DdTargets.PERSON_LINK.drag_type, id(self),
+                    nonempty_ids[0], 0)
             sel_data.set(sel_data.target, 8 ,pickle.dumps(data))
 
     def person_added(self,handle_list):
