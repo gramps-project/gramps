@@ -54,32 +54,36 @@ class HasEvent(Rule):
     
     def prepare(self,db):
         self.date = None
+        if self.list[0]:
+            self.etype = self.list[0]
+        else:
+            self.etype = None
         try:
             if self.list[1]:
                 self.date = DateHandler.parser.parse(self.list[1])
         except: pass
 
     def apply(self,db,person):
-        for event_handle in person.get_event_list():
-            if not event_handle:
+        for event_ref in person.get_event_ref_list():
+            if not event_ref:
                 continue
             event = db.get_event_from_handle(event_handle)
-            val = 1
-            if self.list[0] and event.get_name() != self.list[0]:
-                val = 0
+            val = True
+            if self.etype and event.get_type() != self.etype:
+                val = False
             if self.list[3] and event.get_description().upper().find(
                                             self.list[3].upper())==-1:
-                val = 0
+                val = False
             if self.date:
                 if date_cmp(self.date,event.get_date_object()):
-                    val = 0
+                    val = False
             if self.list[2]:
                 pl_id = event.get_place_handle()
                 if pl_id:
                     pl = db.get_place_from_handle(pl_id)
                     pn = pl.get_title()
                     if pn.upper().find(self.list[2].upper()) == -1:
-                        val = 0
-            if val == 1:
+                        val = False
+            if val:
                 return True
         return False

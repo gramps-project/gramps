@@ -41,7 +41,7 @@ class HasNoteMatchingSubstringOf(Rule):
     """People having notes containing <subtring>"""
 
     labels      = [ _('Substring:')]
-    name        = _('People having notes containing <subtring>')
+    name        = _('People having notes containing <substring>')
     description = _("Matches people whose notes contain text matching a substring")
     category    = _('General filters')
 

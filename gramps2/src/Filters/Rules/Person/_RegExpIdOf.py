@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: _HasIdOf.py 6529 2006-05-03 06:29:07Z rshura $
 
 #-------------------------------------------------------------------------
 #
@@ -26,55 +26,35 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import re
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import DateHandler
 from Filters.Rules._Rule import Rule
-from Filters.Rules._RuleUtils import loose_date_cmp
 
 #-------------------------------------------------------------------------
 #
-# HasBirth
+# HasIdOf
 #
 #-------------------------------------------------------------------------
-class HasBirth(Rule):
-    """Rule that checks for a person with a birth of a particular value"""
+class RegExpIdOf(Rule):
+    """Rule that checks for a person with a specific GRAMPS ID"""
 
-    labels      = [ _('Date:'), _('Place:'), _('Description:') ]
-    name        = _('People with the <birth data>')
-    description = _("Matches people with birth data of a particular value")
-    category    = _('Event filters')
-    
-    def __init__(self,list):
-        Rule.__init__(self,list)
-        if self.list[0]:
-            self.date = DateHandler.parser.parse(self.list[0])
-        else:
-            self.date = None
+    labels      = [ _('ID:') ]
+    name        = _('People with <Id>')
+    description = _("Matches people with a GRAMPS ID that contains the regular expression")
+    category    = _('General filters')
+
+    def __init__(self, list):
+        Rule.__init__(self, list)
         
+        try:
+            self.match = re.compile(list[0],re.I|re.U|re.L)
+        except:
+            self.match = re.compile('')
+
     def apply(self,db,person):
-        event_ref = person.get_birth_ref()
-        if not event_ref:
-            return False
-        event = db.get_event_from_handle(event_ref.ref)
-        ed = event.get_description().upper()
-        if self.list[2] \
-               and ed.find(self.list[2].upper())==-1:
-            return False
-        if self.date:
-            if loose_date_cmp(self.date,event.get_date_object()) == 0:
-                return False
-        if self.list[1]:
-            pl_id = event.get_place_handle()
-            if pl_id:
-                pl = db.get_place_from_handle(pl_id)
-                pn = pl.get_title().upper()
-                if pn.find(self.list[1].upper()) == -1:
-                    return False
-            else:
-                return False
-        return True
+        return self.match.match(person.gramps_id) != None

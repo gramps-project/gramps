@@ -216,7 +216,7 @@ class PersonView(PageView.PersonNavView):
         return hpaned
 
     def build_filter_sidebar(self):
-        table = gtk.Table(3,10)
+        table = gtk.Table(3,11)
         table.set_border_width(6)
         table.set_row_spacings(6)
 
@@ -225,9 +225,16 @@ class PersonView(PageView.PersonNavView):
         self.filter_birth = gtk.Entry()
         self.filter_death = gtk.Entry()
         self.filter_event = gtk.Entry()
+        self.filter_event.set_sensitive(False)
+        
         self.filter_source = gtk.Entry()
+        self.filter_source.set_sensitive(False)
+
         self.filter_note = gtk.Entry()
-        self.filter_gender = gtk.Entry()
+        self.filter_gender = gtk.combo_box_new_text()
+        for i in [ _('any'), _('male'), _('female'), _('unknown') ]:
+            self.filter_gender.append_text(i)
+            
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
         
         self.apply_btn = gtk.Button(stock=gtk.STOCK_FIND)
@@ -251,39 +258,45 @@ class PersonView(PageView.PersonNavView):
         table.attach(self.filter_id, 2, 3, 2, 3,
                      xoptions=gtk.FILL, yoptions=0)
 
-        table.attach(GrampsWidgets.BasicLabel(_('Birth')),
+        table.attach(GrampsWidgets.BasicLabel(_('Gender')),
                      1, 2, 3, 4, xoptions=gtk.FILL, yoptions=0)
                      
-        table.attach(self.filter_birth, 2, 3, 3, 4,
+        table.attach(self.filter_gender, 2, 3, 3, 4,
                      xoptions=gtk.FILL, yoptions=0)
 
-        table.attach(GrampsWidgets.BasicLabel(_('Death')),
+        table.attach(GrampsWidgets.BasicLabel(_('Birth date')),
                      1, 2, 4, 5, xoptions=gtk.FILL, yoptions=0)
                      
-        table.attach(self.filter_death, 2, 3, 4, 5,
+        table.attach(self.filter_birth, 2, 3, 4, 5,
+                     xoptions=gtk.FILL, yoptions=0)
+
+        table.attach(GrampsWidgets.BasicLabel(_('Death date')),
+                     1, 2, 5, 6, xoptions=gtk.FILL, yoptions=0)
+                     
+        table.attach(self.filter_death, 2, 3, 5, 6,
                      xoptions=gtk.FILL, yoptions=0)
 
         table.attach(GrampsWidgets.BasicLabel(_('Event')),
-                     1, 2, 5, 6, xoptions=gtk.FILL, yoptions=0)
+                     1, 2, 6, 7, xoptions=gtk.FILL, yoptions=0)
                      
-        table.attach(self.filter_event, 2, 3, 5, 6,
+        table.attach(self.filter_event, 2, 3, 6, 7,
                      xoptions=gtk.FILL, yoptions=0)
 
         table.attach(GrampsWidgets.BasicLabel(_('Source')),
-                     1, 2, 6, 7, xoptions=gtk.FILL, yoptions=0)
+                     1, 2, 7, 8, xoptions=gtk.FILL, yoptions=0)
                      
-        table.attach(self.filter_source, 2, 3, 6, 7,
+        table.attach(self.filter_source, 2, 3, 7, 8,
                      xoptions=gtk.FILL, yoptions=0)
 
         table.attach(GrampsWidgets.BasicLabel(_('Note')),
-                     1, 2, 7, 8, xoptions=gtk.FILL, yoptions=0)
+                     1, 2, 8, 9, xoptions=gtk.FILL, yoptions=0)
                      
-        table.attach(self.filter_note, 2, 3, 7, 8,
+        table.attach(self.filter_note, 2, 3, 8, 9,
                      xoptions=gtk.FILL, yoptions=0)
 
-        table.attach(self.filter_regex, 2, 3, 8, 9, xoptions=gtk.FILL,
+        table.attach(self.filter_regex, 2, 3, 9, 10, xoptions=gtk.FILL,
                      yoptions=0)
-        table.attach(self.apply_btn, 2, 3, 9, 10, xoptions=0,
+        table.attach(self.apply_btn, 2, 3, 10, 11, xoptions=0,
                      yoptions=0)
 
         return table
@@ -296,19 +309,47 @@ class PersonView(PageView.PersonNavView):
         event = self.filter_event.get_text().strip()
         source = self.filter_source.get_text().strip()
         note = self.filter_note.get_text().strip()
-        gender = self.filter_gender.get_text().strip()
+        gender = self.filter_gender.get_active()
         regex = self.filter_regex.get_active()
 
-        if not name and not gid and not death and not event and \
-           not source and not note and not gender:
+        if not name and not gid and not birth and not death \
+               and not event and not source and not note and not gender > 0:
             self.generic_filter = None
         else:
             self.generic_filter = GenericFilter()
             if name:
-                rule = SearchName([name])
+                if regex:
+                    rule = RegExpName([name])
+                else:
+                    rule = SearchName([name])
                 self.generic_filter.add_rule(rule)
-            self.build_tree()
-            print self.generic_filter
+            if gid:
+                if regex:
+                    rule = RegExpIdOf([gid])
+                else:
+                    rule = MatchIdOf([gid])
+                self.generic_filter.add_rule(rule)
+            if gender > 0:
+                if gender == 1:
+                    self.generic_filter.add_rule(IsMale([]))
+                elif gender == 2:
+                    self.generic_filter.add_rule(IsFemale([]))
+                else:
+                    self.generic_filter.add_rule(HasUnknownGender([]))
+            if birth:
+                rule = HasBirth([birth,'',''])
+                self.generic_filter.add_rule(rule)
+            if death:
+                rule = HasDeath([death,'',''])
+                self.generic_filter.add_rule(rule)
+            if note:
+                if regex:
+                    rule = HasNoteRegexp([note])
+                else:
+                    rule = HasNoteMatchingSubstringOf([note])
+                self.generic_filter.add_rule(rule)
+
+        self.build_tree()
     
     def drag_begin(self, widget, *data):
         widget.drag_source_set_icon_stock(self.get_stock())
