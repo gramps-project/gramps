@@ -1,4 +1,7 @@
 FAMILY_DETAILS       = ('preferences','family-details', 0)
+COMPLETE_COLOR       = ('preferences','complete-color', 2)
+TODO_COLOR           = ('preferences','todo-color', 2)
+CUSTOM_MARKER_COLOR  = ('preferences','custom-marker-color', 2)
 FAMILY_WARN          = ('preferences','family-warn', 0)
 HIDE_EP_MSG          = ('preferences','hide-ep-msg', 0)
 LAST_VIEW            = ('preferences','last-view', 1)
@@ -50,6 +53,9 @@ WEBSITE_DIRECTORY    = ('paths','website-directory', 2)
 
 default_value = {
     FAMILY_DETAILS       : True,
+    COMPLETE_COLOR       : '#FF0000',
+    TODO_COLOR           : '#FF0000',
+    CUSTOM_MARKER_COLOR  : '#00FF00',
     FAMILY_WARN          : True,
     HIDE_EP_MSG          : False,
     LAST_VIEW            : 0,

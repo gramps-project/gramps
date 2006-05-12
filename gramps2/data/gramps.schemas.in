@@ -16,6 +16,42 @@
       </schema>
 
       <schema>
+        <key>/schemas/apps/gramps/preferences/complete-color</key>
+        <applyto>/apps/gramps/preferences/complete-color</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>#FF0000</default>
+        <locale name="C">
+          <short>Color used to highlight compete items in a list</short>
+          <long>Color used to highlight compete items in a list</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/preferences/todo-color</key>
+        <applyto>/apps/gramps/preferences/todo-color</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>#FF0000</default>
+        <locale name="C">
+          <short>Color used to highlight TODO items in a list</short>
+          <long>Color used to highlight TODO items in a list</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/preferences/custom-marker-color</key>
+        <applyto>/apps/gramps/preferences/custom-marker-color</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>#00FF00</default>
+        <locale name="C">
+          <short>Color used to highlight custom marker items in a list</short>
+          <long>Color used to highlight custom marker items in a list</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/preferences/family-warn</key>
         <applyto>/apps/gramps/preferences/family-warn</applyto>
         <owner>gramps</owner>
