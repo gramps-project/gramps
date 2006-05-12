@@ -148,12 +148,15 @@ class PeopleModel(gtk.GenericTreeModel):
         self.iter2path = {}
         self.path2iter = {}
         self.sname_sub = {}
-        if search:
+        if not data_filter:
             col = search[0]
             text = search[1]
             inv = search[2]
             func = lambda x: self.on_get_value(x, col) or u""
             data_filter = SearchFilter(func, text, inv)
+            self._build_data = self._build_search_sub
+        else:
+            self._build_data = self._build_filter_sub
         self.rebuild_data(data_filter, skip)
 
     def rebuild_data(self, data_filter=None, skip=[]):
@@ -163,24 +166,11 @@ class PeopleModel(gtk.GenericTreeModel):
         self.calculate_data(data_filter, skip)
         self.assign_data()
         
-    def calculate_data(self, dfilter=None, skip=[]):
-        """
-        Calculates the new path to node values for the model.
-        """
-
-        if dfilter:
-            self.dfilter = dfilter
-        self.temp_iter2path = {}
-        self.temp_path2iter = {}
-        self.temp_sname_sub = {}
-
-        if not self.db.is_open():
-            return
+    def _build_search_sub(self,dfilter, skip):
+        self.sortnames = {}
 
         ngn = NameDisplay.displayer.name_grouping_name
         nsn = NameDisplay.displayer.raw_sorted_name
-
-        self.sortnames = {}
 
         cursor = self.db.get_person_cursor()
         node = cursor.first()
@@ -196,6 +186,40 @@ class PeopleModel(gtk.GenericTreeModel):
                     self.temp_sname_sub[name_data[5]] = [handle]
             node = cursor.next()
         cursor.close()
+
+    def _build_filter_sub(self,dfilter, skip):
+        self.sortnames = {}
+
+        ngn = NameDisplay.displayer.name_grouping_name
+        nsn = NameDisplay.displayer.raw_sorted_name
+
+        handle_list = dfilter.apply(self.db, self.db.get_person_handles())
+
+        for handle in handle_list:
+            d = self.db.get_raw_person_data(handle)
+            if not (handle in skip or (dfilter and not dfilter.match(handle))):
+                name_data = d[_NAME_COL]
+                self.sortnames[handle] = nsn(name_data)
+                try:
+                    self.temp_sname_sub[name_data[5]].append(handle)
+                except:
+                    self.temp_sname_sub[name_data[5]] = [handle]
+        
+    def calculate_data(self, dfilter=None, skip=[]):
+        """
+        Calculates the new path to node values for the model.
+        """
+
+        if dfilter:
+            self.dfilter = dfilter
+        self.temp_iter2path = {}
+        self.temp_path2iter = {}
+        self.temp_sname_sub = {}
+
+        if not self.db.is_open():
+            return
+
+        self._build_data(dfilter, skip)
 
         self.temp_top_path2iter = locale_sort(self.temp_sname_sub.keys())
         for name in self.temp_top_path2iter:

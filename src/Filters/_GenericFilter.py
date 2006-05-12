@@ -24,6 +24,8 @@
 Package providing filtering framework for GRAMPS.
 """
 
+import RelLib
+
 #-------------------------------------------------------------------------
 #
 # GenericFilter
