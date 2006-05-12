@@ -1,4 +1,18 @@
-2006-04-26  Martin wlisch  <Martin.Hawlisch@gmx.de>
+2006-05-12  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: set up new filter fields
+	* src/Filters/Rules/Person/_RegExpIdOf.py: added
+	* src/Filters/Rules/Person/__init__.py: added new files
+	* src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py
+	* src/Filters/Rules/Person/_HasBirth.py: use loose_data_cmp
+	* src/Filters/Rules/Person/_SearchName.py: search all fields
+	* src/Filters/Rules/Person/_HasDeath.py: use loose_data_cmp
+	* src/Filters/Rules/Person/_RegExpName.py: added
+	* src/Filters/Rules/Person/_MatchIdOf.py: added
+	* src/Filters/Rules/Person/_HasNoteRegexp.py: added
+	* src/Filters/Rules/Person/Makefile.am: added new files
+	* src/Filters/Rules/_RuleUtils.py: added loose_date_cmp
+
+2006-04-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* data/gramps.schemas.in: Swap colors for ToDo and complete. Using
 	green is more obvious for complete records.
 

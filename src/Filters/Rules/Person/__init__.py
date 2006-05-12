@@ -42,6 +42,7 @@ from _HasIdOf import HasIdOf
 from _HasNameOf import HasNameOf
 from _HasNote import HasNote
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
+from _HasNoteRegexp import HasNoteRegexp
 from _HasRelationship import HasRelationship
 from _HasSourceOf import HasSourceOf
 from _HasTextMatchingRegexpOf import HasTextMatchingRegexpOf
@@ -87,6 +88,9 @@ from _ProbablyAlive import ProbablyAlive
 from _RelationshipPathBetween import RelationshipPathBetween
 from Filters.Rules._Rule import Rule
 from _SearchName import SearchName
+from _RegExpName import RegExpName
+from _MatchIdOf import MatchIdOf
+from _RegExpIdOf import RegExpIdOf
 
 #-------------------------------------------------------------------------
 #

@@ -34,7 +34,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import DateHandler
 from Filters.Rules._Rule import Rule
-from Filters.Rules._RuleUtils import date_cmp
+from Filters.Rules._RuleUtils import loose_date_cmp
 
 #-------------------------------------------------------------------------
 #
@@ -66,7 +66,7 @@ class HasDeath(Rule):
                and ed.find(self.list[2].upper())==-1:
             return False
         if self.date:
-            if date_cmp(self.date,event.get_date_object()) == 0:
+            if loose_date_cmp(self.date,event.get_date_object()) == 0:
                 return False
         if self.list[1]:
             pl_id = event.get_place_handle()

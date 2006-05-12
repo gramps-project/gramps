@@ -57,6 +57,10 @@ pkgdata_PYTHON = \
 	_ProbablyAlive.py \
 	_RelationshipPathBetween.py \
 	_SearchName.py \
+	_RegExpIdOf.py \
+	_MatchIdOf.py \
+	_HasNoteRegexp.py \
+	_RegExpName.py \
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Person

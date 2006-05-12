@@ -33,7 +33,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from Filters.Rules._Rule import Rule
-import NameDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -49,6 +48,13 @@ class SearchName(Rule):
     category    = _('General filters')
 
     def apply(self,db,person):
-        self.f = self.list[0]
-        n = NameDisplay.displayer.display(person)
-        return self.f and n.upper().find(self.f.upper()) != -1
+
+        src = self.list[0].upper()
+
+        for name in [person.get_primary_name()] + person.get_alternate_names():
+            for field in [name.first_name, name.surname, name.suffix, name.title,
+                          name.prefix, name.patronymic]:
+                if src and field.upper().find(src) != -1:
+                    return True
+        else:
+            return False

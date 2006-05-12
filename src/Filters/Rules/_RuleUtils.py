@@ -20,6 +20,8 @@
 
 # $Id$
 
+import RelLib
+
 #-------------------------------------------------------------------------
 #
 # Useful functions used by some rules
@@ -35,5 +37,23 @@ def date_cmp(rule,value):
         return  cmp_rule > cmp_value
     elif s == RelLib.Date.MOD_AFTER:
         return cmp_rule < cmp_value
+    else:
+        return cmp_rule == cmp_value
+
+def loose_date_cmp(rule,value):
+    sd = rule.get_start_date()
+    s = rule.get_modifier()
+    od = value.get_start_date()
+    cmp_rule = (sd[2],sd[1],sd[0])
+    cmp_value = (od[2],od[1],od[0])
+
+    if s == RelLib.Date.MOD_BEFORE:
+        return  cmp_rule > cmp_value
+    elif s == RelLib.Date.MOD_AFTER:
+        return cmp_rule < cmp_value
+    elif cmp_rule[0] and not cmp_rule[1] and not cmp_rule[2]:
+        return cmp_rule[0] == cmp_value[0]
+    elif cmp_rule[0] and cmp_rule[1] and not cmp_rule[2]:
+        return cmp_rule[0:2] == cmp_value[0:2]
     else:
         return cmp_rule == cmp_value
