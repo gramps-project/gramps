@@ -37,6 +37,7 @@ import time
 import cgi
 import sys
 import locale
+import Config
 
 try:
     set()
@@ -139,6 +140,17 @@ class PeopleModel(gtk.GenericTreeModel):
 
         self.db = db
 
+        Config.client.notify_add("/apps/gramps/preferences/todo-color",
+                                 self.update_todo)
+        Config.client.notify_add("/apps/gramps/preferences/custom-marker-color",
+                                 self.update_custom)
+        Config.client.notify_add("/apps/gramps/preferences/complete-color",
+                                 self.update_complete)
+
+        self.complete_color = Config.get(Config.COMPLETE_COLOR)
+        self.todo_color = Config.get(Config.TODO_COLOR)
+        self.custom_color = Config.get(Config.CUSTOM_MARKER_COLOR)
+
         self.sortnames = {}
         self.marker_color_column = 11
         self.tooltip_column = 12
@@ -158,6 +170,15 @@ class PeopleModel(gtk.GenericTreeModel):
         else:
             self._build_data = self._build_filter_sub
         self.rebuild_data(data_filter, skip)
+
+    def update_todo(self,client,cnxn_id,entry,data):
+        self.todo_color = Config.get(Config.TODO_COLOR)
+        
+    def update_custom(self,client,cnxn_id,entry,data):
+        self.custom_color = Config.get(Config.CUSTOM_MARKER_COLOR)
+
+    def update_complete(self,client,cnxn_id,entry,data):
+        self.complete_color = Config.get(Config.COMPLETE_COLOR)
 
     def rebuild_data(self, data_filter=None, skip=[]):
         """
@@ -512,11 +533,11 @@ class PeopleModel(gtk.GenericTreeModel):
         try:
             if data[_MARKER_COL]:
                 if data[_MARKER_COL][0] == MarkerType.COMPLETE:
-                    return u"#46a046"   # green
+                    return self.complete_color
                 if data[_MARKER_COL][0] == MarkerType.TODO:
-                    return u"#df421e"   # red
+                    return self.todo_color
                 if data[_MARKER_COL][0] == MarkerType.CUSTOM:
-                    return u"#eed680"  # ligh brown
+                    return self.custom_color
         except IndexError:
             pass
         return None

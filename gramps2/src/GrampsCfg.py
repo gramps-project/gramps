@@ -112,6 +112,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                           MarkupLabel("<b>%s</b>" % _('Warnings')))
         panel.append_page(self.add_researcher_panel(),
                           MarkupLabel("<b>%s</b>" % _('Researcher')))
+        panel.append_page(self.add_color_panel(),
+                          MarkupLabel("<b>%s</b>" % _('Marker Colors')))
 
         self.window.show_all()
         self.show()
@@ -162,6 +164,17 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.add_checkbox(table, _('Show plugin status dialog on plugin load error'),
                           2, Config.POP_PLUGIN_STATUS)
         
+        return table
+
+    def add_color_panel(self):
+        table = gtk.Table(3,8)
+        table.set_border_width(12)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+
+        self.add_color(table, _("Complete"), 0, Config.COMPLETE_COLOR)
+        self.add_color(table, _("ToDo"), 1, Config.TODO_COLOR)
+        self.add_color(table, _("Custom"), 2, Config.CUSTOM_MARKER_COLOR)
         return table
 
     def add_formats_panel(self):
@@ -250,8 +263,24 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.attach(lwidget, 0, 1, index, index+1, yoptions=0)
         table.attach(entry, 1, 3, index, index+1, yoptions=0)
 
+    def add_color(self, table, label, index, constant):
+        lwidget = BasicLabel("%s: " % label)
+        hexval = Config.get(constant)
+        color = gtk.gdk.color_parse(hexval)
+        entry = gtk.ColorButton(color=color)
+        entry.connect('color-set', self.update_color, constant)
+        table.attach(lwidget, 0, 1, index, index+1, yoptions=0)
+        table.attach(entry, 1, 3, index, index+1, yoptions=0)
+
     def update_entry(self, obj, constant):
         Config.set(constant, unicode(obj.get_text()))
+
+    def update_color(self, obj, constant):
+        color = obj.get_color()
+        hexval = "#%02x%02x%02x" % (color.red/256,
+                                    color.green/256,
+                                    color.blue/256)
+        Config.set(constant, hexval)
 
     def update_checkbox(self, obj, constant):
         Config.set(constant, obj.get_active())
