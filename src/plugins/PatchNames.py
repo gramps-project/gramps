@@ -90,11 +90,12 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
     
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('Name and title extraction tool')
-        
+        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+        self.set_window(gtk.Window(),gtk.Label(),'')
+       
         Tool.BatchTool.__init__(self, dbstate, options_class, name)
         if self.fail:
             return
-        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         self.cb = callback
         self.title_list = []
@@ -161,6 +162,7 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             self.display()
         else:
             self.progress.close()
+            self.close()
             OkDialog(_('No modifications made'),
                      _("No titles or nicknames were found"))
 

@@ -1,3 +1,10 @@
+2006-05-12  Alex Roitman  <shura@gramps-project.org>
+	* src/UndoHistory.py (gtk_color_to_str): Better color to str.
+	* src/QuestionDialog.py (QuestionDialog2.__init__): Use the
+	underline for labels.
+	* src/plugins/ChangeNames.py: Fix WM.
+	* src/plugins/PatchNames.py: Fix WM.
+
 2006-05-12  Don Allingham  <don@gramps-project.org>
 	* src/GrampsWidgets.py: fix MonitoredDataType initialization
 	* plugins/BookReport.py: append "file://" properly
