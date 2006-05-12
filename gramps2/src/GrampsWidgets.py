@@ -370,13 +370,7 @@ class MonitoredDataType:
             default,
             additional=custom_values)
 
-        if get_val().is_custom():
-            self.obj.set_active(get_val().get_custom())
-            obj.child.set_text(str(val))
-        else:
-            active = int(get_val())
-            self.obj.set_active(active)
-            
+        self.sel.set_values((int(get_val()),str(get_val())))
         self.obj.set_sensitive(not readonly)
         self.obj.connect('changed', self.on_change)
 
