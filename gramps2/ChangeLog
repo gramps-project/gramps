@@ -8,9 +8,9 @@
 2006-05-12  Don Allingham  <don@gramps-project.org>
 	* src/GrampsWidgets.py: fix MonitoredDataType initialization
 	* plugins/BookReport.py: append "file://" properly
-	* src/GrampsCfg.py: update for selectable colors
+	* src/GrampsCfg.py: update for selectable colors, default colors
 	* src/PeopleModel.py: update for selectable colors
-	* data/gramps.schemas.in: update for selectable colors
+	* data/gramps.schemas.in: update for selectable colors, default colors
 	
 2006-05-12  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/Makefile.am (pkgdata_PYTHON): Add new files.
