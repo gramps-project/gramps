@@ -12,6 +12,8 @@
 	* src/Config/_GrampsGconfKeys.py (get_default): Allow other types.
 	* src/GrampsCfg.py (reset_colors): Emit color-set signal to
 	trigget hex text updates.
+	* src/Config/_GrampsIniKeys.py (get_default): Add optional arg
+	indicating type.
 
 2006-05-12  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: move ScratchPad to Edit
