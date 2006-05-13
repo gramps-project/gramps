@@ -245,3 +245,5 @@ def set_string(key, val, test_func=None):
 def sync():
     client.suggest_sync()
 
+def get_default(key):
+    return default_value[key]

@@ -175,10 +175,31 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.set_col_spacings(12)
         table.set_row_spacings(6)
 
-        self.add_color(table, _("Complete"), 0, Config.COMPLETE_COLOR)
-        self.add_color(table, _("ToDo"), 1, Config.TODO_COLOR)
-        self.add_color(table, _("Custom"), 2, Config.CUSTOM_MARKER_COLOR)
+        self.comp_color = self.add_color(table, _("Complete"), 0,
+                                         Config.COMPLETE_COLOR)
+        self.todo_color = self.add_color(table, _("ToDo"), 1,
+                                         Config.TODO_COLOR)
+        self.custom_color = self.add_color(table, _("Custom"), 2,
+                                           Config.CUSTOM_MARKER_COLOR)
+        
+        button = gtk.Button(stock=gtk.STOCK_REVERT_TO_SAVED)
+        button.connect('clicked', self.reset_colors)
+        table.attach(button, 1, 2, 3, 4, yoptions=0, xoptions=0)
         return table
+
+    def reset_colors(self, obj):
+
+        def_comp = Config.get_default(Config.COMPLETE_COLOR)
+        def_todo = Config.get_default(Config.TODO_COLOR)
+        def_cust = Config.get_default(Config.CUSTOM_MARKER_COLOR)
+        
+        Config.set(Config.COMPLETE_COLOR, def_comp)
+        Config.set(Config.TODO_COLOR, def_todo)
+        Config.set(Config.CUSTOM_MARKER_COLOR, def_cust)
+
+        self.comp_color.set_color(gtk.gdk.color_parse(def_comp))
+        self.todo_color.set_color(gtk.gdk.color_parse(def_todo))
+        self.custom_color.set_color(gtk.gdk.color_parse(def_cust))
 
     def add_formats_panel(self):
         table = gtk.Table(3,8)
@@ -278,6 +299,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                      xoptions=gtk.FILL)
         table.attach(entry, 1, 2, index, index+1, yoptions=0, xoptions=0)
         table.attach(color_hex_label, 2, 3, index, index+1, yoptions=0)
+        return entry
 
     def update_entry(self, obj, constant):
         Config.set(constant, unicode(obj.get_text()))
