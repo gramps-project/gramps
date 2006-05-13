@@ -272,21 +272,22 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         hexval = Config.get(constant)
         color = gtk.gdk.color_parse(hexval)
         entry = gtk.ColorButton(color=color)
-        entry.connect('color-set', self.update_color, constant)
+        color_hex_label = BasicLabel(hexval)
+        entry.connect('color-set',self.update_color,constant,color_hex_label)
         table.attach(lwidget, 0, 1, index, index+1, yoptions=0,
                      xoptions=gtk.FILL)
         table.attach(entry, 1, 2, index, index+1, yoptions=0, xoptions=0)
-        table.attach(BasicLabel(hexval), 2, 3, index, index+1,
-                     yoptions=0)
+        table.attach(color_hex_label, 2, 3, index, index+1, yoptions=0)
 
     def update_entry(self, obj, constant):
         Config.set(constant, unicode(obj.get_text()))
 
-    def update_color(self, obj, constant):
+    def update_color(self, obj, constant, color_hex_label):
         color = obj.get_color()
         hexval = "#%02x%02x%02x" % (color.red/256,
                                     color.green/256,
                                     color.blue/256)
+        color_hex_label.set_text(hexval)
         Config.set(constant, hexval)
 
     def update_checkbox(self, obj, constant):

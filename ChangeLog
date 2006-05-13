@@ -1,3 +1,6 @@
+2006-05-12  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsCfg.py (add_color): Update text label after color change.
+
 2006-05-12  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: move ScratchPad to Edit
 	* src/GrampsCfg.py: fix color dialog buttons
