@@ -1,4 +1,5 @@
 2006-05-12  Alex Roitman  <shura@gramps-project.org>
+	* data/gramps.schemas.in: Brighter colors to use with foreground.
 	* src/GrampsCfg.py (add_color): Update text label after color change.
 
 2006-05-12  Don Allingham  <don@gramps-project.org>
