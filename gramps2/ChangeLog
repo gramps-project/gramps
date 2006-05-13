@@ -1,7 +1,9 @@
 2006-05-12  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: move ScratchPad to Edit
 	* src/GrampsCfg.py: fix color dialog buttons
 	* src/Filters/Rules/Person/_HasEvent.py: handle EventType
-	* src/DataViews/_PersonView.py: set up new filter fields
+	* src/DataViews/_PersonView.py: set up new filter fields, remove
+	source field
 	* src/Filters/Rules/Person/_RegExpIdOf.py: added
 	* src/Filters/Rules/Person/__init__.py: added new files
 	* src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py

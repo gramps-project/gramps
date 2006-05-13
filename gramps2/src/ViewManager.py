@@ -112,6 +112,8 @@ uidefault = '''<ui>
     <menuitem action="UndoHistory"/>
     <separator/>
     <placeholder name="CommonEdit"/>
+    <separator/>
+    <menuitem action="ScratchPad"/>  
     <menuitem action="CmpMerge"/>
     <menuitem action="FastMerge"/>
     <separator/>
@@ -120,7 +122,6 @@ uidefault = '''<ui>
   <menu action="ViewMenu">
     <menuitem action="Sidebar"/>
     <menuitem action="Toolbar"/>    
-    <menuitem action="ScratchPad"/>  
     <separator/>
   </menu>
   <menu action="GoMenu">
