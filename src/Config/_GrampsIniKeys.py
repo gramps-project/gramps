@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2005  Donald N. Allingham
+# Copyright (C) 2005-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -245,5 +245,5 @@ def set_string(key, val, test_func=None):
 def sync():
     client.suggest_sync()
 
-def get_default(key):
+def get_default(key,sample=''):
     return default_value[key]
