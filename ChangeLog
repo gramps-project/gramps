@@ -9,6 +9,9 @@
 2006-05-12  Alex Roitman  <shura@gramps-project.org>
 	* data/gramps.schemas.in: Brighter colors to use with foreground.
 	* src/GrampsCfg.py (add_color): Update text label after color change.
+	* src/Config/_GrampsGconfKeys.py (get_default): Allow other types.
+	* src/GrampsCfg.py (reset_colors): Emit color-set signal to
+	trigget hex text updates.
 
 2006-05-12  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: move ScratchPad to Edit

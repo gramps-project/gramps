@@ -189,9 +189,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
     def reset_colors(self, obj):
 
-        def_comp = Config.get_default(Config.COMPLETE_COLOR)
-        def_todo = Config.get_default(Config.TODO_COLOR)
-        def_cust = Config.get_default(Config.CUSTOM_MARKER_COLOR)
+        def_comp = Config.get_default(Config.COMPLETE_COLOR,'')
+        def_todo = Config.get_default(Config.TODO_COLOR,'')
+        def_cust = Config.get_default(Config.CUSTOM_MARKER_COLOR,'')
         
         Config.set(Config.COMPLETE_COLOR, def_comp)
         Config.set(Config.TODO_COLOR, def_todo)
@@ -200,6 +200,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.comp_color.set_color(gtk.gdk.color_parse(def_comp))
         self.todo_color.set_color(gtk.gdk.color_parse(def_todo))
         self.custom_color.set_color(gtk.gdk.color_parse(def_cust))
+        for widget in [self.comp_color,self.todo_color,self.custom_color]:
+            widget.emit('color-set')
 
     def add_formats_panel(self):
         table = gtk.Table(3,8)
