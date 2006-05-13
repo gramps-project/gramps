@@ -302,14 +302,13 @@ class PersonView(PageView.PersonNavView):
         gid = self.filter_id.get_text().strip()
         birth = self.filter_birth.get_text().strip()
         death = self.filter_death.get_text().strip()
-        source = self.filter_source.get_text().strip()
         note = self.filter_note.get_text().strip()
         gender = self.filter_gender.get_active()
         regex = self.filter_regex.get_active()
 
         if not name and not gid and not birth and not death \
                and not str(self.filter_event.get_type()) and \
-               not source and not note and not gender > 0:
+               not note and not gender > 0:
             self.generic_filter = None
         else:
             self.generic_filter = GenericFilter()
