@@ -1,3 +1,8 @@
+2006-05-12  Don Allingham  <don@gramps-project.org>
+	* src/GrampsCfg.py: add revert option for colors
+	* src/Config/_GrampsGconfKeys.py: added get_default
+	* src/Config/_GrampsIniKeys.py: added get_default
+
 2006-05-12  Alex Roitman  <shura@gramps-project.org>
 	* data/gramps.schemas.in: Brighter colors to use with foreground.
 	* src/GrampsCfg.py (add_color): Update text label after color change.
