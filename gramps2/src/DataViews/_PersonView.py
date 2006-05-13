@@ -243,6 +243,9 @@ class PersonView(PageView.PersonNavView):
         self.apply_btn = gtk.Button(stock=gtk.STOCK_FIND)
         self.apply_btn.connect('clicked', self.filter_clicked)
 
+        self.clear_btn = gtk.Button(stock=gtk.STOCK_CLEAR)
+        self.clear_btn.connect('clicked', self.clear_clicked)
+
         table.set_col_spacing(0,6)
         table.set_col_spacing(1,6)
         
@@ -292,10 +295,18 @@ class PersonView(PageView.PersonNavView):
 
         table.attach(self.filter_regex, 2, 3, 8, 9, xoptions=gtk.FILL,
                      yoptions=0)
-        table.attach(self.apply_btn, 2, 3, 9, 10, xoptions=0,
+
+        hbox = gtk.HBox()
+        hbox.add(self.apply_btn)
+        hbox.add(self.clear_btn)
+        hbox.show()
+        table.attach(hbox, 2, 3, 9, 10, xoptions=gtk.FILL,
                      yoptions=0)
 
         return table
+
+    def clear_clicked(self,obj):
+        print "clear"
 
     def filter_clicked(self, obj):
         name = self.filter_name.get_text().strip()

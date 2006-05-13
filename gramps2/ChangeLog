@@ -1,4 +1,7 @@
 2006-05-12  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: add non-functioning (for now) clear
+	button
+	* src/Config/_GrampsGconfKeys.py: get_default fix
 	* src/GrampsCfg.py: add revert option for colors
 	* src/Config/_GrampsGconfKeys.py: added get_default
 	* src/Config/_GrampsIniKeys.py: added get_default
