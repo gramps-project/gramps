@@ -152,4 +152,4 @@ def sync():
 
 def get_default(key):
     token = "/apps/gramps/%s/%s" % (key[0],key[1])
-    return client.get_default_from_schema(token)
+    return client.get_default_from_schema(token).get_string()
