@@ -648,7 +648,7 @@ class PersonView(PageView.PersonNavView):
             column = gtk.TreeViewColumn(
                 _('Name'),
                 self.renderer,text=0,
-                background=self.model.marker_color_column)
+                foreground=self.model.marker_color_column)
             
         except AttributeError:
             column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
@@ -668,7 +668,7 @@ class PersonView(PageView.PersonNavView):
             try:
                 column = gtk.TreeViewColumn(
                     name, self.renderer, markup=pair[1],
-                    background=self.model.marker_color_column)
+                    foreground=self.model.marker_color_column)
             except AttributeError:
                 column = gtk.TreeViewColumn(
                     name, self.renderer, markup=pair[1])

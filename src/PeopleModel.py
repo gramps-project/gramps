@@ -303,7 +303,7 @@ class PeopleModel(gtk.GenericTreeModel):
     def on_get_value(self, node, col):
         # test for header or data row-type
         if self.sname_sub.has_key(node):
-            # Header rows dont get the background color set
+            # Header rows dont get the foreground color set
             if col == self.marker_color_column:
                 return None
             # test for 'header' column being empty (most are)
