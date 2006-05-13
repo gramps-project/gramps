@@ -67,7 +67,7 @@ class HasEvent(Rule):
         for event_ref in person.get_event_ref_list():
             if not event_ref:
                 continue
-            event = db.get_event_from_handle(event_handle)
+            event = db.get_event_from_handle(event_ref.ref)
             val = True
             if self.etype and event.get_type() != self.etype:
                 val = False

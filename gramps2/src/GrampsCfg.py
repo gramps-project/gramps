@@ -82,7 +82,6 @@ def get_researcher():
     owner.set(n,a,c,s,ct,p,ph,e)
     return owner
 
-
 #-------------------------------------------------------------------------
 #
 #
@@ -156,21 +155,24 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
-        self.add_checkbox(table, _('Warn when adding parents to a child'),
-                          0, Config.FAMILY_WARN)
+        self.add_checkbox(
+            table, _('Warn when adding parents to a child'),
+            0, Config.FAMILY_WARN)
         
-        self.add_checkbox(table, _('Suppress warning when cancelling with changed data'),
-                          1, Config.DONT_ASK)
+        self.add_checkbox(
+            table, _('Suppress warning when cancelling with changed data'),
+            1, Config.DONT_ASK)
         
-        self.add_checkbox(table, _('Show plugin status dialog on plugin load error'),
-                          2, Config.POP_PLUGIN_STATUS)
+        self.add_checkbox(
+            table, _('Show plugin status dialog on plugin load error'),
+            2, Config.POP_PLUGIN_STATUS)
         
         return table
 
     def add_color_panel(self):
         table = gtk.Table(3,8)
         table.set_border_width(12)
-        table.set_col_spacings(6)
+        table.set_col_spacings(12)
         table.set_row_spacings(6)
 
         self.add_color(table, _("Complete"), 0, Config.COMPLETE_COLOR)
@@ -261,8 +263,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         entry = gtk.Entry()
         entry.set_text(Config.get(constant))
         entry.connect('changed', self.update_entry, constant)
-        table.attach(lwidget, 0, 1, index, index+1, yoptions=0)
-        table.attach(entry, 1, 3, index, index+1, yoptions=0)
+        table.attach(lwidget, 0, 1, index, index+1, yoptions=0,
+                     xoptions=gtk.FILL)
+        table.attach(entry, 1, 2, index, index+1, yoptions=0)
 
     def add_color(self, table, label, index, constant):
         lwidget = BasicLabel("%s: " % label)
@@ -270,8 +273,11 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         color = gtk.gdk.color_parse(hexval)
         entry = gtk.ColorButton(color=color)
         entry.connect('color-set', self.update_color, constant)
-        table.attach(lwidget, 0, 1, index, index+1, yoptions=0)
-        table.attach(entry, 1, 3, index, index+1, yoptions=0)
+        table.attach(lwidget, 0, 1, index, index+1, yoptions=0,
+                     xoptions=gtk.FILL)
+        table.attach(entry, 1, 2, index, index+1, yoptions=0, xoptions=0)
+        table.attach(BasicLabel(hexval), 2, 3, index, index+1,
+                     yoptions=0)
 
     def update_entry(self, obj, constant):
         Config.set(constant, unicode(obj.get_text()))
