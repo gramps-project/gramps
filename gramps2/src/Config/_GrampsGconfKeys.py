@@ -150,6 +150,15 @@ def set_string(key,val,test_func=None):
 def sync():
     client.suggest_sync()
 
-def get_default(key):
+def get_default(key,sample=''):
     token = "/apps/gramps/%s/%s" % (key[0],key[1])
-    return client.get_default_from_schema(token).get_string()
+    value = client.get_default_from_schema(token)
+    if value == None:
+        raise Errors.GConfSchemaError("No default value for key "+key[1])
+    if type(sample) in (str,unicode):
+        return value.get_string()
+    elif type(sample) == int:
+        return value.get_int()
+    elif type(sample) == bool:
+        return value.get_bool()
+    return None
