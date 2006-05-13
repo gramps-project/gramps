@@ -1,4 +1,6 @@
 2006-05-12  Don Allingham  <don@gramps-project.org>
+	* src/GrampsCfg.py: fix color dialog buttons
+	* src/Filters/Rules/Person/_HasEvent.py: handle EventType
 	* src/DataViews/_PersonView.py: set up new filter fields
 	* src/Filters/Rules/Person/_RegExpIdOf.py: added
 	* src/Filters/Rules/Person/__init__.py: added new files
