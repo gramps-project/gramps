@@ -152,6 +152,7 @@ class BasePage:
         self.photo_list = photo_list
         self.exclude_private = not options.handler.options_dict['NWEBincpriv']
         self.usegraph = options.handler.options_dict['NWEBgraph']
+        self.graphgens = int(options.handler.options_dict['NWEBgraphgens'])
         self.use_home = self.options.handler.options_dict['NWEBhomenote'] != ""
         self.page_title = ""
 
@@ -1436,109 +1437,55 @@ class IndividualPage(BasePage):
         return person
     
     def display_tree(self,of):
-        family_handle = self.person.get_main_parents_family_handle()
-        if not family_handle:
+        if not self.person.get_main_parents_family_handle():
             return
-        family = self.db.get_family_from_handle(family_handle)
         
         of.write('<div id="tree">\n')
         of.write('<h4>%s</h4>\n' % _('Ancestors'))
         of.write('<div style="position: relative;" align="left">\n')
 
-        # self - first box, centered, flush left
-
-        GENERATIONS = 4
-
-        max_in_col = 1 <<(GENERATIONS-1)
+        generations = self.graphgens
+        
+        max_in_col = 1 <<(generations-1)
         max_size = HEIGHT*max_in_col + VGAP*(max_in_col+1)
-
-        center0 = max_size / 2
-        self.draw_box(of,center0,0,self.person)
-        self.extend_line(of,center0,XOFFSET+WIDTH)
-
-        father_handle = family.get_father_handle()
-        if father_handle:
-            center1 = int(max_size/4)
-            father = self.draw_connected_box(of,center0,center1,1,father_handle)
-
-            f_family_handle = father.get_main_parents_family_handle()
-            if f_family_handle:
-                self.extend_line(of,center1,XOFFSET+2*WIDTH+HGAP)
-                f_family = self.db.get_family_from_handle(f_family_handle)
-
-                center2 = int(max_size/8)
-                f_father = self.draw_connected_box(of,center1,center2,2,f_family.get_father_handle())
-
-                if f_father:
-                    ff_family_handle = f_father.get_main_parents_family_handle()
-                    if ff_family_handle:
-                        self.extend_line(of,center2,XOFFSET+3*WIDTH+2*HGAP)
-                        ff_family = self.db.get_family_from_handle(ff_family_handle)
-
-                        center3 = int(max_size)/16
-                        self.draw_connected_box(of,center2,center3,3,ff_family.get_father_handle())
-
-                        center3 = int(max_size)/16*3
-                        self.draw_connected_box(of,center2,center3,3,ff_family.get_mother_handle())
-
-                center2 = int(max_size/8)*3
-                f_mother = self.draw_connected_box(of,center1,center2,2,f_family.get_mother_handle())
-
-                if f_mother:
-                    ff_family_handle = f_mother.get_main_parents_family_handle()
-                    if ff_family_handle:
-                        self.extend_line(of,center2,XOFFSET+3*WIDTH+2*HGAP)
-                        ff_family = self.db.get_family_from_handle(ff_family_handle)
-
-                        center3 = int(max_size)/16*5
-                        self.draw_connected_box(of,center2,center3,3,ff_family.get_father_handle())
-
-                        center3 = int(max_size)/16*7
-                        self.draw_connected_box(of,center2,center3,3,ff_family.get_mother_handle())
-
-        mother_handle = family.get_mother_handle()
-        if mother_handle:
-            center1 = int(max_size/4)*3
-            mother = self.draw_connected_box(of,center0,center1,1,mother_handle)
-
-            m_family_handle = mother.get_main_parents_family_handle()
-            if m_family_handle:
-                self.extend_line(of,center1,XOFFSET+2*WIDTH+HGAP)
-                m_family = self.db.get_family_from_handle(m_family_handle)
-
-                center2 = int(max_size/8)*5
-                f_father = self.draw_connected_box(of,center1,center2,2,m_family.get_father_handle())
-
-                if f_father:
-                    ff_family_handle = f_father.get_main_parents_family_handle()
-                    if ff_family_handle:
-                        self.extend_line(of,center2,XOFFSET+3*WIDTH+2*HGAP)
-                        ff_family = self.db.get_family_from_handle(ff_family_handle)
-
-                        center3 = int(max_size)/16*9
-                        self.draw_connected_box(of,center2,center3,3,ff_family.get_father_handle())
-
-                        center3 = int(max_size)/16*11
-                        self.draw_connected_box(of,center2,center3,3,ff_family.get_mother_handle())
-
-                center2 = int(max_size/8)*7
-                f_mother = self.draw_connected_box(of,center1,center2,2,m_family.get_mother_handle())
-
-                if f_mother:
-                    ff_family_handle = f_mother.get_main_parents_family_handle()
-                    if ff_family_handle:
-                        self.extend_line(of,center2,XOFFSET+3*WIDTH+2*HGAP)
-                        ff_family = self.db.get_family_from_handle(ff_family_handle)
-
-                        center3 = int(max_size)/16*13
-                        self.draw_connected_box(of,center2,center3,3,ff_family.get_father_handle())
-
-                        center3 = int(max_size)/16*15
-                        self.draw_connected_box(of,center2,center3,3,ff_family.get_mother_handle())
+        center = int(max_size/2)
+        self.draw_tree(of,1,generations,max_size,0,center,self.person.handle)
 
         of.write('</div>\n')
         of.write('<table style="height: %dpx; width: %dx;"><tr><td></td></tr></table>\n' %
-                 (max_size,3*WIDTH+2*HGAP+2*XOFFSET))
+                 (max_size,XOFFSET+(generations)*WIDTH+(generations-1)*HGAP))
+    
+    def draw_tree(self,of,gen,maxgen,max_size,old_center,new_center,phandle):
+        if gen > maxgen:
+            return
+        gen_offset = int(max_size / pow(2,gen+1))
+        person = self.db.get_person_from_handle(phandle)
+        if not person:
+            return
+
+        if gen == 1:
+            self.draw_box(of,new_center,0,person)
+        else:
+            self.draw_connected_box(of,old_center,new_center,gen-1,phandle)
+        
+        if gen == maxgen:
+            return
+
+        family_handle = person.get_main_parents_family_handle()
+        if family_handle:
+            line_offset = XOFFSET + (gen)*WIDTH + (gen-1)*HGAP
+            self.extend_line(of,new_center,line_offset)
+
+            gen = gen + 1
+            family = self.db.get_family_from_handle(family_handle)
+            
+            f_center = new_center-gen_offset
+            f_handle = family.get_father_handle()
+            self.draw_tree(of,gen,maxgen,max_size,new_center,f_center,f_handle)
+
+            m_center = new_center+gen_offset
+            m_handle = family.get_mother_handle()
+            self.draw_tree(of,gen,maxgen,max_size,new_center,m_center,m_handle)
 
     def display_ind_sources(self,of):
         sreflist = self.src_refs + self.person.get_source_references()
@@ -2364,6 +2311,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.options_dict = {
             'NWEBarchive'       : 0,
             'NWEBgraph'         : 1,
+            'NWEBgraphgens'     : 4,
             'NWEBod'            : './',
             'NWEBcopyright'     : 0,
             'NWEBrestrictinfo'  : 0,
@@ -2441,6 +2389,16 @@ class WebReportOptions(ReportOptions.ReportOptions):
 
         self.inc_graph = gtk.CheckButton(graph_msg)
         self.inc_graph.set_active(self.options_dict['NWEBgraph'])
+        
+        self.graph_gens = gtk.combo_box_new_text()
+        self.graph_gens_options = ['2','3','4','5']
+        for text in self.graph_gens_options:
+            self.graph_gens.append_text(text)
+        def_gens = str(self.options_dict['NWEBgraphgens'])
+        if def_gens in self.graph_gens_options:
+            self.graph_gens.set_active(self.graph_gens_options.index(def_gens))
+        else:
+            self.graph_gens.set_active(0)
 
         self.noid = gtk.CheckButton(_('Suppress GRAMPS ID'))
         self.noid.set_active(self.options_dict['NWEBnoid'])
@@ -2527,6 +2485,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         dialog.add_option(_('Character set encoding'),self.encoding)
         dialog.add_option(_('Stylesheet'),self.css)
         dialog.add_option(_('Copyright'),self.copy)
+        dialog.add_option(_('Ancestor graph generations'),self.graph_gens)
         dialog.add_option(None,self.inc_graph)
 
         title = _("Page Generation")
@@ -2591,6 +2550,12 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.options_dict['NWEBintronote'] = unicode(self.intro_note.get_handle())
         self.options_dict['NWEBhomenote'] = unicode(self.home_note.get_handle())
         self.options_dict['NWEBgraph'] = int(self.inc_graph.get_active())
+        
+        index = self.graph_gens.get_active()
+        generations = "4"
+        if index >= 0:
+            generations = self.graph_gens_options[index]
+        self.options_dict['NWEBgraphgens'] = generations
 
         index = self.ext.get_active()
         if index >= 0:
