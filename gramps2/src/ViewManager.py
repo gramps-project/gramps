@@ -80,6 +80,11 @@ import Mime
 import GrampsWidgets
 import UndoHistory
 
+import GrampsDisplay
+def show_url(dialog,link,user_data):
+    GrampsDisplay.url(link)
+gtk.about_dialog_set_url_hook(show_url,None)
+
 #-------------------------------------------------------------------------
 #
 # Constants
