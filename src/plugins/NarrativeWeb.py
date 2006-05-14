@@ -152,7 +152,7 @@ class BasePage:
         self.photo_list = photo_list
         self.exclude_private = not options.handler.options_dict['NWEBincpriv']
         self.usegraph = options.handler.options_dict['NWEBgraph']
-        self.graphgens = int(options.handler.options_dict['NWEBgraphgens'])
+        self.graphgens = options.handler.options_dict['NWEBgraphgens']
         self.use_home = self.options.handler.options_dict['NWEBhomenote'] != ""
         self.page_title = ""
 
@@ -2552,9 +2552,9 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.options_dict['NWEBgraph'] = int(self.inc_graph.get_active())
         
         index = self.graph_gens.get_active()
-        generations = "4"
+        generations = 4
         if index >= 0:
-            generations = self.graph_gens_options[index]
+            generations = int(self.graph_gens_options[index])
         self.options_dict['NWEBgraphgens'] = generations
 
         index = self.ext.get_active()
