@@ -588,7 +588,8 @@ class ListView(BookMarkView):
         for i in xrange(len(self.columns)):
             self.columns[i].set_sort_indicator(i==colmap[data][1])
         self.columns[self.sort_col].set_sort_order(order)
-
+#        print self.sort_col, order, colmap
+        
     def build_columns(self):
         for column in self.columns:
             self.list.remove_column(column)

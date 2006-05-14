@@ -93,6 +93,7 @@ class BaseModel(gtk.GenericTreeModel):
 
     def set_sort_column(self,col):
         self.sort_func = self.smap[col]
+        #print self.sort_func
 
     def sort_keys(self):
         cursor = self.gen_cursor()
@@ -607,6 +608,7 @@ class EventModel(BaseModel):
             self.column_cause,
             self.sort_change,
             self.column_handle,
+            self.column_tooltip,
             ]
         BaseModel.__init__(self, db, scol, order, tooltip_column=8,
                            search=search)
@@ -643,10 +645,11 @@ class EventModel(BaseModel):
         return unicode(data[0])
 
     def sort_change(self,data):
-        return time.localtime(data[11])
+        #print time.localtime(data[10])
+        return time.localtime(data[10])
 
     def column_change(self,data):
-        return unicode(time.strftime('%x %X',time.localtime(data[11])),
+        return unicode(time.strftime('%x %X',time.localtime(data[10])),
                             _codeset)
 
     def column_tooltip(self,data):
