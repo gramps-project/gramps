@@ -61,7 +61,7 @@
 	* src/Filters/Rules/Person/Makefile.am: added new files
 	* src/Filters/Rules/_RuleUtils.py: added loose_date_cmp
 
-2006-04-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+2006-05-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* data/gramps.schemas.in: Swap colors for ToDo and complete. Using
 	green is more obvious for complete records.
 
