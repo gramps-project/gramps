@@ -26,10 +26,9 @@ Class handling language-specific selection for date parser and displayer.
 
 #-------------------------------------------------------------------------
 #
-# Standard python modules
+# Python modules
 #
 #-------------------------------------------------------------------------
-import os
 import locale
 
 #-------------------------------------------------------------------------
@@ -75,21 +74,6 @@ _lang_to_display = {
     'ko_KR'  : DateDisplay,
     }
 
-def get_date_formats():
-    """
-    Returns the lists supported formats for date parsers and displayers
-    """
-    try:
-        return _lang_to_display[_lang].formats
-    except:
-        return _lang_to_display["C"].formats
-
-def set_format(value):
-    try:
-        displayer.set_format(value)
-    except:
-        pass
-
 def register_datehandler(locales,parse_class,display_class):
     """
     Registers the passed date parser class and date displayer
@@ -107,80 +91,3 @@ def register_datehandler(locales,parse_class,display_class):
     for lang_str in locales:
         _lang_to_parser[lang_str] = parse_class
         _lang_to_display[lang_str] = display_class
-    
-#-------------------------------------------------------------------------
-#
-# Initialize global parser
-#
-#-------------------------------------------------------------------------
-
-try:
-    if _lang_to_parser.has_key(_lang):
-        parser = _lang_to_parser[_lang]()
-    else:
-        parser = _lang_to_parser[_lang_short]()
-except:
-    print "Date parser for",_lang,"not available, using default"
-    parser = _lang_to_parser["C"]()
-
-try:
-    import Config
-    val = Config.get_date_format(_lang_to_display[_lang].formats)
-except:
-    try:
-        val = Config.get_date_format(_lang_to_display["C"].formats)
-    except:
-        val = 0
-
-try:
-    if _lang_to_display.has_key(_lang):
-        displayer = _lang_to_display[_lang](val)
-    else:
-        displayer = _lang_to_display[_lang_short](val)
-except:
-    print "Date displayer for",_lang,"not available, using default"
-    displayer = _lang_to_display["C"](val)
-    
-
-#--------------------------------------------------------------
-#
-# Convenience functions
-#
-#--------------------------------------------------------------
-
-def set_date(date_base, text) :
-    """
-    Sets the date of the DateBase instance.
-    
-    The date is parsed into a L{Date} instance.
-    
-    @param date: String representation of a date. The locale specific
-        L{DateParser} is used to parse the string into a GRAMPS L{Date}
-        object.
-    @type date: str
-    """
-    parser.set_date(date_base.get_date_object(),text)
-
-def get_date(date_base) :
-    """
-    Returns a string representation of the date of the DateBase instance.
-    
-    This representation is based off the default date display format
-    determined by the locale's L{DateDisplay} instance.
-    @return: Returns a string representing the DateBase date
-    @rtype: str
-    """
-    return displayer.display(date_base.get_date_object())
-
-def get_quote_date(self) :
-    """
-    Returns a string representation of the date of the DateBase instance.
-    
-    This representation is based off the default date display format
-    determined by the locale's L{DateDisplay} instance. The date is
-    enclosed in quotes if the L{Date} is not a valid date.
-    
-    @return: Returns a string representing the DateBase date
-    @rtype: str
-    """
-    return displayer.quote_display(date_base.get_date_object())

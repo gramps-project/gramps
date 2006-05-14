@@ -1,4 +1,11 @@
 2006-05-14  Alex Roitman  <shura@gramps-project.org>
+	* src/DateHandler/__init__.py: Proper import sequence.
+	* src/DateHandler/_DateHandler.py: Split into parts.
+	* src/DateHandler/_DateUtils.py: Add new file.
+	* src/DateHandler/_Date_sk.py: Bring to the new module structure.
+	* src/DateHandler/Makefile.am (pkgdata_PYTHON): Ship new file.
+	* src/GrampsDb/_ReadGedcom.py: Import from proper module.
+
 	* src/plugins/ChangeTypes.py (init_gui): Work around intltool bug.
 	* src/plugins/Summary.py: Set titles properly.
 	* src/plugins/CountAncestors.py: Add window title, remove extra text.
