@@ -168,8 +168,8 @@ class CmdRef(Tool.Tool):
                 import WebPage
                 oclass = WebPage.WebReportOptions(item[0])
             elif item[0] == "navwebpage":
-                import NavWebPage
-                oclass = NavWebPage.WebReportOptions(item[0])
+                import NarrativeWeb
+                oclass = NarrativeWeb.WebReportOptions(item[0])
         elif category == True:
             # This is the common options case
             # so class is already instantiated
