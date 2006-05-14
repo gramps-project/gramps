@@ -1,4 +1,5 @@
 2006-05-14  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/CountAncestors.py: Add window title, remove extra text.
 	* src/Filters/Rules/Person/_HasNoteRegexp.py: Import re module.
 
 2006-05-13  Brian Matherly  <brian@gramps-project.org>
