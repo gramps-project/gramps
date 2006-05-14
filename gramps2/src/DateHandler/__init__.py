@@ -28,6 +28,9 @@ Class handling language-specific selection for date parser and displayer.
 from _DateHandler import _lang, _lang_short, \
     _lang_to_parser, _lang_to_display, register_datehandler
 
+from _DateDisplay import DateDisplay
+from _DateParser import DateParser
+
 # Import all the localized handlers
 import _Date_de
 import _Date_es

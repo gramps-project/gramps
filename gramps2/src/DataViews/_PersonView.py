@@ -237,6 +237,7 @@ class PersonView(PageView.PersonNavView):
         self.filter_gender = gtk.combo_box_new_text()
         for i in [ _('any'), _('male'), _('female'), _('unknown') ]:
             self.filter_gender.append_text(i)
+        self.filter_gender.set_active(0)
             
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
         
