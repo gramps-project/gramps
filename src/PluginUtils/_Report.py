@@ -1250,12 +1250,15 @@ class ReportDialog(BareReportDialog):
 
     def size_changed(self,obj):
         (paper,name) = self.papersize_menu.get_value()
-        if paper.get_width() <= 0:
+
+        if name == "Custom Size":
             self.pwidth.set_sensitive(1)
             self.pheight.set_sensitive(1)
         else:
             self.pwidth.set_sensitive(0)
             self.pheight.set_sensitive(0)
+
+        if paper.get_width() > 0 and paper.get_height() > 0:
             self.pwidth.set_text("%.2f" % paper.get_width())
             self.pheight.set_text("%.2f" % paper.get_height())
         
