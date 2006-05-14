@@ -1,3 +1,6 @@
+2006-05-13  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py (show_url): Set up link handler.
+
 2006-05-13  Don Allingham  <don@gramps-project.org>
 	* src/plugins/RelCalc.py: provide default search value
 
