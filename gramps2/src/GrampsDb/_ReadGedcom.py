@@ -65,7 +65,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import Errors
 import RelLib
-from DateHandler import DateParser
+from DateHandler._DateParser import DateParser
 import NameDisplay
 import Utils
 import Mime
