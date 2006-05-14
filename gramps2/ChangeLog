@@ -1,3 +1,6 @@
+2006-05-13  Don Allingham  <don@gramps-project.org>
+	* src/plugins/RelCalc.py: provide default search value
+
 2006-05-12  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py: add non-functioning (for now) clear
 	button
