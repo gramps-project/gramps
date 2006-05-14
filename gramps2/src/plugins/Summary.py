@@ -47,6 +47,7 @@ import Utils
 import RelLib
 from PluginUtils import Report, register_report
 import DateHandler
+from ManagedWindow import set_titles
 
 #------------------------------------------------------------------------
 #
@@ -151,9 +152,9 @@ class SummaryReport:
             "destroy_passed_object" : Utils.destroy_passed_object,
         })
 
-        Utils.set_titles(topDialog.get_widget('summary'),
-                     topDialog.get_widget('title'),
-                     _('Database summary'))
+        set_titles(topDialog.get_widget('summary'),
+                   topDialog.get_widget('title'),
+                   _('Database summary'))
 
     
         top = topDialog.get_widget("summary")

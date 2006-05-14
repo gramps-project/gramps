@@ -47,6 +47,7 @@ import gtk.glade
 #------------------------------------------------------------------------
 import Utils
 from PluginUtils import Report, register_report
+from ManagedWindow import set_titles
 
 #------------------------------------------------------------------------
 #
@@ -69,7 +70,13 @@ class CountAncestors:
         total_theoretical = 0
         thisgen.add(person.get_handle())
         
-        title = _("Number of ancestors of \"%s\" by generation") % person.get_primary_name().get_name()
+        title_text = _('Ancestors of "%s"') \
+                     % person.get_primary_name().get_name()
+
+        top = topDialog.get_widget("summary")
+        title = topDialog.get_widget("title")
+        set_titles(top,title,title_text)
+
         thisgensize = 1
         gen = 0
         while thisgensize > 0:
@@ -108,10 +115,7 @@ class CountAncestors:
 
         text += _("Total ancestors in generations 2 to %d is %d. (%3.2f%%)\n") % (gen,allgen,percent)
 
-        top = topDialog.get_widget("summary")
-        top.set_title(_("Number of ancestors report"))
         textwindow = topDialog.get_widget("textwindow")
-        topDialog.get_widget("title").set_text(title)
         textwindow.get_buffer().set_text(text)
         top.show()
 
