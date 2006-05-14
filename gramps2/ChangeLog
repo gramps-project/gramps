@@ -1,4 +1,5 @@
 2006-05-14  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/ChangeTypes.py (init_gui): Work around intltool bug.
 	* src/plugins/Summary.py: Set titles properly.
 	* src/plugins/CountAncestors.py: Add window title, remove extra text.
 	* src/Filters/Rules/Person/_HasNoteRegexp.py: Import re module.

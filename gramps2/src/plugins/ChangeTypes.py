@@ -86,10 +86,10 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
         AutoComp.fill_combo(self.auto1,event_names)
         AutoComp.fill_combo(self.auto2,event_names)
         # Need to display localized event names
-        self.auto1.child.set_text(
-            _(self.options.handler.options_dict['fromtype']))
-        self.auto2.child.set_text(
-            _(self.options.handler.options_dict['totype']))
+        fromtype = self.options.handler.options_dict['fromtype']
+        totype = self.options.handler.options_dict['totype']
+        self.auto1.child.set_text(_(fromtype))
+        self.auto2.child.set_text(_(totype))
 
         window = self.glade.get_widget('top')
         self.set_window(window,self.glade.get_widget('title'),self.title)
