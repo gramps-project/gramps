@@ -1,3 +1,6 @@
+2006-05-14  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Person/_HasNoteRegexp.py: Import re module.
+
 2006-05-13  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: Add option for number of generations in
 	  ancestor graph (bug #0000077)

@@ -25,6 +25,7 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
+import re
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -42,7 +43,8 @@ class HasNoteRegexp(Rule):
 
     labels      = [ _('Regular expression:')]
     name        = _('People having notes containing <regular expression>')
-    description = _("Matches people whose notes contain text matching a regular expression")
+    description = _("Matches people whose notes contain text "
+                    "matching a regular expression")
     category    = _('General filters')
 
     def __init__(self, list):
