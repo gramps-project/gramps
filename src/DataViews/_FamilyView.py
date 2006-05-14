@@ -264,6 +264,7 @@ class FamilyView(PageView.PersonNavView):
 
     def redraw(self, *obj):
         if self.dbstate.active:
+            self.handle_history(self.dbstate.active.handle)
             self.change_person(self.dbstate.active.handle)
         
     def change_person(self, obj):
