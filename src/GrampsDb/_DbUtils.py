@@ -22,7 +22,7 @@
 
 
 import RelLib
-import BasicUtils
+from BasicUtils import UpdateCallback
 
 def remove_family_relationships(db, family_handle, trans=None):
     family = db.get_family_from_handle(family_handle)
