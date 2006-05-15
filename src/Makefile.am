@@ -78,6 +78,7 @@ gdir_PYTHON = \
 	ViewManager.py\
 	SelectFamily.py\
 	SelectSource.py\
+	SelectRepository.py\
 	UndoHistory.py\
 	BasicUtils.py
 

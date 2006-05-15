@@ -49,6 +49,13 @@ class RepoEmbedList(EmbeddedList):
     _DND_TYPE = DdTargets.REPOREF
     _DND_EXTRA = DdTargets.REPO_LINK
         
+    _MSG = {
+        'add'   : _('Create and add a new repository'),
+        'del'   : _('Remove the existing repository'),
+        'edit'  : _('Edit the selected repository'),
+        'share' : _('Add an existing repository'),
+        }
+
     _column_names = [
         (_('ID'),     0, 75), 
         (_('Title'),  1, 200), 
@@ -59,7 +66,7 @@ class RepoEmbedList(EmbeddedList):
     def __init__(self, dbstate, uistate, track, obj):
         self.obj = obj
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('Repositories'), RepoRefModel)
+                              _('Repositories'), RepoRefModel, True)
 
     def get_icon_name(self):
         return 'gramps-repository'
@@ -93,6 +100,31 @@ class RepoEmbedList(EmbeddedList):
                 repo, ref, self.add_callback)
         except Errors.WindowActiveError:
             pass
+
+    def share_button_clicked(self, obj):
+        import SelectRepository
+
+        sel = SelectRepository.SelectRepository(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            _("Select repository"))
+        
+        repo = sel.run()
+        if repo:
+            try:
+                from Editors import EditRepoRef
+                
+                ref = RelLib.RepoRef()
+                EditRepoRef(self.dbstate,
+                              self.uistate,
+                              self.track, 
+                              repo,
+                              ref,
+                              self.add_callback)
+                
+            except Errors.WindowActiveError:
+                pass
 
     def add_callback(self, value):
         value[0].ref = value[1].handle
