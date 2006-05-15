@@ -532,13 +532,11 @@ class PersonView(PageView.PersonNavView):
         if self.active:
 
             if Config.get(Config.FILTER):
-                search = (0, '', False)
+                filter_info = (PeopleModel.GENERIC, self.generic_filter)
             else:
-                search = self.search_bar.get_value()
-                self.generic_filter = None
+                filter_info = (PeopleModel.SEARCH, self.search_bar.get_value())
             
-            self.model = PeopleModel.PeopleModel(
-                self.dbstate.db, self.generic_filter, search)
+            self.model = PeopleModel.PeopleModel(self.dbstate.db, filter_info)
 
             self.tree.set_model(self.model)
 
@@ -570,6 +568,7 @@ class PersonView(PageView.PersonNavView):
             self.filter_pane.hide()
             active = False
         Config.set(Config.FILTER, active)
+        self.build_tree()
 
     def add(self,obj):
         person = RelLib.Person()

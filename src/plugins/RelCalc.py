@@ -104,7 +104,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
     
         self.tree = self.glade.get_widget("peopleList")
         
-        self.model = PeopleModel.PeopleModel(self.db,search=(0,'',False))
+        self.model = PeopleModel.PeopleModel(self.db,None)
         self.tree.set_model(self.model)
 
         column = gtk.TreeViewColumn(_('Name'), gtk.CellRendererText(),text=0)
