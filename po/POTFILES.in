@@ -204,6 +204,7 @@ src/ObjectSelector/_PersonPreviewFrame.py
 src/ObjectSelector/_PersonTreeFrame.py
 src/ObjectSelector/_PreviewFrameBase.py
 src/ObjectSelector/_TreeFrameBase.py
+src/Selectors/_BaseSelector.py
 src/Selectors/_SelectEvent.py
 src/Selectors/_SelectFamily.py
 src/Selectors/_SelectObject.py

@@ -29,76 +29,32 @@ from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# GTK/Gnome modules
-#
-#-------------------------------------------------------------------------
-
-import gtk
-import gtk.glade
-
-#-------------------------------------------------------------------------
-#
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
-import ListModel
-import ManagedWindow
+from RelLib import Place
+from _BaseSelector import BaseSelector
 
 #-------------------------------------------------------------------------
 #
-# SelectEvent
+# SelectPlace
 #
 #-------------------------------------------------------------------------
-class SelectPlace(ManagedWindow.ManagedWindow):
+class SelectPlace(BaseSelector):
 
-    def __init__(self, dbstate, uistate, track, title):
-        self.title = title
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+    def get_column_titles(self):
+        return [(_('Title'),4,350), (_('ID'),1,50)]
 
-        self.db = dbstate.db
-        self.glade = gtk.glade.XML(const.gladeFile,"select_person","gramps")
-        window = self.glade.get_widget('select_person')
-        title_label = self.glade.get_widget('title')
-        self.elist =  self.glade.get_widget('plist')
+    def get_from_handle_func(self):
+        return self.db.get_place_from_handle
+        
+    def get_cursor_func(self):
+        return self.db.get_place_cursor
 
-        self.set_window(window,title_label,self.title)
+    def get_class_func(self):
+        return Place
 
-        titles = [(_('Title'),4,350), (_('ID'),1,50), ('',0,0)]
-        self.ncols = len(titles)      
-
-        self.model = ListModel.ListModel(self.elist,titles)
-
-        self.redraw()
-        self.show()
-
-    def build_menu_names(self,obj):
-        return (self.title, None)
-
-    def redraw(self):
-        self.model.clear()
-        self.model.new_model()
-
-        for handle in self.db.get_place_handles():
-            place = self.db.get_place_from_handle(handle)
-            desc = place.get_title()
-            the_id = place.get_gramps_id()
-            self.model.add([desc,the_id,handle])
-        self.model.connect_model()
-
-    def run(self):
-        val = self.window.run()
-
-        if val == gtk.RESPONSE_OK:
-            store,node = self.model.get_selected()
-            if node:
-                data = self.model.get_data(node,range(self.ncols))
-                handle = data[2]
-                return_value = self.db.get_place_from_handle(handle)
-            else:
-                return_value = None
-            self.close()
-	    return return_value
-        else:
-            self.close()
-            return None
+    def get_model_row_data(self,obj):
+        name = obj.get_title()
+        the_id = obj.get_gramps_id()
+        return [name,the_id]

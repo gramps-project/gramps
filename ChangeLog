@@ -8,6 +8,10 @@
 	* src/Selectors/_SelectPerson.py: cleaner interface to filters
 
 2006-05-15  Alex Roitman  <shura@gramps-project.org>
+	* src/Selectors/_Select*.py: Subclass from BaseSelector.
+	* src/Selectors/Makefile.am: Ship new file.
+	* src/Selectors/_BaseSelector.py: Add new file.
+
 	* src/DataViews/_SourceView.py (edit,on_double_click): Catch exception.
 	* configure.in: Generate new Makefile.
 	* src/Makefile.am: adapt to new module.

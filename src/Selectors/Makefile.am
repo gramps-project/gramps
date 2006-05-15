@@ -7,6 +7,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/Selectors
 
 pkgdata_PYTHON = \
 	__init__.py \
+	_BaseSelector.py \
 	_SelectEvent.py \
 	_SelectFamily.py \
 	_SelectObject.py \
