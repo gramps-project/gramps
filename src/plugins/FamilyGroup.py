@@ -281,7 +281,7 @@ class FamilyGroup(Report.Report):
             for event_ref in person.get_event_ref_list():
                 event = self.database.get_event_from_handle(event_ref.ref)
                 evtType = event.get_type()
-                name = Utils.format_event( evtType )
+                name = str( evtType )
                 self.dump_parent_event(name,event)
 
         if self.incParAddr:
@@ -361,17 +361,15 @@ class FamilyGroup(Report.Report):
             return
 
         m = None
-        family_list = family.get_event_list()
-        for event_handle in family_list:
-            if event_handle:
-                event = self.database.get_event_from_handle(event_handle)
-                if event.get_name() == "Marriage":
+        family_list = family.get_event_ref_list()
+        for event_ref in family_list:
+            if event_ref:
+                event = self.database.get_event_from_handle(event_ref.ref)
+                if event.get_type() == RelLib.EventType.MARRIAGE:
                     m = event
                     break
 
         if len(family_list) > 0 or self.missingInfo:
-            
-            
             self.doc.start_table(("MarriageInfo"),'FGR-ParentTable')
             self.doc.start_row()
             self.doc.start_cell('FGR-ParentHead',3)
@@ -383,11 +381,11 @@ class FamilyGroup(Report.Report):
 
             self.dump_parent_event(_("Marriage"),m)
             
-            for event_handle in family_list:
-                if event_handle:
-                    event = self.database.get_event_from_handle(event_handle)
-                    if event.get_name() != "Marriage":
-                        self.dump_parent_event(event.get_name(),event)
+            for event_ref in family_list:
+                if event_ref:
+                    event = self.database.get_event_from_handle(event_ref.ref)
+                    if event.get_type() != RelLib.EventType.MARRIAGE:
+                        self.dump_parent_event(str(event.get_type()),event)
             
             self.doc.end_table()
 
