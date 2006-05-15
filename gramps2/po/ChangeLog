@@ -1,4 +1,5 @@
 2006-05-14  Alex Roitman  <shura@gramps-project.org>
+	* POTFILES.in: Add new file.
 	* gramps.pot: update.
 
 2006-05-12  Alex Roitman  <shura@gramps-project.org>

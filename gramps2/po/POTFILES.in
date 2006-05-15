@@ -44,6 +44,7 @@ src/SelectObject.py
 src/SelectPerson.py
 src/SelectFamily.py
 src/SelectSource.py
+src/SelectRepository.py
 src/Sort.py
 src/soundex.py
 src/Spell.py

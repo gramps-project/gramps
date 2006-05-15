@@ -1,4 +1,8 @@
 2006-05-14  Alex Roitman  <shura@gramps-project.org>
+	* src/Makefile.am (gdir_PYTHON): Add new file.
+	* src/SelectRepository.py: Add new file.
+	* src/DisplayTabs/_RepoEmbedList.py: Add share button.
+
 	* configure.in: Set up for 2.1.3.
 	* src/GrampsDb/_ReadXML.py (start_url): Parse URL type.
 	* example/gramps/exapmle.gramps: Add repositories, use new XML.
