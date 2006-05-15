@@ -62,9 +62,7 @@ import Config
 import const
 
 from Editors import EditPerson
-from Filters import SearchBar, GenericFilter
-from Filters.Rules.Person import *
-
+from Filters import SearchBar, GenericFilter, PersonSidebarFilter
 from DdTargets import DdTargets
 
 column_names = [
@@ -81,6 +79,7 @@ column_names = [
     ]
 
 
+        
 class PersonView(PageView.PersonNavView):
 
     def __init__(self,dbstate,uistate):
@@ -207,167 +206,16 @@ class PersonView(PageView.PersonNavView):
         self.selection.set_mode(gtk.SELECTION_MULTIPLE)
         self.selection.connect('changed',self.row_changed)
 
-
-        self.filter_pane = self.build_filter_sidebar()
+        self.filter_sidebar = PersonSidebarFilter(self.filter_clicked)
+        self.filter_pane = self.filter_sidebar.get_widget()
 
         hpaned.pack_start(self.vbox, True, True)
         hpaned.pack_end(self.filter_pane, False, False)
         
         return hpaned
 
-    def build_filter_sidebar(self):
-        table = gtk.Table(3,11)
-        table.set_border_width(6)
-        table.set_row_spacings(6)
-
-        self.filter_name = gtk.Entry()
-        self.filter_id = gtk.Entry()
-        self.filter_birth = gtk.Entry()
-        self.filter_death = gtk.Entry()
-        self.filter_event = RelLib.Event()
-        self.filter_event.set_type((RelLib.EventType.CUSTOM,''))
-        etype = gtk.ComboBoxEntry()
-        
-        self.event_menu = GrampsWidgets.MonitoredDataType(
-            etype,
-            self.filter_event.set_type,
-            self.filter_event.get_type)
-        
-        self.filter_note = gtk.Entry()
-        self.filter_gender = gtk.combo_box_new_text()
-        for i in [ _('any'), _('male'), _('female'), _('unknown') ]:
-            self.filter_gender.append_text(i)
-        self.filter_gender.set_active(0)
-            
-        self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
-        
-        self.apply_btn = gtk.Button(stock=gtk.STOCK_FIND)
-        self.apply_btn.connect('clicked', self.filter_clicked)
-
-        self.clear_btn = gtk.Button(stock=gtk.STOCK_CLEAR)
-        self.clear_btn.connect('clicked', self.clear_clicked)
-
-        table.set_col_spacing(0,6)
-        table.set_col_spacing(1,6)
-        
-        table.attach(GrampsWidgets.MarkupLabel(_('<b>Filter</b>')),
-                     0, 3, 0, 1, xoptions=gtk.FILL, yoptions=0)
-        
-        table.attach(GrampsWidgets.BasicLabel(_('Name')),
-                     1, 2, 1, 2, xoptions=gtk.FILL, yoptions=0)
-                     
-        table.attach(self.filter_name, 2, 3, 1, 2,
-                     xoptions=gtk.FILL, yoptions=0)
-
-        table.attach(GrampsWidgets.BasicLabel(_('ID')),
-                     1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
-                     
-        table.attach(self.filter_id, 2, 3, 2, 3,
-                     xoptions=gtk.FILL, yoptions=0)
-
-        table.attach(GrampsWidgets.BasicLabel(_('Gender')),
-                     1, 2, 3, 4, xoptions=gtk.FILL, yoptions=0)
-                     
-        table.attach(self.filter_gender, 2, 3, 3, 4,
-                     xoptions=gtk.FILL, yoptions=0)
-
-        table.attach(GrampsWidgets.BasicLabel(_('Birth date')),
-                     1, 2, 4, 5, xoptions=gtk.FILL, yoptions=0)
-                     
-        table.attach(self.filter_birth, 2, 3, 4, 5,
-                     xoptions=gtk.FILL, yoptions=0)
-
-        table.attach(GrampsWidgets.BasicLabel(_('Death date')),
-                     1, 2, 5, 6, xoptions=gtk.FILL, yoptions=0)
-                     
-        table.attach(self.filter_death, 2, 3, 5, 6,
-                     xoptions=gtk.FILL, yoptions=0)
-
-        table.attach(GrampsWidgets.BasicLabel(_('Has Event')),
-                     1, 2, 6, 7, xoptions=gtk.FILL, yoptions=0)
-                     
-        table.attach(etype, 2, 3, 6, 7, xoptions=gtk.FILL, yoptions=0)
-
-        table.attach(GrampsWidgets.BasicLabel(_('Note')),
-                     1, 2, 7, 8, xoptions=gtk.FILL, yoptions=0)
-                     
-        table.attach(self.filter_note, 2, 3, 7, 8,
-                     xoptions=gtk.FILL, yoptions=0)
-
-        table.attach(self.filter_regex, 2, 3, 8, 9, xoptions=gtk.FILL,
-                     yoptions=0)
-
-        hbox = gtk.HBox()
-        hbox.add(self.apply_btn)
-        hbox.add(self.clear_btn)
-        hbox.show()
-        table.attach(hbox, 2, 3, 9, 10, xoptions=gtk.FILL,
-                     yoptions=0)
-
-        return table
-
-    def clear_clicked(self,obj):
-        self.filter_name.set_text('')
-        self.filter_id.set_text('')
-        self.filter_birth.set_text('')
-        self.filter_death.get_text('')
-        self.filter_note.get_text('')
-        self.filter_gender.set_active(0)
-        self.event_menu.child.set_text('')
-
-    def filter_clicked(self, obj):
-        name = self.filter_name.get_text().strip()
-        gid = self.filter_id.get_text().strip()
-        birth = self.filter_birth.get_text().strip()
-        death = self.filter_death.get_text().strip()
-        note = self.filter_note.get_text().strip()
-        gender = self.filter_gender.get_active()
-        regex = self.filter_regex.get_active()
-
-        if not name and not gid and not birth and not death \
-               and not str(self.filter_event.get_type()) and \
-               not note and not gender > 0:
-            self.generic_filter = None
-        else:
-            self.generic_filter = GenericFilter()
-            if name:
-                if regex:
-                    rule = RegExpName([name])
-                else:
-                    rule = SearchName([name])
-                self.generic_filter.add_rule(rule)
-            if gid:
-                if regex:
-                    rule = RegExpIdOf([gid])
-                else:
-                    rule = MatchIdOf([gid])
-                self.generic_filter.add_rule(rule)
-            if gender > 0:
-                if gender == 1:
-                    self.generic_filter.add_rule(IsMale([]))
-                elif gender == 2:
-                    self.generic_filter.add_rule(IsFemale([]))
-                else:
-                    self.generic_filter.add_rule(HasUnknownGender([]))
-
-            etype = self.filter_event.get_type()
-            if str(etype):
-                rule = HasEvent([etype, '', '', ''])
-                self.generic_filter.add_rule(rule)
-                
-            if birth:
-                rule = HasBirth([birth,'',''])
-                self.generic_filter.add_rule(rule)
-            if death:
-                rule = HasDeath([death,'',''])
-                self.generic_filter.add_rule(rule)
-            if note:
-                if regex:
-                    rule = HasNoteRegexp([note])
-                else:
-                    rule = HasNoteMatchingSubstringOf([note])
-                self.generic_filter.add_rule(rule)
-
+    def filter_clicked(self):
+        self.generic_filter = self.filter_sidebar.get_filter()
         self.build_tree()
     
     def drag_begin(self, widget, *data):

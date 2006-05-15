@@ -1,4 +1,7 @@
 2006-05-15  Don Allingham  <don@gramps-project.org>
+	* src/Filters/__init__.py: add SidebarFilter, PersonSidebarFilter
+	* src/Filters/_SidebarFilter.py: added
+	* src/Filters/_PersonSidebarFilter.py: added
 	* src/DataViews/_PersonView.py: cleaner interface to filters
 	* src/plugins/RelCalc.py: cleaner interface to filters
 	* src/PeopleModel.py: cleaner interface to filters

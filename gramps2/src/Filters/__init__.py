@@ -57,3 +57,5 @@ from _FilterMenu import build_filter_menu
 from _FilterStore import FilterStore
 from _SearchBar import SearchBar
 from _SearchFilter import SearchFilter
+from _SidebarFilter import SidebarFilter
+from _PersonSidebarFilter import PersonSidebarFilter
