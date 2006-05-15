@@ -1,4 +1,6 @@
 2006-05-14  Alex Roitman  <shura@gramps-project.org>
+	* example/gramps/exapmle.gramps: Add repositories, use new XML.
+	* example/gramps/data.gramps: Add repositories, use new XML.
 	* src/DateHandler/__init__.py: Remove unneeded imports.
 	* src/plugins/Calendar.py (print_page): Use GrampsLocale._months.
 
