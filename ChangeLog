@@ -2,6 +2,7 @@
 	* src/GrampsDb/_DbUtils.py: import proper class.
 
 2006-05-15  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs/_PersonEventEmbedList.py: fix selection of default type
 	* src/Filters/__init__.py: add SidebarFilter, PersonSidebarFilter
 	* src/Filters/_SidebarFilter.py: added
 	* src/Filters/_PersonSidebarFilter.py: added

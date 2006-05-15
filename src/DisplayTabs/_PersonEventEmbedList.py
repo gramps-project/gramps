@@ -36,6 +36,12 @@ import RelLib
 from DdTargets import DdTargets
 from _EventEmbedList import EventEmbedList
 
+_std_types = [
+    RelLib.EventType(RelLib.EventType.BIRTH),
+    RelLib.EventType(RelLib.EventType.DEATH),
+    ]
+               
+
 #-------------------------------------------------------------------------
 #
 # PersonEventEmbedList
@@ -58,19 +64,16 @@ class PersonEventEmbedList(EventEmbedList):
 
     def default_type(self):
         type_list = []
-        ref_list = [ e for e in [self.obj.get_birth_ref(), self.obj.get_death_ref()] + \
-                     self.obj.get_event_ref_list() if e ]
+        ref_list = [ ref for ref in self.return_info() if ref ]
 
         event = None
         for event_ref in ref_list:
             event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-            type_list.append(int(event.get_type()))
+            type_list.append(event.get_type())
 
-        if event:
-            etype = event.get_type()
-            for etype in [RelLib.EventType.BIRTH, RelLib.EventType.DEATH]:
-                if etype not in type_list:
-                    return RelLib.EventType(etype)
+        for etype in _std_types:
+            if etype not in type_list:
+                return RelLib.EventType(etype)
         return RelLib.EventType(RelLib.EventType.BIRTH)
 
     def get_ref_editor(self):
