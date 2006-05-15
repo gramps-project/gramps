@@ -38,7 +38,7 @@ import DisplayModels
 import const
 import Utils
 import Bookmarks
-
+import Errors
 from DdTargets import DdTargets
 from Editors import EditSource, DelSrcQuery
 from QuestionDialog import QuestionDialog, ErrorDialog
@@ -151,7 +151,10 @@ class SourceView(PageView.ListView):
     def on_double_click(self,obj,event):
         handle = self.first_selected()
         source = self.dbstate.db.get_source_from_handle(handle)
-        EditSource(self.dbstate, self.uistate, [], source)
+        try:
+            EditSource(self.dbstate, self.uistate, [], source)
+        except Errors.WindowActiveError:
+            pass
 
     def add(self,obj):
         EditSource(self.dbstate, self.uistate, [], RelLib.Source())
@@ -186,5 +189,8 @@ class SourceView(PageView.ListView):
 
         for handle in mlist:
             source = self.dbstate.db.get_source_from_handle(handle)
-            EditSource(self.dbstate, self.uistate, [], source)
+            try:
+                EditSource(self.dbstate, self.uistate, [], source)
+            except Errors.WindowActiveError:
+                pass
 
