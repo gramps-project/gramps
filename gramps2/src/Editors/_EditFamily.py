@@ -81,7 +81,8 @@ from GrampsWidgets import *
 
 #from ObjectSelector import PersonSelector,PersonFilterSpec
 
-from SelectPerson import SelectPerson
+from Selectors import selector_factory
+SelectPerson = selector_factory('Person')
 
 class ChildEmbedList(EmbeddedList):
     """

@@ -1,3 +1,20 @@
+2006-05-15  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Generate new Makefile.
+	* src/Makefile.am: adapt to new module.
+	* src/Selectors: separate selectors in their own module.
+	* src/Select*.py: move to Selectors.
+	* src/DataViews/_FamilyView.py: Use new module.
+	* src/Editors/_EditLdsOrd.py: Use new module.
+	* src/Editors/_EditPersonRef.py: Use new module.
+	* src/Editors/_EditFamily.py: Use new module.
+	* src/DisplayTabs/_SourceEmbedList.py: Use new module.
+	* src/DisplayTabs/_RepoEmbedList.py: Use new module.
+	* src/DisplayTabs/_EventEmbedList.py: Use new module.
+	* src/DisplayTabs/_GalleryTab.py: Use new module.
+	* src/plugins/FilterEditor.py: Use new module.
+	* src/plugins/SimpleBookTitle.py: Use new module.
+	* src/PluginUtils/_Report.py: Use new module.
+
 2006-05-14  Alex Roitman  <shura@gramps-project.org>
 	* src/Makefile.am (gdir_PYTHON): Add new file.
 	* src/SelectRepository.py: Add new file.

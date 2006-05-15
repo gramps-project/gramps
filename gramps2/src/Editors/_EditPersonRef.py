@@ -100,7 +100,8 @@ class EditPersonRef(EditSecondary):
         self.top.get_widget('select').connect('clicked',self._select_person)
 
     def _select_person(self, obj):
-        from SelectPerson import SelectPerson
+        from Selectors import selector_factory
+        SelectPerson = selector_factory('Person')
 
         sel = SelectPerson(self.dbstate, self.uistate, "Select Person")
         person = sel.run()

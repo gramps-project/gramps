@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001  David R. Hampton
-# Copyright (C) 2001-2005  Donald N. Allingham
+# Copyright (C) 2001-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -965,8 +965,9 @@ class BareReportDialog:
                          self.window)
 
     def on_center_person_change_clicked(self,*obj):
-        import SelectPerson
-        sel_person = SelectPerson.SelectPerson(self.db,_('Select Person'))
+        from Selectors import selector_factory
+        SelectPerson = selector_factory('Person')
+        sel_person = SelectPerson(self.db,_('Select Person'))
         new_person = sel_person.run()
         if new_person:
             self.new_person = new_person

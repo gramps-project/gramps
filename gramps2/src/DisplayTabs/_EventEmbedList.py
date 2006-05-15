@@ -114,9 +114,10 @@ class EventEmbedList(EmbeddedList):
             pass
 
     def share_button_clicked(self, obj):
-        import SelectEvent
+        from Selectors import selector_factory
+        SelectEvent = selector_factory('Event')
 
-        sel = SelectEvent.SelectEvent(self.dbstate,self.uistate,self.track,
+        sel = SelectEvent(self.dbstate,self.uistate,self.track,
                                       _("Select event"))
         event = sel.run()
         if event:

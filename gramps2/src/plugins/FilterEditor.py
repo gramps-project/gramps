@@ -63,7 +63,8 @@ from Filters import GenericFilter, FilterList, Rules, \
 import AutoComp
 import ListModel
 import Utils
-import SelectPerson
+from Selectors import selector_factory
+SelectPerson = selector_factory('Person')
 import ManagedWindow
 
 from PluginUtils import Tool, register_tool

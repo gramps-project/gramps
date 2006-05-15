@@ -42,7 +42,8 @@ import gtk
 #------------------------------------------------------------------------
 from PluginUtils import Report, ReportOptions, register_report
 import BaseDoc
-import SelectObject
+from Selectors import selector_factory
+SelectObject = selector_factory('MediaObject')
 import AddMedia
 import ImgManip
 

@@ -12,6 +12,7 @@ SUBDIRS = \
 	Mime \
 	Models \
 	ObjectSelector \
+	Selectors \
 	RelLib \
 	TreeViews \
 	data \
@@ -62,9 +63,6 @@ gdir_PYTHON = \
 	RecentFiles.py\
 	Relationship.py\
 	ScratchPad.py\
-	SelectEvent.py\
-	SelectObject.py\
-	SelectPerson.py\
 	Sort.py\
 	soundex.py\
 	Spell.py\
@@ -76,9 +74,6 @@ gdir_PYTHON = \
 	TreeTips.py\
 	Utils.py\
 	ViewManager.py\
-	SelectFamily.py\
-	SelectSource.py\
-	SelectRepository.py\
 	UndoHistory.py\
 	BasicUtils.py
 

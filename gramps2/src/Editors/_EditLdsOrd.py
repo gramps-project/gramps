@@ -217,7 +217,8 @@ class EditLdsOrd(EditSecondary):
         self.top.get_widget('vbox').pack_start(notebook,True)
 
     def select_parents_clicked(self, obj):
-        from SelectFamily import SelectFamily
+        from Selectors import selector_factory
+        SelectFamily = selector_factory('Family')
 
         dialog = SelectFamily(self.dbstate.db, _('Select Family'))
         family = dialog.run()
