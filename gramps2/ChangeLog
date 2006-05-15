@@ -1,3 +1,9 @@
+2006-05-15  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: cleaner interface to filters
+	* src/plugins/RelCalc.py: cleaner interface to filters
+	* src/PeopleModel.py: cleaner interface to filters
+	* src/Selectors/_SelectPerson.py: cleaner interface to filters
+
 2006-05-15  Alex Roitman  <shura@gramps-project.org>
 	* src/DataViews/_SourceView.py (edit,on_double_click): Catch exception.
 	* configure.in: Generate new Makefile.

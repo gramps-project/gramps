@@ -120,6 +120,9 @@ else:
         mylist.sort(locale.strcoll)
         return mylist
 
+GENERIC = 0
+SEARCH = 1
+FAST = 2
 
 #-------------------------------------------------------------------------
 #
@@ -132,7 +135,7 @@ class PeopleModel(gtk.GenericTreeModel):
     the PersonView
     """
 
-    def __init__(self, db, data_filter=None, search=None, skip=[]):
+    def __init__(self, db, filter_info=None, skip=[]):
         """
         Initialize the model building the initial data
         """
@@ -160,15 +163,23 @@ class PeopleModel(gtk.GenericTreeModel):
         self.iter2path = {}
         self.path2iter = {}
         self.sname_sub = {}
-        if not data_filter:
-            col = search[0]
-            text = search[1]
-            inv = search[2]
-            func = lambda x: self.on_get_value(x, col) or u""
-            data_filter = SearchFilter(func, text, inv)
-            self._build_data = self._build_search_sub
+        if filter_info:
+            if filter_info[0] == GENERIC:
+                data_filter = filter_info[1]
+                self._build_data = self._build_filter_sub
+            elif filter_info[0] == SEARCH:
+                col = filter_info[1][0]
+                text = filter_info[1][1]
+                inv = filter_info[1][2]
+                func = lambda x: self.on_get_value(x, col) or u""
+                data_filter = SearchFilter(func, text, inv)
+                self._build_data = self._build_search_sub
+            else:
+                data_filter = filter_info[1]
+                self._build_data = self._build_search_sub
         else:
-            self._build_data = self._build_filter_sub
+            self._build_data = self._build_search_sub
+            data_filter = None
         self.rebuild_data(data_filter, skip)
 
     def update_todo(self,client,cnxn_id,entry,data):
@@ -214,7 +225,10 @@ class PeopleModel(gtk.GenericTreeModel):
         ngn = NameDisplay.displayer.name_grouping_name
         nsn = NameDisplay.displayer.raw_sorted_name
 
-        handle_list = dfilter.apply(self.db, self.db.get_person_handles())
+        if dfilter:
+            handle_list = dfilter.apply(self.db, self.db.get_person_handles())
+        else:
+            handle_list = self.db.get_person_handles()
 
         for handle in handle_list:
             d = self.db.get_raw_person_data(handle)

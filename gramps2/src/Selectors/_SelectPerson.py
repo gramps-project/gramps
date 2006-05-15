@@ -69,7 +69,7 @@ class SelectPerson(ManagedWindow.ManagedWindow):
             title)
         
         self.model = PeopleModel.PeopleModel(self.db,
-                                             data_filter=filter,
+                                             (PeopleModel.FAST, filter),
                                              skip=skip)
 
         self.add_columns(self.plist)
