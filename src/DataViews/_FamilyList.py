@@ -115,9 +115,6 @@ class FamilyListView(PageView.ListView):
               </placeholder>
               <menuitem action="ColumnEdit"/>
             </menu>
-            <menu action="ViewMenu">
-              <menuitem action="Filter"/>
-            </menu>
            <menu action="BookMenu">
               <placeholder name="AddEditBook">
                 <menuitem action="AddBook"/>

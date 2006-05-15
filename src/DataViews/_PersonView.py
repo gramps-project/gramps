@@ -307,7 +307,13 @@ class PersonView(PageView.PersonNavView):
         return table
 
     def clear_clicked(self,obj):
-        print "clear"
+        self.filter_name.set_text('')
+        self.filter_id.set_text('')
+        self.filter_birth.set_text('')
+        self.filter_death.get_text('')
+        self.filter_note.get_text('')
+        self.filter_gender.set_active(0)
+        self.event_menu.child.set_text('')
 
     def filter_clicked(self, obj):
         name = self.filter_name.get_text().strip()
