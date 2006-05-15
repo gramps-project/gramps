@@ -1,4 +1,5 @@
 2006-05-14  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Set up for 2.1.3.
 	* src/GrampsDb/_ReadXML.py (start_url): Parse URL type.
 	* example/gramps/exapmle.gramps: Add repositories, use new XML.
 	* example/gramps/data.gramps: Add repositories, use new XML.
