@@ -727,8 +727,8 @@ child_father_mother = {
         _("He was the son of %(father)s and %(mother)s."),
       ],
       [
-        _("%(male_name)s is the child of %(father)s and %(mother)s."),
-        _("%(male_name)s was the child of %(father)s and %(mother)s."),
+        _("%(male_name)s is the son of %(father)s and %(mother)s."),
+        _("%(male_name)s was the son of %(father)s and %(mother)s."),
       ]
     ],
     RelLib.Person.FEMALE : [
@@ -737,8 +737,8 @@ child_father_mother = {
         _("She was the daughter of %(father)s and %(mother)s."),
      ],
      [
-        _("%(female_name)s is the child of %(father)s and %(mother)s."),
-        _("%(female_name)s was the child of %(father)s and %(mother)s."),
+        _("%(female_name)s is the daughter of %(father)s and %(mother)s."),
+        _("%(female_name)s was the daughter of %(father)s and %(mother)s."),
      ],
     ]
 }
@@ -760,8 +760,8 @@ child_father = {
         _("He was the son of %(father)s."),
       ],
       [
-        _("%(male_name)s is the child of %(father)s."),
-        _("%(male_name)s was the child of %(father)s."),
+        _("%(male_name)s is the son of %(father)s."),
+        _("%(male_name)s was the son of %(father)s."),
       ],
     ],
     RelLib.Person.FEMALE : [
@@ -770,8 +770,8 @@ child_father = {
         _("She was the daughter of %(father)s."),
       ],  
       [
-        _("%(female_name)s is the child of %(father)s."),
-        _("%(female_name)s was the child of %(father)s."),
+        _("%(female_name)s is the daughter of %(father)s."),
+        _("%(female_name)s was the daughter of %(father)s."),
       ],
     ],
 }
@@ -793,8 +793,8 @@ child_mother = {
         _("He was the son of %(mother)s."),
       ],
       [
-        _("%(male_name)s is the child of %(mother)s."),
-        _("%(male_name)s was the child of %(mother)s."),
+        _("%(male_name)s is the son of %(mother)s."),
+        _("%(male_name)s was the son of %(mother)s."),
       ],
     ],
     RelLib.Person.FEMALE : [
@@ -803,8 +803,8 @@ child_mother = {
         _("She was the daughter of %(mother)s."),
       ],
       [
-        _("%(female_name)s is the child of %(mother)s."),
-        _("%(female_name)s was the child of %(mother)s."),
+        _("%(female_name)s is the daughter of %(mother)s."),
+        _("%(female_name)s was the daughter of %(mother)s."),
       ],
    ],
 }
