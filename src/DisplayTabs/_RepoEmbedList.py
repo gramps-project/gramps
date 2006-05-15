@@ -102,9 +102,10 @@ class RepoEmbedList(EmbeddedList):
             pass
 
     def share_button_clicked(self, obj):
-        import SelectRepository
+        from Selectors import selector_factory
+        SelectRepository = selector_factory('Repository')
 
-        sel = SelectRepository.SelectRepository(
+        sel = SelectRepository(
             self.dbstate,
             self.uistate,
             self.track,

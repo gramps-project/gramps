@@ -712,7 +712,8 @@ class FamilyView(PageView.PersonNavView):
 
     def select_family(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
-            from SelectFamily import SelectFamily
+            from Selectors import selector_factory
+            SelectFamily = selector_factory('Family')
 
             dialog = SelectFamily(self.dbstate, self.uistate)
             family = dialog.run()

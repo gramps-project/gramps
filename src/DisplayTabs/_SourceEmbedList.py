@@ -95,9 +95,10 @@ class SourceEmbedList(EmbeddedList):
             pass
 
     def share_button_clicked(self, obj):
-        import SelectSource
+        from Selectors import selector_factory
+        SelectSource = selector_factory('Source')
 
-        sel = SelectSource.SelectSource(
+        sel = SelectSource(
             self.dbstate,
             self.uistate,
             self.track,

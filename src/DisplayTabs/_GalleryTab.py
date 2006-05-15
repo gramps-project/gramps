@@ -217,9 +217,10 @@ class GalleryTab(ButtonTab):
         Function called with the Add button is clicked. This function
         should be overridden by the derived class.
         """
-        import SelectObject
+        from Selectors import selector_factory
+        SelectObject = selector_factory('MediaObject')
 
-        sel = SelectObject.SelectObject(self.dbstate,self.uistate,self.track,
+        sel = SelectObject(self.dbstate,self.uistate,self.track,
                                         _("Select media"))
         src = sel.run()
         if src:
