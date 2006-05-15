@@ -3,8 +3,8 @@
 	* src/plugins/Calendar.py (print_page): Use GrampsLocale._months.
 
 2006-05-14  Brian Matherly  <brian@gramps-project.org>
-	* src/PluginUtils/_ReportUtils.py: Change strings to include gender instead
-	  of "child of"
+	* src/PluginUtils/_ReportUtils.py: Change strings to include 
+	gender instead of "child of"
 	* src/plugins/FamilyGroup.py: Fix for Event and EventType changes.
 
 2006-05-14  Don Allingham  <don@gramps-project.org>
