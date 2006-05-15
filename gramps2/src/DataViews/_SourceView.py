@@ -119,9 +119,6 @@ class SourceView(PageView.ListView):
     def ui_definition(self):
         return '''<ui>
           <menubar name="MenuBar">
-            <menu action="ViewMenu">
-              <menuitem action="Filter"/>
-            </menu>
             <menu action="BookMenu">
               <placeholder name="AddEditBook">
                 <menuitem action="AddBook"/>

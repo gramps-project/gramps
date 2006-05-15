@@ -568,6 +568,7 @@ class ListView(BookMarkView):
                 order = gtk.SORT_ASCENDING
             else:
                 order = gtk.SORT_DESCENDING
+
         self.sort_col = data
         handle = self.first_selected()
 
@@ -575,9 +576,10 @@ class ListView(BookMarkView):
             search = EMPTY_SEARCH
         else:
             search = self.search_bar.get_value()
-            
+
         self.model = self.make_model(self.dbstate.db, self.sort_col, order,
                                      search=search)
+        
         self.list.set_model(self.model)
         colmap = self.column_order()
 
@@ -586,9 +588,8 @@ class ListView(BookMarkView):
             self.selection.select_path(path)
             self.list.scroll_to_cell(path,None,1,0.5,0)
         for i in xrange(len(self.columns)):
-            self.columns[i].set_sort_indicator(i==colmap[data][1])
+            self.columns[i].set_sort_indicator(i==self.sort_col)
         self.columns[self.sort_col].set_sort_order(order)
-#        print self.sort_col, order, colmap
         
     def build_columns(self):
         for column in self.columns:

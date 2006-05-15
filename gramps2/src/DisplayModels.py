@@ -93,15 +93,15 @@ class BaseModel(gtk.GenericTreeModel):
 
     def set_sort_column(self,col):
         self.sort_func = self.smap[col]
-        #print self.sort_func
 
     def sort_keys(self):
         cursor = self.gen_cursor()
         sarray = []
         data = cursor.next()
-        
+
         while data:
-            sarray.append((locale.strxfrm(self.sort_func(data[1])),data[0]))
+            key = locale.strxfrm(self.sort_func(data[1]))
+            sarray.append((key,data[0]))
             data = cursor.next()
         cursor.close()
 
@@ -277,7 +277,7 @@ class SourceModel(BaseModel):
                        GrampsLocale.codeset)
     
     def sort_change(self,data):
-        return time.localtime(data[8])
+        return "%012x" % data[8]
 
     def column_tooltip(self,data):
         if const.use_tips:
@@ -387,7 +387,7 @@ class PlaceModel(BaseModel):
             return u''
 
     def sort_change(self,data):
-        return time.localtime(data[11])
+        return "%012x" % data[11]
     
     def column_change(self,data):
         return unicode(time.strftime('%x %X',time.localtime(data[11])),
@@ -396,8 +396,9 @@ class PlaceModel(BaseModel):
     def column_tooltip(self,data):
         if const.use_tips:
             try:
-                t = ToolTips.TipFromFunction(self.db, lambda:
-                                             self.db.get_place_from_handle(data[0]))
+                t = ToolTips.TipFromFunction(
+                    self.db, lambda:
+                    self.db.get_place_from_handle(data[0]))
             except:
                 log.error("Failed to create tooltip.", exc_info=True)
             return t
@@ -476,7 +477,7 @@ class FamilyModel(BaseModel):
         return unicode(data[1])
 
     def sort_change(self,data):
-        return time.localtime(data[13])
+        return "%012x" % data[13]
     
     def column_change(self,data):
         return unicode(time.strftime('%x %X',time.localtime(data[13])),
@@ -553,14 +554,16 @@ class MediaModel(BaseModel):
 
     def column_date(self,data):
         if data[9]:
-            return unicode(DateHandler.displayer.display(data[9]))
+            date = RelLib.Date()
+            date.unserialize(data[9])
+            return unicode(DateHandler.displayer.display(date))
         return u''
 
     def column_handle(self,data):
         return unicode(data[0])
 
     def sort_change(self,data):
-        return time.localtime(data[8])
+        return "%012x" % data[8]
 
     def column_change(self,data):
         return unicode(time.strftime('%x %X',time.localtime(data[8])),
@@ -645,8 +648,7 @@ class EventModel(BaseModel):
         return unicode(data[0])
 
     def sort_change(self,data):
-        #print time.localtime(data[10])
-        return time.localtime(data[10])
+        return "%012x" % data[10]
 
     def column_change(self,data):
         return unicode(time.strftime('%x %X',time.localtime(data[10])),
@@ -724,14 +726,21 @@ class RepositoryModel(BaseModel):
 
     def column_city(self,data):
         try:
-            return data[4].get_city()
+            if data[4]:
+                addr = RelLib.Address()
+                addr.unserialize(data[4][0])
+                return addr.get_city()
+            else:
+                return u''
         except:
             return u''
 
     def column_street(self,data):
         try:
             if data[5]:
-                return data[5][0].get_street()
+                addr = RelLib.Address()
+                addr.unserialize(data[5][0])
+                return addr.get_street()
             else:
                 return u''
         except:
@@ -740,7 +749,9 @@ class RepositoryModel(BaseModel):
     def column_county(self,data):
         try:
             if data[5]:
-                return data[5][0].get_county()
+                addr = RelLib.Address()
+                addr.unserialize(data[5][0])
+                return addr.get_county()
             else:
                 return u''
         except:
@@ -749,7 +760,9 @@ class RepositoryModel(BaseModel):
     def column_state(self,data):
         try:
             if data[5]:
-                return data[5][0].get_state()
+                addr = RelLib.Address()
+                addr.unserialize(data[5][0])
+                return addr.get_state()
             else:
                 return u''
         except:
@@ -758,7 +771,9 @@ class RepositoryModel(BaseModel):
     def column_country(self,data):
         try:
             if data[5]:
-                return data[5][0].get_country()
+                addr = RelLib.Address()
+                addr.unserialize(data[5][0])
+                return addr.get_country()
             else:
                 return u''
         except:
@@ -767,7 +782,9 @@ class RepositoryModel(BaseModel):
     def column_postal_code(self,data):
         try:
             if data[5]:
-                return data[5][0].get_postal_code()
+                addr = RelLib.Address()
+                addr.unserialize(data[5][0])
+                return addr.get_postal_code()
             else:
                 return u''
         except:
@@ -776,24 +793,40 @@ class RepositoryModel(BaseModel):
     def column_phone(self,data):
         try:
             if data[5]:
-                return data[5][0].get_phone()
+                addr = RelLib.Address()
+                addr.unserialize(data[5][0])
+                return addr.get_phone()
             else:
                 return u''
         except:
             return u''
 
     def column_email(self,data):
-        return unicode(data[5])
+        if data[6]:
+            for i in data[6]:
+                url = RelLib.Url()
+                url.unserialize(i)
+                if url.get_type() == RelLib.UrlType.EMAIL:
+                    return unicode(url.path)
+        return u''
 
     def column_search_url(self,data):
-        return unicode(data[6])
+        if data[6]:
+            for i in data[6]:
+                url = RelLib.Url()
+                url.unserialize(i)
+                if url.get_type() == RelLib.UrlType.WEB_SEARCH:
+                    return unicode(url.path)
+        return u''
     
     def column_home_url(self,data):
         if data[6]:
-            urllist = data[6]
-            return unicode(urllist[0].path)
-        else:
-            return u""
+            for i in data[6]:
+                url = RelLib.Url()
+                url.unserialize(i)
+                if url.get_type() == RelLib.UrlType.WEB_HOME:
+                    return unicode(url.path)
+        return u""
 
     def column_tooltip(self,data):
         return ""

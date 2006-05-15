@@ -8,6 +8,14 @@
 	* src/plugins/FamilyGroup.py: Fix for Event and EventType changes.
 
 2006-05-14  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_RepositoryView.py: column fixes
+	* src/DataViews/_SourceView.py: column fixes
+	* src/DataViews/_EventView.py: column fixes
+	* src/DataViews/_FamilyList.py: column fixes
+	* src/DataViews/_PlaceView.py: column fixes
+	* src/DataViews/_PersonView.py: column fixes
+	* src/DisplayModels.py: column/sort fixes
+	* src/PageView.py: column/sort fixes
 	* src/DateHandler/__init__.py: import DateParser and DateDisplay
 	* src/DataViews/_PersonView.py: default gender filter to "any"
 	* configure.in: bump up to 2.1.2
