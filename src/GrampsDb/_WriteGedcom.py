@@ -69,6 +69,7 @@ import ansel_utf8
 import Utils
 import NameDisplay
 from QuestionDialog import ErrorDialog, WarningDialog
+from BasicUtils import UpdateCallback
 
 def keep_utf8(s):
     return s
@@ -478,19 +479,16 @@ class GedcomWriterOptionBox:
         self.nl = self.cnvtxt(self.target_ged.get_endl())
 
 
-class GedcomWriter:
+class GedcomWriter(UpdateCallback):
     def __init__(self,database,person,cl=0,filename="",option_box=None,
                  callback=None):
+        UpdateCallback.__init__(self,callback)
+
         self.db = database
         self.person = person
         self.option_box = option_box
         self.cl = cl
         self.filename = filename
-        self.callback = callback
-        if '__call__' in dir(self.callback): # callback is really callable
-            self.update = self.update_real
-        else:
-            self.update = self.update_empty
 
         self.plist = {}
         self.slist = {}
@@ -550,16 +548,6 @@ class GedcomWriter:
                                         self.slist,self.option_box.private)
                     self.flist[family_handle] = 1
     
-    def update_empty(self):
-        pass
-
-    def update_real(self):
-        self.count += 1
-        newval = int(100*self.count/self.total)
-        if newval != self.oldval:
-            self.callback(newval)
-            self.oldval = newval
-
     def cl_setup(self):
         self.restrict = 0
         self.private = 0
@@ -665,10 +653,8 @@ class GedcomWriter:
             self.writeln('2 CONT Not Provided')
 
         pkeys = self.plist.keys()
-        self.total = len(pkeys) + len(self.flist.keys()) \
-                     + len(self.slist.keys())
-        self.oldval = 0
-        self.count = 0
+        self.set_total(len(pkeys) + len(self.flist.keys()) \
+                       + len(self.slist.keys()))
         
         sorted = []
         for key in pkeys:
