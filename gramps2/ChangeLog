@@ -1,3 +1,8 @@
+2006-05-16  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/_PersonSidebarFilter.py: Import gettext.
+	* src/Filters/_SidebarFilter.py: Import gettext.
+	* src/Filters/Makefile.am: Ship new files.
+
 2006-05-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_PedigreeView.py: Add navigation-arrows to the tree;
 	work around bug in database-changed signals

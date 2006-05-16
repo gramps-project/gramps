@@ -20,6 +20,7 @@
 
 # $Id: _FilterList.py 6529 2006-05-03 06:29:07Z rshura $
 
+from gettext import gettext as _
 import gtk
 import GrampsWidgets
 import RelLib
