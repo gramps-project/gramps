@@ -348,6 +348,8 @@ src/Filters/_ParamFilter.py
 src/Filters/__init__.py
 src/Filters/_SearchBar.py
 src/Filters/_SearchFilter.py
+src/Filters/_SidebarFilter.py
+src/Filters/_PersonSidebarFilter.py
 src/Filters/Rules/_Everything.py
 src/Filters/Rules/_HasTextMatchingRegexpOf.py
 src/Filters/Rules/_HasTextMatchingSubstringOf.py

@@ -15,8 +15,9 @@ pkgdata_PYTHON = \
 	_ParamFilter.py \
 	__init__.py \
 	_SearchBar.py \
-	_SearchFilter.py
-
+	_SearchFilter.py \
+	_SidebarFilter.py \
+	_PersonSidebarFilter.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters
 pkgpythondir = @pkgpythondir@/Filters
