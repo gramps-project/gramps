@@ -74,6 +74,14 @@ def register_stock_icons ():
          ('gramps-place',_('Places'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'place.png'),
          ('gramps-map',_('Map'),gtk.gdk.CONTROL_MASK,0,'')),
+        (os.path.join(const.image_dir,'stock_export.png'),
+         ('gramps-export',_('Map'),gtk.gdk.CONTROL_MASK,0,'')),
+        (os.path.join(const.image_dir,'stock_undo-history.png'),
+         ('gramps-undo-history',_('Undo History'),gtk.gdk.CONTROL_MASK,0,'')),
+        (os.path.join(const.image_dir,'stock_add-bookmark.png'),
+         ('gramps-add-bookmark',_('Add bookmark'),gtk.gdk.CONTROL_MASK,0,'')),
+        (os.path.join(const.image_dir,'stock_edit-bookmark.png'),
+         ('gramps-edit-bookmark',_('Edit bookmarks'),gtk.gdk.CONTROL_MASK,0,'')),
         ]
     
     # Register our stock items
