@@ -1,3 +1,5 @@
+# -*- python -*-
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -27,6 +29,7 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 from cgi import escape
+import math
 
 #-------------------------------------------------------------------------
 #
@@ -886,6 +889,34 @@ class PedigreeView(PageView.PersonNavView):
                 h = positions[i][2][3]
                 table_widget.attach(label,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
         
+        # Add navigation arrows
+        if lst[0]:
+            l = gtk.Button("◀")
+            childlist = find_children(self.db,lst[0][0])
+            if childlist:
+                l.connect("clicked",self.on_show_child_menu)
+                self.tooltips.set_tip(l, _("Jump to child..."))
+            else:
+                l.set_sensitive(False)
+            ymid = int(math.floor(ymax/2))
+            table_widget.attach(l,0,1,ymid,ymid+1,0,0,0,0)
+            l = gtk.Button("▶")
+            if lst[1]:
+                l.connect("clicked",self.on_childmenu_changed,lst[1][0].handle)
+                self.tooltips.set_tip(l, _("jump to father"))
+            else:
+                l.set_sensitive(False)
+            ymid = int(math.floor(ymax/4))
+            table_widget.attach(l,xmax,xmax+1,ymid-1,ymid+2,0,0,0,0)
+            l = gtk.Button("▶")
+            if lst[2]:
+                l.connect("clicked",self.on_childmenu_changed,lst[2][0].handle)
+                self.tooltips.set_tip(l, _("Jump to mother"))
+            else:
+                l.set_sensitive(False)
+            ymid = int(math.floor(ymax/4*3))
+            table_widget.attach(l,xmax,xmax+1,ymid-1,ymid+2,0,0,0,0)
+        
         # add dummy widgets into the corners of the table to allow the pedigree to be centered
         l = gtk.Label("")
         table_widget.attach(l,0,1,0,1,gtk.EXPAND|gtk.FILL,gtk.EXPAND|gtk.FILL,0,0)
@@ -1065,7 +1096,6 @@ class PedigreeView(PageView.PersonNavView):
                 for child_handle in childlist:
                     child = self.db.get_person_from_handle(child_handle)
                     cname = NameDisplay.displayer.display(child)
-                    menuitem = gtk.MenuItem(None)
                     if find_children(self.db,child):
                         label = gtk.Label('<b><i>%s</i></b>' % cname)
                     else:
@@ -1073,10 +1103,13 @@ class PedigreeView(PageView.PersonNavView):
                     label.set_use_markup(True)
                     label.show()
                     label.set_alignment(0,0)
+                    menuitem = gtk.ImageMenuItem(None)
+                    go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
+                    go_image.show()
+                    menuitem.set_image(go_image)
                     menuitem.add(label)
                     myMenu.append(menuitem)
-                    menuitem.set_data(_PERSON,child_handle)
-                    menuitem.connect("activate",self.on_childmenu_changed)
+                    menuitem.connect("activate",self.on_childmenu_changed,child_handle)
                     menuitem.show()
                 myMenu.popup(None,None,None,0,0)
             return 1
