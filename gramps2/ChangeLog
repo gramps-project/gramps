@@ -1,3 +1,13 @@
+2006-05-15  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsXMLDB.py: Use callback, call parent's
+	close() on close.
+	* src/GrampsDb/_GrampsGEDDB.py: Use callback, call parent's
+	close() on close.
+	* src/GrampsDb/_WriteXML.py: Use new callback class.
+	* src/GrampsDb/_WriteGedcom.py: Use new callback class.
+	* src/GrampsDb/_DbUtils.py (db_copy): Update secondary indices for
+	the InMem databases.
+
 2006-05-15  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: new stock icon support
 	* src/gramps_main.py: new stock icon support

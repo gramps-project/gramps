@@ -62,6 +62,7 @@ from QuestionDialog import ErrorDialog
 from _GrampsDbBase import \
      PERSON_KEY,FAMILY_KEY,SOURCE_KEY,EVENT_KEY,\
      MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY
+from BasicUtils import UpdateCallback
 
 #-------------------------------------------------------------------------
 #
@@ -120,7 +121,7 @@ def quick_write(database, filename,callback=None):
 #
 #
 #-------------------------------------------------------------------------
-class XmlWriter:
+class XmlWriter(UpdateCallback):
     """
     Writes a database to the XML file.
     """
@@ -137,13 +138,9 @@ class XmlWriter:
                        2: remove leading slash
         compress - attempt to compress the database
         """
+        UpdateCallback.__init__(self,callback)
         self.compress = compress
         self.db = db
-        self.callback = callback
-        if '__call__' in dir(self.callback): # callback is really callable
-            self.update = self.update_real
-        else:
-            self.update = self.update_empty
         self.strip_photos = strip_photos
         
     def write(self,filename):
@@ -211,18 +208,17 @@ class XmlWriter:
 
         date = time.localtime(time.time())
         owner = self.db.get_researcher()
+
         person_len = self.db.get_number_of_people()
-        family_len = len(self.db.get_family_handles())
-        event_len = len(self.db.get_event_handles())
-        source_len = len(self.db.get_source_handles())
-        place_len = len(self.db.get_place_handles())
-        repo_len = len(self.db.get_repository_handles())
-        obj_len = len(self.db.get_media_object_handles())
+        family_len = self.db.get_number_of_families()
+        event_len = self.db.get_number_of_events()
+        source_len = self.db.get_number_of_sources()
+        place_len = self.db.get_number_of_places()
+        repo_len = self.db.get_number_of_repositories()
+        obj_len = self.db.get_number_of_media_objects()
         
-        self.total = person_len + family_len + event_len + place_len + \
-                     source_len + obj_len + repo_len
-        self.count = 0
-        self.oldval = 0
+        self.set_total(person_len+family_len+event_len+source_len
+                       +place_len+repo_len+obj_len)
 
         self.g.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.g.write('<!DOCTYPE database '
@@ -339,16 +335,6 @@ class XmlWriter:
             self.g.write('  </groups>\n')
 
         self.g.write("</database>\n")
-
-    def update_empty(self):
-        pass
-
-    def update_real(self):
-        self.count += 1
-        newval = int(100*self.count/self.total)
-        if newval != self.oldval:
-            self.callback(newval)
-            self.oldval = newval
 
     def fix(self,line):
         l = line.strip()

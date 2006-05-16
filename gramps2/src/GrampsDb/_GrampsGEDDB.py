@@ -28,8 +28,8 @@ of GEDCOM files.
 from RelLib import *
 from _GrampsInMemDB import *
 
-import _ReadGedcom as ReadGedcom
-import _WriteGedcom as WriteGedcom
+from _ReadGedcom import importData
+from _WriteGedcom import GedcomWriter
 from _DbUtils import db_copy
 
 #-------------------------------------------------------------------------
@@ -49,7 +49,7 @@ class GrampsGEDDB(GrampsInMemDB):
         if self.db_is_open:
             self.close()
         GrampsInMemDB.load(self,name,callback,mode)
-        ReadGedcom.importData(self,name,callback,use_trans=False)
+        importData(self,name,callback,use_trans=False)
 
         self.bookmarks = self.metadata.get('bookmarks')
         if self.bookmarks == None:
@@ -64,7 +64,8 @@ class GrampsGEDDB(GrampsInMemDB):
         if self.bookmarks == None:
             self.bookmarks = []
         self.db_is_open = True
-        writer = WriteGedcom.GedcomWriter(self,self.get_default_person())
+        writer = GedcomWriter(self,self.get_default_person(),
+                                          callback=callback)
         writer.export_data(self.full_name)
         return 1
 
@@ -72,6 +73,7 @@ class GrampsGEDDB(GrampsInMemDB):
         if not self.db_is_open:
             return
         if not self.readonly and len(self.undodb) > 0:
-            writer = WriteGedcom.GedcomWriter(self,self.get_default_person())
+            writer = GedcomWriter(self,self.get_default_person())
             writer.export_data(self.full_name)
         self.db_is_open = False
+        GrampsInMemDB.close(self)

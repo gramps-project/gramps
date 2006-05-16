@@ -28,8 +28,8 @@ of GRAMPS XML format.
 from RelLib import *
 from _GrampsInMemDB import *
 
-import _ReadXML as ReadXML
-import _WriteXML as WriteXML
+from _ReadXML import importData
+from _WriteXML import quick_write
 from _DbUtils import db_copy
 
 #-------------------------------------------------------------------------
@@ -51,7 +51,7 @@ class GrampsXMLDB(GrampsInMemDB):
         GrampsInMemDB.load(self,name,callback,mode)
         self.id_trans = {}
         
-        ReadXML.importData(self,name,callback,use_trans=False)
+        importData(self,name,callback,use_trans=False)
         
         self.bookmarks = self.metadata.get('bookmarks')
         if self.bookmarks == None:
@@ -67,12 +67,13 @@ class GrampsXMLDB(GrampsInMemDB):
         if self.bookmarks == None:
             self.bookmarks = []
         self.db_is_open = True
-        WriteXML.quick_write(self,self.full_name)
+        quick_write(self,self.full_name,callback)
         return 1
 
     def close(self):
         if not self.db_is_open:
             return
         if not self.readonly and len(self.undodb) > 0:
-            WriteXML.quick_write(self,self.full_name)
+            quick_write(self,self.full_name)
         self.db_is_open = False
+        GrampsInMemDB.close(self)
