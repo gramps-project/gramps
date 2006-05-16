@@ -1,3 +1,6 @@
+2006-05-15  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs/_DataEmbedList.py: disable DND
+
 2006-05-15  Alex Roitman  <shura@gramps-project.org>
 	* src/ViewManager.py (save_as_activate): Use Save button in dialog.
 	* src/GrampsDb/_DbUtils.py: import proper class.

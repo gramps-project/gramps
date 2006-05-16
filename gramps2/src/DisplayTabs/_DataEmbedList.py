@@ -44,7 +44,8 @@ from _EmbeddedList import EmbeddedList
 class DataEmbedList(EmbeddedList):
 
     _HANDLE_COL = 0
-    _DND_TYPE   = DdTargets.DATA
+    _DND_TYPE   = None
+    
     _column_names = [
         (_('Key'), 0, 150), 
         (_('Value'), 1, 250), 
