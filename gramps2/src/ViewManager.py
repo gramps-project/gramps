@@ -337,7 +337,7 @@ class ViewManager:
         self._action_action_list = [
             ('SaveAs', gtk.STOCK_SAVE_AS, _('_Save As'),"<control><shift>s",
              None, self.save_as_activate), 
-            ('Export', gtk.STOCK_SAVE_AS, _('_Export'), "<control>e", None,
+            ('Export', 'gramps-export', _('_Export'), "<control>e", None,
              self.export_data), 
             ('Abandon', gtk.STOCK_REVERT_TO_SAVED,
              _('_Abandon changes and quit'), None, None, self.abort), 
@@ -387,7 +387,7 @@ class ViewManager:
             ]
 
         self._undo_history_action_list = [
-            ('UndoHistory', 'stock_undo-history',
+            ('UndoHistory', 'gramps-undo-history',
              _('Undo History'), None, None, self.undo_history),
             ]
 

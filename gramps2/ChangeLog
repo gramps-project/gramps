@@ -1,4 +1,14 @@
 2006-05-15  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: new stock icon support
+	* src/gramps_main.py: new stock icon support
+	* src/PageView.py: new stock icon support
+	* src/images/stock_new-html.png: added
+	* src/images/stock_delete-bookmark.png: added
+	* src/images/stock_export.png: added
+	* src/images/stock_edit-bookmark.png: added
+	* src/images/stock_add-bookmark.png: added
+	* src/images/stock_undo-history.png: added
+	* src/images/stock_bookmark.png: added
 	* src/DisplayTabs/_DataEmbedList.py: disable DND
 
 2006-05-15  Alex Roitman  <shura@gramps-project.org>
