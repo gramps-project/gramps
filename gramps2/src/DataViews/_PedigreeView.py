@@ -605,6 +605,10 @@ class PedigreeView(PageView.PersonNavView):
             self.notebook.set_current_page(self.force_size-2)
 
     def rebuild_trees(self,person_handle):
+        if self.db != self.dbstate.db:
+            print "UNRECOGNIZED DATABASES CHANGE DETECTED! TODO: Fix signals"
+            self.change_db(self.dbstate.db)
+            return
         person = None
         if person_handle:
             person = self.dbstate.db.get_person_from_handle( person_handle)

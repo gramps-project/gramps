@@ -1,5 +1,6 @@
 2006-05-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
-	* src/DataViews/_PedigreeView.py: Add navigation-arrows to the tree
+	* src/DataViews/_PedigreeView.py: Add navigation-arrows to the tree;
+	work around bug in database-changed signals
 
 2006-05-15  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsXMLDB.py: Use callback, call parent's
