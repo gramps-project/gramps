@@ -1,3 +1,6 @@
+2006-05-17  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsWidgets.py (LinkLabel.__init__): Set cursor to HAND1.
+
 2006-05-17  Stefan Bjork  <betula@users.sourceforge.net>
 	* po/sv.po: Imported from CVS and merged with gramps.pot.
 

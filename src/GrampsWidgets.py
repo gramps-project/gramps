@@ -41,6 +41,10 @@ import const
 _lock_path = os.path.join(const.image_dir, 'stock_lock.png')
 _lock_open_path = os.path.join(const.image_dir, 'stock_lock-open.png')
 
+hand_cursor = gtk.gdk.Cursor(gtk.gdk.HAND1)
+def realize_cb(widget):
+    widget.window.set_cursor(hand_cursor)
+
 class LinkLabel(gtk.EventBox):
 
     def __init__(self, label, func, handle):
@@ -56,11 +60,11 @@ class LinkLabel(gtk.EventBox):
         self.label.set_alignment(0, 0.5)
 
         self.add(self.label)
-        self.set_visible_window(False)
 
         self.connect('button-press-event', func, handle)
         self.connect('enter-notify-event', self.enter_text, handle)
         self.connect('leave-notify-event', self.leave_text, handle)
+        self.connect('realize', realize_cb)
         
     def enter_text(self, obj, event, handle):
         text = '<span foreground="blue" underline="single">%s</span>' % self.orig_text
