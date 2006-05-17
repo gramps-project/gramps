@@ -1,4 +1,7 @@
 2006-05-17  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py: remove place name storage
+	* src/Editors/_EditLdsOrd.py: new SelectPlace interface
+	* src/glade/gramps.glade: new select place interface changes
 	* src/Editors/_EditPlace.py: new SelectPlace interface
 	* src/Editors/_EditEventRef.py: new SelectPlace interface, remove
 	old code

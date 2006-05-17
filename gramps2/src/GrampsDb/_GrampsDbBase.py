@@ -2115,31 +2115,6 @@ class DbState(GrampsDBCallback):
         self.db     = GrampsDbBase()
         self.open   = False
         self.active = None
-        self.places = {}
-
-    def _place_rebuild(self):
-        self.places.clear()
-        cursor = self.db.get_place_cursor()
-        data = cursor.next()
-        while data:
-            if data[1][2]:
-                self.places[data[0]] = data[1][2]
-            data = cursor.next()
-        cursor.close()
-
-    def _place_add(self, handle_list):
-        for handle in handle_list:
-            place = self.db.get_place_from_handle(handle)
-            self.places[handle] = place.get_title()
-
-    def _place_update(self, handle_list):
-        for handle in handle_list:
-            place = self.db.get_place_from_handle(handle)
-            self.places[handle] = place.get_title()
-
-    def _place_delete(self, handle_list):
-        for handle in handle_list:
-            del self.places[handle]
 
     def change_active_person(self, person):
         self.active = person
@@ -2160,10 +2135,6 @@ class DbState(GrampsDBCallback):
     def change_database(self, database):
         self.db.close()
         self.db = database
-        self.db.connect('place-add', self._place_add)
-        self.db.connect('place-update', self._place_update)
-        self.db.connect('place-delete', self._place_delete)
-        self.db.connect('place-rebuild', self._place_rebuild)
         self.active = None
         self.open = True
 
@@ -2177,5 +2148,3 @@ class DbState(GrampsDBCallback):
         self.open = False
         self.emit('no-database')
 
-    def get_place_completion(self):
-        return self.places

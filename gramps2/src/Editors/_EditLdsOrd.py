@@ -124,6 +124,8 @@ class EditLdsOrd(EditSecondary):
         self.set_window(self.top.get_widget("lds_person_edit"),
                         self.top.get_widget('title'),
                         _('LDS Ordinance Editor'))
+        self.share_btn = self.top.get_widget('share_place')
+        self.add_del_btn = self.top.get_widget('add_del_place')
 
     def _connect_signals(self):
         self.parents_select.connect('clicked',self.select_parents_clicked)
@@ -150,10 +152,14 @@ class EditLdsOrd(EditSecondary):
             self.db.readonly)
 
         self.place_field = PlaceEntry(
+            self.dbstate,
+            self.uistate,
+            self.track,
             self.top.get_widget("place"),
-            self.obj.get_place_handle(),
-            self.dbstate.get_place_completion(),
-            self.db.readonly)
+            self.obj.set_place_handle,
+            self.obj.get_place_handle,
+            self.add_del_btn,
+            self.share_btn)
 
         self.type_menu = MonitoredMenu(
             self.top.get_widget('type'),
@@ -266,18 +272,6 @@ class EditLdsOrd(EditSecondary):
         Called when the OK button is pressed. Gets data from the
         form and updates the LdsOrd data structure.
         """
-
-        (need_new, handle) = self.place_field.get_place_info()
-        if need_new:
-            place_obj = RelLib.Place()
-            place_obj.set_title(handle)
-            trans = self.db.transaction_begin()
-            self.db.add_place(place_obj,trans)
-            self.db.transaction_commit(trans,_("Add Place"))
-            self.obj.set_place_handle(place_obj.get_handle())
-        else:
-            self.obj.set_place_handle(handle)
-
         if self.callback:
             self.callback(self.obj)
         self.close()
@@ -308,6 +302,8 @@ class EditFamilyLdsOrd(EditSecondary):
         self.set_window(self.top.get_widget("lds_person_edit"),
                         self.top.get_widget('title'),
                         _('LDS Ordinance Editor'))
+        self.share_btn = self.top.get_widget('share_place')
+        self.add_del_btn = self.top.get_widget('add_del_place')
 
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_widget('cancel'))
@@ -333,10 +329,14 @@ class EditFamilyLdsOrd(EditSecondary):
             self.db.readonly)
 
         self.place_field = PlaceEntry(
+            self.dbstate,
+            self.uistate,
+            self.track,
             self.top.get_widget("place"),
-            self.obj.get_place_handle(),
-            self.dbstate.get_place_completion(),
-            self.db.readonly)
+            self.obj.set_place_handle,
+            self.obj.get_place_handle,
+            self.add_del_btn,
+            self.share_btn)
 
         self.type_menu = MonitoredMenu(
             self.top.get_widget('type'),
@@ -396,18 +396,6 @@ class EditFamilyLdsOrd(EditSecondary):
         Called when the OK button is pressed. Gets data from the
         form and updates the LdsOrd data structure.
         """
-
-        (need_new, handle) = self.place_field.get_place_info()
-        if need_new:
-            place_obj = RelLib.Place()
-            place_obj.set_title(handle)
-            trans = self.db.transaction_begin()
-            self.db.add_place(place_obj,trans)
-            self.db.transaction_commit(trans,_("Add Place"))
-            self.obj.set_place_handle(place_obj.get_handle())
-        else:
-            self.obj.set_place_handle(handle)
-
         if self.callback:
             self.callback(self.obj)
         self.close()
