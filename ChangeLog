@@ -1,6 +1,7 @@
 2006-05-17  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditPlace.py: new SelectPlace interface
-	* src/Editors/_EditEventRef.py: new SelectPlace interface
+	* src/Editors/_EditEventRef.py: new SelectPlace interface, remove
+	old code
 	* src/Editors/_EditEvent.py: new SelectPlace interface
 	* src/GrampsWidgets.py: new Place editor interface
 
