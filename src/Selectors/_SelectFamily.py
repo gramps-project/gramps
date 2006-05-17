@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: SelectFamily.py 6183 2006-03-21 02:39:01Z dallingham $
+# $Id$
 
 #-------------------------------------------------------------------------
 #

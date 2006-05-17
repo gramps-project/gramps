@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _SelectObject.py 6687 2006-05-17 04:43:53Z rshura $
+# $Id$
 
 #
 # Written by Alex Roitman, 

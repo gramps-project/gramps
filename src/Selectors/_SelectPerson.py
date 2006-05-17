@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _SelectPerson.py 6683 2006-05-17 00:48:46Z rshura $
+# $Id$
 
 #-------------------------------------------------------------------------
 #
