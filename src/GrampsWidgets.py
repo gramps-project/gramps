@@ -471,41 +471,47 @@ class MonitoredDate:
 
 class PlaceEntry:
 
-    def __init__(self, obj, handle, place_map, read_only=False):
+    def __init__(self, db, obj, set_val, get_val, add_del, share):
+        
         self.obj = obj
-        self.handle = handle
-        self.places = place_map
+        self.add_del = add_del
+        self.share = share
+        self.db = db
+        self.get_val = get_val
+        self.set_val = set_val
 
-        if handle:
-            name = place_map[handle]
+        if get_val():
+            self.set_button(True)
+            p = self.db.get_place_from_handle(self.get_val())
+            name = "%s [%s]" % (p.get_title(),p.gramps_id)
         else:
             name = u""
+            self.set_button(False)
 
-        if read_only:
-            self.obj.set_editable(False)
+        if db.readonly:
+            self.add_del.set_sensitive(False)
+            self.share.set_sensitive(False)
         else:
-            self.obj.set_editable(True)
+            self.add_del.set_sensitive(True)
+            self.share.set_sensitive(True)
             
-            store = gtk.ListStore(str)
-            foo = [ (locale.strxfrm(self.places[v]), v) \
-                    for v in self.places.keys()]
-            foo.sort()
-            for val in foo:
-                store.append(row=[self.places[val[1]]])
-            completion = gtk.EntryCompletion()
-            completion.set_text_column(0)
-            completion.set_model(store)
-            obj.set_completion(completion)
-
         obj.set_text(name)
 
-    def get_place_info(self):
-        text = unicode(self.obj.get_text().strip())
-        if text:
-            for key in self.places.keys():
-                if text == self.places[key]:
-                    return (False, key)
-            return (True, text)
+    def set_button(self, use_add):
+        for i in self.add_del.get_children():
+            self.add_del.remove(i)
+
+        image = gtk.Image()
+        if use_add:
+            image.set_from_stock(gtk.STOCK_REMOVE,gtk.ICON_SIZE_BUTTON)
+            self.share.hide()
         else:
-            return (False, u"")
+            image.set_from_stock(gtk.STOCK_ADD,gtk.ICON_SIZE_BUTTON)
+            self.share.show()
+        image.show()
+        self.add_del.add(image)
+
+        
+
+
     

@@ -1,4 +1,7 @@
 2006-05-16  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditEvent.py: start of SelectPlace integration
+	* src/glade/gramps.glade: start of SelectPlace integration
+	* src/GrampsWidgets.py: start of SelectPlace integration
 	* src/DisplayTabs/_WebEmbedList.py: icon fixes
 	* src/images/stock_insert-url.png: added
 	* src/images/person.png: added
