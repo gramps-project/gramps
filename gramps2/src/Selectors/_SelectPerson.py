@@ -42,7 +42,7 @@ import pango
 #
 #-------------------------------------------------------------------------
 import const
-import PeopleModel
+from DisplayModels import PeopleModel
 import ManagedWindow
 
 #-------------------------------------------------------------------------
@@ -68,9 +68,9 @@ class SelectPerson(ManagedWindow.ManagedWindow):
             self.glade.get_widget('title'),
             title)
         
-        self.model = PeopleModel.PeopleModel(self.db,
-                                             (PeopleModel.FAST, filter),
-                                             skip=skip)
+        self.model = PeopleModel(self.db,
+                                 (PeopleModel.FAST, filter),
+                                 skip=skip)
 
         self.add_columns(self.plist)
         self.plist.set_model(self.model)

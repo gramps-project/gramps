@@ -1,4 +1,9 @@
 2006-05-16  Alex Roitman  <shura@gramps-project.org>
+	* src/Selectors/_SelectPerson.py: Use new package.
+	* src/plugins/RelCalc.py: Use new package.
+	* src/DataViews/_PersonView.py: Use new package.
+	* src/DisplayModels: Make new package.
+	* src/Makefile.am: Remove old files.
 	* src/Filters/_PersonSidebarFilter.py: Import gettext.
 	* src/Filters/_SidebarFilter.py: Import gettext.
 	* src/Filters/Makefile.am: Ship new files.

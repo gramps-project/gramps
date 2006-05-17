@@ -8,6 +8,7 @@ SUBDIRS = \
 	Filters \
 	GrampsDb \
 	DisplayTabs \
+	DisplayModels \
 	GrampsLogger \
 	Mime \
 	Models \
@@ -38,7 +39,6 @@ gdir_PYTHON = \
 	DateEdit.py\
 	Date.py\
 	DdTargets.py\
-	DisplayModels.py\
 	DisplayState.py\
 	Errors.py\
 	Exporter.py\
@@ -58,7 +58,6 @@ gdir_PYTHON = \
 	NameDisplay.py\
 	Navigation.py\
 	PageView.py\
-	PeopleModel.py\
 	QuestionDialog.py\
 	RecentFiles.py\
 	Relationship.py\

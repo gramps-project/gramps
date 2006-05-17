@@ -37,7 +37,6 @@ import time
 import cgi
 import sys
 import locale
-import Config
 
 try:
     set()
@@ -70,30 +69,8 @@ import NameDisplay
 import DateHandler
 import ToolTips
 import GrampsLocale
+import Config
 from Filters import SearchFilter
-
-#-------------------------------------------------------------------------
-#
-# Localized constants
-#
-#-------------------------------------------------------------------------
-_codeset = GrampsLocale.codeset
-
-#-------------------------------------------------------------------------
-#
-# constants
-#
-#-------------------------------------------------------------------------
-
-_ID_COL     = 1
-_GENDER_COL = 2
-_NAME_COL   = 3
-_DEATH_COL  = 5
-_BIRTH_COL  = 6
-_EVENT_COL  = 7
-_FAMILY_COL = 8
-_CHANGE_COL = 17
-_MARKER_COL = 18
 
 #-------------------------------------------------------------------------
 #
@@ -120,10 +97,6 @@ else:
         mylist.sort(locale.strcoll)
         return mylist
 
-GENERIC = 0
-SEARCH = 1
-FAST = 2
-
 #-------------------------------------------------------------------------
 #
 # PeopleModel
@@ -134,6 +107,33 @@ class PeopleModel(gtk.GenericTreeModel):
     Basic GenericTreeModel interface to handle the Tree interface for
     the PersonView
     """
+
+    # Model types
+    GENERIC = 0
+    SEARCH = 1
+    FAST = 2
+
+    # Column numbers
+    _ID_COL     = 1
+    _GENDER_COL = 2
+    _NAME_COL   = 3
+    _DEATH_COL  = 5
+    _BIRTH_COL  = 6
+    _EVENT_COL  = 7
+    _FAMILY_COL = 8
+    _CHANGE_COL = 17
+    _MARKER_COL = 18
+
+
+    _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
+
+    # dynamic calculation of column indices, for use by various Views
+    COLUMN_INT_ID = 13
+
+    # indices into main column definition table
+    COLUMN_DEF_LIST = 0
+    COLUMN_DEF_HEADER = 1
+    COLUMN_DEF_TYPE = 2
 
     def __init__(self, db, filter_info=None, skip=[]):
         """
@@ -164,10 +164,10 @@ class PeopleModel(gtk.GenericTreeModel):
         self.path2iter = {}
         self.sname_sub = {}
         if filter_info:
-            if filter_info[0] == GENERIC:
+            if filter_info[0] == PeopleModel.GENERIC:
                 data_filter = filter_info[1]
                 self._build_data = self._build_filter_sub
-            elif filter_info[0] == SEARCH:
+            elif filter_info[0] == PeopleModel.SEARCH:
                 col = filter_info[1][0]
                 text = filter_info[1][1]
                 inv = filter_info[1][2]
@@ -210,7 +210,7 @@ class PeopleModel(gtk.GenericTreeModel):
         while node:
             handle, d = node
             if not (handle in skip or (dfilter and not dfilter.match(handle))):
-                name_data = d[_NAME_COL]
+                name_data = d[PeopleModel._NAME_COL]
                 self.sortnames[handle] = nsn(name_data)
                 try:
                     self.temp_sname_sub[name_data[5]].append(handle)
@@ -233,7 +233,7 @@ class PeopleModel(gtk.GenericTreeModel):
         for handle in handle_list:
             d = self.db.get_raw_person_data(handle)
             if not (handle in skip or (dfilter and not dfilter.match(handle))):
-                name_data = d[_NAME_COL]
+                name_data = d[PeopleModel._NAME_COL]
                 self.sortnames[handle] = nsn(name_data)
                 try:
                     self.temp_sname_sub[name_data[5]].append(handle)
@@ -287,7 +287,7 @@ class PeopleModel(gtk.GenericTreeModel):
         return gtk.TREE_MODEL_ITERS_PERSIST
 
     def on_get_n_columns(self):
-        return len(COLUMN_DEFS)
+        return len(PeopleModel.COLUMN_DEFS)
 
     def on_get_path(self,  node):
         '''returns the tree path (a tuple of indices at the various
@@ -302,7 +302,7 @@ class PeopleModel(gtk.GenericTreeModel):
         return self.iter2path.has_key(handle)
 
     def on_get_column_type(self, index):
-        return COLUMN_DEFS[index][COLUMN_DEF_TYPE]
+        return PeopleModel.COLUMN_DEFS[index][PeopleModel.COLUMN_DEF_TYPE]
 
     def on_get_iter(self, path):
         try:
@@ -321,11 +321,11 @@ class PeopleModel(gtk.GenericTreeModel):
             if col == self.marker_color_column:
                 return None
             # test for 'header' column being empty (most are)
-            if not COLUMN_DEFS[col][COLUMN_DEF_HEADER]:
+            if not PeopleModel.COLUMN_DEFS[col][PeopleModel.COLUMN_DEF_HEADER]:
                 return u''
             # return values for 'header' row, calling a function
             # according to column_defs table
-            val = COLUMN_DEFS[col][COLUMN_DEF_HEADER](self, node)
+            val = PeopleModel.COLUMN_DEFS[col][PeopleModel.COLUMN_DEF_HEADER](self, node)
             return val
         else:
             # return values for 'data' row, calling a function
@@ -334,7 +334,7 @@ class PeopleModel(gtk.GenericTreeModel):
                 if node != self.prev_handle:
                     self.prev_data = self.db.get_raw_person_data(str(node))
                     self.prev_handle = node
-                return COLUMN_DEFS[col][COLUMN_DEF_LIST](self,
+                return PeopleModel.COLUMN_DEFS[col][PeopleModel.COLUMN_DEF_LIST](self,
                                                          self.prev_data, node)
             except:
                 return None
@@ -393,13 +393,13 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_sort_name(self, data, node):
         n = Name()
-        n.unserialize(data[_NAME_COL])
+        n.unserialize(data[PeopleModel._NAME_COL])
         return NameDisplay.displayer.sort_string(n)
 
     def column_spouse(self, data, node):
         spouses_names = u""
         handle = data[0]
-        for family_handle in data[_FAMILY_COL]:
+        for family_handle in data[PeopleModel._FAMILY_COL]:
             family = self.db.get_family_from_handle(family_handle)
             for spouse_id in [family.get_father_handle(),
                               family.get_mother_handle()]:
@@ -415,30 +415,31 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_name(self, data, node):
         n = Name()
-        n.unserialize(data[_NAME_COL])
+        n.unserialize(data[PeopleModel._NAME_COL])
         return NameDisplay.displayer.sorted_name(n)
 
     def column_id(self, data, node):
-        return data[_ID_COL]
+        return data[PeopleModel._ID_COL]
 
     def column_change(self, data, node):
         return unicode(
-            time.strftime('%x %X', time.localtime(data[_CHANGE_COL])),
-            _codeset)
+            time.strftime('%x %X',
+                          time.localtime(data[PeopleModel._CHANGE_COL])),
+            GrampsLocale.codeset)
 
     def column_gender(self, data, node):
-        return _GENDER[data[_GENDER_COL]]
+        return PeopleModel._GENDER[data[PeopleModel._GENDER_COL]]
 
     def column_birth_day(self, data, node):
-        if data[_BIRTH_COL]:
+        if data[PeopleModel._BIRTH_COL]:
             b = EventRef()
-            b.unserialize(data[_BIRTH_COL])
+            b.unserialize(data[PeopleModel._BIRTH_COL])
             birth = self.db.get_event_from_handle(b.ref)
             date_str = DateHandler.get_date(birth)
             if date_str != "":
                 return cgi.escape(date_str)
         
-        for event_ref in data[_EVENT_COL]:
+        for event_ref in data[PeopleModel._EVENT_COL]:
             er = EventRef()
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
@@ -451,15 +452,15 @@ class PeopleModel(gtk.GenericTreeModel):
         return u""
 
     def column_death_day(self, data, node):
-        if data[_DEATH_COL]:
+        if data[PeopleModel._DEATH_COL]:
             dr = EventRef()
-            dr.unserialize(data[_DEATH_COL])
+            dr.unserialize(data[PeopleModel._DEATH_COL])
             death = self.db.get_event_from_handle(dr.ref)
             date_str = DateHandler.get_date(death)
             if date_str != "":
                 return cgi.escape(date_str)
         
-        for event_ref in data[_EVENT_COL]:
+        for event_ref in data[PeopleModel._EVENT_COL]:
             er = EventRef()
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
@@ -472,17 +473,17 @@ class PeopleModel(gtk.GenericTreeModel):
         return u""
 
     def column_cause_of_death(self, data, node):
-        if data[_DEATH_COL]:
+        if data[PeopleModel._DEATH_COL]:
             dr = EventRef()
-            dr.unserialize(data[_DEATH_COL])
+            dr.unserialize(data[PeopleModel._DEATH_COL])
             return self.db.get_event_from_handle(dr.ref).get_cause()
         else:
             return u""
         
     def column_birth_place(self, data, node):
-        if data[_BIRTH_COL]:
+        if data[PeopleModel._BIRTH_COL]:
             br = EventRef()
-            br.unserialize(data[_BIRTH_COL])
+            br.unserialize(data[PeopleModel._BIRTH_COL])
             event = self.db.get_event_from_handle(br.ref)
             if event:
                 place_handle = event.get_place_handle()
@@ -492,7 +493,7 @@ class PeopleModel(gtk.GenericTreeModel):
                     if place_title != "":
                         return cgi.escape(place_title)
         
-        for event_ref in data[_EVENT_COL]:
+        for event_ref in data[PeopleModel._EVENT_COL]:
             er = EventRef()
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
@@ -508,9 +509,9 @@ class PeopleModel(gtk.GenericTreeModel):
         return u""
 
     def column_death_place(self, data, node):
-        if data[_DEATH_COL]:
+        if data[PeopleModel._DEATH_COL]:
             dr = EventRef()
-            dr.unserialize(data[_DEATH_COL])
+            dr.unserialize(data[PeopleModel._DEATH_COL])
             event = self.db.get_event_from_handle(dr.ref)
             if event:
                 place_handle = event.get_place_handle()
@@ -520,7 +521,7 @@ class PeopleModel(gtk.GenericTreeModel):
                     if place_title != "":
                         return cgi.escape(place_title)
         
-        for event_ref in data[_EVENT_COL]:
+        for event_ref in data[PeopleModel._EVENT_COL]:
             er = EventRef()
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
@@ -537,20 +538,20 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_marker_text(self, data, node):
         try:
-            if data[_MARKER_COL]:
-                return str(data[_MARKER_COL])
+            if data[PeopleModel._MARKER_COL]:
+                return str(data[PeopleModel._MARKER_COL])
         except IndexError:
             return ""
         return ""
 
     def column_marker_color(self, data, node):
         try:
-            if data[_MARKER_COL]:
-                if data[_MARKER_COL][0] == MarkerType.COMPLETE:
+            if data[PeopleModel._MARKER_COL]:
+                if data[PeopleModel._MARKER_COL][0] == MarkerType.COMPLETE:
                     return self.complete_color
-                if data[_MARKER_COL][0] == MarkerType.TODO:
+                if data[PeopleModel._MARKER_COL][0] == MarkerType.TODO:
                     return self.todo_color
-                if data[_MARKER_COL][0] == MarkerType.CUSTOM:
+                if data[PeopleModel._MARKER_COL][0] == MarkerType.CUSTOM:
                     return self.custom_color
         except IndexError:
             pass
@@ -575,35 +576,25 @@ class PeopleModel(gtk.GenericTreeModel):
     def column_header_view(self, node):
         return True
 
-_GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
+    # table of column definitions
+    # (unless this is declared after the PeopleModel class, an error is thrown)
 
-# table of column definitions
-# (unless this is declared after the PeopleModel class, an error is thrown)
+    COLUMN_DEFS = [
+        (column_name,           column_header, str),
+        (column_id,             None,                      str),
+        (column_gender,         None,                      str),
+        (column_birth_day,      None,                      str),
+        (column_birth_place,    None,                      str),
+        (column_death_day,      None,                      str),
+        (column_death_place,    None,                      str),
+        (column_spouse,         None,                      str),
+        (column_change,         None,                      str),
+        (column_cause_of_death, None,                      str),
+        (column_marker_text,    None,                      str),
+        (column_marker_color,   None,                      str),
+        # the order of the above columns must match PeopleView.column_names
 
-COLUMN_DEFS = [
-    (PeopleModel.column_name,           PeopleModel.column_header, str),
-    (PeopleModel.column_id,             None,                      str),
-    (PeopleModel.column_gender,         None,                      str),
-    (PeopleModel.column_birth_day,      None,                      str),
-    (PeopleModel.column_birth_place,    None,                      str),
-    (PeopleModel.column_death_day,      None,                      str),
-    (PeopleModel.column_death_place,    None,                      str),
-    (PeopleModel.column_spouse,         None,                      str),
-    (PeopleModel.column_change,         None,                      str),
-    (PeopleModel.column_cause_of_death, None,                      str),
-    (PeopleModel.column_marker_text,    None,                      str),
-    (PeopleModel.column_marker_color,   None,                      str),
-    # the order of the above columns must match PeopleView.column_names
-
-    # these columns are hidden, and must always be last in the list
-    (PeopleModel.column_tooltip,        None,                      object),  
-    (PeopleModel.column_int_id,         None,                      str),
-    ]
-
-# dynamic calculation of column indices, for use by various Views
-COLUMN_INT_ID = 13
-
-# indices into main column definition table
-COLUMN_DEF_LIST = 0
-COLUMN_DEF_HEADER = 1
-COLUMN_DEF_TYPE = 2
+        # these columns are hidden, and must always be last in the list
+        (column_tooltip,        None,                      object),  
+        (column_int_id,         None,                      str),
+        ]
