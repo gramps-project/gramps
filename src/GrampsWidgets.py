@@ -474,15 +474,21 @@ class MonitoredDate:
         field.set_text(DateHandler.displayer.display(self.date))
 
 class PlaceEntry:
-
-    def __init__(self, db, obj, set_val, get_val, add_del, share):
+    """
+    handles the selection of a existing or new Place
+    """
+    def __init__(self, dbstate, uistate, track, obj, set_val,
+                 get_val, add_del, share):
         
         self.obj = obj
         self.add_del = add_del
         self.share = share
-        self.db = db
+        self.dbstate = dbstate
+        self.db = dbstate.db
         self.get_val = get_val
         self.set_val = set_val
+        self.uistate = uistate
+        self.track = track
 
         if get_val():
             self.set_button(True)
@@ -492,28 +498,79 @@ class PlaceEntry:
             name = u""
             self.set_button(False)
 
-        if db.readonly:
+        if self.db.readonly:
             self.add_del.set_sensitive(False)
             self.share.set_sensitive(False)
         else:
             self.add_del.set_sensitive(True)
             self.share.set_sensitive(True)
+
+        self.add_del.connect('clicked', self.add_del_clicked)
+        self.share.connect('clicked', self.share_clicked)
             
         obj.set_text(name)
+
+    def after_edit(self, place):
+        name = "%s [%s]" % (place.get_title(),place.gramps_id)
+        self.obj.set_text(name)
+
+    def add_del_clicked(self, obj):
+        if self.get_val():
+            self.set_val(None)
+            self.obj.set_text(u'')
+            self.set_button(False)
+        else:
+            from RelLib import Place
+            from Editors import EditPlace
+
+            place = Place()
+            EditPlace(self.dbstate, self.uistate, self.track,
+                      place, self.place_added)
+
+    def place_added(self, data):
+        self.set_val(data.handle)
+        self.obj.set_text("%s [%s]" % (data.get_title(),data.gramps_id))
+        self.set_button(True)
+
+    def share_clicked(self, obj):
+        if self.get_val():
+            from Editors import EditPlace
+            
+            place = self.db.get_place_from_handle(self.get_val())
+            EditPlace(self.dbstate, self.uistate, self.track, place,
+                      self.after_edit)
+        else:
+            from Selectors import selector_factory
+            cls = selector_factory('Place')
+            select = cls(self.dbstate, self.uistate, self.track)
+            place = select.run()
+            if place:
+                self.place_added(place)
 
     def set_button(self, use_add):
         for i in self.add_del.get_children():
             self.add_del.remove(i)
+        for i in self.share.get_children():
+            self.share.remove(i)
 
-        image = gtk.Image()
         if use_add:
+            image = gtk.Image()
             image.set_from_stock(gtk.STOCK_REMOVE,gtk.ICON_SIZE_BUTTON)
-            self.share.hide()
+            image.show()
+            self.add_del.add(image)
+            image = gtk.Image()
+            image.set_from_stock(gtk.STOCK_EDIT,gtk.ICON_SIZE_BUTTON)
+            image.show()
+            self.share.add(image)
         else:
+            image = gtk.Image()
             image.set_from_stock(gtk.STOCK_ADD,gtk.ICON_SIZE_BUTTON)
-            self.share.show()
-        image.show()
-        self.add_del.add(image)
+            image.show()
+            self.add_del.add(image)
+            image = gtk.Image()
+            image.set_from_stock(gtk.STOCK_INDEX,gtk.ICON_SIZE_BUTTON)
+            image.show()
+            self.share.add(image)
 
         
 

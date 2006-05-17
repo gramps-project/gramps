@@ -208,6 +208,8 @@ class EditPlace(EditPrimary):
         self.db.transaction_commit(trans,
                                    _("Edit Place (%s)") % self.obj.get_title())
         
+        if self.callback:
+            self.callback(self.obj)
         self.close()
 
 #-------------------------------------------------------------------------

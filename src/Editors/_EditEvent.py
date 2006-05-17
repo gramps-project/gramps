@@ -114,7 +114,9 @@ class EditEvent(EditPrimary):
         # place, select_place, add_del_place
         
         self.place_field = PlaceEntry(
-            self.db,
+            self.dbstate,
+            self.uistate,
+            self.track,
             self.top.get_widget("place"),
             self.obj.set_place_handle,
             self.obj.get_place_handle,
@@ -207,26 +209,14 @@ class EditEvent(EditPrimary):
                           "enter data or cancel the edit."))
             return
 
-        (need_new, handle) = self.place_field.get_place_info()
-        if need_new:
-            place_obj = RelLib.Place()
-            place_obj.set_title(handle)
-            self.obj.set_place_handle(place_obj.get_handle())
-        else:
-            self.obj.set_place_handle(handle)
-            
         if self.obj.handle == None:
             trans = self.db.transaction_begin()
-            if need_new:
-                self.db.add_place(place_obj,trans)
             self.db.add_event(self.obj,trans)
             self.db.transaction_commit(trans,_("Add Event"))
         else:
             orig = self.dbstate.db.get_event_from_handle(self.obj.handle)
             if cmp(self.obj.serialize(),orig.serialize()):
                 trans = self.db.transaction_begin()
-                if need_new:
-                    self.db.add_place(place_obj,trans)
                 self.commit_event(self.obj,trans)
                 self.db.transaction_commit(trans,_("Edit Event"))
 
