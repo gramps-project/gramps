@@ -18,11 +18,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: _SelectEvent.py 6687 2006-05-17 04:43:53Z rshura $
 
 
 __author__ = "Donald N. Allingham"
-__revision__ = "$Revision$"
+__revision__ = "$Revision: 6687 $"
 
 
 #-------------------------------------------------------------------------

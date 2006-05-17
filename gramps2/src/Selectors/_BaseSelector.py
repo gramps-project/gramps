@@ -67,7 +67,6 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         self.model = self.get_model_class()(self.db)
         self.selection = self.tree.get_selection()
 
-        # self.redraw()
         self.tree.set_model(self.model)
         self.add_columns(self.tree)
         self.show()
