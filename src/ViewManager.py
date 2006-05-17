@@ -79,7 +79,7 @@ import NameDisplay
 import Mime
 import GrampsWidgets
 import UndoHistory
-
+from DbLoader import DbLoader
 import GrampsDisplay
 def show_url(dialog,link,user_data):
     GrampsDisplay.url(link)
@@ -277,9 +277,8 @@ class ViewManager:
         self.person_nav = Navigation.PersonNavigation(self.uistate)
         self._navigation_type[PageView.NAVIGATION_PERSON] = (self.person_nav,
                                                              None)
-        self.recent_manager = DisplayState.RecentDocsMenu(self.uistate,
-                                                          self.state, 
-                                                          self.read_file)
+        self.recent_manager = DisplayState.RecentDocsMenu(
+            self.uistate,self.state,self.read_recent_file)
         self.recent_manager.build()
 
         self.window.show()
@@ -688,330 +687,30 @@ class ViewManager:
                 self.pages[num].change_page()
 
     def open_activate(self, obj):
-
-        choose = gtk.FileChooserDialog(
-            _('GRAMPS: Open database'), 
-            self.uistate.window, 
-            gtk.FILE_CHOOSER_ACTION_OPEN, 
-            (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
-             gtk.STOCK_OPEN, gtk.RESPONSE_OK))
-
-        # Always add automatic (macth all files) filter
-        add_all_files_filter(choose)
-        add_grdb_filter(choose)
-        add_xml_filter(choose)
-        add_gedcom_filter(choose)
-
-        format_list = [const.app_gramps, const.app_gramps_xml, const.app_gedcom]
-
-        # Add more data type selections if opening existing db
-        for data in import_list:
-            mime_filter = data[1]
-            mime_type = data[2]
-            native_format = data[2]
-            format_name = data[3]
-            
-            if not native_format:
-                choose.add_filter(mime_filter)
-                format_list.append(mime_type)
-                _KNOWN_FORMATS[mime_type] = format_name
-        
-        (box, type_selector) = format_maker(format_list)
-        choose.set_extra_widget(box)
-
-        # Suggested folder: try last open file, last import, last export, 
-        # then home.
-        default_dir = os.path.split(Config.get(Config.RECENT_FILE))[0] + os.path.sep
-        if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_IMPORT_DIR)
-        if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_EXPORT_DIR)
-        if len(default_dir)<=1:
-            default_dir = '~/'
-
-        choose.set_current_folder(default_dir)
-        response = choose.run()
-        if response == gtk.RESPONSE_OK:
-            filename = choose.get_filename()
-            if len(filename) == 0:
-                return False
-            filetype = type_selector.get_value()
-            if filetype == 'auto':
-                filetype = Mime.get_type(filename)
-            (the_path, the_file) = os.path.split(filename)
-            choose.destroy()
-            if filetype in [const.app_gramps, const.app_gramps_xml, 
-                                const.app_gedcom]:
-    
-                try:
-                    return self.open_native(filename, filetype)
-                except db.DBInvalidArgError, msg:
-                    QuestionDialog.ErrorDialog(
-                        _("Could not open file: %s") % filename, msg[1])
-                    return False
-                except:
-                    log.error("Failed to open native.", exc_info=True)
-                    return False
-
-            QuestionDialog.ErrorDialog(
-                _("Could not open file: %s") % filename, 
-                _('File type "%s" is unknown to GRAMPS.\n\n'
-                  'Valid types are: GRAMPS database, GRAMPS XML, '
-                  'GRAMPS package, and GEDCOM.') % filetype)
-        choose.destroy()
-        return False
+        loader = DbLoader(self.state,self.uistate)
+        (filename,filetype) = loader.open_file()
+        self.post_load(filename,filetype)
 
     def save_as_activate(self,obj):
-        choose = gtk.FileChooserDialog(
-            _('GRAMPS: Create GRAMPS database'), 
-            self.uistate.window, 
-            gtk.FILE_CHOOSER_ACTION_SAVE, 
-            (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
-             gtk.STOCK_SAVE, gtk.RESPONSE_OK))
+        loader = DbLoader(self.state,self.uistate)
+        (filename,filetype) = loader.save_as()
+        self.post_load(filename,filetype)
 
-        # Always add automatic (macth all files) filter
-        add_all_files_filter(choose)
-        add_gramps_files_filter(choose)
-        add_grdb_filter(choose)
-        add_xml_filter(choose)
-        add_gedcom_filter(choose)
+    def new_activate(self,obj):
+        loader = DbLoader(self.state,self.uistate)
+        (filename,filetype) = loader.new_file()
+        self.post_load(filename,filetype)
 
-        format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
-        (box, type_selector) = format_maker(format_list)
-        choose.set_extra_widget(box)
+    def read_recent_file(self,filename,filetype):
+        loader = DbLoader(self.state,self.uistate)
+        loader.read_file(filename,filetype)
+        self.post_load(filename,filetype)
 
-        # Suggested folder: try last open file, import, then last export, 
-        # then home.
-        default_dir = os.path.split(Config.get(Config.RECENT_FILE))[0] \
-                      + os.path.sep
-        if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_IMPORT_DIR)
-        if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_EXPORT_DIR)
-        if len(default_dir)<=1:
-            default_dir = '~/'
-
-        new_filename = Utils.get_new_filename('grdb', default_dir)
-        
-        choose.set_current_folder(default_dir)
-        choose.set_current_name(os.path.split(new_filename)[1])
-
-        response = choose.run()
-        if response == gtk.RESPONSE_OK:
-            filename = choose.get_filename()
-            if filename == None:
-                choose.destroy()
-                return False
-
-            filetype = type_selector.get_value()
-            if filetype == 'auto':
-                try:
-                    the_file = open(filename,'wb')
-                    the_file.close()
-                    filetype = Mime.get_type(filename)
-                    os.remove(filename)
-                except RuntimeError, msg:
-                    QuestionDialog.ErrorDialog(
-                        _("Could not open file: %s") % filename, 
-                        str(msg))
-                    return False
-            # First we try our best formats
-            if filetype not in (const.app_gramps, 
-                                const.app_gramps_xml, 
-                                const.app_gedcom):
-                QuestionDialog.ErrorDialog(
-                    _("Could not open file: %s") % filename,
-                    _("Unknown type: %s") % filetype
-                    )
-                return False
-            choose.destroy()
-            try:
-                return self.open_saved_as(filename,filetype)
-            except:
-                log.error("Failed to save as", exc_info=True)
-                return False
-        else:
-            choose.destroy()
-            return False
-
-    def new_activate(self, obj):
-
-        choose = gtk.FileChooserDialog(
-            _('GRAMPS: Create GRAMPS database'), 
-            self.uistate.window, 
-            gtk.FILE_CHOOSER_ACTION_SAVE, 
-            (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
-             gtk.STOCK_OPEN, gtk.RESPONSE_OK))
-
-        # Always add automatic (macth all files) filter
-        add_all_files_filter(choose)
-        add_grdb_filter(choose)
-
-        # Suggested folder: try last open file, import, then last export, 
-        # then home.
-        default_dir = os.path.split(Config.get(Config.RECENT_FILE))[0] + os.path.sep
-        if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_IMPORT_DIR)
-        if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_EXPORT_DIR)
-        if len(default_dir)<=1:
-            default_dir = '~/'
-
-        new_filename = Utils.get_new_filename('grdb', default_dir)
-        
-        choose.set_current_folder(default_dir)
-        choose.set_current_name(os.path.split(new_filename)[1])
-
-        while (True):
-            response = choose.run()
-            if response == gtk.RESPONSE_OK:
-                filename = choose.get_filename()
-                if filename == None:
-                    continue
-                if os.path.splitext(filename)[1] != ".grdb":
-                    filename = filename + ".grdb"
-                choose.destroy()
-                try:
-                    self.state.db.close()
-                except:
-                    pass
-                factory = GrampsDb.gramps_db_factory
-                self.state.change_database(factory(const.app_gramps)())
-                self.uistate.clear_history()
-                self.read_file(filename)
-                self.state.signal_change()
-                self.change_page(None, None)
-                # Add the file to the recent items
-                RecentFiles.recent_files(filename, const.app_gramps)
-                self.recent_manager.build()
-                return True
-            else:
-                choose.destroy()
-                return False
-        choose.destroy()
-        return False
-        
-    def open_native(self, filename, filetype):
-        """
-        Open native database and return the status.
-        """
-        
-        (the_path, the_file) = os.path.split(filename)
-        Config.set(Config.RECENT_IMPORT_DIR,the_path)
-        
-        factory = GrampsDb.gramps_db_factory
-        success = False
-        if filetype == const.app_gramps:
-            self.state.change_database(factory(db_type = const.app_gramps)())
-            success = self.read_file(filename) #, update_msg)
-            self.state.signal_change()
-            self.change_page(None, None)
-        elif filetype == const.app_gramps_xml:
-            self.state.change_database(factory(db_type = const.app_gramps_xml)())
-            success = self.read_file(filename)
-            self.state.signal_change()
-            self.change_page(None, None)
-        elif filetype == const.app_gedcom:
-            self.state.change_database(factory(db_type = const.app_gedcom)())
-            success = self.read_file(filename)
-            self.state.signal_change()
-            self.change_page(None, None)
-
-        if success:
-            # Add the file to the recent items
-            RecentFiles.recent_files(filename, filetype)
-            self.recent_manager.build()
-
-        self.actiongroup.set_visible(True)
+    def post_load(self, filename, filetype):
         self.uistate.clear_history()
-        return success
+        self.uistate.progress.hide()
 
-    def read_file(self, filename, callback=None):
-        mode = "w"
-        filename = os.path.normpath(os.path.abspath(filename))
-
-        if os.path.isdir(filename):
-            QuestionDialog.ErrorDialog(
-                _('Cannot open database'), 
-                _('The selected file is a directory, not '
-                  'a file.\nA GRAMPS database must be a file.'))
-            return False
-        elif os.path.exists(filename):
-            if not os.access(filename, os.R_OK):
-                QuestionDialog.ErrorDialog(
-                    _('Cannot open database'), 
-                    _('You do not have read access to the selected '
-                      'file.'))
-                return False
-            elif not os.access(filename, os.W_OK):
-                mode = "r"
-                QuestionDialog.WarningDialog(
-                    _('Read only database'), 
-                    _('You do not have write access '
-                      'to the selected file.'))
-
-        try:
-            os.chdir(os.path.dirname(filename))
-        except:
-            print "could not change directory"
-
-
-        # emit the database change signal so the that models do not
-        # attempt to update the screen while we are loading the
-        # new data
-        
-        self.state.emit('database-changed', (GrampsDb.GrampsDbBase(), ))
-
-        try:
-            if self.load_database(filename, callback, mode=mode):
-                if filename[-1] == '/':
-                    filename = filename[:-1]
-                name = os.path.basename(filename)
-                if self.state.db.readonly:
-                    msg =  "%s (%s) - GRAMPS" % (name, _('Read Only'))
-                    self.uistate.window.set_title(msg)
-                else:
-                    msg = "%s - GRAMPS" % name
-                    self.uistate.window.set_title(msg)
-            else:
-                Config.set(Config.RECENT_FILE,"")
-                QuestionDialog.ErrorDialog(
-                    _('Cannot open database'), 
-                    _('The database file specified could not be opened.'))
-                return False
-        except ( IOError, OSError, Errors.FileVersionError), msg:
-            QuestionDialog.ErrorDialog(_('Cannot open database'), str(msg))
-            return False
-        except (db.DBAccessError, db.DBError), msg:
-            QuestionDialog.ErrorDialog(
-                _('Cannot open database'), 
-                _('%s could not be opened.' % filename) + '\n' + msg[1])
-            return False
-        except Exception:
-            log.error("Failed to open database.", exc_info=True)
-            return False
-        
-        self.file_loaded = True
-        self.actiongroup.set_visible(True)
-        return True
-
-    def load_database(self, name, callback=None, mode="w"):
-        self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        self.progress.show()
-        if not self.state.db.load(name, self.uistate.pulse_progressbar, mode):
-            return False
-        self.progress.hide()
-        return self.post_load(name, callback)
-
-    def post_load(self, name, callback=None):
-        if not self.state.db.version_supported():
-            raise Errors.FileVersionError(
-                    "The database version is not supported by this "
-                    "version of GRAMPS.\nPlease upgrade to the "
-                    "corresponding version or use XML for porting"
-                    "data between different database versions.")
-        
-        self.state.db.set_save_path(name)
+        self.state.db.set_save_path(filename)
 
         res = self.state.db.get_researcher()
         owner = GrampsCfg.get_researcher()
@@ -1020,9 +719,10 @@ class ViewManager:
 
         self.setup_bookmarks()
 
+        self.state.db.enable_signals()
         self.state.db.request_rebuild()
 
-        Config.set(Config.RECENT_FILE,name)
+        Config.set(Config.RECENT_FILE,filename)
     
         self.relationship = self.RelClass(self.state.db)
         self.state.change_active_person(self.state.db.find_initial_person())
@@ -1034,7 +734,25 @@ class ViewManager:
         self.state.db.undo_history_callback = self.undo_history_update
         self.actiongroup.set_visible(True)
         self.window.window.set_cursor(None)
-        return True
+
+        # FIXME: moved from other methods. Verify.
+        self.file_loaded = True
+
+        # FIXME: moved from other methods. Verify.
+        # Add the file to the recent items
+        RecentFiles.recent_files(filename,filetype)
+        self.recent_manager.build()
+        
+        # FIXME: Moved from other method. Verify.
+        if filename[-1] == '/':
+            filename = filename[:-1]
+        name = os.path.basename(filename)
+        if self.state.db.readonly:
+            msg =  "%s (%s) - GRAMPS" % (name, _('Read Only'))
+            self.uistate.window.set_title(msg)
+        else:
+            msg = "%s - GRAMPS" % name
+            self.uistate.window.set_title(msg)
 
     def change_undo_label(self, label):
         self.uimanager.remove_action_group(self.undoactions)
@@ -1379,52 +1097,6 @@ class ViewManager:
 def by_menu_name(a, b):
     return cmp(a[2], b[2])
 
-def add_all_files_filter(chooser):
-    """
-    Add an all-permitting filter to the file chooser dialog.
-    """
-    mime_filter = gtk.FileFilter()
-    mime_filter.set_name(_('All files'))
-    mime_filter.add_pattern('*')
-    chooser.add_filter(mime_filter)
-
-def add_gramps_files_filter(chooser):
-    """
-    Add an all-GRAMPS filter to the file chooser dialog.
-    """
-    mime_filter = gtk.FileFilter()
-    mime_filter.set_name(_('All GRAMPS files'))
-    mime_filter.add_mime_type(const.app_gramps)
-    mime_filter.add_mime_type(const.app_gramps_xml)
-    mime_filter.add_mime_type(const.app_gedcom)
-    chooser.add_filter(mime_filter)
-
-def add_grdb_filter(chooser):
-    """
-    Add a GRDB filter to the file chooser dialog.
-    """
-    mime_filter = gtk.FileFilter()
-    mime_filter.set_name(_('GRAMPS databases'))
-    mime_filter.add_mime_type(const.app_gramps)
-    chooser.add_filter(mime_filter)
-
-def add_xml_filter(chooser):
-    """
-    Add a GRAMPS XML filter to the file chooser dialog.
-    """
-    mime_filter = gtk.FileFilter()
-    mime_filter.set_name(_('GRAMPS XML databases'))
-    mime_filter.add_mime_type(const.app_gramps_xml)
-    chooser.add_filter(mime_filter)
-
-def add_gedcom_filter(chooser):
-    """
-    Add a GEDCOM filter to the file chooser dialog.
-    """
-    mime_filter = gtk.FileFilter()
-    mime_filter.set_name(_('GEDCOM files'))
-    mime_filter.add_mime_type(const.app_gedcom)
-    chooser.add_filter(mime_filter)
 
 def make_report_callback(lst, dbstate, uistate):
     return lambda x: Report.report(dbstate.db, dbstate.get_active_person(), 
@@ -1435,55 +1107,3 @@ def make_tool_callback(lst, dbstate, uistate):
                                    lst[0], lst[1], lst[2], lst[3], lst[4], 
                                    dbstate.db.request_rebuild)
 
-#-------------------------------------------------------------------------
-#
-# Format selectors and filters
-#
-#-------------------------------------------------------------------------
-class GrampsFormatWidget(gtk.ComboBox):
-
-    def __init__(self):
-        gtk.ComboBox.__init__(self, model=None)
-
-    def set(self, format_list):
-        self.store = gtk.ListStore(str)
-        self.set_model(self.store)
-        cell = gtk.CellRendererText()
-        self.pack_start(cell, True)
-        self.add_attribute(cell, 'text', 0)
-        self.format_list = format_list
-        
-        for format, label in format_list:
-            self.store.append(row=[label])
-        self.set_active(False)
-
-    def get_value(self):
-        active = self.get_active()
-        if active < 0:
-            return None
-        return self.format_list[active][0]
-
-def format_maker(formats):
-    """
-    A factory function making format selection widgets.
-    
-    Accepts a list of formats to include into selector.
-    The auto selection is always added as the first one.
-    The returned box contains both the label and the selector.
-    """
-    format_list = [ ('auto', _('Automatically detected')) ]
-    for format in formats:
-        if _KNOWN_FORMATS.has_key(format):
-            format_list.append( (format, _KNOWN_FORMATS[format]) )
-
-    type_selector = GrampsFormatWidget()
-    type_selector.set(format_list)
-
-    box = gtk.HBox()
-    label = gtk.Label(_('Select file _type:'))
-    label.set_use_underline(True)
-    label.set_mnemonic_widget(type_selector)
-    box.pack_start(label, expand=False, fill=False, padding=6)
-    box.add(type_selector)
-    box.show_all()
-    return (box, type_selector)

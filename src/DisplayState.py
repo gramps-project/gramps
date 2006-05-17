@@ -163,14 +163,8 @@ class RecentDocsMenu:
 
     def load(self,item):
         name = item.get_path()
-        dbtype = item.get_mime()
-        
-        db = GrampsDb.gramps_db_factory(dbtype)()
-        self.state.change_database(db)
-        self.fileopen(name)
-        self.state.signal_change()
-        RecentFiles.recent_files(name,dbtype)
-        self.build()
+        dbtype = item.get_mime()       
+        self.fileopen(name,dbtype)
 
     def build(self):
         f = StringIO()

@@ -1,3 +1,10 @@
+2006-05-17  Alex Roitman  <shura@gramps-project.org>
+	* src/DbLoader.py: add new module.
+	* src/ViewManager.py: Use DbLoader.
+	* src/DisplayState.py (load): Do not perform post_load tasks.
+	* src/GrampsDb/_GrampsBSDDB.py (GrampsBSDDB.load): close if
+	version is incopmatible.
+
 2006-05-17  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsDbBase.py: remove place name storage
 	* src/Editors/_EditLdsOrd.py: new SelectPlace interface
