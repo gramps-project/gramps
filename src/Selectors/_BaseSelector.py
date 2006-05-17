@@ -69,6 +69,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
 
         self.tree.set_model(self.model)
         self.add_columns(self.tree)
+        self._local_init()
         self.show()
 
     def add_columns(self,tree):
@@ -111,6 +112,10 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         else:
             self.close()
             return None
+
+    def _local_init(self):
+        # define selector-specific init routine
+        pass
 
     def get_window_title(self):
         # return _("Select something")

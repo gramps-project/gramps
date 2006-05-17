@@ -21,6 +21,14 @@
 
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+import gc
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -41,13 +49,6 @@ import Bookmarks
 from Editors import EditMedia
 import Errors
 from QuestionDialog import QuestionDialog, ErrorDialog
-
-#-------------------------------------------------------------------------
-#
-# internationalization
-#
-#-------------------------------------------------------------------------
-from gettext import gettext as _
 
 column_names = [
     _('Title'),
@@ -135,6 +136,7 @@ class MediaView(PageView.ListView):
         obj = self.dbstate.db.get_object_from_handle(handle)
         pix = ImgManip.get_thumbnail_image(obj.get_path())
         self.image.set_from_pixbuf(pix)
+        gc.collect()
     
     def ui_definition(self):
         return '''<ui>

@@ -20,23 +20,31 @@
 
 # $Id$
 
-#
 # Written by Alex Roitman, 
 # largely based on the MediaView and SelectPerson by Don Allingham
-#
 
 #-------------------------------------------------------------------------
 #
 # internationalization
 #
 #-------------------------------------------------------------------------
+import gc
 from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# GTK+
+#
+#-------------------------------------------------------------------------
+import gtk
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import const
+import ImgManip
 from DisplayModels import MediaModel
 from _BaseSelector import BaseSelector
 
@@ -65,3 +73,23 @@ class SelectObject(BaseSelector):
             (_('ID'),     75, BaseSelector.TEXT),
             (_('Type'),   75, BaseSelector.TEXT),
             ]
+
+    def _local_init(self):
+        self.preview = gtk.Image()
+        self.preview.set_size_request(int(const.thumbScale),
+                                    int(const.thumbScale))
+        vbox = self.glade.get_widget('select_person_vbox')
+        vbox.pack_start(self.preview,False)
+        vbox.reorder_child(self.preview,1)
+        self.preview.show()
+        self.selection.connect('changed',self._row_change)
+
+    def _row_change(self,obj):
+        id_list = self.get_selected_ids()
+        if not (id_list and id_list[0]):
+            return
+        handle = id_list[0]
+        obj = self.get_from_handle_func()(handle)
+        pix = ImgManip.get_thumbnail_image(obj.get_path())
+        self.preview.set_from_pixbuf(pix)
+        gc.collect()
