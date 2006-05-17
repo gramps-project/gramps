@@ -58,39 +58,47 @@ class TipOfDay(ManagedWindow.ManagedWindow):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         
-        xml = gtk.glade.XML(const.gladeFile, "tod", "gramps")
-
-        self.set_window(xml.get_widget("tod"),
+        xml = gtk.glade.XML(const.gladeFile, "tod_window", "gramps")
+        window = xml.get_widget("tod_window")
+        self.set_window(window,
                         xml.get_widget("title"),
                         _("Tip of the Day"),
                         _("Tip of the Day"))
         
-        tip = xml.get_widget("tip")
-        use = xml.get_widget('usetips')
+        self.tip = xml.get_widget("tip")
+        self.use = xml.get_widget('usetips')
+        self.use.set_active(Config.get(Config.USE_TIPS))
         image = xml.get_widget('image')
         image.set_from_file(os.path.join(const.image_dir,'splash.jpg'))
 
-        tp = TipParser()
-        tip_list = tp.get()
-        use.set_active(Config.get(Config.USE_TIPS))
-
-        new_index = range(len(tip_list))
-        Random().shuffle(new_index)
-
-        index = 0
-        rval = 0
-        while rval == 0:
-            tip.set_text(_(tip_list[new_index[index]]))
-            tip.set_use_markup(1)
-            rval = self.window.run()
-            if index >= len(tip_list)-1:
-                index = 0
-            else:
-                index += 1
+        next = xml.get_widget('next')
+        next.connect("clicked",self.next_tip_cb)
+        close = xml.get_widget('close')
+        close.connect("clicked",self.close_cb)
         
-        Config.set(Config.USE_TIPS,use.get_active())
-        self.close()
+        tp = TipParser()
+        self.tip_list = tp.get()
 
+        self.new_index = range(len(self.tip_list))
+        Random().shuffle(self.new_index)
+
+        self.index = 0
+        self.next_tip_cb()
+        
+        window.show_all()
+
+    def next_tip_cb(self,dummy=None):
+        self.tip.set_text(_(self.tip_list[self.new_index[self.index]]))
+        self.tip.set_use_markup(True)
+        if self.index >= len(self.tip_list)-1:
+            self.index = 0
+        else:
+            self.index += 1
+    
+    def close_cb(self,dummy=None):
+        Config.set(Config.USE_TIPS,self.use.get_active())
+        self.close()
+        
     def build_menu_names(self,obj):
         return (_("Tip of the Day"), None)
 
