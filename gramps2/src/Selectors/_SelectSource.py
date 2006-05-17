@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: SelectEvent.py 6155 2006-03-16 20:24:27Z rshura $
+# $Id$
 
 #-------------------------------------------------------------------------
 #

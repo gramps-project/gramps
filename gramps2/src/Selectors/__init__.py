@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: __init__.py 6392 2006-04-21 18:15:23Z dallingham $
+# $Id$
 
 from _SelectorFactory import selector_factory
 
