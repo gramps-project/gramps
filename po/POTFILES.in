@@ -16,7 +16,6 @@ src/const.py
 src/DateEdit.py
 src/Date.py
 src/DdTargets.py
-src/DisplayModels.py
 src/DisplayState.py
 src/Errors.py
 src/Exporter.py
@@ -34,7 +33,6 @@ src/MergePeople.py
 src/NameDisplay.py
 src/Navigation.py
 src/PageView.py
-src/PeopleModel.py
 src/QuestionDialog.py
 src/RecentFiles.py
 src/Relationship.py
@@ -94,6 +92,15 @@ src/docgen/PSDrawDoc.py
 src/docgen/RTFDoc.py
 src/docgen/SpreadSheetDoc.py
 src/docgen/SvgDrawDoc.py
+src/DisplayModels/_BaseModel.py
+src/DisplayModels/_EventModel.py
+src/DisplayModels/_FamilyModel.py
+src/DisplayModels/_MediaModel.py
+src/DisplayModels/_PeopleModel.py
+src/DisplayModels/_PlaceModel.py
+src/DisplayModels/_RepositoryModel.py
+src/DisplayModels/_SourceModel.py
+src/DisplayModels/__init__.py
 src/DisplayTabs/_AddrEmbedList.py
 src/DisplayTabs/_AddressModel.py
 src/DisplayTabs/_AttrEmbedList.py

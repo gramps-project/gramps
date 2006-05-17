@@ -47,7 +47,7 @@ import NameDisplay
 import ManagedWindow
 import ListModel
 import DateHandler
-import PeopleModel
+from DisplayModels import PeopleModel
 
 from QuestionDialog import ErrorDialog
 from PluginUtils import Tool, relationship_class, register_tool
@@ -104,7 +104,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
     
         self.tree = self.glade.get_widget("peopleList")
         
-        self.model = PeopleModel.PeopleModel(self.db,None)
+        self.model = PeopleModel(self.db,None)
         self.tree.set_model(self.model)
 
         column = gtk.TreeViewColumn(_('Name'), gtk.CellRendererText(),text=0)

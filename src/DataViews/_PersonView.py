@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -50,7 +49,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 #
 #-------------------------------------------------------------------------
 import RelLib
-import PeopleModel
+from DisplayModels import PeopleModel
 import PageView
 import GrampsWidgets
 import NameDisplay
@@ -384,7 +383,7 @@ class PersonView(PageView.PersonNavView):
             else:
                 filter_info = (PeopleModel.SEARCH, self.search_bar.get_value())
             
-            self.model = PeopleModel.PeopleModel(self.dbstate.db, filter_info)
+            self.model = PeopleModel(self.dbstate.db, filter_info)
 
             self.tree.set_model(self.model)
 
