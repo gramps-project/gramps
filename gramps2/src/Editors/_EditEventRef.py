@@ -78,6 +78,8 @@ class EditEventRef(EditReference):
                         _('Event Reference Editor'))
         self.define_warn_box(self.top.get_widget("eer_warning"))
         self.define_expander(self.top.get_widget("eer_expander"))
+        self.share_btn = self.top.get_widget('share_place')
+        self.add_del_btn = self.top.get_widget('add_del_place')
                               
     def _init_event(self):
         self.commit_event = self.db.commit_personal_event
@@ -115,10 +117,14 @@ class EditEventRef(EditReference):
             self.db.readonly)
 
         self.place_field = PlaceEntry(
+            self.dbstate,
+            self.uistate,
+            self.track,
             self.top.get_widget("eer_place"),
-            self.source.get_place_handle(),
-            self.dbstate.get_place_completion(),
-            self.db.readonly)
+            self.source.set_place_handle,
+            self.source.get_place_handle,
+            self.add_del_btn,
+            self.share_btn)
 
         self.ev_privacy = PrivacyButton(
             self.top.get_widget("eer_ev_priv"),
