@@ -32,7 +32,7 @@ from gettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from RelLib import Place
+from DisplayModels import PlaceModel
 from _BaseSelector import BaseSelector
 
 #-------------------------------------------------------------------------
@@ -42,19 +42,20 @@ from _BaseSelector import BaseSelector
 #-------------------------------------------------------------------------
 class SelectPlace(BaseSelector):
 
+    def get_window_title(self):
+        return _("Select Place")
+        
+    def get_model_class(self):
+        return PlaceModel
+
     def get_column_titles(self):
-        return [(_('Title'),4,350), (_('ID'),1,50)]
+        return [
+            (_('Title'), 350, BaseSelector.TEXT),
+            (_('ID'),     75, BaseSelector.TEXT)
+            ]
 
     def get_from_handle_func(self):
         return self.db.get_place_from_handle
         
-    def get_cursor_func(self):
-        return self.db.get_place_cursor
-
-    def get_class_func(self):
-        return Place
-
-    def get_model_row_data(self,obj):
-        name = obj.get_title()
-        the_id = obj.get_gramps_id()
-        return [name,the_id]
+    def get_handle_column(self):
+        return 11

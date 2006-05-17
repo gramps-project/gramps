@@ -220,7 +220,7 @@ class EditLdsOrd(EditSecondary):
         from Selectors import selector_factory
         SelectFamily = selector_factory('Family')
 
-        dialog = SelectFamily(self.dbstate.db, _('Select Family'))
+        dialog = SelectFamily(self.dbstate,self.uistate,self.track)
         family = dialog.run()
         if family:
             self.obj.set_family_handle(family.handle)

@@ -32,7 +32,7 @@ from gettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from RelLib import Repository
+from DisplayModels import RepositoryModel
 from _BaseSelector import BaseSelector
 
 #-------------------------------------------------------------------------
@@ -42,19 +42,20 @@ from _BaseSelector import BaseSelector
 #-------------------------------------------------------------------------
 class SelectRepository(BaseSelector):
 
+    def get_window_title(self):
+        return _("Select Repository")
+        
+    def get_model_class(self):
+        return RepositoryModel
+
     def get_column_titles(self):
-        return [(_('Title'),4,350), (_('ID'),1,50)]
+        return [
+            (_('Title'), 350, BaseSelector.TEXT),
+            (_('ID'),     75, BaseSelector.TEXT)
+            ]
+
+    def get_handle_column(self):
+        return 12
 
     def get_from_handle_func(self):
         return self.db.get_repository_from_handle
-        
-    def get_cursor_func(self):
-        return self.db.get_repository_cursor
-
-    def get_class_func(self):
-        return Repository
-
-    def get_model_row_data(self,obj):
-        name = obj.get_name()
-        the_id = obj.get_gramps_id()
-        return [name,the_id]

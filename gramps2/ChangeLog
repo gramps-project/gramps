@@ -1,3 +1,16 @@
+2006-05-16  Alex Roitman  <shura@gramps-project.org>
+	* src/Editors/_EditLdsOrd.py: Adapt to new selector.
+	* src/DisplayTabs/_SourceEmbedList.py: Adapt to new selector.
+	* src/DisplayTabs/_EventEmbedList.py: Adapt to new selector.
+	* src/DisplayTabs/_GalleryTab.py: Adapt to new selector.
+	* src/Selectors/_BaseSelector.py: Use DisplaModel models.
+	* src/Selectors/_SelectRepository.py: Use DisplaModel models.
+	* src/Selectors/_SelectSource.py: Use DisplaModel models.
+	* src/Selectors/_SelectEvent.py: Use DisplaModel models.
+	* src/Selectors/_SelectFamily.py: Use DisplaModel models.
+	* src/Selectors/_SelectPlace.py: Use DisplaModel models.
+	* src/Selectors/_SelectObject.py: Use DisplaModel models.
+
 2006-05-16  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditEvent.py: start of SelectPlace integration
 	* src/glade/gramps.glade: start of SelectPlace integration
