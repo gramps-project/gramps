@@ -62,14 +62,24 @@ dist_pkgdata_DATA = \
 	media.svg\
 	ped24.png\
 	person.svg\
+	person.png\
 	place.png\
 	place24.png\
 	relation.svg\
+	relation.png\
 	repos.png\
 	repos24.png\
 	sources.png\
 	sources24.png\
 	splash.jpg\
+	stock_add-bookmark.png\
+	stock_bookmark.png\
+	stock_delete-bookmark.png\
+	stock_edit-bookmark.png\
+	stock_export.png\
+	stock_insert-url.png\
+	stock_new-html.png\
+	stock_undo-history.png\
 	stock_link.png\
 	stock_lock-open.png\
 	stock_lock.png\
