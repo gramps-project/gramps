@@ -449,9 +449,11 @@ class Reader:
 
     def readahead(self):
         while len(self.current_list) < 5:
-            line = self.f.readline()
+            old_line = self.f.readline()
             self.index += 1
-            line = line.strip('\r\n')
+            line = old_line.strip('\r\n')
+            if line == "" and line != old_line:
+                continue
             if line == "":
                 self.f.close()
                 self.eof = True
@@ -1091,7 +1093,7 @@ class GedcomParser(UpdateCallback):
                 mrel = _TYPE_BIRTH
                 frel = _TYPE_BIRTH
             # Legacy _PREF
-            elif matches[1][0] == TOKEN_UNKNOWN:
+            elif matches[1] and matches[1][0] == TOKEN_UNKNOWN:
                 pass
             else:
                 self.barf(level+1)

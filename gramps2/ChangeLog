@@ -1,3 +1,6 @@
+2006-05-16  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: handle blank lines
+
 2006-05-16  Alex Roitman  <shura@gramps-project.org>
 	* src/Selectors/_SelectPerson.py: Use new package.
 	* src/plugins/RelCalc.py: Use new package.
