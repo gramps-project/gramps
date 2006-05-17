@@ -93,6 +93,10 @@ class EditEvent(EditPrimary):
                         self.top.get_widget('title'),
                         _('Event Editor'))
 
+        self.place = self.top.get_widget('place')
+        self.share_btn = self.top.get_widget('select_place')
+        self.add_del_btn = self.top.get_widget('add_del_place')
+
     def _connect_signals(self):
         self.top.get_widget('button111').connect('clicked',self.close)
         self.top.get_widget('button126').connect('clicked',self.help_clicked)
@@ -106,11 +110,16 @@ class EditEvent(EditPrimary):
                self.dbstate.db.get_family_event_types()
     
     def _setup_fields(self):
+
+        # place, select_place, add_del_place
+        
         self.place_field = PlaceEntry(
-            self.top.get_widget("eventPlace"),
-            self.obj.get_place_handle(),
-            self.dbstate.get_place_completion(),
-            self.db.readonly)
+            self.db,
+            self.top.get_widget("place"),
+            self.obj.set_place_handle,
+            self.obj.get_place_handle,
+            self.add_del_btn,
+            self.share_btn)
         
         self.cause_monitor = MonitoredEntry(
             self.top.get_widget("eventCause"),

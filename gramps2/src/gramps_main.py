@@ -194,16 +194,6 @@ class Gramps:
                                  self.statusbar_key_update)
         Config.client.notify_add("/apps/gramps/interface/toolbar",
                                  self.toolbar_key_update)
-#        Config.client.notify_add("/apps/gramps/interface/toolbar-on",
-#                                 self.toolbar_on_key_update)
-#        Config.client.notify_add("/apps/gramps/interface/filter",
-#                                    self.filter_key_update)
-#        Config.client.notify_add("/apps/gramps/interface/view",
-#                                    self.sidebar_key_update)
-#        Config.client.notify_add("/apps/gramps/preferences/name-format",
-#                                    self.familyview_key_update)
-#        Config.client.notify_add("/apps/gramps/preferences/date-format",
-#                                    self.date_format_key_update)
 
         if Config.get(Config.USE_TIPS):
             TipOfDay.TipOfDay(self.vm.uistate)
@@ -254,6 +244,3 @@ class Gramps:
         else:
             self.vm.toolbar.set_style(the_style)
 
-#     def toolbar_on_key_update(self,client,cnxn_id,entry,data):
-#         is_on = COnfig.get_toolbar_on()
-#         self.enable_toolbar(is_on)
