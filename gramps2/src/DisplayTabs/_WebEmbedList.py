@@ -60,7 +60,7 @@ class WebEmbedList(EmbeddedList):
                               _('Internet'), WebModel)
 
     def get_icon_name(self):
-        return (0,'stock_insert-url')
+        return 'gramps-url'
 
     def get_data(self):
         return self.data

@@ -51,12 +51,22 @@ from gettext import gettext as _
 
 iconpaths = [const.image_dir,"."]
 
+
+import platform
+
+if platform.system() == "Windows":
+    person_icon = "person.png"
+    relation_icon = "relation.png"
+else:
+    person_icon = "person.svg"
+    relation_icon = "relation.svg"
+
 def register_stock_icons ():
     import os
     items = [
-        (os.path.join(const.image_dir,'person.svg'),
+        (os.path.join(const.image_dir,person_icon),
          ('gramps-person',_('Person'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'relation.svg'),
+        (os.path.join(const.image_dir,relation_icon),
          ('gramps-family',_('Relationships'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'flist.svg'),
          ('gramps-family-list',_('Family List'),gtk.gdk.CONTROL_MASK,0,'')),
@@ -82,6 +92,8 @@ def register_stock_icons ():
          ('gramps-add-bookmark',_('Add bookmark'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'stock_edit-bookmark.png'),
          ('gramps-edit-bookmark',_('Edit bookmarks'),gtk.gdk.CONTROL_MASK,0,'')),
+        (os.path.join(const.image_dir,'stock_insert-url.png'),
+         ('gramps-url',_('URL'),gtk.gdk.CONTROL_MASK,0,'')),
         ]
     
     # Register our stock items

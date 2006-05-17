@@ -1,4 +1,10 @@
 2006-05-16  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs/_WebEmbedList.py: icon fixes
+	* src/images/stock_insert-url.png: added
+	* src/images/person.png: added
+	* src/images/relation.png: added
+	* src/images/Makefile.am: added new images
+	* src/gramps_main.py: register icons as stock
 	* src/GrampsDb/_ReadGedcom.py: handle blank lines
 
 2006-05-16  Alex Roitman  <shura@gramps-project.org>
