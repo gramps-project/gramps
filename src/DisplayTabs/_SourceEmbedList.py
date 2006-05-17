@@ -98,11 +98,7 @@ class SourceEmbedList(EmbeddedList):
         from Selectors import selector_factory
         SelectSource = selector_factory('Source')
 
-        sel = SelectSource(
-            self.dbstate,
-            self.uistate,
-            self.track,
-            _("Select source"))
+        sel = SelectSource(self.dbstate,self.uistate,self.track)
         
         src = sel.run()
         if src:

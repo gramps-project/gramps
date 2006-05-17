@@ -117,8 +117,7 @@ class EventEmbedList(EmbeddedList):
         from Selectors import selector_factory
         SelectEvent = selector_factory('Event')
 
-        sel = SelectEvent(self.dbstate,self.uistate,self.track,
-                                      _("Select event"))
+        sel = SelectEvent(self.dbstate,self.uistate,self.track)
         event = sel.run()
         if event:
             try:

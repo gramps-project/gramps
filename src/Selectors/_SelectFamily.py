@@ -29,91 +29,34 @@ from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# GTK/Gnome modules
-#
-#-------------------------------------------------------------------------
-import gtk
-import gtk.glade
-import pango
-
-#-------------------------------------------------------------------------
-#
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
-import Utils
-import DisplayModels
-import ManagedWindow
+from DisplayModels import FamilyModel
+from _BaseSelector import BaseSelector
 
 #-------------------------------------------------------------------------
 #
 # SelectFamily
 #
 #-------------------------------------------------------------------------
-class SelectFamily(ManagedWindow.ManagedWindow):
+class SelectFamily(BaseSelector):
 
-    def __init__(self, dbstate, uistate, filter=None, skip=[]):
-
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+    def get_window_title(self):
+        return _("Select Family")
         
-        self.renderer = gtk.CellRendererText()
-        self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
-        self.db = dbstate.db
-        self.glade = gtk.glade.XML(const.gladeFile,"select_person","gramps")
-        self.plist =  self.glade.get_widget('plist')
-        self.notebook =  self.glade.get_widget('notebook')
+    def get_model_class(self):
+        return FamilyModel
 
-        self.set_window(
-            self.glade.get_widget('select_person'),
-            self.glade.get_widget('title'),
-            _('Select Family'))
+    def get_column_titles(self):
+        return [
+            (_('ID'),      75, BaseSelector.TEXT),
+            (_('Father'), 200, BaseSelector.TEXT),
+            (_('Mother'), 200, BaseSelector.TEXT),
+            ]
 
-        self.model = DisplayModels.FamilyModel(self.db)
-
-        self.add_columns(self.plist)
-        self.plist.set_model(self.model)
-        self.show()
-
-    def add_columns(self,tree):
-        column = gtk.TreeViewColumn(_('ID'), self.renderer, text=0)
-        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
-        column.set_fixed_width(75)
-        tree.append_column(column)
-
-        tree.set_fixed_height_mode(True)
-        column = gtk.TreeViewColumn(_('Father'), self.renderer, text=1)
-        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
-        column.set_fixed_width(200)
-        tree.append_column(column)
-
-        column = gtk.TreeViewColumn(_('Mother'), self.renderer, text=2)
-        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
-        column.set_fixed_width(200)
-        tree.append_column(column)
+    def get_from_handle_func(self):
+        return self.db.get_family_from_handle
         
-    def select_function(self,store,path,iter,id_list):
-        id_list.append(self.model.get_value(iter,5))
-
-
-    def build_menu_names(self,obj):
-        return (_('Select Family'), None)
-
-    def get_selected_ids(self):
-        mlist = []
-        self.plist.get_selection().selected_foreach(self.select_function,mlist)
-        return mlist
-
-    def run(self):
-        val = self.window.run()
-        if val == gtk.RESPONSE_OK:
-            idlist = self.get_selected_ids()
-            self.close()
-            if idlist and idlist[0]:
-                return_value = self.db.get_family_from_handle(idlist[0])
-            else:
-                return_value = None
-	    return return_value
-        else:
-            self.close()
-            return None
+    def get_handle_column(self):
+        return 5

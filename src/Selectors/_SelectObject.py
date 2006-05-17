@@ -27,13 +27,6 @@
 
 #-------------------------------------------------------------------------
 #
-# general modules
-#
-#-------------------------------------------------------------------------
-import gc
-
-#-------------------------------------------------------------------------
-#
 # internationalization
 #
 #-------------------------------------------------------------------------
@@ -41,20 +34,10 @@ from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# GTK/Gnome modules
-#
-#-------------------------------------------------------------------------
-from gtk.gdk import INTERP_BILINEAR
-
-#-------------------------------------------------------------------------
-#
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from ImgManip import get_thumb_from_obj
-from Mime import get_description
-from ListModel import IMAGE
-from RelLib import MediaObject
+from DisplayModels import MediaModel
 from _BaseSelector import BaseSelector
 
 #-------------------------------------------------------------------------
@@ -64,31 +47,21 @@ from _BaseSelector import BaseSelector
 #-------------------------------------------------------------------------
 class SelectObject(BaseSelector):
 
-    def get_column_titles(self):
-        return [(_('Preview'),0,50,IMAGE),
-                (_('Title'),1,150),
-                (_('ID'),2,50),
-                (_('Type'),3,70)]
+    def get_window_title(self):
+        return _("Select Media Object")
+        
+    def get_model_class(self):
+        return MediaModel
 
     def get_from_handle_func(self):
         return self.db.get_object_from_handle
         
-    def get_cursor_func(self):
-        return self.db.get_media_cursor
+    def get_handle_column(self):
+        return 6
 
-    def get_class_func(self):
-        return MediaObject
-
-    def get_model_row_data(self,obj):
-        title = obj.get_description()
-        the_type = get_description(obj.get_mime_type())
-        pixbuf = get_thumb_from_obj(obj)
-        pixbuf = pixbuf.scale_simple(pixbuf.get_width()/2,
-                                     pixbuf.get_height()/2,
-                                     INTERP_BILINEAR)
-        return [pixbuf,title,obj.get_gramps_id(),the_type]
-
-    def close(self,*obj):
-        # needed to collect garbage on closing
-        BaseSelector.close(self,*obj)
-        gc.collect()
+    def get_column_titles(self):
+        return [
+            (_('Title'), 350, BaseSelector.TEXT),
+            (_('ID'),     75, BaseSelector.TEXT),
+            (_('Type'),   75, BaseSelector.TEXT),
+            ]

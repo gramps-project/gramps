@@ -220,8 +220,7 @@ class GalleryTab(ButtonTab):
         from Selectors import selector_factory
         SelectObject = selector_factory('MediaObject')
 
-        sel = SelectObject(self.dbstate,self.uistate,self.track,
-                                        _("Select media"))
+        sel = SelectObject(self.dbstate,self.uistate,self.track)
         src = sel.run()
         if src:
             sref = RelLib.MediaRef()

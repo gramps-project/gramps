@@ -37,8 +37,7 @@ from gettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import DateHandler
-from RelLib import Event
+from DisplayModels import EventModel
 from _BaseSelector import BaseSelector
 
 #-------------------------------------------------------------------------
@@ -48,22 +47,22 @@ from _BaseSelector import BaseSelector
 #-------------------------------------------------------------------------
 class SelectEvent(BaseSelector):
 
+    def get_window_title(self):
+        return _("Select Event")
+        
+    def get_model_class(self):
+        return EventModel
+
     def get_column_titles(self):
-        return [(_('Description'), 4, 250), (_('ID'), 1, 75),
-                (_('Type'), 2, 75), (_('Date'), 3, 150) ]
+        return [
+            (_('Description'), 250, BaseSelector.TEXT),
+            (_('ID'),           75, BaseSelector.TEXT),
+            (_('Type'),         75, BaseSelector.TEXT),
+            (_('Date'),        150, BaseSelector.TEXT)
+            ]
 
     def get_from_handle_func(self):
         return self.db.get_event_from_handle
         
-    def get_cursor_func(self):
-        return self.db.get_event_cursor
-
-    def get_class_func(self):
-        return Event
-
-    def get_model_row_data(self,obj):
-        desc = obj.get_description()
-        the_id = obj.get_gramps_id()
-        name = str(obj.get_type())
-        date = DateHandler.get_date(obj)
-        return [desc, the_id, name, date]
+    def get_handle_column(self):
+        return 7
