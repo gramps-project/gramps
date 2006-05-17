@@ -1097,6 +1097,7 @@ class GrampsBSDDB(GrampsDbBase):
             self.abort_possible = False
             # Undo is also impossible after batch transaction
             self.undoindex = -1
+            self.translist = [None] * len(self.translist)
         transaction = BdbTransaction(msg,self.undodb,batch,no_magic)
         if transaction.batch:
             if self.UseTXN:

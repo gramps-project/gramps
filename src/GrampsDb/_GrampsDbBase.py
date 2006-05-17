@@ -1236,6 +1236,7 @@ class GrampsDbBase(GrampsDBCallback):
             self.undo_history_timestamp = time.time()
             # Undo is also impossible after batch transaction
             self.undoindex = -1
+            self.translist  = [None] * _UNDO_SIZE
         return Transaction(msg, self.undodb, batch)
 
     def transaction_commit(self, transaction, msg):
@@ -2134,6 +2135,9 @@ class DbState(GrampsDBCallback):
 
     def change_database(self, database):
         self.db.close()
+        self.change_database_noclose(database)
+
+    def change_database_noclose(self, database):
         self.db = database
         self.active = None
         self.open = True
