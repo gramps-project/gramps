@@ -55,6 +55,7 @@ from RelLib import *
 from _GrampsDbBase import *
 from _DbUtils import db_copy
 import const
+import Errors
 
 _MINVERSION = 5
 _DBVERSION = 9
@@ -302,12 +303,14 @@ class GrampsBSDDB(GrampsDbBase):
 
         self.env = db.DBEnv()
         self.env.set_cachesize(0,0x2000000)         # 16MB
-        self.env.set_lk_max_locks(25000)
-        self.env.set_lk_max_objects(25000)
-        self.env.set_flags(db.DB_LOG_AUTOREMOVE,1)  # clean up unused logs
-        # The DB_PRIVATE flag must go if we ever move to multi-user setup
 
         if self.UseTXN:
+            # These env settings are only needed for Txn environment
+            self.env.set_lk_max_locks(25000)
+            self.env.set_lk_max_objects(25000)
+            self.env.set_flags(db.DB_LOG_AUTOREMOVE,1)  # clean up unused logs
+
+            # The DB_PRIVATE flag must go if we ever move to multi-user setup
             env_flags = db.DB_CREATE|db.DB_RECOVER|db.DB_PRIVATE|\
                         db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
                         db.DB_INIT_LOG|db.DB_INIT_TXN|db.DB_THREAD
@@ -325,6 +328,11 @@ class GrampsBSDDB(GrampsDbBase):
 
         callback(25)
         self.metadata     = self.open_table(self.full_name,"meta",no_txn=True)
+
+        # If we cannot work with this DB version,
+        # it makes no sense to go further
+        if not self.version_supported:
+            self._close_early()
         
         self.family_map     = self.open_table(self.full_name, "family")
         self.place_map      = self.open_table(self.full_name, "places")
@@ -804,6 +812,23 @@ class GrampsBSDDB(GrampsDbBase):
 
         return
         
+    def _close_early(self):
+        """
+        Bail out if the incompatible version is discovered:
+           * close cleanly to not damage data/env
+           * raise exception
+        """
+        self.metadata.close()
+        self.env.close()
+        self.metadata   = None
+        self.env        = None
+        self.db_is_open = False
+        raise Errors.FileVersionError(
+                    "The database version is not supported by this "
+                    "version of GRAMPS.\nPlease upgrade to the "
+                    "corresponding version or use XML for porting"
+                    "data between different database versions.")
+
     def close(self):
         if not self.db_is_open:
             return
