@@ -38,6 +38,7 @@ gdir_PYTHON = \
 	const.py\
 	DateEdit.py\
 	Date.py\
+	DbLoader.py\
 	DdTargets.py\
 	DisplayState.py\
 	Errors.py\

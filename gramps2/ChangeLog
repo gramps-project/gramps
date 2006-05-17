@@ -1,4 +1,7 @@
 2006-05-17  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py (DbState.change_database_noclose):
+	Add new method.
+	* src/Makefile.am (gdir_PYTHON): Ship new file.
 	* src/DbLoader.py: add new module.
 	* src/ViewManager.py: Use DbLoader.
 	* src/DisplayState.py (load): Do not perform post_load tasks.

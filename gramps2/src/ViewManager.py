@@ -61,14 +61,12 @@ import gobject
 #-------------------------------------------------------------------------
 from PluginUtils import Plugins, Report, Tool, PluginStatus, \
      relationship_class, load_plugins, \
-     import_list, tool_list, report_list
+     tool_list, report_list
 import DisplayState
 import const
 import Config
-import GrampsDb
 import GrampsCfg
 import Errors
-import Utils
 import QuestionDialog
 import PageView
 import Navigation
@@ -76,7 +74,6 @@ import TipOfDay
 import Bookmarks
 import RecentFiles
 import NameDisplay
-import Mime
 import GrampsWidgets
 import UndoHistory
 from DbLoader import DbLoader
@@ -280,6 +277,8 @@ class ViewManager:
         self.recent_manager = DisplayState.RecentDocsMenu(
             self.uistate,self.state,self.read_recent_file)
         self.recent_manager.build()
+
+        self.db_loader = DbLoader(self.state,self.uistate)
 
         self.window.show()
 
@@ -686,64 +685,48 @@ class ViewManager:
 
                 self.pages[num].change_page()
 
+    def import_data(self, obj):
+        self.db_loader.import_file()
+        self.post_load()
+        
     def open_activate(self, obj):
-        loader = DbLoader(self.state,self.uistate)
-        (filename,filetype) = loader.open_file()
-        self.post_load(filename,filetype)
+        (filename,filetype) = self.db_loader.open_file()
+        self.post_load_newdb(filename,filetype)
 
     def save_as_activate(self,obj):
-        loader = DbLoader(self.state,self.uistate)
-        (filename,filetype) = loader.save_as()
-        self.post_load(filename,filetype)
+        (filename,filetype) = self.db_loader.save_as()
+        self.post_load_newdb(filename,filetype)
 
     def new_activate(self,obj):
-        loader = DbLoader(self.state,self.uistate)
-        (filename,filetype) = loader.new_file()
-        self.post_load(filename,filetype)
+        (filename,filetype) = self.db_loader.new_file()
+        self.post_load_newdb(filename,filetype)
 
     def read_recent_file(self,filename,filetype):
-        loader = DbLoader(self.state,self.uistate)
-        loader.read_file(filename,filetype)
-        self.post_load(filename,filetype)
+        self.db_loader.read_file(filename,filetype)
+        self.post_load_newdb(filename,filetype)
 
-    def post_load(self, filename, filetype):
+    def post_load(self):
+        # This method is for the common UI post_load, both new files
+        # and added data like imports.
         self.uistate.clear_history()
         self.uistate.progress.hide()
 
-        self.state.db.set_save_path(filename)
-
-        res = self.state.db.get_researcher()
-        owner = GrampsCfg.get_researcher()
-        if res.get_name() == "" and owner.get_name():
-            self.state.db.set_researcher(owner)
-
-        self.setup_bookmarks()
-
-        self.state.db.enable_signals()
-        self.state.db.request_rebuild()
-
-        Config.set(Config.RECENT_FILE,filename)
-    
-        self.relationship = self.RelClass(self.state.db)
-        self.state.change_active_person(self.state.db.find_initial_person())
-        self.change_page(None, None)
         self.state.db.undo_callback = self.change_undo_label
         self.state.db.redo_callback = self.change_redo_label
         self.change_undo_label(None)
         self.change_redo_label(None)
         self.state.db.undo_history_callback = self.undo_history_update
-        self.actiongroup.set_visible(True)
+        self.undo_history_close()
+
         self.window.window.set_cursor(None)
 
-        # FIXME: moved from other methods. Verify.
-        self.file_loaded = True
+    def post_load_newdb(self, filename, filetype):
+        # This method is for UI stuff when the database has changed.
+        # Window title, recent files, etc related to new file.
 
-        # FIXME: moved from other methods. Verify.
-        # Add the file to the recent items
-        RecentFiles.recent_files(filename,filetype)
-        self.recent_manager.build()
-        
-        # FIXME: Moved from other method. Verify.
+        self.state.db.set_save_path(filename)
+
+        # Update window title
         if filename[-1] == '/':
             filename = filename[:-1]
         name = os.path.basename(filename)
@@ -753,6 +736,32 @@ class ViewManager:
         else:
             msg = "%s - GRAMPS" % name
             self.uistate.window.set_title(msg)
+
+        res = self.state.db.get_researcher()
+        owner = GrampsCfg.get_researcher()
+        if res.get_name() == "" and owner.get_name():
+            self.state.db.set_researcher(owner)
+
+        self.setup_bookmarks()
+
+        self.state.db.enable_signals()
+        self.state.signal_change()
+        self.state.db.request_rebuild()
+
+        Config.set(Config.RECENT_FILE,filename)
+    
+        self.relationship = self.RelClass(self.state.db)
+        self.state.change_active_person(self.state.db.find_initial_person())
+        self.change_page(None, None)
+        self.actiongroup.set_visible(True)
+
+        self.file_loaded = True
+
+        RecentFiles.recent_files(filename,filetype)
+        self.recent_manager.build()
+        
+        # Call common post_load
+        self.post_load()
 
     def change_undo_label(self, label):
         self.uimanager.remove_action_group(self.undoactions)
@@ -794,6 +803,14 @@ class ViewManager:
             # Let it go: history window does not exist
             pass
 
+    def undo_history_close(self):
+        try:
+            # Try closing undo history window if it exists
+            self.undo_history_window.close()
+        except AttributeError:
+            # Let it go: history window does not exist
+            pass
+ 
     def setup_bookmarks(self):
         self.bookmarks = Bookmarks.Bookmarks(self.state, self.uistate, 
                                              self.state.db.get_bookmarks())
@@ -847,174 +864,6 @@ class ViewManager:
     def export_data(self, obj):
         import Exporter
         Exporter.Exporter(self.state, self.uistate)
-
-    def import_data(self, obj):
-        # First thing first: import is a batch transaction
-        # so we will lose the undo history. Warn the user.
-        warn_dialog = QuestionDialog.QuestionDialog2(
-            _('Undo history warning'),
-            _('Proceeding with import will erase the undo history '
-              'for this session. In particular, you will not be able '
-              'to revert the import or any changes made prior to it.\n\n'
-              'If you think you may want to revert the import, '
-              'please stop here and backup your database.'),
-            _('_Proceed with import'), _('_Stop'),
-            self.window)
-        if not warn_dialog.run():
-            return False
-        
-        choose = gtk.FileChooserDialog(_('GRAMPS: Import database'), 
-                                       self.uistate.window, 
-                                       gtk.FILE_CHOOSER_ACTION_OPEN, 
-                                       (gtk.STOCK_CANCEL, 
-                                        gtk.RESPONSE_CANCEL, 
-                                        gtk.STOCK_OPEN, 
-                                        gtk.RESPONSE_OK))
-        choose.set_local_only(False)
-        # Always add automatic (macth all files) filter
-        add_all_files_filter(choose)
-        add_grdb_filter(choose)
-        add_xml_filter(choose)
-        add_gedcom_filter(choose)
-
-        format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
-
-        # Add more data type selections if opening existing db
-        for data in import_list:
-            mime_filter = data[1]
-            mime_type = data[2]
-            native_format = data[3]
-            format_name = data[4]
-
-            if not native_format:
-                choose.add_filter(mime_filter)
-                format_list.append(mime_type)
-                _KNOWN_FORMATS[mime_type] = format_name
-
-        (box, type_selector) = format_maker(format_list)
-        choose.set_extra_widget(box)
-
-        # Suggested folder: try last open file, import, then last export, 
-        # then home.
-        default_dir = Config.get(Config.RECENT_IMPORT_DIR)
-        if len(default_dir)<=1:
-            base_path = os.path.split(Config.get(Config.RECENT_FILE))[0]
-            default_dir = base_path + os.path.sep
-        if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_EXPORT_DIR)
-        if len(default_dir)<=1:
-            default_dir = '~/'
-
-        choose.set_current_folder(default_dir)
-        response = choose.run()
-        if response == gtk.RESPONSE_OK:
-            filename = choose.get_filename()
-            filetype = type_selector.get_value()
-            if filetype == 'auto':
-                try:
-                    filetype = Mime.get_type(filename)
-                except RuntimeError, msg:
-                    QuestionDialog.ErrorDialog(
-                        _("Could not open file: %s") % filename, 
-                        str(msg))
-                    return False
-                    
-            # First we try our best formats
-            if filetype in (const.app_gramps, 
-                            const.app_gramps_xml, 
-                            const.app_gedcom):
-                self._do_import(choose, 
-                                GrampsDb.gramps_db_reader_factory(filetype), 
-                                filename)
-                return True
-
-            # Then we try all the known plugins
-            (the_path, the_file) = os.path.split(filename)
-            Config.set(Config.RECENT_IMPORT_DIR,the_path)
-            for (importData, mime_filter, mime_type, 
-                 native_format, format_name) in import_list:
-                if filetype == mime_type or the_file == mime_type:
-                    self._do_import(choose, importData, filename)
-                    return True
-
-            # Finally, we give up and declare this an unknown format
-            QuestionDialog.ErrorDialog(
-                _("Could not open file: %s") % filename, 
-                _('File type "%s" is unknown to GRAMPS.\n\n'
-                  'Valid types are: GRAMPS database, GRAMPS XML, '
-                  'GRAMPS package, and GEDCOM.') % filetype)
-
-        choose.destroy()
-        return False
-
-    def _do_import(self, dialog, importer, filename):
-        dialog.destroy()
-        self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        self.progress.show()
-        importer(self.state.db, filename, self.uistate.pulse_progressbar)
-        self.uistate.clear_history()
-        self.progress.hide()
-        self.window.window.set_cursor(None)
-
-    def open_saved_as(self, filename, filetype):
-        (the_path, the_file) = os.path.split(filename)
-        Config.set(Config.RECENT_IMPORT_DIR,the_path)
-
-        dbclass = GrampsDb.gramps_db_factory(filetype)
-        success = self.do_save_as(filename,dbclass)
-        self.state.signal_change()
-        self.change_page(None, None)
-
-        if success:
-            # Add the file to the recent items
-            RecentFiles.recent_files(filename, filetype)
-            self.recent_manager.build()
-        self.actiongroup.set_visible(True)
-        self.uistate.clear_history()
-        return success
-
-    def do_save_as(self,filename,dbclass):
-        # FIXME: error checking on filename here
-        self.state.emit('database-changed', (GrampsDb.GrampsDbBase(), ))
-        try:
-            if self._do_copy(filename,dbclass):
-                if filename[-1] == '/':
-                    filename = filename[:-1]
-                name = os.path.basename(filename)
-                msg = "%s - GRAMPS" % name
-                self.uistate.window.set_title(msg)
-            else:
-                Config.set(Config.RECENT_FILE,"")
-                QuestionDialog.ErrorDialog(
-                    _('Cannot save a copy of the database'), 
-                    _('The database copy could not be saved.'))
-                return False
-        except (IOError,OSError), msg:
-            QuestionDialog.ErrorDialog(_('Cannot save database'), str(msg))
-            return False
-        except (db.DBAccessError, db.DBError), msg:
-            QuestionDialog.ErrorDialog(
-                _('Cannot save database'), 
-                _('%s could not be saved.' % filename) + '\n' + msg[1])
-            return False
-        except Exception:
-            log.error("Failed to open database.", exc_info=True)
-            return False
-        self.file_loaded = True
-        self.actiongroup.set_visible(True)
-        return True
-
-    def _do_copy(self,filename,dbclass):
-        self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        self.progress.show()
-        new_database = dbclass()
-        if not new_database.load_from(self.state.db,filename,
-                                      self.uistate.pulse_progressbar):
-            return False
-        self.progress.hide()
-        self.state.db.close()
-        self.state.change_database(new_database)
-        return self.post_load(filename,self.uistate.pulse_progressbar)
 
     def build_tools_menu(self):
         self.toolactions = gtk.ActionGroup('ToolWindow')

@@ -257,18 +257,113 @@ class DbLoader:
                     )
                 return ('','')
             choose.destroy()
-            try:
-                return self.open_saved_as(filename,filetype)
-            except:
-                log.error("Failed to save as", exc_info=True)
-                return False
+            self.open_saved_as(filename,filetype)
+            return (filename,filetype)
         else:
             choose.destroy()
             return ('','')
 
+    def import_file(self):
+        # First thing first: import is a batch transaction
+        # so we will lose the undo history. Warn the user.
+        warn_dialog = QuestionDialog.QuestionDialog2(
+            _('Undo history warning'),
+            _('Proceeding with import will erase the undo history '
+              'for this session. In particular, you will not be able '
+              'to revert the import or any changes made prior to it.\n\n'
+              'If you think you may want to revert the import, '
+              'please stop here and backup your database.'),
+            _('_Proceed with import'), _('_Stop'),
+            self.uistate.window)
+        if not warn_dialog.run():
+            return False
+        
+        choose = gtk.FileChooserDialog(
+            _('GRAMPS: Import database'), 
+            self.uistate.window, 
+            gtk.FILE_CHOOSER_ACTION_OPEN, 
+            (gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL, 
+             gtk.STOCK_OPEN,gtk.RESPONSE_OK))
+        choose.set_local_only(False)
+
+        # Always add automatic (macth all files) filter
+        add_all_files_filter(choose)
+        add_grdb_filter(choose)
+        add_xml_filter(choose)
+        add_gedcom_filter(choose)
+
+        format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
+
+        # Add more data type selections if opening existing db
+        for data in import_list:
+            mime_filter = data[1]
+            mime_type = data[2]
+            native_format = data[3]
+            format_name = data[4]
+
+            if not native_format:
+                choose.add_filter(mime_filter)
+                format_list.append(mime_type)
+                _KNOWN_FORMATS[mime_type] = format_name
+
+        (box, type_selector) = format_maker(format_list)
+        choose.set_extra_widget(box)
+
+        # Suggested folder: try last open file, import, then last export, 
+        # then home.
+        default_dir = Config.get(Config.RECENT_IMPORT_DIR)
+        if len(default_dir)<=1:
+            base_path = os.path.split(Config.get(Config.RECENT_FILE))[0]
+            default_dir = base_path + os.path.sep
+        if len(default_dir)<=1:
+            default_dir = Config.get(Config.RECENT_EXPORT_DIR)
+        if len(default_dir)<=1:
+            default_dir = '~/'
+
+        choose.set_current_folder(default_dir)
+        response = choose.run()
+        if response == gtk.RESPONSE_OK:
+            filename = choose.get_filename()
+            filetype = type_selector.get_value()
+            if filetype == 'auto':
+                try:
+                    filetype = Mime.get_type(filename)
+                except RuntimeError, msg:
+                    QuestionDialog.ErrorDialog(
+                        _("Could not open file: %s") % filename, 
+                        str(msg))
+                    return False
+                    
+            # First we try our best formats
+            if filetype in (const.app_gramps,
+                            const.app_gramps_xml, 
+                            const.app_gedcom):
+                importer = GrampsDb.gramps_db_reader_factory(filetype)
+                self.do_import(choose,importer,filename)
+                return True
+
+            # Then we try all the known plugins
+            (the_path, the_file) = os.path.split(filename)
+            Config.set(Config.RECENT_IMPORT_DIR,the_path)
+            for (importData,mime_filter,mime_type,native_format,format_name) \
+                    in import_list:
+                if filetype == mime_type or the_file == mime_type:
+                    self.do_import(choose,importData,filename)
+                    return True
+
+            # Finally, we give up and declare this an unknown format
+            QuestionDialog.ErrorDialog(
+                _("Could not open file: %s") % filename, 
+                _('File type "%s" is unknown to GRAMPS.\n\n'
+                  'Valid types are: GRAMPS database, GRAMPS XML, '
+                  'GRAMPS package, and GEDCOM.') % filetype)
+
+        choose.destroy()
+        return False
+
     def check_errors(self,filename):
         """
-        This methods runs common errir checks and returns True if any found.
+        This methods runs common error checks and returns True if any found.
         In this process, warning dialog can pop up.
         """
 
@@ -325,8 +420,6 @@ class DbLoader:
         should enable signals, as well as finish up with other UI goodies.
         """
 
-        filename = os.path.normpath(os.path.abspath(filename))
-
         if os.path.exists(filename) and (not os.access(filename, os.W_OK)):
             mode = "r"
             QuestionDialog.WarningDialog(_('Read only database'), 
@@ -335,24 +428,45 @@ class DbLoader:
         else:
             mode = "w"
 
-        # emit the database change signal so the that models do not
-        # attempt to update the screen while we are loading the
-        # new data       
-        #self.dbstate.emit('database-changed', (GrampsDb.GrampsDbBase(), ))
-
         factory = GrampsDb.gramps_db_factory
         self.dbstate.change_database(factory(db_type = filetype)())
         self.dbstate.db.disable_signals()
 
+        self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.uistate.progress.show()
+        
         try:
-            self.uistate.window.window.set_cursor(
-                gtk.gdk.Cursor(gtk.gdk.WATCH))
-            self.uistate.progress.show()
-            success = self.dbstate.db.load(filename,
-                                           self.uistate.pulse_progressbar,
-                                           mode)
+            self.dbstate.db.load(filename,self.uistate.pulse_progressbar,mode)
         except Exception:
             log.error("Failed to open database.", exc_info=True)
+
+    def open_saved_as(self, filename, filetype):
+        dbclass = GrampsDb.gramps_db_factory(db_type = filetype)
+        new_database = dbclass()
+
+        old_database = self.dbstate.db
+
+        self.dbstate.change_database_noclose(new_database)
+        # self.dbstate.emit('database-changed', (new_database,) )
+        old_database.disable_signals()
+        new_database.disable_signals()
+
+        self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.uistate.progress.show()
+
+        try:
+            new_database.load_from(old_database,filename,
+                                   self.uistate.pulse_progressbar)
+            old_database.close()
+        except Exception:
+            log.error("Failed to open database.", exc_info=True)
+            return False
+
+    def do_import(self, dialog, importer, filename):
+        dialog.destroy()
+        self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.uistate.progress.show()
+        importer(self.dbstate.db, filename, self.uistate.pulse_progressbar)
 
 #-------------------------------------------------------------------------
 #
