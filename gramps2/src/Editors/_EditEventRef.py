@@ -195,24 +195,11 @@ class EditEventRef(EditReference):
         
     def ok_clicked(self,obj):
 
-        (need_new, handle) = self.place_field.get_place_info()
-        if need_new:
-            place_obj = RelLib.Place()
-            place_obj.set_handle(Utils.create_id())
-            place_obj.set_title(handle)
-            self.source.set_place_handle(place_obj.get_handle())
-        else:
-            self.source.set_place_handle(handle)
-
         trans = self.db.transaction_begin()
         if self.source.handle:
-            if need_new:
-                self.db.add_place(place_obj,trans)
             self.commit_event(self.source,trans)
             self.db.transaction_commit(trans,_("Modify Event"))
         else:
-            if need_new:
-                self.db.add_place(place_obj,trans)
             self.add_event(self.source,trans)
             self.db.transaction_commit(trans,_("Add Event"))
             self.source_ref.ref = self.source.handle
