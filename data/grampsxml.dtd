@@ -47,6 +47,7 @@ DATABASE
 	sources
 	places
 	objects
+        repositories
 	bookmarks
 -->
 
@@ -306,7 +307,10 @@ BOOKMARKS
 
 <!ELEMENT bookmarks (bookmark)*>
 <!ELEMENT bookmark EMPTY>
-<!ATTLIST bookmark hlink IDREF #REQUIRED>
+<!ATTLIST bookmark 
+        target (person|family|event|source|place|media|repository) #REQUIRED
+        hlink  IDREF #REQUIRED
+>
 
 <!--	************************************************************
 SHARED ELEMENTS

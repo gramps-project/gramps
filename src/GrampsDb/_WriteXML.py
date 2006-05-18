@@ -321,11 +321,8 @@ class XmlWriter(UpdateCallback):
                 self.update()
             self.g.write("  </repositories>\n")
 
-        if len(self.db.get_bookmarks()) > 0:
-            self.g.write("  <bookmarks>\n")
-            for person_handle in self.db.get_bookmarks():
-                self.g.write('    <bookmark hlink="_%s"/>\n' % person_handle)
-            self.g.write("  </bookmarks>\n")
+        # Data is written, now write bookmarks.
+        self.write_bookmarks()
 
         if len(self.db.name_group) > 0:
             self.g.write('  <groups>\n')
@@ -335,6 +332,44 @@ class XmlWriter(UpdateCallback):
             self.g.write('  </groups>\n')
 
         self.g.write("</database>\n")
+
+    def write_bookmarks(self):
+        bm_person_len = len(self.db.bookmarks)
+        bm_family_len = len(self.db.family_bookmarks)
+        bm_event_len = len(self.db.event_bookmarks)
+        bm_source_len = len(self.db.source_bookmarks)
+        bm_place_len = len(self.db.place_bookmarks)
+        bm_repo_len = len(self.db.repo_bookmarks)
+        bm_obj_len = len(self.db.media_bookmarks)
+
+        bm_len = bm_person_len + bm_family_len + bm_event_len \
+                 + bm_source_len + bm_place_len + bm_repo_len + bm_obj_len
+        
+        if bm_len > 0:
+            self.g.write("  <bookmarks>\n")
+
+            for handle in self.db.get_bookmarks():
+                self.g.write('    <bookmark target="person" hlink="_%s"/>\n'
+                             % handle )
+            for handle in self.db.get_family_bookmarks():
+                self.g.write('    <bookmark target="family" hlink="_%s"/>\n'
+                             % handle )
+            for handle in self.db.get_event_bookmarks():
+                self.g.write('    <bookmark target="event" hlink="_%s"/>\n'
+                             % handle )
+            for handle in self.db.get_source_bookmarks():
+                self.g.write('    <bookmark target="source" hlink="_%s"/>\n'
+                             % handle )
+            for handle in self.db.get_place_bookmarks():
+                self.g.write('    <bookmark target="place" hlink="_%s"/>\n'
+                             % handle )
+            for handle in self.db.get_media_bookmarks():
+                self.g.write('    <bookmark target="media" hlink="_%s"/>\n'
+                             % handle )
+            for handle in self.db.get_repo_bookmarks():
+                self.g.write('    <bookmark target="repository" hlink="_%s"/>\n'
+                             % handle )
+            self.g.write("  </bookmarks>\n")
 
     def fix(self,line):
         l = line.strip()
