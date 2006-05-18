@@ -721,6 +721,10 @@ class ViewManager:
         self.window.window.set_cursor(None)
 
     def post_load_newdb(self, filename, filetype):
+
+        if not filename:
+            return
+
         # This method is for UI stuff when the database has changed.
         # Window title, recent files, etc related to new file.
 

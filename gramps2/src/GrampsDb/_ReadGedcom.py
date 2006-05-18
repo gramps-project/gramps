@@ -613,7 +613,6 @@ class GedcomParser(UpdateCallback):
     
         self.error_count = 0
         amap = Utils.personalConstantAttributes
-        self.current = self.interval
         
         self.attrs = amap.values()
         self.gedattr = {}
@@ -735,8 +734,6 @@ class GedcomParser(UpdateCallback):
         t = time.time() - t
         msg = _('Import Complete: %d seconds') % t
 
-        if self.callback:
-            self.callback(100)
         self.db.transaction_commit(self.trans,_("GEDCOM import"))
         self.db.enable_signals()
         self.db.request_rebuild()
