@@ -39,7 +39,8 @@ import sets
 #-------------------------------------------------------------------------
 from _GrampsBSDDB import GrampsBSDDB
 from QuestionDialog import ErrorDialog
-import Errors
+from Errors import HandleError
+from BasicUtils import UpdateCallback
 
 #-------------------------------------------------------------------------
 #
@@ -138,6 +139,10 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
                         },
         }
 
+    uc = UpdateCallback(callback)
+    uc.set_total(len(tables.keys()))
+
+    the_len = 0
 
     # Check for duplicate handles.
     for key in tables:
@@ -145,7 +150,8 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
         table = table_dict['table']
         other_table = table_dict['other_table']
         msg = '%s handles in two databases overlap.' % key
-        check_common_handles(table,other_table,msg)
+        the_len += check_common_handles(table,other_table,msg)
+        uc.update()
         
     # Proceed with preparing for import
     if use_trans:
@@ -158,6 +164,8 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
 
     # copy all data from new_database to database,
     # rename gramps IDs of first-class objects when conflicts are found
+    uc.set_total(the_len)
+
     for key in tables:
         table_dict = tables[key]
         id_table = table_dict['id_table']
@@ -166,7 +174,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
         other_table = table_dict['other_table']
         other_get_from_handle = table_dict['other_get_from_handle']
         import_table(id_table,add_obj,find_next_gramps_id,
-                     other_table,other_get_from_handle,trans)
+                     other_table,other_get_from_handle,trans,uc)
 
     # close the other database and clean things up
     other_database.close()
@@ -182,10 +190,11 @@ def check_common_handles(table,other_table,msg):
     handles = sets.Set(table.keys())
     other_handles = sets.Set(other_table.keys())
     if handles.intersection(other_handles):
-        raise Errors.HandleError(msg)
+        raise HandleError(msg)
+    return len(other_handles)
     
 def import_table(id_table,add_obj,find_next_gramps_id,
-                other_table,other_get_from_handle,trans):
+                other_table,other_get_from_handle,trans,uc):
 
     for handle in other_table.keys():
         obj = other_get_from_handle(handle)
@@ -196,3 +205,4 @@ def import_table(id_table,add_obj,find_next_gramps_id,
             gramps_id = find_next_gramps_id()
             obj.gramps_id = gramps_id
         add_obj(obj,trans)
+        uc.update()
