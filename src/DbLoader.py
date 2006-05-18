@@ -92,33 +92,10 @@ class DbLoader:
 
         format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
 
-        # Add more data type selections if opening existing db
-        for data in import_list:
-            mime_filter = data[1]
-            mime_type = data[2]
-            native_format = data[2]
-            format_name = data[3]
-            
-            if not native_format:
-                choose.add_filter(mime_filter)
-                format_list.append(mime_type)
-                _KNOWN_FORMATS[mime_type] = format_name
-        
         (box, type_selector) = format_maker(format_list)
         choose.set_extra_widget(box)
 
-        # Suggested folder: try last open file, last import, last export, 
-        # then home.
-        default_dir = os.path.split(Config.get(Config.RECENT_FILE))[0] \
-                      + os.path.sep
-        if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_IMPORT_DIR)
-        if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_EXPORT_DIR)
-        if len(default_dir)<=1:
-            default_dir = '~/'
-
-        choose.set_current_folder(default_dir)
+        choose.set_current_folder(get_default_dir())
         response = choose.run()
         if response == gtk.RESPONSE_OK:
             filename = choose.get_filename()
@@ -157,16 +134,7 @@ class DbLoader:
         add_all_files_filter(choose)
         add_grdb_filter(choose)
 
-        # Suggested folder: try last open file, import, then last export, 
-        # then home.
-        default_dir = os.path.split(Config.get(Config.RECENT_FILE))[0] + os.path.sep
-        if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_IMPORT_DIR)
-        if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_EXPORT_DIR)
-        if len(default_dir)<=1:
-            default_dir = '~/'
-
+        default_dir = get_default_dir()
         new_filename = Utils.get_new_filename('grdb', default_dir)
         
         choose.set_current_folder(default_dir)
@@ -213,17 +181,7 @@ class DbLoader:
         (box, type_selector) = format_maker(format_list)
         choose.set_extra_widget(box)
 
-        # Suggested folder: try last open file, import, then last export, 
-        # then home.
-        default_dir = os.path.split(Config.get(Config.RECENT_FILE))[0] \
-                      + os.path.sep
-        if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_IMPORT_DIR)
-        if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_EXPORT_DIR)
-        if len(default_dir)<=1:
-            default_dir = '~/'
-
+        default_dir = get_default_dir()
         new_filename = Utils.get_new_filename('grdb', default_dir)
         
         choose.set_current_folder(default_dir)
@@ -313,17 +271,15 @@ class DbLoader:
         # then home.
         default_dir = Config.get(Config.RECENT_IMPORT_DIR)
         if len(default_dir)<=1:
-            base_path = os.path.split(Config.get(Config.RECENT_FILE))[0]
-            default_dir = base_path + os.path.sep
-        if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_EXPORT_DIR)
-        if len(default_dir)<=1:
-            default_dir = '~/'
+            default_dir = get_default_dir()
 
         choose.set_current_folder(default_dir)
         response = choose.run()
         if response == gtk.RESPONSE_OK:
             filename = choose.get_filename()
+            if self.check_errors(filename):
+                return False
+
             filetype = type_selector.get_value()
             if filetype == 'auto':
                 try:
@@ -408,15 +364,14 @@ class DbLoader:
 
     def read_file(self, filename, filetype):
         """
-        This method takes care of enabling/disabling/emittin signals,
-        changing database, and loading the data.
+        This method takes care of changing database, and loading the data.
         
         This method should only return on success.
         Returning on failure makes no sense, because we cannot recover,
         since database has already beeen changed.
         Therefore, any errors should raise exceptions.
 
-        We return with the disabled signals. The post-load routine
+        On success, return with the disabled signals. The post-load routine
         should enable signals, as well as finish up with other UI goodies.
         """
 
@@ -428,8 +383,8 @@ class DbLoader:
         else:
             mode = "w"
 
-        factory = GrampsDb.gramps_db_factory
-        self.dbstate.change_database(factory(db_type = filetype)())
+        dbclass = GrampsDb.gramps_db_factory(db_type = filetype)
+        self.dbstate.change_database(dbclass())
         self.dbstate.db.disable_signals()
 
         self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
@@ -447,7 +402,6 @@ class DbLoader:
         old_database = self.dbstate.db
 
         self.dbstate.change_database_noclose(new_database)
-        # self.dbstate.emit('database-changed', (new_database,) )
         old_database.disable_signals()
         new_database.disable_signals()
 
@@ -466,7 +420,30 @@ class DbLoader:
         dialog.destroy()
         self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         self.uistate.progress.show()
-        importer(self.dbstate.db, filename, self.uistate.pulse_progressbar)
+
+        try:
+            importer(self.dbstate.db, filename, self.uistate.pulse_progressbar)
+            dirname = os.path.dirname(filename) + os.path.sep
+            Config.set(Config.RECENT_IMPORT_DIR,dirname)
+        except Exception:
+            log.error("Failed to import database.", exc_info=True)
+
+#-------------------------------------------------------------------------
+#
+# default dir selection
+#
+#-------------------------------------------------------------------------
+def get_default_dir():
+    # Suggested folder: try last open file, last import, last export, 
+    # then home.
+    default_dir = os.path.dirname(Config.get(Config.RECENT_FILE)) + os.path.sep
+    if len(default_dir)<=1:
+        default_dir = Config.get(Config.RECENT_IMPORT_DIR)
+    if len(default_dir)<=1:
+        default_dir = Config.get(Config.RECENT_EXPORT_DIR)
+    if len(default_dir)<=1:
+        default_dir = '~/'
+    return default_dir
 
 #-------------------------------------------------------------------------
 #

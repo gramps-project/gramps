@@ -1,4 +1,7 @@
 2006-05-17  Alex Roitman  <shura@gramps-project.org>
+	* src/ArgHandler.py: Adapt to recent changes.
+	* src/BasicUtils.py (update_empty): Clean up callback.
+	* src/GrampsDb/_ReadGedcom.py: Clean up callback.
 	* src/GrampsDb/_GrampsDbBase.py (DbState.change_database_noclose):
 	Add new method.
 	* src/Makefile.am (gdir_PYTHON): Ship new file.

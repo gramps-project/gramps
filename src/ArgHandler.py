@@ -251,21 +251,6 @@ class ArgHandler:
             
     #-------------------------------------------------------------------------
     #
-    # open data in native format
-    #
-    #-------------------------------------------------------------------------
-    def auto_save_load(self,filename):
-        filename = os.path.normpath(os.path.abspath(filename))
-        filetype = Mime.get_type(filename)
-        if filetype in (const.app_gramps,
-                        const.app_gramps_xml,
-                        const.app_gedcom):
-            return self.vm.open_native(filename,filetype)
-        else:
-            return 0
-
-    #-------------------------------------------------------------------------
-    #
     # Overall argument handler: 
     # sorts out the sequence and details of operations
     #
@@ -292,10 +277,11 @@ class ArgHandler:
                 elif filetype == const.app_gramps_xml:
                     print "Type: GRAMPS XML database"
 
-                if self.auto_save_load(filename):
+                try:
+                    self.vm.read_recent_file(filename,filetype)
                     print "Opened successfully!"
                     success = True
-                else:
+                except:
                     print "Cannot open %s. Exiting..."
             elif filetype in (const.app_gramps_package,):
                 QuestionDialog.OkDialog( _("Opening non-native format"), 
@@ -327,7 +313,8 @@ class ArgHandler:
                 os._exit(1)
             if success:
                 # Add the file to the recent items
-                RecentFiles.recent_files(filename,filetype)
+                #RecentFiles.recent_files(filename,filetype)
+                pass
             else:
                 os._exit(1)
             return
@@ -344,20 +331,24 @@ class ArgHandler:
             filename = os.path.abspath(os.path.expanduser(name))
 
             if format == 'grdb':
+                filetype = const.app_gramps
                 print "Type: GRAMPS database"
             elif format == 'gedcom':
+                filetype = const.app_gedcom
                 print "Type: GEDCOM"
             elif format == 'gramps-xml':
+                filetype = const.app_gramps_xml
                 print "Type: GRAMPS XML"
             else:
                 print "Unknown file type: %s" % format
                 print "Exiting..." 
                 os._exit(1)
 
-            if self.auto_save_load(filename):
+            try:
+                self.vm.read_recent_file(filename,filetype)
                 print "Opened successfully!"
                 success = True
-            else:
+            except:
                 print "Error opening the file." 
                 print "Exiting..." 
                 os._exit(1)
@@ -385,7 +376,7 @@ class ArgHandler:
                 if os.path.isfile(os.path.join(self.impdir_path,fn)):
                     os.remove(os.path.join(self.impdir_path,fn))
 
-            self.vm.load_database(self.imp_db_path)
+            self.vm.db_loader.read_file(self.imp_db_path,const.app_gramps)
 
             for imp in self.imports:
                 print "Importing: file %s, format %s." % imp
@@ -419,7 +410,9 @@ class ArgHandler:
 ##         if self.imports:
 ##             self.parent.import_tool_callback()
         elif Config.get(Config.RECENT_FILE) and Config.get(Config.AUTOLOAD):
-            self.auto_save_load(Config.get(Config.RECENT_FILE))
+            rf = Config.get(Config.RECENT_FILE)
+            filetype = Mime.get_type(rf)
+            self.vm.read_recent_file(rf,filetype)
 
     #-------------------------------------------------------------------------
     #
@@ -435,20 +428,16 @@ class ArgHandler:
             filename = os.path.normpath(os.path.abspath(filename))
             try:
                 GrampsDb.gramps_db_reader_factory(const.app_gramps)(
-                    self.state.db,filename,None)
+                    self.state.db,filename,empty)
             except:
                 print "Error importing %s" % filename
                 os._exit(1)
         elif format == 'gedcom':
-            from GrampsDb import GedcomParser
             filename = os.path.normpath(os.path.abspath(filename))
             try:
-                np = ReadGedcom.NoteParser(filename, False, None)
-                g = ReadGedcom.GedcomParser(self.parent.db,filename,None,None,
-                                            np.get_map(),np.get_lines())
-                g = GedcomParser(self.state.db,filename,None)
-                g.parse_gedcom_file()
-                del g
+                # Cheating here to use default encoding
+                from GrampsDb._ReadGedcom import import2
+                import2(self.state.db,filename,None,None,False)
             except:
                 print "Error importing %s" % filename
                 os._exit(1)
@@ -521,7 +510,7 @@ class ArgHandler:
             print "Invalid format:  %s" % format
             os._exit(1)
         if not self.cl:
-            return self.vm.post_load(self.imp_db_path)
+            return self.vm.post_load()
 
     #-------------------------------------------------------------------------
     #
@@ -769,3 +758,6 @@ def add_grdb_filter(chooser):
 
 def read_pkg(filename):
     print "FIXME: This is not re-implemented yet."
+
+def empty(val):
+    pass

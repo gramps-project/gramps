@@ -67,7 +67,7 @@ class UpdateCallback:
     def set_total(self,total):
         self.total = total
 
-    def update_empty(self):
+    def update_empty(self,count=None):
         pass
 
     def update_real(self,count=None):
