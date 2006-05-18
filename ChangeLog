@@ -1,4 +1,5 @@
 2006-05-18  Alex Roitman  <shura@gramps-project.org>
+	* src/DisplayTabs/_BackRefList.py (edit_button_clicked): Typo.
 	* src/DataViews/_RepositoryView.py (edit, on_double_click): Catch
 	exception.
 	* src/GrampsWidgets.py (PlaceEntry.add_del_clicked) 

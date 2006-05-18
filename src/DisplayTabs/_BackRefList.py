@@ -139,7 +139,7 @@ class BackRefList(EmbeddedList):
                 EditPlace(self.dbstate, self.uistate, [], place)
             except Errors.WindowActiveError:
                 pass
-        elif reftype == 'Media':
+        elif reftype == 'MediaObject':
             try:
                 from Editors import EditMedia
                 
