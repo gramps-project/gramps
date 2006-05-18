@@ -71,7 +71,6 @@ class PageView:
         self.additional_uis = []
         self.widget = None
         self.ui = '<ui></ui>'
-        self.dbstate.connect('no-database',self.disable_action_group)
         self.dbstate.connect('database-changed',self.enable_action_group)
         self.dirty = True
         self.active = False
@@ -107,6 +106,9 @@ class PageView:
     def disable_action_group(self):
         if self.action_group:
             self.action_group.set_visible(False)
+
+    def disable_actions(self, obj):
+        self.disable_action_group()
 
     def enable_action_group(self,obj):
         if self.action_group:
