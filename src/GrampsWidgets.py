@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@ import AutoComp
 import DateHandler
 import DateEdit
 import const
+import Errors
 
 _lock_path = os.path.join(const.image_dir, 'stock_lock.png')
 _lock_open_path = os.path.join(const.image_dir, 'stock_lock-open.png')
@@ -523,8 +524,11 @@ class PlaceEntry:
             from Editors import EditPlace
 
             place = Place()
-            EditPlace(self.dbstate, self.uistate, self.track,
-                      place, self.place_added)
+            try:
+                EditPlace(self.dbstate, self.uistate, self.track,
+                          place, self.place_added)
+            except Errors.WindowActiveError:
+                pass
 
     def place_added(self, data):
         self.set_val(data.handle)
@@ -536,8 +540,11 @@ class PlaceEntry:
             from Editors import EditPlace
             
             place = self.db.get_place_from_handle(self.get_val())
-            EditPlace(self.dbstate, self.uistate, self.track, place,
-                      self.after_edit)
+            try:
+                EditPlace(self.dbstate, self.uistate, self.track, place,
+                          self.after_edit)
+            except Errors.WindowActiveError:
+                pass
         else:
             from Selectors import selector_factory
             cls = selector_factory('Place')
@@ -570,8 +577,3 @@ class PlaceEntry:
             image.set_from_stock(gtk.STOCK_INDEX,gtk.ICON_SIZE_BUTTON)
             image.show()
             self.share.add(image)
-
-        
-
-
-    
