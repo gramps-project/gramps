@@ -59,6 +59,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
         else:
             ErrorDialog(_("%s could not be opened") % filename)
         return
+
     if not other_database.version_supported():
         if cl:
             print "Error: %s could not be opened.\n%s  Exiting." \
@@ -74,115 +75,98 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
                           "by this version of GRAMPS."))
         return
         
-    # Check for duplicate handles. At the moment we simply exit here,
-    # before modifying any data. In the future we will need to handle
-    # this better.
-    handles = sets.Set(database.person_map.keys())
-    other_handles = sets.Set(other_database.person_map.keys())
-    if handles.intersection(other_handles):
-        raise Errors.HandleError('Personal handles in two databases overlap.')
+
+    # Prepare table and method definitions
+    tables = {
+        'Person' : {'table' :  database.person_map,
+                    'id_table' : database.id_trans,
+                    'add_obj' : database.add_person,
+                    'find_next_gramps_id' :database.find_next_person_gramps_id,
+                    'other_get_from_handle':
+                    other_database.get_person_from_handle,
+                    'other_table': other_database.person_map,                  
+                    },
+        'Family' : {'table' :  database.family_map,
+                    'id_table' : database.fid_trans,
+                    'add_obj' : database.add_family,
+                    'find_next_gramps_id' :database.find_next_family_gramps_id,
+                    'other_get_from_handle':
+                    other_database.get_family_from_handle,
+                    'other_table': other_database.family_map,                  
+                    },
+
+        'Event' : {'table' :  database.event_map,
+                   'id_table' : database.eid_trans,
+                   'add_obj' : database.add_event,
+                   'find_next_gramps_id' : database.find_next_event_gramps_id,
+                   'other_get_from_handle':
+                   other_database.get_event_from_handle,
+                   'other_table': other_database.event_map,                  
+                    },
+        'Source' : {'table' :  database.family_map,
+                    'id_table' : database.sid_trans,
+                    'add_obj' : database.add_family,
+                    'find_next_gramps_id': database.find_next_family_gramps_id,
+                    'other_get_from_handle':
+                    other_database.get_family_from_handle,
+                    'other_table': other_database.source_map,                  
+                    },
+        'Place' : {'table' :  database.source_map,
+                   'id_table' : database.pid_trans,
+                   'add_obj' : database.add_source,
+                   'find_next_gramps_id' :database.find_next_source_gramps_id,
+                   'other_get_from_handle':
+                   other_database.get_source_from_handle,
+                   'other_table': other_database.place_map,                  
+                   },
+        'Media' : {'table' :  database.media_map,
+                   'id_table' : database.oid_trans,
+                   'add_obj' : database.add_object,
+                   'find_next_gramps_id' : database.find_next_object_gramps_id,
+                   'other_get_from_handle':
+                   other_database.get_object_from_handle,
+                   'other_table': other_database.media_map,                  
+                   },
+        'Repository' : {'table' :  database.repository_map,
+                        'id_table' : database.rid_trans,
+                        'add_obj' : database.add_repository,
+                        'find_next_gramps_id' :
+                        database.find_next_repository_gramps_id,
+                        'other_get_from_handle':
+                        other_database.get_repository_from_handle,
+                        'other_table': other_database.repository_map,
+                        },
+        }
+
+
+    # Check for duplicate handles.
+    for key in tables:
+        table_dict = tables[key]
+        table = table_dict['table']
+        other_table = table_dict['other_table']
+        msg = '%s handles in two databases overlap.' % key
+        check_common_handles(table,other_table,msg)
         
-    handles = sets.Set(database.family_map.keys())
-    other_handles = sets.Set(other_database.family_map.keys())
-    if handles.intersection(other_handles):
-        raise Errors.HandleError('Family handles in two databases overlap.')
-
-    handles = sets.Set(database.place_map.keys())
-    other_handles = sets.Set(other_database.place_map.keys())
-    if handles.intersection(other_handles):
-        raise Errors.HandleError('Place handles in two databases overlap.')
-
-    handles = sets.Set(database.source_map.keys())
-    other_handles = sets.Set(other_database.source_map.keys())
-    if handles.intersection(other_handles):
-        raise Errors.HandleError('Source handles in two databases overlap.')
-
-    handles = sets.Set(database.media_map.keys())
-    other_handles = sets.Set(other_database.media_map.keys())
-    if handles.intersection(other_handles):
-        raise Errors.HandleError('Media handles in two databases overlap.')
-
-    handles = sets.Set(database.event_map.keys())
-    other_handles = sets.Set(other_database.event_map.keys())
-    if handles.intersection(other_handles):
-        raise Errors.HandleError('Event handles in two databases overlap.')
-
     # Proceed with preparing for import
     if use_trans:
         trans = database.transaction_begin("",batch=True)
     else:
+        print "Transaction is None! This is no way to go!"
         trans = None
 
     database.disable_signals()
 
     # copy all data from new_database to database,
     # rename gramps IDs of first-class objects when conflicts are found
-
-    # People table
-    for person_handle in other_database.person_map.keys():
-        person = other_database.get_person_from_handle(person_handle)
-        
-        # Then we check gramps_id for conflicts and change it if needed
-        gramps_id = str(person.get_gramps_id())
-        if database.id_trans.has_key(gramps_id):
-            gramps_id = database.find_next_person_gramps_id()
-            person.set_gramps_id(gramps_id)
-        database.add_person(person,trans)
-
-    # Family table
-    for family_handle in other_database.family_map.keys():
-        family = other_database.get_family_from_handle(family_handle)
-        
-        # Then we check gramps_id for conflicts and change it if needed
-        gramps_id = str(family.get_gramps_id())
-        if database.fid_trans.has_key(gramps_id):
-            gramps_id = database.find_next_family_gramps_id()
-            family.set_gramps_id(gramps_id)
-        database.add_family(family,trans)
-
-    # Place table
-    for place_handle in other_database.place_map.keys():
-        place = other_database.get_place_from_handle(place_handle)
-        
-        # Then we check gramps_id for conflicts and change it if needed
-        gramps_id = str(place.get_gramps_id())
-        if database.pid_trans.has_key(gramps_id):
-            gramps_id = database.find_next_place_gramps_id()
-            place.set_gramps_id(gramps_id)
-        database.add_place(place,trans)
-
-    # Source table
-    for source_handle in other_database.source_map.keys():
-        source = other_database.get_source_from_handle(source_handle)
-        
-        # Then we check gramps_id for conflicts and change it if needed
-        gramps_id = str(source.get_gramps_id())
-        if database.sid_trans.has_key(gramps_id):
-            gramps_id = database.find_next_source_gramps_id()
-            source.set_gramps_id(gramps_id)
-        database.add_source(source,trans)
-
-    # Media table
-    for media_handle in other_database.media_map.keys():
-        media = other_database.get_object_from_handle(media_handle)
-        
-        # Then we check gramps_id for conflicts and change it if needed
-        gramps_id = str(media.get_gramps_id())
-        if database.oid_trans.has_key(gramps_id):
-            gramps_id = database.find_next_object_gramps_id()
-            media.set_gramps_id(gramps_id)
-        database.add_object(media,trans)
-
-    # Event table
-    for event_handle in other_database.event_map.keys():
-        event = other_database.get_event_from_handle(event_handle)
-        
-        # Then we check gramps_id for conflicts and change it if needed
-        gramps_id = str(event.get_gramps_id())
-        if database.eid_trans.has_key(gramps_id):
-            gramps_id = database.find_next_event_gramps_id()
-            event.set_gramps_id(gramps_id)
-        database.add_event(event,trans)
+    for key in tables:
+        table_dict = tables[key]
+        id_table = table_dict['id_table']
+        add_obj = table_dict['add_obj']
+        find_next_gramps_id = table_dict['find_next_gramps_id']
+        other_table = table_dict['other_table']
+        other_get_from_handle = table_dict['other_get_from_handle']
+        import_table(id_table,add_obj,find_next_gramps_id,
+                     other_table,other_get_from_handle,trans)
 
     # close the other database and clean things up
     other_database.close()
@@ -190,3 +174,25 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     database.transaction_commit(trans,_("Import database"))
     database.enable_signals()
     database.request_rebuild()
+
+def check_common_handles(table,other_table,msg):
+    # Check for duplicate handles. At the moment we simply exit here,
+    # before modifying any data. In the future we will need to handle
+    # this better. How?
+    handles = sets.Set(table.keys())
+    other_handles = sets.Set(other_table.keys())
+    if handles.intersection(other_handles):
+        raise Errors.HandleError(msg)
+    
+def import_table(id_table,add_obj,find_next_gramps_id,
+                other_table,other_get_from_handle,trans):
+
+    for handle in other_table.keys():
+        obj = other_get_from_handle(handle)
+        
+        # Then we check gramps_id for conflicts and change it if needed
+        gramps_id = str(obj.gramps_id)
+        if id_table.has_key(gramps_id):
+            gramps_id = find_next_gramps_id()
+            obj.gramps_id = gramps_id
+        add_obj(obj,trans)
