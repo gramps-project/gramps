@@ -51,8 +51,8 @@ class AddrEmbedList(EmbeddedList):
     _column_names = [
         (_('Date'),    0, 150), 
         (_('Street'),  1, 225), 
-        (_('State'),   2, 100), 
-        (_('City'),    3, 100), 
+        (_('City'),    2, 100), 
+        (_('State'),   3, 100), 
         (_('Country'), 4, 75), 
         ]
     
