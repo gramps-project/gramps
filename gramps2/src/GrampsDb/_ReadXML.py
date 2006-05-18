@@ -880,7 +880,7 @@ class GrampsParser(UpdateCallback):
         if attrs.get('mrel'):
             mrel.set_from_xml_str(attrs['mrel'])
         frel = RelLib.ChildRefType()
-        if attrs.get('mrel'):
+        if attrs.get('frel'):
             frel.set_from_xml_str(attrs['frel'])
 
         if not mrel.is_default():
