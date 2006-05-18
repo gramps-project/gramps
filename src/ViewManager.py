@@ -192,6 +192,7 @@ class ViewManager:
         self.file_loaded = False
         self._build_main_window()
         self._connect_signals()
+        self.do_load_plugins()
 
     def _build_main_window(self):
         """
@@ -280,8 +281,6 @@ class ViewManager:
 
         self.db_loader = DbLoader(self.state,self.uistate)
 
-        self.window.show()
-
         if self.show_sidebar:
             self.ebox.show()
             self.notebook.set_show_tabs(False)
@@ -293,6 +292,11 @@ class ViewManager:
             self.toolbar.show()
         else:
             self.toolbar.hide()
+
+        # Showing the main window is deferred so that
+        # ArgHandler can work without it always shown
+        # But we need to realize it here to have gtk.gdk.window handy
+        self.window.realize()
 
     def _connect_signals(self):
         """
@@ -408,11 +412,14 @@ class ViewManager:
         if not self.file_loaded:
             self.actiongroup.set_visible(False)
         self.fileactions.set_sensitive(False)
-        self.do_load_plugins()
         self.build_tools_menu()
         self.build_report_menu()
         self.fileactions.set_sensitive(True)
         self.uistate.widget.set_sensitive(True)
+
+        # Showing the main window is deferred so that
+        # ArgHandler can work without it always shown
+        self.window.show()
 
     def do_load_plugins(self):
         self.uistate.status_text(_('Loading document formats...'))
