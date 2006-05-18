@@ -92,8 +92,6 @@ def upgrade_prefs():
         Config.set(Config.RESEARCHER_NAME,
                    client.get_string('/apps/gramps/researcher-name'))
 
-        Config.set(Config.DEFAULTVIEW,
-                   client.get_int('/apps/gramps/defaultview'))
         Config.set(Config.AUTOLOAD,
                    client.get_bool('/apps/gramps/autoload'))
         Config.set(Config.USE_LDS,
@@ -109,7 +107,6 @@ def upgrade_prefs():
         toolbar = client.get_int('/apps/gramps/toolbar')
         if toolbar == 5:
             toolbar = -1
-        Config.set(Config.TOOLBAR,toolbar)
         Config.set(Config.TOOLBAR_ON,
                    client.get_bool('/apps/gramps/toolbar-on'))
         return True

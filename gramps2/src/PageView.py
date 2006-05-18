@@ -113,10 +113,7 @@ class PageView:
             self.action_group.set_visible(True)
 
     def get_stock(self):
-        try:
-            return gtk.STOCK_MEDIA_MISSING
-        except AttributeError:
-            return gtk.STOCK_MISSING_IMAGE
+        return gtk.STOCK_MISSING_IMAGE
         
     def get_title(self):
         return self.title
@@ -236,7 +233,7 @@ class BookMarkView(PageView):
     def enable_action_group(self, obj):
         PageView.enable_action_group(self, obj)
 
-    def disable_action_group(self, obj):
+    def disable_action_group(self):
         PageView.disable_action_group(self)
 
     def define_actions(self):
@@ -581,7 +578,6 @@ class ListView(BookMarkView):
                                      search=search)
         
         self.list.set_model(self.model)
-        colmap = self.column_order()
 
         if handle:
             path = self.model.on_get_path(handle)

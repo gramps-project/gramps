@@ -30,6 +30,7 @@ Package providing filtering framework for GRAMPS.
 #
 #-------------------------------------------------------------------------
 import gtk
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -100,8 +101,8 @@ class FilterWidget:
             self.apply_done_callback()
 
     def on_filter_name_changed(self,obj):
-        print "on_filter_name_changed"
-        index = self.filter_list.get_active()
+        pass
+#        index = self.filter_list.get_active()
 #        mime_filter = self.filter_model.get_filter(index)
 #        qual = mime_filter.need_param
 #        if qual:

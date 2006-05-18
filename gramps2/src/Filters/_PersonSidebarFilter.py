@@ -33,7 +33,7 @@ class PersonSidebarFilter(SidebarFilter):
 
     def __init__(self, clicked):
         SidebarFilter.__init__(self)
-        self.clicked = clicked
+        self.clicked_func = clicked
 
     def create_widget(self):
         self.filter_name = gtk.Entry()
@@ -70,13 +70,13 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_name.set_text('')
         self.filter_id.set_text('')
         self.filter_birth.set_text('')
-        self.filter_death.get_text('')
-        self.filter_note.get_text('')
+        self.filter_death.set_text('')
+        self.filter_note.set_text('')
         self.filter_gender.set_active(0)
         self.etype.set_text('')
 
     def clicked(self, obj):
-        self.clicked()
+        self.clicked_func()
 
     def get_filter(self):
         name = self.filter_name.get_text().strip()

@@ -51,7 +51,6 @@ import gtk.gdk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import const
 import Mime
 import NameDisplay
 import RelLib

@@ -30,6 +30,7 @@ Package providing filtering framework for GRAMPS.
 #
 #-------------------------------------------------------------------------
 import gtk
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

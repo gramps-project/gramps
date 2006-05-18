@@ -1721,7 +1721,7 @@ class GrampsDbBase(GrampsDBCallback):
         """
         returns True if the handle exists in the current Repository database.
         """
-        return self.repository_map.has_key(str(handle)) != False
+        return self.repository_map.has_key(str(handle))
 
     def _sortbyname(self, first, second):
         name1 = self.person_map.get(str(first))[3].sname
