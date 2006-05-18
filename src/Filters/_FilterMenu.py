@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import gtk
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -42,15 +43,12 @@ from Filters import SystemFilters, CustomFilters
 def build_filter_menu(local_filters = [], default=""):
     menu = gtk.Menu()
 
-    active = 0
     cnt = 0
     for filt in local_filters:
         menuitem = gtk.MenuItem(filt.get_name())
         menuitem.show()
         menu.append(menuitem)
         menuitem.set_data("filter", filt)
-        if default != "" and default == filt.get_name():
-            active = cnt
         cnt += 1
         
     for filt in SystemFilters.get_filters():
@@ -58,8 +56,6 @@ def build_filter_menu(local_filters = [], default=""):
         menuitem.show()
         menu.append(menuitem)
         menuitem.set_data("filter", filt)
-        if default != "" and default == filt.get_name():
-            active = cnt
         cnt += 1
 
     for filt in CustomFilters.get_filters():
@@ -67,8 +63,6 @@ def build_filter_menu(local_filters = [], default=""):
         menuitem.show()
         menu.append(menuitem)
         menuitem.set_data("filter", filt)
-        if default != "" and default == filt.get_name():
-            active = cnt
         cnt += 1
 
     return menu

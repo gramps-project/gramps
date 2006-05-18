@@ -20,6 +20,7 @@
 
 # $Id: __init__.py 6086 2006-03-06 03:54:58Z dallingham $
 
+from gettext import gettext as _
 
 import RelLib
 from BasicUtils import UpdateCallback

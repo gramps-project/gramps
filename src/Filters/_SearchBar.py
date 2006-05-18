@@ -30,6 +30,7 @@ Package providing filtering framework for GRAMPS.
 #
 #-------------------------------------------------------------------------
 import gtk
+from gettext import gettext as _
 
 _RETURN = gtk.gdk.keyval_from_name("Return")
 

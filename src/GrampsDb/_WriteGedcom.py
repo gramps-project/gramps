@@ -736,7 +736,6 @@ class GedcomWriter(UpdateCallback):
                     event = self.db.get_event_from_handle(event_handle)
                     if not event or self.private and event.get_privacy():
                         continue
-                    index = int(event.get_type())
                     val = event.get_type().xml_str()
                     if val == "":
                         val = self.target_ged.gramps2tag(name)
@@ -807,7 +806,7 @@ class GedcomWriter(UpdateCallback):
                 if self.adopt == GedcomInfo.ADOPT_LEGACY:
                     if family.get_handle() in \
                            person.get_parent_family_handle_list():
-                        self.writeln('2 _STAT %s' % f[2])
+                        self.writeln('2 _STAT %s' % child_ref.mrel.xml_str())
 
             for srcref in family.get_source_references():
                 self.write_source_ref(1,srcref)
@@ -932,10 +931,9 @@ class GedcomWriter(UpdateCallback):
                 event = self.db.get_event_from_handle(event_ref.ref)
                 if self.private and event.get_privacy():
                     continue
-                index = int(event.get_type())
                 val = event.get_type().xml_str()
                 if val == "":
-                    val = self.target_ged.gramps2tag(index)
+                    val = self.target_ged.gramps2tag(int(event.get_type()))
                         
                 if self.adopt == GedcomInfo.ADOPT_EVENT and val == "ADOP":
                     ad = 1
@@ -983,7 +981,7 @@ class GedcomWriter(UpdateCallback):
                     # needed on how to handle this
                     if event.get_description() != "":
                         self.writeln("1 EVEN %s" %
-                                     self.snvtxt(event.get_description()))
+                                     self.cnvtxt(event.get_description()))
                     else:
                         self.writeln("1 EVEN")
                     self.writeln("2 TYPE %s" % self.cnvtxt(val))
@@ -1384,7 +1382,6 @@ class GedcomWriter(UpdateCallback):
             if form:
                 self.writeln('%d FORM %s' % (level+1, form) )
             self.writeln('%d TITL %s' % (level+1, photo_obj.get_description()))
-            dirname = os.path.join (self.dirname, self.images_path)
             basename = os.path.basename (path)
             self.writeln('%d FILE %s' % (level+1,os.path.join(self.images_path,
                                                               basename)))

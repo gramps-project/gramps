@@ -66,7 +66,7 @@ class SidebarFilter:
     def clear(self, obj):
         pass
 
-    def clicked(self):
+    def clicked(self, obj):
         pass
 
     def get_filter(self):
@@ -78,7 +78,7 @@ class SidebarFilter:
 
     def key_press(self, obj, event):
         if event.keyval == _RETURN and not event.state:
-            self.clicked()
+            self.clicked(obj)
         return False
 
     def add_entry(self, name, widget):

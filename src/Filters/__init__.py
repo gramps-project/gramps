@@ -33,7 +33,6 @@ from const import system_filters, custom_filters
 from _FilterList import FilterList
 from _GenericFilter import GenericFilter
 from _ParamFilter import ParamFilter
-import Rules
 
 def reload_system_filters():
     global SystemFilters

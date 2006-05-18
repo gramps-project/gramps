@@ -669,7 +669,7 @@ class GedcomParser(UpdateCallback):
             return (0,tries)
 
     def get_next(self):
-        if self.backoff == False:
+        if not self.backoff:
             self.groups = self.lexer.read()
             self.update()
             
@@ -707,7 +707,6 @@ class GedcomParser(UpdateCallback):
         self.trans = self.db.transaction_begin("",not use_trans,no_magic)
 
         self.db.disable_signals()
-        t = time.time()
         self.fam_count = 0
         self.indi_count = 0
         self.repo_count = 0
@@ -731,9 +730,6 @@ class GedcomParser(UpdateCallback):
                 src.set_note(note)
             self.db.add_source(src,self.trans)
             
-        t = time.time() - t
-        msg = _('Import Complete: %d seconds') % t
-
         self.db.transaction_commit(self.trans,_("GEDCOM import"))
         self.db.enable_signals()
         self.db.request_rebuild()
@@ -1513,12 +1509,12 @@ class GedcomParser(UpdateCallback):
                 else:
                     note = "\n%s" % info
             elif matches[1] in (TOKEN__GODP, TOKEN__WITN, TOKEN__WTN):
-                if matches[2][0] == "@":
-                    witness_handle = self.find_person_handle(self.map_gid(matches[2][1:-1]))
-                    witness = RelLib.Witness(RelLib.Event.ID,witness_handle)
-                else:
-                    witness = RelLib.Witness(RelLib.Event.NAME,matches[2])
-                event.add_witness(witness)
+#                if matches[2][0] == "@":
+#                    witness_handle = self.find_person_handle(self.map_gid(matches[2][1:-1]))
+#                    witness = RelLib.Witness(RelLib.Event.ID,witness_handle)
+#                else:
+#                    witness = RelLib.Witness(RelLib.Event.NAME,matches[2])
+#                event.add_witness(witness)
                 self.ignore_sub_junk(level+1)
             elif matches[1] in (TOKEN_RELI, TOKEN_TIME, TOKEN_ADDR,TOKEN_IGNORE,
                                 TOKEN_STAT,TOKEN_TEMP,TOKEN_OBJE):
@@ -1674,12 +1670,13 @@ class GedcomParser(UpdateCallback):
             elif matches[1] == TOKEN_NOTE:
                 note = self.parse_note(matches,event,level+1,note)
             elif matches[1] in (TOKEN__WITN, TOKEN__WTN):
-                if matches[2][0] == "@":
-                    witness_handle = self.find_person_handle(self.map_gid(matches[2][1:-1]))
-                    witness = RelLib.Witness(RelLib.Event.ID,witness_handle)
-                else:
-                    witness = RelLib.Witness(RelLib.Event.NAME,matches[2])
-                event.add_witness(witness)
+                pass
+#                if matches[2][0] == "@":
+#                    witness_handle = self.find_person_handle(self.map_gid(matches[2][1:-1]))
+#                    witness = RelLib.Witness(RelLib.Event.ID,witness_handle)
+#                else:
+#                    witness = RelLib.Witness(RelLib.Event.NAME,matches[2])
+#                event.add_witness(witness)
                 self.ignore_sub_junk(level+1)
             else:
                 self.barf(level+1)
@@ -2237,7 +2234,7 @@ class GedcomParser(UpdateCallback):
         if int(the_type) == RelLib.EventType.CUSTOM \
                and str(the_type) in self.attrs:
             attr = RelLib.Attribute()
-            attr.set_type((RelLib.EventType.CUSTOM,self.gedattr[n]))
+            attr.set_type((RelLib.EventType.CUSTOM,self.gedattr[matches[2]]))
             attr.set_value(event.get_description())
             state.person.add_attribute(attr)
         else:
