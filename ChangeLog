@@ -1,4 +1,5 @@
 2006-05-17  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_ReadXML.py (start_childref): Typo.
 	* src/GrampsDb/_ReadGrdb.py: Add repos, modularize.
 	* src/ViewManager.py: Reorder calls to make work with ArgHandler.
 
