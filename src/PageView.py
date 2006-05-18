@@ -71,6 +71,7 @@ class PageView:
         self.additional_uis = []
         self.widget = None
         self.ui = '<ui></ui>'
+        self.dbstate.connect('no-database',self.disable_action_group)
         self.dbstate.connect('database-changed',self.enable_action_group)
         self.dirty = True
         self.active = False
@@ -107,15 +108,15 @@ class PageView:
         if self.action_group:
             self.action_group.set_visible(False)
 
-    def disable_actions(self, obj):
-        self.disable_action_group()
-
     def enable_action_group(self,obj):
         if self.action_group:
             self.action_group.set_visible(True)
 
     def get_stock(self):
-        return gtk.STOCK_MISSING_IMAGE
+        try:
+            return gtk.STOCK_MEDIA_MISSING
+        except AttributeError:
+            return gtk.STOCK_MISSING_IMAGE
         
     def get_title(self):
         return self.title
@@ -235,7 +236,7 @@ class BookMarkView(PageView):
     def enable_action_group(self, obj):
         PageView.enable_action_group(self, obj)
 
-    def disable_action_group(self):
+    def disable_action_group(self, obj):
         PageView.disable_action_group(self)
 
     def define_actions(self):
@@ -580,6 +581,7 @@ class ListView(BookMarkView):
                                      search=search)
         
         self.list.set_model(self.model)
+        colmap = self.column_order()
 
         if handle:
             path = self.model.on_get_path(handle)
