@@ -1,3 +1,8 @@
+2006-05-18  Don Allingham  <don@gramps-project.org>
+	* src/glade/gramps.glade: fix media ref dialog with warn box
+	* src/Filters/_PersonSidebarFilter.py (PersonSidebarFilter.clear): 
+	fix clearing of combobox
+
 2006-05-17  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_ReadXML.py (start_childref): Typo.
 	* src/GrampsDb/_ReadGrdb.py: Add repos, modularize.
