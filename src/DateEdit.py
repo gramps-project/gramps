@@ -68,7 +68,6 @@ import gtk.glade
 from RelLib import Date
 import DateHandler
 import const
-import Utils
 import GrampsDisplay
 import ManagedWindow
 
