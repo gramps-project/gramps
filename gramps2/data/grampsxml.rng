@@ -419,6 +419,15 @@
   </define>
 
   <define name="bookmark-content">
+    <attribute name="target"><choice>
+        <value>person</value>
+        <value>family</value>
+        <value>event</value>
+        <value>source</value>
+        <value>place</value>
+        <value>media</value>
+        <value>repository</value>
+    </choice></attribute>
     <attribute name="hlink"><data type="IDREF"/></attribute>
   </define>
   

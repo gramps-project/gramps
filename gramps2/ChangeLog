@@ -1,4 +1,9 @@
 2006-05-18  Alex Roitman  <shura@gramps-project.org>
+	* data/grampsxml.dtd: Update for new bookmarks.
+	* data/grampsxml.rng: Update for new bookmarks.
+	* src/GrampsDb/_WriteXML.py (write_bookmarks): Add method to write
+	new bookmarks.
+	* src/GrampsDb/_ReadXML.py (start_bmark): Parse new bookmarks
 	* INSTALL: Clarify; list build-dependencies.
 	* src/GrampsDb/_ReadGrdb.py: Update progress.
 

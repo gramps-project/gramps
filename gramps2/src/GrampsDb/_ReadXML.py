@@ -805,14 +805,43 @@ class GrampsParser(UpdateCallback):
         self.address.private = bool(attrs.get("priv"))
 
     def start_bmark(self,attrs):
-        try:
-            handle = attrs['hlink'].replace('_','')
+        target = attrs.get('target')
+        if not target:
+            # Old XML. Can be either handle or id reference
+            # and this is guaranteed to be a person bookmark
+            try:
+                handle = attrs['hlink'].replace('_','')
+                self.db.check_person_from_handle(handle,self.trans)
+            except KeyError:
+                gramps_id = self.map_gid(attrs["ref"])
+                person = self.find_person_by_gramps_id(gramps_id)
+                handle = person.handle
+            self.db.bookmarks.append(handle)
+            return
+
+        # This is new XML, so we are guaranteed to have a handle ref
+        handle = attrs['hlink'].replace('_','')
+        if target == 'person':
             self.db.check_person_from_handle(handle,self.trans)
-        except KeyError:
-            gramps_id = self.map_gid(attrs["ref"])
-            person = self.find_person_by_gramps_id(gramps_id)
-            handle = person.handle
-        self.db.bookmarks.append(handle)
+            self.db.bookmarks.append(handle)
+        elif target == 'family':
+            self.db.check_family_from_handle(handle,self.trans)
+            self.db.family_bookmarks.append(handle)
+        elif target == 'event':
+            self.db.check_event_from_handle(handle,self.trans)
+            self.db.event_bookmarks.append(handle)
+        elif target == 'source':
+            self.db.check_source_from_handle(handle,self.trans)
+            self.db.source_bookmarks.append(handle)
+        elif target == 'place':
+            self.db.check_place_from_handle(handle,self.trans)
+            self.db.place_bookmarks.append(handle)
+        elif target == 'media':
+            self.db.check_object_from_handle(handle,self.trans)
+            self.db.media_bookmarks.append(handle)
+        elif target == 'repository':
+            self.db.check_repository_from_handle(handle,self.trans)
+            self.db.repo_bookmarks.append(handle)
 
     def start_person(self,attrs):
         self.update(self.p.CurrentLineNumber)
