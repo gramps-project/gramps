@@ -1780,7 +1780,7 @@ class GedcomParser(UpdateCallback):
             elif matches[1] == TOKEN_COPR:
                 self.def_src.set_publication_info(matches[2])
             elif matches[1] ==  TOKEN_SUBM:
-                self.parse_subm(1)
+                self.parse_subm(2)
             elif matches[1] in (TOKEN_CORP,TOKEN_DATA,TOKEN_SUBN,TOKEN_LANG):
                 self.ignore_sub_junk(2)
             elif matches[1] == TOKEN_DEST:
@@ -2060,11 +2060,9 @@ class GedcomParser(UpdateCallback):
         self.parse_name(name,2,state)
 
     def func_person_asso(self, matches, state):
-        print matches
         gid = matches[2]
         handle = self.find_person_handle(self.map_gid(gid[1:-1]))
         ref = RelLib.PersonRef()
-        print handle
         ref.ref = handle
 
         self.person.add_person_ref(ref)
