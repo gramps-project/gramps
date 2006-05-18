@@ -40,7 +40,6 @@ import ViewManager
 import GrampsDb
 import ArgHandler
 import Config
-import GrampsCfg
 import const
 import Errors
 import TipOfDay
@@ -62,7 +61,6 @@ else:
     relation_icon = "relation.svg"
 
 def register_stock_icons ():
-    import os
     items = [
         (os.path.join(const.image_dir,person_icon),
          ('gramps-person',_('Person'),gtk.gdk.CONTROL_MASK,0,'')),
@@ -192,8 +190,6 @@ class Gramps:
                                  self.researcher_key_update)
         Config.client.notify_add("/apps/gramps/interface/statusbar",
                                  self.statusbar_key_update)
-        Config.client.notify_add("/apps/gramps/interface/toolbar",
-                                 self.toolbar_key_update)
 
         if Config.get(Config.USE_TIPS):
             TipOfDay.TipOfDay(self.vm.uistate)
@@ -237,10 +233,4 @@ class Gramps:
     def statusbar_key_update(self,client,cnxn_id,entry,data):
         self.vm.uistate.modify_statusbar()
 
-    def toolbar_key_update(self,client,cnxn_id,entry,data):
-        the_style = Config.get(Config.TOOLBAR)
-        if the_style == -1:
-            self.vm.toolbar.unset_style()
-        else:
-            self.vm.toolbar.set_style(the_style)
 

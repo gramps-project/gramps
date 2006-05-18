@@ -173,7 +173,7 @@ class NameDisplay:
             else:
                 return "%s, %s" % (last, first)
         
-    def _fnln(self,name,nickname=""):
+    def _fnln(self,name):
         """
         Prints the Western style first name, last name style.
         Typically this is::
@@ -233,7 +233,7 @@ class NameDisplay:
             else:
                 return "%s %s" % (first, last)
 
-    def _lnfn(self,name,nickname=u""):
+    def _lnfn(self,name):
         """
         Prints the Western style last name, first name style.
         Typically this is::
@@ -318,9 +318,9 @@ class NameDisplay:
         """
         name = person.get_primary_name()
         if name.display_as == Name.LNFN:
-            return self._lnfn(name,"")
+            return self._lnfn(name)
         else:
-            return self._fnln(name,"")
+            return self._fnln(name)
 
     def display_formal(self,person):
         """
@@ -336,9 +336,9 @@ class NameDisplay:
         """
         name = person.get_primary_name()
         if name.display_as == Name.LNFN:
-            return self._lnfn(name,'')
+            return self._lnfn(name)
         else:
-            return self._fnln(name,'')
+            return self._fnln(name)
 
     def display_name(self,name):
         """

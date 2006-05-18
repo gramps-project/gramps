@@ -48,7 +48,6 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import Config
-import Errors
 import Mime
 import GrampsDb
 import Utils

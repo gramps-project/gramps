@@ -1,3 +1,14 @@
+2006-05-17  Don Allingham  <don@gramps-project.org>
+	* src/GrampsCfg.py: pychecker fixes
+	* src/GrampsWidgets.py: pychecker fixes
+	* src/glade/gramps.glade: fix text entry -> label
+	* src/NameDisplay.py: pychecker fixes
+	* src/DisplayState.py: pychecker fixes
+	* src/GrampsDisplay.py: pychecker fixes
+	* src/DateEdit.py: pychecker fixes
+	* src/gramps_main.py: pychecker fixes
+	* src/DbLoader.py: pychecker fixes
+
 2006-05-17  Alex Roitman  <shura@gramps-project.org>
 	* src/ArgHandler.py: Adapt to recent changes.
 	* src/BasicUtils.py (update_empty): Clean up callback.

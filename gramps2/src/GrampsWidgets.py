@@ -21,7 +21,6 @@
 # $Id$
 
 import cgi
-import locale
 import os
 from gettext import gettext as _
 
