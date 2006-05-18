@@ -220,12 +220,21 @@ def db_copy(from_db,to_db,callback):
     # Commit batch transaction: does nothing, except undoing the tricks
     to_db.transaction_commit(trans,"")
 
-    # The metadata is always transactionless,
-    # and the table is small, so using key iteration is OK here.
-    for handle in from_db.metadata.keys():
-        data = from_db.metadata.get(handle)
-        to_db.metadata[handle] = data
+    # Copy bookmarks over:
+    # we already know that there's no overlap in handles anywhere
+    to_db.bookmarks        = from_db.bookmarks
+    to_db.family_bookmarks = from_db.family_bookmarks
+    to_db.event_bookmarks  = from_db.event_bookmarks
+    to_db.source_bookmarks = from_db.source_bookmarks
+    to_db.place_bookmarks  = from_db.place_bookmarks
+    to_db.media_bookmarks  = from_db.media_bookmarks
+    to_db.repo_bookmarks   = from_db.repo_bookmarks
 
+    # Copy gender stats
+    to_db.genderStats = from_db.genderStats
+
+    # FIXME: need to also copy event/attr names
+    # TODO:  need to also copy event/attr names
 
 def add_data_txn(db,table,handle,data):
     the_txn = db.env.txn_begin()

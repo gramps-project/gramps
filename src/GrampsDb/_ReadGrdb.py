@@ -176,6 +176,16 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
         import_table(id_table,add_obj,find_next_gramps_id,
                      other_table,other_get_from_handle,trans,uc)
 
+    # Copy bookmarks over:
+    # we already know that there's no overlap in handles anywhere
+    database.bookmarks        += other_database.bookmarks
+    database.family_bookmarks += other_database.family_bookmarks
+    database.event_bookmarks  += other_database.event_bookmarks
+    database.source_bookmarks += other_database.source_bookmarks
+    database.place_bookmarks  += other_database.place_bookmarks
+    database.media_bookmarks  += other_database.media_bookmarks
+    database.repo_bookmarks   += other_database.repo_bookmarks   
+
     # close the other database and clean things up
     other_database.close()
 
