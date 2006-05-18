@@ -73,7 +73,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_death.set_text('')
         self.filter_note.set_text('')
         self.filter_gender.set_active(0)
-        self.etype.set_text('')
+        self.etype.child.set_text('')
 
     def clicked(self, obj):
         self.clicked_func()
