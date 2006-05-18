@@ -38,7 +38,7 @@ import DisplayModels
 import const
 import Utils
 import Bookmarks
-
+import Errors
 from Editors import EditRepository, DelRepositoryQuery
 from DdTargets import DdTargets
 
@@ -159,7 +159,10 @@ class RepositoryView(PageView.ListView):
     def on_double_click(self,obj,event):
         handle = self.first_selected()
         repos = self.dbstate.db.get_repository_from_handle(handle)
-        EditRepository(self.dbstate, self.uistate,[],repos)
+        try:
+            EditRepository(self.dbstate, self.uistate,[],repos)
+        except Errors.WindowActiveError:
+            pass
 
     def add(self,obj):
         EditRepository(self.dbstate, self.uistate,[],RelLib.Repository())
@@ -197,5 +200,8 @@ class RepositoryView(PageView.ListView):
 
         for handle in mlist:
             repos = self.dbstate.db.get_repository_from_handle(handle)
-            EditRepository(self.dbstate, self.uistate, [], repos)
+            try:
+                EditRepository(self.dbstate, self.uistate, [], repos)
+            except Errors.WindowActiveError:
+                pass
 

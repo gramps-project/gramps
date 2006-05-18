@@ -1,4 +1,8 @@
 2006-05-18  Alex Roitman  <shura@gramps-project.org>
+	* src/DataViews/_RepositoryView.py (edit, on_double_click): Catch
+	exception.
+	* src/GrampsWidgets.py (PlaceEntry.add_del_clicked) 
+	(PlaceEntry.share_clicked): Catch exception.
 	* src/GrampsDb/_DbUtils.py (db_copy): Copy bookmarks and gender stats.
 	* data/grampsxml.dtd: Update for new bookmarks.
 	* data/grampsxml.rng: Update for new bookmarks.
