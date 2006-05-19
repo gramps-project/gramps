@@ -231,6 +231,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.repository_types = set()
         self.source_media_types = set()
         self.url_types = set()
+        self.media_attributes = set()
 
         self.set_person_id_prefix(Config.get(Config.IPREFIX))
         self.set_object_id_prefix(Config.get(Config.OPREFIX))
@@ -467,6 +468,12 @@ class GrampsDbBase(GrampsDBCallback):
         self.url_types.update([str(url.type) for url in person.urls
                                if url.type.is_custom()])
 
+        attr_list = []
+        for mref in person.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom()]
+        self.media_attributes.update(attr_list)
+
     def commit_media_object(self, obj, transaction, change_time=None):
         """
         Commits the specified MediaObject to the database, storing the changes
@@ -476,6 +483,9 @@ class GrampsDbBase(GrampsDBCallback):
         self._commit_base(obj, self.media_map, MEDIA_KEY, 
                           transaction.media_update, transaction.media_add, 
                           transaction, change_time)
+        self.media_attributes.update(
+            [str(attr.type) for attr in obj.attribute_list
+             if attr.type.is_custom()])
             
     def commit_source(self, source, transaction, change_time=None):
         """
@@ -489,8 +499,13 @@ class GrampsDbBase(GrampsDBCallback):
 
         self.source_media_types.update(
             [str(ref.media_type) for ref in source.reporef_list
-             if ref.media_type.is_custom()])
-        
+             if ref.media_type.is_custom()])       
+
+        attr_list = []
+        for mref in source.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom()]
+        self.media_attributes.update(attr_list)
 
     def commit_place(self, place, transaction, change_time=None):
         """
@@ -504,6 +519,12 @@ class GrampsDbBase(GrampsDBCallback):
 
         self.url_types.update([str(url.type) for url in place.urls
                                if url.type.is_custom()])
+
+        attr_list = []
+        for mref in place.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom()]
+        self.media_attributes.update(attr_list)
 
     def commit_personal_event(self, event, transaction, change_time=None):
         if event.type.is_custom():
@@ -523,6 +544,12 @@ class GrampsDbBase(GrampsDBCallback):
         self._commit_base(event, self.event_map, EVENT_KEY, 
                           transaction.event_update, transaction.event_add, 
                           transaction, change_time)
+
+        attr_list = []
+        for mref in event.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom()]
+        self.media_attributes.update(attr_list)
 
     def commit_family(self, family, transaction, change_time=None):
         """
@@ -553,6 +580,12 @@ class GrampsDbBase(GrampsDBCallback):
         if family.type.is_custom():
             self.family_rel_types.add(str(family.type))
 
+        attr_list = []
+        for mref in family.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom()]
+        self.media_attributes.update(attr_list)
+
     def commit_repository(self, repository, transaction, change_time=None):
         """
         Commits the specified Repository to the database, storing the changes
@@ -569,6 +602,12 @@ class GrampsDbBase(GrampsDBCallback):
 
         self.url_types.update([str(url.type) for url in repository.urls
                                if url.type.is_custom()])
+
+        attr_list = []
+        for mref in repository.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom()]
+        self.media_attributes.update(attr_list)
 
     def find_next_person_gramps_id(self):
         """
@@ -1628,9 +1667,8 @@ class GrampsDbBase(GrampsDBCallback):
         
     def get_media_attribute_types(self):
         """returns a list of all Attribute types assocated with Media
-        instances in the database"""
-        # FIXME: THIS IS NOT STORED/DEFINED YET
-        return []
+        and MediaRef instances in the database"""
+        return list(self.media_attributes)
 
     def get_family_relation_types(self):
         """returns a list of all relationship types assocated with Family
