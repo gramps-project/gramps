@@ -404,6 +404,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.repository_types = set(self.metadata.get('repo_types',[]))
         self.source_media_types = set(self.metadata.get('sm_types',[]))
         self.url_types = set(self.metadata.get('url_types',[]))
+        self.media_attributes = set(self.metadata.get('mattr_names',[]))
 
     def connect_secondary(self):
         """
@@ -827,6 +828,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.metadata['repo_types'] = list(self.repository_types)
             self.metadata['sm_types'] = list(self.source_media_types)
             self.metadata['url_types'] = list(self.url_types)
+            self.metadata['mattr_names'] = list(self.media_attributes)
 
         self.metadata.close()
 
