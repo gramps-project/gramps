@@ -538,13 +538,13 @@ class GrampsDbBase(GrampsDBCallback):
             [str(attr.type) for attr in family.attribute_list
              if attr.type.is_custom()])
 
-        self.child_ref_types.update(
-            [str(ref.frel) for ref in family.child_ref_list
-             if ref.frel.is_custom()])
-
-        self.child_ref_types.update(
-            [str(ref.mrel) for ref in family.child_ref_list
-             if ref.mrel.is_custom()])
+        rel_list = []
+        for ref in family.child_ref_list:
+            if ref.frel.is_custom():
+                rel_list.append(str(ref.frel))
+            if ref.mrel.is_custom():
+                rel_list.append(str(ref.mrel))
+        self.child_ref_types.update(rel_list)
 
         self.event_role_names.update(
             [str(eref.role) for eref in family.event_ref_list
@@ -1629,12 +1629,43 @@ class GrampsDbBase(GrampsDBCallback):
     def get_media_attribute_types(self):
         """returns a list of all Attribute types assocated with Media
         instances in the database"""
+        # FIXME: THIS IS NOT STORED/DEFINED YET
         return []
 
     def get_family_relation_types(self):
         """returns a list of all relationship types assocated with Family
         instances in the database"""
-        return []
+        return list(self.family_rel_types)
+
+    def get_child_reference_types(self):
+        """returns a list of all child reference types assocated with Family
+        instances in the database"""
+        return list(self.child_ref_types)
+
+    def get_event_roles(self):
+        """returns a list of all custom event role names assocated with Event
+        instances in the database"""
+        return list(self.event_role_names)
+
+    def get_name_types(self):
+        """returns a list of all custom names types assocated with Person
+        instances in the database"""
+        return list(self.name_types)
+
+    def get_repository_types(self):
+        """returns a list of all custom repository types assocated with
+        Repository instances in the database"""
+        return list(self.repository_types)
+
+    def get_source_media_types(self):
+        """returns a list of all custom source media types assocated with
+        Source instances in the database"""
+        return list(self.source_media_types)
+
+    def get_url_types(self):
+        """returns a list of all custom names types assocated with Url
+        instances in the database"""
+        return list(self.url_types)
 
     def remove_person(self, handle, transaction):
         """
@@ -2205,4 +2236,3 @@ class DbState(GrampsDBCallback):
         self.active = None
         self.open = False
         self.emit('no-database')
-

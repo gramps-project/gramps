@@ -1,3 +1,7 @@
+2006-05-19  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py: Define methods to get custom types.
+	* src/GrampsDb/_GrampsBSDDB.py: Load/save marker_types.
+
 2006-05-19  Don Allingham  <don@gramps-project.org>
 	* src/RelLib/_SecondaryObject.py: added, provide is_equal
 	* src/RelLib/_Url.py: inherit from SecondaryObject
