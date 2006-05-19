@@ -228,10 +228,18 @@ class MapTile:
         self.scaled_pixbuf = None
 
 class WMSMapTile:
-    def __init__(self,capabilities):
+    def __init__(self,capabilities,change_cb=None):
+        self.change_cb = change_cb
         self.scaled_pixbuf = None
+        self.handler_running = False
+        self.target_scale = 0.0
+        self.scaled_map_x = 0.0
+        self.scaled_map_y = 0.0
+        self.scaled_map_pixel_w = 0.0
+        self.scaled_map_pixel_h = 0.0
         self.capabilities_url = capabilities
         u_reader = urllib2.urlopen(self.capabilities_url)
+        # TODO: Put into an idle handler or thread
         response_body = u_reader.read()
         u_reader.close()
         xml_doc = xmlStringParser( response_body)
@@ -276,19 +284,22 @@ class WMSMapTile:
                         t4 = t3.getElementsByTagName("Get")[0]
                         t5 = t4.getElementsByTagName("OnlineResource")[0]
                         self.map_get_url = t5.getAttribute("xlink:href")
-                        print(" Map Tile base url: %s" % self.map_get_url)
+                        if enable_debug:
+                            print(" Map Tile base url: %s" % self.map_get_url)
                     elif n2.nodeName == "Layer":
                         # parse Layers
                         if not self._srs_is_supported(n2.getElementsByTagName("SRS")[0].firstChild.data):
                             print "Layer coordinates not supported :-("
                             return None
                         layer_title = n2.getElementsByTagName("Title")[0].firstChild.data
-                        print " Layer: %s" % layer_title
+                        if enable_debug:
+                            print " Layer: %s" % layer_title
                         for n3 in n2.childNodes:
                             if n3.nodeName == "Layer":
                                 # parse Layers
-                                layer_title = n3.getElementsByTagName("Title")[0].firstChild.data
-                                print "   - Layer: %s" % layer_title
+                                layer_title = n3.getElementsByTagName("Name")[0].firstChild.data
+                                if enable_debug:
+                                    print "   - Layer: %s" % layer_title
                                 if self.map_request_params["LAYERS"]:
                                     self.map_request_params["LAYERS"] += ","
                                 self.map_request_params["LAYERS"] += layer_title
@@ -297,20 +308,60 @@ class WMSMapTile:
         if "epsg:4326" in list:
             return True
         return False
+
+    def idle_handler( self):
+        """ fetches parts of the download and feeds them into a PixbufLoader """
+        if enable_debug:
+            print "idle_handler"
+        if not self.handler_running or not self.url_handler:
+            return False
+        buf = self.url_handler.read(5000)
+        if enable_debug:
+            print len(buf)
+        if len(buf) > 0:
+            self.pixbufloader.write(buf)
+            self.scaled_pixbuf = self.pixbufloader.get_pixbuf()
+        else:
+            if enable_debug:
+                print "no more content."
+            self.handler_running = False
+            self.url_handler.close()
+            self.pixbufloader.close()
+            return False
+        self.change_cb()
+        return True
         
     def set_viewport( self, target_scale, x_in, y_in, w_in, h_in):
-        self.scaled_map_x = x_in
-        self.scaled_map_y = y_in
-        self.scaled_map_pixel_w = int(w_in*target_scale)
-        self.scaled_map_pixel_h = int(h_in*target_scale)
-        self.map_request_params["BBOX"] = "%f,%f,%f,%f" % (x_in,y_in-h_in,x_in+w_in,y_in) # Neds to be set for request
-        self.map_request_params["WIDTH"] = int(w_in*target_scale)
-        self.map_request_params["HEIGHT"] = int(h_in*target_scale)
-        params = urllib.urlencode(self.map_request_params)
-        f = tempfile.NamedTemporaryFile()
-        f_name = f.name
-        urllib.urlretrieve(self.map_get_url+params,f_name)
-        self.scaled_pixbuf = gtk.gdk.pixbuf_new_from_file(f_name)
+        new_scaled_map_pixel_w = int(w_in*target_scale)
+        new_scaled_map_pixel_h = int(h_in*target_scale)
+        if self.target_scale != target_scale\
+                or self.scaled_map_x > x_in\
+                or self.scaled_map_y < y_in\
+                or self.scaled_map_pixel_w < new_scaled_map_pixel_w\
+                or self.scaled_map_pixel_h < new_scaled_map_pixel_h:
+            # only download new map is new viewport is larger
+            # TODO: Fix above to be correct and add a cache of already downloaded tiles
+            self.target_scale = target_scale
+            self.scaled_map_x = x_in
+            self.scaled_map_y = y_in
+            self.scaled_map_pixel_w = int(w_in*target_scale)
+            self.scaled_map_pixel_h = int(h_in*target_scale)
+            self.map_request_params["BBOX"] = "%f,%f,%f,%f" % (x_in,y_in-h_in,x_in+w_in,y_in) # Neds to be set for request
+            self.map_request_params["WIDTH"] = int(w_in*target_scale)
+            self.map_request_params["HEIGHT"] = int(h_in*target_scale)
+            params = urllib.urlencode(self.map_request_params)
+            if self.handler_running:
+                if enable_debug:
+                    print "stopping current download"
+                self.url_handler.close()
+                self.pixbufloader.close()
+            self.scaled_pixbuf = None
+            self.url_handler = urllib.urlopen(self.map_get_url+params)
+            self.handler_running = gobject.idle_add(self.idle_handler)
+            self.pixbufloader = gtk.gdk.PixbufLoader()
+        else:
+            if enable_debug:
+                print "new viewport fits inside old one. No download required."
 
     def free(self):
         pass
@@ -336,7 +387,7 @@ class ZoomMap( gtk.DrawingArea):
         self.initial_exposed = False
         if use_online_map:
             self.map_sources[0.0] = []
-            self.map_sources[0.0].append(WMSMapTile("http://www2.demis.nl/wms/wms.asp?wms=WorldMap&VERSION=1.1.1&REQUEST=GetCapabilities"))
+            self.map_sources[0.0].append(WMSMapTile("http://www2.demis.nl/wms/wms.asp?wms=WorldMap&VERSION=1.1.1&REQUEST=GetCapabilities",self.queue_draw))
 
     def add_map_source( self,filename, x, y, w, h,pw,ph):
         tile = MapTile( filename, x, y, w, h, pw, ph)
