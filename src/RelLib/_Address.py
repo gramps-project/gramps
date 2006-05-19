@@ -29,7 +29,7 @@ Address class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _BaseObject import BaseObject
+from _SecondaryObject import SecondaryObject
 from _PrivacyBase import PrivacyBase
 from _SourceBase import SourceBase
 from _NoteBase import NoteBase
@@ -41,14 +41,14 @@ from _LocationBase import LocationBase
 # Address for Person/Repository
 #
 #-------------------------------------------------------------------------
-class Address(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase,
+class Address(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase,
               LocationBase):
     """Provides address information."""
 
     def __init__(self,source=None):
         """Creates a new Address instance, copying from the source
         if provided"""
-        BaseObject.__init__(self)
+        SecondaryObject.__init__(self)
         PrivacyBase.__init__(self,source)
         SourceBase.__init__(self,source)
         NoteBase.__init__(self,source)

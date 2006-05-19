@@ -36,7 +36,7 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _BaseObject import BaseObject
+from _SecondaryObject import SecondaryObject
 from _PrivacyBase import PrivacyBase
 from _NoteBase import NoteBase
 from _RefBase import RefBase
@@ -47,7 +47,7 @@ from _EventRoleType import EventRoleType
 # Event References for Person/Family
 #
 #-------------------------------------------------------------------------
-class EventRef(BaseObject,PrivacyBase,NoteBase,RefBase):
+class EventRef(SecondaryObject,PrivacyBase,NoteBase,RefBase):
     """
     Event reference class.
 
@@ -59,7 +59,7 @@ class EventRef(BaseObject,PrivacyBase,NoteBase,RefBase):
         """
         Creates a new EventRef instance, copying from the source if present.
         """
-        BaseObject.__init__(self)
+        SecondaryObject.__init__(self)
         PrivacyBase.__init__(self)
         NoteBase.__init__(self)
         RefBase.__init__(self)

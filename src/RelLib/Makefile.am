@@ -43,6 +43,7 @@ pkgdata_PYTHON = \
 	_Repository.py\
 	_RepositoryType.py\
 	_Researcher.py\
+	_SecondaryObject.py\
 	_SourceNote.py\
 	_Source.py\
 	_SourceRef.py\

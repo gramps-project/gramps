@@ -24,12 +24,14 @@
 LDS Ordinance class for GRAMPS
 """
 
+from warnings import warn
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _BaseObject import BaseObject
+from _SecondaryObject import SecondaryObject
 from _SourceBase import SourceBase
 from _NoteBase import NoteBase
 from _DateBase import DateBase
@@ -41,7 +43,7 @@ from _PrivacyBase import PrivacyBase
 # LDS Ordinance class
 #
 #-------------------------------------------------------------------------
-class LdsOrd(BaseObject,SourceBase,NoteBase,DateBase,PlaceBase,PrivacyBase):
+class LdsOrd(SecondaryObject,SourceBase,NoteBase,DateBase,PlaceBase,PrivacyBase):
     """
     Class that contains information about LDS Ordinances. LDS
     ordinances are similar to events, but have very specific additional
@@ -72,7 +74,7 @@ class LdsOrd(BaseObject,SourceBase,NoteBase,DateBase,PlaceBase,PrivacyBase):
 
     def __init__(self,source=None):
         """Creates a LDS Ordinance instance"""
-        BaseObject.__init__(self)
+        SecondaryObject.__init__(self)
         SourceBase.__init__(self,source)
         NoteBase.__init__(self,source)
         DateBase.__init__(self,source)
@@ -195,20 +197,5 @@ class LdsOrd(BaseObject,SourceBase,NoteBase,DateBase,PlaceBase,PrivacyBase):
         
     def are_equal(self,other):
         """returns 1 if the specified ordinance is the same as the instance"""
-        if other == None:
-            return self.is_empty()
-        if (self.famc != other.famc or
-            self.place != other.place or
-            self.status != other.status or
-            self.temple != other.temple or
-            not self.get_date_object().is_equal(other.get_date_object()) or
-            len(self.get_source_references()) != len(other.get_source_references())):
-            return False
-
-        index = 0
-        olist = other.get_source_references()
-        for a in self.get_source_references():
-            if not a.are_equal(olist[index]):
-                return False
-            index += 1
-        return True
+        warn( "Use is_equal instead are_equal", DeprecationWarning, 2)
+        return self.is_equal(other)

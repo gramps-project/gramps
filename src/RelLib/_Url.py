@@ -36,7 +36,7 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _BaseObject import BaseObject
+from _SecondaryObject import SecondaryObject
 from _PrivacyBase import PrivacyBase
 from _UrlType import UrlType
 
@@ -45,13 +45,13 @@ from _UrlType import UrlType
 # Url for Person/Place/Repository
 #
 #-------------------------------------------------------------------------
-class Url(BaseObject,PrivacyBase):
+class Url(SecondaryObject,PrivacyBase):
     """Contains information related to internet Uniform Resource Locators,
     allowing gramps to store information about internet resources"""
 
     def __init__(self,source=None):
         """creates a new URL instance, copying from the source if present"""
-        BaseObject.__init__(self)
+        SecondaryObject.__init__(self)
         PrivacyBase.__init__(self,source)
         if source:
             self.path = source.path
@@ -110,13 +110,5 @@ class Url(BaseObject,PrivacyBase):
         return self.type
 
     def are_equal(self,other):
-        """returns 1 if the specified URL is the same as the instance"""
-        if other == None:
-            return 0
-        if self.path != other.path:
-            return 0
-        if self.desc != other.desc:
-            return 0
-        if self.type != other.type:
-            return 0
-        return 1
+        warn( "Use is_equal instead of are_equal", DeprecationWarning, 2)
+        return self.is_equal(other)

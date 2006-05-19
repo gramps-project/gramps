@@ -233,7 +233,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         index = 0
         olist = other.get_source_references()
         for a in self.get_source_references():
-            if not a.are_equal(olist[index]):
+            if not a.is_equal(olist[index]):
                 return False
             index += 1
 

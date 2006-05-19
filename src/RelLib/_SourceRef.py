@@ -24,12 +24,14 @@
 Source Reference class for GRAMPS
 """
 
+from warnings import warn
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _BaseObject import BaseObject
+from _SecondaryObject import SecondaryObject
 from _DateBase import DateBase
 from _PrivacyBase import PrivacyBase
 from _NoteBase import NoteBase
@@ -41,7 +43,7 @@ from _Note import Note
 # Source References for all primary objects
 #
 #-------------------------------------------------------------------------
-class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase,RefBase):
+class SourceRef(SecondaryObject,DateBase,PrivacyBase,NoteBase,RefBase):
     """Source reference, containing detailed information about how a
     referenced source relates to it"""
     
@@ -53,7 +55,7 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase,RefBase):
 
     def __init__(self,source=None):
         """creates a new SourceRef, copying from the source if present"""
-        BaseObject.__init__(self)
+        SecondaryObject.__init__(self)
         DateBase.__init__(self,source)
         PrivacyBase.__init__(self,source)
         NoteBase.__init__(self,source)
@@ -149,20 +151,5 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase,RefBase):
         return self.text
 
     def are_equal(self,other):
-        """returns True if the passed SourceRef is equal to the current"""
-        if self.ref and other.ref:
-            if self.page != other.page:
-                return False
-            if not self.get_date_object().is_equal(other.get_date_object()):
-                return False
-            if self.get_text() != other.get_text():
-                return False
-            if self.get_note() != other.get_note():
-                return False
-            if self.confidence != other.confidence:
-                return False
-            return True
-        elif not self.ref and not other.ref:
-            return True
-        else:
-            return False
+        warn( "Use is_equal instead of are_equal", DeprecationWarning, 2)
+        return self.is_equal(other)

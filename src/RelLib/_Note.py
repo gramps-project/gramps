@@ -29,14 +29,14 @@ Note class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _BaseObject import BaseObject
+from _SecondaryObject import SecondaryObject
 
 #-------------------------------------------------------------------------
 #
 # Class for notes used throughout the majority of GRAMPS objects
 #
 #-------------------------------------------------------------------------
-class Note(BaseObject):
+class Note(SecondaryObject):
     """
     Introduction
     ============
@@ -49,7 +49,7 @@ class Note(BaseObject):
         """
         Creates a new Note object, initializing from the passed string.
         """
-        BaseObject.__init__(self)
+        SecondaryObject.__init__(self)
         self.text = text
         self.format = 0
 

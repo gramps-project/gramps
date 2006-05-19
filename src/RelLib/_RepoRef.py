@@ -29,7 +29,7 @@ Repository Reference class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _BaseObject import BaseObject
+from _SecondaryObject import SecondaryObject
 from _NoteBase import NoteBase
 from _RefBase import RefBase
 from _SourceMediaType import SourceMediaType
@@ -39,13 +39,13 @@ from _SourceMediaType import SourceMediaType
 # Repository Reference for Sources
 #
 #-------------------------------------------------------------------------
-class RepoRef(BaseObject,NoteBase,RefBase):
+class RepoRef(SecondaryObject,NoteBase,RefBase):
     """
     Repository reference class.
     """
 
     def __init__(self,source=None):
-        BaseObject.__init__(self)
+        SecondaryObject.__init__(self)
         NoteBase.__init__(self)
         RefBase.__init__(self)
         if source:

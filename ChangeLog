@@ -1,3 +1,20 @@
+2006-05-19  Don Allingham  <don@gramps-project.org>
+	* src/RelLib/_SecondaryObject.py: added, provide is_equal
+	* src/RelLib/_Url.py: inherit from SecondaryObject
+	* src/RelLib/_MediaRef.py: inherit from SecondaryObject
+	* src/RelLib/_ChildRef.py: inherit from SecondaryObject
+	* src/RelLib/_Name.py: inherit from SecondaryObject
+	* src/RelLib/_Address.py: inherit from SecondaryObject
+	* src/RelLib/_SourceRef.py: inherit from SecondaryObject
+	* src/RelLib/_RepoRef.py: inherit from SecondaryObject
+	* src/RelLib/_PersonRef.py: inherit from SecondaryObject
+	* src/RelLib/_Attribute.py: inherit from SecondaryObject
+	* src/RelLib/_Note.py: inherit from SecondaryObject
+	* src/RelLib/_Location.py: inherit from SecondaryObject
+	* src/RelLib/_EventRef.py: inherit from SecondaryObject
+	* src/RelLib/_Event.py: inherit from SecondaryObject
+	* src/RelLib/_LdsOrd.py: inherit from SecondaryObject
+
 2006-05-18  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py: Remove unused methods; remove
 	unused secondary tables; add more custom type holders.

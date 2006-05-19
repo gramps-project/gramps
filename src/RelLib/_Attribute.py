@@ -36,7 +36,7 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _BaseObject import BaseObject
+from _SecondaryObject import SecondaryObject
 from _PrivacyBase import PrivacyBase
 from _SourceBase import SourceBase
 from _NoteBase import NoteBase
@@ -47,7 +47,7 @@ from _AttributeType import AttributeType
 # Attribute for Person/Family/MediaObject/MediaRef
 #
 #-------------------------------------------------------------------------
-class Attribute(BaseObject,PrivacyBase,SourceBase,NoteBase):
+class Attribute(SecondaryObject,PrivacyBase,SourceBase,NoteBase):
     """Provides a simple key/value pair for describing properties. Used
     by the Person and Family objects to store descriptive information."""
     
@@ -55,7 +55,7 @@ class Attribute(BaseObject,PrivacyBase,SourceBase,NoteBase):
         """
         Creates a new Attribute object, copying from the source if provided.
         """
-        BaseObject.__init__(self)
+        SecondaryObject.__init__(self)
         PrivacyBase.__init__(self,source)
         SourceBase.__init__(self,source)
         NoteBase.__init__(self,source)

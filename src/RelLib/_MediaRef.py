@@ -29,7 +29,7 @@ Media Reference class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _BaseObject import BaseObject
+from _SecondaryObject import SecondaryObject
 from _PrivacyBase import PrivacyBase
 from _SourceBase import SourceBase
 from _NoteBase import NoteBase
@@ -41,12 +41,12 @@ from _AttributeBase import AttributeBase
 # MediaObject References for Person/Place/Source
 #
 #-------------------------------------------------------------------------
-class MediaRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase,
+class MediaRef(SecondaryObject,PrivacyBase,SourceBase,NoteBase,RefBase,
                AttributeBase):
     """Media reference class"""
     def __init__(self,source=None):
 
-        BaseObject.__init__(self)
+        SecondaryObject.__init__(self)
         PrivacyBase.__init__(self,source)
         SourceBase.__init__(self,source)
         NoteBase.__init__(self,source)
