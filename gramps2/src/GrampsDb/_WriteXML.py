@@ -324,13 +324,6 @@ class XmlWriter(UpdateCallback):
         # Data is written, now write bookmarks.
         self.write_bookmarks()
 
-        if len(self.db.name_group) > 0:
-            self.g.write('  <groups>\n')
-            for key in self.db.name_group.keys():
-                self.g.write('    <group_map name="%s" group="%s"/>\n' %
-                             (key,self.db.name_group[key]))
-            self.g.write('  </groups>\n')
-
         self.g.write("</database>\n")
 
     def write_bookmarks(self):
