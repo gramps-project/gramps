@@ -3,6 +3,7 @@
 	unused secondary tables; add more custom type holders.
 	* src/GrampsDb/_GrampsDbBase.py (GrampsDbBase.__init__): Add more
 	custom type holders.
+	(commit_*): update custom type sets on commit.
 	* src/DisplayTabs/_BackRefList.py (edit_button_clicked): Typo.
 	* src/DataViews/_RepositoryView.py (edit, on_double_click): Catch
 	exception.
@@ -14,7 +15,6 @@
 	* src/GrampsDb/_WriteXML.py (write_bookmarks): Add method to write
 	new bookmarks.
 	(XmlWriter.write_xml_data): Do not export name groups.
-
 	* src/GrampsDb/_ReadXML.py (start_bmark): Parse new bookmarks
 	* INSTALL: Clarify; list build-dependencies.
 	* src/GrampsDb/_ReadGrdb.py: Update progress.
