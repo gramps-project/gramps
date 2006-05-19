@@ -397,7 +397,6 @@ class GrampsBSDDB(GrampsDbBase):
         self.individual_event_names = set(self.metadata.get('pevent_names',[]))
         self.family_attributes = set(self.metadata.get('fattr_names',[]))
         self.individual_attributes = set(self.metadata.get('pattr_names',[]))
-        # These are not hooked up yet:
         self.child_ref_types = set(self.metadata.get('child_refs',[]))
         self.family_rel_types = set(self.metadata.get('family_rels',[]))
         self.event_role_names = set(self.metadata.get('event_roles',[]))
@@ -824,7 +823,6 @@ class GrampsBSDDB(GrampsDbBase):
             self.metadata['pevent_names'] = list(self.individual_event_names)
             self.metadata['fattr_names'] = list(self.family_attributes)
             self.metadata['pattr_names'] = list(self.individual_attributes)
-            # These are not hooked up yet:
             self.metadata['child_refs'] = list(self.child_ref_types)
             self.metadata['family_rels'] = list(self.family_rel_types)
             self.metadata['event_roles'] = list(self.event_role_names)

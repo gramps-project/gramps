@@ -224,9 +224,6 @@ class GrampsDbBase(GrampsDBCallback):
         self.individual_attributes = set()
         self.family_attributes = set()
         self.marker_names = set()
-
-        # FIXME: TODO: These are just added here at the moment.
-        # They need to be hooked up on commits
         self.child_ref_types = set()
         self.family_rel_types = set()
         self.event_role_names = set()
@@ -234,7 +231,6 @@ class GrampsDbBase(GrampsDBCallback):
         self.repository_types = set()
         self.source_media_types = set()
         self.url_types = set()
-        # END FIXME
 
         self.set_person_id_prefix(Config.get(Config.IPREFIX))
         self.set_object_id_prefix(Config.get(Config.OPREFIX))
@@ -449,11 +445,28 @@ class GrampsDbBase(GrampsDBCallback):
         else:
             self.genderStats.count_person(person)
 
-        for attr in person.attribute_list:
-            self.individual_attributes.add(str(attr.type))
+        self.individual_attributes.update(
+            [str(attr.type) for attr in person.attribute_list
+             if attr.type.is_custom()])
 
-        self.marker_names.add(str(person.marker))
-            
+        if person.marker.is_custom():
+            self.marker_names.add(str(person.marker))
+
+        eref_list = [eref for eref in (person.event_ref_list
+                                       + [person.birth_ref,person.death_ref])
+                     if eref]
+
+        self.event_role_names.update(
+            [str(eref.role) for eref in eref_list if eref.role.is_custom()])
+
+        self.name_types.update([str(name.type)
+                                for name in ([person.primary_name]
+                                             + person.alternate_names)
+                                if name.type.is_custom()])
+        
+        self.url_types.update([str(url.type) for url in person.urls
+                               if url.type.is_custom()])
+
     def commit_media_object(self, obj, transaction, change_time=None):
         """
         Commits the specified MediaObject to the database, storing the changes
@@ -474,6 +487,11 @@ class GrampsDbBase(GrampsDBCallback):
                           transaction.source_update, transaction.source_add, 
                           transaction, change_time)
 
+        self.source_media_types.update(
+            [str(ref.media_type) for ref in source.reporef_list
+             if ref.media_type.is_custom()])
+        
+
     def commit_place(self, place, transaction, change_time=None):
         """
         Commits the specified Place to the database, storing the changes
@@ -483,6 +501,9 @@ class GrampsDbBase(GrampsDBCallback):
         self._commit_base(place, self.place_map, PLACE_KEY, 
                           transaction.place_update, transaction.place_add, 
                           transaction, change_time)
+
+        self.url_types.update([str(url.type) for url in place.urls
+                               if url.type.is_custom()])
 
     def commit_personal_event(self, event, transaction, change_time=None):
         if event.type.is_custom():
@@ -513,8 +534,24 @@ class GrampsDbBase(GrampsDBCallback):
                           transaction.family_update, transaction.family_add, 
                           transaction, change_time)
 
-        for attr in family.attribute_list:
-            self.family_attributes.add(str(attr.type))
+        self.family_attributes.update(
+            [str(attr.type) for attr in family.attribute_list
+             if attr.type.is_custom()])
+
+        self.child_ref_types.update(
+            [str(ref.frel) for ref in family.child_ref_list
+             if ref.frel.is_custom()])
+
+        self.child_ref_types.update(
+            [str(ref.mrel) for ref in family.child_ref_list
+             if ref.mrel.is_custom()])
+
+        self.event_role_names.update(
+            [str(eref.role) for eref in family.event_ref_list
+             if eref.role.is_custom()])
+
+        if family.type.is_custom():
+            self.family_rel_types.add(str(family.type))
 
     def commit_repository(self, repository, transaction, change_time=None):
         """
@@ -526,6 +563,12 @@ class GrampsDbBase(GrampsDBCallback):
                           transaction.repository_update,
                           transaction.repository_add, 
                           transaction, change_time)
+
+        if repository.type.is_custom():
+            self.repository_types.add(str(repository.type))
+
+        self.url_types.update([str(url.type) for url in repository.urls
+                               if url.type.is_custom()])
 
     def find_next_person_gramps_id(self):
         """
