@@ -397,7 +397,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.individual_event_names = set(self.metadata.get('pevent_names',[]))
         self.family_attributes = set(self.metadata.get('fattr_names',[]))
         self.individual_attributes = set(self.metadata.get('pattr_names',[]))
-        self.marker_names = set(self.metadata.get('marker_names',[])
+        self.marker_names = set(self.metadata.get('marker_names',[]))
         self.child_ref_types = set(self.metadata.get('child_refs',[]))
         self.family_rel_types = set(self.metadata.get('family_rels',[]))
         self.event_role_names = set(self.metadata.get('event_roles',[]))
