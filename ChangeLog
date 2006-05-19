@@ -1,3 +1,7 @@
+2006-05-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DataViews/_MapView.py (WMSMapTile): Start of map download inside
+	an idle handler.
+
 2006-05-19  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsDbBase.py: Define methods to get custom types.
 	* src/GrampsDb/_GrampsBSDDB.py: Load/save marker_types.
