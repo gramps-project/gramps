@@ -29,7 +29,7 @@ Provides the Berkeley DB (BSDDB) database backend for GRAMPS
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import cPickle
+import cPickle as pickle
 import os
 import time
 import locale
@@ -56,6 +56,7 @@ from _GrampsDbBase import *
 from _DbUtils import db_copy
 import const
 import Errors
+from BasicUtils import UpdateCallback
 
 _MINVERSION = 5
 _DBVERSION = 9
@@ -79,8 +80,6 @@ def find_primary_handle(key,data):
 
 def find_referenced_handle(key,data):
     return str((data)[1][1])
-
-import cPickle as pickle
 
 class GrampsBSDDBCursor(GrampsCursor):
 
@@ -143,7 +142,7 @@ class GrampsBSDDBDupCursor(GrampsBSDDBAssocCursor):
 # GrampsBSDDB
 #
 #-------------------------------------------------------------------------
-class GrampsBSDDB(GrampsDbBase):
+class GrampsBSDDB(GrampsDbBase,UpdateCallback):
     """GRAMPS database object. This object is a base class for other
     objects."""
 
@@ -560,7 +559,7 @@ class GrampsBSDDB(GrampsDbBase):
     def find_backlink_handles(self, handle, include_classes=None):
         """
         Find all objects that hold a reference to the object handle.
-        Returns an interator over alist of (class_name,handle) tuples.
+        Returns an interator over a list of (class_name,handle) tuples.
 
         @param handle: handle of the object to search for.
         @type handle: database handle
@@ -592,8 +591,9 @@ class GrampsBSDDB(GrampsDbBase):
             #    (referenced_object_class_name, referenced_object_handle))
             # so we need the first tuple to give us the type to compare
 
-            data = cPickle.loads(data)
-            if include_classes == None or KEY_TO_CLASS_MAP[data[0][0]] in include_classes:
+            data = pickle.loads(data)
+            if include_classes == None or \
+                   KEY_TO_CLASS_MAP[data[0][0]] in include_classes:
                 yield (KEY_TO_CLASS_MAP[data[0][0]],data[0][1])
                 
             ret = referenced_cur.next_dup()
@@ -603,7 +603,9 @@ class GrampsBSDDB(GrampsDbBase):
         return 
 
     def _delete_primary_from_reference_map(self,handle,transaction,txn=None):
-        """Remove all references to the primary object from the reference_map"""
+        """
+        Remove all references to the primary object from the reference_map.
+        """
 
         primary_cur = self.get_reference_map_primary_cursor()
 
@@ -622,7 +624,7 @@ class GrampsBSDDB(GrampsDbBase):
             # so we need the second tuple give us a reference that we can
             # combine with the primary_handle to get the main key.
 
-            main_key = (handle, cPickle.loads(data)[1][1])
+            main_key = (handle, pickle.loads(data)[1][1])
 
             self._remove_reference(main_key,transaction,txn)
             
@@ -642,11 +644,6 @@ class GrampsBSDDB(GrampsDbBase):
         update = self.reference_map_primary_map.has_key(str(handle))
 
         if update:
-            # FIXME: this needs to be properly integrated into the transaction
-            # framework so that the reference_map changes are part of the
-            # transaction
-
-
             # First thing to do is get hold of all rows in the reference_map
             # table that hold a reference from this primary obj. This means
             # finding all the rows that have this handle somewhere in the
@@ -674,7 +671,7 @@ class GrampsBSDDB(GrampsDbBase):
 
                 # secondary DBs are not DBShelf's, so we need to do pickling
                 # and unpicking ourselves here
-                existing_reference = cPickle.loads(data)[1]
+                existing_reference = pickle.loads(data)[1]
                 existing_references.add(
                     (KEY_TO_CLASS_MAP[existing_reference[0]],
                      existing_reference[1]))
@@ -694,28 +691,24 @@ class GrampsBSDDB(GrampsDbBase):
             new_references = current_references.difference(existing_references)
 
         else:
+            # No existing refs are found:
+            #    all we have is new, nothing to remove
+            no_longer_required_references = set()
             new_references = set(obj.get_referenced_handles_recursively())
             
         # handle addition of new references
+        for (ref_class_name,ref_handle) in new_references:
+            data = ((CLASS_TO_KEY_MAP[obj.__class__.__name__],handle),
+                    (CLASS_TO_KEY_MAP[ref_class_name],ref_handle),)
+            self._add_reference((handle,ref_handle),data,transaction,txn)
 
-        if len(new_references) > 0:
-            for (ref_class_name,ref_handle) in new_references:
-                data = ((CLASS_TO_KEY_MAP[obj.__class__.__name__],handle),
-                        (CLASS_TO_KEY_MAP[ref_class_name],ref_handle),)
-                self._add_reference((handle,ref_handle),data,transaction,txn)
-
-        if update:
-            # handle deletion of old references
-            if len(no_longer_required_references) > 0:
-                for (ref_class_name,ref_handle) in \
-                        no_longer_required_references:
-                    try:
-                        self._remove_reference(
-                            (handle,ref_handle),transaction,txn)
-                        #self.reference_map.delete(str((handle,ref_handle),),
-                        #                          txn=self.txn)
-                    except: # ignore missing old reference
-                        pass
+        # handle deletion of old references
+        for (ref_class_name,ref_handle) in no_longer_required_references:
+            try:
+                self._remove_reference((handle,ref_handle),transaction,txn)
+            except:
+                # ignore missing old reference
+                pass
 
     def _remove_reference(self,key,transaction,txn=None):
         """
@@ -724,7 +717,7 @@ class GrampsBSDDB(GrampsDbBase):
         """
         if not self.readonly:
             if transaction.batch:
-                self.reference_map.delete(str(key),txn=txn)#=the_txn)
+                self.reference_map.delete(str(key),txn=txn)
                 if not self.UseTXN:
                     self.reference_map.sync()
             else:
@@ -742,56 +735,58 @@ class GrampsBSDDB(GrampsDbBase):
             return
         
         if transaction.batch:
-            #the_txn = self.env.txn_begin()
-            self.reference_map.put(str(key),data,txn=txn)#=the_txn)
+            self.reference_map.put(str(key),data,txn=txn)
             if not self.UseTXN:
                 self.reference_map.sync()
-            #the_txn.commit()
         else:
             transaction.add(REFERENCE_KEY,str(key),None,data)
             transaction.reference_add.append((str(key),data))
 
     def reindex_reference_map(self):
-        """Reindex all primary records in the database. This will be a
-        slow process for large databases.
+        """
+        Reindex all primary records in the database.
+        This will be a slow process for large databases.
 
         At present this method does not clear the reference_map before it
-        reindexes. This is fine when if reindex is run to index new content or
-        when upgrading from a non-reference_map version of the database. But it
-        might be a problem if reindex is used to repair a broken index because any
-        references to primary objects that are no longer in the database will
-        remain in the reference_map index. So if you want to reindex for repair
-        purposes you need to clear the reference_map first.
+        reindexes. This is fine when if reindex is run to index new content
+        or when upgrading from a non-reference_map version of the database.
+        But it might be a problem if reindex is used to repair a broken index
+        because any references to primary objects that are no longer in the
+        database will remain in the reference_map index.
+        
+        So if you want to reindex for repair purposes you need to
+        clear the reference_map first.
         """
 
 
         # Make a dictionary of the functions and classes that we need for
         # each of the primary object tables.
-        primary_tables = {'Person': {'cursor_func': self.get_person_cursor,
-                                     'class_func': Person},
-                          'Family': {'cursor_func': self.get_family_cursor,
-                                     'class_func': Family},
-                          'Event': {'cursor_func': self.get_event_cursor,
-                                    'class_func': Event},
-                          'Place': {'cursor_func': self.get_place_cursor,
-                                    'class_func': Place},
-                          'Source': {'cursor_func': self.get_source_cursor,
-                                     'class_func': Source},
-                          'MediaObject': {'cursor_func': self.get_media_cursor,
-                                          'class_func': MediaObject},
-                          'Repository': {'cursor_func': self.get_repository_cursor,
-                                         'class_func': Repository},
-                          }
+        primary_tables = {
+            'Person': {'cursor_func': self.get_person_cursor,
+                       'class_func': Person},
+            'Family': {'cursor_func': self.get_family_cursor,
+                       'class_func': Family},
+            'Event': {'cursor_func': self.get_event_cursor,
+                      'class_func': Event},
+            'Place': {'cursor_func': self.get_place_cursor,
+                      'class_func': Place},
+            'Source': {'cursor_func': self.get_source_cursor,
+                       'class_func': Source},
+            'MediaObject': {'cursor_func': self.get_media_cursor,
+                            'class_func': MediaObject},
+            'Repository': {'cursor_func': self.get_repository_cursor,
+                           'class_func': Repository},
+            }
 
-        # Now we use the functions and classes defined above to loop through each of the
-        # primary object tables.
+        # Now we use the functions and classes defined above
+        # to loop through each of the primary object tables.
         for primary_table_name in primary_tables.keys():
             
             cursor = primary_tables[primary_table_name]['cursor_func']()
             data = cursor.first()
 
-            # Grap the real object class here so that the lookup does
-            # not happen inside the main loop.
+            # Grab the real object class here so that the lookup does
+            # not happen inside the cursor loop.
             class_func = primary_tables[primary_table_name]['class_func']
 
             while data:
@@ -972,59 +967,68 @@ class GrampsBSDDB(GrampsDbBase):
         vals.sort()
         return [item[1] for item in vals]
 
-##     def get_repository_type_list(self):
-##         vals = list(set(self.repository_types.keys()))
-##         vals.sort(locale.strcoll)
-##         return vals
-
     def _get_obj_from_gramps_id(self,val,tbl,class_init):
         if tbl.has_key(str(val)):
             data = tbl.get(str(val),txn=self.txn)
             obj = class_init()
-            obj.unserialize(cPickle.loads(data))
+            obj.unserialize(pickle.loads(data))
             return obj
         else:
             return None
 
     def get_person_from_gramps_id(self,val):
-        """finds a Person in the database from the passed gramps' ID.
-        If no such Person exists, a new Person is added to the database."""
+        """
+        Finds a Person in the database from the passed gramps' ID.
+        If no such Person exists, None is returned.
+        """
         return self._get_obj_from_gramps_id(val,self.id_trans,Person)
 
     def get_family_from_gramps_id(self,val):
-        """finds a Family in the database from the passed gramps' ID.
-        If no such Family exists, a new Person is added to the database."""
+        """
+        Finds a Family in the database from the passed gramps' ID.
+        If no such Family exists, None is return.
+        """
         return self._get_obj_from_gramps_id(val,self.fid_trans,Family)
 
     def get_event_from_gramps_id(self,val):
-        """finds a Family in the database from the passed gramps' ID.
-        If no such Family exists, a new Person is added to the database."""
+        """
+        Finds an Event in the database from the passed gramps' ID.
+        If no such Family exists, None is returned.
+        """
         return self._get_obj_from_gramps_id(val,self.eid_trans,Event)
 
     def get_place_from_gramps_id(self,val):
-        """finds a Place in the database from the passed gramps' ID.
-        If no such Place exists, a new Person is added to the database."""
+        """
+        Finds a Place in the database from the passed gramps' ID.
+        If no such Place exists, None is returned.
+        """
         return self._get_obj_from_gramps_id(val,self.pid_trans,Place)
 
     def get_source_from_gramps_id(self,val):
-        """finds a Source in the database from the passed gramps' ID.
-        If no such Source exists, a new Person is added to the database."""
+        """
+        Finds a Source in the database from the passed gramps' ID.
+        If no such Source exists, None is returned.
+        """
         return self._get_obj_from_gramps_id(val,self.sid_trans,Source)
 
     def get_object_from_gramps_id(self,val):
-        """finds a MediaObject in the database from the passed gramps' ID.
-        If no such MediaObject exists, a new Person is added to the database."""
+        """
+        Finds a MediaObject in the database from the passed gramps' ID.
+        If no such MediaObject exists, None is returned.
+        """
         return self._get_obj_from_gramps_id(val,self.oid_trans,MediaObject)
 
     def get_repository_from_gramps_id(self,val):
-        """finds a MediaObject in the database from the passed gramps' ID.
-        If no such MediaObject exists, a new Person is added to the database."""
+        """
+        Finds a Repository in the database from the passed gramps' ID.
+        If no such MediaObject exists, None is returned.
+        """
         return self._get_obj_from_gramps_id(val,self.rid_trans,Repository)
 
     def _commit_base(self, obj, data_map, key, update_list, add_list,
                      transaction, change_time):
         """
-        Commits the specified Person to the database, storing the changes
+        Commits the specified object to the database, storing the changes
         as part of the transaction.
         """
         if self.readonly or not obj or not obj.handle:
@@ -1220,22 +1224,9 @@ class GrampsBSDDB(GrampsDbBase):
             db_map.put(handle,data,txn=self.txn)
             self.emit(signal,([handle],))
 
-    def update_empty(self,newval):
-        pass
-
-    def update_real(self,newval):
-        if newval != self.oldval:
-            self.callback(newval)
-            self.oldval = newval
-
     def gramps_upgrade(self,callback=None):
-        self.callback = callback
-        if '__call__' in dir(callback): # callback is really callable
-            self.oldval = 0
-            self.update = self.update_real
-        else:
-            self.update = self.update_empty
-
+        UpdateCallback.__init__(self,callback)
+        
         child_rel_notrans = [
             "None",      "Birth",  "Adopted", "Stepchild",
             "Sponsored", "Foster", "Unknown", "Other", ]
@@ -1313,7 +1304,10 @@ class GrampsBSDDB(GrampsDbBase):
         print "Upgrading to DB version 9 -- this may take a while"
         # The very very first thing is to check for duplicates in the
         # primary tables and remove them. 
-        status,length = low_level_9(self)
+        self.set_total(7)
+        status,length = low_level_9(self,self.update)
+
+        self.set_total(length)
 
         # Remove column metadata, since columns have changed.
         # This will reset all columns to defaults
@@ -1353,13 +1347,12 @@ class GrampsBSDDB(GrampsDbBase):
         # The rest of the upgrade deals with real data, not metadata
         # so starting (batch) transaction here.
         trans = self.transaction_begin("",True)
-        current = 0
 
         # Numerous changes were made between dbversions 8 and 9.
         # If nothing else, we switched from storing pickled gramps classes
-        # to storing builting objects, via running serialize() recursively
-        # until the very bottom. Every stored objects needs to be
-        # re-committed here.
+        # to storing builtin objects, via running serialize() recursively
+        # until the very bottom.
+        # Every stored object needs to be re-committed here.
 
         # Change every Source to have reporef_list
         for handle in self.source_map.keys():
@@ -1372,8 +1365,7 @@ class GrampsBSDDB(GrampsDbBase):
              source.pubinfo, source.note, source.media_list,
              source.abbrev, source.change, source.datamap) = info
             self.commit_source(source,trans)
-            current += 1
-            self.update(100*current/length)
+            self.update()
 
         # Family upgrade
         for handle in self.family_map.keys():
@@ -1419,8 +1411,7 @@ class GrampsBSDDB(GrampsDbBase):
                 family.lds_ord_list = [lds_seal]
 
             self.commit_family(family,trans)
-            current += 1
-            self.update(100*current/length)
+            self.update()
 
         # Person upgrade
         # Needs to be run after the family upgrade completed.
@@ -1507,8 +1498,7 @@ class GrampsBSDDB(GrampsDbBase):
                                    in [lds_bapt,lds_endow,lds_seal] if item]
             
             self.commit_person(person,trans)
-            current += 1
-            self.update(100*current/length)
+            self.update()
 
         # Event upgrade
         # Turns out that a lof ot events have duplicate gramps IDs
@@ -1575,8 +1565,7 @@ class GrampsBSDDB(GrampsDbBase):
                         event.set_note(note_text)
                          
             self.commit_event(event,trans)
-            current += 1
-            self.update(100*current/length)
+            self.update()
         self.eid_trans.close()
         
         # Place upgrade
@@ -1597,8 +1586,7 @@ class GrampsBSDDB(GrampsDbBase):
                 convert_url_9(url)
 
             self.commit_place(place,trans)
-            current += 1
-            self.update(100*current/length)
+            self.update()
 
         # Media upgrade
         for handle in self.media_map.keys():
@@ -1615,8 +1603,7 @@ class GrampsBSDDB(GrampsDbBase):
                 convert_attribute_9(attribute)
 
             self.commit_media_object(media_object,trans)
-            current += 1
-            self.update(100*current/length)
+            self.update()
 
         self.transaction_commit(trans,"Upgrade to DB version 9")
         # Close secodnary index
@@ -1653,7 +1640,7 @@ def convert_url_9(url):
         new_type = UrlType.CUSTOM
     url.type = UrlType(new_type)
     
-def low_level_9(the_db):
+def low_level_9(the_db,update):
     """
     This is a low-level repair routine.
 
@@ -1672,6 +1659,8 @@ def low_level_9(the_db):
 
         print "Low-level repair: table: %s" % the_map[0]
         status,length = _table_low_level_9(the_db.env,the_map[1])
+        if update:
+            update()
         if status:
             print "Done."
             the_length += length
