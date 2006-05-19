@@ -29,7 +29,7 @@ Location class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _BaseObject import BaseObject
+from _SecondaryObject import SecondaryObject
 from _LocationBase import LocationBase
 
 #-------------------------------------------------------------------------
@@ -37,7 +37,7 @@ from _LocationBase import LocationBase
 # Location class for Places
 #
 #-------------------------------------------------------------------------
-class Location(BaseObject,LocationBase):
+class Location(SecondaryObject,LocationBase):
     """
     Provides information about a place.
 
@@ -51,7 +51,7 @@ class Location(BaseObject,LocationBase):
         Creates a Location object, copying from the source object if it exists.
         """
 
-        BaseObject.__init__(self)
+        SecondaryObject.__init__(self)
         LocationBase.__init__(self,source)
         if source:
             self.parish = source.parish

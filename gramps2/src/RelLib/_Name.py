@@ -36,7 +36,7 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _BaseObject import BaseObject
+from _SecondaryObject import SecondaryObject
 from _PrivacyBase import PrivacyBase
 from _SourceBase import SourceBase
 from _NoteBase import NoteBase
@@ -48,7 +48,7 @@ from _NameType import NameType
 # Personal Name
 #
 #-------------------------------------------------------------------------
-class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
+class Name(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase):
     """
     Provides name information about a person.
 
@@ -63,7 +63,7 @@ class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
     
     def __init__(self,source=None,data=None):
         """creates a new Name instance, copying from the source if provided"""
-        BaseObject.__init__(self)
+        SecondaryObject.__init__(self)
         if data:
             (privacy,source_list,note,date,
              self.first_name,self.surname,self.suffix,self.title,
@@ -355,40 +355,3 @@ class Name(BaseObject,PrivacyBase,SourceBase,NoteBase,DateBase):
                 return "%s %s %s, %s" % (first, self.prefix, self.surname, self.suffix)
             else:
                 return "%s %s, %s" % (first, self.surname, self.suffix)
-
-    def is_equal(self,other):
-        """
-        compares to names to see if they are equal, return 0 if they
-        are not
-        """
-        if self.first_name != other.first_name:
-            return False
-        if self.surname != other.surname:
-            return False
-        if self.patronymic != other.patronymic:
-            return False
-        if self.prefix != other.prefix:
-            return False
-        if self.suffix != other.suffix:
-            return False
-        if self.title != other.title:
-            return False
-        if self.type != other.type:
-            return False
-        if self.private != other.private:
-            return False
-        if self.get_note() != other.get_note():
-            return False
-        if (self.date and other.date and not self.date.is_equal(other.date)) \
-                        or (self.date and not other.date) \
-                        or (not self.date and other.date):
-            return False
-        if len(self.get_source_references()) != len(other.get_source_references()):
-            return False
-        index = 0
-        olist = other.get_source_references()
-        for a in self.get_source_references():
-            if not a.are_equal(olist[index]):
-                return True
-            index += 1
-        return True

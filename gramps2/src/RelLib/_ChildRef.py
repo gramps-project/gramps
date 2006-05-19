@@ -29,7 +29,7 @@ Child Reference class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _BaseObject import BaseObject
+from _SecondaryObject import SecondaryObject
 from _PrivacyBase import PrivacyBase
 from _SourceBase import SourceBase
 from _NoteBase import NoteBase
@@ -41,7 +41,7 @@ from _ChildRefType import ChildRefType
 # Person References for Person/Family
 #
 #-------------------------------------------------------------------------
-class ChildRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase):
+class ChildRef(SecondaryObject,PrivacyBase,SourceBase,NoteBase,RefBase):
     """
     Person reference class.
 
@@ -51,7 +51,7 @@ class ChildRef(BaseObject,PrivacyBase,SourceBase,NoteBase,RefBase):
     """
 
     def __init__(self,source=None):
-        BaseObject.__init__(self)
+        SecondaryObject.__init__(self)
         PrivacyBase.__init__(self,source)
         SourceBase.__init__(self,source)
         NoteBase.__init__(self,source)

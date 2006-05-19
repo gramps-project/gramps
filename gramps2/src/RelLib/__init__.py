@@ -29,6 +29,7 @@ __version__ = "$Revision$"
 from _Date import Date, DateError
 
 # Secondary objects
+from _SecondaryObject import SecondaryObject
 from _Address import Address
 from _Location import Location
 from _Attribute import Attribute
