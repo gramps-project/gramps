@@ -69,12 +69,6 @@ def find_idmap(key,data):
 def find_fidmap(key,data):
     return str(data[1])
 
-def find_eventname(key,data):
-    return str(data[2])
-
-def find_repository_type(key,data):
-    return str(data[2])
-
 # Secondary database key lookups for reference_map table
 # reference_map data values are of the form:
 #   ((primary_object_class_name, primary_object_handle),
@@ -345,17 +339,7 @@ class GrampsBSDDB(GrampsDbBase):
                                               dbtype=db.DB_BTREE)
         callback(37)
 
-        self.bookmarks = self.metadata.get('bookmarks',[])
-        self.family_bookmarks = self.metadata.get('family_bookmarks',[])
-        self.event_bookmarks = self.metadata.get('event_bookmarks',[])
-        self.source_bookmarks = self.metadata.get('source_bookmarks',[])
-        self.repo_bookmarks = self.metadata.get('repo_bookmarks',[])
-        self.media_bookmarks = self.metadata.get('media_bookmarks',[])
-        self.place_bookmarks = self.metadata.get('place_bookmarks',[])
-        self.family_event_names = set(self.metadata.get('fevent_names',[]))
-        self.individual_event_names = set(self.metadata.get('pevent_names',[]))
-        self.family_attributes = set(self.metadata.get('fattr_names',[]))
-        self.individual_attributes = set(self.metadata.get('pattr_names',[]))
+        self._load_metadata()
 
         gstats = self.metadata.get('gender_stats')
 
@@ -398,6 +382,29 @@ class GrampsBSDDB(GrampsDbBase):
         self.load(filename,callback)
         db_copy(other_database,self,callback)
         return 1
+
+    def _load_metadata(self):
+        # bookmarks
+        self.bookmarks = self.metadata.get('bookmarks',[])
+        self.family_bookmarks = self.metadata.get('family_bookmarks',[])
+        self.event_bookmarks = self.metadata.get('event_bookmarks',[])
+        self.source_bookmarks = self.metadata.get('source_bookmarks',[])
+        self.repo_bookmarks = self.metadata.get('repo_bookmarks',[])
+        self.media_bookmarks = self.metadata.get('media_bookmarks',[])
+        self.place_bookmarks = self.metadata.get('place_bookmarks',[])
+        # Custom type values
+        self.family_event_names = set(self.metadata.get('fevent_names',[]))
+        self.individual_event_names = set(self.metadata.get('pevent_names',[]))
+        self.family_attributes = set(self.metadata.get('fattr_names',[]))
+        self.individual_attributes = set(self.metadata.get('pattr_names',[]))
+        # These are not hooked up yet:
+        self.child_ref_types = set(self.metadata.get('child_refs',[]))
+        self.family_rel_types = set(self.metadata.get('family_rels',[]))
+        self.event_role_names = set(self.metadata.get('event_roles',[]))
+        self.name_types = set(self.metadata.get('name_types',[]))
+        self.repository_types = set(self.metadata.get('repo_types',[]))
+        self.source_media_types = set(self.metadata.get('sm_types',[]))
+        self.url_types = set(self.metadata.get('url_types',[]))
 
     def connect_secondary(self):
         """
@@ -460,16 +467,6 @@ class GrampsBSDDB(GrampsDbBase):
         self.rid_trans.open(self.full_name, "ridtrans",
                             db.DB_HASH, flags=table_flags)
 
-        self.eventnames = db.DB(self.env)
-        self.eventnames.set_flags(db.DB_DUP)
-        self.eventnames.open(self.full_name, "eventnames",
-                             db.DB_HASH, flags=table_flags)
-
-        self.repository_types = db.DB(self.env)
-        self.repository_types.set_flags(db.DB_DUP)
-        self.repository_types.open(self.full_name, "repostypes",
-                                   db.DB_HASH, flags=table_flags)
-
         self.reference_map_primary_map = db.DB(self.env)
         self.reference_map_primary_map.set_flags(db.DB_DUP)
         self.reference_map_primary_map.open(self.full_name,
@@ -489,8 +486,6 @@ class GrampsBSDDB(GrampsDbBase):
             self.event_map.associate(self.eid_trans, find_idmap,  table_flags)
             self.repository_map.associate(self.rid_trans, find_idmap,
                                           table_flags)
-            self.repository_map.associate(self.repository_types,
-                                          find_repository_type, table_flags)
             self.place_map.associate(self.pid_trans,  find_idmap, table_flags)
             self.media_map.associate(self.oid_trans, find_idmap, table_flags)
             self.source_map.associate(self.sid_trans, find_idmap, table_flags)
@@ -812,6 +807,34 @@ class GrampsBSDDB(GrampsDbBase):
 
         return
         
+    def _close_metadata(self):
+        if not self.readonly:
+            # bookmarks
+            self.metadata['bookmarks'] = self.bookmarks
+            self.metadata['family_bookmarks'] = self.family_bookmarks
+            self.metadata['event_bookmarks'] = self.event_bookmarks
+            self.metadata['source_bookmarks'] = self.source_bookmarks
+            self.metadata['place_bookmarks'] = self.place_bookmarks
+            self.metadata['repo_bookmarks'] = self.repo_bookmarks
+            self.metadata['media_bookmarks'] = self.media_bookmarks
+            # gender stats
+            self.metadata['gender_stats'] = self.genderStats.save_stats()
+            # Custom type values
+            self.metadata['fevent_names'] = list(self.family_event_names)
+            self.metadata['pevent_names'] = list(self.individual_event_names)
+            self.metadata['fattr_names'] = list(self.family_attributes)
+            self.metadata['pattr_names'] = list(self.individual_attributes)
+            # These are not hooked up yet:
+            self.metadata['child_refs'] = list(self.child_ref_types)
+            self.metadata['family_rels'] = list(self.family_rel_types)
+            self.metadata['event_roles'] = list(self.event_role_names)
+            self.metadata['name_types'] = list(self.name_types)
+            self.metadata['repo_types'] = list(self.repository_types)
+            self.metadata['sm_types'] = list(self.source_media_types)
+            self.metadata['url_types'] = list(self.url_types)
+
+        self.metadata.close()
+
     def _close_early(self):
         """
         Bail out if the incompatible version is discovered:
@@ -832,26 +855,13 @@ class GrampsBSDDB(GrampsDbBase):
     def close(self):
         if not self.db_is_open:
             return
-        if not self.readonly:
-            self.metadata['bookmarks'] = self.bookmarks
-            self.metadata['family_bookmarks'] = self.family_bookmarks
-            self.metadata['event_bookmarks'] = self.event_bookmarks
-            self.metadata['source_bookmarks'] = self.source_bookmarks
-            self.metadata['place_bookmarks'] = self.place_bookmarks
-            self.metadata['repo_bookmarks'] = self.repo_bookmarks
-            self.metadata['media_bookmarks'] = self.media_bookmarks
-            self.metadata['gender_stats'] = self.genderStats.save_stats()
-            self.metadata['fevent_names'] = list(self.family_event_names)
-            self.metadata['pevent_names'] = list(self.individual_event_names)
-            self.metadata['fattr_names'] = list(self.family_attributes)
-            self.metadata['pattr_names'] = list(self.individual_attributes)
+
+        self._close_metadata()
+
         if self.UseTXN:
             self.env.txn_checkpoint()
-        self.metadata.close()
         self.name_group.close()
         self.surnames.close()
-        self.eventnames.close()
-        self.repository_types.close()
         self.id_trans.close()
         self.fid_trans.close()
         self.eid_trans.close()
@@ -962,10 +972,10 @@ class GrampsBSDDB(GrampsDbBase):
         vals.sort()
         return [item[1] for item in vals]
 
-    def get_repository_type_list(self):
-        vals = list(set(self.repository_types.keys()))
-        vals.sort(locale.strcoll)
-        return vals
+##     def get_repository_type_list(self):
+##         vals = list(set(self.repository_types.keys()))
+##         vals.sort(locale.strcoll)
+##         return vals
 
     def _get_obj_from_gramps_id(self,val,tbl,class_init):
         if tbl.has_key(str(val)):

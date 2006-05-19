@@ -225,6 +225,17 @@ class GrampsDbBase(GrampsDBCallback):
         self.family_attributes = set()
         self.marker_names = set()
 
+        # FIXME: TODO: These are just added here at the moment.
+        # They need to be hooked up on commits
+        self.child_ref_types = set()
+        self.family_rel_types = set()
+        self.event_role_names = set()
+        self.name_types = set()
+        self.repository_types = set()
+        self.source_media_types = set()
+        self.url_types = set()
+        # END FIXME
+
         self.set_person_id_prefix(Config.get(Config.IPREFIX))
         self.set_object_id_prefix(Config.get(Config.OPREFIX))
         self.set_family_id_prefix(Config.get(Config.FPREFIX))
