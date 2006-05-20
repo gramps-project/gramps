@@ -856,7 +856,6 @@ class GedcomParser(UpdateCallback):
             elif matches[2] == "REPO":
                 self.repo_count = self.repo_count + 1
                 self.repo = self.find_or_create_repository(matches[3][1:-1])
-                self.repo.set_type((RelLib.Repository.UNKNOWN,""))
                 self.added.add(self.repo.handle)
                 self.parse_repository(self.repo)
                 self.db.commit_repository(self.repo, self.trans)
@@ -1132,7 +1131,7 @@ class GedcomParser(UpdateCallback):
                 self.family.add_child_ref(ref)
             elif matches[1] == TOKEN_NCHI:
                 a = RelLib.Attribute()
-                a.set_type(RelLib.Attribute.NUM_CHILD)
+                a.set_type(RelLib.AttributeType.NUM_CHILD)
                 a.set_value(matches[2])
                 self.family.add_attribute(a)
             elif matches[1] == TOKEN_SOUR:
@@ -1158,11 +1157,13 @@ class GedcomParser(UpdateCallback):
                     event.set_type(RelLib.EventType(ged2fam[matches[3]]))
                 except:
                     if ged2fam_custom.has_key(matches[3]):
-                        event.set_type(RelLib.EventType((RelLib.EventType.CUSTOM,ged2fam_custom[matches[3]])))
+                        event.set_type((RelLib.EventType.CUSTOM,
+                                        ged2fam_custom[matches[3]]))
                     elif matches[3]:
-                        event.set_type(RelLib.EventType((RelLib.EventType.CUSTOM,matches[3])))
+                        event.set_type((RelLib.EventType.CUSTOM,
+                                        matches[3]))
                     else:
-                        event.set_type((RelLib.EventType(RelLib.EventType.UNKNOWN)))
+                        event.set_type(RelLib.EventType.UNKNOWN)
                     if matches[2] and not event.get_description():
                         event.set_description(matches[2])
                 self.parse_family_event(event,2)
@@ -1640,7 +1641,7 @@ class GedcomParser(UpdateCallback):
             elif matches[1] == TOKEN_TYPE:
                 etype = event.get_type()
                 if etype.is_custom() == RelLib.EventType.CUSTOM:
-                    event.set_type(RelLib.EventType((RelLib.EventType.CUSTOM,matches[2])))
+                    event.set_type((RelLib.EventType.CUSTOM,matches[2]))
                 else:
                     note = 'Status = %s\n' % matches[2]
             elif matches[1] == TOKEN_DATE:
@@ -2177,7 +2178,7 @@ class GedcomParser(UpdateCallback):
         event.set_gramps_id(self.emapper.find_next())
         if matches[2]:
             event.set_description(matches[2])
-        event.set_type(RelLib.EventType((RelLib.EventType.BIRTH,"")))
+        event.set_type(RelLib.EventType.BIRTH)
         self.parse_person_event(event,2)
 
         person_event_name(event,state.person)
@@ -2194,7 +2195,7 @@ class GedcomParser(UpdateCallback):
     def func_person_adop(self,matches,state):
         event = RelLib.Event()
         event.set_gramps_id(self.emapper.find_next())
-        event.set_type(RelLib.EventType(RelLib.EventType.ADOPT))
+        event.set_type(RelLib.EventType.ADOPT)
         self.parse_adopt_event(event,2)
         person_event_name(event,state.person)
         self.db.add_event(event, self.trans)
@@ -2282,9 +2283,9 @@ class GedcomParser(UpdateCallback):
             event.set_gramps_id(self.emapper.find_next())
             val = self.gedsource.tag2gramps(n)
             if val:
-                event.set_type(RelLib.EventType((RelLib.EventType.CUSTOM,val)))
+                event.set_type((RelLib.EventType.CUSTOM,val))
             else:
-                event.set_type(RelLib.EventType((RelLib.EventType.CUSTOM,n)))
+                event.set_type((RelLib.EventType.CUSTOM,n))
                 
         self.parse_person_event(event,2)
         if matches[2]:
