@@ -160,6 +160,14 @@ def get_total(db):
            place_len + source_len + obj_len + repo_len
         
 def db_copy(from_db,to_db,callback):
+    """
+    Copy all data in from_db into to_db.
+
+    Both databases must be loaded.
+    It is assumed that to_db is an empty database,
+    so no care is taken to prevent handle collision or merge data.
+    """
+
     uc = UpdateCallback(callback)
     uc.set_total(get_total(from_db))
     
@@ -233,8 +241,20 @@ def db_copy(from_db,to_db,callback):
     # Copy gender stats
     to_db.genderStats = from_db.genderStats
 
-    # FIXME: need to also copy event/attr names
-    # TODO:  need to also copy event/attr names
+    # Copy custom types
+    to_db.family_event_names = from_db.family_event_names
+    to_db.individual_event_names = from_db.individual_event_names
+    to_db.family_attributes = from_db.family_attributes
+    to_db.individual_attributes = from_db.individual_attributes
+    to_db.marker_names = from_db.marker_names
+    to_db.child_ref_types = from_db.child_ref_types
+    to_db.family_rel_types = from_db.family_rel_types
+    to_db.event_role_names = from_db.event_role_names
+    to_db.name_types = from_db.name_types
+    to_db.repository_types = from_db.repository_types
+    to_db.source_media_types = from_db.source_media_types
+    to_db.url_types = from_db.url_types
+    to_db.media_attributes = from_db.media_attributes 
 
 def add_data_txn(db,table,handle,data):
     the_txn = db.env.txn_begin()

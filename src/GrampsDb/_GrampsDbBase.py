@@ -914,32 +914,36 @@ class GrampsDbBase(GrampsDBCallback):
         assert False, "Needs to be overridden in the derived class"
 
     def get_place_from_gramps_id(self, val):
-        """finds a Place in the database from the passed gramps' ID.
-        If no such Place exists, a new Person is added to the database.
+        """
+        Finds a Place in the database from the passed gramps' ID.
+        If no such Place exists, None is returned.
 
         Needs to be overridden by the derrived class.
         """
         assert False, "Needs to be overridden in the derived class"
 
     def get_source_from_gramps_id(self, val):
-        """finds a Source in the database from the passed gramps' ID.
-        If no such Source exists, a new Person is added to the database.
+        """
+        Finds a Source in the database from the passed gramps' ID.
+        If no such Source exists, None is returned.
 
         Needs to be overridden by the derrived class.
         """
         assert False, "Needs to be overridden in the derived class" 
 
     def get_object_from_gramps_id(self, val):
-        """finds a MediaObject in the database from the passed gramps' ID.
-        If no such MediaObject exists, a new Person is added to the database.
+        """
+        Finds a MediaObject in the database from the passed gramps' ID.
+        If no such MediaObject exists, None is returned.
 
         Needs to be overridden by the derrived class.
         """
         assert False, "Needs to be overridden in the derived class"
 
     def get_repository_from_gramps_id(self, val):
-        """finds a Repository in the database from the passed gramps' ID.
-        If no such Repository exists, a new Repository is added to the database.
+        """
+        Finds a Repository in the database from the passed gramps' ID.
+        If no such MediaObject exists, None is returned.
 
         Needs to be overridden by the derrived class.
         """
