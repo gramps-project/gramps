@@ -1,3 +1,6 @@
+2006-05-19  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_DbUtils.py (db_copy): Copy custom types.
+
 2006-05-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_MapView.py (WMSMapTile): Start of map download inside
 	an idle handler.
