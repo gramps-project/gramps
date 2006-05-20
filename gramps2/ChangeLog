@@ -1,5 +1,10 @@
 2006-05-19  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsDbBase.py: repository does not have a media_list
+	* src/DataViews/_MapView.py: use config value to determine if online
+	maps should be used
+	* src/GrampsCfg.py: online map config value
+	* src/Config/_GrampsCOnfigKeys.py: online map config value
+	* daa/gramps.schema.in: online map config value
 
 2006-05-19  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_DbUtils.py (db_copy): Copy custom types.

@@ -268,6 +268,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.add_checkbox(table, _('Automatically load last database'), 0, Config.AUTOLOAD)
         self.add_checkbox(table, _('Enable spelling checker'), 1, Config.SPELLCHECK)
         self.add_checkbox(table, _('Display Tip of the Day'), 2, Config.USE_TIPS)
+        self.add_checkbox(table, _('Download maps online'), 3, Config.ONLINE_MAPS)
 
         return table
 

@@ -35,8 +35,6 @@ import urllib2
 import tempfile
 from xml.dom.minidom import parseString as xmlStringParser
 
-use_online_map = False
-
 log = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
@@ -54,7 +52,10 @@ import gtk.gdk
 #
 #-------------------------------------------------------------------------
 import PageView
+import Config
 import const
+
+use_online_map = Config.get(Config.ONLINE_MAPS)
 
 # Some initial places for debugging
 glob_loc_data = [ # (Name, longitude, latitude)
