@@ -115,35 +115,3 @@ if __name__ == "__main__":
             
     f.write('}\n')
     f.close()
-
-    f = open("schema.xml.in","w")
-    
-    f.write('<gconfschemafile>\n')
-    f.write('  <schemalist>\n')
-    for (key, key_type, default, long, short, include) in parser.list:
-        f.write('    <schema>\n')
-        f.write('      <key>/schemas%s</key>\n' % key)
-        f.write('      <applyto>/schemas%s</applyto>\n' % key)
-        f.write('      <owner>gramps</owner>\n')
-        f.write('      <type>%s</owner>\n' % type)
-        f.write('      <default>%s</default>\n' % default)
-        f.write('      <locale name="C">\n')
-        f.write('        <short>%s</short>\n' % short)
-        f.write('        <long>%s</long>\n' % long)
-        f.write('      </locale>\n')
-        f.write('    </schema>\n')
-    f.write('  </schemalist>\n')
-    f.write('</gconfschemafile>\n')
-    f.close()
-
-    f = open("ConfigInterface.py","w")
-    for (key, key_type, default, long, short, include) in parser.list:
-        if not include:
-            continue
-        data = key.split('/')
-        category = data[3]
-        token = data[4]
-        tkey = token.upper().replace('-','_')
-        if key_type == "bool":
-            f.write("GrampsConfigCheckBox(_('%s'),Config.%s)\n" % (short,tkey))
-    f.close()
