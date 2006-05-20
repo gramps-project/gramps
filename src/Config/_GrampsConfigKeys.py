@@ -1,3 +1,4 @@
+ONLINE_MAPS          = ('preferences','online-maps', 0)
 FAMILY_DETAILS       = ('preferences','family-details', 0)
 COMPLETE_COLOR       = ('preferences','complete-color', 2)
 TODO_COLOR           = ('preferences','todo-color', 2)
@@ -52,10 +53,11 @@ WEBSITE_DIRECTORY    = ('paths','website-directory', 2)
 
 
 default_value = {
+    ONLINE_MAPS          : False,
     FAMILY_DETAILS       : True,
-    COMPLETE_COLOR       : '#FF0000',
-    TODO_COLOR           : '#FF0000',
-    CUSTOM_MARKER_COLOR  : '#00FF00',
+    COMPLETE_COLOR       : '#008b00',
+    TODO_COLOR           : '#ff0000',
+    CUSTOM_MARKER_COLOR  : '#8b008b',
     FAMILY_WARN          : True,
     HIDE_EP_MSG          : False,
     LAST_VIEW            : 0,

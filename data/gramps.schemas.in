@@ -4,6 +4,18 @@
     <schemalist>
 
       <schema>
+        <key>/schemas/apps/gramps/preferences/online-maps</key>
+        <applyto>/apps/gramps/preferences/online-maps</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Use online maps</short>
+          <long>If True, the Map View will connect to OpenGIS servers to download maps.</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/preferences/family-details</key>
         <applyto>/apps/gramps/preferences/family-details</applyto>
         <owner>gramps</owner>
