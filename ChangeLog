@@ -1,3 +1,6 @@
+2006-05-20  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: Correct set_type calls.
+
 2006-05-19  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsDbBase.py: repository does not have a media_list
 	* src/DataViews/_MapView.py: use config value to determine if online
