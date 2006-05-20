@@ -603,12 +603,6 @@ class GrampsDbBase(GrampsDBCallback):
         self.url_types.update([str(url.type) for url in repository.urls
                                if url.type.is_custom()])
 
-        attr_list = []
-        for mref in repository.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom()]
-        self.media_attributes.update(attr_list)
-
     def find_next_person_gramps_id(self):
         """
         Returns the next available GRAMPS' ID for a Person object based

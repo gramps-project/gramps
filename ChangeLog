@@ -1,3 +1,6 @@
+2006-05-19  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py: repository does not have a media_list
+
 2006-05-19  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_DbUtils.py (db_copy): Copy custom types.
 
@@ -55,6 +58,25 @@
 	* src/glade/gramps.glade: fix media ref dialog with warn box
 	* src/Filters/_PersonSidebarFilter.py (PersonSidebarFilter.clear): 
 	fix clearing of combobox
+
+2006-05-17  Don Allingham  <don@gramps-project.org>
+	* GrampsDb/_ReadGedcom.py: pychecker
+	* GrampsDb/_GrampsDbBase.py: pychecker
+	* GrampsDb/_DbUtils.py: pychecker
+	* GrampsDb/_WriteGedcom.py: pychecker
+	* StartupDialog.py: pychecker
+	* DisplayTabs/_FamilyLdsEmbedList.py: pychecker
+	* TipOfDay.py: pychecker
+	* Utils.py: pychecker
+	* PageView.py: pychecker
+	* ToolTips.py: pychecker
+	* Filters/_FilterWidget.py: pychecker
+	* Filters/_SearchBar.py: pychecker
+	* Filters/__init__.py: pychecker
+	* Filters/_FilterStore.py: pychecker
+	* Filters/_PersonSidebarFilter.py: pychecker
+	* Filters/_FilterMenu.py: pychecker
+	* Filters/_SidebarFilter.py: pychecker
 
 2006-05-17  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_ReadXML.py (start_childref): Typo.
