@@ -3,8 +3,9 @@
 	* src/DataViews/_MapView.py: use config value to determine if online
 	maps should be used
 	* src/GrampsCfg.py: online map config value
-	* src/Config/_GrampsCOnfigKeys.py: online map config value
-	* daa/gramps.schema.in: online map config value
+	* src/Config/_GrampsConfigKeys.py: online map config value
+	* data/gramps.schema.in: online map config value
+	* src/Config/gen_schema_keys.py: clean up
 
 2006-05-19  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_DbUtils.py (db_copy): Copy custom types.
