@@ -85,7 +85,7 @@ class EditEventRef(EditReference):
         self.add_event = self.db.add_person_event
 
     def get_custom_events(self):
-        return self.db.get_person_event_type_list()
+        return self.db.get_person_event_types()
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'),self.ok_clicked)

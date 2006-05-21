@@ -151,25 +151,6 @@ class GrampsInMemDB(GrampsDbBase):
         vals.sort()
         return vals
 
-    def get_person_event_type_list(self):
-        names = self.eventnames.keys()
-        a = {}
-        for name in names:
-            a[unicode(name)] = 1
-        vals = a.keys()
-        vals.sort()
-        return vals
-
-    def get_repository_type_list(self):
-        repos_types = self.repository_types.keys()
-        a = {}
-        for repos_type in repos_types:
-            a[unicode(repos_type)] = 1
-        vals = a.keys()
-        vals.sort()
-        return vals
-
-
     def _del_person(self,handle):
         person = self.get_person_from_handle(str(handle))
         del self.id_trans[person.get_gramps_id()]

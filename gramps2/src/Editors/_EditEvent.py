@@ -82,7 +82,7 @@ class EditEvent(EditPrimary):
         return RelLib.Event()
 
     def get_custom_events(self):
-        return self.dbstate.db.get_person_event_type_list() + \
+        return self.dbstate.db.get_person_event_types() + \
                self.dbstate.db.get_family_event_types()
 
     def _local_init(self):
@@ -238,7 +238,7 @@ class EditPersonEvent(EditEvent):
         self.commit_event = self.db.commit_personal_event
 
     def get_custom_events(self):
-        return self.dbstate.db.get_person_event_type_list()
+        return self.dbstate.db.get_person_event_types()
 
 class EditFamilyEvent(EditEvent):
 
