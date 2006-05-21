@@ -43,18 +43,6 @@ from Filters import CustomFilters, GenericFilter, ParamFilter, Rules
 import GrampsLocale
 import RelLib
 
-# _days could be added to DateDisplay:
-_codeset = locale.nl_langinfo(locale.CODESET)
-# slightly different from _months; this is zero based
-_days = (
-    unicode(locale.nl_langinfo(locale.DAY_1),_codeset),
-    unicode(locale.nl_langinfo(locale.DAY_2),_codeset),
-    unicode(locale.nl_langinfo(locale.DAY_3),_codeset),
-    unicode(locale.nl_langinfo(locale.DAY_4),_codeset),
-    unicode(locale.nl_langinfo(locale.DAY_5),_codeset),
-    unicode(locale.nl_langinfo(locale.DAY_6),_codeset),
-    unicode(locale.nl_langinfo(locale.DAY_7),_codeset),
-    )
 _language, _country = "en", "US"
 (_language_country, _encoding) = locale.getlocale()
 if _language_country != None and _language_country.count("_") == 1:
@@ -214,7 +202,8 @@ class Calendar(Report.Report):
         else:
             current_ord = current_date.toordinal()
         for day_col in range(7):
-            self.doc.center_text("daynames", _days[day_col], # global
+            self.doc.center_text("daynames", 
+                                 GrampsLocale.long_days[day_col+1], # global
                                  day_col * cell_width + cell_width/2,
                                  header - font_height/3.0 + self["offset"]) # .35 
         for week_row in range(6):
