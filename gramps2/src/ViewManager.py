@@ -417,6 +417,7 @@ class ViewManager:
         self.fileactions.set_sensitive(True)
         self.uistate.widget.set_sensitive(True)
 
+    def post_init_interface(self):
         # Showing the main window is deferred so that
         # ArgHandler can work without it always shown
         self.window.show()

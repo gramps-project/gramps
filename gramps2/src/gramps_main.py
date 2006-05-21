@@ -177,9 +177,10 @@ class Gramps:
         for view in DataViews.get_views():
             self.vm.register_view(view)
 
-        ArgHandler.ArgHandler(state,self.vm,args)
-
         self.vm.init_interface()
+        ArgHandler.ArgHandler(state,self.vm,args)
+        self.vm.post_init_interface()
+
         state.db.request_rebuild()
         state.change_active_person(state.db.get_default_person())
         

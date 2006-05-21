@@ -1,4 +1,7 @@
 2006-05-20  Alex Roitman  <shura@gramps-project.org>
+	* src/gramps_main.py (Gramps.__init__): Call ArgHandler between
+	init_interface and post_init_interface.
+	* src/ViewManager.py (init_interface): Split off post_init_interface.
 	* src/GrampsDb/_ReadGedcom.py: Correct set_type calls.
 
 2006-05-19  Don Allingham  <don@gramps-project.org>
