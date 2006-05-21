@@ -497,6 +497,7 @@ class GedcomWriter(UpdateCallback):
         self.fidmap = {}
         self.sidval = 0
         self.sidmap = {}
+        self.rlist = set()
         
         if not option_box:
             self.cl_setup()
@@ -537,8 +538,6 @@ class GedcomWriter(UpdateCallback):
                     ErrorDialog(m1,m2)
                     return
 
-            self.flist = {}
-            self.slist = {}
             for key in self.plist.keys():
                 p = self.db.get_person_from_handle(key)
                 add_persons_sources(self.db,p,self.slist,
@@ -572,9 +571,6 @@ class GedcomWriter(UpdateCallback):
 
         self.cnvtxt = keep_utf8
         self.nl = self.cnvtxt(self.target_ged.get_endl())
-
-        self.flist = {}
-        self.slist = {}
 
         for key in self.plist.keys():
             p = self.db.get_person_from_handle(key)
@@ -670,7 +666,6 @@ class GedcomWriter(UpdateCallback):
         if self.source_refs:
             self.write_sources()
 
-        # FIXME: This method needs to be written
         self.write_repos()
 
         self.writeln("0 TRLR")
@@ -860,6 +855,9 @@ class GedcomWriter(UpdateCallback):
                         continue
                     self.write_photo(photo,1)
 
+            for reporef in source.get_reporef_list():
+                self.write_reporef(reporef,1)
+
             if source.get_note():
                 self.write_long_text("NOTE",1,self.cnvtxt(source.get_note()))
             index = index + 1
@@ -867,7 +865,48 @@ class GedcomWriter(UpdateCallback):
             self.update()
             
     def write_repos(self):
-        print "GEDCOM export of repositories is not done yet."
+        sorted = []
+        for handle in self.rlist:
+            repo = self.db.get_repository_from_handle(handle)
+            repo_id = repo.get_gramps_id()
+            rlist.append((repo_id,repo))
+
+        sorted.sort()
+        
+        for (repo_id,repo) in sorted:
+            self.writeln("0 @%s@ REPO" % repo_id)
+            if repo.get_name():
+                self.write_long_text('NAME',1,
+                                     "%s" % self.cnvtxt(repo.get_name()))
+            for addr in repo.get_address_list():
+                pass
+            if repo.get_note():
+                self.write_long_text("NOTE",1,self.cnvtxt(repo.get_note()))
+
+    def write_reporef(self,reporef,level):
+        if reporef.ref == None:
+            return
+
+        # Append handle to the list for exporting REPOs later
+        self.rlist.add(reporef.ref)
+
+        repo = self.db.get_repository_from_handle(reporef.ref)
+        repo_id = repo.get_gramps_id()
+
+        self.writeln("%d REPO @%s@" % (level,repo_id) )
+
+        if reporef.get_note():
+            self.write_long_text("NOTE",level+1,
+                                 self.cnvtxt(reporef.get_note()))
+
+        if reporef.get_call_number():
+            self.writeln("%d CALN %s" %
+                         ( (level+1), reporef.get_call_number() ) )
+            if reporef.get_media_type():
+                self.writeln("%d MEDI %s" %
+                             ((level+2),
+                              self.cnvtxt(str(reporef.get_media_type()))))
+
 
     def write_person(self,person):
         self.writeln("0 @%s@ INDI" % person.get_gramps_id())
