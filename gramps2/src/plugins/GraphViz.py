@@ -236,6 +236,7 @@ class GraphViz:
         self.filter = filters[filter_num]
 
         the_buffer = self.get_report()
+        self.f = open(options_class.get_output(),'w')
         if self.latin:
             self.f.write(the_buffer.encode('iso-8859-1'))
         else:
@@ -523,18 +524,19 @@ just use iconv:
             cause
             empty string
         """
-        if event.get_date_object().get_year_valid():
-            if self.just_years:
-                return '%i' % event.get_date_object().get_year()
-            else:
-                return DateHandler.get_date(event)
-        elif self.placecause:
-            place_handle = event.get_place_handle()
-            place = self.database.get_place_from_handle(place_handle)
-            if place and place.get_title():
-                return place.get_title()
-            else:
-                return event.get_cause()
+        if event:
+            if event.get_date_object().get_year_valid():
+                if self.just_years:
+                    return '%i' % event.get_date_object().get_year()
+                else:
+                    return DateHandler.get_date(event)
+            elif self.placecause:
+                place_handle = event.get_place_handle()
+                place = self.database.get_place_from_handle(place_handle)
+                if place and place.get_title():
+                    return place.get_title()
+                else:
+                    return event.get_cause()
         return ''
 
 

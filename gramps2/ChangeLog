@@ -1,3 +1,6 @@
+2006-05-21  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/GraphViz.py.in: fix file open.
+
 2006-05-21  Alex Roitman  <shura@gramps-project.org>
 	* src/const.py.in: Use gettext.
 	* src/GrampsDb/_ConstXML.py: Remove file.
