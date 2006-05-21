@@ -2,6 +2,7 @@
 	* src/plugins/GraphViz.py.in: fix file open.
 
 2006-05-21  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py: Do not import unused module.
 	* src/const.py.in: Use gettext.
 	* src/GrampsDb/_ConstXML.py: Remove file.
 	* src/DisplayTabs/_PersonEventEmbedList.py
@@ -12,6 +13,7 @@
 	(EditPersonEvent.get_custom_events): Use correct method.
 	* src/GrampsDb/_GrampsDbBase.py: Remove obsolete methods.
 	* src/GrampsDb/_GrampsInMemDB.py: Remove obsolete methods.
+	Do not import unused module.
 
 2006-05-20  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditPlace.py: custom menus

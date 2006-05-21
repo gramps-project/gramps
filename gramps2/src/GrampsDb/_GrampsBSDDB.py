@@ -33,7 +33,6 @@ import cPickle as pickle
 import os
 import time
 import locale
-import sets
 from gettext import gettext as _
 from bsddb import dbshelve, db
 import logging
@@ -1679,7 +1678,7 @@ def _table_low_level_9(env,table):
     
     handle_list = table.keys()
     length = len(handle_list)
-    dup_handles = sets.Set(
+    dup_handles = set(
         [ handle for handle in handle_list if handle_list.count(handle) > 1 ]
         )
 
