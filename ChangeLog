@@ -1,4 +1,6 @@
 2006-05-21  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsInMemDB.py (GrampsInMemDB.__init__): Remove
+	unused variables.
 	* src/plugins/Calendar.py (print_page): Use correct variable.
 
 2006-05-21  Brian Matherly  <brian@gramps-project.org>
