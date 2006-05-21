@@ -95,6 +95,28 @@ try:
         unicode(locale.nl_langinfo(locale.ABMON_12),codeset),
         )
 
+    long_days = (
+        "",
+        unicode(locale.nl_langinfo(locale.DAY_1),codeset),
+        unicode(locale.nl_langinfo(locale.DAY_2),codeset),
+        unicode(locale.nl_langinfo(locale.DAY_3),codeset),
+        unicode(locale.nl_langinfo(locale.DAY_4),codeset),
+        unicode(locale.nl_langinfo(locale.DAY_5),codeset),
+        unicode(locale.nl_langinfo(locale.DAY_6),codeset),
+        unicode(locale.nl_langinfo(locale.DAY_7),codeset),
+        )
+        
+    short_days = (
+        "",
+        unicode(locale.nl_langinfo(locale.ABDAY_1),codeset),
+        unicode(locale.nl_langinfo(locale.ABDAY_2),codeset),
+        unicode(locale.nl_langinfo(locale.ABDAY_3),codeset),
+        unicode(locale.nl_langinfo(locale.ABDAY_4),codeset),
+        unicode(locale.nl_langinfo(locale.ABDAY_5),codeset),
+        unicode(locale.nl_langinfo(locale.ABDAY_6),codeset),
+        unicode(locale.nl_langinfo(locale.ABDAY_7),codeset),
+        )
+
     tformat = locale.nl_langinfo(locale.D_FMT).replace('%y','%Y')
 
 except:
@@ -160,6 +182,28 @@ except:
         unicode(time.strftime('%b',(0,11,1,1,1,1,1,1,1)),codeset),
         unicode(time.strftime('%b',(0,12,1,1,1,1,1,1,1)),codeset),
        )
+       
+    long_days = (
+        "",
+        unicode(time.strftime('%A',(0,1,1,1,1,1,1,1,1)),codeset),
+        unicode(time.strftime('%A',(0,1,1,1,1,1,2,1,1)),codeset),
+        unicode(time.strftime('%A',(0,1,1,1,1,1,3,1,1)),codeset),
+        unicode(time.strftime('%A',(0,1,1,1,1,1,4,1,1)),codeset),
+        unicode(time.strftime('%A',(0,1,1,1,1,1,5,1,1)),codeset),
+        unicode(time.strftime('%A',(0,1,1,1,1,1,6,1,1)),codeset),
+        unicode(time.strftime('%A',(0,1,1,1,1,1,7,1,1)),codeset),
+        )
+        
+    short_days = (
+        "",
+        unicode(time.strftime('%a',(0,1,1,1,1,1,1,1,1)),codeset),
+        unicode(time.strftime('%a',(0,1,1,1,1,1,2,1,1)),codeset),
+        unicode(time.strftime('%a',(0,1,1,1,1,1,3,1,1)),codeset),
+        unicode(time.strftime('%a',(0,1,1,1,1,1,4,1,1)),codeset),
+        unicode(time.strftime('%a',(0,1,1,1,1,1,5,1,1)),codeset),
+        unicode(time.strftime('%a',(0,1,1,1,1,1,6,1,1)),codeset),
+        unicode(time.strftime('%a',(0,1,1,1,1,1,7,1,1)),codeset),
+        )
 
     if time.strftime('%x',(2005,1,2,1,1,1,1,1,1)) == '2/1/2005':
         tformat = '%d/%m/%y'
