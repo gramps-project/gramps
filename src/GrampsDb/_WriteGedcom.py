@@ -326,11 +326,6 @@ def make_date(subdate,calendar,mode):
 #
 #
 #-------------------------------------------------------------------------
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def writeData(database,person):
     GedcomWriter(database,person)
 
@@ -479,6 +474,11 @@ class GedcomWriterOptionBox:
         self.nl = self.cnvtxt(self.target_ged.get_endl())
 
 
+#-------------------------------------------------------------------------
+#
+# GedcomWriter class
+#
+#-------------------------------------------------------------------------
 class GedcomWriter(UpdateCallback):
     def __init__(self,database,person,cl=0,filename="",option_box=None,
                  callback=None):
@@ -669,6 +669,9 @@ class GedcomWriter(UpdateCallback):
         self.write_families()
         if self.source_refs:
             self.write_sources()
+
+        # FIXME: This method needs to be written
+        self.write_repos()
 
         self.writeln("0 TRLR")
         self.g.close()
@@ -863,6 +866,9 @@ class GedcomWriter(UpdateCallback):
             self.write_change(1,source.get_change_time())
             self.update()
             
+    def write_repos(self):
+        print "GEDCOM export of repositories is not done yet."
+
     def write_person(self,person):
         self.writeln("0 @%s@ INDI" % person.get_gramps_id())
         restricted = self.restrict and Utils.probably_alive (person,self.db)
