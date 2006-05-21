@@ -93,8 +93,6 @@ class GrampsInMemDB(GrampsDbBase):
         self.sid_trans        = {}
         self.rid_trans        = {}
         self.oid_trans        = {}
-        self.eventnames       = {}
-        self.repository_types = {}
         self.undodb           = []
 
     def load(self,name,callback,mode="w"):
