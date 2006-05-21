@@ -25,7 +25,6 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-import cPickle as pickle
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -429,12 +428,16 @@ class EditFamily(EditPrimary):
             self.top.get_widget('marker'), 
             self.obj.set_marker, 
             self.obj.get_marker, 
-            self.db.readonly)
+            self.db.readonly,
+            self.db.get_marker_types(),
+            )
 
         self.data_type = MonitoredDataType(
             self.top.get_widget('marriage_type'),
             self.obj.set_relationship,
             self.obj.get_relationship,
+            self.db.readonly,
+            self.db.get_marker_types(),
             )
 
     def load_data(self):

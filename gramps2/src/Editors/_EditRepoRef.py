@@ -46,7 +46,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
 import RelLib
 
 from DisplayTabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
@@ -99,13 +98,17 @@ class EditRepoRef(EditReference):
         self.type_selector = MonitoredDataType(
             self.top.get_widget("media_type"),
             self.source_ref.set_media_type,
-            self.source_ref.get_media_type
+            self.source_ref.get_media_type,
+            self.db.readonly,
+            self.db.get_source_media_types(),
             )
 
         self.media_type_selector = MonitoredDataType(
             self.top.get_widget("repo_type"),
             self.source.set_type,
-            self.source.get_type
+            self.source.get_type,
+            self.db.readonly,
+            self.db.get_repository_types(),
             )
 
     def _create_tabbed_pages(self):

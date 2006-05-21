@@ -48,7 +48,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
 import RelLib
 import GrampsDisplay
 from _EditSecondary import EditSecondary
@@ -102,6 +101,8 @@ class EditAttribute(EditSecondary):
             self.top.get_widget("attr_menu"),
             self.obj.set_type,
             self.obj.get_type,
+            self.db.readonly,
+            custom_values=self.alist
             )
 
     def _create_tabbed_pages(self):

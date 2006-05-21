@@ -187,13 +187,16 @@ class EditPerson(EditPrimary):
             self.top.get_widget("ntype"), 
             self.pname.set_type, 
             self.pname.get_type,
-            self.db.readonly)
+            self.db.readonly,
+            self.db.get_name_types())
 
         self.marker = GrampsWidgets.MonitoredDataType(
             self.top.get_widget('marker'), 
             self.obj.set_marker, 
             self.obj.get_marker, 
-            self.db.readonly)
+            self.db.readonly,
+            self.db.get_marker_types(),
+            )
         
         if self.use_patronymic:
             self.prefix = GrampsWidgets.MonitoredEntry(

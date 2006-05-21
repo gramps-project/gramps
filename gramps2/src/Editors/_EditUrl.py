@@ -41,7 +41,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
 from _EditSecondary import EditSecondary
 
 from GrampsWidgets import *

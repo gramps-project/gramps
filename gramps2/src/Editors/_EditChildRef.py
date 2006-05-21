@@ -82,12 +82,16 @@ class EditChildRef(EditSecondary):
             self.top.get_widget('frel'),
             self.obj.set_father_relation,
             self.obj.get_father_relation,
+            self.db.readonly,
+            self.db.get_child_reference_types()
             )
 
         self.mrel = MonitoredDataType(
             self.top.get_widget('mrel'),
             self.obj.set_mother_relation,
             self.obj.get_mother_relation,
+            self.db.readonly,
+            self.db.get_child_reference_types()
             )
             
         self.priv = PrivacyButton(
