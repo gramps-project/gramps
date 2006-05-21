@@ -46,7 +46,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
 import RelLib
 
 from DisplayTabs import SourceEmbedList,NoteTab,GalleryTab,EventBackRefList
@@ -134,6 +133,8 @@ class EditEventRef(EditReference):
             self.top.get_widget('eer_role_combo'),
             self.source_ref.set_role,
             self.source_ref.get_role,
+            self.db.readonly,
+            self.db.get_event_roles()
             )
 
         self.event_menu = MonitoredDataType(

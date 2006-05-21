@@ -46,7 +46,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
 import AutoComp
 import RelLib
 import GrampsDisplay
@@ -105,10 +104,6 @@ class EditEvent(EditPrimary):
         ok.set_sensitive(not self.db.readonly)
         ok.connect('clicked',self.save)
 
-    def get_custom_events(self):
-        return self.dbstate.db.get_person_event_type_list() + \
-               self.dbstate.db.get_family_event_types()
-    
     def _setup_fields(self):
 
         # place, select_place, add_del_place

@@ -41,7 +41,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
 import RelLib
 
 from GrampsWidgets import *
@@ -75,7 +74,9 @@ class EditRepository(EditPrimary):
         self.type = MonitoredDataType(
             self.glade.get_widget("repository_type"),
             self.obj.set_type,
-            self.obj.get_type
+            self.obj.get_type,
+            self.db.readonly,
+            self.db.get_repository_types(),
             )
 
         self.call_number = MonitoredEntry(

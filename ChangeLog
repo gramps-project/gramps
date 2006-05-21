@@ -1,3 +1,22 @@
+2006-05-20  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditPlace.py: custom menus
+	* src/Editors/_EditLdsOrd.py: custom menus
+	* src/Editors/_EditSourceRef.py: custom menus
+	* src/Editors/_EditSource.py: custom menus
+	* src/Editors/_EditRepoRef.py: custom menus
+	* src/Editors/_EditUrl.py: custom menus
+	* src/Editors/_EditAttribute.py: custom menus
+	* src/Editors/_EditPerson.py: custom menus
+	* src/Editors/_EditLocation.py: custom menus
+	* src/Editors/_EditMediaRef.py: custom menus
+	* src/Editors/_EditEventRef.py: custom menus
+	* src/Editors/_EditMedia.py: custom menus
+	* src/Editors/_EditRepository.py: custom menus
+	* src/Editors/_EditName.py: custom menus
+	* src/Editors/_EditChildRef.py: custom menus
+	* src/Editors/_EditFamily.py: custom menus
+	* src/Editors/_EditEvent.py: custom menus
+
 2006-05-20  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_WriteGedcom.py (write_repos): Add method.
 	* src/gramps_main.py (Gramps.__init__): Call ArgHandler between

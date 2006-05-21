@@ -25,7 +25,6 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-import cPickle as pickle
 from gettext import gettext as _
 
 import logging
