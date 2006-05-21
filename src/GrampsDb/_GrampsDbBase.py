@@ -1564,13 +1564,6 @@ class GrampsDbBase(GrampsDBCallback):
         """
         assert False, "Needs to be overridden in the derived class"
 
-    def get_person_event_type_list(self):
-        """
-        Returns the list of personal event types contained within the
-        database. The function must be overridden in the derived class.
-        """
-        return list(self.individual_event_names)
-
     def get_bookmarks(self):
         """returns the list of Person handles in the bookmarks"""
         return self.bookmarks

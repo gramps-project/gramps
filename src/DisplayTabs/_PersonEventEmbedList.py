@@ -64,8 +64,12 @@ class PersonEventEmbedList(EventEmbedList):
 
     def default_type(self):
         type_list = []
-        ref_list = [ ref for ref in self.return_info() if ref ]
 
+        # combine return info into a single flat sequence
+        ri = self.return_info()
+        ri = ri[0:2] + tuple(ri[2])
+        ref_list = [ ref for ref in ri if ref]
+        
         event = None
         for event_ref in ref_list:
             event = self.dbstate.db.get_event_from_handle(event_ref.ref)
