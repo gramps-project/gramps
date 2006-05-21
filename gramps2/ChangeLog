@@ -1,4 +1,6 @@
 2006-05-21  Alex Roitman  <shura@gramps-project.org>
+	* src/const.py.in: Use gettext.
+	* src/GrampsDb/_ConstXML.py: Remove file.
 	* src/DisplayTabs/_PersonEventEmbedList.py
 	(PersonEventEmbedList.default_type): properly process event list.
 	* src/Editors/_EditEventRef.py (EditEventRef.get_custom_events):
