@@ -5631,7 +5631,7 @@ msgstr "Unicode (anbefalt)"
 #: ../src/plugins/NarrativeWeb.py:240
 #, python-format
 msgid "&copy; %(year)d %(person)s"
-msgstr "&kopi; %(year)d %(person)s"
+msgstr "&copy; %(year)d %(person)s"
 
 #: ../src/plugins/NarrativeWeb.py:301
 #, python-format
