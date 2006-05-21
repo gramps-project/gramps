@@ -1,4 +1,5 @@
 2006-05-20  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_WriteGedcom.py (write_repos): Add method.
 	* src/gramps_main.py (Gramps.__init__): Call ArgHandler between
 	init_interface and post_init_interface.
 	* src/ViewManager.py (init_interface): Split off post_init_interface.
