@@ -164,7 +164,7 @@ class ScratchPadAddress(ScratchPadGrampsTypeWrapper):
     
         if len(self._obj.get_source_references()) > 0:
             psrc_ref = self._obj.get_source_references()[0]
-            psrc_id = psrc_ref.get_base_handle()
+            psrc_id = psrc_ref.get_reference_handle()
             psrc = self._db.get_source_from_handle(psrc_id)
             s += "\n<big><b>%s</b></big>\n\n"\
                  "\t<b>%s:</b>\t%s\n" % (
@@ -238,7 +238,7 @@ class ScratchPadEvent(ScratchPadWrapper):
 
 #         if len(self._obj.get_source_references()) > 0:
 #             psrc_ref = self._obj.get_source_references()[0]
-#             psrc_id = psrc_ref.get_base_handle()
+#             psrc_id = psrc_ref.get_reference_handle()
 #             psrc = self._db.get_source_from_handle(psrc_id)
 
 #             s += "\n<big><b>%s</b></big>\n\n"\
@@ -279,7 +279,7 @@ class ScratchPadFamilyEvent(ScratchPadGrampsTypeWrapper):
 
         if len(self._obj.get_source_references()) > 0:
             psrc_ref = self._obj.get_source_references()[0]
-            psrc_id = psrc_ref.get_base_handle()
+            psrc_id = psrc_ref.get_reference_handle()
             psrc = self._db.get_source_from_handle(psrc_id)
 
             s += "\n<big><b>%s</b></big>\n\n"\
@@ -336,7 +336,7 @@ class ScratchPadAttribute(ScratchPadGrampsTypeWrapper):
         
         if len(self._obj.get_source_references()) > 0:
             psrc_ref = self._obj.get_source_references()[0]
-            psrc_id = psrc_ref.get_base_handle()
+            psrc_id = psrc_ref.get_reference_handle()
             psrc = self._db.get_source_from_handle(psrc_id)
             s += "\n<big><b>%s</b></big>\n\n"\
                  "\t<b>%s:</b>\t%s\n" % (
@@ -369,7 +369,7 @@ class ScratchPadFamilyAttribute(ScratchPadGrampsTypeWrapper):
         
         if len(self._obj.get_source_references()) > 0:
             psrc_ref = self._obj.get_source_references()[0]
-            psrc_id = psrc_ref.get_base_handle()
+            psrc_id = psrc_ref.get_reference_handle()
             psrc = self._db.get_source_from_handle(psrc_id)
             s += "\n<big><b>%s</b></big>\n\n"\
                  "\t<b>%s:</b>\t%s\n" % (
@@ -388,13 +388,13 @@ class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
         ScratchPadGrampsTypeWrapper.__init__(self, db, obj)
         self._type  = _("Source Reference")
 
-        base = self._db.get_source_from_handle(self._obj.get_base_handle())
+        base = self._db.get_source_from_handle(self._obj.get_reference_handle())
         self._title = base.get_title()
         self._value = self._obj.get_text()
 
     def tooltip(self):
         global escape
-        base = self._db.get_source_from_handle(self._obj.get_base_handle())
+        base = self._db.get_source_from_handle(self._obj.get_reference_handle())
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s\n"\
@@ -466,7 +466,7 @@ class ScratchPadName(ScratchPadGrampsTypeWrapper):
 
         if len(self._obj.get_source_references()) > 0:
             psrc_ref = self._obj.get_source_references()[0]
-            psrc_id = psrc_ref.get_base_handle()
+            psrc_id = psrc_ref.get_reference_handle()
             psrc = self._db.get_source_from_handle(psrc_id)
 
             s += "\n<big><b>%s</b></big>\n\n"\
@@ -552,7 +552,7 @@ class ScratchPersonLink(ScratchPadWrapper):
 
         if len(person.get_source_references()) > 0:
             psrc_ref = person.get_source_references()[0]
-            psrc_id = psrc_ref.get_base_handle()
+            psrc_id = psrc_ref.get_reference_handle()
             psrc = self._db.get_source_from_handle(psrc_id)
 
             s += "\n<big><b>%s</b></big>\n\n"\

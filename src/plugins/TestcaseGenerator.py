@@ -1165,7 +1165,7 @@ class TestcaseGenerator(Tool.Tool):
                 self.fill_object(s)
                 self.db.add_source( s, self.trans)
                 self.generated_sources.append( s.get_handle())
-            o.set_base_handle( choice( self.generated_sources))
+            o.set_reference_handle( choice( self.generated_sources))
             if randint(0,1) == 1:
                 o.set_page( self.rand_text(self.NUMERIC))
             if randint(0,1) == 1:

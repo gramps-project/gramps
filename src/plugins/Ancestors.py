@@ -617,7 +617,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     continue
 
                 self.sourcerefs.append (ref)
-                source_handle = ref.get_base_handle ()
+                source_handle = ref.get_reference_handle ()
                 if source_handle in self.sources:
                     ind = self.sources.index (source_handle) + 1
                 else:

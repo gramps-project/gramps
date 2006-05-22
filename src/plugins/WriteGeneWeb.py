@@ -324,7 +324,7 @@ class GeneWebWriter:
             
         if reflist:
            for sr in reflist:
-                sbase = sr.get_base_handle()
+                sbase = sr.get_reference_handle()
                 if sbase:
                     source = self.db.get_source_from_handle(sbase)
                     if source:
@@ -545,7 +545,7 @@ class GeneWebWriter:
         ret = ""
         if reflist:
             for sr in reflist:
-                sbase = sr.get_base_handle()
+                sbase = sr.get_reference_handle()
                 if sbase:
                     source = self.db.get_source_from_handle(sbase)
                     if source:

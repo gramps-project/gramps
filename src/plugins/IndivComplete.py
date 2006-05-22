@@ -139,7 +139,7 @@ class IndivCompleteReport(Report.Report):
         self.normal_cell(name)
         if self.use_srcs:
             for s in event.get_source_references():
-                src_handle = s.get_base_handle()
+                src_handle = s.get_reference_handle()
                 src = self.database.get_source_from_handle(src_handle)
                 text = "%s [%s]" % (text,src.get_gramps_id())
                 self.slist.append(s)
@@ -254,7 +254,7 @@ class IndivCompleteReport(Report.Report):
             text = name.get_regular_name()
             if self.use_srcs:
                 for s in name.get_source_references():
-                    src_handle = s.get_base_handle()
+                    src_handle = s.get_reference_handle()
                     src = self.database.get_source_from_handle(src_handle)
                     text = "%s [%s]" % (text,src.get_gramps_id())
                     self.slist.append(s)
@@ -342,7 +342,7 @@ class IndivCompleteReport(Report.Report):
         
         for source in self.slist:
             self.doc.start_row()
-            s_handle = source.get_base_handle()
+            s_handle = source.get_reference_handle()
             src = self.database.get_source_from_handle(s_handle)
             self.normal_cell(src.get_gramps_id())
             self.normal_cell(src.get_title())
@@ -424,7 +424,7 @@ class IndivCompleteReport(Report.Report):
         if self.use_srcs:
             for s in name.get_source_references():
                 self.slist.append(s)
-                src_handle = s.get_base_handle()
+                src_handle = s.get_reference_handle()
                 src = self.database.get_source_from_handle(src_handle)
                 text = "%s [%s]" % (text,src.get_gramps_id())
         self.normal_cell(text)

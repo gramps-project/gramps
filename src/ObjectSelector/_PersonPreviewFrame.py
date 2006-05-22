@@ -122,7 +122,7 @@ class PersonPreviewFrame(PreviewFrameBase):
 
         if len(person.get_source_references()) > 0:
             psrc_ref = person.get_source_references()[0]
-            psrc_id = psrc_ref.get_base_handle()
+            psrc_id = psrc_ref.get_reference_handle()
             psrc = self._dbstate.db.get_source_from_handle(psrc_id)
 
             s += "\n<span weight=\"bold\">%s</span>\n"\

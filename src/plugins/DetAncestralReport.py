@@ -499,7 +499,7 @@ class DetAncestorReport(Report.Report):
         keys.sort()
         for key in keys:
             srcref = self.sref_map[key]
-            sh = srcref.get_base_handle()
+            sh = srcref.get_reference_handle()
             base = self.database.get_source_from_handle(sh)
             
             self.doc.start_paragraph('DAR-Endnotes',"%d." % key)
@@ -544,10 +544,10 @@ class DetAncestorReport(Report.Report):
                 if not first:
                     msg.write(',')
                 first = 0
-                ref_base = ref.get_base_handle()
+                ref_base = ref.get_reference_handle()
                 the_key = 0
                 for key in self.sref_map.keys():
-                    if ref_base == self.sref_map[key].get_base_handle():
+                    if ref_base == self.sref_map[key].get_reference_handle():
                         the_key = key
                         break
                 if the_key:

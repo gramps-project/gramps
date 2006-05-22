@@ -1,4 +1,8 @@
 2006-05-22  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_WriteGedcom.py: Multiple improvements.
+	* various: Replace get/set_base_handle with get/set_reference_handle.
+	* src/RelLib/_SourceRef.py (get_base_handle,set_base_handle):
+	Remove redundant methods.
 	* src/ArgHandler.py (need_gui): Add method.
 	* src/ViewManager.py: Move statusbar notification from gramps_main.
 	* src/gramps_main.py: Remove unused methods, handle ArgHandler better.
