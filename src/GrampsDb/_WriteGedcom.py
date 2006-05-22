@@ -159,90 +159,6 @@ mime2ged = {
 #
 #
 #-------------------------------------------------------------------------
-def add_srefs(the_set,obj):
-    """
-    Add handles of sources referenced in obj to the_set.
-    """
-    the_list = [source_ref.ref
-                for source_ref in obj.get_source_references()
-                if source_ref.ref != None]
-    the_set.update(the_list)
-    
-def add_familys_sources(db,family_handle,slist,private):
-    """
-    Add handles of sources referenced in family and its child objects to slist.
-    """
-    # FIXME: this only considers source references for family, events,
-    # and attributes.
-    family = db.get_family_from_handle(family_handle)
-
-    add_srefs(slist,family)
-
-    for event_ref in family.get_event_ref_list():
-        if not event_ref:
-            continue
-        event_handle = event_ref.ref
-        event = db.get_event_from_handle(event_handle)
-        if not event:
-            continue
-        if private and event.get_privacy():
-            continue
-
-        add_srefs(slist,event)
-
-    for lds_ord in family.get_lds_ord_list():
-        add_srefs(slist,event)
-
-    for attr in family.get_attribute_list():
-        if private and attr.get_privacy():
-            continue
-
-        add_srefs(slist,attr)
-
-def add_persons_sources(db,person,slist,private):
-    """
-    Add handles of sources referenced in person and its child objects to slist.
-    """
-
-    # FIXME: this only considers source references for person, events,
-    # attributes, addresses, and names.
-    add_srefs(slist,person)
-
-    for event_ref in person.get_event_ref_list() + [person.get_birth_ref(),
-                      person.get_death_ref()]:
-        if not event_ref:
-            continue
-        event_handle = event_ref.ref
-        event = db.get_event_from_handle(event_handle)
-        if not event:
-            continue
-        if private and event.get_privacy():
-            continue
-        add_srefs(slist,event)
-
-    for lds_ord in person.get_lds_ord_list():
-        add_srefs(slist,event)
-
-    for addr in person.get_address_list():
-        if private and addr.get_privacy():
-            continue
-        add_srefs(slist,addr)
-
-    for attr in person.get_attribute_list():
-        if private and attr.get_privacy():
-            continue
-        add_srefs(slist,attr)
-
-    for name in person.get_alternate_names() + [person.get_primary_name()]:
-        if private and name.get_privacy():
-            continue
-        add_srefs(slist,name)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def addr_append(text,data):
     if data:
         return "%s, %s" % (text,data)
@@ -498,13 +414,9 @@ class GedcomWriter(UpdateCallback):
         # Collect needed families
         for handle in list(self.plist):
             person = self.db.get_person_from_handle(handle)
-            #add_persons_sources(self.db,person,self.slist,
-            #                    self.option_box.private)
             if self.private and person.private:
                 self.plist.remove(handle)
             for family_handle in person.get_family_handle_list():
-                #add_familys_sources(self.db,family_handle,
-                #                    self.slist,self.option_box.private)
                 family = self.db.get_person_from_handle(family_handle)
                 if self.private and family.private:
                     continue
