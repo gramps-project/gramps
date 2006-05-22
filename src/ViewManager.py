@@ -694,16 +694,18 @@ class ViewManager:
                 self.pages[num].change_page()
 
     def import_data(self, obj):
-        self.db_loader.import_file()
-        self.post_load()
+        if self.state.db.db_is_open:
+            self.db_loader.import_file()
+            self.post_load()
         
     def open_activate(self, obj):
         (filename,filetype) = self.db_loader.open_file()
         self.post_load_newdb(filename,filetype)
 
     def save_as_activate(self,obj):
-        (filename,filetype) = self.db_loader.save_as()
-        self.post_load_newdb(filename,filetype)
+        if self.state.db.db_is_open:
+            (filename,filetype) = self.db_loader.save_as()
+            self.post_load_newdb(filename,filetype)
 
     def new_activate(self,obj):
         (filename,filetype) = self.db_loader.new_file()
@@ -874,8 +876,9 @@ class ViewManager:
             pass
 
     def export_data(self, obj):
-        import Exporter
-        Exporter.Exporter(self.state, self.uistate)
+        if self.state.db.db_is_open:
+            import Exporter
+            Exporter.Exporter(self.state, self.uistate)
 
     def build_tools_menu(self):
         self.toolactions = gtk.ActionGroup('ToolWindow')

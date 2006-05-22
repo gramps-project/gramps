@@ -1,3 +1,7 @@
+2006-05-21  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: handle export, import, and save as if
+	database does not exist, yet UIManager still wants to call them.
+
 2006-05-21  Alex Roitman  <shura@gramps-project.org>
 	* configure.in: Set up for the next release.
 
