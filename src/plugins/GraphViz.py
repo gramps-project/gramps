@@ -238,7 +238,7 @@ class GraphViz:
         the_buffer = self.get_report()
         self.f = open(options_class.get_output(),'w')
         if self.latin:
-            self.f.write(the_buffer.encode('iso-8859-1'))
+            self.f.write(the_buffer.encode('iso-8859-1', 'replace'))
         else:
             self.f.write(the_buffer)
         self.f.close()
@@ -894,6 +894,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
         self.options_dict['incid'] = int(self.includeid_cb.get_active())
         self.options_dict['justyears'] = int(self.just_years_cb.get_active())
         self.options_dict['placecause'] = int(self.place_cause_cb.get_active())
+        self.options_dict['latin'] = int(self.latin_cb.get_active())
         self.options_dict['ratio'] = \
                 _options.ratio[self.ratio_box.get_active()][0]
         self.options_dict['rankdir'] = \
