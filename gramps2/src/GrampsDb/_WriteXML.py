@@ -622,7 +622,8 @@ class XmlWriter(UpdateCallback):
         self.g.write('%s</lds_ord>\n' % sp)
     
     def dump_source_ref(self,source_ref,index=1):
-        source = self.db.get_source_from_handle(source_ref.get_base_handle())
+        source = self.db.get_source_from_handle(
+            source_ref.get_reference_handle())
         if source:
             p = source_ref.get_page()
             c = source_ref.get_note()

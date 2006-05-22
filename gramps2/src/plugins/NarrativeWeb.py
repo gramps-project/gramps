@@ -1601,7 +1601,7 @@ class IndividualPage(BasePage):
                 nshl = []
                 for nsref in name.get_source_references():
                     self.src_refs.append(nsref)
-                    nsh = nsref.get_base_handle()
+                    nsh = nsref.get_reference_handle()
                     lnk = (self.cur_name, self.page_title, self.gid)
                     if self.src_list.has_key(nsh):
                         if self.person.handle not in self.src_list[nsh]:
@@ -1902,7 +1902,7 @@ class IndividualPage(BasePage):
         for sref in event.get_source_references():
             if self.exclude_private and sref.private:
                 continue
-            handle = sref.get_base_handle()
+            handle = sref.get_reference_handle()
             gid_list.append(sref)
 
             if self.src_list.has_key(handle):

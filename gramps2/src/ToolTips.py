@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -196,7 +196,7 @@ class PersonTip:
 
         if len(self._obj.get_source_references()) > 0:
             psrc_ref = self._obj.get_source_references()[0]
-            psrc_id = psrc_ref.get_base_handle()
+            psrc_id = psrc_ref.get_reference_handle()
             psrc = self._db.get_source_from_handle(psrc_id)
 
             s += "\n<span size=\"larger\" weight=\"bold\">%s</span>\n"\

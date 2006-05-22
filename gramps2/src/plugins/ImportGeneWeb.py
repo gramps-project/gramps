@@ -807,7 +807,7 @@ class GeneWebParser:
             self.db.commit_source(source,self.trans)
             self.skeys[source_name] = source.get_handle()
         sref = RelLib.SourceRef()
-        sref.set_base_handle(source.get_handle())
+        sref.set_reference_handle(source.get_handle())
         return sref
 
     def decode(self,s):

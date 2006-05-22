@@ -174,7 +174,7 @@ class FtmDescendantReport(Report.Report):
         keys.sort()
         for key in keys:
             srcref = self.sref_map[key]
-            base_handle = srcref.get_base_handle()
+            base_handle = srcref.get_reference_handle()
             base = self.database.get_source_from_handle(base_handle)
             
             self.doc.start_paragraph('FTD-Endnotes',"%d." % key)
@@ -215,10 +215,10 @@ class FtmDescendantReport(Report.Report):
                 if not first:
                     msg.write(',')
                 first = 0
-                ref_base = ref.get_base_handle()
+                ref_base = ref.get_reference_handle()
                 the_key = 0
                 for key in self.sref_map.keys():
-                    if ref_base == self.sref_map[key].get_base_handle():
+                    if ref_base == self.sref_map[key].get_reference_handle():
                         the_key = key
                         break
                 if the_key:

@@ -126,14 +126,6 @@ class SourceRef(SecondaryObject,DateBase,PrivacyBase,NoteBase,RefBase):
         """Returns the confidence level"""
         return self.confidence
         
-    def set_base_handle(self,ref):
-        """sets the Source instance to which the SourceRef refers"""
-        self.ref = ref
-
-    def get_base_handle(self):
-        """returns the Source instance to which the SourceRef refers"""
-        return self.ref
-    
     def set_page(self,page):
         """sets the page indicator of the SourceRef"""
         self.page = page

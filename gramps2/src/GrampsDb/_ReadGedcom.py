@@ -836,7 +836,7 @@ class GedcomParser(UpdateCallback):
                             self.db.commit_person(child, self.trans)
                 if len(self.family.get_source_references()) == 0:
                     sref = RelLib.SourceRef()
-                    sref.set_base_handle(self.def_src.handle)
+                    sref.set_reference_handle(self.def_src.handle)
                     self.family.add_source_reference(sref)
                 self.db.commit_family(self.family, self.trans)
                 del self.family
@@ -849,7 +849,7 @@ class GedcomParser(UpdateCallback):
                 self.parse_individual(self.person)
                 if len(self.person.get_source_references()) == 0:
                     sref = RelLib.SourceRef()
-                    sref.set_base_handle(self.def_src.handle)
+                    sref.set_reference_handle(self.def_src.handle)
                     self.person.add_source_reference(sref)
                 self.db.commit_person(self.person, self.trans)
                 del self.person
@@ -1990,7 +1990,7 @@ class GedcomParser(UpdateCallback):
         else:
             handle = self.find_or_create_source(matches[2][1:-1]).handle
             self.parse_source_reference(source_ref,level)
-        source_ref.set_base_handle(handle)
+        source_ref.set_reference_handle(handle)
         return source_ref
 
     def resolve_refns(self):
