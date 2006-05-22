@@ -1,3 +1,13 @@
+Verison 2.1.3
+* Add user defined custom types to appropriate menus
+* Select Place dialog replaces text entry of places
+* Icon improvements
+* Improved navigation in Pedigree View
+* Fully functional side bar filter
+* Bookmarks for all object types saved and loaded (XML)
+* Marker colors are adjustable
+* Bug fixes
+
 Version 2.1.0 -- the "What are you going to do, bleed on me?" release
 * Initial unstable release of 2.1.0.
 * Far too many changes to specify. See http://gramps-project.org/whats_new/
