@@ -58,9 +58,7 @@ import Utils
 from PluginUtils import Report, Tool, cl_list, cli_tool_list
 
 #-------------------------------------------------------------------------
-#
 # ArgHandler
-#
 #-------------------------------------------------------------------------
 class ArgHandler:
     """
@@ -104,33 +102,33 @@ class ArgHandler:
         self.imports = []
 
         self.parse_args()
-        self.handle_args()
 
     #-------------------------------------------------------------------------
-    #
     # Argument parser: sorts out given arguments
-    #
     #-------------------------------------------------------------------------
     def parse_args(self):
         """
         Fill in lists with open, exports, imports, and actions options.
+
+        Any parsing errors lead to abort via os._exit(1).
         """
 
         try:
             options,leftargs = getopt.getopt(self.args[1:],
-                        const.shortopts,const.longopts)
+                                             const.shortopts,const.longopts)
         except getopt.GetoptError:
             # return without filling anything if we could not parse the args
             print "Error parsing arguments: %s " % self.args[1:]
-            return
+            os._exit(1)
 
         if leftargs:
-            # if there were an argument without option, use it as a file to 
-            # open and return
+            # if there were an argument without option,
+            # use it as a file to open and return
             self.open_gui = leftargs[0]
             print "Trying to open: %s ..." % leftargs[0]
             return
 
+        # Go over all given option and place them into appropriate lists
         for opt_ix in range(len(options)):
             o,v = options[opt_ix]
             if o in ( '-O', '--open'):
@@ -248,12 +246,33 @@ class ArgHandler:
                             and options[opt_ix+1][0] in ( '-p', '--options' ): 
                     options_str = options[opt_ix+1][1]
                 self.actions.append((action,options_str))
-            
+
     #-------------------------------------------------------------------------
-    #
+    # Determine the need for GUI
+    #-------------------------------------------------------------------------
+    def need_gui(self):
+        """
+        Determine whether we need a GUI session for the given tasks.
+        """
+        if self.open_gui:
+            # No-option argument, definitely GUI
+            return True
+
+        # If we have data to work with:
+        if (self.open or self.imports):
+            if (self.exports or self.actions):
+                # have both data and what to do with it => no GUI
+                return False
+            else:
+                # data given, but no action/export => GUI
+                return True
+        
+        # No data, can only do GUI here
+        return True
+           
+    #-------------------------------------------------------------------------
     # Overall argument handler: 
     # sorts out the sequence and details of operations
-    #
     #-------------------------------------------------------------------------
     def handle_args(self):
         """

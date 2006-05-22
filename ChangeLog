@@ -1,3 +1,8 @@
+2006-05-22  Alex Roitman  <shura@gramps-project.org>
+	* src/ArgHandler.py (need_gui): Add method.
+	* src/ViewManager.py: Move statusbar notification from gramps_main.
+	* src/gramps_main.py: Remove unused methods, handle ArgHandler better.
+
 2006-05-21  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: handle export, import, and save as if
 	database does not exist, yet UIManager still wants to call them.

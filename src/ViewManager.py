@@ -416,6 +416,11 @@ class ViewManager:
         self.build_report_menu()
         self.fileactions.set_sensitive(True)
         self.uistate.widget.set_sensitive(True)
+        Config.client.notify_add("/apps/gramps/interface/statusbar",
+                                 self.statusbar_key_update)
+
+    def statusbar_key_update(self,client,cnxn_id,entry,data):
+        self.uistate.modify_statusbar()
 
     def post_init_interface(self):
         # Showing the main window is deferred so that

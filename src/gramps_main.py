@@ -22,14 +22,22 @@
 
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+import os
+import platform
+
+import logging
+log = logging.getLogger(".")
+
+#-------------------------------------------------------------------------
+#
 # GTK+/GNOME modules
 #
 #-------------------------------------------------------------------------
 import gtk
-import logging
-import os
-
-log = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
@@ -46,12 +54,13 @@ import TipOfDay
 import DataViews
 from Mime import mime_type_is_defined
 from QuestionDialog import ErrorDialog
-from gettext import gettext as _
 
+#-------------------------------------------------------------------------
+#
+# helper functions
+#
+#-------------------------------------------------------------------------
 iconpaths = [const.image_dir,"."]
-
-
-import platform
 
 if platform.system() == "Windows":
     person_icon = "person.png"
@@ -132,7 +141,11 @@ def build_user_paths():
         if not os.path.isdir(path):
             os.mkdir(path)
 
-
+#-------------------------------------------------------------------------
+#
+# Main Gramps class
+#
+#-------------------------------------------------------------------------
 class Gramps:
     """
     Main class corresponding to a running gramps process.
@@ -169,7 +182,6 @@ class Gramps:
             gtk.main_quit()
             return
 
-
         register_stock_icons()
         
         state = GrampsDb.DbState()
@@ -178,28 +190,23 @@ class Gramps:
             self.vm.register_view(view)
 
         self.vm.init_interface()
-        ArgHandler.ArgHandler(state,self.vm,args)
-        self.vm.post_init_interface()
+
+        # Depending on the nature of this session,
+        # we may need to change the order of operation
+        ah = ArgHandler.ArgHandler(state,self.vm,args)
+        if ah.need_gui():
+            self.vm.post_init_interface()
+            ah.handle_args()
+        else:
+            ah.handle_args()
+            self.vm.post_init_interface()
 
         state.db.request_rebuild()
         state.change_active_person(state.db.get_default_person())
         
-        # Don't show main window until ArgHandler is done.
-        # This prevents a window from annoyingly popping up when
-        # the command line args are sufficient to operate without it.
-        Config.client.notify_add("/apps/gramps/researcher",
-                                 self.researcher_key_update)
-        Config.client.notify_add("/apps/gramps/interface/statusbar",
-                                 self.statusbar_key_update)
-
         if Config.get(Config.USE_TIPS):
             TipOfDay.TipOfDay(self.vm.uistate)
 
-##         # FIXME: THESE will have to be added (ViewManager?)
-##         # once bookmarks work again
-##         self.db.set_researcher(GrampsCfg.get_researcher())
-##         self.db.connect('person-delete',self.on_remove_bookmark)
-##         self.db.connect('person-update',self.on_update_bookmark)
 
     def welcome(self):
         if not Config.get(Config.BETAWARN):
@@ -221,17 +228,3 @@ class Gramps:
             Config.set(Config.BETAWARN,True)
                             
         return
-
-    def researcher_key_update(self,client,cnxn_id,entry,data):
-        pass
-#         self.db.set_person_id_prefix(Config.get(Config.IPREFIX))
-#         self.db.set_family_id_prefix(Config.get(Config.FPREFIX))
-#         self.db.set_source_id_prefix(Config.get(Config.SPREFIX))
-#         self.db.set_object_id_prefix(Config.get(Config.OPREFIX))
-#         self.db.set_place_id_prefix(Config.get(Config.PPREFIX))
-#         self.db.set_event_id_prefix(Config.get(Config.EPREFIX))
-
-    def statusbar_key_update(self,client,cnxn_id,entry,data):
-        self.vm.uistate.modify_statusbar()
-
-
