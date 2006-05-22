@@ -1,3 +1,6 @@
+2006-05-21  Don Allingham  <don@gramps-project.org>
+	* src/GrampsWidgets.py (MonitoredEntry.set_text): added function
+
 2006-05-21  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_WriteGedcom.py: Repository export.
 	* src/GrampsDb/_GrampsInMemDB.py (GrampsInMemDB.__init__): Remove

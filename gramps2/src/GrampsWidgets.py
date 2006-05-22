@@ -280,6 +280,9 @@ class MonitoredEntry:
         if autolist:
             AutoComp.fill_entry(obj,autolist)
 
+    def set_text(self, text):
+        self.obj.set_text(text)
+        
     def connect(self, signal, callback):
         self.obj.connect(signal, callback)
 
