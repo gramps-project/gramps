@@ -12,6 +12,7 @@
 	* src/plugins/Calendar.py: make calendar work in Windows
 	* src/GrampsLocale.py: make calendar work in Windows
 	* src/plugins/GraphViz.py: fix unicode encoding
+	* src/plugins/TimeLine.py: round all dates to nearest decade
 
 2006-05-21  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py: Do not import unused module.

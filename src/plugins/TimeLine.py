@@ -312,9 +312,14 @@ class TimeLine(Report.Report):
             if d:
                 low = min(low,d)
                 high = max(high,d)
-               
-        low = (low/10)*10
-        high = ((high+9)/10)*10
+
+        # round the dates to the nearest decade
+        low = int((low/10))*10
+        high = int(((high+9)/10))*10
+        
+        # Make sure the difference is a multiple of 50 so all year ranges land
+        # on a decade.
+        low -= 50 - ((high-low) % 50)
         
         if low == None:
             low = high
