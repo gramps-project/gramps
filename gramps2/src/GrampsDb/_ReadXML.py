@@ -772,13 +772,14 @@ class GrampsParser(UpdateCallback):
             self.family.add_event_ref(self.eventref)
         elif self.person:
             event.personal = True
-            if event.type == RelLib.EventType.BIRTH:
+            if (event.type == RelLib.EventType.BIRTH) \
+                   and (self.person.birth_ref == None):
                 self.person.birth_ref = self.eventref
-            elif event.type == RelLib.EventType.DEATH:
+            elif (event.type == RelLib.EventType.DEATH) \
+                     and (self.person.death_ref == None):
                 self.person.death_ref = self.eventref
             else:
                 self.person.add_event_ref(self.eventref)
-        
 
     def start_attribute(self,attrs):
         self.attribute = RelLib.Attribute()
