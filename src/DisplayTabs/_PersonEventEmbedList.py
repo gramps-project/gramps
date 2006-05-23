@@ -50,14 +50,10 @@ _std_types = [
 class PersonEventEmbedList(EventEmbedList):
 
     def __init__(self, dbstate, uistate, track, obj):        
-        self.orig_data = [ data for data in [ obj.get_birth_ref(), \
-                                              obj.get_death_ref()] + \
-                            obj.get_event_ref_list() \
-                            if data ]
         EventEmbedList.__init__(self, dbstate, uistate, track, obj)
 
     def get_data(self):
-        return self.orig_data
+        return self.obj.get_event_ref_list()
 
     def default_role(self):
         return RelLib.EventRoleType(RelLib.EventRoleType.PRIMARY)
@@ -66,12 +62,9 @@ class PersonEventEmbedList(EventEmbedList):
         type_list = []
 
         # combine return info into a single flat sequence
-        ri = self.return_info()
-        ri = ri[0:2] + tuple(ri[2])
-        ref_list = [ ref for ref in ri if ref]
-        
+
         event = None
-        for event_ref in ref_list:
+        for event_ref in self.get_data():
             event = self.dbstate.db.get_event_from_handle(event_ref.ref)
             type_list.append(event.get_type())
 
@@ -84,17 +77,3 @@ class PersonEventEmbedList(EventEmbedList):
         from Editors import EditEventRef
         return EditEventRef
 
-    def return_info(self):
-        new_list = []
-        birth_ref = None
-        death_ref = None
-        
-        for ref in self.orig_data:
-            event = self.dbstate.db.get_event_from_handle(ref.ref)
-            if birth_ref == None and event.get_type() == RelLib.EventType.BIRTH:
-                birth_ref = ref
-            elif death_ref == None and event.get_type() == RelLib.EventType.DEATH:
-                death_ref = ref
-            else:
-                new_list.append(ref)
-        return (birth_ref, death_ref, new_list)

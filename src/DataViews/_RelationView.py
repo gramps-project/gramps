@@ -566,6 +566,7 @@ class RelationshipView(PageView.PersonNavView):
 
         label = GrampsWidgets.MarkupLabel(format % cgi.escape(title))
         label.set_alignment(0,0)
+        label.set_padding(0,3)
         self.attach.attach(label, _PLABEL_START, _PLABEL_STOP, self.row, 
                            self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
                            yoptions=gtk.FILL|gtk.SHRINK)
@@ -610,13 +611,16 @@ class RelationshipView(PageView.PersonNavView):
         link_label = GrampsWidgets.LinkLabel(self.get_name(handle, True), 
                                              self.button_press, handle)
         link_label.modify_bg(gtk.STATE_NORMAL, self.color)
+        link_label.set_padding(3, 0)
         button = GrampsWidgets.IconButton(self.edit_button_press, handle)
         vbox.pack_start(GrampsWidgets.LinkBox(link_label, button))
 
         if self.show_details:
             value = self.info_string(handle)
             if value:
-                vbox.add(GrampsWidgets.BasicLabel(value))
+                l = GrampsWidgets.BasicLabel(value)
+                l.set_padding(3, 0)
+                vbox.add(l)
         
     def write_data(self, box, title, start_col=_SDATA_START,
                    stop_col=_SDATA_STOP):
@@ -710,7 +714,6 @@ class RelationshipView(PageView.PersonNavView):
         if handle:
             box = self.write_person(_('Spouse'), handle)
 
-            print family
             if not self.write_marriage(box, family):
                 self.write_relationship(box, family)
         

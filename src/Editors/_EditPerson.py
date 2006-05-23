@@ -62,6 +62,8 @@ import RelLib
 import GrampsWidgets
 import Config
 
+from GrampsDb import set_birth_death_index
+
 from _EditPrimary import EditPrimary
 from QuestionDialog import *
 from DisplayTabs import \
@@ -537,11 +539,7 @@ class EditPerson(EditPrimary):
         if self._check_for_unknown_gender():
             return
 
-        (birth_ref, death_ref, event_list) = self.event_list.return_info()
-        self.obj.set_birth_ref(birth_ref)
-        self.obj.set_death_ref(death_ref)
-        self.obj.set_event_ref_list(event_list)
-        
+        set_birth_death_index(self.db, self.obj)
         self.window.hide()
 
         trans = self.db.transaction_begin()
