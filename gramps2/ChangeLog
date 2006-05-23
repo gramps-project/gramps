@@ -7,6 +7,9 @@
 	birth/deat reference.
 
 2006-05-23  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_RelationView.py: renamed from _FamilyView
+	* src/DataViews/__init__.py: use RelationView.py
+	* src/DataViews/Makefile.am: update
 	* src/DataViews/_FamilyView.py: more shading
 
 2006-05-22  Alex Roitman  <shura@gramps-project.org>

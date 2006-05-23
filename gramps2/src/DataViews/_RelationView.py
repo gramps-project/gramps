@@ -71,12 +71,13 @@ class AttachList:
 
     def attach(self, widget, x0, x1, y0, y1, xoptions=gtk.EXPAND|gtk.FILL, 
                yoptions=gtk.EXPAND|gtk.FILL):
+        assert(widget)
         assert(x1>x0)
         self.list.append((widget, x0, x1, y0, y1, xoptions, yoptions))
         self.max_x = max(self.max_x, x1)
         self.max_y = max(self.max_y, y1)
 
-class FamilyView(PageView.PersonNavView):
+class RelationshipView(PageView.PersonNavView):
 
     def __init__(self, dbstate, uistate):
         
@@ -537,9 +538,24 @@ class FamilyView(PageView.PersonNavView):
 
             label = _("Siblings")
             if child_list:
+                eventbox = gtk.EventBox()
+                eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+                vbox = gtk.VBox()
+                label_cell = self.build_label_cell(_('Siblings'))
+                label_cell.set_alignment(0,0)
+                self.attach.attach(
+                    label_cell, _CLABEL_START, _CLABEL_STOP, self.row, 
+                    self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
+                    yoptions=gtk.FILL)
+
                 for child_handle in child_list:
-                    self.write_child(label, child_handle)
-                    label = u""
+                    self.write_child(vbox, child_handle)
+
+                eventbox.add(vbox)
+                self.attach.attach(
+                    eventbox, _CDATA_START, _CDATA_STOP, self.row,
+                    self.row+1)
+                
         self.row += 1
 
     def write_person(self, title, handle):
@@ -580,39 +596,31 @@ class FamilyView(PageView.PersonNavView):
         self.attach.attach(eventbox, _PDATA_START, _PDATA_STOP,
                            self.row, self.row+1)
         self.row += 1
+        return vbox
 
-
-    def write_child(self, title, handle):
+    def build_label_cell(self, title):
         if title:
             format = '<span weight="bold">%s: </span>'
         else:
             format = "%s"
 
-        label = GrampsWidgets.MarkupLabel(format % cgi.escape(title))
-        self.attach.attach(label, _CLABEL_START, _CLABEL_STOP, self.row, 
-                           self.row+1, xoptions=gtk.FILL|gtk.SHRINK)
+        return GrampsWidgets.MarkupLabel(format % cgi.escape(title))
 
+    def write_child(self, vbox, handle):
         link_label = GrampsWidgets.LinkLabel(self.get_name(handle, True), 
                                              self.button_press, handle)
+        link_label.modify_bg(gtk.STATE_NORMAL, self.color)
         button = GrampsWidgets.IconButton(self.edit_button_press, handle)
-        self.attach.attach(GrampsWidgets.LinkBox(link_label, button), 
-                           _CDATA_START, _CDATA_STOP, self.row, self.row+1, 
-                           xoptions=gtk.EXPAND|gtk.FILL)
-
-        self.row += 1
+        vbox.pack_start(GrampsWidgets.LinkBox(link_label, button))
 
         if self.show_details:
             value = self.info_string(handle)
             if value:
-                self.attach.attach(GrampsWidgets.BasicLabel(value), 
-                                   _CDTLS_START, _CDTLS_STOP, self.row, 
-                                   self.row+1)
-                self.row += 1
+                vbox.add(GrampsWidgets.BasicLabel(value))
         
-    def write_data(self, title, start_col=_SDATA_START, stop_col=_SDATA_STOP):
-        self.attach.attach(GrampsWidgets.BasicLabel(title), start_col, stop_col, 
-                           self.row, self.row+1, xoptions=gtk.EXPAND|gtk.FILL)
-        self.row += 1
+    def write_data(self, box, title, start_col=_SDATA_START,
+                   stop_col=_SDATA_STOP):
+        box.add(GrampsWidgets.BasicLabel(title))
 
     def info_string(self, handle):
         child = self.dbstate.db.get_person_from_handle(handle)
@@ -637,25 +645,25 @@ class FamilyView(PageView.PersonNavView):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             self.dbstate.change_active_handle(handle)
 
-    def write_relationship(self, family):
-        self.write_data(_('Relationship type: %s') %
-                        str(family.get_relationship()))
+    def write_relationship(self, box, family):
+        msg = _('Relationship type: %s') % str(family.get_relationship())
+        box.add(GrampsWidgets.MarkupLabel(msg))
 
     def place_name(self, handle):
         p = self.dbstate.db.get_place_from_handle(handle)
         return p.get_title()
 
-    def write_marriage(self, family):
+    def write_marriage(self, vbox, family):
         value = False
         for event_ref in family.get_event_ref_list():
             handle = event_ref.ref
             event = self.dbstate.db.get_event_from_handle(handle)
             if event.get_type() == RelLib.EventType.MARRIAGE:
-                self.write_event_ref(_('Marriage'), event)
+                self.write_event_ref(vbox, _('Marriage'), event)
                 value = True
         return value
 
-    def write_event_ref(self, ename, event, start_col=_SDATA_START, 
+    def write_event_ref(self, vbox, ename, event, start_col=_SDATA_START, 
                         stop_col=_SDATA_STOP):
         if event:
             dobj = event.get_date_object()
@@ -677,16 +685,16 @@ class FamilyView(PageView.PersonNavView):
 
         if dobj:
             if pname:
-                self.write_data(_('%(event_type)s: %(date)s in %(place)s') %
+                self.write_data(vbox, _('%(event_type)s: %(date)s in %(place)s') %
                                 value, start_col, stop_col)
             else:
-                self.write_data(_('%(event_type)s: %(date)s') % value, 
+                self.write_data(vbox, _('%(event_type)s: %(date)s') % value, 
                                 start_col, stop_col)
         elif pname:
-            self.write_data(_('%(event_type)s: %(place)s') % value, 
+            self.write_data(vbox, _('%(event_type)s: %(place)s') % value, 
                             start_col, stop_col)
         else:
-            self.write_data(_('%(event_type)s:') % value, 
+            self.write_data(vbox, _('%(event_type)s:') % value, 
                             start_col, stop_col)
 
     def write_family(self, family_handle):
@@ -700,23 +708,31 @@ class FamilyView(PageView.PersonNavView):
 
         self.write_label("%s:" % _('Family'), family, False)
         if handle:
-            self.write_person(_('Spouse'), handle)
+            box = self.write_person(_('Spouse'), handle)
 
-            value = self.info_string(handle)
-            if value:
-                self.attach.attach(GrampsWidgets.BasicLabel(value), 
-                                   _PDTLS_START, _PDTLS_STOP, 
-                                   self.row, self.row+1)
-                self.row += 1
-            if not self.write_marriage(family):
-                self.write_relationship(family)
+            print family
+            if not self.write_marriage(box, family):
+                self.write_relationship(box, family)
         
         child_list = family.get_child_ref_list()
-        label = _("Children")
         if child_list:
+            eventbox = gtk.EventBox()
+            eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+            vbox = gtk.VBox()
+            label_cell = self.build_label_cell(_('Children'))
+            label_cell.set_alignment(0,0)
+            self.attach.attach(
+                label_cell, _CLABEL_START, _CLABEL_STOP, self.row, 
+                self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
+                yoptions=gtk.FILL)
+
             for child_ref in child_list:
-                self.write_child(label, child_ref.ref)
-                label = u""
+                self.write_child(vbox, child_ref.ref)
+
+            eventbox.add(vbox)
+            self.attach.attach(
+                eventbox, _CDATA_START, _CDATA_STOP, self.row,
+                self.row+1)
 
         self.row += 1
 
