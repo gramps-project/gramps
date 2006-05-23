@@ -1,3 +1,6 @@
+2006-05-23  Alex Roitman  <shura@gramps-project.org>
+	* src/Utils.py (probably_alive): Adapt to new birth/death refs.
+
 2006-05-23  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_PedigreeView.py: Use dbstate only to not get out of
 	sync with db and active person.
