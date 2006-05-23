@@ -907,7 +907,7 @@ class PedigreeView(PageView.PersonNavView):
             l = gtk.Button("▶")
             if lst[1]:
                 l.connect("clicked",self.on_childmenu_changed,lst[1][0].handle)
-                self.tooltips.set_tip(l, _("jump to father"))
+                self.tooltips.set_tip(l, _("Jump to father"))
             else:
                 l.set_sensitive(False)
             ymid = int(math.floor(ymax/4))
