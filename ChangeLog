@@ -1,3 +1,7 @@
+2006-05-23  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_ReadXML.py (start_eventref): Do not reset existing
+	birth/deat reference.
+
 2006-05-23  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_FamilyView.py: more shading
 
