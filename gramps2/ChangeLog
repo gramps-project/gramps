@@ -1,3 +1,7 @@
+2006-05-23  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DataViews/_MapView.py: Catch exceptions of the PixbufLoader that
+	occur if nothing or not an image have been downloaded.
+	
 2006-05-23  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_RelationView.py: finish shading
 	* src/GrampsDb/_DbUtils.py: add birth/death index set funcion
