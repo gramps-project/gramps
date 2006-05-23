@@ -106,8 +106,8 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         self.alternate_names = []
         self.person_ref_list = []
         self.gender = Person.UNKNOWN
-        self.death_ref = None
-        self.birth_ref = None
+        self.death_ref_index = -1
+        self.birth_ref_index = -1
 
         if data:
             self.unserialize(data)
@@ -132,23 +132,14 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
             be considered persistent.
         @rtype: tuple
         """
-        if self.birth_ref == None:
-            birth_ref = None
-        else:
-            birth_ref = self.birth_ref.serialize()
-        if self.death_ref == None:
-            death_ref = None
-        else:
-            death_ref = self.death_ref.serialize()
-
         return (
             self.handle,                                         #  0
             self.gramps_id,                                      #  1
             self.gender,                                         #  2
             self.primary_name.serialize(),                       #  3
             [name.serialize() for name in self.alternate_names], #  4
-            death_ref,                                           #  5
-            birth_ref,                                           #  6
+            self.death_ref_index,                                #  5
+            self.birth_ref_index,                                #  6
             [er.serialize() for er in self.event_ref_list],      #  7
             self.family_list,                                    #  8
             self.parent_family_list,                             #  9
@@ -180,8 +171,8 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
             self.gender,             #  2
             primary_name,            #  3
             alternate_names,         #  4
-            death_ref,               #  5
-            birth_ref,               #  6
+            self.death_ref_index,    #  5
+            self.birth_ref_index,    #  6
             event_ref_list,          #  7
             self.family_list,        #  8
             self.parent_family_list, #  9
@@ -200,10 +191,6 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
 
         self.marker.unserialize(marker)
         self.primary_name.unserialize(primary_name)
-        if death_ref:
-            self.death_ref = EventRef().unserialize(death_ref)
-        if birth_ref:
-            self.birth_ref = EventRef().unserialize(birth_ref)
         self.alternate_names = [Name().unserialize(name)
                                 for name in alternate_names]
         self.event_ref_list = [EventRef().unserialize(er)
@@ -220,10 +207,7 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
             
     def _has_handle_reference(self, classname, handle):
         if classname == 'Event':
-            return handle in [ref.ref for ref in
-                              self.event_ref_list + [self.birth_ref, 
-                                                     self.death_ref]
-                              if ref]
+            return handle in [ref.ref for ref in self.event_ref_list]
         elif classname == 'Person':
             return handle in [ref.ref for ref in self.person_ref_list]
         elif classname == 'Family':
@@ -235,20 +219,26 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
 
     def _remove_handle_references(self, classname, handle_list):
         if classname == 'Event':
-            new_list = [ ref for ref in self.event_ref_list \
-                                        if ref and ref.ref not in handle_list ]
+            new_list = [ref for ref in self.event_ref_list
+                        if ref.ref not in handle_list]
+            # If deleting removing the reference to the event
+            # to which birth or death ref_index points, unset the index
+            if (self.birth_ref_index != -1) \
+                   and (self.event_ref_list[self.birth_ref_index]
+                        in handle_list):
+                self.birth_ref_index = -1
+            if (self.death_ref_index != -1) \
+                   and (self.event_ref_list[self.death_ref_index]
+                        in handle_list):
+                self.death_ref_index = -1
             self.event_ref_list = new_list
-            if self.death_ref and self.death_ref.ref in handle_list:
-                self.death_ref = None
-            if self.birth_ref and self.birth_ref.ref in handle_list:
-                self.birth_ref = None
         elif classname == 'Person':
-            new_list = [ref for ref in self.person_ref_list \
-                                       if ref not in handle_list]
+            new_list = [ref for ref in self.person_ref_list
+                        if ref not in handle_list]
             self.person_ref_list = new_list
         elif classname == 'Family':
-            new_list = [ handle for handle in self.family_list \
-                                        if handle not in handle_list ]
+            new_list = [ handle for handle in self.family_list
+                         if handle not in handle_list ]
             self.family_list = new_list
             new_list = [ handle for handle in self.parent_family_list \
                                         if handle not in handle_list ]
@@ -265,10 +255,6 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
                 ix = handle_list.index(old_handle)
                 self.event_ref_list[ix].ref = new_handle
                 handle_list[ix] = ''
-            if self.death_ref and self.death_ref.ref == old_handle:
-                self.death_ref.ref = new_handle
-            if self.birth_ref and self.birth_ref.ref == old_handle:
-                self.birth_ref.ref = new_handle
         elif classname == 'Person':
             handle_list = [ref.ref for ref in self.person_ref_list]
             while old_handle in handle_list:
@@ -344,9 +330,8 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
         """
-        birth_death = [i for i in [self.birth_ref, self.death_ref] if i]
         return self.get_sourcref_child_list() + self.source_list \
-               + self.event_ref_list + birth_death + self.person_ref_list
+               + self.event_ref_list
 
     def get_complete_flag(self):
         warn( "Use get_marker instead of get_complete_flag",
@@ -433,15 +418,6 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         """
         return self.gender
 
-    def set_birth_handle(self, event_handle):
-        warn( "Use set_birth_ref instead of set_birth_handle",
-              DeprecationWarning, 2)
-        # Wrapper for old API
-        # remove when transitition done.
-        event_ref = EventRef()
-        event_ref.set_reference_handle(event_handle)
-        self.set_birth_ref( event_ref)
-
     def set_birth_ref(self, event_ref):
         """
         Assigns the birth event to the Person object. This is accomplished
@@ -454,16 +430,14 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         """
         if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
-        self.birth_ref = event_ref
 
-    def set_death_handle(self, event_handle):
-        warn( "Use set_death_ref instead of set_death_handle",
-              DeprecationWarning, 2)
-        # Wrapper for old API
-        # remove when transitition done.
-        event_ref = EventRef()
-        event_ref.set_reference_handle(event_handle)
-        self.set_death_ref( event_ref)
+        # check whether we already have this ref in the list
+        matches = [event_ref.is_equal(ref) for ref in self.event_ref_list]
+        try:
+            self.birth_ref_index = matches.index(True)
+        except ValueError:
+            self.event_ref_list.append(event_ref)
+            self.birth_ref_index = len(self.event_ref_list)-1
 
     def set_death_ref(self, event_ref):
         """
@@ -477,7 +451,13 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         """
         if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
-        self.death_ref = event_ref
+        # check whether we already have this ref in the list
+        matches = [event_ref.is_equal(ref) for ref in self.event_ref_list]
+        try:
+            self.death_ref_index = matches.index(True)
+        except ValueError:
+            self.event_ref_list.append(event_ref)
+            self.death_ref_index = len(self.event_ref_list)-1
 
     def get_birth_ref(self):
         """
@@ -488,7 +468,13 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
             L{Event} has been assigned.
         @rtype: EventRef
         """
-        return self.birth_ref
+        if self.birth_ref_index == -1:
+            return None
+        else:
+            try:
+                return self.event_ref_list[self.birth_ref_index]
+            except IndexError:
+                return None
 
     def get_death_ref(self):
         """
@@ -499,16 +485,13 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
             L{Event} has been assigned.
         @rtype: event_ref
         """
-        return self.death_ref
-
-    def add_event_handle(self, event_handle):
-        warn( "Use add_event_ref instead of add_event_handle",
-              DeprecationWarning, 2)
-        # Wrapper for old API
-        # remove when transitition done.
-        event_ref = EventRef()
-        event_ref.set_reference_handle(event_handle)
-        self.add_event_ref( event_ref)
+        if self.death_ref_index == -1:
+            return None
+        else:
+            try:
+                return self.event_ref_list[self.death_ref_index]
+            except IndexError:
+                return None
 
     def add_event_ref(self, event_ref):
         """
@@ -522,17 +505,10 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         """
         if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
-        self.event_ref_list.append(event_ref)
-
-    def get_event_list(self):
-        warn( "Use get_event_ref_list instead of get_event_list",
-              DeprecationWarning, 2)
-        # Wrapper for old API
-        # remove when transitition done.
-        event_handle_list = []
-        for event_ref in self.get_event_ref_list():
-            event_handle_list.append( event_ref.get_reference_handle())
-        return event_handle_list
+        # check whether we already have this ref in the list
+        matches = [event_ref.is_equal(ref) for ref in self.event_ref_list]
+        if matches.count(True) == 0:
+            self.event_ref_list.append(event_ref)
 
     def get_event_ref_list(self):
         """
@@ -544,18 +520,6 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         @rtype: list
         """
         return self.event_ref_list
-
-    def set_event_list(self, event_list):
-        warn( "Use set_event_ref_list instead of set_event_list",
-              DeprecationWarning, 2)
-        # Wrapper for old API
-        # remove when transitition done.
-        event_ref_list = []
-        for event_handle in event_list:
-            event_ref = EventRef()
-            event_ref.set_reference_handle(event_handle)
-            event_ref_list.append( event_ref)
-        self.set_event_ref_list(event_ref_list)
 
     def set_event_ref_list(self, event_ref_list):
         """

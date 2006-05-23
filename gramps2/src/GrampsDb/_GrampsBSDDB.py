@@ -1439,12 +1439,14 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             if birth_handle:
                 event_ref = EventRef()
                 event_ref.ref = birth_handle
-                person.birth_ref = event_ref
+                person.event_ref_list.append(event_ref)
+                person.birth_ref_index = len(person.event_ref_list) - 1
 
             if death_handle:
                 event_ref = EventRef()
                 event_ref.ref = death_handle
-                person.death_ref = event_ref
+                person.event_ref_list.append(event_ref)
+                person.death_ref_index = len(person.event_ref_list) - 1
 
             for event_handle in event_list:
                 event_ref = EventRef()
