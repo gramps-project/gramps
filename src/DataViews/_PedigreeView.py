@@ -134,7 +134,7 @@ class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
         self.text = ""
         if self.person:
             self.text = self.fh.format_person(self.person,self.maxlines)
-            alive = Utils.probably_alive(self.person,self.fh.db)
+            alive = Utils.probably_alive(self.person,self.fh.dbstate.db)
             if alive and self.person.get_gender() == RelLib.Person.MALE:
                 self.bgcolor = (185/256.0, 207/256.0, 231/256.0)
                 self.bordercolor = (32/256.0, 74/256.0, 135/256.0)
@@ -304,7 +304,7 @@ class PersonBoxWidget( gtk.DrawingArea, _PersonWidget_base):
         self.shadow_gc.line_style = gtk.gdk.LINE_SOLID
         self.shadow_gc.line_width = 4
         if self.person:
-            alive = Utils.probably_alive(self.person,self.fh.db)
+            alive = Utils.probably_alive(self.person,self.fh.dbstate.db)
             if alive and self.person.get_gender() == RelLib.Person.MALE:
                 self.bg_gc.set_foreground( self.get_colormap().alloc_color("#b9cfe7"))
                 self.border_gc.set_foreground( self.get_colormap().alloc_color("#204a87"))
@@ -349,16 +349,13 @@ class PersonBoxWidget( gtk.DrawingArea, _PersonWidget_base):
             self.window.draw_rectangle(self.border_gc, False, 0, 0, alloc.width-4, alloc.height-4)
 
 class FormattingHelper:
-    def __init__(self,db):
-        self.db = db
+    def __init__(self,dbstate):
+        self.dbstate = dbstate
     
-    def change_db(self,db):
-        self.db = db
-        
     def format_relation( self, family, line_count):
         text = ""
         for event_ref in family.get_event_ref_list():
-            event = self.db.get_event_from_handle(event_ref.ref)
+            event = self.dbstate.db.get_event_from_handle(event_ref.ref)
             if event and event.get_type() == RelLib.EventType.MARRIAGE:
                 if line_count < 3:
                     return DateHandler.get_date(event)
@@ -377,9 +374,9 @@ class FormattingHelper:
 
     def get_place_name( self, place_handle):
         text = ""
-        place = self.db.get_place_from_handle(place_handle)
+        place = self.dbstate.db.get_place_from_handle(place_handle)
         if place:
-            place_title = self.db.get_place_from_handle(place_handle).get_title()
+            place_title = self.dbstate.db.get_place_from_handle(place_handle).get_title()
             if place_title != "":
                 if len(place_title) > 25:
                     text = place_title[:24]+"..."
@@ -394,7 +391,7 @@ class FormattingHelper:
         if line_count < 3:
             return name
         bdate,bplace,bdate_full,bdate_mod,ddate,dplace,ddate_full,ddate_mod = \
-                        ReportUtils.get_birth_death_strings(self.db,person)
+                        ReportUtils.get_birth_death_strings(self.dbstate.db,person)
         if line_count < 5:
             return "%s\n* %s\n+ %s" % (name,bdate,ddate)
         else:
@@ -410,14 +407,14 @@ class PedigreeView(PageView.PersonNavView):
     def __init__(self,dbstate,uistate):
         PageView.PersonNavView.__init__(self, _('Pedigree'), dbstate, uistate)
         
-        dbstate.connect('database-changed',self.change_db)
-        dbstate.connect('active-changed',self.goto_active_person)
+        self.dbstate = dbstate
+        self.dbstate.connect('database-changed',self.change_db)
+        self.dbstate.connect('active-changed',self.goto_active_person)
         self.force_size = 0 # Automatic resize
         self.tree_style = 0 # Nice tree
         self.show_images = True # Show photos of persons
         self.show_marriage_data = 0 # Hide marriage data by default
-        self.db = dbstate.db
-        self.format_helper = FormattingHelper( self.db)
+        self.format_helper = FormattingHelper( self.dbstate)
 
     def init_parent_signals_cb(self, widget, event):
         # required to properly bootstrap the signal handlers.
@@ -550,17 +547,14 @@ class PedigreeView(PageView.PersonNavView):
         is no need to store the database, since we will get the value
         from self.state.db
         """
-        self.db = db
-        self.format_helper.change_db(db)
         db.connect('person-add', self.person_updated_cb)
         db.connect('person-update', self.person_updated_cb)
         db.connect('person-delete', self.person_updated_cb)
         db.connect('person-rebuild', self.person_rebuild)
-        self.bookmarks.update_bookmarks(db.get_bookmarks())
-        if self.active:
+        self.bookmarks.update_bookmarks(self.dbstate.db.get_bookmarks())
+        if self.dbstate.active:
             self.bookmarks.redraw()
-
-        self.rebuild_trees(None)
+        self.build_tree()
  
     def goto_active_person(self,handle=None):
         self.dirty = True
@@ -605,10 +599,6 @@ class PedigreeView(PageView.PersonNavView):
             self.notebook.set_current_page(self.force_size-2)
 
     def rebuild_trees(self,person_handle):
-        if self.db != self.dbstate.db:
-            print "UNRECOGNIZED DATABASES CHANGE DETECTED! TODO: Fix signals"
-            self.change_db(self.dbstate.db)
-            return
         person = None
         if person_handle:
             person = self.dbstate.db.get_person_from_handle( person_handle)
@@ -617,7 +607,7 @@ class PedigreeView(PageView.PersonNavView):
         # dirty flag, and redraw. If we are not begin displayed, set the dirty
         # flag and do nothing.
         
-        if not self.active or not self.dirty:
+        if not self.dbstate.active or not self.dirty:
             self.dirty = True
             return
         else:
@@ -797,7 +787,7 @@ class PedigreeView(PageView.PersonNavView):
                     if media_list:
                         ph = media_list[0]
                         object_handle = ph.get_reference_handle()
-                        obj = self.db.get_object_from_handle(object_handle)
+                        obj = self.dbstate.db.get_object_from_handle(object_handle)
                         if obj:
                             mtype = obj.get_mime_type()
                             if mtype[0:5] == "image":
@@ -896,7 +886,7 @@ class PedigreeView(PageView.PersonNavView):
         # Add navigation arrows
         if lst[0]:
             l = gtk.Button("◀")
-            childlist = find_children(self.db,lst[0][0])
+            childlist = find_children(self.dbstate.db,lst[0][0])
             if childlist:
                 l.connect("clicked",self.on_show_child_menu)
                 self.tooltips.set_tip(l, _("Jump to child..."))
@@ -1015,7 +1005,7 @@ class PedigreeView(PageView.PersonNavView):
             self.dbstate.change_active_person(defperson)
 
     def edit_person_cb(self,obj,person_handle):
-        person = self.db.get_person_from_handle(person_handle)
+        person = self.dbstate.db.get_person_from_handle(person_handle)
         if person:
             try:
                 EditPerson(self.dbstate, self.uistate, [], person,
@@ -1041,7 +1031,7 @@ class PedigreeView(PageView.PersonNavView):
 
     def copy_person_to_clipboard_cb(self,obj,person_handle):
         """Renders the person data into some lines of text and puts that into the clipboard"""
-        person = self.db.get_person_from_handle(person_handle)
+        person = self.dbstate.db.get_person_from_handle(person_handle)
         if person:
             cb = gtk.clipboard_get(gtk.gdk.SELECTION_CLIPBOARD)
             cb.set_text( self.format_helper.format_person(person,11))
@@ -1063,7 +1053,7 @@ class PedigreeView(PageView.PersonNavView):
         
     def person_button_press_cb(self,obj,event,person_handle):
         if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
-            person = self.db.get_person_from_handle(person_handle)
+            person = self.dbstate.db.get_person_from_handle(person_handle)
             if person:
                 try:
                     EditPerson(self.dbstate, self.uistate, [], person,
@@ -1090,17 +1080,17 @@ class PedigreeView(PageView.PersonNavView):
             # button. The menu consists of the children of the current root
             # person of the tree. Attach a child to each menu item.
 
-            childlist = find_children(self.db,self.dbstate.active)
+            childlist = find_children(self.dbstate.db,self.dbstate.active)
             if len(childlist) == 1:
-                child = self.db.get_person_from_handle(childlist[0])
+                child = self.dbstate.db.get_person_from_handle(childlist[0])
                 if child:
                     self.dbstate.change_active_person(child)
             elif len(childlist) > 1:
                 myMenu = gtk.Menu()
                 for child_handle in childlist:
-                    child = self.db.get_person_from_handle(child_handle)
+                    child = self.dbstate.db.get_person_from_handle(child_handle)
                     cname = NameDisplay.displayer.display(child)
-                    if find_children(self.db,child):
+                    if find_children(self.dbstate.db,child):
                         label = gtk.Label('<b><i>%s</i></b>' % cname)
                     else:
                         label = gtk.Label(cname)
@@ -1172,7 +1162,7 @@ class PedigreeView(PageView.PersonNavView):
         
         mrel = True
         frel = True
-        family = self.db.get_family_from_handle(family_handle)
+        family = self.dbstate.db.get_family_from_handle(family_handle)
         if family != None:
             for child_ref in family.get_child_ref_list():
                 if child_ref.ref == person.handle:
@@ -1182,11 +1172,11 @@ class PedigreeView(PageView.PersonNavView):
                     lst[index] = (person,val,family)
                     father_handle = family.get_father_handle()
                     if father_handle != None:
-                        father = self.db.get_person_from_handle(father_handle)
+                        father = self.dbstate.db.get_person_from_handle(father_handle)
                         self.find_tree(father,(2*index)+1,depth+1,lst,frel)
                     mother_handle = family.get_mother_handle()
                     if mother_handle != None:
-                        mother = self.db.get_person_from_handle(mother_handle)
+                        mother = self.dbstate.db.get_person_from_handle(mother_handle)
                         self.find_tree(mother,(2*index)+2,depth+1,lst,mrel)
 
     def add_nav_portion_to_menu(self,menu):
@@ -1319,7 +1309,7 @@ class PedigreeView(PageView.PersonNavView):
         menu = gtk.Menu()
         menu.set_title(_('People Menu'))
 
-        person = self.db.get_person_from_handle(person_handle)
+        person = self.dbstate.db.get_person_from_handle(person_handle)
         if not person:
             return 0
 
@@ -1349,12 +1339,12 @@ class PedigreeView(PageView.PersonNavView):
         fam_list = person.get_family_handle_list()
         no_spouses = 1
         for fam_id in fam_list:
-            family = self.db.get_family_from_handle(fam_id)
+            family = self.dbstate.db.get_family_from_handle(fam_id)
             if family.get_father_handle() == person.get_handle():
                 sp_id = family.get_mother_handle()
             else:
                 sp_id = family.get_father_handle()
-            spouse = self.db.get_person_from_handle(sp_id)
+            spouse = self.dbstate.db.get_person_from_handle(sp_id)
             if not spouse:
                 continue
 
@@ -1383,13 +1373,13 @@ class PedigreeView(PageView.PersonNavView):
         pfam_list = person.get_parent_family_handle_list()
         no_siblings = 1
         for f in pfam_list:
-            fam = self.db.get_family_from_handle(f)
+            fam = self.dbstate.db.get_family_from_handle(f)
             sib_list = fam.get_child_ref_list()
             for sib_ref in sib_list:
                 sib_id = sib_ref.ref
                 if sib_id == person.get_handle():
                     continue
-                sib = self.db.get_person_from_handle(sib_id)
+                sib = self.dbstate.db.get_person_from_handle(sib_id)
                 if not sib:
                     continue
 
@@ -1398,7 +1388,7 @@ class PedigreeView(PageView.PersonNavView):
                     item.set_submenu(gtk.Menu())
                     sib_menu = item.get_submenu()
 
-                if find_children(self.db,sib):
+                if find_children(self.dbstate.db,sib):
                     label = gtk.Label('<b><i>%s</i></b>' % escape(NameDisplay.displayer.display(sib)))
                 else:
                     label = gtk.Label(escape(NameDisplay.displayer.display(sib)))
@@ -1424,9 +1414,9 @@ class PedigreeView(PageView.PersonNavView):
         # Go over children and build their menu
         item = gtk.MenuItem(_("Children"))
         no_children = 1
-        childlist = find_children(self.db,person)
+        childlist = find_children(self.dbstate.db,person)
         for child_handle in childlist:
-            child = self.db.get_person_from_handle(child_handle)
+            child = self.dbstate.db.get_person_from_handle(child_handle)
             if not child:
                 continue
         
@@ -1435,7 +1425,7 @@ class PedigreeView(PageView.PersonNavView):
                 item.set_submenu(gtk.Menu())
                 child_menu = item.get_submenu()
 
-            if find_children(self.db,child):
+            if find_children(self.dbstate.db,child):
                 label = gtk.Label('<b><i>%s</i></b>' % escape(NameDisplay.displayer.display(child)))
             else:
                 label = gtk.Label(escape(NameDisplay.displayer.display(child)))
@@ -1461,9 +1451,9 @@ class PedigreeView(PageView.PersonNavView):
         # Go over parents and build their menu
         item = gtk.MenuItem(_("Parents"))
         no_parents = 1
-        par_list = find_parents(self.db,person)
+        par_list = find_parents(self.dbstate.db,person)
         for par_id in par_list:
-            par = self.db.get_person_from_handle(par_id)
+            par = self.dbstate.db.get_person_from_handle(par_id)
             if not par:
                 continue
 
@@ -1472,7 +1462,7 @@ class PedigreeView(PageView.PersonNavView):
                 item.set_submenu(gtk.Menu())
                 par_menu = item.get_submenu()
 
-            if find_parents(self.db,par):
+            if find_parents(self.dbstate.db,par):
                 label = gtk.Label('<b><i>%s</i></b>' % escape(NameDisplay.displayer.display(par)))
             else:
                 label = gtk.Label(escape(NameDisplay.displayer.display(par)))
@@ -1498,11 +1488,11 @@ class PedigreeView(PageView.PersonNavView):
         # Go over parents and build their menu
         item = gtk.MenuItem(_("Related"))
         no_related = 1
-        for p_id in find_witnessed_people(self.db,person):
+        for p_id in find_witnessed_people(self.dbstate.db,person):
             #if p_id in linked_persons:
             #    continue    # skip already listed family members
             
-            per = self.db.get_person_from_handle(p_id)
+            per = self.dbstate.db.get_person_from_handle(p_id)
             if not per:
                 continue
 
