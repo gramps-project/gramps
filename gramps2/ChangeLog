@@ -1,3 +1,6 @@
+2006-05-23  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Upgrade LdsOrd.
+
 2006-05-23  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_MapView.py: Catch exceptions of the PixbufLoader that
 	occur if nothing or not an image have been downloaded.

@@ -1409,6 +1409,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             
             # Switch from fixed lds ords to a list
             if lds_seal:
+                lds_seal.type = LdsOrd.SEAL_TO_SPOUSE
+                lds_seal.private = False
                 family.lds_ord_list = [lds_seal]
 
             self.commit_family(family,trans)
@@ -1497,8 +1499,18 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                 convert_url_9(url)
 
             # Switch from fixed lds ords to a list
-            person.lds_ord_list = [item for item
-                                   in [lds_bapt,lds_endow,lds_seal] if item]
+            if lds_bapt:
+                lds_bapt.type = LdsOrd.BAPTISM
+                person.lds_ord_list.append(lds_bapt)
+            if lds_endow:
+                lds_endow.type = LdsOrd.ENDOWMENT
+                person.lds_ord_list.append(lds_endow)
+            if lds_seal:
+                lds_seal.type = LdsOrd.SEAL_TO_PARENTS
+                person.lds_ord_list.append(lds_seal)
+            # Old lds ords did not have private attribute
+            for item in person.lds_ord_list:
+                item.private = False
             
             self.commit_person(person,trans)
             self.update()
