@@ -56,7 +56,7 @@ src/Config/_GrampsIniKeys.py
 src/Config/__init__.py
 src/DataViews/_EventView.py
 src/DataViews/_FamilyList.py
-src/DataViews/_FamilyView.py
+src/DataViews/_RelationView.py
 src/DataViews/__init__.py
 src/DataViews/_MapView.py
 src/DataViews/_MediaView.py

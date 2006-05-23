@@ -20,7 +20,7 @@
 # $Id: __init__.py 6067 2006-03-04 05:24:16Z dallingham $
 
 from _PersonView import PersonView
-from _FamilyView import FamilyView
+from _RelationView import RelationshipView
 from _FamilyList import FamilyListView
 from _PedigreeView import PedigreeView
 from _EventView import EventView
@@ -31,6 +31,6 @@ from _MapView import MapView
 from _RepositoryView import RepositoryView
 
 def get_views():
-    return [PersonView, FamilyView, FamilyListView, PedigreeView,
+    return [PersonView, RelationshipView, FamilyListView, PedigreeView,
             EventView, SourceView, PlaceView, MediaView,
             MapView, RepositoryView]
