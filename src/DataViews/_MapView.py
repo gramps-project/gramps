@@ -327,7 +327,10 @@ class WMSMapTile:
                 print "no more content."
             self.handler_running = False
             self.url_handler.close()
-            self.pixbufloader.close()
+            try:
+                self.pixbufloader.close()
+            except gobject.GError:
+                pass    # dont crash if nothing or not an image has been downloaded
             return False
         self.change_cb()
         return True
@@ -355,7 +358,10 @@ class WMSMapTile:
                 if enable_debug:
                     print "stopping current download"
                 self.url_handler.close()
-                self.pixbufloader.close()
+                try:
+                    self.pixbufloader.close()
+                except gobject.GError:
+                    pass    # dont crash if nothing or not an image has been downloaded
             self.scaled_pixbuf = None
             self.url_handler = urllib.urlopen(self.map_get_url+params)
             self.handler_running = gobject.idle_add(self.idle_handler)
