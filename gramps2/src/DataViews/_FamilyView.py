@@ -167,6 +167,7 @@ class FamilyView(PageView.PersonNavView):
         self.scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.scroll.show()
         self.vbox = gtk.VBox()
+        self.vbox.set_border_width(12)
         self.vbox.show()
         self.child = None
         self.scroll.add_with_viewport(self.vbox)
@@ -272,15 +273,18 @@ class FamilyView(PageView.PersonNavView):
             return False
         self.redrawing = True
 
-        old_child = self.child
-        self.attach = AttachList()
+        for old_child in self.vbox.get_children():
+            self.vbox.remove(old_child)
 
         person = self.dbstate.db.get_person_from_handle(obj)
         if not person:
             self.redrawing = False
             return
 
-        self.row = 5
+        self.write_title(person)
+
+        self.attach = AttachList()
+        self.row = 1
         family_handle_list = person.get_parent_family_handle_list()
         if family_handle_list:
             for family_handle in family_handle_list:
@@ -300,7 +304,6 @@ class FamilyView(PageView.PersonNavView):
             self.row += 1
 
         self.row = 1
-        self.write_title(person)
 
         # Here it is necessary to beat GTK into submission. For some
         # bizzare reason, if you have an empty column that is spanned, 
@@ -334,8 +337,6 @@ class FamilyView(PageView.PersonNavView):
             self.child.attach(d[0], x0, x1, d[3], d[4], d[5], d[6])
 
         self.child.show_all()
-        if old_child:
-            self.vbox.remove(old_child)
 
         self.vbox.pack_start(self.child, False)
         self.redrawing = False
@@ -343,41 +344,61 @@ class FamilyView(PageView.PersonNavView):
 
     def write_title(self, person):
 
+        table = gtk.Table(2,3)
+        table.set_col_spacings(12)
+        table.set_row_spacings(6)
+        
         # name and edit button
         name = NameDisplay.displayer.display(person)
         fmt = '<span size="larger" weight="bold">%s %s</span>'
         text = fmt % (cgi.escape(name), _GenderCode[person.gender])
         label = GrampsWidgets.MarkupLabel(text)
         button = GrampsWidgets.IconButton(self.edit_button_press, person.handle)
-
         hbox = GrampsWidgets.LinkBox(label, button)
+
+        table.attach(hbox, 0, 2, 0, 1)
+
+        eventbox = gtk.EventBox()
+        eventbox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse('#ffffff'))
+        table.attach(eventbox, 1, 2, 1, 2)
+        subtbl = gtk.Table(3, 3)
+        subtbl.set_col_spacings(12)
+        subtbl.set_row_spacings(6)
+        eventbox.add(subtbl)
                 
         # GRAMPS ID
-        self.row = 1
 
-        self.write_person_data("%s:" % _('ID'), person.gramps_id)
+        subtbl.attach(GrampsWidgets.BasicLabel("%s:" % _('ID')),
+                      1, 2, 0, 1, xoptions=gtk.FILL, yoptions=0)
+        subtbl.attach(GrampsWidgets.BasicLabel(person.gramps_id),
+                      2, 3, 0, 1, yoptions=0)
 
-        # birth/death events
-
+        # Birth event.
         birth_ref = person.get_birth_ref()
         if birth_ref:
             birth = self.dbstate.db.get_event_from_handle(birth_ref.ref)
         else:
             birth = None
-        self.write_person_event("%s:" % _('Birth'), birth)
-        
+
+        subtbl.attach(GrampsWidgets.BasicLabel("%s:" % _('Birth')),
+                      1, 2, 1, 2, xoptions=gtk.FILL, yoptions=0)
+        subtbl.attach(GrampsWidgets.BasicLabel(self.format_event(birth)),
+                      2, 3, 1, 2, yoptions=0)
+
         death_ref = person.get_death_ref()
         if death_ref:
             death = self.dbstate.db.get_event_from_handle(death_ref.ref)
         else:
             death = None
-        self.write_person_event("%s:" % _('Death'), death)
 
-        # separator
-        end = self.attach.max_x
-        sep = gtk.HSeparator()
-        sep.show()
-        self.attach.attach(hbox, _NAME_START, end, 0, 1, gtk.FILL|gtk.EXPAND)
+        subtbl.attach(GrampsWidgets.BasicLabel("%s:" % _('Death')),
+                      1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
+        subtbl.attach(GrampsWidgets.BasicLabel(self.format_event(death)),
+                      2, 3, 2, 3, yoptions=0)
+
+
+        mbox = gtk.HBox()
+        mbox.add(table)
 
         # image
         image_list = person.get_media_list()
@@ -388,10 +409,15 @@ class FamilyView(PageView.PersonNavView):
                 image = gtk.Image()
                 image.set_from_pixbuf(pixbuf)
                 image.show()
-                self.attach.attach(image, end, end+1, 0, 4, 
-                                   xoptions=gtk.SHRINK|gtk.FILL)
+                mbox.pack_end(image,False)
 
-        self.attach.attach(sep, 0, self.attach.max_x, 4, 5)
+        mbox.show_all()
+        self.vbox.pack_start(mbox,False)
+
+        # separator
+        sep = gtk.HSeparator()
+        sep.show()
+        self.vbox.pack_start(sep, False)
 
     def write_person_event(self, ename, event):
         if event:
@@ -420,6 +446,33 @@ class FamilyView(PageView.PersonNavView):
             self.write_person_data(ename, pname)
         else:
             self.write_person_data(ename, '')
+
+    def format_event(self, event):
+        if event:
+            dobj = event.get_date_object()
+            phandle = event.get_place_handle()
+            if phandle:
+                pname = self.place_name(phandle)
+            else:
+                pname = None
+
+            value = {
+                'date' : DateHandler.displayer.display(dobj), 
+                'place' : pname, 
+                }
+        else:
+            pname = None
+            dobj = None
+
+        if dobj:
+            if pname:
+                return _('%(date)s in %(place)s') % value
+            else:
+                return '%(date)s' % value
+        elif pname:
+            return pname
+        else:
+            return ''
 
     def write_person_data(self, title, data):
         self.attach.attach(GrampsWidgets.BasicLabel(title), _ALABEL_START, 
