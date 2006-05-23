@@ -1,3 +1,6 @@
+2006-05-22  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_FamilyView.py: start shading of data
+
 2006-05-22  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_WriteGedcom.py: Multiple improvements.
 	* various: Replace get/set_base_handle with get/set_reference_handle.
