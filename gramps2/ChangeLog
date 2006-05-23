@@ -1,3 +1,7 @@
+2006-05-23  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DataViews/_PedigreeView.py: Use dbstate only to not get out of
+	sync with db and active person.
+
 2006-05-23  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_ReadXML.py (start_eventref): Do not reset existing
 	birth/deat reference.
