@@ -453,12 +453,9 @@ class GrampsDbBase(GrampsDBCallback):
         if person.marker.is_custom():
             self.marker_names.add(str(person.marker))
 
-        eref_list = [eref for eref in (person.event_ref_list
-                                       + [person.birth_ref,person.death_ref])
-                     if eref]
-
-        self.event_role_names.update(
-            [str(eref.role) for eref in eref_list if eref.role.is_custom()])
+        self.event_role_names.update([str(eref.role)
+                                      for eref in person.event_ref_list
+                                      if eref.role.is_custom()])
 
         self.name_types.update([str(name.type)
                                 for name in ([person.primary_name]

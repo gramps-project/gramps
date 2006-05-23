@@ -3,8 +3,17 @@
 	sync with db and active person.
 
 2006-05-23  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Convert upgrade
+	to using new birth/death reference approach.
+	* src/GrampsDb/_GrampsDbBase.py (commit_person): Simplify updating
+	of the custom event roles.
+	* src/GrampsDb/_WriteXML.py (write_person): Use methods to get
+	birth/death ref, not raw attributes.
+	* src/RelLib/_Person.py: Convert to using birth and death ref
+	indices.
 	* src/GrampsDb/_ReadXML.py (start_eventref): Do not reset existing
-	birth/deat reference.
+	birth/deat reference; use methods to get birth/death ref, not raw
+	attributes.
 
 2006-05-23  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_RelationView.py: renamed from _FamilyView
