@@ -353,7 +353,7 @@ class FamilyView(PageView.PersonNavView):
         fmt = '<span size="larger" weight="bold">%s %s</span>'
         text = fmt % (cgi.escape(name), _GenderCode[person.gender])
         label = GrampsWidgets.MarkupLabel(text)
-        button = GrampsWidgets.IconButton(self.edit_button_press, person.handle)
+        button = GrampsWidgets.IconButton(self.edit_button_press,person.handle)
         hbox = GrampsWidgets.LinkBox(label, button)
 
         table.attach(hbox, 0, 2, 0, 1)

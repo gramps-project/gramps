@@ -1,3 +1,7 @@
+2006-05-22  Alex Roitman  <shura@gramps-project.org>
+	* data/gramps.schemas.in: Typos.
+	* src/DataViews/_PedigreeView.py (rebuild): Typo.
+
 2006-05-22  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_FamilyView.py: start shading of data
 

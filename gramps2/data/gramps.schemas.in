@@ -548,7 +548,7 @@
           <short>Information shown in statusbar</short>
           <long>If set to 0 or 1, the statusbar will the name and GRAMPS ID
           of an active person. If set to 2, the statusbar will show the
-          relationship of the active person tp the Default Person.</long>
+          relationship of the active person to the Default Person.</long>
         </locale>
       </schema>
 
@@ -563,7 +563,7 @@
           <long>This key determines the style of the surname guessing when
           the new person is added to the database. Use 0 for Father's surname,
           1 for no guessing, 2 for the combination of mother's and father's
-          surnames, and 3 foe the Icelandic style.</long>
+          surnames, and 3 for the Icelandic style.</long>
         </locale>
       </schema>
 
