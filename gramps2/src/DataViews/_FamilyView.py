@@ -549,6 +549,7 @@ class FamilyView(PageView.PersonNavView):
             format = "%s"
 
         label = GrampsWidgets.MarkupLabel(format % cgi.escape(title))
+        label.set_alignment(0,0)
         self.attach.attach(label, _PLABEL_START, _PLABEL_STOP, self.row, 
                            self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
                            yoptions=gtk.FILL|gtk.SHRINK)
@@ -563,7 +564,7 @@ class FamilyView(PageView.PersonNavView):
             vbox.pack_start(GrampsWidgets.LinkBox(link_label, button))
         else:
             link_label = gtk.Label(_('Unknown'))
-            link_label.set_alignment(0, 0.5)
+            link_label.set_alignment(0, 1)
             link_label.show()
             vbox.pack_start(link_label)
             
