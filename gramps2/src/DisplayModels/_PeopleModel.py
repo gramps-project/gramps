@@ -431,13 +431,18 @@ class PeopleModel(gtk.GenericTreeModel):
         return PeopleModel._GENDER[data[PeopleModel._GENDER_COL]]
 
     def column_birth_day(self, data, node):
-        if data[PeopleModel._BIRTH_COL]:
-            b = EventRef()
-            b.unserialize(data[PeopleModel._BIRTH_COL])
-            birth = self.db.get_event_from_handle(b.ref)
-            date_str = DateHandler.get_date(birth)
-            if date_str != "":
-                return cgi.escape(date_str)
+        index = data[PeopleModel._BIRTH_COL]
+        if index != -1:
+            try:
+                local = data[PeopleModel._EVENT_COL][index]
+                b = EventRef()
+                b.unserialize(local)
+                birth = self.db.get_event_from_handle(b.ref)
+                date_str = DateHandler.get_date(birth)
+                if date_str != "":
+                    return cgi.escape(date_str)
+            except:
+                return u''
         
         for event_ref in data[PeopleModel._EVENT_COL]:
             er = EventRef()
@@ -452,13 +457,18 @@ class PeopleModel(gtk.GenericTreeModel):
         return u""
 
     def column_death_day(self, data, node):
-        if data[PeopleModel._DEATH_COL]:
-            dr = EventRef()
-            dr.unserialize(data[PeopleModel._DEATH_COL])
-            death = self.db.get_event_from_handle(dr.ref)
-            date_str = DateHandler.get_date(death)
-            if date_str != "":
-                return cgi.escape(date_str)
+        index = data[PeopleModel._DEATH_COL]
+        if index != -1:
+            try:
+                local = data[PeopleModel._EVENT_COL][index]
+                ref = EventRef()
+                ref.unserialize(local)
+                event = self.db.get_event_from_handle(ref.ref)
+                date_str = DateHandler.get_date(event)
+                if date_str != "":
+                    return cgi.escape(date_str)
+            except:
+                return u''
         
         for event_ref in data[PeopleModel._EVENT_COL]:
             er = EventRef()
@@ -473,25 +483,35 @@ class PeopleModel(gtk.GenericTreeModel):
         return u""
 
     def column_cause_of_death(self, data, node):
-        if data[PeopleModel._DEATH_COL]:
-            dr = EventRef()
-            dr.unserialize(data[PeopleModel._DEATH_COL])
-            return self.db.get_event_from_handle(dr.ref).get_cause()
+        index = data[PeopleModel._DEATH_COL]
+        if index != -1:
+            try:
+                local = data[PeopleModel._EVENT_COL][index]
+                dr = EventRef()
+                dr.unserialize(local)
+                return self.db.get_event_from_handle(dr.ref).get_cause()
+            except:
+                return u''
         else:
             return u""
         
     def column_birth_place(self, data, node):
-        if data[PeopleModel._BIRTH_COL]:
-            br = EventRef()
-            br.unserialize(data[PeopleModel._BIRTH_COL])
-            event = self.db.get_event_from_handle(br.ref)
-            if event:
-                place_handle = event.get_place_handle()
-                if place_handle:
-                    place = self.db.get_place_from_handle(place_handle)
-                    place_title = place.get_title()
-                    if place_title != "":
-                        return cgi.escape(place_title)
+        index = data[PeopleModel._BIRTH_COL]
+        if index != -1:
+            try:
+                local = data[PeopleModel._EVENT_COL][index]
+                br = EventRef()
+                br.unserialize(local)
+                event = self.db.get_event_from_handle(br.ref)
+                if event:
+                    place_handle = event.get_place_handle()
+                    if place_handle:
+                        place = self.db.get_place_from_handle(place_handle)
+                        place_title = place.get_title()
+                        if place_title != "":
+                            return cgi.escape(place_title)
+            except:
+                return u''
         
         for event_ref in data[PeopleModel._EVENT_COL]:
             er = EventRef()
@@ -509,17 +529,22 @@ class PeopleModel(gtk.GenericTreeModel):
         return u""
 
     def column_death_place(self, data, node):
-        if data[PeopleModel._DEATH_COL]:
-            dr = EventRef()
-            dr.unserialize(data[PeopleModel._DEATH_COL])
-            event = self.db.get_event_from_handle(dr.ref)
-            if event:
-                place_handle = event.get_place_handle()
-                if place_handle:
-                    place = self.db.get_place_from_handle(place_handle)
-                    place_title = place.get_title()
-                    if place_title != "":
-                        return cgi.escape(place_title)
+        index = data[PeopleModel._DEATH_COL]
+        if index != -1:
+            try:
+                local = data[PeopleModel._EVENT_COL][index]
+                dr = EventRef()
+                dr.unserialize(local)
+                event = self.db.get_event_from_handle(dr.ref)
+                if event:
+                    place_handle = event.get_place_handle()
+                    if place_handle:
+                        place = self.db.get_place_from_handle(place_handle)
+                        place_title = place.get_title()
+                        if place_title != "":
+                            return cgi.escape(place_title)
+            except:
+                return u''
         
         for event_ref in data[PeopleModel._EVENT_COL]:
             er = EventRef()

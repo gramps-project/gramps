@@ -65,6 +65,9 @@ class LinkLabel(gtk.EventBox):
         self.connect('enter-notify-event', self.enter_text, handle)
         self.connect('leave-notify-event', self.leave_text, handle)
         self.connect('realize', realize_cb)
+
+    def set_padding(self, x, y):
+        self.label.set_padding(x, y)
         
     def enter_text(self, obj, event, handle):
         text = '<span foreground="blue" underline="single">%s</span>' % self.orig_text

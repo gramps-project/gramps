@@ -272,3 +272,17 @@ def update_secondary_empty(sec_table,handle,data):
 
 def update_secondary_inmem(sec_table,handle,data):
     sec_table[str(data[1])] = str(handle)
+
+def set_birth_death_index(db, person):
+    birth = -1
+    death = -1
+    index = 0
+    for ref in person.get_event_ref_list():
+        event = db.get_event_from_handle(ref.ref)
+        if int(event.get_type()) == RelLib.EventType.BIRTH and birth == -1:
+            birth = index
+        elif int(event.get_type()) == RelLib.EventType.DEATH and death == -1:
+            death = index
+    person.birth_ref_index = birth
+    person.death_ref_index = death
+        
