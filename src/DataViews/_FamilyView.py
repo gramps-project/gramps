@@ -89,6 +89,7 @@ class FamilyView(PageView.PersonNavView):
         self.show_details = Config.get(Config.FAMILY_DETAILS)
         self.connect_to_db(dbstate.db)
         self.redrawing = False
+        self.color = gtk.TextView().style.white
         self.child = None
 
     def build_tree(self):
@@ -359,7 +360,7 @@ class FamilyView(PageView.PersonNavView):
         table.attach(hbox, 0, 2, 0, 1)
 
         eventbox = gtk.EventBox()
-        eventbox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse('#ffffff'))
+        eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
         table.attach(eventbox, 1, 2, 1, 2)
         subtbl = gtk.Table(3, 3)
         subtbl.set_col_spacings(12)
@@ -413,11 +414,6 @@ class FamilyView(PageView.PersonNavView):
 
         mbox.show_all()
         self.vbox.pack_start(mbox,False)
-
-        # separator
-        sep = gtk.HSeparator()
-        sep.show()
-        self.vbox.pack_start(sep, False)
 
     def write_person_event(self, ename, event):
         if event:
@@ -531,19 +527,7 @@ class FamilyView(PageView.PersonNavView):
             return
         self.write_label("%s:" % _('Parents'), family, True)
         self.write_person(_('Father'), family.get_father_handle())
-        if self.show_details:
-            value = self.info_string(family.get_father_handle())
-            if value:
-                self.attach.attach(GrampsWidgets.BasicLabel(value), _PDTLS_START, 
-                                   _PDTLS_STOP, self.row, self.row+1)
-                self.row += 1
         self.write_person(_('Mother'), family.get_mother_handle())
-        if self.show_details:
-            value = self.info_string(family.get_mother_handle())
-            if value:
-                self.attach.attach(GrampsWidgets.BasicLabel(value), _PDTLS_START, 
-                                   _PDTLS_STOP, self.row, self.row+1)
-                self.row += 1
 
         if self.show_siblings:
             active = self.dbstate.active.handle
@@ -566,22 +550,36 @@ class FamilyView(PageView.PersonNavView):
 
         label = GrampsWidgets.MarkupLabel(format % cgi.escape(title))
         self.attach.attach(label, _PLABEL_START, _PLABEL_STOP, self.row, 
-                           self.row+1, xoptions=gtk.FILL|gtk.SHRINK)
+                           self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
+                           yoptions=gtk.FILL|gtk.SHRINK)
 
+        vbox = gtk.VBox()
+        
         if handle:
             link_label = GrampsWidgets.LinkLabel(self.get_name(handle, True), 
                                                  self.button_press, handle)
+            link_label.modify_bg(gtk.STATE_NORMAL, self.color)
             button = GrampsWidgets.IconButton(self.edit_button_press, handle)
-            self.attach.attach(GrampsWidgets.LinkBox(link_label, button), 
-                               _PDATA_START, _PDATA_STOP, self.row, self.row+1)
+            vbox.pack_start(GrampsWidgets.LinkBox(link_label, button))
         else:
             link_label = gtk.Label(_('Unknown'))
             link_label.set_alignment(0, 0.5)
             link_label.show()
-            self.attach.attach(link_label, 
-                               _PDATA_START, _PDATA_STOP, self.row, self.row+1)
+            vbox.pack_start(link_label)
             
+        if self.show_details:
+            value = self.info_string(handle)
+            if value:
+                vbox.pack_start(GrampsWidgets.BasicLabel(value))
+
+        eventbox = gtk.EventBox()
+        eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+        eventbox.add(vbox)
+        
+        self.attach.attach(eventbox, _PDATA_START, _PDATA_STOP,
+                           self.row, self.row+1)
         self.row += 1
+
 
     def write_child(self, title, handle):
         if title:
