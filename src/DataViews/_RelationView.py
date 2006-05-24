@@ -90,8 +90,17 @@ class RelationshipView(PageView.PersonNavView):
         self.show_details = Config.get(Config.FAMILY_DETAILS)
         self.connect_to_db(dbstate.db)
         self.redrawing = False
+        self.use_shade = Config.get(Config.RELATION_SHADE)
         self.color = gtk.TextView().style.white
+        #self.color = gtk.Label().style.light[gtk.STATE_NORMAL]
         self.child = None
+        Config.client.notify_add("/apps/gramps/preferences/relation-shade",
+                                 self.shade_update)
+
+    def shade_update(self, client, cnxn_id, entry, data):
+        self.use_shade = Config.get(Config.RELATION_SHADE)
+        self.uistate.modify_statusbar()
+        self.redraw()
 
     def build_tree(self):
         if self.active:
@@ -361,7 +370,8 @@ class RelationshipView(PageView.PersonNavView):
         table.attach(hbox, 0, 2, 0, 1)
 
         eventbox = gtk.EventBox()
-        eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+        if self.use_shade:
+            eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
         table.attach(eventbox, 1, 2, 1, 2)
         subtbl = gtk.Table(3, 3)
         subtbl.set_col_spacings(12)
@@ -539,7 +549,8 @@ class RelationshipView(PageView.PersonNavView):
             label = _("Siblings")
             if child_list:
                 eventbox = gtk.EventBox()
-                eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+                if self.use_shade:
+                    eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
                 vbox = gtk.VBox()
                 label_cell = self.build_label_cell(_('Siblings'))
                 label_cell.set_alignment(0,0)
@@ -576,7 +587,8 @@ class RelationshipView(PageView.PersonNavView):
         if handle:
             link_label = GrampsWidgets.LinkLabel(self.get_name(handle, True), 
                                                  self.button_press, handle)
-            link_label.modify_bg(gtk.STATE_NORMAL, self.color)
+            if self.use_shade:
+                link_label.modify_bg(gtk.STATE_NORMAL, self.color)
             button = GrampsWidgets.IconButton(self.edit_button_press, handle)
             vbox.pack_start(GrampsWidgets.LinkBox(link_label, button))
         else:
@@ -591,7 +603,8 @@ class RelationshipView(PageView.PersonNavView):
                 vbox.pack_start(GrampsWidgets.BasicLabel(value))
 
         eventbox = gtk.EventBox()
-        eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+        if self.use_shade:
+            eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
         eventbox.add(vbox)
         
         self.attach.attach(eventbox, _PDATA_START, _PDATA_STOP,
@@ -610,7 +623,8 @@ class RelationshipView(PageView.PersonNavView):
     def write_child(self, vbox, handle):
         link_label = GrampsWidgets.LinkLabel(self.get_name(handle, True), 
                                              self.button_press, handle)
-        link_label.modify_bg(gtk.STATE_NORMAL, self.color)
+        if self.use_shade:
+            link_label.modify_bg(gtk.STATE_NORMAL, self.color)
         link_label.set_padding(3, 0)
         button = GrampsWidgets.IconButton(self.edit_button_press, handle)
         vbox.pack_start(GrampsWidgets.LinkBox(link_label, button))
@@ -720,7 +734,8 @@ class RelationshipView(PageView.PersonNavView):
         child_list = family.get_child_ref_list()
         if child_list:
             eventbox = gtk.EventBox()
-            eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+            if self.use_shade:
+                eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
             vbox = gtk.VBox()
             label_cell = self.build_label_cell(_('Children'))
             label_cell.set_alignment(0,0)
