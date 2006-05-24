@@ -1411,6 +1411,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             if lds_seal:
                 lds_seal.type = LdsOrd.SEAL_TO_SPOUSE
                 lds_seal.private = False
+                lds_seal.status = lds_seal_spouse_dict_9[lds_seal.status]
                 family.lds_ord_list = [lds_seal]
 
             self.commit_family(family,trans)
@@ -1501,12 +1502,15 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             # Switch from fixed lds ords to a list
             if lds_bapt:
                 lds_bapt.type = LdsOrd.BAPTISM
+                lds_bapt.status = lds_bapt_dict_9[lds_bapt.status]
                 person.lds_ord_list.append(lds_bapt)
             if lds_endow:
                 lds_endow.type = LdsOrd.ENDOWMENT
+                lds_endow.status = lds_bapt_dict_9[lds_endow.status]
                 person.lds_ord_list.append(lds_endow)
             if lds_seal:
                 lds_seal.type = LdsOrd.SEAL_TO_PARENTS
+                lds_seal.status = lds_seal_parent_dict_9[lds_seal.status]
                 person.lds_ord_list.append(lds_seal)
             # Old lds ords did not have private attribute
             for item in person.lds_ord_list:
@@ -1655,6 +1659,44 @@ def convert_url_9(url):
         new_type = UrlType.CUSTOM
     url.type = UrlType(new_type)
     
+lds_bapt_dict_9 = {
+    0: LdsOrd.STATUS_NONE,
+    1: LdsOrd.STATUS_CHILD,
+    2: LdsOrd.STATUS_CLEARED,
+    3: LdsOrd.STATUS_COMPLETED,
+    4: LdsOrd.STATUS_INFANT,
+    5: LdsOrd.STATUS_PRE_1970,
+    6: LdsOrd.STATUS_QUALIFIED,
+    7: LdsOrd.STATUS_STILLBORN,
+    8: LdsOrd.STATUS_SUBMITTED,
+    9: LdsOrd.STATUS_UNCLEARED,
+    }
+
+lds_seal_parent_dict_9 = {
+    0: LdsOrd.STATUS_NONE,
+    1: LdsOrd.STATUS_BIC,
+    2: LdsOrd.STATUS_CLEARED,
+    3: LdsOrd.STATUS_COMPLETED,
+    4: LdsOrd.STATUS_DNS,
+    5: LdsOrd.STATUS_PRE_1970,
+    6: LdsOrd.STATUS_QUALIFIED,
+    7: LdsOrd.STATUS_STILLBORN,
+    8: LdsOrd.STATUS_SUBMITTED,
+    9: LdsOrd.STATUS_UNCLEARED,
+    }
+lds_seal_spouse_dict_9 = {
+    0: LdsOrd.STATUS_NONE,
+    1: LdsOrd.STATUS_CANCELED,
+    2: LdsOrd.STATUS_CLEARED,
+    3: LdsOrd.STATUS_COMPLETED,
+    4: LdsOrd.STATUS_DNS,
+    5: LdsOrd.STATUS_PRE_1970,
+    6: LdsOrd.STATUS_QUALIFIED,
+    7: LdsOrd.STATUS_DNS_CAN,
+    8: LdsOrd.STATUS_SUBMITTED,
+    9: LdsOrd.STATUS_UNCLEARED,
+    }
+
 def low_level_9(the_db,update):
     """
     This is a low-level repair routine.
