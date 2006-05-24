@@ -5,6 +5,17 @@
 	* data/gramps.schemas.in: make shading optional
 
 2006-05-23  Alex Roitman  <shura@gramps-project.org>
+	* src/Utils.py: move event/attr constants to GedcomInfo.
+	* src/plugins/TestcaseGenerator.py: Use new methods.
+	* src/DisplayTabs/_LdsModel.py: Use new methods.
+	* src/Editors/_EditLdsOrd.py: Use new methods.
+	* src/RelLib/_LdsOrd.py: Add new methods.
+	* src/GrampsDb/_WriteGedcom.py: Do not import unused module.
+	* src/GrampsDb/_ReadXML.py: Use methods from LdsOrd.
+	* src/lds.py: Rename to LdsUtils.py
+	* src/GrampsDb/_ReadGedcom.py: Use new module name.
+	* src/Makefile.am (gdir_PYTHON): Ship new file.
+
 	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Upgrade LdsOrd.
 
 2006-05-23  Martin Hawlisch  <Martin.Hawlisch@gmx.de>

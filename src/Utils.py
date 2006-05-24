@@ -77,8 +77,6 @@ confidence = {
     RelLib.SourceRef.CONF_LOW       : _("Low"),
     RelLib.SourceRef.CONF_VERY_LOW  : _("Very Low"),
    }
-def format_confidence( type):
-    return confidence.get(type[0],_("Invalid id %d ('%s')")%type)
 
 family_rel_descriptions = {
     RelLib.FamilyRelType.MARRIED     : _("A legal or common-law relationship "
@@ -93,74 +91,6 @@ family_rel_descriptions = {
                                          "a man and woman"),
     }
 
-
-#-------------------------------------------------------------------------
-#
-# Integer to GEDCOM tag mappings for constants
-#
-#-------------------------------------------------------------------------
-familyConstantEvents = {
-    RelLib.EventType.ANNULMENT  : "ANUL",
-    RelLib.EventType.DIV_FILING : "DIVF",
-    RelLib.EventType.DIVORCE    : "DIV",
-    RelLib.EventType.ENGAGEMENT : "ENGA",
-    RelLib.EventType.MARR_BANNS : "MARB",
-    RelLib.EventType.MARR_CONTR : "MARC",
-    RelLib.EventType.MARR_LIC   : "MARL",
-    RelLib.EventType.MARR_SETTL : "MARS",
-    RelLib.EventType.MARRIAGE   : "MARR"
-    }
-
-personalConstantEvents = {
-    RelLib.EventType.ADOPT            : "ADOP",
-    RelLib.EventType.ADULT_CHRISTEN   : "CHRA",
-    RelLib.EventType.BIRTH            : "BIRT",
-    RelLib.EventType.DEATH            : "DEAT",
-    RelLib.EventType.BAPTISM          : "BAPM",
-    RelLib.EventType.BAR_MITZVAH      : "BARM",
-    RelLib.EventType.BAS_MITZVAH      : "BASM",
-    RelLib.EventType.BLESS            : "BLES",
-    RelLib.EventType.BURIAL           : "BURI",
-    RelLib.EventType.CAUSE_DEATH      : "CAUS",
-    RelLib.EventType.ORDINATION       : "ORDI",
-    RelLib.EventType.CENSUS           : "CENS",
-    RelLib.EventType.CHRISTEN         : "CHR" ,
-    RelLib.EventType.CONFIRMATION     : "CONF",
-    RelLib.EventType.CREMATION        : "CREM",
-    RelLib.EventType.DEGREE           : "_DEG", 
-    RelLib.EventType.DIV_FILING       : "DIVF",
-    RelLib.EventType.EDUCATION        : "EDUC",
-    RelLib.EventType.ELECTED          : "",
-    RelLib.EventType.EMIGRATION       : "EMIG",
-    RelLib.EventType.FIRST_COMMUN     : "FCOM",
-    RelLib.EventType.GRADUATION       : "GRAD",
-    RelLib.EventType.MED_INFO         : "_MDCL", 
-    RelLib.EventType.MILITARY_SERV    : "_MILT", 
-    RelLib.EventType.NATURALIZATION   : "NATU",
-    RelLib.EventType.NOB_TITLE        : "TITL",
-    RelLib.EventType.NUM_MARRIAGES    : "NMR",
-    RelLib.EventType.IMMIGRATION      : "IMMI",
-    RelLib.EventType.OCCUPATION       : "OCCU",
-    RelLib.EventType.PROBATE          : "PROB",
-    RelLib.EventType.PROPERTY         : "PROP",
-    RelLib.EventType.RELIGION         : "RELI",
-    RelLib.EventType.RESIDENCE        : "RESI", 
-    RelLib.EventType.RETIREMENT       : "RETI",
-    RelLib.EventType.WILL             : "WILL",
-    }
-
-familyConstantAttributes = {
-    RelLib.AttributeType.NUM_CHILD   : "NCHI",
-    }
-
-personalConstantAttributes = {
-    RelLib.AttributeType.CASTE       : "CAST",
-    RelLib.AttributeType.DESCRIPTION : "DSCR",
-    RelLib.AttributeType.ID          : "IDNO",
-    RelLib.AttributeType.NATIONAL    : "NATI",
-    RelLib.AttributeType.NUM_CHILD   : "NCHI",
-    RelLib.AttributeType.SSN         : "SSN",
-    }
 
 #-------------------------------------------------------------------------
 #
@@ -361,8 +291,9 @@ def find_file( filename):
     except:
         pass
     
-    # Build list of elternate encodings
-    encodings = [sys.getfilesystemencoding(), locale.getpreferredencoding(), 'UTF-8', 'ISO-8859-1']
+    # Build list of alternate encodings
+    encodings = [sys.getfilesystemencoding(), locale.getpreferredencoding(),
+                 'UTF-8', 'ISO-8859-1']
     encodings = list(set(encodings))
     for enc in encodings:
         try:

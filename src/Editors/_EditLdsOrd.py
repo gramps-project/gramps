@@ -51,12 +51,63 @@ import const
 import RelLib
 import GrampsDisplay
 import NameDisplay
-import lds
+import LdsUtils
 
 from _EditSecondary import EditSecondary
 
 from DisplayTabs import SourceEmbedList,NoteTab
 from GrampsWidgets import *
+
+_DATA_MAP = {
+    RelLib.LdsOrd.BAPTISM : [
+        RelLib.LdsOrd.STATUS_NONE,
+        RelLib.LdsOrd.STATUS_CHILD,
+        RelLib.LdsOrd.STATUS_CLEARED,
+        RelLib.LdsOrd.STATUS_COMPLETED,
+        RelLib.LdsOrd.STATUS_INFANT,
+        RelLib.LdsOrd.STATUS_PRE_1970,
+        RelLib.LdsOrd.STATUS_QUALIFIED,
+        RelLib.LdsOrd.STATUS_STILLBORN,
+        RelLib.LdsOrd.STATUS_SUBMITTED,
+        RelLib.LdsOrd.STATUS_UNCLEARED,
+        ],
+    RelLib.LdsOrd.ENDOWMENT: [
+        RelLib.LdsOrd.STATUS_NONE,
+        RelLib.LdsOrd.STATUS_CHILD,
+        RelLib.LdsOrd.STATUS_CLEARED,
+        RelLib.LdsOrd.STATUS_COMPLETED,
+        RelLib.LdsOrd.STATUS_INFANT,
+        RelLib.LdsOrd.STATUS_PRE_1970,
+        RelLib.LdsOrd.STATUS_QUALIFIED,
+        RelLib.LdsOrd.STATUS_STILLBORN,
+        RelLib.LdsOrd.STATUS_SUBMITTED,
+        RelLib.LdsOrd.STATUS_UNCLEARED,
+        ],
+    RelLib.LdsOrd.SEAL_TO_PARENTS:[
+        RelLib.LdsOrd.STATUS_NONE,
+        RelLib.LdsOrd.STATUS_BIC,
+        RelLib.LdsOrd.STATUS_CLEARED,
+        RelLib.LdsOrd.STATUS_COMPLETED,
+        RelLib.LdsOrd.STATUS_DNS,
+        RelLib.LdsOrd.STATUS_PRE_1970,
+        RelLib.LdsOrd.STATUS_QUALIFIED,
+        RelLib.LdsOrd.STATUS_STILLBORN,
+        RelLib.LdsOrd.STATUS_SUBMITTED,
+        RelLib.LdsOrd.STATUS_UNCLEARED,
+        ],
+    RelLib.LdsOrd.SEAL_TO_SPOUSE :[
+        RelLib.LdsOrd.STATUS_NONE,
+        RelLib.LdsOrd.STATUS_CANCELED,
+        RelLib.LdsOrd.STATUS_CLEARED,
+        RelLib.LdsOrd.STATUS_COMPLETED,
+        RelLib.LdsOrd.STATUS_DNS,
+        RelLib.LdsOrd.STATUS_PRE_1970,
+        RelLib.LdsOrd.STATUS_QUALIFIED,
+        RelLib.LdsOrd.STATUS_DNS_CAN,
+        RelLib.LdsOrd.STATUS_SUBMITTED,
+        RelLib.LdsOrd.STATUS_UNCLEARED,
+        ],
+    }
 
 #-------------------------------------------------------------------------
 #
@@ -68,44 +119,6 @@ class EditLdsOrd(EditSecondary):
     Displays a dialog that allows the user to edit an attribute.
     """
 
-    _data_map = {
-        RelLib.LdsOrd.BAPTISM : [
-            (_("<No Status>"), RelLib.LdsOrd.STATUS_NONE),
-            (_("Child"), RelLib.LdsOrd.STATUS_CHILD),
-            (_("Cleared"), RelLib.LdsOrd.STATUS_CLEARED),
-            (_("Completed"), RelLib.LdsOrd.STATUS_COMPLETED),
-            (_("Infant"), RelLib.LdsOrd.STATUS_INFANT),
-            (_("Pre-1970"), RelLib.LdsOrd.STATUS_PRE_1970),
-            (_("Qualified"), RelLib.LdsOrd.STATUS_QUALIFIED),
-            (_("Stillborn"), RelLib.LdsOrd.STATUS_STILLBORN),
-            (_("Submitted"), RelLib.LdsOrd.STATUS_SUBMITTED),
-            (_("Uncleared"), RelLib.LdsOrd.STATUS_UNCLEARED),
-            ],
-        RelLib.LdsOrd.ENDOWMENT: [
-            (_("<No Status>"), RelLib.LdsOrd.STATUS_NONE),
-            (_("Child"), RelLib.LdsOrd.STATUS_CHILD),
-            (_("Cleared"), RelLib.LdsOrd.STATUS_CLEARED),
-            (_("Completed"), RelLib.LdsOrd.STATUS_COMPLETED),
-            (_("Infant"), RelLib.LdsOrd.STATUS_INFANT),
-            (_("Pre-1970"), RelLib.LdsOrd.STATUS_PRE_1970),
-            (_("Qualified"), RelLib.LdsOrd.STATUS_QUALIFIED),
-            (_("Stillborn"), RelLib.LdsOrd.STATUS_STILLBORN),
-            (_("Submitted"), RelLib.LdsOrd.STATUS_SUBMITTED),
-            (_("Uncleared"), RelLib.LdsOrd.STATUS_UNCLEARED),
-            ],
-        RelLib.LdsOrd.SEAL_TO_PARENTS:[
-            (_("<No Status>"), RelLib.LdsOrd.STATUS_NONE),
-            (_("BIC"), RelLib.LdsOrd.STATUS_BIC),
-            (_("Cleared"), RelLib.LdsOrd.STATUS_CLEARED),
-            (_("Completed"), RelLib.LdsOrd.STATUS_COMPLETED),
-            (_("DNS"), RelLib.LdsOrd.STATUS_DNS),
-            (_("Pre-1970"), RelLib.LdsOrd.STATUS_PRE_1970),
-            (_("Qualified"), RelLib.LdsOrd.STATUS_QUALIFIED),
-            (_("Stillborn"), RelLib.LdsOrd.STATUS_STILLBORN),
-            (_("Submitted"), RelLib.LdsOrd.STATUS_SUBMITTED),
-            (_("Uncleared"), RelLib.LdsOrd.STATUS_UNCLEARED),
-            ],
-        }
 
     def __init__(self, state, uistate, track, attrib, callback):
         """
@@ -131,6 +144,11 @@ class EditLdsOrd(EditSecondary):
         self.define_cancel_button(self.top.get_widget('cancel'))
         self.define_help_button(self.top.get_widget('help'),'adv-at')
         self.define_ok_button(self.top.get_widget('ok'),self.save)
+
+    def _get_types(self):
+        return (RelLib.LdsOrd.BAPTISM,
+                RelLib.LdsOrd.ENDOWMENT,
+                RelLib.LdsOrd.SEAL_TO_PARENTS)
 
     def _setup_fields(self):
 
@@ -164,14 +182,13 @@ class EditLdsOrd(EditSecondary):
             self.top.get_widget('type'),
             self.obj.set_type,
             self.obj.get_type,
-            [(_('Baptism'),RelLib.LdsOrd.BAPTISM),
-             (_('Endowment'),RelLib.LdsOrd.ENDOWMENT),
-             (_('Sealed to Parents'),RelLib.LdsOrd.SEAL_TO_PARENTS)],
+            [(item[1],item[0]) for item in RelLib.LdsOrd._TYPE_MAP
+             if item[0] in self._get_types()],
             self.db.readonly,
             changed=self.ord_type_changed)
 
         temple_list = []
-        for val in lds.temples:
+        for val in LdsUtils.temples:
             temple_list.append((val[1],val[0]))
 
         self.temple_menu = MonitoredStrMenu(
@@ -185,7 +202,8 @@ class EditLdsOrd(EditSecondary):
             self.top.get_widget('status'),
             self.obj.set_status,
             self.obj.get_status,
-            self._data_map[self.obj.get_type()],
+            [(item[1],item[0]) for item in RelLib.LdsOrd._STATUS_MAP
+             if item[0] in _DATA_MAP[self.obj.get_type()] ],
             self.db.readonly)
 
         self.ord_type_changed()
@@ -204,7 +222,9 @@ class EditLdsOrd(EditSecondary):
             self.parents.show()
             self.parents_label.show()
             self.parents_select.show()
-        self.status_menu.change_menu(self._data_map[self.obj.get_type()])
+        new_data = [(item[1],item[0]) for item in RelLib.LdsOrd._STATUS_MAP
+                    if item[0] in _DATA_MAP[self.obj.get_type()] ]
+        self.status_menu.change_menu(new_data)
 
     def _create_tabbed_pages(self):
         notebook = gtk.Notebook()
@@ -235,8 +255,10 @@ class EditLdsOrd(EditSecondary):
         handle = self.obj.get_family_handle()
         if handle:
             family = self.dbstate.db.get_family_from_handle(handle)
-            f = self.dbstate.db.get_person_from_handle(family.get_father_handle())
-            m = self.dbstate.db.get_person_from_handle(family.get_mother_handle())
+            f = self.dbstate.db.get_person_from_handle(
+                family.get_father_handle())
+            m = self.dbstate.db.get_person_from_handle(
+                family.get_mother_handle())
             if f and m:
                 label = _("%(father)s and %(mother)s [%(gramps_id)s]") % {
                     'father' : NameDisplay.displayer.display(f),
@@ -309,6 +331,9 @@ class EditFamilyLdsOrd(EditSecondary):
         self.define_help_button(self.top.get_widget('help'),'adv-at')
         self.define_ok_button(self.top.get_widget('ok'),self.save)
 
+    def _get_types(self):
+        return (RelLib.LdsOrd.SEAL_TO_SPOUSE,)
+
     def _setup_fields(self):
 
         self.parents_label = self.top.get_widget('parents_label')
@@ -341,11 +366,12 @@ class EditFamilyLdsOrd(EditSecondary):
             self.top.get_widget('type'),
             self.obj.set_type,
             self.obj.get_type,
-            [(_('Sealed to Spouse'),RelLib.LdsOrd.SEAL_TO_SPOUSE)],
+            [(item[1],item[0]) for item in RelLib.LdsOrd._TYPE_MAP
+             if item[0] in self._get_types()],
             self.db.readonly)
 
         temple_list = []
-        for val in lds.temples:
+        for val in LdsUtils.temples:
             temple_list.append((val[1],val[0]))
 
         self.temple_menu = MonitoredStrMenu(
@@ -359,16 +385,8 @@ class EditFamilyLdsOrd(EditSecondary):
             self.top.get_widget('status'),
             self.obj.set_status,
             self.obj.get_status,
-            [(_('<No Status>'), RelLib.LdsOrd.STATUS_NONE),
-             (_('Canceled'), RelLib.LdsOrd.STATUS_CANCELED),
-             (_("Cleared"), RelLib.LdsOrd.STATUS_CLEARED),
-             (_("Completed"), RelLib.LdsOrd.STATUS_COMPLETED),
-             (_("DNS"), RelLib.LdsOrd.STATUS_DNS),
-             (_("Pre-1970"), RelLib.LdsOrd.STATUS_PRE_1970),
-             (_("Qualified"), RelLib.LdsOrd.STATUS_QUALIFIED),
-             (_("DNS/CAN"), RelLib.LdsOrd.STATUS_DNS_CAN),
-             (_("Submitted"), RelLib.LdsOrd.STATUS_SUBMITTED),
-             (_("Uncleared"), RelLib.LdsOrd.STATUS_UNCLEARED),],
+            [(item[1],item[0]) for item in RelLib.LdsOrd._STATUS_MAP
+             if item[0] in _DATA_MAP[self.obj.get_type()]],
             self.db.readonly)
 
     def _create_tabbed_pages(self):

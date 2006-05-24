@@ -24,6 +24,12 @@
 LDS Ordinance class for GRAMPS
 """
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
 from warnings import warn
 
 #-------------------------------------------------------------------------
@@ -43,34 +49,65 @@ from _PrivacyBase import PrivacyBase
 # LDS Ordinance class
 #
 #-------------------------------------------------------------------------
-class LdsOrd(SecondaryObject,SourceBase,NoteBase,DateBase,PlaceBase,PrivacyBase):
+class LdsOrd(SecondaryObject,SourceBase,NoteBase,
+             DateBase,PlaceBase,PrivacyBase):
     """
     Class that contains information about LDS Ordinances. LDS
     ordinances are similar to events, but have very specific additional
     information related to data collected by the Church of Jesus Christ
-    of Latter Day Saints (Morman church). The LDS church is the largest
+    of Latter Day Saints (Mormon church). The LDS church is the largest
     source of genealogical information in the United States.
     """
 
-    BAPTISM = 0
-    ENDOWMENT = 1
+    BAPTISM         = 0
+    ENDOWMENT       = 1
     SEAL_TO_PARENTS = 2
-    SEAL_TO_SPOUSE = 3
+    SEAL_TO_SPOUSE  = 3
+    
+    DEFAULT_TYPE = BAPTISM
 
-    STATUS_NONE = 0
-    STATUS_BIC  = 1
-    STATUS_CANCELED = 2
-    STATUS_CHILD = 3
-    STATUS_CLEARED = 4
+
+    STATUS_NONE      = 0
+    STATUS_BIC       = 1
+    STATUS_CANCELED  = 2
+    STATUS_CHILD     = 3
+    STATUS_CLEARED   = 4
     STATUS_COMPLETED = 5
-    STATUS_DNS = 6
-    STATUS_INFANT = 7
-    STATUS_PRE_1970 = 8
+    STATUS_DNS       = 6
+    STATUS_INFANT    = 7
+    STATUS_PRE_1970  = 8
     STATUS_QUALIFIED = 9
-    STATUS_DNS_CAN = 10
+    STATUS_DNS_CAN   = 10
     STATUS_STILLBORN = 11
     STATUS_SUBMITTED = 12
     STATUS_UNCLEARED = 13
+
+    DEFAULT_STATUS = STATUS_NONE
+
+
+    _TYPE_MAP = [
+        (BAPTISM,         _('Baptism'),           'baptism'),
+        (ENDOWMENT,       _('Endowment'),         'endowment'),
+        (SEAL_TO_PARENTS, _('Sealed to Parents'), 'sealed_to_parents'),
+        (SEAL_TO_SPOUSE,  _('Sealed to Spouse'),  'sealed_to_spouse' ),
+    ]
+    
+    _STATUS_MAP = [
+        (STATUS_NONE,      _("<No Status>"), ""),
+        (STATUS_BIC,       _("BIC"),         "BIC"),
+        (STATUS_CANCELED,  _("Canceled"),    "Canceled"),
+        (STATUS_CHILD,     _("Child"),       "Child"),
+        (STATUS_CLEARED,   _("Cleared"),     "Cleared"),
+        (STATUS_COMPLETED, _("Completed"),   "Completed"),
+        (STATUS_DNS,       _("DNS"),         "DNS"),
+        (STATUS_INFANT,    _("Infant"),      "Infant"),
+        (STATUS_PRE_1970,  _("Pre-1970"),    "Pre-1970"),
+        (STATUS_QUALIFIED, _("Qualified"),   "Qualified"),
+        (STATUS_DNS_CAN,   _("DNS/CAN"),     "DNS/CAN"),
+        (STATUS_STILLBORN, _("Stillborn"),   "Stillborn"),
+        (STATUS_SUBMITTED, _("Submitted"),   "Submitted"),
+        (STATUS_UNCLEARED, _("Uncleared"),   "Uncleared"),
+        ]
 
     def __init__(self,source=None):
         """Creates a LDS Ordinance instance"""
@@ -87,10 +124,10 @@ class LdsOrd(SecondaryObject,SourceBase,NoteBase,DateBase,PlaceBase,PrivacyBase)
             self.temple = source.temple
             self.status = source.status
         else:
-            self.type = self.BAPTISM
+            self.type = LdsOrd.DEFAULT_TYPE
             self.famc = None
             self.temple = ""
-            self.status = 0
+            self.status = LdsOrd.DEFAULT_STATUS
 
     def serialize(self):
         return (SourceBase.serialize(self),
@@ -199,3 +236,61 @@ class LdsOrd(SecondaryObject,SourceBase,NoteBase,DateBase,PlaceBase,PrivacyBase)
         """returns 1 if the specified ordinance is the same as the instance"""
         warn( "Use is_equal instead are_equal", DeprecationWarning, 2)
         return self.is_equal(other)
+
+    def type2xml(self):
+        """
+        Return type-representing string suitable for XML.
+        """
+        for item in LdsOrd._TYPE_MAP:
+            if item[0] == self.type:
+                return item[2]
+        return ""
+
+    def type2str(self):
+        """
+        Return type-representing string suitable for UI (translated).
+        """
+        for item in LdsOrd._TYPE_MAP:
+            if item[0] == self.type:
+                return item[1]
+        return ""
+
+    def set_type_from_xml(self,xml_str):
+        """
+        Set type based on a given string from XML.
+        Return boolean of success.
+        """
+        for item in LdsOrd._TYPE_MAP:
+            if item[2] == xml_str:
+                self.type = item[0]
+                return True
+        return False
+
+    def status2xml(self):
+        """
+        Return status-representing string suitable for XML.
+        """
+        for item in LdsOrd._STATUS_MAP:
+            if item[0] == self.status:
+                return item[2]
+        return ""
+
+    def status2str(self):
+        """
+        Return status-representing string suitable for UI (translated).
+        """
+        for item in LdsOrd._STATUS_MAP:
+            if item[0] == self.status:
+                return item[1]
+        return ""
+
+    def set_status_from_xml(self,xml_str):
+        """
+        Set status based on a given string from XML.
+        Return boolean of success.
+        """
+        for item in LdsOrd._STATUS_MAP:
+            if item[2] == xml_str:
+                self.status = item[0]
+                return True
+        return False

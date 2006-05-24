@@ -79,13 +79,6 @@ except:
 
 _xml_version = "1.1.0"
 
-lds_map = {
-    RelLib.LdsOrd.BAPTISM : 'baptism',
-    RelLib.LdsOrd.ENDOWMENT : 'endowment',
-    RelLib.LdsOrd.SEAL_TO_PARENTS : 'sealed_to_parents',
-    RelLib.LdsOrd.SEAL_TO_SPOUSE : 'sealed_to_spouse',
-    }
-
 #-------------------------------------------------------------------------
 #
 #
@@ -599,22 +592,23 @@ class XmlWriter(UpdateCallback):
 
     def dump_ordinance(self,ord,index=1):
 
-        name = lds_map[ord.get_type()]
+        name = ord.type2xml()
 
         sp = "  " * index
         sp2 = "  " * (index+1)
-        self.g.write('%s<lds_ord type="%s">\n' % (sp,self.fix(name)))
+        self.g.write('%s<lds_ord type="%s">\n' % (sp,name))
         dateobj = ord.get_date_object()
         if dateobj and not dateobj.is_empty():
             self.write_date(dateobj,index+1)
         if ord.get_temple():
-            self.g.write('%s<temple val="%s"/>\n' % (sp2,self.fix(ord.get_temple())))
+            self.g.write('%s<temple val="%s"/>\n'
+                         % (sp2,self.fix(ord.get_temple())))
         self.write_ref("place",ord.get_place_handle(),index+1)
         if ord.get_status() != 0:
-            self.g.write('%s<status val="%d"/>\n' % (sp2,ord.get_status()))
+            self.g.write('%s<status val="%s"/>\n' % (sp2,ord.status2xml()))
         if ord.get_family_handle():
             self.g.write('%s<sealed_to hlink="%s"/>\n' % 
-                         (sp2,"_"+self.fix(ord.get_family_handle())))
+                         (sp2,"_"+ord.get_family_handle()))
         if ord.get_note() != "":
             self.write_note("note",ord.get_note_object(),index+1)
         for s in ord.get_source_references():

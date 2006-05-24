@@ -55,7 +55,6 @@ import gtk.glade
 import RelLib
 from Filters import GenericFilter, Rules, build_filter_menu
 import const
-import lds
 import _GedcomInfo as GedcomInfo
 import Errors
 import ansel_utf8
@@ -631,8 +630,8 @@ class GedcomWriter(UpdateCallback):
                 mother_alive = Utils.probably_alive(person,self.db)
 
             if not self.restrict or ( not father_alive and not mother_alive ):
-                for lds in family.get_lds_ord_list():
-                    self.write_ord(lds,1)
+                for lds_ord in family.get_lds_ord_list():
+                    self.write_ord(lds_ord,1)
 
                 for event_ref in family.get_event_ref_list():
                     event_handle = event_ref.ref
