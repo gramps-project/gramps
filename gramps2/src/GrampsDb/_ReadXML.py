@@ -636,20 +636,12 @@ class GrampsParser(UpdateCallback):
         self.db.request_rebuild()
 
     def start_lds_ord(self,attrs):
-        atype = attrs['type']
         self.ord = RelLib.LdsOrd()
+        self.ord.set_type_from_xml(attrs['type'])
         if self.person:
-            if atype == "baptism":
-                self.ord.set_type(RelLib.LdsOrd.BAPTISM)
-            elif atype == "endowment":
-                self.ord.set_type(RelLib.LdsOrd.ENDOWMENT)
-            elif atype == "sealed_to_parents":
-                self.ord.set_type(RelLib.LdsOrd.SEAL_TO_PARENTS)
             self.person.lds_ord_list.append(self.ord)
         elif self.family:
-            if atype == "sealed_to_spouse":
-                self.ord.set_type(RelLib.LdsOrd.SEAL_TO_SPOUSE)
-                self.family.lds_ord_list.append(self.ord)
+            self.family.lds_ord_list.append(self.ord)
 
     def start_temple(self,attrs):
         self.ord.set_temple(attrs['val'])
@@ -658,7 +650,12 @@ class GrampsParser(UpdateCallback):
         self.source.set_data_item(attrs['key'],attrs['value'])
 
     def start_status(self,attrs):
-        self.ord.set_status(int(attrs['val']))
+        try:
+            # old xml with integer statuses
+            self.ord.set_status(int(attrs['val']))
+        except ValueError:
+            # string
+            self.ord.set_status_from_xml(attrs['val'])
 
     def start_sealed_to(self,attrs):
         try:

@@ -30,10 +30,8 @@
 import os
 import re
 import string
-import const
-import lds
 import time
-
+from bsddb import db
 from gettext import gettext as _
 
 # and module sets for earlier pythons
@@ -63,15 +61,16 @@ import gtk.glade
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+import const
 import Errors
 import RelLib
 from DateHandler._DateParser import DateParser
 import NameDisplay
 import Utils
 import Mime
-
+import LdsUtils
 from ansel_utf8 import ansel_to_utf8
-from bsddb import db
+
 from _GedcomInfo import *
 from _GedTokens import *
 from QuestionDialog import ErrorDialog, WarningDialog
@@ -145,23 +144,6 @@ pedi_type = {
     'foster' : _TYPE_FOSTER,
     }
 
-lds_status = {
-    "BIC"      : RelLib.LdsOrd.STATUS_BIC,
-    "CANCELED" : RelLib.LdsOrd.STATUS_CANCELED,
-    "CHILD"    : RelLib.LdsOrd.STATUS_CHILD,
-    "CLEARED"  : RelLib.LdsOrd.STATUS_CLEARED,
-    "COMPLETED": RelLib.LdsOrd.STATUS_COMPLETED,
-    "DNS"      : RelLib.LdsOrd.STATUS_DNS,
-    "INFANT"   : RelLib.LdsOrd.STATUS_INFANT,
-    "PRE-1970" : RelLib.LdsOrd.STATUS_PRE_1970,
-    "QUALIFIED": RelLib.LdsOrd.STATUS_QUALIFIED,
-    "DNS/CAN"  : RelLib.LdsOrd.STATUS_DNS_CAN,
-    "STILLBORN": RelLib.LdsOrd.STATUS_STILLBORN,
-    "SUBMITTED": RelLib.LdsOrd.STATUS_SUBMITTED,
-    "UNCLEARED": RelLib.LdsOrd.STATUS_UNCLEARED,
-    }
-
-
 _event_family_str = _("%(event_name)s of %(family)s")
 _event_person_str = _("%(event_name)s of %(person)s")
 
@@ -175,14 +157,14 @@ _transtable2 = _transtable[0:128] + ('?' * 128)
 #
 #-------------------------------------------------------------------------
 ged2gramps = {}
-for _val in Utils.personalConstantEvents.keys():
-    _key = Utils.personalConstantEvents[_val]
+for _val in personalConstantEvents.keys():
+    _key = personalConstantEvents[_val]
     if _key != "":
         ged2gramps[_key] = _val
 
 ged2fam = {}
-for _val in Utils.familyConstantEvents.keys():
-    _key = Utils.familyConstantEvents[_val]
+for _val in familyConstantEvents.keys():
+    _key = familyConstantEvents[_val]
     if _key != "":
         ged2fam[_key] = _val
 
@@ -612,7 +594,7 @@ class GedcomParser(UpdateCallback):
         self.geddir = os.path.dirname(os.path.normpath(os.path.abspath(filename)))
     
         self.error_count = 0
-        amap = Utils.personalConstantAttributes
+        amap = personalConstantAttributes
         
         self.attrs = amap.values()
         self.gedattr = {}
@@ -1450,11 +1432,13 @@ class GedcomParser(UpdateCallback):
               except NameError:
                   pass
             elif matches[1] == TOKEN_SOUR:
-                lds_ord.add_source_reference(self.handle_source(matches,level+1))
+                lds_ord.add_source_reference(
+                    self.handle_source(matches,level+1))
             elif matches[1] == TOKEN_NOTE:
                 note = self.parse_note(matches,lds_ord,level+1,note)
             elif matches[1] == TOKEN_STAT:
-                lds_ord.set_status(lds_status.get(matches[2],RelLib.LdsOrd.STATUS_NONE))
+                lds_ord.set_status(
+                    lds_status.get(matches[2],RelLib.LdsOrd.STATUS_NONE))
             else:
                 self.barf(level+1)
 
@@ -2446,10 +2430,10 @@ class GedcomParser(UpdateCallback):
 
     def extract_temple(self, matches):
         def get_code(code):
-            if lds.temple_to_abrev.has_key(code):
+            if LdsUtils.temple_to_abrev.has_key(code):
                 return code
-            elif lds.temple_codes.has_key(code):
-                return lds.temple_codes[code]
+            elif LdsUtils.temple_codes.has_key(code):
+                return LdsUtils.temple_codes[code]
         
         c = get_code(matches[2])
         if c: return c

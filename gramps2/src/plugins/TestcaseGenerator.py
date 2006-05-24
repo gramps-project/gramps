@@ -50,7 +50,6 @@ import Errors
 import RelLib
 from PluginUtils import Tool, register_tool
 import const
-import lds
 import Utils
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
@@ -1048,7 +1047,7 @@ class TestcaseGenerator(Tool.Tool):
 
         if isinstance(o,RelLib.LdsOrd):
             if randint(0,1) == 1:
-                o.set_temple( choice( lds.temple_to_abrev.keys()))
+                o.set_temple( choice( LdsUtils.temple_to_abrev.keys()))
 
         if issubclass(o.__class__,RelLib._LdsOrdBase.LdsOrdBase):
             while randint(0,1) == 1:
@@ -1057,8 +1056,9 @@ class TestcaseGenerator(Tool.Tool):
                 # TODO: adapt type and status to family/person
                 #if isinstance(o,RelLib.Person):
                 #if isinstance(o,RelLib.Family):
-                ldsord.set_type( choice( lds.ord_type.keys()))
-                ldsord.set_status( randint(0,len(lds.ord_status)-1))
+                ldsord.set_type( choice(
+                    [item[0] for item in RelLib.LdsOrd._TYPE_MAP] ))
+                ldsord.set_status( randint(0,len(RelLib.LdsOrd._STATUS_MAP)-1))
                 if self.generated_families:
                     ldsord.set_family_handle( choice(self.generated_families))
                 o.add_lds_ord( ldsord)

@@ -46,15 +46,16 @@ class LdsModel(gtk.ListStore):
     def __init__(self, lds_list, db):
         gtk.ListStore.__init__(self, str, str, str, str, str, object)
 
-        import lds
-        
+        import LdsUtils
+
         self.db = db
         for lds_ord in lds_list:
             self.append(row=[
-                lds.ord_type[lds_ord.get_type()], 
+                lds_ord.type2str(), 
                 DateHandler.get_date(lds_ord), 
-                lds.ord_status[lds_ord.get_status()], 
-                lds.temple_to_abrev.get(lds_ord.get_temple(), _("unknown")), 
+                lds_ord.status2str(), 
+                LdsUtils.temple_to_abrev.get(lds_ord.get_temple(),
+                                             _("unknown")), 
                 self.column_place(lds_ord), 
                 lds_ord, 
                 ])

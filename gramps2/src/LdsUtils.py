@@ -1,5 +1,3 @@
-#                                                     -*- python -*-
-# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -21,13 +19,6 @@
 #
 
 # $Id$
-
-#-------------------------------------------------------------------------
-#
-# Standard python modules
-#
-#-------------------------------------------------------------------------
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #Updated LDS Temple Codes from:
@@ -181,27 +172,3 @@ temple_to_abrev = {}
 for x in temples:
     for y in x[1:]:
         temple_to_abrev[y] = x[0]
-
-ord_type = {
-    0 : _('Baptism'),
-    1 : _('Endowment'),
-    2 : _('Sealed to Parents'),
-    3 : _('Sealed to Spouse'),
-    }
-
-ord_status = [
-    _("<No Status>"),
-    _("BIC"),
-    _("Canceled"),
-    _("Child"),
-    _("Cleared"),
-    _("Completed"),
-    _("DNS"),
-    _("Infant"),
-    _("Pre-1970"),
-    _("Qualified"),
-    _("DNS/CAN"),
-    _("Stillborn"),
-    _("Submitted"),
-    _("Uncleared"),
-    ]

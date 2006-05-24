@@ -51,7 +51,7 @@ gdir_PYTHON = \
 	gramps.py\
 	GrampsWidgets.py\
 	ImgManip.py\
-	lds.py \
+	LdsUtils.py \
 	ListModel.py\
 	ManagedWindow.py\
 	MergeData.py\
