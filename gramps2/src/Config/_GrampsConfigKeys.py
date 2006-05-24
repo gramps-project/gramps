@@ -1,3 +1,4 @@
+RELATION_SHADE       = ('preferences','relation-shade', 0)
 ONLINE_MAPS          = ('preferences','online-maps', 0)
 FAMILY_DETAILS       = ('preferences','family-details', 0)
 COMPLETE_COLOR       = ('preferences','complete-color', 2)
@@ -53,6 +54,7 @@ WEBSITE_DIRECTORY    = ('paths','website-directory', 2)
 
 
 default_value = {
+    RELATION_SHADE       : True,
     ONLINE_MAPS          : False,
     FAMILY_DETAILS       : True,
     COMPLETE_COLOR       : '#008b00',

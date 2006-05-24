@@ -4,6 +4,18 @@
     <schemalist>
 
       <schema>
+        <key>/schemas/apps/gramps/preferences/relation-shade</key>
+        <applyto>/apps/gramps/preferences/relation-shade</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>1</default>
+        <locale name="C">
+          <short>Use shading to highlight data in Relationship View</short>
+          <long>If True, shading is used to highlight data in Relationship View</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/preferences/online-maps</key>
         <applyto>/apps/gramps/preferences/online-maps</applyto>
         <owner>gramps</owner>

@@ -1,3 +1,9 @@
+2006-05-23  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_RelationView.py: make shading optional
+	* src/GrampsCfg.py: make shading optional
+	* src/Config/_GrampsConfigKeys.py: make shading optional
+	* data/gramps.schemas.in: make shading optional
+
 2006-05-23  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Upgrade LdsOrd.
 
