@@ -1424,7 +1424,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             info = self.person_map[handle]
             person = Person()
             person.handle = handle
-            # Restore data from dbversion 8 (gramps 2.0.9)
+            # Restore data from dbversion 8 (gramps 2.0.9--2.0.11)
             (junk_handle, person.gramps_id, person.gender,
              person.primary_name, person.alternate_names, nickname,
              death_handle, birth_handle, event_list,
@@ -1684,6 +1684,7 @@ lds_seal_parent_dict_9 = {
     8: LdsOrd.STATUS_SUBMITTED,
     9: LdsOrd.STATUS_UNCLEARED,
     }
+
 lds_seal_spouse_dict_9 = {
     0: LdsOrd.STATUS_NONE,
     1: LdsOrd.STATUS_CANCELED,
@@ -1714,12 +1715,12 @@ def low_level_9(the_db,update):
                     ('Source',the_db.source_map),
                     ('Media',the_db.media_map)]:
 
-        print "Low-level repair: table: %s" % the_map[0]
+        # print "Low-level repair: table: %s" % the_map[0]
         status,length = _table_low_level_9(the_db.env,the_map[1])
         if update:
             update()
         if status:
-            print "Done."
+            # print "Done."
             the_length += length
         else:
             print "Low-level repair: Problem with table: %s" % the_map[0]
@@ -1739,7 +1740,7 @@ def _table_low_level_9(env,table):
         )
 
     if not dup_handles:
-        print "    No dupes found for this table"
+        # print "    No dupes found for this table"
         return (True,length)
 
     the_txn = env.txn_begin()
