@@ -136,6 +136,59 @@ class PersonView(PageView.PersonNavView):
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                         _('_Column Editor'), callback=self.column_editor,)
 
+        self.add_action('CmpMerge', None, _('_Compare and merge'),
+                        callback=self.cmp_merge) 
+        self.add_action('FastMerge', None, _('_Fast merge'),
+                        callback=self.fast_merge)
+
+    def cmp_merge(self, obj):
+        mlist = self.get_selected_objects()
+
+        if len(mlist) != 2:
+            from QuestionDialog import ErrorDialog
+            
+            msg = _("Cannot merge people")
+            msg2 = _("Exactly two people must be selected to perform a merge. "
+                     "A second person can be selected by holding down the "
+                     "control key while clicking on the desired person.")
+            ErrorDialog(msg,msg2)
+        else:
+            from QuestionDialog import ErrorDialog
+            import MergePeople
+            p1 = self.db.get_person_from_handle(mlist[0])
+            p2 = self.db.get_person_from_handle(mlist[1])
+            if p1 and p2:
+                merger = MergePeople.Compare(self.dbstate, self.uistate, p1, p2)
+            else:
+                msg = _("Cannot merge people")
+                msg2 = _("Exactly two people must be selected to perform a merge. "
+                         "A second person can be selected by holding down the "
+                         "control key while clicking on the desired person.")
+                ErrorDialog(msg,msg2)
+
+    def fast_merge(self, obj):
+        mlist = self.get_selected_objects()
+
+        if len(mlist) != 2:
+            msg = _("Cannot merge people")
+            msg2 = _("Exactly two people must be selected to perform a merge. "
+                     "A second person can be selected by holding down the "
+                     "control key while clicking on the desired person.")
+            ErrorDialog(msg,msg2)
+        else:
+            from MergePeople import MergePeopleUI
+            
+            p1 = self.db.get_person_from_handle(mlist[0])
+            p2 = self.db.get_person_from_handle(mlist[1])
+            if p1 and p2:
+                MergePeopleUI(self.dbstate, self.uistate, p1, p2)
+            else:
+                msg = _("Cannot merge people")
+                msg2 = _("Exactly two people must be selected to perform a merge. "
+                         "A second person can be selected by holding down the "
+                         "control key while clicking on the desired person.")
+                ErrorDialog(msg,msg2)
+                
     def column_editor(self,obj):
         import ColumnOrder
 
@@ -254,6 +307,10 @@ class PersonView(PageView.PersonNavView):
               </placeholder>
               <menuitem action="SetActive"/>
               <menuitem action="ColumnEdit"/>
+              <placeholder name="Merge">
+                <menuitem action="CmpMerge"/>
+                <menuitem action="FastMerge"/>
+              </placeholder>
             </menu>
           </menubar>
           <toolbar name="ToolBar">

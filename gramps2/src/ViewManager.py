@@ -115,9 +115,8 @@ uidefault = '''<ui>
     <separator/>
     <placeholder name="CommonEdit"/>
     <separator/>
-    <menuitem action="ScratchPad"/>  
-    <menuitem action="CmpMerge"/>
-    <menuitem action="FastMerge"/>
+    <menuitem action="ScratchPad"/>
+    <placeholder name="Merge"/>
     <separator/>
     <menuitem action="Preferences"/>
   </menu>
@@ -343,8 +342,6 @@ class ViewManager:
              self.export_data), 
             ('Abandon', gtk.STOCK_REVERT_TO_SAVED,
              _('_Abandon changes and quit'), None, None, self.abort), 
-            ('CmpMerge', None, _('_Compare and merge')), 
-            ('FastMerge', None, _('_Fast merge')), 
             ('ScratchPad', gtk.STOCK_PASTE, _('_ScratchPad'), "",
              _("Open the ScratchPad dialog"), self.scratchpad), 
             ('Import', gtk.STOCK_CONVERT, _('_Import'), "<control>i", None,

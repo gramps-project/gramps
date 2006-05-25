@@ -404,8 +404,8 @@ class XmlWriter(UpdateCallback):
         for name in person.get_alternate_names():
             self.dump_name(name,True,index+1)
 
-        self.dump_event_ref(person.get_birth_ref(),index+1)
-        self.dump_event_ref(person.get_death_ref(),index+1)
+        #self.dump_event_ref(person.get_birth_ref(),index+1)
+        #self.dump_event_ref(person.get_death_ref(),index+1)
         for event_ref in person.get_event_ref_list():
             self.dump_event_ref(event_ref,index+1)
 

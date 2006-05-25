@@ -1,4 +1,8 @@
 2006-05-24  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: merge functionality
+	* src/ViewManager.py: merge functionality
+	* src/MergePeople.py: fix merge (ui and birth/death events)
+	* src/GrampsDb/_WriteXML.py: remove redundant birth/death entries
 	* src/GrampsDb/_DbUtils.py: fix index setting of death index
 	* src/GrampsDb/_WriteGedcom.py: remove redundant birth/death 
 	references
