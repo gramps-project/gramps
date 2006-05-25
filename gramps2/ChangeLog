@@ -1,4 +1,7 @@
 2006-05-24  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_DbUtils.py: fix index setting of death index
+	* src/GrampsDb/_WriteGedcom.py: remove redundant birth/death 
+	references
 	* src/images/stock_notes.png: added
 	* src/images/Makefile.am: add stock_notes.png
 	* src/gramps_main.py: register stock_notes as gramps_notes

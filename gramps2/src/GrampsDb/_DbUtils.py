@@ -283,6 +283,7 @@ def set_birth_death_index(db, person):
             birth = index
         elif int(event.get_type()) == RelLib.EventType.DEATH and death == -1:
             death = index
+        index += 1
     person.birth_ref_index = birth
     person.death_ref_index = death
         

@@ -907,6 +907,10 @@ class GedcomWriter(UpdateCallback):
             
             for event_ref in person.get_event_ref_list():
                 event = self.db.get_event_from_handle(event_ref.ref)
+                if int(event.get_type()) in (RelLib.EventType.BIRTH,
+                                             RelLib.EventType.DEATH):
+                    continue
+                
                 if self.private and event.get_privacy():
                     continue
                 val = event.get_type().xml_str()
@@ -1359,7 +1363,6 @@ class GedcomWriter(UpdateCallback):
     def write_photo(self,photo,level):
         photo_obj_id = photo.get_reference_handle()
         photo_obj = self.db.get_object_from_handle(photo_obj_id)
-        print photo_obj, photo_obj.get_mime_type()
         if photo_obj:
             mime = photo_obj.get_mime_type()
             if self.mime2ged.has_key(mime):
