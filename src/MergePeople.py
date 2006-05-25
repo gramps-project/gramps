@@ -50,12 +50,13 @@ import QuestionDialog
 import GrampsDisplay
 import ManagedWindow
 import Utils
+import GrampsDb
 
 sex = ( _("female"), _("male"), _("unknown"))
 
 class Compare(ManagedWindow.ManagedWindow):
 
-    def __init__(self, dbstate, uistate, person1, person2, update) :
+    def __init__(self, dbstate, uistate, person1, person2, update=None) :
 
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
@@ -102,7 +103,8 @@ class Compare(ManagedWindow.ManagedWindow):
                 merge = MergePeople(self.db,self.p2,self.p1)
             self.close()
             merge.merge()
-            self.update()
+            if self.update:
+                self.update()
 
     def add(self, tobj, tag, text):
         text += "\n"
@@ -256,11 +258,17 @@ def check_for_child(p1, p2):
 # Merge People UI
 #
 #-------------------------------------------------------------------------
-class MergePeopleUI:
+class MergePeopleUI(ManagedWindow.ManagedWindow):
 
-    def __init__(self,db,person1,person2,update):
+    def __init__(self, dbstate, uistate, person1, person2, update=None):
+
+        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+        
         glade = gtk.glade.XML(const.merge_glade, 'merge_people')
         window = glade.get_widget('merge_people')
+
+        self.set_window(window, glade.get_widget('title'), _("Merge People"))
+
         p1 = glade.get_widget('person1')
         p2 = glade.get_widget('person2')
         n1 = name_of(person1)
@@ -268,12 +276,12 @@ class MergePeopleUI:
 
         p1.set_label(n1)
         p2.set_label(n2)
-        Utils.set_titles(top,glade.get_widget('title'),_("Merge People"))
+
         glade.get_widget('help').connect('clicked',self.help)
 
         ret = gtk.RESPONSE_HELP
         while ret == gtk.RESPONSE_HELP:
-            ret = top.run()
+            ret = window.run()
         
         if ret == gtk.RESPONSE_OK:
 
@@ -290,12 +298,16 @@ class MergePeopleUI:
                       "them."))
             else:
                 if p1.get_active():
-                    merge = MergePeople(db,person1,person2)
+                    merge = MergePeople(dbstate.db,person1,person2)
                 else:
-                    merge = MergePeople(db,person2,person1)
+                    merge = MergePeople(dbstate.db,person2,person1)
                 merge.merge()
-                update()
-        top.destroy()
+                if update:
+                    update()
+        window.destroy()
+
+    def build_menu_names(self,obj):
+        return (_('Merge People'),None)
 
     def help(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -395,14 +407,10 @@ class MergePeople:
         # copy names
         self.merge_names(new)
 
-        # copy the birth event
-        self.merge_birth(new,trans)
-
-        # copy the death event
-        self.merge_death(new,trans)
-
         # merge the event lists
         self.merge_event_lists(new)
+
+        GrampsDb.set_birth_death_index(self.db, new)
 
         # copy attributes
         new.set_attribute_list(self.p1.get_attribute_list() +
@@ -483,17 +491,8 @@ class MergePeople:
         ref1 = self.p1.get_birth_ref()
         ref2 = self.p2.get_birth_ref()
 
-        if ref1:
-            new.set_birth_ref(ref1)
-            if ref2:
-                event = self.db.get_event_from_handle(ref2.ref)
-                event.set_name('Alternate Birth')
-                self.db.add_event(event,trans)
-                event_ref = RelLib.EventRef()
-                event_ref.ref = event.get_handle()
-                new.add_event_ref(event_ref)
-        elif not ref1 and ref2:
-            new.set_birth_ref(ref2)
+        if not ref1.is_equal(ref2):
+            new.add_event_ref(ref2)
 
     def merge_death(self, new, trans):
         """
@@ -507,18 +506,8 @@ class MergePeople:
         ref1 = self.p1.get_death_ref()
         ref2 = self.p2.get_death_ref()
 
-        if ref1:
-            new.set_death_ref(ref1)
-            if ref2:
-                event = self.db.get_event_from_handle(ref2)
-                event.set_handle(Utils.create_id())
-                event.set_name('Alternate Death')
-                event_ref = RelLib.EventRef()
-                event_ref.ref = event.get_handle()
-                new.add_event_ref(event_ref)
-                self.db.add_event(event,trans)
-        elif not ref1 and ref2:
-            new.set_death_ref(ref2)
+        if not ref1.is_equal(ref2):
+            new.add_event_ref(ref2)
 
     def merge_event_lists(self, new):
         """
