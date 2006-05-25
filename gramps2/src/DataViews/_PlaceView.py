@@ -88,7 +88,8 @@ class PlaceView(PageView.ListView):
             self, _('Places'), dbstate, uistate, column_names,
             len(column_names), DisplayModels.PlaceModel, signal_map,
             dbstate.db.get_place_bookmarks(),
-            Bookmarks.PlaceBookmarks)
+            Bookmarks.PlaceBookmarks, 
+            multiple=True)
 
     def get_bookmarks(self):
         return self.dbstate.db.get_place_bookmarks()
@@ -97,6 +98,8 @@ class PlaceView(PageView.ListView):
         PageView.ListView.define_actions(self)
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                         _('_Column Editor'), callback=self.column_editor)
+        self.add_action('FastMerge', None, _('_Merge'),
+                        callback=self.fast_merge)
 
     def column_editor(self,obj):
         import ColumnOrder
@@ -134,6 +137,9 @@ class PlaceView(PageView.ListView):
                 <menuitem action="Remove"/>
               </placeholder>
               <menuitem action="ColumnEdit"/>
+              <placeholder name="Merge">
+                <menuitem action="FastMerge"/>
+              </placeholder>
             </menu>
           </menubar>
           <toolbar name="ToolBar">
@@ -204,3 +210,19 @@ class PlaceView(PageView.ListView):
             except Errors.WindowActiveError:
                 pass
 
+    def fast_merge(self, obj):
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+        
+        if len(mlist) != 2:
+            msg = _("Cannot merge places.")
+            msg2 = _("Exactly two places must be selected to perform a merge. "
+                "A second place can be selected by holding down the "
+                "control key while clicking on the desired place.")
+            ErrorDialog(msg,msg2)
+        else:
+            import MergeData
+            MergeData.MergePlaces(self.dbstate, self.uistate, mlist[0],
+                                  mlist[1], self.build_tree)
+
+    
