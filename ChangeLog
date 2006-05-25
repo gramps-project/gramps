@@ -1,3 +1,9 @@
+2006-05-25  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PlaceView.py: place merge support
+	* src/glade/mergedata.glade: place merge support
+	* src/MergeData.py: place merge support
+	* src/PageView.py: add support for multiselection
+
 2006-05-24  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/Verify.py: Start major rework, still in progress.
 

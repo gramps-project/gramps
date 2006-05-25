@@ -427,7 +427,7 @@ class ListView(BookMarkView):
     DEL_MSG = ""
 
     def __init__(self, title, dbstate, uistate, columns, handle_col,
-                 make_model, signal_map, get_bookmarks, bm_type):
+                 make_model, signal_map, get_bookmarks, bm_type, multiple=False):
 
         BookMarkView.__init__(self, title, dbstate, uistate,
                               get_bookmarks, bm_type)
@@ -440,6 +440,7 @@ class ListView(BookMarkView):
         self.handle_col = handle_col
         self.make_model = make_model
         self.signal_map = signal_map
+        self.multiple_selection = multiple
         dbstate.connect('database-changed',self.change_db)
 
     def add_bookmark(self, obj):
@@ -503,6 +504,8 @@ class ListView(BookMarkView):
         self.columns = []
         self.build_columns()
         self.selection = self.list.get_selection()
+        if self.multiple_selection:
+            self.selection.set_mode(gtk.SELECTION_MULTIPLE)
         self.selection.connect('changed',self.row_changed)
 
         self.setup_filter()
