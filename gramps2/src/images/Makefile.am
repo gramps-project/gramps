@@ -83,6 +83,7 @@ dist_pkgdata_DATA = \
 	stock_link.png\
 	stock_lock-open.png\
 	stock_lock.png\
+	stock_notes.png\
 	tools.png\
 	somerights20.gif \
 	document.png\

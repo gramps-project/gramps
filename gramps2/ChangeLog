@@ -1,3 +1,9 @@
+2006-05-24  Don Allingham  <don@gramps-project.org>
+	* src/images/stock_notes.png: added
+	* src/images/Makefile.am: add stock_notes.png
+	* src/gramps_main.py: register stock_notes as gramps_notes
+	* src/DisplayTabs.py: use gramps_notes instead of stock_notes
+
 2006-05-23  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_RelationView.py: make shading optional
 	* src/GrampsCfg.py: make shading optional

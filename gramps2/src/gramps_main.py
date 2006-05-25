@@ -93,6 +93,8 @@ def register_stock_icons ():
          ('gramps-map',_('Map'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'stock_export.png'),
          ('gramps-export',_('Map'),gtk.gdk.CONTROL_MASK,0,'')),
+        (os.path.join(const.image_dir,'stock_notes.png'),
+         ('gramps-notes',_('Map'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'stock_undo-history.png'),
          ('gramps-undo-history',_('Undo History'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'stock_add-bookmark.png'),
