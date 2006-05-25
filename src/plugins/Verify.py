@@ -28,8 +28,8 @@
 #
 #------------------------------------------------------------------------
 import os
-import cStringIO
 from gettext import gettext as _
+import cPickle
 
 #------------------------------------------------------------------------
 #
@@ -47,8 +47,8 @@ import gtk.glade
 import RelLib
 import Utils
 import GrampsDisplay
-import ManagedWindow
-
+from ManagedWindow import ManagedWindow
+from BasicUtils import UpdateCallback
 from PluginUtils import Tool, register_tool
 
 #-------------------------------------------------------------------------
@@ -66,7 +66,6 @@ def find_event(db,handle):
     except KeyError:
         obj = db.get_event_from_handle(handle)
         _event_store[handle] = obj
-        print "reading event", obj.gramps_id
     return obj
 
 def find_person(db,handle):
@@ -75,7 +74,6 @@ def find_person(db,handle):
     except KeyError:
         obj = db.get_person_from_handle(handle)
         _person_store[handle] = obj
-        print "reading person", obj.gramps_id
     return obj
 
 def find_family(db,handle):
@@ -84,15 +82,13 @@ def find_family(db,handle):
     except KeyError:
         obj = db.get_family_from_handle(handle)
         _family_store[handle] = obj
-        print "reading family", obj.gramps_id
     return obj
 
 def clear_storage():
-    print "events:", len(_event_store), "families:", len(_family_store), \
-          "people:", len(_person_store)
     _person_store.clear()
     _family_store.clear()
-    _event_store.clear()
+    _event_store.clear()   
+
 #-------------------------------------------------------------------------
 #
 # helper functions
@@ -115,31 +111,39 @@ def get_date_from_event_type(db,person,event_type):
             return date_obj.get_sort_value()
     return 0
 
-def get_birth_date(db,person):
-    if not person:
-        return 0
-    birth_ref = person.get_birth_ref()
-    if not birth_ref:
-        return 0
-    return get_date_from_event_handle(db,birth_ref.ref)
-
-def get_death_date(db,person):
-    if not person:
-        return 0
-    death_ref = person.get_death_ref()
-    if not death_ref:
-        return 0
-    return get_date_from_event_handle(db,death_ref.ref)
-
 def get_bapt_date(db,person):
     return get_date_from_event_type(db,person,RelLib.EventType.BAPTISM)
 
 def get_bury_date(db,person):
     return get_date_from_event_type(db,person,RelLib.EventType.BURIAL)
 
-def get_age_at_death(db,person):
-    birth_date = get_birth_date(db,person)
-    death_date = get_death_date(db,person)
+def get_birth_date(db,person,estimate=False):
+    if not person:
+        return 0
+    birth_ref = person.get_birth_ref()
+    if not birth_ref:
+        ret = 0
+    else:
+        ret = get_date_from_event_handle(db,birth_ref.ref)
+    if estimate and (ret == 0):
+        ret = get_bapt_date(db,person)
+    return ret
+
+def get_death_date(db,person,estimate=False):
+    if not person:
+        return 0
+    death_ref = person.get_death_ref()
+    if not death_ref:
+        ret = 0
+    else:
+        ret = get_date_from_event_handle(db,death_ref.ref)
+    if estimate and (ret == 0):
+        ret = get_bury_date(db,person)
+    return ret
+
+def get_age_at_death(db,person,estimate):
+    birth_date = get_birth_date(db,person,estimate)
+    death_date = get_death_date(db,person,estimate)
     if (birth_date > 0) and (death_date > 0):
         return death_date - birth_date
     return 0
@@ -160,11 +164,11 @@ def get_mother(db,family):
         return find_person(db,mother_handle)
     return None
 
-def get_child_birth_dates(db,family):
+def get_child_birth_dates(db,family,estimate):
     dates = []
     for child_ref in family.get_child_ref_list():
         child = find_person(db,child_ref.ref)
-        child_birth_date = get_birth_date(child)
+        child_birth_date = get_birth_date(db,child,estimate)
         if child_birth_date > 0:
             dates.append(child_birth_date)
     return dates
@@ -175,23 +179,39 @@ def get_n_children(db,person):
         family = find_family(db,family_handle)
         n += len(family.get_child_ref_list())
 
+def get_marriage_date(db,family):
+    if not family:
+        return 0
+    for event_ref in family.get_event_ref_list():
+        event = find_event(db,event_ref.ref)
+        if event.get_type() == RelLib.EventType.MARRIAGE:
+            date_obj = event.get_date_object()
+            return date_obj.get_sort_value()
+    return 0
+
 #-------------------------------------------------------------------------
 #
 # Actual tool
 #
 #-------------------------------------------------------------------------
-class Verify(Tool.Tool, ManagedWindow.ManagedWindow):
+class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
 
     def __init__(self, dbstate, uistate, options_class, name,callback=None):
         self.label = _('Database Verify tool')
         Tool.Tool.__init__(self, dbstate, options_class, name)
-        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+        ManagedWindow.__init__(self,uistate,[],self.__class__)
+        UpdateCallback.__init__(self,self.uistate.pulse_progressbar)
 
         if uistate:
             self.init_gui()
         else:
-            err_text,warn_text = self.run_tool(cli=True)
-            self.print_results(err_text,warn_text)
+            self.add_results = self.add_results_cli
+            self.run_tool(cli=True)
+
+    def add_results_cli(self,results):
+        # print data for the user, no GUI
+        (msg,gramps_id,name,the_type,rule_id,handle) = results
+        print "%s, %s: %s, %s" % (msg,the_type,gramps_id,name)
 
     def init_gui(self):
         # Draw dialog and make it handle everything
@@ -236,6 +256,8 @@ class Verify(Tool.Tool, ManagedWindow.ManagedWindow):
             self.options.handler.options_dict['mxchilddad'])
         self.top.get_widget("lngwdw").set_value(
             self.options.handler.options_dict['lngwdw'])
+        self.top.get_widget("oldunm").set_value(
+            self.options.handler.options_dict['oldunm'])
         self.top.get_widget("estimate").set_active(
             self.options.handler.options_dict['estimate_age'])
                                                           
@@ -247,21 +269,6 @@ class Verify(Tool.Tool, ManagedWindow.ManagedWindow):
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-util-other')
-
-    def get_year(self,event_handle):
-        """
-        Returns the year of an event (by its id) or 0 if no event_handle 
-        or no year  specified in the event
-        """
-        year = 0
-        if event_handle:
-            event = self.db.get_event_from_handle(event_handle)
-            dateObj = event.get_date_object()
-            if dateObj:
-                if dateObj.get_calendar() != RelLib.Date.CAL_GREGORIAN:
-                    dateObj.set_calendar(RelLib.Date.CAL_GREGORIAN)
-                year = dateObj.get_year()
-        return year
 
     def on_apply_clicked(self,obj):
         self.options.handler.options_dict['oldage'] = self.top.get_widget(
@@ -292,15 +299,47 @@ class Verify(Tool.Tool, ManagedWindow.ManagedWindow):
             "mxchilddad").get_value_as_int()
         self.options.handler.options_dict['lngwdw'] = self.top.get_widget(
             "lngwdw").get_value_as_int()
+        self.options.handler.options_dict['oldunm'] = self.top.get_widget(
+            "oldunm").get_value_as_int()
 
         self.options.handler.options_dict['estimate_age'] = \
                                                           self.top.get_widget(
             "estimate").get_active()
 
-        err_text,warn_text = self.run_tool(cli=False)
+        # FIXME: Initialize trees and models for normal and hidden warnings
+        # Then create a new class here, fill things
+        vr = VerifyResults(self.uistate, self.track)
+
+        self.add_results = vr.add_results
+       
+        self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.uistate.progress.show()
+
+        self.run_tool(cli=False)
+
+        self.uistate.progress.hide()
+        self.uistate.window.window.set_cursor(None)
+        
         # Save options
         self.options.handler.save_options()
-        VerifyResults(err_text, warn_text, self.uistate, self.track)
+
+    def load_ignored(self,filename):
+        try:
+            f = open(filename)
+            self.ignores = cPickle.load(f)
+            f.close()
+            return True
+        except IOError:
+            return False
+
+    def save_ignored(self,filename):
+        try:
+            f = open(filename,'w')
+            cPickle.dump(self.ignores,f)
+            f.close()
+            return True
+        except IOError:
+            return False
 
     def run_tool(self,cli=False):
 
@@ -319,435 +358,159 @@ class Verify(Tool.Tool, ManagedWindow.ManagedWindow):
         mxchildmom = self.options.handler.options_dict['mxchildmom']
         mxchilddad = self.options.handler.options_dict['mxchilddad']
         lngwdw = self.options.handler.options_dict['lngwdw']
+        oldunm = self.options.handler.options_dict['oldunm']
         estimate_age = self.options.handler.options_dict['estimate_age']
 
-        # FIXME: This has to become an option as well!
-        # OR should be removed. What's the reason behind it?
-        oldunm = 99  # maximum age at death for unmarried person 
+##         if not cli:
+##             progress = Utils.ProgressMeter(_('Verify the database'),'')
+##             progress.set_pass(_('Checking people data'),
+##                               self.db.get_number_of_people())
 
+        self.set_total(self.db.get_number_of_people() +
+                       self.db.get_number_of_families())
 
-#        error = cStringIO.StringIO()
-#        warn = cStringIO.StringIO()
-
-        if not cli:
-            progress = Utils.ProgressMeter(_('Verify the database'),'')
-            progress.set_pass(_('Checking data'),
-                              self.db.get_number_of_people())
-        
         for person_handle in person_handles:
             person = find_person(self.db,person_handle)
 
             the_rule = BirthAfterBapt(self.db,person)
             if the_rule.broken():
-                print the_rule.get_message()
+                self.add_results(the_rule.report_itself())
                 
             the_rule = DeathBeforeBapt(self.db,person)
             if the_rule.broken():
-                print the_rule.get_message()
+                self.add_results(the_rule.report_itself())
                 
             the_rule = BirthAfterBury(self.db,person)
             if the_rule.broken():
-                print the_rule.get_message()
+                self.add_results(the_rule.report_itself())
                 
             the_rule = DeathAfterBury(self.db,person)
             if the_rule.broken():
-                print the_rule.get_message()
+                self.add_results(the_rule.report_itself())
                 
             the_rule = BirthAfterDeath(self.db,person)
             if the_rule.broken():
-                print the_rule.get_message()
+                self.add_results(the_rule.report_itself())
                 
             the_rule = BaptAfterBury(self.db,person)
             if the_rule.broken():
-                print the_rule.get_message()
+                self.add_results(the_rule.report_itself())
                 
-            the_rule = OldAge(self.db,person,oldage)
+            the_rule = OldAge(self.db,person,oldage,estimate_age)
             if the_rule.broken():
-                print the_rule.get_message()
+                self.add_results(the_rule.report_itself())
                 
             the_rule = UnknownGender(self.db,person)
             if the_rule.broken():
-                print the_rule.get_message()
+                self.add_results(the_rule.report_itself())
                 
             the_rule = MultipleParents(self.db,person)
             if the_rule.broken():
-                print the_rule.get_message()
+                self.add_results(the_rule.report_itself())
                 
             the_rule = MarriedOften(self.db,person,wedder)
             if the_rule.broken():
-                print the_rule.get_message()
+                self.add_results(the_rule.report_itself())
                 
-            the_rule = OldUnmarried(self.db,person,oldunm)
+            the_rule = OldUnmarried(self.db,person,oldunm,estimate_age)
             if the_rule.broken():
-                print the_rule.get_message()
+                self.add_results(the_rule.report_itself())
                 
             the_rule = TooManyChildren(self.db,person,mxchilddad,mxchildmom)
             if the_rule.broken():
-                print the_rule.get_message()
+                self.add_results(the_rule.report_itself())            
+                
+            clear_storage()
+##             if not cli:
+##                 progress.step()
+            self.update()
+
+##         if not cli:
+##             progress.set_pass(_('Checking family data'),
+##                               self.db.get_number_of_families())
+
+        # Family-based rules
+        for family_handle in self.db.get_family_handles():
+            family = find_family(self.db,family_handle)
+
+            the_rule = SameSexFamily(self.db,family)
+            if the_rule.broken():
+                self.add_results(the_rule.report_itself())
+
+            the_rule = FemaleHusband(self.db,family)
+            if the_rule.broken():
+                self.add_results(the_rule.report_itself())
+
+            the_rule = MaleWife(self.db,family)
+            if the_rule.broken():
+                self.add_results(the_rule.report_itself())
+
+            the_rule = SameSurnameFamily(self.db,family)
+            if the_rule.broken():
+                self.add_results(the_rule.report_itself())
+
+            the_rule = LargeAgeGapFamily(self.db,family,hwdif,estimate_age)
+            if the_rule.broken():
+                self.add_results(the_rule.report_itself())
+
+            the_rule = MarriageBeforeBirth(self.db,family,estimate_age)
+            if the_rule.broken():
+                self.add_results(the_rule.report_itself())
+
+            the_rule = MarriageAfterDeath(self.db,family,estimate_age)
+            if the_rule.broken():
+                self.add_results(the_rule.report_itself())
+
+            the_rule = EarlyMarriage(self.db,family,yngmar,estimate_age)
+            if the_rule.broken():
+                self.add_results(the_rule.report_itself())
+
+            the_rule = LateMarriage(self.db,family,oldmar,estimate_age)
+            if the_rule.broken():
+                self.add_results(the_rule.report_itself())
+
+            the_rule = OldParent(self.db,family,oldmom,olddad,estimate_age)
+            if the_rule.broken():
+                self.add_results(the_rule.report_itself())
+
+            the_rule = YoungParent(self.db,family,yngmom,yngdad,estimate_age)
+            if the_rule.broken():
+                self.add_results(the_rule.report_itself())
+
+            the_rule = UnbornParent(self.db,family,estimate_age)
+            if the_rule.broken():
+                self.add_results(the_rule.report_itself())
+
+            the_rule = DeadParent(self.db,family,estimate_age)
+            if the_rule.broken():
+                self.add_results(the_rule.report_itself())
+
+            the_rule = LargeChildrenSpan(self.db,family,cbspan,estimate_age)
+            if the_rule.broken():
+                self.add_results(the_rule.report_itself())
+
+            the_rule = LargeChildrenAgeDiff(self.db,family,cspace,estimate_age)
+            if the_rule.broken():
+                self.add_results(the_rule.report_itself())
 
             clear_storage()
-             
-                
-##             if byear>0 and bapyear>0:
-##                 if byear > bapyear:
-##                     if person.get_gender() == RelLib.Person.MALE:
-##                         error.write( _("Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n") % { 
-##                             'male_name' : idstr, 'byear' : byear, 'bapyear' : bapyear } )
-##                     if person.get_gender() == RelLib.Person.FEMALE:
-##                         error.write( _("Baptized before birth: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n") % { 
-##                             'female_name' : idstr, 'byear' : byear, 'bapyear' : bapyear } )
-##                 if byear < bapyear:
-##                     if person.get_gender() == RelLib.Person.MALE:
-##                         warn.write( _("Baptized late: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n") % { 
-##                             'male_name' : idstr, 'byear' : byear, 'bapyear' : bapyear } )
-##                     if person.get_gender() == RelLib.Person.FEMALE:
-##                         warn.write( _("Baptized late: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n") % { 
-##                             'female_name' : idstr, 'byear' : byear, 'bapyear' : bapyear } )
-##             if dyear>0 and buryear>0:
-##                 if dyear > buryear:
-##                     if person.get_gender() == RelLib.Person.MALE:
-##                         error.write( _("Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n") % { 
-##                             'male_name' : idstr, 'dyear' : dyear, 'buryear' : buryear } )
-##                     if person.get_gender() == RelLib.Person.FEMALE:
-##                         error.write( _("Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n") % { 
-##                             'female_name' : idstr, 'dyear' : dyear, 'buryear' : buryear } )
-##                 if dyear < buryear:
-##                     if person.get_gender() == RelLib.Person.MALE:
-##                         warn.write( _("Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n") % { 
-##                             'male_name' : idstr, 'dyear' : dyear, 'buryear' : buryear } )
-##                     if person.get_gender() == RelLib.Person.FEMALE:
-##                         warn.write( _("Buried late: %(female_name)s died %(dyear)d, buried %(buryear)d.\n") % { 
-##                             'female_name' : idstr, 'dyear' : dyear, 'buryear' : buryear } )
-##             if dyear>0 and (byear>dyear):
-##                 if person.get_gender() == RelLib.Person.MALE:
-##                     error.write( _("Died before birth: %(male_name)s born %(byear)d, died %(dyear)d.\n") % { 
-##                         'male_name' : idstr, 'byear' : byear, 'dyear' : dyear } )
-##                 if person.get_gender() == RelLib.Person.FEMALE:
-##                     error.write( _("Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n") % { 
-##                         'female_name' : idstr, 'byear' : byear, 'dyear' : dyear } )
-##             if dyear>0 and (bapyear>dyear):
-##                 if person.get_gender() == RelLib.Person.MALE:
-##                     error.write( _("Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n") % { 
-##                         'male_name' : idstr, 'bapyear' : bapyear, 'dyear' : dyear } )
-##                 if person.get_gender() == RelLib.Person.FEMALE:
-##                     error.write( _("Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n") % { 
-##                         'female_name' : idstr, 'bapyear' : bapyear, 'dyear' : dyear } )
-##             if buryear>0 and (byear>buryear):
-##                 if person.get_gender() == RelLib.Person.MALE:
-##                     error.write( _("Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n") % { 
-##                         'male_name' : idstr, 'byear' : byear, 'buryear' : buryear } )
-##                 if person.get_gender() == RelLib.Person.FEMALE:
-##                     error.write( _("Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n") % { 
-##                         'female_name' : idstr, 'byear' : byear, 'buryear' : buryear } )
-##             if buryear>0 and (bapyear>buryear):
-##                 if person.get_gender() == RelLib.Person.MALE:
-##                     error.write( _("Buried before baptism: %(male_name)s baptized %(bapyear)d, buried %(buryear)d.\n") % { 
-##                         'male_name' : idstr, 'bapyear' : bapyear, 'buryear' : buryear } )
-##                 if person.get_gender() == RelLib.Person.FEMALE:
-##                     error.write( _("Buried before baptism: %(female_name)s baptized %(bapyear)d, buried %(buryear)d.\n") % { 
-##                         'female_name' : idstr, 'bapyear' : bapyear, 'buryear' : buryear } )
-##             if byear == 0 and estimate_age:
-##                 byear = bapyear  # guess baptism = birth
-##             if dyear == 0 and estimate_age:
-##                 dyear = buryear  # guess burial = death
-##             if byear>0 and dyear>0:
-##                 ageatdeath = dyear - byear
-##             else:
-##                 ageatdeath = 0
-##             if ageatdeath > oldage:
-##                 if person.get_gender() == RelLib.Person.MALE:
-##                     warn.write( _("Old age: %(male_name)s born %(byear)d, died %(dyear)d, at the age of %(ageatdeath)d.\n") % { 
-##                         'male_name' : idstr, 'byear' : byear, 'dyear' : dyear, 'ageatdeath' : ageatdeath } )
-##                 if person.get_gender() == RelLib.Person.FEMALE:
-##                     warn.write( _("Old age: %(female_name)s born %(byear)d, died %(dyear)d, at the age of %(ageatdeath)d.\n") % { 
-##                         'female_name' : idstr, 'byear' : byear, 'dyear' : dyear, 'ageatdeath' : ageatdeath } )
-    
-##             # gender checks
+            self.update()
+##             if not cli:
+##                 progress.step()
 
-##             if person.get_gender() == RelLib.Person.FEMALE:
-##                 oldpar = oldmom
-##                 yngpar = yngmom
-##             if person.get_gender() == RelLib.Person.MALE:
-##                 oldpar = olddad
-##                 yngpar = yngdad
-##             if (person.get_gender() != RelLib.Person.FEMALE) and (person.get_gender() != RelLib.Person.MALE):
-##                 warn.write( _("Unknown gender for %s.\n") % idstr )
-##                 oldpar = olddad
-##                 yngpar = yngdad
-##             if (person.get_gender() == RelLib.Person.FEMALE) and (person.get_gender() == RelLib.Person.MALE):
-##                 error.write( _("Ambiguous gender for %s.\n") % idstr )
-##                 oldpar = olddad
-##                 yngpar = yngdad
-        
-##             # multiple parentage check
-##             if( len( person.get_parent_family_handle_list() ) > 1 ):
-##                 warn.write( _("Multiple parentage for %s.\n") % idstr )
+##         if not cli:
+##             progress.close()
 
-##             # marriage checks
-##             nkids = 0
-##             nfam  = len( person.get_family_handle_list() )
-##             if nfam > wedder:
-##                 if person.get_gender() == RelLib.Person.MALE:
-##                     warn.write( _("Married often: %(male_name)s married %(nfam)d times.\n") % { 
-##                         'male_name' : idstr, 'nfam' : nfam } )
-##                 if person.get_gender() == RelLib.Person.FEMALE:
-##                     warn.write( _("Married often: %(female_name)s married %(nfam)d times.\n") % { 
-##                         'female_name' : idstr, 'nfam' : nfam } )
-##             if ageatdeath>oldunm and nfam == 0:
-##                 if person.get_gender() == RelLib.Person.MALE:
-##                     warn.write( _("Old and unmarried: %(male_name)s died unmarried, at the age of %(ageatdeath)d years.\n") % { 
-##                         'male_name' : idstr, 'ageatdeath' : ageatdeath } )
-##                 if person.get_gender() == RelLib.Person.FEMALE:
-##                     warn.write( _("Old and unmarried: %(female_name)s died unmarried, at the age of %(ageatdeath)d years.\n") % { 
-##                         'female_name' : idstr, 'ageatdeath' : ageatdeath } )
-##             prev_cbyear=0
-##             prev_maryear=0
-##             prev_sdyear=0
-##             fnum = 0
-
-##             for family_handle in person.get_family_handle_list():
-##                 family = self.db.get_family_from_handle(family_handle)
-##                 fnum = fnum + 1
-##                 mother_handle = family.get_mother_handle()
-##                 father_handle = family.get_father_handle()
-##                 if mother_handle:
-##                     mother = self.db.get_person_from_handle(mother_handle)
-##                 if father_handle:
-##                     father = self.db.get_person_from_handle(father_handle)
-##                 if mother_handle and father_handle:
-##                     if ( mother.get_gender() == father.get_gender() ) and mother.get_gender() != RelLib.Person.UNKNOWN:
-##                         warn.write( _("Homosexual marriage: %s in family %s.\n") % ( idstr, family.get_gramps_id() ) )
-##                 if father_handle == person.get_handle() and person.get_gender() == RelLib.Person.FEMALE:
-##                     error.write( _("Female husband: %s in family %s.\n") % ( idstr, family.get_gramps_id() ) )
-##                 if mother_handle == person.get_handle() and person.get_gender() == RelLib.Person.MALE:
-##                     error.write( _("Male wife: %s in family %s.\n") % ( idstr, family.get_gramps_id() ) )
-##                 if father_handle == person.get_handle():
-##                    spouse_id = mother_handle
-##                 else:
-##                    spouse_id = father_handle
-##                 if spouse_id:
-##                     spouse = self.db.get_person_from_handle(spouse_id)
-##                     if person.get_gender() == RelLib.Person.MALE and \
-##                            person.get_primary_name().get_surname() == spouse.get_primary_name().get_surname():
-##                         warn.write( _("Husband and wife with the same surname: %s in family %s, and %s.\n") % (
-##                             idstr,family.get_gramps_id(), spouse.get_primary_name().get_name() ) )
-
-
-##                     death_ref = spouse.get_death_ref()
-##                     if death_ref:
-##                         death_handle = death_ref.ref
-##                     else:
-##                         death_handle = None
-
-##                     birth_ref = spouse.get_birth_ref()
-##                     if birth_ref:
-##                         birth_handle = birth_ref.ref
-##                     else:
-##                         birth_handle = None
-                        
-##                     sdyear = self.get_year( death_handle )
-##                     sbyear = self.get_year( birth_handle )
-##                     if sbyear != 0 and byear != 0 and abs(sbyear-byear) > hwdif:
-##                         warn.write( _("Large age difference between husband and wife: %s in family %s, and %s.\n") % (
-##                             idstr,family.get_gramps_id(), spouse.get_primary_name().get_name() ) )
-                        
-##                     if sdyear == 0:
-##                         sdyear = 0  # burial year
-
-##                     for event_ref in family.get_event_ref_list():
-##                         if event_ref:
-##                             event_handle = event_ref.ref
-##                             event = self.db.get_event_from_handle(event_handle)
-##                             if event.get_type().xml_str() == "Marriage":
-##                                 marriage_id = event_handle
-##                                 break
-##                     else:
-##                         marriage_id = None
-
-##                     maryear = self.get_year( marriage_id )
-
-##                     if maryear == 0 and estimate_age:   #  estimate marriage year
-##                         cnum=0
-##                         for child_ref in family.get_child_ref_list():
-##                             cnum = cnum + 1
-##                             if maryear == 0:
-##                                 child = self.db.get_person_from_handle(child_ref.ref)
-##                                 birth_ref = child.get_birth_ref()
-##                                 if birth_ref:
-##                                     birthyear = self.get_year(birth_ref.ref)
-##                                 else:
-##                                     birthyear = 0
-##                             if birthyear > 0:
-##                                 maryear = birthyear-cnum
-
-##                     if maryear > 0:
-##                         if byear > 0:
-##                             marage = maryear - byear
-##                             if marage < 0:
-##                                 if person.get_gender() == RelLib.Person.MALE:
-##                                         error.write( _("Married before birth: %(male_name)s born %(byear)d, married %(maryear)d to %(spouse)s.\n") %  { 
-##                                         'male_name' : idstr, 'byear' : byear, 'maryear' : maryear, 'spouse' : spouse.get_primary_name().get_name() } )
-##                                 if person.get_gender() == RelLib.Person.FEMALE:
-##                                     error.write( _("Married before birth: %(female_name)s born %(byear)d, married %(maryear)d to %(spouse)s.\n") %  { 
-##                                         'female_name' : idstr, 'byear' : byear, 'maryear' : maryear, 'spouse' : spouse.get_primary_name().get_name() } )
-##                             else:
-##                                 if marage < yngmar:
-##                                     if person.get_gender() == RelLib.Person.MALE:
-##                                         warn.write( _("Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n") % { 
-##                                             'male_name' : idstr, 'marage' : marage, 'spouse' : spouse.get_primary_name().get_name() } )
-##                                     if person.get_gender() == RelLib.Person.FEMALE:
-##                                         warn.write( _("Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n") % { 
-##                                             'female_name' : idstr, 'marage' : marage, 'spouse' : spouse.get_primary_name().get_name() } )
-##                                 if marage > oldmar:
-##                                    if person.get_gender() == RelLib.Person.MALE:
-##                                         warn.write( _("Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n") % { 
-##                                             'male_name' : idstr, 'marage' : marage, 'spouse' : spouse.get_primary_name().get_name() } )
-##                                    if person.get_gender() == RelLib.Person.FEMALE:
-##                                         warn.write( _("Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n") % { 
-##                                             'female_name' : idstr, 'marage' : marage, 'spouse' : spouse.get_primary_name().get_name() } )
-##                         if dyear>0 and maryear > dyear:
-##                             if person.get_gender() == RelLib.Person.MALE:
-##                                 error.write( _("Married after death: %(male_name)s died %(dyear)d, married %(maryear)d to %(spouse)s.\n") % { 
-##                                     'male_name' : idstr, 'dyear' : dyear, 'maryear' : maryear, 'spouse' : spouse.get_primary_name().get_name() } )
-##                             if person.get_gender() == RelLib.Person.FEMALE:
-##                                 error.write( _("Married after death: %(female_name)s died %(dyear)d, married %(maryear)d to %(spouse)s.\n") % { 
-##                                     'female_name' : idstr, 'dyear' : dyear, 'maryear' : maryear, 'spouse' : spouse.get_primary_name().get_name() } )
-##                         if prev_cbyear > maryear:
-##                             if person.get_gender() == RelLib.Person.MALE:
-##                                 warn.write( _("Marriage before birth from previous family: %(male_name)s married %(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n") % { 
-##                                     'male_name' : idstr, 'maryear' : maryear, 'spouse' : spouse.get_primary_name().get_name(), 'prev_cbyear' : prev_cbyear } )
-##                             if person.get_gender() == RelLib.Person.FEMALE:
-##                                 warn.write( _("Marriage before birth from previous family: %(female_name)s married %(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n") % { 
-##                                     'female_name' : idstr, 'maryear' : maryear, 'spouse' : spouse.get_primary_name().get_name(), 'prev_cbyear' : prev_cbyear } )
-##                         prev_maryear = maryear
-##                     else:
-##                         maryear = prev_maryear
-                                                        
-##                     if maryear>0 and prev_sdyear > 0:
-##                         wdwyear = maryear-prev_sdyear
-##                         if wdwyear > lngwdw:
-##                             if person.get_gender() == RelLib.Person.MALE:
-##                                 warn.write( _("Long widowhood: %s was a widower %d years before, family %s.\n") % (idstr, wdwyear, family.get_gramps_id() ) )
-##                             if person.get_gender() == RelLib.Person.FEMALE:
-##                                 warn.write( _("Long widowhood: %s was a widow %d years before, family %s.\n") % (idstr, wdwyear, family.get_gramps_id() ) )
-
-##                     if fnum==nfam and dyear>0 and sdyear>0:
-##                         wdwyear = dyear - sdyear
-##                         if wdwyear > lngwdw:
-##                             if person.get_gender() == RelLib.Person.MALE:
-##                                 warn.write( _("Long widowhood: %s was a widower %d years.\n") % (idstr, wdwyear) )
-##                             if person.get_gender() == RelLib.Person.FEMALE:
-##                                 warn.write( _("Long widowhood: %s was a widow %d years.\n") % (idstr, wdwyear) )
-
-##                     nkids = 0
-##                     cbyears = []
-                    
-##                     total_children = total_children + len(family.get_child_ref_list())
-##                     for child_ref in family.get_child_ref_list():
-##                         nkids = nkids+1
-##                         child = self.db.get_person_from_handle(child_ref.ref)
-##                         birth_ref = child.get_birth_ref()
-##                         if birth_ref:
-##                             birth_handle = birth_ref.ref
-##                         else:
-##                             birth_handle = None
-                            
-##                         cbyear = self.get_year( birth_handle )
-##                         if cbyear:
-##                             cbyears.append(cbyear)
-
-##                         # parentage checks 
-##                         if byear>0 and cbyear>0:
-##                             bage = cbyear - byear
-##                             if bage > oldpar:
-##                                 if person.get_gender() == RelLib.Person.MALE:
-##                                     warn.write( _("Old father: %(male_name)s at age of %(bage)d in family %(fam)s had a child %(child)s.\n") % { 
-##                                         'male_name' : idstr, 'bage' : bage, 'fam' : family.get_handle(), 'child' : child.get_primary_name().get_name() } ) 
-##                                 if person.get_gender() == RelLib.Person.FEMALE:
-##                                     warn.write( _("Old mother: %(female_name)s at age of %(bage)d in family %(fam)s had a child %(child)s.\n") % { 
-##                                         'female_name' : idstr, 'bage' : bage, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name() } ) 
-##                             if bage < 0:
-##                                 if person.get_gender() == RelLib.Person.MALE:
-##                                     error.write( _("Unborn father: %(male_name)s born %(byear)d, in family %(fam)s had a child %(child)s born %(cbyear)d.\n") % { 
-##                                                 'male_name' : idstr, 'byear' : byear, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name(), 'cbyear' : cbyear } )
-##                                 if person.get_gender() == RelLib.Person.FEMALE:
-##                                     error.write( _("Unborn mother: %(female_name)s born %(byear)d, in family %(fam)s had a child %(child)s born %(cbyear)d.\n") % { 
-##                                                 'female_name' : idstr, 'byear' : byear, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name(), 'cbyear' : cbyear } )
-##                             else:
-##                                 if bage < yngpar:
-##                                     if person.get_gender() == RelLib.Person.MALE:
-##                                         warn.write( _("Young father: %(male_name)s at the age of %(bage)d in family %(fam)s had a child %(child)s.\n") % { 
-##                                                         'male_name' : idstr, 'bage' : bage, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name() } )
-##                                         if person.get_gender() == RelLib.Person.FEMALE:
-##                                             warn.write( _("Young mother: %(female_name)s at the age of %(bage)d in family %(fam)s had a child %(child)s.\n") % { 
-##                                                         'female_name' : idstr, 'bage' : bage, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name() } )
-##                         if dyear>0 and cbyear>dyear:
-##                             if cbyear-1>dyear:
-##                                 if person.get_gender() == RelLib.Person.MALE:
-##                                     error.write( _("Dead father: %(male_name)s died %(dyear)d, but in family %(fam)s had a child %(child)s born %(cbyear)d.\n") % { 
-##                                                 'male_name' : idstr, 'dyear' : dyear, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name(), 'cbyear' : cbyear} )
-##                                 if person.get_gender() == RelLib.Person.FEMALE:
-##                                     error.write( _("Dead mother: %(female_name)s died %(dyear)d, but in family %(fam)s had a child %(child)s born %(cbyear)d.\n") % { 
-##                                                 'female_name' : idstr, 'dyear' : dyear, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name(), 'cbyear' : cbyear} )
-##                             else:
-##                                 if person.get_gender() == RelLib.Person.MALE:
-##                                     warn.write( _("Dead father: %(male_name)s died %(dyear)d, but in family %(fam)s had a child %(child)s born %(cbyear)d.\n") % { 
-##                                                 'male_name' : idstr, 'dyear' : dyear, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name(), 'cbyear' : cbyear} )
-##                                 if person.get_gender() == RelLib.Person.FEMALE:
-##                                     warn.write( _("Dead mother: %(female_name)s died %(dyear)d, but in family %(fam)s had a child %(child)s born %(cbyear)d.\n") % { 
-##                                                 'female_name' : idstr, 'dyear' : dyear, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name(), 'cbyear' : cbyear} )
-                    
-##                     if cbyears:
-##                         cbyears.sort()
-##                         if (cbyears[-1] - cbyears[0]) > cbspan:
-##                             warn.write(_("Large year span for all children: family %s.\n") % family.get_gramps_id() )
-##                     if len(cbyears) > 1:
-##                         cby_diff = [ cbyears[i+1]-cbyears[i] for i in range(len(cbyears)-1) ]
-##                         if max(cby_diff) > cspace:
-##                             warn.write(_("Large age differences between children: family %s.\n") % family.get_gramps_id() )
-
-##             if (person.get_gender() == RelLib.Person.MALE 
-##                                 and total_children > mxchilddad) \
-##                         or (person.get_gender() == RelLib.Person.FEMALE 
-##                                 and total_children > mxchildmom):
-##                 warn.write(_("Too many children (%(num_children)d) for %(person_name)s.\n") % {
-##                     'num_children' : total_children, 'person_name' : idstr })
-            if not cli:
-                progress.step()
-
-        if not cli:
-            progress.close()
-
-##         err_text = error.getvalue()
-##         warn_text = warn.getvalue()
-##         error.close()
-##         warn.close()
-        
-        return ("","") #err_text.strip(),warn_text.strip()
-
-    def print_results(self,err_text,warn_text):
-        if warn_text:
-            print "\nWARNINGS:"
-            print warn_text
-        if err_text:
-            print "\nERRORS:"
-            print err_text
-        if not (warn_text or err_text):
-            print "No warnings or errors during verification!"
-    
 #-------------------------------------------------------------------------
 #
 # Display the results
 #
 #-------------------------------------------------------------------------
-class VerifyResults(ManagedWindow.ManagedWindow):
-    def __init__(self,err_text,warn_text,uistate,track):
+class VerifyResults(ManagedWindow):
+    def __init__(self,uistate,track):
         self.title = _('Database Verification Results')
 
-        ManagedWindow.ManagedWindow.__init__(self,uistate,track,self.__class__)
-
-        self.err_text = err_text
-        self.warn_text = warn_text
+        ManagedWindow.__init__(self,uistate,track,self.__class__)
 
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "verify.glade"
@@ -760,12 +523,59 @@ class VerifyResults(ManagedWindow.ManagedWindow):
             "destroy_passed_object"  : self.close,
             })
 
-        err_window = self.top.get_widget("err_window")
-        warn_window = self.top.get_widget("warn_window")
-        err_window.get_buffer().set_text(self.err_text)
-        warn_window.get_buffer().set_text(self.warn_text)
+        self.warn_model = gtk.ListStore(str,str,str,str,int,str,str)
+        self.hide_model = gtk.ListStore(str,str,str,str,int,str,str)
+        self.warn_tree = self.top.get_widget('warn_tree') 
+        self.hide_tree = self.top.get_widget('hide_tree')
+        self.warn_tree.set_model(self.warn_model)
+        self.hide_tree.set_model(self.hide_model)
+
+        self.renderer = gtk.CellRendererText()
+        self.img_renderer = gtk.CellRendererPixbuf()
         
-        self.show()
+        self.img_column = gtk.TreeViewColumn(None, self.img_renderer )
+        self.warn_tree.append_column(self.img_column)
+        self.img_column.set_cell_data_func(self.img_renderer,self.get_image)
+
+        self.warn_tree.append_column(
+            gtk.TreeViewColumn(_('Warning'), self.renderer,
+                               text=0,foreground=6))
+        self.warn_tree.append_column(
+            gtk.TreeViewColumn(_('ID'), self.renderer,
+                               text=1,foreground=6))
+        self.warn_tree.append_column(
+            gtk.TreeViewColumn(_('Name'), self.renderer,
+                               text=2,foreground=6))
+
+        self.hide_tree.append_column(
+            gtk.TreeViewColumn(_('Warning'), self.renderer,
+                               text=0,foreground=6))
+        self.hide_tree.append_column(
+            gtk.TreeViewColumn(_('ID'), self.renderer,
+                               text=1,foreground=6))
+        self.hide_tree.append_column(
+            gtk.TreeViewColumn(_('Name'), self.renderer,
+                               text=2,foreground=6))
+
+        self.window.show_all()
+        self.window_shown = False
+
+    def get_image(self, column, cell, model, iter, user_data=None):
+        the_type = model.get_value(iter, 3)
+        if the_type == 'Person':
+            cell.set_property('stock-id', 'gramps-person' )
+        elif  the_type == 'Family':
+            cell.set_property('stock-id', 'gramps-family' )
+
+    def add_results(self,results):
+        fg = None
+        (msg,gramps_id,name,the_type,rule_id,handle) = results        
+        self.warn_model.append(row=[msg,gramps_id,name,
+                                    the_type,rule_id,handle,fg])
+        
+        if not self.window_shown:
+            self.show()
+            self.window_shown = True
 
     def build_menu_names(self,obj):
         return (self.title,None)
@@ -800,6 +610,7 @@ class VerifyOptions(Tool.ToolOptions):
             'mxchildmom'   : 12,
             'mxchilddad'   : 15,
             'lngwdw'       : 30,
+            'oldunm'       : 99,
             'estimate_age' : 0,
         }
         self.options_help = {
@@ -829,7 +640,10 @@ class VerifyOptions(Tool.ToolOptions):
             'mxchilddad'   : ("=num","Maximum  number of children for a man",
                               "Number of chidlren"),
             'lngwdw'       : ("=num","Maximum number of consecutive years "
-                              "of widowhood","Number of years"),
+                              "of widowhood before next marriage",
+                              "Number of years"),
+            'oldunm'       : ("=num","Maximum age for an unmarried person"
+                              "Number of years"),
             'estimate_age' : ("=0/1","Whether to estimate missing dates",
                               ["Do not estimate","Estimate dates"],
                               True),
@@ -846,12 +660,15 @@ class Rule:
 
     Other rules must inherit from this.
     """
+    ID = 0
+    TYPE = ''
+    
     ERROR   = 1
     WARNING = 2
 
-    def __init__(self,db):
+    def __init__(self,db,obj):
         self.db = db
-        self.hidden = False
+        self.obj = obj
 
     def broken(self):
         """
@@ -859,45 +676,45 @@ class Rule:
         """
         return False
 
-    def hide(self):
-        self.hidden = True
-
-    def unhide(self):
-        self.hidden = False
-
     def get_message(self):
         assert False, "Need to be overriden in the derived class"
 
-    def get_id_str(self):
+    def get_name(self):
         assert False, "Need to be overriden in the derived class"
+
+    def get_handle(self):
+        return self.obj.handle
+
+    def get_id(self):
+        return self.obj.gramps_id
 
     def get_level(self):
         return Rule.WARNING
+
+    def report_itself(self):
+        handle = self.get_handle()
+        the_type = self.TYPE
+        rule_id = self.ID
+        name = self.get_name()
+        gramps_id = self.get_id()
+        msg = self.get_message()
+        return (msg,gramps_id,name,the_type,rule_id,handle)
 
 class PersonRule(Rule):
     """
     Person-based class.
     """
-    def __init__(self,db,person):
-        Rule.__init__(self,db)
-        self.obj_type = 'Person'
-        self.obj = person
-
-    def get_id_str(self):
-        return "%s (%s)" % (self.obj.get_primary_name().get_name(),
-                            self.obj.get_gramps_id())
+    TYPE = 'Person'
+    def get_name(self):
+        return self.obj.get_primary_name().get_name()
 
 class FamilyRule(Rule):
     """
     Family-based class.
     """
-    def __init__(self,db,family):
-        Rule.__init__(self,db)
-        self.obj_type = 'Family'
-        self.obj = family()
-
-    def get_id_str(self):
-        return get_family_name(self.db,self.obj)
+    TYPE = 'Family'
+    def get_name(self):
+        return Utils.family_name(self.obj,self.db)
 
 #-------------------------------------------------------------------------
 #
@@ -905,6 +722,7 @@ class FamilyRule(Rule):
 #
 #-------------------------------------------------------------------------
 class BirthAfterBapt(PersonRule):
+    ID = 1
     def broken(self):
         birth_date = get_birth_date(self.db,self.obj)
         bapt_date = get_bapt_date(self.db,self.obj)
@@ -917,6 +735,7 @@ class BirthAfterBapt(PersonRule):
         return _("Baptism before birth")
 
 class DeathBeforeBapt(PersonRule):
+    ID = 2
     def broken(self):
         death_date = get_death_date(self.db,self.obj)
         bapt_date = get_bapt_date(self.db,self.obj)
@@ -929,6 +748,7 @@ class DeathBeforeBapt(PersonRule):
         return _("Death before baptism")
 
 class BirthAfterBury(PersonRule):
+    ID = 3
     def broken(self):
         birth_date = get_birth_date(self.db,self.obj)
         bury_date = get_bury_date(self.db,self.obj)
@@ -941,6 +761,7 @@ class BirthAfterBury(PersonRule):
         return _("Burial before birth")
 
 class DeathAfterBury(PersonRule):
+    ID = 4
     def broken(self):
         death_date = get_death_date(self.db,self.obj)
         bury_date = get_bury_date(self.db,self.obj)
@@ -953,6 +774,7 @@ class DeathAfterBury(PersonRule):
         return _("Burial before death")
 
 class BirthAfterDeath(PersonRule):
+    ID = 5
     def broken(self):
         birth_date = get_birth_date(self.db,self.obj)
         death_date = get_death_date(self.db,self.obj)
@@ -965,6 +787,7 @@ class BirthAfterDeath(PersonRule):
         return _("Death before birth")
 
 class BaptAfterBury(PersonRule):
+    ID = 6
     def broken(self):
         bapt_date = get_bapt_date(self.db,self.obj)
         bury_date = get_bury_date(self.db,self.obj)
@@ -977,18 +800,21 @@ class BaptAfterBury(PersonRule):
         return _("Burial before baptism")
 
 class OldAge(PersonRule):
-    def __init__(self,db,person,old_age):
+    ID = 7
+    def __init__(self,db,person,old_age,est):
         PersonRule.__init__(self,db,person)
         self.old_age = old_age
+        self.est = est
 
     def broken(self):
-        age_at_death = get_age_at_death(self.db,self.obj)
+        age_at_death = get_age_at_death(self.db,self.obj,self.est)
         return (age_at_death > self.old_age)
 
     def get_message(self):
         return _("Old age at death")
 
 class UnknownGender(PersonRule):
+    ID = 8
     def broken(self):
         female = self.obj.get_gender() == RelLib.Person.FEMALE
         male = self.obj.get_gender() == RelLib.Person.MALE
@@ -998,6 +824,7 @@ class UnknownGender(PersonRule):
         return _("Unknown gender")
 
 class MultipleParents(PersonRule):
+    ID = 9
     def broken(self):
         n_parent_sets = len(self.obj.get_parent_family_handle_list())
         return (n_parent_sets>1)
@@ -1006,6 +833,7 @@ class MultipleParents(PersonRule):
         return _("Multiple parents")
 
 class MarriedOften(PersonRule):
+    ID = 10
     def __init__(self,db,person,wedder):
         PersonRule.__init__(self,db,person)
         self.wedder = wedder
@@ -1018,19 +846,45 @@ class MarriedOften(PersonRule):
         return _("Married often")
 
 class OldUnmarried(PersonRule):
-    def __init__(self,db,person,old_unm):
+    ID = 11
+    def __init__(self,db,person,old_unm,est):
         PersonRule.__init__(self,db,person)
         self.old_unm = old_unm
+        self.est = est
 
     def broken(self):
-        age_at_death = get_age_at_death(self.db,self.obj)
+        age_at_death = get_age_at_death(self.db,self.obj,self.est)
         n_spouses = len(self.obj.get_family_handle_list())
         return (age_at_death>self.old_unm and n_spouses==0)
 
     def get_message(self):
         return _("Old and unmarried")
 
+class TooManyChildren(PersonRule):
+    ID = 12
+    def __init__(self,db,obj,mx_child_dad,mx_child_mom):
+        PersonRule.__init__(self,db,obj)
+        self.mx_child_dad = mx_child_dad
+        self.mx_child_mom = mx_child_mom
+
+    def broken(self):
+        n_child = get_n_children(self.db,self.obj)
+
+        if (self.obj.get_gender == RelLib.Person.MALE) \
+               and (n_child > self.mx_child_dad):
+            return True
+
+        if (self.obj.get_gender == RelLib.Person.FEMALE) \
+               and (n_child > self.mx_child_mom):
+            return True
+
+        return False
+
+    def get_message(self):
+        return _("Too many children")
+
 class SameSexFamily(FamilyRule):
+    ID = 13
     def broken(self):
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
@@ -1042,6 +896,7 @@ class SameSexFamily(FamilyRule):
         return _("Same sex marriage")
 
 class FemaleHusband(FamilyRule):
+    ID = 14
     def broken(self):
         father = get_father(self.db,self.obj)
         return (father.get_gender() == RelLib.Person.FEMALE)
@@ -1050,6 +905,7 @@ class FemaleHusband(FamilyRule):
         return _("Female husband")
 
 class MaleWife(FamilyRule):
+    ID = 15
     def broken(self):
         mother = get_mother(self.db,self.obj)
         return (mother.get_gender() == RelLib.Person.MALE)
@@ -1058,6 +914,7 @@ class MaleWife(FamilyRule):
         return _("Male wife")
 
 class SameSurnameFamily(FamilyRule):
+    ID = 16
     def broken(self):
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
@@ -1070,32 +927,39 @@ class SameSurnameFamily(FamilyRule):
         return _("Husband and wife with the same surname")
 
 class LargeAgeGapFamily(FamilyRule):
-    def __init__(self,db,obj,hw_diff):
+    ID = 17
+    def __init__(self,db,obj,hw_diff,est):
         FamilyRule.__init__(self,db,obj)
         self.hw_diff = hw_diff
+        self.est = est
 
     def broken(self):
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
-        mother_birth_date = get_birth_date(self.db,mother)
-        father_birth_date = get_birth_date(self.db,father)
+        mother_birth_date = get_birth_date(self.db,mother,self.est)
+        father_birth_date = get_birth_date(self.db,father,self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
         large_diff = abs(father_birth_date-mother_birth_date) > self.hw_diff
         return (mother_birth_date_ok and father_birth_date_ok and large_diff)
 
     def get_message(self):
-        return _("Large age difference between husband and wife")
+        return _("Large age difference between spouses")
 
 class MarriageBeforeBirth(FamilyRule):
+    ID = 18
+    def __init__(self,db,obj,est):
+        FamilyRule.__init__(self,db,obj)
+        self.est = est
+
     def broken(self):
         marr_date = get_marriage_date(self.db,self.obj)
         marr_date_ok = marr_date > 0
 
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
-        mother_birth_date = get_birth_date(self.db,mother)
-        father_birth_date = get_birth_date(self.db,father)
+        mother_birth_date = get_birth_date(self.db,mother,self.est)
+        father_birth_date = get_birth_date(self.db,father,self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
@@ -1110,14 +974,19 @@ class MarriageBeforeBirth(FamilyRule):
         return _("Marriage before birth")
 
 class MarriageAfterDeath(FamilyRule):
+    ID = 19
+    def __init__(self,db,obj,est):
+        FamilyRule.__init__(self,db,obj)
+        self.est = est
+
     def broken(self):
         marr_date = get_marriage_date(self.db,self.obj)
         marr_date_ok = marr_date > 0
 
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
-        mother_death_date = get_death_date(self.db,mother)
-        father_death_date = get_death_date(self.db,father)
+        mother_death_date = get_death_date(self.db,mother,self.est)
+        father_death_date = get_death_date(self.db,father,self.est)
         mother_death_date_ok = mother_death_date > 0
         father_death_date_ok = father_death_date > 0
 
@@ -1132,9 +1001,11 @@ class MarriageAfterDeath(FamilyRule):
         return _("Marriage after death")
 
 class EarlyMarriage(FamilyRule):
-    def __init__(self,db,obj,yng_mar):
-        FamilyRule__init__(self,db,obj)
+    ID = 20
+    def __init__(self,db,obj,yng_mar,est):
+        FamilyRule.__init__(self,db,obj)
         self.yng_mar = yng_mar
+        self.est = est
 
     def broken(self):
         marr_date = get_marriage_date(self.db,self.obj)
@@ -1142,8 +1013,8 @@ class EarlyMarriage(FamilyRule):
 
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
-        mother_birth_date = get_birth_date(self.db,mother)
-        father_birth_date = get_birth_date(self.db,father)
+        mother_birth_date = get_birth_date(self.db,mother,self.est)
+        father_birth_date = get_birth_date(self.db,father,self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
@@ -1158,9 +1029,11 @@ class EarlyMarriage(FamilyRule):
         return _("Early marriage")
 
 class LateMarriage(FamilyRule):
-    def __init__(self,db,obj,old_mar):
-        FamilyRule__init__(self,db,obj)
+    ID = 21
+    def __init__(self,db,obj,old_mar,est):
+        FamilyRule.__init__(self,db,obj)
         self.old_mar = old_mar
+        self.est = est
 
     def broken(self):
         marr_date = get_marriage_date(self.db,self.obj)
@@ -1168,8 +1041,8 @@ class LateMarriage(FamilyRule):
 
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
-        mother_birth_date = get_birth_date(self.db,mother)
-        father_birth_date = get_birth_date(self.db,father)
+        mother_birth_date = get_birth_date(self.db,mother,self.est)
+        father_birth_date = get_birth_date(self.db,father,self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
@@ -1203,32 +1076,35 @@ class LateMarriage(FamilyRule):
 ##         return _("Long Windowhood")
 
 class OldParent(FamilyRule):
-    def __init__(self,db,obj,old_par):
-        FamilyRule__init__(self,db,obj)
-        self.old_par = old_par
+    ID = 22
+    def __init__(self,db,obj,old_mom,old_dad,est):
+        FamilyRule.__init__(self,db,obj)
+        self.old_mom = old_mom
+        self.old_dad = old_dad
+        self.est = est
 
     def broken(self):
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
-        mother_birth_date = get_birth_date(self.db,mother)
-        father_birth_date = get_birth_date(self.db,father)
+        mother_birth_date = get_birth_date(self.db,mother,self.est)
+        father_birth_date = get_birth_date(self.db,father,self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
         for child_ref in self.obj.get_child_ref_list():
             child = find_person(self.db,child_ref.ref)
-            child_birth_date = get_birth_date(self.db,child)
+            child_birth_date = get_birth_date(self.db,child,self.est)
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
             father_broken = (father_birth_date_ok and (
-                father_birth_date - child_birth_date > self.old_par))
+                father_birth_date - child_birth_date > self.old_dad))
             if father_broken:
                 self.get_message = self.father_message
                 return True
 
             mother_broken = (mother_birth_date_ok and (
-                mother_birth_date - child_birth_date > self.old_par))
+                mother_birth_date - child_birth_date > self.old_mom))
             if mother_broken:
                 self.get_message = self.mother_message
                 return True
@@ -1241,32 +1117,35 @@ class OldParent(FamilyRule):
         return _("Old mother")
 
 class YoungParent(FamilyRule):
-    def __init__(self,db,obj,yng_par):
-        FamilyRule__init__(self,db,obj)
-        self.yng_par = yng_par
+    ID = 23
+    def __init__(self,db,obj,yng_mom,yng_dad,est):
+        FamilyRule.__init__(self,db,obj)
+        self.yng_dad = yng_dad
+        self.yng_mom = yng_mom
+        self.est = est
 
     def broken(self):
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
-        mother_birth_date = get_birth_date(self.db,mother)
-        father_birth_date = get_birth_date(self.db,father)
+        mother_birth_date = get_birth_date(self.db,mother,self.est)
+        father_birth_date = get_birth_date(self.db,father,self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
         for child_ref in self.obj.get_child_ref_list():
             child = find_person(self.db,child_ref.ref)
-            child_birth_date = get_birth_date(self.db,child)
+            child_birth_date = get_birth_date(self.db,child,self.est)
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
             father_broken = (father_birth_date_ok and (
-                father_birth_date - child_birth_date < self.yng_par))
+                father_birth_date - child_birth_date < self.yng_dad))
             if father_broken:
                 self.get_message = self.father_message
                 return True
 
             mother_broken = (mother_birth_date_ok and (
-                mother_birth_date - child_birth_date < self.yng_par))
+                mother_birth_date - child_birth_date < self.yng_mom))
             if mother_broken:
                 self.get_message = self.mother_message
                 return True
@@ -1279,17 +1158,22 @@ class YoungParent(FamilyRule):
         return _("Young mother")
 
 class UnbornParent(FamilyRule):
+    ID = 24
+    def __init__(self,db,obj,est):
+        FamilyRule.__init__(self,db,obj)
+        self.est = est
+
     def broken(self):
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
-        mother_birth_date = get_birth_date(self.db,mother)
-        father_birth_date = get_birth_date(self.db,father)
+        mother_birth_date = get_birth_date(self.db,mother,self.est)
+        father_birth_date = get_birth_date(self.db,father,self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
         for child_ref in self.obj.get_child_ref_list():
             child = find_person(self.db,child_ref.ref)
-            child_birth_date = get_birth_date(self.db,child)
+            child_birth_date = get_birth_date(self.db,child,self.est)
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
@@ -1312,17 +1196,22 @@ class UnbornParent(FamilyRule):
         return _("Unborn mother")
 
 class DeadParent(FamilyRule):
+    ID = 25
+    def __init__(self,db,obj,est):
+        FamilyRule.__init__(self,db,obj)
+        self.est = est
+
     def broken(self):
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
-        mother_death_date = get_death_date(self.db,mother)
-        father_death_date = get_death_date(self.db,father)
+        mother_death_date = get_death_date(self.db,mother,self.est)
+        father_death_date = get_death_date(self.db,father,self.est)
         mother_death_date_ok = mother_death_date > 0
         father_death_date_ok = father_death_date > 0
 
         for child_ref in self.obj.get_child_ref_list():
             child = find_person(self.db,child_ref.ref)
-            child_birth_date = get_birth_date(self.db,child)
+            child_birth_date = get_birth_date(self.db,child,self.est)
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
@@ -1345,55 +1234,39 @@ class DeadParent(FamilyRule):
         return _("Dead mother")
 
 class LargeChildrenSpan(FamilyRule):
-    def __init__(self,db,obj,cb_span):
-        FamilyRule__init__(self,db,obj)
+    ID = 26
+    def __init__(self,db,obj,cb_span,est):
+        FamilyRule.__init__(self,db,obj)
         self.cb_span = cb_span
+        self.est = est
 
     def broken(self):
-        child_birh_dates = get_child_birth_dates(self.db,self.obj)
+        child_birh_dates = get_child_birth_dates(self.db,self.obj,self.est)
         child_birh_dates.sort()
         
-        return (child_birh_dates[-1] - child_birh_dates[0] > self.cb_span)
+        return (child_birh_dates and
+                (child_birh_dates[-1] - child_birh_dates[0] > self.cb_span))
 
     def get_message(self):
         return _("Large year span for all children")
 
 class LargeChildrenAgeDiff(FamilyRule):
-    def __init__(self,db,obj,c_space):
-        FamilyRule__init__(self,db,obj)
+    ID = 27
+    def __init__(self,db,obj,c_space,est):
+        FamilyRule.__init__(self,db,obj)
         self.c_space = c_space
+        self.est = est
 
     def broken(self):
-        child_birh_dates = get_child_birth_dates(self.db,self.obj)
+        child_birh_dates = get_child_birth_dates(self.db,self.obj,self.est)
         child_birh_dates_diff = [child_birh_dates[i+1] - child_birh_dates[i]
                                  for i in range(len(child_birh_dates)-1) ]
         
-        return (max(child_birh_dates_diff) < self.c_space)
+        return (child_birh_dates_diff and
+                max(child_birh_dates_diff) < self.c_space)
 
     def get_message(self):
         return _("Large age differences between children")
-
-class TooManyChildren(PersonRule):
-    def __init__(self,db,obj,mx_child_dad,mx_child_mom):
-        PersonRule.__init__(self,db,obj)
-        self.mx_child_dad = mx_child_dad
-        self.mx_child_mom = mx_child_mom
-
-    def broken(self):
-        n_child = get_n_children(self.db,self.obj)
-
-        if (self.obj.get_gender == RelLib.Person.MALE) \
-               and (n_child > self.mx_child_dad):
-            return True
-
-        if (self.obj.get_gender == RelLib.Person.FEMALE) \
-               and (n_child > self.mx_child_mom):
-            return True
-
-        return False
-
-    def get_message(self):
-        return _("Too many children")
 
 #-------------------------------------------------------------------------
 #

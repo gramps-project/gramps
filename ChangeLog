@@ -1,3 +1,6 @@
+2006-05-25  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Verify.py: More rework, still in progress.
+
 2006-05-25  Don Allingham  <don@gramps-project.org>
 	* src/Merge/_MergePlace.py: handle notes
 	* src/glade/mergedata.glade: handle notes
