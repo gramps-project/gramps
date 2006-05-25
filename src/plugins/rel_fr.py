@@ -49,9 +49,9 @@ _level_name = [ "", "premier", "deuxième", "troisième", "quatrième", "cinqui�
 _parents_level = [ "", "les parents", "les grand-parents", "les arrière-grand-parents",
                    "les trisaïeux", ]
 
-_father_level = [ "", "le père", "le grand-père paternel", "l'arrière-grand-père paternel", "le trisaïeul paternel", ]
+_father_level = [ "", "le père", "le grand-père", "l'arrière-grand-père", "le trisaïeul", ]
 
-_mother_level = [ "", "la mère", "la grand-mère maternelle", "l'arrière-grand-mère maternelle", "la trisaïeule maternelle", ]
+_mother_level = [ "", "la mère", "la grand-mère", "l'arrière-grand-mère", "la trisaïeule", ]
 
 _son_level = [ "", "le fils", "le petit-fils", "l'arrière-petit-fils", ]
 
