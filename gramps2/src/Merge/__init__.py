@@ -23,4 +23,6 @@
 """
 """
 
-from MergePeople import MergePeople
+from _MergePerson import *
+from _MergePlace import *
+from _MergeSource import *

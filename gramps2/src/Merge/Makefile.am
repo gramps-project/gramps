@@ -8,6 +8,8 @@ pkgdatadir = $(datadir)/@PACKAGE@/Merge
 pkgdata_PYTHON = \
 	__init__.py \
 	_MergePerson.py \
+	_MergePlace.py \
+	_MergeSource.py
 
 pkgpyexecdir = @pkgpyexecdir@/Merge
 pkgpythondir = @pkgpythondir@/Merge

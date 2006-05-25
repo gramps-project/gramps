@@ -1,4 +1,10 @@
 2006-05-25  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: Merge module support
+	* src/Merge/_MergeSource.py: broken out of MergeData.py
+	* src/Merge/__init__.py: support of module
+	* src/Merge/Makefile.am: added
+	* src/Merge/_MergePlace.py: broken out of MergeData.py
+	* src/Merge/_MergePerson.py: renamed
 	* src/DataViews/_SourceView.py: source merge support
 	* src/DataViews/_PlaceView.py: place merge support
 	* src/glade/mergedata.glade: place merge support

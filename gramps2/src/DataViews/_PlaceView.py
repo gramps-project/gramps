@@ -221,7 +221,7 @@ class PlaceView(PageView.ListView):
                      "control key while clicking on the desired place.")
             ErrorDialog(msg,msg2)
         else:
-            import MergeData
-            MergeData.MergePlaces(self.dbstate, self.uistate, mlist[0], mlist[1])
+            import Merge
+            Merge.MergePlaces(self.dbstate, self.uistate, mlist[0], mlist[1])
 
     
