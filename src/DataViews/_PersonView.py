@@ -154,7 +154,7 @@ class PersonView(PageView.PersonNavView):
             ErrorDialog(msg,msg2)
         else:
             from QuestionDialog import ErrorDialog
-            import MergePeople
+            from Merge import MergePeople
             p1 = self.db.get_person_from_handle(mlist[0])
             p2 = self.db.get_person_from_handle(mlist[1])
             if p1 and p2:
@@ -176,12 +176,12 @@ class PersonView(PageView.PersonNavView):
                      "control key while clicking on the desired person.")
             ErrorDialog(msg,msg2)
         else:
-            from MergePeople import MergePeopleUI
+            from Merge import MergePeople
             
             p1 = self.db.get_person_from_handle(mlist[0])
             p2 = self.db.get_person_from_handle(mlist[1])
             if p1 and p2:
-                MergePeopleUI(self.dbstate, self.uistate, p1, p2)
+                MergePeople.MergePeopleUI(self.dbstate, self.uistate, p1, p2)
             else:
                 msg = _("Cannot merge people")
                 msg2 = _("Exactly two people must be selected to perform a merge. "
@@ -634,7 +634,8 @@ class PersonView(PageView.PersonNavView):
             sel_data.set(sel_data.target, 8 ,pickle.dumps(data))
 
     def person_added(self,handle_list):
-        self.model.clear_cache()
+        if not self.model:
+            return
         for node in handle_list:
             person = self.dbstate.db.get_person_from_handle(node)
             top = person.get_primary_name().get_group_name()
@@ -651,6 +652,9 @@ class PersonView(PageView.PersonNavView):
             self.model.row_inserted(path,pnode)
 
     def person_removed(self,handle_list):
+        if not self.model:
+            return
+        
         self.model.clear_cache()
         for node in handle_list:
             person = self.dbstate.db.get_person_from_handle(node)
@@ -669,6 +673,9 @@ class PersonView(PageView.PersonNavView):
             self.model.assign_data()
             
     def person_updated(self,handle_list):
+        if not self.model:
+            return
+        
         self.model.clear_cache()
         for node in handle_list:
             person = self.dbstate.db.get_person_from_handle(node)

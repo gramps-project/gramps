@@ -39,7 +39,6 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Utils
 import const
 import GrampsDisplay
 import ManagedWindow
@@ -54,7 +53,7 @@ class MergePlaces(ManagedWindow.ManagedWindow):
     Merges to places into a single place. Displays a dialog box that
     allows the places to be combined into one.
     """
-    def __init__(self, dbstate, uistate, new_handle, old_handle, update):
+    def __init__(self, dbstate, uistate, new_handle, old_handle):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
 
@@ -63,7 +62,6 @@ class MergePlaces(ManagedWindow.ManagedWindow):
         self.old_handle = old_handle
         self.p1 = self.db.get_place_from_handle(self.new_handle)
         self.p2 = self.db.get_place_from_handle(self.old_handle)
-        self.update = update
 
         self.glade = gtk.glade.XML(const.merge_glade,"merge_places","gramps")
         self.set_window(self.glade.get_widget("merge_places"),
@@ -79,7 +77,7 @@ class MergePlaces(ManagedWindow.ManagedWindow):
         self.glade.get_widget('ok').connect('clicked', self.merge)
         self.glade.get_widget('help').connect('clicked', self.help)
         
-        self.window.show()
+        self.show()
 
     def close_window(self, obj):
         self.close()
@@ -169,7 +167,6 @@ class MergePlaces(ManagedWindow.ManagedWindow):
                 self.db.commit_event(event,trans)
 
         self.db.transaction_commit(trans,_("Merge Places"))
-        self.update()
         self.close()
 
 #-------------------------------------------------------------------------
@@ -177,23 +174,27 @@ class MergePlaces(ManagedWindow.ManagedWindow):
 # Merge Sources
 #
 #-------------------------------------------------------------------------
-class MergeSources:
+class MergeSources(ManagedWindow.ManagedWindow):
     """
     Merges to sources into a single source. Displays a dialog box that
     allows the sources to be combined into one.
     """
-    def __init__(self,database,new_handle,old_handle,update):
-        self.db = database
+    def __init__(self, dbstate, uistate, new_handle, old_handle):
+        
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+
+        self.db = dbstate.db
+        
         self.new_handle = new_handle
         self.old_handle = old_handle
         self.src1 = self.db.get_source_from_handle(self.new_handle)
         self.src2 = self.db.get_source_from_handle(self.old_handle)
-        self.update = update
 
         self.glade = gtk.glade.XML(const.merge_glade,"merge_sources","gramps")
-        self.top = self.glade.get_widget("merge_sources")
-        Utils.set_titles(self.top,self.glade.get_widget('title'),
-                         _("Merge Sources"))
+
+        self.set_window(self.glade.get_widget("merge_sources"),
+                        self.glade.get_widget('title'),
+                        _("Merge Sources"))
 
         self.title1 = self.glade.get_widget("title1")
         self.title2 = self.glade.get_widget("title2")
@@ -221,13 +222,12 @@ class MergeSources:
         self.gramps2.set_text(self.src2.get_gramps_id())
         
         self.glade.get_widget('ok').connect('clicked',self.merge)
-        self.glade.get_widget('cancel').connect('clicked',self.close)
+        self.glade.get_widget('cancel').connect('clicked',self.close_window)
         self.glade.get_widget('help').connect('clicked',self.help)
-        trans = self.db.transaction_begin()
-        self.top.show()
+        self.show()
 
-    def close(self,obj):
-        self.top.destroy()
+    def close_window(self,obj):
+        self.close()
 
     def help(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -278,8 +278,10 @@ class MergeSources:
                 src1_map[key] = src2_map[key]
 
         # replace references in other objetcs
-        self.db.remove_source(self.old_handle,self.trans)
-        self.db.commit_source(self.src1,self.trans)
+        trans = self.db.transaction_begin()
+
+        self.db.remove_source(self.old_handle,trans)
+        self.db.commit_source(self.src1,trans)
 
         # replace handles
 
@@ -288,42 +290,42 @@ class MergeSources:
             person = self.db.get_person_from_handle(handle)
             if person.has_source_reference(self.old_handle):
                 person.replace_source_references(self.old_handle,self.new_handle)
-                self.db.commit_person(person,self.trans)
+                self.db.commit_person(person,trans)
 
         # family
         for handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(handle)
             if family.has_source_reference(self.old_handle):
                 family.replace_source_references(self.old_handle,self.new_handle)
-                self.db.commit_family(family,self.trans)
+                self.db.commit_family(family,trans)
 
         # events
         for handle in self.db.get_event_handles():
             event = self.db.get_event_from_handle(handle)
             if event.has_source_reference(self.old_handle):
                 event.replace_source_references(self.old_handle,self.new_handle)
-		self.db.commit_event(event,self.trans)
+		self.db.commit_event(event,trans)
 
         # sources
         for handle in self.db.get_source_handles():
             source = self.db.get_source_from_handle(handle)
             if source.has_source_reference(self.old_handle):
                 source.replace_source_references(self.old_handle,self.new_handle)
-                self.db.commit_source(source,self.trans)
+                self.db.commit_source(source,trans)
 
         # places
         for handle in self.db.get_place_handles():
             place = self.db.get_place_from_handle(handle) 
             if place.has_source_reference(self.old_handle):
                 place.replace_source_references(self.old_handle,self.new_handle)
-                self.db.commit_place(place,self.trans)
+                self.db.commit_place(place,trans)
 
         # media
         for handle in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(handle)
             if obj.has_source_reference(self.old_handle):
                 obj.replace_source_references(self.old_handle,self.new_handle)
-                self.db.commit_media_object(obj,self.trans)
+                self.db.commit_media_object(obj,trans)
         
-        self.db.transaction_commit(self.trans,_("Merge Sources"))
-        self.top.destroy()
+        self.db.transaction_commit(trans,_("Merge Sources"))
+        self.close()
