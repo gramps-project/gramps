@@ -154,11 +154,11 @@ class PersonView(PageView.PersonNavView):
             ErrorDialog(msg,msg2)
         else:
             from QuestionDialog import ErrorDialog
-            from Merge import MergePeople
+            import Merge 
             p1 = self.db.get_person_from_handle(mlist[0])
             p2 = self.db.get_person_from_handle(mlist[1])
             if p1 and p2:
-                merger = MergePeople.Compare(self.dbstate, self.uistate, p1, p2)
+                Merge.PersonCompare(self.dbstate, self.uistate, p1, p2)
             else:
                 msg = _("Cannot merge people")
                 msg2 = _("Exactly two people must be selected to perform a merge. "
@@ -176,12 +176,12 @@ class PersonView(PageView.PersonNavView):
                      "control key while clicking on the desired person.")
             ErrorDialog(msg,msg2)
         else:
-            from Merge import MergePeople
+            import Merge
             
             p1 = self.db.get_person_from_handle(mlist[0])
             p2 = self.db.get_person_from_handle(mlist[1])
             if p1 and p2:
-                MergePeople.MergePeopleUI(self.dbstate, self.uistate, p1, p2)
+                Merge.MergePeopleUI(self.dbstate, self.uistate, p1, p2)
             else:
                 msg = _("Cannot merge people")
                 msg2 = _("Exactly two people must be selected to perform a merge. "

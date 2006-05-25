@@ -210,6 +210,6 @@ class SourceView(PageView.ListView):
                      "control key while clicking on the desired source.")
             ErrorDialog(msg,msg2)
         else:
-            import MergeData
-            MergeData.MergeSources(self.dbstate, self.uistate, mlist[0], mlist[1])
+            import Merge
+            Merge.MergeSources(self.dbstate, self.uistate, mlist[0], mlist[1])
 

@@ -54,7 +54,7 @@ import GrampsDb
 
 sex = ( _("female"), _("male"), _("unknown"))
 
-class Compare(ManagedWindow.ManagedWindow):
+class PersonCompare(ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, person1, person2, update=None) :
 
