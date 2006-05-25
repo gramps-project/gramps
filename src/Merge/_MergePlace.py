@@ -66,12 +66,27 @@ class MergePlaces(ManagedWindow.ManagedWindow):
         self.glade = gtk.glade.XML(const.merge_glade,"merge_places","gramps")
         self.set_window(self.glade.get_widget("merge_places"),
                         self.glade.get_widget('title'),
-                        _("Select title"))
+                        _("Merge Places"))
         
-        self.glade.get_widget("title1_text").set_text(self.p1.get_title())
-        self.glade.get_widget("title2_text").set_text(self.p2.get_title())
-        self.t3 = self.glade.get_widget("title3_text")
-        self.t3.set_text(self.p1.get_title())
+        title1_text = self.glade.get_widget("title1_text")
+        title2_text = self.glade.get_widget("title2_text")
+        self.title3_entry = self.glade.get_widget("title3_text")
+
+        title1_text.set_text(self.p1.get_title())
+        title2_text.set_text(self.p2.get_title())
+        self.title3_entry.set_text(self.p1.get_title())
+
+        self.note_p1 = self.glade.get_widget('note_p1')
+        self.note_p2 = self.glade.get_widget('note_p2')
+        self.note_merge = self.glade.get_widget('note_merge')
+        self.note_title = self.glade.get_widget('note_title')
+
+        self.note_conflict = self.p1.get_note() and self.p2.get_note()
+        if self.note_conflict:
+            self.note_title.show()
+            self.note_p1.show()
+            self.note_p2.show()
+            self.note_merge.show()
 
         self.glade.get_widget('cancel').connect('clicked', self.close_window)
         self.glade.get_widget('ok').connect('clicked', self.merge)
@@ -98,7 +113,7 @@ class MergePlaces(ManagedWindow.ManagedWindow):
         if t2active:
             self.p1.set_title(self.p2.get_title())
         elif self.glade.get_widget("title3").get_active():
-            self.p1.set_title(unicode(self.t3.get_text()))
+            self.p1.set_title(unicode(self.title3_entry.get_text()))
 
         # Set longitude
         if self.p1.get_longitude() == "" and self.p2.get_longitude() != "":
@@ -121,13 +136,18 @@ class MergePlaces(ManagedWindow.ManagedWindow):
             self.p1.add_source(source)
 
         # Add notes from P2 to P1
-        note = self.p2.get_note()
-        if note != "":
-            if self.p1.get_note() == "":
+        if self.note_conflict:
+            note1 = self.p1.get_note()
+            note2 = self.p2.get_note()
+            if self.note_p2.get_active():
+                self.p1.set_note(note2)
+            elif self.note_merge.get_active():
+                self.p1.set_note("%s\n\n%s" % (note1,note2))
+        else:
+            note = self.p2.get_note()
+            if note != "" and self.p1.get_note() == "":
                 self.p1.set_note(note)
-            elif self.p1.get_note() != note:
-                self.p1.set_note("%s\n\n%s" % (self.p1.get_note(),note))
-
+            
         if t2active:
             lst = [self.p1.get_main_location()] + self.p1.get_alternate_locations()
             self.p1.set_main_location(self.p2.get_main_location())
