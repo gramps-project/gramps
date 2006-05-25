@@ -7,6 +7,7 @@ SUBDIRS = \
 	Editors \
 	Filters \
 	GrampsDb \
+	Merge \
 	DisplayTabs \
 	DisplayModels \
 	GrampsLogger \

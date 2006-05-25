@@ -83,7 +83,7 @@ class SourceView(PageView.ListView):
             self, _('Sources'), dbstate, uistate, column_names,
             len(column_names), DisplayModels.SourceModel, signal_map,
             dbstate.db.get_source_bookmarks(),
-            Bookmarks.SourceBookmarks)
+            Bookmarks.SourceBookmarks, multiple=True)
 
     def get_bookmarks(self):
         return self.dbstate.db.get_source_bookmarks()
@@ -95,6 +95,8 @@ class SourceView(PageView.ListView):
         PageView.ListView.define_actions(self)
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                         _('_Column Editor'), callback=self.column_editor)
+        self.add_action('FastMerge', None, _('_Merge'),
+                        callback=self.fast_merge)
 
     def column_editor(self,obj):
         import ColumnOrder
@@ -132,6 +134,9 @@ class SourceView(PageView.ListView):
                 <menuitem action="Remove"/>
               </placeholder>
               <menuitem action="ColumnEdit"/>
+              <placeholder name="Merge">
+                <menuitem action="FastMerge"/>
+              </placeholder>
             </menu>
           </menubar>
           <toolbar name="ToolBar">
@@ -193,4 +198,18 @@ class SourceView(PageView.ListView):
                 EditSource(self.dbstate, self.uistate, [], source)
             except Errors.WindowActiveError:
                 pass
+
+    def fast_merge(self, obj):
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+        
+        if len(mlist) != 2:
+            msg = _("Cannot merge sources.")
+            msg2 = _("Exactly two sources must be selected to perform a merge. "
+                     "A second source can be selected by holding down the "
+                     "control key while clicking on the desired source.")
+            ErrorDialog(msg,msg2)
+        else:
+            import MergeData
+            MergeData.MergeSources(self.dbstate, self.uistate, mlist[0], mlist[1])
 

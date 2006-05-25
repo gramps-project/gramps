@@ -217,12 +217,11 @@ class PlaceView(PageView.ListView):
         if len(mlist) != 2:
             msg = _("Cannot merge places.")
             msg2 = _("Exactly two places must be selected to perform a merge. "
-                "A second place can be selected by holding down the "
-                "control key while clicking on the desired place.")
+                     "A second place can be selected by holding down the "
+                     "control key while clicking on the desired place.")
             ErrorDialog(msg,msg2)
         else:
             import MergeData
-            MergeData.MergePlaces(self.dbstate, self.uistate, mlist[0],
-                                  mlist[1], self.build_tree)
+            MergeData.MergePlaces(self.dbstate, self.uistate, mlist[0], mlist[1])
 
     
