@@ -55,7 +55,7 @@ class NoteTab(GrampsTab):
         self.show_all()
 
     def get_icon_name(self):
-        return (0,'stock_notes')
+        return 'gramps-notes'
 
     def _update_label(self, *obj):
         cc = self.buf.get_char_count()
