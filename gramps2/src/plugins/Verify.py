@@ -20,7 +20,10 @@
 
 # $Id$
 
-"View/Verify"
+"""
+A plugin to verify the data against user-adjsted tests.
+This is the research tool, not the low-level data ingerity check.
+"""
 
 #------------------------------------------------------------------------
 #
@@ -56,38 +59,38 @@ from PluginUtils import Tool, register_tool
 # temp storage and related functions
 #
 #-------------------------------------------------------------------------
-_person_store = {}
-_family_store = {}
-_event_store = {}
+_person_cache = {}
+_family_cache = {}
+_event_cache = {}
 
 def find_event(db,handle):
     try:
-        obj = _event_store[handle]
+        obj = _event_cache[handle]
     except KeyError:
         obj = db.get_event_from_handle(handle)
-        _event_store[handle] = obj
+        _event_cache[handle] = obj
     return obj
 
 def find_person(db,handle):
     try:
-        obj = _person_store[handle]
+        obj = _person_cache[handle]
     except KeyError:
         obj = db.get_person_from_handle(handle)
-        _person_store[handle] = obj
+        _person_cache[handle] = obj
     return obj
 
 def find_family(db,handle):
     try:
-        obj = _family_store[handle]
+        obj = _family_cache[handle]
     except KeyError:
         obj = db.get_family_from_handle(handle)
-        _family_store[handle] = obj
+        _family_cache[handle] = obj
     return obj
 
-def clear_storage():
-    _person_store.clear()
-    _family_store.clear()
-    _event_store.clear()   
+def clear_cache():
+    _person_cache.clear()
+    _family_cache.clear()
+    _event_cache.clear()   
 
 #-------------------------------------------------------------------------
 #
@@ -210,8 +213,11 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
 
     def add_results_cli(self,results):
         # print data for the user, no GUI
-        (msg,gramps_id,name,the_type,rule_id,handle) = results
-        print "%s, %s: %s, %s" % (msg,the_type,gramps_id,name)
+        (msg,gramps_id,name,the_type,rule_id,severity,handle) = results
+        if severity == Rule.WARNING:
+            print "W: %s, %s: %s, %s" % (msg,the_type,gramps_id,name)
+        elif severity == Rule.ERROR:
+            print "E: %s, %s: %s, %s" % (msg,the_type,gramps_id,name)
 
     def init_gui(self):
         # Draw dialog and make it handle everything
@@ -365,10 +371,6 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
         oldunm = self.options.handler.options_dict['oldunm']
         estimate_age = self.options.handler.options_dict['estimate_age']
 
-##         if not cli:
-##             progress = Utils.ProgressMeter(_('Verify the database'),'')
-##             progress.set_pass(_('Checking people data'),
-##                               self.db.get_number_of_people())
 
         self.set_total(self.db.get_number_of_people() +
                        self.db.get_number_of_families())
@@ -376,134 +378,56 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
         for person_handle in person_handles:
             person = find_person(self.db,person_handle)
 
-            the_rule = BirthAfterBapt(self.db,person)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-                
-            the_rule = DeathBeforeBapt(self.db,person)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-                
-            the_rule = BirthAfterBury(self.db,person)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-                
-            the_rule = DeathAfterBury(self.db,person)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-                
-            the_rule = BirthAfterDeath(self.db,person)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-                
-            the_rule = BaptAfterBury(self.db,person)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-                
-            the_rule = OldAge(self.db,person,oldage,estimate_age)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-                
-            the_rule = UnknownGender(self.db,person)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-                
-            the_rule = MultipleParents(self.db,person)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-                
-            the_rule = MarriedOften(self.db,person,wedder)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-                
-            the_rule = OldUnmarried(self.db,person,oldunm,estimate_age)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-                
-            the_rule = TooManyChildren(self.db,person,mxchilddad,mxchildmom)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())            
-                
-            clear_storage()
-##             if not cli:
-##                 progress.step()
-            self.update()
+            rule_list = [
+                BirthAfterBapt(self.db,person),
+                DeathBeforeBapt(self.db,person),
+                BirthAfterBury(self.db,person),
+                DeathAfterBury(self.db,person),
+                BirthAfterDeath(self.db,person),
+                BaptAfterBury(self.db,person),
+                OldAge(self.db,person,oldage,estimate_age),
+                UnknownGender(self.db,person),
+                MultipleParents(self.db,person),
+                MarriedOften(self.db,person,wedder),
+                OldUnmarried(self.db,person,oldunm,estimate_age),
+                TooManyChildren(self.db,person,mxchilddad,mxchildmom),
+                ]
 
-##         if not cli:
-##             progress.set_pass(_('Checking family data'),
-##                               self.db.get_number_of_families())
+            for rule in rule_list:
+                if rule.broken():
+                    self.add_results(rule.report_itself())            
+                
+            clear_cache()
+            self.update()
 
         # Family-based rules
         for family_handle in self.db.get_family_handles():
             family = find_family(self.db,family_handle)
 
-            the_rule = SameSexFamily(self.db,family)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
+            rule_list = [
+                SameSexFamily(self.db,family),
+                FemaleHusband(self.db,family),
+                MaleWife(self.db,family),
+                SameSurnameFamily(self.db,family),
+                LargeAgeGapFamily(self.db,family,hwdif,estimate_age),
+                MarriageBeforeBirth(self.db,family,estimate_age),
+                MarriageAfterDeath(self.db,family,estimate_age),
+                EarlyMarriage(self.db,family,yngmar,estimate_age),
+                LateMarriage(self.db,family,oldmar,estimate_age),
+                OldParent(self.db,family,oldmom,olddad,estimate_age),
+                YoungParent(self.db,family,yngmom,yngdad,estimate_age),
+                UnbornParent(self.db,family,estimate_age),
+                DeadParent(self.db,family,estimate_age),
+                LargeChildrenSpan(self.db,family,cbspan,estimate_age),
+                LargeChildrenAgeDiff(self.db,family,cspace,estimate_age),
+                ]
 
-            the_rule = FemaleHusband(self.db,family)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-
-            the_rule = MaleWife(self.db,family)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-
-            the_rule = SameSurnameFamily(self.db,family)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-
-            the_rule = LargeAgeGapFamily(self.db,family,hwdif,estimate_age)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-
-            the_rule = MarriageBeforeBirth(self.db,family,estimate_age)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-
-            the_rule = MarriageAfterDeath(self.db,family,estimate_age)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-
-            the_rule = EarlyMarriage(self.db,family,yngmar,estimate_age)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-
-            the_rule = LateMarriage(self.db,family,oldmar,estimate_age)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-
-            the_rule = OldParent(self.db,family,oldmom,olddad,estimate_age)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-
-            the_rule = YoungParent(self.db,family,yngmom,yngdad,estimate_age)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-
-            the_rule = UnbornParent(self.db,family,estimate_age)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-
-            the_rule = DeadParent(self.db,family,estimate_age)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-
-            the_rule = LargeChildrenSpan(self.db,family,cbspan,estimate_age)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-
-            the_rule = LargeChildrenAgeDiff(self.db,family,cspace,estimate_age)
-            if the_rule.broken():
-                self.add_results(the_rule.report_itself())
-
-            clear_storage()
+            for rule in rule_list:
+                if rule.broken():
+                    self.add_results(rule.report_itself())            
+                
+            clear_cache()
             self.update()
-##             if not cli:
-##                 progress.step()
-
-##         if not cli:
-##             progress.close()
 
 #-------------------------------------------------------------------------
 #
@@ -572,8 +496,14 @@ class VerifyResults(ManagedWindow):
             cell.set_property('stock-id', 'gramps-family' )
 
     def add_results(self,results):
-        fg = None
-        (msg,gramps_id,name,the_type,rule_id,handle) = results        
+        (msg,gramps_id,name,the_type,rule_id,severity,handle) = results
+        if severity == Rule.ERROR:
+            fg = 'red'
+##             fg = '#8b008b'
+##         elif severity == Rule.WARNING:
+##             fg = '#008b00'
+        else:
+            fg = None
         self.warn_model.append(row=[msg,gramps_id,name,
                                     the_type,rule_id,handle,fg])
         
@@ -670,6 +600,8 @@ class Rule:
     ERROR   = 1
     WARNING = 2
 
+    SEVERITY = WARNING
+
     def __init__(self,db,obj):
         self.db = db
         self.obj = obj
@@ -699,10 +631,11 @@ class Rule:
         handle = self.get_handle()
         the_type = self.TYPE
         rule_id = self.ID
+        severity = self.SEVERITY
         name = self.get_name()
         gramps_id = self.get_id()
         msg = self.get_message()
-        return (msg,gramps_id,name,the_type,rule_id,handle)
+        return (msg,gramps_id,name,the_type,rule_id,severity,handle)
 
 class PersonRule(Rule):
     """
@@ -727,6 +660,7 @@ class FamilyRule(Rule):
 #-------------------------------------------------------------------------
 class BirthAfterBapt(PersonRule):
     ID = 1
+    SEVERITY = Rule.ERROR
     def broken(self):
         birth_date = get_birth_date(self.db,self.obj)
         bapt_date = get_bapt_date(self.db,self.obj)
@@ -740,6 +674,7 @@ class BirthAfterBapt(PersonRule):
 
 class DeathBeforeBapt(PersonRule):
     ID = 2
+    SEVERITY = Rule.ERROR
     def broken(self):
         death_date = get_death_date(self.db,self.obj)
         bapt_date = get_bapt_date(self.db,self.obj)
@@ -753,6 +688,7 @@ class DeathBeforeBapt(PersonRule):
 
 class BirthAfterBury(PersonRule):
     ID = 3
+    SEVERITY = Rule.ERROR
     def broken(self):
         birth_date = get_birth_date(self.db,self.obj)
         bury_date = get_bury_date(self.db,self.obj)
@@ -766,6 +702,7 @@ class BirthAfterBury(PersonRule):
 
 class DeathAfterBury(PersonRule):
     ID = 4
+    SEVERITY = Rule.ERROR
     def broken(self):
         death_date = get_death_date(self.db,self.obj)
         bury_date = get_bury_date(self.db,self.obj)
@@ -779,6 +716,7 @@ class DeathAfterBury(PersonRule):
 
 class BirthAfterDeath(PersonRule):
     ID = 5
+    SEVERITY = Rule.ERROR
     def broken(self):
         birth_date = get_birth_date(self.db,self.obj)
         death_date = get_death_date(self.db,self.obj)
@@ -792,6 +730,7 @@ class BirthAfterDeath(PersonRule):
 
 class BaptAfterBury(PersonRule):
     ID = 6
+    SEVERITY = Rule.ERROR
     def broken(self):
         bapt_date = get_bapt_date(self.db,self.obj)
         bury_date = get_bury_date(self.db,self.obj)
@@ -805,6 +744,7 @@ class BaptAfterBury(PersonRule):
 
 class OldAge(PersonRule):
     ID = 7
+    SEVERITY = Rule.WARNING
     def __init__(self,db,person,old_age,est):
         PersonRule.__init__(self,db,person)
         self.old_age = old_age
@@ -819,6 +759,7 @@ class OldAge(PersonRule):
 
 class UnknownGender(PersonRule):
     ID = 8
+    SEVERITY = Rule.WARNING
     def broken(self):
         female = self.obj.get_gender() == RelLib.Person.FEMALE
         male = self.obj.get_gender() == RelLib.Person.MALE
@@ -829,6 +770,7 @@ class UnknownGender(PersonRule):
 
 class MultipleParents(PersonRule):
     ID = 9
+    SEVERITY = Rule.WARNING
     def broken(self):
         n_parent_sets = len(self.obj.get_parent_family_handle_list())
         return (n_parent_sets>1)
@@ -838,6 +780,7 @@ class MultipleParents(PersonRule):
 
 class MarriedOften(PersonRule):
     ID = 10
+    SEVERITY = Rule.WARNING
     def __init__(self,db,person,wedder):
         PersonRule.__init__(self,db,person)
         self.wedder = wedder
@@ -851,6 +794,7 @@ class MarriedOften(PersonRule):
 
 class OldUnmarried(PersonRule):
     ID = 11
+    SEVERITY = Rule.WARNING
     def __init__(self,db,person,old_unm,est):
         PersonRule.__init__(self,db,person)
         self.old_unm = old_unm
@@ -866,6 +810,7 @@ class OldUnmarried(PersonRule):
 
 class TooManyChildren(PersonRule):
     ID = 12
+    SEVERITY = Rule.WARNING
     def __init__(self,db,obj,mx_child_dad,mx_child_mom):
         PersonRule.__init__(self,db,obj)
         self.mx_child_dad = mx_child_dad
@@ -889,6 +834,7 @@ class TooManyChildren(PersonRule):
 
 class SameSexFamily(FamilyRule):
     ID = 13
+    SEVERITY = Rule.WARNING
     def broken(self):
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
@@ -903,6 +849,7 @@ class SameSexFamily(FamilyRule):
 
 class FemaleHusband(FamilyRule):
     ID = 14
+    SEVERITY = Rule.WARNING
     def broken(self):
         father = get_father(self.db,self.obj)
         return (father and (father.get_gender() == RelLib.Person.FEMALE))
@@ -912,6 +859,7 @@ class FemaleHusband(FamilyRule):
 
 class MaleWife(FamilyRule):
     ID = 15
+    SEVERITY = Rule.WARNING
     def broken(self):
         mother = get_mother(self.db,self.obj)
         return (mother and (mother.get_gender() == RelLib.Person.MALE))
@@ -921,6 +869,7 @@ class MaleWife(FamilyRule):
 
 class SameSurnameFamily(FamilyRule):
     ID = 16
+    SEVERITY = Rule.WARNING
     def broken(self):
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
@@ -936,6 +885,7 @@ class SameSurnameFamily(FamilyRule):
 
 class LargeAgeGapFamily(FamilyRule):
     ID = 17
+    SEVERITY = Rule.WARNING
     def __init__(self,db,obj,hw_diff,est):
         FamilyRule.__init__(self,db,obj)
         self.hw_diff = hw_diff
@@ -956,6 +906,7 @@ class LargeAgeGapFamily(FamilyRule):
 
 class MarriageBeforeBirth(FamilyRule):
     ID = 18
+    SEVERITY = Rule.ERROR
     def __init__(self,db,obj,est):
         FamilyRule.__init__(self,db,obj)
         self.est = est
@@ -983,6 +934,7 @@ class MarriageBeforeBirth(FamilyRule):
 
 class MarriageAfterDeath(FamilyRule):
     ID = 19
+    SEVERITY = Rule.ERROR
     def __init__(self,db,obj,est):
         FamilyRule.__init__(self,db,obj)
         self.est = est
@@ -1010,6 +962,7 @@ class MarriageAfterDeath(FamilyRule):
 
 class EarlyMarriage(FamilyRule):
     ID = 20
+    SEVERITY = Rule.WARNING
     def __init__(self,db,obj,yng_mar,est):
         FamilyRule.__init__(self,db,obj)
         self.yng_mar = yng_mar
@@ -1038,6 +991,7 @@ class EarlyMarriage(FamilyRule):
 
 class LateMarriage(FamilyRule):
     ID = 21
+    SEVERITY = Rule.WARNING
     def __init__(self,db,obj,old_mar,est):
         FamilyRule.__init__(self,db,obj)
         self.old_mar = old_mar
@@ -1085,6 +1039,7 @@ class LateMarriage(FamilyRule):
 
 class OldParent(FamilyRule):
     ID = 22
+    SEVERITY = Rule.WARNING
     def __init__(self,db,obj,old_mom,old_dad,est):
         FamilyRule.__init__(self,db,obj)
         self.old_mom = old_mom
@@ -1126,6 +1081,7 @@ class OldParent(FamilyRule):
 
 class YoungParent(FamilyRule):
     ID = 23
+    SEVERITY = Rule.WARNING
     def __init__(self,db,obj,yng_mom,yng_dad,est):
         FamilyRule.__init__(self,db,obj)
         self.yng_dad = yng_dad
@@ -1167,6 +1123,7 @@ class YoungParent(FamilyRule):
 
 class UnbornParent(FamilyRule):
     ID = 24
+    SEVERITY = Rule.ERROR
     def __init__(self,db,obj,est):
         FamilyRule.__init__(self,db,obj)
         self.est = est
@@ -1205,6 +1162,7 @@ class UnbornParent(FamilyRule):
 
 class DeadParent(FamilyRule):
     ID = 25
+    SEVERITY = Rule.ERROR
     def __init__(self,db,obj,est):
         FamilyRule.__init__(self,db,obj)
         self.est = est
@@ -1243,6 +1201,7 @@ class DeadParent(FamilyRule):
 
 class LargeChildrenSpan(FamilyRule):
     ID = 26
+    SEVERITY = Rule.WARNING
     def __init__(self,db,obj,cb_span,est):
         FamilyRule.__init__(self,db,obj)
         self.cb_span = cb_span
@@ -1260,6 +1219,7 @@ class LargeChildrenSpan(FamilyRule):
 
 class LargeChildrenAgeDiff(FamilyRule):
     ID = 27
+    SEVERITY = Rule.WARNING
     def __init__(self,db,obj,c_space,est):
         FamilyRule.__init__(self,db,obj)
         self.c_space = c_space
