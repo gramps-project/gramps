@@ -61,8 +61,8 @@ class MergeSources(ManagedWindow.ManagedWindow):
         
         self.new_handle = new_handle
         self.old_handle = old_handle
-        self.src1 = self.db.get_source_from_handle(self.new_handle)
-        self.src2 = self.db.get_source_from_handle(self.old_handle)
+        self.s1 = self.db.get_source_from_handle(self.new_handle)
+        self.s2 = self.db.get_source_from_handle(self.old_handle)
 
         self.glade = gtk.glade.XML(const.merge_glade,"merge_sources","gramps")
 
@@ -72,29 +72,41 @@ class MergeSources(ManagedWindow.ManagedWindow):
 
         self.title1 = self.glade.get_widget("title1")
         self.title2 = self.glade.get_widget("title2")
-        self.title1.set_text(self.src1.get_title())
-        self.title2.set_text(self.src2.get_title())
+        self.title1.set_text(self.s1.get_title())
+        self.title2.set_text(self.s2.get_title())
 
         self.author1 = self.glade.get_widget("author1")
         self.author2 = self.glade.get_widget("author2")
-        self.author1.set_text(self.src1.get_author())
-        self.author2.set_text(self.src2.get_author())
+        self.author1.set_text(self.s1.get_author())
+        self.author2.set_text(self.s2.get_author())
 
         self.abbrev1 = self.glade.get_widget("abbrev1")
         self.abbrev2 = self.glade.get_widget("abbrev2")
-        self.abbrev1.set_text(self.src1.get_abbreviation())
-        self.abbrev2.set_text(self.src2.get_abbreviation())
+        self.abbrev1.set_text(self.s1.get_abbreviation())
+        self.abbrev2.set_text(self.s2.get_abbreviation())
 
         self.pub1 = self.glade.get_widget("pub1")
         self.pub2 = self.glade.get_widget("pub2")
-        self.pub1.set_text(self.src1.get_publication_info())
-        self.pub2.set_text(self.src2.get_publication_info())
+        self.pub1.set_text(self.s1.get_publication_info())
+        self.pub2.set_text(self.s2.get_publication_info())
 
         self.gramps1 = self.glade.get_widget("gramps1")
         self.gramps2 = self.glade.get_widget("gramps2")
-        self.gramps1.set_text(self.src1.get_gramps_id())
-        self.gramps2.set_text(self.src2.get_gramps_id())
+        self.gramps1.set_text(self.s1.get_gramps_id())
+        self.gramps2.set_text(self.s2.get_gramps_id())
         
+        self.note_s1 = self.glade.get_widget('note_s1')
+        self.note_s2 = self.glade.get_widget('note_s2')
+        self.note_merge = self.glade.get_widget('note_merge')
+        self.note_title = self.glade.get_widget('note_title')
+
+        self.note_conflict = self.s1.get_note() and self.s2.get_note()
+        if self.note_conflict:
+            self.note_title.show()
+            self.note_s1.show()
+            self.note_s2.show()
+            self.note_merge.show()
+
         self.glade.get_widget('ok').connect('clicked',self.merge)
         self.glade.get_widget('cancel').connect('clicked',self.close_window)
         self.glade.get_widget('help').connect('clicked',self.help)
@@ -119,34 +131,39 @@ class MergeSources(ManagedWindow.ManagedWindow):
         use_gramps1 = self.glade.get_widget("gramps_btn1").get_active()
         
         if not use_title1:
-            self.src1.set_title(self.src2.get_title())
+            self.s1.set_title(self.s2.get_title())
 
         if not use_author1:
-            self.src1.set_author(self.src2.get_author())
+            self.s1.set_author(self.s2.get_author())
 
         if not use_abbrev1:
-            self.src1.set_abbreviation(self.src2.get_abbreviation())
+            self.s1.set_abbreviation(self.s2.get_abbreviation())
 
         if not use_pub1:
-            self.src1.set_publication_info(self.src2.get_publication_info())
+            self.s1.set_publication_info(self.s2.get_publication_info())
 
         if not use_gramps1:
-            self.src1.set_gramps_id(self.src2.get_gramps_id())
+            self.s1.set_gramps_id(self.s2.get_gramps_id())
 
         # Copy photos from src2 to src1
-        for photo in self.src2.get_media_list():
-            self.src1.add_media_reference(photo)
+        for photo in self.s2.get_media_list():
+            self.s1.add_media_reference(photo)
 
-        # Add notes from P2 to P1
-        note = self.src2.get_note()
-        if note != "":
-            if self.src1.get_note() == "":
-                self.src1.set_note(note)
-            elif self.src1.get_note() != note:
-                self.src1.set_note("%s\n\n%s" % (self.src1.get_note(),note))
+        # Add notes from S2 to S1
+        if self.note_conflict:
+            note1 = self.s1.get_note()
+            note2 = self.s2.get_note()
+            if self.note_s2.get_active():
+                self.s1.set_note(note2)
+            elif self.note_merge.get_active():
+                self.s1.set_note("%s\n\n%s" % (note1,note2))
+        else:
+            note = self.s2.get_note()
+            if note != "" and self.s1.get_note() == "":
+                self.s1.set_note(note)
 
-        src2_map = self.src2.get_data_map()
-        src1_map = self.src1.get_data_map()
+        src2_map = self.s2.get_data_map()
+        src1_map = self.s1.get_data_map()
         for key in src2_map.keys():
             if not src1_map.has_key(key):
                 src1_map[key] = src2_map[key]
@@ -155,7 +172,7 @@ class MergeSources(ManagedWindow.ManagedWindow):
         trans = self.db.transaction_begin()
 
         self.db.remove_source(self.old_handle,trans)
-        self.db.commit_source(self.src1,trans)
+        self.db.commit_source(self.s1,trans)
 
         # replace handles
 
