@@ -888,8 +888,9 @@ class SameSexFamily(FamilyRule):
     def broken(self):
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
-        same_sex = (mother.get_gender() == father.get_gender())
-        unknown_sex = (mother.get_gender() == RelLib.Person.UNKNOWN)
+        same_sex = (mother and father and
+                    (mother.get_gender() == father.get_gender()))
+        unknown_sex = (mother and mother.get_gender() == RelLib.Person.UNKNOWN)
         return (same_sex and not unknown_sex)
 
     def get_message(self):
