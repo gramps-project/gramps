@@ -1,3 +1,6 @@
+2006-05-25  Don Allingham  <don@gramps-project.org>
+	* configure.in: add Merge directory
+
 2006-05-25  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/Verify.py: More rework, still in progress.
 
