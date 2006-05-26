@@ -33,6 +33,11 @@ This is the research tool, not the low-level data ingerity check.
 import os
 from gettext import gettext as _
 import cPickle
+import md5
+try:
+    set()
+except NameError:
+    from sets import Set as set
 
 #------------------------------------------------------------------------
 #
@@ -47,6 +52,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+import const
 import RelLib
 import Utils
 import GrampsDisplay
@@ -312,11 +318,9 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
                                                           self.top.get_widget(
             "estimate").get_active()
 
-        # FIXME: Initialize trees and models for normal and hidden warnings
-        # Then create a new class here, fill things
         vr = VerifyResults(self.uistate, self.track)
-
         self.add_results = vr.add_results
+        vr.load_ignored(self.db.full_name)
        
         self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         self.uistate.progress.show()
@@ -332,24 +336,6 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
         
         # Save options
         self.options.handler.save_options()
-
-    def load_ignored(self,filename):
-        try:
-            f = open(filename)
-            self.ignores = cPickle.load(f)
-            f.close()
-            return True
-        except IOError:
-            return False
-
-    def save_ignored(self,filename):
-        try:
-            f = open(filename,'w')
-            cPickle.dump(self.ignores,f)
-            f.close()
-            return True
-        except IOError:
-            return False
 
     def run_tool(self,cli=False):
 
@@ -395,8 +381,8 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
 
             for rule in rule_list:
                 if rule.broken():
-                    self.add_results(rule.report_itself())            
-                
+                    self.add_results(rule.report_itself())
+
             clear_cache()
             self.update()
 
@@ -424,7 +410,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
 
             for rule in rule_list:
                 if rule.broken():
-                    self.add_results(rule.report_itself())            
+                    self.add_results(rule.report_itself())
                 
             clear_cache()
             self.update()
@@ -451,45 +437,107 @@ class VerifyResults(ManagedWindow):
             "destroy_passed_object"  : self.close,
             })
 
-        self.warn_model = gtk.ListStore(str,str,str,str,int,str,str)
-        self.hide_model = gtk.ListStore(str,str,str,str,int,str,str)
         self.warn_tree = self.top.get_widget('warn_tree') 
-        self.hide_tree = self.top.get_widget('hide_tree')
+        self.hide_button = self.top.get_widget('hide_button')
+        self.hide_button.connect('toggled',self.hide_toggled)
+
+        self.warn_model = gtk.ListStore(bool,bool,str,str,str,str,int,str,str)
         self.warn_tree.set_model(self.warn_model)
-        self.hide_tree.set_model(self.hide_model)
 
         self.renderer = gtk.CellRendererText()
         self.img_renderer = gtk.CellRendererPixbuf()
+        self.bool_renderer = gtk.CellRendererToggle()
+        self.bool_renderer.connect('toggled',self.selection_toggled)
+
+        self.warn_tree.append_column(
+            gtk.TreeViewColumn(_('Hide'),self.bool_renderer,active=1))
         
-        self.img_column = gtk.TreeViewColumn(None, self.img_renderer )
-        self.warn_tree.append_column(self.img_column)
-        self.img_column.set_cell_data_func(self.img_renderer,self.get_image)
+        img_column = gtk.TreeViewColumn(None, self.img_renderer )
+        img_column.set_cell_data_func(self.img_renderer,self.get_image)
+        self.warn_tree.append_column(img_column)
 
         self.warn_tree.append_column(
             gtk.TreeViewColumn(_('Warning'), self.renderer,
-                               text=0,foreground=6))
+                               text=2,foreground=8))
         self.warn_tree.append_column(
             gtk.TreeViewColumn(_('ID'), self.renderer,
-                               text=1,foreground=6))
+                               text=3,foreground=8))
         self.warn_tree.append_column(
             gtk.TreeViewColumn(_('Name'), self.renderer,
-                               text=2,foreground=6))
-
-        self.hide_tree.append_column(
-            gtk.TreeViewColumn(_('Warning'), self.renderer,
-                               text=0,foreground=6))
-        self.hide_tree.append_column(
-            gtk.TreeViewColumn(_('ID'), self.renderer,
-                               text=1,foreground=6))
-        self.hide_tree.append_column(
-            gtk.TreeViewColumn(_('Name'), self.renderer,
-                               text=2,foreground=6))
-
+                               text=4,foreground=8))
+       
         self.window.show_all()
         self.window_shown = False
 
+    def load_ignored(self,db_filename):
+        md5sum = md5.md5(db_filename)
+        self.ignores_filename = os.path.join(
+            const.home_dir,md5sum.hexdigest() + os.path.extsep + 'vfm')
+        if not self._load_ignored(self.ignores_filename):
+            self.ignores = {}
+
+    def _load_ignored(self,filename):
+        try:
+            f = open(filename)
+            self.ignores = cPickle.load(f)
+            f.close()
+            return True
+        except IOError:
+            return False
+
+    def save_ignored(self,new_ignores):
+        self.ignores = new_ignores
+        self._save_ignored(self.ignores_filename)
+
+    def _save_ignored(self,filename):
+        try:
+            f = open(filename,'w')
+            cPickle.dump(self.ignores,f,1)
+            f.close()
+            return True
+        except IOError:
+            return False
+
+    def get_marking(self,handle,rule_id):
+        try:
+            return (rule_id in self.ignores[handle])
+        except KeyError:
+            return False
+
+    def get_new_marking(self):
+        new_ignores = {}
+        for row_num in range(len(self.warn_model)):
+            path = (row_num,)
+            row = self.warn_model[path]
+            ignore = row[1]
+            if ignore:
+                handle = row[7]
+                rule_id = row[6]
+                if not new_ignores.has_key(handle):
+                    new_ignores[handle] = set()
+                new_ignores[handle].add(rule_id)
+        return new_ignores
+
+    def close(self,*obj):
+        new_ignores = self.get_new_marking()
+        self.save_ignored(new_ignores)
+
+        ManagedWindow.close(self,*obj)
+
+    def hide_toggled(self,button):
+        if button.get_active():
+            button.set_label(_("_Show selected"))
+        else:
+            button.set_label(_("_Hide selected"))
+        
+    def selection_toggled(self,cell,path_string):
+        path = tuple([int (i) for i in path_string.split(':')])
+        row = self.warn_model[path]
+        row[1] = not row[1]
+        self.warn_model.row_changed(path,row.iter)
+
     def get_image(self, column, cell, model, iter, user_data=None):
-        the_type = model.get_value(iter, 3)
+        the_type = model.get_value(iter, 5)
         if the_type == 'Person':
             cell.set_property('stock-id', 'gramps-person' )
         elif  the_type == 'Family':
@@ -497,6 +545,7 @@ class VerifyResults(ManagedWindow):
 
     def add_results(self,results):
         (msg,gramps_id,name,the_type,rule_id,severity,handle) = results
+        ignore = self.get_marking(handle,rule_id)
         if severity == Rule.ERROR:
             fg = 'red'
 ##             fg = '#8b008b'
@@ -504,7 +553,7 @@ class VerifyResults(ManagedWindow):
 ##             fg = '#008b00'
         else:
             fg = None
-        self.warn_model.append(row=[msg,gramps_id,name,
+        self.warn_model.append(row=[True,ignore,msg,gramps_id,name,
                                     the_type,rule_id,handle,fg])
         
         if not self.window_shown:
