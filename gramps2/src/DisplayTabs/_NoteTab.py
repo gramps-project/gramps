@@ -132,8 +132,10 @@ class NoteTab(GrampsTab):
     def flow_changed(self, obj):
         if obj.get_active():
             self.text.set_wrap_mode(gtk.WRAP_WORD)
+            self.note_obj.set_format(0)
         else:
             self.text.set_wrap_mode(gtk.WRAP_NONE)
+            self.note_obj.set_format(1)
 
     def rebuild(self):
         self._set_label()

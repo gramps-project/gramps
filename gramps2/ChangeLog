@@ -1,4 +1,6 @@
 2006-05-25  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs/_NoteTab.py (NoteTab.flow_changed): save flow status
+	in Note
 	* src/Merge/_MergeSource.py: note handling on source merge
 	* src/glade/mergedata.glade: note handling on source merge
 	* src/Makefile.am: remove deleted files
