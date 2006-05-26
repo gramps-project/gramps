@@ -314,11 +314,15 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
        
         self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         self.uistate.progress.show()
+        self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        vr.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
 
         self.run_tool(cli=False)
 
         self.uistate.progress.hide()
         self.uistate.window.window.set_cursor(None)
+        self.window.window.set_cursor(None)
+        vr.window.window.set_cursor(None)
         
         # Save options
         self.options.handler.save_options()
@@ -890,7 +894,8 @@ class SameSexFamily(FamilyRule):
         father = get_father(self.db,self.obj)
         same_sex = (mother and father and
                     (mother.get_gender() == father.get_gender()))
-        unknown_sex = (mother and mother.get_gender() == RelLib.Person.UNKNOWN)
+        unknown_sex = (mother and
+                       (mother.get_gender() == RelLib.Person.UNKNOWN))
         return (same_sex and not unknown_sex)
 
     def get_message(self):
@@ -900,7 +905,7 @@ class FemaleHusband(FamilyRule):
     ID = 14
     def broken(self):
         father = get_father(self.db,self.obj)
-        return (father.get_gender() == RelLib.Person.FEMALE)
+        return (father and (father.get_gender() == RelLib.Person.FEMALE))
 
     def get_message(self):
         return _("Female husband")
@@ -909,7 +914,7 @@ class MaleWife(FamilyRule):
     ID = 15
     def broken(self):
         mother = get_mother(self.db,self.obj)
-        return (mother.get_gender() == RelLib.Person.MALE)
+        return (mother and (mother.get_gender() == RelLib.Person.MALE))
 
     def get_message(self):
         return _("Male wife")
@@ -919,9 +924,11 @@ class SameSurnameFamily(FamilyRule):
     def broken(self):
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
-        same_surname = (mother.get_primary_name().get_surname() ==
-                        father.get_primary_name().get_surname())
-        empty_surname = len(mother.get_primary_name().get_surname())==0
+        same_surname = (father and mother and
+                        (mother.get_primary_name().get_surname() ==
+                         father.get_primary_name().get_surname()))
+        empty_surname = mother and \
+                        (len(mother.get_primary_name().get_surname())==0)
         return (same_surname and not empty_surname)
 
     def get_message(self):
