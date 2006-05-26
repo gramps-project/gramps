@@ -812,7 +812,7 @@ class UnknownGender(PersonRule):
     def broken(self):
         female = self.obj.get_gender() == RelLib.Person.FEMALE
         male = self.obj.get_gender() == RelLib.Person.MALE
-        return (male or female)
+        return not (male or female)
 
     def get_message(self):
         return _("Unknown gender")
