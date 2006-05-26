@@ -55,8 +55,6 @@ gdir_PYTHON = \
 	LdsUtils.py \
 	ListModel.py\
 	ManagedWindow.py\
-	MergeData.py\
-	MergePeople.py\
 	NameDisplay.py\
 	Navigation.py\
 	PageView.py\
