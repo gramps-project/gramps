@@ -1,6 +1,6 @@
 2006-05-26  Don Allingham  <don@gramps-project.org>
-	* src/DataViews/_RelationView.py: build skip list for SelectFamily so that
-	* a person cannot be his own parent
+	* src/DataViews/_RelationView.py: build skip list for SelectFamily
+	so that a person cannot be his own parent
 	* src/Editors/_EditFamily.py: don't allow a person to be his own parent
 	* src/Selectors/_BaseSelector.py: Add skipping of handles
 	* src/DisplayModels/_BaseModel.py: Add skipping of handles
