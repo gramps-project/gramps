@@ -20,6 +20,11 @@
 
 # $Id$
 
+try:
+    set()
+except:
+    from sets import Set as set
+    
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -48,7 +53,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
     MARKUP =  1
     IMAGE  =  2
 
-    def __init__(self, dbstate, uistate, track=[], filter=None, skip=[]):
+    def __init__(self, dbstate, uistate, track=[], filter=None, skip=set()):
         self.title = self.get_window_title()
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
@@ -64,7 +69,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
 
         self.set_window(window,title_label,self.title)
 
-        self.model = self.get_model_class()(self.db)
+        self.model = self.get_model_class()(self.db,skip=skip)
         self.selection = self.tree.get_selection()
 
         self.tree.set_model(self.model)

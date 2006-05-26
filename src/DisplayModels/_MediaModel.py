@@ -29,6 +29,11 @@ from gettext import gettext as _
 import logging
 log = logging.getLogger(".")
 
+try:
+    set()
+except:
+    from sets import Set as set
+
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK modules
@@ -55,7 +60,8 @@ from _BaseModel import BaseModel
 #-------------------------------------------------------------------------
 class MediaModel(BaseModel):
 
-    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None):
+    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
+                 skip=set()):
         self.gen_cursor = db.get_media_cursor
         self.map = db.get_raw_object_data
         
@@ -79,7 +85,7 @@ class MediaModel(BaseModel):
             self.column_handle,
             ]
         BaseModel.__init__(self, db, scol, order, tooltip_column=7,
-                           search=search)
+                           search=search, skip=skip)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
