@@ -56,13 +56,15 @@ class UpdateCallback:
         if '__call__' in dir(callback): # callback is really callable
             self.update = self.update_real
             self.callback = callback
-
-            self.count = 0
-            self.oldval = 0
-            self.oldtime = 0
             self.interval = interval
+            self.reset()
         else:
             self.update = self.update_empty
+
+    def reset(self):
+        self.count = 0
+        self.oldval = 0
+        self.oldtime = 0
 
     def set_total(self,total):
         self.total = total

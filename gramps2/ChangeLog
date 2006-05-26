@@ -1,7 +1,9 @@
 2006-05-26  Alex Roitman  <shura@gramps-project.org>
+	* src/BasicUtils.py (UpdateCallback.reset): Add method.
 	* src/plugins/verify.glade: update interface.
 	* src/plugins/Verify.py: More improvements. Still need to finish
 	filtering and object editing on double click.
+	(Verify.on_apply_clicked): Reset the progress.
 
 2006-05-26  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_RelationView.py: build skip list for SelectFamily

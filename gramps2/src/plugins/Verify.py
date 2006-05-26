@@ -333,6 +333,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
         self.uistate.window.window.set_cursor(None)
         self.window.window.set_cursor(None)
         vr.window.window.set_cursor(None)
+        self.reset()
         
         # Save options
         self.options.handler.save_options()
