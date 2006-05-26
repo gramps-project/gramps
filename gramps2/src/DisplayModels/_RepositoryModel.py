@@ -28,6 +28,11 @@ import time
 import logging
 log = logging.getLogger(".")
 
+try:
+    set()
+except:
+    from sets import Set as set
+
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK modules
@@ -53,7 +58,8 @@ from _BaseModel import BaseModel
 #-------------------------------------------------------------------------
 class RepositoryModel(BaseModel):
 
-    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None):
+    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
+                 skip=set()):
         self.gen_cursor = db.get_repository_cursor
         self.get_handles = db.get_repository_handles
         self.map = db.get_raw_repository_data
@@ -91,7 +97,7 @@ class RepositoryModel(BaseModel):
             ]
         
         BaseModel.__init__(self, db, scol, order, tooltip_column=12,
-                           search=search)
+                           search=search, skip=skip)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1

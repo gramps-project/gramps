@@ -28,6 +28,11 @@ import time
 import logging
 log = logging.getLogger(".")
 
+try:
+    set()
+except:
+    from sets import Set as set
+
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK modules
@@ -52,7 +57,8 @@ from _BaseModel import BaseModel
 #-------------------------------------------------------------------------
 class SourceModel(BaseModel):
 
-    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING,search=None):
+    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING,search=None,
+                 skip=set()):
         self.map = db.get_raw_source_data
         self.gen_cursor = db.get_source_cursor
         self.fmap = [
@@ -73,7 +79,8 @@ class SourceModel(BaseModel):
             self.column_pubinfo,
             self.sort_change,
             ]
-        BaseModel.__init__(self,db,scol,order,tooltip_column=7,search=search)
+        BaseModel.__init__(self,db,scol,order,tooltip_column=7,search=search,
+                           skip=skip)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1

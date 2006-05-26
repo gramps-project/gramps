@@ -25,7 +25,11 @@
 #
 #-------------------------------------------------------------------------
 import locale
-
+try:
+    set()
+except:
+    from sets import Set as set
+    
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK modules
@@ -48,7 +52,7 @@ from Filters import SearchFilter
 class BaseModel(gtk.GenericTreeModel):
 
     def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING,
-                 tooltip_column=None, search=None):
+                 tooltip_column=None, search=None, skip=set()):
         gtk.GenericTreeModel.__init__(self)
         self.prev_handle = None
         self.prev_data = None
@@ -56,7 +60,8 @@ class BaseModel(gtk.GenericTreeModel):
         self.db = db
         self.sort_func = self.smap[scol]
         self.sort_col = scol
-
+        self.skip = skip
+        
         if search:
             col = search[0]
             text = search[1]
@@ -95,14 +100,15 @@ class BaseModel(gtk.GenericTreeModel):
         if self.db.is_open():
             if self.search:
                 self.datalist = [h for h in self.sort_keys()\
-                                 if self.search.match(h)]
+                                 if self.search.match(h) and h not in self.skip]
             else:
-                self.datalist = self.sort_keys()
+                self.datalist = [h for h in self.sort_keys() if h not in self.skip]
             i = 0
             self.indexlist = {}
             for key in self.datalist:
-                self.indexlist[key] = i
-                i += 1
+                if key not in self.skip:
+                    self.indexlist[key] = i
+                    i += 1
         else:
             self.datalist = []
             self.indexlist = {}

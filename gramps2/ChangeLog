@@ -1,3 +1,16 @@
+2006-05-26  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_RelationView.py: build skip list for SelectFamily so that
+	* a person cannot be his own parent
+	* src/Editors/_EditFamily.py: don't allow a person to be his own parent
+	* src/Selectors/_BaseSelector.py: Add skipping of handles
+	* src/DisplayModels/_BaseModel.py: Add skipping of handles
+	* src/DisplayModels/_MediaModel.py: Add skipping of handles
+	* src/DisplayModels/_RepositoryModel.py: Add skipping of handles
+	* src/DisplayModels/_SourceModel.py: Add skipping of handles
+	* src/DisplayModels/_EventModel.py: Add skipping of handles
+	* src/DisplayModels/_FamilyModel.py: Add skipping of handles
+	* src/DisplayModels/_PlaceModel.py: Add skipping of handles
+
 2006-05-25  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs/_NoteTab.py (NoteTab.flow_changed): save flow status
 	in Note

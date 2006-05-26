@@ -734,6 +734,32 @@ class EditFamily(EditPrimary):
         else:
             original = None
 
+        # do some basic checks
+
+        child_list = [ ref.ref for ref in self.obj.get_child_ref_list() ]
+
+        if self.obj.get_father_handle() in child_list:
+            from QuestionDialog import ErrorDialog
+
+            father = db.get_person_from_handle(self.obj.get_father_handle())
+            name = "%s [%s]" % (NameDisplay.displayer.display(father),
+                                father.gramps_id)
+            ErrorDialog(_("A father cannot be his own child"),
+                        _("%s is listed as both the father and child of "
+                          "of the family.") % name)
+            return
+        elif self.obj.get_mother_handle() in child_list:
+            from QuestionDialog import ErrorDialog
+
+            mother = db.get_person_from_handle(self.obj.get_mother_handle())
+            name = "%s [%s]" % (NameDisplay.displayer.display(mother),
+                                mother.gramps_id)
+            ErrorDialog(_("A mother cannot be her own child"),
+                        _("%s is listed as both the mother and child of "
+                          "of the family.") % name)
+            return
+
+
         if not original and not self.object_is_empty():
             trans = self.db.transaction_begin()
 

@@ -801,7 +801,11 @@ class RelationshipView(PageView.PersonNavView):
             from Selectors import selector_factory
             SelectFamily = selector_factory('Family')
 
-            dialog = SelectFamily(self.dbstate, self.uistate)
+            phandle = self.dbstate.get_active_person().handle
+            person = self.dbstate.db.get_person_from_handle(phandle)
+            skip = set(person.get_family_handle_list())
+            
+            dialog = SelectFamily(self.dbstate, self.uistate, skip=skip)
             family = dialog.run()
 
             if family:
