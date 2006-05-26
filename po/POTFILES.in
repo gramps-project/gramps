@@ -29,8 +29,6 @@ src/gramps.py
 src/GrampsWidgets.py
 src/ImgManip.py
 src/ListModel.py
-src/MergeData.py
-src/MergePeople.py
 src/NameDisplay.py
 src/Navigation.py
 src/PageView.py
@@ -54,6 +52,10 @@ src/ManagedWindow.py
 src/Config/_GrampsGconfKeys.py
 src/Config/_GrampsIniKeys.py
 src/Config/__init__.py
+src/Merge/__init__.py
+src/Merge/_MergePerson.py
+src/Merge/_MergePlace.py
+src/Merge/_MergeSource.py
 src/DataViews/_EventView.py
 src/DataViews/_FamilyList.py
 src/DataViews/_RelationView.py
