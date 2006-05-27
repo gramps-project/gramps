@@ -113,7 +113,9 @@ class IndivCompleteReport(Report.Report):
     def write_fact(self,event):
         if event == None:
             return
+        text = ""
         name = str(event.get_type())
+
         date = DateHandler.get_date(event)
         place_handle = event.get_place_handle()
         if place_handle:
@@ -121,29 +123,38 @@ class IndivCompleteReport(Report.Report):
                 place_handle).get_title()
         else:
             place = ""
-        description = event.get_description()
-        if not date:
-            if not place:
-                return
-            else:
-                text = '%s. %s' % (place,description)
-        else:
-            if not place:
-                text = '%s. %s' % (date,description)
-            else:
-                text = _('%(date)s in %(place)s.') % { 'date' : date,
-                                                      'place' : place }
-                text = '%s %s' % (text,description)
+        
+        if place and date:
+            text = _('%(date)s in %(place)s. ') % { 'date' : date,
+                                                    'place' : place }
+        elif place and not date:
+            text = '%s. ' % place
+        elif date and not place:
+            text = '%s. ' % date
 
-        self.doc.start_row()
-        self.normal_cell(name)
+        description = event.get_description()
+        text = '%s%s. ' % (text,description)
+
         if self.use_srcs:
             for s in event.get_source_references():
                 src_handle = s.get_reference_handle()
                 src = self.database.get_source_from_handle(src_handle)
                 text = "%s [%s]" % (text,src.get_gramps_id())
                 self.slist.append(s)
-        self.normal_cell(text)
+
+        self.doc.start_row()
+        self.normal_cell(name)
+        self.doc.start_cell('IDS-NormalCell')
+        self.doc.start_paragraph('IDS-Normal')
+        self.doc.write_text(text)
+        self.doc.end_paragraph()
+        
+        note = event.get_note()
+        if note:
+            format = event.get_note_format()
+            self.doc.write_note(note,format,'IDS-Normal')
+        
+        self.doc.end_cell()
         self.doc.end_row()
 
     def write_p_entry(self,label,parent,rel):
