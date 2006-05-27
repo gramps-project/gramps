@@ -63,6 +63,8 @@ sys.path.append(os.path.abspath(os.path.basename(__file__)))
 #-------------------------------------------------------------------------
 if os.environ.has_key("GRAMPSI18N"):
     loc = os.environ["GRAMPSI18N"]
+elif os.path.exists( os.path.join(const.root_dir,"lang") ):
+    loc = os.path.join(const.root_dir,"lang")
 else:
     loc = "/usr/share/locale"
 
