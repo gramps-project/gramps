@@ -47,7 +47,9 @@ import Errors
 try:
     import gnomeprint, gnomeprint.ui
 except ImportError:
-    raise Errors.UnavailableError(_("Cannot be loaded because python bindinds for GNOME print are not installed"))
+    raise Errors.UnavailableError(
+        _("Cannot be loaded because python bindings "
+          "for GNOME print are not installed"))
 
 ### FIXME ###
 if gnomeprint.Context.__dict__.has_key('grestore'):
