@@ -442,11 +442,12 @@ class VerifyResults(ManagedWindow):
         self.hide_button = self.top.get_widget('hide_button')
         self.hide_button.connect('toggled',self.hide_toggled)
 
-        self.warn_model = gtk.ListStore(bool,str,str,str,str,int,str,str,
+        self.real_model = gtk.ListStore(bool,str,str,str,str,int,str,str,
                                         bool,bool)
-        self.model_filter = self.warn_model.filter_new()
-        self.model_filter.set_visible_column(8)
-        self.warn_tree.set_model(self.model_filter)
+        self.filt_model = self.real_model.filter_new()
+        self.filt_model.set_visible_column(8)
+        self.sort_model = gtk.TreeModelSort(self.filt_model)
+        self.warn_tree.set_model(self.sort_model)
 
         self.renderer = gtk.CellRendererText()
         self.img_renderer = gtk.CellRendererPixbuf()
@@ -463,17 +464,17 @@ class VerifyResults(ManagedWindow):
 
         warn_column = gtk.TreeViewColumn(_('Warning'), self.renderer,
                                          text=1,foreground=7)
-        # warn_column.set_sort_column_id(1)
+        warn_column.set_sort_column_id(1)
         self.warn_tree.append_column(warn_column)
 
         id_column = gtk.TreeViewColumn(_('ID'), self.renderer,
                                        text=2,foreground=7)
-        # id_column.set_sort_column_id(2)
+        id_column.set_sort_column_id(2)
         self.warn_tree.append_column(id_column)
 
         name_column = gtk.TreeViewColumn(_('Name'), self.renderer,
                                          text=3,foreground=7)
-        # name_column.set_sort_column_id(3)
+        name_column.set_sort_column_id(3)
         self.warn_tree.append_column(name_column)
        
         self.window.show_all()
@@ -516,9 +517,9 @@ class VerifyResults(ManagedWindow):
 
     def get_new_marking(self):
         new_ignores = {}
-        for row_num in range(len(self.warn_model)):
+        for row_num in range(len(self.real_model)):
             path = (row_num,)
-            row = self.warn_model[path]
+            row = self.real_model[path]
             ignore = row[0]
             if ignore:
                 handle = row[6]
@@ -536,22 +537,26 @@ class VerifyResults(ManagedWindow):
 
     def hide_toggled(self,button):
         if button.get_active():
-            button.set_label(_("_Show selected"))
-            self.model_filter = self.warn_model.filter_new()
-            self.model_filter.set_visible_column(9)
-            self.warn_tree.set_model(self.model_filter)
+            button.set_label(_("_Show all"))
+            self.filt_model = self.real_model.filter_new()
+            self.filt_model.set_visible_column(9)
+            self.sort_model = gtk.TreeModelSort(self.filt_model)
+            self.warn_tree.set_model(self.sort_model)
         else:
-            self.model_filter = self.warn_model.filter_new()
-            self.model_filter.set_visible_column(8)
-            self.warn_tree.set_model(self.model_filter)
+            self.filt_model = self.real_model.filter_new()
+            self.filt_model.set_visible_column(8)
+            self.sort_model = gtk.TreeModelSort(self.filt_model)
+            self.warn_tree.set_model(self.sort_model)
             button.set_label(_("_Hide selected"))
         
     def selection_toggled(self,cell,path_string):
-        path = tuple([int (i) for i in path_string.split(':')])
-        row = self.warn_model[path]
+        sort_path = tuple([int (i) for i in path_string.split(':')])
+        filt_path = self.sort_model.convert_path_to_child_path(sort_path)
+        real_path = self.filt_model.convert_path_to_child_path(filt_path)
+        row = self.real_model[real_path]
         row[0] = not row[0]
         row[9] = not row[0]
-        self.warn_model.row_changed(path,row.iter)
+        self.real_model.row_changed(real_path,row.iter)
 
     def get_image(self, column, cell, model, iter, user_data=None):
         the_type = model.get_value(iter, 4)
@@ -570,7 +575,7 @@ class VerifyResults(ManagedWindow):
 ##             fg = '#008b00'
         else:
             fg = None
-        self.warn_model.append(row=[ignore,msg,gramps_id,name,
+        self.real_model.append(row=[ignore,msg,gramps_id,name,
                                     the_type,rule_id,handle,fg,
                                     True, not ignore])
         
