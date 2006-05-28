@@ -442,8 +442,11 @@ class VerifyResults(ManagedWindow):
         self.hide_button = self.top.get_widget('hide_button')
         self.hide_button.connect('toggled',self.hide_toggled)
 
-        self.warn_model = gtk.ListStore(bool,bool,str,str,str,str,int,str,str)
-        self.warn_tree.set_model(self.warn_model)
+        self.warn_model = gtk.ListStore(bool,str,str,str,str,int,str,str,
+                                        bool,bool)
+        self.model_filter = self.warn_model.filter_new()
+        self.model_filter.set_visible_column(8)
+        self.warn_tree.set_model(self.model_filter)
 
         self.renderer = gtk.CellRendererText()
         self.img_renderer = gtk.CellRendererPixbuf()
@@ -451,21 +454,27 @@ class VerifyResults(ManagedWindow):
         self.bool_renderer.connect('toggled',self.selection_toggled)
 
         self.warn_tree.append_column(
-            gtk.TreeViewColumn(_('Hide'),self.bool_renderer,active=1))
+            gtk.TreeViewColumn(_('Hide'),self.bool_renderer,active=0))
         
         img_column = gtk.TreeViewColumn(None, self.img_renderer )
         img_column.set_cell_data_func(self.img_renderer,self.get_image)
         self.warn_tree.append_column(img_column)
+        
 
-        self.warn_tree.append_column(
-            gtk.TreeViewColumn(_('Warning'), self.renderer,
-                               text=2,foreground=8))
-        self.warn_tree.append_column(
-            gtk.TreeViewColumn(_('ID'), self.renderer,
-                               text=3,foreground=8))
-        self.warn_tree.append_column(
-            gtk.TreeViewColumn(_('Name'), self.renderer,
-                               text=4,foreground=8))
+        warn_column = gtk.TreeViewColumn(_('Warning'), self.renderer,
+                                         text=1,foreground=7)
+        # warn_column.set_sort_column_id(1)
+        self.warn_tree.append_column(warn_column)
+
+        id_column = gtk.TreeViewColumn(_('ID'), self.renderer,
+                                       text=2,foreground=7)
+        # id_column.set_sort_column_id(2)
+        self.warn_tree.append_column(id_column)
+
+        name_column = gtk.TreeViewColumn(_('Name'), self.renderer,
+                                         text=3,foreground=7)
+        # name_column.set_sort_column_id(3)
+        self.warn_tree.append_column(name_column)
        
         self.window.show_all()
         self.window_shown = False
@@ -510,10 +519,10 @@ class VerifyResults(ManagedWindow):
         for row_num in range(len(self.warn_model)):
             path = (row_num,)
             row = self.warn_model[path]
-            ignore = row[1]
+            ignore = row[0]
             if ignore:
-                handle = row[7]
-                rule_id = row[6]
+                handle = row[6]
+                rule_id = row[5]
                 if not new_ignores.has_key(handle):
                     new_ignores[handle] = set()
                 new_ignores[handle].add(rule_id)
@@ -528,17 +537,24 @@ class VerifyResults(ManagedWindow):
     def hide_toggled(self,button):
         if button.get_active():
             button.set_label(_("_Show selected"))
+            self.model_filter = self.warn_model.filter_new()
+            self.model_filter.set_visible_column(9)
+            self.warn_tree.set_model(self.model_filter)
         else:
+            self.model_filter = self.warn_model.filter_new()
+            self.model_filter.set_visible_column(8)
+            self.warn_tree.set_model(self.model_filter)
             button.set_label(_("_Hide selected"))
         
     def selection_toggled(self,cell,path_string):
         path = tuple([int (i) for i in path_string.split(':')])
         row = self.warn_model[path]
-        row[1] = not row[1]
+        row[0] = not row[0]
+        row[9] = not row[0]
         self.warn_model.row_changed(path,row.iter)
 
     def get_image(self, column, cell, model, iter, user_data=None):
-        the_type = model.get_value(iter, 5)
+        the_type = model.get_value(iter, 4)
         if the_type == 'Person':
             cell.set_property('stock-id', 'gramps-person' )
         elif  the_type == 'Family':
@@ -554,8 +570,9 @@ class VerifyResults(ManagedWindow):
 ##             fg = '#008b00'
         else:
             fg = None
-        self.warn_model.append(row=[True,ignore,msg,gramps_id,name,
-                                    the_type,rule_id,handle,fg])
+        self.warn_model.append(row=[ignore,msg,gramps_id,name,
+                                    the_type,rule_id,handle,fg,
+                                    True, not ignore])
         
         if not self.window_shown:
             self.show()

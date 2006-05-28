@@ -1,4 +1,5 @@
 2006-05-27  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Verify.py: More updates.
 	* src/docgen/LPRDoc.py: Typo.
 
 2006-05-27  Brian Matherly  <brian@gramps-project.org>
