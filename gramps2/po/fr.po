@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 2.1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Fri May 26 09:09:12 2006\n"
-"PO-Revision-Date: 2006-05-26 10:19+0200\n"
+"POT-Creation-Date: Sun May 28 11:41:04 2006\n"
+"PO-Revision-Date: 2006-05-28 11:52+0200\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -143,7 +143,7 @@ msgstr "Gérer les signets"
 #: ../src/Selectors/_SelectRepository.py:54
 #: ../src/Selectors/_SelectSource.py:54 ../src/TreeViews/_PersonTreeView.py:28
 #: ../src/plugins/PatchNames.py:202 ../src/plugins/RelCalc.py:57
-#: ../src/plugins/Verify.py:548 ../src/plugins/Verify.py:558
+#: ../src/plugins/Verify.py:470
 msgid "ID"
 msgstr "Id"
 
@@ -165,11 +165,11 @@ msgstr "Id"
 #: ../src/ToolTips.py:194 ../src/ToolTips.py:205
 #: ../src/TreeViews/_PersonTreeView.py:27 ../src/plugins/BookReport.py:639
 #: ../src/plugins/DumpGenderStats.py:55 ../src/plugins/FilterEditor.py:470
-#: ../src/plugins/IndivComplete.py:421 ../src/plugins/IndivSummary.py:225
+#: ../src/plugins/IndivComplete.py:432 ../src/plugins/IndivSummary.py:225
 #: ../src/plugins/NarrativeWeb.py:574 ../src/plugins/NarrativeWeb.py:634
 #: ../src/plugins/PatchNames.py:211 ../src/plugins/RelCalc.py:56
 #: ../src/plugins/RelCalc.py:110 ../src/plugins/TimeLine.py:438
-#: ../src/plugins/Verify.py:551 ../src/plugins/Verify.py:561
+#: ../src/plugins/Verify.py:475
 msgid "Name"
 msgstr "Nom"
 
@@ -290,8 +290,8 @@ msgstr "_Supprimer l'événement"
 #: ../src/DataViews/_FamilyList.py:52 ../src/DataViews/_RelationView.py:540
 #: ../src/Merge/_MergePerson.py:157 ../src/Selectors/_SelectFamily.py:54
 #: ../src/ToolTips.py:228 ../src/plugins/FamilyGroup.py:275
-#: ../src/plugins/IndivComplete.py:220 ../src/plugins/IndivComplete.py:222
-#: ../src/plugins/IndivComplete.py:463 ../src/plugins/IndivSummary.py:275
+#: ../src/plugins/IndivComplete.py:231 ../src/plugins/IndivComplete.py:233
+#: ../src/plugins/IndivComplete.py:474 ../src/plugins/IndivSummary.py:275
 #: ../src/plugins/NarrativeWeb.py:1742
 msgid "Father"
 msgstr "Père"
@@ -299,8 +299,8 @@ msgstr "Père"
 #: ../src/DataViews/_FamilyList.py:53 ../src/DataViews/_RelationView.py:541
 #: ../src/Merge/_MergePerson.py:159 ../src/Selectors/_SelectFamily.py:55
 #: ../src/ToolTips.py:233 ../src/plugins/FamilyGroup.py:278
-#: ../src/plugins/IndivComplete.py:228 ../src/plugins/IndivComplete.py:230
-#: ../src/plugins/IndivComplete.py:468 ../src/plugins/IndivSummary.py:289
+#: ../src/plugins/IndivComplete.py:239 ../src/plugins/IndivComplete.py:241
+#: ../src/plugins/IndivComplete.py:479 ../src/plugins/IndivSummary.py:289
 #: ../src/plugins/NarrativeWeb.py:1747
 msgid "Mother"
 msgstr "Mère"
@@ -537,7 +537,7 @@ msgstr "Frères et soeurs"
 
 #: ../src/DataViews/_PedigreeView.py:1415
 #: ../src/DataViews/_RelationView.py:740 ../src/Editors/_EditFamily.py:121
-#: ../src/plugins/FamilyGroup.py:578 ../src/plugins/IndivComplete.py:308
+#: ../src/plugins/FamilyGroup.py:578 ../src/plugins/IndivComplete.py:319
 #: ../src/plugins/IndivSummary.py:178 ../src/plugins/NarrativeWeb.py:1781
 msgid "Children"
 msgstr "Enfants"
@@ -555,7 +555,7 @@ msgstr "en relation avec"
 #: ../src/DataViews/_PersonView.py:70 ../src/Editors/_EditFamily.py:106
 #: ../src/Filters/_PersonSidebarFilter.py:62 ../src/Merge/_MergePerson.py:127
 #: ../src/ObjectSelector/_PersonTreeFrame.py:37
-#: ../src/TreeViews/_PersonTreeView.py:29 ../src/plugins/IndivComplete.py:434
+#: ../src/TreeViews/_PersonTreeView.py:29 ../src/plugins/IndivComplete.py:445
 #: ../src/plugins/IndivSummary.py:239 ../src/plugins/NarrativeWeb.py:1630
 #: ../src/plugins/RelCalc.py:58 ../src/plugins/StatisticsChart.py:100
 msgid "Gender"
@@ -971,7 +971,7 @@ msgstr "Supprimer la source sélectionnée"
 #: ../src/DataViews/_SourceView.py:83
 #: ../src/DisplayTabs/_SourceEmbedList.py:69 ../src/ScratchPad.py:171
 #: ../src/ScratchPad.py:343 ../src/ScratchPad.py:376 ../src/gramps_main.py:87
-#: ../src/plugins/Ancestors.py:157 ../src/plugins/IndivComplete.py:338
+#: ../src/plugins/Ancestors.py:157 ../src/plugins/IndivComplete.py:349
 #: ../src/plugins/NarrativeWeb.py:327 ../src/plugins/NarrativeWeb.py:1114
 #: ../src/plugins/NarrativeWeb.py:1122 ../src/plugins/NarrativeWeb.py:1154
 msgid "Sources"
@@ -1135,7 +1135,7 @@ msgstr "Détecté automatiquement"
 msgid "Select file _type:"
 msgstr "Choisir un _type de fichier:"
 
-#: ../src/DisplayModels/_MediaModel.py:103 ../src/DisplayTabs/_NoteTab.py:52
+#: ../src/DisplayModels/_MediaModel.py:109 ../src/DisplayTabs/_NoteTab.py:52
 #: ../src/Editors/_EditMedia.py:116 ../src/Filters/_PersonSidebarFilter.py:66
 #: ../src/ToolTips.py:154 ../src/Utils.py:213
 msgid "Note"
@@ -1151,7 +1151,7 @@ msgstr "Note"
 #: ../src/plugins/DetDescendantReport.py:421
 #: ../src/plugins/DetDescendantReport.py:428
 #: ../src/plugins/DumpGenderStats.py:30 ../src/plugins/FamilyGroup.py:702
-#: ../src/plugins/IndivComplete.py:294 ../src/plugins/IndivSummary.py:164
+#: ../src/plugins/IndivComplete.py:305 ../src/plugins/IndivSummary.py:164
 #: ../src/plugins/NarrativeWeb.py:1334 ../src/plugins/NarrativeWeb.py:1810
 msgid "unknown"
 msgstr "inconnu"
@@ -1432,7 +1432,7 @@ msgstr "Sélectionner un enfant"
 msgid "New Family"
 msgstr "Nouvelle famille"
 
-#: ../src/Editors/_EditFamily.py:379 ../src/Editors/_EditFamily.py:801
+#: ../src/Editors/_EditFamily.py:379 ../src/Editors/_EditFamily.py:827
 msgid "Edit Family"
 msgstr "Editer la famille"
 
@@ -1480,19 +1480,35 @@ msgstr "Famille double"
 msgid "A family with these parents already exists in the database. If you save, you will create a duplicate family."
 msgstr "Une famille avec ces parents existe déjà dans la base de données. Si vous sauvez, vous allez créer une famille dupliquée."
 
-#: ../src/Editors/_EditFamily.py:762
+#: ../src/Editors/_EditFamily.py:747
+msgid "A father cannot be his own child"
+msgstr "Un père ne peut pas être son propre enfant"
+
+#: ../src/Editors/_EditFamily.py:748
+msgid "%s is listed as both the father and child of the family."
+msgstr "%s est défini comme le père et l'enfant de la famille."
+
+#: ../src/Editors/_EditFamily.py:757
+msgid "A mother cannot be her own child"
+msgstr "Une mère ne peut pas être son propre enfant"
+
+#: ../src/Editors/_EditFamily.py:758
+msgid "%s is listed as both the mother and child of the family."
+msgstr "%s est définie comme la mère et l'enfant de la famille."
+
+#: ../src/Editors/_EditFamily.py:788
 msgid "Add Family"
 msgstr "Ajouter une famille"
 
-#: ../src/Editors/_EditFamily.py:765
+#: ../src/Editors/_EditFamily.py:791
 msgid "Cannot save family"
 msgstr "Incapable de sauver la famille"
 
-#: ../src/Editors/_EditFamily.py:766
+#: ../src/Editors/_EditFamily.py:792
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr "Aucune donnée n'existe pour cette famille. S'il vous plaît entrer une donnée ou annuler l'édition."
 
-#: ../src/Editors/_EditFamily.py:772 ../src/GrampsDb/_DbUtils.py:53
+#: ../src/Editors/_EditFamily.py:798 ../src/GrampsDb/_DbUtils.py:53
 msgid "Remove Family"
 msgstr "Supprimer la famille"
 
@@ -2945,7 +2961,7 @@ msgstr "Import de fichier au format XML GRAMPS"
 #: ../src/GrampsDb/_WriteGedcom.py:278 ../src/plugins/Calendar.py:518
 #: ../src/plugins/EventCmp.py:156 ../src/plugins/ExportVCalendar.py:88
 #: ../src/plugins/ExportVCard.py:86 ../src/plugins/GraphViz.py:660
-#: ../src/plugins/IndivComplete.py:528 ../src/plugins/NarrativeWeb.py:2355
+#: ../src/plugins/IndivComplete.py:539 ../src/plugins/NarrativeWeb.py:2355
 #: ../src/plugins/StatisticsChart.py:845 ../src/plugins/TimeLine.py:418
 #: ../src/plugins/WriteFtree.py:90 ../src/plugins/WriteGeneWeb.py:92
 msgid "Entire Database"
@@ -2954,7 +2970,7 @@ msgstr "Toute la base de données"
 #: ../src/GrampsDb/_WriteGedcom.py:283 ../src/plugins/Calendar.py:523
 #: ../src/plugins/DescendReport.py:151 ../src/plugins/ExportVCalendar.py:93
 #: ../src/plugins/ExportVCard.py:91 ../src/plugins/FtmStyleDescendants.py:119
-#: ../src/plugins/GraphViz.py:664 ../src/plugins/IndivComplete.py:532
+#: ../src/plugins/GraphViz.py:664 ../src/plugins/IndivComplete.py:543
 #: ../src/plugins/NarrativeWeb.py:2359 ../src/plugins/StatisticsChart.py:849
 #: ../src/plugins/TimeLine.py:422 ../src/plugins/WriteFtree.py:95
 #: ../src/plugins/WriteGeneWeb.py:97
@@ -2964,7 +2980,7 @@ msgstr "Descendants de %s"
 #: ../src/GrampsDb/_WriteGedcom.py:289 ../src/plugins/Ancestors.py:136
 #: ../src/plugins/Calendar.py:533 ../src/plugins/ExportVCalendar.py:99
 #: ../src/plugins/ExportVCard.py:97 ../src/plugins/FtmStyleAncestors.py:94
-#: ../src/plugins/GraphViz.py:668 ../src/plugins/IndivComplete.py:536
+#: ../src/plugins/GraphViz.py:668 ../src/plugins/IndivComplete.py:547
 #: ../src/plugins/NarrativeWeb.py:2367 ../src/plugins/StatisticsChart.py:853
 #: ../src/plugins/TimeLine.py:426 ../src/plugins/WriteFtree.py:101
 #: ../src/plugins/WriteGeneWeb.py:103
@@ -2973,7 +2989,7 @@ msgstr "Ancêtres de %s"
 
 #: ../src/GrampsDb/_WriteGedcom.py:295 ../src/plugins/Calendar.py:538
 #: ../src/plugins/ExportVCalendar.py:105 ../src/plugins/ExportVCard.py:103
-#: ../src/plugins/GraphViz.py:672 ../src/plugins/IndivComplete.py:540
+#: ../src/plugins/GraphViz.py:672 ../src/plugins/IndivComplete.py:551
 #: ../src/plugins/NarrativeWeb.py:2371 ../src/plugins/StatisticsChart.py:857
 #: ../src/plugins/TimeLine.py:430 ../src/plugins/WriteFtree.py:107
 #: ../src/plugins/WriteGeneWeb.py:109
@@ -3190,7 +3206,7 @@ msgstr "Conjoint ne pouvant pas fusionner.Pour fusionner ces individus,vous deve
 msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "Un parent et un enfant ne peuvent pas fusionner.Pour fusionner ces personnes, vous devez d'abord supprimer le lien entre eux."
 
-#: ../src/Merge/_MergePerson.py:137 ../src/plugins/IndivComplete.py:245
+#: ../src/Merge/_MergePerson.py:137 ../src/plugins/IndivComplete.py:256
 msgid "Alternate Names"
 msgstr "Autres noms"
 
@@ -3229,13 +3245,13 @@ msgid "Select Object"
 msgstr "Sélectionner un objet"
 
 #: ../src/ObjectSelector/_PersonFilterFrame.py:79
-#: ../src/plugins/DumpGenderStats.py:55 ../src/plugins/IndivComplete.py:436
+#: ../src/plugins/DumpGenderStats.py:55 ../src/plugins/IndivComplete.py:447
 #: ../src/plugins/IndivSummary.py:246
 msgid "Male"
 msgstr "Masculin"
 
 #: ../src/ObjectSelector/_PersonFilterFrame.py:80
-#: ../src/plugins/DumpGenderStats.py:56 ../src/plugins/IndivComplete.py:438
+#: ../src/plugins/DumpGenderStats.py:56 ../src/plugins/IndivComplete.py:449
 #: ../src/plugins/IndivSummary.py:248
 msgid "Female"
 msgstr "Féminin"
@@ -6410,16 +6426,16 @@ msgstr "Impossible d'ouvrir %s"
 msgid "KWord"
 msgstr "KWord"
 
-#: ../src/docgen/LPRDoc.py:50
-msgid "Cannot be loaded because python bindinds for GNOME print are not installed"
+#: ../src/docgen/LPRDoc.py:51
+msgid "Cannot be loaded because python bindings for GNOME print are not installed"
 msgstr "Ne peut pas être chargé car les liens python pour l'impression de GNOME ne sont pas installés"
 
-#: ../src/docgen/LPRDoc.py:1220
+#: ../src/docgen/LPRDoc.py:1222
 msgid "Print Preview"
 msgstr "Aperçu avant impression"
 
-#: ../src/docgen/LPRDoc.py:1240 ../src/docgen/LPRDoc.py:1254
-#: ../src/docgen/LPRDoc.py:1264 ../src/docgen/LPRDoc.py:1273
+#: ../src/docgen/LPRDoc.py:1242 ../src/docgen/LPRDoc.py:1256
+#: ../src/docgen/LPRDoc.py:1266 ../src/docgen/LPRDoc.py:1275
 msgid "Print..."
 msgstr "Imprimer..."
 
@@ -6527,7 +6543,7 @@ msgstr ""
 #: ../src/plugins/FtmStyleDescendants.py:540
 #: ../src/plugins/FtmStyleDescendants.py:550
 #: ../src/plugins/FtmStyleDescendants.py:555
-#: ../src/plugins/IndivComplete.py:604 ../src/plugins/IndivSummary.py:373
+#: ../src/plugins/IndivComplete.py:615 ../src/plugins/IndivSummary.py:373
 msgid "The basic style used for the text display."
 msgstr "Le style de base pour afficher du texte."
 
@@ -6555,7 +6571,7 @@ msgstr "Graphique des ascendants"
 #: ../src/plugins/EventCmp.py:433 ../src/plugins/FamilyGroup.py:853
 #: ../src/plugins/FanChart.py:324 ../src/plugins/FilterEditor.py:934
 #: ../src/plugins/FilterEditor.py:953 ../src/plugins/GraphViz.py:1210
-#: ../src/plugins/GraphViz.py:1224 ../src/plugins/IndivComplete.py:619
+#: ../src/plugins/GraphViz.py:1224 ../src/plugins/IndivComplete.py:630
 #: ../src/plugins/IndivSummary.py:388 ../src/plugins/Leak.py:131
 #: ../src/plugins/Merge.py:691 ../src/plugins/NarrativeWeb.py:2849
 #: ../src/plugins/PatchNames.py:359 ../src/plugins/Rebuild.py:123
@@ -6601,7 +6617,7 @@ msgstr "Génération %d"
 #: ../src/plugins/DetDescendantReport.py:688 ../src/plugins/FamilyGroup.py:811
 #: ../src/plugins/FtmStyleAncestors.py:377
 #: ../src/plugins/FtmStyleDescendants.py:520
-#: ../src/plugins/IndivComplete.py:572 ../src/plugins/IndivSummary.py:347
+#: ../src/plugins/IndivComplete.py:583 ../src/plugins/IndivSummary.py:347
 #: ../src/plugins/SimpleBookTitle.py:265 ../src/plugins/StatisticsChart.py:830
 #: ../src/plugins/TimeLine.py:405
 msgid "The style used for the title of the page."
@@ -7804,7 +7820,7 @@ msgstr "Options d'exportation vCard"
 
 #: ../src/plugins/FamilyGroup.py:313 ../src/plugins/GraphViz.py:861
 #: ../src/plugins/GraphViz.py:867 ../src/plugins/GraphViz.py:876
-#: ../src/plugins/IndivComplete.py:168
+#: ../src/plugins/IndivComplete.py:179
 msgid "Notes"
 msgstr "Notes"
 
@@ -8395,45 +8411,49 @@ msgstr "Import de vCard"
 msgid "vCard files"
 msgstr "Fichiers vCard"
 
-#: ../src/plugins/IndivComplete.py:134 ../src/plugins/IndivSummary.py:114
-msgid "%(date)s in %(place)s."
-msgstr "%(date)s à %(place)s."
+#: ../src/plugins/IndivComplete.py:128
+msgid "%(date)s in %(place)s. "
+msgstr "%(date)s à %(place)s. "
 
-#: ../src/plugins/IndivComplete.py:193
+#: ../src/plugins/IndivComplete.py:204
 msgid "Alternate Parents"
 msgstr "Autres parents possibles"
 
-#: ../src/plugins/IndivComplete.py:276 ../src/plugins/IndivSummary.py:145
+#: ../src/plugins/IndivComplete.py:287 ../src/plugins/IndivSummary.py:145
 msgid "Marriages/Children"
 msgstr "Mariages et enfants"
 
-#: ../src/plugins/IndivComplete.py:357 ../src/plugins/IndivSummary.py:308
+#: ../src/plugins/IndivComplete.py:368 ../src/plugins/IndivSummary.py:308
 msgid "Individual Facts"
 msgstr "Actes individuels"
 
-#: ../src/plugins/IndivComplete.py:402 ../src/plugins/IndivSummary.py:204
+#: ../src/plugins/IndivComplete.py:413 ../src/plugins/IndivSummary.py:204
 msgid "Summary of %s"
 msgstr "Fiche de %s"
 
-#: ../src/plugins/IndivComplete.py:551
+#: ../src/plugins/IndivComplete.py:562
 msgid "Include Source Information"
 msgstr "Inclure une source d'information"
 
-#: ../src/plugins/IndivComplete.py:584 ../src/plugins/IndivSummary.py:357
+#: ../src/plugins/IndivComplete.py:595 ../src/plugins/IndivSummary.py:357
 msgid "The style used for category labels."
 msgstr "Style pour l'étiquette des catégories."
 
-#: ../src/plugins/IndivComplete.py:595 ../src/plugins/IndivSummary.py:366
+#: ../src/plugins/IndivComplete.py:606 ../src/plugins/IndivSummary.py:366
 msgid "The style used for the spouse's name."
 msgstr "Style pour le nom de jeune fille."
 
-#: ../src/plugins/IndivComplete.py:618
+#: ../src/plugins/IndivComplete.py:629
 msgid "Complete Individual Report"
 msgstr "Liste individuelle complète"
 
-#: ../src/plugins/IndivComplete.py:622
+#: ../src/plugins/IndivComplete.py:633
 msgid "Produces a complete report on the selected people."
 msgstr "Produit une liste complète de la personne sélectionnée."
+
+#: ../src/plugins/IndivSummary.py:114
+msgid "%(date)s in %(place)s."
+msgstr "%(date)s à %(place)s."
 
 #: ../src/plugins/IndivSummary.py:387
 msgid "Individual Summary"
@@ -8479,7 +8499,7 @@ msgstr "Fusionner des individus"
 msgid "Find Duplicates tool"
 msgstr "Trouver d'éventuels doublons"
 
-#: ../src/plugins/Merge.py:145 ../src/plugins/Verify.py:267
+#: ../src/plugins/Merge.py:145 ../src/plugins/Verify.py:279
 msgid "Tool settings"
 msgstr "Propriétés de l'outil"
 
@@ -9605,147 +9625,159 @@ msgstr "Graphique temporel"
 msgid "Generates a timeline graph."
 msgstr "Produit un graphique temporel."
 
-#: ../src/plugins/Verify.py:200
+#: ../src/plugins/Verify.py:209
 msgid "Database Verify tool"
 msgstr "Vérification de la base de données"
 
-#: ../src/plugins/Verify.py:515
+#: ../src/plugins/Verify.py:426
 msgid "Database Verification Results"
 msgstr "Résultat de la vérification de la base de données"
 
-#: ../src/plugins/Verify.py:545 ../src/plugins/Verify.py:555
+#: ../src/plugins/Verify.py:458
+msgid "Hide"
+msgstr "Cacher"
+
+#: ../src/plugins/Verify.py:465
 msgid "Warning"
 msgstr "Attention"
 
-#: ../src/plugins/Verify.py:739
+#: ../src/plugins/Verify.py:540
+msgid "_Show all"
+msgstr "_Montrer tout"
+
+#: ../src/plugins/Verify.py:550
+msgid "_Hide selected"
+msgstr "_Cache sélectionné"
+
+#: ../src/plugins/Verify.py:745
 msgid "Baptism before birth"
 msgstr "Baptême avant la naissance"
 
-#: ../src/plugins/Verify.py:752
+#: ../src/plugins/Verify.py:759
 msgid "Death before baptism"
 msgstr "Décès avant la baptême"
 
-#: ../src/plugins/Verify.py:765
+#: ../src/plugins/Verify.py:773
 msgid "Burial before birth"
 msgstr "Inhumation avant la naissance"
 
-#: ../src/plugins/Verify.py:778
+#: ../src/plugins/Verify.py:787
 msgid "Burial before death"
 msgstr "Inhumation avant le décès"
 
-#: ../src/plugins/Verify.py:791
+#: ../src/plugins/Verify.py:801
 msgid "Death before birth"
 msgstr "Décès avant la naissance"
 
-#: ../src/plugins/Verify.py:804
+#: ../src/plugins/Verify.py:815
 msgid "Burial before baptism"
 msgstr "Inhumation avant le baptême"
 
-#: ../src/plugins/Verify.py:818
+#: ../src/plugins/Verify.py:830
 msgid "Old age at death"
 msgstr "Age canonique"
 
-#: ../src/plugins/Verify.py:828
+#: ../src/plugins/Verify.py:841
 msgid "Unknown gender"
 msgstr "Genre inconnu"
 
-#: ../src/plugins/Verify.py:837
+#: ../src/plugins/Verify.py:851
 msgid "Multiple parents"
 msgstr "Parents multiples"
 
-#: ../src/plugins/Verify.py:850
+#: ../src/plugins/Verify.py:865
 msgid "Married often"
 msgstr "Souvent marié"
 
-#: ../src/plugins/Verify.py:865
+#: ../src/plugins/Verify.py:881
 msgid "Old and unmarried"
 msgstr "Agé(e) et célibataire"
 
-#: ../src/plugins/Verify.py:888
+#: ../src/plugins/Verify.py:905
 msgid "Too many children"
 msgstr "Trop d'enfants"
 
-#: ../src/plugins/Verify.py:902
+#: ../src/plugins/Verify.py:920
 msgid "Same sex marriage"
 msgstr "Mariage homosexuel"
 
-#: ../src/plugins/Verify.py:911
+#: ../src/plugins/Verify.py:930
 msgid "Female husband"
 msgstr "Mari de genre féminin"
 
-#: ../src/plugins/Verify.py:920
+#: ../src/plugins/Verify.py:940
 msgid "Male wife"
 msgstr "Femme de genre masculin"
 
-#: ../src/plugins/Verify.py:935
+#: ../src/plugins/Verify.py:956
 msgid "Husband and wife with the same surname"
 msgstr "Mari et femme ayant le même nom de famille"
 
-#: ../src/plugins/Verify.py:955
+#: ../src/plugins/Verify.py:977
 msgid "Large age difference between spouses"
 msgstr "Différence d'âge importante entre les conjoints"
 
-#: ../src/plugins/Verify.py:982
+#: ../src/plugins/Verify.py:1005
 msgid "Marriage before birth"
 msgstr "Mariage avant la naissance"
 
-#: ../src/plugins/Verify.py:1009
+#: ../src/plugins/Verify.py:1033
 msgid "Marriage after death"
 msgstr "Mariage après le décès"
 
-#: ../src/plugins/Verify.py:1037
+#: ../src/plugins/Verify.py:1062
 msgid "Early marriage"
 msgstr "Mariage précoce"
 
-#: ../src/plugins/Verify.py:1065
+#: ../src/plugins/Verify.py:1091
 msgid "Late marriage"
 msgstr "Mariage tardif"
 
-#: ../src/plugins/Verify.py:1122
+#: ../src/plugins/Verify.py:1149
 msgid "Old father"
 msgstr "Père âgé"
 
-#: ../src/plugins/Verify.py:1125
+#: ../src/plugins/Verify.py:1152
 msgid "Old mother"
 msgstr "Mère âgée"
 
-#: ../src/plugins/Verify.py:1163
+#: ../src/plugins/Verify.py:1191
 msgid "Young father"
 msgstr "Père jeune"
 
-#: ../src/plugins/Verify.py:1166
+#: ../src/plugins/Verify.py:1194
 msgid "Young mother"
 msgstr "Mère jeune"
 
-#: ../src/plugins/Verify.py:1201
+#: ../src/plugins/Verify.py:1230
 msgid "Unborn father"
 msgstr "Père avant la naissance"
 
-#: ../src/plugins/Verify.py:1204
+#: ../src/plugins/Verify.py:1233
 msgid "Unborn mother"
 msgstr "Mère avant la naissance"
 
-#: ../src/plugins/Verify.py:1239
+#: ../src/plugins/Verify.py:1269
 msgid "Dead father"
 msgstr "Père décédé"
 
-#: ../src/plugins/Verify.py:1242
+#: ../src/plugins/Verify.py:1272
 msgid "Dead mother"
 msgstr "Mère décédée"
 
-#: ../src/plugins/Verify.py:1259
+#: ../src/plugins/Verify.py:1290
 msgid "Large year span for all children"
 msgstr "Beaucoup d'années entre le premier et le dernier enfant"
 
-#: ../src/plugins/Verify.py:1277
+#: ../src/plugins/Verify.py:1309
 msgid "Large age differences between children"
 msgstr "Ecart d'âge important entre les enfants"
 
-#: ../src/plugins/Verify.py:1290
+#: ../src/plugins/Verify.py:1322
 msgid "Verify the database"
 msgstr "Vérifier la base de données"
 
-#: ../src/plugins/Verify.py:1291
+#: ../src/plugins/Verify.py:1323
 msgid "Lists exceptions to assertions or checks about the database"
 msgstr "Liste les critères de cohérence puis vérifie dans la base de données"
 
