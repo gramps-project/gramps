@@ -306,6 +306,9 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             self.cntnt.write('/>\n')
             self.cntnt.write('</style:style>\n')
             
+        self.cntnt.write('<style:style style:name="wraprow" style:family="table-row">\n')
+        self.cntnt.write('<style:properties style:keep-together="true" />\n')
+        self.cntnt.write('</style:style>\n')
         self.cntnt.write('<style:style style:name="Tbold" style:family="text">\n')
         self.cntnt.write('<style:properties fo:font-weight="bold"/>\n')
         self.cntnt.write('</style:style>\n')
@@ -443,7 +446,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('</table:table>\n')
 
     def start_row(self):
-        self.cntnt.write('<table:table-row>\n')
+        self.cntnt.write('<table:table-row table:style-name="wraprow">\n')
 
     def end_row(self):
         self.cntnt.write('</table:table-row>\n')
