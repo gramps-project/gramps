@@ -484,7 +484,7 @@ class LaTeXDoc(BaseDoc.BaseDoc):
             self.f.write('\\end{verbatim}')
         self.end_paragraph()
 
-    def write_text(self,text):
+    def write_text(self,text,key=""):
         """Write the text to the file"""
 	if text == '\n':
 	    text = '\\newline\n'

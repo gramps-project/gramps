@@ -35,7 +35,7 @@ import gtk
 #
 #------------------------------------------------------------------------
 import RelLib
-from PluginUtils import Report, ReportOptions, register_report
+from PluginUtils import Report, ReportOptions, register_report, ReportUtils
 import BaseDoc
 import DateHandler
 import Utils
@@ -181,56 +181,8 @@ class FamilyGroup(Report.Report):
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
-
-    def dump_parent_line(self,name,text):
-        self.doc.start_row()
-        self.doc.start_cell("FGR-TextContents")
-        self.doc.start_paragraph('FGR-Normal')
-        self.doc.write_text(name)
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-        self.doc.start_cell("FGR-TextContentsEnd",2)
-        self.doc.start_paragraph('FGR-Normal')
-        self.doc.write_text(text)
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-        self.doc.end_row()
-            
-    def dump_parent(self,title,person_handle):
-
-        if not person_handle and not self.missingInfo:
-            return
-        elif not person_handle:
-            person = RelLib.Person()
-        else:
-            person = self.database.get_person_from_handle(person_handle)
-
-        self.doc.start_table(title,'FGR-ParentTable')
-        self.doc.start_row()
-        self.doc.start_cell('FGR-ParentHead',3)
-        self.doc.start_paragraph('FGR-ParentName')
-        self.doc.write_text(title + ': ')
-        self.doc.write_text(person.get_primary_name().get_regular_name())
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-        self.doc.end_row()
-
-        birth_ref = person.get_birth_ref()
-        birth = None
-        evtName = str(RelLib.EventType())
-        if birth_ref:
-            birth = self.database.get_event_from_handle(birth_ref.ref)
-        if birth or self.missingInfo:
-            self.dump_parent_event(evtName,birth)
-
-        death_ref = person.get_death_ref()
-        death = None
-        evtName = str(RelLib.EventType(RelLib.EventType.DEATH))
-        if death_ref:
-            death = self.database.get_event_from_handle(death_ref.ref)
-        if death or self.missingInfo:
-            self.dump_parent_event(evtName,death)
-
+        
+    def dump_parent_parents(self,person):
         family_handle = person.get_main_parents_family_handle()
         father_name = ""
         mother_name = ""
@@ -270,12 +222,93 @@ class FamilyGroup(Report.Report):
                         death = DateHandler.get_date( event )
                     if birth_ref or death_ref:
                         mother_name = "%s (%s - %s)" % (mother_name,birth,death)
+        
+        if father_name != "":
+            self.doc.start_row()
+            self.doc.start_cell("FGR-TextContents")
+            self.doc.start_paragraph('FGR-Normal')
+            self.doc.write_text(_("Father"))
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.start_cell("FGR-TextContentsEnd",2)
+            self.doc.start_paragraph('FGR-Normal')
+            key = ReportUtils.get_person_key(self.database,father)
+            self.doc.write_text(father_name,key)
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.end_row()
+        elif self.missingInfo:
+            self.dump_parent_line(_("Father"),"")
 
-        if self.missingInfo or father_name != "":
-            self.dump_parent_line(_("Father"),father_name)
+        if mother_name != "":
+            self.doc.start_row()
+            self.doc.start_cell("FGR-TextContents")
+            self.doc.start_paragraph('FGR-Normal')
+            self.doc.write_text(_("Mother"))
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.start_cell("FGR-TextContentsEnd",2)
+            self.doc.start_paragraph('FGR-Normal')
+            key = ReportUtils.get_person_key(self.database,mother)
+            self.doc.write_text(mother_name,key)
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.end_row()
+        elif self.missingInfo:
+            self.dump_parent_line(_("Mother"),"")
 
-        if self.missingInfo or mother_name != "":
-            self.dump_parent_line(_("Mother"),mother_name)
+    def dump_parent_line(self,name,text):
+        self.doc.start_row()
+        self.doc.start_cell("FGR-TextContents")
+        self.doc.start_paragraph('FGR-Normal')
+        self.doc.write_text(name)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.start_cell("FGR-TextContentsEnd",2)
+        self.doc.start_paragraph('FGR-Normal')
+        self.doc.write_text(text)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
+            
+    def dump_parent(self,title,person_handle):
+
+        if not person_handle and not self.missingInfo:
+            return
+        elif not person_handle:
+            person = RelLib.Person()
+        else:
+            person = self.database.get_person_from_handle(person_handle)
+        name = person.get_primary_name().get_regular_name()
+        
+        self.doc.start_table(title,'FGR-ParentTable')
+        self.doc.start_row()
+        self.doc.start_cell('FGR-ParentHead',3)
+        self.doc.start_paragraph('FGR-ParentName')
+        self.doc.write_text(title + ': ')
+        key = ReportUtils.get_person_key(self.database,person)
+        self.doc.write_text(name,key)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
+
+        birth_ref = person.get_birth_ref()
+        birth = None
+        evtName = str(RelLib.EventType())
+        if birth_ref:
+            birth = self.database.get_event_from_handle(birth_ref.ref)
+        if birth or self.missingInfo:
+            self.dump_parent_event(evtName,birth)
+
+        death_ref = person.get_death_ref()
+        death = None
+        evtName = str(RelLib.EventType(RelLib.EventType.DEATH))
+        if death_ref:
+            death = self.database.get_event_from_handle(death_ref.ref)
+        if death or self.missingInfo:
+            self.dump_parent_event(evtName,death)
+
+        self.dump_parent_parents(person)
 
         if self.incParEvents:
             for event_ref in person.get_event_ref_list():
@@ -462,9 +495,12 @@ class FamilyGroup(Report.Report):
             self.doc.write_text(_("%dU") % index)
         self.doc.end_paragraph()
         self.doc.end_cell()
+        
+        name = person.get_primary_name().get_regular_name()
+        key = ReportUtils.get_person_key(self.database,person)
         self.doc.start_cell('FGR-ChildName',3)
         self.doc.start_paragraph('FGR-ChildText')
-        self.doc.write_text(person.get_primary_name().get_regular_name())
+        self.doc.write_text(name,key)
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
@@ -534,7 +570,8 @@ class FamilyGroup(Report.Report):
                             death = DateHandler.get_date(event)
                         if birth_ref or death_ref:
                             spouse_name = "%s (%s - %s)" % (spouse_name,birth,death)
-                    self.doc.write_text(spouse_name)
+                    key = ReportUtils.get_person_key(self.database,spouse)
+                    self.doc.write_text(spouse_name,key)
                     self.doc.end_paragraph()
                     self.doc.end_cell()
                     self.doc.end_row()

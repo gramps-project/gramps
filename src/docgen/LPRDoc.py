@@ -778,7 +778,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         y = y - height
         return (x,y)
                                                                                 
-    def write_text(self,text):
+    def write_text(self,text,key=""):
         """Add the text to the paragraph"""
         self.brand_new_page = 0
         # Take care of superscript tags

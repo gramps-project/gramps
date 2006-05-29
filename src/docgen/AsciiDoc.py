@@ -369,7 +369,7 @@ class AsciiDoc(BaseDoc.BaseDoc):
     #
     # Writes text. 
     #--------------------------------------------------------------------
-    def write_text(self,text):
+    def write_text(self,text,key=""):
         text = text.replace('<super>','[')
         text = text.replace('</super>',']')
         self.text = self.text + text

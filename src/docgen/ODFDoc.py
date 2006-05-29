@@ -824,12 +824,17 @@ class ODFDoc(BaseDoc.BaseDoc):
                 self.write_text(line)
                 self.end_paragraph()
 
-    def write_text(self,text):
+    def write_text(self,text,key=""):
         """
         Uses the xml.sax.saxutils.escape function to convert XML
         entities. The _esc_map dictionary allows us to add our own
         mappings.
         """
+        if key != "":
+            key = escape(key,_esc_map)
+            key = key.replace('"','&quot;')
+            self.cntnt.write('<text:alphabetical-index-mark ')
+            self.cntnt.write('text:string-value="%s" />' % key)
         self.cntnt.write(escape(text,_esc_map))
 
     def _write_manifest(self):

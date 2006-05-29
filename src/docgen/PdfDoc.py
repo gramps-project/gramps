@@ -403,7 +403,7 @@ class PdfDoc(BaseDoc.BaseDoc):
                 else:
                     self.story.append(Paragraph(line,current_para))
 
-    def write_text(self,text):
+    def write_text(self,text,key=""):
         text = text.replace('&','&amp;')       # Must be first
         text = text.replace('<','&lt;')
         text = text.replace('>','&gt;')
