@@ -423,6 +423,17 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
 #
 #-------------------------------------------------------------------------
 class VerifyResults(ManagedWindow):
+    IGNORE_COL     = 0
+    WARNING_COL    = 1
+    OBJ_ID_COL     = 2
+    OBJ_NAME_COL   = 3
+    OBJ_TYPE_COL   = 4
+    RULE_ID_COL    = 5
+    OBJ_HANDLE_COL = 6
+    FG_COLOR_COL   = 7
+    TRUE_COL       = 8
+    SHOW_COL       = 9
+
     def __init__(self,dbstate,uistate,track):
         self.title = _('Database Verification Results')
 
@@ -458,7 +469,7 @@ class VerifyResults(ManagedWindow):
         self.invert_button = self.top.get_widget('invert_all')
         self.invert_button.connect('clicked',self.invert_clicked)
 
-        self.real_model = gtk.ListStore(bool,str,str,str,str,int,str,str,
+        self.real_model = gtk.ListStore(bool,str,str,str,str,object,str,str,
                                         bool,bool)
         self.filt_model = self.real_model.filter_new()
         self.filt_model.set_visible_column(8)
@@ -536,10 +547,10 @@ class VerifyResults(ManagedWindow):
         for row_num in range(len(self.real_model)):
             path = (row_num,)
             row = self.real_model[path]
-            ignore = row[0]
+            ignore = row[VerifyResults.IGNORE_COL]
             if ignore:
-                handle = row[6]
-                rule_id = row[5]
+                handle = row[VerifyResults.OBJ_HANDLE_COL]
+                rule_id = row[VerifyResults.RULE_ID_COL]
                 if not new_ignores.has_key(handle):
                     new_ignores[handle] = set()
                 new_ignores[handle].add(rule_id)
@@ -570,32 +581,32 @@ class VerifyResults(ManagedWindow):
         filt_path = self.sort_model.convert_path_to_child_path(sort_path)
         real_path = self.filt_model.convert_path_to_child_path(filt_path)
         row = self.real_model[real_path]
-        row[0] = not row[0]
-        row[9] = not row[0]
+        row[VerifyResults.IGNORE_COL] = not row[VerifyResults.IGNORE_COL]
+        row[VerifyResults.SHOW_COL] = not row[VerifyResults.IGNORE_COL]
         self.real_model.row_changed(real_path,row.iter)
 
     def mark_clicked(self,mark_button):
         for row_num in range(len(self.real_model)):
             path = (row_num,)
             row = self.real_model[path]
-            row[0] = True
-            row[9] = False
+            row[VerifyResults.IGNORE_COL] = True
+            row[VerifyResults.SHOW_COL] = False
         self.filt_model.refilter()
 
     def unmark_clicked(self,unmark_button):
         for row_num in range(len(self.real_model)):
             path = (row_num,)
             row = self.real_model[path]
-            row[0] = False
-            row[9] = True
+            row[VerifyResults.IGNORE_COL] = False
+            row[VerifyResults.SHOW_COL] = True
         self.filt_model.refilter()
 
     def invert_clicked(self,invert_button):
         for row_num in range(len(self.real_model)):
             path = (row_num,)
             row = self.real_model[path]
-            row[0] = not row[0]
-            row[9] = not row[9]
+            row[VerifyResults.IGNORE_COL] = not row[VerifyResults.IGNORE_COL]
+            row[VerifyResults.SHOW_COL] = not row[VerifyResults.SHOW_COL]
         self.filt_model.refilter()
 
     def double_click(self,obj,event):
@@ -607,8 +618,8 @@ class VerifyResults(ManagedWindow):
             filt_path = self.sort_model.convert_path_to_child_path(sort_path)
             real_path = self.filt_model.convert_path_to_child_path(filt_path)
             row = self.real_model[real_path]
-            the_type = row[4]
-            handle = row[6]
+            the_type = row[VerifyResults.OBJ_TYPE_COL]
+            handle = row[VerifyResults.OBJ_HANDLE_COL]
             if the_type == 'Person':
                 try:
                     from Editors import EditPerson
@@ -625,7 +636,7 @@ class VerifyResults(ManagedWindow):
                     pass
 
     def get_image(self, column, cell, model, iter, user_data=None):
-        the_type = model.get_value(iter, 4)
+        the_type = model.get_value(iter, VerifyResults.OBJ_TYPE_COL)
         if the_type == 'Person':
             cell.set_property('stock-id', 'gramps-person' )
         elif  the_type == 'Family':
@@ -636,9 +647,9 @@ class VerifyResults(ManagedWindow):
         ignore = self.get_marking(handle,rule_id)
         if severity == Rule.ERROR:
             fg = 'red'
-##             fg = '#8b008b'
-##         elif severity == Rule.WARNING:
-##             fg = '#008b00'
+            #     fg = '#8b008b' # purple
+            # elif severity == Rule.WARNING:
+            #     fg = '#008b00' # green
         else:
             fg = None
         self.real_model.append(row=[ignore,msg,gramps_id,name,
@@ -765,10 +776,17 @@ class Rule:
     def get_level(self):
         return Rule.WARNING
 
+    def get_rule_id(self):
+        params = self._get_params()
+        return (self.ID,params)
+
+    def _get_params(self):
+        return tuple()
+
     def report_itself(self):
         handle = self.get_handle()
         the_type = self.TYPE
-        rule_id = self.ID
+        rule_id = self.get_rule_id()
         severity = self.SEVERITY
         name = self.get_name()
         gramps_id = self.get_id()
@@ -888,6 +906,9 @@ class OldAge(PersonRule):
         self.old_age = old_age
         self.est = est
 
+    def _get_params(self):
+        return (self.old_age,self.est)
+
     def broken(self):
         age_at_death = get_age_at_death(self.db,self.obj,self.est)
         return (age_at_death/365 > self.old_age)
@@ -923,6 +944,9 @@ class MarriedOften(PersonRule):
         PersonRule.__init__(self,db,person)
         self.wedder = wedder
 
+    def _get_params(self):
+        return (self.wedder,)
+
     def broken(self):
         n_spouses = len(self.obj.get_family_handle_list())
         return (n_spouses>self.wedder)
@@ -937,6 +961,9 @@ class OldUnmarried(PersonRule):
         PersonRule.__init__(self,db,person)
         self.old_unm = old_unm
         self.est = est
+
+    def _get_params(self):
+        return (self.old_unm,self.est)
 
     def broken(self):
         age_at_death = get_age_at_death(self.db,self.obj,self.est)
@@ -953,6 +980,9 @@ class TooManyChildren(PersonRule):
         PersonRule.__init__(self,db,obj)
         self.mx_child_dad = mx_child_dad
         self.mx_child_mom = mx_child_mom
+
+    def _get_params(self):
+        return (self.mx_child_dad,self.mx_child_mom)
 
     def broken(self):
         n_child = get_n_children(self.db,self.obj)
@@ -1029,6 +1059,9 @@ class LargeAgeGapFamily(FamilyRule):
         self.hw_diff = hw_diff
         self.est = est
 
+    def _get_params(self):
+        return (self.hw_diff,self.est)
+
     def broken(self):
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
@@ -1049,6 +1082,9 @@ class MarriageBeforeBirth(FamilyRule):
     def __init__(self,db,obj,est):
         FamilyRule.__init__(self,db,obj)
         self.est = est
+
+    def _get_params(self):
+        return (self.est,)
 
     def broken(self):
         marr_date = get_marriage_date(self.db,self.obj)
@@ -1077,6 +1113,9 @@ class MarriageAfterDeath(FamilyRule):
     def __init__(self,db,obj,est):
         FamilyRule.__init__(self,db,obj)
         self.est = est
+
+    def _get_params(self):
+        return (self.est,)
 
     def broken(self):
         marr_date = get_marriage_date(self.db,self.obj)
@@ -1107,6 +1146,9 @@ class EarlyMarriage(FamilyRule):
         self.yng_mar = yng_mar
         self.est = est
 
+    def _get_params(self):
+        return (self.yng_mar,self.est,)
+
     def broken(self):
         marr_date = get_marriage_date(self.db,self.obj)
         marr_date_ok = marr_date > 0
@@ -1135,6 +1177,9 @@ class LateMarriage(FamilyRule):
         FamilyRule.__init__(self,db,obj)
         self.old_mar = old_mar
         self.est = est
+
+    def _get_params(self):
+        return (self.old_mar,self.est)
 
     def broken(self):
         marr_date = get_marriage_date(self.db,self.obj)
@@ -1185,6 +1230,9 @@ class OldParent(FamilyRule):
         self.old_dad = old_dad
         self.est = est
 
+    def _get_params(self):
+        return (self.old_mom,self.old_dad,self.est)
+
     def broken(self):
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
@@ -1227,6 +1275,9 @@ class YoungParent(FamilyRule):
         self.yng_mom = yng_mom
         self.est = est
 
+    def _get_params(self):
+        return (self.yng_mom,self.yng_dad,self.est)
+
     def broken(self):
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
@@ -1267,6 +1318,9 @@ class UnbornParent(FamilyRule):
         FamilyRule.__init__(self,db,obj)
         self.est = est
 
+    def _get_params(self):
+        return (self.est,)
+
     def broken(self):
         mother = get_mother(self.db,self.obj)
         father = get_father(self.db,self.obj)
@@ -1305,6 +1359,9 @@ class DeadParent(FamilyRule):
     def __init__(self,db,obj,est):
         FamilyRule.__init__(self,db,obj)
         self.est = est
+
+    def _get_params(self):
+        return (self.est,)
 
     def broken(self):
         mother = get_mother(self.db,self.obj)
@@ -1346,6 +1403,9 @@ class LargeChildrenSpan(FamilyRule):
         self.cb_span = cb_span
         self.est = est
 
+    def _get_params(self):
+        return (self.cb_span,self.est)
+
     def broken(self):
         child_birh_dates = get_child_birth_dates(self.db,self.obj,self.est)
         child_birh_dates.sort()
@@ -1364,6 +1424,9 @@ class LargeChildrenAgeDiff(FamilyRule):
         FamilyRule.__init__(self,db,obj)
         self.c_space = c_space
         self.est = est
+
+    def _get_params(self):
+        return (self.c_space,self.est)
 
     def broken(self):
         child_birh_dates = get_child_birth_dates(self.db,self.obj,self.est)
