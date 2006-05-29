@@ -1440,14 +1440,14 @@ class GrampsParser(UpdateCallback):
             ref.ref = self.event.handle
             ref.private = self.event.private
             ref.role.set(RelLib.EventRoleType.PRIMARY)
-            if self.event.type == RelLib.EventType.BIRTH:
-                self.person.birth_ref = ref
-            elif self.event.type == RelLib.EventType.DEATH:
-                self.person.death_ref = ref
+            if (self.event.type == RelLib.EventType.BIRTH) \
+                   and (self.person.get_birth_ref() == None):
+                self.person.set_birth_ref(ref)
+            elif (self.event.type == RelLib.EventType.DEATH) \
+                     and (self.person.get_death_ref() == None):
+                self.person.set_death_ref(ref)
             else:
                 self.person.add_event_ref(ref)
-
-        # FIXME: re-enable when event types are fixed.
 
         if self.event.get_description() == "" and \
                self.event.get_type() != RelLib.EventType.CUSTOM:

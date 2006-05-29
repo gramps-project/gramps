@@ -1,4 +1,6 @@
 2006-05-28  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_ReadXML.py (stop_event): Properly import birth and
+	death from the old XML.
 	* src/Editors/_EditFamily.py (EditFamily.save): Typo.
 	* src/plugins/Verify.py: Add double-clicking and mark/unmark/invert.
 
