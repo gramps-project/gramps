@@ -755,7 +755,7 @@ class EditFamily(EditPrimary):
             name = "%s [%s]" % (NameDisplay.displayer.display(mother),
                                 mother.gramps_id)
             ErrorDialog(_("A mother cannot be her own child"),
-                        _("%s is listed as both the mother and child of "
+                        _("%s is listed as both the mother and child "
                           "of the family.") % name)
             return
 
