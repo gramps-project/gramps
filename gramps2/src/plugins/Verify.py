@@ -211,6 +211,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
         ManagedWindow.__init__(self,uistate,[],self.__class__)
         UpdateCallback.__init__(self,self.uistate.pulse_progressbar)
 
+        self.dbstate = dbstate
         if uistate:
             self.init_gui()
         else:
@@ -318,7 +319,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
                                                           self.top.get_widget(
             "estimate").get_active()
 
-        vr = VerifyResults(self.uistate, self.track)
+        vr = VerifyResults(self.dbstate, self.uistate, self.track)
         self.add_results = vr.add_results
         vr.load_ignored(self.db.full_name)
        
@@ -422,10 +423,12 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
 #
 #-------------------------------------------------------------------------
 class VerifyResults(ManagedWindow):
-    def __init__(self,uistate,track):
+    def __init__(self,dbstate,uistate,track):
         self.title = _('Database Verification Results')
 
         ManagedWindow.__init__(self,uistate,track,self.__class__)
+
+        self.dbstate = dbstate
 
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "verify.glade"
@@ -438,9 +441,22 @@ class VerifyResults(ManagedWindow):
             "destroy_passed_object"  : self.close,
             })
 
-        self.warn_tree = self.top.get_widget('warn_tree') 
+        self.warn_tree = self.top.get_widget('warn_tree')
+        self.warn_tree.connect('button_press_event', self.double_click)
+
+        self.selection = self.warn_tree.get_selection()
+        
         self.hide_button = self.top.get_widget('hide_button')
         self.hide_button.connect('toggled',self.hide_toggled)
+
+        self.mark_button = self.top.get_widget('mark_all')
+        self.mark_button.connect('clicked',self.mark_clicked)
+
+        self.unmark_button = self.top.get_widget('unmark_all')
+        self.unmark_button.connect('clicked',self.unmark_clicked)
+
+        self.invert_button = self.top.get_widget('invert_all')
+        self.invert_button.connect('clicked',self.invert_clicked)
 
         self.real_model = gtk.ListStore(bool,str,str,str,str,int,str,str,
                                         bool,bool)
@@ -455,7 +471,7 @@ class VerifyResults(ManagedWindow):
         self.bool_renderer.connect('toggled',self.selection_toggled)
 
         self.warn_tree.append_column(
-            gtk.TreeViewColumn(_('Hide'),self.bool_renderer,active=0))
+            gtk.TreeViewColumn(_('Mark'),self.bool_renderer,active=0))
         
         img_column = gtk.TreeViewColumn(None, self.img_renderer )
         img_column.set_cell_data_func(self.img_renderer,self.get_image)
@@ -547,7 +563,7 @@ class VerifyResults(ManagedWindow):
             self.filt_model.set_visible_column(8)
             self.sort_model = gtk.TreeModelSort(self.filt_model)
             self.warn_tree.set_model(self.sort_model)
-            button.set_label(_("_Hide selected"))
+            button.set_label(_("_Hide marked"))
         
     def selection_toggled(self,cell,path_string):
         sort_path = tuple([int (i) for i in path_string.split(':')])
@@ -557,6 +573,56 @@ class VerifyResults(ManagedWindow):
         row[0] = not row[0]
         row[9] = not row[0]
         self.real_model.row_changed(real_path,row.iter)
+
+    def mark_clicked(self,mark_button):
+        for row_num in range(len(self.real_model)):
+            path = (row_num,)
+            row = self.real_model[path]
+            row[0] = True
+            row[9] = False
+        self.filt_model.refilter()
+
+    def unmark_clicked(self,unmark_button):
+        for row_num in range(len(self.real_model)):
+            path = (row_num,)
+            row = self.real_model[path]
+            row[0] = False
+            row[9] = True
+        self.filt_model.refilter()
+
+    def invert_clicked(self,invert_button):
+        for row_num in range(len(self.real_model)):
+            path = (row_num,)
+            row = self.real_model[path]
+            row[0] = not row[0]
+            row[9] = not row[9]
+        self.filt_model.refilter()
+
+    def double_click(self,obj,event):
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            (model,node) = self.selection.get_selected()
+            if not node:
+                return
+            sort_path = self.sort_model.get_path(node)
+            filt_path = self.sort_model.convert_path_to_child_path(sort_path)
+            real_path = self.filt_model.convert_path_to_child_path(filt_path)
+            row = self.real_model[real_path]
+            the_type = row[4]
+            handle = row[6]
+            if the_type == 'Person':
+                try:
+                    from Editors import EditPerson
+                    person = self.dbstate.db.get_person_from_handle(handle)
+                    EditPerson(self.dbstate, self.uistate, [], person)
+                except Errors.WindowActiveError:
+                    pass
+            elif the_type == 'Family':
+                try:
+                    from Editors import EditFamily
+                    family = self.dbstate.db.get_family_from_handle(handle)
+                    EditFamily(self.dbstate, self.uistate, [], family)
+                except Errors.WindowActiveError:
+                    pass
 
     def get_image(self, column, cell, model, iter, user_data=None):
         the_type = model.get_value(iter, 4)
@@ -824,7 +890,7 @@ class OldAge(PersonRule):
 
     def broken(self):
         age_at_death = get_age_at_death(self.db,self.obj,self.est)
-        return (age_at_death > self.old_age)
+        return (age_at_death/365 > self.old_age)
 
     def get_message(self):
         return _("Old age at death")
@@ -875,7 +941,7 @@ class OldUnmarried(PersonRule):
     def broken(self):
         age_at_death = get_age_at_death(self.db,self.obj,self.est)
         n_spouses = len(self.obj.get_family_handle_list())
-        return (age_at_death>self.old_unm and n_spouses==0)
+        return (age_at_death/365>self.old_unm and n_spouses==0)
 
     def get_message(self):
         return _("Old and unmarried")
@@ -970,7 +1036,8 @@ class LargeAgeGapFamily(FamilyRule):
         father_birth_date = get_birth_date(self.db,father,self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
-        large_diff = abs(father_birth_date-mother_birth_date) > self.hw_diff
+        large_diff = \
+                   abs(father_birth_date-mother_birth_date)/365 > self.hw_diff
         return (mother_birth_date_ok and father_birth_date_ok and large_diff)
 
     def get_message(self):
@@ -1023,9 +1090,9 @@ class MarriageAfterDeath(FamilyRule):
         father_death_date_ok = father_death_date > 0
 
         father_broken = (father_death_date_ok and marr_date_ok
-                         and (father_death_date > marr_date))
+                         and (father_death_date < marr_date))
         mother_broken = (mother_death_date_ok and marr_date_ok
-                         and (mother_death_date > marr_date))
+                         and (mother_death_date < marr_date))
 
         return (father_broken or mother_broken)
 
@@ -1051,10 +1118,10 @@ class EarlyMarriage(FamilyRule):
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
-        father_broken = (father_birth_date_ok and marr_date_ok
-                         and (marr_date - father_birth_date < self.yng_mar))
-        mother_broken = (mother_birth_date_ok and marr_date_ok
-                         and (marr_date - mother_birth_date < self.yng_mar))
+        father_broken = (father_birth_date_ok and marr_date_ok and
+                         ((marr_date - father_birth_date)/365 < self.yng_mar))
+        mother_broken = (mother_birth_date_ok and marr_date_ok and
+                         ((marr_date - mother_birth_date)/365 < self.yng_mar))
 
         return (father_broken or mother_broken)
 
@@ -1080,10 +1147,10 @@ class LateMarriage(FamilyRule):
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
-        father_broken = (father_birth_date_ok and marr_date_ok
-                         and (marr_date - father_birth_date > self.old_mar))
-        mother_broken = (mother_birth_date_ok and marr_date_ok
-                         and (marr_date - mother_birth_date > self.old_mar))
+        father_broken = (father_birth_date_ok and marr_date_ok and
+                         ((marr_date - father_birth_date)/365 > self.old_mar))
+        mother_broken = (mother_birth_date_ok and marr_date_ok and
+                         ((marr_date - mother_birth_date)/365 > self.old_mar))
 
         return (father_broken or mother_broken)
 
@@ -1132,14 +1199,14 @@ class OldParent(FamilyRule):
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
-            father_broken = (father_birth_date_ok and (
-                father_birth_date - child_birth_date > self.old_dad))
+            father_broken = (father_birth_date_ok and
+                ((child_birth_date - father_birth_date)/365 > self.old_dad))
             if father_broken:
                 self.get_message = self.father_message
                 return True
 
-            mother_broken = (mother_birth_date_ok and (
-                mother_birth_date - child_birth_date > self.old_mom))
+            mother_broken = (mother_birth_date_ok and
+                ((child_birth_date - mother_birth_date)/365 > self.old_mom))
             if mother_broken:
                 self.get_message = self.mother_message
                 return True
@@ -1174,14 +1241,14 @@ class YoungParent(FamilyRule):
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
-            father_broken = (father_birth_date_ok and (
-                father_birth_date - child_birth_date < self.yng_dad))
+            father_broken = (father_birth_date_ok and
+                ((child_birth_date - father_birth_date)/365 < self.yng_dad))
             if father_broken:
                 self.get_message = self.father_message
                 return True
 
-            mother_broken = (mother_birth_date_ok and (
-                mother_birth_date - child_birth_date < self.yng_mom))
+            mother_broken = (mother_birth_date_ok and
+                ((child_birth_date - mother_birth_date)/365 < self.yng_mom))
             if mother_broken:
                 self.get_message = self.mother_message
                 return True
@@ -1283,8 +1350,9 @@ class LargeChildrenSpan(FamilyRule):
         child_birh_dates = get_child_birth_dates(self.db,self.obj,self.est)
         child_birh_dates.sort()
         
-        return (child_birh_dates and
-                (child_birh_dates[-1] - child_birh_dates[0] > self.cb_span))
+        return (child_birh_dates and ((child_birh_dates[-1]
+                                       - child_birh_dates[0])/365
+                                      > self.cb_span))
 
     def get_message(self):
         return _("Large year span for all children")
@@ -1303,7 +1371,7 @@ class LargeChildrenAgeDiff(FamilyRule):
                                  for i in range(len(child_birh_dates)-1) ]
         
         return (child_birh_dates_diff and
-                max(child_birh_dates_diff) < self.c_space)
+                max(child_birh_dates_diff)/365 > self.c_space)
 
     def get_message(self):
         return _("Large age differences between children")

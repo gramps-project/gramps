@@ -1197,21 +1197,19 @@
 		  <property name="spacing">6</property>
 
 		  <child>
-		    <widget class="GtkToggleButton" id="hide_button">
-		      <property name="visible">True</property>
-		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">_Hide selected</property>
-		      <property name="use_underline">True</property>
-		      <property name="relief">GTK_RELIEF_NORMAL</property>
-		      <property name="focus_on_click">True</property>
-		      <property name="active">False</property>
-		      <property name="inconsistent">False</property>
-		    </widget>
-		    <packing>
-		      <property name="padding">0</property>
-		      <property name="expand">False</property>
-		      <property name="fill">False</property>
-		    </packing>
+		    <placeholder/>
+		  </child>
+
+		  <child>
+		    <placeholder/>
+		  </child>
+
+		  <child>
+		    <placeholder/>
+		  </child>
+
+		  <child>
+		    <placeholder/>
 		  </child>
 		</widget>
 		<packing>
@@ -1224,6 +1222,87 @@
 	    <packing>
 	      <property name="padding">0</property>
 	      <property name="expand">True</property>
+	      <property name="fill">True</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkHBox" id="hbox2">
+	      <property name="border_width">6</property>
+	      <property name="visible">True</property>
+	      <property name="homogeneous">False</property>
+	      <property name="spacing">18</property>
+
+	      <child>
+		<widget class="GtkHButtonBox" id="hbuttonbox2">
+		  <property name="visible">True</property>
+		  <property name="layout_style">GTK_BUTTONBOX_START</property>
+		  <property name="spacing">6</property>
+
+		  <child>
+		    <widget class="GtkButton" id="mark_all">
+		      <property name="visible">True</property>
+		      <property name="can_default">True</property>
+		      <property name="can_focus">True</property>
+		      <property name="label" translatable="yes">_Mark all</property>
+		      <property name="use_underline">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <property name="focus_on_click">True</property>
+		    </widget>
+		  </child>
+
+		  <child>
+		    <widget class="GtkButton" id="unmark_all">
+		      <property name="visible">True</property>
+		      <property name="can_default">True</property>
+		      <property name="can_focus">True</property>
+		      <property name="label" translatable="yes">_Unmark all</property>
+		      <property name="use_underline">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <property name="focus_on_click">True</property>
+		    </widget>
+		  </child>
+
+		  <child>
+		    <widget class="GtkButton" id="invert_all">
+		      <property name="visible">True</property>
+		      <property name="can_default">True</property>
+		      <property name="can_focus">True</property>
+		      <property name="label" translatable="yes">In_vert marks</property>
+		      <property name="use_underline">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <property name="focus_on_click">True</property>
+		    </widget>
+		  </child>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">True</property>
+		  <property name="fill">True</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkToggleButton" id="hide_button">
+		  <property name="visible">True</property>
+		  <property name="can_focus">True</property>
+		  <property name="label" translatable="yes">_Hide marked</property>
+		  <property name="use_underline">True</property>
+		  <property name="relief">GTK_RELIEF_NORMAL</property>
+		  <property name="focus_on_click">True</property>
+		  <property name="active">False</property>
+		  <property name="inconsistent">False</property>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">False</property>
+		  <property name="fill">False</property>
+		</packing>
+	      </child>
+	    </widget>
+	    <packing>
+	      <property name="padding">0</property>
+	      <property name="expand">False</property>
 	      <property name="fill">True</property>
 	    </packing>
 	  </child>
