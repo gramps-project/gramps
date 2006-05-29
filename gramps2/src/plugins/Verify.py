@@ -472,7 +472,7 @@ class VerifyResults(ManagedWindow):
         self.real_model = gtk.ListStore(bool,str,str,str,str,object,str,str,
                                         bool,bool)
         self.filt_model = self.real_model.filter_new()
-        self.filt_model.set_visible_column(8)
+        self.filt_model.set_visible_column(VerifyResults.TRUE_COL)
         self.sort_model = gtk.TreeModelSort(self.filt_model)
         self.warn_tree.set_model(self.sort_model)
 
@@ -481,27 +481,36 @@ class VerifyResults(ManagedWindow):
         self.bool_renderer = gtk.CellRendererToggle()
         self.bool_renderer.connect('toggled',self.selection_toggled)
 
-        self.warn_tree.append_column(
-            gtk.TreeViewColumn(_('Mark'),self.bool_renderer,active=0))
+        # Add ignore column
+        ignore_column = gtk.TreeViewColumn(_('Mark'),self.bool_renderer,
+                                           active=VerifyResults.IGNORE_COL)
+        ignore_column.set_sort_column_id(VerifyResults.IGNORE_COL)
+        self.warn_tree.append_column(ignore_column)
         
+        # Add image column
         img_column = gtk.TreeViewColumn(None, self.img_renderer )
         img_column.set_cell_data_func(self.img_renderer,self.get_image)
-        self.warn_tree.append_column(img_column)
-        
+        self.warn_tree.append_column(img_column)        
 
+        # Add column with the warning text
         warn_column = gtk.TreeViewColumn(_('Warning'), self.renderer,
-                                         text=1,foreground=7)
-        warn_column.set_sort_column_id(1)
+                                         text=VerifyResults.WARNING_COL,
+                                         foreground=VerifyResults.FG_COLOR_COL)
+        warn_column.set_sort_column_id(VerifyResults.WARNING_COL)
         self.warn_tree.append_column(warn_column)
 
+        # Add column with object gramps_id
         id_column = gtk.TreeViewColumn(_('ID'), self.renderer,
-                                       text=2,foreground=7)
-        id_column.set_sort_column_id(2)
+                                       text=VerifyResults.OBJ_ID_COL,
+                                       foreground=VerifyResults.FG_COLOR_COL)
+        id_column.set_sort_column_id(VerifyResults.OBJ_ID_COL)
         self.warn_tree.append_column(id_column)
 
+        # Add column with object name
         name_column = gtk.TreeViewColumn(_('Name'), self.renderer,
-                                         text=3,foreground=7)
-        name_column.set_sort_column_id(3)
+                                         text=VerifyResults.OBJ_NAME_COL,
+                                         foreground=VerifyResults.FG_COLOR_COL)
+        name_column.set_sort_column_id(VerifyResults.OBJ_NAME_COL,)
         self.warn_tree.append_column(name_column)
        
         self.window.show_all()
@@ -566,12 +575,12 @@ class VerifyResults(ManagedWindow):
         if button.get_active():
             button.set_label(_("_Show all"))
             self.filt_model = self.real_model.filter_new()
-            self.filt_model.set_visible_column(9)
+            self.filt_model.set_visible_column(VerifyResults.SHOW_COL)
             self.sort_model = gtk.TreeModelSort(self.filt_model)
             self.warn_tree.set_model(self.sort_model)
         else:
             self.filt_model = self.real_model.filter_new()
-            self.filt_model.set_visible_column(8)
+            self.filt_model.set_visible_column(VerifyResults.TRUE_COL)
             self.sort_model = gtk.TreeModelSort(self.filt_model)
             self.warn_tree.set_model(self.sort_model)
             button.set_label(_("_Hide marked"))
