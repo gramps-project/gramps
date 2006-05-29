@@ -1,4 +1,5 @@
 2006-05-28  Alex Roitman  <shura@gramps-project.org>
+	* src/Editors/_EditFamily.py (EditFamily.save): Typo.
 	* src/plugins/Verify.py: Add double-clicking and mark/unmark/invert.
 
 2006-05-28  Brian Matherly  <brian@gramps-project.org>

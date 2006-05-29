@@ -745,7 +745,7 @@ class EditFamily(EditPrimary):
             name = "%s [%s]" % (NameDisplay.displayer.display(father),
                                 father.gramps_id)
             ErrorDialog(_("A father cannot be his own child"),
-                        _("%s is listed as both the father and child of "
+                        _("%s is listed as both the father and child "
                           "of the family.") % name)
             return
         elif self.obj.get_mother_handle() in child_list:
