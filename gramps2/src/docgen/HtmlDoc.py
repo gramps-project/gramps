@@ -480,7 +480,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
                 self.write_text(line.strip().replace('\n',' '))
                 self.end_paragraph()
 
-    def write_text(self,text):
+    def write_text(self,text,key=""):
         text = text.replace('&','&amp;');       # Must be first
         text = text.replace('<','&lt;');
         text = text.replace('>','&gt;');

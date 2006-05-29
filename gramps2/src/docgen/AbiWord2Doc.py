@@ -265,7 +265,7 @@ class AbiWordDoc(BaseDoc.BaseDoc):
                 self.write_text(line)
                 self.end_paragraph()
 
-    def write_text(self,text):
+    def write_text(self,text,key=""):
         text = text.replace('&','&amp;');       # Must be first
         text = text.replace('<','&lt;');
         text = text.replace('>','&gt;');

@@ -2196,3 +2196,37 @@ def common_name(person,use_nick=False):
         return person.get_nick_name()
     else:
         return person.get_primary_name().get_first_name()
+
+#-------------------------------------------------------------------------
+#
+# Indexing function
+#
+#-------------------------------------------------------------------------
+def get_person_key(db,person):
+    """
+    Returns a key that can be used to index a person in a report
+    
+    @param db: the GRAMPS database instance
+    @param person: the the key is for
+    """
+    name = person.get_primary_name().get_name()
+    birth = " "
+    death = " "
+    key = ""
+    
+    birth_ref = person.get_birth_ref()
+    if birth_ref:
+        birthEvt = db.get_event_from_handle(birth_ref.ref)
+        birth = DateHandler.get_date(birthEvt)
+
+    death_ref = person.get_death_ref()
+    if death_ref:
+        deathEvt = db.get_event_from_handle(death_ref.ref)
+        death = DateHandler.get_date(deathEvt)
+
+    if birth == " " and death == " ":
+        key = name
+    else:
+        key = "%s (%s - %s)" % (name,birth,death)
+        
+    return key

@@ -4,6 +4,10 @@
 
 2006-05-28  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/OpenOfficeDoc.py: Allow large cells to span pages (bug 0000165)
+	* src/BaseDoc.py: Add key to write_text.
+	* src/docgen/*: Add key to write_text.
+	* src/PluginUtils/_ReportUtils.py: Add get_name_key.
+	* src/plugins/FamilyGroup.py: insert name keys for indexing.
 
 2006-05-27  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/Verify.py: More updates.

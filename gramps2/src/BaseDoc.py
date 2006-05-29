@@ -1409,12 +1409,13 @@ class BaseDoc:
         """
         pass
 
-    def write_text(self, text):
+    def write_text(self, text, key=""):
         """
         Writes the text in the current paragraph. Should only be used after a
         start_paragraph and before an end_paragraph.
 
         @param text: text to write.
+        @param key:  key to use for indexing (if supported)
         """
         pass
 

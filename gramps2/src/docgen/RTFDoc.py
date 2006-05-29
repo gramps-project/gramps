@@ -401,7 +401,7 @@ class RTFDoc(BaseDoc.BaseDoc):
     # the form of \`XX. Make sure to escape braces.
     #
     #--------------------------------------------------------------------
-    def write_text(self,text):
+    def write_text(self,text,key=""):
         if self.opened == 0:
             self.opened = 1
             self.text = self.text + '{%s ' % self.font_type
