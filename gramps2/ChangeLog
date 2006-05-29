@@ -1,3 +1,6 @@
+2006-05-29  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Set up for 2.1.5.
+
 2006-05-28  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_ReadXML.py (stop_event): Properly import birth and
 	death from the old XML.
