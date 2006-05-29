@@ -510,7 +510,7 @@ class VerifyResults(ManagedWindow):
         name_column = gtk.TreeViewColumn(_('Name'), self.renderer,
                                          text=VerifyResults.OBJ_NAME_COL,
                                          foreground=VerifyResults.FG_COLOR_COL)
-        name_column.set_sort_column_id(VerifyResults.OBJ_NAME_COL,)
+        name_column.set_sort_column_id(VerifyResults.OBJ_NAME_COL)
         self.warn_tree.append_column(name_column)
        
         self.window.show_all()
