@@ -11,6 +11,9 @@
 	* src/docgen/*: Add key to write_text.
 	* src/PluginUtils/_ReportUtils.py: Add get_name_key.
 	* src/plugins/FamilyGroup.py: insert name keys for indexing.
+	* src/plugins/DescendReport.py: insert name keys for indexing.
+	* src/plugins/IndivComplete.py: insert name keys for indexing.
+	* src/plugins/AncestorReport.py: insert name keys for indexing.
 
 2006-05-27  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/Verify.py: More updates.

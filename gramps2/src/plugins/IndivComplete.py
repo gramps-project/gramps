@@ -157,13 +157,13 @@ class IndivCompleteReport(Report.Report):
         self.doc.end_cell()
         self.doc.end_row()
 
-    def write_p_entry(self,label,parent,rel):
+    def write_p_entry(self,label,parent,rel,key=""):
         self.doc.start_row()
         self.normal_cell(label)
 
         if parent:
             self.normal_cell('%(parent)s, relationship: %(relation)s' %
-                               { 'parent' : parent, 'relation' : rel })
+                               { 'parent' : parent, 'relation' : rel },key)
         else:
             self.normal_cell('')
         self.doc.end_row()
@@ -228,7 +228,8 @@ class IndivCompleteReport(Report.Report):
             if father_handle:
                 father = self.database.get_person_from_handle(father_handle)
                 fname = father.get_primary_name().get_regular_name()
-                self.write_p_entry(_('Father'),fname,frel)
+                key = ReportUtils.get_person_key(self.database,father)
+                self.write_p_entry(_('Father'),fname,frel,key)
             else:
                 self.write_p_entry(_('Father'),'','')
 
@@ -236,7 +237,8 @@ class IndivCompleteReport(Report.Report):
             if mother_handle:
                 mother = self.database.get_person_from_handle(mother_handle)
                 fname = mother.get_primary_name().get_regular_name()
-                self.write_p_entry(_('Mother'),fname,frel)
+                key = ReportUtils.get_person_key(self.database,father)
+                self.write_p_entry(_('Mother'),fname,frel,key)
             else:
                 self.write_p_entry(_('Mother'),'','')
                 
@@ -301,9 +303,11 @@ class IndivCompleteReport(Report.Report):
             if spouse_id:
                 spouse = self.database.get_person_from_handle(spouse_id)
                 text = spouse.get_primary_name().get_regular_name()
+                key = ReportUtils.get_person_key(self.database,spouse)
             else:
                 text = _("unknown")
-            self.doc.write_text(text)
+                key = ""
+            self.doc.write_text(text,key)
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.end_row()
@@ -328,8 +332,9 @@ class IndivCompleteReport(Report.Report):
                     else:
                         self.doc.write_text('\n')
                     child = self.database.get_person_from_handle(child_ref.ref)
-                    self.doc.write_text(
-                        child.get_primary_name().get_regular_name())
+                    name = child.get_primary_name().get_regular_name()
+                    key = ReportUtils.get_person_key(self.database,child)
+                    self.doc.write_text(name,key)
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 self.doc.end_row()
@@ -381,10 +386,10 @@ class IndivCompleteReport(Report.Report):
         self.doc.start_paragraph("IDS-Normal")
         self.doc.end_paragraph()
 
-    def normal_cell(self,text):
+    def normal_cell(self,text,key=""):
         self.doc.start_cell('IDS-NormalCell')
         self.doc.start_paragraph('IDS-Normal')
-        self.doc.write_text(text)
+        self.doc.write_text(text,key)
         self.doc.end_paragraph()
         self.doc.end_cell()
 
@@ -409,8 +414,9 @@ class IndivCompleteReport(Report.Report):
         
         media_list = self.start_person.get_media_list()
         name = self.start_person.get_primary_name().get_regular_name()
+        key = ReportUtils.get_person_key(self.database,self.start_person)
         self.doc.start_paragraph("IDS-Title")
-        self.doc.write_text(_("Summary of %s") % name)
+        self.doc.write_text(_("Summary of %s") % name,key)
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("IDS-Normal")
@@ -432,13 +438,14 @@ class IndivCompleteReport(Report.Report):
         self.normal_cell("%s:" % _("Name"))
         name = self.start_person.get_primary_name()
         text = name.get_regular_name()
+        key = ReportUtils.get_person_key(self.database, self.start_person)
         if self.use_srcs:
             for s in name.get_source_references():
                 self.slist.append(s)
                 src_handle = s.get_reference_handle()
                 src = self.database.get_source_from_handle(src_handle)
                 text = "%s [%s]" % (text,src.get_gramps_id())
-        self.normal_cell(text)
+        self.normal_cell(text,key)
         self.doc.end_row()
 
         self.doc.start_row()
@@ -457,27 +464,33 @@ class IndivCompleteReport(Report.Report):
                 father_inst = self.database.get_person_from_handle(
                     father_inst_id)
                 father = father_inst.get_primary_name().get_regular_name()
+                fkey = ReportUtils.get_person_key(self.database,father_inst)
             else:
                 father = ""
+                fkey = ""
             mother_inst_id = family.get_mother_handle()
             if mother_inst_id:
                 mother_inst = self.database.get_person_from_handle(
                     mother_inst_id) 
                 mother = mother_inst.get_primary_name().get_regular_name()
+                mkey = ReportUtils.get_person_key(self.database,mother_inst)
             else:
                 mother = ""
+                mkey = ""
         else:
             father = ""
+            fkey = ""
             mother = ""
+            mkey = ""
 
         self.doc.start_row()
         self.normal_cell("%s:" % _("Father"))
-        self.normal_cell(father)
+        self.normal_cell(father,fkey)
         self.doc.end_row()
 
         self.doc.start_row()
         self.normal_cell("%s:" % _("Mother"))
-        self.normal_cell(mother)
+        self.normal_cell(mother,mkey)
         self.doc.end_row()
         self.doc.end_table()
 
