@@ -159,28 +159,47 @@ class FamilyGroup(Report.Report):
     def dump_parent_event(self,name,event):
         place = ""
         date = ""
+        descr = ""
         if event:
             date = DateHandler.get_date(event)
             place_handle = event.get_place_handle()
-            if place_handle:
-                place = self.database.get_place_from_handle(place_handle).get_title()
+            place = ReportUtils.place_name(self.database,place_handle)
+            descr = event.get_description()
+
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
         self.doc.start_paragraph('FGR-Normal')
         self.doc.write_text(name)
         self.doc.end_paragraph()
         self.doc.end_cell()
-        self.doc.start_cell("FGR-TextContents")
-        self.doc.start_paragraph('FGR-Normal')
-        self.doc.write_text(date)
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-        self.doc.start_cell("FGR-TextContentsEnd")
-        self.doc.start_paragraph('FGR-Normal')
-        self.doc.write_text(place)
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-        self.doc.end_row()
+        
+        if descr:
+            self.doc.start_cell("FGR-TextContents",2)
+            self.doc.start_paragraph('FGR-Normal')
+            self.doc.write_text(descr)
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.end_row()
+            
+            if date or place:
+                self.doc.start_row()
+                self.doc.start_cell("FGR-TextContents")
+                self.doc.start_paragraph('FGR-Normal')
+                self.doc.end_paragraph()
+                self.doc.end_cell()
+                
+        if (date or place) or not descr:
+            self.doc.start_cell("FGR-TextContents")
+            self.doc.start_paragraph('FGR-Normal')
+            self.doc.write_text(date)
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.start_cell("FGR-TextContentsEnd")
+            self.doc.start_paragraph('FGR-Normal')
+            self.doc.write_text(place)
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.end_row()
         
     def dump_parent_parents(self,person):
         family_handle = person.get_main_parents_family_handle()
