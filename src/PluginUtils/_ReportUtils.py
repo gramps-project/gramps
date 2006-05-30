@@ -2209,6 +2209,9 @@ def get_person_key(db,person):
     @param db: the GRAMPS database instance
     @param person: the the key is for
     """
+    if not person:
+        return ""
+    
     name = person.get_primary_name().get_name()
     birth = " "
     death = " "
