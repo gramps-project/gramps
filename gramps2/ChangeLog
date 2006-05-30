@@ -2,6 +2,7 @@
 	* src/plugins/DetDescendantReport.py: insert name keys for indexing.
 	* src/plugins/DetAncestralReport.py: insert name keys for indexing.
 	* src/plugins/FamilyGroup.py: print descriptions for events.
+	* src/PluginUtils/_ReportUtils.py: handle no person error
 
 2006-05-29  Alex Roitman  <shura@gramps-project.org>
 	* src/Editors/_EditFamily.py (EditFamily.save): Typo.
