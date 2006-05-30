@@ -5,6 +5,7 @@
 # Axel Bojer <axelb@skolelinux.no>, 2003.
 # Jørgen Grønlund <jorgenhg@broadpark.no>, 2005.
 # Espen Berg <espen.berg@ntnu.no>, 2006
+# Nils Kristian Tomren <project@nilsk.net>, 2006.
 #
 msgid ""
 msgstr ""
