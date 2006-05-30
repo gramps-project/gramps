@@ -1,3 +1,8 @@
+2006-05-29  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/DetDescendantReport.py: insert name keys for indexing.
+	* src/plugins/DetAncestralReport.py: insert name keys for indexing.
+	* src/plugins/FamilyGroup.py: print descriptions for events.
+
 2006-05-29  Alex Roitman  <shura@gramps-project.org>
 	* src/Editors/_EditFamily.py (EditFamily.save): Typo.
 	* configure.in: Set up for 2.1.5.
