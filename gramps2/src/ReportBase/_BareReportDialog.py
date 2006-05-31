@@ -20,6 +20,12 @@
 
 # $Id: _Report.py 6669 2006-05-15 15:53:42Z rshura $
 
+from types import ClassType, InstanceType
+import gtk
+
+import NameDisplay
+import BaseDoc
+from _StyleComboBox import StyleComboBox
 
 class BareReportDialog:
     """
@@ -268,7 +274,7 @@ class BareReportDialog:
         label = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
         label.set_use_markup(True)
         self.window.vbox.pack_start(label, True, True,
-                                    ReportDialog.border_pad)
+                                    BareReportDialog.border_pad)
         
     def setup_target_frame(self):
         """Bare report dialog only uses Doc Options header."""
@@ -312,7 +318,7 @@ class BareReportDialog:
         label = gtk.Label("%s:" % _("Style"))
         label.set_alignment(0.0,0.5)
 
-        self.style_menu = GrampsStyleComboBox()
+        self.style_menu = StyleComboBox()
         self.style_button = gtk.Button("%s..." % _("Style Editor"))
         self.style_button.connect('clicked',self.on_style_edit_clicked)
 

@@ -20,6 +20,9 @@
 
 # $Id: _Report.py 6669 2006-05-15 15:53:42Z rshura $
 
+import os
+import gtk
+
 class FileEntry(gtk.HBox):
     def __init__(self,defname,title):
         gtk.HBox.__init__(self)

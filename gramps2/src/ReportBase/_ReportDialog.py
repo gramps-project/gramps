@@ -20,7 +20,19 @@
 
 # $Id: _Report.py 6669 2006-05-15 15:53:42Z rshura $
 
+import os
+import gtk
+
+import Config
+import Errors
+from QuestionDialog import ErrorDialog, OptionDialog
+
+from _Constants import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK, \
+     CATEGORY_VIEW, CATEGORY_CODE, CATEGORY_WEB, standalone_categories
 from _BareReportDialog import BareReportDialog
+from _FileEntry import FileEntry
+from _PaperMenu import PaperComboBox, OrientationComboBox, paper_sizes
+from _TemplateParser import _template_map, _default_template, _user_template
 
 class ReportDialog(BareReportDialog):
     """
@@ -298,10 +310,10 @@ class ReportDialog(BareReportDialog):
         self.paper_table.set_row_spacings(6)
         self.paper_table.set_border_width(6)
             
-        self.papersize_menu = _PaperMenu.GrampsPaperComboBox()
+        self.papersize_menu = PaperComboBox()
         self.papersize_menu.connect('changed',self.size_changed)
         
-        self.orientation_menu = _PaperMenu.GrampsOrientationComboBox()
+        self.orientation_menu = OrientationComboBox()
         l = gtk.Label("%s:" % _("Size"))
         l.set_alignment(0.0,0.5)
         
@@ -337,7 +349,7 @@ class ReportDialog(BareReportDialog):
         l.set_alignment(0.0,0.5)
         self.paper_table.attach(l,5,6,1,2,gtk.SHRINK|gtk.FILL)
 
-        self.papersize_menu.set(_PaperMenu.paper_sizes,
+        self.papersize_menu.set(paper_sizes,
                                 self.options.handler.get_paper_name())
         self.orientation_menu.set(self.options.handler.get_orientation())
 
@@ -577,8 +589,10 @@ def report(database,person,report_class,options_class,
     """
 
     if category == CATEGORY_TEXT:
+        from _TextReportDialog import TextReportDialog
         dialog_class = TextReportDialog
     elif category == CATEGORY_DRAW:
+        from _DrawReportDialog import DrawReportDialog
         dialog_class = DrawReportDialog
     elif category in (CATEGORY_BOOK,CATEGORY_VIEW,
                         CATEGORY_CODE,CATEGORY_WEB):
