@@ -27,7 +27,7 @@ import PluginUtils
 import NameDisplay
 import Utils
 import BaseDoc
-from Report import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK
+from _Constants import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK
 from _PaperMenu import paper_sizes
 
 #------------------------------------------------------------------------

@@ -55,7 +55,8 @@ import Config
 import RecentFiles
 import Utils
 
-from PluginUtils import Report, Tool, cl_list, cli_tool_list
+from PluginUtils import Tool, cl_list, cli_tool_list
+from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB, cl_report
 
 #-------------------------------------------------------------------------
 # ArgHandler
@@ -644,14 +645,13 @@ class ArgHandler:
                     category = item[1]
                     report_class = item[2]
                     options_class = item[3]
-                    if category in (Report.CATEGORY_BOOK,Report.CATEGORY_CODE,
-                                    Report.CATEGORY_WEB):
+                    if category in (CATEGORY_BOOK,CATEGORY_CODE,CATEGORY_WEB):
                         options_class(self.state.db,name,
                                       category,options_str_dict)
                     else:
-                        Report.cl_report(self.state.db,name,category,
-                                         report_class,options_class,
-                                         options_str_dict)
+                        cl_report(self.state.db,name,category,
+                                  report_class,options_class,
+                                  options_str_dict)
                     return
 
             print "Unknown report name. Available names are:"
