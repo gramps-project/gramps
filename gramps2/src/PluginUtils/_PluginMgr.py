@@ -43,7 +43,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ReportBase import MODE_GUI, MODE_BKI, book_categories
+from ReportBase import MODE_GUI, MODE_CLI, MODE_BKI, book_categories
 import Errors
 
 #-------------------------------------------------------------------------

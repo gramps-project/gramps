@@ -90,7 +90,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         return key
 
     def build_menu_names(self,obj):
-        return (self.report_name,None)
+        return (_("Configuration"),self.report_name)
 
     def init_interface(self):
         #self.output_notebook = None

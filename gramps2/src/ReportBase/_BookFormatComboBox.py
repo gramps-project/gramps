@@ -20,6 +20,10 @@
 
 # $Id$
 
+import gtk
+import Config
+import PluginUtils
+
 #-------------------------------------------------------------------------
 #
 # get_text_doc_menu
@@ -36,10 +40,10 @@ class BookFormatComboBox(gtk.ComboBox):
 
         out_pref = Config.get(Config.OUTPUT_PREFERENCE)
         index = 0
-        _PluginMgr.drawdoc_list.sort()
+        PluginUtils.drawdoc_list.sort()
         active_index = 0
         self.data = []
-        for item in _PluginMgr.bookdoc_list:
+        for item in PluginUtils.bookdoc_list:
             if tables and item[2] == 0:
                 continue
             self.data.append(item)
