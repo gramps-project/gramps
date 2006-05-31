@@ -1,3 +1,6 @@
+2006-05-30  Alex Roitman  <shura@gramps-project.org>
+	* POTFILES.in: Change files due to module split.
+
 2006-05-28  Alex Roitman  <shura@gramps-project.org>
 	* gramps.pot: Update.
 

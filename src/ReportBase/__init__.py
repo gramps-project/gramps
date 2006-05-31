@@ -29,10 +29,10 @@ __version__ = "$Revision$"
 from _Constants import *
 from _TemplateParser import _template_map
 
-import _ReportOptions as ReportOptions
-import _ReportUtils as ReportUtils
-
 from _Report import Report
 from _ReportDialog import report
 from _DrawReportDialog import DrawReportDialog
 from _TextReportDialog import TextReportDialog
+
+import _ReportOptions as ReportOptions
+import _ReportUtils as ReportUtils

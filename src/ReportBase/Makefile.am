@@ -1,6 +1,6 @@
 # This is the src/Report level Makefile for Gramps
 
-pkgdatadir = $(datadir)/@PACKAGE@/Report
+pkgdatadir = $(datadir)/@PACKAGE@/ReportBase
 
 pkgdata_PYTHON = \
 	_BareReportDialog.py\
@@ -24,8 +24,8 @@ pkgdata_PYTHON = \
 	_TextFormatComboBox.py\
 	_TextReportDialog.py
 
-pkgpyexecdir = @pkgpyexecdir@/Report
-pkgpythondir = @pkgpythondir@/Report
+pkgpyexecdir = @pkgpyexecdir@/ReportBase
+pkgpythondir = @pkgpythondir@/ReportBase
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

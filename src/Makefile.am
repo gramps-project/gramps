@@ -20,6 +20,7 @@ SUBDIRS = \
 	data \
 	DateHandler \
 	PluginUtils \
+	ReportBase \
 	glade \
 	docgen \
 	images \
