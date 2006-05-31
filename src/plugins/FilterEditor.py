@@ -58,6 +58,7 @@ import GrampsDisplay
 #
 #-------------------------------------------------------------------------
 import const
+import RelLib
 from Filters import GenericFilter, FilterList, Rules, \
      reload_custom_filters, reload_system_filters
 import AutoComp
@@ -75,14 +76,14 @@ from PluginUtils import Tool, register_tool
 #
 #-------------------------------------------------------------------------
 _name2list = {
-    _('Personal event:')     : Utils.personal_events.values(),
-    _('Family event:')       : Utils.family_events.values(),
-    _('Personal attribute:') : Utils.personal_attributes.values(),
-    _('Family attribute:')   : Utils.family_attributes.values(),
+    _('Personal event:')     : RelLib.EventType().get_map(),
+    _('Family event:')       : RelLib.EventType().get_map(),
+    _('Personal attribute:') : RelLib.AttributeType().get_map(),
+    _('Family attribute:')   : RelLib.AttributeType().get_map(),
 }
 
 _menulist = {
-    _('Relationship type:')  : Utils.family_relations.values(),
+    _('Relationship type:')  : RelLib.FamilyRelType().get_map(),
     }
 
 #-------------------------------------------------------------------------
@@ -325,8 +326,7 @@ class MyEntry(gtk.Entry):
 class FilterEditor(ManagedWindow.ManagedWindow):
     def __init__(self, filterdb, db, uistate):
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [],
-                                             FilterEditor)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], FilterEditor)
         
         self.db = db
         self.filterdb = FilterList(filterdb)
@@ -352,15 +352,16 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             'on_filter_list_delete_event' : self.on_delete_event,
             })
 
-        self.clist = ListModel.ListModel(self.filter_list,
-                                         [(_('Filter'),0,150),(_('Comment'),1,150)],
-                                         self.filter_select_row,
-                                         self.edit_filter)
+        self.clist = ListModel.ListModel(
+            self.filter_list,
+            [(_('Filter'),0,150),(_('Comment'),1,150)],
+            self.filter_select_row,
+            self.edit_filter)
         self.draw_filters()
         self.show()
 
     def build_menu_names(self, obj):
-        return (_("Custom Filter Editor"),_("Custom Filter Editor"))
+        return (_("Custom Filter Editor"), _("Custom Filter Editor"))
         
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -371,28 +372,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         self.remove_itself_from_menu()
         reload_custom_filters()
         reload_system_filters()
-#        self.parent.init_filters()
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(_("Filter Editor tool"))
-        self.parent_menu_item.set_submenu(gtk.Menu())
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-        self.winsmenu = self.parent_menu_item.get_submenu()
-        self.menu_item = gtk.MenuItem(_('Filter List'))
-        self.menu_item.connect("activate",self.present)
-        self.menu_item.show()
-        self.winsmenu.append(self.menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.menu_item.destroy()
-        self.winsmenu.destroy()
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
+        self.close()
 
     def filter_select_row(self,obj):
         store,iter = self.clist.get_selected()
@@ -410,7 +390,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         self.window.destroy()
         reload_custom_filters()
         reload_system_filters()
-#        self.parent.init_filters()
+        self.close()
         
     def draw_filters(self):
         self.clist.clear()
@@ -419,13 +399,13 @@ class FilterEditor(ManagedWindow.ManagedWindow):
 
     def add_new_filter(self,obj):
         the_filter = GenericFilter()
-        EditFilter(self,the_filter)
+        EditFilter(self.uistate, self.track, the_filter, self.filterdb)
 
     def edit_filter(self,obj):
         store,iter = self.clist.get_selected()
         if iter:
             filter = self.clist.get_object(iter)
-            EditFilter(self,filter)
+            EditFilter(self.uistate, self.track, filter, self.filterdb)
 
     def test_clicked(self,obj):
         store,iter = self.clist.get_selected()
@@ -446,30 +426,29 @@ class FilterEditor(ManagedWindow.ManagedWindow):
 #
 #
 #-------------------------------------------------------------------------
-class EditFilter:
-    def __init__(self,parent,filter):
-        self.filter = filter
-        self.filterdb = parent.filterdb
-        
-        self.parent = parent
-        if self.parent.child_windows.has_key(self.filter):
-            self.parent.child_windows[self.filter].present(None)
-            return
-        else:
-            self.win_key = self.filter
-        self.child_windows = {}
+class EditFilter(ManagedWindow.ManagedWindow):
+    
+    def __init__(self, uistate, track, filter, filterdb):
 
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+
+        self.filter = filter
+        self.filterdb = filterdb
+        
         self.glade = gtk.glade.XML(const.rule_glade,'define_filter',"gramps")
-        self.window = self.glade.get_widget('define_filter')
         self.define_title = self.glade.get_widget('title')
 
-        Utils.set_titles(self.window,self.define_title,_('Define filter'))
+        self.set_window(
+            self.glade.get_widget('define_filter'),
+            self.define_title,
+            _('Define filter'))
         
         self.rule_list = self.glade.get_widget('rule_list')
-        self.rlist = ListModel.ListModel(self.rule_list,
-                                         [(_('Name'),-1,150),(_('Value'),-1,150)],
-                                         self.select_row,
-                                         self.on_edit_clicked)
+        self.rlist = ListModel.ListModel(
+            self.rule_list,
+            [(_('Name'),-1,150),(_('Value'),-1,150)],
+            self.select_row,
+            self.on_edit_clicked)
                                          
         self.fname = self.glade.get_widget('filter_name')
         self.log_not = self.glade.get_widget('logical_not')
@@ -482,16 +461,12 @@ class EditFilter:
         self.del_btn = self.glade.get_widget('delete')
         self.glade.signal_autoconnect({
             'on_ok_clicked' : self.on_ok_clicked,
-            'on_cancel_clicked' : self.close,
+            'on_cancel_clicked' : self.close_window,
             'on_filter_name_changed' : self.filter_name_changed,
-            'on_delete_clicked' : self.on_delete_clicked,
             'on_add_clicked' : self.on_add_clicked,
             "on_help_filtdef_clicked"  : self.on_help_clicked,
             'on_edit_clicked' : self.on_edit_clicked,
-            "on_edit_filter_delete_event" : self.on_delete_event,
             })
-        if self.filter.get_invert():
-            self.log_not.set_active(1)
         if self.filter.get_logical_op() == 'or':
             self.log_or.set_active(1)
         elif self.filter.get_logical_op() == 'one':
@@ -503,19 +478,14 @@ class EditFilter:
         self.comment.set_text(self.filter.get_comment())
         self.draw_rules()
 
-        self.window.set_transient_for(self.parent.window)
-        self.add_itself_to_menu()
-        self.window.show()
+        self.show()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-util-cfe')
 
-    def on_delete_event(self,obj,b):
-        pass
-
-    def close(self,obj):
-        self.window.destroy()
+    def close_window(self,obj):
+        self.close()
 
     def filter_name_changed(self,obj):
         name = unicode(self.fname.get_text())
@@ -545,7 +515,6 @@ class EditFilter:
             if n == f.get_name():
                 self.filterdb.get_filters().remove(f)
                 break
-        self.filter.set_invert(self.log_not.get_active())
         if self.log_or.get_active():
             op = 'or'
         elif self.log_one.get_active():
