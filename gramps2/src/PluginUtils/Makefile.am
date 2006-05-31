@@ -8,13 +8,8 @@ pkgdatadir = $(datadir)/@PACKAGE@/PluginUtils
 pkgdata_PYTHON = \
 	__init__.py\
 	_Options.py\
-	_ReportOptions.py\
-	_Report.py\
-	_ReportUtils.py\
 	_Tool.py\
-	_StyleEditor.py\
 	_PluginMgr.py\
-	_PaperMenu.py\
 	_PluginStatus.py\
 	_Plugins.py
 

@@ -57,7 +57,7 @@ import const
 import Utils
 import Config
 import Errors
-from Report import report, standalone_categories
+from ReportBase import report, standalone_categories
 import _Tool
 import _PluginMgr
 import _PluginStatus
