@@ -618,8 +618,11 @@ def report(dbstate,uistate,person,report_class,options_class,
         from _DrawReportDialog import DrawReportDialog
         dialog_class = DrawReportDialog
     elif category == CATEGORY_BOOK:
-        report_class(dbstate,uistate,person)
-        return
+        try:
+            report_class(dbstate,uistate,person)
+        except Errors.WindowActiveError:
+            pass
+        return        
     elif category in (CATEGORY_VIEW,CATEGORY_CODE,CATEGORY_WEB):
         report_class(dbstate.db,person)
         return
