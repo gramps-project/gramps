@@ -28,7 +28,7 @@ import GrampsWidgets
 import Errors
 import GrampsDb
 
-from PluginUtils import ReportUtils
+from PluginUtils.Report import ReportUtils
 
 _GenderCode = {
     RelLib.Person.MALE    : u'\u2642', 

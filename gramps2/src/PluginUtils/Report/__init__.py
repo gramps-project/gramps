@@ -1,6 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
+# Copyright (C) 2001  David R. Hampton
 # Copyright (C) 2001-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
@@ -18,18 +19,20 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: Report.py 6044 2006-03-03 00:10:52Z rshura $
+# $Id$
 
-from _PluginMgr import \
-     register_export, register_import, \
-     register_tool, register_report, \
-     register_relcalc, relationship_class, \
-     textdoc_list, drawdoc_list, bookdoc_list, \
-     bkitems_list, cl_list, cli_tool_list, \
-     load_plugins, import_list, export_list,\
-     report_list, tool_list, \
-     register_text_doc, register_draw_doc, register_book_doc
+"Report Generation Framework"
 
-import _Tool as Tool
-import _Plugins as Plugins
-import _PluginStatus as PluginStatus
+__author__ =  "David R. Hampton, Donald N. Allingham"
+__version__ = "$Revision$"
+
+from _Constants import *
+from _TemplateParser import _template_map
+
+import _ReportOptions as ReportOptions
+import _ReportUtils as ReportUtils
+
+from _Report import Report
+from _ReportDialog import report
+from _DrawReportDialog import DrawReportDialog
+from _TextReportDialog import TextReportDialog

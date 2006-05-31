@@ -66,6 +66,7 @@ from RelLib import Person
 import const
 import Utils
 import ListModel
+import Errors
 from PluginUtils import Plugins, Report, ReportOptions, \
      bkitems_list, register_report
 import BaseDoc
@@ -1114,18 +1115,42 @@ def cl_report(database,name,category,options_str_dict):
 
 #------------------------------------------------------------------------
 #
+# Generic task function for book report
+#
+#------------------------------------------------------------------------
+# Book item generic task
+def write_book_item(database,person,report_class,options_class):
+    """Write the Timeline Graph using options set.
+    All user dialog has already been handled and the output file opened."""
+    try:
+        if options_class.handler.get_person_id():
+            person = database.get_person_from_gramps_id(
+                options_class.handler.get_person_id())
+        return report_class(database,person,options_class)
+    except Errors.ReportError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except Errors.FilterError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except:
+        log.error("Failed to write book item.", exc_info=True)
+    return None
+
+#------------------------------------------------------------------------
+#
 # 
 #
 #------------------------------------------------------------------------
-register_report(
-    name = 'book',
-    category = Report.CATEGORY_BOOK,
-    report_class = BookReportSelector,
-    options_class = cl_report,
-    modes = Report.MODE_GUI | Report.MODE_CLI,
-    translated_name = _("Book Report"),
-    status = _("Stable"),
-    description = _("Creates a book containing several reports."),
-    author_name = "Alex Roitman",
-    author_email = "shura@gramps-project.org"
-    )
+## register_report(
+##     name = 'book',
+##     category = Report.CATEGORY_BOOK,
+##     report_class = BookReportSelector,
+##     options_class = cl_report,
+##     modes = Report.MODE_GUI | Report.MODE_CLI,
+##     translated_name = _("Book Report"),
+##     status = _("Stable"),
+##     description = _("Creates a book containing several reports."),
+##     author_name = "Alex Roitman",
+##     author_email = "shura@gramps-project.org"
+##     )

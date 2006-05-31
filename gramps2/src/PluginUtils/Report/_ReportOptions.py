@@ -51,7 +51,7 @@ import const
 import Config
 import Utils
 import BaseDoc
-import _Options
+from PluginUtils import _Options
 
 #-------------------------------------------------------------------------
 #
