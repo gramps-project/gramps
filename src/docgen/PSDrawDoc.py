@@ -33,7 +33,8 @@ from gettext import gettext as _
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from PluginUtils import  register_draw_doc, ReportUtils, Report
+from PluginUtils import  register_draw_doc
+from ReportBase import Report, ReportUtils
 pt2cm, rgb_color = ReportUtils.pt2cm, ReportUtils.rgb_color
 import Errors
 import BaseDoc
