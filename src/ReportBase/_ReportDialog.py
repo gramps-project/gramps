@@ -20,9 +20,25 @@
 
 # $Id$
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 import os
+
+#-------------------------------------------------------------------------
+#
+# GTK+ modules
+#
+#-------------------------------------------------------------------------
 import gtk
 
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
 import Config
 import Errors
 from QuestionDialog import ErrorDialog, OptionDialog
@@ -34,6 +50,11 @@ from _FileEntry import FileEntry
 from _PaperMenu import PaperComboBox, OrientationComboBox, paper_sizes
 from _TemplateParser import _template_map, _default_template, _user_template
 
+#-------------------------------------------------------------------------
+#
+# ReportDialog class
+#
+#-------------------------------------------------------------------------
 class ReportDialog(BareReportDialog):
     """
     The ReportDialog base class.  This is a base class for generating
@@ -42,14 +63,14 @@ class ReportDialog(BareReportDialog):
     dialog for a stand-alone report.
     """
 
-    def __init__(self,database,person,option_class,name,translated_name):
+    def __init__(self,dbstate,uistate,person,option_class,name,trans_name):
         """Initialize a dialog to request that the user select options
         for a basic *stand-alone* report."""
         
         self.style_name = "default"
         self.page_html_added = False
-        BareReportDialog.__init__(self,database,person,option_class,
-                                  name,translated_name)
+        BareReportDialog.__init__(self,dbstate,uistate,person,option_class,
+                                  name,trans_name)
 
         # Allow for post processing of the format frame, since the
         # show_all task calls events that may reset values
@@ -530,7 +551,8 @@ class ReportDialog(BareReportDialog):
         if self.pagecount_menu == None:
             self.pagecount = 0
         else:
-            self.pagecount = self.pagecount_menu.get_menu().get_active().get_data("d")
+            self.pagecount = \
+                     self.pagecount_menu.get_menu().get_active().get_data("d")
 
     def parse_html_frame(self):
         """Parse the html frame of the dialog.  Save the user selected
@@ -546,7 +568,8 @@ class ReportDialog(BareReportDialog):
             if text == _user_template:
                 self.template_name = self.html_fileentry.get_full_path(0)
             else:
-                self.template_name = "%s/%s" % (const.template_dir,_template_map[text])
+                self.template_name = "%s/%s" % (const.template_dir,
+                                                _template_map[text])
         else:
             self.template_name = ""
         self.options.handler.set_template_name(self.template_name)
@@ -580,8 +603,8 @@ class ReportDialog(BareReportDialog):
 # Generic task function a standalone GUI report
 #
 #------------------------------------------------------------------------
-def report(database,person,report_class,options_class,
-           translated_name,name,category):
+def report(dbstate,uistate,person,report_class,options_class,
+           trans_name,name,category):
     """
     report - task starts the report. The plugin system requires that the
     task be in the format of task that takes a database and a person as
@@ -594,14 +617,13 @@ def report(database,person,report_class,options_class,
     elif category == CATEGORY_DRAW:
         from _DrawReportDialog import DrawReportDialog
         dialog_class = DrawReportDialog
-    elif category in (CATEGORY_BOOK,CATEGORY_VIEW,
-                        CATEGORY_CODE,CATEGORY_WEB):
-        report_class(database,person)
+    elif category in (CATEGORY_BOOK,CATEGORY_VIEW,CATEGORY_CODE,CATEGORY_WEB):
+        report_class(dbstate,uistate,person)
         return
     else:
         dialog_class = ReportDialog
 
-    dialog = dialog_class(database,person,options_class,name,translated_name)
+    dialog = dialog_class(dbstate,uistate,person,options_class,name,trans_name)
     response = dialog.window.run()
     if response == gtk.RESPONSE_OK:
         try:
@@ -620,4 +642,4 @@ def report(database,person,report_class,options_class,
             ErrorDialog(_("Report could not be created"),str(msg))
         except:
             log.error("Failed to run report.", exc_info=True)
-    dialog.window.destroy()
+    dialog.close()

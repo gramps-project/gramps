@@ -1,3 +1,15 @@
+2006-05-31  Alex Roitman  <shura@gramps-project.org>
+	* src/Selectors/_SelectPerson.py (__init__): take track argument.
+	* src/Editors/_EditFamily.py: Adapt to SelectPerson change.
+	* src/Editors/_EditPersonRef.py (_select_person): Adapt to
+	SelectPerson change.
+	* src/ReportBase/_BareReportDialog.py: Use dbstata and uistate,
+	convert to Managed window.
+	* src/ReportBase/_ReportDialog.py: Use dbstate and uistate.
+	* src/ReportBase/_DrawReportDialog.py: Use dbstate and uistate.
+	* src/ReportBase/_TextReportDialog.py: Use dbstate and uistate.
+	* src/ViewManager.py (make_report_callback): Use dbstate and uistate.
+
 2006-05-30  Don Allingham  <don@gramps-project.org>
 	* src/plugins/FilterEditor.py: start to bring into sync with
 	code changes

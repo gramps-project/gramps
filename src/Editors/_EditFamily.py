@@ -224,8 +224,8 @@ class ChildEmbedList(EmbeddedList):
                      self.family.get_mother_handle()] + \
                     [x.ref for x in self.family.get_child_ref_list() ]
 
-        sel = SelectPerson(self.dbstate, self.uistate, _("Select Child"),
-                           skip=skip_list)
+        sel = SelectPerson(self.dbstate, self.uistate, self.track,
+                           _("Select Child"), skip=skip_list)
         person = sel.run()
         
         if person:
@@ -236,8 +236,8 @@ class ChildEmbedList(EmbeddedList):
 
     def run(self,skip):
         skip_list = [ x for x in skip if x]
-        SelectPerson(self.dbstate, self.uistate, _("Select Child"),
-                     skip=skip_list)
+        SelectPerson(self.dbstate, self.uistate, self.track,
+                     _("Select Child"), skip=skip_list)
 
     def del_button_clicked(self,obj):
         handle = self.get_selected()
@@ -542,7 +542,7 @@ class EditFamily(EditPrimary):
             self.update_mother(None)
         else:
             data_filter = FastFemaleFilter(self.dbstate.db)
-            sel = SelectPerson(self.dbstate, self.uistate,
+            sel = SelectPerson(self.dbstate, self.uistate, self.track,
                                _("Select Mother"),
                                filter=data_filter,
                                skip=[x.ref for x in self.obj.get_child_ref_list()])
@@ -586,7 +586,7 @@ class EditFamily(EditPrimary):
             self.update_father(None)
         else:
             data_filter = FastMaleFilter(self.dbstate.db)
-            sel = SelectPerson(self.dbstate, self.uistate,
+            sel = SelectPerson(self.dbstate, self.uistate, self.track,
                                _("Select Father"),
                                filter=data_filter,
                                skip=[x.ref for x in self.obj.get_child_ref_list()])

@@ -20,14 +20,36 @@
 
 # $Id$
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 from types import ClassType, InstanceType
+
+#-------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+#-------------------------------------------------------------------------
 import gtk
 
+#-------------------------------------------------------------------------
+#
+# gramps modules
+#
+#-------------------------------------------------------------------------
 import NameDisplay
 import BaseDoc
+import ManagedWindow
 from _StyleComboBox import StyleComboBox
 
-class BareReportDialog:
+#-------------------------------------------------------------------------
+#
+# BareReportDialog class
+#
+#-------------------------------------------------------------------------
+class BareReportDialog(ManagedWindow.ManagedWindow):
     """
     The BareReportDialog base class.  This is a base class for generating
     customized dialogs to solicit some options for a report.  This class 
@@ -40,18 +62,35 @@ class BareReportDialog:
     frame_pad = 5
     border_pad = 6
 
-    def __init__(self,database,person,option_class,name,translated_name):
+    def __init__(self,dbstate,uistate,person,option_class,
+                 name,translated_name,track=[]):
         """Initialize a dialog to request that the user select options
         for a basic *bare* report."""
 
-        self.db = database
+        self.dbstate = dbstate
+        self.uistate = uistate
+        self.db = dbstate.db
         self.person = person
+        self.report_name = translated_name
+        self.raw_name = name
+
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+
         if type(option_class) == ClassType:
             self.options = option_class(name)
         elif type(option_class) == InstanceType:
             self.options = option_class
-        self.report_name = translated_name
+
         self.init_interface()
+
+    def build_window_key(self,obj):
+        key = self.raw_name
+        if self.person:
+            key += self.person.get_handle()
+        return key
+
+    def build_menu_names(self,obj):
+        return (self.report_name,None)
 
     def init_interface(self):
         #self.output_notebook = None
@@ -69,13 +108,15 @@ class BareReportDialog:
         self.style_button = None
 
         self.style_name = self.options.handler.get_default_stylesheet_name()
-        (self.max_gen,self.page_breaks) = self.options.handler.get_report_generations()
+        (self.max_gen,self.page_breaks) = \
+                                 self.options.handler.get_report_generations()
         try:
             self.local_filters = self.options.get_report_filters(self.person)
         except AttributeError:
             self.local_filters = []
 
-        self.window = gtk.Dialog('GRAMPS')
+        window = gtk.Dialog('GRAMPS')
+        self.set_window(window,None,self.get_title())
         self.window.set_has_separator(False)
         self.cancel = self.window.add_button(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL)
         self.ok = self.window.add_button(gtk.STOCK_OK,gtk.RESPONSE_OK)
@@ -612,7 +653,7 @@ class BareReportDialog:
     def on_center_person_change_clicked(self,*obj):
         from Selectors import selector_factory
         SelectPerson = selector_factory('Person')
-        sel_person = SelectPerson(self.db,_('Select Person'))
+        sel_person = SelectPerson(self.dbstate,self.uistate,self.track)
         new_person = sel_person.run()
         if new_person:
             self.new_person = new_person

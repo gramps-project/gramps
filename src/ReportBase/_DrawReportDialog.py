@@ -31,12 +31,13 @@ from _DrawFormatComboBox import DrawFormatComboBox
 #-----------------------------------------------------------------------
 class DrawReportDialog(ReportDialog):
     """A class of ReportDialog customized for drawing based reports."""
-    def __init__(self,database,person,opt,name,translated_name):
+    def __init__(self,dbstate,uistate,person,opt,name,translated_name):
         """Initialize a dialog to request that the user select options
         for a basic drawing report.  See the ReportDialog class for
         more information."""
         self.category = CATEGORY_DRAW
-        ReportDialog.__init__(self,database,person,opt,name,translated_name)
+        ReportDialog.__init__(self,dbstate,uistate,person,opt,
+                              name,translated_name)
 
     #------------------------------------------------------------------------
     #

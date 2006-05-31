@@ -966,8 +966,8 @@ def by_menu_name(a, b):
 
 
 def make_report_callback(lst, dbstate, uistate):
-    return lambda x: report(dbstate.db, dbstate.get_active_person(), 
-                                   lst[0], lst[1], lst[2], lst[3], lst[4])
+    return lambda x: report(dbstate, uistate, dbstate.get_active_person(), 
+                            lst[0], lst[1], lst[2], lst[3], lst[4])
 
 def make_tool_callback(lst, dbstate, uistate):
     return lambda x: Tool.gui_tool(dbstate, uistate,  
