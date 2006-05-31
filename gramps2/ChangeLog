@@ -1,3 +1,7 @@
+2006-05-30  Don Allingham  <don@gramps-project.org>
+	* src/plugins/FilterEditor.py: start to bring into sync with
+	code changes
+
 2006-05-30  Alex Roitman  <shura@gramps-project.org>
 	* various: break Report into a package.
 
