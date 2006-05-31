@@ -59,9 +59,10 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from PluginUtils import Plugins, Report, Tool, PluginStatus, \
+from PluginUtils import Plugins, Tool, PluginStatus, \
      relationship_class, load_plugins, \
      tool_list, report_list
+from ReportBase import standalone_categories, report
 import DisplayState
 import const
 import Config
@@ -897,7 +898,7 @@ class ViewManager:
         self.reportactions = gtk.ActionGroup('ReportWindow')
         (ui, actions) = self.build_plugin_menu('ReportsMenu', 
                                               report_list, 
-                                              Report.standalone_categories, 
+                                              standalone_categories, 
                                               make_report_callback)
         self.reportactions.add_actions(actions)
         self.uistate.uimanager.add_ui_from_string(ui)
@@ -965,11 +966,10 @@ def by_menu_name(a, b):
 
 
 def make_report_callback(lst, dbstate, uistate):
-    return lambda x: Report.report(dbstate.db, dbstate.get_active_person(), 
+    return lambda x: report(dbstate.db, dbstate.get_active_person(), 
                                    lst[0], lst[1], lst[2], lst[3], lst[4])
 
 def make_tool_callback(lst, dbstate, uistate):
     return lambda x: Tool.gui_tool(dbstate, uistate,  
                                    lst[0], lst[1], lst[2], lst[3], lst[4], 
                                    dbstate.db.request_rebuild)
-

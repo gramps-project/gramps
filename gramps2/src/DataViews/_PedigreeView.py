@@ -56,7 +56,7 @@ import Utils
 import DateHandler
 import ImgManip
 import Errors
-from PluginUtils.Report import ReportUtils
+from ReportBase import ReportUtils
 from Editors import EditPerson 
 from DdTargets import DdTargets
 import cPickle as pickle

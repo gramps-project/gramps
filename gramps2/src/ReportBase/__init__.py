@@ -31,6 +31,7 @@ from _TemplateParser import _template_map
 
 from _Report import Report
 from _ReportDialog import report
+from _CommandLineReport import cl_report
 from _DrawReportDialog import DrawReportDialog
 from _TextReportDialog import TextReportDialog
 
