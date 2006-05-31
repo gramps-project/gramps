@@ -71,7 +71,7 @@ import Config
 import Errors
 
 from _EditPrimary import EditPrimary
-from PluginUtils import ReportUtils
+from PluginUtils.Report import ReportUtils
 from DdTargets import DdTargets
 from DisplayTabs import \
      EmbeddedList,EventEmbedList,SourceEmbedList,FamilyAttrEmbedList,\

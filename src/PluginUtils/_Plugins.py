@@ -57,7 +57,7 @@ import const
 import Utils
 import Config
 import Errors
-import _Report
+from Report import report, standalone_categories
 import _Tool
 import _PluginMgr
 import _PluginStatus
@@ -152,7 +152,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
 
         (item_class,options_class,title,category,name) = self.item
         if self.content == REPORTS:
-            _Report.report(self.state.db,self.state.active,
+            report(self.state.db,self.state.active,
                           item_class,options_class,title,name,category)
         else:
             _Tool.gui_tool(self.state,self.uistate, 
@@ -260,7 +260,7 @@ class ReportPlugins(PluginDialog):
             uistate,
             track,
             _PluginMgr.report_list,
-            _Report.standalone_categories,
+            standalone_categories,
             _("Report Selection"),
             _("Select a report from those available on the left."),
             _("_Generate"), _("Generate selected report"),
