@@ -40,8 +40,8 @@ from math import pi, cos, sin, fabs
 #-------------------------------------------------------------------------
 import BaseDoc
 import const
-from PluginUtils import ReportUtils, \
-     register_text_doc, register_draw_doc, register_book_doc
+from PluginUtils import register_text_doc, register_draw_doc, register_book_doc
+from ReportBase import ReportUtils
 pt2cm = ReportUtils.pt2cm
 import ImgManip
 import FontScale

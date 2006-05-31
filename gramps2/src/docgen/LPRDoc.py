@@ -68,8 +68,8 @@ else:
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from PluginUtils import ReportUtils, \
-     register_text_doc, register_draw_doc, register_book_doc
+from PluginUtils import register_text_doc, register_draw_doc, register_book_doc
+from ReportBase import ReportUtils
 rgb_color = ReportUtils.rgb_color
 
 #------------------------------------------------------------------------

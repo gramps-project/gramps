@@ -27,9 +27,9 @@ __author__ =  "David R. Hampton, Donald N. Allingham"
 __version__ = "$Revision$"
 
 from _Constants import *
-from _TemplateParser import _template_map
 
 from _Report import Report
+
 from _ReportDialog import report
 from _CommandLineReport import cl_report
 from _DrawReportDialog import DrawReportDialog
