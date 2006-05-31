@@ -216,6 +216,7 @@ src/Filters/Rules/Media/Makefile
 src/Filters/Rules/Repository/Makefile
 src/DataViews/Makefile
 src/PluginUtils/Makefile
+src/ReportBase/Makefile
 src/plugins/Makefile
 src/DateHandler/Makefile
 src/data/Makefile
