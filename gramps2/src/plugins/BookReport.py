@@ -816,11 +816,12 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
                                      item.get_translated_name(),
                                      self.track)
         response = item_dialog.window.run()
-        if response == RESPONSE_OK and item_dialog.person and data[1] != _("Title"): 
+        if (response == RESPONSE_OK) and (item_dialog.person) \
+               and (data[1] != _("Title")): 
             self.bk_model.model.set_value(the_iter,2,
                 item_dialog.person.get_primary_name().get_regular_name())
             self.book.set_item(row,item)
-        item_dialog.window.destroy()
+        item_dialog.close()
 
     def bk_button_press(self,obj,event):
         """
