@@ -67,10 +67,18 @@ import const
 import Utils
 import ListModel
 import Errors
-from PluginUtils import Plugins, Report, ReportOptions, \
-     bkitems_list, register_report
 import BaseDoc
 from QuestionDialog import WarningDialog, ErrorDialog
+from PluginUtils import bkitems_list, register_report, Plugins
+import ManagedWindow
+
+# Import from specific modules in ReportBase
+from ReportBase._Constants import CATEGORY_BOOK, MODE_GUI, MODE_CLI
+from ReportBase._BookFormatComboBox import BookFormatComboBox
+from ReportBase._BareReportDialog import BareReportDialog
+from ReportBase._ReportDialog import ReportDialog
+from ReportBase._CommandLineReport import CommandLineReport
+from ReportBase._ReportOptions import ReportOptions
 
 #------------------------------------------------------------------------
 #
@@ -559,14 +567,14 @@ class BookListDisplay:
 # 
 #
 #------------------------------------------------------------------------
-class BookOptions(ReportOptions.ReportOptions):
+class BookOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
     def set_new_options(self):
         # Options specific for this report
@@ -584,7 +592,7 @@ class BookOptions(ReportOptions.ReportOptions):
 # Book creation dialog 
 #
 #-------------------------------------------------------------------------
-class BookReportSelector:
+class BookReportSelector(ManagedWindow.ManagedWindow):
     """
     Interface into a dialog setting up the book. 
 
@@ -592,16 +600,23 @@ class BookReportSelector:
     and to clear/load/save/edit whole books.
     """
 
-    def __init__(self,db,person):
-        self.db = db
+    def __init__(self,dbstate,uistate,person):
+        self.db = dbstate.db
+        self.dbstate = dbstate
+        self.uistate = uistate
         self.person = person
+        self.title = _('Book Report')
         self.file = "books.xml"
+
+        ManagedWindow.ManagedWindow.__init__(self,uistate, [], self.__class__)
 
         base = os.path.dirname(__file__)
         glade_file = os.path.join(base,"book.glade")
 
         self.xml = gtk.glade.XML(glade_file,"top","gramps")
-        self.top = self.xml.get_widget("top")
+        window = self.xml.get_widget("top")
+        title_label = self.xml.get_widget('title')
+        self.set_window(window,title_label,self.title)
     
         self.xml.signal_autoconnect({
             "on_add_clicked"        : self.on_add_clicked,
@@ -621,9 +636,6 @@ class BookReportSelector:
         self.book_tree = self.xml.get_widget("book_tree")
         self.avail_tree.connect('button-press-event',self.av_button_press)
         self.book_tree.connect('button-press-event',self.bk_button_press)
-
-        title_label = self.xml.get_widget('title')
-        Utils.set_titles(self.top,title_label,_('Book Report'))
 
         self.name_entry = self.xml.get_widget("name_entry")
         self.name_entry.set_text(_('New Book'))
@@ -650,8 +662,8 @@ class BookReportSelector:
 
         self.book = Book()
 
-    def close(self,obj):
-        self.top.destroy()
+    def build_menu_names(self,obj):
+        return (_("Book selection list"),self.title)
 
     def draw_avail_list(self):
         """
@@ -691,8 +703,9 @@ class BookReportSelector:
         else:
             same_db = 0
             WarningDialog(_('Different database'), _(
-                'This book was created with the references to database %s.\n\n'
-                'This makes references to the central person saved in the book invalid.\n\n' 
+                'This book was created with the references to database '
+                '%s.\n\n This makes references to the central person '
+                'saved in the book invalid.\n\n' 
                 'Therefore, the central person for each item is being set ' 
                 'to the active person of the currently opened database.' )
                 % book.get_dbname() )
@@ -710,7 +723,8 @@ class BookReportSelector:
             item.set_style_name(saved_item.get_style_name())
             self.book.append_item(item)
             
-            data = [ item.get_translated_name(), item.get_category(), item.get_name() ]
+            data = [ item.get_translated_name(),
+                     item.get_category(), item.get_name() ]
             if data[2] in ('simple_book_title','custom_text'):
                 data.append(_("Not Applicable"))
             else:
@@ -797,8 +811,10 @@ class BookReportSelector:
         row = self.bk_model.get_selected_row()
         item = self.book.get_item(row)
         option_class = item.option_class
-        item_dialog = BookItemDialog(self.db,option_class,item.get_name(),
-                                        item.get_translated_name())
+        item_dialog = BookItemDialog(self.dbstate,self.uistate,option_class,
+                                     item.get_name(),
+                                     item.get_translated_name(),
+                                     self.track)
         response = item_dialog.window.run()
         if response == RESPONSE_OK and item_dialog.person and data[1] != _("Title"): 
             self.bk_model.model.set_value(the_iter,2,
@@ -885,8 +901,9 @@ class BookReportSelector:
         Run final BookReportDialog with the current book. 
         """
         if self.book.item_list:
-            BookReportDialog(self.db,self.person,self.book,BookOptions)
-        self.top.destroy()
+            BookReportDialog(self.dbstate,self.uistate,self.person,
+                             self.book,BookOptions)
+        self.close()
 
     def on_save_clicked(self,obj):
         """
@@ -924,21 +941,23 @@ class BookReportSelector:
 # Book Item Options dialog
 #
 #------------------------------------------------------------------------
-class BookItemDialog(Report.BareReportDialog):
+class BookItemDialog(BareReportDialog):
 
     """
     This class overrides the interface methods common for different reports
     in a way specific for this report. This is a book item dialog.
     """
 
-    def __init__(self,database,option_class,name,translated_name):
+    def __init__(self,dbstate,uistate,option_class,name,translated_name,
+                 track=[]):
 
-        self.database = database
+        self.database = dbstate.db
         self.option_class = option_class
-        self.person = self.database.get_person_from_gramps_id(self.option_class.handler.get_person_id())
+        self.person = self.database.get_person_from_gramps_id(
+            self.option_class.handler.get_person_id())
         self.new_person = None
-        Report.BareReportDialog.__init__(self,database,self.person,
-                                         option_class,name,translated_name)
+        BareReportDialog.__init__(self,dbstate,uistate,self.person,
+                                  option_class,name,translated_name,track)
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options
@@ -960,20 +979,20 @@ class BookItemDialog(Report.BareReportDialog):
 # The final dialog - paper, format, target, etc. 
 #
 #------------------------------------------------------------------------
-class BookReportDialog(Report.ReportDialog):
+class BookReportDialog(ReportDialog):
     """
     A usual Report.Dialog subclass. 
     
     Creates a dialog selecting target, format, and paper/HTML options.
     """
 
-    def __init__(self,database,person,book,options):
+    def __init__(self,dbstate,uistate,person,book,options):
         self.options = options
         self.page_html_added = False
-        Report.BareReportDialog.__init__(self,database,person,options,
-                                         'book',_("Book Report"))
+        BareReportDialog.__init__(self,dbstate,uistate,person,options,
+                                  'book',_("Book Report"))
         self.book = book
-        self.database = database 
+        self.database = dbstate.db
         self.person = person
         self.selected_style = BaseDoc.StyleSheet()
 
@@ -1027,7 +1046,7 @@ class BookReportDialog(Report.ReportDialog):
         """Build a menu of document types that are appropriate for
         this text report.  This menu will be generated based upon
         whether the document requires table support, etc."""
-        self.format_menu = Report.GrampsBookFormatComboBox()
+        self.format_menu = BookFormatComboBox()
         self.format_menu.set(self.doc_uses_tables(),
                              self.doc_type_changed, None, active)
 
@@ -1042,8 +1061,8 @@ class BookReportDialog(Report.ReportDialog):
             item.option_class.set_document(self.doc)
             item.option_class.set_newpage(newpage)
             report_class = item.get_write_item()
-            obj = Report.write_book_item(self.database,self.person,
-                            report_class,item.option_class)
+            obj = write_book_item(self.database,self.person,
+                                  report_class,item.option_class)
             self.rptlist.append(obj)
             newpage = 1
         self.doc.open(self.target_path)
@@ -1065,7 +1084,8 @@ class BookReportDialog(Report.ReportDialog):
 #------------------------------------------------------------------------
 def cl_report(database,name,category,options_str_dict):
 
-    clr = Report.CommandLineReport(database,name,category,BookOptions,options_str_dict)
+    clr = CommandLineReport(database,name,category,
+                            BookOptions,options_str_dict)
 
     # Exit here if show option was given
     if clr.show:
@@ -1102,8 +1122,8 @@ def cl_report(database,name,category,options_str_dict):
         item.option_class.set_document(doc)
         item.option_class.set_newpage(newpage)
         report_class = item.get_write_item()
-        obj = Report.write_book_item(database,clr.person,
-                                     report_class,item.option_class)
+        obj = write_book_item(database,clr.person,
+                              report_class,item.option_class)
         rptlist.append(obj)
         newpage = 1
     doc.open(clr.option_class.get_output())
@@ -1118,7 +1138,6 @@ def cl_report(database,name,category,options_str_dict):
 # Generic task function for book report
 #
 #------------------------------------------------------------------------
-# Book item generic task
 def write_book_item(database,person,report_class,options_class):
     """Write the Timeline Graph using options set.
     All user dialog has already been handled and the output file opened."""
@@ -1142,15 +1161,15 @@ def write_book_item(database,person,report_class,options_class):
 # 
 #
 #------------------------------------------------------------------------
-## register_report(
-##     name = 'book',
-##     category = Report.CATEGORY_BOOK,
-##     report_class = BookReportSelector,
-##     options_class = cl_report,
-##     modes = Report.MODE_GUI | Report.MODE_CLI,
-##     translated_name = _("Book Report"),
-##     status = _("Stable"),
-##     description = _("Creates a book containing several reports."),
-##     author_name = "Alex Roitman",
-##     author_email = "shura@gramps-project.org"
-##     )
+register_report(
+    name = 'book',
+    category = CATEGORY_BOOK,
+    report_class = BookReportSelector,
+    options_class = cl_report,
+    modes = MODE_GUI | MODE_CLI,
+    translated_name = _("Book Report"),
+    status = _("Stable"),
+    description = _("Creates a book containing several reports."),
+    author_name = "Alex Roitman",
+    author_email = "shura@gramps-project.org"
+    )

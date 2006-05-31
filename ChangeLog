@@ -1,4 +1,6 @@
 2006-05-31  Alex Roitman  <shura@gramps-project.org>
+	* src/PluginUtils/_PluginMgr.py: Import MODE_CLI.
+	* src/ReportBase/_BookFormatComboBox.py: Adapt to changes.
 	* src/Selectors/_SelectPerson.py (__init__): take track argument.
 	* src/Editors/_EditFamily.py: Adapt to SelectPerson change.
 	* src/Editors/_EditPersonRef.py (_select_person): Adapt to
