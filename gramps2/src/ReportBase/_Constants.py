@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _Report.py 6669 2006-05-15 15:53:42Z rshura $
+# $Id$
 
 "Report Generation Framework"
 
