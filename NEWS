@@ -1,3 +1,12 @@
+Verison 2.1.4
+* Enhanced Verify tool (Alex)
+* Start of index generation for some reports in Open Document files (Brian)
+* Report enhancements (Brian)
+* Merge added in (Don)
+* Shading option to highlight data in Relationship View (Don)
+* Bug fixes.
+
+
 Verison 2.1.3
 * Add user defined custom types to appropriate menus
 * Select Place dialog replaces text entry of places
