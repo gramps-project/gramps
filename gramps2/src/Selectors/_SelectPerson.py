@@ -52,9 +52,14 @@ import ManagedWindow
 #-------------------------------------------------------------------------
 class SelectPerson(ManagedWindow.ManagedWindow):
 
-    def __init__(self, dbstate, uistate, title, filter=None, skip=[]):
+    def __init__(self, dbstate, uistate, track=[], title='',
+                 filter=None, skip=[]):
+        if title:
+            self.title = title
+        else:
+            self.title = _("Select Person")
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
         self.renderer = gtk.CellRendererText()
         self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
@@ -63,11 +68,9 @@ class SelectPerson(ManagedWindow.ManagedWindow):
         self.plist =  self.glade.get_widget('plist')
         self.notebook =  self.glade.get_widget('notebook')
 
-        self.set_window(
-            self.glade.get_widget('select_person'),
-            self.glade.get_widget('title'),
-            title)
-        
+        window = self.glade.get_widget('select_person')
+        title_label = self.glade.get_widget('title')
+        self.set_window(window,title_label,self.title)
         self.model = PeopleModel(self.db,
                                  (PeopleModel.FAST, filter),
                                  skip=skip)
@@ -77,7 +80,7 @@ class SelectPerson(ManagedWindow.ManagedWindow):
         self.show()
 
     def build_menu_names(self,obj):
-        return (_('Select Person'), None)
+        return (self.title, None)
 
     def add_columns(self,tree):
         tree.set_fixed_height_mode(True)

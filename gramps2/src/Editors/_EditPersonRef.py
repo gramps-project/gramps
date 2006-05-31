@@ -103,7 +103,7 @@ class EditPersonRef(EditSecondary):
         from Selectors import selector_factory
         SelectPerson = selector_factory('Person')
 
-        sel = SelectPerson(self.dbstate, self.uistate, "Select Person")
+        sel = SelectPerson(self.dbstate, self.uistate, self.track)
         person = sel.run()
 
         if person:
