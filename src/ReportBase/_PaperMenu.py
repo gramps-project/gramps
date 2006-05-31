@@ -60,7 +60,7 @@ except:
 #-------------------------------------------------------------------------
 paper_sizes = []
 
-class GrampsPaperComboBox(gtk.ComboBox):
+class PaperComboBox(gtk.ComboBox):
 
     def __init__(self):
         gtk.ComboBox.__init__(self,model=None)
@@ -91,7 +91,7 @@ class GrampsPaperComboBox(gtk.ComboBox):
         key = self.store[active][0]
         return (self.mapping[key],key)
 
-class GrampsOrientationComboBox(gtk.ComboBox):
+class OrientationComboBox(gtk.ComboBox):
 
     def __init__(self):
         gtk.ComboBox.__init__(self,model=None)

@@ -43,6 +43,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from ReportBase import MODE_GUI, MODE_BKI, book_categories
 import Errors
 
 #-------------------------------------------------------------------------
@@ -265,21 +266,20 @@ def register_report(
     The low-level functions (starting with '_') should not be used
     on their own. Instead, this function will call them as needed.
     """
-    import _Report
-    (junk,standalone_task) = divmod(modes,2**_Report.MODE_GUI)
+    (junk,standalone_task) = divmod(modes,2**MODE_GUI)
     if standalone_task:
         _register_standalone(report_class,options_class,translated_name,
                         name,category,description,
                         status,author_name,author_email,unsupported)
 
-    (junk,book_item_task) = divmod(modes-standalone_task,2**_Report.MODE_BKI)
+    (junk,book_item_task) = divmod(modes-standalone_task,2**MODE_BKI)
     if book_item_task:
-        book_item_category = _Report.book_categories[category]
+        book_item_category = book_categories[category]
         register_book_item(translated_name,book_item_category,
                     report_class,options_class,name,unsupported)
 
     (junk,command_line_task) = divmod(modes-standalone_task-book_item_task,
-                                        2**_Report.MODE_CLI)
+                                        2**MODE_CLI)
     if command_line_task:
         _register_cl_report(name,category,report_class,options_class,
                             translated_name,unsupported)

@@ -35,5 +35,5 @@ from _CommandLineReport import cl_report
 from _DrawReportDialog import DrawReportDialog
 from _TextReportDialog import TextReportDialog
 
-import _ReportOptions as ReportOptions
+from _ReportOptions import ReportOptions
 import _ReportUtils as ReportUtils

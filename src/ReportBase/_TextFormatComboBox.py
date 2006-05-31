@@ -40,7 +40,7 @@ class TextFormatComboBox(gtk.ComboBox):
 
         out_pref = Config.get(Config.OUTPUT_PREFERENCE)
         index = 0
-        _PluginMgr.textdoc_list.sort()
+        PluginUtils.textdoc_list.sort()
         active_index = 0
         for item in PluginUtils.textdoc_list:
             if tables and item[2] == 0:
@@ -72,7 +72,7 @@ class TextFormatComboBox(gtk.ComboBox):
         return PluginUtils.textdoc_list[self.get_active()][5]
 
     def get_printable(self):
-        return PluginUtil.textdoc_list[self.get_active()][6]
+        return PluginUtils.textdoc_list[self.get_active()][6]
 
     def get_clname(self):
         return PluginUtils.textdoc_list[self.get_active()][7]
