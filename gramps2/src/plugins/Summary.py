@@ -45,7 +45,8 @@ import gtk.glade
 #------------------------------------------------------------------------
 import Utils
 import RelLib
-from PluginUtils import Report, register_report
+from PluginUtils import register_report
+from ReportBase import Report, CATEGORY_VIEW, MODE_GUI
 import DateHandler
 from ManagedWindow import set_titles
 
@@ -169,10 +170,10 @@ class SummaryReport:
 #-------------------------------------------------------------------------
 register_report(
     name = 'summary',
-    category = Report.CATEGORY_VIEW,
+    category = CATEGORY_VIEW,
     report_class = SummaryReport,
     options_class = None,
-    modes = Report.MODE_GUI,
+    modes = MODE_GUI,
     translated_name = _("Summary of the database"),
     status = _("Beta"),
     description= _("Provides a summary of the current database"),

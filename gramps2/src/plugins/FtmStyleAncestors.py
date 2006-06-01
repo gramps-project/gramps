@@ -38,14 +38,16 @@ import BaseDoc
 import RelLib
 import DateHandler
 import const
-from PluginUtils import Report, ReportOptions, ReportUtils, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportUtils, ReportOptions, \
+     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 
 #------------------------------------------------------------------------
 #
 # AncestorReport
 #
 #------------------------------------------------------------------------
-class FtmAncestorReport(Report.Report):
+class FtmAncestorReport(Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -63,7 +65,7 @@ class FtmAncestorReport(Report.Report):
         gen     - Maximum number of generations to include.
         pagebgg - Whether to include page breaks between generations.
         """
-        Report.Report.__init__(self,database,person,options_class)
+        Report.__init__(self,database,person,options_class)
 
         self.map = {}
 
@@ -349,14 +351,14 @@ class FtmAncestorReport(Report.Report):
 # 
 #
 #------------------------------------------------------------------------
-class FtmAncestorOptions(ReportOptions.ReportOptions):
+class FtmAncestorOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
     def enable_options(self):
         # Semi-common options that should be enabled for this report
@@ -414,10 +416,10 @@ class FtmAncestorOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 register_report(
     name = 'ftm_ancestor_report',
-    category = Report.CATEGORY_TEXT,
+    category = CATEGORY_TEXT,
     report_class = FtmAncestorReport,
     options_class = FtmAncestorOptions,
-    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("FTM Style Ancestor Report"),
     status=(_("Beta")),
     description= _("Produces a textual ancestral report similar to Family Tree Maker."),

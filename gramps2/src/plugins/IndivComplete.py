@@ -46,14 +46,16 @@ import Utils
 import BaseDoc
 from Filters import GenericFilter, Rules, CustomFilters
 import DateHandler
-from PluginUtils import Report, ReportOptions, ReportUtils, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportUtils, ReportOptions, \
+     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 
 #------------------------------------------------------------------------
 #
 # IndivComplete
 #
 #------------------------------------------------------------------------
-class IndivCompleteReport(Report.Report):
+class IndivCompleteReport(Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -74,7 +76,7 @@ class IndivCompleteReport(Report.Report):
         cites     - Whether or not to include source informaiton.
         """
 
-        Report.Report.__init__(self,database,person,options_class)
+        Report.__init__(self,database,person,options_class)
 
         self.use_srcs = options_class.handler.options_dict['cites']
 
@@ -509,14 +511,14 @@ class IndivCompleteReport(Report.Report):
 # 
 #
 #------------------------------------------------------------------------
-class IndivCompleteOptions(ReportOptions.ReportOptions):
+class IndivCompleteOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
     def set_new_options(self):
         # Options specific for this report
@@ -635,10 +637,10 @@ class IndivCompleteOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 register_report(
     name = 'indiv_complete',
-    category = Report.CATEGORY_TEXT,
+    category = CATEGORY_TEXT,
     report_class = IndivCompleteReport,
     options_class = IndivCompleteOptions,
-    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("Complete Individual Report"),
     status=(_("Stable")),
     author_name="Donald N. Allingham",

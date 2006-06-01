@@ -40,7 +40,8 @@ import gtk
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Report, ReportOptions, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportOptions, CATEGORY_TEXT, MODE_BKI
 import BaseDoc
 from Selectors import selector_factory
 SelectObject = selector_factory('MediaObject')
@@ -52,7 +53,7 @@ import ImgManip
 # SimpleBookTitle
 #
 #------------------------------------------------------------------------
-class SimpleBookTitle(Report.Report):
+class SimpleBookTitle(Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -74,7 +75,7 @@ class SimpleBookTitle(Report.Report):
         footer    - Footer string.
         """
 
-        Report.Report.__init__(self,database,person,options_class)
+        Report.__init__(self,database,person,options_class)
 
         self.title_string = options_class.handler.options_dict['title']
         self.image_size = options_class.handler.options_dict['imgsize']
@@ -112,14 +113,14 @@ class SimpleBookTitle(Report.Report):
 # 
 #
 #------------------------------------------------------------------------
-class SimpleBookTitleOptions(ReportOptions.ReportOptions):
+class SimpleBookTitleOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
     def set_new_options(self):
         # Options specific for this report
@@ -292,9 +293,9 @@ class SimpleBookTitleOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 register_report(
     name = 'simple_book_title',
-    category = Report.CATEGORY_TEXT,
+    category = CATEGORY_TEXT,
     report_class = SimpleBookTitle,
     options_class = SimpleBookTitleOptions,
-    modes = Report.MODE_BKI,
+    modes = MODE_BKI,
     translated_name = _("Title Page"),
     )

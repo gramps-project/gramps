@@ -69,7 +69,11 @@ import const
 from GrampsCfg import get_researcher
 from Filters import GenericFilter, Rules, CustomFilters
 import Sort
-from PluginUtils import Report, ReportOptions, ReportUtils, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportUtils, ReportOptions, \
+     CATEGORY_WEB, MODE_GUI, MODE_CLI
+from ReportBase._ReportDialog import ReportDialog
+from ReportBase._CommandLineReport import CommandLineReport
 import Errors
 import Utils
 import ImgManip
@@ -1957,7 +1961,7 @@ class IndividualPage(BasePage):
 # WebReport
 #
 #------------------------------------------------------------------------
-class WebReport(Report.Report):
+class WebReport(Report):
     def __init__(self,database,person,options):
         """
         Creates WebReport object that produces the report.
@@ -2296,14 +2300,14 @@ class WebReport(Report.Report):
 # 
 #
 #------------------------------------------------------------------------
-class WebReportOptions(ReportOptions.ReportOptions):
+class WebReportOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,database=None,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
         self.db = database
         
     def set_new_options(self):
@@ -2585,7 +2589,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-class WebReportDialog(Report.ReportDialog):
+class WebReportDialog(ReportDialog):
 
     def __init__(self,database,person):
         self.database = database 
@@ -2593,8 +2597,8 @@ class WebReportDialog(Report.ReportDialog):
         name = "navwebpage"
         translated_name = _("Generate Web Site")
         self.options = WebReportOptions(name,database)
-        self.category = Report.CATEGORY_WEB
-        Report.ReportDialog.__init__(self,database,person,self.options,
+        self.category = CATEGORY_WEB
+        ReportDialog.__init__(self,database,person,self.options,
                                     name,translated_name)
         self.style_name = None
 
@@ -2742,7 +2746,7 @@ def sort_people(db,handle_list):
 #------------------------------------------------------------------------
 def cl_report(database,name,category,options_str_dict):
 
-    clr = Report.CommandLineReport(database,name,category,WebReportOptions,
+    clr = CommandLineReport(database,name,category,WebReportOptions,
                                    options_str_dict)
 
     # Exit here if show option was given
@@ -2841,10 +2845,10 @@ def sort_nameof(person, private):
 #-------------------------------------------------------------------------
 register_report(
     name = 'navwebpage',
-    category = Report.CATEGORY_WEB,
+    category = CATEGORY_WEB,
     report_class = WebReportDialog,
     options_class = cl_report,
-    modes = Report.MODE_GUI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_CLI,
     translated_name = _("Narrative Web Site"),
     status = _("Stable"),
     author_name="Donald N. Allingham",

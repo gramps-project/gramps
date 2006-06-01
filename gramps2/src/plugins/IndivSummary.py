@@ -45,7 +45,9 @@ import gtk
 import RelLib
 import const
 import BaseDoc
-from PluginUtils import Report, ReportOptions, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportUtils, ReportOptions, \
+     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import DateHandler
 
 #------------------------------------------------------------------------
@@ -53,7 +55,7 @@ import DateHandler
 # IndivSummary
 #
 #------------------------------------------------------------------------
-class IndivSummary(Report.Report):
+class IndivSummary(Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -67,7 +69,7 @@ class IndivSummary(Report.Report):
 
         """
 
-        Report.Report.__init__(self,database,person,options_class)
+        Report.__init__(self,database,person,options_class)
 
     def define_table_styles(self):
         tbl = BaseDoc.TableStyle()
@@ -326,14 +328,14 @@ class IndivSummary(Report.Report):
 # 
 #
 #------------------------------------------------------------------------
-class IndivSummaryOptions(ReportOptions.ReportOptions):
+class IndivSummaryOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
     def make_default_style(self,default_style):
         """Make the default output style for the Individual Summary Report."""
@@ -380,10 +382,10 @@ class IndivSummaryOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 register_report(
     name = 'individual_summary',
-    category = Report.CATEGORY_TEXT,
+    category = CATEGORY_TEXT,
     report_class = IndivSummary,
     options_class = IndivSummaryOptions,
-    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("Individual Summary"),
     status=(_("Stable")),
     description=_("Produces a detailed report on the selected person."),

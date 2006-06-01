@@ -44,7 +44,10 @@ import gtk
 #
 #------------------------------------------------------------------------
 import RelLib
-from PluginUtils import Report, ReportOptions, ReportUtils, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportUtils, ReportOptions, \
+     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
+
 import BaseDoc
 import Utils
 import DateHandler
@@ -63,7 +66,7 @@ EMPTY_ENTRY = "_____________"
 #
 #
 #------------------------------------------------------------------------
-class DetAncestorReport(Report.Report):
+class DetAncestorReport(Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -91,7 +94,7 @@ class DetAncestorReport(Report.Report):
         childRef      - Whether to add descendant references in child list.
         addImages     - Whether to include images.
         """
-        Report.Report.__init__(self,database,person,options_class)
+        Report.__init__(self,database,person,options_class)
 
         self.map = {}
 
@@ -579,14 +582,14 @@ class DetAncestorReport(Report.Report):
 #
 #
 #------------------------------------------------------------------------
-class DetAncestorOptions(ReportOptions.ReportOptions):
+class DetAncestorOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
     def set_new_options(self):
         # Options specific for this report
@@ -858,10 +861,10 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 register_report(
     name = 'det_ancestor_report',
-    category = Report.CATEGORY_TEXT,
+    category = CATEGORY_TEXT,
     report_class = DetAncestorReport,
     options_class = DetAncestorOptions,
-    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("Detailed Ancestral Report"),
     status=(_("Beta")),
     description= _("Produces a detailed ancestral report"),

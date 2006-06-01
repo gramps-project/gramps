@@ -41,7 +41,8 @@ import gtk
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Report, ReportOptions, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportOptions, CATEGORY_TEXT, MODE_BKI
 import BaseDoc
 
 #------------------------------------------------------------------------
@@ -49,7 +50,7 @@ import BaseDoc
 # CustomText
 #
 #------------------------------------------------------------------------
-class CustomText(Report.Report):
+class CustomText(Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -68,7 +69,7 @@ class CustomText(Report.Report):
         mid   - Text in the middle.
         bot   - Text on the bottom.
         """
-        Report.Report.__init__(self,database,person,options_class)
+        Report.__init__(self,database,person,options_class)
 
         self.top_text = options_class.handler.options_dict['top']
         self.middle_text = options_class.handler.options_dict['mid']
@@ -92,14 +93,14 @@ class CustomText(Report.Report):
 # 
 #
 #------------------------------------------------------------------------
-class CustomTextOptions(ReportOptions.ReportOptions):
+class CustomTextOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
     def set_new_options(self):
         # Options specific for this report
@@ -210,9 +211,9 @@ class CustomTextOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 register_report(
     name = 'custom_text',
-    category = Report.CATEGORY_TEXT,
+    category = CATEGORY_TEXT,
     report_class = CustomText,
     options_class = CustomTextOptions,
-    modes = Report.MODE_BKI,
+    modes = MODE_BKI,
     translated_name = _("Custom Text"),
     )
