@@ -6,6 +6,7 @@ SUBDIRS = \
 	DataViews \
 	Editors \
 	Filters \
+	FilterEditor \
 	GrampsDb \
 	Merge \
 	DisplayTabs \
