@@ -292,6 +292,7 @@ class MyListSelect(gtk.ComboBox):
         self.data_list = data_list
 
         for item in data_list:
+            print item
             store.append(row=[item[0]])
         self.set_active(0)
         self.show()
@@ -399,13 +400,13 @@ class FilterEditor(ManagedWindow.ManagedWindow):
 
     def add_new_filter(self,obj):
         the_filter = GenericFilter()
-        EditFilter(self.uistate, self.track, the_filter, self.filterdb)
+        EditFilter(self.db, self.uistate, self.track, the_filter, self.filterdb)
 
     def edit_filter(self,obj):
         store,iter = self.clist.get_selected()
         if iter:
             filter = self.clist.get_object(iter)
-            EditFilter(self.uistate, self.track, filter, self.filterdb)
+            EditFilter(self.db, self.uistate, self.track, filter, self.filterdb)
 
     def test_clicked(self,obj):
         store,iter = self.clist.get_selected()
@@ -428,10 +429,11 @@ class FilterEditor(ManagedWindow.ManagedWindow):
 #-------------------------------------------------------------------------
 class EditFilter(ManagedWindow.ManagedWindow):
     
-    def __init__(self, uistate, track, filter, filterdb):
+    def __init__(self, db, uistate, track, filter, filterdb):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
+        self.db = db
         self.filter = filter
         self.filterdb = filterdb
         
@@ -451,10 +453,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
             self.on_edit_clicked)
                                          
         self.fname = self.glade.get_widget('filter_name')
-        self.log_not = self.glade.get_widget('logical_not')
-        self.log_and = self.glade.get_widget('logical_and')
-        self.log_or = self.glade.get_widget('logical_or')
-        self.log_one = self.glade.get_widget('logical_one')
+        self.logical = self.glade.get_widget('rule_apply')
         self.comment = self.glade.get_widget('comment')
         self.ok = self.glade.get_widget('ok')
         self.edit_btn = self.glade.get_widget('edit')
@@ -468,11 +467,11 @@ class EditFilter(ManagedWindow.ManagedWindow):
             'on_edit_clicked' : self.on_edit_clicked,
             })
         if self.filter.get_logical_op() == 'or':
-            self.log_or.set_active(1)
+            self.logical.set_active(1)
         elif self.filter.get_logical_op() == 'one':
-            self.log_one.set_active(1)
+            self.logical.set_active(2)
         else:
-            self.log_and.set_active(1)
+            self.logical.set_active(0)
         if self.filter.get_name():
             self.fname.set_text(self.filter.get_name())
         self.comment.set_text(self.filter.get_comment())
@@ -527,13 +526,15 @@ class EditFilter(ManagedWindow.ManagedWindow):
         self.close()
         
     def on_add_clicked(self,obj):
-        EditRule(self,None,_('Add Rule'))
+        EditRule(self.db, self.uistate, self.track, self.filterdb,
+                 None, _('Add Rule'))
 
     def on_edit_clicked(self,obj):
         store,iter = self.rlist.get_selected()
         if iter:
             d = self.rlist.get_object(iter)
-            EditRule(self,d,_('Edit Rule'))
+            EditRule(self.db, self.uistate, self.track, self.filterdb,
+                     d, _('Edit Rule'))
 
     def on_delete_clicked(self,obj):
         store,iter = self.rlist.get_selected()
@@ -547,39 +548,22 @@ class EditFilter(ManagedWindow.ManagedWindow):
 #
 #
 #-------------------------------------------------------------------------
-class EditRule:
-    def __init__(self,parent,val,label):
+class EditRule(ManagedWindow.ManagedWindow):
+    def __init__(self, db, uistate, track, filterdb, val, label):
+
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, EditRule)
         
-        self.parent = parent
-        self.win_key = self
-        if val:
-            if self.parent.child_windows.has_key(val):
-                self.parent.child_windows[val].present(None)
-                return
-            else:
-                self.win_key = val
-        else:
-            self.win_key = self
-
-        self.db = parent.parent.db
-        self.filterdb = parent.filterdb
-
-        self.pmap = {}
-        self.add_places = []
-
-        for p_id in self.db.get_place_handles():
-            p = self.db.get_place_from_handle(p_id)
-            self.pmap[p.get_title()] = p_id
+        self.db = db
+        self.filterdb = filterdb
 
         self.active_rule = val
         self.rule = gtk.glade.XML(const.rule_glade,'rule_editor',"gramps")
-        self.window = self.rule.get_widget('rule_editor')
+        self.set_window(self.rule.get_widget('rule_editor'),
+                        self.rule.get_widget('title'),label)
         self.window.hide()
         self.valuebox = self.rule.get_widget('valuebox')
         self.rname = self.rule.get_widget('ruletree')
         self.rule_name = self.rule.get_widget('rulename')
-
-        Utils.set_titles(self.window, self.rule.get_widget('title'),label)
 
         self.notebook = gtk.Notebook()
         self.notebook.set_show_tabs(0)
@@ -631,6 +615,7 @@ class EditRule:
                     data =_name2list[v1]
                     t = MySelect(data)
                 elif _menulist.has_key(v1):
+                    print v1
                     data =_menulist[v1]
                     t = MyListSelect(data)
                 elif v == _('Inclusive:'):
@@ -712,44 +697,17 @@ class EditRule:
             'rule_ok_clicked' : self.rule_ok,
             "on_rule_edit_delete_event" : self.on_delete_event,
             "on_help_rule_clicked"  : self.on_help_clicked,
-            'rule_cancel_clicked' : self.close,
+            'rule_cancel_clicked' : self.close_window,
             })
 
-        self.window.set_transient_for(self.parent.window)
-        self.add_itself_to_menu()
-        self.window.show()
+        self.show()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('append-filtref')
 
-    def on_delete_event(self,obj,b):
-        self.remove_itself_from_menu()
-
-    def close(self,obj):
-        self.remove_itself_from_menu()
-        self.window.destroy()
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        if self.sel_class:
-            label = self.sel_class.name
-        else:
-            label = ''
-        if not label.strip():
-            label = _("New Rule")
-        label = "%s: %s" % (_('Rule'),label)
-        self.parent_menu_item = gtk.MenuItem(label)
-        self.parent_menu_item.connect("activate",self.present)
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
+    def close_window(self,obj):
+        self.close()
 
     def on_node_selected(self,obj):
         """Updates the informational display on the right hand side of
