@@ -98,13 +98,13 @@ class GenericFilter:
             while data:
                 person = RelLib.Person()
                 person.unserialize(data[1])
-                if not task(db,person):
+                if task(db,person):
                     final_list.append(data[0])
                 data = cursor.next()
         else:
             for handle in id_list:
                 person = db.get_person_from_handle(handle)
-                if not task(db,person):
+                if task(db,person):
                     final_list.append(handle)
         return final_list
 

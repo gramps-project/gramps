@@ -206,6 +206,7 @@ class PersonView(PageView.PersonNavView):
         from FilterEditor import FilterEditor
 
         FilterEditor(
+            'Person',
             const.custom_filters,
             self.dbstate.db,
             self.uistate)

@@ -193,6 +193,7 @@ src/const.py
 src/Makefile
 src/RelLib/Makefile
 src/Config/Makefile
+src/FilterEditor/Makefile
 src/Mime/Makefile
 src/DisplayTabs/Makefile
 src/DisplayModels/Makefile
