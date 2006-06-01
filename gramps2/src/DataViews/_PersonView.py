@@ -136,6 +136,9 @@ class PersonView(PageView.PersonNavView):
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                         _('_Column Editor'), callback=self.column_editor,)
 
+        self.add_action('FilterEdit', None,
+                        _('Filter Editor'), callback=self.filter_editor,)
+
         self.add_action('CmpMerge', None, _('_Compare and merge'),
                         callback=self.cmp_merge) 
         self.add_action('FastMerge', None, _('_Fast merge'),
@@ -198,6 +201,14 @@ class PersonView(PageView.PersonNavView):
             self.dbstate.db.get_person_column_order(),
             column_names,
             self.set_column_order)
+
+    def filter_editor(self,obj):
+        from FilterEditor import FilterEditor
+
+        FilterEditor(
+            const.custom_filters,
+            self.dbstate.db,
+            self.uistate)
 
     def set_column_order(self, column_list):
         self.dbstate.db.set_person_column_order(column_list)
@@ -307,6 +318,7 @@ class PersonView(PageView.PersonNavView):
               </placeholder>
               <menuitem action="SetActive"/>
               <menuitem action="ColumnEdit"/>
+              <menuitem action="FilterEdit"/>
               <placeholder name="Merge">
                 <menuitem action="CmpMerge"/>
                 <menuitem action="FastMerge"/>
