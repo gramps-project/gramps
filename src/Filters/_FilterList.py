@@ -57,6 +57,8 @@ class FilterList:
             return []
 
     def add(self,namespace,filt):
+        assert(type(namespace)==str or type(namespace)==unicode)
+        
         if namespace not in self.filter_namespaces.keys():
             self.filter_namespaces[namespace] = []
         self.filter_namespaces[namespace].append(filt)

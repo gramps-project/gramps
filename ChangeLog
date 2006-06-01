@@ -1,3 +1,12 @@
+2006-06-01  Don Allingham  <don@gramps-project.org>
+	* configure.in: add FilterEditor subdir
+	* src/DataViews/_PersonView.py: call filter editor with 'Person'
+	argument
+	* src/FilterEditor/_FilterEditor.py: get functional again
+	* src/glade/rule.glade: clean up ui a bit
+	* src/Filters/_FilterList.py: fix logical condition
+	* src/Filters/_GenericFilter.py: fix inversion
+
 2006-05-31  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/vaious: upgrade to new report interface
 

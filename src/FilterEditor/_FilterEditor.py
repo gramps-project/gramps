@@ -282,7 +282,6 @@ class MySelect(gtk.ComboBoxEntry):
 class MyListSelect(gtk.ComboBox):
     
     def __init__(self,data_list):
-        print data_list
         gtk.ComboBox.__init__(self)
         store = gtk.ListStore(str)
         self.set_model(store)
@@ -324,13 +323,14 @@ class MyEntry(gtk.Entry):
 #
 #-------------------------------------------------------------------------
 class FilterEditor(ManagedWindow.ManagedWindow):
-    def __init__(self, filterdb, db, uistate):
+    def __init__(self, space, filterdb, db, uistate):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], FilterEditor)
         
         self.db = db
         self.filterdb = FilterList(filterdb)
         self.filterdb.load()
+        self.space = space
 
         self.editor = gtk.glade.XML(const.rule_glade,'filter_list',"gramps")
         self.filter_list = self.editor.get_widget('filters')
@@ -338,9 +338,13 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         self.delete = self.editor.get_widget('delete')
         self.test = self.editor.get_widget('test')
 
+        self.edit.set_sensitive(False)
+        self.delete.set_sensitive(False)
+        self.test.set_sensitive(False)
+
         self.set_window(self.editor.get_widget('filter_list'),
                         self.editor.get_widget('title'),
-                        _('User defined filters'))
+                        _('%s filters') % _(self.space))
 
         self.editor.signal_autoconnect({
             'on_add_clicked' : self.add_new_filter,
@@ -377,48 +381,50 @@ class FilterEditor(ManagedWindow.ManagedWindow):
     def filter_select_row(self,obj):
         store,iter = self.clist.get_selected()
         if iter:
-            self.edit.set_sensitive(1)
-            self.delete.set_sensitive(1)
-            self.test.set_sensitive(1)
+            self.edit.set_sensitive(True)
+            self.delete.set_sensitive(True)
+            self.test.set_sensitive(True)
         else:
-            self.edit.set_sensitive(0)
-            self.delete.set_sensitive(0)
-            self.test.set_sensitive(0)
+            self.edit.set_sensitive(False)
+            self.delete.set_sensitive(False)
+            self.test.set_sensitive(False)
     
     def close_filter_editor(self,obj):
         self.filterdb.save()
-        self.window.destroy()
         reload_custom_filters()
         reload_system_filters()
         self.close()
         
     def draw_filters(self):
         self.clist.clear()
-        for f in self.filterdb.get_filters():
+        for f in self.filterdb.get_filters(self.space):
             self.clist.add([f.get_name(),f.get_comment()],f)
 
     def add_new_filter(self,obj):
         the_filter = GenericFilter()
-        EditFilter(self.db, self.uistate, self.track, the_filter, self.filterdb)
+        EditFilter(self.space, self.db, self.uistate, self.track,
+                   the_filter, self.filterdb, self.draw_filters)
 
     def edit_filter(self,obj):
         store,iter = self.clist.get_selected()
         if iter:
             filter = self.clist.get_object(iter)
-            EditFilter(self.db, self.uistate, self.track, filter, self.filterdb)
+            EditFilter(self.space, self.db, self.uistate, self.track,
+                       filter, self.filterdb, self.draw_filters)
 
     def test_clicked(self,obj):
         store,iter = self.clist.get_selected()
         if iter:
             filt = self.clist.get_object(iter)
             handle_list = filt.apply(self.db,self.db.get_person_handles(sort_handles=False))
-            ShowResults(self,self.db,handle_list,filt.get_name())
+            ShowResults(self.db, self.uistate, self.track, handle_list,
+                        filt.get_name())
 
     def delete_filter(self,obj):
         store,iter = self.clist.get_selected()
         if iter:
             filter = self.clist.get_object(iter)
-            self.filterdb.get_filters().remove(filter)
+            self.filterdb.get_filters(self.space).remove(filter)
             self.draw_filters()
 
 #-------------------------------------------------------------------------
@@ -428,10 +434,12 @@ class FilterEditor(ManagedWindow.ManagedWindow):
 #-------------------------------------------------------------------------
 class EditFilter(ManagedWindow.ManagedWindow):
     
-    def __init__(self, db, uistate, track, filter, filterdb):
+    def __init__(self, space, db, uistate, track, filter, filterdb, update):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
+        self.space = space
+        self.update = update
         self.db = db
         self.filter = filter
         self.filterdb = filterdb
@@ -465,6 +473,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
             "on_help_filtdef_clicked"  : self.on_help_clicked,
             'on_edit_clicked' : self.on_edit_clicked,
             })
+        
         if self.filter.get_logical_op() == 'or':
             self.logical.set_active(1)
         elif self.filter.get_logical_op() == 'one':
@@ -492,11 +501,11 @@ class EditFilter(ManagedWindow.ManagedWindow):
     def select_row(self,obj):
         store,iter = self.rlist.get_selected()
         if iter:
-            self.edit_btn.set_sensitive(1)
-            self.del_btn.set_sensitive(1)
+            self.edit_btn.set_sensitive(True)
+            self.del_btn.set_sensitive(True)
         else:
-            self.edit_btn.set_sensitive(0)
-            self.del_btn.set_sensitive(0)
+            self.edit_btn.set_sensitive(False)
+            self.del_btn.set_sensitive(False)
 
     def draw_rules(self):
         self.rlist.clear()
@@ -509,31 +518,38 @@ class EditFilter(ManagedWindow.ManagedWindow):
             return
         self.filter.set_name(n)
         self.filter.set_comment(unicode(self.comment.get_text()).strip())
-        for f in self.filterdb.get_filters()[:]:
+        for f in self.filterdb.get_filters(self.space)[:]:
             if n == f.get_name():
-                self.filterdb.get_filters().remove(f)
+                self.filterdb.get_filters(self.space).remove(f)
                 break
-        if self.log_or.get_active():
+        val = self.logical.get_active() 
+        if val == 1:
             op = 'or'
-        elif self.log_one.get_active():
+        elif val == 2:
             op = 'one'
         else:
             op = 'and'
         self.filter.set_logical_op(op)
-        self.filterdb.add(self.filter)
-        self.parent.draw_filters()
+        self.filterdb.add(self.space,self.filter)
+        self.update()
         self.close()
         
     def on_add_clicked(self,obj):
         EditRule(self.db, self.uistate, self.track, self.filterdb,
-                 None, _('Add Rule'))
+                 None, _('Add Rule'), self.update_rule)
 
     def on_edit_clicked(self,obj):
         store,iter = self.rlist.get_selected()
         if iter:
             d = self.rlist.get_object(iter)
             EditRule(self.db, self.uistate, self.track, self.filterdb,
-                     d, _('Edit Rule'))
+                     d, _('Edit Rule'), self.update_rule)
+
+    def update_rule(self, old_rule, new_rule):
+        if old_rule:
+            self.filter.delete_rule(old_rule)
+        self.filter.add_rule(new_rule)
+        self.draw_rules()
 
     def on_delete_clicked(self,obj):
         store,iter = self.rlist.get_selected()
@@ -548,12 +564,13 @@ class EditFilter(ManagedWindow.ManagedWindow):
 #
 #-------------------------------------------------------------------------
 class EditRule(ManagedWindow.ManagedWindow):
-    def __init__(self, db, uistate, track, filterdb, val, label):
+    def __init__(self, db, uistate, track, filterdb, val, label, update):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, EditRule)
         
         self.db = db
         self.filterdb = filterdb
+        self.update_rule = update
 
         self.active_rule = val
         self.rule = gtk.glade.XML(const.rule_glade,'rule_editor',"gramps")
@@ -609,7 +626,7 @@ class EditRule(ManagedWindow.ManagedWindow):
                 elif v == _('Source ID:'):
                     t = MySource(self.db)
                 elif v == _('Filter name:'):
-                    t = MyFilters(self.filterdb.get_filters())
+                    t = MyFilters(self.filterdb.get_filters(self.space))
                 elif _name2list.has_key(v1):
                     data =_name2list[v1]
                     t = MySelect(data.values())
@@ -737,14 +754,10 @@ class EditRule(ManagedWindow.ManagedWindow):
             value_list = []
             for x in tlist:
                 value_list.append(unicode(x.get_text()))
-            store,iter = self.parent.rlist.get_selected()
             new_rule = class_obj(value_list)
-            if self.active_rule:
-                rule = self.parent.rlist.get_object(iter)
-                self.parent.filter.delete_rule(rule)
-            self.parent.filter.add_rule(new_rule)
-            self.parent.draw_rules()
-            self.window.destroy()
+
+            self.update_rule(self.active_rule, new_rule)
+            self.close()
         except KeyError:
             pass
                                
@@ -753,21 +766,23 @@ class EditRule(ManagedWindow.ManagedWindow):
 #
 #
 #-------------------------------------------------------------------------
-class ShowResults:
-    def __init__(self,parent,db,handle_list,filtname):
-        self.parent = parent
-        self.win_key = self
+class ShowResults(ManagedWindow.ManagedWindow):
+    def __init__(self, db, uistate, track, handle_list, filtname):
+
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+
         self.filtname = filtname
         self.glade = gtk.glade.XML(const.rule_glade,'test',"gramps")
-        self.window = self.glade.get_widget('test')
+
+        self.set_window(
+            self.glade.get_widget('test'),
+            self.glade.get_widget('title'),
+            _('Filter Test'))
+
         text = self.glade.get_widget('text')
 
-        Utils.set_titles(self.window, self.glade.get_widget('title'),
-                         _('Filter Test'))
-        
         self.glade.signal_autoconnect({
-            'on_close_clicked' : self.close,
-            "on_test_delete_event" : self.on_delete_event,
+            'on_close_clicked' : self.close_window,
             })
 
         n = []
@@ -779,32 +794,10 @@ class ShowResults:
         n.sort ()
         text.get_buffer().set_text(''.join(n))
 
-        self.window.set_transient_for(self.parent.window)
-        self.add_itself_to_menu()
-        self.window.show()
+        self.show()
             
-    def on_delete_event(self,obj,b):
-        self.remove_itself_from_menu()
-
-    def close(self,obj):
-        self.remove_itself_from_menu()
-        self.window.destroy()
-
-    def add_itself_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        label = self.filtname
-        label = "%s: %s" % (_('Test'),label)
-        self.parent_menu_item = gtk.MenuItem(label)
-        self.parent_menu_item.connect("activate",self.present)
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-
-    def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.parent_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
+    def close_window(self,obj):
+        self.close()
 
 #-------------------------------------------------------------------------
 #
