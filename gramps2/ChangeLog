@@ -1,7 +1,7 @@
 2006-05-31  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py: call FilterEditor
 	* src/FilterEditor/__init__.py: added
-	* src/FilterEditor/_FilterEditor.py: moved from plugins
+	* src/FilterEditor/_FilterEditor.py: moved from plugins, renamed
 	* src/glade/rule.glade: filter editor changes
 	* src/Makefile.am: change subdirs
 	* src/FilterEditor/Makefile.am: added
