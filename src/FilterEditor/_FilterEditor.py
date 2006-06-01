@@ -263,10 +263,9 @@ class MyID(gtk.HBox):
 #-------------------------------------------------------------------------
 class MySelect(gtk.ComboBoxEntry):
     
-    def __init__(self,transtable):
+    def __init__(self, values):
         gtk.ComboBoxEntry.__init__(self)
-        self.transtable = transtable
-        AutoComp.fill_combo(self,transtable.get_values())
+        AutoComp.fill_combo(self, values)
         self.show()
         
     def get_text(self):
@@ -283,6 +282,7 @@ class MySelect(gtk.ComboBoxEntry):
 class MyListSelect(gtk.ComboBox):
     
     def __init__(self,data_list):
+        print data_list
         gtk.ComboBox.__init__(self)
         store = gtk.ListStore(str)
         self.set_model(store)
@@ -292,8 +292,7 @@ class MyListSelect(gtk.ComboBox):
         self.data_list = data_list
 
         for item in data_list:
-            print item
-            store.append(row=[item[0]])
+            store.append(row=[item])
         self.set_active(0)
         self.show()
         
@@ -602,7 +601,7 @@ class EditRule(ManagedWindow.ManagedWindow):
                 l.set_alignment(1,0.5)
                 l.show()
                 if v == _('Place:'):
-                    t = MyPlaces(self.pmap.keys())
+                    t = MyPlaces([])
                 elif v == _('Number of generations:'):
                     t = MyInteger(1,32)
                 elif v == _('ID:'):
@@ -613,11 +612,10 @@ class EditRule(ManagedWindow.ManagedWindow):
                     t = MyFilters(self.filterdb.get_filters())
                 elif _name2list.has_key(v1):
                     data =_name2list[v1]
-                    t = MySelect(data)
+                    t = MySelect(data.values())
                 elif _menulist.has_key(v1):
-                    print v1
                     data =_menulist[v1]
-                    t = MyListSelect(data)
+                    t = MyListSelect(data.values())
                 elif v == _('Inclusive:'):
                     t = MyBoolean(_('Include original person'))
                 elif v == _('Case sensitive:'):
@@ -695,7 +693,6 @@ class EditRule(ManagedWindow.ManagedWindow):
         self.selection.connect('changed', self.on_node_selected)
         self.rule.signal_autoconnect({
             'rule_ok_clicked' : self.rule_ok,
-            "on_rule_edit_delete_event" : self.on_delete_event,
             "on_help_rule_clicked"  : self.on_help_clicked,
             'rule_cancel_clicked' : self.close_window,
             })
