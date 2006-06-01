@@ -37,7 +37,8 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from PluginUtils import Tool, Report, cl_list, cli_tool_list, register_tool
+from PluginUtils import Tool, cl_list, cli_tool_list, register_tool
+from ReportBase import Report, CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB
 import Utils
 
 #-------------------------------------------------------------------------
@@ -102,9 +103,9 @@ class CmdRef(Tool.Tool):
 
         for item in cl_list:
             category = item[1]
-            if category in (Report.CATEGORY_BOOK,
-                            Report.CATEGORY_CODE,
-                            Report.CATEGORY_WEB):
+            if category in (CATEGORY_BOOK,
+                            CATEGORY_CODE,
+                            CATEGORY_WEB):
                 self.write_ref(f,item,level+2,id_counter,category)
             else:
                 self.write_ref(f,item,level+2,id_counter,None)
@@ -157,13 +158,13 @@ class CmdRef(Tool.Tool):
         # Instantiate options class
         if category == None:
             oclass = item[3]( item[0])
-        elif category == Report.CATEGORY_BOOK:
+        elif category == CATEGORY_BOOK:
             import BookReport
             oclass = BookReport.BookOptions(item[0])
-        elif category == Report.CATEGORY_CODE:
+        elif category == CATEGORY_CODE:
             import GraphViz
             oclass = GraphViz.GraphVizOptions(item[0])
-        elif category == Report.CATEGORY_WEB:
+        elif category == CATEGORY_WEB:
             if item[0] == "webpage":
                 import WebPage
                 oclass = WebPage.WebReportOptions(item[0])

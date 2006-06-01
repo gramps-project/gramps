@@ -40,7 +40,9 @@ import gtk
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from PluginUtils import Report, ReportOptions, ReportUtils, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportUtils, ReportOptions, \
+     CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 from SubstKeywords import SubstKeywords
 pt2cm = ReportUtils.pt2cm
 
@@ -49,7 +51,7 @@ pt2cm = ReportUtils.pt2cm
 # FanChart
 #
 #------------------------------------------------------------------------
-class FanChart(Report.Report):
+class FanChart(Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -66,7 +68,7 @@ class FanChart(Report.Report):
         
         display   - 
         """
-        Report.Report.__init__(self,database,person,options_class)
+        Report.__init__(self,database,person,options_class)
 
         self.height = 0
         self.lines = 0
@@ -278,14 +280,14 @@ class FanChart(Report.Report):
 # 
 #
 #------------------------------------------------------------------------
-class FanChartOptions(ReportOptions.ReportOptions):
+class FanChartOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
 
     def make_default_style(self,default_style):
@@ -316,10 +318,10 @@ class FanChartOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 register_report(
     name = 'fan_chart',
-    category = Report.CATEGORY_DRAW,
+    category = CATEGORY_DRAW,
     report_class = FanChart,
     options_class = FanChartOptions,
-    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("Fan Chart"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

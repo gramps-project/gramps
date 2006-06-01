@@ -41,7 +41,10 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Report, ReportOptions, ReportUtils, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportUtils, ReportOptions, \
+     CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
+
 pt2cm = ReportUtils.pt2cm
 import BaseDoc
 from SubstKeywords import SubstKeywords
@@ -127,7 +130,7 @@ class DescendLine(GraphLayout):
 # DescendantGraph
 #
 #------------------------------------------------------------------------
-class DescendantGraph(Report.Report):
+class DescendantGraph(Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -144,7 +147,7 @@ class DescendantGraph(Report.Report):
         
         dispf     - Display format for the output box.
         """
-        Report.Report.__init__(self,database,person,options_class)
+        Report.__init__(self,database,person,options_class)
 
         self.display = options_class.handler.options_dict['dispf']
 
@@ -359,14 +362,14 @@ class DescendantGraph(Report.Report):
 # 
 #
 #------------------------------------------------------------------------
-class DescendantGraphOptions(ReportOptions.ReportOptions):
+class DescendantGraphOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
     def enable_options(self):
         # Semi-common options that should be enabled for this report
@@ -403,10 +406,10 @@ class DescendantGraphOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 register_report(
     name = 'descendant_graph',
-    category = Report.CATEGORY_DRAW,
+    category = CATEGORY_DRAW,
     report_class = DescendantGraph,
     options_class = DescendantGraphOptions,
-    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("Descendant Graph"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

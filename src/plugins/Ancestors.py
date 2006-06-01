@@ -42,8 +42,10 @@ import gtk
 #
 #------------------------------------------------------------------------
 import const
-from PluginUtils import Report, ReportOptions, ReportUtils, \
-     register_report, relationship_class
+from PluginUtils import register_report , relationship_class
+from ReportBase import Report, ReportUtils, ReportOptions, \
+     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
+
 import BaseDoc
 import RelLib
 from DateHandler import displayer as _dd
@@ -54,7 +56,7 @@ from NameDisplay import displayer as _nd
 # ComprehensiveAncestorsReport
 #
 #------------------------------------------------------------------------
-class ComprehensiveAncestorsReport (Report.Report):
+class ComprehensiveAncestorsReport (Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -74,7 +76,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         cites     - Whether or not to include source informaiton.
         """
 
-        Report.Report.__init__(self,database,person,options_class)
+        Report.__init__(self,database,person,options_class)
 
         self.map = {}
 
@@ -854,14 +856,14 @@ class ComprehensiveAncestorsReport (Report.Report):
 # 
 #
 #------------------------------------------------------------------------
-class ComprehensiveAncestorsOptions(ReportOptions.ReportOptions):
+class ComprehensiveAncestorsOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
     def set_new_options(self):
         # Options specific for this report
@@ -959,10 +961,10 @@ class ComprehensiveAncestorsOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 register_report(
     name = 'ancestors_report',
-    category = Report.CATEGORY_TEXT,
+    category = CATEGORY_TEXT,
     report_class = ComprehensiveAncestorsReport,
     options_class = ComprehensiveAncestorsOptions,
-    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("Comprehensive Ancestors Report"),
     status = _("Beta"),
     description= _("Produces a detailed ancestral report."),

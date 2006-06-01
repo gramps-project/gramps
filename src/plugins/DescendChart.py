@@ -43,7 +43,9 @@ import gtk
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from PluginUtils import Report, ReportOptions, ReportUtils, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportOptions, ReportUtils, \
+     CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 pt2cm = ReportUtils.pt2cm
 cm2pt = ReportUtils.cm2pt
 from SubstKeywords import SubstKeywords
@@ -103,7 +105,7 @@ class GenChart:
 # DescendChart
 #
 #------------------------------------------------------------------------
-class DescendChart(Report.Report):
+class DescendChart(Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -123,7 +125,7 @@ class DescendChart(Report.Report):
         title     - Title of the report displayed on top.
         maxgen    - Maximum number of generations to include.
         """
-        Report.Report.__init__(self,database,person,options_class)
+        Report.__init__(self,database,person,options_class)
 
         (self.max_generations,self.pgbrk) \
                         = options_class.get_report_generations()
@@ -372,14 +374,14 @@ class DescendChart(Report.Report):
 # 
 #
 #------------------------------------------------------------------------
-class DescendChartOptions(ReportOptions.ReportOptions):
+class DescendChartOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
     def set_new_options(self):
         # Options specific for this report
@@ -465,10 +467,10 @@ class DescendChartOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 register_report(
     name = 'descend_chart2',
-    category = Report.CATEGORY_DRAW,
+    category = CATEGORY_DRAW,
     report_class = DescendChart,
     options_class = DescendChartOptions,
-    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("Descendant Chart"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

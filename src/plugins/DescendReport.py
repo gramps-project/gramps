@@ -35,7 +35,9 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Report, ReportOptions, ReportUtils, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportUtils, ReportOptions, \
+     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
 import Errors
 import Sort
@@ -58,7 +60,7 @@ _DIED = _('d.')
 # DescendantReport
 #
 #------------------------------------------------------------------------
-class DescendantReport(Report.Report):
+class DescendantReport(Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -78,7 +80,7 @@ class DescendantReport(Report.Report):
 
         """
 
-        Report.Report.__init__(self,database,person,options_class)
+        Report.__init__(self,database,person,options_class)
 
         (self.max_generations,self.pgbrk) \
                         = options_class.get_report_generations()
@@ -186,14 +188,14 @@ class DescendantReport(Report.Report):
 # 
 #
 #------------------------------------------------------------------------
-class DescendantOptions(ReportOptions.ReportOptions):
+class DescendantOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
     def enable_options(self):
         # Semi-common options that should be enabled for this report
@@ -247,10 +249,10 @@ class DescendantOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 register_report(
     name = 'descend_report',
-    category = Report.CATEGORY_TEXT,
+    category = CATEGORY_TEXT,
     report_class = DescendantReport,
     options_class = DescendantOptions,
-    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("Descendant Report"),
     status=(_("Stable")),
     description=_("Generates a list of descendants of the active person"),

@@ -53,7 +53,9 @@ import gtk
 from RelLib import Person, FamilyRelType, EventType
 # gender and report type names
 import BaseDoc
-from PluginUtils import Report, ReportOptions, ReportUtils, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportUtils, ReportOptions, \
+     CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 from Filters import GenericFilter, Rules, CustomFilters
 import DateHandler
 from Utils import ProgressMeter
@@ -468,7 +470,7 @@ _Extract = Extract()
 # Statistics report
 #
 #------------------------------------------------------------------------
-class StatisticsChart(Report.Report):
+class StatisticsChart(Report):
 
     def __init__(self, database, person, options_class):
         """
@@ -483,7 +485,7 @@ class StatisticsChart(Report.Report):
 
         To see what the options are, check the options help in the options class.
         """
-        Report.Report.__init__(self,database,person,options_class)
+        Report.__init__(self,database,person,options_class)
     
         filter_num = options_class.get_filter_number()
         filters = options_class.get_report_filters(person)
@@ -756,12 +758,12 @@ class StatisticsChart(Report.Report):
 # Statistics report options
 #
 #------------------------------------------------------------------------
-class StatisticsChartOptions(ReportOptions.ReportOptions):
+class StatisticsChartOptions(ReportOptions):
     """
     Defines options and provides their handling interface.
     """
     def __init__(self,name, person_id=None):
-        ReportOptions.ReportOptions.__init__(self, name, person_id)
+        ReportOptions.__init__(self, name, person_id)
 
     def set_new_options(self):
     # Options specific for this report
@@ -971,10 +973,10 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 register_report(
     name = 'statistics_chart',
-    category = Report.CATEGORY_DRAW,
+    category = CATEGORY_DRAW,
     report_class = StatisticsChart,
     options_class = StatisticsChartOptions,
-    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("Statistics Chart"),
     status = (_("Stable")),
     author_name="Eero Tamminen",

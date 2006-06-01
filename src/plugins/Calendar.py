@@ -37,7 +37,9 @@ import locale
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from PluginUtils import Report, ReportOptions, ReportUtils, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportUtils, ReportOptions, \
+     CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 pt2cm = ReportUtils.pt2cm
 from Filters import CustomFilters, GenericFilter, ParamFilter, Rules
 import GrampsLocale
@@ -88,7 +90,7 @@ def easter(year):
 # Calendar
 #
 #------------------------------------------------------------------------
-class Calendar(Report.Report):
+class Calendar(Report):
     """
     Creates the Calendar object that produces the report.
     """
@@ -551,7 +553,7 @@ class FilterWidget(Widget):
 # it would be ok to put there, because self.widgets would be empty.
 # -----------------------------------------------------------------
 
-class NewReportOptions(ReportOptions.ReportOptions):
+class NewReportOptions(ReportOptions):
     """
     Defines options and provides code to handling the interface.
     This is free of any graphics specifics.
@@ -910,10 +912,10 @@ class Holidays:
 #------------------------------------------------------------------------
 register_report(
     name = 'calendar',
-    category = Report.CATEGORY_DRAW,
+    category = CATEGORY_DRAW,
     report_class = Calendar,
     options_class = CalendarOptions,
-    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("Calendar"),
     status = _("Experimental"),
     author_name = "Douglas S. Blank",

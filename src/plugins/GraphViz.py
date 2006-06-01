@@ -52,7 +52,11 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Report, ReportOptions, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportUtils, ReportOptions, \
+     CATEGORY_CODE, CATEGORY_DRAW, MODE_GUI, MODE_CLI
+from ReportBase._ReportDialog import ReportDialog
+from ReportBase._CommandLineReport import CommandLineReport
 from Filters import GenericFilter, CustomFilters, Rules
 import RelLib
 import DateHandler
@@ -545,14 +549,14 @@ just use iconv:
 # Options class 
 #
 #------------------------------------------------------------------------
-class GraphVizOptions(ReportOptions.ReportOptions):
+class GraphVizOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
     def set_new_options(self):
         # Options specific for this report
@@ -922,7 +926,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
 # Dialog class
 #
 #------------------------------------------------------------------------
-class GraphVizDialog(Report.ReportDialog):
+class GraphVizDialog(ReportDialog):
 
     def __init__(self,database,person):
         self.database = database 
@@ -930,8 +934,8 @@ class GraphVizDialog(Report.ReportDialog):
         name = "rel_graph"
         translated_name = _("Relationship Graph")
         self.options_class = GraphVizOptions(name)
-        self.category = Report.CATEGORY_CODE
-        Report.ReportDialog.__init__(self,database,person,self.options_class,
+        self.category = CATEGORY_CODE
+        ReportDialog.__init__(self,database,person,self.options_class,
                                     name,translated_name)
         response = self.window.run()
         if response == gtk.RESPONSE_OK:
@@ -1102,7 +1106,7 @@ class EmptyDoc:
 #------------------------------------------------------------------------
 def cl_report(database,name,category,options_str_dict):
 
-    clr = Report.CommandLineReport(database,name,category,GraphVizOptions,
+    clr = CommandLineReport(database,name,category,GraphVizOptions,
                                    options_str_dict)
 
     # Exit here if show option was given
@@ -1116,7 +1120,7 @@ def cl_report(database,name,category,options_str_dict):
 #
 #
 #------------------------------------------------------------------------
-class GraphVizGraphics(Report.Report):
+class GraphVizGraphics(Report):
     def __init__(self,database,person,options_class):
         self.database = database
         self.start_person = person
@@ -1202,10 +1206,10 @@ def get_description_graphics():
 #------------------------------------------------------------------------
 register_report(
     name = 'rel_graph',
-    category = Report.CATEGORY_CODE,
+    category = CATEGORY_CODE,
     report_class = GraphVizDialog,
     options_class = cl_report,
-    modes = Report.MODE_GUI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_CLI,
     translated_name = _("Relationship Graph"),
     status = _("Stable"),
     description= get_description(),
@@ -1216,10 +1220,10 @@ register_report(
 if _dot_found:
     register_report(
         name = 'rel_graph2',
-        category = Report.CATEGORY_DRAW,
+        category = CATEGORY_DRAW,
         report_class = GraphVizGraphics,
         options_class = GraphVizOptions,
-        modes = Report.MODE_GUI | Report.MODE_CLI,
+        modes = MODE_GUI | MODE_CLI,
         translated_name = _("Relationship Graph"),
         status = _("Stable"),
         description= get_description_graphics(),

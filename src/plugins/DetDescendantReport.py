@@ -46,7 +46,9 @@ import gtk
 import RelLib
 import Utils
 import Errors
-from PluginUtils import Report, ReportOptions, ReportUtils, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportUtils, ReportOptions, \
+     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
 import const
 import DateHandler
@@ -66,7 +68,7 @@ HENRY = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 #
 #
 #------------------------------------------------------------------------
-class DetDescendantReport(Report.Report):
+class DetDescendantReport(Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -95,7 +97,7 @@ class DetDescendantReport(Report.Report):
         childRef      - Whether to add descendant references in child list.
         addImages     - Whether to include images.
         """
-        Report.Report.__init__(self,database,person,options_class)
+        Report.__init__(self,database,person,options_class)
 
         self.map = {}
 
@@ -611,14 +613,14 @@ class DetDescendantReport(Report.Report):
 #
 #
 #------------------------------------------------------------------------
-class DetDescendantOptions(ReportOptions.ReportOptions):
+class DetDescendantOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
     def set_new_options(self):
         # Options specific for this report
@@ -898,10 +900,10 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 register_report(
     name = 'det_descendant_report',
-    category = Report.CATEGORY_TEXT,
+    category = CATEGORY_TEXT,
     report_class = DetDescendantReport,
     options_class = DetDescendantOptions,
-    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("Detailed Descendant Report"),
     status=(_("Beta")),
     description= _("Produces a detailed descendant report"),

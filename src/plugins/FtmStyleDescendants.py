@@ -37,7 +37,9 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Report, ReportOptions, ReportUtils, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportUtils, ReportOptions, \
+     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
 import RelLib
 import DateHandler
@@ -48,7 +50,7 @@ import const
 # DescendantReport
 #
 #------------------------------------------------------------------------
-class FtmDescendantReport(Report.Report):
+class FtmDescendantReport(Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -67,7 +69,7 @@ class FtmDescendantReport(Report.Report):
         pagebbg   - Whether to include page breaks between generations.
         """
 
-        Report.Report.__init__(self,database,person,options_class)
+        Report.__init__(self,database,person,options_class)
 
         self.anc_map = {}
         self.gen_map = {}
@@ -492,14 +494,14 @@ class FtmDescendantReport(Report.Report):
 # 
 #
 #------------------------------------------------------------------------
-class FtmDescendantOptions(ReportOptions.ReportOptions):
+class FtmDescendantOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
     def enable_options(self):
         # Semi-common options that should be enabled for this report
@@ -562,10 +564,10 @@ class FtmDescendantOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 register_report(
     name = 'ftm_descendant_report',
-    category = Report.CATEGORY_TEXT,
+    category = CATEGORY_TEXT,
     report_class = FtmDescendantReport,
     options_class = FtmDescendantOptions,
-    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("FTM Style Descendant Report"),
     status = _("Beta"),
     description= _("Produces a textual descendant report similar to Family Tree Maker."),

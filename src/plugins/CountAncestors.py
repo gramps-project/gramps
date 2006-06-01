@@ -46,7 +46,8 @@ import gtk.glade
 #
 #------------------------------------------------------------------------
 import Utils
-from PluginUtils import Report, register_report
+from PluginUtils import register_report
+from ReportBase import Report, CATEGORY_VIEW, MODE_GUI
 from ManagedWindow import set_titles
 
 #------------------------------------------------------------------------
@@ -126,10 +127,10 @@ class CountAncestors:
 #-------------------------------------------------------------------------
 register_report(
     name = 'count_ancestors',
-    category = Report.CATEGORY_VIEW,
+    category = CATEGORY_VIEW,
     report_class = CountAncestors,
     options_class = None,
-    modes = Report.MODE_GUI,
+    modes = MODE_GUI,
     translated_name = _("Number of ancestors"),
     status = _("Beta"),
     description= _("Counts number of ancestors of selected person")

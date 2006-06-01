@@ -42,7 +42,10 @@ import gtk
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from PluginUtils import Report, ReportOptions, ReportUtils, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportUtils, ReportOptions, \
+     CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
+
 from SubstKeywords import SubstKeywords
 pt2cm = ReportUtils.pt2cm
 
@@ -59,7 +62,7 @@ _DIED = _('d.')
 # AncestorChart
 #
 #------------------------------------------------------------------------
-class AncestorChart(Report.Report):
+class AncestorChart(Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -78,7 +81,7 @@ class AncestorChart(Report.Report):
         pagebbg   - Whether to include page breaks between generations.
         dispf     - Display format for the output box.
         """
-        Report.Report.__init__(self,database,person,options_class)
+        Report.__init__(self,database,person,options_class)
 
         (self.max_generations,self.pgbrk) \
                         = options_class.get_report_generations()
@@ -216,14 +219,14 @@ class AncestorChart(Report.Report):
 # 
 #
 #------------------------------------------------------------------------
-class AncestorChartOptions(ReportOptions.ReportOptions):
+class AncestorChartOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
     def enable_options(self):
         # Semi-common options that should be enabled for this report
@@ -262,10 +265,10 @@ class AncestorChartOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 register_report(
     name = 'ancestor_chart',
-    category = Report.CATEGORY_DRAW,
+    category = CATEGORY_DRAW,
     report_class = AncestorChart,
     options_class = AncestorChartOptions,
-    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("Ancestor Chart"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

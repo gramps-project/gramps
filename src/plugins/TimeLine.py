@@ -43,7 +43,9 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Report, ReportOptions, ReportUtils, register_report
+from PluginUtils import register_report
+from ReportBase import Report, ReportUtils, ReportOptions, \
+     CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 pt2cm = ReportUtils.pt2cm
 import BaseDoc
 from Filters import GenericFilter, Rules, CustomFilters
@@ -55,7 +57,7 @@ from QuestionDialog import ErrorDialog
 # TimeLine
 #
 #------------------------------------------------------------------------
-class TimeLine(Report.Report):
+class TimeLine(Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -80,7 +82,7 @@ class TimeLine(Report.Report):
                     returning the list of sort functions.
         """
 
-        Report.Report.__init__(self,database,person,options_class)
+        Report.__init__(self,database,person,options_class)
 
         filter_num = options_class.get_filter_number()
         filters = options_class.get_report_filters(person)
@@ -347,14 +349,14 @@ class TimeLine(Report.Report):
 # 
 #
 #------------------------------------------------------------------------
-class TimeLineOptions(ReportOptions.ReportOptions):
+class TimeLineOptions(ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.ReportOptions.__init__(self,name,person_id)
+        ReportOptions.__init__(self,name,person_id)
 
     def set_new_options(self):
         # Options specific for this report
@@ -476,10 +478,10 @@ class TimeLineOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 register_report(
     name = 'timeline',
-    category = Report.CATEGORY_DRAW,
+    category = CATEGORY_DRAW,
     report_class = TimeLine,
     options_class = TimeLineOptions,
-    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("Timeline Graph"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
