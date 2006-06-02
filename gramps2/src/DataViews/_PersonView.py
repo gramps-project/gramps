@@ -208,7 +208,7 @@ class PersonView(PageView.PersonNavView):
         FilterEditor(
             'Person',
             const.custom_filters,
-            self.dbstate.db,
+            self.dbstate,
             self.uistate)
 
     def set_column_order(self, column_list):

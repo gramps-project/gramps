@@ -1,3 +1,11 @@
+2006-06-01  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: FilterEditor call sequence
+	* src/FilterEditor/_EditFilter.py: added
+	* src/FilterEditor/_FilterEditor.py: Break out other classes
+	* src/FilterEditor/_EditRule.py: added
+	* src/FilterEditor/_ShowResults.py: added
+	* src/FilterEditor/Makefile.am: Add new files
+
 2006-06-01  Alex Roitman  <shura@gramps-project.org>
 	* src/ReportBase/_ReportDialog.py (report): Use new report modules
 	for oddball reports.

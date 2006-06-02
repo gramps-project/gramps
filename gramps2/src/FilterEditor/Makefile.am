@@ -4,7 +4,10 @@ pkgdatadir = $(datadir)/@PACKAGE@/FilterEditor
 
 pkgdata_PYTHON = \
 	__init__.py \
-	_FilterEditor.py
+	_FilterEditor.py \
+	_EditFilter.py \
+	_EditRule.py \
+	_ShowResults.py
 
 pkgpyexecdir = @pkgpyexecdir@/FilterEditor
 pkgpythondir = @pkgpythondir@/FilterEditor
