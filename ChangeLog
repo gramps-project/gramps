@@ -1,4 +1,10 @@
 2006-06-01  Alex Roitman  <shura@gramps-project.org>
+	* src/ReportBase/_ReportDialog.py (report): Use new report modules
+	for oddball reports.
+	* src/plugins/GraphViz.py: Use new report modules.
+	* src/plugins/NarrativeWeb.py: Use new report modules.
+	* src/plugins/CountAncestors.py: Use wm and new report modules.
+	* src/plugins/Summary.py: Use wm and new report modules.
 	* src/ReportBase/_BareReportDialog.py: import FilterComboBox.
 
 2006-06-01  Don Allingham  <don@gramps-project.org>

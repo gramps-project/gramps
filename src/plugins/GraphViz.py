@@ -928,22 +928,22 @@ class GraphVizOptions(ReportOptions):
 #------------------------------------------------------------------------
 class GraphVizDialog(ReportDialog):
 
-    def __init__(self,database,person):
-        self.database = database 
+    def __init__(self,dbstate,uistate,person):
+        self.database = dbstate.db
         self.person = person
         name = "rel_graph"
         translated_name = _("Relationship Graph")
         self.options_class = GraphVizOptions(name)
         self.category = CATEGORY_CODE
-        ReportDialog.__init__(self,database,person,self.options_class,
-                                    name,translated_name)
+        ReportDialog.__init__(self,dbstate,uistate,person,self.options_class,
+                              name,translated_name)
         response = self.window.run()
         if response == gtk.RESPONSE_OK:
             try:
                 self.make_report()
             except (IOError,OSError),msg:
                 ErrorDialog(str(msg))
-        self.window.destroy()
+        self.close()
 
     def make_doc_menu(self,active=None):
         """Build a one item menu of document types that are

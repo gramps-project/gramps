@@ -2591,21 +2591,21 @@ class WebReportOptions(ReportOptions):
 #------------------------------------------------------------------------
 class WebReportDialog(ReportDialog):
 
-    def __init__(self,database,person):
-        self.database = database 
+    def __init__(self,dbstate,uistate,person):
+        self.database = dbstate.db
         self.person = person
         name = "navwebpage"
         translated_name = _("Generate Web Site")
-        self.options = WebReportOptions(name,database)
+        self.options = WebReportOptions(name,self.database)
         self.category = CATEGORY_WEB
-        ReportDialog.__init__(self,database,person,self.options,
-                                    name,translated_name)
+        ReportDialog.__init__(self,dbstate,uistate,person,self.options,
+                              name,translated_name)
         self.style_name = None
 
         response = self.window.run()
         if response == gtk.RESPONSE_OK:
             self.make_report()
-        self.window.destroy()
+        self.close()
 
     def setup_style_frame(self):
         """The style frame is not used in this dialog."""
@@ -2747,7 +2747,7 @@ def sort_people(db,handle_list):
 def cl_report(database,name,category,options_str_dict):
 
     clr = CommandLineReport(database,name,category,WebReportOptions,
-                                   options_str_dict)
+                            options_str_dict)
 
     # Exit here if show option was given
     if clr.show:
