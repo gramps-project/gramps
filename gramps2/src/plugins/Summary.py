@@ -43,12 +43,11 @@ import gtk.glade
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import Utils
 import RelLib
 from PluginUtils import register_report
-from ReportBase import Report, CATEGORY_VIEW, MODE_GUI
+from ReportBase import CATEGORY_VIEW, MODE_GUI
 import DateHandler
-from ManagedWindow import set_titles
+import ManagedWindow
 
 #------------------------------------------------------------------------
 #
@@ -141,8 +140,12 @@ def build_report(database,person):
 # Output report in a window
 #
 #------------------------------------------------------------------------
-class SummaryReport:
-    def __init__(self,database,person):
+class SummaryReport(ManagedWindow.ManagedWindow):
+    def __init__(self,dbstate,uistate,person):
+        self.title = _('Database summary')
+        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+
+        database = dbstate.db
         text = build_report(database,person)
     
         base = os.path.dirname(__file__)
@@ -150,19 +153,18 @@ class SummaryReport:
 
         topDialog = gtk.glade.XML(glade_file,"summary","gramps")
         topDialog.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
+            "destroy_passed_object" : self.close,
         })
 
-        set_titles(topDialog.get_widget('summary'),
-                   topDialog.get_widget('title'),
-                   _('Database summary'))
-
-    
-        top = topDialog.get_widget("summary")
+        window = topDialog.get_widget("summary")
+        self.set_window(window,topDialog.get_widget('title'),self.title)
         textwindow = topDialog.get_widget("textwindow")
         textwindow.get_buffer().set_text(text)
-        top.show()
-    
+        self.show()
+
+    def build_menu_names(self,obj):
+        return (self.title,None)
+
 #-------------------------------------------------------------------------
 #
 #

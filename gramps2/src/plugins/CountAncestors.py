@@ -30,8 +30,11 @@
 #------------------------------------------------------------------------
 import os
 from gettext import gettext as _
-from sets import Set
 from math import pow
+try:
+    set()
+except NameError:
+    from sets import Set as set
 
 #------------------------------------------------------------------------
 #
@@ -45,38 +48,40 @@ import gtk.glade
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import Utils
 from PluginUtils import register_report
-from ReportBase import Report, CATEGORY_VIEW, MODE_GUI
-from ManagedWindow import set_titles
+from ReportBase import CATEGORY_VIEW, MODE_GUI
+import ManagedWindow
 
 #------------------------------------------------------------------------
 #
 # 
 #
 #------------------------------------------------------------------------
-class CountAncestors:
+class CountAncestors(ManagedWindow.ManagedWindow):
     
-    def __init__(self,database,person):
-        
+    def __init__(self,dbstate,uistate,person):
+        self.title = _('Ancestors of "%s"') \
+                     % person.get_primary_name().get_name()
+
+        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+
+        database = dbstate.db        
         text = ""
         glade_file = "%s/summary.glade" % os.path.dirname(__file__)
         topDialog = gtk.glade.XML(glade_file,"summary","gramps")
         topDialog.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
+            "destroy_passed_object" : self.close,
             })
-        thisgen = Set()
-        all = Set()
+        thisgen = set()
+        all = set()
         allgen = 0
         total_theoretical = 0
         thisgen.add(person.get_handle())
         
-        title_text = _('Ancestors of "%s"') \
-                     % person.get_primary_name().get_name()
 
-        top = topDialog.get_widget("summary")
+        window = topDialog.get_widget("summary")
         title = topDialog.get_widget("title")
-        set_titles(top,title,title_text)
+        self.set_window(window,title,self.title)
 
         thisgensize = 1
         gen = 0
@@ -89,11 +94,13 @@ class CountAncestors:
                 total_theoretical += theoretical
                 percent = ( thisgensize / theoretical ) * 100
                 if thisgensize == 1 :
-                    text += _("Generation %d has 1 individual. (%3.2f%%)\n") % (gen,percent)
+                    text += _("Generation %d has 1 individual. (%3.2f%%)\n") \
+                            % (gen,percent)
                 else:
-                    text += _("Generation %d has %d individuals. (%3.2f%%)\n") % (gen,thisgensize,percent)
+                    text += _("Generation %d has %d individuals. (%3.2f%%)\n")\
+                            % (gen,thisgensize,percent)
             temp = thisgen
-            thisgen = Set()
+            thisgen = set()
             for person_handle in temp:
                 person = database.get_person_from_handle(person_handle)
                 family_handle = person.get_main_parents_family_handle()
@@ -114,11 +121,15 @@ class CountAncestors:
         else:
             percent = 0
 
-        text += _("Total ancestors in generations 2 to %d is %d. (%3.2f%%)\n") % (gen,allgen,percent)
+        text += _("Total ancestors in generations 2 to %d is %d. (%3.2f%%)\n")\
+                % (gen,allgen,percent)
 
         textwindow = topDialog.get_widget("textwindow")
         textwindow.get_buffer().set_text(text)
-        top.show()
+        self.show()
+
+    def build_menu_names(self,obj):
+        return (self.title,None)
 
 #-------------------------------------------------------------------------
 #
@@ -132,6 +143,6 @@ register_report(
     options_class = None,
     modes = MODE_GUI,
     translated_name = _("Number of ancestors"),
-    status = _("Beta"),
+    status = _("Stable"),
     description= _("Counts number of ancestors of selected person")
     )
