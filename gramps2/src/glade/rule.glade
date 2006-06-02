@@ -34,7 +34,7 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
-	    <widget class="GtkButton" id="button6">
+	    <widget class="GtkButton" id="cancel">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
@@ -63,7 +63,7 @@
 	  </child>
 
 	  <child>
-	    <widget class="GtkButton" id="button11">
+	    <widget class="GtkButton" id="help">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
@@ -992,7 +992,7 @@ Exactly one rule must apply</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkButton" id="button12">
+	    <widget class="GtkButton" id="help">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>

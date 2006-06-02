@@ -64,8 +64,8 @@ class IsDescendantFamilyOf(Rule):
             return False
         
         p = self.db.get_person_from_handle(handle)
-        for (f,r1,r2) in p.get_parent_family_handle_list():
-            family = self.db.get_family_from_handle(f)
+        for fhandle in p.get_parent_family_handle_list():
+            family = self.db.get_family_from_handle(fhandle)
             for person_handle in [family.get_mother_handle(),family.get_father_handle()]:
                 if person_handle:
                     if self.search(person_handle,0):

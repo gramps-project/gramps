@@ -470,11 +470,9 @@ class EditRule(ManagedWindow.ManagedWindow):
                 tlist[i].set_text(r[i])
             
         self.selection.connect('changed', self.on_node_selected)
-        self.rule.signal_autoconnect({
-            'rule_ok_clicked' : self.rule_ok,
-            "on_help_rule_clicked"  : self.on_help_clicked,
-            'rule_cancel_clicked' : self.close_window,
-            })
+        self.rule.get_widget('ok').connect('clicked',self.rule_ok)
+        self.rule.get_widget('cancel').connect('clicked', self.close_window)
+        self.rule.get_widget('help').connect('clicked',self.on_help_clicked)
 
         self.show()
 

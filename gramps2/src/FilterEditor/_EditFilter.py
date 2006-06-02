@@ -102,15 +102,17 @@ class EditFilter(ManagedWindow.ManagedWindow):
         self.ok = self.glade.get_widget('ok')
         self.edit_btn = self.glade.get_widget('edit')
         self.del_btn = self.glade.get_widget('delete')
-        self.glade.signal_autoconnect({
-            'on_ok_clicked' : self.on_ok_clicked,
-            'on_cancel_clicked' : self.close_window,
-            'on_filter_name_changed' : self.filter_name_changed,
-            'on_add_clicked' : self.on_add_clicked,
-            "on_help_filtdef_clicked"  : self.on_help_clicked,
-            'on_edit_clicked' : self.on_edit_clicked,
-            })
+        self.add_btn = self.glade.get_widget('add')
+
+        self.ok.connect('clicked', self.on_ok_clicked)
+        self.edit_btn.connect('clicked', self.on_edit_clicked)
+        self.del_btn.connect('clicked', self.on_delete_clicked)
+        self.add_btn.connect('clicked', self.on_add_clicked)
         
+        self.glade.get_widget('help').('clicked', self.on_help_clicked)
+        self.glade.get_widget('cancel').('clicked', self.close_window)
+        self.fname.connect('changed', self.filter_name_changed)
+
         if self.filter.get_logical_op() == 'or':
             self.logical.set_active(1)
         elif self.filter.get_logical_op() == 'one':
@@ -178,11 +180,13 @@ class EditFilter(ManagedWindow.ManagedWindow):
                  self.filterdb, None, _('Add Rule'), self.update_rule)
 
     def on_edit_clicked(self,obj):
-        store,node = self.rlist.get_selected()
+        print "ON EDIT"
+        store, node = self.rlist.get_selected()
         if node:
             from _EditRule import EditRule
             
             d = self.rlist.get_object(node)
+
             EditRule(self.space, self.dbstate, self.uistate, self.track,
                      self.filterdb, d, _('Edit Rule'), self.update_rule)
 

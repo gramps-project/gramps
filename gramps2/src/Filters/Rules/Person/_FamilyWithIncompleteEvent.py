@@ -48,9 +48,9 @@ class FamilyWithIncompleteEvent(Rule):
     def apply(self,db,person):
         for family_handle in person.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
-            for event_handle in family.get_event_list():
-                event = db.get_event_from_handle(event_handle)
-                if event:
+            for event_ref in family.get_event_ref_list():
+                if event_ref:
+                    event = db.get_event_from_handle(event_ref.ref)
                     if not event.get_place_handle():
                         return True
                     if not event.get_date_object():
