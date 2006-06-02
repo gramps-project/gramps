@@ -248,7 +248,6 @@ src/plugins/ExportVCalendar.py
 src/plugins/ExportVCard.py
 src/plugins/FamilyGroup.py
 src/plugins/FanChart.py
-src/plugins/FilterEditor.py
 src/plugins/FtmStyleAncestors.py
 src/plugins/FtmStyleDescendants.py
 src/plugins/GraphViz.py
@@ -470,6 +469,10 @@ src/plugins/vcalendarexport.glade
 src/plugins/vcardexport.glade
 src/plugins/verify.glade
 src/plugins/writeftree.glade
+src/FilterEditor/_FilterEditor.py
+src/FilterEditor/_EditFilter.py
+src/FilterEditor/_EditRule.py
+src/FilterEditor/_ShowResults.py
 #
 #	Files to extract from and then merge into
 #
