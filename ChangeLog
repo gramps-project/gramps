@@ -1,4 +1,4 @@
-2006-05-31  Brian Matherly  <brian@gramps-project.org>
+2006-06-01  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/CmdRef.py: upgrade to new report interface
 	* src/ReportBase/_DrawFormatComboBox.py: missing imports
 	* src/ReportBase/CommandLineReport.py: typo
