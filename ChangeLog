@@ -1,3 +1,7 @@
+2006-06-01  Don Allingham  <don@gramps-project.org>
+	* src/Filters/Rules/Person/_HaveAltFamilies.py: bring up to speed with
+	RelLib changes
+
 2006-06-01  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/CmdRef.py: upgrade to new report interface
 	* src/ReportBase/_DrawFormatComboBox.py: missing imports
