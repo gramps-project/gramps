@@ -80,9 +80,7 @@ class ShowResults(ManagedWindow.ManagedWindow):
 
         text = self.glade.get_widget('text')
 
-        self.glade.signal_autoconnect({
-            'on_close_clicked' : self.close_window,
-            })
+        self.glade.get_widget('close').connect('clicked',self.close_window)
 
         n = []
         for p_handle in handle_list:
