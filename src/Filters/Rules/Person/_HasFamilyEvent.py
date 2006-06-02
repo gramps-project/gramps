@@ -64,9 +64,10 @@ class HasFamilyEvent(Rule):
     def apply(self,db,person):
         for f_id in person.get_family_handle_list():
             f = db.get_family_from_handle(f_id)
-            for event_handle in f.get_event_list():
-                if not event_handle:
+            for event_ref in f.get_event_ref_list():
+                if not event_ref:
                     continue
+                event_handle = event_ref.ref
                 event = db.get_event_from_handle(event_handle)
                 val = 1
                 if self.list[0] and event.get_name() != self.list[0]:

@@ -1,3 +1,20 @@
+2006-06-02  Don Allingham  <don@gramps-project.org>
+	* src/FilterEditor/_EditFilter.py: clean up
+	* src/FilterEditor/_EditRule.py: clean up
+	* src/glade/rule.glade: clean up
+	* src/Filters/Rules/Person/_IsDescendantFamilyOf.py: make current with RelLib
+
+	* src/Filters/Rules/Person/_HasFamilyEvent.py: make current with RelLib
+
+	* src/Filters/Rules/Person/_IsParentOfFilterMatch.py: make current with RelLib
+
+	* src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py: make current with RelLib
+
+	* src/Filters/Rules/Person/_IsBookmarked.py: make current with RelLib
+
+	* src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:
+	make current with RelLib
+
 2006-06-01  Don Allingham  <don@gramps-project.org>
 	* src/Filters/Rules/Person/_HaveAltFamilies.py: bring up to speed with
 	RelLib changes

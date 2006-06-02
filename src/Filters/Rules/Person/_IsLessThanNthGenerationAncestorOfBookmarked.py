@@ -27,6 +27,11 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 
+try:
+    set()
+except:
+    from sets import Set as set
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -58,7 +63,7 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
             self.apply = lambda db,p : False
         else:
             self.map = {}
-            self.bookmarks = sets.Set(bookmarks)
+            self.bookmarks = set(bookmarks)
             self.apply = self.apply_real
             for self.bookmarkhandle in self.bookmarks:
 		self.init_ancestor_list(self.bookmarkhandle, 1)

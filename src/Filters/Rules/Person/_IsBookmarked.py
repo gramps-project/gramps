@@ -27,6 +27,11 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 
+try:
+    set()
+except:
+    from sets import Set as set
+    
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -51,7 +56,7 @@ class IsBookmarked(Rule):
         if len(bookmarks) == 0:
             self.apply = lambda db,p : False
         else:
-            self.bookmarks = sets.Set(bookmarks)
+            self.bookmarks = set(bookmarks)
             self.apply = self.apply_real
 
     def apply_real(self,db,person):
