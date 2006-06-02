@@ -39,6 +39,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from PluginUtils import Tool, cl_list, cli_tool_list, register_tool
 from ReportBase import Report, CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB
+from ReportBase._CommandLineReport import CommandLineReport
 import Utils
 
 #-------------------------------------------------------------------------
@@ -97,7 +98,7 @@ class CmdRef(Tool.Tool):
 
         # Common report options
         item = cl_list[0]
-        clr = Report.CommandLineReport(db,item[0],item[1],item[3],{},True)
+        clr = CommandLineReport(db,item[0],item[1],item[3],{},True)
         self.write_ref(f,clr,level+2,id_counter,True)
         id_counter = id_counter + 1
 

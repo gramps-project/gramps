@@ -72,7 +72,7 @@ class DrawFormatComboBox(gtk.ComboBox):
         return PluginUtils.drawdoc_list[self.get_active()][4]
 
     def get_printable(self):
-        return PluginUtil.drawdoc_list[self.get_active()][5]
+        return PluginUtils.drawdoc_list[self.get_active()][5]
 
     def get_clname(self):
         return PluginUtils.drawdoc_list[self.get_active()][6]

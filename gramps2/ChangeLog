@@ -1,3 +1,8 @@
+2006-05-31  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/CmdRef.py: upgrade to new report interface
+	* src/ReportBase/_DrawFormatComboBox.py: missing imports
+	* src/ReportBase/CommandLineReport.py: typo
+
 2006-06-01  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py: FilterEditor call sequence
 	* src/FilterEditor/_EditFilter.py: added
@@ -25,7 +30,7 @@
 	* src/Filters/_GenericFilter.py: fix inversion
 
 2006-05-31  Brian Matherly  <brian@gramps-project.org>
-	* src/plugins/vaious: upgrade to new report interface
+	* src/plugins/various: upgrade to new report interface
 
 2006-05-31  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py: call FilterEditor
