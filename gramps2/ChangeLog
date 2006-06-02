@@ -1,3 +1,6 @@
+2006-06-01  Alex Roitman  <shura@gramps-project.org>
+	* src/ReportBase/_BareReportDialog.py: import FilterComboBox.
+
 2006-06-01  Don Allingham  <don@gramps-project.org>
 	* configure.in: add FilterEditor subdir
 	* src/DataViews/_PersonView.py: call filter editor with 'Person'

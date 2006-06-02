@@ -42,6 +42,7 @@ import gtk
 import NameDisplay
 import BaseDoc
 import ManagedWindow
+from Filters import FilterComboBox
 from _StyleComboBox import StyleComboBox
 
 #-------------------------------------------------------------------------
