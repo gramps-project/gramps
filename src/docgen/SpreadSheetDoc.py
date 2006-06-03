@@ -112,5 +112,5 @@ class SpreadSheetDoc:
     def end_cell(self):
         pass
 
-    def write_text(self,text,key=""):
+    def write_text(self,text,mark=None):
         pass

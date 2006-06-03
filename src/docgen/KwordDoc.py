@@ -482,7 +482,7 @@ class KwordDoc(BaseDoc.BaseDoc):
                 self.write_text(line)
                 self.end_paragraph()
 
-    def write_text(self,text,key=""):
+    def write_text(self,text,mark=None):
         text = text.replace('&','&amp;');       # Must be first
         text = text.replace('<','&lt;');
         text = text.replace('>','&gt;');

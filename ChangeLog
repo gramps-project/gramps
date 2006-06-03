@@ -1,3 +1,14 @@
+2006-06-02  Brian Matherly  <brian@gramps-project.org>
+	* src/docgen/*: use IndexMark
+	* src/plugins/DetDecendantReport: use IndexMark
+	* src/plugins/AncestorReport.py: use IndexMark
+	* src/plugins/DetAncestralReport.py: use IndexMark
+	* src/plugins/DecendReport.py: use IndexMark
+	* src/plugins/IndivComplete.py: use IndexMark
+	* src/plugins/FamilyGroup.py: use IndexMark
+	* src/BaseDoc.py: add IndexMark
+	* src/ReportBase.py: get_person_index -> get_person_mark
+
 2006-06-02  Don Allingham  <don@gramps-project.org>
 	* src/FilterEditor/_EditFilter.py: clean up
 	* src/FilterEditor/_EditRule.py: clean up

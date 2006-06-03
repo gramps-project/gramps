@@ -139,7 +139,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         if self.print_req:
             Report.run_print_dialog (self.filename)
         
-    def write_text(self,text,key=""):
+    def write_text(self,text,mark=None):
         pass
 
     def start_page(self):

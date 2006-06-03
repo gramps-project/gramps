@@ -395,7 +395,7 @@ class ODSDoc(SpreadSheetDoc):
     def end_page(self):
         self.f.write('</table:table>\n')
         
-    def write_text(self,text,key=""):
+    def write_text(self,text,mark=None):
         if text == "":
 	    return
         if self.content == 0:
