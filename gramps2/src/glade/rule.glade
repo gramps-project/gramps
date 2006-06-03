@@ -897,30 +897,25 @@ Exactly one rule must apply</property>
       </child>
 
       <child>
-	<widget class="GtkScrolledWindow" id="scrolledwindow3">
+	<widget class="GtkScrolledWindow" id="scrolledwindow5">
 	  <property name="visible">True</property>
-	  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-	  <property name="vscrollbar_policy">GTK_POLICY_ALWAYS</property>
+	  <property name="can_focus">True</property>
+	  <property name="hscrollbar_policy">GTK_POLICY_NEVER</property>
+	  <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 	  <property name="shadow_type">GTK_SHADOW_IN</property>
 	  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
 	  <child>
-	    <widget class="GtkTextView" id="text">
+	    <widget class="GtkTreeView" id="list">
 	      <property name="visible">True</property>
 	      <property name="can_focus">True</property>
-	      <property name="editable">False</property>
-	      <property name="overwrite">False</property>
-	      <property name="accepts_tab">True</property>
-	      <property name="justification">GTK_JUSTIFY_LEFT</property>
-	      <property name="wrap_mode">GTK_WRAP_WORD</property>
-	      <property name="cursor_visible">True</property>
-	      <property name="pixels_above_lines">0</property>
-	      <property name="pixels_below_lines">0</property>
-	      <property name="pixels_inside_wrap">0</property>
-	      <property name="left_margin">0</property>
-	      <property name="right_margin">0</property>
-	      <property name="indent">0</property>
-	      <property name="text" translatable="yes"></property>
+	      <property name="headers_visible">True</property>
+	      <property name="rules_hint">False</property>
+	      <property name="reorderable">False</property>
+	      <property name="enable_search">True</property>
+	      <property name="fixed_height_mode">False</property>
+	      <property name="hover_selection">False</property>
+	      <property name="hover_expand">False</property>
 	    </widget>
 	  </child>
 	</widget>
