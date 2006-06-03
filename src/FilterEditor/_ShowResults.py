@@ -48,7 +48,6 @@ log = logging.getLogger(".FilterEdit")
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
@@ -70,30 +69,28 @@ class ShowResults(ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
         self.filtname = filtname
-        self.glade = gtk.glade.XML(const.rule_glade,'test',"gramps")
-
+        self.define_glade('test', const.rule_glade,)
         self.set_window(
-            self.glade.get_widget('test'),
-            self.glade.get_widget('title'),
+            self.get_widget('test'),
+            self.get_widget('title'),
             _('Filter Test'))
 
         nd = NameDisplay.displayer
+        render = gtk.CellRendererText()
         
-        tree = self.glade.get_widget('list')
+        tree = self.get_widget('list')
         model = gtk.ListStore(str, str)
         tree.set_model(model)
 
-        column_n = gtk.TreeViewColumn(
-            _('Name'), gtk.CellRendererText(), text=0)
+        column_n = gtk.TreeViewColumn(_('Name'), render, text=0)
         tree.append_column(column_n)
 
-        column_n = gtk.TreeViewColumn(
-            _('ID'), gtk.CellRendererText(), text=1)
+        column_n = gtk.TreeViewColumn(_('ID'), render, text=1)
         tree.append_column(column_n)
 
-        self.glade.get_widget('close').connect('clicked',self.close_window)
+        self.get_widget('close').connect('clicked',self.close_window)
 
-        new_list = [ self.sort_val_from_handle(db, h) for h in handle_list ]
+        new_list = [self.sort_val_from_handle(db, h) for h in handle_list]
         new_list.sort()
         handle_list = [ h[1] for h in new_list ]
 

@@ -48,7 +48,6 @@ log = logging.getLogger(".FilterEdit")
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
 import GrampsDisplay
 
 #-------------------------------------------------------------------------
@@ -70,7 +69,8 @@ import ManagedWindow
 #-------------------------------------------------------------------------
 class EditFilter(ManagedWindow.ManagedWindow):
     
-    def __init__(self, space, dbstate, uistate, track, gfilter, filterdb, update):
+    def __init__(self, space, dbstate, uistate, track, gfilter,
+                 filterdb, update):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
@@ -81,36 +81,36 @@ class EditFilter(ManagedWindow.ManagedWindow):
         self.filter = gfilter
         self.filterdb = filterdb
         
-        self.glade = gtk.glade.XML(const.rule_glade,'define_filter',"gramps")
-        self.define_title = self.glade.get_widget('title')
-
+        self.define_glade('define_filter', const.rule_glade)
+        
         self.set_window(
-            self.glade.get_widget('define_filter'),
-            self.define_title,
+            self.get_widget('define_filter'),
+            self.get_widget('title'),
             _('Define filter'))
         
-        self.rule_list = self.glade.get_widget('rule_list')
         self.rlist = ListModel.ListModel(
-            self.rule_list,
+            self.get_widget('rule_list'),
             [(_('Name'),-1,150),(_('Values'),-1,150)],
             self.select_row,
             self.on_edit_clicked)
                                          
-        self.fname = self.glade.get_widget('filter_name')
-        self.logical = self.glade.get_widget('rule_apply')
-        self.comment = self.glade.get_widget('comment')
-        self.ok = self.glade.get_widget('ok')
-        self.edit_btn = self.glade.get_widget('edit')
-        self.del_btn = self.glade.get_widget('delete')
-        self.add_btn = self.glade.get_widget('add')
+        self.fname = self.get_widget('filter_name')
+        self.logical = self.get_widget('rule_apply')
+        self.comment = self.get_widget('comment')
+        self.ok_btn = self.get_widget('ok')
+        self.edit_btn = self.get_widget('edit')
+        self.del_btn = self.get_widget('delete')
+        self.add_btn = self.get_widget('add')
 
-        self.ok.connect('clicked', self.on_ok_clicked)
+        self.ok_btn.connect('clicked', self.on_ok_clicked)
         self.edit_btn.connect('clicked', self.on_edit_clicked)
         self.del_btn.connect('clicked', self.on_delete_clicked)
         self.add_btn.connect('clicked', self.on_add_clicked)
         
-        self.glade.get_widget('help').connect('clicked', self.on_help_clicked)
-        self.glade.get_widget('cancel').connect('clicked', self.close_window)
+        self.get_widget('help').connect('clicked',
+                                        self.on_help_clicked)
+        self.get_widget('cancel').connect('clicked',
+                                          self.close_window)
         self.fname.connect('changed', self.filter_name_changed)
 
         if self.filter.get_logical_op() == 'or':
@@ -135,7 +135,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
 
     def filter_name_changed(self,obj):
         name = unicode(self.fname.get_text())
-        self.ok.set_sensitive(len(name) != 0)
+        self.ok_btn.set_sensitive(len(name) != 0)
     
     def select_row(self,obj):
         store,node = self.rlist.get_selected()
@@ -180,7 +180,6 @@ class EditFilter(ManagedWindow.ManagedWindow):
                  self.filterdb, None, _('Add Rule'), self.update_rule)
 
     def on_edit_clicked(self,obj):
-        print "ON EDIT"
         store, node = self.rlist.get_selected()
         if node:
             from _EditRule import EditRule

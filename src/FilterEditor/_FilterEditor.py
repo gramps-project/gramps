@@ -48,7 +48,6 @@ log = logging.getLogger(".FilterEdit")
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
 import GrampsDisplay
 
 #-------------------------------------------------------------------------
@@ -58,7 +57,7 @@ import GrampsDisplay
 #-------------------------------------------------------------------------
 import const
 import RelLib
-from Filters import GenericFilter, FilterList, Rules, \
+from Filters import GenericFilter, FilterList, \
      reload_custom_filters, reload_system_filters
 import ListModel
 import ManagedWindow
@@ -71,7 +70,8 @@ import ManagedWindow
 class FilterEditor(ManagedWindow.ManagedWindow):
     def __init__(self, space, filterdb, dbstate, uistate):
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], FilterEditor)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [],
+                                             FilterEditor)
         
         self.dbstate = dbstate
         self.db = dbstate.db
@@ -79,30 +79,28 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         self.filterdb.load()
         self.space = space
 
-        self.editor = gtk.glade.XML(const.rule_glade,'filter_list',"gramps")
-        self.filter_list = self.editor.get_widget('filters')
-        self.edit = self.editor.get_widget('edit')
-        self.delete = self.editor.get_widget('delete')
-        self.test = self.editor.get_widget('test')
+        self.define_glade('filter_list', const.rule_glade)
+        self.filter_list = self.get_widget('filters')
+        self.edit = self.get_widget('edit')
+        self.delete = self.get_widget('delete')
+        self.test = self.get_widget('test')
 
         self.edit.set_sensitive(False)
         self.delete.set_sensitive(False)
         self.test.set_sensitive(False)
 
-        self.set_window(self.editor.get_widget('filter_list'),
-                        self.editor.get_widget('title'),
+        self.set_window(self.get_widget('filter_list'),
+                        self.get_widget('title'),
                         _('%s filters') % _(self.space))
 
-        self.editor.signal_autoconnect({
-            'on_add_clicked' : self.add_new_filter,
-            'on_edit_clicked' : self.edit_filter,
-            'on_test_clicked' : self.test_clicked,
-            'on_close_clicked' : self.close_filter_editor,
-            "on_help_filters_clicked"  : self.on_help_clicked,
-            'on_delete_clicked' : self.delete_filter,
-            'on_filter_list_delete_event' : self.on_delete_event,
-            })
+        self.edit.connect('clicked', self.edit_filter)
+        self.test.connect('clicked', self.test_clicked)
+        self.delete.connect('clicked', self.delete_filter)
 
+        self.connect_button('help', self.help_clicked)
+        self.connect_button('close', self.close_window)
+        self.connect_button('add', self.add_new_filter)
+        
         self.clist = ListModel.ListModel(
             self.filter_list,
             [(_('Filter'),0,150),(_('Comment'),1,150)],
@@ -114,15 +112,9 @@ class FilterEditor(ManagedWindow.ManagedWindow):
     def build_menu_names(self, obj):
         return (_("Custom Filter Editor"), _("Custom Filter Editor"))
         
-    def on_help_clicked(self,obj):
+    def help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-util-cfe')
-
-    def on_delete_event(self,obj,b):
-        self.filterdb.save()
-        reload_custom_filters()
-        reload_system_filters()
-        self.close()
 
     def filter_select_row(self,obj):
         store,node = self.clist.get_selected()
@@ -135,7 +127,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             self.delete.set_sensitive(False)
             self.test.set_sensitive(False)
     
-    def close_filter_editor(self,obj):
+    def close_window(self,obj):
         self.filterdb.save()
         reload_custom_filters()
         reload_system_filters()

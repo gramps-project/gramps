@@ -48,7 +48,6 @@ log = logging.getLogger(".FilterEdit")
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
 import gobject
 import GrampsDisplay
 
@@ -335,13 +334,14 @@ class EditRule(ManagedWindow.ManagedWindow):
         self.update_rule = update
 
         self.active_rule = val
-        self.rule = gtk.glade.XML(const.rule_glade,'rule_editor',"gramps")
-        self.set_window(self.rule.get_widget('rule_editor'),
-                        self.rule.get_widget('title'),label)
+        self.define_glade('rule_editor', const.rule_glade)
+        
+        self.set_window(self.get_widget('rule_editor'),
+                        self.get_widget('title'),label)
         self.window.hide()
-        self.valuebox = self.rule.get_widget('valuebox')
-        self.rname = self.rule.get_widget('ruletree')
-        self.rule_name = self.rule.get_widget('rulename')
+        self.valuebox = self.get_widget('valuebox')
+        self.rname = self.get_widget('ruletree')
+        self.rule_name = self.get_widget('rulename')
 
         self.notebook = gtk.Notebook()
         self.notebook.set_show_tabs(0)
@@ -470,9 +470,9 @@ class EditRule(ManagedWindow.ManagedWindow):
                 tlist[i].set_text(r[i])
             
         self.selection.connect('changed', self.on_node_selected)
-        self.rule.get_widget('ok').connect('clicked',self.rule_ok)
-        self.rule.get_widget('cancel').connect('clicked', self.close_window)
-        self.rule.get_widget('help').connect('clicked',self.on_help_clicked)
+        self.get_widget('ok').connect('clicked',self.rule_ok)
+        self.get_widget('cancel').connect('clicked', self.close_window)
+        self.get_widget('help').connect('clicked',self.on_help_clicked)
 
         self.show()
 
@@ -495,14 +495,14 @@ class EditRule(ManagedWindow.ManagedWindow):
             except:
                 self.valuebox.set_sensitive(0)
                 self.rule_name.set_text(_('No rule selected'))
-                self.rule.get_widget('description').set_text('')
+                self.get_widget('description').set_text('')
 
     def display_values(self,class_obj):
         page = self.class2page[class_obj]
         self.notebook.set_current_page(page)
         self.valuebox.set_sensitive(1)
         self.rule_name.set_text(class_obj.name)
-        self.rule.get_widget('description').set_text(class_obj.description)
+        self.get_widget('description').set_text(class_obj.description)
 
     def rule_ok(self,obj):
         if self.rule_name.get_text() == _('No rule selected'):

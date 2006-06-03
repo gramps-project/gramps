@@ -33,6 +33,7 @@ from cStringIO import StringIO
 #
 #-------------------------------------------------------------------------
 import gtk
+import gtk.glade
 
 #-------------------------------------------------------------------------
 #
@@ -305,6 +306,7 @@ class ManagedWindow:
         """
         window_key = self.build_window_key(obj)
         menu_label,submenu_label = self.build_menu_names(obj)
+        self._gladeobj = None
             
         if uistate.gwm.get_item_from_id(window_key):
             uistate.gwm.get_item_from_id(window_key).present()
@@ -346,6 +348,20 @@ class ManagedWindow:
 
     def build_window_key(self,obj):
         return id(obj)
+
+    def define_glade(self, top_module, glade_file=None):
+        if glade_file == None:
+            glade_file = const.gladeFile
+        self._gladeobj = gtk.glade.XML(glade_file, top_module, "gramps")
+        return self._gladeobj
+
+    def get_widget(self, name):
+        assert(self._gladeobj)
+        return self._gladeobj.get_widget(name)
+
+    def connect_button(self, button_name, function):
+        assert(self._gladeobj)
+        self.get_widget(button_name).connect('clicked',function)
 
     def show(self):
         assert self.window, "ManagedWindow: self.window does not exist!"
