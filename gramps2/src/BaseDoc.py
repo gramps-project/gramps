@@ -138,6 +138,14 @@ GRAPHICS_MODE = 1
 SOLID  = 0
 DASHED = 1
 
+#-------------------------------------------------------------------------
+#
+# IndexMark types
+#
+#-------------------------------------------------------------------------
+INDEX_TYPE_ALP = 0
+INDEX_TYPE_TOC = 1
+
 #------------------------------------------------------------------------
 #
 # cnv2color
@@ -1146,6 +1154,22 @@ class GraphicsStyle:
 
 #------------------------------------------------------------------------
 #
+# IndexMark
+#
+#------------------------------------------------------------------------
+class IndexMark:
+    """
+    Defines a mark to be associated with text for indexing.
+    """
+    def __init__(self, key="", type=INDEX_TYPE_ALP):
+        """
+        Initialize the object with default values, unless values are specified.
+        """
+        self.type = type
+        self.key = key
+
+#------------------------------------------------------------------------
+#
 # BaseDoc
 #
 #------------------------------------------------------------------------
@@ -1409,13 +1433,13 @@ class BaseDoc:
         """
         pass
 
-    def write_text(self, text, key=""):
+    def write_text(self, text, mark=None):
         """
         Writes the text in the current paragraph. Should only be used after a
         start_paragraph and before an end_paragraph.
 
         @param text: text to write.
-        @param key:  key to use for indexing (if supported)
+        @param mark:  IndexMark to use for indexing (if supported)
         """
         pass
 

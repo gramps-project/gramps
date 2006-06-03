@@ -198,10 +198,10 @@ class DetAncestorReport(Report):
         self.doc.start_paragraph("DAR-First-Entry","%s." % str(key))
 
         name = _nd.display_formal(person)
-        pkey = ReportUtils.get_person_key(self.database, person)
+        mark = ReportUtils.get_person_mark(self.database, person)
 
         self.doc.start_bold()
-        self.doc.write_text(name,pkey)
+        self.doc.write_text(name,mark)
         if name[-1:] == '.':
             self.doc.write_text(" ")
         else:
@@ -345,27 +345,27 @@ class DetAncestorReport(Report):
             if mother_handle:
                 mother = self.database.get_person_from_handle(mother_handle)
                 mother_name = _nd.display_name(mother.get_primary_name())
-                mother_key = ReportUtils.get_person_key(self.database, mother)
+                mother_mark = ReportUtils.get_person_mark(self.database, mother)
             else:
                 mother_name = ""
-                mother_key = ""
+                mother_mark = ""
             if father_handle:
                 father = self.database.get_person_from_handle(father_handle)
                 father_name = _nd.display_name(father.get_primary_name())
-                father_key = ReportUtils.get_person_key(self.database, father)
+                father_mark = ReportUtils.get_person_mark(self.database, father)
             else:
                 father_name = ""
-                father_key = ""
+                father_mark = ""
                 
             text = ReportUtils.child_str(person, father_name, mother_name,
                                          bool(person.get_death_ref()),
                                          firstName)
             if text:
                 self.doc.write_text(text)
-                if father_key != "":
-                    self.doc.write_text("",father_key)
-                if mother_key != "":
-                    self.doc.write_text("",mother_key)
+                if father_mark:
+                    self.doc.write_text("",father_mark)
+                if mother_mark:
+                    self.doc.write_text("",mother_mark)
 
     def write_marriage(self, person):
         """ 
@@ -378,7 +378,7 @@ class DetAncestorReport(Report):
             spouse = self.database.get_person_from_handle(spouse_handle)
             marriage_event = ReportUtils.find_marriage(self.database,family)
             text = ""
-            spouse_key = ReportUtils.get_person_key(self.database, spouse)
+            spouse_mark = ReportUtils.get_person_mark(self.database, spouse)
             if marriage_event:
                 text = ReportUtils.married_str(self.database,person,spouse,
                                             marriage_event,self.endnotes,
@@ -388,7 +388,7 @@ class DetAncestorReport(Report):
                 text = ReportUtils.married_rel_str(self.database,person,family,
                                             is_first)
             if text:
-                self.doc.write_text(text,spouse_key)
+                self.doc.write_text(text,spouse_mark)
                 is_first = False
 
     def write_children(self, family):
@@ -422,7 +422,7 @@ class DetAncestorReport(Report):
             child_handle = child_ref.ref
             child = self.database.get_person_from_handle(child_handle)
             child_name = _nd.display(child)
-            child_key = ReportUtils.get_person_key(self.database,child)
+            child_mark = ReportUtils.get_person_mark(self.database,child)
 
             if self.childRef and self.prev_gen_handles.get(child_handle):
                 value = str(self.prev_gen_handles.get(child_handle))
@@ -431,7 +431,7 @@ class DetAncestorReport(Report):
             self.doc.start_paragraph("DAR-ChildList",ReportUtils.roman(cnt).lower() + ".")
             cnt += 1
 
-            self.doc.write_text("%s. " % child_name,child_key)
+            self.doc.write_text("%s. " % child_name,child_mark)
             self.doc.write_text(ReportUtils.born_str(self.database, child, 0,
                                                      self.EMPTY_DATE, self.EMPTY_PLACE))
             self.doc.write_text(ReportUtils.died_str(self.database, child, 0, 
@@ -454,7 +454,7 @@ class DetAncestorReport(Report):
             if ind_handle:
                 ind = self.database.get_person_from_handle(ind_handle)
                 person_name = _nd.display(ind)
-                person_key = ReportUtils.get_person_key(self.database,ind)
+                person_mark = ReportUtils.get_person_mark(self.database,ind)
                 firstName = ReportUtils.common_name(ind,self.usenick)
             else:
                 firstName = 0

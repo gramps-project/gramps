@@ -157,8 +157,8 @@ class DescendantReport(Report):
     def dump(self,level,person):
 
         self.doc.start_paragraph("DR-Level%d" % level,"%d." % level)
-        key = ReportUtils.get_person_key(self.database,person)
-        self.doc.write_text(NameDisplay.displayer.display(person),key)
+        mark = ReportUtils.get_person_mark(self.database,person)
+        self.doc.write_text(NameDisplay.displayer.display(person),mark)
         self.dump_dates(person)
         self.doc.end_paragraph()
 
@@ -171,10 +171,10 @@ class DescendantReport(Report):
             spouse_handle = ReportUtils.find_spouse(person,family)
             if spouse_handle:
                 spouse = self.database.get_person_from_handle(spouse_handle)
-                key = ReportUtils.get_person_key(self.database,person)
+                mark = ReportUtils.get_person_mark(self.database,person)
                 self.doc.start_paragraph("DR-Spouse%d" % level)
                 name = NameDisplay.displayer.display(spouse)
-                self.doc.write_text(_("sp. %(spouse)s") % {'spouse':name},key)
+                self.doc.write_text(_("sp. %(spouse)s") % {'spouse':name},mark)
                 self.dump_dates(spouse)
                 self.doc.end_paragraph()
 

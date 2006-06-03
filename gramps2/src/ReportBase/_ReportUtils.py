@@ -43,6 +43,7 @@ import DateHandler
 import RelLib
 from NameDisplay import displayer as _nd
 from QuestionDialog import WarningDialog
+import BaseDoc
 
 #------------------------------------------------------------------------
 #
@@ -2202,15 +2203,15 @@ def common_name(person,use_nick=False):
 # Indexing function
 #
 #-------------------------------------------------------------------------
-def get_person_key(db,person):
+def get_person_mark(db,person):
     """
-    Returns a key that can be used to index a person in a report
+    Returns a IndexMark that can be used to index a person in a report
     
     @param db: the GRAMPS database instance
     @param person: the the key is for
     """
     if not person:
-        return ""
+        return None
     
     name = person.get_primary_name().get_name()
     birth = " "
@@ -2232,4 +2233,4 @@ def get_person_key(db,person):
     else:
         key = "%s (%s - %s)" % (name,birth,death)
         
-    return key
+    return BaseDoc.IndexMark( key, BaseDoc.INDEX_TYPE_ALP )

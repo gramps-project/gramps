@@ -119,10 +119,10 @@ class AncestorReport(Report):
             person_handle = self.map[key]
             person = self.database.get_person_from_handle(person_handle)
             name = NameDisplay.displayer.display_formal(person)
-            nkey = ReportUtils.get_person_key(self.database,person)
+            mark = ReportUtils.get_person_mark(self.database,person)
         
             self.doc.start_bold()
-            self.doc.write_text(name.strip(),nkey)
+            self.doc.write_text(name.strip(),mark)
             self.doc.end_bold()
             if name[-1:] == '.':
                 self.doc.write_text(" ")
