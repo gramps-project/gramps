@@ -31,7 +31,7 @@ __author__ = "Don Allingham"
 # Python modules
 #
 #-------------------------------------------------------------------------
-import os
+import locale
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -49,8 +49,6 @@ log = logging.getLogger(".FilterEdit")
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gobject
-import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -59,6 +57,7 @@ import GrampsDisplay
 #-------------------------------------------------------------------------
 import const
 import ManagedWindow
+import NameDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -78,21 +77,39 @@ class ShowResults(ManagedWindow.ManagedWindow):
             self.glade.get_widget('title'),
             _('Filter Test'))
 
-        text = self.glade.get_widget('text')
+        nd = NameDisplay.displayer
+        
+        tree = self.glade.get_widget('list')
+        model = gtk.ListStore(str, str)
+        tree.set_model(model)
+
+        column_n = gtk.TreeViewColumn(
+            _('Name'), gtk.CellRendererText(), text=0)
+        tree.append_column(column_n)
+
+        column_n = gtk.TreeViewColumn(
+            _('ID'), gtk.CellRendererText(), text=1)
+        tree.append_column(column_n)
 
         self.glade.get_widget('close').connect('clicked',self.close_window)
 
-        n = []
-        for p_handle in handle_list:
-            p = db.get_person_from_handle(p_handle)
-            n.append ("%s [%s]\n" % 
-                        (p.get_primary_name().get_name(),p.get_gramps_id()))
+        new_list = [ self.sort_val_from_handle(db, h) for h in handle_list ]
+        new_list.sort()
+        handle_list = [ h[1] for h in new_list ]
 
-        n.sort ()
-        text.get_buffer().set_text(''.join(n))
+        for p_handle in handle_list:
+            person = db.get_person_from_handle(p_handle)
+            name = nd.sorted(person)
+            gid = person.get_gramps_id()
+            
+            model.append(row=[name, gid])
 
         self.show()
-            
+
+    def sort_val_from_handle(self, db, h):
+        n = db.get_person_from_handle(h).get_primary_name()
+        return (locale.strxfrm(NameDisplay.displayer.sort_string(n)),h)
+    
     def close_window(self,obj):
         self.close()
 

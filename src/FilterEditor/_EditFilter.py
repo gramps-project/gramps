@@ -92,7 +92,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
         self.rule_list = self.glade.get_widget('rule_list')
         self.rlist = ListModel.ListModel(
             self.rule_list,
-            [(_('Name'),-1,150),(_('Value'),-1,150)],
+            [(_('Name'),-1,150),(_('Values'),-1,150)],
             self.select_row,
             self.on_edit_clicked)
                                          
@@ -109,8 +109,8 @@ class EditFilter(ManagedWindow.ManagedWindow):
         self.del_btn.connect('clicked', self.on_delete_clicked)
         self.add_btn.connect('clicked', self.on_add_clicked)
         
-        self.glade.get_widget('help').('clicked', self.on_help_clicked)
-        self.glade.get_widget('cancel').('clicked', self.close_window)
+        self.glade.get_widget('help').connect('clicked', self.on_help_clicked)
+        self.glade.get_widget('cancel').connect('clicked', self.close_window)
         self.fname.connect('changed', self.filter_name_changed)
 
         if self.filter.get_logical_op() == 'or':
