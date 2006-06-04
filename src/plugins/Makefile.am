@@ -9,6 +9,7 @@ pkgdata_PYTHON = \
 	AncestorChart.py\
 	AncestorChart2.py\
 	AncestorReport.py\
+	BookReport.py\
 	Ancestors.py\
 	Calendar.py \
 	ChangeTypes.py\
