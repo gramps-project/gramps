@@ -44,6 +44,7 @@ import BaseDoc
 import ManagedWindow
 from Filters import FilterComboBox
 from _StyleComboBox import StyleComboBox
+from _StyleEditor import StyleListDisplay
 
 #-------------------------------------------------------------------------
 #

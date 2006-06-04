@@ -1,3 +1,10 @@
+2006-06-04  Brian Matherly  <brian@gramps-project.org>
+	* src/docgen/PSDrawDoc.py: fix imports - make it work
+	* src/ReportBase/_StyleEditor.py: use ManagedWindow
+	* src/ReportBase/_BareReportDialog.py: import StyleEditor
+	* src/plugins/BookReport.py: fix "Center Person" display
+	* src/plugins/WriteCD.py: fail gracefully without Gnome
+
 2006-06-04  Don Allingham  <don@gramps-project.org>
 
 	* src/plugins/Makefile.am (pkgdata_PYTHON): remove FilterEditor.py
