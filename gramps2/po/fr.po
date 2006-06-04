@@ -10747,9 +10747,9 @@ msgid ""
 "At least one rule must apply\n"
 "Exactly one rule must apply"
 msgstr ""
-"Toutes les règles doivent être appliquées\n"
-"Au moins une règle doit être appliquée\n"
-"Exactement une règle doit être appliquée"
+"Toutes les règles doivent correspondre\n"
+"Au moins une règle doit correspondre\n"
+"Une seule règle doit correspondre"
 
 #: ../src/glade/rule.glade.h:23
 msgid "Test the selected filter"
