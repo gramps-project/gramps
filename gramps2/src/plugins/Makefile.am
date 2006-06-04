@@ -29,7 +29,6 @@ pkgdata_PYTHON = \
 	FanChart.py\
 	FtmStyleAncestors.py\
 	FtmStyleDescendants.py\
-	FilterEditor.py\
 	GraphViz.py\
 	IndivComplete.py\
 	IndivSummary.py\

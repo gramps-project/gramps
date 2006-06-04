@@ -1,3 +1,7 @@
+2006-06-04  Don Allingham  <don@gramps-project.org>
+
+	* src/plugins/Makefile.am (pkgdata_PYTHON): remove FilterEditor.py
+
 2006-06-04  Alex Roitman  <shura@gramps-project.org>
 	* src/docgen/PSDrawDoc.py: Use ReportUtils.pt2cm.
 	* src/docgen/OpenOfficeDoc.py: Use ReportUtils.pt2cm.
