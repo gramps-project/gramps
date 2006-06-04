@@ -150,7 +150,9 @@ class DescendantReport(Report):
     def write_report(self):
         self.doc.start_paragraph("DR-Title")
         name = NameDisplay.displayer.display(self.start_person)
-        self.doc.write_text(_("Descendants of %s") % name)
+        title = _("Descendants of %s") % name
+        mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
+        self.doc.write_text(title,mark)
         self.doc.end_paragraph()
         self.dump(1,self.start_person)
 

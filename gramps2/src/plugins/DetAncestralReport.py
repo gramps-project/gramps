@@ -149,7 +149,8 @@ class DetAncestorReport(Report):
         name = _nd.display_name(self.start_person.get_primary_name())
         self.doc.start_paragraph("DAR-Title")
         title = _("Ancestral Report for %s") % name
-        self.doc.write_text(title)
+        mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
+        self.doc.write_text(title,mark)
         self.doc.end_paragraph()
 
         keys = self.map.keys()
@@ -163,7 +164,8 @@ class DetAncestorReport(Report):
                     self.doc.page_break()
                 self.doc.start_paragraph("DAR-Generation")
                 text = _("Generation %d") % (generation+1)
-                self.doc.write_text(text)
+                mark = BaseDoc.IndexMark(text,BaseDoc.INDEX_TYPE_TOC,2)
+                self.doc.write_text(text,mark)
                 self.doc.end_paragraph()
                 generation = generation + 1
                 if self.childRef:
@@ -666,6 +668,7 @@ class DetAncestorOptions(ReportOptions):
         para.set_header_level(1)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
+        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         para.set_description(_('The style used for the title of the page.'))
         default_style.add_style("DAR-Title",para)
 

@@ -98,8 +98,10 @@ class AncestorReport(Report):
         self.apply_filter(self.start_person.get_handle(),1)
 
         name = NameDisplay.displayer.display_formal(self.start_person)
+        title = _("Ahnentafel Report for %s") % name
+        mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)        
         self.doc.start_paragraph("AHN-Title")
-        self.doc.write_text(_("Ahnentafel Report for %s") % name)
+        self.doc.write_text(title,mark)
         self.doc.end_paragraph()
     
         keys = self.map.keys()
@@ -111,8 +113,9 @@ class AncestorReport(Report):
                 if self.pgbrk and generation > 0:
                     self.doc.page_break()
                 generation += 1
+                mark =  BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,2)  
                 self.doc.start_paragraph("AHN-Generation")
-                self.doc.write_text(_("Generation %d") % generation)
+                self.doc.write_text(_("Generation %d") % generation,mark)
                 self.doc.end_paragraph()
 
             self.doc.start_paragraph("AHN-Entry","%d." % key)
@@ -166,7 +169,8 @@ class AncestorOptions(ReportOptions):
         para.set_font(font)
         para.set_header_level(1)
         para.set_top_margin(0.25)
-        para.set_bottom_margin(0.25)        
+        para.set_bottom_margin(0.25)
+        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)       
         #para.set(pad=0.5)
         para.set_description(_('The style used for the title of the page.'))
         default_style.add_style("AHN-Title",para)

@@ -416,9 +416,10 @@ class IndivCompleteReport(Report):
         
         media_list = self.start_person.get_media_list()
         name = self.start_person.get_primary_name().get_regular_name()
-        mark = ReportUtils.get_person_mark(self.database,self.start_person)
+        title = _("Summary of %s") % name
+        mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
         self.doc.start_paragraph("IDS-Title")
-        self.doc.write_text(_("Summary of %s") % name,mark)
+        self.doc.write_text(title,mark)
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("IDS-Normal")

@@ -181,7 +181,8 @@ class DetDescendantReport(Report):
 
         title = _("Descendant Report for %(person_name)s") % {
                     'person_name' : name }
-        self.doc.write_text(title)
+        mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
+        self.doc.write_text(title,mark)
         self.doc.end_paragraph()
 
         keys = self.map.keys()
@@ -194,7 +195,8 @@ class DetDescendantReport(Report):
                 self.doc.page_break()
             self.doc.start_paragraph("DDR-Generation")
             text = _("Generation %d") % (generation+1)
-            self.doc.write_text(text)
+            mark = BaseDoc.IndexMark(text,BaseDoc.INDEX_TYPE_TOC,2)
+            self.doc.write_text(text,mark)
             self.doc.end_paragraph()
             if self.childRef:
                 self.prev_gen_handles = self.gen_handles.copy()
@@ -701,6 +703,7 @@ class DetDescendantOptions(ReportOptions):
         para.set_header_level(1)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
+        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         para.set_description(_('The style used for the title of the page.'))
         default_style.add_style("DDR-Title",para)
 
