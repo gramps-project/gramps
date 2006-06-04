@@ -42,7 +42,6 @@ import BaseDoc
 import const
 from PluginUtils import register_text_doc, register_draw_doc, register_book_doc
 from ReportBase import ReportUtils
-pt2cm = ReportUtils.pt2cm
 import ImgManip
 import FontScale
 import Mime
@@ -1014,13 +1013,14 @@ class ODFDoc(BaseDoc.BaseDoc):
         if box_style.get_width():
             sw = box_style.get_width()*2.0 # *1.2
         else:
-            sw = pt2cm(FontScale.string_width(font,text))*1.3
+            sw = ReportUtils.pt2cm(FontScale.string_width(font,text))*1.3
 
         self.cntnt.write('<draw:frame text:anchor-type="paragraph" ')
         self.cntnt.write('draw:z-index="2" ')
         self.cntnt.write('draw:style-name="%s" ' % style)
         self.cntnt.write('svg:width="%.2fcm" ' % sw)
-        self.cntnt.write('svg:height="%.2fcm" ' % (pt2cm(font.get_size()*1.4)))
+        self.cntnt.write('svg:height="%.2fcm" ' %
+                         (ReportUtils.pt2cm(font.get_size()*1.4)))
 
         self.cntnt.write('svg:x="%.2fcm" ' % float(x))
         self.cntnt.write('svg:y="%.2fcm">' % float(y))

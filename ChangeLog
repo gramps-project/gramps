@@ -1,4 +1,7 @@
 2006-06-04  Alex Roitman  <shura@gramps-project.org>
+	* src/docgen/PSDrawDoc.py: Use ReportUtils.pt2cm.
+	* src/docgen/OpenOfficeDoc.py: Use ReportUtils.pt2cm.
+	* src/docgen/ODFDoc.py: Use ReportUtils.pt2cm.
 	* src/ReportBase/Makefile.am (pkgdata_PYTHON): Remove _BookReport.py
 	* src/plugins/Makefile.am (pkgdata_PYTHON): Move BookReport.py
 
