@@ -501,7 +501,7 @@ class BookListDisplay:
         self.xml = gtk.glade.XML(glade_file,"booklist","gramps")
         self.top = self.xml.get_widget('booklist')
 
-        Utils.set_titles(self.top,
+        ManagedWindow.set_titles(self.top,
             self.xml.get_widget('title'),_('Available Books'))
 
         if nodelete:
@@ -742,12 +742,12 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         if not the_iter:
             return
         data = self.av_model.get_data(the_iter,range(self.av_ncols))
-        if data[2] in ('simple_book_title','custom_text'):
-            data.append(_("Not Applicable"))
-        else:
-            data.append(self.person.get_primary_name().get_regular_name())
-        self.bk_model.add(data)
         item = BookItem(data[2])
+        if data[2] in ('simple_book_title','custom_text'):
+            data[2]=(_("Not Applicable"))
+        else:
+            data[2]=(self.person.get_primary_name().get_regular_name())
+        self.bk_model.add(data)
         person_id = item.option_class.handler.get_person_id()
         if not person_id:
             person_id = self.person.get_gramps_id()

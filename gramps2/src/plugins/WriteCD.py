@@ -46,7 +46,14 @@ log = logging.getLogger(".WriteCD")
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gnome
+import Errors
+
+try:
+    import gnome
+except ImportError:
+    raise Errors.UnavailableError(
+        _("Cannot be loaded because python bindings "
+          "for GNOME are not installed"))
 
 try:
     from gnomevfs import URI, create, OPEN_WRITE, make_directory, FileExistsError

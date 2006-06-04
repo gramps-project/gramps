@@ -31,9 +31,10 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 #Gramps modules
 #-------------------------------------------------------------------------
-#from PluginUtils import register_draw_doc from ReportBase import
-#Report, ReportUtils import Errors import BaseDoc from Utils import
-#gformat
+from ReportBase import ReportUtils
+from PluginUtils import register_draw_doc
+import BaseDoc
+from Utils import gformat
 
 def lrgb(grp):
     grp = ReportUtils.rgb_color(grp)

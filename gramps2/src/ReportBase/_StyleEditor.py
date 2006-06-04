@@ -55,6 +55,7 @@ import Utils
 import const
 import BaseDoc
 import ListModel
+import ManagedWindow
 
 #------------------------------------------------------------------------
 #
@@ -81,9 +82,9 @@ class StyleListDisplay:
         self.top = gtk.glade.XML(const.gladeFile,"styles","gramps")
         self.window = self.top.get_widget('styles')
 
-        Utils.set_titles(self.window,
-                         self.top.get_widget('title'),
-                         _('Document Styles'))
+        ManagedWindow.set_titles( self.window,
+                                  self.top.get_widget('title'),
+                                  _('Document Styles')         )
                                              
         self.top.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
@@ -197,7 +198,9 @@ class StyleEditor:
         self.pname = self.top.get_widget('pname')
         self.pdescription = self.top.get_widget('pdescription')
         
-        Utils.set_titles(self.window, self.top.get_widget('title'),_('Style editor'))
+        ManagedWindow.set_titles( self.window, 
+                                  self.top.get_widget('title'),
+                                  _('Style editor'))
 
         self.first = 1
         
