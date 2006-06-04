@@ -1,6 +1,7 @@
 2006-06-03  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs/_BackRefList.py (BackRefList.right_click): 
 	override right click, because Remove and Add have no relevence
+	(BackRefList.create_buttons): set tooltips
 	* src/FilterEditor/_ShowResults.py: move glade functions to 
 	ManagedWindow
 	* src/FilterEditor/_EditFilter.py: move glade functions to 
