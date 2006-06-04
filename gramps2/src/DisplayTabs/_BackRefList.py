@@ -71,6 +71,9 @@ class BackRefList(EmbeddedList):
         if self._callback and self.model.count > 1:
             self._callback()
 
+    def right_click(self, obj, event):
+        return
+
     def close(self):
         self.model.close()
 
