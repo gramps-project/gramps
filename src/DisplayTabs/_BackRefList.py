@@ -82,6 +82,8 @@ class BackRefList(EmbeddedList):
 
     def create_buttons(self, share=False):
         self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
+        self.tooltips = gtk.Tooltips()
+        self.tooltips.set_tip(self.edit_btn, _('Edit reference'))
 
         vbox = gtk.VBox()
         vbox.set_spacing(6)
