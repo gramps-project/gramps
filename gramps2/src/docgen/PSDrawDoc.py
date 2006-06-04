@@ -29,19 +29,14 @@ from math import pi, cos, sin
 from gettext import gettext as _
         
 #-------------------------------------------------------------------------
-#
-# Gramps modules
-#
+#Gramps modules
 #-------------------------------------------------------------------------
-from PluginUtils import  register_draw_doc
-from ReportBase import Report, ReportUtils
-pt2cm, rgb_color = ReportUtils.pt2cm, ReportUtils.rgb_color
-import Errors
-import BaseDoc
-from Utils import gformat
+#from PluginUtils import register_draw_doc from ReportBase import
+#Report, ReportUtils import Errors import BaseDoc from Utils import
+#gformat
 
 def lrgb(grp):
-    grp = rgb_color(grp)
+    grp = ReportUtils.rgb_color(grp)
     return (gformat(grp[0]),gformat(grp[1]),gformat(grp[2]))
 
 def coords(grp):
@@ -191,7 +186,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         p = self.style_list[para_name]
 
         x1 = x1 + self.lmargin
-        y1 = y1 + self.tmargin + pt2cm(p.get_font().get_size())
+        y1 = y1 + self.tmargin + ReportUtils.pt2cm(p.get_font().get_size())
 
         (text,fdef) = self.encode_text(p,text)
 
@@ -350,8 +345,8 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         y2 = y2 + self.tmargin
 
         box_type = self.draw_styles[style]
-        fill_color = rgb_color(box_type.get_fill_color())
-        color = rgb_color(box_type.get_color())
+        fill_color = ReportUtils.rgb_color(box_type.get_fill_color())
+        color = ReportUtils.rgb_color(box_type.get_color())
 
         self.f.write('gsave\n')
         self.f.write("%s cm %s cm moveto\n" % coords(self.translate(x1,y1)))

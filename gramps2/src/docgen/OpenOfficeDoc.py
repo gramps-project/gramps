@@ -42,7 +42,6 @@ import BaseDoc
 import const
 from PluginUtils import register_text_doc, register_draw_doc, register_book_doc
 from ReportBase import ReportUtils
-pt2cm = ReportUtils.pt2cm     
 import ImgManip
 import FontScale
 import Mime
@@ -891,7 +890,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         if box_style.get_width():
             sw = box_style.get_width()
         else:
-            sw = pt2cm(FontScale.string_width(font,text))*1.3
+            sw = ReportUtils.pt2cm(FontScale.string_width(font,text))*1.3
 
 
         self.cntnt.write('<draw:text-box draw:style-name="%s" ' % style)
