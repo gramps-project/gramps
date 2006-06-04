@@ -835,9 +835,11 @@ class ODFDoc(BaseDoc.BaseDoc):
             key = key.replace('"','&quot;')
             if mark.type == BaseDoc.INDEX_TYPE_ALP:
                 self.cntnt.write('<text:alphabetical-index-mark ')
+                self.cntnt.write('text:string-value="%s" />' % key)
             elif mark.type == BaseDoc.INDEX_TYPE_TOC:
                 self.cntnt.write('<text:toc-mark ')
-            self.cntnt.write('text:string-value="%s" />' % key)
+                self.cntnt.write('text:string-value="%s" ' % key)
+                self.cntnt.write('text:outline-level="%d" />' % mark.level)
         self.cntnt.write(escape(text,_esc_map))
 
     def _write_manifest(self):

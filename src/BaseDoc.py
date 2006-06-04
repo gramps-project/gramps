@@ -1161,12 +1161,13 @@ class IndexMark:
     """
     Defines a mark to be associated with text for indexing.
     """
-    def __init__(self, key="", type=INDEX_TYPE_ALP):
+    def __init__(self, key="", type=INDEX_TYPE_ALP, level=1):
         """
         Initialize the object with default values, unless values are specified.
         """
-        self.type = type
         self.key = key
+        self.type = type
+        self.level = level
 
 #------------------------------------------------------------------------
 #

@@ -607,9 +607,11 @@ class FamilyGroup(Report):
     def dump_family(self,family_handle,generation):
         self.doc.start_paragraph('FGR-Title')
         if self.recursive and self.generations:
-            self.doc.write_text(_("Family Group Report - Generation %d") % generation)
+            title=_("Family Group Report - Generation %d") % generation
         else:
-            self.doc.write_text(_("Family Group Report") )
+            title=_("Family Group Report")
+        mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
+        self.doc.write_text( title, mark )
         self.doc.end_paragraph()
 	
         family = self.database.get_family_from_handle(family_handle)
@@ -866,6 +868,7 @@ class FamilyGroupOptions(ReportOptions):
         font.set_bold(1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
+        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         para.set_description(_("The style used for the title of the page."))
         default_style.add_style('FGR-Title',para)
 
