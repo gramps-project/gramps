@@ -1,3 +1,7 @@
+2006-06-04  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Set up for the next release.
+	* src/Filters/Rules/Person/_RegExpName.py (RegExpName.labels): Typo.
+
 2006-06-04  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/PSDrawDoc.py: fix imports - make it work
 	* src/ReportBase/_StyleEditor.py: use ManagedWindow

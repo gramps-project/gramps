@@ -43,7 +43,7 @@ import re
 class RegExpName(Rule):
     """Rule that checks for full or partial name matches"""
 
-    labels      = [_('Expresssion:')]
+    labels      = [_('Expression:')]
     name        = _('People matching the <regex_name>')
     description = _("Matches people's names with a specified regular expression")
     category    = _('General filters')
