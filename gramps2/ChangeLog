@@ -1,4 +1,6 @@
 2006-06-05  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: improve parsing, comment the code better
+	* example/gedcom/sample.ged: add new stuff
 	* src/Mime/_PythonMime.py (_type_map): register .gpkg for non-linux
 	platforms 
 

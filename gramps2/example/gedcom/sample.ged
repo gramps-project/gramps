@@ -70,11 +70,22 @@
 1 BIRT Edwin Michael Smith's Birth event
 2 DATE 24 MAY 1961
 2 PLAC San Jose, Santa Clara Co., CA
+2 FAMC @F02@
 1 OCCU
 2 PLAC Software Engineer
 1 EDUC
 2 DATE BET. 1979 - 1984
 2 PLAC UC Berkeley
+1 RESI
+2 DATE 1 JAN 1985
+2 ADDR Address Line 0
+3 ADR1 Adr1 line
+3 ADR2 Adr2 line
+3 CITY City line
+3 STAE State line
+3 POST Post line
+2 NOTE This is the residence note
+2 PHON 123-456-7890
 1 SSN 123-456-7890
 1 CAST cast keyword
 1 DSCR dscr keyword
@@ -115,6 +126,9 @@
 1 DEAT
 2 DATE deceased
 2 PLAC Sweden
+1 ADOP
+2 FAMC @F04@
+3 ADOP @I38@
 1 REFN 366
 1 FAMS @F03@
 1 FAMC @F04@
