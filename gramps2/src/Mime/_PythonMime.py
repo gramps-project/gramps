@@ -39,6 +39,8 @@ mimetypes.add_type('application/x-gramps-xml','.gramps')
 mimetypes.add_type('application/x-gramps-xml','.GRAMPS')
 mimetypes.add_type('application/x-gedcom','.ged')
 mimetypes.add_type('application/x-gedcom','.GED')
+mimetypes.add_type('application/x-gramps-package','.gpkg')
+mimetypes.add_type('application/x-gramps-package','.GPKG')
 
 def get_application(mime_type):
     """Returns the application command and application name of the

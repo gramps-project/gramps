@@ -77,15 +77,14 @@ from QuestionDialog import ErrorDialog, WarningDialog
 from _GrampsDbBase import EVENT_KEY
 from BasicUtils import UpdateCallback
 
+#-------------------------------------------------------------------------
+#
+# Address/Place constants
+#
+#-------------------------------------------------------------------------
 addr_re  = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)\s+(\d+)\s*(.*)')
 addr2_re = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)\s+(\d+)')
 addr3_re = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)')
-
-#-------------------------------------------------------------------------
-#
-# latin/utf8 conversions
-#
-#-------------------------------------------------------------------------
 
 _place_field = []
 _place_match = {
@@ -94,6 +93,12 @@ _place_match = {
     'country': RelLib.Location.set_country,
     'state'  : RelLib.Location.set_state,
     }
+
+#-------------------------------------------------------------------------
+#
+# latin/utf8 conversions
+#
+#-------------------------------------------------------------------------
 
 def _empty_func(a,b):
     return
@@ -600,22 +605,7 @@ class GedcomParser(UpdateCallback):
         self.gedattr = {}
         for val in amap.keys():
             self.gedattr[amap[val]] = val
-
         self.search_paths = []
-
-        try:
-            mypaths = []
-            f = open("/proc/mounts","r")
-
-            for line in f:
-                paths = line.split()
-                ftype = paths[2].upper()
-                if ftype in file_systems.keys():
-                    mypaths.append((paths[1],file_systems[ftype]))
-                    self.search_paths.append(paths[1])
-            f.close()
-        except:
-            pass
 
     def errmsg(self,msg):
         log.warning(msg)
@@ -649,6 +639,39 @@ class GedcomParser(UpdateCallback):
             return (0,tries)
         else:
             return (0,tries)
+
+    def level_is_finished(self, text, level):
+        """
+        Check to see if the level has been completed, indicated by finding
+        a level indiciated by the passed level value. If the level is finished,
+        then make sure to call self.backup to reset the text pointer.
+        """
+        done = int(text[0]) < level
+        if done:
+            self.backup()
+            return True
+        return False
+
+    def parse_name_personal(self, text):
+        name = RelLib.Name()
+
+        # parse the substrings into a format of (Given, Surname, Suffix)
+
+        m = snameRegexp.match(text)
+        if m:
+            names = m.groups()
+            name.set_first_name(names[2].strip())
+            name.set_surname(names[0].strip())
+        else:
+            try:
+                names = nameRegexp.match(text).groups()
+                name.set_first_name(names[0].strip())
+                name.set_surname(names[2].strip())
+                name.set_suffix(names[4].strip())
+            except:
+                name.set_first_name(text.strip())
+
+        return name
 
     def get_next(self):
         if not self.backoff:
@@ -823,18 +846,7 @@ class GedcomParser(UpdateCallback):
                 self.db.commit_family(self.family, self.trans)
                 del self.family
             elif matches[2] == "INDI":
-                self.indi_count = self.indi_count + 1
-                gid = matches[3]
-                gid = gid[1:-1]
-                self.person = self.find_or_create_person(self.map_gid(gid))
-                self.added.add(self.person.handle)
-                self.parse_individual(self.person)
-                if len(self.person.get_source_references()) == 0:
-                    sref = RelLib.SourceRef()
-                    sref.set_reference_handle(self.def_src.handle)
-                    self.person.add_source_reference(sref)
-                self.db.commit_person(self.person, self.trans)
-                del self.person
+                self.parse_INDI(matches)
             elif matches[2] == "REPO":
                 self.repo_count = self.repo_count + 1
                 self.repo = self.find_or_create_repository(matches[3][1:-1])
@@ -1190,29 +1202,65 @@ class GedcomParser(UpdateCallback):
     def parse_comment(self,matches,obj,level,old_note):
         return self.parse_note_base(matches,obj,level,old_note,obj.set_note)
 
+    def extract_gramps_id(self, value):
+        """
+        Extracts a value to use for the GRAMPS ID value from the GEDCOM
+        reference token. The value should be in the form of @XXX@, and the
+        returned value will be XXX
+        """
+        return value[1:-1]
+
+    def parse_INDI(self, matches):
+        """
+        Handling of the GEDCOM INDI tag. The maintenence stuff is handled here,
+        which that actual parsing is done by self.parse_individual
+        """
+
+        # find the person
+        self.indi_count += 1
+        gid = self.extract_gramps_id(matches[3])
+        self.person = self.find_or_create_person(self.map_gid(gid))
+        self.added.add(self.person.handle)
+
+        # do the actual parsing
+        self.parse_individual(self.person)
+
+        # Add the default reference if no source has found
+        
+        if len(self.person.get_source_references()) == 0:
+            sref = RelLib.SourceRef()
+            sref.set_reference_handle(self.def_src.handle)
+            self.person.add_source_reference(sref)
+
+        # commit the person to the database
+        self.db.commit_person(self.person, self.trans)
+        del self.person
+
     def parse_individual(self,person):
+        """
+        Parse the individual. When we are no longer handling level 1,
+        then we are finished parsing this level.
+        """
         state = CurrentState()
         state.person = person
 
         while True:
             matches = self.get_next()
             
-            if int(matches[0]) < 1:
-                self.backup()
+            if self.level_is_finished(matches, 1):
                 if state.get_text():
                     state.person.set_note(state.get_text())
-                return
+                break
             else:
-                func = self.person_func.get(matches[1],self.func_person_event)
-                func(matches,state)
+                func = self.person_func.get(matches[1], self.func_person_event)
+                func(matches, state)
                 
     def parse_optional_note(self,level):
         note = ""
         while True:
             matches = self.get_next()
 
-            if int(matches[0]) < level:
-                self.backup()
+            if self.level_is_finished(matches, level):
                 return note
             elif matches[1] == TOKEN_NOTE:
                 if not matches[2].strip() or matches[2] and matches[2][0] != "@":
@@ -2021,36 +2069,65 @@ class GedcomParser(UpdateCallback):
     #
     #--------------------------------------------------------------------
     def func_person_name(self,matches,state):
-        name = RelLib.Name()
-        m = snameRegexp.match(matches[2])
-        if m:
-            (n,n2) = m.groups()
-            names = (n2,'',n,'','')
-        else:
-            try:
-                names = nameRegexp.match(matches[2]).groups()
-            except:
-                names = (matches[2],"","","","")
-        if names[0]:
-            name.set_first_name(names[0].strip())
-        if names[2]:
-            name.set_surname(names[2].strip())
-        if names[4]:
-            name.set_suffix(names[4].strip())
+        """
+        Parsers the NAME token in a GEDCOM file. The text is in the format
+        of (according to the GEDCOM Spec):
+          <TEXT>|/<TEXT>/|<TEXT>/<TEXT>/|/<TEXT>/<TEXT>|<TEXT>/<TEXT>/<TEXT>
+        We have encountered some variations that use:
+          <TEXT>/
+        """
+
+        # build a RelLib.Name structure from the text
+        
+        name = self.parse_name_personal(matches[2])
+
+        # Add the name as the primary name if this is the first one that
+        # we have encountered for this person. Assume that if this is the
+        # first name, that it is a birth name. Otherwise, label it as an
+        # "Also Known As (AKA)". GEDCOM does not seem to have the concept
+        # of different name types
+        
         if state.name_cnt == 0:
+            name.set_type(RelLib.set_type(RelLib.NameType.BIRTH)
             state.person.set_primary_name(name)
         else:
+            name.set_type(RelLib.set_type(RelLib.NameType.AKA)
             state.person.add_alternate_name(name)
         state.name_cnt += 1
-        self.parse_name(name,2,state)
+
+        #
+        # Create a new state, and parse the remainder of the NAME level
+        sub_state = CurrentState()
+        sub_state.person = state.person
+        sub_state.name = name
+        sub_state.level = 2
+
+        while True:
+            matches = self.get_next()
+            if self.level_is_finished(matches,2):
+                name.set_note(sub_state.get_text())
+                break
+            else:
+                func = self.name_func.get(matches[1],self.func_name_undefined)
+                func(matches,sub_state)
 
     def func_person_asso(self, matches, state):
-        gid = matches[2]
-        handle = self.find_person_handle(self.map_gid(gid[1:-1]))
+        """
+        Parse the ASSO tag, add the the referenced person to the person we
+        are currently parsing.
+        """
+
+        # find the id and person that we are referencing
+        gid = self.extract_gramps_id(matches[2])
+        handle = self.find_person_handle(self.map_gid(gid))
+
+        # create a new PersonRef, and assign the handle, add the
+        # PersonRef to the active person
+        
         ref = RelLib.PersonRef()
         ref.ref = handle
 
-        self.person.add_person_ref(ref)
+        state.person.add_person_ref(ref)
         
         while True:
             matches = self.get_next()
@@ -2069,18 +2146,16 @@ class GedcomParser(UpdateCallback):
                 self.barf(2)
 
     def func_person_alt_name(self,matches,state):
-        aka = RelLib.Name()
-        try:
-            names = nameRegexp.match(matches[2]).groups()
-        except:
-            names = (matches[2],"","","","")
-        if names[0]:
-            aka.set_first_name(names[0])
-        if names[2]:
-            aka.set_surname(names[2])
-        if names[4]:
-            aka.set_suffix(names[4])
-        state.person.add_alternate_name(aka)
+        """
+        Parse a altername name, usually indicated by a AKA or _AKA
+        tag. This is not valid GEDCOM, but several programs will add
+        this just to make life interesting. Odd, since GEDCOM supports
+        multiple NAME indicators, which is the correct way of handling
+        multiple names.
+        """
+        name = self.parse_name_personal(matches[2])
+        name.set_type(RelLib.set_type(RelLib.NameType.AKA)
+        state.person.add_alternate_name(name)
 
     def func_person_object(self,matches,state):
         if matches[2] and matches[2][0] == '@':
@@ -2286,24 +2361,6 @@ class GedcomParser(UpdateCallback):
     # 
     #
     #-------------------------------------------------------------------------
-    def parse_name(self,name,level,state):
-        """Parses the person's name information"""
-
-        sub_state = CurrentState()
-        sub_state.person = state.person
-        sub_state.name = name
-        sub_state.level = level
-
-        while True:
-            matches = self.get_next()
-            if int(matches[0]) < level:
-                name.set_note(sub_state.get_text())
-                self.backup()
-                return
-            else:
-                func = self.name_func.get(matches[1],self.func_name_undefined)
-                func(matches,sub_state)
-
     def func_name_undefined(self,matches,state):
         self.barf(state.level+1)
 

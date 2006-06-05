@@ -1,3 +1,7 @@
+2006-06-05  Don Allingham  <don@gramps-project.org>
+	* src/Mime/_PythonMime.py (_type_map): register .gpkg for non-linux
+	platforms 
+
 2006-06-04  Alex Roitman  <shura@gramps-project.org>
 	* configure.in: Set up for the next release.
 	* src/Filters/Rules/Person/_RegExpName.py (RegExpName.labels): Typo.
@@ -10,7 +14,6 @@
 	* src/plugins/WriteCD.py: fail gracefully without Gnome
 
 2006-06-04  Don Allingham  <don@gramps-project.org>
-
 	* src/plugins/Makefile.am (pkgdata_PYTHON): remove FilterEditor.py
 
 2006-06-04  Alex Roitman  <shura@gramps-project.org>
