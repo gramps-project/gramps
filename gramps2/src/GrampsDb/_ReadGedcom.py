@@ -128,14 +128,6 @@ _TYPE_BIRTH  = RelLib.ChildRefType()
 _TYPE_ADOPT  = RelLib.ChildRefType(RelLib.ChildRefType.ADOPTED)
 _TYPE_FOSTER = RelLib.ChildRefType(RelLib.ChildRefType.FOSTER)
 
-file_systems = {
-    'VFAT'    : _('Windows 9x file system'),
-    'FAT'     : _('Windows 9x file system'),
-    "NTFS"    : _('Windows NT file system'),
-    "ISO9660" : _('CD ROM'),
-    "SMBFS"   : _('Networked Windows file system')
-    }
-
 rel_types = (RelLib.ChildRefType.BIRTH,
              RelLib.ChildRefType.UNKNOWN,
              RelLib.ChildRefType.NONE,
@@ -616,6 +608,39 @@ class GedcomParser(UpdateCallback):
             TOKEN__TODO : self.skip_record,
             }
 
+        self.person_attr = {
+            TOKEN_TYPE  : self.func_person_attr_type,
+            TOKEN_CAUS  : self.func_person_attr_ignore,
+            TOKEN_DATE  : self.func_person_attr_ignore,
+            TOKEN_TIME  : self.func_person_attr_ignore,
+            TOKEN_ADDR  : self.func_person_attr_ignore,
+            TOKEN_IGNORE: self.func_person_attr_ignore,
+            TOKEN_STAT  : self.func_person_attr_ignore,
+            TOKEN_TEMP  : self.func_person_attr_ignore,
+            TOKEN_OBJE  : self.func_person_attr_ignore,
+            TOKEN_DATE  : self.func_person_attr_ignore,
+            TOKEN_SOUR  : self.func_person_attr_source,
+            TOKEN_PLAC  : self.func_person_attr_place,
+            TOKEN_NOTE  : self.func_person_attr_note,
+            }
+
+        self.family_func = {
+            TOKEN_HUSB  : self.func_family_husb,
+            TOKEN_WIFE  : self.func_family_wife,
+            TOKEN_SLGS  : self.func_family_slgs,
+            TOKEN_ADDR  : self.func_family_addr,
+            TOKEN_CHIL  : self.func_family_chil,
+            TOKEN_NCHI  : self.func_family_nchil,
+            TOKEN_SOUR  : self.func_family_source,
+            TOKEN_RIN   : self.func_family_ignore, 
+            TOKEN_SUBM  : self.func_family_ignore,
+            TOKEN_REFN  : self.func_family_ignore,
+            TOKEN_CHAN  : self.func_family_ignore,
+            TOKEN_OBJE  : self.func_family_object,
+            TOKEN__COMM : self.func_family_comm,
+            TOKEN_NOTE  : self.func_family_note,
+            }
+
         self.place_names = set()
         cursor = dbase.get_place_cursor()
         data = cursor.next()
@@ -864,32 +889,7 @@ class GedcomParser(UpdateCallback):
         while True:
             matches = self.get_next()
             if matches[2] == "FAM":
-                self.fam_count = self.fam_count + 1
-                self.family = self.find_or_create_family(matches[3][1:-1])
-                self.parse_family()
-                if self.addr != None:
-                    father_handle = self.family.get_father_handle()
-                    father = self.db.get_person_from_handle(father_handle)
-                    if father:
-                        father.add_address(self.addr)
-                        self.db.commit_person(father, self.trans)
-                    mother_handle = self.family.get_mother_handle()
-                    mother = self.db.get_person_from_handle(mother_handle)
-                    if mother:
-                        mother.add_address(self.addr)
-                        self.db.commit_person(mother, self.trans)
-                    for child_ref in self.family.get_child_ref_list():
-                        child_handle = child_ref.ref
-                        child = self.db.get_person_from_handle(child_handle)
-                        if child:
-                            child.add_address(self.addr)
-                            self.db.commit_person(child, self.trans)
-                if len(self.family.get_source_references()) == 0:
-                    sref = RelLib.SourceRef()
-                    sref.set_reference_handle(self.def_src.handle)
-                    self.family.add_source_reference(sref)
-                self.db.commit_family(self.family, self.trans)
-                del self.family
+                self.parse_FAM(matches)
             elif matches[2] == "INDI":
                 self.parse_INDI(matches)
             elif matches[2] == "REPO":
@@ -1129,6 +1129,45 @@ class GedcomParser(UpdateCallback):
             else:
                 self.barf(level+1)
         return None
+
+    def parse_FAM(self, matches):
+        # create a family
+        
+        self.fam_count = self.fam_count + 1
+        self.family = self.find_or_create_family(matches[3][1:-1])
+
+        # parse the family
+        self.parse_family()
+
+        # handle addresses attached to families
+        if self.addr != None:
+            father_handle = self.family.get_father_handle()
+            father = self.db.get_person_from_handle(father_handle)
+            if father:
+                father.add_address(self.addr)
+                self.db.commit_person(father, self.trans)
+            mother_handle = self.family.get_mother_handle()
+            mother = self.db.get_person_from_handle(mother_handle)
+            if mother:
+                mother.add_address(self.addr)
+                self.db.commit_person(mother, self.trans)
+
+            for child_ref in self.family.get_child_ref_list():
+                child_handle = child_ref.ref
+                child = self.db.get_person_from_handle(child_handle)
+                if child:
+                    child.add_address(self.addr)
+                    self.db.commit_person(child, self.trans)
+
+        # add default reference if no reference exists
+        if len(self.family.get_source_references()) == 0:
+            sref = RelLib.SourceRef()
+            sref.set_reference_handle(self.def_src.handle)
+            self.family.add_source_reference(sref)
+
+        # commit family to database
+        self.db.commit_family(self.family, self.trans)
+        del self.family
     
     def parse_family(self):
         self.addr = None
@@ -1136,92 +1175,108 @@ class GedcomParser(UpdateCallback):
         while True:
             matches = self.get_next()
 
-            if int(matches[0]) < 1:
-                self.backup()
-                return
-            elif matches[1] == TOKEN_HUSB:
-                gid = matches[2]
-                handle = self.find_person_handle(self.map_gid(gid[1:-1]))
-                self.family.set_father_handle(handle)
-                self.ignore_sub_junk(2)
-            elif matches[1] == TOKEN_WIFE:
-                gid = matches[2]
-                handle = self.find_person_handle(self.map_gid(gid[1:-1]))
-                self.family.set_mother_handle(handle)
-                self.ignore_sub_junk(2)
-            elif matches[1] == TOKEN_SLGS:
-                lds_ord = RelLib.LdsOrd()
-                lds_ord.set_type(RelLib.LdsOrd.SEAL_TO_SPOUSE)
-                self.family.lds_ord_list.append(lds_ord)
-                self.parse_ord(lds_ord,2)
-            elif matches[1] == TOKEN_ADDR:
-                self.addr = RelLib.Address()
-                self.addr.set_street(matches[2])
-                self.parse_address(self.addr,2)
-            elif matches[1] == TOKEN_CHIL:
-                mrel,frel = self.parse_ftw_relations(2)
-                gid = matches[2]
-                child = self.find_or_create_person(self.map_gid(gid[1:-1]))
-
-                ref = RelLib.ChildRef()
-                ref.ref = child.handle
-                ref.set_father_relation(frel)
-                ref.set_mother_relation(mrel)
-                self.family.add_child_ref(ref)
-            elif matches[1] == TOKEN_NCHI:
-                a = RelLib.Attribute()
-                a.set_type(RelLib.AttributeType.NUM_CHILD)
-                a.set_value(matches[2])
-                self.family.add_attribute(a)
-            elif matches[1] == TOKEN_SOUR:
-                source_ref = self.handle_source(matches,2)
-                self.family.add_source_reference(source_ref)
-            elif matches[1] in (TOKEN_RIN, TOKEN_SUBM, TOKEN_REFN,TOKEN_CHAN):
-                self.ignore_sub_junk(2)
-            elif matches[1] == TOKEN_OBJE:
-                if matches[2] and matches[2][0] == '@':
-                    self.barf(2)
-                else:
-                    self.parse_family_object(2)
-            elif matches[1] == TOKEN__COMM:
-                note = matches[2]
-                self.family.set_note(note)
-                self.ignore_sub_junk(2)
-            elif matches[1] == TOKEN_NOTE:
-                note = self.parse_note(matches,self.family,1,note)
+            if self.level_is_finished(matches, 1):
+                break
             else:
-                event = RelLib.Event()
-                event.set_gramps_id(self.emapper.find_next())
-                try:
-                    event.set_type(RelLib.EventType(ged2fam[matches[3]]))
-                except:
-                    if ged2fam_custom.has_key(matches[3]):
-                        event.set_type((RelLib.EventType.CUSTOM,
-                                        ged2fam_custom[matches[3]]))
-                    elif matches[3]:
-                        event.set_type((RelLib.EventType.CUSTOM,
-                                        matches[3]))
-                    else:
-                        event.set_type(RelLib.EventType.UNKNOWN)
-                    if matches[2] and not event.get_description():
-                        event.set_description(matches[2])
-                self.parse_family_event(event,2)
-                if int(event.get_type()) == RelLib.EventType.MARRIAGE:
-                    self.family.type.set(RelLib.FamilyRelType.MARRIED)
-                if int(event.get_type()) != RelLib.EventType.CUSTOM:
-                    if not event.get_description():
-                        text = _event_family_str % {
-                            'event_name' : str(event.get_type()),
-                            'family' : Utils.family_name(self.family,self.db),
-                            }
-                        event.set_description(text)
-                self.db.add_event(event,self.trans)
+                func = self.family_func.get(matches[1], self.func_family_event)
+                func(self.family, matches, 2)
 
-                event_ref = RelLib.EventRef()
-                event_ref.set_reference_handle(event.handle)
-                event_ref.set_role(RelLib.EventRoleType.FAMILY)
-                self.family.add_event_ref(event_ref)
-                del event
+    def func_family_husb(self, family, matches, level):
+        gid = matches[2]
+        handle = self.find_person_handle(self.map_gid(gid[1:-1]))
+        self.family.set_father_handle(handle)
+        self.ignore_sub_junk(2)
+
+    def func_family_wife(self, family, matches, level):
+        gid = matches[2]
+        handle = self.find_person_handle(self.map_gid(gid[1:-1]))
+        self.family.set_mother_handle(handle)
+        self.ignore_sub_junk(2)
+
+    def func_family_slgs(self, family, matches, level):
+        lds_ord = RelLib.LdsOrd()
+        lds_ord.set_type(RelLib.LdsOrd.SEAL_TO_SPOUSE)
+        self.family.lds_ord_list.append(lds_ord)
+        self.parse_ord(lds_ord,2)
+
+    def func_family_addr(self, family, matches, level):
+        self.addr = RelLib.Address()
+        self.addr.set_street(matches[2])
+        self.parse_address(self.addr,2)
+
+    def func_family_chil(self, family, matches, level):
+        mrel,frel = self.parse_ftw_relations(2)
+        gid = matches[2]
+        child = self.find_or_create_person(self.map_gid(gid[1:-1]))
+
+        ref = RelLib.ChildRef()
+        ref.ref = child.handle
+        ref.set_father_relation(frel)
+        ref.set_mother_relation(mrel)
+        self.family.add_child_ref(ref)
+
+    def func_family_nchil(self, family, matches, level):
+        a = RelLib.Attribute()
+        a.set_type(RelLib.AttributeType.NUM_CHILD)
+        a.set_value(matches[2])
+        self.family.add_attribute(a)
+
+    def func_family_source(self, family, matches, level):
+        source_ref = self.handle_source(matches,2)
+        self.family.add_source_reference(source_ref)
+
+    def func_family_ignore(self, family, matches, level):
+        self.ignore_sub_junk(2)
+
+    def func_family_object(self, family, matches, level):
+        if matches[2] and matches[2][0] == '@':
+            self.barf(2)
+        else:
+            self.parse_family_object(2)
+
+    def func_family_comm(self, family, matches, level):
+        note = matches[2]
+        self.family.set_note(note)
+        self.ignore_sub_junk(2)
+
+    def func_family_note(self, family, matches, level):
+        self.parse_note(matches, self.family, 1, '')
+
+    def func_family_event(self, family, matches, level):
+        event = RelLib.Event()
+        event.set_gramps_id(self.emapper.find_next())
+        try:
+            event.set_type(RelLib.EventType(ged2fam[matches[3]]))
+        except:
+            if ged2fam_custom.has_key(matches[3]):
+                event.set_type((RelLib.EventType.CUSTOM,
+                                ged2fam_custom[matches[3]]))
+            elif matches[3]:
+                event.set_type((RelLib.EventType.CUSTOM,
+                                matches[3]))
+            else:
+                event.set_type(RelLib.EventType.UNKNOWN)
+
+        if matches[2] and not event.get_description():
+            event.set_description(matches[2])
+                
+        self.parse_family_event(event,2)
+        if int(event.get_type()) == RelLib.EventType.MARRIAGE:
+            self.family.type.set(RelLib.FamilyRelType.MARRIED)
+        if int(event.get_type()) != RelLib.EventType.CUSTOM:
+            if not event.get_description():
+                text = _event_family_str % {
+                    'event_name' : str(event.get_type()),
+                    'family' : Utils.family_name(self.family,self.db),
+                    }
+                event.set_description(text)
+        self.db.add_event(event,self.trans)
+
+        event_ref = RelLib.EventRef()
+        event_ref.set_reference_handle(event.handle)
+        event_ref.set_role(RelLib.EventRoleType.FAMILY)
+        self.family.add_event_ref(event_ref)
+        del event
 
     def parse_note_base(self,matches,obj,level,old_note,task):
         # reference to a named note defined elsewhere
@@ -1255,10 +1310,38 @@ class GedcomParser(UpdateCallback):
         """
         return value[1:-1]
 
+    #----------------------------------------------------------------------
+    #
+    # INDI parsing
+    #
+    #----------------------------------------------------------------------
     def parse_INDI(self, matches):
         """
-        Handling of the GEDCOM INDI tag. The maintenence stuff is handled here,
-        which that actual parsing is done by self.parse_individual
+        Handling of the GEDCOM INDI tag.
+
+          n  @XREF:INDI@ INDI {1:1}
+          +1 RESN <RESTRICTION_NOTICE> {0:1}
+          +1 <<PERSONAL_NAME_STRUCTURE>> {0:M}
+          +1 SEX <SEX_VALUE> {0:1}
+          +1 <<INDIVIDUAL_EVENT_STRUCTURE>> {0:M}
+          +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>> {0:M}
+          +1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M}
+          +1 <<CHILD_TO_FAMILY_LINK>> {0:M}
+          +1 <<SPOUSE_TO_FAMILY_LINK>> {0:M}
+          +1 SUBM @<XREF:SUBM>@ {0:M}
+          +1 <<ASSOCIATION_STRUCTURE>> {0:M}
+          +1 ALIA @<XREF:INDI>@ {0:M}
+          +1 ANCI @<XREF:SUBM>@ {0:M}
+          +1 DESI @<XREF:SUBM>@ {0:M}
+          +1 <<SOURCE_CITATION>> {0:M}
+          +1 <<MULTIMEDIA_LINK>> {0:M}
+          +1 <<NOTE_STRUCTURE>> {0:M} 
+          +1 RFN <PERMANENT_RECORD_FILE_NUMBER> {0:1}
+          +1 AFN <ANCESTRAL_FILE_NUMBER> {0:1}
+          +1 REFN <USER_REFERENCE_NUMBER> {0:M}
+          +2 TYPE <USER_REFERENCE_TYPE> {0:1}
+          +1 RIN <AUTOMATED_RECORD_ID> {0:1}
+          +1 <<CHANGE_DATE>> {0:1}
         """
 
         # find the person
@@ -1268,26 +1351,9 @@ class GedcomParser(UpdateCallback):
         self.added.add(self.person.handle)
 
         # do the actual parsing
-        self.parse_individual(self.person)
 
-        # Add the default reference if no source has found
-        
-        if len(self.person.get_source_references()) == 0:
-            sref = RelLib.SourceRef()
-            sref.set_reference_handle(self.def_src.handle)
-            self.person.add_source_reference(sref)
-
-        # commit the person to the database
-        self.db.commit_person(self.person, self.trans)
-        del self.person
-
-    def parse_individual(self,person):
-        """
-        Parse the individual. When we are no longer handling level 1,
-        then we are finished parsing this level.
-        """
         state = CurrentState()
-        state.person = person
+        state.person = self.person
         state.level = 1
 
         while True:
@@ -1300,7 +1366,18 @@ class GedcomParser(UpdateCallback):
             else:
                 func = self.person_func.get(matches[1], self.func_person_event)
                 func(matches, state)
-                
+
+        # Add the default reference if no source has found
+        
+        if len(self.person.get_source_references()) == 0:
+            sref = RelLib.SourceRef()
+            sref.set_reference_handle(self.def_src.handle)
+            self.person.add_source_reference(sref)
+
+        # commit the person to the database
+        self.db.commit_person(self.person, self.trans)
+        del self.person
+
     def parse_optional_note(self,level):
         note = ""
         while True:
@@ -1559,7 +1636,8 @@ class GedcomParser(UpdateCallback):
     def func_person_event_place(self, matches, event, level):
         val = matches[2]
         n = event.get_type()
-        if self.is_ftw and int(n) in [RelLib.EventType.OCCUPATION,RelLib.EventType.DEGREE]:
+        if self.is_ftw and int(n) in [RelLib.EventType.OCCUPATION,
+                                      RelLib.EventType.DEGREE]:
             event.set_description(val)
         else:
             place = self.find_or_create_place(val)
@@ -1592,46 +1670,56 @@ class GedcomParser(UpdateCallback):
     
     def parse_person_attr(self,attr,level):
         """
-        
+        GRAMPS uses an Attribute to store some information. Technically,
+        GEDCOM does not make a distinction between Attributes and Events,
+        so what GRAMPS considers to be an Attribute can have more information
+        than what we allow. 
         """
-        note = ""
         while True:
             matches = self.get_next()
             if self.level_is_finished(matches,level):
                 break
-            elif matches[1] == TOKEN_TYPE:
-                if attr.get_type() == "":
-                    if ged2gramps.has_key(matches[2]):
-                        name = ged2gramps[matches[2]]
-                    else:
-                        val = self.gedsource.tag2gramps(matches[2])
-                        if val:
-                            name = val
-                        else:
-                            name = matches[2]
-                    attr.set_type(name)
-            elif matches[1] in (TOKEN_CAUS,TOKEN_DATE,TOKEN_TIME,TOKEN_ADDR,
-                                TOKEN_IGNORE,TOKEN_STAT,TOKEN_TEMP,TOKEN_OBJE):
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == TOKEN_SOUR:
-                attr.add_source_reference(self.handle_source(matches,level+1))
-            elif matches[1] == TOKEN_PLAC:
-                val = matches[2]
-                if attr.get_value() == "":
-                    attr.set_value(val)
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == TOKEN_DATE:
-                note = "%s\n\n" % ("Date : %s" % matches[2])
-            elif matches[1] == TOKEN_NOTE:
-                info = self.parse_note(matches,attr,level+1,note)
-                if note == "":
-                    note = info
-                else:
-                    note = "%s\n\n%s" % (note,info)
             else:
-                self.barf(level+1)
-        if note != "":
-            attr.set_note(note)
+                func = self.person_attr.get(matches[1],
+                                            self.func_person_attr_undef)
+                func(matches, event, level+1) 
+
+    def func_person_attr_undef(self, attr, matches, level):
+        """
+        Called when an undefined token is found
+        """
+        self.barf(level)
+
+    def func_person_attr_ignore(self, attr, matches, level):
+        """
+        Called when an attribute is found that we know we want to ignore
+        """
+        self.ignore_sub_junk(level)
+
+    def func_person_attr_type(self, attr, matches, level):
+        if attr.get_type() == "":
+            if ged2gramps.has_key(matches[2]):
+                name = ged2gramps[matches[2]]
+            else:
+                val = self.gedsource.tag2gramps(matches[2])
+                if val:
+                    name = val
+                else:
+                    name = matches[2]
+            attr.set_type(name)
+
+    def func_person_attr_source(self, attr, matches, level):
+        attr.add_source_reference(self.handle_source(matches,level))
+
+    def func_person_attr_place(self, attr, matches, level):
+        val = matches[2]
+        if attr.get_value() == "":
+            attr.set_value(val)
+        self.ignore_sub_junk(level)
+
+    def func_person_attr_note(self, attr, matches, level):
+        info = self.parse_note(matches,attr,level+1,note)
+        attr.set_note(info)
 
     def parse_family_event(self,event,level):
         note = ""
