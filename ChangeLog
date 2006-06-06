@@ -1,3 +1,7 @@
+2006-06-06  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_DbUtils.py (set_birth_death_index): Only set birth
+	and death references for events with primary role.
+
 2006-06-05  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py: more improvements
 
