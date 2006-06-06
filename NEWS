@@ -1,4 +1,10 @@
-Verison 2.1.4
+Version 2.1.5
+* Table of Contents generation added to several reports and formats (Brian)
+* Filter Editor enhanced and working for Person filters (Don)
+* Report modules restructured (Alex)
+* Bug fixes
+
+Version 2.1.4
 * Enhanced Verify tool (Alex)
 * Start of index generation for some reports in Open Document files (Brian)
 * Report enhancements (Brian)
@@ -6,8 +12,7 @@ Verison 2.1.4
 * Shading option to highlight data in Relationship View (Don)
 * Bug fixes.
 
-
-Verison 2.1.3
+Version 2.1.3
 * Add user defined custom types to appropriate menus
 * Select Place dialog replaces text entry of places
 * Icon improvements
