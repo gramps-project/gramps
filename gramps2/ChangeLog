@@ -1,3 +1,7 @@
+2006-06-06  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: More improvements, esp. with REPO
+	* example/gedcom/sample.ged: add repo info
+
 2006-06-06  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_ReadXML.py (start_eventref): Only set birth and
 	death references for events with primary role.
