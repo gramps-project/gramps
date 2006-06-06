@@ -770,9 +770,11 @@ class GrampsParser(UpdateCallback):
         elif self.person:
             event.personal = True
             if (event.type == RelLib.EventType.BIRTH) \
+                   and (self.eventref.role == RelLib.EventRoleType.PRIMARY) \
                    and (self.person.get_birth_ref() == None):
                 self.person.set_birth_ref(self.eventref)
             elif (event.type == RelLib.EventType.DEATH) \
+                     and (self.eventref.role == RelLib.EventRoleType.PRIMARY) \
                      and (self.person.get_death_ref() == None):
                 self.person.set_death_ref(self.eventref)
             else:
