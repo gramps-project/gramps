@@ -1021,7 +1021,7 @@ class BookReportDialog(ReportDialog):
                 self.make_report()
             except (IOError,OSError),msg:
                 ErrorDialog(str(msg))
-        self.window.destroy()
+        self.close()
 
     def setup_style_frame(self): pass
     def setup_report_options_frame(self): pass
