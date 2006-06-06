@@ -66,7 +66,7 @@
 1 TITL Grand Poobah
 1 OBJE
 2 FORM jpeg
-2 FILE foo/O0.jpg
+2 FILE O0.jpg
 1 BIRT Edwin Michael Smith's Birth event
 2 DATE 24 MAY 1961
 2 PLAC San Jose, Santa Clara Co., CA
@@ -558,6 +558,10 @@
 2 DATE 4 JUN 1954
 2 PLAC Sparks, Washoe Co., NV
 2 SOUR Hannah was the widow of James Matthewson.
+1 OBJE
+2 FORM jpg
+2 FILE test.jpg
+2 TITL Random title
 0 @F03@ FAM
 1 HUSB @I03@
 1 WIFE @I04@
@@ -695,18 +699,21 @@
 1 WIFE @I21@
 0 @S1600@ SOUR
 1 TITL Birth Certificate
-1 REPO
+1 REPO @R00@
 2 CALN
 3 MEDI Book
 0 @S1601@ SOUR
 1 TITL Birth Record
 2 CONC s
-1 REPO
+1 REPO @R00@
 2 CALN
 3 MEDI Book
 0 @S1602@ SOUR
 1 TITL Birth, Death and Marriage Records
-1 REPO
+1 REPO @R00@
 2 CALN
 3 MEDI Book
+0 @R00@ REPO
+1 NAME Repository Name
+1 ADDR Repository Address
 0 TRLR
