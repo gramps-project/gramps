@@ -862,7 +862,7 @@ class GedcomParser(UpdateCallback):
             elif matches[1] == TOKEN_PUBL:
                 self.source.set_publication_info(matches[2])
             elif matches[1] == TOKEN_NOTE:
-                note = self.parse_note(matches,self.source,level+1,note)
+                note = self.parse_note(matches,self.source,level+1,'')
                 self.source.set_note(note)
             elif matches[1] == TOKEN_TEXT:
                 note = self.source.get_note()
@@ -1239,7 +1239,6 @@ class GedcomParser(UpdateCallback):
         note = ""
         while True:
             matches = self.get_next()
-#            print matches, level
             if self.level_is_finished(matches, level):
                 break
             elif matches[1] == TOKEN_FORM:
@@ -1283,7 +1282,17 @@ class GedcomParser(UpdateCallback):
         self.parse_event(event, self.generic_event_map, 2)
 
         if int(event.get_type()) == RelLib.EventType.MARRIAGE:
-            self.family.type.set(RelLib.FamilyRelType.MARRIED)
+
+            descr = event.get_description()
+            if descr == "Civil Union":
+                self.family.type.set(RelLib.FamilyRelType.CIVIL_UNION)
+                event.set_description('')
+            elif descr == "Unmarried":
+                self.family.type.set(RelLib.FamilyRelType.UNMARRIED)
+                event.set_description('')
+            else:
+                self.family.type.set(RelLib.FamilyRelType.MARRIED)
+
         if int(event.get_type()) != RelLib.EventType.CUSTOM:
             if not event.get_description():
                 text = _event_family_str % {
@@ -1472,7 +1481,7 @@ class GedcomParser(UpdateCallback):
             elif matches[1] == TOKEN_PHON:
                 address.set_phone(matches[2])
             elif matches[1] == TOKEN_NOTE:
-                note = self.parse_note(matches,address,level+1,note)
+                note = self.parse_note(matches,address,level+1,'')
             elif matches[1] in (TOKEN__LOC, TOKEN__NAME):
                 pass    # ignore unsupported extended location syntax
             else:
@@ -1507,7 +1516,7 @@ class GedcomParser(UpdateCallback):
                 lds_ord.add_source_reference(
                     self.handle_source(matches,level+1))
             elif matches[1] == TOKEN_NOTE:
-                note = self.parse_note(matches,lds_ord,level+1,note)
+                note = self.parse_note(matches,lds_ord,level+1,'')
             elif matches[1] == TOKEN_STAT:
                 lds_ord.set_status(
                     lds_status.get(matches[2],RelLib.LdsOrd.STATUS_NONE))
@@ -1557,7 +1566,7 @@ class GedcomParser(UpdateCallback):
             print "NOT FIXED YET"
 
     def func_event_note(self, matches, event, level):
-        self.parse_note(matches,event,level+1,note)
+        self.parse_note(matches,event,level+1,'')
         
     def func_event_date(self, matches, event, level):
         event.set_date_object(self.extract_date(matches[2]))
@@ -1650,7 +1659,7 @@ class GedcomParser(UpdateCallback):
         self.ignore_sub_junk(level)
 
     def func_person_attr_note(self, attr, matches, level):
-        info = self.parse_note(matches,attr,level+1,note)
+        info = self.parse_note(matches,attr,level+1,'')
         attr.set_note(info)
 
     def parse_source_reference(self,source,level):
@@ -1685,7 +1694,7 @@ class GedcomParser(UpdateCallback):
                 else:
                     source.set_confidence_level(val)
             elif matches[1] in (TOKEN_NOTE,TOKEN_TEXT):
-                note = self.parse_comment(matches,source,level+1,note)
+                note = self.parse_comment(matches,source,level+1,'')
             else:
                 self.not_recognized(level+1)
         
@@ -1776,7 +1785,7 @@ class GedcomParser(UpdateCallback):
                 date.date = matches[2]
                 self.def_src.set_data_item('Creation date',matches[2])
             elif matches[1] == TOKEN_NOTE:
-                note = self.parse_note(matches,self.def_src,2,note)
+                note = self.parse_note(matches,self.def_src,2,'')
             elif matches[1] == TOKEN_UNKNOWN:
                 self.ignore_sub_junk(2)
             else:
@@ -2273,7 +2282,7 @@ class GedcomParser(UpdateCallback):
                     addr.set_street("Unknown")
                 addr.set_phone(matches[2])
             elif matches[1] == TOKEN_NOTE:
-                note = self.parse_note(matches, addr, state.level+1, note)
+                note = self.parse_note(matches, addr, state.level+1, '')
             elif matches[1] in (TOKEN_IGNORE, TOKEN_CAUS, TOKEN_STAT,
                                 TOKEN_TEMP, TOKEN_OBJE, TOKEN_TYPE):
                 self.ignore_sub_junk(state.level+1)
@@ -2364,7 +2373,7 @@ class GedcomParser(UpdateCallback):
 
     def func_person_even(self,matches,state):
         """
-           n  DEAT [Y|<NULL>] {1:1}
+           n  <<EVENT_TYPE>> {1:1}
            +1 <<EVENT_DETAIL>> {0:1} p.*
         """
         event = RelLib.Event()
@@ -2373,6 +2382,7 @@ class GedcomParser(UpdateCallback):
             event.set_description(matches[2])
         self.parse_event(event, self.generic_event_map, 2)
         the_type = event.get_type()
+
         if int(the_type) == RelLib.EventType.CUSTOM \
                and str(the_type) in self.attrs:
             attr = RelLib.Attribute()

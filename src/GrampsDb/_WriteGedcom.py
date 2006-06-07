@@ -638,9 +638,12 @@ class GedcomWriter(UpdateCallback):
                     event = self.db.get_event_from_handle(event_handle)
                     if not event or self.private and event.get_privacy():
                         continue
-                    val = event.get_type().xml_str()
-                    if val == "":
-                        val = self.target_ged.gramps2tag(name)
+
+                    etype = int(event.get_type())
+                    val = GedcomInfo.familyConstantEvents.get(etype)
+
+                    if val == None:
+                        val = self.target_ged.gramps2tag(etype)
 
                     if val:
                         if (not event.get_date_object().is_empty()) \
@@ -648,37 +651,36 @@ class GedcomWriter(UpdateCallback):
                             self.writeln("1 %s" % self.cnvtxt(val))
                         else:
                             self.writeln("1 %s Y" % self.cnvtxt(val))
-                        if event.get_description() != "":
+
+                        if event.get_type() == RelLib.EventType.MARRIAGE:
+                            ftype = family.get_relationship()
+                            if ftype != RelLib.FamilyRelType.MARRIED:
+                                self.writeln("2 TYPE %s" % str(ftype))
+                        elif event.get_description() != "":
                             self.writeln("2 TYPE %s" % event.get_description())
                     else:
                         self.writeln("1 EVEN")
-                        self.writeln("2 TYPE %s" % ' '.join(
-                            [self.cnvtxt(val),
-                             self.cnvtxt(event.get_description())]))
+                        self.writeln("2 TYPE %s" % self.cnvtxt(str(etype)))
 
                     self.dump_event_stats(event)
 
             for attr in family.get_attribute_list():
                 if self.private and attr.get_privacy():
                     continue
-                name = attr.get_type().xml_str()
+
+                t = int(attr.get_type())
+                name = GedcomInfo.familyConstantAttributes.get(t)
                 value = self.cnvtxt(attr.get_value()).replace('\r',' ')
- 
-                if name in ["AFN", "RFN", "_UID"]:
+
+                if name:
                     self.writeln("1 %s %s" % (name,value))
                     continue
-                
-                if attr.get_type().is_custom():
+                else:
                     self.writeln("1 EVEN")
                     if value:
                         self.writeln("2 TYPE %s %s" %(self.cnvtxt(name),value))
                     else:
                         self.writeln("2 TYPE %s" % self.cnvtxt(name))
-                else:
-                    if value:
-                        self.writeln("1 %s %s" % (name, value))
-                    else:
-                        self.writeln("1 %s" % name)
 
                 if attr.get_note():
                     self.write_long_text("NOTE",2,self.cnvtxt(attr.get_note()))
@@ -913,9 +915,11 @@ class GedcomWriter(UpdateCallback):
                 
                 if self.private and event.get_privacy():
                     continue
-                val = event.get_type().xml_str()
-                if val == "":
-                    val = self.target_ged.gramps2tag(int(event.get_type()))
+
+                etype = int(event.get_type())
+                val = GedcomInfo.personalConstantEvents.get(etype)
+                if val == None:
+                    val = self.target_ged.gramps2tag(etype)
                         
                 if self.adopt == GedcomInfo.ADOPT_EVENT and val == "ADOP":
                     ad = 1
@@ -1001,24 +1005,23 @@ class GedcomWriter(UpdateCallback):
             for attr in person.get_attribute_list():
                 if self.private and attr.get_privacy():
                     continue
-                name = attr.get_type().xml_str()
+
+                t = int(attr.get_type())
+                name = GedcomInfo.personalConstantAttributes.get(t)
                 value = self.cnvtxt(attr.get_value()).replace('\r',' ')
 
-                if name in ["AFN", "RFN", "_UID"]:
+#                if name in ["AFN", "RFN", "_UID"]:
+#                    self.writeln("1 %s %s" % (name,value))
+#                    continue
+
+                if name:
                     self.writeln("1 %s %s" % (name,value))
-                    continue
-                
-                if attr.get_type().is_custom():
+                else:
                     self.writeln("1 EVEN")
                     if value:
                         self.writeln("2 TYPE %s %s" %(self.cnvtxt(name),value))
                     else:
                         self.writeln("2 TYPE %s" % self.cnvtxt(name))
-                else:
-                    if value:
-                        self.writeln("1 %s %s" % (name,value))
-                    else:
-                        self.writeln("1 %s" % name)
 
                 if attr.get_note():
                     self.write_long_text("NOTE",2,self.cnvtxt(attr.get_note()))
