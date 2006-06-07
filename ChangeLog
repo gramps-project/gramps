@@ -1,3 +1,8 @@
+2006-06-06  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: read gedcoms that we write
+	* src/GrampsDb/_WriteGedcom.py: read gedcoms that we write
+	* src/DisplayState.py: handle unset active person
+
 2006-06-06  Brian Matherly  <brian@gramps-project.org>
 	* src/ReportBase/_BareReportDialog.py: missing import (Bug #0000180)
 
