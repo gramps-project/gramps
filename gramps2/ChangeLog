@@ -1,3 +1,6 @@
+2006-06-06  Brian Matherly  <brian@gramps-project.org>
+	* src/ReportBase/_BareReportDialog.py: missing import (Bug #0000180)
+
 2006-06-06  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py: More improvements, esp. with REPO
 	* example/gedcom/sample.ged: add repo info
