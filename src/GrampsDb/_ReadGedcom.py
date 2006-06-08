@@ -547,6 +547,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_CAUS   : self.func_event_cause,
             TOKEN_NOTE   : self.func_event_note,
             TOKEN_OFFI   : self.func_event_note,
+            TOKEN_PHON   : self.func_event_ignore,
             TOKEN__GODP  : self.func_event_ignore,
             TOKEN__WITN  : self.func_event_ignore,
             TOKEN__WTN   : self.func_event_ignore,
@@ -556,8 +557,10 @@ class GedcomParser(UpdateCallback):
             TOKEN_IGNORE : self.func_event_ignore,
             TOKEN_STAT   : self.func_event_ignore,
             TOKEN_TEMP   : self.func_event_ignore,
+            TOKEN_HUSB   : self.func_event_ignore,
+            TOKEN_WIFE   : self.func_event_ignore,
             TOKEN_OBJE   : self.func_event_ignore,
-            TOKEN_FAMC   : self.func_event_ignore,
+            TOKEN_FAMC   : self.func_person_birth_famc,
             }
 
         self.person_adopt_map = {
@@ -1188,13 +1191,11 @@ class GedcomParser(UpdateCallback):
         gid = matches[2]
         handle = self.find_person_handle(self.map_gid(gid[1:-1]))
         self.family.set_father_handle(handle)
-        self.ignore_sub_junk(2)
 
     def func_family_wife(self, family, matches, level):
         gid = matches[2]
         handle = self.find_person_handle(self.map_gid(gid[1:-1]))
         self.family.set_mother_handle(handle)
-        self.ignore_sub_junk(2)
 
     def func_family_slgs(self, family, matches, level):
         lds_ord = RelLib.LdsOrd()
@@ -1448,9 +1449,9 @@ class GedcomParser(UpdateCallback):
 
             if int(matches[0]) < level:
                 self.backup()
-                return (ftype,note)
+                break
             elif matches[1] == TOKEN_PEDI:
-                ftype = pedi_type.get(matches[2],RelLib.Person.UNKNOWN)
+                ftype = pedi_type.get(matches[2].lower(),RelLib.ChildRefType.UNKNOWN)
             elif matches[1] == TOKEN_SOUR:
                 source_ref = self.handle_source(matches,level+1)
                 person.primary_name.add_source_reference(source_ref)
@@ -1464,7 +1465,7 @@ class GedcomParser(UpdateCallback):
                     self.ignore_sub_junk(level+1)
             else:
                 self.not_recognized(level+1)
-        return None
+        return (ftype,note)
 
     def parse_address(self,address,level):
         first = 0
@@ -1571,14 +1572,51 @@ class GedcomParser(UpdateCallback):
         event.set_privacy(True)
 
     def func_person_adopt_famc(self, matches, event, level):
-        print "ADOPT FAMC"
         handle = self.find_family_handle(matches[2][1:-1])
-        mrel,frel = self.parse_adopt_famc(level+1);
+        mrel,frel = self.parse_adopt_famc(level);
+
         if self.person.get_main_parents_family_handle() == handle:
             self.person.set_main_parent_family_handle(None)
         self.person.add_parent_family_handle(handle)
-        if mrel != RelLib.ChildRefType.BIRTH or frel != RelLib.ChildRefType.BIRTH:
-            print "NOT FIXED YET"
+        
+        family = self.db.find_family_from_handle(handle, self.trans)
+        reflist = [ ref for ref in family.get_child_ref_list() \
+                        if ref.ref == self.person.handle ]
+        if reflist:
+            ref = reflist[0]
+            ref.set_father_relation(frel)
+            ref.set_mother_relation(mrel)
+        else:
+            ref = RelLib.ChildRef()
+            ref.ref = self.person.handle
+            ref.set_father_relation(frel)
+            ref.set_mother_relation(mrel)
+            family.add_child_ref(ref)
+            self.db.commit_family(family, self.trans)
+
+    def func_person_birth_famc(self, matches, event, level):
+        handle = self.find_family_handle(matches[2][1:-1])
+
+        if self.person.get_main_parents_family_handle() == handle:
+            self.person.set_main_parent_family_handle(None)
+        self.person.add_parent_family_handle(handle)
+        
+        frel = mrel = RelLib.ChildRefType.BIRTH
+
+        family = self.db.find_family_from_handle(handle, self.trans)
+        reflist = [ ref for ref in family.get_child_ref_list() \
+                        if ref.ref == self.person.handle ]
+        if reflist:
+            ref = reflist[0]
+            ref.set_father_relation(frel)
+            ref.set_mother_relation(mrel)
+        else:
+            ref = RelLib.ChildRef()
+            ref.ref = self.person.handle
+            ref.set_father_relation(frel)
+            ref.set_mother_relation(mrel)
+            family.add_child_ref(ref)
+            self.db.commit_family(family, self.trans)
 
     def func_event_note(self, matches, event, level):
         self.parse_note(matches,event,level+1,'')
@@ -1601,28 +1639,28 @@ class GedcomParser(UpdateCallback):
             place.set_title(matches[2])
             load_place_values(place,matches[2])
             event.set_place_handle(place_handle)
-        self.ignore_sub_junk(level+1)
+        self.ignore_sub_junk(level)
 
     def func_event_cause(self, matches, event, level):
         event.set_cause(matches[2])
         self.parse_cause(event,level+1)
 
     def parse_adopt_famc(self,level):
-        mrel = _TYPE_ADOPT
-        frel = _TYPE_ADOPT
+        mrel = _TYPE_BIRTH
+        frel = _TYPE_BIRTH
         while True:
             matches = self.get_next()
             if int(matches[0]) < level:
                 self.backup()
-                return (mrel,frel)
+                break
             elif matches[1] == TOKEN_ADOP:
                 if matches[2] == "HUSB":
-                    mrel = _TYPE_BIRTH
+                    frel = _TYPE_ADOPT
                 elif matches[2] == "WIFE":
-                    frel = _TYPE_BIRTH
+                    mrel = _TYPE_ADOPT
             else:
                 self.not_recognized(level+1)
-        return None
+        return (mrel,frel)
     
     def parse_person_attr(self,attr,level):
         """
@@ -1679,12 +1717,9 @@ class GedcomParser(UpdateCallback):
 
     def parse_source_reference(self,source,level):
         """Reads the data associated with a SOUR reference"""
-        note = ""
         while True:
             matches = self.get_next()
-
             if int(matches[0]) < level:
-                source.set_note(note)
                 self.backup()
                 return
             elif matches[1] == TOKEN_PAGE:
@@ -1697,7 +1732,7 @@ class GedcomParser(UpdateCallback):
                     d = self.dp.parse(date)
                     source.set_date_object(d)
                 source.set_text(text)
-            elif matches[1] in (TOKEN_OBJE,TOKEN_REFN):
+            elif matches[1] in (TOKEN_OBJE, TOKEN_REFN, TOKEN_EVEN):
                 self.ignore_sub_junk(level+1)
             elif matches[1] == TOKEN_QUAY:
                 try:
@@ -1708,8 +1743,12 @@ class GedcomParser(UpdateCallback):
                     source.set_confidence_level(val+1)
                 else:
                     source.set_confidence_level(val)
-            elif matches[1] in (TOKEN_NOTE,TOKEN_TEXT):
+            elif matches[1] == TOKEN_NOTE:
                 note = self.parse_comment(matches,source,level+1,'')
+                source.set_note(note)
+            elif matches[1] == TOKEN_TEXT:
+                note = self.parse_comment(matches,source,level+1,'')
+                source.set_text(note)
             else:
                 self.not_recognized(level+1)
         
@@ -1981,7 +2020,7 @@ class GedcomParser(UpdateCallback):
             note = ''
             handle = self.inline_srcs.get((title,note),Utils.create_id())
             self.inline_srcs[(title,note)] = handle
-            self.ignore_sub_junk(level+1)
+            self.parse_source_reference(source_ref,level-1)
         else:
             handle = self.find_or_create_source(matches[2][1:-1]).handle
             self.parse_source_reference(source_ref,level)
@@ -2123,8 +2162,9 @@ class GedcomParser(UpdateCallback):
                 if not ignore:
                     state.person.add_person_ref(ref)
                 break
-            elif matches[1] == TOKEN_TYPE and matches[2] != "INDI":
-                ignore = True
+            elif matches[1] == TOKEN_TYPE:
+                if matches[2] != "INDI":
+                    ignore = True
             elif matches[1] == TOKEN_RELA:
                 ref.rel = matches[2]
             elif matches[1] == TOKEN_SOUR:
