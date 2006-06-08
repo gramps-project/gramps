@@ -440,7 +440,13 @@ class Reader:
                 break
             line = line.split(None,2) + ['']
 
-            val = line[2].translate(_transtable,_delc)
+            try:
+                val = line[2].translate(_transtable,_delc)
+            except IndexError:
+                msg = _("Invalid GEDCOM syntax at line %d was ignored.") % self.index
+                log.warningg(msg)
+                continue
+                
             try:
                 val = self.cnv(val)
             except:
@@ -1771,7 +1777,7 @@ class GedcomParser(UpdateCallback):
                 self.def_src.set_publication_info(matches[2])
             elif matches[1] ==  TOKEN_SUBM:
                 self.parse_subm(2)
-            elif matches[1] in (TOKEN_CORP,TOKEN_DATA,TOKEN_SUBN,TOKEN_LANG):
+            elif matches[1] in (TOKEN_CORP, TOKEN_DATA, TOKEN_SUBN, TOKEN_LANG, TOKEN_TIME):
                 self.ignore_sub_junk(2)
             elif matches[1] == TOKEN_DEST:
                 if genby == "GRAMPS":
@@ -2113,7 +2119,6 @@ class GedcomParser(UpdateCallback):
         
         while True:
             matches = self.get_next()
-
             if self.level_is_finished(matches,2):
                 if not ignore:
                     state.person.add_person_ref(ref)
@@ -2264,10 +2269,6 @@ class GedcomParser(UpdateCallback):
                     ref.set_father_relation(ftype)
                     family.add_child_ref(ref)
                 self.db.commit_family(family, self.trans)
-                print "---------------"
-                print "p",state.person.handle, "f",family.handle
-                print state.person.parent_family_list
-                print [ ref.ref for ref in family.get_child_ref_list() ]
 
     def func_person_resi(self,matches,state):
         """

@@ -157,7 +157,7 @@ tokens = {
     "DESI"         : TOKEN_DESI,    "DEST"         : TOKEN_DEST,
     "DESTINATION"  : TOKEN_DEST,    "ENDL"         : TOKEN_ENDL,
     "ENDOWMENT"    : TOKEN_ENDL,    "EVEN"         : TOKEN_EVEN,
-    "EVENT"        : TOKEN_EVEN,    
+    "EVENT"        : TOKEN_EVEN,    "_ANCES_ORDRE" : TOKEN_IGNORE,
     "FAM"          : TOKEN_FAM,     "FAMILY"       : TOKEN_FAM,
     "FAMC"         : TOKEN_FAMC,    "FAMILY_CHILD" : TOKEN_FAMC,
     "FAMS"         : TOKEN_FAMS,    "FAMILY_SPOUSE" : TOKEN_FAMS,
