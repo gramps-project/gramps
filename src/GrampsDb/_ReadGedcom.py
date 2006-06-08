@@ -730,7 +730,7 @@ class GedcomParser(UpdateCallback):
         m = snameRegexp.match(text)
         if m:
             names = m.groups()
-            name.set_first_name(names[2].strip())
+            name.set_first_name(names[1].strip())
             name.set_surname(names[0].strip())
         else:
             try:
@@ -1206,11 +1206,20 @@ class GedcomParser(UpdateCallback):
         gid = matches[2]
         child = self.find_or_create_person(self.map_gid(gid[1:-1]))
 
-        ref = RelLib.ChildRef()
-        ref.ref = child.handle
-        ref.set_father_relation(frel)
-        ref.set_mother_relation(mrel)
-        self.family.add_child_ref(ref)
+        reflist = [ ref for ref in self.family.get_child_ref_list() \
+                    if ref.ref == child.handle ]
+        if reflist:
+            ref = reflist[0]
+            if mrel != RelLib.ChildRefType.BIRTH or \
+               frel != RelLib.ChildRefType.BIRTH:
+                ref.set_father_relation(frel)
+                ref.set_mother_relation(mrel)
+        else:
+            ref = RelLib.ChildRef()
+            ref.ref = child.handle
+            ref.set_father_relation(frel)
+            ref.set_mother_relation(mrel)
+            family.add_child_ref(ref)
 
     def func_family_nchil(self, family, matches, level):
         a = RelLib.Attribute()
@@ -1623,7 +1632,7 @@ class GedcomParser(UpdateCallback):
             else:
                 func = self.person_attr.get(matches[1],
                                             self.func_person_attr_undef)
-                func(matches, event, level+1) 
+                func(attr, matches, level+1) 
 
     def func_person_attr_undef(self, attr, matches, level):
         """
@@ -1659,7 +1668,7 @@ class GedcomParser(UpdateCallback):
         self.ignore_sub_junk(level)
 
     def func_person_attr_note(self, attr, matches, level):
-        info = self.parse_note(matches,attr,level+1,'')
+        info = self.parse_note(matches, attr, level+1, '')
         attr.set_note(info)
 
     def parse_source_reference(self,source,level):
@@ -2225,7 +2234,8 @@ class GedcomParser(UpdateCallback):
 
     def func_person_famc(self,matches,state):
         ftype,famc_note = self.parse_famc_type(2,state.person)
-        handle = self.find_family_handle(matches[2][1:-1])
+        gid = matches[2][1:-1]
+        handle = self.find_family_handle(gid)
                 
         for f in self.person.get_parent_family_handle_list():
             if f[0] == handle:
@@ -2237,7 +2247,27 @@ class GedcomParser(UpdateCallback):
                 if state.person.get_main_parents_family_handle() == handle:
                     state.person.set_main_parent_family_handle(None)
                 state.person.add_parent_family_handle(handle)
-                print "NEED TO CHANGE CHILDREF TO",ftype,ftype
+
+                # search childrefs
+                family = self.db.find_family_from_handle(handle, self.trans)
+                family.set_gramps_id(gid)
+                
+                for ref in family.get_child_ref_list():
+                    if ref.ref == state.person.handle:
+                        ref.set_mother_relation(ftype)
+                        ref.set_father_relation(ftype)
+                        break
+                else:
+                    ref = RelLib.ChildRef()
+                    ref.ref = state.person.handle
+                    ref.set_mother_relation(ftype)
+                    ref.set_father_relation(ftype)
+                    family.add_child_ref(ref)
+                self.db.commit_family(family, self.trans)
+                print "---------------"
+                print "p",state.person.handle, "f",family.handle
+                print state.person.parent_family_list
+                print [ ref.ref for ref in family.get_child_ref_list() ]
 
     def func_person_resi(self,matches,state):
         """
