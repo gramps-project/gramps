@@ -1,3 +1,7 @@
+2006-06-08  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: handle more bizarre and illegal
+	statements output by other programs.
+
 2006-06-07  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/Check.py (check_for_broken_family_links): Adapt to
 	RelLib changes.
