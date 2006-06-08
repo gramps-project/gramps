@@ -284,7 +284,8 @@ class CheckIntegrity:
                 self.broken_parent_links.append((father_handle,family_handle))
                 father.add_family_handle(family_handle)
                 self.db.commit_person(father,self.trans)
-            if mother_handle and mother and family_handle not in mother.get_family_handle_list():
+            if mother_handle and mother \
+                   and (family_handle not in mother.get_family_handle_list()):
                 # The referenced mother has no reference back to the family
                 self.broken_parent_links.append((mother_handle,family_handle))
                 mother.add_family_handle(family_handle)
@@ -294,17 +295,16 @@ class CheckIntegrity:
                 child = self.db.get_person_from_handle(child_handle)
                 if child:
                     if family_handle == child.get_main_parents_family_handle():
-                       continue
-                    for family_type in child.get_parent_family_handle_list():
-                        if family_type[0] == family_handle:
-                            break
-                    else:
-                        # The referenced child has no reference back to the family
+                        continue
+                    if family_handle not in \
+                           child.get_parent_family_handle_list():
+                        # The referenced child has no reference to the family
                         family.remove_child_ref(child_ref)
                         self.db.commit_family(family,self.trans)
                         self.broken_links.append((child_handle,family_handle))
                 else:
-                    # The person referenced by the child handle does not exist in the database
+                    # The person referenced by the child handle
+                    # does not exist in the database
                     family.remove_child_ref(child_ref)
                     self.db.commit_family(family,self.trans)
                     self.broken_links.append((child_handle,family_handle))
@@ -313,18 +313,19 @@ class CheckIntegrity:
         # Check persons membership in referenced families
         for person_handle in self.db.get_person_handles():
             person = self.db.get_person_from_handle(person_handle)
-            for family_type in person.get_parent_family_handle_list():
-                family = self.db.get_family_from_handle(family_type[0])
+            for par_family_handle in person.get_parent_family_handle_list():
+                family = self.db.get_family_from_handle(par_family_handle)
                 if not family:
-                    person.remove_parent_family_handle(family_type[0])
+                    person.remove_parent_family_handle(par_family_handle)
                     self.db.commit_person(person,self.trans)
                     continue
-                for child_handle in [x.ref for x in family.get_child_ref_list()]:
+                for child_handle in [child_ref.ref for child_ref
+                                     in family.get_child_ref_list()]:
                     if child_handle == person_handle:
                         break
                 else:
                     # Person is not a child in the referenced parent family
-                    person.remove_parent_family_handle(family_type[0])
+                    person.remove_parent_family_handle(par_family_handle)
                     self.db.commit_person(person,self.trans)
                     self.broken_links.append((person_handle,family_handle))
             for family_handle in person.get_family_handle_list():
