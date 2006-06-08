@@ -1,3 +1,6 @@
+2006-06-07  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: fix child/parent relationships
+
 2006-06-06  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py: read gedcoms that we write
 	* src/GrampsDb/_WriteGedcom.py: read gedcoms that we write
