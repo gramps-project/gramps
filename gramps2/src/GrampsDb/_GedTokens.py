@@ -124,6 +124,7 @@ TOKEN_HEAD = 105
 TOKEN_CALN = 106
 TOKEN_MEDI = 107
 TOKEN_RELA = 108
+TOKEN__LKD = 109
 
 tokens = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
@@ -211,4 +212,5 @@ tokens = {
     "_WITN"          : TOKEN__WITN, "_WTN"          : TOKEN__WTN,
     "_CHUR"          : TOKEN_IGNORE,"RELA"          : TOKEN_RELA,
     "_DETAIL"        : TOKEN_IGNORE,"_PREF"         : TOKEN__PRIMARY,
+    "_LKD"           : TOKEN__LKD,
 }
