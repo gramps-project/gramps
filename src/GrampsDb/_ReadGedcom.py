@@ -444,7 +444,7 @@ class Reader:
                 val = line[2].translate(_transtable,_delc)
             except IndexError:
                 msg = _("Invalid GEDCOM syntax at line %d was ignored.") % self.index
-                log.warningg(msg)
+                log.warning(msg)
                 continue
                 
             try:
@@ -772,6 +772,11 @@ class GedcomParser(UpdateCallback):
             
     def not_recognized(self,level):
         msg = _("Line %d was not understood, so it was ignored.") % self.groups[4]
+#        import traceback
+#        traceback.print_stack()
+#        
+#        print self.groups
+        
         self.errmsg(msg)
         self.error_count += 1
         self.ignore_sub_junk(level)
@@ -836,7 +841,7 @@ class GedcomParser(UpdateCallback):
             self.parse_submitter_data(1)
 
     def parse_submitter_data(self,level):
-        while(1):
+        while True:
             matches = self.get_next()
             if int(matches[0]) < level:
                 self.backup()
@@ -1486,6 +1491,8 @@ class GedcomParser(UpdateCallback):
                 else:
                     val = "%s,%s" % (val,matches[2])
                 address.set_street(val)
+            elif matches[1] == TOKEN_DATE:
+                address.set_date_object(self.extract_date(matches[2]))
             elif matches[1] == TOKEN_CITY:
                 address.set_city(matches[2])
             elif matches[1] == TOKEN_STAE:
@@ -1625,7 +1632,7 @@ class GedcomParser(UpdateCallback):
         event.set_date_object(self.extract_date(matches[2]))
         
     def func_event_source(self, matches, event, level):
-        event.add_source_reference(self.handle_source(matches,level+1))
+        event.add_source_reference(self.handle_source(matches,level))
 
     def func_event_place(self, matches, event, level):
         val = matches[2]
@@ -1719,8 +1726,7 @@ class GedcomParser(UpdateCallback):
         """Reads the data associated with a SOUR reference"""
         while True:
             matches = self.get_next()
-            if int(matches[0]) < level:
-                self.backup()
+            if self.level_is_finished(matches, level):
                 return
             elif matches[1] == TOKEN_PAGE:
                 source.set_page(matches[2])
@@ -1732,7 +1738,8 @@ class GedcomParser(UpdateCallback):
                     d = self.dp.parse(date)
                     source.set_date_object(d)
                 source.set_text(text)
-            elif matches[1] in (TOKEN_OBJE, TOKEN_REFN, TOKEN_EVEN):
+            elif matches[1] in (TOKEN_OBJE, TOKEN_REFN, TOKEN_EVEN,
+                                TOKEN_IGNORE):
                 self.ignore_sub_junk(level+1)
             elif matches[1] == TOKEN_QUAY:
                 try:
@@ -1758,16 +1765,15 @@ class GedcomParser(UpdateCallback):
         note = ""
         while True:
             matches = self.get_next()
-            if int(matches[0]) < level:
-                self.backup()
-                return (date,note)
+            if self.level_is_finished(matches, level):
+                break
             elif matches[1] == TOKEN_DATE:
                 date = matches[2]
             elif matches[1] == TOKEN_TEXT:
                 note = matches[2]
             else:
                 self.not_recognized(level+1)
-        return None
+        return (date,note)
     
     def parse_marnm(self,person,text):
         data = text.split()
@@ -2020,7 +2026,7 @@ class GedcomParser(UpdateCallback):
             note = ''
             handle = self.inline_srcs.get((title,note),Utils.create_id())
             self.inline_srcs[(title,note)] = handle
-            self.parse_source_reference(source_ref,level-1)
+            self.parse_source_reference(source_ref,level)
         else:
             handle = self.find_or_create_source(matches[2][1:-1]).handle
             self.parse_source_reference(source_ref,level)
@@ -2186,6 +2192,22 @@ class GedcomParser(UpdateCallback):
         name = self.parse_name_personal(matches[2])
         name.set_type(RelLib.NameType.AKA)
         state.person.add_alternate_name(name)
+
+        #
+        # Create a new state, and parse the remainder of the NAME level
+        sub_state = CurrentState()
+        sub_state.person = state.person
+        sub_state.name = name
+        sub_state.level = 2
+
+        while True:
+            matches = self.get_next()
+            if self.level_is_finished(matches,2):
+                name.set_note(sub_state.get_text())
+                break
+            else:
+                func = self.name_func.get(matches[1],self.func_name_undefined)
+                func(matches,sub_state)
 
     def func_person_object(self, matches, state):
         """

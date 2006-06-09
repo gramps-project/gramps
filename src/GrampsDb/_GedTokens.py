@@ -210,4 +210,5 @@ tokens = {
     "VERSION"        : TOKEN_VERS,  "WIFE"          : TOKEN_WIFE,
     "_WITN"          : TOKEN__WITN, "_WTN"          : TOKEN__WTN,
     "_CHUR"          : TOKEN_IGNORE,"RELA"          : TOKEN_RELA,
+    "_DETAIL"        : TOKEN_IGNORE,"_PREF"         : TOKEN__PRIMARY,
 }
