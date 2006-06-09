@@ -1,3 +1,7 @@
+2006-06-09  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: yet even more funky fixes
+	* src/GrampsDb/_GedTokens.py: yet even more funky fixes
+	
 2006-06-08  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py: handle more bizarre and illegal
 	statements output by other programs.
