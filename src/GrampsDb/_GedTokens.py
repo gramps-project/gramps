@@ -214,5 +214,5 @@ tokens = {
     "_DETAIL"        : TOKEN_IGNORE,"_PREF"         : TOKEN__PRIMARY,
     "_LKD"           : TOKEN__LKD,  "_DATE"         : TOKEN_IGNORE,
     "_SCBK"          : TOKEN_IGNORE,"_TYPE"         : TOKEN_IGNORE,
-    "_PRIM"          : TOKEN_IGNORE,
+    "_PRIM"          : TOKEN_IGNORE,"_SSHOW"        : TOKEN_IGNORE,
 }
