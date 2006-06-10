@@ -555,7 +555,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_TEMP   : self.func_event_ignore,
             TOKEN_HUSB   : self.func_event_ignore,
             TOKEN_WIFE   : self.func_event_ignore,
-            TOKEN_OBJE   : self.func_event_ignore,
+            TOKEN_OBJE   : self.func_event_object,
             TOKEN_FAMC   : self.func_person_birth_famc,
             }
 
@@ -578,7 +578,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_IGNORE : self.func_event_ignore,
             TOKEN_STAT   : self.func_event_ignore,
             TOKEN_TEMP   : self.func_event_ignore,
-            TOKEN_OBJE   : self.func_event_ignore,
+            TOKEN_OBJE   : self.func_event_object,
             TOKEN_FAMC   : self.func_person_adopt_famc,
             }
 
@@ -647,6 +647,21 @@ class GedcomParser(UpdateCallback):
             TOKEN_NOTE  : self.func_family_note,
             TOKEN_CHAN  : self.func_family_chan,
             }
+
+        self.source_func = {
+            TOKEN_TITL  : self.func_source_title,
+            TOKEN_TAXT  : self.func_source_taxt_peri,
+            TOKEN_PERI  : self.func_source_taxt_peri,
+            TOKEN_AUTH  : self.func_source_auth,
+            TOKEN_PUBL  : self.func_source_publ,
+            TOKEN_NOTE  : self.func_source_note,
+            TOKEN_TEXT  : self.func_source_text,
+            TOKEN_ABBR  : self.func_source_abbr,
+            TOKEN_REPO  : self.func_source_repo,
+            TOKEN_OBJE  : self.func_source_ignore,
+            TOKEN_CHAN  : self.func_source_ignore,
+            TOKEN_IGNORE: self.func_source_ignore,
+        }
 
         self.place_names = set()
         cursor = dbase.get_place_cursor()
@@ -836,61 +851,87 @@ class GedcomParser(UpdateCallback):
     def parse_submitter_data(self,level):
         while True:
             matches = self.get_next()
-            if int(matches[0]) < level:
-                self.backup()
-                return
+            if self.level_is_finished(matches,level):
+                break
             elif matches[1] == TOKEN_NAME:
                 self.def_src.set_author(matches[2])
             elif matches[1] == TOKEN_ADDR:
                 self.ignore_sub_junk(level+1)
 
-    def parse_source(self,name,level):
+    def parse_source(self, name, level):
+        """
+          n @<XREF:SOUR>@ SOUR {1:1}
+          +1 DATA {0:1}
+          +2 EVEN <EVENTS_RECORDED> {0:M}
+          +3 DATE <DATE_PERIOD> {0:1} 
+          +3 PLAC <SOURCE_JURISDICTION_PLACE> {0:1}
+          +2 AGNC <RESPONSIBLE_AGENCY> {0:1}
+          +2 <<NOTE_STRUCTURE>> {0:M}
+          +1 AUTH <SOURCE_ORIGINATOR> {0:1}
+          +1 TITL <SOURCE_DESCRIPTIVE_TITLE> {0:1}
+          +1 ABBR <SOURCE_FILED_BY_ENTRY> {0:1}
+          +1 PUBL <SOURCE_PUBLICATION_FACTS> {0:1}
+          +1 TEXT <TEXT_FROM_SOURCE> {0:1}
+          +1 <<SOURCE_REPOSITORY_CITATION>> {0:1} 
+          +1 <<MULTIMEDIA_LINK>> {0:M} 
+          +1 <<NOTE_STRUCTURE>> {0:M}
+          +1 REFN <USER_REFERENCE_NUMBER> {0:M}
+          +2 TYPE <USER_REFERENCE_TYPE> {0:1}
+          +1 RIN <AUTOMATED_RECORD_ID> {0:1}
+          +1 <<CHANGE_DATE>> {0:1}
+        
+        """
+
         self.source = self.find_or_create_source(name[1:-1])
-        note = ""
+        self.source.set_title("No title - ID %s" % self.source.get_gramps_id())
+
         while True:
             matches = self.get_next()
-            if int(matches[0]) < level:
-                if not self.source.get_title():
-                    self.source.set_title("No title - ID %s" % self.source.get_gramps_id())
-                self.db.commit_source(self.source, self.trans)
-                self.backup()
-                return
-            elif matches[1] == TOKEN_TITL:
-                title = matches[2]
-                title = title.replace('\n',' ')
-                self.source.set_title(title)
-            elif matches[1] in (TOKEN_TAXT,TOKEN_PERI): # EasyTree Sierra On-Line
-                if self.source.get_title() == "":
-                    title = matches[2]
-                    title = title.replace('\n',' ')
-                    self.source.set_title(title)
-            elif matches[1] == TOKEN_AUTH:
-                self.source.set_author(matches[2])
-            elif matches[1] == TOKEN_PUBL:
-                self.source.set_publication_info(matches[2])
-            elif matches[1] == TOKEN_NOTE:
-                note = self.parse_note(matches,self.source,level+1,'')
-                self.source.set_note(note)
-            elif matches[1] == TOKEN_TEXT:
-                note = self.source.get_note()
-                self.source.set_note(note.strip())
-            elif matches[1] == TOKEN_ABBR:
-                self.source.set_abbreviation(matches[2])
-            elif matches[1] == TOKEN_REPO:
-                repo_ref = RelLib.RepoRef()
-                repo = self.find_or_create_repository(matches[2][1:-1])
-                repo_ref.set_reference_handle(repo.handle)
-                self.parse_repo_ref(matches,repo_ref,level+1)
-                self.source.add_repo_reference(repo_ref)
-            elif matches[1] in (TOKEN_OBJE,TOKEN_CHAN,TOKEN_IGNORE):
-                self.ignore_sub_junk(2)
+            if self.level_is_finished(matches, level):
+                break
             else:
-                note = self.source.get_note()
-                if note:
-                    note = "%s\n%s %s" % (note,matches[3],matches[2])
-                else:
-                    note = "%s %s" % (matches[3],matches[2])
-                self.source.set_note(note.strip())
+                func = self.source_func.get(matches[1], self.func_source_undef)
+                func(matches, self.source, level)
+
+        self.db.commit_source(self.source, self.trans)
+
+    def func_source_undef(self, matches, source, level):
+        self.not_recognized(level)
+
+    def func_source_ignore(self, matches, source, level):
+        self.ignore_sub_junk(level+1)
+
+    def func_source_repo(self, matches, source, level):
+        repo_ref = RelLib.RepoRef()
+        repo = self.find_or_create_repository(matches[2][1:-1])
+        repo_ref.set_reference_handle(repo.handle)
+        self.parse_repo_ref(matches,repo_ref,level+1)
+        source.add_repo_reference(repo_ref)
+
+    def func_source_abbr(self, matches, source, level):
+        source.set_abbreviation(matches[2])
+
+    def func_source_text(self, matches, source, level):
+        note = source.get_note()
+        source.set_note(note.strip())
+
+    def func_source_note(self, matches, source, level):
+        note = self.parse_note(matches, source, level+1, '')
+        source.set_note(note)
+    def func_source_auth(self, matches, source, level):
+        source.set_author(matches[2])
+
+    def func_source_publ(self, matches, source, level):
+        source.set_publication_info(matches[2])
+
+    def func_source_title(self, matches, source, level):
+        title = matches[2]
+        title = title.replace('\n',' ')
+        source.set_title(title)
+
+    def func_source_taxt_peri(self, matches, source, level):
+        if source.get_title() == "":
+            source.set_title(matches[2].replace('\n',' '))
 
     def parse_record(self):
         while True:
@@ -1049,9 +1090,8 @@ class GedcomParser(UpdateCallback):
     def parse_cause(self,event,level):
         while True:
             matches = self.get_next()
-            if int(matches[0]) < level:
-                self.backup()
-                return
+            if self.level_is_finished(matches, level):
+                break
             elif matches[1] == TOKEN_SOUR:
                 event.add_source_reference(self.handle_source(matches,level+1))
             else:
@@ -1060,9 +1100,8 @@ class GedcomParser(UpdateCallback):
     def parse_repo_caln(self, matches, repo, level):
         while True:
             matches = self.get_next()
-            if int(matches[0]) < level:
-                self.backup()
-                return
+            if self.level_is_finished(matches, level):
+                break
             elif matches[1] == TOKEN_CALN:
                 repo.set_call_number(matches[2])
                 #self.parse_repo_caln(matches, repo. level+1)
@@ -1072,11 +1111,11 @@ class GedcomParser(UpdateCallback):
                 self.not_recognized(1)
 
     def parse_repo_ref(self, matches, repo_ref, level):
+        
         while True:
             matches = self.get_next()
-            if int(matches[0]) < level:
-                self.backup()
-                return
+            if self.level_is_finished(matches, level):
+                break
             elif matches[1] == TOKEN_CALN:
                 repo_ref.set_call_number(matches[2])
                 self.parse_repo_ref_caln(repo_ref, level+1)
@@ -1089,9 +1128,8 @@ class GedcomParser(UpdateCallback):
     def parse_repo_ref_caln(self, reporef, level):
         while True:
             matches = self.get_next()
-            if int(matches[0]) < level:
-                self.backup()
-                return
+            if self.level_is_finished(matches, level):
+                break
             elif matches[1] == TOKEN_MEDI:
                 reporef.media_type.set(matches[2])
             else:
@@ -1116,9 +1154,8 @@ class GedcomParser(UpdateCallback):
         
         while True:
             matches = self.get_next()
-            if int(matches[0]) < level:
-                self.backup()
-                return (mrel,frel)
+            if self.level_is_finished(matches, level):
+                break
             # FTW
             elif matches[1] == TOKEN__FREL:
                 frel = pedi_type.get(matches[2].lower(),_TYPE_BIRTH)
@@ -1137,12 +1174,12 @@ class GedcomParser(UpdateCallback):
                 pass
             else:
                 self.not_recognized(level+1)
-        return None
+        return (mrel,frel)
 
     def parse_FAM(self, matches):
         # create a family
         
-        self.fam_count = self.fam_count + 1
+        self.fam_count += 1
         self.family = self.find_or_create_family(matches[3][1:-1])
 
         # parse the family
@@ -1248,12 +1285,26 @@ class GedcomParser(UpdateCallback):
 
     def func_family_object(self, family, matches, level):
         if matches[2] and matches[2][0] == '@':
-            self.not_recognized(2)
+            self.not_recognized(level)
         else:
             (form, filename, title, note) = self.parse_obje(level)
             self.build_media_object(self.family, form, filename, title, note)
 
+    def func_event_object(self, matches, event, level):
+        if matches[2] and matches[2][0] == '@':
+            self.not_recognized(level)
+        else:
+            (form, filename, title, note) = self.parse_obje(level)
+            self.build_media_object(event, form, filename, title, note)
+
     def parse_obje(self, level):
+        """
+          n  OBJE {1:1}
+          +1 FORM <MULTIMEDIA_FORMAT> {1:1}
+          +1 TITL <DESCRIPTIVE_TITLE> {0:1}
+          +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
+          +1 <<NOTE_STRUCTURE>> {0:M} 
+        """
         form = ""
         filename = ""
         title = ""
@@ -1270,8 +1321,11 @@ class GedcomParser(UpdateCallback):
                 filename = matches[2]
             elif matches[1] == TOKEN_NOTE:
                 note = matches[2]
+            elif matches[1] == TOKEN_IGNORE:
+                self.ignore_sub_junk(level+1)
             else:
                 self.not_recognized(level+1)
+                
         return (form, filename, title, note)
 
     def func_family_comm(self, family, matches, level):
@@ -1456,8 +1510,7 @@ class GedcomParser(UpdateCallback):
         while True:
             matches = self.get_next()
 
-            if int(matches[0]) < level:
-                self.backup()
+            if self.level_is_finished(matches, level):
                 break
             elif matches[1] == TOKEN_PEDI:
                 ftype = pedi_type.get(matches[2].lower(),RelLib.ChildRefType.UNKNOWN)
@@ -1564,8 +1617,8 @@ class GedcomParser(UpdateCallback):
         note = ""
         while True:
             matches = self.get_next()
-            if int(matches[0]) < level:
-                self.backup()
+
+            if self.level_is_finished(matches, level):
                 break
             elif matches[1] == TOKEN_TEMP:
                 value = self.extract_temple(matches)
@@ -1736,8 +1789,7 @@ class GedcomParser(UpdateCallback):
         frel = _TYPE_BIRTH
         while True:
             matches = self.get_next()
-            if int(matches[0]) < level:
-                self.backup()
+            if self.level_is_finished(matches, level):
                 break
             elif matches[1] == TOKEN_ADOP:
                 if matches[2] == "HUSB":
@@ -1879,8 +1931,7 @@ class GedcomParser(UpdateCallback):
         note = ""
         while True:
             matches = self.get_next()
-            if int(matches[0]) < 1:
-                self.backup()
+            if self.level_is_finished(matches, 1):
                 return
             elif matches[1] == TOKEN_SOUR:
                 self.gedsource = self.gedmap.get_from_source_tag(matches[2])
@@ -1934,9 +1985,8 @@ class GedcomParser(UpdateCallback):
         while True:
             matches = self.get_next()
 
-            if int(matches[0]) < level:
-                self.backup()
-                return
+            if self.level_is_finished(matches, level):
+                break
             elif matches[1] == TOKEN_NAME:
                 self.def_src.set_author(matches[2])
             else:
@@ -1946,9 +1996,8 @@ class GedcomParser(UpdateCallback):
         while True:
             matches = self.get_next()
 
-            if int(matches[0]) < level:
-                self.backup()
-                return
+            if self.level_is_finished(matches, level):
+                break
             elif matches[1] == TOKEN_INDI:
                 self.parse_ftw_indi_schema(level+1)
             elif matches[1] == TOKEN_FAM:
@@ -1960,43 +2009,40 @@ class GedcomParser(UpdateCallback):
         while True:
             matches = self.get_next()
 
-            if int(matches[0]) < level:
-                self.backup()
-                return
+            if self.level_is_finished(matches, level):
+                break
             else:
-                label = self.parse_label(level+1)
-                ged2gramps[matches[1]] = label
+                ged2gramps[matches[1]] = self.parse_label(level+1)
 
     def parse_label(self,level):
+        value = None
+        
         while True:
             matches = self.get_next()
 
-            if int(matches[0]) < level:
-                self.backup()
-                return
+            if self.level_is_finished(matches, level):
+                break
             elif matches[1] == TOKEN_LABL:
-                return matches[2]
+                value = matches[2]
             else:
                 self.not_recognized(2)
-        return None
+        return value
     
     def parse_ftw_fam_schema(self,level):
+        
         while True:
             matches = self.get_next()
 
             if self.level_is_finished(matches, level):
                 break
             else:
-                label = self.parse_label(level+1)
-                ged2fam_custom[matches[3]] = label
+                ged2fam_custom[matches[3]] = self.parse_label(level+1)
     
     def ignore_sub_junk(self,level):
         while True:
             matches = self.get_next()
             if self.level_is_finished(matches,level):
                 break
-#            else:
-#                print matches
     
     def ignore_change_data(self,level):
         matches = self.get_next()
@@ -2009,9 +2055,8 @@ class GedcomParser(UpdateCallback):
         while True:
             matches = self.get_next()
 
-            if int(matches[0]) < level:
-                self.backup()
-                return
+            if self.level_is_finished(matches, level):
+                break
             elif matches[1] == TOKEN_FORM:
                 for item in matches[2].split(','):
                     item = item.lower().strip()
@@ -2025,14 +2070,13 @@ class GedcomParser(UpdateCallback):
         while True:
             matches = self.get_next()
 
-            if int(matches[0]) < level:
-                self.backup()
-                return date
+            if self.level_is_finished(matches, level):
+                break
             elif matches[1] == TOKEN_TIME:
                 date.time = matches[2]
             else:
                 self.not_recognized(level+1)
-        return None
+        return date
 
     def extract_date(self,text):
         dateobj = RelLib.Date()
@@ -2205,23 +2249,23 @@ class GedcomParser(UpdateCallback):
                 name.set_note(sub_state.get_text())
                 break
             else:
-                func = self.name_func.get(matches[1],self.func_name_undefined)
-                func(matches,sub_state)
+                func = self.name_func.get(matches[1], self.func_name_undefined)
+                func(matches, sub_state)
 
     def func_person_chan(self, matches, state):
-        self.parse_change(matches, state.person, state.level)
+        self.parse_change(matches, state.person, state.level+1)
 
     def func_family_chan(self, family, matches, level):
-        self.parse_change(matches, family, level)
+        self.parse_change(matches, family, level+1)
 
     def parse_change(self, matches, obj, level):
         """
         CHANGE_DATE:=
 
           n CHAN {1:1}
-          +1 DATE <CHANGE_DATE> {1:1} p.*
-          +2 TIME <TIME_VALUE> {0:1} p.*
-          +1 <<NOTE_STRUCTURE>> {0:M} p.*
+          +1 DATE <CHANGE_DATE> {1:1}
+          +2 TIME <TIME_VALUE> {0:1}
+          +1 <<NOTE_STRUCTURE>> {0:M}
 
         The Note structure is ignored, since we have nothing
         corresponding in GRAMPS.
@@ -2236,16 +2280,17 @@ class GedcomParser(UpdateCallback):
         
         while True:
             matches = self.get_next()
+
             if self.level_is_finished(matches, level):
                 break
             elif matches[1] == TOKEN_TIME:
                 tstr = matches[2]
-            elif matches[1] == TOKEN_NOTE:
-                self.ignore_sub_junk(level+1)
             elif matches[1] == TOKEN_DATE:
                 dstr = matches[2]
+            elif matches[1] == TOKEN_NOTE:
+                self.ignore_sub_junk(level+1)
             else:
-                self.not_recognized(2)
+                self.not_recognized(level+1)
 
         # Attempt to convert the values to a valid change time
         if tstr:
@@ -2728,7 +2773,8 @@ class GedcomParser(UpdateCallback):
         attr.set_value(matches[2])
         state.person.add_attribute(attr)
 
-    def func_name_aka(self,matches,state):
+    def func_name_aka(self, matches, state):
+        
         lname = matches[2].split()
         l = len(lname)
         if l == 1:
@@ -2742,7 +2788,7 @@ class GedcomParser(UpdateCallback):
             name.set_first_name(' '.join(lname[0:l-1]))
             state.person.add_alternate_name(name)
 
-    def func_name_sour(self,matches,state):
+    def func_name_sour(self, matches, state):
         sref = self.handle_source(matches,state.level+1)
         state.name.add_source_reference(sref)
 
@@ -2753,19 +2799,19 @@ class GedcomParser(UpdateCallback):
         while True:
             matches = self.get_next()
             
-            if int(matches[0]) < 1:
-                self.backup()
-                if state.get_text():
-                    state.repo.set_note(state.get_text())
-                return
+            if self.level_is_finished(matches, 1):
+                break
             else:
                 func = self.repo_func.get(matches[1],self.skip_record)
                 func(matches,state)
 
-    def func_repo_name(self,matches,state):
+        if state.get_text():
+            state.repo.set_note(state.get_text())
+
+    def func_repo_name(self, matches, state):
         state.repo.set_name(matches[2])
 
-    def func_repo_addr(self,matches,state):
+    def func_repo_addr(self, matches, state):
         """
          n ADDR <ADDRESS_LINE> {0:1} 
          +1 CONT <ADDRESS_LINE> {0:M}
@@ -2786,7 +2832,7 @@ class GedcomParser(UpdateCallback):
         addr = RelLib.Address()
         matched = False
 
-        self.parse_address(addr,state.level+1)
+        self.parse_address(addr, state.level+1)
 
         text = addr.get_street()
         if not addr.get_city() and not addr.get_state() and \
@@ -2878,14 +2924,27 @@ if __name__ == "__main__":
     from GrampsDb import gramps_db_factory
 
     def callback(val):
-        print val
+        pass
+
+
+    form = logging.Formatter(fmt="%(levelname)s: %(filename)s: line %(lineno)d: %(message)s")
+    
+    stderrh = logging.StreamHandler(sys.stderr)
+    stderrh.setFormatter(form)
+    stderrh.setLevel(logging.DEBUG)
+
+    # Setup the base level logger, this one gets
+    # everything.
+    l = logging.getLogger()
+    l.setLevel(logging.DEBUG)
+    l.addHandler(stderrh)
 
     codeset = None
 
     db_class = gramps_db_factory(const.app_gramps)
     database = db_class()
     database.load("test.grdb",lambda x: None, mode="w")
-    np = NoteParser(sys.argv[1],False)
+    np = NoteParser(sys.argv[1], False, 0)
     g = GedcomParser(database,sys.argv[1],callback, codeset, np.get_map(),np.get_lines(),np.get_persons())
 
     if False:
