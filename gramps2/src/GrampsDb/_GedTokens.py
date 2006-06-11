@@ -120,11 +120,13 @@ TOKEN_VERS = 100
 TOKEN_WIFE = 101
 TOKEN__WITN = 102
 TOKEN__WTN = 103
+TOKEN_AGNC = 104
 TOKEN_HEAD = 105
 TOKEN_CALN = 106
 TOKEN_MEDI = 107
 TOKEN_RELA = 108
 TOKEN__LKD = 109
+TOKEN_BLOB = 110
 
 tokens = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
@@ -215,4 +217,5 @@ tokens = {
     "_LKD"           : TOKEN__LKD,  "_DATE"         : TOKEN_IGNORE,
     "_SCBK"          : TOKEN_IGNORE,"_TYPE"         : TOKEN_IGNORE,
     "_PRIM"          : TOKEN_IGNORE,"_SSHOW"        : TOKEN_IGNORE,
+    "_PAREN"         : TOKEN_IGNORE,"BLOB"          : TOKEN_BLOB,
 }
