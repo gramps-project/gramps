@@ -1,3 +1,7 @@
+2006-06-10  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: fixes based of the gedcom torture test
+	* src/GrampsDb/_GedTokeys.py: fixes based of the gedcom torture test
+
 2006-06-09  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py: yet even more funky fixes, pass Jerome's tests
 	* src/GrampsDb/_GedTokens.py: yet even more funky fixes, handle more 
