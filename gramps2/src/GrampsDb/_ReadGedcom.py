@@ -620,6 +620,7 @@ class GedcomParser(UpdateCallback):
             TOKEN__UID  : self.func_person_attr,
             TOKEN_ASSO  : self.func_person_asso,
             TOKEN_ANCI  : self.skip_record,
+            TOKEN_SUBM  : self.skip_record,
             TOKEN_DESI  : self.skip_record,
             TOKEN_RIN   : self.skip_record,
             TOKEN__TODO : self.skip_record,
@@ -1464,6 +1465,7 @@ class GedcomParser(UpdateCallback):
                     'family' : Utils.family_name(self.family,self.db),
                     }
                 event.set_description(text)
+
         self.db.add_event(event,self.trans)
 
         event_ref = RelLib.EventRef()
@@ -1809,7 +1811,10 @@ class GedcomParser(UpdateCallback):
                     name = RelLib.EventType((RelLib.EventType.CUSTOM,matches[3]))
             event.set_type(name)
         else:
-            event.set_description(matches[2])
+            if not ged2gramps.has_key(matches[2]) and \
+               not ged2fam.has_key(matches[2]) and \
+               matches[2] != 'Y':
+                event.set_description(matches[2])
 
     def func_event_privacy(self, matches, event, level):
         event.set_privacy(True)
@@ -2870,6 +2875,7 @@ class GedcomParser(UpdateCallback):
         if matches[2]:
             event.set_description(matches[2])
         person_event_name(event,state.person)
+
         self.db.add_event(event, self.trans)
 
         event_ref = RelLib.EventRef()
@@ -2889,18 +2895,28 @@ class GedcomParser(UpdateCallback):
                                           state.level+1,state.note))
 
     def func_name_alia(self,matches,state):
-        aka = RelLib.Name()
-        try:
-            names = nameRegexp.match(matches[2]).groups()
-        except:
-            names = (matches[2],"","","","")
-        if names[0]:
-            aka.set_first_name(names[0].strip())
-        if names[2]:
-            aka.set_surname(names[2].strip())
-        if names[4]:
-            aka.set_suffix(names[4].strip())
-        state.person.add_alternate_name(aka)
+        """
+        The ALIA tag is supposed to cross reference another person.
+        However, we do not support this.
+
+        Some systems use the ALIA tag as an alternate NAME tag, which
+        is not legal in GEDCOM, but oddly enough, is easy to support.
+        """
+        if matches[2][0] == '@':
+            aka = RelLib.Name()
+            try:
+                names = nameRegexp.match(matches[2]).groups()
+            except:
+                names = (matches[2],"","","","")
+            if names[0]:
+                aka.set_first_name(names[0].strip())
+            if names[2]:
+                aka.set_surname(names[2].strip())
+            if names[4]:
+                aka.set_suffix(names[4].strip())
+            state.person.add_alternate_name(aka)
+        else:
+            pass
 
     def func_name_npfx(self,matches,state):
         state.name.set_title(matches[2].strip())
