@@ -238,7 +238,6 @@ src/plugins/ChangeNames.py
 src/plugins/ChangeTypes.py
 src/plugins/Checkpoint.py
 src/plugins/Check.py
-src/plugins/CmdRef.py
 src/plugins/CountAncestors.py
 src/plugins/CustomBookText.py
 src/plugins/Desbrowser.py
@@ -247,7 +246,6 @@ src/plugins/DescendReport.py
 src/plugins/DesGraph.py
 src/plugins/DetAncestralReport.py
 src/plugins/DetDescendantReport.py
-src/plugins/DumpGenderStats.py
 src/plugins/Eval.py
 src/plugins/EventCmp.py
 src/plugins/ExportVCalendar.py
@@ -268,7 +266,6 @@ src/plugins/PatchNames.py
 src/plugins/ReadPkg.py
 src/plugins/Rebuild.py
 src/plugins/RelCalc.py
-src/plugins/TestcaseGenerator.py
 src/plugins/rel_da.py
 src/plugins/rel_de.py
 src/plugins/rel_es.py
