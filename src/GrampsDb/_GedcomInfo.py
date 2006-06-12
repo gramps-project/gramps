@@ -76,7 +76,7 @@ personalConstantEvents = {
     RelLib.EventType.BLESS            : "BLES",
     RelLib.EventType.BURIAL           : "BURI",
     RelLib.EventType.CAUSE_DEATH      : "CAUS",
-    RelLib.EventType.ORDINATION       : "ORDI",
+    RelLib.EventType.ORDINATION       : "ORDN",
     RelLib.EventType.CENSUS           : "CENS",
     RelLib.EventType.CHRISTEN         : "CHR" ,
     RelLib.EventType.CONFIRMATION     : "CONF",
