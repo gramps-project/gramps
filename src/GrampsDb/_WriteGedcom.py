@@ -120,6 +120,7 @@ lds_ord_name = {
     RelLib.LdsOrd.ENDOWMENT       : 'ENDL',
     RelLib.LdsOrd.SEAL_TO_PARENTS : 'SLGC',
     RelLib.LdsOrd.SEAL_TO_SPOUSE  : 'SGLS',
+    RelLib.LdsOrd.CONFIRMATION    : 'CONL',
     }
 
 lds_status = {

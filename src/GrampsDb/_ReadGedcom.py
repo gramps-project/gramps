@@ -603,6 +603,7 @@ class GedcomParser(UpdateCallback):
             TOKEN__COMM : self.func_person_note,
             TOKEN_SEX   : self.func_person_sex,
             TOKEN_BAPL  : self.func_person_bapl,
+            TOKEN_CONL  : self.func_person_conl,
             TOKEN_ENDL  : self.func_person_endl,
             TOKEN_SLGC  : self.func_person_slgc,
             TOKEN_FAMS  : self.func_person_fams,
@@ -2629,6 +2630,12 @@ class GedcomParser(UpdateCallback):
     def func_person_bapl(self,matches,state):
         lds_ord = RelLib.LdsOrd()
         lds_ord.set_type(RelLib.LdsOrd.BAPTISM)
+        state.person.lds_ord_list.append(lds_ord)
+        self.parse_ord(lds_ord,2)
+
+    def func_person_conl(self,matches,state):
+        lds_ord = RelLib.LdsOrd()
+        lds_ord.set_type(RelLib.LdsOrd.CONFIRMATION)
         state.person.lds_ord_list.append(lds_ord)
         self.parse_ord(lds_ord,2)
 

@@ -1,3 +1,10 @@
+2006-06-13  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditLdsOrd.py: LDS confirmation support
+	* src/GrampsDb/_ReadGedcom.py: LDS confirmation support
+	* src/GrampsDb/_WriteGedcom.py: LDS confirmation support
+	* src/GrampsDb/_GedTokens.py: LDS confirmation support
+	* src/GrampsDb/_LdsOrdd.py: LDS confirmation support
+
 2006-06-13  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Avoid using
 	secondary index when upgrading events; manually resolve duplicate IDs.
