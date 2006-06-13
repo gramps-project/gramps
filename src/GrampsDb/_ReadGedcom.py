@@ -178,6 +178,7 @@ ged2fam_custom = {}
 intRE = re.compile(r"\s*(\d+)\s*$")
 nameRegexp= re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
 snameRegexp= re.compile(r"/([^/]*)/([^/]*)")
+modRegexp = re.compile(r"\s*(EST|CAL)\s+(.*)$")
 calRegexp = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
 rangeRegexp = re.compile(r"\s*BET\s+@#D([^@]+)@\s*(.*)\s+AND\s+@#D([^@]+)@\s*(.*)$")
 spanRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
@@ -637,7 +638,6 @@ class GedcomParser(UpdateCallback):
             TOKEN_STAT  : self.func_person_attr_ignore,
             TOKEN_TEMP  : self.func_person_attr_ignore,
             TOKEN_OBJE  : self.func_person_attr_ignore,
-            TOKEN_DATE  : self.func_person_attr_ignore,
             TOKEN_SOUR  : self.func_person_attr_source,
             TOKEN_PLAC  : self.func_person_attr_place,
             TOKEN_NOTE  : self.func_person_attr_note,
@@ -1441,7 +1441,8 @@ class GedcomParser(UpdateCallback):
             else:
                 event.set_type(RelLib.EventType.UNKNOWN)
 
-        if matches[2] and not event.get_description():
+        if matches[2] and not event.get_description() and \
+               matches[2] != 'Y':
             event.set_description(matches[2])
                 
         self.parse_event(event, self.generic_event_map, 2)
@@ -1813,7 +1814,7 @@ class GedcomParser(UpdateCallback):
         else:
             if not ged2gramps.has_key(matches[2]) and \
                not ged2fam.has_key(matches[2]) and \
-               matches[2] != 'Y':
+               matches[2][0] != 'Y':
                 event.set_description(matches[2])
 
     def func_event_privacy(self, matches, event, level):
@@ -2107,9 +2108,13 @@ class GedcomParser(UpdateCallback):
                     self.lexer.set_broken_conc(self.gedsource.get_conc())
             elif matches[1] == TOKEN_CHAR and not self.override:
                 if matches[2] == "ANSEL":
+                    print "ANSEL"
                     self.lexer.set_charset_fn(ansel_to_utf8)
                 elif matches[2] not in ("UNICODE","UTF-8","UTF8"):
+                    print "ASCII/LATIN"
                     self.lexer.set_charset_fn(latin_to_utf8)
+                else:
+                    print "UNICODE"
                 self.ignore_sub_junk(2)
             elif matches[1] == TOKEN_GEDC:
                 self.ignore_sub_junk(2)
@@ -2230,6 +2235,14 @@ class GedcomParser(UpdateCallback):
     def extract_date(self,text):
         dateobj = RelLib.Date()
         try:
+            match = modRegexp.match(text)
+            if match:
+                (mod, text) = match.groups()
+                if mod == "CAL":
+                    dateobj.set_quality(RelLib.Date.QUAL_CALCULATED)
+                elif mod == "EST":
+                    dateobj.set_quality(RelLib.Date.QUAL_ESTIMATED)
+
             match = rangeRegexp.match(text)
             if match:
                 (cal1,data1,cal2,data2) = match.groups()
@@ -2786,7 +2799,7 @@ class GedcomParser(UpdateCallback):
         """
         event = RelLib.Event()
         event.set_gramps_id(self.emapper.find_next())
-        if matches[2]:
+        if matches[2] and matches[2] != 'Y':
             event.set_description(matches[2])
         event.type.set(RelLib.EventType.DEATH)
         self.parse_event(event, self.generic_event_map, 2)
@@ -2809,7 +2822,7 @@ class GedcomParser(UpdateCallback):
         """
         event = RelLib.Event()
         event.set_gramps_id(self.emapper.find_next())
-        if matches[2]:
+        if matches[2] and matches[2] != 'Y':
             event.set_description(matches[2])
         self.parse_event(event, self.generic_event_map, 2)
         the_type = event.get_type()
@@ -2872,7 +2885,7 @@ class GedcomParser(UpdateCallback):
                 event.set_type((RelLib.EventType.CUSTOM,n))
                 
         self.parse_event(event, self.generic_event_map, 2)
-        if matches[2]:
+        if matches[2] and matches[2] != 'Y':
             event.set_description(matches[2])
         person_event_name(event,state.person)
 
