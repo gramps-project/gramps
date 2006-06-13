@@ -71,6 +71,18 @@ _DATA_MAP = {
         RelLib.LdsOrd.STATUS_SUBMITTED,
         RelLib.LdsOrd.STATUS_UNCLEARED,
         ],
+    RelLib.LdsOrd.CONFIRMATION : [
+        RelLib.LdsOrd.STATUS_NONE,
+        RelLib.LdsOrd.STATUS_CHILD,
+        RelLib.LdsOrd.STATUS_CLEARED,
+        RelLib.LdsOrd.STATUS_COMPLETED,
+        RelLib.LdsOrd.STATUS_INFANT,
+        RelLib.LdsOrd.STATUS_PRE_1970,
+        RelLib.LdsOrd.STATUS_QUALIFIED,
+        RelLib.LdsOrd.STATUS_STILLBORN,
+        RelLib.LdsOrd.STATUS_SUBMITTED,
+        RelLib.LdsOrd.STATUS_UNCLEARED,
+        ],
     RelLib.LdsOrd.ENDOWMENT: [
         RelLib.LdsOrd.STATUS_NONE,
         RelLib.LdsOrd.STATUS_CHILD,
@@ -148,6 +160,7 @@ class EditLdsOrd(EditSecondary):
     def _get_types(self):
         return (RelLib.LdsOrd.BAPTISM,
                 RelLib.LdsOrd.ENDOWMENT,
+                RelLib.LdsOrd.CONFIRMATION,
                 RelLib.LdsOrd.SEAL_TO_PARENTS)
 
     def _setup_fields(self):

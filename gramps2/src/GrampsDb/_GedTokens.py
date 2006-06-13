@@ -127,6 +127,7 @@ TOKEN_MEDI = 107
 TOKEN_RELA = 108
 TOKEN__LKD = 109
 TOKEN_BLOB = 110
+TOKEN_CONL = 111
 
 tokens = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
@@ -218,4 +219,5 @@ tokens = {
     "_SCBK"          : TOKEN_IGNORE,"_TYPE"         : TOKEN_IGNORE,
     "_PRIM"          : TOKEN_IGNORE,"_SSHOW"        : TOKEN_IGNORE,
     "_PAREN"         : TOKEN_IGNORE,"BLOB"          : TOKEN_BLOB,
+    "CONL"           : TOKEN_CONL,
 }
