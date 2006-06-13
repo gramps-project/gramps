@@ -1,3 +1,7 @@
+2006-06-13  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Avoid using
+	secondary index when upgrading events; manually resolve duplicate IDs.
+
 2006-06-12  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/GraphVis.py: ues Mime instead of GrampsMime
 

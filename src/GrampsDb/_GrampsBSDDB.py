@@ -31,6 +31,7 @@ Provides the Berkeley DB (BSDDB) database backend for GRAMPS
 #-------------------------------------------------------------------------
 import cPickle as pickle
 import os
+import re
 import time
 import locale
 from gettext import gettext as _
@@ -424,7 +425,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.surnames = db.DB(self.env)
         self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
         self.surnames.open(self.full_name, "surnames", db.DB_BTREE,
-                               flags=table_flags)
+                           flags=table_flags)
 
         self.name_group = db.DB(self.env)
         self.name_group.set_flags(db.DB_DUP)
@@ -1521,16 +1522,28 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
 
         # Event upgrade
         # Turns out that a lof ot events have duplicate gramps IDs
-        # We need to fix this
-        table_flags = self.open_flags()
-        self.eid_trans = db.DB(self.env)
-        self.eid_trans.set_flags(db.DB_DUP)
-        self.eid_trans.open(self.full_name, "eidtrans",
-                            db.DB_HASH, flags=table_flags)
-        self.event_map.associate(self.eid_trans,find_idmap,table_flags)
-        eid_list = self.eid_trans.keys()
-        dup_ids = [eid for eid in eid_list if eid_list.count(eid) > 1 ]
+        # We need to fix this. For some reason secondary index gets confused
+        # so we resolve duplicate IDs manually.
+        # First a quick pass via the cursor to get a list of event ids
+        eid_list = []
+        cursor = self.get_event_cursor()
+        data = cursor.first()
+        while data:
+            handle,val = data
+            eid_list.append(val[1])
+            data = cursor.next()
+        cursor.close()
 
+        # Find the largest ID and extract the integer:
+        # We can do this because in 2.0.x the event id is never exposed
+        eid_list.sort()
+        last_id = eid_list[-1]
+        nre = re.compile("\D+(\d+)")
+        max_id_number = int(nre.match(last_id).groups()[0])
+
+        # get the list of all IDs that are non-unique
+        dup_ids = [eid for eid in eid_list if eid_list.count(eid) > 1 ]
+        
         for handle in self.event_map.keys():
             info = self.event_map[handle]        
             event = Event()
@@ -1540,9 +1553,12 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
              event.source_list, event.note, witness_list,
              event.media_list, event.change) = info
 
+            # Change ID if it is non-unique
             if event.gramps_id in dup_ids:
-                event.gramps_id = self.find_next_event_gramps_id()
+                max_id_number += 1
+                event.gramps_id = self.eprefix % max_id_number
 
+            # Convert old string-based type to GrampsType
             event.type.set_from_xml_str(old_type)
             
             # Cover attributes contained in MediaRefs
@@ -1582,10 +1598,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                                     _("Broken witness reference detected "
                                       "while upgrading database to version 9.")
                         event.set_note(note_text)
-                         
+
             self.commit_event(event,trans)
             self.update()
-        self.eid_trans.close()
         
         # Place upgrade
         for handle in self.place_map.keys():
