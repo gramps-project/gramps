@@ -57,6 +57,7 @@ familyConstantEvents = {
     RelLib.EventType.ANNULMENT  : "ANUL",
     RelLib.EventType.DIV_FILING : "DIVF",
     RelLib.EventType.DIVORCE    : "DIV",
+    RelLib.EventType.CENSUS     : "CENS",
     RelLib.EventType.ENGAGEMENT : "ENGA",
     RelLib.EventType.MARR_BANNS : "MARB",
     RelLib.EventType.MARR_CONTR : "MARC",
