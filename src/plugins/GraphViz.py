@@ -1010,9 +1010,9 @@ class FormatComboBox(gtk.ComboBox):
 
         try:
             import Utils
-            import GrampsMime
+            import Mime
     
-            mprog = GrampsMime.get_application(_apptype)
+            mprog = Mime.get_application(_apptype)
     
             if Utils.search_for(mprog[0]):
                 print_label = _("Open in %(program_name)s") % { 'program_name':
@@ -1070,8 +1070,8 @@ class GraphicsFormatComboBox(gtk.ComboBox):
         print_label = None
         try:
             import Utils
-            import GrampsMime
-            mprog = GrampsMime.get_application(_apptype)
+            import Mime
+            mprog = Mime.get_application(_apptype)
             if Utils.search_for(mprog[0]):
                 print_label = _("Open in %(program_name)s") % { 'program_name':
                                                         mprog[1]}
@@ -1157,9 +1157,9 @@ class GraphVizGraphics(Report):
             if _apptype:
                 try:
                     import Utils
-                    import GrampsMime
+                    import Mime
             
-                    app = GrampsMime.get_application(_apptype)
+                    app = Mime.get_application(_apptype)
                     os.environ["FILE"] = self.user_output
                     os.system ('%s "$FILE" &' % app[0])
                 except:
@@ -1174,8 +1174,8 @@ class GraphVizGraphics(Report):
             if _apptype:
                 try:
                     import Utils
-                    import GrampsMime
-                    app = GrampsMime.get_application(_apptype)
+                    import Mime
+                    app = Mime.get_application(_apptype)
                     os.environ["FILE"] = self.user_output
                     os.system ('%s "$FILE" &' % app[0])
                 except:
