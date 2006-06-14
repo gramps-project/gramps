@@ -1,3 +1,12 @@
+2006-06-14  Alex Roitman  <shura@gramps-project.org>
+	* src/NameDisplay.py: Factor out commont code.
+	* src/Editors/_EditName.py (_setup_fields): Remove Default item.
+	* src/RelLib/_Name.py (Name.DEF): Replace with CUSTOM, use LNFN in
+	place of previous DEF.
+	* src/GrampsCfg.py (add_name_panel): Add Name Display panel.
+	* src/GrampsDb/_ReadXML.py (stop_name): Properly set name type;
+	do not set conf attribute on attr, addr, and event.
+
 2006-06-13  Brian Matherly  <brian@gramps-project.org>
 	* src/PluginUtils/_Plugins.py: pass dbstate to report
 

@@ -36,6 +36,3 @@ else:
       from _GrampsGconfKeys import *
    except:
       from _GrampsIniKeys import *
-
-
-   

@@ -752,7 +752,6 @@ class GrampsParser(UpdateCallback):
                 self.event.gramps_id = gramps_id
             except KeyError:
                 self.event = self.find_event_by_gramps_id(gramps_id)
-            self.event.conf = int(attrs.get("conf",2))
             self.event.private = bool(attrs.get("priv"))
 
     def start_eventref(self,attrs):
@@ -782,7 +781,6 @@ class GrampsParser(UpdateCallback):
 
     def start_attribute(self,attrs):
         self.attribute = RelLib.Attribute()
-        self.attribute.conf = int(attrs.get("conf",2))
         self.attribute.private = bool(attrs.get("priv"))
         self.attribute.type = RelLib.AttributeType()
         if attrs.has_key('type'):
@@ -801,7 +799,6 @@ class GrampsParser(UpdateCallback):
 
     def start_address(self,attrs):
         self.address = RelLib.Address()
-        self.address.conf = int(attrs.get("conf",2))
         self.address.private = bool(attrs.get("priv"))
 
     def start_bmark(self,attrs):
@@ -1013,11 +1010,13 @@ class GrampsParser(UpdateCallback):
         if not self.in_witness:
             self.name = RelLib.Name()
             self.name.type.set_from_xml_str(attrs['type'])
-            self.name.sort_as = int(attrs.get("sort",RelLib.Name.DEF))
-            self.name.display_as = int(attrs.get("display",RelLib.Name.DEF))
-            self.name.conf = int(attrs.get("conf",2))
             self.name.set_private = bool(attrs.get("priv"))
             self.alt_name = bool(attrs.get("alt"))
+            try:
+                self.name.sort_as = int(attrs["sort"])
+                self.name.display_as = int(attrs["display"])
+            except KeyError:
+                pass
 
     def start_last(self,attrs):
         self.name.prefix = attrs.get('prefix','')
@@ -1479,11 +1478,11 @@ class GrampsParser(UpdateCallback):
         elif self.alt_name:
             # former aka tag -- alternate name
             if self.name.get_type() == "":
-                self.name.set_type("Also Known As")
+                self.name.set_type(NameType.AKA)
             self.person.add_alternate_name(self.name)
         else:
             if self.name.get_type() == "":
-                self.name.set_type("Birth Name")
+                self.name.set_type(NameType.BIRTH)
             self.person.set_primary_name (self.name)
         self.name = None
 
