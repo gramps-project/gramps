@@ -77,7 +77,8 @@ class EditName(EditSecondary):
         Utils.bold_label(self.general_label)
 
     def _post_init(self):
-        if self.original_group_as and self.original_group_as != self.obj.get_surname():
+        if self.original_group_as and \
+               (self.original_group_as != self.obj.get_surname()):
             self.group_over.set_active(True)
 
     def _connect_signals(self):
@@ -99,18 +100,20 @@ class EditName(EditSecondary):
             self.top.get_widget('sort_as'),
             self.obj.set_sort_as,
             self.obj.get_sort_as,
-            [(_('Default (based on locale)'),RelLib.Name.DEF),
-             (_('Given name Family name'), RelLib.Name.FNLN),
-             (_('Family name Given Name'), RelLib.Name.LNFN)],
+            [(_('Given name Family name'), RelLib.Name.FNLN),
+             (_('Family name Given Name Patronymic'), RelLib.Name.LNFN),
+             (_('Custom'), RelLib.Name.CUSTOM),
+             ],
             self.db.readonly)
 
         self.display_as = MonitoredMenu(
             self.top.get_widget('display_as'),
             self.obj.set_display_as,
             self.obj.get_display_as,
-            [(_('Default (based on locale)'),RelLib.Name.DEF),
-             (_('Given name Family name'), RelLib.Name.FNLN),
-             (_('Family name Given Name'), RelLib.Name.LNFN)],
+            [(_('Given name Family name'), RelLib.Name.FNLN),
+             (_('Family name Given Name Patronymic'), RelLib.Name.LNFN),
+             (_('Custom'), RelLib.Name.CUSTOM),
+             ],
             self.db.readonly)
 
         self.given_field = MonitoredEntry(

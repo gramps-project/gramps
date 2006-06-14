@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004-2005  Donald N. Allingham
+# Copyright (C) 2004-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,6 +48,14 @@ _GROUP     = 12
 _SORT      = 13
 _DISPLAY   = 14
 
+formats = {
+    Name.LNFN: _("Family name, Given name Patronymic"),
+    Name.FNLN: _("Given name Family name"),
+    Name.PTFN: _("Patronymic Given name"),
+    Name.FN:   _("Given name"),
+    Name.CUSTOM:  _("Custom"),
+    }
+
 #-------------------------------------------------------------------------
 #
 # NameDisplay class
@@ -57,6 +65,12 @@ class NameDisplay:
     """
     Base class for displaying of Name instances.
     """
+
+    # FIXME: Is this used anywhere? I cannot see that it is.
+    sort_field = (Name.get_surname, Name.get_surname,
+                  Name.get_first_name, Name.get_patronymic,
+                  Name.get_first_name)
+
     def __init__(self,use_upper=False):
         """
         Creates a new NameDisplay class.
@@ -126,23 +140,8 @@ class NameDisplay:
            SurnamePrefix Patronymic SurnameSuffix, FirstName
         """
 
-        first = name.first_name
-
-        if self.force_upper:
-            last = name.patronymic.upper()
-        else:
-            last = name.patronymic
-            
-        if name.suffix:
-            if name.prefix:
-                return "%s %s %s, %s" % (name.prefix, last, name.suffix, first)
-            else:
-                return "%s %s, %s" % (last, name.suffix, first)
-        else:
-            if name.prefix:
-                return "%s %s, %s" % (name.prefix, last, first)
-            else:
-                return "%s, %s" % (last, first)
+        return self._ptfn_base(name.first_name,name.suffix,
+                               name.prefix,name.patronymic)
 
     def _ptfn_raw(self,raw_data):
         """
@@ -157,6 +156,9 @@ class NameDisplay:
         prefix = raw_data[_PREFIX]
         patronymic = raw_data[_PATRONYM]
 
+        return self._ptfn_base(first,suffix,prefix,patronymic)
+
+    def _ptfn_base(self,first,suffix,prefix,patronymic):
         if self.force_upper:
             last = patronymic.upper()
         else:
@@ -180,26 +182,8 @@ class NameDisplay:
 
            FirstName Patronymic SurnamePrefix Surname SurnameSuffix
         """
-        first = name.first_name
-
-        if name.patronymic:
-            first = "%s %s" % (first, name.patronymic)
-
-        if self.force_upper:
-            last = name.surname.upper()
-        else:
-            last = name.surname
-            
-        if name.suffix:
-            if name.prefix:
-                return "%s %s %s, %s" % (first, name.prefix, last, name.suffix)
-            else:
-                return "%s %s, %s" % (first, last, name.suffix)
-        else:
-            if name.prefix:
-                return "%s %s %s" % (first, name.prefix, last)
-            else:
-                return "%s %s" % (first, last)
+        return self._fnln_base(name.first_name,name.surname,name.suffix,
+                          name.prefix,name.patronymic)
 
     def _fnln_raw(self,raw_data):
         """
@@ -213,7 +197,9 @@ class NameDisplay:
         suffix = raw_data[_SUFFIX]
         prefix = raw_data[_PREFIX]
         patronymic = raw_data[_PATRONYM]
+        return self._fnln_base(first,surname,suffix,prefix,patronymic)
 
+    def _fnln_base(self,first,surname,suffix,prefix,patronymic):
         if patronymic:
             first = "%s %s" % (first, patronymic)
 
@@ -240,16 +226,8 @@ class NameDisplay:
 
             SurnamePrefix Surname, FirstName Patronymic SurnameSuffix
         """
-        if self.force_upper:
-            last = name.surname.upper()
-        else:
-            last = name.surname
-
-        if last:
-            last += ","
-
-        return " ".join([x for x in [name.prefix, last, name.first_name,
-                                     name.patronymic, name.suffix]])
+        return self._lnfn_base(name.first_name,name.surname,name.prefix,
+                          name.suffix,name.patronymic)
 
     def _lnfn_raw(self,raw_data):
         """
@@ -258,17 +236,25 @@ class NameDisplay:
 
             SurnamePrefix Surname, FirstName Patronymic SurnameSuffix
         """
+
+        surname = raw_data[_SURNAME]
+        prefix = raw_data[_PREFIX]
+        first = raw_data[_FIRSTNAME]
+        patronymic = raw_data[_PATRONYM]
+        suffix = raw_data[_SUFFIX]
+
+        return self._lnfn_base(first,surname,prefix,suffix,patronymic)
+
+    def _lnfn_base(self,first,surname,prefix,suffix,patronymic):
         if self.force_upper:
-            last = raw_data[_SURNAME].upper()
+            last = surname.upper()
         else:
-            last = raw_data[_SURNAME]
+            last = surname
 
         if last:
             last += ","
 
-        return " ".join([x for x in
-                         [raw_data[_PREFIX], last, raw_data[_FIRSTNAME],
-                          raw_data[_PATRONYM], raw_data[_SUFFIX]]])
+        return " ".join([prefix, last, first, patronymic, suffix])
     
     def sorted_name(self,name):
         """
@@ -362,10 +348,6 @@ class NameDisplay:
     def name_grouping(self,db,person):
         return self.name_grouping_name(db,person.primary_name)
 
-
-    sort_field = (Name.get_surname, Name.get_surname,
-                  Name.get_first_name, Name.get_patronymic,
-                  Name.get_first_name)
 
     def name_grouping_name(self,db,pn):
         if pn.group_as:

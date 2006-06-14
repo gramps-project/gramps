@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,6 +42,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import Config
 import DateHandler
+import NameDisplay
 import ManagedWindow
 from GrampsWidgets import *
 
@@ -86,13 +87,14 @@ def get_researcher():
 class GrampsPreferences(ManagedWindow.ManagedWindow):
     def __init__(self, uistate):
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], GrampsPreferences)
+        ManagedWindow.ManagedWindow.__init__(self,uistate,[],GrampsPreferences)
 
         tlabel = gtk.Label()
-        self.set_window(gtk.Dialog(_('Preferences'),
-                                   flags=gtk.DIALOG_NO_SEPARATOR,
-                                   buttons=(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
-                        tlabel, _('Preferences'), None)
+        self.set_window(
+            gtk.Dialog(_('Preferences'),
+                       flags=gtk.DIALOG_NO_SEPARATOR,
+                       buttons=(gtk.STOCK_CLOSE,gtk.RESPONSE_CLOSE)),
+            tlabel, _('Preferences'), None)
 
         panel = gtk.Notebook()
         self.window.vbox.pack_start(tlabel, padding=12)
@@ -102,6 +104,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                           MarkupLabel("<b>%s</b>" % _('General')))
         panel.append_page(self.add_formats_panel(),
                           MarkupLabel("<b>%s</b>" % _('Display')))
+        panel.append_page(self.add_name_panel(),
+                          MarkupLabel("<b>%s</b>" % _('Name Display')))
         panel.append_page(self.add_prefix_panel(),
                           MarkupLabel("<b>%s</b>" % _('ID Formats')))
         panel.append_page(self.add_advanced_panel(),
@@ -198,6 +202,30 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.custom_color.set_color(gtk.gdk.color_parse(def_cust))
         for widget in [self.comp_color,self.todo_color,self.custom_color]:
             widget.emit('color-set')
+
+    def add_name_panel(self):
+        table = gtk.Table(3,3)
+        table.set_border_width(12)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+
+        obox = gtk.combo_box_new_text()
+        for key,value in NameDisplay.formats.items():
+            obox.append_text(value)
+
+        active = Config.get(Config.NAME_FORMAT)
+        if active >= len(NameDisplay.formats):
+            active = 0
+        obox.set_active(active)
+        obox.connect('changed',
+                     lambda obj: Config.set(Config.NAME_FORMAT,
+                                            obj.get_active()))
+
+        lwidget = BasicLabel("%s: " % _('Preset format'))
+
+        table.attach(lwidget, 0, 1, 0, 1, yoptions=0)
+        table.attach(obox, 1,3,0, 1, yoptions=0)
+        return table
 
     def add_formats_panel(self):
         table = gtk.Table(3,8)
@@ -317,5 +345,3 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
     def build_menu_names(self,obj):
         return (_('Preferences'),None)
-
-

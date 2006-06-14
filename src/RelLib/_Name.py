@@ -55,11 +55,11 @@ class Name(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase):
     A person may have more that one name throughout his or her life.
     """
 
-    DEF  = 0  # locale default
-    LNFN = 1  # last name first name [patronymic]
-    FNLN = 2  # first name last name
-    PTFN = 3  # patronymic last name
-    FN   = 4  # first name
+    CUSTOM = -1  # user-built ordering
+    LNFN = 0  # last name first name [patronymic]
+    FNLN = 1  # first name last name
+    PTFN = 2  # patronymic first name
+    FN   = 3  # first name
     
     def __init__(self,source=None,data=None):
         """creates a new Name instance, copying from the source if provided"""
@@ -105,8 +105,8 @@ class Name(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase):
             self.patronymic = ""
             self.sname = '@'
             self.group_as = ""
-            self.sort_as = self.DEF
-            self.display_as = self.DEF
+            self.sort_as = self.LNFN
+            self.display_as = self.LNFN
             self.call = ''
 
     def serialize(self):
@@ -199,8 +199,7 @@ class Name(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase):
     def get_sort_as(self):
         """
         Returns the selected sorting method for the name. The options are
-        DEF (default for the current locale), LNFN (last name, first name),
-        or FNLN (first name, last name).
+        LNFN (last name, first name), FNLN (first name, last name), etc.
         """
         return self.sort_as 
 
@@ -215,8 +214,7 @@ class Name(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase):
     def get_display_as(self):
         """
         Returns the selected display format for the name. The options are
-        DEF (default for the current locale), LNFN (last name, first name),
-        or FNLN (first name, last name).
+        LNFN (last name, first name), FNLN (first name, last name), etc.
         """
         return self.display_as
 
