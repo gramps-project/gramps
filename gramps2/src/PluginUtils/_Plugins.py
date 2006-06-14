@@ -152,7 +152,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
 
         (item_class,options_class,title,category,name) = self.item
         if self.content == REPORTS:
-            report(self.state.db,self.state.active,
+            report(self.state,self.uistate,self.state.active,
                           item_class,options_class,title,name,category)
         else:
             _Tool.gui_tool(self.state,self.uistate, 
