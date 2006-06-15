@@ -33,7 +33,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
@@ -43,6 +42,7 @@ import gtk.glade
 import Config
 import DateHandler
 import NameDisplay
+from RelLib import Name
 import ManagedWindow
 from GrampsWidgets import *
 
@@ -209,23 +209,80 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.set_col_spacings(6)
         table.set_row_spacings(6)
 
+        self.name_exp = gtk.expander_new_with_mnemonic(
+            _('C_ustom format details'))
+        self.name_exp.set_sensitive(False)
+
         obox = gtk.combo_box_new_text()
         for key,value in NameDisplay.formats.items():
             obox.append_text(value)
 
-        active = Config.get(Config.NAME_FORMAT)
-        if active >= len(NameDisplay.formats):
-            active = 0
-        obox.set_active(active)
-        obox.connect('changed',
-                     lambda obj: Config.set(Config.NAME_FORMAT,
-                                            obj.get_active()))
+        try:
+            active = int(Config.get(Config.NAME_FORMAT))
+            if active >= len(NameDisplay.formats):
+                active = 0
+        except ValueError: # not an integer-convertible string => custom
+            active = len(NameDisplay.formats)
+            self.name_exp.set_sensitive(True)
 
+        obox.set_active(active)
+        obox.connect('changed', self.name_changed)
         lwidget = BasicLabel("%s: " % _('Preset format'))
+
+        custom_ui = self.build_custom_name_ui()
+        self.name_exp.add(custom_ui)
 
         table.attach(lwidget, 0, 1, 0, 1, yoptions=0)
         table.attach(obox, 1,3,0, 1, yoptions=0)
+        table.attach(self.name_exp, 0,3,1, 2, yoptions=0)
         return table
+
+    def build_custom_name_ui(self):
+        table = gtk.Table(2,3)
+        table.set_border_width(6)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+
+        avail_sw = gtk.ScrolledWindow()
+        avail_sw.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
+        avail_tree = gtk.TreeView()
+        avail_sw.add(avail_tree)
+
+        use_sw = gtk.ScrolledWindow()
+        use_sw.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
+        use_tree = gtk.TreeView()
+        use_sw.add(use_tree)
+
+        button_table = gtk.Table(3,3)
+
+        up_button = _set_button(gtk.STOCK_GO_UP)
+        down_button = _set_button(gtk.STOCK_GO_DOWN)
+        add_button = _set_button(gtk.STOCK_ADD)
+        remove_button = _set_button(gtk.STOCK_REMOVE)
+        button_table.attach(up_button, 1, 2, 0, 1, xoptions = 0, yoptions=0)
+        button_table.attach(remove_button, 2, 3, 1, 2, xoptions = 0,yoptions=0)
+        button_table.attach(down_button, 1, 2, 2, 3, xoptions = 0, yoptions=0)
+        button_table.attach(add_button, 0, 1, 1, 2, xoptions = 0,yoptions=0)
+
+        example_label = gtk.Label('<b>%s</b>' % _('Example'))
+        example_label.set_use_markup(True)
+
+        table.attach(example_label,0,3,0,1,xoptions = 0,yoptions=0)
+        table.attach(avail_sw, 0,1,1,2, yoptions=gtk.FILL)
+        table.attach(button_table, 1, 2, 1, 2, xoptions = 0, yoptions=0)
+        table.attach(use_sw, 2,3,1,2, yoptions=gtk.FILL)
+        
+        return table
+
+    def name_changed(self,obj):
+        custom_text = NameDisplay.formats[Name.CUSTOM]
+        if obj.get_active_text() == custom_text:
+            self.name_exp.set_sensitive(True)
+            self.name_exp.set_expanded(True)
+        else:
+            Config.set(Config.NAME_FORMAT,str(obj.get_active()))
+            self.name_exp.set_expanded(False)
+            self.name_exp.set_sensitive(False)
 
     def add_formats_panel(self):
         table = gtk.Table(3,8)
@@ -345,3 +402,12 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
     def build_menu_names(self,obj):
         return (_('Preferences'),None)
+
+def _set_button(stock):
+    button = gtk.Button()
+    image = gtk.Image()
+    image.set_from_stock(stock, gtk.ICON_SIZE_BUTTON)
+    image.show()
+    button.add(image)
+    button.show()
+    return button
