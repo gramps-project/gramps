@@ -51,6 +51,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import const
+import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
@@ -66,7 +67,7 @@ _format = '<span weight="bold" size="xx-large">%s</span>'
 # Assistant class
 #
 #-------------------------------------------------------------------------
-class Assistant(gtk.Object):
+class Assistant(gtk.Object,ManagedWindow.ManagedWindow):
     """ A tabbed dialog box used to implement Assistant interfaces."""
 
     __gproperties__ = {}
@@ -91,10 +92,15 @@ class Assistant(gtk.Object):
                               gobject.TYPE_NONE,
                               ())
         }
-    
-    def __init__(self,complete):
+
+    def __init__(self,uistate,complete,top_title=''):
         gobject.GObject.__init__(self)
-         
+
+        self.top_title = top_title
+        if uistate:
+            ManagedWindow.ManagedWindow.__init__(self,uistate,[],
+                                                 self.__class__)
+        
         self.complete = complete
         self.fg_color = gtk.gdk.color_parse('#7d684a')
         self.bg_color = gtk.gdk.color_parse('#e1dbc5')
@@ -103,7 +109,12 @@ class Assistant(gtk.Object):
 
         self.current_page = -1
         
-        self.window = gtk.Window()
+        if uistate:
+            self.set_window(gtk.Window(), None, self.top_title)
+        else:
+            self.window = gtk.Window()
+            self.close = self.destroy
+
         titlebox = gtk.HBox()
         self.title_text = []
         
@@ -127,7 +138,7 @@ class Assistant(gtk.Object):
         hbox.set_layout(gtk.BUTTONBOX_END)
 
         self.cancel = gtk.Button(stock=gtk.STOCK_CANCEL)
-        self.cancel.connect('clicked',lambda x: self.window.destroy())
+        self.cancel.connect('clicked',self.close)
         self.back   = gtk.Button(stock=gtk.STOCK_GO_BACK)
         self.back.set_sensitive(False)
         self.back.connect('clicked',self.back_clicked)
@@ -148,6 +159,9 @@ class Assistant(gtk.Object):
 
         self.window.add(vbox)
 
+    def build_menu_names(self,obj):
+        return (self.top_title,None)
+
     def set_busy_cursor(self,value):
         if value:
             self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
@@ -158,6 +172,9 @@ class Assistant(gtk.Object):
 
         while gtk.events_pending():
             gtk.main_iteration()
+
+    def destroy(self,*obj):
+        self.window.destroy()
 
     def do_get_property(self, prop):
         """Return the gproperty's value."""
@@ -217,7 +234,7 @@ class Assistant(gtk.Object):
         if self.current_page == self.notebook.get_n_pages()-1:
             self.emit('complete')
             self.complete()
-            self.window.destroy()
+            self.close()
         else:
             self.current_page += 1
             self.notebook.set_current_page(self.current_page)
@@ -286,9 +303,8 @@ class Assistant(gtk.Object):
         self.update_title()
         self.set_buttons()
         self.emit('page-changed',self.notebook.get_current_page())
-
-    def destroy(self):
-        self.window.destroy()
+        if self.uistate:
+            ManagedWindow.ManagedWindow.show(self)
 
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(Assistant)
