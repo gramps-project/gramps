@@ -29,6 +29,7 @@ pkgdata_PYTHON = \
 	_NameEmbedList.py \
 	_NameModel.py \
 	_NoteTab.py \
+	_TextTab.py \
 	_PersonEventEmbedList.py \
 	_PersonRefEmbedList.py \
 	_PersonRefModel.py \

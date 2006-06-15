@@ -1,4 +1,10 @@
 2006-06-15  Alex Roitman  <shura@gramps-project.org>
+	* src/DisplayTabs/Makefile.am (pkgdata_PYTHON): Ship new file.
+	* src/DisplayTabs/__init__.py: Import new module.
+	* src/DisplayTabs/_TextTab.py: Add new module.
+	* src/Editors/_EditSourceRef.py (_setup_fields): Remove Text tab;
+	(_create_tabbed_pages): Add Text tab.
+	* src/glade/gramps.glade (source_ref_edit): Remove Text tab.
 	* src/GrampsDb/_WriteGedcom.py (write_photo): Typo.
 	* src/Exporter.py (build_options): Correctly shift all pages.
 

@@ -49,7 +49,7 @@ import const
 import RelLib
 
 from DisplayTabs import \
-     NoteTab,GalleryTab,SourceBackRefList,DataEmbedList,RepoEmbedList
+     NoteTab,TextTab,GalleryTab,SourceBackRefList,DataEmbedList,RepoEmbedList
 from GrampsWidgets import *
 from _EditReference import EditReference
 
@@ -107,10 +107,6 @@ class EditSourceRef(EditReference):
             self.top.get_widget('pub_info'), self.source.set_publication_info,
             self.source.get_publication_info,False)
 
-        self.text_data = MonitoredText(
-            self.top.get_widget('text'), self.source_ref.set_text,
-            self.source_ref.get_text,False)
-
         self.type_mon = MonitoredMenu(
             self.top.get_widget('confidence'),
             self.source_ref.set_confidence_level,
@@ -120,7 +116,6 @@ class EditSourceRef(EditReference):
             (_('Normal'), RelLib.SourceRef.CONF_NORMAL),
             (_('High'), RelLib.SourceRef.CONF_HIGH),
             (_('Very High'), RelLib.SourceRef.CONF_VERY_HIGH)])
-
 
         self.date = MonitoredDate(
             self.top.get_widget("date"),
@@ -167,6 +162,10 @@ class EditSourceRef(EditReference):
                               self.enable_warnbox
                               ))
 
+        self.text_tab = self._add_tab(
+            notebook_ref,
+            TextTab(self.dbstate, self.uistate, self.track,self.source_ref))
+
         self.comment_tab = self._add_tab(
             notebook_ref,
             NoteTab(self.dbstate, self.uistate, self.track,
@@ -195,4 +194,3 @@ class EditSourceRef(EditReference):
             self.update(self.source_ref,self.source)
 
         self.close()
-

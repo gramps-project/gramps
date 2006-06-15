@@ -130,6 +130,7 @@ src/DisplayTabs/_MediaBackRefList.py
 src/DisplayTabs/_NameEmbedList.py
 src/DisplayTabs/_NameModel.py
 src/DisplayTabs/_NoteTab.py
+src/DisplayTabs/_TextTab.py
 src/DisplayTabs/_PersonEventEmbedList.py
 src/DisplayTabs/_PersonRefEmbedList.py
 src/DisplayTabs/_PersonRefModel.py
