@@ -743,9 +743,10 @@ class ScratchPadListView:
     def remove_invalid_objects(self,dummy=None):
         model = self._widget.get_model()
 
-        for o in model:
-            if not o.is_valid():
-                model.remove(o)
+        if model:
+            for o in model:
+                if not o.is_valid():
+                    model.remove(o)
     
     # Method to manage the wrapper classes.
     
