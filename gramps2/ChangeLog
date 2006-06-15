@@ -1,4 +1,8 @@
 2006-06-15  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsLogger/_ErrorReportAssistant.py (__init__): Adapt to
+	the Assistant change. 
+	* src/Assistant.py: Convert to working both with and without
+	ManagedWindow.
 	* src/DisplayTabs/Makefile.am (pkgdata_PYTHON): Ship new file.
 	* src/DisplayTabs/__init__.py: Import new module.
 	* src/DisplayTabs/_TextTab.py: Add new module.
@@ -7,6 +11,7 @@
 	* src/glade/gramps.glade (source_ref_edit): Remove Text tab.
 	* src/GrampsDb/_WriteGedcom.py (write_photo): Typo.
 	* src/Exporter.py (build_options): Correctly shift all pages.
+	(__init__): Adapt to the Assistant change.
 
 2006-06-14  Don Allingham  <don@gramps-project.org>
 	* src/ScratchPad.py: check for null model

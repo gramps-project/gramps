@@ -57,7 +57,7 @@ import QuestionDialog
 import Config
 import GrampsDisplay
 import Assistant
-
+import Errors
 from GrampsDb import gramps_db_writer_factory
 #-------------------------------------------------------------------------
 #
@@ -92,7 +92,11 @@ class Exporter:
         self.build_exports()
         self.format_option = None
 
-        self.w = Assistant.Assistant(self.complete)
+        try:
+            self.w = Assistant.Assistant(uistate,self.complete,
+                                         _("Export Assistant"))
+        except Errors.WindowActiveError:
+            return
 
         self.w.add_text_page(_('Saving your data'),self.get_intro_text())
         
