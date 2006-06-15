@@ -272,6 +272,7 @@ class Exporter:
             box = self.option_box_instance.get_option_box()
             self.option_page = self.w.insert_page(title,box,
                                                    self.format_page+1)
+            self.file_sel_page += 1
             self.confirm_page += 1
             self.conclusion_page += 1
             self.format_option = ix

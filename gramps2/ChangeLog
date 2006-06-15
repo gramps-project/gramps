@@ -1,3 +1,6 @@
+2006-06-15  Alex Roitman  <shura@gramps-project.org>
+	* src/Exporter.py (build_options): Correctly shift all pages.
+
 2006-06-14  Don Allingham  <don@gramps-project.org>
 	* src/ScratchPad.py: check for null model
 	* src/GrampsDb/_ReadGedcom.py: fix INT date format
