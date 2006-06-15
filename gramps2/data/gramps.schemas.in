@@ -404,13 +404,19 @@
         <key>/schemas/apps/gramps/preferences/name-format</key>
         <applyto>/apps/gramps/preferences/name-format</applyto>
         <owner>gramps</owner>
-        <type>int</type>
+        <type>string</type>
         <default>0</default>
         <locale name="C">
           <short>Name display format</short>
-          <long>This key determines the name display format. Use 0 
-          for "Firstname Surname", 1 for "Surname, Firstname", 
-          2 for "Firstname SURNAME", and 3 for "SURNAME, Firstname" style. </long>
+          <long>This key determines the name display format. 
+          Use "0" for "Surname, Firstname",
+          "1" for "Firstname Surname",
+          "2" for "Patronymic Firstname", 
+          and "3" for "Firstname" style.
+          For custom styles, use a string where every character denotes 
+          the name component as follows: "f" for firstname, "s" for surname,
+          "t" for title, "p" for prefix", "u" for suffix", "a" for patronymic,
+          "c" for callname". </long>
         </locale>
       </schema>
 

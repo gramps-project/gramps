@@ -30,7 +30,7 @@ PAPER_PREFERENCE     = ('preferences','paper-preference', 2)
 RECENT_FILE          = ('paths','recent-file', 2)
 RECENT_IMPORT_DIR    = ('paths','recent-import-dir', 2)
 RECENT_EXPORT_DIR    = ('paths','recent-export-dir', 2)
-NAME_FORMAT          = ('preferences','name-format', 1)
+NAME_FORMAT          = ('preferences','name-format', 2)
 REPORT_DIRECTORY     = ('paths','report-directory', 2)
 RESEARCHER_ADDR      = ('researcher','researcher-addr', 2)
 RESEARCHER_CITY      = ('researcher','researcher-city', 2)
@@ -86,7 +86,7 @@ default_value = {
     RECENT_FILE          : '',
     RECENT_IMPORT_DIR    : '',
     RECENT_EXPORT_DIR    : '',
-    NAME_FORMAT          : 0,
+    NAME_FORMAT          : '0',
     REPORT_DIRECTORY     : './',
     RESEARCHER_ADDR      : '',
     RESEARCHER_CITY      : '',
