@@ -182,6 +182,7 @@ modRegexp = re.compile(r"\s*(EST|CAL)\s+(.*)$")
 calRegexp = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
 rangeRegexp = re.compile(r"\s*BET\s+@#D([^@]+)@\s*(.*)\s+AND\s+@#D([^@]+)@\s*(.*)$")
 spanRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
+intRegexp = re.compile(r"\s*INT\s+([^(]+)\((.*)\)$")
 
 #-------------------------------------------------------------------------
 #
@@ -2109,13 +2110,9 @@ class GedcomParser(UpdateCallback):
                     self.lexer.set_broken_conc(self.gedsource.get_conc())
             elif matches[1] == TOKEN_CHAR and not self.override:
                 if matches[2] == "ANSEL":
-                    print "ANSEL"
                     self.lexer.set_charset_fn(ansel_to_utf8)
                 elif matches[2] not in ("UNICODE","UTF-8","UTF8"):
-                    print "ASCII/LATIN"
                     self.lexer.set_charset_fn(latin_to_utf8)
-                else:
-                    print "UNICODE"
                 self.ignore_sub_junk(2)
             elif matches[1] == TOKEN_GEDC:
                 self.ignore_sub_junk(2)
@@ -2236,6 +2233,13 @@ class GedcomParser(UpdateCallback):
     def extract_date(self,text):
         dateobj = RelLib.Date()
         try:
+            match = intRegexp.match(text)
+            if match:
+                int_val = True
+                text, comment = match.groups()
+            else:
+                int_val = False
+            
             match = modRegexp.match(text)
             if match:
                 (mod, text) = match.groups()
@@ -2263,6 +2267,8 @@ class GedcomParser(UpdateCallback):
                 stop =  self.dp.parse(data2)
                 dateobj.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_RANGE, cal,
                             start.get_start_date() + stop.get_start_date())
+                if int_val:
+                    dateobj.set_text_value(comment)
                 return dateobj
 
             match = spanRegexp.match(text)
@@ -2284,6 +2290,8 @@ class GedcomParser(UpdateCallback):
                 stop =  self.dp.parse(data2)
                 dateobj.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_SPAN, cal,
                             start.get_start_date() + stop.get_start_date())
+                if int_val:
+                    dateobj.set_text_value(comment)
                 return dateobj
         
             match = calRegexp.match(text)
@@ -2299,6 +2307,8 @@ class GedcomParser(UpdateCallback):
                 return dateobj
             else:
                 dval = self.dp.parse(text)
+                if int_val:
+                    dateobj.set_text_value(comment)
                 return dval
         except IOError:
             return self.dp.set_text(text)
