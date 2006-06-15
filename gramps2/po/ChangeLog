@@ -1,3 +1,6 @@
+2006-06-15  Alex Roitman  <shura@gramps-project.org>
+	* POTFILES.in: Add new file.
+
 2006-06-11  Alex Roitman  <shura@gramps-project.org>
 	* POTFILES.in: Remove plugin that is not shipped.
 	* gramps.pot: Update.
