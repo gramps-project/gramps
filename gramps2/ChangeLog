@@ -1,4 +1,5 @@
 2006-06-15  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_WriteGedcom.py (write_photo): Typo.
 	* src/Exporter.py (build_options): Correctly shift all pages.
 
 2006-06-14  Don Allingham  <don@gramps-project.org>

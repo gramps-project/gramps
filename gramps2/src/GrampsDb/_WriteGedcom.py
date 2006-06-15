@@ -1369,8 +1369,8 @@ class GedcomWriter(UpdateCallback):
         photo_obj = self.db.get_object_from_handle(photo_obj_id)
         if photo_obj:
             mime = photo_obj.get_mime_type()
-            if self.mime2ged.has_key(mime):
-                form = self.mime2ged[mime]
+            if mime2ged.has_key(mime):
+                form = mime2ged[mime]
             else:
                 form = mime
             path = photo_obj.get_path ()
