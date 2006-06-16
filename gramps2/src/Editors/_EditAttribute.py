@@ -135,6 +135,14 @@ class EditAttribute(EditSecondary):
         Called when the OK button is pressed. Gets data from the
         form and updates the Attribute data structure.
         """
+        t = self.obj.get_type()
+        
+        if t.is_custom() and str(t) == '':
+            from QuestionDialog import ErrorDialog
+            ErrorDialog(
+                _("Cannot save attribute"),
+                _("The attribute type cannot be empty"))
+            return
         if self.callback:
             self.callback(self.obj)
         self.close()
