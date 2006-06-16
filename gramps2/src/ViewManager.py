@@ -921,10 +921,10 @@ class ViewManager:
                 category = categories[item[3]]
             if hash_data.has_key(category):
                 hash_data[category].append(
-                    (item[0], item[1], item[2], item[4], item[3]))
+                    (item[0], item[1], item[2], item[4], item[3], item[10]))
             else:
                 hash_data[category] = [
-                    (item[0], item[1], item[2], item[4], item[3])]
+                    (item[0], item[1], item[2], item[4], item[3], item[10])]
                 
         # Sort categories, skipping the unsupported
         catlist = [item for item in hash_data.keys()
@@ -967,7 +967,7 @@ def by_menu_name(a, b):
 
 def make_report_callback(lst, dbstate, uistate):
     return lambda x: report(dbstate, uistate, dbstate.get_active_person(), 
-                            lst[0], lst[1], lst[2], lst[3], lst[4])
+                            lst[0], lst[1], lst[2], lst[3], lst[4], lst[5])
 
 def make_tool_callback(lst, dbstate, uistate):
     return lambda x: Tool.gui_tool(dbstate, uistate,  

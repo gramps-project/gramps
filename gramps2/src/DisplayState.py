@@ -321,7 +321,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
             self.status.push(self.status_id,"")
         else:
             person = self.dbstate.get_active_person()
-            if not person:
+            if person:
                 pname = NameDisplay.displayer.display(person)
                 name = "[%s] %s" % (person.get_gramps_id(),pname)
             else:

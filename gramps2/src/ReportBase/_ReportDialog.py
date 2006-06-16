@@ -606,12 +606,19 @@ class ReportDialog(BareReportDialog):
 #
 #------------------------------------------------------------------------
 def report(dbstate,uistate,person,report_class,options_class,
-           trans_name,name,category):
+           trans_name,name,category, require_active):
     """
     report - task starts the report. The plugin system requires that the
     task be in the format of task that takes a database and a person as
     its arguments.
     """
+
+    if require_active and not person:
+        ErrorDialog(
+            _('Active person has not been set'),
+            _('You must select an active person for this report to work '
+              'properly.'))
+        return
 
     if category == CATEGORY_TEXT:
         from _TextReportDialog import TextReportDialog

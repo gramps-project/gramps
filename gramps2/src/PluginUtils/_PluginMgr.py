@@ -185,7 +185,8 @@ def register_tool(
     description=_unavailable,
     author_name=_("Unknown"),
     author_email=_("Unknown"),
-    unsupported=False
+    unsupported=False,
+    require_active=True,
     ):
     """
     Register a tool with the plugin system.
@@ -202,7 +203,8 @@ def register_tool(
     if gui_task:
         _register_gui_tool(tool_class,options_class,translated_name,
                            name,category,description,
-                           status,author_name,author_email,unsupported)
+                           status,author_name,author_email,unsupported,
+                           require_active)
 
     (junk,cli_task) = divmod(modes-gui_task,2**_Tool.MODE_CLI)
     if cli_task:
@@ -215,7 +217,8 @@ def _register_gui_tool(tool_class,options_class,translated_name,
                        status=_("Unknown"),
                        author_name=_("Unknown"),
                        author_email=_("Unknown"),
-                       unsupported=False):
+                       unsupported=False,
+                       require_active=True):
     del_index = -1
     for i in range(0,len(tool_list)):
         val = tool_list[i]
@@ -226,7 +229,7 @@ def _register_gui_tool(tool_class,options_class,translated_name,
     mod2text[tool_class.__module__] = description
     tool_list.append((tool_class,options_class,translated_name,
                       category,name,description,status,
-                      author_name,author_email,unsupported))
+                      author_name,author_email,unsupported, require_active))
 
 def _register_cli_tool(name,category,tool_class,options_class,
                        translated_name,unsupported=False):
@@ -238,7 +241,7 @@ def _register_cli_tool(name,category,tool_class,options_class,
     if del_index != -1:
         del cli_tool_list[del_index]
     cli_tool_list.append((name,category,tool_class,options_class,
-                          translated_name,unsupported))
+                          translated_name,unsupported, None))
 
 #-------------------------------------------------------------------------
 #
@@ -256,7 +259,8 @@ def register_report(
     description=_unavailable,
     author_name=_("Unknown"),
     author_email=_("Unknown"),
-    unsupported=False
+    unsupported=False,
+    require_active=True,
     ):
     """
     Registers report for all possible flavors.
@@ -269,14 +273,16 @@ def register_report(
     (junk,standalone_task) = divmod(modes,2**MODE_GUI)
     if standalone_task:
         _register_standalone(report_class,options_class,translated_name,
-                        name,category,description,
-                        status,author_name,author_email,unsupported)
+                             name,category,description,
+                             status,author_name,author_email,unsupported,
+                             require_active)
 
     (junk,book_item_task) = divmod(modes-standalone_task,2**MODE_BKI)
     if book_item_task:
         book_item_category = book_categories[category]
         register_book_item(translated_name,book_item_category,
-                    report_class,options_class,name,unsupported)
+                           report_class,options_class,name,unsupported,
+                           require_active)
 
     (junk,command_line_task) = divmod(modes-standalone_task-book_item_task,
                                         2**MODE_CLI)
@@ -284,13 +290,17 @@ def register_report(
         _register_cl_report(name,category,report_class,options_class,
                             translated_name,unsupported)
 
-def _register_standalone(report_class, options_class, translated_name, 
-                         name, category,
+def _register_standalone(report_class,
+                         options_class,
+                         translated_name, 
+                         name,
+                         category,
                          description=_unavailable,
                          status=_("Unknown"),
                          author_name=_("Unknown"),
                          author_email=_("Unknown"),
-                         unsupported=False
+                         unsupported=False,
+                         require_active=True,
                          ):
     """Register a report with the plugin system"""
     
@@ -304,11 +314,12 @@ def _register_standalone(report_class, options_class, translated_name,
 
     report_list.append((report_class, options_class, translated_name, 
                         category, name, description, status,
-                        author_name, author_email, unsupported))
+                        author_name, author_email, unsupported,
+                        require_active))
     mod2text[report_class.__module__] = description
 
 def register_book_item(translated_name, category, report_class,
-                        option_class, name, unsupported):
+                        option_class, name, unsupported, require_active):
     """Register a book item"""
     
     del_index = -1
@@ -320,10 +331,10 @@ def register_book_item(translated_name, category, report_class,
         del bkitems_list[del_index]
 
     bkitems_list.append((translated_name, category, report_class,
-                         option_class, name, unsupported))
+                         option_class, name, unsupported, require_active))
 
 def _register_cl_report(name,category,report_class,options_class,
-                        translated_name,unsupported):
+                        translated_name,unsupported, require_active):
     del_index = -1
     for i in range(0,len(cl_list)):
         val = cl_list[i]
@@ -332,7 +343,7 @@ def _register_cl_report(name,category,report_class,options_class,
     if del_index != -1:
         del cl_list[del_index]
     cl_list.append((name,category,report_class,options_class,
-                    translated_name,unsupported))
+                    translated_name,unsupported, require_active))
 
 #-------------------------------------------------------------------------
 #
