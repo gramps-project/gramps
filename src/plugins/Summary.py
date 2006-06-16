@@ -179,4 +179,5 @@ register_report(
     translated_name = _("Summary of the database"),
     status = _("Beta"),
     description= _("Provides a summary of the current database"),
+    require_active=False,
     )

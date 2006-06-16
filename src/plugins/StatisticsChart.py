@@ -981,5 +981,6 @@ register_report(
     status = (_("Stable")),
     author_name="Eero Tamminen",
     author_email="",
-    description= _("Generates statistical bar and pie charts of the people in the database.")
+    description= _("Generates statistical bar and pie charts of the people in the database."),
+    require_active=False,
     )

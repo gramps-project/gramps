@@ -622,9 +622,12 @@ class PersonView(PageView.PersonNavView):
         selected_ids = self.get_selected_objects()
         if not self.inactive:
             try:
-                handle = selected_ids[0]
-                person = self.dbstate.db.get_person_from_handle(handle)
-                self.dbstate.change_active_person(person)
+                if len(selected_ids) == 0:
+                    self.dbstate.change_active_person(None)
+                else:
+                    handle = selected_ids[0]
+                    person = self.dbstate.db.get_person_from_handle(handle)
+                    self.dbstate.change_active_person(person)
             except:
                 pass
 
