@@ -767,6 +767,7 @@ class ScratchPadListView:
         self.register_wrapper_class(ScratchSourceLink)
         self.register_wrapper_class(ScratchPersonLink)
         self.register_wrapper_class(ScratchPersonLinkList)
+        self.register_wrapper_class(ScratchPadText)
         
     def register_wrapper_class(self,wrapper_class):
         for drop_target in wrapper_class.DROP_TARGETS:            
