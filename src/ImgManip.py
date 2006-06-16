@@ -116,7 +116,7 @@ def _build_thumb_path(path):
     return os.path.join(const.thumb_dir, m.hexdigest()+'.png')
 
 def run_thumbnailer(mtype, frm, to, size=const.thumbScale):
-    if const.use_thumbnailer:
+    if const.use_thumbnailer and os.path.isfile(frm):
         sublist = {
             '%s' : "%dx%d" % (int(size),int(size)),
             '%u' : frm,

@@ -448,7 +448,7 @@ class GrampsDbBase(GrampsDBCallback):
 
         self.individual_attributes.update(
             [str(attr.type) for attr in person.attribute_list
-             if attr.type.is_custom()])
+             if attr.type.is_custom() and str(attr.type)])
 
         if person.marker.is_custom():
             self.marker_names.add(str(person.marker))
@@ -468,7 +468,7 @@ class GrampsDbBase(GrampsDBCallback):
         attr_list = []
         for mref in person.media_list:
             attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom()]
+                          if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
 
     def commit_media_object(self, obj, transaction, change_time=None):
@@ -482,7 +482,7 @@ class GrampsDbBase(GrampsDBCallback):
                           transaction, change_time)
         self.media_attributes.update(
             [str(attr.type) for attr in obj.attribute_list
-             if attr.type.is_custom()])
+             if attr.type.is_custom() and str(attr.type)])
             
     def commit_source(self, source, transaction, change_time=None):
         """
@@ -501,7 +501,7 @@ class GrampsDbBase(GrampsDBCallback):
         attr_list = []
         for mref in source.media_list:
             attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom()]
+                          if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
 
     def commit_place(self, place, transaction, change_time=None):
@@ -520,7 +520,7 @@ class GrampsDbBase(GrampsDBCallback):
         attr_list = []
         for mref in place.media_list:
             attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom()]
+                          if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
 
     def commit_personal_event(self, event, transaction, change_time=None):
@@ -545,7 +545,7 @@ class GrampsDbBase(GrampsDBCallback):
         attr_list = []
         for mref in event.media_list:
             attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom()]
+                          if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
 
     def commit_family(self, family, transaction, change_time=None):
@@ -560,7 +560,7 @@ class GrampsDbBase(GrampsDBCallback):
 
         self.family_attributes.update(
             [str(attr.type) for attr in family.attribute_list
-             if attr.type.is_custom()])
+             if attr.type.is_custom() and str(attr.type)])
 
         rel_list = []
         for ref in family.child_ref_list:
@@ -580,7 +580,7 @@ class GrampsDbBase(GrampsDBCallback):
         attr_list = []
         for mref in family.media_list:
             attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom()]
+                          if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
 
     def commit_repository(self, repository, transaction, change_time=None):

@@ -139,6 +139,7 @@ class StandardCustomSelector:
         self.active_key = active_key
         self.active_index = 0
         self.additional = additional
+        
         # make model
         self.store = gtk.ListStore(int,str)
 
@@ -176,9 +177,11 @@ class StandardCustomSelector:
         if self.additional:
             for event_type in self.additional:
                 if type(event_type) == str or type(event_type) == unicode :
-                    self.store.append(row=[self.custom_key, event_type])
+                    if event_type:
+                        self.store.append(row=[self.custom_key, event_type])
                 elif type(event_type) == tuple:
-                    self.store.append(row=[event_type[0], event_type[1]])
+                    if event_type[1]:
+                        self.store.append(row=[event_type[0], event_type[1]])
                 else:
                     self.store.append(row=[int(event_type), str(event_type)])
                 if key == self.active_key:

@@ -1,4 +1,10 @@
 2006-06-15  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py: prevent null event types and
+	attribute types from being added
+	* src/Editors/_EditAttribute.py: prevent null attribute types
+	* src/Editors/_EditEvent.py: prevent null attribute types
+	* src/AutoComp.py: filter out empty strings
+	* src/ImgManip.py: check for file before attempting thumbnailer
 	* src/ScratchPad.py: enable Text dnd
 
 2006-06-15  Alex Roitman  <shura@gramps-project.org>

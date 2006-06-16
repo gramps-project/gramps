@@ -204,6 +204,13 @@ class EditEvent(EditPrimary):
                           "enter data or cancel the edit."))
             return
 
+        t = self.obj.get_type()
+        if t.is_custom() and str(t) == '':
+            ErrorDialog(
+                _("Cannot save event"),
+                _("The event type cannot be empty"))
+            return
+
         if self.obj.handle == None:
             trans = self.db.transaction_begin()
             self.db.add_event(self.obj,trans)
