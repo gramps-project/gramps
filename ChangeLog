@@ -1,3 +1,9 @@
+2006-06-16  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamiy.py: make EditPerson windows subordinate
+	to EditFamily windows. This prevents the EditPerson window from
+	trying to trying to access a non-existent window and causing a
+	segfault
+
 2006-06-15  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsDbBase.py: prevent null event types and
 	attribute types from being added

@@ -206,7 +206,8 @@ class ChildEmbedList(EmbeddedList):
         person.get_primary_name().set_surname(name[1])
         person.get_primary_name().set_surname_prefix(name[0])
 
-        EditPerson(self.dbstate,self.uistate,[],person, self.new_child_added)
+        EditPerson(self.dbstate, self.uistate, self.track,person,
+                   self.new_child_added)
 
     def new_child_added(self, person):
         ref = RelLib.ChildRef()
@@ -515,13 +516,15 @@ class EditFamily(EditPrimary):
         from Editors import EditPerson
         person = RelLib.Person()
         person.set_gender(RelLib.Person.FEMALE)
-        EditPerson(self.dbstate,self.uistate,[],person, self.new_mother_added)
+        EditPerson(self.dbstate, self.uistate, self.track, person,
+                   self.new_mother_added)
 
     def add_father_clicked(self, obj):
         from Editors import EditPerson
         person = RelLib.Person()
         person.set_gender(RelLib.Person.MALE)
-        EditPerson(self.dbstate,self.uistate,[],person, self.new_father_added)
+        EditPerson(self.dbstate, self.uistate, self.track,
+                   person, self.new_father_added)
 
     def new_mother_added(self, person):
         self.obj.set_mother_handle(person.handle) 
@@ -658,7 +661,7 @@ class EditFamily(EditPrimary):
             try:
                 person = self.db.get_person_from_handle(handle)
                 EditPerson(self.dbstate, self.uistate,
-                                      self.track, person)
+                           self.track, person)
             except Errors.WindowActiveError:
                 pass
 
