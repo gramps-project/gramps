@@ -3,6 +3,7 @@
 	to EditFamily windows. This prevents the EditPerson window from
 	trying to trying to access a non-existent window and causing a
 	segfault
+	* src/GrampsDb/_WriteGedcom.py: export QUAY
 
 2006-06-15  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsDbBase.py: prevent null event types and

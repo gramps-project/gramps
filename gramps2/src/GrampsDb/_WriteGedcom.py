@@ -154,6 +154,14 @@ mime2ged = {
     "image/tiff"  : "tiff",
     "audio/x-wav" : "wav"
     }
+
+quay_map = {
+    RelLib.SourceRef.CONF_VERY_HIGH : 3,
+    RelLib.SourceRef.CONF_HIGH      : 2,
+    RelLib.SourceRef.CONF_LOW       : 1,
+    RelLib.SourceRef.CONF_VERY_LOW  : 0,
+}
+
 #-------------------------------------------------------------------------
 #
 #
@@ -1334,7 +1342,11 @@ class GedcomWriter(UpdateCallback):
             if ref.get_page() != "":
                 self.write_long_text("PAGE",level+1,
                                      self.cnvtxt(ref.get_page()))
- 
+
+            conf = ref.get_confidence_level()
+            if conf != RelLib.SourceRef.CONF_NORMAL:
+                self.write_long_text("QUAY",level+1, str(quay_map[conf]))
+
             ref_text = ref.get_text()
             if ref_text != "" or not ref.get_date_object().is_empty():
                 self.writeln('%d DATA' % (level+1))
