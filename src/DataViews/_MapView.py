@@ -70,7 +70,7 @@ glob_loc_data = [ # (Name, longitude, latitude)
         ("Madrid",-3.72,40.42),
         ("Moscow",37.70,55.75),
         ("Vienna",16.37,48.22),
-        ("Sidney",151.17,-33.92),
+        ("Sydney",151.17,-33.92),
         ("Rio de Janeiro",-43.28,-22.88),
         ("Tokyo",139.75,35.67),
         ("Cape Town",18.47,-33.93),
