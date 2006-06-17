@@ -1,3 +1,6 @@
+2006-06-16  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_MediaView.py: clear image if none is selected
+
 2006-06-16  Alex Roitman  <shura@gramps-project.org>
 	* src/PluginUtils/_PluginMgr.py (register_report): Add
 	require_active argument to _register_cl_report call.
