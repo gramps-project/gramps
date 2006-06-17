@@ -288,7 +288,7 @@ def register_report(
                                         2**MODE_CLI)
     if command_line_task:
         _register_cl_report(name,category,report_class,options_class,
-                            translated_name,unsupported)
+                            translated_name,unsupported, require_active)
 
 def _register_standalone(report_class,
                          options_class,
