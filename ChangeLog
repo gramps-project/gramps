@@ -1,3 +1,7 @@
+2006-06-16  Alex Roitman  <shura@gramps-project.org>
+	* src/PluginUtils/_PluginMgr.py (register_report): Add
+	require_active argument to _register_cl_report call.
+
 2006-06-16  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditFamiy.py: make EditPerson windows subordinate
 	to EditFamily windows. This prevents the EditPerson window from
