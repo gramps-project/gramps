@@ -24,7 +24,6 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-import gc
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -132,11 +131,11 @@ class MediaView(PageView.ListView):
     def row_change(self,obj):
         handle = self.first_selected()
         if not handle:
-            return
-        obj = self.dbstate.db.get_object_from_handle(handle)
-        pix = ImgManip.get_thumbnail_image(obj.get_path())
-        self.image.set_from_pixbuf(pix)
-        gc.collect()
+            self.image.clear()
+        else:
+            obj = self.dbstate.db.get_object_from_handle(handle)
+            pix = ImgManip.get_thumbnail_image(obj.get_path())
+            self.image.set_from_pixbuf(pix)
     
     def ui_definition(self):
         return '''<ui>
