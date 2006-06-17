@@ -249,7 +249,8 @@ class RelationshipView(PageView.PersonNavView):
     def change_db(self, db):
         self.connect_to_db(db)
         if self.child:
-            self.vbox.remove(self.child)
+            for old_child in self.vbox.get_children():
+                self.vbox.remove(old_child)
             self.child = None
         self.dbstate.db.connect('family-update', self.redraw)
         self.dbstate.db.connect('family-add', self.redraw)
@@ -258,9 +259,8 @@ class RelationshipView(PageView.PersonNavView):
         self.dbstate.db.connect('person-add', self.redraw)
         self.dbstate.db.connect('person-delete', self.redraw)
         self.bookmarks.update_bookmarks(db.get_bookmarks())
-        if self.active:
-            self.bookmarks.redraw()
-            self.redraw()
+        self.bookmarks.redraw()
+        self.redraw()
 
     def get_name(self, handle, use_gender=False):
         if handle:
@@ -275,6 +275,7 @@ class RelationshipView(PageView.PersonNavView):
             return (_(u"Unknown"), "")
 
     def redraw(self, *obj):
+        print self.dbstate.active
         if self.dbstate.active:
             self.handle_history(self.dbstate.active.handle)
             self.change_person(self.dbstate.active.handle)
