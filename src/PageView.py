@@ -657,17 +657,23 @@ class ListView(BookMarkView):
         if self.active:
             for handle in handle_list:
                 self.model.add_row_by_handle(handle)
+        else:
+            self.dirty = True
 
     def row_update(self,handle_list):
         self.model.prev_handle = None
         if self.active:
             for handle in handle_list:
                 self.model.update_row_by_handle(handle)
+        else:
+            self.dirty = True
 
     def row_delete(self,handle_list):
         if self.active:
             for handle in handle_list:
                 self.model.delete_row_by_handle(handle)
+        else:
+            self.dirty = True
 
     def define_actions(self):
         """

@@ -1,4 +1,5 @@
 2006-06-16  Don Allingham  <don@gramps-project.org>
+	* src/PageView.py: set dirty flag appropriately
 	* src/DataViews/_MediaView.py: clear image if none is selected
 
 2006-06-16  Alex Roitman  <shura@gramps-project.org>
