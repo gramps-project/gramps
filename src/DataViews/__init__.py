@@ -27,10 +27,19 @@ from _EventView import EventView
 from _SourceView import SourceView
 from _PlaceView import PlaceView
 from _MediaView import MediaView
-from _MapView import MapView
+#from _MapView import MapView
 from _RepositoryView import RepositoryView
 
 def get_views():
-    return [PersonView, RelationshipView, FamilyListView, PedigreeView,
-            EventView, SourceView, PlaceView, MediaView,
-            MapView, RepositoryView]
+    return [
+        PersonView,
+        RelationshipView,
+        FamilyListView,
+        PedigreeView,
+        EventView,
+        SourceView,
+        PlaceView,
+        MediaView,
+        #MapView,
+        RepositoryView
+        ]

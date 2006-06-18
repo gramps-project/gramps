@@ -275,7 +275,6 @@ class RelationshipView(PageView.PersonNavView):
             return (_(u"Unknown"), "")
 
     def redraw(self, *obj):
-        print self.dbstate.active
         if self.dbstate.active:
             self.handle_history(self.dbstate.active.handle)
             self.change_person(self.dbstate.active.handle)
