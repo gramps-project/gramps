@@ -135,7 +135,10 @@ class EditPerson(EditPrimary):
         class (this class)
         """
         self.load_person_image()
-        self.surname_field.grab_focus()
+        if self.pname.get_surname() and not self.pname.get_first_name():
+            self.given.grab_focus()
+        else:
+            self.surname_field.grab_focus()
 
 #         if not Config.get(Config.HIDE_EP_MSG):
 #             MessageHideDialog(
