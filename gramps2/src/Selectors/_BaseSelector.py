@@ -114,8 +114,10 @@ class BaseSelector(ManagedWindow.ManagedWindow):
             else:
                 return_value = None
 	    return return_value
-        else:
+        elif val != gtk.RESPONSE_DELETE_EVENT:
             self.close()
+            return None
+        else:
             return None
 
     def _local_init(self):

@@ -1,3 +1,9 @@
+2006-06-17  Don Allingham  <don@gramps-project.org>
+	* src/Selectors/_BaseSelector.py (BaseSelector.run): handle
+	delete event
+	* src/DataViews/_RelationView.py: remove debug statement
+	* src/DataViews/__init__.py: remove map view for time being
+
 2006-06-16  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_RelationView.py: clear all subelements on redraw
 	* src/PageView.py: set dirty flag appropriately
