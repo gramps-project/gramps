@@ -382,8 +382,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self._write_zip()
         if self.print_req:
             app = Mime.get_application(_apptype)
-            os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % app[0])
+            Utils.launch(app[0],self.filename)
 
     def add_media_object(self,name,pos,x_cm,y_cm):
 

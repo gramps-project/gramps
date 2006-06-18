@@ -459,7 +459,10 @@ def gformat(val):
     return return_val.replace(decimal_point,'.')
 
 def search_for(name):
-    name = name.split()[0]
+    if name.startswith( '"' ):
+        name = name.split('"')[1]
+    else:
+        name = name.split()[0]
     for i in os.environ['PATH'].split(':'):
         fname = os.path.join(i,name)
         if os.access(fname,os.X_OK) and not os.path.isdir(fname):
@@ -991,32 +994,44 @@ class ProgressMeter:
         self.ptop.destroy()
 
 def launch(prog_str,path):
-
-    subval = {
-        '%F'   : path,
-        '%f'   : path,
-        '%u'   : path,
-        '%U'   : path,
-        '%n'   : path,
-        '%N'   : path,
-        }
     
-    prog_data = prog_str.split()
-    prog = prog_data[0]
-    prog_list = []
-    need_path = True
+    if sys.platform == "win32":
+        
+        import subprocess
+        if prog_str.find("%1") != -1:
+            prog_str = prog_str.replace("%1",path)
+        else:
+            prog_str = '%s "%s"' %(prog_str,path)
+        subprocess.Popen(prog_str)
 
-    if len(prog_data) > 1:
-        for item in prog_data:
-            if subval.has_key(item):
-                need_path = False
-                value = subval[item]
-            else:
-                value = item
-            prog_list.append(value)
     else:
-        prog_list = [prog_data[0]]
+        subval = {
+            '%F'   : path,
+            '%f'   : path,
+            '%u'   : path,
+            '%U'   : path,
+            '%n'   : path,
+            '%N'   : path,
+            }
+        
+        prog_data = prog_str.split()
+        prog = prog_data[0]
+        prog_list = []
+        need_path = True
+    
+        if len(prog_data) > 1:
+            for item in prog_data:
+                if subval.has_key(item):
+                    need_path = False
+                    value = subval[item]
+                else:
+                    value = item
+                prog_list.append(value)
+        else:
+            prog_list = [prog_data[0]]
+    
+        if need_path:
+            prog_list.append(path)
+    
+        os.spawnvpe(os.P_NOWAIT, prog, prog_list, os.environ)
 
-    if need_path:
-        prog_list.append(path)
-    os.spawnvpe(os.P_NOWAIT, prog, prog_list, os.environ)

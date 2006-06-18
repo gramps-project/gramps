@@ -519,6 +519,10 @@ try:
         print_label=_("Open in %s") % prog[1]
     else:
         print_label=None
+
+    if mtype == _("unknown"):
+        mtype = _('KWord')
+
     register_text_doc(mtype, KwordDoc, 1, 1, 1, ".kwd", print_label)
 except:
     register_text_doc(_('KWord'), KwordDoc, 1, 1, 1, ".kwd", print_label)

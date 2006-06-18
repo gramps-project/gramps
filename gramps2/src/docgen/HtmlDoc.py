@@ -43,6 +43,8 @@ import Errors
 import BaseDoc
 import QuestionDialog
 import Mime
+import Utils
+
 
 #------------------------------------------------------------------------
 #
@@ -357,8 +359,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
         if self.print_req:
             apptype = 'text/html'
             app = Mime.get_application(apptype)
-            os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % app[0])
+            Utils.launch(app[0],self.filename)
 
     def write_support_files(self):
         if self.map:
@@ -496,9 +497,8 @@ class HtmlDoc(BaseDoc.BaseDoc):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
+print_label = None
 try:
-    import Utils
-
     prog = Mime.get_application("text/html")
     mtype = Mime.get_description("text/html")
     
@@ -506,6 +506,10 @@ try:
         print_label=_("Open in %s") % prog[1]
     else:
         print_label=None
+        
+    if mtype == _("unknown"):
+        mtype = _('HTML')
+        
     register_text_doc(mtype,HtmlDoc,1,0,1,".html", print_label)
 except:
     register_text_doc(_('HTML'),HtmlDoc,1,0,1,".html", None)

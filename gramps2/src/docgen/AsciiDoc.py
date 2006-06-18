@@ -37,6 +37,8 @@ import BaseDoc
 from PluginUtils import register_text_doc
 import Errors
 import Mime
+import Utils
+
 
 #------------------------------------------------------------------------
 #
@@ -154,8 +156,7 @@ class AsciiDoc(BaseDoc.BaseDoc):
         if self.print_req:
             apptype = 'text/plain'
             prog = Mime.get_application(apptype)
-            os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % prog[0])
+            Utils.launch(prog[0],self.filename)
 
     def get_usable_width(self):
         return _WIDTH_IN_CHARS
@@ -381,8 +382,6 @@ class AsciiDoc(BaseDoc.BaseDoc):
 #------------------------------------------------------------------------
 print_label = None
 try:
-    import Utils
-
     mprog = Mime.get_application("text/plain")
     mtype = Mime.get_description('text/plain')
 

@@ -1,3 +1,9 @@
+2006-06-18  Brian Matherly  <brian@gramps-project.org>
+	* src/Mime/__init__.py: Add WinMime
+	* src/Mime/_WinMime.py: Added
+	* src/Utils.py: make launch work in Windows
+	* src/docgen/*: use Utils.launch to start external viewers
+
 2006-06-17  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditPerson.py: select given name field if the
 	surname field is already defined

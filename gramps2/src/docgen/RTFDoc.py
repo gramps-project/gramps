@@ -38,6 +38,9 @@ from PluginUtils import register_text_doc
 import ImgManip
 import Errors
 import Mime
+import Utils
+
+mime_type = "application/rtf"
 
 #------------------------------------------------------------------------
 #
@@ -125,11 +128,9 @@ class RTFDoc(BaseDoc.BaseDoc):
         self.f.close()
 
         if self.print_req:
-            apptype = 'application/rtf'
             try:
-                app = Mime.get_application(apptype)[0]
-                os.environ["FILE"] = self.filename
-                os.system ('%s "$FILE" &' % app)
+                app = Mime.get_application(mime_type)[0]
+                Utils.launch(app,self.filename)
             except:
                 pass
 
@@ -422,12 +423,9 @@ class RTFDoc(BaseDoc.BaseDoc):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
-
 try:
-    import Utils
-    
-    mprog = Mime.get_application("application/rtf")
-    mtype = Mime.get_description("application/rtf")
+    mprog = Mime.get_application(mime_type)
+    mtype = Mime.get_description(mime_type)
 
     if Utils.search_for(mprog[0]):
         print_label=_("Open in %s") % mprog[1]

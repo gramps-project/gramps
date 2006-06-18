@@ -45,6 +45,7 @@ from ReportBase import ReportUtils
 import ImgManip
 import FontScale
 import Mime
+import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -414,8 +415,7 @@ class ODFDoc(BaseDoc.BaseDoc):
         self._write_zip()
         if self.print_req:
             app = Mime.get_application(_apptype)
-            os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % app[0])
+            Utils.launch(app[0],self.filename)
 
     def add_media_object(self,name,pos,x_cm,y_cm):
 
@@ -1138,8 +1138,6 @@ class ODFDoc(BaseDoc.BaseDoc):
 #--------------------------------------------------------------------------
 print_label = None
 try:
-    import Utils
-    
     mprog = Mime.get_application(_apptype)
     mtype = Mime.get_description(_apptype)
 
