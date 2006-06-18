@@ -3,6 +3,7 @@
 	* src/Mime/_WinMime.py: Added
 	* src/Utils.py: make launch work in Windows
 	* src/docgen/*: use Utils.launch to start external viewers
+	* src/images/ped24.ico: add icon
 
 2006-06-17  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditPerson.py: select given name field if the
