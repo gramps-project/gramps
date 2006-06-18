@@ -45,6 +45,7 @@ import ImgManip
 import Mime
 import Utils
 
+mime_type = ""
 #-------------------------------------------------------------------------
 #
 # Class Definitions
@@ -181,11 +182,9 @@ class AbiWordDoc(BaseDoc.BaseDoc):
         self.f.close()
 
         if self.print_req:
-            apptype = 'application/x-abiword'
             try:
-                app = Mime.get_application(apptype)[0]
-                os.environ["FILE"] = self.filename
-                os.system ('%s "$FILE" &' % app)
+                app = Mime.get_application(mime_type)[0]
+                Utils.launch(app,self.filename)
             except:
                 pass
 
@@ -330,8 +329,13 @@ class AbiWordDoc(BaseDoc.BaseDoc):
 #--------------------------------------------------------------------------
 
 try:
-    prog = Mime.get_application("application/x-abiword")
-    mtype = Mime.get_description('application/x-abiword')
+    if Mime.mime_type_is_defined("application/x-abiword"):
+        mime_type = "application/x-abiword"
+    elif Mime.mime_type_is_defined("application/abiword"):
+        mime_type = "application/abiword"
+    
+    prog = Mime.get_application(mime_type)
+    mtype = Mime.get_description(mime_type)
     
     if Utils.search_for(prog[0]):
         print_label=_("Open in %s") % prog[1]
