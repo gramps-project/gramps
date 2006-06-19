@@ -100,6 +100,8 @@ class Assistant(gtk.Object,ManagedWindow.ManagedWindow):
         if uistate:
             ManagedWindow.ManagedWindow.__init__(self,uistate,[],
                                                  self.__class__)
+        else:
+            self.uistate = None
         
         self.complete = complete
         self.fg_color = gtk.gdk.color_parse('#7d684a')

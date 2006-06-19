@@ -11,8 +11,8 @@ AM_INIT_AUTOMAKE(1.6.3)
 AC_CONFIG_MACRO_DIR([m4])
 GNOME_DOC_INIT
 
-RELEASE=0.SVN$(svnversion -n .)
-dnl RELEASE=1
+dnl RELEASE=0.SVN$(svnversion -n .)
+RELEASE=1
 
 VERSIONSTRING=$VERSION
 if test x"$RELEASE" != "x"

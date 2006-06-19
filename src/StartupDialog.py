@@ -129,7 +129,7 @@ class StartupDialog:
             Config.set(Config.STARTUP,const.startup)
             self.close()
             return
-        self.w = Assistant.Assistant(self.complete)
+        self.w = Assistant.Assistant(None, self.complete)
         self.w.add_text_page(
             _('Getting started'),
             _('Welcome to GRAMPS, the Genealogical Research '
