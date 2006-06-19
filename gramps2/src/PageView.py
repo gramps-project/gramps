@@ -472,7 +472,7 @@ class ListView(BookMarkView):
         a gtk.Notebook page.
         """
         self.vbox = gtk.VBox()
-        self.vbox.set_border_width(0)
+        self.vbox.set_border_width(4)
         self.vbox.set_spacing(4)
         
         self.search_bar = SearchBar(self.uistate, self.build_tree)

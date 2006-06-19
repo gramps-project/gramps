@@ -4,6 +4,9 @@
 	cases (closes #202); Redraw on family-* signals too to show for
 	example newly added parents.
 
+	* src/PageView.py, src/DataViews/_MediaView.py: Let all list views
+	have the same border width
+
 2006-06-18  Don Allingham  <don@gramps-project.org>
 	* help/C/gramps-manual.xml: integrate into a single doc
 	* help/C/figures/*.png: updated images
