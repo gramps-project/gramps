@@ -51,13 +51,13 @@ class PersonRefEmbedList(EmbeddedList):
     _column_names = [
         (_('Name'),    0, 250), 
         (_('ID'),  1, 100), 
-        (_('Relationship'),   2, 100), 
+        (_('Association'),   2, 100), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('Relationships'), PersonRefModel)
+                              _('Associations'), PersonRefModel)
 
     def get_data(self):
         return self.data

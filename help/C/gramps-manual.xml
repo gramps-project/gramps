@@ -697,32 +697,64 @@
       detailed. Displaying it poses a challenge that GRAMPS takes on by
       dividing and organizing the information into a series of Views. Each
       View displays a portion of the total information, selected according to
-      a particular category. This will become clearer as we explore the six
+      a particular category. This will become clearer as we explore the nine
       different Views, listed below:</para>
 
       <itemizedlist>
         <listitem>
-          <para>People View</para>
+          <para>People</para>
+
+          <para>Displays the list of all people in the database</para>
         </listitem>
 
         <listitem>
-          <para>Family View</para>
+          <para>Relationships</para>
+
+          <para>Shows the relationships between the selected person and other
+          people. This includes parents, spouses, and children</para>
+        </listitem>
+
+        <listitem>
+          <para>Family List</para>
+
+          <para>Shows the list of all families in the database</para>
         </listitem>
 
         <listitem>
           <para>Pedigree View</para>
+
+          <para>Displays a graphical ancestor tree for the selected
+          person</para>
+        </listitem>
+
+        <listitem>
+          <para>Events</para>
+
+          <para>Displays the list of all events in the database</para>
         </listitem>
 
         <listitem>
           <para>Sources View</para>
+
+          <para>Displays the list of all sources in the database</para>
         </listitem>
 
         <listitem>
           <para>Places View</para>
+
+          <para>Displays the list of all places in the database</para>
         </listitem>
 
         <listitem>
           <para>Media View</para>
+
+          <para>Displays the list of all media objects in the database</para>
+        </listitem>
+
+        <listitem>
+          <para>Repositories</para>
+
+          <para>Displays the list of all repositories in the database.</para>
         </listitem>
       </itemizedlist>
 
@@ -782,8 +814,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="393" fileref="figures/noside-nofilt.png"
-                           format="PNG" scale="75" width="500" />
+                <imagedata depth="" fileref="figures/noside-nofilt.png"
+                           format="PNG" scale="" width="" />
               </imageobject>
 
               <textobject>
@@ -1054,37 +1086,6 @@
             </listitem>
           </varlistentry>
         </variablelist>
-
-        <para>The layout of the Family View can be switched from the
-        "left-to-right" arrangement shown in <xref linkend="family-fig" /> to
-        the "top-to-bottom" arrangement shown in <xref
-        linkend="family-alt-fig" />. This is done by going to <menuchoice>
-            <guimenu>Edit</guimenu>
-
-            <guimenuitem>Preferences</guimenuitem>
-          </menuchoice> and selecting the <guilabel>Display</guilabel> section
-        of the dialog that appears.</para>
-
-        <!-- ==== Figure: Family View ==== -->
-
-        <figure id="family-alt-fig">
-          <title>Alternative Family View</title>
-
-          <screenshot>
-            <mediaobject>
-              <imageobject>
-                <imagedata depth="352" fileref="figures/family-alt.png"
-                           format="PNG" scale="75" width="500" />
-              </imageobject>
-
-              <textobject>
-                <phrase>Shows Alternative Family View.</phrase>
-              </textobject>
-            </mediaobject>
-          </screenshot>
-        </figure>
-
-        <!-- ==== End of Figure ==== -->
       </sect2>
 
       <!-- ================ Main Window Sub-subsection  -->
@@ -1196,70 +1197,6 @@
         indicate the absence of the data in the appropriate category.
         Similarly to the children menu above, Childrens' and Parents' menus
         distinguish continuing lines from dead ends.</para>
-
-        <!-- ==== Figure: Pedigree View ==== -->
-
-        <figure id="pedigree-anchor-fig">
-          <title>Pedigree View with the Anchor</title>
-
-          <screenshot>
-            <mediaobject>
-              <imageobject>
-                <imagedata depth="353" fileref="figures/pedigree-anchor.png"
-                           format="PNG" scale="75" width="500" />
-              </imageobject>
-
-              <textobject>
-                <phrase>Shows Pedigree View with the anchor set.</phrase>
-              </textobject>
-            </mediaobject>
-          </screenshot>
-        </figure>
-
-        <!-- ==== End of Figure ==== -->
-
-        <para>Pedigree View gives you an additional, advanced way of labeling
-        generations. This feature becomes available by setting the "anchor" on
-        a selected person. If the anchor is set, the generations are labeled
-        as follows:</para>
-
-        <itemizedlist>
-          <listitem>
-            <para>The Anchor Person (and his/her generation) is labeled as
-            <guilabel>0</guilabel>.</para>
-          </listitem>
-
-          <listitem>
-            <para>The ancestor generations are numbered with positive integers
-            (<guilabel>1</guilabel>,<guilabel>2</guilabel>,
-            <guilabel>3</guilabel>,etc.).</para>
-          </listitem>
-
-          <listitem>
-            <para>The descendant generations are numbered with negative
-            integers (<guilabel>-1</guilabel>,<guilabel>-2</guilabel>,
-            <guilabel>-3</guilabel>, etc.).</para>
-          </listitem>
-
-          <listitem>
-            <para>In all cases, the number represents the number of
-            generations between the labeled generation and the anchor person.
-            In this mode, you can travel along the extensive pedigree line and
-            see the number of generations removed from the Anchor
-            Person.</para>
-          </listitem>
-        </itemizedlist>
-
-        <para>To set the anchor, select the person you want as the Active
-        person (recall that you can do so in the Pedigree View by clicking the
-        line that leads to the person from his or her child). Then, while in
-        Pedigree View, right click anywhere in the main window. A context menu
-        will appear. Select <guilabel>Set anchor</guilabel> and you will see
-        the Active person indicated as the anchor in the lower left corner.
-        This newly established Anchor Person will remain in effect until you
-        right-click again and select <guilabel>Remove anchor</guilabel> from
-        the context menu or until a new Active person is chosen who is
-        unrelated to the Anchor Person.</para>
       </sect2>
 
       <!-- ================ Main Window Sub-subsection  -->
@@ -1332,8 +1269,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="353" fileref="figures/places.png"
-                           format="PNG" scale="75" width="500" />
+                <imagedata depth="" fileref="figures/places.png" format="PNG"
+                           scale="" width="" />
               </imageobject>
 
               <textobject>
@@ -1624,31 +1561,6 @@
       <para>If you import information from another GRAMPS database or GRAMPS
       XML database, you will see the progress of the operation in the progress
       bar of GRAMPS' main window.</para>
-
-      <para>If you import a GEDCOM database, you will see the import dialog
-      shown in <xref linkend="gedcom-import-fig" />. The information in the
-      dialog is updated as the import progresses.</para>
-
-      <!-- ==== Figure: GEDCOM Import ==== -->
-
-      <figure id="gedcom-import-fig">
-        <title>GEDCOM Import</title>
-
-        <screenshot>
-          <mediaobject>
-            <imageobject>
-              <imagedata depth="490" fileref="figures/gedcom-import.png"
-                         format="PNG" width="510" />
-            </imageobject>
-
-            <textobject>
-              <phrase>Shows GEDCOM Import Window.</phrase>
-            </textobject>
-          </mediaobject>
-        </screenshot>
-      </figure>
-
-      <!-- ==== End of Figure ==== -->
 
       <para>If a media file is not found during import, you'll be prompted to
       take one of the actions indicated in <xref
@@ -2388,8 +2300,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="413" fileref="figures/edit-person.png"
-                           format="PNG" width="500" />
+                <imagedata depth="" fileref="figures/edit-person.png"
+                           format="PNG" width="" />
               </imageobject>
 
               <textobject>
@@ -2486,6 +2398,17 @@
               and <guilabel>Information is private</guilabel> check buttons
               let you mark whether or not the person's record is complete and
               whether or not the record is private.</para>
+
+              <para>The <guilabel>Events</guilabel> tab lets you view and edit
+              any events relevant to the person. The bottom part of the window
+              lists all such events stored in the database. The top part shows
+              the details of the currently selected event in the list (if
+              any). The buttons <guibutton>+</guibutton>,
+              <guibutton>Edit</guibutton>, and <guibutton>-</guibutton> allow
+              you to add, modify, and remove an event record from the
+              database. Note that the <guibutton>Edit</guibutton> and
+              <guibutton>-</guibutton> buttons become available only when an
+              event is selected from the list.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -2514,9 +2437,9 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth="252"
+                      <imagedata depth=" "
                                  fileref="figures/edit-person-names.png"
-                                 format="PNG" width="500" />
+                                 format="PNG" width=" " />
                     </imageobject>
 
                     <textobject>
@@ -2530,47 +2453,6 @@
               <guilabel>Name Editor</guilabel> dialog is invoked. This dialog
               is described in the section below (see <xref
               linkend="adv-an" />).</para>
-
-              <!-- ==== End of Figure ==== -->
-            </listitem>
-          </varlistentry>
-        </variablelist>
-
-        <variablelist>
-          <varlistentry>
-            <term>Events</term>
-
-            <listitem>
-              <para>The <guilabel>Events</guilabel> tab lets you view and edit
-              any events relevant to the person. The bottom part of the window
-              lists all such events stored in the database. The top part shows
-              the details of the currently selected event in the list (if
-              any). The buttons <guibutton>+</guibutton>,
-              <guibutton>Edit</guibutton>, and <guibutton>-</guibutton> allow
-              you to add, modify, and remove an event record from the
-              database. Note that the <guibutton>Edit</guibutton> and
-              <guibutton>-</guibutton> buttons become available only when an
-              event is selected from the list.</para>
-
-              <!-- ==== Figure: Edit Person dialog - Events ==== -->
-
-              <figure id="edit-pers-events-fig">
-                <title>Edit Person dialog - Events</title>
-
-                <screenshot>
-                  <mediaobject>
-                    <imageobject>
-                      <imagedata depth="278"
-                                 fileref="figures/edit-person-events.png"
-                                 format="PNG" width="500" />
-                    </imageobject>
-
-                    <textobject>
-                      <phrase>Shows Events Tab of Edit Person dialog.</phrase>
-                    </textobject>
-                  </mediaobject>
-                </screenshot>
-              </figure>
 
               <!-- ==== End of Figure ==== -->
             </listitem>
@@ -2618,9 +2500,9 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth="231"
+                      <imagedata depth=""
                                  fileref="figures/edit-person-attributes.png"
-                                 format="PNG" width="500" />
+                                 format="PNG" width="" />
                     </imageobject>
 
                     <textobject>
@@ -2663,9 +2545,9 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth="272"
+                      <imagedata depth=" "
                                  fileref="figures/edit-person-addresses.png"
-                                 format="PNG" width="500" />
+                                 format="PNG" width=" " />
                     </imageobject>
 
                     <textobject>
@@ -2694,9 +2576,9 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth="228"
+                      <imagedata depth=" "
                                  fileref="figures/edit-person-notes.png"
-                                 format="PNG" width="500" />
+                                 format="PNG" width=" " />
                     </imageobject>
 
                     <textobject>
@@ -2741,9 +2623,9 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth="147"
+                      <imagedata depth=" "
                                  fileref="figures/edit-person-sources.png"
-                                 format="PNG" width="500" />
+                                 format="PNG" width=" " />
                     </imageobject>
 
                     <textobject>
@@ -2819,9 +2701,9 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth="182"
+                      <imagedata depth=""
                                  fileref="figures/edit-person-gallery.png"
-                                 format="PNG" width="500" />
+                                 format="PNG" width="" />
                     </imageobject>
 
                     <textobject>
@@ -2870,9 +2752,9 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth="218"
+                      <imagedata depth=""
                                  fileref="figures/edit-person-internet.png"
-                                 format="PNG" width="500" />
+                                 format="PNG" width="" />
                     </imageobject>
 
                     <textobject>
@@ -2913,9 +2795,9 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth="403"
+                      <imagedata depth=""
                                  fileref="figures/edit-person-lds.png"
-                                 format="PNG" width="500" />
+                                 format="PNG" width="" />
                     </imageobject>
 
                     <textobject>
@@ -3144,9 +3026,8 @@
               <screenshot>
                 <mediaobject>
                   <imageobject>
-                    <imagedata depth="270"
-                               fileref="figures/date-selection.png"
-                               format="PNG" width="400" />
+                    <imagedata depth="" fileref="figures/date-selection.png"
+                               format="PNG" width="" />
                   </imageobject>
 
                   <textobject>
@@ -3208,8 +3089,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="258" fileref="figures/edit-rel.png"
-                           format="PNG" width="500" />
+                <imagedata depth="" fileref="figures/edit-rel.png"
+                           format="PNG" width="" />
               </imageobject>
 
               <textobject>
@@ -3423,8 +3304,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="256" fileref="figures/edit-src.png"
-                           format="PNG" width="450" />
+                <imagedata depth="" fileref="figures/edit-src.png"
+                           format="PNG" width="" />
               </imageobject>
 
               <textobject>
@@ -3575,8 +3456,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="411" fileref="figures/edit-plc.png"
-                           format="PNG" width="450" />
+                <imagedata depth="" fileref="figures/edit-plc.png"
+                           format="PNG" width="" />
               </imageobject>
 
               <textobject>
@@ -3754,8 +3635,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="286" fileref="figures/edit-media.png"
-                           format="PNG" width="450" />
+                <imagedata depth="" fileref="figures/edit-media.png"
+                           format="PNG" width="" />
               </imageobject>
 
               <textobject>
@@ -3892,8 +3773,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="316" fileref="figures/edit-ev.png"
-                           format="PNG" width="450" />
+                <imagedata depth="" fileref="figures/edit-ev.png" format="PNG"
+                           width="" />
               </imageobject>
 
               <textobject>
@@ -4012,8 +3893,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="489" fileref="figures/edit-si.png"
-                           format="PNG" width="450" />
+                <imagedata depth="" fileref="figures/edit-si.png" format="PNG"
+                           width="" />
               </imageobject>
 
               <textobject>
@@ -4071,8 +3952,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="509" fileref="figures/edit-an.png"
-                           format="PNG" width="400" />
+                <imagedata depth="" fileref="figures/edit-an.png" format="PNG"
+                           width="" />
               </imageobject>
 
               <textobject>
@@ -4200,8 +4081,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="248" fileref="figures/edit-at.png"
-                           format="PNG" width="430" />
+                <imagedata depth="" fileref="figures/edit-at.png" format="PNG"
+                           width="" />
               </imageobject>
 
               <textobject>
@@ -4311,8 +4192,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="376" fileref="figures/edit-ad.png"
-                           format="PNG" width="450" />
+                <imagedata depth="" fileref="figures/edit-ad.png" format="PNG"
+                           width="" />
               </imageobject>
 
               <textobject>
@@ -4403,98 +4284,6 @@
             </listitem>
           </varlistentry>
         </variablelist>
-      </sect2>
-
-      <!-- ================ Usage Sub-subsection ================ -->
-
-      <sect2 id="adv-wit">
-        <title>Witnesses</title>
-
-        <para>Witnesses are edited through the following <guilabel>Witness
-        Editor</guilabel> dialog:</para>
-
-        <!-- ==== Figure: Witness Editor dialog ==== -->
-
-        <figure id="edit-wi-fig">
-          <title>Witness Editor dialog</title>
-
-          <screenshot>
-            <mediaobject>
-              <imageobject>
-                <imagedata depth="259" fileref="figures/edit-wi.png"
-                           format="PNG" width="450" />
-              </imageobject>
-
-              <textobject>
-                <phrase>Shows Witness Editor dialog.</phrase>
-              </textobject>
-            </mediaobject>
-          </screenshot>
-        </figure>
-
-        <!-- ==== End of Figure ==== -->
-
-        <para>The top of the window shows the dialog title. The central part
-        of the window displays information about the witness. The bottom part
-        has <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton>
-        buttons. Clicking the <guibutton>OK</guibutton> button at any time
-        will apply all the changes made and close the dialog window. Clicking
-        the <guibutton>Cancel</guibutton> button at any time will close the
-        window without applying any changes.</para>
-
-        <para>The witness name can be entered in two ways, depending upon
-        whether the witness is a person already stored in the database or not
-        (unrelated person).</para>
-
-        <tip>
-          <para>If the person you would like to add as a witness is in fact a
-          member of the database, it is better to use the first method
-          below.</para>
-        </tip>
-
-        <variablelist>
-          <varlistentry>
-            <term>Person from the database</term>
-
-            <listitem>
-              <para>If the person's data are stored in a database, check
-              <guilabel>Person is in the database</guilabel> box. Then click
-              the <guibutton>Select</guibutton> button to invoke
-              <guilabel>Select Person</guilabel> dialog. Choose the person
-              from that dialog and click the <guibutton>OK</guibutton> button.
-              The <guilabel>Person</guilabel> text field will display the name
-              of the person you selected.</para>
-
-              <note>
-                <para>Even though the person's name is displayed in the
-                <guilabel>Person</guilabel> field, it is not available for
-                direct editing.</para>
-              </note>
-            </listitem>
-          </varlistentry>
-        </variablelist>
-
-        <variablelist>
-          <varlistentry>
-            <term>Unrelated person</term>
-
-            <listitem>
-              <para>If the person is not in the database, make sure that
-              <guilabel>Person is in the database</guilabel> box is unchecked.
-              Then enter the name or any description of a person into the
-              <guilabel>Person</guilabel> text entry field. This information
-              is stored as entered, and this is the only place it is stored.
-              In other words, there is no reference to that person in the
-              entire database except for this witness reference. If the person
-              is in fact a member of the database, it is advised to use the
-              former method.</para>
-            </listitem>
-          </varlistentry>
-        </variablelist>
-
-        <para>The <guilabel>Comment</guilabel> text area allows you to enter
-        any comments concerning the witness. To add a comment or to modify
-        existing comments simply edit the text in the text area.</para>
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
