@@ -116,7 +116,7 @@ class MediaView(PageView.ListView):
     def build_widget(self):
         base = PageView.ListView.build_widget(self)
         vbox = gtk.VBox()
-        vbox.set_border_width(4)
+        vbox.set_border_width(0)
         vbox.set_spacing(4)
 
         self.image = gtk.Image()
