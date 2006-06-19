@@ -457,7 +457,7 @@ class PedigreeView(PageView.PersonNavView):
         
         self.notebook = gtk.Notebook()
         self.notebook.connect("button-press-event", self.bg_button_press_cb)
-        self.bootstrap_handler = self.notebook.connect("expose-event", self.init_parent_signals_cb)
+        self.bootstrap_handler = self.notebook.connect("size-request", self.init_parent_signals_cb)
         self.notebook.set_show_border(False)
         self.notebook.set_show_tabs(False)
             
@@ -547,10 +547,14 @@ class PedigreeView(PageView.PersonNavView):
         is no need to store the database, since we will get the value
         from self.state.db
         """
-        db.connect('person-add', self.person_updated_cb)
-        db.connect('person-update', self.person_updated_cb)
-        db.connect('person-delete', self.person_updated_cb)
+        db.connect('person-add', self.person_rebuild)
+        db.connect('person-update', self.person_rebuild)
+        db.connect('person-delete', self.person_rebuild)
         db.connect('person-rebuild', self.person_rebuild)
+        db.connect('family-update', self.person_rebuild)
+        db.connect('family-add',    self.person_rebuild)
+        db.connect('family-delete', self.person_rebuild)
+        db.connect('family-rebuild', self.person_rebuild)
         self.bookmarks.update_bookmarks(self.dbstate.db.get_bookmarks())
         if self.dbstate.active:
             self.bookmarks.redraw()
@@ -564,14 +568,7 @@ class PedigreeView(PageView.PersonNavView):
         else:
             self.rebuild_trees(None)
     
-    def person_updated_cb(self,handle_list):
-        self.dirty = True
-        if self.dbstate.active:
-            self.rebuild_trees(self.dbstate.active.handle)
-        else:
-            self.rebuild_trees(None)
-
-    def person_rebuild(self):
+    def person_rebuild(self,dummy=None):
         self.dirty = True
         if self.dbstate.active:
             self.rebuild_trees(self.dbstate.active.handle)
