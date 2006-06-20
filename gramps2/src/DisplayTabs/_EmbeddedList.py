@@ -169,7 +169,7 @@ class EmbeddedList(ButtonTab):
             return
 
         # pickle the data, and build the tuple to be passed
-        value = (self._DND_TYPE.drag_type, id(self), obj,self.find_index(obj))
+        value = (self._DND_TYPE.drag_type, id(self), obj, self.find_index(obj))
         data = pickle.dumps(value)
 
         # pass as a string (8 bits)

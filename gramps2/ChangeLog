@@ -1,4 +1,6 @@
 2006-06-20  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamily.py: handle drag-n-drop for childrefs 
+	separately
 	* src/Editors/_EditEvent.py: focus on date on open
 	* src/Editors/_EditEventRef.py: focus on date on open
 	* src/UndoHistory.py: don't attempt to unregister with the window

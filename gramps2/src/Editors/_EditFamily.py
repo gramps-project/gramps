@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import pickle
 
 #-------------------------------------------------------------------------
 #
@@ -124,7 +125,8 @@ class ChildEmbedList(EmbeddedList):
         """
         returns the index of the object within the associated data
         """
-        return self.family.get_child_ref_list().index(obj)
+	reflist = [ref.ref for ref in self.family.get_child_ref_list()]
+        return reflist.index(obj)
 
     def _find_row(self,x,y):
         row = self.tree.get_path_at_pos(x,y)
@@ -258,6 +260,37 @@ class ChildEmbedList(EmbeddedList):
                     EditChildRef(self.dbstate, self.uistate, self.track,
                                  ref, self.child_ref_edited)
                     break
+
+    def drag_data_received(self, widget, context, x, y, sel_data, info, time):
+        """
+        Handle the standard gtk interface for drag_data_received.
+
+        If the selection data is define, extract the value from sel_data.data,
+        and decide if this is a move or a reorder.
+        """
+        if sel_data and sel_data.data:
+            (mytype, selfid, obj, row_from) = pickle.loads(sel_data.data)
+
+            # make sure this is the correct DND type for this object
+            if mytype == self._DND_TYPE.drag_type:
+                
+                # determine the destination row
+                row = self._find_row(x, y)
+
+                # if the is same object, we have a move, otherwise,
+                # it is a standard drag-n-drop
+                
+                if id(self) == selfid:
+		    obj = self.get_data().get_child_ref_list()[row_from]
+                    self._move(row_from, row, obj)
+                else:
+		    handle = obj
+		    obj = RelLib.ChildRef()
+		    obj.ref = handle
+                    self._handle_drag(row, obj)
+                self.rebuild()
+            elif self._DND_EXTRA and mytype == self._DND_EXTRA.drag_type:
+                self.handle_extra_type(mytype, obj)
 
     def north_american(self):
         father_handle = self.family.get_father_handle()
