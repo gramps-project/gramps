@@ -51,20 +51,39 @@ def get_application(type):
     extension = _get_extension(type)
     progId = _get_prog_id(extension)
 
-    if progId:
-        # Find the application associated with this program ID
-        aReg = ConnectRegistry(None,HKEY_CLASSES_ROOT)
-        subkey = OpenKey(aReg, "%s\shell\open\command" % progId)
+    if not progId:
+        return None
+
+    # Find the application associated with this program ID
+    aReg = ConnectRegistry(None,HKEY_CLASSES_ROOT)
+    subkey = OpenKey(aReg, "%s\shell\open\command" % progId)
+    if subkey:
         n,command,type = EnumValue(subkey, 0)
         if type == REG_EXPAND_SZ:
             command = command.replace( '%SystemRoot%', 
                                        os.getenv('SystemRoot') )
+        CloseKey(aReg)
+    else:
+        return None
+    CloseKey(subkey)
 
-        # TODO: figure out how to get a description of the application
-        # use that instead of progId
-        return (command,progId)
+    # Find a friendly name for the application
+    if command.startswith('"'):
+        app = command.split('"')[1]
+    else:
+        app = command.split()[0]
+        
+    hcu = ConnectRegistry(None,HKEY_CURRENT_USER)
+    subkey = OpenKey(hcu, "Software\Microsoft\Windows\ShellNoRoam\MUICache")
+    desc = None
+    if subkey:
+        desc,type = QueryValueEx(subkey, app)
+        CloseKey(subkey)
+    else:
+        desc = progId
+    CloseKey(hcu)
 
-    return None
+    return (command,desc)
 
 def get_description(mime_type):
     """Returns the description of the specfied mime type"""
