@@ -596,15 +596,7 @@ class PedigreeView(PageView.PersonNavView):
         if person_handle:
             person = self.dbstate.db.get_person_from_handle( person_handle)
 
-        # Eliminate unnecessary redraws. If the window is active, clear the
-        # dirty flag, and redraw. If we are not begin displayed, set the dirty
-        # flag and do nothing.
-        
-        if not self.dbstate.active or not self.dirty:
-            self.dirty = True
-            return
-        else:
-            self.dirty = False
+        self.dirty = False
 
         if self.tree_style == 1:
             # format of the definition is:
