@@ -121,49 +121,49 @@ class RelationshipView(PageView.PersonNavView):
         if self.dbstate.active:
             while not self.change_person(self.dbstate.active.handle):
                 pass
-            self.dirty = False
         else:
-            self.dirty = True
+            self.change_person(None)
+        self.dirty = False
 
     def person_rebuild(self):
         if self.dbstate.active:
             while not self.change_person(self.dbstate.active.handle):
                 pass
-            self.dirty = False
         else:
-            self.dirty = True
+            self.change_person(None)
+        self.dirty = False
 
     def family_update(self, handle_list):
         if self.dbstate.active:
             while not self.change_person(self.dbstate.active.handle):
                 pass
-            self.dirty = False
         else:
-            self.dirty = True
+            self.change_person(None)
+        self.dirty = False
 
     def family_add(self, handle_list):
         if self.dbstate.active:
             while not self.change_person(self.dbstate.active.handle):
                 pass
-            self.dirty = False
         else:
-            self.dirty = True
+            self.change_person(None)
+        self.dirty = False
 
     def family_delete(self, handle_list):
         if self.dbstate.active:
             while not self.change_person(self.dbstate.active.handle):
                 pass
-            self.dirty = False
         else:
-            self.dirty = True
+            self.change_person(None)
+        self.dirty = False
 
     def family_rebuild(self):
         if self.dbstate.active:
             while not self.change_person(self.dbstate.active.handle):
                 pass
-            self.dirty = False
         else:
-            self.dirty = True
+            self.change_person(None)
+        self.dirty = False
             
     def get_stock(self):
         """
@@ -278,6 +278,8 @@ class RelationshipView(PageView.PersonNavView):
         if self.dbstate.active:
             self.handle_history(self.dbstate.active.handle)
             self.change_person(self.dbstate.active.handle)
+        else:
+            self.change_person(None)
         
     def change_person(self, obj):
         if self.redrawing:
