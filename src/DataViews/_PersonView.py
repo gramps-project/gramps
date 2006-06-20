@@ -151,11 +151,11 @@ class PersonView(PageView.PersonNavView):
         if len(mlist) != 2:
             from QuestionDialog import ErrorDialog
             
-            msg = _("Cannot merge people")
-            msg2 = _("Exactly two people must be selected to perform a merge. "
-                     "A second person can be selected by holding down the "
-                     "control key while clicking on the desired person.")
-            ErrorDialog(msg,msg2)
+            ErrorDialog(
+		_("Cannot merge people"),
+		_("Exactly two people must be selected to perform a merge. "
+		  "A second person can be selected by holding down the "
+		  "control key while clicking on the desired person."))
         else:
             from QuestionDialog import ErrorDialog
             import Merge 
@@ -175,11 +175,11 @@ class PersonView(PageView.PersonNavView):
         mlist = self.get_selected_objects()
 
         if len(mlist) != 2:
-            msg = _("Cannot merge people")
-            msg2 = _("Exactly two people must be selected to perform a merge. "
-                     "A second person can be selected by holding down the "
-                     "control key while clicking on the desired person.")
-            ErrorDialog(msg,msg2)
+            ErrorDialog(
+		_("Cannot merge people"),
+		_("Exactly two people must be selected to perform a merge. "
+		  "A second person can be selected by holding down the "
+		  "control key while clicking on the desired person."))
         else:
             import Merge
             
@@ -188,11 +188,11 @@ class PersonView(PageView.PersonNavView):
             if p1 and p2:
                 Merge.MergePeopleUI(self.dbstate, self.uistate, p1, p2)
             else:
-                msg = _("Cannot merge people")
-                msg2 = _("Exactly two people must be selected to perform a merge. "
-                         "A second person can be selected by holding down the "
-                         "control key while clicking on the desired person.")
-                ErrorDialog(msg,msg2)
+                ErrorDialog(
+		    _("Cannot merge people"),
+		    _("Exactly two people must be selected to perform a merge. "
+		      "A second person can be selected by holding down the "
+		      "control key while clicking on the desired person."))
                 
     def column_editor(self,obj):
         import ColumnOrder
@@ -720,7 +720,10 @@ class PersonView(PageView.PersonNavView):
                 surname = self.dbstate.db.get_name_group_mapping(base)
 
             if oldpath[0] == surname:
-                self.model.build_sub_entry(surname)
+		try:
+		    self.model.build_sub_entry(surname)
+		except:
+		    self.model.calculate_data()
             else:
                 self.model.calculate_data()
             
