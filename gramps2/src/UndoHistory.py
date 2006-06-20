@@ -103,13 +103,13 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         self._build_model()
         self._update_ui()
         
-        self.db_change_key = dbstate.connect('database-changed',self._close)
+        self.db_change_key = dbstate.connect('database-changed',self.close)
         self.selection.connect('changed',self._selection_changed)
         self.show()
 
-    def _close(self,obj):
+    def close(self,obj=None):
         self.dbstate.disconnect(self.db_change_key)
-        self.close()
+	self.window.destroy()
 
     def _selection_changed(self,obj):
         (model,node) = self.selection.get_selected()
@@ -146,7 +146,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
             
     def _response(self,obj,response_id):
         if response_id == gtk.RESPONSE_CLOSE:
-            self.close()
+            self.close(obj)
         elif response_id == gtk.RESPONSE_REJECT:
             (model,node) = self.selection.get_selected()
             if not node:
@@ -169,6 +169,8 @@ class UndoHistory(ManagedWindow.ManagedWindow):
                 self._move(nsteps)
         elif response_id == gtk.RESPONSE_APPLY:
             self._clear_clicked()
+	elif response_id == gtk.RESPONSE_DELETE_EVENT:
+            self.close(obj)
 
     def build_menu_names(self,obj):
         return (self.title,None)
