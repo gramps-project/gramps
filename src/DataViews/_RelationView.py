@@ -103,11 +103,7 @@ class RelationshipView(PageView.PersonNavView):
         self.redraw()
 
     def build_tree(self):
-        if self.active:
-            self.redraw()
-            self.dirty = False
-        else:
-            self.dirty = True
+        self.redraw()
             
     def connect_to_db(self, db):
         db.connect('person-update', self.person_update)
@@ -123,7 +119,6 @@ class RelationshipView(PageView.PersonNavView):
                 pass
         else:
             self.change_person(None)
-        self.dirty = False
 
     def person_rebuild(self):
         if self.dbstate.active:
@@ -131,7 +126,6 @@ class RelationshipView(PageView.PersonNavView):
                 pass
         else:
             self.change_person(None)
-        self.dirty = False
 
     def family_update(self, handle_list):
         if self.dbstate.active:
@@ -139,7 +133,6 @@ class RelationshipView(PageView.PersonNavView):
                 pass
         else:
             self.change_person(None)
-        self.dirty = False
 
     def family_add(self, handle_list):
         if self.dbstate.active:
@@ -147,7 +140,6 @@ class RelationshipView(PageView.PersonNavView):
                 pass
         else:
             self.change_person(None)
-        self.dirty = False
 
     def family_delete(self, handle_list):
         if self.dbstate.active:
@@ -155,7 +147,6 @@ class RelationshipView(PageView.PersonNavView):
                 pass
         else:
             self.change_person(None)
-        self.dirty = False
 
     def family_rebuild(self):
         if self.dbstate.active:
@@ -163,7 +154,6 @@ class RelationshipView(PageView.PersonNavView):
                 pass
         else:
             self.change_person(None)
-        self.dirty = False
             
     def get_stock(self):
         """

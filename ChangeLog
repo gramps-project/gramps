@@ -2,6 +2,8 @@
 	* src/Mime/_WinMime.py: Get application description from registry
 
 2006-06-19  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: handle unsetting of rows changing
+	the active person when the model is rebuilt.
 	* src/DataViews/_Relationship.py: handle person set to None
 	* src/ViewManger.py: try tabs on the side
 	* src/DisplayTabs/_PersonRefEmbedList.py: change Relationships to
