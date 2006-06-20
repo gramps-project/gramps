@@ -95,6 +95,7 @@ class PersonView(PageView.PersonNavView):
             'F2' : self.key_goto_home_person,
             'F3' : self.key_edit_selected_person,
             }
+        self.dirty = True
         
     def change_page(self):
         pass
@@ -163,11 +164,12 @@ class PersonView(PageView.PersonNavView):
             if p1 and p2:
                 Merge.PersonCompare(self.dbstate, self.uistate, p1, p2)
             else:
-                msg = _("Cannot merge people")
-                msg2 = _("Exactly two people must be selected to perform a merge. "
-                         "A second person can be selected by holding down the "
-                         "control key while clicking on the desired person.")
-                ErrorDialog(msg,msg2)
+                ErrorDialog(
+                    _("Cannot merge people"),
+                    _("Exactly two people must be selected to perform a "
+                      "merge. A second person can be selected by holding "
+                      "down the control key while clicking on the desired "
+                      "person."))
 
     def fast_merge(self, obj):
         mlist = self.get_selected_objects()
@@ -368,7 +370,6 @@ class PersonView(PageView.PersonNavView):
         db.connect('person-delete', self.person_removed)
         db.connect('person-rebuild', self.build_tree)
         self.build_tree()
-        self.goto_active_person()
         self.bookmarks.update_bookmarks(db.get_bookmarks())
         if self.active:
             self.bookmarks.redraw()
@@ -400,10 +401,20 @@ class PersonView(PageView.PersonNavView):
         # mark inactive to prevent recusion
         self.inactive = True
 
+        self._goto()
+
+        # disable the inactive flag
+        self.inactive = False
+
+        # update history
+        self.handle_history(self.dbstate.active.handle)
+
+    def _goto(self):
+
         # select the active person in the person view
         p = self.dbstate.active
         try:
-            if self.model:
+            if self.model and p:
                 path = self.model.on_get_path(p.get_handle())
                 group_name = p.get_primary_name().get_group_name()
                 top_name = self.dbstate.db.get_name_group_mapping(group_name)
@@ -420,12 +431,6 @@ class PersonView(PageView.PersonNavView):
             self.selection.unselect_all()
             self.uistate.push_message(_("Active person not visible"))
             self.dbstate.active = p
-
-        # disable the inactive flag
-        self.inactive = False
-
-        # update history
-        self.handle_history(p.handle)
         
     def setup_filter(self):
         """
@@ -444,7 +449,8 @@ class PersonView(PageView.PersonNavView):
     def build_tree(self):
         """
         Creates a new PeopleModel instance. Essentially creates a complete
-        rebuild of the data.
+        rebuild of the data. We need to temporarily store the active person,
+        since it can change when rows are unselected when the model is set.
         """
         if self.active:
 
@@ -452,18 +458,21 @@ class PersonView(PageView.PersonNavView):
                 filter_info = (PeopleModel.GENERIC, self.generic_filter)
             else:
                 filter_info = (PeopleModel.SEARCH, self.search_bar.get_value())
-            
+
             self.model = PeopleModel(self.dbstate.db, filter_info)
 
+            active = self.dbstate.active
             self.tree.set_model(self.model)
 
             if const.use_tips and self.model.tooltip_column != None:
                 self.tooltips = TreeTips.TreeTips(self.tree,
                                                   self.model.tooltip_column,
                                                   True)
+
             self.build_columns()
             self.setup_filter()
-            self.goto_active_person()
+            self.dbstate.change_active_person(active)
+            self._goto()
             self.dirty = False
         else:
             self.dirty = True
