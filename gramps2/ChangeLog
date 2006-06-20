@@ -1,3 +1,9 @@
+2006-06-20  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DisplayState.py (modify_statusbar): Only calc relationship
+	of active person if active person is set
+	* src/DataViews/_PedigreeView.py: Support for family editing;
+	Change line style for child relation "birth"
+
 2006-06-19  Brian Matherly  <brian@gramps-project.org>
 	* src/Mime/_WinMime.py: Get application description from registry
 
