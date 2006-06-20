@@ -144,13 +144,15 @@ class EditEvent(EditPrimary):
             self.obj.get_type,
             custom_values=self.get_custom_events())
 
+	date_entry = self.top.get_widget("eventDate")
         self.date_field = MonitoredDate(
-            self.top.get_widget("eventDate"),
+            date_entry,
             self.top.get_widget("date_stat"),
             self.obj.get_date_object(),
             self.uistate,
             self.track,
             self.db.readonly)
+	date_entry.grab_focus()
 
     def _create_tabbed_pages(self):
         """

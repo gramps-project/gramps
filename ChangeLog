@@ -1,3 +1,9 @@
+2006-06-20  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditEvent.py: focus on date on open
+	* src/Editors/_EditEventRef.py: focus on date on open
+	* src/UndoHistory.py: don't attempt to unregister with the window
+	manager, since not registered to begin with
+
 2006-06-20  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DisplayState.py (modify_statusbar): Only calc relationship
 	of active person if active person is set

@@ -143,13 +143,16 @@ class EditEventRef(EditReference):
             self.source.get_type,
             custom_values=self.get_custom_events())
 
+	date_entry = self.top.get_widget("eer_date")
         self.date_check = MonitoredDate(
-            self.top.get_widget("eer_date"),
+            date_entry,
             self.top.get_widget("eer_date_stat"),
             self.source.get_date_object(),
             self.uistate,
             self.track,
             self.db.readonly)
+
+	date_entry.grab_focus()
 
     def _create_tabbed_pages(self):
         """
