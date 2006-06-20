@@ -57,7 +57,7 @@ import DateHandler
 import ImgManip
 import Errors
 from ReportBase import ReportUtils
-from Editors import EditPerson 
+from Editors import EditPerson, EditFamily 
 from DdTargets import DdTargets
 import cPickle as pickle
 
@@ -575,10 +575,6 @@ class PedigreeView(PageView.PersonNavView):
         else:
             self.rebuild_trees(None)
 
-    def person_edited_cb(self, p1=None, p2=None):
-        self.dirty = True
-        pass
-
     def request_resize(self):
         self.size_request_cb(self.notebook.parent,None,None)
         
@@ -816,6 +812,9 @@ class PedigreeView(PageView.PersonNavView):
                 line = gtk.DrawingArea()
                 line.set_size_request(20,-1)
                 line.connect("expose-event", self.line_expose_cb)
+                if lst[i] and lst[i][2]:
+                    line.add_events(gtk.gdk.BUTTON_PRESS_MASK)  # Required for popup menu
+                    line.connect("button-press-event", self.relation_button_press_cb,lst[i][2].get_handle())
                 line.set_data("idx", i*2+1)
                 if lst[i*2+1]:
                     line.set_data("rela", lst[i*2+1][1])
@@ -832,6 +831,9 @@ class PedigreeView(PageView.PersonNavView):
                 line = gtk.DrawingArea()
                 line.set_size_request(20,-1)
                 line.connect("expose-event", self.line_expose_cb)
+                if lst[i] and lst[i][2]:
+                    line.add_events(gtk.gdk.BUTTON_PRESS_MASK)  # Required for popup menu
+                    line.connect("button-press-event", self.relation_button_press_cb,lst[i][2].get_handle())
                 line.set_data("idx", i*2+2)
                 if lst[i*2+2]:
                     line.set_data("rela", lst[i*2+2][1])
@@ -849,6 +851,9 @@ class PedigreeView(PageView.PersonNavView):
                 line = gtk.DrawingArea()
                 line.set_size_request(20,-1)
                 line.connect("expose-event", self.tree_expose_cb)
+                if lst[i] and lst[i][2]:
+                    line.add_events(gtk.gdk.BUTTON_PRESS_MASK)  # Required for popup menu
+                    line.connect("button-press-event", self.relation_button_press_cb,lst[i][2].get_handle())
                 line.set_data("height", h)
                 if lst[i] and lst[i][2]:
                     line.add_events(gtk.gdk.ENTER_NOTIFY_MASK)  # Required for tooltip and mouse-over
@@ -1005,15 +1010,23 @@ class PedigreeView(PageView.PersonNavView):
         person = self.dbstate.db.get_person_from_handle(person_handle)
         if person:
             try:
-                EditPerson(self.dbstate, self.uistate, [], person,
-                           self.person_edited_cb)
+                EditPerson(self.dbstate, self.uistate, [], person)
+            except Errors.WindowActiveError:
+                pass
+            return True
+        return False
+
+    def edit_family_cb(self,obj,family_handle):
+        family = self.dbstate.db.get_family_from_handle(family_handle)
+        if family:
+            try:
+                EditFamily(self.dbstate, self.uistate, [], family)
             except Errors.WindowActiveError:
                 pass
             return True
         return False
 
     def add_parents_cb(self,obj,person_handle, family_handle):
-        from Editors import EditFamily
         if family_handle:   # one parent already exists -> Edit current family
             family = self.dbstate.db.get_family_from_handle(family_handle)
         else:   # no parents -> create new family
@@ -1035,6 +1048,15 @@ class PedigreeView(PageView.PersonNavView):
             return True
         return False
 
+    def copy_family_to_clipboard_cb(self,obj,family_handle):
+        """Renders the family data into some lines of text and puts that into the clipboard"""
+        family = self.dbstate.db.get_family_from_handle(family_handle)
+        if family:
+            cb = gtk.clipboard_get(gtk.gdk.SELECTION_CLIPBOARD)
+            cb.set_text( self.format_helper.format_relation(family,11))
+            return True
+        return False
+
     def on_show_option_menu_cb(self,obj,data=None):
         myMenu = gtk.Menu()
         self.add_nav_portion_to_menu(myMenu)
@@ -1050,16 +1072,16 @@ class PedigreeView(PageView.PersonNavView):
         
     def person_button_press_cb(self,obj,event,person_handle):
         if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
-            person = self.dbstate.db.get_person_from_handle(person_handle)
-            if person:
-                try:
-                    EditPerson(self.dbstate, self.uistate, [], person,
-                               self.person_edited_cb)
-                except Errors.WindowActiveError:
-                    pass
-                    
+            self.edit_person_cb( obj, person_handle)
         elif event.button!=1:
             self.build_full_nav_menu_cb(obj,event,person_handle)
+        return True
+
+    def relation_button_press_cb(self,obj,event,family_handle):
+        if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
+            self.edit_family_cb( obj, family_handle)
+        elif event.button!=1:
+            self.build_relation_nav_menu_cb(obj,event,family_handle)
         return True
 
     def missing_parent_button_press_cb(self,obj,event,person_handle,family_handle):
@@ -1163,8 +1185,8 @@ class PedigreeView(PageView.PersonNavView):
         if family != None:
             for child_ref in family.get_child_ref_list():
                 if child_ref.ref == person.handle:
-                    mrel = child_ref.mrel != RelLib.ChildRefType.BIRTH
-                    frel = child_ref.frel != RelLib.ChildRefType.BIRTH
+                    mrel = child_ref.mrel == RelLib.ChildRefType.BIRTH
+                    frel = child_ref.frel == RelLib.ChildRefType.BIRTH
             
                     lst[index] = (person,val,family)
                     father_handle = family.get_father_handle()
@@ -1528,7 +1550,40 @@ class PedigreeView(PageView.PersonNavView):
         self.add_settings_to_menu(menu)
         menu.popup(None,None,None,event.button,event.time)
         return 1
-            
+
+    def build_relation_nav_menu_cb(self,obj,event,family_handle):
+        """
+        Builds the menu for a parents-child relation line.
+        """
+        menu = gtk.Menu()
+        menu.set_title(_('Family Menu'))
+
+        family = self.dbstate.db.get_family_from_handle(family_handle)
+        if not family:
+            return 0
+
+        edit_item = gtk.ImageMenuItem(gtk.STOCK_EDIT)
+        edit_item.connect("activate",self.edit_family_cb,family_handle)
+        edit_item.show()
+        menu.append(edit_item)
+
+        clipboard_item = gtk.ImageMenuItem(gtk.STOCK_COPY)
+        clipboard_item.connect("activate",self.copy_family_to_clipboard_cb,family_handle)
+        clipboard_item.show()
+        menu.append(clipboard_item)
+
+        
+        # Add separator
+        item = gtk.MenuItem(None)
+        item.show()
+        menu.append(item)
+
+        # Add history-based navigation
+        self.add_nav_portion_to_menu(menu)
+        self.add_settings_to_menu(menu)
+        menu.popup(None,None,None,event.button,event.time)
+        return 1
+
 
 #-------------------------------------------------------------------------
 #
