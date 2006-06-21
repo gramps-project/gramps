@@ -267,26 +267,26 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         self.return_date = None
 
         self.show()
-        
+
         while True:
             response = self.window.run()
             if response == gtk.RESPONSE_HELP:
                 GrampsDisplay.help('adv-dates')
-
-            elif response == gtk.RESPONSE_OK:
-                (the_quality,the_modifier,the_calendar,the_value,the_text) = \
-                                        self.build_date_from_ui()
-                self.return_date = Date(self.date)
-                self.return_date.set(
-                    quality=the_quality,
-                    modifier=the_modifier,
-                    calendar=the_calendar,
-                    value=the_value,
-                    text=the_text)
-                break
+            elif response == gtk.RESPONSE_DELETE_EVENT:
+                return
             else:
-                break
-        self.close()
+                if response == gtk.RESPONSE_OK:
+                    (the_quality,the_modifier,the_calendar,
+                     the_value,the_text) = self.build_date_from_ui()
+                    self.return_date = Date(self.date)
+                    self.return_date.set(
+                        quality=the_quality,
+                        modifier=the_modifier,
+                        calendar=the_calendar,
+                        value=the_value,
+                        text=the_text)
+                self.close()
+                return
 
     def build_menu_names(self, obj):
         return (_("Date selection"), None)
