@@ -6,6 +6,11 @@
 from gettext import gettext as _
 import cgi
 
+try:
+    set()
+except:
+    from sets import Set as set
+    
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
