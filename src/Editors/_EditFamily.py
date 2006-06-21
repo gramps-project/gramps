@@ -652,16 +652,7 @@ class EditFamily(EditPrimary):
                 mfam = set(mother.get_family_handle_list())
                 common = list(mfam.intersection(ffam))
                 if len(common) > 0:
-                    if self.add_parent:
-                        clist = self.obj.get_child_ref_list()
-                        self.obj = self.dbstate.db.get_family_from_handle(common[0])
-                        self.obj.add_child_ref(clist[0])
-                        self.close()
-                        try:
-                            EditFamily(self.dbstate,self.uistate,[],self.obj)
-                        except Errors.WindowActiveError:
-                            pass
-                    elif self.obj.handle not in common:
+                    if self.add_parent or self.obj.handle not in common:
                         import QuestionDialog
                         QuestionDialog.WarningDialog(
                             _('Duplicate Family'),

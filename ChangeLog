@@ -1,3 +1,7 @@
+2006-06-21  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamily.py: Don't attempt to be too clever and
+	swap families if a duplicate is found. Just warn, and continue.
+
 2006-06-21  Zsolt Foldvari  <zsolt.foldvari@nokia.com>
 	* src/DisplayTabs/_GalleryTab.py (GalleryTab.build_interface):
 	Properly add icon list.
