@@ -150,10 +150,11 @@ class PluginDialog(ManagedWindow.ManagedWindow):
     def on_apply_clicked(self,obj):
         """Execute the selected report"""
 
-        (item_class,options_class,title,category,name) = self.item
+        (item_class,options_class,title,category,
+         name,require_active) = self.item
         if self.content == REPORTS:
             report(self.state,self.uistate,self.state.active,
-                          item_class,options_class,title,name,category)
+                   item_class,options_class,title,name,category,require_active)
         else:
             _Tool.gui_tool(self.state,self.uistate, 
                           item_class,options_class,title,name,category,
@@ -171,16 +172,18 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         data = self.imap[path]
 
         (report_class,options_class,title,category,name,
-         doc,status,author,email,unsupported) = data
+         doc,status,author,email,unsupported,require_active) = data
         self.description.set_text(doc)
         if unsupported:
             status = UNSUPPORTED
         self.status.set_text(status)
-        self.title.set_text('<span weight="bold" size="larger">%s</span>' % title)
+        self.title.set_text('<span weight="bold" size="larger">%s</span>' \
+                            % title)
         self.title.set_use_markup(1)
         self.author_name.set_text(author)
         self.author_email.set_text(email)
-        self.item = (report_class,options_class,title,category,name)
+        self.item = (report_class,options_class,title,category,
+                     name,require_active)
 
     def build_plugin_tree(self,item_list,categories):
         """Populates a GtkTree with each menu item assocated with a entry
