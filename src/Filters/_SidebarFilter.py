@@ -46,7 +46,19 @@ class SidebarFilter:
         self.apply_btn = gtk.Button(stock=gtk.STOCK_FIND)
         self.apply_btn.connect('clicked', self.clicked)
 
-        self.clear_btn = gtk.Button(stock=gtk.STOCK_CLEAR)
+        hbox = gtk.HBox()
+        hbox.show()
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_UNDO, gtk.ICON_SIZE_BUTTON)
+        image.show()
+        label = gtk.Label(_('Reset'))
+        label.show()
+        hbox.pack_start(image,False,False)
+        hbox.pack_start(label,False,True)
+        hbox.set_spacing(4)
+        
+        self.clear_btn = gtk.Button()
+        self.clear_btn.add(hbox)
         self.clear_btn.connect('clicked', self.clear)
 
         hbox = gtk.HBox()
