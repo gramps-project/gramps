@@ -59,6 +59,7 @@ import TreeTips
 import Errors
 import Config
 import const
+from QuestionDialog import ErrorDialog
 
 from Editors import EditPerson
 from Filters import SearchBar, GenericFilter, PersonSidebarFilter
@@ -149,15 +150,12 @@ class PersonView(PageView.PersonNavView):
         mlist = self.get_selected_objects()
 
         if len(mlist) != 2:
-            from QuestionDialog import ErrorDialog
-            
             ErrorDialog(
 		_("Cannot merge people"),
 		_("Exactly two people must be selected to perform a merge. "
 		  "A second person can be selected by holding down the "
 		  "control key while clicking on the desired person."))
         else:
-            from QuestionDialog import ErrorDialog
             import Merge 
             p1 = self.db.get_person_from_handle(mlist[0])
             p2 = self.db.get_person_from_handle(mlist[1])
