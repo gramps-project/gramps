@@ -1,3 +1,9 @@
+2006-06-21  Zsolt Foldvari  <zsolt.foldvari@nokia.com>
+	* src/DisplayTabs/_GalleryTab.py (GalleryTab.build_interface):
+	Properly add icon list.
+	* src/Selectors/_BaseSelector.py (BaseSelector.add_columns): Allow
+	resize-able columns.
+
 2006-06-21  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py: import QuestionDialog
 	* src/Editors/_EditFamily.py: re-enable disabled blocks after
