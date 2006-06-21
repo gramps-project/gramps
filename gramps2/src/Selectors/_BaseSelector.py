@@ -90,6 +90,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
                 column = gtk.TreeViewColumn(item[0],self.renderer,markup=ix)
             column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
             column.set_fixed_width(item[1])
+            column.set_resizable(True)
             tree.append_column(column)           
         
     def build_menu_names(self,obj):

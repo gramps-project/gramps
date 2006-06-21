@@ -147,7 +147,7 @@ class GalleryTab(ButtonTab):
         
         scroll = gtk.ScrolledWindow()
         scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        scroll.add_with_viewport(self.iconlist)
+        scroll.add(self.iconlist)
         self.pack_start(scroll, True)
 
     def _update_internal_list(self, *obj):
