@@ -1,6 +1,8 @@
 2006-06-20  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py (PersonView.person_updated): if surname
-	fails, recalculate data
+	fails, recalculate data, fix initial display of sidebar
+	* src/ViewManager.py: handle post page creation initalization
+	* src/PageView.py: handle post page creation initalization
 	* src/Editors/_EditFamily.py: handle drag-n-drop for childrefs 
 	separately
 	* src/Editors/_EditEvent.py: focus on date on open

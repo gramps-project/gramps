@@ -277,9 +277,16 @@ class PersonView(PageView.PersonNavView):
 
         hpaned.pack_start(self.vbox, True, True)
         hpaned.pack_end(self.filter_pane, False, False)
-        
         return hpaned
 
+    def post(self):
+        if Config.get(Config.FILTER):
+            self.search_bar.hide()
+            self.filter_pane.show()
+        else:
+            self.search_bar.show()
+            self.filter_pane.hide()
+        
     def filter_clicked(self):
         self.generic_filter = self.filter_sidebar.get_filter()
         self.build_tree()
