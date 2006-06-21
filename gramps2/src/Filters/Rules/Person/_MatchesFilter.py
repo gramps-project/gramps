@@ -32,7 +32,8 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters import SystemFilters, CustomFilters
+import Filters
+#from Filters import SystemFilters, CustomFilters
 from Filters.Rules._Rule import Rule
 
 #-------------------------------------------------------------------------
@@ -49,30 +50,36 @@ class MatchesFilter(Rule):
     category    = _('General filters')
 
     def prepare(self,db):
-        for filt in SystemFilters.get_filters():
-            if filt.get_name() == self.list[0]:
-                for rule in filt.flist:
-                    rule.prepare(db)
-        for filt in CustomFilters.get_filters():
-            if filt.get_name() == self.list[0]:
-                for rule in filt.flist:
-                    rule.prepare(db)
+	if Filters.SystemFilters:
+	    for filt in Filters.SystemFilters.get_filters('Person'):
+		if filt.get_name() == self.list[0]:
+		    for rule in filt.flist:
+			rule.prepare(db)
+	if Filters.CustomFilters:
+	    for filt in Filters.CustomFilters.get_filters('Person'):
+		if filt.get_name() == self.list[0]:
+		    for rule in filt.flist:
+			rule.prepare(db)
 
     def reset(self):
-        for filt in SystemFilters.get_filters():
-            if filt.get_name() == self.list[0]:
-                for rule in filt.flist:
-                    rule.reset()
-        for filt in CustomFilters.get_filters():
-            if filt.get_name() == self.list[0]:
-                for rule in filt.flist:
-                    rule.reset()
+	if Filters.SystemFilters:
+	    for filt in Filters.SystemFilters.get_filters('Person'):
+		if filt.get_name() == self.list[0]:
+		    for rule in filt.flist:
+			rule.reset()
+	if Filters.CustomFilters:
+	    for filt in Filters.CustomFilters.get_filters('Person'):
+		if filt.get_name() == self.list[0]:
+		    for rule in filt.flist:
+			rule.reset()
 
     def apply(self,db,person):
-        for filt in SystemFilters.get_filters():
-            if filt.get_name() == self.list[0]:
-                return filt.check(db,person.handle)
-        for filt in CustomFilters.get_filters():
-            if filt.get_name() == self.list[0]:
-                return filt.check(db,person.handle)
+	if Filters.SystemFilters:
+	    for filt in Filters.SystemFilters.get_filters('Person'):
+		if filt.get_name() == self.list[0]:
+		    return filt.check(db,person.handle)
+	if Filters.CustomFilters:
+	    for filt in Filters.CustomFilters.get_filters('Person'):
+		if filt.get_name() == self.list[0]:
+		    return filt.check(db,person.handle)
         return False
