@@ -3,6 +3,8 @@
 	the + is clicked
 
 2006-06-21  Alex Roitman  <shura@gramps-project.org>
+	* src/PluginUtils/_Plugins.py (PluginDialog.on_apply_clicked,
+	PluginDialog.on_node_selected): Pass and use require_active flag.
 	* src/DateEdit.py (DateEditorDialog.__init__): Take care of
 	deleting the dialog.
 
