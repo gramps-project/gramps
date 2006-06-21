@@ -82,6 +82,9 @@ class PageView:
     def call_function(self, key):
         self.func_list.get(key)()
 
+    def post(self):
+        pass
+    
     def set_active(self):
         self.active = True
         if self.dirty:

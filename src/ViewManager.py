@@ -605,6 +605,7 @@ class ViewManager:
             page.define_actions()
             page_display = page.get_display()
             page_display.show_all()
+            page.post()
             self.notebook.append_page(page_display, hbox)
             self.pages.append(page)
 
