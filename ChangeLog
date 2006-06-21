@@ -1,3 +1,7 @@
+2006-06-21  Alex Roitman  <shura@gramps-project.org>
+	* src/DateEdit.py (DateEditorDialog.__init__): Take care of
+	deleting the dialog.
+
 2006-06-21  Don Allingham  <don@gramps-project.org>
 	* src/Filters/__init__.py: include new build_filter_model
 	* src/Filters/_FilterMenu.py: build_filter_model
