@@ -43,26 +43,37 @@ from Filters import SystemFilters, CustomFilters
 def build_filter_menu(local_filters = [], default=""):
     menu = gtk.Menu()
 
-    cnt = 0
     for filt in local_filters:
         menuitem = gtk.MenuItem(filt.get_name())
         menuitem.show()
         menu.append(menuitem)
         menuitem.set_data("filter", filt)
-        cnt += 1
         
     for filt in SystemFilters.get_filters():
         menuitem = gtk.MenuItem(_(filt.get_name()))
         menuitem.show()
         menu.append(menuitem)
         menuitem.set_data("filter", filt)
-        cnt += 1
 
     for filt in CustomFilters.get_filters():
         menuitem = gtk.MenuItem(_(filt.get_name()))
         menuitem.show()
         menu.append(menuitem)
         menuitem.set_data("filter", filt)
-        cnt += 1
 
     return menu
+
+#-------------------------------------------------------------------------
+#
+# This is used by plugins to create a menu of available filters
+#
+#-------------------------------------------------------------------------
+def build_filter_model(space, local = [], default=""):
+    model = gtk.ListStore(str, object)
+
+    flist = local + SystemFilters.get_filters(space) + \
+	CustomFilters.get_filters(space)
+
+    for filt in flist:
+	model.append(row=[filt.get_name(), filt])
+    return model

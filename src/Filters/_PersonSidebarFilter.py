@@ -27,7 +27,7 @@ import RelLib
 
 from _SidebarFilter import SidebarFilter
 from Filters.Rules.Person import *
-from Filters import GenericFilter
+from Filters import GenericFilter, build_filter_model, Rules
 
 class PersonSidebarFilter(SidebarFilter):
 
@@ -57,6 +57,17 @@ class PersonSidebarFilter(SidebarFilter):
             
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
+        all = GenericFilter()
+        all.set_name(_("None"))
+        all.add_rule(Rules.Person.Everyone([]))
+
+	self.generic = gtk.ComboBox()
+	cell = gtk.CellRendererText()
+	self.generic.pack_start(cell, True)
+	self.generic.add_attribute(cell, 'text', 0)
+	self.generic.set_model(build_filter_model('Person', [all]))
+	self.generic.set_active(0)
+
         self.add_text_entry(_('Name'), self.filter_name)
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_entry(_('Gender'), self.filter_gender)
@@ -64,6 +75,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.add_text_entry(_('Death date'), self.filter_death)
         self.add_entry(_('Has Event'), self.etype)
         self.add_text_entry(_('Note'), self.filter_note)
+        self.add_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
 
     def clear(self, obj):
@@ -74,6 +86,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_note.set_text('')
         self.filter_gender.set_active(0)
         self.etype.child.set_text('')
+        self.generic.set_active(0)
 
     def clicked(self, obj):
         self.clicked_func()
@@ -86,10 +99,11 @@ class PersonSidebarFilter(SidebarFilter):
         note = self.filter_note.get_text().strip()
         gender = self.filter_gender.get_active()
         regex = self.filter_regex.get_active()
+	gen = self.generic.get_active() > 0
 
         if not name and not gid and not birth and not death \
                and not str(self.filter_event.get_type()) and \
-               not note and not gender > 0:
+               not note and not gender > 0 and not gen:
             generic_filter = None
         else:
             generic_filter = GenericFilter()
@@ -130,5 +144,13 @@ class PersonSidebarFilter(SidebarFilter):
                 else:
                     rule = HasNoteMatchingSubstringOf([note])
                 generic_filter.add_rule(rule)
+
+	    if self.generic.get_active() != 0:
+		model = self.generic.get_model()
+		iter = self.generic.get_active_iter()
+		obj = model.get_value(iter, 0)
+		rule = MatchesFilter([obj])
+		generic_filter.add_rule(rule)
+
         return generic_filter
 

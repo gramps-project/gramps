@@ -1,3 +1,10 @@
+2006-06-21  Don Allingham  <don@gramps-project.org>
+	* src/Filters/__init__.py: include new build_filter_model
+	* src/Filters/_FilterMenu.py: build_filter_model
+	* src/Filters/Rules/Person/_MatchesFilter.py: handle custom and
+	system models properly
+	* src/Filters/_PersonSidebarFilter.py: add custom filter menu
+
 2006-06-20  Don Allingham  <don@gramps-project.org>
 	* src/Filters/_SidebarFilter.py: change from CLEAR to RESET
 	* src/DataViews/_PersonView.py (PersonView.person_updated): if surname

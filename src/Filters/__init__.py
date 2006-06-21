@@ -52,7 +52,7 @@ if not CustomFilters:
 
 from _FilterWidget import FilterWidget
 from _FilterComboBox import FilterComboBox
-from _FilterMenu import build_filter_menu
+from _FilterMenu import build_filter_menu, build_filter_model
 from _FilterStore import FilterStore
 from _SearchBar import SearchBar
 from _SearchFilter import SearchFilter
