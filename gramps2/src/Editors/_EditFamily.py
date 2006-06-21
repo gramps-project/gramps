@@ -560,10 +560,14 @@ class EditFamily(EditPrimary):
                    person, self.new_father_added)
 
     def new_mother_added(self, person):
+        for i in self.hidden:
+            i.set_sensitive(True)
         self.obj.set_mother_handle(person.handle) 
         self.update_mother(person.handle)
 
     def new_father_added(self, person):
+        for i in self.hidden:
+            i.set_sensitive(True)
         self.obj.set_father_handle(person.handle) 
         self.update_father(person.handle)
 
