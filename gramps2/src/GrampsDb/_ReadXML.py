@@ -308,7 +308,7 @@ class GrampsParser(UpdateCallback):
         self.in_note = 0
         self.in_stext = 0
         self.in_scomments = 0
-        self.in_witness = 0
+        self.in_witness = False
         self.db = database
         self.base = base
         self.photo = None
@@ -708,7 +708,7 @@ class GrampsParser(UpdateCallback):
 
     def start_witness(self,attrs):
         # Parse witnesses created by older gramps
-        self.in_witness = 1
+        self.in_witness = True
         self.witness_comment = ""
         if attrs.has_key('name'):
             note_text = self.event.get_note() + "\n" + \
@@ -720,14 +720,19 @@ class GrampsParser(UpdateCallback):
             handle = attrs['hlink'].replace('_','')
             person = self.db.find_person_from_handle(handle,self.trans)
         except KeyError:
-            person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
+            if attrs.has_key('ref'):
+                person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
+            else:
+                person = None
+
         # Add an EventRef from that person
         # to this event using ROLE_WITNESS role
-        event_ref = RelLib.EventRef()
-        event_ref.ref = self.event.handle
-        event_ref.role.set(RelLib.EventRoleType.WITNESS)
-        person.event_ref_list.append(event_ref)
-        self.db.commit_person(person,self.trans,self.change)
+        if person:
+            event_ref = RelLib.EventRef()
+            event_ref.ref = self.event.handle
+            event_ref.role.set(RelLib.EventRoleType.WITNESS)
+            person.event_ref_list.append(event_ref)
+            self.db.commit_person(person,self.trans,self.change)
         
     def start_coord(self,attrs):
         self.placeobj.lat = attrs.get('lat','')
@@ -1373,7 +1378,7 @@ class GrampsParser(UpdateCallback):
             note_text = self.event.get_note() + "\n" + \
                         _("Witness comment: %s") % tag
             self.event.set_note(note_text)
-        self.in_witness = 0
+        self.in_witness = False
 
     def stop_attr_type(self,tag):
         self.attribute.set_type(tag)
@@ -1722,9 +1727,8 @@ class GrampsParser(UpdateCallback):
         self.name = None
 
     def startElement(self,tag,attrs):
-
         self.func_list[self.func_index] = (self.func,self.tlist)
-        self.func_index = self.func_index + 1
+        self.func_index += 1
         self.tlist = []
 
         try:
@@ -1738,9 +1742,9 @@ class GrampsParser(UpdateCallback):
     def endElement(self,tag):
         if self.func:
             self.func(''.join(self.tlist))
-        self.func_index = self.func_index - 1    
+        self.func_index -= 1    
         self.func,self.tlist = self.func_list[self.func_index]
-
+        
     def characters(self, data):
         if self.func:
             self.tlist.append(data)
