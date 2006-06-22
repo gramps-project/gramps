@@ -442,6 +442,7 @@ src/Filters/Rules/Person/_ProbablyAlive.py
 src/Filters/Rules/Person/_RegExpIdOf.py
 src/Filters/Rules/Person/_RegExpName.py
 src/Filters/Rules/Person/_RelationshipPathBetween.py
+src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py
 src/Filters/Rules/Person/_SearchName.py
 src/Filters/Rules/Family/__init__.py
 src/Filters/Rules/Event/__init__.py
