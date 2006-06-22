@@ -425,7 +425,7 @@ class GedcomWriter(UpdateCallback):
             if self.private and person.private:
                 self.plist.remove(handle)
             for family_handle in person.get_family_handle_list():
-                family = self.db.get_person_from_handle(family_handle)
+                family = self.db.get_family_from_handle(family_handle)
                 if self.private and family.private:
                     continue
                 self.flist.add(family_handle)
