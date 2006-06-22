@@ -28,6 +28,7 @@ TEXT    = 0
 TOGGLE  = 1
 COMBO   = 2
 IMAGE   = 3
+INTEGER = 4
 
 NOSORT = -1    
 #-------------------------------------------------------------------------
@@ -49,6 +50,8 @@ class ListModel:
                     self.mylist.append(bool)
                 elif l[3] == IMAGE:
                     self.mylist.append(gtk.gdk.Pixbuf)
+                elif l[3] == INTEGER:
+                    self.mylist.append(int)
             else:
                 self.mylist.append(str)
             self.data_index += 1
