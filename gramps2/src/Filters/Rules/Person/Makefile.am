@@ -56,6 +56,7 @@ pkgdata_PYTHON = \
 	_PersonWithIncompleteEvent.py \
 	_ProbablyAlive.py \
 	_RelationshipPathBetween.py \
+	_RelationshipPathBetweenBookmarks.py \
 	_SearchName.py \
 	_RegExpIdOf.py \
 	_MatchIdOf.py \
