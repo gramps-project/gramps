@@ -7,6 +7,8 @@
 	Properly add icon list.
 	* src/Selectors/_BaseSelector.py (BaseSelector.add_columns): Allow
 	resize-able columns.
+	* src/plugins/DumpGenderStats.py: Allow column sorting.
+	* src/ListModel.py: Allow column sorting.
 
 2006-06-21  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py: import QuestionDialog

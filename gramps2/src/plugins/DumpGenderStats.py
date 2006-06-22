@@ -52,9 +52,11 @@ class DumpGenderStats(Tool.Tool, ManagedWindow.ManagedWindow):
 
         if uistate:
             titles = [
-                (_('Name'),1,100), (_('Male'),2,70),
-                (_('Female'),3,70), (_('Unknown'),4,70),
-                (_('Guess'),5,70)
+                (_('Name'),0,100),
+                (_('Male'),1,70,ListModel.INTEGER),
+                (_('Female'),2,70,ListModel.INTEGER),
+                (_('Unknown'),3,70,ListModel.INTEGER),
+                (_('Guess'),4,70)
                 ]
         
             treeview = gtk.TreeView()
