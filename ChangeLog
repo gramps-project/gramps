@@ -1,4 +1,9 @@
 2006-06-22  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:
+	Add new module.
+	* src/Filters/Rules/Person/Makefile.am (pkgdata_PYTHON): Ship new
+	module.
+	* src/Filters/Rules/Person/__init__.py: Import new module.
 	* src/GrampsDb/_WriteGedcom.py (GedcomWriter.__init__): Typo.
 
 2006-06-21  Don Allingham  <don@gramps-project.org>

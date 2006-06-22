@@ -86,6 +86,7 @@ from _PeoplePrivate import PeoplePrivate
 from _PersonWithIncompleteEvent import PersonWithIncompleteEvent
 from _ProbablyAlive import ProbablyAlive
 from _RelationshipPathBetween import RelationshipPathBetween
+from _RelationshipPathBetweenBookmarks import RelationshipPathBetweenBookmarks
 from Filters.Rules._Rule import Rule
 from _SearchName import SearchName
 from _RegExpName import RegExpName
@@ -146,6 +147,7 @@ editor_rule_list = [
     IsSpouseOfFilterMatch,
     IsSiblingOfFilterMatch,
     RelationshipPathBetween,
+    RelationshipPathBetweenBookmarks,
     HasTextMatchingSubstringOf,
     HasNote,
     HasNoteMatchingSubstringOf
