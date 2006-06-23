@@ -931,23 +931,28 @@
 
           <para>When GRAMPS opens a database, no filtering is in effect. In
           People View, for example, all people in the database are listed by
-          default. </para>
+          default.</para>
         </sect3>
       </sect2>
 
       <!-- ================ Main Window Sub-subsection  -->
 
-      <sect2 id="family-view">
-        <title>Family View</title>
+      <sect2 id="relationships-view">
+        <title>Relationships View</title>
 
-        <para>The Family View displays the family information of a selected
-        person that we call the Active person. Specifically, it shows his or
-        her closest relationships.</para>
+        <para>The Relationships View displays the family relationships of a
+        selected person that we call the Active person. Specifically, it shows
+        his or her parents, spouses, and children.</para>
+
+        <para>The Relationships View is designed to allow for quick
+        navigation. You can quickly change the selected person simply by
+        clicking the name of any person listed on the page. Each name is
+        actually a hypertext link, similar to a web page.</para>
 
         <!-- ==== Figure: Family View ==== -->
 
         <figure id="family-fig">
-          <title>Family View</title>
+          <title>Relationsihps View</title>
 
           <screenshot>
             <mediaobject>
@@ -957,7 +962,7 @@
               </imageobject>
 
               <textobject>
-                <phrase>Shows Family View.</phrase>
+                <phrase>Shows Relationships View.</phrase>
               </textobject>
             </mediaobject>
           </screenshot>
@@ -965,99 +970,104 @@
 
         <!-- ==== End of Figure ==== -->
 
-        <para>The Family View displays the following series of list
-        boxes:</para>
+        <para>The Relationships View displays the following sections:</para>
 
         <variablelist>
           <varlistentry>
             <term>Active person</term>
 
             <listitem>
-              <para>Shows birth and death data for the individual you have
-              selected. Double-click inside the box to edit the Active
-              person's information. Click on the double arrow to the right and
-              the currently selected Spouse will become the new Active
-              person.</para>
+              <para>At the top of the screen, name, ID, birth, and death
+              information of the active person is displayed. If a photo of the
+              person is available, it is show on the right hand side. Next to
+              the person's name is a symbol indicating gender, and an Edit
+              button. Clicking the <guibutton>Edit</guibutton> button will
+              allow you to edit all of the person's individual information in
+              an Edit Person dialog.</para>
             </listitem>
           </varlistentry>
 
           <varlistentry>
-            <term>Relationship</term>
+            <term>Parents</term>
 
             <listitem>
-              <para>Displays birth and death data for the Active person's
-              Spouse(s).</para>
+              <para>The next sections display the person's parents and
+              siblings. Since it is possible to have multiple sets of parents,
+              it is possible to have several Parents sections. You can control
+              how much information is displayed by using the
+              <guimenu>View</guimenu> menu. The view menu allows you to show
+              or hide details (the birth and death information) and to show or
+              hide siblings. Next to each person listed is an
+              <guibutton>Edit</guibutton> button, which will allow you to edit
+              all the details of that particular person.</para>
 
-              <note id="spouse-info">
-                <title>Terminology</title>
+              <para>You may add, edit, or delete family information using the
+              buttons next to the Parents label. You can add a set of parents
+              by either selecting the Add button (the first button) or the
+              <guibutton>Select</guibutton> button (the second button). The
+              <guibutton>Add</guibutton> button will create a new family with
+              the active person listed as a child. The
+              <guibutton>Select</guibutton> button will allow you to choose
+              from a list of existing families, and then add the person as a
+              child to that family.</para>
 
-                <para>In the Family View, we use the term "spouse" for sake of
-                simplicity. However, please note that "spouse" may in fact be
-                a domestic partner, a partner in a civil union, etc.</para>
+              <warning>
+                <para>If you are not careful, it is possible to create
+                multiple families with the same parents. This is rarely what
+                the user wants to do. If you attempt to add a new family that
+                has the same parents as an existing family, GRAMPS will issue
+                a warning dialog. If you get this dialog, you should probably
+                Cancel the edit, and then use the
+                <guibutton>Select</guibutton> button to select the existing
+                family.</para>
+              </warning>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Family</term>
+
+            <listitem>
+              <para>Similar to the Parents section is the Family section,
+              which displays families where the person is a parent. Because it
+              is possible to have mulitple familes, it is possible to have
+              multiple Family sections. Each family section displays the
+              spouse and any children.</para>
+
+              <note>
+                <para>We use the term <emphasis>spouse</emphasis> for sake of
+                simplicity. However, please note that
+                <emphasis>spouse</emphasis> may in fact be a domestic partner,
+                a partner in a civil union, or various other similar
+                relationships between two people. <emphasis>Spouse</emphasis>
+                relationships are not required to be only between a male and
+                female.</para>
               </note>
 
-              <para>Double-click a Spouse to edit his or her relationship to
-              the Active person. Shift-click (that is, hold down the Shift key
-              while you click) a Spouse to edit his or her personal
-              information. Click the icon to the top right of the Relationship
-              box to add a new person to the database and to create a
-              relationship between this person and the Active person. Click
-              the middle icon to create a relationship between the Active
-              person and another person already stored in the database. Click
-              the minus (-) button to remove the relationship between the
-              currently selected Spouse and the Active person. (Note that this
-              does not remove the Spouse from the database.)</para>
-            </listitem>
-          </varlistentry>
+              <para>You may add, edit, or delete family information using the
+              buttons next to the Family label. You can add a spouse by
+              clicking the Add button (the first button), which will create a
+              new family with the active person listed as a father or mother.
+              Selecting the Edit button will allow you to edit the displayed
+              family. Clicking the Delete button will remove the person from
+              the displayed family.</para>
 
-          <varlistentry>
-            <term>Active person's parents</term>
+              <warning>
+                <para>Removing a person from a family does not delete the
+                family. The person is removed as the father or mother, and any
+                other relationships in the family continue to exist.</para>
+              </warning>
 
-            <listitem>
-              <para>Click the <guibutton>+</guibutton> or
-              <guibutton>-</guibutton> buttons to add or remove parents of the
-              Active person. Click the right arrow button to make the Father
-              the new Active person and the Mother the new Spouse.</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>Spouse's parents</term>
-
-            <listitem>
-              <para>This list box functions the same as that of the Active
-              person's parents.</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>Children</term>
-
-            <listitem>
-              <para>Displays the children of the Active person and the
-              currently selected Spouse. The list can be ordered however you
-              want by clicking on a column heading.</para>
-
-              <para>Note that in addition to columns for Name, ID, Gender,
-              Birth Date, and Death Date, there is a column labeled Status.1
-              This column reflects the relationship between the child and his
-              parents (Birth, Adoption, etc.).</para>
-
-              <para>As with the other list boxes, the Children list box has
-              some associated buttons. Click the left arrow button to make the
-              selected Child the Active person. Click the next button down to
-              add a new person to the database and to make this person a Child
-              of the Active person. Click the next button down to select a
-              person from the database and to make this person a Child of the
-              Active person. Click the lowest button to remove the selected
-              Child from the Family (note that this does not remove the Child
-              from the database).</para>
-
-              <note id="right-click-menu">
-                <title>Right Click Menu</title>
-
-                <para>Most of the functions described above can also be
-                executed by right-clicking your mouse.</para>
+              <note>
+                <para>We use the terms <emphasis>father</emphasis> and
+                <emphasis>mother</emphasis> for the sake of simplicity. Even
+                if there are no children in a family, the
+                <emphasis>father</emphasis> and <emphasis>mother</emphasis>
+                terminology is still used. In the case of male/male or
+                female/female relationships, one of the
+                <emphasis>father</emphasis> and <emphasis>mother</emphasis>
+                labels should be considered to be convience labels, and should
+                be considered as interchangable.</para>
               </note>
             </listitem>
           </varlistentry>
@@ -1066,14 +1076,52 @@
 
       <!-- ================ Main Window Sub-subsection  -->
 
+      <sect2 id="family-list-view">
+        <title>Family List View</title>
+
+        <para>The Family List View displays a list of all families in the
+        database. From this view, you may add, edit, or delete families. The
+        default display lists the ID, Father, Mother, and Relationship.
+        Children cannot be displayed on the screen in this view.</para>
+
+        <!-- ==== Figure: Family View ==== -->
+
+        <figure id="family-list">
+          <title>Family List View</title>
+
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata depth="" fileref="figures/family-list.png"
+                           format="PNG" scale="" width="" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Family List View.</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <warning>
+          <para>Unlike the Relationships View, clicking the Remove button in
+          this view will remove the family from the database. All people will
+          remain, but all relationships between the people in the family will
+          be removed.</para>
+        </warning>
+
+        <!-- ==== End of Figure ==== -->
+      </sect2>
+
       <sect2 id="pedigree-view">
         <title>Pedigree View</title>
 
         <para>The Pedigree View displays a family tree of the Active person's
-        ancestors. The Pedigree View shows up to five generations, depending
+        ancestors. The Pedigree View shows up to four generations, depending
         on the size of the window. Each person is indicated by a box labeled
-        with his or her name. Two lines branch from each box. The top one
-        shows the person's father and the bottom one the mother. Solid lines
+        with his or her name, birth and death information, and optionally an
+        image if available. Two lines branch from each box. The top one shows
+        the person's father and the bottom one the mother. Solid lines
         represent birth relations, while dashed lines represent non-birth
         relations such as adoption, step-parenthood, guardianship, etc.</para>
 
@@ -1098,10 +1146,19 @@
 
         <!-- ==== End of Figure ==== -->
 
-        <para>If you move your mouse over a box, it expands to show birth and
-        death dates. If you move your mouse over a line, the line gets
-        highlighted, indicating an active link. Double-click the line to make
-        the corresponding ancestor the Active person.</para>
+        <para>To the left of the Active person is a left arrow button. If the
+        Active person has children, clicking this button expands a list of the
+        Active person's children. Selecting one of the children makes that
+        child the active Person.</para>
+
+        <para>The appearance of the children's names in the menu
+        differentiates the "dead ends" of the tree from the continuing
+        branches. Children who have children themselves appear in the menu in
+        the boldface and italic type, while children without children ("dead
+        ends") appear in a regular font. If the Active person has only one
+        child, no menu will be displayed (since there is only one choice) and
+        the child will become the Active person when the arrow button is
+        clicked.</para>
 
         <!-- ==== Figure: Pedigree View ==== -->
 
@@ -1123,20 +1180,6 @@
         </figure>
 
         <!-- ==== End of Figure ==== -->
-
-        <para>To the left of the Active person is a left arrow button. If the
-        Active person has children, clicking this button expands a list of the
-        Active person's children. Selecting one of the children makes that
-        child the pctive Person.</para>
-
-        <para>The appearance of the children's names in the menu
-        differentiates the "dead ends" of the tree from the continuing
-        branches. Children who have children themselves appear in the menu in
-        the boldface and italic type, while children without children ("dead
-        ends") appear in a regular font. If the Active person has only one
-        child, no menu will be displayed (since there is only one choice) and
-        the child will become the Active person when the arrow button is
-        clicked.</para>
 
         <para>The right-hand side of the window shows two right arrow buttons.
         When the top button is clicked, the Father of the Active person
@@ -4509,9 +4552,9 @@
       <sect2 id="gramps-nav-family">
         <title>Using the Family View</title>
 
-        <para>When in the Family View (see <xref linkend="family-view" />),
-        you can easily navigate between the members of the displayed family as
-        follows:</para>
+        <para>When in the Family View (see <xref
+        linkend="relationships-view" />), you can easily navigate between the
+        members of the displayed family as follows:</para>
 
         <itemizedlist>
           <listitem>
