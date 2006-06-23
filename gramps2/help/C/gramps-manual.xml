@@ -469,13 +469,19 @@
     <!---->
 
     <sect1 id="choose-db-start">
-      <title>Choosing a database on startup</title>
+      <title>Choosing a database</title>
 
-      <para>If GRAMPS is started without a database selected, the following
-      window will appear prompting you to choose one to open.</para>
+      <para>If GRAMPS is started without a database selected, the initial
+      screen will have little functionality. Most operations will not be
+      available. To load a database, select either <guibutton>New</guibutton>
+      to create a new database, or <guibutton>Open</guibutton> to open an
+      existing database. GRAMPS keeps track of your recently opened databases,
+      and these can be selected by clicking on the arrow next to the
+      <guibutton>Open</guibutton> button and choosing from the drop down
+      menu.</para>
 
       <figure id="first-open">
-        <title>Open Database Window</title>
+        <title>Initial Window</title>
 
         <screenshot>
           <mediaobject>
@@ -484,36 +490,14 @@
             </imageobject>
 
             <textobject>
-              <phrase>Shows Open Database Window.</phrase>
+              <phrase>Initial Window.</phrase>
             </textobject>
           </mediaobject>
         </screenshot>
       </figure>
 
       <!---->
-
-      <para>To open a database that you have recently opened, choose the top
-      selection, select your database from the menu and click
-      <guibutton>OK</guibutton>.</para>
-
-      <para>To open an existing database you have not recently opened, choose
-      the middle selection and click <guibutton>OK</guibutton>. GRAMPS will
-      then ask you to specify the name of the database you wish to
-      open.</para>
-
-      <para>As you might guess, to create a new database, choose "Create a new
-      database"</para>
-
-      <note id="file-notdir-note">
-        <title>Selecting file</title>
-
-        <para>If you're familiar with version 1.0.X of GRAMPS, you'll note
-        that version 2.0 does not require you to select a directory in which
-        to store the database.</para>
-      </note>
     </sect1>
-
-    <!---->
 
     <sect1 id="get-help">
       <title>Obtaining Help</title>
@@ -1152,13 +1136,13 @@
         child the active Person.</para>
 
         <para>The appearance of the children's names in the menu
-        differentiates the "dead ends" of the tree from the continuing
-        branches. Children who have children themselves appear in the menu in
-        the boldface and italic type, while children without children ("dead
-        ends") appear in a regular font. If the Active person has only one
-        child, no menu will be displayed (since there is only one choice) and
-        the child will become the Active person when the arrow button is
-        clicked.</para>
+        differentiates the <emphasis>dead ends</emphasis> of the tree from the
+        continuing branches. Children who have children themselves appear in
+        the menu in the boldface and italic type, while children without
+        children (<emphasis>dead ends</emphasis>) appear in a regular font. If
+        the Active person has only one child, no menu will be displayed (since
+        there is only one choice) and the child will become the Active person
+        when the arrow button is clicked.</para>
 
         <!-- ==== Figure: Pedigree View ==== -->
 
@@ -1218,6 +1202,48 @@
         distinguish continuing lines from dead ends.</para>
       </sect2>
 
+      <sect2>
+        <title>Events View</title>
+
+        <para>New in version 2.2 is the inclusion of an Events View. Events
+        can be shared between between multiple people and multiple families.
+        The Events View lists the all the events recorded in the database. The
+        default view displays the <guilabel>Description</guilabel>,
+        <guilabel>ID</guilabel>, <guilabel>Type</guilabel>,
+        <guilabel>Date</guilabel>, <guilabel>Place</guilabel> and
+        <guilabel>Cause</guilabel> of the event.</para>
+
+        <figure id="events-fig">
+          <title>Events View</title>
+
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata depth="" fileref="figures/events.png" format="PNG"
+                           scale="" width="" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Events View.</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <warning>
+          <para>Because events can be shared, you should take the extra time
+          to give each event a unique and meaningful description. This will
+          help you find the correct event if you decide to share
+          events.</para>
+        </warning>
+
+        <para>The list of Events can be sorted in the usual manner, by
+        clicking on the column heading. Clcking once sorts in ascending order,
+        clicking again sorts in descending order. The <guilabel>Column
+        Editor</guilabel> dialog can be used to add, remove and rearrange the
+        displayed columns.</para>
+      </sect2>
+
       <!-- ================ Main Window Sub-subsection  -->
 
       <sect2 id="sources-view">
@@ -1248,8 +1274,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="353" fileref="figures/sources.png"
-                           format="PNG" scale="75" width="500" />
+                <imagedata depth="" fileref="figures/sources.png" format="PNG"
+                           scale="" width="" />
               </imageobject>
 
               <textobject>
@@ -1307,6 +1333,18 @@
       <sect2 id="media-view">
         <title>Media View</title>
 
+        <para>The Media View is a list of Media Objects used in the database.
+        Media Objects are any files that relate somehow to the stored
+        genealogical data. Technically, any file can be stored as a Media
+        Object. Most frequently, these are images, audio files, animation
+        files, etc. The list box on the bottom lists the
+        <guilabel>Name</guilabel>, <guilabel>ID</guilabel>,
+        <guilabel>Type</guilabel>, and <guilabel>Path</guilabel> of the Media
+        Object. The <guilabel>Column Editor</guilabel> dialog may be used to
+        rearrange the displayed columns, which obey usual sorting rules. The
+        top part of the GRAMPS window shows a preview (if available) and
+        information about the Media Object.</para>
+
         <!-- ==== Figure: Media View ==== -->
 
         <figure id="media-fig">
@@ -1320,30 +1358,43 @@
               </imageobject>
 
               <textobject>
-                <phrase>Shows Media View.</phrase>
+                <phrase>Media View.</phrase>
               </textobject>
             </mediaobject>
           </screenshot>
         </figure>
 
         <!-- ==== End of Figure ==== -->
+      </sect2>
 
-        <para>The Media View is a list of Media Objects used in the database.
-        Media Objects are any files that relate somehow to the stored
-        genealogical data. Technically, any file can be stored as a Media
-        Object. Most frequently, these are images, audio files, animation
-        files, etc. The list box on the bottom lists the
-        <guilabel>Name</guilabel>, <guilabel>ID</guilabel>,
-        <guilabel>Type</guilabel>, and <guilabel>Path</guilabel> of the Media
-        Object. The <guilabel>Column Editor</guilabel> dialog may be used to
-        rearrange the displayed columns, which obey usual sorting rules. The
-        top part of the GRAMPS window shows a preview (if available) and
-        information about the Media Object.</para>
+      <sect2>
+        <title>Repositories View</title>
+
+        <para>Version 2.2 adds support for Repositories. A repository can be
+        thought of as a collection of sources. Each source in the database can
+        reference a repository (such as a library) in which it belongs. The
+        functionality of the Repositories View is similar to the other
+        views.</para>
+
+        <figure id="repository-fig">
+          <title>Repositories View</title>
+
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata depth="" fileref="figures/repository.png"
+                           format="PNG" scale="" width="" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Repositories View.</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
       </sect2>
     </sect1>
   </chapter>
-
-  <!-- $Id$ -->
 
   <chapter id="gramps-usage">
     <title>Usage</title>
@@ -1362,8 +1413,8 @@
           <guimenu>File</guimenu>
 
           <guimenuitem>New</guimenuitem>
-        </menuchoice>. You will then be asked to give the new database a
-      name.</para>
+        </menuchoice> or select the <guibutton>New</guibutton> button from the
+      toolbar. You will then be asked to give the new database a name.</para>
 
       <note id="new-db-notdir-note">
         <title>GRAMPS databases</title>
@@ -1390,11 +1441,13 @@
       "filetype" filter, meaning it may only be showing files that have a
       certain extension.)</para>
 
-      <para>To open a recently accessed database, choose <menuchoice>
+      <para>To open a recently accessed database, choose either <menuchoice>
           <guimenu>File</guimenu>
 
           <guimenuitem>Open Recent</guimenuitem>
-        </menuchoice> and select the filename from the list.</para>
+        </menuchoice> or the down arrow next to the
+      <guibutton>Open</guibutton> button and select the filename from the
+      list.</para>
 
       <para>If you do not have "write permissions" for the selected database,
       it will be opened in a Read Only mode. In this mode, the data may be
@@ -1581,11 +1634,11 @@
       XML database, you will see the progress of the operation in the progress
       bar of GRAMPS' main window.</para>
 
+<!-- Missing media is commented out for now. This may be deleted in the near future -->
+<!--
       <para>If a media file is not found during import, you'll be prompted to
       take one of the actions indicated in <xref
       linkend="missing-media-im" />.</para>
-
-      <!-- ==== Figure: Missing media window  ==== -->
 
       <figure id="missing-media-im">
         <title>Missing Media dialog</title>
@@ -1604,7 +1657,6 @@
         </screenshot>
       </figure>
 
-      <!-- ==== End of Figure ==== -->
 
       <itemizedlist>
         <listitem>
@@ -1639,8 +1691,8 @@
           the same manner.</para>
         </listitem>
       </itemizedlist>
+-->
     </sect1>
-
     <!-- ================ Usage Subsection ================================ -->
 
     <sect1 id="export-data">
