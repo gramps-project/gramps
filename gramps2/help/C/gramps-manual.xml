@@ -349,11 +349,11 @@
 
       <para>The manual also provides assorted bits of additional information
       in tips and notes, as follows. <tip id="example-tip">
-          <title>Tip</title>
+          <title>Example Tip</title>
 
           <para>Tips and bits of extra information will look like this.</para>
         </tip> <note id="example-note">
-          <title>Note</title>
+          <title>Example Note</title>
 
           <para>Notes will look like this.</para>
         </note></para>
@@ -423,10 +423,9 @@
 
       <para>The first time you run the program, GRAMPS will display the
       "Getting Started" dialogs. Follow the directions that guide you through
-      <guilabel>Researcher information</guilabel>, <guilabel>Numerical date
-      formats</guilabel>, <guilabel>Alternate calendar support</guilabel>, and
-      <guilabel>the LDS extensions</guilabel> sections. You should find them
-      to be self-explanatory.</para>
+      <guilabel>Researcher information</guilabel> and <guilabel>the LDS
+      extensions</guilabel> sections. You should find them to be
+      self-explanatory.</para>
 
       <note id="note-dialog">
         <title>Dialog boxes</title>
@@ -893,8 +892,21 @@
           <para>Genealogical databases can contain information on many people,
           families, places, and objects. It's therefore possible for a View to
           contain a long list of data that's difficult to work with. GRAMPS
-          gives you a means for controlling this condition by allowing you to
-          filter a list to a more manageable size.</para>
+          gives you two different means for controlling this condition by
+          allowing you to filter a list to a more manageable size. These
+          methods are Search and Filtering.</para>
+
+          <para>Search is a simple but fast method of searching the columns
+          displayed on the screen. Typing the characters into the Search box
+          and clicking the Find button will display only lines that match the
+          text.</para>
+
+          <para>Alternatively, you can enable the Filter sidebar, which will
+          be displayed on the right hand side of the display. When the filter
+          sidebar is displayed, the Search bar is not displayed. The Filter
+          side bar allows you to interactive build a set of filter rules that
+          can be applied to the display. The filter is applied based on the
+          rules and the data, not on the screen display.</para>
 
           <!-- ==== Figure: Enabled Filter ==== -->
 
@@ -919,43 +931,7 @@
 
           <para>When GRAMPS opens a database, no filtering is in effect. In
           People View, for example, all people in the database are listed by
-          default. To filter the list, go to <menuchoice>
-              <guimenu>View</guimenu>
-
-              <guimenuitem>Filter</guimenuitem>
-            </menuchoice>. This will place a new menu just above the list of
-          People. Click on the double arrows of this menu to get a pop-up list
-          of all the criteria by which you can filter the People listed.
-          Choose a filter (for example, "Males" or "People with children") and
-          click <guibutton>Apply</guibutton>.</para>
-
-          <note id="filter-note">
-            <title>Displaying the filter</title>
-
-            <para>To reduce screen clutter, the filter menu is hidden by
-            default. To display it, go to the <menuchoice>
-                <guimenu>View</guimenu>
-
-                <guimenuitem>Filter</guimenuitem>
-              </menuchoice> menu. Please understand that even if the filter
-            menu is not displayed, filtering may still be in effect. (Thus, we
-            say that filtering is persistent.) If you are unsure if your list
-            is filtered, bring up the filter menu (by going to <menuchoice>
-                <guimenu>View</guimenu>
-
-                <guimenuitem>Filter</guimenuitem>
-              </menuchoice>) and check if any filtering is set.</para>
-          </note>
-
-          <tip id="filt-tip">
-            <title>Example filter use</title>
-
-            <para>To show males only, choose the <guilabel>Males</guilabel>
-            filter, then click the <guibutton>Apply</guibutton> button. To
-            cancel any filtering, set the filter to <guilabel>Entire
-            Database</guilabel> and then click the
-            <guibutton>Apply</guibutton> button.</para>
-          </tip>
+          default. </para>
         </sect3>
       </sect2>
 
@@ -3850,24 +3826,6 @@
               record notes or comments about the event. To add a note or
               modify existing notes simply edit the text in the text entry
               field.</para>
-            </listitem>
-          </varlistentry>
-        </variablelist>
-
-        <variablelist>
-          <varlistentry>
-            <term>Witnesses</term>
-
-            <listitem>
-              <para>The <guilabel>Witnesses</guilabel> tab lets you view and
-              edit witnesses to the event. The central part of the window
-              lists all such witnesses stored in the database. The buttons
-              <guibutton>+</guibutton>, <guibutton>Edit</guibutton>, and
-              <guibutton>-</guibutton> let you add, modify, and remove a
-              witness reference to this event (see <xref
-              linkend="adv-wit" />). Note that the <guibutton>Edit</guibutton>
-              and <guibutton>-</guibutton> buttons become available
-              only</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -8499,7 +8457,7 @@
     please let us know.</para>
 
     <para>To find more information about GRAMPS, please visit the <ulink
-    type="http" url="http://gramps.sourceforge.net">GRAMPS Project Web
+    type="http" url="http://gramps-project.org">GRAMPS Project Web
     page</ulink>.</para>
 
     <para>To report a bug or make a suggestion regarding this application or

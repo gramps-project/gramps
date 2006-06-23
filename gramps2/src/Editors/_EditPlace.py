@@ -135,16 +135,6 @@ class EditPlace(EditPrimary):
             win_menu_label = _("New Place")
         return (win_menu_label, _('Edit Place'))
 
-    def build_pdmap(self):
-        self.pdmap = {}
-        cursor = self.db.get_place_cursor()
-        data = cursor.next()
-        while data:
-            if data[1][2]:
-                self.pdmap[data[1][2]] = data[0]
-            data = cursor.next()
-        cursor.close()
-
     def _create_tabbed_pages(self):
         """
         Creates the notebook tabs and inserts them into the main
@@ -188,24 +178,14 @@ class EditPlace(EditPrimary):
 
     def save(self,*obj):
         title = self.obj.get_title()
-        self.build_pdmap()
-
-        if self.pdmap.has_key(title) and self.pdmap[title] != self.obj.handle:
-            import QuestionDialog
-            QuestionDialog.ErrorDialog(
-                _("Place title is already in use"),
-                _("Each place must have a unique title, and "
-                  "title you have selected is already used by "
-                  "another place"))
-            return
 
         trans = self.db.transaction_begin()
         if self.obj.get_handle():
             self.db.commit_place(self.obj,trans)
         else:
             self.db.add_place(self.obj,trans)
-        self.db.transaction_commit(trans,
-                                   _("Edit Place (%s)") % self.obj.get_title())
+        self.db.transaction_commit(
+            trans, _("Edit Place (%s)") % self.obj.get_title())
         
         if self.callback:
             self.callback(self.obj)

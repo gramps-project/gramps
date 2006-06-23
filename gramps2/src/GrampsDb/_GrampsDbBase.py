@@ -281,7 +281,6 @@ class GrampsDbBase(GrampsDBCallback):
         self.repo_bookmarks = []
         self.media_bookmarks = []
         self.path = ""
-        self.place2title = {}
         self.name_group = {}
 
     def rebuild_secondary(self, callback=None):
