@@ -1,0 +1,660 @@
+gramps (2.1.6-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Alex Roitman <shura@gramps-project.org>  Thu, 22 Jun 2006 13:28:14 -0700
+
+gramps (2.0.11-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- James A. Treacy <treacy@debian.org>  Sun, 30 Apr 2006 00:10:02 -0400
+
+gramps (2.0.10-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 27 Feb 2006 13:14:39 -0500
+
+gramps (2.0.9-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 12 Dec 2005 11:21:29 -0500
+
+gramps (2.0.8-5) unstable; urgency=low
+
+  * added dependency on ${misc:Depends}
+
+ -- James A. Treacy <treacy@debian.org>  Wed, 16 Nov 2005 12:06:13 -0500
+
+gramps (2.0.8-4) unstable; urgency=low
+
+  * Move gconf file out of /etc.
+
+ -- James A. Treacy <treacy@debian.org>  Wed, 16 Nov 2005 09:33:16 -0500
+
+gramps (2.0.8-3) unstable; urgency=low
+
+  * patched Spell.py to temporarily avoid a locale issue while a proper
+    fix is worked on. See bug #335968.
+
+ -- James A. Treacy <treacy@debian.org>  Fri, 28 Oct 2005 00:25:37 -0400
+
+gramps (2.0.8-2) unstable; urgency=low
+
+  * fix python dependency as per debian python policy.
+
+ -- James A. Treacy <treacy@debian.org>  Sun, 23 Oct 2005 15:23:34 -0400
+
+gramps (2.0.8-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- James A. Treacy <treacy@debian.org>  Tue,  6 Sep 2005 01:46:11 -0400
+
+gramps (2.0.6-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 22 Aug 2005 16:10:03 -0400
+
+gramps (2.0.5-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- James A. Treacy <treacy@debian.org>  Wed,  6 Jul 2005 00:42:39 -0400
+
+gramps (2.0.4-1) unstable; urgency=low
+
+  * New upstream release.
+  * German translation updated. Closes: #314057
+
+ -- James A. Treacy <treacy@debian.org>  Tue, 28 Jun 2005 14:57:26 -0400
+
+gramps (2.0.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * install xpm icon. Closes: #312016
+
+ -- James A. Treacy <treacy@debian.org>  Sun,  5 Jun 2005 09:37:17 -0400
+
+gramps (2.0.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- James A. Treacy <treacy@debian.org>  Sat,  4 Jun 2005 23:05:27 -0400
+
+gramps (2.0.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- James A. Treacy <treacy@debian.org>  Tue, 24 May 2005 20:56:55 -0400
+
+gramps (2.0.0-2) unstable; urgency=low
+
+  * removed rcs and added graphviz as a Recommends
+  * remove erroneous files in /usr/share/mime. Closes: #308866
+  * fixed bashisms in post*. Closes: #308870
+  * apply upstream patch to fix some bugs (will be in next release)
+
+ -- James A. Treacy <treacy@debian.org>  Thu, 12 May 2005 12:39:05 -0400
+
+gramps (2.0.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- James A. Treacy <treacy@debian.org>  Wed, 11 May 2005 00:34:07 -0400
+
+gramps (1.0.11-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- James A. Treacy <treacy@debian.org>  Sun, 20 Mar 2005 14:41:11 -0500
+
+gramps (1.0.10-5) unstable; urgency=low
+
+  * Apply upstream patch to allow gramps to work with newer versions of expat.
+    Closes: #296155
+
+ -- James A. Treacy <treacy@debian.org>  Sun, 20 Feb 2005 15:57:48 -0500
+
+gramps (1.0.10-4) unstable; urgency=low
+
+  * Remove erroneous lines from gramps.sh
+
+ -- James A. Treacy <treacy@debian.org>  Fri, 11 Feb 2005 23:24:57 -0500
+
+gramps (1.0.10-3) unstable; urgency=low
+
+  * Same changes as -2 but done properly this time
+
+ -- James A. Treacy <treacy@debian.org>  Fri, 11 Feb 2005 20:59:09 -0500
+
+gramps (1.0.10-2) unstable; urgency=low
+
+  * kept upstream patch to remove grampslib but backed out the glade patch
+    as it is no longer needed.
+  * Recommend graphviz
+
+ -- James A. Treacy <treacy@debian.org>  Fri, 11 Feb 2005 20:16:54 -0500
+
+gramps (1.0.10-1) unstable; urgency=low
+
+  * New upstream source. Closes: #288732
+  * Applied upstream patch to remove the grampslib library
+  * Applied upstream patch to glade
+
+ -- James A. Treacy <treacy@debian.org>  Sun, 30 Jan 2005 21:35:13 -0500
+
+gramps (1.0.9-1) unstable; urgency=low
+
+  * Remove use of deprecated GTK function. Closes: Bug#288732
+
+ -- James A. Treacy <treacy@debian.org>  Thu,  4 Nov 2004 22:36:10 -0500
+
+gramps (1.0.8-2) unstable; urgency=low
+
+  * Make sure /usr/share/applications/gramps.desktop is installed
+  * remove /usr/share/gramps/gramps.desktop. Closes: Bug#278626
+
+ -- James A. Treacy <treacy@debian.org>  Thu,  4 Nov 2004 22:36:10 -0500
+
+gramps (1.0.8-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- James A. Treacy <treacy@debian.org>  Thu,  4 Nov 2004 14:13:11 -0500
+
+gramps (1.0.7-4) unstable; urgency=low
+
+  * apply patch from upstream to fix import issue. Closes: #273769
+  * replace icon with a 32x32 one.
+
+ -- James A. Treacy <treacy@debian.org>  Tue, 28 Sep 2004 14:10:42 -0400
+
+gramps (1.0.7-3) unstable; urgency=low
+
+  * Add version to scrollkeeper dependency. Closes: #269611
+
+ -- James A. Treacy <treacy@debian.org>  Thu, 16 Sep 2004 13:32:52 -0400
+
+gramps (1.0.7-2) unstable; urgency=low
+
+  * s/python2.3-/python-/ in the dependencies. Closes: #267239
+
+ -- James A. Treacy <treacy@debian.org>  Sat,  4 Sep 2004 00:53:24 -0400
+
+gramps (1.0.7-1) unstable; urgency=low
+
+  * New upstream source.
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 16 Aug 2004 13:27:16 -0400
+
+gramps (1.0.6-1) unstable; urgency=low
+
+  * New upstream source
+  * Remove Build-Depends on libgnomevfs2-dev
+  * Add Recommends on ttf-freefont
+
+ -- James A. Treacy <treacy@debian.org>  Sat, 14 Aug 2004 23:55:38 -0400
+
+gramps (1.0.5a-1) unstable; urgency=low
+
+  * Upstream fixed a bug in 1.0.5
+
+ -- James A. Treacy <treacy@debian.org>  Sat, 31 Jul 2004 20:54:10 -0400
+
+gramps (1.0.5-1) unstable; urgency=low
+
+  * New upstream release.
+  * Depends on yelp.
+
+ -- James A. Treacy <treacy@debian.org>  Tue, 27 Jul 2004 17:03:10 -0400
+
+gramps (1.0.4-2) unstable; urgency=low
+
+  * Recommends rcs. Closes: #253602
+
+ -- James A. Treacy <treacy@debian.org>  Wed, 16 Jun 2004 16:53:36 -0400
+
+gramps (1.0.4-1) unstable; urgency=low
+
+  * New upstream version.
+  * Applied a patch from upstream that gets rid of the last library.
+  * s/OpenOffice/OpenOffice.org/ in description. Closes: #254042
+
+ -- James A. Treacy <treacy@debian.org>  Wed, 16 Jun 2004 11:35:52 -0400
+
+gramps (1.0.3-4) unstable; urgency=low
+
+  * Applied fix to upstream patch.
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 26 Apr 2004 18:18:19 -0400
+
+gramps (1.0.3-3) unstable; urgency=low
+
+  * Applied a patch from upstream that gets rid of the last library. This
+    allows a single package for all arches. Closes: Bug#245422
+
+ -- James A. Treacy <treacy@debian.org>  Fri, 23 Apr 2004 16:39:39 -0400
+
+gramps (1.0.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * Wall chart now works. Closes: #244331
+
+ -- James A. Treacy <treacy@debian.org>  Thu, 22 Apr 2004 11:37:49 -0400
+
+gramps (1.0.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- James A. Treacy <treacy@debian.org>  Sun,  4 Apr 2004 18:40:53 -0400
+
+gramps (1.0.1-1) unstable; urgency=low
+
+  * Architecture independent files moved to gramps-common. Closes: #233368
+  * New upstream release.
+
+ -- James A. Treacy <treacy@debian.org>  Wed, 18 Feb 2004 00:48:45 -0500
+
+gramps (1.0.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- James A. Treacy <treacy@debian.org>  Wed, 11 Feb 2004 18:20:47 -0500
+
+gramps (0.99-1) unstable; urgency=low
+
+  * 1.0 release candidate
+
+ -- James A. Treacy <treacy@debian.org>  Wed, 28 Jan 2004 00:51:47 -0500
+
+gramps (0.98.0-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- James A. Treacy <treacy@debian.org>  Mon,  8 Dec 2003 11:39:33 -0500
+
+gramps (0.9.5-2) unstable; urgency=low
+
+  * Remove python2.3-xmlbase from the Depends line. Closes: #218203
+
+ -- James A. Treacy <treacy@debian.org>  Wed, 29 Oct 2003 16:21:04 -0500
+
+gramps (0.9.5-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- James A. Treacy <treacy@debian.org>  Thu, 16 Oct 2003 16:19:55 -0400
+
+gramps (0.9.4-2) unstable; urgency=low
+
+  * Upstream changelog stopped being included. Fixed. Closes: #213499
+
+ -- James A. Treacy <treacy@debian.org>  Tue, 30 Sep 2003 20:34:36 -0400
+
+gramps (0.9.4-1) unstable; urgency=low
+
+  * New upstream release
+  * Bashisms fixed. Closes: #208167
+  * FonstScale.py fixed. Closes: #201961
+  * DeprecationWarning messages no longer printed. Closes: #206231
+
+ -- James A. Treacy <treacy@debian.org>  Tue, 30 Sep 2003 00:51:45 -0400
+
+gramps (0.9.3-3) unstable; urgency=low
+
+  * Reuploaded do to minor glitch
+
+ -- James A. Treacy <treacy@debian.org>  Tue,  9 Sep 2003 14:31:17 -0400
+
+gramps (0.9.3-2) unstable; urgency=low
+
+  * Updated to use python 2.3
+  * Temporarily use local copy of dtd file so install with no net connection
+    works. Closes: #205008
+
+ -- James A. Treacy <treacy@debian.org>  Fri,  8 Aug 2003 22:30:51 -0400
+
+gramps (0.9.3-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- James A. Treacy <treacy@debian.org>  Tue, 15 Jul 2003 10:28:50 -0400
+
+gramps (0.9.2-2) unstable; urgency=low
+
+  * cat output of config.log on configure failure to help catch problem on hppa.
+
+ -- James A. Treacy <treacy@debian.org>  Thu, 12 Jun 2003 23:01:35 -0400
+
+gramps (0.9.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- James A. Treacy <treacy@debian.org>  Wed, 28 May 2003 10:30:51 -0400
+
+gramps (0.9.1-2) unstable; urgency=low
+
+  * rm src/grampslib.so so it will be built on every arch
+
+ -- James A. Treacy <treacy@debian.org>  Sun, 18 May 2003 14:20:38 -0400
+
+gramps (0.9.1-1) unstable; urgency=low
+
+  * New upstream release. Closes: #183031
+  * Depends on scrollkeeper. Closes: #185875
+  * Changed python dependencies to python 2.2. Closes: #180201
+  * Website generation fixed. Closes: #169780
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 24 Mar 2003 10:16:48 -0500
+
+gramps (0.8.1-1) unstable; urgency=low
+
+  * New upstream source
+  * Upstream implemented better dialog defaults. Closes: #167978
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 16 Dec 2002 22:02:30 -0500
+
+gramps (0.8.0-6) unstable; urgency=low
+
+  * patched to work independent of whether python-xml is installed
+
+ -- James A. Treacy <treacy@debian.org>  Wed, 23 Oct 2002 16:51:19 -0400
+
+gramps (0.8.0-5) unstable; urgency=low
+
+  * rm src/intl??.so during clean. Upstream has been notified and will remove
+    these files from the tar file in the future. Closes: #159311
+
+ -- James A. Treacy <treacy@debian.org>  Tue,  3 Sep 2002 14:38:24 -0400
+
+gramps (0.8.0-4) unstable; urgency=low
+
+  * recompiled against python2.2
+  * update the .omf files to work with scrollkeeper. Sent upstream.
+
+ -- James A. Treacy <treacy@debian.org>  Fri, 30 Aug 2002 11:26:30 -0400
+
+gramps (0.8.0-3) unstable; urgency=low
+
+  * Add Build-Depends on gettext. Fixes another autobuilder problem
+
+ -- James A. Treacy <treacy@debian.org>  Sat, 24 Aug 2002 10:28:57 -0400
+
+gramps (0.8.0-2) unstable; urgency=low
+
+  * Revert to previous way of running configure. Closes: #157993
+  * Added scrollkeeper to the Build-Depends. Should now build on the
+    autobuilders
+
+ -- James A. Treacy <treacy@debian.org>  Sat, 24 Aug 2002 00:26:19 -0400
+
+gramps (0.8.0-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- James A. Treacy <treacy@debian.org>  Thu,  8 Aug 2002 00:48:23 -0400
+
+gramps (0.7.3-4) unstable; urgency=low
+
+  * Add dependency on python (<< 2.2)
+
+ -- James A. Treacy <treacy@debian.org>  Thu, 18 Jul 2002 08:55:58 -0400
+
+gramps (0.7.3-3) unstable; urgency=low
+
+  * Official release of new upstream version by new maintainer
+
+ -- James A. Treacy <treacy@debian.org>  Fri,  5 Jul 2002 10:51:59 -0400
+
+gramps (0.7.3-2) unstable; urgency=low
+
+  * Switched to generating HTML docs at build time.
+
+ -- Alex Roitman <shura@alex.neuro.umn.edu>  Wed, 26 Jun 2002 19:56:06 -0500
+
+gramps (0.7.3-1) unstable; urgency=low
+
+  * New upstream release
+  * Added new entry to the upstream NEWS file - it was missing.
+  * Added '#! usr/bin/python -O' line to src/AddMedia.py to make lintian happy.
+    Also removed this line from src/DbPrompter.py for the same reason.
+  * Edited debian/rules to call '$(MAKE) clean' instead of 
+    '$(MAKE) distclean' which did not exist.
+  * Edited src/Makefile.in - 'clean' target should also remove *.so files.
+  * Pre-built static HTMLs since the on-the-fly generation from SGML is buggy.
+    This required editing debian/rules to call '$(MAKE) install-html',
+    and editing doc/*/C/Makefile.in to not remove static HTMLs.
+
+ -- Alex Roitman <shura@alex.neuro.umn.edu>  Mon, 24 Jun 2002 12:18:57 -0500
+
+gramps (0.7.2-1) unstable; urgency=low
+
+  * New upstream release
+  * Gramps now depends on python2.
+  * Changes some of the 'depends' issues to not point towards specific debian
+    revisions of the package.
+  * Edited gramps.in.sh to use /usr/bin/python2.1 instead of /usr/bin/python.
+    Closes: #127401
+
+ -- Brandon L. Griffith <brandon@debian.org>  Thu,  4 Apr 2002 07:30:17 -0500
+
+gramps (0.7.0-1) unstable; urgency=low
+
+  * New upstream release
+  * This version fixes the bug reported by a user in Bug #120738 which kept
+    him from importing his GEDCOM files correctly.
+    Closes: #120738
+
+ -- Brandon L. Griffith <brandon@debian.org>  Mon, 24 Dec 2001 08:11:44 -0500
+
+gramps (0.6.2-1) unstable; urgency=low
+
+  * New upstream release
+  * This version should fix the XPM data with color > 32766 problem that
+    was keeping gramps from starting on systems using puthon > 1.5
+    Closes: #119950
+    Closes: #116893
+
+ -- Brandon L. Griffith <brandon@debian.org>  Mon, 19 Nov 2001 04:29:47 -0500
+
+gramps (0.6.1-1) unstable; urgency=low
+
+  * New upstream release
+  * Removed dependencies on python-base
+    Closes: #118782
+
+ -- Brandon L. Griffith <brandon@debian.org>  Thu, 15 Nov 2001 15:31:51 -0500
+
+gramps (0.5.1-1) unstable; urgency=low
+
+  * New upstream release
+  * gramps-extending and gramps-manual are now integrated into the gramps
+    help function so I'm removing them from the docs dir.
+  * Updated the README.Debian
+  * Included a gramps icon in the menu file
+  * Fixed some gramatical problems in the control file.
+
+ -- Brandon L. Griffith <brandon@debian.org>  Wed,  3 Oct 2001 21:00:28 -0400
+
+gramps (0.5.0-2) unstable; urgency=low
+
+  * A change in the way the makefile was used caused the executables to not
+    be installed correctly, this version should fix that.
+    Closes: #113147
+  * I have included two sets of DOCS with this package.
+    - The Gramps Manual
+    - Extending Gramps
+    I'm not registering these with doc-base, read the README.Debian if
+    you'd like to know why.
+
+ -- Brandon L. Griffith <brandon@debian.org>  Sat, 22 Sep 2001 12:02:24 -0400
+
+gramps (0.5.0-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Brandon L. Griffith <brandon@debian.org>  Tue, 18 Sep 2001 21:23:06 -0400
+
+gramps (0.4.1-3) unstable; urgency=low
+
+  * Paul Slootman was nice enough to point out my ignorance in the rules file
+    where I expected a script to be executable and indeed it wasn't. Thanks,
+    Paul for the patch.
+    Closes: #110570
+
+ -- Brandon L. Griffith <brandon@debian.org>  Wed, 29 Aug 2001 15:01:38 -0400
+
+gramps (0.4.1-2) unstable; urgency=low
+
+  * Lintian was yelling hard at me. It seems that every_single file is set with
+    an executable bit. I wrote a shell script to remove it from the files that
+    do not need it and am informing the upstream author.
+  * Fixed the menu entry where I left in a | where it was not needed.
+  * A few more lintian clean-ups as well such as me using an "ancient"
+    standards version and a typo in the copyright.
+
+ -- Brandon L. Griffith <brandon@debian.org>  Sun, 26 Aug 2001 23:42:05 -0400
+
+gramps (0.4.1-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Brandon L. Griffith <brandon@debian.org>  Tue, 14 Aug 2001 10:37:14 -0400
+
+gramps (0.4.0-1) unstable; urgency=low
+
+  * New upstream release
+  * Added a bit more docs, but nothing major.
+
+ -- Brandon L. Griffith <brandon@debian.org>  Fri, 10 Aug 2001 08:40:07 -0400
+
+gramps (0.3.2-1) unstable; urgency=low
+
+  * New upstream release
+  * This version of the gramps package for debian includes the upstream authors
+    changes for fixing bug #101466
+  * Fixed some minor typos in the changelog as well.
+
+ -- Brandon L. Griffith <brandon@debian.org>  Fri,  6 Jul 2001 19:59:23 -0500
+
+gramps (0.3.1-2) unstable; urgency=low
+
+  * A minor cosmetic touch up where a word was misspelled on the main GUI and
+    in the menu list.
+    Closes: #101466
+  * Added a README file to the examples directory explaining how to use/open
+    the example files without getting errors. This will probably be removed
+    in a near upcoming release as the author may have fixed the problem.
+    Closes: #101463
+  * The last package of gramps was built with a broken dpkg-dev which caused
+    an automated bug report. I installed a better version of dpkg-dev in order
+    to rebuild this package.
+    Closes: #102531
+  * The author has finally addressed the issue of a missing help file. Though
+    as of now none have been created the error produced before is gone and the
+    author is working on better documentation.
+    Closes: #99617 
+
+ -- Brandon L. Griffith <brandon@debian.org>  Thu, 28 Jun 2001 20:27:30 -0500
+
+gramps (0.3.1-1) unstable; urgency=low
+
+  * New upstream release
+  * Full identification in the program as well as the docs now shows that this
+    is version 0.3.1. A Bug was filed on 0.3.0 because the author did not
+    include and information stating the program had actually changed.
+    Closes: #101462
+  * There is an outstanding bug against gramps at the moment #101463 which
+    is caused by gramps creating (attempting) a temporary file in a non-
+    writable directory '/usr/share/doc/gramps/examples'. This can easily
+    be avoided by copying the example files to your home directory or to a
+    writable temporary directory. This, however is just a workaround an in
+    no way is a means to closing this bug.
+
+ -- Brandon L. Griffith <brandon@debian.org>  Tue, 26 Jun 2001 11:19:21 -0500
+
+gramps (0.3.0-1) unstable; urgency=low
+
+  * New upstream release
+  * This package closes the wishlist bug where I was a bit lazy on creating
+    a package for the new upstream release.
+    Closes: #101254
+
+ -- Brandon L. Griffith <brandon@debian.org>  Mon, 18 Jun 2001 08:08:53 -0500
+
+gramps (0.2.0-1) unstable; urgency=low
+
+  * New upstream release
+  * The upstream author now includes sample gedcom and sample gramps files
+    with the source. These are placed in the usual example directory.
+    This closes a wishlist bug in the bugs database but it seems that the
+    server that holds bugs.debian.org and lists.debian.org is down. I'll
+    re-upload a new package to close those bugs as soon as the server gets
+    back up. But I am uploading the package ASAP as it fixes several program
+    bugs that can be considered critical.
+
+ -- Brandon L. Griffith <brandon@debian.org>  Mon,  4 Jun 2001 22:11:27 -0500
+
+gramps (0.1.5-2) unstable; urgency=low
+
+  * Important note here. If you fail to follow thru with the wizard you are
+    prompted with when gramps first runs you will receive the same error as
+    stated in bug 98745 about invalid cast from `(unknown)' to `GtkObject'.
+    This is not a bug with the package or the program but rather with the way
+    the program is written. It is assuming that a widget is there that is not
+    due to canceling out the wizard.
+    Closes: #98745
+  * This package now suggests python-reportlab and python-imaging in order to
+    produce reports in PDF format. I should have included these earlier but
+    failed to notice the naming convention used for the reportlab package.
+
+ -- Brandon L. Griffith <brandon@debian.org>  Wed, 30 May 2001 16:56:45 -0500
+
+gramps (0.1.5-1) unstable; urgency=low
+
+  * New upstream release
+  * My last bug was reopened due to my lack of common sense. This release
+    should fix the small problem.
+    Closes: #98646
+  * Edited the manual page and control files because this release of gramps
+    no longer supports LaTeX in favor of PDF.
+  * Changed Section in the control file to be "misc" instead of "x11"
+
+ -- Brandon L. Griffith <brandon@debian.org>  Sat, 26 May 2001 18:27:09 -0500
+
+gramps (0.1.4-3) unstable; urgency=low
+
+  * It seems as though there is a classes structure change between versions
+    0.5.x and 0.6.x of PyXML and gramps has only been tested with the
+    0.6.x branch. Changed dependency of python-xml to call for >=0.6.0-1
+    This should take care of the startup problem some people have had.
+    Bug Fixed. Closes: #98646
+
+  * Silly me named the menu file wrong so it never got included into the 
+    Debian Menu system. Gramps should now show up under Apps->Tools. Have
+    no idea how I overlooked this.
+
+  * Wrote a more in depth manpage for Gramps. This manpage will more than
+    likely be included in the main source distribution of gramps.
+
+ -- Brandon L. Griffith <brandon@debian.org>  Thu, 24 May 2001 22:08:26 -0500
+
+gramps (0.1.4-2) unstable; urgency=low
+
+  * Failed to add python-glade as a dependency. Fixed. Closes: #98406
+
+ -- Brandon L. Griffith <brandon@debian.org>  Tue, 22 May 2001 16:49:26 -0400
+
+gramps (0.1.4-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Brandon L. Griffith <brandon@debian.org>  Sat, 19 May 2001 13:37:24 -0400
+
+Local variables:
+mode: debian-changelog
+End:

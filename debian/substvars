@@ -1,0 +1,2 @@
+shlibs:Depends=libbonobo2-0 (>= 2.4.3), libc6 (>= 2.3.2.ds1-4), libglib2.0-0 (>= 2.2.3), libgnomevfs2-0 (>= 2.4.1), libgnomevfs2-common (>= 2.4.1), liborbit2 (>= 1:2.8.0)
+python:Depends=python (>= 2.3), python (<< 2.4)

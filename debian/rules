@@ -1,0 +1,76 @@
+#!/usr/bin/make -f
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+
+	./configure \
+		--enable-packager-mode \
+		--disable-scrollkeeper \
+		--prefix=/usr \
+		--mandir=\$${prefix}/share/man \
+		--sysconfdir=/etc
+	$(MAKE)
+
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	-rm -f build-stamp
+
+	-$(MAKE) clean
+	-rm -f src/*.pyo src/*/*.pyo src/*/*/*.pyo src/*/*/*/*.pyo
+	-rm -f config.status config.log
+
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
+	$(MAKE) install DESTDIR=`pwd`/debian/gramps
+	# Remove help-related dirs, they will go into gramps-help package
+	-rm -rf debian/gramps/usr/share/gnome
+	-rm -rf debian/gramps/usr/share/omf
+
+	# Remove byte-compiled python files
+	-find debian/gramps/usr/share/ -name "*.pyo" -exec rm -f '{}' ';'
+
+	# Copy icon file
+	cp debian/gramps.xpm debian/gramps/usr/share/pixmaps/
+	# cp src/gramps.xpm debian/tmp/usr/share/pixmaps/
+	#cp src/data/gramps.svg debian/gramps/usr/share/pixmaps/
+	#chmod 644 debian/gramps/usr/share/pixmaps/gramps.svg
+
+	# Instal gramps-help things
+	$(MAKE) -C help install DESTDIR=`pwd`/debian/gramps-help
+
+# Build architecture-independent files here.
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_installdocs
+	dh_installmenu --package=gramps
+	dh_installman --package=gramps
+	dh_installmime -i
+	dh_installchangelogs --package=gramps ChangeLog
+	dh_installchangelogs --package=gramps-help help/ChangeLog
+	dh_gconf --package=gramps
+	dh_scrollkeeper --package=gramps-help
+	dh_compress -i
+	dh_fixperms -i
+	dh_python  --package=gramps
+	dh_installdeb -i 
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture-dependent files here.
+binary-arch: build install
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install
