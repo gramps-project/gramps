@@ -6,6 +6,7 @@
 
 2006-06-23  Don Allingham  <don@gramps-project.org>
 	* help/C/gramps-manual.xml: updates
+	* help/C/figures/*.png: updates
 	* src/GrampsDb/_ReadXML.py: fix syntax error with old ref formats
 
 2006-06-22  Don Allingham  <don@gramps-project.org>
