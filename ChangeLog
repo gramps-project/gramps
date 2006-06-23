@@ -1,3 +1,6 @@
+2006-06-23  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadXML.py: fix syntax error with old ref formats
+
 2006-06-22  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsDbBase.py: remove unused variable
 	* src/Editors/_EditPlace.py: Allow duplicate names

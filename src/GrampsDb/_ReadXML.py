@@ -873,7 +873,7 @@ class GrampsParser(UpdateCallback):
             self.db.check_person_from_handle(handle,self.trans)
         except KeyError:
             person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
-            handle = person_handle
+            handle = person.handle
         self.family.set_father_handle(handle)
 
     def start_mother(self,attrs):
@@ -882,7 +882,7 @@ class GrampsParser(UpdateCallback):
             self.db.check_person_from_handle(handle,self.trans)
         except KeyError:
             person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
-            handle = person_handle
+            handle = person.handle
         self.family.set_mother_handle(handle)
     
     def start_child(self,attrs):
@@ -891,7 +891,7 @@ class GrampsParser(UpdateCallback):
             self.db.check_person_from_handle(handle,self.trans)
         except KeyError:
             person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
-            handle = person_handle
+            handle = person.handle
 
         # Here we are handling the old XML, in which
         # frel and mrel belonged to the "childof" tag
