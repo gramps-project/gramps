@@ -658,7 +658,9 @@ class EditFamily(EditPrimary):
                             _('Duplicate Family'),
                             _('A family with these parents already exists '
                               'in the database. If you save, you will create '
-                              'a duplicate family.'))
+                              'a duplicate family. It is recommended that '
+                              'you cancel the editing of this window, and '
+                              'select the existing family'))
             else:
                 for fh in father.get_family_handle_list():
                     fam = self.dbstate.db.get_family_from_handle(fh)
