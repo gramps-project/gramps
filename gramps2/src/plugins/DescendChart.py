@@ -131,8 +131,10 @@ class DescendChart(Report):
                         = options_class.get_report_generations()
         self.display = options_class.handler.options_dict['dispf']
         self.force_fit = options_class.handler.options_dict['singlep']
-        self.title = options_class.handler.options_dict['title'].strip()
         self.max_gen = options_class.handler.options_dict['maxgen']
+        
+        name = NameDisplay.displayer.display_formal(person)
+        self.title = _("Descendant Chart for %s") % name
 
         self.map = {}
         self.text = {}
@@ -387,15 +389,12 @@ class DescendChartOptions(ReportOptions):
         # Options specific for this report
         self.options_dict = {
             'singlep'   : 1,
-            'title'     : '',
             'maxgen'    : 32,
         }
         self.options_help = {
             'singlep'   : ("=0/1","Whether to scale to fit on a single page.",
                             ["Do not scale to fit","Scale to fit"],
                             True),
-            'title'     : ("=str","Title string for the report",
-                            "Whatever String You Wish"),
         }
 
     def enable_options(self):
@@ -416,14 +415,6 @@ class DescendChartOptions(ReportOptions):
         """
         dialog.get_report_extra_textbox_info = self.get_textbox_info
 
-        self.title_box = gtk.Entry()
-        if self.options_dict['title']:
-            self.title_box.set_text(self.options_dict['title'])
-        else:
-            name = NameDisplay.displayer.display(dialog.person)
-            self.title_box.set_text(dialog.get_header(name))
-        dialog.add_option(_('Title'),self.title_box)
-
         self.scale = gtk.CheckButton(_('Sc_ale to fit on a single page'))
         self.scale.set_active(self.options_dict['singlep'])
         dialog.add_option('',self.scale)
@@ -438,7 +429,6 @@ class DescendChartOptions(ReportOptions):
         Parses the custom options that we have added.
         """
         self.options_dict['singlep'] = int(self.scale.get_active ())
-        self.options_dict['title'] = unicode(self.title_box.get_text()).strip()
         self.options_dict['maxgen'] = int(self.max_gen.get_value_as_int())
 
     def make_default_style(self,default_style):

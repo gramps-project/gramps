@@ -1,3 +1,11 @@
+2006-06-25  Brian Matherly  <brian@gramps-project.org>
+	* src/docgen/ODFDoc.py: Handle exception when file is not writeable
+	* src/docgen/ODSDoc.py: Handle exception when file is not writeable
+	* src/docgen/OpenOfficeDoc.py: Handle exception when file is not writeable
+	* src/docgen/OpenSpreadSheet.py: Handle exception when file is not writeable
+	* src/plugins/AncestorChart2.py: Remove Title option
+	* src/plugins/DecendChart.py: Remove Title option
+
 2006-06-23  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_WriteGedcom.py: Prevent writing empty value tags.
 	* src/images/Makefile.am (dist_pkgdata_DATA): Comment out map images.

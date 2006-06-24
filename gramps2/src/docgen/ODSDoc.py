@@ -210,7 +210,14 @@ class ODSDoc(SpreadSheetDoc):
             self.f.write('<table:covered-table-cell/>\n')
 
     def _write_zip(self):
-        file = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)
+        try:
+            file = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)    
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            raise Errors.ReportError(_("Could not create %s") % self.filename)
+
         file.write(self.manifest_xml,str("META-INF/manifest.xml"))
         file.write(self.content_xml,str("content.xml"))
         file.write(self.meta_xml,str("meta.xml"))
