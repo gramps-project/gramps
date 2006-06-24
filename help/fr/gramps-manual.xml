@@ -271,7 +271,7 @@
 
       <para>Dans ce manuel, nous utilisons des mots identifiés par la typographie spéciale: <itemizedlist><listitem><simpara><application>Applications</application></simpara></listitem><listitem><simpara><command>Commandes</command> à lancer à la ligne de commande</simpara></listitem><listitem><simpara><filename>Nom_de_fichier</filename></simpara></listitem><listitem><simpara><replaceable>Texte remplaçable</replaceable></simpara></listitem><listitem><simpara><guilabel>Icônes/Onglets</guilabel> pour les boutons et d'autres parties de l'interface graphique</simpara></listitem><listitem><simpara>Le choix du menu : <menuchoice><guimenu>Menu</guimenu><guisubmenu>Sous-menu</guisubmenu><guimenuitem>Article du Menu</guimenuitem></menuchoice></simpara></listitem><listitem><simpara><guibutton>Boutons</guibutton> que vous pouvez cliquer</simpara></listitem><listitem><simpara><userinput> Quelque chose que vous saisissez</userinput></simpara></listitem></itemizedlist></para>
 
-      <para>Nous fournissons également des informations additionnelles dans les astuces et les notes, comme suit. <tip id="example-tip"><title>Astuce</title><para>Les astuces et le peu d'information supplémentaire ressembleront à ceci.</para></tip><note id="example-note"><title>Note</title><para>Les notes ressembleront à ceci.</para></note></para>
+      <para>Nous fournissons également des informations additionnelles dans les astuces et les notes, comme suit. <tip id="example-tip"><title>Exemple d'astuce</title><para>Les astuces et le peu d'information supplémentaire ressembleront à ceci.</para></tip><note id="example-note"><title>Exemple de note</title><para>Les notes ressembleront à ceci.</para></note></para>
 
       <para>En conclusion, nous avons également des avertissements : <warning id="example-warning"><title>Avertissement d'exemple</title><para>Si vous courrez un danger, nous vous avertirons à l'avance.</para></warning></para>
     </sect1>
@@ -315,7 +315,7 @@
     <sect1 id="run-1st-time">
       <title>La première utilisation de GRAMPS</title>
 
-      <para>La première fois que vous l'utilisez, GRAMPS affiche un dialogue de premier lancement. Suivez les directives qui vous guident à travers les sections <guilabel>Informations sur le chercheur</guilabel>, <guilabel>Formats de dates numériques</guilabel>, <guilabel>Utilisation d'autres calendriers</guilabel>, et <guilabel>extensions LDS</guilabel>. La plupart de ces dialogues sont simples et ne seront pas décrits ici.</para>
+      <para>La première fois que vous l'utilisez, GRAMPS affiche des dialogues de "premier lancement". Suivez les directives qui vous guident à travers les sections <guilabel>Informations sur le chercheur</guilabel> et <guilabel>extensions LDS</guilabel>. La plupart de ces dialogues sont simples et ne seront pas décrits ici.</para>
 
       <note id="note-dialog">
         <title>Boîte de dialogue</title>
@@ -351,12 +351,12 @@
     <!---->
 
     <sect1 id="choose-db-start">
-      <title>Choix d'une base de données au démarrage</title>
+      <title>Choisir une base de données</title>
 
-      <para>Si GRAMPS est lancé sans base de données à ouvrir, le dialogue suivant s'ouvrira pour vous le demander.</para>
+      <para>Si GRAMPS est lancé sans une base de données sélectionnée, l'écran initial aura peu de fonctionnalités. La plupart des opérations ne seront pas disponibles. Pour charger une base de données, sélectionner plutôt <guibutton>Nouveau</guibutton> pour créer une nouvelle base, ou charger la dernière base de données ouverte, qui peut être sélectionnée en cliquant sur la flêche à côté du bouton <guibutton>Ouvrir</guibutton> et choisissez le fichier dans la liste.</para>
 
       <figure id="first-open">
-        <title>Dialogue d'ouverture d'une base de données</title>
+        <title>Fenêtre principale</title>
 
         <screenshot>
           <mediaobject>
@@ -365,28 +365,14 @@
             </imageobject>
 
             <textobject>
-              <phrase>L'ouverture d'une base de données</phrase>
+              <phrase>Fenêtre principale.</phrase>
             </textobject>
           </mediaobject>
         </screenshot>
       </figure>
 
       <!---->
-
-      <para>Si vous voulez ouvrir une base récente, cochez le bouton radio du haut, sélectionnez votre base de données depuis le menu et cliquez sur <guibutton>OK</guibutton>.</para>
-
-      <para>Si vous voulez ouvrir une base existante, cochez le bouton radio du haut puis le bouton <guibutton>OK</guibutton>. GRAMPS vous demandera alors le nom de la base existante à ouvrir.</para>
-
-      <para>Comme vous pouvez le deviner, pour créer une nouvelle base de données, choisissez "Créer une nouvelle base"</para>
-
-      <note id="file-notdir-note">
-        <title>Choix du fichier</title>
-
-        <para>À la différence de la version 1.0.X de GRAMPS, cette version n'exige pas de choisir un dossier pour la base de données. Choisissez juste un Nom de fichier, comme dans n'importe quelle autre application.</para>
-      </note>
     </sect1>
-
-    <!---->
 
     <sect1 id="get-help">
       <title>Obtenir de l'Aide</title>
@@ -675,7 +661,11 @@
         <sect3 id="filters">
           <title>Filtres</title>
 
-          <para>Les bases de données généalogiques peuvent décrire beaucoup d'individus. Comme les longues énumérations sont difficiles à traiter mentalement, GRAMPS fournit une façon pratique pour réduire l'ensemble des données visibles avec un filtre. Pour économiser l'espace sur l'écran, les contrôles de filtre peuvent être cachés, selon l'état du menu.</para>
+          <para>Les bases de données généalogiques peuvent décrire beaucoup d'individus, familles, lieux, et objets. Comme les longues énumérations sont difficiles à traiter mentalement, GRAMPS fournit une façon pratique pour réduire l'ensemble des données visibles avec un filtre. Ces méthodes étant Recherche et Filtrage.</para>
+
+          <para>Rechercher est une méthode simple mais rapide pour rechercher dans l'affichage des colonnes. Taper les caractères dans la boîte de recherche et cliquer sur le bouton trouver affichera seulement les lignes où le texte est présent.</para>
+
+          <para>Alternativement, vous pouvez activer la barre de filtre, laquelle s'affichera à la droite de l'affichage. Quand la barre de filtre est affichée, la barre de recherche ne le sera plus. Le barre de filtre vous permet de construire un ensemble de règles de filtrage interactives pouvant être appliquées à l'affichage. Le filtre est basé sur les règles et les données, pas sur l'affichage à l'écran.</para>
 
           <!-- ==== Figure: Enabled Filter ==== -->
 
@@ -697,33 +687,23 @@
 
           <!-- ==== End of Figure ==== -->
 
-          <para>Quand GRAMPS ouvre une base de données, le filtre est le filtre simple appelé toute la base, c'est à dire qu'il n'y a aucun filtrage. Pour choisir un filtre, utilisez le menu <menuchoice><guimenu>Affichage</guimenu><guimenuitem>Filtre</guimenuitem></menuchoice>. Celà placera un nouveau menu au-dessus de la liste des individus. Quand vous avez choisi le filtre, cliquez sur le bouton <guibutton>Appliquer</guibutton> en haut à droite de la fenêtre. Le filtre sera alors appliqué. Pour inverser la règle de filtrage cochez le choix Inverse à gauche du bouton</para>
-
-          <note id="filter-note">
-            <title>Afficher le filtre</title>
-
-            <para>Pour réduire l'encombrement, le menu filtre est caché par défaut. Pour l'afficher, allez au menu <menuchoice><guimenu>Affichage</guimenu><guimenuitem>Filtre</guimenuitem></menuchoice>. SVP comprenez bien que même si le menu filtre n'est pas affiché, le filtrage est toujours actif. (on dit que le filtrage est persistant.) Si vous n'êtes pas certain que votre liste est filtrée, affichez le menu filtre (par <menuchoice><guimenu>Affichage</guimenu><guimenuitem>Filtre</guimenuitem></menuchoice>) et vérifiez le filtre.</para>
-          </note>
-
-          <tip id="filt-tip">
-            <title>Exemple d'utilisation de filtre</title>
-
-            <para>Pour montrer seulement les hommes, choisissez le filtre <guilabel>Hommes</guilabel> puis cliquer sur le bouton <guibutton>Appliquer</guibutton> button. Pour décommander le filtrage, placez le filtre sur <guilabel>Toute la base de données</guilabel> et cliquer sur <guibutton>Appliquer</guibutton>.</para>
-          </tip>
+          <para>Quand GRAMPS ouvre une base de données, aucun filtrage n'est actif. Dans la vue des individus, tout le monde est listé par défaut.</para>
         </sect3>
       </sect2>
 
       <!-- ================ Main Window Sub-subsection  -->
 
-      <sect2 id="family-view">
-        <title>Vue Familiale</title>
+      <sect2 id="relationships-view">
+        <title>Vue Relations</title>
 
-        <para>L'affichage par famille montre les informations autour de la personne sélectionnée (ou Active). En particulier, cette vue montre les relations (c'est à dire les mariages ou concubinages, etc.) de la personne active, ses parents (ou beaux-parents, or tuteurs, etc), ainsi que ses enfants (que ce soit des enfants directs, de conjoint ou bien adoptés, etc.).</para>
+        <para>La vue relations montre les informations autour de la personne sélectionnée (ou active). En particulier, cette vue montre ses parents, ses conjoints et ses enfants .</para>
+
+        <para>La vue relations est désignée pour permettre une navigation rapide. Vous pouvez rapidement changer la personne sélectionnée en cliquant sur le nom de chaque personne listée sur la page. Chaque nom est un lien hypertexte, similaire à une page internet.</para>
 
         <!-- ==== Figure: Family View ==== -->
 
         <figure id="family-fig">
-          <title>Vue Familiale</title>
+          <title>Vue des Relations</title>
 
           <screenshot>
             <mediaobject>
@@ -732,7 +712,7 @@
               </imageobject>
 
               <textobject>
-                <phrase>Vue des Familles</phrase>
+                <phrase>Vue des Relations.</phrase>
               </textobject>
             </mediaobject>
           </screenshot>
@@ -740,63 +720,49 @@
 
         <!-- ==== End of Figure ==== -->
 
-        <para>La vue familiale affiche ces différentes fenêtres:</para>
+        <para>La vue relations affiche ces différentes sections:</para>
 
         <variablelist>
           <varlistentry>
             <term>Activer une Personne</term>
 
             <listitem>
-              <para>Les données de la personne active sont dans le haut, à gauche de la fenêtre. Juste en dessous, une autre boîte montre ses époux, épouses (ou toutes autres personnes en relation familiale). La double flèche dans le bouton à droite de la personne active fait échanger la personne active et son époux ou épouse sélectionné(e).</para>
+              <para>En haut de l'écran, nom, id, naissance, et information de décès de la personne active sont affichés. Si une photo de l'individu est disponible, elle est affichée sur le côté droit. Sous le nom de la personne il y a un symbole indiquant le genre, et un bouton édition. Cliquer sur le bouton <guibutton>Edition</guibutton> vous permettera d'éditer toutes les informations de l'individu dans un dialogue d'édition de la personne.</para>
             </listitem>
           </varlistentry>
 
           <varlistentry>
-            <term>Relation</term>
+            <term>Parents</term>
 
             <listitem>
-              <para>Affiche les données de naissance et de décès du/des conjoint(s) de la personne active.</para>
+              <para>Les sections suivantes affichent les parents et les frères et soeurs de l'individu. Comme il possible d'avoir de multiples types de parents, il est possible d'avoir des sections parents différentes. Vous pouvez contrôler le nombre d'information a affiché en utilisant le menu <guimenu>Affichage</guimenu>. Ce menu d'affichage vous permet de montrer ou de cacher les détails (naissance et information de décès) et de montrer ou de cacher les frères et soeurs. A côté de chaque individu listé il y a un bouton <guibutton>Edition</guibutton>, lequel vous permettera d'éditer tous les détails d'une personne particulière.</para>
 
-              <note id="spouse-info">
-                <title>Terminologie</title>
+              <para>Vous pouvez ajouter, éditer, ou supprimer les informations de famille en utilisant les boutons proche de la partie parents. Vous pouvez ajouter un ensemble de parents en sélectionnant le bouton Ajouter (le premier bouton). Le bouton <guibutton>Ajouter</guibutton> créera une nouvelle famille avec la personne active listée comme enfant. Le bouton <guibutton>Sélectionner</guibutton> vous permettera de choisir depuis une liste de familles existantes, et puis ajoute l'individu comme enfant de cette famille.</para>
 
-                <para>Dans la vue familiale, nous utilisons le terme de "conjoint" pour simplifier. Cependant, notez que "conjoint" est un terme général.</para>
+              <warning>
+                <para>Si vous n'êtes pas attentif, il est possible de créer de multiples familles avec les mêmes parents. C'est rarement ce que l'utilisateur souhaite faire. Si vous tentez d'ajouter une nouvelle famille qui a les mêmes parents qu'une famille existante, GRAMPS affichera un dialogue de mise en garde. Si vous obtenez ce dialogue, vous devrez probablement annuler l'édition, puis utiliser le bouton <guibutton>Sélectionner</guibutton> pour choisir la famille existante.</para>
+              </warning>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Famille</term>
+
+            <listitem>
+              <para>La section famille est similaire à la section parents, laquelle affiche les familles où l'individu est un parent. Parce qu'il est possible d'avoir de multiples familles, il est possible d'avoir de multiples sections famille. Chaque section famille affiche le conjoint et les enfants.</para>
+
+              <note>
+                <para>Nous utilisons le terme <emphasis>conjoint</emphasis> pour plus de simplicité. Toutefois, s'il vous plaît noter que <emphasis>conjoint</emphasis> peut en fait être un(e) partenaire sous le même toit, un(e) partenaire dans une union civile, ou autres relations similaires entre deux individus. Les relations <emphasis>Conjoint</emphasis> ne sont pas requises pour être seulement entre un homme et une femme.</para>
               </note>
 
-              <para>Vous pouvez modifier la relation entre la personne active et son époux ou épouse sélectionnée en double-cliquant sur la personne active. Vous pouvez modifier les données de l'époux ou épouse sélectionnée en shift-cliquant sur lui ou elle.Pour ajouter une nouvelle relation depuis la personne active, utilisez un des boutons du haut, à droite de la boîte de l'époux ou de l'épouse. Celui du haut ajoute une nouvelle personne dans la base de données et la relation avec la personne active. Celui du milieu crée une relation entre la personne active et une personne déjà déclarée dans la base de données. Le bouton du bas (-)à droite de la boîte de l'époux ou de l'épouse retire la relation avec cette personne. La plupart de ces fonctions sont aussi disponibles en cliquant avec le bouton droit de la souris dans la boîte de l'époux ou de l'épouse, puis en sélectionnant l'action voulue dans le menu contextuel ainsi activé.</para>
-            </listitem>
-          </varlistentry>
+              <para>Vous pouvez ajouter, éditer, ou supprimer une information de famille en utilisant les boutons à côté de la partie famille. Vous pouvez ajouter un conjoint en cliquant sur le bouton ajouter (le premier bouton), lequel créera une nouvelle famille avec la personne active listée comme père ou mère. Sélectionner le bouton édition vous permettera d'éditer la famille affichée. Cliquer sur le bouton supprimer enlèvera l'individu de la famille affichée.</para>
 
-          <varlistentry>
-            <term>Activer les parents de l'individu</term>
+              <warning>
+                <para>Enlever un individu de la famille ne supprime pas la famille. L'individu est enlevé en tant que père ou mère, et toutes autres relations de la famille sont conservées.</para>
+              </warning>
 
-            <listitem>
-              <para>Les parents de la personne active ainsi que de la personne sélectionnée en relation sont affichés dans la partie droite de la fenêtre. Ceux de la personne active sont en haut, ceux de la personne en relation en bas. Leurs boîtes ont chacune un ensemble de trois boutons à droite. Les boutons <guibutton>+</guibutton> et <guibutton>-</guibutton> vous permettent d'ajouter ou de retirer des parents de la personne correspondante (active ou époux).</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>Les beaux-parents</term>
-
-            <listitem>
-              <para>La flèche vers la droite change de famille courante, en mettant la famille correspondante comme famille courante.</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>Les enfants</term>
-
-            <listitem>
-              <para>La boîte du bas liste les enfants de la personne active et de la relation courante (sélectionnée). La liste des enfants peut être triée par date de naissance comme d'habitude, en cliquant sur l'en-tête de colonne</para>
-
-              <para>En plus des colonnes pour le nom, ID, sexe, date de naissance et de décès, la vue comprend une ligne Statut.1 Les deux mots de statut décrivent la relation entre l'enfant et son père ou sa mère (comme Naissance, Adoption...).</para>
-
-              <para>L'éditeur de colonnes peut être utilisé pour modifier l'affichage des colonnes. Quatre boutons sont disponibles à droite de la liste des enfants. Celui du haut (flèche vers la gauche) met l'enfant sélectionné comme personne active. Les deux suivants ajoutent une personne dans la famille : celui du haut crée une personne tandis que celui du bas met une personne déjà déclarée dans la base de données comme enfant dans cette famille. Enfin, le bouton tout en bas (-) retire l'enfant sélectionné de la famille. (Notez que ceci ne supprime pas la personne de la base de données.).</para>
-
-              <note id="right-click-menu">
-                <title>Menu clic-droit</title>
-
-                <para>La plupart de ces fonctions sont aussi disponibles en cliquant avec le bouton droit de la souris dans la boîte des enfants, puis en sélectionnant l'action voulue dans le menu contextuel ainsi activé.</para>
+              <note>
+                <para>Nous utilisons les termes <emphasis>père</emphasis> et <emphasis>mère</emphasis> pour plus de simplicité. Même s'il n'y a pas d'enfants dans la famille, la terminologie <emphasis>père</emphasis> et <emphasis>mère</emphasis> est encore utilisée. Dans le cas où les relations sont homosexuelles, une des étiquettes <emphasis>père</emphasis> et <emphasis>mère</emphasis> devra être considérée comme interchangeable.</para>
               </note>
             </listitem>
           </varlistentry>
@@ -805,10 +771,40 @@
 
       <!-- ================ Main Window Sub-subsection  -->
 
+      <sect2 id="family-list-view">
+        <title>Vue Liste de famille</title>
+
+        <para>La vue liste de famille affiche une liste de toutes les familles de la base de données. Depuis cette vue, vous pourrez ajouter, éditer, ou supprimer les familles. Par défaut GRAMPS affiche id, père, mère, et relations. Les enfants ne pouvant pas être affichés à l'écran dans cette vue.</para>
+
+        <!-- ==== Figure: Family View ==== -->
+
+        <figure id="family-list">
+          <title>Vue Liste de famille</title>
+
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata depth="" fileref="figures/family-list.png" format="PNG" scale="" width=""/>
+              </imageobject>
+
+              <textobject>
+                <phrase>Vue Liste de famille.</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <warning>
+          <para>Contrairement à la vue des rélations, cliquer sur le bouton enlever dans cette vue enlèvera la famille de la base de données. Tous les individus seront conservés, mais toutes les relations entre les individus seront enlevées.</para>
+        </warning>
+
+        <!-- ==== End of Figure ==== -->
+      </sect2>
+
       <sect2 id="pedigree-view">
         <title>Vue par Arborescence</title>
 
-        <para>La vue en Arborescence vous aide à voir la place de la personne active dans l'arbre de ses ancêtres. Elle montre quatre générations, de la personne active 1 vers ses parents 2 , ses grands-parents 3 et ses arrière grands-parents 4.Chaque personne est représentée par un rectangle portant son nom. Deux lignes relient la personne à son père (ligne supérieure) et sa mère (ligne inférieure). Les lignes continues figurent les liens de filiation tandis que les lignes pointillées représentent les autres liens (adoption, beau-père ou belle-mère, tuteurs). Quand le pointeur de la souris passe sur une personne, son rectangle s'agrandit pour afficher ses dates de naissance et de décès. Quand le pointeur de la souris passe sur une ligne de famille, celle-ci est mise en évidence. Double-cliquer sur la ligne met alors le parent correspondant comme personne active. Tout l'affichage change alors en conséquence.</para>
+        <para>La vue Arbre généalogique vous aide à voir la place de la personne active dans l'arbre de ses ancêtres. Elle montre quatre générations, de la personne active selon la taille de la fenêtre. Chaque personne est représentée par un rectangle portant son nom, naissance et information de décès et en option l'image disponible. Deux lignes relient la personne à son père (ligne supérieure) et sa mère (ligne inférieure). Les lignes continues figurent les liens de filiation tandis que les lignes pointillées représentent les autres liens (adoption, beau-père ou belle-mère, tuteurs).</para>
 
         <!-- ==== Figure: Pedigree View ==== -->
 
@@ -830,7 +826,9 @@
 
         <!-- ==== End of Figure ==== -->
 
-        <para>Si votre curseur se trouve au-dessus de la boîte, GRAMPS affichera les dates de naissance et de décès. Si votre curseur se trouve au-dessus d'une ligne, la ligne sera en surbrillance, indiquant un lien actif. Double-cliquer sur la ligne pour faire correspondre un ancêtre avec la personne activée.</para>
+        <para>Une flèche vers la gauche est affichée dans la partie gauche de la fenêtre. Si la personne active a un enfant, cliquer dessus, affichera un menu comprenant les enfants de la personne active. Sélectionner un des enfants le met alors comme personne active.</para>
+
+        <para>Le nom de chaque enfant est affiché différemment selon que la personne est une feuille de l'arbre (sans <emphasis>enfants connus</emphasis>) ou bien a des <emphasis>enfants connus</emphasis>. Le nom d'une personne dont on connait des enfants apparaît en caractères gras et italiques au lieu d'être affiché en caractères normaux. Si la personne active n'a qu'un enfant, aucun menu ne sera affiché puisqu'il n'y a pas de choix possible. Dans ce cas, l'unique enfant devient la personne active dès que l'on a cliqué sur le bouton.</para>
 
         <!-- ==== Figure: Pedigree View ==== -->
 
@@ -851,10 +849,6 @@
         </figure>
 
         <!-- ==== End of Figure ==== -->
-
-        <para>Une flèche vers la gauche est affichée dans la partie gauche de la fenêtre. En cliquant dessus, un menu comprenant les enfants de la personne active apparait. Sélectionner un des enfants le met alors comme personne active.</para>
-
-        <para>Le nom de chaque enfant est affiché différemment selon que la personne est une feuille de l'arbre (sans enfants connus) ou bien a des enfants connus. Le nom d'une personne dont on connait des enfants apparaît en caractères gras et italiques au lieu d'être affiché en caractères normaux. Si la personne active n'a qu'un enfant, aucun menu ne sera affiché puisqu'il n'y a pas de choix possible. Dans ce cas, l'unique enfant devient la personne active dès que l'on a cliqué sur le bouton.</para>
 
         <para>Deux flèches vers la droite sont affichées dans la partie droite de la fenêtre. Celle du haut prend comme personne active le père de la personne active. Celle du bas met comme nouvelle personne active la mère de la personne active. Comme précédemment, tout l'affichage change alors en conséquence.</para>
 
@@ -881,6 +875,34 @@
         <para>Un clic-droit appelle un menu contextuel. Ce menu indique si l'individu a des <guilabel>Conjoints</guilabel>, des <guilabel>Enfants de mêmes parents</guilabel>, des <guilabel>Enfants</guilabel> et des <guilabel>Parents</guilabel>. Le sous-menus peut indiquer l'absence des données dans la catégorie appropriée.</para>
       </sect2>
 
+      <sect2>
+        <title>Vue Événements</title>
+
+        <para>Nouveau dans la version 2.2 est l'ajout de la vue des événements. Les événements peuvent être partagés entre plusieurs individus et familles. Cette vue des événements liste tous les événements enregistrements dans la base de données. La vue par défaut affiche la <guilabel>Description</guilabel>, <guilabel>id</guilabel>, <guilabel>Type</guilabel>, <guilabel>Date</guilabel>, <guilabel>Lieu</guilabel> et <guilabel> Cause</guilabel> de l'événement.</para>
+
+        <figure id="events-fig">
+          <title>Vue Événements</title>
+
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata depth="" fileref="figures/events.png" format="PNG" scale="" width=""/>
+              </imageobject>
+
+              <textobject>
+                <phrase>Vue Événements.</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <warning>
+          <para>Parce que les événements peuvent être partagés, vous pouvez prendre un peu de temps pour donner à chaque événement une description unique et significative. Celà vous aidera pour trouver l'événement correct si vous décidez de partager des l'événements.</para>
+        </warning>
+
+        <para>La liste des événements peut être triée, par un clic sur l'en-tête de la colonne. Cliquer une fois trie deans l'ordre ascendant, cliquer une deuxième fois dans l'ordre descendant. L'<guilabel>éditeur de colonnes</guilabel> peut être utilisé pour ajouter supprimer ou modifier les colonnes.</para>
+      </sect2>
+
       <!-- ================ Main Window Sub-subsection  -->
 
       <sect2 id="sources-view">
@@ -898,7 +920,7 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="353" fileref="figures/sources.png" format="PNG" scale="75" width="500"/>
+                <imagedata depth="" fileref="figures/sources.png" format="PNG" scale="" width=""/>
               </imageobject>
 
               <textobject>
@@ -944,6 +966,8 @@
       <sect2 id="media-view">
         <title>Vue des Medias</title>
 
+        <para>La Vue des Medias présente la liste des objets multimedia utilisés dans la base de données. Les objets multimedia sont des fichiers liés aux données de la base généalogique. Techniquement, on peut mettre n'importe quel fichier en objet multimedia. Habituellement, on y met des images, des enregistrements audio ou video. La liste présente pour chaque objet multimedia son <guilabel>Nom</guilabel>, son <guilabel>Identifiant</guilabel>, son <guilabel>Type</guilabel>, et son <guilabel>Chemin d'accès</guilabel>. Toutes ces colonnes peuvent servir de règle de tri. La partie supérieure de la fenêtre montre une prévisualisation quand c'est possible ainsi que les informations sur l'objet multimedia sélectionné.</para>
+
         <!-- ==== Figure: Media View ==== -->
 
         <figure id="media-fig">
@@ -956,20 +980,38 @@
               </imageobject>
 
               <textobject>
-                <phrase>Vue des Médias</phrase>
+                <phrase>Vue Média</phrase>
               </textobject>
             </mediaobject>
           </screenshot>
         </figure>
 
         <!-- ==== End of Figure ==== -->
+      </sect2>
 
-        <para>La Vue des Medias présente la liste des objets multimedia utilisés dans la base de données. Les objets multimedia sont des fichiers liés aux données de la base généalogique. Techniquement, on peut mettre n'importe quel fichier en objet multimedia. Habituellement, on y met des images, des enregistrements audio ou video. La liste présente pour chaque objet multimedia son <guilabel>Nom</guilabel>, son <guilabel>Identifiant</guilabel>, son <guilabel>Type</guilabel>, et son <guilabel>Chemin d'accès</guilabel>. Toutes ces colonnes peuvent servir de règle de tri. La partie supérieure de la fenêtre montre une prévisualisation quand c'est possible ainsi que les informations sur l'objet multimedia sélectionné.</para>
+      <sect2>
+        <title>Vue des dépôts</title>
+
+        <para>La version 2.2 ajoute un support pour les dépôts. Un dépôt peut être imaginé comme une collection de sources. Chaque source dans la base de données peut référencer un dépôt (comme une bibliothèque) dont elle fait partie. Cette fonctionnalité de la vue des dépôts est similaire aux autres vues.</para>
+
+        <figure id="repository-fig">
+          <title>Vue des dépôts</title>
+
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata depth="" fileref="figures/repository.png" format="PNG" scale="" width=""/>
+              </imageobject>
+
+              <textobject>
+                <phrase>Vue des dépôts</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
       </sect2>
     </sect1>
   </chapter>
-
-  <!-- $Id$ -->
 
   <chapter id="gramps-usage">
     <title>Utilisation</title>
@@ -981,7 +1023,7 @@
     <sect1 id="new-db">
       <title>Commencer une nouvelle base de données</title>
 
-      <para>Pour commencer avec une nouvelle base de données, faites <menuchoice><guimenu>Fichier</guimenu><guimenuitem>Nouveau</guimenuitem></menuchoice>.Le dialogue <guilabel>Créer une base de données</guilabel> sera présenté pour donner le nom sous lequel les données seront sauvées. La nouvelle base de données sera créée dans le format de BSDDB, avec pour extension <filename>.grdb</filename>.</para>
+      <para>Pour commencer avec une nouvelle base de données, faites <menuchoice><guimenu>Fichier</guimenu><guimenuitem>Nouveau</guimenuitem></menuchoice> ou sélectionner le bouton <guibouton>Nouveau de la barre d'outils. On vous demandera de donner le nom de la nouvelle base de donn</guibouton></para>
 
       <note id="new-db-notdir-note">
         <title>Bases de données GRAMPS</title>
@@ -997,7 +1039,7 @@
 
       <para>Pour ouvrir une base de données, faites <menuchoice><guimenu>Fichier</guimenu><guimenuitem>Ouvrir</guimenuitem></menuchoice> ou cliquer sur <guibutton>Ouvrir</guibutton> dans la barre d'outils. Le dialogue <guilabel>Ouvrir la base de données</guilabel> sera alors affiché.</para>
 
-      <para>Pour ouvrir une base de données récemment ouverte, choisissez <menuchoice><guimenu>Fichier</guimenu><guimenuitem>Fichier récemment ouverts</guimenuitem></menuchoice> puis sélectionnez le fichier dans la liste.</para>
+      <para>Pour ouvrir une base de données récemment ouverte, choisissez <menuchoice><guimenu>Fichier</guimenu><guimenuitem>Fichier récemment ouverts</guimenuitem></menuchoice> ou utilisez le bouton <guibutton>Ouvrir</guibutton> et sélectionner le fichier dans la liste.</para>
 
       <para>Si vous n'avez pas les "permissions pour écrire" la base de données choisie, elle sera ouverte en "mode lu". Dans ce mode, les données peuvent être regardées, mais aucun changement ne sera fait à la base de données. Pour indiquer ce mode, le titre de la fenêtre principale sera apposé avec le texte <guilabel>(lu seulement)</guilabel>.</para>
 
@@ -1103,47 +1145,65 @@
 
       <para>Pour importer des informations d'une base de données GRAMPS ou GRAMPS XML, vous verrez une barre de progression dans la fenêtre principale de GRAMPS.</para>
 
-      <para>Si un média n'est pas trouvé pendant l'import, ce dialogue (<xref linkend="missing-media-im"/>) vous demandera quoi faire :</para>
-
-      <!-- ==== Figure: Missing media window  ==== -->
+<!-- Missing media is commented out for now. This may be deleted in the near future -->
+<!--
+      <para>If a media file is not found during import, you'll be prompted to
+      take one of the actions indicated in <xref
+      linkend="missing-media-im" />.</para>
 
       <figure id="missing-media-im">
-        <title>Dialogue d'objet multimédia absent</title>
+        <title>Missing Media dialog</title>
 
         <screenshot>
           <mediaobject>
             <imageobject>
-              <imagedata depth="264" fileref="figures/missing-media.png" format="PNG" width="493"/>
+              <imagedata depth="264" fileref="figures/missing-media.png"
+                         format="PNG" width="493" />
             </imageobject>
 
             <textobject>
-              <phrase>Boîte de dialogue d'objet multimédia absent</phrase>
+              <phrase>Shows Missing Media dialog.</phrase>
             </textobject>
           </mediaobject>
         </screenshot>
       </figure>
 
-      <!-- ==== End of Figure ==== -->
 
       <itemizedlist>
         <listitem>
-          <para>Si vous voulez supprimer l'objet qui utilise le fichier absent ainsi que toutes les références qui y sont faites, choisissez le bouton <guibutton>Supprime Objet</guibutton>. Ceci modifiera la base de données pour qu'elle soit dans un état cohérent mais toutes les références au fichier absent auront été supprimées. Faites ce choix si le fichier est perdu à jamais et si vous n'avez aucune possibilité de le retrouver.</para>
+          <para>If you don't have the missing file and have no possibility of
+          replacing it, click the <guibutton>Remove Object</guibutton> button.
+          This will remove the object that corresponds to the missing file as
+          well as all the references in the database to that object.</para>
         </listitem>
 
         <listitem>
-          <para>Si vous voulez conserver les références à l'objet qui utilise le fichier manquant, faites le choix <guibutton>Conserver Référence</guibutton>. Ceci conservera les données comme elles sont, c'est à dire dans un état incohérent. Vous pourrez donner le fichier plus tard et vous aurez alors à le copies dans le répertoire de la base de données. Faites ce choix si le remplacement est possible mais pas tout de suite.</para>
+          <para>If you're not sure where the missing file is, but think you
+          still have it or may be able to find it, click the <guibutton>Keep
+          Reference</guibutton> button. If and when you find the file, you can
+          simply copy it into your database directory and have access to it
+          through GRAMPS.</para>
         </listitem>
 
         <listitem>
-          <para>Si vous voulez fournir le fichier manquant pendant le chargement, faites le choix <guibutton>Choisir Fichier</guibutton>. Ceci copiera le fichier que vous sélectionnerez à la place du fichier absent. Rien ne sera changé dans la base de données et elle sera dans un état cohérent. Ce choix se fait quand le fichier de remplacement est disponible tout de suite.</para>
+          <para>If you can supply the missing file during the import
+          operation, click the <guibutton>Select File</guibutton> button. This
+          will copy the file you select in place of the missing file. No
+          references will be altered in the database.</para>
         </listitem>
 
         <listitem>
-          <para>Si vous voulez conserver le choix fait dans ce dialogue pour tous les fichiers manquants, cochez la case <guilabel>Utiliser cette option pour toute absence de fichier media</guilabel>. Ceci enregistrera votre choix et l'utilisera pour tous les fichiers manquant lors de l'importation en évitant de réafficher le dialogue. Utilisez cette possibilité quand vous prévoyez que beaucoup de fichiers manqueront et que vous voulez les traiter tous de la même façon.</para>
+          <para>To automatically use the selection made in this dialog for all
+          missing media files, check the <guilabel>Use this selection for all
+          missing media files</guilabel> box. This will remember your choice
+          and use it for all media files missing during this import, so that
+          no further dialogs will be presented. Use this option if you
+          anticipate many missing files and want to deal with all of them in
+          the same manner.</para>
         </listitem>
       </itemizedlist>
+-->
     </sect1>
-
     <!-- ================ Usage Subsection ================================ -->
 
     <sect1 id="export-data">
@@ -2535,16 +2595,6 @@
             </listitem>
           </varlistentry>
         </variablelist>
-
-        <variablelist>
-          <varlistentry>
-            <term>Témoins</term>
-
-            <listitem>
-              <para>L'onglet <guilabel>Témoins</guilabel> tprésente les données des témoins liés à cet événement et permet leur modification. La partie centrale liste les témoins enregistrés dans la base de données. Les boutons <guibutton>+</guibutton>, <guibutton>Editer</guibutton> et <guibutton>-</guibutton> vous permettent respectivement d'ajouter, modifier et supprimer un témoin pour l'évènement, voir <xref linkend="adv-wit"/>. Notez que les boutons <guibutton>Editer</guibutton> et <guibutton>-</guibutton> ne sont disponibles qu'après avoir sélectionné une référence à un témoin dans la liste.</para>
-            </listitem>
-          </varlistentry>
-        </variablelist>
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
@@ -2964,7 +3014,7 @@
       <sect2 id="gramps-nav-family">
         <title>Utilisation de la vue des familles</title>
 
-        <para>Quand vous êtes dans la <xref linkend="family-view"/>,vous pouvez facilement choisir entre les membres de la famille affichée comme suit :</para>
+        <para>Quand vous êtes dans la <xref linkend="relationships-view"/>,vous pouvez facilement choisir entre les membres de la famille affichée comme suit :</para>
 
         <itemizedlist>
           <listitem>
@@ -5506,7 +5556,7 @@
 
     <para>La liste quelque peu inachevée de contribuants inclut (dans l'ordre alphabétique) <itemizedlist><listitem><para>Larry Allingham</para></listitem><listitem><para>Jens Arvidsson</para></listitem><listitem><para>Marcos Bedinelli</para></listitem><listitem><para>Douglas S. Blank</para></listitem><listitem><para>Radu Bogdan Mare</para></listitem><listitem><para>Alexander Bogdashevsky</para></listitem><listitem><para>Richard Bos</para></listitem><listitem><para>Nathan Bullock</para></listitem><listitem><para>Lorenzo Cappelletti</para></listitem><listitem><para>Pier Luigi Cinquantini</para></listitem><listitem><para>Bruce J. DeGrasse</para></listitem><listitem><para>Alexandre Duret-Lutz</para></listitem><listitem><para>Billy C. Earney</para></listitem><listitem><para>Baruch Even</para></listitem><listitem><para>Bernd Felsche</para></listitem><listitem><para>Egyeki Gergely</para></listitem><listitem><para>Michel Guitel</para></listitem><listitem><para>Steve Hall</para></listitem><listitem><para>David R. Hampton</para></listitem><listitem><para>Martin Hawlisch</para></listitem><listitem><para>Anton Huber</para></listitem><listitem><para>Frode Jemtland</para></listitem><listitem><para>Greg Kuperberg</para></listitem><listitem><para>Arkadiusz Lipiec</para></listitem><listitem><para>Lars Kr. Lundin</para></listitem><listitem><para>Radek Malcic</para></listitem><listitem><para>Leonid Mamtchenkov</para></listitem><listitem><para>Tino Meinen</para></listitem><listitem><para>Frederick Noronha</para></listitem><listitem><para>Jeffrey C. Ollie</para></listitem><listitem><para>Donald A. Peterson</para></listitem><listitem><para>Guillaume Pratte</para></listitem><listitem><para>Laurent Protois</para></listitem><listitem><para>Matthieu Pupat</para></listitem><listitem><para>Trevor Rhodes</para></listitem><listitem><para>Alexander Roitman</para></listitem><listitem><para>Jason Salaz</para></listitem><listitem><para>Julio Sanchez</para></listitem><listitem><para>Bernd Schandl</para></listitem><listitem><para>Martin Senftleben</para></listitem><listitem><para>Gary Shao</para></listitem><listitem><para>Jim Smart</para></listitem><listitem><para>Steve Swales</para></listitem><listitem><para>Eero Tamminen</para></listitem><listitem><para>Samuel Tardieu</para></listitem><listitem><para>Richard Taylor</para></listitem><listitem><para>James Treacy</para></listitem><listitem><para>Sebastian Voecking</para></listitem><listitem><para>Xing Wang</para></listitem><listitem><para>Tim Waugh</para></listitem><listitem><para>Jesper Zedlitz</para></listitem></itemizedlist> Si quelqu'un d'autre devrait être énuméré ici, svp faites-nous le savoir.</para>
 
-    <para>Pour trouver plus d'informations sur GRAMPS, visitez <ulink type="http" url="http://gramps.sourceforge.net">la page web du projet GRAMPS </ulink>.</para>
+    <para>Pour trouver plus d'informations sur GRAMPS, visitez <ulink type="http" url="http://gramps-project.org">la page web du projet GRAMPS </ulink>.</para>
 
     <para>Pour rapporter un bug ou faire une suggestion concernant cette application ou ce manuel, employez le menu d'aide dans GRAMPS, ou suivez les directions sur <ulink type="http" url="http://gramps.sourceforce.net/contact.html">cet emplacement.</ulink></para>
 
