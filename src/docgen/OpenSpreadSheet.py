@@ -203,8 +203,14 @@ class OpenSpreadSheet(SpreadSheetDoc):
             self.f.write('<table:covered-table-cell/>\n')
 
     def _write_zip(self):
-        
-        the_file = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)
+        try:
+            the_file = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)  
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            raise Errors.ReportError(_("Could not create %s") % self.filename)
+
         the_file.write(self.manifest_xml,str("META-INF/manifest.xml"))
         the_file.write(self.content_xml,str("content.xml"))
         the_file.write(self.meta_xml,str("meta.xml"))

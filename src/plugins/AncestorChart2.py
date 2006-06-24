@@ -47,6 +47,7 @@ from SubstKeywords import SubstKeywords
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
+import NameDisplay
 pt2cm = ReportUtils.pt2cm
 cm2pt = ReportUtils.cm2pt
 
@@ -192,7 +193,9 @@ class AncestorChart(Report):
         self.display = options_class.handler.options_dict['dispf']
         self.force_fit = options_class.handler.options_dict['singlep']
         self.compress = options_class.handler.options_dict['compress']
-        self.title = options_class.handler.options_dict['title'].strip()
+        
+        name = NameDisplay.displayer.display_formal(person)
+        self.title = _("Ancestor Graph for %s") % name
 
         self.map = {}
         self.text = {}
@@ -433,7 +436,6 @@ class AncestorChartOptions(ReportOptions):
         self.options_dict = {
             'singlep'   : 1,
             'compress'  : 1,
-            'title'     : '',
         }
         self.options_help = {
             'singlep'   : ("=0/1","Whether to scale to fit on a single page.",
@@ -442,8 +444,6 @@ class AncestorChartOptions(ReportOptions):
             'compress'  : ("=0/1","Whether to compress chart.",
                             ["Do not compress chart","Compress chart"],
                             True),
-            'title'     : ("=str","Title string for the report",
-                            "Whatever String You Wish"),
         }
 
     def enable_options(self):
@@ -474,20 +474,12 @@ class AncestorChartOptions(ReportOptions):
         self.compress.set_active(self.options_dict['compress'])
         dialog.add_option('',self.compress)
 
-        self.title_box = gtk.Entry()
-        if self.options_dict['title']:
-            self.title_box.set_text(self.options_dict['title'])
-        else:
-            self.title_box.set_text(dialog.get_header(dialog.person.get_primary_name().get_name()))
-        dialog.add_option(_('Title'),self.title_box)
-
     def parse_user_options(self,dialog):
         """
         Parses the custom options that we have added.
         """
         self.options_dict['singlep'] = int(self.scale.get_active ())
         self.options_dict['compress'] = int(self.compress.get_active ())
-        self.options_dict['title'] = unicode(self.title_box.get_text()).strip()
 
     def make_default_style(self,default_style):
         """Make the default output style for the Ancestor Chart report."""

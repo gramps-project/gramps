@@ -46,6 +46,7 @@ import ImgManip
 import FontScale
 import Mime
 import Utils
+import Errors
 
 #-------------------------------------------------------------------------
 #
@@ -478,7 +479,13 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         zfile.writestr(zipinfo,data)
 
     def _write_zip(self):
-        zfile = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)
+        try:
+            zfile = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)    
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            raise Errors.ReportError(_("Could not create %s") % self.filename)
 
         t = time.localtime(time.time())[:6]
 
