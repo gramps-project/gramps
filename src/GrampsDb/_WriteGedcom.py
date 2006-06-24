@@ -663,13 +663,16 @@ class GedcomWriter(UpdateCallback):
 
                         if event.get_type() == RelLib.EventType.MARRIAGE:
                             ftype = family.get_relationship()
-                            if ftype != RelLib.FamilyRelType.MARRIED:
+                            if ftype != RelLib.FamilyRelType.MARRIED and \
+                               str(ftype).strip() != "":
                                 self.writeln("2 TYPE %s" % str(ftype))
-                        elif event.get_description() != "":
+                        elif event.get_description().strip() != "":
                             self.writeln("2 TYPE %s" % event.get_description())
                     else:
                         self.writeln("1 EVEN")
-                        self.writeln("2 TYPE %s" % self.cnvtxt(str(etype)))
+                        the_type = str(etype).strip()
+                        if the_type:
+                            self.writeln("2 TYPE %s" % self.cnvtxt(the_type))
 
                     self.dump_event_stats(event)
 
@@ -681,7 +684,7 @@ class GedcomWriter(UpdateCallback):
                 name = GedcomInfo.familyConstantAttributes.get(t)
                 value = self.cnvtxt(attr.get_value()).replace('\r',' ')
 
-                if name:
+                if name and name.strip():
                     self.writeln("1 %s %s" % (name,value))
                     continue
                 else:
@@ -894,7 +897,7 @@ class GedcomWriter(UpdateCallback):
                         self.writeln("1 BIRT")
                     else:
                         self.writeln("1 BIRT Y")
-                    if birth.get_description() != "":
+                    if birth.get_description().strip() != "":
                         self.writeln("2 TYPE %s" % birth.get_description())
                     self.dump_event_stats(birth)
 
@@ -907,7 +910,7 @@ class GedcomWriter(UpdateCallback):
                         self.writeln("1 DEAT")
                     else:
                         self.writeln("1 DEAT Y")
-                    if death.get_description() != "":
+                    if death.get_description().strip() != "":
                         self.writeln("2 TYPE %s" % death.get_description())
                     self.dump_event_stats(death)
 
@@ -955,9 +958,9 @@ class GedcomWriter(UpdateCallback):
                             self.writeln('3 ADOP WIFE')
                         else:
                             self.writeln('3 ADOP HUSB')
-                elif val :
+                elif val and val.strip():
                     if val in personalAttributeTakesParam:
-                        if event.get_description():
+                        if event.get_description().strip():
                             self.writeln(
                                 "1 %s %s" %
                                 (self.cnvtxt(val),
@@ -970,7 +973,7 @@ class GedcomWriter(UpdateCallback):
                             self.writeln("1 %s" % self.cnvtxt(val))
                         else:
                             self.writeln("1 %s Y" % self.cnvtxt(val))
-                        if event.get_description():
+                        if event.get_description().strip():
                             self.writeln(
                                 "2 TYPE %s"
                                 % self.cnvtxt(event.get_description()))
@@ -978,12 +981,13 @@ class GedcomWriter(UpdateCallback):
                     # Actually, it is against the spec to put anything
                     # after EVEN on the same line, possibly an option is
                     # needed on how to handle this
-                    if event.get_description() != "":
+                    if event.get_description().strip() != "":
                         self.writeln("1 EVEN %s" %
                                      self.cnvtxt(event.get_description()))
                     else:
                         self.writeln("1 EVEN")
-                    self.writeln("2 TYPE %s" % self.cnvtxt(val))
+                    if val.strip():
+                        self.writeln("2 TYPE %s" % self.cnvtxt(val))
 
                 self.dump_event_stats(event)
 
@@ -1017,13 +1021,13 @@ class GedcomWriter(UpdateCallback):
 
                 t = int(attr.get_type())
                 name = GedcomInfo.personalConstantAttributes.get(t)
-                value = self.cnvtxt(attr.get_value()).replace('\r',' ')
+                value = self.cnvtxt(attr.get_value().strip()).replace('\r',' ')
 
 #                if name in ["AFN", "RFN", "_UID"]:
 #                    self.writeln("1 %s %s" % (name,value))
 #                    continue
 
-                if name:
+                if name and name.strip():
                     self.writeln("1 %s %s" % (name,value))
                 else:
                     self.writeln("1 EVEN")

@@ -1,4 +1,5 @@
 2006-06-23  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_WriteGedcom.py: Prevent writing empty value tags.
 	* src/images/Makefile.am (dist_pkgdata_DATA): Comment out map images.
 	* configure.in: Add help/Makefile to AC_CONFIG_FILES.
 	* Makefile.am (SUBDIRS): Add help subdir.
