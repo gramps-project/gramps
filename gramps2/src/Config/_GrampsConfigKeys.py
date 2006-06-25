@@ -1,3 +1,25 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2006  Donald N. Allingham
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+# $Id$
+
 RELATION_SHADE       = ('preferences','relation-shade', 0)
 ONLINE_MAPS          = ('preferences','online-maps', 0)
 FAMILY_DETAILS       = ('preferences','family-details', 0)
@@ -30,7 +52,8 @@ PAPER_PREFERENCE     = ('preferences','paper-preference', 2)
 RECENT_FILE          = ('paths','recent-file', 2)
 RECENT_IMPORT_DIR    = ('paths','recent-import-dir', 2)
 RECENT_EXPORT_DIR    = ('paths','recent-export-dir', 2)
-NAME_FORMAT          = ('preferences','name-format', 2)
+NAME_FORMAT          = ('preferences','name-format', 1)
+NAME_FORMAT_STR      = ('preferences','name-format-str', 2)
 REPORT_DIRECTORY     = ('paths','report-directory', 2)
 RESEARCHER_ADDR      = ('researcher','researcher-addr', 2)
 RESEARCHER_CITY      = ('researcher','researcher-city', 2)
@@ -86,7 +109,8 @@ default_value = {
     RECENT_FILE          : '',
     RECENT_IMPORT_DIR    : '',
     RECENT_EXPORT_DIR    : '',
-    NAME_FORMAT          : '0',
+    NAME_FORMAT          : 0,
+    NAME_FORMAT_STR      : '',
     REPORT_DIRECTORY     : './',
     RESEARCHER_ADDR      : '',
     RESEARCHER_CITY      : '',

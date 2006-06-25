@@ -47,6 +47,7 @@ _SNAME     = 11
 _GROUP     = 12
 _SORT      = 13
 _DISPLAY   = 14
+_CALL      = 15
 
 formats = {
     Name.LNFN: _("Family name, Given name Patronymic"),
@@ -227,7 +228,7 @@ class NameDisplay:
             SurnamePrefix Surname, FirstName Patronymic SurnameSuffix
         """
         return self._lnfn_base(name.first_name,name.surname,name.prefix,
-                          name.suffix,name.patronymic)
+                               name.suffix,name.patronymic)
 
     def _lnfn_raw(self,raw_data):
         """
@@ -256,6 +257,48 @@ class NameDisplay:
 
         return " ".join([prefix, last, first, patronymic, suffix])
     
+    def _format(self,name,format):
+        return self._format_base(name.first_name,name.surname,name.prefix,
+                                 name.suffix,name.patronymic,name.title,
+                                 name.call,format)
+
+    def _format_raw(self,raw_data,format):
+        surname = raw_data[_SURNAME]
+        prefix = raw_data[_PREFIX]
+        first = raw_data[_FIRSTNAME]
+        patronymic = raw_data[_PATRONYM]
+        suffix = raw_data[_SUFFIX]
+        title = raw_data[_TITLE]
+        call = raw_data[_CALL]
+        return self._format_base(first,surname,prefix,suffix,patronymic,
+                                 title,call,format)
+        
+    def _format_base(self,first,surname,prefix,suffix,patronymic,title,call,
+                     format):
+        """
+        Generates name from a format string, e.g. '%T. %p %F %L (%p)' .
+        """
+
+        output = format
+        
+        output = output.replace("%t",title)
+        output = output.replace("%f",first)
+        output = output.replace("%p",prefix)
+        output = output.replace("%l",surname)
+        output = output.replace("%s",suffix)
+        output = output.replace("%y",patronymic)
+        output = output.replace("%c",call)
+        output = output.replace("%T",title.upper())
+        output = output.replace("%F",first.upper())
+        output = output.replace("%P",prefix.upper())
+        output = output.replace("%L",surname.upper())
+        output = output.replace("%S",suffix.upper())
+        output = output.replace("%Y",patronymic.upper())
+        output = output.replace("%C",call.upper())
+        output = output.replace("%%",'%')
+
+        return output
+
     def sorted_name(self,name):
         """
         Returns a text string representing the L{Name} instance

@@ -17,6 +17,9 @@ copy = """#
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
+
 """
 
 from xml.parsers.expat import ExpatError, ParserCreate
@@ -84,6 +87,7 @@ if __name__ == "__main__":
     parser.parse(sys.argv[1])
 
     f = open("_GrampsConfigKeys.py","w")
+    f.write(copy)
     
     for (key, key_type, default, long, short, include) in parser.list:
         data = key.split('/')

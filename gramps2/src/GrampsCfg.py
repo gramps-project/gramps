@@ -280,7 +280,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             self.name_exp.set_sensitive(True)
             self.name_exp.set_expanded(True)
         else:
-            Config.set(Config.NAME_FORMAT,str(obj.get_active()))
+            Config.set(Config.NAME_FORMAT,obj.get_active())
             self.name_exp.set_expanded(False)
             self.name_exp.set_sensitive(False)
 
