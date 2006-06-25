@@ -1,3 +1,10 @@
+2006-06-24  Alex Roitman  <shura@gramps-project.org>
+	* src/ReportBase/_ReportDialog.py (report): Handle wm closing.
+	* src/plugins/GraphViz.py (GraphVizDialog.__init__): Handle wm
+	closing. 
+	* src/plugins/NarrativeWeb.py (WebReportDialog.__init__): Handle
+	wm closing.
+
 2006-06-25  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/AncestorChart2.py: fix comment
 	* src/plugins/DecendChart.py: fix comment

@@ -943,6 +943,8 @@ class GraphVizDialog(ReportDialog):
                 self.make_report()
             except (IOError,OSError),msg:
                 ErrorDialog(str(msg))
+        elif response == gtk.RESPONSE_DELETE_EVENT:
+            return
         self.close()
 
     def make_doc_menu(self,active=None):
