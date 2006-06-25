@@ -1,3 +1,13 @@
+2006-06-24  Alex Roitman  <shura@gramps-project.org>
+	* src/NameDisplay.py (_format_base): Add format string display;
+	(_format_raw, _format): Add format string methods.
+	* src/GrampsCfg.py (name_changed): Switch back to int key.
+	* data/gramps.schemas.in: Add name-format-str key for custom name
+	display format string.
+	* src/Config/_GrampsConfigKeys.py: Re-generate the file.
+	* src/Config/gen_schema_keys.py (copy): Add Id string; 
+	Write header into the generated file.
+
 2006-06-24  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/BookReport.py: fix book loading
 
