@@ -2605,6 +2605,8 @@ class WebReportDialog(ReportDialog):
         response = self.window.run()
         if response == gtk.RESPONSE_OK:
             self.make_report()
+        elif response == gtk.RESPONSE_DELETE_EVENT:
+            return
         self.close()
 
     def setup_style_frame(self):

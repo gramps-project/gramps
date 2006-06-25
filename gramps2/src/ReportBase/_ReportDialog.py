@@ -654,4 +654,6 @@ def report(dbstate,uistate,person,report_class,options_class,
             ErrorDialog(_("Report could not be created"),str(msg))
         except:
             log.error("Failed to run report.", exc_info=True)
+    elif response == gtk.RESPONSE_DELETE_EVENT:
+        return
     dialog.close()
