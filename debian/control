@@ -2,7 +2,7 @@ Source: gramps
 Section: gnome
 Priority: optional
 Maintainer: James A. Treacy <treacy@debian.org>
-Build-Depends-Indep: debhelper (>=4.2.16), python-xml, python-gnome2, python-glade2, scrollkeeper, libglib2.0-dev, libgconf2-dev, build-essential, gnome-doc-utils, intltool
+Build-Depends-Indep: debhelper (>=4.2.16), python-xml, python-gnome2, python-glade2, scrollkeeper, libglib2.0-dev, libgconf2-dev, build-essential, gnome-doc-utils, intltool, xsltproc
 Standards-Version: 3.6.2
 
 Package: gramps

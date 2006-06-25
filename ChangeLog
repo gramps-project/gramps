@@ -1,3 +1,6 @@
+2006-06-24  Alex Roitman  <shura@gramps-project.org>
+	* debian/control (Build-Depends-Indep): Add xsltproc
+
 2006-06-25  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/ODFDoc.py: Handle exception when file is not writeable
 	* src/docgen/ODSDoc.py: Handle exception when file is not writeable
