@@ -1,3 +1,6 @@
+2006-06-24  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/BookReport.py: fix book loading
+
 2006-06-24  Alex Roitman  <shura@gramps-project.org>
 	* src/ReportBase/_ReportDialog.py (report): Handle wm closing.
 	* src/plugins/GraphViz.py (GraphVizDialog.__init__): Handle wm
@@ -5,7 +8,7 @@
 	* src/plugins/NarrativeWeb.py (WebReportDialog.__init__): Handle
 	wm closing.
 
-2006-06-25  Brian Matherly  <brian@gramps-project.org>
+2006-06-24  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/AncestorChart2.py: fix comment
 	* src/plugins/DecendChart.py: fix comment
 	* src/plugins/TimeLine.py: Remove Title option
@@ -13,7 +16,7 @@
 2006-06-24  Alex Roitman  <shura@gramps-project.org>
 	* debian/control (Build-Depends-Indep): Add xsltproc
 
-2006-06-25  Brian Matherly  <brian@gramps-project.org>
+2006-06-24  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/ODFDoc.py: Handle exception when file is not writeable
 	* src/docgen/ODSDoc.py: Handle exception when file is not writeable
 	* src/docgen/OpenOfficeDoc.py: Handle exception when file is not writeable

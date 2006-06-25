@@ -400,7 +400,7 @@ class BookList:
         try:
             p = make_parser()
             p.setContentHandler(BookParser(self))
-            p.parse("file://" + self.file)
+            p.parse(self.file)
         except (IOError,OSError,SAXParseException):
             pass
 
@@ -726,10 +726,10 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
             data = [ item.get_translated_name(),
                      item.get_category(), item.get_name() ]
             if data[2] in ('simple_book_title','custom_text'):
-                data.append(_("Not Applicable"))
+                data[2]=(_("Not Applicable"))
             else:
                 pname = self.db.get_person_from_gramps_id(person_id)
-                data.append(pname.get_primary_name().get_regular_name())
+                data[2]=(pname.get_primary_name().get_regular_name())
             self.bk_model.add(data)
 
     def on_add_clicked(self,obj):
