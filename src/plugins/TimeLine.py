@@ -51,6 +51,7 @@ import BaseDoc
 from Filters import GenericFilter, Rules, CustomFilters
 import Sort
 from QuestionDialog import ErrorDialog
+import NameDisplay
 
 #------------------------------------------------------------------------
 #
@@ -75,7 +76,6 @@ class TimeLine(Report):
         filter    - Filter to be applied to the people of the database.
                     The option class carries its number, and the function
                     returning the list of filters.
-        title     - Title of the report displayed on top
         sort_func - function used to sort entries, that returns -1/0/1
                     when given two personal handles (like cmp).
                     The option class carries its number, and the function
@@ -89,7 +89,8 @@ class TimeLine(Report):
         filters.extend(CustomFilters.get_filters())
         self.filter = filters[filter_num]
 
-        self.title = options_class.handler.options_dict['title']
+        name = NameDisplay.displayer.display_formal(person)
+        self.title = _("Timeline Graph for %s") % name
 
         sort_func_num = options_class.handler.options_dict['sortby']
         sort_functions = options_class.get_sort_functions(Sort.Sort(database))
@@ -362,15 +363,12 @@ class TimeLineOptions(ReportOptions):
         # Options specific for this report
         self.options_dict = {
             'sortby'    : 0,
-            'title'     : '',
         }
         self.options_help = {
             'sortby'    : ("=num","Number of a sorting function",
                             [item[0] for item in 
                                     self.get_sort_functions(Sort.Sort(None))],
                             True),
-            'title'     : ("=str","Title string for the report",
-                            "Whatever String You Wish"),
         }
 
     def enable_options(self):
@@ -456,19 +454,10 @@ class TimeLineOptions(ReportOptions):
 
         dialog.add_option(_('Sort by'),self.sort_menu)
 
-        self.title_box = gtk.Entry()
-        if self.options_dict['title']:
-            self.title_box.set_text(self.options_dict['title'])
-        else:
-            self.title_box.set_text(dialog.get_header(dialog.person.get_primary_name().get_name()))
-        self.title_box.show()
-        dialog.add_option(_('report|Title'),self.title_box)
-
     def parse_user_options(self,dialog):
         """
         Parses the custom options that we have added.
         """
-        self.options_dict['title'] = unicode(self.title_box.get_text())
         self.options_dict['sortby'] = self.sort_menu.get_active()
 
 #------------------------------------------------------------------------

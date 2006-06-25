@@ -184,7 +184,6 @@ class AncestorChart(Report):
         dispf     - Display format for the output box.
         singlep   - Whether to scale to fit on a single page.
         compress  - Whether to compress chart.
-        title     - Title of the report displayed on top.
         """
         Report.__init__(self,database,person,options_class)
 
