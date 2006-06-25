@@ -122,7 +122,6 @@ class DescendChart(Report):
         
         dispf     - Display format for the output box.
         singlep   - Whether to scale to fit on a single page.
-        title     - Title of the report displayed on top.
         maxgen    - Maximum number of generations to include.
         """
         Report.__init__(self,database,person,options_class)
