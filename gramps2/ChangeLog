@@ -1,3 +1,7 @@
+2006-06-26  Don Allingham  <don@gramps-project.org>
+	* src/Filters/Rules/Person/_HasDeath.py: use references instead of
+	handles
+
 2006-06-24  Alex Roitman  <shura@gramps-project.org>
 	* src/NameDisplay.py (_format_base): Add format string display;
 	(_format_raw, _format): Add format string methods.
