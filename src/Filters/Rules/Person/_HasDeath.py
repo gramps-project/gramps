@@ -57,9 +57,10 @@ class HasDeath(Rule):
             self.date = None
 
     def apply(self,db,person):
-        event_handle = person.get_death_handle()
-        if not event_handle:
+        event_ref = person.get_death_ref()
+        if not event_ref:
             return False
+        event_handle = event_ref.ref
         event = db.get_event_from_handle(event_handle)
         ed = event.get_description().upper()
         if self.list[2] \

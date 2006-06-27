@@ -24,6 +24,8 @@
 Class handling language-specific displaying of names.
 """
 
+from gettext import gettext as _
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
