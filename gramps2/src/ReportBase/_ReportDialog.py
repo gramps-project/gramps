@@ -647,6 +647,8 @@ def report(dbstate,uistate,person,report_class,options_class,
         except Errors.FilterError, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)
+        except IOError, msg:
+            ErrorDialog(_("Report could not be created"),str(msg))
         except Errors.ReportError, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)
