@@ -1,4 +1,5 @@
 2006-06-26  Don Allingham  <don@gramps-project.org>
+	* src/ReportBase/_ReportDialog.py (report): catch IOError
 	* src/Filters/Rules/Person/_HasDeath.py: use references instead of
 	handles
 
