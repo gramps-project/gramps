@@ -879,7 +879,9 @@ class PedigreeView(PageView.PersonNavView):
         
         # Add navigation arrows
         if lst[0]:
-            l = gtk.Button("◀")
+            #l = gtk.Button("◀")
+	    l=gtk.Button()
+	    l.add(gtk.Arrow(gtk.ARROW_LEFT, gtk.SHADOW_IN))
             childlist = find_children(self.dbstate.db,lst[0][0])
             if childlist:
                 l.connect("clicked",self.on_show_child_menu)
@@ -888,7 +890,9 @@ class PedigreeView(PageView.PersonNavView):
                 l.set_sensitive(False)
             ymid = int(math.floor(ymax/2))
             table_widget.attach(l,0,1,ymid,ymid+1,0,0,0,0)
-            l = gtk.Button("▶")
+            #l = gtk.Button("▶")
+            l = gtk.Button()
+	    l.add(gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_IN))
             if lst[1]:
                 l.connect("clicked",self.on_childmenu_changed,lst[1][0].handle)
                 self.tooltips.set_tip(l, _("Jump to father"))
@@ -896,7 +900,8 @@ class PedigreeView(PageView.PersonNavView):
                 l.set_sensitive(False)
             ymid = int(math.floor(ymax/4))
             table_widget.attach(l,xmax,xmax+1,ymid-1,ymid+2,0,0,0,0)
-            l = gtk.Button("▶")
+            l = gtk.Button()
+	    l.add(gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_IN))
             if lst[2]:
                 l.connect("clicked",self.on_childmenu_changed,lst[2][0].handle)
                 self.tooltips.set_tip(l, _("Jump to mother"))
