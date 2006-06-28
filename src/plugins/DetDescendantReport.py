@@ -321,7 +321,11 @@ class DetDescendantReport(Report):
                 self.doc.end_paragraph()
 
         if self.includeEvents:
+            birth_ref = person.get_birth_ref()
+            death_ref = person.get_death_ref()
             for event_ref in person.get_event_ref_list():
+                if event_ref == birth_ref or event_ref == death_ref:
+                    continue
                 event = self.database.get_event_from_handle(event_ref.ref)
                 date = DateHandler.get_date(event)
                 ename = str( event.get_type() )

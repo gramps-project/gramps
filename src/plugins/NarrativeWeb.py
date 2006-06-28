@@ -1665,14 +1665,15 @@ class IndividualPage(BasePage):
             of.write('</tr>\n')
 
         for event_ref in evt_ref_list:
-            event = self.db.get_event_from_handle(event_ref.ref)
-            if event:
-                evt_name = str(event.get_type())
-                of.write('<tr><td class="field">%s</td>\n' % evt_name)
-                of.write('<td class="data">\n')
-                of.write(self.format_event(event))
-                of.write('</td>\n')
-                of.write('</tr>\n')
+            if event_ref != birth_ref and event_ref != death_ref:
+                event = self.db.get_event_from_handle(event_ref.ref)
+                if event:
+                    evt_name = str(event.get_type())
+                    of.write('<tr><td class="field">%s</td>\n' % evt_name)
+                    of.write('<td class="data">\n')
+                    of.write(self.format_event(event))
+                    of.write('</td>\n')
+                    of.write('</tr>\n')
         of.write('</table>\n')
         of.write('</div>\n')
 

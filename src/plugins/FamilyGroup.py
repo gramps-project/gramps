@@ -333,10 +333,11 @@ class FamilyGroup(Report):
 
         if self.incParEvents:
             for event_ref in person.get_event_ref_list():
-                event = self.database.get_event_from_handle(event_ref.ref)
-                evtType = event.get_type()
-                name = str( evtType )
-                self.dump_parent_event(name,event)
+                if event_ref != birth_ref and event_ref != death_ref:
+                    event = self.database.get_event_from_handle(event_ref.ref)
+                    evtType = event.get_type()
+                    name = str( evtType )
+                    self.dump_parent_event(name,event)
 
         if self.incParAddr:
             addrlist = person.get_address_list()[:]

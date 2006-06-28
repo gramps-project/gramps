@@ -377,9 +377,7 @@ class IndivCompleteReport(Report):
         self.doc.end_cell()
         self.doc.end_row()
 
-        event_ref_list = [ self.start_person.get_birth_ref(),                  \
-                           self.start_person.get_death_ref() ]    +            \
-                           self.start_person.get_event_ref_list()
+        event_ref_list = self.start_person.get_event_ref_list()
         for event_ref in event_ref_list:
             if event_ref:
                 event = self.database.get_event_from_handle(event_ref.ref)
