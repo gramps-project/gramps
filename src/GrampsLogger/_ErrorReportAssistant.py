@@ -81,6 +81,13 @@ class ErrorReportAssistant:
                                self._final_report_text_buffer.get_end_iter()))
         
     def _get_sys_information(self):
+        if hasattr(os, "uname"):
+            operatingsystem = os.uname()[0]
+            distribution = os.uname()[2]
+        else:
+            operatingsystem = sys.platform
+            distribution = " "
+
         return "Python version: %s \n"\
                "Gramps version: %s \n"\
                "LANG: %s\n"\
@@ -89,8 +96,8 @@ class ErrorReportAssistant:
                % (str(sys.version).replace('\n',''),
                   str(const.version),
                   os.environ.get('LANG',''),
-                  os.uname()[0],
-                  os.uname()[2])
+                  operatingsystem,
+                  distribution)
 
     def _reset_error_details_text_buffer(self,obj=None):
         self._error_details_text_buffer.set_text(
