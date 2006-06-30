@@ -1,6 +1,6 @@
 2006-06-30  Don Allingham  <don@gramps-project.org>
 	* src/GrampsWidgets.py: Add GenderWidget to try to isolate windows 
-	font problems
+	font problems by switching fonts if needed
 
 2006-06-28  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PedigreeView.py (PedigreeView.rebuild): use gtk.Arrow

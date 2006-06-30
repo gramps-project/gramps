@@ -360,8 +360,7 @@ class RelationshipView(PageView.PersonNavView):
         name = NameDisplay.displayer.display(person)
         fmt = '<span size="larger" weight="bold">%s</span>'
         text = fmt % cgi.escape(name)
-        gender = fmt % _GenderCode[person.gender]
-        label = GrampsWidgets.DualMarkupLabel(text, gender)
+        label = GrampsWidgets.DualMarkupLabel(text, _GenderCode[person.gender])
         button = GrampsWidgets.IconButton(self.edit_button_press,person.handle)
         hbox = GrampsWidgets.LinkBox(label, button)
 
