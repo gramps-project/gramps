@@ -358,9 +358,10 @@ class RelationshipView(PageView.PersonNavView):
         
         # name and edit button
         name = NameDisplay.displayer.display(person)
-        fmt = '<span size="larger" weight="bold">%s %s</span>'
-        text = fmt % (cgi.escape(name), _GenderCode[person.gender])
-        label = GrampsWidgets.MarkupLabel(text)
+        fmt = '<span size="larger" weight="bold">%s</span>'
+        text = fmt % cgi.escape(name)
+        gender = fmt % _GenderCode[person.gender]
+        label = GrampsWidgets.DualMarkupLabel(text, gender)
         button = GrampsWidgets.IconButton(self.edit_button_press,person.handle)
         hbox = GrampsWidgets.LinkBox(label, button)
 
