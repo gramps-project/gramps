@@ -178,6 +178,20 @@ class MarkupLabel(gtk.Label):
         gtk.Label.__init__(self, text)
         self.set_alignment(0, 0.5)
         self.set_use_markup(True)
+        self.show_all()
+
+class DualMarkupLabel(gtk.HBox):
+
+    def __init__(self, text, alt):
+        gtk.HBox.__init__(self)
+        label = gtk.Label(text)
+        label.set_alignment(0, 0.5)
+        label.set_use_markup(True)
+
+        self.add(label)
+        b = GenderLabel(alt)
+        b.set_use_markup(True)
+        self.add(b)
         self.show()
         
 class IntEdit(gtk.Entry):
