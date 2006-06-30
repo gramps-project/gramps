@@ -31,6 +31,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gobject
 import gtk
+import pango
 
 import AutoComp
 import DateHandler
@@ -52,15 +53,17 @@ class LinkLabel(gtk.EventBox):
         self.orig_text = cgi.escape(label[0])
         self.gender = label[1]
         text = '<span underline="single">%s</span>' % self.orig_text
-        if label[1]:
-            text += u' %s' % label[1]
         
         self.label = gtk.Label(text)
         self.label.set_use_markup(True)
         self.label.set_alignment(0, 0.5)
 
-        self.add(self.label)
-
+        hbox = gtk.HBox()
+        hbox.add(self.label)
+        if label[1]:
+            hbox.add(GenderLabel(label[1]))
+        self.add(hbox)
+        
         self.connect('button-press-event', func, handle)
         self.connect('enter-notify-event', self.enter_text, handle)
         self.connect('leave-notify-event', self.leave_text, handle)
@@ -150,9 +153,6 @@ class EditLabel(gtk.HBox):
         self.pack_start(gtk.image_new_from_stock(gtk.STOCK_EDIT, 
                                                  gtk.ICON_SIZE_MENU), False)
         self.set_spacing(4)
-#        self.tooltip = gtk.Tooltips()
-#        self.tooltip.set_tip(label, _('Click in the cell to change the value'))
-#        self.tooltip.enable()
         self.show_all()
 
 class BasicLabel(gtk.Label):
@@ -160,6 +160,16 @@ class BasicLabel(gtk.Label):
     def __init__(self, text):
         gtk.Label.__init__(self, text)
         self.set_alignment(0, 0.5)
+        self.show()
+
+class GenderLabel(gtk.Label):
+
+    def __init__(self, text):
+        gtk.Label.__init__(self, text)
+        self.set_alignment(0, 0.5)
+        if os.sys.platform == "win32":
+            pangoFont = pango.FontDescription('Arial')
+            self.modify_font(pangoFont)
         self.show()
 
 class MarkupLabel(gtk.Label):
