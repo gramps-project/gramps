@@ -1,3 +1,7 @@
+2006-07-01  Don Allingham  <don@gramps-project.org>
+	* src/GrampsWidgets.py: fix LinkLabel to not try to rebuild 
+	gender code
+
 2006-06-30  Don Allingham  <don@gramps-project.org>
 	* src/AddMedia.py: use full paths for calculations to avoid pwd issues
 	* src/DbLoader.py: fix working directories
