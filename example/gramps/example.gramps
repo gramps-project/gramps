@@ -45563,22 +45563,22 @@ This is a paragraph from the gramps-project.org page that was translated by Goog
   </places>
   <objects>
     <object id="O0006" handle="_F0QIGQFT275JFJ75E8" change="1147667430">
-      <file src="/home/shura/2.0-gramps/example/gramps/Alimehemet.jpg" mime="image/jpeg" description="Alimehemet"/>
+      <file src="Alimehemet.jpg" mime="image/jpeg" description="Alimehemet"/>
     </object>
     <object id="O0007" handle="_F8JYGQFL2PKLSYH79X" change="1147667430">
-      <file src="/home/shura/2.0-gramps/example/gramps/E_W_Dahlgren.jpg" mime="image/jpeg" description="E_W_Dahlgren"/>
+      <file src="E_W_Dahlgren.jpg" mime="image/jpeg" description="E_W_Dahlgren"/>
     </object>
     <object id="O0008" handle="_B1AUFQV7H8R9NR4SZM" change="1147667430">
-      <file src="/home/shura/2.0-gramps/example/gramps/654px-Aksel_Andersson.jpg" mime="image/jpeg" description="654px-Aksel_Andersson"/>
+      <file src="654px-Aksel_Andersson.jpg" mime="image/jpeg" description="654px-Aksel_Andersson"/>
     </object>
     <object id="O0009" handle="_78V2GQX2FKNSYQ3OHE" change="1147667430">
-      <file src="/home/shura/2.0-gramps/example/gramps/Gunnlaugur_Larusson_-_Yawn.jpg" mime="image/jpeg" description="Yawn"/>
+      <file src="Gunnlaugur_Larusson_-_Yawn.jpg" mime="image/jpeg" description="Yawn"/>
     </object>
     <object id="O0010" handle="_238CGQ939HG18SS5MG" change="1147667430">
-      <file src="/home/shura/2.0-gramps/example/gramps/1897_expeditionsmannschaft_rio_a.jpg" mime="image/jpeg" description="1897_expeditionsmannschaft_rio_a"/>
+      <file src="1897_expeditionsmannschaft_rio_a.jpg" mime="image/jpeg" description="1897_expeditionsmannschaft_rio_a"/>
     </object>
     <object id="O0011" handle="_Y3ARGQWE088EQRTTDH" change="1147667430">
-      <file src="/home/shura/2.0-gramps/example/gramps/AntoineClaudet.png" mime="image/png" description="AntoineClaudet"/>
+      <file src="AntoineClaudet.png" mime="image/png" description="AntoineClaudet"/>
     </object>
   </objects>
   <repositories>
