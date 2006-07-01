@@ -74,15 +74,11 @@ class LinkLabel(gtk.EventBox):
         
     def enter_text(self, obj, event, handle):
         text = '<span foreground="blue" underline="single">%s</span>' % self.orig_text
-        if self.gender:
-            text += u" %s" % self.gender
         self.label.set_text(text)
         self.label.set_use_markup(True)
 
     def leave_text(self, obj, event, handle):
         text = '<span underline="single">%s</span>' % self.orig_text
-        if self.gender:
-            text += u" %s" % self.gender
         self.label.set_text(text)
         self.label.set_use_markup(True)
 
