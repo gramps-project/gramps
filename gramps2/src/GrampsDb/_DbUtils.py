@@ -69,7 +69,9 @@ def remove_parent_from_family(db, person_handle, family_handle, trans=None):
     person.remove_family_handle(family_handle)
     if family.get_father_handle() == person_handle:
         family.set_father_handle(None)
+        msg = _("Remove father from family")
     elif family.get_mother_handle() == person_handle:
+        msg = _("Remove mother from family")
         family.set_mother_handle(None)
 
     child_list = family.get_child_ref_list()
@@ -80,10 +82,8 @@ def remove_parent_from_family(db, person_handle, family_handle, trans=None):
             child = db.get_person_from_handle(child_list[0].ref)
             child.remove_parent_family_handle(family_handle)
             db.commit_person(child, trans)
-        msg = _("Remove father from family")
     else:
         db.commit_family(family, trans)
-        msg = _("Remove mother from family")
     db.commit_person(person, trans)
     
     if need_commit:

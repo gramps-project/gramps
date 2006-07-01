@@ -138,11 +138,13 @@ class DateEdit:
                                             gtk.ICON_SIZE_MENU))
         elif self.date_obj.is_regular():
             self.pixmap_obj.set_from_pixbuf(
-                self.pixmap_obj.render_icon(gtk.STOCK_YES,gtk.ICON_SIZE_MENU))
+                self.pixmap_obj.render_icon(gtk.STOCK_YES,
+                                            gtk.ICON_SIZE_MENU))
         else:
             self.pixmap_obj.set_from_pixbuf(
                 self.pixmap_obj.render_icon(gtk.STOCK_DIALOG_WARNING,
                                             gtk.ICON_SIZE_MENU))
+
         
     def parse_and_check(self,*obj):
         """
