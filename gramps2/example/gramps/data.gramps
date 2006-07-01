@@ -1191,22 +1191,22 @@ Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corpo
   </places>
   <objects>
     <object id="O0" handle="_HHNT6D73QPKC0KWK2Y" change="1141336857">
-      <file src="/home/shura/devel-gramps/example/gramps/O0.jpg" mime="image/jpeg" description="Keith Lloyd Smith"/>
+      <file src="O0.jpg" mime="image/jpeg" description="Keith Lloyd Smith"/>
     </object>
     <object id="O1" handle="_W2NT6D87SPI9V7G27P" change="1141336857">
-      <file src="/home/shura/devel-gramps/example/gramps/O1.jpg" mime="image/jpeg" description="Arriving 1910"/>
+      <file src="O1.jpg" mime="image/jpeg" description="Arriving 1910"/>
     </object>
     <object id="O2" handle="_43NT6DHH0TBN0PKVC" change="1141336857">
-      <file src="/home/shura/devel-gramps/example/gramps/O2.jpg" mime="image/jpeg" description="Emil &amp; Gustaf Smith"/>
+      <file src="O2.jpg" mime="image/jpeg" description="Emil &amp; Gustaf Smith"/>
     </object>
     <object id="O3" handle="_CVNT6DHG5ICZ1UGUO9" change="1141336857">
-      <file src="/home/shura/devel-gramps/example/gramps/O3.jpg" mime="image/jpeg" description="Edwin Michael Smith"/>
+      <file src="O3.jpg" mime="image/jpeg" description="Edwin Michael Smith"/>
     </object>
     <object id="O4" handle="_Y0OT6DM7FW06A1SLMS" change="1141336857">
-      <file src="/home/shura/devel-gramps/example/gramps/O4.jpg" mime="image/jpeg" description="Marjorie Alice Smith"/>
+      <file src="O4.jpg" mime="image/jpeg" description="Marjorie Alice Smith"/>
     </object>
     <object id="O5" handle="_MNNT6D27G3L8SGVQJV" change="1141336857">
-      <file src="/home/shura/devel-gramps/example/gramps/O5.jpg" mime="image/jpeg" description="Edwin &amp; Janice Smith"/>
+      <file src="O5.jpg" mime="image/jpeg" description="Edwin &amp; Janice Smith"/>
     </object>
   </objects>
   <repositories>

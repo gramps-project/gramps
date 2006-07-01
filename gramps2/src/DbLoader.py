@@ -110,6 +110,10 @@ class DbLoader:
                             const.app_gedcom]:
     
                 self.read_file(filename,filetype)
+                try:
+                    os.chdir(os.path.dirname(filename))
+                except:
+                    return ('','')
                 return (filename,filetype)
             else:
                 QuestionDialog.ErrorDialog(
@@ -154,6 +158,10 @@ class DbLoader:
                     pass
                 filetype = const.app_gramps
                 self.read_file(filename,filetype)
+                try:
+                    os.chdir(os.path.dirname(filename))
+                except:
+                    return ('','')
                 return (filename,filetype)
             else:
                 choose.destroy()
@@ -353,12 +361,6 @@ class DbLoader:
                     _('You do not have write access to the selected file.'))
                 return True
 
-        # FIXME: not sure what this is for at this point
-        try:
-            os.chdir(os.path.dirname(filename))
-        except:
-            print "could not change directory"
-
         return False
 
     def read_file(self, filename, filetype):
@@ -391,6 +393,10 @@ class DbLoader:
         
         try:
             self.dbstate.db.load(filename,self.uistate.pulse_progressbar,mode)
+            try:
+                os.chdir(os.path.dirname(filename))
+            except:
+                print "could not change directory"
         except Exception:
             log.error("Failed to open database.", exc_info=True)
 

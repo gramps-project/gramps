@@ -131,20 +131,23 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
             mobj.set_mime_type(None)
         else:
             filename = self.file_text.get_filename()
-            
+            full_file = filename
+
             if self.relpath.get_active():
                 p = self.db.get_save_path()
                 if not os.path.isdir(p):
                     p = os.path.dirname(p)
                 filename = Utils.relative_path(filename,p)
-        
+
+            print os.getcwd(), filename, full_file
+
             if os.path.exists(filename) == 0:
                 msgstr = _("Cannot import %s")
                 msgstr2 = _("The filename supplied could not be found.")
                 ErrorDialog(msgstr % filename, msgstr2)
                 return
 
-            mtype = Mime.get_type(filename)
+            mtype = Mime.get_type(full_file)
             if description == "":
                 description = os.path.basename(filename)
 
