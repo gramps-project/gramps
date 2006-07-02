@@ -124,8 +124,8 @@ class SourceEmbedList(EmbeddedList):
 
     def edit_button_clicked(self, obj):
         sref = self.get_selected()
-        src = self.dbstate.db.get_source_from_handle(sref.ref)
         if sref:
+            src = self.dbstate.db.get_source_from_handle(sref.ref)
             try:
                 from Editors import EditSourceRef
                 
