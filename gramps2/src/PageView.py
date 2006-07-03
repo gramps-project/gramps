@@ -293,6 +293,8 @@ class PersonNavView(BookMarkView):
                         tip=_("Go to the default person"), callback=self.home)
         self.add_action('SetActive', gtk.STOCK_HOME, _("Set _Home Person"),
                         callback=self.set_default_person)
+        self.add_action('FilterEdit', None,
+                        _('Filter Editor'), callback=self.filter_editor,)
 
         self.add_action_group(self.back_action)
         self.add_action_group(self.fwd_action)
@@ -361,6 +363,15 @@ class PersonNavView(BookMarkView):
                 self.uistate.push_message(
                     _("Error: %s is not a valid GRAMPS ID") % gid)
         dialog.destroy()
+
+    def filter_editor(self,obj):
+        from FilterEditor import FilterEditor
+
+        FilterEditor(
+            'Person',
+            const.custom_filters,
+            self.dbstate,
+            self.uistate)
 
     def fwd_clicked(self,obj,step=1):
         hobj = self.uistate.phistory

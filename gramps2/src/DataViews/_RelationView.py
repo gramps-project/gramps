@@ -195,6 +195,9 @@ class RelationshipView(PageView.PersonNavView):
                 <separator/>
               </placeholder>
             </menu>
+            <menu action="EditMenu">
+              <menuitem action="FilterEdit"/>
+            </menu>
             <menu action="BookMenu">
               <placeholder name="AddEditBook">
                 <menuitem action="AddBook"/>
