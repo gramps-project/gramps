@@ -27,6 +27,7 @@
 import time
 import logging
 log = logging.getLogger(".")
+
 try:
     set()
 except:
@@ -44,7 +45,6 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
 import ToolTips
 import GrampsLocale
 import DateHandler

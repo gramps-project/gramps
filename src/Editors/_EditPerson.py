@@ -42,8 +42,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
-import gtk.gdk
 
 try:
     set()
@@ -60,7 +58,6 @@ import Utils
 import Mime
 import RelLib
 import GrampsWidgets
-import Config
 
 from GrampsDb import set_birth_death_index
 
@@ -139,16 +136,6 @@ class EditPerson(EditPrimary):
             self.given.grab_focus()
         else:
             self.surname_field.grab_focus()
-
-#         if not Config.get(Config.HIDE_EP_MSG):
-#             MessageHideDialog(
-#                 _('Editing a person'),
-#                 _('This window allows you to enter information about '
-#                   'a person. You can add events, including birth and '
-#                   'death information under the Events tab. Similarly, '
-#                   'you can add additional information, such as sources, '
-#                   'names, and images on other tabs.'),
-#                 Config.HIDE_EP_MSG)
 
     def _connect_signals(self):
         """

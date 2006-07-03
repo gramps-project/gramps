@@ -51,7 +51,6 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 import RelLib
 from DisplayModels import PeopleModel
 import PageView
-import GrampsWidgets
 import NameDisplay
 import Utils
 import QuestionDialog
@@ -59,10 +58,9 @@ import TreeTips
 import Errors
 import Config
 import const
-from QuestionDialog import ErrorDialog
 
 from Editors import EditPerson
-from Filters import SearchBar, GenericFilter, PersonSidebarFilter
+from Filters import SearchBar, PersonSidebarFilter
 from DdTargets import DdTargets
 
 column_names = [
@@ -147,7 +145,7 @@ class PersonView(PageView.PersonNavView):
         mlist = self.get_selected_objects()
 
         if len(mlist) != 2:
-            ErrorDialog(
+            QuestionDialog.ErrorDialog(
 		_("Cannot merge people"),
 		_("Exactly two people must be selected to perform a merge. "
 		  "A second person can be selected by holding down the "
@@ -159,7 +157,7 @@ class PersonView(PageView.PersonNavView):
             if p1 and p2:
                 Merge.PersonCompare(self.dbstate, self.uistate, p1, p2)
             else:
-                ErrorDialog(
+                QuestionDialog.ErrorDialog(
                     _("Cannot merge people"),
                     _("Exactly two people must be selected to perform a "
                       "merge. A second person can be selected by holding "
@@ -170,7 +168,7 @@ class PersonView(PageView.PersonNavView):
         mlist = self.get_selected_objects()
 
         if len(mlist) != 2:
-            ErrorDialog(
+            QuestionDialog.ErrorDialog(
 		_("Cannot merge people"),
 		_("Exactly two people must be selected to perform a merge. "
 		  "A second person can be selected by holding down the "
@@ -183,7 +181,7 @@ class PersonView(PageView.PersonNavView):
             if p1 and p2:
                 Merge.MergePeopleUI(self.dbstate, self.uistate, p1, p2)
             else:
-                ErrorDialog(
+                QuestionDialog.ErrorDialog(
 		    _("Cannot merge people"),
 		    _("Exactly two people must be selected to perform a merge. "
 		      "A second person can be selected by holding down the "

@@ -31,7 +31,6 @@ __author__ = "Don Allingham"
 # Python modules
 #
 #-------------------------------------------------------------------------
-import os
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -58,8 +57,7 @@ import GrampsDisplay
 #-------------------------------------------------------------------------
 import const
 import RelLib
-from Filters import GenericFilter, FilterList, Rules, \
-     reload_custom_filters, reload_system_filters
+from Filters import Rules
 import AutoComp
 from Selectors import selector_factory
 SelectPerson = selector_factory('Person')

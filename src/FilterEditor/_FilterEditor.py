@@ -31,7 +31,6 @@ __author__ = "Don Allingham"
 # Python modules
 #
 #-------------------------------------------------------------------------
-import os
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -47,7 +46,6 @@ log = logging.getLogger(".FilterEdit")
 # GTK/GNOME 
 #
 #-------------------------------------------------------------------------
-import gtk
 import GrampsDisplay
 
 #-------------------------------------------------------------------------
@@ -56,7 +54,6 @@ import GrampsDisplay
 #
 #-------------------------------------------------------------------------
 import const
-import RelLib
 from Filters import GenericFilter, FilterList, \
      reload_custom_filters, reload_system_filters
 import ListModel

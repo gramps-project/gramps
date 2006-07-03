@@ -49,7 +49,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import RelLib
-import GrampsDisplay
 import NameDisplay
 import LdsUtils
 

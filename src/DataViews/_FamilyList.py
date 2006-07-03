@@ -21,14 +21,6 @@
 
 #-------------------------------------------------------------------------
 #
-# GTK/Gnome modules
-#
-#-------------------------------------------------------------------------
-import gtk
-import gtk.gdk
-
-#-------------------------------------------------------------------------
-#
 # gramps modules
 #
 #-------------------------------------------------------------------------
@@ -36,9 +28,7 @@ import RelLib
 import PageView
 import DisplayModels
 import Bookmarks
-import const
 import Errors
-from QuestionDialog import QuestionDialog, ErrorDialog
 
 #-------------------------------------------------------------------------
 #

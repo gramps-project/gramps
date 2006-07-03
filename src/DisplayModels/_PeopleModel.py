@@ -38,11 +38,6 @@ import cgi
 import sys
 import locale
 
-try:
-    set()
-except:
-    from sets import Set as set
-
 #-------------------------------------------------------------------------
 #
 # set up logging

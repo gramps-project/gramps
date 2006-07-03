@@ -48,8 +48,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import RelLib
-import GrampsDisplay
 from _EditSecondary import EditSecondary
 
 from DisplayTabs import SourceEmbedList, NoteTab

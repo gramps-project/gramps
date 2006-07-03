@@ -36,7 +36,6 @@ from _DateBase import DateBase
 from _PrivacyBase import PrivacyBase
 from _NoteBase import NoteBase
 from _RefBase import RefBase
-from _Note import Note
 
 #-------------------------------------------------------------------------
 #

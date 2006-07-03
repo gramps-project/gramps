@@ -32,7 +32,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.gdk
 
 #-------------------------------------------------------------------------
 #
@@ -47,7 +46,7 @@ import Utils
 import Bookmarks
 from Editors import EditMedia
 import Errors
-from QuestionDialog import QuestionDialog, ErrorDialog
+from QuestionDialog import QuestionDialog
 
 column_names = [
     _('Title'),

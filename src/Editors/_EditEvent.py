@@ -27,18 +27,12 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 
-try:
-    set()
-except:
-    from sets import Set as set
-
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
@@ -46,12 +40,11 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import AutoComp
 import RelLib
 import GrampsDisplay
 from _EditPrimary import EditPrimary
 
-from QuestionDialog import WarningDialog, ErrorDialog
+from QuestionDialog import ErrorDialog
 from DisplayTabs import SourceEmbedList, NoteTab, GalleryTab, EventBackRefList
 from GrampsWidgets import *
 

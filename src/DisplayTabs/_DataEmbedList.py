@@ -32,7 +32,6 @@ from gettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from DdTargets import DdTargets
 from _DataModel import DataModel
 from _EmbeddedList import EmbeddedList
 

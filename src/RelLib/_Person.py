@@ -46,7 +46,6 @@ from _LdsOrdBase import LdsOrdBase
 from _UrlBase import UrlBase
 from _Name import Name
 from _EventRef import EventRef
-from _LdsOrd import LdsOrd
 from _PersonRef import PersonRef
 from _MarkerType import MarkerType
 from _AttributeType import AttributeType

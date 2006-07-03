@@ -35,7 +35,6 @@ log = logging.getLogger(".")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk.glade
 
 #-------------------------------------------------------------------------
@@ -45,9 +44,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import RelLib
-import NameDisplay
-import Spell
-import GrampsDisplay
 from _EditPrimary import EditPrimary
 
 from DisplayTabs import \

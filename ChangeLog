@@ -1,4 +1,5 @@
 2006-07-02  Don Allingham  <don@gramps-project.org>
+	* various: pyflakes fixes
 	* src/DataViews/_PedigreeView.py: add filter editor support
 	* src/DataViews/_Relationship.py: add filter editor support
 	* src/DataViews/_PersonView.py: move filter editor support to PageView

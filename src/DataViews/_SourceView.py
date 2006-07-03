@@ -25,7 +25,6 @@
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.gdk
 
 #-------------------------------------------------------------------------
 #
@@ -35,7 +34,6 @@ import gtk.gdk
 import RelLib
 import PageView
 import DisplayModels
-import const
 import Utils
 import Bookmarks
 import Errors
