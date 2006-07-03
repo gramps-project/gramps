@@ -1,3 +1,9 @@
+2006-07-02  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PedigreeView.py: add filter editor support
+	* src/DataViews/_Relationship.py: add filter editor support
+	* src/DataViews/_PersonView.py: move filter editor support to PageView
+	* src/PageView.py: add filter editor support
+
 2006-07-01  Don Allingham  <don@gramps-project.org>
 	* src/DisplayState.py: fix spacing
 	* src/DisplayTabs/_SourceEmbedList.py: check for empty reference
