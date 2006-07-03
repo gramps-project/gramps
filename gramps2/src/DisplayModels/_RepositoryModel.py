@@ -24,7 +24,6 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-import time
 import logging
 log = logging.getLogger(".")
 
@@ -45,9 +44,6 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
-import ToolTips
-import GrampsLocale
 import RelLib
 from _BaseModel import BaseModel
 
@@ -220,8 +216,3 @@ class RepositoryModel(BaseModel):
 
     def column_tooltip(self,data):
         return ""
-#         try:
-#             t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_repository_from_handle(data[0]))
-#         except:
-#             log.error("Failed to create tooltip.", exc_info=True)
-#         return t

@@ -32,9 +32,7 @@ from gettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
@@ -42,7 +40,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import RelLib
 import Mime
 import ImgManip
 

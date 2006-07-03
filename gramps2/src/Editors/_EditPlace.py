@@ -35,9 +35,7 @@ log = logging.getLogger(".")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
@@ -45,7 +43,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
 import RelLib
 from _EditPrimary import EditPrimary
 

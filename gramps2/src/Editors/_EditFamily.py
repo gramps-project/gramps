@@ -52,9 +52,7 @@ log = logging.getLogger(".")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
@@ -64,10 +62,7 @@ import gtk.glade
 import const
 import Utils
 import NameDisplay
-import Spell
-import GrampsDisplay
 import RelLib
-import AutoComp
 import Config
 import Errors
 

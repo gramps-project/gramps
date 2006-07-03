@@ -27,18 +27,12 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 
-try:
-    set()
-except:
-    from sets import Set as set
-
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
@@ -46,7 +40,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import RelLib
 
 from DisplayTabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
 from GrampsWidgets import *

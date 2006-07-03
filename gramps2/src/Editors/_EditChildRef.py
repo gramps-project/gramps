@@ -45,7 +45,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import RelLib
 from _EditSecondary import EditSecondary
 
 from DisplayTabs import SourceEmbedList, NoteTab

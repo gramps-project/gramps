@@ -20,10 +20,7 @@
 
 # $Id$
 
-from gettext import gettext as _
-
 import ManagedWindow
-import Config
 import GrampsDisplay
 
 class EditSecondary(ManagedWindow.ManagedWindow):
