@@ -169,7 +169,7 @@ class XmlWriter(UpdateCallback):
         else:
             g = open(filename,"w")
 #        except IOError,msg:
-            ErrorDialog(_('Failure writing %s') % filename,msg)
+#            ErrorDialog(_('Failure writing %s') % filename,msg)
 #            return 0
 
         self.g = codecs.getwriter("utf8")(g)
