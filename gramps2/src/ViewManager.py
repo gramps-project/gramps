@@ -35,7 +35,6 @@ __revision__ = "$Revision$"
 import os
 
 from gettext import gettext as _
-from bsddb import db
 from cStringIO import StringIO
 
 #-------------------------------------------------------------------------

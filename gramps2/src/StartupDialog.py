@@ -33,7 +33,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
@@ -65,6 +64,8 @@ def upgrade_prefs():
     On failure, print message and return False.
     """
     try:
+        import gconf
+        
         client = gconf.client_get_default()
         client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
 

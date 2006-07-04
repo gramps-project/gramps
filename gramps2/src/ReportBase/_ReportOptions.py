@@ -30,17 +30,17 @@ Report option handling, including saving and parsing.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
 import os
+
 #-------------------------------------------------------------------------
 #
 # SAX interface
 #
 #-------------------------------------------------------------------------
 try:
-    from xml.sax import make_parser,handler,SAXParseException
+    from xml.sax import make_parser, SAXParseException
 except:
-    from _xmlplus.sax import make_parser,handler,SAXParseException
+    from _xmlplus.sax import make_parser, SAXParseException
 
 #-------------------------------------------------------------------------
 #
@@ -49,7 +49,6 @@ except:
 #-------------------------------------------------------------------------
 import const
 import Config
-import Utils
 import BaseDoc
 from PluginUtils import _Options
 

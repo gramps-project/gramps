@@ -44,7 +44,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from ReportBase import MODE_GUI, MODE_CLI, MODE_BKI, book_categories
-import Errors
 
 #-------------------------------------------------------------------------
 #

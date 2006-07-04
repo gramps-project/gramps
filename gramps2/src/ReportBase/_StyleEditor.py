@@ -36,7 +36,6 @@ from gettext import gettext as _
 import logging
 log = logging.getLogger(".")
 
-
 #------------------------------------------------------------------------
 #
 # GNOME/GTK modules
@@ -44,7 +43,6 @@ log = logging.getLogger(".")
 #------------------------------------------------------------------------
 import gtk
 from gtk.gdk import Color
-import gtk.glade
 
 #------------------------------------------------------------------------
 #

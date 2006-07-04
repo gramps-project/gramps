@@ -207,7 +207,6 @@ def importData(database, filename, callback=None, use_trans=False):
 
     if not gramps and ansel:
         import gtk
-        import gtk.glade
         
         glade_file = "%s/gedcomimport.glade" % os.path.dirname(__file__)
         top = gtk.glade.XML(glade_file,'encoding','gramps')

@@ -44,7 +44,6 @@ except:
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.gdk
 
 #-------------------------------------------------------------------------
 #
@@ -426,7 +425,6 @@ def set_title_label(xmlobj,t):
     title_label.set_text('<span weight="bold" size="larger">%s</span>' % t)
     title_label.set_use_markup(True)
 
-from ManagedWindow import set_titles as _set_titles
 from warnings import warn
 def set_titles(window,title,t,msg=None):
     warn('The Utils.set_titles is deprecated. Use ManagedWindow methods')

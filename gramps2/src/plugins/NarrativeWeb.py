@@ -341,9 +341,9 @@ class BasePage:
 
     def show_link(self,of,lpath,title,path):
         if path:
-            of.write('   <a href="%s/%s.%s">%s</a>\n' % (path,lpath,self.ext,title))
+            of.write('<a href="%s/%s.%s">%s</a>\n' % (path,lpath,self.ext,title))
         else:
-            of.write('   <a href="%s.%s">%s</a>\n' % (lpath,self.ext,title))
+            of.write('<a href="%s.%s">%s</a>\n' % (lpath,self.ext,title))
 
     def display_first_image_as_thumbnail( self, of, db, photolist=None):
 
@@ -741,7 +741,7 @@ class PlacePage(BasePage):
         self.display_first_image_as_thumbnail(of, db, media_list)
 
         of.write('<div id="summaryarea">\n')
-        of.write('<h3>%s</h3>\n' % self.page_title)
+        of.write('<h3>%s</h3>\n' % self.page_title.strip())
         of.write('<table class="infolist">\n')
 
         if not self.noid:
@@ -812,7 +812,7 @@ class MediaPage(BasePage):
                             get_researcher().get_name(),up=True)
         
         of.write('<div id="summaryarea">\n')
-        of.write('<h3>%s</h3>\n' % self.page_title)
+        of.write('<h3>%s</h3>\n' % self.page_title.strip())
 
         # gallery navigation
         of.write('<div class="img_navbar">')
@@ -1163,20 +1163,19 @@ class SourcePage(BasePage):
         self.display_first_image_as_thumbnail(of, db, media_list)
 
         of.write('<div id="summaryarea">\n')
-        of.write('<h3>%s</h3>\n' % self.page_title)
-        of.write('<table class="infolist">\n')
+        of.write('<h3>%s</h3>\n' % self.page_title.strip())
+        of.write('<table class="infolist">')
 
         for (label,val) in [(_('GRAMPS ID'),source.gramps_id),
                             (_('Author'),source.author),
                             (_('Publication information'),source.pubinfo),
                             (_('Abbreviation'),source.abbrev)]:
             if val:
-                of.write('<tr><td class="field">%s</td>\n' % label)
+                of.write('\n<tr><td class="field">%s</td>' % label)
                 of.write('<td class="data">%s</td>\n' % val)
-                of.write('</tr>\n')
+                of.write('</tr>')
 
-        of.write('</table>\n')
-        of.write('</div>\n')
+        of.write('</table></div>')
 
         self.display_additional_images_as_gallery(of, db, media_list)
         self.display_note_object(of, source.get_note_object())
@@ -1585,7 +1584,7 @@ class IndividualPage(BasePage):
                                               self.person.get_media_list())
 
         of.write('<div id="summaryarea">\n')
-        of.write('<h3>%s</h3>\n' % self.sort_name)
+        of.write('<h3>%s</h3>\n' % self.sort_name.strip())
             
         of.write('<table class="infolist">\n')
 

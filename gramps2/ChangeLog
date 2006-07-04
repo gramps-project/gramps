@@ -1,3 +1,6 @@
+2006-07-04  Don Allingham  <don@gramps-project.org>
+	* various: pyflakes fixes
+
 2006-07-04  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsWidgets.py (hand_cursor): Use HAND2 instead of HAND1.
 

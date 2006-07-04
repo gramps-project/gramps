@@ -42,17 +42,10 @@ log = logging.getLogger(".ReadXML")
 
 #-------------------------------------------------------------------------
 #
-# GTK+ Modules
-#
-#-------------------------------------------------------------------------
-import gtk
-
-#-------------------------------------------------------------------------
-#
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-from QuestionDialog import ErrorDialog, WarningDialog, MissingMediaDialog
+from QuestionDialog import ErrorDialog
 import Mime
 import RelLib
 import const
@@ -1483,11 +1476,11 @@ class GrampsParser(UpdateCallback):
         elif self.alt_name:
             # former aka tag -- alternate name
             if self.name.get_type() == "":
-                self.name.set_type(NameType.AKA)
+                self.name.set_type(RelLib.NameType.AKA)
             self.person.add_alternate_name(self.name)
         else:
             if self.name.get_type() == "":
-                self.name.set_type(NameType.BIRTH)
+                self.name.set_type(RelLib.NameType.BIRTH)
             self.person.set_primary_name (self.name)
         self.name = None
 
@@ -1774,8 +1767,7 @@ def build_place_title(loc):
 if __name__ == "__main__":
     import sys
     import hotshot#, hotshot.stats
-    import const
-    from GrampsDb import gramps_db_factory, gramps_db_reader_factory
+    from GrampsDb import gramps_db_factory
 
     def callback(val):
         print val
