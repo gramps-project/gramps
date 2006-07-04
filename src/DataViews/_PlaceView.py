@@ -103,8 +103,11 @@ class PlaceView(PageView.ListView):
 
     def google(self, obj):
         import GrampsDisplay
-        
-        place_handle = self.selected_handles()[0]
+
+        try:
+            place_handle = self.selected_handles()[0]
+        except IndexError:
+            return
         place = self.dbstate.db.get_place_from_handle(place_handle)
         descr = place.get_title()
         longitude = place.get_longitude()
