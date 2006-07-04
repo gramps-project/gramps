@@ -1,10 +1,11 @@
+# translation of nb.po to Norsk Bokmål
 # translation of nb.po to
 # GRAMPS
 # Copyright (C) YEAR ORGANIZATION.
 # Frode Jemtland <frode.jemtland@skolelinux.no>, 2003, 2004, 2005, 2006.
 # Axel Bojer <axelb@skolelinux.no>, 2003.
 # Jørgen Grønlund <jorgenhg@broadpark.no>, 2005.
-# Espen Berg <espen.berg@ntnu.no>, 2006
+# Espen Berg <espen.berg@ntnu.no>, 2006.
 # Nils Kristian Tomren <project@nilsk.net>, 2006.
 #
 msgid ""
@@ -12,15 +13,15 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-05-14 12:26-0700\n"
-"PO-Revision-Date: 2006-05-15 23:34+0200\n"
-"Last-Translator: Espen Berg\n"
-"Language-Team:  <nn@li.org>\n"
+"PO-Revision-Date: 2006-07-04 23:13+0200\n"
+"Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
+"Language-Team: Norsk Bokmål <Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>\n"
 "Generated-By: pygettext.py 1.4\n"
-"X-Generator: KBabel 1.11.2\n"
+"X-Generator: KBabel 1.10.2\n"
 
 #: ../src/AddMedia.py:89
 msgid "Select a media object"
@@ -5900,7 +5901,7 @@ msgstr "Ta med anetavle"
 
 #: ../src/plugins/NarrativeWeb.py:2403
 msgid "Suppress GRAMPS ID"
-msgstr "Undertrykk GRAMPS ID"
+msgstr "Ikke ta med Gramps-id-ene"
 
 #: ../src/plugins/NarrativeWeb.py:2444
 msgid "Standard copyright"
