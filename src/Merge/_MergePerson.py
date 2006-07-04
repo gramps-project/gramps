@@ -49,7 +49,6 @@ import DateHandler
 import QuestionDialog
 import GrampsDisplay
 import ManagedWindow
-import Utils
 import GrampsDb
 
 sex = ( _("female"), _("male"), _("unknown"))

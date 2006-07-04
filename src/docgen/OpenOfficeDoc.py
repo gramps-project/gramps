@@ -29,7 +29,7 @@ import os
 import zipfile
 import time
 from cStringIO import StringIO
-from math import pi, cos, sin, fabs
+from math import pi, cos, sin
 from gettext import gettext as _
 from xml.sax.saxutils import escape
 

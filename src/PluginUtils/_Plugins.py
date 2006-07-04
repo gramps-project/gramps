@@ -33,16 +33,13 @@ importers, exporters, and document generators.
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-import traceback
 import os
 import sys
 import re
@@ -54,14 +51,12 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
 import Config
 import Errors
 from ReportBase import report, standalone_categories
 import _Tool
 import _PluginMgr
 import _PluginStatus
-import GrampsDisplay
 import ManagedWindow
 
 #-------------------------------------------------------------------------
@@ -111,7 +106,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
 
         self.set_window(window, self.title, msg )
 
-        self.store = gtk.TreeStore(gobject.TYPE_STRING)
+        self.store = gtk.TreeStore(str)
         self.selection = self.tree.get_selection()
         self.selection.connect('changed', self.on_node_selected)
         col = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)

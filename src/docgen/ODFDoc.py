@@ -31,7 +31,7 @@ import zipfile
 import time
 import locale
 from cStringIO import StringIO
-from math import pi, cos, sin, fabs
+from math import pi, cos, sin
 
 #-------------------------------------------------------------------------
 #

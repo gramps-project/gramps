@@ -33,7 +33,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
 from gtk.gdk import pixbuf_new_from_file
 
 #-------------------------------------------------------------------------

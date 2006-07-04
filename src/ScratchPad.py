@@ -37,7 +37,6 @@ from time import strftime as strftime
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 
 #-------------------------------------------------------------------------
@@ -247,7 +246,7 @@ class ScratchPadEvent(ScratchPadWrapper):
 #                 _("Name"),
 #                 escape(short(psrc.get_title())))
 
-        return s
+#        return s
 
 class ScratchPadFamilyEvent(ScratchPadGrampsTypeWrapper):
 

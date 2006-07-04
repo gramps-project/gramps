@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from types import ClassType, InstanceType
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -41,6 +42,8 @@ import gtk
 #-------------------------------------------------------------------------
 import NameDisplay
 import BaseDoc
+import Utils
+
 import ManagedWindow
 from Filters import FilterComboBox,Rules
 from _StyleComboBox import StyleComboBox
