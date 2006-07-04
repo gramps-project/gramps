@@ -160,17 +160,17 @@ class XmlWriter(UpdateCallback):
                 return 0
         
         self.fileroot = os.path.dirname(filename)
-        try:
-            if self.compress:
-                try:
-                    g = gzip.open(filename,"wb")
-                except:
-                    g = open(filename,"w")
-            else:
+#        try:
+        if self.compress:
+            try:
+                g = gzip.open(filename,"wb")
+            except:
                 g = open(filename,"w")
-        except IOError,msg:
+        else:
+            g = open(filename,"w")
+#        except IOError,msg:
             ErrorDialog(_('Failure writing %s') % filename,msg)
-            return 0
+#            return 0
 
         self.g = codecs.getwriter("utf8")(g)
 
