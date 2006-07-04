@@ -98,7 +98,24 @@ class PlaceView(PageView.ListView):
                         _('_Column Editor'), callback=self.column_editor)
         self.add_action('FastMerge', None, _('_Merge'),
                         callback=self.fast_merge)
+        self.add_action('GoogleMaps', gtk.STOCK_JUMP_TO, _('_Google Maps'),
+                        callback=self.google)
 
+    def google(self, obj):
+        import GrampsDisplay
+        
+        place_handle = self.selected_handles()[0]
+        place = self.dbstate.db.get_place_from_handle(place_handle)
+        descr = place.get_title()
+        longitude = place.get_longitude()
+        latitude = place.get_latitude()
+
+        if longitude and latitude:
+            path = "http://maps.google.com/?sll=%s,%s" % (longitude, latitude)
+        else:
+            path = "http://maps.google.com/maps?q=%s" % '+'.join(descr.split())
+        GrampsDisplay.url(path)
+        
     def column_editor(self,obj):
         import ColumnOrder
 
@@ -151,6 +168,7 @@ class PlaceView(PageView.ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <menuitem action="GoogleMaps"/>
           </popup>
         </ui>'''
 
