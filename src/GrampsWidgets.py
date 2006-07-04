@@ -42,7 +42,7 @@ import Errors
 _lock_path = os.path.join(const.image_dir, 'stock_lock.png')
 _lock_open_path = os.path.join(const.image_dir, 'stock_lock-open.png')
 
-hand_cursor = gtk.gdk.Cursor(gtk.gdk.HAND1)
+hand_cursor = gtk.gdk.Cursor(gtk.gdk.HAND2)
 def realize_cb(widget):
     widget.window.set_cursor(hand_cursor)
 
