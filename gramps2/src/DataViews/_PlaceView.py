@@ -165,6 +165,8 @@ class PlaceView(PageView.ListView):
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
               <toolitem action="Remove"/>
+              <separator/>
+              <toolitem action="GoogleMaps"/>
             </placeholder>
           </toolbar>
           <popup name="Popup">

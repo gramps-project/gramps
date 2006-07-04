@@ -1,3 +1,7 @@
+2006-07-04  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PlaceView.py (PlaceView.ui_definition): 
+	add google maps to tool bar
+
 2006-07-03  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PlaceView.py: add attempt to map to google maps,
 	check for valid list
