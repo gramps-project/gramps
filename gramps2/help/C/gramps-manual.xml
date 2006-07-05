@@ -1306,6 +1306,14 @@
         Editor</guilabel> dialog may be used to add, remove and rearrange the
         displayed columns.</para>
 
+        <para>If a place has been highlighted, you may select the
+        <guibutton>Google Maps</guibutton> button to attempt to display the
+        place in a web browser. Your default web browser should open,
+        attempting to use either the longitude and lattitude coordinates or
+        the place name to display the location using the Google Maps web site.
+        This feature is limited, and may not always produce the results you
+        desire.</para>
+
         <!-- ==== Figure: Places View ==== -->
 
         <figure id="places-fig">
@@ -1497,7 +1505,9 @@
 
           <guimenuitem>Undo</guimenuitem>
         </menuchoice>. If you select this command repeatedly, your most recent
-      changes will be undone one at a time.</para>
+      changes will be undone one at a time. To roll back multple commands at a
+      time, you can using the <guilabel>Undo History</guilabel> dialog
+      available from the <guilabel>Edit</guilabel> menu.</para>
 
       <para>If you want to return your database to the way it was when you
       opened it, select <menuchoice>
@@ -1633,66 +1643,8 @@
       <para>If you import information from another GRAMPS database or GRAMPS
       XML database, you will see the progress of the operation in the progress
       bar of GRAMPS' main window.</para>
-
-<!-- Missing media is commented out for now. This may be deleted in the near future -->
-<!--
-      <para>If a media file is not found during import, you'll be prompted to
-      take one of the actions indicated in <xref
-      linkend="missing-media-im" />.</para>
-
-      <figure id="missing-media-im">
-        <title>Missing Media dialog</title>
-
-        <screenshot>
-          <mediaobject>
-            <imageobject>
-              <imagedata depth="264" fileref="figures/missing-media.png"
-                         format="PNG" width="493" />
-            </imageobject>
-
-            <textobject>
-              <phrase>Shows Missing Media dialog.</phrase>
-            </textobject>
-          </mediaobject>
-        </screenshot>
-      </figure>
-
-
-      <itemizedlist>
-        <listitem>
-          <para>If you don't have the missing file and have no possibility of
-          replacing it, click the <guibutton>Remove Object</guibutton> button.
-          This will remove the object that corresponds to the missing file as
-          well as all the references in the database to that object.</para>
-        </listitem>
-
-        <listitem>
-          <para>If you're not sure where the missing file is, but think you
-          still have it or may be able to find it, click the <guibutton>Keep
-          Reference</guibutton> button. If and when you find the file, you can
-          simply copy it into your database directory and have access to it
-          through GRAMPS.</para>
-        </listitem>
-
-        <listitem>
-          <para>If you can supply the missing file during the import
-          operation, click the <guibutton>Select File</guibutton> button. This
-          will copy the file you select in place of the missing file. No
-          references will be altered in the database.</para>
-        </listitem>
-
-        <listitem>
-          <para>To automatically use the selection made in this dialog for all
-          missing media files, check the <guilabel>Use this selection for all
-          missing media files</guilabel> box. This will remember your choice
-          and use it for all media files missing during this import, so that
-          no further dialogs will be presented. Use this option if you
-          anticipate many missing files and want to deal with all of them in
-          the same manner.</para>
-        </listitem>
-      </itemizedlist>
--->
     </sect1>
+
     <!-- ================ Usage Subsection ================================ -->
 
     <sect1 id="export-data">
@@ -1735,8 +1687,8 @@
         <screenshot>
           <mediaobject>
             <imageobject>
-              <imagedata depth="383" fileref="figures/export-druid.png"
-                         format="PNG" width="500" />
+              <imagedata depth="" fileref="figures/export-druid.png"
+                         format="PNG" width="" />
             </imageobject>
 
             <textobject>
@@ -1858,8 +1810,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="481" fileref="figures/gedcom-export.png"
-                           format="PNG" width="500" />
+                <imagedata depth="" fileref="figures/gedcom-export.png"
+                           format="PNG" width="" />
               </imageobject>
 
               <textobject>
@@ -2027,8 +1979,10 @@
       <sect2 id="gramps-add-pers">
         <title>To Add or Edit a Person</title>
 
-        <para>To add a person to the database, switch to the People View
-        (<xref linkend="side-nofilt-fig" />) and then click the
+        <para>There are multiple ways to add a person to the database. We will
+        cover some of them as we proceed. The simplest way to enter a person
+        to add them from the People View. While you are in the People View
+        (<xref linkend="side-nofilt-fig" />), click the
         <guibutton>Add</guibutton> on the toolbar. Enter any data you know
         about this person into the <guilabel>Edit Person</guilabel> dialog
         (see <xref linkend="edit-pers-fig" /> for details).</para>
@@ -2038,7 +1992,8 @@
         <guibutton>Edit</guibutton> button on the toolbar.</para>
 
         <note id="person-menu">
-          <title>Alternate ways of adding or editing a person</title>
+          <title>Alternate ways of adding or editing a person from the People
+          View</title>
 
           <para>You can also use <guilabel>Add...</guilabel> and
           <guilabel>Edit...</guilabel> menu items available under
@@ -2046,6 +2001,10 @@
           select <guilabel>Add...</guilabel> or <guilabel>Edit...</guilabel>
           from the context menu that pops up.</para>
         </note>
+
+        <para>People can also be added to the database in the Relationships
+        View, Edit Family dialog, and other places where it makes
+        sense.</para>
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
@@ -2053,18 +2012,61 @@
       <sect2 id="gramps-spec-rel">
         <title>To Specify a Relationship</title>
 
-        <para>To specify a relationship, select the person for whom the
-        relationship applies. Switch to the Family View (<xref
-        linkend="family-fig" />) and you'll see this individual indicated as
-        the "Active person".</para>
+        <para>There are two primary ways to specify relationships between
+        people - using the Relationships View and using the Edit Family dialog
+        from the Family List View. The Family List is usually used to build
+        all the relationships within a single family at a time. The
+        Relationships View is usually used to build multiple relationships to
+        a single person.</para>
+
+        <para>To specify a new relationship to the selected person, switch to
+        the Relationships View (<xref linkend="family-fig" />) and you'll see
+        this individual indicated as the "Active person". Next to the
+        <guilabel>Family</guilabel> label is a <guibutton>Add</guibutton>
+        button (typically represented by a <guibutton>+</guibutton> sign).
+        Clicking the <guibutton>Add</guibutton> button will display the Edit
+        Family dialog with the selected person set as either the father or the
+        mother.</para>
+
+        <figure id="edit-family">
+          <title>Editing a family</title>
+
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/edit-family.png" format="PNG" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Editing a family.</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
 
         <para>Now a question: Does the person who will form the relationship
         with the Active person already exist in the database? If yes, click
-        the middle button to the right of the Spouse box. You'll then be able
-        to browse through the list of people in the database to select the one
-        you want. If not, click the topmost button to the right of the Spouse
-        box. This will allow you to add a new person to the database and to
+        the <guibutton>Select</guibutton> button to the other person. You'll
+        then be able to browse through the list of people in the database to
+        select the one you want. If not, click the <guibutton>Add</guibutton>
+        button. This will allow you to add a new person to the database and to
         specify the relationship this person has to the Active person.</para>
+
+        <figure id="select-person">
+          <title>Selecting a person</title>
+
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/select-person.png" format="PNG" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Selecting a person.</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
 
         <note id="spouse-filter">
           <title>Filtering</title>
@@ -2079,17 +2081,17 @@
           all</guilabel> box.</para>
         </note>
 
-        <para>To edit an existing relationship, double-click in the Spouse
-        box. If there is more than one relationship in the list, you can
-        select the spouse or partner you want from the list before
-        double-clicking.</para>
+        <para>To edit an existing relationship from the Relationships View,
+        click on the <guibutton>Edit</guibutton> button next to corresponding
+        Family entry. If there is more than one relationship in the list, you
+        can select the spouse or partner you want by clicking the
+        corresponding <guibutton>Edit</guibutton> button next to the
+        relationship.</para>
 
-        <note id="spouse-alt-edit">
-          <title>Alternate ways of editing relationships.</title>
-
-          <para>Most of the functions described above are also available in
-          the context menu that pops up when you right-click.</para>
-        </note>
+        <para>To specify a new relationship in the Family List View, click on
+        the <guibutton>Add</guibutton> button on the toolbar, and an empty
+        Edit Family dialog will open. At this point, you can add people to the
+        family.</para>
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
@@ -2097,43 +2099,73 @@
       <sect2 id="gramps-spec-par">
         <title>To Specify Parents</title>
 
-        <para>To specify the parents for a person, highlight that individual
-        in the People View and then switch to the Family View (<xref
-        linkend="family-fig" />). Your selected person will be indicated as
-        the Active person. Click the <guibutton>+</guibutton> button to the
-        right of the <guilabel>Active person's parents</guilabel> list box.
-        This will bring up the <guilabel>Choose Parents</guilabel> dialog. You
-        will see three sections, one for father, one for mother, and one for
-        specifying the relationships between everyone.</para>
+        <para>You can specify Active person's parents in the Relationship
+        View(<xref linkend="family-fig" />). A little care is required to
+        prevent the creation of duplicate families. If you wish to add the
+        active person to an already existing family, you should click the
+        <guibutton>Select</guibutton> button. If the family including the
+        parents does not already exist, you should click the
+        <guibutton>Add</guibutton> button.</para>
 
-        <para>If the father and mother of the Active person are already stored
-        in your database, you can scroll through the lists and make your
-        selections. If they are not in the database, you can click
-        <guibutton>+</guibutton> to add them.</para>
+        <para>If you click on the <guibutton>Select</guibutton> button, you
+        are presented with the Select Family dialog. This will allow you to
+        select the existing family, and then the Active person will be added
+        as a child to the family.</para>
 
-        <note id="parent-filter">
-          <title>Filtering</title>
+        <figure id="select-family">
+          <title>Selecting a family</title>
 
-          <para>By default, GRAMPS will limit both lists to people who could
-          possibly be the parents (judged by the date of birth) of the Active
-          person. To override this, check the Show all box for each
-          list.</para>
-        </note>
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/select-family.png" format="PNG"
+                           width="" />
+              </imageobject>
 
-        <para>To specify parents of the Active person's spouse, switch to
-        Family View and then click the <guibutton>+</guibutton> button to the
-        right of the Spouse's parents list box.</para>
+              <textobject>
+                <phrase>Selecting a family.</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
 
-        <para>To edit information about parents who are already present in the
-        database, move the mouse over the corresponding parents' box and
-        double-click.</para>
+        <para>If you click on the <guibutton>Add</guibutton> button, a new
+        Edit Family dialog is presented with the Active person listed a child
+        of the new family. You can add the parents to the family by either
+        adding new people as the parents or selecting existing people as the
+        parents.</para>
 
-        <note id="parents-alt-menu">
-          <title>Alternate ways of specifying parents</title>
+        <warning>
+          <para>If you create a new family and select parents that are already
+          in an existing family, GRAMPS will issue a warning message. If you
+          proceed by saving the new famiy, you will have a duplicate
+          family.</para>
 
-          <para>These functions can also be performed by right-clicking on the
-          parents' box and using the context menu that pops up.</para>
-        </note>
+          <figure id="family-warn">
+            <title>Duplicate family warning</title>
+
+            <screenshot>
+              <mediaobject>
+                <imageobject>
+                  <imagedata fileref="figures/family-warn.png" format="PNG"
+                             width="" />
+                </imageobject>
+
+                <textobject>
+                  <phrase>Duplicate family warning.</phrase>
+                </textobject>
+              </mediaobject>
+            </screenshot>
+          </figure>
+        </warning>
+
+        <para>You can also specify the parents of a person in the Family List
+        View. If the family already exists, click on the
+        <guibutton>Edit</guibutton> button on the tool bar and add the person
+        as a child when the Edit Family dialog is displayed. If the family
+        does not already exist, click the <guibutton>Add</guibutton> button to
+        create a new family, and add the appropriate parents and
+        children.</para>
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
@@ -2141,25 +2173,38 @@
       <sect2 id="gramps-spec-ch">
         <title>To Specify Children</title>
 
-        <para>To specify children of an Active person, switch to the Family
-        View (<xref linkend="family-fig" />) and then click either the second
-        or the third button from the top right of the children list box. The
-        second button adds a child to the database and to the family, while
-        the third button adds a child to the family who is already present in
-        the database.</para>
+        <para>Adding children to a relationship is done through a similar
+        proceedure. From the Relationships View or the Family List View,
+        select the existing family or create a new family. Children can be
+        added by selecting the Add button or Select button to the right of the
+        child list.</para>
 
-        <para>If using the third button, select a child from the list and
-        specify the child's relationship with father and mother using menus at
-        the bottom. If you want, you can add a person to the list by clicking
-        the <guibutton>Add...</guibutton> button. By default, GRAMPS will
-        limit the lists to people who could possibly be the child (judged by
-        the date of birth) of the active person. To override this, check the
-        <guilabel>Show all</guilabel> box.</para>
+        <para>Clicking the <guibutton>Add</guibutton> button will display the
+        Edit Person dialog, allowing you to enter a new person. Clicking on
+        the <guibutton>Select</guibutton> button, will allow you to select an
+        existing person from a list. By default, the child is added with a the
+        relationship type of birth to both parents.</para>
 
-        <para>The relationship of the child to the parents can be modified by
-        right-clicking in the children's box and using the context menu that
-        pops up. Again, most of the above functions are available through this
-        context menu.</para>
+        <para>If you wish to change the parent/child relationship from the
+        default setting of birth, select the child and click on the Edit
+        button. This will display the Edit Child Reference dialog.</para>
+
+        <figure id="child-ref">
+          <title>Child Reference Editor</title>
+
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/child-ref.png" format="PNG"
+                           width="" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Child Reference Editor.</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->

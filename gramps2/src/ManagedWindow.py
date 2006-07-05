@@ -338,9 +338,9 @@ class ManagedWindow:
                 self.parent_window = self.uistate.window
 
     def set_window(self,window,title,text,msg=None):
-        set_titles(window,title,text,msg)
+        set_titles(window, title, text, msg)
         self.window = window
-        self.window.connect('delete-event',self.close)
+        self.window.connect('delete-event', self.close)
 
     def build_menu_names(self,obj):
         return ('Undefined Menu','Undefined Submenu')
