@@ -1,3 +1,17 @@
+2006-07-05  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditChildRef.py: fix title
+	* src/Editors/_EditFamily.py: call sequence for EditChildRef 
+	* src/glade/gramps.glade: childref label fix
+	* src/ManagedWindow.py: spacking
+	* help/C/gramps-manual.xml: text updates
+	* help/C/figures/select-family.png: added
+	* help/C/figures/select-person.png: added
+	* help/C/figures/family-warn.png: added
+	* help/C/figures/child-ref.png: added
+	* help/C/figures/edit-family.png: added
+	* help/C/figures/gedcom-export.png: updated
+	* help/C/figures/export-druid.png: updated
+
 2006-07-04  Don Allingham  <don@gramps-project.org>
 	* various: pyflakes fixes
 

@@ -252,7 +252,9 @@ class ChildEmbedList(EmbeddedList):
 
             for ref in self.family.get_child_ref_list():
                 if ref.ref == handle:
-                    EditChildRef(self.dbstate, self.uistate, self.track,
+                    p = self.dbstate.db.get_person_from_handle(handle)
+                    n = NameDisplay.displayer.display(p)
+                    EditChildRef(n, self.dbstate, self.uistate, self.track,
                                  ref, self.child_ref_edited)
                     break
 

@@ -16403,7 +16403,7 @@ You should select parents before adding any new information. If you select paren
 	  <property name="spacing">0</property>
 
 	  <child>
-	    <widget class="GtkLabel" id="label651">
+	    <widget class="GtkLabel" id="title">
 	      <property name="visible">True</property>
 	      <property name="label" translatable="yes"></property>
 	      <property name="use_underline">False</property>

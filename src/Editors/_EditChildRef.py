@@ -59,13 +59,14 @@ class EditChildRef(EditSecondary):
     """
     Displays a dialog that allows the user to edit an address.
     """
-    def __init__(self, dbstate, uistate, track, childref, callback):
+    def __init__(self, name, dbstate, uistate, track, childref, callback):
         """
         Displays the dialog box.
 
         parent - The class that called the ChildRef editor.
         addr - The address that is to be edited
         """
+        self.name = name
         EditSecondary.__init__(self, dbstate, uistate, track,
                                childref, callback)
 
@@ -73,6 +74,7 @@ class EditChildRef(EditSecondary):
         self.top = gtk.glade.XML(const.gladeFile, "cref_edit","gramps")
         self.set_window(self.top.get_widget("cref_edit"),
                         self.top.get_widget("title"),
+                        self.name,
                         _('Child Reference Editor'))
 
     def _setup_fields(self):
