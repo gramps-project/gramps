@@ -2379,19 +2379,11 @@
           </varlistentry>
 
           <varlistentry>
-            <term>From the Family View:</term>
+            <term>From the Relationships View:</term>
 
             <listitem>
-              <para>To edit active person's data, move the mouse into the
-              <guilabel>Active person</guilabel> box.</para>
-
-              <para>To edit Spouse's data, shift-click the
-              <guilabel>Spouse</guilabel> entry.</para>
-
-              <para>From the <guilabel>Spouse</guilabel> and
-              <guilabel>Children</guilabel> boxes you can select the desired
-              person, right-click, and use the context menu that pops
-              up.</para>
+              <para>To edit the active person's data, click on the Edit button
+              next to the active person's name.</para>
             </listitem>
           </varlistentry>
 
@@ -2458,7 +2450,6 @@
         <variablelist>
           <varlistentry>
             <term>General</term>
-
             <listitem>
               <para>The <guilabel>General</guilabel> tab contains general
               information about the person. This includes <guilabel>Given
@@ -2468,17 +2459,15 @@
               <guilabel>Title</guilabel> (e.g. Dr. or Rev.),
               <guilabel>Nickname</guilabel> (Bob for Robert),
               <guilabel>Type</guilabel> of the name (birth name, married name,
-              etc.) and <guilabel>Date</guilabel> and
-              <guilabel>Place</guilabel> of birth and death. Some of these
-              (<guilabel>Family name</guilabel>, <guilabel>Type</guilabel>,
-              and both <guilabel>Place</guilabel> fields), also provide
-              "autocompletion" feature: as you type in these fields, a menu
-              appears below the field containing database entries that match
-              your partial input. This gives you a shortcut by letting you
-              select an entry that already exists in the database rather than
-              having to type it all out. You can select the entry using your
-              mouse or using your arrow and <keycap>Enter</keycap>
-              keys.</para>
+              etc.). Some of these (<guilabel>Family name</guilabel>,
+              <guilabel>Type</guilabel>, and both <guilabel>Place</guilabel>
+              fields), also provide "autocompletion" feature: as you type in
+              these fields, a menu appears below the field containing database
+              entries that match your partial input. This gives you a shortcut
+              by letting you select an entry that already exists in the
+              database rather than having to type it all out. You can select
+              the entry using your mouse or using your arrow and
+              <keycap>Enter</keycap> keys.</para>
 
               <para>The <guilabel>Edit</guilabel> (that is, the "pen and
               paper" icon) next to the <guilabel>Family name</guilabel> entry
@@ -2486,19 +2475,10 @@
               dialog allows editing the preferred name in full detail (see
               <xref linkend="adv-an" />).</para>
 
-              <para>The <guilabel>Gender</guilabel> radio buttons offer the
-              choice of person's gender : <guilabel>male</guilabel>,
+              <para>The <guilabel>Gender</guilabel> menu offers the choice of
+              person's gender : <guilabel>male</guilabel>,
               <guilabel>female</guilabel>, and
               <guilabel>unknown</guilabel>.</para>
-
-              <para>Clicking the colored "LED" buttons located next to the
-              birth and death Date fields will bring up the <guilabel>Date
-              Selection</guilabel> dialog allowing detailed modification of
-              the date, see <xref linkend="adv-dates" />. Clicking either the
-              <guibutton>Edit</guibutton> button located next to the birth and
-              death LED buttons will bring up a dialog allowing you to edit
-              the birth or death details (see <xref
-              linkend="adv-ev" />).</para>
 
               <para>The field <guilabel>ID</guilabel> displays the GRAMPS ID
               number which identifies the user in the database. This value
@@ -2510,11 +2490,21 @@
               available in the <guilabel>Gallery</guilabel> of this person (if
               any exist).</para>
 
-              <para>Finally, the <guilabel>Information is complete</guilabel>
-              and <guilabel>Information is private</guilabel> check buttons
-              let you mark whether or not the person's record is complete and
-              whether or not the record is private.</para>
+              <para>The <guilabel>Marker</guilabel> allows you to specify
+	      som basic information on the status of your research.</para>
 
+              <para>Finally, the <guilabel>Privacy</guilabel> buttons
+              lets you mark whether or not the person's record is considered
+	      private.</para>
+
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <variablelist>
+          <varlistentry>
+            <term>Events</term>
+            <listitem>
               <para>The <guilabel>Events</guilabel> tab lets you view and edit
               any events relevant to the person. The bottom part of the window
               lists all such events stored in the database. The top part shows
