@@ -940,6 +940,8 @@
 
         <para>La Vue des Lieux présente la liste des endroits géographiques où se sont passés les évènements enregistrés dans la base de données. Cela peut être les lieux de naissance, mariage, décès des individus, aussi bien que leur lieu d'habitation, de travail ou d'études comme n'importe quelle référence géographique. La Vue des Lieux affiche pour chaque lieu son <guilabel>Nom</guilabel>, son <guilabel>Identifiant</guilabel>, sa <guilabel>Paroisse</guilabel>, sa <guilabel>Ville</guilabel>, son <guilabel>Département</guilabel>, sa <guilabel>Région</guilabel> et son <guilabel>Pays</guilabel>. Toutes ces colonnes peuvent servir de règle de tri. L'<guilabel>Editeur de colonnes</guilabel> peut être utilisé pour l'affichage des colonnes.</para>
 
+        <para>Si un lieu est sélectionné, vous pouvez utiliser le bouton <guibutton>Google Maps</guibutton> pour tenter d'afficher ce dernier dans votre navigateur internet. Votre navigateur par défaut devrait trouver, grâce aux coordonnées de longitude et latitude ou le nom du lieu, l'endroit sur le site internet de Google Maps. Cette fonction est limitée, et peut ne pas produire le résultat espéré.</para>
+
         <!-- ==== Figure: Places View ==== -->
 
         <figure id="places-fig">
@@ -1065,7 +1067,7 @@
 
       <para>Une conséquence de la nouvelle base de données principale est que les changements, une fois approuvés par l'utilisateur, sont appliqués immédiatement. En bref, une fois que vous cliquer sur <guibutton>valider</guibutton> chez la personne, la famille, source, endroit, médias objectent, ou le rédacteur d'événement, tous les changements faits à cet objet sont enregistrés dans la base de données.Aucun enregistrement n'est nécessaire, ou même possible.</para>
 
-      <para>Le Choix <menuchoice><guimenu>Edition</guimenu><guimenuitem>Annuler</guimenuitem></menuchoice> vous permet de défaire les changements que vous avez faits, une étape à la fois.</para>
+      <para>Vous pouvez annuler vos changements effectués en sélectionnant <menuchoice><guimenu>Edition</guimenu><guimenuitem>Annuler</guimenuitem></menuchoice> Si vous sélectionnez cette commande plusieurs fois, vos changements les plus récents seront annulés l'un après l'autre. Pour effectuer ces multiples commandes en une fois, vous pouvez utiliser le dialogue <guilabel> Historique d'annulation</guilabel> disponible depuis le menu <guilabel>Edition</guilabel>.</para>
 
       <para>Si vous voudriez retourner à la session d'édition entière, choisissez <menuchoice><guimenu>Fichier</guimenu><guimenuitem>Abandonner les modifications</guimenuitem></menuchoice>.Ce sera analogue à stopper en sauvant aucun changement.</para>
 
@@ -1144,66 +1146,8 @@
       </variablelist>
 
       <para>Pour importer des informations d'une base de données GRAMPS ou GRAMPS XML, vous verrez une barre de progression dans la fenêtre principale de GRAMPS.</para>
-
-<!-- Missing media is commented out for now. This may be deleted in the near future -->
-<!--
-      <para>If a media file is not found during import, you'll be prompted to
-      take one of the actions indicated in <xref
-      linkend="missing-media-im" />.</para>
-
-      <figure id="missing-media-im">
-        <title>Missing Media dialog</title>
-
-        <screenshot>
-          <mediaobject>
-            <imageobject>
-              <imagedata depth="264" fileref="figures/missing-media.png"
-                         format="PNG" width="493" />
-            </imageobject>
-
-            <textobject>
-              <phrase>Shows Missing Media dialog.</phrase>
-            </textobject>
-          </mediaobject>
-        </screenshot>
-      </figure>
-
-
-      <itemizedlist>
-        <listitem>
-          <para>If you don't have the missing file and have no possibility of
-          replacing it, click the <guibutton>Remove Object</guibutton> button.
-          This will remove the object that corresponds to the missing file as
-          well as all the references in the database to that object.</para>
-        </listitem>
-
-        <listitem>
-          <para>If you're not sure where the missing file is, but think you
-          still have it or may be able to find it, click the <guibutton>Keep
-          Reference</guibutton> button. If and when you find the file, you can
-          simply copy it into your database directory and have access to it
-          through GRAMPS.</para>
-        </listitem>
-
-        <listitem>
-          <para>If you can supply the missing file during the import
-          operation, click the <guibutton>Select File</guibutton> button. This
-          will copy the file you select in place of the missing file. No
-          references will be altered in the database.</para>
-        </listitem>
-
-        <listitem>
-          <para>To automatically use the selection made in this dialog for all
-          missing media files, check the <guilabel>Use this selection for all
-          missing media files</guilabel> box. This will remember your choice
-          and use it for all media files missing during this import, so that
-          no further dialogs will be presented. Use this option if you
-          anticipate many missing files and want to deal with all of them in
-          the same manner.</para>
-        </listitem>
-      </itemizedlist>
--->
     </sect1>
+
     <!-- ================ Usage Subsection ================================ -->
 
     <sect1 id="export-data">
@@ -1227,7 +1171,7 @@
         <screenshot>
           <mediaobject>
             <imageobject>
-              <imagedata depth="383" fileref="figures/export-druid.png" format="PNG" width="500"/>
+              <imagedata depth="" fileref="figures/export-druid.png" format="PNG" width=""/>
             </imageobject>
 
             <textobject>
@@ -1314,7 +1258,7 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="481" fileref="figures/gedcom-export.png" format="PNG" width="500"/>
+                <imagedata depth="" fileref="figures/gedcom-export.png" format="PNG" width=""/>
               </imageobject>
 
               <textobject>
@@ -1438,15 +1382,17 @@
       <sect2 id="gramps-add-pers">
         <title>Pour ajouter une personne</title>
 
-        <para>Pour ajouter une personne, aller dans la vue des individus (<xref linkend="side-nofilt-fig"/>) puis cliquer sur <guibutton>Ajouter</guibutton> dans la barre d'outils. Saisissez tout ce que vous savez sur la personne dans le dialogue <guilabel>Edition de l'individu</guilabel> (voir <xref linkend="edit-pers-fig"/> pour plus de détails)</para>
+        <para>Il y a de multiples façons d'ajouter un individu à la base de données. Nous allons vous montrer comment nous procédons. La façon la plus simple pour ajouter un individu, est d'aller dans la vue des individus (<xref linkend="side-nofilt-fig"/>), puis de cliquer sur <guibutton>Ajouter</guibutton> dans la barre d'outils. Saisissez tout ce que vous savez sur la personne dans le dialogue <guilabel>Edition de l'individu</guilabel> (voir <xref linkend="edit-pers-fig"/> pour plus de détails)</para>
 
         <para>Si vous voulez modifier les données sur une personne déjà présente dans la base, sélectionnez la personne que vous voulez voir ou modifier puis cliquez sur le bouton <guibutton>Editer</guibutton> dans la barre d'outils.</para>
 
         <note id="person-menu">
-          <title>Alternative pour l'ajout ou l'édition d'une personne</title>
+          <title>Alternatives pour l'ajout ou l'édition d'une personne depuis la vue des individus</title>
 
           <para>Vous pouvez aussi utiliser l'élément de menu <guilabel>Ajouter...</guilabel> et <guilabel>Editer...</guilabel> disponible sous le menu <guimenu>Edition</guimenu>. Ou vous pouvez faire un clic-droit puis selectionner <guilabel>Ajouter...</guilabel> ou <guilabel>Editer...</guilabel> dans le menu contextuel.</para>
         </note>
+
+        <para>Les individus peuvent également être ajoutés à la base de données dans la vue Relations, le dialogue Editeur de famille, et d'autres endroits qui en auraient l'utilité. </para>
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
@@ -1454,9 +1400,43 @@
       <sect2 id="gramps-spec-rel">
         <title>Pour spécifier une relation</title>
 
-        <para>Pour spécifier une relation entre deux personnes, aller d'abord dans la vue par famille (<xref linkend="family-fig"/>).Cliquez ensuite dans l'un des deux boutons en haut à droite de la zone de l'époux/se. Celui du haut ajoute une nouvelle personne dans la base de données et la met en relation avec la personne active. Le second bouton prend une personne déjà déclarée et la met en relation avec la personne active.</para>
+        <para>Il y a deux chemins premiers pour spécifier des relations entre les individus - utiliser la vue Relations et le dialogue Editeur de famille de la vue Liste de famille. Cette dernière est habituellement utilisée pour construire toutes les relations d'une famille à un instant donné. La vue Relations est habituellement utilisée pour construire de multiples relations à un simple individu.</para>
 
-        <para>Dans le second cas, sélectionnez le époux ou partenaire dans la liste et précisez la nature de leur relation par le menu du haut. Si nécessaire, vous pouvez ajouter une personne à la liste en cliquant le bouton <guibutton>+</guibutton>.GRAMPS filtrera la liste affichée selon le type de relation. Les relations "mariés", "non mariés", "relation inconnue" et "autre relation" afficheront seulement les personnes du sexe opposé à la personne active.La relation "partenaire" proposera seulement les personnes de même sexe que la personne active.</para>
+        <para>Pour spécifier une nouvelle relation à un individu sélectionné, aller à la vue Relations (<xref linkend="family-fig"/> et vous verrez cet individu indiqué comme la "personne active". A côté de la partie <guilabel>Famille</guilabel> il y a un bouton <guibutton>Ajouter</guibutton> (typiquement représenté par un signe <guibutton>+</guibutton>). Cliquer sur le bouton <guibutton>Ajouter</guibutton> affichera le dialogue d'édition de la famille avec la personne sélectionnée comme étant le père ou la mère.</para>
+
+        <figure id="edit-family">
+          <title>Editer une famille</title>
+
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/edit-family.png" format="PNG"/>
+              </imageobject>
+
+              <textobject>
+                <phrase>Editer une famille.</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>Maintenant une question: Est ce que l'individu qui a une relation avec la personne active existe déjà dans la base de données ? Si oui, alors cliquer sur le bouton <guibutton>Sélectionner</guibutton> vers cet autre individu. Vous serez ainsi capable de naviguer à travers une liste d'individus dans la base de données pour sélectionner celui que vous voulez. S'il n'est pas déjà présent, cliquer sur le bouton <guibutton>Ajouter</guibutton>. Ceci vous permettera d'ajouter une nouvelle personne à la base de données et de spécifier la relation entre cet individu et la personne active.</para>
+
+        <figure id="select-person">
+          <title>Sélectionner un individu</title>
+
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/select-person.png" format="PNG"/>
+              </imageobject>
+
+              <textobject>
+                <phrase>Sélectionner un individu.</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
 
         <note id="spouse-filter">
           <title>Filtrer</title>
@@ -1464,13 +1444,9 @@
           <para>Par defaut, GRAMPS filtre la liste d'affichage pour ne lister que ceux qui ont théoriquement une relation avec la personne active. C'est pourquoi, GRAMPS n'affiche que les personnes dont les dates de naissances et de décès correspondes. Si vous le souhaitez, vous pouvez ajouter une personne avec le bouton <guibutton>+</guibutton>. Pour annuler le filtre et afficher toute la base, cocher <guilabel>Tout afficher</guilabel>.</para>
         </note>
 
-        <para>Pour modifier la relation déjà déclarée dans la base de données, placez le curseur de la souris sur la zone du <guilabel>Conjoint</guilabel> de la personne active puis double-cliquez. Si la personne active est en relation avec plus d'une personne, vous pouvez préciser laquelle en sélectionnant dans le menu contextuel disponible en cliquant avec le bouton droit de la souris dans la zone d'époux/se.</para>
+        <para>Pour éditer une relation existante depuis la vue Relations, cliquer sur le bouton <guibutton>Editer</guibutton> à côté de la famille correspondant à l'entrée. Si il y a plus d'une relation dans la liste, vous pourrez sélectionner le conjoint ou partenaire que vous souhaitez en cliquant sur le bouton <guibutton>Editer</guibutton> à côté de la relation.</para>
 
-        <note id="spouse-alt-edit">
-          <title>Alternative pour éditer une relation</title>
-
-          <para>La plupart des fonctions décrites sont également dans le menu contextuel disponibles par un clic-droit.</para>
-        </note>
+        <para>Pour spécifier une nouvelle relation dans la vue Liste de famille, cliquer sur le bouton <guibutton>Ajouter</guibutton> de la barre d'outils, et un dialogue vide d'édition de la famille s'ouvrira. Maintenant, vous pouvez ajouter des individus à la famille.</para>
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
@@ -1478,25 +1454,49 @@
       <sect2 id="gramps-spec-par">
         <title>Pour préciser les parents</title>
 
-        <para>Pour préciser les parents de la personne active, allez d'abord dans la vue Famille(<xref linkend="family-fig"/>). Puis cliquez sur le bouton <guibutton>+</guibutton> à droite de la liste des <guilabel>parents de la personne active</guilabel>. Il apparaitra 3 listes, une pour le père, une pour la mère et une pour la relation</para>
+        <para>Vous pouvez spécifier les parents de la personne active dans la vue Relations (<xref linked="family-fig"/>). Un peu de concentration est nécessaire pour prévenir la création de familles dupliquées. Si vous souhaitez ajouter la personne active à une famille déjà existante, vous devrez cliquer sur le bouton <guibutton>Sélectionner</guibutton>. Si la famille comprend des parents pas encore enregistrés, vous devrez cliquer sur le bouton <guibutton>Ajouter</guibutton>.</para>
 
-        <para>Choisissez les parents dans chacune des listes et précisez leur relation avec la personne active. Vous pouvez aussi préciser leur relation entre eux. Si nécessaire, vous pouvez ajouter une personne à la liste par le bouton <guibutton>Ajouter...</guibutton>.</para>
+        <para>Si vous cliquez sur le bouton <guibutton>Sélectionner</guibutton>, vous obtiendrez le dialogue de sélection de la famille. Il vous permettera de sélectionner une famille existante, puis la personne active sera ajoutée comme enfant de la famille.</para>
 
-        <note id="parent-filter">
-          <title>Filtrer</title>
+        <figure id="select-family">
+          <title>Sélectionner une famille</title>
 
-          <para>Par défaut, GRAMPS limitera la liste aux individus qui pourront être les parents (par les dates de naissance) de la personne active. Pour annuler le filtre et afficher toute la base, cocher Tout afficher.</para>
-        </note>
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/select-family.png" format="PNG" width=""/>
+              </imageobject>
 
-        <para>Pour préciser les parents de l'époux/se de la personne active, allez dans la vue Famille puis cliquez sur le bouton <guibutton>+</guibutton> à droite da la zone de l'époux/se</para>
+              <textobject>
+                <phrase>Sélectionner une famille.</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
 
-        <para>Si vous voulez modifier les données sur des parents déjà déclarés dans la base de données, placez le curseur de la souris sur la zone des parents choisis et double-cliquez.</para>
+        <para>Si vous cliquer sur le bouton <guibutton>Ajouter</guibutton>, un nouveau dialogue d'édition de la famille apparaîtra avec la personne active listée comme enfant de la nouvelle famille. Vous pouvez ajouter les parents à la famille en ajoutant de nouveau individus comme parents ou sélectionner des individus existants comme étant les parents.</para>
 
-        <note id="parents-alt-menu">
-          <title>Alternative pour préciser des parents</title>
+        <warning>
+          <para>Si vous créez une nouvelle famille et sélectionnez des parents qui sont déjà une famille existante, GRAMPS produira un message d'alerte. Si vous procédez en sauvant la nouvelle famille, vous obtiendrez une famille dupliquée. </para>
 
-          <para>Ces fonctions sont également disponibles dans le menu contextuel par un clic-droit.</para>
-        </note>
+          <figure id="family-warn">
+            <title>Alerte famille dupliquée</title>
+
+            <screenshot>
+              <mediaobject>
+                <imageobject>
+                  <imagedata fileref="figures/family-warn.png" format="PNG" width=""/>
+                </imageobject>
+
+                <textobject>
+                  <phrase>Alerte famille dupliquée.</phrase>
+                </textobject>
+              </mediaobject>
+            </screenshot>
+          </figure>
+        </warning>
+
+        <para>Vous pouvez aussi spécifier les parents d'un individu dans le vue Liste de famille. Si une famille existe déjà, cliquer sur le bouton <guibutton>Editer</guibutton> dans la barre d'outils et ajouter l'individu comme enfant quand le dialogue d'édition de la famille s'affichera.Si la famille n'existe pas encore, cliquer sur le bouton <guibutton>Ajouter</guibutton> pour créer une nouvelle famille, puis ajouter les parents et les enfants appropriés.</para>
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
@@ -1504,11 +1504,27 @@
       <sect2 id="gramps-spec-ch">
         <title>Pour préciser des enfants</title>
 
-        <para>Pour préciser les enfants de la personne active, allez dans la vue Famille (<xref linkend="family-fig"/>) puis cliquez sur le deuxième ou le troisième bouton en haut à droite de la liste des enfants. Le deuxième bouton déclare une personne dans la base de données et l'ajoute à la liste des enfants tandis que le troisième ajoute une personne déjà déclarée à la famille.</para>
+        <para>Ajouter des enfants dans une relation suit une procédure similaire. Depuis les vues Relations ou Liste de famille, sélectionner une famille existante ou créer une nouvelle famille. Les enfants peuvent être ajoutés en sélectionnant les boutons Ajouter ou Sélectionner à la droite de la liste d'enfant.</para>
 
-        <para>Quand vous utilisez le troisième bouton, sélectionnez un enfant dans la liste et précisez sa relation avec le père et la mère en utilisant les menus du bas. Vous pouvez si nécessaire ajouter une personne à la liste avec le bouton <guibutton>Ajouter...</guibutton> Par défaut, GRAMPS ne présentera que les personnes qui peuvent être enfant de la personne active en se fondant sur la date de naissance. Si vous voulez avoir toutes les personnes, cochez la case <guilabel>Afficher tout</guilabel>.</para>
+        <para>Cliquer sur le bouton <guibutton> Ajouter</guibutton> affichera le dialogue d'édition de l'individu, vous permettant d'entrer un nouvel individu. Cliquer sur le bouton <guibutton>Sélectionner</guibutton>, vous permettera de sélectionner un individu existant depuis une liste. Par défaut, l'enfant est ajouté avec la relation naissance pour les deux parents.</para>
 
-        <para>La nature de la relation entre l'enfant et les parents peut être changée par le menu contextuel obtenu en cliquant avec le bouton droit de la souris dans la zone des enfants. La plupart des fonctions décrites ci-dessus sont aussi accessibles par le menu contextuel.</para>
+        <para>Si vous souhaitez changer la relation parent/enfant pour les paramètres par défaut de naissance, sélectionner l'enfant et cliquer sur le bouton Editer. Ceci affichera le dialogue d'édition de référence de l'enfant.</para>
+
+        <figure id="child-ref">
+          <title>Editeur de référence d'enfant</title>
+
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/child-ref.png" format="PNG" width=""/>
+              </imageobject>
+
+              <textobject>
+                <phrase>Editeur de référence d'enfant.</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
@@ -1610,14 +1626,10 @@
           </varlistentry>
 
           <varlistentry>
-            <term>De la vue des familles:</term>
+            <term>Depuis la vue Relations:</term>
 
             <listitem>
-              <para>Pour éditer les données, entrez la souris dans la boite de la <guilabel>personne active</guilabel>.</para>
-
-              <para>Pour éditer les données du conjoint, double-cliquer sur l'entrée du conjoint.</para>
-
-              <para>En outre, pour le <guilabel>Conjoint</guilabel> et les <guilabel>Enfants</guilabel>, vous pouvez utiliser le clic-droit, puis éditer les données de la personne choisie.</para>
+              <para>Pour éditer les données de la personne active, cliquer sur le bouton Editer à côté du nom de la personne active.</para>
             </listitem>
           </varlistentry>
 
@@ -1667,22 +1679,29 @@
         <variablelist>
           <varlistentry>
             <term>Général</term>
-
             <listitem>
-              <para>L'onglet <guilabel>Général</guilabel> permet la modification des informations générales de la personne. Ceci comprend les zones de saisie suivantes : <guilabel>Prénom</guilabel>, <guilabel>Nom de famille</guilabel>, <guilabel>Particule</guilabel> (comme "de" ou "van"), <guilabel>Suffixe</guilabel> (par exemple Jr. ou III), <guilabel>Titre</guilabel> (par exemple Dr. ou Pr.), <guilabel>Surnom </guilabel> (par exemple Jeannot pour Jean), <guilabel>Type</guilabel> du nom (nom de naissance, nom marital...) et <guilabel>Date</guilabel> et <guilabel>Lieux</guilabel> de naissance et de décès. Certains de ces champs de saisie (<guilabel>Nom</guilabel>, <guilabel>Type</guilabel>, ainsi que <guilabel>Lieux</guilabel>), permettent d'ouvrir la liste des possibilités par un menu déroulant, à l'aide de la flèche vers le bas présente à droite du champ. Les choix proposés par le menu déroulant sont ceux déjà connus dans la base de données. GRAMPS essaiera aussi de deviner la suite du texte que vous aurez commencé à saisir à partir des données déjà connues. Si ce que vous propose GRAMPS vous convient, acceptez-le avec la touche <keycap>Entrée</keycap> key.</para>
+              <para>L'onglet <guilabel>Général</guilabel> contient les informations générales de la personne. Ceci comprend les zones de saisie suivantes : <guilabel>Prénom</guilabel>, <guilabel>Nom de famille</guilabel>, <guilabel>Particule</guilabel> (comme "de" ou "van"), <guilabel>Suffixe</guilabel> (par exemple Jr. ou III), <guilabel>Titre</guilabel> (par exemple Dr. ou Pr.), <guilabel>Surnom </guilabel> (par exemple Jeannot pour Jean), <guilabel>Type</guilabel> du nom (nom de naissance, nom marital...). Certains de ces champs de saisie (<guilabel>Nom</guilabel>, <guilabel>Type</guilabel>, ainsi que <guilabel>Lieux</guilabel>), permettent d'ouvrir la liste des possibilités par un menu déroulant, à l'aide de la flèche vers le bas présente à droite du champ. Les choix proposés par le menu déroulant sont ceux déjà connus dans la base de données. GRAMPS essaiera aussi de deviner la suite du texte que vous aurez commencé à saisir à partir des données déjà connues. Si ce que vous propose GRAMPS vous convient, acceptez-le avec la touche <keycap>Entrée</keycap> key.</para>
 
               <para>Le bouton <guilabel>Editer</guilabel> situé près du <guilabel>Nom de famille</guilabel> permet d'éditer le nom dans le détail, à l'aide de l'<guilabel>éditeur de Nom</guilabel> (voyez <xref linkend="adv-an"/>).</para>
 
-              <para>Le bouton radio <guilabel>Genre</guilabel> donnent le choix entre <guilabel>masculin</guilabel>, <guilabel>feminin</guilabel>, et <guilabel>inconnu</guilabel>.</para>
-
-              <para>Cliquer sur les boutons colorés (cercle vert, jaune, ou rouge, également appelé des boutons LED), situés à côté des champs de date de naissance et de mort <guilabel>Sélection de la Date</guilabel>, ce qui permettera la modification détaillée de la date, voir <xref linkend="adv-dates"/>. En cliquant sur le bouton <guibutton>Editer</guibutton> situés à côté des dates de naissance et de mort LED, vous pourrez éditer les détails correspondants à l'événement (naissance ou mort), voir <xref linkend="adv-ev"/>.</para>
+              <para>Le menu<guilabel>Genre</guilabel> donne le choix entre <guilabel>masculin</guilabel>, <guilabel>feminin</guilabel>, et <guilabel>inconnu</guilabel>.</para>
 
               <para>Le champ <guilabel>ID</guilabel> présente l'identifiant interne que GRAMPS attribue à chaque individu de la base de données. La zone <guilabel>Image</guilabel> montre la première image de la <guilabel>Galerie</guilabel> pour cette personne (s'il y en a).</para>
 
               <para>Le champ <guilabel>Image</guilabel> affiche la première image disponible dans la <guilabel>Galerie</guilabel> de cette personne (si il y en a).</para>
 
-              <para>Enfin, les cases à cocher <guilabel>Information complète</guilabel> et <guilabel>Information privée</guilabel> permettent de marquer les données de cet individu.</para>
+              <para>Le <guilabel>Marqueur</guilabel> vous permet de spécifier quelque information basique sur le statut de vos recherches.</para>
 
+              <para>Enfin, les boutons <guilabel>Information privée</guilabel> permettent de marquer les enregistrements comme étant privées.</para>
+
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <variablelist>
+          <varlistentry>
+            <term>Événements</term>
+            <listitem>
               <para>L'onglet <guilabel>Evénement</guilabel> Evènements présente les données des évènements liés à la personne pour permettre leur modification. La partie du bas de la fenêtre affiche cette liste d'évènements. La partie du haut montre le détail de l'évènement sélectionné s'il y a lieu. Les boutons <guibutton>+</guibutton>, <guibutton>Editer</guibutton>, et <guibutton>-</guibutton> vous permettent respectivement d'ajouter, modifier et supprimer un évènement Notez que les boutons <guibutton>Editer</guibutton> et <guibutton>-</guibutton> ne sont disponibles que lors de la sélection d'une dénomination dans la liste.</para>
             </listitem>
           </varlistentry>
