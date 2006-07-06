@@ -97,8 +97,10 @@ class EditName(EditSecondary):
             self.group_as.force_value(self.obj.get_surname())
             
 
-        format_list = [(name,number) for (number,name,fmt_str)
-                       in RelLib.Name.DEFAULT_FORMATS]
+        (number,name,fmt_str) =RelLib.Name.DEFAULT_FORMAT
+        format_list = [(name,number)]
+        format_list += [(name,number) for (number,name,fmt_str)
+                        in RelLib.Name.STANDARD_FORMATS]
         format_list += [(name,number) for (number,name,fmt_str)
                         in NameDisplay.CUSTOM_FORMATS]
             

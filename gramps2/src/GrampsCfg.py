@@ -214,8 +214,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.name_exp.set_sensitive(False)
 
 
-        format_list = [(name,number) for (number,name,fmt_str)
-                       in Name.DEFAULT_FORMATS]
+        format_list = []
+        format_list += [(name,number) for (number,name,fmt_str)
+                        in Name.STANDARD_FORMATS]
         format_list += [(name,number) for (number,name,fmt_str)
                         in NameDisplay.CUSTOM_FORMATS]
         
@@ -235,7 +236,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
         active = int(Config.get(Config.NAME_FORMAT))
         obox.set_active(active)
-        obox.connect('changed', self.name_changed)
+#        obox.connect('changed', self.name_changed)
         lwidget = BasicLabel("%s: " % _('Preset format'))
 
 #        custom_ui = self.build_custom_name_ui()
@@ -283,16 +284,16 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         
 ##         return table
 
-    def name_changed(self,obj):
-        custom_text = NameDisplay.formats[Name.CUSTOM]
-        if obj.get_active_text() == custom_text:
-            pass
-            #self.name_exp.set_sensitive(True)
-            #self.name_exp.set_expanded(True)
-        else:
-            Config.set(Config.NAME_FORMAT,obj.get_active())
-            #self.name_exp.set_expanded(False)
-            #self.name_exp.set_sensitive(False)
+##     def name_changed(self,obj):
+##         custom_text = NameDisplay.formats[Name.CUSTOM]
+##         if obj.get_active_text() == custom_text:
+##             pass
+##             #self.name_exp.set_sensitive(True)
+##             #self.name_exp.set_expanded(True)
+##         else:
+##             Config.set(Config.NAME_FORMAT,obj.get_active())
+##             #self.name_exp.set_expanded(False)
+##             #self.name_exp.set_sensitive(False)
 
     def add_formats_panel(self):
         table = gtk.Table(3,8)
