@@ -283,7 +283,20 @@ class NameDisplay:
     def _format_str_base(self,first,surname,prefix,suffix,patronymic,
                          title,call,format_str):
         """
-        Generates name from a format string, e.g. '%T. %p %F %L (%p)' .
+        Generates name from a format string.
+
+        The following substitutions are made:
+            %t -> title
+            %f -> given name (first name)
+            %p -> prefix
+            %s -> suffix
+            %l -> family name (last name, surname)
+            %y -> patronymic
+            %c -> call name
+        The capital letters are substituted for capitalized name components.
+        The %% is substituted with the single % character.
+        All the other characters in the fmt_str are unaffected.
+        
         """
 
         output = format_str
@@ -295,6 +308,7 @@ class NameDisplay:
         output = output.replace("%s",suffix)
         output = output.replace("%y",patronymic)
         output = output.replace("%c",call)
+
         output = output.replace("%T",title.upper())
         output = output.replace("%F",first.upper())
         output = output.replace("%P",prefix.upper())
