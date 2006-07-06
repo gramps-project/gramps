@@ -61,8 +61,10 @@ class Name(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase):
     PTFN = 3  # patronymic first name
     FN   = 4  # first name
 
-    DEFAULT_FORMATS = [
-        (DEF,  _("Default format (defined by GRAMPS preferences)"),''),
+    DEFAULT_FORMAT = \
+        (DEF,_("Default format (defined by GRAMPS preferences)"),'')
+
+    STANDARD_FORMATS = [
         (LNFN, _("Family name, Given name Patronymic"),''),
         (FNLN, _("Given name Family name"),''),
         (PTFN, _("Patronymic, Given name"),''),
