@@ -310,6 +310,9 @@ class XmlWriter(UpdateCallback):
         # Data is written, now write bookmarks.
         self.write_bookmarks()
 
+        # Also write name formats
+        self.write_name_formats()
+
         self.g.write("</database>\n")
 
     def write_bookmarks(self):
@@ -349,6 +352,14 @@ class XmlWriter(UpdateCallback):
                 self.g.write('    <bookmark target="repository" hlink="_%s"/>\n'
                              % handle )
             self.g.write("  </bookmarks>\n")
+
+    def write_name_formats(self):
+        if len(self.db.name_formats) > 0:
+            self.g.write("  <name-formats>\n")
+            for number,name,fmt_str in self.db.name_formats:
+                self.g.write('%s<format number="%d" name="%s" fmt_str="%s"/>\n'
+                             % ('    ',number,name,fmt_str) )
+            self.g.write("  </name-formats>\n")
 
     def fix(self,line):
         l = line.strip()

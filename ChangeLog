@@ -1,3 +1,19 @@
+2006-07-06  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py (ViewManager.post_load_newdb): Register
+	custom formats after loading the db.
+	* src/GrampsCfg.py: Switch to use new formats (still in progress).
+	* src/GrampsDb/_GrampsDbBase.py (GrampsDbBase.__init__): Set up
+	custom name formats list.
+	* src/GrampsDb/_DbUtils.py (db_copy): Copy custom name formats.
+	* src/GrampsDb/_ReadXML.py (start_format): Parse custom formats.
+	* src/GrampsDb/_WriteXML.py (write_name_formats): Add method.
+	* src/GrampsDb/_GrampsBSDDB.py (GrampsBSDDB._load_metadata) 
+	(GrampsBSDDB._close_metadata): load and save name_formats.
+	* src/Editors/_EditName.py (EditName._setup_fields): Use proper
+	format lists.
+	* src/NameDisplay.py: Support new name formats scheme.
+	* src/RelLib/_Name.py (Name.DEFAULT_FORMATS): Add list of formats.
+
 2006-07-05  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditChildRef.py: fix title
 	* src/Editors/_EditFamily.py: call sequence for EditChildRef 

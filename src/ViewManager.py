@@ -761,6 +761,7 @@ class ViewManager:
             self.state.db.set_researcher(owner)
 
         self.setup_bookmarks()
+        NameDisplay.register_custom_formats(self.state.db.name_formats)
 
         self.state.db.enable_signals()
         self.state.signal_change()

@@ -273,6 +273,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.undo_history_timestamp = 0
         self.default = None
         self.owner = Researcher()
+        self.name_formats = []
         self.bookmarks = []
         self.family_bookmarks = []
         self.event_bookmarks = []
