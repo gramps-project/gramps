@@ -405,33 +405,18 @@
         <applyto>/apps/gramps/preferences/name-format</applyto>
         <owner>gramps</owner>
         <type>int</type>
-        <default>0</default>
+        <default>1</default>
         <locale name="C">
           <short>Name display format</short>
           <long>This key determines the name display format. Use 
-          0 for "Surname, Firstname",
-          1 for "Firstname Surname",
-          2 for "Patronymic Firstname", and
-          3 for "Firstname" style.
-          For custom styles, use -1 and set the name-format-str key.</long>
-        </locale>
-      </schema>
-
-      <schema>
-        <key>/schemas/apps/gramps/preferences/name-format-str</key>
-        <applyto>/apps/gramps/preferences/name-format-str</applyto>
-        <owner>gramps</owner>
-        <type>string</type>
-        <default></default>
-        <locale name="C">
-          <short>Name display format string</short>
-          <long>This key determines the custom name display format.
-          Its value is unimportant unless the name-format keyis set to -1.
-          When used, the following substitutions are made:
-          %t -> title, %f -> given name, %p -> prefix, %s -> suffix,
-          %l -> family name, %y -> patronymic, %c -> call name.
-          The capital letters are substituted for capitalized name components.
-          The %% is substituted with the single % character.</long>
+          1 for "Surname, Firstname",
+          2 for "Firstname Surname",
+          3 for "Patronymic Firstname", and
+          4 for "Firstname" style.
+          For custom styles, use negative integers, whose meaning
+          is database-specific. Zero is reserved for internal purposes
+          and should not be used. If used, it will be changed to 1
+          by GRAMPS.</long>
         </locale>
       </schema>
 
