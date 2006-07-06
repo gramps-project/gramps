@@ -238,6 +238,9 @@ def db_copy(from_db,to_db,callback):
     to_db.media_bookmarks  = from_db.media_bookmarks
     to_db.repo_bookmarks   = from_db.repo_bookmarks
 
+    # Copy name formats
+    to_db.name_formats = from_db.name_formats
+    
     # Copy gender stats
     to_db.genderStats = from_db.genderStats
 

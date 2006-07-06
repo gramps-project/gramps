@@ -383,6 +383,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         return 1
 
     def _load_metadata(self):
+        # name display formats
+        self.name_formats = self.metadata.get('name_formats',[])
         # bookmarks
         self.bookmarks = self.metadata.get('bookmarks',[])
         self.family_bookmarks = self.metadata.get('family_bookmarks',[])
@@ -805,6 +807,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         
     def _close_metadata(self):
         if not self.readonly:
+            # name display formats
+            self.metadata['name_formats'] = self.name_formats
             # bookmarks
             self.metadata['bookmarks'] = self.bookmarks
             self.metadata['family_bookmarks'] = self.family_bookmarks

@@ -361,6 +361,8 @@ class GrampsParser(UpdateCallback):
             "attr_value" : (None,self.stop_attr_value),
             "bookmark"   : (self.start_bmark, None),
             "bookmarks"  : (None, None),
+            "format"     : (self.start_format, None),
+            "name-formats"  : (None, None),
             "child"      : (self.start_child,None),
             "childof"    : (self.start_childof,None),
             "childref"   : (self.start_childref,self.stop_childref),
@@ -837,6 +839,12 @@ class GrampsParser(UpdateCallback):
         elif target == 'repository':
             self.db.check_repository_from_handle(handle,self.trans)
             self.db.repo_bookmarks.append(handle)
+
+    def start_format(self,attrs):
+        number = int(attrs['number'])
+        name = attrs['name']
+        fmt_str = attrs['fmt_str']
+        self.db.name_formats.append((number,name,fmt_str))
 
     def start_person(self,attrs):
         self.update(self.p.CurrentLineNumber)

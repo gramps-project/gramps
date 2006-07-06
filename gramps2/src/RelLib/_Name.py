@@ -26,6 +26,13 @@ Name class for GRAMPS
 
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -48,11 +55,19 @@ class Name(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase):
     A person may have more that one name throughout his or her life.
     """
 
-    CUSTOM = -1  # user-built ordering
-    LNFN = 0  # last name first name [patronymic]
-    FNLN = 1  # first name last name
-    PTFN = 2  # patronymic first name
-    FN   = 3  # first name
+    DEF  = 0  # Default format (determined by gramps-wide prefs)
+    LNFN = 1  # last name first name [patronymic]
+    FNLN = 2  # first name last name
+    PTFN = 3  # patronymic first name
+    FN   = 4  # first name
+
+    DEFAULT_FORMATS = [
+        (DEF,  _("Default format (defined by GRAMPS preferences)"),''),
+        (LNFN, _("Family name, Given name Patronymic"),''),
+        (FNLN, _("Given name Family name"),''),
+        (PTFN, _("Patronymic, Given name"),''),
+        (FN,   _("Given name"),'')
+    ]
     
     def __init__(self,source=None,data=None):
         """creates a new Name instance, copying from the source if provided"""
@@ -98,8 +113,8 @@ class Name(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase):
             self.patronymic = ""
             self.sname = '@'
             self.group_as = ""
-            self.sort_as = self.LNFN
-            self.display_as = self.LNFN
+            self.sort_as = self.DEF
+            self.display_as = self.DEF
             self.call = ''
 
     def serialize(self):

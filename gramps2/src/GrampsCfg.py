@@ -213,76 +213,84 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             _('C_ustom format details'))
         self.name_exp.set_sensitive(False)
 
-        obox = gtk.combo_box_new_text()
-        for key,value in NameDisplay.formats.items():
-            obox.append_text(value)
 
-        try:
-            active = int(Config.get(Config.NAME_FORMAT))
-            if active >= len(NameDisplay.formats):
-                active = 0
-        except ValueError: # not an integer-convertible string => custom
-            active = len(NameDisplay.formats)
-            self.name_exp.set_sensitive(True)
+        format_list = [(name,number) for (number,name,fmt_str)
+                       in Name.DEFAULT_FORMATS]
+        format_list += [(name,number) for (number,name,fmt_str)
+                        in NameDisplay.CUSTOM_FORMATS]
+        
+        obox = gtk.ComboBox()
+        obox_data = {}
+        obox_model = gtk.ListStore(str, int)
+        index = 0
+        for t, v in format_list:
+            obox_model.append(row=[t, v])
+            print [t, v]
+            obox_data[v] = index
+            index += 1
 
-        obox.set_active(active)
-        obox.connect('changed', self.name_changed)
+        obox.set_model(obox_model)
+
+        #active = int(Config.get(Config.NAME_FORMAT))
+        #obox.set_active(active)
+#        obox.connect('changed', self.name_changed)
         lwidget = BasicLabel("%s: " % _('Preset format'))
 
-        custom_ui = self.build_custom_name_ui()
-        self.name_exp.add(custom_ui)
+#        custom_ui = self.build_custom_name_ui()
+#        self.name_exp.add(custom_ui)
 
         table.attach(lwidget, 0, 1, 0, 1, yoptions=0)
         table.attach(obox, 1,3,0, 1, yoptions=0)
-        table.attach(self.name_exp, 0,3,1, 2, yoptions=0)
+#        table.attach(self.name_exp, 0,3,1, 2, yoptions=0)
         return table
 
-    def build_custom_name_ui(self):
-        table = gtk.Table(2,3)
-        table.set_border_width(6)
-        table.set_col_spacings(6)
-        table.set_row_spacings(6)
+##     def build_custom_name_ui(self):
+##         table = gtk.Table(2,3)
+##         table.set_border_width(6)
+##         table.set_col_spacings(6)
+##         table.set_row_spacings(6)
 
-        avail_sw = gtk.ScrolledWindow()
-        avail_sw.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
-        avail_tree = gtk.TreeView()
-        avail_sw.add(avail_tree)
+##         avail_sw = gtk.ScrolledWindow()
+##         avail_sw.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
+##         avail_tree = gtk.TreeView()
+##         avail_sw.add(avail_tree)
 
-        use_sw = gtk.ScrolledWindow()
-        use_sw.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
-        use_tree = gtk.TreeView()
-        use_sw.add(use_tree)
+##         use_sw = gtk.ScrolledWindow()
+##         use_sw.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
+##         use_tree = gtk.TreeView()
+##         use_sw.add(use_tree)
 
-        button_table = gtk.Table(3,3)
+##         button_table = gtk.Table(3,3)
 
-        up_button = _set_button(gtk.STOCK_GO_UP)
-        down_button = _set_button(gtk.STOCK_GO_DOWN)
-        add_button = _set_button(gtk.STOCK_ADD)
-        remove_button = _set_button(gtk.STOCK_REMOVE)
-        button_table.attach(up_button, 1, 2, 0, 1, xoptions = 0, yoptions=0)
-        button_table.attach(remove_button, 2, 3, 1, 2, xoptions = 0,yoptions=0)
-        button_table.attach(down_button, 1, 2, 2, 3, xoptions = 0, yoptions=0)
-        button_table.attach(add_button, 0, 1, 1, 2, xoptions = 0,yoptions=0)
+##         up_button = _set_button(gtk.STOCK_GO_UP)
+##         down_button = _set_button(gtk.STOCK_GO_DOWN)
+##         add_button = _set_button(gtk.STOCK_ADD)
+##         remove_button = _set_button(gtk.STOCK_REMOVE)
+##         button_table.attach(up_button, 1, 2, 0, 1, xoptions = 0, yoptions=0)
+##         button_table.attach(remove_button, 2, 3, 1, 2, xoptions = 0,yoptions=0)
+##         button_table.attach(down_button, 1, 2, 2, 3, xoptions = 0, yoptions=0)
+##         button_table.attach(add_button, 0, 1, 1, 2, xoptions = 0,yoptions=0)
 
-        example_label = gtk.Label('<b>%s</b>' % _('Example'))
-        example_label.set_use_markup(True)
+##         example_label = gtk.Label('<b>%s</b>' % _('Example'))
+##         example_label.set_use_markup(True)
 
-        table.attach(example_label,0,3,0,1,xoptions = 0,yoptions=0)
-        table.attach(avail_sw, 0,1,1,2, yoptions=gtk.FILL)
-        table.attach(button_table, 1, 2, 1, 2, xoptions = 0, yoptions=0)
-        table.attach(use_sw, 2,3,1,2, yoptions=gtk.FILL)
+##         table.attach(example_label,0,3,0,1,xoptions = 0,yoptions=0)
+##         table.attach(avail_sw, 0,1,1,2, yoptions=gtk.FILL)
+##         table.attach(button_table, 1, 2, 1, 2, xoptions = 0, yoptions=0)
+##         table.attach(use_sw, 2,3,1,2, yoptions=gtk.FILL)
         
-        return table
+##         return table
 
-    def name_changed(self,obj):
-        custom_text = NameDisplay.formats[Name.CUSTOM]
-        if obj.get_active_text() == custom_text:
-            self.name_exp.set_sensitive(True)
-            self.name_exp.set_expanded(True)
-        else:
-            Config.set(Config.NAME_FORMAT,obj.get_active())
-            self.name_exp.set_expanded(False)
-            self.name_exp.set_sensitive(False)
+##     def name_changed(self,obj):
+##         return 
+##         custom_text = NameDisplay.formats[Name.CUSTOM]
+##         if obj.get_active_text() == custom_text:
+##             self.name_exp.set_sensitive(True)
+##             self.name_exp.set_expanded(True)
+##         else:
+##             Config.set(Config.NAME_FORMAT,obj.get_active())
+##             self.name_exp.set_expanded(False)
+##             self.name_exp.set_sensitive(False)
 
     def add_formats_panel(self):
         table = gtk.Table(3,8)

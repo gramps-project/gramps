@@ -96,24 +96,24 @@ class EditName(EditSecondary):
         if not self.original_group_as:
             self.group_as.force_value(self.obj.get_surname())
             
+
+        format_list = [(name,number) for (number,name,fmt_str)
+                       in RelLib.Name.DEFAULT_FORMATS]
+        format_list += [(name,number) for (number,name,fmt_str)
+                        in NameDisplay.CUSTOM_FORMATS]
+            
         self.sort_as = MonitoredMenu(
             self.top.get_widget('sort_as'),
             self.obj.set_sort_as,
             self.obj.get_sort_as,
-            [(_('Given name Family name'), RelLib.Name.FNLN),
-             (_('Family name Given Name Patronymic'), RelLib.Name.LNFN),
-             (_('Custom'), RelLib.Name.CUSTOM),
-             ],
+            format_list,
             self.db.readonly)
 
         self.display_as = MonitoredMenu(
             self.top.get_widget('display_as'),
             self.obj.set_display_as,
             self.obj.get_display_as,
-            [(_('Given name Family name'), RelLib.Name.FNLN),
-             (_('Family name Given Name Patronymic'), RelLib.Name.LNFN),
-             (_('Custom'), RelLib.Name.CUSTOM),
-             ],
+            format_list,
             self.db.readonly)
 
         self.given_field = MonitoredEntry(
