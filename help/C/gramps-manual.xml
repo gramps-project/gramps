@@ -2034,7 +2034,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata fileref="figures/edit-family.png" format="PNG" />
+                <imagedata fileref="figures/edit-family.png" format="PNG"
+                           width="" />
               </imageobject>
 
               <textobject>
@@ -2297,7 +2298,7 @@
     <!-- ================ Usage Subsection ================================ -->
 
     <sect1 id="gramps-edit-complete">
-      <title>Enterng and Editing Data: Complete Description</title>
+      <title>Entering and Editing Data: Complete Description</title>
 
       <para>The previous section offered you a quick overview of how to enter
       and edit data in GRAMPS. This section continues that discussion in much
@@ -2421,17 +2422,17 @@
 
         <!-- ==== End of Figure ==== -->
 
-        <para>The top of the window shows the name of the person whose data is
-        being edited. Below this name are ten "notebook tabs" containing
-        different categories of available information. Click any tab to view
-        and edit its contents. Clicking the <guibutton>OK</guibutton> button
-        at the bottom will apply all the changes made in all tabs and close
-        the dialog window. Clicking the <guibutton>Cancel</guibutton> button
-        will close the window without applying any changes. If any data in any
-        tabs were modified, an alert window will appear, prompting you to
-        choose from the following options: close the dialog without saving
-        changes, cancel the initial cancel request, or save the
-        changes.</para>
+        <para>The top of the window shows the basic information about the
+        person whose data is being edited. Below are several "notebook tabs"
+        containing different categories of available information. Click any
+        tab to view and edit its contents. Clicking the
+        <guibutton>OK</guibutton> button at the bottom will apply all the
+        changes made in all tabs and close the dialog window. Clicking the
+        <guibutton>Cancel</guibutton> button will close the window without
+        applying any changes. If any data in any tabs were modified, an alert
+        window will appear, prompting you to choose from the following
+        options: close the dialog without saving changes, cancel the initial
+        cancel request, or save the changes.</para>
 
         <note>
           <para>Clicking <guibutton>OK</guibutton> will immediately save
@@ -2444,37 +2445,43 @@
           data. If not, it has no data.</para>
         </tip>
 
-        <para>The tabs reflect the following categories of personal
-        data:</para>
+        <para>The general information is at the top of the window. This
+        includes the primary name and general information.:</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>Primary Name</term>
+
+            <listitem>
+              <para>includes <guilabel>Given name</guilabel>, <guilabel>Family
+              name</guilabel>, <guilabel>Family prefix</guilabel> (such as
+              "de" or "van"), <guilabel>Suffix</guilabel> (e.g. Jr. or III),
+              <guilabel>Title</guilabel> (e.g. Dr. or Rev.),
+              <guilabel>Nickname</guilabel> (Bob for Robert),
+              <guilabel>Type</guilabel> of the name (birth name, married name,
+              etc.). Some of these <guilabel>Family name</guilabel> and
+              <guilabel>Type</guilabel> fields provide "autocompletion"
+              feature: as you type in these fields, a menu appears below the
+              field containing database entries that match your partial input.
+              This gives you a shortcut by letting you select an entry that
+              already exists in the database rather than having to type it all
+              out. You can select the entry using your mouse or using your
+              arrow and <keycap>Enter</keycap> keys.</para>
+
+              <para>The <guilabel>Edit</guilabel> (that is, the "pen and
+              paper" icon) next to the <guilabel>Prefix</guilabel> entry field
+              invokes the <guilabel>Name Editor</guilabel> dialog. This dialog
+              allows editing the preferred name in full detail (see <xref
+              linkend="adv-an" />).</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
 
         <variablelist>
           <varlistentry>
             <term>General</term>
+
             <listitem>
-              <para>The <guilabel>General</guilabel> tab contains general
-              information about the person. This includes <guilabel>Given
-              name</guilabel>, <guilabel>Family name</guilabel>,
-              <guilabel>Family prefix</guilabel> (such as "de" or "van"),
-              <guilabel>Suffix</guilabel> (e.g. Jr. or III),
-              <guilabel>Title</guilabel> (e.g. Dr. or Rev.),
-              <guilabel>Nickname</guilabel> (Bob for Robert),
-              <guilabel>Type</guilabel> of the name (birth name, married name,
-              etc.). Some of these (<guilabel>Family name</guilabel>,
-              <guilabel>Type</guilabel>, and both <guilabel>Place</guilabel>
-              fields), also provide "autocompletion" feature: as you type in
-              these fields, a menu appears below the field containing database
-              entries that match your partial input. This gives you a shortcut
-              by letting you select an entry that already exists in the
-              database rather than having to type it all out. You can select
-              the entry using your mouse or using your arrow and
-              <keycap>Enter</keycap> keys.</para>
-
-              <para>The <guilabel>Edit</guilabel> (that is, the "pen and
-              paper" icon) next to the <guilabel>Family name</guilabel> entry
-              field invokes the <guilabel>Name Editor</guilabel> dialog. This
-              dialog allows editing the preferred name in full detail (see
-              <xref linkend="adv-an" />).</para>
-
               <para>The <guilabel>Gender</guilabel> menu offers the choice of
               person's gender : <guilabel>male</guilabel>,
               <guilabel>female</guilabel>, and
@@ -2486,24 +2493,34 @@
               may enter any unique value you want. If you do not provide a
               value, GRAMPS will automatically select a value for you.</para>
 
-              <para>The <guilabel>Image</guilabel> area shows the first image
-              available in the <guilabel>Gallery</guilabel> of this person (if
-              any exist).</para>
+              <para>The <guilabel>Marker</guilabel> allows you to specify som
+              basic information on the status of your research.</para>
 
-              <para>The <guilabel>Marker</guilabel> allows you to specify
-	      som basic information on the status of your research.</para>
-
-              <para>Finally, the <guilabel>Privacy</guilabel> buttons
-              lets you mark whether or not the person's record is considered
-	      private.</para>
-
+              <para>The <guilabel>Privacy</guilabel> button lets you mark
+              whether or not the person's record is considered private.</para>
             </listitem>
           </varlistentry>
         </variablelist>
 
         <variablelist>
           <varlistentry>
+            <term>Image</term>
+
+            <listitem>
+              <para>The <guilabel>Image</guilabel> area shows the first image
+              available in the <guilabel>Gallery</guilabel> of this person (if
+              any exist).</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>The tabs reflect the following categories of personal
+        data:</para>
+
+        <variablelist>
+          <varlistentry>
             <term>Events</term>
+
             <listitem>
               <para>The <guilabel>Events</guilabel> tab lets you view and edit
               any events relevant to the person. The bottom part of the window
@@ -2875,6 +2892,38 @@
             </listitem>
           </varlistentry>
         </variablelist>
+
+        <variablelist>
+          <varlistentry>
+	    <term>Associations</term>
+	    <listitem>
+	      <para>The <guilabel>Associations</guilabel> tab lets you
+	      view and edit information about the associations between
+	      people in the database. The associations may include Godparents,
+	      family friends, or any other types of associations you may 
+	      wish to record.</para>
+              <!-- ==== Figure: Edit Person dialog - LDS ==== -->
+
+              <figure id="edit-pers-as-fig">
+                <title>Edit Person dialog - Associations</title>
+
+                <screenshot>
+                  <mediaobject>
+                    <imageobject>
+                      <imagedata depth=""
+                                 fileref="figures/edit-person-assoc.png"
+                                 format="PNG" width="" />
+                    </imageobject>
+
+                    <textobject>
+                      <phrase>Shows Associations Tab of Edit Person dialog.</phrase>
+                    </textobject>
+                  </mediaobject>
+                </screenshot>
+              </figure>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
 
         <variablelist>
           <varlistentry>
