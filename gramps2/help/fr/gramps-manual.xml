@@ -727,7 +727,7 @@
             <term>Activer une Personne</term>
 
             <listitem>
-              <para>En haut de l'écran, nom, id, naissance, et information de décès de la personne active sont affichés. Si une photo de l'individu est disponible, elle est affichée sur le côté droit. Sous le nom de la personne il y a un symbole indiquant le genre, et un bouton édition. Cliquer sur le bouton <guibutton>Edition</guibutton> vous permettera d'éditer toutes les informations de l'individu dans un dialogue d'édition de la personne.</para>
+              <para>En haut de l'écran, nom, id, naissance, et information de décès de la personne active sont affichés. Si une photo de l'individu est disponible, elle est affichée sur le côté droit. Sous le nom de la personne il y a un symbole indiquant le genre, et un bouton édition. Cliquer sur le bouton <guibutton>Editer</guibutton> vous permettera d'éditer toutes les informations de l'individu dans un dialogue d'édition de la personne.</para>
             </listitem>
           </varlistentry>
 
@@ -1345,7 +1345,7 @@
     <!-- ================ Usage Subsection ================================ -->
 
     <sect1 id="gramps-edit-quick">
-      <title>Édition des données en deux mots</title>
+      <title>Entrer et éditer des données: survol rapide</title>
 
       <para>Cette section traite principalement des éléments de menus et des boutons comme support de l'utilisation de GRAMPS.Vous pouvez modifier n'importe quelle information conservées dans la base de données. Ceci inclut les données liées à des individus et à leurs parents, les sources d'information, les lieux et les objets multimedia référencés. En bref, tout ce qui est conservé dans la base de données peut être modifié. En fait, ajouter de l'information c'est créer une donnée vide puis la modifier (<xref linkend="gramps-edit-complete"/>).</para>
 
@@ -1410,7 +1410,7 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata fileref="figures/edit-family.png" format="PNG"/>
+                <imagedata fileref="figures/edit-family.png" format="PNG" width=""/>
               </imageobject>
 
               <textobject>
@@ -1571,7 +1571,7 @@
     <!-- ================ Usage Subsection ================================ -->
 
     <sect1 id="gramps-edit-complete">
-      <title>Édition des données : description détaillée</title>
+      <title>Entrer et éditer des données: description complète</title>
 
       <para>Cette section fournit une description complète de toutes les options de modification de tous les éléments de la base de données GRAMPS. Vous disposez aussi de nombreux raccourcis claviers décrits dans <xref linkend="append-keybind"/>.</para>
 
@@ -1664,7 +1664,7 @@
 
         <!-- ==== End of Figure ==== -->
 
-        <para>Le haut de la fenêtre présente le nom de la personne dont les données sont en modification. La partie principale de la fenêtre présente des onglets correspondant à chaque catégorie d'information disponible. Cliquez sur le nom de l'onglet pour faire apparare son contenu et donc permettre l'accès à ses données. Le bas de la fenêtre contient les boutons <guibutton>Valider</guibutton> et <guibutton>Annuler</guibutton>. Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications dans la base de données et de fermer la fenêtre. Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier la base de données. Si des modifications avaient été faites, une fenêtre d'avertissement proposera le choix entre fermer sans écrire les données dans la base, annuler la commande de fermeture ou écrire les données dans la base.</para>
+        <para>Le haut de la fenêtre présente le nom de la personne dont les données sont en modification. La partie principale de la fenêtre présente des "étiquettes notées" correspondant à chaque catégorie d'information disponible. Cliquez sur le nom de l'onglet pour faire apparare son contenu et donc permettre l'accès à ses données. Le bouton du bas <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications dans la base de données et de fermer la fenêtre. Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier la base de données. Si des modifications avaient été faites, une fenêtre d'avertissement proposera le choix entre fermer sans écrire les données dans la base, annuler la commande de fermeture ou écrire les données dans la base.</para>
 
         <note>
           <para>Cliquer sur <guibutton>Valider</guibutton> enregistrera immédiatement les changements dans la base de données (écriture sur le disque). Cette version de GRAMPS n'a pas une fonction séparée d'enregistrement, tous les changements sont immédiats.</para>
@@ -1674,33 +1674,52 @@
           <para>Les onglets (étiquettes) reflètent la présence d'information correspondante: si l'étiquette contient n'importe quelles données, elle apparaît avec des caractères gras; si l'étiquette n'a aucune donnée, elle semble régulière (non "bold").</para>
         </tip>
 
-        <para>Les onglets donnent accès aux types d'informations suivantes :</para>
+        <para>L'information générale est en haut de la fenêtre. Incluant le nom primaire.</para>
 
         <variablelist>
           <varlistentry>
-            <term>Général</term>
+            <term>Nom primaire</term>
+
             <listitem>
-              <para>L'onglet <guilabel>Général</guilabel> contient les informations générales de la personne. Ceci comprend les zones de saisie suivantes : <guilabel>Prénom</guilabel>, <guilabel>Nom de famille</guilabel>, <guilabel>Particule</guilabel> (comme "de" ou "van"), <guilabel>Suffixe</guilabel> (par exemple Jr. ou III), <guilabel>Titre</guilabel> (par exemple Dr. ou Pr.), <guilabel>Surnom </guilabel> (par exemple Jeannot pour Jean), <guilabel>Type</guilabel> du nom (nom de naissance, nom marital...). Certains de ces champs de saisie (<guilabel>Nom</guilabel>, <guilabel>Type</guilabel>, ainsi que <guilabel>Lieux</guilabel>), permettent d'ouvrir la liste des possibilités par un menu déroulant, à l'aide de la flèche vers le bas présente à droite du champ. Les choix proposés par le menu déroulant sont ceux déjà connus dans la base de données. GRAMPS essaiera aussi de deviner la suite du texte que vous aurez commencé à saisir à partir des données déjà connues. Si ce que vous propose GRAMPS vous convient, acceptez-le avec la touche <keycap>Entrée</keycap> key.</para>
+              <para>comprend le <guilabel>Prénom</guilabel>, <guilabel>Nom de famille</guilabel>, <guilabel>Particule</guilabel> (comme "de" ou "van"), <guilabel>Suffixe</guilabel> (par exemple Jr. ou III), <guilabel>Titre</guilabel> (par exemple Dr. ou Pr.), <guilabel>Surnom </guilabel> (par exemple Jeannot pour Jean), <guilabel>Type</guilabel> le nom (nom de naissance, nom marital...). Certains de ces champs <guilabel>Nom</guilabel> et <guilabel>Type</guilabel> ont une fonction de "saisie automatique" quand vous saisissez, un menu apparaissant proche du champ contenant les entrées déjà connues dans la base de données. Celà vous fournit un raccourci selon les lettres saisies à partir des données déjà connues. Vous pouvez sélectionner une entrée en utilisant votre souris ou le curseur et la touche <keycap>Entrée</keycap>.</para>
 
-              <para>Le bouton <guilabel>Editer</guilabel> situé près du <guilabel>Nom de famille</guilabel> permet d'éditer le nom dans le détail, à l'aide de l'<guilabel>éditeur de Nom</guilabel> (voyez <xref linkend="adv-an"/>).</para>
-
-              <para>Le menu<guilabel>Genre</guilabel> donne le choix entre <guilabel>masculin</guilabel>, <guilabel>feminin</guilabel>, et <guilabel>inconnu</guilabel>.</para>
-
-              <para>Le champ <guilabel>ID</guilabel> présente l'identifiant interne que GRAMPS attribue à chaque individu de la base de données. La zone <guilabel>Image</guilabel> montre la première image de la <guilabel>Galerie</guilabel> pour cette personne (s'il y en a).</para>
-
-              <para>Le champ <guilabel>Image</guilabel> affiche la première image disponible dans la <guilabel>Galerie</guilabel> de cette personne (si il y en a).</para>
-
-              <para>Le <guilabel>Marqueur</guilabel> vous permet de spécifier quelque information basique sur le statut de vos recherches.</para>
-
-              <para>Enfin, les boutons <guilabel>Information privée</guilabel> permettent de marquer les enregistrements comme étant privées.</para>
-
+              <para>Le bouton <guilabel>Editer</guilabel> (c'est, l'icône "stylo et papier") situé près du champ d'entrée <guilabel>Préfixe</guilabel> appelant le dialogue <guilabel>Editeur de nom</guilabel>. Ce dernier vous  permet d'éditer le nom préféré dans le détail (voir <xref linkend="adv-an"/>).</para>
             </listitem>
           </varlistentry>
         </variablelist>
 
         <variablelist>
           <varlistentry>
+            <term>Général</term>
+
+            <listitem>
+              <para>Le menu<guilabel>Genre</guilabel> donne le choix entre <guilabel>masculin</guilabel>, <guilabel>feminin</guilabel>, et <guilabel>inconnu</guilabel>.</para>
+
+              <para>Le champ <guilabel>ID</guilabel> présente l'identifiant interne que GRAMPS attribue à chaque individu de la base de données. La zone <guilabel>Image</guilabel> montre la première image de la <guilabel>Galerie</guilabel> pour cette personne (s'il y en a).</para>
+
+              <para>Le <guilabel>Marqueur</guilabel> vous permet de spécifier quelque information basique sur le statut de vos recherches.</para>
+
+              <para>Le bouton <guilabel>Information privée</guilabel> permet de marquer ou non les enregistrements de la personne comme étant privées.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <variablelist>
+          <varlistentry>
+            <term>Image</term>
+
+            <listitem>
+              <para>Le champ <guilabel>Image</guilabel> affiche la première image disponible dans la <guilabel>Galerie</guilabel> de cette personne (si il y en a).</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>Les onglets donnent accès aux types d'informations suivantes :</para>
+
+        <variablelist>
+          <varlistentry>
             <term>Événements</term>
+
             <listitem>
               <para>L'onglet <guilabel>Evénement</guilabel> Evènements présente les données des évènements liés à la personne pour permettre leur modification. La partie du bas de la fenêtre affiche cette liste d'évènements. La partie du haut montre le détail de l'évènement sélectionné s'il y a lieu. Les boutons <guibutton>+</guibutton>, <guibutton>Editer</guibutton>, et <guibutton>-</guibutton> vous permettent respectivement d'ajouter, modifier et supprimer un évènement Notez que les boutons <guibutton>Editer</guibutton> et <guibutton>-</guibutton> ne sont disponibles que lors de la sélection d'une dénomination dans la liste.</para>
             </listitem>
@@ -1884,7 +1903,7 @@
                 <para>Remarquez que la première image est aussi présentée dans la zone <guilabel>Image</guilabel> de l'onglet <guilabel>Général</guilabel></para>
               </tip>
 
-              <para>Les boutons <guibutton>+</guibutton>, <guibutton>Choisir</guibutton>, <guibutton>Editer</guibutton> et <guibutton>-</guibutton> vous permettent respectivement d'ajouter une nouvelle image, ajouter une référence à image déjà dans la base, modifier et supprimer la référence à un objet multimedia. Notez que les boutons<guibutton>Editer</guibutton> et <guibutton>-</guibutton> ne sont disponibles qu'après avoir sélectionné un objet dans la liste.</para>
+              <para>Les boutons <guibutton>+</guibutton>, <guibutton>Choisir</guibutton>, <guibutton>Editer</guibutton> et <guibutton>-</guibutton> vous permettent respectivement d'ajouter une nouvelle image, ajouter une référence à image déjà dans la base, modifier et supprimer la référence à un objet multimedia. Notez que les boutons <guibutton>Editer</guibutton> et <guibutton>-</guibutton> ne sont disponibles qu'après avoir sélectionné un objet dans la liste.</para>
 
               <!-- ==== Figure: Edit Person dialog - Gallery ==== -->
 
@@ -1942,6 +1961,32 @@
             </listitem>
           </varlistentry>
         </variablelist>
+
+        <variablelist>
+          <varlistentry>
+	    <term>Associations</term>
+	    <listitem>
+	      <para>L'étiquette <guilabel>Associations</guilabel> vous permet de voir et d'éditer une information sur les associations entre les individus dans la base de données. Les associations peuvent inclure les parrains, amis de la famille, ou tout autres types d'associations que vous souhaitez enregistrer.</para>
+              <!-- ==== Figure: Edit Person dialog - LDS ==== -->
+
+              <figure id="edit-pers-as-fig">
+                <title>Éditer un individu - Associations</title>
+
+                <screenshot>
+                  <mediaobject>
+                    <imageobject>
+                      <imagedata depth="" fileref="figures/edit-person-assoc.png" format="PNG" width=""/>
+                    </imageobject>
+
+                    <textobject>
+                      <phrase>L'onglet associations de la personne éditée</phrase>
+                    </textobject>
+                  </mediaobject>
+                </screenshot>
+              </figure>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
 
         <variablelist>
           <varlistentry>
