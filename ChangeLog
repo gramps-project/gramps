@@ -1,3 +1,11 @@
+2006-07-07  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamily.py: add edit child/relationship options
+	in the popup menu
+	* src/DisplayTab/_EmbeddedList.py: break out menu specification to
+	make it easier to override
+	* src/glade/gramps.glade: remove unused objects
+	* help/C/figures/place.png: update
+
 2006-07-07  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: fix restoration of gallery settings
 
