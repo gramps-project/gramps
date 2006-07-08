@@ -223,7 +223,6 @@ class ViewManager:
 
         self.notebook = gtk.Notebook()
         self.notebook.set_show_tabs(False)
-        self.notebook.set_tab_pos(gtk.POS_LEFT)
         self.notebook.show()
         self._init_lists()
         self._build_ui_manager()
