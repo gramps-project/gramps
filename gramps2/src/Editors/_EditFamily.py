@@ -116,6 +116,15 @@ class ChildEmbedList(EmbeddedList):
         EmbeddedList.__init__(self, dbstate, uistate, track,
                               _('Children'), ChildModel, True)
 
+    def get_popup_menu_items(self):
+        return [
+            (True, gtk.STOCK_ADD, self.add_button_clicked),
+            (False, _('Share'), self.edit_button_clicked),
+            (True,  _('Edit relationship'), self.edit_button_clicked),
+            (True,  _('Edit child'), self.edit_child_button_clicked),
+            (True, gtk.STOCK_REMOVE, self.del_button_clicked),
+            ]
+
     def find_index(self,obj):
         """
         returns the index of the object within the associated data
@@ -256,6 +265,18 @@ class ChildEmbedList(EmbeddedList):
                     n = NameDisplay.displayer.display(p)
                     EditChildRef(n, self.dbstate, self.uistate, self.track,
                                  ref, self.child_ref_edited)
+                    break
+
+    def edit_child_button_clicked(self, obj):
+        handle = self.get_selected()
+        if handle:
+            from Editors import EditPerson
+
+            for ref in self.family.get_child_ref_list():
+                if ref.ref == handle:
+                    p = self.dbstate.db.get_person_from_handle(handle)
+                    EditPerson(self.dbstate, self.uistate, self.track,
+                               p, self.child_ref_edited)
                     break
 
     def drag_data_received(self, widget, context, x, y, sel_data, info, time):

@@ -95,8 +95,7 @@ class EmbeddedList(ButtonTab):
             if ref:
                 self.right_click(obj, event)
 
-    def right_click(self, obj, event):
-
+    def get_popup_menu_items(self):
         if self.share_btn:
             itemlist = [
                 (True, gtk.STOCK_ADD, self.add_button_clicked),
@@ -110,9 +109,12 @@ class EmbeddedList(ButtonTab):
                 (True, gtk.STOCK_EDIT, self.edit_button_clicked),
                 (True, gtk.STOCK_REMOVE, self.del_button_clicked),
             ]
+        return itemlist
+
+    def right_click(self, obj, event):
 
         menu = gtk.Menu()
-        for (image, title, func) in itemlist:
+        for (image, title, func) in self.get_popup_menu_items():
             if image:
                 item = gtk.ImageMenuItem(stock_id=title)
             else:
