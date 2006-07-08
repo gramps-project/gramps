@@ -2010,7 +2010,7 @@ class WebReport(Report):
         self.noid = options.handler.options_dict['NWEBnoid']
         self.title = options.handler.options_dict['NWEBtitle']
         self.sort = Sort.Sort(self.database)
-        self.inc_gallery = bool(options.handler.options_dict['NWEBgallery'])
+        self.inc_gallery = options.handler.options_dict['NWEBgallery']
         self.inc_contact = options.handler.options_dict['NWEBcontact'] != u""
         self.inc_download = options.handler.options_dict['NWEBdownload']
         self.user_header = options.handler.options_dict['NWEBheader']
@@ -2546,7 +2546,7 @@ class WebReportOptions(ReportOptions):
         self.options_dict['NWEBincpriv'] = int(not self.no_private.get_active())
         self.options_dict['NWEBnoid'] = int(self.noid.get_active())
         self.options_dict['NWEBcontact'] = unicode(self.contact.get_handle())
-        self.options_dict['NWEBgallery'] = self.include_gallery.get_active()
+        self.options_dict['NWEBgallery'] = int(self.include_gallery.get_active())
         self.options_dict['NWEBheader'] = unicode(self.header.get_handle())
         self.options_dict['NWEBfooter'] = unicode(self.footer.get_handle())
         self.options_dict['NWEBdownload'] = int(self.inc_download.get_active())
