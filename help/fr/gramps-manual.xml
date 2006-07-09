@@ -452,7 +452,7 @@
       <screenshot>
         <mediaobject>
           <imageobject>
-            <imagedata depth="" fileref="figures/mainwin.png" format="PNG" scale="100" width=""/>
+            <imagedata depth="" fileref="figures/mainwin.png" format="PNG" width=""/>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -483,7 +483,7 @@
         <term>Barre de progression</term>
 
         <listitem>
-          <para>La barre de progression se trouve en bas, à gauche de la fenêtre principale de GRAMPS. Elle montre l'avancement des opérations longues comme le chargement ou l'écriture de grosses bases de données, l'importation ou l'exportation de données de et vers d'autres formats ou la génération de sites web, etc.</para>
+          <para>La barre de progression se trouve en bas, à gauche de la fenêtre principale de GRAMPS. Elle montre l'avancement des opérations longues comme le chargement ou l'écriture de grosses bases de données, l'importation ou l'exportation de données de et vers d'autres formats ou la génération de sites web, etc. Quand vous ne réalisez pas ce types d'opérations, la barre de progression est vierge.</para>
         </listitem>
       </varlistentry>
 
@@ -509,7 +509,7 @@
     <sect1 id="gramps-views">
       <title>Vues</title>
 
-      <para>L'information généalogique est très large et peut être extrêmement détaillée. L'afficher est un challenge que GRAMPS accepte en divisant et organisant l'information à travers une série de vues. Chaque vue affiche une partie de l'information totale, sélectionnée selon une catégorie particulière. Celà deviendra plus clair quand nous aurons exploré les neuf vues différentes, listées ci-dessous:</para>
+      <para>L'information généalogique est très large et peut être extrêmement détaillée. L'afficher est un challenge que GRAMPS accepte en divisant et organisant l'information à travers une série de vues. Chaque vue affiche une partie de l'information totale, sélectionnée selon une catégorie particulière. Celà deviendra plus clair quand nous aurons exploré les différentes vues, listées ci-dessous:</para>
 
       <itemizedlist>
         <listitem>
@@ -574,7 +574,7 @@
       <sect2 id="view-modes">
         <title>Le changement entre les vues et les modes d'affichage</title>
 
-        <para>Selon l'état du menu <menuchoice><guimenu>Affichage</guimenu><guimenuitem>Barre latérale</guimenuitem></menuchoice>, le mode d'affichage peut être changé soit dans la barre verticale, soit dans les onglets en haut de la fenêtre.</para>
+        <para>Comme mentionné plus haut il y a neuf vues différentes. Par ailleurs, il existe deux modes de vue différents. Vous pouvez jeter un coup d'oeil pour savoir dans quel mode de vue vous êtes: si vous voyez des icônes listées verticalement dans la barre latérale à gauche de la fenêtre, alors vous êtes dans le mode de vue de la barre verticale/latérale. Si au contraire vous voyez une série d'"étiquettes notées" (marquées Individus, Relations, Liste de famille, Arbre généalogique, Événements, Sources, Lieux, Média et Dépôts) à l'horizontal de la fenêtre, alors vous êtes dans la vue en mode onglets/étiquette. Vous pouvez basculer d'un mode à l'autre en sélectionnant <menuchoice><guimenu>Affichage</guimenu><guimenuitem>Barre latérale</guimenuitem></menuchoice> depuis la barre de menu.</para>
 
         <para>Pour changer de Vue dans la barre latérale, cliquez sur l'icône de la vue que vous désirez.</para>
 
@@ -586,7 +586,7 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/mainwin.png" format="PNG" scale="100" width=""/>
+                <imagedata depth="" fileref="figures/mainwin.png" format="PNG" width=""/>
               </imageobject>
 
               <textobject>
@@ -665,7 +665,7 @@
 
           <para>Rechercher est une méthode simple mais rapide pour rechercher dans l'affichage des colonnes. Taper les caractères dans la boîte de recherche et cliquer sur le bouton trouver affichera seulement les lignes où le texte est présent.</para>
 
-          <para>Alternativement, vous pouvez activer la barre de filtre, laquelle s'affichera à la droite de l'affichage. Quand la barre de filtre est affichée, la barre de recherche ne le sera plus. Le barre de filtre vous permet de construire un ensemble de règles de filtrage interactives pouvant être appliquées à l'affichage. Le filtre est basé sur les règles et les données, pas sur l'affichage à l'écran.</para>
+          <para>Alternativement, vous pouvez activer la barre de filtre, laquelle s'affichera à la droite de l'affichage. Quand la barre de filtre est affichée, la barre de recherche ne l'est plus. Le barre de filtre vous permet de construire un ensemble de règles de filtrage interactives pouvant être appliquées à l'affichage. Le filtre est basé sur les règles et les données, pas sur l'affichage à l'écran.</para>
 
           <!-- ==== Figure: Enabled Filter ==== -->
 
@@ -727,7 +727,7 @@
             <term>Activer une Personne</term>
 
             <listitem>
-              <para>En haut de l'écran, nom, id, naissance, et information de décès de la personne active sont affichés. Si une photo de l'individu est disponible, elle est affichée sur le côté droit. Sous le nom de la personne il y a un symbole indiquant le genre, et un bouton édition. Cliquer sur le bouton <guibutton>Editer</guibutton> vous permettera d'éditer toutes les informations de l'individu dans un dialogue d'édition de la personne.</para>
+              <para>En haut de l'écran, nom, id, naissance, et information de décès de la personne active sont affichés. Si une photo de l'individu est disponible, elle est affichée sur le côté droit. A côté du nom de la personne il y a un symbole indiquant le genre, et un bouton Éditer. Cliquer sur le bouton <guibutton>Éditer</guibutton> vous permettera d'éditer toutes les informations de l'individu dans un dialogue d'édition de la personne.</para>
             </listitem>
           </varlistentry>
 
@@ -804,7 +804,7 @@
       <sect2 id="pedigree-view">
         <title>Vue par Arborescence</title>
 
-        <para>La vue Arbre généalogique vous aide à voir la place de la personne active dans l'arbre de ses ancêtres. Elle montre quatre générations, de la personne active selon la taille de la fenêtre. Chaque personne est représentée par un rectangle portant son nom, naissance et information de décès et en option l'image disponible. Deux lignes relient la personne à son père (ligne supérieure) et sa mère (ligne inférieure). Les lignes continues figurent les liens de filiation tandis que les lignes pointillées représentent les autres liens (adoption, beau-père ou belle-mère, tuteurs).</para>
+        <para>La vue Arbre généalogique vous aide à voir la place de la personne active dans l'arbre de ses ancêtres. Elle montre cinq générations, de la personne active selon la taille de la fenêtre. Chaque personne est représentée par un rectangle portant son nom, naissance et information de décès et en option l'image si disponible. Deux lignes relient la personne à son père (ligne supérieure) et sa mère (ligne inférieure). Les lignes continues figurent les liens de filiation tandis que les lignes pointillées représentent les autres liens comme une adoption, un beau-père ou belle-mère, un tuteur, etc.</para>
 
         <!-- ==== Figure: Pedigree View ==== -->
 
@@ -900,7 +900,7 @@
           <para>Parce que les événements peuvent être partagés, vous pouvez prendre un peu de temps pour donner à chaque événement une description unique et significative. Celà vous aidera pour trouver l'événement correct si vous décidez de partager des l'événements.</para>
         </warning>
 
-        <para>La liste des événements peut être triée, par un clic sur l'en-tête de la colonne. Cliquer une fois trie deans l'ordre ascendant, cliquer une deuxième fois dans l'ordre descendant. L'<guilabel>éditeur de colonnes</guilabel> peut être utilisé pour ajouter supprimer ou modifier les colonnes.</para>
+        <para>La liste des événements peut être triée, par un clic sur l'en-tête de la colonne. Cliquer une fois trie dans l'ordre ascendant, cliquer une deuxième fois dans l'ordre descendant. L'<guilabel>éditeur de colonnes</guilabel> peut être utilisé pour ajouter supprimer ou modifier les colonnes.</para>
       </sect2>
 
       <!-- ================ Main Window Sub-subsection  -->
@@ -908,9 +908,9 @@
       <sect2 id="sources-view">
         <title>Vue des Sources</title>
 
-        <para>La Vue des Sources présente les sources d'information conservées dans la base de données. Ceci peut couvrir des documents variés comme les actes de naissance, décès, mariage, livres, journaux, journaux personnels. En fait tout document peut être pris comme une source d'information. Les sources peuvent être utilisée comme référence pour n'importe quel évènement conservé dans la base de données. La Vue Sources présente pour chacune le <guilabel>Titre</guilabel>, l'<guilabel>Identifiant</guilabel>, et l'<guilabel>Auteur</guilabel>. Le tri peut être fait par rapport à n'importe quelle colonne. Il se fait comme d'habitude : un clic sur l'en-tête de la colonne pour trier en ordre ascendant, un autre clic pour trier dans l'ordre descendant. L'<guilabel>Editeur de colonnes</guilabel> peut être utilisé pour l'affichage des colonnes.</para>
+        <para>La Vue des Sources présente les sources d'information conservées dans la base de données. Ceci peut couvrir des documents variés comme les actes de naissance, décès, mariage, livres, journaux, journaux personnels. En fait tout document peut être pris comme une source d'information. Les sources peuvent être utilisée comme référence pour n'importe quel évènement conservé dans la base de données. La Vue Sources présente pour chacune le <guilabel>Titre</guilabel>, l'<guilabel>Identifiant</guilabel>, et l'<guilabel>Auteur</guilabel> de la source, aussi bien que tout autre information de <guilabel>Publication</guilabel> qui peut y être associée.</para>
 
-        <para>La liste des sources peut être triée, par un clic sur l'en-tête de la colonne. Cliquer une fois trie deans l'ordre ascendant, cliquer une deuxième fois dans l'ordre descendant. L'<guilabel>éditeur de colonnes</guilabel> peut être utilisé pour ajouter supprimer ou modifier les colonnes.</para>
+        <para>La liste des sources peut être triée, par un clic sur l'en-tête de la colonne. Cliquer une fois trie dans l'ordre ascendant, cliquer une deuxième fois dans l'ordre descendant. L'<guilabel>éditeur de colonnes</guilabel> peut être utilisé pour ajouter supprimer ou modifier les colonnes.</para>
 
         <!-- ==== Figure: Sources View ==== -->
 
@@ -1025,7 +1025,7 @@
     <sect1 id="new-db">
       <title>Commencer une nouvelle base de données</title>
 
-      <para>Pour commencer avec une nouvelle base de données, faites <menuchoice><guimenu>Fichier</guimenu><guimenuitem>Nouveau</guimenuitem></menuchoice> ou sélectionner le bouton <guibouton>Nouveau de la barre d'outils. On vous demandera de donner le nom de la nouvelle base de donn</guibouton></para>
+      <para>Pour commencer avec une nouvelle base de données, faites <menuchoice><guimenu>Fichier</guimenu><guimenuitem>Nouveau</guimenuitem></menuchoice> ou sélectionner le bouton <guibutton>Nouveau</guibutton> de la barre d'outils. On vous demandera de donner le nom de la nouvelle base de données.</para>
 
       <note id="new-db-notdir-note">
         <title>Bases de données GRAMPS</title>
@@ -1454,7 +1454,7 @@
       <sect2 id="gramps-spec-par">
         <title>Pour préciser les parents</title>
 
-        <para>Vous pouvez spécifier les parents de la personne active dans la vue Relations (<xref linked="family-fig"/>). Un peu de concentration est nécessaire pour prévenir la création de familles dupliquées. Si vous souhaitez ajouter la personne active à une famille déjà existante, vous devrez cliquer sur le bouton <guibutton>Sélectionner</guibutton>. Si la famille comprend des parents pas encore enregistrés, vous devrez cliquer sur le bouton <guibutton>Ajouter</guibutton>.</para>
+        <para>Vous pouvez spécifier les parents de la personne active dans la vue Relations (<xref linkend="family-fig"/>). Un peu de concentration est nécessaire pour prévenir la création de familles dupliquées. Si vous souhaitez ajouter la personne active à une famille déjà existante, vous devrez cliquer sur le bouton <guibutton>Sélectionner</guibutton>. Si la famille comprend des parents pas encore enregistrés, vous devrez cliquer sur le bouton <guibutton>Ajouter</guibutton>.</para>
 
         <para>Si vous cliquez sur le bouton <guibutton>Sélectionner</guibutton>, vous obtiendrez le dialogue de sélection de la famille. Il vous permettera de sélectionner une famille existante, puis la personne active sera ajoutée comme enfant de la famille.</para>
 
@@ -1964,9 +1964,11 @@
 
         <variablelist>
           <varlistentry>
-	    <term>Associations</term>
-	    <listitem>
-	      <para>L'étiquette <guilabel>Associations</guilabel> vous permet de voir et d'éditer une information sur les associations entre les individus dans la base de données. Les associations peuvent inclure les parrains, amis de la famille, ou tout autres types d'associations que vous souhaitez enregistrer.</para>
+            <term>Associations</term>
+
+            <listitem>
+              <para>L'étiquette <guilabel>Associations</guilabel> vous permet de voir et d'éditer une information sur les associations entre les individus dans la base de données. Les associations peuvent inclure les parrains, amis de la famille, ou tout autres types d'associations que vous souhaitez enregistrer.</para>
+
               <!-- ==== Figure: Edit Person dialog - LDS ==== -->
 
               <figure id="edit-pers-as-fig">
@@ -1984,9 +1986,9 @@
                   </mediaobject>
                 </screenshot>
               </figure>
-	    </listitem>
-	  </varlistentry>
-	</variablelist>
+            </listitem>
+          </varlistentry>
+        </variablelist>
 
         <variablelist>
           <varlistentry>
@@ -2338,17 +2340,9 @@
           <para>Les onglets (étiquettes) reflètent la présence d'information correspondante: si l'étiquette contient n'importe quelles données, elle apparaît avec des caractères gras; si l'étiquette n'a aucune donnée, elle semble régulière (non "bold").</para>
         </tip>
 
+        <para>L'information générale en haut de la fenêtre vous permet de préciser les informations basiques sur une source: son <guilabel>titre</guilabel>, <guilabel>auteur</guilabel>, <guilabel>abbreviation</guilabel>, et l'<guilabel>information de publication</guilabel>. Vous pouvez taper directement l'information dans les champs adjacents.</para>
+
         <para>Les onglets donnent accès aux types d'informations suivants :</para>
-
-        <variablelist>
-          <varlistentry>
-            <term>Général</term>
-
-            <listitem>
-              <para>L'onglet <guilabel>Général</guilabel> permet l'édition d'informations générales au sujet de la source: son <guilabel>titre</guilabel>, <guilabel>auteur</guilabel>, <guilabel>abrégé du titre</guilabel>, et l'<guilabel>information de publication</guilabel>. Cette information peut être introduite au clavier dans les champs appropriés d'enregistrement de texte.</para>
-            </listitem>
-          </varlistentry>
-        </variablelist>
 
         <variablelist>
           <varlistentry>
@@ -2356,6 +2350,16 @@
 
             <listitem>
               <para>L'onglet <guilabel>Note</guilabel> contient les notes concernant la source. Si vous voulez ajouter ou modifier des notes, il vous suffit de modifier le contenu de la zone de texte.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <variablelist>
+          <varlistentry>
+            <term>Galerie</term>
+
+            <listitem>
+              <para>L'onglet <guilabel>Galerie</guilabel> affiche les données des objets multimédias associés à la source et permet leur modification. La partie centrale de la fenêtre montre tous les objets multimédias conservés dans la base de données. Les objets qui sont des fichiers-images valides sont représentés par une vignette. Les autres comme des enregistrements sonores ou video sont représentés par une icône générique. Les boutons <guibutton>+</guibutton>, <guibutton>Choisir</guibutton>, <guibutton>Editer</guibutton> et <guibutton>-</guibutton> vous permettent respectivement d'ajouter un fichier, une référence à un objet déjà dans la base, modifier et supprimer un objet multimedia. Notez que les boutons <guibutton>Editer</guibutton> et <guibutton>-</guibutton> ne sont disponibles qu'après avoir sélectionné un objet dans la liste.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -2374,10 +2378,10 @@
 
         <variablelist>
           <varlistentry>
-            <term>Galerie</term>
+            <term>Dépôts</term>
 
             <listitem>
-              <para>L'onglet <guilabel>Galerie</guilabel> affiche les données des objets multimédias associés à la source et permet leur modification. La partie centrale de la fenêtre montre tous les objets multimédias conservés dans la base de données. Les objets qui sont des fichiers-images valides sont représentés par une vignette. Les autres comme des enregistrements sonores ou video sont représentés par une icône générique. Les boutons <guibutton>+</guibutton>, <guibutton>Choisir</guibutton>, <guibutton>Editer</guibutton> et <guibutton>-</guibutton> vous permettent respectivement d'ajouter un fichier, une référence à un objet déjà dans la base, modifier et supprimer un objet multimedia. Notez que les boutons <guibutton>Editer</guibutton> et <guibutton>-</guibutton> ne sont disponibles qu'après avoir sélectionné un objet dans la liste.</para>
+              <para>L'onglet <guilabel>Dépôts</guilabel> liste les références aux dépôts dans lesquels une source est contenue. Cette liste peut être triée par n'importe quelle en-tête de colonne: <guilabel>ID</guilabel>, <guilabel>Titre</guilabel>, <guilabel> Numéro</guilabel>, et <guilabel>Type</guilabel>. Double-cliquer sur une source de la liste permet de voir et d'éditer l'enregistrement. Vous pouvez également éditer la référence. Les boutons sur le côté vous permettent d'ajouter un nouveau dépôt, d'éditer la référence au dépôt, ou d'enlever une référence.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -2431,7 +2435,7 @@
         </note>
 
         <tip>
-          <para>Les onglets (étiquettes) reflètent la présence d'information correspondante: si l'étiquette contient n'importe quelles données, elle apparaît avec des caractères gras; si l'étiquette n'a aucune donnée, elle semble régulière (non "bold").</para>
+          <para>Si le texte d'une étiquette est en gras et affiche une icône, celà signifie qu'elle contient des données. Dans le cas contraire, elle n'a pas de données.</para>
         </tip>
 
         <para>Les onglets donnent accès aux types d'informations suivants :</para>
