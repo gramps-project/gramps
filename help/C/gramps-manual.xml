@@ -277,7 +277,7 @@
     Although similar to other genealogical programs, GRAMPS offers some unique
     and powerful features, which we'll discuss below.</para>
 
-    <para>GRAMPS is a Open Source Software package, which means you are free
+    <para>GRAMPS is an Open Source Software package, which means you are free
     to make copies and distribute it to anyone you like. It's developed and
     maintained by a worldwide team of volunteers whose goal is to make GRAMPS
     powerful, yet easy to use.</para>
@@ -637,7 +637,7 @@
         <listitem>
           <para>The Progress Bar is located in the lower left corner of the
           GRAMPS window. It displays the progress of time consuming
-          operations, such as opening and saving large data bases, importing
+          operations, such as opening and saving large databases, importing
           and exporting to other formats, generating web sites, etc. When you
           are not doing these types of operations, the Progress Bar is
           blank.</para>
@@ -680,7 +680,7 @@
       detailed. Displaying it poses a challenge that GRAMPS takes on by
       dividing and organizing the information into a series of Views. Each
       View displays a portion of the total information, selected according to
-      a particular category. This will become clearer as we explore the nine
+      a particular category. This will become clearer as we explore the
       different Views, listed below:</para>
 
       <itemizedlist>
@@ -749,14 +749,15 @@
       <sect2 id="view-modes">
         <title>Switching Views and Viewing Modes</title>
 
-        <para>As mentioned above there are six different Views. In addition,
+        <para>As mentioned above there are nine different Views. In addition,
         there are two different Viewing Modes. You can tell at a glance which
         Viewing Mode you are in: If you see icons listed vertically in a
         sidebar at the left of the window, you are in the Sidebar Viewing
         Mode. If instead you see a series of "notebook tabs" (labeled People,
-        Family, Pedigree, Sources, Places, Media) that run horizontally across
-        the window, then you are in the Tabbed Viewing Mode. You can switch
-        from one Viewing Mode to another by selecting <menuchoice>
+        Relationships, Family List, Pedigree, Events, Sources, Places, Media
+        and Repositories) that run horizontally across the window, then you
+        are in the Tabbed Viewing Mode. You can switch from one Viewing Mode
+        to another by selecting <menuchoice>
             <guimenu>View</guimenu>
 
             <guimenuitem>Sidebar</guimenuitem>
@@ -888,9 +889,9 @@
           <para>Alternatively, you can enable the Filter sidebar, which will
           be displayed on the right hand side of the display. When the filter
           sidebar is displayed, the Search bar is not displayed. The Filter
-          side bar allows you to interactive build a set of filter rules that
-          can be applied to the display. The filter is applied based on the
-          rules and the data, not on the screen display.</para>
+          side bar allows you to interactively build a set of filter rules
+          that can be applied to the display. The filter is applied based on
+          the rules and the data, not on the screen display.</para>
 
           <!-- ==== Figure: Enabled Filter ==== -->
 
@@ -963,7 +964,7 @@
             <listitem>
               <para>At the top of the screen, name, ID, birth, and death
               information of the active person is displayed. If a photo of the
-              person is available, it is show on the right hand side. Next to
+              person is available, it is shown on the right hand side. Next to
               the person's name is a symbol indicating gender, and an Edit
               button. Clicking the <guibutton>Edit</guibutton> button will
               allow you to edit all of the person's individual information in
@@ -1050,8 +1051,8 @@
                 terminology is still used. In the case of male/male or
                 female/female relationships, one of the
                 <emphasis>father</emphasis> and <emphasis>mother</emphasis>
-                labels should be considered to be convience labels, and should
-                be considered as interchangable.</para>
+                labels should be considered to be convenience labels, and
+                therefore interchangable.</para>
               </note>
             </listitem>
           </varlistentry>
@@ -1101,7 +1102,7 @@
         <title>Pedigree View</title>
 
         <para>The Pedigree View displays a family tree of the Active person's
-        ancestors. The Pedigree View shows up to four generations, depending
+        ancestors. The Pedigree View shows up to five generations, depending
         on the size of the window. Each person is indicated by a box labeled
         with his or her name, birth and death information, and optionally an
         image if available. Two lines branch from each box. The top one shows
@@ -2895,13 +2896,15 @@
 
         <variablelist>
           <varlistentry>
-	    <term>Associations</term>
-	    <listitem>
-	      <para>The <guilabel>Associations</guilabel> tab lets you
-	      view and edit information about the associations between
-	      people in the database. The associations may include Godparents,
-	      family friends, or any other types of associations you may 
-	      wish to record.</para>
+            <term>Associations</term>
+
+            <listitem>
+              <para>The <guilabel>Associations</guilabel> tab lets you view
+              and edit information about the associations between people in
+              the database. The associations may include Godparents, family
+              friends, or any other types of associations you may wish to
+              record.</para>
+
               <!-- ==== Figure: Edit Person dialog - LDS ==== -->
 
               <figure id="edit-pers-as-fig">
@@ -2916,14 +2919,15 @@
                     </imageobject>
 
                     <textobject>
-                      <phrase>Shows Associations Tab of Edit Person dialog.</phrase>
+                      <phrase>Shows Associations Tab of Edit Person
+                      dialog.</phrase>
                     </textobject>
                   </mediaobject>
                 </screenshot>
               </figure>
-	    </listitem>
-	  </varlistentry>
-	</variablelist>
+            </listitem>
+          </varlistentry>
+        </variablelist>
 
         <variablelist>
           <varlistentry>
@@ -3492,22 +3496,14 @@
           data. If not, it has no data.</para>
         </tip>
 
+        <para>The general information at the top of the window lets you define
+        basic information about the source: its <guilabel>Title</guilabel>,
+        <guilabel>Author</guilabel>, <guilabel>Abbreviation</guilabel>, and
+        <guilabel>Publication information</guilabel>. You can type this
+        information directly into the adjacent fields.</para>
+
         <para>The tabs provide the following information categories of source
         data:</para>
-
-        <variablelist>
-          <varlistentry>
-            <term>General</term>
-
-            <listitem>
-              <para>The <guilabel>General</guilabel> tab lets you define basic
-              information about the source: its <guilabel>Title</guilabel>,
-              <guilabel>Author</guilabel>, <guilabel>Abbreviation</guilabel>,
-              and <guilabel>Publication information</guilabel>. You can type
-              this information directly into the adjacent fields.</para>
-            </listitem>
-          </varlistentry>
-        </variablelist>
 
         <variablelist>
           <varlistentry>
@@ -3518,6 +3514,29 @@
               record various information about the source that does not fit
               neatly into other categories. To add a note or modify existing
               notes simply edit the text in the text entry field.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <variablelist>
+          <varlistentry>
+            <term>Gallery</term>
+
+            <listitem>
+              <para>The <guilabel>Gallery</guilabel> tab lets you store and
+              display photos and other media objects associated with a given
+              source (for example, a photo of a birth certificate). The
+              central part of the window lists all such media objects and
+              gives you a thumbnail preview of image files. Other objects such
+              as audio files, movie files, etc., are represented by a generic
+              GRAMPS icon. The buttons <guibutton>+</guibutton>,
+              <guibutton>Select</guibutton>, <guibutton>Edit</guibutton>, and
+              <guibutton>-</guibutton> let you add a new image, add a
+              reference to an existing image, modify an existing image, and
+              remove a media object's link to the source. Note that the
+              <guibutton>Edit</guibutton> and <guibutton>-</guibutton> buttons
+              become available only when a media object is selected from the
+              list.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -3547,23 +3566,19 @@
 
         <variablelist>
           <varlistentry>
-            <term>Gallery</term>
+            <term>Repositories</term>
 
             <listitem>
-              <para>The <guilabel>Gallery</guilabel> tab lets you store and
-              display photos and other media objects associated with a given
-              source (for example, a photo of a birth certificate). The
-              central part of the window lists all such media objects and
-              gives you a thumbnail preview of image files. Other objects such
-              as audio files, movie files, etc., are represented by a generic
-              GRAMPS icon. The buttons <guibutton>+</guibutton>,
-              <guibutton>Select</guibutton>, <guibutton>Edit</guibutton>, and
-              <guibutton>-</guibutton> let you add a new image, add a
-              reference to an existing image, modify an existing image, and
-              remove a media object's link to the source. Note that the
-              <guibutton>Edit</guibutton> and <guibutton>-</guibutton> buttons
-              become available only when a media object is selected from the
-              list.</para>
+              <para>The <guilabel>Repositories</guilabel> tab displays the
+              references to the repositories in which the source is contained.
+              The list can be ordered by any of its column headings:
+              <guilabel>ID</guilabel>, <guilabel>Title</guilabel>,
+              <guilabel>Call Number</guilabel>,and <guilabel>Type</guilabel>.
+              Double-clicking an entry allows you to view and edit the record.
+              You may also edit the reference. The buttons on the side of the
+              tab allow you add a new repository, link to (or share) an
+              existing repository, edit the reference to the repository, or
+              remove the reference.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -3639,8 +3654,8 @@
         </note>
 
         <tip>
-          <para>If a tab label is in boldface type, this means it contains
-          data. If not, it has no data.</para>
+          <para>If a tab label is in boldface type and displays an icon, this
+          means it contains data. If not, it has no data.</para>
         </tip>
 
         <para>The tabs represent following categories of place data:</para>
