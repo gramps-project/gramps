@@ -540,7 +540,9 @@ class ScratchPersonLink(ScratchPadWrapper):
     def tooltip(self):
         global escape
 
-        person = self._db.get_person_from_handle(self._obj)
+        data = pickle.loads(self._obj)
+        handle = data[2]
+        person = self._db.get_person_from_handle(handle)
 
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
