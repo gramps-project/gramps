@@ -89,21 +89,30 @@ class GenericFilter:
     def get_rules(self):
         return self.flist
 
+    def get_cursor(db, self):
+        return db.get_person_cursor()
+
+    def make_obj(self):
+        return RelLib.Person()
+
+    def find_from_handle(self, db, handle):
+        return db.get_person_from_handle(handle)
+
     def check_func(self,db,id_list,task):
         final_list = []
         
         if id_list == None:
-            cursor = db.get_person_cursor()
+            cursor = self.get_cursor(db)
             data = cursor.next()
             while data:
-                person = RelLib.Person()
+                person = self.make_obj()
                 person.unserialize(data[1])
                 if task(db,person):
                     final_list.append(data[0])
                 data = cursor.next()
         else:
             for handle in id_list:
-                person = db.get_person_from_handle(handle)
+                person = self.find_from_handle(db, handle)
                 if task(db,person):
                     final_list.append(handle)
         return final_list
@@ -115,11 +124,11 @@ class GenericFilter:
         final_list = []
         flist = self.flist
         if id_list == None:
-            cursor = db.get_person_cursor()
+            cursor = self.get_cursor(db)
             data = cursor.next()
-            p = RelLib.Person
             while data:
-                person = p(data[1])
+                person = self.make_obj()
+                person.unserialize(data[1])
                 val = True
                 for rule in flist:
                     if not rule.apply(db,person):
@@ -130,7 +139,7 @@ class GenericFilter:
                 data = cursor.next()
         else:
             for handle in id_list:
-                person = db.get_person_from_handle(handle)
+                person = self.find_from_handle(db, handle)
                 val = True
                 for rule in flist:
                     if not rule.apply(db,person):
@@ -185,3 +194,19 @@ class GenericFilter:
         for rule in self.flist:
             rule.reset()
         return res
+
+class GenericFamilyFilter(GenericFilter):
+
+    def __init__(self, source=None):
+        GenericFilter.__init__(self, source)
+
+    def get_cursor(db, self):
+        return db.get_family_cursor()
+
+    def make_obj(self):
+        return RelLib.Family()
+
+    def find_from_handle(self, db, handle):
+        return db.get_family_from_handle(handle)
+
+    

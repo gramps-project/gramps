@@ -26,7 +26,7 @@
   <!-- appropriate code -->
 
   <bookinfo>
-    <title>GRAMPS Manual V3.0</title>
+    <title>GRAMPS Manual V2.8</title>
 
     <copyright>
       <year>2001</year>
@@ -143,11 +143,11 @@
 
     <!-- When the desktop release version changes to V3.x, the revision number of the manual changes -->
 
-    <!-- to V3.0, and so on. -->
+    <!-- to V2.8, and so on. -->
 
     <revhistory>
       <revision>
-        <revnumber>GRAMPS Manual V3.0</revnumber>
+        <revnumber>GRAMPS Manual V2.8</revnumber>
 
         <date>July 2006</date>
 

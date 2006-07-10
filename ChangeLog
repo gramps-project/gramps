@@ -1,3 +1,13 @@
+2006-07-09  Don Allingham  <don@gramps-project.org>
+	* configure.in: up the version number
+	* src/DataViews/_FamilyList.py: add support for sidebar filter
+	* src/DisplayModels/_BaseModel.py: handle generic model filtering
+	* src/PageView.py: Add support for generic modeling
+	* src/Filters/__init__.py: generic family rule support
+	* src/Filters/_GenericFilter.py: generic family rule support
+	* help/C/gramps-manual.xml: updates
+	* help/Makefile.am: remove old files
+
 2006-07-08  Don Allingham  <don@gramps-project.org>
 	* src/ScratchPad.py (ScratchPersonLink.tooltip): fix tooltip for
 	person
