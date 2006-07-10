@@ -29,6 +29,7 @@ import PageView
 import DisplayModels
 import Bookmarks
 import Errors
+import Config
 import const
 from Filters import FamilySidebarFilter
 
@@ -75,6 +76,9 @@ class FamilyListView(PageView.ListView):
         
         self.updating = False
 
+        Config.client.notify_add("/apps/gramps/interface/filter",
+                                 self.filter_toggle)
+
     def define_actions(self):
         # add the Forward action group to handle the Forward button
 
@@ -82,6 +86,16 @@ class FamilyListView(PageView.ListView):
 
         self.add_action('FilterEdit', None, _('Family Filter Editor'),
                         callback=self.filter_editor,)
+
+    def filter_toggle(self, client, cnxn_id, etnry, data):
+        if Config.get(Config.FILTER):
+            self.search_bar.hide()
+            self.filter_pane.show()
+            active = True
+        else:
+            self.search_bar.show()
+            self.filter_pane.hide()
+            active = False
 
     def filter_editor(self,obj):
         from FilterEditor import FilterEditor
@@ -116,9 +130,6 @@ class FamilyListView(PageView.ListView):
     def ui_definition(self):
         return '''<ui>
           <menubar name="MenuBar">
-            <menu action="ViewMenu">
-              <menuitem action="Filter"/>
-            </menu>
             <menu action="EditMenu">
               <placeholder name="CommonEdit">
                 <menuitem action="Add"/>
