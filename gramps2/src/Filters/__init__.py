@@ -31,7 +31,7 @@ CustomFilters = None
 
 from const import system_filters, custom_filters
 from _FilterList import FilterList
-from _GenericFilter import GenericFilter
+from _GenericFilter import GenericFilter, GenericFamilyFilter
 from _ParamFilter import ParamFilter
 
 def reload_system_filters():
@@ -58,3 +58,4 @@ from _SearchBar import SearchBar
 from _SearchFilter import SearchFilter
 from _SidebarFilter import SidebarFilter
 from _PersonSidebarFilter import PersonSidebarFilter
+from _FamilySidebarFilter import FamilySidebarFilter

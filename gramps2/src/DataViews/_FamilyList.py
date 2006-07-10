@@ -29,6 +29,7 @@ import PageView
 import DisplayModels
 import Bookmarks
 import Errors
+from Filters import FamilySidebarFilter
 
 #-------------------------------------------------------------------------
 #
@@ -69,7 +70,7 @@ class FamilyListView(PageView.ListView):
             self, _('Family List'), dbstate, uistate,
             column_names, len(column_names), DisplayModels.FamilyModel,
             signal_map, dbstate.db.get_family_bookmarks(),
-            Bookmarks.FamilyBookmarks)
+            Bookmarks.FamilyBookmarks, filter_class=FamilySidebarFilter)
         
         self.updating = False
 
@@ -97,6 +98,9 @@ class FamilyListView(PageView.ListView):
     def ui_definition(self):
         return '''<ui>
           <menubar name="MenuBar">
+            <menu action="ViewMenu">
+              <menuitem action="Filter"/>
+            </menu>
             <menu action="EditMenu">
               <placeholder name="CommonEdit">
                 <menuitem action="Add"/>

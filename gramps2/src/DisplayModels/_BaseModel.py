@@ -61,15 +61,24 @@ class BaseModel(gtk.GenericTreeModel):
         self.sort_func = self.smap[scol]
         self.sort_col = scol
         self.skip = skip
-        
+
         if search:
-            col = search[0]
-            text = search[1]
-            inv = search[2]
-            func = lambda x: self.on_get_value(x, col) or u""
-            self.search = SearchFilter(func, text, inv)
+            if search[0]:
+                self.search = search[1]
+                self.rebuild_data = self._rebuild_filter
+            else:
+                if search[1]:
+                    col = search[1][0]
+                    text = search[1][1]
+                    inv = search[1][2]
+                    func = lambda x: self.on_get_value(x, col) or u""
+                    self.search = SearchFilter(func, text, inv)
+                else:
+                    self.search = None
+                self.rebuild_data = self._rebuild_search
         else:
             self.search = None
+            self.rebuild_data = self._rebuild_search
             
         self.reverse = (order == gtk.SORT_DESCENDING)
         self.tooltip_column = tooltip_column
@@ -96,13 +105,30 @@ class BaseModel(gtk.GenericTreeModel):
 
         return [ x[1] for x in sarray ]
 
-    def rebuild_data(self):
+    def _rebuild_search(self):
         if self.db.is_open():
             if self.search:
                 self.datalist = [h for h in self.sort_keys()\
                                  if self.search.match(h) and h not in self.skip]
             else:
                 self.datalist = [h for h in self.sort_keys() if h not in self.skip]
+            i = 0
+            self.indexlist = {}
+            for key in self.datalist:
+                if key not in self.skip:
+                    self.indexlist[key] = i
+                    i += 1
+        else:
+            self.datalist = []
+            self.indexlist = {}
+
+    def _rebuild_filter(self):
+        if self.db.is_open():
+            if self.search:
+                self.datalist = self.search.apply(self.db, self.sort_keys())
+            else:
+                self.datalist = self.sort_keys()
+
             i = 0
             self.indexlist = {}
             for key in self.datalist:

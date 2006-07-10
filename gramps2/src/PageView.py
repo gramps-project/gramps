@@ -293,8 +293,8 @@ class PersonNavView(BookMarkView):
                         tip=_("Go to the default person"), callback=self.home)
         self.add_action('SetActive', gtk.STOCK_HOME, _("Set _Home Person"),
                         callback=self.set_default_person)
-        self.add_action('FilterEdit', None,
-                        _('Filter Editor'), callback=self.filter_editor,)
+        self.add_action('FilterEdit', None, _('Person Filter Editor'),
+                        callback=self.filter_editor,)
 
         self.add_action_group(self.back_action)
         self.add_action_group(self.fwd_action)
@@ -441,11 +441,13 @@ class ListView(BookMarkView):
     DEL_MSG = ""
 
     def __init__(self, title, dbstate, uistate, columns, handle_col,
-                 make_model, signal_map, get_bookmarks, bm_type, multiple=False):
+                 make_model, signal_map, get_bookmarks, bm_type,
+                 multiple=False, filter_class=None):
 
         BookMarkView.__init__(self, title, dbstate, uistate,
                               get_bookmarks, bm_type)
-        
+
+        self.filter_class = filter_class
         self.renderer = gtk.CellRendererText()
         self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
         self.sort_col = 0
@@ -455,7 +457,36 @@ class ListView(BookMarkView):
         self.make_model = make_model
         self.signal_map = signal_map
         self.multiple_selection = multiple
+        self.generic_filter = None
         dbstate.connect('database-changed',self.change_db)
+
+    def build_filter_container(self, box, filter_class):
+        self.filter_sidebar = filter_class(self.filter_clicked)
+        self.filter_pane = self.filter_sidebar.get_widget()
+
+        hpaned = gtk.HBox()
+        hpaned.pack_start(self.vbox, True, True)
+        hpaned.pack_end(self.filter_pane, False, False)
+        return hpaned
+
+    def post(self):
+        if self.filter_class:
+            if Config.get(Config.FILTER):
+                self.search_bar.hide()
+                self.filter_pane.show()
+            else:
+                self.search_bar.show()
+                self.filter_pane.hide()
+
+    def filter_clicked(self):
+        self.generic_filter = self.filter_sidebar.get_filter()
+        self.build_tree()
+
+    def define_actions(self):
+        BookMarkView.define_actions(self)
+        self.add_toggle_action('Filter', None, _('_Show filter sidebar'),
+                               None, None,
+                               self.filter_toggle, Config.get(Config.FILTER))
 
     def add_bookmark(self, obj):
         mlist = []
@@ -524,7 +555,10 @@ class ListView(BookMarkView):
 
         self.setup_filter()
 
-        return self.vbox
+        if self.filter_class:
+            return self.build_filter_container(self.vbox, self.filter_class)
+        else:
+            return self.vbox
     
     def row_changed(self,obj):
         """Called with a row is changed. Check the selected objects from
@@ -631,22 +665,34 @@ class ListView(BookMarkView):
         if self.active:
 
             if Config.get(Config.FILTER):
-                search = EMPTY_SEARCH
+                filter_info = (True, self.generic_filter)
             else:
-                search = self.search_bar.get_value()
+                filter_info = (False, self.search_bar.get_value())
 
             self.model = self.make_model(self.dbstate.db,self.sort_col,
-                                         search=search)
+                                         search=filter_info)
             self.list.set_model(self.model)
             self.selection = self.list.get_selection()
 
             if const.use_tips and self.model.tooltip_column != None:
-                self.tooltips = TreeTips.TreeTips(self.list,
-                                                  self.model.tooltip_column,True)
+                self.tooltips = TreeTips.TreeTips(
+                    self.list, self.model.tooltip_column, True)
             self.dirty = False
         else:
             self.dirty = True
         
+    def filter_toggle(self,obj):
+        if obj.get_active():
+            self.search_bar.hide()
+            self.filter_pane.show()
+            active = True
+        else:
+            self.search_bar.show()
+            self.filter_pane.hide()
+            active = False
+        Config.set(Config.FILTER, active)
+        self.build_tree()
+
     def change_db(self,db):
         for sig in self.signal_map:
             db.connect(sig, self.signal_map[sig])
@@ -730,9 +776,4 @@ class ListView(BookMarkView):
     def double_click(self,obj,event):
         return False
 
-    def filter_toggle(self,obj):
-        if obj.get_active():
-            self.search_bar.show()
-        else:
-            self.search_bar.hide()
 
