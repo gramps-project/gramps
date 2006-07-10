@@ -350,7 +350,13 @@ class EditRule(ManagedWindow.ManagedWindow):
         self.page = []
         self.class2page = {}
         the_map = {}
-        for class_obj in Rules.Person.editor_rule_list:
+
+        if self.space == "Family":
+            class_list = Rules.Family.editor_rule_list
+        else:
+            class_list = Rules.Person.editor_rule_list
+        
+        for class_obj in class_list:
             arglist = class_obj.labels
             vallist = []
             tlist = []

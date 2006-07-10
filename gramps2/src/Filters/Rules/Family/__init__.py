@@ -25,3 +25,9 @@ Package providing filter rules for GRAMPS.
 """
 
 __author__ = "Don Allingham"
+
+from _HasRelType import HasRelType
+
+editor_rule_list = [
+    HasRelType,
+]

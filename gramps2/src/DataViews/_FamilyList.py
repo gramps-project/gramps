@@ -29,6 +29,7 @@ import PageView
 import DisplayModels
 import Bookmarks
 import Errors
+import const
 from Filters import FamilySidebarFilter
 
 #-------------------------------------------------------------------------
@@ -74,6 +75,23 @@ class FamilyListView(PageView.ListView):
         
         self.updating = False
 
+    def define_actions(self):
+        # add the Forward action group to handle the Forward button
+
+        PageView.ListView.define_actions(self)
+
+        self.add_action('FilterEdit', None, _('Family Filter Editor'),
+                        callback=self.filter_editor,)
+
+    def filter_editor(self,obj):
+        from FilterEditor import FilterEditor
+
+        FilterEditor(
+            'Family',
+            const.custom_filters,
+            self.dbstate,
+            self.uistate)
+
     def add_bookmark(self, obj):
         mlist = []
         self.selection.selected_foreach(self.blist, mlist)
@@ -108,6 +126,7 @@ class FamilyListView(PageView.ListView):
                 <menuitem action="Remove"/>
               </placeholder>
               <menuitem action="ColumnEdit"/>
+              <menuitem action="FilterEdit"/>
             </menu>
            <menu action="BookMenu">
               <placeholder name="AddEditBook">
