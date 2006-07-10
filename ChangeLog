@@ -1,3 +1,11 @@
+2006-07-10  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_FamlyList.py: add filter editor support
+	* src/FilterEditor/_FilterEditor.py: add family support
+	* src/FilterEditor/_EditRule.py: add family support
+	* src/Filters/_FamilySidebarFilter.py: start of family support
+	* src/Filters/Rules/Family/_HasRelType.py: start of family filters
+	* src/Filters/Rules/Family/__init__.py: start of family filters
+
 2006-07-09  Don Allingham  <don@gramps-project.org>
 	* configure.in: up the version number
 	* src/DataViews/_FamilyList.py: add support for sidebar filter

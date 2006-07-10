@@ -65,11 +65,11 @@ import ManagedWindow
 #
 #-------------------------------------------------------------------------
 class FilterEditor(ManagedWindow.ManagedWindow):
-    def __init__(self, space, filterdb, dbstate, uistate):
+    def __init__(self, space, filterdb, dbstate, uistate, ftype=GenericFilter):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [],
                                              FilterEditor)
-        
+        self.ftype = ftype
         self.dbstate = dbstate
         self.db = dbstate.db
         self.filterdb = FilterList(filterdb)
@@ -138,7 +138,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
     def add_new_filter(self,obj):
         from _EditFilter import EditFilter
 
-        the_filter = GenericFilter()
+        the_filter = self.ftype()
         EditFilter(self.space, self.dbstate, self.uistate, self.track,
                    the_filter, self.filterdb, self.draw_filters)
 
@@ -157,7 +157,8 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             from _ShowResults import ShowResults
             
             filt = self.clist.get_object(node)
-            handle_list = filt.apply(self.db,self.db.get_person_handles(sort_handles=False))
+            handle_list = filt.apply(
+                self.db, self.db.get_person_handles(sort_handles=False))
             ShowResults(self.db, self.uistate, self.track, handle_list,
                         filt.get_name())
 
