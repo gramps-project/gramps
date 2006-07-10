@@ -95,6 +95,9 @@ class PersonView(PageView.PersonNavView):
             'F3' : self.key_edit_selected_person,
             }
         self.dirty = True
+
+        Config.client.notify_add("/apps/gramps/interface/filter",
+                                 self.filter_toggle)
         
     def change_page(self):
         pass
@@ -129,10 +132,6 @@ class PersonView(PageView.PersonNavView):
         self.add_action('Jump', None, _("_Jump"),
                         accel="<control>j",callback=self.jumpto)
 
-        self.add_toggle_action('Filter', None, _('_Show filter sidebar'),
-                               None, None,
-                               self.filter_toggle, Config.get(Config.FILTER))
-        
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                         _('_Column Editor'), callback=self.column_editor,)
 
@@ -261,6 +260,7 @@ class PersonView(PageView.PersonNavView):
 
         hpaned.pack_start(self.vbox, True, True)
         hpaned.pack_end(self.filter_pane, False, False)
+        self.filter_toggle(None, None, None, None)
         return hpaned
 
     def post(self):
@@ -286,9 +286,6 @@ class PersonView(PageView.PersonNavView):
         return '''<ui>
           <accelerator action="Jump"/>
           <menubar name="MenuBar">
-            <menu action="ViewMenu">
-              <menuitem action="Filter"/>
-            </menu>
             <menu action="BookMenu">
               <placeholder name="AddEditBook">
                 <menuitem action="AddBook"/>
@@ -468,15 +465,15 @@ class PersonView(PageView.PersonNavView):
         else:
             self.dirty = True
 
-        if Config.get(Config.FILTER):
-            self.search_bar.hide()
-            self.filter_pane.show()
-        else:
-            self.search_bar.show()
-            self.filter_pane.hide()
+#        if Config.get(Config.FILTER):
+#            self.search_bar.hide()
+#            self.filter_pane.show()
+#        else:
+#            self.search_bar.show()
+#            self.filter_pane.hide()
 
-    def filter_toggle(self,obj):
-        if obj.get_active():
+    def filter_toggle(self, client, cnxn_id, etnry, data):
+        if Config.get(Config.FILTER):
             self.search_bar.hide()
             self.filter_pane.show()
             active = True
@@ -484,7 +481,6 @@ class PersonView(PageView.PersonNavView):
             self.search_bar.show()
             self.filter_pane.hide()
             active = False
-        Config.set(Config.FILTER, active)
         self.build_tree()
 
     def add(self,obj):

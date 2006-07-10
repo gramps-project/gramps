@@ -467,6 +467,7 @@ class ListView(BookMarkView):
         hpaned = gtk.HBox()
         hpaned.pack_start(self.vbox, True, True)
         hpaned.pack_end(self.filter_pane, False, False)
+        self.filter_toggle(None, None, None, None)
         return hpaned
 
     def post(self):
@@ -481,12 +482,6 @@ class ListView(BookMarkView):
     def filter_clicked(self):
         self.generic_filter = self.filter_sidebar.get_filter()
         self.build_tree()
-
-    def define_actions(self):
-        BookMarkView.define_actions(self)
-        self.add_toggle_action('Filter', None, _('_Show filter sidebar'),
-                               None, None,
-                               self.filter_toggle, Config.get(Config.FILTER))
 
     def add_bookmark(self, obj):
         mlist = []

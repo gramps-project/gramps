@@ -123,6 +123,7 @@ uidefault = '''<ui>
   <menu action="ViewMenu">
     <menuitem action="Sidebar"/>
     <menuitem action="Toolbar"/>    
+    <menuitem action="Filter"/>    
     <separator/>
   </menu>
   <menu action="GoMenu">
@@ -374,6 +375,8 @@ class ViewManager:
              self.show_sidebar ), 
             ('Toolbar', None, _('_Toolbar'), None, None, self.toolbar_toggle,
              self.show_toolbar ), 
+            ('Filter', None, _('Show Sidebar _Filter'), None, None, self.filter_toggle,
+             self.show_toolbar ), 
             ]
 
         self._undo_action_list = [
@@ -574,6 +577,10 @@ class ViewManager:
         else:
             self.toolbar.hide()
             Config.set(Config.TOOLBAR_ON, False)
+        Config.sync()
+
+    def filter_toggle(self, obj):
+        Config.set(Config.FILTER, obj.get_active())
         Config.sync()
 
     def register_view(self, view):
