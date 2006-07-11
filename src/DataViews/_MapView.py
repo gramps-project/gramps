@@ -32,7 +32,6 @@ import os
 import math
 import urllib
 import urllib2
-import tempfile
 from xml.dom.minidom import parseString as xmlStringParser
 
 log = logging.getLogger(".")
@@ -44,7 +43,6 @@ log = logging.getLogger(".")
 #-------------------------------------------------------------------------
 import gobject
 import gtk
-import gtk.gdk
 
 #-------------------------------------------------------------------------
 #

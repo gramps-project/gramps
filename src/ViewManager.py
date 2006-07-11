@@ -375,7 +375,7 @@ class ViewManager:
              self.show_sidebar ), 
             ('Toolbar', None, _('_Toolbar'), None, None, self.toolbar_toggle,
              self.show_toolbar ), 
-            ('Filter', None, _('Show Sidebar _Filter'), None, None, self.filter_toggle,
+            ('Filter', None, _('_Filter sidebar'), None, None, self.filter_toggle,
              self.show_toolbar ), 
             ]
 

@@ -37,7 +37,7 @@ import math
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.gdk
+
 try:
     import cairo
     cairo_available = True
