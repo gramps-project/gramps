@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps-manual\n"
-"POT-Creation-Date: 2006-07-09 14:59+0200\n"
-"PO-Revision-Date: 2006-07-09 15:47+0200\n"
+"POT-Creation-Date: 2006-07-10 11:17+0200\n"
+"PO-Revision-Date: 2006-07-10 11:21+0200\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -13,330 +13,330 @@ msgstr ""
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:451(None)
-msgid "@@image: 'figures/researcher.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/researcher.png'; md5=d01457850f7a3ad27862f1b33fd13135"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:489(None)
-msgid "@@image: 'figures/first-open.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/first-open.png'; md5=65157d1acaecc25a0ea238a0cea4c1ff"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:594(None) gramps-manual.xml:778(None)
-msgid "@@image: 'figures/mainwin.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/mainwin.png'; md5=4d557773732bc16fe2929f8992cbb1aa"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:802(None)
-msgid "@@image: 'figures/noside-nofilt.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/noside-nofilt.png'; md5=aeae204f0b5b0b72346d14b1408937d5"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:862(None)
-msgid "@@image: 'figures/column-editor.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/column-editor.png'; md5=1647aeb1b10a116df757ca310abad455"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:905(None)
-msgid "@@image: 'figures/side-filt.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/side-filt.png'; md5=9dbd969437b2ce91e68f174f0b797b2e"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:946(None)
-msgid "@@image: 'figures/family.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/family.png'; md5=3e5805a5f45400242a835457b56dc225"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:1081(None)
-msgid "@@image: 'figures/family-list.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/family-list.png'; md5=e1042dbd5abc6d0c52b77318fcf8f322"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:1122(None)
-msgid "@@image: 'figures/pedigree.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/pedigree.png'; md5=aab4c6dbed0b6d90650b175190ab49d2"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:1157(None)
-msgid "@@image: 'figures/pedigree-child-cut.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/pedigree-child-cut.png'; md5=9ccb8649c6c5a49785c4d4a9d2a0a277"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:1184(None)
-msgid "@@image: 'figures/pedigree-siblings-cut.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/pedigree-siblings-cut.png'; md5=9c0454f039d5d5d14782e4bd7a1adee1"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:1224(None)
-msgid "@@image: 'figures/events.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/events.png'; md5=27a8310781c5ad439cd82f04829a3fcf"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:1279(None)
-msgid "@@image: 'figures/sources.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/sources.png'; md5=de67ff61cf0a80e5ed53485b003b964d"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:1327(None)
-msgid "@@image: 'figures/places.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/places.png'; md5=6e963ab57684da490bc969bf1da72c87"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:1366(None)
-msgid "@@image: 'figures/media.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/media.png'; md5=f07a5f9d9ddd068c3cd75ee9bc476c99"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:1395(None)
-msgid "@@image: 'figures/repository.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/repository.png'; md5=77cf37b3635c9143d29db010472f4091"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:1692(None)
-msgid "@@image: 'figures/export-druid.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/export-druid.png'; md5=b158be3d58cbd27b323f007a890a93b7"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:1815(None)
-msgid "@@image: 'figures/gedcom-export.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/gedcom-export.png'; md5=405676458d56a8ece7184b10818b8958"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:2039(None)
-msgid "@@image: 'figures/edit-family.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-family.png'; md5=f32bc9305825aca4ef1a80c5c856848a"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:2063(None)
-msgid "@@image: 'figures/select-person.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/select-person.png'; md5=f14ec5506cc97e850400a0d08b188c76"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:2124(None)
-msgid "@@image: 'figures/select-family.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/select-family.png'; md5=0abeea6e14bcd01c8f969605f21eb91e"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:2153(None)
-msgid "@@image: 'figures/family-warn.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/family-warn.png'; md5=b959df88ba74748857b068b171730562"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:2201(None)
-msgid "@@image: 'figures/child-ref.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/child-ref.png'; md5=6fe02fabae4fb359b67d51458fb5fae9"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:2414(None)
-msgid "@@image: 'figures/edit-person.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-person.png'; md5=bb764f5380fbe4ee0ecf9fd091611f78"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:2566(None)
-msgid "@@image: 'figures/edit-person-names.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-person-names.png'; md5=cb4bf6bfa7a99485ebdf7d38107fc9bc"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:2629(None)
-msgid "@@image: 'figures/edit-person-attributes.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-person-attributes.png'; md5=138dd9fd3af218c006f033cd6d1aca68"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:2674(None)
-msgid "@@image: 'figures/edit-person-addresses.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-person-addresses.png'; md5=ce23b334367188837509c89d27e40158"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:2705(None)
-msgid "@@image: 'figures/edit-person-notes.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-person-notes.png'; md5=56364cd27b92aeb2f6509e6408290e6c"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:2752(None)
-msgid "@@image: 'figures/edit-person-sources.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-person-sources.png'; md5=9d2f3c69cced6000b1f365b58b04c029"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:2830(None)
-msgid "@@image: 'figures/edit-person-gallery.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-person-gallery.png'; md5=4f1fce13529ef2fb26efb1059abcd578"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:2881(None)
-msgid "@@image: 'figures/edit-person-internet.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-person-internet.png'; md5=6bfb1df1014cec94303b27aee36db385"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:2918(None)
-msgid "@@image: 'figures/edit-person-assoc.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-person-assoc.png'; md5=77ee1ead3766ba2a14009f66b23a7eec"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:2959(None)
-msgid "@@image: 'figures/edit-person-lds.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-person-lds.png'; md5=1d6d51c3ecf8006b3184d1addea15371"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:3189(None)
-msgid "@@image: 'figures/date-selection.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/date-selection.png'; md5=255fad537cb5851bc098c23ad6fa2bc1"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:3252(None)
-msgid "@@image: 'figures/edit-rel.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-rel.png'; md5=f3c964ad60d2aa794f601bb68717701a"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:3467(None)
-msgid "@@image: 'figures/edit-src.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-src.png'; md5=ceed553cc2a98221c9186ec08ad1f7fa"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:3630(None)
-msgid "@@image: 'figures/edit-plc.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-plc.png'; md5=342e7dc6b36d5c2b0de75d835fbfbbc1"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:3809(None)
-msgid "@@image: 'figures/edit-media.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-media.png'; md5=51255018676cfe4b55e08bed610e2d1b"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:3947(None)
-msgid "@@image: 'figures/edit-ev.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-ev.png'; md5=619c8690acf96622fe9d69e881a30396"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:4049(None)
-msgid "@@image: 'figures/edit-si.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-si.png'; md5=aa939372ee962a25c93409095bae8582"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:4108(None)
-msgid "@@image: 'figures/edit-an.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-an.png'; md5=1d2b43512b553123a396e9d7ce63f9cb"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:4237(None)
-msgid "@@image: 'figures/edit-at.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-at.png'; md5=9dcd41363d5d7ed87eacc6e116e267e9"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:4348(None)
-msgid "@@image: 'figures/edit-ad.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-ad.png'; md5=e2c54192056cf6f8f4c19ae89452cfd3"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:4500(None)
-msgid "@@image: 'figures/comp-people.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/comp-people.png'; md5=2cada827db753d31d6bbe1510321a1b0"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:4554(None)
-msgid "@@image: 'figures/merge-people.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/merge-people.png'; md5=f121b679d8bb0a1a40d7cfde316b8a1c"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:4607(None)
-msgid "@@image: 'figures/merge-src.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/merge-src.png'; md5=c99456fa38d8f9c78f9f58bc7b114e79"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:4648(None)
-msgid "@@image: 'figures/merge-plc.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/merge-plc.png'; md5=88abb5a2bbbd54c0b874fe4767baf952"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:4904(None)
-msgid "@@image: 'figures/edit-bm.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/edit-bm.png'; md5=a00e89b3a4caf3b8aeb4ab24be09cb01"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:4938(None)
-msgid "@@image: 'figures/find-people.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/find-people.png'; md5=d934825c310028f59410386fdff7991c"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:5135(None)
-msgid "@@image: 'figures/bookreport.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/bookreport.png'; md5=c3e0a0f10c76421215e6d7df8804670e"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:6049(None)
-msgid "@@image: 'figures/cfe-df.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/cfe-df.png'; md5=6b435456ac74a20610284419d91dc217"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:6091(None)
-msgid "@@image: 'figures/cfe-ar.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/cfe-ar.png'; md5=78009b9728a36032455795cad6ddd1d1"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:6155(None)
-msgid "@@image: 'figures/scratch-pad.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/scratch-pad.png'; md5=5b028107aef1ed186d60a8d26c064f12"
 msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: gramps-manual.xml:6275(None)
-msgid "@@image: 'figures/prefs.png'; md5=THIS FILE DOESN'T EXIST"
+msgid "@@image: 'figures/prefs.png'; md5=f9fdef13b0a7f46d60a26c358e5af39c"
 msgstr ""
 
 #: gramps-manual.xml:29(title) gramps-manual.xml:150(revnumber)
-msgid "GRAMPS Manual V3.0"
-msgstr "GRAMPS Manuel V3.0"
+msgid "GRAMPS Manual V2.8"
+msgstr "GRAMPS Manuel V2.8"
 
 #: gramps-manual.xml:32(year) gramps-manual.xml:246(date)
 #: gramps-manual.xml:259(date)
@@ -1694,7 +1694,7 @@ msgstr "Pour associer des images à une relation (par exemple un mariage), allez
 
 #: gramps-manual.xml:2240(para)
 msgid "To add images related to a source or a place, first switch to the Source View (<xref linkend=\"sources-fig\"/>) or Place View (<xref linkend=\"places-fig\"/>). Select the source or place you want and then either double-click on it or click the <guibutton>Edit</guibutton> icon on the toolbar. Select the <guilabel>Gallery</guilabel> tab and click the <guibutton>+</guibutton> button to add an image."
-msgstr "Pour associer une image à une source ou un lieu, allez d'abord dans la vue Sources (<xref linkend=\"sources-fig\"/>) ou Vue des Lieux (<xref linkend=\"places-fig\"/>).Sélectionnez l'élément cherché puis double-cliquez dessus ou cliquez sur l'icône <guibutton>Editer</guibutton> dans la barre d'outils pour appeler le dialogue <guilabel>Editeur de Sources</guilabel> (ou <guilabel>Editeur de Lieux</guilabel>) Sélectionnez l'onglet <guilabel>Galerie</guilabel> puis cliquez sur le bouton <guibutton>+</guibutton> pour ajouter une image."
+msgstr "Pour associer une image à une source ou un lieu, allez d'abord dans la vue Sources (<xref linkend=\"sources-fig\"/>) ou Vue des Lieux (<xref linkend=\"places-fig\"/>).Sélectionnez l'élément cherché puis double-cliquez dessus ou cliquez sur l'icône <guibutton>Editer</guibutton> dans la barre d'outils pour appeler le dialogue <guilabel>Editeur de Sources</guilabel> (ou <guilabel>Editeur de lieux</guilabel>) Sélectionnez l'onglet <guilabel>Galerie</guilabel> puis cliquez sur le bouton <guibutton>+</guibutton> pour ajouter une image."
 
 #: gramps-manual.xml:2247(para)
 msgid "Finally, to add images that you want to include in the database, but hare are not limited to any particular person, relationship, source or place, switch to the Media View (<xref linkend=\"media-fig\"/>). Then click the <guibutton>Add</guibutton> icon on the toolbar to add an image. If you have already added any images to any individual galleries, you will also find them listed in the Media View."
@@ -1726,7 +1726,7 @@ msgstr "Pour modifier des sources et des lieux"
 
 #: gramps-manual.xml:2284(para)
 msgid "To add a source or a place to the database, switch to the appropriate Source View (<xref linkend=\"sources-fig\"/>) or Place View (<xref linkend=\"places-fig\"/>). Then click the <guibutton>Add</guibutton> icon on the toolbar to add a source/place. Enter the information into the <guilabel>Source Editor</guilabel> (or <guilabel>Place Editor</guilabel>) dialog."
-msgstr "Pour ajouter une source ou un lieu à la base de données, allez dans la vue Sources (<xref linkend=\"sources-fig\"/>) ou Vue des Lieux (<xref linkend=\"places-fig\"/>). Puis cliquer sur l'icône <guibutton>Ajouter</guibutton> dans la barre d'outils pour créer une source ou un lieu. Saisissez les caractéristiques du nouvel élément dans le dialogue <guilabel>Editeur de sources</guilabel> (ou <guilabel>Editeur de Lieux</guilabel>)."
+msgstr "Pour ajouter une source ou un lieu à la base de données, allez dans la vue Sources (<xref linkend=\"sources-fig\"/>) ou Vue des Lieux (<xref linkend=\"places-fig\"/>). Puis cliquer sur l'icône <guibutton>Ajouter</guibutton> dans la barre d'outils pour créer une source ou un lieu. Saisissez les caractéristiques du nouvel élément dans le dialogue <guilabel>Editeur de sources</guilabel> (ou <guilabel>Editeur de lieux</guilabel>)."
 
 #: gramps-manual.xml:2291(para)
 msgid "To edit information about sources and places already present in the database, switch to the appropriate view, select an entry you would like to view/modify, and then click the <guibutton>Edit</guibutton> icon on the toolbar. Alternatively, you may double-click on the entry to edit it."
@@ -1865,7 +1865,7 @@ msgstr "Général"
 
 #: gramps-manual.xml:2486(para)
 msgid "The <guilabel>Gender</guilabel> menu offers the choice of person's gender : <guilabel>male</guilabel>, <guilabel>female</guilabel>, and <guilabel>unknown</guilabel>."
-msgstr "Le menu<guilabel>Genre</guilabel> donne le choix entre <guilabel>masculin</guilabel>, <guilabel>feminin</guilabel>, et <guilabel>inconnu</guilabel>."
+msgstr "Le menu <guilabel>Genre</guilabel> donne le choix entre <guilabel>masculin</guilabel>, <guilabel>feminin</guilabel>, et <guilabel>inconnu</guilabel>."
 
 #: gramps-manual.xml:2491(para)
 msgid "The field <guilabel>ID</guilabel> displays the GRAMPS ID number which identifies the user in the database. This value helps you distiguish between people who have the same name. You may enter any unique value you want. If you do not provide a value, GRAMPS will automatically select a value for you."
@@ -2065,7 +2065,7 @@ msgstr "Associations"
 
 #: gramps-manual.xml:2902(para)
 msgid "The <guilabel>Associations</guilabel> tab lets you view and edit information about the associations between people in the database. The associations may include Godparents, family friends, or any other types of associations you may wish to record."
-msgstr "L'étiquette <guilabel>Associations</guilabel> vous permet de voir et d'éditer une information sur les associations entre les individus dans la base de données. Les associations peuvent inclure les parrains, amis de la famille, ou tout autres types d'associations que vous souhaitez enregistrer."
+msgstr "L'onglet <guilabel>Associations</guilabel> vous permet de voir et d'éditer une information sur les associations entre les individus dans la base de données. Les associations peuvent inclure les parrains, amis de la famille, ou tout autres types d'associations que vous souhaitez enregistrer."
 
 #: gramps-manual.xml:2911(title)
 msgid "Edit Person dialog - Associations"
@@ -2141,7 +2141,7 @@ msgstr "Etendue"
 
 #: gramps-manual.xml:3028(para)
 msgid "A \"range\" describes a time period during which the event occurred. For example, \"between January 1932 and March 1932.\""
-msgstr "Une date \"étendue\" décrit une période durant laquelle c'est peut être produit l'événement. Par exemple, \"entre Janvier 1932 et Mars 1932.\""
+msgstr "Une date \"étendue\" décrit une période durant laquelle s'est peut être produit l'événement. Par exemple, \"entre Janvier 1932 et Mars 1932.\""
 
 #: gramps-manual.xml:3035(term)
 msgid "Span"
@@ -2149,7 +2149,7 @@ msgstr "Incrémenté(e)"
 
 #: gramps-manual.xml:3038(para)
 msgid "A \"span\" describes a time period during which a condition existed. For example, \"from May 12, 2000 to February 2, 2002.\""
-msgstr "Une date \"incrémentée\" décrit une période durant laquelle c'est produit l'événement. Par exemple, \"de Mai 12, 2000 à Février 2, 2002.\""
+msgstr "Une date \"incrémentée\" décrit une période durant laquelle s'est produit l'événement. Par exemple, \"de Mai 12, 2000 à Février 2, 2002.\""
 
 #: gramps-manual.xml:3047(title)
 msgid "Date formats and parsing rules"
@@ -2169,11 +2169,11 @@ msgstr "Les règles du parser de date"
 
 #: gramps-manual.xml:3063(para)
 msgid "The list only applys to the English version of GRAMPS. If you are using localized version of GRAMPS, your version may or may not provide a localized date parser. At the time of this writing, localized parsers exist for French, German, Russian, Finnish, Dutch and Spanish languages."
-msgstr "La liste ci-dessous est seulement valide pour l'anglais. Si vous employez la version localisée de GRAMPS, votre version peut ou pas fournir un analyseur localisé de date. À l'heure de cette écriture, les analyseurs localisés existent pour des langues françaises, russes, et espagnoles."
+msgstr "La liste ci-dessous est seulement valide pour l'anglais. Si vous employez la version localisée de GRAMPS, votre version peut ou pas fournir un analyseur localisé de date. À l'heure de cette écriture, les analyseurs localisés existent pour les langues française, allemande, russe, finlandaise, hollandaise et espagnole."
 
 #: gramps-manual.xml:3069(para)
 msgid "If the localized parser is available for your version, chances are that other rules are in effect. If there is no manual in your language yet, you may try following your instinct and go with the common ways of denoting dates in your language. If all else fails, use the <guilabel>Date selection</guilabel> dialog described below."
-msgstr "S'il n'y a aucun manuel en votre langue, vous pouvez essayer d'après votre instinct et aller de pair avec les manières communes de noter les dates en votre langue. Si tout échoue, employez le <guilabel>sélecteur de Date</guilabel> décrit ci-dessous."
+msgstr "S'il n'y a aucun manuel en votre langue, vous pouvez essayer d'après votre instinct et aller de pair avec les manières communes de noter les dates en votre langue. Si tout échoue, employez le <guilabel>Sélecteur de date</guilabel> décrit ci-dessous."
 
 #: gramps-manual.xml:3079(para)
 msgid "Regular single dates can be entered just as you would write them. Examples: May 24, 1961 or January 1, 2004."
@@ -2213,7 +2213,7 @@ msgstr "Boutons Date LED"
 
 #: gramps-manual.xml:3128(para)
 msgid "The color circles are also referred to as the LED buttons. Clicking on an LED button will invoke the <guilabel>Date selection</guilabel> dialog described in detail below, see <xref linkend=\"adv-dates-gui\"/>"
-msgstr "La date LED est identifiée par des cercles de couleur, désignés également sous le nom de boutons LED.Cliquer sur un bouton de LED appellera le <guilabel>Sélecteur de Date</guilabel> décrit en détail ci-dessous, voir la section <xref linkend=\"adv-dates-gui\"/>"
+msgstr "La date LED est identifiée par des cercles de couleur, désignés également sous le nom de boutons LED.Cliquer sur un bouton de LED appellera le <guilabel>Sélecteur de date</guilabel> décrit en détail ci-dessous, voir la section <xref linkend=\"adv-dates-gui\"/>"
 
 #: gramps-manual.xml:3136(para)
 msgid "A green circle means that the date is valid and complete regular date (e.g. May 24, 1961). In simple terms, green means that the date corresponds to a unique date."
@@ -2237,11 +2237,11 @@ msgstr "L'interface graphique pour entrer les dates"
 
 #: gramps-manual.xml:3172(para)
 msgid "While the above parsing rules provide a guide for you to type in most common dates, you can also use <guilabel>Date selection</guilabel> dialog. The dialog is particularly useful for building a complex date or for simply insuring that your information is entered in a way GRAMPS will understand. The <guilabel>Date selection</guilabel> dialog can be invoked by clicking the colored circle button next to the date entry field."
-msgstr "L'interface graphique ainsi que les règles ci-dessus fournissent une manière rapide et facile pour écrire la plupart des dates, parfois il y a un besoin d'établir une date complexe ou vérifier simplement la date en utilisant l'interface utilisateur graphique. La fenêtre <guilabel>Sélecteur de Date</guilabel> peut être appelée en cliquant sur le bouton de cercle de couleur (également connu sous le nom de bouton de LED) à côté du champ d'entrée de date."
+msgstr "L'interface graphique ainsi que les règles ci-dessus fournissent une manière rapide et facile pour écrire la plupart des dates, parfois il y a un besoin d'établir une date complexe ou vérifier simplement la date en utilisant l'interface utilisateur graphique. La fenêtre <guilabel>Sélecteur de date</guilabel> peut être appelée en cliquant sur le bouton de cercle de couleur (également connu sous le nom de bouton de LED) à côté du champ d'entrée de date."
 
 #: gramps-manual.xml:3183(title)
 msgid "Date selection dialog"
-msgstr "Sélecteur de Date"
+msgstr "Sélecteur de date"
 
 #: gramps-manual.xml:3193(phrase)
 msgid "Shows Date selection dialog."
@@ -2352,7 +2352,7 @@ msgstr "Le haut de la fenêtre contient le titre <guilabel>Source d'information<
 
 #: gramps-manual.xml:3489(para) gramps-manual.xml:3833(para)
 msgid "Clicking <guibutton>OK</guibutton> will immediately save changes to the database (write on disk). All changes are immediate."
-msgstr "En cliquant sur <guibutton>Valider</guibutton>GRAMPS sauvera immédiatement les changements à la base de données (écriture sur le disque). À la différence des versions précédentes, cette version de GRAMPS n'a pas de fonction d'enregistrement, tous les changements sont immédiats."
+msgstr "Cliquer sur <guibutton>Valider</guibutton> sauvera immédiatement les changements à la base de données (écriture sur le disque). Tous les changements sont immédiats."
 
 #: gramps-manual.xml:3499(para)
 msgid "The general information at the top of the window lets you define basic information about the source: its <guilabel>Title</guilabel>, <guilabel>Author</guilabel>, <guilabel>Abbreviation</guilabel>, and <guilabel>Publication information</guilabel>. You can type this information directly into the adjacent fields."
@@ -2411,11 +2411,11 @@ msgstr "Les lieux"
 
 #: gramps-manual.xml:3615(para)
 msgid "To edit information about places, switch to the Places View and select the desired entry from the list of places. Double-click that entry or click the <guibutton>Edit</guibutton> button on the toolbar to bring up the following <guilabel>Place Editor</guilabel> dialog:"
-msgstr "Pour modifier les données sur un lieu, allez dans la vue Lieux, sélectionner celui que vous voulez puis double-cliquez ou utilisez l'icône <guibutton>Edit</guibutton> dans la barre d'outils pour lancer la fenêtre de dialogue <guilabel>Editeur de Lieux</guilabel>:"
+msgstr "Pour modifier les données sur un lieu, allez dans la vue Lieux, sélectionner celui que vous voulez puis double-cliquez ou utilisez l'icône <guibutton>Edit</guibutton> dans la barre d'outils pour lancer la fenêtre de dialogue <guilabel>Editeur de lieux</guilabel>:"
 
 #: gramps-manual.xml:3624(title)
 msgid "Place Editor dialog"
-msgstr "Editeur de Lieux"
+msgstr "Editeur de lieux"
 
 #: gramps-manual.xml:3634(phrase)
 msgid "Shows Place Editor dialog."
@@ -2424,15 +2424,15 @@ msgstr "La fenêtre d'édition de lieux"
 #. ==== End of Figure ====
 #: gramps-manual.xml:3642(para)
 msgid "The main part of the window displays seven notebook tabs containing different categories of information. Click a tab to view or edit its contents. The bottom part of the window has <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. Clicking <guibutton>OK</guibutton> will apply all the changes made in all tabs and close the dialog window. Clicking the <guibutton>Cancel</guibutton> button will close the window without applying any changes."
-msgstr "Le haut de la fenêtre contient son titre <guilabel>Editeur de Lieux</guilabel>. La partie principale de la fenêtre montre des onglets présentant différentes informations. La partie du bas contient les boutons <guibutton>Valider</guibutton> et <guibutton>Annuler</guibutton>. Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications dans la base de données et de fermer la fenêtre. Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier la base de données."
+msgstr "Le haut de la fenêtre contient son titre <guilabel>Editeur de lieux</guilabel>. La partie principale de la fenêtre montre des onglets présentant différentes informations. La partie du bas contient les boutons <guibutton>Valider</guibutton> et <guibutton>Annuler</guibutton>. Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications dans la base de données et de fermer la fenêtre. Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier la base de données."
 
 #: gramps-manual.xml:3652(para)
 msgid "Clicking <guibutton>OK</guibutton> will immediately save changes to the database). All changes are immediate."
-msgstr "En cliquant sur <guibutton>Valider</guibutton>GRAMPS sauvera immédiatement les changements à la base de données (écriture sur le disque). À la différence des versions précédentes, cette version de GRAMPS n'a pas de fonction d'enregistrement, tous les changements sont immédiats."
+msgstr "Cliquer sur <guibutton>Valider</guibutton> sauvera immédiatement les changements à la base de données (écriture sur le disque).Tous les changements sont immédiats."
 
 #: gramps-manual.xml:3657(para)
 msgid "If a tab label is in boldface type and displays an icon, this means it contains data. If not, it has no data."
-msgstr "Si le texte d'une étiquette est en gras et affiche une icône, celà signifie qu'elle contient des données. Dans le cas contraire, elle n'a pas de données."
+msgstr "Si le texte d'un onglet est en gras et affiche une icône, celà signifie qu'il contient des données. Dans le cas contraire, il n'a pas de données."
 
 #: gramps-manual.xml:3661(para)
 msgid "The tabs represent following categories of place data:"
@@ -2770,11 +2770,11 @@ msgstr "La fenêtre Fusion des individus"
 #. ==== End of Figure ====
 #: gramps-manual.xml:4566(para)
 msgid "The dialog allows you to quickly merge two records, specifying the record to be used as the source of primary data. The data from the other record will be kept as alternate data. Specifically, all names from the other record will become alternate names of the merged record. Similarly, parents, spouses, and children of the other record will become alternate parents, spouses, and children of the merged record, and so on."
-msgstr "Vous pouvez conserver des données de chacune des personnes pour la description de la nouvelle personne résultant de la fusion. Les données non prises peuvent être gardées en réserve (alternatives) si vous le voulez."
+msgstr "Ce dialogue vous permet de fusionner rapidement deux enregistrements, en spécifiant l'enregistrement primaire. Les données de l'autre enregistrement seront conservées comme alternatives. Spécifiquement, tous les noms des autres enregistrements deviendront des noms alternatifs de l'enregistrement fusionné. De la même façon, parents, conjoints, et enfants de l'enregistrement fusionné, le seront aussi."
 
 #: gramps-manual.xml:4576(para)
 msgid "If you are not certain whether or not you need to merge the records, or which record to specify as the source of primary data, use <guilabel>Compare and Merge</guilabel> method described above.."
-msgstr "Si vous n'êtes pas sûr des données à fusionner, utilisez <guilabel>Comparaison et Fusion</guilabel> voir ci-dessus ..."
+msgstr "Si vous n'êtes pas sûr des données à fusionner, ou voudriez spécifier un enregistrement primaire, utilisez <guilabel>Comparaison et Fusion</guilabel> voir ci-dessous ..."
 
 #: gramps-manual.xml:4589(title)
 msgid "Merge Sources"
@@ -3761,7 +3761,7 @@ msgstr "La fenêtre de dialogue du Presse-Papiers"
 #. ==== End of Figure ====
 #: gramps-manual.xml:6167(para)
 msgid "Scratch Pad supports addresses, attributes (both personal and family), events (both personal and family), names, media objects references, source references, URLs, and of course textual information of notes and comments. To store any type of these records, simply drag the existing record on to the Scratch Pad from the corresponding editor dialog. To reuse the record, drag it from the Scratch Pad on to the corresponding place in the editor, e.g. Address tab, Attribute tab, etc."
-msgstr "On peut stocker des adresses, des attributs (personnel et famille), des événements (personnel et famille), des noms, les médias object, des références, des références de source, des URLs, et naturellement l'information textuelle des notes et des commentaires. Pour stocker, glisser simplement le texte dans la boîte de dialogue. Pour réutiliser l'information, glisser-la à l'endroit correspondant, par exemple étiquette d'adresse, étiquette d'attribut, etc..."
+msgstr "On peut stocker des adresses, des attributs (personnel et famille), des événements (personnel et famille), des noms, les médias object, des références, des références de source, des URLs, et naturellement l'information textuelle des notes et des commentaires. Pour stocker, glisser simplement le texte dans la boîte de dialogue. Pour réutiliser l'information, glisser-la à l'endroit correspondant, par exemple onglet d'adresse, onglet d'attribut, etc..."
 
 #: gramps-manual.xml:6177(para)
 msgid "Some objects are showing the link icon on the left. This indicates that dragging such selection will produce a reference to an existing object, not copy the object itself."
@@ -5580,5 +5580,5 @@ msgstr "Ce programme est distribué en vertu de la licence de Grand Public de GN
 #. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2.
 #: gramps-manual.xml:0(None)
 msgid "translator-credits"
-msgstr "Jérôme Rapinat <romjerome@yahoo.fr>, 2006."
+msgstr "Jérôme Rapinat, 2006."
 
