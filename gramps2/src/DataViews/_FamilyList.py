@@ -127,6 +127,7 @@ class FamilyListView(PageView.ListView):
 
     def get_stock(self):
         return 'gramps-family-list'
+
     def ui_definition(self):
         return '''<ui>
           <menubar name="MenuBar">
