@@ -25,7 +25,7 @@
   <!-- appropriate code -->
 
   <bookinfo>
-    <title>GRAMPS Manuel V3.0</title>
+    <title>GRAMPS Manuel V2.8</title>
 
     <copyright>
       <year>2001</year>
@@ -37,7 +37,7 @@
       <year>2003-2005</year>
 
       <holder>Alex Roitman</holder>
-    </copyright><copyright><year>2006.</year><holder>Jérôme Rapinat (romjerome@yahoo.fr)</holder></copyright>
+    </copyright><copyright><year>2006.</year><holder>Jérôme Rapinat</holder></copyright>
 
     <!-- translators: uncomment this:
 
@@ -134,11 +134,11 @@
 
     <!-- When the desktop release version changes to V3.x, the revision number of the manual changes -->
 
-    <!-- to V3.0, and so on. -->
+    <!-- to V2.8, and so on. -->
 
     <revhistory>
       <revision>
-        <revnumber>GRAMPS Manuel V3.0</revnumber>
+        <revnumber>GRAMPS Manuel V2.8</revnumber>
 
         <date>Juillet 2006</date>
 
@@ -452,7 +452,7 @@
       <screenshot>
         <mediaobject>
           <imageobject>
-            <imagedata depth="" fileref="figures/mainwin.png" format="PNG" width=""/>
+            <imagedata depth="" fileref="figures/mainwin.png" format="PNG" scale="" width=""/>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -586,7 +586,7 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/mainwin.png" format="PNG" width=""/>
+                <imagedata depth="" fileref="figures/mainwin.png" format="PNG" scale="" width=""/>
               </imageobject>
 
               <textobject>
@@ -1538,7 +1538,7 @@
 
         <para>Pour associer des images à une relation (par exemple un mariage), allez dans la vue Famille (<xref linkend="family-fig"/>) uis double-cliquez dans la zone de l'époux/se pour ouvrir le dialogue <guilabel> Affichage Mariage/Relation</guilabel>. Selectionner l'onglet <guilabel>Galerie</guilabel> puis le bouton <guibutton>+</guibutton>pour ajouter une image.</para>
 
-        <para>Pour associer une image à une source ou un lieu, allez d'abord dans la vue Sources (<xref linkend="sources-fig"/>) ou Vue des Lieux (<xref linkend="places-fig"/>).Sélectionnez l'élément cherché puis double-cliquez dessus ou cliquez sur l'icône <guibutton>Editer</guibutton> dans la barre d'outils pour appeler le dialogue <guilabel>Editeur de Sources</guilabel> (ou <guilabel>Editeur de Lieux</guilabel>) Sélectionnez l'onglet <guilabel>Galerie</guilabel> puis cliquez sur le bouton <guibutton>+</guibutton> pour ajouter une image.</para>
+        <para>Pour associer une image à une source ou un lieu, allez d'abord dans la vue Sources (<xref linkend="sources-fig"/>) ou Vue des Lieux (<xref linkend="places-fig"/>).Sélectionnez l'élément cherché puis double-cliquez dessus ou cliquez sur l'icône <guibutton>Editer</guibutton> dans la barre d'outils pour appeler le dialogue <guilabel>Editeur de Sources</guilabel> (ou <guilabel>Editeur de lieux</guilabel>) Sélectionnez l'onglet <guilabel>Galerie</guilabel> puis cliquez sur le bouton <guibutton>+</guibutton> pour ajouter une image.</para>
 
         <para>Enfin, pour ajouter des images dans la base de données mais qui ne sont pas liées à une personne, une relation, une source ou un lieu en particulier, allez dans la vue Média (<xref linkend="media-fig"/>). Cliquez alors sur l'icône <guibutton>Ajouter</guibutton> de la barre d'outils pour ajouter une image. Si vous avez déjà ajouté des images dans n'importe quelle Galerie, vous les trouverez listées dans la vue des Médias.</para>
 
@@ -1562,7 +1562,7 @@
       <sect2 id="gramps-edit-src-plc">
         <title>Pour modifier des sources et des lieux</title>
 
-        <para>Pour ajouter une source ou un lieu à la base de données, allez dans la vue Sources (<xref linkend="sources-fig"/>) ou Vue des Lieux (<xref linkend="places-fig"/>). Puis cliquer sur l'icône <guibutton>Ajouter</guibutton> dans la barre d'outils pour créer une source ou un lieu. Saisissez les caractéristiques du nouvel élément dans le dialogue <guilabel>Editeur de sources</guilabel> (ou <guilabel>Editeur de Lieux</guilabel>).</para>
+        <para>Pour ajouter une source ou un lieu à la base de données, allez dans la vue Sources (<xref linkend="sources-fig"/>) ou Vue des Lieux (<xref linkend="places-fig"/>). Puis cliquer sur l'icône <guibutton>Ajouter</guibutton> dans la barre d'outils pour créer une source ou un lieu. Saisissez les caractéristiques du nouvel élément dans le dialogue <guilabel>Editeur de sources</guilabel> (ou <guilabel>Editeur de lieux</guilabel>).</para>
 
         <para>Si vous voulez modifier des données à propos de sources ou de lieux déjà déclarés dans la base de données, allez dans la vue concernée (sources ou lieux), sélectionnez l'élément à modifier puis cliquez sur l'icône <guibutton>Editer</guibutton> de la barre d'outils. Vous pouvez aussi double-cliquer sur l'élément dans sa liste pour l'éditer.</para>
       </sect2>
@@ -1693,7 +1693,7 @@
             <term>Général</term>
 
             <listitem>
-              <para>Le menu<guilabel>Genre</guilabel> donne le choix entre <guilabel>masculin</guilabel>, <guilabel>feminin</guilabel>, et <guilabel>inconnu</guilabel>.</para>
+              <para>Le menu <guilabel>Genre</guilabel> donne le choix entre <guilabel>masculin</guilabel>, <guilabel>feminin</guilabel>, et <guilabel>inconnu</guilabel>.</para>
 
               <para>Le champ <guilabel>ID</guilabel> présente l'identifiant interne que GRAMPS attribue à chaque individu de la base de données. La zone <guilabel>Image</guilabel> montre la première image de la <guilabel>Galerie</guilabel> pour cette personne (s'il y en a).</para>
 
@@ -1967,7 +1967,7 @@
             <term>Associations</term>
 
             <listitem>
-              <para>L'étiquette <guilabel>Associations</guilabel> vous permet de voir et d'éditer une information sur les associations entre les individus dans la base de données. Les associations peuvent inclure les parrains, amis de la famille, ou tout autres types d'associations que vous souhaitez enregistrer.</para>
+              <para>L'onglet <guilabel>Associations</guilabel> vous permet de voir et d'éditer une information sur les associations entre les individus dans la base de données. Les associations peuvent inclure les parrains, amis de la famille, ou tout autres types d'associations que vous souhaitez enregistrer.</para>
 
               <!-- ==== Figure: Edit Person dialog - LDS ==== -->
 
@@ -2064,7 +2064,7 @@
               <term>Etendue</term>
 
               <listitem>
-                <para>Une date "étendue" décrit une période durant laquelle c'est peut être produit l'événement. Par exemple, "entre Janvier 1932 et Mars 1932."</para>
+                <para>Une date "étendue" décrit une période durant laquelle s'est peut être produit l'événement. Par exemple, "entre Janvier 1932 et Mars 1932."</para>
               </listitem>
             </varlistentry>
 
@@ -2072,7 +2072,7 @@
               <term>Incrémenté(e)</term>
 
               <listitem>
-                <para>Une date "incrémentée" décrit une période durant laquelle c'est produit l'événement. Par exemple, "de Mai 12, 2000 à Février 2, 2002."</para>
+                <para>Une date "incrémentée" décrit une période durant laquelle s'est produit l'événement. Par exemple, "de Mai 12, 2000 à Février 2, 2002."</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -2088,9 +2088,9 @@
           <note>
             <title>Les règles du parser de date</title>
 
-            <para>La liste ci-dessous est seulement valide pour l'anglais. Si vous employez la version localisée de GRAMPS, votre version peut ou pas fournir un analyseur localisé de date. À l'heure de cette écriture, les analyseurs localisés existent pour des langues françaises, russes, et espagnoles.</para>
+            <para>La liste ci-dessous est seulement valide pour l'anglais. Si vous employez la version localisée de GRAMPS, votre version peut ou pas fournir un analyseur localisé de date. À l'heure de cette écriture, les analyseurs localisés existent pour les langues française, allemande, russe, finlandaise, hollandaise et espagnole.</para>
 
-            <para>S'il n'y a aucun manuel en votre langue, vous pouvez essayer d'après votre instinct et aller de pair avec les manières communes de noter les dates en votre langue. Si tout échoue, employez le <guilabel>sélecteur de Date</guilabel> décrit ci-dessous.</para>
+            <para>S'il n'y a aucun manuel en votre langue, vous pouvez essayer d'après votre instinct et aller de pair avec les manières communes de noter les dates en votre langue. Si tout échoue, employez le <guilabel>Sélecteur de date</guilabel> décrit ci-dessous.</para>
           </note>
 
           <itemizedlist>
@@ -2126,7 +2126,7 @@
           <tip>
             <title>Boutons Date LED</title>
 
-            <para>La date LED est identifiée par des cercles de couleur, désignés également sous le nom de boutons LED.Cliquer sur un bouton de LED appellera le <guilabel>Sélecteur de Date</guilabel> décrit en détail ci-dessous, voir la section <xref linkend="adv-dates-gui"/></para>
+            <para>La date LED est identifiée par des cercles de couleur, désignés également sous le nom de boutons LED.Cliquer sur un bouton de LED appellera le <guilabel>Sélecteur de date</guilabel> décrit en détail ci-dessous, voir la section <xref linkend="adv-dates-gui"/></para>
           </tip>
 
           <itemizedlist>
@@ -2149,12 +2149,12 @@
         <sect3 id="adv-dates-gui">
           <title>L'interface graphique pour entrer les dates</title>
 
-          <para>L'interface graphique ainsi que les règles ci-dessus fournissent une manière rapide et facile pour écrire la plupart des dates, parfois il y a un besoin d'établir une date complexe ou vérifier simplement la date en utilisant l'interface utilisateur graphique. La fenêtre <guilabel>Sélecteur de Date</guilabel> peut être appelée en cliquant sur le bouton de cercle de couleur (également connu sous le nom de bouton de LED) à côté du champ d'entrée de date.</para>
+          <para>L'interface graphique ainsi que les règles ci-dessus fournissent une manière rapide et facile pour écrire la plupart des dates, parfois il y a un besoin d'établir une date complexe ou vérifier simplement la date en utilisant l'interface utilisateur graphique. La fenêtre <guilabel>Sélecteur de date</guilabel> peut être appelée en cliquant sur le bouton de cercle de couleur (également connu sous le nom de bouton de LED) à côté du champ d'entrée de date.</para>
 
           <!-- ==== Figure: Date selection dialog ==== -->
 
           <para><figure id="adv-dates-gui-fig">
-              <title>Sélecteur de Date</title>
+              <title>Sélecteur de date</title>
 
               <screenshot>
                 <mediaobject>
@@ -2333,7 +2333,7 @@
         <para>Le haut de la fenêtre contient le titre <guilabel>Source d'information</guilabel>. La partie principale de la fenêtre contient des onglets pour afficher différentes catégories d'information. Le bas de la fenêtre contient les boutons <guibutton>Valider</guibutton> et <guibutton>Annuler</guibutton>. Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications dans la base de données et de fermer la fenêtre. Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier la base de données.</para>
 
         <note>
-          <para>En cliquant sur <guibutton>Valider</guibutton>GRAMPS sauvera immédiatement les changements à la base de données (écriture sur le disque). À la différence des versions précédentes, cette version de GRAMPS n'a pas de fonction d'enregistrement, tous les changements sont immédiats.</para>
+          <para>Cliquer sur <guibutton>Valider</guibutton> sauvera immédiatement les changements à la base de données (écriture sur le disque). Tous les changements sont immédiats.</para>
         </note>
 
         <tip>
@@ -2406,12 +2406,12 @@
       <sect2 id="adv-plc">
         <title>Les lieux</title>
 
-        <para>Pour modifier les données sur un lieu, allez dans la vue Lieux, sélectionner celui que vous voulez puis double-cliquez ou utilisez l'icône <guibutton>Edit</guibutton> dans la barre d'outils pour lancer la fenêtre de dialogue <guilabel>Editeur de Lieux</guilabel>:</para>
+        <para>Pour modifier les données sur un lieu, allez dans la vue Lieux, sélectionner celui que vous voulez puis double-cliquez ou utilisez l'icône <guibutton>Edit</guibutton> dans la barre d'outils pour lancer la fenêtre de dialogue <guilabel>Editeur de lieux</guilabel>:</para>
 
         <!-- ==== Figure: Place Editor dialog ==== -->
 
         <figure id="edit-plc-fig">
-          <title>Editeur de Lieux</title>
+          <title>Editeur de lieux</title>
 
           <screenshot>
             <mediaobject>
@@ -2428,14 +2428,14 @@
 
         <!-- ==== End of Figure ==== -->
 
-        <para>Le haut de la fenêtre contient son titre <guilabel>Editeur de Lieux</guilabel>. La partie principale de la fenêtre montre des onglets présentant différentes informations. La partie du bas contient les boutons <guibutton>Valider</guibutton> et <guibutton>Annuler</guibutton>. Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications dans la base de données et de fermer la fenêtre. Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier la base de données.</para>
+        <para>Le haut de la fenêtre contient son titre <guilabel>Editeur de lieux</guilabel>. La partie principale de la fenêtre montre des onglets présentant différentes informations. La partie du bas contient les boutons <guibutton>Valider</guibutton> et <guibutton>Annuler</guibutton>. Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications dans la base de données et de fermer la fenêtre. Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier la base de données.</para>
 
         <note>
-          <para>En cliquant sur <guibutton>Valider</guibutton>GRAMPS sauvera immédiatement les changements à la base de données (écriture sur le disque). À la différence des versions précédentes, cette version de GRAMPS n'a pas de fonction d'enregistrement, tous les changements sont immédiats.</para>
+          <para>Cliquer sur <guibutton>Valider</guibutton> sauvera immédiatement les changements à la base de données (écriture sur le disque).Tous les changements sont immédiats.</para>
         </note>
 
         <tip>
-          <para>Si le texte d'une étiquette est en gras et affiche une icône, celà signifie qu'elle contient des données. Dans le cas contraire, elle n'a pas de données.</para>
+          <para>Si le texte d'un onglet est en gras et affiche une icône, celà signifie qu'il contient des données. Dans le cas contraire, il n'a pas de données.</para>
         </tip>
 
         <para>Les onglets donnent accès aux types d'informations suivants :</para>
@@ -2541,7 +2541,7 @@
         <para>Sous le titre de la fenêtre, vous trouvez une vignette de l'objet et un résumé de ses proriétés (ID, chemin et type d'objet). La partie centrale de la fenêtre contient des onglets pour diverses catégories d'informations. La partie du bas contient les boutons <guibutton>Valider</guibutton> et <guibutton>Annuler</guibutton>. Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications dans la base de données et de fermer la fenêtre. Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier la base de données.</para>
 
         <note>
-          <para>En cliquant sur <guibutton>Valider</guibutton>GRAMPS sauvera immédiatement les changements à la base de données (écriture sur le disque). À la différence des versions précédentes, cette version de GRAMPS n'a pas de fonction d'enregistrement, tous les changements sont immédiats.</para>
+          <para>Cliquer sur <guibutton>Valider</guibutton> sauvera immédiatement les changements à la base de données (écriture sur le disque). Tous les changements sont immédiats.</para>
         </note>
 
         <tip>
@@ -2992,10 +2992,10 @@
 
                 <!-- ==== End of Figure ==== -->
 
-                <para>Vous pouvez conserver des données de chacune des personnes pour la description de la nouvelle personne résultant de la fusion. Les données non prises peuvent être gardées en réserve (alternatives) si vous le voulez.</para>
+                <para>Ce dialogue vous permet de fusionner rapidement deux enregistrements, en spécifiant l'enregistrement primaire. Les données de l'autre enregistrement seront conservées comme alternatives. Spécifiquement, tous les noms des autres enregistrements deviendront des noms alternatifs de l'enregistrement fusionné. De la même façon, parents, conjoints, et enfants de l'enregistrement fusionné, le seront aussi.</para>
 
                 <tip>
-                  <para>Si vous n'êtes pas sûr des données à fusionner, utilisez <guilabel>Comparaison et Fusion</guilabel> voir ci-dessus ...</para>
+                  <para>Si vous n'êtes pas sûr des données à fusionner, ou voudriez spécifier un enregistrement primaire, utilisez <guilabel>Comparaison et Fusion</guilabel> voir ci-dessous ...</para>
                 </tip>
               </listitem>
             </varlistentry>
@@ -3997,7 +3997,7 @@
 
           <!-- ==== End of Figure ==== -->
 
-          <para>On peut stocker des adresses, des attributs (personnel et famille), des événements (personnel et famille), des noms, les médias object, des références, des références de source, des URLs, et naturellement l'information textuelle des notes et des commentaires. Pour stocker, glisser simplement le texte dans la boîte de dialogue. Pour réutiliser l'information, glisser-la à l'endroit correspondant, par exemple étiquette d'adresse, étiquette d'attribut, etc...</para>
+          <para>On peut stocker des adresses, des attributs (personnel et famille), des événements (personnel et famille), des noms, les médias object, des références, des références de source, des URLs, et naturellement l'information textuelle des notes et des commentaires. Pour stocker, glisser simplement le texte dans la boîte de dialogue. Pour réutiliser l'information, glisser-la à l'endroit correspondant, par exemple onglet d'adresse, onglet d'attribut, etc...</para>
 
           <tip>
             <para>Quelques objets montrent l'icône de lien du côté gauche. Ceci indique que déposer un tel choix produira une référence à un objet existant, pour ne pas copier l'objet lui-même.</para>
