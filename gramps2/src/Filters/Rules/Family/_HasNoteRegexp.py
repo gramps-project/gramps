@@ -25,6 +25,7 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
+import re
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -39,7 +40,7 @@ from Filters.Rules._HasNoteRegexBase import HasNoteRegexBase
 #-------------------------------------------------------------------------
 class HasNoteRegexp(HasNoteRegexBase):
 
-    name        = _('People having notes containing <regular expression>')
-    description = _("Matches people whose notes contain text "
+    name        = _('Families having notes containing <regular expression>')
+    description = _("Matches families whose notes contain text "
                     "matching a regular expression")
 

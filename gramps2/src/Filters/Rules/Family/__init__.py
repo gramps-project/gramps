@@ -27,7 +27,17 @@ Package providing filter rules for GRAMPS.
 __author__ = "Don Allingham"
 
 from _HasRelType import HasRelType
+from _AllFamilies import AllFamilies
+from _HasIdOf import HasIdOf
+from _RegExpIdOf import RegExpIdOf
+from _HasNoteRegexp import HasNoteRegexp
+from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 
 editor_rule_list = [
+    AllFamilies,
     HasRelType,
+    HasIdOf,
+    RegExpIdOf,
+    HasNoteRegexp,
+    HasNoteMatchingSubstringOf,
 ]

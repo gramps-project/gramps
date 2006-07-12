@@ -150,5 +150,5 @@ editor_rule_list = [
     RelationshipPathBetweenBookmarks,
     HasTextMatchingSubstringOf,
     HasNote,
-    HasNoteMatchingSubstringOf
+    HasNoteRegexp,
 ]

@@ -32,14 +32,14 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._Rule import Rule
+from Filters.Rules import HasGrampsId
 
 #-------------------------------------------------------------------------
 #
 # HasIdOf
 #
 #-------------------------------------------------------------------------
-class HasIdOf(Rule):
+class HasIdOf(HasGrampsId):
     """Rule that checks for a person with a specific GRAMPS ID"""
 
     labels      = [ _('ID:') ]
@@ -47,5 +47,3 @@ class HasIdOf(Rule):
     description = _("Matches people with a specified GRAMPS ID")
     category    = _('General filters')
 
-    def apply(self,db,person):
-        return person.gramps_id == self.list[0]
