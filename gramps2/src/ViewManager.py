@@ -221,6 +221,7 @@ class ViewManager:
 
         self.show_sidebar = Config.get(Config.VIEW)
         self.show_toolbar = Config.get(Config.TOOLBAR_ON)
+        self.show_filter = Config.get(Config.FILTER)
 
         self.notebook = gtk.Notebook()
         self.notebook.set_show_tabs(False)
@@ -376,7 +377,7 @@ class ViewManager:
             ('Toolbar', None, _('_Toolbar'), None, None, self.toolbar_toggle,
              self.show_toolbar ), 
             ('Filter', None, _('_Filter sidebar'), None, None, self.filter_toggle,
-             self.show_toolbar ), 
+             self.show_filter), 
             ]
 
         self._undo_action_list = [
