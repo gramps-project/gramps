@@ -32,6 +32,8 @@ from _HasIdOf import HasIdOf
 from _RegExpIdOf import RegExpIdOf
 from _HasNoteRegexp import HasNoteRegexp
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
+from _FamilyPrivate import FamilyPrivate
+from _HasEvent import HasEvent
 
 editor_rule_list = [
     AllFamilies,
@@ -40,4 +42,6 @@ editor_rule_list = [
     RegExpIdOf,
     HasNoteRegexp,
     HasNoteMatchingSubstringOf,
+    FamilyPrivate,
+    HasEvent,
 ]

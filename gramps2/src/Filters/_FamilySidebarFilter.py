@@ -26,8 +26,8 @@ import GrampsWidgets
 import RelLib
 
 from _SidebarFilter import SidebarFilter
-import Filters.Rules
 from Filters import GenericFamilyFilter, build_filter_model, Rules
+from Filters.Rules.Family import *
 
 class FamilySidebarFilter(SidebarFilter):
 
@@ -61,7 +61,7 @@ class FamilySidebarFilter(SidebarFilter):
 
         all = GenericFamilyFilter()
         all.set_name(_("None"))
-        all.add_rule(Rules.Person.Everyone([]))
+        all.add_rule(Rules.Family.AllFamilies([]))
 
 	self.generic = gtk.ComboBox()
 	cell = gtk.CellRendererText()
@@ -103,7 +103,7 @@ class FamilySidebarFilter(SidebarFilter):
                 if regex:
                     rule = RegExpIdOf([gid])
                 else:
-                    rule = MatchIdOf([gid])
+                    rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
 
             etype = self.filter_event.get_type()

@@ -32,16 +32,14 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import DateHandler
-from Filters.Rules._Rule import Rule
-from Filters.Rules._RuleUtils import date_cmp
+from Filters.Rules._HasEventBase import HasEventBase
 
 #-------------------------------------------------------------------------
 #
 # HasEvent
 #
 #-------------------------------------------------------------------------
-class HasEvent(Rule):
+class HasEvent(HasEventBase):
     """Rule that checks for a person with a particular value"""
 
     labels      = [ _('Personal event:'), 
@@ -50,40 +48,4 @@ class HasEvent(Rule):
                     _('Description:') ]
     name        =  _('People with the personal <event>')
     description = _("Matches people with a personal event of a particular value")
-    category    = _('Event filters')
     
-    def prepare(self,db):
-        self.date = None
-        if self.list[0]:
-            self.etype = self.list[0]
-        else:
-            self.etype = None
-        try:
-            if self.list[1]:
-                self.date = DateHandler.parser.parse(self.list[1])
-        except: pass
-
-    def apply(self,db,person):
-        for event_ref in person.get_event_ref_list():
-            if not event_ref:
-                continue
-            event = db.get_event_from_handle(event_ref.ref)
-            val = True
-            if self.etype and event.get_type() != self.etype:
-                val = False
-            if self.list[3] and event.get_description().upper().find(
-                                            self.list[3].upper())==-1:
-                val = False
-            if self.date:
-                if date_cmp(self.date,event.get_date_object()):
-                    val = False
-            if self.list[2]:
-                pl_id = event.get_place_handle()
-                if pl_id:
-                    pl = db.get_place_from_handle(pl_id)
-                    pn = pl.get_title()
-                    if pn.upper().find(self.list[2].upper()) == -1:
-                        val = False
-            if val:
-                return True
-        return False

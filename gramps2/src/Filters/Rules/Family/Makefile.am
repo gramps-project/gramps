@@ -3,7 +3,15 @@
 pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Family
 
 pkgdata_PYTHON = \
-	__init__.py
+	_AllFamilies.py\
+	_FamilyPrivate.py\
+	_HasEvent.py\
+	_HasIdOf.py\
+	_HasNoteMatchingSubstringOf.py\
+	_HasNoteRegexp.py\
+	_HasRelType.py\
+	__init__.py\
+	_RegExpIdOf.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Family
 pkgpythondir = @pkgpythondir@/Filters/Rules/Family
