@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _HasNoteMatchingSubstringOf.py 6529 2006-05-03 06:29:07Z rshura $
+# $Id: _HasIdOf.py 6529 2006-05-03 06:29:07Z rshura $
 
 #-------------------------------------------------------------------------
 #
@@ -26,20 +26,35 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import re
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._HasNoteRegexBase import HasNoteRegexBase
+from _Rule import Rule
 
 #-------------------------------------------------------------------------
-# "People having notes that contain a substring"
+#
+# HasIdOf
+#
 #-------------------------------------------------------------------------
-class HasNoteRegexp(HasNoteRegexBase):
+class RegExpIdBase(Rule):
+    """Rule that checks for a person with a specific GRAMPS ID"""
 
-    name        = _('People having notes containing <regular expression>')
-    description = _("Matches people whose notes contain text "
-                    "matching a regular expression")
+    labels      = [ _('ID:') ]
+    name        = _('Families with <Id>')
+    description = _("Matches families with a GRAMPS ID that contains the regular expression")
+    category    = _('General filters')
 
+    def __init__(self, list):
+        Rule.__init__(self, list)
+        
+        try:
+            self.match = re.compile(list[0],re.I|re.U|re.L)
+        except:
+            self.match = re.compile('')
+
+    def apply(self,db,person):
+        return self.match.match(person.gramps_id) != None

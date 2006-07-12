@@ -26,8 +26,7 @@ import GrampsWidgets
 import RelLib
 
 from _SidebarFilter import SidebarFilter
-from Filters.Rules.Person import *
-from Filters.Rules.Family import *
+import Filters.Rules
 from Filters import GenericFamilyFilter, build_filter_model, Rules
 
 class FamilySidebarFilter(SidebarFilter):

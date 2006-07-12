@@ -25,6 +25,7 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
+import re
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -32,14 +33,28 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._HasNoteRegexBase import HasNoteRegexBase
+from _Rule import Rule
 
 #-------------------------------------------------------------------------
 # "People having notes that contain a substring"
 #-------------------------------------------------------------------------
-class HasNoteRegexp(HasNoteRegexBase):
+class HasNoteRegexBase(Rule):
+    """People having notes containing <subtring>"""
 
-    name        = _('People having notes containing <regular expression>')
-    description = _("Matches people whose notes contain text "
+    labels      = [ _('Regular expression:')]
+    name        = _('Objects having notes containing <regular expression>')
+    description = _("Matches objects whose notes contain text "
                     "matching a regular expression")
+    category    = _('General filters')
 
+    def __init__(self, list):
+        Rule.__init__(self, list)
+        
+        try:
+            self.match = re.compile(list[0],re.I|re.U|re.L)
+        except:
+            self.match = re.compile('')
+
+    def apply(self,db,person):
+        n = person.get_note()
+        return self.match.match(n) != None

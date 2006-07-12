@@ -27,6 +27,7 @@ Package providing filter rules for GRAMPS.
 __author__ = "Don Allingham"
 
 from _Everything import Everything
+from _HasGrampsId import HasGrampsId
 from _IsPrivate import IsPrivate
 from _HasTextMatchingSubstringOf import HasTextMatchingSubstringOf
 from _HasTextMatchingRegexpOf import HasTextMatchingRegexpOf

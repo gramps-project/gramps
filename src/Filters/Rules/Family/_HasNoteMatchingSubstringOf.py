@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _HasNoteMatchingSubstringOf.py 6529 2006-05-03 06:29:07Z rshura $
+# $Id: _HasNoteMatchingSubstringOf.py 6634 2006-05-12 22:38:48Z dallingham $
 
 #-------------------------------------------------------------------------
 #
@@ -32,14 +32,14 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._HasNoteRegexBase import HasNoteRegexBase
+from Filters.Rules._HasNoteSubstrBase import HasNoteSubstrBase
 
 #-------------------------------------------------------------------------
 # "People having notes that contain a substring"
 #-------------------------------------------------------------------------
-class HasNoteRegexp(HasNoteRegexBase):
+class HasNoteMatchingSubstringOf(HasNoteSubstrBase):
+    """People having notes containing <subtring>"""
 
-    name        = _('People having notes containing <regular expression>')
-    description = _("Matches people whose notes contain text "
-                    "matching a regular expression")
+    name        = _('Families having notes containing <substring>')
+    description = _("Matches families whose notes contain text matching a substring")
 
