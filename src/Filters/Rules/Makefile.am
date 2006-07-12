@@ -5,13 +5,18 @@ SUBDIRS = Person Family Event Place Source Media Repository
 pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules
 
 pkgdata_PYTHON = \
-	_Everything.py \
-	_HasTextMatchingRegexpOf.py \
-	_HasTextMatchingSubstringOf.py \
-	_IsPrivate.py \
-	_Rule.py \
-	_RuleUtils.py \
-	__init__.py
+	_Everything.py\
+	_HasEventBase.py\
+	_HasGrampsId.py\
+	_HasNoteRegexBase.py\
+	_HasNoteSubstrBase.py\
+	_HasTextMatchingRegexpOf.py\
+	_HasTextMatchingSubstringOf.py\
+	__init__.py\
+	_IsPrivate.py\
+	_RegExpIdBase.py\
+	_Rule.py\
+	_RuleUtils.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules
 pkgpythondir = @pkgpythondir@/Filters/Rules

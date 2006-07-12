@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _HasIdOf.py 6529 2006-05-03 06:29:07Z rshura $
+# $Id: _FamilyPrivate.py 6529 2006-05-03 06:29:07Z rshura $
 
 #-------------------------------------------------------------------------
 #
@@ -32,20 +32,13 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._Rule import Rule
+from Filters.Rules._IsPrivate import IsPrivate
 
 #-------------------------------------------------------------------------
-#
-# HasIdOf
-#
+# "Family marked private"
 #-------------------------------------------------------------------------
-class HasGrampsId(Rule):
-    """Rule that checks for a person with a specific GRAMPS ID"""
+class FamilyPrivate(IsPrivate):
+    """Family marked private"""
 
-    labels      = [ _('ID:') ]
-    name        = _('Object with <Id>')
-    description = _("Matches objects with a specified GRAMPS ID")
-    category    = _('General filters')
-
-    def apply(self,db,obj):
-        return obj.gramps_id.find(self.list[0]) !=-1
+    name        = _('Families marked private')
+    description = _("Matches families that are indicated as private")

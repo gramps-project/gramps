@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _HasIdOf.py 6529 2006-05-03 06:29:07Z rshura $
+# $Id: _HasEvent.py 6635 2006-05-13 03:53:06Z dallingham $
 
 #-------------------------------------------------------------------------
 #
@@ -32,20 +32,20 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._Rule import Rule
+from Filters.Rules._HasEventBase import HasEventBase
 
 #-------------------------------------------------------------------------
 #
-# HasIdOf
+# HasEvent
 #
 #-------------------------------------------------------------------------
-class HasGrampsId(Rule):
-    """Rule that checks for a person with a specific GRAMPS ID"""
+class HasEvent(HasEventBase):
+    """Rule that checks for a person with a particular value"""
 
-    labels      = [ _('ID:') ]
-    name        = _('Object with <Id>')
-    description = _("Matches objects with a specified GRAMPS ID")
-    category    = _('General filters')
-
-    def apply(self,db,obj):
-        return obj.gramps_id.find(self.list[0]) !=-1
+    labels      = [ _('Family event:'), 
+                    _('Date:'), 
+                    _('Place:'), 
+                    _('Description:') ]
+    name        =  _('Families with the <event>')
+    description = _("Matches families with an event of a particular value")
+    
