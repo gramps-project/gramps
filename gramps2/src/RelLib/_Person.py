@@ -473,6 +473,7 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
             try:
                 return self.event_ref_list[self.birth_ref_index]
             except IndexError:
+                print self.birth_ref_index, type(self.birth_ref_index)
                 return None
 
     def get_death_ref(self):
