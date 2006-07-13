@@ -31,6 +31,7 @@ from _Constants import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK
 from _PaperMenu import paper_sizes
 import os
 import const
+from Filters import CustomFilters
 
 #------------------------------------------------------------------------
 #
