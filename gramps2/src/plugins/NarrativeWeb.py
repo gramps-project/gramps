@@ -592,7 +592,7 @@ class IndividualListPage(BasePage):
                 if first:
                     of.write('<a name="%s">%s</a>' % (self.lnkfmt(surname),surname))
                 else:
-                    of.write('&nbsp')
+                    of.write('&nbsp;')
                 of.write('</td><td class="data">')
                 path = self.build_path(person.handle,"ppl",False)
                 self.person_link(of, self.build_name(path,person.handle),
@@ -1445,7 +1445,7 @@ class IndividualPage(BasePage):
         
         of.write('<div id="tree">\n')
         of.write('<h4>%s</h4>\n' % _('Ancestors'))
-        of.write('<div style="position: relative;" align="left">\n')
+        of.write('<div style="position: relative;">\n')
 
         generations = self.graphgens
         
@@ -1454,6 +1454,7 @@ class IndividualPage(BasePage):
         center = int(max_size/2)
         self.draw_tree(of,1,generations,max_size,0,center,self.person.handle)
 
+        of.write('</div>\n')
         of.write('</div>\n')
         of.write('<table style="height: %dpx; width: %dx;"><tr><td></td></tr></table>\n' %
                  (max_size,XOFFSET+(generations)*WIDTH+(generations-1)*HGAP))
