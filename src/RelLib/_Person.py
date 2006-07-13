@@ -471,7 +471,6 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
             return None
         else:
             try:
-                print self.birth_ref_index, type(self.birth_ref_index)
                 return self.event_ref_list[self.birth_ref_index]
             except IndexError:
                 return None
