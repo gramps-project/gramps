@@ -30,6 +30,7 @@ Handling of loading new/existing databases.
 #
 #-------------------------------------------------------------------------
 import os
+from bsddb.db import DBAccessError
 from gettext import gettext as _
 import logging
 log = logging.getLogger(".")
@@ -397,6 +398,10 @@ class DbLoader:
                 os.chdir(os.path.dirname(filename))
             except:
                 print "could not change directory"
+        except DBAccessError, msg:
+                QuestionDialog.ErrorDialog(
+                    _("Could not open file: %s") % filename,
+                    str(msg[1]))
         except Exception:
             log.error("Failed to open database.", exc_info=True)
 
