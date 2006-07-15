@@ -1,4 +1,5 @@
 2006-07-14  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py: disable TXN for readonly dbs
 	* src/DbLoader.py (DbLoader.read_file): handle DBAccessError
 
 2006-07-12  Brian Matherly  <brian@gramps-project.org>
