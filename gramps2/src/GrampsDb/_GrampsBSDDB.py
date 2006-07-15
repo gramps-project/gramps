@@ -288,6 +288,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.close()
 
         self.readonly = mode == "r"
+        if self.readonly:
+            self.UseTXN = False
 
         callback(12)
 
