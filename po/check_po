@@ -23,7 +23,7 @@
 import sys
 import re
 
-f = open('template.po')
+f = open('gramps.pot')
 template_total = 0
 for line in f.xreadlines():
     try:

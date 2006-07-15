@@ -1,3 +1,6 @@
+2006-07-15  Alex Roitman  <shura@gramps-project.org>
+	* check_po: Open correct file.
+
 2006-06-22  Alex Roitman  <shura@gramps-project.org>
 	* POTFILES.in: Add new file.
 
