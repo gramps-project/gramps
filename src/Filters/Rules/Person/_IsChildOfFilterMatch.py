@@ -71,5 +71,5 @@ class IsChildOfFilterMatch(Rule):
             return
         for fam_id in person.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
-            for child_handle in fam.get_child_handle_list():
-                self.map[child_handle] = 1
+            for child_ref in fam.get_child_ref_list():
+                self.map[child_ref.ref] = 1

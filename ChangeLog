@@ -1,4 +1,6 @@
 2006-07-16  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Person/_IsChildOfFilterMatch.py
+	(IsChildOfFilterMatch.init_list): Convert to child_ref.
 	* src/plugins/Checkpoint.py (Checkpoint.run_tool): Add busy cursor.
 
 2006-07-16  Zsolt Foldvari  <zsolt.foldvari@nokia.com>
