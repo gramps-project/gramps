@@ -137,7 +137,11 @@ class GalleryTab(ButtonTab):
         self.iconlist.set_pixbuf_column(0)
         self.iconlist.set_text_column(1)
         self.iconlist.set_margin(12)
-        self.iconlist.set_reorderable(True)
+        try:
+            # This is only available for pygtk 2.8
+            self.iconlist.set_reorderable(True)
+        except AttributeError:
+            pass
         self.iconlist.set_item_width(125)
         self.iconlist.set_spacing(24)
         self.iconlist.set_selection_mode(gtk.SELECTION_SINGLE)
