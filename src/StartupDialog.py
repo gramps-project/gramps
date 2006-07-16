@@ -95,8 +95,6 @@ def upgrade_prefs():
 
         Config.set(Config.AUTOLOAD,
                    client.get_bool('/apps/gramps/autoload'))
-        Config.set(Config.USE_LDS,
-                   client.get_bool('/apps/gramps/use-lds'))
         Config.set(Config.STATUSBAR,
                    client.get_int('/apps/gramps/statusbar'))
         Config.set(Config.VIEW,
@@ -141,7 +139,6 @@ class StartupDialog:
               'Preferences dialog under the Settings menu.'))
         try:
             self.w.add_page(_('Researcher information'),self.build_page2())
-            self.w.add_page(_('LDS support'), self.build_page5())
         except IndexError:
             ErrorDialog(_("Configuration error"),
                         _("\n\nPossibly the installation of GRAMPS was incomplete."
@@ -180,8 +177,6 @@ class StartupDialog:
         Config.set(Config.RESEARCHER_EMAIL,
                    unicode(self.email.get_text()))
 
-        Config.set(Config.USE_LDS,
-                   self.lds.get_active())
         Config.set(Config.STARTUP,
                    const.startup)
         self.w.destroy()        
@@ -194,9 +189,11 @@ class StartupDialog:
         box.set_spacing(12)
         
         label = gtk.Label(
-            _('In order to create valid GEDCOM files, the following '
-              'information needs to be entered. If you do not plan to '
-              'generate GEDCOM files, you may leave this empty.'))
+            _('The following information is needed if you want to export '
+              'your data to a GEDCOM file. A GEDCOM file can be imported '
+              'into nearly all genealogy programs. A valid GEDCOM file '
+              'needs this information, but most programs do not require '
+              'it. You may leave this empty if you want.'))
         label.set_line_wrap(True)
         
         box.pack_start(label)
@@ -226,7 +223,7 @@ class StartupDialog:
             except:
                 name = ""
 
-        self.name.set_text(name)
+        self.name.set_text(name.replace(',,,',''))
 
         try:
             self.addr.set_text(Config.get(Config.RESEARCHER_ADDR))
@@ -247,32 +244,6 @@ class StartupDialog:
                           "problem. Please read the INSTALL file in the "
                           "top-level source directory."))
             gtk.main_quit()
-        return box
-
-    def build_page5(self):
-        box = gtk.VBox()
-        box.set_spacing(12)
-        
-        label = gtk.Label(
-            _('GRAMPS has support for LDS Ordinances, which are special '
-              'event types\nrelated to the Church of Jesus Christ of '
-              'Latter Day Saints.\n\nYou may choose to either enable '
-              'or disable this support. You may\nchange this option in '
-              'the future in the Preferences dialog.'))
-
-        box.add(label)
-        align = gtk.Alignment(0.5,0)
-        box.add(align)
-        vbox = gtk.VBox()
-        vbox.set_spacing(6)
-        
-        self.lds = gtk.CheckButton(label=_("Enable LDS ordinance support"))
-
-        self.lds.set_active(Config.get(Config.USE_LDS))
-
-        align.add(self.lds)
-        
-        box.show_all()
         return box
 
 def make_label(table,val,y,x1,x2,x3,x4):

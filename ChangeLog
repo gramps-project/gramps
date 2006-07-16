@@ -1,3 +1,8 @@
+2006-07-15  Don Allingham  <don@gramps-project.org>
+	* src/Config/_GrampsConfigKeys.py: remove unused USE_LDS key
+	* data/gramps.schemas.in: remove unused USE_LDS key
+	* src/StartupDialog.py: remove uused USE_LDS key
+
 2006-07-14  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py: disable TXN for readonly dbs
 	* src/DbLoader.py (DbLoader.read_file): handle DBAccessError

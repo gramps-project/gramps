@@ -599,18 +599,6 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/behavior/use-lds</key>
-        <applyto>/apps/gramps/behavior/use-lds</applyto>
-        <owner>gramps</owner>
-        <type>bool</type>
-        <default>0</default>
-        <locale name="C">
-          <short>Use LDS options</short>
-          <long>If set to 1, the LDS ordinance options will be shown.</long>
-        </locale>
-      </schema>
-
-      <schema>
         <key>/schemas/apps/gramps/behavior/use-tips</key>
         <applyto>/apps/gramps/behavior/use-tips</applyto>
         <owner>gramps</owner>
