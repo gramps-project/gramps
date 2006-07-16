@@ -1,3 +1,6 @@
+2006-07-16  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Checkpoint.py (Checkpoint.run_tool): Add busy cursor.
+
 2006-07-16  Zsolt Foldvari  <zsolt.foldvari@nokia.com>
 	* src/ViewManager.py: Custom name format support.
 	* src/GrampsCfg.py: Custom name format support.

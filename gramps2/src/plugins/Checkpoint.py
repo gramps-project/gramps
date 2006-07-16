@@ -201,6 +201,9 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         """
         if not cli:
             self.uistate.status_text(_("Checkpointing database..."))
+            self.uistate.window.window.set_cursor(
+                gtk.gdk.Cursor(gtk.gdk.WATCH))
+            self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
 
         if self.options.handler.options_dict['rcs']:
             self.rcs(archive,cli)
@@ -210,6 +213,8 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
             self.custom(self.options.handler.options_dict['crcmd'],False,cli)
         
         if not cli:
+            self.uistate.window.window.set_cursor(None)
+            self.window.window.set_cursor(None)
             self.uistate.pulse_progressbar(0)
             self.uistate.modify_statusbar()
 
