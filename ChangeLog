@@ -1,4 +1,6 @@
 2006-07-16  Alex Roitman  <shura@gramps-project.org>
+	* src/DisplayTabs/_GalleryTab.py (GalleryTab.build_interface):
+	Allow working with pygtk older than 2.8.
 	* src/Filters/Rules/Person/_IsChildOfFilterMatch.py
 	(IsChildOfFilterMatch.init_list): Convert to child_ref.
 	* src/plugins/Checkpoint.py (Checkpoint.run_tool): Add busy cursor.
