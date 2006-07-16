@@ -67,7 +67,6 @@ SIZE_CHECKED         = ('interface','size-checked', 0)
 STATUSBAR            = ('interface','statusbar', 1)
 SURNAME_GUESSING     = ('behavior','surname-guessing', 1)
 TOOLBAR_ON           = ('interface','toolbar-on', 0)
-USE_LDS              = ('behavior','use-lds', 0)
 USE_TIPS             = ('behavior','use-tips', 0)
 POP_PLUGIN_STATUS    = ('behavior','pop-plugin-status', 0)
 VIEW                 = ('interface','view', 0)
@@ -123,7 +122,6 @@ default_value = {
     STATUSBAR            : 1,
     SURNAME_GUESSING     : 0,
     TOOLBAR_ON           : True,
-    USE_LDS              : False,
     USE_TIPS             : False,
     POP_PLUGIN_STATUS    : False,
     VIEW                 : True,
