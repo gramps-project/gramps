@@ -507,7 +507,7 @@ class ViewManager:
 
     def preferences_activate(self, obj):
         try:
-            GrampsCfg.GrampsPreferences(self.uistate)
+            GrampsCfg.GrampsPreferences(self.uistate,self.state)
         except Errors.WindowActiveError:
             pass
 
@@ -768,7 +768,10 @@ class ViewManager:
             self.state.db.set_researcher(owner)
 
         self.setup_bookmarks()
-        NameDisplay.register_custom_formats(self.state.db.name_formats)
+        NameDisplay.displayer.register_custom_formats(self.state.db.name_formats)
+        fmt_default = Config.get(Config.NAME_FORMAT)
+        if fmt_default < 0:
+            NameDisplay.displayer.set_format_default(fmt_default)
 
         self.state.db.enable_signals()
         self.state.signal_change()

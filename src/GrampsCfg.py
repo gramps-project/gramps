@@ -41,7 +41,7 @@ import gtk
 #-------------------------------------------------------------------------
 import Config
 import DateHandler
-import NameDisplay
+from NameDisplay import displayer as _nd
 from RelLib import Name
 import ManagedWindow
 from GrampsWidgets import *
@@ -58,6 +58,16 @@ _surname_styles = [
     _("Combination of mother's and father's surname"),
     _("Icelandic style"),
     ]
+
+# button names on the 'name format' editor dialog
+INS_BTN_NAME = 'insert'
+EDT_BTN_NAME = 'edit'
+
+# column numbers for the 'name format' model
+COL_NUM  = 0
+COL_NAME = 1
+COL_FMT  = 2
+COL_EXPL = 3
 
 def set_calendar_date_format():
     format_list = DateHandler.get_date_formats()
@@ -85,10 +95,12 @@ def get_researcher():
 #
 #-------------------------------------------------------------------------
 class GrampsPreferences(ManagedWindow.ManagedWindow):
-    def __init__(self, uistate):
+    def __init__(self, uistate, dbstate):
 
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],GrampsPreferences)
 
+        self.dbstate = dbstate
+        
         tlabel = gtk.Label()
         self.set_window(
             gtk.Dialog(_('Preferences'),
@@ -204,97 +216,237 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             widget.emit('color-set')
 
     def add_name_panel(self):
-        table = gtk.Table(3,3)
+        """
+        Name format settings panel
+        """
+
+        # a dummy name to be used in the examples
+        self.examplename = Name()
+        self.examplename.set_title('Dr.')
+        self.examplename.set_first_name('Edwin')
+        self.examplename.set_surname_prefix('Rev.')
+        self.examplename.set_surname('Smith')
+        self.examplename.set_suffix('Sr')
+        self.examplename.set_patronymic('patr')
+        self.examplename.set_call_name('call')
+
+        table = gtk.Table(2,3)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
 
-        self.name_exp = gtk.expander_new_with_mnemonic(
-            _('C_ustom format details'))
-        self.name_exp.set_sensitive(False)
+        ##format_list = []
+        ##format_list += [(name,number) for (number,name,fmt_str)
+                        ##in Name.STANDARD_FORMATS]
+        ##format_list += [(name,number) for (number,name,fmt_str)
+                        ##in NameDisplay.CUSTOM_FORMATS]
 
+        # get the model for the combo and the treeview
+        # index is used to set the active format in the combo quickly
+        # and to find an unused index number when a new format is created
+        (self.fmt_model, self.fmt_index) = self._build_name_format_model()
 
-        format_list = []
-        format_list += [(name,number) for (number,name,fmt_str)
-                        in Name.STANDARD_FORMATS]
-        format_list += [(name,number) for (number,name,fmt_str)
-                        in NameDisplay.CUSTOM_FORMATS]
-        
-        obox = gtk.ComboBox()
-        obox_data = {}
-        obox_model = gtk.ListStore(str, int)
+        # set up the combo to choose the preset format
+        self.fmt_obox = gtk.ComboBox()
         cell = gtk.CellRendererText()
-        obox.pack_start(cell, True)
-        obox.add_attribute(cell, 'text', 0)  
-        index = 0
-        for t, v in format_list:
-            obox_model.append(row=[t, v])
-            obox_data[v] = index
-            index += 1
-
-        obox.set_model(obox_model)
-
+        self.fmt_obox.pack_start(cell, True)
+        self.fmt_obox.add_attribute(cell, 'text', 1)
+        self.fmt_obox.set_model(self.fmt_model)
+        
+        # set the default value as active in the combo
         active = int(Config.get(Config.NAME_FORMAT))
-        obox.set_active(active)
-#        obox.connect('changed', self.name_changed)
+        if active == 0 or not self.fmt_index.has_key(active):
+            active = Name.LNFN
+        self.fmt_obox.set_active(self.fmt_index[active])
+        self.fmt_obox.connect('changed', self.cb_name_changed)
+        # label for the combo
         lwidget = BasicLabel("%s: " % _('Preset format'))
 
-#        custom_ui = self.build_custom_name_ui()
-#        self.name_exp.add(custom_ui)
-
+        # build the format manager ui
+        custom_ui = self._build_custom_name_ui()
+        name_exp = gtk.expander_new_with_mnemonic(_('C_ustom format details'))
+        name_exp.add(custom_ui)
+        name_exp.set_sensitive(self.dbstate.open)
+        
+        # put all these together
         table.attach(lwidget, 0, 1, 0, 1, yoptions=0)
-        table.attach(obox, 1,3,0, 1, yoptions=0)
-#        table.attach(self.name_exp, 0,3,1, 2, yoptions=0)
+        table.attach(self.fmt_obox, 1, 3, 0, 1, yoptions=0)
+        table.attach(name_exp, 0, 3, 1, 2, yoptions=0)
+        
         return table
 
-##     def build_custom_name_ui(self):
-##         table = gtk.Table(2,3)
-##         table.set_border_width(6)
-##         table.set_col_spacings(6)
-##         table.set_row_spacings(6)
+    def _build_name_format_model(self):
+        """
+        Create a common model for ComboBox and TreeView
+        """
 
-##         avail_sw = gtk.ScrolledWindow()
-##         avail_sw.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
-##         avail_tree = gtk.TreeView()
-##         avail_sw.add(avail_tree)
+        name_format_model = gtk.ListStore(int,str,str,str)
 
-##         use_sw = gtk.ScrolledWindow()
-##         use_sw.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
-##         use_tree = gtk.TreeView()
-##         use_sw.add(use_tree)
-
-##         button_table = gtk.Table(3,3)
-
-##         up_button = _set_button(gtk.STOCK_GO_UP)
-##         down_button = _set_button(gtk.STOCK_GO_DOWN)
-##         add_button = _set_button(gtk.STOCK_ADD)
-##         remove_button = _set_button(gtk.STOCK_REMOVE)
-##         button_table.attach(up_button, 1, 2, 0, 1, xoptions = 0, yoptions=0)
-##         button_table.attach(remove_button, 2, 3, 1, 2, xoptions = 0,yoptions=0)
-##         button_table.attach(down_button, 1, 2, 2, 3, xoptions = 0, yoptions=0)
-##         button_table.attach(add_button, 0, 1, 1, 2, xoptions = 0,yoptions=0)
-
-##         example_label = gtk.Label('<b>%s</b>' % _('Example'))
-##         example_label.set_use_markup(True)
-
-##         table.attach(example_label,0,3,0,1,xoptions = 0,yoptions=0)
-##         table.attach(avail_sw, 0,1,1,2, yoptions=gtk.FILL)
-##         table.attach(button_table, 1, 2, 1, 2, xoptions = 0, yoptions=0)
-##         table.attach(use_sw, 2,3,1,2, yoptions=gtk.FILL)
+        index = 0
+        name_format_model_index = {}
         
-##         return table
+        # add all the standard formats to the list
+        for num,name,fmt_str in Name.STANDARD_FORMATS:
+            self.examplename.set_display_as(num)
+            name_format_model.append(
+                row=[num, name, fmt_str, _nd.display_name(self.examplename)])
+            name_format_model_index[num] = index
+            index += 1
 
-##     def name_changed(self,obj):
-##         custom_text = NameDisplay.formats[Name.CUSTOM]
-##         if obj.get_active_text() == custom_text:
-##             pass
-##             #self.name_exp.set_sensitive(True)
-##             #self.name_exp.set_expanded(True)
-##         else:
-##             Config.set(Config.NAME_FORMAT,obj.get_active())
-##             #self.name_exp.set_expanded(False)
-##             #self.name_exp.set_sensitive(False)
+        # add all the custom formats loaded from the db to the list
+        for num,name,fmt_str in _nd.CUSTOM_FORMATS:
+            self.examplename.set_display_as(num)
+            name_format_model.append(
+                row=[num, name, fmt_str, _nd.display_name(self.examplename)])
+            name_format_model_index[num] = index
+            index += 1
+            
+        return (name_format_model, name_format_model_index)
 
+    def _build_custom_name_ui(self):
+        """
+        UI to manage the custom name formats
+        """
+
+        table = gtk.Table(2,3)
+        table.set_border_width(6)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+
+        # make a treeview for listing all the name formats
+        format_tree = gtk.TreeView(self.fmt_model)
+        name_renderer = gtk.CellRendererText()
+        name_column = gtk.TreeViewColumn(_('Title'),
+                                         name_renderer,
+                                         text=COL_NAME)
+        format_tree.append_column(name_column)
+        example_renderer = gtk.CellRendererText()
+        example_column = gtk.TreeViewColumn(_('Example name'),
+                                            example_renderer,
+                                            text=COL_EXPL)
+        format_tree.append_column(example_column)
+        format_tree.get_selection().connect('changed',
+                                            self.cb_format_tree_select)
+        format_tree.set_rules_hint(True)
+        
+        # ... and put it into a scrolled win
+        format_sw = gtk.ScrolledWindow()
+        format_sw.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_NEVER)
+        format_sw.add(format_tree)
+        format_sw.set_shadow_type(gtk.SHADOW_IN)
+        table.attach(format_sw, 0, 3, 0, 1)
+
+        # to hold the values of the selected row of the tree and the iter
+        self.selected_fmt = ()
+        self.iter = None
+
+        insert_button = gtk.Button(stock=gtk.STOCK_ADD)
+        insert_button.set_name(INS_BTN_NAME)
+        insert_button.connect('clicked',self.cb_edit_fmt_str)
+
+        self.edit_button = gtk.Button(stock=gtk.STOCK_EDIT)
+        self.edit_button.set_name(EDT_BTN_NAME)
+        self.edit_button.connect('clicked',self.cb_edit_fmt_str)
+        self.edit_button.set_sensitive(False)
+
+        self.remove_button = gtk.Button(stock=gtk.STOCK_REMOVE)
+        self.remove_button.connect('clicked',self.cb_del_fmt_str)
+        self.remove_button.set_sensitive(False)
+        
+        table.attach(insert_button, 0, 1, 1, 2,)
+        table.attach(self.remove_button, 1, 2, 1, 2,)
+        table.attach(self.edit_button,   2, 3, 1, 2,)
+
+        return table
+
+    def cb_name_changed(self,obj):
+        """
+        Preset name format ComboBox callback
+
+        Saves the new default to gconf and NameDisplay's fn_array
+        """
+        list = obj.get_model()
+        iter = list.get_iter(obj.get_active())
+        new_idx = list.get_value(iter,COL_NUM)
+        Config.set(Config.NAME_FORMAT,new_idx)
+        _nd.set_format_default(new_idx)
+        
+    def cb_format_tree_select(self, tree_selection):
+        """
+        Name format editor TreeView callback
+        
+        Remebers the selected row's values (self.selected_fmt, self.iter)
+        and sets the Remove and Edit button sensitivity
+        """
+        model,self.iter = tree_selection.get_selected()
+        if self.iter == None:
+            tree_selection.select_path(0)
+            model,self.iter = tree_selection.get_selected()
+        self.selected_fmt = model.get(self.iter, 0, 1, 2)
+        idx = self.selected_fmt[COL_NUM] < 0
+        self.remove_button.set_sensitive(idx)
+        self.edit_button.set_sensitive(idx)
+
+    def cb_edit_fmt_str(self,obj):
+        """
+        Name format editor Insert and Edit button callback
+        """
+        n = ''
+        f = ''
+        if obj.get_name() == EDT_BTN_NAME:
+            n = self.selected_fmt[COL_NAME]
+            f = self.selected_fmt[COL_FMT]
+        dlg = NameFormatEditDlg(n,f,self.examplename)
+        (res,n,f) = dlg.run()
+
+        if res == gtk.RESPONSE_OK:
+            # if we created a new format...
+            if obj.get_name() == INS_BTN_NAME:
+                i = -1
+                while self.fmt_index.has_key(i):
+                    i -= 1
+                self.fmt_model.append(row=[i,n,f,_nd.format_str(self.examplename,f)])
+                self.fmt_index[i] = len(self.fmt_model) - 1
+            # ...or if we edited an existing one
+            else:
+                if n != self.selected_fmt[COL_NAME] or \
+                   f != self.selected_fmt[COL_FMT]:
+                    e = _nd.format_str(self.examplename,f)
+                    self.fmt_model.set(self.iter,COL_NAME,n,
+                                       COL_FMT,f,
+                                       COL_EXPL,e)
+                    self.selected_fmt = (self.selected_fmt[COL_NUM],n,f,e)
+            self.register_fmt()
+        
+    def cb_del_fmt_str(self,obj):
+        """
+        Name format editor Remove button callback
+        """
+        removed_idx = self.fmt_index[self.selected_fmt[COL_NUM]]
+        # if the item to be deleted is selected in the combo
+        if self.fmt_obox.get_active() == removed_idx:
+            self.fmt_obox.set_active(self.fmt_index[Name.LNFN])
+        # delete the row from the index...
+        del(self.fmt_index[self.selected_fmt[COL_NUM]])
+        for i in self.fmt_index.items():
+            if i[1] > removed_idx:
+                self.fmt_index[i[0]] -= 1
+        # ...and from the model
+        self.fmt_model.remove(self.iter)
+        # update the custom format registration in NameDisplay instance
+        self.register_fmt()
+        
+    def register_fmt(self):
+        formats = []
+        iter = self.fmt_model.get_iter_first()
+        while iter:
+            (i,n,f) = self.fmt_model.get(iter,COL_NUM,COL_NAME,COL_FMT)
+            if i < 0:
+                formats.append((i,n,f))
+            iter = self.fmt_model.iter_next(iter)
+        self.dbstate.db.name_formats = formats
+        _nd.register_custom_formats(formats)
+            
     def add_formats_panel(self):
         table = gtk.Table(3,8)
         table.set_border_width(12)
@@ -414,11 +566,52 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
     def build_menu_names(self,obj):
         return (_('Preferences'),None)
 
-def _set_button(stock):
-    button = gtk.Button()
-    image = gtk.Image()
-    image.set_from_stock(stock, gtk.ICON_SIZE_BUTTON)
-    image.show()
-    button.add(image)
-    button.show()
-    return button
+    # FIXME: is this needed?
+    def _set_button(stock):
+        button = gtk.Button()
+        image = gtk.Image()
+        image.set_from_stock(stock, gtk.ICON_SIZE_BUTTON)
+        image.show()
+        button.add(image)
+        button.show()
+        return button
+    
+class NameFormatEditDlg:
+    """
+    """
+    
+    def __init__(self,fmt_name,fmt_str,name):
+        self.fmt_name = fmt_name
+        self.fmt_str = fmt_str
+        self.name = name
+
+        self.top = gtk.glade.XML(const.gladeFile,'namefmt_edit','gramps')
+        self.dlg = self.top.get_widget('namefmt_edit')
+        ManagedWindow.set_titles(
+            self.dlg,
+            self.top.get_widget('title'),
+            _('Name Format Editor'))
+        
+        self.examplelabel = self.top.get_widget('example_label')
+        
+        self.nameentry = self.top.get_widget('name_entry')
+        self.nameentry.set_text(self.fmt_name)
+        
+        self.formatentry = self.top.get_widget('format_entry')
+        self.formatentry.connect('changed',self.cb_format_changed)
+        self.formatentry.set_text(self.fmt_str)
+        
+    def run(self):
+        self.response = self.dlg.run()
+        self.fmt_name = self.nameentry.get_text()
+        self.fmt_str = self.formatentry.get_text()
+                                    
+        self.dlg.destroy()
+        return (self.response, self.fmt_name, self.fmt_str)
+
+    def cb_format_changed(self,obj):
+        t = (_nd.format_str(self.name,obj.get_text()))
+        self.examplelabel.set_text('<span weight="bold" style="italic">%s</span>' % t)
+        self.examplelabel.set_use_markup(True)
+        
+    

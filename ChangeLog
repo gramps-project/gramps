@@ -1,3 +1,11 @@
+2006-07-16  Zsolt Foldvari  <zsolt.foldvari@nokia.com>
+	* src/ViewManager.py: Custom name format support.
+	* src/GrampsCfg.py: Custom name format support.
+	* src/RelLib/_Name.py: Custom name format support.
+	* src/Editors/_EditName.py: Custom name format support.
+	* src/glade/gramps.glade: Custom name format support.
+	* src/NameDisplay.py: Custom name format support.
+
 2006-07-15  Don Allingham  <don@gramps-project.org>
 	* src/Config/_GrampsConfigKeys.py: remove unused USE_LDS key
 	* data/gramps.schemas.in: remove unused USE_LDS key

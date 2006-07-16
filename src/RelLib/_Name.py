@@ -65,10 +65,10 @@ class Name(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase):
         (DEF,_("Default format (defined by GRAMPS preferences)"),'')
 
     STANDARD_FORMATS = [
-        (LNFN, _("Family name, Given name Patronymic"),''),
-        (FNLN, _("Given name Family name"),''),
-        (PTFN, _("Patronymic, Given name"),''),
-        (FN,   _("Given name"),'')
+        (LNFN, _("Family name, Given name Patronymic"),'%p %l, %f %y %s'),
+        (FNLN, _("Given name Family name"),'%f %y %p %l %s'),
+        (PTFN, _("Patronymic, Given name"),'%p %y, %s %f'),
+        (FN,   _("Given name"),'%f')
     ]
     
     def __init__(self,source=None,data=None):
