@@ -102,7 +102,7 @@ class EditName(EditSecondary):
         format_list += [(name,number) for (number,name,fmt_str)
                         in RelLib.Name.STANDARD_FORMATS]
         format_list += [(name,number) for (number,name,fmt_str)
-                        in NameDisplay.CUSTOM_FORMATS]
+                        in NameDisplay.displayer.CUSTOM_FORMATS]
             
         self.sort_as = MonitoredMenu(
             self.top.get_widget('sort_as'),
