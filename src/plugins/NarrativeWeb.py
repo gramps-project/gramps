@@ -1456,7 +1456,7 @@ class IndividualPage(BasePage):
 
         of.write('</div>\n')
         of.write('</div>\n')
-        of.write('<table style="height: %dpx; width: %dx;"><tr><td></td></tr></table>\n' %
+        of.write('<table style="height: %dpx; width: %dpx;"><tr><td></td></tr></table>\n' %
                  (max_size,XOFFSET+(generations)*WIDTH+(generations-1)*HGAP))
     
     def draw_tree(self,of,gen,maxgen,max_size,old_center,new_center,phandle):
