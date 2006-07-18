@@ -2734,13 +2734,25 @@ def sort_people(db,handle_list):
 
     sorted_lists = []
     temp_list = sname_sub.keys()
-    temp_list.sort(locale.strcoll)
+    temp_list.sort(strcoll_case_sensitive)
     for name in temp_list:
         slist = map(lambda x: (sortnames[x],x),sname_sub[name])
-        slist.sort(lambda x,y: locale.strcoll(x[0],y[0]))
+        slist.sort(lambda x,y: strcoll_case_sensitive(x[0],y[0]))
         entries = map(lambda x: x[1], slist)
         sorted_lists.append((name,entries))
     return sorted_lists
+
+def strcoll_case_sensitive(string1,string2):
+    """ This function was written because string comparisons in Windows 
+        seem to be case insensitive if the string is longer than 
+        one character. """
+    # First, compare the first character
+    diff = locale.strcoll(string1[0],string2[0])
+    if diff == 0:
+        # If the first character is the same, compare the rest
+        diff = locale.strcoll(string1,string2)
+    return diff
+        
 
 #------------------------------------------------------------------------
 #
