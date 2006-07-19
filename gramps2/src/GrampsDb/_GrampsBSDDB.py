@@ -619,6 +619,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         except:
             ret = None
         
+        remove_list = set()
         while (ret is not None):
             (key,data) = ret
             
@@ -630,12 +631,18 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             # combine with the primary_handle to get the main key.
 
             main_key = (handle, pickle.loads(data)[1][1])
-
-            self._remove_reference(main_key,transaction,txn)
             
+            # The trick is not to remove while inside the cursor,
+            # but collect them all and remove after the cursor is closed
+            remove_list.add(main_key)
+
             ret = primary_cur.next_dup()
 
         primary_cur.close()
+
+        # Now that the cursor is closed, we can remove things
+        for main_key in remove_list:
+            self._remove_reference(main_key,transaction,txn)
         
     def _update_reference_map(self, obj, transaction, txn=None):
         """
