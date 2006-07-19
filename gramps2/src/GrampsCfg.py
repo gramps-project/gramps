@@ -230,7 +230,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.examplename.set_patronymic('patr')
         self.examplename.set_call_name('call')
 
-        table = gtk.Table(2,3)
+        table = gtk.Table(2,2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -270,8 +270,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         
         # put all these together
         table.attach(lwidget, 0, 1, 0, 1, yoptions=0)
-        table.attach(self.fmt_obox, 1, 3, 0, 1, yoptions=0)
-        table.attach(name_exp, 0, 3, 1, 2, yoptions=0)
+        table.attach(self.fmt_obox, 1, 2, 0, 1, yoptions=0)
+        table.attach(name_exp, 0, 2, 1, 2, yoptions=0)
         
         return table
 
@@ -328,12 +328,13 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         format_tree.get_selection().connect('changed',
                                             self.cb_format_tree_select)
         format_tree.set_rules_hint(True)
-        
+        (r,x,y,w,h) = name_column.cell_get_size()
         # ... and put it into a scrolled win
         format_sw = gtk.ScrolledWindow()
-        format_sw.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_NEVER)
+        format_sw.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         format_sw.add(format_tree)
         format_sw.set_shadow_type(gtk.SHADOW_IN)
+        format_sw.set_size_request(-1, h*6)
         table.attach(format_sw, 0, 3, 0, 1)
 
         # to hold the values of the selected row of the tree and the iter

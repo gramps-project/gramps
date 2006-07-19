@@ -116,12 +116,14 @@ class IniKeyClient:
 
     def get_int(self, key):
         """ Emulates gconf's client method """
-        if self.data[key[0]][key[1]].isdigit():
-            return int(self.data[key[0]][key[1]])
-        elif self.data[key[0]][key[1]].lower() in ["true"]:
-            return 1
-        else:
-            return 0
+        try:
+            val = int(self.data[key[0]][key[1]])
+            return val
+        except ValueError:
+            if self.data[key[0]][key[1]].lower() in ["true"]:
+                return 1
+            else:
+                return 0
 
     def set_bool(self, key, val):
         """ Emulates gconf's client method """
