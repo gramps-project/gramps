@@ -1,3 +1,7 @@
+2006-07-18  Don Allingham  <don@gramps-project.org>
+	* src/RelLib/_DateBase.py: fix the date comparison for text only 
+	dates
+
 2006-07-17  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: typo
 	* src/plugins/NarrativeWeb.py: fix name sorting in Windows (bug #236)
