@@ -62,6 +62,10 @@ import ManagedWindow
 #
 #------------------------------------------------------------------------
 class TableReport:
+    """
+    This class provides an interface for the spreadsheet table
+    used to save the data into the file.
+    """
 
     def __init__(self,filename,doc):
         self.filename = filename
@@ -173,7 +177,8 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
 
     def filter_editor_clicked(self,obj):
         import FilterEditor
-        FilterEditor.FilterEditor(const.custom_filters,self.db,self.parent)
+        FilterEditor.FilterEditor('Person',const.custom_filters,
+                                  self.dbstate,self.uistate)
 
     def on_apply_clicked(self,obj):
         cfilter = self.filter_menu.get_active().get_data("filter")
@@ -277,51 +282,32 @@ class DisplayChart(ManagedWindow.ManagedWindow):
 
     def build_row_data(self):
         self.progress_bar = Utils.ProgressMeter(_('Comparing events'),'')
-        self.progress_bar.set_pass(_('Building data'),
-                              self.db.get_number_of_people())
+        self.progress_bar.set_pass(_('Building data'),len(self.my_list))
         for individual_id in self.my_list:
             individual = self.db.get_person_from_handle(individual_id)
             name = individual.get_primary_name().get_name()
-            birth_ref = individual.get_birth_ref()
-            bdate = ""
-            bplace = ""
-            if birth_ref:
-                birth = self.db.get_event_from_handle(birth_ref.ref)
-                bdate = DateHandler.get_date(birth)
-                bplace_handle = birth.get_place_handle()
-                if bplace_handle:
-                    bplace = self.db.get_place_from_handle(bplace_handle).get_title()
-            death_ref = individual.get_death_ref()
-            ddate = ""
-            dplace = ""
-            if death_ref:
-                death = self.db.get_event_from_handle(death_ref.ref)
-                ddate = DateHandler.get_date(death)
-                dplace_handle = death.get_place_handle()
-                if dplace_handle:
-                    dplace = self.db.get_place_from_handle(dplace_handle).get_title()
-            map = {}
+
+            the_map = {}
             for ievent_ref in individual.get_event_ref_list():
                 ievent = self.db.get_event_from_handle(ievent_ref.ref)
                 event_name = str(ievent.get_type())
-                if map.has_key(event_name):
-                    map[event_name].append(ievent_ref.ref)
+                if the_map.has_key(event_name):
+                    the_map[event_name].append(ievent_ref.ref)
                 else:
-                    map[event_name] = [ievent_ref.ref]
+                    the_map[event_name] = [ievent_ref.ref]
 
             first = 1
             done = 0
             while done == 0:
                 added = 0
                 if first:
-                    tlist = [name,"%s\n%s" % (bdate,bplace),
-                             "%s\n%s" % (ddate,dplace)]
+                    tlist = [name]
                 else:
-                    tlist = ["","",""]
+                    tlist = [""]
                 for ename in self.event_titles[3:]:
-                    if map.has_key(ename) and len(map[ename]) > 0:
-                        event_handle = map[ename][0]
-                        del map[ename][0]
+                    if the_map.has_key(ename) and len(the_map[ename]) > 0:
+                        event_handle = the_map[ename][0]
+                        del the_map[ename][0]
                         date = ""
                         place = ""
                         if event_handle:
@@ -350,7 +336,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         name, birth, and death.
         This should be the column titles of the report.
         """
-        map = {}
+        the_map = {}
         for individual_id in self.my_list:
             individual = self.db.get_person_from_handle(individual_id)
             for event_ref in individual.get_event_ref_list():
@@ -358,12 +344,12 @@ class DisplayChart(ManagedWindow.ManagedWindow):
                 name = str(event.get_type())
                 if not name:
                     break
-                if map.has_key(name):
-                    map[name] = map[name] + 1
+                if the_map.has_key(name):
+                    the_map[name] = the_map[name] + 1
                 else:
-                    map[name] = 1
+                    the_map[name] = 1
 
-        unsort_list = [ (map[item],item) for item in map.keys() ]
+        unsort_list = [ (the_map[item],item) for item in the_map.keys() ]
         unsort_list.sort(by_value)
         sort_list = [ item[1] for item in unsort_list ]
 
