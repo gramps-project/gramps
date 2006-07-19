@@ -543,6 +543,7 @@ class ArgHandler:
         Try to write into filename using the format.
         Any errors will cause the os._exit(1) call.
         """
+        filename = os.path.abspath(os.path.expanduser(filename))
         if format == 'grdb':
             try:
                 GrampsDb.gramps_db_writer_factory(const.app_gramps)(

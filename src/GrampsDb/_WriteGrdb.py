@@ -44,8 +44,14 @@ from _DbUtils import db_copy
 # Importing data into the currently open database. 
 #
 #-------------------------------------------------------------------------
+def cli_callback(val):
+    pass
+
 def exportData(database, filename, person=None, callback=None, cl=False):
     
+    if callback == None:
+        callback = cli_callback
+
     filename = os.path.normpath(filename)
     new_database = GrampsBSDDB()
     try:
