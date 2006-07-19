@@ -1,4 +1,6 @@
 2006-07-19  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/EventCmp.py (filter_editor_clicked): Adapt to filter
+	editor changes; Stop separately adding birth and death.
 	* src/Filters/Makefile.am (pkgdata_PYTHON): Ship new file.
 
 2006-07-18  Alex Roitman  <shura@gramps-project.org>
