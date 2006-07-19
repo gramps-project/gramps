@@ -54,7 +54,7 @@ class DateBase:
             self.date = Date()
 
     def serialize(self):
-        if self.date == None or self.date.is_empty():
+        if self.date == None or (self.date.is_empty() and not self.date.text):
             date = None
         else:
             date = self.date.serialize()
