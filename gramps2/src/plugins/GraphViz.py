@@ -122,7 +122,10 @@ class _options:
         ('',  "Descendants - Ancestors",    _("Descendants - Ancestors")),
     )
 
-_dot_found = os.system("dot -V 2>/dev/null") == 0
+if os.sys.platform == "win32":
+    _dot_found = os.system("dot -V 2>nul") == 0
+else:
+    _dot_found = os.system("dot -V 2>/dev/null") == 0
 
 if os.system("which epstopdf >/dev/null 2>&1") == 0:
     _options.formats += (("pdf", "PDF", _("PDF"), "application/pdf"),)
@@ -1146,9 +1149,9 @@ class GraphVizGraphics(Report):
                       (self.junk_output,self.user_output,self.junk_output)
     	    os.system(command)
     	else:
-    	    os.system('dot -T%s -o%s %s ; rm %s' %
-    	    	(self.the_format,self.user_output,
-    		self.junk_output,self.junk_output))
+    	    os.system('dot -T%s -o"%s" "%s"' %
+    	    	       (self.the_format,self.user_output,self.junk_output) )
+            os.remove(self.junk_output)
 
         if self.doc.print_req:
             _apptype = None
