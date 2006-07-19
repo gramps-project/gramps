@@ -1,3 +1,6 @@
+2006-07-19  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Makefile.am (pkgdata_PYTHON): Ship new file.
+
 2006-07-18  Alex Roitman  <shura@gramps-project.org>
 	* src/ArgHandler.py (ArgHandler.cl_export): Properly expand filename.
 	* src/GrampsDb/_WriteGrdb.py (exportData): Use placeholder if
