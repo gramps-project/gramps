@@ -227,19 +227,13 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.examplename.set_surname_prefix('Rev.')
         self.examplename.set_surname('Smith')
         self.examplename.set_suffix('Sr')
-        self.examplename.set_patronymic('patr')
-        self.examplename.set_call_name('call')
+        self.examplename.set_patronymic('Patronymic')
+        self.examplename.set_call_name('Ed')
 
         table = gtk.Table(2,2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
-
-        ##format_list = []
-        ##format_list += [(name,number) for (number,name,fmt_str)
-                        ##in Name.STANDARD_FORMATS]
-        ##format_list += [(name,number) for (number,name,fmt_str)
-                        ##in NameDisplay.CUSTOM_FORMATS]
 
         # get the model for the combo and the treeview
         # index is used to set the active format in the combo quickly
@@ -260,7 +254,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.fmt_obox.set_active(self.fmt_index[active])
         self.fmt_obox.connect('changed', self.cb_name_changed)
         # label for the combo
-        lwidget = BasicLabel("%s: " % _('Preset format'))
+        lwidget = BasicLabel("%s: " % _('_Display format'))
+        lwidget.set_use_underline(True)
+        lwidget.set_mnemonic_widget(self.fmt_obox)
 
         # build the format manager ui
         custom_ui = self._build_custom_name_ui()
@@ -271,7 +267,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         # put all these together
         table.attach(lwidget, 0, 1, 0, 1, yoptions=0)
         table.attach(self.fmt_obox, 1, 2, 0, 1, yoptions=0)
-        table.attach(name_exp, 0, 2, 1, 2, yoptions=0)
+        table.attach(name_exp, 0, 2, 1, 2, yoptions=gtk.FILL|gtk.EXPAND)
         
         return table
 
@@ -316,26 +312,25 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         # make a treeview for listing all the name formats
         format_tree = gtk.TreeView(self.fmt_model)
         name_renderer = gtk.CellRendererText()
-        name_column = gtk.TreeViewColumn(_('Title'),
+        name_column = gtk.TreeViewColumn(_('Format Name'),
                                          name_renderer,
                                          text=COL_NAME)
         format_tree.append_column(name_column)
         example_renderer = gtk.CellRendererText()
-        example_column = gtk.TreeViewColumn(_('Example name'),
+        example_column = gtk.TreeViewColumn(_('Example'),
                                             example_renderer,
                                             text=COL_EXPL)
         format_tree.append_column(example_column)
         format_tree.get_selection().connect('changed',
                                             self.cb_format_tree_select)
         format_tree.set_rules_hint(True)
-        (r,x,y,w,h) = name_column.cell_get_size()
+
         # ... and put it into a scrolled win
         format_sw = gtk.ScrolledWindow()
         format_sw.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         format_sw.add(format_tree)
         format_sw.set_shadow_type(gtk.SHADOW_IN)
-        format_sw.set_size_request(-1, h*6)
-        table.attach(format_sw, 0, 3, 0, 1)
+        table.attach(format_sw, 0, 3, 0, 1, yoptions=gtk.FILL|gtk.EXPAND)
 
         # to hold the values of the selected row of the tree and the iter
         self.selected_fmt = ()
@@ -354,9 +349,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.remove_button.connect('clicked',self.cb_del_fmt_str)
         self.remove_button.set_sensitive(False)
         
-        table.attach(insert_button, 0, 1, 1, 2,)
-        table.attach(self.remove_button, 1, 2, 1, 2,)
-        table.attach(self.edit_button,   2, 3, 1, 2,)
+        table.attach(insert_button, 0, 1, 1, 2,yoptions=0)
+        table.attach(self.remove_button, 1, 2, 1, 2,yoptions=0)
+        table.attach(self.edit_button,   2, 3, 1, 2,yoptions=0)
 
         return table
 
@@ -366,9 +361,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
         Saves the new default to gconf and NameDisplay's fn_array
         """
-        list = obj.get_model()
-        iter = list.get_iter(obj.get_active())
-        new_idx = list.get_value(iter,COL_NUM)
+        the_list = obj.get_model()
+        the_iter = the_list.get_iter(obj.get_active())
+        new_idx = the_list.get_value(the_iter,COL_NUM)
         Config.set(Config.NAME_FORMAT,new_idx)
         _nd.set_format_default(new_idx)
         
@@ -398,6 +393,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             n = self.selected_fmt[COL_NAME]
             f = self.selected_fmt[COL_FMT]
         dlg = NameFormatEditDlg(n,f,self.examplename)
+        dlg.dlg.set_transient_for(self.window)
         (res,n,f) = dlg.run()
 
         if res == gtk.RESPONSE_OK:
