@@ -1,4 +1,5 @@
 2006-07-20  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/GraphViz.py (GraphViz.__init__): Better error handling.
 	* src/plugins/IndivComplete.py: Use NameDisplay.
 	* src/plugins/FamilyGroup.py: Use NameDisplay.
 	* src/GrampsCfg.py (add_name_panel): Minor UI improvements;
