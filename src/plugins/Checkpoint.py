@@ -59,6 +59,10 @@ from PluginUtils import Tool, register_tool
 # Constants
 #
 #-------------------------------------------------------------------------
+if os.sys.platform == "win32":
+    _rcs_found = os.system("rcs -V >nul 2>nul") == 0
+else:
+    _rcs_found = os.system("dot -V >/dev/null 2>/dev/null") == 0
 
 # Some message strings
 rcs_setup_failure_msg = [
@@ -147,6 +151,12 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         self.cust_ret_cb.set_sensitive(self.cust_rb.get_active())
 
         self.rcs_rb.connect('toggled',self.rcs_toggled)
+
+        # Disable RCS if the rcs binary is not available
+        # and show the normally hidden warning
+        if not _rcs_found:
+            self.rcs_rb.set_sensitive(False)
+            self.glade.get_widget('warning_label').show()
 
         self.title = _("Checkpoint Data")
         window = self.glade.get_widget('top')

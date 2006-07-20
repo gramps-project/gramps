@@ -1,4 +1,7 @@
 2006-07-19  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Checkpoint.py (Checkpoint.init_gui): Detect whether
+	rcs program is present and modify UI accordingly.
+	* src/plugins/checkpoint.glade: Add hidden warning label.
 	* src/plugins/StatisticsChart.py
 	(StatisticsChartOptions.get_report_filters): Add custom filters.
 	* src/plugins/Calendar.py (FilterWidget.get_filters): Add custom
