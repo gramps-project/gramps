@@ -1,7 +1,18 @@
 2006-07-19  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/StatisticsChart.py
+	(StatisticsChartOptions.get_report_filters): Add custom filters.
+	* src/plugins/Calendar.py (FilterWidget.get_filters): Add custom
+	filters.
+	* src/plugins/TimeLine.py (TimeLineOptions.get_report_filters):
+	Add custom filters.
+	* src/plugins/IndivComplete.py
+	(IndivCompleteOptions.get_report_filters): Add custom filters.
+	* src/plugins/NarrativeWeb.py
+	(WebReportOptions.get_report_filters): Add custom filters. 
 	* src/plugins/GraphViz.py (GraphViz.__init__): Take care of the
-	encoding errors.
-	
+	encoding errors;
+	(GraphVizOptions.get_report_filters): Add custom filters.
+
 2006-07-19  Zsolt Foldvari  <zsolt.foldvari@nokia.com>
 	* src/GrampsCfg.py: UI improvements.
 	* src/Config/_GrampsIniKeys.py: Proper key retrieval.

@@ -1997,7 +1997,6 @@ class WebReport(Report):
 
         filter_num = options.get_filter_number()
         filters = options.get_report_filters(person)
-        filters.extend(CustomFilters.get_filters())
         self.filter = filters[filter_num]
 
         self.target_path = options.handler.options_dict['NWEBod']
@@ -2376,7 +2375,9 @@ class WebReportOptions(ReportOptions):
         com.set_name(_("People with common ancestor with %s") % name)
         com.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
 
-        return [all,des,df,ans,com]
+        the_filters = [all,des,df,ans,com]
+        the_filters.extend(CustomFilters.get_filters('Person'))
+        return the_filters
 
     def add_user_options(self,dialog):
         priv_msg = _("Do not include records marked private")

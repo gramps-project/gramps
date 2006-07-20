@@ -249,7 +249,6 @@ class Calendar(Report):
         """
         filter_num = self.options_class.get_filter_number()
         filters = self.options_class.get_report_filters(self.start_person)
-        filters.extend(CustomFilters.get_filters())
         self.filter = filters[filter_num]
         people = self.filter.apply(self.database,
                                    self.database.get_person_handles(sort_handles=False))
@@ -545,6 +544,8 @@ class FilterWidget(Widget):
                 f.set_name(_("People with a Calendar attribute"))
                 f.add_rule(Rules.Person.HasTextMatchingSubstringOf(['Calendar',0,0]))
                 retval.append(f)
+
+        retval.extend(CustomFilters.get_filters('Person'))
         return retval
 
 # -----------------------------------------------------------------

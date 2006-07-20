@@ -86,7 +86,6 @@ class TimeLine(Report):
 
         filter_num = options_class.get_filter_number()
         filters = options_class.get_report_filters(person)
-        filters.extend(CustomFilters.get_filters())
         self.filter = filters[filter_num]
 
         name = NameDisplay.displayer.display_formal(person)
@@ -430,7 +429,9 @@ class TimeLineOptions(ReportOptions):
         com.set_name(_("People with common ancestor with %s") % name)
         com.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
 
-        return [all,des,ans,com]
+        the_filters = [all,des,ans,com]
+        the_filters.extend(CustomFilters.get_filters('Person'))
+        return the_filters
 
     def get_sort_functions(self,sort):
         return [
