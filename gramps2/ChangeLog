@@ -1,4 +1,6 @@
 2006-07-20  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/IndivComplete.py: Use NameDisplay.
+	* src/plugins/FamilyGroup.py: Use NameDisplay.
 	* src/GrampsCfg.py (add_name_panel): Minor UI improvements;
 	(_build_custom_name_ui): Minor UI improvements;
 	(cb_edit_fmt_str): Make correct transient_for call.

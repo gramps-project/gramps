@@ -42,6 +42,7 @@ import BaseDoc
 import DateHandler
 import Utils
 from TransUtils import sgettext as _
+from NameDisplay import displayer as _nd
 
 #------------------------------------------------------------------------
 #
@@ -212,7 +213,7 @@ class FamilyGroup(Report):
             father_handle = family.get_father_handle() 
             if father_handle:
                 father = self.database.get_person_from_handle(father_handle)
-                father_name = father.get_primary_name().get_regular_name()
+                father_name = _nd.display(father)
                 if self.incRelDates:
                     birth_ref = father.get_birth_ref()
                     birth = "  "
@@ -229,7 +230,7 @@ class FamilyGroup(Report):
             mother_handle = family.get_mother_handle() 
             if mother_handle:
                 mother = self.database.get_person_from_handle(mother_handle)
-                mother_name = mother.get_primary_name().get_regular_name()
+                mother_name = _nd.display(mother)
                 if self.incRelDates:
                     birth_ref = mother.get_birth_ref()
                     birth = "  "
@@ -300,7 +301,7 @@ class FamilyGroup(Report):
             person = RelLib.Person()
         else:
             person = self.database.get_person_from_handle(person_handle)
-        name = person.get_primary_name().get_regular_name()
+        name = _nd.display(person)
         
         self.doc.start_table(title,'FGR-ParentTable')
         self.doc.start_row()
@@ -369,9 +370,9 @@ class FamilyGroup(Report):
 
         if self.incParNames:
             for alt_name in person.get_alternate_names():
-                type = str( alt_name.get_type() )
-                name = alt_name.get_regular_name()
-                self.dump_parent_line(type,name)
+                name_type = str( alt_name.get_type() )
+                name = _nd.display_name(alt_name)
+                self.dump_parent_line(name_type,name)
 
         self.doc.end_table()
 
@@ -518,7 +519,7 @@ class FamilyGroup(Report):
         self.doc.end_paragraph()
         self.doc.end_cell()
         
-        name = person.get_primary_name().get_regular_name()
+        name = _nd.display(person)
         mark = ReportUtils.get_person_mark(self.database,person)
         self.doc.start_cell('FGR-ChildName',3)
         self.doc.start_paragraph('FGR-ChildText')
@@ -578,7 +579,7 @@ class FamilyGroup(Report):
                     self.doc.start_paragraph('FGR-Normal')
 
                     spouse = self.database.get_person_from_handle(spouse_id)
-                    spouse_name = spouse.get_primary_name().get_regular_name()
+                    spouse_name = _nd.display(spouse)
                     if self.incRelDates:
                         birth = "  "
                         birth_ref = spouse.get_birth_ref()
