@@ -49,6 +49,7 @@ import DateHandler
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
+from NameDisplay import displayer as _nd
 
 #------------------------------------------------------------------------
 #
@@ -228,7 +229,7 @@ class IndivCompleteReport(Report):
             father_handle = family.get_father_handle()
             if father_handle:
                 father = self.database.get_person_from_handle(father_handle)
-                fname = father.get_primary_name().get_regular_name()
+                fname = _nd.display(father)
                 mark = ReportUtils.get_person_mark(self.database,father)
                 self.write_p_entry(_('Father'),fname,frel,mark)
             else:
@@ -237,9 +238,9 @@ class IndivCompleteReport(Report):
             mother_handle = family.get_mother_handle()
             if mother_handle:
                 mother = self.database.get_person_from_handle(mother_handle)
-                fname = mother.get_primary_name().get_regular_name()
-                mark = ReportUtils.get_person_mark(self.database,father)
-                self.write_p_entry(_('Mother'),fname,frel,mark)
+                mname = _nd.display(mother)
+                mark = ReportUtils.get_person_mark(self.database,mother)
+                self.write_p_entry(_('Mother'),mname,mrel,mark)
             else:
                 self.write_p_entry(_('Mother'),'','')
                 
@@ -262,10 +263,10 @@ class IndivCompleteReport(Report):
         self.doc.end_row()
         
         for name in self.start_person.get_alternate_names():
-            type = str( name.get_type() )
+            name_type = str( name.get_type() )
             self.doc.start_row()
-            self.normal_cell(type)
-            text = name.get_regular_name()
+            self.normal_cell(name_type)
+            text = _nd.display_name(name)
             if self.use_srcs:
                 for s in name.get_source_references():
                     src_handle = s.get_reference_handle()
@@ -303,7 +304,7 @@ class IndivCompleteReport(Report):
             self.doc.start_paragraph("IDS-Spouse")
             if spouse_id:
                 spouse = self.database.get_person_from_handle(spouse_id)
-                text = spouse.get_primary_name().get_regular_name()
+                text = _nd.display(spouse)
                 mark = ReportUtils.get_person_mark(self.database,spouse)
             else:
                 text = _("unknown")
@@ -333,7 +334,7 @@ class IndivCompleteReport(Report):
                     else:
                         self.doc.write_text('\n')
                     child = self.database.get_person_from_handle(child_ref.ref)
-                    name = child.get_primary_name().get_regular_name()
+                    name = _nd.display(child)
                     mark = ReportUtils.get_person_mark(self.database,child)
                     self.doc.write_text(name,mark)
                 self.doc.end_paragraph()
@@ -412,7 +413,7 @@ class IndivCompleteReport(Report):
         self.slist = []
         
         media_list = self.start_person.get_media_list()
-        name = self.start_person.get_primary_name().get_regular_name()
+        name = _nd.display(self.start_person)
         title = _("Summary of %s") % name
         mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
         self.doc.start_paragraph("IDS-Title")
@@ -437,7 +438,7 @@ class IndivCompleteReport(Report):
         self.doc.start_row()
         self.normal_cell("%s:" % _("Name"))
         name = self.start_person.get_primary_name()
-        text = name.get_regular_name()
+        text = _nd.display_name(name)
         mark = ReportUtils.get_person_mark(self.database, self.start_person)
         if self.use_srcs:
             for s in name.get_source_references():
@@ -463,7 +464,7 @@ class IndivCompleteReport(Report):
             if father_inst_id:
                 father_inst = self.database.get_person_from_handle(
                     father_inst_id)
-                father = father_inst.get_primary_name().get_regular_name()
+                father = _nd.display(father_inst)
                 fmark = ReportUtils.get_person_mark(self.database,father_inst)
             else:
                 father = ""
@@ -472,7 +473,7 @@ class IndivCompleteReport(Report):
             if mother_inst_id:
                 mother_inst = self.database.get_person_from_handle(
                     mother_inst_id) 
-                mother = mother_inst.get_primary_name().get_regular_name()
+                mother = _nd.display(mother_inst)
                 mmark = ReportUtils.get_person_mark(self.database,mother_inst)
             else:
                 mother = ""
@@ -538,7 +539,7 @@ class IndivCompleteOptions(ReportOptions):
     def get_report_filters(self,person):
         """Set up the list of possible content filters."""
         if person:
-            name = person.get_primary_name().get_name()
+            name = _nd.display(person)
             gramps_id = person.get_gramps_id()
         else:
             name = 'PERSON'
