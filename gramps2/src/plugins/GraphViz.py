@@ -244,29 +244,22 @@ class GraphViz:
 
         the_buffer = self.get_report()
 
-        encoding_problem = False
-        try:
-            self.f = open(options_class.get_output(),'w')
-            self.f.write(the_buffer)
-        except UnicodeEncodeError:
-            if self.latin:
+        self.f = open(options_class.get_output(),'w')
+        if self.latin:
+            try:
+                self.f.write(the_buffer.encode('iso-8859-1', 'strict'))
+            except UnicodeEncodeError:
                 self.f = open(options_class.get_output(),'w')
                 self.f.write(the_buffer.encode('iso-8859-1', 'replace'))
-                encoding_problem = True
-            else:
-                raise Errors.ReporError(
-                    _("Your data contains characters that cannot "
-                      "be displayed. Most likely this is caused "
-                      "by the incorrect character encoding."))
+                ErrorDialog(
+                    _("Your data contains characters that cannot be "
+                      "converted to latin-1. These characters were "
+                      "replaced with the question marks in the output. "
+                      "To get these characters properly displayed, "
+                      "unselect latin-1 option and try again."))
+        else:
+            self.f.write(the_buffer)
         self.f.close()
-
-        if encoding_problem:
-            ErrorDialog(
-                _("Your data contains characters that cannot be "
-                  "converted to latin-1. These characters were "
-                  "replaced with the question marks in the output. "
-                  "To get these characters properly displayed, "
-                  "unselect latin-1 option and try again."))
 
     def get_report(self):
         "return string of the .dot file contents"
