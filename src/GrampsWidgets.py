@@ -59,9 +59,9 @@ class LinkLabel(gtk.EventBox):
         self.label.set_alignment(0, 0.5)
 
         hbox = gtk.HBox()
-        hbox.add(self.label)
+        hbox.pack_start(self.label, False, False, 4)
         if label[1]:
-            hbox.add(GenderLabel(label[1]))
+            hbox.pack_start(GenderLabel(label[1]), False, False, 4)
         self.add(hbox)
         
         self.connect('button-press-event', func, handle)
@@ -184,10 +184,10 @@ class DualMarkupLabel(gtk.HBox):
         label.set_alignment(0, 0.5)
         label.set_use_markup(True)
 
-        self.add(label)
+        self.pack_start(label, False, False, 0)
         b = GenderLabel(alt)
         b.set_use_markup(True)
-        self.add(b)
+        self.pack_start(b, False, False, 4)
         self.show()
         
 class IntEdit(gtk.Entry):
