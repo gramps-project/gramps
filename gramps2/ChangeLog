@@ -1,3 +1,6 @@
+2006-07-20  Don Allingham  <don@gramps-project.org>
+	* src/GrampsWidgets.py: fix spacing on link label
+
 2006-07-20  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/GraphViz.py (GraphViz.__init__): Better error handling.
 	* src/plugins/IndivComplete.py: Use NameDisplay.
