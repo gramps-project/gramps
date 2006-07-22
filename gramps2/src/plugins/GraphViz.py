@@ -64,6 +64,8 @@ import const
 from BaseDoc import PAPER_LANDSCAPE
 from QuestionDialog import ErrorDialog
 import Errors
+import Utils
+import Mime
 
 #------------------------------------------------------------------------
 #
@@ -124,11 +126,11 @@ class _options:
     )
 
 if os.sys.platform == "win32":
-    _dot_found = os.system("dot -V 2>nul") == 0
+    _dot_found = Utils.search_for("dot.exe")
 else:
-    _dot_found = os.system("dot -V 2>/dev/null") == 0
+    _dot_found = Utils.search_for("dot")
 
-if os.system("which epstopdf >/dev/null 2>&1") == 0:
+if Utils.search_for("epstopdf") == 1:
     _options.formats += (("pdf", "PDF", _("PDF"), "application/pdf"),)
     _pdf_pipe = 'epstopdf -f -o=%s'
 
@@ -1025,11 +1027,7 @@ class FormatComboBox(gtk.ComboBox):
     def get_printable(self):
         _apptype = _options.formats[self.get_active()][3]
         print_label = None
-
         try:
-            import Utils
-            import Mime
-    
             mprog = Mime.get_application(_apptype)
     
             if Utils.search_for(mprog[0]):
@@ -1087,12 +1085,10 @@ class GraphicsFormatComboBox(gtk.ComboBox):
         _apptype = _options.formats[self.get_active()][3]
         print_label = None
         try:
-            import Utils
-            import Mime
             mprog = Mime.get_application(_apptype)
             if Utils.search_for(mprog[0]):
                 print_label = _("Open in %(program_name)s") % { 'program_name':
-                                                        mprog[1]}
+                                                                mprog[1] }
             else:
                 print_label = None
         except:
@@ -1174,12 +1170,8 @@ class GraphVizGraphics(Report):
                     break
             if _apptype:
                 try:
-                    import Utils
-                    import Mime
-            
                     app = Mime.get_application(_apptype)
-                    os.environ["FILE"] = self.user_output
-                    os.system ('%s "$FILE" &' % app[0])
+                    Utils.launch(app[0],self.user_output)
                 except:
                     pass
 
@@ -1191,11 +1183,8 @@ class GraphVizGraphics(Report):
                     break
             if _apptype:
                 try:
-                    import Utils
-                    import Mime
                     app = Mime.get_application(_apptype)
-                    os.environ["FILE"] = self.user_output
-                    os.system ('%s "$FILE" &' % app[0])
+                    Utils.launch(app[0],self.user_output)
                 except:
                     pass
 

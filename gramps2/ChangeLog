@@ -1,3 +1,8 @@
+2006-07-21  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/GraphViz.py: launch image viewer in Windows.
+	* src/Mime/_WinMime.py: handle rundll32.exe applications.
+	* src/Utils.py: search path in Windows when looking for applications.
+
 2006-07-21  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_RelationView.py: provide number for children/siblings
 	* src/GrampsWidgets.py: fix spacing on link box

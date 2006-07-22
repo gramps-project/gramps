@@ -461,10 +461,16 @@ def search_for(name):
         name = name.split('"')[1]
     else:
         name = name.split()[0]
-    for i in os.environ['PATH'].split(':'):
-        fname = os.path.join(i,name)
-        if os.access(fname,os.X_OK) and not os.path.isdir(fname):
-            return 1
+    if os.sys.platform == "win32":
+        for i in os.environ['PATH'].split(';'):
+            fname = os.path.join(i,name)
+            if os.access(fname,os.X_OK) and not os.path.isdir(fname):
+                return 1
+    else:
+        for i in os.environ['PATH'].split(':'):
+            fname = os.path.join(i,name)
+            if os.access(fname,os.X_OK) and not os.path.isdir(fname):
+                return 1
     return 0
                   
 #-------------------------------------------------------------------------
