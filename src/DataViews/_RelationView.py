@@ -559,8 +559,10 @@ class RelationshipView(PageView.PersonNavView):
                     self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
                     yoptions=gtk.FILL)
 
+                i = 1
                 for child_handle in child_list:
-                    self.write_child(vbox, child_handle)
+                    self.write_child(vbox, child_handle, i)
+                    i += 1
 
                 eventbox.add(vbox)
                 self.attach.attach(
@@ -620,20 +622,27 @@ class RelationshipView(PageView.PersonNavView):
 
         return GrampsWidgets.MarkupLabel(format % cgi.escape(title))
 
-    def write_child(self, vbox, handle):
-        link_label = GrampsWidgets.LinkLabel(self.get_name(handle, True), 
+    def write_child(self, vbox, handle, index):
+        link_label = GrampsWidgets.LinkLabel(self.get_name(handle, True),
                                              self.button_press, handle)
         if self.use_shade:
             link_label.modify_bg(gtk.STATE_NORMAL, self.color)
         link_label.set_padding(3, 0)
         button = GrampsWidgets.IconButton(self.edit_button_press, handle)
-        vbox.pack_start(GrampsWidgets.LinkBox(link_label, button))
+
+        hbox = gtk.HBox()
+        hbox.pack_start(GrampsWidgets.BasicLabel("%d." % index),
+                        False, False, 0)
+        hbox.pack_start(GrampsWidgets.LinkBox(link_label, button),
+                        False, False, 4)
+        hbox.show()
+        vbox.pack_start(hbox)
 
         if self.show_details:
             value = self.info_string(handle)
             if value:
                 l = GrampsWidgets.BasicLabel(value)
-                l.set_padding(3, 0)
+                l.set_padding(16, 0)
                 vbox.add(l)
         
     def write_data(self, box, title, start_col=_SDATA_START,
@@ -744,8 +753,10 @@ class RelationshipView(PageView.PersonNavView):
                 self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
                 yoptions=gtk.FILL)
 
+            i = 1
             for child_ref in child_list:
-                self.write_child(vbox, child_ref.ref)
+                self.write_child(vbox, child_ref.ref, i)
+                i += 1
 
             eventbox.add(vbox)
             self.attach.attach(
