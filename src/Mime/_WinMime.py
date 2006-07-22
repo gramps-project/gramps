@@ -70,9 +70,12 @@ def get_application(type):
     # Find a friendly name for the application
     if command.startswith('"'):
         app = command.split('"')[1]
+    elif command.startswith('rundll32.exe'):
+        # Get the description of the DLL instead of the application
+        app = command.split()[1].split(',')[0]
     else:
         app = command.split()[0]
-        
+
     hcu = ConnectRegistry(None,HKEY_CURRENT_USER)
     subkey = OpenKey(hcu, "Software\Microsoft\Windows\ShellNoRoam\MUICache")
     desc = None
