@@ -59,7 +59,7 @@ class LinkLabel(gtk.EventBox):
         self.label.set_alignment(0, 0.5)
 
         hbox = gtk.HBox()
-        hbox.pack_start(self.label, False, False, 4)
+        hbox.pack_start(self.label, False, False, 0)
         if label[1]:
             hbox.pack_start(GenderLabel(label[1]), False, False, 4)
         self.add(hbox)

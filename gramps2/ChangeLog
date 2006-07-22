@@ -1,3 +1,7 @@
+2006-07-21  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_RelationView.py: provide number for children/siblings
+	* src/GrampsWidgets.py: fix spacing on link box
+
 2006-07-20  Don Allingham  <don@gramps-project.org>
 	* src/GrampsWidgets.py: fix spacing on link label
 
