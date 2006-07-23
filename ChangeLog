@@ -1,3 +1,7 @@
+2006-07-23  Manfred Paulus  <manfred.paulus@gmx.de>
+	* src/BaseDoc.py: fix angle calculation
+	* src/docgen/PSDrawDoc.py: fix angle calculation
+
 2006-07-23  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py (GedcomParser.func_person_even): set
 	default type for an event to CUSTOM
