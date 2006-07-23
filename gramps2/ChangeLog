@@ -1,3 +1,9 @@
+2006-07-22  Alex Roitman  <shura@gramps-project.org>
+	* Makefile.am (SUBDIRS): Add debian dir.
+	* configure.in: Generate debian/Makefile
+	* debian/Makefile.am: Add makefile to place the debian dir in the
+	released tarball.
+
 2006-07-21  Brian Matherly  <brian@gramps-project.org>
 	* src/ReportBase/_ReportUtils.py: fix modified birth string (bug # 266).
 
