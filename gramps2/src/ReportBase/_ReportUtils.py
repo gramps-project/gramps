@@ -97,9 +97,9 @@ born_modified_date_no_place = [
     RelLib.Person.FEMALE : _("She was born %(modified_date)s."),
   },
   {
-    RelLib.Person.UNKNOWN : _("%(unknown_gender_name)s was born on %(modified_date)s."),
-    RelLib.Person.MALE : _("%(male_name)s was born on %(modified_date)s."),
-    RelLib.Person.FEMALE : _("%(female_name)s was born on %(modified_date)s."),
+    RelLib.Person.UNKNOWN : _("%(unknown_gender_name)s was born %(modified_date)s."),
+    RelLib.Person.MALE : _("%(male_name)s was born %(modified_date)s."),
+    RelLib.Person.FEMALE : _("%(female_name)s was born %(modified_date)s."),
   },
 ]  
 

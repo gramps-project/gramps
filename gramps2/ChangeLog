@@ -1,4 +1,7 @@
 2006-07-21  Brian Matherly  <brian@gramps-project.org>
+	* src/ReportBase/_ReportUtils.py: fix modified birth string (bug # 266).
+
+2006-07-21  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/GraphViz.py: launch image viewer in Windows.
 	* src/Mime/_WinMime.py: handle rundll32.exe applications.
 	* src/Utils.py: search path in Windows when looking for applications.
