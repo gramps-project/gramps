@@ -2837,6 +2837,7 @@ class GedcomParser(UpdateCallback):
            +1 <<EVENT_DETAIL>> {0:1} p.*
         """
         event = RelLib.Event()
+        event.set_type((RelLib.EventType.CUSTOM,""))
         event.set_gramps_id(self.emapper.find_next())
         if matches[2] and matches[2] != 'Y':
             event.set_description(matches[2])
