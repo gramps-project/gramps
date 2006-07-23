@@ -26,6 +26,10 @@ Package providing filter rules for GRAMPS.
 
 __author__ = "Don Allingham"
 
+# Need to expose this to be available for filter plugins:
+# the plugins should say: from Filters.Rules import Rule
+from _Rule import Rule
+
 from _Everything import Everything
 from _HasGrampsId import HasGrampsId
 from _IsPrivate import IsPrivate

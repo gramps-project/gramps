@@ -75,5 +75,6 @@ class IsLessThanNthGenerationDescendantOf(Rule):
 
         for fam_id in person.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
-            for child_handle in fam.get_child_handle_list():
-                self.init_list(self.db.get_person_from_handle(child_handle),gen+1)
+            for child_ref in fam.get_child_ref_list():
+                self.init_list(
+                    self.db.get_person_from_handle(child_ref.ref),gen+1)

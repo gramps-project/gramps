@@ -1,3 +1,20 @@
+2006-07-23  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py
+	(IsLessThanNthGenerationDescendantOf.init_list): Use new API.
+	* src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py
+	(IsSiblingOfFilterMatch.init_list): Use new API.
+	* src/Filters/Rules/Person/_RelationshipPathBetween.py
+	(RelationshipPathBetween.desc_list): Use new API.
+	* src/Filters/Rules/Person/_HaveChildren.py (HaveChildren.apply):
+	Use new API.
+	* src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py
+	(IsMoreThanNthGenerationDescendantOf.init_list): Use new API.
+	* src/Filters/Rules/__init__.py: Expose Rule for plugin filters.
+	* src/Filters/Rules/Person/_IsDescendantOf.py
+	(IsDescendantOf.init_list): Use new API.
+	* src/Filters/Rules/Person/_HasRelationship.py
+	(HasRelationship.apply): Use new API.
+
 2006-07-22  Don Allingham  <don@gramps-project.org>
 	* src/Filters/Rules/Person/__init__.py: add register function
 	* configure.in: bump up version number 

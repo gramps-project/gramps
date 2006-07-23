@@ -57,7 +57,7 @@ class HasRelationship(Rule):
         # count children and look for a relationship type match
         for f_id in person.get_family_handle_list():
             f = db.get_family_from_handle(f_id)
-            cnt = cnt + len(f.get_child_handle_list())
+            cnt = cnt + len(f.get_child_ref_list())
             if self.list[1] and int(self.list[1]) == f.get_relationship():
                 rel_type = 1
 
