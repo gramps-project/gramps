@@ -1498,7 +1498,8 @@ class BaseDoc:
         angle = sangle
 
         if short_radius == 0:
-            p.append((centerx, centery))
+            if (end_angle - start_angle) != 360:
+                p.append((centerx, centery))
         else:
             origx = (centerx + cos(angle) * short_radius)
             origy = (centery + sin(angle) * short_radius)
