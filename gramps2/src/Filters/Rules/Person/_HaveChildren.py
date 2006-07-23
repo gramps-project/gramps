@@ -47,4 +47,4 @@ class HaveChildren(Rule):
     def apply(self,db,person):
         for family_handle in person.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
-            return len(family.get_child_handle_list()) > 0
+            return len(family.get_child_ref_list()) > 0

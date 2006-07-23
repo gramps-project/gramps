@@ -71,9 +71,9 @@ class RelationshipPathBetween(Rule):
         for fam_id in p.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
-                for child_handle in fam.get_child_handle_list():
-                    if child_handle:
-                        self.desc_list(child_handle,map,0)
+                for child_ref in fam.get_child_ref_list():
+                    if child_ref.ref:
+                        self.desc_list(child_ref.ref,map,0)
     
     def apply_filter(self,rank,handle,plist,pmap):
         person = self.db.get_person_from_handle(handle)

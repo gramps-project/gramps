@@ -71,6 +71,6 @@ class IsSiblingOfFilterMatch(Rule):
         fam_id = person.get_main_parents_family_handle()
         fam = self.db.get_family_from_handle(fam_id)
         if fam:
-            for child_handle in fam.get_child_handle_list():
-                if child_handle != person.handle:
-                    self.map[child_handle] = 1
+            for child_ref in fam.get_child_ref_list():
+                if child_ref.ref != person.handle:
+                    self.map[child_ref.ref] = 1
