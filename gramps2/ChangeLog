@@ -1,3 +1,7 @@
+2006-07-22  Don Allingham  <don@gramps-project.org>
+	* src/Filters/Rules/Person/__init__.py: add register function
+	* configure.in: bump up version number 
+
 2006-07-22  Alex Roitman  <shura@gramps-project.org>
 	* Makefile.am (SUBDIRS): Add debian dir.
 	* configure.in: Generate debian/Makefile

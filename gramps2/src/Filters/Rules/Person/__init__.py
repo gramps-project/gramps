@@ -152,3 +152,6 @@ editor_rule_list = [
     HasNote,
     HasNoteRegexp,
 ]
+
+def register(rule):
+    editor_rule_list.append(rule)
