@@ -1,3 +1,7 @@
+2006-07-24  Alex Roitman  <shura@gramps-project.org>
+	* debian/control (Build-Depends-Indep): Add python-central; 
+	(XS-Python-Version): Add.
+
 2006-07-23  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/GraphViz.py (get_date_strings): Typo.
 
