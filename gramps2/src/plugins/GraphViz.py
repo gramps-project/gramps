@@ -515,7 +515,7 @@ just use iconv:
             birth = ''
         death_ref = person.get_death_ref()
         if death_ref:
-            death_event = self.database.get_event_from_handle(death_ref)
+            death_event = self.database.get_event_from_handle(death_ref.ref)
             death = self.get_event_string(death_event)
         else:
             death = ''

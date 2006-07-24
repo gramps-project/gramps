@@ -1,3 +1,6 @@
+2006-07-23  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/GraphViz.py (get_date_strings): Typo.
+
 2006-07-23  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: fix bug for no surname (bug #265)
 
