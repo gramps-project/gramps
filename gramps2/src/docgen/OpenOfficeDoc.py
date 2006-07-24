@@ -829,15 +829,15 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         wcm = (width/72.0)*2.54
         hcm = (height/72.0)*2.54
 
-        rangle = -((pi/180.0) * angle)
+        rangle = (pi/180.0) * angle
 
         self.cntnt.write('<draw:text-box draw:style-name="%s" ' % style)
         self.cntnt.write('draw:layer="layout" svg:width="%.3fcm" ' % wcm)
         self.cntnt.write('svg:height="%.3fpt" ' % hcm)
         self.cntnt.write('draw:transform="')
-        self.cntnt.write('rotate (%.8f) ' % rangle)
-        xloc = x-((wcm/2.0)*cos(-rangle))
-        yloc = y-((hcm)*sin(-rangle))-oneline
+        self.cntnt.write('rotate (%.8f) ' % -rangle)
+        xloc = x-((wcm/2.0)*cos(rangle))+((hcm/2.0)*sin(rangle))
+        yloc = y-((hcm/2.0)*cos(rangle))-((wcm/2.0)*sin(rangle))
         self.cntnt.write('translate (%.3fcm %.3fcm)"' % (xloc,yloc))
         self.cntnt.write('>')
         self.cntnt.write('<text:p text:style-name="X%s">' % pname)

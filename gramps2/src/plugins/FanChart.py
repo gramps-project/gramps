@@ -66,16 +66,50 @@ class FanChart(Report):
         This report needs the following parameters (class variables)
         that come in the options class.
         
-        display   - 
+        maxgen          - Maximum number of generations to include.
+        full_circle     - != 0: draw a full circle; half_circle and quar_circle should be 0.
+        half_circle     - != 0: draw a half circle; full_circle and quar_circle should be 0.
+        quar_circle     - != 0: draw a quarter circle; full_circle and half_circle should be 0.
+        backgr_white    - 0: Background color is generation dependent; 1: Background color is white.
+        radial_upright  - 0: Print radial texts roundabout; 1: Print radial texts as upright as possible.
         """
+
+        self.background_color_generation =\
+        [(255,63,0), (255,175,15), (255,223,87), (255,255,111),
+         (159,255,159), (111,215,255), (79,151,255), (231,23,255)]
+
+        self.max_generations = options_class.handler.options_dict['maxgen']
+        self.full_circle = options_class.handler.options_dict['full_circle']
+        self.half_circle = options_class.handler.options_dict['half_circle']
+        self.quar_circle = options_class.handler.options_dict['quar_circle']
+        self.backgr_white = options_class.handler.options_dict['backgr_white']
+        self.radial_upright = options_class.handler.options_dict['radial_upright']
+
+        self.background_style = []
+        self.text_style = []
+        for i in range (0, self.max_generations):
+            background_style_name = 'background_style' + '%d' % i
+            self.background_style.append(background_style_name)
+            text_style_name = 'text_style' + '%d' % i
+            self.text_style.append(text_style_name)
+
+        if self.backgr_white:
+            self.background_color = []
+            for i in range (0, len (self.background_color_generation)):
+                self.background_color.append ((255,255,255))
+        else:
+            self.background_color = self.background_color_generation
+        self.MAX_GENERATION = len (self.background_color)
+
         Report.__init__(self,database,person,options_class)
 
         self.height = 0
         self.lines = 0
         self.display = "%n"
-        self.map = [None] * 32
+        self.map = [None] * 2**self.max_generations
         self.text= {}
         self.box_width = 0
+
 
     def define_graphics_styles(self):
         g = BaseDoc.GraphicsStyle()
@@ -83,67 +117,31 @@ class FanChart(Report):
         g.set_line_width(0)
         self.doc.add_draw_style("t",g)
 
-        g = BaseDoc.GraphicsStyle()
-        g.set_fill_color((255,212,210))
-        g.set_paragraph_style('FC-Normal')
-        self.doc.add_draw_style("FC-c1",g)
+        for i in range (0, self.max_generations):
+            # Continuous colors:
+            color_index = i % self.MAX_GENERATION
+            
+            g = BaseDoc.GraphicsStyle()
+            g.set_fill_color(self.background_color[color_index])
+            g.set_paragraph_style('FC-Normal')
+            background_style_name = 'background_style' + '%d' % i
+            self.doc.add_draw_style(background_style_name,g)
 
-        g = BaseDoc.GraphicsStyle()
-        g.set_fill_color((255,212,210))
-        g.set_paragraph_style('FC-Normal')
-        g.set_line_width(0)
-        self.doc.add_draw_style("FC-c1n",g)
+            g = BaseDoc.GraphicsStyle()
+            g.set_fill_color(self.background_color[color_index])
+            text_style_name = 'text_style' + '%d' % (self.max_generations - 1)
+            g.set_paragraph_style(text_style_name)
+            g.set_line_width(0)
+            text_style_name = 'text_style' + '%d' % i
+            self.doc.add_draw_style(text_style_name,g)
 
-        g = BaseDoc.GraphicsStyle()
-        g.set_fill_color((251,204,158))
-        g.set_paragraph_style('FC-Normal')
-        self.doc.add_draw_style("FC-c2",g)
-
-        g = BaseDoc.GraphicsStyle()
-        g.set_fill_color((251,204,158))
-        g.set_paragraph_style('FC-Normal')
-        g.set_line_width(0)
-        self.doc.add_draw_style("FC-c2n",g)
-
-        g = BaseDoc.GraphicsStyle()
-        g.set_fill_color((255,255,111))
-        g.set_paragraph_style('FC-Normal')
-        self.doc.add_draw_style("FC-c3",g)
-
-        g = BaseDoc.GraphicsStyle()
-        g.set_fill_color((255,255,111))
-        g.set_paragraph_style('FC-Normal')
-        g.set_line_width(0)
-        self.doc.add_draw_style("FC-c3n",g)
-
-        g = BaseDoc.GraphicsStyle()
-        g.set_fill_color((158,255,158))
-        g.set_paragraph_style('FC-Normal')
-        self.doc.add_draw_style("FC-c4",g)
-
-        g = BaseDoc.GraphicsStyle()
-        g.set_fill_color((158,255,158))
-        g.set_paragraph_style('FC-Normal')
-        g.set_line_width(0)
-        self.doc.add_draw_style("FC-c4n",g)
-
-        g = BaseDoc.GraphicsStyle()
-        g.set_fill_color((156,205,255))
-        g.set_paragraph_style('FC-Normal')
-        self.doc.add_draw_style("FC-c5",g)
-
-        g = BaseDoc.GraphicsStyle()
-        g.set_fill_color((156,205,255))
-        g.set_paragraph_style('FC-Normal')
-        g.set_line_width(0)
-        self.doc.add_draw_style("FC-c5n",g)
 
     def apply_filter(self,person_handle,index):
         """traverse the ancestors recursively until either the end
         of a line is found, or until we reach the maximum number of 
         generations that we want to deal with"""
         
-        if (not person_handle) or (index >= 32):
+        if (not person_handle) or (index >= 2**self.max_generations):
             return
         self.map[index-1] = person_handle
 
@@ -154,7 +152,8 @@ class FanChart(Report):
         for line in self.display:
             self.text[index-1].append(subst.replace(line))
 
-        self.font = self.doc.style_list["FC-Normal"].get_font()
+        text_style_name = 'text_style' + '%d' % (self.max_generations - 1)
+        self.font = self.doc.style_list[text_style_name].get_font()
         for line in self.text[index-1]:
             self.box_width = max(self.box_width,self.doc.string_width(self.font,line))
 
@@ -167,31 +166,54 @@ class FanChart(Report):
             self.apply_filter(family.get_father_handle(),index*2)
             self.apply_filter(family.get_mother_handle(),(index*2)+1)
 
+
     def write_report(self):
-
-        self.apply_filter(self.start_person.get_handle(),1)
-
-        block_size = self.doc.get_usable_width()/14.0
-
-        size = min(self.doc.get_usable_width(),self.doc.get_usable_height()*2.0)/2.0
-        y = self.doc.get_usable_height()
-        max_lines = int(size/block_size)
-        center = (self.doc.get_usable_width()/2.0)
 
         self.doc.start_page()
         
+        self.apply_filter(self.start_person.get_handle(),1)
         n = self.start_person.get_primary_name().get_regular_name()
-        self.doc.center_text('t', _('Five Generation Fan Chart for %s') % n, center, 0)
 
-        self.circle_5(center,y,block_size)
-        self.circle_4(center,y,block_size)
-        self.circle_3(center,y,block_size)
-        self.circle_2(center,y,block_size)
-        self.circle_1(center,y,block_size)
+        if self.full_circle:
+            max_angle = 360.0
+            start_angle = 90
+            max_circular = 5
+            x = self.doc.get_usable_width() / 2.0
+            y = self.doc.get_usable_height() / 2.0
+            min_xy = min (x, y)
+
+        elif self.half_circle:
+            max_angle = 180.0
+            start_angle = 180
+            max_circular = 3
+            x = (self.doc.get_usable_width()/2.0)
+            y = self.doc.get_usable_height()
+            min_xy = min (x, y)
+
+        else:  # quarter circle
+            max_angle = 90.0
+            start_angle = 270
+            max_circular = 2
+            x = 0
+            y = self.doc.get_usable_height()
+            min_xy = min (self.doc.get_usable_width(), y)
+
+        if self.max_generations > max_circular:
+            block_size = min_xy / (self.max_generations * 2 - max_circular)
+        else:
+            block_size = min_xy / self.max_generations
+        self.doc.center_text ('t', _('%d Generation Fan Chart for %s') % (self.max_generations, n),
+                             self.doc.get_usable_width() / 2, 0)
+
+        for generation in range (0, min (max_circular, self.max_generations)):
+            self.draw_circular (x, y, start_angle, max_angle, block_size, generation)
+        for generation in range (max_circular, self.max_generations):
+            self.draw_radial (x, y, start_angle, max_angle, block_size, generation)
 
         self.doc.end_page()
 
-    def get_info(self,person_handle):
+
+    def get_info(self,person_handle,generation):
         person = self.database.get_person_from_handle(person_handle)
         pn = person.get_primary_name()
 
@@ -213,67 +235,92 @@ class FanChart(Report):
         else:
             d = ""
 
-        if b or d:
+        if b and d:
             val = "%s - %s" % (str(b),str(d))
+        elif b:
+            val = "* %s" % (str(b))
+        elif d:
+            val = "+ %s" % (str(d))
         else:
             val = ""
             
-        return [ pn.get_first_name(), pn.get_surname(), val ]
+        if generation == 7:
+            if self.full_circle:
+                return [ pn.get_first_name() + " " + pn.get_surname(), val ]
+            elif self.half_circle:
+                return [ pn.get_first_name() + " " + pn.get_surname(), val ]
+            else:
+                return [ pn.get_first_name() + " " + pn.get_surname() + ", " + val ]
+        elif generation == 6:
+            if self.full_circle:
+                return [ pn.get_first_name(), pn.get_surname(), val ]
+            elif self.half_circle:
+                return [ pn.get_first_name(), pn.get_surname(), val ]
+            else:
+                return [ pn.get_first_name() + " " + pn.get_surname(), val ]
+        else:
+            return [ pn.get_first_name(), pn.get_surname(), val ]
 
-    def circle_1(self,center,y,size):
-        (xc,yc) = self.doc.draw_wedge("FC-c1", center, y, size, 180, 360)
-        self.doc.rotate_text("FC-c1n", self.get_info(self.map[0]), xc, yc ,0)
 
-    def circle_2(self,center,y,size):
-        (xc,yc) = self.doc.draw_wedge("FC-c2", center, y, size*2, 180, 270, size)
-        if self.map[1]:
-            self.doc.rotate_text("FC-c2n", self.get_info(self.map[1]), xc, yc, -45)
-            
-        (xc,yc) = self.doc.draw_wedge("FC-c2", center, y, size*2, 270, 360, size)
-        if self.map[2]:
-            self.doc.rotate_text("FC-c2n", self.get_info(self.map[2]), xc,yc ,45)
+    def draw_circular(self, x, y, start_angle, max_angle, size, generation):
+        segments = 2**generation
+        delta = max_angle / segments
+        end_angle = start_angle
+        text_angle = start_angle - 270 + (delta / 2.0)
+        rad1 = size * generation
+        rad2 = size * (generation + 1)
+        background_style = self.background_style[generation]
+        text_style = self.text_style[generation]
 
-    def circle_3(self,center,y,size):
-        delta = 45
-        sangle = -67.5
-        for index in range(3,7):
-            start = 180+(index-3)*45
-            stop = start+45
-            (xc,yc) = self.doc.draw_wedge("FC-c3", center, y, size*3, start, stop, size*2)
+        for index in range(segments - 1, 2*segments - 1):
+            start_angle = end_angle
+            end_angle = start_angle + delta
+            (xc,yc) = self.doc.draw_wedge(background_style, x, y, rad2,
+                                          start_angle, end_angle, rad1)
             if self.map[index]:
-                self.doc.rotate_text("FC-c3n", self.get_info(self.map[index]),
-                                     xc,yc ,sangle)
-            sangle += 45
+                if (generation == 0) and self.full_circle:
+                    yc = y
+                self.doc.rotate_text(text_style,
+                                     self.get_info(self.map[index],
+                                                   generation),
+                                     xc, yc, text_angle)
+            text_angle += delta
 
-    def circle_4(self,center,y,size):
-        delta = 22.5
-        sangle = -78.75 + 90
-        for i in range(0,8):
-            start_angle = 180 + (i * delta)
-            end_angle = 180 + ((i+1) * delta)
-            (xc,yc) = self.doc.draw_wedge("FC-c4", center, y, size*5, start_angle,
-                                          end_angle, size*3)
-            if i == 4:
-                sangle += 180
-            if self.map[i+7]:
-                self.doc.rotate_text("FC-c4n", self.get_info(self.map[i+7]),
-                                     xc,yc ,sangle)
-            sangle += 22.5
 
-    def circle_5(self,center,y,size):
-        delta = 11.25
-        sangle = -84.625 + 90
-        for i in range(0,16):
-            start_angle = 180 + (i * delta)
-            end_angle = 180 + ((i+1) * delta)
-            (xc,yc) = self.doc.draw_wedge("FC-c5", center, y, size*7, start_angle,
-                                          end_angle, size*5)
-            if i == 8:
-                sangle += 180
-            if self.map[i+15]:
-                self.doc.rotate_text("FC-c5n", self.get_info(self.map[i+15]),
-                                     xc,yc ,sangle)
-            sangle += 11.25
+    def draw_radial(self, x, y, start_angle, max_angle, size, generation):
+        segments = 2**generation
+        delta = max_angle / segments
+        end_angle = start_angle
+        text_angle = start_angle - delta / 2.0
+        background_style = self.background_style[generation]
+        text_style = self.text_style[generation]
+        if self.full_circle:
+            rad1 = size * ((generation * 2) - 5)
+            rad2 = size * ((generation * 2) - 3)
+        elif self.half_circle:
+            rad1 = size * ((generation * 2) - 3)
+            rad2 = size * ((generation * 2) - 1)
+        else:  # quarter circle
+            rad1 = size * ((generation * 2) - 2)
+            rad2 = size * (generation * 2)
+            
+        for index in range(segments - 1, 2*segments - 1):
+            start_angle = end_angle
+            end_angle = start_angle + delta
+            (xc,yc) = self.doc.draw_wedge(background_style, x, y, rad2,
+                                          start_angle, end_angle, rad1)
+            text_angle += delta
+            if self.map[index]:
+                if self.radial_upright and (start_angle >= 90) and (start_angle < 270):
+                    self.doc.rotate_text(text_style,
+                                         self.get_info(self.map[index],
+                                                       generation),
+                                         xc, yc, text_angle + 180)
+                else:
+                    self.doc.rotate_text(text_style,
+                                         self.get_info(self.map[index],
+                                                       generation),
+                                         xc, yc, text_angle)
 
 #------------------------------------------------------------------------
 #
@@ -283,24 +330,94 @@ class FanChart(Report):
 class FanChartOptions(ReportOptions):
 
     """
-    Defines options and provides handling interface.
+    Defines options and provides handling interface for Fan Chart.
     """
 
     def __init__(self,name,person_id=None):
         ReportOptions.__init__(self,name,person_id)
 
 
+    def set_new_options(self):
+        # Options specific for this report
+        self.options_dict = {
+            'maxgen'    : 5,
+            'full_circle' : 0,
+            'half_circle' : 1,
+            'quar_circle' : 0,
+            'backgr_white' : 0,
+            'backgr_generation' : 1,
+            'radial_upright' : 1,
+            'radial_roundabout' : 0,
+        }
+        self.options_help = {
+            'maxgen'    : ("=num","Number of generations to print.",
+                            [],
+                            True),
+            'full_circle': ("=0/1","The form of the diagram shall be a full circle.",
+                            ["half or quarter circle","full circle"],
+                            True),
+            'half_circle': ("=0/1","The form of the diagram shall be a half circle.",
+                            ["full or quarter circle","half circle"],
+                            True),
+            'quar_circle': ("=0/1","The form of the diagram shall be a quarter circle.",
+                            ["full or half circle","quarter circle"],
+                            True),
+            'backgr_white': ("=0/1","Background color is white.",
+                             ["generation dependent","white"],
+                             True),
+            'backgr_generation': ("=0/1","Background color is generation dependent.",
+                                  ["white","generation dependent"],
+                                  True),
+            'radial_upright': ("=0/1","Print radial texts as upright as possible.",
+                                ["roundabout","upright"],
+                                True),
+            'radial_roundabout': ("=0/1","Print radial texts roundabout.",
+                                  ["upright","roundabout"],
+                                  True),
+        }
+
+    def add_user_options(self,dialog):
+        """
+        Override the base class add_user_options task to add a menu that allows
+        the user to select the number of generations to print, ....
+        """
+        self.max_gen = gtk.SpinButton(gtk.Adjustment(5,2,8,1))
+        self.max_gen.set_value(self.options_dict['maxgen'])
+        self.max_gen.set_wrap(True)
+        dialog.add_option(_('Generations'),self.max_gen)
+        self.type_box = gtk.combo_box_new_text ()
+        self.type_box.append_text (_('full circle'))
+        self.type_box.append_text (_('half circle'))
+        self.type_box.append_text (_('quarter circle'))
+        self.type_box.set_active(self.options_dict['half_circle'] + 2 * self.options_dict['quar_circle'])
+        dialog.add_option(_('Type of graph'),self.type_box)
+        self.backgr_box = gtk.combo_box_new_text ()
+        self.backgr_box.append_text (_('white'))
+        self.backgr_box.append_text (_('generation dependent'))
+        self.backgr_box.set_active(self.options_dict['backgr_generation'])
+        dialog.add_option(_('Background color'),self.backgr_box)
+        self.radial_box = gtk.combo_box_new_text ()
+        self.radial_box.append_text (_('upright'))
+        self.radial_box.append_text (_('roundabout'))
+        self.radial_box.set_active(self.options_dict['radial_roundabout'])
+        dialog.add_option(_('Orientation of radial texts'),self.radial_box)
+
+    def parse_user_options(self,dialog):
+        """
+        Parses the custom options that we have added.
+        """
+        self.options_dict['maxgen'] = int(self.max_gen.get_value_as_int())
+        self.options_dict['full_circle'] = int(self.type_box.get_active() == 0)
+        self.options_dict['half_circle'] = int(self.type_box.get_active() == 1)
+        self.options_dict['quar_circle'] = int(self.type_box.get_active() == 2)
+        self.options_dict['backgr_white'] = int(self.backgr_box.get_active() == 0)
+        self.options_dict['backgr_generation'] = int(self.backgr_box.get_active() == 1)
+        self.options_dict['radial_upright'] = int(self.radial_box.get_active() == 0)
+        self.options_dict['radial_roundabout'] = int(self.radial_box.get_active() == 1)
+
+
     def make_default_style(self,default_style):
         """Make the default output style for the Fan Chart report."""
-        f = BaseDoc.FontStyle()
-        f.set_size(8)
-        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-        p = BaseDoc.ParagraphStyle()
-        p.set_font(f)
-        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
-        p.set_description(_('The basic style used for the text display.'))
-        default_style.add_style("FC-Normal",p)
-
         f = BaseDoc.FontStyle()
         f.set_size(20)
         f.set_bold(1)
@@ -310,6 +427,18 @@ class FanChartOptions(ReportOptions):
         p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         p.set_description(_('The style used for the title.'))
         default_style.add_style("FC-Title",p)
+
+        font_size = [48, 24, 16, 12, 9, 6, 4, 3]
+        for index in range (0, len (font_size)):
+            f = BaseDoc.FontStyle()
+            f.set_size(font_size[index])
+            f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+            p = BaseDoc.ParagraphStyle()
+            p.set_font(f)
+            p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+            p.set_description(_('The basic style used for the text display.'))
+            default_style.add_style("text_style%d" % index, p)
+
 
 #------------------------------------------------------------------------
 #
@@ -326,5 +455,5 @@ register_report(
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",
-    description = _("Produces a five generation fan chart")
+    description = _("Produces fan charts")
     )
