@@ -92,6 +92,8 @@ class BackRefModel(gtk.ListStore):
                 gid = p.gramps_id
                 handle = p.handle
 
-            self.append(row=[dtype, gid, name, handle])
+            # dtype is the class name, i.e. is English
+            # We need to use localized string in the model.
+            self.append(row=[_(dtype), gid, name, handle])
             yield True
         yield False
