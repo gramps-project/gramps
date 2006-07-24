@@ -2744,11 +2744,14 @@ def sort_people(db,handle_list):
     return sorted_lists
 
 def strcoll_case_sensitive(string1,string2):
-    """ This function was written because string comparisons in Windows 
+    """ This function was written because string comparisons
         seem to be case insensitive if the string is longer than 
         one character. """
-    # First, compare the first character
-    diff = locale.strcoll(string1[0],string2[0])
+    if len(string1) > 0 and len(string2) > 0:
+        diff = locale.strcoll(string1[0],string2[0])
+    else:
+        diff = 0
+
     if diff == 0:
         # If the first character is the same, compare the rest
         diff = locale.strcoll(string1,string2)
