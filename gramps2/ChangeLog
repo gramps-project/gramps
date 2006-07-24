@@ -1,4 +1,6 @@
 2006-07-24  Alex Roitman  <shura@gramps-project.org>
+	* src/DisplayTabs/_BackRefModel.py (BackRefModel.load_model):
+	Translate displayed object type.
 	* debian/control (Build-Depends-Indep): Add python-central; 
 	(XS-Python-Version): Add.
 
