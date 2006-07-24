@@ -1,3 +1,8 @@
+2006-07-24  Manfred Paulus  <manfred.paulus@gmx.de>
+	* src/plugins/FanChart.py: Add circle, 1/2 circle and 1/4
+	circle options, along with selectable generations
+	* src/docgen/OpenOfficeDoc.py: fix rotation angle
+
 2006-07-24  Alex Roitman  <shura@gramps-project.org>
 	* src/DisplayTabs/_BackRefModel.py (BackRefModel.load_model):
 	Translate displayed object type.
