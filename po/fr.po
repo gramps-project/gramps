@@ -6,10 +6,10 @@
 # Jérôme Rapinat <romjerome@yahoo.fr>, 2005-2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: gramps 2.1.90\n"
+"Project-Id-Version: 2.1.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-23 19:55+0200\n"
-"PO-Revision-Date: 2006-07-23 20:33+0200\n"
+"POT-Creation-Date: 2006-07-25 20:19+0200\n"
+"PO-Revision-Date: 2006-07-25 20:26+0200\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -609,7 +609,7 @@ msgstr "Afaire"
 #: ../src/RelLib/_MarkerType.py:37 ../src/RelLib/_EventRoleType.py:43
 #: ../src/RelLib/_EventType.py:80
 msgid "Custom"
-msgstr "Habituel"
+msgstr "Personnel"
 
 #. label for the combo
 #: ../src/GrampsCfg.py:257
@@ -1322,8 +1322,8 @@ msgid "%s and %s"
 msgstr "%s et %s"
 
 #: ../src/Utils.py:222 ../src/Utils.py:224 ../src/plugins/NarrativeWeb.py:2721
-#: ../src/plugins/NarrativeWeb.py:2722 ../src/plugins/NarrativeWeb.py:2841
-#: ../src/plugins/NarrativeWeb.py:2847 ../src/plugins/NarrativeWeb.py:2853
+#: ../src/plugins/NarrativeWeb.py:2722 ../src/plugins/NarrativeWeb.py:2844
+#: ../src/plugins/NarrativeWeb.py:2850 ../src/plugins/NarrativeWeb.py:2856
 #: ../src/ReportBase/_ReportUtils.py:1113
 #: ../src/ReportBase/_ReportUtils.py:1226
 msgid "Private"
@@ -2363,11 +2363,11 @@ msgstr "Le module python-reportlab n'est pas installé"
 msgid "PDF document"
 msgstr "Document PDF"
 
-#: ../src/docgen/PSDrawDoc.py:421
+#: ../src/docgen/PSDrawDoc.py:422
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../src/docgen/PSDrawDoc.py:422 ../src/ReportBase/_ReportDialog.py:195
+#: ../src/docgen/PSDrawDoc.py:423 ../src/ReportBase/_ReportDialog.py:195
 #: ../src/ReportBase/_ReportDialog.py:280
 msgid "Print a copy"
 msgstr "Imprimer une copie"
@@ -3041,21 +3041,21 @@ msgstr "Ajouter un enfant à la famille"
 #. witness name recorded
 #. Add name and comment to the event note
 #. Parse witnesses created by older gramps
-#: ../src/GrampsDb/_GrampsBSDDB.py:1588 ../src/GrampsDb/_ReadXML.py:710
-#: ../src/GrampsDb/_ReadXML.py:1482
+#: ../src/GrampsDb/_GrampsBSDDB.py:1595 ../src/GrampsDb/_ReadXML.py:710
+#: ../src/GrampsDb/_ReadXML.py:1497
 #, python-format
 msgid "Witness name: %s"
 msgstr "Nom du témoin: %s"
 
-#: ../src/GrampsDb/_GrampsBSDDB.py:1590 ../src/GrampsDb/_ReadXML.py:1376
-#: ../src/GrampsDb/_ReadXML.py:1380
+#: ../src/GrampsDb/_GrampsBSDDB.py:1597 ../src/GrampsDb/_ReadXML.py:1391
+#: ../src/GrampsDb/_ReadXML.py:1395
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Commentaire du témoin: %s"
 
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
-#: ../src/GrampsDb/_GrampsBSDDB.py:1611
+#: ../src/GrampsDb/_GrampsBSDDB.py:1618
 msgid "Broken witness reference detected while upgrading database to version 9."
 msgstr "Une référence cassée de temoin est détectée pendant la mise à jour de la base de donnée vers la version 9."
 
@@ -3453,7 +3453,7 @@ msgstr "Compresser l'arbre"
 #: ../src/plugins/DescendChart.py:440 ../src/plugins/DesGraph.py:399
 #: ../src/plugins/DetAncestralReport.py:722
 #: ../src/plugins/DetDescendantReport.py:757 ../src/plugins/FamilyGroup.py:883
-#: ../src/plugins/FanChart.py:301 ../src/plugins/FtmStyleAncestors.py:394
+#: ../src/plugins/FanChart.py:439 ../src/plugins/FtmStyleAncestors.py:394
 #: ../src/plugins/FtmStyleAncestors.py:399
 #: ../src/plugins/FtmStyleAncestors.py:404
 #: ../src/plugins/FtmStyleAncestors.py:409
@@ -3481,10 +3481,10 @@ msgstr "Arbre des ascendants"
 #: ../src/plugins/DescendChart.py:464 ../src/plugins/DescendReport.py:259
 #: ../src/plugins/DesGraph.py:414 ../src/plugins/Eval.py:130
 #: ../src/plugins/EventCmp.py:419 ../src/plugins/FamilyGroup.py:916
-#: ../src/plugins/FanChart.py:326 ../src/plugins/GraphViz.py:1221
+#: ../src/plugins/FanChart.py:455 ../src/plugins/GraphViz.py:1221
 #: ../src/plugins/GraphViz.py:1235 ../src/plugins/IndivComplete.py:646
 #: ../src/plugins/IndivSummary.py:390 ../src/plugins/Leak.py:131
-#: ../src/plugins/Merge.py:691 ../src/plugins/NarrativeWeb.py:2869
+#: ../src/plugins/Merge.py:691 ../src/plugins/NarrativeWeb.py:2872
 #: ../src/plugins/PatchNames.py:359 ../src/plugins/Rebuild.py:123
 #: ../src/plugins/RelCalc.py:222 ../src/plugins/ReorderIds.py:227
 #: ../src/plugins/SoundGen.py:144 ../src/plugins/StatisticsChart.py:981
@@ -4395,7 +4395,7 @@ msgstr "Permet une navigation hiérarchique sur la personne sélectionnée"
 msgid "Descendant Chart for %s"
 msgstr "Arbre des descendants de %s"
 
-#: ../src/plugins/DescendChart.py:423
+#: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:387
 #: ../src/ReportBase/_BareReportDialog.py:454
 msgid "Generations"
 msgstr "Générations"
@@ -4920,22 +4920,62 @@ msgstr "Le style utilisé pour le nom des parents"
 msgid "Creates a family group report, showing information on a set of parents and their children."
 msgstr "Crée un rapport sur une famille comprenant les informations sur les parents et leurs enfants."
 
-#: ../src/plugins/FanChart.py:184
+#: ../src/plugins/FanChart.py:205
 #, python-format
-msgid "Five Generation Fan Chart for %s"
-msgstr "Roue des ascendants sur cinq générations de %s"
+msgid "%d Generation Fan Chart for %s"
+msgstr "%d générations - roue des ascendants de %s"
 
-#: ../src/plugins/FanChart.py:311
+#: ../src/plugins/FanChart.py:389
+msgid "full circle"
+msgstr "cercle entier"
+
+#: ../src/plugins/FanChart.py:390
+msgid "half circle"
+msgstr "demi-cercle"
+
+#: ../src/plugins/FanChart.py:391
+msgid "quarter circle"
+msgstr "quart de cercle"
+
+#: ../src/plugins/FanChart.py:393
+msgid "Type of graph"
+msgstr "Type de graphique"
+
+#: ../src/plugins/FanChart.py:395
+msgid "white"
+msgstr "blanche"
+
+#: ../src/plugins/FanChart.py:396
+msgid "generation dependent"
+msgstr "différente à chaque génération"
+
+#: ../src/plugins/FanChart.py:398
+msgid "Background color"
+msgstr "Couleur de fond"
+
+#: ../src/plugins/FanChart.py:400
+msgid "upright"
+msgstr "tel quel"
+
+#: ../src/plugins/FanChart.py:401
+msgid "roundabout"
+msgstr "autour"
+
+#: ../src/plugins/FanChart.py:403
+msgid "Orientation of radial texts"
+msgstr "Orientation des textes radials"
+
+#: ../src/plugins/FanChart.py:428
 msgid "The style used for the title."
 msgstr "Le style utilisé pour l'en-tête."
 
-#: ../src/plugins/FanChart.py:325
+#: ../src/plugins/FanChart.py:454
 msgid "Fan Chart"
 msgstr "Roue des ascendants"
 
-#: ../src/plugins/FanChart.py:329
-msgid "Produces a five generation fan chart"
-msgstr "Produit une roue des ascendants sur cinq générations"
+#: ../src/plugins/FanChart.py:458
+msgid "Produces fan charts"
+msgstr "Produit des roues des ascendants"
 
 #: ../src/plugins/FtmStyleAncestors.py:109
 #: ../src/plugins/FtmStyleDescendants.py:132
@@ -5888,11 +5928,11 @@ msgstr "Page internet"
 msgid "Target Directory"
 msgstr "Répertoire cible"
 
-#: ../src/plugins/NarrativeWeb.py:2868
+#: ../src/plugins/NarrativeWeb.py:2871
 msgid "Narrative Web Site"
 msgstr "Génère un site internet narratif"
 
-#: ../src/plugins/NarrativeWeb.py:2872
+#: ../src/plugins/NarrativeWeb.py:2875
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr "Génère de pages internet (HTML) pour tous les indivdus ou une partie des individus."
 
@@ -7172,17 +7212,17 @@ msgstr "Elle est née %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:100
 #, python-format
-msgid "%(unknown_gender_name)s was born on %(modified_date)s."
+msgid "%(unknown_gender_name)s was born %(modified_date)s."
 msgstr "%(unknown_gender_name)s est né %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:101
 #, python-format
-msgid "%(male_name)s was born on %(modified_date)s."
+msgid "%(male_name)s was born %(modified_date)s."
 msgstr "%(male_name)s est né %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:102
 #, python-format
-msgid "%(female_name)s was born on %(modified_date)s."
+msgid "%(female_name)s was born %(modified_date)s."
 msgstr "%(female_name)s est née %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:108
@@ -9768,6 +9808,8 @@ msgstr "Chaque objet"
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:49
 #: ../src/Filters/Rules/Person/_RegExpName.py:49
 #: ../src/Filters/Rules/Person/_SearchName.py:48
+#: ../src/Filters/Rules/Family/_HasIdOf.py:48
+#: ../src/Filters/Rules/Family/_HasRelType.py:49
 msgid "General filters"
 msgstr "Filtres généraux"
 
@@ -9873,6 +9915,7 @@ msgstr "Sortir les individus ayant un attribut individuel de même valeur"
 #: ../src/Filters/Rules/Person/_HasDeath.py:47
 #: ../src/Filters/Rules/Person/_HasEvent.py:46
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:49
+#: ../src/Filters/Rules/Family/_HasEvent.py:46
 msgid "Date:"
 msgstr "Date:"
 
@@ -9880,7 +9923,8 @@ msgstr "Date:"
 #: ../src/Filters/Rules/Person/_HasDeath.py:47
 #: ../src/Filters/Rules/Person/_HasEvent.py:47
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:50
-#: ../src/glade/gramps.glade.h:95 ../src/FilterEditor/_EditRule.py:386
+#: ../src/Filters/Rules/Family/_HasEvent.py:47 ../src/glade/gramps.glade.h:95
+#: ../src/FilterEditor/_EditRule.py:386
 msgid "Place:"
 msgstr "Lieu:"
 
@@ -9888,6 +9932,7 @@ msgstr "Lieu:"
 #: ../src/Filters/Rules/Person/_HasDeath.py:47
 #: ../src/Filters/Rules/Person/_HasEvent.py:48
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:51
+#: ../src/Filters/Rules/Family/_HasEvent.py:48
 msgid "Description:"
 msgstr "Description:"
 
@@ -9942,6 +9987,7 @@ msgstr "Filtres des ascendants"
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:45
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:46
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:46
+#: ../src/Filters/Rules/Family/_HasIdOf.py:45
 #: ../src/glade/edit_person.glade.h:15 ../src/glade/gramps.glade.h:72
 #: ../src/FilterEditor/_EditRule.py:390
 msgid "ID:"
@@ -10000,6 +10046,7 @@ msgstr "Sortir les individu ayant un attribut familial de même valeur"
 
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:48
 #: ../src/Filters/Rules/Person/_IsWitness.py:43
+#: ../src/Filters/Rules/Family/_HasEvent.py:45
 #: ../src/FilterEditor/_EditRule.py:81
 msgid "Family event:"
 msgstr "Evénement familial:"
@@ -10439,6 +10486,74 @@ msgstr "Sortir les ancêtres communs des individus marqués, de façon à relier
 #: ../src/Filters/Rules/Person/_SearchName.py:46
 msgid "People matching the <name>"
 msgstr "Individus avec le même <nom>"
+
+#: ../src/Filters/Rules/Family/_AllFamilies.py:45
+msgid "Every family"
+msgstr "Chaque famille"
+
+#: ../src/Filters/Rules/Family/_AllFamilies.py:46
+msgid "Matches every family in the database"
+msgstr "Sortir chaque famille de la base"
+
+#: ../src/Filters/Rules/Family/_FamilyPrivate.py:43
+msgid "Families marked private"
+msgstr "Familles marquées comme privées"
+
+#: ../src/Filters/Rules/Family/_FamilyPrivate.py:44
+msgid "Matches families that are indicated as private"
+msgstr "Trouver les familles marquées comme privées"
+
+#: ../src/Filters/Rules/Family/_RegExpIdOf.py:46
+msgid "Families with <Id>"
+msgstr "Familles avec <id>"
+
+#: ../src/Filters/Rules/Family/_RegExpIdOf.py:47
+msgid "Matches families with a GRAMPS ID that contains the regular expression"
+msgstr "Sortir les familles dont l'ID GRAMPS contient l'expression régulière"
+
+#: ../src/Filters/Rules/Family/_HasIdOf.py:46
+msgid "Family with <Id>"
+msgstr "Familles avec <id>"
+
+#: ../src/Filters/Rules/Family/_HasIdOf.py:47
+msgid "Matches a family with a specified GRAMPS ID"
+msgstr "Sortir les familles avec l'identifiant GRAMPS"
+
+#: ../src/Filters/Rules/Family/_HasNoteRegexp.py:43
+msgid "Families having notes containing <regular expression>"
+msgstr "Familles dont les notes contiennent une <expression régulière>"
+
+#: ../src/Filters/Rules/Family/_HasNoteRegexp.py:44
+msgid "Matches families whose notes contain text matching a regular expression"
+msgstr "Familles dont les notes contiennent du texte avec l'expression régulière"
+
+#: ..//src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:43
+msgid "Families having notes containing <substring>"
+msgstr "Familles dont une note contient la <sous-chaîne>"
+
+#: ..//src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:44
+msgid "Matches families whose notes contain text matching a substring"
+msgstr "Familles dont une note contient une sous-chaine"
+
+#: ../src/Filters/Rules/Family/_HasEvent.py:49
+msgid "Families with the <event>"
+msgstr "Familles avec l'<événement>"
+
+#: ../src/Filters/Rules/Family/_HasEvent.py:50
+msgid "Matches families with an event of a particular value"
+msgstr "Sortir les familles ayant le même événement individuel"
+
+#: ../src/Filters/Rules/Family/_HasRelType.py:45
+msgid "Relationship Type:"
+msgstr "Type de relation:"
+
+#: ../src/Filters/Rules/Family/_HasRelType.py:46
+msgid "Family with the relationship type"
+msgstr "Famille avec ce type de relation"
+
+#: ../src/Filters/Rules/Family/_HasRelType.py:47
+msgid "Matches family with the relationship type of a particular value"
+msgstr "Sortir les familles ayant un type de relation de même valeur"
 
 #: ../src/glade/edit_person.glade.h:1 ../src/glade/gramps.glade.h:11
 #: ../src/plugins/verify.glade.h:3
