@@ -1016,8 +1016,8 @@ class GrampsParser(UpdateCallback):
         if not self.in_witness:
             self.name = RelLib.Name()
             name_type = attrs['type']
-            # Mapping "Other" from gramps 2.0.x to Unknown
-            if (self.version_string == '1.0.0') and (name_type == 'Other'):
+            # Mapping "Other Name" from gramps 2.0.x to Unknown
+            if (self.version_string=='1.0.0') and (name_type=='Other Name'):
                 self.name.set_type(RelLib.NameType.UNKNOWN)
             else:
                 self.name.type.set_from_xml_str(name_type)

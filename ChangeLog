@@ -4,10 +4,11 @@
 	* src/docgen/OpenOfficeDoc.py: fix rotation angle
 
 2006-07-24  Alex Roitman  <shura@gramps-project.org>
-	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Map Other from
-	gramps2.0.x to Unknown.
-	* src/GrampsDb/_ReadXML.py (start_name): Map Other from
-	gramps2.0.x to Unknown.
+	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Map "Other
+	Name" from gramps2.0.x to the "Unknown" name type;
+	work out the case of no events.
+	* src/GrampsDb/_ReadXML.py (start_name): Map "Other Name" from
+	gramps2.0.x to the "Unknown" name type.
 	(start_database): Add method to extract the XML version.
 	* src/DisplayTabs/_BackRefModel.py (BackRefModel.load_model):
 	Translate displayed object type.
