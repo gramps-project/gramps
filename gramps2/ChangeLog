@@ -1,4 +1,10 @@
 2006-07-25  Alex Roitman  <shura@gramps-project.org>
+	* src/FilterEditor/_EditRule.py (MySelect.get_text): Dirty hack to
+	prevent rule editor from crashing. NEEDS REPAIR to stop relying on
+	the localized text.
+	* src/Filters/Rules/Person/_HasFamilyEvent.py (apply): Use new API.
+	* src/RelLib/_GrampsType.py (set,__cmp__): Consider unicode type
+	along with the str.
 	* src/Filters/_SearchBar.py (get_value,apply_filter): Force unicode.
 	* src/Filters/_PersonSidebarFilter.py (get_filter): Force unicode.
 	* src/Filters/_FamilySidebarFilter.py (get_filter): Force unicode.

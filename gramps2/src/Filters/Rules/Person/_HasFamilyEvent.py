@@ -70,7 +70,7 @@ class HasFamilyEvent(Rule):
                 event_handle = event_ref.ref
                 event = db.get_event_from_handle(event_handle)
                 val = 1
-                if self.list[0] and event.get_name() != self.list[0]:
+                if self.list[0] and event.get_type() != self.list[0]:
                     val = 0
                 v = self.list[3]
                 if v and event.get_description().upper().find(v.upper())==-1:
