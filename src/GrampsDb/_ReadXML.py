@@ -372,7 +372,7 @@ class GrampsParser(UpdateCallback):
             "comment"    : (None, self.stop_comment),
             "created"    : (self.start_created, None),
             "ref"        : (None, self.stop_ref),
-            "database"   : (None, self.stop_database),
+            "database"   : (self.start_database, self.stop_database),
             "phone"      : (None, self.stop_phone),
             "date"       : (None, self.stop_date),
             "cause"      : (None, self.stop_cause),
@@ -1015,7 +1015,12 @@ class GrampsParser(UpdateCallback):
     def start_name(self,attrs):
         if not self.in_witness:
             self.name = RelLib.Name()
-            self.name.type.set_from_xml_str(attrs['type'])
+            name_type = attrs['type']
+            # Mapping "Other" from gramps 2.0.x to Unknown
+            if (self.version_string == '1.0.0') and (name_type == 'Other'):
+                self.name.set_type(RelLib.NameType.UNKNOWN)
+            else:
+                self.name.type.set_from_xml_str(name_type)
             self.name.set_private = bool(attrs.get("priv"))
             self.alt_name = bool(attrs.get("alt"))
             try:
@@ -1355,6 +1360,16 @@ class GrampsParser(UpdateCallback):
             self.num_places = int(attrs['places'])
         else:
             self.num_places = 0
+
+    def start_database(self,attrs):
+        try:
+            # This is a proper way to get the XML version
+            xmlns = attrs.get('xmlns')
+            self.version_string = xmlns.split('/')[4]
+        except:
+            # Before we had a proper DTD, the version was hard to determine
+            # so we're setting it to 1.0.0
+            self.version_string = '1.0.0'
 
     def start_pos(self,attrs):
         self.person.position = (int(attrs["x"]), int(attrs["y"]))
@@ -1724,7 +1739,7 @@ class GrampsParser(UpdateCallback):
     def stop_aka(self,tag):
         self.person.add_alternate_name(self.name)
         if self.name.get_type() == "":
-            self.name.set_type("Also Known As")
+            self.name.set_type(RelLib.NameType.AKA)
         self.name = None
 
     def startElement(self,tag,attrs):
