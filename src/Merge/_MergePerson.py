@@ -749,12 +749,14 @@ class MergePeople:
                         
         self.merge_family_pair(tgt_family,src_family,trans)
                         
-        for child_handle in src_family.get_child_handle_list():
+        for child_ref in src_family.get_child_ref_list():
+            child_handle = child_ref.ref
             if child_handle != self.new_handle:
                 child = self.db.get_person_from_handle(child_handle)
             if child.remove_parent_family_handle(src_family_handle):
                 if __debug__:
-                    print "Remove parent family %s from %s" % (src_family_handle,child_handle)
+                    print "Remove parent family %s from %s" \
+                          % (src_family_handle,child_handle)
                 self.db.commit_person(child,trans)
 
         # delete the old source family
@@ -767,13 +769,15 @@ class MergePeople:
 
     def merge_family_pair(self,tgt_family,src_family,trans):
 
+        tgt_family_child_handles = [ref.ref
+                                    for ref in tgt_family.get_child_ref_list()]
         # copy children from source to target
-
-        for child_handle in src_family.get_child_handle_list():
-            if child_handle not in tgt_family.get_child_handle_list():
+        for child_ref in src_family.get_child_ref_list():
+            child_handle = child_ref.ref
+            if child_handle not in tgt_family_child_handles:
                 child = self.db.get_person_from_handle(child_handle)
                 parents = child.get_parent_family_handle_list()
-                tgt_family.add_child_handle(child_handle)
+                tgt_family.add_child_ref(child_ref)
                 if child.get_main_parents_family_handle() == src_family.get_handle():
                     child.set_main_parent_family_handle(tgt_family.get_handle())
                 i = 0
@@ -851,7 +855,8 @@ class MergePeople:
             self.db.commit_person(mother,trans)
 
         # remove the children from the old family
-        for child_handle in src_family.get_child_handle_list():
+        for child_ref in src_family.get_child_ref_list():
+            child_handle = child_ref.ref
             if child_handle != self.new_handle:
                 child = self.db.get_person_from_handle(child_handle)
                 if child.remove_parent_family_handle(src_family_handle):
@@ -866,7 +871,8 @@ class MergePeople:
 
     def delete_empty_family(self,family,trans):
         family_handle = family.get_handle()
-        for child_handle in family.get_child_handle_list():
+        for child_ref in family.get_child_ref_list():
+            child_handle = child_ref.ref
             child = self.db.get_person_from_handle(child_handle)
             if child.get_main_parents_family_handle() == family_handle:
                 child.set_main_parent_family_handle(None)
