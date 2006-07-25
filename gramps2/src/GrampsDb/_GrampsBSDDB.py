@@ -1474,8 +1474,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             for name in [person.primary_name] + person.alternate_names:
                 old_type = name.type
                 new_type = NameType()
-                # Mapping "Other" from gramps 2.0.x to Unknown
-                if old_type == 'Other':
+                # Mapping "Other Name" from gramps 2.0.x to Unknown
+                if old_type == 'Other Name':
                     new_type.set(NameType.UNKNOWN)
                 else:
                     new_type.set_from_xml_str(old_type)
@@ -1554,9 +1554,12 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         # Find the largest ID and extract the integer:
         # We can do this because in 2.0.x the event id is never exposed
         eid_list.sort()
-        last_id = eid_list[-1]
-        nre = re.compile("\D+(\d+)")
-        max_id_number = int(nre.match(last_id).groups()[0])
+        if len(eid_list) == 0:
+            max_id_number = 0
+        else:
+            last_id = eid_list[-1]
+            nre = re.compile("\D+(\d+)")
+            max_id_number = int(nre.match(last_id).groups()[0])
 
         # get the list of all IDs that are non-unique
         dup_ids = [eid for eid in eid_list if eid_list.count(eid) > 1 ]
