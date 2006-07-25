@@ -266,7 +266,7 @@ class MySelect(gtk.ComboBoxEntry):
         self.show()
         
     def get_text(self):
-        return self.transtable.find_key(unicode(self.child.get_text()))
+        return unicode(self.child.get_text())
 
     def set_text(self,val):
         self.child.set_text(_(val))

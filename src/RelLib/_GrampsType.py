@@ -53,7 +53,7 @@ class GrampsType:
         elif type(value) == int:
             self.val = value
             self.string = ''
-        elif type(value) == str:
+        elif type(value) in (str,unicode):
             self.val = self._S2IMAP.get(value,self._CUSTOM)
             if self.val == self._CUSTOM:
                 self.string = value
@@ -115,7 +115,7 @@ class GrampsType:
     def __cmp__(self, value):
         if type(value) == int:
             return cmp(self.val,value)
-        elif type(value) == str:
+        elif type(value) in (str,unicode):
             if self.val == self._CUSTOM:
                 return cmp(self.string,value)
             else:
