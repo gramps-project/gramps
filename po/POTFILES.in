@@ -445,11 +445,20 @@ src/Filters/Rules/Person/_RelationshipPathBetween.py
 src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py
 src/Filters/Rules/Person/_SearchName.py
 src/Filters/Rules/Family/__init__.py
+src/Filters/Rules/Family/_AllFamilies.py
+src/Filters/Rules/Family/_FamilyPrivate.py
+src/Filters/Rules/Family/_HasEvent.py
+src/Filters/Rules/Family/_HasIdOf.py
+src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py
+src/Filters/Rules/Family/_HasNoteRegexp.py
+src/Filters/Rules/Family/_HasRelType.py
+src/Filters/Rules/Family/_RegExpIdOf.py
 src/Filters/Rules/Event/__init__.py
 src/Filters/Rules/Place/__init__.py
 src/Filters/Rules/Source/__init__.py
 src/Filters/Rules/Media/__init__.py
 src/Filters/Rules/Repository/__init__.py
+
 #
 #	Glade files
 #
