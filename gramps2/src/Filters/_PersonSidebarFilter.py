@@ -18,10 +18,27 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _FilterList.py 6529 2006-05-03 06:29:07Z rshura $
+# $Id$
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# gtk
+#
+#-------------------------------------------------------------------------
 import gtk
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
 import GrampsWidgets
 import RelLib
 
@@ -29,6 +46,11 @@ from _SidebarFilter import SidebarFilter
 from Filters.Rules.Person import *
 from Filters import GenericFilter, build_filter_model, Rules
 
+#-------------------------------------------------------------------------
+#
+# PersonSidebarFilter class
+#
+#-------------------------------------------------------------------------
 class PersonSidebarFilter(SidebarFilter):
 
     def __init__(self, clicked):
@@ -92,11 +114,11 @@ class PersonSidebarFilter(SidebarFilter):
         self.clicked_func()
 
     def get_filter(self):
-        name = self.filter_name.get_text().strip()
-        gid = self.filter_id.get_text().strip()
-        birth = self.filter_birth.get_text().strip()
-        death = self.filter_death.get_text().strip()
-        note = self.filter_note.get_text().strip()
+        name = unicode(self.filter_name.get_text()).strip()
+        gid = unicode(self.filter_id.get_text()).strip()
+        birth = unicode(self.filter_birth.get_text()).strip()
+        death = unicode(self.filter_death.get_text()).strip()
+        note = unicode(self.filter_note.get_text()).strip()
         gender = self.filter_gender.get_active()
         regex = self.filter_regex.get_active()
 	gen = self.generic.get_active() > 0

@@ -18,10 +18,27 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _FilterList.py 6529 2006-05-03 06:29:07Z rshura $
+# $Id$
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# gtk
+#
+#-------------------------------------------------------------------------
 import gtk
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
 import GrampsWidgets
 import RelLib
 
@@ -29,6 +46,11 @@ from _SidebarFilter import SidebarFilter
 from Filters import GenericFamilyFilter, build_filter_model, Rules
 from Filters.Rules.Family import *
 
+#-------------------------------------------------------------------------
+#
+# PersonSidebarFilter class
+#
+#-------------------------------------------------------------------------
 class FamilySidebarFilter(SidebarFilter):
 
     def __init__(self, clicked):
@@ -88,8 +110,8 @@ class FamilySidebarFilter(SidebarFilter):
         self.clicked_func()
 
     def get_filter(self):
-        gid = self.filter_id.get_text().strip()
-        note = self.filter_note.get_text().strip()
+        gid = unicode(self.filter_id.get_text()).strip()
+        note = unicode(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
 	gen = self.generic.get_active() > 0
 

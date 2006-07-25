@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _FilterList.py 6529 2006-05-03 06:29:07Z rshura $
+# $Id$
 
 from gettext import gettext as _
 import gtk
