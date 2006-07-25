@@ -1474,7 +1474,11 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             for name in [person.primary_name] + person.alternate_names:
                 old_type = name.type
                 new_type = NameType()
-                new_type.set_from_xml_str(old_type)
+                # Mapping "Other" from gramps 2.0.x to Unknown
+                if old_type == 'Other':
+                    new_type.set(NameType.UNKNOWN)
+                else:
+                    new_type.set_from_xml_str(old_type)
                 name.type = new_type
                 name.call = ''
 
