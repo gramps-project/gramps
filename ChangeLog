@@ -1,3 +1,7 @@
+2006-07-24  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Bump up the version number.
+	* src/GrampsDb/_GrampsBSDDB.py (find_fidmap): Remove unused method.
+
 2006-07-24  Manfred Paulus  <manfred.paulus@gmx.de>
 	* src/plugins/FanChart.py: Add circle, 1/2 circle and 1/4
 	circle options, along with selectable generations

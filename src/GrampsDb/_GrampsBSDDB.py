@@ -67,9 +67,6 @@ def find_surname(key,data):
 def find_idmap(key,data):
     return str(data[1])
 
-def find_fidmap(key,data):
-    return str(data[1])
-
 # Secondary database key lookups for reference_map table
 # reference_map data values are of the form:
 #   ((primary_object_class_name, primary_object_handle),
