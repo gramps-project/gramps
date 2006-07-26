@@ -1,5 +1,6 @@
 2006-07-25  Brian Matherly  <brian@gramps-project.org>
 	* src/Mime/Makefile.am: Add WinMime.py
+	* src/ReportBase/_ReportUtils.py: fix born_str typo (bug #266)
 
 2006-07-25  Alex Roitman  <shura@gramps-project.org>
 	* src/Merge/_MergePerson.py: Use new child_ref API.

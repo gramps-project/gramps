@@ -1841,7 +1841,7 @@ def born_str(database,person,person_name=None,empty_date="",empty_place=""):
 
     if bdate:
         if bdate_mod:
-            if dplace:
+            if bplace:
                 text = born_modified_date_with_place[name_index][gender] % value_map
             else:
                 text = born_modified_date_no_place[name_index][gender] % value_map
