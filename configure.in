@@ -228,7 +228,6 @@ src/data/templates/Makefile
 data/Makefile
 data/man/Makefile
 data/man/fr/Makefile
-debian/Makefile
 example/Makefile
 example/gramps/Makefile
 ])
