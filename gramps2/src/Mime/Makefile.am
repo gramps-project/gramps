@@ -8,6 +8,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/Mime
 pkgdata_PYTHON = \
 	__init__.py\
 	_GnomeMime.py\
+	_WinMime.py\
 	_PythonMime.py
 
 pkgpyexecdir = @pkgpyexecdir@/Mime
