@@ -1,3 +1,6 @@
+2006-07-25  Brian Matherly  <brian@gramps-project.org>
+	* src/Mime/Makefile.am: Add WinMime.py
+
 2006-07-25  Alex Roitman  <shura@gramps-project.org>
 	* src/Merge/_MergePerson.py: Use new child_ref API.
 	* src/FilterEditor/_EditRule.py (MySelect.get_text): Dirty hack to
