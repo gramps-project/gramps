@@ -1,3 +1,8 @@
+2006-07-26  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Remove debian/Makefile from the list.
+	* Makefile.am (SUBDIRS): Remove debian from the list.
+	* debian/Makefile.am: Remove from SVN.
+
 2006-07-25  Brian Matherly  <brian@gramps-project.org>
 	* src/Mime/Makefile.am: Add WinMime.py
 	* src/ReportBase/_ReportUtils.py: fix born_str typo (bug #266)
