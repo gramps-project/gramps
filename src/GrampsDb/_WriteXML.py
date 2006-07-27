@@ -70,7 +70,7 @@ except:
     _gzip_ok = 0
 
 
-_xml_version = "1.1.0"
+_xml_version = "1.1.1"
 
 #-------------------------------------------------------------------------
 #
@@ -356,9 +356,10 @@ class XmlWriter(UpdateCallback):
     def write_name_formats(self):
         if len(self.db.name_formats) > 0:
             self.g.write("  <name-formats>\n")
-            for number,name,fmt_str in self.db.name_formats:
-                self.g.write('%s<format number="%d" name="%s" fmt_str="%s"/>\n'
-                             % ('    ',number,name,fmt_str) )
+            for number,name,fmt_str,active in self.db.name_formats:
+                self.g.write('%s<format number="%d" name="%s" '
+                             'fmt_str="%s" active="%d"/>\n'
+                             % ('    ',number,name,fmt_str,int(active)) )
             self.g.write("  </name-formats>\n")
 
     def fix(self,line):

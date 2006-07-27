@@ -31,7 +31,7 @@
 
 <grammar
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"  
-  ns="http://gramps-project.org/xml/1.1.0/"
+  ns="http://gramps-project.org/xml/1.1.1/"
   xmlns="http://relaxng.org/ns/structure/1.0">
 
   <start><element name="database">
@@ -98,6 +98,11 @@
           </element></zeroOrMore>
       </element></optional>
 
+      <optional><element name="name-formats">
+          <zeroOrMore><element name="format">
+              <ref name="format-content"/>
+          </element></zeroOrMore>
+      </element></optional>
   </element></start>
 
   <define name="researcher-content">
@@ -431,6 +436,16 @@
     <attribute name="hlink"><data type="IDREF"/></attribute>
   </define>
   
+  <define name="format-content">
+    <attribute name="number"><text/></attribute>
+    <attribute name="name"><text/></attribute>
+    <attribute name="fmt_str"><text/></attribute>
+    <optional><attribute name="active"><choice>
+        <value>0</value>
+        <value>1</value>
+    </choice></attribute></optional>
+  </define>
+
   <define name="note-content">
     <optional><attribute name="format"><choice>
         <value>0</value>
