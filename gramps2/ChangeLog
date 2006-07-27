@@ -1,3 +1,9 @@
+2006-07-26  Steve Hall  <digitect@mindspring.org>
+	* windows/nsis/gramps-build.bat: Add windows building scripts.
+	* windows/nsis/gramps.nsi: Add windows building scripts.
+	* windows/nsis/gcheck.py: Add windows building scripts.
+	* windows/nsis/ped24.ico: Add windows icon.
+
 2006-07-26  Alex Roitman  <shura@gramps-project.org>
 	* configure.in: Remove debian/Makefile from the list.
 	* Makefile.am (SUBDIRS): Remove debian from the list.
