@@ -46,6 +46,12 @@
         </element></optional>
       </element>
 
+      <optional><element name="name-formats">
+          <zeroOrMore><element name="format">
+              <ref name="format-content"/>
+          </element></zeroOrMore>
+      </element></optional>
+
       <optional><element name="events">
           <zeroOrMore><element name="event">
               <ref name="event-content"/>
@@ -98,11 +104,6 @@
           </element></zeroOrMore>
       </element></optional>
 
-      <optional><element name="name-formats">
-          <zeroOrMore><element name="format">
-              <ref name="format-content"/>
-          </element></zeroOrMore>
-      </element></optional>
   </element></start>
 
   <define name="researcher-content">

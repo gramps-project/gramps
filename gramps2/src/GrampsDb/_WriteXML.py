@@ -230,6 +230,10 @@ class XmlWriter(UpdateCallback):
         self.g.write("    </researcher>\n")
         self.g.write("  </header>\n")
 
+        # First write name formats: we need to know all formats
+        # by the time we get to person's names
+        self.write_name_formats()
+
         if event_len > 0:
             self.g.write("  <events>\n")
             sorted_keys = self.db.get_gramps_ids(EVENT_KEY)
@@ -309,9 +313,6 @@ class XmlWriter(UpdateCallback):
 
         # Data is written, now write bookmarks.
         self.write_bookmarks()
-
-        # Also write name formats
-        self.write_name_formats()
 
         self.g.write("</database>\n")
 

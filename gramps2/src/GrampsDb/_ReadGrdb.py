@@ -41,6 +41,7 @@ from _GrampsBSDDB import GrampsBSDDB
 from QuestionDialog import ErrorDialog
 from Errors import HandleError
 from BasicUtils import UpdateCallback
+import NameDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -75,7 +76,16 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
                         _("The Database version is not supported "
                           "by this version of GRAMPS."))
         return
-        
+
+    # If other_database contains its custom name formats,
+    # we need to do tricks to remap the format numbers
+    if len(other_database.name_formats) > 0:
+        formats_map = remap_name_formats(database,other_database)
+        NameDisplay.displayer.register_custom_formats(database.name_formats)
+        get_person = make_peron_name_remapper(other_database,formats_map)
+    else:
+        # No remapping necessary, proceed as usual
+        get_person = other_database.get_person_from_handle
 
     # Prepare table and method definitions
     tables = {
@@ -84,7 +94,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
                     'add_obj' : database.add_person,
                     'find_next_gramps_id' :database.find_next_person_gramps_id,
                     'other_get_from_handle':
-                    other_database.get_person_from_handle,
+                    get_person,
                     'other_table': other_database.person_map,                  
                     },
         'Family' : {'table' :  database.family_map,
@@ -216,3 +226,37 @@ def import_table(id_table,add_obj,find_next_gramps_id,
             obj.gramps_id = gramps_id
         add_obj(obj,trans)
         uc.update()
+
+def remap_name_formats(database,other_database):
+    formats_map = {}
+    taken_numbers = [num for (num,name,fmt_str,active)
+                     in database.name_formats]
+    for (number,name,fmt_str,act) in other_database.name_formats:
+        if number in taken_numbers:
+            new_number = -1
+            while new_number in taken_numbers:
+                new_number -= 1
+            taken_numbers.append(new_number)
+            formats_map[number] = new_number
+        else:
+            new_number = number
+        database.name_formats.append((new_number,name,fmt_str,act))
+    return formats_map
+
+def remap_name(person,formats_map):
+    for name in [person.primary_name] + person.alternate_names:
+        try:
+            name.sort_as = formats_map[name.sort_as]
+        except KeyError:
+            pass
+        try:
+            name.display_as = formats_map[name.display_as]
+        except KeyError:
+            pass
+
+def make_peron_name_remapper(other_database,formats_map):
+    def new_get_person(handle):
+        person = other_database.get_person_from_handle(handle)
+        remap_name(person,formats_map)
+        return person
+    return new_get_person

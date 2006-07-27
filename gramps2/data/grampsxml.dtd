@@ -51,8 +51,8 @@ DATABASE
 	bookmarks
 -->
 
-<!ELEMENT database (header, events?, people?, families?, sources?, places?,
-                    objects?, repositories?, bookmark?, name-formats?)>
+<!ELEMENT database (header, name-formats?, events?, people?, families?,
+                    sources?, places?, objects?, repositories?, bookmark?)>
 <!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.1.1/">
 
 <!--	************************************************************
