@@ -290,12 +290,15 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             index += 1
 
         # add all the custom formats loaded from the db to the list
-        for num,name,fmt_str in _nd.CUSTOM_FORMATS:
-            self.examplename.set_display_as(num)
-            name_format_model.append(
-                row=[num, name, fmt_str, _nd.display_name(self.examplename)])
-            name_format_model_index[num] = index
-            index += 1
+        for num,name,fmt_str,act in _nd.CUSTOM_FORMATS:
+            if act:
+                self.examplename.set_display_as(num)
+                name_format_model.append(
+                    row=[num, name, fmt_str, _nd.display_name(self.examplename)])
+                name_format_model_index[num] = index
+                index += 1
+            else:
+                name_format_model_index[num] = -1
             
         return (name_format_model, name_format_model_index)
 
@@ -359,7 +362,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         """
         Preset name format ComboBox callback
 
-        Saves the new default to gconf and NameDisplay's fn_array
+        Save the new default to gconf and NameDisplay's fn_array
         """
         the_list = obj.get_model()
         the_iter = the_list.get_iter(obj.get_active())
@@ -371,8 +374,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         """
         Name format editor TreeView callback
         
-        Remebers the selected row's values (self.selected_fmt, self.iter)
-        and sets the Remove and Edit button sensitivity
+        Remember the values of the selected row (self.selected_fmt, self.iter)
+        and set the Remove and Edit button sensitivity
         """
         model,self.iter = tree_selection.get_selected()
         if self.iter == None:
@@ -404,6 +407,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                     i -= 1
                 self.fmt_model.append(row=[i,n,f,_nd.format_str(self.examplename,f)])
                 self.fmt_index[i] = len(self.fmt_model) - 1
+                num = i
             # ...or if we edited an existing one
             else:
                 if n != self.selected_fmt[COL_NAME] or \
@@ -413,37 +417,34 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                                        COL_FMT,f,
                                        COL_EXPL,e)
                     self.selected_fmt = (self.selected_fmt[COL_NUM],n,f,e)
-            self.register_fmt()
+                num = self.selected_fmt[COL_NUM]
+
+            self.register_fmt(num,n,f,1)
+            self.cb_name_changed(self.fmt_obox)
         
     def cb_del_fmt_str(self,obj):
         """
         Name format editor Remove button callback
         """
-        removed_idx = self.fmt_index[self.selected_fmt[COL_NUM]]
+        num = self.selected_fmt[COL_NUM]
+        removed_idx = self.fmt_index[num]
         # if the item to be deleted is selected in the combo
         if self.fmt_obox.get_active() == removed_idx:
             self.fmt_obox.set_active(self.fmt_index[Name.LNFN])
-        # delete the row from the index...
-        del(self.fmt_index[self.selected_fmt[COL_NUM]])
+        # mark the row deleted in the index
+        self.fmt_index[num] = -1
         for i in self.fmt_index.items():
             if i[1] > removed_idx:
                 self.fmt_index[i[0]] -= 1
-        # ...and from the model
+        # delete the row from the model
         self.fmt_model.remove(self.iter)
         # update the custom format registration in NameDisplay instance
-        self.register_fmt()
+        self.register_fmt(num,'','',0)
         
-    def register_fmt(self):
-        formats = []
-        iter = self.fmt_model.get_iter_first()
-        while iter:
-            (i,n,f) = self.fmt_model.get(iter,COL_NUM,COL_NAME,COL_FMT)
-            if i < 0:
-                formats.append((i,n,f))
-            iter = self.fmt_model.iter_next(iter)
-        self.dbstate.db.name_formats = formats
-        _nd.register_custom_formats(formats)
-            
+    def register_fmt(self,num,name,str,act):
+        _nd.update_custom_formats(num,name,str,act)
+        self.dbstate.db.name_formats = _nd.CUSTOM_FORMATS
+           
     def add_formats_panel(self):
         table = gtk.Table(3,8)
         table.set_border_width(12)

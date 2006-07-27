@@ -60,6 +60,7 @@ import ManagedWindow
 
 from PluginUtils import Tool, register_tool
 from QuestionDialog import OkDialog, MissingMediaDialog
+from NameDisplay import displayer as _nd
 
 #-------------------------------------------------------------------------
 #
@@ -163,6 +164,7 @@ class Check(Tool.BatchTool):
         checker = CheckIntegrity(dbstate, uistate, trans)
         checker.fix_encoding()
         checker.cleanup_missing_photos(cli)
+        checker.cleanup_deleted_name_formats()
             
         prev_total = -1
         total = 0
@@ -211,6 +213,7 @@ class CheckIntegrity:
         self.invalid_death_events = []
         self.invalid_place_references = []
         self.invalid_source_references = []
+        self.removed_name_format = []
         self.progress = Utils.ProgressMeter(_('Checking database'),'')
 
     def family_errors(self):
@@ -218,6 +221,59 @@ class CheckIntegrity:
                len(self.broken_links) + \
                len(self.empty_family) + \
                len(self.duplicate_links)
+
+    def cleanup_deleted_name_formats(self):
+        """
+        Permanently remove deleted name formats from db
+        
+        When user deletes custom name format those are not removed only marked
+        as "inactive". This method does the cleanup of the name format table,
+        as well as fixes the display_as, sort_as values for each Name in the db.
+
+        """
+        self.progress.set_pass(_('Looking for invalid name format references'),
+                               self.db.get_number_of_people())
+        
+        deleted_name_formats = [number for (number,name,fmt_str,act)
+                                in self.db.name_formats if not act]
+        
+        for person_handle in self.db.get_person_handles():
+            person = self.db.get_person_from_handle(person_handle)
+
+            p_changed = False
+            name = person.get_primary_name()
+            if name.get_sort_as() in deleted_name_formats:
+                name.set_sort_as(0)
+                p_changed = True
+            if name.get_display_as() in deleted_name_formats:
+                name.set_display_as(0)
+                p_changed = True
+            if p_changed:
+                person.set_primary_name(name)
+
+            a_changed = False
+            name_list = []
+            for name in person.get_alternate_names():
+                if name.get_sort_as() in deleted_name_formats:
+                    name.set_sort_as(0)
+                    a_changed = True
+                if name.get_display_as() in deleted_name_formats:
+                    name.set_display_as(0)
+                    a_changed = True
+                name_list.append(name)
+            if a_changed:
+                person.set_alternate_names(name_list)
+            
+            if p_changed or a_changed:
+                self.db.commit_person(person,self.trans)
+                self.removed_name_format.append(person_handle)
+                
+            self.progress.step()
+            
+        active_name_formats = [(i,n,s,act) for (i,n,s,act)
+                                in self.db.name_formats if act]
+        self.db.name_formats = active_name_formats
+        _nd.register_custom_formats(active_name_formats)
 
     def cleanup_duplicate_spouses(self):
 
@@ -754,6 +810,7 @@ class CheckIntegrity:
         person = birth_invalid + death_invalid
         place_references = len(self.invalid_place_references)
         source_references = len(self.invalid_source_references)
+        name_format = len(self.removed_name_format)
 
         errors = blink + efam + photos + rel + person \
                  + event_invalid + place_references + source_references
@@ -869,6 +926,11 @@ class CheckIntegrity:
             self.text.write(_("1 source was referenced but not found\n"))
         elif source_references > 1:
             self.text.write(_("%d sources were referenced, but not found\n") % source_references)
+        if name_format == 1:
+            self.text.write(_("1 invalid name format reference was removed\n"))
+        elif name_format > 1:
+            self.text.write(_("%d invalid name format references were removed\n")
+                            % name_format)
 
         return errors
 
