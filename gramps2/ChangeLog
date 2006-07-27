@@ -1,3 +1,18 @@
+2006-07-27  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (_load_metadata): Upgrade custom
+	name formats.
+	* src/GrampsDb/_ReadXML.py (start_format): Attempt parsing the
+	active state for the custom name format.
+	* src/GrampsDb/_WriteXML.py (write_name_formats): Write 4-tuple
+	custom name formats; 
+	(_xml_version): Output as version 1.1.1.
+	* data/grampsxml.rng: Update XML description for 1.1.1.
+	* data/grampsxml.dtd: Update XML description for 1.1.1.
+	* src/ViewManager.py (post_load_newdb): Revert changes (done on
+	the lower level).
+	* src/NameDisplay.py (register_custom_formats): Revert changes (done on
+	the lower level).
+
 2006-07-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/ViewManager.py (post_load_newdb): Upgrade path for different
 	grdb custom name format table versions

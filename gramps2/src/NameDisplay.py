@@ -119,19 +119,8 @@ class NameDisplay:
         self.raw_fn_array[0] = self.raw_fn_array[idx]
 
     def register_custom_formats(self,formats):
-        # magic is needed due to different name format table structure
-        # in different revisions:
-        # r <= 7082: (number, name, format_string)
-        # r >= 7083: (number, name, format_string, active)
-        self.CUSTOM_FORMATS = []
-        changed = False
-        for format in formats:
-            if len(format) == 3:
-                format = format + (1,)
-                changed = True
-            self.CUSTOM_FORMATS.append(format)
+        self.CUSTOM_FORMATS = formats[:]
         self.set_format_fn()
-        return changed
         
     def update_custom_formats(self,num,name,str,act):
         i = 0

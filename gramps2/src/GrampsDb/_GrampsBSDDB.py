@@ -384,6 +384,12 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
     def _load_metadata(self):
         # name display formats
         self.name_formats = self.metadata.get('name_formats',[])
+        # upgrade formats if they were saved in the old way
+        for format_ix in range(len(self.name_formats)):
+            format = self.name_formats[format_ix]
+            if len(format) == 3:
+                format = format + (True,)
+                self.name_formats[format_ix] = format
         # bookmarks
         self.bookmarks = self.metadata.get('bookmarks',[])
         self.family_bookmarks = self.metadata.get('family_bookmarks',[])

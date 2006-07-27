@@ -24,15 +24,15 @@
 -->
 
 <!--
-    This is the Document Type Definition file for v1.1.0 
+    This is the Document Type Definition file for v1.1.1 
     of the GRAMPS XML genealogy data format.
     Please use the following formal public identifier to identify it:
 
-    "-//GRAMPS//DTD GRAMPS XML V1.1.0//EN"
+    "-//GRAMPS//DTD GRAMPS XML V1.1.1//EN"
 
     For example:
-        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.1.0//EN"
-                "http://gramps-project.org/xml/1.1.0/grampsxml.dtd"
+        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.1.1//EN"
+                "http://gramps-project.org/xml/1.1.1/grampsxml.dtd"
                 [...]>
 -->
 
@@ -51,9 +51,9 @@ DATABASE
 	bookmarks
 -->
 
-<!ELEMENT database (header, events?, people?, families?, sources?, 
-                    places?, objects?, repositories?, bookmarks?)>
-<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.1.0/">
+<!ELEMENT database (header, events?, people?, families?, sources?, places?,
+                    objects?, repositories?, bookmark?, name-formats?)>
+<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.1.1/">
 
 <!--	************************************************************
 HEADER
@@ -310,6 +310,19 @@ BOOKMARKS
 <!ATTLIST bookmark 
         target (person|family|event|source|place|media|repository) #REQUIRED
         hlink  IDREF #REQUIRED
+>
+
+<!--	************************************************************
+NAME FORMATS
+-->
+
+<!ELEMENT name-formats (format)*>
+<!ELEMENT format EMPTY>
+<!ATTLIST format
+        number  CDATA #REQUIRED
+        name    CDATA #REQUIRED
+        fmt_str CDATA #REQUIRED
+        active  (0|1) #IMPLIED
 >
 
 <!--	************************************************************

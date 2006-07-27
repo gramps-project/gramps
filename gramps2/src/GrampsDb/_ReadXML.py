@@ -844,7 +844,8 @@ class GrampsParser(UpdateCallback):
         number = int(attrs['number'])
         name = attrs['name']
         fmt_str = attrs['fmt_str']
-        self.db.name_formats.append((number,name,fmt_str))
+        active = bool(attrs.get('active',True))
+        self.db.name_formats.append((number,name,fmt_str,active))
 
     def start_person(self,attrs):
         self.update(self.p.CurrentLineNumber)
