@@ -1,10 +1,12 @@
 2006-07-27  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_ReadGrdb.py: Re-map name formats on import.
 	* src/GrampsDb/_GrampsBSDDB.py (_load_metadata): Upgrade custom
 	name formats.
 	* src/GrampsDb/_ReadXML.py (start_format): Attempt parsing the
-	active state for the custom name format.
+	active state for the custom name format; re-map format numbers on
+	import.
 	* src/GrampsDb/_WriteXML.py (write_name_formats): Write 4-tuple
-	custom name formats; 
+	custom name formats; Write formats in the beginning of data;
 	(_xml_version): Output as version 1.1.1.
 	* data/grampsxml.rng: Update XML description for 1.1.1.
 	* data/grampsxml.dtd: Update XML description for 1.1.1.

@@ -329,6 +329,12 @@ class GrampsParser(UpdateCallback):
         self.smap = {}
         self.lmap = {}
         self.media_file_map = {}
+
+        # List of new name formats and a dict for remapping them
+        self.name_formats  = []
+        self.name_formats_map = {}
+        self.taken_name_format_numbers = [num for (num,name,fmt_str,active)
+                                          in self.db.name_formats]
         
         self.event = None
         self.eventref = None
@@ -611,6 +617,12 @@ class GrampsParser(UpdateCallback):
         self.p.CharacterDataHandler = self.characters
         self.p.ParseFile(file)
 
+        if len(self.name_formats) > 0:
+            # add new name formats to the existing table
+            self.db.name_formats += self.name_formats
+            # Register new formats
+            NameDisplay.displayer.register_custom_formats(self.db.name_formats)
+
         self.db.set_researcher(self.owner)
         if self.home != None:
             person = self.db.find_person_from_handle(self.home,self.trans)
@@ -845,8 +857,26 @@ class GrampsParser(UpdateCallback):
         name = attrs['name']
         fmt_str = attrs['fmt_str']
         active = bool(attrs.get('active',True))
-        self.db.name_formats.append((number,name,fmt_str,active))
 
+        if number in self.taken_name_format_numbers:
+            number = self.remap_name_format(number)
+
+        self.name_formats.append((number,name,fmt_str,active))
+
+    def remap_name_format(self,old_number):
+        if self.name_formats_map.has_key(old_number): # This should not happen
+            return self.name_formats_map[old_number]
+        # Find the lowest new number not taken yet:
+        new_number = -1
+        while new_number in self.taken_name_format_numbers:
+            new_number -= 1
+        # Add this to the taken list
+        self.taken_name_format_numbers.append(new_number)
+        # Set up the mapping entry
+        self.name_formats_map[old_number] = new_number
+        # Return new number
+        return new_number
+        
     def start_person(self,attrs):
         self.update(self.p.CurrentLineNumber)
         new_id = self.map_gid(attrs['id'])
@@ -1025,8 +1055,19 @@ class GrampsParser(UpdateCallback):
             self.name.set_private = bool(attrs.get("priv"))
             self.alt_name = bool(attrs.get("alt"))
             try:
-                self.name.sort_as = int(attrs["sort"])
-                self.name.display_as = int(attrs["display"])
+                sort_as = int(attrs["sort"])
+                display_as = int(attrs["display"])
+
+                # check if these pointers need to be remapped
+                # and set the name attributes
+                if self.name_formats_map.has_key(sort_as):
+                    self.name.sort_as = self.name_formats_map[sort_as]
+                else:
+                    self.name.sort_as = sort_as
+                if self.name_formats_map.has_key(display_as):
+                    self.name.sort_as = self.name_formats_map[display_as]
+                else:
+                    self.name_display_as = display_as
             except KeyError:
                 pass
 
