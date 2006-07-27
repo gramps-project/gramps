@@ -97,12 +97,12 @@ class EditName(EditSecondary):
             self.group_as.force_value(self.obj.get_surname())
             
 
-        (number,name,fmt_str) =RelLib.Name.DEFAULT_FORMAT
+        (number,name,fmt_str) = RelLib.Name.DEFAULT_FORMAT
         format_list = [(name,number)]
         format_list += [(name,number) for (number,name,fmt_str)
                         in RelLib.Name.STANDARD_FORMATS]
-        format_list += [(name,number) for (number,name,fmt_str)
-                        in NameDisplay.displayer.CUSTOM_FORMATS]
+        format_list += [(name,number) for (number,name,fmt_str,act)
+                        in NameDisplay.displayer.CUSTOM_FORMATS if act]
             
         self.sort_as = MonitoredMenu(
             self.top.get_widget('sort_as'),

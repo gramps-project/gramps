@@ -50,16 +50,6 @@ _SORT      = 13
 _DISPLAY   = 14
 _CALL      = 15
 
-##-------------------------------------------------------------------------
-##
-## formats registration
-##
-##-------------------------------------------------------------------------
-##CUSTOM_FORMATS = []
-
-##def register_custom_formats(formats):
-    ##CUSTOM_FORMATS = formats[:]
-
 #-------------------------------------------------------------------------
 #
 # NameDisplay class
@@ -87,21 +77,9 @@ class NameDisplay:
         ##self.force_upper = use_upper
         
         self.CUSTOM_FORMATS = []
-
-        self.fn_array = {
-            ##Name.LNFN: self._lnfn,
-            ##Name.FNLN: self._fnln,
-            ##Name.PTFN: self._ptfn,
-            ##Name.FN:   self._fn,
-        }
-        
-        self.raw_fn_array = {
-            ##Name.LNFN: self._lnfn_raw,
-            ##Name.FNLN: self._fnln_raw,
-            ##Name.PTFN: self._ptfn_raw,
-            ##Name.FN:   self._fn_raw,
-        }
-        
+        self.gramps_format = Name.LNFN
+        self.fn_array = {}
+        self.raw_fn_array = {}
         self.set_format_fn()
         
         default_idx = Config.get(Config.NAME_FORMAT)
@@ -116,14 +94,19 @@ class NameDisplay:
         return lambda x: self.format_str_raw(x,fmt_str)
     
     def set_format_fn(self):
+        self.fn_array.clear()
+        self.raw_fn_array.clear()
         # Add standard formats to mappings
         for number,name,fmt_str in Name.STANDARD_FORMATS:
             self.fn_array[number] = self._format_fn(fmt_str)
             self.raw_fn_array[number] = self._format_raw_fn(fmt_str)
         # Add custom formats to the mappings
-        for number,name,fmt_str in self.CUSTOM_FORMATS:
-            self.fn_array[number] = self._format_fn(fmt_str)
-            self.raw_fn_array[number] = self._format_raw_fn(fmt_str)
+        for number,name,fmt_str,act in self.CUSTOM_FORMATS:
+            if act:
+                self.fn_array[number] = self._format_fn(fmt_str)
+                self.raw_fn_array[number] = self._format_raw_fn(fmt_str)
+                
+        self.set_format_default(self.gramps_format)
         
     def set_format_default(self,idx):
         # Add mappings for the gramps-prefs format
@@ -137,6 +120,19 @@ class NameDisplay:
 
     def register_custom_formats(self,formats):
         self.CUSTOM_FORMATS = formats[:]
+        self.set_format_fn()
+        
+    def update_custom_formats(self,num,name,str,act):
+        i = 0
+        while (i < len(self.CUSTOM_FORMATS) and 
+               self.CUSTOM_FORMATS[i][0] != num):
+            i += 1
+        
+        try:
+            self.CUSTOM_FORMATS[i] = (num,name,str,act)
+        except IndexError:
+            self.CUSTOM_FORMATS.append((num,name,str,act))
+            
         self.set_format_fn()
 
     ##def use_upper(self,upper):
@@ -381,7 +377,10 @@ class NameDisplay:
         @returns: Returns the L{Name} string representation
         @rtype: str
         """
-        return self.fn_array[name.sort_as](name)
+        idx = name.sort_as
+        if not self.fn_array.has_key(idx):
+            idx = 0
+        return self.fn_array[idx](name)
 
     def raw_sorted_name(self,raw_data):
         """
@@ -394,7 +393,10 @@ class NameDisplay:
         @returns: Returns the L{Name} string representation
         @rtype: str
         """
-        return self.raw_fn_array[raw_data[_SORT]](raw_data)
+        idx = raw_data[_SORT]
+        if not self.raw_fn_array.has_key(idx):
+            idx = 0        
+        return self.raw_fn_array[idx](raw_data)
 
     def display(self,person):
         """
@@ -439,7 +441,12 @@ class NameDisplay:
         """
         if name == None:
             return ""
-        return self.fn_array[name.display_as](name)
+
+        idx = name.display_as
+        if not self.fn_array.has_key(idx):
+            idx = 0
+        
+        return self.fn_array[idx](name)
 
     def display_given(self,person):
         name = person.get_primary_name()

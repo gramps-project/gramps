@@ -1,3 +1,10 @@
+2006-07-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/GrampsCfg.py: Custom name format support improvements.
+	* src/Editors/_EditName.py: Custom name format support improvements.
+	* src/NameDisplay.py: Custom name format support improvements.
+	* src/plugins/Check.py (cleanup_deleted_name_formats): Db cleanup of
+	deleted custom name format references.
+
 2006-07-26  Steve Hall  <digitect@mindspring.org>
 	* windows/nsis/gramps-build.bat: Add windows building scripts.
 	* windows/nsis/gramps.nsi: Add windows building scripts.
