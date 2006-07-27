@@ -1,4 +1,10 @@
 2006-07-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/ViewManager.py (post_load_newdb): Upgrade path for different
+	grdb custom name format table versions
+	* src/NameDisplay.py (register_custom_formats): Upgrade path for
+	different grdb custom name format table versions
+
+2006-07-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/GrampsCfg.py: Custom name format support improvements.
 	* src/Editors/_EditName.py: Custom name format support improvements.
 	* src/NameDisplay.py: Custom name format support improvements.

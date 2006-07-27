@@ -768,7 +768,9 @@ class ViewManager:
             self.state.db.set_researcher(owner)
 
         self.setup_bookmarks()
-        NameDisplay.displayer.register_custom_formats(self.state.db.name_formats)
+        
+        if NameDisplay.displayer.register_custom_formats(self.state.db.name_formats):
+            self.state.db.name_formats = NameDisplay.displayer.CUSTOM_FORMATS
         fmt_default = Config.get(Config.NAME_FORMAT)
         if fmt_default < 0:
             NameDisplay.displayer.set_format_default(fmt_default)
