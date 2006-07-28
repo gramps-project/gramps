@@ -599,7 +599,14 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             #    (referenced_object_class_name, referenced_object_handle))
             # so we need the first tuple to give us the type to compare
 
-            data = pickle.loads(data)
+            ### FIXME: this is a dirty hack that works without no
+            ### sensible explanation. For some reason, for a readonly
+            ### database, secondary index returns a primary table key
+            ### corresponding to the data, not the data.
+            if self.readonly:
+                data = self.reference_map.get(data)
+            else:
+                data = pickle.loads(data)
             if include_classes == None or \
                    KEY_TO_CLASS_MAP[data[0][0]] in include_classes:
                 yield (KEY_TO_CLASS_MAP[data[0][0]],data[0][1])
@@ -985,11 +992,19 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         vals.sort()
         return [item[1] for item in vals]
 
-    def _get_obj_from_gramps_id(self,val,tbl,class_init):
+    def _get_obj_from_gramps_id(self,val,tbl,class_init,prim_tbl):
         if tbl.has_key(str(val)):
             data = tbl.get(str(val),txn=self.txn)
             obj = class_init()
-            obj.unserialize(pickle.loads(data))
+            ### FIXME: this is a dirty hack that works without no
+            ### sensible explanation. For some reason, for a readonly
+            ### database, secondary index returns a primary table key
+            ### corresponding to the data, not the data.
+            if self.readonly:
+                tuple_data = prim_tbl.get(data,txn=self.txn)
+            else:
+                tuple_data = pickle.loads(data)
+            obj.unserialize(tuple_data)
             return obj
         else:
             return None
@@ -999,49 +1014,56 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         Finds a Person in the database from the passed gramps' ID.
         If no such Person exists, None is returned.
         """
-        return self._get_obj_from_gramps_id(val,self.id_trans,Person)
+        return self._get_obj_from_gramps_id(val,self.id_trans,Person,
+                                            self.person_map)
 
     def get_family_from_gramps_id(self,val):
         """
         Finds a Family in the database from the passed gramps' ID.
         If no such Family exists, None is return.
         """
-        return self._get_obj_from_gramps_id(val,self.fid_trans,Family)
+        return self._get_obj_from_gramps_id(val,self.fid_trans,Family,
+                                            self.family_map)
 
     def get_event_from_gramps_id(self,val):
         """
         Finds an Event in the database from the passed gramps' ID.
         If no such Family exists, None is returned.
         """
-        return self._get_obj_from_gramps_id(val,self.eid_trans,Event)
+        return self._get_obj_from_gramps_id(val,self.eid_trans,Event,
+                                            self.event_map)
 
     def get_place_from_gramps_id(self,val):
         """
         Finds a Place in the database from the passed gramps' ID.
         If no such Place exists, None is returned.
         """
-        return self._get_obj_from_gramps_id(val,self.pid_trans,Place)
+        return self._get_obj_from_gramps_id(val,self.pid_trans,Place,
+                                            self.place_map)
 
     def get_source_from_gramps_id(self,val):
         """
         Finds a Source in the database from the passed gramps' ID.
         If no such Source exists, None is returned.
         """
-        return self._get_obj_from_gramps_id(val,self.sid_trans,Source)
+        return self._get_obj_from_gramps_id(val,self.sid_trans,Source,
+                                            self.source_map)
 
     def get_object_from_gramps_id(self,val):
         """
         Finds a MediaObject in the database from the passed gramps' ID.
         If no such MediaObject exists, None is returned.
         """
-        return self._get_obj_from_gramps_id(val,self.oid_trans,MediaObject)
+        return self._get_obj_from_gramps_id(val,self.oid_trans,MediaObject,
+                                            self.media_map)
 
     def get_repository_from_gramps_id(self,val):
         """
         Finds a Repository in the database from the passed gramps' ID.
         If no such MediaObject exists, None is returned.
         """
-        return self._get_obj_from_gramps_id(val,self.rid_trans,Repository)
+        return self._get_obj_from_gramps_id(val,self.rid_trans,Repository,
+                                            self.repository_map)
 
     def _commit_base(self, obj, data_map, key, update_list, add_list,
                      transaction, change_time):
