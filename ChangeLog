@@ -2,6 +2,8 @@
 	* src/GrampsDb/_ReadGrdb.py: Re-map name formats on import.
 	* src/GrampsDb/_GrampsBSDDB.py (_load_metadata): Upgrade custom
 	name formats.
+	(find_backlink_handles): Work around readonly db problems;
+	(_get_obj_from_gramps_id): Work around readonly db problems.
 	* src/GrampsDb/_ReadXML.py (start_format): Attempt parsing the
 	active state for the custom name format; re-map format numbers on
 	import.
