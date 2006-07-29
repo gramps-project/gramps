@@ -1,3 +1,8 @@
+2006-07-29  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/NameDisplay.py (display_given): Cleanup
+	* src/Gramps.Cfg.py (NameFormatEditDlg.run): Verification of the
+	returned values
+
 2006-07-27  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_ReadGrdb.py: Re-map name formats on import.
 	* src/GrampsDb/_GrampsBSDDB.py (_load_metadata): Upgrade custom
