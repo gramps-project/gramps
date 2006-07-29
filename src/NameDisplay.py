@@ -450,10 +450,7 @@ class NameDisplay:
 
     def display_given(self,person):
         name = person.get_primary_name()
-        if name.patronymic:
-            return "%s %s" % (name.first_name, name.patronymic)
-        else:
-            return name.first_name
+        return self.format_str(person.get_primary_name(),'%f %y')
 
     def name_grouping(self,db,person):
         return self.name_grouping_name(db,person.primary_name)

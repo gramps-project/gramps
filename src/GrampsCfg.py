@@ -45,6 +45,7 @@ from NameDisplay import displayer as _nd
 from RelLib import Name
 import ManagedWindow
 from GrampsWidgets import *
+import QuestionDialog
 
 #-------------------------------------------------------------------------
 #
@@ -600,9 +601,22 @@ class NameFormatEditDlg:
         self.formatentry.set_text(self.fmt_str)
         
     def run(self):
-        self.response = self.dlg.run()
-        self.fmt_name = self.nameentry.get_text()
-        self.fmt_str = self.formatentry.get_text()
+        running = True
+        while running:
+            self.response = self.dlg.run()
+
+            running = False
+            self.fmt_name = self.nameentry.get_text()
+            self.fmt_str = self.formatentry.get_text()
+            
+            if self.response == gtk.RESPONSE_OK:
+                if self.fmt_name == '' and self.fmt_str == '':
+                    self.response = gtk.RESPONSE_CANCEL
+                elif (self.fmt_name == '') ^ (self.fmt_str == ''):
+                    QuestionDialog.ErrorDialog(
+                        _('Both Format name and definition have to be defined'),
+                        parent=self.dlg)
+                    running = True
                                     
         self.dlg.destroy()
         return (self.response, self.fmt_name, self.fmt_str)
