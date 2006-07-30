@@ -365,6 +365,7 @@ class ManagedWindow:
     def show(self):
         assert self.window, "ManagedWindow: self.window does not exist!"
         self.window.set_transient_for(self.parent_window)
+        self.opened = True
         self.window.show()
 
     def close(self,*obj):
@@ -374,6 +375,7 @@ class ManagedWindow:
         Takes care of closing children and removing itself from menu.
         """
         self.uistate.gwm.close_track(self.track)
+        self.opened = False
 
     def present(self):
         """
