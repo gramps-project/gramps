@@ -196,7 +196,7 @@ class EditMedia(EditPrimary):
         path = self.glade.get_widget('path').get_text()
 
         if path != self.obj.get_path():
-            mime = Mime.get_type(path)
+            mime = Mime.get_type(os.path.abspath(path))
             self.obj.set_mime_type(mime)
         self.obj.set_path(path)
 
