@@ -1,4 +1,8 @@
 2006-07-30  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Merge.py: Rename, because Merge module shadows this
+	plugin module.
+	* src/plugins/FindDupes.py: New module, to replace Merge.py;
+	(ShowMatches.on_do_merge_clicked): Use new Merge component.
 	* src/ViewManager.py (ViewManager.do_load_plugins): Catch exception;
 	(ViewManager.plugin_status): Catch exception.
 

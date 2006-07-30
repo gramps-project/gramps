@@ -48,7 +48,7 @@ import Utils
 import soundex
 import NameDisplay
 import ListModel
-import MergePeople
+from Merge import PersonCompare
 import GrampsDisplay
 import ManagedWindow
 from PluginUtils import Tool, register_tool
@@ -609,7 +609,7 @@ class ShowMatches(ManagedWindow.ManagedWindow):
         pn1 = self.db.get_person_from_handle(self.p1)
         pn2 = self.db.get_person_from_handle(self.p2)
 
-        MergePeople.Compare(self.dbstate,self.uistate,pn1,pn2,self.on_update)
+        PersonCompare(self.dbstate,self.uistate,pn1,pn2,self.on_update)
 
     def on_update(self):
         self.dellist[self.p2] = self.p1
