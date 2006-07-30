@@ -50,6 +50,7 @@ import Utils
 import BaseDoc
 import ODSDoc
 import const
+import Errors
 import DateHandler
 from QuestionDialog import WarningDialog
 from PluginUtils import Tool, register_tool
@@ -177,8 +178,11 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
 
     def filter_editor_clicked(self,obj):
         import FilterEditor
-        FilterEditor.FilterEditor('Person',const.custom_filters,
-                                  self.dbstate,self.uistate)
+        try:
+            FilterEditor.FilterEditor('Person',const.custom_filters,
+                                      self.dbstate,self.uistate)
+        except Errors.WindowActiveError:
+            pass
 
     def on_apply_clicked(self,obj):
         cfilter = self.filter_menu.get_active().get_data("filter")

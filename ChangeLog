@@ -1,4 +1,9 @@
 2006-07-29  Alex Roitman  <shura@gramps-project.org>
+	* src/PageView.py (PersonNavView.filter_editor): Catch exception.
+	* src/DataViews/_FamilyList.py (FamilyListView.filter_editor):
+	Catch exception.
+	* src/plugins/EventCmp.py (EventComparison.filter_editor_clicked):
+	Catch exception.
 	* src/ManagedWindow.py (ManagedWindow.show): Set opened flag;
 	(ManagedWindow.close): Unset opened flag.
 	* src/ViewManager.py (undo_history_close): Only close undo history
