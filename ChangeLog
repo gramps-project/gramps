@@ -1,3 +1,7 @@
+2006-07-30  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py (ViewManager.do_load_plugins): Catch exception;
+	(ViewManager.plugin_status): Catch exception.
+
 2006-07-29  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/changetype.glade: Update text warning.
 	* src/Editors/_EditMedia.py (EditMedia.save): Use absolute path
