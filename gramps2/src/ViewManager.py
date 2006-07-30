@@ -436,7 +436,14 @@ class ViewManager:
         error |= load_plugins(const.pluginsDir)
         error |= load_plugins(os.path.join(const.home_dir, "plugins"))
         if Config.get(Config.POP_PLUGIN_STATUS) and error:
-            PluginStatus.PluginStatus(self.state, self.uistate, [])
+            try:
+                PluginStatus.PluginStatus(self.state, self.uistate, [])
+            except Errors.WindowActiveError:
+                old_win = self.uistate.gwm.get_item_from_id(
+                    PluginStatus.PluginStatus)
+                old_win.close()
+                PluginStatus.PluginStatus(self.state,self.uistate, [])
+
         self.uistate.push_message(_('Ready'))
 
     def quit(self, obj=None):
@@ -537,7 +544,14 @@ class ViewManager:
 
     def plugin_status(self, obj):
         """Display Tip of the day"""
-        PluginStatus.PluginStatus(self.state, self.uistate, [])
+        try:
+            PluginStatus.PluginStatus(self.state, self.uistate, [])
+        except Errors.WindowActiveError:
+            old_win = self.uistate.gwm.get_item_from_id(
+                PluginStatus.PluginStatus)
+            old_win.close()
+            PluginStatus.PluginStatus(self.state,self.uistate, [])
+
 
     def about(self, obj):
         about = gtk.AboutDialog()
