@@ -100,11 +100,11 @@ class FamilyListView(PageView.ListView):
     def filter_editor(self,obj):
         from FilterEditor import FilterEditor
 
-        FilterEditor(
-            'Family',
-            const.custom_filters,
-            self.dbstate,
-            self.uistate)
+        try:
+            FilterEditor('Family',const.custom_filters,
+                         self.dbstate,self.uistate)
+        except Errors.WindowActiveError:
+            pass            
 
     def add_bookmark(self, obj):
         mlist = []

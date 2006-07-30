@@ -45,6 +45,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 import Config
 import TreeTips
 import Bookmarks
+import Errors
 from Filters import SearchBar
 import const
 
@@ -367,11 +368,11 @@ class PersonNavView(BookMarkView):
     def filter_editor(self,obj):
         from FilterEditor import FilterEditor
 
-        FilterEditor(
-            'Person',
-            const.custom_filters,
-            self.dbstate,
-            self.uistate)
+        try:
+            FilterEditor('Person',const.custom_filters,
+                         self.dbstate,self.uistate)
+        except Errors.WindowActiveError:
+            pass
 
     def fwd_clicked(self,obj,step=1):
         hobj = self.uistate.phistory
