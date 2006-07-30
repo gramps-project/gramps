@@ -1,4 +1,5 @@
 2006-07-29  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/changetype.glade: Update text warning.
 	* src/Editors/_EditMedia.py (EditMedia.save): Use absolute path
 	to determine mime type.
 	* src/PageView.py (PersonNavView.filter_editor): Catch exception.
