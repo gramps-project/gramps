@@ -103,13 +103,8 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         self._build_model()
         self._update_ui()
         
-        self.db_change_key = dbstate.connect('database-changed',self.close)
         self.selection.connect('changed',self._selection_changed)
         self.show()
-
-    def close(self,obj=None):
-        self.dbstate.disconnect(self.db_change_key)
-	self.window.destroy()
 
     def _selection_changed(self,obj):
         (model,node) = self.selection.get_selected()

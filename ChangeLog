@@ -1,3 +1,11 @@
+2006-07-29  Alex Roitman  <shura@gramps-project.org>
+	* src/ManagedWindow.py (ManagedWindow.show): Set opened flag;
+	(ManagedWindow.close): Unser opened flag.
+	* src/ViewManager.py (undo_history_close): Only close undo history
+	window if it is open.
+	* src/UndoHistory.py: (UndoHistory.__init__): Remove signal handling;
+	(UndoHistory.close): Remove method, use one from the parent class.
+
 2006-07-29  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/NameDisplay.py (display_given): Cleanup
 	* src/Gramps.Cfg.py (NameFormatEditDlg.run): Verification of the

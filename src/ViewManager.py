@@ -835,7 +835,8 @@ class ViewManager:
     def undo_history_close(self):
         try:
             # Try closing undo history window if it exists
-            self.undo_history_window.close()
+            if self.undo_history_window.opened:
+                self.undo_history_window.close()
         except AttributeError:
             # Let it go: history window does not exist
             pass
