@@ -1813,11 +1813,14 @@ class GedcomParser(UpdateCallback):
                     name = RelLib.EventType((RelLib.EventType.CUSTOM,matches[3]))
             event.set_type(name)
         else:
-            if not ged2gramps.has_key(matches[2]) and \
-               not ged2fam.has_key(matches[2]) and \
-               matches[2][0] != 'Y':
-                event.set_description(matches[2])
-
+            try:
+                if not ged2gramps.has_key(matches[2]) and \
+                       not ged2fam.has_key(matches[2]) and \
+                       matches[2][0] != 'Y':
+                    event.set_description(matches[2])
+            except IndexError:
+                pass
+                
     def func_event_privacy(self, matches, event, level):
         event.set_privacy(True)
 
