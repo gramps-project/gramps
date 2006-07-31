@@ -1,3 +1,6 @@
+2006-07-30  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PlaceView.py: add tooltip for map button
+
 2006-07-30  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/Merge.py: Rename, because Merge module shadows this
 	plugin module.

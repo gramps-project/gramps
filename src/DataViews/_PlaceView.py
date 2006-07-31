@@ -99,7 +99,8 @@ class PlaceView(PageView.ListView):
         self.add_action('FastMerge', None, _('_Merge'),
                         callback=self.fast_merge)
         self.add_action('GoogleMaps', gtk.STOCK_JUMP_TO, _('_Google Maps'),
-                        callback=self.google)
+                        callback=self.google,
+                        tip=_("Attempt to map location on Google Maps"))
 
     def google(self, obj):
         import GrampsDisplay
