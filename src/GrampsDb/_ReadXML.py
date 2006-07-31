@@ -621,7 +621,7 @@ class GrampsParser(UpdateCallback):
             # add new name formats to the existing table
             self.db.name_formats += self.name_formats
             # Register new formats
-            NameDisplay.displayer.register_custom_formats(self.db.name_formats)
+            NameDisplay.displayer.set_name_format(self.db.name_formats)
 
         self.db.set_researcher(self.owner)
         if self.home != None:

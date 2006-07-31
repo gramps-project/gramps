@@ -81,7 +81,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     # we need to do tricks to remap the format numbers
     if len(other_database.name_formats) > 0:
         formats_map = remap_name_formats(database,other_database)
-        NameDisplay.displayer.register_custom_formats(database.name_formats)
+        NameDisplay.displayer.set_name_format(database.name_formats)
         get_person = make_peron_name_remapper(other_database,formats_map)
     else:
         # No remapping necessary, proceed as usual

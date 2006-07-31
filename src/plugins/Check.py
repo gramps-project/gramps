@@ -237,6 +237,7 @@ class CheckIntegrity:
         deleted_name_formats = [number for (number,name,fmt_str,act)
                                 in self.db.name_formats if not act]
         
+        # remove the invalid references from all Name objects
         for person_handle in self.db.get_person_handles():
             person = self.db.get_person_from_handle(person_handle)
 
@@ -269,11 +270,12 @@ class CheckIntegrity:
                 self.removed_name_format.append(person_handle)
                 
             self.progress.step()
-            
-        active_name_formats = [(i,n,s,act) for (i,n,s,act)
-                                in self.db.name_formats if act]
-        self.db.name_formats = active_name_formats
-        _nd.register_custom_formats(active_name_formats)
+
+        # update the custom name name format table
+        for number in deleted_name_formats:
+            _nd.del_name_format(number)
+        self.db.name_formats = _nd.get_name_format(only_custom=True,
+                                                           only_active=False)            
 
     def cleanup_duplicate_spouses(self):
 
