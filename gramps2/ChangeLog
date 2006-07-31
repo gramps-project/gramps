@@ -1,3 +1,19 @@
+2006-07-31  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/NameDisplay.py: Rewrite in more object oriented way; Interface
+	change.
+	* src/ViewManager.py (post_load_newdb): Change of NameDisplay interface.
+	* src/GrampsDb/_ReadXML.py (parse): Change of NameDisplay interface.
+	* src/GrampsDb/_ReadGrdb.py (importData): Change of NameDisplay
+	interface.
+	* src/GrampsCfg.py: Change of NameDisplay interface; Name format Edit
+	and Add callbacks divided.
+	* src/RelLib/_Name.py: Default/standard name format definitions moved to
+	NameDisplay.
+	* src/Editors/_EditName.py (_setup_fields): Change of NameDisplay
+	interface.
+	* src/plugins/Check.py (cleanup_deleted_name_formats): Change of
+	NameDisplay interface.
+
 2006-07-30  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py: handle missing event type
 	* src/DataViews/_PlaceView.py: add tooltip for map button

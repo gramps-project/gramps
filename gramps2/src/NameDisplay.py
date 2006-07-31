@@ -50,6 +50,15 @@ _SORT      = 13
 _DISPLAY   = 14
 _CALL      = 15
 
+_ACT = True
+_INA = False
+
+_F_NAME = 0  # name of the format
+_F_FMT = 1   # the format string
+_F_ACT = 2   # if the format is active
+_F_FN = 3    # name format function
+_F_RAWFN = 4 # name format raw function
+
 #-------------------------------------------------------------------------
 #
 # NameDisplay class
@@ -65,27 +74,24 @@ class NameDisplay:
                   Name.get_first_name, Name.get_patronymic,
                   Name.get_first_name)
 
-    def __init__(self,use_upper=False):
-        """
-        Creates a new NameDisplay class.
-
-        @param use_upper: True indicates that the surname should be
-        displayed in upper case.
-        @type use_upper: bool
-        """
-
-        ##self.force_upper = use_upper
+    STANDARD_FORMATS = [
+        (Name.DEF,_("Default format (defined by GRAMPS preferences)"),'',_ACT),
+        (Name.LNFN,_("Family name, Given name Patronymic"),'%p %l, %f %y %s',_ACT),
+        (Name.FNLN,_("Given name Family name"),'%f %y %p %l %s',_ACT),
+        (Name.PTFN,_("Patronymic, Given name"),'%p %y, %s %f',_ACT),
+        (Name.FN,_("Given name"),'%f',_ACT)
+    ]
+    
+    def __init__(self):
+        self.name_formats = {}
+        self.set_name_format(self.STANDARD_FORMATS)
         
-        self.CUSTOM_FORMATS = []
-        self.gramps_format = Name.LNFN
-        self.fn_array = {}
-        self.raw_fn_array = {}
-        self.set_format_fn()
-        
-        default_idx = Config.get(Config.NAME_FORMAT)
-        if default_idx == 0:
-            default_idx = Name.LNFN        
-        self.set_format_default(default_idx)
+        self.default_format = Config.get(Config.NAME_FORMAT)
+        if self.default_format == 0:
+            self.default_format = Name.LNFN
+            Config.set(Config.NAME_FORMAT,self.default_format)
+            
+        self.set_default_format(self.default_format)
 
     def _format_fn(self,fmt_str):
         return lambda x: self.format_str(x,fmt_str)
@@ -93,196 +99,92 @@ class NameDisplay:
     def _format_raw_fn(self,fmt_str):
         return lambda x: self.format_str_raw(x,fmt_str)
     
-    def set_format_fn(self):
-        self.fn_array.clear()
-        self.raw_fn_array.clear()
-        # Add standard formats to mappings
-        for number,name,fmt_str in Name.STANDARD_FORMATS:
-            self.fn_array[number] = self._format_fn(fmt_str)
-            self.raw_fn_array[number] = self._format_raw_fn(fmt_str)
-        # Add custom formats to the mappings
-        for number,name,fmt_str,act in self.CUSTOM_FORMATS:
-            if act:
-                self.fn_array[number] = self._format_fn(fmt_str)
-                self.raw_fn_array[number] = self._format_raw_fn(fmt_str)
-                
-        self.set_format_default(self.gramps_format)
-        
-    def set_format_default(self,idx):
-        # Add mappings for the gramps-prefs format
-        if not self.fn_array.has_key(idx):
-            idx = Name.LNFN
-            # this should not happen if the default is kept in the db
-            
-        self.gramps_format = idx
-        self.fn_array[0] = self.fn_array[idx]
-        self.raw_fn_array[0] = self.raw_fn_array[idx]
+    def set_name_format(self,formats):
+        for (num,name,fmt_str,act) in formats:
+            self.name_formats[num] = (name,fmt_str,act,
+                                      self._format_fn(fmt_str),
+                                      self._format_raw_fn(fmt_str))
 
-    def register_custom_formats(self,formats):
-        self.CUSTOM_FORMATS = formats[:]
-        self.set_format_fn()
-        
-    def update_custom_formats(self,num,name,str,act):
-        i = 0
-        while (i < len(self.CUSTOM_FORMATS) and 
-               self.CUSTOM_FORMATS[i][0] != num):
-            i += 1
-        
-        try:
-            self.CUSTOM_FORMATS[i] = (num,name,str,act)
-        except IndexError:
-            self.CUSTOM_FORMATS.append((num,name,str,act))
-            
-        self.set_format_fn()
-
-    ##def use_upper(self,upper):
-        ##"""
-        ##Changes the NameDisplay class to enable or display the displaying
-        ##of surnames in upper case.
-        
-        ##@param upper: True indicates that the surname should be
-        ##displayed in upper case.
-        ##@type upper: bool
-        ##"""
-        ##self.force_upper = upper
-
-    def sort_string(self,name):
-        return u"%-25s%-30s%s" % (name.surname,name.first_name,name.suffix)
-
-    ##def _fn(self,name):
-        ##return self._fn_base(name.first_name)
-
-    ##def _fn_raw(self,raw_data):
-        ##first = raw_data[_FIRSTNAME]
-        ##return self._fn_base(first)
-
-    ##def _fn_base(self,first):
-        ##return first
-
-    ##def _ptfn(self,name):
-        ##"""
-        ##Prints the Western style first name, last name style.
-        ##Typically this is::
-
-           ##SurnamePrefix Patronymic SurnameSuffix, FirstName
-        ##"""
-
-        ##return self._ptfn_base(name.first_name,name.suffix,
-                               ##name.prefix,name.patronymic)
-
-    ##def _ptfn_raw(self,raw_data):
-        ##"""
-        ##Prints the Western style first name, last name style.
-        ##Typically this is::
-
-           ##SurnamePrefix Patronymic SurnameSuffix, FirstName
-        ##"""
-
-        ##first = raw_data[_FIRSTNAME]
-        ##suffix = raw_data[_SUFFIX]
-        ##prefix = raw_data[_PREFIX]
-        ##patronymic = raw_data[_PATRONYM]
-
-        ##return self._ptfn_base(first,suffix,prefix,patronymic)
-
-    ##def _ptfn_base(self,first,suffix,prefix,patronymic):
-        ##if self.force_upper:
-            ##last = patronymic.upper()
-        ##else:
-            ##last = patronymic
-            
-        ##if suffix:
-            ##if prefix:
-                ##return "%s %s %s, %s" % (prefix, last, suffix, first)
-            ##else:
-                ##return "%s %s, %s" % (last, suffix, first)
-        ##else:
-            ##if prefix:
-                ##return "%s %s, %s" % (prefix, last, first)
-            ##else:
-                ##return "%s, %s" % (last, first)
-        
-    ##def _fnln(self,name):
-        ##"""
-        ##Prints the Western style first name, last name style.
-        ##Typically this is::
-
-           ##FirstName Patronymic SurnamePrefix Surname SurnameSuffix
-        ##"""
-        ##return self._fnln_base(name.first_name,name.surname,name.suffix,
-                          ##name.prefix,name.patronymic)
-
-    ##def _fnln_raw(self,raw_data):
-        ##"""
-        ##Prints the Western style first name, last name style.
-        ##Typically this is::
-
-           ##FirstName Patronymic SurnamePrefix Surname SurnameSuffix
-        ##"""
-        ##first = raw_data[_FIRSTNAME]
-        ##surname = raw_data[_SURNAME]
-        ##suffix = raw_data[_SUFFIX]
-        ##prefix = raw_data[_PREFIX]
-        ##patronymic = raw_data[_PATRONYM]
-        ##return self._fnln_base(first,surname,suffix,prefix,patronymic)
-
-    ##def _fnln_base(self,first,surname,suffix,prefix,patronymic):
-        ##if patronymic:
-            ##first = "%s %s" % (first, patronymic)
-
-        ##if self.force_upper:
-            ##last = surname.upper()
-        ##else:
-            ##last = surname
-            
-        ##if suffix:
-            ##if prefix:
-                ##return "%s %s %s, %s" % (first, prefix, last, suffix)
-            ##else:
-                ##return "%s %s, %s" % (first, last, suffix)
-        ##else:
-            ##if prefix:
-                ##return "%s %s %s" % (first, prefix, last)
-            ##else:
-                ##return "%s %s" % (first, last)
-
-    ##def _lnfn(self,name):
-        ##"""
-        ##Prints the Western style last name, first name style.
-        ##Typically this is::
-
-            ##SurnamePrefix Surname, FirstName Patronymic SurnameSuffix
-        ##"""
-        ##return self._lnfn_base(name.first_name,name.surname,name.prefix,
-                               ##name.suffix,name.patronymic)
-
-    ##def _lnfn_raw(self,raw_data):
-        ##"""
-        ##Prints the Western style last name, first name style.
-        ##Typically this is::
-
-            ##SurnamePrefix Surname, FirstName Patronymic SurnameSuffix
-        ##"""
-
-        ##surname = raw_data[_SURNAME]
-        ##prefix = raw_data[_PREFIX]
-        ##first = raw_data[_FIRSTNAME]
-        ##patronymic = raw_data[_PATRONYM]
-        ##suffix = raw_data[_SUFFIX]
-
-        ##return self._lnfn_base(first,surname,prefix,suffix,patronymic)
-
-    ##def _lnfn_base(self,first,surname,prefix,suffix,patronymic):
-        ##if self.force_upper:
-            ##last = surname.upper()
-        ##else:
-            ##last = surname
-
-        ##if last:
-            ##last += ","
-
-        ##return " ".join([prefix, last, first, patronymic, suffix])
+    def add_name_format(self,name,fmt_str):
+        num = -1
+        while num in self.name_formats:
+            num -= 1
+        self.set_name_format([(num,name,fmt_str,_ACT)])
+        return num
     
+    def edit_name_format(self,num,name,fmt_str):
+        self.set_name_format([(num,name,fmt_str,_ACT)])
+        if self.default_format == num:
+            self.set_default_format(num)
+        
+    def del_name_format(self,num):
+        try:
+            del self.name_formats[num]
+        except:
+            pass
+        
+    def set_default_format(self,num):
+        if num not in self.name_formats:
+            num = Name.LNFN
+            
+        self.default_format = num
+        
+        self.name_formats[Name.DEF] = (self.name_formats[Name.DEF][_F_NAME],
+                                       self.name_formats[Name.DEF][_F_FMT],
+                                       self.name_formats[Name.DEF][_F_ACT],
+                                       self.name_formats[num][_F_FN],
+                                       self.name_formats[num][_F_RAWFN])
+    
+    def get_default_format(self):
+        return self.default_format
+
+    def set_format_inactive(self,num):
+        try:
+            self.name_formats[num] = (self.name_formats[num][_F_NAME],
+                                      self.name_formats[num][_F_FMT],
+                                      _INA,
+                                      self.name_formats[num][_F_FN],
+                                      self.name_formats[num][_F_RAWFN])
+        except:
+            pass
+        
+    def get_name_format(self,also_default=False,
+                        only_custom=False,
+                        only_active=True):
+        """
+        Get a list of tuples (num,name,fmt_str,act)
+        """
+        the_list = []
+
+        keys = self.name_formats.keys()
+        keys.sort(self._sort_name_format)
+        
+        for num in keys:
+            if ((also_default or num) and
+                (not only_custom or (num < 0)) and
+                (not only_active or self.name_formats[num][_F_ACT])):
+                the_list.append((num,) + self.name_formats[num][_F_NAME:_F_FN])
+
+        return the_list
+
+    def _sort_name_format(self,x,y):
+        if x<0:
+            if y<0: return x+y
+            else: return -x+y
+        else:
+            if y<0: return -x+y
+            else: return x-y
+        
+    def _is_format_valid(self,num):
+        try:
+            if not self.name_formats[num][_F_ACT]:
+                num = 0
+        except:
+            num = 0    
+        return num
+
+    #-------------------------------------------------------------------------
+
     def format_str(self,name,format_str):
         return self._format_str_base(name.first_name,name.surname,name.prefix,
                                      name.suffix,name.patronymic,name.title,
@@ -349,6 +251,11 @@ class NameDisplay:
             namestr += output[i]
                     
         return namestr.strip()
+    
+    #-------------------------------------------------------------------------    
+
+    def sort_string(self,name):
+        return u"%-25s%-30s%s" % (name.surname,name.first_name,name.suffix)
 
     def sorted(self,person):
         """
@@ -377,10 +284,8 @@ class NameDisplay:
         @returns: Returns the L{Name} string representation
         @rtype: str
         """
-        idx = name.sort_as
-        if not self.fn_array.has_key(idx):
-            idx = 0
-        return self.fn_array[idx](name)
+        id = self._is_format_valid(name.sort_as)
+        return self.name_formats[id][_F_FN](name)
 
     def raw_sorted_name(self,raw_data):
         """
@@ -393,10 +298,8 @@ class NameDisplay:
         @returns: Returns the L{Name} string representation
         @rtype: str
         """
-        idx = raw_data[_SORT]
-        if not self.raw_fn_array.has_key(idx):
-            idx = 0        
-        return self.raw_fn_array[idx](raw_data)
+        id = self._is_format_valid(raw_data[_SORT])
+        return self.name_formats[id][_F_RAWFN](raw_data)
 
     def display(self,person):
         """
@@ -442,11 +345,8 @@ class NameDisplay:
         if name == None:
             return ""
 
-        idx = name.display_as
-        if not self.fn_array.has_key(idx):
-            idx = 0
-        
-        return self.fn_array[idx](name)
+        id = self._is_format_valid(name.display_as)
+        return self.name_formats[id][_F_FN](name)
 
     def display_given(self,person):
         name = person.get_primary_name()

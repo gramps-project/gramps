@@ -61,16 +61,6 @@ class Name(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase):
     PTFN = 3  # patronymic first name
     FN   = 4  # first name
 
-    DEFAULT_FORMAT = \
-        (DEF,_("Default format (defined by GRAMPS preferences)"),'')
-
-    STANDARD_FORMATS = [
-        (LNFN, _("Family name, Given name Patronymic"),'%p %l, %f %y %s'),
-        (FNLN, _("Given name Family name"),'%f %y %p %l %s'),
-        (PTFN, _("Patronymic, Given name"),'%p %y, %s %f'),
-        (FN,   _("Given name"),'%f')
-    ]
-    
     def __init__(self,source=None,data=None):
         """creates a new Name instance, copying from the source if provided"""
         SecondaryObject.__init__(self)
