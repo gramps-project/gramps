@@ -208,15 +208,15 @@ class UndoHistory(ManagedWindow.ManagedWindow):
 
     def _build_model(self):
         self.model.clear()
-
-        if self.db.abort_possible:
-            mod_text = _('Database opened')
-        else:
-            mod_text = _('History cleared')
-        time_text = time.ctime(self.db.undo_history_timestamp)
-
         fg = bg = None
-        self.model.append(row=[time_text,mod_text,fg,bg])
+
+        if self.db.undo_history_timestamp:
+            if self.db.abort_possible:
+                mod_text = _('Database opened')
+            else:
+                mod_text = _('History cleared')
+            time_text = time.ctime(self.db.undo_history_timestamp)           
+            self.model.append(row=[time_text,mod_text,fg,bg])
 
         # Get the not-None portion of transaction list
         translist = [item for item in self.db.translist if item]
