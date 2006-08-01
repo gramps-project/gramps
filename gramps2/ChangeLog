@@ -1,4 +1,6 @@
 2006-08-01  Alex Roitman  <shura@gramps-project.org>
+	* src/NameDisplay.py: Rename local var id -> num
+	to avoid collission with the builtin function id().
 	* src/GrampsDb/_GrampsBSDDB.py (set_name_group_mapping): Use
 	transaction.
 

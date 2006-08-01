@@ -284,8 +284,8 @@ class NameDisplay:
         @returns: Returns the L{Name} string representation
         @rtype: str
         """
-        id = self._is_format_valid(name.sort_as)
-        return self.name_formats[id][_F_FN](name)
+        num = self._is_format_valid(name.sort_as)
+        return self.name_formats[num][_F_FN](name)
 
     def raw_sorted_name(self,raw_data):
         """
@@ -298,8 +298,8 @@ class NameDisplay:
         @returns: Returns the L{Name} string representation
         @rtype: str
         """
-        id = self._is_format_valid(raw_data[_SORT])
-        return self.name_formats[id][_F_RAWFN](raw_data)
+        num = self._is_format_valid(raw_data[_SORT])
+        return self.name_formats[num][_F_RAWFN](raw_data)
 
     def display(self,person):
         """
@@ -345,8 +345,8 @@ class NameDisplay:
         if name == None:
             return ""
 
-        id = self._is_format_valid(name.display_as)
-        return self.name_formats[id][_F_FN](name)
+        num = self._is_format_valid(name.display_as)
+        return self.name_formats[num][_F_FN](name)
 
     def display_given(self,person):
         name = person.get_primary_name()
