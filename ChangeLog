@@ -1,3 +1,9 @@
+2006-08-01  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: use grouping name
+	* src/NameDisplay.py: Add grouping from data instead of just Name
+	instance, handle Name.DEF
+	* src/DisplayModels/_PeopleModel.py: use grouping name
+
 2006-08-01  Alex Roitman  <shura@gramps-project.org>
 	* src/NameDisplay.py: Rename local var id -> num
 	to avoid collission with the builtin function id().
