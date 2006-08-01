@@ -1,3 +1,7 @@
+2006-07-31  Alex Roitman  <shura@gramps-project.org>
+	* src/UndoHistory.py (UndoHistory._build_model): Only show the
+	initial entry is database is really opened.
+
 2006-07-31  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/NameDisplay.py: Rewrite in more object oriented way; Interface
 	change.
