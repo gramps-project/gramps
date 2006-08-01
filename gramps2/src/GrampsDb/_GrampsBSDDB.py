@@ -978,12 +978,21 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
 
     def set_name_group_mapping(self,name,group):
         if not self.readonly:
-            name = str(name)
-            data = self.name_group.get(name,txn=self.txn)
-            if not group and data:
-                self.name_group.delete(name,txn=self.txn)
+            if self.UseTXN:
+                # Start transaction if needed
+                the_txn = self.env.txn_begin()
             else:
-                self.name_group.put(name,group,txn=self.txn)
+                the_txn = None
+            name = str(name)
+            data = self.name_group.get(name,txn=the_txn)
+            if not group and data:
+                self.name_group.delete(name,txn=the_txn)
+            else:
+                self.name_group.put(name,group,txn=the_txn)
+            if self.UseTXN:
+                the_txn.commit()
+            else:
+                self.name_group.sync()
             self.emit('person-rebuild')
 
     def get_surname_list(self):
