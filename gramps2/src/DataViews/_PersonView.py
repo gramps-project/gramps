@@ -404,6 +404,7 @@ class PersonView(PageView.PersonNavView):
         try:
             if self.model and p:
                 path = self.model.on_get_path(p.get_handle())
+                
                 group_name = p.get_primary_name().get_group_name()
                 top_name = self.dbstate.db.get_name_group_mapping(group_name)
                 top_path = self.model.on_get_path(top_name)
@@ -651,7 +652,9 @@ class PersonView(PageView.PersonNavView):
             return
         for node in handle_list:
             person = self.dbstate.db.get_person_from_handle(node)
-            top = person.get_primary_name().get_group_name()
+            pn = person.get_primary_name()
+            top = NameDisplay.displayer.name_grouping_name(self.db, pn)
+            
             self.model.rebuild_data()
             if not self.model.is_visable(node):
                 continue

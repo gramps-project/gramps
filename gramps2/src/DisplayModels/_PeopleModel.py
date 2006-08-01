@@ -196,7 +196,7 @@ class PeopleModel(gtk.GenericTreeModel):
     def _build_search_sub(self,dfilter, skip):
         self.sortnames = {}
 
-        ngn = NameDisplay.displayer.name_grouping_name
+        ngn = NameDisplay.displayer.name_grouping_data
         nsn = NameDisplay.displayer.raw_sorted_name
 
         cursor = self.db.get_person_cursor()
@@ -206,18 +206,19 @@ class PeopleModel(gtk.GenericTreeModel):
             handle, d = node
             if not (handle in skip or (dfilter and not dfilter.match(handle))):
                 name_data = d[PeopleModel._NAME_COL]
-                self.sortnames[handle] = nsn(name_data)
+                sn = ngn(self.db, name_data)
+                self.sortnames[handle] = sn
                 try:
-                    self.temp_sname_sub[name_data[5]].append(handle)
+                    self.temp_sname_sub[sn].append(handle)
                 except:
-                    self.temp_sname_sub[name_data[5]] = [handle]
+                    self.temp_sname_sub[sn] = [handle]
             node = cursor.next()
         cursor.close()
 
     def _build_filter_sub(self,dfilter, skip):
         self.sortnames = {}
 
-        ngn = NameDisplay.displayer.name_grouping_name
+        ngn = NameDisplay.displayer.name_grouping_data
         nsn = NameDisplay.displayer.raw_sorted_name
 
         if dfilter:
@@ -229,11 +230,12 @@ class PeopleModel(gtk.GenericTreeModel):
             d = self.db.get_raw_person_data(handle)
             if not (handle in skip or (dfilter and not dfilter.match(handle))):
                 name_data = d[PeopleModel._NAME_COL]
-                self.sortnames[handle] = nsn(name_data)
+                sn = ngn(self.db, name_data)
+                self.sortnames[handle] = sn
                 try:
-                    self.temp_sname_sub[name_data[5]].append(handle)
+                    self.temp_sname_sub[sn].append(handle)
                 except:
-                    self.temp_sname_sub[name_data[5]] = [handle]
+                    self.temp_sname_sub[sn] = [handle]
         
     def calculate_data(self, dfilter=None, skip=[]):
         """
