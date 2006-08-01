@@ -130,7 +130,8 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         self.menu.set_menu(my_menu)
 
         window = top.get_widget('dialog')
-        self.set_window(window, top.get_widget('title'),_('Merge people'))
+        self.set_window(window, top.get_widget('title'),
+                        _('Find possible duplicate people'))
 
         top.signal_autoconnect({
             "on_merge_ok_clicked"   : self.on_merge_ok_clicked,
