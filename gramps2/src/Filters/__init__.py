@@ -50,7 +50,6 @@ if not SystemFilters:
 if not CustomFilters:
     reload_custom_filters()
 
-from _FilterWidget import FilterWidget
 from _FilterComboBox import FilterComboBox
 from _FilterMenu import build_filter_menu, build_filter_model
 from _FilterStore import FilterStore

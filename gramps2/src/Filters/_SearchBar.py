@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:$
+# $Id$
 
 """
 Package providing filtering framework for GRAMPS.
@@ -40,9 +40,10 @@ _RETURN = gtk.gdk.keyval_from_name("Return")
 #
 #-------------------------------------------------------------------------
 class SearchBar:
-    def __init__( self, uistate, on_apply, apply_done = None):
+    def __init__( self, dbstate, uistate, on_apply, apply_done = None):
         self.on_apply_callback = on_apply
         self.apply_done_callback = apply_done
+        self.dbstate = dbstate
         self.uistate = uistate
         self.apply_text = ''
         
@@ -138,7 +139,7 @@ class SearchBar:
         self.filter_button.set_sensitive(False)
         self.uistate.status_text(_('Updating display...'))
         self.on_apply_callback()
-        self.uistate.modify_statusbar()
+        self.uistate.modify_statusbar(self.dbstate)
 
     def show(self):
         self.filterbar.show()

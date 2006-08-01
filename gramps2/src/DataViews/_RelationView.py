@@ -104,7 +104,7 @@ class RelationshipView(PageView.PersonNavView):
 
     def shade_update(self, client, cnxn_id, entry, data):
         self.use_shade = Config.get(Config.RELATION_SHADE)
-        self.uistate.modify_statusbar()
+        self.uistate.modify_statusbar(self.dbstate)
         self.redraw()
 
     def build_tree(self):

@@ -252,7 +252,8 @@ class ViewManager:
 
         self.uistate = DisplayState.DisplayState(
             self.window, self.statusbar, self.progress, self.warnbtn, 
-            self.uimanager, self.state)
+            self.uimanager)
+        self.state.connect('database-changed', self.uistate.db_changed)
 
         toolbar = self.uimanager.get_widget('/ToolBar')
         openbtn = gtk.MenuToolButton(gtk.STOCK_OPEN)
@@ -273,7 +274,7 @@ class ViewManager:
                             )
         openbtn.show()
         
-        self.person_nav = Navigation.PersonNavigation(self.uistate)
+        self.person_nav = Navigation.PersonNavigation(self.state,self.uistate)
         self._navigation_type[PageView.NAVIGATION_PERSON] = (self.person_nav,
                                                              None)
         self.recent_manager = DisplayState.RecentDocsMenu(
@@ -404,7 +405,8 @@ class ViewManager:
         try:
             self.active_page.call_function(name)
         except:
-            self.uistate.push_message(_("Key %s is not bound") % name)
+            self.uistate.push_message(self.state,
+                                      _("Key %s is not bound") % name)
 
     def init_interface(self):
         self._init_lists()
@@ -421,7 +423,7 @@ class ViewManager:
                                  self.statusbar_key_update)
 
     def statusbar_key_update(self,client,cnxn_id,entry,data):
-        self.uistate.modify_statusbar()
+        self.uistate.modify_statusbar(self.state)
 
     def post_init_interface(self):
         # Showing the main window is deferred so that
@@ -444,7 +446,7 @@ class ViewManager:
                 old_win.close()
                 PluginStatus.PluginStatus(self.state,self.uistate, [])
 
-        self.uistate.push_message(_('Ready'))
+        self.uistate.push_message(self.state,_('Ready'))
 
     def quit(self, obj=None):
         self.state.db.close()
@@ -864,7 +866,8 @@ class ViewManager:
         if self.state.active:
             self.bookmarks.add(self.state.active.get_handle())
             name = NameDisplay.displayer.display(self.state.active)
-            self.uistate.push_message(_("%s has been bookmarked") % name)
+            self.uistate.push_message(self.state,
+                                      _("%s has been bookmarked") % name)
         else:
             QuestionDialog.WarningDialog(
                 _("Could Not Set a Bookmark"), 

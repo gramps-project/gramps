@@ -218,7 +218,8 @@ class BookMarkView(PageView):
         if self.dbstate.active:
             self.bookmarks.add(self.dbstate.active.get_handle())
             name = NameDisplay.displayer.display(self.dbstate.active)
-            self.uistate.push_message(_("%s has been bookmarked") % name)
+            self.uistate.push_message(self.dbstate,
+                                      _("%s has been bookmarked") % name)
         else:
             from QuestionDialog import WarningDialog
             WarningDialog(
@@ -362,6 +363,7 @@ class PersonNavView(BookMarkView):
                 self.dbstate.change_active_person(person)
             else:
                 self.uistate.push_message(
+                    self.dbstate,
                     _("Error: %s is not a valid GRAMPS ID") % gid)
         dialog.destroy()
 
@@ -381,7 +383,7 @@ class PersonNavView(BookMarkView):
             try:
                 handle = hobj.forward()
                 self.dbstate.change_active_handle(handle)
-                self.uistate.modify_statusbar()
+                self.uistate.modify_statusbar(self.dbstate)
                 hobj.mhistory.append(hobj.history[hobj.index])
                 self.fwd_action.set_sensitive(not hobj.at_end())
                 self.back_action.set_sensitive(True)
@@ -401,7 +403,7 @@ class PersonNavView(BookMarkView):
             try:
                 handle = hobj.back()
                 self.active = self.dbstate.db.get_person_from_handle(handle)
-                self.uistate.modify_statusbar()
+                self.uistate.modify_statusbar(self.dbstate)
                 self.dbstate.change_active_handle(handle)
                 hobj.mhistory.append(hobj.history[hobj.index])
                 self.back_action.set_sensitive(not hobj.at_front())
@@ -516,7 +518,7 @@ class ListView(BookMarkView):
         self.vbox.set_border_width(4)
         self.vbox.set_spacing(4)
         
-        self.search_bar = SearchBar(self.uistate, self.build_tree)
+        self.search_bar = SearchBar(self.dbstate,self.uistate, self.build_tree)
         filter_box = self.search_bar.build()
 
         self.list = gtk.TreeView()

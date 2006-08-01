@@ -226,7 +226,7 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
             self.uistate.window.window.set_cursor(None)
             self.window.window.set_cursor(None)
             self.uistate.pulse_progressbar(0)
-            self.uistate.modify_statusbar()
+            self.uistate.modify_statusbar(self.dbstate)
 
     def timestamp(self):
         return unicode(time.strftime('%x %X',time.localtime(time.time())))

@@ -1,3 +1,31 @@
+2006-07-31  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/_SearchBar.py (SearchBar.__init__): Take dbstate as
+	a constructor argument; (SearchBar.apply_filter): pass dbstate.
+	* src/PageView.py (BookMarkView.add_bookmark,
+	PersonNavView.jumpto, PersonNavView.fwd_clicked,
+	PersonNavView.back_clicked, ListView.build_widget): Pass dbstate.
+	* src/Navigation.py (BaseNavigation.__init__,
+	PersonNavigation.__init__): Take dbstate as a constructor argument;
+	(PersonNavigation.build_item_name): properly access dbstate.
+	* src/DisplayState.py (__init__): Do not take dbstate as a
+	constructor argument; Do not connect dbstate signal here (moved to
+	ViewManager);
+	(display_relationship,push_message,modify_statusbar): Make dbstate
+	an argument.
+	* src/plugins/Checkpoint.py (run_tool): Pass dbstate.
+	* src/ViewManager.py (_build_main_window): Do not pass dbstate to
+	uistate DisplayState constructor; connect dbstate signal handler;
+	pass dbstate to Navigation; (keypress): Pass dbstate;
+	(statusbar_key_update): Pass dbstate;
+	(do_load_plugins): Pass dbstate;
+	(ViewManager.add_bookmark): Pass dbstate.
+	* src/DataViews/_RelationView.py (shade_update): Pass dbstate.
+	* src/DataViews/_PersonView.py (build_widget,_goto,
+	key_goto_home_person, key_edit_selected_person): Pass dbstate.
+	* src/Filters/Makefile.am (pkgdata_PYTHON): Remove obsolete file.
+	* src/Filters/__init__.py: Remove importing obsolete module.
+	* src/Filters/_FilterWidget.py: Remove obsolete module.
+
 2006-07-31  Don Allingham  <don@gramps-project.org>
 	* src/plugins/FindDupes.py: Fix title (bug 314)
 	* src/plugins/merge.glade: change button name (bug 315)
