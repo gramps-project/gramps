@@ -250,9 +250,8 @@ class DisplayState(GrampsDb.GrampsDBCallback):
     __signals__ = {
         }
 
-    def __init__(self, window, status, progress, warnbtn, uimanager, dbstate):
+    def __init__(self, window, status, progress, warnbtn, uimanager):
         
-        self.dbstate = dbstate
         self.uimanager = uimanager
         self.window = window
         GrampsDb.GrampsDBCallback.__init__(self)
@@ -270,15 +269,17 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.log = logging.getLogger()
         self.log.setLevel(logging.WARN)
         self.log.addHandler(self.rh)
-        self.dbstate.connect('database-changed', self.db_changed)
+        # This call has been moved one level up,
+        # but this connection is still made!
+        # self.dbstate.connect('database-changed', self.db_changed)
         
     def db_changed(self, db):
         from PluginUtils import _PluginMgr
         self.relationship = _PluginMgr.relationship_class(db)
 
-    def display_relationship(self):
-        default_person = self.dbstate.db.get_default_person()
-        active = self.dbstate.get_active_person()
+    def display_relationship(self,dbstate):
+        default_person = dbstate.db.get_default_person()
+        active = dbstate.get_active_person()
         if default_person == None or active == None:
             return u''
 
@@ -311,22 +312,22 @@ class DisplayState(GrampsDb.GrampsDBCallback):
     def set_open_recent_menu(self,menu):
         self.widget.set_menu(menu)
 
-    def push_message(self, text):
+    def push_message(self, dbstate, text):
         self.status_text(text)
-        gobject.timeout_add(5000,self.modify_statusbar)
+        gobject.timeout_add(5000,self.modify_statusbar,dbstate)
 
-    def modify_statusbar(self,active=None):
+    def modify_statusbar(self,dbstate,active=None):
         self.status.pop(self.status_id)
-        if self.dbstate.active == None:
+        if dbstate.active == None:
             self.status.push(self.status_id,"")
         else:
-            person = self.dbstate.get_active_person()
+            person = dbstate.get_active_person()
             if person:
                 pname = NameDisplay.displayer.display(person)
                 name = "[%s] %s" % (person.get_gramps_id(),pname)
                 if Config.get(Config.STATUSBAR) > 1:
-                    if person.handle != self.dbstate.db.get_default_handle():
-                        msg = self.display_relationship()
+                    if person.handle != dbstate.db.get_default_handle():
+                        msg = self.display_relationship(dbstate)
                         if msg:
                             name = "%s (%s)" % (name,msg.strip())
             else:

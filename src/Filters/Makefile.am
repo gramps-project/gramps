@@ -11,7 +11,6 @@ pkgdata_PYTHON = \
 	_FilterMenu.py \
 	_FilterParser.py \
 	_FilterStore.py \
-	_FilterWidget.py \
 	_GenericFilter.py \
 	_ParamFilter.py \
 	__init__.py \

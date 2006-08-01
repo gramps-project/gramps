@@ -220,8 +220,8 @@ class PersonView(PageView.PersonNavView):
         self.vbox.set_border_width(4)
         self.vbox.set_spacing(4)
         
-        self.search_bar = SearchBar(
-            self.uistate, self.build_tree, self.goto_active_person)
+        self.search_bar = SearchBar(self.dbstate, self.uistate,
+                                    self.build_tree, self.goto_active_person)
         filter_box = self.search_bar.build()
         
         self.tree = gtk.TreeView()
@@ -417,7 +417,8 @@ class PersonView(PageView.PersonNavView):
                     self.tree.scroll_to_cell(path,None,1,0.5,0)
         except KeyError:
             self.selection.unselect_all()
-            self.uistate.push_message(_("Active person not visible"))
+            self.uistate.push_message(self.dbstate,
+                                      _("Active person not visible"))
             self.dbstate.active = p
         
     def setup_filter(self):
@@ -635,7 +636,7 @@ class PersonView(PageView.PersonNavView):
             self.tree.drag_source_set(BUTTON1_MASK,
                                       [DdTargets.PERSON_LINK_LIST.target()],
                                       ACTION_COPY)
-        self.uistate.modify_statusbar()
+        self.uistate.modify_statusbar(self.dbstate)
         
     def drag_data_get(self, widget, context, sel_data, info, time):
         selected_ids = self.get_selected_objects()
@@ -766,8 +767,10 @@ class PersonView(PageView.PersonNavView):
 
     def key_goto_home_person(self):
         self.home(None)
-        self.uistate.push_message(_("Go to default person"))
+        self.uistate.push_message(self.dbstate,
+                                  _("Go to default person"))
 
     def key_edit_selected_person(self):
         self.edit(None)
-        self.uistate.push_message(_("Edit selected person"))
+        self.uistate.push_message(self.dbstate,
+                                  _("Edit selected person"))

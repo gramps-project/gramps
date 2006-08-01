@@ -75,9 +75,10 @@ class BaseNavigation:
     self.func - array of functions to take action based off of.
     
     """
-    def __init__(self, uistate, history, title):
+    def __init__(self, dbstate, uistate, history, title):
         self.title = title
         self.ui = "".join(_top) + "".join(_btm)
+        self.dbstate = dbstate
         self.uistate = uistate
         self.action_group = gtk.ActionGroup(self.title)
         self.active = DISABLED
@@ -148,14 +149,15 @@ class PersonNavigation(BaseNavigation):
     """
     Builds a navigation item for the Person class.
     """
-    def __init__(self, uistate):
+    def __init__(self, dbstate, uistate):
         """
         Associates the functions with the associated items. Builds the function
         array so that there are unique functions for each possible index (0-9)
         The callback simply calls change_active_handle
         """
-        BaseNavigation.__init__(self, uistate, uistate.phistory, 'PersonHistory')
-        fcn_ptr = self.uistate.dbstate.change_active_handle
+        BaseNavigation.__init__(self, dbstate, uistate,
+                                uistate.phistory, 'PersonHistory')
+        fcn_ptr = self.dbstate.change_active_handle
         
         self.func = [ generate(fcn_ptr, self.items, index) \
                       for index in range(0, 10) ]
@@ -164,7 +166,7 @@ class PersonNavigation(BaseNavigation):
         """
         Builds a name in the format of 'NAME [GRAMPSID]'
         """
-        person = self.uistate.dbstate.db.get_person_from_handle(item)
+        person = self.dbstate.db.get_person_from_handle(item)
         return  "%s [%s]" % (NameDisplay.displayer.display(person),
                              person.gramps_id)
 
