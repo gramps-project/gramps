@@ -1,5 +1,6 @@
 2006-07-31  Alex Roitman  <shura@gramps-project.org>
-	* POTFILES.in: Remove obsolete file.
+	* POTFILES.in: Remove obsolete file;
+	reflect the name change of Merge -> FindDupes.
 
 2006-07-30  Alex Roitman  <shura@gramps-project.org>
 	* POTFILES.in: Add missing file.
