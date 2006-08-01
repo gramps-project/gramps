@@ -1,4 +1,5 @@
 2006-07-31  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Makefile.am (pkgdata_PYTHON): Remove unsupported reports.
 	* src/UndoHistory.py (UndoHistory._build_model): Only show the
 	initial entry is database is really opened.
 

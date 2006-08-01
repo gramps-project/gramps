@@ -6,11 +6,9 @@
 pkgdatadir = $(datadir)/@PACKAGE@/plugins
 
 pkgdata_PYTHON = \
-	AncestorChart.py\
 	AncestorChart2.py\
 	AncestorReport.py\
 	BookReport.py\
-	Ancestors.py\
 	Calendar.py \
 	ChangeTypes.py\
 	ChangeNames.py\
@@ -19,7 +17,6 @@ pkgdata_PYTHON = \
 	Desbrowser.py\
 	DescendReport.py\
 	DescendChart.py\
-	DesGraph.py\
 	DetAncestralReport.py\
 	DetDescendantReport.py\
 	EventCmp.py\
@@ -27,13 +24,10 @@ pkgdata_PYTHON = \
 	ExportVCard.py\
 	FamilyGroup.py\
 	FanChart.py\
-	FtmStyleAncestors.py\
-	FtmStyleDescendants.py\
 	GraphViz.py\
 	IndivComplete.py\
-	IndivSummary.py\
 	ImportvCard.py\
-	Merge.py\
+	FindDupes.py\
 	NarrativeWeb.py\
 	PatchNames.py\
 	ReadPkg.py\
