@@ -221,15 +221,6 @@ class EditEvent(EditPrimary):
             self.callback(self.obj)
         self.close()
 
-    def data_has_changed(self):
-        if self.db.readonly:
-            return False
-        elif self.obj.handle:
-            orig = self.db.get_event_from_handle(self.obj.handle)
-            return cmp(orig.serialize(),self.obj.serialize()) != 0
-        else:
-            return True
-
 class EditPersonEvent(EditEvent):
 
     def __init__(self, event, dbstate, uistate, track=[], callback=None):
