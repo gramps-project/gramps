@@ -36,6 +36,8 @@ from _MediaBase import MediaBase
 from _UrlBase import UrlBase
 from _Location import Location
 
+_EMPTY_LOC = Location().serialize()
+
 #-------------------------------------------------------------------------
 #
 # Place class
@@ -89,7 +91,8 @@ class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
             be considered persistent.
         @rtype: tuple
         """
-        if self.main_loc == None:
+
+        if self.main_loc == None or self.main_loc.serialize() == _EMPTY_LOC:
             main_loc = None
         else:
             main_loc = self.main_loc.serialize()

@@ -1,4 +1,6 @@
 2006-08-01  Don Allingham  <don@gramps-project.org>
+	* src/RelLib/_Place.py: Check for empty location
+	* src/Editors/_EditEvent.py: use default data change check
 	* src/DataViews/_PersonView.py: use grouping name
 	* src/NameDisplay.py: Add grouping from data instead of just Name
 	instance, handle Name.DEF
