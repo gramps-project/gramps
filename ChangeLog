@@ -1,4 +1,5 @@
 2006-08-03  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsLogger/_ErrorReportAssistant.py (build_page5): Typo.
 	* src/Filters/Rules/Person/_HasIdOf.py: Cleanup.
 	* src/Filters/Rules/Person/__init__.py (editor_rule_list): Add
 	RegExpIdOf.
