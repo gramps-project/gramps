@@ -1,15 +1,15 @@
 # Russian translation for Gramps; Русский перевод для GRAMPS
-# Copyright (C) 2002-2005 Free Software Foundation, Inc.
+# Copyright (C) 2002-2006 Free Software Foundation, Inc.
 # Alex Roitman <shura@alex.neuro.umn.edu>, 2002-2006.
 # Alexander Bogdashevsky <sanderb@kezomba.com>, 2004.
 # $Id$
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gramps 2.0.10\n"
+"Project-Id-Version: gramps 2.1.90\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-07-31 21:39-0700\n"
-"PO-Revision-Date: 2006-07-31 22:49-0700\n"
+"PO-Revision-Date: 2006-08-02 18:14-0700\n"
 "Last-Translator: Alexander Roitman <shura@gramps-project.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -874,6 +874,18 @@ msgid ""
 "GRAMPS. <b>BACKUP</b> your existing databases before opening them with this "
 "version, and make sure to export your data to XML every now and then."
 msgstr ""
+"The GRAMPS 2.1 release is an early, experimental branch of the future 2.2 "
+"release. This version is not meant for normal usage. Use at your own risk.\n"
+"\n"
+"This version may:\n"
+"1) Fail to run properly\n"
+"2) Corrupt your data\n"
+"3) Cause your hair to turn pink and fall out.\n"
+"\n"
+"Any databases opened by this version will <b>NO LONGER WORK</b> in older "
+"versions of GRAMPS, and <b>MAY NOT WORK</b> in with future releases of "
+"GRAMPS. <b>BACKUP</b> your existing databases before opening them with this "
+"version, and make sure to export your data to XML every now and then."
 
 #: ../src/GrampsWidgets.py:263
 #, fuzzy
@@ -1316,6 +1328,11 @@ msgid ""
 "programs. A valid GEDCOM file needs this information, but most programs do "
 "not require it. You may leave this empty if you want."
 msgstr ""
+"Эта информация необходима для экспорта данных в формате "
+"GEDCOM. Файл GEDCOM можно импортировать практически в любую "
+"генеалогическую программу. Стандарт GEDCOM требует эту "
+"информацию, но большинство программ обходятся без неё. "
+"Если хотите, Вы можете оставить эти поля пустыми."
 
 #: ../src/StartupDialog.py:237
 msgid "Configuration/Installation error"
@@ -3092,7 +3109,7 @@ msgstr "Ошибка при создании файла: %s"
 
 #: ../src/Editors/_EditFamily.py:843
 msgid "No data exists for this family. Please enter data or cancel the edit."
-msgstr ""
+msgstr "Нет данных об этой семье. Пожалуйста введите данные или отмените правку."
 
 #: ../src/Editors/_EditFamily.py:849 ../src/GrampsDb/_DbUtils.py:53
 #, fuzzy
@@ -3118,12 +3135,12 @@ msgstr "%(father)s и %(mother)s"
 #: ../src/Editors/_EditLdsOrd.py:286
 #, python-format
 msgid "%(mother)s [%(gramps_id)s]"
-msgstr ""
+msgstr "%(mother)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:291
 #, python-format
 msgid "[%(gramps_id)s]"
-msgstr ""
+msgstr "[%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:300 ../src/Editors/_EditLdsOrd.py:420
 #, fuzzy
@@ -3261,7 +3278,7 @@ msgstr "Центральное лицо"
 
 #: ../src/Editors/_EditPerson.py:525
 msgid "No data exists for this person. Please enter data or cancel the edit."
-msgstr ""
+msgstr "Нет данных об этом лице. Пожалуйста введите данные или отмените правку."
 
 #: ../src/Editors/_EditPerson.py:547
 #, python-format
@@ -3285,7 +3302,7 @@ msgstr "Правило не выбрано"
 
 #: ../src/Editors/_EditPersonRef.py:152
 msgid "You must either select a person or Cancel the edit"
-msgstr ""
+msgstr "Выберите лицо или отмените правку"
 
 #: ../src/Editors/_EditPlace.py:71
 msgid "Place Editor"
@@ -3363,6 +3380,7 @@ msgstr "Не могу слить источники."
 msgid ""
 "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
+"Нет данных об этом храниоище. Пожалуйста введите данные или отмените правку."
 
 #: ../src/Editors/_EditRepository.py:132
 #, fuzzy, python-format
@@ -3385,7 +3403,7 @@ msgstr "Не могу слить источники."
 
 #: ../src/Editors/_EditSource.py:159
 msgid "No data exists for this source. Please enter data or cancel the edit."
-msgstr ""
+msgstr "Нет данных об этом источнике. Пожалуйста введите данные или отмените правку."
 
 #: ../src/Editors/_EditSource.py:169
 #, python-format
@@ -3471,6 +3489,7 @@ msgstr "Свидетели"
 msgid ""
 "Broken witness reference detected while upgrading database to version 9."
 msgstr ""
+"При обновлении базы данных к версии 9 обнаружена неверная ссылка на свидетеля."
 
 #: ../src/GrampsDb/_GrampsDbBase.py:1398 ../src/GrampsDb/_GrampsDbBase.py:1468
 #: ../src/GrampsDb/_GrampsDbBase.py:1509
@@ -3515,7 +3534,7 @@ msgstr ""
 #: ../src/GrampsDb/_ReadGedcom.py:452
 #, python-format
 msgid "Invalid GEDCOM syntax at line %d was ignored."
-msgstr ""
+msgstr "Неверный синтаксис GEDCOM обнаружен в строке %d."
 
 #: ../src/GrampsDb/_ReadGedcom.py:514 ../src/GrampsDb/_ReadGedcom.py:2102
 #, python-format
@@ -3711,6 +3730,15 @@ msgid ""
 "board so that you can paste it into your email programme and review exactly "
 "what information is being sent."
 msgstr ""
+"Помощник Сообщений об Ошибках: поможет Вам составить наиболее "
+"подробное сообщение об ошибке для разработчиков GRAMPS.\n"
+"\n"
+"Помощник задаст Вам несколько вопросов и соберёт нужную информацию "
+"о произошедшей ошибке и о рабочей среде. В конце, Вам будет предложено "
+"послать сообщение в список рассылки ошибок GRAMPS. Помощник "
+"скопирует сообщение в буфер обмена, чтобы Вы смогли вставить его "
+"в Вашу программу электронной почты и проверить, какая точно информация "
+"будет послана."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:37
 #, fuzzy
@@ -3755,6 +3783,8 @@ msgid ""
 "If you can see that there is any personal information included in the error "
 "please remove it."
 msgstr ""
+"Если Вы обнаружили, что в сообщение включена личная информация, "
+"пожалуйста удалите её."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:173
 #, fuzzy
@@ -3767,6 +3797,9 @@ msgid ""
 "understand it. You will have the opportunity to add further detail about the "
 "error in the following pages of the assistant."
 msgstr ""
+"Это подробная информация об ошибке GRAMPS, не волнуйтесь, если "
+"Вы её не понимаете. У Вас будет возможность добавить дополнительные "
+"подробности на следующих страницах помощника."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:196
 msgid ""
@@ -3774,6 +3807,8 @@ msgid ""
 "wrong or remove anything that you would rather not have included in the bug "
 "report."
 msgstr ""
+"Пожалуйста, проверьте нижеследующую информацию, поправьте всё, "
+"что неверно, и удалите всё, что Вы не хотите включать в сообщение."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:243
 #, fuzzy
@@ -3785,12 +3820,16 @@ msgid ""
 "This is the information about your system that will help the developers to "
 "fix the bug."
 msgstr ""
+"Это информация о Вашей системе, которая поможет разработчикам "
+"починить неисправность."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:264
 msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occured. "
 msgstr ""
+"Пожалуйста, предоставьте как можно больше информации о том, что "
+"Вы делали во время ошибки. "
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:305
 #, fuzzy
@@ -3802,6 +3841,7 @@ msgid ""
 "This is your opportunity to describe what you were doing when the error "
 "occured."
 msgstr ""
+"Это Ваша возможность описать то, что Вы делали при наступлении ошибки."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:327
 msgid ""
@@ -3809,22 +3849,29 @@ msgid ""
 "understand the detail of the error information. Just make sure that it does "
 "not contain anything that you do not want to be sent to the developers."
 msgstr ""
+"Пожалуйста, проверьте информацию. Не волнуйтесь, если Вы не "
+"понимаете подробностей сообщения. Просто убедитесь, что оно "
+"не содержит ничего, что Вы не хотели бы посылать разработчикам."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:361
 msgid "Bug Report Summary"
-msgstr ""
+msgstr "Итого Сообщения об Ошибке"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:366
 msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to send the report to the bug report mailing list."
 msgstr ""
+"Вот Ваше полное сообщение об ошибке. Следующая страница "
+"помощника поможет Вам послать сообщение в список рассылки ошибок."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:383
 msgid ""
 "Use one of the two methods below to send the bug report to the Gramp bug "
 "reporting mailing list at "
 msgstr ""
+"Воспользуйтесь одним из двух следующих методов, чтобы послать "
+"сообщение в список рассылки ошибок GRAMPS: "
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:392
 msgid ""
@@ -3832,6 +3879,10 @@ msgid ""
 "button to start it with the bug report ready to send. (This will probably "
 "only work if you are running Gnome)"
 msgstr ""
+"Если Ваш клиент электронной почты настроен правильно, Вы можете "
+"воспользоваться этой кнопкой для запуска клиента с сообщением, "
+"готовым к отправке. (Скорее всего, это сработает только если вы "
+"используете GNOME)"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:416
 msgid ""
@@ -3839,6 +3890,10 @@ msgid ""
 "report onto the clipboard. Then start your email client, paste the report "
 "and send it to the address above."
 msgstr ""
+"Если Ваша программа электронной почты не запускается, Вы можете "
+"воспользоваться этой кнопкой для копирования сообщения в буфер "
+"обмена. Затем, запустите свой клиент электронной почты, вставьте "
+"сообщение и пошлите его по вышеуказанному адресу."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:453
 #, fuzzy
@@ -3850,6 +3905,8 @@ msgid ""
 "This is the final step. Use the buttons on this page to transfer the bug "
 "report to your email client."
 msgstr ""
+"Это последний шаг. Используйте кнопки на этой странице для "
+"переноса сообщения в Вашу программу электронной почты."
 
 # !!!FIXME!!!
 #: ../src/GrampsLogger/_ErrorView.py:33
@@ -3859,7 +3916,7 @@ msgstr "Отчёт о прогрессе"
 
 #: ../src/GrampsLogger/_ErrorView.py:44
 msgid "GRAMPS has experienced an unexpected error"
-msgstr ""
+msgstr "Обнаружена неожиданная ошибка GRAMPS"
 
 #: ../src/GrampsLogger/_ErrorView.py:53
 msgid ""
@@ -3868,6 +3925,10 @@ msgid ""
 "please click Report and the Error Reporting Wizard will help you to make a "
 "bug report."
 msgstr ""
+"Ваши данные в безопасности, но Вам рекомендуется немедленно "
+"перезапустить GRAMPS. Если Вы хотите послать команде GRAMPS "
+"сообщение об ошибке, пожалуйста, щёлкните Сообщение и Помощник "
+"Сообщений об Ошибках поможет Вам составить сообщение."
 
 #: ../src/GrampsLogger/_ErrorView.py:62 ../src/GrampsLogger/_ErrorView.py:75
 #, fuzzy
@@ -4324,6 +4385,8 @@ msgid ""
 "%(spouse)s and\n"
 " %(person)s, %(nyears)d"
 msgstr ""
+"%(spouse)s и\n"
+" %(person)s, %(nyears)d"
 
 #: ../src/plugins/Calendar.py:529 ../src/plugins/NarrativeWeb.py:2367
 #, python-format
@@ -4382,7 +4445,7 @@ msgstr "Включать праздники"
 
 #: ../src/plugins/Calendar.py:655
 msgid "Offset"
-msgstr ""
+msgstr "Отступ"
 
 #: ../src/plugins/Calendar.py:662
 msgid "Title text and background color."
@@ -5406,16 +5469,16 @@ msgstr "Брак"
 
 #: ../src/plugins/FamilyGroup.py:514
 msgid "acronym for male|M"
-msgstr ""
+msgstr "М"
 
 #: ../src/plugins/FamilyGroup.py:516
 msgid "acronym for female|F"
-msgstr ""
+msgstr "Ж"
 
 #: ../src/plugins/FamilyGroup.py:518
 #, python-format
 msgid "%dU"
-msgstr ""
+msgstr "Н"
 
 #: ../src/plugins/FamilyGroup.py:612
 #, python-format
@@ -5517,15 +5580,15 @@ msgstr "Все файлы"
 
 #: ../src/plugins/FanChart.py:390
 msgid "half circle"
-msgstr ""
+msgstr "полукруг"
 
 #: ../src/plugins/FanChart.py:391
 msgid "quarter circle"
-msgstr ""
+msgstr "четверть круга"
 
 #: ../src/plugins/FanChart.py:393
 msgid "Type of graph"
-msgstr ""
+msgstr "Тип графа"
 
 #: ../src/plugins/FanChart.py:395
 #, fuzzy
@@ -5554,7 +5617,7 @@ msgstr "около"
 
 #: ../src/plugins/FanChart.py:403
 msgid "Orientation of radial texts"
-msgstr ""
+msgstr "Ориентация радиального текста"
 
 #: ../src/plugins/FanChart.py:428
 msgid "The style used for the title."
@@ -5696,7 +5759,7 @@ msgstr "Фамилия:"
 
 #: ../src/plugins/GraphViz.py:101
 msgid "Automatically use optimal number of pages"
-msgstr ""
+msgstr "Автоматически использовать оптимальное число страниц"
 
 #: ../src/plugins/GraphViz.py:104
 msgid "Vertical"
@@ -5718,7 +5781,7 @@ msgstr "Слева направо"
 
 #: ../src/plugins/GraphViz.py:110
 msgid "Top, left"
-msgstr ""
+msgstr "Верх, слева"
 
 #: ../src/plugins/GraphViz.py:111
 #, fuzzy
@@ -5878,7 +5941,7 @@ msgstr ""
 
 #: ../src/plugins/GraphViz.py:797
 msgid "Output format/font requires text as latin-1"
-msgstr ""
+msgstr "Формат вывода/шрифт требует текст в кодировке latin-1"
 
 #: ../src/plugins/GraphViz.py:801
 msgid ""
@@ -5920,7 +5983,7 @@ msgstr "Направление поколений: сверху вниз или 
 
 #: ../src/plugins/GraphViz.py:830
 msgid "Aspect ratio"
-msgstr ""
+msgstr "Отношение сторон"
 
 #: ../src/plugins/GraphViz.py:832
 msgid ""
@@ -5967,15 +6030,15 @@ msgstr "Направление графа"
 
 #: ../src/plugins/GraphViz.py:873
 msgid "The order in which the graph pages are output."
-msgstr ""
+msgstr "Порядок вывода страниц графа"
 
 #: ../src/plugins/GraphViz.py:884
 msgid "Note to add to the graph"
-msgstr ""
+msgstr "Записка для добавления к графу"
 
 #: ../src/plugins/GraphViz.py:886
 msgid "This text will be added to the graph."
-msgstr ""
+msgstr "Этот текст будет добавлен к графу"
 
 #: ../src/plugins/GraphViz.py:890
 #, fuzzy
@@ -5989,11 +6052,11 @@ msgstr "Направление поколений: сверху вниз или 
 
 #: ../src/plugins/GraphViz.py:899
 msgid "Note size (in points)"
-msgstr ""
+msgstr "Размер шрифта записки (в пунктах)"
 
 #: ../src/plugins/GraphViz.py:901
 msgid "The size of note text, in points."
-msgstr ""
+msgstr "Это размер шрифта для текста записки, в пунктах"
 
 #: ../src/plugins/GraphViz.py:953 ../src/plugins/GraphViz.py:1220
 #: ../src/plugins/GraphViz.py:1234
@@ -7320,7 +7383,7 @@ msgstr "По_казать всех"
 
 #: ../src/plugins/Verify.py:586 ../src/plugins/verify.glade.h:22
 msgid "_Hide marked"
-msgstr ""
+msgstr "Спр_ятать отмеченное"
 
 #: ../src/plugins/Verify.py:838
 #, fuzzy
