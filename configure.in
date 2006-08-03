@@ -34,6 +34,13 @@ fi
 AM_GCONF2_REPLACEMENT
 AM_SHARED_MIME
 AM_PACKAGER
+dnl This is a hack to disable scrollkeeper update when in the packager mode.
+dnl It may not seem good to purists, since we're defining
+dnl ENABLE_SK_{TRUE,FALSE} twice, but I cannot see any other way
+dnl without tweaking the gnome-doc-utils macros manually.
+dnl So, scrollkeeper update is enabled when it would normally be,
+dnl *provided* this is not the packager mode. Packager mode cancels it.
+AM_CONDITIONAL(ENABLE_SK, test "x$packager_mode" = "xfalse" -a "x$enable_scrollkeeper" = "xyes")
 AC_SUBST(RELEASE)
 AC_SUBST(VERSIONSTRING)
 

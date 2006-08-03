@@ -1,3 +1,6 @@
+2006-08-02  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Disable scrollkeeper update in the packager mode.
+
 2006-08-01  Don Allingham  <don@gramps-project.org>
 	* src/RelLib/_Place.py: Check for empty location
 	* src/Editors/_EditEvent.py: use default data change check
