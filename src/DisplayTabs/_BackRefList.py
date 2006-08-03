@@ -106,7 +106,7 @@ class BackRefList(EmbeddedList):
     def find_node(self):
         (model, node) = self.selection.get_selected()
         try:
-            return (model.get_value(node, 0), model.get_value(node, 3))
+            return (model.get_value(node, 4), model.get_value(node, 3))
         except:
             return (None, None)
     
