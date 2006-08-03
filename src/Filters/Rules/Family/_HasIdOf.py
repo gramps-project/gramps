@@ -40,10 +40,8 @@ from Filters.Rules import HasGrampsId
 #
 #-------------------------------------------------------------------------
 class HasIdOf(HasGrampsId):
-    """Rule that checks for a person with a specific GRAMPS ID"""
+    """Rule that checks for a family with a specific GRAMPS ID"""
 
-    labels      = [ _('ID:') ]
+    labels      = [ _('Family ID:') ]
     name        = _('Family with <Id>')
     description = _("Matches a family with a specified GRAMPS ID")
-    category    = _('General filters')
-

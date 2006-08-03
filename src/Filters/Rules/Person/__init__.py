@@ -151,6 +151,7 @@ editor_rule_list = [
     HasTextMatchingSubstringOf,
     HasNote,
     HasNoteRegexp,
+    RegExpIdOf,
 ]
 
 def register(rule):

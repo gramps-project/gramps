@@ -42,7 +42,7 @@ from Filters.Rules._Rule import Rule
 class HasRelType(Rule):
     """Rule that checks for a person with a particular personal attribute"""
 
-    labels      = [ _('Relationship Type:') ]
+    labels      = [ _('Relationship type:') ]
     name        = _('Family with the relationship type')
     description = _("Matches family with the relationship type "
                     "of a particular value")

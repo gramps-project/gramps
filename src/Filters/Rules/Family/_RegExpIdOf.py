@@ -26,7 +26,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import re
 
 #-------------------------------------------------------------------------
 #
@@ -41,8 +40,11 @@ from Filters.Rules._RegExpIdBase import RegExpIdBase
 #
 #-------------------------------------------------------------------------
 class RegExpIdOf(RegExpIdBase):
-    """Rule that checks for a person with a specific GRAMPS ID"""
+    """
+    Rule that checks for a family whose GRAMPS ID
+    matches regular expression.
+    """
 
-    name        = _('Families with <Id>')
-    description = _("Matches families with a GRAMPS ID that contains the regular expression")
-
+    name        = _('Families with <Id> matching regular expression')
+    description = _("Matches families whose GRAMPS ID matches "
+                    "the regular expression")
