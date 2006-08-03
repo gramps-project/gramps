@@ -1,3 +1,8 @@
+2006-08-03  Alex Roitman  <shura@gramps-project.org>
+	* src/DisplayTabs/_BackRefList.py (find_node): Use class name.
+	* src/DisplayTabs/_BackRefModel.py (__init__, load_model): Add new
+	column to keep both class name and translation.
+
 2006-08-02  Alex Roitman  <shura@gramps-project.org>
 	* configure.in: Disable scrollkeeper update in the packager mode.
 

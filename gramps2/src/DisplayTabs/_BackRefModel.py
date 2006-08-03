@@ -44,7 +44,7 @@ import Utils
 class BackRefModel(gtk.ListStore):
 
     def __init__(self, sref_list, db):
-        gtk.ListStore.__init__(self, str, str, str, str)
+        gtk.ListStore.__init__(self, str, str, str, str, str)
         self.db = db
         self.sref_list = sref_list
         self.idle = 0
@@ -94,6 +94,8 @@ class BackRefModel(gtk.ListStore):
 
             # dtype is the class name, i.e. is English
             # We need to use localized string in the model.
-            self.append(row=[_(dtype), gid, name, handle])
+            # we also need to keep class names to get the object type,
+            # but we don't need to show that in the view.
+            self.append(row=[_(dtype), gid, name, handle, dtype])
             yield True
         yield False
