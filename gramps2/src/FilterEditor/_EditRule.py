@@ -48,19 +48,20 @@ log = logging.getLogger(".FilterEdit")
 #-------------------------------------------------------------------------
 import gtk
 import gobject
-import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+import GrampsDisplay
 import const
 import RelLib
 from Filters import Rules
 import AutoComp
 from Selectors import selector_factory
-SelectPerson = selector_factory('Person')
+from NameDisplay import displayer as _nd
+import Utils
 import ManagedWindow
 
 #-------------------------------------------------------------------------
@@ -76,16 +77,13 @@ def by_rule_name(f,s):
 # Constants
 #
 #-------------------------------------------------------------------------
-_name2list = {
-    _('Personal event:')     : RelLib.EventType().get_map(),
-    _('Family event:')       : RelLib.EventType().get_map(),
-    _('Personal attribute:') : RelLib.AttributeType().get_map(),
-    _('Family attribute:')   : RelLib.AttributeType().get_map(),
+_name2typeclass = {
+    _('Personal event:')     : RelLib.EventType,
+    _('Family event:')       : RelLib.EventType,
+    _('Personal attribute:') : RelLib.AttributeType,
+    _('Family attribute:')   : RelLib.AttributeType,
+    _('Relationship type:')  : RelLib.FamilyRelType,
 }
-
-_menulist = {
-    _('Relationship type:')  : RelLib.FamilyRelType().get_map(),
-    }
 
 #-------------------------------------------------------------------------
 #
@@ -99,10 +97,19 @@ class MyBoolean(gtk.CheckButton):
         self.show()
 
     def get_text(self):
+        """
+        This method returns the text to save. It should be the same
+        no matter the present locale (English or numeric types).
+        This class sets this to get_display_text, but when localization
+        is an issue (events/attr/etc types) then it has to be overridden.
+        """
         return str(int(self.get_active()))
 
     def set_text(self,val):
-        is_active = not not int(val)
+        """
+        This method sets the selector state to display the passed value.
+        """
+        is_active = bool(int(val))
         self.set_active(is_active)
 
 #-------------------------------------------------------------------------
@@ -210,14 +217,25 @@ class MyPlaces(gtk.Entry):
 #
 #-------------------------------------------------------------------------
 class MyID(gtk.HBox):
+
+    obj_name = {
+        'Person' : _('Person'),
+        'Family' : _('Family'),
+        'Event'  : _('Event'),
+        'Place'  : _('Place'),
+        'Source' : _('Source'),
+        'MediaObject' : _('Media Object'),
+        'Repository' : _('Repository'),
+        }
     
-    def __init__(self, dbstate, uistate, track):
+    def __init__(self, dbstate, uistate, track, obj_class='Person'):
         gtk.HBox.__init__(self,False,6)
         self.dbstate = dbstate
         self.db = dbstate.db
         self.uistate = uistate
         self.track = track
         
+        self.obj_class = obj_class
         self.entry = gtk.Entry()
         self.entry.show()
         self.button = gtk.Button()
@@ -227,14 +245,15 @@ class MyID(gtk.HBox):
         self.pack_start(self.entry)
         self.add(self.button)
         self.tooltips = gtk.Tooltips()
-        self.tooltips.set_tip(self.button,_('Select person from a list'))
+        self.tooltips.set_tip(self.button,_('Select %s from a list')
+                              % self.obj_name[obj_class])
         self.tooltips.enable()
         self.show()
         self.set_text('')
 
     def button_press(self,obj):
-        inst = SelectPerson(self.dbstate, self.uistate, self.track,
-                            _('Select Person'))
+        selector = selector_factory(self.obj_class)
+        inst = selector(self.dbstate, self.uistate, self.track)
         val = inst.run()
         if val == None:
             self.set_text('')
@@ -244,13 +263,37 @@ class MyID(gtk.HBox):
     def get_text(self):
         return unicode(self.entry.get_text())
 
+    def name_from_gramps_id(self,gramps_id):
+        if self.obj_class == 'Person':
+            person = self.db.get_person_from_gramps_id(gramps_id)
+            print gramps_id
+            name = _nd.display_name(person.get_primary_name())
+        elif self.obj_class == 'Family':
+            family = self.db.get_family_from_gramps_id(gramps_id)
+            name = Utils.family_name(family, self.db)
+        elif self.obj_class == 'Event':
+            event = self.db.get_event_from_gramps_id(gramps_id)
+            name = str(event.get_type)
+        elif self.obj_class == 'Place':
+            place = self.db.get_place_from_gramps_id(gramps_id)
+            name = place.get_title()
+        elif self.obj_class == 'Source':
+            source = self.db.get_source_from_gramps_id(gramps_id)
+            name = source.get_title()
+        elif self.obj_class == 'MediaObject':
+            obj = self.db.get_object_from_gramps_id(gramps_id)
+            name = obj.get_path()
+        elif self.obj_class == 'Repository':
+            repo = self.db.get_repository_from_gramps_id(gramps_id)
+            name = repo.get_name()
+        return name
+
     def set_text(self,val):
         try:
-            p = self.db.get_person_from_handle(val)
-            n = p.get_primary_name().get_name()
-            self.tooltips.set_tip(self.entry,n)
-        except:
-            self.tooltips.set_tip(self.entry,_('Not a valid person'))
+            name = self.name_from_gramps_id(val)
+            self.tooltips.set_tip(self.entry,name)
+        except AttributeError:
+            self.tooltips.set_tip(self.entry,_('Not a valid ID'))
         self.entry.set_text(val)
 
 #-------------------------------------------------------------------------
@@ -260,48 +303,21 @@ class MyID(gtk.HBox):
 #-------------------------------------------------------------------------
 class MySelect(gtk.ComboBoxEntry):
     
-    def __init__(self, values):
+    def __init__(self, type_class):
         gtk.ComboBoxEntry.__init__(self)
-        AutoComp.fill_combo(self, values)
+        self.type_class = type_class
+        self.sel = AutoComp.StandardCustomSelector(type_class._I2SMAP, self,
+                                                   type_class._CUSTOM,
+                                                   type_class._DEFAULT)
         self.show()
         
     def get_text(self):
-        return unicode(self.child.get_text())
+        return self.type_class(self.sel.get_values()).xml_str()
 
     def set_text(self,val):
-        self.child.set_text(_(val))
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-class MyListSelect(gtk.ComboBox):
-    
-    def __init__(self,data_list):
-        gtk.ComboBox.__init__(self)
-        store = gtk.ListStore(str)
-        self.set_model(store)
-        cell = gtk.CellRendererText()
-        self.pack_start(cell,True)
-        self.add_attribute(cell,'text',0)
-        self.data_list = data_list
-
-        for item in data_list:
-            store.append(row=[item])
-        self.set_active(0)
-        self.show()
-        
-    def get_text(self):
-        active = self.get_active()
-        if active < 0:
-            return str(-1)
-        return str(active)
-    
-    def set_text(self,val):
-        active = int(val)
-        if active >=0:
-            self.set_active(active)
+        tc = self.type_class()
+        tc.set_from_xml_str(val)
+        self.sel.set_values((tc.val,tc.string))
 
 #-------------------------------------------------------------------------
 #
@@ -379,26 +395,23 @@ class EditRule(ManagedWindow.ManagedWindow):
             table.set_row_spacings(6)
             table.show()
             for v in arglist:
-                v1 = _(v)
-                l = gtk.Label(v1)
+                l = gtk.Label(v)
                 l.set_alignment(1,0.5)
                 l.show()
                 if v == _('Place:'):
                     t = MyPlaces([])
                 elif v == _('Number of generations:'):
                     t = MyInteger(1,32)
-                elif v == _('ID:'):
-                    t = MyID(self.dbstate, self.uistate, self.track)
+                elif v == _('Person ID:'):
+                    t = MyID(self.dbstate, self.uistate, self.track, 'Person')
+                elif v == _('Family ID:'):
+                    t = MyID(self.dbstate, self.uistate, self.track, 'Family')
                 elif v == _('Source ID:'):
                     t = MySource(self.db)
                 elif v == _('Filter name:'):
                     t = MyFilters(self.filterdb.get_filters(self.space))
-                elif _name2list.has_key(v1):
-                    data =_name2list[v1]
-                    t = MySelect(data.values())
-                elif _menulist.has_key(v1):
-                    data =_menulist[v1]
-                    t = MyListSelect(data.values())
+                elif _name2typeclass.has_key(v):
+                    t = MySelect(_name2typeclass[v])
                 elif v == _('Inclusive:'):
                     t = MyBoolean(_('Include original person'))
                 elif v == _('Case sensitive:'):
@@ -516,8 +529,8 @@ class EditRule(ManagedWindow.ManagedWindow):
             page = self.notebook.get_current_page()
             (class_obj,vallist,tlist) = self.page[page]
             value_list = []
-            for x in tlist:
-                value_list.append(unicode(x.get_text()))
+            for selector_class in tlist:
+                value_list.append(unicode(selector_class.get_text()))
             new_rule = class_obj(value_list)
 
             self.update_rule(self.active_rule, new_rule)

@@ -41,11 +41,15 @@ from _Rule import Rule
 #
 #-------------------------------------------------------------------------
 class RegExpIdBase(Rule):
-    """Rule that checks for a person with a specific GRAMPS ID"""
+    """
+    Rule that checks for an object whose GRAMPS ID
+    matches regular expression.
+    """
 
-    labels      = [ _('ID:') ]
-    name        = _('Families with <Id>')
-    description = _("Matches families with a GRAMPS ID that contains the regular expression")
+    labels      = [ _('Regular expression:') ]
+    name        = _('Objects with <Id>')
+    description = _("Matches objects whose GRAMPS ID matches "
+                    "the regular expression")
     category    = _('General filters')
 
     def __init__(self, list):
@@ -56,5 +60,5 @@ class RegExpIdBase(Rule):
         except:
             self.match = re.compile('')
 
-    def apply(self,db,person):
-        return self.match.match(person.gramps_id) != None
+    def apply(self,db,obj):
+        return self.match.match(obj.gramps_id) != None

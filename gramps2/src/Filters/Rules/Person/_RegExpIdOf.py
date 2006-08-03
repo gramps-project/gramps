@@ -26,35 +26,24 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import re
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._Rule import Rule
+from Filters.Rules._RegExpIdBase import RegExpIdBase
 
 #-------------------------------------------------------------------------
 #
 # HasIdOf
 #
 #-------------------------------------------------------------------------
-class RegExpIdOf(Rule):
-    """Rule that checks for a person with a specific GRAMPS ID"""
+class RegExpIdOf(RegExpIdBase):
+    """Rule that checks for a person whose GRAMPS ID
+    matches regular expression.
+    """
 
-    labels      = [ _('ID:') ]
-    name        = _('People with <Id>')
-    description = _("Matches people with a GRAMPS ID that contains the regular expression")
-    category    = _('General filters')
-
-    def __init__(self, list):
-        Rule.__init__(self, list)
-        
-        try:
-            self.match = re.compile(list[0],re.I|re.U|re.L)
-        except:
-            self.match = re.compile('')
-
-    def apply(self,db,person):
-        return self.match.match(person.gramps_id) != None
+    name        = _('People with <Id> matching regular expression')
+    description = _("Matches people whose GRAMPS ID matches "
+                    "the regular expression")

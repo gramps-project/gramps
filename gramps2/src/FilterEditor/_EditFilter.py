@@ -50,6 +50,7 @@ import const
 import ListModel
 import ManagedWindow
 import GrampsDisplay
+import Errors
 
 #-------------------------------------------------------------------------
 #
@@ -165,8 +166,11 @@ class EditFilter(ManagedWindow.ManagedWindow):
     def on_add_clicked(self,obj):
         from _EditRule import EditRule
         
-        EditRule(self.space, self.dbstate, self.uistate, self.track,
-                 self.filterdb, None, _('Add Rule'), self.update_rule)
+        try:
+            EditRule(self.space, self.dbstate, self.uistate, self.track,
+                     self.filterdb, None, _('Add Rule'), self.update_rule)
+        except Errors.WindowActiveError:
+            pass
 
     def on_edit_clicked(self,obj):
         store, node = self.rlist.get_selected()
@@ -175,8 +179,11 @@ class EditFilter(ManagedWindow.ManagedWindow):
             
             d = self.rlist.get_object(node)
 
-            EditRule(self.space, self.dbstate, self.uistate, self.track,
-                     self.filterdb, d, _('Edit Rule'), self.update_rule)
+            try:
+                EditRule(self.space, self.dbstate, self.uistate, self.track,
+                         self.filterdb, d, _('Edit Rule'), self.update_rule)
+            except Errors.WindowActiveError:
+                pass
 
     def update_rule(self, old_rule, new_rule):
         if old_rule:

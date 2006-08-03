@@ -1,3 +1,19 @@
+2006-08-03  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Person/_HasIdOf.py: Cleanup.
+	* src/Filters/Rules/Person/__init__.py (editor_rule_list): Add
+	RegExpIdOf.
+	* src/Filters/Rules/Person/_RegExpIdOf.py: Cleanup.
+	* src/Filters/Rules/_RegExpIdBase.py: Cleanup.
+	* src/Filters/Rules/Person/_HasRelationship.py: Cleanup.
+	* src/Filters/Rules/Family/_HasIdOf.py: Cleanup.
+	* src/Filters/Rules/Family/_RegExpIdOf.py: Cleanup.
+	* src/FilterEditor/_EditRule.py: Clean, localization fixes, ID
+	selection fixes.
+	* src/NameDisplay.py: Import gettext.
+	* src/Filters/Rules/Family/_HasRelType.py (labels): Use lowercase.
+	* src/FilterEditor/_EditFilter.py (on_add_clicked,
+	on_edit_clicked): Catch exception.
+
 2006-08-03  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/plugins/Check.py (cleanup_deleted_name_formats): Change hardcoded
 	values with constants.
