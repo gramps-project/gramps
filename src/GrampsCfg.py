@@ -60,10 +60,6 @@ _surname_styles = [
     _("Icelandic style"),
     ]
 
-# button names on the 'name format' editor dialog
-INS_BTN_NAME = 'insert'
-EDT_BTN_NAME = 'edit'
-
 # column numbers for the 'name format' model
 COL_NUM  = 0
 COL_NAME = 1

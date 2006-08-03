@@ -244,10 +244,10 @@ class CheckIntegrity:
             p_changed = False
             name = person.get_primary_name()
             if name.get_sort_as() in deleted_name_formats:
-                name.set_sort_as(0)
+                name.set_sort_as(RelLib.Name.DEF)
                 p_changed = True
             if name.get_display_as() in deleted_name_formats:
-                name.set_display_as(0)
+                name.set_display_as(RelLib.Name.DEF)
                 p_changed = True
             if p_changed:
                 person.set_primary_name(name)
@@ -256,10 +256,10 @@ class CheckIntegrity:
             name_list = []
             for name in person.get_alternate_names():
                 if name.get_sort_as() in deleted_name_formats:
-                    name.set_sort_as(0)
+                    name.set_sort_as(RelLib.Name.DEF)
                     a_changed = True
                 if name.get_display_as() in deleted_name_formats:
-                    name.set_display_as(0)
+                    name.set_display_as(RelLib.Name.DEF)
                     a_changed = True
                 name_list.append(name)
             if a_changed:
