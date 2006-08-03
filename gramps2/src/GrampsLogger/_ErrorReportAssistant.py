@@ -380,9 +380,12 @@ class ErrorReportAssistant:
         return box
 
     def build_page5(self):
-        label = gtk.Label("%s <i>%s</i>" % (_("Use one of the two methods below to send the "\
-                                              "bug report to the Gramp bug reporting mailing "\
-                                              "list at "),"gramps-bugs@lists.sourceforge.net."))
+        label = gtk.Label(
+            "%s <i>%s</i>" %
+            (_("Use one of the two methods below to send the "\
+               "bug report to the Gramps bug reporting mailing "\
+               "list at "),
+             "gramps-bugs@lists.sourceforge.net."))
         label.set_alignment(0.01,0.5)
         label.set_padding(0, 4)
         label.set_line_wrap(True)
