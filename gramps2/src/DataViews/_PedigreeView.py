@@ -409,7 +409,7 @@ class PedigreeView(PageView.PersonNavView):
         
         self.dbstate = dbstate
         self.dbstate.connect('database-changed',self.change_db)
-        self.dbstate.connect('active-changed',self.goto_active_person)
+        #self.dbstate.connect('active-changed',self.goto_active_person)
         self.force_size = 0 # Automatic resize
         self.tree_style = 0 # Nice tree
         self.show_images = True # Show photos of persons
@@ -438,6 +438,16 @@ class PedigreeView(PageView.PersonNavView):
             # for PyGtk < 2.4
             self.notebook.append_page(frame,gtk.Label(""))
 
+    def set_active(self):
+        PageView.PersonNavView.set_active(self)
+        self.key_active_changed = self.dbstate.connect('active-changed',
+                                                       self.goto_active_person)
+        self.build_tree()
+    
+    def set_inactive(self):
+        PageView.PersonNavView.set_inactive(self)
+        self.dbstate.disconnect(self.key_active_changed)
+        
     def get_stock(self):
         """
         Returns the name of the stock icon to use for the display.
@@ -883,8 +893,8 @@ class PedigreeView(PageView.PersonNavView):
         # Add navigation arrows
         if lst[0]:
             #l = gtk.Button("◀")
-	    l=gtk.Button()
-	    l.add(gtk.Arrow(gtk.ARROW_LEFT, gtk.SHADOW_IN))
+            l=gtk.Button()
+            l.add(gtk.Arrow(gtk.ARROW_LEFT, gtk.SHADOW_IN))
             childlist = find_children(self.dbstate.db,lst[0][0])
             if childlist:
                 l.connect("clicked",self.on_show_child_menu)
@@ -895,7 +905,7 @@ class PedigreeView(PageView.PersonNavView):
             table_widget.attach(l,0,1,ymid,ymid+1,0,0,0,0)
             #l = gtk.Button("▶")
             l = gtk.Button()
-	    l.add(gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_IN))
+            l.add(gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_IN))
             if lst[1]:
                 l.connect("clicked",self.on_childmenu_changed,lst[1][0].handle)
                 self.tooltips.set_tip(l, _("Jump to father"))
@@ -904,7 +914,7 @@ class PedigreeView(PageView.PersonNavView):
             ymid = int(math.floor(ymax/4))
             table_widget.attach(l,xmax,xmax+1,ymid-1,ymid+2,0,0,0,0)
             l = gtk.Button()
-	    l.add(gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_IN))
+            l.add(gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_IN))
             if lst[2]:
                 l.connect("clicked",self.on_childmenu_changed,lst[2][0].handle)
                 self.tooltips.set_tip(l, _("Jump to mother"))

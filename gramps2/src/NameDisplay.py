@@ -367,14 +367,14 @@ class NameDisplay:
             return db.get_name_group_mapping(pn.first_name)
 
     def name_grouping_data(self, db, pn):
-        if pn[12]:
-            return pn[12]
-        sv = pn[13]
+        if pn[_GROUP]:
+            return pn[_GROUP]
+        sv = pn[_SORT]
         if sv == Name.LNFN or sv == Name.DEF:
-            return db.get_name_group_mapping(pn[5])
+            return db.get_name_group_mapping(pn[_SURNAME])
         elif sv == Name.PTFN:
-            return db.get_name_group_mapping(pn[10])
+            return db.get_name_group_mapping(pn[_PATRONYM])
         else:
-            return db.get_name_group_mapping(pn[4])
+            return db.get_name_group_mapping(pn[_FIRSTNAME])
 
 displayer = NameDisplay()
