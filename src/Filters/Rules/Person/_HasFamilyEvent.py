@@ -33,6 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import DateHandler
+from RelLib import EventType
 from Filters.Rules._Rule import Rule
 from Filters.Rules._RuleUtils import date_cmp
 
@@ -70,8 +71,11 @@ class HasFamilyEvent(Rule):
                 event_handle = event_ref.ref
                 event = db.get_event_from_handle(event_handle)
                 val = 1
-                if self.list[0] and event.get_type() != self.list[0]:
-                    val = 0
+                if self.list[0]:
+                    specified_type = EventType()
+                    specified_type.set_from_xml_str(self.list[0])
+                    if event.type != specified_type:
+                        val = 0
                 v = self.list[3]
                 if v and event.get_description().upper().find(v.upper())==-1:
                     val = 0

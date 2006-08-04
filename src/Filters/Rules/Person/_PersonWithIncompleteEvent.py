@@ -45,8 +45,7 @@ class PersonWithIncompleteEvent(Rule):
     category    = _('Event filters')
 
     def apply(self,db,person):
-        for event_ref in person.get_event_ref_list() + \
-                [person.get_birth_ref(), person.get_death_ref()]:
+        for event_ref in person.get_event_ref_list():
             if event_ref:
                 event = db.get_event_from_handle(event_ref.ref)
                 if not event.get_place_handle():
