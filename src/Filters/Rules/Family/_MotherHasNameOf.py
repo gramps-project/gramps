@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: _HasNameOf.py 6529 2006-05-03 06:29:07Z rshura $
 
 #-------------------------------------------------------------------------
 #
@@ -32,16 +32,22 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._MatchesFilterBase import MatchesFilterBase
+from Filters.Rules.Person import HasNameOf
 
 #-------------------------------------------------------------------------
 #
-# MatchesFilter
+# HasNameOf
 #
 #-------------------------------------------------------------------------
-class MatchesFilter(MatchesFilterBase):
-    """Rule that checks against another filter"""
+class MotherHasNameOf(HasNameOf):
+    """Rule that checks for full or partial name matches"""
 
-    name        = _('People matching the <filter>')
-    description = _("Matches people macthed by the specified filter name")
-    namespace   = 'Person'
+    name        = _('Families with mother with the <name>')
+    description = _("Matches familis whose mother has a specified "
+                    "(partial) name")
+    category    = _('Mother filters')
+
+    def apply(self,db,family):
+        mother_handle = family.get_mother_handle()
+        mother = db.get_person_from_handle(mother_handle)
+        return HasNameOf.apply(self,db,mother)

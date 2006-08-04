@@ -34,6 +34,13 @@ from _HasNoteRegexp import HasNoteRegexp
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 from _FamilyPrivate import FamilyPrivate
 from _HasEvent import HasEvent
+from _MatchesFilter import MatchesFilter
+from _FatherHasNameOf import FatherHasNameOf
+from _FatherHasIdOf import FatherHasIdOf
+from _MotherHasNameOf import MotherHasNameOf
+from _MotherHasIdOf import MotherHasIdOf
+from _ChildHasNameOf import ChildHasNameOf
+from _ChildHasIdOf import ChildHasIdOf
 
 editor_rule_list = [
     AllFamilies,
@@ -44,4 +51,11 @@ editor_rule_list = [
     HasNoteMatchingSubstringOf,
     FamilyPrivate,
     HasEvent,
+    MatchesFilter,
+    FatherHasNameOf,
+    FatherHasIdOf,
+    MotherHasNameOf,
+    MotherHasIdOf,
+    ChildHasNameOf,
+    ChildHasIdOf,
 ]

@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: _HasNameOf.py 6529 2006-05-03 06:29:07Z rshura $
 
 #-------------------------------------------------------------------------
 #
@@ -32,16 +32,25 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._MatchesFilterBase import MatchesFilterBase
+from Filters.Rules import HasGrampsId
 
 #-------------------------------------------------------------------------
 #
-# MatchesFilter
+# HasNameOf
 #
 #-------------------------------------------------------------------------
-class MatchesFilter(MatchesFilterBase):
-    """Rule that checks against another filter"""
+class ChildHasIdOf(HasGrampsId):
+    """Rule that checks for a person with a specific GRAMPS ID"""
 
-    name        = _('People matching the <filter>')
-    description = _("Matches people macthed by the specified filter name")
-    namespace   = 'Person'
+    labels      = [ _('Person ID:') ]
+    name        = _('Families with child with the <Id>')
+    description = _("Matches familis where child has a specified "
+                    "GRAMPS ID")
+    category    = _('Child filters')
+
+    def apply(self,db,family):
+        for child_ref in family.get_child_ref_list():
+            child = db.get_person_from_handle(child_ref.ref)
+            if HasGrampsId.apply(self,db,child):
+                return True
+        return False

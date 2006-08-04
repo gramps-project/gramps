@@ -1,4 +1,19 @@
 2006-08-03  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/_GenericFilter.py (GenericFilterFactory): Add
+	factory function.
+	* src/Filters/_FilterParser.py (FilterParser.startElement): Use
+	factory function.
+	* src/Filters/Rules/_MatchesFilterBase.py: Add base module.
+	* src/Filters/Rules/Person/_MatchesFilter.py: Derive from base.
+	* src/Filters/Rules/Family/_MatchesFilter.py: Add rule.
+	* src/Filters/Rules/Family/_MotherHasIdOf.py: Add rule.
+	* src/Filters/Rules/Family/_FatherHasIdOf.py: Add rule.
+	* src/Filters/Rules/Family/_MotherHasNameOf.py: Add rule.
+	* src/Filters/Rules/Family/_ChildHasIdOf.py: Add rule.
+	* src/Filters/Rules/Family/_FatherHasNameOf.py: Add rule.
+	* src/Filters/Rules/Family/_ChildHasNameOf.py: Add rule.
+	* src/Filters/Rules/Family/__init__.py: Expose new rules.
+	
 	* src/GrampsLogger/_ErrorReportAssistant.py (build_page5): Typo.
 	* src/Filters/Rules/Person/_HasIdOf.py: Cleanup.
 	* src/Filters/Rules/Person/__init__.py (editor_rule_list): Add

@@ -32,7 +32,7 @@ from xml.sax import handler
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from _GenericFilter import GenericFilter
+from _GenericFilter import GenericFilterFactory
 import Rules
 
 #-------------------------------------------------------------------------
@@ -62,7 +62,7 @@ class FilterParser(handler.ContentHandler):
             else:
                 self.namespace = "generic"
         elif tag == "filter":
-            self.f = GenericFilter()
+            self.f = GenericFilterFactory(self.namespace)()
             self.f.set_name(attrs['name'])
             if attrs.has_key('function'):
                 try:

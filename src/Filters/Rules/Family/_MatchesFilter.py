@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: _MatchesFilter.py 6932 2006-06-21 16:30:35Z dallingham $
 
 #-------------------------------------------------------------------------
 #
@@ -42,6 +42,6 @@ from Filters.Rules._MatchesFilterBase import MatchesFilterBase
 class MatchesFilter(MatchesFilterBase):
     """Rule that checks against another filter"""
 
-    name        = _('People matching the <filter>')
-    description = _("Matches people macthed by the specified filter name")
-    namespace   = 'Person'
+    name        = _('Families matching the <filter>')
+    description = _("Matches families macthed by the specified filter name")
+    namespace   = 'Family'
