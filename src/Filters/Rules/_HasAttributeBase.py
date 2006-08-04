@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _HasEvent.py 6635 2006-05-13 03:53:06Z dallingham $
+# $Id: _HasAttributeBase.py,v 1.1 2006/08/04 23:08:14 shura Exp $
 
 #-------------------------------------------------------------------------
 #
@@ -32,19 +32,33 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._HasEventBase import HasEventBase
+from RelLib import AttributeType
+from Filters.Rules._Rule import Rule
 
 #-------------------------------------------------------------------------
 #
-# HasEvent
+# HasAttribute
 #
 #-------------------------------------------------------------------------
-class HasEvent(HasEventBase):
-    """Rule that checks for a person with a particular value"""
+class HasAttributeBase(Rule):
+    """Rule that checks for an object with a particular attribute"""
 
-    labels      = [ _('Family event:'), 
-                    _('Date:'), 
-                    _('Place:'), 
-                    _('Description:') ]
-    name        =  _('Families with the <event>')
-    description = _("Matches families with an event of a particular value")
+    labels      = [ _('Attribute:'), _('Value:') ]
+    name        = _('Objects with the <attribute>')
+    description = _("Matches objects with the given attribute "
+                    "of a particular value")
+    category    = _('General filters')
+
+    def apply(self,db,obj):
+        if not self.list[0]:
+            return False
+        for attr in obj.get_attribute_list():
+            specified_type = AttributeType()
+            specified_type.set_from_xml_str(self.list[0])
+            name_match = attr.get_type() == specified_type
+
+            value_match = \
+                    attr.get_value().upper().find(self.list[1].upper()) != -1
+            if name_match and value_match:
+                return True
+        return False

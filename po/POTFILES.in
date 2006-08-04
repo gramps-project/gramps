@@ -372,6 +372,7 @@ src/Filters/_SearchBar.py
 src/Filters/_SearchFilter.py
 src/Filters/_SidebarFilter.py
 src/Filters/Rules/_Everything.py
+src/Filters/Rules/_HasAttributeBase.py
 src/Filters/Rules/_HasEventBase.py
 src/Filters/Rules/_HasGrampsId.py
 src/Filters/Rules/_HasNoteRegexBase.py
@@ -447,6 +448,7 @@ src/Filters/Rules/Person/_SearchName.py
 src/Filters/Rules/Family/__init__.py
 src/Filters/Rules/Family/_AllFamilies.py
 src/Filters/Rules/Family/_FamilyPrivate.py
+src/Filters/Rules/Family/_HasAttribute.py
 src/Filters/Rules/Family/_HasEvent.py
 src/Filters/Rules/Family/_HasIdOf.py
 src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py

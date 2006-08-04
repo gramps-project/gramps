@@ -7,6 +7,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules
 pkgdata_PYTHON = \
 	_Everything.py\
 	_HasEventBase.py\
+	_HasAttributeBase.py\
 	_HasGrampsId.py\
 	_HasNoteRegexBase.py\
 	_HasNoteSubstrBase.py\

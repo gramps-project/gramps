@@ -33,6 +33,7 @@ from _RegExpIdOf import RegExpIdOf
 from _HasNoteRegexp import HasNoteRegexp
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 from _FamilyPrivate import FamilyPrivate
+from _HasAttribute import HasAttribute
 from _HasEvent import HasEvent
 from _MatchesFilter import MatchesFilter
 from _FatherHasNameOf import FatherHasNameOf
@@ -51,6 +52,7 @@ editor_rule_list = [
     HasNoteMatchingSubstringOf,
     FamilyPrivate,
     HasEvent,
+    HasAttribute,
     MatchesFilter,
     FatherHasNameOf,
     FatherHasIdOf,
