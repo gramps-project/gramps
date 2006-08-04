@@ -1,3 +1,9 @@
+2006-08-04  Alex Roitman  <shura@gramps-project.org>
+	* src/DataViews/_MediaView.py (row_change): Work around older pygtk.
+	* src/Filters/Rules/Family/Makefile.am (pkgdata_PYTHON): Ship new
+	files. 
+	* src/Filters/Rules/Makefile.am (pkgdata_PYTHON): Ship new file.
+
 2006-08-04  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/DataViews/_PersonView.py (__init__): connection to "active-
 	person-changed" signal moved to set_active()

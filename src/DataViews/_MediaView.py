@@ -130,7 +130,12 @@ class MediaView(PageView.ListView):
     def row_change(self,obj):
         handle = self.first_selected()
         if not handle:
-            self.image.clear()
+            try:
+                self.image.clear()
+            except AttributeError:
+                # Working around the older pygtk
+                # that lacks clear() method for gtk.Image()
+                self.image.set_from_file(None)
         else:
             obj = self.dbstate.db.get_object_from_handle(handle)
             pix = ImgManip.get_thumbnail_image(obj.get_path())

@@ -230,9 +230,7 @@ src/Selectors/_SelectorExceptions.py
 src/Selectors/_SelectorFactory.py
 src/Selectors/__init__.py
 src/plugins/AncestorChart2.py
-src/plugins/AncestorChart.py
 src/plugins/AncestorReport.py
-src/plugins/Ancestors.py
 src/plugins/BookReport.py
 src/plugins/Calendar.py
 src/plugins/ChangeNames.py
@@ -244,7 +242,6 @@ src/plugins/CustomBookText.py
 src/plugins/Desbrowser.py
 src/plugins/DescendChart.py
 src/plugins/DescendReport.py
-src/plugins/DesGraph.py
 src/plugins/DetAncestralReport.py
 src/plugins/DetDescendantReport.py
 src/plugins/Eval.py
@@ -253,13 +250,10 @@ src/plugins/ExportVCalendar.py
 src/plugins/ExportVCard.py
 src/plugins/FamilyGroup.py
 src/plugins/FanChart.py
-src/plugins/FtmStyleAncestors.py
-src/plugins/FtmStyleDescendants.py
 src/plugins/GraphViz.py
 src/plugins/ImportGeneWeb.py
 src/plugins/ImportvCard.py
 src/plugins/IndivComplete.py
-src/plugins/IndivSummary.py
 src/plugins/Leak.py
 src/plugins/FindDupes.py
 src/plugins/NarrativeWeb.py
