@@ -16,7 +16,8 @@ pkgdata_PYTHON = \
 	_IsPrivate.py\
 	_RegExpIdBase.py\
 	_Rule.py\
-	_RuleUtils.py
+	_RuleUtils.py\
+	_MatchesFilterBase.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules
 pkgpythondir = @pkgpythondir@/Filters/Rules
