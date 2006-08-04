@@ -386,6 +386,7 @@ src/Filters/Rules/_HasTextMatchingRegexpOf.py
 src/Filters/Rules/_HasTextMatchingSubstringOf.py
 src/Filters/Rules/__init__.py
 src/Filters/Rules/_IsPrivate.py
+src/Filters/Rules/_MatchesFilterBase.py
 src/Filters/Rules/_RegExpIdBase.py
 src/Filters/Rules/_Rule.py
 src/Filters/Rules/_RuleUtils.py
@@ -458,6 +459,13 @@ src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Family/_HasNoteRegexp.py
 src/Filters/Rules/Family/_HasRelType.py
 src/Filters/Rules/Family/_RegExpIdOf.py
+src/Filters/Rules/Family/_MatchesFilter.py
+src/Filters/Rules/Family/_MotherHasIdOf.py
+src/Filters/Rules/Family/_FatherHasIdOf.py
+src/Filters/Rules/Family/_MotherHasNameOf.py
+src/Filters/Rules/Family/_ChildHasIdOf.py
+src/Filters/Rules/Family/_FatherHasNameOf.py
+src/Filters/Rules/Family/_ChildHasNameOf.py
 src/Filters/Rules/Event/__init__.py
 src/Filters/Rules/Place/__init__.py
 src/Filters/Rules/Source/__init__.py
