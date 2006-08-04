@@ -85,7 +85,7 @@ class PersonView(PageView.PersonNavView):
         
         self.inactive = False
         dbstate.connect('database-changed',self.change_db)
-        dbstate.connect('active-changed',self.goto_active_person)
+        #dbstate.connect('active-changed',self.goto_active_person)
         self.handle_col = PeopleModel.COLUMN_INT_ID
         self.model = None
         self.generic_filter = None
@@ -101,7 +101,17 @@ class PersonView(PageView.PersonNavView):
         
     def change_page(self):
         pass
-        
+
+    def set_active(self):
+        PageView.PersonNavView.set_active(self)
+        self.key_active_changed = self.dbstate.connect('active-changed',
+                                                       self.goto_active_person)
+        self.goto_active_person()
+    
+    def set_inactive(self):
+        PageView.PersonNavView.set_inactive(self)
+        self.dbstate.disconnect(self.key_active_changed)
+            
     def define_actions(self):
         """
         Required define_actions function for PageView. Builds the action

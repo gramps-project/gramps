@@ -90,7 +90,7 @@ class RelationshipView(PageView.PersonNavView):
             self, _('Relationships'), dbstate, uistate)
         
         dbstate.connect('database-changed', self.change_db)
-        dbstate.connect('active-changed', self.redraw)
+        #dbstate.connect('active-changed', self.redraw)
         self.show_siblings = Config.get(Config.FAMILY_SIBLINGS)
         self.show_details = Config.get(Config.FAMILY_DETAILS)
         self.connect_to_db(dbstate.db)
@@ -102,6 +102,16 @@ class RelationshipView(PageView.PersonNavView):
         Config.client.notify_add("/apps/gramps/preferences/relation-shade",
                                  self.shade_update)
 
+    def set_active(self):
+        PageView.PersonNavView.set_active(self)
+        self.key_active_changed = self.dbstate.connect('active-changed',
+                                                       self.redraw)
+        self.build_tree()
+    
+    def set_inactive(self):
+        PageView.PersonNavView.set_inactive(self)
+        self.dbstate.disconnect(self.key_active_changed)
+        
     def shade_update(self, client, cnxn_id, entry, data):
         self.use_shade = Config.get(Config.RELATION_SHADE)
         self.uistate.modify_statusbar(self.dbstate)
