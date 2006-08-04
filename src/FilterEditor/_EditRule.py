@@ -266,7 +266,6 @@ class MyID(gtk.HBox):
     def name_from_gramps_id(self,gramps_id):
         if self.obj_class == 'Person':
             person = self.db.get_person_from_gramps_id(gramps_id)
-            print gramps_id
             name = _nd.display_name(person.get_primary_name())
         elif self.obj_class == 'Family':
             family = self.db.get_family_from_gramps_id(gramps_id)
