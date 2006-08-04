@@ -31,7 +31,7 @@ CustomFilters = None
 
 from const import system_filters, custom_filters
 from _FilterList import FilterList
-from _GenericFilter import GenericFilter, GenericFamilyFilter
+from _GenericFilter import GenericFilter, GenericFilterFactory
 from _ParamFilter import ParamFilter
 
 def reload_system_filters():

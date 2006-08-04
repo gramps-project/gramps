@@ -1,4 +1,16 @@
 2006-08-04  Alex Roitman  <shura@gramps-project.org>
+	* src/FilterEditor/_FilterEditor.py (__init__): Remove unneeded
+	argument, namespace is enough to get the filter class via factory;
+	(add_new_filter): Use factory; (get_all_handles): Get handles for
+	any object type.
+	* src/FilterEditor/_ShowResults.py (get_name_id): Add method to
+	return name and id for different object types;
+	(sort_val_from_handle): Support different object types.
+	(__init__): Accept namespace as an argument.
+	* src/Filters/__init__.py: Do not expose GenericFamilyFilter;
+	expose GenericFilterFactory instead.
+	* src/Filters/_FamilySidebarFilter.py (GenericFamilyFilter): Use
+	factory.
 	* src/FilterEditor/_EditRule.py (MyID.name_from_gramps_id): Remove
 	debugginb output.
 	* src/DataViews/_MediaView.py (row_change): Work around older pygtk.

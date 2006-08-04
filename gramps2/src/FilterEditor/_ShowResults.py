@@ -56,7 +56,8 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import ManagedWindow
-import NameDisplay
+from NameDisplay import displayer as _nd
+import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -64,18 +65,19 @@ import NameDisplay
 #
 #-------------------------------------------------------------------------
 class ShowResults(ManagedWindow.ManagedWindow):
-    def __init__(self, db, uistate, track, handle_list, filtname):
+    def __init__(self, db, uistate, track, handle_list, filtname, space):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
+        self.db = db
         self.filtname = filtname
+        self.space = space
         self.define_glade('test', const.rule_glade,)
         self.set_window(
             self.get_widget('test'),
             self.get_widget('title'),
             _('Filter Test'))
 
-        nd = NameDisplay.displayer
         render = gtk.CellRendererText()
         
         tree = self.get_widget('list')
@@ -88,25 +90,35 @@ class ShowResults(ManagedWindow.ManagedWindow):
         column_n = gtk.TreeViewColumn(_('ID'), render, text=1)
         tree.append_column(column_n)
 
-        self.get_widget('close').connect('clicked',self.close_window)
+        self.get_widget('close').connect('clicked',self.close)
 
-        new_list = [self.sort_val_from_handle(db, h) for h in handle_list]
+        new_list = [self.sort_val_from_handle(h) for h in handle_list]
         new_list.sort()
         handle_list = [ h[1] for h in new_list ]
 
-        for p_handle in handle_list:
-            person = db.get_person_from_handle(p_handle)
-            name = nd.sorted(person)
-            gid = person.get_gramps_id()
-            
+        for handle in handle_list:
+            name,gid = self.get_name_id(handle)
             model.append(row=[name, gid])
 
         self.show()
 
-    def sort_val_from_handle(self, db, h):
-        n = db.get_person_from_handle(h).get_primary_name()
-        return (locale.strxfrm(NameDisplay.displayer.sort_string(n)),h)
-    
-    def close_window(self,obj):
-        self.close()
-
+    def get_name_id(self,handle):
+        if self.space == 'Person':
+            person = self.db.get_person_from_handle(handle)
+            name = _nd.sorted(person)
+            gid = person.get_gramps_id()
+        elif self.space == 'Family':
+            family = self.db.get_family_from_handle(handle)
+            name = Utils.family_name(family,self.db)
+            gid = family.get_gramps_id()
+        return (name,gid)
+        
+    def sort_val_from_handle(self, handle):
+        if self.space == 'Person':
+            name = self.db.get_person_from_handle(handle).get_primary_name()
+            sortname = locale.strxfrm(_nd.sort_string(name))
+        elif self.space == 'Family':
+            name = Utils.family_name(
+                self.db.get_family_from_handle(handle),self.db)
+            sortname = locale.strxfrm(name)
+        return (sortname,handle)
