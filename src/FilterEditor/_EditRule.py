@@ -80,6 +80,7 @@ def by_rule_name(f,s):
 _name2typeclass = {
     _('Personal event:')     : RelLib.EventType,
     _('Family event:')       : RelLib.EventType,
+    _('Event type:')         : RelLib.EventType,
     _('Personal attribute:') : RelLib.AttributeType,
     _('Family attribute:')   : RelLib.AttributeType,
     _('Relationship type:')  : RelLib.FamilyRelType,

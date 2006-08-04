@@ -1,4 +1,5 @@
 2006-08-04  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Person/_IsWitness.py: Rewrite with new API.
 	* src/FilterEditor/_FilterEditor.py (__init__): Remove unneeded
 	argument, namespace is enough to get the filter class via factory;
 	(add_new_filter): Use factory; (get_all_handles): Get handles for
@@ -12,7 +13,9 @@
 	* src/Filters/_FamilySidebarFilter.py (GenericFamilyFilter): Use
 	factory.
 	* src/FilterEditor/_EditRule.py (MyID.name_from_gramps_id): Remove
-	debugginb output.
+	debugging output;
+	(_name2typeclass): Add name->type mapping.
+
 	* src/DataViews/_MediaView.py (row_change): Work around older pygtk.
 	* src/Filters/Rules/Family/Makefile.am (pkgdata_PYTHON): Ship new
 	files. 

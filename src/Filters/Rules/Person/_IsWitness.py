@@ -33,6 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from Filters.Rules._Rule import Rule
+from RelLib import EventRoleType, EventType
 
 #-------------------------------------------------------------------------
 # "Witnesses"
@@ -40,45 +41,23 @@ from Filters.Rules._Rule import Rule
 class IsWitness(Rule):
     """Witnesses"""
 
-    labels      = [_('Personal event:'), _('Family event:')]
+    labels      = [_('Event type:')]
     name        = _('Witnesses')
     description = _("Matches people who are witnesses in any event")
     category    = _('Event filters')
 
-    def prepare(self,db):
-        self.db = db
-        self.map = []
-        self.build_witness_list()
-
-    def reset(self):
-        self.map = []
-        
     def apply(self,db,person):
-        return person.handle in self.map
-
-    def build_witness_list(self):
-        for person_handle in self.db.get_person_handles():
-            p = self.db.get_person_from_handle(person_handle)
-            self.get_witness_of_events(self.list[0],
-                                       p.get_event_ref_list()+
-                                       [p.get_birth_ref(),
-                                        p.get_death_ref()]
-                                       )
-
-        for family_handle in self.db.get_family_handles():
-            f = self.db.get_family_from_handle(family_handle)
-            self.get_witness_of_events(self.list[1],f.get_event_ref_list())
-
-    def get_witness_of_events(self, event_type, event_list):
-        if not event_list:
-            return
-        for event_ref in event_list:
-            if event_ref:
-                event = self.db.get_event_from_handle(event_ref.ref)
-                if event_type and not event.get_name() == event_type:
-                    continue
-                wlist = event.get_witness_list()
-                if wlist:
-                    for w in wlist:
-                        if w.get_type() == 1:
-                            self.map.append(w.get_value())
+        for event_ref in person.event_ref_list:
+            if event_ref.role == EventRoleType.WITNESS:
+                # This is the witness.
+                # If event type was given, then check it.
+                if self.list[0]:
+                    event = db.get_event_from_handle(event_ref.ref)
+                    specified_type = EventType()
+                    specified_type.set_from_xml_str(self.list[0])
+                    if event.type == specified_type:
+                        return True
+                else:
+                    # event type was not specified, we're returning a match
+                    return True
+        return False
