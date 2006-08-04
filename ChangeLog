@@ -1,3 +1,13 @@
+2006-08-04  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/DataViews/_PersonView.py (__init__): connection to "active-
+	person-changed" signal moved to set_active()
+	(set_active, set_inactive): Reconnect to/disconnect from dbstate's
+	"active-person-changed" signal.
+	* src/DataViews/_RelationView.py (__init__): connection to "active-
+	person-changed" signal moved to set_active()
+	(set_active, set_inactive): Reconnect to/disconnect from dbstate's
+	"active-person-changed" signal.
+
 2006-08-03  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/_GenericFilter.py (GenericFilterFactory): Add
 	factory function.
