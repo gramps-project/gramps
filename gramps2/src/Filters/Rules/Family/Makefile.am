@@ -6,6 +6,7 @@ pkgdata_PYTHON = \
 	_AllFamilies.py\
 	_FamilyPrivate.py\
 	_HasEvent.py\
+	_HasAttribute.py\
 	_HasIdOf.py\
 	_HasNoteMatchingSubstringOf.py\
 	_HasNoteRegexp.py\

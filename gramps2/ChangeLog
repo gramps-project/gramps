@@ -1,4 +1,11 @@
 2006-08-04  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Family/__init__.py (editor_rule_list): Import
+	and use new rule.
+	* src/Filters/Rules/Family/Makefile.am (pkgdata_PYTHON): Ship new file.
+	* src/Filters/Rules/Family/_HasAttribute.py: Add new rule.
+	* src/Filters/Rules/Makefile.am (pkgdata_PYTHON): Ship new file.
+	* src/Filters/Rules/_HasAttributeBase.py: Add base module.
+	* src/Filters/Rules/_HasEventBase.py (apply): Use new API.
 	* src/Filters/Rules/Person/_HasFamilyEvent.py (apply): Use new API.
 	* src/Filters/Rules/Person/_PersonWithIncompleteEvent.py
 	(apply): Do not double-handle birth and death events.

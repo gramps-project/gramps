@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _HasEvent.py 6635 2006-05-13 03:53:06Z dallingham $
+# $Id: _HasAttribute.py 6529 2006-05-03 06:29:07Z rshura $
 
 #-------------------------------------------------------------------------
 #
@@ -32,19 +32,17 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._HasEventBase import HasEventBase
+from Filters.Rules._HasAttributeBase import HasAttributeBase
 
 #-------------------------------------------------------------------------
 #
-# HasEvent
+# HasAttribute
 #
 #-------------------------------------------------------------------------
-class HasEvent(HasEventBase):
-    """Rule that checks for a person with a particular value"""
+class HasAttribute(HasAttributeBase):
+    """Rule that checks for a family with a particular family attribute"""
 
-    labels      = [ _('Family event:'), 
-                    _('Date:'), 
-                    _('Place:'), 
-                    _('Description:') ]
-    name        =  _('Families with the <event>')
-    description = _("Matches families with an event of a particular value")
+    labels      = [ _('Family attribute:'), _('Value:') ]
+    name        = _('Families with the family <attribute>')
+    description = _("Matches families with the family attribute "
+                    "of a particular value")

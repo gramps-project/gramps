@@ -32,29 +32,17 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._Rule import Rule
+from Filters.Rules._HasAttributeBase import HasAttributeBase
 
 #-------------------------------------------------------------------------
 #
 # HasAttribute
 #
 #-------------------------------------------------------------------------
-class HasAttribute(Rule):
+class HasAttribute(HasAttributeBase):
     """Rule that checks for a person with a particular personal attribute"""
 
     labels      = [ _('Personal attribute:'), _('Value:') ]
     name        = _('People with the personal <attribute>')
     description = _("Matches people with the personal attribute "
                     "of a particular value")
-    category    = _('General filters')
-
-    def apply(self,db,person):
-        if not self.list[0]:
-            return False
-        for attr in person.get_attribute_list():
-            name_match = self.list[0] == attr.get_type()
-            value_match = \
-                    attr.get_value().upper().find(self.list[1].upper()) != -1
-            if name_match and value_match:
-                return True
-        return False
