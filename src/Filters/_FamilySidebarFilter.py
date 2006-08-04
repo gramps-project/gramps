@@ -43,9 +43,10 @@ import GrampsWidgets
 import RelLib
 
 from _SidebarFilter import SidebarFilter
-from Filters import GenericFamilyFilter, build_filter_model, Rules
+from Filters import GenericFilterFactory, build_filter_model, Rules
 from Filters.Rules.Family import *
 
+GenericFamilyFilter = GenericFilterFactory('Family')
 #-------------------------------------------------------------------------
 #
 # PersonSidebarFilter class

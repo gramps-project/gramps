@@ -54,7 +54,7 @@ import GrampsDisplay
 #
 #-------------------------------------------------------------------------
 import const
-from Filters import GenericFilter, FilterList, \
+from Filters import GenericFilterFactory, FilterList, \
      reload_custom_filters, reload_system_filters
 import ListModel
 import ManagedWindow
@@ -65,11 +65,10 @@ import ManagedWindow
 #
 #-------------------------------------------------------------------------
 class FilterEditor(ManagedWindow.ManagedWindow):
-    def __init__(self, space, filterdb, dbstate, uistate, ftype=GenericFilter):
+    def __init__(self, space, filterdb, dbstate, uistate):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [],
                                              FilterEditor)
-        self.ftype = ftype
         self.dbstate = dbstate
         self.db = dbstate.db
         self.filterdb = FilterList(filterdb)
@@ -138,7 +137,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
     def add_new_filter(self,obj):
         from _EditFilter import EditFilter
 
-        the_filter = self.ftype()
+        the_filter = GenericFilterFactory(self.space)()
         EditFilter(self.space, self.dbstate, self.uistate, self.track,
                    the_filter, self.filterdb, self.draw_filters)
 
@@ -157,10 +156,9 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             from _ShowResults import ShowResults
             
             filt = self.clist.get_object(node)
-            handle_list = filt.apply(
-                self.db, self.db.get_person_handles(sort_handles=False))
+            handle_list = filt.apply(self.db,self.get_all_handles())
             ShowResults(self.db, self.uistate, self.track, handle_list,
-                        filt.get_name())
+                        filt.get_name(),self.space)
 
     def delete_filter(self,obj):
         store,node = self.clist.get_selected()
@@ -169,3 +167,8 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             self.filterdb.get_filters(self.space).remove(gfilter)
             self.draw_filters()
 
+    def get_all_handles(self):
+        if self.space == 'Person':
+            return self.db.get_person_handles(sort_handles=False)
+        elif self.space == 'Family':
+            return self.db.get_family_handles()
