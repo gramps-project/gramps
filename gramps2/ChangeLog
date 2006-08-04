@@ -1,4 +1,6 @@
 2006-08-04  Alex Roitman  <shura@gramps-project.org>
+	* src/FilterEditor/_EditRule.py (MyID.name_from_gramps_id): Remove
+	debugginb output.
 	* src/DataViews/_MediaView.py (row_change): Work around older pygtk.
 	* src/Filters/Rules/Family/Makefile.am (pkgdata_PYTHON): Ship new
 	files. 
