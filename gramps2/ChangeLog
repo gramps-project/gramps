@@ -1,4 +1,7 @@
 2006-08-04  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Person/_HasFamilyEvent.py (apply): Use new API.
+	* src/Filters/Rules/Person/_PersonWithIncompleteEvent.py
+	(apply): Do not double-handle birth and death events.
 	* src/Filters/Rules/Person/_IsWitness.py: Rewrite with new API.
 	* src/FilterEditor/_FilterEditor.py (__init__): Remove unneeded
 	argument, namespace is enough to get the filter class via factory;
