@@ -25,7 +25,6 @@ Package providing filtering framework for GRAMPS.
 """
 
 import RelLib
-
 #-------------------------------------------------------------------------
 #
 # GenericFilter
@@ -210,3 +209,8 @@ class GenericFamilyFilter(GenericFilter):
         return db.get_family_from_handle(handle)
 
     
+def GenericFilterFactory(namespace):
+    if namespace == 'Person':
+        return GenericFilter
+    elif namespace == 'Family':
+        return GenericFamilyFilter
