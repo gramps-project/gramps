@@ -367,10 +367,12 @@ class EditRule(ManagedWindow.ManagedWindow):
         self.class2page = {}
         the_map = {}
 
-        if self.space == "Family":
-            class_list = Rules.Family.editor_rule_list
-        else:
+        if self.space == "Person":
             class_list = Rules.Person.editor_rule_list
+        elif self.space == "Family":
+            class_list = Rules.Family.editor_rule_list
+        elif self.space == "Event":
+            class_list = Rules.Event.editor_rule_list
         
         for class_obj in class_list:
             arglist = class_obj.labels

@@ -111,6 +111,10 @@ class ShowResults(ManagedWindow.ManagedWindow):
             family = self.db.get_family_from_handle(handle)
             name = Utils.family_name(family,self.db)
             gid = family.get_gramps_id()
+        elif self.space == 'Event':
+            event = self.db.get_event_from_handle(handle)
+            name = event.get_description()
+            gid = event.get_gramps_id()
         return (name,gid)
         
     def sort_val_from_handle(self, handle):
@@ -120,5 +124,8 @@ class ShowResults(ManagedWindow.ManagedWindow):
         elif self.space == 'Family':
             name = Utils.family_name(
                 self.db.get_family_from_handle(handle),self.db)
+            sortname = locale.strxfrm(name)
+        elif self.space == 'Event':
+            name = self.db.get_event_from_handle(handle).get_description()
             sortname = locale.strxfrm(name)
         return (sortname,handle)
