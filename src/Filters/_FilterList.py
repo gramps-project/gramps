@@ -92,6 +92,8 @@ class FilterList:
             for the_filter in filter_list:
                 f.write('  <filter name="%s"' %self.fix(the_filter.get_name()))
                 f.write(' function="%s"' % the_filter.get_logical_op())
+                if the_filter.invert:
+                    f.write(' invert="1"')
                 comment = the_filter.get_comment()
                 if comment:
                     f.write(' comment="%s"' % self.fix(comment))

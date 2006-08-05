@@ -42,12 +42,14 @@ class GenericFilter:
             self.name = source.name
             self.comment = source.comment
             self.logical_op = source.logical_op
+            self.invert = source.invert
         else:
             self.need_param = 0
             self.flist = []
             self.name = ''
             self.comment = ''
             self.logical_op = 'and'
+            self.invert = False
 
     def match(self,handle):
         return True
@@ -63,6 +65,12 @@ class GenericFilter:
 
     def get_logical_op(self):
         return self.logical_op
+
+    def set_invert(self,val):
+        self.invert = bool(val)
+
+    def get_invert(self):
+        return self.invert
 
     def get_name(self):
         return self.name
@@ -102,29 +110,27 @@ class GenericFilter:
         
         if id_list == None:
             cursor = self.get_cursor(db)
-            data = cursor.next()
+            data = cursor.first()
             while data:
                 person = self.make_obj()
                 person.unserialize(data[1])
-                if task(db,person):
+                if task(db,person) != self.invert:
                     final_list.append(data[0])
                 data = cursor.next()
+            cursor.close()
         else:
             for handle in id_list:
                 person = self.find_from_handle(db, handle)
-                if task(db,person):
+                if task(db,person) != self.invert:
                     final_list.append(handle)
         return final_list
-
-    def check_or(self,db,id_list):
-        return self.check_func(db,id_list,self.or_test)
 
     def check_and(self,db,id_list):
         final_list = []
         flist = self.flist
         if id_list == None:
             cursor = self.get_cursor(db)
-            data = cursor.next()
+            data = cursor.first()
             while data:
                 person = self.make_obj()
                 person.unserialize(data[1])
@@ -133,9 +139,10 @@ class GenericFilter:
                     if not rule.apply(db,person):
                         val = False
                         break
-                if not val:
+                if val != self.invert:
                     final_list.append(data[0])
                 data = cursor.next()
+            cursor.close()
         else:
             for handle in id_list:
                 person = self.find_from_handle(db, handle)
@@ -144,9 +151,12 @@ class GenericFilter:
                     if not rule.apply(db,person):
                         val = False
                         break
-                if val:
+                if val != self.invert:
                     final_list.append(handle)
         return final_list
+
+    def check_or(self,db,id_list):
+        return self.check_func(db,id_list,self.or_test)
 
     def check_one(self,db,id_list):
         return self.check_func(db,id_list,self.one_test)
