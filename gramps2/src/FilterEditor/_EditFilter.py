@@ -86,6 +86,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
                                          
         self.fname = self.get_widget('filter_name')
         self.logical = self.get_widget('rule_apply')
+        self.logical_not = self.get_widget('logical_not')
         self.comment = self.get_widget('comment')
         self.ok_btn = self.get_widget('ok')
         self.edit_btn = self.get_widget('edit')
@@ -109,6 +110,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
             self.logical.set_active(2)
         else:
             self.logical.set_active(0)
+        self.logical_not.set_active(self.filter.get_invert())
         if self.filter.get_name():
             self.fname.set_text(self.filter.get_name())
         self.comment.set_text(self.filter.get_comment())
@@ -159,6 +161,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
         else:
             op = 'and'
         self.filter.set_logical_op(op)
+        self.filter.set_invert(self.logical_not.get_active())
         self.filterdb.add(self.space,self.filter)
         self.update()
         self.close()

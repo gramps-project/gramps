@@ -73,6 +73,8 @@ class FilterParser(handler.ContentHandler):
                 except ValueError:
                     op = attrs['function']
                 self.f.set_logical_op(op)
+            if attrs.has_key('invert'):
+                self.f.set_invert(attrs['invert'])
             if attrs.has_key('comment'):
                 self.f.set_comment(attrs['comment'])
             self.gfilter_list.add(self.namespace,self.f)

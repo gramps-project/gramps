@@ -1,4 +1,8 @@
 2006-08-04  Alex Roitman  <shura@gramps-project.org>
+	* src/FilterEditor/_EditFilter.py: Support invert attribute.
+	* src/Filters/_GenericFilter.py: Support invert attribute.
+	* src/Filters/_FilterList.py (save): Save invert attribute.
+	* src/Filters/_FilterParser.py (startElement): Parse invert attribute.
 	* src/Filters/Rules/Family/__init__.py (editor_rule_list): Import
 	and use new rule.
 	* src/Filters/Rules/Family/Makefile.am (pkgdata_PYTHON): Ship new file.
