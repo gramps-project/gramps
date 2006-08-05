@@ -18,30 +18,27 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: __init__.py 6521 2006-05-03 01:02:54Z rshura $
+# $Id$
 
-"""
-Package providing filter rules for GRAMPS.
-"""
+#-------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
 
-__author__ = "Don Allingham"
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from Filters.Rules._IsPrivate import IsPrivate
 
-from _HasType import HasType
-from _AllEvents import AllEvents
-from _HasIdOf import HasIdOf
-from _RegExpIdOf import RegExpIdOf
-from _HasNoteRegexp import HasNoteRegexp
-from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
-from _EventPrivate import EventPrivate
-from _MatchesFilter import MatchesFilter
+#-------------------------------------------------------------------------
+# "Family marked private"
+#-------------------------------------------------------------------------
+class EventPrivate(IsPrivate):
+    """Event marked private"""
 
-editor_rule_list = [
-    AllEvents,
-    HasType,
-    HasIdOf,
-    RegExpIdOf,
-    HasNoteRegexp,
-    HasNoteMatchingSubstringOf,
-    EventPrivate,
-    MatchesFilter,
-]
+    name        = _('Events marked private')
+    description = _("Matches events that are indicated as private")

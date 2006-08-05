@@ -37,11 +37,12 @@ import DisplayModels
 import Utils
 import Errors
 import Bookmarks
-
+import Config
+import const
 from DdTargets import DdTargets
 from QuestionDialog import QuestionDialog
 from Editors import EditEvent, DelEventQuery
-
+from Filters import EventSidebarFilter
 #-------------------------------------------------------------------------
 #
 # internationalization
@@ -83,7 +84,10 @@ class EventView(PageView.ListView):
             self, _('Events'), dbstate, uistate,
             column_names, len(column_names), DisplayModels.EventModel,
             signal_map, dbstate.db.get_event_bookmarks(),
-            Bookmarks.EventBookmarks)
+            Bookmarks.EventBookmarks, filter_class=EventSidebarFilter)
+
+        Config.client.notify_add("/apps/gramps/interface/filter",
+                                 self.filter_toggle)
 
     def get_bookmarks(self):
         return self.dbstate.db.get_event_bookmarks()
@@ -113,6 +117,7 @@ class EventView(PageView.ListView):
                 <menuitem action="Remove"/>
               </placeholder>
               <menuitem action="ColumnEdit"/>
+              <menuitem action="FilterEdit"/>
             </menu>
           </menubar>
           <toolbar name="ToolBar">
@@ -133,6 +138,28 @@ class EventView(PageView.ListView):
         PageView.ListView.define_actions(self)
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                         _('_Column Editor'), callback=self.column_editor)
+
+        self.add_action('FilterEdit', None, _('Event Filter Editor'),
+                        callback=self.filter_editor,)
+
+    def filter_toggle(self, client, cnxn_id, etnry, data):
+        if Config.get(Config.FILTER):
+            self.search_bar.hide()
+            self.filter_pane.show()
+            active = True
+        else:
+            self.search_bar.show()
+            self.filter_pane.hide()
+            active = False
+
+    def filter_editor(self,obj):
+        from FilterEditor import FilterEditor
+
+        try:
+            FilterEditor('Event',const.custom_filters,
+                         self.dbstate,self.uistate)
+        except Errors.WindowActiveError:
+            pass            
 
     def column_editor(self,obj):
         import ColumnOrder

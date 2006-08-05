@@ -58,3 +58,4 @@ from _SearchFilter import SearchFilter
 from _SidebarFilter import SidebarFilter
 from _PersonSidebarFilter import PersonSidebarFilter
 from _FamilySidebarFilter import FamilySidebarFilter
+from _EventSidebarFilter import EventSidebarFilter
