@@ -116,7 +116,7 @@ class FamilySidebarFilter(SidebarFilter):
         regex = self.filter_regex.get_active()
 	gen = self.generic.get_active() > 0
 
-        if not gid and not str(self.filter_event.get_type()) and \
+        if not gid and not self.filter_event.get_type().xml_str() and \
            not str(self.family_stub.get_relationship()) and not note \
            and not gen:
             generic_filter = None
@@ -129,7 +129,7 @@ class FamilySidebarFilter(SidebarFilter):
                     rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
 
-            etype = self.filter_event.get_type()
+            etype = self.filter_event.get_type().xml_str()
             if str(etype):
                 rule = HasEvent([etype, '', '', ''])
                 generic_filter.add_rule(rule)

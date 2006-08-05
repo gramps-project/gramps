@@ -43,70 +43,56 @@ import GrampsWidgets
 import RelLib
 
 from _SidebarFilter import SidebarFilter
-from Filters.Rules.Person import *
-from Filters import GenericFilter, build_filter_model, Rules
+from Filters import GenericFilterFactory, build_filter_model, Rules
+from Filters.Rules.Event import *
 
+GenericEventFilter = GenericFilterFactory('Event')
 #-------------------------------------------------------------------------
 #
 # PersonSidebarFilter class
 #
 #-------------------------------------------------------------------------
-class PersonSidebarFilter(SidebarFilter):
+class EventSidebarFilter(SidebarFilter):
 
     def __init__(self, clicked):
         SidebarFilter.__init__(self)
         self.clicked_func = clicked
 
     def create_widget(self):
-        self.filter_name = gtk.Entry()
         self.filter_id = gtk.Entry()
-        self.filter_birth = gtk.Entry()
-        self.filter_death = gtk.Entry()
         self.filter_event = RelLib.Event()
         self.filter_event.set_type((RelLib.EventType.CUSTOM,''))
         self.etype = gtk.ComboBoxEntry()
-        
+       
         self.event_menu = GrampsWidgets.MonitoredDataType(
             self.etype,
             self.filter_event.set_type,
             self.filter_event.get_type)
-        
+
         self.filter_note = gtk.Entry()
-        self.filter_gender = gtk.combo_box_new_text()
-        for i in [ _('any'), _('male'), _('female'), _('unknown') ]:
-            self.filter_gender.append_text(i)
-        self.filter_gender.set_active(0)
             
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
-        all = GenericFilter()
+        all = GenericEventFilter()
         all.set_name(_("None"))
-        all.add_rule(Rules.Person.Everyone([]))
+        all.add_rule(Rules.Event.AllEvents([]))
 
 	self.generic = gtk.ComboBox()
 	cell = gtk.CellRendererText()
 	self.generic.pack_start(cell, True)
 	self.generic.add_attribute(cell, 'text', 0)
-	self.generic.set_model(build_filter_model('Person', [all]))
+	self.generic.set_model(build_filter_model('Event', [all]))
 	self.generic.set_active(0)
 
-        self.add_text_entry(_('Name'), self.filter_name)
         self.add_text_entry(_('ID'), self.filter_id)
-        self.add_entry(_('Gender'), self.filter_gender)
-        self.add_text_entry(_('Birth date'), self.filter_birth)
-        self.add_text_entry(_('Death date'), self.filter_death)
-        self.add_entry(_('Has Event'), self.etype)
+        self.add_entry(_('Type'), self.etype)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
 
     def clear(self, obj):
-        self.filter_name.set_text('')
         self.filter_id.set_text('')
-        self.filter_birth.set_text('')
-        self.filter_death.set_text('')
         self.filter_note.set_text('')
-        self.filter_gender.set_active(0)
         self.etype.child.set_text('')
         self.generic.set_active(0)
 
@@ -114,52 +100,28 @@ class PersonSidebarFilter(SidebarFilter):
         self.clicked_func()
 
     def get_filter(self):
-        name = unicode(self.filter_name.get_text()).strip()
         gid = unicode(self.filter_id.get_text()).strip()
-        birth = unicode(self.filter_birth.get_text()).strip()
-        death = unicode(self.filter_death.get_text()).strip()
         note = unicode(self.filter_note.get_text()).strip()
-        gender = self.filter_gender.get_active()
         regex = self.filter_regex.get_active()
 	gen = self.generic.get_active() > 0
 
-        if not name and not gid and not birth and not death \
-               and not self.filter_event.get_type().xml_str() and \
-               not note and not gender > 0 and not gen:
+        if not gid and not str(self.filter_event.get_type()) \
+               and not note and not gen:
             generic_filter = None
         else:
-            generic_filter = GenericFilter()
-            if name:
-                if regex:
-                    rule = RegExpName([name])
-                else:
-                    rule = SearchName([name])
-                generic_filter.add_rule(rule)
+            generic_filter = GenericEventFilter()
             if gid:
                 if regex:
                     rule = RegExpIdOf([gid])
                 else:
-                    rule = MatchIdOf([gid])
+                    rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
-            if gender > 0:
-                if gender == 1:
-                    generic_filter.add_rule(IsMale([]))
-                elif gender == 2:
-                    generic_filter.add_rule(IsFemale([]))
-                else:
-                    generic_filter.add_rule(HasUnknownGender([]))
 
             etype = self.filter_event.get_type().xml_str()
             if str(etype):
-                rule = HasEvent([etype, '', '', ''])
+                rule = HasType([etype])
                 generic_filter.add_rule(rule)
                 
-            if birth:
-                rule = HasBirth([birth,'',''])
-                generic_filter.add_rule(rule)
-            if death:
-                rule = HasDeath([death,'',''])
-                generic_filter.add_rule(rule)
             if note:
                 if regex:
                     rule = HasNoteRegexp([note])
@@ -175,4 +137,3 @@ class PersonSidebarFilter(SidebarFilter):
 		generic_filter.add_rule(rule)
 
         return generic_filter
-

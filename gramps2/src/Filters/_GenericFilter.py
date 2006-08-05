@@ -219,8 +219,24 @@ class GenericFamilyFilter(GenericFilter):
         return db.get_family_from_handle(handle)
 
     
+class GenericEventFilter(GenericFilter):
+
+    def __init__(self, source=None):
+        GenericFilter.__init__(self, source)
+
+    def get_cursor(db, self):
+        return db.get_event_cursor()
+
+    def make_obj(self):
+        return RelLib.Event()
+
+    def find_from_handle(self, db, handle):
+        return db.get_event_from_handle(handle)
+
 def GenericFilterFactory(namespace):
     if namespace == 'Person':
         return GenericFilter
     elif namespace == 'Family':
         return GenericFamilyFilter
+    elif namespace == 'Event':
+        return GenericEventFilter

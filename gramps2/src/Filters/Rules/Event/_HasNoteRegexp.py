@@ -18,13 +18,14 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _HasAttribute.py 6529 2006-05-03 06:29:07Z rshura $
+# $Id$
 
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
+import re
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -32,27 +33,13 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from RelLib import FamilyRelType
-from Filters.Rules._Rule import Rule
+from Filters.Rules._HasNoteRegexBase import HasNoteRegexBase
 
 #-------------------------------------------------------------------------
-#
-# HasAttribute
-#
+# "Events having notes that contain a substring"
 #-------------------------------------------------------------------------
-class HasRelType(Rule):
-    """Rule that checks for a person with a particular personal attribute"""
+class HasNoteRegexp(HasNoteRegexBase):
 
-    labels      = [ _('Relationship type:') ]
-    name        = _('Family with the relationship type')
-    description = _("Matches family with the relationship type "
-                    "of a particular value")
-    category    = _('General filters')
-
-    def apply(self, db, family):
-        if not self.list[0]:
-            return False
-        else:
-            specified_type = FamilyRelType()
-            specified_type.set_from_xml_str(self.list[0])
-            return family.get_relationship() == specified_type
+    name        = _('Events having notes containing <regular expression>')
+    description = _("Matches events whose notes contain text "
+                    "matching a regular expression")

@@ -1,4 +1,13 @@
 2006-08-04  Alex Roitman  <shura@gramps-project.org>
+	* src/DataViews/_EventView.py: Add sidebar filter.
+	* src/FilterEditor/_FilterEditor.py: Support event filters.
+	* src/Filters/__init__.py: expose new module.
+	* src/Filters/_PersonSidebarFilter.py: Fix type handling.
+	* src/Filters/_FamilySidebarFilter.py: Fix type handling.
+	* src/Filters/_GenericFilter.py: Support event filters.
+	* src/Filters/_EventSidebarFilter.py: add new module.
+	* src/Filters/Rules/Events/*.py: add new rules.
+	* src/Filters/Rules/Family/_HasRelType.py (apply): Use new API.
 	* src/FilterEditor/_EditFilter.py: Support invert attribute.
 	* src/Filters/_GenericFilter.py: Support invert attribute.
 	* src/Filters/_FilterList.py (save): Save invert attribute.

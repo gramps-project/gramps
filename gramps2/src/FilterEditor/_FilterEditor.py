@@ -172,3 +172,5 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             return self.db.get_person_handles(sort_handles=False)
         elif self.space == 'Family':
             return self.db.get_family_handles()
+        elif self.space == 'Event':
+            return self.db.get_event_handles()
