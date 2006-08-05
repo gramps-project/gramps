@@ -1,3 +1,6 @@
+2006-08-05  Alex Roitman  <shura@gramps-project.org>
+	* POTFILES.in: Add new files.
+	
 2006-08-04  Alex Roitman  <shura@gramps-project.org>
 	* POTFILES.in: Unlist plugins that are not shipped.
 	Add new files.

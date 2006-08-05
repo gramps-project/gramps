@@ -1,4 +1,10 @@
 2006-08-05  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/SideBar/_PersonSidebarFilter.py: Minor changes.
+	* src/Filters/SideBar/_FamilySidebarFilter.py: Add father, mother,
+	and child search options.
+	* src/Filters/Rules/Family/__init__.py: Expose new modules.
+	* src/Filters/Rules/Family/_Search*Name.py: add new modules.
+	* src/Filters/Rules/Family/Makefile.am (pkgdata_PYTHON): Ship new files
 	* src/Filters/Rules/Family/_MotherHasNameOf.py (apply): Handle
 	missing parents.
 	* src/Filters/Rules/Family/_MotherHasIdOf.py (apply): Handle

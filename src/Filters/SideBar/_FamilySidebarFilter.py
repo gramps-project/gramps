@@ -60,6 +60,10 @@ class FamilySidebarFilter(SidebarFilter):
 
     def create_widget(self):
         self.filter_id = gtk.Entry()
+        self.filter_father = gtk.Entry()
+        self.filter_mother = gtk.Entry()
+        self.filter_child = gtk.Entry()
+        
         self.filter_event = RelLib.Event()
         self.filter_event.set_type((RelLib.EventType.CUSTOM,''))
         self.etype = gtk.ComboBoxEntry()
@@ -94,14 +98,20 @@ class FamilySidebarFilter(SidebarFilter):
 	self.generic.set_active(0)
 
         self.add_text_entry(_('ID'), self.filter_id)
+        self.add_text_entry(_('Father'), self.filter_father)
+        self.add_text_entry(_('Mother'), self.filter_mother)
+        self.add_text_entry(_('Child'), self.filter_child)
         self.add_entry(_('Relationship'), self.rtype)
-        self.add_entry(_('Has Event'), self.etype)
-        self.add_text_entry(_('Note'), self.filter_note)
+        self.add_entry(_('Family Event'), self.etype)
+        self.add_text_entry(_('Family Note'), self.filter_note)
         self.add_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
 
     def clear(self, obj):
         self.filter_id.set_text('')
+        self.filter_father.set_text('')
+        self.filter_mother.set_text('')
+        self.filter_child.set_text('')
         self.filter_note.set_text('')
         self.etype.child.set_text('')
         self.rtype.child.set_text('')
@@ -112,13 +122,18 @@ class FamilySidebarFilter(SidebarFilter):
 
     def get_filter(self):
         gid = unicode(self.filter_id.get_text()).strip()
+        father = unicode(self.filter_father.get_text()).strip()
+        mother = unicode(self.filter_mother.get_text()).strip()
+        child = unicode(self.filter_child.get_text()).strip()
         note = unicode(self.filter_note.get_text()).strip()
+        etype = self.filter_event.get_type().xml_str()
+        rtype = self.family_stub.get_relationship().xml_str()
         regex = self.filter_regex.get_active()
 	gen = self.generic.get_active() > 0
 
-        if not gid and not self.filter_event.get_type().xml_str() and \
-           not self.family_stub.get_relationship().xml_str() and not note \
-           and not gen:
+        empty = not (gid or father or mother or child or note
+                     or regex or etype or rtype or gen)
+        if empty:
             generic_filter = None
         else:
             generic_filter = GenericFamilyFilter()
@@ -129,13 +144,23 @@ class FamilySidebarFilter(SidebarFilter):
                     rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
 
-            etype = self.filter_event.get_type().xml_str()
-            if str(etype):
+            if father:
+                rule = SearchFatherName([father])
+                generic_filter.add_rule(rule)
+
+            if mother:
+                rule = SearchMotherName([mother])
+                generic_filter.add_rule(rule)
+
+            if child:
+                rule = SearchChildName([child])
+                generic_filter.add_rule(rule)
+
+            if etype:
                 rule = HasEvent([etype, '', '', ''])
                 generic_filter.add_rule(rule)
 
-            rtype = self.family_stub.get_relationship().xml_str()
-            if str(rtype):
+            if rtype:
                 rule = HasRelType([rtype])
                 generic_filter.add_rule(rule)
                 
