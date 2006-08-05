@@ -50,4 +50,7 @@ class MotherHasNameOf(HasNameOf):
     def apply(self,db,family):
         mother_handle = family.get_mother_handle()
         mother = db.get_person_from_handle(mother_handle)
-        return HasNameOf.apply(self,db,mother)
+        if mother:
+            return HasNameOf.apply(self,db,mother)
+        else:
+            return False

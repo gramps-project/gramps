@@ -1,3 +1,13 @@
+2006-08-05  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Family/_MotherHasNameOf.py (apply): Handle
+	missing parents.
+	* src/Filters/Rules/Family/_MotherHasIdOf.py (apply): Handle
+	missing parents.
+	* src/Filters/Rules/Family/_FatherHasNameOf.py (apply): Handle
+	missing parents.
+	* src/Filters/Rules/Family/_FatherHasIdOf.py (apply): Handle
+	missing parents.
+
 2006-08-04  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/SideBar: Add new module.
 	* src/Filters/Rules/Event/Makefile.am (pkgdata_PYTHON): Ship new files.
