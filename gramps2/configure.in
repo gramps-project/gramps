@@ -223,6 +223,7 @@ src/Filters/Rules/Source/Makefile
 src/Filters/Rules/Place/Makefile
 src/Filters/Rules/Media/Makefile
 src/Filters/Rules/Repository/Makefile
+src/Filters/SideBar/Makefile
 src/DataViews/Makefile
 src/PluginUtils/Makefile
 src/ReportBase/Makefile
