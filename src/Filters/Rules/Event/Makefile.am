@@ -3,6 +3,14 @@
 pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Event
 
 pkgdata_PYTHON = \
+	_MatchesFilter.py\
+	_EventPrivate.py\
+	_HasNoteRegexp.py\
+	_RegExpIdOf.py\
+	_AllEvents.py\
+	_HasIdOf.py\
+	_HasType.py\
+	_HasNoteMatchingSubstringOf.py\
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Event

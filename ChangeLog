@@ -1,4 +1,6 @@
 2006-08-04  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Event/Makefile.am (pkgdata_PYTHON): Ship new files.
+	* src/Filters/Makefile.am (pkgdata_PYTHON): Ship new file.
 	* src/DataViews/_EventView.py: Add sidebar filter.
 	* src/FilterEditor/_FilterEditor.py: Support event filters.
 	* src/Filters/__init__.py: expose new module.
