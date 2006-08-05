@@ -42,7 +42,8 @@ import const
 from DdTargets import DdTargets
 from QuestionDialog import QuestionDialog
 from Editors import EditEvent, DelEventQuery
-from Filters import EventSidebarFilter
+from Filters.SideBar import EventSidebarFilter
+
 #-------------------------------------------------------------------------
 #
 # internationalization

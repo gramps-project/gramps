@@ -49,13 +49,19 @@ src/Utils.py
 src/UndoHistory.py
 src/ViewManager.py
 src/ManagedWindow.py
+
+# Config package
 src/Config/_GrampsGconfKeys.py
 src/Config/_GrampsIniKeys.py
 src/Config/__init__.py
+
+# Merge package
 src/Merge/__init__.py
 src/Merge/_MergePerson.py
 src/Merge/_MergePlace.py
 src/Merge/_MergeSource.py
+
+# DataViews package
 src/DataViews/_EventView.py
 src/DataViews/_FamilyList.py
 src/DataViews/_RelationView.py
@@ -67,6 +73,8 @@ src/DataViews/_PersonView.py
 src/DataViews/_PlaceView.py
 src/DataViews/_RepositoryView.py
 src/DataViews/_SourceView.py
+
+# DateHandler package
 src/DateHandler/_Date_de.py
 src/DateHandler/_DateDisplay.py
 src/DateHandler/_Date_es.py
@@ -80,6 +88,8 @@ src/DateHandler/_Date_ru.py
 src/DateHandler/_Date_sk.py
 src/DateHandler/_Date_sv.py
 src/DateHandler/__init__.py
+
+# docgen directory
 src/docgen/AbiWord2Doc.py
 src/docgen/AsciiDoc.py
 src/docgen/HtmlDoc.py
@@ -95,6 +105,8 @@ src/docgen/PSDrawDoc.py
 src/docgen/RTFDoc.py
 src/docgen/SpreadSheetDoc.py
 src/docgen/SvgDrawDoc.py
+
+# DisplayModels package
 src/DisplayModels/_BaseModel.py
 src/DisplayModels/_EventModel.py
 src/DisplayModels/_FamilyModel.py
@@ -104,6 +116,8 @@ src/DisplayModels/_PlaceModel.py
 src/DisplayModels/_RepositoryModel.py
 src/DisplayModels/_SourceModel.py
 src/DisplayModels/__init__.py
+
+# DisplayTabs package
 src/DisplayTabs/_AddrEmbedList.py
 src/DisplayTabs/_AddressModel.py
 src/DisplayTabs/_AttrEmbedList.py
@@ -143,6 +157,8 @@ src/DisplayTabs/_SourceRefModel.py
 src/DisplayTabs/_WebEmbedList.py
 src/DisplayTabs/_WebModel.py
 src/DisplayTabs/__init__.py
+
+# Editors package
 src/Editors/_EditAddress.py
 src/Editors/_EditAttribute.py
 src/Editors/_EditChildRef.py
@@ -166,6 +182,8 @@ src/Editors/_EditSource.py
 src/Editors/_EditSourceRef.py
 src/Editors/_EditUrl.py
 src/Editors/__init__.py
+
+# GrampsDb package
 src/GrampsDb/_DbUtils.py
 src/GrampsDb/_GedcomInfo.py
 src/GrampsDb/_GedTokens.py
@@ -184,14 +202,20 @@ src/GrampsDb/_ReadXML.py
 src/GrampsDb/_WriteGedcom.py
 src/GrampsDb/_WriteGrdb.py
 src/GrampsDb/_WriteXML.py
+
+# GrampsLogger package
 src/GrampsLogger/_ErrorReportAssistant.py
 src/GrampsLogger/_ErrorView.py
 src/GrampsLogger/_GtkHandler.py
 src/GrampsLogger/__init__.py
 src/GrampsLogger/_RotateHandler.py
+
+# Mime package
 src/Mime/_GnomeMime.py
 src/Mime/__init__.py
 src/Mime/_PythonMime.py
+
+# Models package
 src/Models/_FastFilterModel.py
 src/Models/_FastModel.py
 src/Models/__init__.py
@@ -200,6 +224,8 @@ src/Models/_PathCursor.py
 src/Models/_PersonFilterModel.py
 src/Models/_PersonListModel.py
 src/Models/_PersonTreeModel.py
+
+# ObjectSelector package
 src/ObjectSelector/_Constants.py
 src/ObjectSelector/_Factories.py
 src/ObjectSelector/_FamilyFilterFrame.py
@@ -229,6 +255,8 @@ src/Selectors/_SelectSource.py
 src/Selectors/_SelectorExceptions.py
 src/Selectors/_SelectorFactory.py
 src/Selectors/__init__.py
+
+# plugins directory
 src/plugins/AncestorChart2.py
 src/plugins/AncestorReport.py
 src/plugins/BookReport.py
@@ -283,12 +311,16 @@ src/plugins/WriteCD.py
 src/plugins/WriteFtree.py
 src/plugins/WriteGeneWeb.py
 src/plugins/WritePkg.py
+
+# PluginUtils package
 src/PluginUtils/__init__.py
 src/PluginUtils/_Options.py
 src/PluginUtils/_PluginMgr.py
 src/PluginUtils/_Plugins.py
 src/PluginUtils/_Tool.py
 src/PluginUtils/_PluginStatus.py
+
+# ReportBase package
 src/ReportBase/_BareReportDialog.py
 src/ReportBase/_BookFormatComboBox.py
 src/ReportBase/_CommandLineReport.py
@@ -308,6 +340,8 @@ src/ReportBase/_StyleEditor.py
 src/ReportBase/_TemplateParser.py
 src/ReportBase/_TextFormatComboBox.py
 src/ReportBase/_TextReportDialog.py
+
+# RelLib package
 src/RelLib/_AddressBase.py
 src/RelLib/_Address.py
 src/RelLib/_AttributeBase.py
@@ -348,8 +382,6 @@ src/RelLib/_SourceRef.py
 src/RelLib/_UrlBase.py
 src/RelLib/_Url.py
 src/RelLib/_Witness.py
-src/TreeViews/__init__.py
-src/TreeViews/_PersonTreeView.py
 src/RelLib/_FamilyRelType.py
 src/RelLib/_UrlType.py
 src/RelLib/_NameType.py
@@ -358,8 +390,12 @@ src/RelLib/_SourceMediaType.py
 src/RelLib/_MarkerType.py
 src/RelLib/_EventRoleType.py
 src/RelLib/_EventType.py
-src/Filters/_EventSidebarFilter.py
-src/Filters/_FamilySidebarFilter.py
+
+# TreeViews package
+src/TreeViews/__init__.py
+src/TreeViews/_PersonTreeView.py
+
+# Filters package
 src/Filters/_FilterComboBox.py
 src/Filters/_FilterList.py
 src/Filters/_FilterMenu.py
@@ -368,10 +404,10 @@ src/Filters/_FilterStore.py
 src/Filters/_GenericFilter.py
 src/Filters/__init__.py
 src/Filters/_ParamFilter.py
-src/Filters/_PersonSidebarFilter.py
 src/Filters/_SearchBar.py
 src/Filters/_SearchFilter.py
-src/Filters/_SidebarFilter.py
+
+# Filters.Rules package
 src/Filters/Rules/_Everything.py
 src/Filters/Rules/_HasAttributeBase.py
 src/Filters/Rules/_HasEventBase.py
@@ -386,6 +422,8 @@ src/Filters/Rules/_MatchesFilterBase.py
 src/Filters/Rules/_RegExpIdBase.py
 src/Filters/Rules/_Rule.py
 src/Filters/Rules/_RuleUtils.py
+
+# Filters.Rules.Person package
 src/Filters/Rules/Person/_Disconnected.py
 src/Filters/Rules/Person/_Everyone.py
 src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py
@@ -446,6 +484,8 @@ src/Filters/Rules/Person/_RegExpName.py
 src/Filters/Rules/Person/_RelationshipPathBetween.py
 src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py
 src/Filters/Rules/Person/_SearchName.py
+
+# Filters.Rules.Family package
 src/Filters/Rules/Family/__init__.py
 src/Filters/Rules/Family/_AllFamilies.py
 src/Filters/Rules/Family/_FamilyPrivate.py
@@ -463,6 +503,8 @@ src/Filters/Rules/Family/_MotherHasNameOf.py
 src/Filters/Rules/Family/_ChildHasIdOf.py
 src/Filters/Rules/Family/_FatherHasNameOf.py
 src/Filters/Rules/Family/_ChildHasNameOf.py
+
+# Filters.Rules.Event package
 src/Filters/Rules/Event/_MatchesFilter.py
 src/Filters/Rules/Event/_EventPrivate.py
 src/Filters/Rules/Event/_HasNoteRegexp.py
@@ -476,6 +518,18 @@ src/Filters/Rules/Place/__init__.py
 src/Filters/Rules/Source/__init__.py
 src/Filters/Rules/Media/__init__.py
 src/Filters/Rules/Repository/__init__.py
+
+# Filters.SideBar package
+src/Filters/SideBar/_EventSidebarFilter.py
+src/Filters/SideBar/_FamilySidebarFilter.py
+src/Filters/SideBar/_PersonSidebarFilter.py
+src/Filters/SideBar/_SidebarFilter.py
+
+# FilterEditor package
+src/FilterEditor/_FilterEditor.py
+src/FilterEditor/_EditFilter.py
+src/FilterEditor/_EditRule.py
+src/FilterEditor/_ShowResults.py
 
 #
 #	Glade files
@@ -505,10 +559,6 @@ src/plugins/vcalendarexport.glade
 src/plugins/vcardexport.glade
 src/plugins/verify.glade
 src/plugins/writeftree.glade
-src/FilterEditor/_FilterEditor.py
-src/FilterEditor/_EditFilter.py
-src/FilterEditor/_EditRule.py
-src/FilterEditor/_ShowResults.py
 #
 #	Files to extract from and then merge into
 #

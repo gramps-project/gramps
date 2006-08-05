@@ -31,7 +31,7 @@ import Bookmarks
 import Errors
 import Config
 import const
-from Filters import FamilySidebarFilter
+from Filters.SideBar import FamilySidebarFilter
 
 #-------------------------------------------------------------------------
 #

@@ -5,8 +5,6 @@ SUBDIRS = Rules
 pkgdatadir = $(datadir)/@PACKAGE@/Filters
 
 pkgdata_PYTHON = \
-	_EventSidebarFilter.py \
-	_FamilySidebarFilter.py \
 	_FilterComboBox.py \
 	_FilterList.py \
 	_FilterMenu.py \
@@ -16,9 +14,7 @@ pkgdata_PYTHON = \
 	_ParamFilter.py \
 	__init__.py \
 	_SearchBar.py \
-	_SearchFilter.py \
-	_SidebarFilter.py \
-	_PersonSidebarFilter.py
+	_SearchFilter.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters
 pkgpythondir = @pkgpythondir@/Filters

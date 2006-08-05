@@ -117,7 +117,7 @@ class FamilySidebarFilter(SidebarFilter):
 	gen = self.generic.get_active() > 0
 
         if not gid and not self.filter_event.get_type().xml_str() and \
-           not str(self.family_stub.get_relationship()) and not note \
+           not self.family_stub.get_relationship().xml_str() and not note \
            and not gen:
             generic_filter = None
         else:
@@ -134,7 +134,7 @@ class FamilySidebarFilter(SidebarFilter):
                 rule = HasEvent([etype, '', '', ''])
                 generic_filter.add_rule(rule)
 
-            rtype = self.family_stub.get_relationship()
+            rtype = self.family_stub.get_relationship().xml_str()
             if str(rtype):
                 rule = HasRelType([rtype])
                 generic_filter.add_rule(rule)
