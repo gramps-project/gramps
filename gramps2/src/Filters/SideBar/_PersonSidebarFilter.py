@@ -95,7 +95,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.add_entry(_('Gender'), self.filter_gender)
         self.add_text_entry(_('Birth date'), self.filter_birth)
         self.add_text_entry(_('Death date'), self.filter_death)
-        self.add_entry(_('Has Event'), self.etype)
+        self.add_entry(_('Event'), self.etype)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
@@ -118,14 +118,15 @@ class PersonSidebarFilter(SidebarFilter):
         gid = unicode(self.filter_id.get_text()).strip()
         birth = unicode(self.filter_birth.get_text()).strip()
         death = unicode(self.filter_death.get_text()).strip()
+        etype = self.filter_event.get_type().xml_str()
         note = unicode(self.filter_note.get_text()).strip()
         gender = self.filter_gender.get_active()
         regex = self.filter_regex.get_active()
 	gen = self.generic.get_active() > 0
 
-        if not name and not gid and not birth and not death \
-               and not self.filter_event.get_type().xml_str() and \
-               not note and not gender > 0 and not gen:
+        empty = not (name or gid or birth or death or etype
+                     or note or gedner or regex or gen)
+        if empty:
             generic_filter = None
         else:
             generic_filter = GenericFilter()
@@ -141,6 +142,7 @@ class PersonSidebarFilter(SidebarFilter):
                 else:
                     rule = MatchIdOf([gid])
                 generic_filter.add_rule(rule)
+
             if gender > 0:
                 if gender == 1:
                     generic_filter.add_rule(IsMale([]))
@@ -149,8 +151,7 @@ class PersonSidebarFilter(SidebarFilter):
                 else:
                     generic_filter.add_rule(HasUnknownGender([]))
 
-            etype = self.filter_event.get_type().xml_str()
-            if str(etype):
+            if etype:
                 rule = HasEvent([etype, '', '', ''])
                 generic_filter.add_rule(rule)
                 
