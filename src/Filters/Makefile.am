@@ -1,6 +1,6 @@
 # This is the src/Filters level Makefile for Gramps
 
-SUBDIRS = Rules
+SUBDIRS = Rules SideBar
 
 pkgdatadir = $(datadir)/@PACKAGE@/Filters
 

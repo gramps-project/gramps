@@ -1,7 +1,5 @@
 # This is the src/Filters/SideBar level Makefile for Gramps
 
-SUBDIRS = Rules
-
 pkgdatadir = $(datadir)/@PACKAGE@/Filters
 
 pkgdata_PYTHON = \
