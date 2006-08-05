@@ -51,4 +51,7 @@ class FatherHasIdOf(HasGrampsId):
     def apply(self,db,family):
         father_handle = family.get_father_handle()
         father = db.get_person_from_handle(father_handle)
-        return HasGrampsId.apply(self,db,father)
+        if father:
+            return HasGrampsId.apply(self,db,father)
+        else:
+            return False
