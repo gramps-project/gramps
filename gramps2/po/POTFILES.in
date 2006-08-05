@@ -358,6 +358,7 @@ src/RelLib/_SourceMediaType.py
 src/RelLib/_MarkerType.py
 src/RelLib/_EventRoleType.py
 src/RelLib/_EventType.py
+src/Filters/_EventSidebarFilter.py
 src/Filters/_FamilySidebarFilter.py
 src/Filters/_FilterComboBox.py
 src/Filters/_FilterList.py
@@ -462,6 +463,14 @@ src/Filters/Rules/Family/_MotherHasNameOf.py
 src/Filters/Rules/Family/_ChildHasIdOf.py
 src/Filters/Rules/Family/_FatherHasNameOf.py
 src/Filters/Rules/Family/_ChildHasNameOf.py
+src/Filters/Rules/Event/_MatchesFilter.py
+src/Filters/Rules/Event/_EventPrivate.py
+src/Filters/Rules/Event/_HasNoteRegexp.py
+src/Filters/Rules/Event/_RegExpIdOf.py
+src/Filters/Rules/Event/_AllEvents.py
+src/Filters/Rules/Event/_HasIdOf.py
+src/Filters/Rules/Event/_HasType.py
+src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Event/__init__.py
 src/Filters/Rules/Place/__init__.py
 src/Filters/Rules/Source/__init__.py
