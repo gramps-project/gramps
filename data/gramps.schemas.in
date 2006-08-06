@@ -268,7 +268,7 @@
         <applyto>/apps/gramps/preferences/rprefix</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default>E%04d</default>
+        <default>R%04d</default>
         <locale name="C">
           <short>Default repository GRAMPS ID pattern</short>
           <long>The new GRAMPS IDs for the repositories are generated according
