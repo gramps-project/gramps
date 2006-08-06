@@ -20,10 +20,6 @@
 	* src/Filters/Rules/Source/_HasIdOf.py: Add module.
 	* src/Filters/Rules/Source/_SourcePrivate.py: Add module.
 	* src/Filters/Rules/Source/_AllSources.py: Add module.
-
-
-
-	
 	* src/Filters/Rules/Family/Makefile.am (pkgdata_PYTHON): Ship new file.
 	* src/Filters/Rules/Family/_MemberBase.py: Add new module.
 	* src/Filters/SideBar/_PersonSidebarFilter.py: Minor changes.
